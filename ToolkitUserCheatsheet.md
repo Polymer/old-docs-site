@@ -19,7 +19,7 @@
 
 #### Component Links
 
-Links (`<link rel="components" href="<path to component file>.html>`) can be used to collated dependencies.
+Links (`<link rel="components" href="<path to component file>.html>`) can be used to collate dependencies, including additional component files, styles, and javascript.
 
 For example:
 
@@ -29,9 +29,10 @@ For example:
     <link rel="components" href="../toolkit/components/g-toolbar.html">
     <link rel="components" href="../toolkit/components/g-menu-button.html">
     <link rel="components" href="../toolkit/components/g-menu-item.html">
+
 	<!-- can load stylesheets and scripts here also -->
 	<link rel="stylesheet" href="my-app-styles.css">
-	<script src="my-app.js">
+	<script src="my-app.js"></script>
 
 *index.html*
 
