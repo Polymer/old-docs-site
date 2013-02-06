@@ -3,7 +3,7 @@
 #### Basics
 
 1. Load *platform.js* to shim missing platform features
-2. Load components with `<link rel="components" href="<path to component file>.html>`
+2. Load components with `<link rel="components" href="<path to component file>.html">`
 3. Use component tags in HTML.
 
 		<!DOCTYPE html>
@@ -19,7 +19,7 @@
 
 #### Component Links
 
-Links (`<link rel="components" href="<path to component file>.html>`) can be used to collate dependencies, including additional component files, styles, and javascript.
+Links (`<link rel="components" href="<path to component file>.html">`) can be used to collate dependencies, including additional component files, styles, and javascript.
 
 For example:
 
