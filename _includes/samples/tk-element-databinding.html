@@ -1,0 +1,42 @@
+<ul id="myTab" class="nav nav-tabs">
+  <li class="active"><a href="#element3" data-toggle="tab">tk-element-databinding.html</a></li>
+  <li><a href="#index3" data-toggle="tab">index.html</a></li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane active" id="element3">
+    {% highlight html %}
+<element name="tk-element-databinding">
+    <link rel="components" href="toolkit/src/g-component.html">
+    <template>
+        This is a <strong>{{"{{owner"}}}}</strong>'s tk-element.
+    </template>
+    <script>
+        this.component({
+          owner: "Daniel"
+        });
+    </script>
+</element>
+{% endhighlight html %}
+  </div>
+  <div class="tab-pane" id="index3">
+{% highlight html %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../platform/platform.js"></script>
+    <link rel="components" href="tk-element-databinding.html">
+  </head>
+  <body>
+    <tk-element-databinding></tk-element-databinding>
+  </body>
+</html>
+{% endhighlight html %}
+  </div>
+</div>
+
+#### Result ####
+
+<!-- Running sample -->
+<div class="well">
+  <tk-element-databinding></tk-element-databinding>
+</div>

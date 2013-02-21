@@ -1,0 +1,16 @@
+<element name="g-cool" attributes="better">
+  <template>
+    Better is {{betterOrBest}}
+  </template>
+  <script>
+    this.component({
+      best: 'best',
+      bind: {
+        betterOrBest: ['better', 'best']
+      },
+      betterOrBestOutput: function(inBetter, inBest) {
+        return this.better || this.best;
+      }
+    });
+  </script>
+</element>

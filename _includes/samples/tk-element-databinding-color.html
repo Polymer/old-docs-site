@@ -1,0 +1,46 @@
+<!-- tk-element-databinding-color.html -->
+
+<ul id="myTab" class="nav nav-tabs">
+  <li class="active"><a href="#element5" data-toggle="tab">tk-element-databinding-color.html</a></li>
+  <li><a href="#index5" data-toggle="tab">index.html</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="element5">
+    {% highlight html %}
+<element name="tk-element-databinding-color">
+    <link rel="components" href="toolkit/src/g-component.html">
+    <template>
+        This is a <strong>{{"{{owner"}}}}</strong>'s tk-element. He likes the color <span style="color: {{"{{color"}}}}">{{"{{color"}}}}</span>.
+    </template>
+    <script>
+        this.component({
+          owner: "Daniel",
+          color: "red"
+        });
+    </script>
+</element>
+{% endhighlight html %}
+  </div>
+  <div class="tab-pane" id="index5">
+{% highlight html %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../platform/platform.js"></script>
+    <link rel="components" href="tk-element-databinding-color.html">
+  </head>
+  <body>
+    <tk-element-databinding-color></tk-element-databinding-color>
+  </body>
+</html>
+{% endhighlight html %}
+  </div>
+</div>
+
+#### Result ####
+
+<!-- Running sample -->
+<div class="well">
+  <tk-element-databinding-color></tk-element-databinding-color>
+</div>

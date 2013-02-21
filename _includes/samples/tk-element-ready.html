@@ -1,0 +1,47 @@
+<!-- Tabs -->
+<ul id="myTab" class="nav nav-tabs">
+  <li class="active"><a href="#element10" data-toggle="tab">tk-element-ready.html</a></li>
+  <li><a href="#index10" data-toggle="tab">index.html</a></li>
+</ul>
+
+<!-- Tab content -->
+<div class="tab-content">
+  <div class="tab-pane active" id="element10">
+    {% highlight html %}
+<element name="tk-element-ready">
+    <template>
+        <div>This is a <b>tk-element</b> with a ready() method. <span id="readyEl">Not ready...</span></div>
+    </template>
+    <script>
+        this.component({
+          owner: "Daniel",
+          ready: function() {
+            this.$.readyEl.innerText = this.owner + " is ready!";
+          }
+        });
+    </script>
+</element>
+{% endhighlight html %}
+  </div>
+  <div class="tab-pane" id="index10">
+{% highlight html %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../platform/platform.js"></script>
+    <link rel="components" href="tk-element-ready.html">
+  </head>
+  <body>
+    <tk-element-ready></tk-element-ready>
+  </body>
+</html>
+{% endhighlight html %}
+  </div>
+</div>
+
+#### Result ####
+
+<!-- Running sample -->
+<div class="well">
+  <tk-element-ready></tk-element-ready>
+</div>

@@ -1,0 +1,13 @@
+<element name="tk-element-public-access" attributes="color">
+    <template>
+        This is a <strong>{{owner}}</strong>'s tk-element. He likes the color <span style="color: {{color}}">{{color}}</span>.
+    </template>
+    <script>
+        this.component({
+          color: "red",
+          publish: {
+            owner: "Daniel"
+          }
+        });
+    </script>
+</element>

@@ -1,0 +1,18 @@
+<element name="tk-element-event-binding">
+    <template>
+        <p>This is a <strong>{{owner}}</strong>'s tk-element. He likes the color <span style="color: {{color}}">{{color}}</span>.</p>
+        <button on-click="sayHello">Say hello</button>
+    </template>
+    <script>
+        this.component({
+            publish: {
+                color: "red",
+                owner: "Daniel"
+            },
+            sayHello: function(inEvent, inDetail, inSender) {
+                alert(this.owner + " says hi!");
+                inSender.innerText = "Thanks!"
+            }
+        });
+    </script>
+</element>

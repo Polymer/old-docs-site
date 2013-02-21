@@ -1,0 +1,50 @@
+<ul id="myTab" class="nav nav-tabs">
+  <li class="active"><a href="#element7" data-toggle="tab">tk-element-property-public-publish.html</a></li>
+  <li><a href="#index7" data-toggle="tab">index.html</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="element7">
+    {% highlight html %}
+<element name="tk-element-property-public-publish">
+    <link rel="components" href="toolkit/src/g-component.html">
+    <template>
+        This is a <strong>{{"{{owner"}}}}</strong>'s tk-element. He likes the color <span style="color: color">{{"{{color}}}}</span>.
+    </template>
+    <script>
+        this.component({
+            publish: {
+                color: "red",
+                owner: "Daniel"
+            }
+        });
+    </script>
+</element>
+{% endhighlight html %}
+  </div>
+  <div class="tab-pane" id="index7">
+{% highlight html %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../platform/platform.js"></script>
+    <link rel="components" href="tk-element-property-public-publish.html">
+  </head>
+  <body>
+  <div class="well">
+    <tk-element-property-public-publish owner="Alex" color="purple">
+    </tk-element-property-public-publish>
+  </div>
+  </body>
+</html>
+{% endhighlight html %}
+  </div>
+</div>
+
+#### Result ####
+
+<!-- Live sample. -->
+<div class="well">
+    <tk-element-property-public-publish owner="Alex" color="purple">
+    </tk-element-property-public-publish>
+</div>
