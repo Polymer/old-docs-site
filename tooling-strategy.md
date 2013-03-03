@@ -14,7 +14,7 @@ after cloning a Toolkitchen repository, to ensure you have any submodule files.
 
 To run tests, build minified files, or build documentation you need `nodejs` and `grunt-cli` on your system.
 
-* install [`nodejs`](http://nodejs.org)
+* install [`nodejs`](http://nodejs.org) using the instructions on their website
 * use `npm` (part of `nodejs`) to install the [`gruntjs`](http://gruntjs.com) task runner for the command-line
 	
 		npm install -g grunt-cli
