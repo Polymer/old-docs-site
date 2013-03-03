@@ -12,14 +12,16 @@ after cloning a Toolkitchen repository, to ensure you have any submodule files.
 
 ###  Minification, Testing, and Documentation
 
-To run tests, build minified files, or build documentation you need to:
+To run tests, build minified files, or build documentation you need `nodejs` and `grunt-cli` on your system.
 
 * install [`nodejs`](http://nodejs.org)
-* use `npm` to install the [`gruntjs`](http://gruntjs.com) task runner for the command-line
+* use `npm` (part of `nodejs`) to install the [`gruntjs`](http://gruntjs.com) task runner for the command-line
 	
 		npm install -g grunt-cli
 
-* in the root folder in which you want to use tools, e.g., `<somepath>/Platform/`, do
+Now for any repository in which you want to use tools:
+
+* in the root folder, e.g., `<somepath>/Platform/`, do
 
 		npm install
 
