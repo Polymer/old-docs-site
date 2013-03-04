@@ -67,7 +67,7 @@ Remember that after cloning a repository containing submodules, you need to perf
 
 to bring down all submodule files.
 
-### Executeables for Minification, Testing, and Documentation
+### Executables for Minification, Testing, and Documentation
 
 A certain amount of executable tooling is required for things like minifying code, running tests, and generating documentation.
 
