@@ -1,0 +1,3 @@
+[submodule "toolkitchensink"]
+	path = toolkitchensink
+	url = https://github.com/toolkitchen/toolkitchensink.git
