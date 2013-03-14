@@ -2,6 +2,7 @@ auto: true
 server: true
 pygments: true
 markdown: redcarpet
+
 # # safe: true
 # # lsi: false
 # # destination: docs/

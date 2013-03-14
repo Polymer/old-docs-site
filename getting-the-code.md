@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Getting the code
+pygments: true
 ---
 
 Toolkitchen is composed from a number of Git repositories included as

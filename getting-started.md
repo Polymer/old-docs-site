@@ -3,7 +3,7 @@ layout: default-with-platform
 title: Getting started
 pygments: true
 components:
-- toolkit/components/g-component.html
+- toolkitchensink/components/g-component.html
 - samples/components/basic-element.html
 - samples/components/tk-element.html
 - samples/components/tk-element-databinding-color.html
@@ -25,7 +25,7 @@ components:
 The basics of using Toolkitchen are simple:
 
 1. Load **platform.js** to shim missing platform features, such as as Shadow DOM.
-2. Load components with `<link rel="components" href="/path/to/component-file.html>`
+2. Load components with `<link rel="components" href="/path/to/component-file.html">`
 3. Use component tags in HTML.
 
 {% highlight html %}
