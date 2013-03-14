@@ -1,0 +1,17 @@
+body {
+  font-family: "Open Sans",Helvetica,Arial,sans-serif;
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+.sidebar-nav {
+  padding: 9px 0;
+}
+
+.navbar-inner {
+  border-color: #bbb;
+  background-image: -moz-linear-gradient(top, #ffffff, #ccc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#ccc));
+  background-image: -webkit-linear-gradient(top, #ffffff, #ccc);
+  background-image: -o-linear-gradient(top, #ffffff, #ccc);
+  background-image: linear-gradient(to bottom, #ffffff, #ccc);
+}

@@ -3,11 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-<title>{{page.title}} - Toolkitchen Project</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="css/site.css" rel="stylesheet" type="text/css">
+<title>{{page.title}} - Toolkitchen Project</title>
+
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,800" rel="stylesheet" type="text/css">
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="css/pygments/default.css" rel="stylesheet" type="text/css">
+<link href="css/site.css" rel="stylesheet" type="text/css">
+
+<!-- Toolkit platform code -->
+<script src="toolkitchensink/toolkit/platform/platform.js"></script>
+
+<!-- Load any components listed in YAML front matter. -->
+{% for item in page.components %}
+  <link rel="components" src="{{ item }}">
+{% endfor %}
+
+<!-- Load any style sheets listed in YAML front matter. -->
+{% for item in page.stylesheets %}
+  <link rel="stylesheet" src="{{ item }}">
+{% endfor %}
+
 </head>
 
 <body>
