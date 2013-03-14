@@ -1,6 +1,6 @@
 ---
 layout: default-with-platform
-title: Discuss Toolkitchen tech
+title: Discuss Toolkitchen
 components:
 - samples/components/basic-element.html
 ---

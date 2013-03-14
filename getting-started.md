@@ -16,16 +16,18 @@ components:
 - samples/components/tk-element-public-access.html
 - samples/components/tk-node-finding.html
 - samples/components/tk-twoway-binding.html
+- samples/components/tk-binding-to-elements.html
 - toolkitchensink/toolkit/components/g-panels.html
 - toolkitchensink/toolkit/components/g-tabs.html
+
 ---
 
-### Basics ###
+## Basics ##
 
 The basics of using Toolkitchen are simple:
 
 1. Load **platform.js** to shim missing platform features, such as as Shadow DOM.
-2. Load components with `<link rel="components" href="/path/to/component-file.html">`
+2. Load components with `<link rel="components" href="/path/to/component-file.html>`
 3. Use component tags in HTML.
 
 {% highlight html %}
@@ -44,30 +46,28 @@ The basics of using Toolkitchen are simple:
 </html>
 {% endhighlight html %}
 
-<h2>Components</h2>
+<h2> Components </h2>
 
 Components are the core building blocks of Toolkit-based applications. You create applications by assembling components together, either ones provided by the Toolkit or that you create yourself.
 
-<h3> Basic custom element </h3>
+<h3>Basic custom element</h3>
 
-The platform features of Toolkitchen enable you to load and display custom elements. 
+The platform shims provided by Toolkitchen lets you load and display custom elements. Just by loading `platform.js` you
 
 {% include samples/basic-element.html %}
 
-## Custom element with Toolkit features ###
+### Adding Toolkit features to a custom element ###
 
-All Toolkit components are extensions of the canonical g-component (src/g-component.html). This component is also sometimes called the Toolkit kernel. The g-component is loaded with the `<link>` tag (like other components) but you don't create instances of it.
+To enable a custom element with Toolkit features:
 
-To enable a custom element with Toolkit features, you need to do two things:
-
-* Load the Toolkit kernel (`/toolkit/component/g-component.html`). 
+* Load the Toolkit kernel (`/toolkit/component/g-component.html`).
 * Add a `<script/>` element that includes the `component()` initializer. THis endows the custom element with Toolkit features, such as data binding and event mapping.
 
 In the following sample we convert our basic custom element into a g-component named `tk-element`.
 
 {% include samples/tk-element.html %}
 
-### Add a property ###
+### Add properties to our component ###
 
 The `component()` initializer takes an object as a parameter whose members define the properties and methods that belong to our component.
 
@@ -75,33 +75,31 @@ The `component()` initializer takes an object as a parameter whose members defin
 
 Now that we've added a property we can use data binding to display its value in the DOM.
 
+## Declarative data binding ##
+
+You can bind properties in your component to  Toolkit supports declarative data binding using the "double-mustache" syntax (`{{"{{"}}}}`) from Model Driven Views. The `{{"{{ "}}}}` is replaced by the value of the property referenced between the brackets.
+
+{% include samples/tk-element-databinding.html %}
+
+### Binding to markup
+
+You can use binding expressions in most HTML markup, except for tag names themselves. In the following example, we create a new property on our component named `color` whose value is bound to the value of the `color` style applied to the custom element.
+
+{% include samples/tk-element-databinding-color.html %}
+
+### Binding between components and native elements ####
+
+The following example demonstrates binding component properties to attributes of native input elements.
+
+{% include samples/tk-binding-to-elements.html %}
+
 ### Adding a ready() lifecyle method ###
 
 When a component has finished initializing itself, it calls its `ready` method, if it exists.
 
 {% include samples/tk-element-ready.html %}
 
-### Declarative data binding ###
-
-Toolkit supports declarative data binding using the `{{"{{"}}}}` syntax from Model Driven Views. Data binding in Toolkit is not one-time string replacement but applies for the life of the component. Data binding is two-way.
-
-{% include samples/tk-element-databinding.html %}
-
-#### Binding to markup
-
-You can use binding expressions in most HTML markup, except for tag names themselves. In the following example, we create a new property on our component named `color` whose value is bound to the value of the `color` style applied to the custom element.
-
-{% include samples/tk-element-databinding-color.html %}
-
-### Two-way binding between components ###
-
-{% include samples/tk-twoway-binding.html %}
-
-<h3>About protected and public component scopes</h3>
-
-Components have both protected and public properties. By default, properties you define in a component() initializer are protected, meaning they are only directly accessible with...
-
-### Making properties public ###
+## Making properties public ###
 
 By default, properties and methods you declare in the `component()` are in a protected scope&mdash;they aren't (directly) accessible outside of the component. Public properties can be exposed via data binding, or accessed directly on the element's JavaScript instance. 
 
@@ -141,17 +139,8 @@ window.addEventListener("WebComponentsReady", function() {
 });
 </script>        
 
-## Declarative event mapping ##
-
-Toolkit supports scoped declarative binding. This means you can declare event handlers in markup, and the handlers will map events to the component instance receiving the event.
-
-{% include samples/tk-element-event-binding.html %}
-
-<!--## About 'this'  ##  TODO: Explain about this in protected scope, etc.  -->
-
 ### Automatic node finding ###
 
-Shadow DOM is a self-contained document-like subtree; id’s in that subtree do not interact with id’s in other trees. Each g-component generates a map of id’s  to node references in the component’s template. This map is accessible as `this.$` to the component. 
+Shadow DOM is a self-contained document-like subtree; id‚Äôs in that subtree do not interact with id‚Äôs in other trees. Each g-component generates a map of id‚Äôs  to node references in the component‚Äôs template. This map is accessible as `this.$` to the component. 
 
 {% include samples/tk-node-finding.html %}
-
