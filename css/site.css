@@ -20,7 +20,14 @@ body {
 }
 
 
-/* Bootstrap overrides -----------------------------------------------------   */
+/* Bootstrap overrides ------------------------------------------------------ */
+.sidebar-nav.affix, .navbar-fixed-top {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -0-transform: translateZ(0);
+  transform: translateZ(0);
+}
 .navbar-inner {
   border-color: #bbb;
   background-image: -moz-linear-gradient(top, #ffffff, #ccc);
