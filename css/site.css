@@ -3,10 +3,6 @@ body {
   padding-top: 60px;
   padding-bottom: 40px;
 }
-.sidebar-nav {
-  padding: 10px 0;
-}
-
 .nav li.icon {
   padding-left: 10px;
 }
@@ -24,7 +20,7 @@ body {
 }
 
 
-/* Bootstrap overides -----------------------------------------------------   */
+/* Bootstrap overrides -----------------------------------------------------   */
 .navbar-inner {
   border-color: #bbb;
   background-image: -moz-linear-gradient(top, #ffffff, #ccc);
@@ -32,9 +28,5 @@ body {
   background-image: -webkit-linear-gradient(top, #ffffff, #ccc);
   background-image: -o-linear-gradient(top, #ffffff, #ccc);
   background-image: linear-gradient(to bottom, #ffffff, #ccc);
-}
-
-.label, .badge {
-  vertical-align: middle;
 }
 /* -------------------------------------------------------------------------- */

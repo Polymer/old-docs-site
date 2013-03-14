@@ -1,12 +1,21 @@
 ---
 layout: default
-title: About Shadow DOM <span class="label label-info">shim</span>
+title: About Shadow DOM
+#subtitle: shim
 pygments: true
 ---
 
-Toolkitchen uses a shim to provide Shadow DOM functionality. This document explains how a proper (native) implementation differs from the shim implementation provided by Toolkitchen.
+- Status: <span class="label label-info">shim</span>
+- Repo: [https://github.com/toolkitchen/ShadowDOM](https://github.com/toolkitchen/ShadowDOM)
+- Specification: [https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html)
 
-## About Shadow DOM subtrees ##
+---
+
+*Toolkitchen uses a shim to provide Shadow DOM functionality in browsers that don't
+support it natively. This document explains how a proper (native) implementation
+differs from the shim implementation provided by Toolkitchen.*
+
+## Shadow DOM subtrees
 
 Shadow DOM allows a single node to express three subtrees: _light DOM_, _shadow DOM_, and _composed DOM_. A component user supplies the light DOM; the node has a (hidden) shadow DOM; and the composed DOM is what is actually rendered in the browser. At render time, the light DOM is merged with the shadow DOM to produce the composed DOM. For example:
 
