@@ -35,6 +35,6 @@ body {
 }
 
 .label, .badge {
-  background-color: #bbb;
+  vertical-align: middle;
 }
 /* -------------------------------------------------------------------------- */

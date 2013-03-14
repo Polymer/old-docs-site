@@ -1,6 +1,6 @@
 ---
 layout: default
-title: About the Shadow DOM shim
+title: About Shadow DOM <span class="label label-info">shim</span>
 pygments: true
 ---
 
