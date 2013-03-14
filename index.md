@@ -3,7 +3,9 @@ layout: default
 title: Introduction
 ---
 
+<p class="lead">
 Toolkitchen is a new type of library for the web, designed to leverage the existing browser infrastructure to provide the encapsulation and extendability currently only available in JavaScript libraries.
+</p>
 
 <p>The Toolkitchen project comprises two primary efforts:</p>
 
