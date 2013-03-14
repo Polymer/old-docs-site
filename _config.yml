@@ -2,7 +2,7 @@ auto: true
 server: true
 pygments: true
 markdown: redcarpet
-
+#exclude: ["README.md"]
 # # safe: true
 # # lsi: false
 # # destination: docs/

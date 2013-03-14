@@ -1,3 +1,7 @@
+---
+loadPlatform: true
+---
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,22 +15,24 @@
 <link href="css/pygments/default.css" rel="stylesheet" type="text/css">
 <link href="css/site.css" rel="stylesheet" type="text/css">
 
-<!-- Toolkit platform code -->
-<script src="toolkitchensink/toolkit/platform/platform.js"></script>
+{% if page.loadPlatform %}
+  <!-- Toolkit platform code -->
+  <script src="toolkitchensink/toolkit/platform/platform.js"></script>
 
-<!-- Load any components listed in YAML front matter. -->
-{% for item in page.components %}
-  <link rel="components" src="{{ item }}">
-{% endfor %}
+  {% for item in page.components %}
+    <link rel="components" src="{{ item }}">
+  {% endfor %}
 
-<!-- Load any style sheets listed in YAML front matter. -->
-{% for item in page.stylesheets %}
-  <link rel="stylesheet" src="{{ item }}">
-{% endfor %}
+  {% for item in page.stylesheets %}
+    <link rel="stylesheet" src="{{ item }}">
+  {% endfor %}
+{% endif %}
 
 </head>
 
 <body>
+
+{{components}}
 
 {% include top-nav.html %}
 

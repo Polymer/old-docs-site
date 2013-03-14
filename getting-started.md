@@ -1,9 +1,9 @@
 ---
-layout: default-with-platform
+layout: default
 title: Getting started
 pygments: true
 components:
-- toolkitchensink/components/g-component.html
+- toolkitchensink/toolkit/components/g-component.html
 - samples/components/basic-element.html
 - samples/components/tk-element.html
 - samples/components/tk-element-databinding-color.html
@@ -16,8 +16,8 @@ components:
 - samples/components/tk-element-public-access.html
 - samples/components/tk-node-finding.html
 - samples/components/tk-twoway-binding.html
-- toolkit/components/g-panels.html
-- toolkit/components/g-tabs.html
+- toolkitchensink/toolkit/components/g-panels.html
+- toolkitchensink/toolkit/components/g-tabs.html
 ---
 
 ### Basics ###

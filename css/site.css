@@ -4,9 +4,27 @@ body {
   padding-bottom: 40px;
 }
 .sidebar-nav {
-  padding: 9px 0;
+  padding: 10px 0;
 }
 
+.nav li.icon {
+  padding-left: 10px;
+}
+.nav li.github {
+  background: url(/images/icons/github.png) no-repeat 0 50%;
+  background-size: 16px;
+}
+.nav li.bug {
+  background: url(/images/icons/bug.png) no-repeat 0 50%;
+  background-size: 18px 18px;
+}
+.nav li.talk {
+  background: url(/images/icons/talk.png) no-repeat 0 50%;
+  background-size: 18px;
+}
+
+
+/* Bootstrap overides -----------------------------------------------------   */
 .navbar-inner {
   border-color: #bbb;
   background-image: -moz-linear-gradient(top, #ffffff, #ccc);
@@ -15,3 +33,8 @@ body {
   background-image: -o-linear-gradient(top, #ffffff, #ccc);
   background-image: linear-gradient(to bottom, #ffffff, #ccc);
 }
+
+.label, .badge {
+  background-color: #bbb;
+}
+/* -------------------------------------------------------------------------- */
