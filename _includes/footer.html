@@ -5,7 +5,7 @@
 // Change "active" style on selected left-hand navigation menu item.
 $(document).ready(function () {
   var path = location.pathname;
-  var fileName = path.substr(path.lastIndexOf('/') + 1, path.length);
+  var fileName = path.substr(path.lastIndexOf('/') + 1, path.length) || '/';
   $('ul.nav > li > a[href="' + fileName + '"]').parent().addClass('active');
 });
 </script>
