@@ -1,3 +1,5 @@
+<div class="row-fluid">
+  <div class="span8">
 <!-- Tabs -->
 <ul id="myTab" class="nav nav-tabs">
   <li class="active"><a href="#element10" data-toggle="tab">tk-element-ready.html</a></li>
@@ -10,13 +12,13 @@
     {% highlight html %}
 <element name="tk-element-ready">
     <template>
-        <div>This is a <b>tk-element</b> with a ready() method. <span id="readyEl">Not ready...</span></div>
+        This is a <b>tk-element</b> with a ready() method. <span id="label">Not ready...</span>
     </template>
     <script>
         this.component({
-          owner: "Daniel",
           ready: function() {
-            this.$.readyEl.innerText = this.owner + " is ready!";
+            this.$.label.className = "label label-info";
+            this.$.label.innerText = "Ready";
           }
         });
     </script>
@@ -38,10 +40,13 @@
 {% endhighlight html %}
   </div>
 </div>
+</div>
 
-#### Result ####
-
-<!-- Running sample -->
+<div class="span4">
+  <!-- Running sample -->
+  <h5>Result</h5>
 <div class="well">
   <tk-element-ready></tk-element-ready>
+</div>
+</div>
 </div>
