@@ -4,41 +4,47 @@ title: Getting the code
 pygments: true
 ---
 
-{{site.project_title}} is composed from a number of Git repositories included as
-submodules in the main toolkitchensink repository.
-
-
 ## About the repositories
 
-The {{site.project_title}} project has two primary goals:
+The entirety of the {{site.project_title}} is composed of a number of Git
+repositories. Most are included as submodules in the main toolkitchensink repository.
+However, understanding the various pieces will help you navigate the codebase.
+
+#### Polyfill repositories
+
+Each new web platform feature has a corresponding polyfill repository. The primary
+goals behind this are two-fold:
 
 1. make the polyfills work across all modern browsers
-- put each polyfill in its own repository so it may stand on its own
+-  each polyfill can stand on its own and be used à la carte in projects.
 
+#### Platform
 
-Platform
+[https://github.com/toolkitchen/platform](https://github.com/toolkitchen/platform)
 
-The platform repository references each of the polyfills as submodules, and contains integration tests, loader, and build tools for the amalgamated polyfills.
+The [platform](https://github.com/toolkitchen/platform) repository references each of the polyfills as submodules, and contains integration tests, loader, and build tools for the amalgamated polyfills.
 
-See [Tooling Strategy](tooling-strategy.html) for information about the tooling strategy.
+See [Tooling Strategy](tooling-strategy.html) for information.
 
-Toolkit
+#### Toolkit
 
-The toolkit master branch is unchanged: it represents the stable codebase from the last iteration.
+[https://github.com/toolkitchen/toolkit](https://github.com/toolkitchen/toolkit)
 
-The toolkit dev branch has recently been revamped. In particular, it loads platform as a submodule.
+The [toolkit](https://github.com/toolkitchen/toolkit) repository contains the guts
+of the project. It pulls in the [platform](https://github.com/toolkitchen/platform)
+polyfill repo as a submodule, contains examples, demos, tools, and the [Toolkit kernel](toolkit-kernel-explainer.html).
 
-Notes:
+<p class="alert">
+  <strong>Note</strong>: toolkit is in a state of flux. The code in the <em>dev</em>
+branch has recently been revamped. In particular, it loads platform as a submodule.
+<em>master</em> will soon reflect these changes once things are merged.
+</p>
 
-toolkit itself is in flux, the dev code is not feature complete vs the stable branch, and there are various systemic changes we will describe in future communications
-as we changed platform from a folder to a submodule, Git will not allow updating toolkit from the old dev to the new dev, or from master to dev. For now, to checkout the new dev branch, one should do so directly.
-Example command to clone toolkit dev:
+If you want to see the development activity (see [Branching Workflow](branching-strategy.html)), checkout the _dev_ branch directly:
 
     git clone -b dev https://github.com/toolkitchen/toolkit.git
 
-See [ Branching Workflow](branching-strategy.html) for information on our philosophy on branches.
-
-## Checkout the code
+## Bring on the code!
 
 You can recursively clone and initialize all of its submodules with a single git command.
 

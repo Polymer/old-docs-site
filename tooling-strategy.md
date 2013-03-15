@@ -9,7 +9,7 @@ title: Tooling Strategy
 
 It's generally a good idea to perform
 
-	git submodule update --init --recursive
+    git submodule update --init --recursive
 
 after cloning a {{site.project_title}} repository, to ensure you have any submodule files.
 
