@@ -6,6 +6,18 @@ body {
 code, pre {
   font-family: "Source Code Pro",Monaco,Menlo,Consolas,"Courier New",monospace;
 }
+figure {
+  margin: 1em 0;
+  display: inline-block;
+}
+figcaption {
+  text-align: center;
+  font-style: italic;
+}
+footer {
+  font-size: smaller;
+}
+
 .nav li.icon:hover img {
   opacity: 1;
 }
@@ -25,10 +37,6 @@ code, pre {
   width: 18px;
 }
 
-footer {
-  font-size: smaller;
-}
-
 /* Bootstrap overrides ------------------------------------------------------ */
 .sidebar-nav.affix, .navbar-fixed-top {
   -webkit-transform: translateZ(0);
@@ -46,3 +54,9 @@ footer {
   background-image: linear-gradient(to bottom, #ffffff, #ccc);
 }
 /* -------------------------------------------------------------------------- */
+
+#architecture-diagram iframe {
+  width: 500px;
+  height: 540px;
+  border: none;
+}

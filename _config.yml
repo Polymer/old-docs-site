@@ -1,15 +1,14 @@
 auto: true
 server: true
-pygments: true
 markdown: redcarpet
-#exclude: ["README.md"]
-#safe: true
-#lsi: false
-# destination: docs/
-# url: http://localhost:4000/docs
 
 # Github Pages runs with this command:
 #jekyll --pygments --no-lsi --safe
+pygments: true
+safe: false
+lsi: false
+
+#exclude: ["README.md"]
 
 # Site globals.
 load_platform: true
