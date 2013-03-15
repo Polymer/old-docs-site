@@ -1,8 +1,13 @@
 ---
 layout: default
 title: About Shadow DOM
-#subtitle: shim
+subtitle: shim
 pygments: true
+
+repo:
+  spec: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html
+  status: <span class="label label-success">complete</span>
+  code: https://github.com/toolkitchen/ShadowDOM
 ---
 
 {% include spec-header.html %}
