@@ -20,8 +20,6 @@ links:
 
 ## Learn the tech
 
-At its most basic definition:
-
 > Shadow DOM is designed to provide encapsulation by hiding DOM subtrees under shadow
 roots. It provides a method of establishing and maintaining functional boundaries
 between DOM trees and how these trees interact with each other within a document,
