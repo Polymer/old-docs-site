@@ -25,6 +25,11 @@ code, pre {
   width: 18px;
 }
 
+footer {
+  font-size: smaller;
+  margin-top: 1em;
+
+}
 
 /* Bootstrap overrides ------------------------------------------------------ */
 .sidebar-nav.affix, .navbar-fixed-top {
