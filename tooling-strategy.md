@@ -1,4 +1,7 @@
-# Toolkitchen Tooling Strategy
+---
+layout: default
+title: Tooling Strategy
+---
 
 ## Summary
 
@@ -8,7 +11,7 @@ It's generally a good idea to perform
 
 	git submodule update --init --recursive
 
-after cloning a Toolkitchen repository, to ensure you have any submodule files.
+after cloning a {{site.project_title}} repository, to ensure you have any submodule files.
 
 ###  Minification, Testing, and Documentation
 

@@ -2,15 +2,47 @@
 layout: default
 title: Getting the code
 pygments: true
-
-loadPlatform: true
 ---
 
-Toolkitchen is composed from a number of Git repositories included as
-submodules in the main toolkitchensink repository. You can recursively
-clone and initialize all of its submodules with a single git command.
+{{site.project_title}} is composed from a number of Git repositories included as
+submodules in the main toolkitchensink repository.
 
-**To clone Toolkitchen:**
+
+## About the repositories
+
+The {{site.project_title}} project has two primary goals:
+
+1. make the polyfills work across all modern browsers
+- put each polyfill in its own repository so it may stand on its own
+
+
+Platform
+
+The platform repository references each of the polyfills as submodules, and contains integration tests, loader, and build tools for the amalgamated polyfills.
+
+See [Tooling Strategy](tooling-strategy.html) for information about the tooling strategy.
+
+Toolkit
+
+The toolkit master branch is unchanged: it represents the stable codebase from the last iteration.
+
+The toolkit dev branch has recently been revamped. In particular, it loads platform as a submodule.
+
+Notes:
+
+toolkit itself is in flux, the dev code is not feature complete vs the stable branch, and there are various systemic changes we will describe in future communications
+as we changed platform from a folder to a submodule, Git will not allow updating toolkit from the old dev to the new dev, or from master to dev. For now, to checkout the new dev branch, one should do so directly.
+Example command to clone toolkit dev:
+
+    git clone -b dev https://github.com/toolkitchen/toolkit.git
+
+See [ Branching Workflow](branching-strategy.html) for information on our philosophy on branches.
+
+## Checkout the code
+
+You can recursively clone and initialize all of its submodules with a single git command.
+
+**To clone toolkitchensink:**
 
     git clone git://github.com/toolkitchen/toolkitchensink.git --recursive
 
@@ -46,25 +78,19 @@ server and run one of the included sample projects:
 
 ### Browser requirements
 
-Toolkitchen will eventually support all major "evergreen"
-(auto-updating) browsers, it currently requires a Webkit-based browser
+{{site.project_title}} will eventually support all major "evergreen"
+(auto-updating) browsers, it currently requires a WebKit-based browser
 such as Chrome or Safari.
 
-### Updating Toolkitchen submodules
+### Updating {{site.project_title}} submodules
 
 Periodically, we will update the project's submodules on GitHub. To
-update your local Toolkitchen's submodules, run the following command
+update your local {{site.project_title}}'s submodules, run the following command
 from the toolkitchensink/ folder:
 
     git submodule update --init --recursive
 
 ### About master and dev branches
 
-Some of the repositories in Tookitchen have a **dev** branch, in
-addition to the **master** branch. The master branch is intended to be
-generally free of bugs, while the dev branch contains the most recent
-commits and may not be stable.
+See [Branching Workflow](branching-strategy.html).
 
-Eventually we will establish a more formalized schedule and structure
-for this process, but for now it's going to be done "when the time is
-right".

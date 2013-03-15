@@ -24,7 +24,7 @@ components:
 
 ## Basics ##
 
-The basics of using Toolkitchen are simple:
+The basics of using {{site.project_title}} are simple:
 
 1. Load **platform.js** to shim missing platform features, such as as Shadow DOM.
 2. Load components with `<link rel="components" href="/path/to/component-file.html">`
@@ -52,7 +52,7 @@ Components are the core building blocks of Toolkit-based applications. You creat
 
 <h3>Basic custom element</h3>
 
-The platform shims provided by Toolkitchen lets you load and display custom elements. Just by loading `platform.js` you
+The platform shims provided by {{site.project_title}} lets you load and display custom elements. Just by loading `platform.js` you
 
 {% include samples/basic-element.html %}
 

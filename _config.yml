@@ -3,10 +3,14 @@ server: true
 pygments: true
 markdown: redcarpet
 #exclude: ["README.md"]
-# # safe: true
-# # lsi: false
-# # destination: docs/
-# # url: http://localhost:4000/docs
+#safe: true
+#lsi: false
+# destination: docs/
+# url: http://localhost:4000/docs
 
 # Github Pages runs with this command:
 #jekyll --pygments --no-lsi --safe
+
+# Site globals.
+load_platform: true
+project_title: Toolkitchen
