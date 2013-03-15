@@ -27,7 +27,7 @@ components:
 The basics of using Toolkitchen are simple:
 
 1. Load **platform.js** to shim missing platform features, such as as Shadow DOM.
-2. Load components with `<link rel="components" href="/path/to/component-file.html>`
+2. Load components with `<link rel="components" href="/path/to/component-file.html">`
 3. Use component tags in HTML.
 
 {% highlight html %}

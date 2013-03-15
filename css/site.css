@@ -3,6 +3,9 @@ body {
   padding-top: 60px;
   padding-bottom: 40px;
 }
+code, pre {
+  font-family: "Source Code Pro",Monaco,Menlo,Consolas,"Courier New",monospace;
+}
 .nav li.icon:hover img {
   opacity: 1;
 }
