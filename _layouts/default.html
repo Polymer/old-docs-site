@@ -11,13 +11,13 @@ loadPlatform: true
 <title>{{page.title}} - Toolkitchen Project</title>
 
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,800|Source+Code+Pro" rel="stylesheet" type="text/css">
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="css/pygments/default.css" rel="stylesheet" type="text/css">
-<link href="css/site.css" rel="stylesheet" type="text/css">
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/css/pygments/default.css" rel="stylesheet" type="text/css">
+<link href="/css/site.css" rel="stylesheet" type="text/css">
 
 {% if page.loadPlatform %}
   <!-- Toolkit platform code -->
-  <script src="toolkitchensink/toolkit/platform/platform.js"></script>
+  <script src="/toolkitchensink/toolkit/platform/platform.js"></script>
 
   {% for item in page.components %}
     <link rel="components" src="{{ item }}">
