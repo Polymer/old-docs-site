@@ -2,8 +2,11 @@
 layout: default
 ---
 
+## Welcome
+
 <p class="lead">
-{{site.project_title}} is a new type of library for the web, designed to leverage the existing browser infrastructure to provide the encapsulation and extendability currently only available in JavaScript libraries.
+{{site.project_title}} is a new type of library for the web, built on top of Web Components,
+and designed to leverage the evolving web platform on modern browsers.
 </p>
 
 The {{site.project_title}} project comprises two primary efforts:
