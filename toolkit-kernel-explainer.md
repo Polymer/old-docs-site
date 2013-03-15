@@ -5,18 +5,18 @@ title: Toolkit kernel
 
 The Toolkit _kernel_ provides a thin layer of code that expresses the Toolkit opinion, and provides the sugar that all components use. The kernel code is provided by a file named `g-component.html`. A web component that depends on the Toolkit kernel is called a _g-component_.
 
-## Component declaration ##
----
+## Component declaration
+
 A web component declaration look like the following:
 
 {% highlight html %}
 <element name="tag-name">
-    <template>
-        <!-- shadow DOM here -->
-    </template>
-    <script>
-        // lifecycle setup here
-    </script>
+  <template>
+    <!-- shadow DOM here -->
+  </template>
+  <script>
+    // lifecycle setup here
+  </script>
 </element>
 {% endhighlight html %}
 
@@ -85,26 +85,46 @@ this.component({
     this.node.style.backgroundColor = this.clickColor;
   },
   publish: {
-    this.clickColor = 'red',
-
+    clickColor: 'red'
   }
 });
 {% endhighlight %}
 
 To make a `blueify` method that is callable on the node (public), we _publish_ the method by placing it inside a `publish` object:
 
-For example, let's say our design for the _my-tag_ element calls for a method that can turn the element text blue, so a user could do like so:
+{% highlight javascript %}
+this.component({
+  clickColor: 'orange',
+  clickHandler: function() {
+    this.node.style.backgroundColor = this.clickColor;
+  },
+  publish: {
+    clickColor: 'red',
+    blueify: function() {
+      this.node.style.backgroundColor = 'blue';
+    }
+  }
+});
+{% endhighlight %}
+
+For example, let's say our design for the _my-tag_ element calls for a method
+that can turn the element text blue, so a user could do like so:
 
 {% highlight javascript %}
-myTag = document.querySelector("my-tag");
+var myTag = document.querySelector("my-tag");
 myTag.blueify();
 {% endhighlight %}
 
-The `blueify` method is a part of _my-tag_'s public API. It must be available to end-users on the element instance.
+The `blueify` method is a part of _my-tag_'s public API. It must be available
+to end-users on the element instance.
 
-Now, imagine _my-tag_ is also supposed to turn orange if clicked. As part of our set-up, we attach a `click` listener to a method called `clickHandler` which turns the element orange.
+Now, imagine _my-tag_ is also supposed to turn orange if clicked. As part of our
+custom element's set-up, we attach a `click` listener which invokes the
+`clickHandler` method that turns the element orange.
 
-In this case, `clickHandler` is not intended to be called by end-users, it's only there to service an event. In this case, `clickHandler` should be part of the protected API. Then the method is not visible on the element instance and calling
+In this case, `clickHandler` is not intended to be called by end-users, it's
+only there to service an event. In this case, `clickHandler` should be part of
+the protected API. Then the method is not visible on the element instance and calling
 
 {% highlight javascript %}
 myTag.clickHandler(); // error: undefined function 
@@ -118,13 +138,11 @@ Note the following:
 
 Bottom line: when building components use `this` naturally and declare properties and methods as you like. Then, if you happen to create API you want to make public, you just move it into the `publish` block.
 
-## G-component features ##
+## G-component features
 
 This section describes the features of g-components. 
 
-
-
-## Attributes and properties
+### Attributes and properties
 
 Another Toolkit convention is that public properties are settable by attribute. For example, we could instantiate the `name-tag` component and set its public properties with the following:
 
@@ -134,7 +152,7 @@ Another Toolkit convention is that public properties are settable by attribute. 
 
 When `name-tag` is created, or when its attributes change value, those new values are reflected into their matching component properties. 
 
-Remember that only _public_ properties are settable via attribute.
+Remember that only <em>public</em> properties are settable via attribute.
 
 ### Declaring public properties as attributes
 

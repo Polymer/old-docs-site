@@ -23,8 +23,8 @@ Shadow DOM allows a single node to express three subtrees: _light DOM_, _shadow 
 
 {% highlight html%}
 <custom-node>
-    <!-- everything in here is custom-node's light DOM -->
-    <q>Hello World</q>
+  <!-- everything in here is custom-node's light DOM -->
+  <q>Hello World</q>
 </custom-node>
 {% endhighlight %}
 
@@ -33,8 +33,8 @@ Shadow DOM allows a single node to express three subtrees: _light DOM_, _shadow 
 {% highlight html%}
 <!-- shadow-root is attached to custom-node, but is not a child-->
 <shadow-root>
-    <!-- everything in here is custom-node's shadow DOM -->
-    <span>People say: <content></content></span>
+  <!-- everything in here is custom-node's shadow DOM -->
+  <span>People say: <content></content></span>
 </shadow-root>
 {% endhighlight html%}    
 
@@ -43,7 +43,7 @@ Shadow DOM allows a single node to express three subtrees: _light DOM_, _shadow 
 {% highlight html%}
 <!-- rendered DOM -->
 <custom-node>
-    <span>People say: <q>Hello World</q></span>
+  <span>People say: <q>Hello World</q></span>
 </custom-node>
 {% endhighlight %}
 
@@ -79,7 +79,7 @@ Using the native DOM accessors (such as `childNodes`) on a tree containing Shado
 
 {% highlight html%}
 <shadow-root>
-    <span-changeling></span-changeling>
+  <span-changeling></span-changeling>
 </shadow-root>
 <custom-node><span>I'm in two places at once</span></custom-node>
 {% endhighlight %}
@@ -98,9 +98,9 @@ might compose with light DOM into
 
 {% highlight html%}
 <custom-element>
-    <contesnt>
-        <span>Hello World</span>
-    </content>
+  <contesnt>
+    <span>Hello World</span>
+  </content>
 </custom-element>
 {% endhighlight%}
 
@@ -108,7 +108,7 @@ but the render tree must see this as
 
 {% highlight html%}
 <custom-element>
-    <span>Hello World</span>
+  <span>Hello World</span>
 </custom-element>
 {% endhighlight%}
 
