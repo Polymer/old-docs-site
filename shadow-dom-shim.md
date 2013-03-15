@@ -6,7 +6,7 @@ pygments: true
 
 repo:
   spec: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html
-  status: <span class="label label-success">complete</span>
+  status: <span class="label label-warning">in progress</span>
   code: https://github.com/toolkitchen/ShadowDOM
 ---
 

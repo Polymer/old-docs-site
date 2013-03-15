@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Custom Elements
+title: About Custom Elements
 subtitle: polyfill
 pygments: true
 
