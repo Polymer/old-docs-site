@@ -8,17 +8,38 @@ repo:
   spec: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html
   status: <span class="label label-warning">in progress</span>
   code: https://github.com/toolkitchen/ShadowDOM
+
+links:
+- "What the Heck is Shadow DOM?": http://glazkov.com/2011/01/14/what-the-heck-is-shadow-dom/
+- "HTML5Rocks - Shadow DOM 101": http://www.html5rocks.com/tutorials/webcomponents/shadowdom/
+- "HTML5Rocks - Shadow DOM 201 - CSS and Styling": http://www.html5rocks.com/tutorials/webcomponents/shadowdom-201/
+
 ---
 
 {% include spec-header.html %}
 
-*Toolkitchen uses a shim to provide Shadow DOM functionality in browsers that don't
-support it natively. This document explains how a proper (native) implementation
-differs from the shim implementation provided by Toolkitchen.*
+## Learn the tech
 
-## Shadow DOM subtrees
+At its most basic definition:
 
-Shadow DOM allows a single node to express three subtrees: _light DOM_, _shadow DOM_, and _composed DOM_. A component user supplies the light DOM; the node has a (hidden) shadow DOM; and the composed DOM is what is actually rendered in the browser. At render time, the light DOM is merged with the shadow DOM to produce the composed DOM. For example:
+> Shadow DOM is designed to provide encapsulation by hiding DOM subtrees under shadow
+roots. It provides a method of establishing and maintaining functional boundaries
+between DOM trees and how these trees interact with each other within a document,
+thus enabling better functional encapsulation within the DOM.
+
+Useful resources:
+
+{% for link_hash in page.links %}
+  {% for link in link_hash %}
+  - [{{link[0]}}]({{link[1]}})
+  {% endfor %}
+{% endfor %}
+
+### Shadow DOM subtrees
+
+Shadow DOM allows a single node to express three subtrees: _light DOM_, _shadow DOM_, and _composed DOM_.
+
+A component user supplies the light DOM; the node has a (hidden) shadow DOM; and the composed DOM is what is actually rendered in the browser. At render time, the light DOM is merged with the shadow DOM to produce the composed DOM. For example:
 
 **Light DOM**
 
@@ -57,20 +78,31 @@ So, while in the final rendered tree `<span>` is a child of `<custom-node>` and 
 
 In this way, the user can manipulate light DOM or shadow DOM directly as regular DOM subtrees, and let the system take care of keeping the render tree synchronized.
 
-## Shadow DOM shim limitations ##
+## The shim
 
-To polyfill Shadow DOM it's necessary to compose the rendered tree into the DOM proper, as that is what the browser is going to display. That means the truisms above no longer apply. There are several important differences to consider under a polyfilled Shadow DOM:
+{{site.project_title}} uses a shim to provide Shadow DOM functionality in browsers that don't
+support it natively. This section explains how a proper (native) implementation
+differs from the shim implementation provided by {{site.project_title}}.
+
+{% include shim_vs_polyfill.md %}
+
+<p class="alert">
+<strong>Note</strong>: Although Chrome 25 has native support for Shadow DOM,
+we only supports the shim at this time.
+</p>
+
+### Shim limitations
+
+To shim Shadow DOM it's necessary to compose the rendered tree into the DOM proper, as that is what the browser is going to display. That means the truisms above no longer apply. There are several important differences to consider under a polyfilled Shadow DOM:
 
 * `<custom-node>`'s light DOM must be stored in a subtree separate from main DOM. `<custom-node>`'s native `childNodes`, `children`, `innerHTML` properties and methods all refer to the rendered tree.
 * Nodes in light DOM or shadow DOM express native parent and sibling relationships that match only the rendered tree structure; the relationships that exist in the original light and shadow trees are not expressed by native DOM.
 
 For proper polyfilling, these contradictions need to be solved by overriding the DOM tree accessors from JS to provide the illusion of the separated DOM trees. For this reason, Toolkit uses a Shadow DOM _shim_ instead of a polyfill. 
 
-> We differentiate a <em>shim</em> from a <em>polyfill</em> in that a shim does the minimum work to make a technology function, whereas a polyfill needs to provide (as near as possible) to 100% compatibility with that technology.
-
 In particular, the Toolkit Shadow DOM shim does not provide the ability to operate on light and shadow subtrees as strictly normal DOM subtrees. Instead, those subtrees are embedded in the native (rendered) DOM and special APIs are provided to navigate them.
 
-### Subtree perversions
+#### Subtree perversions
 
 Using the native DOM accessors (such as `childNodes`) on a tree containing Shadow DOM shim subtrees, you will encounter these unusual DOM structures:
 
@@ -119,7 +151,9 @@ In this case, an `.insertions` array is created on `<custom-element>` which cont
 
 Because shadow DOM subtrees can be embedded in other shadow DOM subtrees, it quickly becomes possible for a node to be both in light and shadow DOM, depending on your perspective. Instead of having two kinds of trees, it's simpler to talk about a node's _local_ tree. This way, my shadow DOM is just my _local_ tree, and my light DOM is part of _my parentNode's_ local tree. 
 
-> Note: By [specification], nodes distributed to insertion-points (`<content>`, `<shadow>`) are not considered part of the local tree, and must be studied separately via the `.getDistributedNodes()` function.
+<p class="alert">
+<strong>Note</strong>: Nodes distributed to insertion-points (<code>&lt;content></code>, <code>&lt;shadow</code>`) are not considered part of the local tree, and must be studied separately via the <code>.getDistributedNodes()</code> function.
+</p>
 
 ### API Utilities
 

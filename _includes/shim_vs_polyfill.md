@@ -1,0 +1,1 @@
+> We differentiate a <em>shim</em> from a <em>polyfill</em> in that a shim does the minimum work to make a technology function, whereas a polyfill needs to provide (as near as possible) to 100% compatibility with that technology.
