@@ -1,6 +1,5 @@
 ---
 layout: default
-title: Introduction
 ---
 
 <p class="lead">

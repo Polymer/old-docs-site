@@ -40,6 +40,7 @@ loadPlatform: true
   <div class="row-fluid">
     {% include left-nav.html %}
     <div class="span7">
+      {% if page.title %}
       <div class="page-header">
         <h1>{{page.title}}
           {% if page.subtitle %}
@@ -47,7 +48,10 @@ loadPlatform: true
           {% endif %}
         </h1>
       </div>
+      {% endif %}
+
       {{content}}
+
     </div>
   </div>
 </div>

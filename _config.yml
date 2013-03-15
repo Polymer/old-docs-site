@@ -1,5 +1,5 @@
 auto: true
-#server: true
+server: true
 pygments: true
 markdown: redcarpet
 #exclude: ["README.md"]
