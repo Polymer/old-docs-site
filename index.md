@@ -8,7 +8,7 @@ Toolkitchen is a new type of library for the web, designed to leverage the exist
 
 The Toolkitchen project comprises two primary efforts:
 
-- A set of core platform features, including [Shadow DOM](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html), [Custom Eleents](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html) and [Model Driven Views](http://mdv.googlecode.com/git/docs/design_intro.html). Initially, these core features will be enabled with a set of polyfills and shims.
+- A set of core platform features, including [Shadow DOM](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html), [Custom Elements](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html) and [Model Driven Views](http://mdv.googlecode.com/git/docs/design_intro.html). Initially, these core features will be enabled with a set of polyfills and shims.
 -  next-generation web application framework built upon these core technologies called the <strong><em>Toolkit</em></strong>.
 </ul>
 
