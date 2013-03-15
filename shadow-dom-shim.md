@@ -5,11 +5,7 @@ title: About Shadow DOM
 pygments: true
 ---
 
-- Status: <span class="label label-info">shim</span>
-- Repo: [https://github.com/toolkitchen/ShadowDOM](https://github.com/toolkitchen/ShadowDOM)
-- Specification: [https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html)
-
----
+{% include spec-header.html %}
 
 *Toolkitchen uses a shim to provide Shadow DOM functionality in browsers that don't
 support it natively. This document explains how a proper (native) implementation
