@@ -62,6 +62,9 @@ footer div:first-of-type {
 }
 /* -------------------------------------------------------------------------- */
 
+#content {
+  min-height: 400px;
+}
 #logo-row {
   -webkit-filter: grayscale(0.8);
   -moz-filter: grayscale(0.8);
