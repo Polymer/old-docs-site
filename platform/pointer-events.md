@@ -6,7 +6,7 @@ pygments: true
 
 repo:
   spec: https://dvcs.w3.org/hg/pointerevents/raw-file/tip/pointerEvents.html
-  status: <span class="label label-warning">in progress</span>
+  status: <span class="label label-success">complete</span>
   code: https://github.com/toolkitchen/PointerEvents
 ---
 

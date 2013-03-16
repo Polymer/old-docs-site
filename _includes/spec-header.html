@@ -2,9 +2,9 @@
   <dt>Implementation status</dt>
   <dd>{{page.repo.status}}</dd>
   <dt>Repository</dt>
-  <dd><a href="{{page.repo.code}}">{{page.repo.code}}</a></dd>
+  <dd><a href="{{page.repo.code}}">{{page.repo.code | replace_first:'https://',''}}</a></dd>
   <dt>W3C Specification</dt>
-  <dd><a href="{{page.repo.spec}}">{{page.repo.spec}}</a></dd>
+  <dd><a href="{{page.repo.spec}}">{{page.repo.spec | replace_first:'https://',''}}</a></dd>
 </dl>
 
 ---

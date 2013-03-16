@@ -13,10 +13,6 @@ code, pre {
   -o-user-select: none;
   user-select: none;
 }
-figure {
-  margin: 1em 0;
-  display: inline-block;
-}
 figcaption {
   text-align: center;
   font-style: italic;

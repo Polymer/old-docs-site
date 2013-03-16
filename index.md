@@ -17,7 +17,7 @@ Initially, these core features will be enabled with a set of polyfills and shims
 - next-generation web application framework built upon these core technologies called the **_Toolkit_**.
 </ul>
 
-As browsers begin to implement these features natively, this polyfilled platform
+As browsers begin to implement these features natively, this polyfill platform
 layer will become smaller and smaller.
 
 <figure id="architecture-diagram">
