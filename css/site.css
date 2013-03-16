@@ -21,6 +21,9 @@ figcaption {
 footer {
   font-size: smaller;
 }
+footer div:first-of-type {
+  float: left;
+}
 
 .nav li.icon:hover img {
   opacity: 1;
@@ -59,8 +62,22 @@ footer {
 }
 /* -------------------------------------------------------------------------- */
 
+#logo-row {
+  -webkit-filter: grayscale(0.8);
+  -moz-filter: grayscale(0.8);
+  -ms-filter: grayscale(0.8);
+  -o-filter: grayscale(0.8);
+  filter: grayscale(0.8);
+  float: right;
+}
+#logo-row img {
+  height: 25px;
+  width: auto;
+  margin: 0 2px;
+}
+
 #architecture-diagram iframe {
-  width: 600px;
+  width: 580px;
   height: 435px;
   border: none;
 }
