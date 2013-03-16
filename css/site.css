@@ -20,6 +20,7 @@ figure {
 figcaption {
   text-align: center;
   font-style: italic;
+  padding: 10px;
 }
 footer {
   font-size: smaller;
