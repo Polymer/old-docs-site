@@ -12,8 +12,9 @@ and designed to leverage the evolving web platform on modern browsers.
 The {{site.project_title}} project comprises two primary efforts:
 
 - A set of core platform features, including [Shadow DOM](/platform/shadow-dom-shim.html),
-[Custom Elements](/platform/custom-elements.html) and [Model Driven Views](/platform/mdv.html).Initially, these core features will be enabled with a set of polyfills and shims.
--  next-generation web application framework built upon these core technologies called the <strong><em>Toolkit</em></strong>.
+[Custom Elements](/platform/custom-elements.html) and [Model Driven Views](/platform/mdv.html).
+Initially, these core features will be enabled with a set of polyfills and shims.
+- next-generation web application framework built upon these core technologies called the **_Toolkit_**.
 </ul>
 
 As browsers begin to implement these features natively, this polyfilled platform

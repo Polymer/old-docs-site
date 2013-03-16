@@ -6,6 +6,13 @@ body {
 code, pre {
   font-family: "Source Code Pro",Monaco,Menlo,Consolas,"Courier New",monospace;
 }
+.brand {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
 figure {
   margin: 1em 0;
   display: inline-block;
@@ -56,7 +63,7 @@ footer {
 /* -------------------------------------------------------------------------- */
 
 #architecture-diagram iframe {
-  width: 500px;
-  height: 540px;
+  width: 600px;
+  height: 435px;
   border: none;
 }
