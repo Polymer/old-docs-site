@@ -1,0 +1,9 @@
+{
+  "name": "Docs",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-jekyll": "*",
+    "grunt-contrib-copy": "~0.4.0"
+  }
+}

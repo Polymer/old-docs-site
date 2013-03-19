@@ -66,6 +66,8 @@ footer div:first-of-type {
   min-height: 400px;
 }
 #logo-row {
+  width: 25%;
+  text-align: right;
   -webkit-filter: grayscale(0.8);
   -moz-filter: grayscale(0.8);
   -ms-filter: grayscale(0.8);
@@ -80,7 +82,7 @@ footer div:first-of-type {
 }
 
 #architecture-diagram iframe {
-  width: 580px;
+
   height: 435px;
   border: none;
 }

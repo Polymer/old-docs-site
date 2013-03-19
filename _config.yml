@@ -1,14 +1,18 @@
-auto: true
-server: true
+#auto: true
+#server: true
 markdown: redcarpet
 
-# Github Pages runs with this command:
-#jekyll --pygments --no-lsi --safe
+# Note: Github Pages runs with this command:
+# jekyll --pygments --no-lsi --safe
 pygments: true
-safe: false
 lsi: false
+safe: false
 
-#exclude: ["README.md"]
+exclude: "node_modules/"
+
+# Be sure to checkout the toolkitchen.github.com repo.
+# This is where the generated docs are output.
+#destination: ../test.github.com
 
 # Site globals.
 load_platform: true
