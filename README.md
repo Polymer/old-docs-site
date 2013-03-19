@@ -1,7 +1,7 @@
 Toolkitchen docs are mostly in Markdown with some HTML. [Jekyll][jekyll] is used to generate the static HTML for the site. The output is copied to
-`/toolkitchen/toolkitchen.githubpages.com` for serving.
+`/toolkitchen/toolkitchen.github.com` for serving.
 
-Our documentation source files (located in this repo) and the rendered HTML (located in `/toolkitchen/toolkitchen.githubpages.com`)
+Our documentation source files (located in this repo) and the rendered HTML (located in `/toolkitchen/toolkitchen.github.com`)
 are in separate repos in order to take advantage of Jekyll `_plugins`, special build scripts, and have full control
 over doc generation.
 
