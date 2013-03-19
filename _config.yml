@@ -9,7 +9,7 @@ pygments: true
 lsi: false
 safe: false
 
-exclude: "node_modules/, README.md, Gruntfile.js, package.json"
+exclude: "node_modules/, README.md"
 
 # Be sure to checkout the toolkitchen.github.com repo.
 # This is where the generated docs will be output.
