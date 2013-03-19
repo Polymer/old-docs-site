@@ -19,9 +19,12 @@ This repo (`toolkitchen/docs`) is where the documentation source files live. To 
 - To build the docs locally, run `grunt` or ``. This starts a web server at
 [http://localhost:4000](http://localhost:4000) where you can preview your edits. This also watches and rebuilds on changes.
 
-The generated site is placed in a folder named `_site`. Alternatively, if you just want to build the docs and not run a webserver, run:
+The generated site is placed in a folder named `_site`. Alternatively, if you just want to
+build the docs and not run a webserver, run:
 
     grunt jekyll:server
+
+Once your changes look good, `git commit` them and push.
 
 ## Building and pushing the docs
 
