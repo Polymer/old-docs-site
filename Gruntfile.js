@@ -4,19 +4,22 @@ module.exports = function(grunt) {
   grunt.initConfig({
 
     pkg: grunt.file.readJSON('package.json'),
+    jekyllConfig: grunt.file.readYAML('_config.yml'),
 
     jekyll: {
       server : {
         server: true,
-        server_port: 4000,
+        server_port: '<%= jekyllConfig.server_port %>',
         auto: true
       },
       dev: {
-        safe: false,
-        lsi: false,
-        pygments: true
+        server: false,
+        safe: false
       },
-      prod: {}
+      prod: {
+        auto: false,
+        server: false
+      }
     },
 
     watch: { // for development run 'grunt watch'
@@ -32,7 +35,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: '_site/', // set base for src matches.
           src: ['**'], // includes files and subdirs of cwd.
-          dest: '../test.github.com2/'
+          dest: '<%= jekyllConfig.destination %>'
         }]
       }
     }
@@ -44,7 +47,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task. Run standard jekyll server.
-  grunt.registerTask('default', 'jekyll:server');
+  grunt.registerTask('default', ['jekyll:server']);
 
   // Take to build and copy docs over to publishing repo.
   grunt.registerTask('publish', ['jekyll:prod', 'copy:main'])

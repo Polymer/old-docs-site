@@ -1,9 +1,10 @@
-#auto: true
-#server: true
-markdown: redcarpet
+# Server defaults.
+server: false
+server_port: 4000
+auto: true
 
-# Note: Github Pages runs with this command:
-# jekyll --pygments --no-lsi --safe
+# Project defaults.
+markdown: redcarpet
 pygments: true
 lsi: false
 safe: false
@@ -11,9 +12,9 @@ safe: false
 exclude: "node_modules/"
 
 # Be sure to checkout the toolkitchen.github.com repo.
-# This is where the generated docs are output.
-#destination: ../test.github.com
+# This is where the generated docs will be output.
+destination: ../toolkitchen.github.com
 
-# Site globals.
+# Site globals used throughout docs.
 load_platform: true
 project_title: Toolkitchen
