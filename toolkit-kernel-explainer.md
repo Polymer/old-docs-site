@@ -3,7 +3,10 @@ layout: default
 title: Toolkit kernel
 ---
 
-The Toolkit _kernel_ provides a thin layer of code that expresses the Toolkit opinion, and provides the sugar that all components use. The kernel code is provided by a file named `g-component.html`. A web component that depends on the Toolkit kernel is called a _g-component_.
+The Toolkit _kernel_ provides a thin layer of code that expresses the Toolkit
+opinion, and provides the sugar that all components use. The kernel code is
+provided by a file named `g-component.html`. A web component that depends on the
+Toolkit kernel is called a _g-component_.
 
 ## Component declaration
 
@@ -20,7 +23,8 @@ A web component declaration look like the following:
 </element>
 {% endhighlight html %}
 
-To have this component  this component `component()` lifecycle initializer to the component's `<script/>` block, as shown below:
+To have this component  this component `component()` lifecycle initializer to
+the component's `<script>` block, as shown below:
 
 {% highlight html %}
 <element name="tag-name">
@@ -35,16 +39,24 @@ To have this component  this component `component()` lifecycle initializer to th
 
 Note the following:
 
-* The `component()` initializer is all that's required to  prepare this component to use Toolkit [conventions and features](#features). 
-* The "name" attribute of `<element/>` determines the name of the custom element you use to instantiate the component (`<tag-name/>`, for example).
+- The `component()` initializer is all that's required to  prepare this
+component to use Toolkit [conventions and features](#features). 
+- The "name" attribute specifies the name of the custom `<element>` and
+determines the name of the tag when you instantiate the component in markup.
+For example, `<tag-name>` in this example. The name should contain two words
+separated by a "-".
 
-### Component initializer
+### Component initialization
 
-You can supply a single object-valued argument to `component()` to define object prototypes, and perform other setup tasks. Most properties and methods defined in the argument to `component()` are used directly in the component's prototype. In the following example the component initializer defines a property `helloWorld` and a method `ready`. 
+You can supply a single object-valued argument to `component()` to define object
+prototypes, and perform other setup tasks. Most properties and methods defined
+in the argument to `component()` are used directly in the component's prototype.
+In the following example the component initializer defines a property
+`helloWorld` and a method `ready`. 
 
 {% highlight javascript %}
 this.component({
-  message: "Hallo!",
+  message: "Hello!",
   ready: function() {
     // component is ready now, we can do stuff
   }
@@ -55,7 +67,7 @@ A component's `ready` method, if it exists, is called when the component is read
 
 ## Protected and public API surfaces
 
-G-components have _public_ and _protected_ aspects. The public aspect represents the API that is visible and accessible directly from a component (element) instance. The protected aspect contains the API of which component users shouldn't need to be aware, such as event handlers or internal methods.
+g-components have _public_ and _protected_ aspects. The public aspect represents the API that is visible and accessible directly from a component (element) instance. The protected aspect contains the API of which component users shouldn't need to be aware, such as event handlers or internal methods.
 
 ### Protected properties ###
 
@@ -156,12 +168,12 @@ Remember that only <em>public</em> properties are settable via attribute.
 
 ### Declaring public properties as attributes
 
-You can also declare public properties directly on an `<element/>` tag using its `attributes` attribute. For example:
+You can also declare public properties directly on an `<element>` tag using its `attributes` attribute. For example:
 
 {% highlight html %}
 <element name="name-tag" attributes="myName nameColor">
   <template>
-    Hello! My name is <span style="color:{{nameColor}}">{{myName}}</span>
+    Hello! My name is <span style="color:{{"{{nameColor"}}}}">{{myName}}</span>
   </template>
   <script>
     this.component({
@@ -216,7 +228,6 @@ Now, imagine we make a new component called 'visitor-creds' that uses `name-tag`
 When I make an instance of `visitor-creds`, its `person` object is bound to the `name-tag` instance, so now both components are using the same `person` object.
 
 
-
 ### Declarative event mapping
 
 Toolkit supports declarative binding of events to methods in the component. The toolkit uses special <code>on-<em>event</em></code> syntax to trigger this binding behavior.
@@ -253,6 +264,7 @@ Some things to notice:
 
 G-component API is not public by default. Only API declared in the `publish` block is part of the public surface. This way, users of a component need not contend with internal properties or event handlers.
 
+{% highlight html %}
 <element name="g-cool">
   <script>
     this.component({
@@ -265,6 +277,7 @@ G-component API is not public by default. Only API declared in the `publish` blo
     });
   </script>
 </element>
+{% endhighlight html %}
 
 In this example, the `g-cool` component has a single public method, 
 `makeBetterBest`. The property _better _is not visible on the node, but a user could call `node.makeBetterBest` to set the internal property to the string value 'best'. 
@@ -309,7 +322,7 @@ For example, the following defines a g-component whose template contains an `<in
 {% highlight html %}
 <element name="x-form">
   <template>
-    <input id="nameInput">
+    <input type="text" id="nameInput">
   </template>
   <script>
     this.component({
@@ -338,4 +351,6 @@ A g-component can extend a parent g-component by calling the parent's inherited 
 </element>
 {% endhighlight html %}
 
-In this example, `this.$super` returns a reference to the parent, which is a `g-cool` g-component. In `g-cooler` the value of `better` contains the value of `g-cool` is, plus the string 'even more'.
+In this example, `this.$super` returns a reference to the parent, which is a
+`g-cool` g-component. In `g-cooler` the value of `better` contains the value of
+`g-cool` is, plus the string 'even more'.
