@@ -3,10 +3,14 @@ layout: default
 title: About Shadow DOM
 subtitle: shim
 
-repo:
+feature:
   spec: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html
   status: <span class="label label-warning">in progress</span>
   code: https://github.com/toolkitchen/ShadowDOM
+  summary: "Shadow DOM is designed to provide encapsulation by hiding DOM subtrees under shadow
+roots. It provides a method of establishing and maintaining functional boundaries
+between DOM trees and how these trees interact with each other within a document,
+thus enabling better functional encapsulation within the DOM."
 
 links:
 - "What the Heck is Shadow DOM?": http://glazkov.com/2011/01/14/what-the-heck-is-shadow-dom/
@@ -16,21 +20,6 @@ links:
 ---
 
 {% include spec-header.html %}
-
-## Learn the tech
-
-> Shadow DOM is designed to provide encapsulation by hiding DOM subtrees under shadow
-roots. It provides a method of establishing and maintaining functional boundaries
-between DOM trees and how these trees interact with each other within a document,
-thus enabling better functional encapsulation within the DOM.
-
-Useful resources:
-
-{% for link_hash in page.links %}
-  {% for link in link_hash %}
-  - [{{link[0]}}]({{link[1]}})
-  {% endfor %}
-{% endfor %}
 
 ### Shadow DOM subtrees
 

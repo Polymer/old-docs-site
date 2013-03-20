@@ -9,22 +9,24 @@
 <div class="tab-content">
   <div class="tab-pane active" id="element12">
 {% highlight html %}
+{% raw %}
 <element name="tk-twoway-binding" attributes="selected">
   <link rel="components" href="toolkit/components/g-panels.html">
   <link rel="components" href="toolkit/components/g-tabs.html">
   <template>
-    <g-tabs id="tab1" on-select="showPanel" selected="{{"{{selected"}}}}">
+    <g-tabs id="tab1" on-select="showPanel" selected="{{selected}}">
       <p>One</p>
       <p>Two</p>
       <p>Three</p>
     </g-tabs>
-    <g-panels id="panel1" selected="{{"{{selected"}}}}">
+    <g-panels id="panel1" selected="{{selected}}">
       <p>Panel 1</p>
       <p>Panel 2</p>
       <p>Panel 3</p>
     </g-panels>
   </template>
 </element>
+{% endraw %}
 {% endhighlight html %}
   </div>
   <div class="tab-pane" id="index12">

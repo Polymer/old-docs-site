@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Getting started
-pygments: true
 
 components:
 - toolkitchensink/toolkit/components/g-component.html

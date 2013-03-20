@@ -10,7 +10,7 @@ The entirety of the {{site.project_title}} is composed of a number of Git
 repositories. Most are included as submodules in the main toolkitchensink repository.
 However, understanding the various pieces will help you navigate the codebase.
 
-#### Polyfill repositories
+### Polyfill repositories
 
 Each new web platform feature has a corresponding polyfill repository. The primary
 goals behind this are two-fold:
@@ -18,7 +18,7 @@ goals behind this are two-fold:
 1. make the polyfills work across all modern browsers
 -  each polyfill can stand on its own and be used à la carte in projects.
 
-#### Platform
+### Platform
 
 [https://github.com/toolkitchen/platform](https://github.com/toolkitchen/platform)
 
@@ -26,7 +26,7 @@ The [platform](https://github.com/toolkitchen/platform) repository references ea
 
 See [Tooling Strategy](tooling-strategy.html) for information.
 
-#### Toolkit
+### Toolkit
 
 [https://github.com/toolkitchen/toolkit](https://github.com/toolkitchen/toolkit)
 

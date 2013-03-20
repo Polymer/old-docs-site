@@ -1,10 +1,26 @@
 <dl class="dl-horizontal">
   <dt>Implementation status</dt>
-  <dd>{{page.repo.status}}</dd>
+  <dd>{{page.feature.status}}</dd>
   <dt>Repository</dt>
-  <dd><a href="{{page.repo.code}}">{{page.repo.code | replace_first:'https://',''}}</a></dd>
+  <dd><a href="{{page.feature.code}}">{{page.feature.code | replace_first:'https://',''}}</a></dd>
   <dt>W3C Specification</dt>
-  <dd><a href="{{page.repo.spec}}">{{page.repo.spec | replace_first:'https://',''}}</a></dd>
+  <dd><a href="{{page.feature.spec}}">{{page.feature.spec | replace_first:'https://',''}}</a></dd>
 </dl>
 
 ---
+
+> {{page.feature.summary}}
+
+## Learn the tech
+
+{% if page.links %}
+
+Useful resources:
+
+{% for link_hash in page.links %}
+  {% for link in link_hash %}
+  - [{{link[0]}}]({{link[1]}})
+  {% endfor %}
+{% endfor %}
+
+{% endif %}
