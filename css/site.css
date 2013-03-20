@@ -87,5 +87,6 @@ p:empty {
 
 #architecture-diagram iframe {
   height: 435px;
+  width: 100%;
   border: none;
 }
