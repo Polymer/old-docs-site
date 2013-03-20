@@ -3,7 +3,6 @@ layout: default
 title: Getting started
 pygments: true
 
-load_platform: true
 components:
 - toolkitchensink/toolkit/components/g-component.html
 - toolkitchensink/toolkit/components/g-panels.html
