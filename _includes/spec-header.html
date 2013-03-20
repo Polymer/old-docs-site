@@ -2,10 +2,10 @@
   <dt>Implementation status</dt>
   <dd>{{page.feature.status}}</dd>
   <dt>Repository</dt>
-  <dd><a href="{{page.feature.code}}">{{page.feature.code | replace_first:'https://',''}}</a></dd>
+  <dd><a href="{{page.feature.code}}">{{page.feature.code | domain_name}}</a></dd>
   {% if page.feature.spec %}
   <dt>W3C Specification</dt>
-  <dd><a href="{{page.feature.spec}}">{{page.feature.spec | replace_first:'https://',''}}</a></dd>
+  <dd><a href="{{page.feature.spec}}">{{page.feature.spec | domain_name}}</a></dd>
   {% endif %}
 </dl>
 
