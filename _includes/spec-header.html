@@ -3,8 +3,10 @@
   <dd>{{page.feature.status}}</dd>
   <dt>Repository</dt>
   <dd><a href="{{page.feature.code}}">{{page.feature.code | replace_first:'https://',''}}</a></dd>
+  {% if page.feature.spec %}
   <dt>W3C Specification</dt>
   <dd><a href="{{page.feature.spec}}">{{page.feature.spec | replace_first:'https://',''}}</a></dd>
+  {% endif %}
 </dl>
 
 ---

@@ -4,9 +4,10 @@ title: About Model Driven Views
 subtitle: polyfill
 
 feature:
-  #spec: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html
+  #spec: http://mdv.googlecode.com/git/docs/design_intro.html
   status: <span class="label label-warning">in progress</span>
   code: https://github.com/toolkitchen/mdv
+  summary: Extends HTML and the DOM APIs to support a sensible separation between the UI (DOM) of a document or application and its underlying data (model). Updates to the model are reflected in the DOM and user input into the DOM is immediately assigned to the model.
 ---
 
 {% include spec-header.html %}
