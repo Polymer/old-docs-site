@@ -150,7 +150,7 @@ In this case, an `.insertions` array is created on `<custom-element>` which cont
 Because shadow DOM subtrees can be embedded in other shadow DOM subtrees, it quickly becomes possible for a node to be both in light and shadow DOM, depending on your perspective. Instead of having two kinds of trees, it's simpler to talk about a node's _local_ tree. This way, my shadow DOM is just my _local_ tree, and my light DOM is part of _my parentNode's_ local tree. 
 
 <p class="alert">
-<strong>Note</strong>: Nodes distributed to insertion-points (<code>&lt;content></code>, <code>&lt;shadow</code>`) are not considered part of the local tree, and must be studied separately via the <code>.getDistributedNodes()</code> function.
+<strong>Note</strong>: Nodes distributed to insertion-points (<code>&lt;content></code>, <code>&lt;shadow</code>) are not considered part of the local tree, and must be studied separately via the <code>.getDistributedNodes()</code> function.
 </p>
 
 ### API Utilities
