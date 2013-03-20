@@ -15,28 +15,29 @@ after cloning a {{site.project_title}} repository, to ensure you have any submod
 
 ###  Minification, Testing, and Documentation
 
-To run tests, build minified files, or build documentation you need `nodejs` and `grunt-cli` on your system.
+To run tests, build minified files, or build documentation you need `node` and
+`grunt-cli` on your system.
 
-* install [`nodejs`](http://nodejs.org) using the instructions on their website
-* use `npm` (part of `nodejs`) to install the [`gruntjs`](http://gruntjs.com) task runner for the command-line
+* install [NodeJS](http://nodejs.org) using the instructions on their website
+* use `npm` to install the [GruntJS](http://gruntjs.com) task runner for the command-line
 	
 		npm install -g grunt-cli
 
-Now for any repository in which you want to use tools:
+Now for any repository in which you want to use tools, install the Node dependencies
+and use Grunt to perform tasks. In the project's root folder (e.g. `<somepath>/platform/`), run:
 
-* in the root folder, e.g., `<somepath>/Platform/`, do
+    npm install
 
-		npm install
 
-* now you may run the tests or use `grunt` to perform tasks
+Once things are installed, you may run the tests or use `grunt` to perform tasks.
 
-To build minified project files (default):
+Build minified project files (default):
 
-		grunt
+    grunt
 
-To build documentation:
+Build documentation:
 
-		grunt docs
+    grunt docs
 
 ## Background and Details
 
@@ -66,7 +67,7 @@ aggregate those individual repositories (as submodules) into useful combinations
 
 Remember that after cloning a repository containing submodules, you need to perform
 
-	git submodule update --init --recursive
+    git submodule update --init --recursive
 
 to bring down all submodule files.
 
@@ -78,19 +79,19 @@ Having all the needed dependencies directly in the repositories is not ideal: th
 
 Instead, we want to be able to install those tools when they are needed.
 
-We chose `nodejs` as our executable environment for these tools, as it is multi-platform, there are many such tools already available, and the Node Package Manager (`npm`) is very handy for installation.
+We chose Node as our executable environment for these tools, as it is multi-platform, there are many such tools already available, and the Node Package Manager (`npm`) is very handy for installation.
 
-Once `nodejs` is installed, Most of the time all you have to do to acquire tooling is execute
+Once `node` is installed, Most of the time all you have to do to acquire tooling is execute
 
-		npm install
+    npm install
 
 in the root folder of the repository.
 
-We also employ `grunt`, which is a general purpose task runner (like a very simple `make`) that works under  `nodejs`.
+We also employ `grunt`, which is a general purpose task runner (like a very simple `make`) that works under Node.
 
 Grunt is designed to have two parts, a command-line interface, and then a local grunt worker. The local grunt tasks are installed via npm install, but you will need to install the `grunt-cli` once, globally, via
 
-		npm install -g grunt-cli
+    npm install -g grunt-cli
 
 
 
