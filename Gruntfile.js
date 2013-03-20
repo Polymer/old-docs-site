@@ -49,7 +49,9 @@ module.exports = function(grunt) {
   // Default task. Run standard jekyll server.
   grunt.registerTask('default', ['jekyll:server']);
 
-  // Take to build and copy docs over to publishing repo.
-  grunt.registerTask('publish', ['jekyll:prod', 'copy:main'])
+  // Task to build docs.
+  grunt.registerTask('docs', ['jekyll:prod']);
 
+  // Task to build and copy docs over to publishing repo.
+  grunt.registerTask('publish', ['jekyll:prod', 'copy:main']);
 };
