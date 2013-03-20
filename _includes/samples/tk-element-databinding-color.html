@@ -10,16 +10,16 @@
   <div class="tab-pane active" id="element5">
     {% highlight html %}
 <element name="tk-element-databinding-color">
-    <link rel="components" href="toolkit/src/g-component.html">
-    <template>
-        This is a <strong>{{"{{owner"}}}}</strong>'s tk-element. He likes the color <span style="color: {{"{{color"}}}}">{{"{{color"}}}}</span>.
-    </template>
-    <script>
-        this.component({
-          owner: "Daniel",
-          color: "red"
-        });
-    </script>
+  <link rel="components" href="toolkit/components/g-component.html">
+  <template>
+    This is a <strong>{{"{{owner"}}}}</strong>'s tk-element. He likes the color <span style="color: {{"{{color"}}}}">{{"{{color"}}}}</span>.
+  </template>
+  <script>
+    this.component({
+      owner: "Daniel",
+      color: "red"
+    });
+  </script>
 </element>
 {% endhighlight html %}
   </div>
@@ -28,7 +28,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../platform/platform.js"></script>
+    <script src="platform.js"></script>
     <link rel="components" href="tk-element-databinding-color.html">
   </head>
   <body>

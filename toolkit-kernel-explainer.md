@@ -43,8 +43,7 @@ Note the following:
 component to use Toolkit [conventions and features](#features). 
 - The "name" attribute specifies the name of the custom `<element>` and
 determines the name of the tag when you instantiate the component in markup.
-For example, `<tag-name>` in this example. The name should contain two words
-separated by a "-".
+For example, `<tag-name>` in this example. The name should be a "-" separated string.
 
 ### Component initialization
 

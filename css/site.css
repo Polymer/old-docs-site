@@ -62,6 +62,10 @@ footer div:first-of-type {
 }
 /* -------------------------------------------------------------------------- */
 
+/* Remove empty p generated from markdown conversion. */
+p:empty {
+  display: none;
+}
 #content {
   min-height: 400px;
 }
@@ -82,7 +86,6 @@ footer div:first-of-type {
 }
 
 #architecture-diagram iframe {
-
   height: 435px;
   border: none;
 }

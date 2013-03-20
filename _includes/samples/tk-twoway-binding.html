@@ -9,21 +9,21 @@
 <div class="tab-content">
   <div class="tab-pane active" id="element12">
 {% highlight html %}
-<element name="tk-twoway-binding" attributes="selected" >
-    <link rel="components" href="../../toolkit/components/g-panels.html">
-    <link rel="components" href="../../toolkit/components/g-tabs.html">
-    <template>
-      <g-tabs id="tab1" on-select="showPanel" selected="{{"{{selected"}}}}">
-        <p>One</p>
-        <p>Two</p>
-        <p>Three</p>
-      </g-tabs>
-      <g-panels id="panel1" selected="{{"{{selected"}}}}">
-        <p>Panel 1</p>
-        <p>Panel 2</p>
-        <p>Panel 3</p>
-        </g-panels>
-      </template>
+<element name="tk-twoway-binding" attributes="selected">
+  <link rel="components" href="toolkit/components/g-panels.html">
+  <link rel="components" href="toolkit/components/g-tabs.html">
+  <template>
+    <g-tabs id="tab1" on-select="showPanel" selected="{{"{{selected"}}}}">
+      <p>One</p>
+      <p>Two</p>
+      <p>Three</p>
+    </g-tabs>
+    <g-panels id="panel1" selected="{{"{{selected"}}}}">
+      <p>Panel 1</p>
+      <p>Panel 2</p>
+      <p>Panel 3</p>
+    </g-panels>
+  </template>
 </element>
 {% endhighlight html %}
   </div>
@@ -32,7 +32,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../platform/platform.js"></script>
+    <script src="platform.js"></script>
     <link rel="components" href="tk-element.html">
   </head>
   <body>

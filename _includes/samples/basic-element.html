@@ -1,3 +1,8 @@
+<!--
+TODO: Load component like this in the partial rather than includeing in template.
+<link rel="components" href="samples/components/basic-element.html">
+ -->
+
 <div class="row-fluid">
   <div class="span8">
 <!-- Source tabs -->
@@ -11,9 +16,9 @@
   <div class="tab-pane active" id="element">
     {% highlight html %}
 <element name="my-element">
-    <template>
-        This is <b>my-element</b>. There are many like it, but this one is mine.
-    </template>
+  <template>
+    This is <b>my-element</b>. There are many like it, but this one is mine.
+  </template>
 </element>
 {% endhighlight html %}
   </div>
@@ -22,7 +27,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../platform/platform.js"></script>
+    <script src="platform.js"></script>
     <!-- Load custom element -->
     <link rel="components" href="my-element.html">
   </head>

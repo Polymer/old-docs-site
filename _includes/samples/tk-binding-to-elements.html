@@ -10,22 +10,23 @@
   <div class="tab-pane active" id="element13">
 {% highlight html %}
 <element name="tk-binding-to-elements">
-    <template>
-        <p>This is a <strong>{{"{{owner"}}}}</strong>'s tk-element. He likes the color <span style="color: {{"{{color"}}}}">{{"{{color"}}}}</span>. I am <strong>{{"{{age"}}}}</strong> years old.</p>
-        <label for="ageInput">Age:</label>
-        <input id="ageInput" type="range" value="{{"{{age"}}}}">
-        <label for="nameInput">Name:</label>
-        <input id="nameInput" value="{{"{{owner"}}}}" on-keyup="setName" placeholder="Your name here...">
-    </template>
-    <script>
-        this.component({
-            age: "25",
-            publish: {
-                color: "red",
-                owner: "Daniel"
-            }
-        });
-    </script>
+  <link rel="components" href="toolkit/components/g-component.html">
+  <template>
+    <p>This is a <strong>{{"{{owner"}}}}</strong>'s tk-element. He likes the color <span style="color: {{"{{color"}}}}">{{"{{color"}}}}</span>. I am <strong>{{"{{age"}}}}</strong> years old.</p>
+    <label for="ageInput">Age:</label>
+    <input id="ageInput" type="range" value="{{"{{age"}}}}">
+    <label for="nameInput">Name:</label>
+    <input id="nameInput" value="{{"{{owner"}}}}" on-keyup="setName" placeholder="Your name here...">
+  </template>
+  <script>
+    this.component({
+      age: "25",
+      publish: {
+        color: "red",
+        owner: "Daniel"
+      }
+    });
+  </script>
 </element>
 {% endhighlight html %}
   </div>
@@ -34,7 +35,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../platform/platform.js"></script>
+    <script src="platform.js"></script>
     <link rel="components" href="tk-element.html">
   </head>
   <body>

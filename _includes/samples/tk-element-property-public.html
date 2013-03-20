@@ -9,16 +9,16 @@
   <div class="tab-pane active" id="element6">
     {% highlight html %}
 <element name="tk-element-property-public" attributes="owner color">
-    <link rel="components" href="toolkit/src/g-component.html">
-    <template>
-        This is a <strong>{{owner}}</strong>'s tk-element. He likes the color <span style="color: {{ "{{ color " }}}}">{{ "{{ color " }}}}</span>.
-    </template>
-    <script>
-        this.component({
-          owner: "Daniel",
-          color: "red"
-        });
-    </script>
+  <link rel="components" href="toolkit/components/g-component.html">
+  <template>
+    This is a <strong>{{"{{owner"}}}}</strong>'s tk-element. He likes the color <span style="color: {{ "{{ color " }}}}">{{ "{{ color " }}}}</span>.
+  </template>
+  <script>
+    this.component({
+      owner: "Daniel",
+      color: "red"
+    });
+  </script>
 </element>
 {% endhighlight html %}
   </div>
@@ -27,14 +27,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../platform/platform.js"></script>
+    <script src="/platform.js"></script>
     <link rel="components" href="tk-element-property-public.html">
   </head>
   <body>
     <div class="well">
-        <!-- Make new component and specify values for new public properties. -->
-        <tk-element-property-public owner="Scott" color="blue">
-        </tk-element-property-public>
+      <!-- Make new component and specify values for new public properties. -->
+      <tk-element-property-public owner="Scott" color="blue">
+      </tk-element-property-public>
     </div>
   </body>
 </html>

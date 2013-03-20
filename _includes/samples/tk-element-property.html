@@ -9,15 +9,15 @@
   <div class="tab-pane active" id="element4">
     {% highlight html %}
 <element name="tk-element-property">
-    <link rel="components" href="toolkit/src/g-component.html">
-    <template>
-        This is a <b>tk-element</b> with a (protected) property.
-    </template>
-    <script>
-        this.component({
-          owner: "Daniel"
-        });
-    </script>
+  <link rel="components" href="toolkit/components/g-component.html">
+  <template>
+    This is a <b>tk-element</b> with a (protected) property.
+  </template>
+  <script>
+    this.component({
+      owner: "Daniel"
+    });
+  </script>
 </element>
 {% endhighlight html %}
   </div>
@@ -26,7 +26,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../platform/platform.js"></script>
+    <script src="platform.js"></script>
     <link rel="components" href="tk-element-property.html">
   </head>
   <body>

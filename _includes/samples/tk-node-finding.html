@@ -11,22 +11,22 @@
   <div class="tab-pane active" id="element12">
     {% highlight html %}
 <element name="tk-node-finding">
-    <template>
-        <p>This is a <strong>{{owner}}</strong>'s tk-element. He likes the color <span style="color: {{color}}">{{color}}</span>.</p>
-        <button on-click="setFocus">Set focus to text input</button>
-        <input id="nameInput">
-    </template>
-    <script>
-        this.component({
-            publish: {
-                color: "red",
-                owner: "Daniel"
-            },
-            setFocus: function() {
-                this.$.nameInput.focus();
-            }
-        });
-    </script>
+  <template>
+    <p>This is a <strong>{{"{{owner"}}}}</strong>'s tk-element. He likes the color <span style="color: {{"{{color"}}}}">{{{"{{color"}}</span>.</p>
+    <button on-click="setFocus">Set focus to text input</button>
+    <input type="text" id="nameInput">
+  </template>
+  <script>
+    this.component({
+      publish: {
+        color: "red",
+        owner: "Daniel"
+      },
+      setFocus: function() {
+        this.$.nameInput.focus();
+      }
+    });
+  </script>
 </element>
 {% endhighlight html %}
   </div>
@@ -35,7 +35,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../platform/platform.js"></script>
+    <script src="platform.js"></script>
     <!-- Load custom element -->
     <link rel="components" href="tk-node-finding.html">
   </head>

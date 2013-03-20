@@ -16,5 +16,4 @@ exclude: "node_modules/, README.md"
 destination: ../toolkitchen.github.com
 
 # Site globals used throughout docs.
-load_platform: true
 project_title: Toolkitchen

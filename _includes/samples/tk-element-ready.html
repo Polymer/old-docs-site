@@ -11,17 +11,18 @@
   <div class="tab-pane active" id="element10">
     {% highlight html %}
 <element name="tk-element-ready">
-    <template>
-        This is a <b>tk-element</b> with a ready() method. <span id="label">Not ready...</span>
-    </template>
-    <script>
-        this.component({
-          ready: function() {
-            this.$.label.className = "label label-info";
-            this.$.label.innerText = "Ready";
-          }
-        });
-    </script>
+  <link rel="components" href="toolkit/components/g-component.html">
+  <template>
+    This is a <b>tk-element</b> with a ready() method. <span id="label">Not ready...</span>
+  </template>
+  <script>
+    this.component({
+      ready: function() {
+        this.$.label.className = "label label-info";
+        this.$.label.innerText = "Ready";
+      }
+    });
+  </script>
 </element>
 {% endhighlight html %}
   </div>
@@ -30,7 +31,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../platform/platform.js"></script>
+    <script src="/platform.js"></script>
     <link rel="components" href="tk-element-ready.html">
   </head>
   <body>
