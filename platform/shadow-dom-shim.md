@@ -15,7 +15,8 @@ thus enabling better functional encapsulation within the DOM."
 links:
 - "What the Heck is Shadow DOM?": http://glazkov.com/2011/01/14/what-the-heck-is-shadow-dom/
 - "HTML5Rocks - Shadow DOM 101": http://www.html5rocks.com/tutorials/webcomponents/shadowdom/
-- "HTML5Rocks - Shadow DOM 201 - CSS and Styling": http://www.html5rocks.com/tutorials/webcomponents/shadowdom-201/
+- "HTML5Rocks - Shadow DOM 201: CSS and Styling": http://www.html5rocks.com/tutorials/webcomponents/shadowdom-201/
+- "HTML5Rocks - Shadow DOM 301: Advanced Concepts & DOM APIs": http://www.html5rocks.com/tutorials/webcomponents/shadowdom-301/
 
 ---
 
