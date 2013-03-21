@@ -5,7 +5,7 @@ subtitle: polyfill
 
 feature:
   spec: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html
-  status: <span class="label label-success">complete</span>
+  status: <span class="label label-success">functional</span>
   code: https://github.com/toolkitchen/CustomElements
   summary: Enables authors to define and use new types of DOM elements in a document.
 ---
@@ -14,4 +14,7 @@ feature:
 
 TODO
 
-<!-- include toolkitchen/toolkit/Platform/CustomElements/README.md %}-->
+{% comment %}
+// TODO: uncomment and include platform/CustomElement/README.md when repos are moved over.
+{% include_external toolkitchensink/toolkit/README.md %}
+{% endcomment %}
