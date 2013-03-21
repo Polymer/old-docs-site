@@ -17,7 +17,6 @@ links:
 - "HTML5Rocks - Shadow DOM 101": http://www.html5rocks.com/tutorials/webcomponents/shadowdom/
 - "HTML5Rocks - Shadow DOM 201: CSS and Styling": http://www.html5rocks.com/tutorials/webcomponents/shadowdom-201/
 - "HTML5Rocks - Shadow DOM 301: Advanced Concepts & DOM APIs": http://www.html5rocks.com/tutorials/webcomponents/shadowdom-301/
-
 ---
 
 {% include spec-header.html %}
