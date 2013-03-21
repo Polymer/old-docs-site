@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Getting the code
-pygments: true
 ---
 
 ## About the repositories

@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Runtime configuration
-pygments: true
 ---
+
 ### Configuration switches
 
 Toolkit supports runtime options that are settable as attributes on the `<script>` tag that loads `platform.js`, or as URL query parameters.
