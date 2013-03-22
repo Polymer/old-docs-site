@@ -2,30 +2,27 @@
 layout: default
 title: Toolkitchen components
 ---
+
 Toolkitchen components are standard [web components](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/explainer/index.html) that utilize a small library of helper code to reduce boilerplate and automate common actions. Here is a quick overview of the features of Toolkit components:
 
-# Component initializer #
-
-
+# Component initializer
 
 ## Event binding
 
 Toolkit supports scoped, declarative data binding. This means you can declare event handlers in markup, and the handlers will map events to the component instance receiving the event. For example:
 
-{% highlight html %}
-<element name="tag-name">
-  <template>
-    <span on-click="helloAction">Hello World</span>
-  </template>
-  <script>
-    this.component({
-      helloAction: function(inEvent, inDetail, inSender) {
-        confirm("How are you?");
-      }
-    });
-  </script>
-</element>
-{% endhighlight %}
+    <element name="tag-name">
+      <template>
+        <span on-click="helloAction">Hello World</span>
+      </template>
+      <script>
+        this.component({
+          helloAction: function(inEvent, inDetail, inSender) {
+            confirm("How are you?");
+          }
+        });
+      </script>
+    </element>
 
 Some things to notice:
 
@@ -41,39 +38,33 @@ Some things to notice:
 
 As we noted, you can supply an object-valued argument to `component`.The rule is: properties and methods supplied to `component` become properties on the *protected* interface.
 
-{% highlight javascript %}
-this.component({
-  clickColor: 'orange',
-  clickHandler: function() {
-    this.node.style.backgroundColor = this.clickColor;
-  }
-});
-{% endhighlight %}
+    this.component({
+      clickColor: 'orange',
+      clickHandler: function() {
+        this.node.style.backgroundColor = this.clickColor;
+      }
+    });
   
 In this example, the component has two protected properties. Note that the scope of the method (the `this` value) is the protected scope. This is another rule: from the component's perspective we are always working with the protected scope. It's generally only the user of an instance that needs to deal with the public scope. The exception to this rule is when we need to operate on our node itself, we do this using the `this.node` reference, as shown in the example.
 
 From a DOM node reference, the protected scope is available as `$protected`. So it's possible to violate encapsulation as follows:
 
-{% highlight javascript %}
-someNode.$protected.protectedMethod();
-{% endhighlight %}
+    someNode.$protected.protectedMethod();
 
 To make a `blueify` method that is callable on the node (public), we _publish_ the method by placing it inside a `publish` object:
 
-{% highlight javascript %}
-this.component({
-  clickColor: 'orange',
-  clickHandler: function() {
-    this.node.style.backgroundColor = this.clickColor;
-  },
-  publish: {
-    blueColor: 'blue',
-    blueify: function() {
-      this.node.style.color = this.blueColor;
-    }
-  }
-});
-{% endhighlight %}
+    this.component({
+      clickColor: 'orange',
+      clickHandler: function() {
+        this.node.style.backgroundColor = this.clickColor;
+      },
+      publish: {
+        blueColor: 'blue',
+        blueify: function() {
+          this.node.style.color = this.blueColor;
+        }
+      }
+    });
 
 Things to remember about `publish`:
 
@@ -87,27 +78,23 @@ Bottom line: when building components use `this` naturally and declare propertie
 
 Another Toolkit convention is that public properties are settable by attribute. For example, we could deploy the `name-tag` example shown above like this:
 
-{% highlight html %}
-<name-tag myname="Steve" namecolor="tomato"></name-tag>
-{% endhighlight %}
+    <name-tag myname="Steve" namecolor="tomato"></name-tag>
 
 When the `name-tag` is created, or when the attributes change value, those attributes values are reflected into their matching properties. Remember that only _public_ properties are settable via attribute.
 
 #### Attributes Attribute
 Toolkit supports declaring public properties directly on the element tag via the `attributes` attribute. Below is an alternative `name-tag`:
 
-{% highlight html %}
-<element name="name-tag" attributes="myName nameColor">
-  <template>
-    Hello! My name is <span style="color:{{ "{{ nameColor " }}}}">{{myName}}</span>
-  </template>
-  <script>
-    this.component({
-      nameColor: "orange"
-    });
-  </script>
-</element>
-{% endhighlight %}
+    <element name="name-tag" attributes="myName nameColor">
+      <template>
+        Hello! My name is <span style="color:{{ "{{ nameColor " }}}}">{{myName}}</span>
+      </template>
+      <script>
+        this.component({
+          nameColor: "orange"
+        });
+      </script>
+    </element>
 
 In this case, `name-tag` declares two attributes, `myName` and `nameColor`. This is semantically the same as declaring them in a `publish` block. The one difference is that properties declared as attributes default to 'undefined', unless defaults are set in the prototype (as done for `nameColor` above).
 
@@ -115,18 +102,16 @@ In this case, `name-tag` declares two attributes, `myName` and `nameColor`. This
 
 Each component in the toolkit has an internal model that can bind to DOM.
 
-{% highlight html %}
-<element name="g-cool">
-  <template>
-    Better is "{{ "{{better"}}}}"
-  </template>
-  <script>
-    this.component({
-      better: 'better than worse'
-    });
-  </script>
-</element>
-{% endhighlight %}
+    <element name="g-cool">
+      <template>
+        Better is "{{ "{{better"}}}}"
+      </template>
+      <script>
+        this.component({
+          better: 'better than worse'
+        });
+      </script>
+    </element>
 
 The double-moustache {{ "{{ this " }}}} is replaced by the value of the property referenced between the brackets. This binding is kept in sync and is not just a one-time replacement.
 
@@ -134,17 +119,15 @@ The double-moustache {{ "{{ this " }}}} is replaced by the value of the property
 
 Unlike normal DOM bindings which bind to text in content or attributes, Toolkit bindings are constructed on properties. Bound properties are automatically kept in sync.
 
-{% highlight html %}
-<element name="g-tabpanels" attributes="selected">
-    <template>
-      <g-tabs selectedTab="{{"{{selected"}}}}"></g-tabs>
-      <g-panels selectedPanel="{{"{{selected"}}}}"></g-panels>
-    </template>
-    <script>
-      this.component();
-    </script>
-</element>
-{% endhighlight %}
+    <element name="g-tabpanels" attributes="selected">
+      <template>
+        <g-tabs selectedTab="{{"{{selected"}}}}"></g-tabs>
+        <g-panels selectedPanel="{{"{{selected"}}}}"></g-panels>
+      </template>
+      <script>
+        this.component();
+      </script>
+    </element>
 
 In this example, the `selectedTab="{{ "{{selected" }}}}"` declaration binds the `selected` property of the `g-tabs` component to the `selectedTab `property of `g-tabpanels`. This binding is two-way, so a change to either `g-tabs.selectedTab` or `g-tabpanels.selected` is reflected in the other. Also in this example, `g-panels.selectedPanel` is bound to `g-tabpanels.selected`. Now all three properties will be kept in sync.
 
@@ -156,22 +139,18 @@ Another useful feature of Toolkit is node reference marshalling. Every node in a
 
 Given the following:
 
-{% highlight html %}
-<template>
-  <input id="nameInput">
-</template>
-{% endhighlight %}
+    <template>
+      <input id="nameInput">
+    </template>
 
 We can write code like so:
 
-{% highlight html %}
-<script>
-  this.component({
-    logNameValue: function() {
-      console.log(this.$.nameInput.value);
-    }
-  });
-</script>
-{% endhighlight %}
+    <script>
+      this.component({
+        logNameValue: function() {
+          console.log(this.$.nameInput.value);
+        }
+      });
+    </script>
 
 As described, a reference to the `<input>` node is available in `this.$` hash mapped to the given id (*nameInput*, in this case).

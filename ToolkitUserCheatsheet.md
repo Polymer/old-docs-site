@@ -25,22 +25,22 @@ For example:
 
 *app-components.html*
 
-	<!-- load some components -->
+    <!-- load some components -->
     <link rel="components" href="../toolkit/components/g-toolbar.html">
     <link rel="components" href="../toolkit/components/g-menu-button.html">
     <link rel="components" href="../toolkit/components/g-menu-item.html">
 
-	<!-- can load stylesheets and scripts here also -->
-	<link rel="stylesheet" href="my-app-styles.css">
-	<script src="my-app.js"></script>
+		<!-- can load stylesheets and scripts here also -->
+		<link rel="stylesheet" href="my-app-styles.css">
+		<script src="my-app.js"></script>
 
 *index.html*
 
-	<!DOCTYPE html>
-	<html>
-	  <head>
-	    <script src="../platform/platform.js"></script>
-		<link rel="components" href="app-components.html">
-	  </head>
-	...
-	</html>
+		<!DOCTYPE html>
+		<html>
+		  <head>
+		    <script src="../platform/platform.js"></script>
+			<link rel="components" href="app-components.html">
+		  </head>
+		...
+		</html>

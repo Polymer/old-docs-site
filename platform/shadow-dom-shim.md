@@ -30,31 +30,25 @@ A component user supplies the light DOM; the node has a (hidden) shadow DOM; and
 
 **Light DOM**
 
-{% highlight html%}
-<my-custom-element>
-  <!-- everything in here is my-custom-element's light DOM -->
-  <q>Hello World</q>
-</my-custom-element>
-{% endhighlight %}
+    <my-custom-element>
+      <!-- everything in here is my-custom-element's light DOM -->
+      <q>Hello World</q>
+    </my-custom-element>
 
 **Shadow DOM**
 
-{% highlight html%}
-<!-- shadow-root is attached to my-custom-element, but is not a child -->
-<shadow-root>
-  <!-- everything in here is my-custom-element's shadow DOM -->
-  <span>People say: <content></content></span>
-</shadow-root>
-{% endhighlight html%}    
+    <!-- shadow-root is attached to my-custom-element, but is not a child -->
+    <shadow-root>
+      <!-- everything in here is my-custom-element's shadow DOM -->
+      <span>People say: <content></content></span>
+    </shadow-root>
 
 **Composed (rendered) DOM**
 
-{% highlight html%}
-<!-- rendered DOM -->
-<my-custom-element>
-  <span>People say: <q>Hello World</q></span>
-</my-custom-element>
-{% endhighlight %}
+    <!-- rendered DOM -->
+    <my-custom-element>
+      <span>People say: <q>Hello World</q></span>
+    </my-custom-element>
 
 Under a proper (native) Shadow DOM implementation, the following would be true about this example:
 
@@ -97,12 +91,10 @@ Using the native DOM accessors (such as `childNodes`) on a tree containing Shado
 
 * **Changelings**: Changelings are "dummy" nodes that take the place of a real node, called the `baby`. A Changeling is created when a `baby` has to be moved into a composition. In other words, Changelings allow a node to be in multiple subtrees. 
 
-{% highlight html%}
-<shadow-root>
-  <span-changeling></span-changeling>
-</shadow-root>
-<my-custom-element><span>I'm in two places at once</span></my-custom-element>
-{% endhighlight %}
+    <shadow-root>
+      <span-changeling></span-changeling>
+    </shadow-root>
+    <my-custom-element><span>I'm in two places at once</span></my-custom-element>
     
 When we interrogate `<span-changeling>`'s `.parentNode` property, it correctly references `<shadow-root>`. The Changeling has preserved the position of the `<span>` in the shadow DOM when the actual `<span>` had to be re-parented into the rendered tree. Being Changeling-aware, we can get non-positional information via `.baby`. For example, the real `innerText` is available via `baby.innerText`.
 
@@ -110,27 +102,21 @@ When we interrogate `<span-changeling>`'s `.parentNode` property, it correctly r
 
 Insertion-points, namely `<content>` and `<shadow>` are intended to be invisible to the render engine, for the purposes of, for example, parent/child selectors. A shadow DOM subtree like this:
 
-{% highlight html%}
-<content></content>
-{% endhighlight %}
+    <content></content>
 
 might compose with light DOM into 
 
-{% highlight html%}
-<my-custom-element>
-  <content>
-    <span>Hello World</span>
-  </content>
-</my-custom-element>
-{% endhighlight%}
+    <my-custom-element>
+      <content>
+        <span>Hello World</span>
+      </content>
+    </my-custom-element>
 
 but the render tree must see this as
 
-{% highlight html%}
-<my-custom-element>
-  <span>Hello World</span>
-</my-custom-element>
-{% endhighlight%}
+    <my-custom-element>
+      <span>Hello World</span>
+    </my-custom-element>
 
 In this case, an `.insertions` array is created on `<my-custom-element>` which contains the child list from the composed tree. In this case this contains simply `[<content>]`.
 
@@ -147,5 +133,3 @@ Because shadow DOM subtrees can be embedded in other shadow DOM subtrees, it qui
 * `ShadowDOM.deref(inNode)`: dereference a Changeling: returns `inNode.baby` if it exists, otherwise `inNode`.
 * `ShadowDOM.localQuery[All](inNode, inSelector)`: a subset of `querySelector[All]` that searches the input node's local tree for nodes matching `inSelector` (for a restricted set of selectors).
 * `ShadowDOM.localNodes(inNode)`: returns a simple array of nodes at the top of inNode's local tree.
-
-

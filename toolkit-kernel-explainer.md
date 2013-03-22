@@ -12,30 +12,26 @@ Toolkit kernel is called a _g-component_.
 
 A web component declaration look like the following:
 
-{% highlight html %}
-<element name="tag-name">
-  <template>
-    <!-- shadow DOM here -->
-  </template>
-  <script>
-    // lifecycle setup here
-  </script>
-</element>
-{% endhighlight html %}
+    <element name="tag-name">
+      <template>
+        <!-- shadow DOM here -->
+      </template>
+      <script>
+        // lifecycle setup here
+      </script>
+    </element>
 
 To have this component  this component `component()` lifecycle initializer to
 the component's `<script>` block, as shown below:
 
-{% highlight html %}
-<element name="tag-name">
-  <template>
-    <!-- shadow DOM here -->
-  </template>
-  <script>
-    this.component();
-  </script>
-</element>
-{% endhighlight %}  
+    <element name="tag-name">
+      <template>
+        <!-- shadow DOM here -->
+      </template>
+      <script>
+        this.component();
+      </script>
+    </element>
 
 Note the following:
 
@@ -53,14 +49,12 @@ in the argument to `component()` are used directly in the component's prototype.
 In the following example the component initializer defines a property
 `helloWorld` and a method `ready`. 
 
-{% highlight javascript %}
-this.component({
-  message: "Hello!",
-  ready: function() {
-    // component is ready now, we can do stuff
-  }
-});
-{% endhighlight %}
+    this.component({
+      message: "Hello!",
+      ready: function() {
+        // component is ready now, we can do stuff
+      }
+    });
 
 A component's `ready` method, if it exists, is called when the component is ready for it to be used.
 
@@ -72,59 +66,51 @@ g-components have _public_ and _protected_ aspects. The public aspect represents
 
 Properties and methods supplied to the `component` initializer  become properties on the component's *protected* interface. In the following example, the initializer declares two protected properties: `clickColor` and a method `clickHandler`. 
 
-{% highlight javascript %}
-this.component({
-  clickColor: 'orange',
-  clickHandler: function() {
-    this.node.style.backgroundColor = this.clickColor;
-  }
-});
-{% endhighlight %}
+    this.component({
+      clickColor: 'orange',
+      clickHandler: function() {
+        this.node.style.backgroundColor = this.clickColor;
+      }
+    });
 
 Note that the `clickHandler` method runs in the protected scope; it uses `this` which resolves to the component's protected scope.
 
 Typically, the consumer of a component only needs to deal with the public scope. The exception to this rule is when we need to operate on our node itself, we do this using the `this.node` reference, as shown in the example.
 
-### Public properties ###
+### Public properties
 
 To make a property or method public, you "publish" it by placing it inside a `publish` object block:
 
-{% highlight javascript %}
-this.component({
-  clickColor: 'orange',
-  clickHandler: function() {
-    this.node.style.backgroundColor = this.clickColor;
-  },
-  publish: {
-    clickColor: 'red'
-  }
-});
-{% endhighlight %}
+    this.component({
+      clickColor: 'orange',
+      clickHandler: function() {
+        this.node.style.backgroundColor = this.clickColor;
+      },
+      publish: {
+        clickColor: 'red'
+      }
+    });
 
 To make a `blueify` method that is callable on the node (public), we _publish_ the method by placing it inside a `publish` object:
 
-{% highlight javascript %}
-this.component({
-  clickColor: 'orange',
-  clickHandler: function() {
-    this.node.style.backgroundColor = this.clickColor;
-  },
-  publish: {
-    clickColor: 'red',
-    blueify: function() {
-      this.node.style.backgroundColor = 'blue';
-    }
-  }
-});
-{% endhighlight %}
+    this.component({
+      clickColor: 'orange',
+      clickHandler: function() {
+        this.node.style.backgroundColor = this.clickColor;
+      },
+      publish: {
+        clickColor: 'red',
+        blueify: function() {
+          this.node.style.backgroundColor = 'blue';
+        }
+      }
+    });
 
 For example, let's say our design for the _my-tag_ element calls for a method
 that can turn the element text blue, so a user could do like so:
 
-{% highlight javascript %}
-var myTag = document.querySelector("my-tag");
-myTag.blueify();
-{% endhighlight %}
+    var myTag = document.querySelector("my-tag");
+    myTag.blueify();
 
 The `blueify` method is a part of _my-tag_'s public API. It must be available
 to end-users on the element instance.
@@ -137,9 +123,7 @@ In this case, `clickHandler` is not intended to be called by end-users, it's
 only there to service an event. In this case, `clickHandler` should be part of
 the protected API. Then the method is not visible on the element instance and calling
 
-{% highlight javascript %}
-myTag.clickHandler(); // error: undefined function 
-{% endhighlight %}
+    myTag.clickHandler(); // error: undefined function
 
 Note the following:
 
@@ -157,9 +141,7 @@ This section describes the features of g-components.
 
 Another Toolkit convention is that public properties are settable by attribute. For example, we could instantiate the `name-tag` component and set its public properties with the following:
 
-{% highlight html %}
-<name-tag myname="Steve" nameColor="tomato"></name-tag>
-{% endhighlight %}
+    <name-tag myname="Steve" nameColor="tomato"></name-tag>
 
 When `name-tag` is created, or when its attributes change value, those new values are reflected into their matching component properties. 
 
@@ -169,18 +151,16 @@ Remember that only <em>public</em> properties are settable via attribute.
 
 You can also declare public properties directly on an `<element>` tag using its `attributes` attribute. For example:
 
-{% highlight html %}
-<element name="name-tag" attributes="myName nameColor">
-  <template>
-    Hello! My name is <span style="color:{{"{{nameColor"}}}}">{{myName}}</span>
-  </template>
-  <script>
-    this.component({
-      nameColor: "orange"
-    });
-  </script>
-</element>
-{% endhighlight %}
+    <element name="name-tag" attributes="myName nameColor">
+      <template>
+        Hello! My name is <span style="color:{{"{{nameColor"}}}}">{{myName}}</span>
+      </template>
+      <script>
+        this.component({
+          nameColor: "orange"
+        });
+      </script>
+    </element>
  
 In this case, `name-tag` declares two attributes (`myName` and `nameColor`). This is semantically the same as declaring them in a publish block. Note that properties declared as attributes default to 'undefined' unless defaults are set in the prototype, as done for `nameColor` in the above example.
 
@@ -190,39 +170,35 @@ Toolkit makes it possible to bind references between components via attributes. 
 
 Let's modify our `name-tag` to take a record instead of individual properties.
 
-{% highlight html %}
-<element name="name-tag" attributes="person">
-  <template>
-    Hello! My name is <span style="color:{{"{{person.nameColor"}}}}">{{"{{person.name"}}}}</span>
-  </template>
-  <script>
-    this.component({
-      person: {
-        name: "Scott",
-        nameColor: "orange"
-      }
-    });
-  </script>
-</element>
-{% endhighlight %}
+    <element name="name-tag" attributes="person">
+      <template>
+        Hello! My name is <span style="color:{{"{{person.nameColor"}}}}">{{"{{person.name"}}}}</span>
+      </template>
+      <script>
+        this.component({
+          person: {
+            name: "Scott",
+            nameColor: "orange"
+          }
+        });
+      </script>
+    </element>
 
 Now, imagine we make a new component called 'visitor-creds' that uses `name-tag`:
 
-{% highlight html %}
-<element name="visitor-creds">
-  <template>
-    <name-tag person="{{"{{person"}}}}"></name-tag>
-  </template>
-  <script>
-    this.component({
-      person: {
-        name: "Scott",
-        nameColor: "orange"
-      }
-    });
-  </script>
-</element>
-{% endhighlight %}
+    <element name="visitor-creds">
+      <template>
+        <name-tag person="{{"{{person"}}}}"></name-tag>
+      </template>
+      <script>
+        this.component({
+          person: {
+            name: "Scott",
+            nameColor: "orange"
+          }
+        });
+      </script>
+    </element>
 
 When I make an instance of `visitor-creds`, its `person` object is bound to the `name-tag` instance, so now both components are using the same `person` object.
 
@@ -231,21 +207,19 @@ When I make an instance of `visitor-creds`, its `person` object is bound to the 
 
 Toolkit supports declarative binding of events to methods in the component. The toolkit uses special <code>on-<em>event</em></code> syntax to trigger this binding behavior.
 
-{% highlight html %}
-<element name="g-cool" on-keypress="keypress">
-  <template>
-    <button on-click="buttonClick"></button>
-  </template>
-  <script>
-    this.component({
-      keypress: function(event) {
-      },
-      buttonClick: function(event) {
-      }
-    });
-  </script>
-</element>
-{% endhighlight html %}
+    <element name="g-cool" on-keypress="keypress">
+      <template>
+        <button on-click="buttonClick"></button>
+      </template>
+      <script>
+        this.component({
+          keypress: function(event) {
+          },
+          buttonClick: function(event) {
+          }
+        });
+      </script>
+    </element>
 
 In this example, the `on-keypress` declaration maps the standard DOM `"keypress"` event to the `keypress` method in the component. Within the component template, the `on-click` declaration maps a custom `buttonClick` event to the `buttonClick` method in the component. This is achieved again without the need for any glue code. 
 
@@ -263,20 +237,18 @@ Some things to notice:
 
 G-component API is not public by default. Only API declared in the `publish` block is part of the public surface. This way, users of a component need not contend with internal properties or event handlers.
 
-{% highlight html %}
-<element name="g-cool">
-  <script>
-    this.component({
-      better: 'better',
-      publish: {
-        makeBetterBest: function() {
-          this.better = 'best';
-        }
-      }
-    });
-  </script>
-</element>
-{% endhighlight html %}
+    <element name="g-cool">
+      <script>
+        this.component({
+          better: 'better',
+          publish: {
+            makeBetterBest: function() {
+              this.better = 'best';
+            }
+          }
+        });
+      </script>
+    </element>
 
 In this example, the `g-cool` component has a single public method, 
 `makeBetterBest`. The property _better _is not visible on the node, but a user could call `node.makeBetterBest` to set the internal property to the string value 'best'. 
@@ -293,22 +265,20 @@ In addition to the above features, which are focused around making the core func
 
 All properties on a g-component can be watched for changes by implementing a <code><em>propertyName</em>Changed</code> handler. When the value of a watched property changes, the appropriate chnage handler is automatically invoked. 
 
-{% highlight html %}
-<element name="g-cool" attributes="better">
-  <script>
-    this.component({
-      plain: '',
-      publish: {
-        best: ''
-      },
-      betterChanged: function(inOldValue) {
-      },
-      bestChanged: function(inOldValue) {
-      }
-    });
-  </script>
-</element>
-{% endhighlight html %}
+    <element name="g-cool" attributes="better">
+      <script>
+        this.component({
+          plain: '',
+          publish: {
+            best: ''
+          },
+          betterChanged: function(inOldValue) {
+          },
+          bestChanged: function(inOldValue) {
+          }
+        });
+      </script>
+    </element>
 
 In this example, there are two watched properties, `better` and `best`. The `betterChanged` and `bestChanged` function will be called whenever `better` or `best` are modified, respectively. 
 
@@ -318,37 +288,33 @@ Another useful feature of Toolkit is node reference marshalling. Every node in a
 
 For example, the following defines a g-component whose template contains an `<input>` element whose `id` attribute is `nameInput`. The component can refer to the that element with the expression `this.$.nameInput`.
 
-{% highlight html %}
-<element name="x-form">
-  <template>
-    <input type="text" id="nameInput">
-  </template>
-  <script>
-    this.component({
-      logNameValue: function() {
-        console.log(this.$.nameInput.value);
-      }
-    });
-  </script>
-</element>
-{% endhighlight %}
+    <element name="x-form">
+      <template>
+        <input type="text" id="nameInput">
+      </template>
+      <script>
+        this.component({
+          logNameValue: function() {
+            console.log(this.$.nameInput.value);
+          }
+        });
+      </script>
+    </element>
 
 ### Calling inherited methods with $super
 
 A g-component can extend a parent g-component by calling the parent's inherited methods. 
 
-{% highlight html %}
-<element name="g-cooler" extends="g-cool">
-  <script>
-    this.component({
-      moarBetter: function() {
-        this.$super();
-        this.better += 'even more.';
-      }
-    });
-  </script>
-</element>
-{% endhighlight html %}
+    <element name="g-cooler" extends="g-cool">
+      <script>
+        this.component({
+          moarBetter: function() {
+            this.$super();
+            this.better += 'even more.';
+          }
+        });
+      </script>
+    </element>
 
 In this example, `this.$super` returns a reference to the parent, which is a
 `g-cool` g-component. In `g-cooler` the value of `better` contains the value of
