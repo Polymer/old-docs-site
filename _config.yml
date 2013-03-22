@@ -4,7 +4,7 @@ server_port: 4000
 auto: true
 
 # Project defaults.
-markdown: redcarpet
+markdown: kramdown
 pygments: false
 lsi: false
 safe: false
