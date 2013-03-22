@@ -5,7 +5,7 @@ auto: true
 
 # Project defaults.
 markdown: redcarpet
-pygments: true
+pygments: false
 lsi: false
 safe: false
 

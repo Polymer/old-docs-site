@@ -26,34 +26,34 @@ components:
 The basics of using {{site.project_title}} are simple:
 
 1. Load **platform.js** to shim missing platform features, such as [Shadow DOM](/platform/shadow-dom-shim.html).
-2. Load components with `<link rel="components" href="/path/to/component-file.html">`
-3. Use component tags in HTML.
+- Load components with `<link rel="components" href="/path/to/component-file.html">`
+- Use component tags in HTML.
 
-{% highlight html %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <!-- 1. Shim missing platform features -->
-    <script src="toolkit/platform/platform.js"></script>
-    <!-- 2. Load a component -->
-    <link rel="components" href="toolkit/components/g-menu-item.html">
-  </head>
-  <body>
-    <!-- 3. Instantiate the component with its tag. -->
-    <g-menu-item src="images/email.svg">Email Link</g-menu-item>
-  </body>
-</html>
-{% endhighlight html %}
+Here's a bare bones example:
 
-<h2>Components</h2>
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <!-- 1. Shim missing platform features -->
+        <script src="toolkit/platform/platform.js"></script>
+        <!-- 2. Load a component -->
+        <link rel="components" href="toolkit/components/g-menu-item.html">
+      </head>
+      <body>
+        <!-- 3. Instantiate the component with its tag. -->
+        <g-menu-item src="images/email.svg">Email Link</g-menu-item>
+      </body>
+    </html>
 
-<p>Components are the core building blocks of Toolkit-based applications. You create applications by assembling components together, either ones provided by the Toolkit or that you create yourself.</p>
+## Components
 
-<h3>Basic custom element</h3>
+Components are the core building blocks of Toolkit-based applications. You create applications by assembling components together, either ones provided by the Toolkit or that you create yourself.
 
-<p>The platform shims provided by {{site.project_title}} lets you load and display
-custom elements. Just by loading <code>platform.js</code> you get support for these
-new technologies.</p>
+### Basic custom element
+
+The platform shims provided by {{site.project_title}} lets you load and display
+custom elements. Just by loading `platform.js` you get support for these
+new technologies.
 
 {% include samples/basic-element.html %}
 
