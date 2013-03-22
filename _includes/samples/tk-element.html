@@ -1,13 +1,15 @@
 <div class="row-fluid">
   <div class="span8">
-    <ul id="myTab" class="nav nav-tabs">
-      <li class="active"><a href="#element2" data-toggle="tab">tk-element.html</a></li>
-      <li><a href="#index2" data-toggle="tab">index.html</a></li>
-    </ul>
+<!-- Source tabs -->
+<ul id="myTab" class="nav nav-tabs">
+  <li class="active"><a href="#element2" data-toggle="tab">tk-element.html</a></li>
+  <li><a href="#index12" data-toggle="tab">index.html</a></li>
+</ul>
 
-    <div class="tab-content">
-      <div class="tab-pane active" id="element2">
-{% highlight html %}
+<!-- Source tab content -->
+<div class="tab-content">
+  <div class="tab-pane active" id="element2">
+    {% highlight html %}
 <element name="tk-element">
   <link rel="components" href="toolkit/components/g-component.html">
   <template>
@@ -18,8 +20,8 @@
   </script>
 </element>
 {% endhighlight html %}
-      </div>
-      <div class="tab-pane" id="index2">
+  </div>
+  <div class="tab-pane" id="index12">
 {% highlight html %}
 <!DOCTYPE html>
 <html>
@@ -32,16 +34,16 @@
   </body>
 </html>
 {% endhighlight html %}
-      </div>
-    </div>
   </div>
+</div>
+</div>
 
-  <div class="span4">
-    <h5>Result</h5>
+<div class="span4">
+  <h5>Result</h5>
 
-    <!-- Running sample -->
-    <div class="well">
-      <tk-element></tk-element>
-    </div>
+  <!-- Running sample -->
+  <div class="well">
+    <tk-element></tk-element>
+  </div>
 </div>
 </div>
