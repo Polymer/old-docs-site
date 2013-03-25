@@ -1,7 +1,7 @@
 ---
 layout: default
 title: About Shadow DOM
-subtitle: shim
+subtitle: polyfill
 
 feature:
   spec: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html
@@ -59,33 +59,26 @@ So, while in the final rendered tree `<span>` is a child of `<my-custom-element>
 
 In this way, the user can manipulate light DOM or shadow DOM directly as regular DOM subtrees, and let the system take care of keeping the render tree synchronized.
 
-## The shim
+## Polyfill details
 
-{{site.project_title}} uses a shim to provide Shadow DOM functionality in browsers that don't
+{{site.project_title}} uses a polyfill to provide Shadow DOM functionality in browsers that don't
 support it natively. This section explains how a proper (native) implementation
-differs from the shim implementation provided by {{site.project_title}}.
+differs from the polyfill implementation provided by {{site.project_title}}.
 
-{% include shim_vs_polyfill.md %}
+### Polyfill limitations
 
-<p class="alert">
-<strong>Note</strong>: Although Chrome 25 has native support for Shadow DOM,
-we only supports the shim at this time.
-</p>
-
-### Shim limitations
-
-To shim Shadow DOM it's necessary to compose the rendered tree into the DOM proper, as that is what the browser is going to display. That means the truisms above no longer apply. There are several important differences to consider under a polyfilled Shadow DOM:
+To polyfill Shadow DOM it's necessary to compose the rendered tree into the DOM proper, as that is what the browser is going to display. That means the truisms above no longer apply. There are several important differences to consider under a polyfilled Shadow DOM:
 
 * `<my-custom-element>`'s light DOM must be stored in a subtree separate from main DOM. `<my-custom-element>`'s native `.childNodes`, `.children`, `.innerHTML` properties and methods all refer to the rendered tree.
 * Nodes in light DOM or shadow DOM express native parent and sibling relationships that match only the rendered tree structure; the relationships that exist in the original light and shadow trees are not expressed by native DOM.
 
-For proper polyfilling, these contradictions need to be solved by overriding the DOM tree accessors from JS to provide the illusion of the separated DOM trees. For this reason, Toolkit uses a Shadow DOM _shim_ instead of a polyfill. 
+For proper polyfilling, these contradictions need to be solved by overriding the DOM tree accessors from JS to provide the illusion of the separated DOM trees.
 
-In particular, the Toolkit Shadow DOM shim does not provide the ability to operate on light and shadow subtrees as strictly normal DOM subtrees. Instead, those subtrees are embedded in the native (rendered) DOM and special APIs are provided to navigate them.
+In particular, the Toolkit Shadow DOM polyfill does not provide the ability to operate on light and shadow subtrees as strictly normal DOM subtrees. Instead, those subtrees are embedded in the native (rendered) DOM and special APIs are provided to navigate them.
 
 #### Subtree perversions
 
-Using the native DOM accessors (such as `childNodes`) on a tree containing Shadow DOM shim subtrees, you will encounter these unusual DOM structures:
+Using the native DOM accessors (such as `childNodes`) on a tree containing Shadow DOM polyfill subtrees, you will encounter these unusual DOM structures:
 
 * **LightDOM**: Nodes that have shadow DOM are assigned a corresponding `.lightDOM` document-fragment. When walking DOM, one generally wants to descend into light DOM subtrees (via `.lightDOM`) and not the native (rendered) tree, to mimic the proper hiding of shadow DOM.
 
