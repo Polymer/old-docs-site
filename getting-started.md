@@ -25,7 +25,7 @@ components:
 
 The basics of using {{site.project_title}} are simple:
 
-1. Load **platform.js** to shim missing platform features, such as [Shadow DOM](/platform/shadow-dom-shim.html).
+1. Load **platform.js** to shim missing platform features, such as [Shadow DOM](/platform/shadow-dom.html).
 - Load components with `<link rel="components" href="/path/to/component-file.html">`
 - Use component tags in HTML.
 

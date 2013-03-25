@@ -10,7 +10,7 @@ and designed to leverage the evolving web platform on modern browsers.
 
 The {{site.project_title}} comprises two primary efforts:
 
-- A set of core platform features, including [Shadow DOM](/platform/shadow-dom-shim.html),
+- A set of core platform features, including [Shadow DOM](/platform/shadow-dom.html),
 [Custom Elements](/platform/custom-elements.html) and [Model Driven Views](/platform/mdv.html).
 Initially, these core features will be enabled with a set of polyfills and shims.
 - next-generation web application framework built upon these core technologies called the **_Toolkit_**.
@@ -34,7 +34,7 @@ The overall aim of the toolkit is to manage complexity. Our principles are:
 
 ## Component scripts
 
-Toolkit platform shims the <a href="https://dvcs.w3.org/hg/webcomponents/raw-file/tip/explainer/index.html#external-custom-elements-and-decorators">Custom DOM Element Loader</a> . In order for component code to be debuggable at run-time, scripts embedded in components are injected into <code>&lt;head&gt;</code> in the main document. Tools that support <a href="http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/">source maps</a> (such as <a href="https://www.google.com/intl/en/chrome/browser/canary.html">Chrome Canary</a>) will identify these scripts as belonging to their source components.
+Toolkit platform shims the <a href="/platform/web-components.html">Component Loader</a> . In order for component code to be debuggable at run-time, scripts embedded in components are injected into <code>&lt;head&gt;</code> in the main document. Tools/browsers that support <a href="http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/">source maps</a> will identify these scripts as belonging to their source components.
 
 ## Toolkit and g-component
 
