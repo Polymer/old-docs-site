@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Loading Web Components
+title: About Component Loader
 subtitle: polyfill
 
 feature:
