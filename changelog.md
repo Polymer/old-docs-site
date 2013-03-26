@@ -5,6 +5,13 @@ title: Changelog
 
 This document lists changes to the entirety of the project, including polyfill repos.
 
+## 2013-XX-XX
+
+### Toolkit
+
+* Added `debug` [runtime flags](/runtime-config.html) to conditionally load debug
+version of `platform.js`.
+
 ## 2013-02-25
 
 ### Toolkit

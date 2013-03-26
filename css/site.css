@@ -78,6 +78,9 @@ footer div:first-of-type {
 p:empty {
   display: none;
 }
+.strike {
+  text-decoration: line-through;
+}
 #content {
   min-height: 400px;
 }
