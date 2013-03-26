@@ -10,9 +10,9 @@
     {% highlight html %}
 {% raw %}
 <element name="tk-element-property-public-publish">
-  <link rel="components" href="toolkit/components/g-component.html">
+  <link rel="component" href="toolkit/components/g-component.html">
   <template>
-    This is a <strong>{{owner}}</strong>'s tk-element. He likes the color <span style="color: color">{{color}}</span>.
+    This is a <strong>{{owner}}</strong>'s tk-element. He likes the color <span style="color: {{color}}">{{color}}</span>.
   </template>
   <script>
     this.component({
@@ -32,7 +32,7 @@
 <html>
   <head>
     <script src="platform.js"></script>
-    <link rel="components" href="tk-element-property-public-publish.html">
+    <link rel="component" href="tk-element-property-public-publish.html">
   </head>
   <body>
   <div class="well">

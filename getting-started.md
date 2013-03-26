@@ -26,7 +26,7 @@ components:
 The basics of using {{site.project_title}} are simple:
 
 1. Load **platform.js** to shim missing platform features, such as [Shadow DOM](/platform/shadow-dom.html).
-- Load components with `<link rel="components" href="/path/to/component-file.html">`
+- Load components with `<link rel="component" href="/path/to/component-file.html">`
 - Use component tags in HTML.
 
 Here's a bare bones example:
@@ -37,7 +37,7 @@ Here's a bare bones example:
         <!-- 1. Shim missing platform features -->
         <script src="toolkit/platform/platform.js"></script>
         <!-- 2. Load a component -->
-        <link rel="components" href="toolkit/components/g-menu-item.html">
+        <link rel="component" href="toolkit/components/g-menu-item.html">
       </head>
       <body>
         <!-- 3. Instantiate the component with its tag. -->
@@ -47,11 +47,13 @@ Here's a bare bones example:
 
 ## Components
 
-Components are the core building blocks of Toolkit-based applications. You create applications by assembling components together, either ones provided by the Toolkit or that you create yourself.
+[Custom Elements](/platform/custom-elements.html) are the core building blocks of
+Toolkit-based applications. You create applications by assembling custom elements
+together, either ones provided by the Toolkit or that you create yourself.
 
 ### Basic custom element
 
-The platform shims provided by {{site.project_title}} lets you load and display
+The platform polyfills provided by {{site.project_title}} let you load and display
 custom elements. Just by loading `platform.js` you get support for these
 new technologies.
 
@@ -61,7 +63,7 @@ new technologies.
 
 To enable a custom element with Toolkit features:
 
-* Load the Toolkit kernel (`toolkit/components/g-component.html`).
+* Load the [Toolkit kernel](/toolkit-kernel-explainer.html) (`toolkit/components/g-component.html`).
 * Add a `<script>` element that includes the `component()` initializer. This endows the custom element with Toolkit features, such as data binding and event mapping.
 
 In the following sample we convert our basic custom element into a g-component named `tk-element`.
@@ -119,7 +121,7 @@ In the following example the defines an `attributes` attribute on the custom ele
 
 This example is functionally equivalent to the previous version except that instead of using the `attributes` attribute to make the properties public, it moves them to the component's `publish` block.
 
-A public property declared in the `attributes` attribute is initially set to `undefined`. You can provide a more appropriate default value to the property in the comopnent's `publish` block, as shown below. 
+A public property declared in the `attributes` attribute is initially set to `undefined`. You can provide a more appropriate default value to the property in the component's `publish` block, as shown below. 
 
 {% include samples/tk-element-property-public-publish.html %}
 
