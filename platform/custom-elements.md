@@ -14,7 +14,7 @@ feature:
 
 TODO
 
-{% comment %}
+{% comment %}{% endcomment %}
 // TODO: uncomment and include platform/CustomElement/README.md when repos are moved over.
-{% include_external toolkitchensink/toolkit/README.md %}
-{% endcomment %}
+{% include_external ../toolkit-new/platform/CustomElements/README.md %}
+
