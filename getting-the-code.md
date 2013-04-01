@@ -3,11 +3,11 @@ layout: default
 title: Getting the Code
 ---
 
-## Browser requirements
-
-{{site.project_title}} will eventually support all major "evergreen"
+<p class="alert">
+  <strong>Browser requirements</strong>: {{site.project_title}} will eventually support all major "evergreen"
 (auto-updating) browsers, it currently requires a WebKit-based browser
 such as Chrome or Safari.
+</p>
 
 ## Bring on the code!
 
@@ -76,13 +76,17 @@ reasoning for this is two-fold:
 1. make the polyfills work across all modern browsers
 -  each polyfill can stand on its own and be used à la carte in projects.
 
-### Platform repo - [github.com/toolkitchen/platform](https://github.com/toolkitchen/platform)
+### Platform repo
+
+[github.com/toolkitchen/platform](https://github.com/toolkitchen/platform)
 
 The [platform](https://github.com/toolkitchen/platform) repository references each of the polyfills as submodules, and contains integration tests, loader, and build tools for the amalgamated polyfills.
 
 See [Tooling Strategy](tooling-strategy.html) for information.
 
-### Toolkit repo - [github.com/toolkitchen/toolkit](https://github.com/toolkitchen/toolkit)
+### Toolkit repo
+
+[github.com/toolkitchen/toolkit](https://github.com/toolkitchen/toolkit)
 
 The [toolkit](https://github.com/toolkitchen/toolkit) repository contains the guts
 of the project. It pulls in the [platform](https://github.com/toolkitchen/platform)
@@ -99,7 +103,9 @@ If you want to see the development activity (see [Branching Workflow](branching-
 
     git clone -b dev https://github.com/toolkitchen/toolkit.git
 
-### Toolkitchensink - [github.com/toolkitchen/toolkitchensink](https://github.com/toolkitchen/toolkitchensink)
+### Toolkitchensink
+
+[github.com/toolkitchen/toolkitchensink](https://github.com/toolkitchen/toolkitchensink)
 
 The [toolkitchensink](https://github.com/toolkitchen/toolkitchensink) repo is your
 one-stop shop for everything. It brings in all the other repositories as submodules.
