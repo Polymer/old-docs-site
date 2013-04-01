@@ -11,7 +11,7 @@
   <div class="tab-pane active" id="element8">
     {% highlight html %}
 <element name="tk-element-event-binding">
-  <link rel="component" href="toolkit/components/g-component.html">
+  <link rel="import" href="toolkit/components/g-component.html">
   <template>
     <p>This is a <strong>{{owner}}</strong>'s tk-element. He likes the color <span style="color: {{color}}">{{color}}</span>.</p>
     <button on-click="sayHello">Say hello</button>
@@ -38,7 +38,7 @@
   <head>
     <script src="platform.js"></script>
     <!-- Load custom element -->
-    <link rel="component" href="tk-element-event-binding.html">
+    <link rel="import" href="tk-element-event-binding.html">
   </head>
   <body>
     <!-- Instantiate custom element -->

@@ -11,7 +11,7 @@
     {% highlight html %}
 {% raw %}
 <element name="tk-element-databinding-color">
-  <link rel="component" href="toolkit/components/g-component.html">
+  <link rel="import" href="toolkit/components/g-component.html">
   <template>
     This is a <strong>{{owner}}</strong>'s tk-element. He likes the color <span style="color: {{color}}">{{color}}</span>.
   </template>
@@ -31,7 +31,7 @@
 <html>
   <head>
     <script src="platform.js"></script>
-    <link rel="component" href="tk-element-databinding-color.html">
+    <link rel="import" href="tk-element-databinding-color.html">
   </head>
   <body>
     <tk-element-databinding-color></tk-element-databinding-color>

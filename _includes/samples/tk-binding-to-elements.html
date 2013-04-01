@@ -11,7 +11,7 @@
 {% highlight html %}
 {% raw %}
 <element name="tk-binding-to-elements">
-  <link rel="component" href="toolkit/components/g-component.html">
+  <link rel="import" href="toolkit/components/g-component.html">
   <template>
     <p>This is a <strong>{{owner}}</strong>'s tk-element. He likes the color <span style="color: {{color}}">{{color}}</span>. I am <strong>{{age}}</strong> years old.</p>
     <label for="ageInput">Age:</label>
@@ -38,7 +38,7 @@
 <html>
   <head>
     <script src="platform.js"></script>
-    <link rel="component" href="tk-element.html">
+    <link rel="import" href="tk-element.html">
   </head>
   <body>
     <tk-element></tk-element>

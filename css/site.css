@@ -82,7 +82,7 @@ p:empty {
   min-height: 400px;
 }
 #logo-row {
-  width: 25%;
+  width: 110px;
   text-align: right;
   -webkit-filter: grayscale(0.8);
   -moz-filter: grayscale(0.8);

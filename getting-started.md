@@ -26,7 +26,7 @@ components:
 The basics of using {{site.project_title}} are simple:
 
 1. Load **platform.js** to shim missing platform features, such as [Shadow DOM](/platform/shadow-dom.html).
-- Load components with `<link rel="component" href="/path/to/component-file.html">`
+- Load components with `<link rel="import" href="/path/to/component-file.html">`
 - Use component tags in HTML.
 
 Here's a bare bones example:
@@ -37,7 +37,7 @@ Here's a bare bones example:
         <!-- 1. Shim missing platform features -->
         <script src="toolkit/platform/platform.js"></script>
         <!-- 2. Load a component -->
-        <link rel="component" href="toolkit/components/g-menu-item.html">
+        <link rel="import" href="toolkit/components/g-menu-item.html">
       </head>
       <body>
         <!-- 3. Instantiate the component with its tag. -->

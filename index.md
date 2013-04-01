@@ -34,7 +34,7 @@ The overall aim of the toolkit is to manage complexity. Our principles are:
 
 ## Component scripts
 
-Toolkit platform shims the <a href="/platform/web-components.html">Component Loader</a> . In order for component code to be debuggable at run-time, scripts embedded in components are injected into <code>&lt;head&gt;</code> in the main document. Tools/browsers that support <a href="http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/">source maps</a> will identify these scripts as belonging to their source components.
+Toolkit platform shims the <a href="/platform/html-imports.html">HTML Imports</a> . In order for component code to be debuggable at run-time, scripts embedded in components are injected into <code>&lt;head&gt;</code> in the main document. Tools/browsers that support <a href="http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/">source maps</a> will identify these scripts as belonging to their source components.
 
 ## Toolkit and g-component
 
