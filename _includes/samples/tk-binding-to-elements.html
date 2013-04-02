@@ -11,23 +11,27 @@
 {% highlight html %}
 {% raw %}
 <element name="tk-binding-to-elements">
-  <link rel="import" href="toolkit/components/g-component.html">
-  <template>
-    <p>This is a <strong>{{owner}}</strong>'s tk-element. He likes the color <span style="color: {{color}}">{{color}}</span>. I am <strong>{{age}}</strong> years old.</p>
-    <label for="ageInput">Age:</label>
-    <input type="range" id="ageInput" value="{{age}}">
-    <label for="nameInput">Name:</label>
-    <input type="text" id="nameInput" value="{{owner}}" on-keyup="setName" placeholder="Your name here...">
-  </template>
-  <script>
-    this.component({
-      age: "25",
-      publish: {
-        color: "red",
-        owner: "Daniel"
-      }
-    });
-  </script>
+<link rel="import" href="toolkit/components/g-component.html">
+<template>
+  <p>This is <strong>{{owner}}</strong>'s tk-element but <strong>{{name}}</strong> lets me borrow it. He likes the color <span style="color: {{color}}">{{color}}</span>. I am <strong>{{age}}</strong> years old.</p>
+  <label for="ageInput">Age:</label>
+  <input id="ageInput" type="range" value="{{age}}">
+  <label for="nameInput">Name:</label>
+  <input id="nameInput" value="{{name}}" on-keyup="processName" placeholder="Your name here...">
+</template>
+<script>
+  this.component({
+    age: "25",
+    name: "Daniel",
+    processName: function(e) {
+      // Do processing.
+    },
+    publish: {
+      color: "red",
+      owner: "Eric"
+    }
+  });
+</script>
 </element>
 {% endraw %}
 {% endhighlight html %}
@@ -38,7 +42,7 @@
 <html>
   <head>
     <script src="platform.js"></script>
-    <link rel="import" href="tk-element.html">
+    <link rel="import" href="tk-binding-to-elements.html">
   </head>
   <body>
     <tk-element></tk-element>
