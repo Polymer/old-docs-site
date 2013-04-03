@@ -15,5 +15,5 @@ feature:
 TODO
 
 {% comment %}
-{% include_external ../toolkitchensink/toolkit/platform/WebComponents/README.md %}
+{% include_external ../toolkitchensink/toolkit/platform/HTMLImports/README.md %}
 {% endcomment %}
