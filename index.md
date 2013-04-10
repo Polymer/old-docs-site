@@ -8,7 +8,7 @@ title: Welcome
 and designed to leverage the evolving web platform on modern browsers.
 </p>
 
-The {{site.project_title}} comprises two primary efforts:
+The {{site.project_title}} is comprised of two efforts:
 
 - A set of core platform features, including [Shadow DOM](/platform/shadow-dom.html),
 [Custom Elements](/platform/custom-elements.html) and [Model Driven Views](/platform/mdv.html).
