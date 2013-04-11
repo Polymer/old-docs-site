@@ -56,3 +56,7 @@ Build minified project files (default):
 Build documentation:
 
     grunt docs
+    
+Run tests:
+
+    grunt test
