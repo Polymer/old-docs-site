@@ -36,8 +36,10 @@ The overall aim of the toolkit is to manage complexity. Our principles are:
 
 Toolkit platform shims the <a href="/platform/html-imports.html">HTML Imports</a> . In order for component code to be debuggable at run-time, scripts embedded in components are injected into <code>&lt;head&gt;</code> in the main document. Tools/browsers that support <a href="http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/">source maps</a> will identify these scripts as belonging to their source components.
 
-## Toolkit and g-component
+## Toolkit
 
-All Toolkit components depend on `toolkit/components/g-component.html` which provides the [sugaring layer](/toolkit-kernel-explainer.html). However, an application can load `platform.js` directly
-to only take advantage of the polyfill support. For examples of this, see the [/toolkitchen/projects/CustomElementPlayground/](https://github.com/toolkitchen/projects/tree/master/CustomElementsPlayground) folder for examples.
+All Toolkit components depend on `toolkit/toolkit.js` which provides the batteries
+or [sugaring layer](/toolkit-kernel-explainer.html). However, an application can
+only load `toolkit/platform/platform.js` directly to take advantage of the polyfill support.
+For examples of this, see the [CustomElementPlayground/](https://github.com/toolkitchen/projects/tree/master/CustomElementsPlayground) folder for examples.
 

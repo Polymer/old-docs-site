@@ -5,10 +5,19 @@ title: Changelog
 
 This document lists changes to the entirety of the project, including polyfill repos.
 
-## 2013-XX-XX
+## 2013-04-11
+
+**Notice: This release contains important changes to the structure of the project.**
+
+* The `toolkit` repository now brings in the `platform` repository as a submodule.
+* _stable_ branches are now the stable release codebase, which _master_ branches 
+are the in-development tip of tree. Before, the _dev_ branch was the development
+branch and _master_ was the stable release.
 
 ### Toolkit
 
+* `g-component.html` no longer exists as the Tookit kernel. It has been replaced
+with loading in `toolkit.js` instead.
 * Added `debug` [runtime flags](/runtime-config.html) to conditionally load debug
 version of `platform.js`.
 

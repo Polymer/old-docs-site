@@ -17,10 +17,11 @@
 
 {% if site.load_platform %}
   <!-- Toolkit platform code -->
-  <script src="/toolkitchensink/toolkit/platform/platform.js?{{'now' | date: "%Y%m%d"}}"></script>
+  <script src="/toolkit/platform/platform.js?{{'now' | date: "%Y%m%d"}}"></script>
+  <script src="/toolkit/toolkit.min.js?{{'now' | date: "%Y%m%d"}}"></script>
 
   {% for item in page.components %}
-    <link rel="components" src="{{ item }}">
+    <link rel="import" src="{{ item }}">
   {% endfor %}
 
   {% for item in page.stylesheets %}

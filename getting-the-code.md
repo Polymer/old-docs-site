@@ -24,7 +24,7 @@ This creates a `toolkit/` folder with the following top-level files and folders:
 - **workbench/** — Examples of using the Toolkit components in `components/`. 
 - **toolkit.js** — The [Toolkit kernel](toolkit-kernel-explainer.html)
 
-## Test your environment
+### Test your environment
 
 To check that your development environment is ready, start a local web
 server and run one of the included sample projects:
@@ -40,7 +40,7 @@ server and run one of the included sample projects:
 
 Periodically, we will update the project's submodules on GitHub. To
 update your local {{site.project_title}}'s submodules, run the following command
-from the `toolkitchensink/` folder:
+from the `toolkit/` folder:
 
     git submodule update --init --recursive
 
@@ -52,7 +52,7 @@ See [Branching Workflow](branching-strategy.html).
 ## Repository structure
 
 The entirety of the {{site.project_title}} is composed of a number of Git
-repositories. Most are included as submodules in the main toolkitchensink repository.
+repositories. Most are included as submodules in the main `toolkit` repository.
 However, understanding the various pieces will help you navigate the codebase.
 
 ### Polyfill repos
@@ -80,22 +80,9 @@ of the project. It pulls in the [platform](https://github.com/toolkitchen/platfo
 polyfill repo as a submodule, contains examples, demos, tools, and hosts the
 [Toolkit kernel](toolkit-kernel-explainer.html).
 
-<p class="alert">
-  <strong>Note</strong>: toolkit is in a state of flux. The code in the <em>dev</em>
-branch has recently been revamped. In particular, it loads platform as a submodule.
-<em>master</em> will soon reflect these changes once things are merged.
-</p>
+If you want to see the development activity, checkout the _master_ branch directly:
 
-If you want to see the development activity (see [Branching Workflow](branching-strategy.html)), checkout the _dev_ branch directly:
+    git clone -b master https://github.com/toolkitchen/toolkit.git
 
-    git clone -b dev https://github.com/toolkitchen/toolkit.git
-
-### Toolkitchensink
-
-[github.com/toolkitchen/toolkitchensink](https://github.com/toolkitchen/toolkitchensink)
-
-The [toolkitchensink](https://github.com/toolkitchen/toolkitchensink) repo is your
-one-stop shop for everything. It brings in all the other repositories as submodules.
-
-If you're interested in all the polyfills, demos, tools, etc, this is the only
-repo you need to check out.
+If you don't specify _master_, you'll get the _stable_ branch by default.
+See [Branching Workflow](branching-strategy.html) for more info.

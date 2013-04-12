@@ -3,9 +3,8 @@ layout: default
 title: Getting started
 
 components:
-- toolkitchensink/toolkit/components/g-component.html
-- toolkitchensink/toolkit/components/g-panels.html
-- toolkitchensink/toolkit/components/g-tabs.html
+- toolkit/components/g-panels.html
+- toolkit/components/g-tabs.html
 - samples/components/basic-element.html
 - samples/components/tk-element.html
 - samples/components/tk-element-databinding-color.html
@@ -36,12 +35,14 @@ Here's a bare bones example:
       <head>
         <!-- 1. Shim missing platform features -->
         <script src="toolkit/platform/platform.js"></script>
-        <!-- 2. Load a component -->
+        <!-- 2. Load toolkit kernel -->
+        <script src="toolkit/toolkit.min.js"></script>
+        <!-- 3. Load a component -->
         <link rel="import" href="toolkit/components/g-menu-item.html">
       </head>
       <body>
-        <!-- 3. Instantiate the component with its tag. -->
-        <g-menu-item src="images/email.svg">Email Link</g-menu-item>
+        <!-- 4. Instantiate the component with its tag. -->
+        <g-meu-item src="images/email.svg">Email Link</g-menu-item>
       </body>
     </html>
 
@@ -63,10 +64,10 @@ new technologies.
 
 To enable a custom element with Toolkit features:
 
-* Load the [Toolkit kernel](/toolkit-kernel-explainer.html) (`toolkit/components/g-component.html`).
+* Load the [Toolkit kernel](/toolkit-kernel-explainer.html) (`toolkit/toolkit.js`).
 * Add a `<script>` element that includes the `component()` initializer. This endows the custom element with Toolkit features, such as data binding and event mapping.
 
-In the following sample we convert our basic custom element into a g-component named `tk-element`.
+In the following sample we convert our basic custom element into a Toolkit component named `tk-element`.
 
 {% include samples/tk-element.html %}
 
@@ -144,6 +145,6 @@ window.addEventListener("WebComponentsReady", function() {
 
 ### Automatic node finding
 
-Shadow DOM is a self-contained document-like subtree; id's in that subtree do not interact with id's in other trees. Each g-component generates a map of id's  to node references in the component's template. This map is accessible as `this.$` to the component. 
+Shadow DOM is a self-contained document-like subtree; id's in that subtree do not interact with id's in other trees. Each Toolkit component generates a map of id's  to node references in the component's template. This map is accessible as `this.$` to the component. 
 
 {% include samples/tk-node-finding.html %}

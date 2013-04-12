@@ -24,14 +24,13 @@ Other repositories aggregate these individual repositories (as submodules) into 
 
 * `platform`
 * `toolkit`
-* `toolkitchensink`
 
 <p class="alert">
 Remember that after cloning a repository containing submodules, it's generally a good idea to perform
 <code>git submodule update --init --recursive</code> to ensure you have all submodule files.
 </p>
 
-##  Minification, Testing, and Documentation
+## Minification, Testing, and Documentation
 
 To run tests, build minified files, or build documentation you need `node` and
 `grunt-cli` on your system.
@@ -45,6 +44,8 @@ Now for any repository in which you want to use tools, install the Node dependen
 and use Grunt to perform tasks. In the project's root folder (e.g. `<somepath>/platform/`), run:
 
     npm install
+
+### Tasks
 
 Once things are installed, you may run the tests or use `grunt` to perform tasks.
 
