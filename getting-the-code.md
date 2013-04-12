@@ -5,49 +5,36 @@ title: Getting the Code
 
 <p class="alert">
   <strong>Browser requirements</strong>: {{site.project_title}} will eventually support all major "evergreen"
-(auto-updating) browsers, it currently requires a WebKit-based browser
-such as Chrome or Safari.
+(auto-updating) browsers, it currently requires a WebKit-based browser such as Chrome or Safari.
 </p>
 
 ## Bring on the code!
 
 You can recursively clone and initialize all of its submodules with a single git command.
 
-**To clone toolkitchensink:**
+**To clone toolkit:**
 
-    git clone git://github.com/toolkitchen/toolkitchensink.git --recursive
+    git clone git://github.com/toolkitchen/toolkit.git --recursive
 
-This creates the following top-level directories in `toolkitchensink/`,
-each a submodule:
+This creates a `toolkit/` folder with the following top-level files and folders:
 
--   **toolkit/** — Contains the core Toolkit kernel, a set of components,
-    and the platform shims and polyfills.
--   **pantry/** — Extra components and wrappers for third-party code.
--   **projects/** — Projects that use, enhance, or demonstrate Toolkit
-    technologies.
-
-The `toolkit/` folder contains the following sub-folders:
-
--   **platform/** — Contains the platform shims and polyfills.
--   **components/** — Contains the [Toolkit kernel](toolkit-kernel-explainer.html) (g-component.html) and
-    the initial set of components.
--   **getting_started/** —A starter project.
--   **test/** — Test cases.
--   **third-party/** — Testing libraries.
--   **workbench/**— Examples of using Toolkit components.
+- **components/** — Initial set of example components.
+- **platform/** — Submodule which contains the platform shims and polyfills.
+- **test/** — Test cases.
+- **workbench/** — Examples of using the Toolkit components in `components/`. 
+- **toolkit.js** — The [Toolkit kernel](toolkit-kernel-explainer.html)
 
 ## Test your environment
 
 To check that your development environment is ready, start a local web
 server and run one of the included sample projects:
 
-1.  Start a local web server with the `toolkitchensink/` folder as the
-    web root.
-2.  In your browser, navigate to
+1. Start a local web server with the `toolkit/` folder as the web root.
+2. In your browser, navigate to
     [http://localhost:8000/toolkit/workbench/menu.html](http://localhost:8000/toolkit/workbench/menu.html).
     You should see a menu of items, as shown below.
 
-<iframe src="/toolkitchensink/toolkit/workbench/menu.html" style="width: 270px;height:280px;border:none;"></iframe>
+<iframe src="/toolkit/workbench/menu.html" style="width: 270px;height:280px;border:none;"></iframe>
 
 ### Updating {{site.project_title}} submodules
 

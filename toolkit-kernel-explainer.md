@@ -3,6 +3,8 @@ layout: default
 title: Toolkit kernel
 ---
 
+{% include outofdate.html %}
+
 The Toolkit _kernel_ provides a thin layer of code that expresses the Toolkit
 opinion, and provides the sugar that all components use. The kernel code is
 provided by a file named `g-component.html`. A web component that depends on the
@@ -129,7 +131,7 @@ is not publicly callable:
 Note the following:
 
 1. There can be only one `publish` block per definition.
-2. Published properties are actually stored on the **protected** prototype, then they are forwarded to the public prototype. In other words, `blueColor`(?) is different from `clickColor` only because there is a public getter/setter pair to access it.
+2. Published properties are actually stored on the **protected** prototype, then they are forwarded to the public prototype.
 3. Published methods still operate in protected scope: the properties you can access via `this` are no different from methods declared outside the publish block. 
 
 Bottom line: when building components use `this` naturally and declare properties and methods as you like. Then, if you happen to create API you want to make public, you just move it into the `publish` block.
