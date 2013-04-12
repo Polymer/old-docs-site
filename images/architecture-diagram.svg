@@ -511,7 +511,7 @@
          id="path3475" />
     </a>
     <a
-       xlink:href="https://github.com/toolkitchen/WebComponents"
+       xlink:href="https://github.com/toolkitchen/HTMLImports"
        target="_blank"
        id="a3483">
       <path
@@ -522,7 +522,7 @@
          id="path3485" />
     </a>
     <a
-       xlink:href="https://github.com/toolkitchen/WebComponents"
+       xlink:href="https://github.com/toolkitchen/HTMLImports"
        target="_blank"
        id="a3487">
       <path
@@ -834,7 +834,7 @@
        id="path3894"
        inkscape:connector-curvature="0" />
     <a
-       xlink:href="/platform/custom-elements.html"
+       xlink:href="/platform/html-imports.html"
        target="_top"
        id="a3966"
        transform="translate(304.05592,-3.2357855e-7)">
@@ -856,12 +856,12 @@
              id="tspan3976"
              y="496.05289"
              x="454.93411"
-             sodipodi:role="line">Component Loader</tspan><tspan
+             sodipodi:role="line">HTMLImports</tspan><tspan
              style="font-size:20px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Open Sans;-inkscape-font-specification:Open Sans Bold"
              y="521.05286"
              x="454.93411"
              sodipodi:role="line"
-             id="tspan3980">&lt;link rel=&quot;component&quot;&gt;</tspan></text>
+             id="tspan3980">&lt;link rel=&quot;import&quot;&gt;</tspan></text>
       </g>
     </a>
     <path
@@ -871,7 +871,7 @@
        style="stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:8, 6;fill:#ffffff" />
     <a
        id="a3762"
-       xlink:href="https://github.com/toolkitchen/WebComponents"
+       xlink:href="https://github.com/toolkitchen/HTMLImports"
        transform="translate(216.95143,-160.94396)">
       <text
          sodipodi:linespacing="125%"
@@ -933,9 +933,9 @@
            sodipodi:linespacing="125%"><tspan
              sodipodi:role="line"
              id="tspan3623"
-             x="344.36719"
+             x="384.36719"
              y="75.615822"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Open Sans;-inkscape-font-specification:Open Sans">g-component</tspan></text>
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Open Sans;-inkscape-font-specification:Open Sans">toolkit.js</tspan></text>
         <text
            xml:space="preserve"
            style="font-size:18px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
