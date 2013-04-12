@@ -22,7 +22,4 @@ links:
 
 {% include spec-header.html %}
 
-
-{% comment %}
-{% include_external ../toolkitchensink/toolkit/platform/ShadowDOM/README.md %}
-{% endcomment %}
+{% include_external ../toolkit/platform/ShadowDOM/README.md %}

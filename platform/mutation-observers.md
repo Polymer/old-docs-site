@@ -15,5 +15,5 @@ feature:
 TODO
 
 {% comment %}
-{% include_external ../toolkitchensink/toolkit/platform/MutationObservers/README.md %}
+{% include_external ../toolkit/platform/MutationObservers/README.md %}
 {% endcomment %}

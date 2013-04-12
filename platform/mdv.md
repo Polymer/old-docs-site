@@ -12,8 +12,4 @@ feature:
 
 {% include spec-header.html %}
 
-TODO
-
-{% comment %}
-{% include_external ../toolkitchensink/toolkit/platform/MDV/README.md %}
-{% endcomment %}
+{% include_external ../toolkit/platform/MDV/README2.md %}
