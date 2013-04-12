@@ -46,7 +46,6 @@ and use Grunt to perform tasks. In the project's root folder (e.g. `<somepath>/p
 
     npm install
 
-
 Once things are installed, you may run the tests or use `grunt` to perform tasks.
 
 Build minified project files (default):
@@ -60,3 +59,5 @@ Build documentation:
 Run tests:
 
     grunt test
+
+s
