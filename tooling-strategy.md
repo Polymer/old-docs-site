@@ -60,4 +60,4 @@ Run tests:
 
     grunt test
 
-s
+
