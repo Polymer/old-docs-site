@@ -21,7 +21,7 @@ A web component declaration look like the following:
       </script>
     </element>
 
-To have this component  this component `component()` lifecycle initializer to
+To have this component add the `this.component()` lifecycle initializer to
 the component's `<script>` block, as shown below:
 
     <element name="tag-name">
@@ -35,7 +35,7 @@ the component's `<script>` block, as shown below:
 
 Note the following:
 
-- The `component()` initializer is all that's required to  prepare this
+- The `component()` initializer is all that is required to  prepare this
 component to use Toolkit [conventions and features](#features). 
 - The "name" attribute specifies the name of the custom `<element>` and
 determines the name of the tag when you instantiate the component in markup.
@@ -43,11 +43,11 @@ For example, `<tag-name>` in this example. The name should be a "-" separated st
 
 ### Component initialization
 
-You can supply a single object-valued argument to `component()` to define object
+You can supply a single object argument to `component()` to define object
 prototypes, and perform other setup tasks. Most properties and methods defined
 in the argument to `component()` are used directly in the component's prototype.
 In the following example the component initializer defines a property
-`helloWorld` and a method `ready`. 
+`message` and a method `ready`. 
 
     this.component({
       message: "Hello!",
@@ -116,26 +116,25 @@ The `blueify` method is a part of _my-tag_'s public API. It must be available
 to end-users on the element instance.
 
 Now, imagine _my-tag_ is also supposed to turn orange if clicked. As part of our
-custom element's set-up, we attach a `click` listener which invokes the
+custom element's set-up, we can attach a `click` listener which invokes the
 `clickHandler` method that turns the element orange.
 
 In this case, `clickHandler` is not intended to be called by end-users, it's
 only there to service an event. In this case, `clickHandler` should be part of
-the protected API. Then the method is not visible on the element instance and calling
+the protected API. Then the method is not visible on the element instance and 
+is not publicly callable:
 
     myTag.clickHandler(); // error: undefined function
 
 Note the following:
 
 1. There can be only one `publish` block per definition.
-2. Published properties are actually stored on the **protected** prototype, then they are forwarded to the public prototype. In other words, `blueColor` is different from `clickColor` only because there is a public getter/setter pair to access it.
+2. Published properties are actually stored on the **protected** prototype, then they are forwarded to the public prototype. In other words, `blueColor`(?) is different from `clickColor` only because there is a public getter/setter pair to access it.
 3. Published methods still operate in protected scope: the properties you can access via `this` are no different from methods declared outside the publish block. 
 
 Bottom line: when building components use `this` naturally and declare properties and methods as you like. Then, if you happen to create API you want to make public, you just move it into the `publish` block.
 
 ## G-component features
-
-This section describes the features of g-components. 
 
 ### Attributes and properties
 
@@ -153,7 +152,7 @@ You can also declare public properties directly on an `<element>` tag using its 
 
     <element name="name-tag" attributes="myName nameColor">
       <template>
-        Hello! My name is <span style="color:{{"{{nameColor"}}}}">{{myName}}</span>
+        Hello! My name is <span style="color:{{"{{nameColor"}}}}">{{"{{myName"}}}}</span>
       </template>
       <script>
         this.component({
@@ -251,11 +250,11 @@ G-component API is not public by default. Only API declared in the `publish` blo
     </element>
 
 In this example, the `g-cool` component has a single public method, 
-`makeBetterBest`. The property _better _is not visible on the node, but a user could call `node.makeBetterBest` to set the internal property to the string value 'best'. 
+`makeBetterBest`. The property `better` is not visible on the node, but a user could call `node.makeBetterBest` to set the internal property to the string value 'best'. 
 
 This property hiding is not for security (non-public properties are technically still available, they are just not surfaced). We hide properties only to simplify the API surface.
 
-The non-public API of a g-component is inherited by subclasses (extensions). For this reason, we call the non-public API _protected _(and not _private_).
+The non-public API of a g-component is inherited by subclasses (extensions). For this reason, we call the non-public API _protected_ (and not _private_).
 
 ## Advanced sugaring
 
@@ -263,7 +262,7 @@ In addition to the above features, which are focused around making the core func
 
 ### Change watchers
 
-All properties on a g-component can be watched for changes by implementing a <code><em>propertyName</em>Changed</code> handler. When the value of a watched property changes, the appropriate chnage handler is automatically invoked. 
+All properties on a g-component can be watched for changes by implementing a <code><em>propertyName</em>Changed</code> handler. When the value of a watched property changes, the appropriate change handler is automatically invoked. 
 
     <element name="g-cool" attributes="better">
       <script>
