@@ -1,3 +1,5 @@
+<link rel="import" href="/samples/components/tk-twoway-binding.html">
+
 <div class="row-fluid">
   <div class="span8">
 <!-- Source tabs -->
@@ -9,39 +11,23 @@
 <div class="tab-content">
   <div class="tab-pane active" id="element12">
 {% highlight html %}
-{% raw %}
-<element name="tk-twoway-binding" attributes="selected">
-  <link rel="import" href="toolkit/components/g-panels.html">
-  <link rel="import" href="toolkit/components/g-tabs.html">
-  <template>
-    <g-tabs id="tab1" on-select="showPanel" selected="{{selected}}">
-      <p>One</p>
-      <p>Two</p>
-      <p>Three</p>
-    </g-tabs>
-    <g-panels id="panel1" selected="{{selected}}">
-      <p>Panel 1</p>
-      <p>Panel 2</p>
-      <p>Panel 3</p>
-    </g-panels>
-  </template>
-</element>
-{% endraw %}
-{% endhighlight html %}
+{% include_external ../samples/components/tk-twoway-binding.html %}
+{% endhighlight %}
   </div>
   <div class="tab-pane" id="index12">
 {% highlight html %}
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="platform.js"></script>
+    <script src="toolkit/platform/platform.js"></script>
+    <script src="toolkit/toolkit.js"></script>
     <link rel="import" href="tk-twoway-binding.html">
   </head>
   <body>
     <tk-element></tk-element>
   </body>
 </html>
-{% endhighlight html %}
+{% endhighlight %}
   </div>
 </div>
 </div>

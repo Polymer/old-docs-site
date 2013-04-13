@@ -18,7 +18,9 @@
 {% if site.load_platform %}
   <!-- Toolkit platform code -->
   <script src="/toolkit/platform/platform.js?{{'now' | date: "%Y%m%d"}}"></script>
-  <script src="/toolkit/toolkit.min.js?{{'now' | date: "%Y%m%d"}}"></script>
+  <script src="/toolkit/toolkit.js?{{'now' | date: "%Y%m%d"}}"></script>
+  <!--<script src="http://toolkitchen.github.io/toolkit/toolkit.min.js"></script>-->
+  <!-- TODO toolkit.min.js throws <Symbol> has no method 'shimStyling' error-->
 
   {% for item in page.components %}
     <link rel="import" src="{{ item }}">

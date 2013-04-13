@@ -1,10 +1,13 @@
 <element name="tk-element-property">
-    <template>
-        This is a <b>tk-element</b> with a (protected) property.
-    </template>
-    <script>
-        this.component({
-          owner: "Daniel"
-        });
-    </script>
+  <template>
+    This is a <b>tk-element</b> with a (protected) property.
+  </template>
+  <script>
+    var owner = "Daniel";
+    Toolkit.register(this, {
+      ready: function() {
+        // Ready to go.
+      }
+    });
+  </script>
 </element>

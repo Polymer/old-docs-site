@@ -1,5 +1,4 @@
-<!-- Sample code presented in Bootstrap tabs -->
-<!-- Tabs. One for each file in the sample. If you have multiple samples on the same page, make sure the hrefs for each <a> are unique or you'll get weird results.-->
+<link rel="import" href="/samples/components/tk-element-public-access.html">
 
 <div class="row-fluid">
   <div class="span8">
@@ -12,31 +11,17 @@
 <!-- IDs for each div must match the href value in the tab control above -->
 <div class="tab-content">
   <div class="tab-pane active" id="element11">
-    {% highlight html %}
-{% raw %}
-<element name="tk-element-public-access" attributes="owner color">
-  <link rel="import" href="toolkit/components/g-component.html">
-  <template>
-    This is a <strong>{{owner}}</strong>'s tk-element. He likes the color <span style="color: {{color}}">{{color}}</span>.
-  </template>
-  <script>
-  this.component({
-    color: "red",
-    publish: {
-      owner: "Joe Schmo"
-    }
-  });
-  </script>
-</element>
-{% endraw %}
-{% endhighlight html %}
+{% highlight html %}
+{% include_external ../samples/components/tk-element-public-access.html %}
+{% endhighlight %}
   </div>
   <div class="tab-pane" id="index11">
 {% highlight html %}
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="platform.js"></script>
+    <script src="toolkit/platform/platform.js"></script>
+    <script src="toolkit/toolkit.js"></script>
     <link rel="import" href="tk-element-public-access.html">
   </head>
   <body>
@@ -52,7 +37,7 @@
     </div>
   </body>
 </html>
-{% endhighlight html %}
+{% endhighlight %}
   </div>
 </div>
 </div>

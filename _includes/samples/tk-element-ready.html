@@ -1,3 +1,5 @@
+<link rel="import" href="/samples/components/tk-element-ready.html">
+
 <div class="row-fluid">
   <div class="span8">
 <!-- Tabs -->
@@ -9,36 +11,24 @@
 <!-- Tab content -->
 <div class="tab-content">
   <div class="tab-pane active" id="element10">
-    {% highlight html %}
-<element name="tk-element-ready">
-  <link rel="import" href="toolkit/components/g-component.html">
-  <template>
-    This is a <b>tk-element</b> with a ready() method. <span id="label">Not ready...</span>
-  </template>
-  <script>
-    this.component({
-      ready: function() {
-        this.$.label.className = "label label-info";
-        this.$.label.innerText = "Ready";
-      }
-    });
-  </script>
-</element>
-{% endhighlight html %}
+{% highlight html %}
+{% include_external ../samples/components/tk-element-ready.html%}
+{% endhighlight %}
   </div>
   <div class="tab-pane" id="index10">
 {% highlight html %}
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="/platform.js"></script>
+    <script src="toolkit/platform/platform.js"></script>
+    <script src="toolkit/toolkit.js"></script>
     <link rel="import" href="tk-element-ready.html">
   </head>
   <body>
     <tk-element-ready></tk-element-ready>
   </body>
 </html>
-{% endhighlight html %}
+{% endhighlight %}
   </div>
 </div>
 </div>

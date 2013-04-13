@@ -1,11 +1,11 @@
 <element name="tk-element-databinding-color" attributes="owner">
-    <template>
-        This is a <strong>{{owner}}</strong>'s tk-element. He likes the color <span style="color: {{color}}">{{color}}</span>.
-    </template>
-    <script>
-        this.component({
-          owner: "Daniel",
-          color: "red"
-        });
-    </script>
+  <template>
+    This is a <strong>{{owner}}</strong>'s tk-element. He likes the color <span style="color: {{color}}">{{color}}</span>.
+  </template>
+  <script>
+    Toolkit.register(this, {
+      owner: "Daniel",
+      color: "red"
+    });
+  </script>
 </element>

@@ -1,3 +1,5 @@
+<link rel="import" href="/samples/components/tk-element-event-binding.html">
+
 <div class="row-fluid">
   <div class="span8">
 <!-- Source tabs -->
@@ -9,34 +11,17 @@
 <!-- Source tab content -->
 <div class="tab-content">
   <div class="tab-pane active" id="element8">
-    {% highlight html %}
-<element name="tk-element-event-binding">
-  <link rel="import" href="toolkit/components/g-component.html">
-  <template>
-    <p>This is a <strong>{{owner}}</strong>'s tk-element. He likes the color <span style="color: {{color}}">{{color}}</span>.</p>
-    <button on-click="sayHello">Say hello</button>
-  </template>
-  <script>
-    this.component({
-      publish: {
-        color: "red",
-        owner: "Daniel"
-      },
-      sayHello: function(inEvent, inDetail, inSender) {
-        alert(this.owner + " says hi!");
-        inSender.innerText = "Thanks!"
-      }
-    });
-  </script>
-</element>
-{% endhighlight html %}
+{% highlight html %}
+{% include_external ../samples/components/tk-node-finding.html %}
+{% endhighlight %}
   </div>
   <div class="tab-pane" id="index8">
 {% highlight html %}
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="platform.js"></script>
+    <script src="toolkit/platform/platform.js"></script>
+    <script src="toolkit/toolkit.js"></script>
     <link rel="import" href="tk-element-event-binding.html">
   </head>
   <body>
@@ -44,7 +29,7 @@
     <tk-element-event-binding></tk-element-event-binding>
   </body>
 </html>
-{% endhighlight html %}
+{% endhighlight %}
   </div>
 </div>
 </div>

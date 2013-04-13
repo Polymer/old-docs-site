@@ -3,22 +3,24 @@ layout: default
 title: Getting started
 
 components:
-- toolkit/components/g-panels.html
-- toolkit/components/g-tabs.html
-- samples/components/basic-element.html
-- samples/components/tk-element.html
-- samples/components/tk-element-databinding-color.html
-- samples/components/tk-element-databinding.html
-- samples/components/tk-element-property.html
-- samples/components/tk-element-ready.html
-- samples/components/tk-element-property-public.html
-- samples/components/tk-element-property-public-publish.html
-- samples/components/tk-element-event-binding.html
-- samples/components/tk-element-public-access.html
-- samples/components/tk-node-finding.html
-#- samples/components/tk-twoway-binding.html
-- samples/components/tk-binding-to-elements.html
+#- toolkit/components/g-panels.html
+#- toolkit/components/g-tabs.html
+#- samples/components/basic-element.html
+#- samples/components/tk-element.html
+#- samples/components/tk-element-databinding-color.html
+#- samples/components/tk-element-databinding.html
+#- samples/components/tk-element-property.html
+#- samples/components/tk-element-ready.html
+#- samples/components/tk-element-property-public.html
+#- samples/components/tk-element-property-public-publish.html
+#- samples/components/tk-element-event-binding.html
+#- samples/components/tk-element-public-access.html
+#- samples/components/tk-node-finding.html
+##- samples/components/tk-twoway-binding.html
+#- samples/components/tk-binding-to-elements.html
 ---
+
+{% include outofdate.html %}
 
 ## Basics
 
@@ -26,7 +28,7 @@ The basics of using {{site.project_title}} are simple:
 
 1. Load **platform.js** to shim missing platform features, such as [Shadow DOM](/platform/shadow-dom.html).
 - Load components with `<link rel="import" href="/path/to/component-file.html">`
-- Use component tags in HTML.
+- Use the custom element in your page.
 
 Here's a bare bones example:
 
@@ -35,13 +37,11 @@ Here's a bare bones example:
       <head>
         <!-- 1. Shim missing platform features -->
         <script src="toolkit/platform/platform.js"></script>
-        <!-- 2. Load toolkit kernel -->
-        <script src="toolkit/toolkit.min.js"></script>
-        <!-- 3. Load a component -->
+        <!-- 2. Load a component -->
         <link rel="import" href="toolkit/components/g-menu-item.html">
       </head>
       <body>
-        <!-- 4. Instantiate the component with its tag. -->
+        <!-- 3. Instantiate the component with its tag. -->
         <g-meu-item src="images/email.svg">Email Link</g-menu-item>
       </body>
     </html>
@@ -52,7 +52,7 @@ Here's a bare bones example:
 Toolkit-based applications. You create applications by assembling custom elements
 together, either ones provided by the Toolkit or that you create yourself.
 
-### Basic custom element
+### Creating a basic component
 
 The platform polyfills provided by {{site.project_title}} let you load and display
 custom elements. Just by loading `platform.js` you get support for these
@@ -60,28 +60,34 @@ new technologies.
 
 {% include samples/basic-element.html %}
 
-### Adding Toolkit features to a custom element
+### Creating a Toolkit component
 
-To enable a custom element with Toolkit features:
+Toolkit provides extra goodies for creating custom elements. To create a custom
+element which adds Toolkit features, two additional steps are required:
 
-* Load the [Toolkit kernel](/toolkit-kernel-explainer.html) (`toolkit/toolkit.js`).
-* Add a `<script>` element that includes the `component()` initializer. This endows the custom element with Toolkit features, such as data binding and event mapping.
+1. Load the [Toolkit kernel](/toolkit-kernel-explainer.html) (`toolkit/toolkit.js`).
+- In your custom element, add a `<script>` element that calls the `Toolkit.register()` initializer. This endows the custom element with Toolkit features, such as data binding and event mapping.
 
 In the following sample we convert our basic custom element into a Toolkit component named `tk-element`.
 
 {% include samples/tk-element.html %}
 
+`Toolkit.register()` takes the element it needs to register as its first argument.
+In the context of `<element>`, `this` refers to the element.
+
+{% comment %}
 ### Add properties to our component
 
-The `component()` initializer takes an object as a parameter whose members define the properties and methods that belong to our component.
+The `Toolkit.register()` takes an object as a parameter whose members define the properties and methods that belong to our component.
 
 {% include samples/tk-element-property.html %}
 
-Now that we've added a property we can use data binding to display its value in the DOM.
+Now that we've added a private variable, let's add data binding to display its value in the DOM.
+{% endcomment %}
 
 ## Declarative data binding
 
-You can bind properties in your component to  Toolkit supports declarative data binding using the "double-mustache" syntax (`{{"{{"}}}}`) from Model Driven Views. The `{{"{{"}}}}` is replaced by the value of the property referenced between the brackets.
+You can bind properties in your component to  Toolkit supports declarative data binding using the "double-mustache" syntax (`{%raw%}{{}}{%endraw%}`) from [Model Driven Views](/platform/mdv.html). The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced between the brackets.
 
 {% include samples/tk-element-databinding.html %}
 
