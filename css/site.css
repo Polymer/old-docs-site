@@ -78,8 +78,15 @@ footer div:first-of-type {
 p:empty {
   display: none;
 }
+a[disabled] {
+  pointer-events: none;
+  color: #ccc;
+}
 #content {
   min-height: 400px;
+}
+#content img {
+  border:1px solid #ccc;
 }
 #logo-row {
   width: 110px;
