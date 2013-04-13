@@ -57,6 +57,11 @@ footer div:first-of-type {
 }
 
 /* Bootstrap overrides ------------------------------------------------------ */
+.brand {
+  background: url(/images/icons/loading_icon.svg) no-repeat 16px 50%;
+  background-size: 22px;
+  padding-left: 40px !important;
+}
 .sidebar-nav.affix, .navbar-fixed-top {
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
