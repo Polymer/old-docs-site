@@ -7,12 +7,15 @@ This document lists changes to the entirety of the project, including polyfill r
 
 ## 2013-04-11
 
-**Notice: This release contains important changes to the structure of the project.**
+<p class="alert">
+  <b>Notice</b>: This release contains important changes to the structure of the project.
+</p>
 
 * The `toolkit` repository now brings in the `platform` repository as a submodule.
-* _stable_ branches are now the stable release codebase, which _master_ branches 
-are the in-development tip of tree. Before, the _dev_ branch was the development
-branch and _master_ was the stable release.
+* Until now, the _dev_ branch has been the development branch and _master_ has
+been the stable release. Now, the _stable_ branch is the default "stable" codebase.
+_master_ branches are the in-development tip of tree. The _stable_ branch is also
+the default view on Github.
 
 ### Toolkit
 
