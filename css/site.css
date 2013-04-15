@@ -25,6 +25,9 @@ code, pre {
   -o-user-select: none;
   user-select: none;
 }
+iframe[seamless] {
+  border: none;
+}
 figcaption {
   text-align: center;
   font-style: italic;
