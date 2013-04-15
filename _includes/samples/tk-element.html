@@ -1,41 +1,44 @@
+<link rel="import" href="/samples/components/tk-element.html">
+
+<div class="row-fluid">
+  <div class="span8">
+<!-- Source tabs -->
 <ul id="myTab" class="nav nav-tabs">
   <li class="active"><a href="#element2" data-toggle="tab">tk-element.html</a></li>
   <li><a href="#index2" data-toggle="tab">index.html</a></li>
 </ul>
 
+<!-- Source tab content -->
 <div class="tab-content">
   <div class="tab-pane active" id="element2">
 {% highlight html %}
-<element name="tk-element">
-    <link rel="components" href="toolkit/src/g-component.html">
-    <template>
-        This is a <b>tk-element</b>. Nothing visible has changed at this point, but now I have special powers.
-    </template>
-    <script>
-        this.component();
-    </script>
-</element>
-{% endhighlight html %}
+{% include_external ../samples/components/tk-element.html %}
+{% endhighlight %}
   </div>
   <div class="tab-pane" id="index2">
 {% highlight html %}
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../platform/platform.js"></script>
-    <link rel="components" href="tk-element.html">
+    <script src="toolkit/platform/platform.js"></script>
+    <script src="toolkit/toolkit.js"></script>
+    <link rel="import" href="tk-element.html">
   </head>
   <body>
     <tk-element></tk-element>
   </body>
 </html>
-{% endhighlight html %}
+{% endhighlight %}
   </div>
 </div>
+</div>
 
-#### Result ####
+<div class="span4">
+  <h5>Result</h5>
 
-<!-- Running sample -->
-<div class="well">
-  <tk-element></tk-element>
+  <!-- Running sample -->
+  <div class="well">
+    <tk-element></tk-element>
+  </div>
+</div>
 </div>

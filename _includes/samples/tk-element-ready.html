@@ -1,3 +1,7 @@
+<link rel="import" href="/samples/components/tk-element-ready.html">
+
+<div class="row-fluid">
+  <div class="span8">
 <!-- Tabs -->
 <ul id="myTab" class="nav nav-tabs">
   <li class="active"><a href="#element10" data-toggle="tab">tk-element-ready.html</a></li>
@@ -7,41 +11,33 @@
 <!-- Tab content -->
 <div class="tab-content">
   <div class="tab-pane active" id="element10">
-    {% highlight html %}
-<element name="tk-element-ready">
-    <template>
-        <div>This is a <b>tk-element</b> with a ready() method. <span id="readyEl">Not ready...</span></div>
-    </template>
-    <script>
-        this.component({
-          owner: "Daniel",
-          ready: function() {
-            this.$.readyEl.innerText = this.owner + " is ready!";
-          }
-        });
-    </script>
-</element>
-{% endhighlight html %}
+{% highlight html %}
+{% include_external ../samples/components/tk-element-ready.html%}
+{% endhighlight %}
   </div>
   <div class="tab-pane" id="index10">
 {% highlight html %}
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../platform/platform.js"></script>
-    <link rel="components" href="tk-element-ready.html">
+    <script src="toolkit/platform/platform.js"></script>
+    <script src="toolkit/toolkit.js"></script>
+    <link rel="import" href="tk-element-ready.html">
   </head>
   <body>
     <tk-element-ready></tk-element-ready>
   </body>
 </html>
-{% endhighlight html %}
+{% endhighlight %}
   </div>
 </div>
+</div>
 
-#### Result ####
-
-<!-- Running sample -->
+<div class="span4">
+  <!-- Running sample -->
+  <h5>Result</h5>
 <div class="well">
   <tk-element-ready></tk-element-ready>
+</div>
+</div>
 </div>

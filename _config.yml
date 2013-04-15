@@ -1,8 +1,20 @@
+# Server defaults.
+server: false
+server_port: 4000
 auto: true
-server: true
-pygments: true
+
+# Project defaults.
 markdown: redcarpet
-# # safe: true
-# # lsi: false
-# # destination: docs/
-# # url: http://localhost:4000/docs
+pygments: false
+lsi: false
+safe: false
+
+exclude: "node_modules/, README.md"
+
+# Be sure to checkout the toolkitchen.github.com repo.
+# This is where the generated docs will be output.
+destination: ../toolkitchen.github.com
+
+# Site globals used throughout docs.
+load_platform: true
+project_title: Toolkitchen

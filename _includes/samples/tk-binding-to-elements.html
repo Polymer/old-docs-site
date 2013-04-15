@@ -1,0 +1,42 @@
+<link rel="import" href="/samples/components/tk-binding-to-elements.html">
+
+<div class="row-fluid">
+  <div class="span8">
+<!-- Source tabs -->
+<ul id="myTab" class="nav nav-tabs">
+  <li class="active"><a href="#element13" data-toggle="tab">tk-binding-to-elements.html</a></li>
+  <li><a href="#index13" data-toggle="tab">index.html</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="element13">
+{% highlight html %}
+{% include_external ../samples/components/tk-binding-to-elements.html %}
+{% endhighlight %}
+  </div>
+  <div class="tab-pane" id="index13">
+{% highlight html %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="toolkit/platform/platform.js"></script>
+    <script src="toolkit/toolkit.js"></script>
+    <link rel="import" href="tk-binding-to-elements.html">
+  </head>
+  <body>
+    <tk-element></tk-element>
+  </body>
+</html>
+{% endhighlight %}
+  </div>
+</div>
+</div>
+
+<div class="span4">
+  <!-- Running sample -->
+  <h5>Result</h5>
+<div class="well">
+  <tk-binding-to-elements></tk-binding-to-elements>
+</div>
+</div>
+</div>

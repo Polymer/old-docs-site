@@ -1,13 +1,28 @@
 ---
 layout: default
 title: Runtime configuration
-pygments: true
 ---
-### Configuration switches
+
+## Configuration switches
 
 Toolkit supports runtime options that are settable as attributes on the `<script>` tag that loads `platform.js`, or as URL query parameters.
 
-#### log
+### debug
+
+Conditionally loads a debug version of `platform.js`.
+
+**Example**
+
+    <script src="platform/platform.js" debug></script>
+
+Or, equivalently:
+
+    http://localhost/toolkitchen/toolkit/getting_started/?debug
+
+By default a minified version of platform (`platform.min.js`) is loaded.
+Using `debug` loads `platform.debug.js`.
+
+### log
 
 Controls console output.
 
@@ -42,13 +57,19 @@ Possible values:
   </tr>
 </table>
 
-#### shadow
+### shadow
 
-Selects a Shadow DOM implementation: shim, native, or experimental polyfill for non-WebKit browsers. Note that although Chrome 25 supports Shadow DOM natively, at this time the shim implementation is required to use Toolkit components.
+Selects a Shadow DOM implementation: `native` for supported browsers or `polyfill`
+for unsupported browsers.
 
 **Example**
 
-    <script src="platform/platform.js" shadow="shim"></script>
+    <script src="platform/platform.js" debug shadow="polyfill"></script>
+
+Or, equivalently:
+
+    http://localhost/toolkitchen/toolkit/getting_started/?debug&shadow=polyfill
+
 
 Possible attribute values:
 
@@ -57,17 +78,15 @@ Possible attribute values:
     <th>Value</th><th>Description</th>
   </tr>
   <tr>
-    <td>shim</td><td>Required for Toolkit components (default)</td>
+    <td>native</td><td>Native implementation if the browser supports it. Default if browser supports Shadow DOM.</td>
   </tr>
   <tr>
-    <td>webkit</td><td>Native webkit implementation</td>
-  </tr>
-  <tr>
-    <td>polyfill</td><td>Experimental polyfill for non-WebKit browsers</td>
+    <td>polyfill</td><td>Forces the Shadow DOM polyfill to be loaded using <code>platform.poly.min.js</code>. Default for browsers that do not support Shadow DOM natively.</td>
   </tr>
 </table>
 
-#### eval
+<!--
+### eval
 
 When `true`, component scripts are executed with `eval` instead of script tag injection. Default is `false`.
 
@@ -79,3 +98,4 @@ Example:
 
     http://localhost/toolkitchen/toolkit/getting_started/?eval
 
+-->

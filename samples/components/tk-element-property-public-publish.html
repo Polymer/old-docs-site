@@ -1,13 +1,11 @@
 <element name="tk-element-property-public-publish">
-    <template>
-        This is a <strong>{{owner}}</strong>'s tk-element. He likes the color <span style="color: {{color}}">{{color}}</span>.
-    </template>
-    <script>
-        this.component({
-            publish: {
-                color: "red",
-                owner: "Daniel"
-            }
-        });
-    </script>
+  <template>
+    This is a <strong>{{owner}}</strong>'s tk-element. He likes the color <span style="color: {{color}}">{{color}}</span>.
+  </template>
+  <script>
+    Toolkit.register(this, {
+      color: "red",
+      owner: "Daniel"
+    });
+  </script>
 </element>

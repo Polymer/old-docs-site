@@ -1,61 +1,42 @@
+<link rel="import" href="/samples/components/tk-twoway-binding.html">
+
+<div class="row-fluid">
+  <div class="span8">
+<!-- Source tabs -->
 <ul id="myTab" class="nav nav-tabs">
-  <li class="active"><a href="#element2" data-toggle="tab">tk-element.html</a></li>
-  <li><a href="#index2" data-toggle="tab">index.html</a></li>
+  <li class="active"><a href="#element12" data-toggle="tab">tk-twoway-binding.html</a></li>
+  <li><a href="#index12" data-toggle="tab">index.html</a></li>
 </ul>
 
 <div class="tab-content">
-  <div class="tab-pane active" id="element2">
+  <div class="tab-pane active" id="element12">
 {% highlight html %}
-<element name="tk-twoway-binding" attributes="selected" >
-    <link rel="components" href="../../toolkit/components/g-panels.html">
-    <link rel="components" href="../../toolkit/components/g-tabs.html">
-    <template>
-      <g-tabs id="tab1" on-select="showPanel" selected="{{selected}}">
-        <p>One</p>
-        <p>Two</p>
-        <p>Three</p>
-        <p>Four</p>
-      </g-tabs>
-      <g-panels id="panel1" selected="{{selected}}">
-        <p>Panel 1</p>
-        <p>Panel 2</p>
-        <p>Panel 3</p>
-        <p>Panel 4</p>
-        </g-panels>
-        <style>
-        g-panels {
-            height: 150px;
-        }
-        </style>
-    </template>
-    <script>
-        this.component({
-            showPanel: function(event, detail, sender) {
-            }
-        });
-    </script>
-</element>
-{% endhighlight html %}
+{% include_external ../samples/components/tk-twoway-binding.html %}
+{% endhighlight %}
   </div>
-  <div class="tab-pane" id="index2">
+  <div class="tab-pane" id="index12">
 {% highlight html %}
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../platform/platform.js"></script>
-    <link rel="components" href="tk-element.html">
+    <script src="toolkit/platform/platform.js"></script>
+    <script src="toolkit/toolkit.js"></script>
+    <link rel="import" href="tk-twoway-binding.html">
   </head>
   <body>
     <tk-element></tk-element>
   </body>
 </html>
-{% endhighlight html %}
+{% endhighlight %}
   </div>
 </div>
+</div>
 
-#### Result ####
-
-<!-- Running sample -->
+<div class="span4">
+  <!-- Running sample -->
+  <h5>Result</h5>
 <div class="well">
   <tk-twoway-binding></tk-twoway-binding>
+</div>
+</div>
 </div>

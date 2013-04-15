@@ -3,7 +3,16 @@
     Better is {{betterOrBest}}
   </template>
   <script>
-    this.component({
+    // this.component({
+    //   best: 'best',
+    //   bind: {
+    //     betterOrBest: ['better', 'best']
+    //   },
+    //   betterOrBestOutput: function(inBetter, inBest) {
+    //     return this.better || this.best;
+    //   }
+    // });
+    Toolkit.register(this, {
       best: 'best',
       bind: {
         betterOrBest: ['better', 'best']

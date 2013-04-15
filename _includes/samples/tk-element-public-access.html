@@ -1,5 +1,7 @@
-<!-- Sample code presented in Bootstrap tabs -->
-<!-- Tabs. One for each file in the sample. If you have multiple samples on the same page, make sure the hrefs for each <a> are unique or you'll get weird results.-->
+<link rel="import" href="/samples/components/tk-element-public-access.html">
+
+<div class="row-fluid">
+  <div class="span8">
 <ul id="myTab" class="nav nav-tabs">
   <li class="active"><a href="#element11" data-toggle="tab">tk-element-public-access.html</a></li>
   <li><a href="#index11" data-toggle="tab">index.html</a></li>
@@ -9,52 +11,44 @@
 <!-- IDs for each div must match the href value in the tab control above -->
 <div class="tab-content">
   <div class="tab-pane active" id="element11">
-    {% highlight html %}
-<element name="tk-element-public-access" attributes="owner color">
-    <link rel="components" href="toolkit/src/g-component.html">
-    <template>
-        This is a <strong>{{owner}}</strong>'s tk-element. He likes the color <span style="color: {{ "{{ color " }}}}">{{ "{{ color " }}}}</span>.
-    </template>
-    <script>
-        this.component({
-          color: "red",
-          publish: {
-            owner: "Joe Schmo"
-          }
-        });
-    </script>
-</element>
-{% endhighlight html %}
+{% highlight html %}
+{% include_external ../samples/components/tk-element-public-access.html %}
+{% endhighlight %}
   </div>
   <div class="tab-pane" id="index11">
 {% highlight html %}
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../platform/platform.js"></script>
-    <link rel="components" href="tk-element-public-access.html">
+    <script src="toolkit/platform/platform.js"></script>
+    <script src="toolkit/toolkit.js"></script>
+    <link rel="import" href="tk-element-public-access.html">
   </head>
   <body>
     <div class="well">
-        <!-- Make new component and specify values for new public properties. -->
-        <tk-element-public-access owner="Scott" color="blue">
-        </tk-element-public-access>
-        <script>
-          window.addEventListener("WebComponentsReady", function() {
-            console.log("tk-element-public-access's owner is: " + document.querySelector("tk-element-public-access").owner);
-          });
-        </script>
+      <!-- Make new component and specify values for new public properties. -->
+      <tk-element-public-access owner="Scott" color="blue">
+      </tk-element-public-access>
+      <script>
+        window.addEventListener("WebComponentsReady", function() {
+          console.log("tk-element-public-access's owner is: " + document.querySelector("tk-element-public-access").owner);
+        });
+      </script>
     </div>
   </body>
 </html>
-{% endhighlight html %}
+{% endhighlight %}
   </div>
 </div>
+</div>
 
-<!-- Running sample -->
-#### Result ####
 
+<div class="span4">
+  <!-- Running sample -->
+  <h5>Result</h5>
 <div class="well">
   <tk-element-public-access></tk-element-public-access>
+</div>
+</div>
 </div>
 

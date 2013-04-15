@@ -1,10 +1,10 @@
-<element name="tk-element-databinding" attributes="owner">
-    <template>
-        This is <strong>{{owner}}'s</strong>'s tk-element.
-    </template>
-    <script>
-        this.component({
-          owner: "Daniel"
-        });
-    </script>
+<element name="tk-element-databinding">
+  <template>
+    This is <strong>{{owner}}</strong>'s tk-element.
+  </template>
+  <script>
+    Toolkit.register(this, {
+      owner: 'Daniel'
+    });
+  </script>
 </element>

@@ -1,0 +1,23 @@
+<element name="tk-binding-to-elements">
+  <template>
+    <p>This is <strong>{{owner}}</strong>'s tk-element but <strong>{{name}}</strong> lets me borrow it. He likes the color <span style="color: {{color}}">{{color}}</span>. I am <strong>{{age}}</strong> years old.</p>
+    <label for="ageInput">Age:</label>
+    <input id="ageInput" type="range" value="{{age}}">
+    <label for="nameInput">Name:</label>
+    <input id="nameInput" value="{{name}}" on-keyup="processName" placeholder="Your name here...">
+  </template>
+  <script>
+    Toolkit.register(this, {
+      ready: function() {
+        // Ready to go.
+      },
+      age: "25",
+      name: "Daniel",
+      color: "red",
+      owner: "Eric",
+      processName: function(e) {
+        // Do something.
+      },
+    });
+</script>
+</element>

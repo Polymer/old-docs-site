@@ -1,0 +1,3 @@
+[submodule "toolkit"]
+	path = toolkit
+	url = git@github.com:toolkitchen/toolkit.git

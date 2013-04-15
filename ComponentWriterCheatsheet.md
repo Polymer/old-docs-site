@@ -18,7 +18,7 @@
 		<html>
 		  <head>
 		    <script src="../platform/platform.js"></script>
-			<link rel="components" href="my-element.html">
+			<link rel="import" href="my-element.html">
 		  </head>
 		  <body>
 			<my-element></my-element>
@@ -76,7 +76,7 @@
 		<html>
 		  <head>
 		    <script src="../platform/platform.js"></script>
-			<link rel="components" href="tk-element.html">
+			<link rel="import" href="tk-element.html">
 		  </head>
 		  <body>
 			<tk-element owner="Yvonne"></tk-element>
@@ -133,7 +133,7 @@
 		<html>
 		  <head>
 		    <script src="../platform/platform.js"></script>
-			<link rel="components" href="tk-element.html">
+			<link rel="import" href="tk-element.html">
 		  </head>
 		  <body>
 			<tk-element owner="Yvonne"></tk-element>

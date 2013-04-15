@@ -1,12 +1,47 @@
-Toolkitchen docs are mostly in Markdown with some HTML. [Jekyll][1] generates the HTML site from the source, which is then pushed (manually, for now) to the "gh-pages" branch. To publish a change to the live site, you would follow this basic process:
+Toolkitchen docs are mostly in Markdown with some HTML. [Jekyll][jekyll] is used to generate the static HTML for the site. The output is copied to
+`/toolkitchen/toolkitchen.github.com` for serving.
 
-1. Checkout master and make desired changes.
-2. Build docs locally with Jekyll, and verify changes. The generated site is placed in a folder named "_site".
-3. Push the generated site (the contents of the _site folder) to the "gh-pages" branch. 
-4. Push the source file changes to "master".
+Our documentation source files (located in this repo) and the rendered HTML (located in `/toolkitchen/toolkitchen.github.com`)
+are in separate repos in order to take advantage of Jekyll `_plugins`, special build scripts, and have full control
+over doc generation.
 
-I've checked in my _config.yml file, which causes Jekyll to serve the generated site from http://localhost:4000. It also watches for changes to the source files and rebuilds the site, so you can just hit reload a few seconds after saving your changes.
+## Install the requirements
 
-Eventually, the process will be much simpler: The doc source files will be in the gh-pages branch, you will push your changes there, and the site will be rebuilt immediately by Github. At the moment, the Jekyll process on GitHub is failing to build the site, presumably because it doesn't like something about the source files. For now, however, it's a bit of a manual process.
+We use [Grunt][grunt] to generate the documentation. You'll need to install the requirements before working on the docs:
 
-[1]: https://github.com/mojombo/jekyll
+    npm install
+
+## Making edits and previewing changes
+
+This repo (`toolkitchen/docs`) is where the documentation source files live. To make a change, follow this basic process:
+
+1. Checkout this repo and make desired changes.
+- To build the docs locally, run `grunt` or ``. This starts a web server at
+[http://localhost:4000](http://localhost:4000) where you can preview your edits. This also watches and rebuilds on changes.
+
+The generated site is placed in a folder named `_site`. Alternatively, if you just want to
+build the docs and not run a webserver, run:
+
+    grunt jekyll:server
+
+Once your changes look good, `git commit` them and push.
+
+## Building and pushing the docs
+
+First, checkout `toolkitchen/toolkitchen.github.com`. This repo is where the generated docs live
+and are served from using [Github Pages](https://help.github.com/categories/20/articles).
+
+Next, run the `publish` task:
+
+    grunt publish
+
+This generates the docs in `_site/` and copies its contents into your checked out version
+of `toolkitchen/toolkitchen.github.com`.
+
+The last step is to commit and push those changes live. To do that, just make the commit:
+
+    git commit -am 'Updating live docs'
+    git push
+
+[jekyll]: https://github.com/mojombo/jekyll
+[grunt]: http://gruntjs.com/

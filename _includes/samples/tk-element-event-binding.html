@@ -1,3 +1,7 @@
+<link rel="import" href="/samples/components/tk-element-event-binding.html">
+
+<div class="row-fluid">
+  <div class="span8">
 <!-- Source tabs -->
 <ul id="myTab" class="nav nav-tabs">
   <li class="active"><a href="#element8" data-toggle="tab">tk-node-finding.html</a></li>
@@ -7,48 +11,34 @@
 <!-- Source tab content -->
 <div class="tab-content">
   <div class="tab-pane active" id="element8">
-    {% highlight html %}
-<element name="tk-element-event-binding">
-    <link rel="comopnents" href="toolkit/src/g-component.html">
-    <template>
-        <p>This is a <strong>{{owner}}</strong>'s tk-element. He likes the color <span style="color: {{color}}">{{color}}</span>.</p>
-        <button on-click="sayHello">Say hello</button>
-    </template>
-    <script>
-        this.component({
-            publish: {
-                color: "red",
-                owner: "Daniel"
-            },
-            sayHello: function(inEvent, inDetail, inSender) {
-                alert(this.owner + " says hi!");
-                inSender.innerText = "Thanks!"
-            }
-        });
-    </script>
-</element>
-{% endhighlight html %}
+{% highlight html %}
+{% include_external ../samples/components/tk-node-finding.html %}
+{% endhighlight %}
   </div>
   <div class="tab-pane" id="index8">
 {% highlight html %}
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../platform/platform.js"></script>
-    <!-- Load custom element -->
-    <link rel="components" href="tk-element-event-binding.html">
+    <script src="toolkit/platform/platform.js"></script>
+    <script src="toolkit/toolkit.js"></script>
+    <link rel="import" href="tk-element-event-binding.html">
   </head>
   <body>
     <!-- Instantiate custom element -->
     <tk-element-event-binding></tk-element-event-binding>
   </body>
 </html>
-{% endhighlight html %}
+{% endhighlight %}
   </div>
 </div>
+</div>
 
-#### Result ####
-<!-- Running sample -->
+<div class="span4">
+  <!-- Running sample -->
+  <h5>Result</h5>
 <div class="well">
   <tk-element-event-binding owner="Scott" color="blue"></tk-element-event-binding>
+</div>
+</div>
 </div>

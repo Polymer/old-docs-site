@@ -1,0 +1,32 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  {% if page.title %}
+    {{page.title}} - 
+  {% else %}
+    Welcome - 
+  {% endif %} {{site.project_title}} Project
+</title>
+<link rel="shortcut icon" href="images/logos/webcomponents.png">
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,800|Source+Code+Pro" rel="stylesheet" type="text/css">
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/css/prettify/sunburst.css" rel="stylesheet" type="text/css">
+<!-- <link href="/css/pygments/default.css" rel="stylesheet" type="text/css"> -->
+<link href="/css/site.css?{{'now' | date: "%Y%m%d"}}" rel="stylesheet" type="text/css">
+
+{% if site.load_platform %}
+  <!-- Toolkit platform code -->
+  <script src="/toolkit/platform/platform.js?{{'now' | date: "%Y%m%d"}}"></script>
+  <script src="/toolkit/toolkit.js?{{'now' | date: "%Y%m%d"}}"></script>
+  <!--<script src="http://toolkitchen.github.io/toolkit/toolkit.min.js"></script>-->
+  <!-- TODO toolkit.min.js throws <Symbol> has no method 'shimStyling' error-->
+
+  {% for item in page.components %}
+    <link rel="import" src="{{ item }}">
+  {% endfor %}
+
+  {% for item in page.stylesheets %}
+    <link rel="stylesheet" src="{{ item }}">
+  {% endfor %}
+{% endif %}

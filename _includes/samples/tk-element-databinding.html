@@ -1,42 +1,41 @@
+<link rel="import" href="/samples/components/tk-element-databinding.html">
+
+<div class="row-fluid">
+  <div class="span8">
 <ul id="myTab" class="nav nav-tabs">
   <li class="active"><a href="#element3" data-toggle="tab">tk-element-databinding.html</a></li>
   <li><a href="#index3" data-toggle="tab">index.html</a></li>
 </ul>
 <div class="tab-content">
   <div class="tab-pane active" id="element3">
-    {% highlight html %}
-<element name="tk-element-databinding">
-    <link rel="components" href="toolkit/src/g-component.html">
-    <template>
-        This is a <strong>{{"{{owner"}}}}</strong>'s tk-element.
-    </template>
-    <script>
-        this.component({
-          owner: "Daniel"
-        });
-    </script>
-</element>
-{% endhighlight html %}
+{% highlight html %}
+{% include_external ../samples/components/tk-element-databinding.html %}
+{% endhighlight %}
   </div>
   <div class="tab-pane" id="index3">
 {% highlight html %}
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="../platform/platform.js"></script>
-    <link rel="components" href="tk-element-databinding.html">
+    <script src="toolkit/platform/platform.js"></script>
+    <script src="toolkit/toolkit.js"></script>
+    <link rel="import" href="tk-element-databinding.html">
   </head>
   <body>
     <tk-element-databinding></tk-element-databinding>
   </body>
 </html>
-{% endhighlight html %}
+{% endhighlight %}
   </div>
 </div>
+</div>
 
-#### Result ####
 
 <!-- Running sample -->
+<div class="span4">
+  <h5>Result</h5>
 <div class="well">
   <tk-element-databinding></tk-element-databinding>
+</div>
+</div>
 </div>

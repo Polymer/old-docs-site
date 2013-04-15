@@ -1,5 +1,22 @@
 <element name="my-element">
-    <template>
-        This is <b>my-element</b>. There are many like it, but this one is mine.
-    </template>
+  <section>
+    I'm an my-element!
+  </section>
+  <footer>nothing to see here</footer>
+  <script>
+    // When <element> is in document, might run in wrong context.
+    // Only do work when this == <element>.
+    if (this !== window) {
+      var section = this.querySelector('section');
+
+      // Has built-in 'window' protection.
+      this.register({
+        prototype: {
+          readyCallback: function() {
+            this.innerHTML = section.innerHTML;
+          }
+        }
+     });
+    }
+  </script>
 </element>

@@ -1,13 +1,13 @@
 <element name="tk-element-ready">
-    <template>
-        This is a <b>tk-element</b> with a ready() method. <span id="readyEl">Not ready...</span>
-    </template>
-    <script>
-        this.component({
-          owner: "Daniel",
-          ready: function() {
-            this.$.readyEl.innerText = this.owner + " is ready!";
-          }
-        });
-    </script>
+  <template>
+    This is a <b>tk-element</b> with a ready() method. <span id="readyEl">Not ready...</span>
+  </template>
+  <script>
+    Toolkit.register(this, {
+      owner: "Daniel",
+      ready: function() {
+        this.$.readyEl.innerText = this.owner + " is ready!";
+      }
+    });
+  </script>
 </element>
