@@ -1,6 +1,6 @@
 <element name="my-element">
   <section>
-    I'm an my-element!
+    I'm a my-element!
   </section>
   <footer>nothing to see here</footer>
   <script>
@@ -8,8 +8,6 @@
     // Only do work when this == <element>.
     if (this !== window) {
       var section = this.querySelector('section');
-
-      // Has built-in 'window' protection.
       this.register({
         prototype: {
           readyCallback: function() {
