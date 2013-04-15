@@ -111,7 +111,7 @@ When a component has finished initializing itself, it calls its `ready` method, 
 
 ## Publishing properties ###
 
-By default, properties you declare are not accessible via attribute. You can _publish_ a property by listing it in the _attributes_ attribute on the `<element>` tag. Published properties can be initialized using attributes on the node, and can be data-bound using attributes on the node.
+By default, properties you declare are not accessible via attribute. You can _publish_ a property by listing it in the `attributes` attribute on the `<element>` tag. Published properties can be initialized using attributes on the node, and can be data-bound using attributes on the node.
 
 A property declared in the `attributes` attribute is initially set to `null`. You can provide a more appropriate default value by also including the property directly in your prototype, as usual.
 
@@ -124,7 +124,7 @@ The following example defines an `attributes` attribute on the custom element wh
 <!--
 #### Using a publish object (advanced)
 
-There is another way to publish a property (but you probably will never need it): the _publish_ object. Properties included in an object named `publish` are published just like properties named in _attributes_.
+There is another way to publish a property (but you probably will never need it): the `publish` object. Properties included in an object named `publish` are published just like properties named in `attributes`.
 
 {% include samples/tk-element-property-public-publish.html %}
 -->
