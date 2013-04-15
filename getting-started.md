@@ -109,48 +109,38 @@ When a component has finished initializing itself, it calls its `ready` method, 
 
 {% include samples/tk-element-ready.html %}
 
-## Making properties public ###
+## Publishing properties ###
 
-By default, properties and methods you declare in the `component()` are in a protected scope&mdash;they aren't (directly) accessible outside of the component. Public properties can be exposed via data binding, or accessed directly on the element's JavaScript instance. 
+By default, properties you declare are not accessible via attribute. You can _publish_ a property by listing it in the `attributes` attribute on the `<element>` tag. Published properties can be initialized using attributes on the node, and can be data-bound using attributes on the node.
 
-There are two ways to make a property public:
-
-* Add the property to the element's `attributes` attribute. This attribute takes a string of space-delimited strings that, at runtime, are converted into public properties on the component.
-* Add the property to a `publish` block in the `component()` initializer object.
+A property declared in the `attributes` attribute is initially set to `null`. You can provide a more appropriate default value by also including the property directly in your prototype, as usual.
 
 #### Using the "attributes" attribute
 
-In the following example the defines an `attributes` attribute on the custom element whose value is the string `"owner color"`. 
+The following example defines an `attributes` attribute on the custom element whose value is the string `"owner color"`. 
 
 {% include samples/tk-element-property-public.html %}
 
-#### Using a publish block
+<!--
+#### Using a publish object (advanced)
 
-This example is functionally equivalent to the previous version except that instead of using the `attributes` attribute to make the properties public, it moves them to the component's `publish` block.
-
-A public property declared in the `attributes` attribute is initially set to `undefined`. You can provide a more appropriate default value to the property in the component's `publish` block, as shown below. 
+There is another way to publish a property (but you probably will never need it): the `publish` object. Properties included in an object named `publish` are published just like properties named in `attributes`.
 
 {% include samples/tk-element-property-public-publish.html %}
+-->
 
-<!-- ### Change watching
+<!-- ### Change watching -->
 
-You can also 
- -->
+<!--
+### Accessing public properties on an element
 
-### Accessing public properties on an component
+A element's published properties can be set using attributes on its custom element, as shown in `index.html` below.
 
-A component's public properties can be accessed from its custom element, as shown below.
-
-{% include samples/tk-element-public-access.html %}
-
-<script>
-window.addEventListener("WebComponentsReady", function() {
-  console.log("tk-element-public-access's owner is: " + document.querySelector("tk-element-public-access").owner);
-});
-</script>        
+{% include samples/tk-element-public-access.html %}  
+-->
 
 ### Automatic node finding
 
-Shadow DOM is a self-contained document-like subtree; id's in that subtree do not interact with id's in other trees. Each Toolkit component generates a map of id's  to node references in the component's template. This map is accessible as `this.$` to the component. 
+Shadow DOM is a self-contained document-like subtree; id's in that subtree do not interact with id's in other trees. Each Toolkit element generates a map of id's to node references in the element's template. This map is accessible as `$` on the element. 
 
 {% include samples/tk-node-finding.html %}
