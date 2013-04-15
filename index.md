@@ -41,5 +41,5 @@ Toolkit platform shims the <a href="/platform/html-imports.html">HTML Imports</a
 All Toolkit components depend on `toolkit/toolkit.js` which provides the batteries
 or [sugaring layer](/toolkit-kernel-explainer.html). However, an application can
 only load `toolkit/platform/platform.js` directly to take advantage of the polyfill support.
-For examples of this, see the [CustomElementPlayground/](https://github.com/toolkitchen/projects/tree/master/CustomElementsPlayground) folder for examples.
+For examples of this, see the [CustomElementsPlayground](https://github.com/toolkitchen/projects/tree/stable/CustomElementsPlayground).
 
