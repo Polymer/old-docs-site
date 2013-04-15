@@ -111,12 +111,9 @@ When a component has finished initializing itself, it calls its `ready` method, 
 
 ## Publishing properties ###
 
-By default, properties you declare are not accessible via attribute. By _publishing_ a property, you make it available for initialization by attribute and expose it for data binding. 
+By default, properties you declare are not accessible via attribute. You can _publish_ a property by listing it in the _attributes_ attribute on the `<element>` tag. Published properties can be initialized using attributes on the node, and can be data-bound using attributes on the node.
 
-There are two ways to publish a property:
-
-* Add the property to the element's `attributes` attribute. This attribute takes a string of space-delimited strings that, at runtime, are converted into published properties on the element.
-* Add the property to a `publish` object on your prototype.
+A property declared in the `attributes` attribute is initially set to `null`. You can provide a more appropriate default value by also including the property directly in your prototype, as usual.
 
 #### Using the "attributes" attribute
 
@@ -124,24 +121,23 @@ The following example defines an `attributes` attribute on the custom element wh
 
 {% include samples/tk-element-property-public.html %}
 
-#### Using a publish object
+<!--
+#### Using a publish object (advanced)
 
-This example is functionally equivalent to the previous version except that instead of using the `attributes` attribute to publish properties as attributes, it uses the elements `publish` object.
-
-A property declared in the `attributes` attribute is initially set to `undefined`. You can provide a more appropriate default value to the property in the component's `publish` object, as shown below. 
+There is another way to publish a property (but you probably will never need it): the _publish_ object. Properties included in an object named `publish` are published just like properties named in _attributes_.
 
 {% include samples/tk-element-property-public-publish.html %}
+-->
 
-<!-- ### Change watching
+<!-- ### Change watching -->
 
-You can also 
- -->
-
+<!--
 ### Accessing public properties on an element
 
 A element's published properties can be set using attributes on its custom element, as shown in `index.html` below.
 
 {% include samples/tk-element-public-access.html %}  
+-->
 
 ### Automatic node finding
 
