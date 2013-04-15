@@ -3,11 +3,6 @@ layout: default
 title: Getting the Code
 ---
 
-<p class="alert">
-  <strong>Browser requirements</strong>: {{site.project_title}} will eventually support all major "evergreen"
-(auto-updating) browsers, it currently requires a WebKit-based browser such as Chrome or Safari.
-</p>
-
 ## Bring on the code!
 
 You can recursively clone and initialize all of its submodules with a single git command.
