@@ -121,23 +121,23 @@ The following example defines an `attributes` attribute on the custom element wh
 
 {% include samples/tk-element-property-public.html %}
 
-<!--
+
+{% comment %}
 #### Using a publish object (advanced)
 
 There is another way to publish a property (but you probably will never need it): the `publish` object. Properties included in an object named `publish` are published just like properties named in `attributes`.
 
 {% include samples/tk-element-property-public-publish.html %}
--->
 
-<!-- ### Change watching -->
+### Change watching
 
-<!--
 ### Accessing public properties on an element
 
 A element's published properties can be set using attributes on its custom element, as shown in `index.html` below.
 
 {% include samples/tk-element-public-access.html %}  
--->
+{% endcomment %}
+
 
 ### Automatic node finding
 
