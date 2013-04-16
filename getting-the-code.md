@@ -26,7 +26,7 @@ server and run one of the included sample projects:
 
 1. Start a local web server with the `toolkit/` folder as the web root.
 2. In your browser, navigate to
-    [http://localhost:8000/toolkit/workbench/menu.html](http://localhost:8000/toolkit/workbench/menu.html).
+    [http://localhost/toolkit/workbench/menu.html](http://localhost/toolkit/workbench/menu.html).
     You should see a menu of items, as shown below.
 
 <iframe src="/toolkit/workbench/menu.html" style="width: 270px;height:280px;border:none;"></iframe>
@@ -39,7 +39,7 @@ from the `toolkit/` folder:
 
     git submodule update --init --recursive
 
-### About master and dev branches
+### About master and stable branches
 
 See [Branching Workflow](branching-strategy.html).
 
