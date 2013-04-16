@@ -42,7 +42,7 @@ Here's a bare bones example:
       </head>
       <body>
         <!-- 3. Instantiate the component with its tag. -->
-        <g-meu-item src="images/email.svg">Email Link</g-menu-item>
+        <g-menu-item src="images/email.svg">Email Link</g-menu-item>
       </body>
     </html>
 
