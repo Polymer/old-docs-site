@@ -189,7 +189,7 @@ Now, imagine we make a new component called 'visitor-creds' that uses `name-tag`
 
     <element name="visitor-creds">
       <template>
-        <name-tag person="{{"{{person"}}}}"></name-tag>
+        <name-tag person="{{person"}}"></name-tag>
       </template>
       <script>
         this.component({
