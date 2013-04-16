@@ -44,7 +44,7 @@ For example, `<tag-name>` in this example. The name should be a "-" separated st
 
 ### Component initialization
 
-The first argument to Toolkit.register is a reference to the `<element>` element. Since scripts
+The first argument to `Toolkit.register` is a reference to the `<element>` element. Since scripts
 within an element tag run in the context of the element, the value of this 
 argument is simply 'this'.
 
