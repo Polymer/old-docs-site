@@ -28,8 +28,12 @@ Once your changes look good, `git commit` them and push.
 
 ## Building and pushing the docs
 
-First, checkout `toolkitchen/toolkitchen.github.com`. This repo is where the generated docs live
-and are served from using [Github Pages](https://help.github.com/categories/20/articles).
+**Note**: only project owners can publish the documentation.
+
+First, checkout `toolkitchen/toolkitchen.github.com` alongside your local copy of `toolkitchen/toolkit`.
+This repo is where the generated docs live and are served from using
+[Github Pages](https://help.github.com/categories/20/articles). It's hidden as not
+to confuse users or have extraneous locations for filing bugs.
 
 Next, run the `publish` task:
 
