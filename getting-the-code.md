@@ -39,7 +39,7 @@ from the `toolkit/` folder:
 
     git submodule update --init --recursive
 
-### About master and dev branches
+### About master and stable branches
 
 See [Branching Workflow](branching-strategy.html).
 
