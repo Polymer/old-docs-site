@@ -210,5 +210,4 @@ A Toolkit component can extend a parent component by calling the parent's inheri
     </element>
 
 In this example, `this.super` returns a reference to the parent, which is a
-`g-cool` component. In `g-cooler` the value of `better` contains the value of
-`g-cool` is, plus the string 'even more'.
+`g-cool` component. In `g-cooler` the value of `better` is "g-cool is", plus the string "even more".
