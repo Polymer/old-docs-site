@@ -15,11 +15,8 @@
 <link href="/css/site.css?{{'now' | date: "%Y%m%d"}}" rel="stylesheet" type="text/css">
 
 {% if site.load_platform %}
-  <!-- Toolkit platform code -->
-  <script src="/toolkit/toolkit.js?{{'now' | date: "%Y%m%d"}}"></script>
-  <!-- TODO(ericbidelman): switch to toolkit.min.js when
-       https://github.com/toolkitchen/toolkit/issues/91 is fixed
-  <script src="http://toolkitchen.github.io/toolkit/toolkit.min.js"></script>-->
+  <script src="/toolkit/toolkit.min.js?{{'now' | date: "%Y%m%d"}}"></script>
+  <!--<script src="http://toolkitchen.github.io/cdn/toolkit.min.js"></script>-->
 
   {% for item in page.components %}
     <link rel="import" src="{{ item }}">
