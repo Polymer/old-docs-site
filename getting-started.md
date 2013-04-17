@@ -20,7 +20,9 @@ components:
 #- samples/components/tk-binding-to-elements.html
 ---
 
+{% comment %}
 {% include outofdate.html %}
+{% endcomment %}
 
 ## Basics
 

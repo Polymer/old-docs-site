@@ -3,7 +3,9 @@ layout: default
 title: Toolkit kernel
 ---
 
+{% comment %}
 {% include outofdate.html %}
+{% endcomment %}
 
 The Toolkit _kernel_ provides a thin layer of code that expresses the Toolkit
 opinion, and provides the sugar that all components use. The kernel code is
