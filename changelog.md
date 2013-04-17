@@ -3,14 +3,28 @@ layout: default
 title: Changelog
 ---
 
-This document lists changes to the entirety of the project, including polyfill repos.
+This document lists the major changes to the entirety of the project, including polyfill repos.
 
 ## 2013-04-17
 
 ### Toolkit
 
-* `toolkit.js` now loads `platform.js` under the hood. If you're writing a Toolkit component,
-there's no need to include `platform.js` separately.
+* If you're writing a [Toolkit component](/toolkit-kernel-explainer.html), there's
+no longer need to include `platform.js` alongside `toolkit.js`. `toolkit.js` now loads `platform.js` under the hood. 
+
+### Platform
+
+#### CustomElements
+
+* The `constructor` attribute is now supported [(commit](https://github.com/toolkitchen/CustomElements/commit/96417cf084daf1421a9786e39282206f4ef6d35e]))
+
+#### HTML Imports
+
+* Fixed issue with imports loaded at the same url would not have the content associated with them ([commit](https://github.com/toolkitchen/HTMLImports/commit/882a9b6cc53d41d46967346b0b7e32edc4a6f7b9))
+
+* Polyfill now correctly checks for `HTMLTemplateElement` before using it ([commit](https://github.com/toolkitchen/HTMLImports/commit/24283edea12b36ae0db0e7f928fdcb20a6e46eda))
+
+* If `HTMLTemplateElement.bootstrap` is available, then bootstrap templates in imported documents. ([commit](https://github.com/toolkitchen/HTMLImports/commit/8c842e1c1bf3f13ca2097386886874f873e8ec0b))
 
 ## 2013-04-11
 
