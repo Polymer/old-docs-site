@@ -26,7 +26,8 @@ components:
 
 The basics of using {{site.project_title}} are simple:
 
-1. Load **platform.js** to shim missing platform features, such as [Shadow DOM](/platform/shadow-dom.html).
+1. Load **platform.js** to polyfill missing platform features, such as [Shadow DOM](/platform/shadow-dom.html)
+and [HTML Imports](/platform/html-imports.html).
 - Load components with `<link rel="import" href="/path/to/component-file.html">`
 - Use the custom element in your page.
 
@@ -62,10 +63,13 @@ new technologies.
 
 ### Creating a Toolkit component
 
-Toolkit provides extra goodies for creating custom elements. To create a custom
-element which adds Toolkit features, two additional steps are required:
+Toolkit provides extra goodies for creating custom elements. We call these souped-up
+custom elements "Toolkit components". To create Toolkit component, follow these steps:
 
-1. Load the [Toolkit kernel](/toolkit-kernel-explainer.html) (`toolkit/toolkit.js`).
+1. Load the [Toolkit kernel](/toolkit-kernel-explainer.html) (`toolkit/toolkit.js` or `toolkit/toolkit.min.js`).
+
+  <p class="alert"><b>Note</b>: <code>toolkit.js</code> loads <code>platform.js</code> under the hood.
+You only need to include <code>toolkit.js</code> when writing a Toolkit component.</p>
 - In your custom element, add a `<script>` element that calls the `Toolkit.register()` initializer. This endows the custom element with Toolkit features, such as data binding and event mapping.
 
 In the following sample we convert our basic custom element into a Toolkit component named `tk-element`.

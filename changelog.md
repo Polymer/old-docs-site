@@ -5,6 +5,13 @@ title: Changelog
 
 This document lists changes to the entirety of the project, including polyfill repos.
 
+## 2013-04-17
+
+### Toolkit
+
+* `toolkit.js` now loads `platform.js` under the hood. If you're writing a Toolkit component,
+there's no need to include `platform.js` separately.
+
 ## 2013-04-11
 
 <p class="alert">

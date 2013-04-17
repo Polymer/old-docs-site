@@ -14,9 +14,8 @@ and designed to leverage the evolving web platform on modern browsers.
 
         git clone git://github.com/toolkitchen/toolkit.git --recursive
 
-2. Include `platform.js` and `toolkit.js` in your app:
+2. Include `toolkit.js` in your app:
 
-        <script src="toolkit/platform/platform.js"></script>
         <script src="toolkit/toolkit.js"></script>
 
 - Read the [Getting Started](/getting-started.html) guide.
