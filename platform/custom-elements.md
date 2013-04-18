@@ -12,11 +12,5 @@ feature:
 
 {% include spec-header.html %}
 
-{% comment %}
- REMOVE THIS FILE AND INCLUDE THE ONE BELOW WHEN THE REPOS ARE UPDATED
-{% endcomment %}
-{% include_external platform/custom-elements_README.md %}
-
-{% comment %}
 {% include_external ../toolkit/platform/CustomElements/README.md %}
-{% endcomment %}
+
