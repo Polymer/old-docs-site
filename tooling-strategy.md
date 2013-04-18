@@ -37,3 +37,14 @@ Run tests:
 ## Source maps
 
 {{site.project_title}}  polyfills the [HTML Imports](/platform/html-imports.html) specification. In order for code to be debuggable at run-time, scripts embedded in components are injected into `<head>` in the main document. Tools/browsers that support [source maps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) will identify these scripts as belonging to their source components.
+
+## Debugging Shadow DOM
+
+In Chrome, native Shadow DOM is not inspectable. That is, you can't use the DevTools
+to drill down into a Shadow Root. 
+
+To be able to inspect Shadow DOM, turn on "Show Shadow DOM" in the DevTools general settings:
+
+![Enable "Show Shadow DOM" in the Devtools](/images/showshadowdom.png 'Enable "Show Shadow DOM" in the Devtools')
+
+After reloading the DevTools, Shadow DOM is inspectable and renders as `#document-fragment`s in the tree.
