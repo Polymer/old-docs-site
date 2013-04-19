@@ -94,6 +94,16 @@ a[disabled] {
   pointer-events: none;
   color: #ccc;
 }
+#content-container {
+  position: relative;
+}
+.edit-on-github {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: smaller;
+}
+
 #content {
   min-height: 400px;
 }
