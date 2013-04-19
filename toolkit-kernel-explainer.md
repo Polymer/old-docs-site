@@ -13,7 +13,7 @@ provided by a file named `toolkit.js`.
 
 ## Component declaration
 
-A web component declaration look like the following:
+A web component declaration looks like the following:
 
     <element name="tag-name">
       <template>
