@@ -105,11 +105,11 @@ Let's modify our `name-tag` to take a record instead of individual properties.
       </script>
     </element>
 
-Now, imagine we make a new component called 'visitor-creds' that uses `name-tag`:
+Now, imagine we make a new component called `<visitor-creds>` that uses `name-tag`:
 
     <element name="visitor-creds">
       <template>
-        <name-tag person="{{person"}}"></name-tag>
+        <name-tag person="{{"{{person"}}}}"></name-tag>
       </template>
       <script>
         this.component({
@@ -121,7 +121,7 @@ Now, imagine we make a new component called 'visitor-creds' that uses `name-tag`
       </script>
     </element>
 
-When I make an instance of `visitor-creds`, its `person` object is bound to the `name-tag` instance, so now both components are using the same `person` object.
+When I make an instance of `<visitor-creds>`, its `person` object is bound to the `name-tag` instance, so now both components are using the same `person` object.
 
 
 ### Declarative event mapping
