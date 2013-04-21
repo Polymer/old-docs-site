@@ -16,7 +16,7 @@ no longer need to include `platform.js` alongside `toolkit.js`. `toolkit.js` now
 
 #### CustomElements
 
-* The `constructor` attribute is now supported [(commit](https://github.com/toolkitchen/CustomElements/commit/96417cf084daf1421a9786e39282206f4ef6d35e]))
+* The `constructor` attribute is now supported ([commit](https://github.com/toolkitchen/CustomElements/commit/96417cf084daf1421a9786e39282206f4ef6d35e))
 
 #### HTML Imports
 
