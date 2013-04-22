@@ -103,7 +103,7 @@ Two different types of TimingGroups (`ParGroup` and `SeqGroup`) allow animations
 
 To play a list of animations in parallel:
 
-    var parGroup - new ParGroup([new Animation(...), new Animation(...)]);
+    var parGroup = new ParGroup([new Animation(...), new Animation(...)]);
 
 To play a list in sequence:
 
