@@ -10,7 +10,7 @@
 		<html>
 		  <head>
 		    <script src="toolkit/platform/platform.js"></script>
-" href="toolkit/components/g-menu-item.html">
+" href="toolkit-ui/elements/g-menu-item.html">
 		  </head>
 		  <body>
 			<g-menu-item src="images/email.svg">Email Link</g-menu-item>
@@ -26,9 +26,9 @@ For example:
 *app-components.html*
 
     <!-- load some components -->
-    <link rel="import" href="toolkit/components/g-toolbar.html">
-    <link rel="import" href="toolkit/components/g-menu-button.html">
-    <link rel="import" href="toolkit/components/g-menu-item.html">
+    <link rel="import" href="toolkit-ui/elements/g-toolbar.html">
+    <link rel="import" href="toolkit-ui/elements/g-menu-button.html">
+    <link rel="import" href="toolkit-ui/elements/g-menu-item.html">
 
 		<!-- can load stylesheets and scripts here also -->
 		<link rel="stylesheet" href="my-app-styles.css">
