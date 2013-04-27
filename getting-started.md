@@ -3,8 +3,8 @@ layout: default
 title: Getting started
 
 components:
-#- toolkit/components/g-panels.html
-#- toolkit/components/g-tabs.html
+#- toolkit-ui/elements/g-panels.html
+#- toolkit-ui/elements/g-tabs.html
 #- samples/components/basic-element.html
 #- samples/components/tk-element.html
 #- samples/components/tk-element-databinding-color.html
@@ -41,7 +41,7 @@ Here's a bare bones example:
         <!-- 1. Shim missing platform features -->
         <script src="toolkit/platform/platform.js"></script>
         <!-- 2. Load a component -->
-        <link rel="import" href="toolkit/components/g-menu-item.html">
+        <link rel="import" href="toolkit-ui/elements/g-menu-item.html">
       </head>
       <body>
         <!-- 3. Instantiate the component with its tag. -->
