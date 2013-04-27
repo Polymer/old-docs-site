@@ -15,7 +15,7 @@ We use [Grunt][grunt] to generate the documentation. You'll need to install the 
 
 This repo (`toolkitchen/docs`) is where the documentation source files live. To make a change, follow this basic process:
 
-1. Checkout this repo and make desired changes.
+1. Checkout this repo (using `git clone git://github.com/toolkitchen/docs.git --recursive`) and make desired changes.
 - To build the docs locally, run `grunt` or ``. This starts a web server at
 [http://localhost:4000](http://localhost:4000) where you can preview your edits. This also watches and rebuilds on changes.
 
@@ -34,6 +34,11 @@ First, checkout `toolkitchen/toolkitchen.github.com` alongside your local copy o
 This repo is where the generated docs live and are served from using
 [Github Pages](https://help.github.com/categories/20/articles). It's hidden as not
 to confuse users or have extraneous locations for filing bugs.
+
+Second, make sure your `docs/toolkit` submodule is up to date
+(this should only be necessary when `toolkit` merges the *master* -> *stable* branch):
+
+    git submodule update --recursive
 
 Next, run the `publish` task:
 
