@@ -13,10 +13,8 @@ You can recursively clone and initialize all of toolkit's submodules with a sing
 
 This creates a `toolkit/` folder with the following top-level files and folders:
 
-- **components/** — Initial set of example components.
 - **platform/** — Submodule which contains the platform shims and polyfills.
 - **test/** — Test cases.
-- **workbench/** — Examples of using the Toolkit components in `components/`. 
 - **toolkit.js** — The [Toolkit kernel](toolkit-kernel-explainer.html)
 
 More on repository structure is below.
@@ -64,6 +62,7 @@ Other repositories aggregate these individual repositories (as submodules) into 
 
 * `platform`
 * `toolkit`
+* `toolkit-ui`
 
 ### Polyfill repositories
 
@@ -87,7 +86,7 @@ See [Tooling Strategy](tooling-strategy.html) for information.
 
 The [`toolkit`](https://github.com/toolkitchen/toolkit) repository contains the guts
 of the project. It pulls in the [`platform`](https://github.com/toolkitchen/platform)
-polyfill repo as a submodule, contains examples, demos, tools, and hosts the
+polyfill repo as a submodule, contains tools, tests, and hosts the
 [Toolkit kernel](toolkit-kernel-explainer.html).
 
 If you want to see the development activity, checkout the _master_ branch directly:
@@ -98,3 +97,14 @@ If you want to see the development activity, checkout the _master_ branch direct
 <b>Remember</b>: If you don't specify <em>master</em>, you'll get the <em>stable</em> branch by default.
 See <a href="/branching-strategy.html">Branching Workflow</a> for more info.
 </p>
+
+### /toolkit-ui repository
+
+[github.com/toolkitchen/toolkit-ui](https://github.com/toolkitchen/toolkit-ui)
+
+The [`toolkit-ui`](https://github.com/toolkitchen/toolkit-ui) repository contains examples of
+the types of things you can do when writing a [Toolkit components](/toolkit-kernel-explainer.html).
+
+- **elements/** — `g-*` custom element definitions.
+- **workbench/** — demos of using the Toolkit components in `elements/`.
+

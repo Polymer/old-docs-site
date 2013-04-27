@@ -18,8 +18,9 @@ and designed to leverage the evolving web platform on modern browsers.
 
         <script src="toolkit/toolkit.js"></script>
 
-- Read the [Getting Started](/getting-started.html) guide.
-- Learn how to soup-up your components using the [Toolkit kernel](/toolkit-kernel-explainer.html).
+3. Read the [Getting Started](/getting-started.html) guide.
+- Learn how to soup-up your web components using the [Toolkit kernel](/toolkit-kernel-explainer.html).
+- Try the [toolkit-ui examples](https://github.com/toolkitchen/toolkit-ui).
 - Join the [mailing list](/discuss.html)! Ask questions and give feedback.
 
 ## What is the {{site.project_title}}?
