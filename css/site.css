@@ -5,6 +5,11 @@
     padding-top: 60px;
   }
 }
+@media (min-width: 1200px) {
+  .codescreenshot {
+    display: block !important;
+  }
+}
 
 body {
   font-family: "Open Sans",Helvetica,Arial,sans-serif;

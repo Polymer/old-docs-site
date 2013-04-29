@@ -29,7 +29,7 @@ server and run one of the included sample projects:
     [http://localhost/toolkit/workbench/menu.html](http://localhost/toolkit/workbench/menu.html).
     You should see a menu of items, as shown below.
 
-<iframe src="/toolkit/workbench/menu.html" style="width: 270px;height:280px;border:none;"></iframe>
+<iframe src="/toolkit/workbench/menu.html" style="width:270px;height:220px;border:none;"></iframe>
 
 ### About branches
 

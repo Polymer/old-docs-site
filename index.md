@@ -3,6 +3,18 @@ layout: default
 title: Welcome
 ---
 
+<style>
+ol {
+  float: left;
+}
+.codescreenshot {
+  height: 250px;
+  width: auto;
+  border: none;
+  display: none;
+}
+</style>
+
 <p class="lead">
 {{site.project_title}} is a new type of library for the web, built on top of Web Components,
 and designed to leverage the evolving web platform on modern browsers.
@@ -23,7 +35,11 @@ and designed to leverage the evolving web platform on modern browsers.
 - Try the [toolkit-ui examples](https://github.com/toolkitchen/toolkit-ui).
 - Join the [mailing list](/discuss.html)! Ask questions and give feedback.
 
-## What is the {{site.project_title}}?
+<p style="float:left;margin-left:10px;">
+  <img class="codescreenshot" src="http://instacod.es/file/72206" alt="Custom element markup" title="Custom element markup">
+</p>
+
+<h2 style="clear:both;">What is the {{site.project_title}}?</h2>
 
 {{site.project_title}} is comprised of two efforts:
 
