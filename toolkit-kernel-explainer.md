@@ -114,7 +114,7 @@ Now, imagine we make a new component called `<visitor-creds>` that uses `name-ta
         <name-tag person="{{"{{person"}}}}"></name-tag>
       </template>
       <script>
-        this.component({
+        Toolkit.register(this, {
           person: {
             name: "Scott",
             nameColor: "orange"
