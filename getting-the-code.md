@@ -24,7 +24,7 @@ More on repository structure is below.
 To check that your development environment is ready, start a local web
 server and run one of the included sample projects:
 
-1. Start a local web server with the `toolkit/` folder as the web root.
+1. **Start a local web server** with the `toolkit/` folder as the web root.
 2. In your browser, navigate to
     [http://localhost/workbench/menu.html](http://localhost/toolkit/workbench/menu.html), or whichever port you started the server on. You should see a menu of items, as shown below.
 

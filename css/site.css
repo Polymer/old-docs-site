@@ -113,7 +113,7 @@ a[disabled] {
   min-height: 400px;
 }
 #content img {
-  border:1px solid #ccc;
+  border-radius: 7px;
 }
 #logo-row {
   width: 110px;

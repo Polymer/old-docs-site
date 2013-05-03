@@ -22,17 +22,18 @@ and designed to leverage the evolving web platform on modern browsers.
 
 ## Quick start
 
-1. Read [Get the code](/getting-the-code.html). The gist is:
+1. Clone the project to your app's root older. See [Get the code](/getting-the-code.html).
 
         git clone git://github.com/toolkitchen/toolkit.git --recursive
 
-2. Include `toolkit.js` in your app:
+2. **Fire up a web server** in your app's directory.
+- Include `toolkit.js` in your main page:
 
         <script src="toolkit/toolkit.js"></script>
 
-3. Read the [Getting Started](/getting-started.html) guide.
+4. Read the [Getting Started](/getting-started.html) guide.
 - Learn how to soup-up your web components using the [Toolkit kernel](/toolkit-kernel-explainer.html).
-- Try the [toolkit-ui examples](https://github.com/toolkitchen/toolkit-ui).
+- Play with the [toolkit-ui examples](https://github.com/toolkitchen/toolkit-ui) (*also must be run from a web server)*.
 - Join the [mailing list](/discuss.html)! Ask questions and give feedback.
 
 <p style="float:left;margin-left:10px;">
