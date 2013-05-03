@@ -22,7 +22,7 @@ and designed to leverage the evolving web platform on modern browsers.
 
 ## Quick start
 
-1. [Get the code](/getting-the-code.html):
+1. Read [Get the code](/getting-the-code.html). The gist is:
 
         git clone git://github.com/toolkitchen/toolkit.git --recursive
 
