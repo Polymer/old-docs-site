@@ -103,9 +103,10 @@ a[disabled] {
   position: relative;
 }
 .edit-on-github {
-  position: absolute;
+  /*position: absolute;
   top: 0;
-  right: 0;
+  right: 0;*/
+  float: right;
   font-size: smaller;
 }
 

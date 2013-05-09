@@ -3,6 +3,8 @@ layout: default
 title: FAQ
 ---
 
+{% include alpha.html %}
+
 *Don't see an answer to your question on here? Ask on the [mailing list](/discuss.html)!*
 
 ## {{site.project_title}} 
