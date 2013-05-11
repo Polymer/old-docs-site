@@ -1,3 +1,6 @@
 [submodule "toolkit"]
 	path = toolkit
 	url = git@github.com:toolkitchen/toolkit.git
+[submodule "toolkit-ui"]
+	path = toolkit-ui
+	url = git://github.com/toolkitchen/toolkit-ui.git

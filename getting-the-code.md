@@ -17,6 +17,11 @@ This creates a `toolkit/` folder with the following top-level files and folders:
 - **test/** — Test cases.
 - **toolkit.js** — The [Toolkit kernel](toolkit-kernel-explainer.html)
 
+You will also want the samples in `tookit-ui`. To check this repo, run:
+alongside your `toolkit` checkout:
+
+    git clone git://github.com/toolkitchen/toolkit-ui.git --recursive
+
 More on repository structure is below.
 
 ### Test your environment
@@ -24,11 +29,11 @@ More on repository structure is below.
 To check that your development environment is ready, start a local web
 server and run one of the included sample projects:
 
-1. **Start a local web server** with the `toolkit/` folder as the web root.
+1. **Start a local web server** in the folder where you have `toolkit/` and `toolkit-ui` checked out.
 2. In your browser, navigate to
-    [http://localhost/workbench/menu.html](http://localhost/toolkit/workbench/menu.html), or whichever port you started the server on. You should see a menu of items, as shown below.
+    [http://localhost/toolkit-ui/workbench/menu.html](http://localhost/toolkit-ui/workbench/menu.html), or whichever port you started the server on. You should see a menu of items, as shown below.
 
-<iframe src="/toolkit/workbench/menu.html" style="width:270px;height:220px;border:none;"></iframe>
+<iframe src="/toolkit-ui/workbench/menu.html" style="width:270px;height:220px;border:none;"></iframe>
 
 ### About branches
 
