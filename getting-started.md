@@ -30,8 +30,8 @@ The basics of using {{site.project_title}} are simple:
 
 1. Load **platform.js** to polyfill missing platform features, such as [Shadow DOM](/platform/shadow-dom.html)
 and [HTML Imports](/platform/html-imports.html).
-- Load components with `<link rel="import" href="/path/to/component-file.html">`
-- Use the custom element in your page.
+2. Load components with `<link rel="import" href="/path/to/component-file.html">`
+3. Use the custom element in your page.
 
 Here's a bare bones example:
 

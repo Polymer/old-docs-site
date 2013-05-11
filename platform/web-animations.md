@@ -16,9 +16,4 @@ feature:
 
 {% include spec-header.html %}
 
-{% comment %}
-<!-- Uncomment and use when repo is updated -->
 {% include_external ../toolkit/platform/WebAnimations/README.md %}
-{% endcomment %}
-
-{% include_external platform/web-animations-temp-README.md %}

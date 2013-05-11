@@ -69,7 +69,7 @@ Each new web platform feature has a corresponding polyfill repository. The
 reasoning for this is two-fold:
 
 1. make the polyfills work across all modern browsers
--  each polyfill can stand on its own and be used à la carte in projects.
+2. each polyfill can stand on its own and be used à la carte in projects.
 
 ### /platform repository
 

@@ -29,14 +29,14 @@ and designed to leverage the evolving web platform on modern browsers.
         git clone git://github.com/toolkitchen/toolkit.git --recursive
 
 2. **Fire up a web server** in your app's directory.
-- Include `toolkit.js` in your main page:
+3. Include `toolkit.js` in your main page:
 
         <script src="toolkit/toolkit.js"></script>
 
 4. Read the [Getting Started](/getting-started.html) guide.
-- Learn how to soup-up your web components using the [Toolkit kernel](/toolkit-kernel-explainer.html).
-- Play with the [toolkit-ui examples](https://github.com/toolkitchen/toolkit-ui) (*also must be run from a web server)*.
-- Join the [mailing list](/discuss.html)! Ask questions and give feedback.
+5. Learn how to soup-up your web components using the [Toolkit kernel](/toolkit-kernel-explainer.html).
+6. Play with the [toolkit-ui examples](https://github.com/toolkitchen/toolkit-ui) (*also must be run from a web server)*.
+7. Join the [mailing list](/discuss.html)! Ask questions and give feedback.
 
 <p style="float:left;margin-left:10px;">
   <img class="codescreenshot" src="http://instacod.es/file/72206" alt="Custom element markup" title="Custom element markup">

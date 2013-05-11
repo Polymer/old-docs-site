@@ -1,10 +1,12 @@
 # Server defaults.
-server: false
-server_port: 4000
-auto: true
+#watch: false # deprecated
+#server: false # deprecated
+#auto: true # deprecated
+port: 4000
 
 # Project defaults.
-markdown: redcarpet
+#markdown: redcarpet
+markdown: kramdown
 pygments: false
 lsi: false
 safe: false
@@ -13,7 +15,7 @@ exclude: "node_modules/, README.md"
 
 # Be sure to checkout the toolkitchen.github.com repo.
 # This is where the generated docs will be output.
-destination: ../toolkitchen.github.com
+#destination: ../toolkitchen.github.com
 
 # Site globals used throughout docs.
 load_platform: true
