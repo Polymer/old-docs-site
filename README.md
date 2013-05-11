@@ -7,8 +7,9 @@ over doc generation.
 
 ## Install the requirements
 
-We use [Grunt][grunt] to generate the documentation. You'll need to install the requirements before working on the docs:
+We use Jekyll 1.0+ and [Grunt][grunt] to generate the documentation. You'll need to install the requirements before working on the docs:
 
+    sudo gem install jekyll
     npm install
 
 ## Making edits and previewing changes
