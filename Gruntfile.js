@@ -34,7 +34,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: '_site/', // set base for src matches.
-          src: ['**.!(md)'], // includes files and subdirs of cwd.
+          src: ['**'], // includes files and subdirs of cwd.
           dest: '<%= jekyllConfig.publish_dir %>'
         }]
       }
