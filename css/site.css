@@ -137,3 +137,6 @@ a[disabled] {
   width: 100%;
   border: none;
 }
+.centered {
+  text-align: center;
+}

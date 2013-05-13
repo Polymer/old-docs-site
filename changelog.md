@@ -7,76 +7,115 @@ This document lists the major changes to the entirety of the project, including 
 
 ## 2013-05-09 {#2013-05-09}
 
+**Notice**: This release contains important changes to the structure of the project.
+{:.centered .alert .alert-info}
+
 ### Toolkit
 
-See [all changes](https://github.com/toolkitchen/toolkit/pull/125)
+See the [full list of changes](https://github.com/toolkitchen/toolkit/pull/125).
 
-#### Repository changes
-
-* New [`toolkit-elements`](https://github.com/toolkitchen/toolkit-elements) for non-visual elements.
-
-* Project build status: <http://build.chromium.org/p/client.toolkit/waterfall>
+* Project has a build status at <http://build.chromium.org/p/client.toolkit/waterfall>
+and tests are being run on Browserstack ([commit](https://github.com/toolkitchen/toolkit/commit/4516edcf1f3639b0a1bb70d39a088c8f51fea1b5))
 
 * Base example components [were removed](https://github.com/toolkitchen/toolkit/commit/2fdd9e0602f9162765f97985531bbb3301b12780) and separated
-into their own [`toolkit-ui`](https://github.com/toolkitchen/toolkit-ui) repo.
+into their own [`toolkit-ui`](https://github.com/toolkitchen/toolkit-ui) repo,
+while the [`toolkit-elements`](https://github.com/toolkitchen/toolkit-elements) repo
+contains non-visual elements.
 
-* Tests are now being run on Browserstack ([commit](https://github.com/toolkitchen/toolkit/commit/4516edcf1f3639b0a1bb70d39a088c8f51fea1b5))
+* A [sandbox tool](https://github.com/toolkitchen/projects/commit/02e45ebfc4815816544b608077880f949a10e8ea) was
+added to projects.
 
-* Styling tests added for `@host` ([commit](https://github.com/toolkitchen/toolkit/commit/6f7a156bc43c60f07b16eb9443c47dceb7dbf4ad))
+**Elements and animations**
 
-#### Elements and animations
+* New `g-overlay` element with web animations ([commit](https://github.com/toolkitchen/toolkit/commit/9f8f036cebb5ddff9849a37ddb53e62081540715)) and `g-tabspanel` ([commit](https://github.com/toolkitchen/toolkit/commit/9f711efcee4e3f6ef181a1cb4c2f7d9013a26b2a))
 
-* `g-overlay` element with web animations ([commit](https://github.com/toolkitchen/toolkit/commit/9f8f036cebb5ddff9849a37ddb53e62081540715))
+* Added `g-fadein`, `g-fadeout` animations ([commit](https://github.com/toolkitchen/toolkit/commit/1569066b09968b41678d35df1bf67a3d8634262a)) and `g-shake`, a configurable shake animation ([commit](https://github.com/toolkitchen/toolkit/commit/9344922068bff938e90378e888259cc1a41bcd89))
 
-* Added `g-fadein`, `g-fadeout` animations ([commit](https://github.com/toolkitchen/toolkit/commit/1569066b09968b41678d35df1bf67a3d8634262a))
-
-* Added `g-shake`, a configurable shake animation ([commit](https://github.com/toolkitchen/toolkit/commit/9344922068bff938e90378e888259cc1a41bcd89))
-
-* Added `g-tabspanel` ([commit](https://github.com/toolkitchen/toolkit/commit/9f711efcee4e3f6ef181a1cb4c2f7d9013a26b2a))
-
-#### Features &amp; bug fixes
+**Features &amp; bug fixes**
 
 * Element registration now puts a `.elementElement` property on the prototpe to reference
 the `<element>` ([commit](https://github.com/toolkitchen/toolkit/commit/64f7e64e4356e13fee19b89cef0bda185ebbe920))
 
 * pseudo-scoping now works on Firefox and IE where `cssRule.selectorText` is readonly ([commit](https://github.com/toolkitchen/toolkit/commit/f96ddd200030fd8e8cf82c0dba141863e1761da2))
 
-* Added `.unbind()` and additional machinery for MDV bindings ([commit](https://github.com/toolkitchen/toolkit/commit/197d6f3c6fe08953fd915e243ce2cf8861347ee1))
-
 * Attributes de-serialization is more predicable. For example, numbers are treated
 as numbers, srings as strings, dates as `Date`, etc. ([commit](https://github.com/toolkitchen/toolkit/commit/ef601c3f8cf77a72c3a7a60f0f5b925dd5208e36), [commit](https://github.com/toolkitchen/toolkit/commit/6f04747ecd2f281dfc08273c2f1422cf24d138a8), [commit](https://github.com/toolkitchen/toolkit/commit/ec15352311f39594f2cc43d42d40db017e9293a8))
 
-* MDV v3 is the default now.
+* MDV v3 is now turned on by default.
 
-* MDV bindings are more comprehensive, with Node, Text, and `<input>` elements ([commit](https://github.com/toolkitchen/toolkit/commit/2e11ba658916df02c8ba87ead037ce0104a6b205)) 
+  * Added `.unbind()` and additional machinery for MDV bindings ([commit](https://github.com/toolkitchen/toolkit/commit/197d6f3c6fe08953fd915e243ce2cf8861347ee1))
 
-* `Toolkit.getBinding(element, name)` no longer generates an exception if elemement is null [[commit](https://github.com/toolkitchen/toolkit/commit/a270417d136b6f00205ea60d451be9d296e9745d))
+  * MDV bindings are more comprehensive, with Node, Text, and `<input>` elements ([commit](https://github.com/toolkitchen/toolkit/commit/2e11ba658916df02c8ba87ead037ce0104a6b205)) 
+
+* `Toolkit.getBinding(element, name)` no longer generates an exception if element is null [[commit](https://github.com/toolkitchen/toolkit/commit/a270417d136b6f00205ea60d451be9d296e9745d))
 
 ### Platform
 
 #### Custom Elements
 
-* Implement life cycle callbacks (inserted|removed|attributeChanged) using MutationObsevers.
-Note: you can no longer add lifecycle callbacks to a `lifecycle` object. They must be
-on the prototpye. ([commit](https://github.com/toolkitchen/CustomElements/commit/68da1e33bf5fdbab805b0d695d15729e4d379282))
+See the [full list of changes](https://github.com/toolkitchen/CustomElements/pull/25).
 
-* Fix for source map URLs ([commit](https://github.com/toolkitchen/CustomElements/commit/40cc09c5acbbd543d83ff8f14b568ffa5eef3878))
+* Implement life cycle callbacks (inserted|removed|attributeChanged) using MutationObsevers.
+**Note**: you can no longer add lifecycle callbacks to a `lifecycle` object. They must be
+on the prototpye. ([commit](https://github.com/toolkitchen/CustomElements/commit/68da1e33bf5fdbab805b0d695d15729e4d379282))
 
 * `document.register()` only triggers document-wide upgrade when called after
 initial load is complete ([commit](https://github.com/toolkitchen/CustomElements/commit/2c80460cba9f742e4f3fef434b225ef1829de39b))
 
+* `document.register()` tests were updated to align with spec changes ([commit](https://github.com/toolkitchen/CustomElements/commit/0aabe6b5fc66e847db8fa2988519d202641e9dfb))
+
+* Added support for native `document.webkitRegister()` (if available) ([commit](https://github.com/toolkitchen/CustomElements/commit/5cb7a971135162d40fd078a9fafdc9bd2c0eb91e))
+
+* `attributeChanged` callback only fires when attribute has actually been modified ([commit](https://github.com/toolkitchen/CustomElements/commit/9f7cf5268b01c9c9568b6d239995f6b01a027012))
+
+* `<style>` elements are now (correctly) ignored if they're in the main document ([commit](https://github.com/toolkitchen/CustomElements/commit/632ef0f43a5bb693580345096c1748e27990e39f))
+
+
 #### HTML Imports
 
-* Export `HTMLImports.getDocumentUrl()` method ([commit](https://github.com/toolkitchen/HTMLImports/commit/0bdff1841f151cd7479a98338a6521cba4ef9c82))
+See the [full list of changes](https://github.com/toolkitchen/HTMLImports/pull/8)
+
+* `HTMLImports.getDocumentUrl()` added ([commit](https://github.com/toolkitchen/HTMLImports/commit/0bdff1841f151cd7479a98338a6521cba4ef9c82))
 
 * `HTMLImports.readyTime` added for primative timing data [[commit](https://github.com/toolkitchen/HTMLImports/commit/414b70756d05fcf6b344c942163e5d6a777c4f5c))
 
 * Caching is configurable with `.cache` [[commit](https://github.com/toolkitchen/HTMLImports/commit/4e4a2afb03803e55f5b12149ffaa5704ca50e0e6))
 
-
 #### MDV
 
+See the [full list of changes](https://github.com/toolkitchen/mdv/pull/65)
+
+* Now using ChangeSummary v3 ([commit](https://github.com/toolkitchen/mdv/commit/a82e4f56c7fa24970c27244d623b1a10fd740822))
+
+* Removed `.effectiveContent` API ([commit](https://github.com/toolkitchen/mdv/commit/66f5ec16998ee17dcdbd20759494ddd9900470ae))
+
+* Removed `HTMLTemplateElement.bindTree` in favor of `template.model` ([commit](https://github.com/toolkitchen/mdv/commit/b31c6fc016ea81088059f0b628dc253ade201cf8))
+
+* Exposed `HTMLTemplateElement.parseAndBind_` ([commit](hen/mdv/commit/075f5f22e0b55783e1cd1486d02f2d1002e3ef8d))
+
+* Implemented `.getInstanceModel` for returning the model associated with a template ([commit](https://github.com/toolkitchen/mdv/commit/b6af70e922c49fc6fc85e782e549831d3680712e))
+
+#### Pointer Events / Gestures
+
+See the full list of changes [here](https://github.com/toolkitchen/PointerEvents/pull/65) and [here](https://github.com/toolkitchen/PointerGestures/pull/3).
+
+* `touch-action: user` is an alias for `touch-action: none` ([commit](https://github.com/toolkitchen/PointerEvents/commit/5d3d05cadbdb9ce53749a31a3c6f424566056da6))
+
+* Fix `pointercapture` throws on IE10 ([commit](https://github.com/toolkitchen/PointerEvents/commit/d338d9fc314961650c418101d4603b2a3a8c0302))
+
+* Expose `.clientXY`, `.pageXY`, `.screenXY` of track gestures. ([commit](https://github.com/toolkitchen/PointerGestures/commit/2c25f0cc6ca6a9edd993052dc0c4b13def37005c))
+
 #### Shadow DOM
+
+See the [full list of changes](https://github.com/toolkitchen/ShadowDOM/pull/139)
+
+* Implemented `.querySelector|All()` and `.getElementById()` ([commit](https://github.com/toolkitchen/ShadowDOM/commit/8efd247fbf52f75a4f5c07e3d939dcf4500c4f62), [commit](https://github.com/toolkitchen/ShadowDOM/commit/1bc20a60860b816e070feac44863053a2c6acb9b))
+
+* Implemented `.elementFromPoint` for `document` and ShadowRoot ([commit](https://github.com/toolkitchen/ShadowDOM/commit/1a11be889a1f76ca45e09655f7e7ed5b2aeaa297))
+
+* Wrapped `MutationRecord` interface now that Blink has it. ([commit](https://github.com/toolkitchen/ShadowDOM/commit/7079f38054dad74b2c0e4e18421bd11946e9f56f))
+
+* `document.write()` is now [overriden](https://github.com/toolkitchen/ShadowDOM/commit/733b350e15ea800f95efab2caae0a4c008d07ca0) and wrapped in the polyfill ([commit](https://github.com/toolkitchen/ShadowDOM/commit/07be1f387f9a099bd9a13a0edf193acbf0f5c522))
 
 ## 2013-04-17 {#2013-04-17}
 
@@ -101,9 +140,8 @@ no longer need to include `platform.js` alongside `toolkit.js`. `toolkit.js` now
 
 ## 2013-04-11 {#2013-04-11}
 
-<p class="alert">
-  <b>Notice</b>: This release contains important changes to the structure of the project.
-</p>
+**Notice**: This release contains important changes to the structure of the project.
+{:.centered .alert .alert-info}
 
 * The `toolkit` repository now brings in the `platform` repository as a submodule.
 * Until now, the _dev_ branch has been the development branch and _master_ has
