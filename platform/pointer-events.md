@@ -12,4 +12,8 @@ feature:
 
 {% include spec-header.html %}
 
+{% comment %}
 {% include_external ../toolkit/platform/PointerGestures/src/PointerEvents/README.md %}
+{% endcomment %}
+
+{% include_external platform/pointer-events-temp-README.md %}
