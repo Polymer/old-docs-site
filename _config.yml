@@ -19,5 +19,5 @@ exclude: ["node_modules", "README.md", "Gruntfile.js", "package.json"]
 
 # Site globals used throughout docs.
 load_platform: true
-project_title: Toolkitchen
+project_title: Polymer
 publish_dir: ../toolkitchen.github.com

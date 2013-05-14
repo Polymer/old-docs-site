@@ -16,7 +16,6 @@
 
 {% if site.load_platform %}
   <script src="/toolkit/toolkit.min.js?{{'now' | date: "%Y%m%d"}}"></script>
-  <!--<script src="http://toolkitchen.github.io/cdn/toolkit.min.js"></script>-->
 
   {% for item in page.components %}
     <link rel="import" src="{{ item }}">

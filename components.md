@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Toolkitchen components
+title: Polymer components
 ---
 
-Toolkitchen components are standard [web components](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/explainer/index.html) that utilize a small library of helper code to reduce boilerplate and automate common actions. Here is a quick overview of the features of Toolkit components:
+{{site.project_title}} components are standard [web components](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/explainer/index.html) that utilize a small library of helper code to reduce boilerplate and automate common actions. Here is a quick overview of the features of Toolkit components:
 
 # Component initializer
 

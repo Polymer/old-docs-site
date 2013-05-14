@@ -17,7 +17,7 @@ Conditionally loads a debug version of `platform.js`.
 
 Or, equivalently:
 
-    http://localhost/toolkitchen/toolkit/getting_started/?debug
+    http://localhost/polymer-project/toolkit/getting_started/?debug
 
 By default a minified version of platform (`platform.min.js`) is loaded.
 Using `debug` loads `platform.debug.js`.
@@ -32,7 +32,7 @@ Controls console output.
 
 Or, equivalently:
 
-    http://localhost/toolkitchen/toolkit/getting_started/?log=bind,ready
+    http://localhost/polymer-project/toolkit/getting_started/?log=bind,ready
 
 Possible values:
 
@@ -68,7 +68,7 @@ for unsupported browsers.
 
 Or, equivalently:
 
-    http://localhost/toolkitchen/toolkit/getting_started/?debug&shadow=polyfill
+    http://localhost/polymer-project/toolkit/getting_started/?debug&shadow=polyfill
 
 
 Possible attribute values:
@@ -96,6 +96,6 @@ Example:
 
   or
 
-    http://localhost/toolkitchen/toolkit/getting_started/?eval
+    http://localhost/polymer-project/toolkit/getting_started/?eval
 
 -->

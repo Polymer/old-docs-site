@@ -11,7 +11,7 @@ The Toolkit _kernel_ provides a thin layer of code that expresses the Toolkit
 opinion, and provides the sugar that all components use. The kernel code is
 provided by a file named `toolkit.js`.
 
-Complete working examples of the concepts on this page are in [/toolkit-ui](https://github.com/toolkitchen/toolkit-ui).
+Complete working examples of the concepts on this page are in [/toolkit-ui](https://github.com/polymer-project/toolkit-ui).
 
 ## Component declaration
 

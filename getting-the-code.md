@@ -9,7 +9,7 @@ You can recursively clone and initialize all of toolkit's submodules with a sing
 
 **To get the code, run:**
 
-    git clone git://github.com/toolkitchen/toolkit.git --recursive
+    git clone git://github.com/polymer-project/toolkit.git --recursive
 
 This creates a `toolkit/` folder with the following top-level files and folders:
 
@@ -20,7 +20,7 @@ This creates a `toolkit/` folder with the following top-level files and folders:
 You will also want the samples in `tookit-ui`. To check this repo, run:
 alongside your `toolkit` checkout:
 
-    git clone git://github.com/toolkitchen/toolkit-ui.git --recursive
+    git clone git://github.com/polymer-project/toolkit-ui.git --recursive
 
 More on repository structure is below.
 
@@ -78,24 +78,24 @@ reasoning for this is two-fold:
 
 ### /platform repository
 
-[github.com/toolkitchen/platform](https://github.com/toolkitchen/platform)
+[github.com/polymer-project/platform](https://github.com/polymer-project/platform)
 
-The [`platform`](https://github.com/toolkitchen/platform) repository references each of the polyfills as submodules, and contains integration tests, loader, and build tools for the amalgamated polyfills.
+The [`platform`](https://github.com/polymer-project/platform) repository references each of the polyfills as submodules, and contains integration tests, loader, and build tools for the amalgamated polyfills.
 
 See [Tooling Strategy](tooling-strategy.html) for information.
 
 ### /toolkit repository
 
-[github.com/toolkitchen/toolkit](https://github.com/toolkitchen/toolkit)
+[github.com/polymer-project/toolkit](https://github.com/polymer-project/toolkit)
 
-The [`toolkit`](https://github.com/toolkitchen/toolkit) repository contains the guts
-of the project. It pulls in the [`platform`](https://github.com/toolkitchen/platform)
+The [`toolkit`](https://github.com/polymer-project/toolkit) repository contains the guts
+of the project. It pulls in the [`platform`](https://github.com/polymer-project/platform)
 polyfill repo as a submodule, contains tools, tests, and hosts the
 [Toolkit kernel](toolkit-kernel-explainer.html).
 
 If you want to see the development activity, checkout the _master_ branch directly:
 
-    git clone -b master https://github.com/toolkitchen/toolkit.git --recursive
+    git clone -b master https://github.com/polymer-project/toolkit.git --recursive
 
 <p class="alert">
 <b>Remember</b>: If you don't specify <em>master</em>, you'll get the <em>stable</em> branch by default.
@@ -104,9 +104,9 @@ See <a href="/branching-strategy.html">Branching Workflow</a> for more info.
 
 ### /toolkit-ui repository
 
-[github.com/toolkitchen/toolkit-ui](https://github.com/toolkitchen/toolkit-ui)
+[github.com/polymer-project/toolkit-ui](https://github.com/polymer-project/toolkit-ui)
 
-The [`toolkit-ui`](https://github.com/toolkitchen/toolkit-ui) repository contains examples of
+The [`toolkit-ui`](https://github.com/polymer-project/toolkit-ui) repository contains examples of
 the types of things you can do when writing a [Toolkit components](/toolkit-kernel-explainer.html).
 
 - **elements/** — `g-*` custom element definitions.

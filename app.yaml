@@ -6,36 +6,22 @@ threadsafe: yes
 
 handlers:
 
-# - url: /js
-#   static_dir: js
-
-# - url: /images
-#   static_dir: images
-
-# - url: /videos
-#   static_dir: videos
-
-# - url: /demos
-#   static_dir: demos
-
-# - url: /theme
-#   static_dir: theme
-
-# - url: /slide_config\.js
-#   static_files: slide_config.js
-#   upload: slide_config\.js
-
-# - url: /
-#   static_files: index.html
-#   upload: index\.html
-
-# - url: /(.*?)$
-#   static_files: _site/\1index.html
-#   upload: _site/(.*?)index.html
-
 - url: /$
   static_files: _site/index.html
   upload: _site/index\.html
 
 - url: /
   static_dir: _site
+
+skip_files:
+- ^(.*/)?app\.yaml
+- ^(.*/)?app\.yml
+- ^(.*/)?index\.yaml
+- ^(.*/)?index\.yml
+- ^(.*/)?#.*#
+- ^(.*/)?.*~
+- ^(.*/)?.*\.py[co]
+- ^(.*/)?.*/RCS/.*
+- ^(.*/)?\..*
+- ^(.*/)?.*\.bak$
+- ^node_modules/.*
