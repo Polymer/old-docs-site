@@ -22,4 +22,9 @@ links:
 
 {% include spec-header.html %}
 
-{% include_external ../toolkit/platform/ShadowDOM/README.md %}
+{% comment %}
+{% include_external ../toolkit/platform/ShadowDOM/README.md  %}
+{% endcomment %}
+
+{% include_external platform/shadow-dom-temp-README.md %}
+
