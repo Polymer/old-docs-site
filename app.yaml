@@ -1,0 +1,41 @@
+application: polymer-project
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+
+# - url: /js
+#   static_dir: js
+
+# - url: /images
+#   static_dir: images
+
+# - url: /videos
+#   static_dir: videos
+
+# - url: /demos
+#   static_dir: demos
+
+# - url: /theme
+#   static_dir: theme
+
+# - url: /slide_config\.js
+#   static_files: slide_config.js
+#   upload: slide_config\.js
+
+# - url: /
+#   static_files: index.html
+#   upload: index\.html
+
+# - url: /(.*?)$
+#   static_files: _site/\1index.html
+#   upload: _site/(.*?)index.html
+
+- url: /$
+  static_files: _site/index.html
+  upload: _site/index\.html
+
+- url: /
+  static_dir: _site
