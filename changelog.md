@@ -5,10 +5,14 @@ title: Changelog
 
 This document lists the major changes to the entirety of the project, including polyfill repos.
 
-## 2013-05-09 {#2013-05-09}
+## 2013-05-13 {#2013-05-13}
 
 **Notice**: This release contains important changes to the structure of the project.
 {:.centered .alert .alert-info}
+
+Project renamed to <https://github.com/polymer-project>
+
+## 2013-05-09 {#2013-05-09}
 
 ### Toolkit
 
