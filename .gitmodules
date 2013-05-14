@@ -1,6 +1,6 @@
-[submodule "toolkit"]
-	path = toolkit
-	url = git@github.com:toolkitchen/toolkit.git
+[submodule "polymer"]
+	path = polymer
+	url = git@github.com:polymer-project/polymer.git
 [submodule "toolkit-ui"]
 	path = toolkit-ui
-	url = git://github.com/toolkitchen/toolkit-ui.git
+	url = git://github.com/polymer-project/toolkit-ui.git
