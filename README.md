@@ -9,9 +9,9 @@ We use Jekyll 1.0+ and [Grunt][grunt] to generate the documentation. You'll need
 
 ## Making edits and previewing changes
 
-This repo (`polymer-project/docs`) is where the documentation source files live. To make a change, follow this basic process:
+This repo (`polymer/docs`) is where the documentation source files live. To make a change, follow this basic process:
 
-1. Checkout this repo (using `git clone git://github.com/polymer-project/docs.git --recursive`) and make desired changes.
+1. Checkout this repo (using `git clone git://github.com/polymer/docs.git --recursive`) and make desired changes.
 - To build the docs locally, run `grunt` or ``. This starts a web server at
 [http://localhost:4000](http://localhost:4000) where you can preview your edits. This also watches and rebuilds on changes.
 

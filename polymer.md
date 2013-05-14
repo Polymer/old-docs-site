@@ -11,7 +11,7 @@ The {{site.project_title}} _kernel_ provides a thin layer of code that expresses
 opinion, and provides the sugar that all components use. The kernel code is
 provided by a file named `polymer.js`.
 
-Complete working examples of the concepts on this page are in [/toolkit-ui](https://github.com/polymer-project/toolkit-ui).
+Complete working examples of the concepts on this page are in [/toolkit-ui](https://github.com/polymer/toolkit-ui).
 
 ## Component declaration
 

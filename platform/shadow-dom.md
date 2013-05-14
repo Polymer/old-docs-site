@@ -6,7 +6,7 @@ subtitle: polyfill
 feature:
   spec: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html
   status: <span class="label label-success">functional</span>
-  code: https://github.com/polymer-project/ShadowDOM
+  code: https://github.com/polymer/ShadowDOM
   summary: "Shadow DOM is designed to provide encapsulation by hiding DOM subtrees under shadow
 roots. It provides a method of establishing and maintaining functional boundaries
 between DOM trees and how these trees interact with each other within a document,
@@ -23,7 +23,7 @@ links:
 {% include spec-header.html %}
 
 {% comment %}
-{% include_external ../toolkit/platform/ShadowDOM/README.md  %}
+{% include_external polymer/platform/ShadowDOM/README.md  %}
 {% endcomment %}
 
 {% include_external platform/shadow-dom-temp-README.md %}
