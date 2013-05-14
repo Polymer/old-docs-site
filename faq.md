@@ -15,11 +15,6 @@ title: FAQ
 
 See our [Browser Compatibility](/compatibility.html) page for more information.
 
-#### What's up with the name {{site.project_title}}?
-
-It's just the first thing we came up with. We're not necessarily huge fans of it,
-and it will likely change at some point in the future.
-
 ## Web Components
 
 #### How do I package a bunch of custom elements together?
