@@ -5,20 +5,20 @@ title: Getting the Code
 
 ## Bring on the code!
 
-You can recursively clone and initialize all of toolkit's submodules with a single git command.
+You can recursively clone and initialize all of {{site.project_title}}'s submodules with a single git command.
 
 **To get the code, run:**
 
-    git clone git://github.com/polymer-project/toolkit.git --recursive
+    git clone git://github.com/polymer-project/polymer.git --recursive
 
-This creates a `toolkit/` folder with the following top-level files and folders:
+This creates a `polymer/` folder with the following top-level files and folders:
 
 - **platform/** — Submodule which contains the platform shims and polyfills.
 - **test/** — Test cases.
-- **toolkit.js** — The [Toolkit kernel](toolkit-kernel-explainer.html)
+- **polymer.js** — The [{{site.project_title}} kernel](polymer.html)
 
 You will also want the samples in `tookit-ui`. To check this repo, run:
-alongside your `toolkit` checkout:
+alongside your `polymer` checkout:
 
     git clone git://github.com/polymer-project/toolkit-ui.git --recursive
 
@@ -29,7 +29,7 @@ More on repository structure is below.
 To check that your development environment is ready, start a local web
 server and run one of the included sample projects:
 
-1. **Start a local web server** in the folder where you have `toolkit/` and `toolkit-ui` checked out.
+1. **Start a local web server** in the folder where you have `polymer/` and `toolkit-ui` checked out.
 2. In your browser, navigate to
     [http://localhost/toolkit-ui/workbench/menu.html](http://localhost/toolkit-ui/workbench/menu.html), or whichever port you started the server on. You should see a menu of items, as shown below.
 
@@ -50,7 +50,7 @@ from the the repository's folder:
 ## Repository structure
 
 The entirety of the {{site.project_title}} is composed of a number of Git
-repositories. Most are included as submodules in the main `toolkit` repository.
+repositories. Most are included as submodules in the main `polymer` repository.
 However, understanding the various pieces will help you navigate the codebase.
 
 We have factored our repositories into atomic chunks, and then created
@@ -65,7 +65,7 @@ integration repositories to bring them together again. For example, the followin
 Other repositories aggregate these individual repositories (as submodules) into useful combinations:
 
 * `platform`
-* `toolkit`
+* `polymer`
 * `toolkit-ui`
 
 ### Polyfill repositories
@@ -84,18 +84,18 @@ The [`platform`](https://github.com/polymer-project/platform) repository referen
 
 See [Tooling Strategy](tooling-strategy.html) for information.
 
-### /toolkit repository
+### /polymer repository
 
-[github.com/polymer-project/toolkit](https://github.com/polymer-project/toolkit)
+[github.com/polymer-project/polymer](https://github.com/polymer-project/polymer)
 
-The [`toolkit`](https://github.com/polymer-project/toolkit) repository contains the guts
+The [`polymer`](https://github.com/polymer-project/polymer) repository contains the guts
 of the project. It pulls in the [`platform`](https://github.com/polymer-project/platform)
 polyfill repo as a submodule, contains tools, tests, and hosts the
-[Toolkit kernel](toolkit-kernel-explainer.html).
+[{{site.project_title}} kernel](polymer.html).
 
 If you want to see the development activity, checkout the _master_ branch directly:
 
-    git clone -b master https://github.com/polymer-project/toolkit.git --recursive
+    git clone -b master https://github.com/polymer-project/polymer.git --recursive
 
 <p class="alert">
 <b>Remember</b>: If you don't specify <em>master</em>, you'll get the <em>stable</em> branch by default.
@@ -107,8 +107,8 @@ See <a href="/branching-strategy.html">Branching Workflow</a> for more info.
 [github.com/polymer-project/toolkit-ui](https://github.com/polymer-project/toolkit-ui)
 
 The [`toolkit-ui`](https://github.com/polymer-project/toolkit-ui) repository contains examples of
-the types of things you can do when writing a [Toolkit components](/toolkit-kernel-explainer.html).
+the types of things you can do when writing a [{{site.project_title}} element](/polymer.html).
 
 - **elements/** — `g-*` custom element definitions.
-- **workbench/** — demos of using the Toolkit components in `elements/`.
+- **workbench/** — demos of the {{site.project_title}}-style elements found in `elements/`.
 

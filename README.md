@@ -26,8 +26,8 @@ Once your changes look good, `git commit` them and push.
 
 **Note**: only project owners can publish the documentation.
 
-Make sure your `docs/toolkit` submodule is up to date
-(this should only be necessary when `toolkit` merges the *master* -> *stable* branch):
+Make sure your `docs/polymer` submodule is up to date
+(this should only be necessary when `polymer` merges the *master* -> *stable* branch):
 
     git submodule update --recursive
 

@@ -13,11 +13,6 @@ safe: false
 
 exclude: ["node_modules", "README.md", "Gruntfile.js", "package.json"]
 
-# Be sure to checkout the toolkitchen.github.com repo.
-# This is where the generated docs will be output.
-#destination: ../toolkitchen.github.com
-
 # Site globals used throughout docs.
 load_platform: true
 project_title: Polymer
-publish_dir: ../toolkitchen.github.com

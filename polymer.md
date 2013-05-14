@@ -1,15 +1,15 @@
 ---
 layout: default
-title: Toolkit kernel
+title: Polymer kernel
 ---
 
 {% comment %}
 {% include outofdate.html %}
 {% endcomment %}
 
-The Toolkit _kernel_ provides a thin layer of code that expresses the Toolkit
+The {{site.project_title}} _kernel_ provides a thin layer of code that expresses {{site.project_title}}'s
 opinion, and provides the sugar that all components use. The kernel code is
-provided by a file named `toolkit.js`.
+provided by a file named `polymer.js`.
 
 Complete working examples of the concepts on this page are in [/toolkit-ui](https://github.com/polymer-project/toolkit-ui).
 
@@ -26,7 +26,7 @@ A web component declaration looks like the following:
       </script>
     </element>
 
-To have this component add the `Toolkit.register` lifecycle initializer to
+To have this component add the `{{site.project_title}}.register` lifecycle initializer to
 the component's `<script>` block, as shown below:
 
     <element name="tag-name">
@@ -34,29 +34,29 @@ the component's `<script>` block, as shown below:
         <!-- shadow DOM here -->
       </template>
       <script>
-        Toolkit.register(this);
+        {{site.project_title}}.register(this);
       </script>
     </element>
 
 Note the following:
 
-- The `Toolkit.register` initializer is all that is required to  prepare this
-component to use Toolkit [conventions and features](#features). 
+- The `{{site.project_title}}.register` initializer prepares the
+component to use {{site.project_title}}'s [conventions and features](#features). 
 - The "name" attribute specifies the name of the custom `<element>` and
 determines the name of the tag when you instantiate the component in markup.
 For example, `<tag-name>` in this example. The name should be a "-" separated string.
 
-### Component initialization
+### Element initialization
 
-The first argument to `Toolkit.register` is a reference to the `<element>` element. Since scripts
+The first argument to `{{site.project_title}}.register` is a reference to the `<element>` element. Since scripts
 within an element tag run in the context of the element, the value of this 
 argument is simply 'this'.
 
-You can supply a second object argument to `Toolkit.register` to define the object
+You can supply a second object argument to `{{site.project_title}}.register` to define the object
 prototype. In the following example the component initializer defines a property
 `message` and a method `ready`. 
 
-    Toolkit.register(this, {
+    {{site.project_title}}.register(this, {
       message: "Hello!",
       ready: function() {
         // component is ready now, we can do stuff
@@ -65,7 +65,7 @@ prototype. In the following example the component initializer defines a property
 
 A component's `ready` method, if it exists, is called when the component is ready for it to be used.
 
-## Toolkit Features
+## {{site.project_title}} Features {#features}
 
 ### Publishing properties
 
@@ -79,7 +79,7 @@ A property declared in the `attributes` attribute is initially set to `null`. Yo
         Hello! My name is <span style="color:{{"{{nameColor"}}}}">{{"{{myName"}}}}</span>
       </template>
       <script>
-        Toolkit.register(this, {
+        {{site.project_title}}.register(this, {
           nameColor: "orange"
         });
       </script>
@@ -89,7 +89,7 @@ In this case, `name-tag` declares two attributes (`myName` and `nameColor`). Not
 
 #### Binding and custom attributes
 
-Toolkit makes it possible to bind references between components via attributes. Generally, attributes are only string-valued, so the binding engine interprets reference bindings specially (in particular, interrogating an attribute for a bound reference property will just return the binding expression (the double-mustache).
+{{site.project_title}} makes it possible to bind references between components via attributes. Generally, attributes are only string-valued, so the binding engine interprets reference bindings specially (in particular, interrogating an attribute for a bound reference property will just return the binding expression (the double-mustache).
 
 Let's modify our `name-tag` to take a record instead of individual properties.
 
@@ -98,7 +98,7 @@ Let's modify our `name-tag` to take a record instead of individual properties.
         Hello! My name is <span style="color:{{"{{person.nameColor"}}}}">{{"{{person.name"}}}}</span>
       </template>
       <script>
-        Toolkit.register(this, {
+        {{site.project_title}}.register(this, {
           person: {
             name: "Scott",
             nameColor: "orange"
@@ -114,7 +114,7 @@ Now, imagine we make a new component called `<visitor-creds>` that uses `name-ta
         <name-tag person="{{"{{person"}}}}"></name-tag>
       </template>
       <script>
-        Toolkit.register(this, {
+        {{site.project_title}}.register(this, {
           person: {
             name: "Scott",
             nameColor: "orange"
@@ -128,18 +128,17 @@ When I make an instance of `<visitor-creds>`, its `person` object is bound to th
 
 ### Declarative event mapping
 
-Toolkit supports declarative binding of events to methods in the component. The toolkit uses special <code>on-<em>event</em></code> syntax to trigger this binding behavior.
+{{site.project_title}} supports declarative binding of events to methods in the component.
+It uses special <code>on-<em>event</em></code> syntax to trigger this binding behavior.
 
     <element name="g-cool" on-keypress="keypress">
       <template>
         <button on-click="buttonClick"></button>
       </template>
       <script>
-        Toolkit.register(this, {
-          keypress: function(event) {
-          },
-          buttonClick: function(event) {
-          }
+        {{site.project_title}}.register(this, {
+          keypress: function(event) { ...},
+          buttonClick: function(event) { ... }
         });
       </script>
     </element>
@@ -152,19 +151,19 @@ Some things to notice:
 * The event handler is passed the following arguments:
   * `inEvent` is the [standard event object](http://www.w3.org/TR/DOM-Level-3-Events/#interface-Event).
   * `inDetail`: A convenience form of `inEvent.detail`.
-  * `inSender`: A reference to the node that declared the handler. This is often different from `inEvent.target` (the lowest node that received the event) and `inEvent.currentTarget` (the component processing the event), so the Toolkit provides it directly.
+  * `inSender`: A reference to the node that declared the handler. This is often different from `inEvent.target` (the lowest node that received the event) and `inEvent.currentTarget` (the component processing the event), so  {{site.project_title}} provides it directly.
 
 ## Advanced sugaring
 
-In addition to the above features, which are focused around making the core functionality of components simple and easy to use, the toolkit provides syntactical sugar that makes more advanced component features easy to create.
+In addition to the above features, which are focused around making the core functionality of components simple and easy to use, {{site.project_title}} provides syntactical sugar that makes more advanced component features easy to create.
 
 ### Change watchers
 
-All properties on Toolkit elements can be watched for changes by implementing a <code><em>propertyName</em>Changed</code> handler. When the value of a watched property changes, the appropriate change handler is automatically invoked. 
+All properties on {{site.project_title}} elements can be watched for changes by implementing a <code><em>propertyName</em>Changed</code> handler. When the value of a watched property changes, the appropriate change handler is automatically invoked. 
 
     <element name="g-cool" attributes="better best">
       <script>
-        Toolkit.register(this, {
+        {{site.project_title}}.register(this, {
           plain: '',
           best: ''
           betterChanged: function(inOldValue) {
@@ -179,7 +178,7 @@ In this example, there are two watched properties, `better` and `best`. The `bet
 
 ### Automatic node finding
 
-Another useful feature of Toolkit is node reference marshalling. Every node in a component's shadow DOM that is tagged with an `id` attribute is automatically referenced in components `this.$` hash. 
+Another useful feature of {{site.project_title}} is node reference marshalling. Every node in a component's shadow DOM that is tagged with an `id` attribute is automatically referenced in components `this.$` hash. 
 
 For example, the following defines a component whose template contains an `<input>` element whose `id` attribute is `nameInput`. The component can refer to the that element with the expression `this.$.nameInput`.
 
@@ -188,7 +187,7 @@ For example, the following defines a component whose template contains an `<inpu
         <input type="text" id="nameInput">
       </template>
       <script>
-        Toolkit.register(this, {
+        {{site.project_title}}.register(this, {
           logNameValue: function() {
             console.log(this.$.nameInput.value);
           }
@@ -198,11 +197,11 @@ For example, the following defines a component whose template contains an `<inpu
 
 ### Calling inherited methods with this.super
 
-A Toolkit component can extend a parent component by calling the parent's inherited methods. 
+A {{site.project_title}} component can extend a parent component by calling the parent's inherited methods. 
 
     <element name="g-cooler" extends="g-cool">
       <script>
-        Toolkit.register({
+        {{site.project_title}}.register({
           moarBetter: function() {
             this.super();
             this.better += 'even more.';

@@ -39,7 +39,7 @@ Here's a bare bones example:
     <html>
       <head>
         <!-- 1. Shim missing platform features -->
-        <script src="toolkit/platform/platform.js"></script>
+        <script src="polymer/platform/platform.js"></script>
         <!-- 2. Load a component -->
         <link rel="import" href="toolkit-ui/elements/g-menu-item.html">
       </head>
@@ -57,8 +57,8 @@ natively in browsers.</p>
 ## Components
 
 [Custom Elements](/platform/custom-elements.html) are the core building blocks of
-Toolkit-based applications. You create applications by assembling custom elements
-together, either ones provided by the Toolkit or that you create yourself.
+{{site.project_title}}-based applications. You create applications by assembling custom elements
+together, either ones provided by {{site.project_title}} or that you create yourself.
 
 ### Creating a basic component
 
@@ -68,28 +68,28 @@ new technologies.
 
 {% include samples/basic-element.html %}
 
-### Creating a Toolkit component
+### Creating a {{site.project_title}} element
 
-Toolkit provides extra goodies for creating custom elements. We call these souped-up
-custom elements "Toolkit components". To create Toolkit component, follow these steps:
+{{site.project_title}} provides extra goodies for creating custom elements. We call these souped-up
+custom elements "{{site.project_title}} elements". To create one, follow these steps:
 
-1. Load the [Toolkit kernel](/toolkit-kernel-explainer.html) (`toolkit/toolkit.js` or `toolkit/toolkit.min.js`).
+1. Load the [{{site.project_title}} kernel](/polymer.html) (`polymer/polymer.js` or `polymer/polymer.min.js`).
 
-  <p class="alert"><b>Note</b>: <code>toolkit.js</code> loads <code>platform.js</code> under the hood.
-You only need to include <code>toolkit.js</code> when writing a Toolkit component.</p>
-- In your custom element, add a `<script>` element that calls the `Toolkit.register()` initializer. This endows the custom element with Toolkit features, such as data binding and event mapping.
+  <p class="alert"><b>Note</b>: <code>polymer.js</code> loads <code>platform.js</code> under the hood.
+You only need to include <code>polymer.js</code> when writing a {{site.project_title}} element.</p>
+- In your custom element, add a `<script>` element that calls the `{{site.project_title}}.register()` initializer. This endows the custom element with {{site.project_title}} features, such as data binding and event mapping.
 
-In the following sample we convert our basic custom element into a Toolkit component named `tk-element`.
+In the following sample we convert our basic custom element into a {{site.project_title}} element named `tk-element`.
 
 {% include samples/tk-element.html %}
 
-`Toolkit.register()` takes the element it needs to register as its first argument.
+`{{site.project_title}}.register()` takes the element it needs to register as its first argument.
 In the context of `<element>`, `this` refers to the element.
 
 {% comment %}
 ### Add properties to our component
 
-The `Toolkit.register()` takes an object as a parameter whose members define the properties and methods that belong to our component.
+The `{{site.project_title}}.register()` takes an object as a parameter whose members define the properties and methods that belong to our component.
 
 {% include samples/tk-element-property.html %}
 
@@ -98,7 +98,7 @@ Now that we've added a private variable, let's add data binding to display its v
 
 ## Declarative data binding
 
-You can bind properties in your component to  Toolkit supports declarative data binding using the "double-mustache" syntax (`{%raw%}{{}}{%endraw%}`) from [Model Driven Views](/platform/mdv.html). The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced between the brackets.
+You can bind properties in your component using declarative data binding and the "double-mustache" syntax (`{%raw%}{{}}{%endraw%}`) from [Model Driven Views](/platform/mdv.html). The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced between the brackets.
 
 {% include samples/tk-element-databinding.html %}
 
@@ -152,6 +152,6 @@ A element's published properties can be set using attributes on its custom eleme
 
 ### Automatic node finding
 
-Shadow DOM is a self-contained document-like subtree; id's in that subtree do not interact with id's in other trees. Each Toolkit element generates a map of id's to node references in the element's template. This map is accessible as `$` on the element. 
+Shadow DOM is a self-contained document-like subtree; id's in that subtree do not interact with id's in other trees. Each {{site.project_title}} element generates a map of id's to node references in the element's template. This map is accessible as `$` on the element. 
 
 {% include samples/tk-node-finding.html %}
