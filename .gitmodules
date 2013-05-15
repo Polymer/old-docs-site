@@ -1,0 +1,6 @@
+[submodule "toolkit-ui"]
+	path = toolkit-ui
+	url = git://github.com/Polymer/toolkit-ui.git
+[submodule "polymer"]
+	path = polymer
+	url = git://github.com/Polymer/polymer.git
