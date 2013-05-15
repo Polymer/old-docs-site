@@ -56,7 +56,7 @@ The architectural stack looks like this:
 
 <figure id="architecture-diagram">
   <!-- <img src="/images/architecture-diagram.svg" alt="Architecture Diagram" titld="Architecture Diagram"> -->
-  <iframe src="/images/architecture-diagram.svg?{{'now' | date: "%Y%m%d"}}" seamless></iframe>
+  <iframe src="/images/architecture-diagram.svg?{{'now' | date: "%Y%m%d"}}"></iframe>
   <figcaption>Architectural Diagram</figcaption>
 </figure>
 
