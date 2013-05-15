@@ -9,7 +9,7 @@ You can recursively clone and initialize all of {{site.project_title}}'s submodu
 
 **To get the code, run:**
 
-    git clone git://github.com/polymer/polymer.git --recursive
+    git clone git://github.com/Polymer/polymer.git --recursive
 
 This creates a `polymer/` folder with the following top-level files and folders:
 
@@ -20,7 +20,7 @@ This creates a `polymer/` folder with the following top-level files and folders:
 You will also want the samples in `tookit-ui`. To check this repo, run:
 alongside your `polymer` checkout:
 
-    git clone git://github.com/polymer/toolkit-ui.git --recursive
+    git clone git://github.com/Polymer/toolkit-ui.git --recursive
 
 More on repository structure is below.
 
