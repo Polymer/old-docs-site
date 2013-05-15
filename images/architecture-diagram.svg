@@ -1,114 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="612px" height="498px" viewBox="0 0 612 498" style="enable-background:new 0 0 612 498;" xml:space="preserve">
+<svg version="1.1" id="Toolkitchen_2_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" width="612px" height="498px" viewBox="0 0 612 498" style="enable-background:new 0 0 612 498;" xml:space="preserve">
 <style type="text/css">
 <![CDATA[
-	.st0{fill:#1B75BB;}
-	.st1{opacity:0.1;fill:#C8C6DF;stroke:#2B388F;stroke-miterlimit:10;}
-	.st2{fill:#C8C6DF;stroke:#2B388F;stroke-miterlimit:10;}
-	.st3{fill:#BE1E2D;}
-	.st4{opacity:0.1;fill:#CCE1D7;stroke:#006838;stroke-miterlimit:10;}
-	.st5{fill:#F6921E;}
-	.st6{opacity:0.2;fill:#FBBB77;}
-	.st7{fill:#CCE1D7;stroke:#006838;stroke-miterlimit:10;}
-	.st8{opacity:0.2;fill:#C8C6DF;}
-	.st9{fill:#929497;}
-	.st10{opacity:0.1;fill:#1B75BB;}
-	.st11{fill:#2B388F;}
-	.st12{opacity:0.2;fill:#CCE1D7;}
-	.st13{opacity:0.4;fill:#929497;stroke:#231F20;stroke-miterlimit:10;}
-	.st14{font-family:'ArialMT';}
-	.st15{opacity:0.1;fill:#929497;}
-	.st16{fill:#006838;}
-	.st17{fill:#DFA090;stroke:#BE1E2D;stroke-miterlimit:10;}
-	.st18{opacity:0.2;fill:#DFA090;}
-	.st19{fill:#BE1E2D;stroke:#BE1E2D;stroke-miterlimit:10;}
-	.st20{font-size:13.3543;}
-	.st21{fill:#FBBB77;stroke:#F6921E;stroke-miterlimit:10;}
+	.st0{opacity:0.1;fill:#0DA861;stroke:#03774B;stroke-miterlimit:10;}
+	.st1{fill:#0DA861;stroke:#03774B;stroke-miterlimit:10;}
+	.st2{opacity:0.4;fill:#E0E0E0;}
+	.st3{opacity:0.2;fill:#F44A3F;}
+	.st4{fill:#E0E0E0;stroke:#999999;stroke-miterlimit:10;}
+	.st5{fill:#2364D7;}
+	.st6{fill:#F4B400;}
+	.st7{fill:#F44A3F;stroke:#CD372D;stroke-miterlimit:10;}
+	.st8{opacity:0.2;fill:#FFD14D;}
+	.st9{fill:#FFD14D;stroke:#F4B400;stroke-miterlimit:10;}
+	.st10{fill:#999999;}
+	.st11{fill:#603813;}
+	.st12{fill:#CD372D;}
+	.st13{opacity:0.1;fill:#4387FD;stroke:#2364D7;stroke-miterlimit:10;}
+	.st14{fill:#4387FD;stroke:#2364D7;stroke-miterlimit:10;}
+	.st15{fill:#CD372D;stroke:#CD372D;stroke-miterlimit:10;}
+	.st16{font-family:'ArialMT';}
+	.st17{fill:#03774B;}
+	.st18{opacity:0.1;fill:#603813;}
+	.st19{opacity:0.2;fill:#0DA861;}
+	.st20{opacity:0.2;fill:#4387FD;}
+	.st21{font-size:13.3543;}
 ]]>
 </style>
-<polygon id="Native_Bedrock_1_" class="st13" points="535.238,422.446 475.145,422.446 475.145,437.469 415.05,437.469 
+<polygon id="Native_Bedrock_1_" class="st4" points="535.238,422.446 475.145,422.446 475.145,437.469 415.05,437.469 
 	415.05,452.494 354.956,452.494 354.956,467.517 294.861,467.517 294.861,437.469 234.767,437.469 234.767,407.422 174.672,407.422 
 	174.672,481.707 565.285,481.707 565.285,422.446 "/>
 <g id="Kernel">
-	<rect x="174.672" y="255.517" class="st21" width="300.472" height="31.717"/>
-	<text transform="matrix(1.0833 0 0 1 304.6201 275.5488)" class="st14 st20">toolkit.js</text>
+	<rect x="174.672" y="255.517" class="st9" width="300.472" height="31.717"/>
+	<text transform="matrix(1.0833 0 0 1 297.7891 275.5488)" class="st16 st21">polymer.js</text>
 </g>
 <g id="Applications">
 	<g>
-		<rect x="279.837" y="59.376" class="st1" width="75.119" height="60.095"/>
-		<rect x="174.672" y="44.353" class="st2" width="45.071" height="45.071"/>
-		<rect x="219.743" y="14.305" class="st1" width="60.094" height="75.119"/>
-		<rect x="354.956" y="89.424" class="st1" width="30.047" height="30.047"/>
-		<rect x="385.003" y="59.376" class="st1" width="30.047" height="60.095"/>
-		<rect x="475.145" y="164.542" class="st1" width="30.047" height="45.071"/>
-		<rect x="415.05" y="104.447" class="st1" width="60.095" height="105.166"/>
-		<rect x="505.191" y="194.589" class="st1" width="15.024" height="15.024"/>
-		<rect x="520.216" y="149.518" class="st1" width="15.022" height="15.023"/>
-		<rect x="535.238" y="134.494" class="st1" width="30.047" height="30.047"/>
+		<rect x="279.837" y="59.376" class="st13" width="75.119" height="60.095"/>
+		<rect x="174.672" y="44.353" class="st14" width="45.071" height="45.071"/>
+		<rect x="219.743" y="14.305" class="st13" width="60.094" height="75.119"/>
+		<rect x="354.956" y="89.424" class="st13" width="30.381" height="30.047"/>
+		<rect x="385.337" y="59.376" class="st13" width="29.713" height="80.291"/>
+		<rect x="475.145" y="164.542" class="st13" width="30.047" height="45.071"/>
+		<rect x="415.05" y="104.447" class="st13" width="60.095" height="105.166"/>
+		<rect x="505.191" y="194.589" class="st13" width="15.024" height="15.024"/>
+		<rect x="520.216" y="149.518" class="st13" width="15.022" height="15.023"/>
+		<rect x="535.238" y="134.494" class="st13" width="30.047" height="30.047"/>
 	</g>
-	<text transform="matrix(1 0 0 1 183.3838 72.7305)" class="st14 st20">Pica</text>
+	<text transform="matrix(1 0 0 1 183.3838 72.7305)" class="st16 st21">Pica</text>
 </g>
 <g id="Components">
 	<g>
-		<rect x="324.908" y="119.471" class="st4" width="90.142" height="135.212"/>
-		<rect x="174.672" y="89.424" class="st7" width="150.236" height="166.093"/>
-		<rect x="520.216" y="164.542" class="st4" width="45.069" height="122.692"/>
-		<rect x="415.05" y="209.613" class="st4" width="60.095" height="45.07"/>
-		<rect x="475.145" y="209.613" class="st4" width="45.071" height="77.621"/>
+		<rect x="324.908" y="119.471" class="st0" width="60.5" height="75.118"/>
+		<rect x="385.408" y="139.667" class="st0" width="29.642" height="54.922"/>
+		<rect x="174.672" y="194.589" class="st1" width="240.236" height="60.928"/>
+		<rect x="174.672" y="89.424" class="st1" width="150.236" height="105.165"/>
+		<rect x="520.216" y="164.542" class="st0" width="45.069" height="122.692"/>
+		<rect x="415.05" y="209.613" class="st0" width="60.095" height="45.07"/>
+		<rect x="475.145" y="209.613" class="st0" width="45.071" height="77.621"/>
 	</g>
-	<text transform="matrix(1 0 0 1 215.6455 179.5635)"><tspan x="0" y="0" class="st14 st20">Toolkitchen</tspan><tspan x="-3.713" y="16.025" class="st14 st20">Components</tspan></text>
+	<text transform="matrix(1 0 0 1 273.3018 221.8877)"><tspan x="0" y="0" class="st16 st21">Polymer</tspan><tspan x="-3.345" y="16.025" class="st16 st21">Elements</tspan></text>
+	<text transform="matrix(1 0 0 1 216.7705 140.8965)"><tspan x="0" y="0" class="st16 st21">Polymer UI</tspan><tspan x="5.187" y="16.025" class="st16 st21">Elements</tspan></text>
 </g>
 <g id="Foundation">
 	<g>
-		<rect x="294.861" y="302.258" class="st17" width="60.095" height="165.259"/>
-		<rect x="354.956" y="302.258" class="st17" width="60.094" height="150.236"/>
-		<rect x="415.05" y="302.258" class="st17" width="60.095" height="135.211"/>
-		<rect x="475.145" y="302.258" class="st17" width="60.094" height="120.188"/>
-		<rect x="234.767" y="302.258" class="st17" width="60.094" height="135.211"/>
-		<rect x="535.238" y="302.258" class="st17" width="60.095" height="120.188"/>
-		<rect x="174.672" y="302.258" class="st17" width="60.094" height="105.164"/>
+		<rect x="294.861" y="302.258" class="st7" width="60.095" height="165.259"/>
+		<rect x="354.956" y="302.258" class="st7" width="60.094" height="150.236"/>
+		<rect x="415.05" y="302.258" class="st7" width="60.095" height="135.211"/>
+		<rect x="475.145" y="302.258" class="st7" width="60.094" height="120.188"/>
+		<rect x="234.767" y="302.258" class="st7" width="60.094" height="135.211"/>
+		<rect x="535.238" y="302.258" class="st7" width="60.095" height="120.188"/>
+		<rect x="174.672" y="302.258" class="st7" width="60.094" height="105.164"/>
 	</g>
 	<g>
-		<text transform="matrix(0 -1 1 0 508.5303 381.3613)" class="st14 st20">MDV</text>
-		<text transform="matrix(0 -1 1 0 203.0498 382.3037)"><tspan x="0" y="0" class="st14 st20">Mutation  </tspan><tspan x="-3.332" y="16.025" class="st14 st20">Observers</tspan></text>
-		<text transform="matrix(0 -1 1 0 568.625 409.2998)" class="st14 st20">Web Animations</text>
-		<text transform="matrix(0 -1 1 0 269.8208 413.291)" class="st14 st20">Pointer Events</text>
-		<text transform="matrix(0 -1 1 0 330.75 418.9375)" class="st14 st20">Shadow DOM</text>
-		<text transform="matrix(0 -1 1 0 450.1045 412.1592)" class="st14 st20">HTML Imports</text>
-		<text transform="matrix(0 -1 1 0 389.1758 430.0684)" class="st14 st20">Custom Elements</text>
+		<text transform="matrix(0 -1 1 0 508.5303 381.3613)" class="st16 st21">MDV</text>
+		<text transform="matrix(0 -1 1 0 203.0498 382.3037)"><tspan x="0" y="0" class="st16 st21">Mutation  </tspan><tspan x="-3.332" y="16.025" class="st16 st21">Observers</tspan></text>
+		<text transform="matrix(0 -1 1 0 568.625 409.2998)" class="st16 st21">Web Animations</text>
+		<text transform="matrix(0 -1 1 0 269.8208 413.291)" class="st16 st21">Pointer Events</text>
+		<text transform="matrix(0 -1 1 0 330.75 418.9375)" class="st16 st21">Shadow DOM</text>
+		<text transform="matrix(0 -1 1 0 450.1045 412.1592)" class="st16 st21">HTML Imports</text>
+		<text transform="matrix(0 -1 1 0 389.1758 430.0684)" class="st16 st21">Custom Elements</text>
 	</g>
-	<rect x="174.672" y="287.233" class="st19" width="420.661" height="17.267"/>
-	<text transform="matrix(1.0833 0 0 1 351.2207 300.3359)" class="st14 st20">platform.js</text>
+	<rect x="174.672" y="287.233" class="st15" width="420.661" height="17.267"/>
+	<text transform="matrix(1.0833 0 0 1 351.2207 300.3359)" class="st16 st21">platform.js</text>
 </g>
 <g id="Legend">
 	<g id="Native">
-		<rect x="66.726" y="407.422" class="st15" width="107.946" height="74.285"/>
-		<rect id="Extra_Block_1_" x="23.88" y="407.422" class="st15" width="42.846" height="74.285"/>
-		<text transform="matrix(1 0 0 1 99.9346 449.9902)" class="st9 st14 st20">Native</text>
+		<rect x="66.726" y="407.422" class="st2" width="107.946" height="74.285"/>
+		<rect id="Extra_Block_1_" x="23.88" y="407.422" class="st2" width="42.846" height="74.285"/>
+		<text transform="matrix(1 0 0 1 99.9346 449.9902)" class="st10 st16 st21">Native</text>
 	</g>
 	<g id="Foundation_1_">
-		<rect x="66.726" y="287.233" class="st18" width="107.946" height="120.188"/>
-		<text transform="matrix(1 0 0 1 85.4487 354.8389)" class="st3 st14 st20">Foundation</text>
+		<rect x="66.726" y="287.233" class="st3" width="107.946" height="120.188"/>
+		<text transform="matrix(1 0 0 1 85.4487 354.8389)" class="st12 st16 st21">Foundation</text>
 	</g>
 	<g id="Kernel_1_">
-		<rect x="66.726" y="255.517" class="st6" width="107.946" height="31.717"/>
-		<text transform="matrix(1 0 0 1 99.5591 275.5479)" class="st5 st14 st20">Kernel</text>
+		<rect x="66.726" y="255.517" class="st8" width="107.946" height="31.717"/>
+		<text transform="matrix(1 0 0 1 101.5591 275.5479)" class="st6 st16 st21">Core</text>
 	</g>
 	<g id="Components_1_">
-		<rect x="66.726" y="89.424" class="st12" width="107.946" height="166.093"/>
-		<text transform="matrix(1 0 0 1 81.0015 179.5645)" class="st16 st14 st20">Components</text>
+		<rect x="66.726" y="89.424" class="st19" width="107.946" height="166.093"/>
+		<text transform="matrix(1 0 0 1 92.0015 179.5645)" class="st17 st16 st21">Elements</text>
 	</g>
 	<g id="Applications_1_">
-		<rect x="66.726" y="44.353" class="st8" width="107.946" height="45.071"/>
-		<rect id="Extra_Block" x="23.88" y="44.353" class="st8" width="42.846" height="45.071"/>
-		<text transform="matrix(1 0 0 1 82.8662 72.7295)" class="st11 st14 st20">Applications</text>
+		<rect x="66.726" y="44.353" class="st20" width="107.946" height="45.071"/>
+		<rect id="Extra_Block" x="23.88" y="44.353" class="st20" width="42.846" height="45.071"/>
+		<text transform="matrix(1 0 0 1 82.8662 72.7295)" class="st5 st16 st21">Applications</text>
 	</g>
 	<g id="Toolkitchen">
-		<rect x="23.88" y="89.424" class="st10" width="42.846" height="317.998"/>
-		<text transform="matrix(0 -1 1 0 47.6147 294.7461)" class="st0 st14 st20">Toolkitchen</text>
+		<rect x="23.88" y="89.424" class="st18" width="42.846" height="317.998"/>
+		<text transform="matrix(0 -1 1 0 48.6147 283.2334)" class="st11 st16 st21">Polymer</text>
 	</g>
 </g>
 </svg>
