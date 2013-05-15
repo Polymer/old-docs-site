@@ -15,8 +15,9 @@
 <link href="/css/site.css?{{'now' | date: "%Y%m%d"}}" rel="stylesheet" type="text/css">
 
 {% if site.load_platform %}
+<!--   
   <script src="/polymer/polymer.min.js?{{'now' | date: "%Y%m%d"}}"></script>
-
+ -->
   {% for item in page.components %}
     <link rel="import" src="{{ item }}">
   {% endfor %}

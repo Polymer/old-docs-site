@@ -20,6 +20,8 @@ components:
 #- samples/components/tk-binding-to-elements.html
 ---
 
+<script src="/polymer/polymer.min.js?{{'now' | date: "%Y%m%d"}}"></script>
+
 {% comment %}
 {% include outofdate.html %}
 {% endcomment %}

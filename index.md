@@ -31,15 +31,15 @@ and designed to leverage the evolving web platform on modern browsers.
 2. **Fire up a web server** in your app's directory.
 3. Include `polymer.js` in your main page:
 
-        <script src="polymer/polymer.js"></script>
+        <script src="Polymer/polymer.js"></script>
 
 4. Read the [Getting Started](/getting-started.html) guide.
 5. Learn how to soup-up your web components using the [Polymer kernel](/polymer.html).
-6. Play with the [toolkit-ui examples](https://github.com/polymer/toolkit-ui) (*also must be run from a web server)*.
+6. Play with the [toolkit-ui examples](https://github.com/Polymer/toolkit-ui) (*also must be run from a web server)*.
 7. Join the [mailing list](/discuss.html)! Ask questions and give feedback.
 
 <p style="float:left;margin-left:10px;">
-  <img class="codescreenshot" src="http://instacod.es/file/72206" alt="Custom element markup" title="Custom element markup">
+  <img class="codescreenshot" src="images/instacod.png" alt="Custom element markup" title="Custom element markup">
 </p>
 
 <h2 style="clear:both;">What is {{site.project_title}}?</h2>
