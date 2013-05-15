@@ -13,7 +13,6 @@ title: FAQ
 
 {{site.project_title}} is still in its very early days, but we're excited about its potential. It's one of the *first frameworks that doesn't fight the web platform* with oodles of JavaScript, but rather embraces it. It targets the evolving web platform by using a handful of independent polyfills for emerging web standards like Custom Elements and Shadow DOM. Over time as more browsers implement these emerging standards, the foundation layer will diminish and ultimately disappear.
 
-{%comment%}
 #### Where are all of the shiny magic components that are going to revolutionize the entire internet and solve all of my problems?
 
 At this point they're basically just a glimmer in our collective eye. But we've built a solid technical foundation and are working feverishly to make our ambitious vision a reality, so watch this space.
@@ -38,7 +37,6 @@ That's fine. We've designed {{site.project_title}}  to be cleanly layered so you
 Nope, Sandbox is just a simple demo app that makes it easy to play around with
 components and get a feel for {{site.project_title}}. It's not intended to be
 any kind of production tool.
-{%endcomment%}
 
 #### Which browsers does {{site.project_title}} support?
 
