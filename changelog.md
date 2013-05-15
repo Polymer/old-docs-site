@@ -14,7 +14,7 @@ Project renamed to <https://github.com/polymer>
 
 ## 2013-05-09 {#2013-05-09}
 
-### Toolkit
+### {{site.project_title}} 
 
 See the [full list of changes](https://github.com/polymer/polymer/pull/125).
 
@@ -164,7 +164,7 @@ version of `platform.js`.
 
 ### Toolkit
 
-* Changed "polymer/src" folder name to "polymer/components". Update your source paths accordingly.
+* Changed "toolkit/src" folder name to "toolkit/components". Update your source paths accordingly.
 
 * Introduced `selectedClass` property to g-selector component. ([commit](https://github.com/polymer/polymer/commit/a1565b536ea05cddf7a5984c15017c2bc803d1e5))
 
