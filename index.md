@@ -42,7 +42,7 @@ and designed to leverage the evolving web platform on modern browsers.
   <img class="codescreenshot" src="http://instacod.es/file/72206" alt="Custom element markup" title="Custom element markup">
 </p>
 
-<h2 style="clear:both;">What is the {{site.project_title}}?</h2>
+<h2 style="clear:both;">What is {{site.project_title}}?</h2>
 
 {{site.project_title}} is comprised of two efforts:
 
@@ -64,7 +64,7 @@ The architectural stack looks like this:
 
 The overall aim of {{site.project_title}} is to manage the complexity of building web applications. Our principles are:
 
-**Everything is a component** — Encapsulation is the key to creating scalable, maintainable applications. All {{site.project_title}} resources are components, even ones that are non-visual. To construct an app, a developer creates new components, or uses ones the {{site.project_title}} provides, and assembles them together. Focusing on individual, composable building blocks allows developers to "think locally" about their application, reducing complexity. With this divide-and-conquer approach, applications can simultaneously be simple and arbitrarily complicated.
+**Everything is a component** — Encapsulation is the key to creating scalable, maintainable applications. All {{site.project_title}} resources are components, even ones that are non-visual. To construct an app, a developer creates new components, or uses ones {{site.project_title}} provides, and assembles them together. Focusing on individual, composable building blocks allows developers to "think locally" about their application, reducing complexity. With this divide-and-conquer approach, applications can simultaneously be simple and arbitrarily complicated.
 
 **Extreme pragmatism** — Developers should write the **minimum** amount of code possible to create their application. Anything repetitive should be re-factored into a component, handled by {{site.project_title}} itself, or added into the browser platform itself. {{site.project_title}} provides simple syntax without reducing features, and avoids boilerplate wherever possible.
 
