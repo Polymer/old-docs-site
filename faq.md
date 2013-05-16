@@ -11,7 +11,7 @@ title: FAQ
 
 #### Why should I care about this project?
 
-{{site.project_title}} is still in its very early days, but we're excited about its potential. It's one of the *first frameworks that doesn't fight the web platform* with oodles of JavaScript, but rather embraces it. It targets the evolving web platform by using a handful of independent polyfills for emerging web standards like Custom Elements and Shadow DOM. Over time as more browsers implement these emerging standards, the foundation layer will diminish and ultimately disappear.
+{{site.project_title}} is still in its very early days, but we're excited about its potential. It *doesn't try to fight the web platform* with oodles of JavaScript, but rather embraces it. It targets the evolving web platform by using a handful of independent polyfills for emerging web standards like Custom Elements and Shadow DOM. Over time as more browsers implement these emerging standards, the foundation layer will diminish and ultimately disappear.
 
 #### Where are all of the shiny magic components that are going to revolutionize the entire internet and solve all of my problems?
 
