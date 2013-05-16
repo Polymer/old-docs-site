@@ -24,7 +24,7 @@ and designed to leverage the evolving web platform on modern browsers.
 
 ## Quick start
 
-1. Clone the project to your app's root older. See [Get the code](/getting-the-code.html).
+1. Clone the project to your app's root folder. See [Get the code](/getting-the-code.html).
 
         git clone git://github.com/Polymer/polymer.git --recursive
 
