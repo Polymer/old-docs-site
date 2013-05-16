@@ -116,10 +116,10 @@ Not yet, but we think that's a great idea.
 
 Unfortunately, this is a limitation of the HTML Import spec and the polyfill follows suit. The polyfill uses XHR to pull down resources defined in an `<element>` definition. External resources will fail if they are not [CORS-enabled](http://www.html5rocks.com/tutorials/cors/).
 
-To link in external stylesheets, you can use `@import` in a `<style>` with `toolkit-scope="global"`:
+To link in external stylesheets, you can use `@import` in a `<style>` with `polymer-scope="global"`:
 
     <element name="x-blink">
-    <style toolkit-scope="global">
+    <style polymer-scope="global">
       @import url(http://fonts.googleapis.com/css?family=Quicksand);
     </style>
     <template>...</template>
@@ -127,11 +127,11 @@ To link in external stylesheets, you can use `@import` in a `<style>` with `tool
 
 #### How can I use web fonts or CSS Animations in my custom element?
 
-According to the spec, certain @ at-rules (including CSS `@keyframe` and `@font-face`) [cannot be defined](http://lists.w3.org/Archives/Public/public-whatwg-archive/2013Jan/0251.html) in `<style scoped>`. Therefore, you need to define these values outside of ShadowDOM (e.g. outside a `<template>`) using `<style toolkit-scope="global">`. After that, you can use the animation/font inside your Shadow DOM:
+According to the spec, certain @ at-rules (including CSS `@keyframe` and `@font-face`) [cannot be defined](http://lists.w3.org/Archives/Public/public-whatwg-archive/2013Jan/0251.html) in `<style scoped>`. Therefore, you need to define these values outside of ShadowDOM (e.g. outside a `<template>`) using `<style polymer-scope="global">`. After that, you can use the animation/font inside your Shadow DOM:
 
     <element name="x-blink">
       <!-- CSS Animation defs need to be outside of scoped styles -->
-      <style toolkit-scope="global">
+      <style polymer-scope="global">
         @import url(http://fonts.googleapis.com/css?family=Quicksand);
         @-webkit-keyframes blink {
           to { opacity: 0; }
