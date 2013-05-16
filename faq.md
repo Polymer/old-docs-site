@@ -11,7 +11,7 @@ title: FAQ
 
 #### Why should I care about this project?
 
-{{site.project_title}} is still in its very early days, but we're excited about its potential. Polymer, like some other frameworks before it, attempts to embrace the web platform as much as possible. It targets the evolving web platform by using a handful of independent polyfills for emerging web standards like Custom Elements and Shadow DOM. Over time as more browsers implement these emerging standards, the foundation layer will diminish and ultimately disappear.
+{{site.project_title}} is still in its very early days, but we're excited about its potential. Polymer, like some other frameworks before it, attempts to embrace HTML as much as possible. It targets the evolving web platform by using a handful of independent polyfills for emerging web standards like Custom Elements and Shadow DOM. Over time as more browsers implement these emerging standards, the foundation layer will diminish and ultimately disappear.
 
 #### Where are all of the shiny magic components that are going to revolutionize the entire internet and solve all of my problems?
 
