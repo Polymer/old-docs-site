@@ -29,22 +29,22 @@ module.exports = function(grunt) {
       }
     },
 
-    copy: {
-      main: {
-        files: [{
-          expand: true,
-          cwd: '_site/', // set base for src matches.
-          src: ['**'], // includes files and subdirs of cwd.
-          dest: '<%= jekyllConfig.publish_dir %>'
-        }]
-      }
-    }
+    // copy: {
+    //   main: {
+    //     files: [{
+    //       expand: true,
+    //       cwd: '_site/', // set base for src matches.
+    //       src: ['**'], // includes files and subdirs of cwd.
+    //       dest: '<%= jekyllConfig.publish_dir %>'
+    //     }]
+    //   }
+    // }
 
   });
 
   // Plugin and grunt tasks.
   grunt.loadNpmTasks('grunt-jekyll');
-  grunt.loadNpmTasks('grunt-contrib-copy');
+  //grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task. Run standard jekyll server.
   grunt.registerTask('default', ['jekyll:server']);
@@ -53,5 +53,5 @@ module.exports = function(grunt) {
   grunt.registerTask('docs', ['jekyll:prod']);
 
   // Task to build and copy docs over to publishing repo.
-  grunt.registerTask('publish', ['jekyll:prod', 'copy:main']);
+  //grunt.registerTask('publish', ['jekyll:prod', 'copy:main']);
 };
