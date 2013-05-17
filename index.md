@@ -26,7 +26,7 @@ and designed to leverage the evolving web platform on modern browsers.
 
 1. Clone the project to your app's root folder. See [Get the code](/getting-the-code.html).
 
-        git clone git://github.com/Polymer/polymer.git --recursive
+        git clone https://github.com/Polymer/polymer.git --recursive
 
 2. **Fire up a web server** in your app's directory.
 3. Include `polymer.js` in your main page:
