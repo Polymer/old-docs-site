@@ -7,12 +7,14 @@ We use Jekyll 1.0+ and [Grunt][grunt] to generate the documentation. You'll need
     sudo gem install jekyll
     npm install
 
+You'll also need the App Engine dev server to preview the docs locally. [Download the SDK](https://developers.google.com/appengine/downloads).
+
 ## Making edits and previewing changes
 
-This repo (`polymer/docs`) is where the documentation source files live. To make a change, follow this basic process:
+This repo (`polymer/docs`) is where the documentation source files live. To make a change:
 
-1. Checkout this repo (using `git clone git://github.com/polymer/docs.git --recursive`) and make desired changes.
-- To build the docs locally, run `grunt` or ``. This starts a web server at
+1. Checkout this repo (using `git clone git://github.com/polymer/docs.git --recursive`) and make your edits.
+1. To preview the docs, run `grunt`. This starts up jekyll and watches for changes as you make edits.
 [http://localhost:4000](http://localhost:4000) where you can preview your edits. This also watches and rebuilds on changes.
 
 The generated site is placed in a folder named `_site`. Alternatively, if you just want to
@@ -32,3 +34,6 @@ Make sure your `docs/polymer` submodule is up to date
     git submodule update --recursive
 
 TODO
+
+[jekyll]: http://jekyllrb.com/
+[grunt]: http://gruntjs.com/
