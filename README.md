@@ -14,13 +14,10 @@ You'll also need the App Engine dev server to preview the docs locally. [Downloa
 This repo (`polymer/docs`) is where the documentation source files live. To make a change:
 
 1. Checkout this repo (using `git clone git://github.com/polymer/docs.git --recursive`) and make your edits.
-1. To preview the docs, run `grunt`. This starts up jekyll and watches for changes as you make edits.
-[http://localhost:4000](http://localhost:4000) where you can preview your edits. This also watches and rebuilds on changes.
+1. To build the docs, run `grunt` in base of the docs diretory you checked out. This starts up jekyll and watches for changes as you make edits.
+1. Lastly, fire up the App Engine dev server in this folder to preview the docs.
 
-The generated site is placed in a folder named `_site`. Alternatively, if you just want to
-build the docs and not run a webserver, run:
-
-    grunt jekyll:server
+Jekyll generates the static site in a folder named `_site`. **Note**: If you're not running jekyll to rebuild the site, you won't see your changes in the dev server.
 
 Once your changes look good, `git commit` them and push.
 
@@ -33,7 +30,13 @@ Make sure your `docs/polymer` submodule is up to date
 
     git submodule update --recursive
 
-TODO
+Generate the docs using:
+
+    grunt jekyll:prod
+
+Last step is to push the docs to App Engine. In your `Polymer/docs` directory, run:
+
+    appcfg.py update .
 
 [jekyll]: http://jekyllrb.com/
 [grunt]: http://gruntjs.com/
