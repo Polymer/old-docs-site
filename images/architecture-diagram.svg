@@ -33,8 +33,8 @@
 	415.05,452.494 354.956,452.494 354.956,467.517 294.861,467.517 294.861,437.469 234.767,437.469 234.767,407.422 174.672,407.422 
 	174.672,481.707 565.285,481.707 565.285,422.446 "/>
 <g id="Kernel">
-	<rect x="174.672" y="255.517" class="st9" width="300.472" height="31.717"/>
-	<text transform="matrix(1.0833 0 0 1 297.7891 275.5488)" class="st16 st21">polymer.js</text>
+	<rect x="174.672" y="255.517" class="st9" width="285.139" height="31.717"/>
+	<text transform="matrix(1.028 0 0 1 291.5063 275.5488)" class="st16 st21">polymer.js</text>
 </g>
 <g id="Applications">
 	<g>
@@ -43,8 +43,8 @@
 		<rect x="219.743" y="14.305" class="st13" width="60.094" height="75.119"/>
 		<rect x="354.956" y="89.424" class="st13" width="30.381" height="30.047"/>
 		<rect x="385.337" y="59.376" class="st13" width="29.713" height="80.291"/>
-		<rect x="475.145" y="164.542" class="st13" width="30.047" height="45.071"/>
-		<rect x="415.05" y="104.447" class="st13" width="60.095" height="105.166"/>
+		<rect x="459.812" y="164.542" class="st13" width="45.38" height="45.071"/>
+		<rect x="415.05" y="104.447" class="st13" width="44.762" height="105.166"/>
 		<rect x="505.191" y="194.589" class="st13" width="15.024" height="15.024"/>
 		<rect x="520.216" y="149.518" class="st13" width="15.022" height="15.023"/>
 		<rect x="535.238" y="134.494" class="st13" width="30.047" height="30.047"/>
@@ -58,8 +58,8 @@
 		<rect x="174.672" y="194.589" class="st1" width="240.236" height="60.928"/>
 		<rect x="174.672" y="89.424" class="st1" width="150.236" height="105.165"/>
 		<rect x="520.216" y="164.542" class="st0" width="45.069" height="122.692"/>
-		<rect x="415.05" y="209.613" class="st0" width="60.095" height="45.07"/>
-		<rect x="475.145" y="209.613" class="st0" width="45.071" height="77.621"/>
+		<rect x="415.05" y="209.613" class="st0" width="44.762" height="45.07"/>
+		<rect x="459.812" y="209.613" class="st0" width="60.404" height="77.621"/>
 	</g>
 	<text transform="matrix(1 0 0 1 273.3018 221.8877)"><tspan x="0" y="0" class="st16 st21">Polymer</tspan><tspan x="-3.345" y="16.025" class="st16 st21">Elements</tspan></text>
 	<text transform="matrix(1 0 0 1 216.7705 140.8965)"><tspan x="0" y="0" class="st16 st21">Polymer UI</tspan><tspan x="5.187" y="16.025" class="st16 st21">Elements</tspan></text>
