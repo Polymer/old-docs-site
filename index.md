@@ -24,14 +24,14 @@ and designed to leverage the evolving web platform on modern browsers.
 
 ## Quick start
 
-1. Clone the project to your app's root folder. See [Get the code](/getting-the-code.html).
+1. Clone `polymer-all` in your app's root folder. See [Get the code](/getting-the-code.html).
 
-        git clone git://github.com/Polymer/polymer.git --recursive
+        git clone git://github.com/Polymer/polymer-all.git --recursive
 
 2. **Fire up a web server** in your app's directory.
-3. Include `polymer.js` in your main page:
+3. Include `polymer-all/polymer/polymer.js` in your main page:
 
-        <script src="Polymer/polymer.js"></script>
+        <script src="polymer.js"></script>
 
 4. Read the [Getting Started](/getting-started.html) guide.
 5. Learn how to soup-up your web components using the [Polymer kernel](/polymer.html).
