@@ -16,4 +16,4 @@ feature:
 
 {% include spec-header.html %}
 
-{% include_external ../toolkit/platform/WebAnimations/README.md %}
+{% include_external ../polymer/platform/WebAnimations/README.md %}
