@@ -116,7 +116,7 @@ The following example demonstrates binding component properties to attributes of
 
 {% include samples/tk-binding-to-elements.html %}
 
-### Adding a ready() lifecyle method ###
+### Adding a ready() lifecycle method ###
 
 When a component has finished initializing itself, it calls its `ready` method, if it exists.
 
