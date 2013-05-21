@@ -89,6 +89,9 @@ footer div:first-of-type {
   background-image: -o-linear-gradient(top, #ffffff, #ccc);
   background-image: linear-gradient(to bottom, #ffffff, #ccc);
 }
+.alert.alert-error {
+  clear: both;
+}
 /* -------------------------------------------------------------------------- */
 
 /* Remove empty p generated from markdown conversion. */

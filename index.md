@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Welcome
+#title: Welcome
 ---
 
 <style>
@@ -22,6 +22,8 @@ ol {
 and designed to leverage the evolving web platform on modern browsers.
 </p>
 
+<p class="centered"><iframe width="560" height="315" src="http://www.youtube.com/embed/0g0oOOT86NY" frameborder="0" allowfullscreen></iframe></p>
+
 ## Quick start
 
 1. Clone `polymer-all` in your app's root folder. See [Get the code](/getting-the-code.html).
@@ -34,7 +36,7 @@ and designed to leverage the evolving web platform on modern browsers.
         <script src="polymer.js"></script>
 
 4. Read the [Getting Started](/getting-started.html) guide.
-5. Learn how to soup-up your web components using the [Polymer kernel](/polymer.html).
+5. Learn how to soup-up your web components using the [Polymer core](/polymer.html).
 6. Play with the [toolkit-ui examples](https://github.com/Polymer/toolkit-ui) (*also must be run from a web server)*.
 7. Join the [mailing list](/discuss.html)! Ask questions and give feedback.
 
