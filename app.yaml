@@ -1,10 +1,10 @@
 application: polymer-project
-version: 1
+version: 2013-05-21
 runtime: python27
 api_version: 1
 threadsafe: yes
 
-#default_expiration: "30d"
+#default_expiration: "0s"
 
 handlers:
 
