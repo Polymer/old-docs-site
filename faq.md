@@ -92,6 +92,10 @@ to contribute code, see our [contributor's guide](https://github.com/polymer/pol
 
 We have many different demo, platform, and library repositories. If you know exactly where the problem lives in the stack, please file the bug under the appropriate repo. Otherwise, filing under the general [polymer](https://github.com/polymer/polymer/issues/new) project is great.
 
+#### What is the difference between the stable and master branches?
+
+See [Branching strategy](/branching-strategy.html).
+
 ## Web Components
 
 #### How do I package a bunch of custom elements together?
