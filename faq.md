@@ -118,9 +118,10 @@ Not yet, but we think that's a great idea.
 
 #### I get errors when trying to use external stylesheets in my element definition or using `<link rel="import">` with external files.
 
-Unfortunately, this is a limitation of the HTML Import spec and the polyfill follows suit. The polyfill uses XHR to pull down resources defined in an `<element>` definition. External resources will fail if they are not [CORS-enabled](http://www.html5rocks.com/tutorials/cors/).
+Unfortunately, this is a limitation of the HTML Import spec and the polyfill follows suit. The polyfill uses XHR to pull down resources defined in an `<element>` definition. External resources will fail if they are not [CORs-enabled](http://www.html5rocks.com/tutorials/cors/).
 
-To link in external stylesheets, you can use `@import` in a `<style>` with `polymer-scope="global"`:
+For stylesheets that are not same domain or CORs-enabled, you can use `@import` in a
+`<style>` with `polymer-scope="global"`:
 
     <element name="x-blink">
     <style polymer-scope="global">
@@ -128,6 +129,9 @@ To link in external stylesheets, you can use `@import` in a `<style>` with `poly
     </style>
     <template>...</template>
     </element>
+
+*Note*: If your stylesheet **is** CORs-enabled or from the same domain as your app,
+it's preferred to inline the styles without using `@import.`
 
 #### How can I use web fonts or CSS Animations in my custom element?
 
