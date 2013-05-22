@@ -95,7 +95,7 @@ polyfill repo as a submodule, contains tools, tests, and hosts the
 
 If you want to see the development activity, checkout the _master_ branch directly:
 
-    git clone -b master https://github.com/polymer/polymer.git --recursive
+    git clone -b master https://github.com/Polymer/polymer.git --recursive
 
 <p class="alert">
 <b>Remember</b>: If you don't specify <em>master</em>, you'll get the <em>stable</em> branch by default.
