@@ -120,12 +120,11 @@ Not yet, but we think that's a great idea.
 
 Unfortunately, this is a limitation of the HTML Import spec and the polyfill follows suit. The polyfill uses XHR to pull down resources defined in an `<element>` definition. External resources will fail if they are not [CORs-enabled](http://www.html5rocks.com/tutorials/cors/).
 
-For stylesheets that are not same domain or CORs-enabled, you can use `@import` in a
-`<style>` with `polymer-scope="global"`:
+For stylesheets that are not same domain or CORs-enabled, you can use `@import` in a `<style>`:
 
     <element name="x-blink">
-    <style polymer-scope="global">
-      @import url(http://fonts.googleapis.com/css?family=Quicksand);
+    <style>
+      @import url(http://example.com/awesome.css);
     </style>
     <template>...</template>
     </element>
