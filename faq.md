@@ -130,7 +130,13 @@ For stylesheets that are not same domain or CORs-enabled, you can use `@import` 
     </element>
 
 *Note*: If your stylesheet **is** CORs-enabled or from the same domain as your app,
-it's preferred to inline the styles without using `@import.`
+it's preferred to inline the styles without using `@import.`. For example:
+
+    <element ...>
+      <link rel="stylesheet" href="frameworkstyles.css">
+      <template>...</template>
+      ...
+    </element>
 
 #### How can I use web fonts or CSS Animations in my custom element?
 
