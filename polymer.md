@@ -1,21 +1,23 @@
 ---
 layout: default
-title: Polymer kernel
+title: Polymer core
 ---
 
 {% comment %}
 {% include outofdate.html %}
 {% endcomment %}
 
-The {{site.project_title}} _kernel_ provides a thin layer of code that expresses {{site.project_title}}'s
-opinion, and provides the sugar that all components use. The kernel code is
-provided by a file named `polymer.js`.
+The {{site.project_title}} _core_ provides a thin layer of code that expresses
+its opinion and provides the extra sugaring that all {{site.project_title}} elements use.
+It is provided in the file `polymer.js`.
 
-Complete working examples of the concepts on this page are in [/toolkit-ui](https://github.com/polymer/toolkit-ui).
+**Note:** You can find working examples of the concepts on this page are in [/toolkit-ui](https://github.com/polymer/toolkit-ui).
+{: .alert .alert-success }
 
-## Component declaration
+## Element declaration
 
-A web component declaration looks like the following:
+Every {{site.project_title}} element is a Custom Element at heart. Their 
+declaration looks no different than a standard element definition:
 
     <element name="tag-name">
       <template>
@@ -26,8 +28,14 @@ A web component declaration looks like the following:
       </script>
     </element>
 
-To have this component add the `{{site.project_title}}.register` lifecycle initializer to
-the component's `<script>` block, as shown below:
+**Reminder:** The `name` attribute specifies the name of the HTML tag when you
+instantiate the element in markup (e.g. `<tag-name>`). It must be a "-" separated string.
+{: .alert }
+
+### Initializing {{site.project_title}} elements
+
+To register `<tag-name>` and super charge it as a {{site.project_title}} element,
+include a `<script>` that calls `{{site.project_title}}.register`:
 
     <element name="tag-name">
       <template>
@@ -38,45 +46,39 @@ the component's `<script>` block, as shown below:
       </script>
     </element>
 
-Note the following:
+`{{site.project_title}}.register` is a convenience wrapper for [`document.register`](/platform/custom-elements.html#documentregister). Its first argument is reference to the element you're creating. Since script within an `<element>` runs in the context of the element,
+`this` refers our `<tag-name>` element.
 
-- The `{{site.project_title}}.register` initializer prepares the
-component to use {{site.project_title}}'s [conventions and features](#features). 
-- The "name" attribute specifies the name of the custom `<element>` and
-determines the name of the tag when you instantiate the component in markup.
-For example, `<tag-name>` in this example. The name should be a "-" separated string.
-
-### Element initialization
-
-The first argument to `{{site.project_title}}.register` is a reference to the `<element>` element. Since scripts
-within an element tag run in the context of the element, the value of this 
-argument is simply 'this'.
-
-You can supply a second object argument to `{{site.project_title}}.register` to define the object
-prototype. In the following example the component initializer defines a property
-`message` and a method `ready`. 
+The second argument (optional) is an object that defines your element's `prototype`. 
+In the following example the registration call defines a property `message` and
+a method, `ready`: 
 
     {{site.project_title}}.register(this, {
       message: "Hello!",
       ready: function() {
-        // component is ready now, we can do stuff
+        // component is ready now. Let's do stuff.
       }
     });
 
-A component's `ready` method, if it exists, is called when the component is ready for it to be used.
+The `ready` method, if included, is analogous to the [Custom Element `readyCallback`](/platform/custom-elements.html#element-registration). It's called the user creates
+and instance of your element (if it has already been registered by the browser).
 
 ## {{site.project_title}} Features {#features}
 
 ### Publishing properties
 
-By default, properties you declare are not accessible via attribute. You can _publish_ a property by listing it in the `attributes` attribute on the `<element>` tag. Published properties can be initialized using attributes on the node, and can be data-bound using attributes on the node.
+When you publish a property, you're making that property/name data-bound and part
+of the element's "public API". There are two ways to do this:
 
-A property declared in the `attributes` attribute is initially set to `null`. You can provide a more appropriate default value by also including the property directly in your prototype, as usual.
+1. Declare the property in the `<element>`'s `attributes` attribute.
+1. Include the property in the `prototype` given to `{{site.project_title}}.register`.
 
+For example, we can define a `name-tag` element that publishes two attributes,
+`name` and `nameColor`.
 
-    <element name="name-tag" attributes="myName nameColor">
+    <element name="name-tag" attributes="name nameColor">
       <template>
-        Hello! My name is <span style="color:{{"{{nameColor"}}}}">{{"{{myName"}}}}</span>
+        Hello! My name is <span style="color:{{"{{nameColor"}}}}">{{"{{name"}}}}</span>
       </template>
       <script>
         {{site.project_title}}.register(this, {
@@ -84,8 +86,14 @@ A property declared in the `attributes` attribute is initially set to `null`. Yo
         });
       </script>
     </element>
- 
-In this case, `name-tag` declares two attributes (`myName` and `nameColor`). Note that properties declared as attributes default to 'null' unless defaults are set in the prototype, as done for `nameColor` in the above example.
+
+In this example, `name` has initial value of `null` and `nameColor` has a value of "orange".
+This is because by default, HTML attributes are initially `null`. An initial value
+van be set in the `prototype`.
+
+**Note:** There's no harm in including a property in both `<element attribute"">` 
+and the `prototype`. The latter gives you the ability to set initial and/or default values.
+{: .alert }
 
 #### Binding and custom attributes
 
@@ -99,9 +107,11 @@ Let's modify our `name-tag` to take a record instead of individual properties.
       </template>
       <script>
         {{site.project_title}}.register(this, {
-          person: {
-            name: "Scott",
-            nameColor: "orange"
+          ready: function() {
+            this.person = {
+              name: "Scott",
+              nameColor: "orange"
+            }
           }
         });
       </script>
@@ -115,16 +125,23 @@ Now, imagine we make a new component called `<visitor-creds>` that uses `name-ta
       </template>
       <script>
         {{site.project_title}}.register(this, {
-          person: {
-            name: "Scott",
-            nameColor: "orange"
+          ready: function() {
+            this.person = {
+              name: "Scott2",
+              nameColor: "red"
+            }
           }
         });
       </script>
     </element>
 
-When I make an instance of `<visitor-creds>`, its `person` object is bound to the `name-tag` instance, so now both components are using the same `person` object.
+When an instance of `<visitor-creds>` is created, its `person` property (an object),
+is also bound to `<name-tag>`'s `person` property. Now both components are using
+the same `person` object.
 
+**Important:** Be careful when your properties are objects or arrays. Element registration
+is evaluated once. This means only one instance of an object used in property initialization is ever created. Because of the nature of `prototype`, you may run into unexpected "shared state" across different instances of the same element if you're setting an initial value for a property which is an object or array. Do this type of initialization in `ready()` rather than directly on the `prototype`. 
+{: .alert .alert-error }
 
 ### Declarative event mapping
 

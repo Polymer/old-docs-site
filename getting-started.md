@@ -75,7 +75,7 @@ new technologies.
 {{site.project_title}} provides extra goodies for creating custom elements. We call these souped-up
 custom elements "{{site.project_title}} elements". To create one, follow these steps:
 
-1. Load the [{{site.project_title}} kernel](/polymer.html) (`polymer/polymer.js` or `polymer/polymer.min.js`).
+1. Load the [{{site.project_title}} core](/polymer.html) (`polymer/polymer.js` or `polymer/polymer.min.js`).
 
   <p class="alert"><b>Note</b>: <code>polymer.js</code> loads <code>platform.js</code> under the hood.
 You only need to include <code>polymer.js</code> when writing a {{site.project_title}} element.</p>
