@@ -89,7 +89,7 @@ For example, we can define a `name-tag` element that publishes two attributes,
 
 In this example, `name` has initial value of `null` and `nameColor` has a value of "orange".
 This is because by default, HTML attributes are initially `null`. An initial value
-van be set in the `prototype`.
+can be set in the `prototype`.
 
 **Note:** There's no harm in including a property in both `<element attribute"">` 
 and the `prototype`. The latter gives you the ability to set initial and/or default values.
