@@ -60,8 +60,8 @@ a method, `ready`:
       }
     });
 
-The `ready` method, if included, is analogous to the [Custom Element `readyCallback`](/platform/custom-elements.html#element-registration). It's called the user creates
-and instance of your element (if it has already been registered by the browser).
+The `ready` method, if included, is analogous to the [Custom Element `readyCallback`](/platform/custom-elements.html#element-registration). It's called when the user creates
+an instance of your element (if it has already been registered by the browser).
 
 ## {{site.project_title}} Features {#features}
 
