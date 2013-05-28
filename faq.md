@@ -86,8 +86,7 @@ Remember our libraries go away over time! {{site.project_title}} gets better, st
 #### Does {{site.project_title}} work under Content Security Policy (CSP)?
 {: #csp }
 
-Not yet. The [HTML Imports](/platform/html-imports.html) polyfill, which uses
-XHR to do its magic, fails under certain [CSP](http://www.html5rocks.com/tutorials/security/content-security-policy/) rules. Native implementations of HTML Imports are needed (see Blink's [crbug.com/240592](http://crbug.com/240592)). In the interim, we may prioritize a software solution.
+In certain cases, {{site.project_title}} fails under certain [CSP](http://www.html5rocks.com/tutorials/security/content-security-policy/). This is because the [HTML Imports](/platform/html-imports.html) polyfill uses XHR to do its magic. Native implementations of HTML Imports are needed (see Blink's [crbug.com/240592](http://crbug.com/240592)). In the interim, we may prioritize a software solution.
 
 #### How can I contribute?
 
