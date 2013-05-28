@@ -2,9 +2,10 @@ Polymer docs are mostly in Markdown with some HTML. [Jekyll][jekyll] is used to 
 
 ## Install the requirements
 
-We use Jekyll 1.0+ and [Grunt][grunt] to generate the documentation. You'll need to install the requirements before working on the docs:
+We use Jekyll 1.0+ and [Grunt][grunt] to generate the documentation. You'll need to install the requirements before working on the docs (these instructions assume [NPM is already installed](http://nodejs.org/download/)):
 
     sudo gem install jekyll
+    sudo npm install -g grunt-cli
     npm install
 
 You'll also need the App Engine dev server to preview the docs locally. [Download the SDK](https://developers.google.com/appengine/downloads).
