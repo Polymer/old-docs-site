@@ -17,6 +17,17 @@
 <!-- <link href="/css/pygments/default.css" rel="stylesheet" type="text/css"> -->
 <link href="/css/site.css?{{'now' | date: "%Y%m%d"}}" rel="stylesheet" type="text/css">
 
+<script async>
+// Prevent usage of the appspot.com URL.
+try {
+  if (location.hostname.match('appspot.com')) {
+    window.location = location.protocol+ '//polymer-project.org' + location.pathname;
+  }
+} catch(e) {
+  // noop
+}
+</script>
+
 {% if site.load_platform %}
 <!--   
   <script src="/polymer/polymer.min.js?{{'now' | date: "%Y%m%d"}}"></script>
