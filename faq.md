@@ -83,6 +83,12 @@ Deeply. And we want the entire web platform to be a buttery smooth 60fps. That s
 
 Remember our libraries go away over time! {{site.project_title}} gets better, stronger, and faster as native browser implementations pop up.
 
+#### Does {{site.project_title}} work under Content Security Policy (CSP)?
+{: #csp }
+
+Not yet. The [HTML Imports](/platform/html-imports.html) polyfill, which uses
+XHR to do its magic, fails under certain [CSP](http://www.html5rocks.com/tutorials/security/content-security-policy/) rules. Native implementations of HTML Imports are needed (see Blink's [crbug.com/240592](http://crbug.com/240592)). In the interim, we may prioritize a software solution.
+
 #### How can I contribute?
 
 We love to hear your comments or suggestions. [File a bug](https://github.com/polymer/polymer/issues/new) or swing by the [mailing list](/discuss.html) and say "hi"--we don't bite! If you want
