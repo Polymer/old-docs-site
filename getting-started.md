@@ -22,19 +22,19 @@ components:
 
 <script src="/polymer/polymer.min.js?{{'now' | date: "%Y%m%d"}}"></script>
 
-{% comment %}
-{% include outofdate.html %}
-{% endcomment %}
+[Custom Elements](/platform/custom-elements.html) are the core building blocks of
+{{site.project_title}}-based applications. You create applications by assembling custom elements
+together, either ones provided by {{site.project_title}}, ones you create yourself,
+or third-party elements.
 
 ## Basics
 
-The basics of using {{site.project_title}} are simple. Polymer expands
-the concepts of [Custom Elements](/platform/custom-elements.html) by providing
-extra goodies. However, if you're only interested in regular Custom Elements,
-all you need is the `platform.js` polyfill.
+{{site.project_title}} expands the concepts of [Custom Elements](/platform/custom-elements.html) by providing
+extra goodies. However, if you're only interested in building a regular Custom Element,
+all you need is `platform.js`, which polyfills missing platform features like
+[Shadow DOM](/platform/shadow-dom.html) and [HTML Imports](/platform/html-imports.html).
 
-1. Load **platform.js** to polyfill missing platform features, such as [Shadow DOM](/platform/shadow-dom.html)
-and [HTML Imports](/platform/html-imports.html).
+1. Load **platform.js** to polyfill missing platform features.
 2. Load components with `<link rel="import" href="/path/to/component-file.html">`
 3. Use the custom element in your page.
 
@@ -61,11 +61,7 @@ natively in browsers.</p>
 
 ## Components
 
-[Custom Elements](/platform/custom-elements.html) are the core building blocks of
-{{site.project_title}}-based applications. You create applications by assembling custom elements
-together, either ones provided by {{site.project_title}} or that you create yourself.
-
-### Creating a basic component
+### Creating a basic custom element
 
 The platform polyfills provided by {{site.project_title}} let you load and display
 custom elements. Just by loading `platform.js` you get support for these
