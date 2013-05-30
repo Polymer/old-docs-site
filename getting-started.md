@@ -28,7 +28,10 @@ components:
 
 ## Basics
 
-The basics of using {{site.project_title}} are simple:
+The basics of using {{site.project_title}} are simple. Polymer expands
+the concepts of [Custom Elements](/platform/custom-elements.html) by providing
+extra goodies. However, if you're only interested in regular Custom Elements,
+all you need is the `platform.js` polyfill.
 
 1. Load **platform.js** to polyfill missing platform features, such as [Shadow DOM](/platform/shadow-dom.html)
 and [HTML Imports](/platform/html-imports.html).
@@ -43,11 +46,11 @@ Here's a bare bones example:
         <!-- 1. Shim missing platform features -->
         <script src="polymer/platform/platform.js"></script>
         <!-- 2. Load a component -->
-        <link rel="import" href="toolkit-ui/elements/g-menu-item.html">
+        <link rel="import" href="x-foo.html">
       </head>
       <body>
-        <!-- 3. Instantiate the component with its tag. -->
-        <g-menu-item src="images/email.svg">Email Link</g-menu-item>
+        <!-- 3. Declare the component by its tag. -->
+        <x-foo></x-foo>
       </body>
     </html>
 
