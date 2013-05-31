@@ -91,7 +91,7 @@ In this example, `name` has initial value of `null` and `nameColor` has a value 
 This is because by default, HTML attributes are initially `null`. An initial value
 can be set in the `prototype`.
 
-**Note:** There's no harm in including a property in both `<element attribute"">` 
+**Note:** There's no harm in including a property in both `<element attribute="">` 
 and the `prototype`. The latter gives you the ability to set initial and/or default values.
 {: .alert }
 
