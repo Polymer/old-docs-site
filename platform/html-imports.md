@@ -1,6 +1,6 @@
 ---
 layout: default
-title: About HTML Imports
+title: HTML Imports
 subtitle: polyfill
 
 feature:

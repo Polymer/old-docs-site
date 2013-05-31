@@ -1,6 +1,6 @@
 ---
 layout: default
-title: About Custom Elements
+title: Custom Elements
 subtitle: polyfill
 
 feature:

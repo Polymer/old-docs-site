@@ -1,6 +1,6 @@
 ---
 layout: default
-title: About Web Animations
+title: Web Animations
 subtitle: polyfill
 
 feature:

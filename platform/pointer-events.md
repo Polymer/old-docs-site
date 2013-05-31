@@ -1,6 +1,6 @@
 ---
 layout: default
-title: About Pointer Events
+title: Pointer Events
 subtitle: polyfill
 
 feature:

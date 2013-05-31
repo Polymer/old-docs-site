@@ -1,6 +1,6 @@
 ---
 layout: default
-title: About Shadow DOM
+title: Shadow DOM
 subtitle: polyfill
 
 feature:

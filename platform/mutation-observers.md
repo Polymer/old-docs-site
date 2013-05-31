@@ -1,6 +1,6 @@
 ---
 layout: default
-title: About Mutation Observers
+title: Mutation Observers
 subtitle: polyfill
 
 feature:

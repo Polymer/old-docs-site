@@ -1,6 +1,6 @@
 ---
 layout: default
-title: About Model Driven Views
+title: Model Driven Views
 subtitle: polyfill
 
 feature:
