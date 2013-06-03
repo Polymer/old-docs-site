@@ -11,7 +11,13 @@ title: FAQ
 
 #### Why should I care about this project?
 
-{{site.project_title}} is still in its very early days, but we're excited about its potential. Polymer, like some other frameworks before it, attempts to embrace HTML as much as possible. It targets the evolving web platform by using a handful of independent polyfills for emerging web standards like Custom Elements and Shadow DOM. Over time as more browsers implement these emerging standards, the foundation layer will diminish and ultimately disappear.
+{{site.project_title}} is a new type of library for the web, targeting the modern
+web platform, and useful for building web applications based on Web Components.
+
+Unlike some other frameworks before it, {{site.project_title}} attempts to embrace
+HTML as much as possible by encouraging the use of [custom element](/platform/custom-elements.html) wherever possible. It includes a handful of independent polyfills for these emerging web standards (Custom Elements, Shadow DOM, etc.) that over time, diminish and ultimately disappear as browser vendors implement the native APIs.
+
+{{site.project_title}} is still in its very early days, but we're excited about its potential! 
 
 #### Where are all of the shiny magic components that are going to revolutionize the entire internet and solve all of my problems?
 
@@ -40,7 +46,7 @@ any kind of production tool.
 
 #### Which browsers does {{site.project_title}} support?
 
-{{site.project_title}} aims to support [evergreen browsers](http://www.yetihq.com/blog/evergreen-web-browser/). After all, we're trying to simulate the future, and as someone once said, "You're headed for trouble if all you do is stare in the rear-view mirror." In practice, this means we support the most recent versions of Chrome, Safari, Internet Explorer, and Firefox. Note that this is fewer browsers than other frameworks support. For example, Polymer only aims to support Internet Explorer 10 and above. Some pieces of {{site.project_title}} may support more browsers if it doesn't require too much extra effort--if you find bugs in unsupported browsers, please still file them.  Most things should work in IE9 today without too much work; feel free to file bugs on what doesn't.  IE8 is incompatable due to its insufficient DOM support. 
+{{site.project_title}} aims to support [evergreen browsers](http://www.yetihq.com/blog/evergreen-web-browser/). After all, we're trying to simulate the future, and as someone once said, "You're headed for trouble if all you do is stare in the rear-view mirror." In practice, this means we support the most recent versions of Chrome, Safari, Internet Explorer, and Firefox. Note that this is fewer browsers than other frameworks support. For example, {{site.project_title}} only aims to support Internet Explorer 10 and above. Some pieces of {{site.project_title}} may support more browsers if it doesn't require too much extra effort--if you find bugs in unsupported browsers, please still file them.  Most things should work in IE9 today without too much work; feel free to file bugs on what doesn't.  IE8 is incompatable due to its insufficient DOM support. 
 
 See our [Browser Compatibility](/compatibility.html) page for more information.
 
@@ -95,7 +101,7 @@ to contribute code, see our [contributor's guide](https://github.com/polymer/pol
 
 #### Where is the best place to file bugs?
 
-We have many different demo, platform, and library repositories. If you know exactly where the problem lives in the stack, please file the bug under the appropriate repo. Otherwise, filing under the general [polymer](https://github.com/polymer/polymer/issues/new) project is great.
+We have many different demo, platform, and library repositories. If you know exactly where the problem lives in the stack, please file the bug under the appropriate repo. Otherwise, filing under the general [{{site.project_title}}](https://github.com/polymer/polymer/issues/new) project is great.
 
 #### What is the difference between the stable and master branches?
 
@@ -165,4 +171,4 @@ According to the spec, certain @ at-rules (including CSS `@keyframe` and `@font-
       </template>
     </element>
 
-*Special thanks go to GitHub user md_5 who generously donated the polymer organization name.*
+*Special thanks go to GitHub user md_5 who generously donated the {{site.project_title}} organization name.*
