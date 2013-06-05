@@ -5,16 +5,48 @@ title: Changelog
 
 This document lists the major changes to the entirety of the project, including polyfill repos.
 
+## 2013-05-15 {#2013-05-15}
+
+This release mainly contained important platform fixes for IE and Firefox.
+
+See the [full list of changes](https://github.com/Polymer/polymer/pull/135).
+
+### Platform
+
+#### Custom Elements
+
+#### HTML Imports
+
+#### MDV
+
+* Correct event type for checkbox bindings ([commit](https://github.com/Polymer/mdv/commit/2c675cab75aea2ef3d1b981a616469587b9210fe)) 
+
+#### HTML Imports
+
+* Only enable cache busting in debug mode ([commit](https://github.com/Polymer/HTMLImports/commit/5a38cbba1e85491b6bc712fd25dec43e68409a5e))
+
+#### Shadow DOM
+
+* Fixed [#151](https://github.com/Polymer/ShadowDOM/pull/151) - `HTMLLegendElement` issue in FF21.
+
+#### Pointer Events/Gestures
+
+* Fix for `<button>` in IE ([commit](https://github.com/Polymer/PointerEvents/commit/a0e984dc5591903ba989c28fbf3d6997c5578b15))
+
+---
+
 ## 2013-05-13 {#2013-05-13}
 
 **Notice**: This release contains important changes to the structure of the project.
 {:.centered .alert .alert-info}
 
-Project renamed to <https://github.com/polymer>
+Project renamed to Polymer! <https://github.com/polymer>
+
+---
 
 ## 2013-05-09 {#2013-05-09}
 
-### {{site.project_title}} 
+### {{site.project_title}}
 
 See the [full list of changes](https://github.com/polymer/polymer/pull/125).
 
@@ -74,7 +106,6 @@ initial load is complete ([commit](https://github.com/polymer/CustomElements/com
 
 * `<style>` elements are now (correctly) ignored if they're in the main document ([commit](https://github.com/polymer/CustomElements/commit/632ef0f43a5bb693580345096c1748e27990e39f))
 
-
 #### HTML Imports
 
 See the [full list of changes](https://github.com/polymer/HTMLImports/pull/8)
@@ -121,6 +152,8 @@ See the [full list of changes](https://github.com/polymer/ShadowDOM/pull/139)
 
 * `document.write()` is now [overriden](https://github.com/polymer/ShadowDOM/commit/733b350e15ea800f95efab2caae0a4c008d07ca0) and wrapped in the polyfill ([commit](https://github.com/polymer/ShadowDOM/commit/07be1f387f9a099bd9a13a0edf193acbf0f5c522))
 
+---
+
 ## 2013-04-17 {#2013-04-17}
 
 ### Toolkit
@@ -142,6 +175,8 @@ no longer need to include `platform.js` alongside `toolkit.js`. `toolkit.js` now
 
 * If `HTMLTemplateElement.bootstrap` is available, then bootstrap templates in imported documents. ([commit](https://github.com/polymer/HTMLImports/commit/8c842e1c1bf3f13ca2097386886874f873e8ec0b))
 
+---
+
 ## 2013-04-11 {#2013-04-11}
 
 **Notice**: This release contains important changes to the structure of the project.
@@ -159,6 +194,8 @@ the default view on Github.
 with loading in `toolkit.js` instead.
 * Added `debug` [runtime flags](/runtime-config.html) to conditionally load debug
 version of `platform.js`.
+
+---
 
 ## 2013-02-25 {#2013-02-25}
 
