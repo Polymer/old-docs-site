@@ -5,6 +5,39 @@ title: Changelog
 
 This document lists the major changes to the entirety of the project, including polyfill repos.
 
+<!-- ## 2013-06-06 {#2013-06-06}
+
+**Notice**: This release contains important changes to the structure of the project.
+{:.centered .alert .alert-info}
+
+The repo structure was "flattened" such that `platform` and `polymer` repos no
+longer contain submodules. Instead, the dependencies need to be checked out as siblings.
+
+For example, `platform` now expects `HTMLImports`, `CustomElements`, `PointerEvents`, `MDV`, `ShadowDOM`, etc. to be siblings. `polymer` expects to be siblings with all of them. If there
+are any questions, [`polymer-all`](https://github.com/Polymer/polymer-all/tree/master) has the correct structure. -->
+
+## 2013-06-05 {#2013-06-05}
+
+See the [full list of changes](https://github.com/Polymer/polymer/pull/172).
+
+### {{site.project_title}}
+
+TODO
+
+### Platform
+
+#### Custom Elements
+
+#### HTML Imports
+
+#### MDV
+
+#### Pointer Events/Gestures
+
+#### Shadow DOM
+
+---
+
 ## 2013-05-15 {#2013-05-15}
 
 This release mainly contained important platform fixes for IE and Firefox.
