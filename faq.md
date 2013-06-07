@@ -171,4 +171,29 @@ According to the spec, certain @ at-rules (including CSS `@keyframe` and `@font-
       </template>
     </element>
 
+#### Why does my element claim its `.clientWidth/clientHeight` is 0?
+
+By default, customs elements are `display: inline`. The fix is to give your element
+a default style of `display: block` using an `@host` rule.
+
+    <element name="my-element">
+      <template>
+        <style>
+          @host { * { display: block; } }
+        </style>
+        ...
+      </template>
+      ...
+    </element>
+    <script>
+    window.addEventListener('WebComponentsReady', function(e) {
+      var element = document.querySelector('my-element');
+      // element.clientWidth/clientHeight won't be 0.
+    });
+    </script>
+
+---
+
 *Special thanks go to GitHub user md_5 who generously donated the {{site.project_title}} organization name.*
+
+
