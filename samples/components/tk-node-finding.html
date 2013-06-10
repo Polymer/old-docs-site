@@ -1,12 +1,11 @@
-<element name="tk-node-finding">
+<element name="tk-node-finding" attribute="owner color">
   <template>
     <p>
     This is a <strong>{{owner}}</strong>'s tk-element.
     He likes the color <b style="color: {{color}}">{{color}}</b>.
     </p>
     <button on-click="setFocus">Set focus to text input</button>
-    <input id="nameInput" value="{{owner}}" on-keyup="setName"
-           placeholder="Your name here...">
+    <input id="nameInput" value="{{owner}}" placeholder="Your name here...">
   </template>
   <script>
     Polymer.register(this, {
