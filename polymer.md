@@ -11,7 +11,7 @@ The {{site.project_title}} _core_ provides a thin layer of code that expresses
 its opinion and provides the extra sugaring that all {{site.project_title}} elements use.
 It is provided in the file `polymer.js`.
 
-**Note:** You can find working examples of the concepts on this page are in [/toolkit-ui](https://github.com/polymer/toolkit-ui).
+**Note:** You can find working examples of the concepts on this page in [/toolkit-ui](https://github.com/polymer/toolkit-ui).
 {: .alert .alert-success }
 
 ## Element declaration
