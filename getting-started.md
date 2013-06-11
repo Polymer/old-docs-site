@@ -117,24 +117,32 @@ The following example demonstrates binding component properties to attributes of
 
 {% include samples/tk-binding-to-elements.html %}
 
-### Adding a ready() lifecycle method ###
+## Adding a ready() lifecycle method ###
 
-When a component has finished initializing itself, it calls its `ready` method, if it exists.
+When an element has been registered ad finished initializing itself, it calls its
+`ready` method, if one exists. The `ready` callback is a great place to do
+constructor-like initialization work.
 
 {% include samples/tk-element-ready.html %}
 
-## Publishing properties ###
+## Publishing properties
 
-By default, properties you declare are not accessible via attribute. You can _publish_ a property by listing it in the `attributes` attribute on the `<element>` tag. Published properties can be initialized using attributes on the node, and can be data-bound using attributes on the node.
+Published properties can be used to define an element's "public API". {{site.project_title}}
+establishes two-way data binding for published properties and provides access
+to the property's value using MDV's `{%raw%}{{}}{%endraw%}`.
 
-A property declared in the `attributes` attribute is initially set to `null`. You can provide a more appropriate default value by also including the property directly in your prototype, as usual.
+_Publish_ a property by listing it in the `attributes` attribute on the `<element>` tag.
+Properties declared this way are initially `null`. To provide a more appropriate default value, include the same property name directly in your prototype (as seen below).
 
-#### Using the "attributes" attribute
-
-The following example defines an `attributes` attribute on the custom element whose value is the string `"owner color"`. 
+The following example defines two data-bound properties on the element, `owner` and `color`,
+and gives them default values:
 
 {% include samples/tk-element-property-public.html %}
 
+Note: In this example the user overrides the defaults for `owner` and `color`
+by configuring the element with initial attribute values (e.g. `<tk-element-property-public owner="Scott" color="blue">`).
+
+[Learn more about published properties](/polymer.html#publishing-properties)
 
 {% comment %}
 #### Using a publish object (advanced)
@@ -153,7 +161,7 @@ A element's published properties can be set using attributes on its custom eleme
 {% endcomment %}
 
 
-### Automatic node finding
+## Automatic node finding
 
 Shadow DOM is a self-contained document-like subtree; id's in that subtree do not interact with id's in other trees. Each {{site.project_title}} element generates a map of id's to node references in the element's template. This map is accessible as `$` on the element. 
 

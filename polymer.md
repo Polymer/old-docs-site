@@ -11,15 +11,15 @@ The {{site.project_title}} _core_ provides a thin layer of code that expresses
 its opinion and provides the extra sugaring that all {{site.project_title}} elements use.
 It is provided in the file `polymer.js`.
 
-**Note:** You can find working examples of the concepts on this page in [/toolkit-ui](https://github.com/polymer/toolkit-ui).
+**Note:** You can find working examples of the concepts on this page in [/toolkit-ui](https://github.com/polymer/toolkit-ui), [/polymer-elements](https://github.com/Polymer/polymer-elements), and [/polymer-ui-elements](https://github.com/Polymer/polymer-ui-elements).
 {: .alert .alert-success }
 
 ## Element declaration
 
 Every {{site.project_title}} element is a Custom Element at heart. Their 
-declaration looks no different than a standard element definition:
+declaration looks no different than your standard element definition:
 
-    <element name="tag-name">
+    <element name="tag-name" constructor="TagName">
       <template>
         <!-- shadow DOM here -->
       </template>
@@ -63,17 +63,116 @@ a method, `ready`:
 The `ready` method, if included, is analogous to the [Custom Element `readyCallback`](/platform/custom-elements.html#element-registration). It's called when the user creates
 an instance of your element (if it has already been registered by the browser).
 
+#### The `WebComponentsReady` event {#WebComponentsReady}
+
+The polyfill(s) parse `<element>` definitions and handle their upgrade _asynchronously_.
+If you try to fetch the element from the DOM before things have settled, you'll get a big fat `null`.
+In these situations, an including page should wait for the `WebComponentsReady` event
+before working with the node.
+
+Example:
+
+    <head>
+      <link rel="import" href="path/to/x-foo.html">
+    </head>
+    <body style="opacity:0">
+      <x-foo></x-foo>
+      <script>
+        window.addEventListener('WebComponentsReady', function() {
+          document.body.style.opacity = 1; // show body now that registration is done.
+
+          var xFoo = document.querySelector('x-foo');
+          // Do something with x-foo.
+        });
+      </script>
+    </body>
+
+**Tip:** Use the `WebComponentsReady` event to mitigate FOUC in browsers that don't
+support the CSS `:unknown` pseudo class.
+{: .alert .alert-success }
+
 ## {{site.project_title}} Features {#features}
 
-### Publishing properties
+### Published properties
 
-When you publish a property, you're making that property/name data-bound and part
-of the element's "public API". There are two ways to do this:
+When you _publish_ a property name, you're making that property two-way data-bound and part
+of the element's "public API". Published properties are mapped to an HTML attribute
+of the same name. 
 
-1. Declare the property in the `<element>`'s `attributes` attribute.
-1. Include the property in the `prototype` given to `{{site.project_title}}.register`.
+There are two ways to publish properties:
 
-For example, we can define a `name-tag` element that publishes two attributes,
+1. **Preferred** - Include its name in the `<element>`'s `attributes` attribute.
+1. Include the name in a `publish` object on your prototype.
+
+As an example, here's an element that publishes three public properties, `foo`, `bar`, and `baz`:
+
+    <element name="x-foo" attributes="foo bar baz">
+      <script> 
+        Polymer.register(this);
+      </script>
+    </element>
+
+#### Default property values
+
+By default, properties defined in `attributes` are `null`:
+
+    <element name="x-foo" attributes="foo">
+      <script> 
+        Polymer.register(this); // x-foo has a foo property with null value.
+      </script>
+    </element>
+
+As such, you can provide default values using the prototype:
+
+    <element name="x-foo" attributes="foo">
+      <script> 
+        Polymer.register(this, { // x-foo has a foo property with default value false.
+          foo: false
+        });
+      </script>
+    </element>
+
+    <!-- Same, but using the alternate "publish" object. -->
+    <element name="x-foo">
+      <script> 
+        Polymer.register(this, {
+          publish: {
+            foo: false 
+          }
+        });
+      </script>
+    </element>
+
+#### Configuring an element via attributes
+
+Attributes are a great way for users of your element to configure it, declaratively.
+They can customize a published property by passing an initial value on the attribute
+with the same name:
+
+    <x-foo foo="true"></x-foo>
+
+**Note:** As of today, property values are not reflected back into markup. Also, setting
+an attribute using `.setAttribute()`) has no effect.
+{: .alert }
+
+##### Hinting an attribute's type
+
+When attribute values are converted to property values, {{site.project_title}} attempts to convert the value to the correct type, depending on the default value of the property.
+
+    <element name="x-foo" attributes="foo">
+      <script> 
+        Polymer.register(this, {
+          foo: false // hint that foo is Boolean
+        });
+      </script>
+    </element>
+
+### Data binding and custom attributes
+
+Published properties are data-bound inside of {{site.project_title}} elements an accessible
+via MDV's `{%raw%}{{}}{%endraw%}`. These bindings are by reference and are two-way.
+
+For example, we can define a `name-tag` element that publishes two properties,
 `name` and `nameColor`.
 
     <element name="name-tag" attributes="name nameColor">
@@ -88,18 +187,15 @@ For example, we can define a `name-tag` element that publishes two attributes,
     </element>
 
 In this example, `name` has initial value of `null` and `nameColor` has a value of "orange".
-This is because by default, HTML attributes are initially `null`. An initial value
-can be set in the `prototype`.
+Thus, the `<span>`s color will be orange.
 
-**Note:** There's no harm in including a property in both `<element attribute="">` 
-and the `prototype`. The latter gives you the ability to set initial and/or default values.
-{: .alert }
+#### Binding objects to attribute values
 
-#### Binding and custom attributes
+Generally, attributes are string values, but {{site.project_title}} makes it possible to bind references between elements using attributes. The binding engine interprets reference bindings
+by interrogating the [attribute's type](#hinting-an-attributes-type). This means you 
+can bind an an object to an HTML attribute!
 
-{{site.project_title}} makes it possible to bind references between components via attributes. Generally, attributes are only string-valued, so the binding engine interprets reference bindings specially (in particular, interrogating an attribute for a bound reference property will just return the binding expression (the double-mustache).
-
-Let's modify our `name-tag` to take a record instead of individual properties.
+Let's modify the `name-tag` example to take an object instead of individual properties.
 
     <element name="name-tag" attributes="person">
       <template>
