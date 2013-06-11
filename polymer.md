@@ -308,20 +308,60 @@ For example, the following defines a component whose template contains an `<inpu
       </script>
     </element>
 
-### Calling inherited methods with this.super
+### Extending other elements
 
-A {{site.project_title}} component can extend a parent component by calling the parent's inherited methods. 
+A {{site.project_title}} element can extend another element by using the `extends`
+attribute. The parent's properties and methods are inherited by the child element,
+data-bound, and accessible via MDV.
 
-    <element name="g-cooler" extends="g-cool">
+    <element name="polymer-cool">
+      <!-- UI-less element -->
       <script>
-        {{site.project_title}}.register({
-          moarBetter: function() {
-            this.super();
-            this.better += 'even more.';
+        Polymer.register(this, {
+          praise: 'cool'
+        });
+      </script>
+    </element>
+
+    <element name="polymer-cooler" extends="polymer-cool">
+      <template>
+        {%raw%}{{praise}}{%endraw%} <!-- "cool" -->
+      </template>
+      <script>
+        Polymer.register(this);
+      </script>
+    </element>
+
+#### Overriding a parent's methods
+
+When you override an inherited method, you can call the parent's method with `this.super()`.
+
+    <element name="polymer-cool">
+      <script>
+        Polymer.register(this, {
+          praise: 'cool',
+          makeCoolest: function() {
+            this.praise = 'coolest';
           }
         });
       </script>
     </element>
 
-In this example, `this.super` returns a reference to the parent, which is a
-`g-cool` component. In `g-cooler` the value of `better` is "g-cool is", plus the string "even more".
+    <element name="polymer-cooler" extends="polymer-cool" on-click="makeCoolest">
+      <template>polymer-cooler is {%raw%}{{praise}}{%endraw%}</template>
+      <script>
+        Polymer.register(this, {
+          praise: 'cooler',
+          makeCoolest: function() {
+            this.super(); // calls polymer-cool's makeCoolest()
+          }
+        });
+      </script>
+    </element>
+
+    <polymer-cooler></polymer-cooler>
+
+In this example, when the user clicks on a `<polymer-cooler>` element, its
+`makeCoolest()` method is called, which in turn, call's the parent's version
+using `this.super()`. The `praise` property (inherited from `<polymer-cool>`) is set
+to "coolest".
