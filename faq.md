@@ -192,6 +192,10 @@ a default style of `display: block` using an `@host` rule.
     });
     </script>
 
+#### Can an element `extend` from more than one element or have multiple inheritance (e.g. `<element name="my-element" extends="foo bar">`?
+
+No. But {{site.project_title}} may provide a sytnax for mixins in the future.
+
 ---
 
 *Special thanks go to GitHub user md_5 who generously donated the {{site.project_title}} organization name.*
