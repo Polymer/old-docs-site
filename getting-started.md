@@ -56,7 +56,7 @@ Here's a bare bones example:
 
 <p class="alert"><b>Note</b>: You must always run your app from a web server. This
   is for the <a href="/platform/html-imports.html">HTML Imports</a> polyfill
-  will work properly. This requirement will go away when the API is available 
+  to work properly. This requirement will go away when the API is available 
 natively in browsers.</p>
 
 ## Components
