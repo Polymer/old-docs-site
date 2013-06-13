@@ -366,7 +366,7 @@ In this example, when the user clicks on a `<polymer-cooler>` element, its
 using `this.super()`. The `praise` property (inherited from `<polymer-cool>`) is set
 to "coolest".
 
-## Additional API methods
+## Additional API utilities
 
 ### asyncMethod()
 
@@ -380,12 +380,11 @@ are examples that fit under this async behavior. For example, [Conditional templ
 To do work after changes have been processed, {{site.project_title}} provides `asyncMethod()`.
 It's like `setTimeout()`, but automatically binds `this` to the correct value:
 
-    // Polymer way
     this.asyncMethod(function() {
       this.foo = 3;
-    }, null, 1000);
+    }, null, 1000); // 2nd arg can be an object|array of arguments to pass to the callback.
 
-    // Rougly qquivalent to:
+    // Roughly equivalent to:
     //setTimeout(function() {
     //  this.foo = 3;
     //}.bind(this), 1000);
