@@ -366,28 +366,37 @@ In this example, when the user clicks on a `<polymer-cooler>` element, its
 using `this.super()`. The `praise` property (inherited from `<polymer-cool>`) is set
 to "coolest".
 
-## Additional API utilities
+## Additional utilities
 
-### asyncMethod()
+Source: [base.js](https://github.com/Polymer/polymer/blob/stable/src/base.js)
 
-Many things in {{site.project_title}} happen asynchronously. Various effects are
-gathered up and executed all at once, instead of executing right away. Batching
+- [`asyncMethod()`](#asyncmethod)
+- [`fire()` / `asyncFire()`](#fire)
+
+### Dealing with asynchronous tasks {#asyncmethod}
+
+Many things in {{site.project_title}} happen asynchronously. Changes are gathered up
+and executed all at once, instead of executing right away. Batching
 changes creates and optimization that 1.) prevents duplicated work and 2.) reduces unwanted [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content).
 
 [Changed watchers](#change-watchers) and situations that rely on MDV data-bindings
 are examples that fit under this async behavior. For example, [Conditional templates](/platform/mdv.html#where-to-go-from-here) may not immediately render after setting properties because changes to those renderings are saved up and performed all at once after you return from JavaScript.
 
 To do work after changes have been processed, {{site.project_title}} provides `asyncMethod()`.
-It's like `setTimeout()`, but automatically binds `this` to the correct value:
+It's similar to `window.setTimeout()`, but automatically binds `this` to the correct value:
 
+    // asyncMethod(inMethod, inArgs, inTimeout)
     this.asyncMethod(function() {
       this.foo = 3;
-    }, null, 1000); // 2nd arg can be an object|array of arguments to pass to the callback.
+    }, null, 1000);
 
     // Roughly equivalent to:
     //setTimeout(function() {
     //  this.foo = 3;
     //}.bind(this), 1000);
+
+The second `inArgs` argument to `asyncMethod()` can be an object or array of arguments to
+pass to the callback.
 
 In the case of property changes that result in DOM modifications, follow this pattern:
 
@@ -399,3 +408,36 @@ In the case of property changes that result in DOM modifications, follow this pa
       },
       updateValues: function() {...}
     });
+
+### Firing custom events {#fire}
+
+{{site.project_title}} core provides a convenient `fire()` method for
+sending custom events. Essentially, it's a wrapper around your standard `node.dispatchEvent(newCustomEvent(...))`. In cases where you need to fire an event after microtasks have complete,
+use the asynchronously: `asyncFire()`.
+
+Example:
+
+    <element name="ouch-button">
+      <template>
+        <button on-click="onClick">Send hurt</button> 
+      </template>
+      <script>
+        Polymer.register(this, {
+          onClick: function() {
+            this.fire('ouch', {msg: 'That hurt!'}); // fire(inType, inDetail, inToNode)
+          }
+        });
+      </script>
+    </element>
+
+    <ouch-button></ouch-button>
+
+    <script>
+      document.querySelector('ouch-button').addEventListener('ouch', function(e) {
+        console.log(e.type, e.detail.msg); // "ouch" "That hurt!"
+      });
+    </script>
+
+**Tip:** If your element is within another {{site.project_title}} element, you can
+use the special [`on-* handlers`](declarative-event-mapping) to deal with the event: `<ouch-button on-ouch="myMethod"></ouch-button>`
+{: .alert .alert-success }
