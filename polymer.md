@@ -278,7 +278,7 @@ All properties on {{site.project_title}} elements can be watched for changes by 
       <script>
         {{site.project_title}}.register(this, {
           plain: '',
-          best: ''
+          best: '',
           betterChanged: function(inOldValue) {
           },
           bestChanged: function(inOldValue) {
