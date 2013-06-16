@@ -64,21 +64,20 @@ integration repositories to bring them together again. For example, the followin
 
 Other repositories aggregate these individual repositories (as submodules) into useful combinations:
 
-* `platform`
+* `polymer-all`
 * `polymer`
+* `platform`
 * `toolkit-ui`
 
-### Polyfill repositories
+### /platform repository
+
+[github.com/polymer/platform](https://github.com/polymer/platform)
 
 Each new web platform feature has a corresponding polyfill repository. The
 reasoning for this is two-fold:
 
 1. make the polyfills work across all modern browsers
 2. each polyfill can stand on its own and be used à la carte in projects.
-
-### /platform repository
-
-[github.com/polymer/platform](https://github.com/polymer/platform)
 
 The [`platform`](https://github.com/polymer/platform) repository references each of the polyfills as submodules, and contains integration tests, loader, and build tools for the amalgamated polyfills.
 
