@@ -14,4 +14,4 @@ links:
 
 {% include spec-header.html %}
 
-{% include_external polymer/platform/MDV/README.md %}
+{% include_external polymer-all/mdv/README.md %}

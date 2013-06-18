@@ -12,8 +12,5 @@ feature:
 
 {% include spec-header.html %}
 
-{% comment %}
-{% include_external polymer/platform/CustomElements/README.md %}
-{% endcomment %}
 
-{% include_external platform/custom-elements-temp.md %}
+{% include_external polymer-all/CustomElements/README.md %}

@@ -12,8 +12,4 @@ feature:
 
 {% include spec-header.html %}
 
-{% comment %}
-{% include_external polymer/platform/HTMLImports/README.md %}
-{% endcomment %}
-
-{% include_external platform/html-imports-temp-README.md %}
+{% include_external polymer-all/HTMLImports/README.md %}

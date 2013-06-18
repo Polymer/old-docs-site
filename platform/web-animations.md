@@ -12,8 +12,8 @@ feature:
 ---
 
 <!-- TODO(ericbidelman): remove when Toolkit builds in Web Animations. -->
-<!-- <script src="/toolkit/platform/WebAnimations/web-animations.js"></script> -->
+<!-- <script src="/toolkit/platform/web-animations-js/web-animations.js"></script> -->
 
 {% include spec-header.html %}
 
-{% include_external polymer/platform/WebAnimations/README.md %}
+{% include_external polymer-all/web-animations-js/README.md %}

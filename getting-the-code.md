@@ -33,7 +33,7 @@ server and run one of the included sample projects:
 2. In your browser, navigate to
     [http://localhost/toolkit-ui/workbench/menu.html](http://localhost/toolkit-ui/workbench/menu.html), or whichever port you started the server on. You should see a menu of items, as shown below.
 
-<iframe src="/toolkit-ui/workbench/menu.html" style="width:270px;height:220px;border:none;"></iframe>
+<iframe src="/polymer-all/toolkit-ui/workbench/menu.html" style="width:270px;height:220px;border:none;"></iframe>
 
 ### About branches
 

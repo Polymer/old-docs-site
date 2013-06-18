@@ -20,7 +20,7 @@ components:
 #- samples/components/tk-binding-to-elements.html
 ---
 
-<script src="/polymer/polymer.min.js?{{'now' | date: "%Y%m%d"}}"></script>
+<script src="/polymer-all/polymer/polymer.min.js?{{'now' | date: "%Y%m%d"}}"></script>
 
 [Custom Elements](/platform/custom-elements.html) are the core building blocks of
 {{site.project_title}}-based applications. You create applications by assembling custom elements
@@ -44,7 +44,7 @@ Here's a bare bones example:
     <html>
       <head>
         <!-- 1. Shim missing platform features -->
-        <script src="polymer/platform/platform.js"></script>
+        <script src="polymer-all/platform/platform.js"></script>
         <!-- 2. Load a component -->
         <link rel="import" href="x-foo.html">
       </head>

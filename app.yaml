@@ -12,11 +12,8 @@ handlers:
   static_files: _site/index.html
   upload: _site/index\.html
 
-- url: /polymer
-  static_dir: polymer
-
-- url: /toolkit-ui
-  static_dir: toolkit-ui
+- url: /polymer-all
+  static_dir: polymer-all
 
 - url: /
   static_dir: _site

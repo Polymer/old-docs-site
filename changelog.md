@@ -3,9 +3,11 @@ layout: default
 title: Changelog
 ---
 
-This document lists the major changes to the entirety of the project, including polyfill repos.
+This document lists the notable changes across the entirety of the project,
+including polyfill repos, tools, projects, and UI elements.
 
-<!-- ## 2013-06-06 {#2013-06-06}
+{%comment%}
+<!-- ## 2013-06-17 {#2013-06-17}
 
 **Notice**: This release contains important changes to the structure of the project.
 {:.centered .alert .alert-info}
@@ -26,18 +28,28 @@ TODO
 
 ### Platform
 
-#### Custom Elements
+See the [full list of changes](https://github.com/Polymer/platform/pull/18).
 
 #### HTML Imports
 
-#### MDV
+See the [full list of changes](https://github.com/Polymer/HTMLImports/pull/12).
 
-#### Pointer Events/Gestures
+- Use `DOMContentLoaded` instead of `window.onload` to trigger importing ([commit](https://github.com/Polymer/HTMLImports/commit/afb39f2ff3eb25962a19bdd992835b4076c24bf8))
+- Added `.status === 0` check for imports to work in Cordova and across `file://` ([commit](https://github.com/Polymer/HTMLImports/commit/af76c4e5acb312dfe3db87aaf974c7397aed395b))
+- Expose `HTMLImports.xhr` hook ([commit](https://github.com/Polymer/HTMLImports/commit/753e582159fb42184dcba19ea96c00e77cb55a11))
+
+#### MDV
 
 #### Shadow DOM
 
----
+### polymer-elements
 
+### polymer-ui-elements
+
+### projects
+
+---
+{%endcomment%}
 ## 2013-05-15 {#2013-05-15}
 
 This release mainly contained important platform fixes for IE and Firefox.
