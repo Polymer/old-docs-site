@@ -9,18 +9,16 @@ You can recursively clone and initialize all of {{site.project_title}}'s submodu
 
 **To get the code, run:**
 
-    git clone git://github.com/Polymer/polymer.git --recursive
+    git clone git://github.com/Polymer/polymer-all.git --recursive
 
-This creates a `polymer/` folder with the following top-level files and folders:
+This creates a `polymer-all/` folder with the following top-level files and folders:
 
 - **platform/** — Submodule which contains the platform shims and polyfills.
-- **test/** — Test cases.
-- **polymer.js** — The [{{site.project_title}} kernel](polymer.html)
-
-You will also want the samples in `tookit-ui`. To check this repo, run:
-alongside your `polymer` checkout:
-
-    git clone git://github.com/Polymer/toolkit-ui.git --recursive
+- **polymer/polymer.js** — The [{{site.project_title}} kernel](polymer.html)
+- **polymer-elements/** -  collection of core utility elements.
+- **polymer-ui-elements/** - collection of UI elements.
+- **projects/** - Larger examples, demos, and tools that use {{site.project_title}}.
+- Each platform (polyfill) also has a sibling repo.
 
 More on repository structure is below.
 
