@@ -12,6 +12,15 @@ handlers:
   static_files: _site/index.html
   upload: _site/index\.html
 
+# Preserve old URL.
+- url: /polymer/polymer.min.js
+  static_files: polymer-all/polymer/polymer.min.js
+  upload: polymer-all/polymer/polymer\.min\.js
+
+- url: /polymer.min.js
+  static_files: polymer-all/polymer/polymer.min.js
+  upload: polymer-all/polymer/polymer\.min\.js
+
 - url: /polymer-all
   static_dir: polymer-all
 
