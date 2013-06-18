@@ -6,25 +6,19 @@ title: Changelog
 This document lists the notable changes across the entirety of the project,
 including polyfill repos, tools, projects, and UI elements.
 
-{%comment%}
-<!-- ## 2013-06-17 {#2013-06-17}
-
-**Notice**: This release contains important changes to the structure of the project.
-{:.centered .alert .alert-info}
-
-The repo structure was "flattened" such that `platform` and `polymer` repos no
-longer contain submodules. Instead, the dependencies need to be checked out as siblings.
-
-For example, `platform` now expects `HTMLImports`, `CustomElements`, `PointerEvents`, `MDV`, `ShadowDOM`, etc. to be siblings. `polymer` expects to be siblings with all of them. If there
-are any questions, [`polymer-all`](https://github.com/Polymer/polymer-all/tree/master) has the correct structure. -->
-
 ## 2013-06-05 {#2013-06-05}
-
-See the [full list of changes](https://github.com/Polymer/polymer/pull/172).
 
 ### {{site.project_title}}
 
-TODO
+See the [full list of changes](https://github.com/Polymer/polymer/pull/172).
+
+- `asend()` is deprecated. Please use [`asyncFire()`](http://www.polymer-project.org/polymer.html#fire) instead ([commit](https://github.com/Polymer/polymer/commit/3e82099fb5e65d05e730c54d6a218128523855c9))
+- `asyncMethod()` now uses `requestAnimationFrame()` if no timeout duration is given ([commit](https://github.com/Polymer/polymer/commit/7fa356d7b35b3c64d523c6bb375df2b26fccf2bc))
+- Support was added for `event.path` ([commit](https://github.com/Polymer/polymer/commit/37721192e54ff4f4dd9ba7b02cc00308efd9802f), [commit](https://github.com/Polymer/polymer/commit/5fdfb68b4a4a7eddea281e6404848d7d1b911c5b))
+- Support for "Polymer" custom MDV syntax ([commit](https://github.com/Polymer/polymer/commit/59af46cd6727a900a43e9990f018a014cc9ca52e), [commit](https://github.com/Polymer/polymer/commit/09badeece541a5c740c19d579acbc4b96e4afa0f), [commit](https://github.com/Polymer/polymer/commit/e5a4c5e626d1e754d45f6317da31e82c99877a34))
+- More explicit anti-FOUC prevention ([commit](https://github.com/Polymer/polymer/commit/6fc9b8ce5214a8b1028c051295f743d28084ce00))
+- Process of putting template content into shadowRoots was changed to prevent
+  404 requests ([commit](https://github.com/Polymer/polymer/commit/bd0bd6ec6ce890839dbe56b5b18dfbcdd8eed297)). [Fixes #153](https://github.com/Polymer/polymer/issues/153)
 
 ### Platform
 
@@ -38,18 +32,30 @@ See the [full list of changes](https://github.com/Polymer/HTMLImports/pull/12).
 - Added `.status === 0` check for imports to work in Cordova and across `file://` ([commit](https://github.com/Polymer/HTMLImports/commit/af76c4e5acb312dfe3db87aaf974c7397aed395b))
 - Expose `HTMLImports.xhr` hook ([commit](https://github.com/Polymer/HTMLImports/commit/753e582159fb42184dcba19ea96c00e77cb55a11))
 
-#### MDV
-
-#### Shadow DOM
-
 ### polymer-elements
+
+See the [full list of changes](https://github.com/Polymer/polymer-elements/pull/4).
+
+- Added `<polymer-page>`element ([commit](https://github.com/Polymer/polymer-elements/commit/31fabe67f1ed6799f148c001f0f56cc71a5cced1]))
+- Added `<polymer-view-source-link>` element ([commit](https://github.com/Polymer/polymer-elements/commit/d4c702d06348df6cdaf1c74f19ea3f8df7451c64))
+- Added `<polymer-localstorage>` ([commit](https://github.com/Polymer/polymer-elements/commit/3feba7f5fb91fc819b6ddf335031c9e5dc31233f))
+- Version of `<polymer-layout>` that uses CSS flexbox ([commit](https://github.com/Polymer/polymer-elements/commit/22f71e468c307c199869c5790291d25d9fe01787))
 
 ### polymer-ui-elements
 
+See the [full list of changes](https://github.com/Polymer/polymer-ui-elements/pull/2).
+
+- Added `<polymer-ui-sidebar-menu>` (formerly known as ribbon) ([commit](https://github.com/Polymer/polymer-ui-elements/commit/5f889b3b98687a14e4142d202a8c931ea22b59d1))
+- Added `<polymer-ui-icon>` example file ([commit](https://github.com/Polymer/polymer-ui-elements/commit/d2dc6da9ecd0fb727cb7204983c200764940fbad))
+
 ### projects
 
+See the [full list of changes](https://github.com/Polymer/projects/pull/14).
+
+- Initial commit of Gallery ([commit](https://github.com/Polymer/projects/commit/d57bd2c9e667bde9b2488d944a119101f5105bd8]))
+
 ---
-{%endcomment%}
+
 ## 2013-05-15 {#2013-05-15}
 
 This release mainly contained important platform fixes for IE and Firefox.
