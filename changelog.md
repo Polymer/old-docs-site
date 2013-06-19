@@ -36,7 +36,7 @@ this release.
 
 - Arrays and Objects are supported as attributes ([commit](https://github.com/Polymer/polymer/commit/8bdeba4ffafba4997f47387435e32c800cff8e9f))
 - Polyfill support for `:scope` instead of `@host` ([commit](https://github.com/Polymer/polymer/commit/e226596c0504b651f3b1bc48093f9cd02adc247e))
-- Style are correctly applied to type extension custom elements (e.g. `[is="x-foo"]`) ((commit)[https://github.com/Polymer/polymer/commit/4b64c878c82a2d51b253565e988e081e09497994])
+- Style are correctly applied to type extension custom elements (e.g. `[is="x-foo"]`) ([commit](https://github.com/Polymer/polymer/commit/4b64c878c82a2d51b253565e988e081e09497994))
 - The other lifecycle callbacks (`inserted`, `removed`, `attributeChanged`) can
   be setup in the `Polymer.register()` call in addition to `ready`. **Note**: these
   names are shorter than the spec's API.
