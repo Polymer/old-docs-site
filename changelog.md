@@ -6,6 +6,102 @@ title: Changelog
 This document lists the notable changes across the entirety of the project,
 including polyfill repos, tools, projects, and UI elements.
 
+## 2013-06-17 {#2013-06-17}
+
+**Notice**: This release contains important changes to the structure of the project.
+{:.centered .alert .alert-info}
+
+The repo structure was "flattened" such that `platform` and `polymer` repos no
+longer contain submodules. Instead, the dependencies need to be checked out as siblings.
+For example, `platform` now expects `HTMLImports`, `CustomElements`, `PointerEvents`, `MDV`, `ShadowDOM`, etc. to be siblings. `polymer` expects to be siblings with all of them. **Unless you're
+working directly on {{site.project_title}}, it's safe to stick with [`polymer-all`](https://github.com/Polymer/polymer-all/tree/master).**
+
+### {{site.project_title}}
+
+#### General
+
+- The [Bower component](https://github.com/components/polymer) has been updated to reflect
+this release.
+- {{site.project_title}}-based [TodoMVC app](http://todomvc.com/labs/architecture-examples/polymer/index.html) ([source](https://github.com/Polymer/todomvc)) was published.
+- [MDV Expression Syntax](https://github.com/Polymer/mdv/blob/master/docs/expression_syntax.md) is on by default ([commit](https://github.com/Polymer/polymer/commit/5b869b5b03880435c288383a042a366314914ea7)). No changes are necessary for your current usage of templates. New features include support for inline math expressions, named scoping, and more. [Read more](https://github.com/Polymer/mdv/blob/master/docs/expression_syntax.md).
+- To reduce memory leaks, **elements created 1.) in JavaScript (e.g. `document.createElement('x-foo')`) and 2.) not in the DOM will lose their bindings, asynchronously**. ([commit](https://github.com/Polymer/polymer/commit/5b869b5b03880435c288383a042a366314914ea7))
+  - If you want an element to remain *active* when it's not in the `document`
+  (e.g. it keeps its MDV bindings and `*Changed` methods), you must call
+  `this.cancelUnbindAll()` after it's been created or removed. The `ready()` callback
+  is a good place for creation time.
+  - If you call `cancelUnbindAll()` and never put the element back in the DOM,
+  it is your responsibility to eventually call `this.unbindAll()/asyncUnbindAll()`. Otherwise, you will leak memory.
+
+#### Core
+
+- Arrays and Objects are supported as attributes ([commit](https://github.com/Polymer/polymer/commit/8bdeba4ffafba4997f47387435e32c800cff8e9f))
+- Polyfill support for `:scope` instead of `@host` ([commit](https://github.com/Polymer/polymer/commit/e226596c0504b651f3b1bc48093f9cd02adc247e))
+- Style are correctly applied to type extension custom elements (e.g. `[is="x-foo"]`) ((commit)[https://github.com/Polymer/polymer/commit/4b64c878c82a2d51b253565e988e081e09497994])
+- The other lifecycle callbacks (`inserted`, `removed`, `attributeChanged`) can
+  be setup in the `Polymer.register()` call in addition to `ready`. **Note**: these
+  names are shorter than the spec's API.
+
+
+### Platform
+
+#### Custom Elements
+
+See the [full list of changes](https://github.com/Polymer/CustomElements/pull/41).
+
+- Support non-enumerable properties defined on `HTMLElement` prototypes ([commit](https://github.com/Polymer/CustomElements/commit/3f09cb9035040acb823a4561878f0bf697d2fb9a))
+- Boostrap on `DOMContentLoaded` instead of `window.load`. Go immediately if
+`document.readyState === 'complete'` ([commit](https://github.com/Polymer/CustomElements/commit/4ddb59a57a8ac09ef43f241aba0bbca448046105))
+- `.constructor` references correct name defined in `<element>`'s `contructor` attribute ([commit](https://github.com/Polymer/CustomElements/commit/e34dc4204355bf8d01399d75b9dbc47b7a237ddc))
+- Update to new source map syntax (from `//@` to `//#`) ([commit](https://github.com/Polymer/CustomElements/commit/b89e86d65218d5671aefd3770e8720cf4ed9b75f))
+
+#### HTML Imports
+
+See the [full list of changes](https://github.com/Polymer/HTMLImports/pull/14).
+
+- Loading now kicks off immediately if `document.readyState === 'complete'` ([commit](https://github.com/Polymer/HTMLImports/commit/121789488287c0b59d8c546bcb9ac0e8ca686357))
+- Do not load external stylesheets that are not in `<element>`. Also support external
+  stylesheets inside of `<template>` ([commit](https://github.com/Polymer/HTMLImports/commit/8df92bfcb989560bae9a5b4c909ed115e0acbbe6))
+- Update to new source map syntax (from `//@` to `//#`) ([commit](https://github.com/Polymer/HTMLImports/commit/cf8edfde3ba4e71454e99acf192946cc2b76fa60))
+
+#### MDV
+
+See the [full list of changes](https://github.com/Polymer/mdv/pull/106).
+
+- Support binding to `HTMLSelectElement.selectedIndex` ([commit](https://github.com/Polymer/mdv/commit/53a5d78b329b9a52ad9426bbd57b9322f42f1bd2))
+- `HTMLTemplateElement.createInstance()` now takes model &amp; syntax string (e.g. `template.createInstance(model, 'MDV')`) ([commit](https://github.com/Polymer/mdv/commit/22c32ebfa84b6e08341b2e1af71a25b5bee4b2be))
+- Implement two-way binding to `HTMLTextArea.value` ([commit](https://github.com/Polymer/mdv/commit/55104c3fed41db04f98076f825bc32f6dfc5624f))
+- Named scopes are supported (e.g. `{%raw%}<template repeat="{{item in items}}">{%endraw%}`) ([commit](https://github.com/Polymer/mdv/commit/0e98ae0b017f722030e5203d3a151f07f9f392bf)). [Read more](https://github.com/Polymer/mdv/blob/master/docs/syntax_api.md).
+- Implement [MDV Syntax expressions](https://github.com/Polymer/mdv/blob/master/docs/expression_syntax.md) ([commit](https://github.com/Polymer/mdv/commit/63e8fad3cda4e4505da119577b8cb164d321bfd4))
+- Allow `<template if="{%raw%}{{expr}}{%endraw%}">` to be equivalent to `<template bind if="{%raw%}{{expr}}{%endraw%}">` ([commit](https://github.com/Polymer/mdv/commit/9657f53fe38d2c87dd2b1f34398a41fafadc73b2))
+
+#### Pointer Events
+
+See the [full list of changes](https://github.com/Polymer/PointerEvents/pull/77).
+
+- Split mouse/touch/MS events into their own modules ([commit](https://github.com/Polymer/PointerEvents/commit/946d643f9bc304f75fe1f4ec008ac43dee7eec2f))
+- Touches that fall off the screen are handled more gracefull ([commit](https://github.com/Polymer/PointerEvents/commit/9bab6b80e74fcbbdb4145286aae264ae54175419))
+
+#### Shadow DOM
+
+See the [full list of changes](https://github.com/Polymer/ShadowDOM/pull/171).
+
+- Alias `.createShadowRoot()` to `.webkitCreateShadowRoot()` ([commit](https://github.com/Polymer/ShadowDOM/commit/8645527db46c31d217ebc2fdbaaff63ce6081cf2))
+- Remove `shadowRoot.insertionParent` per spec ([common](https://github.com/Polymer/ShadowDOM/commit/f798ba26e895bb65456920ea33844d1dc9960dd6))
+- Implement `event.path` ([commit](https://github.com/Polymer/ShadowDOM/commit/3b1422cb6a6c7e429038168993192a4c8435035a))
+
+### Elements & Projects
+
+- Added `<polymer-meta>` for storing metadata ([commit](https://github.com/Polymer/polymer-elements/commit/832a45a543371b4756bd42f90f8209f420f5a83a))
+- Added `<polymer-ui-ratings>` ([commit](https://github.com/Polymer/polymer-ui-elements/commit/a9a5d26992285ba9f1122541a3e8d56ded2d5c19))
+- Added `<polymer-ui-toggle-button>` ([commit](https://github.com/Polymer/polymer-ui-elements/commit/5904e63b8eb9bd295a1bcd7e940870f83df4260e))
+- Added `<polymer-ui-tabs>` ([commit](https://github.com/Polymer/polymer-ui-elements/commit/1812da5110df5f382ce9982ac5f297565edc1bad))
+
+
+- Initial work on [Polymer Elements Playground](https://github.com/Polymer/projects/commit/1dd87c03e30ae34d1266c943c1a42466b43788f4)
+- Added port of [Memory Game](https://github.com/Polymer/projects/commit/1dd6746d918c72e316fa65e2c975640da56768c7)
+
+---
+
 ## 2013-06-05 {#2013-06-05}
 
 ### {{site.project_title}}
@@ -15,7 +111,7 @@ See the [full list of changes](https://github.com/Polymer/polymer/pull/172).
 - `asend()` is deprecated. Please use [`asyncFire()`](http://www.polymer-project.org/polymer.html#fire) instead ([commit](https://github.com/Polymer/polymer/commit/3e82099fb5e65d05e730c54d6a218128523855c9))
 - `asyncMethod()` now uses `requestAnimationFrame()` if no timeout duration is given ([commit](https://github.com/Polymer/polymer/commit/7fa356d7b35b3c64d523c6bb375df2b26fccf2bc))
 - Support was added for `event.path` ([commit](https://github.com/Polymer/polymer/commit/37721192e54ff4f4dd9ba7b02cc00308efd9802f), [commit](https://github.com/Polymer/polymer/commit/5fdfb68b4a4a7eddea281e6404848d7d1b911c5b))
-- Support for "Polymer" custom MDV syntax ([commit](https://github.com/Polymer/polymer/commit/59af46cd6727a900a43e9990f018a014cc9ca52e), [commit](https://github.com/Polymer/polymer/commit/09badeece541a5c740c19d579acbc4b96e4afa0f), [commit](https://github.com/Polymer/polymer/commit/e5a4c5e626d1e754d45f6317da31e82c99877a34))
+- Support for "{{site.project_title}}" custom MDV syntax ([commit](https://github.com/Polymer/polymer/commit/59af46cd6727a900a43e9990f018a014cc9ca52e), [commit](https://github.com/Polymer/polymer/commit/09badeece541a5c740c19d579acbc4b96e4afa0f), [commit](https://github.com/Polymer/polymer/commit/e5a4c5e626d1e754d45f6317da31e82c99877a34))
 - More explicit anti-FOUC prevention ([commit](https://github.com/Polymer/polymer/commit/6fc9b8ce5214a8b1028c051295f743d28084ce00))
 - Process of putting template content into shadowRoots was changed to prevent
   404 requests ([commit](https://github.com/Polymer/polymer/commit/bd0bd6ec6ce890839dbe56b5b18dfbcdd8eed297)). [Fixes #153](https://github.com/Polymer/polymer/issues/153)
@@ -32,25 +128,17 @@ See the [full list of changes](https://github.com/Polymer/HTMLImports/pull/12).
 - Added `.status === 0` check for imports to work in Cordova and across `file://` ([commit](https://github.com/Polymer/HTMLImports/commit/af76c4e5acb312dfe3db87aaf974c7397aed395b))
 - Expose `HTMLImports.xhr` hook ([commit](https://github.com/Polymer/HTMLImports/commit/753e582159fb42184dcba19ea96c00e77cb55a11))
 
-### polymer-elements
+### Elements & Projects
 
-See the [full list of changes](https://github.com/Polymer/polymer-elements/pull/4).
+### polymer-elements
 
 - Added `<polymer-page>`element ([commit](https://github.com/Polymer/polymer-elements/commit/31fabe67f1ed6799f148c001f0f56cc71a5cced1]))
 - Added `<polymer-view-source-link>` element ([commit](https://github.com/Polymer/polymer-elements/commit/d4c702d06348df6cdaf1c74f19ea3f8df7451c64))
 - Added `<polymer-localstorage>` ([commit](https://github.com/Polymer/polymer-elements/commit/3feba7f5fb91fc819b6ddf335031c9e5dc31233f))
 - Version of `<polymer-layout>` that uses CSS flexbox ([commit](https://github.com/Polymer/polymer-elements/commit/22f71e468c307c199869c5790291d25d9fe01787))
-
-### polymer-ui-elements
-
-See the [full list of changes](https://github.com/Polymer/polymer-ui-elements/pull/2).
-
 - Added `<polymer-ui-sidebar-menu>` (formerly known as ribbon) ([commit](https://github.com/Polymer/polymer-ui-elements/commit/5f889b3b98687a14e4142d202a8c931ea22b59d1))
 - Added `<polymer-ui-icon>` example file ([commit](https://github.com/Polymer/polymer-ui-elements/commit/d2dc6da9ecd0fb727cb7204983c200764940fbad))
 
-### projects
-
-See the [full list of changes](https://github.com/Polymer/projects/pull/14).
 
 - Initial commit of Gallery ([commit](https://github.com/Polymer/projects/commit/d57bd2c9e667bde9b2488d944a119101f5105bd8]))
 
