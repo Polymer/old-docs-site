@@ -96,7 +96,7 @@ support the CSS `:unknown` pseudo class.
 ### Published properties
 
 When you _publish_ a property name, you're making that property two-way data-bound and part
-of the element's "public API". Published properties are mapped to an HTML attribute
+of the element's "public API". Published properties can be initialized by an HTML attribute
 of the same name. 
 
 There are two ways to publish properties:
