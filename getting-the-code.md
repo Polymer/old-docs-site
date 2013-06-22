@@ -27,7 +27,7 @@ More on repository structure is below.
 To check that your development environment is ready, start a local web
 server and run one of the included sample projects:
 
-1. **Start a local web server** in the folder where you have `polymer/` and `toolkit-ui` checked out.
+1. **Start a local web server** in the folder where you have `polymer-all/` checked out.
 2. In your browser, navigate to
     [http://localhost/toolkit-ui/workbench/menu.html](http://localhost/toolkit-ui/workbench/menu.html), or whichever port you started the server on. You should see a menu of items, as shown below.
 
