@@ -16,7 +16,7 @@ It is provided in the file `polymer.js`.
 
 ## Element declaration
 
-Every {{site.project_title}} element is a Custom Element at heart. Their 
+Every {{site.project_title}} element is a Custom Element at heart. Its 
 declaration looks no different than your standard element definition:
 
     <element name="tag-name" constructor="TagName">
@@ -28,13 +28,13 @@ declaration looks no different than your standard element definition:
       </script>
     </element>
 
-**Reminder:** The `name` attribute specifies the name of the HTML tag when you
+**Reminder:** The `name` attribute specifies the name of the HTML tag you use to
 instantiate the element in markup (e.g. `<tag-name>`). It must be a "-" separated string.
 {: .alert }
 
 ### Initializing {{site.project_title}} elements
 
-To register `<tag-name>` and super charge it as a {{site.project_title}} element,
+To register `<tag-name>` and supercharge it as a {{site.project_title}} element,
 include a `<script>` that calls `{{site.project_title}}.register`:
 
     <element name="tag-name">
@@ -46,12 +46,12 @@ include a `<script>` that calls `{{site.project_title}}.register`:
       </script>
     </element>
 
-`{{site.project_title}}.register` is a convenience wrapper for [`document.register`](/platform/custom-elements.html#documentregister). Its first argument is reference to the element you're creating. Since script within an `<element>` runs in the context of the element,
-`this` refers our `<tag-name>` element.
+`{{site.project_title}}.register` is a convenience wrapper for [`document.register`](/platform/custom-elements.html#documentregister). Its first argument is a reference to the element you're creating. Since script within an `<element>` runs in the context of the element,
+`this` refers to our `<tag-name>` element.
 
 The second argument (optional) is an object that defines your element's `prototype`. 
 In the following example the registration call defines a property `message` and
-a method, `ready`: 
+a method `ready`: 
 
     {{site.project_title}}.register(this, {
       message: "Hello!",
@@ -169,7 +169,7 @@ When attribute values are converted to property values, {{site.project_title}} a
 
 ### Data binding and custom attributes
 
-Published properties are data-bound inside of {{site.project_title}} elements an accessible
+Published properties are data-bound inside of {{site.project_title}} elements and accessible
 via MDV's `{%raw%}{{}}{%endraw%}`. These bindings are by reference and are two-way.
 
 For example, we can define a `name-tag` element that publishes two properties,
@@ -187,7 +187,7 @@ For example, we can define a `name-tag` element that publishes two properties,
     </element>
 
 In this example, `name` has initial value of `null` and `nameColor` has a value of "orange".
-Thus, the `<span>`s color will be orange.
+Thus, the `<span>`'s color will be orange.
 
 #### Binding objects to attribute values
 
@@ -231,7 +231,7 @@ Now, imagine we make a new component called `<visitor-creds>` that uses `name-ta
       </script>
     </element>
 
-When an instance of `<visitor-creds>` is created, its `person` property (an object),
+When an instance of `<visitor-creds>` is created, its `person` property (an object)
 is also bound to `<name-tag>`'s `person` property. Now both components are using
 the same `person` object.
 
@@ -291,9 +291,9 @@ In this example, there are two watched properties, `better` and `best`. The `bet
 
 ### Automatic node finding
 
-Another useful feature of {{site.project_title}} is node reference marshalling. Every node in a component's shadow DOM that is tagged with an `id` attribute is automatically referenced in components `this.$` hash. 
+Another useful feature of {{site.project_title}} is node reference marshalling. Every node in a component's shadow DOM that is tagged with an `id` attribute is automatically referenced in the component's `this.$` hash. 
 
-For example, the following defines a component whose template contains an `<input>` element whose `id` attribute is `nameInput`. The component can refer to the that element with the expression `this.$.nameInput`.
+For example, the following defines a component whose template contains an `<input>` element whose `id` attribute is `nameInput`. The component can refer to that element with the expression `this.$.nameInput`.
 
     <element name="x-form">
       <template>
@@ -362,7 +362,7 @@ When you override an inherited method, you can call the parent's method with `th
     <polymer-cooler></polymer-cooler>
 
 In this example, when the user clicks on a `<polymer-cooler>` element, its
-`makeCoolest()` method is called, which in turn, call's the parent's version
+`makeCoolest()` method is called, which in turn calls the parent's version
 using `this.super()`. The `praise` property (inherited from `<polymer-cool>`) is set
 to "coolest".
 
@@ -377,10 +377,10 @@ Source: [base.js](https://github.com/Polymer/polymer/blob/stable/src/base.js)
 
 Many things in {{site.project_title}} happen asynchronously. Changes are gathered up
 and executed all at once, instead of executing right away. Batching
-changes creates and optimization that 1.) prevents duplicated work and 2.) reduces unwanted [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content).
+changes creates an optimization that (a) prevents duplicated work and (b) reduces unwanted [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content).
 
-[Changed watchers](#change-watchers) and situations that rely on MDV data-bindings
-are examples that fit under this async behavior. For example, [Conditional templates](/platform/mdv.html#where-to-go-from-here) may not immediately render after setting properties because changes to those renderings are saved up and performed all at once after you return from JavaScript.
+[Change watchers](#change-watchers) and situations that rely on MDV data-bindings
+are examples that fit under this async behavior. For example, [conditional templates](/platform/mdv.html#where-to-go-from-here) may not immediately render after setting properties because changes to those renderings are saved up and performed all at once after you return from JavaScript.
 
 To do work after changes have been processed, {{site.project_title}} provides `asyncMethod()`.
 It's similar to `window.setTimeout()`, but automatically binds `this` to the correct value:
@@ -395,14 +395,14 @@ It's similar to `window.setTimeout()`, but automatically binds `this` to the cor
     //  this.foo = 3;
     //}.bind(this), 1000);
 
-The second `inArgs` argument to `asyncMethod()` can be an object or array of arguments to
+The second argument to `asyncMethod()`, `inArgs`, is an optional object or array of arguments to
 pass to the callback.
 
 In the case of property changes that result in DOM modifications, follow this pattern:
 
     Polymer.register(this, {
       propChanged: function() {
-        // If "prop" changing results in our DOM changing. Schedule an update after
+        // If "prop" changing results in our DOM changing, schedule an update after
         // the new microtask.
         this.asyncMethod(this.updateValues);
       },
@@ -412,8 +412,8 @@ In the case of property changes that result in DOM modifications, follow this pa
 ### Firing custom events {#fire}
 
 {{site.project_title}} core provides a convenient `fire()` method for
-sending custom events. Essentially, it's a wrapper around your standard `node.dispatchEvent(newCustomEvent(...))`. In cases where you need to fire an event after microtasks have complete,
-use the asynchronously: `asyncFire()`.
+sending custom events. Essentially, it's a wrapper around your standard `node.dispatchEvent(new CustomEvent(...))`. In cases where you need to fire an event after microtasks have completed,
+use the asynchronous version: `asyncFire()`.
 
 Example:
 
