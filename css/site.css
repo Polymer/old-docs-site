@@ -11,7 +11,7 @@
   }
 }
 
-h2:target, h3:target, h4:target{
+h2:target, h3:target, h4:target {
   padding-top: 50px;
 }
 body {
@@ -92,8 +92,17 @@ footer div:first-of-type {
   background-image: -o-linear-gradient(top, #ffffff, #ccc);
   background-image: linear-gradient(to bottom, #ffffff, #ccc);
 }
+/*.well-small {
+  padding: 3px 0;
+}
+.well-small .nav-list li {
+  padding: 0 9px;
+}*/
 .alert.alert-error {
   clear: both;
+}
+.nav-header a {
+  color: #999;
 }
 /* -------------------------------------------------------------------------- */
 
@@ -128,6 +137,32 @@ a[disabled] {
   display: initial; 
 }
 
+/* Architecture stack */
+.core {
+  color: rgb(244, 180, 0);
+}
+.core.bg {
+  background-color: rgba(255, 209, 77, 0.5);
+}
+.foundation {
+  color: rgb(205, 55, 45);
+}
+.foundation.bg {
+  background-color: rgba(244, 74, 63, 0.3);
+}
+.elements {
+  color: rgb(3, 119, 75);
+}
+.elements.bg {
+  background-color: rgb(13, 168, 97, 0.3);
+}
+.applications {
+  color: rgb(35, 100, 215);
+}
+.applications.bg {
+  background-color: rgb(67, 135, 253, 0.3);
+}
+
 #content {
   min-height: 400px;
 }
@@ -157,6 +192,18 @@ a[disabled] {
 }
 
 /* Articles */
+/*.article .tags {
+  color: #ccc;
+  font-size: small;
+}
+.article .tags span {
+  margin-right: 5px;
+}*/
+.article .byline {
+  font-size: smaller;
+  color: #ccc;
+}
+
 .author {
   margin-bottom: 20px;
 }

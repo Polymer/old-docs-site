@@ -24,6 +24,10 @@ handlers:
 - url: /polymer-all
   static_dir: polymer-all
 
+- url: /(.*)/$
+  static_files: _site/\1/index.html
+  upload: _site/\1/index.html
+
 - url: /
   static_dir: _site
 
