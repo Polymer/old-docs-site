@@ -1,0 +1,16 @@
+{% assign author = site.authors[page.article.author] %}
+{% assign article = page.article %}
+
+{% assign pubdate = article.published | date: "%Y-%m-%d" %}
+{% assign updated = article.updated | date: "%Y-%m-%d" %}
+
+{::options parse_block_html="true" /}
+<aside class="author">
+<a href="https://plus.google.com/{{author.gplus}}" target="blank_">![{{author.full_name}} profile pic](//www.google.com/s2/photos/profile/{{author.gplus}}?sz=40 "{{author.full_name}}")</a>
+
+By <a href="https://plus.google.com/{{author.gplus}}" target="blank_">{{author.full_name}}</a><br>
+Published <time pubdate datetime="{{pubdate}}">{{article.published | date: "%B %d, %Y"}}</time>
+{% if article.updated %}
+(updated <time datetime="{{updated}}">{{article.updated | date: "%B %d, %Y"}}</time>)
+{% endif %}
+</aside>
