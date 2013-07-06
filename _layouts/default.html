@@ -24,7 +24,25 @@
       </div>
       {% endif %}
 
-      <div id="content">{{content}}</div>
+      {% comment %}
+        Allow individual pages to turn off permalinks
+      {% endcomment %}
+      {% capture permalinks_class %}
+        {% if site.add_permalinks %}
+          {% case page.add_permalinks %} 
+            {% when true %} 
+              show-permalinks
+            {% when false %}
+              {% comment %}
+                Intentionally empty in case variable isn't defined in page.
+              {% endcomment %}
+            {% else %} 
+              show-permalinks 
+          {% endcase %} 
+        {% endif %}
+      {% endcapture %}
+
+      <div id="content" class="{{permalinks_class}}">{{content}}</div>
 
       <hr>
 

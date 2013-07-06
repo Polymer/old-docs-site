@@ -97,6 +97,10 @@ footer div:first-of-type {
 }
 /* -------------------------------------------------------------------------- */
 
+.centered {
+  text-align: center;
+}
+
 /* Remove empty p generated from markdown conversion. */
 p:empty {
   display: none;
@@ -114,6 +118,14 @@ a[disabled] {
   right: 0;*/
   float: right;
   font-size: smaller;
+}
+
+.permalink {
+  display: none;
+  margin-left: 5px;
+}
+.has-permalink:hover .permalink {
+  display: initial; 
 }
 
 #content {
@@ -143,6 +155,20 @@ a[disabled] {
   width: 100%;
   border: none;
 }
-.centered {
-  text-align: center;
+
+/* Articles */
+.author {
+  margin-bottom: 20px;
+}
+.author > p {
+  display: inline-block;
+  margin: 0;
+}
+.author > p:first-of-type {
+  vertical-align: top;
+}
+.author img {
+  margin-right: 5px;
+  height: 40px;
+  width: 40px;
 }

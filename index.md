@@ -44,7 +44,8 @@ and designed to leverage the evolving web platform on modern browsers.
   <img class="codescreenshot" src="images/instacod.png" alt="Custom element markup" title="Custom element markup">
 </p>
 
-<h2 style="clear:both;">What is {{site.project_title}}?</h2>
+## What is {{site.project_title}}?
+{: style="clear:both" }
 
 {{site.project_title}} is comprised of two efforts:
 
