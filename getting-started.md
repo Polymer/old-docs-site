@@ -130,8 +130,7 @@ Published properties can be used to define an element's "public API". {{site.pro
 establishes two-way data binding for published properties and provides access
 to the property's value using MDV's `{%raw%}{{}}{%endraw%}`.
 
-_Publish_ a property by listing it in the `attributes` attribute on the `<element>` tag.
-Properties declared this way are initially `null`. To provide a more appropriate default value, include the same property name directly in your prototype (as seen below).
+_Publish_ a property by listing it in the `attributes` attribute in your `<polymer-element>`. Properties declared this way are initially `null`. To provide a more appropriate default value, include the same property name directly in your prototype (as seen below).
 
 The following example defines two data-bound properties on the element, `owner` and `color`,
 and gives them default values:
