@@ -2,7 +2,7 @@
 layout: default
 title: Getting started
 
-components:
+imports:
 #- toolkit-ui/elements/g-panels.html
 #- toolkit-ui/elements/g-tabs.html
 #- samples/components/basic-element.html

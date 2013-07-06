@@ -19,10 +19,10 @@
   {% endif %} {{site.project_title}}
 </title>
 <link rel="shortcut icon" href="/images/icons/loading_icon.png">
-<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="/css/prettify/sunburst.css" rel="stylesheet" type="text/css">
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/prettify/sunburst.css" rel="stylesheet">
 <!-- <link href="/css/pygments/default.css" rel="stylesheet" type="text/css"> -->
-<link href="/css/site.css?{{'now' | date: "%Y%m%d"}}" rel="stylesheet" type="text/css">
+<link href="/css/site.css?{{'now' | date: "%Y%m%d"}}" rel="stylesheet">
 
 {% for item in page.stylesheets %}
   <link rel="stylesheet" src="{{item}}">
@@ -43,7 +43,7 @@ try {
 <!--   
   <script src="/polymer.min.js?{{'now' | date: "%Y%m%d"}}"></script>
  -->
-  {% for item in page.components %}
+  {% for item in page.imports %}
     <link rel="import" src="{{item}}">
   {% endfor %}
 {% endif %}
