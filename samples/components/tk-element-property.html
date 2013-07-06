@@ -1,13 +1,13 @@
-<element name="tk-element-property">
+<polymer-element name="tk-element-property">
   <template>
     This is a <b>tk-element</b> with a (protected) property.
   </template>
   <script>
     var owner = "Daniel";
-    Polymer.register(this, {
+    Polymer('tk-element-property', {
       ready: function() {
         // Ready to go.
       }
     });
   </script>
-</element>
+</polymer-element>

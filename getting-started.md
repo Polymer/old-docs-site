@@ -29,10 +29,7 @@ or third-party elements.
 
 ## Basics
 
-{{site.project_title}} expands the concepts of [Custom Elements](/platform/custom-elements.html) by providing
-extra goodies. However, if you're only interested in building a regular Custom Element,
-all you need is `platform.js`, which polyfills missing platform features like
-[Shadow DOM](/platform/shadow-dom.html) and [HTML Imports](/platform/html-imports.html).
+{{site.project_title}} expands the concepts of [Custom Elements](/platform/custom-elements.html) by providing extra goodies. However, if you're only interested in building a regular Custom Element, all you need is `platform.js`. It contains polyfills for missing platform features like [Shadow DOM](/platform/shadow-dom.html) and [HTML Imports](/platform/html-imports.html).
 
 1. Load **platform.js** to polyfill missing platform features.
 2. Load components with `<link rel="import" href="/path/to/component-file.html">`
@@ -69,10 +66,13 @@ new technologies.
 
 {% include samples/basic-element.html %}
 
+**Reminder:** The `name` attribute is required and specifies the name of the HTML
+tag you'll instantiate in markup (e.g. `<tag-name>`). It must be a "-" separated string.
+{: .alert }
+
 ### Creating a {{site.project_title}} element
 
-{{site.project_title}} provides extra goodies for creating custom elements. We call these souped-up
-custom elements "{{site.project_title}} elements". To create one, follow these steps:
+{{site.project_title}} provides extra goodies for creating custom elements. We call these souped-up custom elements "{{site.project_title}} elements". To create one, follow these steps:
 
 1. Load [{{site.project_title}} core](/polymer.html) (`polymer/polymer.js` or `polymer/polymer.min.js`).
 
@@ -80,19 +80,18 @@ custom elements "{{site.project_title}} elements". To create one, follow these s
 You only need to include `polymer.js` when writing a {{site.project_title}} element.
     {: .alert }
 
-1. In your custom element, add a `<script>` element that calls the `{{site.project_title}}.register()`. This endows the custom element with {{site.project_title}} features, such as data binding and event mapping.
+1. Declare your custom element using `<polymer-element>`.
 
-In the following sample we convert our basic custom element into a {{site.project_title}} element named `tk-element`.
+1. Include `<script>` that calls `{{site.project_title}}('your-tagname')`. `{{site.project_title}}(..)` is a convenience wrapper for [`document.register`](/platform/custom-elements.html#documentregister), but also endows the element with special features like data binding and event mapping. Its first argument is the name of the element you're creating. The second argument (optional) is an object that defines your element's `prototype`. 
+
+In the following sample, we've converted our basic custom element into a {{site.project_title}} element named `tk-element`.
 
 {% include samples/tk-element.html %}
-
-`{{site.project_title}}.register()` takes the element it needs to register as its first argument.
-In the context of `<element>`, `this` refers to the element.
 
 {% comment %}
 ### Add properties to our component
 
-The `{{site.project_title}}.register()` takes an object as a parameter whose members define the properties and methods that belong to our component.
+The `{{site.project_title}}()` takes an object as a parameter whose members define the properties and methods that belong to our component.
 
 {% include samples/tk-element-property.html %}
 
