@@ -138,10 +138,12 @@ Feature detection, or an agreed upon common location for a 'jquery.html' file in
 #### How do I package a bunch of custom elements together? {#packaging}
 
 Use a custom build step that flattens/concatenates everything into a single file,
-then uses [HTML Imports](/platform/html-imports.html) (`<link ref="import">`) to 
+then use [HTML Imports](/platform/html-imports.html) (`<link ref="import">`) to 
 bring that file into your app. 
 
-Similarly, you could write a build step that inlines any custom element definition directly into your main app. 
+Similarly, you could write a build step that inlines any custom element definition
+directly into your main app. We've experimented with this basic idea in a
+tool we call [Vulcanizer](https://github.com/Polymer/labs/tree/master/vulcanize).
 
 #### Crawlers understand custom elements? How does SEO work? {#seo}
 
