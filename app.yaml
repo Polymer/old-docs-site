@@ -1,5 +1,5 @@
 application: polymer-project
-version: 2013-06-17
+version: 2013-07-08
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -26,7 +26,7 @@ handlers:
 
 - url: /(.*)/$
   static_files: _site/\1/index.html
-  upload: _site/\1/index.html
+  upload: _site/(.*)/index.html
 
 - url: /
   static_dir: _site
