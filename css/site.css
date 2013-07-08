@@ -154,13 +154,13 @@ a[disabled] {
   color: rgb(3, 119, 75);
 }
 .elements.bg {
-  background-color: rgb(13, 168, 97, 0.3);
+  background-color: rgba(13, 168, 97, 0.3);
 }
 .applications {
   color: rgb(35, 100, 215);
 }
 .applications.bg {
-  background-color: rgb(67, 135, 253, 0.3);
+  background-color: rgba(67, 135, 253, 0.3);
 }
 
 #content {

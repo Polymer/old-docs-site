@@ -28,4 +28,9 @@ add_permalinks: false
 
 </div>
 {% endif %}
+
 {% endfor %}
+
+<div style="margin-top:5em;">
+_Have an idea for an article? [Suggest it](https://github.com/Polymer/docs/issues/new)!_
+</div>
