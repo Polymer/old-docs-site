@@ -1,14 +1,16 @@
 @import url(//fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,800|Source+Code+Pro);
 
-@media (min-width: 980px) {
-  body {
-    padding-top: 60px;
-  }
+h1 {
+  font-size: 3.4vw;
 }
-@media (min-width: 1200px) {
-  .codescreenshot {
-    display: block !important;
-  }
+h2 {
+  font-size: 2.8vw;
+}
+h3 {
+  font-size: 2.1vw;
+}
+h4 {
+  font-size: 1.5vw;
 }
 
 h2:target, h3:target, h4:target {
@@ -221,4 +223,29 @@ a[disabled] {
   margin-right: 5px;
   height: 40px;
   width: 40px;
+}
+
+@media (min-width: 980px) {
+  body {
+    padding-top: 60px;
+  }
+}
+@media (min-width: 1200px) {
+  .codescreenshot {
+    display: block !important;
+  }
+}
+@media only screen and (max-width: 700px) {
+  h1 {
+    font-size: 6.4vw;
+  }
+  h2 {
+    font-size: 5.4vw;
+  }
+  h3 {
+    font-size: 4.7vw;
+  }
+  h4 {
+    font-size: 4.1vw;
+  }
 }
