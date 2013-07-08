@@ -2,6 +2,8 @@
 layout: default
 title: Getting started
 
+load_polymer: true
+
 imports:
 #- toolkit-ui/elements/g-panels.html
 #- toolkit-ui/elements/g-tabs.html
@@ -19,8 +21,6 @@ imports:
 ##- samples/components/tk-twoway-binding.html
 #- samples/components/tk-binding-to-elements.html
 ---
-
-<script src="/polymer.min.js?{{'now' | date: "%Y%m%d"}}"></script>
 
 [Custom Elements](/platform/custom-elements.html) are the core building blocks of
 {{site.project_title}}-based applications. You create applications by assembling custom elements
