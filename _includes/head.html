@@ -31,7 +31,8 @@
 <script async>
 // Prevent usage of the appspot.com URL.
 try {
-  if (location.hostname.match('appspot.com')) {
+  if (location.hostname.match('appspot.com') &&
+      location.search.substring(1).split('&').indexOf('force') == -1) {
     window.location = location.protocol + '//www.polymer-project.org' + location.pathname;
   }
 } catch(e) {
