@@ -15,6 +15,8 @@ tags:
 
 {% include authorship.html %}
 
+{% include toc.html %}
+
 ## Introduction {#intro}
 
 This article covers many of the new CSS rules, properties, and concepts for
@@ -114,7 +116,7 @@ An interesting case for `@host` is to react to different user-driven states (:ho
 </polymer-element>
 <x-button></x-button>
 
-### Modify `@host` programmatically:
+### Modify `@host` programmatically
 
 ## Preventing FOUC
 

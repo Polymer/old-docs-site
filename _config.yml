@@ -15,8 +15,8 @@ safe: false
 
 exclude: ["node_modules", "README.md", "Gruntfile.js", "package.json"]
 
-# kramdown:
-#   toc_levels: "2,3"
+kramdown:
+  toc_levels: "2,3"
 
 # Site globals used throughout docs.
 load_platform: true

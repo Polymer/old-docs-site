@@ -204,6 +204,9 @@ a[disabled] {
   color: #ccc;
 }
 
+#markdown-toc li {
+  list-style: none;
+}
 .author {
   margin-bottom: 20px;
 }
