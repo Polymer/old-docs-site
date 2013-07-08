@@ -1,6 +1,6 @@
 @import url(//fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,800|Source+Code+Pro);
 
-h1 {
+/*h1 {
   font-size: 3.4vw;
 }
 h2 {
@@ -11,7 +11,7 @@ h3 {
 }
 h4 {
   font-size: 1.5vw;
-}
+}*/
 
 h2:target, h3:target, h4:target {
   padding-top: 50px;
@@ -235,7 +235,7 @@ a[disabled] {
     display: block !important;
   }
 }
-@media only screen and (max-width: 700px) {
+/*@media only screen and (max-width: 700px) {
   h1 {
     font-size: 6.4vw;
   }
@@ -248,4 +248,4 @@ a[disabled] {
   h4 {
     font-size: 4.1vw;
   }
-}
+}*/

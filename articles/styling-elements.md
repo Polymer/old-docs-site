@@ -17,8 +17,6 @@ tags:
 
 {% include toc.html %}
 
-## Introduction {#intro}
-
 This article covers many of the new CSS rules, properties, and concepts for
 styling [Custom Elements](/platform/custom-elements.html). While much of it is applicable to general Web Components, it specifically focuses on:
 
@@ -31,26 +29,11 @@ Many of the topics here are tightly coupled with how CSS and Shadow DOM interact
 
 Most elements in HTML have default styling applied by the browser. For example,
 `<head>` and `<title>` are `display:none`, `<div>` is `display:block`,
-`<body>` has `margin:8px`, and `<ul>` has `list-style-type:disc`.
-
-### User-defined styles
-
-Elements _you_ create will likely need some sort of styling. As always, users
-can style you from the outside:
-
-    <style>
-      x-foo {
-        display: block;
-      }
-      x-foo:hover {
-        opacity: 0;
-      }
-    <style>
-    <x-foo></x-foo>
+`<body>` defaults to `margin:8px`, and `<ul>` has `list-style-type:disc`.
 
 ### Element-defined styles
 
-It's more common for a Custom Element to define its own styles. The [`@host` at-rule](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#host-at-rule) allows you to target the element (the [Shadow DOM host](http://www.html5rocks.com/tutorials/webcomponents/shadowdom/#toc-hello-world) internally from within its definition:
+Elements _you_ create will likely need some sort of styling. It's common for a Custom Element to define its own look. The [`@host` at-rule](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#host-at-rule) allows you to target the element (the [Shadow DOM host](http://www.html5rocks.com/tutorials/webcomponents/shadowdom/#toc-hello-world) internally from within its definition:
 
     <polymer-element name="x-foo">
       <template>
@@ -66,6 +49,20 @@ It's more common for a Custom Element to define its own styles. The [`@host` at-
     </polymer-element>
 
 The only selectors that work in `@host` are those targeting the host element itself. In the context of this `<x-foo>` element, the [`:scope`](http://www.w3.org/TR/selectors4/#scope-pseudo) pseudo-class, `*`, and the selector `x-foo` all refer to the element. Thus, the three examples are equivalent in this case.
+
+### User-defined styles
+
+Of course, users can always style you from the outside:
+
+    <style>
+      x-foo {
+        display: block;
+      }
+      x-foo:hover {
+        opacity: 0;
+      }
+    <style>
+    <x-foo></x-foo>
 
 #### Reacting to user states
 
@@ -189,10 +186,10 @@ Under native Shadow DOM, this rule remains as written. Under the polyfill, it be
 
 ### Handling scoped styles
 
-Native Shadow DOM gives us style encapsulation for free via scoped styles.
-However, the polyfill does not implement CSS scoping behavior by itself. For browsers that lack native Shadow DOM, {{site.project_title}} attempts to shim
-scoped styles with the following methods.
-
+Native Shadow DOM gives us style encapsulation for free via scoped styles. For browsers
+that lack support for native Shadow DOM, {{site.project_title}}'s polyfill
+attempts to shim the behavior of CSS scoped styles with the following methods.
+ 
 1. **Convert rules inside `@host` to rules prefixed with the element's tag name**.
 
       For example, this rule inside an `x-foo`:
@@ -245,3 +242,6 @@ The `polymer-scope` attribute should be set to global only for a sheet containin
 
     <link rel="stylesheet" href="sheet.css" polymer-scope="global">
 
+{% comment %}
+{% include disqus.html %}
+{% endcomment %}
