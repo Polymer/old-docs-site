@@ -123,6 +123,16 @@ The elements `<option>` and `<tr>` have special meaning when they're children of
       };
     </script>
 
+#### How do I manage JavaScript dependencies to prevent 1000 copies of library X? {#loadlibs}
+
+There is no way to guarantee sharing and deduping in the general case. However, if
+you have a library of components that use a library, they can all import a
+"library.html" file that loads that library. [HTML Imports](/platform/html-imports.html)
+will de-dupe the import based on it's fully qualified path.
+
+If multiple libraries want to share a dependency, they will have to agree on a system.
+Feature detection, or an agreed upon common location for a 'jquery.html' file in a CDN, etc.
+
 ## Web Components
 
 #### How do I package a bunch of custom elements together? {#packaging}
@@ -220,16 +230,6 @@ to get the list of nodes distributed at the insertion point.
 Also remember that you can access the light DOM as the element's normal children
 (i.e. `this.children`, or other accessors). The difference with this approach
 is that it's the entire set of *potentially* distributed nodes; not those actually distributed.
-
-#### How do I manage JavaScript dependencies to prevent 1000 copies of library X? {#loadlibs}
-
-There is no way to guarantee sharing and deduping in the general case. However, if
-you have a library of components that use a library, they can all import a
-"library.html" file that loads that library. [HTML Imports](/platform/html-imports.html)
-will de-dupe the import based on it's fully qualified path.
-
-If multiple libraries want to share a dependency, they will have to agree on a system.
-Feature detection, or an agreed upon common location for a 'jquery.html' file in a CDN, etc.
 
 #### Can I use the `constructor` attribute without polluting the global namespace? {#constructorattr}
 
