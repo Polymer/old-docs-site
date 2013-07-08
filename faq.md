@@ -194,7 +194,25 @@ a default style of `display: block` using an `@host` rule.
 
 #### Can an element `extend` from more than one element or have multiple inheritance (e.g. `<element name="my-element" extends="foo bar">`?
 
-No. But {{site.project_title}} may provide a sytnax for mixins in the future.
+No. But {{site.project_title}} may provide a syntax for mixins in the future.
+
+#### How do I use an MDV model to repeat an `<option>` or `<tr>`?
+
+The elements `<option>` and `<tr>` have special meaning when they're children of
+`<select>` and `<table>`, respectively. For these special types elements, use the
+`template` attribute to repeat the element:
+
+
+    <template bind>
+      <select>
+        {%raw%}<option template repeat="{{options}}">{{}}</option>{%endraw%}
+      </select>
+    </template>
+    <script>
+      var t = document.querySelector('template').model = {
+        options: ['One', 'Two', 'Three']
+      };
+    </script>
 
 ---
 
