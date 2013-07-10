@@ -3,10 +3,6 @@ layout: default
 title: Polymer core
 ---
 
-{% comment %}
-{% include outofdate.html %}
-{% endcomment %}
-
 The {{site.project_title}} _core_ provides a thin layer of code that expresses
 its opinion and provides the extra sugaring that all {{site.project_title}} elements use. It is provided in the file `polymer.js`.
 
@@ -23,24 +19,54 @@ To register and supercharge `<tag-name>` as a {{site.project_title}} element, us
       <template>
         <!-- shadow DOM here -->
       </template>
+    </polymer-element>
+
+If you need to set methods or properties on the element's `prototype`, use `{{site.project_title}}()`.
+Its first argument is the name of the element you're creating. The second argument (optional) is an object that defines your element's `prototype`. In the following example the registration call defines a property `message` and the `ready` callback: 
+
+    <polymer-element name="tag-name">
+      <template>
+        <!-- shadow DOM here -->
+      </template>
       <script>
-        {{site.project_title}}('tag-name');
+        {{site.project_title}}('tag-name', {
+          message: "Hello!",
+          ready: function() {
+            // Component is ready. Use it.
+          }
+        });
       </script>
     </polymer-element>
 
-`{{site.project_title}}()` is a convenience wrapper for [`document.register`](/platform/custom-elements.html#documentregister). Its first argument is the
-name of the element you're creating. The second argument (optional) is an object that defines your element's `prototype`. In the following example the registration call defines a property `message` and a method `ready`: 
+### Element lifecycle methods {#lifecyclemethods}
+
+{{site.project_title}} has first class support for the Custom Element lifecycle
+callbacks, though implements them with shorter names for convenience.
+
+Allow the lifecycle callbacks are optional: 
 
     {{site.project_title}}('tag-name', {
-      message: "Hello!",
-      ready: function() {
-        // component is ready now. Let's do stuff.
-      }
+      ready: function() { ... },
+      inserted: function () { ... },
+      removed: function() { ... },
+      attributeChanged: function(attrName, oldVal) {
+        var newVal = this.getAttribute(attrName);
+        console.log(attrName, 'old: ' + oldVal, 'new:', newVal);
+      },
     });
 
-The `ready` method, if included, is analogous to the [Custom Element `readyCallback`](/platform/custom-elements.html#element-registration). It's called when the user creates an instance of your element (if it has already been registered by the browser).
+Below is a table with the names of lifecycle method according to the Custom Elements
+[specificationn](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html#custom-element-lifecycle) vs. the names {{site.project_title}} uses.
 
-#### The `WebComponentsReady` event {#WebComponentsReady}
+Spec | {{site.project_title}} | Called when
+|-
+readyCallback | ready | an instance of the element is created
+insertedCallback | inserted | an instance was inserted into the document
+removedCallback | removed | an instance was removed from the document
+attributeChangedCallback | attributeChanged | an attribute was added, removed, or updated
+{: .table }
+
+### The WebComponentsReady event {#WebComponentsReady}
 
 The polyfill(s) parse element definitions and handle their upgrade _asynchronously_. If you try to fetch the element from the DOM before things have settled, you'll get a big fat `null`. In these situations, an including page should wait for the `WebComponentsReady` event
 before working with the node.
