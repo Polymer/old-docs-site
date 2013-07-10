@@ -22,7 +22,7 @@ ol {
 and designed to leverage the evolving web platform on modern browsers.
 </p>
 
-<p class="centered"><iframe width="560" height="315" src="http://www.youtube.com/embed/0g0oOOT86NY" frameborder="0" allowfullscreen></iframe></p>
+<p class="centered"><iframe id="video" src="http://www.youtube.com/embed/0g0oOOT86NY" frameborder="0" allowfullscreen></iframe></p>
 
 ## Quick start
 

@@ -187,6 +187,11 @@ a[disabled] {
   margin: 0 2px;
 }
 
+/* Home */
+#video {
+  width: 560px;
+  height: 315px;
+}
 #architecture-diagram iframe {
   height: 435px;
   width: 100%;
@@ -235,8 +240,8 @@ a[disabled] {
     display: block !important;
   }
 }
-/*@media only screen and (max-width: 700px) {
-  h1 {
+@media only screen and (max-width: 700px) {
+  /*h1 {
     font-size: 6.4vw;
   }
   h2 {
@@ -247,5 +252,12 @@ a[disabled] {
   }
   h4 {
     font-size: 4.1vw;
+  }*/
+  #video {
+    width: initial;
+    height: initial;
   }
-}*/
+  #architecture-diagram iframe {
+    height: initial;
+  }
+}
