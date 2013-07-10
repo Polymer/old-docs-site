@@ -49,6 +49,9 @@ However, it's common for a Custom Element to define its own look.
 
 ### Element-defined styles
 
+**Heads up**: `@host` is going away soon in favor of `:host()`. See the [spec bug](https://www.w3.org/Bugs/Public/show_bug.cgi?id=22390).
+{: .alert .alert-error}
+
 Elements _you_ create will likely need some sort of styling.
 
 The [`@host` at-rule](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#host-at-rule) allows you to target + style an element internally, from within its definition:
@@ -147,8 +150,7 @@ From within the element:
     </polymer-element>
 
 If you're feeling loco, it's possible to modify the rules in an `@host`
-block using CSSOM. The only reason to do this would be to programmatically
-add/remove pseudo-class rules:
+block using CSSOM:
 
     <polymer-element name="x-foo" on-click="changeBg">
       <template>
@@ -169,6 +171,10 @@ add/remove pseudo-class rules:
         });
       </script>
     </polymer-element>
+
+The only reason to do this would be to programmatically add/remove pseudo-class rules.
+It's also worth noting that this trick doesn't work under {{site.project_title}}'s Shadow DOM polyfill.
+See [issue #23](https://github.com/Polymer/platform/issues/23).
 
 For more information on `@host`, see [Shadow DOM 201 - CSS and Styling](http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/#toc-style-host).
 
@@ -278,6 +284,7 @@ document.addEventListener('WebComponentsReady', function(e) {
 ## Inheriting / resetting outside styles
 
 As a convenience, {{site.project_title}} allows you to set Shadow DOM's `applyAuthorStyles` and `resetStyleInheritance` properties directly when constructing the element's `prototype`.
+However, please keep in mind that {{site.project_title}} does not attempt to polyfill `applyAuthorStyles` or `resetStyleInheritance`.
 
 Take on the look and feel of the page with `applyAuthorStyles`:
 
@@ -359,11 +366,15 @@ It's simple being rendered elsewhere (over in Shadow DOM land).
 Styles on the outside only apply when the selector in question matches entirely
 in or outside the shadowRoot. For example, `x-foo .red { color: red; }` does not
 match the inner `<div class="red">`.
-{: .alert .alert-error }
+{: .alert .alert-info }
 
 For more information on `applyAuthorStyles` and `resetStyleInheritance`, see [Shadow DOM 201 - CSS and Styling](http://www.html5rocks.com/tutorials/webcomponents/shadowdom-201/#toc-style-inheriting).
 
 ## Allowing users to style your internals
+
+**Heads up:** The `pseudo` attribute and `::x-*` custom pseudo elements are 
+getting replaced soon by by `part` and `::part()`, respectively. See the [spec bug](https://www.w3.org/Bugs/Public/show_bug.cgi?id=22461).
+{: .alert .alert-error}
 
 Nodes in your element that contain the `pseudo` attribute can be targeted from outside CSS.
 These are called [Custom pseudo elements](http://www.w3.org/TR/shadow-dom/#custom-pseudo-elements). Essentially, they give users a way to style specific pieces of your element by exposing some of its internal structure.
@@ -391,6 +402,10 @@ These are called [Custom pseudo elements](http://www.w3.org/TR/shadow-dom/#custo
 For more information on custom pseudo elements, see [Shadow DOM 201 - CSS and Styling](http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/#toc-custom-pseduo).
 
 ## Styling distributed nodes
+
+**Heads up:** The `::distributed()` is being renamed soon to `::content()`.
+See the [spec bug](https://www.w3.org/Bugs/Public/show_bug.cgi?id=22460).
+{: .alert .alert-error}
 
 `<content>` elements allow you to select nodes from the "Light DOM" and
 render them at predefined locations in your element. The CSS `::distributed()` function
@@ -459,9 +474,20 @@ For more information on `::distributed()`, see [Shadow DOM 201 - CSS and Styling
 ### Handling scoped styles
 
 Native Shadow DOM gives us style encapsulation for free via scoped styles. For browsers
-that lack native support, {{site.project_title}}'s polyfills attempt to shim the
-behavior of scoped styles using the following methods.
+that lack native support, {{site.project_title}}'s polyfills attempt to shim _some_
+of the scoping behavior.
+
+Because polyfilling the styling behaviors of Shadow DOM is difficult, {{site.project_title}}
+has opted to favor practicality and performance over correctness. For example,
+the polyfill's do not protect Shadow DOM elements against document level CSS.
  
+When {{site.project_title}} processes element definitions, it looks for `<style>` elements
+and stylesheets. It removes these from the custom element's Shadow DOM `<template>`
+and re-formulates them according to the rules below. Once this is done, a `<style>`
+element is added to the main document with the reformulated rules.
+
+#### Reformatting rules
+
 1. **Convert rules inside `@host` to rules prefixed with the element's tag name**
 
       For example, this rule inside an `x-foo`:
@@ -486,7 +512,9 @@ behavior of scoped styles using the following methods.
             </style>
           ...
 
-1. **Prepend selectors with the element name, creating a descendent selector**. This makes sure the styling does not leak outside the element's shadowRoot.
+1. **Prepend selectors with the element name, creating a descendent selector**.
+This ensures styling does not leak outside the element's shadowRoot (e.g. upper bound encapsulation).
+Note, this technique does not enforce lower bound encapsulation.
 
       For example, this rule inside an `x-foo`:
 
