@@ -49,8 +49,8 @@ Allow the lifecycle callbacks are optional:
       ready: function() { ... },
       inserted: function () { ... },
       removed: function() { ... },
-      attributeChanged: function(attrName, oldVal) {
-        var newVal = this.getAttribute(attrName);
+      attributeChanged: function(attrName, oldVal, newVal) {
+        //var newVal = this.getAttribute(attrName);
         console.log(attrName, 'old: ' + oldVal, 'new:', newVal);
       },
     });
