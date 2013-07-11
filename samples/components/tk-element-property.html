@@ -3,11 +3,13 @@
     This is a <b>tk-element</b> with a (protected) property.
   </template>
   <script>
-    var owner = "Daniel";
-    Polymer('tk-element-property', {
-      ready: function() {
-        // Ready to go.
-      }
-    });
+    (function() {
+      var owner = "Daniel";
+      Polymer('tk-element-property', {
+        ready: function() {
+          // Ready to go.
+        }
+      });
+    })();
   </script>
 </polymer-element>

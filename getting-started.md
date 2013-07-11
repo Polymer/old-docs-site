@@ -9,7 +9,6 @@ components:
 #- samples/components/tk-element.html
 #- samples/components/tk-element-databinding-color.html
 #- samples/components/tk-element-databinding.html
-#- samples/components/tk-element-property.html
 #- samples/components/tk-element-ready.html
 #- samples/components/tk-element-property-public.html
 #- samples/components/tk-element-property-public-publish.html
@@ -20,7 +19,8 @@ components:
 #- samples/components/tk-binding-to-elements.html
 ---
 
-<script src="/polymer.min.js?{{'now' | date: "%Y%m%d"}}"></script>
+<!-- <script src="/polymer.min.js?{{'now' | date: "%Y%m%d"}}"></script> -->
+<script src="http://polymer.github.io/cdn/polymer.min.js"></script>
 
 [Custom Elements](/platform/custom-elements.html) are the core building blocks of
 {{site.project_title}}-based applications. You create applications by assembling custom elements
@@ -82,21 +82,20 @@ You only need to include `polymer.js` when writing a {{site.project_title}} elem
 
 1. Declare your custom element using `<polymer-element>`.
 
-1. Include `<script>` that calls `{{site.project_title}}('your-tagname')`. `{{site.project_title}}(..)` is a convenience wrapper for [`document.register`](/platform/custom-elements.html#documentregister), but also endows the element with special features like data binding and event mapping. Its first argument is the name of the element you're creating. The second argument (optional) is an object that defines your element's `prototype`. 
-
 In the following sample, we've converted our basic custom element into a {{site.project_title}} element named `tk-element`.
 
 {% include samples/tk-element.html %}
 
-{% comment %}
-### Add properties to our component
+#### Add properties/methods to your component
 
-The `{{site.project_title}}()` takes an object as a parameter whose members define the properties and methods that belong to our component.
+If you need to add public methods/properties to your element,
+include a `<script>` that calls `{{site.project_title}}('your-tagname')`.
+`{{site.project_title}}(..)` is a convenience wrapper for [`document.register`](/platform/custom-elements.html#documentregister), but also endows the element with special features like
+data binding and event mapping. Its first argument is the name of the element
+you're creating. The second argument (optional) is an object that defines your
+element's `prototype`. 
 
-{% include samples/tk-element-property.html %}
-
-Now that we've added a private variable, let's add data binding to display its value in the DOM.
-{% endcomment %}
+{% include samples/tk-element-proto.html %}
 
 ## Declarative data binding
 
@@ -116,7 +115,7 @@ The following example demonstrates binding component properties to attributes of
 
 {% include samples/tk-binding-to-elements.html %}
 
-## Adding a ready() lifecycle method ###
+## Adding a ready() lifecycle method
 
 When an element has been registered ad finished initializing itself, it calls its
 `ready` method, if one exists. The `ready` callback is a great place to do

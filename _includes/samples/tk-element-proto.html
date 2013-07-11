@@ -1,0 +1,43 @@
+<link rel="import" href="/samples/components/tk-element-proto.html">
+
+<div class="row-fluid">
+  <div class="span8">
+<!-- Source tabs -->
+<ul id="myTab" class="nav nav-tabs">
+  <li class="active"><a href="#tk-element-proto" data-toggle="tab">tk-element.html</a></li>
+  <li><a href="#tk-element-proto-index" data-toggle="tab">index.html</a></li>
+</ul>
+
+<!-- Source tab content -->
+<div class="tab-content">
+  <div class="tab-pane active" id="tk-element-proto">
+{% highlight html %}
+{% include_external ../samples/components/tk-element-proto.html %}
+{% endhighlight %}
+  </div>
+  <div class="tab-pane" id="tk-element-proto-index">
+{% highlight html %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="polymer-all/polymer/polymer.js"></script>
+    <link rel="import" href="tk-element-proto.html">
+  </head>
+  <body>
+    <tk-element-proto></tk-element-proto>
+  </body>
+</html>
+{% endhighlight %}
+  </div>
+</div>
+</div>
+
+<div class="span4">
+  <h5>Result</h5>
+
+  <!-- Running sample -->
+  <div class="well">
+    <tk-element-proto></tk-element-proto>
+  </div>
+</div>
+</div>
