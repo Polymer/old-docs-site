@@ -235,6 +235,12 @@ a[disabled] {
 .element-list h3 {
   font-family: "Source Code Pro",Monaco,Menlo,Consolas,"Courier New",monospace;
 }
+.element-list .links {
+  margin-left: 17px;
+}
+.element-list .links a {
+  margin-right: 10px;
+}
 
 @media (min-width: 980px) {
   body {

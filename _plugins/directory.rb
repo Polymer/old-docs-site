@@ -52,9 +52,18 @@ module Jekyll
     end
 
     def render_element(element)
+      name = element['name']
+      file_path = "#{element['full_path']}#{name}.html"
+      demo_path = "#{element['full_path']}index.html"
+      github_url = github_url(element)
+
       <<-END
-      <#{@tag} data-file="#{element['full_path']}#{element['name']}.html">
-        <h3 id="#{element['name']}">&lt;#{element['name']}&gt;</h3> <a href="#{github_url(element)}" target="_blank">source</a>
+      <#{@tag} data-file="#{file_path}">
+        <h3 id="#{name}">&lt;#{name}&gt;</h3>
+        <span class="links">
+          <a href="#{github_url}" target="_blank">source</a>
+          <a href="/#{demo_path}" target="_blank" #{'disabled' if !File.exists?(demo_path)}>demo</a>
+        </span>
       </#{@tag}>
       END
     end
