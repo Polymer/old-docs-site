@@ -73,7 +73,7 @@ tag you'll instantiate in markup (e.g. `<tag-name>`). It must be a "-" separated
 
 {{site.project_title}} provides extra goodies for creating custom elements. We call these souped-up custom elements "{{site.project_title}} elements". To create one, follow these steps:
 
-1. Load [{{site.project_title}} core](/polymer.html) (`polymer/polymer.js` or `polymer/polymer.min.js`).
+1. Load [{{site.project_title}} core](/polymer.html) (`polymer/polymer.js` or `polymer.min.js`).
 
     **Note:** `polymer.js` loads `platform.js` under the hood.
 You only need to include `polymer.js` when writing a {{site.project_title}} element.
