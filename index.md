@@ -3,18 +3,6 @@ layout: default
 #title: Welcome
 ---
 
-<style>
-ol {
-  float: left;
-}
-.codescreenshot {
-  height: 250px;
-  width: auto;
-  border: none;
-  display: none;
-}
-</style>
-
 {% include alpha.html %}
 
 {{site.project_title}} is a new type of library for the web, built on top of Web Components,
@@ -38,10 +26,6 @@ and designed to leverage the evolving web platform on modern browsers.
 5. Learn how to soup-up your web components using the [Polymer core](/polymer.html).
 6. Play with the [polymer-elements](https://github.com/Polymer/polymer-elements), [polymer-ui-elements](https://github.com/Polymer/polymer-ui-elements), and [toolkit-ui](https://github.com/Polymer/toolkit-ui) (*also must be run from a web server)*.
 7. Join the [mailing list](/discuss.html)! Ask questions and give feedback.
-
-<p style="float:left;margin-left:10px;">
-  <img class="codescreenshot" src="images/instacod.png" alt="Custom element markup" title="Custom element markup">
-</p>
 
 ## What is {{site.project_title}}?
 {: style="clear:both" }
