@@ -79,6 +79,10 @@ We're first and foremost just a group of folks who think web components are the 
 
 Nope.
 
+#### How is polymer.dart related to {{site.project_title}}? {#dart}
+
+polymer.dart is a Dart port of {{site.project_title}} created and maintained by the Dart team. The Dart team is collaborating with the {{site.project_title}} team to ensure that polymer.dart elements and polyfills are fully compatible with {{site.project_title}}. 
+
 #### I see a bunch of XHRs making network requests. What gives? {#xhrrequests}
 
 One limitation of today's polyfills is that {{site.project_title}} aggressively uses XHR to shim HTML Imports. We're experimenting with packaging systems and build steps to reduce the cost of network requests. When this API lands natively in browsers, things will Just Work™. Resources will be loaded as they normally do, taking advantage of parallelism, browser caching, etc. 

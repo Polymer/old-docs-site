@@ -14,12 +14,12 @@ handlers:
 
 # Preserve old URL.
 - url: /polymer/polymer.min.js
-  static_files: polymer-all/polymer/polymer.min.js
-  upload: polymer-all/polymer/polymer\.min\.js
+  static_files: js/polymer.min.js
+  upload: js/polymer\.min\.js
 
 - url: /polymer.min.js
-  static_files: polymer-all/polymer/polymer.min.js
-  upload: polymer-all/polymer/polymer\.min\.js
+  static_files: js/polymer.min.js
+  upload: js/polymer\.min\.js
 
 - url: /polymer-all
   static_dir: polymer-all

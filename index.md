@@ -3,46 +3,29 @@ layout: default
 #title: Welcome
 ---
 
-<style>
-ol {
-  float: left;
-}
-.codescreenshot {
-  height: 250px;
-  width: auto;
-  border: none;
-  display: none;
-}
-</style>
-
 {% include alpha.html %}
 
-<p class="lead">
 {{site.project_title}} is a new type of library for the web, built on top of Web Components,
 and designed to leverage the evolving web platform on modern browsers.
-</p>
+{: .lead }
 
-<p class="centered"><iframe id="video" src="http://www.youtube.com/embed/0g0oOOT86NY" frameborder="0" allowfullscreen></iframe></p>
+<div class="centered"><iframe id="video" src="http://www.youtube.com/embed/0g0oOOT86NY" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<p class="download centered"><a href="https://github.com/{{site.project_title}}/polymer-all/releases/download/v{{site.latest_version}}/polymer-all-v{{site.latest_version}}.zip" class="btn btn-success btn-large" alt="Download the latest {{site.project_title}}" title="Download the lateset {{site.project_title}}"><i class="icon-white icon-download"></i> Download v{{site.latest_version}}</a></p>
 
 ## Quick start
 
-1. Clone `polymer-all` in your app's root folder. See [Get the code](/getting-the-code.html).
-
-        git clone git://github.com/Polymer/polymer-all.git --recursive
-
+1. Download the .zip of `polymer-all` from the link above. If you want to use Git, see [Getting the code](/getting-the-code.html).
 2. **Fire up a web server** in your app's directory.
-3. Include `polymer.min.js` in your main page. The file is bundled with each release. 
+3. Include `polymer.min.js` (bundled with the release) in your main page:
 
         <script src="polymer.min.js"></script>
 
 4. Read the [Getting Started](/getting-started.html) guide.
 5. Learn how to soup-up your web components using the [Polymer core](/polymer.html).
-6. Play with the [toolkit-ui examples](https://github.com/Polymer/toolkit-ui) (*also must be run from a web server)*.
+6. Play with the [polymer-elements](https://github.com/Polymer/polymer-elements), [polymer-ui-elements](https://github.com/Polymer/polymer-ui-elements), and [toolkit-ui](https://github.com/Polymer/toolkit-ui) (*also must be run from a web server)*.
 7. Join the [mailing list](/discuss.html)! Ask questions and give feedback.
-
-<p style="float:left;margin-left:10px;">
-  <img class="codescreenshot" src="images/instacod.png" alt="Custom element markup" title="Custom element markup">
-</p>
 
 ## What is {{site.project_title}}?
 {: style="clear:both" }
