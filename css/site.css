@@ -211,9 +211,6 @@ a[disabled] {
   color: #ccc;
 }
 
-#markdown-toc li {
-  list-style: none;
-}
 .author {
   margin-bottom: 20px;
 }
@@ -228,6 +225,15 @@ a[disabled] {
   margin-right: 5px;
   height: 40px;
   width: 40px;
+}
+
+/* Elements */
+.element-list {
+  margin: 0;
+  list-style: none;
+}
+.element-list h3 {
+  font-family: "Source Code Pro",Monaco,Menlo,Consolas,"Courier New",monospace;
 }
 
 @media (min-width: 980px) {
