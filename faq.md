@@ -157,31 +157,31 @@ Not yet, but we think that's a great idea.
 
 #### I get errors when trying to use external stylesheets in my element definition or using `<link rel="import">` with external files. {#externalsheets}
 
-Unfortunately, this is a limitation of the HTML Import spec and the polyfill follows suit. The polyfill uses XHR to pull down resources defined in an `<element>` definition. External resources will fail if they are not [CORs-enabled](http://www.html5rocks.com/tutorials/cors/).
+Unfortunately, this is a limitation of the HTML Import spec and the polyfill follows suit. The polyfill uses XHR to pull down resources defined in an `<polymer-element>` definition. External resources will fail if they are not [CORs-enabled](http://www.html5rocks.com/tutorials/cors/).
 
 For stylesheets that are not same domain or CORs-enabled, you can use `@import` in a `<style>`:
 
-    <element name="x-blink">
+    <polymer-element name="x-blink">
     <style>
       @import url(http://example.com/awesome.css);
     </style>
     <template>...</template>
-    </element>
+    </polymer-element>
 
 *Note*: If your stylesheet **is** CORs-enabled or from the same domain as your app,
 it's preferred to inline the styles without using `@import`. For example:
 
-    <element ...>
+    <polymer-element ...>
       <link rel="stylesheet" href="frameworkstyles.css">
       <template>...</template>
       ...
-    </element>
+    </polymer-element>
 
 #### How can I use web fonts or CSS Animations in my custom element? {#fontsanimations}
 
 According to the spec, certain @ at-rules (including CSS `@keyframe` and `@font-face`) [cannot be defined](http://lists.w3.org/Archives/Public/public-whatwg-archive/2013Jan/0251.html) in `<style scoped>`. Therefore, you need to define these values outside of ShadowDOM (e.g. outside a `<template>`) using `<style polymer-scope="global">`. After that, you can use the animation/font inside your Shadow DOM:
 
-    <element name="x-blink">
+    <polymer-element name="x-blink">
       <!-- CSS Animation defs need to be outside of scoped styles -->
       <style polymer-scope="global">
         @import url(http://fonts.googleapis.com/css?family=Quicksand);
@@ -197,14 +197,14 @@ According to the spec, certain @ at-rules (including CSS `@keyframe` and `@font-
         </style>
         ...
       </template>
-    </element>
+    </polymer-element>
 
 #### Why does my element claim its `.clientWidth/clientHeight` is 0? {#clientDimenstions}
 
 By default, customs elements are `display: inline`. The fix is to give your element
 a default style of `display: block` using an `@host` rule.
 
-    <element name="my-element">
+    <polymer-element name="my-element">
       <template>
         <style>
           @host { * { display: block; } }
@@ -212,7 +212,7 @@ a default style of `display: block` using an `@host` rule.
         ...
       </template>
       ...
-    </element>
+    </polymer-element>
     <script>
     window.addEventListener('WebComponentsReady', function(e) {
       var element = document.querySelector('my-element');
@@ -220,7 +220,7 @@ a default style of `display: block` using an `@host` rule.
     });
     </script>
 
-#### Can an element `extend` from more than one element or have multiple inheritance (e.g. `<element name="my-element" extends="foo bar">`? {#multipleextends}
+#### Can an element `extend` from more than one element or have multiple inheritance (e.g. `<polymer-element name="my-element" extends="foo bar">`? {#multipleextends}
 
 No. But {{site.project_title}} may provide a syntax for mixins in the future.
 

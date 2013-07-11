@@ -1,13 +1,13 @@
-<element name="tk-element-databinding-color">
+<polymer-element name="tk-element-databinding-color">
   <template>
     This is a <strong>{{owner}}</strong>'s tk-element. 
     {{owner}} likes the color 
     <span style="color: {{color}}">{{color}}</span>.
   </template>
   <script>
-    Polymer.register(this, {
+    Polymer('tk-element-databinding-color', {
       owner: "Daniel",
       color: "red"
     });
   </script>
-</element>
+</polymer-element>
