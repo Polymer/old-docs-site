@@ -3,71 +3,72 @@ layout: default
 title: Polymer core
 ---
 
-{% comment %}
-{% include outofdate.html %}
-{% endcomment %}
-
 The {{site.project_title}} _core_ provides a thin layer of code that expresses
-its opinion and provides the extra sugaring that all {{site.project_title}} elements use.
-It is provided in the file `polymer.js`.
+its opinion and provides the extra sugaring that all {{site.project_title}} elements use. It is provided in the file `polymer.js`.
 
 **Note:** You can find working examples of the concepts on this page in [/toolkit-ui](https://github.com/polymer/toolkit-ui), [/polymer-elements](https://github.com/Polymer/polymer-elements), and [/polymer-ui-elements](https://github.com/Polymer/polymer-ui-elements).
 {: .alert .alert-success }
 
 ## Element declaration
 
-Every {{site.project_title}} element is a Custom Element at heart. Its 
-declaration looks no different than your standard element definition:
+At the heart of {{site.project_title}} are Custom Elements. Thus, it should be no surprise that defining a {{site.project_title}} element is similar to the way you define a standard Custom Element. The major difference is that {{site.project_title}} elements are created using `<polymer-element>`, not `<element>`.
 
-    <element name="tag-name" constructor="TagName">
+To register and supercharge `<tag-name>` as a {{site.project_title}} element, use `<polymer-element>` to create its definition:
+
+    <polymer-element name="tag-name">
+      <template>
+        <!-- shadow DOM here -->
+      </template>
+    </polymer-element>
+
+If you need to set methods or properties on the element's `prototype`, use `{{site.project_title}}()`.
+Its first argument is the name of the element you're creating. The second argument (optional) is an object that defines your element's `prototype`. In the following example the registration call defines a property `message` and the `ready` callback: 
+
+    <polymer-element name="tag-name">
       <template>
         <!-- shadow DOM here -->
       </template>
       <script>
-        // lifecycle setup here
+        {{site.project_title}}('tag-name', {
+          message: "Hello!",
+          ready: function() {
+            // Component is ready. Use it.
+          }
+        });
       </script>
-    </element>
+    </polymer-element>
 
-**Reminder:** The `name` attribute specifies the name of the HTML tag you use to
-instantiate the element in markup (e.g. `<tag-name>`). It must be a "-" separated string.
-{: .alert }
+### Element lifecycle methods {#lifecyclemethods}
 
-### Initializing {{site.project_title}} elements
+{{site.project_title}} has first class support for the Custom Element lifecycle
+callbacks, though implements them with shorter names for convenience.
 
-To register `<tag-name>` and supercharge it as a {{site.project_title}} element,
-include a `<script>` that calls `{{site.project_title}}.register`:
+Allow the lifecycle callbacks are optional: 
 
-    <element name="tag-name">
-      <template>
-        <!-- shadow DOM here -->
-      </template>
-      <script>
-        {{site.project_title}}.register(this);
-      </script>
-    </element>
-
-`{{site.project_title}}.register` is a convenience wrapper for [`document.register`](/platform/custom-elements.html#documentregister). Its first argument is a reference to the element you're creating. Since script within an `<element>` runs in the context of the element,
-`this` refers to our `<tag-name>` element.
-
-The second argument (optional) is an object that defines your element's `prototype`. 
-In the following example the registration call defines a property `message` and
-a method `ready`: 
-
-    {{site.project_title}}.register(this, {
-      message: "Hello!",
-      ready: function() {
-        // component is ready now. Let's do stuff.
-      }
+    {{site.project_title}}('tag-name', {
+      ready: function() { ... },
+      inserted: function () { ... },
+      removed: function() { ... },
+      attributeChanged: function(attrName, oldVal, newVal) {
+        //var newVal = this.getAttribute(attrName);
+        console.log(attrName, 'old: ' + oldVal, 'new:', newVal);
+      },
     });
 
-The `ready` method, if included, is analogous to the [Custom Element `readyCallback`](/platform/custom-elements.html#element-registration). It's called when the user creates
-an instance of your element (if it has already been registered by the browser).
+Below is a table with the names of lifecycle method according to the Custom Elements
+[specificationn](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html#custom-element-lifecycle) vs. the names {{site.project_title}} uses.
 
-#### The `WebComponentsReady` event {#WebComponentsReady}
+Spec | {{site.project_title}} | Called when
+|-
+readyCallback | ready | an instance of the element is created
+insertedCallback | inserted | an instance was inserted into the document
+removedCallback | removed | an instance was removed from the document
+attributeChangedCallback | attributeChanged | an attribute was added, removed, or updated
+{: .table }
 
-The polyfill(s) parse `<element>` definitions and handle their upgrade _asynchronously_.
-If you try to fetch the element from the DOM before things have settled, you'll get a big fat `null`.
-In these situations, an including page should wait for the `WebComponentsReady` event
+### The WebComponentsReady event {#WebComponentsReady}
+
+The polyfill(s) parse element definitions and handle their upgrade _asynchronously_. If you try to fetch the element from the DOM before things have settled, you'll get a big fat `null`. In these situations, an including page should wait for the `WebComponentsReady` event
 before working with the node.
 
 Example:
@@ -101,47 +102,47 @@ of the same name.
 
 There are two ways to publish properties:
 
-1. **Preferred** - Include its name in the `<element>`'s `attributes` attribute.
+1. **Preferred** - Include its name in the `<polymer-element>`'s `attributes` attribute.
 1. Include the name in a `publish` object on your prototype.
 
 As an example, here's an element that publishes three public properties, `foo`, `bar`, and `baz`:
 
-    <element name="x-foo" attributes="foo bar baz">
+    <polymer-element name="x-foo" attributes="foo bar baz">
       <script> 
-        Polymer.register(this);
+        Polymer('x-foo');
       </script>
-    </element>
+    </polymer-element>
 
 #### Default property values
 
 By default, properties defined in `attributes` are `null`:
 
-    <element name="x-foo" attributes="foo">
+    <polymer-element name="x-foo" attributes="foo">
       <script> 
-        Polymer.register(this); // x-foo has a foo property with null value.
+        Polymer('x-foo'); // x-foo has a foo property with null value.
       </script>
-    </element>
+    </polymer-element>
 
-As such, you can provide default values using the prototype:
+As such, you can provide default values using the `prototype`:
 
-    <element name="x-foo" attributes="foo">
+    <polymer-element name="x-foo" attributes="foo">
       <script> 
-        Polymer.register(this, { // x-foo has a foo property with default value false.
+        Polymer('x-foo', { // x-foo has a foo property with default value false.
           foo: false
         });
       </script>
-    </element>
+    </polymer-element>
 
     <!-- Same, but using the alternate "publish" object. -->
-    <element name="x-foo">
+    <polymer-element name="x-foo">
       <script> 
-        Polymer.register(this, {
+        Polymer('x-foo', {
           publish: {
             foo: false 
           }
         });
       </script>
-    </element>
+    </polymer-element>
 
 #### Configuring an element via attributes
 
@@ -159,13 +160,13 @@ an attribute using `.setAttribute()`) has no effect.
 
 When attribute values are converted to property values, {{site.project_title}} attempts to convert the value to the correct type, depending on the default value of the property.
 
-    <element name="x-foo" attributes="foo">
+    <polymer-element name="x-foo" attributes="foo">
       <script> 
-        Polymer.register(this, {
+        Polymer('x-foo', {
           foo: false // hint that foo is Boolean
         });
       </script>
-    </element>
+    </polymer-element>
 
 ### Data binding and custom attributes
 
@@ -175,16 +176,16 @@ via MDV's `{%raw%}{{}}{%endraw%}`. These bindings are by reference and are two-w
 For example, we can define a `name-tag` element that publishes two properties,
 `name` and `nameColor`.
 
-    <element name="name-tag" attributes="name nameColor">
+    <polymer-element name="name-tag" attributes="name nameColor">
       <template>
         Hello! My name is <span style="color:{{"{{nameColor"}}}}">{{"{{name"}}}}</span>
       </template>
       <script>
-        {{site.project_title}}.register(this, {
+        {{site.project_title}}('name-tag', {
           nameColor: "orange"
         });
       </script>
-    </element>
+    </polymer-element>
 
 In this example, `name` has initial value of `null` and `nameColor` has a value of "orange".
 Thus, the `<span>`'s color will be orange.
@@ -197,12 +198,12 @@ can bind an an object to an HTML attribute!
 
 Let's modify the `name-tag` example to take an object instead of individual properties.
 
-    <element name="name-tag" attributes="person">
+    <polymer-element name="name-tag" attributes="person">
       <template>
         Hello! My name is <span style="color:{{"{{person.nameColor"}}}}">{{"{{person.name"}}}}</span>
       </template>
       <script>
-        {{site.project_title}}.register(this, {
+        {{site.project_title}}('name-tag', {
           ready: function() {
             this.person = {
               name: "Scott",
@@ -211,16 +212,16 @@ Let's modify the `name-tag` example to take an object instead of individual prop
           }
         });
       </script>
-    </element>
+    </polymer-element>
 
 Now, imagine we make a new component called `<visitor-creds>` that uses `name-tag`:
 
-    <element name="visitor-creds">
+    <polymer-element name="visitor-creds">
       <template>
         <name-tag person="{{"{{person"}}}}"></name-tag>
       </template>
       <script>
-        {{site.project_title}}.register(this, {
+        {{site.project_title}}('visitor-creds', {
           ready: function() {
             this.person = {
               name: "Scott2",
@@ -229,7 +230,7 @@ Now, imagine we make a new component called `<visitor-creds>` that uses `name-ta
           }
         });
       </script>
-    </element>
+    </polymer-element>
 
 When an instance of `<visitor-creds>` is created, its `person` property (an object)
 is also bound to `<name-tag>`'s `person` property. Now both components are using
@@ -244,17 +245,17 @@ is evaluated once. This means only one instance of an object used in property in
 {{site.project_title}} supports declarative binding of events to methods in the component.
 It uses special <code>on-<em>event</em></code> syntax to trigger this binding behavior.
 
-    <element name="g-cool" on-keypress="keypress">
+    <polymer-element name="g-cool" on-keypress="keypress">
       <template>
         <button on-click="buttonClick"></button>
       </template>
       <script>
-        {{site.project_title}}.register(this, {
+        {{site.project_title}}('g-cool', {
           keypress: function(event) { ...},
           buttonClick: function(event) { ... }
         });
       </script>
-    </element>
+    </polymer-element>
 
 In this example, the `on-keypress` declaration maps the standard DOM `"keypress"` event to the `keypress` method in the component. Within the component template, the `on-click` declaration maps a custom `buttonClick` event to the `buttonClick` method in the component. This is achieved again without the need for any glue code. 
 
@@ -274,9 +275,9 @@ In addition to the above features, which are focused around making the core func
 
 All properties on {{site.project_title}} elements can be watched for changes by implementing a <code><em>propertyName</em>Changed</code> handler. When the value of a watched property changes, the appropriate change handler is automatically invoked. 
 
-    <element name="g-cool" attributes="better best">
+    <polymer-element name="g-cool" attributes="better best">
       <script>
-        {{site.project_title}}.register(this, {
+        {{site.project_title}}('g-cool', {
           plain: '',
           best: '',
           betterChanged: function(inOldValue) {
@@ -285,7 +286,7 @@ All properties on {{site.project_title}} elements can be watched for changes by 
           }
         });
       </script>
-    </element>
+    </polymer-element>
 
 In this example, there are two watched properties, `better` and `best`. The `betterChanged` and `bestChanged` function will be called whenever `better` or `best` are modified, respectively. 
 
@@ -295,18 +296,18 @@ Another useful feature of {{site.project_title}} is node reference marshalling. 
 
 For example, the following defines a component whose template contains an `<input>` element whose `id` attribute is `nameInput`. The component can refer to that element with the expression `this.$.nameInput`.
 
-    <element name="x-form">
+    <polymer-element name="x-form">
       <template>
         <input type="text" id="nameInput">
       </template>
       <script>
-        {{site.project_title}}.register(this, {
+        {{site.project_title}}('x-form', {
           logNameValue: function() {
             console.log(this.$.nameInput.value);
           }
         });
       </script>
-    </element>
+    </polymer-element>
 
 ### Extending other elements
 
@@ -314,50 +315,50 @@ A {{site.project_title}} element can extend another element by using the `extend
 attribute. The parent's properties and methods are inherited by the child element,
 data-bound, and accessible via MDV.
 
-    <element name="polymer-cool">
+    <polymer-element name="polymer-cool">
       <!-- UI-less element -->
       <script>
-        Polymer.register(this, {
+        {{site.project_title}}('polymer-cool', {
           praise: 'cool'
         });
       </script>
-    </element>
+    </polymer-element>
 
-    <element name="polymer-cooler" extends="polymer-cool">
+    <polymer-element name="polymer-cooler" extends="polymer-cool">
       <template>
         {%raw%}{{praise}}{%endraw%} <!-- "cool" -->
       </template>
       <script>
-        Polymer.register(this);
+        {{site.project_title}}('polymer-cooler');
       </script>
-    </element>
+    </polymer-element>
 
 #### Overriding a parent's methods
 
 When you override an inherited method, you can call the parent's method with `this.super()`.
 
-    <element name="polymer-cool">
+    <polymer-element name="polymer-cool">
       <script>
-        Polymer.register(this, {
+        {{site.project_title}}('polymer-cool', {
           praise: 'cool',
           makeCoolest: function() {
             this.praise = 'coolest';
           }
         });
       </script>
-    </element>
+    </polymer-element>
 
-    <element name="polymer-cooler" extends="polymer-cool" on-click="makeCoolest">
+    <polymer-element name="polymer-cooler" extends="polymer-cool" on-click="makeCoolest">
       <template>polymer-cooler is {%raw%}{{praise}}{%endraw%}</template>
       <script>
-        Polymer.register(this, {
+        {{site.project_title}}('polymer-cooler', {
           praise: 'cooler',
           makeCoolest: function() {
             this.super(); // calls polymer-cool's makeCoolest()
           }
         });
       </script>
-    </element>
+    </polymer-element>
 
     <polymer-cooler></polymer-cooler>
 
@@ -400,7 +401,7 @@ pass to the callback.
 
 In the case of property changes that result in DOM modifications, follow this pattern:
 
-    Polymer.register(this, {
+    Polymer('my-element', {
       propChanged: function() {
         // If "prop" changing results in our DOM changing, schedule an update after
         // the new microtask.
@@ -417,18 +418,18 @@ use the asynchronous version: `asyncFire()`.
 
 Example:
 
-    <element name="ouch-button">
+    <polymer-element name="ouch-button">
       <template>
         <button on-click="onClick">Send hurt</button> 
       </template>
       <script>
-        Polymer.register(this, {
+        Polymer('ouch-button', {
           onClick: function() {
             this.fire('ouch', {msg: 'That hurt!'}); // fire(inType, inDetail, inToNode)
           }
         });
       </script>
-    </element>
+    </polymer-element>
 
     <ouch-button></ouch-button>
 

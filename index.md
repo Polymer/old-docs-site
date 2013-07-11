@@ -31,7 +31,7 @@ and designed to leverage the evolving web platform on modern browsers.
         git clone git://github.com/Polymer/polymer-all.git --recursive
 
 2. **Fire up a web server** in your app's directory.
-3. Include `polymer-all/polymer/polymer.min.js` in your main page:
+3. Include `polymer.min.js` in your main page. The file is bundled with each release. 
 
         <script src="polymer.min.js"></script>
 

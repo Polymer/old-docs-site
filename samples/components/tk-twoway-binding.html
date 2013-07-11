@@ -1,4 +1,4 @@
-<element name="tk-twoway-binding" attributes="selected">
+<polymer-element name="tk-twoway-binding" attributes="selected">
   <link rel="import" href="/toolkit-ui/elements/g-panels.html">
   <link rel="import" href="/toolkit-ui/elements/g-tabs.html">
   <template>
@@ -21,10 +21,10 @@
     </g-panels>
   </template>
   <script>
-    Polymer.register(this, {
+    Polymer('tk-twoway-binding', {
       showPanel: function(event, detail, sender) {
         //...
       }
     });
   </script>
-</element>
+</polymer-element>

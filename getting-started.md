@@ -11,7 +11,6 @@ imports:
 #- samples/components/tk-element.html
 #- samples/components/tk-element-databinding-color.html
 #- samples/components/tk-element-databinding.html
-#- samples/components/tk-element-property.html
 #- samples/components/tk-element-ready.html
 #- samples/components/tk-element-property-public.html
 #- samples/components/tk-element-property-public-publish.html
@@ -29,10 +28,7 @@ or third-party elements.
 
 ## Basics
 
-{{site.project_title}} expands the concepts of [Custom Elements](/platform/custom-elements.html) by providing
-extra goodies. However, if you're only interested in building a regular Custom Element,
-all you need is `platform.js`, which polyfills missing platform features like
-[Shadow DOM](/platform/shadow-dom.html) and [HTML Imports](/platform/html-imports.html).
+{{site.project_title}} expands the concepts of [Custom Elements](/platform/custom-elements.html) by providing extra goodies. However, if you're only interested in building a regular Custom Element, all you need is `platform.js`. It contains polyfills for missing platform features like [Shadow DOM](/platform/shadow-dom.html) and [HTML Imports](/platform/html-imports.html).
 
 1. Load **platform.js** to polyfill missing platform features.
 2. Load components with `<link rel="import" href="/path/to/component-file.html">`
@@ -69,35 +65,36 @@ new technologies.
 
 {% include samples/basic-element.html %}
 
+**Reminder:** The `name` attribute is required and specifies the name of the HTML
+tag you'll instantiate in markup (e.g. `<tag-name>`). It must be a "-" separated string.
+{: .alert }
+
 ### Creating a {{site.project_title}} element
 
-{{site.project_title}} provides extra goodies for creating custom elements. We call these souped-up
-custom elements "{{site.project_title}} elements". To create one, follow these steps:
+{{site.project_title}} provides extra goodies for creating custom elements. We call these souped-up custom elements "{{site.project_title}} elements". To create one, follow these steps:
 
-1. Load [{{site.project_title}} core](/polymer.html) (`polymer/polymer.js` or `polymer/polymer.min.js`).
+1. Load [{{site.project_title}} core](/polymer.html) (`polymer/polymer.js` or `polymer.min.js`).
 
     **Note:** `polymer.js` loads `platform.js` under the hood.
 You only need to include `polymer.js` when writing a {{site.project_title}} element.
     {: .alert }
 
-1. In your custom element, add a `<script>` element that calls the `{{site.project_title}}.register()`. This endows the custom element with {{site.project_title}} features, such as data binding and event mapping.
+1. Declare your custom element using `<polymer-element>`.
 
-In the following sample we convert our basic custom element into a {{site.project_title}} element named `tk-element`.
+In the following sample, we've converted our basic custom element into a {{site.project_title}} element named `tk-element`.
 
 {% include samples/tk-element.html %}
 
-`{{site.project_title}}.register()` takes the element it needs to register as its first argument.
-In the context of `<element>`, `this` refers to the element.
+#### Add properties/methods to your component
 
-{% comment %}
-### Add properties to our component
+If you need to add public methods/properties to your element,
+include a `<script>` that calls `{{site.project_title}}('your-tagname')`.
+`{{site.project_title}}(..)` is a convenience wrapper for [`document.register`](/platform/custom-elements.html#documentregister), but also endows the element with special features like
+data binding and event mapping. Its first argument is the name of the element
+you're creating. The second argument (optional) is an object that defines your
+element's `prototype`. 
 
-The `{{site.project_title}}.register()` takes an object as a parameter whose members define the properties and methods that belong to our component.
-
-{% include samples/tk-element-property.html %}
-
-Now that we've added a private variable, let's add data binding to display its value in the DOM.
-{% endcomment %}
+{% include samples/tk-element-proto.html %}
 
 ## Declarative data binding
 
@@ -117,7 +114,7 @@ The following example demonstrates binding component properties to attributes of
 
 {% include samples/tk-binding-to-elements.html %}
 
-## Adding a ready() lifecycle method ###
+## Adding a ready() lifecycle method
 
 When an element has been registered ad finished initializing itself, it calls its
 `ready` method, if one exists. The `ready` callback is a great place to do
@@ -131,8 +128,7 @@ Published properties can be used to define an element's "public API". {{site.pro
 establishes two-way data binding for published properties and provides access
 to the property's value using MDV's `{%raw%}{{}}{%endraw%}`.
 
-_Publish_ a property by listing it in the `attributes` attribute on the `<element>` tag.
-Properties declared this way are initially `null`. To provide a more appropriate default value, include the same property name directly in your prototype (as seen below).
+_Publish_ a property by listing it in the `attributes` attribute in your `<polymer-element>`. Properties declared this way are initially `null`. To provide a more appropriate default value, include the same property name directly in your prototype (as seen below).
 
 The following example defines two data-bound properties on the element, `owner` and `color`,
 and gives them default values:

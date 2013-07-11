@@ -190,7 +190,7 @@ be slow due to poor network conditions.
 
 To combat these types of UX issues and mitigate things like [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content), you can use the CSS `:unresolved` pseudo class. It applies to unknown elements right up until the point the lifecycle `createdCallback` is called.
 
-**Support:** CSS `:unresolved` is supported natively in Chrome 28. It has not been polyfilled.
+**Support:** CSS `:unresolved` is supported natively in Chrome 29. It has not been polyfilled.
 {: .alert .alert-success}
 
 **Example:** fade in an element when it's registered
@@ -514,7 +514,6 @@ element is added to the main document with the reformulated rules.
 
 1. **Prepend selectors with the element name, creating a descendent selector**.
 This ensures styling does not leak outside the element's shadowRoot (e.g. upper bound encapsulation).
-Note, this technique does not enforce lower bound encapsulation.
 
       For example, this rule inside an `x-foo`:
 
@@ -533,6 +532,11 @@ Note, this technique does not enforce lower bound encapsulation.
               x-foo div { ... }
             </style>
           ...
+
+      Note, this technique does not enforce lower bound encapsulation. For that,
+      you need to set `Platform.ShadowCSS.strictStyling = true`. This isn't the
+      yet the default because it requires that you add the custom element's
+      name as an attribute on all DOM nodes in the shadowRoot (e.g. `<span x-foo>`).
 
 ### Making styles global
 

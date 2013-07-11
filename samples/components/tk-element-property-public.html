@@ -1,15 +1,15 @@
-<element name="tk-element-property-public"
+<polymer-element name="tk-element-property-public"
          attributes="owner color">
   <template>
     This is a <strong>{{owner}}</strong>'s tk-element. 
     He likes the color <b style="color: {{color}}">{{color}}</b>.
   </template>
   <script>
-    Polymer.register(this, {
+    Polymer('tk-element-property-public', {
       // These default values are overridden
       // by the user's attribute values.
       color: "red",
       owner: "Daniel"
     });
   </script>
-</element>
+</polymer-element>
