@@ -23,6 +23,7 @@ load_platform: true
 project_title: Polymer
 latest_version: 0.0.20130711
 add_permalinks: true # adds permalinks to heading tags.
+load_disqus: true
 
 authors:
   ebidel:

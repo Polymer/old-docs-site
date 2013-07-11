@@ -1,9 +1,11 @@
+{% if site.load_disqus %}
 <hr>
 
 <div id="disqus_thread"></div>
 <script>
   var disqus_shortname = 'polymer-project';
   var disqus_url = location.protocol + '//' + location.host + '{{page.url}}';
+  {% if page.title %}var disqus_identifier = "{{page.title | downcase | replace:' ','-'}}";{% endif %}
 
   (function() {
     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -11,3 +13,5 @@
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
+
+{% endif %}
