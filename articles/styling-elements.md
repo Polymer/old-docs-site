@@ -2,7 +2,7 @@
 layout: default
 title: A Guide to Styling Elements
 
-#load_polymer: true
+load_polymer: true
 
 article:
   author: ebidel
@@ -61,9 +61,15 @@ The [`@host` at-rule](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/sha
         <style>
           @host {
             /* Three equivalent rules, in order of preference. */
-            :scope { display: block; }
-            * { display: block; }
-            x-foo { display: block; }
+            :scope {
+              display: block; /* Note: by default elements are always display:inline. */
+            }
+            * {
+              display: block;
+            }
+            x-foo {
+              display: block;
+            }
           }
         </style>
       </template>
@@ -83,26 +89,25 @@ An interesting application of `@host` is for reacting to different user-driven s
         <style>
           @host {
             :scope {
-              /* Note: by default elements are always display:inline. */
-              display: block;
-              opacity: 0.4;
+              opacity: 0.6;
               transition: opacity 400ms ease-in-out;
             }
             :scope:hover { opacity: 1; }
             :scope:active { ... }
           }
         </style>
-        ....
+        <button><content></content></button>
+      </template>
     </polymer-element>
 
-    <x-button></x-button>
+    <x-button>x-buttonz!</x-button>
 
-<polymer-element name="x-button">
+<polymer-element name="x-button-example">
   <template>
     <style>
       @host {
         :scope {
-          opacity: 0.4;
+          opacity: 0.6;
           transition: opacity 400ms ease-in-out;
         }
         :scope:hover {
@@ -115,12 +120,13 @@ An interesting application of `@host` is for reacting to different user-driven s
         }
       }
     </style>
-    <button></button>
+    <button><content></content></button>
   </template>
 </polymer-element>
-<x-button></x-button>
 
 When someone mouses over `<x-button>` they'll get a sexy fade-in!
+
+**Demo:** <x-button-example>x-buttonz!</x-button-example>
 
 #### Programmatically modifying styles
 
@@ -137,8 +143,15 @@ From within the element:
     <polymer-element name="x-foo" on-click="changeBg">
       <template>
         <style>
-          @host { :scope { background: red; } }
+          @host {
+            :scope {
+              display: inline-block;
+              background: red;
+              color: white;
+            }
+          }
         </style>
+        <div>Click me</div>
       </template>
       <script>
         Polymer('x-foo', {
@@ -148,6 +161,24 @@ From within the element:
         });
       </script>
     </polymer-element>
+
+<polymer-element name="x-bgchange-example" on-click="changeBg">
+  <template>
+    <style>
+      @host { :scope { display: inline-block; padding: 5px; background: red; color: white; } }
+    </style>
+    <div>Click me</div>
+  </template>
+  <script>
+    Polymer('x-bgchange-example', {
+      changeBg: function() {
+        this.style.background = 'blue'; 
+      }
+    });
+  </script>
+</polymer-element>
+
+**Demo:** <x-bgchange-example></x-bgchange-example>
 
 If you're feeling loco, it's possible to modify the rules in an `@host`
 block using CSSOM:
@@ -246,39 +277,6 @@ behavior. The basic idea is to add a CSS class to the Custom Element when {{site
       });
     </script>
 
-<!-- 
-<style>
-  x-foo-example:unresolved {
-    display: flex;
-    justify-content: center;
-    background: rgba(255,255,255,0.5);
-    border: 1px dashed #ccc;
-    border-radius: 5px;
-  }
-  x-foo-example:unresolved:after {
-    padding: 15px;
-    content: 'loading...';
-    color: #ccc;
-  }
-</style>
-
-<x-foo-example></x-foo-example>
-
-<script>
-document.addEventListener('WebComponentsReady', function(e) {
-  // Add .resolved to all custom elements. This is a hack until :unresolved is
-  // supported in all browsers and Polymer registers elements using
-  // document.register().
-  for (var name in CustomElements.registry) {
-    var els = document.querySelectorAll(name + ', [is="' + name + '"]');
-    [].forEach.call(els, function(el, i) {
-      el.classList.add('resolved');
-    });
-  }
-});
-</script>
- -->
-
 `WebComponentsReady` signifies when all elements have been upgraded.
 
 ## Inheriting / resetting outside styles
@@ -330,9 +328,9 @@ even if those nodes are distributed into Shadow DOM. Basically, going into an in
       <div>Light DOM: green</div>
     </x-foo>
 
-<!-- 
+
 <style>
-  x-foo > div {
+  x-foo-example2 > div {
     color: green;
   }
   .red {
@@ -342,6 +340,9 @@ even if those nodes are distributed into Shadow DOM. Basically, going into an in
 
 <polymer-element name="x-foo-example2">
   <template>
+    <style>
+      @host { :scope { display: block; } }
+    </style>
     <div class="red">Shadow DOM: red when applyAuthorStyles=true</div>
     <content select="div"></content>
   </template>
@@ -352,9 +353,11 @@ even if those nodes are distributed into Shadow DOM. Basically, going into an in
   </script>
 </polymer-element>
 
-<x-foo-example2>
+**Demo:**
+
+<x-foo-example2 style="margin-bottom:20px;">
   <div>Light DOM: green</div>
-</x-foo-example2> -->
+</x-foo-example2>
 
 The element's Shadow DOM `<div class="red">` matches the `.red` class when
 `applyAuthorStyles` is true. When it's false, we're not "applying the authors styles"
@@ -592,6 +595,4 @@ In web development, we're conditioned to think, "Yay! Globals everywhere!" That 
 for DOM, CSS, and JS. Not so with Custom Elements. It's a brave new world, but a powerful one
 of encapsulation, puppies, and fluffy bunnies. Drink it in.
 
-{% comment %}
 {% include disqus.html %}
-{% endcomment %}
