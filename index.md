@@ -24,11 +24,11 @@ and designed to leverage the evolving web platform on modern browsers.
 <div class="centered"><iframe id="video" src="http://www.youtube.com/embed/0g0oOOT86NY" frameborder="0" allowfullscreen></iframe>
 </div>
 
-<p class="download centered"><a href="https://github.com/{{site.project_title}}/polymer-all/releases/download/v{{site.latest_version}}/polymer-all-v{{site.latest_version}}.zip" class="btn btn-success btn-large" alt="Download the latest {{site.project_title}}" title="Download the lateset {{site.project_title}}"><i class="icon-white icon-download"></i> Download {{site.project_title}} v{{site.latest_version}}</a></p>
+<p class="download centered"><a href="https://github.com/{{site.project_title}}/polymer-all/releases/download/v{{site.latest_version}}/polymer-all-v{{site.latest_version}}.zip" class="btn btn-success btn-large" alt="Download the latest {{site.project_title}}" title="Download the lateset {{site.project_title}}"><i class="icon-white icon-download"></i> Download v{{site.latest_version}}</a></p>
 
 ## Quick start
 
-1. Download the `polymer-all` .zip from the link above. If you want to use Git, see [Getting the code](/getting-the-code.html).
+1. Download the .zip of `polymer-all` from the link above. If you want to use Git, see [Getting the code](/getting-the-code.html).
 2. **Fire up a web server** in your app's directory.
 3. Include `polymer.min.js` (bundled with the release) in your main page:
 

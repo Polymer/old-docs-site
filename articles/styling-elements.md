@@ -97,7 +97,7 @@ An interesting application of `@host` is for reacting to different user-driven s
 
     <x-button></x-button>
 
-<!-- <polymer-element name="x-button">
+<polymer-element name="x-button">
   <template>
     <style>
       @host {
@@ -118,7 +118,7 @@ An interesting application of `@host` is for reacting to different user-driven s
     <button></button>
   </template>
 </polymer-element>
-<x-button></x-button> -->
+<x-button></x-button>
 
 When someone mouses over `<x-button>` they'll get a sexy fade-in!
 
