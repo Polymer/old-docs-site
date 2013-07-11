@@ -188,6 +188,9 @@ a[disabled] {
 }
 
 /* Home */
+.download {
+  margin-top: 10px;
+}
 #video {
   width: 560px;
   height: 315px;
