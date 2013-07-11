@@ -19,8 +19,7 @@ components:
 #- samples/components/tk-binding-to-elements.html
 ---
 
-<!-- <script src="/polymer.min.js?{{'now' | date: "%Y%m%d"}}"></script> -->
-<script src="http://polymer.github.io/cdn/polymer.min.js"></script>
+<script src="/polymer.min.js?{{'now' | date: "%Y%m%d"}}"></script>
 
 [Custom Elements](/platform/custom-elements.html) are the core building blocks of
 {{site.project_title}}-based applications. You create applications by assembling custom elements
