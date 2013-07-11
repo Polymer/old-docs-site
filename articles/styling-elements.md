@@ -514,7 +514,6 @@ element is added to the main document with the reformulated rules.
 
 1. **Prepend selectors with the element name, creating a descendent selector**.
 This ensures styling does not leak outside the element's shadowRoot (e.g. upper bound encapsulation).
-Note, this technique does not enforce lower bound encapsulation.
 
       For example, this rule inside an `x-foo`:
 
@@ -533,6 +532,11 @@ Note, this technique does not enforce lower bound encapsulation.
               x-foo div { ... }
             </style>
           ...
+
+      Note, this technique does not enforce lower bound encapsulation. For that,
+      you need to set `Platform.ShadowCSS.strictStyling = true`. This isn't the
+      yet the default because it requires that you add the custom element's
+      name as an attribute on all DOM nodes in the shadowRoot (e.g. `<span x-foo>`).
 
 ### Making styles global
 
