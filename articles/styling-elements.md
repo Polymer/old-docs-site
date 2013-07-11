@@ -6,7 +6,7 @@ load_polymer: true
 
 article:
   author: ebidel
-  published: 2013-07-09
+  published: 2013-07-11
   #updated: 2013-07-09
   description: Learn all about how to style Polymer elements.
 tags:
