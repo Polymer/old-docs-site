@@ -1,5 +1,8 @@
 require 'pathname'
 
+# {% directory dir:polymer-all/polymer-ui-elements %}
+# {% directory tag:li branch:master dir:polymer-all/polymer-ui-elements glob:polymer-ui-* %}
+
 module Jekyll
   class DirectoryTag < Liquid::Tag
 
@@ -27,6 +30,8 @@ module Jekyll
       @dir = @attributes.has_key?('dir') ? @attributes['dir'] : nil
       @glob = @attributes.has_key?('glob') ? @attributes['glob'] : '*/' 
       @tag = @attributes.has_key?('tag') ? @attributes['tag'] : 'li' 
+      @branch = @attributes.has_key?('branch') ? @attributes['branch'] : 'stable'
+      @demos = @attributes.has_key?('demos') ? @attributes['demos'] : false 
 
       super
     end
@@ -39,9 +44,9 @@ module Jekyll
       elements = []
       #Pathname.glob("#{@path}/#{project_title}-*/").each do |i|
       #Pathname.glob("#{project_title}-all/#{@path}/").each do |i|
-      Pathname.glob("#{@dir}/#{@glob}/").each do |i|
+      Pathname.glob("#{@dir}/#{@glob}").each do |i|
         elements.push({
-          'name' => i.basename.to_s,
+          'name' => i.basename.to_s.sub('.html', ''),
           'full_path' => i.to_s,
           'path' => i.to_s.split('/')[1..-1].join('/') # remove polymer-all
         })
@@ -51,20 +56,40 @@ module Jekyll
 
     end
 
-    def render_element(element)
-      name = element['name']
-      file_path = "#{element['full_path']}#{name}.html"
-      demo_path = "#{element['full_path']}index.html"
+    def render_element(element) 
+      file_path = "#{element['full_path']}/#{element['name']}.html"
+      if !File.exists?(file_path)
+        file_path = "#{element['full_path']}"
+      end
+
+      demo_path = "#{element['full_path']}/index.html"
+      #if !File.exists?("#{element['full_path']}/index.html")
+      #  demo_path = "#{element['full_path']}"
+      #end
+
       github_url = github_url(element)
+      tag_name = element['name']
+      iframe_demo = generate_iframe_demo("/#{file_path}", tag_name) if @demos else ''
 
       <<-END
-      <#{@tag} data-file="#{file_path}">
-        <h3 id="#{name}">&lt;#{name}&gt;</h3>
+      <#{@tag} data-element-file="/#{file_path}">
+        <h3 id="#{tag_name}">&lt;#{tag_name}&gt;</h3>
         <span class="links">
           <a href="#{github_url}" target="_blank">source</a>
           <a href="/#{demo_path}" target="_blank" #{'disabled' if !File.exists?(demo_path)}>demo</a>
+          <div #{'hidden' if !iframe_demo}>#{iframe_demo}</div>
         </span>
       </#{@tag}>
+      END
+    end
+
+    def generate_iframe_demo(file_path, tag_name)
+      <<-END
+      <iframe srcdoc='
+        <script src="/polymer.min.js"></script>
+        <link rel="import" href="#{file_path}">
+        <#{tag_name}></#{tag_name}>'>
+      </iframe>
       END
     end
 
@@ -73,7 +98,7 @@ module Jekyll
 
       repo, element_path = element['path'].split('/')
 
-      "#{github_project_url}/#{repo}/blob/stable/#{element_path}/#{element['name']}.html"
+      "#{github_project_url}/#{repo}/blob/#{@branch}/#{element_path}/#{element['name']}.html"
     end
   end
 end
