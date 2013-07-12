@@ -45,17 +45,6 @@ from the `polymer-all/` folder:
 
     git submodule update --init --recursive
 
-### Development
-
-If you want to see the development activity, checkout the _master_ branch directly:
-
-    git clone -b master https://github.com/Polymer/polymer-all.git --recursive
-
-<p class="alert">
-<b>Remember</b>: If you don't specify <em>master</em>, you'll get the <em>stable</em> branch by default.
-See <a href="/branching-strategy.html">Branching Workflow</a> for more info.
-</p>
-
 ## Repository structure
 
 The entirety of the {{site.project_title}} is composed of a number of Git
@@ -98,6 +87,15 @@ The [`polymer`](https://github.com/polymer/polymer) repository contains the guts
 of the project. It expects the [`platform`](https://github.com/polymer/platform)
 polyfill repo to be a sibling directory, and hosts the
 [{{site.project_title}} kernel](polymer.html) with its tools and tests.
+
+If you want to see the development activity, checkout the _master_ branch directly:
+
+    git clone -b master https://github.com/Polymer/polymer.git --recursive
+
+<p class="alert">
+<b>Remember</b>: If you don't specify <em>master</em>, you'll get the <em>stable</em> branch by default.
+See <a href="/branching-strategy.html">Branching Workflow</a> for more info.
+</p>
 
 ### /toolkit-ui repository
 
