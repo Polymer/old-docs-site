@@ -33,7 +33,7 @@ Most elements in HTML have default styling applied by the browser. For example,
 
 ### User-provided styles
 
-As with any HTML elements, users of your Custom Element can define styles on it:
+As with any HTML element, users of your Custom Element can define styles on it:
 
     <style>
       x-foo {
@@ -212,7 +212,7 @@ For more information on `@host`, see [Shadow DOM 201 - CSS and Styling](http://w
 ## Preventing FOUC
 
 When you declare `<x-foo>` (or any non-native HTML element), it exists
-happy on the page as a regular `HTMLElement`. Only when the browser registers its definition
+happily on the page as a regular `HTMLElement`. Only when the browser registers its definition
 does `<x-foo>` become magical.
 
 Before an element gets registered, the process of upgrading it may take more time than expected.
