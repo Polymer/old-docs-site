@@ -13,11 +13,11 @@ You can recursively clone and initialize all of {{site.project_title}}'s submodu
 
 This creates a `polymer-all/` folder with the following top-level files and folders:
 
-- **platform/** — Submodule which contains the platform shims and polyfills.
+- **platform/** — The platform shims and polyfills.
 - **polymer/polymer.js** — The [{{site.project_title}} kernel](polymer.html)
-- **polymer-elements/** -  collection of core utility elements.
-- **polymer-ui-elements/** - collection of UI elements.
-- **projects/** - Larger examples, demos, and tools that use {{site.project_title}}.
+- **polymer-elements/** — A collection of core utility elements.
+- **polymer-ui-elements/** — A collection of UI elements.
+- **projects/** — Larger examples, demos, and tools that use {{site.project_title}}.
 - Each platform (polyfill) also has a sibling repo.
 
 More on repository structure is below.
@@ -39,30 +39,39 @@ See [Branching Workflow](branching-strategy.html).
 
 ### Updating {{site.project_title}} submodules
 
-Periodically, we will update the projects' submodules on GitHub. To
+Periodically, we will update the project's submodules on GitHub. To
 update your local copy's submodules, run the following command
-from the the repository's folder:
+from the `polymer-all/` folder:
 
     git submodule update --init --recursive
+
+### Development
+
+If you want to see the development activity, checkout the _master_ branch directly:
+
+    git clone -b master https://github.com/Polymer/polymer-all.git --recursive
+
+<p class="alert">
+<b>Remember</b>: If you don't specify <em>master</em>, you'll get the <em>stable</em> branch by default.
+See <a href="/branching-strategy.html">Branching Workflow</a> for more info.
+</p>
 
 ## Repository structure
 
 The entirety of the {{site.project_title}} is composed of a number of Git
-repositories. Most are included as submodules in the main `polymer` repository.
+repositories. All are included as submodules in the main `polymer-all` repository.
 However, understanding the various pieces will help you navigate the codebase.
 
-We have factored our repositories into atomic chunks, and then created
-integration repositories to bring them together again. For example, the following repositories may be useful individually:
+We have factored our repositories into atomic chunks. For example, the following repositories may be useful individually:
 
 * `CustomElements`
 * `HTMLImports`
 * `ShadowDOM`
-* `MDV`
+* `mdv`
 * `PointerGestures`
 
-Other repositories aggregate these individual repositories (as submodules) into useful combinations:
+Some repositories depend on others in {{site.project_title}} and must be siblings of the same parent directory to function completely:
 
-* `polymer-all`
 * `polymer`
 * `platform`
 * `toolkit-ui`
@@ -77,7 +86,7 @@ reasoning for this is two-fold:
 1. make the polyfills work across all modern browsers
 2. each polyfill can stand on its own and be used à la carte in projects.
 
-The [`platform`](https://github.com/polymer/platform) repository references each of the polyfills as submodules, and contains integration tests, loader, and build tools for the amalgamated polyfills.
+The [`platform`](https://github.com/polymer/platform) repository references each of the polyfills as a sibling directory, and contains integration tests, loader, and build tools for the amalgamated polyfills.
 
 See [Tooling Strategy](tooling-strategy.html) for information.
 
@@ -86,18 +95,9 @@ See [Tooling Strategy](tooling-strategy.html) for information.
 [github.com/polymer/polymer](https://github.com/polymer/polymer)
 
 The [`polymer`](https://github.com/polymer/polymer) repository contains the guts
-of the project. It pulls in the [`platform`](https://github.com/polymer/platform)
-polyfill repo as a submodule, contains tools, tests, and hosts the
-[{{site.project_title}} kernel](polymer.html).
-
-If you want to see the development activity, checkout the _master_ branch directly:
-
-    git clone -b master https://github.com/Polymer/polymer.git --recursive
-
-<p class="alert">
-<b>Remember</b>: If you don't specify <em>master</em>, you'll get the <em>stable</em> branch by default.
-See <a href="/branching-strategy.html">Branching Workflow</a> for more info.
-</p>
+of the project. It expects the [`platform`](https://github.com/polymer/platform)
+polyfill repo to be a sibling directory, and hosts the
+[{{site.project_title}} kernel](polymer.html) with its tools and tests.
 
 ### /toolkit-ui repository
 
