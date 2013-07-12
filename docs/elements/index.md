@@ -6,8 +6,9 @@ title: Polymer element reference
 ---
 
 **Note:** These elements and their documentation are very early.
-The "source" links below point to commented code to learn how to use each element.
-{: .alert .alert-error}
+The "source" links below point to commented code where you can learn how to use
+the element.
+{: .alert .alert-info}
 
 ## Elements
 

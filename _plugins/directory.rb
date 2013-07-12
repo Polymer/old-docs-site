@@ -1,7 +1,7 @@
 require 'pathname'
 
 # {% directory dir:polymer-all/polymer-ui-elements %}
-# {% directory tag:li branch:master dir:polymer-all/polymer-ui-elements glob:polymer-ui-* %}
+# {% directory demos:true tag:li branch:master dir:polymer-all/polymer-ui-elements glob:polymer-ui-* %}
 
 module Jekyll
   class DirectoryTag < Liquid::Tag
@@ -24,7 +24,7 @@ module Jekyll
           @attributes[key] = value
         end
       else
-        raise SyntaxError.new("Syntax Error in 'directory' - Valid syntax: directory tag:li dir:x glob:x]")
+        raise SyntaxError.new("Syntax Error in 'directory' - Valid syntax: directory demo:x branch:x tag:x dir:x glob:x]")
       end
 
       @dir = @attributes.has_key?('dir') ? @attributes['dir'] : nil
