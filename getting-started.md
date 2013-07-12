@@ -116,7 +116,7 @@ The following example demonstrates binding component properties to attributes of
 
 ## Adding a ready() lifecycle method
 
-When an element has been registered ad finished initializing itself, it calls its
+When an element has been registered and finished initializing itself, it calls its
 `ready` method, if one exists. The `ready` callback is a great place to do
 constructor-like initialization work.
 
@@ -138,7 +138,7 @@ and gives them default values:
 Note: In this example the user overrides the defaults for `owner` and `color`
 by configuring the element with initial attribute values (e.g. `<tk-element-property-public owner="Scott" color="blue">`).
 
-[Learn more about published properties](/polymer.html#publishing-properties)
+[Learn more about published properties](/polymer.html#published-properties)
 
 {% comment %}
 #### Using a publish object (advanced)
