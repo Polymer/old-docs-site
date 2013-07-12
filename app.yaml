@@ -42,4 +42,4 @@ skip_files:
 - ^(.*/)?.*/RCS/.*
 - ^(.*/)?\..*
 - ^(.*/)?.*\.bak$
-- ^node_modules/.*
+- ^(.*/)?node_modules
