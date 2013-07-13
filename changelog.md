@@ -6,6 +6,95 @@ title: Changelog
 This document lists the notable changes across the entirety of the project,
 including polyfill repos, tools, projects, and UI elements.
 
+## 2013-07-11 {#2013-07-11}
+
+See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20130711).
+
+### {{site.project_title}}
+
+#### General
+
+All hail `<polymer-element>`!
+
+Declaring elements is now `<polymer-element name="tag-name">` (was `<element name="tag-name">`).
+Elements are now auto registered, so a script tag is no longer required:
+
+    <polymer-element name="tag-name">
+      <template>...</template>
+    </polymer-element>
+
+**Features**
+
+More complex elements are registered with `Polymer('tag-name', {prototype})` (was `Polymer.register(this, {prototype})`). This allows for more flexible script decoupling:
+
+1. `<script src>` works now
+1. `<script>` can come before or inside the element, but not after
+
+**Changes**
+
+1. Script scope is no longer special (e.g. `this` no longer refers to the element).
+1. Closures are not longer supported for private variables. Private vars should be done
+with the standard methods like anonymous self calling functions.
+
+#### Core
+
+- `.resetStyleInheirtance' can now be defined on the element's prototype ([commit](https://github.com/Polymer/polymer/commit/411d53c34c9121952f0be66f761a1a1a13f8c78e))
+- Shadow DOM shhim styling has been moved into platform as `ShadowCSS` ([commit](https://github.com/Polymer/polymer/commit/ae24b2a8e288747cfc178282de927d54050f9b5a))
+
+### Platform
+
+- Polyfill `<template>`/`<element>` styling not use `!important`. Fixes [#191](https://github.com/Polymer/polymer/issues/191).
+- Add `array()` and `forEach()` to `NodeList`, `NamedNodeMap`, `HTMLCollection` ([commit](https://github.com/Polymer/platform/commit/32c1f4a7df6bce56586134908f2d98ab616e7dac))
+
+#### Custom Elements
+
+- Script execution is more specific to JS ([commit](https://github.com/Polymer/CustomElements/commit/bdc3139c9c0ac04dd748668d05a10625df889b3f))
+
+#### HTML Imports
+
+- Scripts within `<template>` content are now executed. Fixes [#22](https://github.com/Polymer/HTMLImports/issues/22).
+- Non-JS script tags are no longer parsed ([commit](https://github.com/Polymer/HTMLImports/commit/0f35bd21fab3e0e9b99b525581d1135f27787dd1)) 
+
+#### MDV
+
+- CompoundBindings have been sped up ([commit](https://github.com/Polymer/mdv/commit/27b9cc6dfa69745aadb862780ae71b905e74014f), [commit](https://github.com/Polymer/mdv/commit/b01b4867805311f3815f4e065cea0ced5dd4d4a2))
+- Binds have a more consistent API ([commit](https://github.com/Polymer/mdv/commit/95c4eca5a89ed3d04af1c6607a61f49d35d05ca6))
+- Initial work on MDV benchmarking ([commit](https://github.com/Polymer/mdv/commit/79b3d33bc199315f1424ff9ef072ec44e0482668))
+- Ensure `getInstanceModel()` is only called when a new instance will be created. Allows for the common case of inserting an instance via a `DocumentFragment` ([commit](https://github.com/Polymer/mdv/commit/694a4114779a9cd8ea3c915d1f5e9ec5ad6bd68c))
+
+#### Pointer Events
+
+- Use ES6 `Map` where available ([commit](https://github.com/Polymer/PointerEvents/commit/84ac51c69a2e53fafb7e00696917bb260d760497))
+- `allShadows()` method added to find all shadow roots ([commit](https://github.com/Polymer/PointerEvents/commit/812f79efdcb5557923f7ae1ab05eaedc9971c1a6))
+- Handle IE 11 use of string `.pointerType` ([commit](https://github.com/Polymer/PointerEvents/commit/0fbec53b1c2b656ea149728eab5f9e2f0c8e8410))
+- Don't override native `PointerEvent` ([commit](https://github.com/Polymer/PointerEvents/commit/a38f1ab0697e186ca77e6e5c94030036d1163e34))
+- Use `shadow.olderShadowRoot` when possible. Fixes [#81](https://github.com/Polymer/PointerEvents/issues/81).
+- Touch will try to use `touch-action` or use the old `MutationObserver` method ([commit](https://github.com/Polymer/PointerEvents/commit/614e60b5b97373558c6fa2b5ab7310f9d156ffab))
+
+#### Shadow DOM
+
+- `Event.path` always originates from the target ([commit](https://github.com/Polymer/ShadowDOM/commit/9f888b01c1ae9e0c745232e1525848bcbee7d7d9))
+- Fixed issue where FF24 doesn't support `document.createEvent('FocusEvent')` ([commit](https://github.com/Polymer/ShadowDOM/commit/f183806ac65097d754afa5b0e886a61d5677cb8e))
+
+### Elements & Projects
+
+#### polymer-elements
+
+- Added `<polymer-overlay>` ([commit](https://github.com/Polymer/polymer-elements/commit/d3f92ce3a20da925f839e6aae56cec75c5919165))
+- Added `<polymer-key-helper>` ([commit](https://github.com/Polymer/polymer-elements/commit/9f1b18741eb968b6740a3a889428151f495a2740))
+- Added `<polymer-file>` ([commit](https://github.com/Polymer/polymer-elements/commit/afb5f7a006c94f4f100b6b38aa44b5973d147a0b))
+- Added `<polymer-animation>` elements ([commit](https://github.com/Polymer/polymer-elements/commit/cfd4c49699b4dba01963f3169847b7d9f4150d51))
+- Added `<polymer-media-query>` ([commit](https://github.com/Polymer/polymer-elements/commit/b9fccc0c6d685c38d2a43ac873636b752c64200c))
+- Added `<polymer-selector>` ([commit](https://github.com/Polymer/polymer-elements/commit/f0a603467c657b98dff2240c5cf02e24fb339dfb))
+
+#### polymer-ui-elements
+
+- Added `<polymer-ui-accordian>` ([commit](https://github.com/Polymer/polymer-ui-elements/commit/00da2f56e1eadac5c861063ad8b31a2a4ea39319))
+- Added `<polymer-ui-splitter>` ([commit](https://github.com/Polymer/polymer-ui-elements/commit/e6d8029c73720a734a157ec0b3743f47b4707eaf))
+- Added responsive design to toolbar ([commit](https://github.com/Polymer/polymer-ui-elements/commit/7e856f76b93a60f5457c863d9663e4bb302a1889))
+
+---
+
 ## 2013-06-17 {#2013-06-17}
 
 **Notice**: This release contains important changes to the structure of the project.
@@ -40,7 +129,6 @@ this release.
 - The other lifecycle callbacks (`inserted`, `removed`, `attributeChanged`) can
   be setup in the `Polymer.register()` call in addition to `ready`. **Note**: these
   names are shorter than the spec's API.
-
 
 ### Platform
 
