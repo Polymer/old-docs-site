@@ -21,6 +21,11 @@ handlers:
   static_files: js/polymer.min.js
   upload: js/polymer\.min\.js
 
+# Map unminified polymer in demos to minified version.
+- url: /polymer-all/polymer/polymer.js$
+  static_files: js/polymer.min.js
+  upload: js/polymer\.min\.js
+
 - url: /polymer-all
   static_dir: polymer-all
 
