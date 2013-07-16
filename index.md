@@ -9,10 +9,10 @@ layout: default
 and designed to leverage the evolving web platform on modern browsers.
 {: .lead }
 
+<p class="download centered"><a href="https://github.com/{{site.project_title}}/polymer-all/releases/download/v{{site.latest_version}}/polymer-all-v{{site.latest_version}}.zip" class="btn btn-success btn-large" alt="Download the latest {{site.project_title}}" title="Download the lateset {{site.project_title}}"><i class="icon-white icon-download"></i> Download Polymer v{{site.latest_version}}</a></p>
+
 <div class="centered"><iframe id="video" src="http://www.youtube.com/embed/videoseries?list=PLRAVCSU_HVYu-zlRaqArF8Ytwz1jlMOIM" frameborder="0" allowfullscreen></iframe>
 </div>
-
-<p class="download centered"><a href="https://github.com/{{site.project_title}}/polymer-all/releases/download/v{{site.latest_version}}/polymer-all-v{{site.latest_version}}.zip" class="btn btn-success btn-large" alt="Download the latest {{site.project_title}}" title="Download the lateset {{site.project_title}}"><i class="icon-white icon-download"></i> Download v{{site.latest_version}}</a></p>
 
 ## Quick start
 
