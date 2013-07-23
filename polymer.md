@@ -43,7 +43,7 @@ Its first argument is the name of the element you're creating. The second argume
 {{site.project_title}} has first class support for the Custom Element lifecycle
 callbacks, though implements them with shorter names for convenience.
 
-Allow the lifecycle callbacks are optional: 
+All of the lifecycle callbacks are optional: 
 
     {{site.project_title}}('tag-name', {
       ready: function() { ... },
@@ -55,8 +55,8 @@ Allow the lifecycle callbacks are optional:
       },
     });
 
-Below is a table with the names of lifecycle method according to the Custom Elements
-[specificationn](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html#custom-element-lifecycle) vs. the names {{site.project_title}} uses.
+Below is a table of the lifecycle methods according to the Custom Elements
+[specification](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html#custom-element-lifecycle) vs. the names {{site.project_title}} uses.
 
 Spec | {{site.project_title}} | Called when
 |-
