@@ -32,10 +32,10 @@ and designed to leverage the evolving web platform on modern browsers.
 
 {{site.project_title}} is comprised of two efforts:
 
-- A set of core platform features ([Shadow DOM](/platform/shadow-dom.html),
+- A set of polyfills for emerging web platform features ([Shadow DOM](/platform/shadow-dom.html),
 [Custom Elements](/platform/custom-elements.html), [MDV](/platform/mdv.html)).
-Initially, these core features will be enabled with a set of polyfills. As browsers
-begin to implement these new primitives, the polyfill platform layer becomes smaller and better over time.
+Initially, these core features are enabled as polyfills. As browsers
+implement these new primitives, the polyfill platform layer becomes smaller and better over time.
 - A next-generation web application framework built upon these core technologies called the **_{{site.project_title}}_**.
 
 The architectural stack looks like this:
