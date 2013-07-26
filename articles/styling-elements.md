@@ -8,6 +8,7 @@ article:
   author: ebidel
   published: 2013-07-11
   updated: 2013-07-25
+  polymer_version: 0.0.20130711
   description: Learn all about how to style Polymer elements.
 tags:
 - CSS
