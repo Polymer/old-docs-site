@@ -245,6 +245,18 @@ this, there are two options:
 1. Don't use the `constructor` attribute. Use `document.createElement()` instead.
 2. Use `document.register()` and wrap the constructor it returns in a namespace.
 
+
+#### Does Shadow DOM play nicely with assistive technologies and screen readers? {#accessibility}
+
+Steve Faulkner had a [nice writeup](http://blog.paciellogroup.com/2012/07/notes-on-web-components-aria/)
+on this topic a while back and found that it does.
+
+Most assistive technologies hook directly into the browsers rendering tree, so 
+they just see the fully composed tree.  In fact, if you one of the native HTML
+elements that use Shadow DOM, `<input type="date">` for example,  you'll notice
+aria attributes inside the tree. Other types of assistive tools like [Chromevox](http://www.chromevox.com/)
+will [need to be updated](https://code.google.com/p/chromium/issues/detail?id=96373) to learn how to traverse the Shadow DOM. 
+
 ---
 
 *Special thanks go to GitHub user md_5 who generously donated the {{site.project_title}} organization name.*
