@@ -7,7 +7,7 @@ load_polymer: true
 article:
   author: ebidel
   published: 2013-07-11
-  #updated: 2013-07-09
+  updated: 2013-07-25
   description: Learn all about how to style Polymer elements.
 tags:
 - CSS
@@ -373,7 +373,47 @@ match the inner `<div class="red">`.
 
 For more information on `applyAuthorStyles` and `resetStyleInheritance`, see [Shadow DOM 201 - CSS and Styling](http://www.html5rocks.com/tutorials/webcomponents/shadowdom-201/#toc-style-inheriting).
 
-## Allowing users to style your internals
+## Styling the internal markup {#style-shadowdom}
+
+To style the internal markup of an element, include a `<link>` or `<style>` tag
+inside the topmost `<template>`:
+
+    <polymer-element name="x-foo">
+      <template>
+        <style>
+          p {
+            padding: 5px;
+          }
+          #message {
+            color: blue;
+          }
+          .important {
+            font-weight: bold;
+          }
+        </style>
+        <div id="message">I'm a status message!</div>
+        <p>Web components are great</p>
+        <footer class="important">That is all</footer>
+      </template>
+    </polymer-element>
+
+Scoped styling is one of the many features of Shadow DOM. Styles defined inside
+the shadow tree don't leak out and page styles don't bleed in.
+
+{{site.project_title}} creates Shadow DOM from the topmost `<template>`
+of your `<polymer-element>` definition, so styles defined internally to your element
+are scoped to your element. There's no need to worry about duplicating an id
+from the outside or using a styling rule that's too broad.
+
+**Note** For browsers that don't support Shadow DOM natively, the polyfill
+attempts to mimic scoped styling as much as possible. See the
+[polyfill details on scoped styling](#polyfilldetails).
+{: .alert .alert-info }
+
+If you need to style nodes distributed into your element from the user's Light DOM,
+see [styling distributed nodes](#style-distributed).
+
+## Defining style hooks {#style-hooks}
 
 **Heads up:** The `pseudo` attribute and `::x-*` custom pseudo elements are 
 getting replaced soon by by `part` and `::part()`, respectively. See the [spec bug](https://www.w3.org/Bugs/Public/show_bug.cgi?id=22461).
@@ -404,7 +444,7 @@ These are called [Custom pseudo elements](http://www.w3.org/TR/shadow-dom/#custo
 
 For more information on custom pseudo elements, see [Shadow DOM 201 - CSS and Styling](http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/#toc-custom-pseduo).
 
-## Styling distributed nodes
+## Styling distributed nodes {#style-distributed}
 
 **Heads up:** The `::distributed()` is being renamed soon to `::content()`.
 See the [spec bug](https://www.w3.org/Bugs/Public/show_bug.cgi?id=22460).
@@ -472,7 +512,7 @@ Under native Shadow DOM the above rule remains as written. Under the polyfill, i
 
 For more information on `::distributed()`, see [Shadow DOM 201 - CSS and Styling](http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/#toc-style-disbtributed-nodes).
 
-## Polyfill details
+## Polyfill details {#polyfilldetails}
 
 ### Handling scoped styles
 
