@@ -28,8 +28,8 @@ Many of the topics outlined in this article are closely related to how CSS and S
 ## Default styles
 
 Most elements in HTML have default styling applied by the browser. For example,
-`<head>` and `<title>` are `display:none`, `<div>` is `display:block`,
-`<body>` has `margin:8px`, and list items are `list-style-type:disc`.
+`<head>` and `<title>` are `display: none`, `<div>` is `display: block`,
+`<body>` has `margin: 8px`, and list items are `list-style-type: disc`.
 
 ### User-provided styles
 
@@ -42,7 +42,7 @@ As with any HTML element, users of your Custom Element can define styles on it:
       x-foo:hover {
         opacity: 0;
       }
-    <style>
+    </style>
     <x-foo></x-foo>
 
 However, it's common for a Custom Element to define its own look. 
@@ -54,7 +54,7 @@ However, it's common for a Custom Element to define its own look.
 
 Elements _you_ create will likely need some sort of styling.
 
-The [`@host` at-rule](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#host-at-rule) allows you to target + style an element internally, from within its definition:
+The [`@host` at-rule](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#host-at-rule) allows you to target and style an element internally, from within its definition:
 
     <polymer-element name="x-foo">
       <template>
@@ -365,7 +365,7 @@ and it doesn't match. The distributed `<div>Light DOM: green</div>` remains gree
 it's logically still in the parent page and therefore matching `x-foo > div`.
 It's simple being rendered elsewhere (over in Shadow DOM land).
 
-**Gotcha**: even with `.applyAuthorStyles` set, selectors don't cross Shadow DOM boundaries.
+**Gotcha**: Even with `.applyAuthorStyles` set, selectors don't cross Shadow DOM boundaries.
 Styles on the outside only apply when the selector in question matches entirely
 in or outside the shadowRoot. For example, `x-foo .red { color: red; }` does not
 match the inner `<div class="red">`.

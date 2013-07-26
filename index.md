@@ -9,10 +9,10 @@ layout: default
 and designed to leverage the evolving web platform on modern browsers.
 {: .lead }
 
-<div class="centered"><iframe id="video" src="http://www.youtube.com/embed/0g0oOOT86NY" frameborder="0" allowfullscreen></iframe>
-</div>
+<p class="download centered"><a href="https://github.com/{{site.project_title}}/polymer-all/releases/download/v{{site.latest_version}}/polymer-all-v{{site.latest_version}}.zip" class="btn btn-success btn-large" alt="Download the latest {{site.project_title}}" title="Download the lateset {{site.project_title}}"><i class="icon-white icon-download"></i> Download Polymer v{{site.latest_version}}</a></p>
 
-<p class="download centered"><a href="https://github.com/{{site.project_title}}/polymer-all/releases/download/v{{site.latest_version}}/polymer-all-v{{site.latest_version}}.zip" class="btn btn-success btn-large" alt="Download the latest {{site.project_title}}" title="Download the lateset {{site.project_title}}"><i class="icon-white icon-download"></i> Download v{{site.latest_version}}</a></p>
+<div class="centered"><iframe id="video" src="http://www.youtube.com/embed/videoseries?list=PLRAVCSU_HVYu-zlRaqArF8Ytwz1jlMOIM" frameborder="0" allowfullscreen></iframe>
+</div>
 
 ## Quick start
 
@@ -32,10 +32,10 @@ and designed to leverage the evolving web platform on modern browsers.
 
 {{site.project_title}} is comprised of two efforts:
 
-- A set of core platform features ([Shadow DOM](/platform/shadow-dom.html),
+- A set of polyfills for emerging web platform features ([Shadow DOM](/platform/shadow-dom.html),
 [Custom Elements](/platform/custom-elements.html), [MDV](/platform/mdv.html)).
-Initially, these core features will be enabled with a set of polyfills. As browsers
-begin to implement these new primitives, the polyfill platform layer becomes smaller and better over time.
+Initially, these core features are enabled as polyfills. As browsers
+implement these new primitives, the polyfill platform layer becomes smaller and better over time.
 - A next-generation web application framework built upon these core technologies called the **_{{site.project_title}}_**.
 
 The architectural stack looks like this:

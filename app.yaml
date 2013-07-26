@@ -1,5 +1,5 @@
 application: polymer-project
-version: 2013-07-11
+version: 2013-07-12
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -18,6 +18,11 @@ handlers:
   upload: js/polymer\.min\.js
 
 - url: /polymer.min.js
+  static_files: js/polymer.min.js
+  upload: js/polymer\.min\.js
+
+# Map unminified polymer in demos to minified version.
+- url: /polymer-all/polymer/polymer.js$
   static_files: js/polymer.min.js
   upload: js/polymer\.min\.js
 
@@ -42,4 +47,4 @@ skip_files:
 - ^(.*/)?.*/RCS/.*
 - ^(.*/)?\..*
 - ^(.*/)?.*\.bak$
-- ^node_modules/.*
+- ^(.*/)?node_modules
