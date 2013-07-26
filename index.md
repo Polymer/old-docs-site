@@ -30,7 +30,7 @@ and designed to leverage the evolving web platform on modern browsers.
 ## What is {{site.project_title}}?
 {: style="clear:both" }
 
-{{site.project_title}} is comprised of two efforts:
+{{site.project_title}} comprises two efforts:
 
 - A set of polyfills for emerging web platform features ([Shadow DOM](/platform/shadow-dom.html),
 [Custom Elements](/platform/custom-elements.html), [MDV](/platform/mdv.html)).
