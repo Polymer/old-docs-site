@@ -2,6 +2,7 @@
 <script {% if js.defer %}defer{% endif %} src="{{js.src}}"></script>
 {% endfor %}
 
+<script src="https://apis.google.com/js/plusone.js"></script>
 <script src="/js/prettify/prettify.js"></script>
 <script src="/js/jquery.min.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
@@ -10,6 +11,7 @@ var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-39334307-1']);
 _gaq.push(['_trackPageview']);
 
+// Analytics
 (function() {
   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
@@ -40,4 +42,14 @@ $(document).ready(function () {
   $('pre').addClass('prettyprint');
   window.prettyPrint && prettyPrint();
 });
+
+// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+// Plus one async.
+(function() {
+  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+  po.src = 'https://apis.google.com/js/plusone.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();
 </script>
