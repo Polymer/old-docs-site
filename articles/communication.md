@@ -1,12 +1,13 @@
 ---
 layout: default
-title: Techniques for Message Passing 
+title: "Techniques for Message Passing"
+subtitle: Custom Elements
 
 #load_polymer: true
 
 article:
   author: ebidel
-  published: 2013-07-25
+  published: 2013-07-29
   #updated: 2013-07-09
   polymer_version: 0.0.20130711
   description: Techniques for passing messages between elements.
