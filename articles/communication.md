@@ -41,7 +41,7 @@ control hooks that users tap in to.
 
 ## Methods
 
-### 1. MDV &amp; data binding to published properties {#mdv}
+### 1. MDV data binding {#mdv}
 
 <table class="table">
   <tr>
