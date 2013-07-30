@@ -38,11 +38,8 @@ We don't think so, but if you're the adventurous type you're welcome to give it 
 That's fine. We've designed {{site.project_title}}  to be cleanly layered so you can use just the parts you like. You can use our whole stack, a single polyfill, or anything in between. It's up to you.
 <!-- {: style="clear:both"} -->
 
-#### Do I have to use the Sandbox tool if I want to use {{site.project_title}}? {#sandbox}
-
-Nope, Sandbox is just a simple demo app that makes it easy to play around with
-components and get a feel for {{site.project_title}}. It's not intended to be
-any kind of production tool.
+#### What is Sandbox? Is this an IDE? {#sandbox}
+Sandbox is just an easy way to explore Polymer without having to check out code. It's not intended to be an IDE, and definitely not required to create applications. The tool is simply a convenience that helps write code faster. See for yourself by dragging an element onto the canvas, then flip over to the code view to understand the one-to-one correspondence between the UI and simplistic Polymer code.
 
 #### Which browsers does {{site.project_title}} support? {#browsersupport}
 

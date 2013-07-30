@@ -4,7 +4,7 @@ title: Web Animations
 subtitle: polyfill
 
 feature:
-  spec: https://dvcs.w3.org/hg/FXTF/raw-file/default/web-anim/index.html
+  spec: https://http://www.w3.org/TR/web-animations
   status: <span class="label label-success">functional</span>
   code: https://github.com/web-animations/web-animations-js
   summary: "Web Animations defines a APIs for synchronizing several of the web's animation models with complex, scriptable animations."
