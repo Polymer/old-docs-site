@@ -3,7 +3,7 @@ layout: default
 title: "Techniques for Message Passing"
 subtitle: Custom Elements
 
-#load_polymer: true
+load_polymer: true
 
 article:
   author: ebidel
@@ -57,6 +57,7 @@ control hooks that users tap in to.
     <td>
       <ol>
         <li>Only works inside a {{site.project_title}} element</li>
+        <li>Only works between {{site.project_title}} elements</li>
       </ol>
     </td>
   </tr>
@@ -64,7 +65,7 @@ control hooks that users tap in to.
 
 The first (and most {{site.project_title}}ic) way for elements to relay information
 to one another is to use [MDV](/platform/mdv.html). Binding to a common property
-is useful if you're working inside {{site.project_title}} element and want to
+is useful if you're working inside a {{site.project_title}} element and want to
 "link" elements together via their [published properties](/polymer.html#published-properties).
 
 Here's an example:
@@ -91,7 +92,7 @@ Here's an example:
 
 When a {{site.project_title}} element [publishes](/polymer.html#published-properties) one of its properties, you can bind to that property using an HTML attribute of the same name. In the example,
 I've bound a variable named "list" to `<td-model>`'s published property, "items".
-In doing so {{site.project_title}} makes "list" as a property of `<my-app>`:
+In doing so {{site.project_title}} makes "list" a property of `<my-app>`:
 
 {% raw %}
     <td-model items="{{list}}"></td-model> 
@@ -102,9 +103,10 @@ What's neat about this? Whenever `<td-model>` updates its `items` array internal
 elements that bind to `list` on the outside see the changes. In this
 example, `<polymer-localstorage>`. Essentially, you can think of "list" as a bus
 which is internal to `<my-app>`. Pop some data on it and any elements that care about
-`items` are magically **kept in sync by MDV**.
+`items` are magically **kept in sync by MDV**. This means there is one source
+of truth. Data changes are simultaneously reflected in all contexts. There is no no dirty check.
 
-**Remember:** Binded properties are two-way data bound. If `<polymer-localstorage>`
+**Remember:** Property bindings are two-way. If `<polymer-localstorage>`
 changes `list`, `<td-model>`'s items will also change.
 {: .alert .alert-info }
 
@@ -118,6 +120,7 @@ changes `list`, `<td-model>`'s items will also change.
     <td>
       <ol>
         <li>Useful for elements that haven't published a property for attribute binding.</li>
+        <li>Allows an element to observe its own data, regardless of how it's modified.</li>
       </ol>
     </td>
     <td>
@@ -154,14 +157,14 @@ which calls `save()` and ultimately persists our data to `localStorage`.
     </polymer-element>
 {% endraw %}
 
-**Tip:** I'm using a {{site.project_title}} feature called [automatic node finding](/polymer.html#automatic-node-finding) to reference `<polymer-localstorage>` by it's id (e.g. `this.$.storage === this.querySelector('#storage')`).
+**Tip:** I'm using a {{site.project_title}} feature called [automatic node finding](/polymer.html#automatic-node-finding) to reference `<polymer-localstorage>` by its `id` (e.g. `this.$.storage === this.querySelector('#storage')`).
 {: .alert .alert-success }
 
 When `list` changes, {{site.project_title}} calls the `listChanged` watcher.
 Inside that method, we simply set `.value`. Just by setting it, we're
 persisting data whenever `list` changes!
 
-### 3. Send custom events {#events}
+### 3. Custom events {#events}
 
 <table class="table">
   <tr>
@@ -286,7 +289,8 @@ Things become come very interesting when several elements need to respond to an 
       <script>
         (function() {
           function logger(prefix, detail, sender) {
-            console.log(prefix, 'Said hi to ' + detail.name +' from ' + sender.localName);
+            alert(prefix + ' Said hi to ' + detail.name +
+                  ' from ' + sender.localName);
           }
 
           Polymer('my-app', {
@@ -309,12 +313,63 @@ Things become come very interesting when several elements need to respond to an 
     <script>
       var myApp = document.querySelector('my-app');
       myApp.addEventListener('said-hello', function(e) {
-        console.log('outside:', 'Said hi to ' + e.detail.name + ' from ' + e.target.localName);
+        alert('outside: Said hi to ' + e.detail.name + ' from ' + e.target.localName);
       });
     </script>
 {% endraw %}
 
-Clicking `<say-hello>` produces the following output (remember it defined
+{% raw %}
+<polymer-element name="say-hello" attributes="name" on-click="sayHi">
+  <template>Hello {{name}}! (click me)</template>
+  <script>
+    Polymer('say-hello', {
+      sayHi: function() {
+        this.fire('said-hello', {name: this.name});
+      }
+    });
+  </script>
+</polymer-element>
+    
+<polymer-element name="my-app-demo" on-said-hello="third">
+  <template>
+    <style>
+      @host { :scope {
+        display: inline-block;
+        padding: 10px;
+        border: 1px dotted black;
+        border-radius: 3px;
+        cursor: pointer;
+      }}
+    </style>
+    <div on-said-hello="second">
+      <say-hello name="Eric" on-said-hello="first"></say-hello>
+    </div>
+  </template>
+  <script>
+    (function() {
+      function logger(prefix, detail, sender) {
+        alert(prefix + ' Said hi to ' + detail.name +' from ' + sender.localName);
+      }
+
+      Polymer('my-app-demo', {
+        first: function(e, detail, sender) {
+          logger('first():', detail, sender);
+        },
+        second: function(e, detail, sender) { 
+          logger('second():', detail, sender);
+        },
+        third: function(e, detail, sender) {
+          logger('third():', detail, sender);
+        }
+      });
+    })();
+  </script>
+</polymer-element>
+{% endraw %}
+
+**Try it:** <my-app-demo></my-app-demo>
+
+Clicking `<say-hello>` alerts the following (remember it defined
 a click handler on itself):
 
     first(): Said hi to Eric from say-hello
@@ -379,5 +434,11 @@ ways to send instructions/messages/data to other web components. Hopefully,
 you're seeing that nothing has changed in the world of custom elements. That's
 the point :) It's the same web we've always known...just more powerful! 
 
+<script>
+  var myApp = document.querySelector('my-app-demo');
+  myApp.addEventListener('said-hello', function(e) {
+    alert('outside: Said hi to ' + e.detail.name + ' from ' + e.target.localName);
+  });
+</script>
 
 {% include disqus.html %}
