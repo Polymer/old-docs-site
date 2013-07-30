@@ -4,6 +4,10 @@
 {% assign pubdate = article.published | date: "%Y-%m-%d" %}
 {% assign updated = article.updated | date: "%Y-%m-%d" %}
 
+{% if article.polymer_version %}
+<span class="forversion">Written for v{{article.polymer_version}}</span>
+{% endif %}
+
 {::options parse_block_html="true" /}
 <aside class="author">
 <a href="https://plus.google.com/{{author.gplus}}" target="blank_">![{{author.full_name}} profile pic](//www.google.com/s2/photos/profile/{{author.gplus}}?sz=40 "{{author.full_name}}")</a>

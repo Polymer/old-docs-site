@@ -186,6 +186,9 @@ a[disabled] {
   width: auto;
   margin: 0 2px;
 }
+.sharelinks li {
+  padding: 10px 10px 0 0;
+}
 
 /* Home */
 .download {
@@ -202,6 +205,12 @@ a[disabled] {
 }
 
 /* Articles */
+
+.forversion {
+  float: right;
+  color: #ccc;
+  font-style: italic;
+}
 /*.article .tags {
   color: #ccc;
   font-size: small;

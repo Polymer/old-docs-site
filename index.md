@@ -9,7 +9,7 @@ layout: default
 and designed to leverage the evolving web platform on modern browsers.
 {: .lead }
 
-<p class="download centered"><a href="https://github.com/{{site.project_title}}/polymer-all/releases/download/v{{site.latest_version}}/polymer-all-v{{site.latest_version}}.zip" class="btn btn-success btn-large" alt="Download the latest {{site.project_title}}" title="Download the lateset {{site.project_title}}"><i class="icon-white icon-download"></i> Download Polymer v{{site.latest_version}}</a></p>
+{% include downloadbutton.html %}
 
 <div class="centered"><iframe id="video" src="http://www.youtube.com/embed/videoseries?list=PLRAVCSU_HVYu-zlRaqArF8Ytwz1jlMOIM" frameborder="0" allowfullscreen></iframe>
 </div>
@@ -30,7 +30,7 @@ and designed to leverage the evolving web platform on modern browsers.
 ## What is {{site.project_title}}?
 {: style="clear:both" }
 
-{{site.project_title}} is comprised of two efforts:
+{{site.project_title}} comprises two efforts:
 
 - A set of polyfills for emerging web platform features ([Shadow DOM](/platform/shadow-dom.html),
 [Custom Elements](/platform/custom-elements.html), [MDV](/platform/mdv.html)).
