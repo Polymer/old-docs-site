@@ -8,10 +8,9 @@ subtitle: MDV
 {% include_external polymer-all/mdv/docs/template.md %}
 {% endcomment %}
 
-
 MDV extends the capabilities of the [HTML Template Element](http://www.w3.org/TR/html-templates/). It enables `<template>` to create, manage and remove instances of its content by being bound to JavaScript data.
 
-## Basic usage
+## Attributes
 
 #### bind
 
@@ -65,9 +64,9 @@ JavaScript:
     document.getElementById('myTemplate').model = jsData;
 
 
-### API
+### Examples
 
-Note yet written. Please refer to the [HowTo examples](https://github.com/Polymer/mdv/tree/master/examples/how_to).
+Please refer to the [HowTo examples](https://github.com/Polymer/mdv/tree/master/examples/how_to).
 
 ### Specification
 
