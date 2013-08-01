@@ -1,15 +1,15 @@
 ---
 layout: default
-title: "Techniques for Message Passing"
+title: "Element Communication"
 subtitle: Custom Elements
 
 load_polymer: true
 
 article:
   author: ebidel
-  published: 2013-07-29
+  published: 2013-08-01
   #updated: 2013-07-09
-  polymer_version: 0.0.20130711
+  polymer_version: 0.0.20130801
   description: Techniques for passing messages between elements.
 tags:
 - signaling
@@ -33,7 +33,7 @@ communication channel:
 - _Element A_ updates its UI based on a selection in _Element B_.
 - A third sibling, _Element C_, fires an event that _A_ and _B_ to react to.
 
-In this article, I outline several ways to send information to other elements.
+In this article, I outline several techniques for sending information to other elements.
 It's worth pointing out that **_most_ of these techniques are not specific to {{site.project_title}}**.
 They're standard ways to make DOM elements interact with each other. The only
 difference is that now we're in complete control of HTML! We implement the
@@ -82,7 +82,7 @@ Here's an example:
       </script>
     </polymer-element>
 
-    <polymer-element name="my-app" noscript>
+    <polymer-element name="my-app">
       <template>
         <td-model items="{{list}}"></td-model>
         <polymer-localstorage name="myapplist" value="{{list}}"></polymer-localstorage>
