@@ -6,6 +6,9 @@ add_permalinks: false
 ---
 
 {% for p in site.pages %}
+
+{% unless p.draft %}
+
 {% if p.article %}
 
 {% assign pubdate = p.article.published | date: "%Y-%m-%d" %}
@@ -28,6 +31,8 @@ add_permalinks: false
 
 </div>
 {% endif %}
+
+{% endunless %}
 
 {% endfor %}
 

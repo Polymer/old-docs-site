@@ -5,6 +5,8 @@ subtitle: Custom Elements
 
 load_polymer: true
 
+draft: true
+
 article:
   author: ebidel
   published: 2013-08-01
