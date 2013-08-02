@@ -17,7 +17,7 @@ Conditionally loads a debug version of `platform.js`.
 
 Or, equivalently:
 
-    http://localhost/polymer/toolkit-ui/getting_started/?debug
+    http://localhost/yourapp?debug
 
 By default a minified version of platform (`platform.min.js`) is loaded.
 Using `debug` loads `platform.debug.js`.
@@ -32,7 +32,7 @@ Controls console output.
 
 Or, equivalently:
 
-    http://localhost/polymer/toolkit-ui/getting_started/?log=bind,ready
+    http://localhost/yourapp?log=bind,ready
 
 Possible values:
 
@@ -68,7 +68,7 @@ for unsupported browsers.
 
 Or, equivalently:
 
-    http://localhost/polymer/toolkit-ui/getting_started/?debug&shadow=polyfill
+    http://localhost/yourapp?debug&shadow=polyfill
 
 
 Possible attribute values:
@@ -84,6 +84,19 @@ Possible attribute values:
     <td>polyfill</td><td>Forces the Shadow DOM polyfill to be loaded using <code>platform.poly.min.js</code>. Default for browsers that do not support Shadow DOM natively.</td>
   </tr>
 </table>
+
+### register
+
+Include `register` as a param or attribute opts-in to using the native
+Custom Elements implementation (e.g. `document.register()`) if it is available.
+
+**Example**
+
+    <script src="platform/platform.js" register></script>
+
+Or, equivalently:
+
+    http://localhost/yourapp?register
 
 <!--
 ### eval
