@@ -11,7 +11,7 @@ article:
   author: ebidel
   published: 2013-08-01
   #updated: 2013-07-09
-  polymer_version: 0.0.20130801
+  polymer_version: 0.0.20130802
   description: Techniques for passing messages between elements.
 tags:
 - signaling
@@ -89,6 +89,7 @@ Here's an example:
         <td-model items="{{list}}"></td-model>
         <polymer-localstorage name="myapplist" value="{{list}}"></polymer-localstorage>
       </template>
+      <script>Polymer('my-app');</script>
     </polymer-element>
 {% endraw %}
 

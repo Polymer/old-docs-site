@@ -6,6 +6,42 @@ title: Changelog
 This document lists the notable changes across the entirety of the project,
 including polyfill repos, tools, projects, and UI elements.
 
+{%comment%}
+## 2013-08-02 {#2013-08-02}
+
+See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20130802).
+
+### {{site.project_title}}
+
+#### General
+
+**Changes**
+
+**Features**
+
+#### Core
+
+### Platform
+
+#### Custom Elements
+
+#### HTML Imports
+
+#### MDV
+
+#### Pointer Events
+
+#### Shadow DOM
+
+### Elements & Projects
+
+#### polymer-elements
+
+#### polymer-ui-elements
+
+---
+{%endcomment%}
+
 ## 2013-07-11 {#2013-07-11}
 
 See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20130711).
