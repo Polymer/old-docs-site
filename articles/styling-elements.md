@@ -616,7 +616,7 @@ use it wherever you need it.
         <style>
           @host {
             :scope {
-              -webkit-animation: blink 1s cubic-bezier(1.0,0,0,1.0) inifnite 1s;
+              -webkit-animation: blink 1s cubic-bezier(1.0,0,0,1.0) infinite 1s;
             }
           }
         </style>
