@@ -19,6 +19,7 @@ To register and supercharge `<tag-name>` as a {{site.project_title}} element, us
       <template>
         <!-- shadow DOM here -->
       </template>
+      <script>Polymer('tag-name');</script>
     </polymer-element>
 
 If you need to set methods or properties on the element's `prototype`, use `{{site.project_title}}()`.

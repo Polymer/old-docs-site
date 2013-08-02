@@ -79,7 +79,7 @@ tag you'll instantiate in markup (e.g. `<tag-name>`). It must be a "-" separated
 You only need to include `polymer.js` when writing a {{site.project_title}} element.
     {: .alert }
 
-1. Declare your custom element using `<polymer-element>`.
+1. Declare your custom element using `<polymer-element>` and call the `Polymer()` constructor.
 
 In the following sample, we've converted our basic custom element into a {{site.project_title}} element named `tk-element`.
 
