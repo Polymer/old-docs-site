@@ -74,7 +74,7 @@ with the standard methods like anonymous self calling functions.
 
 #### Core
 
-- `.resetStyleInheirtance' can now be defined on the element's prototype ([commit](https://github.com/Polymer/polymer/commit/411d53c34c9121952f0be66f761a1a1a13f8c78e))
+- `.resetStyleInheirtance` can now be defined on the element's prototype ([commit](https://github.com/Polymer/polymer/commit/411d53c34c9121952f0be66f761a1a1a13f8c78e))
 - Shadow DOM shhim styling has been moved into platform as `ShadowCSS` ([commit](https://github.com/Polymer/polymer/commit/ae24b2a8e288747cfc178282de927d54050f9b5a))
 
 ### Platform
