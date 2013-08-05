@@ -8,31 +8,45 @@ threadsafe: yes
 
 handlers:
 
+# Top-level URLs ---------------------------------------------------------------
 - url: /$
   static_files: _site/index.html
   upload: _site/index\.html
-
-# Preserve old URL.
-- url: /polymer/polymer.min.js
-  static_files: js/polymer.min.js
-  upload: js/polymer\.min\.js
 
 - url: /polymer.min.js
   static_files: js/polymer.min.js
   upload: js/polymer\.min\.js
 
-# Map unminified polymer in demos to minified version.
-- url: /polymer-all/polymer/polymer.js$
+# Map minified polymer to minified version.
+# This also preservers old URL (/polymer/polymer.min.js)
+- url: /(polymer-all\/)?polymer/polymer(.min)?.js
   static_files: js/polymer.min.js
   upload: js/polymer\.min\.js
 
-- url: /polymer-all
-  static_dir: polymer-all
+# / Elements -------------------------------------------------------------------
+- url: /(polymer|polymer-ui|more)-elements/(.*)
+  static_files: _site/polymer-all/\1-elements/\2
+  upload: _site/polymer-all/(polymer|polymer-ui|more)-elements/(.*)
 
+- url: /(toolkit-ui|web-animations-js)/(.*)
+  static_files: _site/polymer-all/\1/\2
+  upload: _site/polymer-all/(toolkit-ui|web-animations-js)/(.*)
+
+# /tools -----------------------------------------------------------------------
+- url: /tools/sandbox/$
+  static_files: _site/polymer-all/projects/Sandbox/index.html
+  upload: _site/index\.html
+
+- url: /tools/sandbox/(.*)
+  static_files: _site/polymer-all/projects/Sandbox/\1
+  upload: _site/(.*)/index.html
+
+# Map raw paths with trailing "/" to an index.html file.
 - url: /(.*)/$
   static_files: _site/\1/index.html
   upload: _site/(.*)/index.html
 
+# All other URLs map directly to their path in _site/.
 - url: /
   static_dir: _site
 
