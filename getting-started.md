@@ -114,6 +114,10 @@ The following example demonstrates binding component properties to attributes of
 
 {% include samples/tk-binding-to-elements.html %}
 
+**Note:** Giving `age` an intial value `25` gives {{site.project_title}}
+a hint that this property is an integer.
+{: .alert alert-info}
+
 ## Adding a ready() lifecycle method
 
 When an element has been registered and finished initializing itself, it calls its
