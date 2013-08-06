@@ -51,7 +51,7 @@ handlers:
   upload: _site/(.*)/index.html
 
 - url: /polymer-all
-  static_dir: _site/polymer-all
+  static_dir: polymer-all
   http_headers:
     Access-Control-Allow-Origin: "*"
 
