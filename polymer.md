@@ -441,5 +441,5 @@ Example:
     </script>
 
 **Tip:** If your element is within another {{site.project_title}} element, you can
-use the special [`on-* handlers`](declarative-event-mapping) to deal with the event: `<ouch-button on-ouch="myMethod"></ouch-button>`
+use the special [`on-* handlers`](#declarative-event-mapping) to deal with the event: `<ouch-button on-ouch="myMethod"></ouch-button>`
 {: .alert .alert-success }
