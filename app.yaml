@@ -27,10 +27,14 @@ handlers:
 - url: /(polymer|polymer-ui|more)-elements/(.*)
   static_files: _site/polymer-all/\1-elements/\2
   upload: _site/polymer-all/(polymer|polymer-ui|more)-elements/(.*)
+  http_headers:
+    Access-Control-Allow-Origin: "*"
 
 - url: /(toolkit-ui|web-animations-js)/(.*)
   static_files: _site/polymer-all/\1/\2
   upload: _site/polymer-all/(toolkit-ui|web-animations-js)/(.*)
+  http_headers:
+    Access-Control-Allow-Origin: "*"
 
 # /tools -----------------------------------------------------------------------
 - url: /tools/sandbox/$
@@ -45,6 +49,11 @@ handlers:
 - url: /(.*)/$
   static_files: _site/\1/index.html
   upload: _site/(.*)/index.html
+
+- url: /polymer-all
+  static_dir: _site/polymer-all
+  http_headers:
+    Access-Control-Allow-Origin: "*"
 
 # All other URLs map directly to their path in _site/.
 - url: /
