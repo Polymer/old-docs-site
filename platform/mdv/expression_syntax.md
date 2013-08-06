@@ -9,7 +9,7 @@ subtitle: MDV
 {% endcomment %}
 
 {{site.project_title}} provides `ExpressionSyntax` ([source](https://github.com/Polymer/mdv/blob/stable/util/expression_syntax.js)) as an example implementation of
-creating a syntax with MDV's [Pluggable Syntax API](syntax_api.md). It allows you to use
+creating a syntax with MDV's [Pluggable Syntax API](syntax_api.html). It allows you to use
 named scopes, `bind`, `repeat`, and simple inline expressions within  `<template>` bindings.
 
 **Note:** {{site.project_title}} uses `ExpressionSyntax` under the hood. You do not
