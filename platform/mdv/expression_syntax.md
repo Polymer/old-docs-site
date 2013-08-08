@@ -12,9 +12,49 @@ subtitle: MDV
 creating a syntax with MDV's [Pluggable Syntax API](syntax_api.html). It allows you to use
 named scopes, `bind`, `repeat`, and simple inline expressions within  `<template>` bindings.
 
-**Note:** {{site.project_title}} uses `ExpressionSyntax` under the hood. You do not
-need to use it directly.  This document is provided as API reference.
-{: .alert .alert-info }
+## Using ExpressionSyntax
+
+{{site.project_title}} uses `ExpressionSyntax` under the hood for custom elements
+defined with `<polymer-element>`.
+
+To use ExpressionSyntax with templates that are outside of custom elements, you
+must configure the template to use ExpressionSyntax.
+
+    var template = document.getElementById('tmpl');
+    template.bindingDelegate = new ExpressionSyntax();
+
+Here is a full example:
+
+    <html>
+    <head>
+        <title>Use ExpressionSyntax</title>
+      <script src="polymer.min.js"></script>
+    </head>
+    <body>
+    
+    <template id="tmpl" bind>
+      <div>Name is {{name}}</div>
+      <ul>
+        <!-- The `color in colors` syntax is used with ExpressionSyntax. -->
+        <template repeat="{{color in colors}}">
+          <li>{{color}}</li>
+        </template>
+      </ul>
+    </template>
+    
+    <script>
+      var model = {
+        name: 'foo',
+        colors: ['red', 'yellow', 'blue']
+      };
+    
+      var template = document.getElementById('tmpl');
+      template.bindingDelegate = new ExpressionSyntax();
+      template.model = model;
+    </script>
+    
+    </body>
+    </html>
 
 ## Features
 
