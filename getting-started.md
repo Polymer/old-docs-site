@@ -57,6 +57,7 @@ natively in browsers.</p>
 
 ## Components
 
+{%comment%}
 ### Creating a basic custom element
 
 The platform polyfills provided by {{site.project_title}} let you load and display
@@ -68,6 +69,7 @@ new technologies.
 **Reminder:** The `name` attribute is required and specifies the name of the HTML
 tag you'll instantiate in markup (e.g. `<tag-name>`). It must be a "-" separated string.
 {: .alert }
+{%endcomment%}
 
 ### Creating a {{site.project_title}} element
 
