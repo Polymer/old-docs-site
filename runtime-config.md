@@ -87,8 +87,7 @@ Possible attribute values:
 
 ### register
 
-Include `register` as a param or attribute opts-in to using the native
-Custom Elements implementation (e.g. `document.register()`) if it is available.
+Including `register` as a param or attribute forces the Custom Elements polyfill.
 
 **Example**
 

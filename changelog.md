@@ -39,6 +39,9 @@ including polyfill repos, tools, projects, and UI elements.
 
 #### Shadow DOM
 
+---
+{% endcomment %}
+
 ## 2013-08-08 {#2013-08-08}
 
 <i class="icon-download icon-large"></i> [download this version](https://github.com/Polymer/polymer-all/releases/tag/v0.0.20130808) or see the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20130808).
@@ -47,35 +50,51 @@ including polyfill repos, tools, projects, and UI elements.
 
 #### General
 
-**Changes**
-
 **Features**
 
-- Native Custom Elements are on by default if they're feature detected. You can
-enable them in Chrome Canary's `about:flags`.
+- Native Custom Elements are on by default if they're feature detected. Enable
+them in Chrome Canary under `about:flags`.
+
+**Changes**
+
+- `?register` flag now forces Custom Elements polyfill. It used to turn the native API on ([commit](https://github.com/Polymer/CustomElements/commit/100e45f25a8a8a5b20fb964527009183f8e3ab38))
 
 #### Core
+
+- `polymer.min.js` builds now have a `@version` string in the file ([commit](https://github.com/Polymer/polymer/commit/b9429fd6820335f544c33c53214cd700738f513a))
+- Fixed [#230](https://github.com/Polymer/polymer/issues/230) - events on distributed nodes aren't bubbled to parent nodes under Shadow DOM polyfill.
+- Extended elements fully register before their extendees do ([commit](https://github.com/Polymer/polymer/commit/f9897444cda91a0dc8fe0548e277092412293fb7))
+- HTMLImports polyfill defers processing of `<polymer-element>`s until `HTMLImportsLoaded` is fired ([commit](https://github.com/Polymer/polymer/commit/db1ee09e4fcaf6cb526aa0828543d19de1abe9b8))
 
 ### Elements & Projects
 
 #### polymer-elements
 
+- `<polymer-grid>` supports external items ([commit](https://github.com/Polymer/polymer-elements/commit/52088953374af0220b0cdf7af742131465055798))
+- Re-factoring ([commit](https://github.com/Polymer/polymer-elements/commit/6aae5989c593a43d53128250d387a543e87074b2)) and fixes ([commit](https://github.com/Polymer/polymer-elements/commit/18ba97d8e8725c41de3dfe0e6abd13941ad7e0f4)) for using `<polymer-overlay>` under the polyfills.
+
 #### polymer-ui-elements
+
+- Added `<polymer-ui-arrow>` ([commit](https://github.com/Polymer/polymer-ui-elements/commit/41e7997c9943c5364fbac374664011087e9052b1))
+- Added `<polymer-ui-dialog>` demos that use native `<dialog>` ([commit](https://github.com/Polymer/polymer-ui-elements/commit/70ffcf8364543b31469a5210360034946ecc88cb))
+- `<polymer-ui-overlay>` got an optional backdrop ([commit](https://github.com/Polymer/polymer-ui-elements/commit/d25da9bba975468a4d36d61592f2ce4673811a81))
 
 ### Platform
 
-#### Custom Elements
-
-#### HTML Imports
-
 #### MDV
 
-#### Pointer Events
+- Added `Template.clear()` for unrolling bindings ([commit](https://github.com/Polymer/mdv/commit/60d98f19c4137c4d15821171171d67468398758d))
+- Path in `bind(name, model, path)` is now optional and defaults to empty string ([commit](https://github.com/Polymer/mdv/pull/135))
+- `createBinding()` has been removed ([commit](https://github.com/Polymer/mdv/commit/362246479a18214c01f4b89d3dc1516078fa3535))
+- Support empty `if` ([commit](https://github.com/Polymer/mdv/commit/f8f58e1031b204d0a213b63027095f67e78d23eb))
 
 #### Shadow DOM
 
+- Add support for `document.documentElement.appendChild` ([commit](https://github.com/Polymer/ShadowDOM/commit/5fc5ce350dd3a419d9fb6829be05c9e46be3989b))
+- Lifecycle callbacks, `document.register()`, Range, and the `.form` property have
+been wrapped and properly work under the polyfill now ([commit](https://github.com/Polymer/ShadowDOM/commit/78148a4bd3c1587eed74ff89bfe3811974b536c9), [commit](https://github.com/Polymer/ShadowDOM/commit/f62a9d43f9fc9ca7b1b1d338ae9fc9f4a19fff2a), [commit](https://github.com/Polymer/ShadowDOM/commit/a314260b7b35b9d570707cc8702ff05bd28e5c89), [commit](https://github.com/Polymer/ShadowDOM/commit/63da0ee1c8707e47394f460ffc5a3c6a97c961b9))
+
 ---
-{% endcomment %}
 
 ## 2013-08-02 {#2013-08-02}
 
