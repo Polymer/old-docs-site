@@ -24,7 +24,7 @@ add_permalinks: false
 </span> -->
 
 <div class="byline"><a href="https://plus.google.com/{{author.gplus}}" target="blank_">{{author.full_name}}</a>, <time pubdate datetime="{{pubdate}}">{{p.article.published | date: "%B %Y"}}</time>
-{% if p.article.updated %}(updated <time datetime="{{updated}}">{{p.article.updated | date: "%B %Y"}}</time>){% endif %}
+{% if p.article.updated %}(updated <time datetime="{{updated}}">{{updated}}</time>){% endif %}
 </div>
 
 <summary>{{p.article.description}}</summary>
