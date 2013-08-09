@@ -7,8 +7,8 @@ load_polymer: true
 article:
   author: ebidel
   published: 2013-07-11
-  updated: 2013-07-25
-  polymer_version: 0.0.20130711
+  updated: 2013-08-09
+  polymer_version: 0.0.20130808
   description: Learn all about how to style Polymer elements.
 tags:
 - CSS
@@ -74,6 +74,7 @@ The [`@host` at-rule](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/sha
           }
         </style>
       </template>
+      <script>Polymer('x-foo');</script>
     </polymer-element>
 
 The only selectors that work in `@host` are those targeting the host element itself,
@@ -99,6 +100,7 @@ An interesting application of `@host` is for reacting to different user-driven s
         </style>
         <button><content></content></button>
       </template>
+      <script>Polymer('x-button');</script>
     </polymer-element>
 
     <x-button>x-buttonz!</x-button>
@@ -123,6 +125,7 @@ An interesting application of `@host` is for reacting to different user-driven s
     </style>
     <button><content></content></button>
   </template>
+  <script>Polymer('x-button-example');</script>
 </polymer-element>
 
 When someone mouses over `<x-button>` they'll get a sexy fade-in!
@@ -396,6 +399,7 @@ inside the topmost `<template>`:
         <p>Web components are great</p>
         <footer class="important">That is all</footer>
       </template>
+      <script>Polymer('x-foo');</script>
     </polymer-element>
 
 Scoped styling is one of the many features of Shadow DOM. Styles defined inside
@@ -436,6 +440,7 @@ These are called [Custom pseudo elements](http://www.w3.org/TR/shadow-dom/#custo
       <template>
         <h1 pseudo="x-header">I'm an x-foo!</h1>
       </template>
+      <script>Polymer('x-foo');</script>
     </polymer-element>
 
     <x-foo></x-foo>
@@ -477,6 +482,7 @@ a CSS selector to match node(s) distributed at that insertion point.
         <content select="p"></content>
         <content></content>
       </template>
+      <script>Polymer('x-foo');</script>
     </polymer-element>
 
     <!-- Children of x-foo are the Light DOM -->
@@ -598,6 +604,7 @@ their definitions outside the element or make them global using the
         <link rel="stylesheet" href="fonts.css" polymer-scope="global">
         ...
       </template>
+      <script>Polymer('x-foo');</script>
     </polymer-element>
 
 A stylesheet or `<style>` that uses the `polymer-scope="global"` attribute
@@ -622,6 +629,7 @@ use it wherever you need it.
         </style>
         ...
       </template>
+      <script>Polymer('x-blink');</script>
     </polymer-element>
 
 **Note:** `polymer-scope="global"` should only be used for stylesheets or `<style>`
