@@ -6,10 +6,10 @@ title: Changelog
 This document lists the notable changes across the entirety of the project,
 including polyfill repos, tools, projects, and UI elements.
 
-{%comment%}
-## 2013-08-02 {#2013-08-02}
+{% comment %}
+## 2013-xx-xx {#2013-xx-xx}
 
-See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20130802).
+<i class="icon-download icon-large"></i> [download this version](https://github.com/Polymer/polymer-all/releases/tag/v0.0.2013xxxx) or see the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.2013xxxx).
 
 ### {{site.project_title}}
 
@@ -20,6 +20,12 @@ See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v
 **Features**
 
 #### Core
+
+### Elements & Projects
+
+#### polymer-elements
+
+#### polymer-ui-elements
 
 ### Platform
 
@@ -33,14 +39,114 @@ See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v
 
 #### Shadow DOM
 
+## 2013-08-08 {#2013-08-08}
+
+<i class="icon-download icon-large"></i> [download this version](https://github.com/Polymer/polymer-all/releases/tag/v0.0.20130808) or see the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20130808).
+
+### {{site.project_title}}
+
+#### General
+
+**Changes**
+
+**Features**
+
+- Native Custom Elements are on by default if they're feature detected. You can
+enable them in Chrome Canary's `about:flags`.
+
+#### Core
+
 ### Elements & Projects
 
 #### polymer-elements
 
 #### polymer-ui-elements
 
+### Platform
+
+#### Custom Elements
+
+#### HTML Imports
+
+#### MDV
+
+#### Pointer Events
+
+#### Shadow DOM
+
 ---
-{%endcomment%}
+{% endcomment %}
+
+## 2013-08-02 {#2013-08-02}
+
+<i class="icon-download icon-large"></i> [download this version](https://github.com/Polymer/polymer-all/releases/tag/v0.0.20130802) or see the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20130801).
+
+### {{site.project_title}}
+
+#### General
+
+**Changes**
+
+- [Auto-registrationn](#general-2013-07-11) of `<polymer-element>`s (e.g. not needing `<script>Polymer()</script>`) has been temporarily removed due to timing issue with the way native Custom Elements (will) work.
+
+**Features**
+
+- Changes to bound property values now reflected back out to the HTML attribute. Note, properties that are objects are not reflected back. Fixes [#188](https://github.com/Polymer/polymer/issues/188).
+- Experimental support for native Custom Elements using `document.register()`. Enable in
+`about:flags`) and use the [?register](/runtime-config.html#register) flag.
+- Custom element `entered/leftDocument()` callbacks are not supported. `inserted/removed` are
+still supoorted for backwards compatibility ([commit](https://github.com/Polymer/polymer/commit/62e0233e08f62b140eb050c841d8e5a0876f8af1))
+
+#### Core
+
+- Using `Polymer.register()` now throws a deprecation warning ([commit](https://github.com/Polymer/polymer/commit/448c4d7ba30fd1727cd10c8f1531c56bfc7ac495))
+- Improved IE10 compatibility ([commit](https://github.com/Polymer/polymer/commit/62eb34b53c9192b3378c4896cb353087cbecadd8), [commit](https://github.com/Polymer/polymer/commit/c1ac385cabe10d7e064f27c2c7f2407fe3fdbc45))
+
+### Elements & Projects
+
+#### polymer-elements
+
+- Added `<polymer-grid-layout>` ([commit](https://github.com/Polymer/polymer-elements/commit/3629cabbd89c43700003fd1820131cfa319eb6cf))
+- Added `<polymer-shared-lib>`, element for loading libraries ([commit](https://github.com/Polymer/polymer-elements/commit/3629cabbd89c43700003fd1820131cfa319eb6cf))
+- Added `<polymer-flex-panel>`, a flexbox container ([commit](https://github.com/Polymer/polymer-elements/commit/e554b4d4c616a23a91e89cc593084542af844b04))
+- Added overlay animations to `<polymer-overlay>` ([commit](https://github.com/Polymer/polymer-
+elements/commit/c88b9b3edc4cfda068ebd9387ad50bc000915dbc))
+- Begins of `<polymer-list>` ([commit](https://github.com/Polymer/polymer-elements/commit/49318f91c0ef57e62da410e320966057cc405fee))
+- Better multi-selection support in `<polymer-selector>` ([commit](https://github.com/Polymer/polymer-elements/commit/ab736e7613288988764677da14d13f8cfd3ed59a))
+- `<polymer-meta>` now allows for different types of data ([commit](https://github.com/Polymer/polymer-elements/commit/76af4de181d9d9410cefd0c44dce5d548db01ab1))
+
+#### polymer-ui-elements
+
+- Added `<polymer-ui-menu-button>`, a button which can have menu-items inside it
+that appears in an overlay menu when the button is selected ([commit](https://github.com/Polymer/polymer-ui-elements/commit/0f1e4243520168fae0ddc26b7d4c780490f74d44))
+- Added `<polymer-ui-overlay>` ([commit](https://github.com/Polymer/polymer-ui-elements/commit/da919ffae4c372eafafc28a67875dcfc93e72d21))
+- Added another version of `<polymer-ui-overlay>` that uses `<dialog>` polyfill ([commit](https://github.com/Polymer/polymer-ui-elements/commit/6c53637c1e5ff34024c8764d2812953008475e86))
+- Renamed `<polymer-ui-list-item>` to `<polymer-ui-field>` ([commit](https://github.com/Polymer/polymer-ui-elements/commit/8cf1699b2d783cac177af4262c0455cb319e56fa))
+
+#### more-elements
+
+- Added `<google-map>` ([commit](https://github.com/Polymer/more-elements/commit/8410423231e19c6a083decc814308242d3e8a85c))
+
+### Platform
+
+- Ensure ShadowRoots have `.host` and `.olderShadowRoot` properties ([commit](https://github.com/Polymer/platform/commit/160cf93ccdbc0f7b3f0e2c7cbf50bf06c43fb388))
+- The polling handler {{site.project_title}} uses in MDV (when `Object.observe()` is not available) has been exposed ([commit](https://github.com/Polymer/platform/commit/91faf992ccb4adbc0afe1b9cfbd42eb7bf8449a6))
+
+#### Custom Elements
+
+- Native Custom Elements are opt-in via `?register` flag.
+- Custom Elements observation now handles `.olderShadowRoot`s ([commit](https://github.com/Polymer/CustomElements/commit/948b53ca2aea338f108559406dfa921077ae0153))
+
+#### Pointer Gestures
+
+- Add `.detail` to tap gesture. Gives click count. ([commit](https://github.com/Polymer/PointerGestures/commit/6f21e2825e1ee2e1af680e3834bbf31983b702fd))
+
+#### Shadow DOM
+
+- Move `.olderShadowRoot` to ShadowRoot ([commit](https://github.com/Polymer/ShadowDOM/commit/8790a01a055811bce619046bc4873d477196c08b))
+- Fixed issue with `.previousElementSibling` ([commit](https://github.com/Polymer/ShadowDOM/commit/6d7666ce8888be6d698dd0b2b18c6d9fdb57b9c6))
+
+---
 
 ## 2013-07-11 {#2013-07-11}
 
@@ -48,7 +154,7 @@ See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v
 
 ### {{site.project_title}}
 
-#### General
+#### General {#general-2013-07-11}
 
 All hail `<polymer-element>`!
 
