@@ -48,8 +48,8 @@ All of the lifecycle callbacks are optional:
 
     {{site.project_title}}('tag-name', {
       ready: function() { ... },
-      inserted: function () { ... },
-      removed: function() { ... },
+      enteredDocument: function () { ... },
+      leftDocument: function() { ... },
       attributeChanged: function(attrName, oldVal, newVal) {
         //var newVal = this.getAttribute(attrName);
         console.log(attrName, 'old: ' + oldVal, 'new:', newVal);
@@ -61,9 +61,9 @@ Below is a table of the lifecycle methods according to the Custom Elements
 
 Spec | {{site.project_title}} | Called when
 |-
-readyCallback | ready | an instance of the element is created
-insertedCallback | inserted | an instance was inserted into the document
-removedCallback | removed | an instance was removed from the document
+createdCallback | ready | an instance of the element is created
+enteredDocumentCallback | enteredDocument | an instance was inserted into the document
+leftDocumentCallback | leftDocument | an instance was removed from the document
 attributeChangedCallback | attributeChanged | an attribute was added, removed, or updated
 {: .table }
 
