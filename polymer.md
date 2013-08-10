@@ -13,17 +13,39 @@ its opinion and provides the extra sugaring that all {{site.project_title}} elem
 
 At the heart of {{site.project_title}} are Custom Elements. Thus, it should be no surprise that defining a {{site.project_title}} element is similar to the way you define a standard Custom Element. The major difference is that {{site.project_title}} elements are created using `<polymer-element>`, not `<element>`.
 
-To register and supercharge `<tag-name>` as a {{site.project_title}} element, use `<polymer-element>` to create its definition:
-
-    <polymer-element name="tag-name">
+    <polymer-element name="tag-name" constructor="TagName">
       <template>
         <!-- shadow DOM here -->
       </template>
       <script>Polymer('tag-name');</script>
     </polymer-element>
 
-If you need to set methods or properties on the element's `prototype`, use `{{site.project_title}}()`.
-Its first argument is the name of the element you're creating. The second argument (optional) is an object that defines your element's `prototype`. In the following example the registration call defines a property `message` and the `ready` callback: 
+{{site.project_title}} creates [Shadow DOM](/platform/shadow-dom.html) from the first
+`<template>` it finds in the element definition.
+
+### Alternate ways to register an element
+
+For convenient decoupling of script and markup, you don't have to inline the JS.
+{{site.project_title}} elements can be created by referencing an external script
+which calls `Polymer('tag-name')`:
+
+    <!-- 2. Script refereced inside the element definition. -->
+    <polymer-element name="tag-name">
+      <template>...</template>
+      <script src="path/to/tagname.js"></script>
+    </polymer-element>
+
+    <!-- 3. Script comes before the element definition. -->
+    <script src="path/to/tagname.js"></script>
+    <polymer-element name="tag-name">
+      <template>...</template>
+    </polymer-element>
+
+### Adding properties and methods {#propertiesmethods}
+
+If you wish to define methods/properties on your element (optional), pass an object
+as the second argument to `{{site.project_title}}()`. This object is used to define
+the element's `prototype`. In the following example the registration call defines a property `message` and the `ready` callback: 
 
     <polymer-element name="tag-name">
       <template>
