@@ -139,7 +139,7 @@ Feature detection, or an agreed upon common location for a 'jquery.html' file in
 #### How do I package a bunch of custom elements together? {#packaging}
 
 Use a custom build step that flattens/concatenates everything into a single file,
-then use [HTML Imports](/platform/html-imports.html) (`<link ref="import">`) to 
+then use [HTML Imports](/platform/html-imports.html) (`<link rel="import">`) to 
 bring that file into your app. 
 
 Similarly, you could write a build step that inlines any custom element definition
