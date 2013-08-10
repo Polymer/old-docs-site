@@ -64,7 +64,7 @@ The following example defines a property `message` and a method `foo`:
 
 ### Adding private or static variables {#static}
 
-If you need private state within an element, use wrap your script using standard
+If you need private state within an element, wrap your script using standard
 techniques like anonymous self-calling functions:
 
     <polymer-element name="tag-name">
