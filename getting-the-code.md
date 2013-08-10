@@ -1,6 +1,8 @@
 ---
 layout: default
 title: Getting the Code
+
+load_polymer: true
 ---
 
 ## Bring on the code!
@@ -9,13 +11,16 @@ You can grab {{site.project_title}} a few different ways:
 
 ### Option 1. download the code {#download}
 
-The latest version of {{site.project_title}} can be downloaded from the link below.
-The .zip contains everything you need, including the repositories, demos, and samples described
-in this document.
-
 {% include downloadbutton.html %}
 
-This bundle as contains the built files for `polymer.min.js` and `platform.min.js`.
+The latest version of {{site.project_title}} can be downloaded as .zip bundle
+or intalled via [Bower](http://bower.io/).
+
+The .zip contains everything you need, including the repositories, demos, and
+samples described in this document. It contains the built files for `polymer.min.js`
+and `platform.min.js`.
+
+The Bower component just includes the build files.
 
 ### Option 2. checkout instructions {#git}
 

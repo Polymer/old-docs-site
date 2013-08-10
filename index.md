@@ -1,6 +1,8 @@
 ---
 layout: default
 #title: Welcome
+
+load_polymer: true
 ---
 
 {% include alpha.html %}

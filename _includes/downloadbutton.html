@@ -1,1 +1,34 @@
-<p class="download centered"><a href="https://github.com/{{site.project_title}}/polymer-all/releases/download/v{{site.latest_version}}/polymer-all-v{{site.latest_version}}.zip" class="btn btn-success btn-large" alt="Download the latest {{site.project_title}}" title="Download the lateset {{site.project_title}}"><i class="icon-white icon-download"></i> Download Polymer v{{site.latest_version}}</a></p>
+
+<link rel="import" href="/polymer-all/polymer-ui-elements/polymer-ui-overlay/polymer-ui-overlay.html">
+
+<p class="download centered"><a href="javascript:" class="btn btn-success btn-large" alt="Download the latest {{site.project_title}}" title="Download the latest {{site.project_title}}"><i class="icon-white icon-download"></i> Download Polymer</a></p>
+
+<!-- <a href="https://github.com/{{site.project_title}}/polymer-all/releases/download/v{{site.latest_version}}/polymer-all-v{{site.latest_version}}.zip" class="btn btn-success btn-large" alt="Download the latest {{site.project_title}}" title="Download the lateset {{site.project_title}}" onclick="showDownloadPanel()"> -->
+
+<polymer-ui-overlay id="dialog" backdrop>
+  <div class="dialog">
+    <button class="btn close" overlay-toggle>x</button>
+    <header>
+      <h3 class="no-permalink">Get {{site.project_title}}</h3>
+      <span class="right">Latest version: {{site.latest_version}}</span>
+    </header>
+    <div>
+      <label class="no-permalink"><i class="icon-white icon-download icon-2x" style="vertical-align: middle;"></i> download the .zip:</label>
+      <span><a href="https://github.com/{{site.project_title}}/polymer-all/releases/download/v{{site.latest_version}}/polymer-all-v{{site.latest_version}}.zip" class="btn btn-success">polymer-all-v{{site.latest_version}}.zip</a></span>
+    </div>
+    <div>
+      <label class="no-permalink"><img src="http://bower.io/img/bower-logo.png" height="27" width="27"> install via <a href="http://bower.io/">Bower</a>:</label>
+      <span><pre>bower install polymer</pre></span>
+    </div>
+    <footer>
+      <a href="https://github.com/Polymer/polymer-all/releases">Previous releases</a>
+    </footer>
+  </div>
+</polymer-ui-overlay>
+
+<script>
+document.querySelector('.download a.btn').addEventListener('tap', function(e) {
+  document.querySelector('#dialog').toggle();
+  return false;
+});
+</script>
