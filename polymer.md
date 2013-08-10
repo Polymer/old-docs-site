@@ -20,8 +20,9 @@ At the heart of {{site.project_title}} are Custom Elements. Thus, it should be n
       <script>Polymer('tag-name');</script>
     </polymer-element>
 
-{{site.project_title}} creates [Shadow DOM](/platform/shadow-dom.html) from the first
-`<template>` it finds in the element definition.
+**Note**: {{site.project_title}} creates [Shadow DOM](/platform/shadow-dom.html) from the first
+`<template>` in the element definition.
+{: .alert .alert-info}
 
 ### Alternate ways to register an element
 
@@ -41,30 +42,52 @@ which calls `Polymer('tag-name')`:
       <template>...</template>
     </polymer-element>
 
-### Adding properties and methods {#propertiesmethods}
+### Adding public properties and methods {#propertiesmethods}
 
 If you wish to define methods/properties on your element (optional), pass an object
 as the second argument to `{{site.project_title}}()`. This object is used to define
-the element's `prototype`. In the following example the registration call defines a property `message` and the `ready` callback: 
+the element's `prototype`.
+
+The following example defines a property `message` and a method `foo`: 
 
     <polymer-element name="tag-name">
-      <template>
-        <!-- shadow DOM here -->
-      </template>
+      <template>...</template>
       <script>
         {{site.project_title}}('tag-name', {
           message: "Hello!",
-          ready: function() {
-            // Component is ready. Use it.
+          foo: function() {
+
           }
         });
+      </script>
+    </polymer-element>
+
+### Adding private or static variables {#static}
+
+If you need private state within an element, use wrap your script using standard
+techniques like anonymous self-calling functions:
+
+    <polymer-element name="tag-name">
+      <template>...</template>
+      <script>
+        (function() {
+          // Ran once. Private and static to the element.
+          var foo_ = new Foo();
+
+          // Ran for every instance of the element that's created.
+          {{site.project_title}}('tag-name', {
+            get foo() {
+              return foo_;
+            }
+          });
+        })();
       </script>
     </polymer-element>
 
 ### Element lifecycle methods {#lifecyclemethods}
 
 {{site.project_title}} has first class support for the Custom Element lifecycle
-callbacks, though implements them with shorter names for convenience.
+callbacks, though for convenience, implements them with shorter names.
 
 All of the lifecycle callbacks are optional: 
 
