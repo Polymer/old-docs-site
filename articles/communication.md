@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Element Communication"
-subtitle: Custom Elements
+title: "Custom Element Communication"
+#subtitle: Custom Elements
 
 load_polymer: true
 
@@ -9,9 +9,9 @@ draft: true
 
 article:
   author: ebidel
-  published: 2013-08-01
+  published: 2013-08-12
   #updated: 2013-07-09
-  polymer_version: 0.0.20130802
+  polymer_version: 0.0.20130808
   description: Techniques for passing messages between elements.
 tags:
 - signaling
@@ -36,14 +36,20 @@ communication channel:
 - A third sibling, _Element C_, fires an event that _A_ and _B_ to react to.
 
 In this article, I outline several techniques for sending information to other elements.
-It's worth pointing out that **_most_ of these techniques are not specific to {{site.project_title}}**.
-They're standard ways to make DOM elements interact with each other. The only
+It's worth pointing out that **_most_ of these techniques are not specific to {{site.project_title}}**. They're standard ways to make DOM elements interact with each other. The only
 difference is that now we're in complete control of HTML! We implement the
 control hooks that users tap in to.
 
 ## Methods
 
-### 1. MDV data binding {#mdv}
+We'll cover the following techniques:
+
+1. [Data binding with MDV](#mdv)
+1. [Changed watchers](#changedwatchers)
+1. [Custom events](#events)
+1. [Using an element's API](#api) 
+
+### 1. Data binding using MDV {#mdv}
 
 <table class="table">
   <tr>
@@ -66,14 +72,15 @@ control hooks that users tap in to.
 </table>
 
 The first (and most {{site.project_title}}ic) way for elements to relay information
-to one another is to use [MDV](/platform/mdv.html). Binding to a common property
+to one another is to use data binding. {{site.project_title}} implements
+two-way data binding using [MDV](/platform/mdv.html). Binding to a common property
 is useful if you're working inside a {{site.project_title}} element and want to
 "link" elements together via their [published properties](/polymer.html#published-properties).
 
 Here's an example:
 
 {% raw %}
-    <!-- Publish .items so we can use for attribute binding. -->
+    <!-- Publish .items so others can use it for attribute binding. -->
     <polymer-element name="td-model" attributes="items">
       <script>
         Polymer('td-model', {
@@ -89,13 +96,19 @@ Here's an example:
         <td-model items="{{list}}"></td-model>
         <polymer-localstorage name="myapplist" value="{{list}}"></polymer-localstorage>
       </template>
-      <script>Polymer('my-app');</script>
+      <script>
+        Polymer('my-app', {
+          ready: function() {
+            // Initialize the instance's "list" property to empty array.
+            this.list = this.list || [];
+          }
+        });
+      </script>
     </polymer-element>
 {% endraw %}
 
 When a {{site.project_title}} element [publishes](/polymer.html#published-properties) one of its properties, you can bind to that property using an HTML attribute of the same name. In the example,
-I've bound a variable named "list" to `<td-model>`'s published property, "items".
-In doing so {{site.project_title}} makes "list" a property of `<my-app>`:
+`<td-model>.items` and `<polymer-localstorage>.value` are bound together with "list":
 
 {% raw %}
     <td-model items="{{list}}"></td-model> 
@@ -104,14 +117,21 @@ In doing so {{site.project_title}} makes "list" a property of `<my-app>`:
 
 What's neat about this? Whenever `<td-model>` updates its `items` array internally,
 elements that bind to `list` on the outside see the changes. In this
-example, `<polymer-localstorage>`. Essentially, you can think of "list" as a bus
-which is internal to `<my-app>`. Pop some data on it and any elements that care about
+example, `<polymer-localstorage>`. You can think of "list" as an
+internal bus within `<my-app>`. Pop some data on it; any elements that care about
 `items` are magically **kept in sync by MDV**. This means there is one source
 of truth. Data changes are simultaneously reflected in all contexts. There is no no dirty check.
 
 **Remember:** Property bindings are two-way. If `<polymer-localstorage>`
 changes `list`, `<td-model>`'s items will also change.
 {: .alert .alert-info }
+
+#### Property serialization
+
+Wait a sec..."list" is an array. How can it be property bound as an HTML string attribute?
+
+{{site.project_title}} is smart enough to serialize primitive types (numbers, booleans, arrays, objects) when they're used in attribute bindings. As seen in the `ready()` callback
+of `<my-app>`, be sure to initialize and/or [hint the type](/polymer.html#hinting-an-attributes-type) of your properties.
 
 ### 2. Changed watchers {#changedwatchers}
 
@@ -136,22 +156,44 @@ changes `list`, `<td-model>`'s items will also change.
   </tr>
 </table>
 
-Let's say [`<polymer-localstorage>`](https://github.com/Polymer/polymer-elements/blob/stable/polymer-localstorage/polymer-localstorage.html) hasn't published a "value" property. This leaves
-us without a `value` attribute to bind to. A desperate time like this calls for
-a [changed watcher](/polymer.html#change-watchers) and a sprinkle of MDV.
+Let's say someone creates `<polymer-localstorage2>` and you want to use its new
+hotness. The element still defines a `.value` property but it doesn't publish the
+property in `attributes=""`. Something like:
 
-By reading the [reference docs](https://github.com/Polymer/polymer-elements/blob/stable/polymer-localstorage/polymer-localstorage.html) for `<polymer-localstorage>`, we discover it's
- `value` property is how we set data. The element also defines its own changed watcher (`valueChanged`)
-which calls `save()` and ultimately persists our data to `localStorage`.
+    <polymer-element name="polymer-localstorage2" attributes="name useRaw">
+    <template>...</template>
+    <script>
+      Polymer('polymer-localstorage2', {
+        value: null,
+        valueChanged: function() {
+          this.save();
+        },
+        ...
+      });
+    </script>
+    </polymer-element>
+
+When it comes time to use this element, we're left without a (`value`) HTML attribute
+to bind to:
+
+    <polymer-localstorage2 name="myapplist" id="storage"></polymer-localstorage2>
+
+A desperate time like this calls for a [changed watcher](/polymer.html#change-watchers) and
+a sprinkle of MDV. We can exploit the fact that `<polymer-localstorage2>` defines
+a `valueChanged()` watcher. By setting up our own watcher for `list`, we can
+automatically persist data to `localStorage` whenever `list` changes!
 
 {% raw %}
     <polymer-element name="my-app">
     <template>
       <td-model items="{{list}}"></td-model>
-      <polymer-localstorage name="myapplist" id="storage"></polymer-localstorage>
+      <polymer-localstorage2 name="myapplist" id="storage"></polymer-localstorage2>
     </template>
     <script>
       Polymer('my-app', {
+        ready: function() {
+          this.list = this.list || [];
+        },
         listChanged: function() {
           this.$.storage.value = this.list;
         }
@@ -160,12 +202,15 @@ which calls `save()` and ultimately persists our data to `localStorage`.
     </polymer-element>
 {% endraw %}
 
+When `list` changes, the chain reaction is set in motion:
+
+1. {{site.project_title}} calls `<my-app>.listChanged()`
+2. Inside `listChanged()`, `<polymer-localstorage2>.value` is set
+3. This calls `<polymer-localstorage2>.valueChanged()`
+4. `valueChanged()` calls `save()` which persists data to `localStorage`
+
 **Tip:** I'm using a {{site.project_title}} feature called [automatic node finding](/polymer.html#automatic-node-finding) to reference `<polymer-localstorage>` by its `id` (e.g. `this.$.storage === this.querySelector('#storage')`).
 {: .alert .alert-success }
-
-When `list` changes, {{site.project_title}} calls the `listChanged` watcher.
-Inside that method, we simply set `.value`. Just by setting it, we're
-persisting data whenever `list` changes!
 
 ### 3. Custom events {#events}
 

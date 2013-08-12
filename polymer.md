@@ -55,9 +55,7 @@ The following example defines a property `message` and a method `foo`:
       <script>
         {{site.project_title}}('tag-name', {
           message: "Hello!",
-          foo: function() {
-
-          }
+          foo: function() {...}
         });
       </script>
     </polymer-element>
