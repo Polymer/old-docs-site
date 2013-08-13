@@ -1,18 +1,18 @@
 ---
 layout: default
-title: "Custom Element Communication"
+title: "Communicating with Custom Elements"
 #subtitle: Custom Elements
 
 load_polymer: true
 
-draft: true
+#draft: true
 
 article:
   author: ebidel
   published: 2013-08-12
   #updated: 2013-07-09
   polymer_version: 0.0.20130808
-  description: Techniques for passing messages between elements.
+  description: Techniques for passing messages to/from and inbetween elements.
 tags:
 - signaling
 - messaging
@@ -237,7 +237,7 @@ When `list` changes, the chain reaction is set in motion:
 </table>
 
 A third technique is to **emit custom events from within your element**. Other elements
-can listen for said events and respond accordingly. {{site.project_title}} has two nice helpers for sending events, [fire() and asyncFire()](/polymer.html#fire). They're essentially wrappers around `node.dispatchEvent(new CustomEvent(...))`. Use the asynchronous version for when you need to fire an event after microtasks have completed.
+can listen for said events and respond accordingly. {{site.project_title}} has two nice helpers for sending events, [fire() and asyncFire()](/polymer.html#fire). They're essentially wrappers around `node.dispatchEvent(new CustomEvent(...))`. Use the asynchronous version for when you need to fire an event after [microtasks](http://www.whatwg.org/specs/web-apps/current-work/#perform-a-microtask-checkpoint) have completed.
 
 Let's walk through an example:
 
@@ -454,6 +454,90 @@ on `<say-bye>`.
       }
     });
 
+#### Using &lt;polymer-signals&gt;
+
+`<polymer-signals>`is a [utility element](/docs/elements/#polymer-signals) that
+makes the pubsub pattern a bit easier, It also **works outside of {{site.projed}}
+elements**.
+
+Your element fires `polymer-signal` and names the signal in its payload:
+
+    this.fire('polymer-signal', {name: "foo", data: "Foo!"});
+
+This event bubbles up to `document` where a handler constructs and dispatches
+a new event, <code>polymer-signal<b>-foo</b></code>, to *all instances* of `<polymer-signals>`.
+Parts of your app or other {{site.project_title}} elements can declare a `<polymer-signals>`
+element to catch the named signal:
+
+    <polymer-signals on-polymer-signal-foo="fooSignal"></polymer-signals>
+
+Here's a full example:
+
+    <polymer-element name="sender-element">
+      <template>Hello</template>
+      <script>
+        Polymer('sender-element', {
+          ready: function() {
+            this.asyncFire('polymer-signal', {name: "foo", data: "Foo!"});
+          }
+        });
+      </script>
+    </polymer-element>
+
+    <link rel="import" href="polymer-signals.html">
+
+    <polymer-element name="my-app">
+      <template>
+        <polymer-signals on-polymer-signal-foo="fooSignal"></polymer-signals>
+        <content></content>
+      </template>
+      <script>
+        Polymer('my-app', {
+          fooSignal: function(e, detail, sender) {
+            this.innerHTML += '<br>[my-app] got a [' + detail + '] signal<br>';
+          }
+        });
+      </script>
+    </polymer-element>
+
+    <!-- Note: polymer-signals works outside of {{site.project_title}}.
+         Here, sender-element is outside of a {{site.project_title}} element. -->
+    <sender-element></sender-element>
+    <my-app></my-app>
+
+<!-- {% raw %}
+<polymer-element name="signal-sender-element">
+  <template>Hello</template>
+  <script>
+    Polymer('signal-sender-element', {
+      ready: function() {
+        this.fire('polymer-signal', {name: "foo", data: "Foo!"});
+      }
+    });
+  </script>
+</polymer-element>
+
+<link rel="import" href="/polymer-all/polymer-elements/polymer-signals/polymer-signals.html">
+
+<polymer-element name="my-app-signals">
+  <template>
+    <polymer-signals on-polymer-signal-foo="fooSignal" on-polymer-signal-bar="barSignal"></polymer-signals>
+    <content></content>
+  </template>
+  <script>
+    Polymer('my-app-signals', {
+      fooSignal: function(e, detail, sender) {
+        this.innerHTML += '[my-app] got a [' + detail + '] signal<br>';
+      }
+    });
+  </script>
+</polymer-element>
+{% endraw %}
+
+<signal-sender-element></signal-sender-element>
+**Demo**: <my-app-signals></my-app-signals>
+ -->
+
 ### 4. Use an element's API {#api}
 
 Lastly, don't forget you can always **orchestrate elements by using their public
@@ -473,9 +557,9 @@ it's `save()` method (code outside a {{site.project_title}} element):
 
 ## Conclusion
 
-The unique "messaging" feature that {{site.project_title}} brings to the table is MDV
-and changed watchers. However, data binding has been a part of other frameworks for a long time.
-So technically MDV isn't a new concept.
+The unique "messaging" feature that {{site.project_title}} brings to the table two-way
+data-binding (MDV) and changed watchers. However, data binding has been a part of
+other frameworks for a long time, so technically it's not a new concept.
 
 Whether you're inside or outside a `<polymer-element>`, there are plenty of
 ways to send instructions/messages/data to other web components. Hopefully,
