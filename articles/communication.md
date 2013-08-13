@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Communicating with Custom Elements"
-#subtitle: Custom Elements
+title: "Communication & Message Passing"
+subtitle: Custom Elements
 
 load_polymer: true
 
@@ -12,7 +12,7 @@ article:
   published: 2013-08-12
   #updated: 2013-07-09
   polymer_version: 0.0.20130808
-  description: Techniques for passing messages to/from and inbetween elements.
+  description: Techniques for passing messages to, from, and inbetween custom elements.
 tags:
 - signaling
 - messaging
