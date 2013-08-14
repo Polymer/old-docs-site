@@ -91,6 +91,15 @@ footer div:first-of-type {
 .nav-header a {
   color: #999;
 }
+.page-header a {
+  color: inherit;
+}
+.sidebar-nav .sidebyside span {
+  margin: 0 5px;
+}
+.sidebar-nav .sidebyside a {
+  display: inline-block !important;
+}
 /* -------------------------------------------------------------------------- */
 
 .centered {
@@ -247,7 +256,7 @@ a[disabled] {
 }
 
 .download {
-  margin-bottom: 10px;
+  margin: 30px 0;
 }
 #video {
   width: 560px;

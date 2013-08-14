@@ -1,17 +1,28 @@
 ---
 layout: default
 title: Node.bind()
-subtitle: MDV
+subtitle: <a href="http://prollyfill.org/">prollyfill</a>
+
+feature:
+  spec: None
+  status: <span class="label label-success">functional</span>
+  code: https://github.com/polymer/NodeBind
+  summary: Adds a new method to all DOM nodes, allowing a named property of the node to be bound to data.
 ---
 
-{% comment %}
-{% include_external polymer-all/mdv/docs/node_bind.md %}
-{% endcomment %}
+{% include spec-header.html %}
 
-## Basic usage
+## Learn the tech
 
-MDV adds a `bind()` method to all DOM nodes which instructs them to bind the named
-property to the data provided. For example:
+### Why Node.bind()?
+
+`Node.bind()` is a new method added to all DOM nodes which instructs them to bind the named
+property to the data provided. These allows applications to create a data model
+in JavaScript that DOM reacts to.
+
+### Basic usage
+
+"Bind the value in `obj.path.to.value` to a TextNode's `.textContent`":
 
     var obj = {
       path: {
@@ -21,12 +32,10 @@ property to the data provided. For example:
       }
     };
 
-    var textNode = document.createTextNode('test');
+    var textNode = document.createTextNode('mytext');
     textNode.bind('textContent', obj, 'path.to.value');
 
-...says, "Bind the value in `obj.path.to.value` to `textNode.textContent`".
-
-When this value changes, MDV keeps `.textContent` up to date.
+When the value in `path.to.value` changes, `Node.bind()` keeps `.textContent` up to date.
 
 ## Binding types
 
@@ -141,8 +150,3 @@ opportunity to by invoking its `bind()` method.
 ## Examples
 
 Please refer to the [HowTo examples](https://github.com/Polymer/mdv/tree/master/examples/how_to).
-
-## Specification
-
-Note yet written. Please refer to the [HowTo examples](https://github.com/Polymer/mdv/tree/master/examples/how_to).
-
