@@ -88,7 +88,7 @@ Please refer to the [HowTo examples](https://github.com/Polymer/TemplateInstance
 
 ## Binding Delegate API
 
-**Note:** If you're interested in implementing a binding delegate, {{site.project_title}} provides [`PolymerExpressions`](expression_syntax.html) as an example implementation.
+**Note:** If you're interested in implementing a binding delegate, {{site.project_title}} provides `PolymerExpressions` as an example implementation. [Read more](polymerexpressions.html) about it.
 {: .alert .alert-info }
 
 [Template Instances](/platform/mdv/template.html) by themselves offer a wide-range of use cases, but (by design) don't attempt to implement many specialized behaviors that some MV* frameworks support. For example:
