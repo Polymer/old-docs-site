@@ -1,6 +1,6 @@
 ---
 layout: default
-title: PolymerExpressions
+title: Expressions
 
 feature:
   status: <span class="label label-success">functional</span>
@@ -9,17 +9,17 @@ feature:
 
 {% include spec-header.html %}
 
-**Note:** {{site.project_title}} uses `{{page.title}}` under the hood. You do not need to use this library directly.  This document is provided as reference.
+**Note:** {{site.project_title}} uses `PolymerExpressions` under the hood. You do not need to use this library directly.  This document is provided as reference.
 {: .alert .alert-info }
 
-{{site.project_title}} provides `{{page.title}}` as an example implementation of
-creating a syntax with the [Binding Delegate API](/platform/mdv/template.html#binding-delegate-api) of [Template Instances](/platform/mdv/template.html). It allows you to use named scopes, `bind`, `repeat`, and simple inline expressions within  `<template>` bindings.
+{{site.project_title}} provides `PolymerExpressions` as an example implementation of
+creating a syntax with the [Binding Delegate API](/platform/mdv/template.html#binding-delegate-api) of [Template Binding](/platform/mdv/template.html). It allows you to use named scopes, `bind`, `repeat`, and simple inline expressions within  `<template>` bindings.
 
 ## Features
 
 ### Inline expressions
 
-The `{{page.title}}` allows for inline expressions within {%raw%}`{{}}`{%endraw%} bindings which support
+The `PolymerExpressions` allows for inline expressions within {%raw%}`{{}}`{%endraw%} bindings which support
 a strict subset of the JavaScript language. In order to use this feature, it's
 important to understand its behavior and limitations:
 

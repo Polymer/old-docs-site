@@ -146,7 +146,3 @@ as they wish. They do this by overriding the `bind()` method.
 
 If the element does not handle the binding, it should give its super class the
 opportunity to by invoking its `bind()` method.
-
-## Examples
-
-Please refer to the [HowTo examples](https://github.com/Polymer/mdv/tree/master/examples/how_to).

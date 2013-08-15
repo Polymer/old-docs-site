@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Template Instances
+title: Template Binding
 subtitle: <a href="http://prollyfill.org/">prollyfill</a>
 
 feature:
   spec: None
   status: <span class="label label-success">functional</span>
-  code: https://github.com/polymer/TemplateInstances
+  code: https://github.com/polymer/TemplateBinding
   summary: Extends the capabilities of the [HTML Template Element](http://www.w3.org/TR/html-templates/) by enabling it to create, manage, and remove instances of content bound to data defined in JavaScript.
 links:
 - "HTML5Rocks - HTML's New Template Tag": http://www.html5rocks.com/tutorials/webcomponents/template/
@@ -18,7 +18,7 @@ links:
 
 ## Learn the tech
 
-Template instances extends the `<template>` element with new attributes for binding data:
+Template Binding extends the `<template>` element with new attributes for binding data:
 
 1. `bind`
 1. `repeat`
@@ -82,7 +82,7 @@ directive to begin acting:
 
 ### Examples
 
-Please refer to the [HowTo examples](https://github.com/Polymer/TemplateInstances/tree/master/examples/how_to).
+Please refer to the [HowTo examples](https://github.com/Polymer/TemplateBinding/tree/master/examples/how_to).
 
 ---
 
@@ -91,7 +91,7 @@ Please refer to the [HowTo examples](https://github.com/Polymer/TemplateInstance
 **Note:** If you're interested in implementing a binding delegate, {{site.project_title}} provides `PolymerExpressions` as an example implementation. [Read more](polymerexpressions.html) about it.
 {: .alert .alert-info }
 
-[Template Instances](/platform/mdv/template.html) by themselves offer a wide-range of use cases, but (by design) don't attempt to implement many specialized behaviors that some MV* frameworks support. For example:
+Template Bindings by themselves offer a wide-range of use cases, but (by design) don't attempt to implement many specialized behaviors that some MV* frameworks support. For example:
 
 * Inline-expressions within mustaches
 
