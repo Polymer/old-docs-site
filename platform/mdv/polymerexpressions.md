@@ -1,26 +1,17 @@
 ---
 layout: default
 title: Expressions
-
-feature:
-  status: <span class="label label-success">functional</span>
-  code: https://github.com/polymer/polymer-expressions
 ---
 
-{% include spec-header.html %}
+{% include toc.html %}
+ 
+{{site.project_title}} [implements](https://github.com/polymer/polymer-expressions)
+expression syntax using the [Binding Delegate API](/platform/mdv/template.html#binding-delegate-api). It enables you to use named scopes and simple inline expressions within {{site.project_title}} element {%raw%}`{{}}`{%endraw%} bindings.
 
-**Note:** {{site.project_title}} uses `PolymerExpressions` under the hood. You do not need to use this library directly.  This document is provided as reference.
-{: .alert .alert-info }
+## Inline expressions
 
-{{site.project_title}} provides `PolymerExpressions` as an example implementation of
-creating a syntax with the [Binding Delegate API](/platform/mdv/template.html#binding-delegate-api) of [Template Binding](/platform/mdv/template.html). It allows you to use named scopes, `bind`, `repeat`, and simple inline expressions within  `<template>` bindings.
-
-## Features
-
-### Inline expressions
-
-The `PolymerExpressions` allows for inline expressions within {%raw%}`{{}}`{%endraw%} bindings which support
-a strict subset of the JavaScript language. In order to use this feature, it's
+{{site.project_title}} supports expressions in {%raw%}`{{}}`{%endraw%} with a strict
+subset of the JavaScript language. In order to use this feature, it's
 important to understand its behavior and limitations:
 
 - The goal for inline expressions is to allow the expression of simple value
@@ -48,7 +39,7 @@ The specific subset of JavaScript which is supported is:
 | Labeled statements | `foo: bar.baz; bat: boo > 2;` |
 {: .table }
 
-#### Unlabeled vs. labeled statements
+### Unlabeled vs. labeled statements
 
 Expressions are parsed when they're within a mustache ({% raw %}`{{}}`{% endraw %}).
 The expression can be a single statement, or multiple labeled statements.
@@ -76,7 +67,7 @@ may result in:
 
     <div class="active big"> 
 
-### Named scopes
+## Named scopes
 
 Named scopes are useful for referencing a model value from an "outer" model "scope".
 For example:
@@ -101,7 +92,7 @@ The scope naming is available (but optional) inside the `template`, `bind`, and 
 expression (including Object and Array literals).
 {: .alert .alert-info }
 
-#### Nested scoping rules
+### Nested scoping rules
 
 If a `<template>` using a named scoped contains children `<template>`s,
 all ancestor scopes are visible, up-to and including the first ancestor **not** using a named scope.

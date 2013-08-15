@@ -3,6 +3,8 @@ layout: default
 title: Data-binding
 ---
 
+{% include outofdate.html %}
+
 {{site.project_title}} uses the term "data-binding" to describe a way to write _dynamic_ HTML _using_ HTML.
 A set of platform technologies enable this behavior:
 
