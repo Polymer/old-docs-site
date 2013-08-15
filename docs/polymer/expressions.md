@@ -6,7 +6,7 @@ title: Expressions
 {% include toc.html %}
  
 {{site.project_title}} [implements](https://github.com/polymer/polymer-expressions)
-expression syntax using the [Binding Delegate API](/platform/mdv/template.html#binding-delegate-api). It enables you to use named scopes and simple inline expressions within {{site.project_title}} element {%raw%}`{{}}`{%endraw%} bindings.
+expression syntax using the [Binding Delegate API](/platform/template.html#binding-delegate-api). It enables you to use named scopes and simple inline expressions within {{site.project_title}} element {%raw%}`{{}}`{%endraw%} bindings.
 
 ## Inline expressions
 

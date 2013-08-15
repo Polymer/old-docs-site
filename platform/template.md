@@ -88,7 +88,7 @@ Please refer to the [HowTo examples](https://github.com/Polymer/TemplateBinding/
 
 ## Binding Delegate API
 
-**Note:** If you're interested in implementing a binding delegate, {{site.project_title}} provides `PolymerExpressions` as an example implementation. [Read more](polymerexpressions.html) about it.
+**Note:** If you're interested in implementing a binding delegate, {{site.project_title}} provides `PolymerExpressions` as an example implementation. [Read more](/docs/polymer/expressions.html) about it.
 {: .alert .alert-info }
 
 Template Bindings by themselves offer a wide-range of use cases, but (by design) don't attempt to implement many specialized behaviors that some MV* frameworks support. For example:

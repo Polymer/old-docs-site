@@ -9,8 +9,8 @@ title: Data-binding
 A set of platform technologies enable this behavior:
 
 * [HTML Template element](http://www.w3.org/TR/html-templates/) (`<template>`)
-* [Template Bindings](/platform/mdv/template.html) - describes how `<template>` manages instance fragments.
-* [`Node.bind()`](/platform/mdv/node_bind.html) - describes how DOM nodes are bound to data values.
+* [Template Bindings](/platform/template.html) - describes how `<template>` manages instance fragments.
+* [`Node.bind()`](/platform/node_bind.html) - describes how DOM nodes are bound to data values.
 * [`Object.observe()`](http://updates.html5rocks.com/2012/11/Respond-to-change-with-Object-observe)
 * [DOM Mutation Observers](https://developer.mozilla.org/en-US/docs/DOM/MutationObserver)
 
@@ -60,7 +60,7 @@ The [HTML Template element](http://www.w3.org/TR/html-templates/) is new and bro
 
 If you loaded the above example without `<script src="platform.min.js"></script>`, that's about all `<template>` would do.
 
-However, [Template Binding](/platform/mdv/template.html) teaches `<template>` some new tricks:
+However, [Template Binding](/platform/template.html) teaches `<template>` some new tricks:
 
 * Instruct DOM nodes to derive their value from JavaScript data by binding them to the data provided.
 * Maintain a fragment of DOM (or "instance fragment") for each item in an array.

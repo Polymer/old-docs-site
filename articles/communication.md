@@ -44,12 +44,12 @@ control hooks that users tap in to.
 
 We'll cover the following techniques:
 
-1. [Data binding with MDV](#mdv)
+1. [Data binding](#binding)
 1. [Changed watchers](#changedwatchers)
 1. [Custom events](#events)
 1. [Using an element's API](#api) 
 
-### 1. Data binding using MDV {#mdv}
+### 1. Data binding {#binding}
 
 <table class="table">
   <tr>
@@ -73,7 +73,7 @@ We'll cover the following techniques:
 
 The first (and most {{site.project_title}}ic) way for elements to relay information
 to one another is to use data binding. {{site.project_title}} implements
-two-way data binding using [MDV](/platform/mdv.html). Binding to a common property
+two-way data binding. Binding to a common property
 is useful if you're working inside a {{site.project_title}} element and want to
 "link" elements together via their [published properties](/polymer.html#published-properties).
 
@@ -119,7 +119,7 @@ What's neat about this? Whenever `<td-model>` updates its `items` array internal
 elements that bind to `list` on the outside see the changes. In this
 example, `<polymer-localstorage>`. You can think of "list" as an
 internal bus within `<my-app>`. Pop some data on it; any elements that care about
-`items` are magically **kept in sync by MDV**. This means there is one source
+`items` are magically **kept in sync by data-binding**. This means there is one source
 of truth. Data changes are simultaneously reflected in all contexts. There is no no dirty check.
 
 **Remember:** Property bindings are two-way. If `<polymer-localstorage>`
@@ -179,7 +179,7 @@ to bind to:
     <polymer-localstorage2 name="myapplist" id="storage"></polymer-localstorage2>
 
 A desperate time like this calls for a [changed watcher](/polymer.html#change-watchers) and
-a sprinkle of MDV. We can exploit the fact that `<polymer-localstorage2>` defines
+a sprinkle of data-binding. We can exploit the fact that `<polymer-localstorage2>` defines
 a `valueChanged()` watcher. By setting up our own watcher for `list`, we can
 automatically persist data to `localStorage` whenever `list` changes!
 
@@ -558,7 +558,7 @@ it's `save()` method (code outside a {{site.project_title}} element):
 ## Conclusion
 
 The unique "messaging" feature that {{site.project_title}} brings to the table two-way
-data-binding (MDV) and changed watchers. However, data binding has been a part of
+data-binding and changed watchers. However, data binding has been a part of
 other frameworks for a long time, so technically it's not a new concept.
 
 Whether you're inside or outside a `<polymer-element>`, there are plenty of

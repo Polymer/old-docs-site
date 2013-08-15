@@ -215,7 +215,7 @@ When attribute values are converted to property values, {{site.project_title}} a
 ### Data binding and custom attributes
 
 Published properties are data-bound inside of {{site.project_title}} elements and accessible
-via MDV's `{%raw%}{{}}{%endraw%}`. These bindings are by reference and are two-way.
+via `{%raw%}{{}}{%endraw%}`. These bindings are by reference and are two-way.
 
 For example, we can define a `name-tag` element that publishes two properties,
 `name` and `nameColor`.
@@ -356,8 +356,8 @@ For example, the following defines a component whose template contains an `<inpu
 ### Extending other elements
 
 A {{site.project_title}} element can extend another element by using the `extends`
-attribute. The parent's properties and methods are inherited by the child element,
-data-bound, and accessible via MDV.
+attribute. The parent's properties and methods are inherited by the child element
+and data-bound.
 
     <polymer-element name="polymer-cool">
       <!-- UI-less element -->
@@ -424,8 +424,8 @@ Many things in {{site.project_title}} happen asynchronously. Changes are gathere
 and executed all at once, instead of executing right away. Batching
 changes creates an optimization that (a) prevents duplicated work and (b) reduces unwanted [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content).
 
-[Change watchers](#change-watchers) and situations that rely on MDV data-bindings
-are examples that fit under this async behavior. For example, [conditional templates](/platform/mdv.html#where-to-go-from-here) may not immediately render after setting properties because changes to those renderings are saved up and performed all at once after you return from JavaScript.
+[Change watchers](#change-watchers) and situations that rely on data-bindings
+are examples that fit under this async behavior. For example, conditional templates may not immediately render after setting properties because changes to those renderings are saved up and performed all at once after you return from JavaScript.
 
 To do work after changes have been processed, {{site.project_title}} provides `asyncMethod()`.
 It's similar to `window.setTimeout()`, but automatically binds `this` to the correct value:
