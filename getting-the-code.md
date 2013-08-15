@@ -14,7 +14,7 @@ You can grab {{site.project_title}} a few different ways:
 {% include downloadbutton.html %}
 
 The latest version of {{site.project_title}} can be downloaded as .zip bundle
-or intalled via [Bower](http://bower.io/).
+or installed via [Bower](http://bower.io/).
 
 The .zip contains everything you need, including the repositories, demos, and
 samples described in this document. It contains the built files for `polymer.min.js`
