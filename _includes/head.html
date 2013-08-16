@@ -50,6 +50,7 @@ if (!('createShadowRoot' in document.createElement('div'))) {
 
 {% if page.load_polymer %}
 <script src="/polymer.min.js?{{'now' | date: '%Y%m%d'}}"></script>
+<!-- <script src="/polymer-all/polymer/polymer.js"></script> -->
 {% endif %}
 
 {% if site.load_platform %}
