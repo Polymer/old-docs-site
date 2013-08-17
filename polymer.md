@@ -42,6 +42,13 @@ which calls `Polymer('tag-name')`:
       <template>...</template>
     </polymer-element>
 
+    <!-- 4. No script -->
+    <polymer-element name="tag-name" constructor="TagName" noscript>
+      <template>
+        <!-- shadow DOM here -->
+      </template>
+    </polymer-element>
+
 ### Adding public properties and methods {#propertiesmethods}
 
 If you wish to define methods/properties on your element (optional), pass an object

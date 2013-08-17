@@ -42,6 +42,66 @@ including polyfill repos, tools, projects, and UI elements.
 ---
 {% endcomment %}
 
+## 2013-08-16 {#2013-08-16}
+
+<i class="icon-download icon-large"></i> [download this version](https://github.com/Polymer/polymer-all/releases/tag/v0.0.20130816) or see the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20130816).
+
+**Note:** This was a hotfix release to fix a problem in Chrome 28 where `document.createElement('nav', undefined)` results returns `undefined`.
+
+---
+
+## 2013-08-15 {#2013-08-15}
+
+<i class="icon-download icon-large"></i> [download this version](https://github.com/Polymer/polymer-all/releases/tag/v0.0.20130815) or see the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20130815).
+
+### {{site.project_title}}
+
+#### General
+
+"MDV" has been broken up into several new repositories to sepearate out the prollyfills
+from the {{site.project_title}} pieces. New repos:
+
+- [polymer-expressions](https://github.com/Polymer/polymer-expressions) - {{site.project_title}}'s template binding syntax.
+- [NodeBind](https://github.com/Polymer/NodeBind) - prollyfill for `Node.bind()`
+- [TemplateBinding](https://github.com/Polymer/TemplateBinding) - prollyfill for Template Bindings.
+- [observe-js](http://github.com/Polymer/observe-js) - library for observing Arrays, Objects, and PathValues
+
+**Changes**
+
+- {{site.project_title}}'s `Loader` has been renamed to `PolymerLoader` in preparation for [ES6 Modules](http://wiki.ecmascript.org/doku.php?id=harmony:module_loaders) ([commit](https://github.com/Polymer/polymer/commit/847de4afe5dbf8dbf838f576ebc3c26696cc2ade))
+
+**Features**
+
+- `created()` replaces the `ready()` lifecycle callback in the `Polymer()` constructor. `ready()` is still supported for backwards compatibility ([commit](https://github.com/Polymer/polymer/commit/08c6a4709d6eb5e2eeb47580e593fbe58f7b39ab))
+- `<polymer-element noscript>` is back ([commit](https://github.com/Polymer/polymer/commit/29c523a9a05359722270e945f807e6b528778d52)). See [registering an element](/polymer.html#alternate-ways-to-register-an-element).
+
+### Elements & Projects
+
+#### polymer-elements
+
+- `<polymer-anchor-position>` -> `<polymer-anchor-point>` ([commit](https://github.com/Polymer/polymer-elements/commit/f0d6941708a973f9301aad546d84f0b28d833244))
+- `<polymer-signals>` now bubbles `on-*` events properly ([commit](https://github.com/Polymer/polymer-elements/commit/749180818e03c9f892c39ac40856e20eb0a1f73f))
+
+#### polymer-ui-elements
+
+- Added WIP `<polymer-ui-breadcrumbs>` ([commit](https://github.com/Polymer/polymer-ui-elements/commit/33c5f606290e54c13f1401297388d2c49b7d4ab0))
+- Fixed [#12](https://github.com/Polymer/polymer-ui-elements/issues/12) - `<polymer-ui-accordion multi>` overreacts to click events
+- `<polymer-ui-overlay>` allows override `z-index` ([commit](https://github.com/Polymer/polymer-ui-elements/commit/8ad9e070adf05371879fc88c735b7250580d6ecb))
+
+### Platform
+
+#### Custom Elements
+
+- `noscript` works etter with the polyfill ([commit](https://github.com/Polymer/polymer/commit/38ce9b4223bfb5afaa387ca62c5d64bbaf03c2e6))
+- Support type-extension form of `document.createElement()` ([commit](https://github.com/Polymer/CustomElements/commit/173bbf652c5a4e33221dc6fac46b5b1227bc288a))
+- `HTMLELementElement` implementation was removed as per spec removal ([commit](https://github.com/Polymer/CustomElements/commit/117d9891bec0ca16d0558c4199cd786b606353bb))
+
+#### Shadow DOM
+
+- Attribute dirtying is now smarter ([commit](https://github.com/Polymer/ShadowDOM/commit/bb90576a0009c3d8758171f3958160c69c1e9466))
+
+---
+
 ## 2013-08-08 {#2013-08-08}
 
 <i class="icon-download icon-large"></i> [download this version](https://github.com/Polymer/polymer-all/releases/tag/v0.0.20130808) or see the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20130808).
