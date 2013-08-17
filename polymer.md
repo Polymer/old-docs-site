@@ -90,7 +90,7 @@ callbacks, though for convenience, implements them with shorter names.
 All of the lifecycle callbacks are optional: 
 
     {{site.project_title}}('tag-name', {
-      ready: function() { ... },
+      created: function() { ... },
       enteredDocument: function () { ... },
       leftDocument: function() { ... },
       attributeChanged: function(attrName, oldVal, newVal) {
@@ -104,7 +104,7 @@ Below is a table of the lifecycle methods according to the Custom Elements
 
 Spec | {{site.project_title}} | Called when
 |-
-createdCallback | ready | an instance of the element is created
+createdCallback | created | an instance of the element is created
 enteredDocumentCallback | enteredDocument | an instance was inserted into the document
 leftDocumentCallback | leftDocument | an instance was removed from the document
 attributeChangedCallback | attributeChanged | an attribute was added, removed, or updated
@@ -248,7 +248,7 @@ Let's modify the `name-tag` example to take an object instead of individual prop
       </template>
       <script>
         {{site.project_title}}('name-tag', {
-          ready: function() {
+          created: function() {
             this.person = {
               name: "Scott",
               nameColor: "orange"
@@ -266,7 +266,7 @@ Now, imagine we make a new component called `<visitor-creds>` that uses `name-ta
       </template>
       <script>
         {{site.project_title}}('visitor-creds', {
-          ready: function() {
+          created: function() {
             this.person = {
               name: "Scott2",
               nameColor: "red"
@@ -281,7 +281,7 @@ is also bound to `<name-tag>`'s `person` property. Now both components are using
 the same `person` object.
 
 **Important:** Be careful when your properties are objects or arrays. Element registration
-is evaluated once. This means only one instance of an object used in property initialization is ever created. Because of the nature of `prototype`, you may run into unexpected "shared state" across different instances of the same element if you're setting an initial value for a property which is an object or array. Do this type of initialization in `ready()` rather than directly on the `prototype`. 
+is evaluated once. This means only one instance of an object used in property initialization is ever created. Because of the nature of `prototype`, you may run into unexpected "shared state" across different instances of the same element if you're setting an initial value for a property which is an object or array. Do this type of initialization in `created()` rather than directly on the `prototype`. 
 {: .alert .alert-error }
 
 ### Declarative event mapping

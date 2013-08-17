@@ -120,13 +120,13 @@ The following example demonstrates binding component properties to attributes of
 a hint that this property is an integer.
 {: .alert alert-info}
 
-## Adding a ready() lifecycle method
+## Adding a created() lifecycle method
 
 When an element has been registered and finished initializing itself, it calls its
-`ready` method, if one exists. The `ready` callback is a great place to do
+`created` method, if one exists. The `created` callback is a great place to do
 constructor-like initialization work.
 
-{% include samples/tk-element-ready.html %}
+{% include samples/tk-element-created.html %}
 
 ## Publishing properties
 
