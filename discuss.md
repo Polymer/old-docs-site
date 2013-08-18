@@ -9,6 +9,7 @@ We've got a number of ways to stay in touch.
 * To **stay entirely in the loop**: join the [polymer-dev](https://groups.google.com/forum/?fromgroups=#!forum/polymer-dev) Google group (high-traffic). The latest
 happenings are below.
 * For only the **interesting announcements**: subscribe to the [polymer-announce](https://groups.google.com/forum/?fromgroups=#!forum/polymer-announce) Google group (low-traffic).
+* For **key highlights**, follow us on [Google+](http://plus.google.com/107187849809354688692/) or [Twitter](http://twitter.com/polymerproject)!
 
 <iframe id="forum_embed" src="javascript:void(0)" seamless scrolling="no" frameborder="0" width="100%" height="700"></iframe>
 <script >
