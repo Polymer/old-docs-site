@@ -1,0 +1,14 @@
+<polymer-element name="tk-element-created">
+  <template>
+    This is a <b>tk-element</b> with a created() method.
+    <span id="el">Not ready...</span>
+  </template>
+  <script>  
+    Polymer('tk-element-created', {
+      owner: "Daniel",
+      created: function() {
+        this.$.el.innerText = this.owner + " was created!";
+      }
+    });
+  </script>
+</polymer-element>

@@ -42,6 +42,13 @@ which calls `Polymer('tag-name')`:
       <template>...</template>
     </polymer-element>
 
+    <!-- 4. No script -->
+    <polymer-element name="tag-name" constructor="TagName" noscript>
+      <template>
+        <!-- shadow DOM here -->
+      </template>
+    </polymer-element>
+
 ### Adding public properties and methods {#propertiesmethods}
 
 If you wish to define methods/properties on your element (optional), pass an object
@@ -90,7 +97,7 @@ callbacks, though for convenience, implements them with shorter names.
 All of the lifecycle callbacks are optional: 
 
     {{site.project_title}}('tag-name', {
-      ready: function() { ... },
+      created: function() { ... },
       enteredDocument: function () { ... },
       leftDocument: function() { ... },
       attributeChanged: function(attrName, oldVal, newVal) {
@@ -104,7 +111,7 @@ Below is a table of the lifecycle methods according to the Custom Elements
 
 Spec | {{site.project_title}} | Called when
 |-
-createdCallback | ready | an instance of the element is created
+createdCallback | created | an instance of the element is created
 enteredDocumentCallback | enteredDocument | an instance was inserted into the document
 leftDocumentCallback | leftDocument | an instance was removed from the document
 attributeChangedCallback | attributeChanged | an attribute was added, removed, or updated
@@ -215,7 +222,7 @@ When attribute values are converted to property values, {{site.project_title}} a
 ### Data binding and custom attributes
 
 Published properties are data-bound inside of {{site.project_title}} elements and accessible
-via MDV's `{%raw%}{{}}{%endraw%}`. These bindings are by reference and are two-way.
+via `{%raw%}{{}}{%endraw%}`. These bindings are by reference and are two-way.
 
 For example, we can define a `name-tag` element that publishes two properties,
 `name` and `nameColor`.
@@ -248,7 +255,7 @@ Let's modify the `name-tag` example to take an object instead of individual prop
       </template>
       <script>
         {{site.project_title}}('name-tag', {
-          ready: function() {
+          created: function() {
             this.person = {
               name: "Scott",
               nameColor: "orange"
@@ -266,7 +273,7 @@ Now, imagine we make a new component called `<visitor-creds>` that uses `name-ta
       </template>
       <script>
         {{site.project_title}}('visitor-creds', {
-          ready: function() {
+          created: function() {
             this.person = {
               name: "Scott2",
               nameColor: "red"
@@ -281,7 +288,7 @@ is also bound to `<name-tag>`'s `person` property. Now both components are using
 the same `person` object.
 
 **Important:** Be careful when your properties are objects or arrays. Element registration
-is evaluated once. This means only one instance of an object used in property initialization is ever created. Because of the nature of `prototype`, you may run into unexpected "shared state" across different instances of the same element if you're setting an initial value for a property which is an object or array. Do this type of initialization in `ready()` rather than directly on the `prototype`. 
+is evaluated once. This means only one instance of an object used in property initialization is ever created. Because of the nature of `prototype`, you may run into unexpected "shared state" across different instances of the same element if you're setting an initial value for a property which is an object or array. Do this type of initialization in `created()` rather than directly on the `prototype`. 
 {: .alert .alert-error }
 
 ### Declarative event mapping
@@ -356,8 +363,8 @@ For example, the following defines a component whose template contains an `<inpu
 ### Extending other elements
 
 A {{site.project_title}} element can extend another element by using the `extends`
-attribute. The parent's properties and methods are inherited by the child element,
-data-bound, and accessible via MDV.
+attribute. The parent's properties and methods are inherited by the child element
+and data-bound.
 
     <polymer-element name="polymer-cool">
       <!-- UI-less element -->
@@ -424,8 +431,8 @@ Many things in {{site.project_title}} happen asynchronously. Changes are gathere
 and executed all at once, instead of executing right away. Batching
 changes creates an optimization that (a) prevents duplicated work and (b) reduces unwanted [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content).
 
-[Change watchers](#change-watchers) and situations that rely on MDV data-bindings
-are examples that fit under this async behavior. For example, [conditional templates](/platform/mdv.html#where-to-go-from-here) may not immediately render after setting properties because changes to those renderings are saved up and performed all at once after you return from JavaScript.
+[Change watchers](#change-watchers) and situations that rely on data-bindings
+are examples that fit under this async behavior. For example, conditional templates may not immediately render after setting properties because changes to those renderings are saved up and performed all at once after you return from JavaScript.
 
 To do work after changes have been processed, {{site.project_title}} provides `asyncMethod()`.
 It's similar to `window.setTimeout()`, but automatically binds `this` to the correct value:

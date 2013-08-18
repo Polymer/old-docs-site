@@ -1,5 +1,5 @@
 application: polymer-project
-version: 2013-08-12
+version: 20130815
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -16,6 +16,10 @@ handlers:
 - url: /polymer.min.js
   static_files: js/polymer.min.js
   upload: js/polymer\.min\.js
+
+- url: /polymer.min.js.map
+  static_files: js/polymer.min.js.map
+  upload: js/polymer\.min\.js.map
 
 # Map minified polymer to minified version.
 # This also preservers old URL (/polymer/polymer.min.js)

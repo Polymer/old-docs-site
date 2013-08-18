@@ -15,28 +15,28 @@
       {% endcomment %}
       <li class="divider"></li>
       <li class="nav-header elements">Elements</li>
-      <li><a href="/docs/elements/">Polymer elements</a></li>
-      <li><a href="/docs/elements/other.html">Other elements</a></li>
-      <li class="nav-header core">Core runtime</li>
+      <li class="sidebyside"><a href="/docs/elements/">Polymer</a><span>/</span><a href="/docs/elements/other.html">Other</a></li>
+      <li class="nav-header core">Core Features</li>
       <li><a href="/polymer.html">polymer.js</a></li>
-      <li class="nav-header foundation">Platform technologies</li>
+      <li data-toggle="collapse" data-target="#mdvlist">
+        <a href="javascript:">Data-binding<i class="icon-caret-down"></i></a>
+        <ul class="nav nav-list collapse" id="mdvlist">
+          <li><a href="/docs/polymer/databinding.html">Introduction</a></li>
+          <!-- <li><a href="/platform/mdv/observejs.html">ObserveJS</a></li> -->
+          <li><a href="/docs/polymer/expressions.html">Expressions</a></li>
+        </ul>
+      </li>
+      <li class="nav-header foundation">Platform Technologies</li>
       <li><a href="/platform/custom-elements.html">Custom Elements</a></li>
       <li><a href="/platform/shadow-dom.html">Shadow DOM</a></li>
       <li><a href="/platform/html-imports.html">HTML Imports</a></li>
-      <!-- <li class="disabled"><a href="#">Templates</a></li> -->
-      <li data-toggle="collapse" data-target="#mdvlist">
-        <a href="javascript:">MDV <i class="icon-caret-down"></i></a>
-        <ul class="nav nav-list collapse" id="mdvlist">
-          <li><a href="/platform/mdv.html">Introduction</a></li>
-          <li><a href="/platform/mdv/template.html">Template instantiation</a></li>
-          <li><a href="/platform/mdv/node_bind.html">Node.bind()</a></li>
-          <li><a href="/platform/mdv/syntax_api.html">Pluggable Syntax API</a></li>
-          <li><a href="/platform/mdv/expression_syntax.html">Expression Syntax</a></li>
-        </ul>
-      </li>
-      <!-- <li><a href="/platform/mutation-observers.html" disabled>Mutation Observers</a></li> -->
       <li><a href="/platform/pointer-events.html">Pointer Events</a></li>
       <li><a href="/platform/web-animations.html">Web Animations</a></li>
+      <li><a href="/platform/template.html">Template Binding</a></li>
+      <li><a href="/platform/node_bind.html">Node.bind()</a></li>
+      <!-- <li><a href="/platform/mutation-observers.html" disabled>Mutation Observers</a></li> -->
+      <!-- <li class="disabled"><a href="#">Templates</a></li> -->
+      <!-- <li class="disabled"><a href="#">Object.observe()</a></li> -->
       <li class="divider"></li>
       <li class="nav-header">More information</li>
       <li><a href="/tooling-strategy.html">Tools &amp; Testing</a></li>

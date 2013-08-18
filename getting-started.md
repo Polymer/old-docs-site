@@ -100,7 +100,7 @@ element's `prototype`.
 
 ## Declarative data binding
 
-You can bind properties in your component using declarative data binding and the "double-mustache" syntax (`{%raw%}{{}}{%endraw%}`) from [Model Driven Views](/platform/mdv.html). The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced between the brackets.
+You can bind properties in your component using declarative data binding and the "double-mustache" syntax (`{%raw%}{{}}{%endraw%}`). The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced between the brackets.
 
 {% include samples/tk-element-databinding.html %}
 
@@ -120,19 +120,19 @@ The following example demonstrates binding component properties to attributes of
 a hint that this property is an integer.
 {: .alert alert-info}
 
-## Adding a ready() lifecycle method
+## Adding a created() lifecycle method
 
 When an element has been registered and finished initializing itself, it calls its
-`ready` method, if one exists. The `ready` callback is a great place to do
+`created` method, if one exists. The `created` callback is a great place to do
 constructor-like initialization work.
 
-{% include samples/tk-element-ready.html %}
+{% include samples/tk-element-created.html %}
 
 ## Publishing properties
 
 Published properties can be used to define an element's "public API". {{site.project_title}}
 establishes two-way data binding for published properties and provides access
-to the property's value using MDV's `{%raw%}{{}}{%endraw%}`.
+to the property's value using `{%raw%}{{}}{%endraw%}`.
 
 _Publish_ a property by listing it in the `attributes` attribute in your `<polymer-element>`. Properties declared this way are initially `null`. To provide a more appropriate default value, include the same property name directly in your prototype (as seen below).
 

@@ -41,9 +41,16 @@ try {
   // noop
 }
 </script>
+<script>
+// Force ShadowDOM polyfill for Chrome 28.
+if (!('createShadowRoot' in document.createElement('div'))) {
+  Platform = {flags: {shadow: 'polyfill'}};
+}
+</script>
 
 {% if page.load_polymer %}
 <script src="/polymer.min.js?{{'now' | date: '%Y%m%d'}}"></script>
+<!-- <script src="/polymer-all/polymer/polymer.js"></script> -->
 {% endif %}
 
 {% if site.load_platform %}

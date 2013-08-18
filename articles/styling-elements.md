@@ -492,7 +492,7 @@ a CSS selector to match node(s) distributed at that insertion point.
       <footer>
         <p>I'm also red</p>
         <p>I'm green</p>
-        <span>I'm pink</span>
+        <span>I'm black</span>
       </footer>
     </x-foo>
 

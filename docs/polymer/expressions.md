@@ -1,27 +1,17 @@
 ---
 layout: default
-title: Polymer's Expression Syntax
-subtitle: MDV
+title: Expressions
 ---
 
-{% comment %}
-{% include_external polymer-all/mdv/docs/expression_syntax.md %}
-{% endcomment %}
+{% include toc.html %}
+ 
+{{site.project_title}} [implements](https://github.com/polymer/polymer-expressions)
+expression syntax using the [Binding Delegate API](/platform/template.html#binding-delegate-api). It enables you to use named scopes and simple inline expressions within {{site.project_title}} element {%raw%}`{{}}`{%endraw%} bindings.
 
-{{site.project_title}} provides `ExpressionSyntax` ([source](https://github.com/Polymer/mdv/blob/stable/util/expression_syntax.js)) as an example implementation of
-creating a syntax with MDV's [Pluggable Syntax API](syntax_api.html). It allows you to use
-named scopes, `bind`, `repeat`, and simple inline expressions within  `<template>` bindings.
+## Inline expressions
 
-**Note:** {{site.project_title}} uses `ExpressionSyntax` under the hood. You do not
-need to use it directly.  This document is provided as API reference.
-{: .alert .alert-info }
-
-## Features
-
-### Inline expressions
-
-The `ExpressionSyntax` allows for inline expressions within bindings which support
-a strict subset of the JavaScript language. In order to use this feature, it's
+{{site.project_title}} supports expressions in {%raw%}`{{}}`{%endraw%} with a strict
+subset of the JavaScript language. In order to use this feature, it's
 important to understand its behavior and limitations:
 
 - The goal for inline expressions is to allow the expression of simple value
@@ -34,21 +24,22 @@ the expression.
 
 The specific subset of JavaScript which is supported is:
 
-- Identifiers & paths, e.g. `foo`, `foo.bar.baz`. These values are treated as
-relative to the local model, extracted, observed for changes and cause the
-expression to be re-evaluated if one or more has changed.
-- Logical not operator: `!`
-- Unary operators: `+` (Convert to Number), `-` (Convert to Number and negate).
-- Binary operators: `+` (Addition), `-` (Subtraction), `*` (Multiplication), `/` (Division), `%` (Modulo).
-- Comparators: `<` (less than), `>` (greater than), `<=` (less than or equal), `>=` (greater then or equal), `==` (equal), `!=` (not equal), `===` (identity equally), `!==` (identity inequality)
-- Logical comparators: `||` (or), `&&` (and)
-- Ternary statements: `?` e.g. `a ? b : c`.
-- Grouping (parenthesis): e.g. `(a + b) * (c + d)`
-- Literal values: e.g. numbers, strings, `null`, `undefined`. **Note:** that escaped strings and non-decimal numbers are not supported.
-- Array & Object initializers: e.g. `[foo, 1]`, `{id: 1, foo: bar}`
-- Labeled statements: e.g. `foo: bar.baz; bat: boo > 2`
+| Feature | Example | Explanation
+|---------|
+|Identifiers & paths | `foo`, `foo.bar.baz` | These values are treated as relative to the local model, extracted, observed for changes and cause the expression to be re-evaluated if one or more has changed.
+| Logical not operator | `!` |
+| Unary operators | `+foo`, `-bar` | Converted to `Number`. Or converted to `Number`, then negated.
+| Binary operators | `foo + bar`, `foo - bar`, `foo * bar` | Supported: `+`, `-`, `*`, `/`, `%`
+| Comparators | `foo < bar`, `foo != bar`, `foo == bar` | Supported: `<`, `>`, `<=`, `>=`, `==`, `!=`, `===`, `!==`
+| Logical comparators | `foo && bar || baz` | Supported: `||`, `&&`
+| Ternary operator | `a ? b : c` |
+| Grouping (parenthesis) | `(a + b) * (c + d)` |
+| Literal values | numbers, strings, `null`, `undefined` | Escaped strings and non-decimal numbers are not supported. |
+| Array & Object initializers | `[foo, 1]`, `{id: 1, foo: bar}` |
+| Labeled statements | `foo: bar.baz; bat: boo > 2;` |
+{: .table }
 
-#### Unlabeled vs. labeled statements
+### Unlabeled vs. labeled statements
 
 Expressions are parsed when they're within a mustache ({% raw %}`{{}}`{% endraw %}).
 The expression can be a single statement, or multiple labeled statements.
@@ -76,7 +67,7 @@ may result in:
 
     <div class="active big"> 
 
-### Named scopes
+## Named scopes
 
 Named scopes are useful for referencing a model value from an "outer" model "scope".
 For example:
@@ -101,7 +92,7 @@ The scope naming is available (but optional) inside the `template`, `bind`, and 
 expression (including Object and Array literals).
 {: .alert .alert-info }
 
-#### Nested scoping rules
+### Nested scoping rules
 
 If a `<template>` using a named scoped contains children `<template>`s,
 all ancestor scopes are visible, up-to and including the first ancestor **not** using a named scope.
@@ -120,23 +111,3 @@ all ancestor scopes are visible, up-to and including the first ancestor **not** 
       </template>
     </template>
 {% endraw %}
-
-## Using a custom syntax
-
-If you've created your own syntax, here's how to tell MDV to use it:
-
-- Include your implementation.
-
-      <script src="util/expression_syntax.js"></script>
-
-- Register the syntax for use on the template element (sub-templates will inherit its use).
-
-      templateElement.bindingDelegate = new ExpressionSyntax();
-
-- Use the syntax in your templates
-
-      <template bind>
-        {% raw %}<template repeat="{{ user in users }}">
-          {{ user.name }} <template if="{{ user.age >= 21 }}"> Can have a drink!</template>
-        </template>{% endraw %}
-      </template>
