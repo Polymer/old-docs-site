@@ -46,7 +46,7 @@ including polyfill repos, tools, projects, and UI elements.
 
 <i class="icon-download icon-large"></i> [download this version](https://github.com/Polymer/polymer-all/releases/tag/v0.0.20130816) or see the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20130816).
 
-**Note:** This was a hotfix release to fix a problem in Chrome 28 where `document.createElement('nav', undefined)` results returns `undefined`.
+**Note:** This was a hotfix release to fix a problem in Chrome 28 where `document.createElement('nav', undefined)` result returns `undefined`.
 
 ---
 

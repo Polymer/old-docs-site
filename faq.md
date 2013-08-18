@@ -39,7 +39,7 @@ That's fine. We've designed {{site.project_title}}  to be cleanly layered so you
 <!-- {: style="clear:both"} -->
 
 #### What is Sandbox? Is this an IDE? {#sandbox}
-Sandbox is just an easy way to explore Polymer without having to check out code. It's not intended to be an IDE, and definitely not required to create applications. The tool is simply a convenience that helps write code faster. See for yourself by dragging an element onto the canvas, then flip over to the code view to understand the one-to-one correspondence between the UI and simplistic Polymer code.
+[Sandbox](http://polymer-project.org/tools/sandbox/) is just an easy way to explore Polymer without having to check out code. It's not intended to be an IDE, and definitely not required to create applications. The tool is simply a convenience that helps write code faster. See for yourself by dragging an element onto the canvas, then flip over to the code view to understand the one-to-one correspondence between the UI and simplistic Polymer code.
 
 #### Which browsers does {{site.project_title}} support? {#browsersupport}
 
