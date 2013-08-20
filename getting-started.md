@@ -21,6 +21,7 @@ imports:
 #- samples/components/tk-binding-to-elements.html
 ---
 
+{% include toc.html %}
 [Custom Elements](/platform/custom-elements.html) are the core building blocks of
 {{site.project_title}}-based applications. You create applications by assembling custom elements
 together, either ones provided by {{site.project_title}}, ones you create yourself,
@@ -28,19 +29,20 @@ or third-party elements.
 
 ## Basics
 
-{{site.project_title}} expands the concepts of [Custom Elements](/platform/custom-elements.html) by providing extra goodies. However, if you're only interested in building a regular Custom Element, all you need is `platform.js`. It contains polyfills for missing platform features like [Shadow DOM](/platform/shadow-dom.html) and [HTML Imports](/platform/html-imports.html).
+Getting things setup is straightforward:
 
-1. Load **platform.js** to polyfill missing platform features.
-2. Load components with `<link rel="import" href="/path/to/component-file.html">`
-3. Use the custom element in your page.
+1. [Download the latest build](/getting-the-code.html) of {{site.project_title}}.
+1. Load **polymer.min.js**.
+2. Import (`<link rel="import">`) the component(s) you want to use.
+3. Use the custom element in your app.
 
 Here's a bare bones example:
 
     <!DOCTYPE html>
     <html>
       <head>
-        <!-- 1. Shim missing platform features -->
-        <script src="polymer-all/platform/platform.js"></script>
+        <!-- 1. Load {{site.project_title}} -->
+        <script src="polymer.min.js"></script>
         <!-- 2. Load a component -->
         <link rel="import" href="x-foo.html">
       </head>
@@ -50,44 +52,25 @@ Here's a bare bones example:
       </body>
     </html>
 
-<p class="alert"><b>Note</b>: You must always run your app from a web server. This
-  is for the <a href="/platform/html-imports.html">HTML Imports</a> polyfill
-  to work properly. This requirement will go away when the API is available 
-natively in browsers.</p>
-
-## Components
-
-{%comment%}
-### Creating a basic custom element
-
-The platform polyfills provided by {{site.project_title}} let you load and display
-custom elements. Just by loading `platform.js` you get support for these
-new technologies.
-
-{% include samples/basic-element.html %}
-
-**Reminder:** The `name` attribute is required and specifies the name of the HTML
-tag you'll instantiate in markup (e.g. `<tag-name>`). It must be a "-" separated string.
-{: .alert }
-{%endcomment%}
+**Note:** You must run your app from a web server for the [HTML Imports](/platform/html-imports.html)
+polyfill to work properly. This requirement goes away if the API is available natively.
+{: .alert .alert-info }
 
 ### Creating a {{site.project_title}} element
 
 {{site.project_title}} provides extra goodies for creating custom elements. We call these souped-up custom elements "{{site.project_title}} elements". To create one, follow these steps:
 
-1. Load [{{site.project_title}} core](/polymer.html) (`polymer/polymer.js` or `polymer.min.js`).
-
-    **Note:** `polymer.js` loads `platform.js` under the hood.
-You only need to include `polymer.js` when writing a {{site.project_title}} element.
-    {: .alert }
-
+1. Load [{{site.project_title}} core](/polymer.html) (`polymer.min.js`).
 1. Declare your custom element using `<polymer-element>` and call the `Polymer()` constructor.
 
-In the following sample, we've converted our basic custom element into a {{site.project_title}} element named `tk-element`.
+In the following sample, we've converted a basic custom element into a {{site.project_title}} element named `tk-element`.
 
 {% include samples/tk-element.html %}
 
-#### Add properties/methods to your component
+**Reminder:** The `name` attribute is required and specifies the name of the HTML
+tag you'll instantiate in markup (e.g. `<tag-name>`). It must be a "-" separated string.
+
+### Add properties/methods to your component
 
 If you need to add public methods/properties to your element,
 include a `<script>` that calls `{{site.project_title}}('your-tagname')`.
@@ -97,6 +80,17 @@ you're creating. The second argument (optional) is an object that defines your
 element's `prototype`. 
 
 {% include samples/tk-element-proto.html %}
+
+## Adding lifecycle methods
+
+The [lifecycle callbacks](/polymer.html#lifecyclemethods) are special methods you
+can define on your element.
+
+For example, when an element has been registered and finished initializing itself,
+it calls its `created()` method (if one has been defined). The `created` callback is
+a great place to do constructor-like initialization work.
+
+{% include samples/tk-element-created.html %}
 
 ## Declarative data binding
 
@@ -116,17 +110,9 @@ The following example demonstrates binding component properties to attributes of
 
 {% include samples/tk-binding-to-elements.html %}
 
-**Note:** Giving `age` an intial value `25` gives {{site.project_title}}
+**Note:** Giving `age` an initial value `25` gives {{site.project_title}}
 a hint that this property is an integer.
 {: .alert alert-info}
-
-## Adding a created() lifecycle method
-
-When an element has been registered and finished initializing itself, it calls its
-`created` method, if one exists. The `created` callback is a great place to do
-constructor-like initialization work.
-
-{% include samples/tk-element-created.html %}
 
 ## Publishing properties
 
@@ -146,25 +132,14 @@ by configuring the element with initial attribute values (e.g. `<tk-element-prop
 
 [Learn more about published properties](/polymer.html#published-properties)
 
-{% comment %}
-#### Using a publish object (advanced)
-
-There is another way to publish a property (but you probably will never need it): the `publish` object. Properties included in an object named `publish` are published just like properties named in `attributes`.
-
-{% include samples/tk-element-property-public-publish.html %}
-
-### Change watching
-
-### Accessing public properties on an element
-
-A element's published properties can be set using attributes on its custom element, as shown in `index.html` below.
-
-{% include samples/tk-element-public-access.html %}  
-{% endcomment %}
-
-
 ## Automatic node finding
 
 Shadow DOM is a self-contained document-like subtree; id's in that subtree do not interact with id's in other trees. Each {{site.project_title}} element generates a map of id's to node references in the element's template. This map is accessible as `$` on the element. 
 
 {% include samples/tk-node-finding.html %}
+
+[Learn more about automatic node finding](/polymer.html#automatic-node-finding)
+
+## Where to go from here?
+
+Read up on [{{site.project_title}}'s core API](/polymer.html).
