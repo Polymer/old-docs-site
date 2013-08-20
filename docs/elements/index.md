@@ -16,13 +16,13 @@ Utility elements that do not render UI.
 
 **Repository:** [github.com/Polymer/polymer-elements](https://github.com/Polymer/polymer-elements)
 
+<section class="element-list">
 {%comment%}
-{% include_external polymer-all/polymer-elements/README.md %}
+{% include_external polymer-all/polymer-elements/docs/classes/polymer-file.html %}
 {%endcomment%}
 
-<ul class="element-list">
-{% directory dir:polymer-all/polymer-elements glob:polymer-* %}
-</ul>
+{% directory dir:polymer-all/polymer-elements tag:div glob:polymer-* %}
+</section>
 
 ---
 
@@ -32,6 +32,6 @@ Basic UI components.
 
 **Repository:** [github.com/Polymer/polymer-ui-elements](https://github.com/Polymer/polymer-ui-elements)
 
-<ul class="element-list">
-{% directory dir:polymer-all/polymer-ui-elements glob:polymer-ui-* %}
-</ul>
+<section class="element-list">
+{% directory dir:polymer-all/polymer-ui-elements tag:div glob:polymer-ui-* %}
+</section>

@@ -304,18 +304,33 @@ a[disabled] {
 }
 
 /* Elements */
-.element-list {
-  margin: 0;
-  list-style: none;
+.element-list > [data-element-file] {
+  padding-bottom: 20px;
+}
+.element-list h4.name {
+  display: inline-block;
 }
 .element-list h3 {
   font-family: "Source Code Pro",Monaco,Menlo,Consolas,"Courier New",monospace;
 }
 .element-list .links {
   margin-left: 17px;
+  margin-bottom: 20px;
+  display: block;
 }
 .element-list .links a {
   margin-right: 10px;
+}
+.element-list .nodocs {
+  margin-left: 17px;
+  font-style: italic;
+}
+.nodocs:after {
+  content: 'No documentation available.';
+}
+.element-list iframe {
+  border: none;
+  width: 100%;
 }
 
 @media (min-width: 980px) {

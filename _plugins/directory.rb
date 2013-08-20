@@ -69,7 +69,18 @@ module Jekyll
 
       github_url = github_url(element)
       tag_name = element['name']
-      iframe_demo = generate_iframe_demo("/#{file_path}", tag_name) if @demos else ''
+      #iframe_demo = generate_iframe_demo("/#{file_path}", tag_name) if @demos else ''
+      iframe_demo = generate_iframe_demo2("/#{demo_path}") if @demos else ''
+      api_doc_file = "#{@dir}/docs/classes/#{element['name']}.html"
+
+      begin
+        f = File.new(api_doc_file, "r")
+        api_docs = f.read()
+      rescue => e
+        api_docs = "<div class=\"nodocs\"></div>"
+      ensure
+        f.close unless f.nil?
+      end
 
       <<-END
       <#{@tag} data-element-file="/#{file_path}">
@@ -79,6 +90,7 @@ module Jekyll
           <a href="/#{demo_path}" target="_blank" #{'disabled' if !File.exists?(demo_path)}>demo</a>
           <div #{'hidden' if !iframe_demo}>#{iframe_demo}</div>
         </span>
+        #{api_docs}
       </#{@tag}>
       END
     end
@@ -90,6 +102,12 @@ module Jekyll
         <link rel="import" href="#{file_path}">
         <#{tag_name}></#{tag_name}>'>
       </iframe>
+      END
+    end
+
+    def generate_iframe_demo2(file_path)
+      <<-END
+      <iframe style="width: 100%;" src="#{file_path}"></iframe>
       END
     end
 
