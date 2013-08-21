@@ -76,7 +76,7 @@ We're first and foremost just a group of folks who think web components are the 
 
 Nope.
 
-#### How is polymer.dart related to {{site.project_title}}? {#dart}
+#### How is {{site.project_title}}.dart related to {{site.project_title}}? {#dart}
 
 polymer.dart is a Dart port of {{site.project_title}} created and maintained by the Dart team. The Dart team is collaborating with the {{site.project_title}} team to ensure that polymer.dart elements and polyfills are fully compatible with {{site.project_title}}. 
 
@@ -92,7 +92,7 @@ Remember our libraries go away over time! {{site.project_title}} gets better, st
 
 #### Does {{site.project_title}} work under Content Security Policy (CSP)? {#csp}
 
-In certain cases, {{site.project_title}} fails under certain [CSP](http://www.html5rocks.com/tutorials/security/content-security-policy/). This is because the [HTML Imports](/platform/html-imports.html) polyfill uses XHR to do its magic. Native implementations of HTML Imports are needed (see Blink's [crbug.com/240592](http://crbug.com/240592)). In the interim, we may prioritize a software solution.
+In certain cases, {{site.project_title}} fails under certain [CSP](http://www.html5rocks.com/tutorials/security/content-security-policy/). This is because the [HTML Imports](/platform/html-imports.html) polyfill uses XHR to do its magic. Native implementations of HTML Imports are needed (see Blink's [crbug.com/240592](http://crbug.com/240592)). In the interim, we're working on a solution.
 
 #### How can I contribute? {#contributing}
 
@@ -133,6 +133,11 @@ will de-dupe the import based on it's fully qualified path.
 
 If multiple libraries want to share a dependency, they will have to agree on a system.
 Feature detection, or an agreed upon common location for a 'jquery.html' file in a CDN, etc.
+
+#### What sort of testing do you do?
+
+{{site.project_title}} uses Chromium's continuous build infrastructure to test
+the entire system and each polyfill, individually. See our [build waterfall](http://build.chromium.org/p/client.polymer/).
 
 ## Web Components
 
