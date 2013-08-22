@@ -1,7 +1,13 @@
 ---
 layout: default
 title: Polymer core
+
+load_polymer: true
+imports:
+- /elements/buildbot-list.html
 ---
+
+<p><buildbot-list project="polymer"></buildbot-list></p>
 
 The {{site.project_title}} _core_ provides a thin layer of code that expresses
 its opinion and provides the extra sugaring that all {{site.project_title}} elements use. It is provided in the file `polymer.js`.

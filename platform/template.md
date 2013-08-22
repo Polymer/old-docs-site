@@ -3,9 +3,13 @@ layout: default
 title: Template Binding
 subtitle: <a href="http://prollyfill.org/">prollyfill</a>
 
+load_polymer: true
+imports:
+- /elements/buildbot-list.html
+
 feature:
   spec: None
-  status: <span class="label label-success">functional</span>
+  status: <buildbot-list project="TemplateInstances"></buildbot-list>
   code: https://github.com/polymer/TemplateBinding
   summary: Extends the capabilities of the [HTML Template Element](http://www.w3.org/TR/html-templates/) by enabling it to create, manage, and remove instances of content bound to data defined in JavaScript.
 links:

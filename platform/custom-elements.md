@@ -3,9 +3,13 @@ layout: default
 title: Custom Elements
 subtitle: polyfill
 
+load_polymer: true
+imports:
+- /elements/buildbot-list.html
+
 feature:
   spec: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html
-  status: <span class="label label-success">functional</span>
+  status: <buildbot-list project="CustomElements"></buildbot-list>
   code: https://github.com/polymer/CustomElements
   summary: Enables authors to define and use new types of DOM elements in a document.
 ---

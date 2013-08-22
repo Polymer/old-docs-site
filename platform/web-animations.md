@@ -3,9 +3,13 @@ layout: default
 title: Web Animations
 subtitle: polyfill
 
+load_polymer: true
+imports:
+- /elements/buildbot-list.html
+
 feature:
   spec: http://dev.w3.org/fxtf/web-animations/
-  status: <span class="label label-success">functional</span>
+  status: <buildbot-list project="web-animations-js" inactive></buildbot-list>
   code: https://github.com/web-animations/web-animations-js
   summary: "Web Animations defines APIs for synchronizing several of the web's animation models with complex, scriptable animations."
 

@@ -3,9 +3,13 @@ layout: default
 title: Node.bind()
 subtitle: <a href="http://prollyfill.org/">prollyfill</a>
 
+load_polymer: true
+imports:
+- /elements/buildbot-list.html
+
 feature:
   spec: None
-  status: <span class="label label-success">functional</span>
+  status: <buildbot-list project="NodeBind"></buildbot-list>
   code: https://github.com/polymer/NodeBind
   summary: Adds a new method to all DOM nodes, allowing a named property of the node to be bound to data.
 ---

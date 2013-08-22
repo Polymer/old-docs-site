@@ -3,9 +3,13 @@ layout: default
 title: Shadow DOM
 subtitle: polyfill
 
+load_polymer: true
+imports:
+- /elements/buildbot-list.html
+
 feature:
   spec: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html
-  status: <span class="label label-success">functional</span>
+  status: <buildbot-list project="ShadowDOM"></buildbot-list>
   code: https://github.com/polymer/ShadowDOM
   summary: "Shadow DOM is designed to provide encapsulation by hiding DOM subtrees under shadow
 roots. It provides a method of establishing and maintaining functional boundaries
