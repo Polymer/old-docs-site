@@ -1,10 +1,14 @@
 application: polymer-project
-version: 20130822
+version: 20130829
 runtime: python27
 api_version: 1
 threadsafe: yes
 
 #default_expiration: "0s"
+
+libraries:
+- name: PIL
+  version: latest
 
 handlers:
 
@@ -12,6 +16,9 @@ handlers:
 - url: /$
   static_files: _site/index.html
   upload: _site/index\.html
+
+- url: /build/(.*)
+  script: build.application
 
 - url: /polymer.min.js
   static_files: js/polymer.min.js
