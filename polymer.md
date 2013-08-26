@@ -302,19 +302,21 @@ is evaluated once. This means only one instance of an object used in property in
 {{site.project_title}} supports declarative binding of events to methods in the component.
 It uses special <code>on-<em>event</em></code> syntax to trigger this binding behavior.
 
-    <polymer-element name="g-cool" on-keypress="keypress">
+    <polymer-element name="g-cool" on-keypress="keypressHandler">
       <template>
         <button on-click="buttonClick"></button>
       </template>
       <script>
         {{site.project_title}}('g-cool', {
-          keypress: function(event) { ...},
-          buttonClick: function(event) { ... }
+          keypressHandler: function(event, detail, sender) { ...},
+          buttonClick: function(event, detail, sender) { ... }
         });
       </script>
     </polymer-element>
 
-In this example, the `on-keypress` declaration maps the standard DOM `"keypress"` event to the `keypress` method in the component. Within the component template, the `on-click` declaration maps a custom `buttonClick` event to the `buttonClick` method in the component. This is achieved again without the need for any glue code. 
+In this example, the `on-keypress` declaration maps the standard DOM `"keypress"` event to the `keypressHandler` method defined on the element. Similarly, a button witin the element
+declares a `on-click` handler for click events that calls the `buttonClick` method.
+All of this is achieved without the need for any glue code. 
 
 Some things to notice:
 
