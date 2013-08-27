@@ -33,7 +33,7 @@ Make sure your `docs/polymer` submodule is up to date
 
 Generate the docs using:
 
-    grunt jekyll:prod
+    grunt docs
 
 Last step is to push the docs to App Engine. In your `Polymer/docs` directory, run:
 
