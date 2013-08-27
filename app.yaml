@@ -65,14 +65,16 @@ handlers:
   static_files: _site/\1/index.html
   upload: _site/(.*)/index.html
 
-- url: /polymer-all
-  static_dir: polymer-all
-  http_headers:
-    Access-Control-Allow-Origin: "*"
+#- url: /polymer-all
+#  static_dir: _site/polymer-all
+#  http_headers:
+#    Access-Control-Allow-Origin: "*"
 
 # All other URLs map directly to their path in _site/.
 - url: /
   static_dir: _site
+  http_headers:
+    Access-Control-Allow-Origin: "*"
 
 skip_files:
 - ^(.*/)?app\.yaml
