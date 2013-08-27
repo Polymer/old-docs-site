@@ -17,6 +17,10 @@ handlers:
   static_files: _site/index.html
   upload: _site/index\.html
 
+- url: /build/$
+  static_files: _site/build/index.html
+  upload: _site/build/index\.html
+
 - url: /build/(.*)
   script: build.application
 

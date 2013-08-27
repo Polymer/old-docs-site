@@ -137,7 +137,7 @@ Feature detection, or an agreed upon common location for a 'jquery.html' file in
 #### What sort of testing do you do?
 
 {{site.project_title}} uses Chromium's continuous build infrastructure to test
-the entire system and each polyfill, individually. See our [build waterfall](http://build.chromium.org/p/client.polymer/).
+the entire system and each polyfill, individually. See our [build status page](/build/).
 
 ## Web Components
 
