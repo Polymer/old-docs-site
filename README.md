@@ -37,7 +37,9 @@ Generate the docs using:
 
 Last step is to push the docs to App Engine. In your `Polymer/docs` directory, run:
 
-    appcfg.py update .
+    appcfg.py --oauth2 update .
+
+(The `--oauth2` is not required, but makes it easier to upload if you use second factor authentication.)
 
 [jekyll]: http://jekyllrb.com/
 [grunt]: http://gruntjs.com/
