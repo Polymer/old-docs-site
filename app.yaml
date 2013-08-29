@@ -93,4 +93,5 @@ skip_files:
 - ^(.*/)?\..*
 - ^(.*/)?.*\.bak$
 - ^(.*/)?node_modules
-- ^_site/polymer-all/(.*)/tools # leave out submodule tools/
+- ^_site/polymer-all/(.*)/tools # leave out submodule tools/ dirs
+- ^_site/polymer-all/(.*)/test # leave out submodule test/ dirs
