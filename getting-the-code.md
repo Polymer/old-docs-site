@@ -5,7 +5,7 @@ title: Getting the Code
 load_polymer: true
 ---
 
-## Bring on the code!
+## First step: bring on the code!
 
 You can grab {{site.project_title}} a few different ways:
 
@@ -16,11 +16,15 @@ You can grab {{site.project_title}} a few different ways:
 The latest version of {{site.project_title}} can be downloaded as .zip bundle
 or installed via [Bower](http://bower.io/).
 
+#### Zip file
+
 The .zip contains everything you need, including the repositories, demos, and
 samples described in this document. It contains the built files for `polymer.min.js`
 and `platform.min.js`.
 
-The Bower component just includes the build files.
+#### Via Bower
+
+The Bower component just includes the build files. This does not allow you to test right away like proposed in the second step hereunder.
 
 ### Option 2. checkout instructions {#git}
 
@@ -60,12 +64,12 @@ from the `polymer-all/` folder:
 
     git submodule update --init --recursive
 
-## Test your environment
+## Second step: test your environment
 
 To check that your development environment is ready, start a local web
 server and run one of the included sample projects:
 
-1. **Start a local web server** in the folder where you have `polymer-all/`.
+1. **Start a local web server** in the folder where you have `polymer-all/`. This folder does not exist if you installed via Bower.
 2. In your browser, navigate to
     [http://localhost/toolkit-ui/workbench/menu.html](http://localhost/toolkit-ui/workbench/menu.html), or whichever port you started the server on. You should see a menu of items, as shown below.
 
