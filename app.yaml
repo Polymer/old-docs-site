@@ -52,6 +52,11 @@ handlers:
     Access-Control-Allow-Origin: "*"
 
 # /tools -----------------------------------------------------------------------
+  #curl https://polymer-project.org/tools/pull-all.sh | bash
+- url: /tools/pull-all\.sh$
+  static_files: _site/polymer-all/tools/bin/pull-all.sh
+  upload: _site/polymer-all/tools/bin/pull-all\.sh
+
 - url: /tools/sandbox/$
   static_files: _site/polymer-all/projects/Sandbox/index.html
   upload: _site/index\.html
