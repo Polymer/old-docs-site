@@ -12,11 +12,11 @@ You'll also need the App Engine dev server to preview the docs locally. [Downloa
 
 ### Check out the documentation
 
-First, checkout this repo:
+Checkout this repo:
 
     git clone https://github.com/Polymer/docs.git --recursive
 
-Then, create a directory called `polymer-all` and check out Polymer's tools into it:
+Create a directory called `polymer-all` and check out Polymer's tools into it:
 
     cd docs
     mkdir polymer-all; cd polymer-all
