@@ -44,7 +44,7 @@ Once your changes look good, `git commit` them and push.
 
 **Note**: only project owners can publish the documentation.
 
-If you have things checked out correctly in `polymer-all` using the `pull-all.sh` script, should be able to generate the documentation using:
+If you have things checked out correctly in `polymer-all` using the `pull-all.sh` script, you should be able to generate the documentation using:
 
     grunt docs
 
