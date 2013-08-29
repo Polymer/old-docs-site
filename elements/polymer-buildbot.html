@@ -115,7 +115,6 @@
         }
       },
       response: function(inEvent, inResponse) {
-        console.log(inResponse);
         this.result = inResponse.response;
         this.result.resultStr = this.result.results ? 'failed' : 'passed';
         var steps = inResponse.response.steps;
