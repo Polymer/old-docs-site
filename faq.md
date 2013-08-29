@@ -103,10 +103,6 @@ to contribute code, see our [contributor's guide](https://github.com/polymer/pol
 
 We have many different demo, platform, and library repositories. If you know exactly where the problem lives in the stack, please file the bug under the appropriate repo. Otherwise, filing under the general [{{site.project_title}}](https://github.com/polymer/polymer/issues/new) project is great.
 
-#### What is the difference between the stable and master branches? {#branches}
-
-See [Branching strategy](/branching-strategy.html).
-
 #### How do I use data-binding to repeat an `<option>` or `<tr>`? {#option-tr}
 
 The elements `<option>` and `<tr>` have special meaning when they're children of
