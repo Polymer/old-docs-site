@@ -25,24 +25,16 @@ The Bower component just includes the build files.
 ### Option 2. checkout instructions {#git}
 
 If you want to checkout code or contribute to the project, you can recursively
-clone and initialize all of {{site.project_title}}'s submodules with a single git command.
+clone all of {{site.project_title}}'s sub components with a script called `pull-all.sh`:
 
-**To get the code, run:**
+**To get `pull-all.sh`, `git clone git@github.com:Polymer/tools.git` or download it:
 
-    git clone git://github.com/Polymer/polymer-all.git --recursive
+    curl -s http://polymer-project.org/tools/pull-all.sh > pull-all.sh
 
-If you want the bleeding edge development version, you'll want the *master* branch:
-
-    git clone -b master git://github.com/Polymer/polymer-all.git --recursive
-
-**Remember**: If you don't specify _master_, you'll get the _stable_ branch by default.
-See [branching workflow](branching-strategy.html) for more info.
-{: .alert }
-
-This creates a `polymer-all/` folder with the following top-level files and folders:
+Running this script pulls in a number of repositories to the current working directory:
 
 - **platform/** — The platform shims and polyfills.
-- **polymer/polymer.js** — The [{{site.project_title}} kernel](polymer.html)
+- **polymer/polymer.js** — [{{site.project_title}} core](polymer.html)
 - **polymer-elements/** — A collection of core utility elements.
 - **polymer-ui-elements/** — A collection of UI elements.
 - **projects/** — Larger examples, demos, and tools that use {{site.project_title}}.
@@ -55,17 +47,17 @@ A [description of each repository](#abouttherepos) is below.
 #### Updating submodules
 
 Periodically, we will update the project's submodules on GitHub. To
-update your local copy's submodules, run the following command
-from the `polymer-all/` folder:
+update your local copy's submodules, re-run the checked out copy of `pull-all.sh`:
 
-    git submodule update --init --recursive
+    ./tools/bin/pull-all.sh`
 
 ## Test your environment
 
 To check that your development environment is ready, start a local web
 server and run one of the included sample projects:
 
-1. **Start a local web server** in the folder where you have `polymer-all/`.
+1. **Start a local web server** in the folder where you downloaded {{site.project_title}}
+or checked out the code using `pull-all.sh`.
 2. In your browser, navigate to
     [http://localhost/toolkit-ui/workbench/menu.html](http://localhost/toolkit-ui/workbench/menu.html), or whichever port you started the server on. You should see a menu of items, as shown below.
 
@@ -74,8 +66,8 @@ server and run one of the included sample projects:
 ## About the repositories {#abouttherepos}
 
 The entirety of the {{site.project_title}} is composed of a number of Git
-repositories. All are included as submodules in the main `polymer-all` repository.
-However, understanding the various pieces will help you navigate the codebase.
+repositories. All are included as submodules in the {{site.project_title}} download.
+Understanding the various pieces will help you navigate the codebase.
 
 We have factored our repositories into separate chunks for each specification API.
 For example, the following repositories are useful individually:

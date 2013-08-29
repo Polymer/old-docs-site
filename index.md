@@ -18,7 +18,7 @@ and designed to leverage the evolving web platform on modern browsers.
 
 ## Quick start
 
-1. Download the .zip of `polymer-all` from the link above. If you want to use Git, see [Getting the code](/getting-the-code.html).
+1. Download the latest .zip bundle from the link above. If you want to use Git, see [Getting the code](/getting-the-code.html).
 2. **Fire up a web server** in your app's directory.
 3. Include `polymer.min.js` (bundled with the release) in your main page:
 
@@ -56,7 +56,5 @@ The overall aim of {{site.project_title}} is to manage the complexity of buildin
 
 **Extreme pragmatism** — Developers should write the **minimum** amount of code possible to create their application. Anything repetitive should be re-factored into a component, handled by {{site.project_title}} itself, or added into the browser platform itself. {{site.project_title}} provides simple syntax without reducing features, and avoids boilerplate wherever possible.
 
-**Salt to taste** —  Use as much or as little of the framework as you wish. An application can choose to only load `polymer-all/platform/platform.js` to take advantage of the polyfills, or add `polymer-all/polymer/polymer.js` to
-provide extra batteries for web components. We call these types of
-elements ["{{site.project_title}} elements"](/polymer.html).
+**Salt to taste** —  Use as much or as little of the framework as you wish. An application can choose to load `platform.js` for just the polyfills or use `polymer.js` to give web components extra batteries. We call these types of elements ["{{site.project_title}} elements"](/polymer.html).
 
