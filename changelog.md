@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Changelog
+title: Releases
 ---
 
 This document lists the notable changes across the entirety of the project,
@@ -41,6 +41,12 @@ including polyfill repos, tools, projects, and UI elements.
 
 ---
 {% endcomment %}
+
+## 2013-08-29 {#2013-08-29}
+
+See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20130829).
+
+---
 
 ## 2013-08-16 {#2013-08-16}
 

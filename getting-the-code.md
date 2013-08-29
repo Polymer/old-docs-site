@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Getting the Code
+title: Getting the code
 
 load_polymer: true
 ---
@@ -9,29 +9,32 @@ load_polymer: true
 
 You can grab {{site.project_title}} a few different ways:
 
-### Option 1. download the code {#download}
+### Option 1. download the .zip {#download}
 
 {% include downloadbutton.html %}
 
-The latest version of {{site.project_title}} can be downloaded as .zip bundle
-or installed via [Bower](http://bower.io/).
-
+The latest version of {{site.project_title}} can be downloaded as .zip bundle.
 The .zip contains everything you need, including the repositories, demos, and
-samples described in this document. It contains the built files for `polymer.min.js`
+samples described in this document. It also contains the built files for `polymer.min.js`
 and `platform.min.js`.
 
-The Bower component just includes the build files.
+### Option 2. install using Bower {#bower}
 
-### Option 2. checkout instructions {#git}
+To install {{site.project_title}} via [Bower](http://bower.io/), run:
 
-If you want to checkout code or contribute to the project, you can recursively
-clone all of {{site.project_title}}'s sub components with a script called `pull-all.sh`:
+    bower install polymer
 
-**To get `pull-all.sh`, `git clone git@github.com:Polymer/tools.git` or download it:
+**Note:** the Bower component only includes the `polymer.min.js` and `platform.min.js`
+build files. It does not contain the codebase, demos, and projects.
 
-    curl -s http://polymer-project.org/tools/pull-all.sh > pull-all.sh
+### Option 3. checkout instructions {#git}
 
-Running this script pulls in a number of repositories to the current working directory:
+To checkout code, you can recursively clone all of {{site.project_title}}'s
+sub components using our `pull-all.sh` script.
+
+<p class="centered"><a href="/tools/pull-all.sh" class="btn btn-success" alt="Download pull-all.sh" title="Download `pull-all.sh`"><i class="icon-white icon-download"></i> Download pull-all.sh</a></p>
+
+Running `pull-all.sh` pulls down a number of repositories to the current working directory:
 
 - **platform/** — The platform shims and polyfills.
 - **polymer/polymer.js** — [{{site.project_title}} core](polymer.html)
@@ -46,12 +49,15 @@ A [description of each repository](#abouttherepos) is below.
 
 #### Updating submodules
 
-Periodically, we will update the project's submodules on GitHub. To
-update your local copy's submodules, re-run the checked out copy of `pull-all.sh`:
+Periodically, we'll update the project's submodules on GitHub. To
+update your local copy, re-run `pull-all.sh`:
 
-    ./tools/bin/pull-all.sh`
+    ./tools/bin/pull-all.sh
 
 ## Test your environment
+
+**Note:** If you installed {{site.project_title}} using Bower, this section does not apply.
+{: .alert .alert-info }
 
 To check that your development environment is ready, start a local web
 server and run one of the included sample projects:
