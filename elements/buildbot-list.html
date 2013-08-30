@@ -29,7 +29,7 @@
           builders.push({
             project: this.project,
             platform: platform,
-            //inactive: platform === 'Win'
+            inactive: this.project == 'web-animations-js'
           });
         }.bind(this));
         this.builders = builders;
