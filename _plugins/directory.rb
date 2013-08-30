@@ -30,7 +30,7 @@ module Jekyll
       @dir = @attributes.has_key?('dir') ? @attributes['dir'] : nil
       @glob = @attributes.has_key?('glob') ? @attributes['glob'] : '*/' 
       @tag = @attributes.has_key?('tag') ? @attributes['tag'] : 'li' 
-      @branch = @attributes.has_key?('branch') ? @attributes['branch'] : 'stable'
+      @branch = @attributes.has_key?('branch') ? @attributes['branch'] : 'master'
       @demos = @attributes.has_key?('demos') ? @attributes['demos'] : false 
 
       super
