@@ -174,8 +174,10 @@ For stylesheets that are not same domain or CORs-enabled, you can use `@import` 
 it's preferred to inline the styles without using `@import`. For example:
 
     <polymer-element ...>
-      <link rel="stylesheet" href="frameworkstyles.css">
-      <template>...</template>
+      <template>
+        <link rel="stylesheet" href="frameworkstyles.css">
+        ...
+      </template>
       ...
     </polymer-element>
 
