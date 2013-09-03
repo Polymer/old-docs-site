@@ -13,6 +13,8 @@ h2 {
 
 {% include alpha.html %}
 
+## What is {{site.project_title}}?
+
 {{site.project_title}} is a new type of library for the web, built on top of Web Components,
 and designed to leverage the evolving web platform on modern browsers.
 {: .lead }
