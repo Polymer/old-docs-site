@@ -137,7 +137,7 @@ a[disabled] {
 }
 /* Architecture stack */
 .core {
-  color: rgb(244, 180, 0);
+  color: rgb(255, 209, 77);
 }
 .core.bg {
   background-color: rgba(255, 209, 77, 0.5);
@@ -149,7 +149,7 @@ a[disabled] {
   background-color: rgba(244, 74, 63, 0.3);
 }
 .elements {
-  color: rgb(3, 119, 75);
+  color: rgb(13, 168, 97);
 }
 .elements.bg {
   background-color: rgba(13, 168, 97, 0.3);
@@ -265,9 +265,23 @@ a[disabled] {
   width: 560px;
   height: 315px;
 }
+
+#what-is {
+  list-style: none;
+  margin-left: 0;
+}
+#what-is li {
+  margin-bottom: 25px;
+}
+#architecture-diagram {
+  float: right;
+  margin: 0 20px;
+}
 #architecture-diagram iframe {
-  height: 435px;
-  width: 100%;
+  /*height: 435px;
+  width: 100%;*/
+  height: 200px;
+  width: 240px;
   border: none;
 }
 
@@ -368,7 +382,7 @@ a[disabled] {
     width: initial;
     height: initial;
   }
-  #architecture-diagram iframe {
-    height: initial;
+  #architecture-diagram {
+    float: initial;
   }
 }
