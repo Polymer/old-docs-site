@@ -182,6 +182,9 @@ a[disabled] {
   width: auto;
   margin: 0 2px;
 }
+.sharelinks {
+  margin-left: 10px !important;
+}
 .sharelinks li {
   padding: 10px 10px 0 0;
 }
