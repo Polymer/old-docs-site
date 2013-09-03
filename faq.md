@@ -259,6 +259,11 @@ In fact, if you inspect one of the native HTML elements that use Shadow DOM, `<i
 Other types of assistive tools like [Chromevox](http://www.chromevox.com/) will [need to be updated](https://code.google.com/p/chromium/issues/detail?id=96373) to learn how to traverse the Shadow DOM. 
 There's an ongoing discussion with accessibility experts on how best to integrate Shadow DOM with screen readers and search engines and further progress in this area is likely to come in the future.
 
+#### How do I access the `activeElement` inside a {{site.project_title}} element? {#activeelement}
+
+Shadow Roots have their own `activeElement`, which you can access internally as 
+`shadowRoot.activeElement`.
+
 ---
 
 *Special thanks go to GitHub user md_5 who generously donated the {{site.project_title}} organization name.*
