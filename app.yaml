@@ -1,5 +1,5 @@
 application: polymer-project
-version: 20130829-2
+version: 20130903
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -92,6 +92,6 @@ skip_files:
 - ^(.*/)?.*/RCS/.*
 - ^(.*/)?\..*
 - ^(.*/)?.*\.bak$
-- ^(.*/)?node_modules
-- ^_site/polymer-all/(.*)/tools # leave out submodule tools/ dirs
-- ^_site/polymer-all/(.*)/test # leave out submodule test/ dirs
+- ^(.*/)?node_modules/.*
+- ^(.*/)?third_party/closure/.*
+- ^polymer-all/.*
