@@ -29,7 +29,7 @@ and designed to leverage the evolving web platform on modern browsers.
 - <i class="icon-cogs icon-3x pull-left foundation"></i> A set of _polyfills_ for emerging web platform features. Initially, these core features are enabled as polyfills but go away
 over time as browsers implement them.
 - <i class="icon-beaker icon-3x pull-left core"></i> A next-generation _web application framework_ built upon these core technologies.
-- <i class="icon-puzzle-piece icon-3x pull-left elements"></i> A _set of comprehensive UI and utility elements_ for building web component-based applications.
+- <i class="icon-puzzle-piece icon-3x pull-left elements"></i> A set of _comprehensive UI and utility components_ for building web applications.
 {: id="what-is" }
 
 ## Quick start
