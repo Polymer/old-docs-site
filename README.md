@@ -52,7 +52,7 @@ This needs to be done before pushing.
 
 Last step is to push the docs to App Engine. In your `Polymer/docs` directory, run:
 
-    appcfg.py --oauth2 update .
+    grunt docs; appcfg.py --oauth2 update .
 
 (The `--oauth2` is not required, but makes it easier to upload if you use second factor authentication.)
 
