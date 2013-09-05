@@ -63,11 +63,16 @@ Run tests:
     grunt test
 
 
-## Workflow Tooling
+## Development workflow & tooling
 
-We are currently in the early stages of investigating modern front-end tooling for projects built with Polymer. This includes using [Yeoman](http://yeoman.io) for scaffolding out Polymer elements, [Grunt](http://gruntjs.com) for building and optimizing projects and [Bower](http://bower.io) for component dependency management.
+We are currently in the early stages of investigating modern front-end tooling for projects built with {{site.project_title}}. This includes using [Yeoman](http://yeoman.io) for scaffolding out {{site.project_title}} elements, [Grunt](http://gruntjs.com) for building and optimizing projects and [Bower](http://bower.io) for component dependency management.
 
-While our work on support is still in alpha, you can take a look at our video on [Polymer and front-end tooling](http://www.youtube.com/watch?v=EwQkyplZHDY), check out the [Polymer + Grunt](https://github.com/addyosmani/polymer-grunt-example) proof-of-concept project or follow our work on [generator-polymer](https://github.com/yeoman/generator-polymer/).
+While our work in this area is just beginning, take a look at the potential workflow:
+
+<div class="centered" style="margin:20px;"><iframe id="video" src="http://www.youtube.com/embed/EwQkyplZHDY" frameborder="0" allowfullscreen></iframe>
+</div>
+
+The [{{site.project_title}} + Grunt](https://github.com/addyosmani/polymer-grunt-example) proof-of-concept project is a good start. Also follow our work on [generator-polymer](https://github.com/yeoman/generator-polymer/).
 
 We hope to announce more stable support for these projects in the near future.
 
