@@ -35,7 +35,7 @@ over time as browsers implement them.
 ## Quick start
 
 1. Download the latest .zip from above or [get the code](/getting-the-code.html).
-2. **Fire up a web server**. Isnclude `<script src="polymer.min.js"></script>` in your page.
+2. **Fire up a web server**. Include `<script src="polymer.min.js"></script>` in your page.
 3. Read the [Getting Started](/getting-started.html) guide.
 4. Learn how to soup-up your web components using the [Polymer core](/polymer.html).
 5. Play with the [polymer-elements](https://github.com/Polymer/polymer-elements), [polymer-ui-elements](https://github.com/Polymer/polymer-ui-elements), and [toolkit-ui](https://github.com/Polymer/toolkit-ui).
