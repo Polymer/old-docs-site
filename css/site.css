@@ -117,17 +117,20 @@ a[disabled] {
 
 polymer-ui-menu {
   position: fixed;
-  margin-left: 0 !important;
-  border-right: 1px solid #aaa;
-  /*padding: 0 !important;*/
-  /*margin: 0 !important;*/
+  margin-left: 5px !important;
   padding-top: 0 !important;
+  border-right: 1px solid #aaa;
+  height: 90%;
+  max-width: 275px;
 }
 polymer-ui-submenu-item {
   position: relative;
 }
 polymer-ui-submenu-item polymer-ui-submenu-item {
   color: rgb(0, 136, 204);
+}
+polymer-ui-menu-item {
+  opacity: 1 !important;
 }
 polymer-ui-menu-item:hover {
   background-color: #eee;
@@ -146,12 +149,20 @@ polymer-ui-submenu-item polymer-ui-submenu-item:after {
 polymer-ui-submenu-item polymer-ui-submenu-item:hover:after {
   opacity: 1;
 }
-polymer-ui-submenu-item.foundation:before {
-  content: "\f085";
+polymer-ui-submenu-item.icon:before {
   font-family: FontAwesome;
   position: absolute;
   top: 10px;
   left: -10px;
+}
+polymer-ui-submenu-item.foundation:before {
+  content: "\f085";
+}
+polymer-ui-submenu-item.core:before {
+  content: "\f0c3";
+}
+polymer-ui-submenu-item.elements:before {
+  content: "\f12e";
 }
 
 #content-container {
@@ -416,6 +427,7 @@ polymer-ui-submenu-item.foundation:before {
   }*/
   polymer-ui-menu {
     position: initial;
+    border: none;
   }
   #content-container {
     margin-left: initial;

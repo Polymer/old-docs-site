@@ -6,25 +6,25 @@
 
 <link rel="import" href="/polymer-all/polymer-ui-elements/polymer-ui-nav-arrow/polymer-ui-nav-arrow.html">
 
-<polymer-ui-menu selected="0"  class="span3">
+<polymer-ui-menu selected="0" class="span3">
   <polymer-ui-submenu-item label="Getting started">
     <polymer-ui-menu-item><a href="/getting-the-code.html">Get the code</a></polymer-ui-menu-item>
     <polymer-ui-menu-item><a href="/getting-started.html">Getting started</a></polymer-ui-menu-item>
     <polymer-ui-menu-item><a href="/runtime-config.html">Runtime configuration</a></polymer-ui-menu-item>
     <polymer-ui-menu-item><a href="/articles/">Articles</a></li>
   </polymer-ui-submenu-item>
-  <polymer-ui-submenu-item label="Elements" class="elements">
+  <polymer-ui-submenu-item label="Elements" class="elements icon">
     <polymer-ui-menu-item><a href="/docs/elements/">Polymer</a></polymer-ui-menu-item>
     <polymer-ui-menu-item><a href="/docs/elements/">Other</a></polymer-ui-menu-item>
   </polymer-ui-submenu-item>
-  <polymer-ui-submenu-item label="Core features" class="core">
+  <polymer-ui-submenu-item label="Core features" class="core icon">
     <polymer-ui-menu-item><a href="/polymer.html">polymer.js</a></polymer-ui-menu-item>
     <polymer-ui-submenu-item label="Data-binding"></i>
       <polymer-ui-menu-item><a href="/docs/polymer/databinding.html">Introduction</a></polymer-ui-menu-item>
       <polymer-ui-menu-item><a href="/docs/polymer/expressions.html">Expressions</a></polymer-ui-menu-item>
     </polymer-ui-submenu-item>
   </polymer-ui-submenu-item>
-  <polymer-ui-submenu-item label="Platform technologies" class="foundation">
+  <polymer-ui-submenu-item label="Platform" class="foundation icon">
     <polymer-ui-menu-item><a href="/platform/custom-elements.html">Custom Elements</a></polymer-ui-menu-item>
     <polymer-ui-menu-item><a href="/platform/shadow-dom.html">Shadow DOM</a></polymer-ui-menu-item>
     <polymer-ui-menu-item><a href="/platform/html-imports.html">HTML Imports</a></polymer-ui-menu-item>
@@ -34,8 +34,8 @@
     <polymer-ui-menu-item><a href="/platform/node_bind.html">Node.bind()</a></polymer-ui-menu-item>
   </polymer-ui-submenu-item>
   <polymer-ui-submenu-item label="More information">
-    <polymer-ui-menu-item><a href="/tooling-strategy.html">Tools &amp; Testing</a></polymer-ui-menu-item>
-    <polymer-ui-menu-item><a href="/compatibility.html">Browser Compatibility</a></polymer-ui-menu-item>
+    <polymer-ui-menu-item><a href="/tooling-strategy.html">Tools &amp; testing</a></polymer-ui-menu-item>
+    <polymer-ui-menu-item><a href="/compatibility.html">Browser compatibility</a></polymer-ui-menu-item>
     <polymer-ui-menu-item><a href="/changelog.html">Releases</a></polymer-ui-menu-item>
     <polymer-ui-menu-item><a href="/faq.html">FAQ</a></polymer-ui-menu-item>
   </polymer-ui-submenu-item>
@@ -49,6 +49,7 @@
 
     var selector = document.querySelector('polymer-ui-menu');
     selector.addEventListener('polymer-select', function(e) {
+      console.log(e.detail)
       if (e.detail.isSelected) {
         arrow.target = e.detail.item;
       }
