@@ -5,11 +5,9 @@ title: Getting the code
 load_polymer: true
 ---
 
-## Bring on the code!
-
 You can grab {{site.project_title}} a few different ways:
 
-### Option 1. download the .zip {#download}
+## Option 1. download the .zip {#download}
 
 {% include downloadbutton.html %}
 
@@ -18,7 +16,7 @@ The .zip contains everything you need, including the repositories, demos, and
 samples described in this document. It also contains the built files for `polymer.min.js`
 and `platform.min.js`.
 
-### Option 2. install using Bower {#bower}
+## Option 2. install using Bower {#bower}
 
 To install {{site.project_title}} via [Bower](http://bower.io/), run:
 
@@ -27,7 +25,7 @@ To install {{site.project_title}} via [Bower](http://bower.io/), run:
 **Note:** the Bower component only includes the `polymer.min.js` and `platform.min.js`
 build files. It does not contain the codebase, demos, and projects.
 
-### Option 3. checkout instructions {#git}
+## Option 3. checkout instructions {#git}
 
 To checkout code, you can recursively clone all of {{site.project_title}}'s
 sub components using our `pull-all.sh` script.
@@ -47,7 +45,7 @@ Running `pull-all.sh` pulls down a number of repositories to the current working
 
 A [description of each repository](#abouttherepos) is below.
 
-#### Updating submodules
+### Updating submodules
 
 Periodically, we'll update the project's submodules on GitHub. To
 update your local copy, re-run `pull-all.sh`:

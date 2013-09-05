@@ -1,3 +1,62 @@
+<!-- <link rel="import" href="/polymer-all/polymer-ui-elements/polymer-ui-sidebar-menu/polymer-ui-sidebar-menu.html"> -->
+
+<link rel="import" href="/polymer-all/polymer-ui-elements/polymer-ui-menu/polymer-ui-menu.html">
+<link rel="import" href="/polymer-all/polymer-ui-elements/polymer-ui-menu-item/polymer-ui-menu-item.html">
+<link rel="import" href="/polymer-all/polymer-ui-elements/polymer-ui-submenu-item/polymer-ui-submenu-item.html">
+
+<link rel="import" href="/polymer-all/polymer-ui-elements/polymer-ui-nav-arrow/polymer-ui-nav-arrow.html">
+
+<polymer-ui-menu selected="0"  class="span3">
+  <polymer-ui-submenu-item label="Getting started">
+    <polymer-ui-menu-item><a href="/getting-the-code.html">Get the code</a></polymer-ui-menu-item>
+    <polymer-ui-menu-item><a href="/getting-started.html">Getting started</a></polymer-ui-menu-item>
+    <polymer-ui-menu-item><a href="/runtime-config.html">Runtime configuration</a></polymer-ui-menu-item>
+    <polymer-ui-menu-item><a href="/articles/">Articles</a></li>
+  </polymer-ui-submenu-item>
+  <polymer-ui-submenu-item label="Elements" class="elements">
+    <polymer-ui-menu-item><a href="/docs/elements/">Polymer</a></polymer-ui-menu-item>
+    <polymer-ui-menu-item><a href="/docs/elements/">Other</a></polymer-ui-menu-item>
+  </polymer-ui-submenu-item>
+  <polymer-ui-submenu-item label="Core features" class="core">
+    <polymer-ui-menu-item><a href="/polymer.html">polymer.js</a></polymer-ui-menu-item>
+    <polymer-ui-submenu-item label="Data-binding"></i>
+      <polymer-ui-menu-item><a href="/docs/polymer/databinding.html">Introduction</a></polymer-ui-menu-item>
+      <polymer-ui-menu-item><a href="/docs/polymer/expressions.html">Expressions</a></polymer-ui-menu-item>
+    </polymer-ui-submenu-item>
+  </polymer-ui-submenu-item>
+  <polymer-ui-submenu-item label="Platform technologies" class="foundation">
+    <polymer-ui-menu-item><a href="/platform/custom-elements.html">Custom Elements</a></polymer-ui-menu-item>
+    <polymer-ui-menu-item><a href="/platform/shadow-dom.html">Shadow DOM</a></polymer-ui-menu-item>
+    <polymer-ui-menu-item><a href="/platform/html-imports.html">HTML Imports</a></polymer-ui-menu-item>
+    <polymer-ui-menu-item><a href="/platform/pointer-events.html">Pointer Events</a></polymer-ui-menu-item>
+    <polymer-ui-menu-item><a href="/platform/web-animations.html">Web Animations</a></polymer-ui-menu-item>
+    <polymer-ui-menu-item><a href="/platform/template.html">Template Binding</a></polymer-ui-menu-item>
+    <polymer-ui-menu-item><a href="/platform/node_bind.html">Node.bind()</a></polymer-ui-menu-item>
+  </polymer-ui-submenu-item>
+  <polymer-ui-submenu-item label="More information">
+    <polymer-ui-menu-item><a href="/tooling-strategy.html">Tools &amp; Testing</a></polymer-ui-menu-item>
+    <polymer-ui-menu-item><a href="/compatibility.html">Browser Compatibility</a></polymer-ui-menu-item>
+    <polymer-ui-menu-item><a href="/changelog.html">Releases</a></polymer-ui-menu-item>
+    <polymer-ui-menu-item><a href="/faq.html">FAQ</a></polymer-ui-menu-item>
+  </polymer-ui-submenu-item>
+  <polymer-ui-nav-arrow color="#ccc"></polymer-ui-nav-arrow>
+</polymer-ui-menu>
+
+<script>
+  document.addEventListener('WebComponentsReady', function(e) {
+    var arrow = document.querySelector('polymer-ui-nav-arrow');
+    arrow.target = document.querySelector('polymer-ui-menu').selectedItem;
+
+    var selector = document.querySelector('polymer-ui-menu');
+    selector.addEventListener('polymer-select', function(e) {
+      if (e.detail.isSelected) {
+        arrow.target = e.detail.item;
+      }
+    });
+  })
+</script>
+    
+ {%comment%}
 <div class="span3">
   <div class="well well-small sidebar-nav">
     <ul class="nav nav-list">
@@ -46,3 +105,4 @@
     </ul>
   </div>
 </div>
+{%endcomment%}

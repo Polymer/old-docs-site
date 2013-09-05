@@ -114,8 +114,49 @@ a[disabled] {
   pointer-events: none;
   color: #ccc;
 }
+
+polymer-ui-menu {
+  position: fixed;
+  margin-left: 0 !important;
+  border-right: 1px solid #aaa;
+  /*padding: 0 !important;*/
+  /*margin: 0 !important;*/
+  padding-top: 0 !important;
+}
+polymer-ui-submenu-item {
+  position: relative;
+}
+polymer-ui-submenu-item polymer-ui-submenu-item {
+  color: rgb(0, 136, 204);
+}
+polymer-ui-menu-item:hover {
+  background-color: #eee;
+}
+polymer-ui-menu-item a:hover {
+  text-decoration: none;
+}
+polymer-ui-submenu-item polymer-ui-submenu-item:after {
+  content: "\f0d7";
+  font-family: FontAwesome;
+  position: absolute;
+  left: 125px;
+  top: 10px;
+  opacity: 0.5;
+}
+polymer-ui-submenu-item polymer-ui-submenu-item:hover:after {
+  opacity: 1;
+}
+polymer-ui-submenu-item.foundation:before {
+  content: "\f085";
+  font-family: FontAwesome;
+  position: absolute;
+  top: 10px;
+  left: -10px;
+}
+
 #content-container {
   position: relative;
+  margin-left: 26%;
 }
 .edit-on-github {
   /*position: absolute;
@@ -139,25 +180,25 @@ a[disabled] {
 .core {
   color: rgb(255, 209, 77);
 }
-.core.bg {
+.core-bg {
   background-color: rgba(255, 209, 77, 0.5);
 }
 .foundation {
   color: rgb(205, 55, 45);
 }
-.foundation.bg {
+.foundation-bg {
   background-color: rgba(244, 74, 63, 0.3);
 }
 .elements {
   color: rgb(13, 168, 97);
 }
-.elements.bg {
+.elements-bg {
   background-color: rgba(13, 168, 97, 0.3);
 }
 .applications {
   color: rgb(35, 100, 215);
 }
-.applications.bg {
+.applications-bg {
   background-color: rgba(67, 135, 253, 0.3);
 }
 
@@ -360,11 +401,6 @@ a[disabled] {
     padding-top: 60px;
   }
 }
-@media (min-width: 1200px) {
-  .codescreenshot {
-    display: block !important;
-  }
-}
 @media only screen and (max-width: 700px) {
   /*h1 {
     font-size: 6.4vw;
@@ -378,6 +414,12 @@ a[disabled] {
   h4 {
     font-size: 4.1vw;
   }*/
+  polymer-ui-menu {
+    position: initial;
+  }
+  #content-container {
+    margin-left: initial;
+  }
   #video {
     width: initial;
     height: initial;
