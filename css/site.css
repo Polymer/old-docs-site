@@ -115,16 +115,16 @@ a[disabled] {
   color: #ccc;
 }
 
-polymer-ui-menu {
-  position: fixed;
+docs-menu {
   margin-left: 5px !important;
-  padding-top: 0 !important;
+  position: fixed;
   border-right: 1px solid #aaa;
   height: 90%;
   max-width: 275px;
 }
 polymer-ui-submenu-item {
   position: relative;
+  padding: 0;
 }
 polymer-ui-submenu-item polymer-ui-submenu-item {
   color: rgb(0, 136, 204);
@@ -167,7 +167,7 @@ polymer-ui-submenu-item.elements:before {
 
 #content-container {
   position: relative;
-  margin-left: 26%;
+  margin-left: 27%;
 }
 .edit-on-github {
   /*position: absolute;
@@ -425,7 +425,7 @@ polymer-ui-submenu-item.elements:before {
   h4 {
     font-size: 4.1vw;
   }*/
-  polymer-ui-menu {
+  docs-menu {
     position: initial;
     border: none;
   }
