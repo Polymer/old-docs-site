@@ -2,24 +2,24 @@
 <polymer-element name="docs-menu">
 <template>
   <polymer-ui-menu id="menu" selectedItem="{{item}}">
-    <polymer-ui-submenu-item label="Getting started" id="gettingstartedmenu">
+    <polymer-ui-submenu-item id="gettingstarted" label="Getting started">
       <polymer-ui-menu-item><a href="/getting-the-code.html">Get the code</a></polymer-ui-menu-item>
       <polymer-ui-menu-item><a href="/getting-started.html">Getting started</a></polymer-ui-menu-item>
       <polymer-ui-menu-item><a href="/runtime-config.html">Runtime configuration</a></polymer-ui-menu-item>
-      <polymer-ui-menu-item><a href="/articles/">Articles</a></li>
+      <polymer-ui-menu-item><a href="/articles/">Articles</a></polymer-ui-menu-item>
     </polymer-ui-submenu-item>
-    <polymer-ui-submenu-item label="Elements" class="elements icon">
+    <polymer-ui-submenu-item label="&#61742; Elements" class="elements icon">
       <polymer-ui-menu-item><a href="/docs/elements/">Polymer</a></polymer-ui-menu-item>
       <polymer-ui-menu-item><a href="/docs/elements/other.html">Other</a></polymer-ui-menu-item>
     </polymer-ui-submenu-item>
-    <polymer-ui-submenu-item label="Core features" class="core icon">
+    <polymer-ui-submenu-item label="&#61635; Core" class="core icon">
       <polymer-ui-menu-item><a href="/polymer.html">polymer.js</a></polymer-ui-menu-item>
-      <polymer-ui-submenu-item label="Data-binding"></i>
+      <polymer-ui-submenu-item label="Data-binding &#61655;">
         <polymer-ui-menu-item><a href="/docs/polymer/databinding.html">Introduction</a></polymer-ui-menu-item>
         <polymer-ui-menu-item><a href="/docs/polymer/expressions.html">Expressions</a></polymer-ui-menu-item>
       </polymer-ui-submenu-item>
     </polymer-ui-submenu-item>
-    <polymer-ui-submenu-item label="Platform" class="foundation icon">
+    <polymer-ui-submenu-item label="&#61573; Platform" class="foundation icon">
       <polymer-ui-menu-item><a href="/platform/custom-elements.html">Custom Elements</a></polymer-ui-menu-item>
       <polymer-ui-menu-item><a href="/platform/shadow-dom.html">Shadow DOM</a></polymer-ui-menu-item>
       <polymer-ui-menu-item><a href="/platform/html-imports.html">HTML Imports</a></polymer-ui-menu-item>
@@ -41,26 +41,31 @@
   Polymer('docs-menu', {
     applyAuthorStyles: true,
     created: function() {
-      // if (location.pathname.match(/^\/docs\/elements\//)) {
-      //   this.$.menu.selected = 1;
-      // } else if (location.pathname.match(/\/polymer/)) {
-      //   this.$.menu.selected = 2;
-      // } else if (location.pathname.match(/^\/platform\//)) {
-      //   this.$.menu.selected = 3;
-      // } else {
-      //   this.$.menu.selected = 0;
-      //   //this.$.gettingstartedmenu.active = true;
-      // }
+      if (location.pathname.match(/^\/articles\//)) {
+        this.$.menu.selected = 0;
+        // brittle if articles changes position in nav.
+        this.$.gettingstarted.selected = this.$.gettingstarted.items.length - 1;
+        return;
+      }
+
       var link = this.shadowRoot.querySelector('a[href="' + location.pathname + '"]');
       if (link) {
         var item = link.parentElement;
         var submenu = item.parentElement;
-        //var i = Array.prototype.indexOf.call(submenu.children, item);
-        var i = Array.prototype.indexOf.call(this.$.menu.children, submenu);
-        //submenu.active = true;
-console.log(item, submenu, i)
-        //submenu.selected = i;
-        this.$.menu.selected = i;
+
+        submenu.selected = submenu.items.indexOf(item);
+
+        if (submenu.parentElement.localName == 'polymer-ui-submenu-item') {
+          do {
+            submenu.parentElement.selected = submenu.parentElement.items.indexOf(submenu);
+            submenu = submenu.parentElement;
+          } while (submenu && submenu.localName == 'polymer-ui-submenu-item');
+        } else {
+          this.$.menu.selected = this.$.menu.items.indexOf(submenu);
+        }
+        
+      } else {
+        this.$.menu.selected = 0;
       }
     }
   });
