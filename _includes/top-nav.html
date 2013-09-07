@@ -1,4 +1,4 @@
-<div class="navbar navbar-fixed-top">
+<!-- <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container-fluid">
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -20,4 +20,33 @@
       </div>
     </div>
   </div>
+</div>
+ -->
+
+<div id="topnav">
+<polymer-ui-toolbar>
+  <a class="brand" href="/">{{site.project_title}}</a>
+  <polymer-ui-toolbar responsive flex>
+    <ul flex>
+      <polymer-flex-layout align="center"></polymer-flex-layout>
+      <li class="icon"><a href="https://github.com/polymer/polymer"><i class="icon-github icon-large"></i>View on Github</a></li>
+      <li class="icon"><a href="https://github.com/polymer/polymer/issues/new"><i class="icon-bug icon-large"></i>File a bug</a></li>
+      <li class="icon"><a href="https://github.com/polymer/polymer/blob/master/CONTRIBUTING.md"><i class="icon-code icon-large"></i>Contribute</a></li>
+      <li class="icon"><a href="/discuss.html"><i class="icon-comments icon-large"></i>Discuss</a></li>
+    </ul>
+    <ul class="sharelinks">
+      <li>
+        <a href="http://plus.google.com/107187849809354688692/" title="Follow us on Google+"><i class="icon-google-plus-sign"></i>on Google+</a>
+        <a href="https://twitter.com/intent/follow?screen_name=polymerproject" data-twitter-follow title="Follow @polymerproject on Twitter"><i class="icon-twitter"></i>@polymerproject</a>
+      </li>
+    </ul>
+    <!-- <ul class="sharelinks">
+      <polymer-flex-layout align="center"></polymer-flex-layout>
+
+      <li><div class="g-plusone" data-size="tall" data-annotation="none" data-href="http://plus.google.com/107187849809354688692/"></div></li>
+      <li><iframe allowtransparency="true" frameborder="0" scrolling="no" src="//platform.twitter.com/widgets/follow_button.html?screen_name=polymerproject" style="width:300px; height:20px;"></iframe></li>
+    </ul> -->
+  </polymer-ui-toolbar>
+</polymer-ui-toolbar>
+
 </div>

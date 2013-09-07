@@ -19,6 +19,7 @@ h2:target, h3:target, h4:target {
 body {
   font-family: "Open Sans",Helvetica,Arial,sans-serif;
   padding-bottom: 40px;
+  padding-top: 70px;
 }
 code, pre {
   font-family: "Source Code Pro",Monaco,Menlo,Consolas,"Courier New",monospace;
@@ -60,9 +61,9 @@ footer div:first-of-type {
   margin-bottom: 30px;
 }
 .brand {
-  background: url(/images/icons/loading_icon.svg) no-repeat 16px 50%;
-  background-size: 22px;
-  padding-left: 40px !important;
+  background: url(/images/icons/loading_icon.svg) no-repeat 0 50%;
+  background-size: 30px;
+  padding-left: 35px !important;
 }
 .sidebar-nav.affix, .navbar-fixed-top {
   -webkit-transform: translateZ(0);
@@ -79,12 +80,6 @@ footer div:first-of-type {
   background-image: -o-linear-gradient(top, #ffffff, #ccc);
   background-image: linear-gradient(to bottom, #ffffff, #ccc);
 }
-/*.well-small {
-  padding: 3px 0;
-}
-.well-small .nav-list li {
-  padding: 0 9px;
-}*/
 .alert.alert-error {
   clear: both;
 }
@@ -115,12 +110,87 @@ a[disabled] {
   color: #ccc;
 }
 
+#topnav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  font-weight: 300 !important;
+  /*box-shadow: 0 1px 3px #eee;*/
+  /*border-bottom: 1px solid #eee;*/
+  background: -webkit-linear-gradient(top, rgb(240, 240, 240), rgb(255, 255, 255));
+}
+#topnav polymer-ui-toolbar {
+  font: inherit !important;
+  /*height: 50px !important;*/
+  border: none !important;
+  margin: 0 20px;
+}
+#topnav .brand {
+  font-size: 25px;
+  min-width: 135px;
+}
+#topnav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#topnav a:hover {
+  text-decoration: none;
+}
+#topnav li.icon a,
+#topnav a.brand {
+  color: inherit;
+  padding: 10px 0;
+  vertical-align: middle;
+  transition: border-bottom 400ms ease-in-out;
+  border-bottom: 2px solid transparent;
+}
+#topnav li.icon a {
+  margin: 0 20px;
+}
+#topnav li.icon i {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+#topnav li.icon a:hover {
+  border-bottom: 2px solid black;
+}
+#topnav .sharelinks {
+  margin-right: 9%;
+}
+#topnav .sharelinks i {
+  font-size: 1.7em;
+  margin-right: 7px;
+  vertical-align: middle;
+}
+#topnav .sharelinks a {
+  margin-left: 10px;
+  display: inline-block;
+  width: 22px;
+  transition: width 300ms ease-in-out;
+  overflow: hidden;
+  white-space: nowrap;
+}
+#topnav .sharelinks a:hover {
+  width: 145px;
+}
+.icon-twitter {
+  color: #00aced;
+}
+.icon-google-plus,
+.icon-google-plus-sign {
+  color: #dd4b39;
+}
+
+
 docs-menu {
   margin-left: -10px !important;
   position: fixed;
-  border-right: 1px solid #aaa;
+  border-right: 1px solid #eee;
   height: 90%;
-  max-width: 245px;
+  max-width: 250px;
 }
 polymer-ui-submenu-item polymer-ui-submenu-item {
   color: rgb(0, 136, 204);
@@ -128,21 +198,27 @@ polymer-ui-submenu-item polymer-ui-submenu-item {
 polymer-ui-menu-item:hover {
   background-color: #eee;
 }
+polymer-ui-menu-item a {
+  width: 100%;
+  display: inline-block;
+}
 polymer-ui-menu-item a:hover {
   text-decoration: none;
 }
 /*polymer-ui-menu-item.polymer-selected {
   background-color: #eee;
 }*/
+
 polymer-ui-submenu-item {
   /* TODO: rendering issue with native shadow dom and using :first-letter.
            Don't really want the entire nav to be FontAwesome. */
   font-family: FontAwesome;
+  padding: 0 10px 0 0;
 }
 
 #content-container {
-  position: relative;
-  margin-left: 22%;
+  /*position: relative;*/
+  margin-left: 26%;
 }
 .edit-on-github {
   /*position: absolute;
@@ -208,12 +284,6 @@ polymer-ui-submenu-item {
   height: 25px;
   width: auto;
   margin: 0 2px;
-}
-.sharelinks {
-  margin-left: 10px !important;
-}
-.sharelinks li {
-  padding: 10px 10px 0 0;
 }
 
 /* Home */
@@ -382,11 +452,11 @@ polymer-ui-submenu-item {
 }
 
 
-@media (min-width: 980px) {
+/*@media (min-width: 980px) {
   body {
     padding-top: 60px;
   }
-}
+}*/
 @media only screen and (max-width: 700px) {
   /*h1 {
     font-size: 6.4vw;
@@ -400,6 +470,22 @@ polymer-ui-submenu-item {
   h4 {
     font-size: 4.1vw;
   }*/
+  body {
+    padding: 0 0 70px 0;
+  }
+  #topnav {
+    position: initial !important;
+  }
+  #topnav li.icon a {
+    margin: 0 20px;
+    display: inline-block;
+    width: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  #topnav polymer-ui-toolbar {
+    background: -webkit-linear-gradient(top, rgb(240, 240, 240), rgb(255, 255, 255));
+  }
   docs-menu {
     position: initial;
     border: none;
@@ -407,6 +493,7 @@ polymer-ui-submenu-item {
   }
   #content-container {
     margin-left: initial;
+    padding: 0 5px;
   }
   #video {
     width: initial;
