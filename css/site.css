@@ -485,6 +485,9 @@ polymer-ui-submenu-item {
   }
   #topnav polymer-ui-toolbar {
     background: -webkit-linear-gradient(top, rgb(240, 240, 240), rgb(255, 255, 255));
+    background: -moz-linear-gradient(top, rgb(240, 240, 240), rgb(255, 255, 255));
+    background: -ms-linear-gradient(top, rgb(240, 240, 240), rgb(255, 255, 255));
+    background: linear-gradient(top, rgb(240, 240, 240), rgb(255, 255, 255));
   }
   docs-menu {
     position: initial;
