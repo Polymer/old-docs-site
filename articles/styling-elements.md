@@ -80,7 +80,7 @@ The [`@host` at-rule](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/sha
 The only selectors that work in `@host` are those targeting the host element itself,
 in this case, `<x-foo>`. In the context of `@host`, you can use the [`:scope`](http://www.w3.org/TR/selectors4/#scope-pseudo) pseudo-class, `*`, or the type selector (`x-foo`)
 to refer to the element. They have slightly different meanings, but for all intents
-and purposes, all three are equivalent.
+and purposes, all three are equivalent. When in doubt, use `:scope` to refer to the custom element itself.
 
 #### Reacting to user states
 
