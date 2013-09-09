@@ -70,12 +70,12 @@ See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v
 
 #### General
 
-"MDV" has been broken up into several new repositories to sepearate out the prollyfills
+"MDV" has been broken up into several new repositories to sepearate out the polyfills
 from the {{site.project_title}} pieces. New repos:
 
 - [polymer-expressions](https://github.com/Polymer/polymer-expressions) - {{site.project_title}}'s template binding syntax.
-- [NodeBind](https://github.com/Polymer/NodeBind) - prollyfill for `Node.bind()`
-- [TemplateBinding](https://github.com/Polymer/TemplateBinding) - prollyfill for Template Bindings.
+- [NodeBind](https://github.com/Polymer/NodeBind) - polyfill for `Node.bind()`
+- [TemplateBinding](https://github.com/Polymer/TemplateBinding) - polyfill for Template Bindings.
 - [observe-js](http://github.com/Polymer/observe-js) - library for observing Arrays, Objects, and PathValues
 
 **Changes**
