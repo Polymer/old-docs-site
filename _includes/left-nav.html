@@ -41,6 +41,10 @@
   Polymer('docs-menu', {
     applyAuthorStyles: true,
     created: function() {
+      // TODO: workaround for Shadow DOM polyfill
+      // https://github.com/Polymer/ShadowDOM/issues/246
+      this.offsetHeight;
+
       if (location.pathname.match(/^\/articles\//)) {
         this.$.menu.selected = 0;
         // brittle if articles changes position in nav.
@@ -48,7 +52,8 @@
         return;
       }
 
-      //this.asyncMethod(function() { // For polyfill
+//this.asyncMethod(function() { // For polyfill
+
       var link = this.shadowRoot.querySelector('a[href="' + location.pathname + '"]');
       if (link) {
         var item = link.parentElement;
@@ -68,7 +73,7 @@
       } else {
         this.$.menu.selected = 0;
       }
-      //});
+//});
 
     }
   });
