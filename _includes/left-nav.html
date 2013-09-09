@@ -48,6 +48,7 @@
         return;
       }
 
+      //this.asyncMethod(function() { // For polyfill
       var link = this.shadowRoot.querySelector('a[href="' + location.pathname + '"]');
       if (link) {
         var item = link.parentElement;
@@ -67,6 +68,8 @@
       } else {
         this.$.menu.selected = 0;
       }
+      //});
+
     }
   });
 </script>
