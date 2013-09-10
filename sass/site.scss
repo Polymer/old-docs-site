@@ -1,0 +1,528 @@
+@import "base";
+//@import "compass/css3/images";
+@import "compass/css3/transition";
+@import "compass/css3/transform";
+
+@import url(//fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,800|Source+Code+Pro);
+
+/*h1 {
+  font-size: 3.4vw;
+}
+h2 {
+  font-size: 2.8vw;
+}
+h3 {
+  font-size: 2.1vw;
+}
+h4 {
+  font-size: 1.5vw;
+}*/
+
+h2:target, h3:target, h4:target {
+  padding-top: 50px;
+}
+body {
+  font-family: "Open Sans",Helvetica,Arial,sans-serif;
+  padding-bottom: 40px;
+  padding-top: 70px;
+
+  /*opacity: 1 !important;
+  transition: none;*/
+}
+code, pre {
+  font-family: "Source Code Pro",Monaco,Menlo,Consolas,"Courier New",monospace;
+}
+/* Help catch template errors. */
+.error {
+  border: 3px solid red;
+  background-color: rgba(255,0,0,0.3);
+  padding: 5px;
+}
+.brand {
+  @include user-select(none);
+}
+iframe[seamless] {
+  border: none;
+}
+figcaption {
+  text-align: center;
+  font-style: italic;
+  padding: 10px;
+}
+footer {
+  font-size: smaller;
+
+  div:first-of-type {
+    float: left;
+  }
+}
+
+// .nav li.icon i {
+//   margin-right: 5px;
+// }
+
+/* Bootstrap overrides ------------------------------------------------------ */
+.lead {
+  margin-bottom: 30px;
+}
+.brand {
+  background: url(/images/icons/loading_icon.svg) no-repeat 0 50%;
+  background-size: 30px;
+  padding-left: 35px !important;
+}
+.alert.alert-error {
+  clear: both;
+}
+// .navbar-inner {
+//   @include background(linear-gradient(top, #ffffff, #ccc));
+//   border-color: #bbb;
+// }
+// .nav-header a {
+//   color: #999;
+// }
+.page-header a {
+  color: inherit;
+}
+// .sidebar-nav .sidebyside span {
+//   margin: 0 5px;
+// }
+// .sidebar-nav .sidebyside a {
+//   display: inline-block !important;
+// }
+/* -------------------------------------------------------------------------- */
+
+.centered {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+/* Remove empty p generated from markdown conversion. */
+p:empty {
+  display: none;
+}
+a[disabled] {
+  pointer-events: none;
+  color: #ccc;
+}
+
+#topnav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  font-weight: 300 !important;
+  /*box-shadow: 0 1px 3px #eee;*/
+  /*border-bottom: 1px solid #eee;*/
+  @include background(linear-gradient(top, rgb(240, 240, 240), rgb(255, 255, 255)));
+
+  polymer-ui-toolbar {
+    font: inherit !important;
+    /*height: 50px !important;*/
+    border: none !important;
+    margin: 0 20px;
+  }
+
+  .brand {
+    font-size: 25px;
+    min-width: 135px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  a:hover {
+    text-decoration: none;
+  }
+
+  li.icon a,
+  a.brand {
+    color: inherit;
+    padding: 10px 0;
+    vertical-align: middle;
+    @include transition(border-bottom 400ms ease-in-out);
+    border-bottom: 2px solid transparent;
+  }
+  li.icon {
+    a {
+      margin: 0 20px;
+
+      &:hover {
+        border-bottom: 2px solid black;
+      }
+    }
+    i {
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+  }
+
+  .sharelinks {
+    margin-right: 9%;
+
+    i {
+      font-size: 1.7em;
+      margin-right: 7px;
+      vertical-align: middle;
+    }
+    a {
+      margin-left: 10px;
+      display: inline-block;
+      width: 22px;
+      @include transition(width 300ms ease-in-out);
+      overflow: hidden;
+      white-space: nowrap;
+
+      &:hover {
+        width: 145px;
+      }
+    }
+  }
+}
+
+.icon-twitter {
+  color: #00aced;
+}
+.icon-google-plus,
+.icon-google-plus-sign {
+  color: #dd4b39;
+}
+
+
+docs-menu {
+  margin-left: -10px !important;
+  position: fixed;
+  @include transform(translateZ(0));
+  border-right: 1px solid #eee;
+  height: 90%;
+  max-width: 250px;
+}
+polymer-ui-submenu-item {
+  // TODO: rendering issue with native shadow dom and using :first-letter.
+  //          Don't really want the entire nav to be FontAwesome.
+  font-family: FontAwesome;
+  padding: 0 10px 0 0;
+
+  polymer-ui-submenu-item {
+    color: rgb(0, 136, 204);
+  }
+}
+polymer-ui-menu-item {
+  &:hover {
+    background-color: #eee;
+  }
+
+  // &.polymer-selected {
+  //   background-color: #eee;
+  // }
+
+  a {
+    width: 100%;
+    display: inline-block;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+#content-container {
+  /*position: relative;*/
+  margin-left: 26%;
+}
+.edit-on-github {
+  /*position: absolute;
+  top: 0;
+  right: 0;*/
+  float: right;
+  font-size: smaller;
+}
+
+.permalink {
+  display: none;
+  margin-left: 5px;
+}
+.has-permalink:hover .permalink {
+  display: initial; 
+}
+.no-permalink .permalink {
+  display: none !important;
+}
+/* Architecture stack */
+.core {
+  color: rgb(255, 209, 77);
+}
+.core-bg {
+  background-color: rgba(255, 209, 77, 0.5);
+}
+.foundation {
+  color: rgb(205, 55, 45);
+}
+.foundation-bg {
+  background-color: rgba(244, 74, 63, 0.3);
+}
+.elements {
+  color: rgb(13, 168, 97);
+}
+.elements-bg {
+  background-color: rgba(13, 168, 97, 0.3);
+}
+.applications {
+  color: rgb(35, 100, 215);
+}
+.applications-bg {
+  background-color: rgba(67, 135, 253, 0.3);
+}
+
+#content {
+  min-height: 400px;
+
+  img {
+    border-radius: 7px;
+  }
+}
+
+#logo-row {
+  width: 110px;
+  text-align: right;
+  @include filter(grayscale(0.8));
+  float: right;
+
+  img {
+    height: 25px;
+    width: auto;
+    margin: 0 2px;
+  }
+}
+
+/* Home */
+#dialog {
+  top: 100px;
+  left: 50%;
+  width: 512px;
+  margin-left: -256px;
+  z-index: 1500 !important;
+
+  &::x-backdrop {
+    background: rgba(0,0,0,0.4) !important;
+  }
+}
+
+.dialog {
+  box-sizing: border-box;
+  overflow: hidden;
+  background: white;
+  padding: 30px 42px;
+  outline: 1px solid rgba(0,0,0,0.2);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+
+  header,
+  div {
+    @include display-flex();
+    @include align-items(center);
+    margin-top: 5px;
+
+    > :last-child {
+      @include flex(1);
+    }
+  }
+
+  div {
+    label {
+      margin-bottom: 0;
+      margin-right: 10px;
+      width: 160px;
+      font-weight: bold;
+    }
+    pre {
+      margin: 0;
+    }
+  }
+
+  header {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+
+    h3 {
+      margin: 0;
+      line-height: 1;
+    }
+  }
+
+  button {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    padding: 0 5px 3px 5px;
+  }
+
+  footer {
+    margin-top: 25px;
+  }
+}
+
+.download {
+  margin: 30px 0;
+}
+#video {
+  width: 560px;
+  height: 315px;
+}
+
+#what-is {
+  list-style: none;
+  margin-left: 0;
+  
+  li {
+    margin-bottom: 25px;
+  }
+}
+
+#architecture-diagram {
+  float: right;
+  margin: 0 20px;
+
+  iframe {
+    /*height: 435px;
+    width: 100%;*/
+    height: 200px;
+    width: 240px;
+    border: none;
+  }
+}
+
+// Articles
+
+.forversion {
+  float: right;
+  color: #ccc;
+  font-style: italic;
+}
+.article .byline {
+  font-size: smaller;
+  color: #ccc;
+}
+
+.author {
+  margin-bottom: 20px;
+
+  > p {
+    display: inline-block;
+    margin: 0;
+
+    &:first-of-type {
+      vertical-align: top;
+    }
+  }
+
+  img {
+    margin-right: 5px;
+    height: 40px;
+    width: 40px;
+  }
+
+}
+
+/* Elements */
+.element-list {
+  > [data-element-file] {
+    padding-bottom: 20px;
+  }
+
+  h4.name {
+    display: inline-block;
+  }
+  h3 {
+    font-family: "Source Code Pro",Monaco,Menlo,Consolas,"Courier New",monospace;
+  }
+  .links {
+    margin-left: 17px;
+    margin-bottom: 20px;
+    display: block;
+
+    a {
+      margin-right: 10px;
+    }
+  }
+
+  .nodocs {
+    margin-left: 17px;
+    font-style: italic;
+
+    &:after {
+      content: 'No documentation available.';
+    }
+  }
+
+  iframe {
+    border: none;
+    width: 100%;
+  }
+
+}
+
+#repobuildlist {
+  list-style: none;
+}
+
+
+/*@media (min-width: 980px) {
+  body {
+    padding-top: 60px;
+  }
+}*/
+@media only screen and (max-width: 700px) {
+  /*h1 {
+    font-size: 6.4vw;
+  }
+  h2 {
+    font-size: 5.4vw;
+  }
+  h3 {
+    font-size: 4.7vw;
+  }
+  h4 {
+    font-size: 4.1vw;
+  }*/
+  body {
+    padding: 0 0 70px 0;
+  }
+  #topnav {
+    position: initial !important;
+  
+    li.icon a {
+      margin: 0 20px;
+      display: inline-block;
+      width: 20px;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    polymer-ui-toolbar {
+      @include background(linear-gradient(top, rgb(240, 240, 240), rgb(255, 255, 255)));
+    }
+  }
+
+  docs-menu {
+    position: initial;
+    border: none;
+    max-width: initial;
+  }
+  #content-container {
+    margin-left: initial;
+    padding: 0 5px;
+  }
+  #video {
+    width: initial;
+    height: initial;
+  }
+  #architecture-diagram {
+    float: initial;
+  }
+}
