@@ -20,6 +20,9 @@ body {
   font-family: "Open Sans",Helvetica,Arial,sans-serif;
   padding-bottom: 40px;
   padding-top: 70px;
+
+  /*opacity: 1 !important;
+  transition: none;*/
 }
 code, pre {
   font-family: "Source Code Pro",Monaco,Menlo,Consolas,"Courier New",monospace;
