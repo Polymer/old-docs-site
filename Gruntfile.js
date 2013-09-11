@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 
     watch: { // for development run 'grunt watch'
       jekyll: {
-        files: ['./*.html'],
+        files: ['./*.html', '!**/node_modules/**', '!**/polymer-all/**'],
         tasks: ['jekyll:dev']
       }
     },

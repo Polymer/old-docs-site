@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Polymer core
-layer: core
 
 load_polymer: true
 imports:
@@ -350,10 +349,6 @@ Some things to notice:
   * `inDetail`: A convenience form of `inEvent.detail`.
   * `inSender`: A reference to the node that declared the handler. This is often different from `inEvent.target` (the lowest node that received the event) and `inEvent.currentTarget` (the component processing the event), so  {{site.project_title}} provides it directly.
 
-## Advanced sugaring
-
-In addition to the above features, which are focused around making the core functionality of components simple and easy to use, {{site.project_title}} provides syntactical sugar that makes more advanced component features easy to create.
-
 ### Change watchers {#change-watchers}
 
 All properties on {{site.project_title}} elements can be watched for changes by implementing a <code><em>propertyName</em>Changed</code> handler. When the value of a watched property changes, the appropriate change handler is automatically invoked. 
@@ -450,10 +445,11 @@ In this example, when the user clicks on a `<polymer-cooler>` element, its
 using `this.super()`. The `praise` property (inherited from `<polymer-cool>`) is set
 to "coolest".
 
-## Additional utilities
+## Advanced utilities {#additional-utilities}
 
 - [`asyncMethod()`](#asyncmethod)
 - [`fire()` / `asyncFire()`](#fire)
+- [`unbindAll()` / `cancelUnbindAll()` / `asyncUnbindAll()`](#bindings)
 
 ### Dealing with asynchronous tasks {#asyncmethod}
 
@@ -523,3 +519,40 @@ Example:
 **Tip:** If your element is within another {{site.project_title}} element, you can
 use the special [`on-* handlers`](#declarative-event-mapping) to deal with the event: `<ouch-button on-ouch="myMethod"></ouch-button>`
 {: .alert .alert-success }
+
+### Life of an element's bindings {#bindings}
+
+**Note:** The section only applies to elements that are instantiated in JavaScript, not to those
+declared in markup.
+{: .alert .alert-info }
+
+If you instantiate an element (e.g. `document.createElement('x-foo')`) and do **not** add it to the DOM,
+{{site.project_title}} asynchronously removes its {%raw%}`{{}}`{%endraw%} bindings and `*Changed` methods.
+This helps prevent memory leaks, ensuring the element will be garbage collected. 
+
+If you want the element to "remain active" when it's not in the `document`,
+call `cancelUnbindAll()` right after you create or remove it. The [lifecycle methods](#lifecyclemethods)
+are a good place for this:
+
+    Polymer('my-element', {
+      created: function() {
+        // Ensure bindings remain active, even if we're never added to the DOM.
+        this.cancelUnbindAll();
+      },
+      leftDocument: function() {
+        // Also keep bindings active if we're added, but later removed.
+        this.cancelUnbindAll();
+      }
+    });
+
+{{site.project_title}} typically handles this management for you, but when you
+explicitly call `cancelUnbindAll()` (and the element is never added to/put back in the DOM),
+it becomes your responsibility to _eventually_ unbind the element using `unbindAll()/asyncUnbindAll()`:
+
+    var el = document.createElement('my-element');
+    // Need to unbind if el is:
+    //   1. never added to the DOM
+    //   2. put in the DOM, but later removed
+    el.unbindAll();
+
+Otherwise, your application will leak memory.
