@@ -26,9 +26,77 @@ body {
   padding-bottom: 40px;
   padding-top: 70px;
 
-  /*opacity: 1 !important;
-  transition: none;*/
+  -webkit-transition: opacity 100ms ease-in-out !important;
+  transition: opacity 100ms ease-in-out !important;
+
+  // &:not(.resolved) {
+  //   overflow: hidden;
+
+  //   &::before {
+  //     color: #aaa;
+  //     font-size: 24px;
+  //     font-weight: 600px;
+  //     content: 'loading...';
+  //     position: absolute;
+  //     left: 0;
+  //     top: 0;
+  //     width: 100%;
+  //     height: 100%;
+  //     z-index: 1000;
+  //     box-sizing: border-box;
+
+  //     @include display-flex;
+  //     @include justify-content(center);
+  //     @include align-items(center);
+
+  //     background: url(/images/icons/loading_icon.svg) no-repeat -webkit-calc(50% - 60px) 50%;
+  //     background-size: 30px;
+  //     background-color: white;
+  //     padding-left: 20px;
+  //   }
+  // }
 }
+
+// :unresolved {
+//   //@include display-flex;
+//   //@include justify-content(center);
+//   display: inline-block;
+//   background: rgba(255,255,255,0.5);
+//   border: 1px dashed #ccc;
+//   border-radius: 5px;
+// }
+// :unresolved:after {
+//   padding: 15px;
+//   content: 'loading...';
+//   color: #ccc;
+// }
+
+
+// #topnav > polymer-ui-toolbar {
+//   // @include display-flex;
+//   // @include justify-content(center);
+//   overflow: hidden;
+//   max-height: 60px;
+
+//   &:after {
+//     padding: 15px;
+//     content: 'loading...';
+//     color: #ccc;
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//     width: 100%;
+//     box-sizing: border-box;
+//     background-color: white;
+//     border: 1px dashed #ccc;
+//     border-radius: 5px;
+//     @include display-flex;
+//     @include justify-content(center);
+//     height: 100%;
+//   }
+// }
+
+
 code, pre {
   font-family: "Source Code Pro",Monaco,Menlo,Consolas,"Courier New",monospace;
 }
@@ -206,7 +274,7 @@ docs-menu {
 polymer-ui-submenu-item {
   // TODO: rendering issue with native shadow dom and using :first-letter.
   //          Don't really want the entire nav to be FontAwesome.
-  font-family: FontAwesome;
+  font-family: "FontAwesome";
   padding: 0 10px 0 0;
 
   polymer-ui-submenu-item {
@@ -319,12 +387,12 @@ polymer-ui-menu-item {
   overflow: hidden;
   background: white;
   padding: 30px 42px;
-  outline: 1px solid rgba(0,0,0,0.2);
+  //outline: 1px solid rgba(0,0,0,0.2);
   box-shadow: 0 4px 20px rgba(0,0,0,0.5);
 
   header,
   div {
-    @include display-flex();
+    @include display-flex;
     @include align-items(center);
     margin-top: 5px;
 

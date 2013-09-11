@@ -98,3 +98,4 @@ skip_files:
 - ^(.*/)?node_modules/.*
 - ^(.*/)?third_party/closure/.*
 - ^polymer-all/.*
+- ^scripts/.*
