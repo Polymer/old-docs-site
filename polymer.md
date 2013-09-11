@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Polymer core
+layer: core
 
 load_polymer: true
 imports:
@@ -8,6 +9,8 @@ imports:
 ---
 
 <p><buildbot-list project="polymer"></buildbot-list></p>
+
+{% include toc.html %}
 
 The {{site.project_title}} _core_ provides a thin layer of code that expresses
 its opinion and provides the extra sugaring that all {{site.project_title}} elements use. It is provided in the file `polymer.js`.
@@ -448,8 +451,6 @@ using `this.super()`. The `praise` property (inherited from `<polymer-cool>`) is
 to "coolest".
 
 ## Additional utilities
-
-Source: [base.js](https://github.com/Polymer/polymer/blob/stable/src/base.js)
 
 - [`asyncMethod()`](#asyncmethod)
 - [`fire()` / `asyncFire()`](#fire)
