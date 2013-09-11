@@ -9,7 +9,7 @@ imports:
 
 feature:
   spec: None
-  status: <buildbot-list project="TemplateInstances"></buildbot-list>
+  status: <buildbot-list project="TemplateBinding"></buildbot-list>
   code: https://github.com/polymer/TemplateBinding
   summary: Extends the capabilities of the [HTML Template Element](http://www.w3.org/TR/html-templates/) by enabling it to create, manage, and remove instances of content bound to data defined in JavaScript.
 links:
