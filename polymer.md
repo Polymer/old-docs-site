@@ -55,6 +55,29 @@ which calls `Polymer('tag-name')`:
       </template>
     </polymer-element>
 
+#### Imperative registration {#imperativeregister}
+
+Elements can be registered in pure JavaScript like so:
+
+    <script>
+      Polymer('name-tag', {nameColor: 'red'});
+      var el = document.createElement('div');
+      el.innerHTML = '\
+        <polymer-element name="name-tag" attributes="name">\
+          <template>\
+            Hello <span style="color:{{nameColor}}">{{name}}</span>\
+          </template>\
+        </polymer-element>';
+      // The custom elements polyfill can't see the <polymer-element>
+      // unless you put it in the DOM.
+      document.body.appendChild(el);    
+    </script>
+
+    <name-tag name="John"></name-tag>
+
+Note that you need to add the `<polymer-element>` to the document so that the 
+Custom Elements polyfill picks it up.
+
 ### Adding public properties and methods {#propertiesmethods}
 
 If you wish to define methods/properties on your element (optional), pass an object
@@ -87,9 +110,7 @@ techniques like anonymous self-calling functions:
 
           // Ran for every instance of the element that's created.
           {{site.project_title}}('tag-name', {
-            get foo() {
-              return foo_;
-            }
+            get foo() { return foo_; }
           });
         })();
       </script>
