@@ -168,6 +168,12 @@ property changing, but separate out the "set value" vs. the "validated value":
 
     <x-foo color="orange"></x-foo>
 
+### Can an element `extend` from more than one element or have multiple inheritance? {#multipleextends}
+
+For example `<polymer-element name="my-element" extends="foo bar">`. 
+
+No. But {{site.project_title}} may provide a syntax for mixins in the future.
+
 ## Web Components
 
 ### How do I package a bunch of custom elements together? {#packaging}
@@ -257,10 +263,6 @@ a default style of `display: block` using an `@host` rule.
     });
     </script>
 
-### Can an element `extend` from more than one element or have multiple inheritance (e.g. `<polymer-element name="my-element" extends="foo bar">`? {#multipleextends}
-
-No. But {{site.project_title}} may provide a syntax for mixins in the future.
-
 ### How do I access the DOM in a `<content>`? {#accessContentDOM}
 
 For a `<content>`, you can iterate through `content.getDistributedNodes()`
@@ -277,7 +279,6 @@ this, there are two options:
 
 1. Don't use the `constructor` attribute. Use `document.createElement()` instead.
 2. Use `document.register()` and wrap the constructor it returns in a namespace.
-
 
 ### Does Shadow DOM play nicely with assistive technologies and screen readers? {#accessibility}
 
