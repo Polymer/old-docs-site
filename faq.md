@@ -109,15 +109,21 @@ The elements `<option>` and `<tr>` have special meaning when they're children of
 `<select>` and `<table>`, respectively. For these special types elements, use the
 `template` attribute to repeat the element:
 
-    <template bind>
-      <select>
-        {%raw%}<option template repeat="{{options}}">{{}}</option>{%endraw%}
-      </select>
-    </template>
+    <polymer-element name="my-select">
+      <template>
+        <select>
+          {%raw%}<option template repeat="{{options}}">{{}}</option>{%endraw%}
+        </select>
+      </template>
+      <script>
+        {{site.project_title}}('my-select', {
+          created: function() { this.options = []; }
+        });
+      </script>
+    </polymer-element>
     <script>
-      var t = document.querySelector('template').model = {
-        options: ['One', 'Two', 'Three']
-      };
+      var select = document.createElement('my-select');
+      select.options = ['One', 'Two', 'Three'];
     </script>
 
 #### How do I manage JavaScript dependencies to prevent 1000 copies of library X? {#loadlibs}
@@ -134,6 +140,31 @@ Feature detection, or an agreed upon common location for a 'jquery.html' file in
 
 {{site.project_title}} uses Chromium's continuous build infrastructure to test
 the entire system and each polyfill, individually. See our [build status page](/build/).
+
+#### How can I validate property values? {#validateinput}
+
+One way to validate input is to use a `*Changed` handler on to observer the
+property changing, but separate out the "set value" vs. the "validated value":
+
+    <polymer-element name="x-foo" attributes="color">
+      <template>
+        Do you like the color <span style="color:{%raw%}{{validColor}}{%endraw%}">{{validColor}}</span>?
+      </template>
+      <script>
+        {{site.project_title}}('x-foo', {
+          color: 'red',
+          colorChanged: function(inOld) {
+            if (this.color.match(/red|orange|yellow/)) {
+              this.validColor = this.color;
+            } else {
+              alert("The color wasn't a hot!");
+            }
+          }
+        });
+      </script>
+    </polymer-element>
+
+    <x-foo color="orange"></x-foo>
 
 ## Web Components
 
