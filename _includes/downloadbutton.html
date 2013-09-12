@@ -1,6 +1,3 @@
-
-<link rel="import" href="/polymer-all/polymer-ui-elements/polymer-ui-overlay/polymer-ui-overlay.html">
-
 <p class="download centered"><a href="javascript:" class="btn btn-success btn-large" alt="Download the latest {{site.project_title}}" title="Download the latest {{site.project_title}}"><i class="icon-white icon-download"></i> Download Polymer</a></p>
 
 <polymer-ui-overlay id="dialog" backdrop>
@@ -23,14 +20,3 @@
     </footer>
   </div>
 </polymer-ui-overlay>
-
-<script>
-document.querySelector('.download a.btn').addEventListener('tap', function(e) {
-  document.querySelector('#dialog').toggle();
-  return false;
-});
-
-document.querySelector('#download_polymer_link').addEventListener('click', function(e) {
-  _gaq.push(['_trackEvent', 'SDK', 'Download', '{{site.latest_version}}']);
-});
-</script>

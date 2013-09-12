@@ -41,30 +41,8 @@ try {
   // noop
 }
 </script>
-<script>
-// Force ShadowDOM polyfill for Chrome 28.
-if (!('createShadowRoot' in document.createElement('div'))) {
-  Platform = {flags: {shadow: 'polyfill'}};
-}
-</script>
-
-{%comment%}
-{% if page.load_polymer %}
-<!-- <script src="/polymer.min.js?{{'now' | date: '%Y%m%d'}}"></script> -->
-<!-- <script src="/polymer-all/polymer/polymer.js"></script> -->
-{% endif %}
-{%endcomment%}
 
 {% if site.load_platform %}
   <script src="/polymer.min.js?{{'now' | date: '%Y%m%d'}}"></script>
-  <link rel="import" href="/polymer-all/polymer-ui-elements/polymer-ui-menu/polymer-ui-menu.html">
-  <link rel="import" href="/polymer-all/polymer-ui-elements/polymer-ui-menu-item/polymer-ui-menu-item.html">
-  <link rel="import" href="/polymer-all/polymer-ui-elements/polymer-ui-submenu-item/polymer-ui-submenu-item.html">
-  <link rel="import" href="/polymer-all/polymer-ui-elements/polymer-ui-nav-arrow/polymer-ui-nav-arrow.html">
-  <link rel="import" href="/polymer-all/polymer-ui-elements/polymer-ui-toolbar/polymer-ui-toolbar.html">
-  <link rel="import" href="/polymer-all/polymer-elements/polymer-flex-layout/polymer-flex-layout.html">
-
-  {% for item in page.imports %}
-    <link rel="import" src="{{item}}">
-  {% endfor %}
+  <link rel="import" src="/elements/common_elements.vulcanized.html">
 {% endif %}

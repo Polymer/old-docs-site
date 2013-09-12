@@ -1,8 +1,6 @@
 ---
 layout: default
 title: Polymer element reference
-
-#load_polymer: true
 ---
 
 **Note:** These elements and their documentation are very early.

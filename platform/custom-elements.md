@@ -3,10 +3,6 @@ layout: default
 title: Custom Elements
 subtitle: polyfill
 
-load_polymer: true
-imports:
-- /elements/buildbot-list.html
-
 feature:
   spec: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html
   status: <buildbot-list project="CustomElements"></buildbot-list>

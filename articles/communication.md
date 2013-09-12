@@ -3,8 +3,6 @@ layout: default
 title: "Communication & Message Passing"
 subtitle: Custom Elements
 
-load_polymer: true
-
 #draft: true
 
 article:

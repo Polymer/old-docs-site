@@ -2,12 +2,7 @@
 layout: default
 title: Build status
 
-load_polymer: true
 add_permalinks: false
-
-imports:
-- /elements/buildbot-list.html
-
 ---
 
 This is a snapshot of each repository. See {{site.project_title}}'s [build waterfall](http://build.chromium.org/p/client.polymer/) for everything.

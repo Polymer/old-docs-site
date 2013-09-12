@@ -3,3 +3,4 @@ _site
 .DS_Store
 *.pyc
 .sass-cache
+*.vulcanized.html

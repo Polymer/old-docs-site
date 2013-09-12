@@ -1,8 +1,6 @@
 ---
 layout: default
 #title: Welcome
-
-load_polymer: true
 ---
 
 <style>

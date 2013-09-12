@@ -3,10 +3,6 @@ layout: default
 title: HTML Imports
 subtitle: polyfill
 
-load_polymer: true
-imports:
-- /elements/buildbot-list.html
-
 feature:
   spec: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/imports/index.html
   status: <buildbot-list project="HTMLImports"></buildbot-list>

@@ -3,10 +3,6 @@ layout: default
 title: Mutation Observers
 subtitle: polyfill
 
-load_polymer: true
-imports:
-- /elements/buildbot-list.html
-
 feature:
   spec: https://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#mutation-observers
   status: <buildbot-list project="MutationObservers"></buildbot-list>

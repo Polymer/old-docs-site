@@ -1,10 +1,6 @@
 ---
 layout: default
 title: Polymer core
-
-load_polymer: true
-imports:
-- /elements/buildbot-list.html
 ---
 
 <p><buildbot-list project="polymer"></buildbot-list></p>

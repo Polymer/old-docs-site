@@ -3,10 +3,6 @@ layout: default
 title: Template Binding
 subtitle: <a href="http://prollyfill.org/">prollyfill</a>
 
-load_polymer: true
-imports:
-- /elements/buildbot-list.html
-
 feature:
   spec: None
   status: <buildbot-list project="TemplateBinding"></buildbot-list>

@@ -2,8 +2,6 @@
 layout: default
 title: Getting started
 
-load_polymer: true
-
 imports:
 #- toolkit-ui/elements/g-panels.html
 #- toolkit-ui/elements/g-tabs.html

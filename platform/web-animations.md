@@ -3,10 +3,6 @@ layout: default
 title: Web Animations
 subtitle: polyfill
 
-load_polymer: true
-imports:
-- /elements/buildbot-list.html
-
 feature:
   spec: http://dev.w3.org/fxtf/web-animations/
   status: <buildbot-list project="web-animations-js" inactive></buildbot-list>

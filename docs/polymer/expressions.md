@@ -1,10 +1,6 @@
 ---
 layout: default
 title: Expressions
-
-load_polymer: true
-imports:
-- /elements/buildbot-list.html
 ---
 
 <p><buildbot-list project="polymer-expressions"></buildbot-list></p>

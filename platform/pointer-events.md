@@ -3,10 +3,6 @@ layout: default
 title: Pointer Events
 subtitle: polyfill
 
-load_polymer: true
-imports:
-- /elements/buildbot-list.html
-
 feature:
   spec: https://dvcs.w3.org/hg/pointerevents/raw-file/tip/pointerEvents.html
   status: <buildbot-list project="PointerEvents"></buildbot-list>

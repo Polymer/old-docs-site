@@ -1,8 +1,6 @@
 ---
 layout: default
 title: Getting the code
-
-load_polymer: true
 ---
 
 You can grab {{site.project_title}} a few different ways:

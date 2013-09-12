@@ -2,8 +2,6 @@
 layout: default
 title: A Guide to Styling Elements
 
-load_polymer: true
-
 article:
   author: ebidel
   published: 2013-07-11
