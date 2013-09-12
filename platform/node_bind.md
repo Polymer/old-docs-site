@@ -44,10 +44,14 @@ When the value in `path.to.value` changes, `Node.bind()` keeps `.textContent` up
 ## Binding types
 
 The meaning of the binding name is interpreted by the node on which `bind()` is called.
+Some elements have special properties which can be two-way data bound:
 
-- `Text` node only handles bindings on the `textContent` property. 
-- `HTMLInputElement` handles bindings on the `value` and `checked` properties as two-way.
-- All other elements handle bindings to attributes. 
+- `Text` node - only handles bindings on its `textContent` property. 
+- `HTMLInputElement` - handles bindings on its `value` and `checked` properties.
+- `HTMLTextareaElement` - handles bindings on its `value` property.
+- `HTMLSelectElement` - handles bindings on its `selectedIndex` property.
+
+**All other elements handle bindings to attributes**.
 
 ### Text nodes
 
@@ -61,16 +65,84 @@ value `someObj.path.to.value`.
     <th>Case</th><th>Result</th>
   </tr>
   <tr>
-    <td>Initially</td>
-    <td><code>String(someObj.path.to.value)</code></td>
-  </tr>
-  <tr>
-    <td>The value changes</td>
+    <td>Bound value is interpreted as</td>
     <td><code>String(someObj.path.to.value)</code></td>
   </tr>
   <tr>
     <td>The path is <code>null</code>, <code>undefined</code>, or unreachable</td>
     <td><code>""</code> (the empty string)</td>
+  </tr>
+</table>
+
+### &lt;input> element {#inputelements}
+
+The `<input>` element has two special properties, `value` and `checked` for two-way binding.
+
+#### value
+
+    myValueInput.bind('value', someObj, 'path.to.value');
+
+Instructs the `input` to ensure its `value` property is equal to `String(someObj.path.to.value)`. Upon binding, if the path is reachable, `value` is set to the path value. If the path is unreachable but can be made reachable by setting a single property on the final object, the property is set to `value`.
+
+#### checked
+
+    myCheckboxOrRadioInput.bind('checked', someObj, 'path.to.value');
+
+Instructs the `input` to ensure its `checked` property is equal to `Boolean(someObje.path.to.value)`.
+
+<table class="table">
+  <tr>
+    <th>Case</th><th>Result</th>
+  </tr>
+  <tr>
+    <td>Bound value is interpreted as</td>
+    <td><code>Boolean(someObje.path.to.value)</code></td>
+  </tr>
+  <tr>
+    <td>The path is <code>null</code>, <code>undefined</code>, or unreachable</td>
+    <td><code>false</code> for <code>&lt;input type="checked"></code> and <code>&lt;input type="radio"></code>.</td>
+  </tr>
+</table>
+
+### &lt;textarea> element {#textarea}
+
+The `<textarea>` element has a special property, `value` for two-way binding.
+
+#### value
+
+    textarea.bind('value', someObj, 'path.to.value');
+
+`HTMLTextAreaElement.value` mimics the behavior of `input.value` (see above).
+
+### &lt;select> element {#select}
+
+The `<select>` element has two special properties, `selectedIndex` and `value` for two-way binding.
+
+#### value
+
+    select.bind('value', someObj, 'path.to.value');
+
+Instructs the `HTMLSelectElement` to make its `value` property dependent on the
+value in `path.to.value`.
+
+#### selectedIndex
+
+    select.bind('selectedIndex', someObj, 'path.to.value');
+
+Instructs the `HTMLSelectElement` to make its `selectedIndex` property dependent on the
+value in `path.to.value`. Note, "`selectedIndex`" is case sensitive.
+
+<table class="table">
+  <tr>
+    <th>Case</th><th>Result</th>
+  </tr>
+  <tr>
+    <td>Bound value is interpreted as</td>
+    <td><code>Number(someObj.path.to.value)</code></td>
+  </tr>
+  <tr>
+    <td>The path is <code>null</code>, <code>undefined</code>, or unreachable</td>
+    <td><code>0</code></td>
   </tr>
 </table>
 
@@ -85,11 +157,7 @@ Instructs the element to make the value its `title` attribute dependent on the v
     <th>Case</th><th>Result</th>
   </tr>
   <tr>
-    <td>Initially</td>
-    <td><code>String(someObj.path.to.value)</code></td>
-  </tr>
-  <tr>
-    <td>The value changes</td>
+    <td>Bound value is interpreted as</td>
     <td><code>String(someObj.path.to.value)</code></td>
   </tr>
   <tr>
@@ -109,11 +177,7 @@ Instructs the element add/remove its `hidden` attribute based on the truthiness 
     <th>Case</th><th>Result</th>
   </tr>
   <tr>
-    <td>Initially</td>
-    <td><code>""</code> (the empty string) if <code>someObj.path.to.value</code> is reachable and truthy</td>
-  </tr>
-  <tr>
-    <td>The value changes</td>
+    <td>Bound value is interpreted as</td>
     <td><code>""</code> (the empty string) if <code>someObj.path.to.value</code> is reachable and truthy</td>
   </tr>
   <tr>
@@ -121,20 +185,6 @@ Instructs the element add/remove its `hidden` attribute based on the truthiness 
     <td>The attribute is removed from the element</td>
   </tr>
 </table>
-
-### Input element `value` and `checked` properties {#inputelements}
-
-#### value
-
-    myValueInput.bind('value', someObj, 'path.to.value');
-
-Instructs the `input` to ensure its `value` property is equal to `String(someObj.path.to.value)`. The **binding is two-way**. Upon binding, if the path is reachable, `value` is set to the path value. If the path is unreachable but can be made reachable by setting a single property on the final object, the property is set to `value`.
-
-#### checked
-
-    myCheckboxOrRadioInput.bind('checked', someObj, 'path.to.value');
-
-Instructs the `input` to ensure its `checked` property is equal to `Boolean(someObje.path.to.value)`. The binding is two-way. Upon binding, if the path reachable, `checked` is set to the path value. If the path is unreachable but can be made reachable by setting a single property on the final object, the property is set to `checked`.
 
 ## Custom element bindings
 
