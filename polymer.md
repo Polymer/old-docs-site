@@ -443,7 +443,7 @@ to "coolest".
 
 ## Advanced utilities {#additional-utilities}
 
-- [`asyncMethod()`](#asyncmethod)
+- [`async()`](#asyncmethod)
 - [`fire()` / `asyncFire()`](#fire)
 - [`unbindAll()` / `cancelUnbindAll()` / `asyncUnbindAll()`](#bindings)
 
@@ -456,11 +456,11 @@ changes creates an optimization that (a) prevents duplicated work and (b) reduce
 [Change watchers](#change-watchers) and situations that rely on data-bindings
 are examples that fit under this async behavior. For example, conditional templates may not immediately render after setting properties because changes to those renderings are saved up and performed all at once after you return from JavaScript.
 
-To do work after changes have been processed, {{site.project_title}} provides `asyncMethod()`.
+To do work after changes have been processed, {{site.project_title}} provides `async()`.
 It's similar to `window.setTimeout()`, but automatically binds `this` to the correct value:
 
-    // asyncMethod(inMethod, inArgs, inTimeout)
-    this.asyncMethod(function() {
+    // async(inMethod, inArgs, inTimeout)
+    this.async(function() {
       this.foo = 3;
     }, null, 1000);
 
@@ -469,7 +469,8 @@ It's similar to `window.setTimeout()`, but automatically binds `this` to the cor
     //  this.foo = 3;
     //}.bind(this), 1000);
 
-The second argument to `asyncMethod()`, `inArgs`, is an optional object or array of arguments to
+The first argument is a function or string name for the method to call asynchronously.
+The second argument, `inArgs`, is an optional object or array of arguments to
 pass to the callback.
 
 In the case of property changes that result in DOM modifications, follow this pattern:
@@ -478,7 +479,7 @@ In the case of property changes that result in DOM modifications, follow this pa
       propChanged: function() {
         // If "prop" changing results in our DOM changing, schedule an update after
         // the new microtask.
-        this.asyncMethod(this.updateValues);
+        this.async(this.updateValues);
       },
       updateValues: function() {...}
     });
