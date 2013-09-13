@@ -314,6 +314,17 @@ There's an ongoing discussion with accessibility experts on how best to integrat
 Shadow Roots have their own `activeElement`, which you can access internally as 
 `shadowRoot.activeElement`.
 
+### Why don't my element's properties/methods autocomplete in the DevTools? {#autocomplete}
+
+This is an artifact of the Shadow DOM polyfill. It creates wrappers around DOM elements
+and exposes only the standard DOM APIs (e.g. `querySelector`) on those wrappers.
+
+{{site.project_title}} sets up properties on these wrapper objects, not on the actual DOM object.
+Since the dev tools only knows about the actual DOM, your element properties won't be seen
+by the tools.
+
+Under native Shadow DOM this isn't an issue. Properties will auto complete in the console.
+
 ---
 
 *Special thanks go to GitHub user md_5 who generously donated the {{site.project_title}} organization name.*
