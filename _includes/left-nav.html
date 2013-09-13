@@ -50,18 +50,18 @@
       <polymer-ui-menu-item><a href="/runtime-config.html">Runtime configuration</a></polymer-ui-menu-item>
       <polymer-ui-menu-item><a href="/articles/">Articles</a></polymer-ui-menu-item>
     </polymer-ui-submenu-item>
-    <polymer-ui-submenu-item label="&#61742; Elements" class="elements icon">
+    <polymer-ui-submenu-item label="Elements" class="elements icon">
       <polymer-ui-menu-item><a href="/docs/elements/">Polymer</a></polymer-ui-menu-item>
       <polymer-ui-menu-item><a href="/docs/elements/other.html">Other</a></polymer-ui-menu-item>
     </polymer-ui-submenu-item>
-    <polymer-ui-submenu-item label="&#61635; Core" class="core icon">
+    <polymer-ui-submenu-item label="Core" class="core icon">
       <polymer-ui-menu-item><a href="/polymer.html">polymer.js</a></polymer-ui-menu-item>
-      <polymer-ui-submenu-item label="Data-binding &#61655;">
+      <polymer-ui-submenu-item label="Data-binding &#x25BE;">
         <polymer-ui-menu-item><a href="/docs/polymer/databinding.html">Introduction</a></polymer-ui-menu-item>
         <polymer-ui-menu-item><a href="/docs/polymer/expressions.html">Expressions</a></polymer-ui-menu-item>
       </polymer-ui-submenu-item>
     </polymer-ui-submenu-item>
-    <polymer-ui-submenu-item label="&#61573; Platform" class="foundation icon">
+    <polymer-ui-submenu-item label="Platform" class="foundation icon">
       <polymer-ui-menu-item><a href="/platform/custom-elements.html">Custom Elements</a></polymer-ui-menu-item>
       <polymer-ui-menu-item><a href="/platform/shadow-dom.html">Shadow DOM</a></polymer-ui-menu-item>
       <polymer-ui-menu-item><a href="/platform/html-imports.html">HTML Imports</a></polymer-ui-menu-item>
@@ -83,16 +83,19 @@
   Polymer('docs-menu', {
     applyAuthorStyles: true,
     created: function() {
-      // TODO: workaround for Shadow DOM polyfill
-      // https://github.com/Polymer/ShadowDOM/issues/246
-      this.offsetHeight;
-
       if (location.pathname.match(/^\/articles\//)) {
         this.$.menu.selected = 0;
         // brittle if articles changes position in nav.
         this.$.gettingstarted.selected = this.$.gettingstarted.items.length - 1;
         return;
       }
+
+      // Allow user-defined styles to override polymer-ui-submenu-item's.
+      this.$.menu.children.forEach(function(el, i) {
+        if (el.localName == 'polymer-ui-submenu-item' && el.classList.contains('icon')) {
+          el.shadowRoot.applyAuthorStyles = true;
+        }
+      });
 
       var link = this.shadowRoot.querySelector('a[href="' + location.pathname + '"]');
       if (link) {

@@ -271,17 +271,33 @@ docs-menu {
   height: 90%;
   max-width: 250px;
 }
+
 polymer-ui-submenu-item {
-  // TODO: rendering issue with native shadow dom and using :first-letter.
-  //          Don't really want the entire nav to be FontAwesome.
-  font-family: "FontAwesome";
   padding: 0 10px 0 0;
 
   polymer-ui-submenu-item {
     color: rgb(0, 136, 204);
   }
+
+  &.icon {
+    &::before {
+      font-family: "FontAwesome";
+    }
+  }
+  &.core::before {
+    content: "\f0c3";
+  }
+  &.foundation::before {
+    content: "\f085";
+  }
+  &.elements::before {
+    content: "\f12e";
+  }
 }
+
 polymer-ui-menu-item {
+  display: inline-block !important;
+
   &:hover {
     background-color: #eee;
   }
@@ -574,6 +590,10 @@ polymer-ui-menu-item {
     }
     polymer-ui-toolbar {
       @include background(linear-gradient(top, rgb(240, 240, 240), rgb(255, 255, 255)));
+      
+      > polymer-ui-toolbar {
+        margin: 0;
+      }
     }
   }
 
@@ -581,6 +601,10 @@ polymer-ui-menu-item {
     position: relative;
     border: none;
     max-width: initial;
+    margin-left: 10px !important;
+  }
+  polymer-ui-menu > polymer-ui-menu-item {
+    display: block !important;
   }
   #content-container {
     margin-left: initial;
