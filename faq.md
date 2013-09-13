@@ -84,13 +84,29 @@ polymer.dart is a Dart port of {{site.project_title}} created and maintained by 
 
 ### I see a bunch of XHRs making network requests. What gives? {#xhrrequests}
 
-One limitation of today's polyfills is that {{site.project_title}} aggressively uses XHR to shim HTML Imports. We're experimenting with packaging systems and build steps to reduce the cost of network requests. When this API lands natively in browsers, things will Just Work™. Resources will be loaded as they normally do, taking advantage of parallelism, browser caching, etc. 
+One limitation of today's polyfills is that {{site.project_title}} aggressively uses XHR to shim HTML Imports. We're experimenting with packaging systems and build steps to reduce the cost of network requests. When this API lands natively in browsers, things will Just Work™. Resources will be loaded as they normally do, taking advantage of parallelism, browser caching, etc.
 
-### Performance isn't ideal. Don't you care about it? {#performancestuff}
+Until then, you can try [Vulcanizer](https://github.com/Polymer/labs/tree/master/vulcanize), which
+is our recommended build tool. It concatenates a list of elements and inlines
+their definitions into your main page.
+
+### Performance. Do you care about it? {#performancestuff}
 
 Deeply. And we want the entire web platform to be a buttery smooth 60fps. That said, we have not yet run benchmarks on the various polyfills--we're in the early stages, after all! If you're interested in helping us put some numbers behind these guys, [let us know](/discuss.html).
 
 Remember our libraries go away over time! {{site.project_title}} gets better, stronger, and faster as native browser implementations pop up.
+
+### The filesize of polymer.min.js is big (~163KB). Why? {#filesize}
+
+Minified and gzipped, polymer.min.js is ~48KB (for comparison JQuery 1.10 is 32KB). Keep
+in mind that most of this size comes from the polyfills; code which has a death wish
+and goes away over time as browsers support the native APIs.
+
+{{site.project_title}} has also been designed to be a la carte. For example, if
+you're only interested in Custom Elements, use the custom elements polyfill. If you
+only want Shadow DOM, use its polyfill. polymer.min.js is simply a convenient bundle
+for developers that includes all of the the pieces for building
+{{site.project_title}}-based applications.
 
 ### Does {{site.project_title}} work under Content Security Policy (CSP)? {#csp}
 
