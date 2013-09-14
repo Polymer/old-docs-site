@@ -83,6 +83,10 @@
   Polymer('docs-menu', {
     applyAuthorStyles: true,
     created: function() {
+      // TODO: Remove when Shadow DOM polyfill is fixed.
+      // https://github.com/Polymer/ShadowDOM/issues/255
+      this.offsetHeight;
+
       if (location.pathname.match(/^\/articles\//)) {
         this.$.menu.selected = 0;
         // brittle if articles changes position in nav.
