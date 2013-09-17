@@ -58,3 +58,6 @@ $(document).ready(function () {
 // document.body.addEventListener('WebComponentsReady', function(e) {
 //   e.target.classList.add('resolved');    
 // });
+
+console && console.log("%cWelcome to Polymer!\n%cweb components are the <bees-knees>!",
+                       "font-size:2em;color:navy;", "color:#ffcc00;font-size:1.5em;");
