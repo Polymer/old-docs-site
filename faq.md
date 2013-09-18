@@ -121,29 +121,6 @@ to contribute code, see our [contributor's guide](https://github.com/polymer/pol
 
 We have many different demo, platform, and library repositories. If you know exactly where the problem lives in the stack, please file the bug under the appropriate repo. Otherwise, filing under the general [{{site.project_title}}](https://github.com/polymer/polymer/issues/new) project is great.
 
-### How do I use data-binding to repeat an `<option>` or `<tr>`? {#option-tr}
-
-The elements `<option>` and `<tr>` have special meaning when they're children of
-`<select>` and `<table>`, respectively. For these special types elements, use the
-`template` attribute to repeat the element:
-
-    <polymer-element name="my-select">
-      <template>
-        <select>
-          {%raw%}<option template repeat="{{options}}">{{}}</option>{%endraw%}
-        </select>
-      </template>
-      <script>
-        {{site.project_title}}('my-select', {
-          created: function() { this.options = []; }
-        });
-      </script>
-    </polymer-element>
-    <script>
-      var select = document.createElement('my-select');
-      select.options = ['One', 'Two', 'Three'];
-    </script>
-
 ### How do I manage JavaScript dependencies to prevent 1000 copies of library X? {#loadlibs}
 
 There is no way to guarantee sharing and deduping in the general case. However, if
@@ -189,6 +166,52 @@ property changing, but separate out the "set value" vs. the "validated value":
 For example `<polymer-element name="my-element" extends="foo bar">`. 
 
 No. But {{site.project_title}} may provide a syntax for mixins in the future.
+
+## Data-binding
+
+### How do I use data-binding to repeat an `<option>` or `<tr>`? {#option-tr}
+
+The elements `<option>` and `<tr>` have special meaning when they're children of
+`<select>` and `<table>`, respectively. For these special types elements, use the
+`template` attribute to repeat the element:
+
+    <polymer-element name="my-select">
+      <template>
+        <select>
+          {%raw%}<option template repeat="{{options}}">{{}}</option>{%endraw%}
+        </select>
+      </template>
+      <script>
+        {{site.project_title}}('my-select', {
+          created: function() { this.options = []; }
+        });
+      </script>
+    </polymer-element>
+    <script>
+      var select = document.createElement('my-select');
+      select.options = ['One', 'Two', 'Three'];
+    </script>
+
+### How can I access the current named model instance that in a `<template repeat>`? {#templateinstancemodel}
+
+For example, in a `on-*` handler, you can access the named model instance using: `e.target.templateInstance.model.<property>`:
+
+{%raw%}
+    <polymer-element name="x-foo">
+      <template>
+        <template repeat="{{user in users}}">
+          <div on-click="clickHandler">{{user.name}}</div>
+        </template>
+      </template>
+      <script>
+        {{site.project_title}}('x-foo', {
+          clickHandler: function(e, detail, sender) {
+            console.log(sender.templateInstance.model.user.name);
+          }
+        });
+      </script>
+    </polymer-element>
+{%endraw%}
 
 ## Web Components
 
