@@ -13,7 +13,9 @@ safe: false
 
 #permalink: /news/:year/:month/:day/:title.html
 
-exclude: ["node_modules", "README.md", "Gruntfile.js", "package.json"]
+exclude: ["node_modules", "scripts", "sass", "app.yaml", "README.md",
+          "CONTRIBUTING.md", "Gruntfile.js", "package.json", "config.rb",
+          "build.py"]
 
 kramdown:
   toc_levels: "2,3"
