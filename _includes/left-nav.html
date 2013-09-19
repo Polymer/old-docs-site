@@ -41,9 +41,9 @@
  -->
  
 {% raw %}
-<polymer-element name="docs-menu">
+<polymer-element name="docs-menu" attributes="ajaxify">
 <template>
-  <polymer-ui-menu id="menu" selectedItem="{{item}}">
+  <polymer-ui-menu id="menu" selectedItem="{{item}}" on-click="onClick">
     <polymer-ui-submenu-item id="gettingstarted" label="Getting started">
       <polymer-ui-menu-item><a href="/getting-the-code.html">Get the code</a></polymer-ui-menu-item>
       <polymer-ui-menu-item><a href="/getting-started.html">Getting started</a></polymer-ui-menu-item>
@@ -82,6 +82,7 @@
 <script>
   Polymer('docs-menu', {
     applyAuthorStyles: true,
+    ajaxify: false,
     created: function() {
       // TODO: Remove when Shadow DOM polyfill is fixed.
       // https://github.com/Polymer/ShadowDOM/issues/255
@@ -120,11 +121,17 @@
       } else {
         this.$.menu.selected = 0;
       }
-
+    },
+    onClick: function(e, detail, sender) {
+      if (e.target.localName == 'a' && this.ajaxify) {
+        this.fire('click', {link: e.target});
+        e.preventDefault();
+        e.stopPropagation();
+      }
     }
   });
 </script>
 </polymer-element>
 {% endraw %}
 
-<docs-menu class="span3"></docs-menu>
+<docs-menu class="span3" ajaxify></docs-menu>
