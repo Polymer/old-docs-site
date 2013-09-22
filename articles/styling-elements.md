@@ -224,13 +224,14 @@ be slow due to poor network conditions.
 To combat these types of UX issues and mitigate things like [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content), you can use the CSS `:unresolved` pseudo class. It applies to unknown elements right up until the point the lifecycle `createdCallback` is called.
 
 **Support:** CSS `:unresolved` is supported natively in Chrome 29. It has not been polyfilled.
+With at least Chrome 31, you must enabled Experimental Web Platform features via `about:flags`.
 {: .alert .alert-success}
 
 **Example:** fade in an element when it's registered
 
     <style>
       x-foo {
-        opacity: 1;
+        opacity: 1;c
         transition: opacity 300ms;
       }
       x-foo:unresolved {
