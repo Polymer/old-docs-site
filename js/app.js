@@ -22,7 +22,7 @@ function setupDownloadButtons(opt_inDoc) {
 
   var downloadSDKLink = doc.querySelector('#download_polymer_link');
   downloadSDKLink && downloadSDKLink.addEventListener('click', function(e) {
-    _gaq.push(['_trackEvent', 'SDK', 'Download', '{{site.latest_version}}']);
+    _gaq.push(['_trackEvent', 'SDK', 'Download', POLYMER_VERSION]);
   });
 }
 
@@ -109,7 +109,8 @@ function injectPage(url, opt_addToHistory) {
 
     initPage(); // TODO: can't pass doc to this because prettyPrint() needs markup in dom.
 
-    // TODO: record page hit in GA: _gaq.push(['_trackPageview', State.url]);
+    // Record page view in GA early on.
+    _gaq.push(['_trackPageview', location.pathname]);
 
     window.scrollTo(0, 0); // Ensure we're at the top of the page when it's ready.
   };

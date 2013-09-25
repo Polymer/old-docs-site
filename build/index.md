@@ -19,6 +19,7 @@ This is a snapshot of each repository. See {{site.project_title}}'s [build water
 {% endraw %}
 
 <script>
+// TODO: script doesn't run under ajax'd site.
 var t = document.querySelector('#t');
 t.model = { repos: [
   'polymer',
