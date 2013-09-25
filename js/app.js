@@ -1,9 +1,14 @@
+(function(exports) {
+
 var AJAXIFY_SITE = true;
 
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-39334307-1']);
-_gaq.push(['_setSiteSpeedSampleRate', 50]);
-_gaq.push(['_trackPageview']);
+exports._gaq = exports._gaq || [];
+exports._gaq.push(['_setAccount', 'UA-39334307-1']);
+exports._gaq.push(['_setSiteSpeedSampleRate', 50]);
+exports._gaq.push(['_trackPageview']);
+
+var docsMenu = document.querySelector('docs-menu');
+
 
 function addPermalink(el) {
   el.classList.add('has-permalink');
@@ -22,7 +27,7 @@ function setupDownloadButtons(opt_inDoc) {
 
   var downloadSDKLink = doc.querySelector('#download_polymer_link');
   downloadSDKLink && downloadSDKLink.addEventListener('click', function(e) {
-    _gaq.push(['_trackEvent', 'SDK', 'Download', POLYMER_VERSION]);
+    exports._gaq.push(['_trackEvent', 'SDK', 'Download', POLYMER_VERSION]);
   });
 }
 
@@ -49,7 +54,7 @@ function prettyPrintPage(opt_inDoc) {
   [].forEach.call(doc.querySelectorAll('pre'), function(pre, i) {
     pre.classList.add('prettyprint');
   });
-  window.prettyPrint && prettyPrint();
+  exports.prettyPrint && prettyPrint();
 }
 
 function testXhrType(type) {
@@ -103,16 +108,21 @@ function injectPage(url, opt_addToHistory) {
     });
 
     var addToHistory = opt_addToHistory == undefined ? true : opt_addToHistory;
-    if (history.pushState && addToHistory) {
+    if (addToHistory) {
       history.pushState({url: url}, doc.title, url);
+    } else {
+      // Came from history pop. Adjust nav arrow position.
+      // TODO: doesn't always move the arrow to the correct location. For the sake
+      // of mitigating user confusion, don't move the arrow on a history pop.
+      //docsMenu.highlightItemWithURL(location.pathname);
     }
 
     initPage(); // TODO: can't pass doc to this because prettyPrint() needs markup in dom.
 
     // Record page view in GA early on.
-    _gaq.push(['_trackPageview', location.pathname]);
+    exports._gaq.push(['_trackPageview', location.pathname]);
 
-    window.scrollTo(0, 0); // Ensure we're at the top of the page when it's ready.
+    exports.scrollTo(0, 0); // Ensure we're at the top of the page when it's ready.
   };
 
   xhr.send();
@@ -142,17 +152,17 @@ $(document).ready(function() {
   document.querySelector('[data-twitter-follow]').addEventListener('click', function(e) {
     e.preventDefault();
     var target = e.target.localName != 'a' ? e.target.parentElement : e.target;
-    window.open(target.href, '', 'width=550,height=520');
+    exports.open(target.href, '', 'width=550,height=520');
   });
 });
 
 if (AJAXIFY_SITE) {
-  document.querySelector('docs-menu').ajaxify = true;
+  docsMenu.ajaxify = true;
 
   document.addEventListener('click', function(e) {
     var viableLink = false;
 
-    if (e.target.localName == 'docs-menu' && e.detail.link) {
+    if (e.target.localName == docsMenu.localName && e.detail.link) {
       viableLink = e.detail.link;
     } else if (e.target.localName == 'a') {
       var relativeLinks = document.querySelectorAll('a:not([href^="http"]):not([href^="#"]):not([href^="javascript:"])');
@@ -172,7 +182,7 @@ if (AJAXIFY_SITE) {
     }
   });
 
-  window.addEventListener('popstate', function(e) {
+  exports.addEventListener('popstate', function(e) {
     if (e.state && e.state.url) {
       injectPage(e.state.url, false);
     }
@@ -182,3 +192,5 @@ if (AJAXIFY_SITE) {
 
 console && console.log("%cWelcome to Polymer!\n%cweb components are the <bees-knees>",
                        "font-size:1.5em;color:navy;", "color:#ffcc00;font-size:1em;");
+
+})(window);

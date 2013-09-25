@@ -89,12 +89,6 @@
       // https://github.com/Polymer/ShadowDOM/issues/255
       this.offsetHeight;
 
-      if (location.pathname.match(/^\/articles\//)) {
-        this.$.menu.selected = 0;
-        // brittle if articles changes position in nav.
-        this.$.gettingstarted.selected = this.$.gettingstarted.items.length - 1;
-      }
-
       // Allow user-defined styles to override polymer-ui-submenu-item's.
       this.$.menu.children.forEach(function(el, i) {
         if (el.localName == 'polymer-ui-submenu-item' && el.classList.contains('icon')) {
@@ -102,7 +96,16 @@
         }
       });
 
-      var link = this.shadowRoot.querySelector('a[href="' + location.pathname + '"]');
+      this.highlightItemWithURL(location.pathname);
+    },
+    highlightItemWithURL: function(href) {
+      if (href.match(/^\/articles\//)) {
+        this.$.menu.selected = 0;
+        // TODO: brittle if articles changes position in nav.
+        this.$.gettingstarted.selected = this.$.gettingstarted.items.length - 1;
+      }
+
+      var link = this.shadowRoot.querySelector('a[href="' + href + '"]');
       if (link) {
         var item = link.parentElement;
         var submenu = item.parentElement;
