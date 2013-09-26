@@ -164,7 +164,7 @@ if (AJAXIFY_SITE) {
 
     if (e.target.localName == docsMenu.localName && e.detail.link) {
       viableLink = e.detail.link;
-    } else if (e.target.localName == 'a') {
+    } else if (e.target.localName == 'a' && !('noajax' in e.target.dataset)) {
       var relativeLinks = document.querySelectorAll('a:not([href^="http"]):not([href^="#"]):not([href^="javascript:"])');
       for (var i = 0, a; a = relativeLinks[i]; ++i) {
         if (e.target == a) {
