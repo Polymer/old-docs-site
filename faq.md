@@ -51,7 +51,7 @@ See our [Browser Compatibility](/compatibility.html) page for more information.
 
 ### When will other browsers support these APIs natively? {#nativesupport}
 
-The foundation layer in our [architecture diagram](/images/architecture-diagram.svg) is based on emerging web standards. As browsers support them natively, the need for that layer will diminish and ultimately disappear. It's impossible to say when every browser will support these features natively--but the more that web developers ask for them, the sooner native support will come.
+The foundation layer in our <a href="/images/architecture-diagram.svg" target="_blank">architecture diagram</a> is based on emerging web standards. As browsers support them natively, the need for that layer will diminish and ultimately disappear. It's impossible to say when every browser will support these features natively--but the more that web developers ask for them, the sooner native support will come.
 
 ### What's your mobile story? {#onmobile}
 

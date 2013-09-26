@@ -28,7 +28,7 @@ build files. It does not contain the codebase, demos, and projects.
 To checkout code, you can recursively clone all of {{site.project_title}}'s
 sub components using our `pull-all.sh` script.
 
-<p class="centered"><a href="/tools/pull-all.sh" data-noajax class="btn btn-success" alt="Download pull-all.sh" title="Download pull-all.sh"><i class="icon-white icon-download"></i> Download pull-all.sh</a></p>
+<p class="centered"><a href="/tools/pull-all.sh" target="_blank" class="btn btn-success" alt="Download pull-all.sh" title="Download pull-all.sh"><i class="icon-white icon-download"></i> Download pull-all.sh</a></p>
 
 Running `pull-all.sh` pulls down a number of repositories to the current working directory:
 

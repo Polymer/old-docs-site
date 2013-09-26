@@ -164,12 +164,11 @@ if (AJAXIFY_SITE) {
 
     if (e.target.localName == docsMenu.localName && e.detail.link) {
       viableLink = e.detail.link;
-    } else if (e.target.localName == 'a' && !('noajax' in e.target.dataset)) {
-      var relativeLinks = document.querySelectorAll('a:not([href^="http"]):not([href^="#"]):not([href^="javascript:"])');
-      for (var i = 0, a; a = relativeLinks[i]; ++i) {
-        if (e.target == a) {
-          viableLink = e.target;
-        }
+    } else if (e.target.localName == 'a') {
+      // Link is relative and doesn't have a target set.
+      if (!e.target.getAttribute('href').match(/^(https?:|javascript:|\/\/)/) &&
+          !e.target.hash && e.target.target == '') {
+        viableLink = e.target;
       }
     }
 

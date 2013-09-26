@@ -21,7 +21,7 @@ and designed to leverage the evolving web platform on modern browsers.
 
 <figure id="architecture-diagram">
   <iframe src="/images/architecture-diagram.svg?{{'now' | date: "%Y%m%d"}}"></iframe>
-  <figcaption><a href="/images/architecture-diagram.svg">Architectural diagram</a></figcaption>
+  <figcaption><a href="/images/architecture-diagram.svg" target="_blank">Architectural diagram</a></figcaption>
 </figure>
 
 - <i class="icon-cogs icon-3x pull-left foundation"></i> A set of _polyfills_ for emerging web platform features. Initially, these core features are enabled as polyfills but go away
