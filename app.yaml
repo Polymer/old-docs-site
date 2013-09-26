@@ -10,8 +10,8 @@ libraries:
 - name: PIL
   version: latest
 
-inbound_services:
-- warmup
+#inbound_services:
+#- warmup
 
 handlers:
 
