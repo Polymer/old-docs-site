@@ -1,22 +1,5 @@
 (function(exports) {
 
-var AJAXIFY_SITE = true;
-if (navigator.userAgent.match('Mobile|Android')) {
-  AJAXIFY_SITE = false;
-} else {
-  testXhrType('document', function(supported) {
-    AJAXIFY_SITE = supported;
-  });
-}
-
-exports._gaq = exports._gaq || [];
-exports._gaq.push(['_setAccount', 'UA-39334307-1']);
-exports._gaq.push(['_setSiteSpeedSampleRate', 50]);
-exports._gaq.push(['_trackPageview']);
-
-var docsMenu = document.querySelector('docs-menu');
-
-
 function addPermalink(el) {
   el.classList.add('has-permalink');
   el.insertAdjacentHTML('beforeend',
@@ -37,11 +20,6 @@ function setupDownloadButtons(opt_inDoc) {
     exports._gaq.push(['_trackEvent', 'SDK', 'Download', POLYMER_VERSION]);
   });
 }
-
-// Placeholder for "loading screen"
-// document.body.addEventListener('WebComponentsReady', function(e) {
-//   e.target.classList.add('resolved');    
-// });
 
 // Add permalinks to heading elements.
 function addPermalinkHeadings(opt_inDoc) {
@@ -146,13 +124,6 @@ function injectPage(url, opt_addToHistory) {
   container.classList.add('loading');
 }
 
-// Analytics
-(function() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-
 function initPage(opt_inDoc) {
   var doc = opt_inDoc || document;
 
@@ -164,18 +135,13 @@ function initPage(opt_inDoc) {
   prettyPrintPage(doc);
 }
 
-$(document).ready(function() {
-  initPage();
+// Hijacks page to preventDefault() on links and make site ajax.
+function ajaxifySite() {
+  var docsMenu = document.querySelector('docs-menu');
 
-  document.querySelector('[data-twitter-follow]').addEventListener('click', function(e) {
-    e.preventDefault();
-    var target = e.target.localName != 'a' ? e.target.parentElement : e.target;
-    exports.open(target.href, '', 'width=550,height=520');
+  document.addEventListener('WebComponentsReady', function(e) {
+    docsMenu.ajaxify = true;
   });
-});
-
-if (AJAXIFY_SITE) {
-  docsMenu.ajaxify = true;
 
   document.addEventListener('click', function(e) {
     var viableLink = false;
@@ -204,8 +170,40 @@ if (AJAXIFY_SITE) {
       injectPage(e.state.url, false);
     }
   });
-
 }
+
+$(document).ready(function() {
+  initPage();
+
+  document.querySelector('[data-twitter-follow]').addEventListener('click', function(e) {
+    e.preventDefault();
+    var target = e.target.localName != 'a' ? e.target.parentElement : e.target;
+    exports.open(target.href, '', 'width=550,height=520');
+  });
+});
+
+// -------------------------------------------------------------------------- //
+
+// Control whether the site is ajax or static.
+var AJAXIFY_SITE = !navigator.userAgent.match('Mobile|Android');
+if (AJAXIFY_SITE) {
+  testXhrType('document', function(supported) {
+    if (supported) {
+      ajaxifySite();
+    }
+  });
+}
+
+// Analytics -----
+exports._gaq = exports._gaq || [];
+exports._gaq.push(['_setAccount', 'UA-39334307-1']);
+exports._gaq.push(['_setSiteSpeedSampleRate', 50]);
+exports._gaq.push(['_trackPageview']);
+
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+// ---------------
 
 console && console.log("%cWelcome to Polymer!\n%cweb components are the <bees-knees>",
                        "font-size:1.5em;color:navy;", "color:#ffcc00;font-size:1em;");
