@@ -1,6 +1,13 @@
 (function(exports) {
 
-var AJAXIFY_SITE = navigator.userAgent.match('Mobile|Android') ? false : true;
+var AJAXIFY_SITE = true;
+if (navigator.userAgent.match('Mobile|Android')) {
+  AJAXIFY_SITE = false;
+} else {
+  testXhrType('document', function(supported) {
+    AJAXIFY_SITE = supported;
+  });
+}
 
 exports._gaq = exports._gaq || [];
 exports._gaq.push(['_setAccount', 'UA-39334307-1']);
@@ -57,19 +64,22 @@ function prettyPrintPage(opt_inDoc) {
   exports.prettyPrint && prettyPrint();
 }
 
-function testXhrType(type) {
+// Feature detect xhr.responseType = 'document'...but it's async. 
+function testXhrType(type, callback) {
   if (typeof XMLHttpRequest == 'undefined') {
-    return false;
+    callback(false);
+    return;
   }
 
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', '/', true);
+  xhr.open('GET', '/humans.txt');
   try {
     xhr.responseType = type;
   } catch(error) {
-    return false;
+    callback(false);
+    return;
   }
-  return 'response' in xhr && xhr.responseType == type;
+  callback('response' in xhr && xhr.responseType == type);
 }
 
 /**
