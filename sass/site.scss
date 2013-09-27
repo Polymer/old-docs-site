@@ -330,7 +330,8 @@ polymer-ui-menu-item {
   box-sizing: border-box;
   &.loading::before {
     font-size: 24px;
-    content: 'loading...';
+    font-family: "FontAwesome";
+    content: '\f013 \00a0 loading...';
     position: absolute;
     width: 100%;
     height: 100%;
@@ -341,10 +342,9 @@ polymer-ui-menu-item {
     @include justify-content(center);
     @include align-items(flex-start);
 
-    background: url(/images/icons/loading_icon.svg) no-repeat 40% 91px;
+    //background: url(/images/icons/loading_icon.svg) no-repeat 40% 91px;
     background-size: 30px;
-    background-color: white;
-    opacity: 0.8;
+    background-color: rgba(255,255,255,0.8);
   }
 }
 .edit-on-github {

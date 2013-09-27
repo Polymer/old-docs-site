@@ -99,6 +99,7 @@ function injectPage(url, opt_addToHistory) {
     // Run Polymer's HTML Import loader/parser.
     HTMLImports.importer.load(newDocContainer, function() {
       HTMLImports.parser.parse(newDocContainer);
+      Platform.flush(); // Needed to prevent FOUC on overlays where O.o() is unavailable.
     });
 
     var addToHistory = opt_addToHistory == undefined ? true : opt_addToHistory;
