@@ -90,13 +90,17 @@ function testXhrType(type, callback) {
  *     history.
  */
 function injectPage(url, opt_addToHistory) {
+  var CONTAINER_SELECTOR = '#content-container';
+  var container = document.querySelector(CONTAINER_SELECTOR);
+
   var xhr = new XMLHttpRequest();
   xhr.open('GET', url);
-  xhr.responseType = 'document'; // TODO: verify all browsers have this.
+  xhr.responseType = 'document';
   xhr.onloadend = function(e) {
     if (e.target.status != 200) {
       // TODO: use window.error and report this to server.
       console.error('Page fetch error', e.target.status, e.target.statusText);
+      container.classList.remove('loading');
       return;
     }
 
@@ -107,14 +111,16 @@ function injectPage(url, opt_addToHistory) {
     var META_CONTENT_NAME = 'meta[itemprop="name"]';
     var metaContentName = doc.head.querySelector(META_CONTENT_NAME).content;
     document.head.querySelector(META_CONTENT_NAME).content = metaContentName;
+    
+    var newDocContainer = doc.querySelector(CONTAINER_SELECTOR);
+    container.innerHTML = newDocContainer.innerHTML;
 
-    var CONTAINER_SELECTOR = '#content-container';
-    var container = doc.querySelector(CONTAINER_SELECTOR);
-    document.querySelector(CONTAINER_SELECTOR).innerHTML = container.innerHTML;
+    // Remove "loading" message immediately after page content is set.
+    container.classList.remove('loading');
 
     // Run Polymer's HTML Import loader/parser.
-    HTMLImports.importer.load(container, function() {
-      HTMLImports.parser.parse(container);
+    HTMLImports.importer.load(newDocContainer, function() {
+      HTMLImports.parser.parse(newDocContainer);
     });
 
     var addToHistory = opt_addToHistory == undefined ? true : opt_addToHistory;
@@ -136,6 +142,8 @@ function injectPage(url, opt_addToHistory) {
   };
 
   xhr.send();
+
+  container.classList.add('loading');
 }
 
 // Analytics

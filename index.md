@@ -42,7 +42,7 @@ _Join the [mailing list](/discuss.html). Ask questions and give feedback!_
 
 ## Guiding principles
 
-<div class="centered" style="margin:20px;"><iframe id="video" src="http://www.youtube.com/embed/videoseries?list=PLRAVCSU_HVYu-zlRaqArF8Ytwz1jlMOIM" frameborder="0" allowfullscreen></iframe>
+<div class="centered video"><iframe src="http://www.youtube.com/embed/videoseries?list=PLRAVCSU_HVYu-zlRaqArF8Ytwz1jlMOIM" frameborder="0" allowfullscreen></iframe>
 </div>
 
 The overall aim of {{site.project_title}} is to manage the complexity of building web applications.
