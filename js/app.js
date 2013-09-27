@@ -1,6 +1,6 @@
 (function(exports) {
 
-var AJAXIFY_SITE = true;
+var AJAXIFY_SITE = navigator.userAgent.match('Mobile|Android') ? false : true;
 
 exports._gaq = exports._gaq || [];
 exports._gaq.push(['_setAccount', 'UA-39334307-1']);
