@@ -52,9 +52,9 @@ This needs to be done before pushing.
 
 Last step is to push the docs to App Engine. In your `Polymer/docs` directory, run:
 
-    grunt docs; appcfg.py --oauth2 update .
+    ./scripts/deploy_site.sh
 
-(The `--oauth2` is not required, but makes it easier to upload if you use second factor authentication.)
+This script builds the site, api docs, runs Vulcanizer over the imports, and deploys to App Engine.
 
 [jekyll]: http://jekyllrb.com/
 [grunt]: http://gruntjs.com/
