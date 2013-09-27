@@ -419,7 +419,7 @@ see [styling distributed nodes](#style-distributed).
 ## Defining style hooks {#style-hooks}
 
 **Heads up:** The `pseudo` attribute and `::x-*` custom pseudo elements are 
-getting replaced soon by by `part` and `::part()`, respectively. See the [spec bug](https://www.w3.org/Bugs/Public/show_bug.cgi?id=22461).
+getting replaced soon by `part` and `::part()`, respectively. See the [spec bug](https://www.w3.org/Bugs/Public/show_bug.cgi?id=22461).
 {: .alert .alert-error}
 
 Nodes in your element that contain the `pseudo` attribute can be targeted from outside CSS.
