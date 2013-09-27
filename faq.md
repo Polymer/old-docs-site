@@ -213,6 +213,13 @@ For example, in a `on-*` handler, you can access the named model instance using:
     </polymer-element>
 {%endraw%}
 
+### My components are producing markup with multiple ids of the same name. {#multipleids}
+
+{{site.project_title}} tries hard to mimic native Shadow DOM, in that nodes with the same
+`id`s will still be encapsulated.
+
+However, you should avoid using DOM-level id referencing (e.g. `<label for>`) when using {{site.project_title}}. The `id` may not resolve correctly when under the Shadow DOM polyfill.
+
 ## Web Components
 
 ### How do I package a bunch of custom elements together? {#packaging}
