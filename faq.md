@@ -220,6 +220,17 @@ For example, in a `on-*` handler, you can access the named model instance using:
 
 However, you should avoid using DOM-level id referencing (e.g. `<label for>`) when using {{site.project_title}}. The `id` may not resolve correctly when under the Shadow DOM polyfill.
 
+### How quickly are data changes propagated? {#dirtychecking}
+
+If `Object.observe()` is available, data changes happen ~immediately at end of a microtask.
+When `Object.observe()` is not supported, {{site.project_title}} uses its polyfill ([observe-js](https://github.com/Polymer/observe-js)) to poll and propagate data-changes throughout the system every
+every 125ms.
+
+Instead of waiting for the next poll interval, one can menaully schedule an update
+by calling `Platform.flush()`. **There are very few cases where you need to call `Platform.flush()` directly.**
+
+Note: on platforms that support `Object.observe()` natively, `Platform.flush()` does nothing.
+
 ## Web Components
 
 ### How do I package a bunch of custom elements together? {#packaging}
