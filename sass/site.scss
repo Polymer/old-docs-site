@@ -273,9 +273,13 @@ docs-menu {
   @include transform(translateZ(0));
   border-right: 1px solid #eee;
   height: 90%;
-  max-width: 250px;
+  max-width: 24%;
 }
 
+polymer-ui-menu > polymer-ui-menu-item {
+  display: block !important;
+}
+  
 polymer-ui-submenu-item {
   padding: 0 10px 0 0;
 
@@ -301,6 +305,7 @@ polymer-ui-submenu-item {
 
 polymer-ui-menu-item {
   display: inline-block !important;
+  min-width: 50%;
 
   &:hover {
     background-color: #eee;
@@ -632,6 +637,9 @@ polymer-ui-menu-item {
     border: none;
     max-width: initial;
     margin-left: 10px !important;
+  }
+  polymer-ui-menu {
+    margin-left: 25px !important;
   }
   polymer-ui-menu > polymer-ui-menu-item {
     display: block !important;
