@@ -110,7 +110,14 @@ for developers that includes all of the the pieces for building
 
 ### Does {{site.project_title}} work under Content Security Policy (CSP)? {#csp}
 
-In certain cases, {{site.project_title}} fails under certain [CSP](http://www.html5rocks.com/tutorials/security/content-security-policy/). This is because the [HTML Imports](/platform/html-imports.html) polyfill uses XHR to do its magic. Native implementations of HTML Imports are needed (see Blink's [crbug.com/240592](http://crbug.com/240592)). In the interim, we're working on a solution.
+Yes. By using `polymer.min.js` and [creating elements that use external scripts](/polymer.html#alternate-ways-to-register-an-element), {{site.project_title}} runs under [CSP](http://www.html5rocks.com/tutorials/security/content-security-policy/). If you prefer to keep your element's
+script inline to `<polymer-element>`, we recommend using [Vulcanizer](/tooling-strategy.html#vulcanizer)
+and running with the `--csp` flag.
+
+In other nuanced cases, {{site.project_title}} fails under CSP. This is because
+the [HTML Imports](/platform/html-imports.html) is polyfilled using XHR, which can
+in turn, execute strings as JavaScript and fail CSP. This problem will go away with
+native HTML Imports (see Blink's [crbug.com/240592](http://crbug.com/240592) tracking bug).
 
 ### How can I contribute? {#contributing}
 
