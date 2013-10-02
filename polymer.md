@@ -63,7 +63,7 @@ Elements can be registered in pure JavaScript like so:
       el.innerHTML = '\
         <polymer-element name="name-tag" attributes="name">\
           <template>\
-            Hello <span style="color:{{nameColor}}">{{name}}</span>\
+            Hello <span style="color:{%raw%}{{nameColor}}{%endraw%}">{%raw%}{{name}}{%endraw%}</span>\
           </template>\
         </polymer-element>';
       // The custom elements polyfill can't see the <polymer-element>
