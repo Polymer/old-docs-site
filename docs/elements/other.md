@@ -3,7 +3,7 @@ layout: default
 title: Toolkit-UI Elements
 ---
 
-Old and possibly outdated UI experiements.
+Old and possibly outdated UI experiments.
 
 **Repository:** [github.com/Polymer/toolkit-ui](https://github.com/Polymer/toolkit-ui)
 
