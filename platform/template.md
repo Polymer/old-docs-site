@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Template Binding
-subtitle: <a href="http://prollyfill.org/">prollyfill</a>
+subtitle: <a href="http://prollyfill.org/" target="_blank">prollyfill</a>
 
 feature:
   spec: None

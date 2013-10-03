@@ -15,7 +15,7 @@
     Polymer('buildbot-list', {
       inactive: false,
       platforms: ['Mac', 'Linux', 'Win'],
-      created: function() {
+      projectChanged: function() {
         this.generateBuilders();
       },
       generateBuilders: function() {
