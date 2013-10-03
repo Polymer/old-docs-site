@@ -32,6 +32,7 @@
   <link rel="stylesheet" src="{{item}}">
 {% endfor %}
 
+<!-- Comment out to test unminified Polymer -->
 <script async>
 // Prevent usage of the appspot.com URL.
 try {
@@ -44,7 +45,9 @@ try {
 }
 </script>
 
+
 {% if site.load_platform %}
   <script src="/polymer.min.js?{{'now' | date: '%Y%m%d'}}"></script>
+  <!--<script src="/polymer-all/polymer/polymer.js?{{'now' | date: '%Y%m%d'}}"></script>-->
   <link rel="import" src="/elements/common_elements.vulcanized.html">
 {% endif %}

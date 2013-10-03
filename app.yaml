@@ -37,6 +37,7 @@ handlers:
 
 # Map minified polymer to minified version.
 # This also preservers old URL (/polymer/polymer.min.js)
+# COMMENT OUT TO TEST UNIMINIFIED Polymer
 - url: /(polymer-all\/)?polymer/polymer(.min)?.js
   static_files: js/polymer.min.js
   upload: js/polymer\.min\.js
@@ -73,10 +74,11 @@ handlers:
   static_files: _site/\1/index.html
   upload: _site/(.*)/index.html
 
-#- url: /polymer-all
-#  static_dir: _site/polymer-all
-#  http_headers:
-#    Access-Control-Allow-Origin: "*"
+# ADD TO TEST unminified Polymer 
+# - url: /polymer-all
+#   static_dir: _site/polymer-all
+#   http_headers:
+#     Access-Control-Allow-Origin: "*"
 
 # All other URLs map directly to their path in _site/.
 - url: /
