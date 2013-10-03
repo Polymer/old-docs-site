@@ -90,7 +90,7 @@
       this.offsetHeight;
 
       // Allow user-defined styles to override polymer-ui-submenu-item's.
-      this.$.menu.children.forEach(function(el, i) {
+      [].forEach.call(this.$.menu.children, function(el, i) {
         if (el.localName == 'polymer-ui-submenu-item' && el.classList.contains('icon')) {
           el.shadowRoot.applyAuthorStyles = true;
         }
