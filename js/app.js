@@ -99,7 +99,11 @@ function injectPage(url, opt_addToHistory) {
     // Run Polymer's HTML Import loader/parser.
     HTMLImports.importer.load(newDocContainer, function() {
       HTMLImports.parser.parse(newDocContainer);
-      Platform.flush(); // Needed to prevent FOUC on overlays where O.o() is unavailable.
+      // CustomElements polyfill needs to process the dynamic imports for definitions.
+      CustomElements.parser.parse(newDocContainer);
+      
+      // Prevents polymer-ui-overlay FOUC where O.o() is unavailable.
+      Platform.flush();
     });
 
     var addToHistory = opt_addToHistory == undefined ? true : opt_addToHistory;
