@@ -12,6 +12,8 @@ tags:
 - CSS
 ---
 
+<link rel="import" href="demos/styling/elements.html">
+
 {% include authorship.html %}
 
 {% include toc.html %}
@@ -103,29 +105,6 @@ An interesting application of `@host` is for reacting to different user-driven s
 
     <x-button>x-buttonz!</x-button>
 
-<polymer-element name="x-button-example">
-  <template>
-    <style>
-      @host {
-        :scope {
-          opacity: 0.6;
-          transition: opacity 400ms ease-in-out;
-        }
-        :scope:hover {
-          opacity: 1;
-        }
-        :scope:active {
-          position: relative;
-          top: 3px;
-          left: 3px;
-        }
-      }
-    </style>
-    <button><content></content></button>
-  </template>
-  <script>Polymer('x-button-example');</script>
-</polymer-element>
-
 When someone mouses over `<x-button>` they'll get a sexy fade-in!
 
 **Demo:** <x-button-example>x-buttonz!</x-button-example>
@@ -163,22 +142,6 @@ From within the element:
         });
       </script>
     </polymer-element>
-
-<polymer-element name="x-bgchange-example" on-click="changeBg">
-  <template>
-    <style>
-      @host { :scope { display: inline-block; padding: 5px; background: red; color: white; } }
-    </style>
-    <div>Click me</div>
-  </template>
-  <script>
-    Polymer('x-bgchange-example', {
-      changeBg: function() {
-        this.style.background = 'blue'; 
-      }
-    });
-  </script>
-</polymer-element>
 
 **Demo:** <x-bgchange-example></x-bgchange-example>
 
@@ -330,7 +293,6 @@ even if those nodes are distributed into Shadow DOM. Basically, going into an in
       <div>Light DOM: green</div>
     </x-foo>
 
-
 <style>
   x-foo-example2 > div {
     color: green;
@@ -339,21 +301,6 @@ even if those nodes are distributed into Shadow DOM. Basically, going into an in
     color: red; 
   }
 </style>
-
-<polymer-element name="x-foo-example2">
-  <template>
-    <style>
-      @host { :scope { display: block; } }
-    </style>
-    <div class="red">Shadow DOM: red when applyAuthorStyles=true</div>
-    <content select="div"></content>
-  </template>
-  <script>
-    Polymer('x-foo-example2', {
-      applyAuthorStyles: true
-    });
-  </script>
-</polymer-element>
 
 **Demo:**
 

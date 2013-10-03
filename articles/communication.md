@@ -17,6 +17,8 @@ tags:
 - communication
 ---
 
+<link rel="import" href="demos/communication/elements.html">
+
 {% include authorship.html %}
 
 {% include toc.html %}
@@ -362,55 +364,6 @@ Things become come very interesting when several elements need to respond to an 
         alert('outside: Said hi to ' + e.detail.name + ' from ' + e.target.localName);
       });
     </script>
-{% endraw %}
-
-{% raw %}
-<polymer-element name="say-hello" attributes="name" on-click="sayHi">
-  <template>Hello {{name}}! (click me)</template>
-  <script>
-    Polymer('say-hello', {
-      sayHi: function() {
-        this.fire('said-hello', {name: this.name});
-      }
-    });
-  </script>
-</polymer-element>
-    
-<polymer-element name="my-app-demo" on-said-hello="third">
-  <template>
-    <style>
-      @host { :scope {
-        display: inline-block;
-        padding: 10px;
-        border: 1px dotted black;
-        border-radius: 3px;
-        cursor: pointer;
-      }}
-    </style>
-    <div on-said-hello="second">
-      <say-hello name="Eric" on-said-hello="first"></say-hello>
-    </div>
-  </template>
-  <script>
-    (function() {
-      function logger(prefix, detail, sender) {
-        alert(prefix + ' Said hi to ' + detail.name +' from ' + sender.localName);
-      }
-
-      Polymer('my-app-demo', {
-        first: function(e, detail, sender) {
-          logger('first():', detail, sender);
-        },
-        second: function(e, detail, sender) { 
-          logger('second():', detail, sender);
-        },
-        third: function(e, detail, sender) {
-          logger('third():', detail, sender);
-        }
-      });
-    })();
-  </script>
-</polymer-element>
 {% endraw %}
 
 **Try it:** <my-app-demo></my-app-demo>

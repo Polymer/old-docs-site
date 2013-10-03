@@ -1,0 +1,40 @@
+<link rel="import" href="buildbot-list.html">
+
+<polymer-element name="repos-list">
+  <template>
+    <style>
+      #repobuildlist {
+        list-style: none;
+      }
+    </style>
+    <ul id="repobuildlist">
+      <template repeat="{{repos}}">
+        <li>
+          <h4>{{}}</h4>
+          <buildbot-list project="{{}}"></buildbot-list>
+        </li>
+      </template>
+    </ul>
+  </template>
+  <script>
+    Polymer('repos-list', {
+      applyAuthorStyles: true,
+      created: function() {
+        this.repos = [
+          'polymer',
+          'platform',
+          'ShadowDOM',
+          'CustomElements',
+          'HTMLImports',
+          'PointerEvents',
+          'PointerGestures',
+          'web-animations-js',
+          'TemplateBinding',
+          'NodeBind',
+          'observe-js',
+          'polymer-expressions'
+        ];
+      }
+    });
+  </script>
+</polymer-element>
