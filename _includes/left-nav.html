@@ -1,48 +1,5 @@
-{% comment %}
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span3">
-  <div class="well well-small sidebar-nav">
-    <ul class="nav nav-list">
-      <li class="nav-header">Getting Started</li>
-      <li><a href="/getting-the-code.html">Get the code</a></li>
-      <li><a href="/getting-started.html">Getting started</a></li>
-      <li><a href="/runtime-config.html">Runtime configuration</a></li>
-      <li><a href="/articles/">Articles</a></li>
-      
-      <li class="divider"></li>
-      <li class="nav-header elements">Elements</li>
-      <li class="sidebyside"><a href="/docs/elements/">Polymer</a><span>/</span><a href="/docs/elements/other.html">Other</a></li>
-      <li class="nav-header core">Core Features</li>
-      <li><a href="/polymer.html">polymer.js</a></li>
-      <li data-toggle="collapse" data-target="#mdvlist">
-        <a href="javascript:">Data-binding<i class="icon-caret-down"></i></a>
-        <ul class="nav nav-list collapse" id="mdvlist">
-          <li><a href="/docs/polymer/databinding.html">Introduction</a></li>
-          <li><a href="/docs/polymer/expressions.html">Expressions</a></li>
-        </ul>
-      </li>
-      <li class="nav-header foundation">Platform Technologies</li>
-      <li><a href="/platform/custom-elements.html">Custom Elements</a></li>
-      <li><a href="/platform/shadow-dom.html">Shadow DOM</a></li>
-      <li><a href="/platform/html-imports.html">HTML Imports</a></li>
-      <li><a href="/platform/pointer-events.html">Pointer Events</a></li>
-      <li><a href="/platform/web-animations.html">Web Animations</a></li>
-      <li><a href="/platform/template.html">Template Binding</a></li>
-      <li><a href="/platform/node_bind.html">Node.bind()</a></li>
-      <li class="divider"></li>
-      <li class="nav-header">More information</li>
-      <li><a href="/tooling-strategy.html">Tools &amp; Testing</a></li>
-      <li><a href="/compatibility.html">Browser Compatibility</a></li>
-      <li><a href="/changelog.html">Releases</a></li>
-      <li><a href="/faq.html">FAQ</a></li>
-    </ul>
-  </div>
-</div>
-{% endcomment %}
- 
 {% raw %}
-<polymer-element name="docs-menu" attributes="ajaxify">
+<polymer-element name="docs-menu" attributes="ajaxify" lightdom>
 <template>
   <polymer-ui-menu id="menu" selectedItem="{{item}}" on-click="onClick">
     <polymer-ui-submenu-item id="gettingstarted" label="Getting started">
@@ -105,7 +62,7 @@
         this.$.gettingstarted.selected = this.$.gettingstarted.items.length - 1;
       }
 
-      var link = this.shadowRoot.querySelector('a[href="' + href + '"]');
+      var link = this.querySelector('a[href="' + href + '"]');
       if (link) {
         var item = link.parentElement;
         var submenu = item.parentElement;
