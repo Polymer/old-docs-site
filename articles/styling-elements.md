@@ -12,7 +12,7 @@ tags:
 - CSS
 ---
 
-<link rel="import" href="demos/styling/elements.html">
+<link rel="import" href="/articles/demos/styling/elements.html">
 
 {% include authorship.html %}
 
