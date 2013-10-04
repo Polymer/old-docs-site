@@ -76,9 +76,9 @@ which calls `Polymer('tag-name')`:
 
 By default, {{site.project_title}} creates [Shadow DOM](/platform/shadow-dom.html) from the first
 `<template>` in the element definition. The _benefit of using Shadow DOM is that
-it encapsulated markup and provides style scoping for elements_.
+it encapsulates markup and provides style scoping for elements_.
 
-For simpler elements that don't need the features of Shadow DOM, use the `lightdom`
+For simpler elements that don't require the features of Shadow DOM, use the `lightdom`
 attribute to control how the element stamps out DOM. {{site.project_title}}
 will create [Light DOM](/platform/shadow-dom.html#shadow-dom-subtrees) from the first
 `<template>` rather than of Shadow DOM:
@@ -97,6 +97,12 @@ will render as:
     <tag-name>
       <div>Hi ma!</div>
     </tag-name>
+
+**Heads up:** `lightdom` is an experimental feature. We recommend using it
+for simple elements. For example, using the `lightdom` attribute inside of another
+{{site.project_title}} element's Shadow DOM may cause bindings and event delegations
+to not work properly.
+{: .alert .alert-error }
 
 #### Imperative registration {#imperativeregister}
 
