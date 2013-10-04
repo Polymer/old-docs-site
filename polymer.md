@@ -448,6 +448,39 @@ For example, the following defines a component whose template contains an `<inpu
       </script>
     </polymer-element>
 
+### Firing custom events {#fire}
+
+{{site.project_title}} core provides a convenient `fire()` method for
+sending custom events. Essentially, it's a wrapper around your standard `node.dispatchEvent(new CustomEvent(...))`. In cases where you need to fire an event after microtasks have completed,
+use the asynchronous version: `asyncFire()`.
+
+Example:
+
+    <polymer-element name="ouch-button">
+      <template>
+        <button on-click="onClick">Send hurt</button> 
+      </template>
+      <script>
+        Polymer('ouch-button', {
+          onClick: function() {
+            this.fire('ouch', {msg: 'That hurt!'}); // fire(inType, inDetail, inToNode)
+          }
+        });
+      </script>
+    </polymer-element>
+
+    <ouch-button></ouch-button>
+
+    <script>
+      document.querySelector('ouch-button').addEventListener('ouch', function(e) {
+        console.log(e.type, e.detail.msg); // "ouch" "That hurt!"
+      });
+    </script>
+
+**Tip:** If your element is within another {{site.project_title}} element, you can
+use the special [`on-* handlers`](#declarative-event-mapping) to deal with the event: `<ouch-button on-ouch="myMethod"></ouch-button>`
+{: .alert .alert-success }
+
 ### Extending other elements
 
 A {{site.project_title}} element can extend another element by using the `extends`
@@ -506,11 +539,11 @@ In this example, when the user clicks on a `<polymer-cooler>` element, its
 using `this.super()`. The `praise` property (inherited from `<polymer-cool>`) is set
 to "coolest".
 
-## Advanced utilities {#additional-utilities}
+## Advanced topics {#additional-utilities}
 
 - [`async()`](#asyncmethod)
-- [`fire()` / `asyncFire()`](#fire)
 - [`unbindAll()` / `cancelUnbindAll()` / `asyncUnbindAll()`](#bindings)
+- [`Platform.flush()`](#flush)
 
 ### Dealing with asynchronous tasks {#asyncmethod}
 
@@ -549,39 +582,6 @@ In the case of property changes that result in DOM modifications, follow this pa
       updateValues: function() {...}
     });
 
-### Firing custom events {#fire}
-
-{{site.project_title}} core provides a convenient `fire()` method for
-sending custom events. Essentially, it's a wrapper around your standard `node.dispatchEvent(new CustomEvent(...))`. In cases where you need to fire an event after microtasks have completed,
-use the asynchronous version: `asyncFire()`.
-
-Example:
-
-    <polymer-element name="ouch-button">
-      <template>
-        <button on-click="onClick">Send hurt</button> 
-      </template>
-      <script>
-        Polymer('ouch-button', {
-          onClick: function() {
-            this.fire('ouch', {msg: 'That hurt!'}); // fire(inType, inDetail, inToNode)
-          }
-        });
-      </script>
-    </polymer-element>
-
-    <ouch-button></ouch-button>
-
-    <script>
-      document.querySelector('ouch-button').addEventListener('ouch', function(e) {
-        console.log(e.type, e.detail.msg); // "ouch" "That hurt!"
-      });
-    </script>
-
-**Tip:** If your element is within another {{site.project_title}} element, you can
-use the special [`on-* handlers`](#declarative-event-mapping) to deal with the event: `<ouch-button on-ouch="myMethod"></ouch-button>`
-{: .alert .alert-success }
-
 ### Life of an element's bindings {#bindings}
 
 **Note:** The section only applies to elements that are instantiated in JavaScript, not to those
@@ -618,3 +618,27 @@ it becomes your responsibility to _eventually_ unbind the element using `unbindA
     el.unbindAll();
 
 Otherwise, your application will leak memory.
+
+### How data changes are propagated {#flush}
+
+Data changes in {{site.project_title}} happen almost immediately (at end of a microtask)
+when `Object.observe()` is available. When it's not supported, {{site.project_title}} uses a polyfill ([observe-js](https://github.com/Polymer/observe-js)) to poll and periodically propagate data-changes throughout the system. This is done through a method called `Platform.flush()`.
+
+#### What is `Platform.flush()`?
+
+`Platform.flush()` is part of {{site.project_title}}'s data observation polyfill, [observe-js](https://github.com/Polymer/observe-js). It dirty check's all objects that have been observed and ensures notification callbacks are dispatched. {{site.project_title}} automatically calls `Platform.flush()` periodically, and this should be sufficient for most application workflows. However, there are times when you'll want to call `Platform.flush()` in application code.
+
+**Note**: on platforms that support `Object.observe()` natively, `Platform.flush()` does nothing.
+{: .alert .alert-info }
+
+#### When should I call `Platform.flush()`?
+
+Instead of waiting for the next poll interval, one can manually schedule an update by calling `Platform.flush()`. **There are very few cases where you need to call `Platform.flush()` directly.**
+
+If it's important that a data change propagates before the next screen paint, you may
+need to manually call `Platform.flush()`. Here are specific examples:
+
+1. A property change results in a CSS class being added to a node. Often, this works out fine, but sometimes, it's important to make sure the node does not display without the styling from the added class applied to it. To ensure this, call `Platform.flush()` in the property change handler after adding the CSS class.
+2. The author of a slider element wants to ensure that data can propagate from it as the user slides the slider. A user of the element, might, for example, bind the slider's value to an input and expect to see the input change while the slider is moving. To achieve this, the element author calls `Platform.flush()` after setting the element's value in the `ontrack` event handler.
+
+**Note:** {{site.project_title}} is designed such that change notifications are asynchronous. Both `Platform.flush()` and `Object.observe()` (after which it's modeled) are asynchronous. Therefore, **`Platform.flush()` should not be used to try to enforce synchronous data notifications**. Instead, always use [change watchers](#change-watchers) to be informed about state.
