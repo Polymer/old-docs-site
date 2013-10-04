@@ -233,7 +233,7 @@ If `Object.observe()` is available, data changes happen ~immediately at end of a
 When `Object.observe()` is not supported, {{site.project_title}} uses its polyfill ([observe-js](https://github.com/Polymer/observe-js)) to poll and propagate data-changes throughout the system every
 every 125ms.
 
-Instead of waiting for the next poll interval, one can menaully schedule an update
+Instead of waiting for the next poll interval, one can manually schedule an update
 by calling `Platform.flush()`. **There are very few cases where you need to call `Platform.flush()` directly.**
 
 Note: on platforms that support `Object.observe()` natively, `Platform.flush()` does nothing.
