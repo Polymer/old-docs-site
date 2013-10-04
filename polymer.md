@@ -601,7 +601,7 @@ are a good place for this:
         // Ensure bindings remain active, even if we're never added to the DOM.
         this.cancelUnbindAll();
       },
-      leftDocument: function() {
+      leftView: function() {
         // Also keep bindings active if we're added, but later removed.
         this.cancelUnbindAll();
       }
