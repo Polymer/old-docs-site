@@ -256,6 +256,9 @@ They don't. However, search engines have been dealing with heavy AJAX
 based application for some time now. Moving away from JS and being more declarative
 is a good thing and will generally make things better.
 
+If you're worried about hiding things in Shadow DOM, use the [`lightdom` attribute](/polymer.html#createligthdom) on
+your `<polymer-element>` definitions.
+
 ### Is there a registry of components I can play with? {#registry}
 
 Not yet, but we think that's a great idea.
@@ -348,7 +351,7 @@ this, there are two options:
 
 **Note:** Steve Faulkner had a [nice writeup](http://blog.paciellogroup.com/2012/07/notes-on-web-components-aria/) on this topic a while back and found that it does.
 
-A common mis-conception is that the Shadow DOM doesn't play nicely with assistive technologies or SEO. The reality is that the Shadow DOM can in fact be traversed and any node with Shadow DOM has a `shadowRoot` property which points to it's shadow document. Most assistive technologies hook directly into the browsers rendering tree, so they just see the fully composed tree.  
+A common mis-conception is that the Shadow DOM doesn't play nicely with assistive technologies. The reality is that the Shadow DOM can in fact be traversed and any node with Shadow DOM has a `shadowRoot` property which points to it's shadow document. Most assistive technologies hook directly into the browsers rendering tree, so they just see the fully composed tree.  
 
 In fact, if you inspect one of the native HTML elements that use Shadow DOM, `<input type="date">` for example, you'll notice aria attributes inside the tree:
 

@@ -15,7 +15,7 @@ its opinion and provides the extra sugaring that all {{site.project_title}} elem
 
 ## Element declaration
 
-At the heart of {{site.project_title}} are Custom Elements. Thus, it should be no surprise that defining a {{site.project_title}} element is similar to the way you define a standard Custom Element. The major difference is that {{site.project_title}} elements are created using `<polymer-element>`, not `<element>`.
+At the heart of {{site.project_title}} are Custom Elements. Thus, it should be no surprise that defining a {{site.project_title}} element is similar to the way you define a standard Custom Element. The major difference is that {{site.project_title}} elements are created declaratively using `<polymer-element>`.
 
     <polymer-element name="tag-name" constructor="TagName">
       <template>
@@ -24,13 +24,32 @@ At the heart of {{site.project_title}} are Custom Elements. Thus, it should be n
       <script>Polymer('tag-name');</script>
     </polymer-element>
 
-**Note**: {{site.project_title}} creates [Shadow DOM](/platform/shadow-dom.html) from the first
-`<template>` in the element definition.
-{: .alert .alert-info}
+`<polymer-element>` supports the following attributes:
 
-### Alternate ways to register an element
+<table class="table">
+  <tr>
+    <th>Attribute</th><th>Usage</th><th>Description</th>
+  </tr>
+  <tr>
+    <td><code>name</code></td><td><b>required</b></td><td>Setup actions performed by the data-binding engine.</td>
+  </tr>
+  <tr>
+    <td><code>attributes</code></td><td>optional</td><td>Used to <a href="#published-properties">publish properties</a></td>
+  </tr>
+  <tr>
+    <td><code>noscript</code></td><td>optional</td><td>For simple elements that don't need to call <code>Polymer()</code>. See <a href="#altregistration">Alternate ways to register an element</a>.</td>
+  </tr>
+  <tr>
+    <td><code>lightdom</code></td><td>optional</td><td>Produces Light DOM instead of Shadow DOM. See <a href="createligthdom">Producing Light DOM instead of Shadow DOM</a></td>
+  </tr>
+  <tr>
+    <td><code>constructor</code></td><td>optional</td><td>The name of the constructor to put on the global object. Allows users to create instances of your element using the <code>new</code> operator (e.g. <code>var tagName = new TagName()</code>)</td>
+  </tr>
+</table>
 
-For convenient decoupling of script and markup, you don't have to inline the JS.
+### Alternate ways to register an element {#altregistration}
+
+For convenient decoupling of script and markup, you don't have to inline your script.
 {{site.project_title}} elements can be created by referencing an external script
 which calls `Polymer('tag-name')`:
 
@@ -52,6 +71,32 @@ which calls `Polymer('tag-name')`:
         <!-- shadow DOM here -->
       </template>
     </polymer-element>
+
+#### Producing Light DOM instead of Shadow DOM {#createligthdom}
+
+By default, {{site.project_title}} creates [Shadow DOM](/platform/shadow-dom.html) from the first
+`<template>` in the element definition. The _benefit of using Shadow DOM is that
+it encapsulated markup and provides style scoping for elements_.
+
+For simpler elements that don't need the features of Shadow DOM, use the `lightdom`
+attribute to control how the element stamps out DOM. {{site.project_title}}
+will create [Light DOM](/platform/shadow-dom.html#shadow-dom-subtrees) from the first
+`<template>` rather than of Shadow DOM:
+
+    <polymer-element name="tag-name" lightdom noscript>
+      <template>
+        <!-- This DOM will render in the light dom -->
+        <div>Hi ma!</div>
+      </template>
+    </polymer-element>
+
+    <tag-name><tag-name>
+
+will render as:
+
+    <tag-name>
+      <div>Hi ma!</div>
+    </tag-name>
 
 #### Imperative registration {#imperativeregister}
 
@@ -144,29 +189,23 @@ attributeChangedCallback | attributeChanged | an attribute was added, removed, o
 
 ### The WebComponentsReady event {#WebComponentsReady}
 
-The polyfill(s) parse element definitions and handle their upgrade _asynchronously_. If you try to fetch the element from the DOM before things have settled, you'll get a big fat `null`. In these situations, an including page should wait for the `WebComponentsReady` event
-before working with the node.
-
-Example:
+The polyfills parse element definitions and handle their upgrade _asynchronously_.
+If you prematurely fetch the element from the DOM before it has a chance to upgrade,
+you'll be working with an `HTMLUnknownElement`. In these situations, wait for the `WebComponentsReady` event
+before interacting with the element:
 
     <head>
       <link rel="import" href="path/to/x-foo.html">
     </head>
-    <body style="opacity:0">
+    <body>
       <x-foo></x-foo>
       <script>
-        window.addEventListener('WebComponentsReady', function() {
-          document.body.style.opacity = 1; // show body now that registration is done.
-
+        window.addEventListener('WebComponentsReady', function(e) {
           var xFoo = document.querySelector('x-foo');
-          // Do something with x-foo.
+          xFoo.barProperty = 'baz';
         });
       </script>
     </body>
-
-**Tip:** Use the `WebComponentsReady` event to mitigate FOUC in browsers that don't
-support the CSS `:unknown` pseudo class.
-{: .alert .alert-success }
 
 ## {{site.project_title}} Features {#features}
 
