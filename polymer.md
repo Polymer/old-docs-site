@@ -24,28 +24,48 @@ At the heart of {{site.project_title}} are Custom Elements. Thus, it should be n
       <script>Polymer('tag-name');</script>
     </polymer-element>
 
-`<polymer-element>` supports the following attributes:
+### Attributes
+
+{{site.project_title}} [reserves](https://github.com/Polymer/polymer/blob/master/src/declaration/attributes.js#L53) special attributes to be used on `<polymer-element>`:
 
 <table class="table">
   <tr>
-    <th>Attribute</th><th>Usage</th><th>Description</th>
+    <th>Attribute</th><th>Required?</th><th>Description</th>
   </tr>
   <tr>
-    <td><code>name</code></td><td><b>required</b></td><td>Setup actions performed by the data-binding engine.</td>
+    <td><code>name</code></td><td><b>required</b></td><td>Name for the custom element. Requires a "-".</td>
   </tr>
   <tr>
-    <td><code>attributes</code></td><td>optional</td><td>Used to <a href="#published-properties">publish properties</a></td>
+    <td><code>attributes</code></td><td>optional</td><td>Used to <a href="#published-properties">publish properties</a>.</td>
+  </tr>
+  <tr>
+    <td><code>extends</code></td><td>optional</td><td>Used to <a href="#extending-other-elements">extend other elements</a>.</td>
   </tr>
   <tr>
     <td><code>noscript</code></td><td>optional</td><td>For simple elements that don't need to call <code>Polymer()</code>. See <a href="#altregistration">Alternate ways to register an element</a>.</td>
   </tr>
   <tr>
-    <td><code>lightdom</code></td><td>optional</td><td>Produces Light DOM instead of Shadow DOM. See <a href="createligthdom">Producing Light DOM instead of Shadow DOM</a></td>
+    <td><code>lightdom</code></td><td>optional</td><td>Produces Light DOM instead of Shadow DOM. See <a href="createligthdom">Producing Light DOM instead of Shadow DOM</a>.</td>
   </tr>
   <tr>
-    <td><code>constructor</code></td><td>optional</td><td>The name of the constructor to put on the global object. Allows users to create instances of your element using the <code>new</code> operator (e.g. <code>var tagName = new TagName()</code>)</td>
+    <td><code>constructor</code></td><td>optional</td><td>The name of the constructor to put on the global object. Allows users to create instances of your element using the <code>new</code> operator (e.g. <code>var tagName = new TagName()</code>).</td>
   </tr>
 </table>
+
+#### Default attributes {#defaultattrs}
+
+Other attributes you declare on `<polymer-element>` will automatically be included
+on each instance of the element. For example:
+
+    <polymer-element name="tag-name" class="active" mycustomattr>
+      <template>...</template>
+      <script>Polymer('tag-name');</script>
+    </polymer-element>
+
+When an instance of `<tag-name>` is created, it contains `class="active" mycustomattr`
+as default attributes:
+
+    <tag-name class="active" mycustomattr></tag-name>
 
 ### Alternate ways to register an element {#altregistration}
 
