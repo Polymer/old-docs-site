@@ -189,7 +189,7 @@ The elements `<option>` and `<tr>` have special meaning when they're children of
         </select>
       </template>
       <script>
-        {{site.project_title}}('my-select', {
+        Polymer('my-select', {
           created: function() { this.options = []; }
         });
       </script>
