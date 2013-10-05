@@ -153,7 +153,7 @@ property changing, but separate out the "set value" vs. the "validated value":
         Do you like the color <span style="color:{%raw%}{{validColor}}{%endraw%}">{{validColor}}</span>?
       </template>
       <script>
-        {{site.project_title}}('x-foo', {
+        Polymer('x-foo', {
           color: 'red',
           colorChanged: function(inOld) {
             if (this.color.match(/red|orange|yellow/)) {
