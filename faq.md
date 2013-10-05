@@ -211,7 +211,7 @@ For example, in a `on-*` handler, you can access the named model instance using:
         </template>
       </template>
       <script>
-        {{site.project_title}}('x-foo', {
+        Polymer('x-foo', {
           clickHandler: function(e, detail, sender) {
             console.log(sender.templateInstance.model.user.name);
           }
