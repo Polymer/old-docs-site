@@ -92,7 +92,7 @@ which calls `Polymer('tag-name')`:
       </template>
     </polymer-element>
 
-#### Producing Light DOM instead of Shadow DOM {#createlighthdom}
+#### Producing Light DOM instead of Shadow DOM {#createlightdom}
 
 By default, {{site.project_title}} creates [Shadow DOM](/platform/shadow-dom.html) from the first
 `<template>` in the element definition. The _benefit of using Shadow DOM is that
