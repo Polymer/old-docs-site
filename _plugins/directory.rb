@@ -91,6 +91,12 @@ module Jekyll
           <div #{'hidden' if !iframe_demo}>#{iframe_demo}</div>
         </span>
         #{api_docs}
+        <span class="bower_install">
+          install:
+          <p><code>#{bower_install_url}"</code></p>
+          use:
+          <pre class="code prettyprint">&lt;link rel="import" href="#{bower_use_url}"&gt;</pre>
+        </span>
       </#{@tag}>
       END
     end
@@ -118,6 +124,18 @@ module Jekyll
 
       "#{github_project_url}/#{repo}/blob/#{@branch}/#{element_path}/#{element['name']}.html"
     end
+
+    def bower_install_url(element)
+
+      "#{element['name']}"
+    end
+
+    def bower_use_url(element)
+      element_path = element['path'].split('/')
+
+      "bower_components/#{repo}/#{element_path}/#{element['name']}.html"
+    end
+
   end
 end
 
