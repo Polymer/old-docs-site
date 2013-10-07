@@ -172,6 +172,7 @@ function ajaxifySite() {
 
   exports.addEventListener('popstate', function(e) {
     if (e.state && e.state.url) {
+      // TODO(ericbidelman): Don't run this for relative anchors on the page.
       injectPage(e.state.url, false);
     }
   });

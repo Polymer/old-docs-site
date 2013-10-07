@@ -4,9 +4,11 @@ title: Polymer element reference
 ---
 
 **Note:** These elements and their documentation are very early.
-The "source" links below point to commented code where you can learn how to use
-the element.
+The "source" links below point to commented code where you can learn more about
+how to use the element.
 {: .alert .alert-info}
+
+{% include toc.html %}
 
 ## Elements
 

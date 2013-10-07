@@ -68,6 +68,8 @@ module Jekyll
       #end
 
       github_url = github_url(element)
+      bower_use_url = bower_use_url(element)
+      bower_install_url = bower_install_url(element)
       tag_name = element['name']
       #iframe_demo = generate_iframe_demo("/#{file_path}", tag_name) if @demos else ''
       iframe_demo = generate_iframe_demo2("/#{demo_path}") if @demos else ''
@@ -84,23 +86,27 @@ module Jekyll
 
       <<-END
       <#{@tag} data-element-file="/#{file_path}">
-        <h3 id="#{tag_name}">&lt;#{tag_name}&gt;</h3>
+        <h3 id="#{tag_name}">&lt;#{tag_name}&gt; <small><a href="#{github_url}" target="_blank">source</a></small></h3>
+        <span class="bower_install_instructions">
+          <label>Install:</label>
+          <pre class="prettyprint">bower install #{bower_install_url}</pre>
+          <label>Include:</label>
+          <pre class="prettyprint">&lt;link rel="import"
+      href="#{bower_use_url}"&gt;</pre>
+        </span>
         <span class="links">
-          <a href="#{github_url}" target="_blank">source</a>
-          <a href="/#{demo_path}" target="_blank" #{'disabled' if !File.exists?(demo_path)}>demo</a>
+          <a href="/#{demo_path}" target="_blank" class="btn btn-primary" #{'disabled' if !File.exists?(demo_path)}>Try demo »</a>
           <div #{'hidden' if !iframe_demo}>#{iframe_demo}</div>
         </span>
-        #{api_docs}
-        <span class="bower_install">
-          install:
-          <p><code>#{bower_install_url}"</code></p>
-          use:
-          <pre class="code prettyprint">&lt;link rel="import" href="#{bower_use_url}"&gt;</pre>
+        <span class="api_documentation">
+          <label>Usage:</label>
+          #{api_docs}
         </span>
       </#{@tag}>
       END
     end
 
+    # Generates and iframe embed to demo the element using <iframe srcdoc>.
     def generate_iframe_demo(file_path, tag_name)
       <<-END
       <iframe srcdoc='
@@ -111,6 +117,7 @@ module Jekyll
       END
     end
 
+    # Generates and iframe embed to demo the element using <iframe src>.
     def generate_iframe_demo2(file_path)
       <<-END
       <iframe style="width: 100%;" src="#{file_path}"></iframe>
@@ -126,14 +133,13 @@ module Jekyll
     end
 
     def bower_install_url(element)
-      
       repo, element_path = element['path'].split('/')
 
       "#{repo}"
     end
 
     def bower_use_url(element)
-      element_path = element['path'].split('/')
+      repo, element_path = element['path'].split('/')
 
       "bower_components/#{repo}/#{element_path}/#{element['name']}.html"
     end

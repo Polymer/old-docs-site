@@ -509,8 +509,7 @@ polymer-ui-overlay {
     font-family: "Source Code Pro",Monaco,Menlo,Consolas,"Courier New",monospace;
   }
   .links {
-    margin-left: 17px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     display: block;
 
     a {
@@ -530,6 +529,13 @@ polymer-ui-overlay {
   iframe {
     border: none;
     width: 100%;
+  }
+
+  .bower_install_instructions,
+  .api_documentation {
+    > label {
+      font-weight: 600;
+    }
   }
 
 }
