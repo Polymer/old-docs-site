@@ -126,8 +126,10 @@ module Jekyll
     end
 
     def bower_install_url(element)
+      
+      repo, element_path = element['path'].split('/')
 
-      "#{element['name']}"
+      "#{repo}"
     end
 
     def bower_use_url(element)
