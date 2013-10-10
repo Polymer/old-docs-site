@@ -255,9 +255,6 @@ They don't. However, search engines have been dealing with heavy AJAX
 based application for some time now. Moving away from JS and being more declarative
 is a good thing and will generally make things better.
 
-If you're worried about hiding things in Shadow DOM, use the [`lightdom` attribute](/polymer.html#createlightdom) on
-your `<polymer-element>` definitions.
-
 ### Is there a registry of components I can play with? {#registry}
 
 Not yet, but we think that's a great idea.
