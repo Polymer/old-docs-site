@@ -38,9 +38,14 @@ including polyfill repos, tools, projects, and UI elements.
 #### Pointer Events
 
 #### Shadow DOM
+{% endcomment %}
+
+
+## 2013-10-10 {#2013-10-10}
+
+See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20131010).
 
 ---
-{% endcomment %}
 
 ## 2013-10-03 {#2013-10-03}
 
