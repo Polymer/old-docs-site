@@ -213,6 +213,8 @@ leftViewCallback | leftView | an instance was removed from the document
 attributeChangedCallback | attributeChanged | an attribute was added, removed, or updated
 {: .table }
 
+{%comment%}- | ready | The `<polymer-element>` has been prepared. It's Shadow DOM has been created, property observers setup, and event listeners attached.{%endcomment%}
+
 ### The WebComponentsReady event {#WebComponentsReady}
 
 The polyfills parse element definitions and handle their upgrade _asynchronously_.
