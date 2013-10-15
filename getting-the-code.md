@@ -71,15 +71,14 @@ The entirety of the {{site.project_title}} is composed of a number of Git
 repositories. All are included as submodules in the {{site.project_title}} download.
 Understanding the various pieces will help you navigate the codebase.
 
-We have factored our repositories into separate chunks for each specification API.
-For example, the following repositories are useful individually:
+We have factored our polyfills into separate repositories for each specification.
+For example, the following repositories may be useful if you're interested in the individual API:
 
 * `CustomElements`
 * `HTMLImports`
 * `PointerEvents`
 * `PointerGestures`
 * `ShadowDOM`
-* `mdv`
 * `web-animations-js`
 
 Some repositories depend on others in {{site.project_title}} and must be siblings of the same parent directory to function completely:
