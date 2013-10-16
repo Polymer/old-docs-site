@@ -178,9 +178,36 @@ No. But {{site.project_title}} may provide a syntax for mixins in the future.
 
 ### How do I use data-binding to repeat an `<option>` or `<tr>`? {#option-tr}
 
-The elements `<option>` and `<tr>` have special meaning when they're children of
-`<select>` and `<table>`, respectively. For these special types elements, use the
-`template` attribute to repeat the element:
+Until the addition of HTML `<template>`, certain elements like `<select>`, `<table>`, and [others](https://github.com/Polymer/TemplateBinding/blob/master/src/TemplateBinding.js#L117) had special parser rules to prevent anything other than `<option>` and `<tr>` from being their children, respectively. Because of these legacy rules, browsers that don't support `<template>` will lift unexpected elements out of context and make them siblings, including `<template>` itself!
+
+For example, the following won't work correctly in browsers that don't support `<template>`:
+
+    <!-- Won't work in browsers that don't support <template>. -->
+    <table>
+      {%raw%}<template repeat="{{tr in rows}}">{%endraw%}
+        <tr><td>...</td></tr>
+      </template>
+    </table>
+
+The `<template repeat>` is hoisted out and rendered as a sibling:
+
+    <!-- Unsupported browsers make the child <template> a sibling. -->
+    {%raw%}<template repeat="{{tr in rows}}">{%endraw%}
+      <tr><td>...</td></tr>
+    </template>
+    <table>
+      ...
+    </table>
+
+For **browsers that don't support `<template>`**, the [TemplateBinding](/platform/template.html) [prollyfill](http://prollyfill.org/) has the ability to repeat `<option>` and `<tr>` directly using the `template` attribute:
+
+    <table>
+      {%raw%}<tr template repeat="{{tr in rows}}">{%endraw%}
+        <td>Hello</td>
+      </tr>
+    </table>
+
+Another example using`<select>`/`<option>`:
 
     <polymer-element name="my-select">
       <template>
@@ -198,6 +225,21 @@ The elements `<option>` and `<tr>` have special meaning when they're children of
       var select = document.createElement('my-select');
       select.options = ['One', 'Two', 'Three'];
     </script>
+
+If your users are using browsers that don't support `<template>`, use the `template`
+attribute on these [special elements](https://github.com/Polymer/TemplateBinding/blob/master/src/TemplateBinding.js#L117).
+
+**Note:** browsers with native support for `<template>` allow it to be a child
+of elements `<select>` and `<table>`. If you know your users are using a browser
+with support, write your repeaters like this:
+
+    <table>
+      {%raw%}<template repeat="{{tr in rows}}">{%endraw%}
+        <tr>
+          <td>Hello</td>
+        </tr>
+      </template>
+    </table>
 
 ### How can I access the current named model instance that in a `<template repeat>`? {#templateinstancemodel}
 
