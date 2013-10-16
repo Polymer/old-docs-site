@@ -86,7 +86,7 @@ polymer.dart is a Dart port of {{site.project_title}} created and maintained by 
 
 One limitation of today's polyfills is that {{site.project_title}} aggressively uses XHR to shim HTML Imports. We're experimenting with packaging systems and build steps to reduce the cost of network requests. When this API lands natively in browsers, things will Just Work™. Resources will be loaded as they normally do, taking advantage of parallelism, browser caching, etc.
 
-Until then, you can try [Vulcanizer](https://github.com/Polymer/labs/tree/master/vulcanize), which
+Until then, you can try [Vulcanizer](https://github.com/Polymer/vulcanize), which
 is our recommended build tool. It concatenates a list of elements and inlines
 their definitions into your main page.
 
@@ -247,7 +247,7 @@ bring that file into your app.
 
 Similarly, you could write a build step that inlines any custom element definition
 directly into your main app. We've experimented with this basic idea in a
-tool we call [Vulcanizer](https://github.com/Polymer/labs/tree/master/vulcanize).
+tool we call [Vulcanizer](/tooling-strategy.html#vulcanizer).
 
 ### Crawlers understand custom elements? How does SEO work? {#seo}
 

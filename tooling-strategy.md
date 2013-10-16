@@ -11,10 +11,10 @@ If something seems terrible wrong, check out {{site.project_title}}'s [build sta
 
 > Vulcanization is process that turns polymers into more durable materials.
 
-[Vulcanizer](https://github.com/Polymer/labs/tree/master/vulcanize) is a tool we're experimenting
+[Vulcanizer](https://github.com/Polymer/vulcanize) is a tool we're experimenting
 with to concatenate a set of web components into a single file. It's our current recommendation for a "build step".
 
-See its [README](https://github.com/Polymer/labs/tree/master/vulcanize) for documentation and examples.
+See its [README](https://github.com/Polymer/vulcanize) for documentation and examples.
 
 ## Debugging Shadow DOM
 
