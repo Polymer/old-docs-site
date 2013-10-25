@@ -62,8 +62,8 @@
         margin-right: 5px;
       }
     </style>
-    <polymer-ajax id="bbot" handleAs="json" on-polymer-response="response"></polymer-ajax>
-    <div id="badge" on-click="toggleDetails">
+    <polymer-ajax id="bbot" handleAs="json" on-polymer-response="{{onResponse}}"></polymer-ajax>
+    <div id="badge" on-click="{{toggleDetails}}">
       <span class="builder">{{builder.platform}}</span>
       <span class="result {{result.resultStr}}">{{result.resultStr}}</span>
     </div>
@@ -114,7 +114,7 @@
           };
         }
       },
-      response: function(inEvent, inResponse) {
+      onResponse: function(inEvent, inResponse) {
         this.result = inResponse.response;
         this.result.resultStr = this.result.results ? 'failed' : 'passed';
         var steps = inResponse.response.steps;

@@ -41,7 +41,7 @@
   Polymer('docs-menu', {
     applyAuthorStyles: true,
     ajaxify: false,
-    created: function() {
+    ready: function() {
       // TODO: Remove when Shadow DOM polyfill is fixed.
       // https://github.com/Polymer/ShadowDOM/issues/255
       this.offsetHeight;
