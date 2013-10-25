@@ -5,7 +5,7 @@ title: A Guide to Styling Elements
 article:
   author: ebidel
   published: 2013-07-11
-  updated: 2013-08-09
+  updated: 2013-10-25
   polymer_version: 0.0.20130808
   description: Learn all about how to style Polymer elements.
 tags:
@@ -121,7 +121,7 @@ From the outside:
 
 From within the element:
 
-    <polymer-element name="x-foo" on-click="changeBg">
+    <polymer-element name="x-foo" on-click="{{changeBg}}">
       <template>
         <style>
           @host {
@@ -148,7 +148,7 @@ From within the element:
 If you're feeling loco, it's possible to modify the rules in an `@host`
 block using CSSOM:
 
-    <polymer-element name="x-foo" on-click="changeBg">
+    <polymer-element name="x-foo" on-click="{{changeBg}}">
       <template>
         <style>
           @host { :scope { background: red; } }

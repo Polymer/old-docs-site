@@ -44,7 +44,7 @@
   <script>Polymer('x-button-example');</script>
 </polymer-element>
 
-<polymer-element name="x-bgchange-example" on-click="changeBg">
+<polymer-element name="x-bgchange-example" on-click="{{changeBg}}">
   <template>
     <style>
       @host { :scope { display: inline-block; padding: 5px; background: red; color: white; } }

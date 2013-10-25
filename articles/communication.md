@@ -8,7 +8,7 @@ subtitle: Custom Elements
 article:
   author: ebidel
   published: 2013-08-12
-  #updated: 2013-07-09
+  updated: 2013-10-25
   polymer_version: 0.0.20130808
   description: Techniques for passing messages to, from, and inbetween custom elements.
 tags:
@@ -289,7 +289,7 @@ Combining the two gives you a declarative way to listen for events and requires 
 **Example:** Defining an `on-click` that calls `sayHi()` whenever the element is clicked:
 
 {% raw %}
-    <polymer-element name="say-hello" attributes="name" on-click="sayHi">
+    <polymer-element name="say-hello" attributes="name" on-click="{{sayHi}}">
       <template>Hello {{name}}!</template>
       <script>
         Polymer('say-hello', {
@@ -328,10 +328,10 @@ up from children.
 Things become come very interesting when several elements need to respond to an event.
 
 {% raw %}
-    <polymer-element name="my-app" on-said-hello="third">
+    <polymer-element name="my-app" on-said-hello="{{third}}">
       <template>
-        <div on-said-hello="second">
-          <say-hello name="Eric" on-said-hello="first"></say-hello>
+        <div on-said-hello="{{second}}">
+          <say-hello name="Eric" on-said-hello="{{first}}"></say-hello>
         </div>
       </template>
       <script>
@@ -381,7 +381,7 @@ a click handler on itself):
 Say you wanted an event that bubbles up from one element to also fire on
 sibling or child elements. That is:
 
-    <polymer-element name="my-app" on-said-hello="sayHi">
+    <polymer-element name="my-app" on-said-hello="{{sayHi}}">
       <template>
         <say-hello name="Bob"></say-hello>
         <say-bye></say-bye> <!-- Defines an internal listener for 'said-hello' -->
@@ -420,7 +420,7 @@ a new event, <code>polymer-signal<b>-foo</b></code>, to *all instances* of `<pol
 Parts of your app or other {{site.project_title}} elements can declare a `<polymer-signals>`
 element to catch the named signal:
 
-    <polymer-signals on-polymer-signal-foo="fooSignal"></polymer-signals>
+    <polymer-signals on-polymer-signal-foo="{{fooSignal}}"></polymer-signals>
 
 Here's a full example:
 
@@ -439,7 +439,7 @@ Here's a full example:
 
     <polymer-element name="my-app">
       <template>
-        <polymer-signals on-polymer-signal-foo="fooSignal"></polymer-signals>
+        <polymer-signals on-polymer-signal-foo="{{fooSignal}}"></polymer-signals>
         <content></content>
       </template>
       <script>
@@ -472,7 +472,7 @@ Here's a full example:
 
 <polymer-element name="my-app-signals">
   <template>
-    <polymer-signals on-polymer-signal-foo="fooSignal" on-polymer-signal-bar="barSignal"></polymer-signals>
+    <polymer-signals on-polymer-signal-foo="{{fooSignal}}" on-polymer-signal-bar="{{barSignal}}"></polymer-signals>
     <content></content>
   </template>
   <script>
