@@ -121,6 +121,7 @@ From the outside:
 
 From within the element:
 
+{% raw %}
     <polymer-element name="x-foo" on-click="{{changeBg}}">
       <template>
         <style>
@@ -142,12 +143,14 @@ From within the element:
         });
       </script>
     </polymer-element>
+{% endraw %}
 
 **Demo:** <x-bgchange-example></x-bgchange-example>
 
 If you're feeling loco, it's possible to modify the rules in an `@host`
 block using CSSOM:
 
+{% raw %}
     <polymer-element name="x-foo" on-click="{{changeBg}}">
       <template>
         <style>
@@ -167,6 +170,7 @@ block using CSSOM:
         });
       </script>
     </polymer-element>
+{% endraw %}
 
 The only reason to do this would be to programmatically add/remove pseudo-class rules.
 It's also worth noting that this trick doesn't work under {{site.project_title}}'s Shadow DOM polyfill.

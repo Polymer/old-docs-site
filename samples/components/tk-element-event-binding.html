@@ -1,7 +1,7 @@
 <polymer-element name="tk-element-event-binding">
   <template>
     <p>This is a <strong>{{owner}}</strong>'s tk-element. He likes the color <span style="color: {{color}}">{{color}}</span>.</p>
-    <button on-click="sayHello">Say hello</button>
+    <button on-click="{{sayHello}}">Say hello</button>
   </template>
   <script>
     Polymer('tk-element-event-binding', {

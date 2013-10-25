@@ -217,7 +217,7 @@ Another example using`<select>`/`<option>`:
       </template>
       <script>
         Polymer('my-select', {
-          created: function() { this.options = []; }
+          ready: function() { this.options = []; }
         });
       </script>
     </polymer-element>
@@ -249,7 +249,7 @@ For example, in a `on-*` handler, you can access the named model instance using:
     <polymer-element name="x-foo">
       <template>
         <template repeat="{{user in users}}">
-          <div on-click="clickHandler">{{user.name}}</div>
+          <div on-click="{{clickHandler}}">{{user.name}}</div>
         </template>
       </template>
       <script>

@@ -193,7 +193,7 @@ callbacks, though for convenience, implements them with shorter names.
 All of the lifecycle callbacks are optional: 
 
     {{site.project_title}}('tag-name', {
-      created: function() { ... },
+      ready: function() { ... },
       enteredView: function () { ... },
       leftView: function() { ... },
       attributeChanged: function(attrName, oldVal, newVal) {
@@ -347,7 +347,7 @@ Let's modify the `name-tag` example to take an object instead of individual prop
       </template>
       <script>
         {{site.project_title}}('name-tag', {
-          created: function() {
+          ready: function() {
             this.person = {
               name: "Scott",
               nameColor: "orange"
@@ -365,7 +365,7 @@ Now, imagine we make a new component called `<visitor-creds>` that uses `name-ta
       </template>
       <script>
         {{site.project_title}}('visitor-creds', {
-          created: function() {
+          ready: function() {
             this.person = {
               name: "Scott2",
               nameColor: "red"
@@ -388,9 +388,9 @@ is evaluated once. This means only one instance of an object used in property in
 {{site.project_title}} supports declarative binding of events to methods in the component.
 It uses special <code>on-<em>event</em></code> syntax to trigger this binding behavior.
 
-    <polymer-element name="g-cool" on-keypress="keypressHandler">
+    <polymer-element name="g-cool" on-keypress="{% raw %}{{keypressHandler}}{% endraw %}">
       <template>
-        <button on-click="buttonClick"></button>
+        <button on-click="{% raw %}{{buttonClick}}{% endraw %}"></button>
       </template>
       <script>
         {{site.project_title}}('g-cool', {
@@ -400,7 +400,7 @@ It uses special <code>on-<em>event</em></code> syntax to trigger this binding be
       </script>
     </polymer-element>
 
-In this example, the `on-keypress` declaration maps the standard DOM `"keypress"` event to the `keypressHandler` method defined on the element. Similarly, a button witin the element
+In this example, the `on-keypress` declaration maps the standard DOM `"keypress"` event to the `keypressHandler` method defined on the element. Similarly, a button within the element
 declares a `on-click` handler for click events that calls the `buttonClick` method.
 All of this is achieved without the need for any glue code. 
 
@@ -453,14 +453,15 @@ For example, the following defines a component whose template contains an `<inpu
 ### Firing custom events {#fire}
 
 {{site.project_title}} core provides a convenient `fire()` method for
-sending custom events. Essentially, it's a wrapper around your standard `node.dispatchEvent(new CustomEvent(...))`. In cases where you need to fire an event after microtasks have completed,
+sending custom events. Essentially, it's a wrapper around your standard `node.dispatchEvent(new CustomEvent(...))`. In cases where you need to fwire an event after microtasks have completed,
 use the asynchronous version: `asyncFire()`.
 
 Example:
 
+{% raw %}
     <polymer-element name="ouch-button">
       <template>
-        <button on-click="onClick">Send hurt</button> 
+        <button on-click="{{onClick}}">Send hurt</button> 
       </template>
       <script>
         Polymer('ouch-button', {
@@ -478,9 +479,10 @@ Example:
         console.log(e.type, e.detail.msg); // "ouch" "That hurt!"
       });
     </script>
+{% endraw %}
 
 **Tip:** If your element is within another {{site.project_title}} element, you can
-use the special [`on-* handlers`](#declarative-event-mapping) to deal with the event: `<ouch-button on-ouch="myMethod"></ouch-button>`
+use the special [`on-*`](#declarative-event-mapping) handlers to deal with the event: `<ouch-button on-ouch="{% raw %}{{myMethod}}{% endraw %}"></ouch-button>`
 {: .alert .alert-success }
 
 ### Extending other elements
@@ -511,6 +513,7 @@ and data-bound.
 
 When you override an inherited method, you can call the parent's method with `this.super()`.
 
+{% raw %}
     <polymer-element name="polymer-cool">
       <script>
         {{site.project_title}}('polymer-cool', {
@@ -522,8 +525,8 @@ When you override an inherited method, you can call the parent's method with `th
       </script>
     </polymer-element>
 
-    <polymer-element name="polymer-cooler" extends="polymer-cool" on-click="makeCoolest">
-      <template>polymer-cooler is {%raw%}{{praise}}{%endraw%}</template>
+    <polymer-element name="polymer-cooler" extends="polymer-cool" on-click="{{makeCoolest}}">
+      <template>polymer-cooler is {{praise}}</template>
       <script>
         {{site.project_title}}('polymer-cooler', {
           praise: 'cooler',
@@ -535,6 +538,7 @@ When you override an inherited method, you can call the parent's method with `th
     </polymer-element>
 
     <polymer-cooler></polymer-cooler>
+{% endraw %}
 
 In this example, when the user clicks on a `<polymer-cooler>` element, its
 `makeCoolest()` method is called, which in turn calls the parent's version
@@ -599,7 +603,7 @@ call `cancelUnbindAll()` right after you create or remove it. The [lifecycle met
 are a good place for this:
 
     Polymer('my-element', {
-      created: function() {
+      ready: function() {
         // Ensure bindings remain active, even if we're never added to the DOM.
         this.cancelUnbindAll();
       },

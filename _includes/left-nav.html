@@ -1,7 +1,7 @@
 {% raw %}
 <polymer-element name="docs-menu" attributes="ajaxify" lightdom>
 <template>
-  <polymer-ui-menu id="menu" selectedItem="{{item}}" on-click="onClick">
+  <polymer-ui-menu id="menu" selectedItem="{{item}}" on-click="{{onClick}}">
     <polymer-ui-submenu-item id="gettingstarted" label="Getting started">
       <polymer-ui-menu-item><a href="/getting-the-code.html">Get the code</a></polymer-ui-menu-item>
       <polymer-ui-menu-item><a href="/getting-started.html">Getting started</a></polymer-ui-menu-item>

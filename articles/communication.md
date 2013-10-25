@@ -381,11 +381,13 @@ a click handler on itself):
 Say you wanted an event that bubbles up from one element to also fire on
 sibling or child elements. That is:
 
+{% raw %}
     <polymer-element name="my-app" on-said-hello="{{sayHi}}">
       <template>
         <say-hello name="Bob"></say-hello>
         <say-bye></say-bye> <!-- Defines an internal listener for 'said-hello' -->
         ...
+{% endraw %}
 
 When `<say-hello>` fires `said-hello`, it bubbles and `sayHi()` handles it.
 However, suppose `<say-bye>` has setup an internal listener for the same event.
