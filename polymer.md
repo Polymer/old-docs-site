@@ -548,6 +548,7 @@ to "coolest".
 
 - [`async()`](#asyncmethod)
 - [`unbindAll()` / `cancelUnbindAll()` / `asyncUnbindAll()`](#bindings)
+  - [`.preventDispose`](#preventdispose)
 - [`Platform.flush()`](#flush)
 
 ### Dealing with asynchronous tasks {#asyncmethod}
@@ -614,7 +615,8 @@ are a good place for this:
 
 {{site.project_title}} typically handles this management for you, but when you
 explicitly call `cancelUnbindAll()` (and the element is never added to/put back in the DOM),
-it becomes your responsibility to _eventually_ unbind the element using `unbindAll()/asyncUnbindAll()`:
+it becomes your responsibility to _eventually_ unbind the element using `unbindAll()/asyncUnbindAll()`,
+otherwise your application may leak memory.
 
     var el = document.createElement('my-element');
     // Need to unbind if el is:
@@ -622,7 +624,13 @@ it becomes your responsibility to _eventually_ unbind the element using `unbindA
     //   2. put in the DOM, but later removed
     el.unbindAll();
 
-Otherwise, your application will leak memory.
+#### Using preventDispose {#preventdispose}
+
+To force bindings from being removed in call cases, set `.preventDispose`:
+
+    Polymer('my-element', {
+      preventDispose: true
+    });
 
 ### How data changes are propagated {#flush}
 
