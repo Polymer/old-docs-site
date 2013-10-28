@@ -124,3 +124,18 @@ all ancestor scopes are visible, up-to and including the first ancestor **not** 
       </template>
     </template>
 {% endraw %}
+
+## Binding to attributes
+
+Binding expressions to certain attributes can produce side effects in browsers that don't implement `<template>` natively. For example, running `<img src="/users/{{ id }}.jpg">` under the polyfill produces a network request that 404s.
+
+In addition, browsers such as IE sanitize certain attributes, disallowing {% raw %}`{{}}`{% endraw %} replacements in their text.
+
+To counterattack these side effects, bindings in certain attributes can be prefixed with "_":
+
+{% raw %}
+    <img _src="/users/{{ id }}.jpg">
+    <div _style="color: {{ color }}">
+    <a _href="{{ url }}">Link</a>
+    <input type="number" _value="{{ number }}">
+{% endraw %}
