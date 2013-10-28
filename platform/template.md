@@ -90,12 +90,36 @@ Indexing:
     </template>
 {% endraw %}
 
-#### Activating a template
+### Activating a template
 
 Setting data model on the template causes any `bind`, `repeat` or `if` attribute
 directive to begin acting:
 
     document.querySelector('template').model = {...};
+
+### Unbinding a model {#nodeunbind}
+
+`Node.unbind(<property>)` can be used to unbind a property. For example, to unbind
+a model set using the `bind` attribute, call `template.unbind('bind')`:
+
+{% raw %}
+    <button onclick="removeGo()">test</button>
+    <template id="greeting" bind="{{ salutations }}">
+      Hello, {{who}} - {{what}}
+    </template>
+
+    <script>
+      var t = document.querySelector('#greeting');
+      var model = {
+        salutations: { what: 'GoodBye', who: 'Imperative' }
+      };
+      t.model = model;
+        
+      function removeGo() {
+        t.unbind('bind');
+      }
+    </script>
+{% endraw %}
 
 ### Examples
 
