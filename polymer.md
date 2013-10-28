@@ -1,17 +1,14 @@
 ---
 layout: default
-title: Polymer core
+title: Polymer core reference
 ---
 
 <p><buildbot-list project="polymer"></buildbot-list></p>
 
 {% include toc.html %}
 
-The {{site.project_title}} _core_ provides a thin layer of code that expresses
-its opinion and provides the extra sugaring that all {{site.project_title}} elements use. It is provided in the file `polymer.js`.
-
-**Note:** You can find working examples of the concepts on this page in [/toolkit-ui](https://github.com/polymer/toolkit-ui), [/polymer-elements](https://github.com/Polymer/polymer-elements), and [/polymer-ui-elements](https://github.com/Polymer/polymer-ui-elements).
-{: .alert .alert-success }
+The {{site.project_title}} _core_ provides a thin layer of API on top of web components.
+It expresses {{site.project_title}}'s opinion, provides the extra sugaring that all {{site.project_title}} elements use, and is meant to help make developing web components much easier.
 
 ## Element declaration
 
@@ -234,7 +231,7 @@ before interacting with the element:
       </script>
     </body>
 
-## {{site.project_title}} Features {#features}
+## Features {#features}
 
 ### Published properties
 
