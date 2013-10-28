@@ -655,3 +655,25 @@ need to manually call `Platform.flush()`. Here are specific examples:
 2. The author of a slider element wants to ensure that data can propagate from it as the user slides the slider. A user of the element, might, for example, bind the slider's value to an input and expect to see the input change while the slider is moving. To achieve this, the element author calls `Platform.flush()` after setting the element's value in the `ontrack` event handler.
 
 **Note:** {{site.project_title}} is designed such that change notifications are asynchronous. Both `Platform.flush()` and `Object.observe()` (after which it's modeled) are asynchronous. Therefore, **`Platform.flush()` should not be used to try to enforce synchronous data notifications**. Instead, always use [change watchers](#change-watchers) to be informed about state.
+
+### How {{site.project_title}} elements prepare themselves {#prepare}
+
+For performance reasons, `<polymer-element>`s avoid the expense of preparing ShadowDOM, event listeners, and property observers if they're created outside the main document.
+This behavior is similar to how native elements such as `<img>` and `<video>` behave.
+They remain in a semi-inert state when created outside the main document (e.g. an `<img>` avoids the expense of loading its `src`).
+
+{{site.project_title}} elements prepare themselves automatically in the following cases:
+
+1. when they're created in a `document` that has a `defaultView` (the main document)
+- when they receive the `enteredViewCallback`
+- when they're created in the `shadowRoot` of another element that is preparing itself
+
+In addition, if the `.alwaysPrepare` property is set to `true`, {{site.project_title}} elements
+prepare themselves even when they do not satisfies the above rules.
+
+    Polymer('my-element', {
+      alwaysPrepare: true
+    });
+
+**Note:** an element's [`ready()` lifecycle callback](#lifecyclemethods) is called after an element has been prepared. Use `ready()` to know when an element is done initializing itself.
+{: .alert .alert-success }
