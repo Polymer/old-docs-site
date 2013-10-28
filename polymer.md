@@ -665,8 +665,8 @@ They remain in a semi-inert state when created outside the main document (e.g. a
 {{site.project_title}} elements prepare themselves automatically in the following cases:
 
 1. when they're created in a `document` that has a `defaultView` (the main document)
-- when they receive the `enteredViewCallback`
-- when they're created in the `shadowRoot` of another element that is preparing itself
+2. when they receive the `enteredView` callback
+3. when they're created in the `shadowRoot` of another element that is preparing itself
 
 In addition, if the `.alwaysPrepare` property is set to `true`, {{site.project_title}} elements
 prepare themselves even when they do not satisfies the above rules.
