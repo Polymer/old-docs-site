@@ -83,6 +83,17 @@ For example:
     </template>
 {% endraw %}
 
+You can also use the key/value notation to get at the index of the current iteration:
+
+{% raw %}
+    <template repeat="{{ user, i in users }}">
+      {{ user.name }}
+      <template repeat="{{ file, j in user.files }}">
+        {{ i }}:{{ j }} {{ user.name }} owners {{ file.name }}
+      </template>
+    </template>
+{% endraw %}
+
 The scope naming is available (but optional) inside the `template`, `bind`, and `repeat` directives.
 
 {% raw %}

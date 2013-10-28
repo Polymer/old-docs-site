@@ -39,8 +39,25 @@ Template Binding extends the `<template>` element with new attributes for bindin
 
 {% raw %}
     <template repeat="{{ collection }}">
-      Will create maintain exactly instance with {{ bindings }} for every
-      element in the array collection, when it is provided.
+      Creates an instance with {{ bindings }} for every element in the array collection.
+    </template>
+{% endraw %}
+
+Named scopes:
+
+{% raw %}
+    <template repeat="{{ user in users }}">
+      {{user.name}}
+    </template>
+{% endraw %}
+
+Indexing:
+
+{% raw %}
+    <template repeat="{{ foo, i in foos }}">
+      <template repeat="{{ value, j in foo }}">
+        {{ i }}:{{ j }}. {{ value }}
+      </template>
     </template>
 {% endraw %}
 
