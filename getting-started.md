@@ -30,7 +30,7 @@ or third-party elements.
 Getting things setup is straightforward:
 
 1. [Download the latest build](/getting-the-code.html) of {{site.project_title}}.
-1. Load **polymer.min.js**.
+1. Load **polymer.min.js**. This needs to come before any code that touches the DOM.
 2. Import (`<link rel="import">`) the component(s) you want to use.
 3. Use the custom element in your app.
 
@@ -39,7 +39,7 @@ Here's a bare bones example:
     <!DOCTYPE html>
     <html>
       <head>
-        <!-- 1. Load {{site.project_title}} -->
+        <!-- 1. Load {{site.project_title}} before any code that touches the DOM. -->
         <script src="polymer.min.js"></script>
         <!-- 2. Load a component -->
         <link rel="import" href="x-foo.html">
@@ -51,7 +51,7 @@ Here's a bare bones example:
     </html>
 
 **Note:** You must run your app from a web server for the [HTML Imports](/platform/html-imports.html)
-polyfill to work properly. This requirement goes away if the API is available natively.
+polyfill to work properly. This requirement goes away when the API is available natively.
 {: .alert .alert-info }
 
 ### Creating a {{site.project_title}} element
