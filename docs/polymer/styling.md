@@ -6,7 +6,7 @@ title: Styling reference
 {% include toc.html %}
 
 **Note:** styling {{site.project_title}} elements is no different than styling custom elements.
-For a complete guide, see "[A Guide to Styling Elements](/articles/styling-elements.html)".
+For a complete guide on the basics, see "[A Guide to Styling Elements](/articles/styling-elements.html)".
 {: .alert }
 
 In addition to the [standard features for styling Custom Elements](/articles/styling-elements.html), {{site.project_title}} contains extra goodies for fully controlling element styling. This document outlines those features, including FOUC prevention, the specifics on how the the Shadow DOM polyfill applies styles, and workarounds for current limitations.
@@ -20,7 +20,7 @@ To initially hide an element, include the `polymer-veiled` class:
     <x-foo class="polymer-veiled">If you see me, elements are upgraded!</x-foo>
     <div class="polymer-veiled"></div>
 
-Alternatively, add its selector to `Polymer.veiledElements`. Elements included in
+Alternatively, you can add selectors to `Polymer.veiledElements`. Elements included in
 this array will automatically get the `polymer-veiled` class applied to them at boot time:
 
     Polymer.veiledElements = ['x-foo', 'div'];
@@ -33,44 +33,71 @@ Class name | Behavior when applied to an element
 
 ### Overriding the default behavior {#overriding}
 
-By default, `body` is included in `Polymer.veiledElements`. When [`WebComponentsReady`](/polymer.html#WebComponentsReady) is fired, {{site.project_title}} removes the `polymer-veiled` class and adds `polymer-unveil` at the first `transitionend` event the element receives.  To override this behavior (and therefore prevent the entire page from being initially hidden), set `Polymer.veiledElements` to null:
+By default, `body` is included in the `Polymer.veiledElements` array. When [`WebComponentsReady`](/polymer.html#WebComponentsReady) fires, {{site.project_title}} removes the `polymer-veiled` class and adds `polymer-unveil` at the first `transitionend` event the element receives.  To override this behavior (and therefore prevent the entire page from being initially hidden), set `Polymer.veiledElements` to null:
     
     Polymer.veiledElements = null;
 
 ### Unveiling elements after boot time {#unveilafterboot}
 
-The veiling process can be used to prevent FOUC at times other than boot-up. To do so, apply the `polymer-veiled` class to the desired elements and call `Polymer.unveilElements()` when they should be displayed. For example,
+The veiling process can be used to prevent FOUC at times other than page load. To do so, apply the `polymer-veiled` class to the desired elements and call `Polymer.unveilElements()` when they should be displayed. For example,
 
     element.classList.add('polymer-veiled');
-    ...
+    // ... some time late ...
     Polymer.unveilElements();
 
 ## Polyfill styling directives
 
+When running {{site.project_title}} under the polyfill, the `@polyfill-*`
+directives give you more control for how {{site.project_title}} performs Shadow DOM styling.
+
 ### @polyfill {#at-polyfill}
 
-To polyfill complex styling like this, {{site.project_title}} provides the `@polyfill`
-directive to be placed inside a CSS comment above your rule. The string next
-to `"@polyfill"` describes a CSS selector and is used to replace the next rule
-in the `<style>` element.
+The `@polyfill` directive is used to replace a native CSS selector with one that
+will work under the polyfill. For example, targeting distributed nodes using `::content` only works under native Shadow DOM. Instead, you can tell {{site.project_title}} to replace said
+rules with ones compatible with the polyfill.
 
-One use for `@polyfill` is to polyfill `::distributed()` rules. You can do this
-through careful use of selectors:
+To replace native rules, place `@polyfill` inside a CSS comment above the 
+style rule you want to replace. The string next to `"@polyfill"` indicates a
+CSS selector to replace the next style rule with. For example:
 
     /* @polyfill @host .bar */
-    ::-webkit-distributed(.bar) {
+    ::content .bar {
       color: red;
     }
 
-Under native Shadow DOM the above rule remains as written. Under the polyfill, it becomes:
+    /* @polyfill .container > * */
+    ::content > * {
+      border: 1px solid black;
+    }
+
+Under native Shadow DOM nothing changes. Under the polyfill the native selector 
+s replaced with the one in the `@polyfill` comment above it:
 
     x-foo .bar {
       color: red:
     }
 
-For more information on `::distributed()`, see [Styling distributed nodes](/articles/styling-elements.html#style-distributed).
+    .container > * {
+      border: 1px solid black;
+    }
 
 ### @polyfill-rule {#at-polyfill-rule}
+
+The `@polyfill-rule` directive is used to create a style rule that should apply *only* when the Shadow DOM polyfill is in use. It's a useful catch-all when it's not possible to write a rule that can automatically morph between native Shadow DOM and polyfill Shadow DOM. Because of the simulated styling {{site.project_title}} provides, you should rarely need to use this directive.
+
+To create a rule that only applies under the polyfill, place the `@polyfill-rule` directive entirely inside a CSS comment:
+
+    /* @polyfill-rule .foo {
+      background: red;
+    } */
+
+This has no effect under native Shadow DOM but under the polyfill, the comment is removed.
+No automated scoping is performed on `@polyfill-rule` rules but `@host` will get
+replaced with the custom element name:
+
+    /* @polyfill-rule @host.yellow {
+      background: yellow;
+    } */
 
 ### @polyfill-unscoped-rule {#at-polyfill-unscoped-rule}
 
