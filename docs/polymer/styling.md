@@ -47,8 +47,8 @@ The veiling process can be used to prevent FOUC at times other than page load. T
 
 ## Polyfill styling directives
 
-When running {{site.project_title}} under the polyfill, the `@polyfill-*`
-directives give you more control for how {{site.project_title}} performs Shadow DOM styling.
+When running under the polyfill, {{site.project_title}} has `@polyfill-*`
+directives to give you more control for how Shadow DOM styling is shimmed.
 
 ### @polyfill {#at-polyfill}
 
@@ -91,39 +91,45 @@ To create a rule that only applies under the polyfill, place the `@polyfill-rule
       background: red;
     } */
 
-This has no effect under native Shadow DOM but under the polyfill, the comment is removed.
-No automated scoping is performed on `@polyfill-rule` rules but `@host` will get
-replaced with the custom element name:
+This has no effect under native Shadow DOM but under the polyfill, the comment is removed:
+
+    .foo {
+      background: red;
+    }
+
+No automated scoping is performed for `@polyfill-rule` rules but `@host` will get
+replaced with the custom element name. For example, if `x-foo` contains this styling:
 
     /* @polyfill-rule @host.yellow {
       background: yellow;
     } */
 
+It will be uncommented and applied as so:
+
+    x-foo.yellow {
+      background: yellow;
+    } 
+
 ### @polyfill-unscoped-rule {#at-polyfill-unscoped-rule}
 
 `@polyfill-unscoped-rule` is exactly the same as `@polyfill-rule` except that the rules inside it are not scoped by the polyfill. The rule you write is exactly what will be applied.
 
-`@polyfill-unscoped-rule` should only be needed when the scoping mechanism is incompatible with a rule. {{site.project_title}} uses CSSOM to modify styles and there are a couple known rules that don't round-trip correctly via CSSOM (on some browsers). One example is a rule containing CSS `calc()` in Safari. It's only in these rare cases that `@polyfill-unscoped-rule` should be used.
+`@polyfill-unscoped-rule` should only be needed in rare cases. {{site.project_title}} uses CSSOM to modify styles and there are a several known rules that don't round-trip correctly via CSSOM (on some browsers). One example using CSS `calc()` in Safari. It's only in these rare cases that `@polyfill-unscoped-rule` should be used.
 
 ## Making styles global
 
-`<link polymer-scope="element?">`?????
-
-Sometimes you need globals.
-
-According to spec, certain CSS @-rules like `@keyframe` and `@font-face`
-cannot be defined in a `<style scoped>`. Therefore, you need to either declare
-their definitions outside the element or make them global using the
+According to CSS spec, certain @-rules like `@keyframe` and `@font-face`
+cannot be defined in a `<style scoped>`. Therefore, they will not work in Shadow DOM.
+Instead, you'll need to declare their definitions outside the element or make them global using the
 `polymer-scope="global"` attribute.
 
 **Example:** making a stylesheet global
 
-    <polymer-element name="x-foo">
+    <polymer-element name="x-foo" noscript>
       <template>
         <link rel="stylesheet" href="fonts.css" polymer-scope="global">
         ...
       </template>
-      <script>Polymer('x-foo');</script>
     </polymer-element>
 
 A stylesheet or `<style>` that uses the `polymer-scope="global"` attribute
@@ -132,7 +138,7 @@ use it wherever you need it.
 
 **Example:** Define and use CSS animations in an element
 
-    <polymer-element name="x-blink">
+    <polymer-element name="x-blink" nopscript>
       <template>
         <style polymer-scope="global">
           @-webkit-keyframes blink {
@@ -148,7 +154,6 @@ use it wherever you need it.
         </style>
         ...
       </template>
-      <script>Polymer('x-blink');</script>
     </polymer-element>
 
 **Note:** `polymer-scope="global"` should only be used for stylesheets or `<style>`
@@ -220,10 +225,15 @@ This ensures styling does not leak outside the element's shadowRoot (e.g. upper 
           ...
 
       Note, this technique does not enforce lower bound encapsulation. For that,
-      you need to set `Platform.ShadowCSS.strictStyling = true`. This isn't the
-      yet the default because it requires that you add the custom element's
-      name as an attribute on all DOM nodes in the shadowRoot (e.g. `<span x-foo>`).
+      you need to [forcing strict styling](#strictstyling).
 
-### Forcing strict styling
+### Forcing strict styling {#strictstyling}
 
-`Platform.ShadowCSS.strictStyling = true`
+By default, {{site.project_title}} does not enforce lower bound styling encapsulation.
+The lower bound is the boundary between insertion points and the shadow host's children.
+
+You can turn lower bound encapsulation by setting `Platform.ShadowCSS.strictStyling`:
+
+    `Platform.ShadowCSS.strictStyling = true`
+
+This isn't the yet the default because it requires that you add the custom element's name as an attribute on all DOM nodes in the shadowRoot (e.g. `<span x-foo>`).

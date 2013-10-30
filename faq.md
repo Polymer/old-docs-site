@@ -327,25 +327,7 @@ it's preferred to inline the styles without using `@import`. For example:
 
 ### How can I use web fonts or CSS Animations in my custom element? {#fontsanimations}
 
-According to the spec, certain @ at-rules (including CSS `@keyframe` and `@font-face`) [cannot be defined](http://lists.w3.org/Archives/Public/public-whatwg-archive/2013Jan/0251.html) in `<style scoped>`. Therefore, you need to define these values outside of ShadowDOM (e.g. outside a `<template>`) using `<style polymer-scope="global">`. After that, you can use the animation/font inside your Shadow DOM:
-
-    <polymer-element name="x-blink">
-      <!-- CSS Animation defs need to be outside of scoped styles -->
-      <style polymer-scope="global">
-        @import url(http://fonts.googleapis.com/css?family=Quicksand);
-        @-webkit-keyframes blink {
-          to { opacity: 0; }
-         }
-      </style>
-      <template>
-        <style>
-          @host {
-            x-blink { -webkit-animation: blink 1s cubic-bezier(1.0,0,0,1.0) inifnite 1s; }
-          }
-        </style>
-        ...
-      </template>
-    </polymer-element>
+See "[Making styles global](/docs/polymer/styling.html#making-styles-global)".
 
 ### Why does my element claim its `.clientWidth/clientHeight` is 0? {#clientDimenstions}
 
