@@ -38,17 +38,14 @@ The specific subset of JavaScript which is supported is:
 | Grouping (parenthesis) | `(a + b) * (c + d)` |
 | Literal values | numbers, strings, `null`, `undefined` | Escaped strings and non-decimal numbers are not supported. |
 | Array & Object initializers | `[foo, 1]`, `{id: 1, foo: bar}` |
-| Labeled statements | `foo: bar.baz; bat: boo > 2;` |
 {: .table }
 
-### Unlabeled vs. labeled statements
+### Statements
 
 Expressions are parsed when they're within a mustache ({% raw %}`{{}}`{% endraw %}).
-The expression can be a single statement, or multiple labeled statements.
+The expression can be a single statement, or an object.
 
-If the result is a _single unlabeled statement_, whenever the value of one or
-more paths in the expression change, the value of the expression re-evaluated
-and the result inserted as the value of the mustache:
+Whenever the value of one or more paths in the expression change, the value of the expression re-evaluated and the result inserted as the value of the mustache:
 
 {% raw %}
     <div>Jill has {{ daughter.children.length + son.children.length }} grandchildren</div>
@@ -58,11 +55,10 @@ may result in:
 
     <div>Jill has 100 grandchildren</div>
 
-If the result is _one or more labeled statements_, the value of the mustache
-will include the set of space-separated label identifiers whose corresponding expressions are truthy:
+You can hand off an object a filter. For example, using an object with the `tokenList` filter, the value of the mustache will include the space-separated keys from the object whose corresponding expressions are truthy:
 
 {% raw %}
-    <div class="{{ active: user.selected; big: user.type == 'super' }}"> 
+    <div class="{{ {active: user.selected, big: user.type == 'super'} | tokenList }}"> 
 {% endraw %}
 
 may result in:
@@ -98,7 +94,7 @@ The scope naming is available (but optional) inside the `template`, `bind`, and 
 
 {% raw %}
 - `bind` syntax: `<template bind="{{ expression as identifier }}">`
-- `repeat` syntax: `<template repeat="{{ identifier in expression }}">`
+- `repeat` syntax: `<template repeat="{{ identifier in expression }}">`, `<template repeat="{{ val, i in expression }}">`
 {% endraw %}
 
 **Note:** that `expression` can be a simple identifier, a path or a full
