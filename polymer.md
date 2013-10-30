@@ -162,6 +162,9 @@ The following example defines a property `message` and a method `foo`:
       </script>
     </polymer-element>
 
+**Note:** `this` references the custom element itself inside a {{site.project_title}} element. For example, `this.localName == 'tag-name'`.
+{: .alert .alert-info }
+
 ### Adding private or static variables {#static}
 
 If you need private state within an element, wrap your script using standard
@@ -264,10 +267,10 @@ By default, properties defined in `attributes` are `null`:
 
 As such, you can provide default values using the `prototype`:
 
-    <polymer-element name="x-foo" attributes="foo">
+    <polymer-element name="x-foo" attributes="bar">
       <script> 
-        Polymer('x-foo', { // x-foo has a foo property with default value false.
-          foo: false
+        Polymer('x-foo', { // x-foo has a bar property with default value false.
+          bar: false
         });
       </script>
     </polymer-element>
@@ -277,7 +280,7 @@ As such, you can provide default values using the `prototype`:
       <script> 
         Polymer('x-foo', {
           publish: {
-            foo: false 
+            bar: false 
           }
         });
       </script>
@@ -289,13 +292,9 @@ Attributes are a great way for users of your element to configure it, declarativ
 They can customize a published property by passing an initial value on the attribute
 with the same name:
 
-    <x-foo foo="true"></x-foo>
+    <x-foo name="Bob"></x-foo>
 
-**Note:** As of today, property values are not reflected back into markup. Also, setting
-an attribute using `.setAttribute()`) has no effect.
-{: .alert }
-
-##### Hinting an attribute's type
+##### Hinting an attribute's type {#attrhinting}
 
 When attribute values are converted to property values, {{site.project_title}} attempts to convert the value to the correct type, depending on the default value of the property.
 
@@ -306,6 +305,12 @@ When attribute values are converted to property values, {{site.project_title}} a
         });
       </script>
     </polymer-element>
+
+##### Property reflection to attributes {#attrreflection}
+
+Property values are reflected back into their attribute counterpart. For example, setting `this.name = "Joe"` or calling `this.setAttribute('name', 'Joe')` from within the element updates the markup accordingly:
+
+    <x-foo name="Joe"></x-foo>
 
 ### Data binding and custom attributes
 
