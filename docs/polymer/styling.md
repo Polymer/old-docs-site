@@ -101,6 +101,10 @@ replaced with the custom element name:
 
 ### @polyfill-unscoped-rule {#at-polyfill-unscoped-rule}
 
+`@polyfill-unscoped-rule` is exactly the same as `@polyfill-rule` except that the rules inside it are not scoped by the polyfill. The rule you write is exactly what will be applied.
+
+`@polyfill-unscoped-rule` should only be needed when the scoping mechanism is incompatible with a rule. {{site.project_title}} uses CSSOM to modify styles and there are a couple known rules that don't round-trip correctly via CSSOM (on some browsers). One example is a rule containing CSS `calc()` in Safari. It's only in these rare cases that `@polyfill-unscoped-rule` should be used.
+
 ## Making styles global
 
 `<link polymer-scope="element?">`?????
