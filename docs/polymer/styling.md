@@ -167,21 +167,20 @@ has opted to favor practicality and performance over correctness. For example,
 the polyfill's do not protect Shadow DOM elements against document level CSS.
  
 When {{site.project_title}} processes element definitions, it looks for `<style>` elements
-and stylesheets. It removes these from the custom element's Shadow DOM `<template>`
-and re-formulates them according to the rules below. Once this is done, a `<style>`
-element is added to the main document with the reformulated rules.
+and stylesheets. It removes these from the custom element's Shadow DOM `<template>`, rejiggers them according to the rules below, and appends a `<style>` element to the main document with the reformulated rules.
 
 #### Reformatting rules
 
-1. **Convert `:host` rules prefixed with the element's tag name**
+1. **Replace `:host`, including `:host(<compound selector>)` by prefixing with the element's tag name**
 
-      For example, this rule inside an `x-foo`:
+      For example, these rules inside an `x-foo`:
 
         <polymer-element name="x-foo">
           <template>
             <style>
               :host { ... }
               :host:hover { ... }
+              :host(.foo) > .bar { ... }
             </style>
           ...
 
@@ -192,6 +191,7 @@ element is added to the main document with the reformulated rules.
             <style>
               x-foo { ... }
               x-foo:hover { ... }
+              x-foo.foo > .bar, .foo x-foo > bar {...}
             </style>
           ...
 
@@ -218,6 +218,8 @@ This ensures styling does not leak outside the element's shadowRoot (e.g. upper 
 
       Note, this technique does not enforce lower bound encapsulation. For that,
       you need to [forcing strict styling](#strictstyling).
+
+1. **Replace `^` and `^^`** with a `<space>` character.
 
 ### Forcing strict styling {#strictstyling}
 
