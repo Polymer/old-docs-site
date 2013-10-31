@@ -60,7 +60,7 @@ To replace native rules, place `@polyfill` inside a CSS comment above the
 style rule you want to replace. The string next to `"@polyfill"` indicates a
 CSS selector to replace the next style rule with. For example:
 
-    /* @polyfill @host .bar */
+    /* @polyfill .bar */
     ::content .bar {
       color: red;
     }
@@ -97,19 +97,6 @@ This has no effect under native Shadow DOM but under the polyfill, the comment i
       background: red;
     }
 
-No automated scoping is performed for `@polyfill-rule` rules but `@host` will get
-replaced with the custom element name. For example, if `x-foo` contains this styling:
-
-    /* @polyfill-rule @host.yellow {
-      background: yellow;
-    } */
-
-It will be uncommented and applied as so:
-
-    x-foo.yellow {
-      background: yellow;
-    } 
-
 ### @polyfill-unscoped-rule {#at-polyfill-unscoped-rule}
 
 `@polyfill-unscoped-rule` is exactly the same as `@polyfill-rule` except that the rules inside it are not scoped by the polyfill. The rule you write is exactly what will be applied.
@@ -120,25 +107,34 @@ It will be uncommented and applied as so:
 
 According to CSS spec, certain @-rules like `@keyframe` and `@font-face`
 cannot be defined in a `<style scoped>`. Therefore, they will not work in Shadow DOM.
-Instead, you'll need to declare their definitions outside the element or make them global using the
+Instead, you'll need to declare their definitions outside the element. 
+
+Stylesheets in an HTML import are included in the main document automatically. Whenever possible,
+use a stylesheet to make styles global:
+
+    <link rel="stylesheet" href="animations.css">
+
+    <polymer-element name="x-foo" ...>
+      <template>...</template>
+    </polymer-element>
+
+{{site.project_title}} also supports making a `<style>` or inline stylesheet global using the
 `polymer-scope="global"` attribute.
 
 **Example:** making a stylesheet global
 
-    <polymer-element name="x-foo" noscript>
+    <polymer-element name="x-foo" ...>
       <template>
         <link rel="stylesheet" href="fonts.css" polymer-scope="global">
         ...
       </template>
     </polymer-element>
 
-A stylesheet or `<style>` that uses the `polymer-scope="global"` attribute
-is moved to the `<head>` of the main page. This happens once, and you can safely
-use it wherever you need it.
+Stylsheets that uses `polymer-scope="global"` are moved to the `<head>` of the main page. This happens once.
 
 **Example:** Define and use CSS animations in an element
 
-    <polymer-element name="x-blink" nopscript>
+    <polymer-element name="x-blink" ...>
       <template>
         <style polymer-scope="global">
           @-webkit-keyframes blink {
@@ -146,10 +142,8 @@ use it wherever you need it.
           }
         </style>
         <style>
-          @host {
-            :scope {
-              -webkit-animation: blink 1s cubic-bezier(1.0,0,0,1.0) infinite 1s;
-            }
+          :host {
+            -webkit-animation: blink 1s cubic-bezier(1.0,0,0,1.0) infinite 1s;
           }
         </style>
         ...
@@ -179,17 +173,15 @@ element is added to the main document with the reformulated rules.
 
 #### Reformatting rules
 
-1. **Convert rules inside `@host` to rules prefixed with the element's tag name**
+1. **Convert `:host` rules prefixed with the element's tag name**
 
       For example, this rule inside an `x-foo`:
 
         <polymer-element name="x-foo">
           <template>
             <style>
-              @host {
-                :scope { ... }
-                :scope:hover { ... }
-              }
+              :host { ... }
+              :host:hover { ... }
             </style>
           ...
 
@@ -203,7 +195,7 @@ element is added to the main document with the reformulated rules.
             </style>
           ...
 
-1. **Prepend selectors with the element name, creating a descendent selector**.
+1. **Prepend selectors with the element name, creating a descendant selector**.
 This ensures styling does not leak outside the element's shadowRoot (e.g. upper bound encapsulation).
 
       For example, this rule inside an `x-foo`:

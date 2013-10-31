@@ -307,11 +307,13 @@ Unfortunately, this is a limitation of the HTML Import spec and the polyfill fol
 
 For stylesheets that are not same domain or CORs-enabled, you can use `@import` in a `<style>`:
 
-    <polymer-element name="x-blink">
-    <style>
-      @import url(http://example.com/awesome.css);
-    </style>
-    <template>...</template>
+    <polymer-element name="x-blink" ...>
+      <template>
+        <style>
+          @import url(http://example.com/awesome.css);
+        </style>
+        ...
+      </template>
     </polymer-element>
 
 *Note*: If your stylesheet **is** CORs-enabled or from the same domain as your app,
@@ -332,12 +334,12 @@ See "[Making styles global](/docs/polymer/styling.html#making-styles-global)".
 ### Why does my element claim its `.clientWidth/clientHeight` is 0? {#clientDimenstions}
 
 By default, customs elements are `display: inline`. The fix is to give your element
-a default style of `display: block` using an `@host` rule.
+a default style of `display: block` using `:host`.
 
     <polymer-element name="my-element">
       <template>
         <style>
-          @host { * { display: block; } }
+          :host { * { display: block; } }
         </style>
         ...
       </template>
