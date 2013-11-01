@@ -216,6 +216,10 @@ docs-menu {
   max-width: 24%;
 }
 
+polymer-ui-nav-arrow {
+  right: -1px !important;
+}
+
 polymer-ui-menu > polymer-ui-menu-item {
   display: block !important;
 }

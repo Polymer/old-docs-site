@@ -5,7 +5,7 @@ title: A Guide to Styling Elements
 article:
   author: ebidel
   published: 2013-07-11
-  updated: 2013-10-25
+  updated: 2013-10-31
   polymer_version: 0.0.20130808
   description: Learn all about how to style Polymer elements.
 tags:
@@ -44,23 +44,26 @@ As with any HTML element, users of your Custom Element can define styles on it:
         opacity: 0;
       }
     </style>
+
     <x-foo></x-foo>
 
 However, it's common for a Custom Element to define its own look. 
 
 ### Element-defined styles
 
-**Heads up**: `@host` is going away soon in favor of `:host()`. See the [spec bug](https://www.w3.org/Bugs/Public/show_bug.cgi?id=22390).
+**Heads up**: `@host` was replaced with `:host()` in the Shadow DOM spec.
 {: .alert .alert-error}
 
 Elements _you_ create will likely need some sort of styling.
 
-The [`@host` at-rule](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#host-at-rule) allows you to target and style an element internally, from within its definition:
+`:host` and `:host()` allows you to target and style an element internally, from within its definition:
 
-    <polymer-element name="x-foo">
+    <polymer-element name="x-foo" noscript>
       <template>
         <style>
-          @host {
+          :host {
+            display: block; /* Note: by default elements are always display:inline. */
+          }
             /* Three equivalent rules, in order of preference. */
             :scope {
               display: block; /* Note: by default elements are always display:inline. */
@@ -74,7 +77,6 @@ The [`@host` at-rule](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/sha
           }
         </style>
       </template>
-      <script>Polymer('x-foo');</script>
     </polymer-element>
 
 The only selectors that work in `@host` are those targeting the host element itself,
