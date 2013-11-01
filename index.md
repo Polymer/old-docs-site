@@ -4,8 +4,8 @@ layout: default
 ---
 
 <style>
-h2 {
-  margin: 30px 0;
+.download {
+  margin-top: 0;
 }
 </style>
 
@@ -16,8 +16,6 @@ h2 {
 {{site.project_title}} is a new type of library for the web, built on top of Web Components,
 and designed to leverage the evolving web platform on modern browsers.
 {: .lead }
-
-{% include downloadbutton.html %}
 
 <figure id="architecture-diagram">
   <iframe src="/images/architecture-diagram.svg?{{'now' | date: "%Y%m%d"}}"></iframe>
@@ -32,7 +30,9 @@ over time as browsers implement them.
 
 ## Quick start
 
-1. Download the latest .zip from above or [get the code](/getting-the-code.html).
+{% include downloadbutton.html %}
+
+1. Download the latest release .zip from above or [get the code](/getting-the-code.html).
 2. Fire up a web server. Include `<script src="polymer.min.js"></script>` in your page.
 3. Read the [Getting Started](/getting-started.html) guide.
 4. Learn how to soup-up your web components using the [Polymer core](/polymer.html).
