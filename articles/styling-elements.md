@@ -5,7 +5,7 @@ title: A Guide to Styling Elements
 article:
   author: ebidel
   published: 2013-07-11
-  updated: 2013-10-31
+  updated: 2013-11-02
   polymer_version: 0.0.20130808
   description: Learn all about how to style Polymer elements.
 tags:
@@ -54,9 +54,7 @@ However, it's common for a Custom Element to define its own look.
 **Heads up**: `@host` was replaced with `:host()` in the Shadow DOM spec.
 {: .alert .alert-error}
 
-Elements _you_ create will likely need some sort of styling.
-
-`:host` and `:host()` allows you to target and style an element internally, from within its definition:
+Elements _you_ create will likely need some sort of styling. `:host` and `:host()` allows you to target and style a custom element internally from within its definition:
 
     <polymer-element name="x-foo" noscript>
       <template>
@@ -64,45 +62,29 @@ Elements _you_ create will likely need some sort of styling.
           :host {
             display: block; /* Note: by default elements are always display:inline. */
           }
-            /* Three equivalent rules, in order of preference. */
-            :scope {
-              display: block; /* Note: by default elements are always display:inline. */
-            }
-            * {
-              display: block;
-            }
-            x-foo {
-              display: block;
-            }
-          }
         </style>
       </template>
     </polymer-element>
 
-The only selectors that work in `@host` are those targeting the host element itself,
-in this case, `<x-foo>`. In the context of `@host`, you can use the [`:scope`](http://www.w3.org/TR/selectors4/#scope-pseudo) pseudo-class, `*`, or the type selector (`x-foo`)
-to refer to the element. They have slightly different meanings, but for all intents
-and purposes, all three are equivalent. When in doubt, use `:scope` to refer to the custom element itself.
+`:host` refers to the custom element itself and has the lowest specificity. This allows
+users to override your styling from the outside.
 
 #### Reacting to user states
 
-An interesting application of `@host` is for reacting to different user-driven states (:hover, :focus, :active, etc.):
+An interesting application of `:host` is for reacting to different user-driven states (:hover, :focus, :active, etc.):
 
-    <polymer-element name="x-button">
+    <polymer-element name="x-button" noscript>
       <template>
         <style>
-          @host {
-            :scope {
-              opacity: 0.6;
-              transition: opacity 400ms ease-in-out;
-            }
-            :scope:hover { opacity: 1; }
-            :scope:active { ... }
+          :host {
+            opacity: 0.6;
+            transition: opacity 400ms ease-in-out;
           }
+          :host:hover { opacity: 1; }
+          :host:active { ... }
         </style>
         <button><content></content></button>
       </template>
-      <script>Polymer('x-button');</script>
     </polymer-element>
 
     <x-button>x-buttonz!</x-button>
@@ -110,6 +92,46 @@ An interesting application of `@host` is for reacting to different user-driven s
 When someone mouses over `<x-button>` they'll get a sexy fade-in!
 
 **Demo:** <x-button-example>x-buttonz!</x-button-example>
+
+#### Theming an element
+
+The selector `:host(<selector>)` matches the host element if it or any of its ancestors matches `<selector>`.
+
+**Example** - color the element if an ancestor has the `different` class:
+
+    :host(.different) {
+      color: red;
+    }
+
+One reason you might find `:host()` useful is for theming. For example, many people do theming by applying a class to `<html>` or `<body>`. 
+
+    <body class="different">
+      <x-foo></x-foo>
+    </body>
+
+**Example** - theming an element by outside classes
+
+    <polymer-element name="x-foo" noscript>
+      <template>
+        <style>
+          :host(.different) { ... }
+        </style>
+      </template>
+    </polymer-element>
+
+    <body class="different">
+      <x-foo></x-foo>
+    </body>
+
+Note, you can also write a rule that matches only if the host itself has the `.different` class. For example:
+
+    <x-foo class="different"></x-foo>
+
+matches
+
+    :host(.different:host) {
+      ...  
+    }
 
 #### Programmatically modifying styles
 
@@ -127,12 +149,10 @@ From within the element:
     <polymer-element name="x-foo" on-click="{{changeBg}}">
       <template>
         <style>
-          @host {
-            :scope {
-              display: inline-block;
-              background: red;
-              color: white;
-            }
+          :host {
+            display: inline-block;
+            background: red;
+            color: white;
           }
         </style>
         <div>Click me</div>
@@ -149,24 +169,24 @@ From within the element:
 
 **Demo:** <x-bgchange-example></x-bgchange-example>
 
-If you're feeling loco, it's possible to modify the rules in an `@host`
+If you're feeling loco, it's possible to modify the rules in an `:host`
 block using CSSOM:
 
 {% raw %}
     <polymer-element name="x-foo" on-click="{{changeBg}}">
       <template>
         <style>
-          @host { :scope { background: red; } }
+          :host { background: red; }
         </style>
       </template>
       <script>
         Polymer('x-foo', {
           changeBg: function() {
             var sheet = this.shadowRoot.querySelector('style').sheet;
-            // Brittle if @host isn't first in <style>.
+            // Brittle if :host isn't first in <style>.
             var hostRules = sheet.cssRules[0];
             // Append the rule to the end.
-            hostRules.insertRule(':scope:hover { color: white; }',
+            hostRules.insertRule(':host:hover { color: white; }',
                                  hostRules.cssRules.length);
           }
         });
@@ -177,8 +197,6 @@ block using CSSOM:
 The only reason to do this would be to programmatically add/remove pseudo-class rules.
 It's also worth noting that this trick doesn't work under {{site.project_title}}'s Shadow DOM polyfill.
 See [issue #23](https://github.com/Polymer/platform/issues/23).
-
-For more information on `@host`, see [Shadow DOM 201 - CSS and Styling](http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/#toc-style-host).
 
 ## Preventing FOUC
 
@@ -193,6 +211,7 @@ be slow due to poor network conditions.
 To combat these types of UX issues and mitigate things like [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content), you can use the CSS `:unresolved` pseudo class. It applies to unknown elements right up until the point the lifecycle `createdCallback` is called.
 
 **Support:** CSS `:unresolved` is supported natively in Chrome 29. It has not been polyfilled.
+Insteadd, use {{site.project_title}}'s [FOUC prevention](/docs/polymer/styling.html#fouc-prevention) features.
 {: .alert .alert-success}
 
 **Example:** fade in an element when it's registered
@@ -226,8 +245,8 @@ To combat these types of UX issues and mitigate things like [FOUC](http://en.wik
 
 ### "Polyfilling" :unresolved
 
-Until `:unresolved` is widely supported in browsers, you can use my little trick to fake the
-behavior. The basic idea is to add a CSS class to the Custom Element when {{site.project_title}}'s `WebComponentsReady` event fires.
+If you don't want to use {{site.project_title}}'s [FOUC prevention](/docs/polymer/styling.html#fouc-prevention) features, use my little trick to fake `:unresolved`'s behavior until
+it is widely supported in browsers. The basic idea is to add a CSS class to the Custom Element when {{site.project_title}}'s `WebComponentsReady` event fires.
 
 **Example:** Faking `:unresolved`:
 
@@ -333,7 +352,7 @@ For more information on `applyAuthorStyles` and `resetStyleInheritance`, see [Sh
 To style the internal markup of an element, include a `<link>` or `<style>` tag
 inside the topmost `<template>`:
 
-    <polymer-element name="x-foo">
+    <polymer-element name="x-foo" noscript>
       <template>
         <style>
           p {
@@ -350,7 +369,6 @@ inside the topmost `<template>`:
         <p>Web components are great</p>
         <footer class="important">That is all</footer>
       </template>
-      <script>Polymer('x-foo');</script>
     </polymer-element>
 
 Scoped styling is one of the many features of Shadow DOM. Styles defined inside
@@ -363,7 +381,7 @@ from the outside or using a styling rule that's too broad.
 
 **Note** For browsers that don't support Shadow DOM natively, the polyfill
 attempts to mimic scoped styling as much as possible. See the
-[polyfill details on scoped styling](#polyfilldetails).
+[polyfill details on scoped styling](/docs/polymer/styling.html#polyfill-details).
 {: .alert .alert-info }
 
 If you need to style nodes distributed into your element from the user's Light DOM,
@@ -371,69 +389,64 @@ see [styling distributed nodes](#style-distributed).
 
 ## Defining style hooks {#style-hooks}
 
-**Heads up:** The `pseudo` attribute and `::x-*` custom pseudo elements are 
-getting replaced soon by `part` and `::part()`, respectively. See the [spec bug](https://www.w3.org/Bugs/Public/show_bug.cgi?id=22461).
+**Heads up:** The `pseudo` attribute and `::x-*` custom pseudo elements were 
+replaced by `part="<name>"` and `::part(<name>)`, respectively.
 {: .alert .alert-error}
 
-Nodes in your element that contain the `pseudo` attribute can be targeted from outside CSS.
-These are called [Custom pseudo elements](http://www.w3.org/TR/shadow-dom/#custom-pseudo-elements). Essentially, they give users a way to style specific pieces of your element by exposing some of its internal structure.
+Nodes in your element that contain the `part` attribute can be targeted directly from outside CSS.
+These are called custom pseudo elements. Essentially, they give users a way to style specific pieces of your element by exposing some of its internal structure.
+
+To make a custom pseudo element in your Shadow DOM, include `part="<name>"` on the node. Users can then style that element from the outside using `::part(<name>)`.
 
 **Example**
 
     <style>
-      x-foo::x-header {
+      x-foo::part(heading) {
         color: black;
         background: yellow;
       }
     </style>
 
-    <polymer-element name="x-foo">
+    <polymer-element name="x-foo" noscript>
       <template>
-        <h1 pseudo="x-header">I'm an x-foo!</h1>
+        <h1 part="heading">I'm an x-foo!</h1>
       </template>
-      <script>Polymer('x-foo');</script>
     </polymer-element>
 
     <x-foo></x-foo>
 
-**Note**: the name of a custom pseudo element needs to be prefixed with "x-".
-{: .alert .alert-info }
-
-For more information on custom pseudo elements, see [Shadow DOM 201 - CSS and Styling](http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/#toc-custom-pseduo).
-
 ## Styling distributed nodes {#style-distributed}
 
-**Heads up:** The `::distributed()` is being renamed soon to `::content()`.
-See the [spec bug](https://www.w3.org/Bugs/Public/show_bug.cgi?id=22460).
+**Heads up:** `::content` replaced `::distributed()` as the way to style distributed nodes.
 {: .alert .alert-error}
 
-`<content>` elements allow you to select nodes from the "Light DOM" and
-render them at predefined locations in your element. The CSS `::distributed()` function
-is used to style nodes that pass through one of points. It's argument is
-a CSS selector to match node(s) distributed at that insertion point.
+`<content>` elements allow you to select nodes from the ["Light DOM"](/platform/shadow-dom.html#shadow-dom-subtrees) and render them at predefined locations in your element. The CSS `::content` pseudo element is a way to style nodes that pass through an insertion point. For example, 
+you can a rule like `::content > *`.
 
-**Example**
+**Full example**
 
-    <polymer-element name="x-foo">
+    <polymer-element name="x-foo" noscript>
       <template>
         <style>
-          content[select="p"]::-webkit-distributed(*) { /* anything distributed here */
+          content[select="p"]::content * { /* anything distributed here */
             font-weight: bold;
           }
-          ::-webkit-distributed(p:first-child) {
+          /* @polyfill p:first-child */
+          ::content p:first-child {
             color: red;
           }
-          ::-webkit-distributed(footer > p) {
+          /* @polyfill footer > p */
+          ::content footer > p {
             color: green;
           }
-          ::-webkit-distributed(> p) { /* scope relative selector */
+          /* @polyfill :host > p */
+          ::content > p { /* scope relative selector */
             color: blue;
           }
         </style>
         <content select="p"></content>
         <content></content>
       </template>
-      <script>Polymer('x-foo');</script>
     </polymer-element>
 
     <!-- Children of x-foo are the Light DOM -->
@@ -447,28 +460,14 @@ a CSS selector to match node(s) distributed at that insertion point.
       </footer>
     </x-foo>
 
-### {{site.project_title}}'s @polyfill directive
+**Note**: I'm using the `@polyfill` to make the style rules work under
+the Shadom DOM polyfill. [Read more](#directives) about the polyfill directives.
+{: .alert .alert-info }
 
-To polyfill complex styling like this, {{site.project_title}} provides the `@polyfill`
-directive to be placed inside a CSS comment above your rule. The string next
-to `"@polyfill"` describes a CSS selector and is used to replace the next rule
-in the `<style>` element.
+### {{site.project_title}}'s @polyfill-* directives {#directives}
 
-One use for `@polyfill` is to polyfill `::distributed()` rules. You can do this
-through careful use of selectors:
-
-    /* @polyfill @host .bar */
-    ::-webkit-distributed(.bar) {
-      color: red;
-    }
-
-Under native Shadow DOM the above rule remains as written. Under the polyfill, it becomes:
-
-    x-foo .bar {
-      color: red:
-    }
-
-For more information on `::distributed()`, see [Shadow DOM 201 - CSS and Styling](http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/#toc-style-disbtributed-nodes).
+For complex styling like distribute nodes, {{site.project_title}} provides the `@polyfill`
+directives to polyfill certain Shadow DOM features. See the [Styling reference](/docs/polymer/styling.html#polyfill-styling-directives).
 
 ## Conclusion
 

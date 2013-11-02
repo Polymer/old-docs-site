@@ -109,8 +109,7 @@ According to CSS spec, certain @-rules like `@keyframe` and `@font-face`
 cannot be defined in a `<style scoped>`. Therefore, they will not work in Shadow DOM.
 Instead, you'll need to declare their definitions outside the element. 
 
-Stylesheets in an HTML import are included in the main document automatically. Whenever possible,
-use a stylesheet to make styles global:
+Stylesheets and `<style>` elements in an HTML import are included in the main document automatically:
 
     <link rel="stylesheet" href="animations.css">
 
@@ -118,6 +117,26 @@ use a stylesheet to make styles global:
       <template>...</template>
     </polymer-element>
 
+Example of defining a global `<style>`:
+
+    <style>
+      @-webkit-keyframes blink {
+        to { opacity: 0; }
+      }
+    </style>
+
+    <polymer-element name="x-blink" ...>
+      <template>
+        <style>
+          :host {
+            -webkit-animation: blink 1s cubic-bezier(1.0,0,0,1.0) infinite 1s;
+          }
+        </style>
+        ...
+      </template>
+    </polymer-element>
+
+{%comment%}
 {{site.project_title}} also supports making a `<style>` or inline stylesheet global using the
 `polymer-scope="global"` attribute.
 
@@ -153,6 +172,7 @@ Stylsheets that uses `polymer-scope="global"` are moved to the `<head>` of the m
 **Note:** `polymer-scope="global"` should only be used for stylesheets or `<style>`
 that contain rules which need to be in the global scope (e.g. `@keyframe` and `@font-face`).
 {: .alert .alert-error}
+{%endcomment%}
 
 ## Polyfill details
 
