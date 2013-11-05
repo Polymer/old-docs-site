@@ -165,7 +165,7 @@ The following example defines a property `message` and a method `foo`:
 **Note:** `this` references the custom element itself inside a {{site.project_title}} element. For example, `this.localName == 'tag-name'`.
 {: .alert .alert-info }
 
-**Important:** Be careful when initalizing properties that are objects or arrays. Because of the nature of `prototype`, you may run into unexpected "shared state" across different instances of the same element. If you're initializing an array or object, do it in `ready()` rather than directly on the `prototype`. 
+**Important:** Be careful when initializing properties that are objects or arrays. Due to the nature of `prototype`, you may run into unexpected "shared state" across instances of the same element. If you're initializing an array or object, do it in `ready()` rather than directly on the `prototype`. 
 
 Do this:
 
