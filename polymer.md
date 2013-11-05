@@ -165,6 +165,24 @@ The following example defines a property `message` and a method `foo`:
 **Note:** `this` references the custom element itself inside a {{site.project_title}} element. For example, `this.localName == 'tag-name'`.
 {: .alert .alert-info }
 
+**Important:** Be careful when initalizing properties that are objects or arrays. Because of the nature of `prototype`, you may run into unexpected "shared state" across different instances of the same element. If you're initializing an array or object, do it in `ready()` rather than directly on the `prototype`. 
+
+Do this:
+
+    Polymer('x-foo', {
+      ready: function() {
+        this.list = [];
+        this.person = {};
+      }
+    });
+     
+instead of this:
+
+    Polymer('x-foo', {
+      list: [],
+      person: {}
+    });
+
 ### Adding private or static variables {#static}
 
 If you need private state within an element, wrap your script using standard
@@ -285,7 +303,7 @@ As such, you can provide default values using the `prototype`:
         });
       </script>
     </polymer-element>
-
+ 
 #### Configuring an element via attributes
 
 Attributes are a great way for users of your element to configure it, declaratively.
@@ -336,6 +354,10 @@ Thus, the `<span>`'s color will be orange.
 
 #### Binding objects to attribute values
 
+**Important:** Be careful when your properties are objects or arrays. Element registration
+is evaluated once. This means only one instance of an object used in property initialization is ever created. Because of the nature of `prototype`, you may run into unexpected "shared state" across different instances of the same element if you're setting an initial value for a property which is an object or array. Do this type of initialization in `ready()` rather than directly on the `prototype`. 
+{: .alert .alert-error }
+
 Generally, attributes are string values, but {{site.project_title}} makes it possible to bind references between elements using attributes. The binding engine interprets reference bindings
 by interrogating the [attribute's type](#hinting-an-attributes-type). This means you 
 can bind an an object to an HTML attribute!
@@ -379,10 +401,6 @@ Now, imagine we make a new component called `<visitor-creds>` that uses `name-ta
 When an instance of `<visitor-creds>` is created, its `person` property (an object)
 is also bound to `<name-tag>`'s `person` property. Now both components are using
 the same `person` object.
-
-**Important:** Be careful when your properties are objects or arrays. Element registration
-is evaluated once. This means only one instance of an object used in property initialization is ever created. Because of the nature of `prototype`, you may run into unexpected "shared state" across different instances of the same element if you're setting an initial value for a property which is an object or array. Do this type of initialization in `created()` rather than directly on the `prototype`. 
-{: .alert .alert-error }
 
 ### Declarative event mapping
 
