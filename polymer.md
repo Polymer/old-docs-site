@@ -211,6 +211,7 @@ callbacks, though for convenience, implements them with shorter names.
 All of the lifecycle callbacks are optional: 
 
     {{site.project_title}}('tag-name', {
+      created: function() { ... },
       ready: function() { ... },
       enteredView: function () { ... },
       leftView: function() { ... },
@@ -225,8 +226,8 @@ Below is a table of the lifecycle methods according to the Custom Elements
 
 Spec | {{site.project_title}} | Called when
 |-
-- | ready | The `<polymer-element>` has been prepared. It's Shadow DOM has been created, property observers setup, and event listeners attached.
 createdCallback | created | an instance of the element is created
+- | ready | The `<polymer-element>` has been fully prepared (e.g. Shadow DOM created, property observers setup, event listeners attached, etc.)
 enteredViewCallback | enteredView | an instance was inserted into the document
 leftViewCallback | leftView | an instance was removed from the document
 attributeChangedCallback | attributeChanged | an attribute was added, removed, or updated
