@@ -542,7 +542,7 @@ For example, the following defines a component whose template contains an `<inpu
 ### Firing custom events {#fire}
 
 {{site.project_title}} core provides a convenient `fire()` method for
-sending custom events. Essentially, it's a wrapper around your standard `node.dispatchEvent(new CustomEvent(...))`. In cases where you need to fwire an event after microtasks have completed,
+sending custom events. Essentially, it's a wrapper around your standard `node.dispatchEvent(new CustomEvent(...))`. In cases where you need to fire an event after microtasks have completed,
 use the asynchronous version: `asyncFire()`.
 
 Example:
