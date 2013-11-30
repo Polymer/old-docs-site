@@ -22,6 +22,10 @@ h4 {
   font-size: 1.5vw;
 }*/
 
+h1, h2, h3, h4 {
+  font-weight: 600;
+}
+
 h2:target, h3:target, h4:target {
   padding-top: 50px;
 }
@@ -128,15 +132,16 @@ a[disabled] {
   /*border-bottom: 1px solid #eee;*/
   @include background(linear-gradient(top, rgb(240, 240, 240), rgb(255, 255, 255)));
 
-  &.polymer-veiled {
-    height: 60px;
-  }
+  // &.polymer-veiled {
+  //   height: 60px;
+  // }
 
   polymer-ui-toolbar {
     font: inherit !important;
     /*height: 50px !important;*/
     border: none !important;
     margin: 0 20px;
+    background: inherit !important;
   }
 
   .brand {
@@ -226,6 +231,7 @@ polymer-ui-menu > polymer-ui-menu-item {
   
 polymer-ui-submenu-item {
   padding: 0 10px 0 0;
+  font-weight: 600;
 
   polymer-ui-submenu-item {
     color: rgb(0, 136, 204);
@@ -249,7 +255,8 @@ polymer-ui-submenu-item {
 
 polymer-ui-menu-item {
   display: inline-block !important;
-  min-width: 50%;
+  min-width: 90%;
+  font-weight: 600;
 
   &:hover {
     background-color: #eee;
@@ -389,8 +396,7 @@ polymer-ui-overlay {
   //outline: 1px solid rgba(0,0,0,0.2);
   box-shadow: 0 4px 20px rgba(0,0,0,0.5);
 
-  header,
-  div {
+  footer {
     @include display-flex;
     @include align-items(center);
     margin-top: 5px;
@@ -400,12 +406,9 @@ polymer-ui-overlay {
     }
   }
 
-  div {
-    label {
-      margin-bottom: 0;
-      margin-right: 10px;
-      width: 160px;
-      font-weight: bold;
+  section {
+    div {
+      margin-bottom: 10px;
     }
     pre {
       margin: 0;

@@ -16,4 +16,4 @@ links:
 {% include spec-header.html %}
 
 
-{% include_external polymer-all/CustomElements/README.md %}
+{% include_external polymer-all/components/CustomElements/README.md %}

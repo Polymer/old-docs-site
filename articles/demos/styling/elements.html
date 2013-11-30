@@ -1,3 +1,5 @@
+<!-- <link rel="import" href="/polymer-all/components/polymer/polymer.html"> -->
+
 <polymer-element name="x-button-example" noscript>
   <template>
     <style>
@@ -21,7 +23,12 @@
 <polymer-element name="x-bgchange-example" on-click="{{changeBg}}">
   <template>
     <style>
-      @host { :scope { display: inline-block; padding: 5px; background: red; color: white; } }
+      :host {
+        display: inline-block;
+        padding: 5px;
+        background: red;
+        color: white;
+      }
     </style>
     <div>Click me</div>
   </template>

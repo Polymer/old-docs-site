@@ -1,22 +1,31 @@
-<p class="download centered"><a href="javascript:" class="btn btn-success btn-large" alt="Download the latest {{site.project_title}}" title="Download the latest {{site.project_title}}"><i class="icon-white icon-download"></i> Download Polymer</a></p>
+<p class="download centered"><a href="javascript:" class="btn btn-success btn-large" alt="Download the latest {{site.project_title}}" title="Download the latest {{site.project_title}}"><i class="icon-white icon-download"></i> Get Polymer</a></p>
 
-<polymer-ui-overlay id="dialog" backdrop>
+<polymer-ui-overlay id="dialog" backdrop class="polymer-veiled"> 
   <div class="dialog">
     <button class="btn close" overlay-toggle>x</button>
     <header>
       <h3 class="no-permalink">Get {{site.project_title}}</h3>
-      <span class="right">Latest version: {{site.latest_version}}</span>
     </header>
-    <div>
+    <!-- <div>
       <label class="no-permalink"><i class="icon-white icon-download icon-2x" style="vertical-align: middle;"></i> download the .zip:</label>
       <span><a href="https://github.com/{{site.project_title}}/polymer/releases/download/v{{site.latest_version}}/polymer-all-v{{site.latest_version}}.zip" id="download_polymer_link" class="btn btn-success">polymer-all-v{{site.latest_version}}.zip</a></span>
-    </div>
-    <div>
-      <label class="no-permalink"><img src="/images/icons/bower-logo.png" height="27" width="27"> install via <a href="http://bower.io/">Bower</a>:</label>
-      <span><pre>bower install polymer</pre></span>
-    </div>
+    </div> -->
+    <section>
+      <p>The various pieces of {{site.project_title}} {{site.latest_version}} can be installed using <a href="http://bower.io/">Bower</a>.</p>
+      <p>1. Install the <b class="foundation">polyfills</b> <i class="icon-cogs foundation"></i></p>
+      <div><pre>bower install --save Polymer/platform</pre></div>
+      <p>2. Install the <b class="core">core sugaring</b> <i class="icon-beaker core"></i></p>
+      <div><pre>bower install --save Polymer/polymer</pre></div>
+      <p>3. Install the <b class="elements">elements</b> <i class="icon-puzzle-piece elements"></i></p>
+      <div><pre>
+bower install --save Polymer/polymer-elements
+bower install --save Polymer/polymer-ui-elements</pre>
+      </div>
+      <div><p><b>Note:</b> <code>--save</code> adds the item to your app's bower.json as a dependency.</p></div>
+    </section>
     <footer>
-      <a href="https://github.com/Polymer/polymer/releases">Previous releases</a>
+      <span>Latest version: {{site.latest_version}}</span>
+      <a href="https://github.com/Polymer/polymer/releases" class="right">Previous releases</a>
     </footer>
   </div>
 </polymer-ui-overlay>

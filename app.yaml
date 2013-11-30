@@ -27,9 +27,23 @@ handlers:
 - url: /build/(.*)
   script: build.application
 
+# Preserve old short URLs ------------------------------------------------------
+- url: /platform.min.js
+  static_files: _site/polymer-all/components/platform/platform.js
+  upload: _site/polymer-all/components/platform/platform\.js
+
+- url: /platform.min.js.map
+  static_files: _site/polymer-all/components/platform/platform.js.map
+  upload: _site/polymer-all/components/platform/platform\.js.\map
+
 - url: /polymer.min.js
-  static_files: js/polymer.min.js
-  upload: js/polymer\.min\.js
+  static_files: _site/polymer-all/components/polymer/polymer.js
+  upload: _site/polymer-all/components/polymer/polymer\.js
+
+- url: /polymer.min.js.map
+  static_files: _site/polymer-all/components/polymer/polymer.js.map
+  upload: _site/polymer-all/components/polymer/polymer\.js\.map
+# ------------------------------------------------------------------------------
 
 - url: /polymer.min.js.map
   static_files: js/polymer.min.js.map

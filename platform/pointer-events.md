@@ -12,4 +12,4 @@ feature:
 
 {% include spec-header.html %}
 
-{% include_external polymer-all/PointerEvents/README.md %}
+{% include_external polymer-all/components/PointerEvents/README.md %}

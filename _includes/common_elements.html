@@ -4,22 +4,26 @@ NOTE: This file should not be included/used directly.
 common_elements.vulcanized.html is included in head.html as a single HTML Import
 of common elements.
 
-Before building and/or deploying the docs, run Vulcanizer on this file with the
+Before building and/or deploying the docs, run Vulcanize on this file with the
 following command:
 
-  node polymer-all/labs/vulcanize/vulcan.js -i _includes/common_elements.html -o elements/common_elements.vulcanized.html
+  vulcanize _includes/common_elements.html -o elements/common_elements.vulcanized.html
+
 {% endcomment %}
 
+<link rel="import" href="../polymer-all/components/polymer/polymer.html">
+
 <!-- Leftnav and top toolbar. Used on all pages. -->
-<link rel="import" href="../polymer-all/polymer-ui-elements/polymer-ui-menu/polymer-ui-menu.html">
-<link rel="import" href="../polymer-all/polymer-ui-elements/polymer-ui-menu-item/polymer-ui-menu-item.html">
-<link rel="import" href="../polymer-all/polymer-ui-elements/polymer-ui-submenu-item/polymer-ui-submenu-item.html">
-<link rel="import" href="../polymer-all/polymer-ui-elements/polymer-ui-nav-arrow/polymer-ui-nav-arrow.html">
-<link rel="import" href="../polymer-all/polymer-ui-elements/polymer-ui-toolbar/polymer-ui-toolbar.html">
-<link rel="import" href="../polymer-all/polymer-elements/polymer-flex-layout/polymer-flex-layout.html">
+<!-- <link rel="import" href="../polymer-all/components/polymer-ui-menu/polymer-ui-menu.html">
+<link rel="import" href="../polymer-all/components/polymer-ui-menu-item/polymer-ui-menu-item.html">
+<link rel="import" href="../polymer-all/components/polymer-ui-submenu-item/polymer-ui-submenu-item.html">
+<link rel="import" href="../polymer-all/components/polymer-ui-nav-arrow/polymer-ui-nav-arrow.html"> -->
+<link rel="import" href="../polymer-all/components/polymer-ui-toolbar/polymer-ui-toolbar.html">
+<link rel="import" href="../polymer-all/components/polymer-flex-layout/polymer-flex-layout.html">
+<link rel="import" href="../elements/docs-menu.html">
 
 <!-- Download button. Used on homepage and getting code page. -->
-<link rel="import" href="../polymer-all/polymer-ui-elements/polymer-ui-overlay/polymer-ui-overlay.html">
+<link rel="import" href="../polymer-all/components/polymer-ui-overlay/polymer-ui-overlay.html">
 
 <!-- Build bot badges. Used on platform pages. -->
 <link rel="import" href="../elements/buildbot-list.html">

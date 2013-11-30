@@ -1,3 +1,5 @@
+<!-- <link rel="import" href="/polymer-all/components/polymer/polymer.html"> -->
+
 <polymer-element name="say-hello" attributes="name" on-click="{{sayHi}}">
   <template>Hello {{name}}! (click me)</template>
   <script>
@@ -12,13 +14,13 @@
 <polymer-element name="my-app-demo" on-said-hello="{{third}}">
   <template>
     <style>
-      @host { :scope {
+      :host {
         display: inline-block;
         padding: 10px;
         border: 1px dotted black;
         border-radius: 3px;
         cursor: pointer;
-      }}
+      }
     </style>
     <div on-said-hello="{{second}}">
       <say-hello name="Eric" on-said-hello="{{first}}"></say-hello>

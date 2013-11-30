@@ -15,4 +15,4 @@ links:
 
 {% include spec-header.html %}
 
-{% include_external polymer-all/HTMLImports/README.md %}
+{% include_external polymer-all/components/HTMLImports/README.md %}

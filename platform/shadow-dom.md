@@ -23,4 +23,4 @@ links:
 
 {% include spec-header.html %}
 
-{% include_external polymer-all/ShadowDOM/README.md  %}
+{% include_external polymer-all/components/ShadowDOM/README.md  %}
