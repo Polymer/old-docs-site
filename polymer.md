@@ -150,13 +150,17 @@ If you wish to define methods/properties on your element (optional), pass an obj
 as the second argument to `{{site.project_title}}()`. This object is used to define
 the element's `prototype`.
 
-The following example defines a property `message` and a method `foo`: 
+The following example defines a property `message`, a computed property `greeting`
+using an ES5 getter, and a method `foo`: 
 
     <polymer-element name="tag-name">
       <template>...</template>
       <script>
         {{site.project_title}}('tag-name', {
           message: "Hello!",
+          get greeting() {
+            return this.message + ' there!';
+          }, 
           foo: function() {...}
         });
       </script>
