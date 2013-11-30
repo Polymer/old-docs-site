@@ -600,7 +600,7 @@ and data-bound.
 
 #### Overriding a parent's methods
 
-When you override an inherited method, you can call the parent's method with `this.super()`.
+When you override an inherited method, you can call the parent's method with `this.super()`, and optionally pass it a list of arguments (e.g. `this.super([arg1, arg2])`). The reason the paramater is an array is so you can write `this.super(arguments)`.
 
 {% raw %}
     <polymer-element name="polymer-cool">
