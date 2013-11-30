@@ -132,9 +132,9 @@ a[disabled] {
   /*border-bottom: 1px solid #eee;*/
   @include background(linear-gradient(top, rgb(240, 240, 240), rgb(255, 255, 255)));
 
-  // &.polymer-veiled {
-  //   height: 60px;
-  // }
+  &.polymer-veiled {
+    height: 60px;
+  }
 
   polymer-ui-toolbar {
     font: inherit !important;
