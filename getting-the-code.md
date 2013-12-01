@@ -3,75 +3,130 @@ layout: default
 title: Getting the code
 ---
 
-You can grab {{site.project_title}} a few different ways:
+{% include toc.html %}
 
-## Option 1. download the .zip {#download}
+## Installing {{site.project_title}}
 
-{% include downloadbutton.html %}
+### Using Bower {#bower}
 
-The latest version of {{site.project_title}} can be downloaded as .zip bundle.
-The .zip contains everything you need, including the repositories, demos, and
-samples described in this document. It also contains the built files for `polymer.min.js`
-and `platform.min.js`.
+The recommended way to get the pieces of {{site.project_title}} {{site.latest_version}} is through [Bower](http://bower.io/). We've chosen Bower because removes the hassle of dependency management when developing
+or consuming elements.
 
-## Option 2. install using Bower {#bower}
+#### Getting the packages
 
-To install {{site.project_title}} via [Bower](http://bower.io/), run:
+1. Get the <i class="icon-cogs foundation"></i> <b class="foundation">polyfill</b> libraries:
 
-    bower install polymer
+        bower install --save Polymer/platform
 
-**Note:** the Bower component only includes the `polymer.min.js` and `platform.min.js`
-build files. It does not contain the codebase, demos, and projects.
+2. Get the <i class="icon-beaker core"></i> <b class="core">core</b> sugaring:
 
-## Option 3. checkout instructions {#git}
+        bower install --save Polymer/polymer
 
-To checkout code, you can recursively clone all of {{site.project_title}}'s
-sub components using our `pull-all.sh` script.
+3. Get the <i class="icon-puzzle-piece elements"></i> <b class="elements">elements</b>:
 
-<p class="centered"><a href="/tools/pull-all.sh" target="_blank" class="btn btn-success" alt="Download pull-all.sh" title="Download pull-all.sh"><i class="icon-white icon-download"></i> Download pull-all.sh</a></p>
+        bower install --save Polymer/polymer-elements
+        bower install --save Polymer/polymer-ui-elements
 
-Running `pull-all.sh` pulls down a number of repositories to the current working directory:
+**Note:** `--save` adds the item as a dependency in your app's bower.json.
+{: .alert .alert-info }
 
-- **platform/** — The platform shims and polyfills.
-- **polymer/polymer.js** — [{{site.project_title}} core](polymer.html)
-- **polymer-elements/** — A collection of core utility elements.
-- **polymer-ui-elements/** — A collection of UI elements.
-- **projects/** — Larger examples, demos, and tools that use {{site.project_title}}.
-- **toolkit-ui/** — older widget examples.
-- **more-elements/** — additional elements
-- Each platform polyfill also has a sibling repo.
+Bower creates a `bower_components/` directory and populates it with these packages.
 
-A [description of each repository](#abouttherepos) is below.
+#### Test your environment {#testbower}
 
-### Updating submodules
+In the folder where you ran `bower install`, create an `index.html` that loads `platform.js`
+and imports the `<polymer-ajax>` element:
 
-Periodically, we'll update the project's submodules on GitHub. To
-update your local copy, re-run `pull-all.sh`:
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <script src="bower_components/plaform/plaform.js"></script>
+        <link rel="import"
+              href="bower_components/polymer-elements/polymer-ui-elements/polymer-ui-tabs.html">
+      </head>
+      <body>
+        <polymer-ui-tabs selected="0">
+          <span>One</span><span>Two</span><span>Three</span><span>Four</span><span>Five</span>
+        </polymer-ui-tabs>
+      </body>
+    </html>
+
+Fire up a web server, navigate to `index.html`, and feast on your accomplishments.
+You should see a tabs component like the one below.
+
+<iframe src="/polymer-all/components/polymer-ui-tabs/index.html" style="border:none;height:80px;width:100%;"></iframe>
+
+#### Updating packages {#updatebower}
+
+When a new version of {{site.project_title}} is available, run `bower update`
+in your app directory to update your copy:
+
+    bower update
+
+This updates all packages in `bower_components/`.
+
+### Using git {#git}
+
+As an alternative to Bower, you can clone {{site.project_title}}'s important repositories
+by running our `pull-all.sh` script:
+
+    mkdir polymer_local; cd polymer_local
+    git clone https://github.com/Polymer/tools.git
+    ./tools/bin/pull-all.sh
+
+<!-- <p class="centered"><a href="/tools/pull-all.sh" target="_blank" class="btn btn-success" alt="Download pull-all.sh" title="Download pull-all.sh"><i class="icon-white icon-download"></i> Download pull-all.sh</a></p>
+ -->
+
+Go grab a coffee. This takes a few minutes!
+
+`pull-all.sh` is great for hacking on the code or if you want the individual polyfill repositories.
+Running this script sets things up differently than Bower. It creates two directories, `components/` and `projects/`, and checks out a number of sibling repositories to each folder.
+
+**components/**
+
+- *components/platform/platform.js* — The platform shims and polyfills.
+- *components/polymer/polymer.js* — [{{site.project_title}} core](polymer.html)
+- *components/polymer-elements/* — A folder of the meta collection of the core utility elements.
+- *components/polymer-ui-elements/* — A folder of the meta collection of the UI elements.
+- A directory for each polyfill repo (CustomElements, HTMLImports, ShadowDOM).
+
+**projects/**
+
+Full and sample applications.
+
+#### Test your environment {#testgit}
+
+To check that your development environment is ready, try trying the playground tool:
+
+    cd projects/designer
+    bower install
+
+Start a web server and navigate to the designer app.
+
+#### Updating checkouts {#updategit}
+
+To update your local copies, re-run `pull-all.sh`:
 
     ./tools/bin/pull-all.sh
 
-## Test your environment
-
-**Note:** If you installed {{site.project_title}} using Bower, this section does not apply.
-{: .alert .alert-info }
-
-To check that your development environment is ready, start a local web
-server and run one of the included sample projects:
-
-1. **Start a local web server** in the folder where you downloaded {{site.project_title}}
-or checked out the code using `pull-all.sh`.
-2. In your browser, navigate to
-    [http://localhost/toolkit-ui/workbench/menu.html](http://localhost/toolkit-ui/workbench/menu.html), or whichever port you started the server on. You should see a menu of items, as shown below.
-
-<iframe src="/polymer-all/toolkit-ui/workbench/menu.html" style="width:270px;height:220px;border:none;"></iframe>
-
 ## About the repositories {#abouttherepos}
 
-The entirety of the {{site.project_title}} is composed of a number of Git
-repositories. All are included as submodules in the {{site.project_title}} download.
-Understanding the various pieces will help you navigate the codebase.
+**Note:** This section should be used for reference purposes only. We recommend
+[using Bower](#bower) to install and work with {{site.project_title}}.
+{: .alert }
 
-We have factored our polyfills into separate repositories for each specification.
+The entirety of the {{site.project_title}} is composed of a many Git
+repositories. All of the polyfill libraries, projects, and individual elements
+each have their own repository.
+
+### Specification repositories (da polyfills)
+
+Each new web platform specification has a corresponding polyfill repository. The
+reasoning for this is two-fold:
+
+1. make the polyfills work across all modern browsers
+2. each polyfill can stand on its own and be used à la carte in projects.
+
 For example, the following repositories may be useful if you're interested in the individual API:
 
 * `CustomElements`
@@ -81,58 +136,56 @@ For example, the following repositories may be useful if you're interested in th
 * `ShadowDOM`
 * `web-animations-js`
 
-Some repositories depend on others in {{site.project_title}} and must be siblings of the same parent directory to function completely:
+### Other useful repositories
 
-* `polymer`
-* `platform`
-* `toolkit-ui`
-
-### /polymer repository
+#### /polymer
 
 [github.com/polymer/polymer](https://github.com/polymer/polymer)
 
-The [`polymer`](https://github.com/polymer/polymer) repository contains the
-[{{site.project_title}} kernel](polymer.html) and its tools and tests. It expects
-the [`platform`](https://github.com/polymer/platform) polyfill repo to be a sibling directory.
+A meta repository used to distribute `polymer.js` builds.
 
-### /platform
+#### /polymer-dev
+
+[github.com/polymer/polymer-dev](https://github.com/polymer/polymer-dev)
+
+The [`polymer-dev`](https://github.com/polymer/polymer-dev) repository contains the
+[{{site.project_title}} core](polymer.html) and its tools and tests and is used
+by the project's developers. You should not have to touch this repository unless
+you're planning to hack on {{site.project_title}}.
+
+#### /platform
 
 [github.com/polymer/platform](https://github.com/polymer/platform)
 
-Each new web platform feature has a corresponding polyfill repository. The
-reasoning for this is two-fold:
+A meta repository used to distribute `platform.js` builds.
 
-1. make the polyfills work across all modern browsers
-2. each polyfill can stand on its own and be used à la carte in projects.
+#### /platform-dev
 
-The [`platform`](https://github.com/polymer/platform) repository references each of the polyfills as a sibling directory, and contains integration tests, loader, and build tools for
-the amalgamated polyfills.
+[github.com/polymer/platform-dev](https://github.com/polymer/platform-dev)
 
-See [Tooling & Testing](tooling-strategy.html) for information.
+The [`platform-dev`](https://github.com/polymer/platform-dev) contains integration tests, loader, and build tools for the amalgamated polyfills. It's used by the project's developers. You should not have to touch this repository unless you're planning to hack on {{site.project_title}}.
 
-### /polymer-elements
+#### /polymer-elements
 
 [github.com/polymer/polymer-elements](https://github.com/polymer/polymer-elements)
 
-The [`polymer-elements`](https://github.com/polymer/polymer-elements) repository
-contains utility elements that do not render UI.
+A meta repository compiling the list of utility elements that do not render UI.
 
-### /polymer-ui-elements
+#### /polymer-ui-elements
 
 [github.com/polymer/polymer-ui-elements](https://github.com/polymer/polymer-ui-elements)
 
-The [`polymer-ui-elements`](https://github.com/polymer/polymer-ui-elements)
-repository contains a growing set of basic UI components. Most are a work in progress.
+A meta repository compiling the list of basic UI elements.
 
-### /more-elements
+#### /more-elements
 
 [github.com/polymer/more-elements](https://github.com/polymer/more-elements)
 
-The [`more-elements`](https://github.com/polymer/more-elements) repository contains 
-extra components and wrappers for third-party code. Examples include Bootstrap,
-topcoat, Chart.js, pdf.js, x-tags, and AceEditor.
+A meta repository compiling the list of extra components and wrappers for third-party code. 
+Examples include Bootstrap, topcoat, Chart.js, pdf.js, x-tags, and AceEditor.
 
-### /toolkit-ui
+<!--
+#### /toolkit-ui
 
 [github.com/polymer/toolkit-ui](https://github.com/polymer/toolkit-ui)
 
@@ -142,6 +195,7 @@ the types of things you can do when writing a [{{site.project_title}} element](/
 - **elements/** — `g-*` custom element definitions.
 - **workbench/** — demos of the {{site.project_title}}-style elements found in `elements/`.
 
+
 ### /projects
 
 [github.com/polymer/projects](https://github.com/polymer/projects)
@@ -149,5 +203,5 @@ the types of things you can do when writing a [{{site.project_title}} element](/
 The [`projects`](https://github.com/polymer/projects) repository contains
 substantial larger apps/demos that we're tinkering with This includes apps like
 pica and tools like Sandbox.
-
+-->
 
