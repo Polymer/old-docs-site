@@ -27,8 +27,8 @@ or consuming elements.
         bower install --save Polymer/polymer-elements
         bower install --save Polymer/polymer-ui-elements
 
-**Note:** `--save` adds the item as a dependency in your app's bower.json.
-{: .alert .alert-info }
+**Tip:** `--save` adds these items as dependencies in your app's bower.json.
+{: .alert .alert-success }
 
 Bower creates a `bower_components/` directory and populates it with these packages.
 

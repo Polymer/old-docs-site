@@ -30,13 +30,16 @@ over time as browsers implement them.
 
 ## Quick start
 
+{%comment%}
 {% include downloadbutton.html %}
+{%endcomment%}
 
-1. Download the latest release .zip from above or [get the code](/getting-the-code.html).
-2. Fire up a web server. Include `<script src="polymer.min.js"></script>` in your page.
-3. Read the [Getting Started](/getting-started.html) guide.
-4. Learn how to soup-up your web components using the [Polymer core](/polymer.html).
-5. Play with the [polymer-elements](https://github.com/Polymer/polymer-elements), [polymer-ui-elements](https://github.com/Polymer/polymer-ui-elements), and [toolkit-ui](https://github.com/Polymer/toolkit-ui).
+<p class="download centered"><a href="/getting-the-code.html" class="btn btn-success btn-large" alt="Get the latest {{site.project_title}}" title="Get the latest {{site.project_title}}">1. Get Polymer</a></p>
+
+- Include `<script src="bower_components/platform/platform.js"></script>` in your page (fire up a web server).
+- Read the [Getting Started](/getting-started.html) guide.
+- Build a `<polyme-element>`. Learn how to soup-up your web components using the [Polymer core](/polymer.html).
+- Play with the [polymer-elements](https://github.com/Polymer/polymer-elements), [polymer-ui-elements](https://github.com/Polymer/polymer-ui-elements), and [toolkit-ui](https://github.com/Polymer/toolkit-ui).
 
 _Join the [mailing list](/discuss.html). Ask questions and give feedback!_
 

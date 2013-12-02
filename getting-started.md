@@ -25,28 +25,80 @@ imports:
 together, either ones provided by {{site.project_title}}, ones you create yourself,
 or third-party elements.
 
-## Basics
+## Setup {#basics}
 
-Getting things setup is straightforward:
+### 1. Install the requirements {#install}
 
-1. [Download the latest build](/getting-the-code.html) of {{site.project_title}}.
-1. Load **polymer.min.js**. This needs to come before any code that touches the DOM.
-2. Import (`<link rel="import">`) the component(s) you want to use.
-3. Use the custom element in your app.
+The first step when starting a new app is to [install the latest builds](/getting-the-code.html) of `platform.js` and {{site.project_title}} into your app's root directory:
 
-Here's a bare bones example:
+    bower install --save Polymer/platform Polymer/polymer
+
+Bower adds a `bower_components/` folder and fills it with these packages. The `--save` flag
+adds these items as dependencies in your app's bower.json.
+
+### 2. Create a {{site.project_title}} element {#createpolyel}
+
+{{site.project_title}} provides extra goodies for creating declarative, souped-up custom elements. We call these "{{site.project_title}} elements". To create one, follow these steps:
+
+1. Load [{{site.project_title}} core](/polymer.html) (`polymer.html`).
+1. Declare your custom element using `<polymer-element>`.
+
+In the following example, we define a new element named `<tk-element>`, save
+it to a file `elements/tk-element.html`, and use an HTML Import to load the `polymer.html` dependency.
+
+**tk-element.html**
+
+    <link rel="import" href="../bower_components/polymer/polymer.html">
+
+    <polymer-element name="tk-element" noscript>
+      <template>
+        <span>I'm <b>tk-element</b>. This is my Shadow DOM.</span>
+      </template>
+    </polymer-element>
+
+**Reminder:** The `name` attribute is required and must contain a "-". It specifies the name of the HTML
+tag you'll instantiate in markup (in this case `<tk-element>`).
+{: .alert .alert-info }
+
+#### Reuse other elements {#reuse}
+
+To reuse other elements in your `<polymer-element>`, install the element in your app:
+
+    bower install Polymer/polymer-ajax
+
+and include an import to load the new dependency in `tk-element.html`:
+
+{%raw%}
+    <link rel="import" href="../bower_components/polymer/polymer.html">
+    <link rel="import" href="../bower_components/polymer-ajax/polymer-ajax.html">
+
+    <polymer-element name="tk-element" noscript>
+      <template>
+        <span>I'm <b>tk-element</b>. This is my Shadow DOM.</span>
+        <polymer-ajax url="http://example.com/json" auto response="{{resp}}"></polymer-ajax>
+        <textarea value="{{resp}}"></textarea>
+      </template>
+    </polymer-element>
+{%endraw%}
+
+### 3. Create an app {#creatapp}
+
+Lastly, create an `index.html` that imports your new element. Include `platform.js`
+to load polyfills for the native APIs. **Be sure to include this file before any code that touches the DOM.**
+
+Here's the full example:
 
     <!DOCTYPE html>
     <html>
       <head>
-        <!-- 1. Load {{site.project_title}} before any code that touches the DOM. -->
-        <script src="polymer.min.js"></script>
-        <!-- 2. Load a component -->
-        <link rel="import" href="x-foo.html">
+        <!-- 1. Load platform support before any code that touches the DOM. -->
+        <script src="bower_components/platform/platform.js"></script>
+        <!-- 2. Load the component using an HTML Import -->
+        <link rel="import" href="elements/tk-element.html">
       </head>
       <body>
-        <!-- 3. Declare the component by its tag. -->
-        <x-foo></x-foo>
+        <!-- 3. Declare the element by its tag. -->
+        <tk-element></tk-element>
       </body>
     </html>
 
@@ -54,19 +106,23 @@ Here's a bare bones example:
 polyfill to work properly. This requirement goes away when the API is available natively.
 {: .alert .alert-info }
 
-### Creating a {{site.project_title}} element
+Your final directory structure should look something like this:
 
-{{site.project_title}} provides extra goodies for creating custom elements. We call these souped-up custom elements "{{site.project_title}} elements". To create one, follow these steps:
+    yourapp/
+      bower_components/
+        platform/
+        polymer/
+      elements/
+        tk-element.html
+      index.html
 
-1. Load [{{site.project_title}} core](/polymer.html) (`polymer.min.js`).
-1. Declare your custom element using `<polymer-element>` and call the `Polymer()` constructor.
+Now that you've got the basic setup, it's time to start using the features!
 
-In the following sample, we've converted a basic custom element into a {{site.project_title}} element named `tk-element`.
+## Using {{site.project_title}}'s features {#features}
 
-{% include samples/tk-element.html %}
-
-**Reminder:** The `name` attribute is required and specifies the name of the HTML
-tag you'll instantiate in markup (e.g. `<tag-name>`). It must be a "-" separated string.
+{{site.project_title}} provides a number of sugaring APIs for authoring
+web components. Below are a few of the concepts. Consult the [API referencee](/polymer.html) for
+detailed information on each of these features.
 
 ### Add properties/methods to your component
 
@@ -79,7 +135,7 @@ element's `prototype`.
 
 {% include samples/tk-element-proto.html %}
 
-## Adding lifecycle methods
+### Adding lifecycle methods
 
 The [lifecycle callbacks](/polymer.html#lifecyclemethods) are special methods you
 can define on your element.
@@ -90,19 +146,19 @@ a great place to do constructor-like initialization work.
 
 {% include samples/tk-element-created.html %}
 
-## Declarative data binding
+### Declarative data binding
 
 You can bind properties in your component using declarative data binding and the "double-mustache" syntax (`{%raw%}{{}}{%endraw%}`). The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced between the brackets.
 
 {% include samples/tk-element-databinding.html %}
 
-### Binding to markup
+#### Binding to markup
 
 You can use binding expressions in most HTML markup, except for tag names themselves. In the following example, we create a new property on our component named `color` whose value is bound to the value of the `color` style applied to the custom element.
 
 {% include samples/tk-element-databinding-color.html %}
 
-### Binding between components and native elements ####
+#### Binding between components and native elements
 
 The following example demonstrates binding component properties to attributes of native input elements.
 
@@ -112,7 +168,7 @@ The following example demonstrates binding component properties to attributes of
 a hint that this property is an integer.
 {: .alert alert-info}
 
-## Publishing properties
+### Publishing properties
 
 Published properties can be used to define an element's "public API". {{site.project_title}}
 establishes two-way data binding for published properties and provides access
@@ -130,7 +186,7 @@ by configuring the element with initial attribute values (e.g. `<tk-element-prop
 
 [Learn more about published properties](/polymer.html#published-properties)
 
-## Automatic node finding
+### Automatic node finding
 
 Shadow DOM is a self-contained document-like subtree; id's in that subtree do not interact with id's in other trees. Each {{site.project_title}} element generates a map of id's to node references in the element's template. This map is accessible as `$` on the element. 
 
@@ -140,4 +196,4 @@ Shadow DOM is a self-contained document-like subtree; id's in that subtree do no
 
 ## Where to go from here?
 
-Read up on [{{site.project_title}}'s core API](/polymer.html).
+Read up on [{{site.project_title}}'s core API referencee](/polymer.html).
