@@ -36,7 +36,7 @@ The first step when starting a new app is to [install the latest builds](/gettin
 Bower adds a `bower_components/` folder and fills it with these packages. The `--save` flag
 adds these items as dependencies in your app's bower.json.
 
-### 2. Create a {{site.project_title}} element {#createpolyel}
+### 2. Build a {{site.project_title}} element {#createpolyel}
 
 {{site.project_title}} provides extra goodies for creating declarative, souped-up custom elements. We call these "{{site.project_title}} elements". To create one, follow these steps:
 
