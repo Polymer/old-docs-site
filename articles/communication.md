@@ -17,7 +17,7 @@ tags:
 - communication
 ---
 
-<link rel="import" href="/articles/demos/communication/elements.html">
+<link rel="import" href="demos/communication/elements.html">
 
 {% include authorship.html %}
 

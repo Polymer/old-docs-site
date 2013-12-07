@@ -29,28 +29,28 @@ handlers:
 
 # Short URLs -------------------------------------------------------------------
 - url: /platform(.min)?.js
-  static_files: _site/polymer-all/components/platform/platform.js
-  upload: _site/polymer-all/components/platform/platform\.js
+  static_files: _site/components/platform/platform.js
+  upload: _site/components/platform/platform\.js
 
 - url: /platform(.min)?.js.map
-  static_files: _site/polymer-all/components/platform/platform.js.map
-  upload: _site/polymer-all/components/platform/platform\.js.\map
+  static_files: _site/components/platform/platform.js.map
+  upload: _site/components/platform/platform\.js.\map
 
 - url: /polymer(.min)?.js
-  static_files: _site/polymer-all/components/polymer/polymer.js
-  upload: _site/polymer-all/components/polymer/polymer\.js
+  static_files: _site/components/polymer/polymer.js
+  upload: _site/components/polymer/polymer\.js
 
 - url: /polymer(.min)?.js.map
-  static_files: _site/polymer-all/components/polymer/polymer.js.map
-  upload: _site/polymer-all/components/polymer/polymer\.js\.map
+  static_files: _site/components/polymer/polymer.js.map
+  upload: _site/components/polymer/polymer\.js\.map
 # ------------------------------------------------------------------------------
 
 # Map minified polymer to minified version.
 # This also preservers old URL (/polymer/polymer.min.js)
 # COMMENT OUT TO TEST UNIMINIFIED Polymer
-- url: /(polymer-all\/)?polymer/polymer(.min)?.js
-  static_files: _site/polymer-all/components/polymer/polymer.js
-  upload: _site/polymer-all/components/polymer/polymer\.js
+#- url: /(polymer-all\/)?polymer/polymer(.min)?.js
+#  static_files: _site/polymer-all/components/polymer/polymer.js
+#  upload: _site/polymer-all/components/polymer/polymer\.js
 
 # / Elements -------------------------------------------------------------------
 - url: /(polymer|polymer-ui|more)-elements/(.*)
@@ -92,7 +92,7 @@ handlers:
 
 # New mappings for Bower
 - url: /components
-  static_dir: _site/polymer-all/components
+  static_dir: _site/components
   http_headers:
     Access-Control-Allow-Origin: "*"
 
