@@ -12,26 +12,32 @@ how to use the element.
 
 ## Elements
 
-Utility elements that do not render UI. 
+> Utility elements that do not render UI
 
-**Repository:** [github.com/Polymer/polymer-elements](https://github.com/Polymer/polymer-elements)
+Install everything:
+
+    bower install Polymer/polymer-elements
+
+---
 
 <section class="element-list">
 {%comment%}
-{% include_external polymer-all/polymer-elements/docs/classes/polymer-file.html %}
+{% include_external /polymer-elements/docs/classes/polymer-file.html %}
 {%endcomment%}
 
-{% directory dir:polymer-all/polymer-elements tag:div glob:polymer-* %}
+{% directory dir:components tag:div glob:polymer-* blacklistglob:polymer-ui-* blacklist:"polymer-dev polymer-expressions polymer-elements polymer-ui-elements" %}
 </section>
 
 ---
 
 ## UI Elements
 
-Basic UI components.
+> Basic UI components
 
-**Repository:** [github.com/Polymer/polymer-ui-elements](https://github.com/Polymer/polymer-ui-elements)
+Install everything:
+
+    bower install Polymer/polymer-ui-elements
 
 <section class="element-list">
-{% directory dir:polymer-all/polymer-ui-elements tag:div glob:polymer-ui-* %}
+{% directory dir:components tag:div glob:polymer-ui-* blacklist:"polymer-ui-elements" %}
 </section>

@@ -11,12 +11,6 @@ function setupDownloadButtons(opt_inDoc) {
 
   var downloadButton = doc.querySelector('.download a.btn');
   downloadButton && downloadButton.addEventListener('tap', function(e) {
-    doc.querySelector('#dialog').toggle();
-    return false;
-  });
-
-  var downloadSDKLink = doc.querySelector('#download_polymer_link');
-  downloadSDKLink && downloadSDKLink.addEventListener('click', function(e) {
     exports._gaq.push(['_trackEvent', 'SDK', 'Download', POLYMER_VERSION]);
   });
 }

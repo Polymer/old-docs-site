@@ -54,7 +54,7 @@ and imports the `<polymer-ajax>` element:
 Fire up a web server, navigate to `index.html`, and feast on your accomplishments.
 You should see a tabs component like the one below.
 
-<iframe src="/polymer-all/components/polymer-ui-tabs/index.html" style="border:none;height:80px;width:100%;"></iframe>
+<iframe src="/components/polymer-ui-tabs/index.html" style="border:none;height:80px;width:100%;"></iframe>
 
 #### Updating packages {#updatebower}
 

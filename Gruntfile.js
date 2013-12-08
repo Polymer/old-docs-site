@@ -38,24 +38,24 @@ module.exports = function(grunt) {
         options: {
           exclude: 'docs',
           extension: '.js,.html',
-          paths: './polymer-all/polymer-ui-elements/',
-          outdir: './polymer-all/polymer-ui-elements/docs/',
-          linkNatives: 'true',
-          tabtospace: 2,
-          themedir: 'doc_themes/footstrap'
-        }
-      },
-      polymerelements: {
-        options: {
-          exclude: 'docs',
-          extension: '.js,.html',
-          paths: './polymer-all/polymer-elements/',
-          outdir: './polymer-all/polymer-elements/docs/',
+          paths: './components/',
+          outdir: './components/docs/',
           linkNatives: 'true',
           tabtospace: 2,
           themedir: 'doc_themes/footstrap'
         }
       }
+      // polymerelements: {
+      //   options: {
+      //     exclude: 'docs',
+      //     extension: '.js,.html',
+      //     paths: './components/polymer-elements/',
+      //     outdir: './components/polymer-elements/docs/',
+      //     linkNatives: 'true',
+      //     tabtospace: 2,
+      //     themedir: 'doc_themes/footstrap'
+      //   }
+      // }
     }
 
     // copy: {
@@ -79,8 +79,7 @@ module.exports = function(grunt) {
   // Default task. Run standard jekyll server.
   grunt.registerTask('default', ['jekyll:server']);
 
-  grunt.registerTask('apidocs', ['yuidoc:polymerelements',
-                                 'yuidoc:polymeruielements']);
+  grunt.registerTask('apidocs', ['yuidoc:polymeruielements']);
 
   // Task to build docs.
   grunt.registerTask('docs', ['jekyll:prod', 'apidocs']);
