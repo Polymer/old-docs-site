@@ -9,7 +9,7 @@ title: Getting the code
 
 ### Using Bower {#bower}
 
-The recommended way to get the pieces of {{site.project_title}} {{site.latest_version}} is through [Bower](http://bower.io/). We've chosen Bower because removes the hassle of dependency management when developing
+The recommended way to get the pieces of **{{site.project_title}} {{site.latest_version}}** is through [Bower](http://bower.io/). We've chosen Bower because removes the hassle of dependency management when developing
 or consuming elements.
 
 #### Getting the packages
