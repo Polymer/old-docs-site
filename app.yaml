@@ -117,3 +117,5 @@ skip_files:
 - ^(.*/)?third_party/closure/.*
 - ^polymer-all/.*
 - ^scripts/.*
+- ^(.*/)?.*\.sublime-project
+- ^(.*/)?.*\.sublime-workspace
