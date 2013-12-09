@@ -72,11 +72,11 @@ handlers:
 #  upload: _site/polymer-all/tools/bin/pull-all\.sh
 
 - url: /tools/sandbox/$
-  static_files: _site/polymer-all/projects/Sandbox/index.html
+  static_files: _site/polymer-all/projects/sandbox/index.html
   upload: _site/index\.html
 
 - url: /tools/sandbox/(.*)
-  static_files: _site/polymer-all/projects/Sandbox/\1
+  static_files: _site/polymer-all/projects/sandbox/\1
   upload: _site/(.*)/index.html
 
 # Map raw paths with trailing "/" to an index.html file.
