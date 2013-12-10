@@ -40,7 +40,7 @@ and imports the `<polymer-ajax>` element:
     <!DOCTYPE html>
     <html>
       <head>
-        <script src="bower_components/plaform/plaform.js"></script>
+        <script src="bower_components/platform/platform.js"></script>
         <link rel="import"
               href="bower_components/polymer-elements/polymer-ui-elements/polymer-ui-tabs.html">
       </head>
