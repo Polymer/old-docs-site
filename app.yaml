@@ -117,5 +117,9 @@ skip_files:
 - ^(.*/)?third_party/closure/.*
 - ^polymer-all/.*
 - ^scripts/.*
+
+# few extras to reduce number of files uploaded.
 - ^(.*/)?.*\.sublime-project
 - ^(.*/)?.*\.sublime-workspace
+- ^(.*/)?platform-dev/workbench/.*
+- ^(.*/)?(AUTHORS|LICENSE|PATENTS|COPYING)$
