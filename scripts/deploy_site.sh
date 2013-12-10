@@ -35,7 +35,7 @@
 
 # Vulcanize common elements for the site
 #node polymer-all/labs/vulcanize/bin/vulcanize -i _includes/common_elements.html -o elements/common_elements.vulcanized.html 
-#vulcanize _includes/common_elements.html -o elements/common_elements.vulcanized.html
+vulcanize --config vulcanize_config.json _includes/common_elements.html -o elements/common_elements.vulcanized.html
 
 # Compile .sass files.
 compass compile
