@@ -361,6 +361,12 @@ Also remember that you can access the light DOM as the element's normal children
 (i.e. `this.children`, or other accessors). The difference with this approach
 is that it's the entire set of *potentially* distributed nodes; not those actually distributed.
 
+### Why do elements report zero (light DOM) children at created/ready time? {#zerochildren}
+
+It's generally a mistake to attempt to reference an element's children (light dom) in either the `createdCallback` or {{site.project_title}}'s `ready()` method. When these methods are fired, the element is not guaranteed to be in the DOM or have children. In addition, {{site.project_title}} calls `TemplateBinding.createInstance()` on an element's `<template>` to create its Shadow DOM. This process creates and binds elements in the template one by one.
+
+The best time to take a first look at an element's children is in the `enteredView` callback. This is when the element is in the DOM, has a parent, and possibly children. If you need to see changes to light DOM children after that, setup a Mutation Observer to do so.
+
 ### Can I use the `constructor` attribute without polluting the global namespace? {#constructorattr}
 
 By design, `constructor` puts the constructor's name on `window`. If you don't want
