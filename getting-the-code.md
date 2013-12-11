@@ -42,7 +42,7 @@ and imports the `<polymer-ajax>` element:
       <head>
         <script src="bower_components/platform/platform.js"></script>
         <link rel="import"
-              href="bower_components/polymer-ui-elements/polymer-ui-tabs.html">
+              href="bower_components/polymer-ui-elements/polymer-ui-tabs/polymer-ui-tabs.html">
       </head>
       <body>
         <polymer-ui-tabs selected="0">
