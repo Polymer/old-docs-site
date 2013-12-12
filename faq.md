@@ -174,6 +174,17 @@ For example `<polymer-element name="my-element" extends="foo bar">`.
 
 No. But {{site.project_title}} may provide a syntax for mixins in the future.
 
+### I don't like package managers, can't I download {{site.project_title}} as a zip? {#bower}
+
+{{site.project_title}} has many different pieces. Creating a one-stop-shop .zip for
+all of the different permutations is unwieldy. If you really want a .zip, Github
+provides a download link on each project page. However in some cases, you won't get the necessary
+dependencies and will need to do this on multiple repositories.
+
+Web components and {{site.project_title}} are intended to be extremely granular.
+This is on purpose, to allow users to use exactly what they need and nothing more. In additional to granularity, higher-level components may be composed out of lower-level components. Bower allows us to
+easily manage those dependencies.
+
 ## Data-binding
 
 ### How do I use data-binding to repeat an `<option>` or `<tr>`? {#option-tr}
