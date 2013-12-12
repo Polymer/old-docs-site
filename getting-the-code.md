@@ -35,7 +35,7 @@ Bower creates a `bower_components/` directory, populates it these packages (and 
 #### Test your environment {#testbower}
 
 In the folder where you ran `bower install`, create an `index.html` that loads `platform.js`
-and imports the `<polymer-ajax>` element:
+and imports the `<polymer-ui-tabs>` element:
 
     <!DOCTYPE html>
     <html>
