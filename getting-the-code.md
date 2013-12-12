@@ -30,7 +30,7 @@ or consuming elements.
 **Tip:** `--save` adds these items as dependencies in your app's bower.json.
 {: .alert .alert-success }
 
-Bower creates a `bower_components/` directory and populates it with these packages.
+Bower creates a `bower_components/` directory, populates it these packages (and their dependencies) as siblings.
 
 #### Test your environment {#testbower}
 
@@ -42,7 +42,7 @@ and imports the `<polymer-ajax>` element:
       <head>
         <script src="bower_components/platform/platform.js"></script>
         <link rel="import"
-              href="bower_components/polymer-ui-elements/polymer-ui-tabs/polymer-ui-tabs.html">
+              href="bower_components/polymer-ui-tabs/polymer-ui-tabs.html">
       </head>
       <body>
         <polymer-ui-tabs selected="0">
