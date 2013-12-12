@@ -76,10 +76,10 @@ module Jekyll
         file_path = "#{element['full_path']}"
       end
 
-      demo_path = "#{element['full_path']}/index.html"
-      #if !File.exists?("#{element['full_path']}/index.html")
-      #  demo_path = "#{element['full_path']}"
-      #end
+      demo_path = "#{element['full_path']}/smoke.html"
+      if !File.exists?(demo_path)
+       demo_path = "#{element['full_path']}/index.html"
+      end
 
       github_url = github_url(element)
       bower_use_url = bower_use_url(element)
