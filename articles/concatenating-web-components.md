@@ -9,30 +9,28 @@ article:
   author: addyosmani
   published: 2013-12-06
   updated: 2013-12-06
-  polymer_version: 0.0.20130808
+  polymer_version: 0.1.0
   description: Techniques for concatenating elements and their HTML imported dependencies into a single file.
 tags:
 - concatenation
 - optimization
 - tooling
+- build
 ---
 
-<link rel="import" href="/articles/demos/communication/elements.html">
 
 {% include authorship.html %}
 
 {% include toc.html %}
 
+We all know that reducing network requests is important. In the {{site.project_title}} world, [Vulcanize](https://github.com/Polymer/vulcanize) is the name given to a build tool that lets you **concatenate** a set of elements and their HTML imported dependencies into a single file. If your app has lots of top-level imports, consider squashing them into a single file and importing it instead!
 
-# Concatenating Web Components with Vulcanize
+Vulcanize recursively pulls in all your imports, flattens their dependencies and spits out something that can potentially **reduce the number of network requests** your app makes. 
 
-We all know that reducing network requests is important. In the Polymer world, [Vulcanize](https://github.com/Polymer/vulcanize) is the name given to a build tool that lets you **concatenate** a set of elements and their HTML imported dependencies into a single file. If your app has lots of top-level imports, consider squashing them into a single file and importing it instead!
-
-Vulcanize recursively pulls in all your imports, flattens their dependencies and spits out something that can potentially reduce the number of network requests your app makes. 
-
-In the future, we will hopefully have the tech to do away with needing Vulcanize using advanced HTTP techniques (e.g HTTP 2.0). In the mean time, it’s an excellent tool for cutting down on the network requests made by your Polymer apps.
+In the future, we will hopefully have the tech to do away with needing Vulcanize using advanced HTTP techniques (e.g HTTP 2.0). In the mean time, it’s an excellent tool for cutting down on the network requests made by your {{site.project_title}} apps.
 
 **Note:** for more great info on performance considerations worth keeping in mind when using HTML Imports, see [HTML Imports - #include for the web](http://www.html5rocks.com/en/tutorials/webcomponents/imports/#performance)
+{: .alert .alert-info }
 
 ## Installation
 
@@ -60,7 +58,7 @@ If no output is specified, vulcanized.html is used by default.
 
 #### Example
 
-Let’s say we have a Polymer app composed of three HTML files: index.html, x-app.html, and x-dep.html.
+Let’s say we have a {{site.project_title}} app composed of three HTML files: index.html, x-app.html, and x-dep.html.
 
 index.html:
 
@@ -69,31 +67,27 @@ index.html:
   <link rel="import" href="app.html">
   <x-app></x-app>
 
-  <script src="polymer.js”></script>
+  <script src="bower_components/polymer/polymer.js"></script>
 {% endraw %}
 
 app.html:
 
 {% raw %}
   <link rel="import" href="path/to/x-dep.html">
-  <polymer-element name="x-app">
+  <polymer-element name="x-app" noscript>
     <template>
       <x-dep></x-dep>
     </template>
-    <script>Polymer('x-app')</script>
   </polymer-element>
 {% endraw %}
 
   x-dep.html:
 
 {% raw %}
-  <polymer-element name="x-dep">
+  <polymer-element name="x-dep" noscript>
     <template>
       <img src="x-dep-icon.jpg">
     </template>
-    <script>
-      Polymer('x-dep');
-    </script>
   </polymer-element>
 {% endraw %}
 
@@ -105,21 +99,15 @@ This results in a build.html that looks a little like this:
 
 {% raw %}
   <!doctype html>
-  <polymer-element name="x-dep" assetpath="path/to/">
+  <polymer-element name="x-dep" assetpath="path/to/" noscript>
     <template>
       <img src="path/to/x-dep-icon.jpg">
     </template>
-    <script>
-      Polymer('x-dep');
-    </script>
   </polymer-element>
-  <polymer-element name="x-app" assetpath="">
+  <polymer-element name="x-app" assetpath="" noscript>
     <template>
       <x-dep></x-dep>
     </template>
-    <script>
-      Polymer('x-app');
-    </script>
   </polymer-element>
   <x-app></x-app>
 {% endraw %}
@@ -138,7 +126,7 @@ Vulcanizer also supports the opposite of this process, extracting inline scripts
 
 [Content Security Policy](http://en.wikipedia.org/wiki/Content_Security_Policy) (CSP) is a JavaScript security model that aims to prevent XSS and other attacks. In so doing, it prohibits the use of inline scripts.
 
-To use Polymer in a CSP environment that doesn’t support inline scripts, pass the `--csp` flag to Vulcanize. It removes all scripts from the HTML Imports and place their contents into an output JavaScript file. This is useful in amongst other things, using Polymer in a Chrome App.
+To use {{site.project_title}} in a CSP environment that doesn’t support inline scripts, pass the `--csp` flag to Vulcanize. It removes all scripts from the HTML Imports and place their contents into an output JavaScript file. This is useful in amongst other things, using {{site.project_title}} in a Chrome App.
 
 Using the previous example, the output from `vulcanize -o build.html index.html--csp` will be
 
