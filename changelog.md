@@ -41,6 +41,12 @@ including polyfill repos, tools, projects, and UI elements.
 {% endcomment %}
 
 
+## 2013-12-11 {#2013-12-11}
+
+See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/0.1.1).
+
+---
+
 ## 2013-11-27 {#2013-11-27}
 
 See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/0.1.0).
