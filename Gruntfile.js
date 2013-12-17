@@ -56,7 +56,7 @@ module.exports = function(grunt) {
       //     themedir: 'doc_themes/footstrap'
       //   }
       // }
-    }
+    },
 
     // copy: {
     //   main: {
@@ -69,13 +69,28 @@ module.exports = function(grunt) {
     //   }
     // }
 
+    vulcanize: {
+      options: {
+        excludes: {
+          imports: [
+            "polymer.html$"
+          ]
+        }
+      },
+      build: {
+        files: {
+          'elements/common_elements.vulcanized.html': '_includes/common_elements.html'
+        },
+      }
+    },
+
   });
 
   // Plugin and grunt tasks.
   grunt.loadNpmTasks('grunt-jekyll');
   //grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-yuidoc');
-  grunt.loadNpmTasks('ggrunt-vulcanize');
+  grunt.loadNpmTasks('grunt-vulcanize');
 
   // Default task. Run standard jekyll server.
   grunt.registerTask('default', ['jekyll:server']);
@@ -83,7 +98,7 @@ module.exports = function(grunt) {
   grunt.registerTask('apidocs', ['yuidoc:polymeruielements']);
 
   // Task to build docs.
-  grunt.registerTask('docs', ['jekyll:prod', 'apidocs']);
+  grunt.registerTask('docs', ['jekyll:prod', 'apidocs', 'vulcanize:build']);
 
   // Task to build and copy docs over to publishing repo.
   //grunt.registerTask('publish', ['jekyll:prod', 'copy:main']);
