@@ -75,6 +75,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-jekyll');
   //grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-yuidoc');
+  grunt.loadNpmTasks('ggrunt-vulcanize');
 
   // Default task. Run standard jekyll server.
   grunt.registerTask('default', ['jekyll:server']);

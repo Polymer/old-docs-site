@@ -1,9 +1,10 @@
 {
   "name": "Docs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "devDependencies": {
     "grunt": "*",
     "grunt-jekyll": "*",
-    "grunt-contrib-yuidoc": "*"
+    "grunt-contrib-yuidoc": "*",
+    "grunt-vulcanize": "*"
   }
 }
