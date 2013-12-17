@@ -9,7 +9,7 @@ article:
   author: addyosmani
   published: 2013-12-06
   updated: 2013-12-06
-  polymer_version: 0.1.0
+  polymer_version: 0.1.1
   description: Techniques for concatenating elements and their HTML imported dependencies into a single file.
 tags:
 - concatenation
@@ -67,7 +67,7 @@ index.html:
   <link rel="import" href="app.html">
   <x-app></x-app>
 
-  <script src="bower_components/polymer/polymer.js"></script>
+  <link rel="import" href="../bower_components/polymer/polymer.html">
 {% endraw %}
 
 app.html:
