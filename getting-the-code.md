@@ -5,32 +5,37 @@ title: Getting the code
 
 {% include toc.html %}
 
-## Installing {{site.project_title}}
+## Setup & installation {#intall}
 
-### Using Bower {#bower}
+### Using Bower {#installing-polymer}
 
 The recommended way to get the pieces of **{{site.project_title}} {{site.latest_version}}** is through [Bower](http://bower.io/). We've chosen Bower because removes the hassle of dependency management when developing
 or consuming elements.
 
 #### Getting the packages
 
-1. Get the <i class="icon-cogs foundation"></i> <b class="foundation">polyfill</b> libraries:
+Everything is à la carte in {{site.project_title}}, so get the parts you're interested in.
+After running one of these commands, Bower creates a `bower_components/` directory and populates it with the packages (and their dependencies) as siblings folders.
 
-        bower install --save Polymer/platform
+**Tip:** `--save` adds the item as dependencies in *your* app's bower.json.
+{: .alert .alert-success }
 
-2. Get the <i class="icon-beaker core"></i> <b class="core">core</b> sugaring:
-
-        bower install --save Polymer/polymer
-
-3. Get the <i class="icon-puzzle-piece elements"></i> <b class="elements">elements</b>:
+- Install and use the {{site.project_title}} <i class="icon-puzzle-piece elements"></i> <b class="elements">elements</b>:
 
         bower install --save Polymer/polymer-elements
         bower install --save Polymer/polymer-ui-elements
 
-**Tip:** `--save` adds these items as dependencies in your app's bower.json.
-{: .alert .alert-success }
+    **Note:** installing a set of elements also installs the `Polymer/platform` and `Polymer/polymer` dependencies. You do not need to run the other install commands.
 
-Bower creates a `bower_components/` directory, populates it these packages (and their dependencies) as siblings.
+- To build {{site.project_title}} elements, install the <i class="icon-beaker core"></i> <b class="core">core</b> sugaring:
+
+        bower install --save Polymer/polymer
+
+    **Note:** this also gets you `Polymer/platform`.
+
+- Only interested in the <i class="icon-cogs foundation"></i> <b class="foundation">polyfill</b> libraries? Install them standalone:
+
+        bower install --save Polymer/platform
 
 #### Test your environment {#testbower}
 
