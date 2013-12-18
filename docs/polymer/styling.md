@@ -112,6 +112,7 @@ This has no effect under native Shadow DOM but under the polyfill, the comment i
 
 `@polyfill-unscoped-rule` should only be needed in rare cases. {{site.project_title}} uses CSSOM to modify styles and there are a several known rules that don't round-trip correctly via CSSOM (on some browsers). One example using CSS `calc()` in Safari. It's only in these rare cases that `@polyfill-unscoped-rule` should be used.
 
+{%comment%}
 ## Making styles global
 
 According to CSS spec, certain @-rules like `@keyframe` and `@font-face`
@@ -129,9 +130,7 @@ Stylesheets and `<style>` elements in an HTML import are included in the main do
 Example of defining a global `<style>`:
 
     <style>
-      @-webkit-keyframes blink {
-        to { opacity: 0; }
-      }
+     
     </style>
 
     <polymer-element name="x-blink" ...>
@@ -145,7 +144,6 @@ Example of defining a global `<style>`:
       </template>
     </polymer-element>
 
-{%comment%}
 {{site.project_title}} also supports making a `<style>` or inline stylesheet global using the
 `polymer-scope="global"` attribute.
 

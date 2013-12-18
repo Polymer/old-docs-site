@@ -338,9 +338,11 @@ it's preferred to inline the styles without using `@import`. For example:
       ...
     </polymer-element>
 
+{%comment%}
 ### How can I use web fonts or CSS Animations in my custom element? {#fontsanimations}
 
 See "[Making styles global](/docs/polymer/styling.html#making-styles-global)".
+{%endcomment%}
 
 ### Why does my element claim its `.clientWidth/clientHeight` is 0? {#clientDimenstions}
 
