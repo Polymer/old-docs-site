@@ -1,5 +1,26 @@
 module.exports = function(grunt) {
 
+  var EXCLUDE_DIRS_APIDOCS = [
+    'docs',
+    'polymer-home-page',
+    'polymer-home-page-dev',
+    'MutationObservers',
+    'CustomElements',
+    'HTMLImports',
+    'NodeBind',
+    'platform',
+    'platform-dev',
+    'polymer',
+    'polymer-dev',
+    'polymer-expressions',
+    'PointerEvents',
+    'PointerGestures',
+    'ShadowDOM',
+    'TemplatingBinding',
+    'tools',
+    'web-animations-js',
+  ];
+
   // Project configuration.
   grunt.initConfig({
 
@@ -36,7 +57,7 @@ module.exports = function(grunt) {
         //version: '<%= pkg.version %>',
         //url: '<%= pkg.homepage %>',
         options: {
-          exclude: 'docs',
+          exclude: EXCLUDE_DIRS_APIDOCS.join(','),
           extension: '.js,.html',
           paths: './components/',
           outdir: './components/docs/',
@@ -98,7 +119,7 @@ module.exports = function(grunt) {
   grunt.registerTask('apidocs', ['yuidoc:polymeruielements']);
 
   // Task to build docs.
-  grunt.registerTask('docs', ['jekyll:prod', 'apidocs', 'vulcanize:build']);
+  grunt.registerTask('docs', ['apidocs', 'vulcanize:build', 'jekyll:prod']);
 
   // Task to build and copy docs over to publishing repo.
   //grunt.registerTask('publish', ['jekyll:prod', 'copy:main']);
