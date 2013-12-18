@@ -43,12 +43,12 @@ module.exports = function(grunt) {
       }
     },
 
-    watch: { // for development run 'grunt watch'
-      jekyll: {
-        files: ['./*.html', '!**/node_modules/**', '!**/polymer-all/**', '!**/components/**'],
-        tasks: ['jekyll:dev']
-      }
-    },
+    // watch: { // for development run 'grunt watch'
+    //   jekyll: {
+    //     files: ['./*.html', '!**/node_modules/**', '!**/polymer-all/**', '!**/components/**'],
+    //     tasks: ['jekyll:dev']
+    //   }
+    // },
 
     yuidoc: {
       polymeruielements: {
@@ -66,17 +66,6 @@ module.exports = function(grunt) {
           themedir: 'doc_themes/footstrap'
         }
       }
-      // polymerelements: {
-      //   options: {
-      //     exclude: 'docs',
-      //     extension: '.js,.html',
-      //     paths: './components/polymer-elements/',
-      //     outdir: './components/polymer-elements/docs/',
-      //     linkNatives: 'true',
-      //     tabtospace: 2,
-      //     themedir: 'doc_themes/footstrap'
-      //   }
-      // }
     },
 
     // copy: {
