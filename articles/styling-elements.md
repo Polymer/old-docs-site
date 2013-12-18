@@ -243,31 +243,21 @@ a browser where it is not available natively, use {{site.project_title}}'s [FOUC
       }
     </style>
 
-### "Polyfilling" :unresolved
+### Polyfilling :unresolved
 
-If you don't want to use {{site.project_title}}'s [FOUC prevention](/docs/polymer/styling.html#fouc-prevention) features, use my little trick to fake `:unresolved`'s behavior until
-it is widely supported in browsers. The basic idea is to add a CSS class to the Custom Element when {{site.project_title}}'s `WebComponentsReady` event fires.
+{{site.project_title}} provides the `[unresolved]` attribute to polyfill the CSS
+`:unresolved` pseudo class. See [FOUC prevention](/docs/polymer/styling.html#fouc-prevention). The attribute is automatically removed from elements at `WebComponentsReady` ready time, the
+event that signifies all elements have been upgraded.
 
-**Example:** Faking `:unresolved`:
+**Example**
 
     <style>
-      x-foo:not(.resolved) { ... }
+      x-foo[unresolved] {
+        /* custom styling */ 
+      }
     </style>
-    <x-foo></x-foo>
-    <script>
-      document.addEventListener('WebComponentsReady', function(e) {
-        // Add .resolved to all custom elements. This is a hack until :unresolved is
-        // supported in all browsers and Polymer registers elements using document.register().
-        for (var name in CustomElements.registry) {
-          var els = document.querySelectorAll(name + ', [is="' + name + '"]');
-          [].forEach.call(els, function(el, i) {
-            el.classList.add('resolved');
-          });
-        }
-      });
-    </script>
+    <x-foo unresolved></x-foo>
 
-`WebComponentsReady` signifies when all elements have been upgraded.
 
 ## Inheriting / resetting outside styles
 
