@@ -3,7 +3,7 @@ layout: default
 title: Polymer core reference
 ---
 
-<p><buildbot-list project="polymer"></buildbot-list></p>
+<p><buildbot-list project="polymer-dev"></buildbot-list></p>
 
 {% include toc.html %}
 
