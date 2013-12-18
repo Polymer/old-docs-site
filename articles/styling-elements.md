@@ -5,7 +5,7 @@ title: A Guide to Styling Elements
 article:
   author: ebidel
   published: 2013-07-11
-  updated: 2013-11-02
+  updated: 2013-12-17
   polymer_version: 0.0.20130808
   description: Learn all about how to style Polymer elements.
 tags:
@@ -337,7 +337,9 @@ match the inner `<div class="red">`.
 
 For more information on `applyAuthorStyles` and `resetStyleInheritance`, see [Shadow DOM 201 - CSS and Styling](http://www.html5rocks.com/tutorials/webcomponents/shadowdom-201/#toc-style-inheriting).
 
-## Styling the internal markup {#style-shadowdom}
+## Styling internal markup {#style-shadowdom}
+
+### From inside the element {#style-frominside}
 
 To style the internal markup of an element, include a `<link>` or `<style>` tag
 inside the topmost `<template>`:
@@ -377,6 +379,7 @@ attempts to mimic scoped styling as much as possible. See the
 If you need to style nodes distributed into your element from the user's Light DOM,
 see [styling distributed nodes](#style-distributed).
 
+{%comment%}
 ## Defining style hooks {#style-hooks}
 
 **Heads up:** The `pseudo` attribute and `::x-*` custom pseudo elements were 
@@ -404,8 +407,9 @@ To make a custom pseudo element in your Shadow DOM, include `part="<name>"` on t
     </polymer-element>
 
     <x-foo></x-foo>
+{%endcomment%}
 
-## Styling distributed nodes {#style-distributed}
+#### Styling distributed nodes {#style-distributed}
 
 **Heads up:** `::content` replaced `::distributed()` as the way to style distributed nodes.
 {: .alert .alert-error}
@@ -450,14 +454,92 @@ you can a rule like `::content > *`.
       </footer>
     </x-foo>
 
-**Note**: I'm using the `@polyfill` to make the style rules work under
-the Shadom DOM polyfill. [Read more](#directives) about the polyfill directives.
+**Note**: For complex styling like distribute nodes, {{site.project_title}} provides the `@polyfill`
+directives to polyfill certain Shadow DOM features. See the [Styling reference](/docs/polymer/styling.html#polyfill-styling-directives) for more information on the directives.
 {: .alert .alert-info }
 
-### {{site.project_title}}'s @polyfill-* directives {#directives}
+### From outside the element {#style-fromoutside}
 
-For complex styling like distribute nodes, {{site.project_title}} provides the `@polyfill`
-directives to polyfill certain Shadow DOM features. See the [Styling reference](/docs/polymer/styling.html#polyfill-styling-directives).
+The `^^` (Cat) and `^` (Hat) combinators pierce through Shadow DOM's boundaries can
+can style elements within different shadow trees.
+
+#### The ^ combinator {#hat}
+
+The `^` combinator is generally equivalent to a descendant combinator (e.g. `div p {...}`), except **it crosses one shadow boundary**.
+
+    <style>
+      x-foo ^ p {
+        color: red;
+      }
+    </style>
+
+    <polymer-element name="x-foo" noscript>
+      <template>
+        <div>I am red!</div>
+        <content></content>
+      </template>
+    </polymer-element>
+
+    <x-foo>
+      <div>I am not red.</div>
+    </x-foo>
+
+**Demo:**
+
+<style>
+  x-foo-cat ^ div {
+    color: red;
+  }
+</style>
+
+<x-foo-cat style="margin-bottom:20px;">
+  <div>I am not red.</div>
+</x-foo-cat>
+
+A more full fledged example is styling a tabs component, say `<x-tabs>`. It has `<x-panel>` children in its Shadow DOM, each of which has an `h2` heading. To style those headings from the main page, one could use
+the `^` combinator like so:
+
+{%raw%}
+    <style>
+      x-tabs ^ x-panel ^ h2 {
+        ...
+      }
+    </style>
+
+    <polymer-element name="x-tabs" noscript>
+      <template>
+        <x-panel heading="Title">
+          <p>Lorem Ipsum</p>
+        </x-panel>
+        ...
+      </template>
+    </polymer-element>
+
+    <polymer-element name="x-panel" attributes="heading" noscript>
+      <template>
+        <h2>{{heading}}</h2>
+        <content>No content provided.</content>
+      </template>
+    </polymer-element>
+
+    <x-tabs></x-tabs>
+{%endraw%}
+
+#### The ^^ combinator {#cat}
+
+The `^^` combinator is similar to `^`, but more powerful. It completely ignores all boundaries and crosses into any number of shadow trees**. 
+
+**Example** style all `h2` elements that are descendants of an `<x-tabs>`, anywhere in a shadow tree:
+
+    x-tabs ^^ h2 {
+      ...
+    }
+
+**Example** style all elements with the class `.library-theme`, anywhere in a shadow tree:
+
+    body ^^ .library-theme {
+      ...
+    }
 
 ## Conclusion
 
