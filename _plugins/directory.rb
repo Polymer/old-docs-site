@@ -36,11 +36,9 @@ module Jekyll
 
       # Establish blacklist of elements to not include.
       @blacklist = []
-      if @attributes.has_key?('blacklist'):
-        @attributes['blacklist'].each { |b|
-          b = b.sub('"', '')
-        }
-        @blacklist = @attributes['blacklist'][1..-2].split
+      if @attributes.has_key?('blacklist')
+        @attributes['blacklist'] = @attributes['blacklist'][1..-2]
+        @blacklist = @attributes['blacklist'].split
       end
 
       super
@@ -57,7 +55,7 @@ module Jekyll
       (Pathname.glob("#{@dir}/#{@glob}") - Pathname.glob("#{@dir}/#{@blacklist_glob}")).each do |i|
         name = i.basename.to_s.sub('.html', '')
 
-        if !in_blacklist?(name):
+        if !in_blacklist?(name)
           elements.push({
             'name' => name,
             'full_path' => i.to_s,
@@ -161,7 +159,7 @@ module Jekyll
 
     def in_blacklist?(s)
       @blacklist.each do |b|
-        if s.match(b.strip):
+        if s.match(b.strip)
           return true
         end
       end
