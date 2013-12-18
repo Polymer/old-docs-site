@@ -210,8 +210,8 @@ be slow due to poor network conditions.
 
 To combat these types of UX issues and mitigate things like [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content), you can use the CSS `:unresolved` pseudo class. It applies to unknown elements right up until the point the lifecycle `createdCallback` is called.
 
-**Support:** CSS `:unresolved` is supported natively in Chrome 29. It has not been polyfilled.
-Insteadd, use {{site.project_title}}'s [FOUC prevention](/docs/polymer/styling.html#fouc-prevention) features.
+**Support:** CSS `:unresolved` is supported natively in Chrome 29. If you're using
+a browser where it is not available natively, use {{site.project_title}}'s [FOUC prevention](/docs/polymer/styling.html#fouc-prevention) features.
 {: .alert .alert-success}
 
 **Example:** fade in an element when it's registered
