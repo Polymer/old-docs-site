@@ -2,8 +2,7 @@
 #port: 4000
 
 # Project defaults.
-#markdown: redcarpet
-markdown: kramdown
+markdown: kramdown #redcarpet
 pygments: false
 lsi: false
 safe: false
@@ -23,11 +22,3 @@ project_title: Polymer
 latest_version: 0.1.1
 add_permalinks: true # adds permalinks to heading tags.
 load_disqus: true
-
-authors:
-  ebidel:
-    full_name: Eric Bidelman
-    gplus: 118075919496626375791
-    web: http://www.ericbidelman.com
-    twitter: ebidel
-    github: ebidel

@@ -1,4 +1,4 @@
-{% assign author = site.authors[page.article.author] %}
+{% assign author = site.data.authors[page.article.author] %}
 {% assign article = page.article %}
 
 {% assign pubdate = article.published | date: "%Y-%m-%d" %}
