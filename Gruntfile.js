@@ -48,6 +48,8 @@ module.exports = function(grunt) {
       //         bundleExec: true,
       //         src : '<%= app %>'
       //       },
+      build: {
+      },
       serve: {
         options: {
           //port: '<%= jekyllConfig.server_port %>',
@@ -123,7 +125,7 @@ module.exports = function(grunt) {
   grunt.registerTask('apidocs', ['yuidoc:polymeruielements']);
 
   // Task to build docs.
-  grunt.registerTask('docs', ['apidocs', 'vulcanize:build', 'jekyll:prod']);
+  grunt.registerTask('docs', ['apidocs', 'vulcanize:build', 'jekyll:build']);
 
   // Task to build and copy docs over to publishing repo.
   //grunt.registerTask('publish', ['jekyll:prod', 'copy:main']);

@@ -3,29 +3,55 @@ layout: default
 title: Data-binding
 ---
 
-{% include outofdate.html %}
+## Introduction
 
-{{site.project_title}} uses the term "data-binding" to describe a way to write _dynamic_ HTML _using_ HTML.
-A set of platform technologies enable this behavior:
+{{site.project_title}} supports two-way data binding and uses the term to describe a way to write _dynamic_ HTML _using_ HTML. A set of platform technologies and "prollyfills" enable this behavior:
 
-* [HTML Template element](http://www.w3.org/TR/html-templates/) (`<template>`)
-* [Template Bindings](/platform/template.html) - describes how `<template>` manages instance fragments.
-* [`Node.bind()`](/platform/node_bind.html) - describes how DOM nodes are bound to data values.
+* [HTML Template element](http://www.html5rocks.com/tutorials/webcomponents/template/) (`<template>`)
+* [Template Bindings](/platform/template.html) (_prollyfill_) - describes how `<template>` manages instance fragments.
+* [`Node.bind()`](/platform/node_bind.html) (_prollyfill_) - describes how DOM nodes are bound to data values.
 * [`Object.observe()`](http://updates.html5rocks.com/2012/11/Respond-to-change-with-Object-observe)
-* [DOM Mutation Observers](https://developer.mozilla.org/en-US/docs/DOM/MutationObserver)
+* [Mutation Observers](https://developer.mozilla.org/en-US/docs/DOM/MutationObserver)
 
 When used together, these primitives extend HTML and the DOM APIs to support a sensible
-separation between the UI (DOM) of a document or application and its underlying
-data (model). Updates to the model are reflected in the DOM and user input into the DOM is immediately assigned to the model.
+separation between the UI (DOM) of application and its underlying data (model). Updates to the model are reflected in the DOM and user input into the DOM is immediately assigned to the model.
 
-Not all browsers currently implement all the required primitives but {{site.project_title}}
-attempts to prollyfill/polyfill their absence.
+## The basics
 
-### An explanatory sample
+{{site.project_title}}'s data-binding features hinge on the `<template>` element and double mustache {%raw%}`{{}}`{%endraw%} syntax.
+
+- [Expressions](/docs/polymer/expressions.html)
+- [Filters](/docs/polymer/filters.html)
+
+### An example
 
 There's plenty of detail, but it all hinges on the `<template>` element. Let's walk through a simple example which demonstrates the basics.
 
 {%raw%}
+    <polymer-element name="greeting-tag">
+      <template>
+        <ul>
+          <template id="greeting" repeat="{{s in salutations}}">
+            <li>{{s.what}}: <input type="text" value="{{s.who}}"></li>
+          </template>
+        </ul>
+      </template>
+      <script>
+        Polymer('greeting-tag', {
+          ready: function() {
+            this.salutations = [
+              {what: 'Hello', who: 'World'},
+              {what: 'GoodBye', who: 'DOM APIs'},
+              {what: 'Hello', who: 'Declarative'},
+              {what: 'GoodBye', who: 'Imperative'}
+            ];
+          }
+        });
+      </script>
+    </polymer-element>
+{%endraw%}
+
+{%comment%}
     <script src="platform.min.js"></script>
     <ul>
       <template id="greeting" repeat="{{ salutations }}">
@@ -48,15 +74,13 @@ There's plenty of detail, but it all hinges on the `<template>` element. Let's w
     Platform.performMicrotaskCheckpoint();
     </script>
     </body>
-{%endraw%}
+{%endcomment%}
 
 This example should look mostly familiar to anyone who knows HTML, but there are a couple novel things going on:
 
 #### The `<template>` element
 
-The [HTML Template element](http://www.w3.org/TR/html-templates/) is new and browsers are in the process of implementing it. It [allows](http://www.html5rocks.com/en/tutorials/webcomponents/template/) you to declare fragments of HTML that may be used at some point. The [Chrome Inspector](https://developers.google.com/chrome-developer-tools/docs/overview) allows you see the [content](http://www.w3.org/TR/html-templates/#api-html-template-element-content) of a template element.
-
-![ScreenShot](https://raw.github.com/Polymer/TemplateBinding/master/docs/images/README/templateContent.png)
+The [HTML Template element](http://www.html5rocks.com/tutorials/webcomponents/template/) allows you to declare chunks of inert HTML that may be cloned, activated, and used at some laster point.
 
 If you loaded the above example without `<script src="platform.min.js"></script>`, that's about all `<template>` would do.
 
