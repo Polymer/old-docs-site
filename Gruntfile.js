@@ -27,19 +27,33 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     jekyllConfig: grunt.file.readYAML('_config.yml'),
 
+    // jekyll: {
+    //       server : {
+    //         server: true,
+    //         server_port: '<%= jekyllConfig.server_port %>',
+    //         auto: true
+    //       },
+    //       dev: {
+    //         server: false,
+    //         safe: false
+    //       },
+    //       prod: {
+    //         auto: false,
+    //         server: false
+    //       }
+    //     },
+
     jekyll: {
-      server : {
-        server: true,
-        server_port: '<%= jekyllConfig.server_port %>',
-        auto: true
-      },
-      dev: {
-        server: false,
-        safe: false
-      },
-      prod: {
-        auto: false,
-        server: false
+      // options: {    // Universal options
+      //         bundleExec: true,
+      //         src : '<%= app %>'
+      //       },
+      serve: {
+        options: {
+          //port: '<%= jekyllConfig.server_port %>',
+          watch: true
+          //serve: true
+        }
       }
     },
 
@@ -103,7 +117,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-vulcanize');
 
   // Default task. Run standard jekyll server.
-  grunt.registerTask('default', ['jekyll:server']);
+  //grunt.registerTask('default', ['jekyll:server']);
+  grunt.registerTask('default', ['jekyll:serve']);
 
   grunt.registerTask('apidocs', ['yuidoc:polymeruielements']);
 

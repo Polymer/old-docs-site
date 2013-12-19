@@ -1,8 +1,5 @@
 # Server defaults.
-#watch: false # deprecated
-#server: false # deprecated
-#auto: true # deprecated
-port: 4000
+#port: 4000
 
 # Project defaults.
 #markdown: redcarpet
