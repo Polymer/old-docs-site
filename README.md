@@ -34,6 +34,10 @@ Next, create a `components` folder in the top level `docs` directory and run `pu
 
 **Note:** these scripts can take some time to download.
 
+You should now be able to build the docs successfully. Run this in the main folder:
+
+    grunt docs
+
 ## Making edits and previewing changes
 
 This repo (`Polymer/docs`) is where the documentation source files live. To make a change:
