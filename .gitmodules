@@ -1,0 +1,3 @@
+[submodule "labs"]
+	path = polymer-all/labs
+	url = git@github.com:Polymer/labs.git
