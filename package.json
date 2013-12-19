@@ -5,6 +5,7 @@
     "grunt": "*",
     "grunt-jekyll": "*",
     "grunt-contrib-yuidoc": "*",
-    "grunt-vulcanize": "*"
+    "grunt-vulcanize": "*",
+    "load-grunt-tasks": "~0.2.1"
   }
 }

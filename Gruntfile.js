@@ -113,10 +113,7 @@ module.exports = function(grunt) {
   });
 
   // Plugin and grunt tasks.
-  grunt.loadNpmTasks('grunt-jekyll');
-  //grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-yuidoc');
-  grunt.loadNpmTasks('grunt-vulcanize');
+  require('load-grunt-tasks')(grunt);
 
   // Default task. Run standard jekyll server.
   //grunt.registerTask('default', ['jekyll:server']);
