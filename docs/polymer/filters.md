@@ -9,6 +9,8 @@ title: Filters
     {{ {...} | filterName }}
 {% endraw %}
 
+The value of the mustache will include the space-separated keys from the object whose corresponding expressions are truthy.
+
 ## tokenList
 
 The `tokenList` filter is useful for binding to the `class` attribute. It allows you

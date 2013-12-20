@@ -7,7 +7,7 @@ title: Expressions
 
 {% include toc.html %}
 
-Within a `<polymer-element>` you can use {{site.project_title}}'s [expression library](https://github.com/polymer/polymer-expressions) to write inline expressions, statements, named scopes, repeats anywhere {%raw%}`{{}}`{%endraw%} bindings are used.
+Within a `<polymer-element>` you can use {{site.project_title}}'s [expression library](https://github.com/polymer/polymer-expressions) to write inline expressions, statements, named scopes, and iterative markup, anywhere {%raw%}`{{}}`{%endraw%} bindings are used.
 
 ## Inline expressions
 
@@ -54,15 +54,9 @@ may result in:
 
     <div>Jill has 100 grandchildren</div>
 
-You can hand off an object a filter. For example, using an object with the `tokenList` filter, the value of the mustache will include the space-separated keys from the object whose corresponding expressions are truthy:
+### Filters
 
-{% raw %}
-    <div class="{{ {active: user.selected, big: user.type == 'super'} | tokenList }}"> 
-{% endraw %}
-
-may result in:
-
-    <div class="active big"> 
+{{site.project_title}} also supports [filters](/docs/polymer/filters.html) for use in expressions.
 
 ## Named scopes
 
