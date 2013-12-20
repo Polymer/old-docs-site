@@ -86,9 +86,8 @@ polymer.dart is a Dart port of {{site.project_title}} created and maintained by 
 
 One limitation of today's polyfills is that {{site.project_title}} aggressively uses XHR to shim HTML Imports. We're experimenting with packaging systems and build steps to reduce the cost of network requests. When this API lands natively in browsers, things will Just Work™. Resources will be loaded as they normally do, taking advantage of parallelism, browser caching, etc.
 
-Until then, you can try [Vulcanizer](https://github.com/Polymer/vulcanize), which
-is our recommended build tool. It concatenates a list of elements and inlines
-their definitions into your main page.
+You can try [Vulcanize](/articles/concatenating-web-components.html), which
+is a build tool for concatenating a list of elements and inlining their definitions into your main page.
 
 ### Performance. Do you care about it? {#performancestuff}
 

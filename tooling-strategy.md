@@ -7,14 +7,11 @@ title: Tools & Testing
 
 If something seems terrible wrong, check out {{site.project_title}}'s [build status page](/build/).
 
-## Vulcanizer
+## Vulcanize build tool
 
 > Vulcanization is process that turns polymers into more durable materials.
 
-[Vulcanizer](https://github.com/Polymer/vulcanize) is a tool we're experimenting
-with to concatenate a set of web components into a single file. It's our current recommendation for a "build step".
-
-See its [README](https://github.com/Polymer/vulcanize) for documentation and examples.
+[Vulcanize](https://github.com/Polymer/vulcanize) is a tool to concatenate a set of web components into a single file. It's our current recommendation for a "build step". Read more about it in "[Concatenating Web Components with Vulcanize](/articles/concatenating-web-components.html)".
 
 ## Debugging Shadow DOM
 
