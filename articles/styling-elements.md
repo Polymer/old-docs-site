@@ -475,25 +475,25 @@ The `^` combinator is generally equivalent to a descendant combinator (e.g. `div
 
     <polymer-element name="x-foo" noscript>
       <template>
-        <div>I am red!</div>
+        <p>I am red!</p>
         <content></content>
       </template>
     </polymer-element>
 
     <x-foo>
-      <div>I am not red.</div>
+      <p>I am not red.</p>
     </x-foo>
 
 **Demo:**
 
 <style>
-  x-foo-cat ^ div {
+  x-foo-cat ^ p {
     color: red;
   }
 </style>
 
 <x-foo-cat style="margin-bottom:20px;">
-  <div>I am not red.</div>
+  <p>I am not red.</p>
 </x-foo-cat>
 
 A more full fledged example is styling a tabs component, say `<x-tabs>`. It has `<x-panel>` children in its Shadow DOM, each of which has an `h2` heading. To style those headings from the main page, one could use
