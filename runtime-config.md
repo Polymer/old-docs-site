@@ -5,8 +5,6 @@ title: Runtime configuration
 
 {% include toc.html %}
 
-## Configuration flags {#configuration-switches}
-
 {{site.project_title}} supports runtime options that are useful for debugging
 and toggling between native APIs and their polyfill counterparts.
 
@@ -16,14 +14,18 @@ Flags can be used in combination with each other and settable three different wa
 2. as URL query parameter
 3. directly on the `Platform.flags` object before loading `platform.js`. 
 
-<!--
-**Note:** only use these flags for development purposes.
-{: .alert .alert-info }
--->
+## Debug flags
+
+To use the debugging options, you must install and use the debug version of libraries:
+
+1. Install `polymer-dev` and `platform-dev` and then tweak the references
+  - `bower install Polymer/platform-dev Polymer/polymer-dev`
+  - Rewrite `platform/platform.js` to `platform-dev/platform.js` in `index.html`
+  - Comment out line 6 and uncomment line 7 in [https://github.com/Polymer/polymer/blob/master/polymer.html](https://github.com/Polymer/polymer/blob/master/polymer.html)
+1. Install `platform-dev` and `polymer-dev` on top of the minified versions
+  - `bower install polymer=Polymer/polymer-dev platform=Polymer/platform-dev`
 
 ### debug
-
-Conditionally loads a debug version of `platform.js`. By default, a minified version of platform (`platform.min.js`) is loaded. Using `debug` loads `platform.debug.js`.
 
 **Example usage**
 
@@ -85,6 +87,8 @@ Setting `Platform.flags`:
       Platform = {flags: {log: 'bind,ready'}};
     </script>
     <script src="platform.js"></script>
+
+## Configuration flags {#configuration-switches}
 
 ### register
 

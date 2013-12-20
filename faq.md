@@ -174,6 +174,17 @@ For example `<polymer-element name="my-element" extends="foo bar">`.
 
 No. But {{site.project_title}} may provide a syntax for mixins in the future.
 
+### I don't like package managers, can't I download {{site.project_title}} as a zip? {#bower}
+
+{{site.project_title}} has many different pieces. Creating a one-stop-shop .zip for
+all of the different permutations is unwieldy. If you really want a .zip, Github
+provides a download link on each project page. However in some cases, you won't get the necessary
+dependencies and will need to do this on multiple repositories.
+
+Web components and {{site.project_title}} are intended to be extremely granular.
+This is on purpose, to allow users to use exactly what they need and nothing more. In additional to granularity, higher-level components may be composed out of lower-level components. Bower allows us to
+easily manage those dependencies.
+
 ## Data-binding
 
 ### How do I use data-binding to repeat an `<option>` or `<tr>`? {#option-tr}
@@ -327,9 +338,11 @@ it's preferred to inline the styles without using `@import`. For example:
       ...
     </polymer-element>
 
+{%comment%}
 ### How can I use web fonts or CSS Animations in my custom element? {#fontsanimations}
 
 See "[Making styles global](/docs/polymer/styling.html#making-styles-global)".
+{%endcomment%}
 
 ### Why does my element claim its `.clientWidth/clientHeight` is 0? {#clientDimenstions}
 
@@ -360,6 +373,12 @@ to get the list of nodes distributed at the insertion point.
 Also remember that you can access the light DOM as the element's normal children
 (i.e. `this.children`, or other accessors). The difference with this approach
 is that it's the entire set of *potentially* distributed nodes; not those actually distributed.
+
+### Why do elements report zero (light DOM) children at created/ready time? {#zerochildren}
+
+It's generally a mistake to attempt to reference an element's children (light dom) in either the `createdCallback` or {{site.project_title}}'s `ready()` method. When these methods are fired, the element is not guaranteed to be in the DOM or have children. In addition, {{site.project_title}} calls `TemplateBinding.createInstance()` on an element's `<template>` to create its Shadow DOM. This process creates and binds elements in the template one by one.
+
+The best time to take a first look at an element's children is in the `enteredView` callback. This is when the element is in the DOM, has a parent, and possibly children. If you need to see changes to light DOM children after that, setup a Mutation Observer to do so.
 
 ### Can I use the `constructor` attribute without polluting the global namespace? {#constructorattr}
 

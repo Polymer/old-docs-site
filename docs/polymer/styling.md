@@ -25,37 +25,34 @@ For more information, see "[A Guide to Styling Elements](/articles/styling-eleme
 
 ## FOUC prevention
 
-Before custom elements [upgrade](http://www.html5rocks.com/en/tutorials/webcomponents/customelements/#upgrades) they may display incorrectly. To help mitigate these styling issues, {{site.project_title}} provides the `polymer-veiled` and `polymer-unveil` classes for preventing [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content).
+Before custom elements [upgrade](http://www.html5rocks.com/tutorials/webcomponents/customelements/#upgrades) they may display incorrectly. To help mitigate [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content) issues, {{site.project_title}} provides
+a polyfill solution for the [`:unresolved` pseudo class](/articles/styling-elements.html#preventing-fouc). The `[unresolved]` attribute initially hides the element it's applied to:
 
-To initially hide an element, include the `polymer-veiled` class:
-
-    <x-foo class="polymer-veiled">If you see me, elements are upgraded!</x-foo>
-    <div class="polymer-veiled"></div>
-
-Alternatively, you can add selectors to `Polymer.veiledElements`. Elements included in
-this array will automatically get the `polymer-veiled` class applied to them at boot time:
-
-    Polymer.veiledElements = ['x-foo', 'div'];
+    <x-foo unresolved>If you see me, elements are upgraded!</x-foo>
+    <div unresolved></div>
+    <body unresolved><!-- prevent the entire page from displaying until all elements are ready--></body>
 
 Class name | Behavior when applied to an element
 |-
-`polymer-veiled` | Makes the element `opacity: 0`.
-`polymer-unveil` | Fades-in the element to `opacity: 1`.
+`[unresolved]` | Makes the element `opacity: 0; display: block; overflow: hidden`.
+`[resolved]` | Fades-in the element over 200ms.
 {: .table }
 
-### Overriding the default behavior {#overriding}
+Upon [`WebComponentsReady`](/polymer.html#WebComponentsReady) firing, {{site.project_title}} runs the following steps:
 
-By default, `body` is included in the `Polymer.veiledElements` array. When [`WebComponentsReady`](/polymer.html#WebComponentsReady) fires, {{site.project_title}} removes the `polymer-veiled` class and adds `polymer-unveil` at the first `transitionend` event the element receives.  To override this behavior (and therefore prevent the entire page from being initially hidden), set `Polymer.veiledElements` to null:
-    
-    Polymer.veiledElements = null;
+1. removes the `[unresolved]` attribute from elements that have it
+2. adds the `[resolved]` attribute
+3. removes `[resolved]` on the first `transitionend` event the element receives
 
 ### Unveiling elements after boot time {#unveilafterboot}
 
-The veiling process can be used to prevent FOUC at times other than page load. To do so, apply the `polymer-veiled` class to the desired elements and call `Polymer.unveilElements()` when they should be displayed. For example,
+The veiling process can be used to prevent FOUC at times other than page load. To do so, apply the `[unresolved]` attribute to the desired elements and swap it out for the `[resolved]` attribute when the elements should be displayed. For example,
 
-    element.classList.add('polymer-veiled');
+    element.setAttribute('unresolved', '');
+
     // ... some time late ...
-    Polymer.unveilElements();
+    element.setAttribute('resolved', '');
+    element.removeAttribute('unresolved');
 
 ## Polyfill styling directives
 
@@ -115,6 +112,7 @@ This has no effect under native Shadow DOM but under the polyfill, the comment i
 
 `@polyfill-unscoped-rule` should only be needed in rare cases. {{site.project_title}} uses CSSOM to modify styles and there are a several known rules that don't round-trip correctly via CSSOM (on some browsers). One example using CSS `calc()` in Safari. It's only in these rare cases that `@polyfill-unscoped-rule` should be used.
 
+{%comment%}
 ## Making styles global
 
 According to CSS spec, certain @-rules like `@keyframe` and `@font-face`
@@ -132,9 +130,7 @@ Stylesheets and `<style>` elements in an HTML import are included in the main do
 Example of defining a global `<style>`:
 
     <style>
-      @-webkit-keyframes blink {
-        to { opacity: 0; }
-      }
+     
     </style>
 
     <polymer-element name="x-blink" ...>
@@ -148,7 +144,6 @@ Example of defining a global `<style>`:
       </template>
     </polymer-element>
 
-{%comment%}
 {{site.project_title}} also supports making a `<style>` or inline stylesheet global using the
 `polymer-scope="global"` attribute.
 

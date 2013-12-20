@@ -8,7 +8,7 @@ subtitle: Custom Elements
 article:
   author: ebidel
   published: 2013-08-12
-  updated: 2013-10-25
+  updated: 2013-12-17
   polymer_version: 0.0.20130808
   description: Techniques for passing messages to, from, and inbetween custom elements.
 tags:
@@ -422,7 +422,9 @@ a new event, <code>polymer-signal<b>-foo</b></code>, to *all instances* of `<pol
 Parts of your app or other {{site.project_title}} elements can declare a `<polymer-signals>`
 element to catch the named signal:
 
+{%raw%}
     <polymer-signals on-polymer-signal-foo="{{fooSignal}}"></polymer-signals>
+{%endraw%}
 
 Here's a full example:
 
@@ -441,7 +443,7 @@ Here's a full example:
 
     <polymer-element name="my-app">
       <template>
-        <polymer-signals on-polymer-signal-foo="{{fooSignal}}"></polymer-signals>
+        <polymer-signals on-polymer-signal-foo="{%raw%}{{fooSignal}}{%endraw%}"></polymer-signals>
         <content></content>
       </template>
       <script>

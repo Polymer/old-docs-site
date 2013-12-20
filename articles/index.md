@@ -13,7 +13,7 @@ add_permalinks: false
 
 {% assign pubdate = p.article.published | date: "%Y-%m-%d" %}
 {% assign updated = p.article.updated | date: "%Y-%m-%d" %}
-{% assign author = site.authors[p.article.author] %}
+{% assign author = site.data.authors[p.article.author] %}
 
 {::options parse_block_html="true" /}
 <div class="article">

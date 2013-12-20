@@ -1,33 +1,70 @@
 module.exports = function(grunt) {
 
+  var EXCLUDE_DIRS_APIDOCS = [
+    'docs',
+    'polymer-home-page',
+    'polymer-home-page-dev',
+    'MutationObservers',
+    'CustomElements',
+    'HTMLImports',
+    'NodeBind',
+    'platform',
+    'platform-dev',
+    'polymer',
+    'polymer-dev',
+    'polymer-expressions',
+    'PointerEvents',
+    'PointerGestures',
+    'ShadowDOM',
+    'TemplatingBinding',
+    'tools',
+    'web-animations-js',
+  ];
+
   // Project configuration.
   grunt.initConfig({
 
     pkg: grunt.file.readJSON('package.json'),
     jekyllConfig: grunt.file.readYAML('_config.yml'),
 
+    // jekyll: {
+    //       server : {
+    //         server: true,
+    //         server_port: '<%= jekyllConfig.server_port %>',
+    //         auto: true
+    //       },
+    //       dev: {
+    //         server: false,
+    //         safe: false
+    //       },
+    //       prod: {
+    //         auto: false,
+    //         server: false
+    //       }
+    //     },
+
     jekyll: {
-      server : {
-        server: true,
-        server_port: '<%= jekyllConfig.server_port %>',
-        auto: true
+      // options: {    // Universal options
+      //         bundleExec: true,
+      //         src : '<%= app %>'
+      //       },
+      build: {
       },
-      dev: {
-        server: false,
-        safe: false
-      },
-      prod: {
-        auto: false,
-        server: false
+      serve: {
+        options: {
+          //port: '<%= jekyllConfig.server_port %>',
+          watch: true
+          //serve: true
+        }
       }
     },
 
-    watch: { // for development run 'grunt watch'
-      jekyll: {
-        files: ['./*.html', '!**/node_modules/**', '!**/polymer-all/**'],
-        tasks: ['jekyll:dev']
-      }
-    },
+    // watch: { // for development run 'grunt watch'
+    //   jekyll: {
+    //     files: ['./*.html', '!**/node_modules/**', '!**/polymer-all/**', '!**/components/**'],
+    //     tasks: ['jekyll:dev']
+    //   }
+    // },
 
     yuidoc: {
       polymeruielements: {
@@ -36,27 +73,16 @@ module.exports = function(grunt) {
         //version: '<%= pkg.version %>',
         //url: '<%= pkg.homepage %>',
         options: {
-          exclude: 'docs',
+          exclude: EXCLUDE_DIRS_APIDOCS.join(','),
           extension: '.js,.html',
-          paths: './polymer-all/polymer-ui-elements/',
-          outdir: './polymer-all/polymer-ui-elements/docs/',
-          linkNatives: 'true',
-          tabtospace: 2,
-          themedir: 'doc_themes/footstrap'
-        }
-      },
-      polymerelements: {
-        options: {
-          exclude: 'docs',
-          extension: '.js,.html',
-          paths: './polymer-all/polymer-elements/',
-          outdir: './polymer-all/polymer-elements/docs/',
+          paths: './components/',
+          outdir: './components/docs/',
           linkNatives: 'true',
           tabtospace: 2,
           themedir: 'doc_themes/footstrap'
         }
       }
-    }
+    },
 
     // copy: {
     //   main: {
@@ -69,21 +95,34 @@ module.exports = function(grunt) {
     //   }
     // }
 
+    vulcanize: {
+      options: {
+        excludes: {
+          imports: [
+            "polymer.html$"
+          ]
+        }
+      },
+      build: {
+        files: {
+          'elements/common_elements.vulcanized.html': '_includes/common_elements.html'
+        },
+      }
+    },
+
   });
 
   // Plugin and grunt tasks.
-  grunt.loadNpmTasks('grunt-jekyll');
-  //grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-yuidoc');
+  require('load-grunt-tasks')(grunt);
 
   // Default task. Run standard jekyll server.
-  grunt.registerTask('default', ['jekyll:server']);
+  //grunt.registerTask('default', ['jekyll:server']);
+  grunt.registerTask('default', ['jekyll:serve']);
 
-  grunt.registerTask('apidocs', ['yuidoc:polymerelements',
-                                 'yuidoc:polymeruielements']);
+  grunt.registerTask('apidocs', ['yuidoc:polymeruielements']);
 
   // Task to build docs.
-  grunt.registerTask('docs', ['jekyll:prod', 'apidocs']);
+  grunt.registerTask('docs', ['apidocs', 'vulcanize:build', 'jekyll:build']);
 
   // Task to build and copy docs over to publishing repo.
   //grunt.registerTask('publish', ['jekyll:prod', 'copy:main']);

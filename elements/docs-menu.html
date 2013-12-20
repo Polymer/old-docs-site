@@ -1,11 +1,10 @@
-<!-- <link rel="import" href="../polymer-all/components/polymer/polymer.html"> -->
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/polymer-ui-menu/polymer-ui-menu.html">
+<link rel="import" href="../components/polymer-ui-menu-item/polymer-ui-menu-item.html">
+<link rel="import" href="../components/polymer-ui-submenu-item/polymer-ui-submenu-item.html">
+<link rel="import" href="../components/polymer-ui-nav-arrow/polymer-ui-nav-arrow.html">
 
-<link rel="import" href="../polymer-all/components/polymer-ui-menu/polymer-ui-menu.html">
-<link rel="import" href="../polymer-all/components/polymer-ui-menu-item/polymer-ui-menu-item.html">
-<link rel="import" href="../polymer-all/components/polymer-ui-submenu-item/polymer-ui-submenu-item.html">
-<link rel="import" href="../polymer-all/components/polymer-ui-nav-arrow/polymer-ui-nav-arrow.html">
-
-<polymer-element name="docs-menu" attributes="ajaxify" lightdom>
+<polymer-element name="docs-menu" attributes="ajaxify">
 <template>
   <polymer-ui-menu id="menu" selectedItem="{{item}}" on-click="{{onClick}}">
     <polymer-ui-submenu-item id="gettingstarted" label="Getting started">
@@ -24,6 +23,7 @@
       <polymer-ui-submenu-item label="Data-binding &#x25BE;">
         <polymer-ui-menu-item><a href="/docs/polymer/databinding.html">Introduction</a></polymer-ui-menu-item>
         <polymer-ui-menu-item><a href="/docs/polymer/expressions.html">Expressions</a></polymer-ui-menu-item>
+        <polymer-ui-menu-item><a href="/docs/polymer/filters.html">Filters</a></polymer-ui-menu-item>
       </polymer-ui-submenu-item>
       <polymer-ui-menu-item><a href="/articles/">Articles</a></polymer-ui-menu-item>
     </polymer-ui-submenu-item>

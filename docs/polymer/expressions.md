@@ -6,9 +6,8 @@ title: Expressions
 <p><buildbot-list project="polymer-expressions"></buildbot-list></p>
 
 {% include toc.html %}
- 
-{{site.project_title}} [implements](https://github.com/polymer/polymer-expressions)
-expression syntax using the [Binding Delegate API](/platform/template.html#binding-delegate-api). It enables you to use named scopes and simple inline expressions within {{site.project_title}} element {%raw%}`{{}}`{%endraw%} bindings.
+
+Within a `<polymer-element>` you can use {{site.project_title}}'s [expression library](https://github.com/polymer/polymer-expressions) to write inline expressions, statements, named scopes, repeats anywhere {%raw%}`{{}}`{%endraw%} bindings are used.
 
 ## Inline expressions
 

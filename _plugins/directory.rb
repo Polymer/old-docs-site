@@ -1,7 +1,7 @@
 require 'pathname'
 
-# {% directory dir:polymer-all/polymer-ui-elements %}
-# {% directory demos:true tag:li branch:master dir:polymer-all/polymer-ui-elements glob:polymer-ui-* %}
+# {% directory dir:components/polymer-ui-elements %}
+# {% directory demos:true tag:li branch:master dir:components/polymer-ui-elements glob:polymer-ui-* blaclistglob:polymer-something-* blacklist:"polymer-dev polymer-expressions polymer-elements" %}
 
 module Jekyll
   class DirectoryTag < Liquid::Tag
@@ -24,14 +24,22 @@ module Jekyll
           @attributes[key] = value
         end
       else
-        raise SyntaxError.new("Syntax Error in 'directory' - Valid syntax: directory demo:x branch:x tag:x dir:x glob:x]")
+        raise SyntaxError.new("Syntax Error in 'directory' - Valid syntax: directory demo:x branch:x tag:x dir:x glob:x blacklist:\"x\"]")
       end
 
       @dir = @attributes.has_key?('dir') ? @attributes['dir'] : nil
-      @glob = @attributes.has_key?('glob') ? @attributes['glob'] : '*/' 
+      @glob = @attributes.has_key?('glob') ? @attributes['glob'] : '*/'
+      @blacklist_glob = @attributes.has_key?('blacklistglob') ? @attributes['blacklistglob'] : ''
       @tag = @attributes.has_key?('tag') ? @attributes['tag'] : 'li' 
       @branch = @attributes.has_key?('branch') ? @attributes['branch'] : 'master'
-      @demos = @attributes.has_key?('demos') ? @attributes['demos'] : false 
+      @demos = @attributes.has_key?('demos') ? @attributes['demos'] : false
+
+      # Establish blacklist of elements to not include.
+      @blacklist = []
+      if @attributes.has_key?('blacklist')
+        @attributes['blacklist'] = @attributes['blacklist'][1..-2]
+        @blacklist = @attributes['blacklist'].split
+      end
 
       super
     end
@@ -44,12 +52,16 @@ module Jekyll
       elements = []
       #Pathname.glob("#{@path}/#{project_title}-*/").each do |i|
       #Pathname.glob("#{project_title}-all/#{@path}/").each do |i|
-      Pathname.glob("#{@dir}/#{@glob}").each do |i|
-        elements.push({
-          'name' => i.basename.to_s.sub('.html', ''),
-          'full_path' => i.to_s,
-          'path' => i.to_s.split('/')[1..-1].join('/') # remove polymer-all
-        })
+      (Pathname.glob("#{@dir}/#{@glob}") - Pathname.glob("#{@dir}/#{@blacklist_glob}")).each do |i|
+        name = i.basename.to_s.sub('.html', '')
+
+        if !in_blacklist?(name)
+          elements.push({
+            'name' => name,
+            'full_path' => i.to_s,
+            'path' => i.to_s.split('/')[1..-1].join('/') # remove "components"
+          })
+        end
       end
 
       elements.map{|el| render_element(el).strip}
@@ -62,10 +74,10 @@ module Jekyll
         file_path = "#{element['full_path']}"
       end
 
-      demo_path = "#{element['full_path']}/index.html"
-      #if !File.exists?("#{element['full_path']}/index.html")
-      #  demo_path = "#{element['full_path']}"
-      #end
+      demo_path = "#{element['full_path']}/smoke.html"
+      if !File.exists?(demo_path)
+       demo_path = "#{element['full_path']}/index.html"
+      end
 
       github_url = github_url(element)
       bower_use_url = bower_use_url(element)
@@ -76,6 +88,7 @@ module Jekyll
       api_doc_file = "#{@dir}/docs/classes/#{element['name']}.html"
 
       begin
+        p api_doc_file
         f = File.new(api_doc_file, "r")
         api_docs = f.read()
       rescue => e
@@ -88,9 +101,9 @@ module Jekyll
       <#{@tag} data-element-file="/#{file_path}">
         <h3 id="#{tag_name}">&lt;#{tag_name}&gt; <small><a href="#{github_url}" target="_blank">source</a></small></h3>
         <span class="bower_install_instructions">
-          <label>Install:</label>
-          <pre class="prettyprint">bower install #{bower_install_url}</pre>
-          <label>Include:</label>
+          <label>Install in your app:</label>
+          <pre class="prettyprint">bower install #{@config['project_title']}/#{bower_install_url}</pre>
+          <label>Import using:</label>
           <pre class="prettyprint">&lt;link rel="import"
       href="#{bower_use_url}"&gt;</pre>
         </span>
@@ -129,7 +142,7 @@ module Jekyll
 
       repo, element_path = element['path'].split('/')
 
-      "#{github_project_url}/#{repo}/blob/#{@branch}/#{element_path}/#{element['name']}.html"
+      "#{github_project_url}/#{repo}/blob/#{@branch}/#{element_path}#{element['name']}.html"
     end
 
     def bower_install_url(element)
@@ -141,7 +154,16 @@ module Jekyll
     def bower_use_url(element)
       repo, element_path = element['path'].split('/')
 
-      "bower_components/#{repo}/#{element_path}/#{element['name']}.html"
+      "bower_components/#{repo}/#{element_path}#{element['name']}.html"
+    end
+
+    def in_blacklist?(s)
+      @blacklist.each do |b|
+        if s.match(b.strip)
+          return true
+        end
+      end
+      return false
     end
 
   end
