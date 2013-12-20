@@ -159,7 +159,7 @@ build.js:
 
 ### Can I use Vulcanize with Grunt?
 
-Although Vulcanize does a great job of flattening imports, you may have an existing build system setup with Grunt that needs to uglify/minify your code or run your CSS through a preprocessor. Vulcanization can be added to Grunt using the [grunt-vulcanize](https://github.com/Polymer/grunt-vulcanize) task.
+Although Vulcanize does a great job of flattening imports, you may have an existing build system setup with Grunt that needs to uglify/minify your code or run your CSS through a preprocessor. Vulcanization can be added to Grunt using the [grunt-vulcanize](https://github.com/Polymer/grunt-vulcanize) task. In fact, we dogfood the task on this [very](https://github.com/Polymer/docs/blob/master/Gruntfile.js#L72:L85) site :)
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -183,19 +183,25 @@ In your project's Gruntfile, add a section named vulcanize to the data object pa
     // ...
   });
 
-In this example, the default options are used to do something with whatever. So if the testing file has the content Testing and the 123 file had the content 1 2 3, the generated result would be Testing, 1 2 3.
+You can then use custom options to further configure the task. For example, below we use the `csp` and `excludes` options to apply Content Security Policy settings to the vulcanization of `index.html` into `build-csp.html`.
 
   grunt.initConfig({
     vulcanize: {
-      options: {},
+      options: {
+        csp: true
+        excludes: {
+          imports: [
+            "polymer.html"
+          ]
+        }
+      },
       files: {
-        'dest/default_options': ['src/testing', 'src/123'],
+        'build-csp.html': 'index.html'
       },
     },
-    // ...
   });
 
-For more information on how to configure the task, read the [grunt-vulcanize documentation](https://github.com/Polymer/grunt-vulcanize/blob/master/README.md).
+For more information on how to configure the `grunt-vulcanize` task, read the [official documentation](https://github.com/Polymer/grunt-vulcanize/blob/master/README.md).
 
 ### Is concatenating a large number of elements a good idea?
 
