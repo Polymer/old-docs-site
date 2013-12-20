@@ -67,7 +67,7 @@ index.html:
   <link rel="import" href="app.html">
   <x-app></x-app>
 
-  <link rel="import" href="../bower_components/polymer/polymer.html">
+  <script src="bower_components/polymer/polymer.js"></script>
 {% endraw %}
 
 app.html:
