@@ -70,6 +70,14 @@ in your app directory to update your copy:
 
 This updates all packages in `bower_components/`.
 
+### Using a CDN {#cdn}
+
+{{site.project_title}} is maintained on [cdnjs](http://cdnjs.com/) and can be
+loaded from the following URLs:
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/polymer/{{site.latest_version}}/platform.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/polymer/{{site.latest_version}}/polymer.js"></script>
+
 ### Using git {#git}
 
 As an alternative to Bower, you can clone {{site.project_title}}'s important repositories
