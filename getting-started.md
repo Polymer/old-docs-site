@@ -140,9 +140,8 @@ element's `prototype`.
 The [lifecycle callbacks](/polymer.html#lifecyclemethods) are special methods you
 can define on your element.
 
-For example, when an element has been registered and finished initializing itself,
-it calls its `created()` method (if one has been defined). The `created` callback is
-a great place to do constructor-like initialization work.
+When a custom element has been registered it calls its `created()` callback (if one has been defined). When {{site.project_title}} finishes its initialization, the `ready()` method is called.
+The `ready` callback is a great place to do constructor-like initialization work.
 
 {% include samples/tk-element-created.html %}
 
