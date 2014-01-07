@@ -128,7 +128,7 @@ detailed information on each of these features.
 
 If you need to add public methods/properties to your element,
 include a `<script>` that calls `{{site.project_title}}('your-tagname')`.
-`{{site.project_title}}(..)` is a convenience wrapper for [`document.register`](/platform/custom-elements.html#documentregister), but also endows the element with special features like
+`{{site.project_title}}(..)` is a convenience wrapper for [`document.registerElement`](/platform/custom-elements.html#documentregister), but also endows the element with special features like
 data binding and event mapping. Its first argument is the name of the element
 you're creating. The second argument (optional) is an object that defines your
 element's `prototype`. 

@@ -217,8 +217,8 @@ All of the lifecycle callbacks are optional:
     {{site.project_title}}('tag-name', {
       created: function() { ... },
       ready: function() { ... },
-      enteredView: function () { ... },
-      leftView: function() { ... },
+      attached: function () { ... },
+      detached: function() { ... },
       attributeChanged: function(attrName, oldVal, newVal) {
         //var newVal = this.getAttribute(attrName);
         console.log(attrName, 'old: ' + oldVal, 'new:', newVal);
@@ -232,8 +232,8 @@ Spec | {{site.project_title}} | Called when
 |-
 createdCallback | created | an instance of the element is created
 - | ready | The `<polymer-element>` has been fully prepared (e.g. Shadow DOM created, property observers setup, event listeners attached, etc.)
-enteredViewCallback | enteredView | an instance was inserted into the document
-leftViewCallback | leftView | an instance was removed from the document
+attachedCallback | attached | an instance was inserted into the document
+detachedCallback | detached | an instance was removed from the document
 attributeChangedCallback | attributeChanged | an attribute was added, removed, or updated
 {: .table }
 
@@ -701,7 +701,7 @@ are a good place for this:
         // Ensure bindings remain active, even if we're never added to the DOM.
         this.cancelUnbindAll();
       },
-      leftView: function() {
+      detached: function() {
         // Also keep bindings active if we're added, but later removed.
         this.cancelUnbindAll();
       }
@@ -759,7 +759,7 @@ They remain in a semi-inert state when created outside the main document (e.g. a
 {{site.project_title}} elements prepare themselves automatically in the following cases:
 
 1. when they're created in a `document` that has a `defaultView` (the main document)
-2. when they receive the `enteredView` callback
+2. when they receive the `attached` callback
 3. when they're created in the `shadowRoot` of another element that is preparing itself
 
 In addition, if the `.alwaysPrepare` property is set to `true`, {{site.project_title}} elements
