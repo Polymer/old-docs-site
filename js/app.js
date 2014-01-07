@@ -175,6 +175,10 @@ function ajaxifySite() {
 $(document).ready(function() {
   initPage();
 
+  // Insure add current page to history so back button has an URL for popstate.
+  history.pushState({url: document.location.href}, document.title,
+                    document.location.href);
+
   document.querySelector('[data-twitter-follow]').addEventListener('click', function(e) {
     e.preventDefault();
     var target = e.target.localName != 'a' ? e.target.parentElement : e.target;
