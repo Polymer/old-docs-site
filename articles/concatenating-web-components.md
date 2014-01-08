@@ -77,10 +77,11 @@ app.html:
 {% raw %}
     <link rel="import" href="bower_components/polymer/polymer.html">
     <link rel="import" href="path/to/x-dep.html">
-    <polymer-element name="x-app" noscript>
+    <polymer-element name="x-app">
       <template>
         <x-dep></x-dep>
       </template>
+      <script>Polymer('x-app');</script>
     </polymer-element>
 {% endraw %}
 
@@ -88,10 +89,11 @@ app.html:
 
 {% raw %}
     <link rel="import" href="bower_components/polymer/polymer.html">
-    <polymer-element name="x-dep" noscript>
+    <polymer-element name="x-dep">
       <template>
         <img src="x-dep-icon.jpg">
       </template>
+      <script>Polymer('x-dep');</script>
     </polymer-element>
 {% endraw %}
 
@@ -104,15 +106,17 @@ This results in a build.html that looks a little like this:
 {% raw %}
     <!doctype html>
     <script src="bower_components/polymer/polymer.js"></script>
-    <polymer-element name="x-dep" assetpath="path/to/" noscript>
+    <polymer-element name="x-dep" assetpath="path/to/">
       <template>
         <img src="path/to/x-dep-icon.jpg">
       </template>
+      <script>Polymer('x-dep');</script>
     </polymer-element>
-    <polymer-element name="x-app" assetpath="" noscript>
+    <polymer-element name="x-app" assetpath="">
       <template>
         <x-dep></x-dep>
       </template>
+      <script>Polymer('x-app');</script>
     </polymer-element>
     <x-app></x-app>
 {% endraw %}
@@ -133,22 +137,24 @@ Vulcanize also supports the opposite of this process, extracting inline scripts 
 
 To use {{site.project_title}} in a CSP environment that doesn't support inline scripts, pass the `--csp` flag to Vulcanize. It removes all scripts from the HTML Imports and place their contents into an output JavaScript file. This is useful in amongst other things, using {{site.project_title}} in a Chrome App.
 
-Using the previous example, the output from `vulcanize -o build.html index.html--csp` will be
+Using the previous example, the output from `vulcanize -o build.html index.html --csp` will be
 
 build.html:
 
 {% raw %}
     <!doctype html>
     <script src="bower_components/polymer/polymer.js"></script>
-    <polymer-element name="x-dep" assetpath="path/to/" noscript>
+    <polymer-element name="x-dep" assetpath="path/to/">
       <template>
         <img src="path/to/x-dep-icon.jpg">
       </template>
+      <script>Polymer('x-dep');</script>
     </polymer-element>
-    <polymer-element name="x-app" assetpath="" noscript>
+    <polymer-element name="x-app" assetpath="">
       <template>
         <x-dep></x-dep>
       </template>
+      <script>Polymer('x-app');</script>
     </polymer-element>
     <script src="build.js"></script>
     <x-app></x-app>
