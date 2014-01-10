@@ -130,7 +130,9 @@ Stylesheets and `<style>` elements in an HTML import are included in the main do
 Example of defining a global `<style>`:
 
     <style>
-     
+      @-webkit-keyframes blink {
+        to { opacity: 0; }
+      }
     </style>
 
     <polymer-element name="x-blink" ...>
@@ -156,7 +158,7 @@ Example of defining a global `<style>`:
       </template>
     </polymer-element>
 
-Stylsheets that uses `polymer-scope="global"` are moved to the `<head>` of the main page. This happens once.
+Stylsheets that use `polymer-scope="global"` are moved to the `<head>` of the main page. This happens once.
 
 **Example:** Define and use CSS animations in an element
 
