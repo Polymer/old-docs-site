@@ -14,11 +14,13 @@ exclude: ["node_modules", "scripts", "sass", "app.yaml", "README.md",
           "build.py"]
 
 kramdown:
-  toc_levels: "2,3"
+  #toc_levels: "2,3"
+  toc_levels: 2..3
+  #auto_ids: true
 
 # Site globals used throughout docs.
 load_platform: true
 project_title: Polymer
-latest_version: 0.1.1
+latest_version: 0.1.2
 add_permalinks: true # adds permalinks to heading tags.
 load_disqus: true

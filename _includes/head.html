@@ -26,10 +26,10 @@
 <link href="/css/prettify/sunburst.css" rel="stylesheet">
 <link href="/css/font-awesome/font-awesome.min.css" rel="stylesheet">
 <!-- <link href="/css/pygments/default.css" rel="stylesheet" type="text/css"> -->
-<link href="/css/site.css?{{'now' | date: "%Y%m%d"}}" rel="stylesheet">
+<link href="/css/site.css?{{site.time | date: '%Y%m%d'}}" rel="stylesheet">
 
 {% for item in page.stylesheets %}
-  <link rel="stylesheet" src="{{item}}">
+  <link rel="stylesheet" href="{{item}}">
 {% endfor %}
 
 <!-- Comment out to test unminified Polymer -->
@@ -46,9 +46,11 @@ try {
 </script>
 
 {% if site.load_platform %}
-  <script src="/platform.js?{{'now' | date: '%Y%m%d'}}"></script>
-  <!--<script src="/polymer.min.js?{{'now' | date: '%Y%m%d'}}"></script>-->
-  <!--<script src="/polymer-all/polymer/polymer.js?{{'now' | date: '%Y%m%d'}}"></script>-->
+  <script src="/platform.js?{{site.time | date: '%Y%m%d'}}"></script>
+  <!--<script src="/polymer.min.js?{{site.time | date: '%Y%m%d'}}"></script>-->
+  <!--<script src="/polymer-all/polymer/polymer.js?{{site.time | date: '%Y%m%d'}}"></script>-->
   <!-- <link rel="import" href="/polymer-all/components/polymer/polymer.html"> -->
-  <link rel="import" src="/elements/common_elements.vulcanized.html">
+  <!-- TODO: remove when https://github.com/Polymer/polymer/issues/391 is fixed -->
+  <link rel="import" href="/components/polymer/polymer.html">
+  <link rel="import" href="/elements/common_elements.vulcanized.html">
 {% endif %}

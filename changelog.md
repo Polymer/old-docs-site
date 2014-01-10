@@ -40,57 +40,62 @@ including polyfill repos, tools, projects, and UI elements.
 #### Shadow DOM
 {% endcomment %}
 
+## 2013-01-09 {#r20130109}
 
-## 2013-12-11 {#2013-12-11}
+See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/0.1.2).
+
+---
+
+## 2013-12-11 {#r2013-12-11}
 
 See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/0.1.1).
 
 ---
 
-## 2013-11-27 {#2013-11-27}
+## 2013-11-27 {#r2013-11-27}
 
 See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/0.1.0).
 
 ---
 
 
-## 2013-10-25 {#2013-10-25}
+## 2013-10-25 {#r2013-10-25}
 
 See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20131025).
 
 ---
 
-## 2013-10-10 {#2013-10-10}
+## 2013-10-10 {#r2013-10-10}
 
 See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20131010).
 
 ---
 
-## 2013-10-03 {#2013-10-03}
+## 2013-10-03 {#r2013-10-03}
 
 See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20131003).
 
 ---
 
-## 2013-09-12 {#2013-09-12}
+## 2013-09-12 {#r2013-09-12}
 
 See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20130912).
 
 ---
 
-## 2013-09-05 {#2013-09-05}
+## 2013-09-05 {#r2013-09-05}
 
 See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20130905).
 
 ---
 
-## 2013-08-29 {#2013-08-29}
+## 2013-08-29 {#r2013-08-29}
 
 See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20130829).
 
 ---
 
-## 2013-08-16 {#2013-08-16}
+## 2013-08-16 {#r2013-08-16}
 
 <i class="icon-download icon-large"></i> [download this version](https://github.com/Polymer/polymer-all/releases/tag/v0.0.20130816) or see the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20130816).
 
@@ -98,7 +103,7 @@ See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v
 
 ---
 
-## 2013-08-15 {#2013-08-15}
+## 2013-08-15 {#r2013-08-15}
 
 <i class="icon-download icon-large"></i> [download this version](https://github.com/Polymer/polymer-all/releases/tag/v0.0.20130815) or see the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20130815).
 
@@ -150,7 +155,7 @@ from the {{site.project_title}} pieces. New repos:
 
 ---
 
-## 2013-08-08 {#2013-08-08}
+## 2013-08-08 {#r2013-08-08}
 
 <i class="icon-download icon-large"></i> [download this version](https://github.com/Polymer/polymer-all/releases/tag/v0.0.20130808) or see the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20130808).
 
@@ -204,7 +209,7 @@ been wrapped and properly work under the polyfill now ([commit](https://github.c
 
 ---
 
-## 2013-08-02 {#2013-08-02}
+## 2013-08-02 {#r2013-08-02}
 
 <i class="icon-download icon-large"></i> [download this version](https://github.com/Polymer/polymer-all/releases/tag/v0.0.20130802) or see the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20130801).
 
@@ -275,7 +280,7 @@ that appears in an overlay menu when the button is selected ([commit](https://gi
 
 ---
 
-## 2013-07-11 {#2013-07-11}
+## 2013-07-11 {#r2013-07-11}
 
 See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.20130711).
 
@@ -364,7 +369,7 @@ with the standard methods like anonymous self calling functions.
 
 ---
 
-## 2013-06-17 {#2013-06-17}
+## 2013-06-17 {#r2013-06-17}
 
 **Notice**: This release contains important changes to the structure of the project.
 {:.centered .alert .alert-info}
@@ -459,7 +464,7 @@ See the [full list of changes](https://github.com/Polymer/ShadowDOM/pull/171).
 
 ---
 
-## 2013-06-05 {#2013-06-05}
+## 2013-06-05 {#r2013-06-05}
 
 ### {{site.project_title}}
 
@@ -501,7 +506,7 @@ See the [full list of changes](https://github.com/Polymer/HTMLImports/pull/12).
 
 ---
 
-## 2013-05-15 {#2013-05-15}
+## 2013-05-15 {#r2013-05-15}
 
 This release mainly contained important platform fixes for IE and Firefox.
 
@@ -531,7 +536,7 @@ See the [full list of changes](https://github.com/Polymer/polymer/pull/135).
 
 ---
 
-## 2013-05-13 {#2013-05-13}
+## 2013-05-13 {#r2013-05-13}
 
 **Notice**: This release contains important changes to the structure of the project.
 {:.centered .alert .alert-info}
@@ -540,7 +545,7 @@ Project renamed to Polymer! <https://github.com/polymer>
 
 ---
 
-## 2013-05-09 {#2013-05-09}
+## 2013-05-09 {#r2013-05-09}
 
 ### {{site.project_title}}
 
@@ -650,7 +655,7 @@ See the [full list of changes](https://github.com/polymer/ShadowDOM/pull/139)
 
 ---
 
-## 2013-04-17 {#2013-04-17}
+## 2013-04-17 {#r2013-04-17}
 
 ### Toolkit
 
@@ -673,7 +678,7 @@ no longer need to include `platform.js` alongside `toolkit.js`. `toolkit.js` now
 
 ---
 
-## 2013-04-11 {#2013-04-11}
+## 2013-04-11 {#r2013-04-11}
 
 **Notice**: This release contains important changes to the structure of the project.
 {:.centered .alert .alert-info}
@@ -693,7 +698,7 @@ version of `platform.js`.
 
 ---
 
-## 2013-02-25 {#2013-02-25}
+## 2013-02-25 {#r2013-02-25}
 
 ### Toolkit
 
