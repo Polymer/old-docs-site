@@ -56,7 +56,20 @@ may result in:
 
 ### Filters
 
-{{site.project_title}} also supports [filters](/docs/polymer/filters.html) for use in expressions.
+{{site.project_title}} supports [filters](/docs/polymer/filters.html) for for use
+with expressions.
+
+## Single-use bindings
+
+Anywhere you use {% raw %}`{{}}`{% endraw %} in expressions, you can now use double brackets (`[[]]`)
+to setup a one-time binding. The binding becomes inactive after {{site.project_title}}
+sets its value for the first time.
+
+Example:
+
+    <input type="text" value="this value is inserted once: [[ obj.value ]]">
+
+One time bindings can potentially be a performance win if you don't need the overhead of setting up property observation.
 
 ## Named scopes
 
