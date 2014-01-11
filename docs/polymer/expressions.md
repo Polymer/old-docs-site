@@ -61,7 +61,7 @@ with expressions.
 
 ## Single-use bindings
 
-<span class="label label-important">Experiemental</span>
+<span class="label label-important">Experimental</span>
 
 Anywhere you use {% raw %}`{{}}`{% endraw %} in expressions, you can now use double brackets (`[[]]`)
 to setup a one-time binding. The binding becomes inactive after {{site.project_title}}

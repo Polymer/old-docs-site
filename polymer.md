@@ -91,6 +91,8 @@ which calls `Polymer('tag-name')`:
 
 #### Producing Light DOM instead of Shadow DOM {#createlightdom}
 
+<span class="label label-important">Experimental</span>
+
 By default, {{site.project_title}} creates [Shadow DOM](/platform/shadow-dom.html) from the first
 `<template>` in the element definition. The _benefit of using Shadow DOM is that
 it encapsulates markup and provides style scoping for elements_.
