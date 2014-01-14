@@ -1,0 +1,97 @@
+@import "base";
+
+$font-family-body: "Open Sans",Helvetica,Arial,sans-serif;
+$font-family-code: "Source Code Pro",Monaco,Menlo,Consolas,"Courier New",monospace;
+
+$font-size-meta: 12px;
+$font-size-secondary: 14px;
+$font-size-body: 16px;
+$font-size-header: 20px;
+$font-size-display: 36px;
+
+$line-height-body: 24pt;
+
+$link-color: #3367d6;
+
+// Page section colors
+$main-bg: #eee;
+$main-purple: #1f2036;
+
+// Logo colors
+$purple-light: #7986cb;
+$purple-medium: #5c6bc0;
+$purple-dark: #2b398f;
+$pink-light: #ff4081;
+$pink-dark: #d61a7f;
+
+$gray-light: #f2f2f2;
+$gray-medium: #fafafa;
+
+$using-elements-color: #7783C9;
+$creating-elements-color: #D93089;
+$platform-color: #835981;
+
+.meta {
+  font-size: $font-size-meta;
+  font-weight: normal;
+  line-height: 20pt;
+  // letter-spacing: 20pt;
+}
+
+.secondary {
+  font-size: $font-size-secondary;
+  font-weight: normal;
+  line-height: 20pt;
+  // letter-spacing: 20pt;
+}
+
+body {
+  font-size: $font-size-body;
+  font-family: $font-family-body;
+  font-weight: normal;
+  line-height: $line-height-body;
+  // letter-spacing: 0;
+}
+
+.header {
+  font-size: $font-size-header;
+  font-weight: 600;
+  // letter-spacing: 0;
+  line-height: 24pt;
+}
+
+.display, h1, h2, h3, h4 {
+  font-size: $font-size-display;
+  font-weight: 300;
+  // letter-spacing: -10pt;
+  line-height: 44pt;
+  margin: 0;
+}
+h2 {
+  font-size: $font-size-display - 6;
+}
+h3 {
+  font-size: $font-size-display - 12;
+}
+h4 {
+  font-size: $font-size-display - 15;
+}
+
+button {
+  font-size: $font-size-meta;
+  font-weight: normal;
+  // letter-spacing: 60pt;
+  text-transform: uppercase;
+}
+
+a {
+  font-size: $font-size-secondary;
+  font-weight: normal;
+  color: $link-color;
+  // letter-spacing: 10pt;
+  text-decoration: none;
+}
+
+code, pre {
+  font-family: $font-family-code;
+}

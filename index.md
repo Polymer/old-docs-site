@@ -1,62 +1,92 @@
 ---
-layout: default
-#title: Welcome
+layout: home
+#title: homepage
 ---
 
-<style>
-.download {
-  margin-top: 0;
-}
-</style>
+<!-- <paper-appbar main-bg>
+  <span flex><img src="/images/logos/polymer-logo-32.png"> polymer</span>
+  <button is="paper-button">Start</button>
+  <button is="paper-button">Reference</button>
+  <button is="paper-button">Community</button>
+  <button is="paper-button">Support</button>
+  <button is="paper-button">News</button>
+  <button is="paper-button"><polymer-ui-icon icon="search"></polymer-ui-icon></button>
+</paper-appbar> -->
 
-{% include alpha.html %}
-
-## What is {{site.project_title}}?
-
-{{site.project_title}} is a new type of library for the web, built on top of Web Components,
-and designed to leverage the evolving web platform on modern browsers.
-{: .lead }
-
-<p class="download centered"><a href="/getting-the-code.html" class="btn btn-success btn-large" alt="Get the latest {{site.project_title}}" title="Get the latest {{site.project_title}}">Get Polymer</a></p>
-
-
-<figure id="architecture-diagram">
-  <iframe src="/images/architecture-diagram.svg?{{'now' | date: "%Y%m%d"}}"></iframe>
-  <figcaption><a href="/images/architecture-diagram.svg" target="_blank">Architectural diagram</a></figcaption>
-</figure>
-
-- <i class="icon-cogs icon-3x pull-left foundation"></i> A set of _polyfills_ for emerging web platform features. Initially, these core features are enabled as polyfills but go away
-over time as browsers implement them.
-- <i class="icon-beaker icon-3x pull-left core"></i> A next-generation _web application framework_ built upon these core technologies.
-- <i class="icon-puzzle-piece icon-3x pull-left elements"></i> A set of _comprehensive UI and utility components_ for building web applications.
-{: id="what-is" }
-
-{%comment%}
-## Quick start
-
-{%comment%}
-{% include downloadbutton.html %}
-{%endcomment%}
-
-- Include `<script src="bower_components/platform/platform.js"></script>` in your page (fire up a web server).
-- Read the [Getting Started](/getting-started.html) guide.
-- Learn how to build a souped-up `<polymer-element>` using [Polymer core](/polymer.html).
-- Play with the [polymer-elements](https://github.com/Polymer/polymer-elements), [polymer-ui-elements](https://github.com/Polymer/polymer-ui-elements), and [toolkit-ui](https://github.com/Polymer/toolkit-ui).
-
-_Join the [mailing list](/discuss.html). Ask questions and give feedback!_
-
-{%endcomment%}
-
-## Guiding principles
-
-<div class="centered video"><iframe src="http://www.youtube.com/embed/videoseries?list=PLRAVCSU_HVYu-zlRaqArF8Ytwz1jlMOIM" frameborder="0" allowfullscreen></iframe>
-</div>
-
-The overall aim of {{site.project_title}} is to manage the complexity of building web applications.
-
-**Use the platform** —  Use as much or as little of the framework as you wish. An application can choose to load `platform.js` for just the polyfills or use `polymer.js` to give web components extra batteries. We call these types of elements ["{{site.project_title}} elements"](/polymer.html).
-
-**Everything is an element** — Encapsulation is the key to creating scalable, maintainable applications. All {{site.project_title}} resources are components, even ones that are non-visual. To construct an app, a developer creates new components, or uses ones {{site.project_title}} provides, and assembles them together. Focusing on individual, composable building blocks allows developers to "think locally" about their application, reducing complexity. With this divide-and-conquer approach, applications can simultaneously be simple and arbitrarily complicated.
-
-**Eliminate boilerplate** — Developers should write the **minimum** amount of code possible to create their application. Anything repetitive should be re-factored into a component, handled by {{site.project_title}} itself, or added into the browser platform itself. {{site.project_title}} provides simple syntax without reducing features, and avoids boilerplate wherever possible.
-
+<section id="future" class="main-bg">
+  <div class="panel left">
+    <img src="/images/logos/polymer-logo-300.png">
+    <summary>
+      <h1>The future of the web, today</h1>
+      <p>Polymer is rocket-fuel for webcomponents. Then by modifying this flight plasma deflector, we can make it work in conjunction with the navigational isolinear polymer.</p>
+      <polymer-ui-toolbar>
+        <button class="paper-button"><polymer-ui-icon icon="down"></polymer-ui-icon><a href="/getting-the-code.html">Download</a></button>
+        <button class="paper-button"><polymer-ui-icon icon="right"></polymer-ui-icon><a href="/getting-started.html">Get started</a></button>
+        <button class="paper-button" borderless><a href="https://github.com/polymer/polymer">View on Github</a></button>
+      </polymer-ui-toolbar>
+    </summary>
+  </div>
+</section>
+<section class="main-purple">
+  <div class="panel right purple-light">
+    <summary>
+      <h1>Everything is an &lt;element&gt;</h1>
+      <p>The web has always had the simple but powerful concept of elements. Over time, we
+      outgrew the standard set and turned to script. With Polymer, we leverage the emerging
+      Web Components standards and return to the elegance of the element. When you embrace
+      the principle that everything is an element, building complex web apps becomes radically
+      easier.</p>
+    </summary>
+    <img src="/images/logos/polymer-logo-300.png">
+  </div>
+</section>
+<section>
+  <div class="panel">
+    <box><img src="/images/logos/polymer-logo-300.png"></box>
+    <br>
+    <h2 class="element-using">Using elements</h2>
+    <h5>Polymer from the outside</h5>
+    <br>
+    <p>The web has always had the simple but powerful concept of elements. Over time, we
+    outgrew the standard set and turned to script. With Polymer, we leverage the emerging
+    Web Components standards and return to the elegance of the element. When you embrace
+    the principle that everything is an element, building complex web apps becomes radically
+    easier.</p>
+    <br>
+    <paper-appbar>
+      <button is="paper-button">Browse Elements</button>
+    </paper-appbar>
+  </div>
+  <div>
+    <box><img src="/images/logos/polymer-logo-300.png"></box>
+    <br>
+    <h2 class="element-creating">Creating elements</h2>
+    <h5>Polymer from the inside</h5>
+    <br>
+    <p>The web has always had the simple but powerful concept of elements. Over time, we
+    outgrew the standard set and turned to script. With Polymer, we leverage the emerging
+    Web Components standards and return to the elegance of the element. When you embrace
+    the principle that everything is an element, building complex web apps becomes radically
+    easier.</p>
+    <br>
+    <paper-appbar>
+      <button is="paper-button">Build your own</button>
+    </paper-appbar>
+  </div>
+  <div>
+    <box><img src="/images/logos/polymer-logo-300.png"></box>
+    <br>
+    <h2 class="platform">The platform</h2>
+    <h5>Supporting Web Components today</h5>
+    <br>
+    <p>The web has always had the simple but powerful concept of elements. Over time, we
+    outgrew the standard set and turned to script. With Polymer, we leverage the emerging
+    Web Components standards and return to the elegance of the element. When you embrace
+    the principle that everything is an element, building complex web apps becomes radically
+    easier.</p>
+    <br>
+    <paper-appbar>
+      <button is="paper-button">Get your polyfill</button>
+    </paper-appbar>
+  </markup>
+</section>
