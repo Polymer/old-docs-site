@@ -29,7 +29,7 @@ $gray-medium: #fafafa;
 
 $using-elements-color: #7783C9;
 $creating-elements-color: #D93089;
-$platform-color: #835981;
+$platform-color: #6a3167;
 
 .meta {
   font-size: $font-size-meta;
@@ -60,7 +60,7 @@ body {
   line-height: 24pt;
 }
 
-.display, h1, h2, h3, h4 {
+.display, h1, h2, h3, h4, h5 {
   font-size: $font-size-display;
   font-weight: 300;
   // letter-spacing: -10pt;
@@ -75,6 +75,9 @@ h3 {
 }
 h4 {
   font-size: $font-size-display - 15;
+}
+h5 {
+  font-size: $font-size-display - 20;
 }
 
 button {
