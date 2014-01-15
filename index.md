@@ -21,8 +21,8 @@ layout: home
       <p>{{site.project_title}} is a framework based on Web Components that provides a comprehensive
         set of elements and makes it easy for you to build your own.</p>
       <polymer-ui-toolbar>
-        <button class="paper-button"><polymer-ui-icon icon="down"></polymer-ui-icon><a href="/getting-the-code.html">Download</a></button>
-        <button class="paper-button"><polymer-ui-icon icon="right"></polymer-ui-icon><a href="/getting-started.html">Get started</a></button>
+        <button class="paper-button" data-download-button><polymer-ui-icon src="/images/picons/ic_archive_dark_.png"></polymer-ui-icon><a href="/getting-the-code.html">Download</a></button>
+        <button class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon><a href="/getting-started.html">Get started</a></button>
         <button class="paper-button" borderless><a href="https://github.com/polymer/polymer">View on Github</a></button>
       </polymer-ui-toolbar>
     </summary>
@@ -40,7 +40,7 @@ layout: home
       Web Components standards and return to the elegance of the element. When you embrace
       the principle that everything is an element, building complex web apps becomes radically
       easier.</p>
-      <button class="paper-button" borderless><polymer-ui-icon icon="right"></polymer-ui-icon><a href="/getting-started.html">Get started</a></button>
+      <button class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_light.png"></polymer-ui-icon><a href="/getting-started.html">Get started</a></button>
     </summary>
     <img src="/images/logos/polymer-logo-300.png">
   </div>
@@ -59,7 +59,7 @@ layout: home
       <p>{{site.project_title}} provides a set of elements - both visual and non-visual - that you
         can use right out of the box. Because they're just like any other native HTML element,
         they play well with other frameworks.</p>
-      <button class="paper-button" borderless><polymer-ui-icon icon="right"></polymer-ui-icon><a href="/docs/elements/">Use our elements</a></button>
+      <button class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon><a href="/docs/elements/">Use our elements</a></button>
     </summary>
     <summary>
       <div class="box">
@@ -69,7 +69,7 @@ layout: home
       <h5>{{site.project_title}} from the inside</h5>
       <p>{{site.project_title}} makes it easy to create your own reusable elements, declaratively. Safely
         encapsulated, it provides powerful tools like two-way data binding, pointer events, and property observation.</p>
-      <button class="paper-button" borderless><polymer-ui-icon icon="right"></polymer-ui-icon><a href="/docs/elements/">Build your own</a></button>
+      <button class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon><a href="/docs/elements/">Build your own</a></button>
     </summary>
     <summary>
       <div class="box">
@@ -80,7 +80,7 @@ layout: home
       <p>{{site.project_title}} provides a set of elements - both visual and non-visual - that you
         can use right out of the box. Because they're just like any other native HTML element,
         they play well with other frameworks.</p>
-      <button class="paper-button" borderless><polymer-ui-icon icon="right"></polymer-ui-icon><a href="/docs/elements/">Get your {{site.project}}</a></button>
+      <button class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon><a href="/docs/elements/">Get your {{site.project_title}}</a></button>
     </summary>
   </div>
 </section>

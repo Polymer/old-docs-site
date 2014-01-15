@@ -21,8 +21,13 @@ $content-padding: 50px;
 //   padding-top: 50px;
 // }
 
-body {
+html, body {
   margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
   color: #444;
   // padding-bottom: 80px;
   // padding-top: 80px;
@@ -111,13 +116,27 @@ a[disabled] {
   }
 
   a {
+    font-size: 13px;
+    // line-height: 24px;
+    // letter-spacing: 0.06em;
     color: inherit;
     vertical-align: middle;
+    opacity: 0.6;
+    color: rgb(0, 0, 0);
   }
 }
 
 polymer-ui-icon {
+  $widthHeight: 20px;
   margin-right: 5px;
+  width: $widthHeight;
+  height: $widthHeight;
+  background-size: $widthHeight * 2 !important;
+}
+
+.content-padding {
+  width: 1032px;
+  margin: 0 auto;
 }
 
 .bar {
@@ -126,9 +145,8 @@ polymer-ui-icon {
 }
 
 .panel {
+  @extend .content-padding;
   padding: 184px 0;
-  width: 1032px;
-  margin: 0 auto;
   @include display-flex;
 
   $img-margin: 88px;
@@ -188,17 +206,41 @@ polymer-ui-toolbar {
     }
   }
 
-  .brand {
-    font-size: $font-size-display - 10;
+  // .brand {
+  //   font-size: $font-size-display - 10;
 
-    img {
-      height: 32px;
-      width: auto;
-      margin-right: 5px;
+  //   img {
+  //     height: 32px;
+  //     width: auto;
+  //     margin-right: 5px;
+  //   }
+  // }
+}
+
+
+.dosticky {
+  .sticky {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  section .bar {
+    background: white;
+    z-index: 100;
+    position: relative;
+    // position: sticky;
+    // position: -webkit-sticky;
+    // top: 0;
+  }
+
+  #everything-element {
+    .bar {
+      @extend .main-purple;
     }
   }
 }
-
 
 // Homepage sections
 section .bar {
@@ -210,11 +252,12 @@ section .bar {
   a {
     color: inherit;
     font-size: $font-size-body;
-    font-weight: 600;
+    // font-weight: 600;
     // letter-spacing: 0.01em;
     // line-height: 19.2px;
     text-align: right;
     @include flex(1);
+    opacity: 0.6;
 
     &:after {
       content: '\0025BE';
@@ -230,34 +273,28 @@ section .bar {
   }
   .paper-button {
     margin-right: 30px;
-    // font-size: 13px;
-    // line-height: 24px;
-    // letter-spacing: 0.06em;
-    opacity: 0.6;
-    color: black;
-
-    a {
-      font-size: 13px;
-    }
   }
 }
 
 #everything-element {
   .bar {
-    opacity: 0.6;
-    border-color: white;
+    border-color: rgba(255,255,255,0.3);
+    @extend .main-purple;
 
     a {
       color: white;
     }
   }
   summary {
-    color: $purple-light;
+    color: $using-elements-color;
   }
   .paper-button {
     //background: rgba(255,255,255,0.1) !important;
     background: #262742 !important;
-    color: white;
+    
+    a {
+      color: white;
+    }
   }
 }
 
@@ -267,11 +304,8 @@ section .bar {
   }
   .box {
     @extend .main-bg;
-    padding: 64px 24px 24px;
+    padding: 100px 24px 14px; //64px 24px 24px;
     margin-bottom: $content-padding;
-  }
-  h2 {
-    // line-height: 32px;
   }
   h5 {
     font-size: $font-size-secondary;
@@ -284,10 +318,46 @@ section .bar {
     line-height: $line-height-body;
   }
   img {
-    width: 160px;
-    height: auto;
+    height: 92px;
+    // width: 160px;
+    width: auto;
   }
 }
+
+
+footer {
+  background-color: #e6e6e6;
+  padding: 100px 0;
+  box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.0980392) 0px 1px 2px 0px inset;
+
+  polymer-ui-toolbar {
+    margin-bottom: $content-padding;
+  }
+
+  .paper-button {
+    margin-right: 30px;
+    //background: transparent !important;
+
+    a {
+      opacity: 0.6;
+      color: rgb(0, 0, 0);
+    }
+  }
+
+  > :first-child {
+    @extend .content-padding;
+  }
+
+  #copyright {
+    color: #b3b3b3;
+    font-size: $font-size-secondary;
+
+    a {
+      color: #666666;
+    }
+  }
+}
+
 
 
 .icon-twitter {

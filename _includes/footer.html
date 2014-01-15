@@ -1,7 +1,22 @@
+<footer>
+  <div>
+    <!-- <polymer-flex-layout align="center"></polymer-flex-layout> -->
+    <polymer-ui-toolbar>
+      <button class="paper-button" data-download-button><polymer-ui-icon src="/images/picons/ic_archive_dark_.png"></polymer-ui-icon><a href="/getting-the-code.html">Download {{site.project_title}}</a></button>
+      <button class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_social_google_plus.png"></polymer-ui-icon><a href="http://plus.google.com/107187849809354688692/">+{{site.project_title}}</a></button>
+      <button class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_social_twitter_dark_.png"></polymer-ui-icon><a href="https://twitter.com/intent/follow?screen_name=polymer" data-twitter-follow title="Follow @polymer on Twitter">@polymer</a></button>
+      <button class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_social_github.png"></polymer-ui-icon><a href="https://github.com/polymer">/{{site.project_title}}</a></button>
+    </polymer-ui-toolbar>
+
+    <p id="copyright">&copy; 2014 {{site.project_title}} Authors. Code licensed under the <a href="https://github.com/polymer/polymer/blob/master/LICENSE" target="_blank">BSD License</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a>.</p>
+  </div>
+</footer>
+
+
 {% for js in page.js %}
 <script {% if js.defer %}defer{% endif %} src="{{js.src}}"></script>
 {% endfor %}
-
+  
 <script>var POLYMER_VERSION = '{{site.latest_version}}';</script>
 <!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
 <script src="/js/prettify/prettify.js"></script>

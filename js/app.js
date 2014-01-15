@@ -9,8 +9,9 @@ function addPermalink(el) {
 function setupDownloadButtons(opt_inDoc) {
   var doc = opt_inDoc || document;
 
-  var downloadButton = doc.querySelector('.download a.btn');
+  var downloadButton = doc.querySelector('[data-download-button]');
   downloadButton && downloadButton.addEventListener('tap', function(e) {
+    alert(e)
     exports._gaq.push(['_trackEvent', 'SDK', 'Download', POLYMER_VERSION]);
   });
 }
@@ -172,8 +173,36 @@ function ajaxifySite() {
   });
 }
 
+
+var stickyBars = document.querySelectorAll('section .bar');
+
+function onScroll(e) {
+  for (var i = 0, bar; bar = stickyBars[i]; ++i) {
+    if (window.scrollY >= bar.origOffsetY) {
+      bar.classList.add('sticky');
+      bar.nextElementSibling.style.marginTop = '72px'; // Why not 80px?
+    } else {
+      bar.classList.remove('sticky');
+      bar.nextElementSibling.style.marginTop = bar.origMarginTop;
+    }
+  }
+}
+
+function addStickyScrollToBars() {
+  document.body.classList.add('dosticky');
+
+  for (var i = 0, bar; bar = stickyBars[i]; ++i) {
+    bar.origOffsetY = bar.offsetTop;
+    bar.origMarginTop = bar.style.marginTop;
+  }
+
+  document.addEventListener('scroll', onScroll);
+}
+
 $(document).ready(function() {
   initPage();
+
+  addStickyScrollToBars();
 
   // Insure add current page to history so back button has an URL for popstate.
   history.pushState({url: document.location.href}, document.title,
@@ -188,15 +217,15 @@ $(document).ready(function() {
 
 // -------------------------------------------------------------------------- //
 
-// Control whether the site is ajax or static.
-var AJAXIFY_SITE = !navigator.userAgent.match('Mobile|Android');
-if (AJAXIFY_SITE) {
-  testXhrType('document', function(supported) {
-    if (supported) {
-      ajaxifySite();
-    }
-  });
-}
+// // Control whether the site is ajax or static.
+// var AJAXIFY_SITE = !navigator.userAgent.match('Mobile|Android');
+// if (AJAXIFY_SITE) {
+//   testXhrType('document', function(supported) {
+//     if (supported) {
+//       ajaxifySite();
+//     }
+//   });
+// }
 
 // Analytics -----
 exports._gaq = exports._gaq || [];
