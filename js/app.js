@@ -11,7 +11,6 @@ function setupDownloadButtons(opt_inDoc) {
 
   var downloadButton = doc.querySelector('[data-download-button]');
   downloadButton && downloadButton.addEventListener('tap', function(e) {
-    alert(e)
     exports._gaq.push(['_trackEvent', 'SDK', 'Download', POLYMER_VERSION]);
   });
 }
@@ -199,7 +198,7 @@ function ajaxifySite() {
 //   document.addEventListener('scroll', onScroll);
 // }
 
-$(document).ready(function() {
+document.addEventListener('DOMContentLoaded', function(e) {
   initPage();
 
   //addStickyScrollToBars();
