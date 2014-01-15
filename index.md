@@ -30,7 +30,7 @@ layout: home
 </section>
 <section id="everything-element" class="main-purple">
   <nav class="bar" flexbox>
-    <a href="#" flex>Return to the elegance of the element</a>
+    <a href="#everything-element" flex>Return to the elegance of the element</a>
   </nav>
   <div class="panel right">
     <summary>
@@ -47,7 +47,7 @@ layout: home
 </section>
 <section id="architecture">
   <nav class="bar" flexbox>
-    <a href="#">The architecture of {{site.project_title}}</a>
+    <a href="#architecture">The architecture of {{site.project_title}}</a>
   </nav>
   <div class="panel">
     <summary>
@@ -84,9 +84,9 @@ layout: home
     </summary>
   </div>
 </section>
-<section>
+<section id="quickstart">
   <nav class="bar" flexbox>
-    <a href="#">Quick start guide</a>
+    <a href="#quickstart">Quick start guide</a>
   </nav>
   <div class="panel">
     <summary>
