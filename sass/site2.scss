@@ -218,29 +218,29 @@ polymer-ui-toolbar {
 }
 
 
-.dosticky {
-  .sticky {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    width: 100%;
-  }
+// .dosticky {
+//   .sticky {
+//     position: fixed !important;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//   }
 
-  section .bar {
-    background: white;
-    z-index: 100;
-    position: relative;
-    // position: sticky;
-    // position: -webkit-sticky;
-    // top: 0;
-  }
+//   section .bar {
+//     background: white;
+//     z-index: 100;
+//     position: relative;
+//     // position: sticky;
+//     // position: -webkit-sticky;
+//     // top: 0;
+//   }
 
-  #everything-element {
-    .bar {
-      @extend .main-purple;
-    }
-  }
-}
+//   #everything-element {
+//     .bar {
+//       @extend .main-purple;
+//     }
+//   }
+// }
 
 // Homepage sections
 section .bar {

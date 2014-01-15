@@ -174,35 +174,35 @@ function ajaxifySite() {
 }
 
 
-var stickyBars = document.querySelectorAll('section .bar');
+// var stickyBars = document.querySelectorAll('section .bar');
 
-function onScroll(e) {
-  for (var i = 0, bar; bar = stickyBars[i]; ++i) {
-    if (window.scrollY >= bar.origOffsetY) {
-      bar.classList.add('sticky');
-      bar.nextElementSibling.style.marginTop = '72px'; // Why not 80px?
-    } else {
-      bar.classList.remove('sticky');
-      bar.nextElementSibling.style.marginTop = bar.origMarginTop;
-    }
-  }
-}
+// function onScroll(e) {
+//   for (var i = 0, bar; bar = stickyBars[i]; ++i) {
+//     if (window.scrollY >= bar.origOffsetY) {
+//       bar.classList.add('sticky');
+//       bar.nextElementSibling.style.marginTop = '72px'; // Why not 80px?
+//     } else {
+//       bar.classList.remove('sticky');
+//       bar.nextElementSibling.style.marginTop = bar.origMarginTop;
+//     }
+//   }
+// }
 
-function addStickyScrollToBars() {
-  document.body.classList.add('dosticky');
+// function addStickyScrollToBars() {
+//   document.body.classList.add('dosticky');
 
-  for (var i = 0, bar; bar = stickyBars[i]; ++i) {
-    bar.origOffsetY = bar.offsetTop;
-    bar.origMarginTop = bar.style.marginTop;
-  }
+//   for (var i = 0, bar; bar = stickyBars[i]; ++i) {
+//     bar.origOffsetY = bar.offsetTop;
+//     bar.origMarginTop = bar.style.marginTop;
+//   }
 
-  document.addEventListener('scroll', onScroll);
-}
+//   document.addEventListener('scroll', onScroll);
+// }
 
 $(document).ready(function() {
   initPage();
 
-  addStickyScrollToBars();
+  //addStickyScrollToBars();
 
   // Insure add current page to history so back button has an URL for popstate.
   history.pushState({url: document.location.href}, document.title,
