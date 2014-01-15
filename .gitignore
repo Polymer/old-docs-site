@@ -1,6 +1,10 @@
 node_modules
+bower_components
+components
+polymer-all
 _site
 .DS_Store
 *.pyc
 .sass-cache
 *.vulcanized.html
+*.sublime-*

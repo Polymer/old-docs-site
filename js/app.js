@@ -207,12 +207,20 @@ $(document).ready(function() {
   // Insure add current page to history so back button has an URL for popstate.
   history.pushState({url: document.location.href}, document.title,
                     document.location.href);
+});
 
-  document.querySelector('[data-twitter-follow]').addEventListener('click', function(e) {
+document.addEventListener('click', function(e) {
+  var target = e.target.parentElement;
+  if (target.classList.contains('bar')) {
+    exports.scrollTo(0, target.offsetTop, {behavior: 'smooth'});
     e.preventDefault();
-    var target = e.target.localName != 'a' ? e.target.parentElement : e.target;
-    exports.open(target.href, '', 'width=550,height=520');
-  });
+  }
+});
+
+document.querySelector('[data-twitter-follow]').addEventListener('click', function(e) {
+  e.preventDefault();
+  var target = e.target.localName != 'a' ? e.target.parentElement : e.target;
+  exports.open(target.href, '', 'width=550,height=520');
 });
 
 // -------------------------------------------------------------------------- //
@@ -239,6 +247,6 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 // ---------------
 
 console && console.log("%cWelcome to Polymer!\n%cweb components are the <bees-knees>",
-                       "font-size:1.5em;color:navy;", "color:#ffcc00;font-size:1em;");
+                       "font-size:1.5em;color:#4558c9;", "color:#d61a7f;font-size:1em;");
 
 })(window);
