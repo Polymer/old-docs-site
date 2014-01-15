@@ -146,7 +146,7 @@ polymer-ui-icon {
 
 .panel {
   @extend .content-padding;
-  padding: 184px 0;
+  padding: 174px 0;
   @include display-flex;
 
   $img-margin: 88px;
@@ -291,6 +291,10 @@ section .bar {
   .paper-button {
     //background: rgba(255,255,255,0.1) !important;
     background: #262742 !important;
+
+    &:hover {
+      background: rgb(58, 59, 86) !important;
+    }
     
     a {
       color: white;

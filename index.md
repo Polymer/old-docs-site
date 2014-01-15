@@ -15,7 +15,7 @@ layout: home
 
 <section id="future" class="main-bg">
   <div class="panel left">
-    <img src="/images/logos/polymer-logo-300.png">
+    <img src="/images/logos/p-logo.svg">
     <summary>
       <h1>The future of the web, today</h1>
       <p>{{site.project_title}} is a framework based on Web Components that provides a comprehensive
@@ -42,7 +42,7 @@ layout: home
       easier.</p>
       <button class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_light.png"></polymer-ui-icon><a href="/getting-started.html">Get started</a></button>
     </summary>
-    <img src="/images/logos/polymer-logo-300.png">
+    <img src="/images/logos/p-elements.svg">
   </div>
 </section>
 <section id="architecture">
@@ -52,7 +52,7 @@ layout: home
   <div class="panel">
     <summary>
       <div class="box">
-        <img src="/images/logos/polymer-logo-300.png">
+        <img src="/images/logos/p-elements.svg">
       </div>
       <h2 class="elements-using">Using elements</h2>
       <h5>{{site.project_title}} from the outside</h5>
@@ -63,7 +63,7 @@ layout: home
     </summary>
     <summary>
       <div class="box">
-        <img src="/images/logos/polymer-logo-300.png">
+        <img src="/images/logos/p-create-elements.svg">
       </div>
       <h2 class="elements-creating">Creating elements</h2>
       <h5>{{site.project_title}} from the inside</h5>
@@ -73,7 +73,7 @@ layout: home
     </summary>
     <summary>
       <div class="box">
-        <img src="/images/logos/polymer-logo-300.png">
+        <img src="/images/logos/p-platform.svg">
       </div>
       <h2 class="platform">The platform</h2>
       <h5>Supporting Web Components today</h5>
