@@ -328,11 +328,11 @@ Or you can define the whole thing using the `publish` property:
       </script>
     </polymer-element>
 
-Generally it's preferable to use the `attributes` attribute because most elements only have a handful of properties and it can be nice to see them all on one line.
+Generally it's preferable to use the `attributes` attribute because it's the declarative approach and you can easily see all of the exposed properties at the top of the element.
 
 You should opt for the `publish` property when either of the following is true:
 
-1. Your element has several properties and placing them all on one line feels unwieldy.
+1. Your element has many properties and placing them all on one line feels unwieldy.
 2. You want to define default values for you properties and prefer the DRYness of doing it all in one place.
 
 #### Configuring an element via attributes
