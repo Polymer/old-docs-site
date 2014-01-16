@@ -270,15 +270,31 @@ of the same name.
 There are two ways to publish properties:
 
 1. **Preferred** - Include its name in the `<polymer-element>`'s `attributes` attribute.
-1. Include the name in a `publish` object on your prototype.
+2. Include the name in a `publish` object on your prototype.
 
-As an example, here's an element that publishes three public properties, `foo`, `bar`, and `baz`:
+As an example, here's an element that publishes three public properties, `foo`, `bar`, and `baz`, using the `attributes` attribute:
 
     <polymer-element name="x-foo" attributes="foo bar baz">
       <script> 
         Polymer('x-foo');
       </script>
     </polymer-element>
+
+And here's one using the `publish` object:
+
+    <polymer-element name="x-foo">
+      <script> 
+        Polymer('x-foo', {
+          publish: {
+            foo: 'I am foo!',
+            bar: 'Hello, from bar',
+            baz: 'Baz up in here'
+          }
+        });
+      </script>
+    </polymer-element>
+
+Let's look at the difference between the two and when you might prefer one option over the other.
 
 #### Default property values
 
@@ -290,7 +306,7 @@ By default, properties defined in `attributes` are `null`:
       </script>
     </polymer-element>
 
-As such, you can provide default values using the `prototype`:
+As such, you can provide default values using a combination of the `attributes` attribute and the `prototype`:
 
     <polymer-element name="x-foo" attributes="bar">
       <script> 
@@ -300,7 +316,8 @@ As such, you can provide default values using the `prototype`:
       </script>
     </polymer-element>
 
-    <!-- Same, but using the alternate "publish" object. -->
+Or you can define the whole thing using the `publish` property:
+
     <polymer-element name="x-foo">
       <script> 
         Polymer('x-foo', {
@@ -310,7 +327,14 @@ As such, you can provide default values using the `prototype`:
         });
       </script>
     </polymer-element>
- 
+
+Generally it's preferable to use the `attributes` attribute because most elements only have a handful of properties and it can be nice to see them all on one line.
+
+You should opt for the `publish` property when either of the following is true:
+
+1. Your element has several properties and placing them all on one line feels unwieldy.
+2. You want to define default values for you properties and prefer the DRYness of doing it all in one place.
+
 #### Configuring an element via attributes
 
 Attributes are a great way for users of your element to configure it, declaratively.
