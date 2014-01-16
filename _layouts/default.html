@@ -3,6 +3,84 @@
 <head>
 {% include head.html %}
 </head>
+<body id="{{page.title | downcase | replace:' ','-' }}" unresolved>
+
+{% comment %}
+{% include top-nav.html %}
+{% endcomment %}
+
+<main id="content-container">
+
+  <aside id="sidebar" class="main-bg">
+    <a href="/"><img src="/images/logos/lockup.svg"></a>
+    <docs-menu></docs-menu>
+  </aside>
+  <div id="content">
+    <nav id="appbar" class="core" large>
+      <polymer-flex-layout justify="end" vertical></polymer-flex-layout>
+      <polymer-ui-toolbar class="bar" fixed>
+        <a href="#" class="paper-button" borderless>Start</a>
+        <a href="#" class="paper-button" borderless>Reference</a>
+        <a href="#" class="paper-button" borderless>Community</a>
+        <a href="#" class="paper-button" borderless>Support</a>
+        <a href="#" class="paper-button" borderless>News</a>
+        <polymer-ui-icon src="/images/picons/ic_search_light_.png"></polymer-ui-icon>
+      </polymer-ui-toolbar>
+      <header>
+        <h1>Core</h1>
+        <summary>Learn more about {{site.project-title}}'s next-generation framework.</summary>
+      </header>
+    </nav>
+
+    {% comment %}
+      Allow individual pages to turn off permalinks
+    {% endcomment %}
+    {% capture permalinks_class %}
+      {% if site.add_permalinks %}
+        {% case page.add_permalinks %} 
+          {% when true %} 
+            show-permalinks
+          {% when false %}
+            {% comment %}
+              Intentionally empty in case variable isn't defined in page.
+            {% endcomment %}
+          {% else %} 
+            show-permalinks 
+        {% endcase %} 
+      {% endif %}
+    {% endcapture %}
+
+    <article class="{{permalinks_class}}">
+      {% include edit_on_github.html %}
+
+      {% if page.title %}
+      <div class="page-header">
+        <h1>{{page.title}}</h1>
+        {% if page.subtitle %}
+          <h1><small>{{page.subtitle}}</small></h1>
+        {% endif %}
+      </div>
+      {% endif %}
+    
+      {{content}}
+    </article>
+
+  </div>
+
+</main>
+
+{% include footer.html %}
+
+</body>
+</html>
+
+
+{% comment %}
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Organization">
+<head>
+{% include head.html %}
+</head>
 <body id="{{page.title | downcase | replace:' ','-' }}">
 
 {% include top-nav.html %}
@@ -61,3 +139,4 @@
 
 </body>
 </html>
+{% endcomment %}

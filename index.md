@@ -3,16 +3,6 @@ layout: home
 #title: homepage
 ---
 
-<!-- <paper-appbar main-bg>
-  <span flex><img src="/images/logos/polymer-logo-32.png"> polymer</span>
-  <button is="paper-button">Start</button>
-  <button is="paper-button">Reference</button>
-  <button is="paper-button">Community</button>
-  <button is="paper-button">Support</button>
-  <button is="paper-button">News</button>
-  <button is="paper-button"><polymer-ui-icon icon="search"></polymer-ui-icon></button>
-</paper-appbar> -->
-
 <section id="future" class="main-bg">
   <div class="panel left">
     <img src="/images/logos/p-logo.svg">

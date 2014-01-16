@@ -6,8 +6,11 @@
 @import "spec";
 
 @import url(//fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,800|Source+Code+Pro);
+// @import url(//fonts.googleapis.com/css?family=Roboto:400,300,500,700,300italic|Source+Code+Pro);
 
 $content-padding: 50px;
+$sidebarWidth: 248px;
+$additonalPadding: 24px;
 
 * {
   box-sizing: border-box;
@@ -86,8 +89,8 @@ a[disabled] {
 }
 
 .paper-button {
-  -webkit-transition: box-shadow 0.3s, background-color 0.3s;
-  transition: box-shadow 0.3s, background-color 0.3s;
+  -webkit-transition: box-shadow 0.2s, background 0.2s;
+  transition: box-shadow 0.2s, background 0.2s;
   border: none;
   cursor: default;
   overflow: hidden;
@@ -184,25 +187,69 @@ polymer-ui-toolbar {
   border: none !important;
   background: inherit !important;
   height: auto;
+  color: inherit !important;
 }
 
 #appbar {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
+  position: relative;
   z-index: 1;
-  // @include display-flex;
-  // @include align-items(center);
-  color: black;
+
+  &[fixed] {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  &[large] {
+    height: 286px;
+    padding-left: $additonalPadding + 40;
+    padding-bottom: 40px;
+    color: white;
+
+    polymer-ui-toolbar {
+      @include align-self(flex-end);
+      // @include align-items(flex-start);
+
+      &[fixed] {
+        position: fixed;
+        right: 0;
+        top: 0;
+      }
+    }
+
+    summary {
+      opacity: 0.6;
+    }
+  }
+
+  &.platform {
+    background-color: $platform-color;
+  }
+
+  &.core {
+    background-color: $creating-elements-color;
+  }
+
+  // Inset highlight
+  .paper-button {
+    padding: 5px 10px;
+
+    &:hover {
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset, 0 -1px 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0px rgba(0, 0, 0, 0.1) inset;
+      background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.04));
+      background: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.04));
+    }
+  }
 
   a {
     color: inherit;
   }
 
   polymer-ui-toolbar {
+    color: #666666;
     a {
-      margin-right: 25px;
+      margin-right: 5px;
     }
   }
 
@@ -217,6 +264,13 @@ polymer-ui-toolbar {
   // }
 }
 
+
+.sticky {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
 
 // .dosticky {
 //   .sticky {
@@ -330,6 +384,8 @@ section .bar {
 
 
 footer {
+  position: relative;
+  z-index: 100;
   background-color: #e6e6e6;
   padding: 100px 0;
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.0980392) 0px 1px 2px 0px inset;
@@ -362,114 +418,43 @@ footer {
   }
 }
 
+// #content-container {
+//   @include display-flex();
+//   > * {
+//     @include flex(1);
+//   }
+// }
 
+// Reference, article, other pages ---------------------------------------------
 
-.icon-twitter {
-  color: #00aced;
+#sidebar {
+  position: fixed;
+  @include transform(translateZ(0));
+  height: 100%;
+  width: $sidebarWidth;
+  background-color: $main-bg; //$gray-light;
+  box-shadow: rgba(0, 0, 0, 0.14902) 1px 1px 1px 0px;
+  z-index: 10; // above top appbar navbar
+  padding: 16px;
 }
-.icon-google-plus,
-.icon-google-plus-sign {
-  color: #dd4b39;
+
+#content {
+  margin-left: $sidebarWidth;
+
+  > article {
+    padding: $additonalPadding $additonalPadding + 40;
+  }
 }
 
 docs-menu {
-  margin-left: -10px !important;
-  position: fixed;
-  @include transform(translateZ(0));
-  border-right: 1px solid #eee;
-  height: 90%;
-  max-width: 24%;
+  display: block;
 }
 
-polymer-ui-nav-arrow {
-  right: -1px !important;
-}
-
-polymer-ui-menu > polymer-ui-menu-item {
-  display: block !important;
-}
-  
-polymer-ui-submenu-item {
-  padding: 0 10px 0 0;
-  font-weight: 600;
-
-  polymer-ui-submenu-item {
-    color: rgb(0, 136, 204);
-  }
-
-  &.icon {
-    &::before {
-      font-family: "FontAwesome";
-    }
-  }
-  &.core::before {
-    content: "\f0c3";
-  }
-  &.foundation::before {
-    content: "\f085";
-  }
-  &.elements::before {
-    content: "\f12e";
-  }
-}
-
-polymer-ui-menu-item {
-  display: inline-block !important;
-  min-width: 90%;
-  font-weight: 600;
-
-  &:hover {
-    background-color: #eee;
-  }
-
-  // &.polymer-selected {
-  //   background-color: #eee;
-  // }
-
-  a {
-    width: 100%;
-    display: inline-block;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
-}
-
-#content-container,
-.container-fluid .row-fluid > footer {
-  margin-left: 26%;
-}
-
-#content-container {
-  position: relative;
-  box-sizing: border-box;
-  &.loading::before {
-    color: #aaa;
-    font-size: 24px;
-    font-family: "FontAwesome";
-    content: '\f013 \00a0 loading...';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    padding-top: 4em;
-
-    @include display-flex;
-    @include justify-content(center);
-    @include align-items(flex-start);
-
-    //background: url(/images/icons/loading_icon.svg) no-repeat 40% 91px;
-    background-size: 30px;
-    background-color: rgba(255,255,255,0.8);
-  }
-}
 .edit-on-github {
   /*position: absolute;
   top: 0;
   right: 0;*/
   float: right;
-  font-size: smaller;
 }
 
 .permalink {
@@ -482,193 +467,278 @@ polymer-ui-menu-item {
 .no-permalink .permalink {
   display: none !important;
 }
-/* Architecture stack */
-.core {
-  color: rgb(255, 209, 77);
-}
-.core-bg {
-  background-color: rgba(255, 209, 77, 0.5);
-}
-.foundation {
-  color: rgb(205, 55, 45);
-}
-.foundation-bg {
-  background-color: rgba(244, 74, 63, 0.3);
-}
-.elements {
-  color: rgb(13, 168, 97);
-}
-.elements-bg {
-  background-color: rgba(13, 168, 97, 0.3);
-}
-.applications {
-  color: rgb(35, 100, 215);
-}
-.applications-bg {
-  background-color: rgba(67, 135, 253, 0.3);
-}
 
-#content {
-  min-height: 400px;
+// polymer-ui-nav-arrow {
+//   right: -1px !important;
+// }
 
-  img {
-    border-radius: 7px;
-  }
-}
-
-
-
-
-
-// Articles
-
-.forversion {
-  float: right;
-  color: #ccc;
-  font-style: italic;
-}
-.article .byline {
-  font-size: smaller;
-  color: #ccc;
-}
-
-.author {
-  margin-bottom: 20px;
-
-  > p {
-    display: inline-block;
-    margin: 0;
-
-    &:first-of-type {
-      vertical-align: top;
-    }
-  }
-
-  img {
-    margin-right: 5px;
-    height: 40px;
-    width: 40px;
-  }
-
-}
-
-/* Elements */
-.element-list {
-  > [data-element-file] {
-    padding-bottom: 20px;
-  }
-
-  h4.name {
-    display: inline-block;
-  }
-  h3 {
-    font-family: "Source Code Pro",Monaco,Menlo,Consolas,"Courier New",monospace;
-  }
-  .links {
-    margin-bottom: 10px;
-    display: block;
-
-    a {
-      margin-right: 10px;
-    }
-  }
-
-  .nodocs {
-    margin-left: 17px;
-    font-style: italic;
-
-    &:after {
-      content: 'No documentation available.';
-    }
-  }
-
-  iframe {
-    border: none;
-    width: 100%;
-  }
-
-  .bower_install_instructions,
-  .api_documentation {
-    > label {
-      font-weight: 600;
-    }
-  }
-
-}
-
-/*@media (min-width: 980px) {
-  body {
-    padding-top: 60px;
-  }
-}*/
-@media only screen and (max-width: 700px) {
-  /*h1 {
-    font-size: 6.4vw;
-  }
-  h2 {
-    font-size: 5.4vw;
-  }
-  h3 {
-    font-size: 4.7vw;
-  }
-  h4 {
-    font-size: 4.1vw;
-  }*/
-  body {
-    padding: 0 0 70px 0;
-  }
-  #appbar {
-    position: initial !important;
+// polymer-ui-menu > polymer-ui-menu-item {
+//   display: block !important;
+// }
   
-    // li.icon a {
-    //   margin: 0 20px;
-    //   display: inline-block;
-    //   width: 20px;
-    //   white-space: nowrap;
-    //   overflow: hidden;
-    // }
-    polymer-ui-toolbar {
-      @include background(linear-gradient(top, rgb(240, 240, 240), rgb(255, 255, 255)));
-      
-      > polymer-ui-toolbar {
-        margin: 0;
-      }
-    }
-  }
+// polymer-ui-submenu-item {
+//   padding: 0 10px 0 0;
+//   font-weight: 600;
 
-  docs-menu {
-    position: relative;
-    border: none;
-    max-width: initial;
-    margin-left: 10px !important;
-  }
-  polymer-ui-menu {
-    margin-left: 25px !important;
-  }
-  polymer-ui-menu > polymer-ui-menu-item {
-    display: block !important;
-  }
-  #content-container {
-    margin-left: initial;
-    padding: 0 5px;
-  }
-  .container-fluid .row-fluid > footer {
-    margin-left: initial;
-  }
-  .video {
-    margin: initial;
-    iframe {
-      width: initial;
-      height: initial;
-    }
-  }
-  #architecture-diagram {
-    float: initial;
-  }
-  .sharelinks {
-    margin-right: 7px !important;
-    a:hover {
-      width: 22px !important;
-    }
-  }
-}
+//   polymer-ui-submenu-item {
+//     color: rgb(0, 136, 204);
+//   }
+
+//   &.icon {
+//     &::before {
+//       font-family: "FontAwesome";
+//     }
+//   }
+//   &.core::before {
+//     content: "\f0c3";
+//   }
+//   &.foundation::before {
+//     content: "\f085";
+//   }
+//   &.elements::before {
+//     content: "\f12e";
+//   }
+// }
+
+// polymer-ui-menu-item {
+//   display: inline-block !important;
+//   min-width: 90%;
+//   font-weight: 600;
+
+//   &:hover {
+//     background-color: #eee;
+//   }
+
+//   // &.polymer-selected {
+//   //   background-color: #eee;
+//   // }
+
+//   a {
+//     width: 100%;
+//     display: inline-block;
+
+//     &:hover {
+//       text-decoration: none;
+//     }
+//   }
+// }
+
+// #content-container,
+// .container-fluid .row-fluid > footer {
+//   margin-left: 26%;
+// }
+
+// #content-container {
+//   position: relative;
+//   box-sizing: border-box;
+//   &.loading::before {
+//     color: #aaa;
+//     font-size: 24px;
+//     font-family: "FontAwesome";
+//     content: '\f013 \00a0 loading...';
+//     position: absolute;
+//     width: 100%;
+//     height: 100%;
+//     box-sizing: border-box;
+//     padding-top: 4em;
+
+//     @include display-flex;
+//     @include justify-content(center);
+//     @include align-items(flex-start);
+
+//     //background: url(/images/icons/loading_icon.svg) no-repeat 40% 91px;
+//     background-size: 30px;
+//     background-color: rgba(255,255,255,0.8);
+//   }
+// }
+
+// /* Architecture stack */
+// .core {
+//   color: rgb(255, 209, 77);
+// }
+// .core-bg {
+//   background-color: rgba(255, 209, 77, 0.5);
+// }
+// .foundation {
+//   color: rgb(205, 55, 45);
+// }
+// .foundation-bg {
+//   background-color: rgba(244, 74, 63, 0.3);
+// }
+// .elements {
+//   color: rgb(13, 168, 97);
+// }
+// .elements-bg {
+//   background-color: rgba(13, 168, 97, 0.3);
+// }
+// .applications {
+//   color: rgb(35, 100, 215);
+// }
+// .applications-bg {
+//   background-color: rgba(67, 135, 253, 0.3);
+// }
+
+// #content {
+//   min-height: 400px;
+
+//   img {
+//     border-radius: 7px;
+//   }
+// }
+
+
+
+
+
+// // Articles
+
+// .forversion {
+//   float: right;
+//   color: #ccc;
+//   font-style: italic;
+// }
+// .article .byline {
+//   font-size: smaller;
+//   color: #ccc;
+// }
+
+// .author {
+//   margin-bottom: 20px;
+
+//   > p {
+//     display: inline-block;
+//     margin: 0;
+
+//     &:first-of-type {
+//       vertical-align: top;
+//     }
+//   }
+
+//   img {
+//     margin-right: 5px;
+//     height: 40px;
+//     width: 40px;
+//   }
+
+// }
+
+// /* Elements */
+// .element-list {
+//   > [data-element-file] {
+//     padding-bottom: 20px;
+//   }
+
+//   h4.name {
+//     display: inline-block;
+//   }
+//   h3 {
+//     font-family: "Source Code Pro",Monaco,Menlo,Consolas,"Courier New",monospace;
+//   }
+//   .links {
+//     margin-bottom: 10px;
+//     display: block;
+
+//     a {
+//       margin-right: 10px;
+//     }
+//   }
+
+//   .nodocs {
+//     margin-left: 17px;
+//     font-style: italic;
+
+//     &:after {
+//       content: 'No documentation available.';
+//     }
+//   }
+
+//   iframe {
+//     border: none;
+//     width: 100%;
+//   }
+
+//   .bower_install_instructions,
+//   .api_documentation {
+//     > label {
+//       font-weight: 600;
+//     }
+//   }
+
+// }
+
+// /*@media (min-width: 980px) {
+//   body {
+//     padding-top: 60px;
+//   }
+// }*/
+// @media only screen and (max-width: 700px) {
+//   /*h1 {
+//     font-size: 6.4vw;
+//   }
+//   h2 {
+//     font-size: 5.4vw;
+//   }
+//   h3 {
+//     font-size: 4.7vw;
+//   }
+//   h4 {
+//     font-size: 4.1vw;
+//   }*/
+//   body {
+//     padding: 0 0 70px 0;
+//   }
+//   #appbar {
+//     position: initial !important;
+  
+//     // li.icon a {
+//     //   margin: 0 20px;
+//     //   display: inline-block;
+//     //   width: 20px;
+//     //   white-space: nowrap;
+//     //   overflow: hidden;
+//     // }
+//     polymer-ui-toolbar {
+//       @include background(linear-gradient(top, rgb(240, 240, 240), rgb(255, 255, 255)));
+      
+//       > polymer-ui-toolbar {
+//         margin: 0;
+//       }
+//     }
+//   }
+
+//   docs-menu {
+//     position: relative;
+//     border: none;
+//     max-width: initial;
+//     margin-left: 10px !important;
+//   }
+//   polymer-ui-menu {
+//     margin-left: 25px !important;
+//   }
+//   polymer-ui-menu > polymer-ui-menu-item {
+//     display: block !important;
+//   }
+//   #content-container {
+//     margin-left: initial;
+//     padding: 0 5px;
+//   }
+//   .container-fluid .row-fluid > footer {
+//     margin-left: initial;
+//   }
+//   .video {
+//     margin: initial;
+//     iframe {
+//       width: initial;
+//       height: initial;
+//     }
+//   }
+//   #architecture-diagram {
+//     float: initial;
+//   }
+//   .sharelinks {
+//     margin-right: 7px !important;
+//     a:hover {
+//       width: 22px !important;
+//     }
+//   }
+// }

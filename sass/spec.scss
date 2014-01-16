@@ -1,6 +1,7 @@
 @import "base";
 
 $font-family-body: "Open Sans",Helvetica,Arial,sans-serif;
+//$font-family-body: "Roboto",sans-serif;
 $font-family-code: "Source Code Pro",Monaco,Menlo,Consolas,"Courier New",monospace;
 
 $font-size-meta: 12px;
@@ -27,9 +28,9 @@ $main-purple: #1f2036;
 $gray-light: #f2f2f2;
 $gray-medium: #fafafa;
 
-$using-elements-color: #4558c9;
-$creating-elements-color: #D93089;
-$platform-color: #6a3167;
+$using-elements-color: #5c6bc0; //#4558c9;
+$creating-elements-color: #d61a7f;//#D93089;
+$platform-color: #9f499b;//#6a3167;
 
 .meta {
   font-size: $font-size-meta;

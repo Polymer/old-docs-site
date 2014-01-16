@@ -1,23 +1,13 @@
-<!-- <paper-appbar id="appbar">
-  <span flex><img src="/images/logos/polymer-logo-32.png"> polymer</span>
-  <button is="paper-button">Start</button>
-  <button is="paper-button">Reference</button>
-  <button is="paper-button">Community</button>
-  <button is="paper-button">Support</button>
-  <button is="paper-button">News</button>
-  <button is="paper-button"><polymer-ui-icon icon="search"></polymer-ui-icon></button>
-</paper-appbar> -->
-
-<nav id="appbar" class="main-bg bar">
+<nav id="appbar" class="main-bg bar" fixed>
   <polymer-flex-layout align="center"></polymer-flex-layout>
   <!-- <a href="/" class="brand align-center" flexbox><img src="/images/logos/polymer-logo-32.png">{{site.project_title|downcase}}</a> -->
-  <a href="/" class="align-center" flexbox><img src="/images/logos/lockup.svg"></a>
+  <a href="/" flexbox><img src="/images/logos/lockup.svg"></a>
   <polymer-ui-toolbar class="justify-end" responsive flex>
-    <a href="#" class="">Start</a>
-    <a href="#" class="">Reference</a>
-    <a href="#" class="">Community</a>
-    <a href="#" class="">Support</a>
-    <a href="#" class="">News</a>
+    <a href="#" class="paper-button" borderless>Start</a>
+    <a href="#" class="paper-button" borderless>Reference</a>
+    <a href="#" class="paper-button" borderless>Community</a>
+    <a href="#" class="paper-button" borderless>Support</a>
+    <a href="#" class="paper-button" borderless>News</a>
     <polymer-ui-icon src="/images/picons/ic_search_dark_.png"></polymer-ui-icon>
   </polymer-ui-toolbar>
 </nav>

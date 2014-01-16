@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Polymer core reference
+title: API reference
 ---
 
 <p><buildbot-list project="polymer-dev"></buildbot-list></p>
