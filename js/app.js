@@ -198,6 +198,43 @@ function ajaxifySite() {
 //   document.addEventListener('scroll', onScroll);
 // }
 
+
+
+var latestKnownScrollY = 0;
+var ticking = false;
+var colorBox = document.querySelector('#appbar');
+var colorBoxOffsetHeight = colorBox.offsetHeight;
+var appBar = colorBox.querySelector('.bar');
+var appBarOffsetHeight = appBar.offsetHeight;
+
+function onScroll() {
+  latestKnownScrollY = window.scrollY;
+  requestTick();
+}
+
+function requestTick() {
+  if (!ticking) {
+    requestAnimationFrame(update);
+  }
+  ticking = true;
+}
+
+function update() {
+  ticking = false; // Reset the tick so we can capture the next onScroll.
+
+  var currentScrollY = latestKnownScrollY;
+
+  if (colorBoxOffsetHeight - currentScrollY <= appBarOffsetHeight) {
+    colorBox.classList.add('sticky');
+  } else {
+    colorBox.classList.remove('sticky');
+  }
+}
+
+window.addEventListener('scroll', onScroll, false);
+
+
+
 document.addEventListener('DOMContentLoaded', function(e) {
   initPage();
 

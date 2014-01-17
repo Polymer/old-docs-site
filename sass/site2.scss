@@ -118,6 +118,17 @@ a[disabled] {
     box-shadow: 0px 4px 10px 0 rgba(0,0,0,0.1), 0px 2px 10px 0px rgba(0,0,0,0.1);
   }
 
+  // Inset highlight
+  &[sink] {
+    padding: 5px 10px;
+
+    &:hover {
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset, 0 -1px 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0px rgba(0, 0, 0, 0.1) inset;
+      background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.04));
+      background: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.04));
+    }
+  }
+
   a {
     font-size: 13px;
     // line-height: 24px;
@@ -207,6 +218,10 @@ polymer-ui-toolbar {
     padding-bottom: 40px;
     color: white;
 
+    &.sticky {
+      height: 80px;
+    }
+
     polymer-ui-toolbar {
       @include align-self(flex-end);
       // @include align-items(flex-start);
@@ -229,17 +244,6 @@ polymer-ui-toolbar {
 
   &.core {
     background-color: $creating-elements-color;
-  }
-
-  // Inset highlight
-  .paper-button {
-    padding: 5px 10px;
-
-    &:hover {
-      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset, 0 -1px 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0px rgba(0, 0, 0, 0.1) inset;
-      background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.04));
-      background: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.04));
-    }
   }
 
   a {
@@ -267,8 +271,8 @@ polymer-ui-toolbar {
 
 .sticky {
   position: fixed !important;
-  top: 0;
-  left: 0;
+  // top: 0;
+  // left: 0;
   width: 100%;
 }
 
