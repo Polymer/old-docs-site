@@ -4,3 +4,5 @@ _site
 *.pyc
 .sass-cache
 *.vulcanized.html
+components/
+polymer-all/projects
