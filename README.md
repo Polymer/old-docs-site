@@ -73,6 +73,7 @@ the element reference and other projects will need updating.
 
 First, update the submodules in /docs:
 
+    git submodule foreach git pull origin master
     git submodule update
 
 Update the projects:
