@@ -1,5 +1,9 @@
 application: polymer-project
+<<<<<<< HEAD
 version: newsite
+=======
+version: 20140116
+>>>>>>> master
 runtime: python27
 api_version: 1
 threadsafe: yes

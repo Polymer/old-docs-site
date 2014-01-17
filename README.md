@@ -66,5 +66,44 @@ Last step is to push the docs to App Engine. In your `Polymer/docs` directory, r
 
 This script builds the site, api docs, runs Vulcanizer over the imports, and deploys to App Engine.
 
+## Polymer release
+
+When we push a new version of Polymer, the site should be updated to use it. In addition,
+the element reference and other projects will need updating.
+
+First, update the submodules in /docs:
+
+    git submodule update
+
+Update the projects:
+
+    cd polymer-all/projects
+    ../tools/bin/pull-all-projects.sh
+    
+Then, update the elements and polyfills:
+
+    cd components
+    ../polymer-all/tools/bin/pull-all-polymer.sh
+    ../polymer-all/tools/bin/pull-all-elements.sh
+
+Once these are updated, you need to update some versions for the docs:
+
+- Increment the version in `app.yaml`;
+- Update the Polymer release version in `_config.yml`.
+- Add a link point link to the release notes in `changelog.md`.
+
+Build the docs:
+
+    grunt docs
+    
+At this point, run the dev server and preview things locally to make sure nothing is terribly
+broken after Polymer and the elements have been updated. 
+
+Lastly, run the deploy script:
+
+    ./scripts/deploy_site.sh
+
+Last thing is to switch the app version in the App Engine admin console. To make the docs live, hit up https://appengine.google.com/deployment?&app_id=s~polymer-project and select the version you just deployed.
+
 [jekyll]: http://jekyllrb.com/
 [grunt]: http://gruntjs.com/
