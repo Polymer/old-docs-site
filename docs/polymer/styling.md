@@ -86,9 +86,13 @@ s replaced with the one in the `@polyfill` comment above it:
       color: red:
     }
 
-    .container > * {
+    x-foo .container > * {
       border: 1px solid black;
     }
+
+
+**Tip:** If you use a CSS preprocessor, be careful that it doesn't strip out the `@polyfill` comments.
+{: .alert .alert-error }
 
 ### @polyfill-rule {#at-polyfill-rule}
 
@@ -99,11 +103,19 @@ To create a rule that only applies under the polyfill, place the `@polyfill-rule
     /* @polyfill-rule .foo {
       background: red;
     } */
+     
+    /* @polyfill-rule :host.foo .bar {
+      background: blue;
+    } */
 
-This has no effect under native Shadow DOM but under the polyfill, the comment is removed:
+This has no effect under native Shadow DOM but under the polyfill, the comment is removed and the selector prefixed with the element name:
 
-    .foo {
+    x-foo .foo {
       background: red;
+    }
+    
+    x-foo.foo .bar {
+      background: blue;
     }
 
 ### @polyfill-unscoped-rule {#at-polyfill-unscoped-rule}
