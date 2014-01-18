@@ -73,6 +73,11 @@ CSS selector to replace the next style rule with. For example:
     ::content .bar {
       color: red;
     }
+    
+    /* @polyfill :host > .bar */
+    ::content .bar {
+      color: blue;
+    }
 
     /* @polyfill .container > * */
     ::content > * {
@@ -83,7 +88,11 @@ Under native Shadow DOM nothing changes. Under the polyfill the native selector
 s replaced with the one in the `@polyfill` comment above it:
 
     x-foo .bar {
-      color: red:
+      color: red;
+    }
+    
+    x-foo > .bar {
+      color: blue;
     }
 
     x-foo .container > * {
