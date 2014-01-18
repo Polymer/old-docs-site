@@ -45,25 +45,25 @@ handlers:
   upload: components/polymer/polymer\.js\.map
 # ------------------------------------------------------------------------------
 
-# Map minified polymer to minified version.
-# This also preservers old URL (/polymer/polymer.min.js)
-# COMMENT OUT TO TEST UNIMINIFIED Polymer
-#- url: /(polymer-all\/)?polymer/polymer(.min)?.js
-#  static_files:/polymer-all/components/polymer/polymer.js
-#  upload: polymer-all/components/polymer/polymer\.js
+# # Map minified polymer to minified version.
+# # This also preservers old URL (/polymer/polymer.min.js)
+# # COMMENT OUT TO TEST UNIMINIFIED Polymer
+# - url: /(polymer-all\/)?polymer/polymer(.min)?.js
+#   static_files: components/polymer/polymer.js
+#   upload: components/polymer/polymer\.js
 
 # / Elements -------------------------------------------------------------------
-- url: /(polymer|polymer-ui|more)-elements/(.*)
-  static_files: polymer-all/\1-elements/\2
-  upload: polymer-all/(polymer|polymer-ui|more)-elements/(.*)
-  http_headers:
-    Access-Control-Allow-Origin: "*"
+# - url: /(polymer-all\/)?(polymer|polymer-ui|more)-elements/(.*)
+#   static_files: polymer-all/\1-elements/\2
+#   upload: polymer-all/(polymer|polymer-ui|more)-elements/(.*)
+#   http_headers:
+#     Access-Control-Allow-Origin: "*"
 
-- url: /(toolkit-ui|web-animations-js)/(.*)
-  static_files: polymer-all/\1/\2
-  upload: polymer-all/(toolkit-ui|web-animations-js)/(.*)
-  http_headers:
-    Access-Control-Allow-Origin: "*"
+# - url: /(toolkit-ui|web-animations-js)/(.*)
+#   static_files: polymer-all/\1/\2
+#   upload: polymer-all/(toolkit-ui|web-animations-js)/(.*)
+#   http_headers:
+#     Access-Control-Allow-Origin: "*"
 
 # /tools -----------------------------------------------------------------------
   #curl https://polymer-project.org/tools/pull-all.sh | bash
@@ -86,6 +86,11 @@ handlers:
 
 - url: /polymer-all
   static_dir: polymer-all
+  http_headers:
+    Access-Control-Allow-Origin: "*"
+
+- url: /samples
+  static_dir: samples
   http_headers:
     Access-Control-Allow-Origin: "*"
 
