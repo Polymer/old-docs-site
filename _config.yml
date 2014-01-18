@@ -11,7 +11,7 @@ safe: false
 
 exclude: ["node_modules", "scripts", "sass", "app.yaml", "README.md",
           "CONTRIBUTING.md", "Gruntfile.js", "package.json", "config.rb",
-          "build.py"]
+          "build.py", "polymer-all", "components"]
 
 kramdown:
   #toc_levels: "2,3"
