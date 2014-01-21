@@ -42,7 +42,7 @@ handlers:
 
 - url: /polymer(.min)?.(js|html)
   static_files: _site/components/polymer/polymer.\2
-  upload: _site/components/polymer/polymer\.\2
+  upload: _site/components/polymer/polymer\.(js|html)
   http_headers:
     Access-Control-Allow-Origin: "*"
 
