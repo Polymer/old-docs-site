@@ -173,66 +173,10 @@ function ajaxifySite() {
 }
 
 
-// var stickyBars = document.querySelectorAll('section .bar');
-
-// function onScroll(e) {
-//   for (var i = 0, bar; bar = stickyBars[i]; ++i) {
-//     if (window.scrollY >= bar.origOffsetY) {
-//       bar.classList.add('sticky');
-//       bar.nextElementSibling.style.marginTop = '72px'; // Why not 80px?
-//     } else {
-//       bar.classList.remove('sticky');
-//       bar.nextElementSibling.style.marginTop = bar.origMarginTop;
-//     }
-//   }
-// }
-
-// function addStickyScrollToBars() {
-//   document.body.classList.add('dosticky');
-
-//   for (var i = 0, bar; bar = stickyBars[i]; ++i) {
-//     bar.origOffsetY = bar.offsetTop;
-//     bar.origMarginTop = bar.style.marginTop;
-//   }
-
-//   document.addEventListener('scroll', onScroll);
-// }
-
-
-
-var latestKnownScrollY = 0;
-var ticking = false;
-var colorBox = document.querySelector('#appbar');
-var colorBoxOffsetHeight = colorBox.offsetHeight;
-var appBar = colorBox.querySelector('.bar');
-var appBarOffsetHeight = appBar.offsetHeight;
-
-function onScroll() {
-  latestKnownScrollY = window.scrollY;
-  requestTick();
-}
-
-function requestTick() {
-  if (!ticking) {
-    requestAnimationFrame(update);
-  }
-  ticking = true;
-}
-
-function update() {
-  ticking = false; // Reset the tick so we can capture the next onScroll.
-
-  var currentScrollY = latestKnownScrollY;
-
-  if (colorBoxOffsetHeight - currentScrollY <= appBarOffsetHeight) {
-    colorBox.classList.add('sticky');
-  } else {
-    colorBox.classList.remove('sticky');
-  }
-}
-
-window.addEventListener('scroll', onScroll, false);
-
+// console.time('WebComponentsReady');
+// document.addEventListener('WebComponentsReady', function(e) {
+//   console.timeEnd('WebComponentsReady');
+// });
 
 
 document.addEventListener('DOMContentLoaded', function(e) {
@@ -247,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
 document.addEventListener('click', function(e) {
   var target = e.target.parentElement;
-  if (target.classList.contains('bar')) {
+  if (target.localName == 'nav' && target.classList.contains('bar')) {
     exports.scrollTo(0, target.offsetTop, {behavior: 'smooth'});
     e.preventDefault();
   }

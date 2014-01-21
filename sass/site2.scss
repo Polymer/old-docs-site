@@ -8,10 +8,6 @@
 @import url(//fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,800|Source+Code+Pro);
 // @import url(//fonts.googleapis.com/css?family=Roboto:400,300,500,700,300italic|Source+Code+Pro);
 
-$content-padding: 50px;
-$sidebarWidth: 248px;
-$additonalPadding: 24px;
-
 * {
   box-sizing: border-box;
 }
@@ -20,9 +16,9 @@ $additonalPadding: 24px;
 //   font-weight: 600;
 // }
 
-// h2:target, h3:target, h4:target {
-//   padding-top: 50px;
-// }
+h2:target, h3:target, h4:target {
+  padding-top: $sitebannerHeight;
+}
 
 html, body {
   margin: 0;
@@ -34,6 +30,10 @@ body {
   color: #444;
   // padding-bottom: 80px;
   // padding-top: 80px;
+}
+
+img {
+  max-width: 100%;
 }
 
 /* Help catch template errors. */
@@ -88,6 +88,10 @@ a[disabled] {
   background-color: $main-purple;
 }
 
+a.paper-button {
+  color: inherit;
+}
+
 .paper-button {
   -webkit-transition: box-shadow 0.2s, background 0.2s;
   transition: box-shadow 0.2s, background 0.2s;
@@ -121,6 +125,7 @@ a[disabled] {
   // Inset highlight
   &[sink] {
     padding: 5px 10px;
+    transition: none;
 
     &:hover {
       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset, 0 -1px 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0px rgba(0, 0, 0, 0.1) inset;
@@ -155,7 +160,8 @@ polymer-ui-icon {
 
 .bar {
   padding: 16px;
-  height: 80px;
+  height: $sitebannerHeight;
+  // max-height: $sitebannerHeight; // Firefox
 }
 
 .panel {
@@ -199,73 +205,6 @@ polymer-ui-toolbar {
   background: inherit !important;
   height: auto;
   color: inherit !important;
-}
-
-#appbar {
-  position: relative;
-  z-index: 1;
-
-  &[fixed] {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-  }
-
-  &[large] {
-    height: 286px;
-    padding-left: $additonalPadding + 40;
-    padding-bottom: 40px;
-    color: white;
-
-    &.sticky {
-      height: 80px;
-    }
-
-    polymer-ui-toolbar {
-      @include align-self(flex-end);
-      // @include align-items(flex-start);
-
-      &[fixed] {
-        position: fixed;
-        right: 0;
-        top: 0;
-      }
-    }
-
-    summary {
-      opacity: 0.6;
-    }
-  }
-
-  &.platform {
-    background-color: $platform-color;
-  }
-
-  &.core {
-    background-color: $creating-elements-color;
-  }
-
-  a {
-    color: inherit;
-  }
-
-  polymer-ui-toolbar {
-    color: #666666;
-    a {
-      margin-right: 5px;
-    }
-  }
-
-  // .brand {
-  //   font-size: $font-size-display - 10;
-
-  //   img {
-  //     height: 32px;
-  //     width: auto;
-  //     margin-right: 5px;
-  //   }
-  // }
 }
 
 
@@ -438,20 +377,19 @@ footer {
   width: $sidebarWidth;
   background-color: $main-bg; //$gray-light;
   box-shadow: rgba(0, 0, 0, 0.14902) 1px 1px 1px 0px;
-  z-index: 10; // above top appbar navbar
+  z-index: 10; // above top sitebanner navbar
   padding: 16px;
 }
 
-#content {
+scroll-area {
+  display: block;
   margin-left: $sidebarWidth;
 
   > article {
     padding: $additonalPadding $additonalPadding + 40;
+    //overflow: hidden;
+    max-width: 912px;
   }
-}
-
-docs-menu {
-  display: block;
 }
 
 .edit-on-github {
@@ -464,6 +402,7 @@ docs-menu {
 .permalink {
   display: none;
   margin-left: 5px;
+  vertical-align: top;
 }
 .has-permalink:hover .permalink {
   display: initial; 
@@ -691,7 +630,7 @@ docs-menu {
 //   body {
 //     padding: 0 0 70px 0;
 //   }
-//   #appbar {
+//   #sitebanner {
 //     position: initial !important;
   
 //     // li.icon a {
