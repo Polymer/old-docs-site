@@ -31,18 +31,27 @@ handlers:
 - url: /platform(.min)?.js
   static_files: _site/components/platform/platform.js
   upload: _site/components/platform/platform\.js
+  http_headers:
+    Access-Control-Allow-Origin: "*"
 
 - url: /platform(.min)?.js.map
   static_files: _site/components/platform/platform.js.map
   upload: _site/components/platform/platform\.js.\map
+  http_headers:
+    Access-Control-Allow-Origin: "*"
 
-- url: /polymer(.min)?.js
-  static_files: _site/components/polymer/polymer.js
-  upload: _site/components/polymer/polymer\.js
+- url: /polymer(.min)?.(js|html)
+  static_files: _site/components/polymer/polymer.\2
+  upload: _site/components/polymer/polymer\.\2
+  http_headers:
+    Access-Control-Allow-Origin: "*"
 
 - url: /polymer(.min)?.js.map
   static_files: _site/components/polymer/polymer.js.map
   upload: _site/components/polymer/polymer\.js\.map
+  http_headers:
+    Access-Control-Allow-Origin: "*"
+
 # ------------------------------------------------------------------------------
 
 # Map minified polymer to minified version.
