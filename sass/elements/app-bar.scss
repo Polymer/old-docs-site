@@ -1,0 +1,22 @@
+@import "elements";
+
+:host {
+  @include display-flex();
+  @include align-items(center);
+}
+
+:host(site-banner) { // old, until https://github.com/Polymer/platform/issues/49 is fixed.
+  right: 0;
+  top: 0;
+  position: absolute;
+}
+:ancestor(site-banner) { // new
+  right: 0;
+  top: 0;
+  position: absolute;
+}
+
+// ::content > polymer-ui-icon {
+//   opacity: 0.6;
+// }
+

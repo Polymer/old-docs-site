@@ -1,0 +1,57 @@
+@import "elements";
+
+:host {
+  // @include display-flex();
+  // @include align-items(flex-end);
+  display: block;
+  position: relative;
+  z-index: 1;
+  height: 286px;
+  color: white;
+
+  padding-left: $additonalPadding + 40;
+  padding-bottom: 40px;
+
+  // @include transform(translate3d(0,0,0));
+}
+
+:host([type="platform"]:host) {
+  background-color: $platform-color;
+}
+
+:host([type="core"]:host) {
+  background-color: $creating-elements-color;
+}
+
+:host([type="elements"]:host) {
+  background-color: $using-elements-color;
+}
+
+/* @polyfill :host.sticky */
+:host(.sticky:host) {
+  height: $sitebannerHeight;
+  padding-bottom: 0;
+
+  // ::content app-bar {
+  //   @include transform(translate3d(0,-$sitebannerHeight,0));
+  //   position: inherit;
+  // }
+
+  // ::content summary {
+  //   display: none;
+  // }
+}
+
+// /* @polyfill > app-bar */
+// ::content > app-bar {
+//   @include transform(translate3d(0,0,0));
+// }
+
+// polymer-ui-toolbar {
+//   color: #666666;
+//   a {
+//     margin-right: 5px;
+//   }
+// }
+
+

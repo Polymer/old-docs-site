@@ -1,0 +1,102 @@
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/polymer-flex-layout/polymer-flex-layout.html">
+
+<polymer-element name="site-banner" attributes="type">
+  <template>
+    <link rel="stylesheet" href="../css/elements/site-banner.css">
+    <style>
+    /* Note: polyfill'd style rules here so Compass doesn't strip out @polyfill directives. */
+    /* @polyfill :host.sticky app-bar */
+    :host(.sticky:host) ::content app-bar {
+      /* This number should be updated if the height of of the nav changes */
+      -webkit-transform: translate3d(0,-80px,0);
+      transform: translate3d(0,-80px,0);
+      position: inherit;
+    }
+    /* @polyfill :host > header */
+    ::content header {
+      -webkit-transform-origin: 0 50%;
+      transform-origin: 0 50%;
+    }
+    /* @polyfill header > summary */
+    ::content summary {
+      opacity: 0.6;
+    }
+    </style>
+    <polymer-flex-layout justify="end" vertical></polymer-flex-layout>
+    <content></content>
+  </template>
+  <script>
+(function() {
+  function onScroll_() {
+    this.previousScrollY = this.latestKnownScrollY;
+    this.latestKnownScrollY = window.scrollY;
+    requestTick_.bind(this)();
+  }
+
+  function requestTick_() {
+    if (!this.ticking) {
+      window.requestAnimationFrame(update_.bind(this));
+    }
+    this.ticking = true;
+  }
+
+  function update_() {
+    this.ticking = false; // Reset the tick so we can capture the next onScroll.
+
+    var currentScrollY = this.latestKnownScrollY;
+    var previousScrollY = this.previousScrollY;
+
+    var delta = currentScrollY - previousScrollY;
+    var smallBannerSizeReached = this.siteBannerHeight - currentScrollY <= this.navBarHeight;  //80px;
+
+    if (smallBannerSizeReached) {
+      this.classList.add('sticky');
+ 
+      if (delta < 0) { // scrollback
+        this.hasBackScrolled = true;
+      }
+
+      // Bar moves in opposite direction of scroll.
+      this.navBarTranslateY -= delta;
+      this.navBarTranslateY = Math.min(
+          Math.max(this.navBarTranslateY, -this.navBarHeight), 0);
+
+      this.navBar.style.WebkitTransform = 'translate3d(0,' + this.navBarTranslateY +'px,0)';
+
+    } else {
+      this.classList.remove('sticky');
+
+      //this.style.WebkitTransform = 'translate3d(0,-' + currentScrollY +'px,0)';
+
+     //if (currentScrollY >= this.navBarHeight) {
+        // var scale = Math.max(0.8, (this.siteBannerHeight - currentScrollY) / this.siteBannerHeight);
+        // this.header.style.WebkitTransform = 'scale(' + scale + ')';
+      //}
+    }
+  }
+
+  Polymer('site-banner', {
+    hasBackScrolled: false,
+    latestKnownScrollY: 0,
+    previousScrollY: 0,
+    navBarTranslateY: 0,
+    ticking: false,
+    navBar: null,
+    ready: function() {
+      this.navBar = this.querySelector('.bar');
+      this.header = this.querySelector('header');
+
+      // Give DOM some time to do layout.
+      this.async(function() {
+        this.siteBannerHeight = this.offsetHeight;
+        this.navBarHeight = this.navBar.offsetHeight;
+        this.navBarTranslateY = -this.navBarHeight;
+      });
+
+      window.addEventListener('scroll', onScroll_.bind(this), false);
+    },
+  });
+})();
+</script>
+</polymer-element>

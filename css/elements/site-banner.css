@@ -1,0 +1,1 @@
+:host{display:block;position:relative;z-index:1;height:286px;color:white;padding-left:64px;padding-bottom:40px}:host([type="platform"]:host){background-color:#9f499b}:host([type="core"]:host){background-color:#d61a7f}:host([type="elements"]:host){background-color:#5c6bc0}:host(.sticky:host){height:80px;padding-bottom:0}
