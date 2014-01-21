@@ -29,20 +29,30 @@ handlers:
 
 # Short URLs -------------------------------------------------------------------
 - url: /platform(.min)?.js
+<<<<<<< HEAD
   static_files: components/platform/platform.js
   upload: components/platform/platform\.js
+  http_headers:
+    Access-Control-Allow-Origin: "*"
 
 - url: /platform(.min)?.js.map
   static_files: components/platform/platform.js.map
   upload: components/platform/platform\.js.\map
+  http_headers:
+    Access-Control-Allow-Origin: "*"
 
-- url: /polymer(.min)?.js
-  static_files: components/polymer/polymer.js
-  upload: components/polymer/polymer\.js
+- url: /polymer(.min)?.(js|html)
+  static_files: components/polymer/polymer.\2
+  upload: components/polymer/polymer\.(js|html)
+  http_headers:
+    Access-Control-Allow-Origin: "*"
 
 - url: /polymer(.min)?.js.map
   static_files: components/polymer/polymer.js.map
   upload: components/polymer/polymer\.js\.map
+  http_headers:
+    Access-Control-Allow-Origin: "*"
+
 # ------------------------------------------------------------------------------
 
 # # Map minified polymer to minified version.
