@@ -29,32 +29,32 @@ handlers:
 
 # Short URLs -------------------------------------------------------------------
 - url: /platform(.min)?.js
-  static_files: _site/components/platform/platform.js
-  upload: _site/components/platform/platform\.js
+  static_files: components/platform/platform.js
+  upload: components/platform/platform\.js
   http_headers:
     Access-Control-Allow-Origin: "*"
 
 - url: /platform(.min)?.js.map
-  static_files: _site/components/platform/platform.js.map
-  upload: _site/components/platform/platform\.js.\map
+  static_files: components/platform/platform.js.map
+  upload: components/platform/platform\.js.\map
   http_headers:
     Access-Control-Allow-Origin: "*"
 
 # - url: /polymer(.min)?.(js|html)
-#   static_files: _site/components/polymer/polymer.\2
-#   upload: _site/components/polymer/polymer\.(js|html)
+#   static_files: components/polymer/polymer.\2
+#   upload: components/polymer/polymer\.(js|html)
 #   http_headers:
 #     Access-Control-Allow-Origin: "*"
 
 - url: /polymer(.min)?.js
-  static_files: _site/components/polymer/polymer.js
-  upload: _site/components/polymer/polymer\.js
+  static_files: components/polymer/polymer.js
+  upload: components/polymer/polymer\.js
   http_headers:
     Access-Control-Allow-Origin: "*"
 
 - url: /polymer(.min)?.js.map
-  static_files: _site/components/polymer/polymer.js.map
-  upload: _site/components/polymer/polymer\.js\.map
+  static_files: components/polymer/polymer.js.map
+  upload: components/polymer/polymer\.js\.map
   http_headers:
     Access-Control-Allow-Origin: "*"
 
@@ -64,35 +64,35 @@ handlers:
 # This also preservers old URL (/polymer/polymer.min.js)
 # COMMENT OUT TO TEST UNIMINIFIED Polymer
 #- url: /(polymer-all\/)?polymer/polymer(.min)?.js
-#  static_files: _site/polymer-all/components/polymer/polymer.js
-#  upload: _site/polymer-all/components/polymer/polymer\.js
+#  static_files: polymer-all/components/polymer/polymer.js
+#  upload: polymer-all/components/polymer/polymer\.js
 
 # / Elements -------------------------------------------------------------------
 - url: /(polymer|polymer-ui|more)-elements/(.*)
-  static_files: _site/polymer-all/\1-elements/\2
-  upload: _site/polymer-all/(polymer|polymer-ui|more)-elements/(.*)
+  static_files: polymer-all/\1-elements/\2
+  upload: polymer-all/(polymer|polymer-ui|more)-elements/(.*)
   http_headers:
     Access-Control-Allow-Origin: "*"
 
 - url: /(toolkit-ui|web-animations-js)/(.*)
-  static_files: _site/polymer-all/\1/\2
-  upload: _site/polymer-all/(toolkit-ui|web-animations-js)/(.*)
+  static_files: polymer-all/\1/\2
+  upload: polymer-all/(toolkit-ui|web-animations-js)/(.*)
   http_headers:
     Access-Control-Allow-Origin: "*"
 
 # /tools -----------------------------------------------------------------------
   #curl https://polymer-project.org/tools/pull-all.sh | bash
 #- url: /tools/pull-all\.sh$
-#  static_files: _site/polymer-all/tools/bin/pull-all.sh
-#  upload: _site/polymer-all/tools/bin/pull-all\.sh
+#  static_files: polymer-all/tools/bin/pull-all.sh
+#  upload: polymer-all/tools/bin/pull-all\.sh
 
 - url: /tools/sandbox/$
-  static_files: _site/polymer-all/projects/sandbox/index.html
-  upload: _site/index\.html
+  static_files: polymer-all/projects/sandbox/index.html
+  upload: index\.html
 
 - url: /tools/sandbox/(.*)
-  static_files: _site/polymer-all/projects/sandbox/\1
-  upload: _site/(.*)/index.html
+  static_files: polymer-all/projects/sandbox/\1
+  upload: (.*)/index.html
 
 # Map raw paths with trailing "/" to an index.html file.
 - url: /(.*)/$
@@ -101,13 +101,13 @@ handlers:
 
 # ADD TO TEST unminified Polymer 
 # - url: /polymer-all
-#   static_dir: _site/polymer-all
+#   static_dir: polymer-all
 #   http_headers:
 #     Access-Control-Allow-Origin: "*"
 
 # New mappings for Bower
 - url: /components
-  static_dir: _site/components
+  static_dir: components
   http_headers:
     Access-Control-Allow-Origin: "*"
 
@@ -130,7 +130,6 @@ skip_files:
 - ^(.*/)?.*\.bak$
 - ^(.*/)?node_modules/.*
 - ^(.*/)?third_party/closure/.*
-- ^polymer-all/.*
 - ^scripts/.*
 
 # few extras to reduce number of files uploaded.
