@@ -189,6 +189,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
                     document.location.href);
 });
 
+// Homepage section smoothscroll.
 document.addEventListener('click', function(e) {
   var target = e.target.parentElement;
   if (target.localName == 'nav' && target.classList.contains('bar')) {

@@ -1,0 +1,36 @@
+@import "elements";
+
+:host {
+  display: block;
+  padding-left: $sidebarWidth;
+}
+
+/* @polyfill :host.scrolling site-banner */
+:host(.scrolling:host) ::content site-banner {
+  height: $siteBannerHeightMin;
+  padding-bottom: 0;
+  position: fixed !important;
+  width: 100%;
+}
+
+/* @polyfill :host.scrolling > article */
+:host(.scrolling:host) ::content > article {
+  padding-top: $siteBannerHeightMax + $additonalPadding;
+}
+
+/* @polyfill :host.scrolling app-bar */
+:host(.scrolling:host) ::content app-bar {
+  /* Note: this number should be updated if the height of of the nav changes */
+  -webkit-transform: translate3d(0,-siteBannerHeightMin,0);
+  transform: translate3d(0,-$siteBannerHeightMin,0);
+  position: inherit;
+}
+
+/* @polyfill :host > article */
+::content > article {
+  padding: $additonalPadding $additonalPadding + 40;
+  max-width: 912px;
+  overflow: hidden;
+}
+
+

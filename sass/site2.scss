@@ -17,7 +17,7 @@
 // }
 
 h2:target, h3:target, h4:target {
-  padding-top: $sitebannerHeight;
+  padding-top: $siteBannerHeightMin;
 }
 
 html, body {
@@ -34,6 +34,10 @@ body {
 
 img {
   max-width: 100%;
+}
+
+pre, code {
+  overflow: auto;
 }
 
 /* Help catch template errors. */
@@ -147,7 +151,7 @@ a.paper-button {
 
 polymer-ui-icon {
   $widthHeight: 24px;
-  margin-right: 5px;
+  margin-left: 10px;
   width: $widthHeight;
   height: $widthHeight;
   background-size: $widthHeight * 2 !important;
@@ -160,8 +164,8 @@ polymer-ui-icon {
 
 .bar {
   padding: 16px;
-  height: $sitebannerHeight;
-  // max-height: $sitebannerHeight; // Firefox
+  height: $siteBannerHeightMin;
+  // max-height: $siteBannerHeightMin; // Firefox
 }
 
 .panel {
@@ -215,29 +219,9 @@ polymer-ui-toolbar {
   width: 100%;
 }
 
-// .dosticky {
-//   .sticky {
-//     position: fixed !important;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//   }
-
-//   section .bar {
-//     background: white;
-//     z-index: 100;
-//     position: relative;
-//     // position: sticky;
-//     // position: -webkit-sticky;
-//     // top: 0;
-//   }
-
-//   #everything-element {
-//     .bar {
-//       @extend .main-purple;
-//     }
-//   }
-// }
+#sitebanner {
+  z-index: 100;
+}
 
 // Homepage sections
 section .bar {
@@ -371,6 +355,8 @@ footer {
 // Reference, article, other pages ---------------------------------------------
 
 #sidebar {
+  $leftPadding: 16px;
+
   position: fixed;
   @include transform(translateZ(0));
   height: 100%;
@@ -378,17 +364,18 @@ footer {
   background-color: $main-bg; //$gray-light;
   box-shadow: rgba(0, 0, 0, 0.14902) 1px 1px 1px 0px;
   z-index: 10; // above top sitebanner navbar
-  padding: 16px;
-}
 
-scroll-area {
-  display: block;
-  margin-left: $sidebarWidth;
+  docs-menu {
+    padding: 0 $leftPadding;
+  }
 
-  > article {
-    padding: $additonalPadding $additonalPadding + 40;
-    //overflow: hidden;
-    max-width: 912px;
+  .logo {
+    @include display-flex;
+    //@include justify-content(center);
+    @include align-items(center);
+    height: 80px;
+    margin-bottom: 24px;
+    padding-left: $leftPadding;
   }
 }
 
@@ -410,10 +397,6 @@ scroll-area {
 .no-permalink .permalink {
   display: none !important;
 }
-
-// polymer-ui-nav-arrow {
-//   right: -1px !important;
-// }
 
 // polymer-ui-menu > polymer-ui-menu-item {
 //   display: block !important;
@@ -440,29 +423,6 @@ scroll-area {
 //   }
 //   &.elements::before {
 //     content: "\f12e";
-//   }
-// }
-
-// polymer-ui-menu-item {
-//   display: inline-block !important;
-//   min-width: 90%;
-//   font-weight: 600;
-
-//   &:hover {
-//     background-color: #eee;
-//   }
-
-//   // &.polymer-selected {
-//   //   background-color: #eee;
-//   // }
-
-//   a {
-//     width: 100%;
-//     display: inline-block;
-
-//     &:hover {
-//       text-decoration: none;
-//     }
 //   }
 // }
 

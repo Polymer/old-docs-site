@@ -1,0 +1,99 @@
+<link rel="import" href="../components/polymer/polymer.html">
+
+<polymer-element name="scroll-area" attributes="effects">
+  <template>
+    <link rel="stylesheet" href="../css/elements/scroll-area.css">
+    <content></content>
+  </template>
+  <script>
+(function() {
+  function onScroll_() {
+    this.previousScrollY = this.latestKnownScrollY;
+    this.latestKnownScrollY = window.scrollY;
+    requestTick_.bind(this)();
+  }
+
+  function requestTick_() {
+    if (!this.ticking) {
+      window.requestAnimationFrame(update_.bind(this));
+    }
+    this.ticking = true;
+  }
+
+  function update_() {
+    this.ticking = false; // Reset the tick so we can capture the next onScroll.
+
+    var currentScrollY = this.latestKnownScrollY;
+    var previousScrollY = this.previousScrollY;
+
+    var delta = currentScrollY - previousScrollY;
+    var smallBannerSizeReached = this.siteBannerHeight - currentScrollY <= this.appBarHeight;  //80px;
+
+    if (smallBannerSizeReached) {
+      this.classList.add('scrolling');
+ 
+      if (delta < 0) { // scrollback
+        this.hasBackScrolled = true;
+      }
+
+      // Navbar moves in opposite direction of scroll.
+      this.appBarTranslateY -= delta;
+      this.appBarTranslateY = Math.min(
+          Math.max(this.appBarTranslateY, -this.appBarHeight), 0);
+
+      this.appBar.style.WebkitTransform = 'translate3d(0,' + this.appBarTranslateY +'px,0)';
+
+    } else {
+      this.classList.remove('scrolling');
+      this.header.classList.remove('fixed');
+      this.appBarTranslateY = -this.appBarHeight;
+
+      if (currentScrollY <= 0) {
+        this.hasBackScrolled = false;
+      }
+
+      //this.style.WebkitTransform = 'translate3d(0,-' + currentScrollY +'px,0)';
+
+      if (this.header.offsetTop - currentScrollY <= 0) {
+        //var scale = Math.max(0.5, (this.siteBannerHeight - currentScrollY) / this.siteBannerHeight);
+        var scale = (this.siteBannerHeight - currentScrollY) /
+                    (this.siteBannerHeight - this.header.offsetTop);
+        // this.header.style.WebkitTransform = 'scale(' + scale + ')';
+        this.header.classList.add('fixed');
+      }
+    }
+  }
+
+  Polymer('scroll-area', {
+    hasBackScrolled: false,
+    latestKnownScrollY: 0,
+    previousScrollY: 0,
+    appBarTranslateY: 0,
+    ticking: false,
+    appBar: null,
+    effects: true,
+    ready: function() {
+      if (!this.effects) {
+        return;
+      }
+
+      var siteBanner = this.querySelector('site-banner');
+      this.appBar = siteBanner.querySelector('app-bar');
+      this.header = siteBanner.querySelector('header');
+
+      // Give DOM some time to do layout.
+      this.async(function() {
+        this.siteBannerHeight = siteBanner.offsetHeight;
+        this.appBarHeight = this.appBar.offsetHeight;
+        this.appBarTranslateY = -this.appBarHeight;
+      });
+
+      window.addEventListener('scroll', onScroll_.bind(this), false);
+    },
+    hasBackScrolledChanged: function() {
+      this.appBar.classList.toggle('fixed');
+    }
+  });
+})();
+</script>
+</polymer-element>

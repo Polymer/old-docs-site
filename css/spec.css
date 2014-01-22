@@ -1,1 +1,35 @@
-.meta{font-size:12px;font-weight:normal;line-height:20pt}.secondary{font-size:14px;font-weight:normal;line-height:20pt}body{font-size:16px;font-family:"Open Sans",Helvetica,Arial,sans-serif;font-weight:normal;line-height:24pt}.header{font-size:20px;font-weight:600;line-height:24pt}.display,h1,h2,h3,h4,h5{font-size:36px;font-weight:300;line-height:44pt;margin:0}h2{font-size:30px}h3{font-size:24px}h4{font-size:21px}h5{font-size:16px}button{font-size:12px;font-weight:normal;text-transform:uppercase}a{font-size:14px;font-weight:normal;color:#3367d6;text-decoration:none}code,pre{font-family:"Source Code Pro",Monaco,Menlo,Consolas,"Courier New",monospace}
+/* line 20, ../sass/spec.scss */
+.meta { font-size: 12px; font-weight: normal; line-height: 20pt; }
+
+/* line 27, ../sass/spec.scss */
+.secondary { font-size: 14px; font-weight: normal; line-height: 20pt; }
+
+/* line 34, ../sass/spec.scss */
+body { font-size: 16px; font-family: "Open Sans", Helvetica, Arial, sans-serif; font-weight: normal; line-height: 24pt; }
+
+/* line 42, ../sass/spec.scss */
+.header { font-size: 20px; font-weight: 600; line-height: 24pt; }
+
+/* line 49, ../sass/spec.scss */
+.display, h1, h2, h3, h4, h5 { font-size: 36px; font-weight: 300; line-height: 44pt; margin: 0; }
+
+/* line 56, ../sass/spec.scss */
+h2 { font-size: 30px; }
+
+/* line 59, ../sass/spec.scss */
+h3 { font-size: 24px; }
+
+/* line 62, ../sass/spec.scss */
+h4 { font-size: 21px; }
+
+/* line 65, ../sass/spec.scss */
+h5 { font-size: 16px; }
+
+/* line 69, ../sass/spec.scss */
+button { font-size: 12px; font-weight: normal; text-transform: uppercase; }
+
+/* line 76, ../sass/spec.scss */
+a { font-size: 14px; font-weight: normal; color: #3367d6; text-decoration: none; }
+
+/* line 84, ../sass/spec.scss */
+code, pre { font-family: "Source Code Pro", Monaco, Menlo, Consolas, "Courier New", monospace; }

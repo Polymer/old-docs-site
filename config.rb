@@ -8,7 +8,9 @@ images_dir = "images"
 javascripts_dir = "js"
 
 # You can select your preferred output style here (can be overridden via the command line):
-output_style = :compressed #:expanded or :nested or :compact or :compressed
+# NOTE: using :compressed will strip out the @polyfill comments and make
+#       polyfilled styling rules not work correctly.
+output_style = :compact #:expanded or :nested or :compact or :compressed
 
 # To enable relative paths to assets via compass helper functions. Uncomment:
 # relative_assets = true

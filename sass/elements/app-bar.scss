@@ -16,7 +16,13 @@
   position: absolute;
 }
 
-// ::content > polymer-ui-icon {
-//   opacity: 0.6;
-// }
+:host(.fixed:host) {
+  position: fixed;
+}
+
+/* @polyfill :host > polymer-ui-icon */
+::content > polymer-ui-icon {
+  opacity: 0.6;
+  margin-left: 10px;
+}
 

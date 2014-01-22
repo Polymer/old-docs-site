@@ -6,43 +6,66 @@
 <polymer-element name="docs-menu" attributes="ajaxify">
 <template>
   <style>
-    :host { display: block; }
+    :host {
+      display: block;
+    }
+    polymer-ui-submenu-item ^^ polymer-ui-menu-item {
+      font-size: 14px !important;
+      font-weight: 600;
+      line-height: 32px !important;
+      letter-spacing: 0.01em;
+      padding: 0;
+
+      /*&:hover {
+         background-color: #fff;
+      }
+
+      &.polymer-selected {
+        background-color: #eee;
+      }*/
+    }
+    /*polymer-ui-submenu-item ^ #menu {
+      margin-left: 16px;
+    }*/
+    :host ^^ polymer-ui-icon {
+      background-size: 48px !important;
+    }
   </style>
-  <polymer-ui-menu id="menu" on-click="{{onClick}}">
-    <polymer-ui-submenu-item id="gettingstarted" label="Getting started">
-      <polymer-ui-menu-item><a href="/getting-the-code.html">Get the code</a></polymer-ui-menu-item>
-      <polymer-ui-menu-item><a href="/getting-started.html">Getting started</a></polymer-ui-menu-item>
-      <polymer-ui-menu-item><a href="/runtime-config.html">Runtime configuration</a></polymer-ui-menu-item>
+  <polymer-ui-menu id="mainmenu" on-click="{{onClick}}">
+    <polymer-ui-submenu-item id="gettingstarted" label="Getting started" src="/images/picons/ic_polymer_source.png">
+      <polymer-ui-menu-item href="/getting-the-code.html">Get the code</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/getting-started.html">Getting started</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/runtime-config.html">Runtime configuration</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
-    <polymer-ui-submenu-item label="Elements" class="elements icon">
-      <polymer-ui-menu-item><a href="/docs/elements/#elements">Polymer elements</a></polymer-ui-menu-item>
-      <polymer-ui-menu-item><a href="/docs/elements/#ui-elements">Polymer UI elements</a></polymer-ui-menu-item>
-      <polymer-ui-menu-item><a href="/docs/elements/other.html">Other</a></polymer-ui-menu-item>
+    <polymer-ui-submenu-item label="Elements" class="elements-using" src="/images/picons/ic_polymer_source.png">
+      <polymer-ui-menu-item href="/docs/elements/#elements">Polymer elements</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/docs/elements/#ui-elements">Polymer UI elements</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/docs/elements/other.html">Other</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
-    <polymer-ui-submenu-item label="Core" class="core icon">
-      <polymer-ui-menu-item><a href="/polymer.html">API reference</a></polymer-ui-menu-item>
-      <polymer-ui-menu-item><a href="/docs/polymer/styling.html">Styling reference</a></polymer-ui-menu-item>
+    <polymer-ui-submenu-item label="Core" class="elements-creating" src="/images/picons/ic_polymer_source.png">
+      <polymer-ui-menu-item href="/polymer.html">API reference</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/docs/polymer/styling.html">Styling reference</polymer-ui-menu-item>
       <polymer-ui-submenu-item label="Data-binding &#x25BE;">
-        <polymer-ui-menu-item><a href="/docs/polymer/databinding.html">Introduction</a></polymer-ui-menu-item>
-        <polymer-ui-menu-item><a href="/docs/polymer/expressions.html">Expressions</a></polymer-ui-menu-item>
-        <polymer-ui-menu-item><a href="/docs/polymer/filters.html">Filters</a></polymer-ui-menu-item>
+        <polymer-ui-menu-item href="/docs/polymer/databinding.html">Introduction</polymer-ui-menu-item>
+        <polymer-ui-menu-item href="/docs/polymer/expressions.html">Expressions</polymer-ui-menu-item>
+        <polymer-ui-menu-item href="/docs/polymer/filters.html">Filters</polymer-ui-menu-item>
       </polymer-ui-submenu-item>
-      <polymer-ui-menu-item><a href="/articles/">Articles</a></polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/articles/">Articles</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
-    <polymer-ui-submenu-item label="Platform" class="foundation icon">
-      <polymer-ui-menu-item><a href="/platform/custom-elements.html">Custom Elements</a></polymer-ui-menu-item>
-      <polymer-ui-menu-item><a href="/platform/shadow-dom.html">Shadow DOM</a></polymer-ui-menu-item>
-      <polymer-ui-menu-item><a href="/platform/html-imports.html">HTML Imports</a></polymer-ui-menu-item>
-      <polymer-ui-menu-item><a href="/platform/pointer-events.html">Pointer Events</a></polymer-ui-menu-item>
-      <polymer-ui-menu-item><a href="/platform/web-animations.html">Web Animations</a></polymer-ui-menu-item>
-      <polymer-ui-menu-item><a href="/platform/template.html">Template Binding</a></polymer-ui-menu-item>
-      <polymer-ui-menu-item><a href="/platform/node_bind.html">Node.bind()</a></polymer-ui-menu-item>
+    <polymer-ui-submenu-item label="Platform" class="platform" src="/images/picons/ic_polymer_source.png">
+      <polymer-ui-menu-item href="/platform/custom-elements.html">Custom Elements</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/platform/shadow-dom.html">Shadow DOM</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/platform/html-imports.html">HTML Imports</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/platform/pointer-events.html">Pointer Events</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/platform/web-animations.html">Web Animations</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/platform/template.html">Template Binding</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/platform/node_bind.html">Node.bind()</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
-    <polymer-ui-submenu-item label="More information">
-      <polymer-ui-menu-item><a href="/tooling-strategy.html">Tools &amp; testing</a></polymer-ui-menu-item>
-      <polymer-ui-menu-item><a href="/compatibility.html">Browser compatibility</a></polymer-ui-menu-item>
-      <polymer-ui-menu-item><a href="/changelog.html">Releases</a></polymer-ui-menu-item>
-      <polymer-ui-menu-item><a href="/faq.html">FAQ</a></polymer-ui-menu-item>
+    <polymer-ui-submenu-item label="More information" src="/images/picons/ic_polymer_source.png">
+      <polymer-ui-menu-item href="/tooling-strategy.html">Tools &amp; testing</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/compatibility.html">Browser compatibility</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/changelog.html">Releases</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/faq.html">FAQ</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
     <!-- <polymer-ui-nav-arrow target="{{item}}" borderColor="rgba(0, 0, 0,0.15)"></polymer-ui-nav-arrow> -->
   </polymer-ui-menu>
@@ -54,20 +77,13 @@
     ready: function() {
       // TODO: Remove when Shadow DOM polyfill is fixed.
       // https://github.com/Polymer/ShadowDOM/issues/255
-      this.offsetHeight;
-
-      // Allow user-defined styles to override polymer-ui-submenu-item's.
-      [].forEach.call(this.$.menu.children, function(el, i) {
-        if (el.localName == 'polymer-ui-submenu-item' && el.classList.contains('icon')) {
-          el.shadowRoot.applyAuthorStyles = true;
-        }
-      });
+      //this.offsetHeight;
 
       this.highlightItemWithURL(location.pathname);
     },
     highlightItemWithURL: function(href) {
       if (href.match(/^\/articles\//)) {
-        this.$.menu.selected = 0;
+        this.$.mainmenu.selected = 0;
         // TODO: brittle if articles changes position in nav.
         this.$.gettingstarted.selected = this.$.gettingstarted.items.length - 1;
       }
@@ -85,11 +101,11 @@
             submenu = submenu.parentElement;
           } while (submenu && submenu.localName == 'polymer-ui-submenu-item');
         } else {
-          this.$.menu.selected = this.$.menu.items.indexOf(submenu);
+          this.$.mainmenu.selected = this.$.mainmenu.items.indexOf(submenu);
         }
         
       } else {
-        this.$.menu.selected = 0;
+        this.$.mainmenu.selected = 0;
       }
     },
     onClick: function(e, detail, sender) {

@@ -1,1 +1,15 @@
-:host{display:-webkit-box;display:-webkit-flex;display:-moz-flex;display:-ms-flex;display:-o-flex;display:flex;-webkit-box-align:center;-webkit-align-items:center;-moz-align-items:center;-ms-align-items:center;-o-align-items:center;align-items:center}:host(site-banner){right:0;top:0;position:absolute}:ancestor(site-banner){right:0;top:0;position:absolute}
+/* line 3, ../../sass/elements/app-bar.scss */
+:host { display: -webkit-box; display: -webkit-flex; display: -moz-flex; display: -ms-flex; display: -o-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; -moz-align-items: center; -ms-align-items: center; -o-align-items: center; align-items: center; }
+
+/* line 8, ../../sass/elements/app-bar.scss */
+:host(site-banner) { right: 0; top: 0; position: absolute; }
+
+/* line 13, ../../sass/elements/app-bar.scss */
+:ancestor(site-banner) { right: 0; top: 0; position: absolute; }
+
+/* line 19, ../../sass/elements/app-bar.scss */
+:host(.fixed:host) { position: fixed; }
+
+/* @polyfill :host > polymer-ui-icon */
+/* line 24, ../../sass/elements/app-bar.scss */
+::content > polymer-ui-icon { opacity: 0.6; margin-left: 10px; }

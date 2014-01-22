@@ -1,16 +1,15 @@
 @import "elements";
 
 :host {
-  // @include display-flex();
-  // @include align-items(flex-end);
-  display: block;
+  background-color: $main-purple;
+  @include display-flex();
+  @include align-items(flex-end);
   position: relative;
   z-index: 1;
-  height: 286px;
+  height: $siteBannerHeightMax;
   color: white;
-
+  overflow: hidden;
   padding-left: $additonalPadding + 40;
-  padding-bottom: 40px;
 
   // @include transform(translate3d(0,0,0));
 }
@@ -27,31 +26,33 @@
   background-color: $using-elements-color;
 }
 
-/* @polyfill :host.sticky */
-:host(.sticky:host) {
-  height: $sitebannerHeight;
-  padding-bottom: 0;
-
-  // ::content app-bar {
-  //   @include transform(translate3d(0,-$sitebannerHeight,0));
-  //   position: inherit;
-  // }
-
-  // ::content summary {
-  //   display: none;
-  // }
+/* @polyfill :host > header */
+::content header {
+  padding-top: 11px;
+  padding-bottom: 40px;
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
 }
 
-// /* @polyfill > app-bar */
-// ::content > app-bar {
-//   @include transform(translate3d(0,0,0));
+/* @polyfill :host > h1 */
+::content h1 {
+  letter-spacing: -0.01em;
+  line-height: 48px;
+  font-size: 40px;
+}
+
+/* @polyfill :host > header.fixed */
+::content header.fixed {
+  position: fixed;
+  // width: 100%;
+}
+
+/* @polyfill header > summary */
+::content summary {
+  margin-top: 20px;
+  opacity: 0.6;
+}
+
+// ::content summary:empty {
+//   display: none;
 // }
-
-// polymer-ui-toolbar {
-//   color: #666666;
-//   a {
-//     margin-right: 5px;
-//   }
-// }
-
-
