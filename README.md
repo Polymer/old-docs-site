@@ -8,6 +8,8 @@ We use Jekyll 1.4.2+ and [Grunt][grunt] to generate the documentation. You'll ne
     gem install kramdown
     npm install -g grunt-cli
 
+**Note:** If you receive permission warnings, you may need to run the above tasks with `sudo`.
+
 You'll also need the App Engine SDK to run the dev_appserver and preview the docs locally. [Download the SDK](https://developers.google.com/appengine/downloads).
 
 ### Check out the documentation
@@ -21,7 +23,7 @@ Run the setup script:
     cd docs
     ./scripts/setup.sh
 
-This will run `npm install`, pull down any external dependencies, and kickoff the `grunt docs` task. **Note:** these scripts can take some time to download.
+This will run `npm install`, pull down any external dependencies, and kickoff the `grunt docs` task. **Note:** these scripts can take some time to install.
 
 During the setup process the `polymer-all/projects` directory is populated for you. Whenever the site is released you'll need to re-run `polymer-all/tools/bin/pull-all-projects.sh` in order to refresh this directory. See the [Polymer release](#polymer-release) section for more details.
 
