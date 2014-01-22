@@ -40,9 +40,15 @@ handlers:
   http_headers:
     Access-Control-Allow-Origin: "*"
 
-- url: /polymer(.min)?.(js|html)
-  static_files: _site/components/polymer/polymer.\2
-  upload: _site/components/polymer/polymer\.(js|html)
+# - url: /polymer(.min)?.(js|html)
+#   static_files: _site/components/polymer/polymer.\2
+#   upload: _site/components/polymer/polymer\.(js|html)
+#   http_headers:
+#     Access-Control-Allow-Origin: "*"
+
+- url: /polymer(.min)?.js
+  static_files: _site/components/polymer/polymer.js
+  upload: _site/components/polymer/polymer\.js
   http_headers:
     Access-Control-Allow-Origin: "*"
 
