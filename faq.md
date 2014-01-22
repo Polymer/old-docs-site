@@ -109,7 +109,7 @@ for developers that includes all of the the pieces for building
 
 ### Does {{site.project_title}} work under Content Security Policy (CSP)? {#csp}
 
-Yes. By using `polymer.min.js` and [creating elements that use external scripts](/polymer.html#alternate-ways-to-register-an-element), {{site.project_title}} runs under [CSP](http://www.html5rocks.com/tutorials/security/content-security-policy/). If you prefer to keep your element's
+Yes. By using `polymer.min.js` and [creating elements that use external scripts](/docs/polymer/polymer.html#alternate-ways-to-register-an-element), {{site.project_title}} runs under [CSP](http://www.html5rocks.com/tutorials/security/content-security-policy/). If you prefer to keep your element's
 script inline to `<polymer-element>`, we recommend using [Vulcanizer](/tooling-strategy.html#vulcanizer)
 and running with the `--csp` flag.
 

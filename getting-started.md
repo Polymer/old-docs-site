@@ -40,7 +40,7 @@ adds these items as dependencies in your app's bower.json.
 
 {{site.project_title}} provides extra goodies for creating declarative, souped-up custom elements. We call these "{{site.project_title}} elements". To create one, follow these steps:
 
-1. Load [{{site.project_title}} core](/polymer.html) (`polymer.html`).
+1. Load [{{site.project_title}} core](/docs/polymer/polymer.html) (`polymer.html`).
 1. Declare your custom element using `<polymer-element>`.
 
 In the following example, we define a new element named `<tk-element>`, save
@@ -121,7 +121,7 @@ Now that you've got the basic setup, it's time to start using the features!
 ## Using {{site.project_title}}'s features {#features}
 
 {{site.project_title}} provides a number of sugaring APIs for authoring
-web components. Below are a few of the concepts. Consult the [API referencee](/polymer.html) for
+web components. Below are a few of the concepts. Consult the [API referencee](/docs/polymer/polymer.html) for
 detailed information on each of these features.
 
 ### Add properties/methods to your component
@@ -137,7 +137,7 @@ element's `prototype`.
 
 ### Adding lifecycle methods
 
-The [lifecycle callbacks](/polymer.html#lifecyclemethods) are special methods you
+The [lifecycle callbacks](/docs/polymer/polymer.html#lifecyclemethods) are special methods you
 can define on your element.
 
 When a custom element has been registered it calls its `created()` callback (if one has been defined). When {{site.project_title}} finishes its initialization, the `ready()` method is called.
@@ -183,7 +183,7 @@ and gives them default values:
 Note: In this example the user overrides the defaults for `owner` and `color`
 by configuring the element with initial attribute values (e.g. `<tk-element-property-public owner="Scott" color="blue">`).
 
-[Learn more about published properties](/polymer.html#published-properties)
+[Learn more about published properties](/docs/polymer/polymer.html#published-properties)
 
 ### Automatic node finding
 
@@ -191,8 +191,8 @@ Shadow DOM is a self-contained document-like subtree; id's in that subtree do no
 
 {% include samples/tk-node-finding.html %}
 
-[Learn more about automatic node finding](/polymer.html#automatic-node-finding)
+[Learn more about automatic node finding](/docs/polymer/polymer.html#automatic-node-finding)
 
 ## Where to go from here?
 
-Read up on [{{site.project_title}}'s core API referencee](/polymer.html).
+Read up on [{{site.project_title}}'s core API referencee](/docs/polymer/polymer.html).

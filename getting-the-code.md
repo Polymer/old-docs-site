@@ -203,7 +203,7 @@ Examples include Bootstrap, topcoat, Chart.js, pdf.js, x-tags, and AceEditor.
 [github.com/polymer/toolkit-ui](https://github.com/polymer/toolkit-ui)
 
 The [`toolkit-ui`](https://github.com/polymer/toolkit-ui) repository contains examples of
-the types of things you can do when writing a [{{site.project_title}} element](/polymer.html).
+the types of things you can do when writing a [{{site.project_title}} element](/docs/polymer/polymer.html).
 
 - **elements/** — `g-*` custom element definitions.
 - **workbench/** — demos of the {{site.project_title}}-style elements found in `elements/`.

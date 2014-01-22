@@ -75,7 +75,7 @@ The first (and most {{site.project_title}}ic) way for elements to relay informat
 to one another is to use data binding. {{site.project_title}} implements
 two-way data binding. Binding to a common property
 is useful if you're working inside a {{site.project_title}} element and want to
-"link" elements together via their [published properties](/polymer.html#published-properties).
+"link" elements together via their [published properties](/docs/polymer/polymer.html#published-properties).
 
 Here's an example:
 
@@ -107,7 +107,7 @@ Here's an example:
     </polymer-element>
 {% endraw %}
 
-When a {{site.project_title}} element [publishes](/polymer.html#published-properties) one of its properties, you can bind to that property using an HTML attribute of the same name. In the example,
+When a {{site.project_title}} element [publishes](/docs/polymer/polymer.html#published-properties) one of its properties, you can bind to that property using an HTML attribute of the same name. In the example,
 `<td-model>.items` and `<polymer-localstorage>.value` are bound together with "list":
 
 {% raw %}
@@ -131,7 +131,7 @@ changes `list`, `<td-model>`'s items will also change.
 Wait a sec..."list" is an array. How can it be property bound as an HTML string attribute?
 
 {{site.project_title}} is smart enough to serialize primitive types (numbers, booleans, arrays, objects) when they're used in attribute bindings. As seen in the `ready()` callback
-of `<my-app>`, be sure to initialize and/or [hint the type](/polymer.html#hinting-an-attributes-type) of your properties.
+of `<my-app>`, be sure to initialize and/or [hint the type](/docs/polymer/polymer.html#hinting-an-attributes-type) of your properties.
 
 ### 2. Changed watchers {#changedwatchers}
 
@@ -178,7 +178,7 @@ to bind to:
 
     <polymer-localstorage2 name="myapplist" id="storage"></polymer-localstorage2>
 
-A desperate time like this calls for a [changed watcher](/polymer.html#change-watchers) and
+A desperate time like this calls for a [changed watcher](/docs/polymer/polymer.html#change-watchers) and
 a sprinkle of data-binding. We can exploit the fact that `<polymer-localstorage2>` defines
 a `valueChanged()` watcher. By setting up our own watcher for `list`, we can
 automatically persist data to `localStorage` whenever `list` changes!
@@ -209,7 +209,7 @@ When `list` changes, the chain reaction is set in motion:
 3. This calls `<polymer-localstorage2>.valueChanged()`
 4. `valueChanged()` calls `save()` which persists data to `localStorage`
 
-**Tip:** I'm using a {{site.project_title}} feature called [automatic node finding](/polymer.html#automatic-node-finding) to reference `<polymer-localstorage>` by its `id` (e.g. `this.$.storage === this.querySelector('#storage')`).
+**Tip:** I'm using a {{site.project_title}} feature called [automatic node finding](/docs/polymer/polymer.html#automatic-node-finding) to reference `<polymer-localstorage>` by its `id` (e.g. `this.$.storage === this.querySelector('#storage')`).
 {: .alert .alert-success }
 
 ### 3. Custom events {#events}
@@ -237,7 +237,7 @@ When `list` changes, the chain reaction is set in motion:
 </table>
 
 A third technique is to **emit custom events from within your element**. Other elements
-can listen for said events and respond accordingly. {{site.project_title}} has two nice helpers for sending events, [fire() and asyncFire()](/polymer.html#fire). They're essentially wrappers around `node.dispatchEvent(new CustomEvent(...))`. Use the asynchronous version for when you need to fire an event after [microtasks](http://www.whatwg.org/specs/web-apps/current-work/#perform-a-microtask-checkpoint) have completed.
+can listen for said events and respond accordingly. {{site.project_title}} has two nice helpers for sending events, [fire() and asyncFire()](/docs/polymer/polymer.html#fire). They're essentially wrappers around `node.dispatchEvent(new CustomEvent(...))`. Use the asynchronous version for when you need to fire an event after [microtasks](http://www.whatwg.org/specs/web-apps/current-work/#perform-a-microtask-checkpoint) have completed.
 
 Let's walk through an example:
 
@@ -283,7 +283,7 @@ And someone listening could use that information:
 #### Using declarative event mappings {#declartivemappings}
 
 The {{site.project_title}}ic approach to events is combine event bubbling
-and [`on-*` declarative event mapping](/polymer.html#declarative-event-mapping).
+and [`on-*` declarative event mapping](/docs/polymer/polymer.html#declarative-event-mapping).
 Combining the two gives you a declarative way to listen for events and requires very little code.
 
 **Example:** Defining an `on-click` that calls `sayHi()` whenever the element is clicked:
