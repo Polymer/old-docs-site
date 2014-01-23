@@ -102,7 +102,7 @@ a.paper-button { color: inherit; }
 polymer-ui-icon { margin-left: 10px; width: 24px; height: 24px; background-size: 48px !important; }
 
 /* line 160, ../sass/site2.scss */
-.content-padding, .panel, footer > :first-child { width: 1032px; margin: 0 auto; }
+.content-padding, .panel, footer > :first-child { max-width: 1032px; margin: 0 auto; }
 
 /* line 165, ../sass/site2.scss */
 .bar { padding: 16px; height: 80px; }

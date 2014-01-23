@@ -5,7 +5,11 @@
 </head>
 <body id="{{page.title | downcase | replace:' ','-' }}" unresolved>
 
-{% include top-nav.html %}
+<nav id="sitebanner" class="main-bg bar sticky">
+  <polymer-flex-layout align="center" justify="end"></polymer-flex-layout>
+  <a href="/" flexbox><img src="/images/logos/lockup.svg"></a>
+  {% include top-nav.html %}
+</nav>
 
 <main>{{content}}</main>
 

@@ -1,13 +1,15 @@
-<nav id="sitebanner" class="main-bg bar sticky">
-  <polymer-flex-layout align="center"></polymer-flex-layout>
-  <!-- <a href="/" class="brand align-center" flexbox><img src="/images/logos/polymer-logo-32.png">{{site.project_title|downcase}}</a> -->
-  <a href="/" flexbox><img src="/images/logos/lockup.svg"></a>
-  <polymer-ui-toolbar class="justify-end" responsive flex>
-    <a href="#" class="paper-button" borderless sink>Start</a>
-    <a href="#" class="paper-button" borderless sink>Reference</a>
-    <a href="#" class="paper-button" borderless sink>Community</a>
-    <a href="#" class="paper-button" borderless sink>Support</a>
-    <a href="#" class="paper-button" borderless sink>News</a>
-    <polymer-ui-icon src="/images/picons/ic_search_dark_.png"></polymer-ui-icon>
-  </polymer-ui-toolbar>
-</nav>
+{% capture theme %}
+  {% if page.layout == 'home' %}
+    dark
+  {% else %}
+    light
+  {% endif %}
+{% endcapture %}
+ 
+<app-bar theme="{{theme | trim }}">
+  <a href="#" class="paper-button" borderless sink>Start</a>
+  <a href="#" class="paper-button" borderless sink>Docs</a>
+  <a href="#" class="paper-button" borderless sink>Community</a>
+  <a href="#" class="paper-button" borderless sink>Support</a>
+  <a href="#" class="paper-button" borderless sink>News</a>
+</app-bar>

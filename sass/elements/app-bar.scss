@@ -3,6 +3,8 @@
 :host {
   @include display-flex();
   @include align-items(center);
+  @include justify-content(flex-end);
+  @include flex(1);
 }
 
 :host(site-banner) { // old, until https://github.com/Polymer/platform/issues/49 is fixed.
@@ -20,9 +22,12 @@
   position: fixed;
 }
 
-/* @polyfill :host > polymer-ui-icon */
-::content > polymer-ui-icon {
+polymer-ui-icon {
+  $widthHeight: 24px;
   opacity: 0.6;
   margin-left: 10px;
+  width: $widthHeight !important;
+  height: $widthHeight !important;
+  background-size: $widthHeight * 2 !important;
 }
 

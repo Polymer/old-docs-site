@@ -31,6 +31,7 @@
 
     if (smallBannerSizeReached) {
       this.classList.add('scrolling');
+      this.header.classList.add('fixed');
  
       if (delta < 0) { // scrollback
         this.hasBackScrolled = true;
@@ -52,8 +53,7 @@
         this.hasBackScrolled = false;
       }
 
-      //this.style.WebkitTransform = 'translate3d(0,-' + currentScrollY +'px,0)';
-
+      //
       if (this.header.offsetTop - currentScrollY <= 0) {
         //var scale = Math.max(0.5, (this.siteBannerHeight - currentScrollY) / this.siteBannerHeight);
         var scale = (this.siteBannerHeight - currentScrollY) /
@@ -73,19 +73,21 @@
     appBar: null,
     effects: true,
     ready: function() {
+      var siteBanner = this.querySelector('site-banner');
+      this.header = siteBanner.querySelector('header');
+      this.appBar = siteBanner.querySelector('app-bar');
+      this.appBar.classList.toggle('bar');
+
       if (!this.effects) {
         return;
       }
-
-      var siteBanner = this.querySelector('site-banner');
-      this.appBar = siteBanner.querySelector('app-bar');
-      this.header = siteBanner.querySelector('header');
 
       // Give DOM some time to do layout.
       this.async(function() {
         this.siteBannerHeight = siteBanner.offsetHeight;
         this.appBarHeight = this.appBar.offsetHeight;
         this.appBarTranslateY = -this.appBarHeight;
+
       });
 
       window.addEventListener('scroll', onScroll_.bind(this), false);

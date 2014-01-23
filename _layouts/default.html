@@ -5,10 +5,6 @@
 </head>
 <body id="{{page.title | downcase | replace:' ','-' }}" unresolved>
 
-{% comment %}
-{% include top-nav.html %}
-{% endcomment %}
-
 <main id="content-container">
 
   <aside id="sidebar" class="main-bg">
@@ -17,14 +13,7 @@
   </aside>
   <scroll-area>
     <site-banner type="core">
-      <app-bar class="bar">
-        <a href="#" class="paper-button" borderless sink>Start</a>
-        <a href="#" class="paper-button" borderless sink>Reference</a>
-        <a href="#" class="paper-button" borderless sink>Community</a>
-        <a href="#" class="paper-button" borderless sink>Support</a>
-        <a href="#" class="paper-button" borderless sink>News</a>
-        <polymer-ui-icon src="/images/picons/ic_search_light_.png"></polymer-ui-icon>
-      </app-bar>
+      {% include top-nav.html %}
       <header>
         <h1>Core</h1>
         <summary>{{page.title}}</summary>
@@ -49,7 +38,7 @@
       {% endif %}
     {% endcapture %}
 
-    <article class="{{permalinks_class}}">
+    <article class="{{permalinks_class | trim}}">
       {% include edit_on_github.html %}
 
       {% if page.title %}
