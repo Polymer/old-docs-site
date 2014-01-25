@@ -1,6 +1,7 @@
 ---
 layout: default
-title: Discuss the Project
+type: support
+title: Discussion
 ---
 
 We've got a number of ways to stay in touch.

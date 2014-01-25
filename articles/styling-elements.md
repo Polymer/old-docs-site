@@ -1,5 +1,6 @@
 ---
 layout: default
+type: core
 title: A Guide to Styling Elements
 
 article:

@@ -2,8 +2,9 @@
 <link rel="import" href="../components/polymer-ui-menu/polymer-ui-menu.html">
 <link rel="import" href="../components/polymer-ui-menu-item/polymer-ui-menu-item.html">
 <link rel="import" href="../components/polymer-ui-submenu-item/polymer-ui-submenu-item.html">
+<!-- <link rel="import" href="ui-color-icon.html"> -->
 
-<polymer-element name="docs-menu" attributes="ajaxify">
+<polymer-element name="docs-menu" attributes="menu">
 <template>
   <style>
     :host {
@@ -24,25 +25,29 @@
         background-color: #eee;
       }*/
     }
-    /*polymer-ui-submenu-item ^ #menu {
-      margin-left: 16px;
-    }*/
     :host ^^ polymer-ui-icon {
       background-size: 48px !important;
     }
+    #mainmenu > polymer-ui-submenu-item {
+      display: none;
+    }
+    .show {
+      display: block !important;
+    }
   </style>
-  <polymer-ui-menu id="mainmenu" on-click="{{onClick}}">
-    <polymer-ui-submenu-item id="gettingstarted" label="Getting started" src="/images/picons/ic_polymer_source.svg">
+  <polymer-ui-menu id="mainmenu">
+    <polymer-ui-submenu-item class="{{ {show: menu == 'start'} | tokenList}}" id="gettingstartedmenu" label="Getting started" src="/images/picons/ic_polymer_source.svg">
+      <!-- <ui-color-icon src="/images/picons/ic_polymer_source.svg"></ui-color-icon> -->
       <polymer-ui-menu-item href="/getting-the-code.html">Get the code</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/getting-started.html">Getting started</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/runtime-config.html">Runtime configuration</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
-    <polymer-ui-submenu-item label="Elements" class="elements-using" src="/images/picons/ic_polymer_source.svg">
+    <polymer-ui-submenu-item id="elementsmenu" label="Elements" class="elements-using {{ {show: menu == 'docs'} | tokenList}}" src="/images/picons/ic_polymer_source.svg">
       <polymer-ui-menu-item href="/docs/elements/#elements">Polymer elements</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/docs/elements/#ui-elements">Polymer UI elements</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/docs/elements/other.html">Other</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
-    <polymer-ui-submenu-item label="Core" class="elements-creating" src="/images/picons/ic_polymer_source.svg">
+    <polymer-ui-submenu-item id="coremenu" label="Core" class="elements-creating {{ {show: menu == 'docs'} | tokenList}}" src="/images/picons/ic_polymer_source.svg">
       <polymer-ui-menu-item href="/docs/polymer/polymer.html">API reference</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/docs/polymer/styling.html">Styling reference</polymer-ui-menu-item>
       <polymer-ui-submenu-item label="Data-binding &#x25BE;">
@@ -50,9 +55,9 @@
         <polymer-ui-menu-item href="/docs/polymer/expressions.html">Expressions</polymer-ui-menu-item>
         <polymer-ui-menu-item href="/docs/polymer/filters.html">Filters</polymer-ui-menu-item>
       </polymer-ui-submenu-item>
-      <polymer-ui-menu-item href="/articles/">Articles</polymer-ui-menu-item>
+      <polymer-ui-menu-item id="articles" href="/articles/">Articles</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
-    <polymer-ui-submenu-item label="Platform" class="platform" src="/images/picons/ic_polymer_source.svg">
+    <polymer-ui-submenu-item id="platformmenu" label="Platform" class="platform {{ {show: menu == 'docs'} | tokenList}}" src="/images/picons/ic_polymer_source.svg">
       <polymer-ui-menu-item href="/platform/custom-elements.html">Custom Elements</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/platform/shadow-dom.html">Shadow DOM</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/platform/html-imports.html">HTML Imports</polymer-ui-menu-item>
@@ -61,9 +66,10 @@
       <polymer-ui-menu-item href="/platform/template.html">Template Binding</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/platform/node_bind.html">Node.bind()</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
-    <polymer-ui-submenu-item label="More information" src="/images/picons/ic_polymer_source.svg">
+    <polymer-ui-submenu-item label="Resources" class="{{ {show: menu == 'other' || menu == ''} | tokenList}}" src="/images/picons/ic_polymer_source.svg">
       <polymer-ui-menu-item href="/tooling-strategy.html">Tools &amp; testing</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/compatibility.html">Browser compatibility</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/build/">Build status</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/changelog.html">Releases</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/faq.html">FAQ</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
@@ -73,24 +79,22 @@
 <script>
   Polymer('docs-menu', {
     applyAuthorStyles: true,
-    ajaxify: false,
     ready: function() {
-      // TODO: Remove when Shadow DOM polyfill is fixed.
-      // https://github.com/Polymer/ShadowDOM/issues/255
-      //this.offsetHeight;
-
       this.highlightItemWithURL(location.pathname);
     },
     highlightItemWithURL: function(href) {
-      if (href.match(/^\/articles\//)) {
-        this.$.mainmenu.selected = 0;
-        // TODO: brittle if articles changes position in nav.
-        this.$.gettingstarted.selected = this.$.gettingstarted.items.length - 1;
+      if (href.match(/\/articles\//)) {
+        this.$.mainmenu.selected = this.$.mainmenu.items.indexOf(this.$.coremenu);
+        this.$.coremenu.selected = this.$.coremenu.items.indexOf(this.$.articles);
+        return;
+      } else if (href.match(/\/elements\//)) {
+        this.$.mainmenu.selected = this.$.mainmenu.items.indexOf(this.$.elementsmenu);
+        return;
       }
 
-      var link = this.querySelector('a[href="' + href + '"]');
-      if (link) {
-        var item = link.parentElement;
+      var item = this.shadowRoot.querySelector('[href="' + href + '"]');
+
+      if (item) {
         var submenu = item.parentElement;
 
         submenu.selected = submenu.items.indexOf(item);
@@ -103,16 +107,8 @@
         } else {
           this.$.mainmenu.selected = this.$.mainmenu.items.indexOf(submenu);
         }
-        
       } else {
         this.$.mainmenu.selected = 0;
-      }
-    },
-    onClick: function(e, detail, sender) {
-      if (e.target.localName == 'a' && this.ajaxify) {
-        this.fire('click', {link: e.target});
-        e.preventDefault();
-        e.stopPropagation();
       }
     }
   });

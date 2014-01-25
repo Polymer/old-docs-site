@@ -74,7 +74,8 @@ button {
 }
 
 a {
-  font-size: $font-size-secondary;
+  // font-size: $font-size-secondary;
+  font-size: inherit;
   font-weight: normal;
   color: $link-color;
   // letter-spacing: 10pt;

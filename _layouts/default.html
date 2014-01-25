@@ -9,14 +9,18 @@
 
   <aside id="sidebar" class="main-bg">
     <a href="/" class="logo"><img src="/images/logos/lockup.svg"></a>
-    <docs-menu></docs-menu>
+    <docs-menu menu="{{site.data.pagetypes[page.type].menu}}"></docs-menu>
   </aside>
   <scroll-area>
-    <site-banner type="core">
+    <site-banner type="{{page.type}}">
       {% include top-nav.html %}
       <header>
-        <h1>Core</h1>
-        <summary>{{page.title}}</summary>
+        <h1>{{page.title}}</h1>
+        {% if page.subtitle %}
+          <summary>{{page.subtitle}}</summary>
+        {% else if page.type %}
+          <summary>{{site.data.pagetypes[page.type].headertitle}}</summary>
+        {% endif %}
       </header>
     </site-banner>
 
@@ -40,7 +44,8 @@
 
     <article class="{{permalinks_class | trim}}">
       {% include edit_on_github.html %}
-
+  
+{% comment %}
       {% if page.title %}
       <div class="page-header">
         <h1>{{page.title}}</h1>
@@ -49,7 +54,8 @@
         {% endif %}
       </div>
       {% endif %}
-    
+{% endcomment %}
+
       {{content}}
     </article>
 
@@ -61,70 +67,3 @@
 
 </body>
 </html>
-
-
-{% comment %}
-<!DOCTYPE html>
-<html itemscope itemtype="http://schema.org/Organization">
-<head>
-{% include head.html %}
-</head>
-<body id="{{page.title | downcase | replace:' ','-' }}">
-
-{% include top-nav.html %}
-
-<div class="container-fluid">
-  <div class="row-fluid">
-    {% include left-nav.html %}
-    <div class="span8" id="content-container">
-
-      {% include edit_on_github.html %}
-
-      {% if page.title %}
-      <div class="page-header">
-        <h1>{{page.title}}</h1>
-        {% if page.subtitle %}
-          <h1><small>{{page.subtitle}}</small></h1>
-        {% endif %}
-      </div>
-      {% endif %}
-
-      {% comment %}
-        Allow individual pages to turn off permalinks
-      {% endcomment %}
-      {% capture permalinks_class %}
-        {% if site.add_permalinks %}
-          {% case page.add_permalinks %} 
-            {% when true %} 
-              show-permalinks
-            {% when false %}
-              {% comment %}
-                Intentionally empty in case variable isn't defined in page.
-              {% endcomment %}
-            {% else %} 
-              show-permalinks 
-          {% endcase %} 
-        {% endif %}
-      {% endcapture %}
-
-      <div id="content" class="{{permalinks_class}}">{{content}}</div>
-    </div>
-    <footer class="span8">
-      <hr>
-      <div>
-        <div>&copy; 2013 {{site.project_title}} Authors.<br>Code licensed under the <a href="https://github.com/polymer/polymer/blob/master/LICENSE" target="_blank">BSD License</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a>.</div>
-      </div>
-      <div id="logo-row">
-        <img src="/images/logos/webcomponents.png" alt="Web Components" title="Web Components">
-        <img src="/images/logos/html5logo.svg" alt="HTML5" title="HTML5">
-        <img src="/images/logos/js.jpg" alt="JavaScript" title="JavaScript">
-      </div>
-    </footer>
-  </div>
-</div>
-
-{% include footer.html %}
-
-</body>
-</html>
-{% endcomment %}

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Mutation Observers
+type: platform
 subtitle: polyfill
 
 feature:

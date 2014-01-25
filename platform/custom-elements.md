@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Custom Elements
+type: platform
 subtitle: polyfill
 
 feature:

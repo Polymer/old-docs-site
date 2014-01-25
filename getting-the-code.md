@@ -1,7 +1,21 @@
 ---
 layout: default
+type: start
 title: Getting the code
 ---
+
+<!--
+<embed src="/images/picons/ic_polymer_source.svg" type="image/svg+xml" onload="test(this)">
+<script>
+  function test(embed) {
+    //var svg = el.getSVGDocument().querySelector('svg');
+    var svg = embed.getSVGDocument().querySelector('svg');
+    //svg.classList.add('wow')
+    svg.style.fill = 'rgb(214, 26, 127)';
+  }
+</script>
+-->
+
 
 {% include toc.html %}
 

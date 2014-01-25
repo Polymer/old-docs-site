@@ -1,6 +1,8 @@
 ---
 layout: default
+type: core
 title: Articles
+subtitle: Core concepts of build apps on top of Polymer and web components
 
 add_permalinks: false
 ---

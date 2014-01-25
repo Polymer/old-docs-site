@@ -1,5 +1,6 @@
 ---
 layout: default
+type: core
 title: Expressions
 ---
 

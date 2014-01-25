@@ -5,6 +5,9 @@
   @include align-items(center);
   @include justify-content(flex-end);
   @include flex(1);
+  // Insures scrollback covers long titles.
+  background: inherit;
+  z-index: 100;
 }
 
 :host(site-banner) { // old, until https://github.com/Polymer/platform/issues/49 is fixed.

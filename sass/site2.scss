@@ -74,14 +74,17 @@ a[disabled] {
 
 .platform {
   color: $platform-color;
+  fill: $platform-color;
 }
 
 .elements-using {
   color: $using-elements-color;
+  fill: $using-elements-color;
 }
 
 .elements-creating {
-  color: $creating-elements-color
+  color: $creating-elements-color;
+  fill: $creating-elements-color;
 }
 
 .main-bg {
@@ -121,7 +124,7 @@ a.paper-button {
     box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px, rgba(0, 0, 0, 0.0980392) 0px 1px 2px 0px;
   }
 
-  &:hover {
+  &:hover, &.active {
     background: #fff;
     box-shadow: 0px 4px 10px 0 rgba(0,0,0,0.1), 0px 2px 10px 0px rgba(0,0,0,0.1);
   }
@@ -131,7 +134,7 @@ a.paper-button {
     padding: 5px 10px;
     transition: none;
 
-    &:hover {
+    &:hover, &.active {
       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset, 0 -1px 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0px rgba(0, 0, 0, 0.1) inset;
       background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.04));
       background: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.04));
@@ -151,7 +154,7 @@ a.paper-button {
 
 polymer-ui-icon {
   $widthHeight: 24px;
-  margin-left: 10px;
+  // margin-right: 16px;
   width: $widthHeight;
   height: $widthHeight;
   background-size: $widthHeight * 2 !important;
@@ -345,12 +348,11 @@ footer {
   }
 }
 
-// #content-container {
-//   @include display-flex();
-//   > * {
-//     @include flex(1);
-//   }
-// }
+#content-container {
+  .article {
+    margin-bottom: 2em;
+  }
+}
 
 // Reference, article, other pages ---------------------------------------------
 
@@ -398,132 +400,39 @@ footer {
   display: none !important;
 }
 
-// polymer-ui-menu > polymer-ui-menu-item {
-//   display: block !important;
-// }
-  
-// polymer-ui-submenu-item {
-//   padding: 0 10px 0 0;
-//   font-weight: 600;
 
-//   polymer-ui-submenu-item {
-//     color: rgb(0, 136, 204);
-//   }
+// Articles
 
-//   &.icon {
-//     &::before {
-//       font-family: "FontAwesome";
-//     }
-//   }
-//   &.core::before {
-//     content: "\f0c3";
-//   }
-//   &.foundation::before {
-//     content: "\f085";
-//   }
-//   &.elements::before {
-//     content: "\f12e";
-//   }
-// }
+.forversion {
+  float: right;
+  color: #ccc;
+  font-style: italic;
+}
+.article .byline {
+  font-size: smaller;
+  color: #ccc;
+}
 
-// #content-container,
-// .container-fluid .row-fluid > footer {
-//   margin-left: 26%;
-// }
+.author {
+  margin-bottom: 20px;
 
-// #content-container {
-//   position: relative;
-//   box-sizing: border-box;
-//   &.loading::before {
-//     color: #aaa;
-//     font-size: 24px;
-//     font-family: "FontAwesome";
-//     content: '\f013 \00a0 loading...';
-//     position: absolute;
-//     width: 100%;
-//     height: 100%;
-//     box-sizing: border-box;
-//     padding-top: 4em;
+  > p {
+    display: inline-block;
+    margin: 0;
 
-//     @include display-flex;
-//     @include justify-content(center);
-//     @include align-items(flex-start);
+    &:first-of-type {
+      vertical-align: top;
+    }
+  }
 
-//     //background: url(/images/icons/loading_icon.svg) no-repeat 40% 91px;
-//     background-size: 30px;
-//     background-color: rgba(255,255,255,0.8);
-//   }
-// }
+  img {
+    border-radius: 7px;
+    margin-right: 5px;
+    height: 40px;
+    width: 40px;
+  }
 
-// /* Architecture stack */
-// .core {
-//   color: rgb(255, 209, 77);
-// }
-// .core-bg {
-//   background-color: rgba(255, 209, 77, 0.5);
-// }
-// .foundation {
-//   color: rgb(205, 55, 45);
-// }
-// .foundation-bg {
-//   background-color: rgba(244, 74, 63, 0.3);
-// }
-// .elements {
-//   color: rgb(13, 168, 97);
-// }
-// .elements-bg {
-//   background-color: rgba(13, 168, 97, 0.3);
-// }
-// .applications {
-//   color: rgb(35, 100, 215);
-// }
-// .applications-bg {
-//   background-color: rgba(67, 135, 253, 0.3);
-// }
-
-// #content {
-//   min-height: 400px;
-
-//   img {
-//     border-radius: 7px;
-//   }
-// }
-
-
-
-
-
-// // Articles
-
-// .forversion {
-//   float: right;
-//   color: #ccc;
-//   font-style: italic;
-// }
-// .article .byline {
-//   font-size: smaller;
-//   color: #ccc;
-// }
-
-// .author {
-//   margin-bottom: 20px;
-
-//   > p {
-//     display: inline-block;
-//     margin: 0;
-
-//     &:first-of-type {
-//       vertical-align: top;
-//     }
-//   }
-
-//   img {
-//     margin-right: 5px;
-//     height: 40px;
-//     width: 40px;
-//   }
-
-// }
+}
 
 // /* Elements */
 // .element-list {

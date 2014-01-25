@@ -1,5 +1,6 @@
 ---
 layout: default
+type: core
 title: "Concatenating Web Components with Vulcanize"
 subtitle: Reduce network requests by flattening HTML Imports
 

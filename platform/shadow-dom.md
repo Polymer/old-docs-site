@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Shadow DOM
+type: platform
 subtitle: polyfill
 
 feature:

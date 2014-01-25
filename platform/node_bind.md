@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Node.bind()
+type: platform
 subtitle: <a href="http://prollyfill.org/" target="_blank">prollyfill</a>
 
 feature:

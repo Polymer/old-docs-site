@@ -26,33 +26,43 @@
   background-color: $using-elements-color;
 }
 
-/* @polyfill :host > header */
+/* @polyfill :host header */
 ::content header {
-  padding-top: 11px;
-  padding-bottom: 40px;
-  -webkit-transform-origin: 0 100%;
-  transform-origin: 0 100%;
+  padding: 22px 0 40px 0;
 }
 
-/* @polyfill :host > h1 */
+/* @polyfill header h1 */
 ::content h1 {
   letter-spacing: -0.01em;
   line-height: 48px;
   font-size: 40px;
+
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transition: -webkit-transform 100ms ease-in-out;
+  transition: -webkit-transform 100ms ease-in-out;
 }
 
-/* @polyfill :host > header.fixed */
+/* @polyfill :host header.fixed h1 */
+::content header.fixed h1 {
+  -webkit-transform: scale(0.7);
+  transform: scale(0.7);
+}
+
+/* @polyfill :host header.fixed */
 ::content header.fixed {
   position: fixed;
-  // width: 100%;
 }
 
-/* @polyfill header > summary */
+/* @polyfill header a */
+::content a {
+  color: currentcolor;
+}
+
+
+/* @polyfill header summary */
 ::content summary {
   margin-top: 20px;
   opacity: 0.6;
 }
 
-// ::content summary:empty {
-//   display: none;
-// }

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Web Animations
+type: platform
 subtitle: polyfill
 
 feature:

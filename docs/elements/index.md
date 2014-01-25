@@ -1,5 +1,6 @@
 ---
 layout: default
+type: elements
 title: Polymer element reference
 ---
 

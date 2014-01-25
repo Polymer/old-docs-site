@@ -1,8 +1,9 @@
 <link rel="import" href="../components/polymer/polymer.html">
 
-<polymer-element name="scroll-area" attributes="effects">
+<polymer-element name="scroll-area" attributes="disabled">
   <template>
     <link rel="stylesheet" href="../css/elements/scroll-area.css">
+    <!-- <div class="{{ {scrolling: smallBannerSizeReached} | tokenList }}"><content></content></div> -->
     <content></content>
   </template>
   <script>
@@ -27,9 +28,9 @@
     var previousScrollY = this.previousScrollY;
 
     var delta = currentScrollY - previousScrollY;
-    var smallBannerSizeReached = this.siteBannerHeight - currentScrollY <= this.appBarHeight;  //80px;
+    this.smallBannerSizeReached = this.siteBannerHeight - currentScrollY <= this.appBarHeight;  //80px;
 
-    if (smallBannerSizeReached) {
+    if (this.smallBannerSizeReached) {
       this.classList.add('scrolling');
       this.header.classList.add('fixed');
  
@@ -53,11 +54,10 @@
         this.hasBackScrolled = false;
       }
 
-      //
+      // Fix and shrink header when it hits the top of the page.
       if (this.header.offsetTop - currentScrollY <= 0) {
-        //var scale = Math.max(0.5, (this.siteBannerHeight - currentScrollY) / this.siteBannerHeight);
-        var scale = (this.siteBannerHeight - currentScrollY) /
-                    (this.siteBannerHeight - this.header.offsetTop);
+        // var scale = (this.siteBannerHeight - currentScrollY) /
+        //             (this.siteBannerHeight - this.header.offsetTop);
         // this.header.style.WebkitTransform = 'scale(' + scale + ')';
         this.header.classList.add('fixed');
       }
@@ -69,16 +69,17 @@
     latestKnownScrollY: 0,
     previousScrollY: 0,
     appBarTranslateY: 0,
+    smallBannerSizeReached: false,
     ticking: false,
     appBar: null,
-    effects: true,
+    disabled: false, // disabled scroll effects
     ready: function() {
       var siteBanner = this.querySelector('site-banner');
       this.header = siteBanner.querySelector('header');
       this.appBar = siteBanner.querySelector('app-bar');
       this.appBar.classList.toggle('bar');
 
-      if (!this.effects) {
+      if (this.disabled) {
         return;
       }
 
@@ -88,9 +89,13 @@
         this.appBarHeight = this.appBar.offsetHeight;
         this.appBarTranslateY = -this.appBarHeight;
 
+        // Handle pageload in middle of page.
+        if (window.scrollY) {
+          onScroll_.bind(this)();
+        }
       });
 
-      window.addEventListener('scroll', onScroll_.bind(this), false);
+      window.addEventListener('scroll', onScroll_.bind(this), false);      
     },
     hasBackScrolledChanged: function() {
       this.appBar.classList.toggle('fixed');

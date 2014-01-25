@@ -1,6 +1,7 @@
 ---
 layout: default
 title: HTML Imports
+type: platform
 subtitle: polyfill
 
 feature:

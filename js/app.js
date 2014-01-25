@@ -184,9 +184,9 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
   //addStickyScrollToBars();
 
-  // Insure add current page to history so back button has an URL for popstate.
-  history.pushState({url: document.location.href}, document.title,
-                    document.location.href);
+  // // Insure add current page to history so back button has an URL for popstate.
+  // history.pushState({url: document.location.href}, document.title,
+  //                   document.location.href);
 });
 
 // Homepage section smoothscroll.

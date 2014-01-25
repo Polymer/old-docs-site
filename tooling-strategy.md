@@ -1,5 +1,6 @@
 ---
 layout: default
+type: support
 title: Tools & Testing
 ---
 

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Pointer Events
+type: platform
 subtitle: polyfill
 
 feature:

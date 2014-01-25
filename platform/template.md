@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Template Binding
+type: platform
 subtitle: <a href="http://prollyfill.org/" target="_blank">prollyfill</a>
 
 feature:

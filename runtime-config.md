@@ -1,5 +1,6 @@
 ---
 layout: default
+type: start
 title: Runtime configuration
 ---
 

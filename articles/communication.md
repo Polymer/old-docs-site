@@ -1,7 +1,8 @@
 ---
 layout: default
+type: core
 title: "Communication & Message Passing"
-subtitle: Custom Elements
+subtitle: Common techniques for sharing information between custom elements
 
 #draft: true
 
@@ -10,7 +11,7 @@ article:
   published: 2013-08-12
   updated: 2013-12-17
   polymer_version: 0.0.20130808
-  description: Techniques for passing messages to, from, and inbetween custom elements.
+  description: Common techniques for sharing information between custom elements
 tags:
 - signaling
 - messaging

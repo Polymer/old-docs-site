@@ -30,9 +30,9 @@ h5 { font-size: 16px; }
 button { font-size: 12px; font-weight: normal; text-transform: uppercase; }
 
 /* line 76, ../sass/spec.scss */
-a { font-size: 14px; font-weight: normal; color: #3367d6; text-decoration: none; }
+a { font-size: inherit; font-weight: normal; color: #3367d6; text-decoration: none; }
 
-/* line 84, ../sass/spec.scss */
+/* line 85, ../sass/spec.scss */
 code, pre { font-family: "Source Code Pro", Monaco, Menlo, Consolas, "Courier New", monospace; }
 
 /*h1 { font-size: 3.4vw;
