@@ -31,7 +31,7 @@
 {% endfor %}
 
 <!-- Comment out to test unminified Polymer -->
-<script async>
+<!--<script async>
 // Prevent usage of the appspot.com URL.
 try {
   if (location.hostname.match('appspot.com') &&
@@ -42,6 +42,7 @@ try {
   // noop
 }
 </script>
+-->
 
 {% if site.load_platform %}
   <script src="/platform.js?{{site.time | date: '%Y%m%d'}}"></script>

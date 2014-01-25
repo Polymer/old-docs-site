@@ -12,24 +12,24 @@
 
 /* @polyfill :host header */
 /* line 30, ../../sass/elements/site-banner.scss */
-::content header { padding: 22px 0 40px 0; }
+::content header { padding: 22px 0 40px 0; width: 100%; }
 
 /* @polyfill header h1 */
-/* line 35, ../../sass/elements/site-banner.scss */
+/* line 36, ../../sass/elements/site-banner.scss */
 ::content h1 { letter-spacing: -0.01em; line-height: 48px; font-size: 40px; -webkit-transform-origin: 0 0; transform-origin: 0 0; -webkit-transition: -webkit-transform 100ms ease-in-out; transition: -webkit-transform 100ms ease-in-out; }
 
-/* @polyfill :host header.fixed h1 */
-/* line 47, ../../sass/elements/site-banner.scss */
-::content header.fixed h1 { -webkit-transform: scale(0.7); transform: scale(0.7); }
+/* @polyfill :host header.shrink h1 */
+/* line 48, ../../sass/elements/site-banner.scss */
+::content header.shrink h1 { -webkit-transform: scale(0.7); transform: scale(0.7); }
 
-/* @polyfill :host header.fixed */
-/* line 53, ../../sass/elements/site-banner.scss */
-::content header.fixed { position: fixed; }
+/* @polyfill :host header.shrink */
+/* line 54, ../../sass/elements/site-banner.scss */
+::content header.shrink { position: fixed; }
 
 /* @polyfill header a */
-/* line 58, ../../sass/elements/site-banner.scss */
+/* line 59, ../../sass/elements/site-banner.scss */
 ::content a { color: currentcolor; }
 
 /* @polyfill header summary */
-/* line 64, ../../sass/elements/site-banner.scss */
+/* line 65, ../../sass/elements/site-banner.scss */
 ::content summary { margin-top: 20px; opacity: 0.6; }

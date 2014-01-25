@@ -8,6 +8,13 @@
   // Insures scrollback covers long titles.
   background: inherit;
   z-index: 100;
+
+  font-size: 14px;
+  color: #000;
+}
+
+:host([theme="light"]:host) {
+  color: inherit;
 }
 
 :host(site-banner) { // old, until https://github.com/Polymer/platform/issues/49 is fixed.
@@ -27,10 +34,15 @@
 
 polymer-ui-icon {
   $widthHeight: 24px;
-  opacity: 0.6;
   margin-left: 10px;
   width: $widthHeight !important;
   height: $widthHeight !important;
   background-size: $widthHeight * 2 !important;
+  opacity: 0.6;
+}
+
+/* @polyfill :host a */
+::content a {
+  opacity: 0.6;
 }
 

@@ -105,7 +105,7 @@ polymer-ui-icon { width: 24px; height: 24px; background-size: 48px !important; }
 .content-padding, .panel, footer > :first-child { max-width: 1032px; margin: 0 auto; }
 
 /* line 168, ../sass/site2.scss */
-.bar { padding: 16px; height: 80px; }
+.bar { padding: 16px !important; height: 80px; }
 
 /* line 174, ../sass/site2.scss */
 .panel { padding: 174px 0; display: -webkit-box; display: -webkit-flex; display: -moz-flex; display: -ms-flex; display: -o-flex; display: flex; }
@@ -118,7 +118,7 @@ polymer-ui-icon { width: 24px; height: 24px; background-size: 48px !important; }
 /* line 195, ../sass/site2.scss */
 .panel summary + summary { margin-left: 25px; }
 /* line 199, ../sass/site2.scss */
-.panel summary p { margin: 50px 0; }
+.panel summary p { margin: 56px 0; }
 /* line 204, ../sass/site2.scss */
 .panel img { -webkit-align-self: center; -moz-align-self: center; -ms-align-self: center; -o-align-self: center; align-self: center; }
 
@@ -127,9 +127,6 @@ polymer-ui-toolbar { font: inherit !important; border: none !important; backgrou
 
 /* line 218, ../sass/site2.scss */
 .sticky { position: fixed !important; width: 100%; }
-
-/* line 225, ../sass/site2.scss */
-#sitebanner { z-index: 100; }
 
 /* line 230, ../sass/site2.scss */
 section .bar { -webkit-box-pack: flex-end; -webkit-justify-content: flex-end; -moz-justify-content: flex-end; -ms-justify-content: flex-end; -o-justify-content: flex-end; justify-content: flex-end; -webkit-box-align: center; -webkit-align-items: center; -moz-align-items: center; -ms-align-items: center; -o-align-items: center; align-items: center; border-top: 1px solid #eeeeee; border-bottom: 1px solid #eeeeee; }
@@ -159,7 +156,7 @@ section .bar a:after { content: '\0025BE'; margin: 0 10px; }
 /* line 290, ../sass/site2.scss */
 #architecture .panel { padding: 25px 0; }
 /* line 293, ../sass/site2.scss */
-#architecture .box { padding: 100px 24px 14px; margin-bottom: 50px; }
+#architecture .box { padding: 100px 24px 14px; margin-bottom: 56px; }
 /* line 298, ../sass/site2.scss */
 #architecture h5 { font-size: 14px; color: #999; line-height: 24px; letter-spacing: 0.01em; }
 /* line 304, ../sass/site2.scss */
@@ -170,7 +167,7 @@ section .bar a:after { content: '\0025BE'; margin: 0 10px; }
 /* line 316, ../sass/site2.scss */
 footer { position: relative; z-index: 100; background-color: #e6e6e6; padding: 100px 0; box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px inset; }
 /* line 323, ../sass/site2.scss */
-footer polymer-ui-toolbar { margin-bottom: 50px; }
+footer polymer-ui-toolbar { margin-bottom: 56px; }
 /* line 327, ../sass/site2.scss */
 footer .paper-button { margin-right: 30px; }
 /* line 331, ../sass/site2.scss */

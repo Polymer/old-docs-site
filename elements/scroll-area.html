@@ -1,6 +1,6 @@
 <link rel="import" href="../components/polymer/polymer.html">
 
-<polymer-element name="scroll-area" attributes="disabled">
+<polymer-element name="scroll-area" attributes="disabled sidebar">
   <template>
     <link rel="stylesheet" href="../css/elements/scroll-area.css">
     <!-- <div class="{{ {scrolling: smallBannerSizeReached} | tokenList }}"><content></content></div> -->
@@ -28,38 +28,39 @@
     var previousScrollY = this.previousScrollY;
 
     var delta = currentScrollY - previousScrollY;
-    this.smallBannerSizeReached = this.siteBannerHeight - currentScrollY <= this.appBarHeight;  //80px;
+    this.smallBannerSizeReached = this.siteBannerHeight - currentScrollY < this.appBarHeight;  //80px;
 
     if (this.smallBannerSizeReached) {
       this.classList.add('scrolling');
-      this.header.classList.add('fixed');
+      this.header && this.header.classList.add('shrink');
  
       if (delta < 0) { // scrollback
         this.hasBackScrolled = true;
+        this.appBar.classList.add('down');
+      } else {
+        this.appBar.classList.remove('down');
       }
 
-      // Navbar moves in opposite direction of scroll.
-      this.appBarTranslateY -= delta;
-      this.appBarTranslateY = Math.min(
-          Math.max(this.appBarTranslateY, -this.appBarHeight), 0);
+      // Explicitly control app-bar position with scroll.
+      // // Navbar moves in opposite direction of scroll.
+      // this.appBarTranslateY -= delta;
+      // this.appBarTranslateY = Math.min(
+      //     Math.max(this.appBarTranslateY, -this.appBarHeight), 0);
 
-      this.appBar.style.WebkitTransform = 'translate3d(0,' + this.appBarTranslateY +'px,0)';
+      // this.appBar.style.WebkitTransform = 'translate3d(0,' + this.appBarTranslateY +'px,0)';
 
     } else {
       this.classList.remove('scrolling');
-      this.header.classList.remove('fixed');
-      this.appBarTranslateY = -this.appBarHeight;
+      this.header && this.header.classList.remove('shrink');
+      //this.appBarTranslateY = -this.appBarHeight;
 
       if (currentScrollY <= 0) {
         this.hasBackScrolled = false;
       }
 
       // Fix and shrink header when it hits the top of the page.
-      if (this.header.offsetTop - currentScrollY <= 0) {
-        // var scale = (this.siteBannerHeight - currentScrollY) /
-        //             (this.siteBannerHeight - this.header.offsetTop);
-        // this.header.style.WebkitTransform = 'scale(' + scale + ')';
-        this.header.classList.add('fixed');
+      if (this.header && this.header.offsetTop - currentScrollY <= 0) {
+        this.header.classList.add('shrink');
       }
     }
   }
@@ -68,16 +69,15 @@
     hasBackScrolled: false,
     latestKnownScrollY: 0,
     previousScrollY: 0,
-    appBarTranslateY: 0,
+    //appBarTranslateY: 0,
     smallBannerSizeReached: false,
     ticking: false,
-    appBar: null,
     disabled: false, // disabled scroll effects
+    sidebar: false,
     ready: function() {
       var siteBanner = this.querySelector('site-banner');
-      this.header = siteBanner.querySelector('header');
       this.appBar = siteBanner.querySelector('app-bar');
-      this.appBar.classList.toggle('bar');
+      this.header = siteBanner.querySelector('header');
 
       if (this.disabled) {
         return;
@@ -87,7 +87,7 @@
       this.async(function() {
         this.siteBannerHeight = siteBanner.offsetHeight;
         this.appBarHeight = this.appBar.offsetHeight;
-        this.appBarTranslateY = -this.appBarHeight;
+        //this.appBarTranslateY = -this.appBarHeight;
 
         // Handle pageload in middle of page.
         if (window.scrollY) {

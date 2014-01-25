@@ -166,7 +166,7 @@ polymer-ui-icon {
 }
 
 .bar {
-  padding: 16px;
+  padding: 16px !important;
   height: $siteBannerHeightMin;
   // max-height: $siteBannerHeightMin; // Firefox
 }
@@ -222,11 +222,11 @@ polymer-ui-toolbar {
   width: 100%;
 }
 
-#sitebanner {
-  z-index: 100;
-}
+// Homepage ---
+// #sitebanner {
+//   z-index: 100;
+// }
 
-// Homepage sections
 section .bar {
   @include justify-content(flex-end);
   @include align-items(center);

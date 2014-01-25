@@ -5,13 +5,15 @@
 </head>
 <body id="{{page.title | downcase | replace:' ','-' }}" unresolved>
 
-<nav id="sitebanner" class="main-bg bar sticky">
-  <polymer-flex-layout align="center" justify="end"></polymer-flex-layout>
-  <a href="/" flexbox><img src="/images/logos/lockup.svg"></a>
-  {% include top-nav.html %}
-</nav>
+<scroll-area>
+  <site-banner class="main-bg bar sticky">
+    <polymer-flex-layout align="center" justify="start"></polymer-flex-layout>
+    <a href="/" flexbox><img src="/images/logos/lockup.svg"></a>
+    {% include top-nav.html %}
+  </site-banner>
 
-<main>{{content}}</main>
+  <main>{{content}}</main>
+</scroll-area>
 
 {% include footer.html %}
 

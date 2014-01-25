@@ -172,13 +172,6 @@ function ajaxifySite() {
   });
 }
 
-
-// console.time('WebComponentsReady');
-// document.addEventListener('WebComponentsReady', function(e) {
-//   console.timeEnd('WebComponentsReady');
-// });
-
-
 document.addEventListener('DOMContentLoaded', function(e) {
   initPage();
 

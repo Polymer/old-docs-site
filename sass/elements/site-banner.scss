@@ -29,6 +29,7 @@
 /* @polyfill :host header */
 ::content header {
   padding: 22px 0 40px 0;
+  width: 100%;
 }
 
 /* @polyfill header h1 */
@@ -43,14 +44,14 @@
   transition: -webkit-transform 100ms ease-in-out;
 }
 
-/* @polyfill :host header.fixed h1 */
-::content header.fixed h1 {
+/* @polyfill :host header.shrink h1 */
+::content header.shrink h1 {
   -webkit-transform: scale(0.7);
   transform: scale(0.7);
 }
 
-/* @polyfill :host header.fixed */
-::content header.fixed {
+/* @polyfill :host header.shrink */
+::content header.shrink {
   position: fixed;
 }
 

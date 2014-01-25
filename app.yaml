@@ -129,10 +129,10 @@ skip_files:
 - ^(.*/)?node_modules/.*
 - ^(.*/)?third_party/closure/.*
 - ^scripts/.*
-- ^(.*/)?\.md
+- ^.*\.md|markdown
 
 # few extras to reduce number of files uploaded.
 - ^(.*/)?.*\.sublime-project
 - ^(.*/)?.*\.sublime-workspace
 - ^(.*/)?platform-dev/workbench/.*
-- ^(.*/)?(AUTHORS|LICENSE|PATENTS|COPYING)$
+- ^(.*/)?(README|AUTHORS|LICENSE|PATENTS|COPYING|CONTRIBUTING)$
