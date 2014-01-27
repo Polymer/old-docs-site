@@ -4,10 +4,11 @@ Polymer docs are mostly in Markdown with some HTML. [Jekyll][jekyll] is used to 
 
 We use Jekyll 1.4.2+ and [Grunt][grunt] to generate the documentation. You'll need to install the requirements before working on the docs (these instructions assume [NPM is already installed](http://nodejs.org/download/)):
 
-    sudo gem install jekyll
-    sudo gem install kramdown
-    sudo npm install -g grunt-cli
-    npm install
+    gem install jekyll
+    gem install kramdown
+    npm install -g grunt-cli
+
+**Note:** If you receive permission warnings, you may need to run the above tasks with `sudo`.
 
 You'll also need the App Engine SDK to run the dev_appserver and preview the docs locally. [Download the SDK](https://developers.google.com/appengine/downloads).
 
@@ -17,26 +18,14 @@ Checkout this repo:
 
     git clone https://github.com/Polymer/docs.git --recursive
 
-Create a directory `polymer-all/projects` and run the `pull-all-projects.sh` script in that directory:
+Run the setup script:
 
-    cd docs/polymer-all
-    mkdir projects; cd projects
-    ../tools/bin/pull-all-projects.sh
+    cd docs
+    ./scripts/setup.sh
 
-This populates `projects` with a bunch of repositories. You'll periodically need to re-run `pull-all-projects.sh` whenever the site is released.
+This will run `npm install`, pull down any external dependencies, and kickoff the `grunt docs` task. **Note:** these scripts can take some time to install.
 
-Next, create a `components` folder in the top level `docs` directory and run `pull-all-polymer.sh` and `pull-all-elements.sh` in it:
-
-    cd ../..
-    mkdir components; cd components
-    ../polymer-all/tools/bin/pull-all-polymer.sh
-    ../polymer-all/tools/bin/pull-all-elements.sh
-
-**Note:** these scripts can take some time to download.
-
-You should now be able to build the docs successfully. Run this in the main folder:
-
-    grunt docs
+During the setup process the `polymer-all/projects` directory is populated for you. Whenever the site is released you'll need to re-run `polymer-all/tools/bin/pull-all-projects.sh` in order to refresh this directory. See the [Polymer release](#polymer-release) section for more details.
 
 ## Making edits and previewing changes
 
@@ -54,11 +43,7 @@ Once your changes look good, `git commit` them and push.
 
 **Note**: only project owners can publish the documentation.
 
-If you have things checked out correctly in `components` and `polymer-all`, you should be able to generate the prodcution documentation using:
-
-    grunt docs
-
-It's a good idea to do this before pushing the docs, as it runs a number of grunt tasks. Verify things went well.
+It's a good idea to run `grunt docs` before pushing the docs, as it runs a number of grunt tasks. Verify things went well.
 
 Last step is to push the docs to App Engine. In your `Polymer/docs` directory, run:
 
