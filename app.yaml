@@ -106,6 +106,12 @@ handlers:
 #     Access-Control-Allow-Origin: "*"
 
 # New mappings for Bower
+- url: /samples/components
+  static_dir: samples/components
+  http_headers:
+    Access-Control-Allow-Origin: "*"
+
+# New mappings for Bower
 - url: /components
   static_dir: components
   http_headers:

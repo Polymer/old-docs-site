@@ -138,9 +138,9 @@ function initPage(opt_inDoc) {
 function ajaxifySite() {
   var docsMenu = document.querySelector('docs-menu');
 
-  document.addEventListener('WebComponentsReady', function(e) {
-    docsMenu.ajaxify = true;
-  });
+  // document.addEventListener('polymer-ready', function(e) {
+  //   docsMenu.ajaxify = true;
+  // });
 
   document.addEventListener('click', function(e) {
     var viableLink = false;
