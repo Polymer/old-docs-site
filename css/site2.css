@@ -91,7 +91,7 @@ a.paper-button { color: inherit; }
 /* line 133, ../sass/site2.scss */
 .paper-button[sink] { padding: 7px 10px; transition: none; }
 /* line 137, ../sass/site2.scss */
-.paper-button[sink]:hover, .paper-button[sink].active { box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1) inset, 0 -1px 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0px rgba(0, 0, 0, 0.1) inset; background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.04)); background: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.04)); }
+.paper-button[sink]:hover, .paper-button[sink].active { box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2) inset, 0 -1px 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0px rgba(0, 0, 0, 0.2) inset; background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 0.08) 40%); background: linear-gradient(top, rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 0.08) 40%); }
 /* line 144, ../sass/site2.scss */
 .paper-button a { font-size: 13px; line-height: 24px; letter-spacing: 0.06em; color: inherit; vertical-align: middle; opacity: 0.6; color: black; margin-left: 5px; }
 
