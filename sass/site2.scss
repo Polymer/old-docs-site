@@ -4,6 +4,7 @@
 @import "compass/css3/transform";
 
 @import "spec";
+@import "polymer";
 
 @import url(//fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,800|Source+Code+Pro);
 // @import url(//fonts.googleapis.com/css?family=Roboto:400,300,500,700,300italic|Source+Code+Pro);
@@ -72,28 +73,6 @@ a[disabled] {
 
 /* -------------------------------------------------------------------------- */
 
-.platform {
-  color: $platform-color;
-  // fill: $platform-color;
-}
-
-.elements-using {
-  color: $using-elements-color;
-  // fill: $using-elements-color;
-}
-
-.elements-creating {
-  color: $creating-elements-color;
-  // fill: $creating-elements-color;
-}
-
-.main-bg {
-  background-color: $main-bg;
-}
-
-.main-purple {
-  background-color: $main-purple;
-}
 
 a.paper-button {
   color: inherit;

@@ -1,0 +1,24 @@
+@import "vars";
+
+.platform {
+  color: $platform-color;
+  // fill: $platform-color;
+}
+
+.elements-using {
+  color: $using-elements-color;
+  // fill: $using-elements-color;
+}
+
+.elements-creating {
+  color: $creating-elements-color;
+  // fill: $creating-elements-color;
+}
+
+.main-bg {
+  background-color: $main-bg;
+}
+
+.main-purple {
+  background-color: $main-purple;
+}
