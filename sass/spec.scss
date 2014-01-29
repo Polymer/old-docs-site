@@ -8,9 +8,9 @@ $font-size-meta: 12px;
 $font-size-secondary: 14px;
 $font-size-body: 16px;
 $font-size-header: 20px;
-$font-size-display: 36px;
+$font-size-display: 40px;
 
-$line-height-body: 24pt;
+$line-height-body: 24px;
 
 $link-color: #3367d6;
 
@@ -20,14 +20,14 @@ $gray-medium: #fafafa;
 .meta {
   font-size: $font-size-meta;
   font-weight: normal;
-  line-height: 20pt;
+  line-height: 20px;
   // letter-spacing: 20pt;
 }
 
 .secondary {
   font-size: $font-size-secondary;
   font-weight: normal;
-  line-height: 20pt;
+  line-height: 20px;
   // letter-spacing: 20pt;
 }
 
@@ -39,22 +39,22 @@ body {
   // letter-spacing: 0;
 }
 
-.header {
-  font-size: $font-size-header;
-  font-weight: 600;
-  // letter-spacing: 0;
-  line-height: 24pt;
-}
+// .header {
+//   font-size: $font-size-header;
+//   font-weight: 600;
+//   // letter-spacing: 0;
+//   line-height: 24px;
+// }
 
-.display, h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5 {
   font-size: $font-size-display;
   font-weight: 300;
-  // letter-spacing: -10pt;
-  line-height: 44pt;
+  letter-spacing: -0.01em;
+  line-height: 48px;
   margin: 0;
 }
 h2 {
-  font-size: $font-size-display - 6;
+  font-size: $font-size-display - 4;
 }
 h3 {
   font-size: $font-size-display - 12;

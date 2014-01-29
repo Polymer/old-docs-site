@@ -74,17 +74,17 @@ a[disabled] {
 
 .platform {
   color: $platform-color;
-  fill: $platform-color;
+  // fill: $platform-color;
 }
 
 .elements-using {
   color: $using-elements-color;
-  fill: $using-elements-color;
+  // fill: $using-elements-color;
 }
 
 .elements-creating {
   color: $creating-elements-color;
-  fill: $creating-elements-color;
+  // fill: $creating-elements-color;
 }
 
 .main-bg {
@@ -131,7 +131,7 @@ a.paper-button {
 
   // Inset highlight
   &[sink] {
-    padding: 5px 10px;
+    padding: 7px 10px;
     transition: none;
 
     &:hover, &.active {
@@ -143,12 +143,13 @@ a.paper-button {
 
   a {
     font-size: 13px;
-    // line-height: 24px;
-    // letter-spacing: 0.06em;
+    line-height: 24px;
+    letter-spacing: 0.06em;
     color: inherit;
     vertical-align: middle;
     opacity: 0.6;
     color: rgb(0, 0, 0);
+    margin-left: 5px;
   }
 }
 
@@ -173,7 +174,7 @@ polymer-ui-icon {
 
 .panel {
   @extend .content-padding;
-  padding: 174px 0;
+  padding: 150px 0;
   @include display-flex;
 
   $img-margin: 88px;
@@ -198,6 +199,7 @@ polymer-ui-icon {
 
     p {
       margin: $content-padding 0;
+      line-height: 32px;
     }
   }
 
@@ -255,7 +257,7 @@ section .bar {
     @include align-items(stretch);
     //@include justify-content(space-between);
   }
-  .paper-button {
+  .paper-button:not(:last-child) {
     margin-right: 30px;
   }
 }
@@ -270,7 +272,7 @@ section .bar {
     }
   }
   summary {
-    color: $using-elements-color;
+    color: #fff;
   }
   .paper-button {
     //background: rgba(255,255,255,0.1) !important;
@@ -300,10 +302,13 @@ section .bar {
     color: #999;
     line-height: 24px;
     letter-spacing: 0.01em;
+    margin-top: 6px;
+    margin-bottom: 18px;
   }
   p {
     font-size: $font-size-secondary;
     line-height: $line-height-body;
+    margin-top: 0;
   }
   img {
     height: 92px;

@@ -88,12 +88,15 @@
         this.siteBannerHeight = siteBanner.offsetHeight;
         this.appBarHeight = this.appBar.offsetHeight;
         //this.appBarTranslateY = -this.appBarHeight;
-
-        // Handle pageload in middle of page.
-        if (window.scrollY) {
-          onScroll_.bind(this)();
-        }
       });
+
+      // this.siteBannerHeight = 286;
+      // this.appBarHeight = 80;
+
+      // Handle pageload in middle of page.
+      if (window.scrollY) {
+        onScroll_.bind(this)();
+      }
 
       window.addEventListener('scroll', onScroll_.bind(this), false);      
     },
