@@ -1,5 +1,5 @@
 application: polymer-project
-version: 20140127
+version: 20140128
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -105,7 +105,6 @@ handlers:
 #   http_headers:
 #     Access-Control-Allow-Origin: "*"
 
-# New mappings for Bower
 - url: /samples/components
   static_dir: samples/components
   http_headers:

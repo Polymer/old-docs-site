@@ -197,61 +197,6 @@ docs-menu {
   max-width: 24%;
 }
 
-polymer-ui-nav-arrow {
-  right: -1px !important;
-}
-
-polymer-ui-menu > polymer-ui-menu-item {
-  display: block !important;
-}
-  
-polymer-ui-submenu-item {
-  padding: 0 10px 0 0;
-  font-weight: 600;
-
-  polymer-ui-submenu-item {
-    color: rgb(0, 136, 204);
-  }
-
-  &.icon {
-    &::before {
-      font-family: "FontAwesome";
-    }
-  }
-  &.core::before {
-    content: "\f0c3";
-  }
-  &.foundation::before {
-    content: "\f085";
-  }
-  &.elements::before {
-    content: "\f12e";
-  }
-}
-
-polymer-ui-menu-item {
-  display: inline-block !important;
-  min-width: 90%;
-  font-weight: 600;
-
-  &:hover {
-    background-color: #eee;
-  }
-
-  // &.polymer-selected {
-  //   background-color: #eee;
-  // }
-
-  a {
-    width: 100%;
-    display: inline-block;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
-}
-
 // polymer-ui-overlay {
 //   &.polymer-veiled {
 //     display: none;

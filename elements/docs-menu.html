@@ -6,6 +6,70 @@
 
 <polymer-element name="docs-menu" attributes="ajaxify">
 <template>
+  <style>
+  :host {
+    overflow: hidden;
+  }
+  polymer-ui-menu-item {
+    font-weight: 600;
+  }
+  a {
+    text-decoration: none;
+    color: initial;
+    width: 100%;
+    display: inline-block;
+  }
+  polymer-ui-nav-arrow {
+    right: -1px !important;
+    overflow: hidden;
+  }
+
+  polymer-ui-menu > polymer-ui-menu-item {
+    display: block !important;
+  }
+  
+  polymer-ui-submenu-item {
+    padding: 0 10px 0 0;
+    font-weight: 600;
+  }
+
+  polymer-ui-submenu-item polymer-ui-submenu-item {
+    color: rgb(0, 136, 204);
+  }
+
+  polymer-ui-submenu-item.icon::before {
+    font-family: "FontAwesome";
+  }
+  polymer-ui-submenu-item.core::before {
+    content: "\f0c3";
+  }
+  polymer-ui-submenu-item.foundation::before {
+    content: "\f085";
+  }
+  polymer-ui-submenu-itemelements::before {
+    content: "\f12e";
+  }
+
+  polymer-ui-menu-item, :host ^^ polymer-ui-menu-item {
+    display: inline-block !important;
+    min-width: 90%;
+    font-weight: 600;
+  }
+  polymer-ui-menu-item:hover {
+    background-color: #eee;
+  }
+
+.core {
+  color: rgb(255, 209, 77);
+}
+.foundation {
+  color: rgb(205, 55, 45);
+}
+.elements {
+  color: rgb(13, 168, 97);
+}
+
+  </style>
   <polymer-ui-menu id="menu" selectedItem="{{item}}" on-click="{{onClick}}">
     <polymer-ui-submenu-item id="gettingstarted" label="Getting started">
       <polymer-ui-menu-item><a href="/getting-the-code.html">Get the code</a></polymer-ui-menu-item>
