@@ -153,9 +153,7 @@ _Binding to DOM values:_
 
 * [Binding to text values](https://github.com/Polymer/TemplateBinding/tree/master/examples/how_to/bind_to_text.html): How to insert values into the DOM that render as text.
 * [Binding to attributes](https://github.com/Polymer/TemplateBinding/tree/master/examples/how_to/bind_to_attributes.html): How to insert values into element attributes
-* [Conditional
-* attributes](https://github.com/Polymer/TemplateBinding/tree/master/examples/how_to/conditional_attributes.html): How
-* to bind to attributes such that the attribute is only present if the binding value is "truthy".
+* [Conditional attributes](https://github.com/Polymer/TemplateBinding/tree/master/examples/how_to/conditional_attributes.html): How to bind to attributes such that the attribute is only present if the binding value is "truthy".
 * [Binding to input elements](https://github.com/Polymer/TemplateBinding/tree/master/examples/how_to/bind_to_input_elements.html): How to bind bi-directionally with input elements.
 * [Custom bindings](https://github.com/Polymer/TemplateBinding/tree/master/examples/how_to/custom_syntax.html): How to implement a custom element which has a specialized interpretation of a binding.
 
