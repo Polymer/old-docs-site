@@ -138,7 +138,7 @@ function initPage(opt_inDoc) {
 function ajaxifySite() {
   var docsMenu = document.querySelector('docs-menu');
 
-  document.addEventListener('WebComponentsReady', function(e) {
+  document.addEventListener('polymer-ready', function(e) {
     docsMenu.ajaxify = true;
   });
 
@@ -198,6 +198,7 @@ document.querySelector('[data-twitter-follow]').addEventListener('click', functi
 });
 
 // -------------------------------------------------------------------------- //
+
 
 // // Control whether the site is ajax or static.
 // var AJAXIFY_SITE = !navigator.userAgent.match('Mobile|Android');
