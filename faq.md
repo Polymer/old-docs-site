@@ -313,7 +313,7 @@ is a good thing and will generally make things better.
 
 ### Is there a registry of components I can play with? {#registry}
 
-Not yet, but we think that's a great idea.
+At http://customelements.io, you can find a growing registry of third party components and contribute yours too.
 
 ### I get errors when trying to use external stylesheets in my element definition or using `<link rel="import">` with external files. {#externalsheets}
 
