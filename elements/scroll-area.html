@@ -83,15 +83,15 @@
         return;
       }
 
-      // // Give DOM some time to do layout.
-      // this.async(function() {
-      //   this.siteBannerHeight = siteBanner.offsetHeight;
-      //   this.appBarHeight = this.appBar.offsetHeight;
-      //   //this.appBarTranslateY = -this.appBarHeight;
-      // });
+      // Give DOM some time to do layout.
+      this.async(function() {
+        this.siteBannerHeight = siteBanner.offsetHeight;
+        this.appBarHeight = this.appBar.offsetHeight;
+        //this.appBarTranslateY = -this.appBarHeight;
+      });
 
-      this.siteBannerHeight = 286;
-      this.appBarHeight = 80;
+      // this.siteBannerHeight = 286;
+      // this.appBarHeight = 80;
 
       // Handle pageload in middle of page.
       if (window.scrollY) {

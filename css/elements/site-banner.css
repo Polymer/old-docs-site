@@ -24,12 +24,12 @@
 
 /* @polyfill :host header.shrink */
 /* line 54, ../../sass/elements/site-banner.scss */
-::content header.shrink { position: fixed; }
+::content header.shrink { position: fixed; pointer-events: none; }
 
 /* @polyfill header a */
-/* line 59, ../../sass/elements/site-banner.scss */
+/* line 60, ../../sass/elements/site-banner.scss */
 ::content a { color: currentcolor; }
 
 /* @polyfill header summary */
-/* line 65, ../../sass/elements/site-banner.scss */
+/* line 66, ../../sass/elements/site-banner.scss */
 ::content summary { margin-top: 20px; opacity: 0.6; }

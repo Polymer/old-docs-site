@@ -41,11 +41,73 @@ pre, code {
   overflow: auto;
 }
 
+ul {
+  padding-left: 0;
+  list-style: none;
+
+  li::before {
+    content: '·';
+    color: $secondary-heading-color;
+    margin-left: -15px;
+    position: absolute;
+    // font-size: 26px;
+  }
+
+  ul {
+    margin-left: 30px;
+    // font-size: initial;
+  }
+}
+
+td {
+  padding: 0;
+  margin: 0;
+  vertical-align: top;
+  padding: 12px 0;
+}
+
+th {
+  text-transform: uppercase;
+  font-size: 14px;
+  text-align: left;
+  padding-right: 40px;
+  border-bottom: 1px solid $main-bg;
+  font-weight: 600;
+  line-height: 48px;
+}
+
+b, strong {
+  font-weight: 600;
+}
+
 /* Help catch template errors. */
 .error {
   border: 3px solid red;
   background-color: rgba(255,0,0,0.3);
   padding: 5px;
+}
+
+.alert {
+  color: $secondary-heading-color;
+  border: 1px solid $main-bg;
+  font-size: $font-size-secondary;
+  padding: 10px 15px;
+
+  b, strong {
+    margin-right: 5px;
+  }
+
+  &.alert-success {
+    b, strong {
+      color: green;
+    }
+  }
+
+  &.alert-error {
+    b, strong {
+      color: $warning-color;
+    }
+  }
 }
 
 /* Remove empty p generated from markdown conversion. */
@@ -129,6 +191,7 @@ a.paper-button {
     opacity: 0.6;
     color: rgb(0, 0, 0);
     margin-left: 5px;
+    text-decoration: none;
   }
 }
 
@@ -149,6 +212,10 @@ polymer-ui-icon {
   padding: 16px !important;
   height: $siteBannerHeightMin;
   // max-height: $siteBannerHeightMin; // Firefox
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .panel {
@@ -278,7 +345,7 @@ section .bar {
   }
   h5 {
     font-size: $font-size-secondary;
-    color: #999;
+    color: $secondary-heading-color;
     line-height: 24px;
     letter-spacing: 0.01em;
     margin-top: 6px;

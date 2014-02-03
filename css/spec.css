@@ -29,4 +29,7 @@ button { font-size: 12px; font-weight: normal; text-transform: uppercase; }
 a { font-size: inherit; font-weight: normal; color: #3367d6; text-decoration: none; }
 
 /* line 85, ../sass/spec.scss */
+a:hover { text-decoration: underline; }
+
+/* line 89, ../sass/spec.scss */
 code, pre { font-family: "Source Code Pro", Monaco, Menlo, Consolas, "Courier New", monospace; }

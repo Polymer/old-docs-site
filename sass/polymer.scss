@@ -22,3 +22,42 @@
 .main-purple {
   background-color: $main-purple;
 }
+
+code, pre {
+  color: #9f499b;
+  // padding: 10px 5px;
+}
+
+.prettyprint {
+  // background-color: #1f2036;
+  margin: 30px 0;
+
+  .typ {
+    // color: #bec945;
+    color: #6b499f;
+  }
+  .pun {
+    color: #5c6bc0;
+  }
+  .str {
+    color: #ff4081;
+  }
+  .pln {
+    color: #7986cb;
+  }
+  .kwd {
+    color: #d61a7f;
+  }
+  .tag {
+
+  }
+  .atn {
+    color: #6b499f;
+  }
+  .atv {
+    color: #7986cb;
+  }
+  .com {
+    color: #8a8a8a;
+  }
+}

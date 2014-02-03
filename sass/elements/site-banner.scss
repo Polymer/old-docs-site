@@ -53,6 +53,7 @@
 /* @polyfill :host header.shrink */
 ::content header.shrink {
   position: fixed;
+  pointer-events: none;
 }
 
 /* @polyfill header a */
