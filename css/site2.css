@@ -228,39 +228,45 @@ footer #copyright a { color: #666666; }
 
 /* line 403, ../sass/site2.scss */
 #content-container .article { margin-bottom: 2em; }
-
+/* line 407, ../sass/site2.scss */
+#content-container h2 { margin-top: 40px; }
 /* line 410, ../sass/site2.scss */
+#content-container h3 { margin-top: 30px; }
+/* line 413, ../sass/site2.scss */
+#content-container h4 { margin-top: 20px; }
+
+/* line 420, ../sass/site2.scss */
 #sidebar { position: fixed; -webkit-transform: translateZ(0); -moz-transform: translateZ(0); -ms-transform: translateZ(0); -o-transform: translateZ(0); transform: translateZ(0); height: 100%; width: 248px; background-color: #eeeeee; box-shadow: rgba(0, 0, 0, 0.14902) 1px 1px 1px 0px; z-index: 10; }
-/* line 421, ../sass/site2.scss */
+/* line 431, ../sass/site2.scss */
 #sidebar docs-menu { padding: 0 16px; }
-/* line 425, ../sass/site2.scss */
+/* line 435, ../sass/site2.scss */
 #sidebar .logo { display: -webkit-box; display: -webkit-flex; display: -moz-flex; display: -ms-flex; display: -o-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; -moz-align-items: center; -ms-align-items: center; -o-align-items: center; align-items: center; height: 80px; margin-bottom: 24px; padding-left: 16px; }
 
-/* line 435, ../sass/site2.scss */
+/* line 445, ../sass/site2.scss */
 .edit-on-github { /*position: absolute;
 top: 0;
 right: 0;*/ float: right; }
 
-/* line 442, ../sass/site2.scss */
+/* line 452, ../sass/site2.scss */
 .permalink { display: none; margin-left: 5px; vertical-align: top; }
 
-/* line 447, ../sass/site2.scss */
+/* line 457, ../sass/site2.scss */
 .has-permalink:hover .permalink { display: initial; }
 
-/* line 450, ../sass/site2.scss */
+/* line 460, ../sass/site2.scss */
 .no-permalink .permalink { display: none !important; }
 
-/* line 457, ../sass/site2.scss */
+/* line 467, ../sass/site2.scss */
 .forversion { float: right; color: #ccc; font-style: italic; }
 
-/* line 462, ../sass/site2.scss */
+/* line 472, ../sass/site2.scss */
 .article .byline { font-size: smaller; color: #ccc; }
 
-/* line 467, ../sass/site2.scss */
+/* line 477, ../sass/site2.scss */
 .author { margin-bottom: 20px; }
-/* line 470, ../sass/site2.scss */
+/* line 480, ../sass/site2.scss */
 .author > p { display: inline-block; margin: 0; }
-/* line 474, ../sass/site2.scss */
+/* line 484, ../sass/site2.scss */
 .author > p:first-of-type { vertical-align: top; }
-/* line 479, ../sass/site2.scss */
+/* line 489, ../sass/site2.scss */
 .author img { border-radius: 7px; margin-right: 5px; height: 40px; width: 40px; }
