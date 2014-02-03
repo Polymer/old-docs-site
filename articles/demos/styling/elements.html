@@ -46,13 +46,11 @@
     <style>
       :host { display: block; }
     </style>
-    <div class="red">Shadow DOM: red when applyAuthorStyles=true</div>
+    <div class="red">Shadow DOM: shouldn't be red</div>
     <content select="div"></content>
   </template>
   <script>
-    Polymer('x-foo-example2', {
-      applyAuthorStyles: true
-    });
+    Polymer('x-foo-example2');
   </script>
 </polymer-element>
 

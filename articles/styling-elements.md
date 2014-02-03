@@ -259,16 +259,14 @@ event that signifies all elements have been upgraded.
     <x-foo unresolved></x-foo>
 
 
-## Inheriting / resetting outside styles
+## Resetting outside styles
 
-As a convenience, {{site.project_title}} allows you to set Shadow DOM's `applyAuthorStyles` and `resetStyleInheritance` properties directly when constructing the element's `prototype`.
-However, please keep in mind that {{site.project_title}} does not attempt to polyfill `applyAuthorStyles` or `resetStyleInheritance`.
+As a convenience, {{site.project_title}} allows you to set Shadow DOM's `resetStyleInheritance` property directly when constructing the element's `prototype`. However, please keep in mind that {{site.project_title}} does not attempt to polyfill `resetStyleInheritance`.
 
-Take on the look and feel of the page with `applyAuthorStyles`:
+To turn off inheritable styles, set `resetStyleInheritance`:
 
     Polymer('x-foo', {
-      applyAuthorStyles: true,
-      //resetStyleInheritance: true,
+      resetStyleInheritance: true,
       ready: function() { ... },
       ...
     });
@@ -276,7 +274,6 @@ Take on the look and feel of the page with `applyAuthorStyles`:
 Alternatively, you can set either of these at any time directly on the shadowRoot:
 
     ready: function() {
-      this.shadowRoot.applyAuthorStyles = true;
       this.shadowRoot.resetStyleInheritance = false; // default.
     }
 
@@ -292,16 +289,11 @@ even if those nodes are distributed into Shadow DOM. Basically, going into an in
       }
     </style>
 
-    <polymer-element name="x-foo">
+    <polymer-element name="x-foo" noscript>
       <template>
-        <div class="red">Shadow DOM: red when applyAuthorStyles=true</div>
+        <div class="red">Shadow DOM: shouldn't be red</div>
         <content select="div"></content>
       </template>
-      <script>
-        Polymer('x-foo', {
-          applyAuthorStyles: true
-        });
-      </script>
     </polymer-element>
 
     <x-foo>
@@ -323,19 +315,12 @@ even if those nodes are distributed into Shadow DOM. Basically, going into an in
   <div>Light DOM: green</div>
 </x-foo-example2>
 
-The element's Shadow DOM `<div class="red">` matches the `.red` class when
-`applyAuthorStyles` is true. When it's false, we're not "applying the authors styles"
-and it doesn't match. The distributed `<div>Light DOM: green</div>` remains green because
+The element's Shadow DOM `<div class="red">` does not match the `.red` class.
+The distributed `<div>Light DOM: green</div>` remains green because
 it's logically still in the parent page and therefore matching `x-foo > div`.
 It's simple being rendered elsewhere (over in Shadow DOM land).
 
-**Gotcha**: Even with `.applyAuthorStyles` set, selectors don't cross Shadow DOM boundaries.
-Styles on the outside only apply when the selector in question matches entirely
-in or outside the shadowRoot. For example, `x-foo .red { color: red; }` does not
-match the inner `<div class="red">`.
-{: .alert .alert-info }
-
-For more information on `applyAuthorStyles` and `resetStyleInheritance`, see [Shadow DOM 201 - CSS and Styling](http://www.html5rocks.com/tutorials/webcomponents/shadowdom-201/#toc-style-inheriting).
+For more information on `resetStyleInheritance`, see [Shadow DOM 201 - CSS and Styling](http://www.html5rocks.com/tutorials/webcomponents/shadowdom-201/#toc-style-inheriting).
 
 ## Styling internal markup {#style-shadowdom}
 

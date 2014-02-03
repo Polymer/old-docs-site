@@ -13,10 +13,9 @@ In addition to the [standard features for styling Custom Elements](/articles/sty
 
 ## Inheriting / resetting outside styles
 
-{{site.project_title}} has first-class support for Shadow DOM's `applyAuthorStyles` and `resetStyleInheritance`. To use with your element, define either in your `prototype`:
+{{site.project_title}} has first-class support for Shadow DOM's `resetStyleInheritance`. To use with your element, define it in your `prototype`:
 
     Polymer('x-foo', {
-      applyAuthorStyles: true,
       resetStyleInheritance: true
       ...
     });
