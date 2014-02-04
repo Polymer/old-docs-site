@@ -83,11 +83,6 @@
   </template>
   <script>
     Polymer('demo-tabs', {
-      // selectedIndex: -1,
-      ready: function() {
-        //this.selectedIndex = 0;
-        //this.selectedIndexChanged();
-      },
       selectedIndexChanged: function(oldVal) {
         this.panels = [].slice.call(this.$.contentpanels.getDistributedNodes());
 
@@ -96,12 +91,9 @@
         }
 
         [].forEach.call(this.panels, function(panel, i) {
-          //panel.removeAttribute('selected');
           panel.selected = false;
         });
 
-        //this.panels.selected = this.selectedIndex;
-        //this.panels[this.panels.selected].setAttribute('selected', '');
         this.panels[this.selectedIndex].selected = true;
       }
     });
