@@ -125,7 +125,7 @@ Now that you've got the basic setup, it's time to start using the features!
 web components. Below are a few of the concepts. Consult the [API referencee](/docs/polymer/polymer.html) for
 detailed information on each of these features.
 
-### Add properties/methods to your component
+### Add properties and methods {#propertiesmethods}
 
 If you need to add public methods/properties to your element,
 include a `<script>` that calls `{{site.project_title}}('your-tagname')`.

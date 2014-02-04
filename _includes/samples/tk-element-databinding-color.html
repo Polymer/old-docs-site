@@ -1,20 +1,14 @@
 <link rel="import" href="/samples/components/tk-element-databinding-color.html">
 
-<!-- tk-element-databinding-color.html -->
-<div class="row-fluid">
-  <div class="span8">
-<ul id="myTab" class="nav nav-tabs">
-  <li class="active"><a href="#element5" data-toggle="tab">tk-element-databinding-color.html</a></li>
-  <li><a href="#index5" data-toggle="tab">index.html</a></li>
-</ul>
+<link rel="import" href="/elements/demo-tabs.html">
 
-<div class="tab-content">
-  <div class="tab-pane active" id="element5">
+<demo-tabs selectedIndex="0">
+  <demo-tab heading="tk-element-databinding-color.html">
 {% highlight html %}
 {% include_external samples/components/tk-element-databinding-color.html %}
 {% endhighlight %}
-  </div>
-  <div class="tab-pane" id="index5">
+  </demo-tab>
+  <demo-tab heading="index.html">
 {% highlight html %}
 <!DOCTYPE html>
 <html>
@@ -27,14 +21,9 @@
   </body>
 </html>
 {% endhighlight %}
-  </div>
-</div>
-</div>
+  </demo-tab>
+</demo-tabs>
 
-  <div class="span4">
-  <h5>Result</h5>
-<div class="well">
-  <tk-element-databinding-color></tk-element-databinding-color>
-</div>
-</div>
-</div>
+<h5>Result</h5>
+
+<tk-element-databinding-color></tk-element-databinding-color>

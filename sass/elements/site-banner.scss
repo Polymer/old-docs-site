@@ -50,6 +50,11 @@
   transform: scale(0.7);
 }
 
+/* @polyfill :host header.shrink summary */
+::content header.shrink summary {
+  visibility: hidden;
+}
+
 /* @polyfill :host header.shrink */
 ::content header.shrink {
   position: fixed;

@@ -1,0 +1,109 @@
+<link rel="import" href="/components/polymer-selector/polymer-selector.html">
+<link rel="import" href="/components/polymer/polymer.html">
+
+<polymer-element name="demo-tab" attributes="heading">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      /* @polyfill :host > * */
+      ::content > * {
+        display: none;
+      }
+      /* @polyfill :host.selected > * */
+      :host(.selected) ::content > * {
+        display: block;
+      }
+    </style>
+    <content></content>
+  </template>
+  <script>
+    Polymer('demo-tab', {
+      heading: '',
+      selected: false,
+      selectedChanged: function() {
+        this.selected ? this.classList.add('selected') :
+                        this.classList.remove('selected');
+      }
+    });
+  </script>
+</polymer-element>
+
+<polymer-element name="demo-tabs" attributes="selectedIndex">
+  <template>
+    <link rel="stylesheet" href="../css/polymer.css">
+    <style>
+      :host {
+        display: block;
+      }
+      .tab-strip {
+        height: 60px;
+        white-space: nowrap;
+      }
+      .tab-strip span {
+        line-height: 60px;
+        text-align: center;
+        padding: 0px 12px;
+        cursor: pointer;
+        opacity: 0.4;
+        background: #5c6bc0; /*rgb(85, 153, 255);*/
+        color: white;
+      }
+      .tab-wrapper {
+        display: flex;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+      .polymer-selected {
+        opacity: 1 !important;
+      }
+      #contents {
+        padding: 20px;
+        /*min-height: 250px;*/
+        overflow: auto;
+      }
+      /* @polyfill :host pre */
+      ::content pre {
+        margin: 0 !important;
+      }
+    </style>
+    <div id="container">
+      <div class="tab-strip">
+        <polymer-selector selected="{{selectedIndex}}" class="tab-wrapper">
+          <template repeat="{{panel in panels}}">
+            <span>{{panel.heading}}</span>
+          </template>
+        </polymer-selector>
+      </div>
+      <div id="contents" class="main-bg">
+        <content id="contentpanels" select="demo-tab"></content>
+      </div>
+    </div>
+  </template>
+  <script>
+    Polymer('demo-tabs', {
+      // selectedIndex: -1,
+      ready: function() {
+        //this.selectedIndex = 0;
+        //this.selectedIndexChanged();
+      },
+      selectedIndexChanged: function(oldVal) {
+        this.panels = [].slice.call(this.$.contentpanels.getDistributedNodes());
+
+        if (!this.panels.length) {
+          return;
+        }
+
+        [].forEach.call(this.panels, function(panel, i) {
+          //panel.removeAttribute('selected');
+          panel.selected = false;
+        });
+
+        //this.panels.selected = this.selectedIndex;
+        //this.panels[this.panels.selected].setAttribute('selected', '');
+        this.panels[this.selectedIndex].selected = true;
+      }
+    });
+  </script>
+</polymer-element>

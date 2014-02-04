@@ -22,14 +22,18 @@
 /* line 48, ../../sass/elements/site-banner.scss */
 ::content header.shrink h1 { -webkit-transform: scale(0.7); transform: scale(0.7); }
 
-/* @polyfill :host header.shrink */
+/* @polyfill :host header.shrink summary */
 /* line 54, ../../sass/elements/site-banner.scss */
+::content header.shrink summary { visibility: hidden; }
+
+/* @polyfill :host header.shrink */
+/* line 59, ../../sass/elements/site-banner.scss */
 ::content header.shrink { position: fixed; pointer-events: none; }
 
 /* @polyfill header a */
-/* line 60, ../../sass/elements/site-banner.scss */
+/* line 65, ../../sass/elements/site-banner.scss */
 ::content a { color: currentcolor; }
 
 /* @polyfill header summary */
-/* line 66, ../../sass/elements/site-banner.scss */
+/* line 71, ../../sass/elements/site-banner.scss */
 ::content summary { margin-top: 20px; opacity: 0.6; }
