@@ -105,12 +105,21 @@ b, strong {
   }
 
   &.alert-success {
+    // border-color: green;
     b, strong {
       color: green;
     }
   }
 
+  &.alert-info {
+    // border-color: $info-color;
+    b, strong {
+      color: $info-color;
+    }
+  }
+
   &.alert-error {
+    //border-color: $warning-color;
     b, strong {
       color: $warning-color;
     }

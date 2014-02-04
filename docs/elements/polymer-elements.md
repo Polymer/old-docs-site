@@ -14,3 +14,11 @@ how to use the element.
 Install everything:
 
     bower install Polymer/polymer-elements
+
+<section class="element-list">
+{%comment%}
+{% include_external /polymer-elements/docs/classes/polymer-file.html %}
+{%endcomment%}
+
+{% directory dir:components tag:div glob:polymer-* blacklistglob:polymer-ui-* blacklist:"polymer-dev polymer-expressions polymer-elements polymer-ui-elements" %}
+</section>

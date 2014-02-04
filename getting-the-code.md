@@ -65,7 +65,8 @@ and imports the `<polymer-ui-tabs>` element:
       </head>
       <body>
         <polymer-ui-tabs selected="0">
-          <span>One</span><span>Two</span><span>Three</span><span>Four</span><span>Five</span>
+          <span>One</span><span>Two</span><span>Three</span>
+          <span>Four</span><span>Five</span>
         </polymer-ui-tabs>
       </body>
     </html>
