@@ -50,9 +50,8 @@ pre, code {
   word-wrap: break-word;
 }
 
-ul {
+ul, ol {
   padding-left: 0;
-  list-style: none;
 
   li::before {
     content: '·';
@@ -67,8 +66,14 @@ ul {
     // font-size: initial;
   }
 }
+ul {
+  list-style: none;
+}
 
 table {
+  &.table {
+    width: 100%;
+  }
   &.first-col-nowrap {
     tr td:first-of-type {
       white-space: nowrap;

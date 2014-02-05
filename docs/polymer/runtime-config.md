@@ -22,7 +22,7 @@ To use the debugging options, you must install and use the debug version of libr
 1. Install `polymer-dev` and `platform-dev` and then tweak the references
   - `bower install Polymer/platform-dev Polymer/polymer-dev`
   - Rewrite `platform/platform.js` to `platform-dev/platform.js` in `index.html`
-  - Comment out line 6 and uncomment line 7 in [https://github.com/Polymer/polymer/blob/master/polymer.html](https://github.com/Polymer/polymer/blob/master/polymer.html)
+  - Comment out line 6 and uncomment line 7 in [polymer.html](https://github.com/Polymer/polymer/blob/master/polymer.html)
 1. Install `platform-dev` and `polymer-dev` on top of the minified versions
   - `bower install polymer=Polymer/polymer-dev platform=Polymer/platform-dev`
 
