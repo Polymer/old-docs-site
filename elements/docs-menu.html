@@ -79,7 +79,6 @@
 </template>
 <script>
   Polymer('docs-menu', {
-    applyAuthorStyles: true,
     ready: function() {
       this.highlightItemWithURL(location.pathname);
     },
@@ -88,13 +87,9 @@
         this.$.mainmenu.selected = this.$.mainmenu.items.indexOf(this.$.coremenu);
         this.$.coremenu.selected = this.$.coremenu.items.indexOf(this.$.articles);
         return;
-      } else if (href.match(/\/elements\//)) {
-        this.$.mainmenu.selected = this.$.mainmenu.items.indexOf(this.$.elementsmenu);
-        return;
       }
 
-      var item = this.shadowRoot.querySelector('[href="' + href + '"]');
-
+      var item = this.shadowRoot.querySelector('[href$="' + href + '"]');
       if (item) {
         var submenu = item.parentElement;
 
