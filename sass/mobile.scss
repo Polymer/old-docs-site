@@ -2,16 +2,41 @@
 
 
 // Phone
-@media only screen and (max-width: $break-small)  { 
-  
+@media only screen and (max-width: $break-small)  {
+  #sidebar {
+    position: static;
+    width: auto;
+    height: auto;
+  }
+
+  scroll-area[sidebar] {
+    padding-left: 0;
+  }
+
+  scroll-area > article {
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+
+  footer {
+    padding: 65px 35px;
+  }
+
+  // Can this be cleaned up and maybe put in the element?
+  // Feels really dirty to override the behavior of .align-center
+  footer polymer-ui-toolbar.flexbox.align-center {
+    @include flex-direction(column);
+    @include align-items(flex-start);
+    @include justify-content(flex-start);
+  }
 }
 
 // Tablet
-@media only screen and (min-width: $break-small + 1) and (max-width: $break-large) { 
+@media only screen and (min-width: $break-small + 1) and (max-width: $break-large) {
 
 }
 
 // Desktop or larger
-@media only screen and (min-width: $break-large)  { 
+@media only screen and (min-width: $break-large)  {
 
 }
