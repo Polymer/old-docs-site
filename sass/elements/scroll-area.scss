@@ -59,6 +59,7 @@
 ::content > article {
   padding: $additonalPadding $additonalPadding + 40;
   max-width: 912px;
+  min-height: 300px;
   overflow: hidden;
 }
 

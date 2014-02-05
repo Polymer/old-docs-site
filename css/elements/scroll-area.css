@@ -34,4 +34,4 @@
 
 /* @polyfill :host > article */
 /* line 59, ../../sass/elements/scroll-area.scss */
-::content > article { padding: 24px 64px; max-width: 912px; overflow: hidden; }
+::content > article { padding: 24px 64px; max-width: 912px; min-height: 300px; overflow: hidden; }
