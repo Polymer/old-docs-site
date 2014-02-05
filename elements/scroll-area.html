@@ -1,9 +1,10 @@
+<link rel="import" href="../components/polymer-media-query/polymer-media-query.html">
 <link rel="import" href="../components/polymer/polymer.html">
 
-<polymer-element name="scroll-area" attributes="disabled sidebar">
+<polymer-element name="scroll-area" attributes="sidebar">
   <template>
     <link rel="stylesheet" href="../css/elements/scroll-area.css">
-    <!-- <div class="{{ {scrolling: smallBannerSizeReached} | tokenList }}"><content></content></div> -->
+    <polymer-media-query query="min-width: 581px" queryMatches="{{fancyheader}}"></polymer-media-query>
     <content></content>
   </template>
   <script>
@@ -72,16 +73,12 @@
     //appBarTranslateY: 0,
     smallBannerSizeReached: false,
     ticking: false,
-    disabled: false, // disabled scroll effects
+    fancyheader: true, // header sticks on scroll
     sidebar: false,
     ready: function() {
       var siteBanner = this.querySelector('site-banner');
       this.appBar = siteBanner.querySelector('app-bar');
       this.header = siteBanner.querySelector('header');
-
-      if (this.disabled) {
-        return;
-      }
 
       // Give DOM some time to do layout.
       this.async(function() {
@@ -90,15 +87,30 @@
         //this.appBarTranslateY = -this.appBarHeight;
       });
 
+      // For testing.
       // this.siteBannerHeight = 286;
       // this.appBarHeight = 80;
 
       // Handle pageload in middle of page.
-      if (window.scrollY) {
+      if (window.scrollY && this.fancyheader) {
         onScroll_.bind(this)();
       }
 
-      window.addEventListener('scroll', onScroll_.bind(this), false);      
+      // bind() returns new function. Save named reference.
+      this.onscroll = onScroll_.bind(this);
+
+      this.fancyheaderChanged();
+    },
+    fancyheaderChanged: function() {
+      if (this.fancyheader) {
+        window.addEventListener('scroll', this.onscroll, false);
+      } else {
+        window.removeEventListener('scroll', this.onscroll, false);
+        this.classList.remove('scrolling');
+        this.header && this.header.classList.remove('shrink');
+        this.appBar.classList.remove('fixed');
+        this.appBar.classList.remove('down');
+      }
     },
     hasBackScrolledChanged: function() {
       this.appBar.classList.toggle('fixed');
