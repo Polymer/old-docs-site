@@ -238,7 +238,7 @@ been wrapped and properly work under the polyfill now ([commit](https://github.c
 
 - Changes to bound property values now reflected back out to the HTML attribute. Note, properties that are objects are not reflected back. Fixes [#188](https://github.com/Polymer/polymer/issues/188).
 - Experimental support for native Custom Elements using `document.register()`. Enable in
-`about:flags`) and use the [?register](/runtime-config.html#register) flag.
+`about:flags`) and use the [?register](/docs/polymer/runtime-config.html#register) flag.
 - Custom element `entered/leftDocument()` callbacks are not supported. `inserted/removed` are
 still supoorted for backwards compatibility ([commit](https://github.com/Polymer/polymer/commit/62e0233e08f62b140eb050c841d8e5a0876f8af1))
 
@@ -706,7 +706,7 @@ the default view on Github.
 
 * `g-component.html` no longer exists as the Tookit kernel. It has been replaced
 with loading in `toolkit.js` instead.
-* Added `debug` [runtime flags](/runtime-config.html) to conditionally load debug
+* Added `debug` [runtime flags](/docs/polymer/runtime-config.html) to conditionally load debug
 version of `platform.js`.
 
 ---
