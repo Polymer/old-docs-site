@@ -1,34 +1,68 @@
-@media only screen and (max-width: 580px) { /* line 7, ../sass/mobile.scss */
+@media only screen and (max-width: 580px) { /* line 6, ../sass/mobile.scss */
   #sidebar { position: static; width: auto; height: auto; }
-  /* line 13, ../sass/mobile.scss */
+  /* line 12, ../sass/mobile.scss */
   scroll-area[sidebar] { padding-left: 0; }
-  /* line 17, ../sass/mobile.scss */
+  /* line 16, ../sass/mobile.scss */
   scroll-area > article { padding-left: 35px; padding-right: 35px; }
-  /* line 22, ../sass/mobile.scss */
+  /* line 21, ../sass/mobile.scss */
   .main-bg .panel img { width: 38%; margin-right: auto; margin-bottom: 10px; }
-  /* line 28, ../sass/mobile.scss */
+  /* line 27, ../sass/mobile.scss */
   .panel { flex-flow: column; margin: 30px; }
-  /* line 33, ../sass/mobile.scss */
+  /* line 32, ../sass/mobile.scss */
   .panel summary + summary { margin-right: auto; }
-  /* line 37, ../sass/mobile.scss */
+  /* line 36, ../sass/mobile.scss */
   .panel.left { padding: 80px 0px; }
-  /* line 41, ../sass/mobile.scss */
+  /* line 40, ../sass/mobile.scss */
   .panel.right summary { flex: 1; order: 2; }
-  /* line 46, ../sass/mobile.scss */
+  /* line 45, ../sass/mobile.scss */
   .panel.right img { order: 1; height: 120px; margin-right: auto; margin-bottom: 50px; }
-  /* line 53, ../sass/mobile.scss */
+  /* line 52, ../sass/mobile.scss */
   .box { padding: 20px 24px 14px; }
-  /* line 57, ../sass/mobile.scss */
+  /* line 56, ../sass/mobile.scss */
   app-bar a { display: none; }
-  /* line 61, ../sass/mobile.scss */
+  /* line 60, ../sass/mobile.scss */
   .bar { height: 60px; }
-  /* line 65, ../sass/mobile.scss */
-  footer { padding: 65px 35px; }
-  /* line 70, ../sass/mobile.scss */
-  footer polymer-ui-toolbar { height: 170px; }
-  /* line 74, ../sass/mobile.scss */
-  footer polymer-ui-toolbar .paper-button { padding-bottom: 30px; }
-  /* line 78, ../sass/mobile.scss */
+  /* Force table to not be like tables anymore */
+  /* line 7, ../sass/_tables.scss */
+  .responsive-table, .responsive-table thead, .responsive-table tbody, .responsive-table th, .responsive-table td, .responsive-table tr { display: block; }
+  /* Hide table headers (but not display: none;, for accessibility) */
+  /* line 12, ../sass/_tables.scss */
+  .responsive-table th { position: absolute; top: -9999px; left: -9999px; }
+  /* line 18, ../sass/_tables.scss */
+  .responsive-table td { /* Behave  like a "row" */ position: relative; padding-left: 40%; }
+  /* line 24, ../sass/_tables.scss */
+  .responsive-table td:before { /* Now like a table header */ position: absolute; left: 0; width: 35%; padding-right: 10px; }
+  /* line 32, ../sass/_tables.scss */
+  .responsive-table tr td:last-child { border-bottom: 1px solid #eeeeee; }
+  /* line 39, ../sass/_tables.scss */
+  .expressions-table td:nth-of-type(1):before { content: "Feature"; }
+  /* line 39, ../sass/_tables.scss */
+  .expressions-table td:nth-of-type(2):before { content: "Example"; }
+  /* line 39, ../sass/_tables.scss */
+  .expressions-table td:nth-of-type(3):before { content: "Explanation"; }
+  /* line 39, ../sass/_tables.scss */
+  .attributes-table td:nth-of-type(1):before { content: "Attribute"; }
+  /* line 39, ../sass/_tables.scss */
+  .attributes-table td:nth-of-type(2):before { content: "Required?"; }
+  /* line 39, ../sass/_tables.scss */
+  .attributes-table td:nth-of-type(3):before { content: "Description"; }
+  /* line 39, ../sass/_tables.scss */
+  .lifecycle-table td:nth-of-type(1):before { content: "Spec"; }
+  /* line 39, ../sass/_tables.scss */
+  .lifecycle-table td:nth-of-type(2):before { content: "Polymer"; }
+  /* line 39, ../sass/_tables.scss */
+  .lifecycle-table td:nth-of-type(3):before { content: "Called When"; }
+  /* line 39, ../sass/_tables.scss */
+  .fouc-table td:nth-of-type(1):before { content: "Class Name"; }
+  /* line 39, ../sass/_tables.scss */
+  .fouc-table td:nth-of-type(2):before { content: "Applied Behavior"; }
+  /* line 68, ../sass/mobile.scss */
   #future polymer-ui-toolbar button:nth-child(1) { display: none; }
-  /* line 83, ../sass/mobile.scss */
+  /* line 72, ../sass/mobile.scss */
+  footer { padding: 65px 35px; }
+  /* line 76, ../sass/mobile.scss */
+  footer polymer-ui-toolbar { height: 170px; }
+  /* line 80, ../sass/mobile.scss */
+  footer polymer-ui-toolbar .paper-button { padding-bottom: 30px; }
+  /* line 85, ../sass/mobile.scss */
   footer polymer-ui-toolbar.flexbox.align-center { -webkit-box-orient: vertical; -webkit-flex-direction: column; -moz-flex-direction: column; -ms-flex-direction: column; -o-flex-direction: column; flex-direction: column; -webkit-box-align: flex-start; -webkit-align-items: flex-start; -moz-align-items: flex-start; -ms-align-items: flex-start; -o-align-items: flex-start; align-items: flex-start; -webkit-box-pack: flex-start; -webkit-justify-content: flex-start; -moz-justify-content: flex-start; -ms-justify-content: flex-start; -o-justify-content: flex-start; justify-content: flex-start; height: 170px; } }

@@ -1,0 +1,57 @@
+/* Force table to not be like tables anymore */
+.responsive-table,
+.responsive-table thead,
+.responsive-table tbody,
+.responsive-table th,
+.responsive-table td,
+.responsive-table tr {
+  display: block;
+}
+
+/* Hide table headers (but not display: none;, for accessibility) */
+.responsive-table th {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+.responsive-table td {
+  /* Behave  like a "row" */
+  position: relative;
+  padding-left: 40%;
+}
+
+.responsive-table td:before {
+  /* Now like a table header */
+  position: absolute;
+  left: 0;
+  width: 35%;
+  padding-right: 10px;
+}
+
+.responsive-table tr td:last-child {
+  border-bottom: 1px solid $main-bg;
+}
+
+@mixin responsive-table($headers...) {
+  $length: length($headers);
+  @for $i from 1 through $length {
+    td:nth-of-type(#{$i}):before { content: "#{nth($headers, $i)}"; }
+  }
+}
+
+.expressions-table {
+  @include responsive-table("Feature", "Example", "Explanation");
+}
+
+.attributes-table {
+  @include responsive-table("Attribute", "Required?", "Description");
+}
+
+.lifecycle-table {
+  @include responsive-table("Spec", "Polymer", "Called When");
+}
+
+.fouc-table {
+  @include responsive-table("Class Name", "Applied Behavior");
+}

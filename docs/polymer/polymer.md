@@ -26,7 +26,7 @@ At the heart of {{site.project_title}} are Custom Elements. Thus, it should be n
 
 {{site.project_title}} [reserves](https://github.com/Polymer/polymer/blob/master/src/declaration/attributes.js#L53) special attributes to be used on `<polymer-element>`:
 
-<table class="table">
+<table class="table responsive-table attributes-table">
   <tr>
     <th>Attribute</th><th>Required?</th><th>Description</th>
   </tr>
@@ -238,7 +238,7 @@ createdCallback | created | an instance of the element is created
 attachedCallback | attached | an instance was inserted into the document
 detachedCallback | detached | an instance was removed from the document
 attributeChangedCallback | attributeChanged | an attribute was added, removed, or updated
-{: .table }
+{: .table .responsive-table .lifecycle-table }
 
 ### The WebComponentsReady event {#WebComponentsReady}
 

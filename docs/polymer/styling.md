@@ -37,7 +37,7 @@ Class name | Behavior when applied to an element
 |-
 `[unresolved]` | Makes the element `opacity: 0; display: block; overflow: hidden`.
 `[resolved]` | Fades-in the element over 200ms.
-{: .table }
+{: .table .responsive-table .fouc-table }
 
 Upon [`WebComponentsReady`](/docs/polymer/polymer.html#WebComponentsReady) firing, {{site.project_title}} runs the following steps:
 

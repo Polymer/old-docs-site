@@ -3,7 +3,6 @@
 
 // Phone
 @media only screen and (max-width: $break-small)  {
-
   #sidebar {
     position: static;
     width: auto;
@@ -62,10 +61,17 @@
     height: 60px;
   }
 
+  // Responsive Tables
+  // Temporary fix until <responsive-table> fixes EVERYTHING!!!
+  @import "tables";
+
+  #future polymer-ui-toolbar button:nth-child(1){
+    display: none;
+  }
+
   footer {
     padding: 65px 35px;
   }
-
 
   footer polymer-ui-toolbar {
     height: 170px;
@@ -73,10 +79,6 @@
   
   footer polymer-ui-toolbar .paper-button {
     padding-bottom: 30px;
-  }
-
-  #future polymer-ui-toolbar button:nth-child(1){
-    display: none;
   }
 
   // TODO: Move inside the element
