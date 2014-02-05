@@ -1,6 +1,6 @@
 ---
 layout: default
-type: start
+type: core
 title: Runtime configuration
 ---
 

@@ -4,7 +4,7 @@ type: core
 title: API reference
 ---
 
-<p><buildbot-list project="polymer-dev"></buildbot-list></p>
+<!-- <p><buildbot-list project="polymer-dev"></buildbot-list></p> -->
 
 {% include toc.html %}
 

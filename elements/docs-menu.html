@@ -41,7 +41,6 @@
       <!-- <ui-color-icon src="/images/picons/ic_polymer_source.svg"></ui-color-icon> -->
       <polymer-ui-menu-item href="/getting-the-code.html">Get the code</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/getting-started.html">Getting started</polymer-ui-menu-item>
-      <polymer-ui-menu-item href="/runtime-config.html">Runtime configuration</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
     <polymer-ui-submenu-item id="elementsmenu" label="Elements" class="elements-using {{ {show: menu == 'docs'} | tokenList}}" src="/images/picons/ic_polymer_source.svg">
       <polymer-ui-menu-item href="/docs/elements/polymer-elements.html">Polymer elements</polymer-ui-menu-item>
@@ -49,6 +48,7 @@
       <polymer-ui-menu-item href="/docs/elements/other.html">Other</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
     <polymer-ui-submenu-item id="coremenu" label="Core" class="elements-creating {{ {show: menu == 'docs'} | tokenList}}" src="/images/picons/ic_polymer_source.svg">
+      <polymer-ui-menu-item id="articles" href="/articles/">Articles</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/docs/polymer/polymer.html">API reference</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/docs/polymer/styling.html">Styling reference</polymer-ui-menu-item>
       <polymer-ui-submenu-item label="Data-binding &#x25BE;">
@@ -56,7 +56,7 @@
         <polymer-ui-menu-item href="/docs/polymer/expressions.html">Expressions</polymer-ui-menu-item>
         <polymer-ui-menu-item href="/docs/polymer/filters.html">Filters</polymer-ui-menu-item>
       </polymer-ui-submenu-item>
-      <polymer-ui-menu-item id="articles" href="/articles/">Articles</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/docs/polymer/runtime-config.html">Runtime configuration</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
     <polymer-ui-submenu-item id="platformmenu" label="Platform" class="platform {{ {show: menu == 'docs'} | tokenList}}" src="/images/picons/ic_polymer_source.svg">
       <polymer-ui-menu-item href="/platform/custom-elements.html">Custom Elements</polymer-ui-menu-item>
@@ -79,7 +79,6 @@
 </template>
 <script>
   Polymer('docs-menu', {
-    applyAuthorStyles: true,
     ready: function() {
       this.highlightItemWithURL(location.pathname);
     },
@@ -88,13 +87,9 @@
         this.$.mainmenu.selected = this.$.mainmenu.items.indexOf(this.$.coremenu);
         this.$.coremenu.selected = this.$.coremenu.items.indexOf(this.$.articles);
         return;
-      } else if (href.match(/\/elements\//)) {
-        this.$.mainmenu.selected = this.$.mainmenu.items.indexOf(this.$.elementsmenu);
-        return;
       }
 
-      var item = this.shadowRoot.querySelector('[href="' + href + '"]');
-
+      var item = this.shadowRoot.querySelector('[href$="' + href + '"]');
       if (item) {
         var submenu = item.parentElement;
 

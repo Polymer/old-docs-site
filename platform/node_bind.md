@@ -6,7 +6,6 @@ subtitle: <a href="http://prollyfill.org/" target="_blank">prollyfill</a>
 
 feature:
   spec: None
-  status: <buildbot-list project="NodeBind"></buildbot-list>
   code: https://github.com/polymer/NodeBind
   summary: Adds a new method to all DOM nodes, allowing a named property of the node to be bound to data.
 ---
