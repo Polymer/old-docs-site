@@ -89,6 +89,33 @@ b, strong {
   font-weight: 600;
 }
 
+hr {
+  border: none;
+  border-bottom: 1px solid $main-bg; 
+}
+
+dl {
+  dt {
+    font-weight: 600;
+  }
+  &.horizontal {
+    dt {
+      // clear: left;
+      float: left;
+      width: 160px;
+    }
+    dd {
+      // clear: both;
+    }
+  }
+}
+
+blockquote {
+  padding: 0 0 0 15px;
+  margin: 0 0 20px;
+  border-left: 5px solid $main-bg;
+}
+
 /* Help catch template errors. */
 .error {
   border: 3px solid red;
@@ -465,6 +492,10 @@ footer {
   top: 0;
   right: 0;*/
   float: right;
+
+  + * {
+    clear: both;
+  }
 }
 
 .permalink {

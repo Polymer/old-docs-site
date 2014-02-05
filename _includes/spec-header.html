@@ -1,4 +1,4 @@
-<dl>
+<dl class="horizontal">
   {% if page.feature.code %}
   <dt>Repository</dt>
   <dd><a href="{{page.feature.code}}">{{page.feature.code | domain_name}}</a></dd>
@@ -15,9 +15,9 @@
   {% endif %}
 </dl>
 
----
-
 > {{page.feature.summary}}
+
+---
 
 {% if page.links %}
 
