@@ -2,14 +2,13 @@
 layout: default
 type: elements
 title: Polymer UI elements
+subtitle: Basic UI components
 ---
 
 **Note:** These elements and their documentation are very early.
 The "source" links below point to commented code where you can learn more about
 how to use the element.
 {: .alert .alert-info}
-
-> Basic UI components
 
 Install everything:
 
