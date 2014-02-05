@@ -68,21 +68,28 @@ ul {
   }
 }
 
-td {
-  padding: 0;
-  margin: 0;
-  vertical-align: top;
-  padding: 12px 0;
-}
+table {
+  &.first-col-nowrap {
+    tr td:first-of-type {
+      white-space: nowrap;
+    }
+  }
+  td {
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+    padding: 12px 12px 12px 0;
+  }
 
-th {
-  text-transform: uppercase;
-  font-size: 14px;
-  text-align: left;
-  padding-right: 40px;
-  border-bottom: 1px solid $main-bg;
-  font-weight: 600;
-  line-height: 48px;
+  th {
+    text-transform: uppercase;
+    font-size: 14px;
+    text-align: left;
+    padding-right: 40px;
+    border-bottom: 1px solid $main-bg;
+    font-weight: 600;
+    line-height: 48px;
+  }
 }
 
 b, strong {
