@@ -3,6 +3,7 @@
 
 // Phone
 @media only screen and (max-width: $break-small)  {
+
   #sidebar {
     position: static;
     width: auto;
@@ -18,16 +19,72 @@
     padding-right: 35px;
   }
 
+  .main-bg .panel img {
+    width: 38%;
+    margin-right: auto;
+    margin-bottom:10px;
+  }
+  
+  .panel {
+    flex-flow: column;
+    margin: 30px;
+  }
+  
+  .panel summary + summary {
+    margin-right: auto;
+  }
+  
+  .panel.left {
+    padding: 80px 0px;
+  }
+  
+  .panel.right summary{
+    flex:1;
+    order:2;
+  } 
+  
+  .panel.right img{
+    order:1;
+    height:120px;
+    margin-right: auto;
+    margin-bottom: 50px;
+  }
+  
+  .box {
+    padding: 20px 24px 14px;
+  }
+  
+  app-bar a{
+    display:none;
+  }
+  
+  .bar {
+    height: 60px;
+  }
+
   footer {
     padding: 65px 35px;
   }
 
-  // Can this be cleaned up and maybe put in the element?
-  // Feels really dirty to override the behavior of .align-center
+
+  footer polymer-ui-toolbar {
+    height:170px;
+  }
+  
+  footer polymer-ui-toolbar .paper-button {
+    padding-bottom: 30px;
+  }
+
+  #future polymer-ui-toolbar button:nth-child(1){
+    display: none;
+  }
+
+  // TODO: Move inside the element
   footer polymer-ui-toolbar.flexbox.align-center {
     @include flex-direction(column);
     @include align-items(flex-start);
     @include justify-content(flex-start);
+    height: 170px; 
   }
 }
 
