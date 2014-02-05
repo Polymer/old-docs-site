@@ -1,8 +1,4 @@
-<dl class="dl-horizontal">
-  {% if page.feature.code %}
-  <dt>Build status</dt>
-  <dd>{{page.feature.status}}</dd>
-  {% endif %}
+<dl>
   {% if page.feature.code %}
   <dt>Repository</dt>
   <dd><a href="{{page.feature.code}}">{{page.feature.code | domain_name}}</a></dd>

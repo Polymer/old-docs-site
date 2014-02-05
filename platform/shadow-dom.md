@@ -6,7 +6,6 @@ subtitle: polyfill
 
 feature:
   spec: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html
-  status: <buildbot-list project="ShadowDOM"></buildbot-list>
   code: https://github.com/polymer/ShadowDOM
   summary: "Shadow DOM is designed to provide encapsulation by hiding DOM subtrees under shadow
 roots. It provides a method of establishing and maintaining functional boundaries
