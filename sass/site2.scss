@@ -46,7 +46,8 @@ img {
 }
 
 pre, code {
-  overflow: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 ul {
