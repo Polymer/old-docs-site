@@ -11,7 +11,7 @@ layout: home
       <p>{{site.project_title}} is a framework based on Web Components that provides a comprehensive
         set of elements and makes it easy for you to build your own.</p>
       <polymer-ui-toolbar>
-        <button class="paper-button" data-download-button><polymer-ui-icon src="/images/picons/ic_archive_dark_.png"></polymer-ui-icon><a href="/getting-the-code.html">Get Code</a></button>
+        <button class="paper-button" data-download-button><polymer-ui-icon src="/images/picons/ic_archive_dark_.png"></polymer-ui-icon><a href="/getting-the-code.html">Get {{site.project_title}}</a></button>
         <button class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon><a href="/getting-started.html">Get started</a></button>
         <button class="paper-button" borderless><a href="https://github.com/polymer/polymer">View on Github</a></button>
       </polymer-ui-toolbar>
