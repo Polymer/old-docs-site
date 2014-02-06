@@ -19,7 +19,7 @@
   }
 
   .main-bg .panel img {
-    width: 38%;
+    width: 200px;
     margin-right: auto;
     margin-bottom:10px;
   }
@@ -45,13 +45,13 @@
   
   .panel.right img{
     order:1;
-    height:120px;
+    width:200px;
     margin-right: auto;
     margin-bottom: 50px;
     margin-left: 0px;
   }
   
-  .box {
+  #architecture .box {
     padding: 20px 24px 14px;
   }
   
@@ -63,11 +63,7 @@
     height: 60px;
   }
 
-  // Responsive Tables
-  // Temporary fix until <responsive-table> fixes EVERYTHING!!!
-  @import "tables";
-
-  #future polymer-ui-toolbar button:nth-child(1){
+  #future polymer-ui-toolbar button:nth-child(1) {
     display: none;
   }
 
@@ -90,10 +86,47 @@
     @include justify-content(flex-start);
     height: 170px; 
   }
+
+  // Responsive Tables
+  // Temporary fix until <responsive-table> fixes EVERYTHING!!!
+  @import "tables";
+
 }
 
+
 // Tablet
-@media only screen and (min-width: $break-small + 1) and (max-width: $break-large) {
+@media only screen and (min-width: $break-small + 1) and (max-width: $break-medium) {
+
+  .main-bg .panel img {
+    width: 300px;
+    margin-right: auto;
+    margin-bottom:30px;
+  }
+
+  .panel.left img {
+    margin-left: 0px;
+    margin-right: auto;
+  }
+
+  .panel.right img {
+    width: 300px;
+    margin-right: 0px;
+    margin-left: auto;
+  }  
+  
+  .panel {
+    flex-flow: column;
+    margin: 30px;
+  }
+
+  .panel summary + summary {
+    margin-right: auto;
+    margin-left: 0px;
+  }
+
+  #architecture .box {
+    padding: 20px 24px 14px;
+  }
 
 }
 
