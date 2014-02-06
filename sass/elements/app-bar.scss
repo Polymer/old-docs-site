@@ -8,33 +8,37 @@
   // Insures scrollback covers long titles.
   background: inherit;
   z-index: 100;
+  box-sizing: border-box;
 
   font-size: 14px;
   color: #000;
 }
 
-:host([theme="light"]:host) {
+:host([theme="light"]) {
   color: inherit;
 }
 
-:host(site-banner) { // old, until https://github.com/Polymer/platform/issues/49 is fixed.
-  right: 0;
-  top: 0;
-  position: absolute;
+:host(.search-on) {
+  left: 0;
 }
-:ancestor(site-banner) { // new
+
+:host([theme="dark"].search-on) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.14902);
+  box-shadow: rgb(204, 204, 204) 0px 1px 5px;
+}
+
+:ancestor(site-banner) {
   right: 0;
   top: 0;
   position: absolute;
 }
 
-:host(.fixed:host) {
+:host(.fixed) {
   position: fixed;
 }
 
 polymer-ui-icon {
   $widthHeight: 24px;
-  margin-left: 10px;
   width: $widthHeight !important;
   height: $widthHeight !important;
   background-size: $widthHeight * 2 !important;
@@ -44,5 +48,40 @@ polymer-ui-icon {
 /* @polyfill :host a */
 ::content a {
   opacity: 0.6;
+}
+
+#search {
+  @include display-flex();
+  @include align-items(center);
+  width: 24px;
+  margin-left: 16px;
+  box-sizing: border-box;
+  background-color: inherit;
+
+  // transition: -webkit-transform 400ms;
+
+  &[show] {
+    // -webkit-transform: translateX(-365px);
+    width: 100%;
+    position: absolute;
+    left: 0;
+    padding: 0 16px;
+    margin-left: 0;
+    input {
+      padding: 10px;
+      // margin-left: 16px;
+    }
+  }
+}
+
+input {
+  background-color: inherit;
+  border: none;
+  font-size: 20px;
+  outline: none;
+  padding: 0;
+  // transition: width 400ms;
+  color: inherit;
+  @include flex(1);
 }
 
