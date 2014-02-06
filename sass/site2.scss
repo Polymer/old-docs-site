@@ -332,28 +332,32 @@ polymer-ui-toolbar {
 //   z-index: 100;
 // }
 
-section .bar {
-  @include justify-content(flex-end);
-  @include align-items(center);
-  border-top: 1px solid $main-bg;
+section {
   border-bottom: 1px solid $main-bg;
-
-  a {
-    color: inherit;
-    font-size: $font-size-body;
-    // font-weight: 600;
-    // letter-spacing: 0.01em;
-    // line-height: 19.2px;
-    text-align: right;
-    @include flex(1);
-    opacity: 0.6;
-
-    &:after {
-      content: '\0025BE';
-      margin: 0 10px;
-    }
-  }
 }
+
+// section .bar {
+//   @include justify-content(flex-end);
+//   @include align-items(center);
+//   border-top: 1px solid $main-bg;
+//   border-bottom: 1px solid $main-bg;
+
+//   a {
+//     color: inherit;
+//     font-size: $font-size-body;
+//     // font-weight: 600;
+//     // letter-spacing: 0.01em;
+//     // line-height: 19.2px;
+//     text-align: right;
+//     @include flex(1);
+//     opacity: 0.6;
+
+//     &:after {
+//       content: '\0025BE';
+//       margin: 0 10px;
+//     }
+//   }
+// }
 
 #future {
   polymer-ui-toolbar {
@@ -366,13 +370,16 @@ section .bar {
 }
 
 #everything-element {
-  .bar {
-    border-color: rgba(255,255,255,0.3);
-    @extend .main-purple;
+  // .bar {
+  //   border-color: rgba(255,255,255,0.3);
+  //   @extend .main-purple;
 
-    a {
-      color: white;
-    }
+  //   a {
+  //     color: white;
+  //   }
+  // }
+  .panel img {
+    max-width: 312px;
   }
   summary {
     color: #fff;
@@ -393,7 +400,7 @@ section .bar {
 
 #architecture {
   .panel {
-    padding: 25px 0;
+    padding: 35px 0;
   }
   .box {
     @extend .main-bg;

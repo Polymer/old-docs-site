@@ -19,9 +19,9 @@ layout: home
   </div>
 </section>
 <section id="everything-element" class="main-purple">
-  <nav class="bar" flexbox>
+  <!-- <nav class="bar" flexbox>
     <a href="#everything-element" flex>Return to the elegance of the element</a>
-  </nav>
+  </nav> -->
   <div class="panel right">
     <summary>
       <h1>Everything is an &lt;element&gt;</h1>
@@ -36,9 +36,9 @@ layout: home
   </div>
 </section>
 <section id="architecture">
-  <nav class="bar" flexbox>
+ <!--  <nav class="bar" flexbox>
     <a href="#architecture">The architecture of {{site.project_title}}</a>
-  </nav>
+  </nav> -->
   <div class="panel">
     <summary>
       <div class="box">
@@ -75,9 +75,9 @@ layout: home
   </div>
 </section>
 <section id="quickstart">
-  <nav class="bar" flexbox>
+  <!-- <nav class="bar" flexbox>
     <a href="#quickstart">Quick start guide</a>
-  </nav>
+  </nav> -->
   <div class="panel">
     <summary>
       <p>content here</p>
