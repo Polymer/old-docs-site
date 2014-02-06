@@ -172,6 +172,15 @@ function ajaxifySite() {
   });
 }
 
+// TODO(ericbidelman): Hacky solution to get anchors scrolled to correct location
+// in page. Layout of page happens later than the browser wants to scroll.
+document.addEventListener('polymer-ready', function(e) {
+  window.setTimeout(function() {
+    document.querySelector(location.hash).scrollIntoView(true, {behavior: 'smooth'});
+  }, 100);
+});
+
+
 document.addEventListener('DOMContentLoaded', function(e) {
   initPage();
 

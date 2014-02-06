@@ -19,7 +19,7 @@
 // }
 
 
-h2:target, h3:target, h4:target {
+h2:target, h3:target, h4:target, h5:target {
   &:before {
     display: block; 
     content: " "; 
@@ -569,8 +569,9 @@ footer {
 
     h2 {
       margin: 0 !important;
-      @include display-flex;
-      @include align-items(center);
+      // Note: permalink :target anchors don't work when these are flexbox.
+      // @include display-flex;
+      // @include align-items(center);
     }
 
     a {

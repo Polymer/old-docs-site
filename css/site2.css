@@ -76,7 +76,7 @@ code, pre { color: #9f499b; }
 * { box-sizing: border-box; }
 
 /* line 23, ../sass/site2.scss */
-h2:target:before, h3:target:before, h4:target:before { display: block; content: " "; margin-top: -70px; height: 90px; visibility: hidden; }
+h2:target:before, h3:target:before, h4:target:before, h5:target:before { display: block; content: " "; margin-top: -70px; height: 90px; visibility: hidden; }
 
 /* line 32, ../sass/site2.scss */
 html, body { margin: 0; padding: 0; height: 100%; }
@@ -298,22 +298,22 @@ right: 0;*/ float: right; }
 /* line 567, ../sass/site2.scss */
 .element-list header { margin: 24px 0; }
 /* line 570, ../sass/site2.scss */
-.element-list header h2 { margin: 0 !important; display: -webkit-box; display: -webkit-flex; display: -moz-flex; display: -ms-flex; display: -o-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; -moz-align-items: center; -ms-align-items: center; -o-align-items: center; align-items: center; }
-/* line 576, ../sass/site2.scss */
+.element-list header h2 { margin: 0 !important; }
+/* line 577, ../sass/site2.scss */
 .element-list header a { margin-left: 20px; }
-/* line 578, ../sass/site2.scss */
+/* line 579, ../sass/site2.scss */
 .element-list header a:not(.permalink) { font-size: initial; }
-/* line 584, ../sass/site2.scss */
+/* line 585, ../sass/site2.scss */
 .element-list .name { display: inline-block; }
-/* line 586, ../sass/site2.scss */
+/* line 587, ../sass/site2.scss */
 .element-list .name code { white-space: nowrap; }
-/* line 591, ../sass/site2.scss */
+/* line 592, ../sass/site2.scss */
 .element-list .nodocs { margin-left: 17px; font-style: italic; }
-/* line 595, ../sass/site2.scss */
+/* line 596, ../sass/site2.scss */
 .element-list .nodocs:after { content: 'No documentation available.'; }
-/* line 600, ../sass/site2.scss */
+/* line 601, ../sass/site2.scss */
 .element-list iframe { border: none; width: 100%; }
-/* line 606, ../sass/site2.scss */
+/* line 607, ../sass/site2.scss */
 .element-list .bower_install_instructions, .element-list .api_documentation { display: block; }
-/* line 608, ../sass/site2.scss */
+/* line 609, ../sass/site2.scss */
 .element-list .bower_install_instructions > label, .element-list .api_documentation > label { font-weight: 600; }
