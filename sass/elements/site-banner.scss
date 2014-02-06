@@ -28,7 +28,7 @@
 
 /* @polyfill :host header */
 ::content header {
-  padding: 22px 0 40px 0;
+  padding: 30px 0 40px 0;
   width: 100%;
 }
 
@@ -36,18 +36,18 @@
 ::content h1 {
   letter-spacing: -0.01em;
   line-height: 48px;
-  font-size: 40px;
+  font-size: 45px;
 
   -webkit-transform-origin: 0 0;
   transform-origin: 0 0;
-  -webkit-transition: -webkit-transform 100ms ease-in-out;
-  transition: -webkit-transform 100ms ease-in-out;
+  // -webkit-transition: -webkit-transform 100ms ease-in-out;
+  // transition: -webkit-transform 100ms ease-in-out;
 }
 
 /* @polyfill :host header.shrink h1 */
 ::content header.shrink h1 {
-  -webkit-transform: scale(0.7);
-  transform: scale(0.7);
+  -webkit-transform: scale(0.444444444);
+  transform: scale(0.444444444);
 }
 
 /* @polyfill :host header.shrink summary */

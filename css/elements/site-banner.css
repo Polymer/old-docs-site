@@ -12,15 +12,15 @@
 
 /* @polyfill :host header */
 /* line 30, ../../sass/elements/site-banner.scss */
-::content header { padding: 22px 0 40px 0; width: 100%; }
+::content header { padding: 30px 0 40px 0; width: 100%; }
 
 /* @polyfill header h1 */
 /* line 36, ../../sass/elements/site-banner.scss */
-::content h1 { letter-spacing: -0.01em; line-height: 48px; font-size: 40px; -webkit-transform-origin: 0 0; transform-origin: 0 0; -webkit-transition: -webkit-transform 100ms ease-in-out; transition: -webkit-transform 100ms ease-in-out; }
+::content h1 { letter-spacing: -0.01em; line-height: 48px; font-size: 45px; -webkit-transform-origin: 0 0; transform-origin: 0 0; }
 
 /* @polyfill :host header.shrink h1 */
 /* line 48, ../../sass/elements/site-banner.scss */
-::content header.shrink h1 { -webkit-transform: scale(0.7); transform: scale(0.7); }
+::content header.shrink h1 { -webkit-transform: scale(0.44444); transform: scale(0.44444); }
 
 /* @polyfill :host header.shrink summary */
 /* line 54, ../../sass/elements/site-banner.scss */
