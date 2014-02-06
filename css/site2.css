@@ -291,3 +291,29 @@ right: 0;*/ float: right; }
 .author > p:first-of-type { vertical-align: top; }
 /* line 550, ../sass/site2.scss */
 .author img { border-radius: 7px; margin-right: 5px; height: 40px; width: 40px; }
+
+/* Elements */
+/* line 562, ../sass/site2.scss */
+.element-list > [data-element-file] { padding-bottom: 24px; border-top: 1px solid #eeeeee; }
+/* line 567, ../sass/site2.scss */
+.element-list header { margin: 24px 0; }
+/* line 570, ../sass/site2.scss */
+.element-list header h2 { margin: 0 !important; display: -webkit-box; display: -webkit-flex; display: -moz-flex; display: -ms-flex; display: -o-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; -moz-align-items: center; -ms-align-items: center; -o-align-items: center; align-items: center; }
+/* line 576, ../sass/site2.scss */
+.element-list header a { margin-left: 20px; }
+/* line 578, ../sass/site2.scss */
+.element-list header a:not(.permalink) { font-size: initial; }
+/* line 584, ../sass/site2.scss */
+.element-list .name { display: inline-block; }
+/* line 586, ../sass/site2.scss */
+.element-list .name code { white-space: nowrap; }
+/* line 591, ../sass/site2.scss */
+.element-list .nodocs { margin-left: 17px; font-style: italic; }
+/* line 595, ../sass/site2.scss */
+.element-list .nodocs:after { content: 'No documentation available.'; }
+/* line 600, ../sass/site2.scss */
+.element-list iframe { border: none; width: 100%; }
+/* line 606, ../sass/site2.scss */
+.element-list .bower_install_instructions, .element-list .api_documentation { display: block; }
+/* line 608, ../sass/site2.scss */
+.element-list .bower_install_instructions > label, .element-list .api_documentation > label { font-weight: 600; }

@@ -557,49 +557,60 @@ footer {
 }
 
 
-// /* Elements */
-// .element-list {
-//   > [data-element-file] {
-//     padding-bottom: 20px;
-//   }
+/* Elements */
+.element-list {
+  > [data-element-file] {
+    padding-bottom: $additonalPadding;
+    border-top: 1px solid $main-bg;
+  }
 
-//   h4.name {
-//     display: inline-block;
-//   }
-//   h3 {
-//     font-family: "Source Code Pro",Monaco,Menlo,Consolas,"Courier New",monospace;
-//   }
-//   .links {
-//     margin-bottom: 10px;
-//     display: block;
+  header {
+    margin: $additonalPadding 0;
 
-//     a {
-//       margin-right: 10px;
-//     }
-//   }
+    h2 {
+      margin: 0 !important;
+      @include display-flex;
+      @include align-items(center);
+    }
 
-//   .nodocs {
-//     margin-left: 17px;
-//     font-style: italic;
+    a {
+      margin-left: 20px;
+      &:not(.permalink) {
+        font-size: initial;
+      }
+    }
+  }
 
-//     &:after {
-//       content: 'No documentation available.';
-//     }
-//   }
+  .name {
+    display: inline-block;
+    code {
+      white-space: nowrap;
+    }
+  }
 
-//   iframe {
-//     border: none;
-//     width: 100%;
-//   }
+  .nodocs {
+    margin-left: 17px;
+    font-style: italic;
 
-//   .bower_install_instructions,
-//   .api_documentation {
-//     > label {
-//       font-weight: 600;
-//     }
-//   }
+    &:after {
+      content: 'No documentation available.';
+    }
+  }
 
-// }
+  iframe {
+    border: none;
+    width: 100%;
+  }
+
+  .bower_install_instructions,
+  .api_documentation {
+    display: block;
+    > label {
+      font-weight: 600;
+    }
+  }
+
+}
 
 // /*@media (min-width: 980px) {
 //   body {

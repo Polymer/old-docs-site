@@ -99,17 +99,19 @@ module Jekyll
 
       <<-END
       <#{@tag} data-element-file="/#{file_path}">
-        <h3 id="#{tag_name}">&lt;#{tag_name}&gt; <small><a href="#{github_url}" target="_blank">source</a></small></h3>
+        <header>
+          <h2 id="#{tag_name}">&lt;#{tag_name}&gt;
+            <!--<a href="#{github_url}" target="_blank"><img src="/images/picons/ic_polymer_source.svg"></a>-->
+            <a href="#{github_url}" target="_blank">source</a>
+            <a href="/#{demo_path}" target="_blank" #{'disabled' if !File.exists?(demo_path)}>demo</a>
+          </h2>
+        </header>
         <span class="bower_install_instructions">
-          <label>Install in your app:</label>
+          <label>1. Install in your app:</label>
           <pre class="prettyprint">bower install #{@config['project_title']}/#{bower_install_url}</pre>
-          <label>Import using:</label>
+          <label>2. Import:</label>
           <pre class="prettyprint">&lt;link rel="import"
       href="#{bower_use_url}"&gt;</pre>
-        </span>
-        <span class="links">
-          <a href="/#{demo_path}" target="_blank" class="btn btn-primary" #{'disabled' if !File.exists?(demo_path)}>Try demo »</a>
-          <div #{'hidden' if !iframe_demo}>#{iframe_demo}</div>
         </span>
         <span class="api_documentation">
           <label>Usage:</label>
@@ -123,7 +125,7 @@ module Jekyll
     def generate_iframe_demo(file_path, tag_name)
       <<-END
       <iframe srcdoc='
-        <script src="/polymer.min.js"></script>
+        <script src="/polymer.js"></script>
         <link rel="import" href="#{file_path}">
         <#{tag_name}></#{tag_name}>'>
       </iframe>
