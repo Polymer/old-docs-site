@@ -4,11 +4,15 @@
   <template>
     <link rel="stylesheet" href="../css/elements/app-bar.css">
     <content></content>
-    <polymer-ui-icon src="/images/picons/ic_search_{{theme}}_.png"</polymer-ui-icon>
+    <polymer-ui-icon id="menu" on-click="{{menuClick}}" src="/images/picons/ic_menu_{{theme}}_.png"></polymer-ui-icon>
+    <polymer-ui-icon src="/images/picons/ic_search_{{theme}}_.png"></polymer-ui-icon>
   </template>
   <script>
     Polymer('app-bar', {
-      theme: 'dark'
+      theme: 'dark',
+      menuClick: function () {
+        this.fire('hamburger-time');
+      }
     });
   </script>
 </polymer-element>

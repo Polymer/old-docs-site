@@ -3,20 +3,6 @@
 
 // Phone
 @media only screen and (max-width: $break-small)  {
-  #sidebar {
-    position: static;
-    width: auto;
-    height: auto;
-  }
-
-  scroll-area[sidebar] {
-    padding-left: 0;
-  }
-
-  scroll-area > article {
-    padding-left: 35px;
-    padding-right: 35px;
-  }
 
   .main-bg .panel img {
     width: 200px;
@@ -55,10 +41,6 @@
     padding: 20px 24px 14px;
   }
   
-  app-bar a{
-    display:none;
-  }
-  
   .bar {
     height: 60px;
   }
@@ -67,24 +49,29 @@
     display: none;
   }
 
-  footer {
-    padding: 65px 35px;
+}
+
+// Phone + Table
+@media only screen and (max-width: $break-medium) {
+  #sidebar {
+    left: -85%;
+    width: 85%;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s;
+    z-index: 3;
   }
 
-  footer polymer-ui-toolbar {
-    height: 170px;
-  }
-  
-  footer polymer-ui-toolbar .paper-button {
-    padding-bottom: 30px;
+  #sidebar.in {
+    left: 0;
   }
 
-  // TODO: Move inside the element
-  footer polymer-ui-toolbar.flexbox.align-center {
-    @include flex-direction(column);
-    @include align-items(flex-start);
-    @include justify-content(flex-start);
-    height: 170px; 
+  scroll-area[sidebar] {
+    padding-left: 0;
+  }
+
+  scroll-area > article {
+    padding-left: 35px;
+    padding-right: 35px;
   }
 
   // Responsive Tables

@@ -46,3 +46,25 @@ polymer-ui-icon {
   opacity: 0.6;
 }
 
+#menu {
+  display: none;
+}
+
+@media only screen and (max-width: $break-medium) {
+  :host {
+    @include justify-content(space-between);
+    width: 100%;
+  }
+
+  polymer-ui-icon {
+    margin: 0;
+  }
+
+  app-bar a {
+    display:none;
+  }
+
+  #menu {
+    display: inline-block;
+  }
+}

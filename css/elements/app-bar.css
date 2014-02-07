@@ -19,3 +19,15 @@ polymer-ui-icon { margin-left: 10px; width: 24px !important; height: 24px !impor
 /* @polyfill :host a */
 /* line 45, ../../sass/elements/app-bar.scss */
 ::content a { opacity: 0.6; }
+
+/* line 49, ../../sass/elements/app-bar.scss */
+#menu { display: none; }
+
+@media only screen and (max-width: 800px) { /* line 54, ../../sass/elements/app-bar.scss */
+  :host { -webkit-box-pack: space-between; -webkit-justify-content: space-between; -moz-justify-content: space-between; -ms-justify-content: space-between; -o-justify-content: space-between; justify-content: space-between; width: 100%; }
+  /* line 59, ../../sass/elements/app-bar.scss */
+  polymer-ui-icon { margin: 0; }
+  /* line 63, ../../sass/elements/app-bar.scss */
+  app-bar a { display: none; }
+  /* line 67, ../../sass/elements/app-bar.scss */
+  #menu { display: inline-block; } }

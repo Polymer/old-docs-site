@@ -197,6 +197,22 @@ document.querySelector('[data-twitter-follow]').addEventListener('click', functi
   exports.open(target.href, '', 'width=550,height=520');
 });
 
+// Toggle the sliding sidebar menu for mobile
+var siteBanner = document.querySelector('site-banner');
+var sidebar = document.querySelector('#sidebar');
+var scrim = document.querySelector('page-scrim');
+siteBanner.addEventListener('hamburger-time', function () {
+  toggleMenu();
+});
+scrim.addEventListener('click', function () {
+  toggleMenu();
+});
+
+function toggleMenu() {
+  scrim.classList.toggle('in');
+  sidebar.classList.toggle('in');
+}
+
 // -------------------------------------------------------------------------- //
 
 
