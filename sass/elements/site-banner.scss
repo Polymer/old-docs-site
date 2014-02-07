@@ -14,6 +14,11 @@
   // @include transform(translate3d(0,0,0));
 }
 
+/* @polyfill :host.mobile header */
+:host(.mobile) ::content header {
+  display: none;
+}
+
 :host([type="platform"]:host) {
   background-color: $platform-color;
 }

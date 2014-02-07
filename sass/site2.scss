@@ -128,6 +128,10 @@ blockquote {
   border-left: 5px solid $main-bg;
 }
 
+summary {
+  outline: none;
+}
+
 /* Help catch template errors. */
 .error {
   border: 3px solid red;
@@ -619,6 +623,22 @@ footer {
     }
   }
 
+}
+
+.onlyonmobile {
+  display: none;
+}
+
+#toc summary {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+// Phone
+@media only screen and (max-width: $break-small)  { 
+  .onlyonmobile {
+    display: initial !important;
+  }
 }
 
 // /*@media (min-width: 980px) {
