@@ -4,13 +4,29 @@
   <template>
     <link rel="stylesheet" href="../css/elements/app-bar.css">
     <content></content>
-    <polymer-ui-icon id="menu" on-click="{{menuClick}}" src="/images/picons/ic_menu_{{theme}}_.png"></polymer-ui-icon>
-    <polymer-ui-icon src="/images/picons/ic_search_{{theme}}_.png"></polymer-ui-icon>
+    <polymer-ui-icon id="menu" on-click="{{onMenuClick}}" src="/images/picons/ic_menu_{{theme}}_.png"></polymer-ui-icon>
+    <div id="search" show?="{{showSearch}}">
+      <polymer-ui-icon src="/images/picons/ic_search_{{theme}}_.png" on-click="{{toggleSearch}}"></polymer-ui-icon>
+      <input type="search" id="input" on-keyup="{{onKeyPress}}">
+    </div>
   </template>
   <script>
     Polymer('app-bar', {
       theme: 'dark',
-      menuClick: function () {
+      showSearch: false,
+      toggleSearch: function() {
+        this.showSearch = !this.showSearch;
+        this.classList.toggle('search-on');
+        this.$.input.focus();
+      },
+      onKeyPress: function(e, detail, sender) {
+        // if (e.keyCode == 27) { // ESC
+        //   if (this.showSearch) {
+        //     this.toggleSearch();
+        //   }
+        // }
+      },
+      onMenuClick: function () {
         this.fire('hamburger-time');
       }
     });

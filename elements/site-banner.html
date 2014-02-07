@@ -1,5 +1,6 @@
 <link rel="import" href="../components/polymer/polymer.html">
 <!-- <link rel="import" href="../components/polymer-flex-layout/polymer-flex-layout.html"> -->
+<link rel="import" href="../components/polymer-media-query/polymer-media-query.html">
 
 <polymer-element name="site-banner" attributes="type">
   <template>
@@ -9,12 +10,22 @@
       <content select="h1"></content>
       <content select="summary"></content>
     </header> -->
+    <polymer-media-query query="max-width: 581px" queryMatches="{{isPhone}}"></polymer-media-query>
+    <template if="{{isPhone}}">
+      <header>
+        <h1>{{type}}</h1>
+      </header>
+    </template>
     <content></content>
   </template>
   <script>
   (function() {
     Polymer('site-banner', {
-      type: 'default'
+      type: 'default',
+      isPhone: false,
+      isPhoneChanged: function() {
+        this.classList.toggle('mobile');
+      }
     });
   })();
   </script>

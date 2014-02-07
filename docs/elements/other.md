@@ -1,8 +1,10 @@
 ---
 layout: default
 type: elements
-title: Toolkit-UI Elements
+title: Other elements
 ---
+
+## Toolkit UI Elements
 
 Old and possibly outdated UI experiments.
 

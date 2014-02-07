@@ -47,23 +47,27 @@ body {
 // }
 
 h1, h2, h3, h4, h5 {
-  font-size: $font-size-display;
   font-weight: 300;
   letter-spacing: -0.01em;
   line-height: 48px;
   margin: 0;
 }
+h1 {
+  font-size: $font-size-display;
+}
 h2 {
-  font-size: $font-size-display - 4;
+  font-size: 24px;
 }
 h3 {
-  font-size: $font-size-display - 12;
+  font-size: 20px;
 }
 h4 {
-  font-size: $font-size-display - 15;
+  font-size: 16px;
+  font-weight: 600;
 }
 h5 {
-  font-size: $font-size-display - 20;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 button {

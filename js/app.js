@@ -129,6 +129,13 @@ function initPage(opt_inDoc) {
   setupDownloadButtons(doc);
   addPermalinkHeadings(doc);
 
+  // TODO: figure out better way to do this than move it in JS. Kramdown
+  // {:toc} not working inside a <details> tag (see _includes/toc.html)
+  var toc = document.querySelector('#toc');
+  if (toc) {
+    toc.appendChild(document.querySelector('#markdown-toc'));
+  }
+
   // TODO: Use kramdown {:.prettyprint .linenums .lang-ruby} to add the
   // <pre class="prettyprint"> instead of doing this client-side.
   prettyPrintPage(doc);
@@ -171,6 +178,17 @@ function ajaxifySite() {
     }
   });
 }
+
+// TODO(ericbidelman): Hacky solution to get anchors scrolled to correct location
+// in page. Layout of page happens later than the browser wants to scroll.
+document.addEventListener('polymer-ready', function(e) {
+  if (location.hash) {
+    window.setTimeout(function() {
+      document.querySelector(location.hash).scrollIntoView(true, {behavior: 'smooth'});
+    }, 200);
+  }
+});
+
 
 document.addEventListener('DOMContentLoaded', function(e) {
   initPage();

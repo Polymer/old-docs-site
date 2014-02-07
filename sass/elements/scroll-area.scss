@@ -8,6 +8,11 @@
   padding-left: $sidebarWidth;
 }
 
+/* @polyfill :host[sidebar] app-bar.fixed */
+:host([sidebar]) ::content app-bar.fixed {
+  margin-left: $sidebarWidth;
+}
+
 /* @polyfill :host:not([sidebar]) app-bar */
 :host(:not([sidebar])) ::content app-bar {
   -webkit-transform: translate3d(0,0,0) !important;
@@ -26,12 +31,12 @@
 }
 
 /* @polyfill :host.scrolling > article */
-:host(.scrolling:host) ::content > article {
+:host(.scrolling) ::content > article {
   padding-top: $siteBannerHeightMax + $additonalPadding;
 }
 
 /* @polyfill :host.scrolling app-bar */
-:host(.scrolling:host) ::content app-bar {
+:host(.scrolling) ::content app-bar {
   /* Note: this number should be updated if the height of of the nav changes */
   -webkit-transform: translate3d(0,-$siteBannerHeightMin,0);
   transform: translate3d(0,-$siteBannerHeightMin,0);
@@ -39,13 +44,13 @@
 }
 
 /* @polyfill :host.scrolling app-bar.fixed.down */
-:host(.scrolling:host) ::content app-bar.fixed.down {
+:host(.scrolling) ::content app-bar.fixed.down {
   -webkit-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
 }
 
 /* @polyfill :host.scrolling app-bar.fixed */
-:host(.scrolling:host) ::content app-bar.fixed {
+:host(.scrolling) ::content app-bar.fixed {
   -webkit-transition: -webkit-transform 300ms ease-in-out;
   transition: -webkit-transform 300ms ease-in-out;
 }
@@ -59,6 +64,7 @@
 ::content > article {
   padding: $additonalPadding $additonalPadding + 40;
   max-width: 912px;
+  min-height: 300px;
   overflow: hidden;
 }
 
