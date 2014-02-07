@@ -1,11 +1,12 @@
 <link rel="import" href="../components/polymer/polymer.html">
 
-<polymer-element name="page-scrim" noscript>
+<polymer-element name="page-scrim" attributes="in">
   <template>
     <style>
     :host {
       display: block;
       position: absolute;
+      height: 100%;
       top: 0;
       right: 0;
       bottom: 0;
@@ -16,10 +17,17 @@
       z-index: 2;
     }
 
-    :host(.in) {
+    :host([in]) {
       opacity: 1;
       visibility: visible;
     }
     </style>
   </template>
+  <script>
+  Polymer('page-scrim', {
+    inChanged: function () {
+      this.style.top = document.documentElement.scrollTop + 'px';
+    }
+  });
+  </script>
 </polymer-element>

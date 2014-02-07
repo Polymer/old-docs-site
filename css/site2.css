@@ -260,72 +260,114 @@ footer #copyright a { color: #666666; }
 /* line 499, ../sass/site2.scss */
 #sidebar docs-menu { padding: 0 16px; }
 /* line 503, ../sass/site2.scss */
-#sidebar .logo { display: -webkit-box; display: -webkit-flex; display: -moz-flex; display: -ms-flex; display: -o-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; -moz-align-items: center; -ms-align-items: center; -o-align-items: center; align-items: center; height: 80px; margin-bottom: 24px; padding-left: 16px; }
+#sidebar #logo-container { height: 80px; margin-bottom: 24px; padding-left: 16px; }
 
-/* line 513, ../sass/site2.scss */
+/* line 514, ../sass/site2.scss */
+#welcome #sidebar { display: none; }
+
+/* line 518, ../sass/site2.scss */
+#dropdown-toggle { display: none; margin-top: -5px; opacity: 0.3; }
+
+/* line 525, ../sass/site2.scss */
+#dropdown-panel { position: absolute; top: 75px; left: 15px; width: 240px; background: white; opacity: 0; visibility: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); -webkit-transform: translate3d(0, -6px, 0); -webkit-transition: .04s .08s -webkit-transform, 0.025s .1s opacity; z-index: 1000; }
+
+/* line 539, ../sass/site2.scss */
+#dropdown-panel.in { opacity: 1; visibility: visible; -webkit-transform: translate3d(0, 0, 0); -webkit-transition: .04s -webkit-transform, 0.025s opacity; }
+
+/* line 546, ../sass/site2.scss */
+.arrow { -webkit-transition: .8s -webkit-transform; position: absolute; z-index: 1000; }
+
+/* line 552, ../sass/site2.scss */
+.arrow-top-border { border-left: 9px solid rgba(0, 0, 0, 0); border-right: 9px solid rgba(0, 0, 0, 0); border-bottom: 9px solid #eee; top: -9px; left: 171px; margin-left: 6px; }
+
+/* line 561, ../sass/site2.scss */
+.arrow-top { border-left: 8px solid rgba(0, 0, 0, 0); border-right: 8px solid rgba(0, 0, 0, 0); border-bottom: 8px solid #FFF; top: -8px; left: 171px; margin-left: 7px; }
+
+/* line 570, ../sass/site2.scss */
+.menu { padding: 0 10px 10px 10px; margin: 0; width: auto; font-weight: bold; }
+
+/* line 577, ../sass/site2.scss */
+.menu-item { display: block; font-weight: 500; font-size: 15px; line-height: 38px; height: 40px; margin-top: 10px; color: black; opacity: 0.5; border-radius: 3px; }
+
+/* line 590, ../sass/site2.scss */
+.menu-item.selected, .menu-item:hover { opacity: 1; }
+
+/* line 594, ../sass/site2.scss */
+.menu-item.selected { background: rgba(0, 0, 0, 0.04); border: 1px solid #d9d9d9; }
+
+/* line 599, ../sass/site2.scss */
+.menu-item:hover { text-decoration: none; }
+
+/* line 603, ../sass/site2.scss */
+.menu-item polymer-ui-icon { display: inline-block; vertical-align: middle; margin-left: 10px; }
+
+/* line 609, ../sass/site2.scss */
+.menu-item .item-title { display: inline-block; vertical-align: middle; margin-left: 15px; }
+
+/* line 615, ../sass/site2.scss */
 .edit-on-github { /*position: absolute;
 top: 0;
 right: 0;*/ float: right; }
-/* line 519, ../sass/site2.scss */
+/* line 621, ../sass/site2.scss */
 .edit-on-github + * { clear: both; }
 
-/* line 524, ../sass/site2.scss */
+/* line 626, ../sass/site2.scss */
 .permalink { display: none; margin-left: 5px; vertical-align: top; }
 
-/* line 529, ../sass/site2.scss */
+/* line 631, ../sass/site2.scss */
 .has-permalink:hover .permalink { display: initial; }
 
-/* line 532, ../sass/site2.scss */
+/* line 634, ../sass/site2.scss */
 .no-permalink .permalink { display: none !important; }
 
-/* line 539, ../sass/site2.scss */
+/* line 641, ../sass/site2.scss */
 .forversion { float: right; color: #ccc; font-style: italic; }
 
-/* line 544, ../sass/site2.scss */
+/* line 646, ../sass/site2.scss */
 .article .byline { font-size: smaller; color: #ccc; }
 
-/* line 549, ../sass/site2.scss */
+/* line 651, ../sass/site2.scss */
 .author { margin-bottom: 20px; }
-/* line 552, ../sass/site2.scss */
+/* line 654, ../sass/site2.scss */
 .author > p { display: inline-block; margin: 0; }
-/* line 556, ../sass/site2.scss */
+/* line 658, ../sass/site2.scss */
 .author > p:first-of-type { vertical-align: top; }
-/* line 561, ../sass/site2.scss */
+/* line 663, ../sass/site2.scss */
 .author img { border-radius: 7px; margin-right: 5px; height: 40px; width: 40px; }
 
 /* Elements */
-/* line 573, ../sass/site2.scss */
+/* line 675, ../sass/site2.scss */
 .element-list > [data-element-file] { padding-bottom: 24px; border-top: 1px solid #eeeeee; }
-/* line 578, ../sass/site2.scss */
+/* line 680, ../sass/site2.scss */
 .element-list header { margin: 24px 0; }
-/* line 581, ../sass/site2.scss */
+/* line 683, ../sass/site2.scss */
 .element-list header h2 { margin: 0 !important; }
-/* line 588, ../sass/site2.scss */
+/* line 690, ../sass/site2.scss */
 .element-list header a { margin-left: 20px; }
-/* line 590, ../sass/site2.scss */
+/* line 692, ../sass/site2.scss */
 .element-list header a:not(.permalink) { font-size: initial; }
-/* line 596, ../sass/site2.scss */
+/* line 698, ../sass/site2.scss */
 .element-list .name { display: inline-block; }
-/* line 598, ../sass/site2.scss */
+/* line 700, ../sass/site2.scss */
 .element-list .name code { white-space: nowrap; }
-/* line 603, ../sass/site2.scss */
+/* line 705, ../sass/site2.scss */
 .element-list .nodocs { margin-left: 17px; font-style: italic; }
-/* line 607, ../sass/site2.scss */
+/* line 709, ../sass/site2.scss */
 .element-list .nodocs:after { content: 'No documentation available.'; }
-/* line 612, ../sass/site2.scss */
+/* line 714, ../sass/site2.scss */
 .element-list iframe { border: none; width: 100%; }
-/* line 618, ../sass/site2.scss */
+/* line 720, ../sass/site2.scss */
 .element-list .bower_install_instructions, .element-list .api_documentation { display: block; }
-/* line 620, ../sass/site2.scss */
+/* line 722, ../sass/site2.scss */
 .element-list .bower_install_instructions > label, .element-list .api_documentation > label { font-weight: 600; }
 
-/* line 627, ../sass/site2.scss */
+/* line 729, ../sass/site2.scss */
 .onlyonmobile { display: none; }
 
-/* line 631, ../sass/site2.scss */
+/* line 733, ../sass/site2.scss */
 #toc summary { font-size: 16px; font-weight: 600; }
 
-@media only screen and (max-width: 580px) { /* line 638, ../sass/site2.scss */
+@media only screen and (max-width: 580px) { /* line 740, ../sass/site2.scss */
   .onlyonmobile { display: initial !important; } }
 @media only screen and (max-width: 580px) { /* line 7, ../sass/mobile.scss */
   .main-bg .panel img, #architecture .box .panel img { width: 200px; margin-right: auto; margin-bottom: 10px; }
@@ -350,8 +392,10 @@ right: 0;*/ float: right; }
   /* line 64, ../sass/mobile.scss */
   #sidebar.in { left: 0; }
   /* line 68, ../sass/mobile.scss */
-  scroll-area[sidebar] { padding-left: 0; }
+  #dropdown-toggle { display: inline-block; }
   /* line 72, ../sass/mobile.scss */
+  scroll-area[sidebar] { padding-left: 0; }
+  /* line 76, ../sass/mobile.scss */
   scroll-area > article { padding-left: 35px; padding-right: 35px; }
   /* Force table to not be like tables anymore */
   /* line 7, ../sass/_tables.scss */
@@ -387,15 +431,17 @@ right: 0;*/ float: right; }
   .fouc-table td:nth-of-type(1):before { content: "Class Name"; }
   /* line 42, ../sass/_tables.scss */
   .fouc-table td:nth-of-type(2):before { content: "Applied Behavior"; } }
-@media only screen and (min-width: 581px) and (max-width: 800px) { /* line 87, ../sass/mobile.scss */
+@media only screen and (min-width: 581px) and (max-width: 800px) { /* line 91, ../sass/mobile.scss */
+  #welcome #sidebar { display: block; }
+  /* line 95, ../sass/mobile.scss */
   .main-bg .panel img, #architecture .box .panel img { width: 300px; margin-right: auto; margin-bottom: 30px; }
-  /* line 93, ../sass/mobile.scss */
+  /* line 101, ../sass/mobile.scss */
   .panel.left img { margin-left: 0px; margin-right: auto; }
-  /* line 98, ../sass/mobile.scss */
+  /* line 106, ../sass/mobile.scss */
   .panel.right img { width: 300px; margin-right: 0px; margin-left: auto; }
-  /* line 104, ../sass/mobile.scss */
+  /* line 112, ../sass/mobile.scss */
   .panel { flex-flow: column; margin: 30px; }
-  /* line 109, ../sass/mobile.scss */
+  /* line 117, ../sass/mobile.scss */
   .panel summary + summary { margin-right: auto; margin-left: 0px; }
-  /* line 114, ../sass/mobile.scss */
+  /* line 122, ../sass/mobile.scss */
   #architecture .box { padding: 20px 24px 14px; } }

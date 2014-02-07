@@ -500,14 +500,116 @@ footer {
     padding: 0 $leftPadding;
   }
 
-  .logo {
-    @include display-flex;
+  #logo-container {
+    // @include display-flex;
     //@include justify-content(center);
-    @include align-items(center);
+    // @include align-items(center);
     height: 80px;
     margin-bottom: 24px;
     padding-left: $leftPadding;
   }
+}
+
+// Hide the sidebar on the homepage
+#welcome #sidebar {
+  display: none;
+}
+
+#dropdown-toggle {
+  display: none;
+  margin-top: -5px;
+  opacity: 0.3;
+  // -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+#dropdown-panel {
+  position: absolute;
+  top: 75px;
+  left: 15px;
+  width: 240px;
+  background: white;
+  opacity: 0;
+  visibility: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  -webkit-transform: translate3d(0, -6px, 0);
+  -webkit-transition: .04s .08s -webkit-transform, 0.025s .1s opacity;
+  z-index: 1000;
+}
+
+#dropdown-panel.in {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transition: .04s -webkit-transform, 0.025s opacity;
+}
+
+.arrow {
+  -webkit-transition: .8s -webkit-transform;
+  position: absolute;
+  z-index: 1000;
+}
+
+.arrow-top-border {
+  border-left: 9px solid rgba(0,0,0,0);
+  border-right: 9px solid rgba(0,0,0,0);
+  border-bottom: 9px solid #eee;
+  top: -9px;
+  left: 171px;
+  margin-left: 6px;
+}
+
+.arrow-top {
+  border-left: 8px solid rgba(0,0,0,0);
+  border-right: 8px solid rgba(0,0,0,0);
+  border-bottom: 8px solid #FFF;
+  top: -8px;
+  left: 171px;
+  margin-left: 7px;
+}
+
+.menu {
+  padding: 0 10px 10px 10px;
+  margin: 0;
+  width: auto;
+  font-weight: bold;
+}
+
+.menu-item {
+  display: block;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 38px;
+  height: 40px;
+  margin-top: 10px;
+  color: black;
+  opacity: 0.5;
+  border-radius: 3px;
+}
+
+.menu-item.selected,
+.menu-item:hover {
+  opacity: 1;
+}
+
+.menu-item.selected {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid #d9d9d9;
+}
+
+.menu-item:hover {
+  text-decoration: none;
+}
+
+.menu-item polymer-ui-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+.menu-item .item-title {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 15px;
 }
 
 .edit-on-github {

@@ -65,6 +65,10 @@
     left: 0;
   }
 
+  #dropdown-toggle {
+    display: inline-block;
+  }
+
   scroll-area[sidebar] {
     padding-left: 0;
   }
@@ -83,6 +87,10 @@
 
 // Tablet
 @media only screen and (min-width: $break-small + 1) and (max-width: $break-medium) {
+
+  #welcome #sidebar {
+    display: block;
+  }
 
   .main-bg .panel img {
     width: 300px;

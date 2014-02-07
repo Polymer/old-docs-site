@@ -8,7 +8,39 @@
 <main id="content-container">
 
   <aside id="sidebar" class="main-bg">
-    <a href="/" class="logo"><img src="/images/logos/lockup.svg"></a>
+    <polymer-flex-layout id="logo-container" isContainer align="center">
+      <a href="/" class="logo"><img src="/images/logos/lockup.svg"></a>
+      <polymer-ui-icon id="dropdown-toggle" size="35" src="/images/picons/ic_arrowDropDown_dark_.png">
+      </polymer-ui-icon>
+    </polymer-flex-layout>
+    
+    <div id="dropdown-panel">
+      <div class="arrow arrow-top-border"></div>
+      <div class="arrow arrow-top"></div>
+      <menu class="menu">
+        <a href="/getting-started.html" class="menu-item selected">
+          <polymer-ui-icon src="/images/picons/ic_guide_dark_.png">
+          </polymer-ui-icon>
+          <span class="item-title">Start</span>
+        </a>
+        <a href="/docs/polymer/polymer.html" class="menu-item">
+          <polymer-ui-icon src="/images/picons/ic_book_dark_.png">
+          </polymer-ui-icon>
+          <span class="item-title">Docs</span>
+        </a>
+        <a href="/faq.html" class="menu-item">
+          <polymer-ui-icon src="/images/picons/ic_feedback_dark_.png">
+          </polymer-ui-icon>
+          <span class="item-title">Resources</span>
+        </a>
+        <a href="/discuss.html" class="menu-item">
+          <polymer-ui-icon src="/images/picons/ic_people_dark.png">
+          </polymer-ui-icon>
+          <span class="item-title">Community</span>
+        </a>
+      </menu>
+    </div>
+
     <docs-menu menu="{{site.data.pagetypes[page.type].menu}}"></docs-menu>
   </aside>
   <page-scrim></page-scrim>
