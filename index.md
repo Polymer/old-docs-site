@@ -1,6 +1,6 @@
 ---
 layout: home
-#title: homepage
+title: Welcome
 ---
 
 <section id="future" class="main-bg">

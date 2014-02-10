@@ -32,3 +32,15 @@ polymer-ui-icon { width: 24px !important; height: 24px !important; background-si
 
 /* line 77, ../../sass/elements/app-bar.scss */
 input { background-color: inherit; border: none; font-size: 20px; outline: none; padding: 0; color: inherit; -webkit-box-flex: 1; -webkit-flex: 1; -moz-flex: 1; -ms-flex: 1; -o-flex: 1; flex: 1; }
+
+/* line 88, ../../sass/elements/app-bar.scss */
+#menu { display: none; }
+
+@media only screen and (max-width: 800px) { /* line 93, ../../sass/elements/app-bar.scss */
+  :host { -webkit-box-pack: space-between; -webkit-justify-content: space-between; -moz-justify-content: space-between; -ms-justify-content: space-between; -o-justify-content: space-between; justify-content: space-between; width: 100%; }
+  /* line 98, ../../sass/elements/app-bar.scss */
+  polymer-ui-icon { margin: 0; }
+  /* line 102, ../../sass/elements/app-bar.scss */
+  app-bar a { display: none; }
+  /* line 106, ../../sass/elements/app-bar.scss */
+  #menu { display: inline-block; } }

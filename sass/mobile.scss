@@ -2,16 +2,130 @@
 
 
 // Phone
-@media only screen and (max-width: $break-small)  { 
+@media only screen and (max-width: $break-small)  {
+
+  .main-bg .panel img {
+    width: 200px;
+    margin-right: auto;
+    margin-bottom:10px;
+  }
   
+  .panel {
+    flex-flow: column;
+    margin: 30px;
+  }
+  
+  .panel summary + summary {
+    margin-right: auto;
+    margin-left: 0px;
+  }
+  
+  .panel.left {
+    padding: 80px 0px;
+  }
+  
+  .panel.right summary{
+    flex:1;
+    order:2;
+  } 
+  
+  .panel.right img{
+    order:1;
+    width:200px;
+    margin-right: auto;
+    margin-bottom: 50px;
+    margin-left: 0px;
+  }
+  
+  #architecture .box {
+    padding: 20px 24px 14px;
+  }
+  
+  .bar {
+    height: 60px;
+  }
+
+  #future polymer-ui-toolbar button:nth-child(1) {
+    display: none;
+  }
+
 }
 
+// Phone + Table
+@media only screen and (max-width: $break-medium) {
+  #sidebar {
+    left: -85%;
+    width: 85%;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s;
+    z-index: 3;
+  }
+
+  #sidebar.in {
+    left: 0;
+  }
+
+  #dropdown-toggle {
+    display: inline-block;
+  }
+
+  scroll-area[sidebar] {
+    padding-left: 0;
+  }
+
+  scroll-area > article {
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+
+  // Responsive Tables
+  // Temporary fix until <responsive-table> fixes EVERYTHING!!!
+  @import "tables";
+
+}
+
+
 // Tablet
-@media only screen and (min-width: $break-small + 1) and (max-width: $break-large) { 
+@media only screen and (min-width: $break-small + 1) and (max-width: $break-medium) {
+
+  #welcome #sidebar {
+    display: block;
+  }
+
+  .main-bg .panel img {
+    width: 300px;
+    margin-right: auto;
+    margin-bottom:30px;
+  }
+
+  .panel.left img {
+    margin-left: 0px;
+    margin-right: auto;
+  }
+
+  .panel.right img {
+    width: 300px;
+    margin-right: 0px;
+    margin-left: auto;
+  }  
+  
+  .panel {
+    flex-flow: column;
+    margin: 30px;
+  }
+
+  .panel summary + summary {
+    margin-right: auto;
+    margin-left: 0px;
+  }
+
+  #architecture .box {
+    padding: 20px 24px 14px;
+  }
 
 }
 
 // Desktop or larger
-@media only screen and (min-width: $break-large)  { 
+@media only screen and (min-width: $break-large)  {
 
 }

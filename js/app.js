@@ -215,6 +215,31 @@ document.querySelector('[data-twitter-follow]').addEventListener('click', functi
   exports.open(target.href, '', 'width=550,height=520');
 });
 
+// The sliding sidebar menu for mobile
+var siteBanner = document.querySelector('site-banner');
+var sidebar = document.querySelector('#sidebar');
+var scrim = document.querySelector('page-scrim');
+
+// The dropdown panel in the sidebar for mobile
+var dropdownToggle = document.querySelector('#dropdown-toggle');
+var dropdownPanel = document.querySelector('#dropdown-panel');
+
+siteBanner.addEventListener('hamburger-time', function () {
+  sidebar.classList.add('in');
+  scrim.setAttribute('in', '');
+});
+
+dropdownToggle.addEventListener('click', function () {
+  dropdownPanel.classList.toggle('in');
+});
+
+scrim.addEventListener('click', function () {
+  sidebar.classList.remove('in');
+  scrim.removeAttribute('in');
+  dropdownPanel.classList.remove('in');
+});
+
+
 // -------------------------------------------------------------------------- //
 
 

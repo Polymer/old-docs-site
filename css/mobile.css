@@ -1,0 +1,76 @@
+@media only screen and (max-width: 580px) { /* line 7, ../sass/mobile.scss */
+  .main-bg .panel img { width: 200px; margin-right: auto; margin-bottom: 10px; }
+  /* line 13, ../sass/mobile.scss */
+  .panel { flex-flow: column; margin: 30px; }
+  /* line 18, ../sass/mobile.scss */
+  .panel summary + summary { margin-right: auto; margin-left: 0px; }
+  /* line 23, ../sass/mobile.scss */
+  .panel.left { padding: 80px 0px; }
+  /* line 27, ../sass/mobile.scss */
+  .panel.right summary { flex: 1; order: 2; }
+  /* line 32, ../sass/mobile.scss */
+  .panel.right img { order: 1; width: 200px; margin-right: auto; margin-bottom: 50px; margin-left: 0px; }
+  /* line 40, ../sass/mobile.scss */
+  #architecture .box { padding: 20px 24px 14px; }
+  /* line 44, ../sass/mobile.scss */
+  .bar { height: 60px; }
+  /* line 48, ../sass/mobile.scss */
+  #future polymer-ui-toolbar button:nth-child(1) { display: none; } }
+@media only screen and (max-width: 800px) { /* line 56, ../sass/mobile.scss */
+  #sidebar { left: -85%; width: 85%; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2); transition: all 0.5s; z-index: 3; }
+  /* line 64, ../sass/mobile.scss */
+  #sidebar.in { left: 0; }
+  /* line 68, ../sass/mobile.scss */
+  #dropdown-toggle { display: inline-block; }
+  /* line 72, ../sass/mobile.scss */
+  scroll-area[sidebar] { padding-left: 0; }
+  /* line 76, ../sass/mobile.scss */
+  scroll-area > article { padding-left: 35px; padding-right: 35px; }
+  /* Force table to not be like tables anymore */
+  /* line 7, ../sass/_tables.scss */
+  .responsive-table, .responsive-table thead, .responsive-table tbody, .responsive-table th, .responsive-table td, .responsive-table tr { display: block; }
+  /* Hide table headers (but not display: none;, for accessibility) */
+  /* line 12, ../sass/_tables.scss */
+  .responsive-table th { position: absolute; top: -9999px; left: -9999px; }
+  /* line 18, ../sass/_tables.scss */
+  .responsive-table td { /* Behave  like a "row" */ position: relative; padding-left: 40%; }
+  /* line 24, ../sass/_tables.scss */
+  .responsive-table td:before { /* Now like a table header */ position: absolute; left: 0; width: 35%; padding-right: 10px; text-transform: uppercase; font-size: 14px; font-weight: 600; }
+  /* line 35, ../sass/_tables.scss */
+  .responsive-table tr td:last-child { border-bottom: 1px solid #eeeeee; }
+  /* line 42, ../sass/_tables.scss */
+  .expressions-table td:nth-of-type(1):before { content: "Feature"; }
+  /* line 42, ../sass/_tables.scss */
+  .expressions-table td:nth-of-type(2):before { content: "Example"; }
+  /* line 42, ../sass/_tables.scss */
+  .expressions-table td:nth-of-type(3):before { content: "Explanation"; }
+  /* line 42, ../sass/_tables.scss */
+  .attributes-table td:nth-of-type(1):before { content: "Attribute"; }
+  /* line 42, ../sass/_tables.scss */
+  .attributes-table td:nth-of-type(2):before { content: "Required?"; }
+  /* line 42, ../sass/_tables.scss */
+  .attributes-table td:nth-of-type(3):before { content: "Description"; }
+  /* line 42, ../sass/_tables.scss */
+  .lifecycle-table td:nth-of-type(1):before { content: "Spec"; }
+  /* line 42, ../sass/_tables.scss */
+  .lifecycle-table td:nth-of-type(2):before { content: "Polymer"; }
+  /* line 42, ../sass/_tables.scss */
+  .lifecycle-table td:nth-of-type(3):before { content: "Called When"; }
+  /* line 42, ../sass/_tables.scss */
+  .fouc-table td:nth-of-type(1):before { content: "Class Name"; }
+  /* line 42, ../sass/_tables.scss */
+  .fouc-table td:nth-of-type(2):before { content: "Applied Behavior"; } }
+@media only screen and (min-width: 581px) and (max-width: 800px) { /* line 91, ../sass/mobile.scss */
+  #welcome #sidebar { display: block; }
+  /* line 95, ../sass/mobile.scss */
+  .main-bg .panel img { width: 300px; margin-right: auto; margin-bottom: 30px; }
+  /* line 101, ../sass/mobile.scss */
+  .panel.left img { margin-left: 0px; margin-right: auto; }
+  /* line 106, ../sass/mobile.scss */
+  .panel.right img { width: 300px; margin-right: 0px; margin-left: auto; }
+  /* line 112, ../sass/mobile.scss */
+  .panel { flex-flow: column; margin: 30px; }
+  /* line 117, ../sass/mobile.scss */
+  .panel summary + summary { margin-right: auto; margin-left: 0px; }
+  /* line 122, ../sass/mobile.scss */
+  #architecture .box { padding: 20px 24px 14px; } }
