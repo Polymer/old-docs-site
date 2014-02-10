@@ -56,7 +56,7 @@
 :host(.scrolling) ::content app-bar.fixed {
   -webkit-transition: -webkit-transform 300ms ease-in-out;
   transition: -webkit-transform 300ms ease-in-out;
-  -moz-transition: -moz-transform 300ms ease-in-out;
+  -moz-transition: -moz-transform 300ms ease-in-out; // FF has unprefixed transitions but not transforms
 }
 
 /* @polyfill :host app-bar.fixed */
