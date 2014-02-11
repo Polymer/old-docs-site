@@ -1,6 +1,7 @@
 ---
 layout: default
 type: elements
+shortname: Elements
 title: Other elements
 ---
 

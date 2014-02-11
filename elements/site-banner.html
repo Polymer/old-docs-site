@@ -2,18 +2,13 @@
 <!-- <link rel="import" href="../components/polymer-flex-layout/polymer-flex-layout.html"> -->
 <link rel="import" href="../components/polymer-media-query/polymer-media-query.html">
 
-<polymer-element name="site-banner" attributes="type">
+<polymer-element name="site-banner" attributes="type shortname">
   <template>
     <link rel="stylesheet" href="../css/elements/site-banner.css">
-    <!-- <polymer-flex-layout justify="end" vertical></polymer-flex-layout> -->
-    <!-- <header id="header">
-      <content select="h1"></content>
-      <content select="summary"></content>
-    </header> -->
     <polymer-media-query query="max-width: 581px" queryMatches="{{isPhone}}"></polymer-media-query>
-    <template if="{{isPhone}}">
+    <template if="{{isPhone && shortname}}">
       <header id="internalheader">
-        <h2>{{type}}</h2>
+        <h2>{{shortname}}</h2>
       </header>
     </template>
     <content></content>
@@ -21,6 +16,7 @@
   <script>
   (function() {
     Polymer('site-banner', {
+      shortname: '',
       type: 'default',
       isPhone: false,
       isPhoneChanged: function() {

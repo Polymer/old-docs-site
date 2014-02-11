@@ -2,6 +2,7 @@
 layout: default
 title: Mutation Observers
 type: platform
+shortname: Platform
 subtitle: polyfill
 
 feature:
