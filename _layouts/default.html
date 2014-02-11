@@ -14,29 +14,35 @@
       </polymer-ui-icon>
     </polymer-flex-layout>
 
-    <polymer-ui-menu id="dropdown-panel">
-      <polymer-ui-arrow id="dropdown-arrow" direction="up" size="9">
-      </polymer-ui-arrow>
+    <dropdown-panel>
       <polymer-ui-menu-item
         src="/images/picons/ic_guide_dark_.png"
-        label="Start">
+        label="Start"
+        href="/getting-started.html"
+        {% if page.navgroup == 'start' %}active{% endif %}>
       </polymer-ui-menu-item>
 
       <polymer-ui-menu-item
         src="/images/picons/ic_book_dark_.png"
-        label="Dialog">
+        label="Dialog"
+        href="/docs/polymer/polymer.html"
+        {% if page.navgroup == 'docs' %}active{% endif %}>
       </polymer-ui-menu-item>
 
       <polymer-ui-menu-item
         src="/images/picons/ic_feedback_dark_.png"
-        label="Resources">
+        label="Resources"
+        href="/faq.html"
+        {% if page.navgroup == 'resources' %}active{% endif %}>
       </polymer-ui-menu-item>
 
       <polymer-ui-menu-item
         src="/images/picons/ic_people_dark.png"
-        label="Community">
+        label="Community"
+        href="/discuss.html"
+        {% if page.navgroup == 'community' %}active{% endif %}>
       </polymer-ui-menu-item>
-    </polymer-ui-menu>
+    </dropdown-panel>
 
     <docs-menu menu="{{site.data.pagetypes[page.type].menu}}"></docs-menu>
   </aside>
