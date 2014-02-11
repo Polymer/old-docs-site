@@ -7,23 +7,33 @@ h1, h2, h3, h4, h5 {
   margin: 0;
 }
 
+/* @polyfill h1 */
 h1,
 ::content h1 {
   font-size: $font-size-display;
+  // @extend .heading-base;
 }
+
+/* @polyfill h2 */
 h2,
 ::content h2 {
   font-size: 24px;
 }
+
+/* @polyfill h3 */
 h3,
 ::content h3 {
   font-size: 20px;
 }
+
+/* @polyfill h4 */
 h4,
 ::content h4 {
   font-size: 16px;
   font-weight: 600;
 }
+
+/* @polyfill h5 */
 h5,
 ::content h5 {
   font-size: 12px;
