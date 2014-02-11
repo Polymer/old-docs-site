@@ -34,7 +34,7 @@ in JavaScript that DOM reacts to.
     };
 
     var textNode = document.createTextNode('mytext');
-    textNode.bind('textContent', obj, 'path.to.value');
+    textNode.bind('textContent', new PathObserver(obj, 'path.to.value'));
 
 When the value in `path.to.value` changes, `Node.bind()` keeps `.textContent` up to date.
 
@@ -52,7 +52,7 @@ Some elements have special properties which can be two-way data bound:
 
 ### Text nodes
 
-    textNode.bind('textContent', someObj, 'path.to.value');
+    textNode.bind('textContent', new PathObserver(someObj, 'path.to.value'));
 
 Instructs the `Text` node to make its `textContent` property dependent on the
 value `someObj.path.to.value`.
@@ -77,13 +77,13 @@ The `<input>` element has two special properties, `value` and `checked` for two-
 
 #### value
 
-    myValueInput.bind('value', someObj, 'path.to.value');
+    myValueInput.bind('value', new PathObserver(someObj, 'path.to.value'));
 
 Instructs the `input` to ensure its `value` property is equal to `String(someObj.path.to.value)`. Upon binding, if the path is reachable, `value` is set to the path value. If the path is unreachable but can be made reachable by setting a single property on the final object, the property is set to `value`.
 
 #### checked
 
-    myCheckboxOrRadioInput.bind('checked', someObj, 'path.to.value');
+    myCheckboxOrRadioInput.bind('checked', new PathObserver(someObj, 'path.to.value'));
 
 Instructs the `input` to ensure its `checked` property is equal to `Boolean(someObje.path.to.value)`.
 
@@ -107,7 +107,7 @@ The `<textarea>` element has a special property, `value` for two-way binding.
 
 #### value
 
-    textarea.bind('value', someObj, 'path.to.value');
+    textarea.bind('value', new PathObserver(someObj, 'path.to.value'));
 
 `HTMLTextAreaElement.value` mimics the behavior of `input.value` (see above).
 
@@ -117,14 +117,14 @@ The `<select>` element has two special properties, `selectedIndex` and `value` f
 
 #### value
 
-    select.bind('value', someObj, 'path.to.value');
+    select.bind('value', new PathObserver(someObj, 'path.to.value'));
 
 Instructs the `HTMLSelectElement` to make its `value` property dependent on the
 value in `path.to.value`.
 
 #### selectedIndex
 
-    select.bind('selectedIndex', someObj, 'path.to.value');
+    select.bind('selectedIndex', new PathObserver(someObj, 'path.to.value'));
 
 Instructs the `HTMLSelectElement` to make its `selectedIndex` property dependent on the
 value in `path.to.value`. Note, "`selectedIndex`" is case sensitive.
@@ -145,7 +145,7 @@ value in `path.to.value`. Note, "`selectedIndex`" is case sensitive.
 
 ### Element attribute values {#attributevalues}
 
-    myElement.bind('title', someObj, 'path.to.value');
+    myElement.bind('title', new PathObserver(someObj, 'path.to.value'));
 
 Instructs the element to make the value its `title` attribute dependent on the value `someObj.path.to.value`.
 
@@ -165,7 +165,7 @@ Instructs the element to make the value its `title` attribute dependent on the v
 
 ### Element attribute presence {#attributepresence}
 
-    myElement.bind('hidden?', someObj, 'path.to.value');
+    myElement.bind('hidden?', new PathObserver(someObj, 'path.to.value'));
 
 Instructs the element add/remove its `hidden` attribute based on the truthiness of  `someObj.path.to.value`.
 
@@ -189,10 +189,12 @@ Instructs the element add/remove its `hidden` attribute based on the truthiness 
 as they wish. They do this by overriding the `bind()` method.
 
     MyFancyHTMLWidget.prototype.bind = function(name, obj, path) {
-      if (name == 'myBinding')
+      if (name == 'myBinding') {
         // interpret the binding meaning
-      else
-        HTMLElement.prototype.bind.call(this, name, obj, path);
+      }
+      else {
+        HTMLElement.prototype.bind.call(this, name, new PathObserver(obj, path));
+      }
     };
 
 If the element does not handle the binding, it should give its super class the

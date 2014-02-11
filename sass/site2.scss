@@ -553,73 +553,10 @@ footer {
     -webkit-transition: .04s -webkit-transform, 0.025s opacity;
   }
 
-  .arrow {
-    -webkit-transition: .8s -webkit-transform;
+  #dropdown-arrow {
     position: absolute;
-    z-index: 1000;
-  }
-
-  .arrow-top-border {
-    border-left: 9px solid rgba(0,0,0,0);
-    border-right: 9px solid rgba(0,0,0,0);
-    border-bottom: 9px solid #eee;
-    top: -9px;
-    left: 171px;
-    margin-left: 6px;
-  }
-
-  .arrow-top {
-    border-left: 8px solid rgba(0,0,0,0);
-    border-right: 8px solid rgba(0,0,0,0);
-    border-bottom: 8px solid #FFF;
-    top: -8px;
-    left: 171px;
-    margin-left: 7px;
-  }
-
-  menu {
-    padding: 0 10px 10px 10px;
-    margin: 0;
-    width: auto;
-    font-weight: bold;
-  }
-
-  .menu-item {
-    display: block;
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 38px;
-    height: 40px;
-    margin-top: 10px;
-    color: black;
-    opacity: 0.5;
-    border-radius: 3px;
-
-    &.selected,
-    &:hover {
-      opacity: 1;
-    }
-
-    &:hover {
-      text-decoration: none;
-    }
-
-    &.selected {
-     background: rgba(0, 0, 0, 0.04);
-     border: 1px solid #d9d9d9;
-    }
-
-    polymer-ui-icon {
-      display: inline-block;
-      vertical-align: middle;
-      margin-left: 10px;
-    }
-
-    .item-title {
-      display: inline-block;
-      vertical-align: middle;
-      margin-left: 15px;
-    }
+    top: -18px;
+    left: 177px;
   }
 
 }

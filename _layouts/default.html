@@ -17,32 +17,29 @@
 {{site.data.pagetypes[page.type].menu}}
 {{page.type}}
 
-    <div id="dropdown-panel">
-      <div class="arrow arrow-top-border"></div>
-      <div class="arrow arrow-top"></div>
-      <menu class="menu">
-        <a href="/getting-started.html" class="menu-item selected">
-          <polymer-ui-icon src="/images/picons/ic_guide_dark_.png">
-          </polymer-ui-icon>
-          <span class="item-title">Start</span>
-        </a>
-        <a href="/docs/polymer/polymer.html" class="menu-item">
-          <polymer-ui-icon src="/images/picons/ic_book_dark_.png">
-          </polymer-ui-icon>
-          <span class="item-title">Docs</span>
-        </a>
-        <a href="/faq.html" class="menu-item">
-          <polymer-ui-icon src="/images/picons/ic_feedback_dark_.png">
-          </polymer-ui-icon>
-          <span class="item-title">Resources</span>
-        </a>
-        <a href="/discuss.html" class="menu-item">
-          <polymer-ui-icon src="/images/picons/ic_people_dark.png">
-          </polymer-ui-icon>
-          <span class="item-title">Community</span>
-        </a>
-      </menu>
-    </div>
+    <polymer-ui-menu id="dropdown-panel">
+      <polymer-ui-arrow id="dropdown-arrow" direction="up" size="9">
+      </polymer-ui-arrow>
+      <polymer-ui-menu-item
+        src="/images/picons/ic_guide_dark_.png"
+        label="Start">
+      </polymer-ui-menu-item>
+
+      <polymer-ui-menu-item
+        src="/images/picons/ic_book_dark_.png"
+        label="Dialog">
+      </polymer-ui-menu-item>
+
+      <polymer-ui-menu-item
+        src="/images/picons/ic_feedback_dark_.png"
+        label="Resources">
+      </polymer-ui-menu-item>
+
+      <polymer-ui-menu-item
+        src="/images/picons/ic_people_dark.png"
+        label="Community">
+      </polymer-ui-menu-item>
+    </polymer-ui-menu>
 
     <docs-menu menu="{{site.data.pagetypes[page.type].menu}}"></docs-menu>
   </aside>
