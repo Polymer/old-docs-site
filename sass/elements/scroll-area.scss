@@ -21,23 +21,23 @@
 }
 
 /* @polyfill :host.scrolling site-banner */
-:host(.scrolling:host) ::content site-banner {
+:host(.scrolling) ::content site-banner {
   height: $siteBannerHeightMin;
   padding-bottom: 0;
   position: fixed !important;
   width: 100%;
 
-  border-bottom: 1px solid rgba(0,0,0,0.15);
+  // border-bottom: 1px solid rgba(0,0,0,0.15);
   box-shadow: 0 1px 5px rgba(204, 204, 204, 1);
 }
 
-/* @polyfill :host.scrolling > article */
-:host(.scrolling) ::content > article {
+/* @polyfill :host.scrolling:not(.mobile) > article */
+:host(.scrolling:not(.mobile)) ::content > article {
   padding-top: $siteBannerHeightMax + $additonalPadding;
 }
 
-/* @polyfill :host.scrolling app-bar */
-:host(.scrolling) ::content app-bar {
+/* @polyfill :host.scrolling:not(.mobile) app-bar */
+:host(.scrolling:not(.mobile)) ::content app-bar {
   /* Note: this number should be updated if the height of of the nav changes */
   -moz-transform: translate3d(0,-$siteBannerHeightMin,0);
   -webkit-transform: translate3d(0,-$siteBannerHeightMin,0);
@@ -72,4 +72,18 @@
   overflow: hidden;
 }
 
+
+@media only screen and (max-width: $break-medium) {
+  :host([sidebar]) {
+    padding-left: 0;
+  }
+
+  /* @polyfill :host > article */
+  ::content > article {
+    padding-left: $additonalPadding;
+    padding-right: $additonalPadding;
+    padding-top: $siteBannerHeightMinMobile + 10;
+  }
+
+}
 

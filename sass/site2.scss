@@ -13,11 +13,6 @@
   box-sizing: border-box;
 }
 
-// h1, h2, h3, h4 {
-//   // font-weight: 600;
-// }
-
-
 h2:target, h3:target, h4:target, h5:target {
   &:before {
     display: block; 
@@ -481,6 +476,10 @@ footer {
   h4 {
     margin-top: 20px;
   }
+
+  scroll-area article header {
+    margin-bottom: $additonalPadding;
+  }
 }
 
 // Reference, article, other pages ---------------------------------------------
@@ -496,6 +495,18 @@ footer {
   box-shadow: rgba(0, 0, 0, 0.14902) 1px 1px 1px 0px;
   z-index: 10; // above top sitebanner navbar
 
+  // &:after {
+  //   content: '';
+  //   box-shadow: 150px 0 0 rgba(0, 0, 0, 0.3);
+  //   display: block;
+  //   position: absolute;
+  //   top: 0;
+  //   width: 200px;
+  //   height: 100%;
+  //   z-index: -4;
+  //   right: 0;
+  // }
+
   docs-menu {
     padding: 0 $leftPadding;
   }
@@ -504,8 +515,8 @@ footer {
     // @include display-flex;
     //@include justify-content(center);
     // @include align-items(center);
-    height: 80px;
-    margin-bottom: 24px;
+    height: $siteBannerHeightMin;
+    margin-bottom: $additonalPadding;
     padding-left: $leftPadding;
   }
 }
@@ -734,89 +745,5 @@ footer {
   font-size: 16px;
   font-weight: 600;
 }
-
-// Phone
-@media only screen and (max-width: $break-small)  { 
-  .onlyonmobile {
-    display: initial !important;
-  }
-}
-
-// /*@media (min-width: 980px) {
-//   body {
-//     padding-top: 60px;
-//   }
-// }*/
-// @media only screen and (max-width: 700px) {
-//   /*h1 {
-//     font-size: 6.4vw;
-//   }
-//   h2 {
-//     font-size: 5.4vw;
-//   }
-//   h3 {
-//     font-size: 4.7vw;
-//   }
-//   h4 {
-//     font-size: 4.1vw;
-//   }*/
-//   body {
-//     padding: 0 0 70px 0;
-//   }
-//   #sitebanner {
-//     position: initial !important;
-  
-//     // li.icon a {
-//     //   margin: 0 20px;
-//     //   display: inline-block;
-//     //   width: 20px;
-//     //   white-space: nowrap;
-//     //   overflow: hidden;
-//     // }
-//     polymer-ui-toolbar {
-//       @include background(linear-gradient(top, rgb(240, 240, 240), rgb(255, 255, 255)));
-      
-//       > polymer-ui-toolbar {
-//         margin: 0;
-//       }
-//     }
-//   }
-
-//   docs-menu {
-//     position: relative;
-//     border: none;
-//     max-width: initial;
-//     margin-left: 10px !important;
-//   }
-//   polymer-ui-menu {
-//     margin-left: 25px !important;
-//   }
-//   polymer-ui-menu > polymer-ui-menu-item {
-//     display: block !important;
-//   }
-//   #content-container {
-//     margin-left: initial;
-//     padding: 0 5px;
-//   }
-//   .container-fluid .row-fluid > footer {
-//     margin-left: initial;
-//   }
-//   .video {
-//     margin: initial;
-//     iframe {
-//       width: initial;
-//       height: initial;
-//     }
-//   }
-//   #architecture-diagram {
-//     float: initial;
-//   }
-//   .sharelinks {
-//     margin-right: 7px !important;
-//     a:hover {
-//       width: 22px !important;
-//     }
-//   }
-// }
 
 @import "mobile";

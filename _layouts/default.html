@@ -78,14 +78,14 @@
     <article class="{{permalinks_class | trim}}">
       {% include edit_on_github.html %}
 
-      <div class="onlyonmobile">
+      <header class="onlyonmobile">
         <h1>{{page.title}}</h1>
         {% if page.subtitle %}
           <summary>{{page.subtitle}}</summary>
         {% else if page.type %}
           <summary>{{site.data.pagetypes[page.type].headertitle}}</summary>
         {% endif %}
-      </div>
+      </header>
 
       {{content}}
     </article>

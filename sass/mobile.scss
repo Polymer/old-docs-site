@@ -1,8 +1,11 @@
 @import "base";
 
-
 // Phone
 @media only screen and (max-width: $break-small)  {
+
+  .onlyonmobile {
+    display: block !important;
+  }
 
   .main-bg .panel img {
     width: 200px;
@@ -24,12 +27,12 @@
     padding: 80px 0px;
   }
   
-  .panel.right summary{
+  .panel.right summary {
     flex:1;
     order:2;
   } 
   
-  .panel.right img{
+  .panel.right img {
     order:1;
     width:200px;
     margin-right: auto;
@@ -42,7 +45,7 @@
   }
   
   .bar {
-    height: 60px;
+    height: $siteBannerHeightMinMobile;
   }
 
   #future polymer-ui-toolbar button:nth-child(1) {
@@ -54,34 +57,28 @@
 // Phone + Table
 @media only screen and (max-width: $break-medium) {
   #sidebar {
-    left: -85%;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    -moz-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
     width: 85%;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
     transition: all 0.5s;
-    z-index: 3;
-  }
+    z-index: 1000;
 
-  #sidebar.in {
-    left: 0;
+    &.in {
+      -webkit-transform: translate3d(0, 0, 0);
+      -moz-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    }
   }
 
   #dropdown-toggle {
     display: inline-block;
   }
 
-  scroll-area[sidebar] {
-    padding-left: 0;
-  }
-
-  scroll-area > article {
-    padding-left: 35px;
-    padding-right: 35px;
-  }
-
   // Responsive Tables
   // Temporary fix until <responsive-table> fixes EVERYTHING!!!
   @import "tables";
-
 }
 
 

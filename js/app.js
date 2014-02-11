@@ -224,18 +224,18 @@ var scrim = document.querySelector('page-scrim');
 var dropdownToggle = document.querySelector('#dropdown-toggle');
 var dropdownPanel = document.querySelector('#dropdown-panel');
 
-siteBanner.addEventListener('hamburger-time', function () {
+siteBanner.addEventListener('hamburger-time', function(e) {
   sidebar.classList.add('in');
-  scrim.setAttribute('in', '');
+  scrim.in = true;
 });
 
-dropdownToggle.addEventListener('click', function () {
+dropdownToggle.addEventListener('click', function(e) {
   dropdownPanel.classList.toggle('in');
 });
 
-scrim.addEventListener('click', function () {
+scrim.addEventListener('click', function(e) {
   sidebar.classList.remove('in');
-  scrim.removeAttribute('in');
+  scrim.in = false;
   dropdownPanel.classList.remove('in');
 });
 

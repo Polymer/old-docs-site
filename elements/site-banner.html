@@ -13,7 +13,7 @@
     <polymer-media-query query="max-width: 581px" queryMatches="{{isPhone}}"></polymer-media-query>
     <template if="{{isPhone}}">
       <header>
-        <h1>{{type}}</h1>
+        <h2>{{type}}</h2>
       </header>
     </template>
     <content></content>
@@ -24,7 +24,7 @@
       type: 'default',
       isPhone: false,
       isPhoneChanged: function() {
-        this.classList.toggle('mobile');
+        this.parentElement.classList.toggle('mobile', this.isPhone);
       }
     });
   })();

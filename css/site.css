@@ -1,41 +1,23 @@
 @import url(//fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,800|Source+Code+Pro);
-/* line 20, ../sass/spec.scss */
+/* line 19, ../sass/spec.scss */
 .meta { font-size: 12px; font-weight: normal; line-height: 20px; }
 
-/* line 27, ../sass/spec.scss */
+/* line 26, ../sass/spec.scss */
 .secondary { font-size: 14px; font-weight: normal; line-height: 20px; }
 
-/* line 34, ../sass/spec.scss */
+/* line 33, ../sass/spec.scss */
 body { font-size: 16px; font-family: "Open Sans", Helvetica, Arial, sans-serif; font-weight: normal; line-height: 24px; }
 
-/* line 49, ../sass/spec.scss */
-h1, h2, h3, h4, h5 { font-weight: 300; letter-spacing: -0.01em; line-height: 48px; margin: 0; }
-
-/* line 55, ../sass/spec.scss */
-h1 { font-size: 40px; }
-
-/* line 58, ../sass/spec.scss */
-h2 { font-size: 24px; }
-
-/* line 61, ../sass/spec.scss */
-h3 { font-size: 20px; }
-
-/* line 64, ../sass/spec.scss */
-h4 { font-size: 16px; font-weight: 600; }
-
-/* line 68, ../sass/spec.scss */
-h5 { font-size: 12px; font-weight: 600; }
-
-/* line 73, ../sass/spec.scss */
+/* line 48, ../sass/spec.scss */
 button { font-size: 12px; font-weight: normal; text-transform: uppercase; }
 
-/* line 80, ../sass/spec.scss */
+/* line 55, ../sass/spec.scss */
 a { font-size: inherit; font-weight: normal; color: #3367d6; text-decoration: none; }
 
-/* line 89, ../sass/spec.scss */
+/* line 64, ../sass/spec.scss */
 a:hover { text-decoration: underline; }
 
-/* line 93, ../sass/spec.scss */
+/* line 68, ../sass/spec.scss */
 code, pre { font-family: "Source Code Pro", Monaco, Menlo, Consolas, "Courier New", monospace; }
 
 /*h1 { font-size: 3.4vw;
