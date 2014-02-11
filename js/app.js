@@ -215,28 +215,30 @@ document.querySelector('[data-twitter-follow]').addEventListener('click', functi
   exports.open(target.href, '', 'width=550,height=520');
 });
 
-// The sliding sidebar menu for mobile
-var siteBanner = document.querySelector('site-banner');
-var sidebar = document.querySelector('#sidebar');
-var scrim = document.querySelector('page-scrim');
+document.addEventListener('polymer-ready', function(e) {
+  // The sliding sidebar menu for mobile
+  var siteBanner = document.querySelector('site-banner');
+  var sidebar = document.querySelector('#sidebar');
+  var scrim = document.querySelector('page-scrim');
 
-// The dropdown panel in the sidebar for mobile
-var dropdownToggle = document.querySelector('#dropdown-toggle');
-var dropdownPanel = document.querySelector('#dropdown-panel');
+  // The dropdown panel in the sidebar for mobile
+  var dropdownToggle = document.querySelector('#dropdown-toggle');
+  var dropdownPanel = document.querySelector('#dropdown-panel');
 
-siteBanner.addEventListener('hamburger-time', function(e) {
-  sidebar.classList.add('in');
-  scrim.in = true;
-});
+  siteBanner.addEventListener('hamburger-time', function(e) {
+    sidebar.classList.add('in');
+    scrim.in = true;
+  });
 
-dropdownToggle.addEventListener('click', function(e) {
-  dropdownPanel.classList.toggle('in');
-});
+  dropdownToggle.addEventListener('click', function(e) {
+    dropdownPanel.classList.toggle('in');
+  });
 
-scrim.addEventListener('click', function(e) {
-  sidebar.classList.remove('in');
-  scrim.in = false;
-  dropdownPanel.classList.remove('in');
+  scrim.addEventListener('click', function(e) {
+    sidebar.classList.remove('in');
+    scrim.in = false;
+    dropdownPanel.classList.remove('in');
+  });
 });
 
 
