@@ -189,12 +189,18 @@ Instructs the element add/remove its `hidden` attribute based on the truthiness 
 [Custom Elements](/platform/custom-elements.html) may choose to interpret bindings
 as they wish. They do this by overriding the `bind()` method.
 
-    MyFancyHTMLWidget.prototype.bind = function(name, obj, path) {
+    MyFancyHTMLWidget.prototype.bind = function(name, observable, oneTime) {
       if (name == 'myBinding') {
         // interpret the binding meaning
+        // if oneTime is false, this should return an object which
+        // has a close() method.
+        // this will allow TemplateBinding to clean up this binding
+        // when the instance containing it is removed.
       }
       else {
-        HTMLElement.prototype.bind.call(this, name, new PathObserver(obj, path));
+         return HTMLElement.prototype.bind.call(
+          this, name, observable, oneTime
+        );
       }
     };
 
