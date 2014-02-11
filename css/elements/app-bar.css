@@ -91,14 +91,12 @@ input { background-color: inherit; border: none; font-size: 20px; outline: none;
 /* line 90, ../../sass/elements/app-bar.scss */
 #menu { display: none; }
 
-@media only screen and (max-width: 580px) { /* @polyfill :host a */
-  /* line 97, ../../sass/elements/app-bar.scss */
-  ::content a { display: none; }
-  /* line 100, ../../sass/elements/app-bar.scss */
-  #search input { padding: initial; } }
-@media only screen and (max-width: 800px) { /* line 107, ../../sass/elements/app-bar.scss */
+@media only screen and (max-width: 800px) { /* line 95, ../../sass/elements/app-bar.scss */
   :host { -webkit-box-pack: space-between; -webkit-justify-content: space-between; -moz-justify-content: space-between; -ms-justify-content: space-between; -o-justify-content: space-between; justify-content: space-between; width: 100%; background: initial; }
-  /* line 113, ../../sass/elements/app-bar.scss */
+  /* @polyfill :host a */
+  /* line 102, ../../sass/elements/app-bar.scss */
+  ::content a { display: none; }
+  /* line 106, ../../sass/elements/app-bar.scss */
   polymer-ui-icon { margin: 0; }
-  /* line 117, ../../sass/elements/app-bar.scss */
+  /* line 110, ../../sass/elements/app-bar.scss */
   #menu { display: inline-block; } }

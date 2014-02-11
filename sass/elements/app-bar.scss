@@ -91,23 +91,16 @@ input {
   display: none;
 }
 
-// Phone
-@media only screen and (max-width: $break-small)  {
-  /* @polyfill :host a */
-  ::content a {
-    display: none;
-  }
-  #search input {
-    padding: initial;
-  }
-}
-
-
 @media only screen and (max-width: $break-medium) {
   :host {
     @include justify-content(space-between);
     width: 100%;
     background: initial;
+  }
+
+  /* @polyfill :host a */
+  ::content a {
+    display: none;
   }
 
   polymer-ui-icon {

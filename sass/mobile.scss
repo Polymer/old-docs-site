@@ -52,9 +52,17 @@
     display: none;
   }
 
+  footer {
+    padding: $mobileContentPadding;
+    polymer-ui-toolbar {
+      @include flex-direction(column);
+      @include align-items(flex-start !important);
+    }
+  }
+
 }
 
-// Phone + Table
+// Phone + Tablet
 @media only screen and (max-width: $break-medium) {
   #sidebar {
     -webkit-transform: translate3d(-100%, 0, 0);
@@ -119,6 +127,10 @@
 
   #architecture .box {
     padding: 20px 24px 14px;
+  }
+
+  footer {
+    padding-left: $mobileContentPadding;
   }
 
 }

@@ -72,7 +72,7 @@
   overflow: hidden;
 }
 
-
+// Phone + Tablet
 @media only screen and (max-width: $break-medium) {
   :host([sidebar]) {
     padding-left: 0;
@@ -80,10 +80,18 @@
 
   /* @polyfill :host > article */
   ::content > article {
-    padding-left: $additonalPadding;
-    padding-right: $additonalPadding;
-    padding-top: $siteBannerHeightMinMobile + 10;
+    padding-left: $mobileContentPadding;
+    padding-right: $mobileContentPadding;
   }
-
 }
 
+// Phone
+@media only screen and (max-width: $break-small)  {
+  /* @polyfill :host > article */
+  ::content > article {
+    // padding-left: $additonalPadding;
+    // padding-right: $additonalPadding;
+    
+    padding-top: $siteBannerHeightMinMobile + 10;
+  }
+}

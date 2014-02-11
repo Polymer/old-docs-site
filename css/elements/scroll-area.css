@@ -99,4 +99,7 @@ code, pre { color: #9f499b; }
   :host([sidebar]) { padding-left: 0; }
   /* @polyfill :host > article */
   /* line 82, ../../sass/elements/scroll-area.scss */
-  ::content > article { padding-left: 24px; padding-right: 24px; padding-top: 70px; } }
+  ::content > article { padding-left: 35px; padding-right: 35px; } }
+@media only screen and (max-width: 580px) { /* @polyfill :host > article */
+  /* line 91, ../../sass/elements/scroll-area.scss */
+  ::content > article { padding-top: 70px; } }
