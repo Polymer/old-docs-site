@@ -1,5 +1,6 @@
 @import "base";
-//@import "compass/css3/images";
+@import "compass/css3/images";
+@import "compass/css3/box-sizing";
 @import "compass/css3/transition";
 @import "compass/css3/transform";
 
@@ -10,7 +11,7 @@
 // @import url(//fonts.googleapis.com/css?family=Roboto:400,300,500,700,300italic|Source+Code+Pro);
 
 * {
-  box-sizing: border-box;
+  @include box-sizing(border-box);
 }
 
 h2:target, h3:target, h4:target, h5:target {
@@ -231,9 +232,8 @@ a.paper-button {
     transition: none;
 
     &:hover, &.active {
+      @include background(linear-gradient(top, rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 0.08) 40%));
       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2) inset, 0 -1px 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0px rgba(0, 0, 0, 0.2) inset;
-      background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 0.08) 40%);
-      background: linear-gradient(top, rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 0.08) 40%);
     }
   }
 
@@ -363,7 +363,7 @@ section {
     //@include justify-content(space-between);
   }
   .paper-button:not(:last-child) {
-    margin-right: 30px;
+    margin-right: 25px;
   }
 }
 
