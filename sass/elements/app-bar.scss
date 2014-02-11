@@ -77,7 +77,7 @@ polymer-ui-icon {
 #search {
   @include display-flex();
   @include align-items(center);
-  @include flex(1 0 auto);
+  @include flex(0 0 auto);
   width: 24px;
   margin-left: 16px;
   @include box-sizing(border-box);
@@ -116,6 +116,7 @@ input {
   display: none;
 }
 
+// Tablet
 @media only screen and (max-width: $break-medium) {
   :host {
     @include justify-content(space-between);
