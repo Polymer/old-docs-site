@@ -88,24 +88,24 @@ polymer-ui-icon { width: 24px !important; height: 24px !important; background-si
 ::content a { opacity: 0.6; -webkit-box-flex: 1; -webkit-flex: 1 0 auto; -moz-flex: 1 0 auto; -ms-flex: 1 0 auto; -o-flex: 1 0 auto; flex: 1 0 auto; }
 
 /* line 77, ../../sass/elements/app-bar.scss */
-#search { display: -webkit-box; display: -webkit-flex; display: -moz-flex; display: -ms-flex; display: -o-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; -moz-align-items: center; -ms-align-items: center; -o-align-items: center; align-items: center; -webkit-box-flex: 1; -webkit-flex: 0 0 auto; -moz-flex: 0 0 auto; -ms-flex: 0 0 auto; -o-flex: 0 0 auto; flex: 0 0 auto; width: 24px; margin-left: 16px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; background-color: inherit; }
+#search { display: -webkit-box; display: -webkit-flex; display: -moz-flex; display: -ms-flex; display: -o-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; -moz-align-items: center; -ms-align-items: center; -o-align-items: center; align-items: center; -webkit-box-flex: 1; -webkit-flex: 0 0 auto; -moz-flex: 0 0 auto; -ms-flex: 0 0 auto; -o-flex: 0 0 auto; flex: 0 0 auto; width: 30px; margin-left: 16px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; background-color: inherit; }
 /* line 88, ../../sass/elements/app-bar.scss */
 #search[show] { width: 100%; height: 100%; position: absolute; left: 0; top: 0; padding: 0 16px; margin-left: 0; }
 /* line 97, ../../sass/elements/app-bar.scss */
-#search[show] input { padding: 10px; }
+#search[show] input { padding: 10px; visibility: visible; }
 
-/* line 104, ../../sass/elements/app-bar.scss */
-input { background-color: inherit; border: none; font-size: 20px; outline: none; padding: 0; color: inherit; -webkit-box-flex: 1; -webkit-flex: 1 0 0; -moz-flex: 1 0 0; -ms-flex: 1 0 0; -o-flex: 1 0 0; flex: 1 0 0; }
+/* line 105, ../../sass/elements/app-bar.scss */
+input { background-color: inherit; border: none; font-size: 20px; outline: none; padding: 0; color: inherit; -webkit-box-flex: 1; -webkit-flex: 1 0 0; -moz-flex: 1 0 0; -ms-flex: 1 0 0; -o-flex: 1 0 0; flex: 1 0 0; visibility: hidden; }
 
-/* line 115, ../../sass/elements/app-bar.scss */
+/* line 117, ../../sass/elements/app-bar.scss */
 #menu { display: none; }
 
-@media only screen and (max-width: 800px) { /* line 121, ../../sass/elements/app-bar.scss */
+@media only screen and (max-width: 800px) { /* line 123, ../../sass/elements/app-bar.scss */
   :host { -webkit-box-pack: space-between; -webkit-justify-content: space-between; -moz-justify-content: space-between; -ms-justify-content: space-between; -o-justify-content: space-between; justify-content: space-between; width: 100%; background: initial; }
   /* @polyfill :host a */
-  /* line 128, ../../sass/elements/app-bar.scss */
+  /* line 130, ../../sass/elements/app-bar.scss */
   ::content a { display: none; }
-  /* line 132, ../../sass/elements/app-bar.scss */
+  /* line 134, ../../sass/elements/app-bar.scss */
   polymer-ui-icon { margin: 0; }
-  /* line 136, ../../sass/elements/app-bar.scss */
+  /* line 138, ../../sass/elements/app-bar.scss */
   #menu { display: inline-block; } }

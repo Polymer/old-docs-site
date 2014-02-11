@@ -78,7 +78,7 @@ polymer-ui-icon {
   @include display-flex();
   @include align-items(center);
   @include flex(0 0 auto);
-  width: 24px;
+  width: 30px;
   margin-left: 16px;
   @include box-sizing(border-box);
   background-color: inherit;
@@ -97,6 +97,7 @@ polymer-ui-icon {
     input {
       padding: 10px;
       // margin-left: 16px;
+      visibility: visible;
     }
   }
 }
@@ -110,6 +111,7 @@ input {
   // transition: width 400ms;
   color: inherit;
   @include flex(1 0 0);
+  visibility: hidden;
 }
 
 #menu {
