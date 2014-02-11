@@ -40,15 +40,15 @@
       .tab-strip {
         height: 60px;
         white-space: nowrap;
+        border-bottom: 1px solid #eee;
       }
       .tab-strip span {
-        line-height: 60px;
+        line-height: 58px;
         text-align: center;
-        padding: 0px 12px;
+        padding: 0px 18px;
         cursor: pointer;
-        opacity: 0.4;
-        background: #5c6bc0; /*rgb(85, 153, 255);*/
-        color: white;
+        color: #999;
+        font-weight: 600;
       }
       .tab-wrapper {
         display: flex;
@@ -56,16 +56,17 @@
         user-select: none;
       }
       .polymer-selected {
-        opacity: 1 !important;
+        color: #444 !important;
+        border-bottom: 3px solid currentcolor;
       }
       #contents {
-        padding: 20px;
-        /*min-height: 250px;*/
         overflow: auto;
       }
       /* @polyfill :host pre */
       ::content pre {
         margin: 0 !important;
+        background-color: transparent;
+        padding-left: 0;
       }
     </style>
     <div id="container">
@@ -76,7 +77,7 @@
           </template>
         </polymer-selector>
       </div>
-      <div id="contents" class="main-bg">
+      <div id="contents">
         <content id="contentpanels" select="demo-tab"></content>
       </div>
     </div>
