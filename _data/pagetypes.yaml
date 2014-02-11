@@ -7,7 +7,7 @@ core:
   headertitle: Core
   menu: docs
 elements:
-  headertitle: Elements
+  #headertitle: Elements
   menu: docs
 platform:
   headertitle: Platform

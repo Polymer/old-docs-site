@@ -14,20 +14,15 @@
   // @include transform(translate3d(0,0,0));
 }
 
-/* @polyfill :host.mobile header */
-:host(.mobile) ::content header {
-  display: none;
-}
-
-:host([type="platform"]:host) {
+:host([type="platform"]) {
   background-color: $platform-color;
 }
 
-:host([type="core"]:host) {
+:host([type="core"]) {
   background-color: $creating-elements-color;
 }
 
-:host([type="elements"]:host) {
+:host([type="elements"]) {
   background-color: $using-elements-color;
 }
 
@@ -39,9 +34,7 @@
 
 /* @polyfill header h1 */
 ::content h1 {
-  letter-spacing: -0.01em;
-  line-height: 48px;
-  font-size: 45px;
+  font-size: 45px !important;
 
   -webkit-transform-origin: 0 0;
   transform-origin: 0 0;
@@ -71,10 +64,33 @@
   color: currentcolor;
 }
 
-
 /* @polyfill header summary */
 ::content summary {
   margin-top: 20px;
   opacity: 0.6;
+}
+
+// Phone
+@media only screen and (max-width: $break-small)  {
+  :host {
+    height: $siteBannerHeightMinMobile !important;
+    position: fixed;
+    width: 100%;
+    @include align-items(center);
+  }
+
+  /* @polyfill :host header */
+  ::content header {
+    display: none;
+  }
+
+  /* @polyfill-rule header#internalheader {
+    display: block;
+    padding: 0;
+  }*/
+
+  /* @polyfill-rule header#internalheader h2 {
+    margin: 0;
+  }*/
 }
 

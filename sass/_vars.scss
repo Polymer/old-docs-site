@@ -2,6 +2,7 @@
 // Layout
 //-----------------------------------------------------------------------
 
+$siteBannerHeightMinMobile: 60px;
 $siteBannerHeightMin: 80px;
 $siteBannerHeightMax: 286px;
 
@@ -17,10 +18,15 @@ $content-padding: 56px;
 $sidebarWidth: 248px;
 $additonalPadding: 24px;
 
+$mobileContentPadding: 35px;
+
 // Page section colors
 $main-bg: #eee;
 $main-purple: #1f2036;
 $secondary-heading-color: #999;
+
+$gray-light: #f2f2f2;
+$gray-medium: #fafafa;
 
 // Logo colors
 // $purple-light: #7986cb;

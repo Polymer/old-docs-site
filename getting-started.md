@@ -1,6 +1,7 @@
 ---
 layout: default
 type: start
+shortname: Start
 title: Getting started
 
 imports:

@@ -1,6 +1,7 @@
 ---
 layout: default
 type: core
+shortname: Docs
 title: Expressions
 ---
 

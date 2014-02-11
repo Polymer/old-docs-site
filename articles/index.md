@@ -1,6 +1,7 @@
 ---
 layout: default
 type: core
+shortname: Docs
 title: Articles
 subtitle: Core concepts of build apps on top of Polymer and web components
 

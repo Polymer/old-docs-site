@@ -1,6 +1,7 @@
 ---
 layout: default
 type: core
+shortname: Articles
 title: A Guide to Styling Elements
 
 article:

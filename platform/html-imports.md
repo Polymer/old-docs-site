@@ -2,6 +2,7 @@
 layout: default
 title: HTML Imports
 type: platform
+shortname: Platform
 subtitle: polyfill
 
 feature:

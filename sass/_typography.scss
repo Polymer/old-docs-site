@@ -1,0 +1,31 @@
+$font-size-display: 40px;
+
+h1, h2, h3, h4, h5 {
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 48px;
+  margin: 0;
+}
+
+h1,
+::content h1 {
+  font-size: $font-size-display;
+}
+h2,
+::content h2 {
+  font-size: 24px;
+}
+h3,
+::content h3 {
+  font-size: 20px;
+}
+h4,
+::content h4 {
+  font-size: 16px;
+  font-weight: 600;
+}
+h5,
+::content h5 {
+  font-size: 12px;
+  font-weight: 600;
+}

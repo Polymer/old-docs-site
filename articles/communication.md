@@ -1,6 +1,7 @@
 ---
 layout: default
 type: core
+shortname: Articles
 title: "Communication & Message Passing"
 subtitle: Common techniques for sharing information between custom elements
 

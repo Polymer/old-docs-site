@@ -1,5 +1,7 @@
 @import "vars";
 
+@import "typography";
+
 .platform {
   color: $platform-color;
   // fill: $platform-color;
@@ -30,6 +32,8 @@ code, pre {
 
 .prettyprint {
   // background-color: $main-purple;
+  background-color: $gray-medium;
+  padding: 16px;
   margin: 30px 0;
 
   .typ {

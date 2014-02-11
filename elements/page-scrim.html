@@ -16,7 +16,6 @@
       opacity: 0;
       z-index: 2;
     }
-
     :host([in]) {
       opacity: 1;
       visibility: visible;
@@ -25,6 +24,7 @@
   </template>
   <script>
   Polymer('page-scrim', {
+    in: false,
     inChanged: function () {
       this.style.top = document.documentElement.scrollTop + 'px';
     }

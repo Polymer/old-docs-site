@@ -5,11 +5,10 @@
   @include align-items(center);
   @include justify-content(flex-end);
   @include flex(1);
-  // Insures scrollback covers long titles.
-  background: inherit;
   z-index: 100;
   box-sizing: border-box;
-
+  // // Insures search box covers entire bar.
+  // background: inherit;
   font-size: 14px;
   color: #000;
 }
@@ -20,6 +19,7 @@
 
 :host(.search-on) {
   left: 0;
+  background: inherit;
 }
 
 :host([theme="dark"].search-on) {
@@ -63,8 +63,10 @@ polymer-ui-icon {
   &[show] {
     // -webkit-transform: translateX(-365px);
     width: 100%;
+    height: 100%;
     position: absolute;
     left: 0;
+    top: 0;
     padding: 0 16px;
     margin-left: 0;
     input {
@@ -93,14 +95,16 @@ input {
   :host {
     @include justify-content(space-between);
     width: 100%;
+    background: initial;
+  }
+
+  /* @polyfill :host a */
+  ::content a {
+    display: none;
   }
 
   polymer-ui-icon {
     margin: 0;
-  }
-
-  app-bar a {
-    display:none;
   }
 
   #menu {

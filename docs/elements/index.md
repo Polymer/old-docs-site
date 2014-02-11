@@ -1,7 +1,14 @@
 ---
 layout: default
 type: elements
-title: Elements
+shortname: Elements
+#title: Elements
+
+add_permalinks: false
 ---
 
-TODO
+## [{{site.project_title}} Elements](polymer-elements.html)
+
+## [{{site.project_title}} UI Elements](polymer-elements.html)
+
+## [Other](polymer-elements.html)

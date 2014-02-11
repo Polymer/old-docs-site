@@ -1,6 +1,7 @@
 ---
 layout: default
-type: support
+type: resources
+shortname: Resources
 title: FAQ
 ---
 

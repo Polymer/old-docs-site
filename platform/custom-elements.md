@@ -2,6 +2,7 @@
 layout: default
 title: Custom Elements
 type: platform
+shortname: Platform
 subtitle: polyfill
 
 feature:
