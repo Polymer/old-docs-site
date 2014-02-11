@@ -97,4 +97,6 @@ code, pre { color: #9f499b; }
   :host { height: 60px !important; position: fixed; width: 100%; -webkit-box-align: center; -webkit-align-items: center; -moz-align-items: center; -ms-align-items: center; -o-align-items: center; align-items: center; }
   /* @polyfill :host header */
   /* line 83, ../../sass/elements/site-banner.scss */
-  ::content header { display: none; } }
+  ::content header { display: none; }
+  /* @polyfill-rule header#internalheader { display: block; padding: 0; }*/
+  /* @polyfill-rule header#internalheader h2 { margin: 0; }*/ }

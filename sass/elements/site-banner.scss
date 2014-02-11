@@ -83,5 +83,14 @@
   ::content header {
     display: none;
   }
+
+  /* @polyfill-rule header#internalheader {
+    display: block;
+    padding: 0;
+  }*/
+
+  /* @polyfill-rule header#internalheader h2 {
+    margin: 0;
+  }*/
 }
 
