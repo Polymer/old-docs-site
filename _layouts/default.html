@@ -13,9 +13,6 @@
       <polymer-ui-icon id="dropdown-toggle" size="35" src="/images/picons/ic_arrowDropDown_dark_.png">
       </polymer-ui-icon>
     </polymer-flex-layout>
-    
-{{site.data.pagetypes[page.type].menu}}
-{{page.type}}
 
     <polymer-ui-menu id="dropdown-panel">
       <polymer-ui-arrow id="dropdown-arrow" direction="up" size="9">
@@ -45,7 +42,7 @@
   </aside>
   <page-scrim></page-scrim>
   <scroll-area sidebar>
-    <site-banner type="{{page.type}}" shortname="{{page.shortname}}">
+    <site-banner type="{{page.type}}" navgroup="{{page.navgroup}}" shortname="{{page.shortname}}">
       {% include top-nav.html %}
       <header>
         <h1>{{page.title}}</h1>

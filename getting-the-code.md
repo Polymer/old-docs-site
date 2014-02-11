@@ -2,6 +2,7 @@
 layout: default
 type: start
 shortname: Start
+navgroup: start
 title: Getting the code
 ---
 

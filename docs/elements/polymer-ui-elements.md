@@ -1,6 +1,7 @@
 ---
 layout: default
 type: elements
+navgroup: docs
 shortname: Elements
 title: Polymer UI elements
 subtitle: Basic UI components

@@ -17,6 +17,21 @@
   color: inherit;
 }
 
+:ancestor(site-banner[navgroup="start"], site-banner[navgroup="resources"], site-banner[navgroup="community"]) ::content .active,
+:ancestor(site-banner[navgroup="start"], site-banner[navgroup="resources"], site-banner[navgroup="community"]) ::content .paper-button:hover {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 1) inset, 0 -1px 1px rgba(0, 0, 0, 1) inset, 0 2px 0px rgba(0, 0, 0, 1) inset;
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%);
+  background: linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%);
+}
+
+/* @polyfill-unscoped-rule site-banner[navgroup="start"] app-bar .active,
+                           site-banner[navgroup="resources"] app-bar .active,
+                           site-banner[navgroup="community"] app-bar .active {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 1) inset, 0 -1px 1px rgba(0, 0, 0, 1) inset, 0 2px 0px rgba(0, 0, 0, 1) inset  !important;
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%)  !important;
+    background: linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%) !important;
+  }*/
+
 :host(.search-on) {
   left: 0;
   background: inherit;

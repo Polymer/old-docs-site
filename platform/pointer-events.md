@@ -2,6 +2,7 @@
 layout: default
 title: Pointer Events
 type: platform
+navgroup: docs
 shortname: Platform
 subtitle: polyfill
 

@@ -1,6 +1,7 @@
 ---
 layout: default
 type: resources
+navgroup: community
 shortname: Community
 title: Discussion
 ---

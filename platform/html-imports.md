@@ -2,6 +2,7 @@
 layout: default
 title: HTML Imports
 type: platform
+navgroup: docs
 shortname: Platform
 subtitle: polyfill
 

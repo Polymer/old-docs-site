@@ -1,6 +1,7 @@
 ---
 layout: default
 type: start
+navgroup: start
 shortname: Start
 title: Getting started
 

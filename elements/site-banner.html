@@ -2,7 +2,7 @@
 <!-- <link rel="import" href="../components/polymer-flex-layout/polymer-flex-layout.html"> -->
 <link rel="import" href="../components/polymer-media-query/polymer-media-query.html">
 
-<polymer-element name="site-banner" attributes="type shortname">
+<polymer-element name="site-banner" attributes="shortname">
   <template>
     <link rel="stylesheet" href="../css/elements/site-banner.css">
     <polymer-media-query query="max-width: 581px" queryMatches="{{isPhone}}"></polymer-media-query>
@@ -17,7 +17,7 @@
   (function() {
     Polymer('site-banner', {
       shortname: '',
-      type: 'default',
+      // type: 'default',
       isPhone: false,
       isPhoneChanged: function() {
         this.parentElement.classList.toggle('mobile', this.isPhone);

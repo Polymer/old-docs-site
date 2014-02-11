@@ -2,6 +2,7 @@
 layout: default
 title: Template Binding
 type: platform
+navgroup: docs
 shortname: Platform
 subtitle: <a href="http://prollyfill.org/" target="_blank">prollyfill</a>
 

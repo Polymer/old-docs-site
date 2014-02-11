@@ -59,44 +59,48 @@ code, pre { color: #9f499b; }
 /* line 16, ../../sass/elements/app-bar.scss */
 :host([theme="light"]) { color: inherit; }
 
-/* line 20, ../../sass/elements/app-bar.scss */
+/* line 21, ../../sass/elements/app-bar.scss */
+:ancestor(site-banner[navgroup="start"], site-banner[navgroup="resources"], site-banner[navgroup="community"]) ::content .active, :ancestor(site-banner[navgroup="start"], site-banner[navgroup="resources"], site-banner[navgroup="community"]) ::content .paper-button:hover { box-shadow: 0 1px 1px black inset, 0 -1px 1px black inset, 0 2px 0px black inset; background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%); background: linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%); }
+
+/* @polyfill-unscoped-rule site-banner[navgroup="start"] app-bar .active, site-banner[navgroup="resources"] app-bar .active, site-banner[navgroup="community"] app-bar .active { box-shadow: 0 1px 1px rgba(0, 0, 0, 1) inset, 0 -1px 1px rgba(0, 0, 0, 1) inset, 0 2px 0px rgba(0, 0, 0, 1) inset  !important; background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%)  !important; background: linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%) !important; }*/
+/* line 35, ../../sass/elements/app-bar.scss */
 :host(.search-on) { left: 0; background: inherit; }
 
-/* line 25, ../../sass/elements/app-bar.scss */
+/* line 40, ../../sass/elements/app-bar.scss */
 :host([theme="dark"].search-on) { border-bottom: 1px solid rgba(0, 0, 0, 0.14902); box-shadow: #cccccc 0px 1px 5px; }
 
-/* line 30, ../../sass/elements/app-bar.scss */
+/* line 45, ../../sass/elements/app-bar.scss */
 :ancestor(site-banner) { right: 0; top: 0; position: absolute; }
 
-/* line 36, ../../sass/elements/app-bar.scss */
+/* line 51, ../../sass/elements/app-bar.scss */
 :host(.fixed) { position: fixed; }
 
-/* line 40, ../../sass/elements/app-bar.scss */
+/* line 55, ../../sass/elements/app-bar.scss */
 polymer-ui-icon { width: 24px !important; height: 24px !important; background-size: 48px !important; opacity: 0.6; }
 
 /* @polyfill :host a */
-/* line 49, ../../sass/elements/app-bar.scss */
+/* line 64, ../../sass/elements/app-bar.scss */
 ::content a { opacity: 0.6; }
 
-/* line 53, ../../sass/elements/app-bar.scss */
+/* line 68, ../../sass/elements/app-bar.scss */
 #search { display: -webkit-box; display: -webkit-flex; display: -moz-flex; display: -ms-flex; display: -o-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; -moz-align-items: center; -ms-align-items: center; -o-align-items: center; align-items: center; width: 24px; margin-left: 16px; box-sizing: border-box; background-color: inherit; }
-/* line 63, ../../sass/elements/app-bar.scss */
+/* line 78, ../../sass/elements/app-bar.scss */
 #search[show] { width: 100%; height: 100%; position: absolute; left: 0; top: 0; padding: 0 16px; margin-left: 0; }
-/* line 72, ../../sass/elements/app-bar.scss */
+/* line 87, ../../sass/elements/app-bar.scss */
 #search[show] input { padding: 10px; }
 
-/* line 79, ../../sass/elements/app-bar.scss */
+/* line 94, ../../sass/elements/app-bar.scss */
 input { background-color: inherit; border: none; font-size: 20px; outline: none; padding: 0; color: inherit; -webkit-box-flex: 1; -webkit-flex: 1; -moz-flex: 1; -ms-flex: 1; -o-flex: 1; flex: 1; }
 
-/* line 90, ../../sass/elements/app-bar.scss */
+/* line 105, ../../sass/elements/app-bar.scss */
 #menu { display: none; }
 
-@media only screen and (max-width: 800px) { /* line 95, ../../sass/elements/app-bar.scss */
+@media only screen and (max-width: 800px) { /* line 110, ../../sass/elements/app-bar.scss */
   :host { -webkit-box-pack: space-between; -webkit-justify-content: space-between; -moz-justify-content: space-between; -ms-justify-content: space-between; -o-justify-content: space-between; justify-content: space-between; width: 100%; background: initial; }
   /* @polyfill :host a */
-  /* line 102, ../../sass/elements/app-bar.scss */
+  /* line 117, ../../sass/elements/app-bar.scss */
   ::content a { display: none; }
-  /* line 106, ../../sass/elements/app-bar.scss */
+  /* line 121, ../../sass/elements/app-bar.scss */
   polymer-ui-icon { margin: 0; }
-  /* line 110, ../../sass/elements/app-bar.scss */
+  /* line 125, ../../sass/elements/app-bar.scss */
   #menu { display: inline-block; } }

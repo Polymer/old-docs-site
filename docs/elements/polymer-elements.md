@@ -1,6 +1,7 @@
 ---
 layout: default
 type: elements
+navgroup: docs
 shortname: Elements
 title: Polymer elements
 subtitle: Utility elements that do not render UI
