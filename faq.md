@@ -376,6 +376,8 @@ a default style of `display: block` using `:host`.
 For a `<content>`, you can iterate through `content.getDistributedNodes()`
 to get the list of nodes distributed at the insertion point.
 
+In {{site.project_title}}, the best place to call this method is in the [`attached()` callback](http://www.polymer-project.org/polymer.html#lifecyclemethods) so you're guaranteed that the element is in the DOM tree.
+
 Also remember that you can access the light DOM as the element's normal children
 (i.e. `this.children`, or other accessors). The difference with this approach
 is that it's the entire set of *potentially* distributed nodes; not those actually distributed.
