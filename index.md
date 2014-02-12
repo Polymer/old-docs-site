@@ -1,6 +1,6 @@
 ---
 layout: default
-#title: Welcome
+#title: A new type of library for the web, built on top of Web Components
 ---
 
 <style>
