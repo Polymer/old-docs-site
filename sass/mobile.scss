@@ -14,7 +14,7 @@
   }
   
   .panel {
-    flex-flow: column;
+    @include flex-direction(column);
     margin: 30px;
   }
   
@@ -28,13 +28,13 @@
   }
   
   .panel.right summary {
-    flex:1;
-    order:2;
+    @include flex(1);
+    order: 2;
   } 
   
   .panel.right img {
-    order:1;
-    width:200px;
+    order: 1;
+    width: 200px;
     margin-right: auto;
     margin-bottom: 50px;
     margin-left: 0px;
@@ -116,8 +116,8 @@
   }  
   
   .panel {
-    flex-flow: column;
-    margin: 30px;
+    @include flex-direction(column);
+    margin: 0 30px;
   }
 
   .panel summary + summary {

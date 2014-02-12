@@ -3,13 +3,13 @@
   /* line 10, ../sass/mobile.scss */
   .main-bg .panel img { width: 200px; margin-right: auto; margin-bottom: 10px; }
   /* line 16, ../sass/mobile.scss */
-  .panel { flex-flow: column; margin: 30px; }
+  .panel { -webkit-box-orient: vertical; -webkit-flex-direction: column; -moz-flex-direction: column; -ms-flex-direction: column; -o-flex-direction: column; flex-direction: column; margin: 30px; }
   /* line 21, ../sass/mobile.scss */
   .panel summary + summary { margin-right: auto; margin-left: 0px; }
   /* line 26, ../sass/mobile.scss */
   .panel.left { padding: 80px 0px; }
   /* line 30, ../sass/mobile.scss */
-  .panel.right summary { flex: 1; order: 2; }
+  .panel.right summary { -webkit-box-flex: 1; -webkit-flex: 1; -moz-flex: 1; -ms-flex: 1; -o-flex: 1; flex: 1; order: 2; }
   /* line 35, ../sass/mobile.scss */
   .panel.right img { order: 1; width: 200px; margin-right: auto; margin-bottom: 50px; margin-left: 0px; }
   /* line 43, ../sass/mobile.scss */
@@ -71,7 +71,7 @@
   /* line 112, ../sass/mobile.scss */
   .panel.right img { width: 300px; margin-right: 0px; margin-left: auto; }
   /* line 118, ../sass/mobile.scss */
-  .panel { flex-flow: column; margin: 30px; }
+  .panel { -webkit-box-orient: vertical; -webkit-flex-direction: column; -moz-flex-direction: column; -ms-flex-direction: column; -o-flex-direction: column; flex-direction: column; margin: 0 30px; }
   /* line 123, ../sass/mobile.scss */
   .panel summary + summary { margin-right: auto; margin-left: 0px; }
   /* line 128, ../sass/mobile.scss */

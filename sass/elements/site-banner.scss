@@ -8,7 +8,7 @@
   z-index: 1;
   height: $siteBannerHeightMax;
   color: white;
-  overflow: hidden;
+  // overflow: hidden;
   padding-left: $additonalPadding + 40;
 
   // @include transform(translate3d(0,0,0));
@@ -72,7 +72,7 @@
 }
 
 // Phone
-@media only screen and (max-width: $break-small)  {
+@media only screen and (max-width: $break-small) {
   :host {
     height: $siteBannerHeightMinMobile !important;
     position: fixed;
@@ -93,5 +93,18 @@
   /* @polyfill-rule header#internalheader h2 {
     margin: 0;
   }*/
+}
+
+// Phone + Tablet
+@media only screen and (max-width: $break-medium) {
+  /* @polyfill :host #dropdown-toggle */
+  ::content #dropdown-toggle {
+    z-index: 1000;
+  }
+
+  /* @polyfill :host dropdown-panel */
+  ::content dropdown-panel {
+    color: black;
+  }
 }
 

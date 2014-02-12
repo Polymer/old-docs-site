@@ -26,8 +26,14 @@
   <script>
   Polymer('page-scrim', {
     in: false,
-    inChanged: function () {
+    inChanged: function() {
       this.style.top = document.documentElement.scrollTop + 'px';
+    },
+    hide: function() {
+      this.in = false;
+    },
+    show: function() {
+      this.in = true;
     }
   });
   </script>

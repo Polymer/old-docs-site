@@ -59,7 +59,7 @@ code, pre { color: #9f499b; }
 .prettyprint .com { color: #8a8a8a; }
 
 /* line 3, ../../sass/elements/site-banner.scss */
-:host { background-color: #1f2036; display: -webkit-box; display: -webkit-flex; display: -moz-flex; display: -ms-flex; display: -o-flex; display: flex; -webkit-box-align: flex-end; -webkit-align-items: flex-end; -moz-align-items: flex-end; -ms-align-items: flex-end; -o-align-items: flex-end; align-items: flex-end; position: relative; z-index: 1; height: 286px; color: white; overflow: hidden; padding-left: 64px; }
+:host { background-color: #1f2036; display: -webkit-box; display: -webkit-flex; display: -moz-flex; display: -ms-flex; display: -o-flex; display: flex; -webkit-box-align: flex-end; -webkit-align-items: flex-end; -moz-align-items: flex-end; -ms-align-items: flex-end; -o-align-items: flex-end; align-items: flex-end; position: relative; z-index: 1; height: 286px; color: white; padding-left: 64px; }
 
 /* line 17, ../../sass/elements/site-banner.scss */
 :host([type="platform"]) { background-color: #9f499b; }
@@ -105,3 +105,9 @@ code, pre { color: #9f499b; }
   ::content header { display: none; }
   /* @polyfill-rule header#internalheader { display: block; padding: 0; }*/
   /* @polyfill-rule header#internalheader h2 { margin: 0; }*/ }
+@media only screen and (max-width: 800px) { /* @polyfill :host #dropdown-toggle */
+  /* line 101, ../../sass/elements/site-banner.scss */
+  ::content #dropdown-toggle { z-index: 1000; }
+  /* @polyfill :host dropdown-panel */
+  /* line 106, ../../sass/elements/site-banner.scss */
+  ::content dropdown-panel { color: black; } }

@@ -43,6 +43,7 @@
 :host(.search-on) {
   left: 0;
   background: inherit;
+  z-index: 1001;
 }
 
 :host([theme="dark"].search-on) {
@@ -97,7 +98,6 @@ polymer-ui-icon {
 
     input {
       padding: 10px;
-      // margin-left: 16px;
       visibility: visible;
     }
   }
@@ -127,6 +127,10 @@ input {
     background: initial;
   }
 
+  :ancestor(#welcome) {
+    @include justify-content(flex-end);
+  }
+
   /* @polyfill :host a */
   ::content a {
     display: none;
@@ -138,5 +142,9 @@ input {
 
   #menu {
     display: inline-block;
+  }
+
+  :ancestor(#welcome) #menu {
+    display: none;
   }
 }
