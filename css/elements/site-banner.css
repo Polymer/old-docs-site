@@ -1,19 +1,24 @@
 /* line 3, ../../sass/_typography.scss */
 h1, h2, h3, h4, h5 { font-weight: 300; letter-spacing: -0.01em; line-height: 48px; margin: 0; }
 
-/* line 11, ../../sass/_typography.scss */
+/* @polyfill h1 */
+/* line 12, ../../sass/_typography.scss */
 h1, ::content h1 { font-size: 40px; }
 
-/* line 15, ../../sass/_typography.scss */
+/* @polyfill h2 */
+/* line 19, ../../sass/_typography.scss */
 h2, ::content h2 { font-size: 24px; }
 
-/* line 19, ../../sass/_typography.scss */
+/* @polyfill h3 */
+/* line 25, ../../sass/_typography.scss */
 h3, ::content h3 { font-size: 20px; }
 
-/* line 23, ../../sass/_typography.scss */
+/* @polyfill h4 */
+/* line 31, ../../sass/_typography.scss */
 h4, ::content h4 { font-size: 16px; font-weight: 600; }
 
-/* line 28, ../../sass/_typography.scss */
+/* @polyfill h5 */
+/* line 38, ../../sass/_typography.scss */
 h5, ::content h5 { font-size: 12px; font-weight: 600; }
 
 /* line 5, ../../sass/polymer.scss */
@@ -83,20 +88,20 @@ code, pre { color: #9f499b; }
 
 /* @polyfill :host header.shrink */
 /* line 57, ../../sass/elements/site-banner.scss */
-::content header.shrink { position: fixed; pointer-events: none; }
+::content header.shrink { position: fixed; top: 0; pointer-events: none; }
 
 /* @polyfill header a */
-/* line 63, ../../sass/elements/site-banner.scss */
+/* line 64, ../../sass/elements/site-banner.scss */
 ::content a { color: currentcolor; }
 
 /* @polyfill header summary */
-/* line 68, ../../sass/elements/site-banner.scss */
+/* line 69, ../../sass/elements/site-banner.scss */
 ::content summary { margin-top: 20px; opacity: 0.6; }
 
-@media only screen and (max-width: 580px) { /* line 75, ../../sass/elements/site-banner.scss */
+@media only screen and (max-width: 580px) { /* line 76, ../../sass/elements/site-banner.scss */
   :host { height: 60px !important; position: fixed; width: 100%; -webkit-box-align: center; -webkit-align-items: center; -moz-align-items: center; -ms-align-items: center; -o-align-items: center; align-items: center; }
   /* @polyfill :host header */
-  /* line 83, ../../sass/elements/site-banner.scss */
+  /* line 84, ../../sass/elements/site-banner.scss */
   ::content header { display: none; }
   /* @polyfill-rule header#internalheader { display: block; padding: 0; }*/
   /* @polyfill-rule header#internalheader h2 { margin: 0; }*/ }

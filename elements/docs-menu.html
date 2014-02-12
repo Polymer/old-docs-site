@@ -11,12 +11,16 @@
     :host {
       display: block;
     }
+    polymer-ui-menu > polymer-ui-submenu-item ^ polymer-ui-menu-item {
+      color: inherit;
+    }
     polymer-ui-submenu-item ^^ polymer-ui-menu-item {
       font-size: 14px !important;
       font-weight: 600;
       line-height: 32px !important;
       letter-spacing: 0.01em;
       padding: 0;
+      color: initial;
 
       /*&:hover {
          background-color: #fff;

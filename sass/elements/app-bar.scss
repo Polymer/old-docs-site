@@ -1,12 +1,14 @@
+@import "compass/css3/images";
+
 @import "elements";
 
 :host {
   @include display-flex();
   @include align-items(center);
   @include justify-content(flex-end);
-  @include flex(1);
+  @include flex(1 0 auto);
   z-index: 100;
-  box-sizing: border-box;
+  @include box-sizing(border-box);
   // // Insures search box covers entire bar.
   // background: inherit;
   font-size: 14px;
@@ -20,8 +22,7 @@
 :ancestor(site-banner[navgroup="start"], site-banner[navgroup="resources"], site-banner[navgroup="community"]) ::content .active,
 :ancestor(site-banner[navgroup="start"], site-banner[navgroup="resources"], site-banner[navgroup="community"]) ::content .paper-button:hover {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 1) inset, 0 -1px 1px rgba(0, 0, 0, 1) inset, 0 2px 0px rgba(0, 0, 0, 1) inset;
-  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%);
-  background: linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%);
+  @include background(linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%));
 }
 
 // TODO(ericbidelman): check with sorvell if :ancestor() is polyfill'd correctly.
@@ -34,6 +35,8 @@
                            site-banner[navgroup="community"] app-bar .paper-button:hover {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 1) inset, 0 -1px 1px rgba(0, 0, 0, 1) inset, 0 2px 0px rgba(0, 0, 0, 1) inset  !important;
     background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%)  !important;
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%)  !important;
+    background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%)  !important;
     background: linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%) !important;
   }*/
 
@@ -47,14 +50,14 @@
   box-shadow: rgb(204, 204, 204) 0px 1px 5px;
 }
 
+:host(.fixed) {
+  position: fixed;
+}
+
 :ancestor(site-banner) {
   right: 0;
   top: 0;
   position: absolute;
-}
-
-:host(.fixed) {
-  position: fixed;
 }
 
 polymer-ui-icon {
@@ -68,14 +71,16 @@ polymer-ui-icon {
 /* @polyfill :host a */
 ::content a {
   opacity: 0.6;
+  @include flex(1 0 auto);
 }
 
 #search {
   @include display-flex();
   @include align-items(center);
-  width: 24px;
+  @include flex(0 0 auto);
+  width: 30px;
   margin-left: 16px;
-  box-sizing: border-box;
+  @include box-sizing(border-box);
   background-color: inherit;
 
   // transition: -webkit-transform 400ms;
@@ -92,6 +97,7 @@ polymer-ui-icon {
     input {
       padding: 10px;
       // margin-left: 16px;
+      visibility: visible;
     }
   }
 }
@@ -104,13 +110,15 @@ input {
   padding: 0;
   // transition: width 400ms;
   color: inherit;
-  @include flex(1);
+  @include flex(1 0 0);
+  visibility: hidden;
 }
 
 #menu {
   display: none;
 }
 
+// Tablet
 @media only screen and (max-width: $break-medium) {
   :host {
     @include justify-content(space-between);
