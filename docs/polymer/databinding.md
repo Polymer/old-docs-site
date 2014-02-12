@@ -12,7 +12,7 @@ title: Data-binding
 
 * [HTML Template element](http://www.html5rocks.com/tutorials/webcomponents/template/) (`<template>`)
 * [Template Bindings](/platform/template.html) (_prollyfill_) - describes how `<template>` manages instance fragments.
-* [`Node.bind()`](/platform/node_bind.html) (_prollyfill_) - describes how DOM nodes are bound to data values.
+* [`Node.bind()`](/docs/polymer/node_bind.html) (_prollyfill_) - describes how DOM nodes are bound to data values.
 * [`Object.observe()`](http://updates.html5rocks.com/2012/11/Respond-to-change-with-Object-observe)
 * [Mutation Observers](https://developer.mozilla.org/en-US/docs/DOM/MutationObserver)
 

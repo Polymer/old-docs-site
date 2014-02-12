@@ -1,15 +1,13 @@
 ---
 layout: default
-title: Template Binding
-type: platform
+type: core
 navgroup: docs
-shortname: Platform
-subtitle: <a href="http://prollyfill.org/" target="_blank">prollyfill</a>
+shortname: Docs
+title: Template Binding
+subtitle: Library
 
 feature:
-  spec: None
-  code: https://github.com/polymer/TemplateBinding
-  summary: Extends the capabilities of the [HTML Template Element](http://www.w3.org/TR/html-templates/) by enabling it to create, manage, and remove instances of content bound to data defined in JavaScript.
+  summary: Polymer's [TemplateBinding](https://github.com/polymer/TemplateBinding) library extends the capabilities of the [HTML Template Element](http://www.w3.org/TR/html-templates/) by enabling it to create, manage, and remove instances of content bound to data defined in JavaScript. Although internal in Polymer, it is also useful standalone.
 links:
 - "HTML5Rocks - HTML's New Template Tag": http://www.html5rocks.com/tutorials/webcomponents/template/
 ---

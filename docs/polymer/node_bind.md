@@ -1,15 +1,14 @@
 ---
 layout: default
-title: Node.bind()
-type: platform
+type: core
 navgroup: docs
-shortname: Platform
-subtitle: <a href="http://prollyfill.org/" target="_blank">prollyfill</a>
+shortname: Docs
+title: Node.bind()
+subtitle: Library
 
 feature:
-  spec: None
-  code: https://github.com/polymer/NodeBind
-  summary: Adds a new method to all DOM nodes, allowing a named property of the node to be bound to data.
+  summary: "[`Node.bind()`](https://github.com/polymer/NodeBind) is Polymer's data-binding library which allows DOM nodes to bind properties to data. Although internal in Polymer, it is also useful standalone."
+
 ---
 
 {% include spec-header.html %}
