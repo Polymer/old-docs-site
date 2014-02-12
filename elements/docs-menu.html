@@ -44,16 +44,14 @@
     }
   </style>
   <polymer-ui-menu id="mainmenu">
-    <polymer-ui-submenu-item id="conceptsmenu" class="{{ {show: menu == 'start'} | tokenList}}" label="Concepts" src="/images/picons/ic_polymer_source.svg">
-      <!-- <ui-color-icon src="/images/picons/ic_polymer_source.svg"></ui-color-icon> -->
-      <polymer-ui-menu-item href="/docs/start/everything.html">Everything is an element</polymer-ui-menu-item>
-      <polymer-ui-menu-item href="/docs/start/layers.html">Layers of Polymer</polymer-ui-menu-item>
-    </polymer-ui-submenu-item>
     <polymer-ui-submenu-item class="{{ {show: menu == 'start'} | tokenList}}" id="gettingstartedmenu" label="Getting started" src="/images/picons/ic_polymer_source.svg">
+      <!-- <ui-color-icon src="/images/picons/ic_polymer_source.svg"></ui-color-icon> -->
+      <polymer-ui-menu-item href="/docs/start/everything.html">Understanding Polymer</polymer-ui-menu-item>
+      <!-- <polymer-ui-menu-item href="/docs/start/layers.html">Layers of Polymer</polymer-ui-menu-item> -->
       <polymer-ui-menu-item href="/getting-the-code.html">Get the code</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/docs/start/usingelements.html">Using elements</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/getting-started.html">Creating elements</polymer-ui-menu-item>
-      <polymer-ui-menu-item href="/docs/start/platform.html">Platform</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/docs/start/platform.html">Using Platform</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
     <polymer-ui-submenu-item id="elementsmenu" label="Elements" class="elements-using {{ {show: menu == 'docs'} | tokenList}}" src="/images/picons/ic_polymer_source.svg">
       <polymer-ui-menu-item href="/docs/elements/polymer-elements.html">Polymer elements</polymer-ui-menu-item>
