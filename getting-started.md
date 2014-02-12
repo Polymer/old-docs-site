@@ -3,7 +3,8 @@ layout: default
 type: start
 navgroup: start
 shortname: Start
-title: Getting started
+title: Creating elements
+subtitle: Getting started
 
 imports:
 #- toolkit-ui/elements/g-panels.html

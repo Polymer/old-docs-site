@@ -15,31 +15,37 @@
   
   .panel {
     @include flex-direction(column);
-    margin: 30px;
+    margin: 0 30px;
+
+    &.left {
+      padding: 80px 0px;
+    }
+    
+    &.right {
+      summary {
+        @include flex(1);
+        order: 2;
+      }
+      img {
+        order: 1;
+        width: 200px;
+        margin-right: auto;
+        margin-bottom: 50px;
+        margin-left: 0px;
+      }
+    }
+    
+    summary {
+      + summary {
+        margin-right: auto;
+        margin-left: 0px;
+      }
+      p {
+        margin: 0;
+      }
+    }
   }
-  
-  .panel summary + summary {
-    margin-right: auto;
-    margin-left: 0px;
-  }
-  
-  .panel.left {
-    padding: 80px 0px;
-  }
-  
-  .panel.right summary {
-    @include flex(1);
-    order: 2;
-  } 
-  
-  .panel.right img {
-    order: 1;
-    width: 200px;
-    margin-right: auto;
-    margin-bottom: 50px;
-    margin-left: 0px;
-  }
-  
+
   #architecture .box {
     padding: 20px 24px 14px;
   }
@@ -102,27 +108,27 @@
     width: 300px;
     margin-right: auto;
     margin-bottom:30px;
-  }
-
-  .panel.left img {
-    margin-left: 0px;
-    margin-right: auto;
-  }
-
-  .panel.right img {
-    width: 300px;
-    margin-right: 0px;
-    margin-left: auto;
-  }  
+  } 
   
   .panel {
     @include flex-direction(column);
     margin: 0 30px;
-  }
 
-  .panel summary + summary {
-    margin-right: auto;
-    margin-left: 0px;
+    &.left img {
+      margin-left: 0px;
+      margin-right: auto;
+    }
+
+    &.right img {
+      width: 300px;
+      margin-right: 0px;
+      margin-left: auto;
+    }
+
+    summary + summary {
+      margin-right: auto;
+      margin-left: 0px;
+    }
   }
 
   #architecture .box {

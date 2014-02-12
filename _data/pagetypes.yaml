@@ -3,6 +3,9 @@ default:
 start:
   headertitle: Basics
   menu: start
+concepts:
+  headertitle: Concepts
+  menu: start
 core:
   headertitle: Core
   menu: docs
