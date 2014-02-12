@@ -11,7 +11,7 @@ title: Welcome
       <p>{{site.project_title}} is a library that uses the latest web technologies to let you create custom HTML elements. Build anything from a button to a complete application as an encapsulated, reusable element that works across desktop and mobile. </p>
       <polymer-ui-toolbar>
         <button class="paper-button" data-download-button><polymer-ui-icon src="/images/picons/ic_archive_dark_.png"></polymer-ui-icon><a href="/getting-the-code.html">Get {{site.project_title}}</a></button>
-        <button class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon><a href="/getting-started.html">Get started</a></button>
+        <button class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon><a href="/docs/start/usingelements.html">Get started</a></button>
         <button class="paper-button" borderless><a href="https://github.com/polymer/polymer">View on Github</a></button>
       </polymer-ui-toolbar>
     </summary>
