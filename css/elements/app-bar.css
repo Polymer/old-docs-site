@@ -97,10 +97,14 @@ input { background-color: inherit; border: none; font-size: 20px; outline: none;
 
 @media only screen and (max-width: 800px) { /* line 115, ../../sass/elements/app-bar.scss */
   :host { -webkit-box-pack: space-between; -webkit-justify-content: space-between; -moz-justify-content: space-between; -ms-justify-content: space-between; -o-justify-content: space-between; justify-content: space-between; width: 100%; background: initial; }
+  /* line 121, ../../sass/elements/app-bar.scss */
+  :ancestor(#welcome) { -webkit-box-pack: flex-end; -webkit-justify-content: flex-end; -moz-justify-content: flex-end; -ms-justify-content: flex-end; -o-justify-content: flex-end; justify-content: flex-end; }
   /* @polyfill :host a */
-  /* line 122, ../../sass/elements/app-bar.scss */
-  ::content a { display: none; }
   /* line 126, ../../sass/elements/app-bar.scss */
-  polymer-ui-icon { margin: 0; }
+  ::content a { display: none; }
   /* line 130, ../../sass/elements/app-bar.scss */
-  #menu { display: inline-block; } }
+  polymer-ui-icon { margin: 0; }
+  /* line 134, ../../sass/elements/app-bar.scss */
+  #menu { display: inline-block; }
+  /* line 138, ../../sass/elements/app-bar.scss */
+  :ancestor(#welcome) #menu { display: none; } }

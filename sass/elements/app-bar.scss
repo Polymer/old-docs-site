@@ -118,6 +118,10 @@ input {
     background: initial;
   }
 
+  :ancestor(#welcome) {
+    @include justify-content(flex-end);
+  }
+
   /* @polyfill :host a */
   ::content a {
     display: none;
@@ -129,5 +133,9 @@ input {
 
   #menu {
     display: inline-block;
+  }
+
+  :ancestor(#welcome) #menu {
+    display: none;
   }
 }

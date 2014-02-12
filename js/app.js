@@ -232,13 +232,16 @@ document.addEventListener('polymer-ready', function(e) {
 
   dropdownToggle.addEventListener('click', function(e) {
     dropdownPanel.toggle();
+    // dropdownPanel listens to clicks on the document and autocloses
+    // so no need to add any more handlers
   });
 
-  scrim.addEventListener('click', function(e) {
-    sidebar.classList.remove('in');
-    scrim.hide();
-    dropdownPanel.close();
-  });
+  if (scrim) {
+    scrim.addEventListener('click', function(e) {
+      sidebar.classList.remove('in');
+      scrim.hide();
+    });
+  }
 });
 
 

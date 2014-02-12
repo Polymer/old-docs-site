@@ -2,7 +2,7 @@
 <link rel="import" href="../components/polymer-ui-menu/polymer-ui-menu.html">
 <link rel="import" href="../components/polymer-ui-arrow/polymer-ui-arrow.html">
 
-<polymer-element name="dropdown-panel" attributes="in">
+<polymer-element name="dropdown-panel" attributes="in autoclose">
   <template>
     <style>
     :host {
@@ -62,9 +62,11 @@
     in: false,
     open: function() {
       this.in = true;
+      document.body.addEventListener('click', this.close.bind(this), true);
     },
     close: function() {
       this.in = false;
+      document.body.removeEventListener('click', this.close);
     },
     toggle: function() {
       if (this.in) {
