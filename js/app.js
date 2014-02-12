@@ -179,43 +179,16 @@ function ajaxifySite() {
   });
 }
 
-// TODO(ericbidelman): Hacky solution to get anchors scrolled to correct location
-// in page. Layout of page happens later than the browser wants to scroll.
+
 document.addEventListener('polymer-ready', function(e) {
+  // TODO(ericbidelman): Hacky solution to get anchors scrolled to correct location
+  // in page. Layout of page happens later than the browser wants to scroll.
   if (location.hash) {
     window.setTimeout(function() {
       document.querySelector(location.hash).scrollIntoView(true, {behavior: 'smooth'});
     }, 200);
   }
-});
 
-
-document.addEventListener('DOMContentLoaded', function(e) {
-  initPage();
-
-  //addStickyScrollToBars();
-
-  // // Insure add current page to history so back button has an URL for popstate.
-  // history.pushState({url: document.location.href}, document.title,
-  //                   document.location.href);
-});
-
-// Homepage section smoothscroll.
-document.addEventListener('click', function(e) {
-  var target = e.target.parentElement;
-  if (target.localName == 'nav' && target.classList.contains('bar')) {
-    exports.scrollTo(0, target.offsetTop, {behavior: 'smooth'});
-    e.preventDefault();
-  }
-});
-
-document.querySelector('[data-twitter-follow]').addEventListener('click', function(e) {
-  e.preventDefault();
-  var target = e.target.localName != 'a' ? e.target.parentElement : e.target;
-  exports.open(target.href, '', 'width=550,height=520');
-});
-
-document.addEventListener('polymer-ready', function(e) {
   // The sliding sidebar menu for mobile
   var siteBanner = document.querySelector('site-banner');
   var sidebar = document.querySelector('#sidebar');
@@ -239,6 +212,31 @@ document.addEventListener('polymer-ready', function(e) {
     scrim.in = false;
     dropdownPanel.classList.remove('in');
   });
+});
+
+
+document.addEventListener('DOMContentLoaded', function(e) {
+  initPage();
+
+  //addStickyScrollToBars();
+
+  // // Insure add current page to history so back button has an URL for popstate.
+  // history.pushState({url: document.location.href}, document.title,
+  //                   document.location.href);
+});
+
+// Search bo close.
+document.addEventListener('click', function(e) {
+  var appBar = document.querySelector('app-bar');
+  if (appBar.showingSearch) {
+    appBar.toggleSearch(e);
+  }
+});
+
+document.querySelector('[data-twitter-follow]').addEventListener('click', function(e) {
+  e.preventDefault();
+  var target = e.target.localName != 'a' ? e.target.parentElement : e.target;
+  exports.open(target.href, '', 'width=550,height=520');
 });
 
 
