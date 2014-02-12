@@ -262,7 +262,7 @@ footer #copyright a { color: #666666; }
 #content-container scroll-area article header { margin-bottom: 24px; }
 
 /* line 487, ../sass/site2.scss */
-#sidebar { position: fixed; -webkit-transform: translateZ(0); -moz-transform: translateZ(0); -ms-transform: translateZ(0); -o-transform: translateZ(0); transform: translateZ(0); height: 100%; width: 248px; background-color: #eeeeee; box-shadow: rgba(0, 0, 0, 0.14902) 1px 1px 1px 0px; z-index: 10; }
+#sidebar { position: fixed; -webkit-transform: translateZ(0); -moz-transform: translateZ(0); -ms-transform: translateZ(0); -o-transform: translateZ(0); transform: translateZ(0); height: 100%; width: 260px; background-color: #eeeeee; box-shadow: rgba(0, 0, 0, 0.14902) 1px 1px 1px 0px; z-index: 10; }
 /* line 510, ../sass/site2.scss */
 #sidebar docs-menu { padding: 0 16px; }
 /* line 514, ../sass/site2.scss */
@@ -367,7 +367,7 @@ right: 0;*/ float: right; }
   /* line 63, ../sass/mobile.scss */
   footer polymer-ui-toolbar { -webkit-box-orient: vertical; -webkit-flex-direction: column; -moz-flex-direction: column; -ms-flex-direction: column; -o-flex-direction: column; flex-direction: column; -webkit-box-align: flex-start !important; -webkit-align-items: flex-start !important; -moz-align-items: flex-start !important; -ms-align-items: flex-start !important; -o-align-items: flex-start !important; align-items: flex-start !important; } }
 @media only screen and (max-width: 800px) { /* line 73, ../sass/mobile.scss */
-  #sidebar { -webkit-transform: translate3d(-100%, 0, 0); -moz-transform: translate3d(-100%, 0, 0); transform: translate3d(-100%, 0, 0); width: 85%; max-width: 298px; transition: all 500ms; z-index: 1000; }
+  #sidebar { -webkit-transform: translate3d(-100%, 0, 0); -moz-transform: translate3d(-100%, 0, 0); transform: translate3d(-100%, 0, 0); width: 85%; max-width: 310px; transition: all 500ms; z-index: 1000; }
   /* line 82, ../sass/mobile.scss */
   #sidebar.in { -webkit-transform: translate3d(0, 0, 0); -moz-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2); }
   /* line 90, ../sass/mobile.scss */

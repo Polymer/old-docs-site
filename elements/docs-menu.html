@@ -30,6 +30,9 @@
         background-color: #eee;
       }*/
     }
+    polymer-ui-submenu-item polymer-ui-submenu-item ^^ #menu {
+      margin-left: 24px;
+    }
     :host ^^ polymer-ui-icon {
       background-size: 48px !important;
     }
@@ -65,11 +68,11 @@
         <polymer-ui-menu-item href="/docs/polymer/databinding.html">Introduction</polymer-ui-menu-item>
         <polymer-ui-menu-item href="/docs/polymer/expressions.html">Expressions</polymer-ui-menu-item>
         <polymer-ui-menu-item href="/docs/polymer/filters.html">Filters</polymer-ui-menu-item>
-      </polymer-ui-submenu-item>
-      <polymer-ui-submenu-item label="Libraries &#x25BE;">
+        <polymer-ui-submenu-item label="Additional libraries &#x25BE;">
         <polymer-ui-menu-item href="/docs/polymer/template.html">Template Binding</polymer-ui-menu-item>
         <polymer-ui-menu-item href="/docs/polymer/node_bind.html">Node.bind()</polymer-ui-menu-item>
-       </polymer-ui-submenu-item>
+      </polymer-ui-submenu-item>
+      </polymer-ui-submenu-item>
       <polymer-ui-menu-item href="/docs/polymer/runtime-config.html">Runtime configuration</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
     <polymer-ui-submenu-item id="platformmenu" label="Platform" class="platform {{ {show: menu == 'docs'} | tokenList}}" src="/images/picons/ic_polymer_source.svg">

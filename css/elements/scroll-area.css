@@ -62,11 +62,11 @@ code, pre { color: #9f499b; }
 :host { display: block; }
 
 /* line 7, ../../sass/elements/scroll-area.scss */
-:host([sidebar]) { padding-left: 248px; }
+:host([sidebar]) { padding-left: 260px; }
 
 /* @polyfill :host[sidebar] app-bar.fixed */
 /* line 12, ../../sass/elements/scroll-area.scss */
-:host([sidebar]) ::content app-bar.fixed { margin-left: 248px; }
+:host([sidebar]) ::content app-bar.fixed { margin-left: 260px; }
 
 /* @polyfill :host:not([sidebar]) app-bar */
 /* line 17, ../../sass/elements/scroll-area.scss */
