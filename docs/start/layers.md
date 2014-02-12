@@ -6,4 +6,6 @@ shortname: Concepts
 title: Layers of Polymer
 ---
 
+{% include toc.html %}
+
 TODO

@@ -6,4 +6,6 @@ shortname: Concepts
 title: Platform
 ---
 
+{% include toc.html %}
+
 TODO
