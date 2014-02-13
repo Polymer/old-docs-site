@@ -14,4 +14,8 @@ feature:
 
 {% include spec-header.html %}
 
+{% include toc.html %}
+
 {% include_external components/PointerEvents/README.md %}
+
+{% include other-resources.html %}

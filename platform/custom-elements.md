@@ -17,5 +17,8 @@ links:
 
 {% include spec-header.html %}
 
+{% include toc.html %}
 
 {% include_external components/CustomElements/README.md %}
+
+{% include other-resources.html %}

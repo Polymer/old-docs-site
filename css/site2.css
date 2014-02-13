@@ -255,11 +255,11 @@ footer #copyright a { color: #666666; }
 /* line 469, ../sass/site2.scss */
 #content-container .article { margin-bottom: 2em; }
 /* line 473, ../sass/site2.scss */
-#content-container h2 { margin-top: 40px; }
+#content-container h2 { margin-top: 20px; }
 /* line 476, ../sass/site2.scss */
-#content-container h3 { margin-top: 30px; }
+#content-container h3 { margin-top: 15px; }
 /* line 479, ../sass/site2.scss */
-#content-container h4 { margin-top: 20px; }
+#content-container h4 { margin-top: 10px; }
 /* line 483, ../sass/site2.scss */
 #content-container scroll-area article header { margin-bottom: 24px; }
 

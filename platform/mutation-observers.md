@@ -15,8 +15,12 @@ feature:
 
 {% include spec-header.html %}
 
+{% include toc.html %}
+
 TODO
 
 {% comment %}
 {% include_external polymer/platform/MutationObservers/README.md %}
 {% endcomment %}
+
+{% include other-resources.html %}

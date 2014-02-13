@@ -57,28 +57,7 @@ with custom API functionality (i.e. attributes, properties, methods, events).
 It can be surprising to consider invisible elements, that is, elements that do not
 render anything to the screen. However, there are plenty of examples already in HTML: `<script>`, `<style>`, and `<meta>` to name a few. These do useful work without rendering UI.
 
-Non-visual custom elements provide utility without rendering UI. An example is `<polymer-ajax>`, which removes the complexity of `XMLHttpRequest` by doing useful work without.
-
-Another is `<polymer-layout>`.
-
-is But the page is just blank, what happened? Well, polymer-layout is an example of a invisible element: an element that does useful work without actually showing up on the screen. 
-
-To make our page actually display something, we need to provide some nodes for polymer-layout to lay out.
-
-    <!doctype html>gi
-    <html>
-    <head>
-        <title>Project</title>
-        <script src="components/platform/platform.js"></script>
-        <link rel="import" href="components/polymer-layout/polymer-layout.html">
-    </head>
-    <body>
-        <polymer-layout></polymer-layout>
-        <div flex style="background: #333; border: 2px solid black;"></div>
-    </body>
-    </html>
-
-There, now I've added an dark gray box, and we can see that it fills the viewport. Notice the flex attribute on the div. This is a custom attribute that tells polymer-layout to make the div fit the viewport and adapt as the viewport changes.
+Non-visual custom elements provide utility without rendering. One example is `<polymer-ajax>`, which removes the complexity of `XMLHttpRequest` by doing useful work without.
 
 ##  Visible Elements
 

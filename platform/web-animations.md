@@ -18,4 +18,8 @@ feature:
 
 {% include spec-header.html %}
 
+{% include toc.html %}
+
 {% include_external components/web-animations-js/README.md %}
+
+{% include other-resources.html %}

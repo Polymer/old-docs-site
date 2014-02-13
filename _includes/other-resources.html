@@ -1,0 +1,11 @@
+{% if page.links %}
+
+## Other useful resources
+
+{% for link_hash in page.links %}
+  {% for link in link_hash %}
+  - [{{link[0]}}]({{link[1]}})
+  {% endfor %}
+{% endfor %}
+
+{% endif %}
