@@ -45,9 +45,6 @@ At the heart of {{site.project_title}} are Custom Elements. Thus, it should be n
     <td><code>noscript</code></td><td>optional</td><td>For simple elements that don't need to call <code>Polymer()</code>. See <a href="#altregistration">Alternate ways to register an element</a>.</td>
   </tr>
   <tr>
-    <td><code>lightdom</code></td><td>optional</td><td>Produces Light DOM instead of Shadow DOM. See <a href="#createligthdom">Producing Light DOM instead of Shadow DOM</a>.</td>
-  </tr>
-  <tr>
     <td><code>constructor</code></td><td>optional</td><td>The name of the constructor to put on the global object. Allows users to create instances of your element using the <code>new</code> operator (e.g. <code>var tagName = new TagName()</code>).</td>
   </tr>
 </table>
@@ -91,40 +88,6 @@ which calls `Polymer('tag-name')`:
         <!-- shadow DOM here -->
       </template>
     </polymer-element>
-
-#### Producing Light DOM instead of Shadow DOM {#createlightdom}
-
-<span class="label label-important">Experimental</span>
-
-By default, {{site.project_title}} creates [Shadow DOM](/platform/shadow-dom.html) from the first
-`<template>` in the element definition. The _benefit of using Shadow DOM is that
-it encapsulates markup and provides style scoping for elements_.
-
-For simpler elements that don't require the features of Shadow DOM, use the `lightdom`
-attribute to control how the element stamps out DOM. {{site.project_title}}
-will create [Light DOM](/platform/shadow-dom.html#shadow-dom-subtrees) from the first
-`<template>` rather than of Shadow DOM:
-
-    <polymer-element name="tag-name" lightdom noscript>
-      <template>
-        <!-- This DOM will render in the light dom -->
-        <div>Hi ma!</div>
-      </template>
-    </polymer-element>
-
-    <tag-name><tag-name>
-
-will render as:
-
-    <tag-name>
-      <div>Hi ma!</div>
-    </tag-name>
-
-**Heads up:** `lightdom` is an experimental feature. We recommend using it
-for simple elements. For example, using the `lightdom` attribute inside of another
-{{site.project_title}} element's Shadow DOM may cause bindings and event delegations
-to not work properly.
-{: .alert .alert-error }
 
 #### Imperative registration {#imperativeregister}
 
@@ -242,7 +205,6 @@ detachedCallback | detached | an instance was removed from the document
 attributeChangedCallback | attributeChanged | an attribute was added, removed, or updated
 {: .table .responsive-table .lifecycle-table }
 
-<!-- ### The WebComponentsReady event {#WebComponentsReady} -->
 ### The polymer-ready event {#polymer-ready}
 
 {{site.project_title}} parses element definitions and handles their upgrade _asynchronously_.
