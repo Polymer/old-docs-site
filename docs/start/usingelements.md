@@ -54,7 +54,10 @@ with custom API functionality (i.e. attributes, properties, methods, events).
 
 ## Non-visual elements
 
-There are plenty of standard HTML elements that don't render, but it can be surprising to consider invisible custom elements. `<polymer-ajax>` is an example of a non-visual custom element. It provides XHR utilities and does useful work without actually showing up on the screen.
+It can be surprising to consider invisible elements, that is, elements that do not
+render anything to the screen. However, there are plenty of examples already in HTML: `<script>`, `<style>`, and `<meta>` to name a few. These do useful work without rendering UI.
+
+Non-visual custom elements provide utility without rendering UI. An example is `<polymer-ajax>`, which removes the complexity of `XMLHttpRequest` by doing useful work without.
 
 Another is `<polymer-layout>`.
 
@@ -62,7 +65,7 @@ is But the page is just blank, what happened? Well, polymer-layout is an example
 
 To make our page actually display something, we need to provide some nodes for polymer-layout to lay out.
 
-    <!doctype html>
+    <!doctype html>gi
     <html>
     <head>
         <title>Project</title>

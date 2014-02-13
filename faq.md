@@ -318,31 +318,9 @@ is a good thing and will generally make things better.
 
 Not yet, but we think that's a great idea.
 
-### I get errors when trying to use external stylesheets in my element definition or using `<link rel="import">` with external files. {#externalsheets}
+### I get errors when trying to use  `<link rel="import">` with external files. {#externalfiles}
 
-Unfortunately, this is a limitation of the HTML Import spec and the polyfill follows suit. The polyfill uses XHR to pull down resources defined in an `<polymer-element>` definition. External resources will fail if they are not [CORs-enabled](http://www.html5rocks.com/tutorials/cors/).
-
-For stylesheets that are not same domain or CORs-enabled, you can use `@import` in a `<style>`:
-
-    <polymer-element name="x-blink" ...>
-      <template>
-        <style>
-          @import url(http://example.com/awesome.css);
-        </style>
-        ...
-      </template>
-    </polymer-element>
-
-*Note*: If your stylesheet **is** CORs-enabled or from the same domain as your app,
-it's preferred to inline the styles without using `@import`. For example:
-
-    <polymer-element ...>
-      <template>
-        <link rel="stylesheet" href="frameworkstyles.css">
-        ...
-      </template>
-      ...
-    </polymer-element>
+Unfortunately, this is a limitation of the HTML Import spec and the polyfill follows suit. The polyfill uses XHR to pull down external imports. These will fail if they are not [CORs-enabled](http://www.html5rocks.com/tutorials/cors/).
 
 {%comment%}
 ### How can I use web fonts or CSS Animations in my custom element? {#fontsanimations}
