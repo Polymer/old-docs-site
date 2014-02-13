@@ -4,7 +4,7 @@ type: start
 navgroup: start
 shortname: Start
 title: Creating elements
-subtitle: Getting started
+subtitle: Polymer from the inside
 
 imports:
 #- toolkit-ui/elements/g-panels.html

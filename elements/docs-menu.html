@@ -14,7 +14,8 @@
     polymer-ui-menu > polymer-ui-submenu-item ^ polymer-ui-menu-item {
       color: inherit;
     }
-    polymer-ui-submenu-item ^^ polymer-ui-menu-item {
+    polymer-ui-submenu-item ^^ polymer-ui-menu-item,
+    polymer-ui-menu-item {
       font-size: 14px !important;
       font-weight: 600;
       line-height: 32px !important;
@@ -59,7 +60,6 @@
       <polymer-ui-menu-item href="/docs/elements/other.html">Other</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
     <polymer-ui-submenu-item id="coremenu" label="Core" class="elements-creating {{ {show: menu == 'docs'} | tokenList}}" src="/images/picons/ic_polymer_source.svg">
-      <polymer-ui-menu-item id="articles" href="/articles/">Articles</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/docs/polymer/polymer.html">API reference</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/docs/polymer/styling.html">Styling reference</polymer-ui-menu-item>
       <polymer-ui-submenu-item label="Data-binding &#x25BE;">
@@ -87,6 +87,7 @@
       <polymer-ui-menu-item href="/changelog.html">Releases</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/faq.html">FAQ</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
+    <polymer-ui-menu-item id="articles" href="/articles/" class="{{ {show: menu == 'docs'} | tokenList}}" src="/images/picons/ic_news_dark.png">Articles</polymer-ui-menu-item>
     <!-- <polymer-ui-nav-arrow target="{{item}}" borderColor="rgba(0, 0, 0,0.15)"></polymer-ui-nav-arrow> -->
   </polymer-ui-menu>
 </template>
@@ -97,8 +98,9 @@
     },
     highlightItemWithURL: function(href) {
       if (href.match(/\/articles\//)) {
-        this.$.mainmenu.selected = this.$.mainmenu.items.indexOf(this.$.coremenu);
-        this.$.coremenu.selected = this.$.coremenu.items.indexOf(this.$.articles);
+        //this.$.mainmenu.selected = this.$.mainmenu.items.indexOf(this.$.coremenu);
+        //this.$.coremenu.selected = this.$.coremenu.items.indexOf(this.$.articles);
+        this.$.mainmenu.selected = this.$.mainmenu.items.indexOf(this.$.articles);
         return;
       }
 
