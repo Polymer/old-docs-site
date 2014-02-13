@@ -343,7 +343,7 @@ a default style of `display: block` using `:host`.
       ...
     </polymer-element>
     <script>
-    window.addEventListener('WebComponentsReady', function(e) {
+    window.addEventListener('polymer-ready', function(e) {
       var element = document.querySelector('my-element');
       // element.clientWidth/clientHeight won't be 0.
     });

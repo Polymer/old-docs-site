@@ -41,7 +41,7 @@ Class name | Behavior when applied to an element
 `[resolved]` | Fades-in the element over 200ms.
 {: .table .responsive-table .fouc-table }
 
-Upon [`WebComponentsReady`](/docs/polymer/polymer.html#WebComponentsReady) firing, {{site.project_title}} runs the following steps:
+Upon [`polymer-ready`](/docs/polymer/polymer.html#polymer-ready) firing, {{site.project_title}} runs the following steps:
 
 1. removes the `[unresolved]` attribute from elements that have it
 2. adds the `[resolved]` attribute

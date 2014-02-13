@@ -249,7 +249,7 @@ a browser where it is not available natively, use {{site.project_title}}'s [FOUC
 ### Polyfilling :unresolved
 
 {{site.project_title}} provides the `[unresolved]` attribute to polyfill the CSS
-`:unresolved` pseudo class. See [FOUC prevention](/docs/polymer/styling.html#fouc-prevention). The attribute is automatically removed from elements at `WebComponentsReady` ready time, the
+`:unresolved` pseudo class. See [FOUC prevention](/docs/polymer/styling.html#fouc-prevention). The attribute is automatically removed from elements at `polymer-ready` time, the
 event that signifies all elements have been upgraded.
 
 **Example**

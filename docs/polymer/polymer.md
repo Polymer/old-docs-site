@@ -242,12 +242,14 @@ detachedCallback | detached | an instance was removed from the document
 attributeChangedCallback | attributeChanged | an attribute was added, removed, or updated
 {: .table .responsive-table .lifecycle-table }
 
-### The WebComponentsReady event {#WebComponentsReady}
+<!-- ### The WebComponentsReady event {#WebComponentsReady} -->
+### The polymer-ready event {#polymer-ready}
 
-The polyfills parse element definitions and handle their upgrade _asynchronously_.
+{{site.project_title}} parses element definitions and handles their upgrade _asynchronously_.
 If you prematurely fetch the element from the DOM before it has a chance to upgrade,
-you'll be working with an `HTMLUnknownElement`. In these situations, wait for the `WebComponentsReady` event
-before interacting with the element:
+you'll be working with an `HTMLUnknownElement`. {{site.project_title}} elements also support inline resources, such as stylesheets, that need to be loaded. These can cause FOUC issues if they're not fully loaded prior to rendering an element. To avoid FOUC, {{site.project_title}} delays registering elements until stylesheets are fully loaded.
+
+To know when elements have been registered/upgraded, and thus ready to be interacted with, use the `polymer-ready` event.
 
     <head>
       <link rel="import" href="path/to/x-foo.html">
@@ -255,7 +257,7 @@ before interacting with the element:
     <body>
       <x-foo></x-foo>
       <script>
-        window.addEventListener('WebComponentsReady', function(e) {
+        window.addEventListener('polymer-ready', function(e) {
           var xFoo = document.querySelector('x-foo');
           xFoo.barProperty = 'baz';
         });
