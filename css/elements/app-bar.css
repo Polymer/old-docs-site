@@ -95,21 +95,21 @@ polymer-ui-icon { width: 24px !important; height: 24px !important; background-si
 #search[show] input { padding: 10px; visibility: visible; }
 
 /* line 107, ../../sass/elements/app-bar.scss */
-input { background-color: inherit; border: none; font-size: 20px; outline: none; padding: 0; color: inherit; -webkit-box-flex: 1; -webkit-flex: 1 0 0; -moz-flex: 1 0 0; -ms-flex: 1 0 0; -o-flex: 1 0 0; flex: 1 0 0; visibility: hidden; }
+input { background-color: inherit; border: none; font-size: 20px; outline: none; padding: 0; color: inherit; -webkit-box-flex: 1; -webkit-flex: 1 0 0; -moz-flex: 1 0 0; -ms-flex: 1 0 0; -o-flex: 1 0 0; flex: 1 0 0; visibility: hidden; -webkit-appearance: none; }
 
-/* line 119, ../../sass/elements/app-bar.scss */
+/* line 120, ../../sass/elements/app-bar.scss */
 #menu { display: none; }
 
-@media only screen and (max-width: 800px) { /* line 125, ../../sass/elements/app-bar.scss */
+@media only screen and (max-width: 800px) { /* line 126, ../../sass/elements/app-bar.scss */
   :host { -webkit-box-pack: space-between; -webkit-justify-content: space-between; -moz-justify-content: space-between; -ms-justify-content: space-between; -o-justify-content: space-between; justify-content: space-between; width: 100%; background: initial; }
-  /* line 131, ../../sass/elements/app-bar.scss */
+  /* line 132, ../../sass/elements/app-bar.scss */
   :ancestor(#welcome) { -webkit-box-pack: flex-end; -webkit-justify-content: flex-end; -moz-justify-content: flex-end; -ms-justify-content: flex-end; -o-justify-content: flex-end; justify-content: flex-end; }
   /* @polyfill :host a */
-  /* line 136, ../../sass/elements/app-bar.scss */
+  /* line 137, ../../sass/elements/app-bar.scss */
   ::content a { display: none !important; }
-  /* line 140, ../../sass/elements/app-bar.scss */
+  /* line 141, ../../sass/elements/app-bar.scss */
   polymer-ui-icon { margin: 0; }
-  /* line 144, ../../sass/elements/app-bar.scss */
+  /* line 145, ../../sass/elements/app-bar.scss */
   #menu { display: inline-block; }
-  /* line 148, ../../sass/elements/app-bar.scss */
+  /* line 149, ../../sass/elements/app-bar.scss */
   :ancestor(#welcome) #menu { display: none; } }

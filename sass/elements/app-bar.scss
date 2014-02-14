@@ -114,6 +114,7 @@ input {
   color: inherit;
   @include flex(1 0 0);
   visibility: hidden;
+  -webkit-appearance: none;
 }
 
 #menu {
