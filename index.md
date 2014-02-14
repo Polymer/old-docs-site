@@ -52,7 +52,7 @@ title: Welcome
       </div>
       <h2 class="elements-creating">Creating elements</h2>
       <h5>{{site.project_title}} from the inside</h5>
-      <p>{{site.project_title}}'s declarative syntax makes it simpler to define custom elements. Features like two-way data binding, property observation, and gesture support help you build powerful, reusable elements.</p>
+      <p>{{site.project_title}}'s declarative syntax makes it simpler to define custom elements. Features like two-way data binding, declarative event handlers, property observation, and gesture support help you build powerful, reusable elements.</p>
       <a href="/getting-started.html" class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Build your own</a>
     </summary>
     <summary>
@@ -61,7 +61,7 @@ title: Welcome
       </div>
       <h2 class="platform">The platform</h2>
       <h5>Supporting web standards today</h5>
-      <p>{{site.project_title}} is built on the latest web technologies, like Web Components and <code>Object.observe</code>. Not all browsers support these features yet, so {{site.project_title}}'s platform layer fills the gaps, implementing the APIs in JavaScript. At runtime, {{site.project_title}} automatically picks the fastest path -- native implementation or JavaScript.</p>
+      <p>{{site.project_title}} is built on the latest web technologies like Web Components. Not all browsers support these features yet, so {{site.project_title}}'s platform layer fills the gaps, implementing the APIs in JavaScript. {{site.project_title}} automatically picks the fastest path at runtime.</p>
       <a href="/docs/start/platform.html" class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Get your {{site.project_title}}</a>
     </summary>
   </div>
