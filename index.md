@@ -10,9 +10,9 @@ title: Welcome
       <h1>Building blocks for the web</h1>
       <p>{{site.project_title}} is a library that uses the latest web technologies to let you create custom HTML elements. Build anything from a button to a complete application as an encapsulated, reusable element that works across desktop and mobile. </p>
       <polymer-ui-toolbar>
-        <button class="paper-button" data-download-button><polymer-ui-icon src="/images/picons/ic_archive_dark_.png"></polymer-ui-icon><a href="/getting-the-code.html">Get {{site.project_title}}</a></button>
-        <button class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon><a href="/docs/start/everything.html">Get started</a></button>
-        <button class="paper-button" borderless><a href="https://github.com/polymer/polymer">View on Github</a></button>
+        <a href="/getting-the-code.html" class="paper-button" data-download-button><polymer-ui-icon src="/images/picons/ic_archive_dark_.png"></polymer-ui-icon>Get {{site.project_title}}</a>
+        <a href="/docs/start/everything.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Get started</a>
+        <a href="https://github.com/polymer/polymer" class="paper-button" borderless>View on Github</a>
       </polymer-ui-toolbar>
     </summary>
   </div>
@@ -27,7 +27,7 @@ title: Welcome
       <p>From <code>&lt;a&gt;</code> to <code>&lt;select&gt;</code>, elements are the building blocks of HTML. But modern applications have outgrown these built-in elements. App developers are forced to rely on JavaScript frameworks to provide dynamic, custom behavior.  The resulting apps are frequently complex and monolithic, and a component developed for one app may not work in another app.
       <br><br>
       {{site.project_title}} puts elements back at the center of your apps. With Polymer, you can craft your own HTML elements and compose them into complete, complex applications that are scalable and maintainable.</p>
-      <button class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_light.png"></polymer-ui-icon><a href="/docs/start/everything.html">Learn more</a></button>
+      <a href="/docs/start/everything.html" class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_light.png"></polymer-ui-icon>Learn more</a>
     </summary>
     <img src="/images/logos/p-elements.svg">
   </div>
@@ -44,7 +44,7 @@ title: Welcome
       <h2 class="elements-using">Using elements</h2>
       <h5>{{site.project_title}} from the outside</h5>
       <p>{{site.project_title}} provides a comprehensive set of elements--both visual and non-visual--that you can use right out of the box. You can mix and match {{site.project_title}} elements with other elements, including built-in elements and other custom elements.</p>
-      <button class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon><a href="/docs/start/usingelements.html">Use our elements</a></button>
+      <a href="/docs/start/usingelements.html" class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Use our elements</a>
     </summary>
     <summary>
       <div class="box">
@@ -53,7 +53,7 @@ title: Welcome
       <h2 class="elements-creating">Creating elements</h2>
       <h5>{{site.project_title}} from the inside</h5>
       <p>{{site.project_title}}'s declarative syntax makes it simpler to define custom elements. Features like two-way data binding, property observation, and gesture support help you build powerful, reusable elements.</p>
-      <button class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon><a href="/getting-started.html">Build your own</a></button>
+      <a href="/getting-started.html" class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Build your own</a>
     </summary>
     <summary>
       <div class="box">
@@ -62,7 +62,7 @@ title: Welcome
       <h2 class="platform">The platform</h2>
       <h5>Supporting web standards today</h5>
       <p>{{site.project_title}} is built on the latest web technologies, like Web Components and <code>Object.observe</code>. Not all browsers support these features yet, so {{site.project_title}}'s platform layer fills the gaps, implementing the APIs in JavaScript. At runtime, {{site.project_title}} automatically picks the fastest path -- native implementation or JavaScript.</p>
-      <button class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon><a href="/docs/start/platform.html">Get your {{site.project_title}}</a></button>
+      <a href="/docs/start/platform.html" class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Get your {{site.project_title}}</a>
     </summary>
   </div>
 </section>

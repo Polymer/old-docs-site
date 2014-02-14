@@ -73,6 +73,7 @@ polymer-ui-icon {
 ::content a {
   opacity: 0.6;
   @include flex(1 0 auto);
+  text-transform: none !important;
 }
 
 #search {

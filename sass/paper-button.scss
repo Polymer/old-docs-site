@@ -1,0 +1,57 @@
+@import "base";
+
+.paper-button {
+  -webkit-transition: box-shadow 0.2s, background 0.2s;
+  transition: box-shadow 0.2s, background 0.2s;
+  border: none;
+  cursor: default;
+  overflow: hidden;
+  position: relative;
+  // color: rgb(102, 102, 102);
+  padding: 14px 14px 12px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  outline: none;
+
+  font-size: 13px;
+  line-height: 24px;
+  letter-spacing: 0.06em;
+  color: inherit;
+  vertical-align: middle;
+  font-weight: normal;
+
+  text-transform: uppercase;
+
+  polymer-ui-icon {
+    margin-right: 5px;
+  }
+
+  &[borderless] {
+    border: none;
+    background: none;
+  }
+
+  &:not([borderless]) {
+    background: $gray-medium;
+    box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px, rgba(0, 0, 0, 0.0980392) 0px 1px 2px 0px;
+  }
+
+  &:hover, &.active {
+    text-decoration: none;
+    background: #fff;
+    box-shadow: 0px 4px 10px 0 rgba(0,0,0,0.1), 0px 2px 10px 0px rgba(0,0,0,0.1);
+  }
+
+  // Inset highlight
+  &[sink] {
+    padding: 7px 10px;
+    transition: none;
+
+    &:hover, &.active {
+      @include background(linear-gradient(top, rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 0.08) 40%));
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2) inset, 0 -1px 1px rgba(0, 0, 0, 0.1) inset, 0 1px 0px rgba(0, 0, 0, 0.2) inset;
+    }
+  }
+}
