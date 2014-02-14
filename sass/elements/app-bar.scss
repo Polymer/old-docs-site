@@ -134,7 +134,7 @@ input {
 
   /* @polyfill :host a */
   ::content a {
-    display: none;
+    display: none !important;
   }
 
   polymer-ui-icon {

@@ -106,7 +106,7 @@ input { background-color: inherit; border: none; font-size: 20px; outline: none;
   :ancestor(#welcome) { -webkit-box-pack: flex-end; -webkit-justify-content: flex-end; -moz-justify-content: flex-end; -ms-justify-content: flex-end; -o-justify-content: flex-end; justify-content: flex-end; }
   /* @polyfill :host a */
   /* line 136, ../../sass/elements/app-bar.scss */
-  ::content a { display: none; }
+  ::content a { display: none !important; }
   /* line 140, ../../sass/elements/app-bar.scss */
   polymer-ui-icon { margin: 0; }
   /* line 144, ../../sass/elements/app-bar.scss */

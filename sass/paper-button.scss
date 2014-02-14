@@ -1,6 +1,7 @@
 @import "base";
 
 .paper-button {
+  display: inline-block;
   -webkit-transition: box-shadow 0.2s, background 0.2s;
   transition: box-shadow 0.2s, background 0.2s;
   border: none;

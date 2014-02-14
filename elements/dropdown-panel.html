@@ -37,7 +37,7 @@
     
     /* @polyfill :host polymer-ui-menu-item #label */
     ::content polymer-ui-menu-item ^^ #label {
-      font-weight: 800;
+      font-weight: 300;
     }
 
     /* @polyfill :host polymer-ui-menu-item[active] */
@@ -45,16 +45,10 @@
       background: rgba(0, 0, 0, 0.04);
       border: 1px solid #d9d9d9;
     }
-
-    /* @polyfill :host polymer-ui-menu-item polymer-ui-icon */
-    ::content polymer-ui-menu-item ^ polymer-ui-icon {
-      background-size: 45px !important;
-    }
     </style>
-
     <polymer-ui-menu>
       <polymer-ui-arrow direction="up" size="9"></polymer-ui-arrow>
-      <content select="*"></content>
+      <content></content>
     </polymer-ui-menu>
   </template>
   <script>
