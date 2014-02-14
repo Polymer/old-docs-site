@@ -58,9 +58,13 @@ See our [Browser Compatibility](/resources/compatibility.html) page for more inf
 loaded from the following URLs:
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/polymer/{{site.latest_version}}/platform.js"></script>
-    <link rel="import" href="//cdnjs.cloudflare.com/ajax/libs/polymer/{{site.latest_version}}/polymer.html"></link>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/polymer/{{site.latest_version}}/polymer.js"></script>
 
-Because there are so many elements which are not hosted on the CDN we recommend you use Bower whenever possible. If you're using the CDN you will also not be able to Vulcanize your code.
+There are a number of reasons why we recommend you use Bower instead of the CDN:
+
+- The CDN does not host polymer.html which removes the ability for elements to import it.
+- There are many elements which are not hosted on the CDN so it might be tricky to include all of them in your project.
+- You will not be able to [Vulcanize your code](/articles/concatenating-web-components.html).
 
 ### When will other browsers support these APIs natively? {#nativesupport}
 
