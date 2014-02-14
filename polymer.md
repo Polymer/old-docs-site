@@ -42,7 +42,7 @@ At the heart of {{site.project_title}} are Custom Elements. Thus, it should be n
     <td><code>noscript</code></td><td>optional</td><td>For simple elements that don't need to call <code>Polymer()</code>. See <a href="#altregistration">Alternate ways to register an element</a>.</td>
   </tr>
   <tr>
-    <td><code>lightdom</code></td><td>optional</td><td>Produces Light DOM instead of Shadow DOM. See <a href="#createligthdom">Producing Light DOM instead of Shadow DOM</a>.</td>
+    <td><code>lightdom</code></td><td>optional</td><td>Produces Light DOM instead of Shadow DOM. See <a href="#createlightdom">Producing Light DOM instead of Shadow DOM</a>.</td>
   </tr>
   <tr>
     <td><code>constructor</code></td><td>optional</td><td>The name of the constructor to put on the global object. Allows users to create instances of your element using the <code>new</code> operator (e.g. <code>var tagName = new TagName()</code>).</td>
