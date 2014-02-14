@@ -609,4 +609,13 @@ dropdown-panel {
   font-weight: 600;
 }
 
+/* Videos */
+
+.video iframe {
+  // width: 100%;
+  width: 853px;
+  max-width: 100%;
+  height: 480px;
+}
+
 @import "mobile";

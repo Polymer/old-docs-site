@@ -338,6 +338,10 @@ right: 0;*/ float: right; }
 /* line 607, ../sass/site2.scss */
 #toc summary { font-size: 16px; font-weight: 600; }
 
+/* Videos */
+/* line 614, ../sass/site2.scss */
+.video iframe { width: 853px; max-width: 100%; height: 480px; }
+
 @media only screen and (max-width: 580px) { /* line 6, ../sass/mobile.scss */
   .onlyonmobile { display: block !important; }
   /* line 10, ../sass/mobile.scss */
