@@ -52,6 +52,16 @@ That's fine. We've designed {{site.project_title}}  to be cleanly layered so you
 
 See our [Browser Compatibility](/resources/compatibility.html) page for more information.
 
+### Is the code hosted on a CDN?
+
+{{site.project_title}} is maintained on [cdnjs](http://cdnjs.com/) and can be
+loaded from the following URLs:
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/polymer/{{site.latest_version}}/platform.js"></script>
+    <link rel="import" href="//cdnjs.cloudflare.com/ajax/libs/polymer/{{site.latest_version}}/polymer.html"></link>
+
+Because there are so many elements which are not hosted on the CDN we recommend you use Bower whenever possible. If you're using the CDN you will also not be able to Vulcanize your code.
+
 ### When will other browsers support these APIs natively? {#nativesupport}
 
 The foundation layer in our <a href="/images/architecture-diagram.svg" target="_blank">architecture diagram</a> is based on emerging web standards. As browsers support them natively, the need for that layer will diminish and ultimately disappear. It's impossible to say when every browser will support these features natively--but the more that web developers ask for them, the sooner native support will come.
