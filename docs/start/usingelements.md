@@ -11,7 +11,7 @@ subtitle: Polymer from the outside
 
 If HTML was reinvented tomorrow, it would provide more features and greater capability and than today's built-in elements. For example, imagine you're building a photobooth app to capture snapshots, display thumbnails, and cycle through recent photos. If HTML provided the `<camera>`, `<carousel>`, or `<tabs>` element, you wouldn't think twice about using them. You'd accept the functionality and start declaring markup!
 
-Fortunately, [Custom Elements](/platform/custom-elements.html) pave a path to {{site.project_title}}'s, "[Everything is an element](/docs/start/everything.html)". Embracing the mantra means web apps become a large collection of well-defined, reusable components. Applications are created by assembling many custom elements together, either ones provided by {{site.project_title}}, [ones you create](/getting-started.html) yourself, or third-party elements.
+Fortunately, [Custom Elements](/platform/custom-elements.html) pave a path to {{site.project_title}}'s, "[Everything is an element](/docs/start/everything.html)" mantra. Embracing the mantra means web apps become a large collection of well-defined, reusable components. Applications are created by assembling many custom elements together, either ones provided by {{site.project_title}}, [ones you create](/getting-started.html) yourself, or third-party elements.
 
 ## Custom elements are just elements
 
@@ -39,7 +39,7 @@ Guess what? **The same tricks apply to custom elements**. You can use standard D
 on custom elements, access their properties, attach event listeners, or style them using CSS. The major difference with custom elements is that they give authors a tool for defining new tags
 with compartmentalized functionality.
 
-Our `<polymer-selector>` element is a good example of a basic custom element. It's a close relative to `<select>`, but provides additional functionality that it lacks:
+Our `<polymer-selector>` element is a good example of a basic custom element. It's a close relative to `<select>`, but provides additional functionality and more flexibility. For example, you can  use `<polymer-selector>` as a general container for selecting _any_ type of content, not just `<option>`! It also provides convenient styling hooks, events, and additional properties for interacting with its items.
 
     <polymer-selector selected="0">
       <div>Item 1</div>
@@ -60,12 +60,27 @@ Our `<polymer-selector>` element is a good example of a basic custom element. It
 Visual elements are what most people think of when they hear web components. The render
 UI and are visible on the page. A few examples are `<polymer-ui-collapsible>`, `<polymer-ui-tabs>`, and `<polymer-ui-toolbar>`.
 
+Example of using `<polymer-ui-tabs>`:
+
+    <polymer-ui-tabs selected="0">
+      <span>One</span><span>Two</span><span>Three</span>
+      <span>Four</span><span>Five</span>
+    </polymer-ui-tabs>
+
+<iframe src="/components/polymer-ui-tabs/smoke.html" style="border:none;height:80px;width:100%;"></iframe>
+
 ### Non-visual elements {#nonvisualelements}
 
 It can be surprising to consider invisible elements, that is, elements that do not
 render anything to the screen. However, there are plenty of examples already in HTML: `<script>`, `<style>`, and `<meta>` to name a few. These do useful work without rendering UI.
 
 Non-visual custom elements provide utility without rendering anything. One example is `<polymer-ajax>`, which removes the complexity of `XMLHttpRequest` by doing useful work without.
+
+Example using `<polymer-ajax>`:
+
+    <polymer-ajax auto url="http://gdata.youtube.com/feeds/api/videos/" 
+                  params='{"alt":"json", "q":"chrome"}'
+                  handleAs="json"></polymer-ajax>
 
 ## Installing elements {#install}
 
@@ -159,9 +174,7 @@ polyfill to work properly. This requirement goes away when the API is available 
 
 ## Interoperability: on by default {#interop}
 
-Because custom elements are fundamentally HTML elements, by nature, they work well with each other. technology that understands DOM (every framework on the planet). That means custom elements already works with frameworks like Angular, Ember, jQuery, &lt;insert framework here>.
-
-Right now, most browsers do not implement custom elements natively so full compatibility is unrealistic. Support is simulated through the [platform.js](docs/start/platform.html) polyfills. But for the most part, things do Just Work with the polyfills. Ultimately all compatibility issues go away when custom elements is implemented directly in browsers. 
+Because custom elements are fundamentally HTML elements, by nature, they work well with each other or any technology that understands DOM (every framework on the planet). That means custom elements already works with frameworks like Angular, Ember, jQuery, &lt;insert your framework here>.
 
 The custom elements we've used so far come from {{site.project_title}}'s set and are built using [{{site.project_title}} core](/docs/polymer/polymer.html). But here's where things get interesting...
 
