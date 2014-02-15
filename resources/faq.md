@@ -396,7 +396,7 @@ A common mis-conception is that the Shadow DOM doesn't play nicely with assistiv
 
 In fact, if you inspect one of the native HTML elements that use Shadow DOM, `<input type="date">` for example, you'll notice aria attributes inside the tree:
 
-![](images/ariashadowdom.jpg)
+![](/images/ariashadowdom.jpg)
 
 Other types of assistive tools like [Chromevox](http://www.chromevox.com/) will [need to be updated](https://code.google.com/p/chromium/issues/detail?id=96373) to learn how to traverse the Shadow DOM. 
 There's an ongoing discussion with accessibility experts on how best to integrate Shadow DOM with screen readers and search engines and further progress in this area is likely to come in the future.
