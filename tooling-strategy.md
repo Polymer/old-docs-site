@@ -22,7 +22,7 @@ To be able to inspect Shadow DOM, turn on "Show Shadow DOM" in the DevTools gene
 
 ![Enable "Show Shadow DOM" in the Devtools](/images/showshadowdom.png 'Enable "Show Shadow DOM" in the Devtools')
 
-After reloading the DevTools, Shadow DOM is inspectable and renders as `#document-fragment`s in the tree.
+After reloading the DevTools, Shadow DOM is inspectable and renders as `#shadow-root`s in the tree.
 
 ## Source maps
 
