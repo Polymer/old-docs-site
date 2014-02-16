@@ -40,6 +40,14 @@ including polyfill repos, tools, projects, and UI elements.
 #### Shadow DOM
 {% endcomment %}
 
+## 2014-02-14 {#r2014-02-14}
+
+Happy Valentine's Day! 
+
+See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/0.2.0).
+
+---
+
 ## 2014-01-27 {#r2014-01-27}
 
 See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/0.1.4).
