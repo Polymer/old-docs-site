@@ -31,10 +31,14 @@
         background-color: #eee;
       }*/
     }
+    :host ^^ #menu {
+      margin-left: 34px;
+    }
     polymer-ui-submenu-item polymer-ui-submenu-item ^^ #menu {
       margin-left: 24px;
     }
     :host ^^ polymer-ui-icon {
+      margin-right: 6px;
       background-size: 48px !important;
     }
     #mainmenu > * {
@@ -43,6 +47,7 @@
     .show {
       display: block !important;
     }
+
   </style>
   <polymer-ui-menu id="mainmenu">
     <polymer-ui-submenu-item class="{{ {show: menu == 'start'} | tokenList}}" id="gettingstartedmenu" label="Getting started" src="/images/picons/ic_polymer_source.svg">
@@ -50,6 +55,7 @@
       <polymer-ui-menu-item href="/getting-the-code.html">Get the code</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/docs/start/everything.html">Understanding Polymer</polymer-ui-menu-item>
       <!-- <polymer-ui-menu-item href="/docs/start/layers.html">Layers of Polymer</polymer-ui-menu-item> -->
+      <polymer-ui-menu-item href="/docs/start/customelements.html">Guide to custom elements</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/docs/start/usingelements.html">Using elements</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/getting-started.html">Creating elements</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/docs/start/platform.html">Using Platform</polymer-ui-menu-item>
