@@ -1,7 +1,7 @@
 <link rel="import" href="../components/polymer-selector/polymer-selector.html">
 <link rel="import" href="../components/polymer/polymer.html">
 
-<polymer-element name="demo-tab" attributes="heading">
+<polymer-element name="demo-tab" attributes="heading type">
   <template>
     <style>
       :host {
@@ -59,14 +59,55 @@
         color: #444 !important;
         border-bottom: 3px solid currentcolor;
       }
+      #wrapper {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+      }
       #contents {
         overflow: auto;
+        -webkit-flex: 1;
+        flex: 1;
+      }
+      #results {
+        padding: 10px;
+        padding-top: 60px;
+        display: none;
+        position: relative;
+        border: 1px solid #eee;
+      }
+      #results::before {
+        content: 'Result';
+        color: #999;
+        font-weight: 600;
+        background-color: #eee;
+        padding: 10px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+      #results.show {
+        display: block;
       }
       /* @polyfill :host pre */
       ::content pre {
         margin: 0 !important;
-        background-color: transparent;
-        padding-left: 0;
+        /*background-color: transparent;*/
+        /*padding-left: 0;*/
+      }
+
+      @media only screen and (min-width: 990px)  {
+        #wrapper {
+          -webkit-flex-direction: row;
+          flex-direction: row;
+        }
+        #results {
+          max-width: 25%;
+        }
       }
     </style>
     <div id="container">
@@ -77,13 +118,23 @@
           </template>
         </polymer-selector>
       </div>
-      <div id="contents">
-        <content id="contentpanels" select="demo-tab"></content>
+      <div id="wrapper">
+        <div id="contents">
+          <content id="contentpanels" select="demo-tab"></content>
+        </div>
+        <div id="results">
+          <content id="contentresults" select=".result"></content>
+        </div>
       </div>
     </div>
   </template>
   <script>
     Polymer('demo-tabs', {
+      attached: function() {
+        if (this.$.contentresults.getDistributedNodes().length) {
+          this.$.results.classList.add('show');
+        }
+      },
       selectedIndexChanged: function(oldVal) {
         this.panels = [].slice.call(this.$.contentpanels.getDistributedNodes());
 
