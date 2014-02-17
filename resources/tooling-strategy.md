@@ -39,10 +39,10 @@ To run tests, build minified files, or build documentation you need `node` and
 * install [NodeJS](http://nodejs.org) using the instructions on their website
 * use `npm` to install the [GruntJS](http://gruntjs.com) task runner for the command-line
   
-    npm install -g grunt-cli
+      npm install -g grunt-cli
 
 Now for any repository in which you want to use tools, install the Node dependencies
-and use Grunt to perform tasks. In the project's root folder (e.g. `<somepath>/platform/`), run:
+and use Grunt to perform tasks. In the project's root folder (e.g. `<somepath>/platform-dev/`), run:
 
     npm install
 

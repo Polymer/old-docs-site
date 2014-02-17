@@ -9,6 +9,7 @@ subtitle: Polymer from the outside
 
 {% include toc.html %}
 
+## Introduction
 
 {{site.project_title}} provides a large collection of elements for you to pick from. And because the elements are just like built-in elements, you get a lot of great properties for free:
 
@@ -19,7 +20,6 @@ subtitle: Polymer from the outside
 
 {{site.project_title}}'s set of elements includes the usual suspects like buttons and other UI components, but also includes non-visual elements like `<polymer-ajax>`. It may sound surprising, but when you embrace the world-view that "[everything is an element](/docs/start/everything.html)" you'll find yourself reaching for pre-built elements more often than script to accomplish common tasks. {{site.project_title}}'s collection of elements is already robust, but it will continue to grow. 
 
-I
 ## Installing elements {#install}
 
 The first step in using an element (or a set of elements) is to install it locally into your app using [Bower](http://bower.io). As your application grows in complexity, you'll be using more and more elements. Bower is an ideal tool for managing and versioning those dependencies.
