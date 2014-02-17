@@ -62,7 +62,7 @@ title: Welcome
       <h2 class="platform">The platform</h2>
       <h5>Supporting web standards today</h5>
       <p>{{site.project_title}} is built on the latest web technologies like Web Components. Not all browsers support these features yet, so {{site.project_title}}'s platform layer fills the gaps, implementing the APIs in JavaScript. {{site.project_title}} automatically picks the fastest path at runtime.</p>
-      <a href="/docs/start/platform.html" class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Get your {{site.project_title}}</a>
+      <a href="/docs/start/platform.html" class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Use the platform</a>
     </summary>
   </div>
 </section>
