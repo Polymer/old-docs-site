@@ -1,5 +1,8 @@
 ---
 layout: default
+type: core
+navgroup: docs
+shortname: Docs
 title: Filters
 ---
 

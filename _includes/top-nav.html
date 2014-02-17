@@ -1,21 +1,15 @@
-<div id="topnav">
-<polymer-ui-toolbar unresolved>
-  <a class="brand" href="/">{{site.project_title}}</a>
-  <polymer-ui-toolbar responsive flex>
-    <ul flex>
-      <polymer-flex-layout align="center"></polymer-flex-layout>
-      <li class="icon"><a href="https://github.com/polymer/polymer"><i class="icon-github icon-large"></i>View on Github</a></li>
-      <li class="icon"><a href="https://github.com/polymer/polymer/issues/new"><i class="icon-bug icon-large"></i>File a bug</a></li>
-      <li class="icon"><a href="https://github.com/polymer/polymer/blob/master/CONTRIBUTING.md"><i class="icon-code icon-large"></i>Contribute</a></li>
-      <li class="icon"><a href="/discuss.html"><i class="icon-comments icon-large"></i>Discuss</a></li>
-      <li class="icon"><a href="/articles/"><i class="icon-book icon-large"></i>Articles</a></li>
-    </ul>
-    <ul class="sharelinks">
-      <li>
-        <a href="http://plus.google.com/107187849809354688692/" title="Follow us on Google+"><i class="icon-google-plus-sign"></i>on Google+</a>
-        <a href="https://twitter.com/intent/follow?screen_name=polymer" data-twitter-follow title="Follow @polymer on Twitter"><i class="icon-twitter"></i>@polymer</a>
-      </li>
-    </ul>
-  </polymer-ui-toolbar>
-</polymer-ui-toolbar>
-</div>
+{% capture theme %}
+  {% if page.layout == 'home' %}
+    dark
+  {% else %}
+    light
+  {% endif %}
+{% endcapture %}
+ 
+<app-bar theme="{{theme | trim }}" class="bar">
+  <a href="/docs/start/everything.html" class="paper-button {% if page.navgroup == 'start' %}active{% endif %}" borderless sink>Start</a>
+  <a href="/docs/polymer/polymer.html" class="paper-button {% if page.navgroup == 'docs' %}active{% endif %}" borderless sink>Docs</a>
+  <a href="/resources/faq.html" class="paper-button {% if page.navgroup == 'resources' %}active{% endif %}" borderless sink>Resources</a>
+  <a href="/discuss.html" class="paper-button {% if page.navgroup == 'community' %}active{% endif %}" borderless sink>Community</a>
+  <!-- <a href="#" class="paper-button" borderless sink>News</a> -->
+</app-bar>

@@ -1,21 +1,14 @@
 <link rel="import" href="/samples/components/tk-element-proto.html">
 
-<div class="row-fluid">
-  <div class="span8">
-<!-- Source tabs -->
-<ul id="myTab" class="nav nav-tabs">
-  <li class="active"><a href="#tk-element-proto" data-toggle="tab">tk-element-proto.html</a></li>
-  <li><a href="#tk-element-proto-index" data-toggle="tab">index.html</a></li>
-</ul>
+<!-- <link rel="import" href="/elements/demo-tabs.html"> -->
 
-<!-- Source tab content -->
-<div class="tab-content">
-  <div class="tab-pane active" id="tk-element-proto">
+<demo-tabs selectedIndex="0">
+  <demo-tab heading="tk-element-proto.html">
 {% highlight html %}
 {% include_external samples/components/tk-element-proto.html %}
 {% endhighlight %}
-  </div>
-  <div class="tab-pane" id="tk-element-proto-index">
+  </demo-tab>
+  <demo-tab heading="index.html">
 {% highlight html %}
 <!DOCTYPE html>
 <html>
@@ -28,16 +21,10 @@
   </body>
 </html>
 {% endhighlight %}
-  </div>
-</div>
-</div>
+  </demo-tab>
+</demo-tabs>
 
-<div class="span4">
-  <h5>Result</h5>
+<h5>Result</h5>
 
-  <!-- Running sample -->
-  <div class="well">
-    <tk-element-proto></tk-element-proto>
-  </div>
-</div>
-</div>
+<tk-element-proto></tk-element-proto>
+

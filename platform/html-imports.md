@@ -1,11 +1,13 @@
 ---
 layout: default
 title: HTML Imports
+type: platform
+navgroup: docs
+shortname: Platform
 subtitle: polyfill
 
 feature:
   spec: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/imports/index.html
-  status: <buildbot-list project="HTMLImports"></buildbot-list>
   code: https://github.com/polymer/HTMLImports
   summary: HTML Imports are a way to include and reuse HTML documents in other HTML documents.
 
@@ -15,4 +17,8 @@ links:
 
 {% include spec-header.html %}
 
+{% include toc.html %}
+
 {% include_external components/HTMLImports/README.md %}
+
+{% include other-resources.html %}

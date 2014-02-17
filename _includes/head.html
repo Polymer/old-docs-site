@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <meta itemprop="name" content="{{site.project_title}}{% if page.title %} - {{page.title}}{% endif %}">
-<meta itemprop="description" content="{% if page.description %}{{page.description}}{% else %}Polymer is a new type of library for the web, built on top of Web Components, and designed to leverage the evolving web platform on modern browsers.{% endif %}">
+<meta itemprop="description" content="{% if page.description %}{{page.description}}{% else %}Polymer is a library that uses the latest web technologies to let you create custom HTML elements. Build anything from a button to a complete application as an encapsulated, reusable element that works across desktop and mobile.{% endif %}">
 
 {% if page.snippet_img %}
 <meta itemprop="image" content="{{page.snippet_img}}">
@@ -15,41 +15,19 @@
   {% if page.title %}
     {{page.title}} - 
   {% else %}
-    Welcome - 
+    Welcome - A new type of library for the web, built on top of Web Components
   {% endif %} {{site.project_title}}
 </title>
 <link rel="publisher" href="https://plus.google.com/107187849809354688692">
-<link rel="shortcut icon" href="/images/icons/loading_icon.png">
-<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<!-- <link href="/css/flatui/bootstrap/css/bootstrap.css" rel="stylesheet">
-<link href="/css/flatui/css/flat-ui.css" rel="stylesheet"> -->
-<link href="/css/prettify/sunburst.css" rel="stylesheet">
-<link href="/css/font-awesome/font-awesome.min.css" rel="stylesheet">
-<!-- <link href="/css/pygments/default.css" rel="stylesheet" type="text/css"> -->
-<link href="/css/site.css?{{site.time | date: '%Y%m%d'}}" rel="stylesheet">
+<link rel="shortcut icon" href="/images/logos/p-logo-16.png">
+<link href="/css/site2.css?{{site.time | date: '%Y%m%d'}}" rel="stylesheet">
 
 {% for item in page.stylesheets %}
   <link rel="stylesheet" href="{{item}}">
 {% endfor %}
 
-<!-- Comment out to test unminified Polymer -->
-<script async>
-// Prevent usage of the appspot.com URL.
-try {
-  if (location.hostname.match('appspot.com') &&
-      location.search.substring(1).split('&').indexOf('force') == -1) {
-    window.location = location.protocol + '//www.polymer-project.org' + location.pathname;
-  }
-} catch(e) {
-  // noop
-}
-</script>
-
 {% if site.load_platform %}
   <script src="/platform.js?{{site.time | date: '%Y%m%d'}}"></script>
-  <!--<script src="/polymer.min.js?{{site.time | date: '%Y%m%d'}}"></script>-->
-  <!--<script src="/polymer-all/polymer/polymer.js?{{site.time | date: '%Y%m%d'}}"></script>-->
-  <!-- <link rel="import" href="/polymer-all/components/polymer/polymer.html"> -->
   <!-- TODO: remove when https://github.com/Polymer/polymer/issues/391 is fixed -->
   <link rel="import" href="/components/polymer/polymer.html">
   <link rel="import" href="/elements/common_elements.vulcanized.html">

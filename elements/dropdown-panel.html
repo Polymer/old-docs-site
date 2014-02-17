@@ -1,0 +1,79 @@
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/polymer-ui-menu/polymer-ui-menu.html">
+<link rel="import" href="../components/polymer-ui-arrow/polymer-ui-arrow.html">
+
+<polymer-element name="dropdown-panel" attributes="in autoclose">
+  <template>
+    <style>
+    :host {
+      background: white;
+      opacity: 0;
+      visibility: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      -webkit-transform: translate3d(0, -6px, 0);
+      -webkit-transition: .04s .08s -webkit-transform, 0.025s .1s opacity;
+      -moz-transform: translate3d(0, -6px, 0);
+      -moz-transition: .04s .08s -moz-transform, 0.025s .1s opacity;
+      transform: translate3d(0, -6px, 0);
+      transition: .04s .08s transform, 0.025s .1s opacity;
+    }
+
+    :host([in]) {
+      opacity: 1;
+      visibility: visible;
+      -webkit-transform: translate3d(0, 0, 0);
+      -webkit-transition: .04s -webkit-transform, 0.025s opacity;
+      -moz-transform: translate3d(0, -6px, 0);
+      -moz-transition: .04s .08s -moz-transform, 0.025s .1s opacity;
+      transform: translate3d(0, 0, 0);
+      transition: .04s transform, 0.025s opacity;
+    }
+
+    polymer-ui-arrow {
+      position: absolute;
+      top: -18px;
+      left: 177px;
+    }
+    
+    /* @polyfill :host polymer-ui-menu-item #label */
+    ::content polymer-ui-menu-item ^^ #label {
+      font-weight: 300;
+    }
+
+    /* @polyfill :host polymer-ui-menu-item polymer-ui-icon */ 
+    ::content polymer-ui-menu-item ^ polymer-ui-icon {
+      background-size: 48px !important;
+    }
+
+    /* @polyfill :host polymer-ui-menu-item[active] */
+    ::content polymer-ui-menu-item[active] {
+      background: rgba(0, 0, 0, 0.04);
+      border: 1px solid #d9d9d9;
+    }
+    </style>
+    <polymer-ui-menu>
+      <polymer-ui-arrow direction="up" size="9"></polymer-ui-arrow>
+      <content></content>
+    </polymer-ui-menu>
+  </template>
+  <script>
+  Polymer('dropdown-panel', {
+    in: false,
+    open: function() {
+      this.in = true;
+      document.body.addEventListener('click', this.close.bind(this), true);
+    },
+    close: function() {
+      this.in = false;
+      document.body.removeEventListener('click', this.close);
+    },
+    toggle: function() {
+      if (this.in) {
+        return this.close();
+      }
+
+      this.open();
+    }
+  });
+  </script>
+</polymer-element>

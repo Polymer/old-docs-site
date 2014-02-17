@@ -3,59 +3,99 @@
 <head>
 {% include head.html %}
 </head>
-<body id="{{page.title | downcase | replace:' ','-' }}">
+<body id="{{page.title | downcase | replace:' ','-' }}" unresolved>
 
-{% include top-nav.html %}
+<main id="content-container">
 
-<div class="container-fluid">
-  <div class="row-fluid">
-    {% include left-nav.html %}
-    <div class="span8" id="content-container">
+  <aside id="sidebar" class="main-bg">
+    <polymer-flex-layout id="logo-container" isContainer align="center">
+      <a href="/" class="logo"><img src="/images/logos/lockup.svg"></a>
+      <polymer-ui-icon id="dropdown-toggle" size="35" src="/images/picons/ic_arrowDropDown_dark_.png">
+      </polymer-ui-icon>
+    </polymer-flex-layout>
 
-      {% include edit_on_github.html %}
+    <dropdown-panel>
+      <polymer-ui-menu-item
+        src="/images/picons/ic_guide_dark_.png"
+        label="Start"
+        href="/docs/start/everything.html"
+        {% if page.navgroup == 'start' %}active{% endif %}>
+      </polymer-ui-menu-item>
 
-      {% if page.title %}
-      <div class="page-header">
+      <polymer-ui-menu-item
+        src="/images/picons/ic_book_dark_.png"
+        label="Docs"
+        href="/docs/polymer/polymer.html"
+        {% if page.navgroup == 'docs' %}active{% endif %}>
+      </polymer-ui-menu-item>
+
+      <polymer-ui-menu-item
+        src="/images/picons/ic_feedback_dark_.png"
+        label="Resources"
+        href="/resources/faq.html"
+        {% if page.navgroup == 'resources' %}active{% endif %}>
+      </polymer-ui-menu-item>
+
+      <polymer-ui-menu-item
+        src="/images/picons/ic_people_dark.png"
+        label="Community"
+        href="/discuss.html"
+        {% if page.navgroup == 'community' %}active{% endif %}>
+      </polymer-ui-menu-item>
+    </dropdown-panel>
+
+    <docs-menu menu="{{site.data.pagetypes[page.type].menu}}"></docs-menu>
+  </aside>
+  <page-scrim></page-scrim>
+  <scroll-area sidebar>
+    <site-banner type="{{page.type}}" navgroup="{{page.navgroup}}" shortname="{{page.shortname}}">
+      {% include top-nav.html %}
+      <header>
         <h1>{{page.title}}</h1>
         {% if page.subtitle %}
-          <h1><small>{{page.subtitle}}</small></h1>
+          <summary>{{page.subtitle}}</summary>
+        {% else if page.type %}
+          <summary>{{site.data.pagetypes[page.type].headertitle}}</summary>
         {% endif %}
-      </div>
+      </header>
+    </site-banner>
+
+    {% comment %}
+      Allow individual pages to turn off permalinks
+    {% endcomment %}
+    {% capture permalinks_class %}
+      {% if site.add_permalinks %}
+        {% case page.add_permalinks %} 
+          {% when true %} 
+            show-permalinks
+          {% when false %}
+            {% comment %}
+              Intentionally empty in case variable isn't defined in page.
+            {% endcomment %}
+          {% else %} 
+            show-permalinks 
+        {% endcase %} 
       {% endif %}
+    {% endcapture %}
 
-      {% comment %}
-        Allow individual pages to turn off permalinks
-      {% endcomment %}
-      {% capture permalinks_class %}
-        {% if site.add_permalinks %}
-          {% case page.add_permalinks %} 
-            {% when true %} 
-              show-permalinks
-            {% when false %}
-              {% comment %}
-                Intentionally empty in case variable isn't defined in page.
-              {% endcomment %}
-            {% else %} 
-              show-permalinks 
-          {% endcase %} 
+    <article class="{{permalinks_class | trim}}">
+      {% include edit_on_github.html %}
+
+      <header class="onlyonmobile">
+        <h1>{{page.title}}</h1>
+        {% if page.subtitle %}
+          <summary>{{page.subtitle}}</summary>
+        {% else if page.type %}
+          <summary>{{site.data.pagetypes[page.type].headertitle}}</summary>
         {% endif %}
-      {% endcapture %}
+      </header>
 
-      <div id="content" class="{{permalinks_class}}">{{content}}</div>
-    </div>
-    <footer class="span8">
-      <hr>
-      <div>
-        <div>&copy; 2013 {{site.project_title}} Authors.<br>Code licensed under the <a href="https://github.com/polymer/polymer/blob/master/LICENSE" target="_blank">BSD License</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a>.</div>
-      </div>
-      <div id="logo-row">
-        <img src="/images/logos/webcomponents.png" alt="Web Components" title="Web Components">
-        <img src="/images/logos/html5logo.svg" alt="HTML5" title="HTML5">
-        <img src="/images/logos/js.jpg" alt="JavaScript" title="JavaScript">
-      </div>
-    </footer>
-  </div>
-</div>
+      {{content}}
+    </article>
+
+  </scroll-area>
+
+</main>
 
 {% include footer.html %}
 

@@ -1,62 +1,76 @@
 ---
-layout: default
-#title: Welcome
+layout: home
+title: Welcome
 ---
 
-<style>
-.download {
-  margin-top: 0;
-}
-</style>
-
-{% include alpha.html %}
-
-## What is {{site.project_title}}?
-
-{{site.project_title}} is a new type of library for the web, built on top of Web Components,
-and designed to leverage the evolving web platform on modern browsers.
-{: .lead }
-
-<p class="download centered"><a href="/getting-the-code.html" class="btn btn-success btn-large" alt="Get the latest {{site.project_title}}" title="Get the latest {{site.project_title}}">Get Polymer</a></p>
-
-
-<figure id="architecture-diagram">
-  <iframe src="/images/architecture-diagram.svg?{{'now' | date: "%Y%m%d"}}"></iframe>
-  <figcaption><a href="/images/architecture-diagram.svg" target="_blank">Architectural diagram</a></figcaption>
-</figure>
-
-- <i class="icon-cogs icon-3x pull-left foundation"></i> A set of _polyfills_ for emerging web platform features. Initially, these core features are enabled as polyfills but go away
-over time as browsers implement them.
-- <i class="icon-beaker icon-3x pull-left core"></i> A next-generation _web application framework_ built upon these core technologies.
-- <i class="icon-puzzle-piece icon-3x pull-left elements"></i> A set of _comprehensive UI and utility components_ for building web applications.
-{: id="what-is" }
-
-{%comment%}
-## Quick start
-
-{%comment%}
-{% include downloadbutton.html %}
-{%endcomment%}
-
-- Include `<script src="bower_components/platform/platform.js"></script>` in your page (fire up a web server).
-- Read the [Getting Started](/getting-started.html) guide.
-- Learn how to build a souped-up `<polymer-element>` using [Polymer core](/polymer.html).
-- Play with the [polymer-elements](https://github.com/Polymer/polymer-elements), [polymer-ui-elements](https://github.com/Polymer/polymer-ui-elements), and [toolkit-ui](https://github.com/Polymer/toolkit-ui).
-
-_Join the [mailing list](/discuss.html). Ask questions and give feedback!_
-
-{%endcomment%}
-
-## Guiding principles
-
-<div class="centered video"><iframe src="http://www.youtube.com/embed/videoseries?list=PLRAVCSU_HVYu-zlRaqArF8Ytwz1jlMOIM" frameborder="0" allowfullscreen></iframe>
-</div>
-
-The overall aim of {{site.project_title}} is to manage the complexity of building web applications.
-
-**Use the platform** —  Use as much or as little of the framework as you wish. An application can choose to load `platform.js` for just the polyfills or use `polymer.js` to give web components extra batteries. We call these types of elements ["{{site.project_title}} elements"](/polymer.html).
-
-**Everything is an element** — Encapsulation is the key to creating scalable, maintainable applications. All {{site.project_title}} resources are components, even ones that are non-visual. To construct an app, a developer creates new components, or uses ones {{site.project_title}} provides, and assembles them together. Focusing on individual, composable building blocks allows developers to "think locally" about their application, reducing complexity. With this divide-and-conquer approach, applications can simultaneously be simple and arbitrarily complicated.
-
-**Eliminate boilerplate** — Developers should write the **minimum** amount of code possible to create their application. Anything repetitive should be re-factored into a component, handled by {{site.project_title}} itself, or added into the browser platform itself. {{site.project_title}} provides simple syntax without reducing features, and avoids boilerplate wherever possible.
-
+<section id="future" class="main-bg">
+  <div class="panel left">
+    <img src="/images/logos/p-logo.svg">
+    <summary>
+      <h1>Building blocks for the web</h1>
+      <p>{{site.project_title}} is a library that uses the latest web technologies to let you create custom HTML elements. Build anything from a button to a complete application as an encapsulated, reusable element that works across desktop and mobile. </p>
+      <polymer-ui-toolbar>
+        <a href="/getting-the-code.html" class="paper-button" data-download-button><polymer-ui-icon src="/images/picons/ic_archive_dark_.png"></polymer-ui-icon>Get {{site.project_title}}</a>
+        <a href="/docs/start/everything.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Get started</a>
+        <a href="https://github.com/polymer/polymer" class="paper-button" borderless>View on Github</a>
+      </polymer-ui-toolbar>
+    </summary>
+  </div>
+</section>
+<section id="everything-element" class="main-purple">
+  <!-- <nav class="bar" flexbox>
+    <a href="#everything-element" flex>Return to the elegance of the element</a>
+  </nav> -->
+  <div class="panel right">
+    <summary>
+      <h1>Everything is an element</h1>
+      <p>From <code>&lt;a&gt;</code> to <code>&lt;select&gt;</code>, elements are the building blocks of HTML. But modern applications have outgrown these built-in elements. App developers are forced to rely on JavaScript frameworks to provide dynamic, custom behavior.  The resulting apps are frequently complex and monolithic, and a component developed for one app may not work in another app.
+      <br><br>
+      {{site.project_title}} puts elements back at the center of your apps. With Polymer, you can craft your own HTML elements and compose them into complete, complex applications that are scalable and maintainable.</p>
+      <a href="/docs/start/everything.html" class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_light.png"></polymer-ui-icon>Learn more</a>
+    </summary>
+    <img src="/images/logos/p-elements.svg">
+  </div>
+</section>
+<section id="architecture">
+ <!--  <nav class="bar" flexbox>
+    <a href="#architecture">The architecture of {{site.project_title}}</a>
+  </nav> -->
+  <div class="panel">
+    <summary>
+      <div class="box">
+        <img src="/images/logos/p-elements.svg">
+      </div>
+      <h2 class="elements-using">Using elements</h2>
+      <h5>{{site.project_title}} from the outside</h5>
+      <p>{{site.project_title}} provides a comprehensive set of elements--both visual and non-visual--that you can use right out of the box. You can mix and match {{site.project_title}} elements with other elements, including built-in elements and other custom elements.</p>
+      <a href="/docs/start/usingelements.html" class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Use our elements</a>
+    </summary>
+    <summary>
+      <div class="box">
+        <img src="/images/logos/p-create-elements.svg">
+      </div>
+      <h2 class="elements-creating">Creating elements</h2>
+      <h5>{{site.project_title}} from the inside</h5>
+      <p>{{site.project_title}}'s declarative syntax makes it simpler to define custom elements. Features like two-way data binding, declarative event handlers, property observation, and gesture support help you build powerful, reusable elements.</p>
+      <a href="/getting-started.html" class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Build your own</a>
+    </summary>
+    <summary>
+      <div class="box">
+        <img src="/images/logos/p-platform.svg">
+      </div>
+      <h2 class="platform">The platform</h2>
+      <h5>Supporting web standards today</h5>
+      <p>{{site.project_title}} is built on the latest web technologies like Web Components. Not all browsers support these features yet, so {{site.project_title}}'s platform layer fills the gaps, implementing the APIs in JavaScript. {{site.project_title}} automatically picks the fastest path at runtime.</p>
+      <a href="/docs/start/platform.html" class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Get your {{site.project_title}}</a>
+    </summary>
+  </div>
+</section>
+<!-- <section id="quickstart">
+  <div class="panel">
+    <summary>
+      <p>content here</p>
+    </summary>
+  </div>
+</section>
+ -->

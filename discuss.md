@@ -1,6 +1,9 @@
 ---
 layout: default
-title: Discuss the Project
+type: resources
+navgroup: community
+shortname: Community
+title: Discussion
 ---
 
 We've got a number of ways to stay in touch.

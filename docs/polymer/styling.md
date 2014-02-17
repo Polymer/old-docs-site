@@ -1,5 +1,8 @@
 ---
 layout: default
+type: core
+navgroup: docs
+shortname: Docs
 title: Styling reference
 ---
 
@@ -35,9 +38,9 @@ Class name | Behavior when applied to an element
 |-
 `[unresolved]` | Makes the element `opacity: 0; display: block; overflow: hidden`.
 `[resolved]` | Fades-in the element over 200ms.
-{: .table }
+{: .table .responsive-table .fouc-table }
 
-Upon [`WebComponentsReady`](/polymer.html#WebComponentsReady) firing, {{site.project_title}} runs the following steps:
+Upon [`polymer-ready`](/docs/polymer/polymer.html#polymer-ready) firing, {{site.project_title}} runs the following steps:
 
 1. removes the `[unresolved]` attribute from elements that have it
 2. adds the `[resolved]` attribute

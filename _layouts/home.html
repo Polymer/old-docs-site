@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Organization">
+<head>
+{% include head.html %}
+</head>
+<body id="{{page.title | downcase | replace:' ','-' }}" unresolved>
+
+<scroll-area>
+  <site-banner class="main-bg bar sticky">
+    <polymer-flex-layout align="center" justify="start"></polymer-flex-layout>
+    <a href="/" flexbox><img src="/images/logos/lockup.svg"></a>
+    {% include top-nav.html %}
+    <polymer-ui-icon id="dropdown-toggle" size="35" src="/images/picons/ic_arrowDropDown_dark_.png">
+    </polymer-ui-icon>
+
+    <dropdown-panel>
+      <polymer-ui-menu-item
+        src="/images/picons/ic_guide_dark_.png"
+        label="Start"
+        href="/docs/start/everything.html"
+        {% if page.navgroup == 'start' %}active{% endif %}>
+      </polymer-ui-menu-item>
+
+      <polymer-ui-menu-item
+        src="/images/picons/ic_book_dark_.png"
+        label="Docs"
+        href="/docs/polymer/polymer.html"
+        {% if page.navgroup == 'docs' %}active{% endif %}>
+      </polymer-ui-menu-item>
+
+      <polymer-ui-menu-item
+        src="/images/picons/ic_feedback_dark_.png"
+        label="Resources"
+        href="/resources/faq.html"
+        {% if page.navgroup == 'resources' %}active{% endif %}>
+      </polymer-ui-menu-item>
+
+      <polymer-ui-menu-item
+        src="/images/picons/ic_people_dark.png"
+        label="Community"
+        href="/discuss.html"
+        {% if page.navgroup == 'community' %}active{% endif %}>
+      </polymer-ui-menu-item>
+    </dropdown-panel>
+  </site-banner>
+
+  <main>{{content}}</main>
+</scroll-area>
+
+{% include footer.html %}
+
+</body>
+</html>

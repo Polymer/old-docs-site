@@ -1,0 +1,113 @@
+/* line 3, ../../sass/_typography.scss */
+h1, h2, h3, h4, h5 { font-weight: 300; letter-spacing: -0.01em; line-height: 48px; margin: 0; }
+
+/* @polyfill h1 */
+/* line 12, ../../sass/_typography.scss */
+h1, ::content h1 { font-size: 40px; }
+
+/* @polyfill h2 */
+/* line 19, ../../sass/_typography.scss */
+h2, ::content h2 { font-size: 24px; }
+
+/* @polyfill h3 */
+/* line 25, ../../sass/_typography.scss */
+h3, ::content h3 { font-size: 20px; }
+
+/* @polyfill h4 */
+/* line 31, ../../sass/_typography.scss */
+h4, ::content h4 { font-size: 16px; font-weight: 600; }
+
+/* @polyfill h5 */
+/* line 38, ../../sass/_typography.scss */
+h5, ::content h5 { font-size: 12px; font-weight: 600; }
+
+/* line 5, ../../sass/polymer.scss */
+.platform { color: #9f499b; }
+
+/* line 10, ../../sass/polymer.scss */
+.elements-using { color: #5c6bc0; }
+
+/* line 15, ../../sass/polymer.scss */
+.elements-creating { color: #d61a7f; }
+
+/* line 20, ../../sass/polymer.scss */
+.main-bg { background-color: #eeeeee; }
+
+/* line 24, ../../sass/polymer.scss */
+.main-purple { background-color: #1f2036; }
+
+/* line 28, ../../sass/polymer.scss */
+code, pre { color: #9f499b; }
+
+/* line 33, ../../sass/polymer.scss */
+.prettyprint { background-color: #fafafa; padding: 16px; margin: 30px 0; }
+/* line 39, ../../sass/polymer.scss */
+.prettyprint .typ { color: #6b499f; }
+/* line 43, ../../sass/polymer.scss */
+.prettyprint .pun { color: #5c6bc0; }
+/* line 46, ../../sass/polymer.scss */
+.prettyprint .str { color: #ff4081; }
+/* line 49, ../../sass/polymer.scss */
+.prettyprint .pln { color: #7986cb; }
+/* line 52, ../../sass/polymer.scss */
+.prettyprint .kwd { color: #d61a7f; }
+/* line 58, ../../sass/polymer.scss */
+.prettyprint .atn { color: #6b499f; }
+/* line 61, ../../sass/polymer.scss */
+.prettyprint .atv { color: #7986cb; }
+/* line 64, ../../sass/polymer.scss */
+.prettyprint .com { color: #8a8a8a; }
+
+/* line 3, ../../sass/elements/site-banner.scss */
+:host { background-color: #1f2036; display: -webkit-box; display: -webkit-flex; display: -moz-flex; display: -ms-flex; display: -o-flex; display: flex; -webkit-box-align: flex-end; -webkit-align-items: flex-end; -moz-align-items: flex-end; -ms-align-items: flex-end; -o-align-items: flex-end; align-items: flex-end; position: relative; z-index: 1; height: 286px; color: white; padding-left: 64px; }
+
+/* line 17, ../../sass/elements/site-banner.scss */
+:host([type="platform"]) { background-color: #9f499b; }
+
+/* line 21, ../../sass/elements/site-banner.scss */
+:host([type="core"]) { background-color: #d61a7f; }
+
+/* line 25, ../../sass/elements/site-banner.scss */
+:host([type="elements"]) { background-color: #5c6bc0; }
+
+/* @polyfill :host header */
+/* line 30, ../../sass/elements/site-banner.scss */
+::content header { padding: 30px 0 40px 0; width: 100%; }
+
+/* @polyfill header h1 */
+/* line 36, ../../sass/elements/site-banner.scss */
+::content h1 { font-size: 45px !important; -webkit-transform-origin: 0 0; transform-origin: 0 0; }
+
+/* @polyfill :host header.shrink h1 */
+/* line 46, ../../sass/elements/site-banner.scss */
+::content header.shrink h1 { -webkit-transform: scale(0.44444); transform: scale(0.44444); }
+
+/* @polyfill :host header.shrink summary */
+/* line 52, ../../sass/elements/site-banner.scss */
+::content header.shrink summary { visibility: hidden; }
+
+/* @polyfill :host header.shrink */
+/* line 57, ../../sass/elements/site-banner.scss */
+::content header.shrink { position: fixed; top: 0; pointer-events: none; }
+
+/* @polyfill header a */
+/* line 64, ../../sass/elements/site-banner.scss */
+::content a { color: currentcolor; }
+
+/* @polyfill header summary */
+/* line 69, ../../sass/elements/site-banner.scss */
+::content summary { margin-top: 20px; opacity: 0.6; }
+
+@media only screen and (max-width: 580px) { /* line 76, ../../sass/elements/site-banner.scss */
+  :host { height: 60px !important; position: fixed; width: 100%; -webkit-box-align: center; -webkit-align-items: center; -moz-align-items: center; -ms-align-items: center; -o-align-items: center; align-items: center; }
+  /* @polyfill :host header */
+  /* line 84, ../../sass/elements/site-banner.scss */
+  ::content header { display: none; }
+  /* @polyfill-rule header#internalheader { display: block; padding: 0; }*/
+  /* @polyfill-rule header#internalheader h2 { margin: 0; }*/ }
+@media only screen and (max-width: 800px) { /* @polyfill :host #dropdown-toggle */
+  /* line 101, ../../sass/elements/site-banner.scss */
+  ::content #dropdown-toggle { z-index: 1000; }
+  /* @polyfill :host dropdown-panel */
+  /* line 106, ../../sass/elements/site-banner.scss */
+  ::content dropdown-panel { color: black; } }

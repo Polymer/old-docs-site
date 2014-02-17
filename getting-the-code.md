@@ -1,7 +1,23 @@
 ---
 layout: default
+type: start
+shortname: Start
+navgroup: start
 title: Getting the code
 ---
+
+<!--
+<embed src="/images/picons/ic_polymer_source.svg" type="image/svg+xml" onload="test(this)">
+<script>
+  function test(embed) {
+    //var svg = el.getSVGDocument().querySelector('svg');
+    var svg = embed.getSVGDocument().querySelector('svg');
+    //svg.classList.add('wow')
+    svg.style.fill = 'rgb(214, 26, 127)';
+  }
+</script>
+-->
+
 
 {% include toc.html %}
 
@@ -9,7 +25,7 @@ title: Getting the code
 
 ### Using Bower {#installing-polymer}
 
-The recommended way to get the pieces of **{{site.project_title}} {{site.latest_version}}** is through [Bower](http://bower.io/). We've chosen Bower because removes the hassle of dependency management when developing
+The recommended way to get the pieces of **{{site.project_title}} {{site.latest_version}}** is through [Bower](http://bower.io/). We've chosen Bower because it removes the hassle of dependency management when developing
 or consuming elements.
 
 #### Getting the packages
@@ -51,7 +67,8 @@ and imports the `<polymer-ui-tabs>` element:
       </head>
       <body>
         <polymer-ui-tabs selected="0">
-          <span>One</span><span>Two</span><span>Three</span><span>Four</span><span>Five</span>
+          <span>One</span><span>Two</span><span>Three</span>
+          <span>Four</span><span>Five</span>
         </polymer-ui-tabs>
       </body>
     </html>
@@ -203,7 +220,7 @@ Examples include Bootstrap, topcoat, Chart.js, pdf.js, x-tags, and AceEditor.
 [github.com/polymer/toolkit-ui](https://github.com/polymer/toolkit-ui)
 
 The [`toolkit-ui`](https://github.com/polymer/toolkit-ui) repository contains examples of
-the types of things you can do when writing a [{{site.project_title}} element](/polymer.html).
+the types of things you can do when writing a [{{site.project_title}} element](/docs/polymer/polymer.html).
 
 - **elements/** — `g-*` custom element definitions.
 - **workbench/** — demos of the {{site.project_title}}-style elements found in `elements/`.

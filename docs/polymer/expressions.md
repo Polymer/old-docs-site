@@ -1,9 +1,12 @@
 ---
 layout: default
+type: core
+navgroup: docs
+shortname: Docs
 title: Expressions
 ---
 
-<p><buildbot-list project="polymer-expressions"></buildbot-list></p>
+<!-- <p><buildbot-list project="polymer-expressions"></buildbot-list></p> -->
 
 {% include toc.html %}
 
@@ -37,7 +40,7 @@ The specific subset of JavaScript which is supported is:
 | Grouping (parenthesis) | `(a + b) * (c + d)` |
 | Literal values | numbers, strings, `null`, `undefined` | Escaped strings and non-decimal numbers are not supported. |
 | Array & Object initializers | `[foo, 1]`, `{id: 1, foo: bar}` |
-{: .table }
+{: .first-col-nowrap .responsive-table .expressions-table }
 
 ### Statements
 

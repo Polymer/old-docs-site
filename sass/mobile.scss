@@ -1,0 +1,155 @@
+@import "base";
+
+// Phone
+@media only screen and (max-width: $break-small)  {
+
+  .onlyonmobile {
+    display: block !important;
+  }
+
+  .bar {
+    height: $siteBannerHeightMinMobile;
+  }
+  
+  .panel {
+    @include flex-direction(column);
+    margin: 0 30px;
+    padding: 80px 0 40px 0;
+
+    > img {
+      margin-bottom: 50px;
+      width: 200px;
+      margin-right: auto !important;
+      margin-left: 0px !important;
+    }
+    
+    &.right {
+      summary {
+        @include flex(1);
+        order: 2;
+      }
+      img {
+        order: 1;
+      }
+    }
+    
+    summary {
+      + summary {
+        margin-right: auto;
+        margin-left: 0px;
+      }
+      p {
+        margin: 10px 0;
+      }
+    }
+  }
+
+  .paper-button {
+    margin: 15px 0;
+  }
+
+  #future {
+    polymer-ui-toolbar {
+      @include justify-content(space-between);
+
+      a {
+        margin-right: 0 !important;
+        &:last-of-type {
+          display: none;
+        }
+      }
+    }
+  }
+
+  #architecture .box {
+    padding: 20px 24px 14px;
+    margin-bottom: 25px;
+  }
+
+  footer {
+    padding: $mobileContentPadding;
+    polymer-ui-toolbar {
+      @include flex-direction(column);
+      @include align-items(flex-start !important);
+    }
+  }
+
+}
+
+// Phone + Tablet
+@media only screen and (max-width: $break-medium) {
+  #sidebar {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    -moz-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    width: 85%;
+    max-width: $sidebarWidth + 50px;
+    transition: all 500ms;
+    z-index: 1000;
+
+    &.in {
+      -webkit-transform: translate3d(0, 0, 0);
+      -moz-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  #dropdown-toggle {
+    display: inline-block;
+  }
+
+  // Responsive Tables
+  // Temporary fix until <responsive-table> fixes EVERYTHING!!!
+  @import "tables";
+}
+
+
+// Tablet
+@media only screen and (min-width: $break-small + 1) and (max-width: $break-medium) {
+
+  #welcome #sidebar {
+    display: block;
+  }
+
+  .main-bg .panel img {
+    width: 300px;
+    margin-right: auto;
+    margin-bottom:30px;
+  } 
+  
+  .panel {
+    @include flex-direction(column);
+    margin: 0 30px;
+
+    &.left img {
+      margin-left: 0px;
+      margin-right: auto;
+    }
+
+    &.right img {
+      width: 300px;
+      margin-right: 0px;
+      margin-left: auto;
+    }
+
+    summary + summary {
+      margin-right: auto;
+      margin-left: 0px;
+    }
+  }
+
+  #architecture .box {
+    padding: 20px 24px 14px;
+  }
+
+  footer {
+    padding-left: $mobileContentPadding;
+  }
+
+}
+
+// Desktop or larger
+@media only screen and (min-width: $break-large)  {
+
+}

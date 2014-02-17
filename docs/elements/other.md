@@ -1,15 +1,18 @@
 ---
 layout: default
-title: Toolkit-UI Elements
+type: elements
+navgroup: docs
+shortname: Elements
+title: Misc elements
 ---
+
+## Toolkit UI Elements
 
 Old and possibly outdated UI experiments.
 
 **Repository:** [github.com/Polymer/toolkit-ui](https://github.com/Polymer/toolkit-ui)
 
-<section class="element-list">
 {% directory branch:master dir:polymer-all/toolkit-ui/elements tag:div glob:g-* %}
-</section>
 
 ---
 

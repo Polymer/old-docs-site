@@ -1,0 +1,49 @@
+<link rel="import" href="../components/polymer/polymer.html">
+
+<polymer-element name="app-bar" attributes="theme">
+  <template>
+    <link rel="stylesheet" href="../css/elements/app-bar.css">
+    <content></content>
+    <polymer-ui-icon id="menu" on-click="{{onMenuClick}}" src="/images/picons/ic_menu_{{theme}}_.png"></polymer-ui-icon>
+    <div id="search" show?="{{showingSearch}}" on-click="{{toggleSearch}}">
+      <polymer-ui-icon src="/images/picons/ic_search_{{theme}}_.png"></polymer-ui-icon>
+      <input type="search" id="input" on-keyup="{{onKeyPress}}" autocomplete="off">
+    </div>
+  </template>
+  <script>
+    Polymer('app-bar', {
+      theme: 'dark',
+      showingSearch: false,
+      toggleSearch: function(e, detail, sender) {
+        if (e) { // comes first
+          e.stopPropagation();
+        }
+        if (e.target === this.$.input) {
+          return;
+        }
+
+        this.showingSearch = !this.showingSearch;
+        this.classList.toggle('search-on');
+        this.async(function() {
+          this.$.input.focus();
+        });
+      },
+      onKeyPress: function(e, detail, sender) {
+        if (e.keyCode == 13) { // Enter
+          if (sender.value) {
+            var q = 'site:polymer-project.org+' + sender.value;
+            window.open('https://www.google.com/search?q=' + q);
+          }
+        }
+        // } else if (e.keyCode == 27) { // ESC
+        //   if (this.showingSearch && !sender.value.length) {
+        //     this.toggleSearch(e);
+        //   }
+        // }
+      },
+      onMenuClick: function () {
+        this.fire('hamburger-time');
+      }
+    });
+  </script>
+</polymer-element>

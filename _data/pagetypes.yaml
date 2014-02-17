@@ -1,0 +1,17 @@
+default:
+  menu: other
+start:
+  headertitle: Basics
+  menu: start
+concepts:
+  headertitle: Concepts
+  menu: start
+core:
+  headertitle: Core
+  menu: docs
+elements:
+  #headertitle: Elements
+  menu: docs
+platform:
+  headertitle: Platform
+  menu: docs

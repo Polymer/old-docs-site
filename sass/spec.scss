@@ -1,0 +1,67 @@
+@import "base";
+
+$font-family-body: "Open Sans",Helvetica,Arial,sans-serif;
+//$font-family-body: "Roboto",sans-serif;
+$font-family-code: "Source Code Pro",Monaco,Menlo,Consolas,"Courier New",monospace;
+
+$font-size-meta: 12px;
+$font-size-secondary: 14px;
+$font-size-body: 16px;
+$font-size-header: 20px;
+
+$line-height-body: 24px;
+
+$link-color: #3367d6;
+
+.meta {
+  font-size: $font-size-meta;
+  font-weight: normal;
+  line-height: 20px;
+  // letter-spacing: 20pt;
+}
+
+.secondary {
+  font-size: $font-size-secondary;
+  font-weight: normal;
+  line-height: 20px;
+  // letter-spacing: 20pt;
+}
+
+body {
+  font-size: $font-size-body;
+  font-family: $font-family-body;
+  font-weight: normal;
+  line-height: $line-height-body;
+  // letter-spacing: 0;
+}
+
+// .header {
+//   font-size: $font-size-header;
+//   font-weight: 600;
+//   // letter-spacing: 0;
+//   line-height: 24px;
+// }
+
+button {
+  font-size: $font-size-meta;
+  font-weight: normal;
+  // letter-spacing: 60pt;
+  text-transform: uppercase;
+}
+
+a {
+  // font-size: $font-size-secondary;
+  font-size: inherit;
+  font-weight: normal;
+  color: $link-color;
+  // letter-spacing: 10pt;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+code, pre {
+  font-family: $font-family-code;
+}

@@ -1,0 +1,152 @@
+@import "compass/css3/images";
+
+@import "elements";
+
+:host {
+  @include display-flex();
+  @include align-items(center);
+  @include justify-content(flex-end);
+  @include flex(1 0 auto);
+  z-index: 100;
+  @include box-sizing(border-box);
+  // // Insures search box covers entire bar.
+  // background: inherit;
+  font-size: 14px;
+  color: #000;
+}
+
+:host([theme="light"]) {
+  color: inherit;
+}
+
+:ancestor(site-banner[navgroup="start"], site-banner[navgroup="resources"], site-banner[navgroup="community"]) ::content .active,
+:ancestor(site-banner[navgroup="start"], site-banner[navgroup="resources"], site-banner[navgroup="community"]) ::content .paper-button:hover {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 1) inset, 0 -1px 1px rgba(0, 0, 0, 1) inset, 0 2px 0px rgba(0, 0, 0, 1) inset;
+  @include background(linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%));
+}
+
+// TODO(ericbidelman): check with sorvell if :ancestor() is polyfill'd correctly.
+// The above is prefixed with the element name.
+/* @polyfill-unscoped-rule site-banner[navgroup="start"] app-bar .active,
+                           site-banner[navgroup="resources"] app-bar .active,
+                           site-banner[navgroup="community"] app-bar .active,
+                           site-banner[navgroup="start"] app-bar .paper-button:hover,
+                           site-banner[navgroup="resources"] app-bar .paper-button:hover,
+                           site-banner[navgroup="community"] app-bar .paper-button:hover {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 1) inset, 0 -1px 1px rgba(0, 0, 0, 1) inset, 0 2px 0px rgba(0, 0, 0, 1) inset  !important;
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%)  !important;
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%)  !important;
+    background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%)  !important;
+    background: linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%) !important;
+  }*/
+
+:host(.search-on) {
+  left: 0;
+  background: inherit;
+  z-index: 1001;
+}
+
+:host([theme="dark"].search-on) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.14902);
+  box-shadow: rgb(204, 204, 204) 0px 1px 5px;
+}
+
+:host(.fixed) {
+  position: fixed;
+}
+
+:ancestor(site-banner) {
+  right: 0;
+  top: 0;
+  position: absolute;
+}
+
+polymer-ui-icon {
+  $widthHeight: 24px;
+  width: $widthHeight !important;
+  height: $widthHeight !important;
+  background-size: $widthHeight * 2 !important;
+  opacity: 0.6;
+}
+
+/* @polyfill :host a */
+::content a {
+  opacity: 0.6;
+  @include flex(1 0 auto);
+  text-transform: none !important;
+}
+
+#search {
+  @include display-flex();
+  @include align-items(center);
+  @include flex(0 0 auto);
+  width: 30px;
+  margin-left: 16px;
+  @include box-sizing(border-box);
+  background-color: inherit;
+
+  // transition: -webkit-transform 400ms;
+
+  &[show] {
+    // -webkit-transform: translateX(-365px);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0 16px;
+    margin-left: 0;
+
+    input {
+      padding: 10px;
+      visibility: visible;
+    }
+  }
+}
+
+input {
+  background-color: inherit;
+  border: none;
+  font-size: 20px;
+  outline: none;
+  padding: 0;
+  // transition: width 400ms;
+  color: inherit;
+  @include flex(1 0 0);
+  visibility: hidden;
+  -webkit-appearance: none;
+}
+
+#menu {
+  display: none;
+}
+
+// Tablet
+@media only screen and (max-width: $break-medium) {
+  :host {
+    @include justify-content(space-between);
+    width: 100%;
+    background: initial;
+  }
+
+  :ancestor(#welcome) {
+    @include justify-content(flex-end);
+  }
+
+  /* @polyfill :host a */
+  ::content a {
+    display: none !important;
+  }
+
+  polymer-ui-icon {
+    margin: 0;
+  }
+
+  #menu {
+    display: inline-block;
+  }
+
+  :ancestor(#welcome) #menu {
+    display: none;
+  }
+}

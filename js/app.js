@@ -9,7 +9,7 @@ function addPermalink(el) {
 function setupDownloadButtons(opt_inDoc) {
   var doc = opt_inDoc || document;
 
-  var downloadButton = doc.querySelector('.download a.btn');
+  var downloadButton = doc.querySelector('[data-download-button]');
   downloadButton && downloadButton.addEventListener('tap', function(e) {
     exports._gaq.push(['_trackEvent', 'SDK', 'Download', POLYMER_VERSION]);
   });
@@ -129,6 +129,13 @@ function initPage(opt_inDoc) {
   setupDownloadButtons(doc);
   addPermalinkHeadings(doc);
 
+  // TODO: figure out better way to do this than move it in JS. Kramdown
+  // {:toc} not working inside a <details> tag (see _includes/toc.html)
+  var toc = document.querySelector('#toc');
+  if (toc) {
+    toc.appendChild(document.querySelector('#markdown-toc'));
+  }
+
   // TODO: Use kramdown {:.prettyprint .linenums .lang-ruby} to add the
   // <pre class="prettyprint"> instead of doing this client-side.
   prettyPrintPage(doc);
@@ -172,31 +179,82 @@ function ajaxifySite() {
   });
 }
 
-$(document).ready(function() {
+
+document.addEventListener('polymer-ready', function(e) {
+  // TODO(ericbidelman): Hacky solution to get anchors scrolled to correct location
+  // in page. Layout of page happens later than the browser wants to scroll.
+  if (location.hash) {
+    window.setTimeout(function() {
+      document.querySelector(location.hash).scrollIntoView(true, {behavior: 'smooth'});
+    }, 200);
+  }
+
+  // The sliding sidebar menu for mobile
+  var siteBanner = document.querySelector('site-banner');
+  var sidebar = document.querySelector('#sidebar');
+  var scrim = document.querySelector('page-scrim');
+
+  // The dropdown panel in the sidebar for mobile
+  var dropdownToggle = document.querySelector('#dropdown-toggle');
+  var dropdownPanel = document.querySelector('dropdown-panel');
+
+  siteBanner.addEventListener('hamburger-time', function(e) {
+    sidebar.classList.add('in');
+    scrim.show();
+  });
+
+  dropdownToggle.addEventListener('click', function(e) {
+    dropdownPanel.toggle();
+    // dropdownPanel listens to clicks on the document and autocloses
+    // so no need to add any more handlers
+  });
+
+  if (scrim) {
+    scrim.addEventListener('click', function(e) {
+      sidebar.classList.remove('in');
+      scrim.hide();
+    });
+  }
+});
+
+
+document.addEventListener('DOMContentLoaded', function(e) {
   initPage();
 
-  // Insure add current page to history so back button has an URL for popstate.
-  history.pushState({url: document.location.href}, document.title,
-                    document.location.href);
+  //addStickyScrollToBars();
 
-  document.querySelector('[data-twitter-follow]').addEventListener('click', function(e) {
-    e.preventDefault();
-    var target = e.target.localName != 'a' ? e.target.parentElement : e.target;
-    exports.open(target.href, '', 'width=550,height=520');
-  });
+  // // Insure add current page to history so back button has an URL for popstate.
+  // history.pushState({url: document.location.href}, document.title,
+  //                   document.location.href);
 });
+
+// Search bo close.
+document.addEventListener('click', function(e) {
+  var appBar = document.querySelector('app-bar');
+  if (appBar.showingSearch) {
+    appBar.toggleSearch(e);
+  }
+});
+
+document.querySelector('[data-twitter-follow]').addEventListener('click', function(e) {
+  e.preventDefault();
+  var target = e.target.localName != 'a' ? e.target.parentElement : e.target;
+  exports.open(target.href, '', 'width=550,height=520');
+});
+
 
 // -------------------------------------------------------------------------- //
 
-// Control whether the site is ajax or static.
-var AJAXIFY_SITE = !navigator.userAgent.match('Mobile|Android');
-if (AJAXIFY_SITE) {
-  testXhrType('document', function(supported) {
-    if (supported) {
-      //ajaxifySite();
-    }
-  });
-}
+
+// // Control whether the site is ajax or static.
+// var AJAXIFY_SITE = !navigator.userAgent.match('Mobile|Android');
+// if (AJAXIFY_SITE) {
+//   testXhrType('document', function(supported) {
+//     if (supported) {
+//       ajaxifySite();
+//     }
+//   });
+// }
 
 // Analytics -----
 exports._gaq = exports._gaq || [];
@@ -210,6 +268,6 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 // ---------------
 
 console && console.log("%cWelcome to Polymer!\n%cweb components are the <bees-knees>",
-                       "font-size:1.5em;color:navy;", "color:#ffcc00;font-size:1em;");
+                       "font-size:1.5em;color:#4558c9;", "color:#d61a7f;font-size:1em;");
 
 })(window);

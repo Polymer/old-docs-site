@@ -1,0 +1,20 @@
+/* line 16, ../sass/spec.scss */
+.meta { font-size: 12px; font-weight: normal; line-height: 20px; }
+
+/* line 23, ../sass/spec.scss */
+.secondary { font-size: 14px; font-weight: normal; line-height: 20px; }
+
+/* line 30, ../sass/spec.scss */
+body { font-size: 16px; font-family: "Open Sans", Helvetica, Arial, sans-serif; font-weight: normal; line-height: 24px; }
+
+/* line 45, ../sass/spec.scss */
+button { font-size: 12px; font-weight: normal; text-transform: uppercase; }
+
+/* line 52, ../sass/spec.scss */
+a { font-size: inherit; font-weight: normal; color: #3367d6; text-decoration: none; }
+
+/* line 61, ../sass/spec.scss */
+a:hover { text-decoration: underline; }
+
+/* line 65, ../sass/spec.scss */
+code, pre { font-family: "Source Code Pro", Monaco, Menlo, Consolas, "Courier New", monospace; }

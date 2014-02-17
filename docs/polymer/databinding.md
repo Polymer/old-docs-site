@@ -1,5 +1,8 @@
 ---
 layout: default
+type: core
+navgroup: docs
+shortname: Docs
 title: Data-binding
 ---
 
@@ -9,7 +12,7 @@ title: Data-binding
 
 * [HTML Template element](http://www.html5rocks.com/tutorials/webcomponents/template/) (`<template>`)
 * [Template Bindings](/platform/template.html) (_prollyfill_) - describes how `<template>` manages instance fragments.
-* [`Node.bind()`](/platform/node_bind.html) (_prollyfill_) - describes how DOM nodes are bound to data values.
+* [`Node.bind()`](/docs/polymer/node_bind.html) (_prollyfill_) - describes how DOM nodes are bound to data values.
 * [`Object.observe()`](http://updates.html5rocks.com/2012/11/Respond-to-change-with-Object-observe)
 * [Mutation Observers](https://developer.mozilla.org/en-US/docs/DOM/MutationObserver)
 
@@ -112,7 +115,7 @@ In `<script>`, we create a model:
       ]
     };
 
-Notice that this is just JavaScript data: _there’s no need to import your data into special observable objects_. The template is set in motion by binding the model data to it:
+Notice that this is just JavaScript data: _there's no need to import your data into special observable objects_. The template is set in motion by binding the model data to it:
 
     t.model = model;
 
@@ -132,7 +135,7 @@ Now, remember we said data-binding teaches the DOM to derive its values from Jav
 
 ![ScreenShot](https://raw.github.com/Polymer/TemplateBinding/master/docs/images/README/updateData.png)
 
-However, the DOM doesn’t just observe data in the model, if DOM elements which collect user input are bound, they _push_ the collected value into the model:
+However, the DOM doesn't just observe data in the model, if DOM elements which collect user input are bound, they _push_ the collected value into the model:
 
 ![ScreenShot](https://raw.github.com/Polymer/TemplateBinding/master/docs/images/README/input.png)
 
@@ -152,7 +155,7 @@ _Binding to DOM values:_
 
 * [Binding to text values](https://github.com/Polymer/TemplateBinding/tree/master/examples/how_to/bind_to_text.html): How to insert values into the DOM that render as text.
 * [Binding to attributes](https://github.com/Polymer/TemplateBinding/tree/master/examples/how_to/bind_to_attributes.html): How to insert values into element attributes
-* [Conditional attributes](https://github.com/Polymer/TemplateBinding/tree/master/examples/how_to/conditional_attributes.html): How to bind to attributes such that the attribute is only present if the binding value is “truthy”.
+* [Conditional attributes](https://github.com/Polymer/TemplateBinding/tree/master/examples/how_to/conditional_attributes.html): How to bind to attributes such that the attribute is only present if the binding value is "truthy".
 * [Binding to input elements](https://github.com/Polymer/TemplateBinding/tree/master/examples/how_to/bind_to_input_elements.html): How to bind bi-directionally with input elements.
 * [Custom bindings](https://github.com/Polymer/TemplateBinding/tree/master/examples/how_to/custom_syntax.html): How to implement a custom element which has a specialized interpretation of a binding.
 
