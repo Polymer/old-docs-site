@@ -75,7 +75,10 @@
     ticking: false,
     fancyheader: true, // header sticks on scroll
     sidebar: false,
-    ready: function() {
+    attached: function() {
+      this.init();
+    },
+    init: function() {
       var siteBanner = this.querySelector('site-banner');
       this.appBar = siteBanner.querySelector('app-bar');
       this.header = siteBanner.querySelector('header');

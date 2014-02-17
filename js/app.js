@@ -62,7 +62,7 @@ function testXhrType(type, callback) {
  *     history.
  */
 function injectPage(url, opt_addToHistory) {
-  var CONTAINER_SELECTOR = '#content-container';
+  var CONTAINER_SELECTOR = 'scroll-area article'; //#content-container';
   var container = document.querySelector(CONTAINER_SELECTOR);
 
   var xhr = new XMLHttpRequest();
@@ -78,27 +78,37 @@ function injectPage(url, opt_addToHistory) {
 
     var doc = e.target.response;
 
-    document.title = doc.title;
+    document.title = doc.title; // Update document title to fetched one.
 
     var META_CONTENT_NAME = 'meta[itemprop="name"]';
     var metaContentName = doc.head.querySelector(META_CONTENT_NAME).content;
     document.head.querySelector(META_CONTENT_NAME).content = metaContentName;
-    
+
+    var SCROLL_AREA = 'scroll-area';
+    var SITE_BANNER = 'site-banner';
+    var scrollArea = doc.querySelector(SCROLL_AREA);
+    var siteBanner = scrollArea.querySelector(SITE_BANNER);
+    document.querySelector(SITE_BANNER).outerHTML = siteBanner.outerHTML;
+
     var newDocContainer = doc.querySelector(CONTAINER_SELECTOR);
     container.innerHTML = newDocContainer.innerHTML;
+
+    // TODO: doesn't bring the app-bar back because listeners are nuked.
+    var scrollAreaDoc = document.querySelector(SCROLL_AREA);
+    scrollAreaDoc.init();
 
     // Remove "loading" message immediately after page content is set.
     container.classList.remove('loading');
 
-    // Run Polymer's HTML Import loader/parser.
-    HTMLImports.importer.load(newDocContainer, function() {
-      HTMLImports.parser.parse(newDocContainer);
-      // CustomElements polyfill needs to process the dynamic imports for definitions.
-      CustomElements.parser.parse(newDocContainer);
+    // // Run Polymer's HTML Import loader/parser.
+    // HTMLImports.importer.load(newDocContainer, function() {
+    //   HTMLImports.parser.parse(newDocContainer);
+    //   // CustomElements polyfill needs to process the dynamic imports for definitions.
+    //   CustomElements.parser.parse(newDocContainer);
       
-      // Prevents polymer-ui-overlay FOUC where O.o() is unavailable.
-      Platform.flush();
-    });
+    //   // Prevents polymer-ui-overlay FOUC where O.o() is unavailable.
+    //   Platform.flush();
+    // });
 
     var addToHistory = opt_addToHistory == undefined ? true : opt_addToHistory;
     if (addToHistory) {
