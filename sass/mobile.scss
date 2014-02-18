@@ -50,7 +50,7 @@
 
   #future {
     polymer-ui-toolbar {
-      @include justify-content(space-between);
+      @include flex-direction(column);
 
       a {
         margin-right: 0 !important;

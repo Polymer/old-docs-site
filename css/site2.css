@@ -361,7 +361,7 @@ right: 0;*/ float: right; }
   /* line 47, ../sass/mobile.scss */
   .paper-button { margin: 15px 0; }
   /* line 52, ../sass/mobile.scss */
-  #future polymer-ui-toolbar { -webkit-box-pack: space-between; -webkit-justify-content: space-between; -moz-justify-content: space-between; -ms-justify-content: space-between; -o-justify-content: space-between; justify-content: space-between; }
+  #future polymer-ui-toolbar { -webkit-box-orient: vertical; -webkit-flex-direction: column; -moz-flex-direction: column; -ms-flex-direction: column; -o-flex-direction: column; flex-direction: column; }
   /* line 55, ../sass/mobile.scss */
   #future polymer-ui-toolbar a { margin-right: 0 !important; }
   /* line 57, ../sass/mobile.scss */
