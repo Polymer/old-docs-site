@@ -31,11 +31,9 @@ or instantiated in JavaScript:
 
 One can attach event listeners, access properties, or call its methods:
 
-    <script>
       s.addEventListener('change', function(e) {
         alert(this.selectedIndex == 0);
       });
-    </script>
 
 Guess what? **The same tricks apply to custom elements**. You can use standard DOM methods
 on custom elements, access their properties, attach event listeners, or style them using CSS. The major difference with custom elements is that they give authors a tool for defining new tags
