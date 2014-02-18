@@ -300,7 +300,7 @@ Generally it's preferable to use the `attributes` attribute because it's the dec
 You should opt for the `publish` property when either of the following is true:
 
 1. Your element has many properties and placing them all on one line feels unwieldy.
-2. You want to define default values for you properties and prefer the DRYness of doing it all in one place.
+2. You want to define default values for properties and prefer the DRYness of doing it all in one place.
 
 #### Configuring an element via attributes
 
