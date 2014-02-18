@@ -54,6 +54,9 @@
 
       a {
         margin-right: 0 !important;
+        &:first-of-type {
+          margin-bottom: 0;
+        }
         &:last-of-type {
           display: none;
         }
