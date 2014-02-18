@@ -419,6 +419,11 @@ use `unwrap()` if you need to go the other direction.
 
 Under native Shadow DOM this isn't an issue. Properties will auto complete in the console.
 
+### What is the behavior of custom elements in a `<template>`? {#intemplate}
+
+Custom elements in templates are like `<script>` and friends--inert. If you're pulling content out of a template and want the custom elements to pick up the element definitions registered with the main document, be sure to use `document.importNode(template.content)` to clone the content.
+
+
 ---
 
 *Special thanks go to GitHub user md_5 who generously donated the {{site.project_title}} organization name.*
