@@ -76,3 +76,139 @@ The [{{site.project_title}} + Grunt](https://github.com/addyosmani/polymer-grunt
 
 We hope to announce more stable support for these projects in the near future.
 
+## Using git {#git}
+
+### Clone the project {#clone}
+
+You can clone {{site.project_title}}'s important repositories
+by running our `pull-all.sh` script:
+
+    mkdir polymer_local; cd polymer_local
+    git clone https://github.com/Polymer/tools.git
+    ./tools/bin/pull-all.sh
+
+<!-- <p class="centered"><a href="/tools/pull-all.sh" target="_blank" class="btn btn-success" alt="Download pull-all.sh" title="Download pull-all.sh"><i class="icon-white icon-download"></i> Download pull-all.sh</a></p>
+ -->
+
+Go grab a coffee. This takes a few minutes!
+
+`pull-all.sh` is great for hacking on the code or if you want the individual polyfill repositories. It creates two directories, `components/` and `projects/`, and checks out a number of sibling repositories to each folder.
+
+**components/**
+
+- *components/platform/platform.js* — The platform shims and polyfills.
+- *components/polymer/polymer.js* — [{{site.project_title}} core](polymer.html)
+- *components/polymer-elements/* — A folder of the meta collection of the core utility elements.
+- *components/polymer-ui-elements/* — A folder of the meta collection of the UI elements.
+- A directory for each polyfill repo (CustomElements, HTMLImports, ShadowDOM).
+
+**projects/**
+
+Full and sample applications.
+
+### Test your environment {#testgit}
+
+To check that your development environment is ready, try running the playground tool:
+
+    cd projects/designer
+    bower install
+
+Start a web server and navigate to the designer app.
+
+### Updating checkouts {#updategit}
+
+To update your local copies, re-run `pull-all.sh`:
+
+    ./tools/bin/pull-all.sh
+
+### About the repositories {#abouttherepos}
+
+The entirety of the {{site.project_title}} is composed of a many Git
+repositories. All of the polyfill libraries, projects, and individual elements
+each have their own repository.
+
+Specification repositories (da polyfills)
+
+Each new web platform specification has a corresponding polyfill repository. The
+reasoning for this is two-fold:
+
+1. make the polyfills work across all modern browsers
+2. each polyfill can stand on its own and be used à la carte in projects.
+
+For example, the following repositories may be useful if you're interested in the individual API:
+
+* `CustomElements`
+* `HTMLImports`
+* `PointerEvents`
+* `PointerGestures`
+* `ShadowDOM`
+* `web-animations-js`
+
+Other useful repositories
+
+/polymer
+
+[github.com/polymer/polymer](https://github.com/polymer/polymer)
+
+A meta repository used to distribute `polymer.js` builds.
+
+/polymer-dev
+
+[github.com/polymer/polymer-dev](https://github.com/polymer/polymer-dev)
+
+The [`polymer-dev`](https://github.com/polymer/polymer-dev) repository contains the
+[{{site.project_title}} core](polymer.html) and its tools and tests and is used
+by the project's developers. You should not have to touch this repository unless
+you're planning to hack on {{site.project_title}}.
+
+/platform
+
+[github.com/polymer/platform](https://github.com/polymer/platform)
+
+A meta repository used to distribute `platform.js` builds.
+
+/platform-dev
+
+[github.com/polymer/platform-dev](https://github.com/polymer/platform-dev)
+
+The [`platform-dev`](https://github.com/polymer/platform-dev) contains integration tests, loader, and build tools for the amalgamated polyfills. It's used by the project's developers. You should not have to touch this repository unless you're planning to hack on {{site.project_title}}.
+
+/polymer-elements
+
+[github.com/polymer/polymer-elements](https://github.com/polymer/polymer-elements)
+
+A meta repository compiling the list of utility elements that do not render UI.
+
+/polymer-ui-elements
+
+[github.com/polymer/polymer-ui-elements](https://github.com/polymer/polymer-ui-elements)
+
+A meta repository compiling the list of basic UI elements.
+
+/more-elements
+
+[github.com/polymer/more-elements](https://github.com/polymer/more-elements)
+
+A meta repository compiling the list of extra components and wrappers for third-party code. 
+Examples include Bootstrap, topcoat, Chart.js, pdf.js, x-tags, and AceEditor.
+
+<!--
+/toolkit-ui
+
+[github.com/polymer/toolkit-ui](https://github.com/polymer/toolkit-ui)
+
+The [`toolkit-ui`](https://github.com/polymer/toolkit-ui) repository contains examples of
+the types of things you can do when writing a [{{site.project_title}} element](/docs/polymer/polymer.html).
+
+- **elements/** — `g-*` custom element definitions.
+- **workbench/** — demos of the {{site.project_title}}-style elements found in `elements/`.
+
+
+/projects
+
+[github.com/polymer/projects](https://github.com/polymer/projects)
+
+The [`projects`](https://github.com/polymer/projects) repository contains
+substantial larger apps/demos that we're tinkering with This includes apps like
+pica and tools like Sandbox.
+-->
