@@ -137,14 +137,14 @@ using an ES5 getter, and a method `foo`:
 **Note:** `this` references the custom element itself inside a {{site.project_title}} element. For example, `this.localName == 'tag-name'`.
 {: .alert .alert-info }
 
-**Important:** Be careful when initializing properties that are objects or arrays. Due to the nature of `prototype`, you may run into unexpected "shared state" across instances of the same element. If you're initializing an array or object, do it in `ready()` rather than directly on the `prototype`. 
+**Important:** Be careful when initializing properties that are objects or arrays. Due to the nature of `prototype`, you may run into unexpected "shared state" across instances of the same element. If you're initializing an array or object, do it in `created()` rather than directly on the `prototype`. 
 
 Do this:
 
     Polymer('x-foo', {
-      ready: function() {
-        this.list = [];
-        this.person = {};
+      created: function() {
+        this.list = []; // Initialize and hint type to be array.
+        this.person = {}; // Initialize and hint type to an object.
       }
     });
      
@@ -350,10 +350,10 @@ For example, we can define a `name-tag` element that publishes two properties,
 In this example, `name` has initial value of `null` and `nameColor` has a value of "orange".
 Thus, the `<span>`'s color will be orange.
 
-#### Binding objects to attribute values
+#### Binding objects and arrays to attribute values
 
 **Important:** Be careful when your properties are objects or arrays. Element registration
-is evaluated once. This means only one instance of an object used in property initialization is ever created. Because of the nature of `prototype`, you may run into unexpected "shared state" across different instances of the same element if you're setting an initial value for a property which is an object or array. Do this type of initialization in `ready()` rather than directly on the `prototype`. 
+is evaluated once. This means only one instance of an object used in property initialization is ever created. Because of the nature of `prototype`, you may run into unexpected "shared state" across different instances of the same element if you're setting an initial value for a property which is an object or array. Do this type of initialization in `created()` rather than directly on the `prototype`. 
 {: .alert .alert-error }
 
 Generally, attributes are string values, but {{site.project_title}} makes it possible to bind references between elements using attributes. The binding engine interprets reference bindings
@@ -368,7 +368,7 @@ Let's modify the `name-tag` example to take an object instead of individual prop
       </template>
       <script>
         {{site.project_title}}('name-tag', {
-          ready: function() {
+          created: function() {
             this.person = {
               name: "Scott",
               nameColor: "orange"
@@ -386,7 +386,7 @@ Now, imagine we make a new component called `<visitor-creds>` that uses `name-ta
       </template>
       <script>
         {{site.project_title}}('visitor-creds', {
-          ready: function() {
+          created: function() {
             this.person = {
               name: "Scott2",
               nameColor: "red"
