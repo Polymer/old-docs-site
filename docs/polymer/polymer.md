@@ -357,7 +357,7 @@ is evaluated once. This means only one instance of an object used in property in
 {: .alert .alert-error }
 
 Generally, attributes are string values, but {{site.project_title}} makes it possible to bind references between elements using attributes. The binding engine interprets reference bindings
-by interrogating the [attribute's type](#hinting-an-attributes-type). This means you 
+by interrogating the [attribute's type](#attrhinting). This means you 
 can bind an an object to an HTML attribute!
 
 Let's modify the `name-tag` example to take an object instead of individual properties.

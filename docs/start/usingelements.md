@@ -65,7 +65,7 @@ Each set can be downloaded separately using Bower:
     bower install --save polymer-elements
     bower install --save polymer-ui-elements
 
-### Using elements {#using}
+## Using elements {#using}
 
 The first step to using elements is to load `platform.js`. Many browsers do not have support for the various web components APIs. Until that magical day, `platform.js` provides polyfill support. **Be sure to include this file before any code that touches the DOM.**
 
@@ -89,13 +89,13 @@ An example `index.html` file:
                       handleAs="json"></polymer-ajax>
 
         <script>
-          // Wait for 'polymer-ready'. Insures the element is upgraded.
+          // Wait for 'polymer-ready' to ensure the element is upgraded.
           window.addEventListener('polymer-ready', function(e) {
             var ajax = document.querySelector('#ajax');
 
-            // Respond to events it fires.
+            // Respond to the 'polymer-response' event it fires.
             ajax.addEventListener('polymer-response', function(e) {
-              console.log(this.response);
+              console.log(this.response); // Access the element's response property.
             });
 
             ajax.go(); // Call it's API methods.
@@ -107,6 +107,37 @@ An example `index.html` file:
 **Note:** You must run your app from a web server for the [HTML Imports](/platform/html-imports.html)
 polyfill to work properly. This requirement goes away when the API is available natively.
 {: .alert .alert-info }
+
+## Leveraging attributes and properties {#configuration}
+
+When a {{site.project_title}} element [publishes properties](/docs/polymer/polymer.html#published-properties), you can declaratively configure the property using an HTML attribute of the same name.
+
+For example, to initialize the `first` and `last` property of the `<name-card>`, simply declare the attributes:
+
+    <name-card first="John" last="Doe"></name-card>
+
+Since both are just properties of the element, you can alternatively set their values in JavaScript:
+
+    var card = document.querySelector('name-card');
+    card.first = 'John';
+    card.last = 'Doe';
+
+### Properties that are objects or arrays {#objectarray}
+
+Normally, we set an element's object or array properties using JavaScript:
+
+    var card = document.querySelector('roster-list');
+    card.persons = [
+      {'name': 'John'},
+      {'name': 'Bob'}
+    ];
+
+However in {{site.project_title}}, you can initialize the same property using an attribute! Its value should be a serialized version of the object or array. For example:
+
+    <roster-list persons="[{'name': 'John'}, {'name': 'Bob'}]"></roster-list>
+
+**Note**: When [creating elements](/getting-started.html), it's important to [hint a property's type](/docs/polymer/polymer.html#attrhinting) as an object or array. {{site.project_title}} interrogates the type in order to do perform the serialization and de-serialization.
+{: .alert .alert-success }
 
 ## Next steps {#nextsteps}
 
