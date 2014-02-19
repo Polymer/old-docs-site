@@ -54,6 +54,9 @@
 
       a {
         margin-right: 0 !important;
+        &:first-of-type {
+          margin-bottom: 0;
+        }
         &:last-of-type {
           display: none;
         }
@@ -64,6 +67,10 @@
   #architecture .box {
     padding: 20px 24px 14px;
     margin-bottom: 25px;
+  }
+
+  .edit-on-github {
+    display: none;
   }
 
   footer {
@@ -97,6 +104,15 @@
 
   #dropdown-toggle {
     display: inline-block;
+  }
+
+  #architecture .panel {
+    p {
+      margin-bottom: 10px;
+    }
+    .paper-button {
+      margin: 0 0 40px;
+    }
   }
 
   // Responsive Tables
@@ -141,6 +157,7 @@
 
   #architecture .box {
     padding: 20px 24px 14px;
+    margin-bottom: 30px;
   }
 
   footer {
