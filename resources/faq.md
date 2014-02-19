@@ -306,10 +306,6 @@ by calling `Platform.flush()`. **There are very few cases where you need to call
 
 Note: on platforms that support `Object.observe()` natively, `Platform.flush()` does nothing.
 
-### Is {{site.project_title}} available on a CDN? {#cdn}
-
-Yes! We're up on [cdnjs](http://cdnjs.com/). See [Getting the code](/getting-the-code.html#cdn).
-
 ## Web Components
 
 ### How do I package a bunch of custom elements together? {#packaging}
