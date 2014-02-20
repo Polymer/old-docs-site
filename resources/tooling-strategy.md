@@ -80,7 +80,7 @@ We hope to announce more stable support for these projects in the near future.
 
 ## Using git {#git}
 
-**Note:** This section is for advanced users who want to hack on Polymer or submit a pull request. If you just want to use Polymer in a project we recommend using Bower. Please follow our guide at [Getting the Code](http://localhost:8080/getting-the-code.html).
+**Note:** This section is for advanced users who want to hack on Polymer or submit a pull request. If you just want to use Polymer in a project we recommend using Bower. Please follow our guide at [Getting the Code](/docs/start/getting-the-code.html).
 {: .alert .alert-error}
 
 ### Clone the project {#clone}

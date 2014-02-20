@@ -20,7 +20,7 @@ subtitle: Polymer from the outside
 
 ## Installing elements {#install}
 
-The first step in using an element (or a set of elements) is to install it locally into your app using [Bower](http://bower.io). If you haven’t already done so, check out [Getting the Code](/getting-the-code.html) to learn more about using Bower.
+The first step in using an element (or a set of elements) is to install it locally into your app using [Bower](http://bower.io). If you haven’t already done so, check out [Getting the Code](/docs/start/getting-the-code.html) to learn more about using Bower.
 
 ### Installing a single element {#installsingle}
 
@@ -125,6 +125,6 @@ When creating your own {{site.project_title}} elements, you can choose to expose
 Now that you've got the basic idea of using and installing elements, it's time to start
 building something! In the next section we'll cover the features of {{site.project_title}} and how to create new `<polymer-element>`s. Continue on to:
 
-<a href="/getting-started.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Creating elements</a>
+<a href="/docs/start/creatingelements.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Creating elements</a>
 
 If you'd rather browse the existing elements, check out the [{{site.project_title}} elements](/docs/elements/polymer-elements.html) and [{{site.project_title}} UI elements](/docs/elements/polymer-elements.html) catalogs.

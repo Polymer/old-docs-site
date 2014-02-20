@@ -45,7 +45,7 @@ There are three conceptual layers to {{site.project_title}}:
 
 1. **[Using elements](/docs/start/usingelements.html)**: {{site.project_title}} provides a comprehensive set of elements--both UI and non-UI--that you can use right out of the box. You can mix and match {{site.project_title}} elements with other elements, including built-in elements and other custom elements.
 
-1. **[Creating elements](/getting-started.html)**: {{site.project_title}}'s declarative syntax makes it simpler to define custom elements. Features like two-way data binding, property observation, and gesture support help you build powerful, reusable elements.
+1. **[Creating elements](/docs/start/creatingelements.html)**: {{site.project_title}}'s declarative syntax makes it simpler to define custom elements. Features like two-way data binding, property observation, and gesture support help you build powerful, reusable elements.
 
 1. **[The Platform](/docs/start/platform.html)**: {{site.project_title}} is built on the latest web technologies, like Web Components and Object.observe. Not all browsers support these features yet, so {{site.project_title}}'s platform layer fills the gaps, implementing the APIs in JavaScript. At runtime, {{site.project_title}} automatically picks the fastest path -- native implementation or JavaScript.
 

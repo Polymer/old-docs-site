@@ -13,7 +13,7 @@ subtitle: Learn about the foundation of Polymer-based apps
 
 If HTML was reinvented tomorrow, it would provide more features and greater capability than today's built-in elements. For example, imagine you're building a photo booth app to capture snapshots, display thumbnails, and cycle through recent photos. If HTML provided the `<camera>`, `<carousel>`, or `<tabs>` element, you wouldn't think twice about using them. You'd accept the functionality and start writing markup!
 
-Fortunately, [Custom Elements](/platform/custom-elements.html) pave a path to {{site.project_title}}'s "[Everything is an element](/docs/start/everything.html#everythingis)" philosophy. Embracing the philosophy means a web app becomes a collection of well-defined, reusable components. You create an applications by assembling custom elements: either ones provided by {{site.project_title}}, [ones you create](/getting-started.html) yourself, or third-party elements.
+Fortunately, [Custom Elements](/platform/custom-elements.html) pave a path to {{site.project_title}}'s "[Everything is an element](/docs/start/everything.html#everythingis)" philosophy. Embracing the philosophy means a web app becomes a collection of well-defined, reusable components. You create an applications by assembling custom elements: either ones provided by {{site.project_title}}, [ones you create](/docs/start/creatingelements.html) yourself, or third-party elements.
 
 ## Custom element APIs {#publicapis}
 
@@ -108,4 +108,4 @@ Because custom elements are just like regular elements, it doesn't matter what k
 
 Now that you've got an idea of what you can do with custom elements, it's time to start building something! Continue on to:
 
-<a href="/getting-the-code.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Getting the code</a>
+<a href="/docs/start/getting-the-code.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Getting the code</a>

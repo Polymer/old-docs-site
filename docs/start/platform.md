@@ -39,7 +39,7 @@ The platform layer is a bundle that includes the following libraries:
 ## Installation & usage {#setup}
 
 To start using these features today, first download `platform.js` using Bower as described
-in the [Getting the code](/getting-the-code.html) guide:
+in the [Getting the code](/docs/start/getting-the-code.html) guide:
 
     bower install --save Polymer/platform
 
@@ -65,7 +65,7 @@ For information on how to build each polyfill library independently, see [Tools 
 
 ## Next steps {#nextsteps}
 
-`platform.js` is a wonderful foundation for working with Web Components in a cross-browser fashion. If you're ready to start building your own elements, and would like to learn about the additional features `polymer.js` adds, check out our guides on [Creating elements](/getting-started.html) and [Using elements](/docs/start/usingelements.html). Continue on to:
+`platform.js` is a wonderful foundation for working with Web Components in a cross-browser fashion. If you're ready to start building your own elements, and would like to learn about the additional features `polymer.js` adds, check out our guides on [Creating elements](/docs/start/creatingelements.html) and [Using elements](/docs/start/usingelements.html). Continue on to:
 
 <a href="/docs/start/usingelements.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Using elements</a>
  
