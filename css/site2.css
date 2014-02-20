@@ -159,7 +159,7 @@ a[disabled] { pointer-events: none; color: #ccc; }
 
 /* -------------------------------------------------------------------------- */
 /* line 3, ../sass/paper-button.scss */
-.paper-button { display: inline-block; -webkit-transition: box-shadow 0.2s, background 0.2s; transition: box-shadow 0.2s, background 0.2s; border: none; cursor: default; overflow: hidden; position: relative; padding: 14px 14px 12px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; outline: none; font-size: 13px; line-height: 24px; letter-spacing: 0.06em; color: inherit; vertical-align: middle; font-weight: normal; text-transform: uppercase; }
+.paper-button { display: inline-block; -webkit-transition: box-shadow 0.2s, background 0.2s; transition: box-shadow 0.2s, background 0.2s; border: none; cursor: pointer; overflow: hidden; position: relative; padding: 14px 14px 12px; border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; outline: none; font-size: 13px; line-height: 24px; letter-spacing: 0.06em; color: inherit; vertical-align: middle; font-weight: normal; text-transform: uppercase; }
 /* line 28, ../sass/paper-button.scss */
 .paper-button polymer-ui-icon { margin-right: 5px; }
 /* line 32, ../sass/paper-button.scss */

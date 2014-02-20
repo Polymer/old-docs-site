@@ -108,4 +108,4 @@ Because custom elements are just like regular elements, it doesn't matter what k
 
 Now that you've got an idea of what you can do with custom elements, it's time to start building something! Continue on to:
 
-<a href="/docs/start/getting-the-code.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Getting the code</a>
+<a href="/docs/start/usingelements.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Using Elements</a>

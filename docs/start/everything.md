@@ -55,4 +55,4 @@ There are three conceptual layers to {{site.project_title}}:
 Now that you've got the basic concepts of {{site.project_title}}, it's time to
 start digging in a bit more. Continue on to:
 
-<a href="/docs/start/customelements.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>What are custom elements?</a>
+<a href="/docs/start/customelements.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Custom Elements 101</a>
