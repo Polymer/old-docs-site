@@ -417,7 +417,7 @@ Under native Shadow DOM this isn't an issue. Properties will auto complete in th
 
 ### What is the behavior of custom elements in a `<template>`? {#intemplate}
 
-Custom elements in templates are like `<script>` and friends--inert. If you're pulling content out of a template and want the custom elements to pick up the element definitions registered with the main document, be sure to use `document.importNode(template.content)` to clone the content.
+Custom elements in templates are like `<script>` and friends--inert. Their definitions are registered but the elements are not upgraded. Upgrading elements in a `<template>` would be a performance penalty.
 
 
 ---
