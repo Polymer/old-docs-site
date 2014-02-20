@@ -5,7 +5,7 @@
     <style>
     :host {
       display: block;
-      position: absolute;
+      position: fixed;
       height: 100%;
       top: 0;
       right: 0;
@@ -14,7 +14,7 @@
       background-color: rgba(0, 0, 0, 0.3);
       visibility: hidden;
       opacity: 0;
-      z-index: 2;
+      z-index: 200;
       transition: all 200ms;
     }
     :host([in]) {
@@ -26,9 +26,6 @@
   <script>
   Polymer('page-scrim', {
     in: false,
-    inChanged: function() {
-      this.style.top = document.documentElement.scrollTop + 'px';
-    },
     hide: function() {
       this.in = false;
     },
