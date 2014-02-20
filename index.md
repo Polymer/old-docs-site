@@ -52,7 +52,7 @@ title: Welcome
       </div>
       <h2 class="elements-creating">Creating elements</h2>
       <h5>{{site.project_title}} from the inside</h5>
-      <p>{{site.project_title}}s declarative syntax makes it simpler to define custom elements. Features like two-way data binding, declarative event handlers, property observation, and gesture support help you build powerful, reusable elements.</p>
+      <p>{{site.project_title}}'s declarative syntax makes it simpler to define custom elements. Features like two-way data binding, declarative event handlers, property observation, and gesture support help you build powerful, reusable elements.</p>
       <a href="/docs/start/creatingelements.html" class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Build your own</a>
     </summary>
     <summary>
