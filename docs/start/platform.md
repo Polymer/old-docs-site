@@ -29,7 +29,7 @@ The platform layer is a bundle that includes the following libraries:
   - [URL](https://github.com/Polymer/URL). Parse URLs in JavaScript.
   - [WeakMap](https://github.com/Polymer/WeakMap). Shim for ES6 WeakMap type. 
   - [Mutation Observers](https://github.com/Polymer/MutationObservers). Efficiently watch for changes in the DOM.
-  - [Promises](https://github.com/Polymer/Promises). Handle asynchronous operations.
+  <!-- - [Promises](https://github.com/Polymer/Promises). Handle asynchronous operations. -->
   - [observe-js](https://github.com/Polymer/observe-js). Observe changes on JS objects/arrays using `Object.observe` (if available).
 - Other
   - [Pointer Events](https://github.com/Polymer/PointerEvents). Handle both touch and mouse seamlessly
