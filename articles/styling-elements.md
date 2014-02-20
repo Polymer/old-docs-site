@@ -54,16 +54,14 @@ However, it's common for a Custom Element to define its own look.
 
 ### Element-defined styles
 
-**Heads up**: `@host` was replaced with `:host()` in the Shadow DOM spec.
-{: .alert .alert-error}
-
-Elements _you_ create will likely need some sort of styling. `:host` and `:host()` allows you to target and style a custom element internally from within its definition:
+Elements _you_ create will likely need some sort of styling. `:host` and `:host(<selector>)` allows you to target and style a custom element internally from within its definition:
 
     <polymer-element name="x-foo" noscript>
       <template>
         <style>
           :host {
-            display: block; /* Note: by default elements are always display:inline. */
+            /* Note: by default elements are always display:inline. */
+            display: block;
           }
         </style>
       </template>
@@ -71,6 +69,17 @@ Elements _you_ create will likely need some sort of styling. `:host` and `:host(
 
 `:host` refers to the custom element itself and has the lowest specificity. This allows
 users to override your styling from the outside.
+
+The more complex form of `:host` is `:host(<selector>)`. It allows you to write a
+rule that targets the host if it matches `<selector>`: For example:
+
+    <x-foo class="different"></x-foo>
+
+matches
+
+    :host(.different) {
+      ...  
+    }
 
 #### Reacting to user states
 
@@ -98,15 +107,15 @@ When someone mouses over `<x-button>` they'll get a sexy fade-in!
 
 #### Theming an element
 
-The selector `:host(<selector>)` matches the host element if it or any of its ancestors matches `<selector>`.
+The selector `:ancestor(<selector>)` matches the host element if it or any of its ancestors matches `<selector>`.
 
 **Example** - color the element if an ancestor has the `different` class:
 
-    :host(.different) {
+    :ancestor(.different) {
       color: red;
     }
 
-One reason you might find `:host()` useful is for theming. For example, many people do theming by applying a class to `<html>` or `<body>`. 
+One reason you might find `:ancestor()` useful is for theming. For example, many people do theming by applying a class to `<html>` or `<body>`. 
 
     <body class="different">
       <x-foo></x-foo>
@@ -117,7 +126,7 @@ One reason you might find `:host()` useful is for theming. For example, many peo
     <polymer-element name="x-foo" noscript>
       <template>
         <style>
-          :host(.different) { ... }
+          :ancestor(.different) { ... }
         </style>
       </template>
     </polymer-element>
@@ -125,16 +134,6 @@ One reason you might find `:host()` useful is for theming. For example, many peo
     <body class="different">
       <x-foo></x-foo>
     </body>
-
-Note, you can also write a rule that matches only if the host itself has the `.different` class. For example:
-
-    <x-foo class="different"></x-foo>
-
-matches
-
-    :host(.different:host) {
-      ...  
-    }
 
 #### Programmatically modifying styles
 
@@ -305,9 +304,6 @@ see [styling distributed nodes](#style-distributed).
 
 #### Styling distributed nodes {#style-distributed}
 
-**Heads up:** `::content` replaced `::distributed()` as the way to style distributed nodes.
-{: .alert .alert-error}
-
 `<content>` elements allow you to select nodes from the ["Light DOM"](/platform/shadow-dom.html#shadow-dom-subtrees) and render them at predefined locations in your element. The CSS `::content` pseudo element is a way to style nodes that pass through an insertion point. For example, 
 you can a rule like `::content > *`.
 
@@ -432,8 +428,7 @@ The `^` combinator is generally equivalent to a descendant combinator (e.g. `div
   <p>I am not red.</p>
 </x-foo-cat>
 
-A more full fledged example is styling a tabs component, say `<x-tabs>`. It has `<x-panel>` children in its Shadow DOM, each of which has an `h2` heading. To style those headings from the main page, one could use
-the `^` combinator like so:
+A more full fledged example is styling a tabs component, say `<x-tabs>`. It has `<x-panel>` children in its Shadow DOM, each of which has an `h2` heading. To style those headings from the main page, one could use the `^` combinator like so:
 
 {%raw%}
     <style>
