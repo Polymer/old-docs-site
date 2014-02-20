@@ -67,5 +67,5 @@ For information on how to build each polyfill library independently, see [Tools 
 
 `platform.js` is a wonderful foundation for working with Web Components in a cross-browser fashion. If you're ready to start building your own elements, and would like to learn about the additional features `polymer.js` adds, check out our guides on [Creating elements](/docs/start/creatingelements.html) and [Using elements](/docs/start/usingelements.html). Continue on to:
 
-<a href="/docs/start/usingelements.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Using elements</a>
+<a href="/docs/polymer/polymer.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>API Reference</a>
  
