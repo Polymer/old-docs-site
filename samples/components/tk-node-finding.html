@@ -1,16 +1,18 @@
-<link rel="import" href="../../components/polymer/polymer.html">
+<link rel="import"
+      href="/components/polymer/polymer.html">
 
-<polymer-element name="tk-node-finding" attributes="owner color">
+<polymer-element name="editable-color-picker" attributes="owner color">
   <template>
     <p>
-    This is a <strong>{{owner}}</strong>'s tk-element.
+    This is a <strong>{{owner}}</strong>'s editable-color-picker.
     He likes the color <b style="color: {{color}}">{{color}}</b>.
     </p>
     <button on-click="{{setFocus}}">Set focus to text input</button>
-    <input id="nameInput" value="{{owner}}" placeholder="Your name here...">
+    <input id="nameInput" value="{{owner}}"
+           placeholder="Your name here...">
   </template>
   <script>
-    Polymer('tk-node-finding', {
+    Polymer('editable-color-picker', {
       color: "red",
       owner: "Daniel",
       setFocus: function() {

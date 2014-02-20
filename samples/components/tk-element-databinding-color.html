@@ -1,13 +1,14 @@
-<link rel="import" href="../../components/polymer/polymer.html">
+<link rel="import"
+      href="/components/polymer/polymer.html">
 
-<polymer-element name="tk-element-databinding-color">
+<polymer-element name="fav-color">
   <template>
-    This is a <strong>{{owner}}</strong>'s tk-element. 
+    This is <b>{{owner}}</b>'s fav-color element. 
     {{owner}} likes the color 
     <span style="color: {{color}}">{{color}}</span>.
   </template>
   <script>
-    Polymer('tk-element-databinding-color', {
+    Polymer('fav-color', {
       owner: "Daniel",
       color: "red"
     });

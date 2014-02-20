@@ -3,7 +3,7 @@
 <!-- <link rel="import" href="/elements/demo-tabs.html"> -->
 
 <demo-tabs selectedIndex="0">
-  <demo-tab heading="tk-element-property-public.html">
+  <demo-tab heading="color-picker.html">
 {% highlight html %}
 {% include_external samples/components/tk-element-property-public.html %}
 {% endhighlight %}
@@ -14,16 +14,15 @@
 <html>
   <head>
     <script src="platform.js"></script>
-    <link rel="import" href="tk-element-property-public.html">
+    <link rel="import" href="color-picker.html">
   </head>
   <body>
-    <tk-element-property-public owner="Scott" color="blue">
-      </tk-element-property-public>
+    <color-picker owner="Scott" color="blue"></color-picker>
   </body>
 </html>
 {% endhighlight %}
   </demo-tab>
   <div class="result">
-    <tk-element-property-public owner="Scott" color="blue"></tk-element-property-public>
+    <color-picker owner="Scott" color="blue"></color-picker>
   </div>
 </demo-tabs>

@@ -13,36 +13,36 @@ subtitle: Supporting web standards today
 
 {{site.project_title}} builds on top of the upcoming web components technologies, but they don't yet ship in all browsers.
 
-The lowest layer of {{site.project_title}} is `platform.js`: a collection of polyfills for new web technologies. These technologies will ship across different browser vendors at different times over the coming years. Platform makes it possible for developers to use these standards today across all modern browsers, the polyfills will shrink and you'll gain the benefits of native implementations. `Platform.js` automatically detects native support and switches to the fast path when available. Your elements will seamlessly start relying on the native stuff--and get faster in the process. 
+The lowest layer of {{site.project_title}} is `platform.js`: a collection of libraries (or “polyfills”) for new web technologies that haven’t shipped yet across all browsers. Platform makes it possible for developers to use these standards today across all modern browsers. As these technologies are implemented in browsers, the polyfills will shrink and you'll gain the benefits of native implementations. `Platform.js` automatically detects native support and switches to the fast path when available. Your elements seamlessly start relying on the native stuff--and get faster in the process. 
 
-Although most developers will want to use everything in `platform.js`, the polyfills are designed to be used separately, as well. They're available independently and can be built standalone. For example, Mozilla's [x-tags](http://www.x-tags.org/) and Brick projects use a subset of the polyfills.
+Although most developers will want to use everything in `platform.js`, the polyfills are designed to be used separately, as well. They're available independently and can be built standalone. For example, Mozilla's [x-tags](http://www.x-tags.org/) and Brick projects use a subset of the `platform.js` polyfills.
 
 ## What's in Platform? {#bundle}
 
 The platform layer is a bundle that includes the following libraries:
 
 - Web Components
-  - [Shadow DOM](/platform/shadow-dom.html) - encapsulate DOM and CSS
-  - [HTML Imports](/platform/html-imports.html) - load element definitions and other resources, declaratively
-  - [Custom Elements](/platform/custom-elements.html) - define new elements in HTML
+  - [Shadow DOM](/platform/shadow-dom.html). Encapsulate DOM subtrees and the associated CSS.
+  - [HTML Imports](/platform/html-imports.html). Load element definitions and other resources declaratively.
+  - [Custom Elements](/platform/custom-elements.html) . Define new elements in HTML.
 - DOM
-  - [URL](https://github.com/Polymer/URL)
-  - [WeakMap](https://github.com/Polymer/WeakMap)
-  - [Mutation Observers](https://github.com/Polymer/MutationObservers) - efficiently watch for changes in the DOM
-  - [Promises](https://github.com/Polymer/Promises)
-  - [observe-js](https://github.com/Polymer/observe-js)
+  - [URL](https://github.com/Polymer/URL). Parse URLs in JavaScript.
+  - [WeakMap](https://github.com/Polymer/WeakMap). Shim for ES6 WeakMap type. 
+  - [Mutation Observers](https://github.com/Polymer/MutationObservers). Efficiently watch for changes in the DOM.
+  - [Promises](https://github.com/Polymer/Promises). Handle asynchronous operations.
+  - [observe-js](https://github.com/Polymer/observe-js). 
 - Other
-  - [Pointer Events](https://github.com/Polymer/PointerEvents) - handle both touch and mouse seamlessly
+  - [Pointer Events](https://github.com/Polymer/PointerEvents). Handle both touch and mouse seamlessly
   - [Pointer Gestures](https://github.com/Polymer/PointerGestures)
-  - [Web Animations](/platform/web-animations.html) - easily define complex animations
+  - [Web Animations](/platform/web-animations.html). Easily define complex animations.
 
 ## Usage
 
-To start using these features today, simply include it as you would any other script:
+To start using these features today, simply include `platform.js` as you would any other script:
 
     <script src="bower_components/platform/platform.js"></script>
 
-**Note**: Due to the nature of some of the polyfills, to maximize compatibility with other libraries, make sure that platform.js is the first script tag in your document's `<head>`.
+**Note**: Due to the nature of some of the polyfills, to maximize compatibility with other libraries, make sure that `platform.js` is the first script tag in your document's `<head>`.
 {: .alert alert-info}
 
 Once included, you can use [HTML Imports](/platform/html-imports.html), [Custom Elements](/platform/custom-elements.html), [Shadow DOM](/platform/shadow-dom.html), and other emerging standards within your app. For example, to use a {{site.project_title}} element, just import it using an HTML Import:
@@ -60,9 +60,7 @@ For information on how to build each polyfill library independently, see [Tools 
 
 ## Next steps {#nextsteps}
 
-`platform.js` is a wonderful foundation for working with Web Components in a cross-browser fashion. If you're ready to start building your own elements, and would like to learn about the additional features `polymer.js` adds, check out our guides on [Creating Elements](/getting-started.html) and [Using Elements](/docs/start/usingelements.html).
-
-Next section:
+`platform.js` is a wonderful foundation for working with Web Components in a cross-browser fashion. If you're ready to start building your own elements, and would like to learn about the additional features `polymer.js` adds, check out our guides on [Creating elements](/getting-started.html) and [Using elements](/docs/start/usingelements.html). Continue on to:
 
 <a href="/docs/start/usingelements.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Using elements</a>
  

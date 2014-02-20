@@ -3,7 +3,7 @@ layout: default
 type: elements
 navgroup: docs
 shortname: Elements
-#title: Elements
+title: Element Reference
 
 add_permalinks: false
 ---

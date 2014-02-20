@@ -11,35 +11,41 @@ subtitle: Learn about the foundation of Polymer-based apps
 
 ## Introduction
 
-If HTML was reinvented tomorrow, it would provide more features and greater capability and than today's built-in elements. For example, imagine you're building a photobooth app to capture snapshots, display thumbnails, and cycle through recent photos. If HTML provided the `<camera>`, `<carousel>`, or `<tabs>` element, you wouldn't think twice about using them. You'd accept the functionality and start declaring markup!
+If HTML was reinvented tomorrow, it would provide more features and greater capability than today's built-in elements. For example, imagine you're building a photo booth app to capture snapshots, display thumbnails, and cycle through recent photos. If HTML provided the `<camera>`, `<carousel>`, or `<tabs>` element, you wouldn't think twice about using them. You'd accept the functionality and start writing markup!
 
-Fortunately, [Custom Elements](/platform/custom-elements.html) pave a path to {{site.project_title}}'s, "[Everything is an element](/docs/start/everything.html)" mantra. Embracing the mantra means web apps become a large collection of well-defined, reusable components. Applications are created by assembling many custom elements together, either ones provided by {{site.project_title}}, [ones you create](/getting-started.html) yourself, or third-party elements.
+Fortunately, [Custom Elements](/platform/custom-elements.html) pave a path to {{site.project_title}}'s "[Everything is an element](/docs/start/everything.html#everythingis)" philosophy. Embracing the philosophy means a web app becomes a collection of well-defined, reusable components. You create an applications by assembling custom elements: either ones provided by {{site.project_title}}, [ones you create](/getting-started.html) yourself, or third-party elements.
 
-## Custom elements are just elements
+## Custom element APIs {#publicapis}
 
 A critical realization is that **custom elements are no different than
-standard HTML elements**. Take an HTML `<select>`. It can be declared:
+standard HTML elements**. Each HTML  element has its own API, consisting of:
+
+- properties
+- methods
+- attributes
+- events
+- how the element handles its children
+
+Take an HTML `<select>`. It can be declared in markup:
 
     <select selected="0">
       <option>Hello World</option>
     </select>
 
-or instantiated in JavaScript:
+… or instantiated in JavaScript:
 
     var s = document.createElement('select');
     s.innerHTML = '<option>Hello World</option>';
 
-One can attach event listeners, access properties, or call its methods:
+Once you have a reference to an element, you can attach event listeners, access properties, or call its methods:
 
-      s.addEventListener('change', function(e) {
-        alert(this.selectedIndex == 0);
-      });
+    s.addEventListener('change', function(e) {
+      alert(this.selectedIndex == 0);
+    });
 
-Guess what? **The same tricks apply to custom elements**. You can use standard DOM methods
-on custom elements, access their properties, attach event listeners, or style them using CSS. The major difference with custom elements is that they give authors a tool for defining new tags
-with compartmentalized functionality.
+Guess what? **The same tricks apply to custom elements**. You can use standard DOM methods on custom elements, access their properties, attach event listeners, or style them using CSS. The major difference with custom elements is that they give authors a tool for defining new tags with built-in functionality. These tags can add their own methods, properties, attributes, and events, and define their own logic for handling children.
 
-Our `<polymer-selector>` element is a good example of a basic custom element. It's a close relative to `<select>`, but provides additional functionality and more flexibility. For example, you can  use `<polymer-selector>` as a general container for selecting _any_ type of content, not just `<option>`! It also provides convenient styling hooks, events, and additional properties for interacting with its items.
+The `<polymer-selector>` element is a good example of a basic custom element. It's a close relative to `<select>`, but provides additional functionality and more flexibility. For example, you can  use `<polymer-selector>` as a general container for selecting _any_ type of content, not just `<option>`. It also provides convenient styling hooks, events, and additional properties for interacting with its items.
 
     <polymer-selector selected="0">
       <div>Item 1</div>
@@ -55,12 +61,14 @@ Our `<polymer-selector>` element is a good example of a basic custom element. It
 
 ## Types of elements {#elementtypes}
 
-###  Visual Elements {#visualelements}
+Polymer divides its custom  elements into two categories based on their use and behavior:
 
-Visual elements are what most people think of when they hear web components. The render
-UI and are visible on the page. A few examples are `<polymer-ui-collapsible>`, `<polymer-ui-tabs>`, and `<polymer-ui-toolbar>`.
+- UI elements, which render UI to the screen.
+- Non-UI elements, which provide other utilities. 
 
-Example of using `<polymer-ui-tabs>`:
+###  UI elements {#uielements}
+
+Elements like `<select>` and `<polymer-select>` are _UI elements_. They render UI and are visible on the page. A few other examples are [`<polymer-ui-collapsible>`](/docs/elements/polymer-ui-elements.html#polymer-ui-collapsible), [`<polymer-ui-toolbar>`](/docs/elements/polymer-ui-elements.html#polymer-ui-toolbar), and [`<polymer-ui-tabs>`](/docs/elements/polymer-ui-elements.html#polymer-ui-tabs):
 
     <polymer-ui-tabs selected="0">
       <span>One</span><span>Two</span><span>Three</span>
@@ -69,34 +77,35 @@ Example of using `<polymer-ui-tabs>`:
 
 <iframe src="/components/polymer-ui-tabs/smoke.html" style="border:none;height:80px;width:100%;"></iframe>
 
-### Non-visual elements {#nonvisualelements}
+### Non-UI elements {#nonuielements}
 
-It can be surprising to consider invisible elements, that is, elements that do not
-render anything to the screen. However, there are plenty of examples already in HTML: `<script>`, `<style>`, and `<meta>` to name a few. These do useful work without rendering UI.
+Non-UI elements _**don't**_ render anything to the screen. That may seem strange, but there are plenty of examples already in HTML: `<script>`, `<style>`, and `<meta>` to name a few. These elements serve a purpose and do their useful work without rendering UI.
 
-Non-visual custom elements provide utility without rendering anything. One example is `<polymer-ajax>`, which removes the complexity of `XMLHttpRequest` by doing useful work without.
+Non-UI elements provide utility behind the scenes. For example, the `<polymer-ajax>` tag lets you **make XHR requests from markup**. Feed it some configuration attributes and listen for a response:
 
-Example using `<polymer-ajax>`:
+    <polymer-ajax url="http://gdata.youtube.com/feeds/api/videos/" auto
+                  params='{"alt":"json", "q":"chrome"}' handleAs="json"></polymer-ajax>
+    <script>
+      var ajax = document.querySelector('polymer-ajax');
+      ajax.addEventListener('polymer-response', function(e) {
+        console.log(this.response);
+      });
+    </script>
 
-    <polymer-ajax auto url="http://gdata.youtube.com/feeds/api/videos/" 
-                  params='{"alt":"json", "q":"chrome"}'
-                  handleAs="json"></polymer-ajax>
+Non-UI elements like this one reduce the amount of boilerplate code you have to write. They perform their task, get out of your way, and can hide the details of a complex API like `XMLHttpRequest`.
 
 ## Interoperability: on by default {#interop}
 
-Because custom elements are fundamentally HTML elements, by nature, they work well with each other or any technology that understands DOM (every framework on the planet). That means custom elements already works with frameworks like Angular, Ember, jQuery, &lt;insert your framework here>.
+Because custom elements are fundamentally HTML elements, they work well with each other or any technology that understands DOM (every framework on the planet). That means custom elements already work with frameworks like Angular, Ember, jQuery, and others.
 
 The custom elements we've used so far come from {{site.project_title}}'s set and are built using [{{site.project_title}} core](/docs/polymer/polymer.html). But here's where things get interesting...
 
 **That doesn't matter**.
 
-Because custom elements are just like regular elements, it doesn't matter what kind of technology is used to implement their internals. Different kinds of elements from different vendors can all coexist in the same page! As an example, Mozilla offers a series of custom elements called [x-tags](http://x-tags.org/) (see also: [Brick](http://mozilla.github.io/brick/)). I can use x-tags with my other elements and I can mix and match them. As a general rule, it doesn't matter how an element was constructed.
+Because custom elements are just like regular elements, it doesn't matter what kind of technology is used to implement their internals. Different kinds of elements from different vendors can all coexist in the same page. As an example, Mozilla offers a series of custom elements called [x-tags](http://x-tags.org/) (see also: [Brick](http://mozilla.github.io/brick/)). You can use x-tags with your other elements and mix and match them. As a general rule, it doesn't matter how an element was constructed.
 
 ## Next steps {#nextsteps}
 
-Now that you've got the conceptual model of what custom elements enables, it's time to start
-building something!
+Now that you've got an idea of what you can do with custom elements, it's time to start building something! Continue on to:
 
-Next section:
-
-<a href="/docs/start/usingelements.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Using elements</a>
+<a href="/getting-the-code.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Getting the code</a>

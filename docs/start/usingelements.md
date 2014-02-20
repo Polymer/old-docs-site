@@ -11,24 +11,26 @@ subtitle: Polymer from the outside
 
 ## Introduction
 
-{{site.project_title}} provides a large collection of elements for you to pick from. And because the elements are just like built-in elements, you get a lot of great properties for free:
+{{site.project_title}} provides a large collection of elements for you to pick from. Of course, these elements have all of the features described in [Custom Elements 101](/docs/start/customelements.html). Using them is straightforward:
 
-- **You don't have to care how they work**. Their guts are safely encapsulated, and you interact with them via a well-defined API of attributes, events, properties, methods, and how they handle child nodes. They could use some kind of space-age magic inside, but from the outside you don't know or care.
-- **They play well with other frameworks**. Every framework ever created understands how DOM works, and these elements are just DOM. That means you can incrementally use them in your existing apps without having to worry about them blowing everything up.
-- **Mix and match components from different authors**. An element is an element is an element. So long as you interact with them via their defined API, it doesn't matter what flavor of magic they're using inside. This means it's entirely reasonable for a element from collection A to have a dependency on an element from collection B. You don't have to decide which framework to use and then be stuck with that; you can pick and choose on an element-by-element basis.
-- **Convenient to set up in your project**. Elements, no matter which framework they're from, should define their dependencies using [Bower](http://bower.io). That means that setting up an element for use in your project--no matter how complex its dependencies, or which frameworks it depends on--is just a matter of running `bower install the-element`, loading the [HTML Import](/platform/html-imports.html) in your page, and using it.
+- **You don't have to care how they work**. Their internals are safely encapsulated. You interact with them using a well-defined API of attributes, events, properties, methods, and how they handle child nodes. They could use some kind of space-age magic inside, but from the outside you don't know or care.
+- **They're easy to add to your project**. Elements, no matter which framework they're from, should define their dependencies using [Bower](http://bower.io). That means that setting up an element for use in your project--no matter how complex its dependencies, or which frameworks it depends on--is just a matter of running `bower install the-element`, importing the element to your page, and using it.
 
-{{site.project_title}}'s set of elements includes the usual suspects like buttons and other UI components, but also includes non-visual elements like `<polymer-ajax>`. It may sound surprising, but when you embrace the world-view that "[everything is an element](/docs/start/everything.html)" you'll find yourself reaching for pre-built elements more often than script to accomplish common tasks. {{site.project_title}}'s collection of elements is already robust, but it will continue to grow. 
+{{site.project_title}}'s set of elements includes the usual suspects like buttons and other UI components, but also includes non-UI elements like `<polymer-ajax>`. It may sound surprising, but when you embrace the world-view that "[everything is an element](/docs/start/everything.html)" you'll find yourself reaching for pre-built elements more often than script to accomplish common tasks. {{site.project_title}}'s collection of elements is already robust, and continues to grow. 
 
 ## Installing elements {#install}
 
-The first step in using an element (or a set of elements) is to install it locally into your app using [Bower](http://bower.io). As your application grows in complexity, you'll be using more and more elements. Bower is an ideal tool for managing and versioning those dependencies.
+The first step in using an element (or a set of elements) is to install it locally into your app using [Bower](http://bower.io). If you haven’t already done so, check out [Getting the Code](/getting-the-code.html) to learn more about using Bower.
 
-### À la carte {#installsingle}
+### Installing a single element {#installsingle}
 
-Elements can be installed individually as needed. For example, to download `<polymer-ajax>`, install it using the shorthand to the element's [Github project](https://github.com/polymer/polymer-ajax):
+Elements can be installed individually as needed. For example, to download `<polymer-ajax>` and install it in your current project, run:
 
     bower install --save Polymer/polymer-ajax
+
+**Note:** `Polymer/polymer-ajax` is shorthand for the element’s github repo, [https://github.com/Polymer/polymer-ajax](https://github.com/Polymer/polymer-ajax). You can install other elements the same way.
+{: .alert .alert-info }
+
 
 Running this command adds a `bower_components/` folder and fills it with `<polymer-ajax>`:
 
@@ -38,7 +40,7 @@ Running this command adds a `bower_components/` folder and fills it with `<polym
         polymer/
         polymer-ajax/
 
-Using the `--save` flag  adds {{site.project_title}} as `<polymer-ajax>` to your app's `bower.json`:
+Using the `--save` flag  adds the element to your app's `bower.json` file:
 
     {
       "name": "your-app",
@@ -48,17 +50,17 @@ Using the `--save` flag  adds {{site.project_title}} as `<polymer-ajax>` to your
       }
     }
 
-**Note** If your project does not yet have a `bower.json`, create one by running `bower init`.
+**Note** If your project does not yet have a `bower.json` file, create one by running `bower init`.
 {: .alert .alert-info }
 
-Don't worry about the other dependencies that were added. Bower installs them automatically, and HTML Imports will do the heavy lifting of loading them.
+Don't worry about the other dependencies that were added. Bower installs them automatically, and HTML Imports will do the heavy lifting and load them at runtime.
 
 ### Installing an element set {#installset}
 
-Although you can grab elements independently, sometimes you want to grab a whole collection. {{site.project_title}} contains a set of [visual](#visualelements) and [non-visual](#visualelements) elements:
+Although you can grab elements independently, sometimes you want to grab a whole collection. {{site.project_title}} contains a set of [UI elements](/docs/start/customelements.html#uielements) and a set of [non-UI](/docs/start/customelements.html#nonuielements) elements:
 
-- [Polymer elements](/docs/elements/polymer-elements.html) - non-visual utility elements that perform common tasks like layout, AJAX, signaling, and storage and do not render UI.
-- [Polymer UI elements](/docs/elements/polymer-elements.html) - visual elements that render UI. Oftentimes they reuse the non-visual elements.
+- [Polymer elements](/docs/elements/polymer-elements.html). Non-UI utility elements that perform common tasks like layout, AJAX, signaling, and storage, but don’t render anything in the browser.
+- [Polymer UI elements](/docs/elements/polymer-elements.html). UI  elements that render in the browser. 
 
 Each set can be downloaded separately using Bower:
 
@@ -67,9 +69,9 @@ Each set can be downloaded separately using Bower:
 
 ## Using elements {#using}
 
-The first step to using elements is to load `platform.js`. Many browsers do not have support for the various web components APIs. Until that magical day, `platform.js` provides polyfill support. **Be sure to include this file before any code that touches the DOM.**
+To use elements, first load `platform.js`. Many browsers have yet to implement the various web components APIs. Until they do, `platform.js` provides polyfill support. **Be sure to include this file before any code that touches the DOM.**
 
-Once you've loaded `platform.js` and got some elements installed, using them is simply a matter of loading the element file using an [HTML Import](/platform/html-imports.html).
+Once you have some elements installed and you've loaded `platform.js`, using an element is simply a matter of loading the element file using an [HTML Import](/platform/html-imports.html).
 
 An example `index.html` file:
 
@@ -89,13 +91,13 @@ An example `index.html` file:
                       handleAs="json"></polymer-ajax>
 
         <script>
-          // Wait for 'polymer-ready' to ensure the element is upgraded.
+          // Wait for 'polymer-ready'. Insures the element is upgraded.
           window.addEventListener('polymer-ready', function(e) {
             var ajax = document.querySelector('#ajax');
 
-            // Respond to the 'polymer-response' event it fires.
+            // Respond to events it fires.
             ajax.addEventListener('polymer-response', function(e) {
-              console.log(this.response); // Access the element's response property.
+              console.log(this.response);
             });
 
             ajax.go(); // Call it's API methods.
@@ -108,44 +110,21 @@ An example `index.html` file:
 polyfill to work properly. This requirement goes away when the API is available natively.
 {: .alert .alert-info }
 
-## Leveraging attributes and properties {#configuration}
+###  Passing object and array values in attributes {#objectarray}
 
-When a {{site.project_title}} element [publishes properties](/docs/polymer/polymer.html#published-properties), you can declaratively configure the property using an HTML attribute of the same name.
-
-For example, to initialize the `first` and `last` property of the `<name-card>`, simply declare the attributes:
-
-    <name-card first="John" last="Doe"></name-card>
-
-Since both are just properties of the element, you can alternatively set their values in JavaScript:
-
-    var card = document.querySelector('name-card');
-    card.first = 'John';
-    card.last = 'Doe';
-
-### Properties that are objects or arrays {#objectarray}
-
-Normally, we set an element's object or array properties using JavaScript:
-
-    var card = document.querySelector('roster-list');
-    card.persons = [
-      {'name': 'John'},
-      {'name': 'Bob'}
-    ];
-
-However in {{site.project_title}}, you can initialize the same property using an attribute! Its value should be a serialized version of the object or array. For example:
+HTML attributes are string values, but sometimes you need to pass more complicated values into a custom element, such as objects or arrays. Ultimately, it's up to the element author to decide how to decode values passed in as attributes, but many {{site.project_title}} elements understand attribute values that are a JSON-serialized object or array. For example:
 
     <roster-list persons="[{'name': 'John'}, {'name': 'Bob'}]"></roster-list>
 
-**Note**: When [creating elements](/getting-started.html), it's important to [hint a property's type](/docs/polymer/polymer.html#attrhinting) as an object or array. {{site.project_title}} interrogates the type in order to do perform the serialization and de-serialization.
-{: .alert .alert-success }
+For {{site.project_title}} elements, you can find the expected type for each attribute listed in the [Elements reference](/docs/elements/) . If you pass the wrong type, it may be decoded incorrectly.
+
+When creating your own {{site.project_title}} elements, you can choose to expose properties as attributes, as described in [Published properties](/docs/polymer/polymer.html#published-properties).
 
 ## Next steps {#nextsteps}
 
 Now that you've got the basic idea of using and installing elements, it's time to start
-building something! In the next section we'll cover the features of {{site.project_title}} and how to create new `<polymer-element>`s.
-
-Next section:
+building something! In the next section we'll cover the features of {{site.project_title}} and how to create new `<polymer-element>`s. Continue on to:
 
 <a href="/getting-started.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Creating elements</a>
 
-If you'd rather browser the existing elements, check out the [Polymer elements](/docs/elements/polymer-elements.html) and [Polymer UI elements](/docs/elements/polymer-elements.html) catalogs.
+If you'd rather browse the existing elements, check out the [{{site.project_title}} elements](/docs/elements/polymer-elements.html) and [{{site.project_title}} UI elements](/docs/elements/polymer-elements.html) catalogs.

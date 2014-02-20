@@ -1,15 +1,17 @@
-<link rel="import" href="../../components/polymer/polymer.html">
+<link rel="import"
+      href="/components/polymer/polymer.html">
 
-<polymer-element name="tk-element-ready">
+<polymer-element name="ready-element">
   <template>
-    This is a <b>tk-element</b> with a ready() method.
+    This is element has a ready() method.
     <span id="el">Not ready...</span>
   </template>
   <script>  
-    Polymer('tk-element-ready', {
+    Polymer('ready-element', {
       owner: "Daniel",
       ready: function() {
-        this.$.el.innerText = this.owner + " is ready!";
+        this.$.el.innerText = this.owner +
+                              " is ready!";
       }
     });
   </script>
