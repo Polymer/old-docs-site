@@ -30,15 +30,20 @@ The platform layer is a bundle that includes the following libraries:
   - [WeakMap](https://github.com/Polymer/WeakMap). Shim for ES6 WeakMap type. 
   - [Mutation Observers](https://github.com/Polymer/MutationObservers). Efficiently watch for changes in the DOM.
   - [Promises](https://github.com/Polymer/Promises). Handle asynchronous operations.
-  - [observe-js](https://github.com/Polymer/observe-js). 
+  - [observe-js](https://github.com/Polymer/observe-js). Observe changes on JS objects/arrays using `Object.observe` (if available).
 - Other
   - [Pointer Events](https://github.com/Polymer/PointerEvents). Handle both touch and mouse seamlessly
-  - [Pointer Gestures](https://github.com/Polymer/PointerGestures)
-  - [Web Animations](/platform/web-animations.html). Easily define complex animations.
+  - [Pointer Gestures](https://github.com/Polymer/PointerGestures). More complex touch gestures.
+  - [Web Animations](/platform/web-animations.html). Define complex timeline animations.
 
-## Usage
+## Installation & usage {#setup}
 
-To start using these features today, simply include `platform.js` as you would any other script:
+To start using these features today, first download `platform.js` using Bower as described
+in the [Getting the code](/getting-the-code.html) guide:
+
+    bower install --save Polymer/platform
+
+Then, include `platform.js` as you would any other script:
 
     <script src="bower_components/platform/platform.js"></script>
 
