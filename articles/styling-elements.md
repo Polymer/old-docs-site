@@ -261,70 +261,6 @@ event that signifies all elements have been upgraded.
     </style>
     <x-foo unresolved></x-foo>
 
-
-## Resetting outside styles
-
-As a convenience, {{site.project_title}} allows you to set Shadow DOM's `resetStyleInheritance` property directly when constructing the element's `prototype`. However, please keep in mind that {{site.project_title}} does not attempt to polyfill `resetStyleInheritance`.
-
-To turn off inheritable styles, set `resetStyleInheritance`:
-
-    Polymer('x-foo', {
-      resetStyleInheritance: true,
-      ready: function() { ... },
-      ...
-    });
-
-Alternatively, you can set either of these at any time directly on the shadowRoot:
-
-    ready: function() {
-      this.shadowRoot.resetStyleInheritance = false; // default.
-    }
-
-**Remember:** styles defined in the main document continue to apply to the Light DOM nodes they target,
-even if those nodes are distributed into Shadow DOM. Basically, going into an insertion point doesn't change what styles are applied. An example helps illustrate this point:
-
-    <style>
-      x-foo > div {
-        color: green;
-      }
-      .red {
-        color: red; 
-      }
-    </style>
-
-    <polymer-element name="x-foo" noscript>
-      <template>
-        <div class="red">Shadow DOM: shouldn't be red</div>
-        <content select="div"></content>
-      </template>
-    </polymer-element>
-
-    <x-foo>
-      <div>Light DOM: green</div>
-    </x-foo>
-
-<style>
-  x-foo-example2 > div {
-    color: green;
-  }
-  .red {
-    color: red; 
-  }
-</style>
-
-**Demo:**
-
-<x-foo-example2 style="margin-bottom:20px;">
-  <div>Light DOM: green</div>
-</x-foo-example2>
-
-The element's Shadow DOM `<div class="red">` does not match the `.red` class.
-The distributed `<div>Light DOM: green</div>` remains green because
-it's logically still in the parent page and therefore matching `x-foo > div`.
-It's simple being rendered elsewhere (over in Shadow DOM land).
-
-For more information on `resetStyleInheritance`, see [Shadow DOM 201 - CSS and Styling](http://www.html5rocks.com/tutorials/webcomponents/shadowdom-201/#toc-style-inheriting).
-
 ## Styling internal markup {#style-shadowdom}
 
 ### From inside the element {#style-frominside}
@@ -366,36 +302,6 @@ attempts to mimic scoped styling as much as possible. See the
 
 If you need to style nodes distributed into your element from the user's Light DOM,
 see [styling distributed nodes](#style-distributed).
-
-{%comment%}
-## Defining style hooks {#style-hooks}
-
-**Heads up:** The `pseudo` attribute and `::x-*` custom pseudo elements were 
-replaced by `part="<name>"` and `::part(<name>)`, respectively.
-{: .alert .alert-error}
-
-Nodes in your element that contain the `part` attribute can be targeted directly from outside CSS.
-These are called custom pseudo elements. Essentially, they give users a way to style specific pieces of your element by exposing some of its internal structure.
-
-To make a custom pseudo element in your Shadow DOM, include `part="<name>"` on the node. Users can then style that element from the outside using `::part(<name>)`.
-
-**Example**
-
-    <style>
-      x-foo::part(heading) {
-        color: black;
-        background: yellow;
-      }
-    </style>
-
-    <polymer-element name="x-foo" noscript>
-      <template>
-        <h1 part="heading">I'm an x-foo!</h1>
-      </template>
-    </polymer-element>
-
-    <x-foo></x-foo>
-{%endcomment%}
 
 #### Styling distributed nodes {#style-distributed}
 
@@ -445,6 +351,48 @@ you can a rule like `::content > *`.
 **Note**: For complex styling like distribute nodes, {{site.project_title}} provides the `@polyfill`
 directives to polyfill certain Shadow DOM features. See the [Styling reference](/docs/polymer/styling.html#polyfill-styling-directives) for more information on the directives.
 {: .alert .alert-info }
+
+**Remember:** styles defined in the main document continue to apply to the Light DOM nodes they target, even if those nodes are distributed into Shadow DOM. Basically, going into an insertion point doesn't change what styles are applied. An example helps illustrate this point:
+
+    <style>
+      x-foo > div {
+        color: green;
+      }
+      .red {
+        color: red; 
+      }
+    </style>
+
+    <polymer-element name="x-foo" noscript>
+      <template>
+        <div class="red">Shadow DOM: shouldn't be red</div>
+        <content select="div"></content>
+      </template>
+    </polymer-element>
+
+    <x-foo>
+      <div>Light DOM: green</div>
+    </x-foo>
+
+<style>
+  x-foo-example2 > div {
+    color: green;
+  }
+  .red {
+    color: red; 
+  }
+</style>
+
+**Demo:**
+
+<x-foo-example2 style="margin-bottom:20px;">
+  <div>Light DOM: green</div>
+</x-foo-example2>
+
+The element's Shadow DOM `<div class="red">` does not match the `.red` class.
+The distributed `<div>Light DOM: green</div>` remains green because
+it's logically still in the parent page and therefore matching `x-foo > div`.
+It's simple being rendered elsewhere (over in Shadow DOM land).
 
 ### From outside the element {#style-fromoutside}
 

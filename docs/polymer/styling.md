@@ -14,17 +14,6 @@ For a complete guide on the basics, see "[A Guide to Styling Elements](/articles
 
 In addition to the [standard features for styling Custom Elements](/articles/styling-elements.html), {{site.project_title}} contains extra goodies for fully controlling element styling. This document outlines those features, including FOUC prevention, the specifics on how the the Shadow DOM polyfill applies styles, and workarounds for current limitations.
 
-## Inheriting / resetting outside styles
-
-{{site.project_title}} has first-class support for Shadow DOM's `resetStyleInheritance`. To use with your element, define it in your `prototype`:
-
-    Polymer('x-foo', {
-      resetStyleInheritance: true
-      ...
-    });
-
-For more information, see "[A Guide to Styling Elements](/articles/styling-elements.html#inheriting--resetting-outside-styles)".
-
 ## FOUC prevention
 
 Before custom elements [upgrade](http://www.html5rocks.com/tutorials/webcomponents/customelements/#upgrades) they may display incorrectly. To help mitigate [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content) issues, {{site.project_title}} provides
