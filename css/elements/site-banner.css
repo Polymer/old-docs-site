@@ -78,36 +78,40 @@ code, pre { color: #9f499b; }
 /* line 36, ../../sass/elements/site-banner.scss */
 ::content h1 { font-size: 45px !important; -webkit-transform-origin: 0 0; transform-origin: 0 0; }
 
+/* @polyfill :host header:not(.shrink) h1 */
+/* line 44, ../../sass/elements/site-banner.scss */
+:ancestor(scroll-area:not(.scrolling)) ::content header h1 { -webkit-transition: -webkit-transform 200ms linear; transition: -webkit-transform 200ms linear; }
+
 /* @polyfill :host header.shrink h1 */
-/* line 46, ../../sass/elements/site-banner.scss */
+/* line 50, ../../sass/elements/site-banner.scss */
 ::content header.shrink h1 { -webkit-transform: scale(0.44444); transform: scale(0.44444); }
 
 /* @polyfill :host header.shrink summary */
-/* line 52, ../../sass/elements/site-banner.scss */
+/* line 56, ../../sass/elements/site-banner.scss */
 ::content header.shrink summary { visibility: hidden; }
 
 /* @polyfill :host header.shrink */
-/* line 57, ../../sass/elements/site-banner.scss */
+/* line 61, ../../sass/elements/site-banner.scss */
 ::content header.shrink { position: fixed; top: 0; pointer-events: none; }
 
 /* @polyfill header a */
-/* line 64, ../../sass/elements/site-banner.scss */
+/* line 68, ../../sass/elements/site-banner.scss */
 ::content a { color: currentcolor; }
 
 /* @polyfill header summary */
-/* line 69, ../../sass/elements/site-banner.scss */
+/* line 73, ../../sass/elements/site-banner.scss */
 ::content summary { margin-top: 20px; opacity: 0.6; }
 
-@media only screen and (max-width: 580px) { /* line 76, ../../sass/elements/site-banner.scss */
+@media only screen and (max-width: 580px) { /* line 80, ../../sass/elements/site-banner.scss */
   :host { height: 60px !important; position: fixed; width: 100%; -webkit-box-align: center; -webkit-align-items: center; -moz-align-items: center; -ms-align-items: center; -o-align-items: center; align-items: center; }
   /* @polyfill :host header */
-  /* line 84, ../../sass/elements/site-banner.scss */
+  /* line 88, ../../sass/elements/site-banner.scss */
   ::content header { display: none; }
   /* @polyfill-rule header#internalheader { display: block; padding: 0; }*/
   /* @polyfill-rule header#internalheader h2 { margin: 0; }*/ }
 @media only screen and (max-width: 800px) { /* @polyfill :host #dropdown-toggle */
-  /* line 101, ../../sass/elements/site-banner.scss */
+  /* line 105, ../../sass/elements/site-banner.scss */
   ::content #dropdown-toggle { z-index: 1000; }
   /* @polyfill :host dropdown-panel */
-  /* line 106, ../../sass/elements/site-banner.scss */
+  /* line 110, ../../sass/elements/site-banner.scss */
   ::content dropdown-panel { color: black; } }

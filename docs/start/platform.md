@@ -4,7 +4,7 @@ type: concepts
 navgroup: start
 shortname: Concepts
 title: The Platform
-subtitle: Supporting web standards today
+subtitle: Supporting new web technologies today
 ---
 
 {% include toc.html %}
