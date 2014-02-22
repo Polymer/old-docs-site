@@ -223,7 +223,7 @@ polymer-ui-icon {
 
 .panel {
   @extend .content-padding;
-  padding: 150px 0;
+  padding: 150px 16px;
   @include display-flex;
 
   $img-margin: 88px;
@@ -311,7 +311,7 @@ section {
     //@include justify-content(space-between);
   }
   .paper-button:not(:last-child) {
-    margin-right: 25px;
+    margin-right: 12px;
   }
 }
 
@@ -346,7 +346,7 @@ section {
 
 #architecture {
   .panel {
-    padding: 35px 0;
+    padding: 35px 16px;
   }
   .box {
     @extend .main-bg;
@@ -379,7 +379,7 @@ footer {
   position: relative;
   z-index: 100;
   background-color: #e6e6e6;
-  padding: 100px 0;
+  padding: 100px 16px;
   box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.0980392) 0px 1px 2px 0px inset;
 
   polymer-ui-toolbar {

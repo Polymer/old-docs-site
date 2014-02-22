@@ -109,7 +109,7 @@ code, pre { color: #9f499b; }
   ::content header { display: none; }
   /* @polyfill-rule header#internalheader { display: block; padding: 0; }*/
   /* @polyfill-rule header#internalheader h2 { margin: 0; }*/ }
-@media only screen and (max-width: 800px) { /* @polyfill :host #dropdown-toggle */
+@media only screen and (max-width: 850px) { /* @polyfill :host #dropdown-toggle */
   /* line 105, ../../sass/elements/site-banner.scss */
   ::content #dropdown-toggle { z-index: 1000; }
   /* @polyfill :host dropdown-panel */

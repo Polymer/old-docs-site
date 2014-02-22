@@ -100,7 +100,7 @@ code, pre { color: #9f499b; }
 /* line 68, ../../sass/elements/scroll-area.scss */
 ::content > article { padding: 24px 64px; max-width: 912px; min-height: 300px; overflow: hidden; }
 
-@media only screen and (max-width: 800px) { /* line 77, ../../sass/elements/scroll-area.scss */
+@media only screen and (max-width: 850px) { /* line 77, ../../sass/elements/scroll-area.scss */
   :host([sidebar]) { padding-left: 0; }
   /* @polyfill :host > article */
   /* line 82, ../../sass/elements/scroll-area.scss */

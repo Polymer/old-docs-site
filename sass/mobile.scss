@@ -136,7 +136,7 @@
     width: 300px;
     margin-right: auto;
     margin-bottom:30px;
-  } 
+  }
   
   .panel {
     @include flex-direction(column);
@@ -171,6 +171,16 @@
 }
 
 // Desktop or larger
-@media only screen and (min-width: $break-large)  {
+@media only screen and (min-width: $break-medium + 1) and (max-width: $break-large) {
+
+  #future {
+    polymer-ui-toolbar {
+      flex-wrap: wrap;
+      .paper-button:not(:last-child) {
+        margin-right: 10px;
+        margin-bottom: 16px;
+      }
+    }
+  }
 
 }
