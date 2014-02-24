@@ -138,7 +138,7 @@ One reason you might find `:ancestor()` useful is for theming. For example, many
 #### Programmatically modifying styles
 
 You can dynamically change an element's styling by, you guessed it, modifying 
-ts `.style` property.
+its `.style` property.
 
 From the outside:
 
