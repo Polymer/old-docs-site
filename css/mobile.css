@@ -75,20 +75,22 @@
   /* line 42, ../sass/_tables.scss */
   .fouc-table td:nth-of-type(1):before { content: "Class Name"; }
   /* line 42, ../sass/_tables.scss */
-  .fouc-table td:nth-of-type(2):before { content: "Applied Behavior"; } }
-@media only screen and (min-width: 581px) and (max-width: 800px) { /* line 127, ../sass/mobile.scss */
+  .fouc-table td:nth-of-type(2):before { content: "Applied Behavior"; }
+  /* line 122, ../sass/mobile.scss */
+  footer { z-index: auto; } }
+@media only screen and (min-width: 581px) and (max-width: 800px) { /* line 131, ../sass/mobile.scss */
   #welcome #sidebar { display: block; }
-  /* line 131, ../sass/mobile.scss */
+  /* line 135, ../sass/mobile.scss */
   .main-bg .panel img { width: 300px; margin-right: auto; margin-bottom: 30px; }
-  /* line 137, ../sass/mobile.scss */
-  .panel { -webkit-box-orient: vertical; -webkit-flex-direction: column; -moz-flex-direction: column; -ms-flex-direction: column; -o-flex-direction: column; flex-direction: column; margin: 0 30px; }
   /* line 141, ../sass/mobile.scss */
+  .panel { -webkit-box-orient: vertical; -webkit-flex-direction: column; -moz-flex-direction: column; -ms-flex-direction: column; -o-flex-direction: column; flex-direction: column; margin: 0 30px; }
+  /* line 145, ../sass/mobile.scss */
   .panel.left img { margin-left: 0px; margin-right: auto; }
-  /* line 146, ../sass/mobile.scss */
+  /* line 150, ../sass/mobile.scss */
   .panel.right img { width: 300px; margin-right: 0px; margin-left: auto; }
-  /* line 152, ../sass/mobile.scss */
+  /* line 156, ../sass/mobile.scss */
   .panel summary + summary { margin-right: auto; margin-left: 0px; }
-  /* line 158, ../sass/mobile.scss */
+  /* line 162, ../sass/mobile.scss */
   #architecture .box { padding: 20px 24px 14px; margin-bottom: 30px; }
-  /* line 163, ../sass/mobile.scss */
+  /* line 167, ../sass/mobile.scss */
   footer { padding-left: 35px; } }
