@@ -95,6 +95,6 @@
   /* line 167, ../sass/mobile.scss */
   footer { padding-left: 35px; } }
 @media only screen and (min-width: 851px) and (max-width: 990px) { /* line 177, ../sass/mobile.scss */
-  #future polymer-ui-toolbar { flex-wrap: wrap; }
+  #future polymer-ui-toolbar { -webkit-flex-wrap: wrap; -moz-flex-wrap: wrap; -ms-flex-wrap: wrap; -o-flex-wrap: wrap; flex-wrap: wrap; }
   /* line 179, ../sass/mobile.scss */
   #future polymer-ui-toolbar .paper-button:not(:last-child) { margin-right: 10px; margin-bottom: 16px; } }

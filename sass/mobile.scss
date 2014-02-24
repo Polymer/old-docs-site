@@ -170,12 +170,12 @@
 
 }
 
-// Desktop or larger
+// Small Desktop
 @media only screen and (min-width: $break-medium + 1) and (max-width: $break-large) {
 
   #future {
     polymer-ui-toolbar {
-      flex-wrap: wrap;
+      @include flex-wrap(wrap);
       .paper-button:not(:last-child) {
         margin-right: 10px;
         margin-bottom: 16px;
