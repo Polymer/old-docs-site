@@ -387,7 +387,20 @@ is that it's the entire set of *potentially* distributed nodes; not those actual
 
 It's generally a mistake to attempt to reference an element's children (light dom) in either the `createdCallback` or {{site.project_title}}'s `ready()` method. When these methods are fired, the element is not guaranteed to be in the DOM or have children. In addition, {{site.project_title}} calls `TemplateBinding.createInstance()` on an element's `<template>` to create its Shadow DOM. This process creates and binds elements in the template one by one.
 
-The best time to take a first look at an element's children is in the `enteredView` callback. This is when the element is in the DOM, has a parent, and possibly children. If you need to see changes to light DOM children after that, setup a Mutation Observer to do so.
+The best time to take a first look at an element's children is in `attachedCallback()`. This is when the element is in the DOM, has a parent, and possibly children. If you need to see changes to light DOM children after that, setup a Mutation Observer to do so.
+
+### When is the best time to access an element's parent node? {#parentnode}
+
+The custom element `attachedCallback()` is the best time to access an element's parent.
+That way, you're guaranteed that the element is in DOM and its parent has been upgraded.
+
+To manage this dance in {{site.project_title}}, you can use `attached()` and `this.async()`. The latter insures you're in the next quantum of time (e.g. the DOM has been constructed):
+
+    attached: function() {
+      this.async(function() {
+        // this.parentNode is upgraded
+      });
+    }
 
 ### Can I use the `constructor` attribute without polluting the global namespace? {#constructorattr}
 
