@@ -62,7 +62,7 @@ Because there are a number of dependencies we suggest you install {{site.project
 
 ## Next steps {#nextsteps}
 
-Now that you've installed {{site.project_title}} it's time to learn the core concepts. In the next section we'll explain {{site.project_title}}'s' philosophy and how to start doing things the "{{site.project_title}} way." Continue on to:
+Now that you've installed {{site.project_title}} it's time to learn the core concepts. In the next section we'll explain {{site.project_title}}'s philosophy and how to start doing things the "{{site.project_title}} way." Continue on to:
 
 <a href="/docs/start/everything.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Understanding {{site.project_title}}</a>
 
