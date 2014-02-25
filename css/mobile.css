@@ -32,7 +32,7 @@
   footer { padding: 35px; }
   /* line 77, ../sass/mobile.scss */
   footer polymer-ui-toolbar { -webkit-box-orient: vertical; -webkit-flex-direction: column; -moz-flex-direction: column; -ms-flex-direction: column; -o-flex-direction: column; flex-direction: column; -webkit-box-align: flex-start !important; -webkit-align-items: flex-start !important; -moz-align-items: flex-start !important; -ms-align-items: flex-start !important; -o-align-items: flex-start !important; align-items: flex-start !important; } }
-@media only screen and (max-width: 800px) { /* line 87, ../sass/mobile.scss */
+@media only screen and (max-width: 850px) { /* line 87, ../sass/mobile.scss */
   #sidebar { -webkit-transform: translate3d(-100%, 0, 0); -moz-transform: translate3d(-100%, 0, 0); -ms-transform: translate3d(-100%, 0, 0); -o-transform: translate3d(-100%, 0, 0); transform: translate3d(-100%, 0, 0); -webkit-transition: -webkit-transform 500ms; -moz-transition: -moz-transform 500ms; -o-transition: -o-transform 500ms; transition: transform 500ms; width: 85%; max-width: 315px; z-index: 1000; }
   /* line 94, ../sass/mobile.scss */
   #sidebar.in { -webkit-transform: translate3d(0, 0, 0); -moz-transform: translate3d(0, 0, 0); -ms-transform: translate3d(0, 0, 0); -o-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2); }
@@ -76,7 +76,7 @@
   .fouc-table td:nth-of-type(1):before { content: "Class Name"; }
   /* line 42, ../sass/_tables.scss */
   .fouc-table td:nth-of-type(2):before { content: "Applied Behavior"; } }
-@media only screen and (min-width: 581px) and (max-width: 800px) { /* line 122, ../sass/mobile.scss */
+@media only screen and (min-width: 581px) and (max-width: 850px) { /* line 122, ../sass/mobile.scss */
   #welcome #sidebar { display: block; }
   /* line 126, ../sass/mobile.scss */
   .main-bg .panel img { width: 300px; margin-right: auto; margin-bottom: 30px; }
@@ -92,3 +92,7 @@
   #architecture .box { padding: 20px 24px 14px; margin-bottom: 30px; }
   /* line 158, ../sass/mobile.scss */
   footer { padding-left: 35px; } }
+@media only screen and (min-width: 851px) and (max-width: 990px) { /* line 168, ../sass/mobile.scss */
+  #future polymer-ui-toolbar { -webkit-flex-wrap: wrap; -moz-flex-wrap: wrap; -ms-flex-wrap: wrap; -o-flex-wrap: wrap; flex-wrap: wrap; }
+  /* line 170, ../sass/mobile.scss */
+  #future polymer-ui-toolbar .paper-button:not(:last-child) { margin-right: 10px; margin-bottom: 16px; } }
