@@ -175,4 +175,19 @@
     }
   }
 
+  footer {
+    polymer-ui-toolbar {
+      @include flex-wrap(wrap);
+      @include justify-content(flex-start);
+
+      .paper-button {
+        margin-bottom: 16px;
+      }
+    }
+
+    #copyright {
+      margin-top: -16px;
+    }
+  }
+
 }
