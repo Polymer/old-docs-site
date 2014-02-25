@@ -83,7 +83,7 @@
 
 }
 
-// Phone + Tablet
+// Phone + Portrait Tablet
 @media only screen and (max-width: $break-medium) {
   #sidebar {
     @include translate3d(-100%, 0, 0);
@@ -121,7 +121,7 @@
 }
 
 
-// Tablet
+// Portrait Tablet
 @media only screen and (min-width: $break-small + 1) and (max-width: $break-medium) {
 
   #welcome #sidebar {
@@ -166,7 +166,7 @@
 
 }
 
-// Small Desktop
+// Landscape Tablet + Small Desktop
 @media only screen and (min-width: $break-medium + 1) and (max-width: $break-large) {
 
   #future {
