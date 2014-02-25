@@ -3,7 +3,7 @@
   /* line 10, ../sass/mobile.scss */
   .bar { height: 60px; }
   /* line 14, ../sass/mobile.scss */
-  .panel { -webkit-box-orient: vertical; -webkit-flex-direction: column; -moz-flex-direction: column; -ms-flex-direction: column; -o-flex-direction: column; flex-direction: column; margin: 0 30px; padding: 80px 0 40px 0; }
+  .panel { -webkit-box-orient: vertical; -webkit-flex-direction: column; -moz-flex-direction: column; -ms-flex-direction: column; -o-flex-direction: column; flex-direction: column; margin: 0 30px; padding: 56px 0 40px 0 !important; }
   /* line 19, ../sass/mobile.scss */
   .panel > img { margin-bottom: 50px; width: 200px; margin-right: auto !important; margin-left: 0px !important; }
   /* line 27, ../sass/mobile.scss */
@@ -89,10 +89,8 @@
   /* line 147, ../sass/mobile.scss */
   .panel summary + summary { margin-right: auto; margin-left: 0px; }
   /* line 153, ../sass/mobile.scss */
-  #architecture .box { padding: 20px 24px 14px; margin-bottom: 30px; }
-  /* line 158, ../sass/mobile.scss */
   footer { padding-left: 35px; } }
-@media only screen and (min-width: 851px) and (max-width: 990px) { /* line 168, ../sass/mobile.scss */
+@media only screen and (min-width: 851px) and (max-width: 990px) { /* line 163, ../sass/mobile.scss */
   #future polymer-ui-toolbar { -webkit-flex-wrap: wrap; -moz-flex-wrap: wrap; -ms-flex-wrap: wrap; -o-flex-wrap: wrap; flex-wrap: wrap; }
-  /* line 170, ../sass/mobile.scss */
+  /* line 165, ../sass/mobile.scss */
   #future polymer-ui-toolbar .paper-button:not(:last-child) { margin-right: 10px; margin-bottom: 16px; } }

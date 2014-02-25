@@ -227,119 +227,119 @@ section { border-bottom: 1px solid #eeeeee; }
 #everything-element .paper-button:hover { background: #3a3b56 !important; }
 
 /* line 348, ../sass/site2.scss */
-#architecture .panel { padding: 35px 16px; }
-/* line 352, ../sass/site2.scss */
+#architecture .panel { padding: 56px 16px; }
+/* line 351, ../sass/site2.scss */
 #architecture .box { margin-bottom: 28px; border-radius: 50%; width: 200px; padding: 50px 35px; }
-/* line 361, ../sass/site2.scss */
+/* line 360, ../sass/site2.scss */
 #architecture h5 { font-size: 14px; font-weight: normal; color: #999999; line-height: 24px; letter-spacing: 0.01em; margin-top: 6px; margin-bottom: 18px; }
-/* line 370, ../sass/site2.scss */
+/* line 369, ../sass/site2.scss */
 #architecture p { font-size: 14px; line-height: 24px; margin-top: 0; }
-/* line 375, ../sass/site2.scss */
+/* line 374, ../sass/site2.scss */
 #architecture img { height: 94px; width: auto; }
 
-/* line 382, ../sass/site2.scss */
+/* line 381, ../sass/site2.scss */
 footer { position: relative; background-color: #fafafa; padding: 100px 0; padding-left: 64px; }
-/* line 390, ../sass/site2.scss */
+/* line 389, ../sass/site2.scss */
 footer polymer-ui-toolbar { margin-bottom: 56px; }
-/* line 394, ../sass/site2.scss */
+/* line 393, ../sass/site2.scss */
 footer .paper-button { margin-right: 30px; opacity: 0.6; color: black; }
-/* line 405, ../sass/site2.scss */
+/* line 404, ../sass/site2.scss */
 footer #copyright { color: #b3b3b3; font-size: 14px; }
-/* line 409, ../sass/site2.scss */
+/* line 408, ../sass/site2.scss */
 footer #copyright a { color: #666666; }
 
-/* line 416, ../sass/site2.scss */
+/* line 415, ../sass/site2.scss */
 #content-container .article { margin-bottom: 2em; }
-/* line 420, ../sass/site2.scss */
+/* line 419, ../sass/site2.scss */
 #content-container h2 { margin-top: 20px; }
-/* line 423, ../sass/site2.scss */
+/* line 422, ../sass/site2.scss */
 #content-container h3 { margin-top: 15px; }
-/* line 426, ../sass/site2.scss */
+/* line 425, ../sass/site2.scss */
 #content-container h4 { margin-top: 10px; }
-/* line 430, ../sass/site2.scss */
+/* line 429, ../sass/site2.scss */
 #content-container scroll-area article header { margin-bottom: 24px; }
 
-/* line 437, ../sass/site2.scss */
+/* line 436, ../sass/site2.scss */
 #sidebar { position: fixed; -webkit-transform: translateZ(0); -moz-transform: translateZ(0); -ms-transform: translateZ(0); -o-transform: translateZ(0); transform: translateZ(0); height: 100%; width: 265px; background-color: #eeeeee; box-shadow: rgba(0, 0, 0, 0.14902) 1px 1px 1px 0px; z-index: 10; }
-/* line 460, ../sass/site2.scss */
+/* line 459, ../sass/site2.scss */
 #sidebar docs-menu { padding: 0 16px; }
-/* line 464, ../sass/site2.scss */
+/* line 463, ../sass/site2.scss */
 #sidebar #logo-container { height: 80px; margin-bottom: 24px; padding-left: 16px; }
 
-/* line 475, ../sass/site2.scss */
+/* line 474, ../sass/site2.scss */
 #welcome #sidebar { display: none; }
 
-/* line 479, ../sass/site2.scss */
+/* line 478, ../sass/site2.scss */
 #dropdown-toggle { display: none; margin-top: -5px; opacity: 0.3; }
 
-/* line 486, ../sass/site2.scss */
+/* line 485, ../sass/site2.scss */
 dropdown-panel { position: absolute; top: 75px; left: 15px; width: 240px; z-index: 1000; }
 
-/* line 494, ../sass/site2.scss */
+/* line 493, ../sass/site2.scss */
 .edit-on-github { /*position: absolute;
 top: 0;
 right: 0;*/ float: right; }
-/* line 500, ../sass/site2.scss */
+/* line 499, ../sass/site2.scss */
 .edit-on-github + * { clear: both; }
 
-/* line 505, ../sass/site2.scss */
+/* line 504, ../sass/site2.scss */
 .permalink { display: none; margin-left: 5px; vertical-align: top; }
 
-/* line 510, ../sass/site2.scss */
+/* line 509, ../sass/site2.scss */
 .has-permalink:hover .permalink { display: initial; }
 
-/* line 513, ../sass/site2.scss */
+/* line 512, ../sass/site2.scss */
 .no-permalink .permalink { display: none !important; }
 
-/* line 520, ../sass/site2.scss */
+/* line 519, ../sass/site2.scss */
 .forversion { float: right; color: #ccc; font-style: italic; }
 
-/* line 525, ../sass/site2.scss */
+/* line 524, ../sass/site2.scss */
 .article .byline { font-size: smaller; color: #ccc; }
 
-/* line 530, ../sass/site2.scss */
+/* line 529, ../sass/site2.scss */
 .author { margin-bottom: 20px; }
-/* line 533, ../sass/site2.scss */
+/* line 532, ../sass/site2.scss */
 .author > p { display: inline-block; margin: 0; }
-/* line 537, ../sass/site2.scss */
+/* line 536, ../sass/site2.scss */
 .author > p:first-of-type { vertical-align: top; }
-/* line 542, ../sass/site2.scss */
+/* line 541, ../sass/site2.scss */
 .author img { border-radius: 7px; margin-right: 5px; height: 40px; width: 40px; }
 
 /* Elements */
-/* line 554, ../sass/site2.scss */
+/* line 553, ../sass/site2.scss */
 .element-list > [data-element-file] { padding-bottom: 24px; border-top: 1px solid #eeeeee; }
-/* line 559, ../sass/site2.scss */
+/* line 558, ../sass/site2.scss */
 .element-list header { margin: 24px 0; }
-/* line 562, ../sass/site2.scss */
+/* line 561, ../sass/site2.scss */
 .element-list header h2 { margin: 0 !important; }
-/* line 569, ../sass/site2.scss */
+/* line 568, ../sass/site2.scss */
 .element-list header a { margin-left: 20px; }
-/* line 571, ../sass/site2.scss */
+/* line 570, ../sass/site2.scss */
 .element-list header a:not(.permalink) { font-size: initial; }
-/* line 577, ../sass/site2.scss */
+/* line 576, ../sass/site2.scss */
 .element-list .name { display: inline-block; }
-/* line 579, ../sass/site2.scss */
+/* line 578, ../sass/site2.scss */
 .element-list .name code { white-space: nowrap; }
-/* line 584, ../sass/site2.scss */
+/* line 583, ../sass/site2.scss */
 .element-list .nodocs { margin-left: 17px; font-style: italic; }
-/* line 588, ../sass/site2.scss */
+/* line 587, ../sass/site2.scss */
 .element-list .nodocs:after { content: 'No documentation available.'; }
-/* line 593, ../sass/site2.scss */
+/* line 592, ../sass/site2.scss */
 .element-list iframe { border: none; width: 100%; }
-/* line 599, ../sass/site2.scss */
+/* line 598, ../sass/site2.scss */
 .element-list .bower_install_instructions, .element-list .api_documentation { display: block; }
-/* line 601, ../sass/site2.scss */
+/* line 600, ../sass/site2.scss */
 .element-list .bower_install_instructions > label, .element-list .api_documentation > label { font-weight: 600; }
 
-/* line 608, ../sass/site2.scss */
+/* line 607, ../sass/site2.scss */
 .onlyonmobile { display: none; }
 
-/* line 612, ../sass/site2.scss */
+/* line 611, ../sass/site2.scss */
 #toc summary { font-size: 16px; font-weight: 600; }
 
 /* Videos */
-/* line 619, ../sass/site2.scss */
+/* line 618, ../sass/site2.scss */
 .video iframe { width: 853px; max-width: 100%; height: 480px; }
 
 @media only screen and (max-width: 580px) { /* line 6, ../sass/mobile.scss */
@@ -347,7 +347,7 @@ right: 0;*/ float: right; }
   /* line 10, ../sass/mobile.scss */
   .bar { height: 60px; }
   /* line 14, ../sass/mobile.scss */
-  .panel { -webkit-box-orient: vertical; -webkit-flex-direction: column; -moz-flex-direction: column; -ms-flex-direction: column; -o-flex-direction: column; flex-direction: column; margin: 0 30px; padding: 80px 0 40px 0; }
+  .panel { -webkit-box-orient: vertical; -webkit-flex-direction: column; -moz-flex-direction: column; -ms-flex-direction: column; -o-flex-direction: column; flex-direction: column; margin: 0 30px; padding: 56px 0 40px 0 !important; }
   /* line 19, ../sass/mobile.scss */
   .panel > img { margin-bottom: 50px; width: 200px; margin-right: auto !important; margin-left: 0px !important; }
   /* line 27, ../sass/mobile.scss */
@@ -433,10 +433,8 @@ right: 0;*/ float: right; }
   /* line 147, ../sass/mobile.scss */
   .panel summary + summary { margin-right: auto; margin-left: 0px; }
   /* line 153, ../sass/mobile.scss */
-  #architecture .box { padding: 20px 24px 14px; margin-bottom: 30px; }
-  /* line 158, ../sass/mobile.scss */
   footer { padding-left: 35px; } }
-@media only screen and (min-width: 851px) and (max-width: 990px) { /* line 168, ../sass/mobile.scss */
+@media only screen and (min-width: 851px) and (max-width: 990px) { /* line 163, ../sass/mobile.scss */
   #future polymer-ui-toolbar { -webkit-flex-wrap: wrap; -moz-flex-wrap: wrap; -ms-flex-wrap: wrap; -o-flex-wrap: wrap; flex-wrap: wrap; }
-  /* line 170, ../sass/mobile.scss */
+  /* line 165, ../sass/mobile.scss */
   #future polymer-ui-toolbar .paper-button:not(:last-child) { margin-right: 10px; margin-bottom: 16px; } }
