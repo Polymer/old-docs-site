@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url(//fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,800|Source+Code+Pro);
 /* line 16, ../sass/spec.scss */
 .meta { font-size: 12px; font-weight: normal; line-height: 20px; }
@@ -437,4 +438,10 @@ right: 0;*/ float: right; }
 @media only screen and (min-width: 851px) and (max-width: 990px) { /* line 163, ../sass/mobile.scss */
   #future polymer-ui-toolbar { -webkit-flex-wrap: wrap; -moz-flex-wrap: wrap; -ms-flex-wrap: wrap; -o-flex-wrap: wrap; flex-wrap: wrap; }
   /* line 165, ../sass/mobile.scss */
-  #future polymer-ui-toolbar .paper-button:not(:last-child) { margin-right: 10px; margin-bottom: 16px; } }
+  #future polymer-ui-toolbar .paper-button:not(:last-child) { margin-right: 10px; margin-bottom: 16px; }
+  /* line 173, ../sass/mobile.scss */
+  footer polymer-ui-toolbar { -webkit-flex-wrap: wrap; -moz-flex-wrap: wrap; -ms-flex-wrap: wrap; -o-flex-wrap: wrap; flex-wrap: wrap; -webkit-box-pack: flex-start; -webkit-justify-content: flex-start; -moz-justify-content: flex-start; -ms-justify-content: flex-start; -o-justify-content: flex-start; justify-content: flex-start; }
+  /* line 177, ../sass/mobile.scss */
+  footer polymer-ui-toolbar .paper-button { margin-bottom: 16px; }
+  /* line 182, ../sass/mobile.scss */
+  footer #copyright { margin-top: -16px; } }
