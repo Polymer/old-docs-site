@@ -55,7 +55,7 @@ The veiling process can be used to prevent FOUC at times other than page load. T
     element.setAttribute('resolved', '');
     element.removeAttribute('unresolved');
 
-## Polyfill styling directives
+## Polyfill styling directives {#directives}
 
 When running under the polyfill, {{site.project_title}} has `@polyfill-*`
 directives to give you more control for how Shadow DOM styling is shimmed.
@@ -220,7 +220,7 @@ the polyfill's do not protect Shadow DOM elements against document level CSS.
 When {{site.project_title}} processes element definitions, it looks for `<style>` elements
 and stylesheets. It removes these from the custom element's Shadow DOM `<template>`, rejiggers them according to the rules below, and appends a `<style>` element to the main document with the reformulated rules.
 
-#### Reformatting rules
+#### Reformatting rules {#reformatrules)
 
 1. **Replace `:host`, including `:host(<compound selector>)` by prefixing with the element's tag name**
 
@@ -282,3 +282,12 @@ You can turn lower bound encapsulation by setting `Platform.ShadowCSS.strictStyl
     Platform.ShadowCSS.strictStyling = true
 
 This isn't the yet the default because it requires that you add the custom element's name as an attribute on all DOM nodes in the shadowRoot (e.g. `<span x-foo>`).
+
+## Using Shadow DOM styling features outside of elements {#sdcss}
+
+Under the polyfill, {{site.project_title}} automatically examines any style or link elements inside of a `<polymer-element>` in order to shim Shadow DOM CSS features and process [@polyfill styling directives](#directives). For example, if you're using `^` and `^^` inside an element, the selectors are rewritten so they work in unsupported browsers. See [Remoformatting rules](#reformatrules) above.
+
+However, for performance reasons styles outside of an element are not shimmed.
+Therefore, if you're using `^` and `^^` in your main page stylesheet, be sure to include `shim-shadowdom` on the `<style>` or `<link rel="stylesheet">` that contains these rules. The attribute instructs {{site.project_title}} to shim the styles inside.
+
+    <link rel="stylesheet"  href="main.css" shim-shadowdom>
