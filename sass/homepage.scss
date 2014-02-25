@@ -1,0 +1,142 @@
+@import "base";
+
+@import "spec";
+@import "polymer";
+
+section {
+  border-bottom: 1px solid $main-bg;
+}
+
+// section .bar {
+//   @include justify-content(flex-end);
+//   @include align-items(center);
+//   border-top: 1px solid $main-bg;
+//   border-bottom: 1px solid $main-bg;
+
+//   a {
+//     color: inherit;
+//     font-size: $font-size-body;
+//     // font-weight: 600;
+//     // letter-spacing: 0.01em;
+//     // line-height: 19.2px;
+//     text-align: right;
+//     @include flex(1);
+//     opacity: 0.6;
+
+//     &:after {
+//       content: '\0025BE';
+//       margin: 0 10px;
+//     }
+//   }
+// }
+
+.panel {
+  @extend .content-padding;
+  padding: 150px 16px;
+  @include display-flex;
+
+  $img-margin: 88px;
+
+  &.left {
+    img {
+      margin-right: $img-margin;
+    }
+  }
+  &.right {
+    img {
+      margin-left: $img-margin;
+    }
+  }
+
+  summary {
+    @include flex(1);
+
+    + summary {
+      margin-left: 25px;
+    }
+
+    p {
+      margin: $content-padding 0;
+      line-height: 32px;
+    }
+  }
+
+  img {
+    @include align-self(center);
+  }
+}
+
+#future {
+  polymer-ui-toolbar {
+    @include align-items(stretch);
+    //@include justify-content(space-between);
+  }
+  .paper-button:not(:last-child) {
+    margin-right: 12px;
+  }
+}
+
+#everything-element {
+  // .bar {
+  //   border-color: rgba(255,255,255,0.3);
+  //   @extend .main-purple;
+
+  //   a {
+  //     color: white;
+  //   }
+  // }
+  code {
+    color: currentcolor;
+  }
+  .panel img {
+    max-width: 312px;
+  }
+  summary {
+    color: #fff;
+  }
+  .paper-button {
+    //background: rgba(255,255,255,0.1) !important;
+    background: #262742 !important;
+    color: white;
+
+    &:hover {
+      background: rgb(58, 59, 86) !important;
+    }
+  }
+}
+
+#architecture {
+  .panel {
+    padding: $content-padding 16px;
+  }
+  .box {
+    $box-size: 200px;
+
+    @extend .main-bg;
+    margin-bottom: $content-padding / 2;
+    border-radius: 50%;
+    width: $box-size;
+    padding: $box-size / 4 35px;
+  }
+  h1 {
+    font-size: 35px;
+  }
+  h5 {
+    font-size: $font-size-secondary;
+    font-weight: normal;
+    color: $secondary-heading-color;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+    margin-top: 6px;
+    margin-bottom: 18px;
+  }
+  p {
+    font-size: $font-size-secondary;
+    line-height: $line-height-body;
+    margin-top: 0;
+  }
+  img {
+    height: 94px;
+    width: auto;
+  }
+}
