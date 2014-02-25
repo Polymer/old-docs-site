@@ -5,6 +5,9 @@ navgroup: docs
 shortname: Elements
 title: Polymer UI elements
 subtitle: Basic UI components
+
+stylesheets:
+  "/css/elementpage.css"
 ---
 
 **Note:** These elements and their documentation are very early.
