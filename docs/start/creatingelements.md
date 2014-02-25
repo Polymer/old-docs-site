@@ -23,7 +23,7 @@ One of the key features of elements is that they're encapsulated—their details
 
 {{site.project_title}}'s motto within this encapsulated world is "reduce boilerplate." You'll find yourself writing far less script to accomplish common tasks, and spending more time on the interesting challenges of your element.
 
-If you combine this with the ability to [use preexisting elements](link/to/using/elements) you'll quickly discover how easy it is to build rich applications out of simple building blocks.
+If you combine this with the ability to [use preexisting elements](/docs/start/usingelements.html) you'll quickly discover how easy it is to build rich applications out of simple building blocks.
 
 ## Setup {#basics}
 

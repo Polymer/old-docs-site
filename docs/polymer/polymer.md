@@ -115,7 +115,7 @@ Custom Elements polyfill picks it up.
 ### Adding public properties and methods {#propertiesmethods}
 
 If you wish to define methods/properties on your element (optional), pass an object
-as the second argument to `{{site.project_title}}()`. This object is used to define
+as the second argument to `Polymer()`. This object is used to define
 the element's `prototype`.
 
 The following example defines a property `message`, a computed property `greeting`
@@ -124,7 +124,7 @@ using an ES5 getter, and a method `foo`:
     <polymer-element name="tag-name">
       <template>...</template>
       <script>
-        {{site.project_title}}('tag-name', {
+        Polymer('tag-name', {
           message: "Hello!",
           get greeting() {
             return this.message + ' there!';
@@ -168,7 +168,7 @@ techniques like anonymous self-calling functions:
           var foo_ = new Foo();
 
           // Ran for every instance of the element that's created.
-          {{site.project_title}}('tag-name', {
+          Polymer('tag-name', {
             get foo() { return foo_; }
           });
         })();
@@ -182,7 +182,7 @@ callbacks, though for convenience, implements them with shorter names.
 
 All of the lifecycle callbacks are optional: 
 
-    {{site.project_title}}('tag-name', {
+    Polymer('tag-name', {
       created: function() { ... },
       ready: function() { ... },
       attached: function () { ... },
@@ -341,7 +341,7 @@ For example, we can define a `name-tag` element that publishes two properties,
         Hello! My name is <span style="color:{{"{{nameColor"}}}}">{{"{{name"}}}}</span>
       </template>
       <script>
-        {{site.project_title}}('name-tag', {
+        Polymer('name-tag', {
           nameColor: "orange"
         });
       </script>
@@ -367,7 +367,7 @@ Let's modify the `name-tag` example to take an object instead of individual prop
         Hello! My name is <span style="color:{{"{{person.nameColor"}}}}">{{"{{person.name"}}}}</span>
       </template>
       <script>
-        {{site.project_title}}('name-tag', {
+        Polymer('name-tag', {
           created: function() {
             this.person = {
               name: "Scott",
@@ -385,7 +385,7 @@ Now, imagine we make a new component called `<visitor-creds>` that uses `name-ta
         <name-tag person="{{"{{person"}}}}"></name-tag>
       </template>
       <script>
-        {{site.project_title}}('visitor-creds', {
+        Polymer('visitor-creds', {
           created: function() {
             this.person = {
               name: "Scott2",
@@ -410,7 +410,7 @@ It uses special <code>on-<em>event</em></code> syntax to trigger this binding be
         <button on-click="{% raw %}{{buttonClick}}{% endraw %}"></button>
       </template>
       <script>
-        {{site.project_title}}('g-cool', {
+        Polymer('g-cool', {
           keypressHandler: function(event, detail, sender) { ...},
           buttonClick: function(event, detail, sender) { ... }
         });
@@ -438,7 +438,7 @@ All properties on {{site.project_title}} elements can be watched for changes by 
 
     <polymer-element name="g-cool" attributes="better best">
       <script>
-        {{site.project_title}}('g-cool', {
+        Polymer('g-cool', {
           plain: '',
           best: '',
           betterChanged: function(oldValue, newValue) {
@@ -528,7 +528,7 @@ For example, the following defines a component whose template contains an `<inpu
         <input type="text" id="nameInput">
       </template>
       <script>
-        {{site.project_title}}('x-form', {
+        Polymer('x-form', {
           logNameValue: function() {
             console.log(this.$.nameInput.value);
           }
@@ -580,7 +580,7 @@ and data-bound.
     <polymer-element name="polymer-cool">
       <!-- UI-less element -->
       <script>
-        {{site.project_title}}('polymer-cool', {
+        Polymer('polymer-cool', {
           praise: 'cool'
         });
       </script>
@@ -591,7 +591,7 @@ and data-bound.
         {%raw%}{{praise}}{%endraw%} <!-- "cool" -->
       </template>
       <script>
-        {{site.project_title}}('polymer-cooler');
+        Polymer('polymer-cooler');
       </script>
     </polymer-element>
 
@@ -602,7 +602,7 @@ When you override an inherited method, you can call the parent's method with `th
 {% raw %}
     <polymer-element name="polymer-cool">
       <script>
-        {{site.project_title}}('polymer-cool', {
+        Polymer('polymer-cool', {
           praise: 'cool',
           makeCoolest: function() {
             this.praise = 'coolest';
@@ -614,7 +614,7 @@ When you override an inherited method, you can call the parent's method with `th
     <polymer-element name="polymer-cooler" extends="polymer-cool" on-click="{{makeCoolest}}">
       <template>polymer-cooler is {{praise}}</template>
       <script>
-        {{site.project_title}}('polymer-cooler', {
+        Polymer('polymer-cooler', {
           praise: 'cooler',
           makeCoolest: function() {
             this.super(); // calls polymer-cool's makeCoolest()

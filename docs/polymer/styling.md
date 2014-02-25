@@ -16,18 +16,28 @@ In addition to the [standard features for styling Custom Elements](/articles/sty
 
 ## FOUC prevention
 
-Before custom elements [upgrade](http://www.html5rocks.com/tutorials/webcomponents/customelements/#upgrades) they may display incorrectly. To help mitigate [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content) issues, {{site.project_title}} provides
-a polyfill solution for the [`:unresolved` pseudo class](/articles/styling-elements.html#preventing-fouc). The `[unresolved]` attribute initially hides the element it's applied to:
+Before custom elements [upgrade](http://www.html5rocks.com/tutorials/webcomponents/customelements/#upgrades) they may display incorrectly. To help mitigate [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content) issues, {{site.project_title}} provides a polyfill solution for the [`:unresolved` pseudo class](/articles/styling-elements.html#preventing-fouc). For simple apps, you can add the `unresolved` attribute to body. This initially hides the page until all elements are upgraded:
 
+    <body unresolved>
+
+Class name | Behavior
+|-
+`body[unresolved]` | Makes the body `opacity: 0; display: block; overflow: hidden`.
+`[resolved]` | Fades-in the body over 200ms.
+{: .table .responsive-table .fouc-table }
+
+If you want finer control, add `unresolved` to individual elements rather
+than body. This shows the entire page upfront but allows you to control unresolved
+element styling yourself:
+
+    <style>
+      [unresolved] {
+        opacity: 0;
+        /* other custom styles for unresolved elements */
+      }
+    </style>
     <x-foo unresolved>If you see me, elements are upgraded!</x-foo>
     <div unresolved></div>
-    <body unresolved><!-- prevent the entire page from displaying until all elements are ready--></body>
-
-Class name | Behavior when applied to an element
-|-
-`[unresolved]` | Makes the element `opacity: 0; display: block; overflow: hidden`.
-`[resolved]` | Fades-in the element over 200ms.
-{: .table .responsive-table .fouc-table }
 
 Upon [`polymer-ready`](/docs/polymer/polymer.html#polymer-ready) firing, {{site.project_title}} runs the following steps:
 
@@ -45,7 +55,7 @@ The veiling process can be used to prevent FOUC at times other than page load. T
     element.setAttribute('resolved', '');
     element.removeAttribute('unresolved');
 
-## Polyfill styling directives
+## Polyfill styling directives {#directives}
 
 When running under the polyfill, {{site.project_title}} has `@polyfill-*`
 directives to give you more control for how Shadow DOM styling is shimmed.
@@ -210,7 +220,7 @@ the polyfill's do not protect Shadow DOM elements against document level CSS.
 When {{site.project_title}} processes element definitions, it looks for `<style>` elements
 and stylesheets. It removes these from the custom element's Shadow DOM `<template>`, rejiggers them according to the rules below, and appends a `<style>` element to the main document with the reformulated rules.
 
-#### Reformatting rules
+#### Reformatting rules {#reformatrules)
 
 1. **Replace `:host`, including `:host(<compound selector>)` by prefixing with the element's tag name**
 
@@ -272,3 +282,12 @@ You can turn lower bound encapsulation by setting `Platform.ShadowCSS.strictStyl
     Platform.ShadowCSS.strictStyling = true
 
 This isn't the yet the default because it requires that you add the custom element's name as an attribute on all DOM nodes in the shadowRoot (e.g. `<span x-foo>`).
+
+## Using Shadow DOM styling features outside of elements {#sdcss}
+
+Under the polyfill, {{site.project_title}} automatically examines any style or link elements inside of a `<polymer-element>` in order to shim Shadow DOM CSS features and process [@polyfill styling directives](#directives). For example, if you're using `^` and `^^` inside an element, the selectors are rewritten so they work in unsupported browsers. See [Remoformatting rules](#reformatrules) above.
+
+However, for performance reasons styles outside of an element are not shimmed.
+Therefore, if you're using `^` and `^^` in your main page stylesheet, be sure to include `shim-shadowdom` on the `<style>` or `<link rel="stylesheet">` that contains these rules. The attribute instructs {{site.project_title}} to shim the styles inside.
+
+    <link rel="stylesheet"  href="main.css" shim-shadowdom>
