@@ -14,18 +14,6 @@
   @include box-sizing(border-box);
 }
 
-
-// FOUC stuff ------------------------------------------------------------------
-site-banner {
-  transition: opacity 300ms;
-}
-
-[unresolved] {
-  opacity: 0;
-  visibility: hidden;
-}
-// -----------------------------------------------------------------------------
-
 h2:target, h3:target, h4:target, h5:target {
   &:before {
     display: block; 
