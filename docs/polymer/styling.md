@@ -16,18 +16,28 @@ In addition to the [standard features for styling Custom Elements](/articles/sty
 
 ## FOUC prevention
 
-Before custom elements [upgrade](http://www.html5rocks.com/tutorials/webcomponents/customelements/#upgrades) they may display incorrectly. To help mitigate [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content) issues, {{site.project_title}} provides
-a polyfill solution for the [`:unresolved` pseudo class](/articles/styling-elements.html#preventing-fouc). The `[unresolved]` attribute initially hides the element it's applied to:
+Before custom elements [upgrade](http://www.html5rocks.com/tutorials/webcomponents/customelements/#upgrades) they may display incorrectly. To help mitigate [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content) issues, {{site.project_title}} provides a polyfill solution for the [`:unresolved` pseudo class](/articles/styling-elements.html#preventing-fouc). For simple apps, you can add the `unresolved` attribute to body. This initially hides the page until all elements are upgraded:
 
+    <body unresolved>
+
+Class name | Behavior
+|-
+`body[unresolved]` | Makes the body `opacity: 0; display: block; overflow: hidden`.
+`[resolved]` | Fades-in the body over 200ms.
+{: .table .responsive-table .fouc-table }
+
+If you want finer control, add `unresolved` to individual elements rather
+than body. This shows the entire page upfront but allows you to control unresolved
+element styling yourself:
+
+    <style>
+      [unresolved] {
+        opacity: 0;
+        /* other custom styles for unresolved elements */
+      }
+    </style>
     <x-foo unresolved>If you see me, elements are upgraded!</x-foo>
     <div unresolved></div>
-    <body unresolved><!-- prevent the entire page from displaying until all elements are ready--></body>
-
-Class name | Behavior when applied to an element
-|-
-`[unresolved]` | Makes the element `opacity: 0; display: block; overflow: hidden`.
-`[resolved]` | Fades-in the element over 200ms.
-{: .table .responsive-table .fouc-table }
 
 Upon [`polymer-ready`](/docs/polymer/polymer.html#polymer-ready) firing, {{site.project_title}} runs the following steps:
 
