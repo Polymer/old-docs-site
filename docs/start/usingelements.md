@@ -93,7 +93,7 @@ An example `index.html` file:
         <script>
           // Wait for 'polymer-ready'. Insures the element is upgraded.
           window.addEventListener('polymer-ready', function(e) {
-            var ajax = document.querySelector('#ajax');
+            var ajax = document.querySelector('polymer-ajax');
 
             // Respond to events it fires.
             ajax.addEventListener('polymer-response', function(e) {
