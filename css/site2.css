@@ -248,98 +248,98 @@ footer #copyright { color: #b3b3b3; font-size: 14px; }
 /* line 404, ../sass/site2.scss */
 footer #copyright a { color: #666666; }
 
-/* line 411, ../sass/site2.scss */
+/* line 428, ../sass/site2.scss */
 #content-container .article { margin-bottom: 2em; }
-/* line 415, ../sass/site2.scss */
+/* line 432, ../sass/site2.scss */
 #content-container h2 { margin-top: 20px; }
-/* line 418, ../sass/site2.scss */
+/* line 435, ../sass/site2.scss */
 #content-container h3 { margin-top: 15px; }
-/* line 421, ../sass/site2.scss */
+/* line 438, ../sass/site2.scss */
 #content-container h4 { margin-top: 10px; }
-/* line 425, ../sass/site2.scss */
+/* line 442, ../sass/site2.scss */
 #content-container scroll-area article header { margin-bottom: 24px; }
 
-/* line 432, ../sass/site2.scss */
+/* line 449, ../sass/site2.scss */
 #sidebar { position: fixed; -webkit-transform: translateZ(0); -moz-transform: translateZ(0); -ms-transform: translateZ(0); -o-transform: translateZ(0); transform: translateZ(0); height: 100%; width: 265px; background-color: #eeeeee; box-shadow: rgba(0, 0, 0, 0.14902) 1px 1px 1px 0px; z-index: 10; }
-/* line 455, ../sass/site2.scss */
+/* line 472, ../sass/site2.scss */
 #sidebar docs-menu { padding: 0 16px; }
-/* line 459, ../sass/site2.scss */
+/* line 476, ../sass/site2.scss */
 #sidebar #logo-container { height: 80px; margin-bottom: 24px; padding-left: 16px; }
 
-/* line 470, ../sass/site2.scss */
+/* line 487, ../sass/site2.scss */
 #welcome #sidebar { display: none; }
 
-/* line 474, ../sass/site2.scss */
+/* line 491, ../sass/site2.scss */
 #dropdown-toggle { display: none; margin-top: -5px; opacity: 0.3; }
 
-/* line 481, ../sass/site2.scss */
+/* line 498, ../sass/site2.scss */
 dropdown-panel { position: absolute; top: 75px; left: 15px; width: 240px; z-index: 1000; }
 
-/* line 489, ../sass/site2.scss */
+/* line 506, ../sass/site2.scss */
 .edit-on-github { /*position: absolute;
 top: 0;
 right: 0;*/ float: right; }
-/* line 495, ../sass/site2.scss */
+/* line 512, ../sass/site2.scss */
 .edit-on-github + * { clear: both; }
 
-/* line 500, ../sass/site2.scss */
+/* line 517, ../sass/site2.scss */
 .permalink { display: none; margin-left: 5px; vertical-align: top; }
 
-/* line 505, ../sass/site2.scss */
+/* line 522, ../sass/site2.scss */
 .has-permalink:hover .permalink { display: initial; }
 
-/* line 508, ../sass/site2.scss */
+/* line 525, ../sass/site2.scss */
 .no-permalink .permalink { display: none !important; }
 
-/* line 515, ../sass/site2.scss */
+/* line 532, ../sass/site2.scss */
 .forversion { float: right; color: #ccc; font-style: italic; }
 
-/* line 520, ../sass/site2.scss */
+/* line 537, ../sass/site2.scss */
 .article .byline { font-size: smaller; color: #ccc; }
 
-/* line 525, ../sass/site2.scss */
+/* line 542, ../sass/site2.scss */
 .author { margin-bottom: 20px; }
-/* line 528, ../sass/site2.scss */
+/* line 545, ../sass/site2.scss */
 .author > p { display: inline-block; margin: 0; }
-/* line 532, ../sass/site2.scss */
+/* line 549, ../sass/site2.scss */
 .author > p:first-of-type { vertical-align: top; }
-/* line 537, ../sass/site2.scss */
+/* line 554, ../sass/site2.scss */
 .author img { border-radius: 7px; margin-right: 5px; height: 40px; width: 40px; }
 
 /* Elements */
-/* line 549, ../sass/site2.scss */
-.element-list > [data-element-file] { padding-bottom: 24px; border-top: 1px solid #eeeeee; }
-/* line 554, ../sass/site2.scss */
-.element-list header { margin: 24px 0; }
-/* line 557, ../sass/site2.scss */
-.element-list header h2 { margin: 0 !important; }
-/* line 564, ../sass/site2.scss */
-.element-list header a { margin-left: 20px; }
 /* line 566, ../sass/site2.scss */
-.element-list header a:not(.permalink) { font-size: initial; }
-/* line 572, ../sass/site2.scss */
-.element-list .name { display: inline-block; }
+.element-list > [data-element-file] { padding-bottom: 24px; border-top: 1px solid #eeeeee; }
+/* line 571, ../sass/site2.scss */
+.element-list header { margin: 24px 0; }
 /* line 574, ../sass/site2.scss */
-.element-list .name code { white-space: nowrap; }
-/* line 579, ../sass/site2.scss */
-.element-list .nodocs { margin-left: 17px; font-style: italic; }
+.element-list header h2 { margin: 0 !important; }
+/* line 581, ../sass/site2.scss */
+.element-list header a { margin-left: 20px; }
 /* line 583, ../sass/site2.scss */
-.element-list .nodocs:after { content: 'No documentation available.'; }
-/* line 588, ../sass/site2.scss */
-.element-list iframe { border: none; width: 100%; }
-/* line 594, ../sass/site2.scss */
-.element-list .bower_install_instructions, .element-list .api_documentation { display: block; }
+.element-list header a:not(.permalink) { font-size: initial; }
+/* line 589, ../sass/site2.scss */
+.element-list .name { display: inline-block; }
+/* line 591, ../sass/site2.scss */
+.element-list .name code { white-space: nowrap; }
 /* line 596, ../sass/site2.scss */
+.element-list .nodocs { margin-left: 17px; font-style: italic; }
+/* line 600, ../sass/site2.scss */
+.element-list .nodocs:after { content: 'No documentation available.'; }
+/* line 605, ../sass/site2.scss */
+.element-list iframe { border: none; width: 100%; }
+/* line 611, ../sass/site2.scss */
+.element-list .bower_install_instructions, .element-list .api_documentation { display: block; }
+/* line 613, ../sass/site2.scss */
 .element-list .bower_install_instructions > label, .element-list .api_documentation > label { font-weight: 600; }
 
-/* line 603, ../sass/site2.scss */
+/* line 620, ../sass/site2.scss */
 .onlyonmobile { display: none; }
 
-/* line 607, ../sass/site2.scss */
+/* line 624, ../sass/site2.scss */
 #toc summary { font-size: 16px; font-weight: 600; }
 
 /* Videos */
-/* line 614, ../sass/site2.scss */
+/* line 631, ../sass/site2.scss */
 .video iframe { width: 853px; max-width: 100%; height: 480px; }
 
 @media only screen and (max-width: 580px) { /* line 6, ../sass/mobile.scss */

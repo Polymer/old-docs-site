@@ -11,6 +11,9 @@
   // overflow: hidden;
   padding-left: $additonalPadding + 40;
 
+  -webkit-transition: background-color 300ms ease-in;
+  transition: background-color 300ms ease-in;
+
   // @include transform(translate3d(0,0,0));
 }
 

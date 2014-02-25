@@ -72,7 +72,7 @@ function injectPage(url, opt_addToHistory) {
     if (e.target.status != 200) {
       // TODO: use window.error and report this to server.
       console.error('Page fetch error', e.target.status, e.target.statusText);
-      container.classList.remove('loading');
+      //container.classList.remove('loading');
       return;
     }
 
@@ -84,53 +84,59 @@ function injectPage(url, opt_addToHistory) {
     var metaContentName = doc.head.querySelector(META_CONTENT_NAME).content;
     document.head.querySelector(META_CONTENT_NAME).content = metaContentName;
 
-    var SCROLL_AREA = 'scroll-area';
-    var SITE_BANNER = 'site-banner';
-    var scrollArea = doc.querySelector(SCROLL_AREA);
-    var siteBanner = scrollArea.querySelector(SITE_BANNER);
-    document.querySelector(SITE_BANNER).outerHTML = siteBanner.outerHTML;
-
-    var newDocContainer = doc.querySelector(CONTAINER_SELECTOR);
-    container.innerHTML = newDocContainer.innerHTML;
-
-    // TODO: doesn't bring the app-bar back because listeners are nuked.
-    var scrollAreaDoc = document.querySelector(SCROLL_AREA);
-    scrollAreaDoc.init();
-
-    // Remove "loading" message immediately after page content is set.
-    container.classList.remove('loading');
-
-    // // Run Polymer's HTML Import loader/parser.
-    // HTMLImports.importer.load(newDocContainer, function() {
-    //   HTMLImports.parser.parse(newDocContainer);
-    //   // CustomElements polyfill needs to process the dynamic imports for definitions.
-    //   CustomElements.parser.parse(newDocContainer);
-      
-    //   // Prevents polymer-ui-overlay FOUC where O.o() is unavailable.
-    //   Platform.flush();
-    // });
-
     var addToHistory = opt_addToHistory == undefined ? true : opt_addToHistory;
     if (addToHistory) {
       history.pushState({url: url}, doc.title, url);
-    } else {
-      // Came from history pop. Adjust nav arrow position.
-      // TODO: doesn't always move the arrow to the correct location. For the sake
-      // of mitigating user confusion, don't move the arrow on a history pop.
-      //docsMenu.highlightItemWithURL(location.pathname);
     }
 
-    initPage(); // TODO: can't pass doc to this because prettyPrint() needs markup in dom.
-
-    // Record page view in GA early on.
+    // Record GA page view early; once metadata is set up and URL is updated.
     exports._gaq.push(['_trackPageview', location.pathname]);
+
+    var SCROLL_AREA = 'scroll-area';
+    var SITE_BANNER = 'site-banner';
+    var APP_BAR = 'app-bar';
+    var newDocScrollArea = doc.querySelector(SCROLL_AREA);
+    var newDocSiteBanner = doc.querySelector(SITE_BANNER);
+
+// Update app-bar links.
+var newDocAppBar = doc.querySelector(SITE_BANNER + ' ' + APP_BAR);
+var appBar = document.querySelector(SITE_BANNER + ' ' + APP_BAR);
+appBar.innerHTML = newDocAppBar.innerHTML;
+
+// Inject article body.
+var newDocContentContainer = doc.querySelector(CONTAINER_SELECTOR);
+container.innerHTML = newDocContentContainer.innerHTML;
+
+initPage(); // TODO: can't pass doc to this because prettyPrint() needs markup in dom.
+
+var DOCS_MENU = 'docs-menu';
+var docsMenu = document.querySelector(DOCS_MENU);
+var newDocDocsMenu = doc.querySelector(DOCS_MENU);
+docsMenu.setAttribute('menu', newDocDocsMenu.getAttribute('menu'));
+
+// Replace site-banner > header content.
+var siteBannerHeader = document.querySelector(SITE_BANNER + ' header');
+var newDocSiteBannerHeader = doc.querySelector(SITE_BANNER + ' header');
+siteBannerHeader.innerHTML = newDocSiteBannerHeader.innerHTML;
+
+// Update site-banner attributes. Elements in xhr'd document are not upgraded.  
+// We can't set properties directly. Instead, do old school attr replacement.
+var siteBanner = document.querySelector(SITE_BANNER);
+[].forEach.call(newDocSiteBanner.attributes, function(attr, i) {
+  siteBanner.setAttribute(attr.name, attr.value);
+});
+
+    // Remove "loading" message immediately after page content is set.
+    //container.classList.remove('loading');
+
+    // TODO: run HTMLImports loader.
 
     exports.scrollTo(0, 0); // Ensure we're at the top of the page when it's ready.
   };
 
   xhr.send();
 
-  container.classList.add('loading');
+  //container.classList.add('loading');
 }
 
 function initPage(opt_inDoc) {
@@ -231,14 +237,12 @@ document.addEventListener('polymer-ready', function(e) {
 document.addEventListener('DOMContentLoaded', function(e) {
   initPage();
 
-  //addStickyScrollToBars();
-
   // // Insure add current page to history so back button has an URL for popstate.
   // history.pushState({url: document.location.href}, document.title,
   //                   document.location.href);
 });
 
-// Search bo close.
+// Search box close.
 document.addEventListener('click', function(e) {
   var appBar = document.querySelector('app-bar');
   if (appBar.showingSearch) {
@@ -256,15 +260,15 @@ document.querySelector('[data-twitter-follow]').addEventListener('click', functi
 // -------------------------------------------------------------------------- //
 
 
-// // Control whether the site is ajax or static.
-// var AJAXIFY_SITE = !navigator.userAgent.match('Mobile|Android');
-// if (AJAXIFY_SITE) {
-//   testXhrType('document', function(supported) {
-//     if (supported) {
-//       ajaxifySite();
-//     }
-//   });
-// }
+// Control whether the site is ajax or static.
+var AJAXIFY_SITE = !navigator.userAgent.match('Mobile|Android');
+if (AJAXIFY_SITE) {
+  testXhrType('document', function(supported) {
+    if (supported) {
+      ajaxifySite();
+    }
+  });
+}
 
 // Analytics -----
 exports._gaq = exports._gaq || [];
