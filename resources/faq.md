@@ -198,8 +198,14 @@ provides a download link on each project page. However in some cases, you won't 
 dependencies and will need to do this on multiple repositories.
 
 Web components and {{site.project_title}} are intended to be extremely granular.
-This is on purpose, to allow users to use exactly what they need and nothing more. In additional to granularity, higher-level components may be composed out of lower-level components. Bower allows us to
-easily manage those dependencies.
+This is on purpose, to allow users to use exactly what they need and nothing more. In additional to granularity, higher-level components may be composed out of lower-level components. Bower allows us to easily manage those dependencies.
+
+### My components are producing markup with multiple ids of the same name. {#multipleids}
+
+{{site.project_title}} tries hard to mimic native Shadow DOM, in that nodes with the same
+`id`s will still be encapsulated.
+
+However, you should avoid using DOM-level id referencing (e.g. `<label for>`) when using {{site.project_title}}. The `id` may not resolve correctly when under the Shadow DOM polyfill.
 
 ## Data-binding
 
@@ -289,12 +295,19 @@ For example, in a `on-*` handler, you can access the named model instance using:
     </polymer-element>
 {%endraw%}
 
-### My components are producing markup with multiple ids of the same name. {#multipleids}
+## Can I use `<template>` inside an `<svg>` element? {#templateinsvg}
 
-{{site.project_title}} tries hard to mimic native Shadow DOM, in that nodes with the same
-`id`s will still be encapsulated.
+Sure can. Here's a [demo](http://jsbin.com/EXOWUFu/2/edit).
 
-However, you should avoid using DOM-level id referencing (e.g. `<label for>`) when using {{site.project_title}}. The `id` may not resolve correctly when under the Shadow DOM polyfill.
+{%raw%}
+    <svg>
+      <template repeat="{{l in lights}}">
+        <circle cx="100" cy="{{l.cy}}" r="50" fill="{{l.selectedColor}}"/>
+      </template>
+    </svg>
+{%endraw%}
+
+The behavior is similar to templates in non-template browsers in that their content is not inert. For example, scripts will run.
 
 ### How quickly are data changes propagated? {#dirtychecking}
 
