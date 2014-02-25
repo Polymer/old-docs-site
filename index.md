@@ -41,7 +41,7 @@ title: Welcome
       <div class="box">
         <img src="/images/logos/p-elements.svg">
       </div>
-      <h2 class="elements-using">Using elements</h2>
+      <h1 class="elements-using">Using elements</h1>
       <h5>{{site.project_title}} from the outside</h5>
       <p>{{site.project_title}} provides a comprehensive set of elements--both UI and non-UI--that you can use right out of the box. You can mix and match {{site.project_title}} elements with other elements, including built-in elements and other custom elements.</p>
       <a href="/docs/start/usingelements.html" class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Use our elements</a>
@@ -50,7 +50,7 @@ title: Welcome
       <div class="box">
         <img src="/images/logos/p-create-elements.svg">
       </div>
-      <h2 class="elements-creating">Creating elements</h2>
+      <h1 class="elements-creating">Creating elements</h1>
       <h5>{{site.project_title}} from the inside</h5>
       <p>{{site.project_title}}'s declarative syntax makes it simpler to define custom elements. Features like two-way data binding, declarative event handlers, property observation, and gesture support help you build powerful, reusable elements.</p>
       <a href="/docs/start/creatingelements.html" class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Build your own</a>
@@ -59,7 +59,7 @@ title: Welcome
       <div class="box">
         <img src="/images/logos/p-platform.svg">
       </div>
-      <h2 class="platform">The platform</h2>
+      <h1 class="platform">The platform</h1>
       <h5>Supporting new web technologies today</h5>
       <p>{{site.project_title}} is built on the latest web technologies like Web Components. Not all browsers support these features yet, so {{site.project_title}}'s platform layer fills the gaps, implementing the APIs in JavaScript. Polymer automatically picks the fastest path at runtime.</p>
       <a href="/docs/start/platform.html" class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Use the platform</a>

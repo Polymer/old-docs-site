@@ -346,12 +346,16 @@ section {
 
 #architecture {
   .panel {
-    padding: 35px 0;
+    padding: $content-padding 0;
   }
   .box {
+    $box-size: 200px;
+
     @extend .main-bg;
-    padding: 100px 24px 14px; //64px 24px 24px;
-    margin-bottom: $content-padding;
+    margin-bottom: $content-padding / 2;
+    border-radius: 50%;
+    width: $box-size;
+    padding: $box-size / 4 35px;
   }
   h5 {
     font-size: $font-size-secondary;
@@ -368,8 +372,7 @@ section {
     margin-top: 0;
   }
   img {
-    height: 92px;
-    // width: 160px;
+    height: 94px;
     width: auto;
   }
 }
