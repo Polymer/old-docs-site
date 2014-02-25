@@ -75,26 +75,24 @@
   /* line 42, ../sass/_tables.scss */
   .fouc-table td:nth-of-type(1):before { content: "Class Name"; }
   /* line 42, ../sass/_tables.scss */
-  .fouc-table td:nth-of-type(2):before { content: "Applied Behavior"; }
-  /* line 118, ../sass/mobile.scss */
-  footer { z-index: auto; } }
-@media only screen and (min-width: 581px) and (max-width: 850px) { /* line 127, ../sass/mobile.scss */
+  .fouc-table td:nth-of-type(2):before { content: "Applied Behavior"; } }
+@media only screen and (min-width: 581px) and (max-width: 850px) { /* line 123, ../sass/mobile.scss */
   #welcome #sidebar { display: block; }
-  /* line 131, ../sass/mobile.scss */
+  /* line 127, ../sass/mobile.scss */
   .main-bg .panel img { width: 300px; margin-right: auto; margin-bottom: 30px; }
-  /* line 137, ../sass/mobile.scss */
+  /* line 133, ../sass/mobile.scss */
   .panel { -webkit-box-orient: vertical; -webkit-flex-direction: column; -moz-flex-direction: column; -ms-flex-direction: column; -o-flex-direction: column; flex-direction: column; margin: 0 30px; }
-  /* line 141, ../sass/mobile.scss */
+  /* line 137, ../sass/mobile.scss */
   .panel.left img { margin-left: 0px; margin-right: auto; }
-  /* line 146, ../sass/mobile.scss */
+  /* line 142, ../sass/mobile.scss */
   .panel.right img { width: 300px; margin-right: 0px; margin-left: auto; }
-  /* line 152, ../sass/mobile.scss */
+  /* line 148, ../sass/mobile.scss */
   .panel summary + summary { margin-right: auto; margin-left: 0px; }
-  /* line 158, ../sass/mobile.scss */
+  /* line 154, ../sass/mobile.scss */
   #architecture .box { padding: 20px 24px 14px; margin-bottom: 30px; }
-  /* line 163, ../sass/mobile.scss */
+  /* line 159, ../sass/mobile.scss */
   footer { padding-left: 35px; } }
-@media only screen and (min-width: 851px) and (max-width: 990px) { /* line 173, ../sass/mobile.scss */
+@media only screen and (min-width: 851px) and (max-width: 990px) { /* line 169, ../sass/mobile.scss */
   #future polymer-ui-toolbar { -webkit-flex-wrap: wrap; -moz-flex-wrap: wrap; -ms-flex-wrap: wrap; -o-flex-wrap: wrap; flex-wrap: wrap; }
-  /* line 175, ../sass/mobile.scss */
+  /* line 171, ../sass/mobile.scss */
   #future polymer-ui-toolbar .paper-button:not(:last-child) { margin-right: 10px; margin-bottom: 16px; } }

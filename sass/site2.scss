@@ -377,10 +377,11 @@ section {
 
 footer {
   position: relative;
-  z-index: 100;
-  background-color: #e6e6e6;
-  padding: 100px 16px;
-  box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.0980392) 0px 1px 2px 0px inset;
+  // z-index: 100;
+  background-color: #fafafa;
+  padding: 100px 0;
+  padding-left: $additonalPadding + 40;
+  // box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.0980392) 0px 1px 2px 0px inset;
 
   polymer-ui-toolbar {
     margin-bottom: $content-padding;
