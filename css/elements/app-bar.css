@@ -100,7 +100,7 @@ input { background-color: inherit; border: none; font-size: 20px; outline: none;
 /* line 120, ../../sass/elements/app-bar.scss */
 #menu { display: none; }
 
-@media only screen and (max-width: 800px) { /* line 126, ../../sass/elements/app-bar.scss */
+@media only screen and (max-width: 850px) { /* line 126, ../../sass/elements/app-bar.scss */
   :host { -webkit-box-pack: space-between; -webkit-justify-content: space-between; -moz-justify-content: space-between; -ms-justify-content: space-between; -o-justify-content: space-between; justify-content: space-between; width: 100%; background: initial; }
   /* line 132, ../../sass/elements/app-bar.scss */
   :ancestor(#welcome) { -webkit-box-pack: flex-end; -webkit-justify-content: flex-end; -moz-justify-content: flex-end; -ms-justify-content: flex-end; -o-justify-content: flex-end; justify-content: flex-end; }
