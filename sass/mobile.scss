@@ -86,18 +86,14 @@
 // Phone + Tablet
 @media only screen and (max-width: $break-medium) {
   #sidebar {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    -moz-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
+    @include translate3d(-100%, 0, 0);
+    @include single-transition(transform, 500ms);
     width: 85%;
     max-width: $sidebarWidth + 50px;
-    transition: all 500ms;
     z-index: 1000;
 
     &.in {
-      -webkit-transform: translate3d(0, 0, 0);
-      -moz-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
+      @include translate3d(0, 0, 0);
       box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
     }
   }
