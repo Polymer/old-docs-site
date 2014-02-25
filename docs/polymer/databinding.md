@@ -11,7 +11,7 @@ title: Data-binding
 {{site.project_title}} supports two-way data binding and uses the term to describe a way to write _dynamic_ HTML _using_ HTML. A set of platform technologies and "prollyfills" enable this behavior:
 
 * [HTML Template element](http://www.html5rocks.com/tutorials/webcomponents/template/) (`<template>`)
-* [Template Bindings](/platform/template.html) (_prollyfill_) - describes how `<template>` manages instance fragments.
+* [Template Bindings](/docs/polymer/template.html) (_prollyfill_) - describes how `<template>` manages instance fragments.
 * [`Node.bind()`](/docs/polymer/node_bind.html) (_prollyfill_) - describes how DOM nodes are bound to data values.
 * [`Object.observe()`](http://updates.html5rocks.com/2012/11/Respond-to-change-with-Object-observe)
 * [Mutation Observers](https://developer.mozilla.org/en-US/docs/DOM/MutationObserver)
@@ -87,7 +87,7 @@ The [HTML Template element](http://www.html5rocks.com/tutorials/webcomponents/te
 
 If you loaded the above example without `<script src="platform.min.js"></script>`, that's about all `<template>` would do.
 
-However, [Template Binding](/platform/template.html) teaches `<template>` some new tricks:
+However, [Template Binding](/docs/polymer/template.html) teaches `<template>` some new tricks:
 
 * Instruct DOM nodes to derive their value from JavaScript data by binding them to the data provided.
 * Maintain a fragment of DOM (or "instance fragment") for each item in an array.
