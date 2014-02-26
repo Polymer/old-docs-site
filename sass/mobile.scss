@@ -1,5 +1,20 @@
 @import "base";
 
+#dropdown-toggle {
+  display: none;
+  margin-top: -5px;
+  opacity: 0.3;
+  // -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+dropdown-panel {
+  position: absolute;
+  top: 75px;
+  left: 15px;
+  width: 240px;
+  z-index: 1000;
+}
+
 // Phone
 @media only screen and (max-width: $break-small)  {
 
@@ -14,7 +29,7 @@
   .panel {
     @include flex-direction(column);
     margin: 0 30px;
-    padding: 80px 0 40px 0;
+    padding: $content-padding 0 40px 0 !important;
 
     > img {
       margin-bottom: 50px;
@@ -65,7 +80,6 @@
   }
 
   #architecture .box {
-    padding: 20px 24px 14px;
     margin-bottom: 25px;
   }
 
@@ -83,7 +97,7 @@
 
 }
 
-// Phone + Tablet
+// Phone + Portrait Tablet
 @media only screen and (max-width: $break-medium) {
   #sidebar {
     @include translate3d(-100%, 0, 0);
@@ -114,14 +128,10 @@
   // Responsive Tables
   // Temporary fix until <responsive-table> fixes EVERYTHING!!!
   @import "tables";
-
-  footer {
-    z-index: auto;
-  }
 }
 
 
-// Tablet
+// Portrait Tablet
 @media only screen and (min-width: $break-small + 1) and (max-width: $break-medium) {
 
   #welcome #sidebar {
@@ -132,7 +142,7 @@
     width: 300px;
     margin-right: auto;
     margin-bottom:30px;
-  } 
+  }
   
   .panel {
     @include flex-direction(column);
@@ -155,18 +165,38 @@
     }
   }
 
-  #architecture .box {
-    padding: 20px 24px 14px;
-    margin-bottom: 30px;
-  }
-
   footer {
     padding-left: $mobileContentPadding;
   }
 
 }
 
-// Desktop or larger
-@media only screen and (min-width: $break-large)  {
+// Landscape Tablet + Small Desktop
+@media only screen and (min-width: $break-medium + 1) and (max-width: $break-large) {
+
+  #future {
+    polymer-ui-toolbar {
+      @include flex-wrap(wrap);
+      .paper-button:not(:last-child) {
+        margin-right: 10px;
+        margin-bottom: 16px;
+      }
+    }
+  }
+
+  footer {
+    polymer-ui-toolbar {
+      @include flex-wrap(wrap);
+      @include justify-content(flex-start);
+
+      .paper-button {
+        margin-bottom: 16px;
+      }
+    }
+
+    #copyright {
+      margin-top: -16px;
+    }
+  }
 
 }

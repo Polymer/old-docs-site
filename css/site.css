@@ -1,4 +1,10 @@
 @import url(//fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,800|Source+Code+Pro);
+/* line 12, ../sass/_base.scss */
+.content-padding { max-width: 1032px; margin: 0 auto; }
+
+/* line 12, ../sass/_base.scss */
+.content-padding { max-width: 1032px; margin: 0 auto; }
+
 /* line 16, ../sass/spec.scss */
 .meta { font-size: 12px; font-weight: normal; line-height: 20px; }
 

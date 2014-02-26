@@ -1,0 +1,60 @@
+@import "base";
+
+//@import "spec";
+//@import "polymer";
+
+/* Elements */
+.element-list {
+  > [data-element-file] {
+    padding-bottom: $additonalPadding;
+    border-top: 1px solid $main-bg;
+  }
+
+  header {
+    margin: $additonalPadding 0;
+
+    h2 {
+      margin: 0 !important;
+      // Note: permalink :target anchors don't work when these are flexbox.
+      // @include display-flex;
+      // @include align-items(center);
+    }
+
+    a {
+      margin-left: 20px;
+      &:not(.permalink) {
+        font-size: initial;
+      }
+    }
+  }
+
+  .name {
+    display: inline-block;
+    code {
+      white-space: nowrap;
+    }
+  }
+
+  .nodocs {
+    margin-left: 17px;
+    font-style: italic;
+
+    &:after {
+      content: 'No documentation available.';
+    }
+  }
+
+  iframe {
+    border: none;
+    width: 100%;
+  }
+
+  .bower_install_instructions,
+  .api_documentation {
+    display: block;
+    > label {
+      font-weight: 600;
+    }
+  }
+
+}

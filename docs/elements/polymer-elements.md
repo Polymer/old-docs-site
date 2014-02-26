@@ -5,6 +5,9 @@ navgroup: docs
 shortname: Elements
 title: Polymer elements
 subtitle: Utility elements that do not render UI
+
+stylesheets:
+  "/css/elementpage.css"
 ---
 
 **Note:** These elements and their documentation are very early.
