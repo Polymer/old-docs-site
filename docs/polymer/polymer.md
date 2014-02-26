@@ -70,7 +70,7 @@ For convenient decoupling of script and markup, you don't have to inline your sc
 {{site.project_title}} elements can be created by referencing an external script
 which calls `Polymer('tag-name')`:
 
-    <!-- 2. Script refereced inside the element definition. -->
+    <!-- 2. Script referenced inside the element definition. -->
     <polymer-element name="tag-name">
       <template>...</template>
       <script src="path/to/tagname.js"></script>
