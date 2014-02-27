@@ -1,20 +1,23 @@
 (function(exports) {
 
-var docsMenu = document.querySelector('docs-menu');
+// Control whether the site is ajax or static.
+var AJAXIFY_SITE = true;//!navigator.userAgent.match('Mobile|Android');
+
+var siteBanner = null;
+var docsMenu = null;
+var appBar = null;
+var sidebar = null;
+var scrim = null;
+
+function hideSidebar() {
+  sidebar.classList.remove('in');
+  scrim.hide();
+}
 
 function addPermalink(el) {
   el.classList.add('has-permalink');
   el.insertAdjacentHTML('beforeend',
       '<a class="permalink" title="Permalink" href="#' + el.id + '">#</a>');
-}
-
-function setupDownloadButtons(opt_inDoc) {
-  var doc = opt_inDoc || document;
-
-  var downloadButton = doc.querySelector('[data-download-button]');
-  downloadButton && downloadButton.addEventListener('tap', function(e) {
-    exports._gaq.push(['_trackEvent', 'SDK', 'Download', POLYMER_VERSION]);
-  });
 }
 
 // Add permalinks to heading elements.
@@ -38,24 +41,6 @@ function prettyPrintPage(opt_inDoc) {
   exports.prettyPrint && prettyPrint();
 }
 
-// Feature detect xhr.responseType = 'document'...but it's async. 
-function testXhrType(type, callback) {
-  if (typeof XMLHttpRequest == 'undefined') {
-    callback(false);
-    return;
-  }
-
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', '/humans.txt');
-  try {
-    xhr.responseType = type;
-  } catch(error) {
-    callback(false);
-    return;
-  }
-  callback('response' in xhr && xhr.responseType == type);
-}
-
 /**
  * Replaces the main content of the page by loading the URL via XHR.
  *
@@ -64,9 +49,6 @@ function testXhrType(type, callback) {
  *     history.
  */
 function injectPage(url, opt_addToHistory) {
-  var CONTAINER_SELECTOR = 'scroll-area article'; //#content-container';
-  var container = document.querySelector(CONTAINER_SELECTOR);
-
   var xhr = new XMLHttpRequest();
   xhr.open('GET', url);
   xhr.responseType = 'document';
@@ -74,7 +56,6 @@ function injectPage(url, opt_addToHistory) {
     if (e.target.status != 200) {
       // TODO: use window.error and report this to server.
       console.error('Page fetch error', e.target.status, e.target.statusText);
-      //container.classList.remove('loading');
       return;
     }
 
@@ -82,10 +63,10 @@ function injectPage(url, opt_addToHistory) {
 
     document.title = doc.title; // Update document title to fetched one.
 
-    var META_CONTENT_NAME = 'meta[itemprop="name"]';
-    var metaContentName = doc.head.querySelector(META_CONTENT_NAME).content;
-    document.head.querySelector(META_CONTENT_NAME).content = metaContentName;
+    var metaContentName = doc.head.querySelector('meta[itemprop="name"]').content;
+    document.head.querySelector('meta[itemprop="name"]').content = metaContentName;
 
+    // Update URL history now that title and URL are set.
     var addToHistory = opt_addToHistory == undefined ? true : opt_addToHistory;
     if (addToHistory) {
       history.pushState({url: url}, doc.title, url);
@@ -94,57 +75,47 @@ function injectPage(url, opt_addToHistory) {
     // Record GA page view early; once metadata is set up and URL is updated.
     exports._gaq.push(['_trackPageview', location.pathname]);
 
-    var SCROLL_AREA = 'scroll-area';
-    var SITE_BANNER = 'site-banner';
-    var APP_BAR = 'app-bar';
-    var newDocScrollArea = doc.querySelector(SCROLL_AREA);
-    var newDocSiteBanner = doc.querySelector(SITE_BANNER);
+    // Update app-bar links.
+    appBar.innerHTML = doc.querySelector('app-bar').innerHTML;
 
-// Update app-bar links.
-var newDocAppBar = doc.querySelector(SITE_BANNER + ' ' + APP_BAR);
-var appBar = document.querySelector(SITE_BANNER + ' ' + APP_BAR);
-appBar.innerHTML = newDocAppBar.innerHTML;
+    // Inject article body.
+    var CONTAINER_SELECTOR = '#content-container scroll-area article';
+    var container = document.querySelector(CONTAINER_SELECTOR);
+    container.innerHTML = doc.querySelector(CONTAINER_SELECTOR).innerHTML;
 
-// Inject article body.
-var newDocContentContainer = doc.querySelector(CONTAINER_SELECTOR);
-container.innerHTML = newDocContentContainer.innerHTML;
+    initPage(); // TODO: can't pass doc. prettyPrint() needs markup in DOM.
 
-initPage(); // TODO: can't pass doc to this because prettyPrint() needs markup in dom.
+    // Set left-nav menu and highlight correct item.
+    docsMenu.setAttribute(
+        'menu', doc.querySelector('docs-menu').getAttribute('menu'));
+    docsMenu.highlightItemWithURL(location.pathname);
 
-var DOCS_MENU = 'docs-menu';
-var newDocDocsMenu = doc.querySelector(DOCS_MENU);
-docsMenu.setAttribute('menu', newDocDocsMenu.getAttribute('menu'));
-docsMenu.highlightItemWithURL(location.pathname); // Select correct menu item.
+    // Replace site-banner > header content.
+    var HEADER_SELECTOR = 'site-banner header';
+    var siteBannerHeader = document.querySelector(HEADER_SELECTOR);
+    siteBannerHeader.innerHTML = doc.querySelector(HEADER_SELECTOR).innerHTML;
 
-// Replace site-banner > header content.
-var siteBannerHeader = document.querySelector(SITE_BANNER + ' header');
-var newDocSiteBannerHeader = doc.querySelector(SITE_BANNER + ' header');
-siteBannerHeader.innerHTML = newDocSiteBannerHeader.innerHTML;
+    // Update site-banner attributes. Elements in xhr'd document are not upgraded.  
+    // We can't set properties directly. Instead, do old school attr replacement.
+    var newDocSiteBanner = doc.querySelector('site-banner');
+    [].forEach.call(newDocSiteBanner.attributes, function(attr, i) {
+      siteBanner.setAttribute(attr.name, attr.value);
+    });
 
-// Update site-banner attributes. Elements in xhr'd document are not upgraded.  
-// We can't set properties directly. Instead, do old school attr replacement.
-var siteBanner = document.querySelector(SITE_BANNER);
-[].forEach.call(newDocSiteBanner.attributes, function(attr, i) {
-  siteBanner.setAttribute(attr.name, attr.value);
-});
-
-    // Remove "loading" message immediately after page content is set.
-    //container.classList.remove('loading');
-
-    // TODO: run HTMLImports loader.
+    // TODO(ericbidelman): still need to run HTMLImports loader for inline imports?
 
     exports.scrollTo(0, 0); // Ensure we're at the top of the page when it's ready.
+
+    // Always hide mobile sidebar upon nav item selection.
+    hideSidebar();
   };
 
   xhr.send();
-
-  //container.classList.add('loading');
 }
 
 function initPage(opt_inDoc) {
   var doc = opt_inDoc || document;
 
-  setupDownloadButtons(doc);
   addPermalinkHeadings(doc);
 
   // TODO: figure out better way to do this than move it in JS. Kramdown
@@ -197,7 +168,6 @@ function ajaxifySite() {
   });
 }
 
-
 document.addEventListener('polymer-ready', function(e) {
   // TODO(ericbidelman): Hacky solution to get anchors scrolled to correct location
   // in page. Layout of page happens later than the browser wants to scroll.
@@ -206,11 +176,6 @@ document.addEventListener('polymer-ready', function(e) {
       document.querySelector(location.hash).scrollIntoView(true, {behavior: 'smooth'});
     }, 200);
   }
-
-  // The sliding sidebar menu for mobile
-  var siteBanner = document.querySelector('site-banner');
-  var sidebar = document.querySelector('#sidebar');
-  var scrim = document.querySelector('page-scrim');
 
   // The dropdown panel in the sidebar for mobile
   var dropdownToggle = document.querySelector('#dropdown-toggle');
@@ -227,16 +192,21 @@ document.addEventListener('polymer-ready', function(e) {
     // so no need to add any more handlers
   });
 
-  if (scrim) {
-    scrim.addEventListener('click', function(e) {
-      sidebar.classList.remove('in');
-      scrim.hide();
-    });
-  }
+  scrim && scrim.addEventListener('click', hideSidebar);
 });
 
 
 document.addEventListener('DOMContentLoaded', function(e) {
+  siteBanner = document.querySelector('site-banner');
+  docsMenu = document.querySelector('docs-menu');
+  sidebar = document.querySelector('#sidebar');
+  scrim = document.querySelector('page-scrim');
+  appBar = document.querySelector('app-bar');
+
+  if (AJAXIFY_SITE) {
+    ajaxifySite();
+  }
+
   initPage();
 
   // Insure add current page to history so back button has an URL for popstate.
@@ -246,7 +216,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
 // Search box close.
 document.addEventListener('click', function(e) {
-  var appBar = document.querySelector('app-bar');
   if (appBar.showingSearch) {
     appBar.toggleSearch(e);
   }
@@ -260,17 +229,6 @@ document.querySelector('[data-twitter-follow]').addEventListener('click', functi
 
 
 // -------------------------------------------------------------------------- //
-
-
-// Control whether the site is ajax or static.
-var AJAXIFY_SITE = !navigator.userAgent.match('Mobile|Android');
-if (AJAXIFY_SITE) {
-  testXhrType('document', function(supported) {
-    if (supported) {
-      ajaxifySite();
-    }
-  });
-}
 
 // Analytics -----
 exports._gaq = exports._gaq || [];
