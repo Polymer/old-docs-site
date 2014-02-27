@@ -3,10 +3,10 @@
 <head>
 {% include head.html %}
 </head>
-<body id="{{page.title | downcase | replace:' ','-' }}" unresolved>
+<body id="{{page.title | downcase | replace:' ','-' }}">
 
 <scroll-area>
-  <site-banner class="main-bg bar sticky">
+  <site-banner class="main-bg bar sticky" unresolved>
     <polymer-flex-layout align="center" justify="start"></polymer-flex-layout>
     <a href="/" flexbox><img src="/images/logos/lockup.svg"></a>
     {% include top-nav.html %}

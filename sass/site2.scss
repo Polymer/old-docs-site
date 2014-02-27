@@ -182,6 +182,9 @@ app-bar .paper-button {
 }
 
 polymer-ui-icon {
+  display: inline-block;
+  vertical-align: middle;
+
   $widthHeight: 24px;
   // margin-right: 16px;
   width: $widthHeight;

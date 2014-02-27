@@ -30,6 +30,17 @@ section {
 //   }
 // }
 
+// Manual FOUC prevention for homepage.
+site-banner {
+  height: $siteBannerHeightMin;
+  -webkit-transition: opacity 300ms ease-in;
+  transition: opacity 300ms ease-in;
+
+  &[unresolved] {
+    opacity: 0;
+  }
+}
+
 .panel {
   @extend .content-padding;
   padding: 150px 16px;

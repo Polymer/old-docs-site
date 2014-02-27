@@ -1,25 +1,40 @@
 /* line 3, ../sass/_typography.scss */
 h1, h2, h3, h4, h5 { font-weight: 300; letter-spacing: -0.01em; line-height: 48px; margin: 0; }
 
+/* line 13, ../sass/_typography.scss */
+h1 { font-size: 40px; }
+
 /* @polyfill h1 */
-/* line 12, ../sass/_typography.scss */
-h1, ::content h1 { font-size: 40px; }
+/* line 18, ../sass/_typography.scss */
+::content h1 { font-size: 40px; }
+
+/* line 22, ../sass/_typography.scss */
+h2 { font-size: 24px; }
 
 /* @polyfill h2 */
-/* line 19, ../sass/_typography.scss */
-h2, ::content h2 { font-size: 24px; }
+/* line 27, ../sass/_typography.scss */
+::content h2 { font-size: 24px; }
+
+/* line 31, ../sass/_typography.scss */
+h3 { font-size: 20px; }
 
 /* @polyfill h3 */
-/* line 25, ../sass/_typography.scss */
-h3, ::content h3 { font-size: 20px; }
+/* line 36, ../sass/_typography.scss */
+::content h3 { font-size: 20px; }
+
+/* line 40, ../sass/_typography.scss */
+h4 { font-size: 16px; font-weight: 600; }
 
 /* @polyfill h4 */
-/* line 31, ../sass/_typography.scss */
-h4, ::content h4 { font-size: 16px; font-weight: 600; }
+/* line 46, ../sass/_typography.scss */
+::content h4 { font-size: 16px; font-weight: 600; }
+
+/* line 51, ../sass/_typography.scss */
+h5 { font-size: 12px; font-weight: 600; }
 
 /* @polyfill h5 */
-/* line 38, ../sass/_typography.scss */
-h5, ::content h5 { font-size: 12px; font-weight: 600; }
+/* line 57, ../sass/_typography.scss */
+::content h5 { font-size: 12px; font-weight: 600; }
 
 /* line 5, ../sass/polymer.scss */
 .platform { color: #9f499b; }
