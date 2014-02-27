@@ -4,7 +4,7 @@
 <link rel="import" href="../components/polymer-ui-submenu-item/polymer-ui-submenu-item.html">
 <!-- <link rel="import" href="ui-color-icon.html"> -->
 
-<polymer-element name="docs-menu" attributes="menu"> <!--  cache-csstext> -->
+<polymer-element name="docs-menu" attributes="menu ajaxify"> <!--  cache-csstext> -->
 <template>
   <link rel="stylesheet" href="../css/polymer.css">
   <style>
@@ -100,6 +100,7 @@
 </template>
 <script>
   Polymer('docs-menu', {
+    ajaxify: false,
     ready: function() {
       this.highlightItemWithURL(location.pathname);
     },

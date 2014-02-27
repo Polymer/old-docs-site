@@ -1,5 +1,7 @@
 (function(exports) {
 
+var docsMenu = document.querySelector('docs-menu');
+
 function addPermalink(el) {
   el.classList.add('has-permalink');
   el.insertAdjacentHTML('beforeend',
@@ -110,9 +112,9 @@ container.innerHTML = newDocContentContainer.innerHTML;
 initPage(); // TODO: can't pass doc to this because prettyPrint() needs markup in dom.
 
 var DOCS_MENU = 'docs-menu';
-var docsMenu = document.querySelector(DOCS_MENU);
 var newDocDocsMenu = doc.querySelector(DOCS_MENU);
 docsMenu.setAttribute('menu', newDocDocsMenu.getAttribute('menu'));
+docsMenu.highlightItemWithURL(location.pathname); // Select correct menu item.
 
 // Replace site-banner > header content.
 var siteBannerHeader = document.querySelector(SITE_BANNER + ' header');
@@ -159,11 +161,11 @@ function initPage(opt_inDoc) {
 
 // Hijacks page to preventDefault() on links and make site ajax.
 function ajaxifySite() {
-  var docsMenu = document.querySelector('docs-menu');
-
-  document.addEventListener('polymer-ready', function(e) {
-    docsMenu.ajaxify = true;
-  });
+  if (docsMenu) {
+    document.addEventListener('polymer-ready', function(e) {
+      docsMenu.ajaxify = true;
+    });
+  }
 
   document.addEventListener('click', function(e) {
     var viableLink = false;
@@ -237,9 +239,9 @@ document.addEventListener('polymer-ready', function(e) {
 document.addEventListener('DOMContentLoaded', function(e) {
   initPage();
 
-  // // Insure add current page to history so back button has an URL for popstate.
-  // history.pushState({url: document.location.href}, document.title,
-  //                   document.location.href);
+  // Insure add current page to history so back button has an URL for popstate.
+  history.pushState({url: document.location.href}, document.title,
+                    document.location.href);
 });
 
 // Search box close.
