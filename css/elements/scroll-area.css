@@ -87,43 +87,39 @@ code, pre { color: #9f499b; }
 /* line 17, ../../sass/elements/scroll-area.scss */
 :host(:not([sidebar])) ::content app-bar { -moz-transform: translate3d(0, 0, 0) !important; -webkit-transform: translate3d(0, 0, 0) !important; transform: translate3d(0, 0, 0) !important; }
 
-/* @polyfill :host site-banner */
-/* line 24, ../../sass/elements/scroll-area.scss */
-::content site-banner { -webkit-transition: box-shadow 200ms ease-in-out; transition: box-shadow 200ms ease-in-out; }
-
 /* @polyfill :host.scrolling site-banner */
-/* line 30, ../../sass/elements/scroll-area.scss */
+/* line 24, ../../sass/elements/scroll-area.scss */
 :host(.scrolling) ::content site-banner { height: 80px; padding-bottom: 0; position: fixed !important; width: 100%; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3); }
 
 /* @polyfill :host.scrolling:not(.mobile) > article */
-/* line 41, ../../sass/elements/scroll-area.scss */
+/* line 35, ../../sass/elements/scroll-area.scss */
 :host(.scrolling:not(.mobile)) ::content > article { padding-top: 310px; }
 
 /* @polyfill :host.scrolling:not(.mobile) app-bar */
-/* line 46, ../../sass/elements/scroll-area.scss */
+/* line 40, ../../sass/elements/scroll-area.scss */
 :host(.scrolling:not(.mobile)) ::content app-bar { /* Note: this number should be updated if the height of of the nav changes */ -moz-transform: translate3d(0, -80px, 0); -webkit-transform: translate3d(0, -80px, 0); transform: translate3d(0, -80px, 0); position: inherit; }
 
 /* @polyfill :host.scrolling app-bar.fixed.down */
-/* line 55, ../../sass/elements/scroll-area.scss */
+/* line 49, ../../sass/elements/scroll-area.scss */
 :host(.scrolling) ::content app-bar.fixed.down { -moz-transform: translate3d(0, 0, 0); -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
 
 /* @polyfill :host.scrolling app-bar.fixed */
-/* line 62, ../../sass/elements/scroll-area.scss */
+/* line 56, ../../sass/elements/scroll-area.scss */
 :host(.scrolling) ::content app-bar.fixed { -webkit-transition: -webkit-transform 300ms ease-in-out; transition: -webkit-transform 300ms ease-in-out; -moz-transition: -moz-transform 300ms ease-in-out; }
 
 /* @polyfill :host app-bar.fixed */
-/* line 69, ../../sass/elements/scroll-area.scss */
+/* line 63, ../../sass/elements/scroll-area.scss */
 ::content app-bar.fixed { position: fixed; }
 
 /* @polyfill :host > article */
-/* line 74, ../../sass/elements/scroll-area.scss */
+/* line 68, ../../sass/elements/scroll-area.scss */
 ::content > article { padding: 24px 64px; max-width: 912px; min-height: 300px; overflow: hidden; }
 
-@media only screen and (max-width: 850px) { /* line 83, ../../sass/elements/scroll-area.scss */
+@media only screen and (max-width: 850px) { /* line 77, ../../sass/elements/scroll-area.scss */
   :host([sidebar]) { padding-left: 0; }
   /* @polyfill :host > article */
-  /* line 88, ../../sass/elements/scroll-area.scss */
+  /* line 82, ../../sass/elements/scroll-area.scss */
   ::content > article { padding-left: 35px; padding-right: 35px; } }
 @media only screen and (max-width: 580px) { /* @polyfill :host > article */
-  /* line 97, ../../sass/elements/scroll-area.scss */
+  /* line 91, ../../sass/elements/scroll-area.scss */
   ::content > article { padding-top: 70px; } }

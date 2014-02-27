@@ -20,12 +20,6 @@
   transform: translate3d(0,0,0) !important;
 }
 
-/* @polyfill :host site-banner */
-::content site-banner {
-  -webkit-transition: box-shadow 200ms ease-in-out;
-  transition: box-shadow 200ms ease-in-out;
-}
-
 /* @polyfill :host.scrolling site-banner */
 :host(.scrolling) ::content site-banner {
   height: $siteBannerHeightMin;

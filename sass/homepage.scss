@@ -33,8 +33,8 @@ section {
 // Manual FOUC prevention for homepage.
 site-banner {
   height: $siteBannerHeightMin;
-  -webkit-transition: opacity 300ms ease-in;
-  transition: opacity 300ms ease-in;
+  -webkit-transition: box-shadow 200ms ease-in-out, opacity 300ms ease-in !important;
+  transition: box-shadow 200ms ease-in-out, opacity 300ms ease-in !important;
 
   &[unresolved] {
     opacity: 0;

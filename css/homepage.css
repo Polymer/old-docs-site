@@ -104,7 +104,7 @@ code, pre { color: #9f499b; }
 section { border-bottom: 1px solid #eeeeee; }
 
 /* line 34, ../sass/homepage.scss */
-site-banner { height: 80px; -webkit-transition: opacity 300ms ease-in; transition: opacity 300ms ease-in; }
+site-banner { height: 80px; -webkit-transition: box-shadow 200ms ease-in-out, opacity 300ms ease-in !important; transition: box-shadow 200ms ease-in-out, opacity 300ms ease-in !important; }
 /* line 39, ../sass/homepage.scss */
 site-banner[unresolved] { opacity: 0; }
 
