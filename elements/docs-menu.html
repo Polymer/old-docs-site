@@ -22,14 +22,6 @@
       letter-spacing: 0.01em;
       padding: 0;
       color: initial;
-
-      /*&:hover {
-         background-color: #fff;
-      }
-
-      &.polymer-selected {
-        background-color: #eee;
-      }*/
     }
     :host ^^ #menu {
       margin-left: 34px;
@@ -49,7 +41,7 @@
     }
 
   </style>
-  <polymer-ui-menu id="mainmenu">
+  <polymer-ui-menu id="mainmenu" on-click="{{onClick}}">
     <polymer-ui-menu-item id="getcode" href="/docs/start/getting-the-code.html" class="{{ {show: menu == 'start'} | tokenList}}" src="/images/picons/ic_archive_dark_.png">Get the Code</polymer-ui-menu-item>
    <polymer-ui-submenu-item label="Concepts" class="{{ {show: menu == 'start'} | tokenList}}" src="/images/picons/ic_polymer_source.svg">
       <polymer-ui-menu-item href="/docs/start/everything.html">Understanding Polymer</polymer-ui-menu-item>
@@ -131,6 +123,13 @@
         }
       } else {
         this.$.mainmenu.selected = 0;
+      }
+    },
+    onClick: function(e, detail, sender) {
+      if (e.target.localName == 'polymer-ui-menu-item' && this.ajaxify) {
+        this.fire('click', {link: e.target});
+        e.preventDefault();
+        e.stopPropagation();
       }
     }
   });

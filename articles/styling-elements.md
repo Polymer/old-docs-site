@@ -345,7 +345,7 @@ you can a rule like `::content > *`.
     </x-foo>
 
 **Note**: For complex styling like distribute nodes, {{site.project_title}} provides the `@polyfill`
-directives to polyfill certain Shadow DOM features. See the [Styling reference](/docs/polymer/styling.html#polyfill-styling-directives) for more information on the directives.
+directives to polyfill certain Shadow DOM features. See the [Styling reference](/docs/polymer/styling.html#directives) for more information on the directives.
 {: .alert .alert-info }
 
 **Remember:** styles defined in the main document continue to apply to the Light DOM nodes they target, even if those nodes are distributed into Shadow DOM. Basically, going into an insertion point doesn't change what styles are applied. An example helps illustrate this point:

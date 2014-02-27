@@ -220,7 +220,7 @@ the polyfill's do not protect Shadow DOM elements against document level CSS.
 When {{site.project_title}} processes element definitions, it looks for `<style>` elements
 and stylesheets. It removes these from the custom element's Shadow DOM `<template>`, rejiggers them according to the rules below, and appends a `<style>` element to the main document with the reformulated rules.
 
-#### Reformatting rules {#reformatrules)
+#### Reformatting rules {#reformatrules}
 
 1. **Replace `:host`, including `:host(<compound selector>)` by prefixing with the element's tag name**
 
