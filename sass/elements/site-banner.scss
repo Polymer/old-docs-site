@@ -18,15 +18,15 @@
 }
 
 :host([type="platform"]) {
-  background-color: $platform-color;
+  background-color: $platform-color !important;
 }
 
 :host([type="core"]) {
-  background-color: $creating-elements-color;
+  background-color: $creating-elements-color  !important;;
 }
 
 :host([type="elements"]) {
-  background-color: $using-elements-color;
+  background-color: $using-elements-color !important;;
 }
 
 /* @polyfill :host header */

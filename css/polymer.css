@@ -46,7 +46,7 @@ h5 { font-size: 12px; font-weight: 600; }
 .elements-creating { color: #d61a7f; }
 
 /* line 20, ../sass/polymer.scss */
-.main-bg { background-color: #eeeeee; }
+.main-bg { background-color: #eeeeee !important; }
 
 /* line 24, ../sass/polymer.scss */
 .main-purple { background-color: #1f2036; }

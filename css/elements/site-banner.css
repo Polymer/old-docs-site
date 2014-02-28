@@ -46,7 +46,7 @@ h5 { font-size: 12px; font-weight: 600; }
 .elements-creating { color: #d61a7f; }
 
 /* line 20, ../../sass/polymer.scss */
-.main-bg { background-color: #eeeeee; }
+.main-bg { background-color: #eeeeee !important; }
 
 /* line 24, ../../sass/polymer.scss */
 .main-purple { background-color: #1f2036; }
@@ -77,13 +77,13 @@ code, pre { color: #9f499b; }
 :host { background-color: #1f2036; display: -webkit-box; display: -webkit-flex; display: -moz-flex; display: -ms-flex; display: -o-flex; display: flex; -webkit-box-align: flex-end; -webkit-align-items: flex-end; -moz-align-items: flex-end; -ms-align-items: flex-end; -o-align-items: flex-end; align-items: flex-end; position: relative; z-index: 1; height: 286px; color: white; padding-left: 64px; -webkit-transition: background-color 300ms ease-in; transition: background-color 300ms ease-in; }
 
 /* line 20, ../../sass/elements/site-banner.scss */
-:host([type="platform"]) { background-color: #9f499b; }
+:host([type="platform"]) { background-color: #9f499b !important; }
 
 /* line 24, ../../sass/elements/site-banner.scss */
-:host([type="core"]) { background-color: #d61a7f; }
+:host([type="core"]) { background-color: #d61a7f !important; }
 
 /* line 28, ../../sass/elements/site-banner.scss */
-:host([type="elements"]) { background-color: #5c6bc0; }
+:host([type="elements"]) { background-color: #5c6bc0 !important; }
 
 /* @polyfill :host header */
 /* line 33, ../../sass/elements/site-banner.scss */

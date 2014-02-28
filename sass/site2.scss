@@ -297,7 +297,10 @@ footer {
 // Desktop or larger
 @media only screen and (min-width: $break-large) {
 
-  // Manual FOUC prevention
+  // Manual FOUC prevention.
+  // TODO: This is not DRY. Styles are duplicated in site-banner,
+  // scroll-area, etc. However, having these rules outside the element also
+  // allows better FOUC prevent.
 
   docs-menu {
     -webkit-transition: opacity 300ms ease-in;
@@ -322,8 +325,25 @@ footer {
       transition: opacity 300ms ease-in, background-color 300ms ease-in;
 
       &[unresolved] {
+        color: transparent;
+        background-color: $main-purple;
+      }
+
+      app-bar[unresolved] {
         opacity: 0;
         visibility: hidden;
+      }
+
+      &[type="platform"] {
+        background-color: $platform-color !important;
+      }
+
+      &[type="core"] {
+        background-color: $creating-elements-color  !important;;
+      }
+
+      &[type="elements"] {
+        background-color: $using-elements-color !important;;
       }
     }
 
