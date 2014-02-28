@@ -71,7 +71,7 @@ polymer-ui-icon {
 
 /* @polyfill :host a */
 ::content a {
-  opacity: 0.6;
+  // opacity: 0.6;
   @include flex(1 0 auto);
   text-transform: none !important;
 }
