@@ -46,15 +46,15 @@
   </style>
   <polymer-ui-menu id="mainmenu" on-click="{{onClick}}">
     <polymer-ui-menu-item id="getcode" href="/docs/start/getting-the-code.html" class="{{ {show: menu == 'start'} | tokenList}}" src="/images/picons/ic_archive_dark_.png">Get the Code</polymer-ui-menu-item>
-   <polymer-ui-submenu-item label="Concepts" class="{{ {show: menu == 'start'} | tokenList}}" src="/images/picons/ic_polymer_source.svg">
-      <polymer-ui-menu-item href="/docs/start/everything.html">Understanding Polymer</polymer-ui-menu-item>
-      <polymer-ui-menu-item href="/docs/start/customelements.html">Custom elements 101</polymer-ui-menu-item>
-    </polymer-ui-submenu-item>
     <polymer-ui-submenu-item class="{{ {show: menu == 'start'} | tokenList}}" id="gettingstartedmenu" label="Getting started" src="/images/picons/ic_polymer_source.svg">
       <!-- <ui-color-icon src="/images/picons/ic_polymer_source.svg"></ui-color-icon> -->
       <polymer-ui-menu-item href="/docs/start/usingelements.html">Using elements</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/docs/start/creatingelements.html">Creating elements</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/docs/start/platform.html">The Platform</polymer-ui-menu-item>
+    </polymer-ui-submenu-item>
+    <polymer-ui-submenu-item label="Concepts" class="{{ {show: menu == 'start'} | tokenList}}" src="/images/picons/ic_polymer_source.svg">
+      <polymer-ui-menu-item href="/docs/start/everything.html">Understanding Polymer</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/docs/start/customelements.html">Custom elements 101</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
     <polymer-ui-submenu-item id="elementsmenu" label="Elements" class="elements-using {{ {show: menu == 'docs'} | tokenList}}" src="/images/picons/ic_polymer_source.svg">
       <polymer-ui-menu-item href="/docs/elements/polymer-elements.html">Polymer elements</polymer-ui-menu-item>

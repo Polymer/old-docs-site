@@ -14,7 +14,7 @@ stylesheets:
       <p>{{site.project_title}} is a library that uses the latest web technologies to let you create custom HTML elements. Build anything from a button to a complete application as an encapsulated, reusable element that works across desktop and mobile.</p>
       <polymer-ui-toolbar>
         <a href="/docs/start/getting-the-code.html" class="paper-button" data-download-button><polymer-ui-icon src="/images/picons/ic_archive_dark_.png"></polymer-ui-icon>Get {{site.project_title}}</a>
-        <a href="/docs/start/everything.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Get started</a>
+        <a href="/docs/start/usingelements.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Get started</a>
         <a href="https://github.com/polymer/polymer" class="paper-button" borderless>View on Github</a>
       </polymer-ui-toolbar>
     </summary>
