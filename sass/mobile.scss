@@ -198,5 +198,13 @@ dropdown-panel {
       margin-top: -16px;
     }
   }
+}
 
+@media only screen and (min-width: $break-large) {
+  #future {
+    img {
+      width: 416px;
+      height: 286px;
+    }
+  }
 }
