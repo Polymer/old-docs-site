@@ -164,6 +164,8 @@ function ajaxifySite() {
     if (e.state && e.state.url) {
       // TODO(ericbidelman): Don't run this for relative anchors on the page.
       injectPage(e.state.url, false);
+    } else {
+      history.back();
     }
   });
 }
@@ -203,15 +205,15 @@ document.addEventListener('DOMContentLoaded', function(e) {
   scrim = document.querySelector('page-scrim');
   appBar = document.querySelector('app-bar');
 
-  if (AJAXIFY_SITE) {
+  if (AJAXIFY_SITE && docsMenu) { // Ajaxify on pages other than the home.
     ajaxifySite();
+
+    // Insure add current page to history so back button has an URL for popstate.
+    history.pushState({url: document.location.href}, document.title,
+                      document.location.href);
   }
 
   initPage();
-
-  // Insure add current page to history so back button has an URL for popstate.
-  history.pushState({url: document.location.href}, document.title,
-                    document.location.href);
 });
 
 // Search box close.
