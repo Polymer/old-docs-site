@@ -60,7 +60,7 @@ Don't worry about the other dependencies that were added. Bower installs them au
 Although you can grab elements independently, sometimes you want to grab a whole collection. {{site.project_title}} contains a set of [UI elements](/docs/start/customelements.html#uielements) and a set of [non-UI](/docs/start/customelements.html#nonuielements) elements:
 
 - [Polymer elements](/docs/elements/polymer-elements.html). Non-UI utility elements that perform common tasks like layout, AJAX, signaling, and storage, but don’t render anything in the browser.
-- [Polymer UI elements](/docs/elements/polymer-elements.html). UI  elements that render in the browser. 
+- [Polymer UI elements](/docs/elements/polymer-ui-elements.html). UI  elements that render in the browser. 
 
 Each set can be downloaded separately using Bower:
 
@@ -93,7 +93,7 @@ An example `index.html` file:
         <script>
           // Wait for 'polymer-ready'. Insures the element is upgraded.
           window.addEventListener('polymer-ready', function(e) {
-            var ajax = document.querySelector('#ajax');
+            var ajax = document.querySelector('polymer-ajax');
 
             // Respond to events it fires.
             ajax.addEventListener('polymer-response', function(e) {
@@ -127,4 +127,4 @@ building something! In the next section we'll cover the features of {{site.proje
 
 <a href="/docs/start/creatingelements.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Creating elements</a>
 
-If you'd rather browse the existing elements, check out the [{{site.project_title}} elements](/docs/elements/polymer-elements.html) and [{{site.project_title}} UI elements](/docs/elements/polymer-elements.html) catalogs.
+If you'd rather browse the existing elements, check out the [{{site.project_title}} elements](/docs/elements/polymer-elements.html) and [{{site.project_title}} UI elements](/docs/elements/polymer-ui-elements.html) catalogs.
