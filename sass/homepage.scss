@@ -38,6 +38,7 @@ site-banner {
 
   &[unresolved] {
     opacity: 0;
+    visibility: hidden;
   }
 }
 

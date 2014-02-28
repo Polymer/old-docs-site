@@ -84,7 +84,7 @@
     height: $siteBannerHeightMinMobile !important;
     position: fixed;
     width: 100%;
-    @include align-items(center);
+    @include align-items(center !important);
   }
 
   /* @polyfill :host header */

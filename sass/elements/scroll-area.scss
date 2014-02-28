@@ -22,7 +22,7 @@
 
 /* @polyfill :host.scrolling site-banner */
 :host(.scrolling) ::content site-banner {
-  height: $siteBannerHeightMin;
+  height: $siteBannerHeightMin !important;
   padding-bottom: 0;
   position: fixed !important;
   width: 100%;
@@ -75,7 +75,7 @@
 // Phone + Tablet
 @media only screen and (max-width: $break-medium) {
   :host([sidebar]) {
-    padding-left: 0;
+    padding-left: 0 !important;
   }
 
   /* @polyfill :host > article */

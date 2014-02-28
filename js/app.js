@@ -97,9 +97,12 @@ function injectPage(url, opt_addToHistory) {
 
     // Update site-banner attributes. Elements in xhr'd document are not upgraded.  
     // We can't set properties directly. Instead, do old school attr replacement.
+    // This runs last to help color transition be buttery smooth.
     var newDocSiteBanner = doc.querySelector('site-banner');
     [].forEach.call(newDocSiteBanner.attributes, function(attr, i) {
-      siteBanner.setAttribute(attr.name, attr.value);
+      if (attr.name != 'unresolved') {
+        siteBanner.setAttribute(attr.name, attr.value);
+      }
     });
 
     // TODO(ericbidelman): still need to run HTMLImports loader for inline imports?

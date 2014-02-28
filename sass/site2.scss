@@ -294,6 +294,69 @@ footer {
 
 // Reference, article, other pages ---------------------------------------------
 
+// Desktop or larger
+@media only screen and (min-width: $break-large) {
+
+  // Manual FOUC prevention
+
+  docs-menu {
+    -webkit-transition: opacity 300ms ease-in;
+    transition: opacity 300ms ease-in;
+
+    &[unresolved] {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  scroll-area[sidebar] {
+    display: block;
+    padding-left: $sidebarWidth;
+
+    site-banner {
+      height: $siteBannerHeightMax;
+      @include display-flex();
+      @include align-items(flex-end);
+      color: white;
+      -webkit-transition: opacity 300ms ease-in, background-color 300ms ease-in;
+      transition: opacity 300ms ease-in, background-color 300ms ease-in;
+
+      &[unresolved] {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    article {
+      padding: 24px 64px;
+      max-width: 912px;
+      min-height: 300px;
+      overflow: hidden;
+    }
+  }
+}
+
+// Phone + Tablet
+@media only screen and (max-width: $break-medium) {
+  scroll-area {
+    &[unresolved] {
+      visibility: hidden;
+      -webkit-transition: opacity 300ms ease-in, background-color 300ms ease-in;
+      transition: opacity 300ms ease-in, background-color 300ms ease-in;
+    }
+  }
+}
+
+// scroll-area[sidebar] {
+//   -webkit-transition: opacity 300ms ease-in;
+//   transition: opacity 300ms ease-in;
+//   &[unresolved] {
+//     opacity: 0 !important;
+//     visibility: hidden;
+//   }
+// }
+
+  
 #sidebar {
   $leftPadding: 16px;
 
@@ -322,9 +385,9 @@ footer {
   }
 
   #logo-container {
-    // @include display-flex;
+    @include display-flex;
     //@include justify-content(center);
-    // @include align-items(center);
+    @include align-items(center);
     height: $siteBannerHeightMin;
     margin-bottom: $additonalPadding;
     padding-left: $leftPadding;

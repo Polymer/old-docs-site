@@ -89,7 +89,7 @@ code, pre { color: #9f499b; }
 
 /* @polyfill :host.scrolling site-banner */
 /* line 24, ../../sass/elements/scroll-area.scss */
-:host(.scrolling) ::content site-banner { height: 80px; padding-bottom: 0; position: fixed !important; width: 100%; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3); }
+:host(.scrolling) ::content site-banner { height: 80px !important; padding-bottom: 0; position: fixed !important; width: 100%; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3); }
 
 /* @polyfill :host.scrolling:not(.mobile) > article */
 /* line 35, ../../sass/elements/scroll-area.scss */
@@ -116,7 +116,7 @@ code, pre { color: #9f499b; }
 ::content > article { padding: 24px 64px; max-width: 912px; min-height: 300px; overflow: hidden; }
 
 @media only screen and (max-width: 850px) { /* line 77, ../../sass/elements/scroll-area.scss */
-  :host([sidebar]) { padding-left: 0; }
+  :host([sidebar]) { padding-left: 0 !important; }
   /* @polyfill :host > article */
   /* line 82, ../../sass/elements/scroll-area.scss */
   ::content > article { padding-left: 35px; padding-right: 35px; } }

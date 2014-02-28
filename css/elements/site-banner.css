@@ -118,7 +118,7 @@ code, pre { color: #9f499b; }
 ::content summary { margin-top: 20px; opacity: 0.6; }
 
 @media only screen and (max-width: 580px) { /* line 83, ../../sass/elements/site-banner.scss */
-  :host { height: 60px !important; position: fixed; width: 100%; -webkit-box-align: center; -webkit-align-items: center; -moz-align-items: center; -ms-align-items: center; -o-align-items: center; align-items: center; }
+  :host { height: 60px !important; position: fixed; width: 100%; -webkit-box-align: center !important; -webkit-align-items: center !important; -moz-align-items: center !important; -ms-align-items: center !important; -o-align-items: center !important; align-items: center !important; }
   /* @polyfill :host header */
   /* line 91, ../../sass/elements/site-banner.scss */
   ::content header { display: none; }

@@ -109,5 +109,5 @@ dropdown-panel { position: absolute; top: 75px; left: 15px; width: 240px; z-inde
   footer polymer-ui-toolbar .paper-button { margin-bottom: 16px; }
   /* line 197, ../sass/mobile.scss */
   footer #copyright { margin-top: -16px; } }
-@media only screen and (min-width: 990px) { /* line 205, ../sass/mobile.scss */
+@media only screen and (min-width: 990px) { /* line 206, ../sass/mobile.scss */
   #future img { width: 416px; height: 286px; } }

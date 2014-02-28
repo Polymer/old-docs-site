@@ -3,7 +3,7 @@
 <head>
 {% include head.html %}
 </head>
-<body id="{{page.title | downcase | replace:' ','-' }}" unresolved>
+<body id="{{page.title | downcase | replace:' ','-' }}">
 
 <main id="content-container">
 
@@ -16,10 +16,10 @@
 
     {% include dropdown-panel.html %}
 
-    <docs-menu menu="{{site.data.pagetypes[page.type].menu}}"></docs-menu>
+    <docs-menu menu="{{site.data.pagetypes[page.type].menu}}" unresolved></docs-menu>
   </aside>
-  <scroll-area sidebar>
-    <site-banner type="{{page.type}}" navgroup="{{page.navgroup}}" shortname="{{page.shortname}}">
+  <scroll-area sidebar unresolved>
+    <site-banner type="{{page.type}}" navgroup="{{page.navgroup}}" shortname="{{page.shortname}}" unresolved>
       {% include top-nav.html %}
       <header>
         <h1>{{page.title}}</h1>
