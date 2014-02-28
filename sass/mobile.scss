@@ -28,7 +28,7 @@ dropdown-panel {
   
   .panel {
     @include flex-direction(column);
-    margin: 0 30px;
+    margin: 0 30px !important;
     padding: $content-padding 0 40px 0 !important;
 
     > img {
@@ -50,11 +50,11 @@ dropdown-panel {
     
     summary {
       + summary {
-        margin-right: auto;
-        margin-left: 0px;
+        margin-right: auto !important;
+        margin-left: 0px !important;
       }
       p {
-        margin: 10px 0;
+        margin: 10px 0 !important;
       }
     }
   }
@@ -141,27 +141,27 @@ dropdown-panel {
   .main-bg .panel img {
     width: 300px;
     margin-right: auto;
-    margin-bottom:30px;
+    margin-bottom: 30px;
   }
   
   .panel {
     @include flex-direction(column);
-    margin: 0 30px;
+    margin: 0 30px !important;
 
     &.left img {
-      margin-left: 0px;
-      margin-right: auto;
+      margin-left: 0px !important;
+      margin-right: auto !important;
     }
 
     &.right img {
       width: 300px;
-      margin-right: 0px;
-      margin-left: auto;
+      margin-right: 0px !important;
+      margin-left: auto !important;
     }
 
     summary + summary {
-      margin-right: auto;
-      margin-left: 0px;
+      margin-right: auto !important;
+      margin-left: 0px !important;
     }
   }
 

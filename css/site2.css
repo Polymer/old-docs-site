@@ -296,7 +296,7 @@ dropdown-panel { position: absolute; top: 75px; left: 15px; width: 240px; z-inde
   /* line 25, ../sass/mobile.scss */
   .bar { height: 60px; }
   /* line 29, ../sass/mobile.scss */
-  .panel { -webkit-box-orient: vertical; -webkit-flex-direction: column; -moz-flex-direction: column; -ms-flex-direction: column; -o-flex-direction: column; flex-direction: column; margin: 0 30px; padding: 56px 0 40px 0 !important; }
+  .panel { -webkit-box-orient: vertical; -webkit-flex-direction: column; -moz-flex-direction: column; -ms-flex-direction: column; -o-flex-direction: column; flex-direction: column; margin: 0 30px !important; padding: 56px 0 40px 0 !important; }
   /* line 34, ../sass/mobile.scss */
   .panel > img { margin-bottom: 50px; width: 200px; margin-right: auto !important; margin-left: 0px !important; }
   /* line 42, ../sass/mobile.scss */
@@ -304,9 +304,9 @@ dropdown-panel { position: absolute; top: 75px; left: 15px; width: 240px; z-inde
   /* line 46, ../sass/mobile.scss */
   .panel.right img { order: 1; }
   /* line 52, ../sass/mobile.scss */
-  .panel summary + summary { margin-right: auto; margin-left: 0px; }
+  .panel summary + summary { margin-right: auto !important; margin-left: 0px !important; }
   /* line 56, ../sass/mobile.scss */
-  .panel summary p { margin: 10px 0; }
+  .panel summary p { margin: 10px 0 !important; }
   /* line 62, ../sass/mobile.scss */
   .paper-button { margin: 15px 0; }
   /* line 67, ../sass/mobile.scss */
@@ -374,13 +374,13 @@ dropdown-panel { position: absolute; top: 75px; left: 15px; width: 240px; z-inde
   /* line 141, ../sass/mobile.scss */
   .main-bg .panel img { width: 300px; margin-right: auto; margin-bottom: 30px; }
   /* line 147, ../sass/mobile.scss */
-  .panel { -webkit-box-orient: vertical; -webkit-flex-direction: column; -moz-flex-direction: column; -ms-flex-direction: column; -o-flex-direction: column; flex-direction: column; margin: 0 30px; }
+  .panel { -webkit-box-orient: vertical; -webkit-flex-direction: column; -moz-flex-direction: column; -ms-flex-direction: column; -o-flex-direction: column; flex-direction: column; margin: 0 30px !important; }
   /* line 151, ../sass/mobile.scss */
-  .panel.left img { margin-left: 0px; margin-right: auto; }
+  .panel.left img { margin-left: 0px !important; margin-right: auto !important; }
   /* line 156, ../sass/mobile.scss */
-  .panel.right img { width: 300px; margin-right: 0px; margin-left: auto; }
+  .panel.right img { width: 300px; margin-right: 0px !important; margin-left: auto !important; }
   /* line 162, ../sass/mobile.scss */
-  .panel summary + summary { margin-right: auto; margin-left: 0px; }
+  .panel summary + summary { margin-right: auto !important; margin-left: 0px !important; }
   /* line 168, ../sass/mobile.scss */
   footer { padding-left: 35px; } }
 @media only screen and (min-width: 851px) and (max-width: 990px) { /* line 178, ../sass/mobile.scss */
