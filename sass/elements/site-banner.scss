@@ -43,7 +43,7 @@
   transform-origin: 0 0;
 }
 
-/* @polyfill :host header:not(.shrink) h1 */
+/* @polyfill scroll-area:not(.scrolling) h1 */
 :ancestor(scroll-area:not(.scrolling)) ::content header h1 {
   -webkit-transition: -webkit-transform 200ms linear;
   transition: -webkit-transform 200ms linear;
@@ -81,10 +81,11 @@
 // Phone
 @media only screen and (max-width: $break-small) {
   :host {
-    height: $siteBannerHeightMinMobile !important;
     position: fixed;
+    height: $siteBannerHeightMinMobile !important;
     width: 100%;
     @include align-items(center !important);
+    box-shadow: 0 1px 5px rgba(0,0,0,0.3);
   }
 
   /* @polyfill :host header */

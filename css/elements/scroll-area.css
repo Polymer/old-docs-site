@@ -89,7 +89,7 @@ code, pre { color: #9f499b; }
 
 /* @polyfill :host.scrolling site-banner */
 /* line 24, ../../sass/elements/scroll-area.scss */
-:host(.scrolling) ::content site-banner { height: 80px !important; padding-bottom: 0; position: fixed !important; width: 100%; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3); }
+:host(.scrolling:not(.mobile)) ::content site-banner { height: 80px !important; padding-bottom: 0; position: fixed !important; width: 100%; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3); }
 
 /* @polyfill :host.scrolling:not(.mobile) > article */
 /* line 35, ../../sass/elements/scroll-area.scss */

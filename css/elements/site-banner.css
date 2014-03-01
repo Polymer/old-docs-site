@@ -93,7 +93,7 @@ code, pre { color: #9f499b; }
 /* line 39, ../../sass/elements/site-banner.scss */
 ::content h1 { font-size: 45px !important; -webkit-transform-origin: 0 0; transform-origin: 0 0; }
 
-/* @polyfill :host header:not(.shrink) h1 */
+/* @polyfill scroll-area:not(.scrolling) h1 */
 /* line 47, ../../sass/elements/site-banner.scss */
 :ancestor(scroll-area:not(.scrolling)) ::content header h1 { -webkit-transition: -webkit-transform 200ms linear; transition: -webkit-transform 200ms linear; }
 
@@ -118,15 +118,15 @@ code, pre { color: #9f499b; }
 ::content summary { margin-top: 20px; opacity: 0.6; }
 
 @media only screen and (max-width: 580px) { /* line 83, ../../sass/elements/site-banner.scss */
-  :host { height: 60px !important; position: fixed; width: 100%; -webkit-box-align: center !important; -webkit-align-items: center !important; -moz-align-items: center !important; -ms-align-items: center !important; -o-align-items: center !important; align-items: center !important; }
+  :host { position: fixed; height: 60px !important; width: 100%; -webkit-box-align: center !important; -webkit-align-items: center !important; -moz-align-items: center !important; -ms-align-items: center !important; -o-align-items: center !important; align-items: center !important; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3); }
   /* @polyfill :host header */
-  /* line 91, ../../sass/elements/site-banner.scss */
+  /* line 92, ../../sass/elements/site-banner.scss */
   ::content header { display: none; }
   /* @polyfill-rule header#internalheader { display: block; padding: 0; }*/
   /* @polyfill-rule header#internalheader h2 { margin: 0; }*/ }
 @media only screen and (max-width: 850px) { /* @polyfill :host #dropdown-toggle */
-  /* line 108, ../../sass/elements/site-banner.scss */
+  /* line 109, ../../sass/elements/site-banner.scss */
   ::content #dropdown-toggle { z-index: 1000; }
   /* @polyfill :host dropdown-panel */
-  /* line 113, ../../sass/elements/site-banner.scss */
+  /* line 114, ../../sass/elements/site-banner.scss */
   ::content dropdown-panel { color: black; } }

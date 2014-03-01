@@ -21,7 +21,7 @@
 }
 
 /* @polyfill :host.scrolling site-banner */
-:host(.scrolling) ::content site-banner {
+:host(.scrolling:not(.mobile)) ::content site-banner {
   height: $siteBannerHeightMin !important;
   padding-bottom: 0;
   position: fixed !important;
