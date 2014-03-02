@@ -244,11 +244,13 @@ footer #copyright a { color: #666666; }
   /* line 315, ../sass/site2.scss */
   scroll-area[sidebar] { display: block; padding-left: 265px; }
   /* line 319, ../sass/site2.scss */
-  scroll-area[sidebar] site-banner { height: 286px; display: -webkit-box; display: -webkit-flex; display: -moz-flex; display: -ms-flex; display: -o-flex; display: flex; -webkit-box-align: flex-end; -webkit-align-items: flex-end; -moz-align-items: flex-end; -ms-align-items: flex-end; -o-align-items: flex-end; align-items: flex-end; color: white; -webkit-transition: opacity 300ms ease-in, background-color 300ms ease-in; transition: opacity 300ms ease-in, background-color 300ms ease-in; }
-  /* line 327, ../sass/site2.scss */
-  scroll-area[sidebar] site-banner[unresolved] { color: transparent; background-color: #1f2036; }
+  scroll-area[sidebar] site-banner { height: 286px; display: -webkit-box; display: -webkit-flex; display: -moz-flex; display: -ms-flex; display: -o-flex; display: flex; -webkit-box-align: flex-end; -webkit-align-items: flex-end; -moz-align-items: flex-end; -ms-align-items: flex-end; -o-align-items: flex-end; align-items: flex-end; }
+  /* line 324, ../sass/site2.scss */
+  scroll-area[sidebar] site-banner[unresolved] { background-color: #1f2036; }
+  /* line 326, ../sass/site2.scss */
+  scroll-area[sidebar] site-banner[unresolved] app-bar, scroll-area[sidebar] site-banner[unresolved] header { opacity: 0; visibility: hidden; }
   /* line 332, ../sass/site2.scss */
-  scroll-area[sidebar] site-banner app-bar[unresolved] { opacity: 0; visibility: hidden; }
+  scroll-area[sidebar] site-banner header, scroll-area[sidebar] site-banner app-bar { -webkit-transition: opacity 300ms ease-in; transition: opacity 300ms ease-in; }
   /* line 337, ../sass/site2.scss */
   scroll-area[sidebar] site-banner[type="platform"] { background-color: #9f499b !important; }
   /* line 341, ../sass/site2.scss */

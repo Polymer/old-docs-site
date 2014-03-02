@@ -320,18 +320,18 @@ footer {
       height: $siteBannerHeightMax;
       @include display-flex();
       @include align-items(flex-end);
-      color: white;
-      -webkit-transition: opacity 300ms ease-in, background-color 300ms ease-in;
-      transition: opacity 300ms ease-in, background-color 300ms ease-in;
 
       &[unresolved] {
-        color: transparent;
         background-color: $main-purple;
+        app-bar, header {
+          opacity: 0;
+          visibility: hidden;
+        }
       }
 
-      app-bar[unresolved] {
-        opacity: 0;
-        visibility: hidden;
+      header, app-bar {
+        -webkit-transition: opacity 300ms ease-in;
+        transition: opacity 300ms ease-in;
       }
 
       &[type="platform"] {

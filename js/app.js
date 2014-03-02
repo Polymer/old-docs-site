@@ -83,8 +83,6 @@ function injectPage(url, opt_addToHistory) {
     var container = document.querySelector(CONTAINER_SELECTOR);
     container.innerHTML = doc.querySelector(CONTAINER_SELECTOR).innerHTML;
 
-    initPage(); // TODO: can't pass doc. prettyPrint() needs markup in DOM.
-
     // Set left-nav menu and highlight correct item.
     docsMenu.setAttribute(
         'menu', doc.querySelector('docs-menu').getAttribute('menu'));
@@ -106,6 +104,8 @@ function injectPage(url, opt_addToHistory) {
     });
 
     // TODO(ericbidelman): still need to run HTMLImports loader for inline imports?
+
+    initPage(); // TODO: can't pass doc. prettyPrint() needs markup in DOM.
 
     exports.scrollTo(0, 0); // Ensure we're at the top of the page when it's ready.
 
