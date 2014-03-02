@@ -127,7 +127,7 @@ for developers that includes all of the the pieces for building
 ### Does {{site.project_title}} work under Content Security Policy (CSP)? {#csp}
 
 Yes. By using `polymer.min.js` and [creating elements that use external scripts](/docs/polymer/polymer.html#alternate-ways-to-register-an-element), {{site.project_title}} runs under [CSP](http://www.html5rocks.com/tutorials/security/content-security-policy/). If you prefer to keep your element's
-script inline to `<polymer-element>`, we recommend using [Vulcanizer](/resources/tooling-strategy.html#vulcanizer)
+script inline to `<polymer-element>`, we recommend using [Vulcanizer](/resources/tooling-strategy.html#vulcanize-build-tool)
 and running with the `--csp` flag.
 
 In other nuanced cases, {{site.project_title}} fails under CSP. This is because
@@ -329,7 +329,7 @@ bring that file into your app.
 
 Similarly, you could write a build step that inlines any custom element definition
 directly into your main app. We've experimented with this basic idea in a
-tool we call [Vulcanizer](/resources/tooling-strategy.html#vulcanizer).
+tool we call [Vulcanizer](/resources/tooling-strategy.html#vulcanize-build-tool).
 
 ### Crawlers understand custom elements? How does SEO work? {#seo}
 

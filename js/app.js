@@ -107,7 +107,12 @@ function injectPage(url, opt_addToHistory) {
 
     initPage(); // TODO: can't pass doc. prettyPrint() needs markup in DOM.
 
-    exports.scrollTo(0, 0); // Ensure we're at the top of the page when it's ready.
+    // Scroll to hash, otherwise goto top of the loaded page.
+    if (location.hash) {
+      document.querySelector(location.hash).scrollIntoView(true, {behavior: 'smooth'});
+    } else {
+      exports.scrollTo(0, 0);
+    }
 
     // Always hide mobile sidebar upon nav item selection.
     hideSidebar();
@@ -167,8 +172,6 @@ function ajaxifySite() {
     if (e.state && e.state.url) {
       // TODO(ericbidelman): Don't run this for relative anchors on the page.
       injectPage(e.state.url, false);
-    } else if (!history.state) {
-      history.back();
     }
   });
 }
