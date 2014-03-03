@@ -3,7 +3,7 @@ layout: default
 type: core
 navgroup: docs
 shortname: Articles
-title: "Easy custom element interoperability"
+title: "Custom Element Interoperability"
 subtitle: Using Polymer, X-Tag, and Vanilla Custom Elements
 
 article:
@@ -50,7 +50,7 @@ Since both projects adhere to the work-in-progress Web Components standards, it 
 
 ## Digging Deeper
 
-Let’s walk through the example project to better understand what’s actually going on. Start by opening the `index.html` file.
+Let’s walk through the example project to better understand what’s actually going on. Open the `index.html` file.
 
     <!doctype html>
     <html>
@@ -192,7 +192,7 @@ The final step is to get all of the elements working in harmony. Note the script
       });
     </script>
 
-`polymer-ready` informs us when all of our HTML Imports have loaded. We’re then able to `querySelector` the different elements and store their references. The `click` handler on our button will use these references to toggle the switch and set the rating’s value. With that in place we’ve got a working application that links X-Tag, Polymer, and vanilla Custom Elements.
+`polymer-ready` informs us when all of our HTML Imports have loaded. We’re then able to `querySelector` the different elements and store their references. The `click` handler on our button uses these references to toggle the switch and set the value of the ratings element. With that in place we’ve got a working application that links X-Tag, Polymer, and vanilla Custom Elements.
 ## Conclusion
 
 X-Tag is awesome, Polymer is awesome, and Custom Elements are definitely awesome. Thankfully we don't have to pick favorites because they all work well together. I hope this post clears up any confusion you may have had but if you've still got questions be sure to reach out to either the Polymer team on [the polymer mailing list](https://groups.google.com/forum/#!forum/polymer-dev) or in the #polymer IRC channel on irc.freenode.net, or the X-Tag team on irc.mozilla.org in the #brick channel.
