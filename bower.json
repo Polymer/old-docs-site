@@ -21,6 +21,7 @@
     "tests"
   ],
   "dependencies": {
-    "smoothscroll": "~0.0.2"
+    "smoothscroll": "~0.0.2",
+    "x-tag-imports": "x-tag/x-tag-imports"
   }
 }

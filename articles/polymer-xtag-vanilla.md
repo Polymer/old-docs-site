@@ -38,7 +38,7 @@ Then, `cd` into the project directory, `polymer-xtag-vanilla` and run:
 
 Lastly, you’ll need to start a local server to view the `index.html` file.
 
-![Elements in action](/articles/images/polymer-xtag-vanilla/polymer-xtag-vanilla.jpg "Elements in action")
+<iframe src="/articles/demos/polymer-xtag-vanilla/example.html" width="380" height="320" frameborder="0"></iframe>
 
 If your screen looks like the above then you’re all set.
 
@@ -192,7 +192,10 @@ The final step is to get all of the elements working in harmony. Note the script
       });
     </script>
 
-`polymer-ready` informs us when all of our HTML Imports have loaded. We’re then able to `querySelector` the different elements and store their references. The `click` handler on our button uses these references to toggle the switch and set the value of the ratings element. With that in place we’ve got a working application that links X-Tag, Polymer, and vanilla Custom Elements.
+`polymer-ready` informs us when all of our HTML Imports have loaded. We’re then able to `querySelector` the different elements and store their references. The `click` handler on our button uses these references to toggle the switch and set the value of the ratings element. With that in place we’ve got a working application that links X-Tag, Polymer, and vanilla Custom Elements. Give it a spin!
+
+<iframe src="/articles/demos/polymer-xtag-vanilla/example.html" width="380" height="320" frameborder="0"></iframe>
+
 ## Conclusion
 
 X-Tag is awesome, Polymer is awesome, and Custom Elements are definitely awesome. Thankfully we don't have to pick favorites because they all work well together. I hope this post clears up any confusion you may have had but if you've still got questions be sure to reach out to either the Polymer team on [the polymer mailing list](https://groups.google.com/forum/#!forum/polymer-dev) or in the #polymer IRC channel on irc.freenode.net, or the X-Tag team on irc.mozilla.org in the #brick channel.
