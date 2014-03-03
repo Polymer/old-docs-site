@@ -1,0 +1,20 @@
+<template>
+  <img style="vertical-align: middle;"
+       src="http://lorempixel.com/32/32" alt="awesome icon">
+  Click Me
+</template>
+<script>
+// See the Polymer docs for an explanation of _currentScript
+// http://www.polymer-project.org/platform/html-imports.html#other-notes
+var owner = document._currentScript.ownerDocument;
+var tmpl = owner.querySelector('template');
+
+var IconButtonProto = Object.create(HTMLElement.prototype);
+IconButtonProto.createdCallback = function() {
+  this.appendChild(document.importNode(tmpl.content, true));
+};
+
+var IconButton = document.registerElement('icon-button', {
+  prototype: IconButtonProto
+});
+</script>
