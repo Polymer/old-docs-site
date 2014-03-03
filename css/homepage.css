@@ -82,23 +82,23 @@ h5 { font-size: 12px; font-weight: 600; }
 code, pre { color: #9f499b; }
 
 /* line 33, ../sass/polymer.scss */
-.prettyprint { background-color: #fafafa; padding: 16px; margin: 30px 0; }
+pre, .prettyprint { background-color: #fafafa; padding: 16px; margin: 30px 0; }
 /* line 39, ../sass/polymer.scss */
-.prettyprint .typ { color: #6b499f; }
+pre .typ, pre .inline, .prettyprint .typ, .prettyprint .inline { color: #6b499f; }
 /* line 43, ../sass/polymer.scss */
-.prettyprint .pun { color: #5c6bc0; }
+pre .pun, .prettyprint .pun { color: #5c6bc0; }
 /* line 46, ../sass/polymer.scss */
-.prettyprint .str { color: #ff4081; }
+pre .str, pre .string, .prettyprint .str, .prettyprint .string { color: #ff4081; }
 /* line 49, ../sass/polymer.scss */
-.prettyprint .pln { color: #7986cb; }
+pre .pln, .prettyprint .pln { color: #7986cb; }
 /* line 52, ../sass/polymer.scss */
-.prettyprint .kwd { color: #d61a7f; }
+pre .kwd, .prettyprint .kwd { color: #d61a7f; }
 /* line 58, ../sass/polymer.scss */
-.prettyprint .atn { color: #6b499f; }
+pre .atn, pre .attribute-name, .prettyprint .atn, .prettyprint .attribute-name { color: #6b499f; }
 /* line 61, ../sass/polymer.scss */
-.prettyprint .atv { color: #7986cb; }
+pre .atv, pre .attribute-value, .prettyprint .atv, .prettyprint .attribute-value { color: #7986cb; }
 /* line 64, ../sass/polymer.scss */
-.prettyprint .com { color: #8a8a8a; }
+pre .com, pre .comment, .prettyprint .com, .prettyprint .comment { color: #8a8a8a; }
 
 /* line 6, ../sass/homepage.scss */
 section { border-bottom: 1px solid #eeeeee; }
