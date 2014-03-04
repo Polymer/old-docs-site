@@ -41,6 +41,11 @@ site-banner {
     visibility: hidden;
   }
 }
+// ----
+
+site-banner .logo {
+  z-index: 200;
+}
 
 .panel {
   @extend .content-padding;
