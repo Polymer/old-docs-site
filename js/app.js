@@ -126,13 +126,6 @@ function initPage(opt_inDoc) {
 
   addPermalinkHeadings(doc);
 
-  // TODO: figure out better way to do this than move it in JS. Kramdown
-  // {:toc} not working inside a <details> tag (see _includes/toc.html)
-  var toc = document.querySelector('#toc');
-  if (toc) {
-    toc.appendChild(document.querySelector('#markdown-toc'));
-  }
-
   // TODO: Use kramdown {:.prettyprint .linenums .lang-ruby} to add the
   // <pre class="prettyprint"> instead of doing this client-side.
   prettyPrintPage(doc);

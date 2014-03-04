@@ -6,6 +6,7 @@ We use Jekyll 1.4.2+ and [Grunt][grunt] to generate the documentation. You'll ne
 
     gem install jekyll
     gem install kramdown
+    gem install jekyll-page-hooks
     npm install -g grunt-cli
 
 **Note:** If you receive permission warnings, you may need to run the above tasks with `sudo`.
