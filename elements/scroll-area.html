@@ -26,38 +26,16 @@
     this.ticking = false; // Reset the tick so we can capture the next onScroll.
 
     var currentScrollY = this.latestKnownScrollY;
-    var previousScrollY = this.previousScrollY;
+    // var previousScrollY = this.previousScrollY;
 
-    var delta = currentScrollY - previousScrollY;
     this.smallBannerSizeReached = this.siteBannerHeight - currentScrollY < this.appBarHeight;  //80px;
 
     if (this.smallBannerSizeReached) {
       this.classList.add('scrolling');
       this.header && this.header.classList.add('shrink');
- 
-      if (delta < 0) { // scrollback
-        this.hasBackScrolled = true;
-        this.appBar.classList.add('down');
-      } else {
-        this.appBar.classList.remove('down');
-      }
-
-      // Explicitly control app-bar position with scroll.
-      // // Navbar moves in opposite direction of scroll.
-      // this.appBarTranslateY -= delta;
-      // this.appBarTranslateY = Math.min(
-      //     Math.max(this.appBarTranslateY, -this.appBarHeight), 0);
-
-      // this.appBar.style.WebkitTransform = 'translate3d(0,' + this.appBarTranslateY +'px,0)';
-
     } else {
       this.classList.remove('scrolling');
       this.header && this.header.classList.remove('shrink');
-      //this.appBarTranslateY = -this.appBarHeight;
-
-      if (currentScrollY <= 0) {
-        this.hasBackScrolled = false;
-      }
 
       // Fix and shrink header when it hits the top of the page.
       if (this.header && this.header.offsetTop - currentScrollY <= 0) {
@@ -67,10 +45,8 @@
   }
 
   Polymer('scroll-area', {
-    hasBackScrolled: false,
     latestKnownScrollY: 0,
     previousScrollY: 0,
-    //appBarTranslateY: 0,
     smallBannerSizeReached: false,
     ticking: false,
     fancyheader: true, // header sticks on scroll
@@ -87,7 +63,6 @@
       this.async(function() {
         this.siteBannerHeight = siteBanner.offsetHeight;
         this.appBarHeight = this.appBar.offsetHeight;
-        //this.appBarTranslateY = -this.appBarHeight;
       });
 
       // For testing.
@@ -111,12 +86,7 @@
         window.removeEventListener('scroll', this.onscroll, false);
         this.classList.remove('scrolling');
         this.header && this.header.classList.remove('shrink');
-        this.appBar.classList.remove('fixed');
-        this.appBar.classList.remove('down');
       }
-    },
-    hasBackScrolledChanged: function() {
-      this.appBar.classList.toggle('fixed');
     }
   });
 })();

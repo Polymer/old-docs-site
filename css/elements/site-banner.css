@@ -93,10 +93,6 @@ pre .com, pre .comment, .prettyprint .com, .prettyprint .comment { color: #8a8a8
 /* line 39, ../../sass/elements/site-banner.scss */
 ::content h1 { font-size: 45px !important; -webkit-transform-origin: 0 0; transform-origin: 0 0; }
 
-/* @polyfill scroll-area:not(.scrolling) h1 */
-/* line 47, ../../sass/elements/site-banner.scss */
-:ancestor(scroll-area:not(.scrolling)) ::content header h1 { -webkit-transition: -webkit-transform 200ms linear; transition: -webkit-transform 200ms linear; }
-
 /* @polyfill :host header.shrink h1 */
 /* line 53, ../../sass/elements/site-banner.scss */
 ::content header.shrink h1 { -webkit-transform: scale(0.44444); transform: scale(0.44444); }
