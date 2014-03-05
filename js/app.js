@@ -3,6 +3,8 @@
 // Control whether the site is ajax or static.
 var AJAXIFY_SITE = true;//!navigator.userAgent.match('Mobile|Android');
 
+var wasRelativeAnchorClick = false;
+
 var siteBanner = null;
 var docsMenu = null;
 var appBar = null;
@@ -142,6 +144,8 @@ function ajaxifySite() {
   document.addEventListener('click', function(e) {
     var viableLink = false;
 
+    wasRelativeAnchorClick = !!e.target.hash;
+
     if (e.target.localName == docsMenu.localName && e.detail.link) {
       viableLink = e.detail.link;
     } else if (e.target.localName == 'a') {
@@ -165,6 +169,8 @@ function ajaxifySite() {
     if (e.state && e.state.url) {
       // TODO(ericbidelman): Don't run this for relative anchors on the page.
       injectPage(e.state.url, false);
+    } else if (!wasRelativeAnchorClick) {
+      history.back();
     }
   });
 }
