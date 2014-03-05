@@ -205,6 +205,32 @@ that contain rules which need to be in the global scope (e.g. `@keyframe` and `@
 {: .alert .alert-error}
 {%endcomment%}
 
+## Including stylesheets in an element
+
+{{site.project_title}} allows you to include stylesheets in your `<polymer-element>` definitions, a feature not supported natively by Shadow DOM. {{site.project_title}} transmutes `<link rel="stylesheet">` stylesheets into equivalent `@import` rules. That is:
+
+    <polymer-element name="my-element">
+      <template>
+        <link rel="stylesheet" href="my-element.css">
+         ...
+      </template>
+    </polymer>
+
+is automatically converted to:
+
+    <polymer-element ...>
+      <template>
+        <style>@import "my-element.css";</style>
+         ...
+      </template>
+    </polymer>
+
+Where possible, we recommend explicitly using `@import` rules to include external stylesheets in an element as this avoids the above conversion step.
+
+### cache-csstext attribute
+
+The experimental `cache-csstext` attribute can be used to change the inlining behavior for stylesheets. Using the attribute on `<polymer-element>` instructs {{site.project_title}} to inline the stylesheet contents instead of using `@import`. This attribute exists to avoid relying on browser caching of stylesheets due to a server serving stylesheets such that they expire immediately.
+
 ## Polyfill details
 
 ### Handling scoped styles
