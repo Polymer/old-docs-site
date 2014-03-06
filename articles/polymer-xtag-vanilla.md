@@ -26,7 +26,7 @@ A number of developers have asked if they can use [Polymer](http://www.polymer-p
 
 First, clone the example project on Github:
 
-    git clone https://github.com/x-tag/introp-examples
+    git clone https://github.com/x-tag/interop-examples
 
 The example project uses [Bower](http://bower.io) to manage its dependencies. Be sure to install Bower if you don’t already have it.
 
