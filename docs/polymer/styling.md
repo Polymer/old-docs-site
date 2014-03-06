@@ -227,10 +227,6 @@ is automatically converted to:
 
 Where possible, we recommend explicitly using `@import` rules to include external stylesheets in an element as this avoids the above conversion step.
 
-### cache-csstext attribute
-
-The experimental `cache-csstext` attribute can be used to change the inlining behavior for stylesheets. Using the attribute on `<polymer-element>` instructs {{site.project_title}} to inline the stylesheet contents instead of using `@import`. This attribute exists to avoid relying on browser caching of stylesheets due to a server serving stylesheets such that they expire immediately.
-
 ## Polyfill details
 
 ### Handling scoped styles
