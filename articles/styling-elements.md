@@ -392,8 +392,7 @@ It's simple being rendered elsewhere (over in Shadow DOM land).
 
 ### From outside the element {#style-fromoutside}
 
-The `/shadow/` and `/shadow-deep/` combinators pierce through Shadow DOM's boundaries can
-can style elements within different shadow trees.
+The `/shadow/` and `/shadow-deep/` combinators pierce through Shadow DOM's boundaries and can style elements within different shadow trees.
 
 #### The `/shadow/` combinator {#hat}
 
@@ -419,14 +418,17 @@ The `/shadow/` combinator is generally equivalent to a descendant combinator (e.
 **Demo:**
 
 <style>
-  x-foo-cat /shadow/ p {
+  x-foo-shadow /shadow/ p {
     color: red;
   }
 </style>
 
-<x-foo-cat style="margin-bottom:20px;">
+<x-foo-shadow style="margin-bottom:20px;">
   <p>I am not red.</p>
-</x-foo-cat>
+</x-foo-shadow>
+
+In this example, `<p>I am not red.</p>` remains unstyled because `x-foo /shadow/ p`
+only targets the `<p>` internal to x-foo (e.g. in its Shadow DOM).
 
 A more full fledged example is styling a tabs component, say `<x-tabs>`. It has `<x-panel>` children in its Shadow DOM, each of which has an `h2` heading. To style those headings from the main page, one could use the `/shadow/` combinator like so:
 
@@ -458,7 +460,7 @@ A more full fledged example is styling a tabs component, say `<x-tabs>`. It has 
 
 #### The `/shadow-deep/` combinator {#cat}
 
-The `/shadow-deep/` combinator is similar to `/shadow/`, but more powerful. It completely ignores all boundaries and crosses into any number of shadow trees**. 
+The `/shadow-deep/` combinator is similar to `/shadow/`, but more powerful. It completely **ignores all boundaries and crosses into any number of shadow trees**. 
 
 **Example** style all `h2` elements that are descendants of an `<x-tabs>`, anywhere in a shadow tree:
 
