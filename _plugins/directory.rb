@@ -74,7 +74,7 @@ module Jekyll
         file_path = "#{element['full_path']}"
       end
 
-      demo_path = "#{element['full_path']}/smoke.html"
+      demo_path = "#{element['full_path']}/demo.html"
       if !File.exists?(demo_path)
        demo_path = "#{element['full_path']}/index.html"
       end
