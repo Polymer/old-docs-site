@@ -165,6 +165,8 @@ You can use bindings with built-in elements just like you would with Polymer ele
 a hint that this property is an integer.
 {: .alert alert-info}
 
+In this example, `nameChanged()` defines a property changed watcher. {{site.project_title}} will then call this method any time the `name` property is updated. Read more about [changed watchers](/docs/polymer/polymer.html#change-watchers).
+
 ### Publishing properties {#publishing}
 
 Published properties can be used to define an element's "public API". {{site.project_title}}
