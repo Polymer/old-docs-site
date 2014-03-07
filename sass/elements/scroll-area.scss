@@ -8,6 +8,11 @@
   padding-left: $sidebarWidth;
 }
 
+/* @polyfill :host[sidebar] app-bar.fixed */
+:host([sidebar]) ::content app-bar.fixed {
+  margin-left: $sidebarWidth;
+}
+
 /* @polyfill :host.scrolling site-banner */
 :host(.scrolling:not(.mobile)) ::content site-banner {
   height: $siteBannerHeightMin !important;

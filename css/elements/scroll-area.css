@@ -79,27 +79,31 @@ pre .com, pre .comment, .prettyprint .com, .prettyprint .comment { color: #8a8a8
 /* line 7, ../../sass/elements/scroll-area.scss */
 :host([sidebar]) { padding-left: 265px; }
 
-/* @polyfill :host.scrolling site-banner */
+/* @polyfill :host[sidebar] app-bar.fixed */
 /* line 12, ../../sass/elements/scroll-area.scss */
+:host([sidebar]) ::content app-bar.fixed { margin-left: 265px; }
+
+/* @polyfill :host.scrolling site-banner */
+/* line 17, ../../sass/elements/scroll-area.scss */
 :host(.scrolling:not(.mobile)) ::content site-banner { height: 80px !important; padding-bottom: 0; position: fixed !important; width: 100%; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3); }
 
 /* @polyfill :host.scrolling:not(.mobile) > article */
-/* line 23, ../../sass/elements/scroll-area.scss */
+/* line 28, ../../sass/elements/scroll-area.scss */
 :host(.scrolling:not(.mobile)) ::content > article { padding-top: 310px; }
 
 /* @polyfill :host app-bar.fixed */
-/* line 28, ../../sass/elements/scroll-area.scss */
+/* line 33, ../../sass/elements/scroll-area.scss */
 ::content app-bar.fixed { position: fixed; }
 
 /* @polyfill :host > article */
-/* line 33, ../../sass/elements/scroll-area.scss */
+/* line 38, ../../sass/elements/scroll-area.scss */
 ::content > article { padding: 24px 64px; max-width: 912px; min-height: 300px; overflow: hidden; }
 
-@media only screen and (max-width: 850px) { /* line 42, ../../sass/elements/scroll-area.scss */
+@media only screen and (max-width: 850px) { /* line 47, ../../sass/elements/scroll-area.scss */
   :host([sidebar]) { padding-left: 0 !important; }
   /* @polyfill :host > article */
-  /* line 47, ../../sass/elements/scroll-area.scss */
+  /* line 52, ../../sass/elements/scroll-area.scss */
   ::content > article { padding-left: 35px; padding-right: 35px; } }
 @media only screen and (max-width: 580px) { /* @polyfill :host > article */
-  /* line 56, ../../sass/elements/scroll-area.scss */
+  /* line 61, ../../sass/elements/scroll-area.scss */
   ::content > article { padding-top: 70px; } }
