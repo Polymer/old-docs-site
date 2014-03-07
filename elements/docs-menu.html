@@ -11,13 +11,13 @@
     :host {
       display: block;
     }
-    polymer-ui-menu > polymer-ui-submenu-item ^ polymer-ui-menu-item {
+    polymer-ui-menu > polymer-ui-submenu-item /shadow/ polymer-ui-menu-item {
       color: inherit;
     }
     /*polymer-ui-menu-item {
       opacity: 0.8;
     }*/
-    polymer-ui-submenu-item ^^ polymer-ui-menu-item,
+    polymer-ui-submenu-item /shadow-deep/ polymer-ui-menu-item,
     polymer-ui-menu-item {
       font-size: 14px !important;
       font-weight: 600;
@@ -26,13 +26,13 @@
       padding: 0;
       color: initial;
     }
-    :host ^^ #menu {
+    :host /shadow-deep/ #menu {
       margin-left: 34px;
     }
-    polymer-ui-submenu-item polymer-ui-submenu-item ^^ #menu {
+    polymer-ui-submenu-item polymer-ui-submenu-item /shadow-deep/ #menu {
       margin-left: 24px;
     }
-    :host ^^ polymer-ui-icon {
+    :host /shadow-deep/ polymer-ui-icon {
       margin-right: 6px;
       background-size: 48px !important;
     }
