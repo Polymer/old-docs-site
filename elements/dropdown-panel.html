@@ -36,12 +36,12 @@
     }
     
     /* @polyfill :host polymer-ui-menu-item #label */
-    ::content polymer-ui-menu-item ^^ #label {
+    ::content polymer-ui-menu-item /shadow-deep/ #label {
       font-weight: 300;
     }
 
     /* @polyfill :host polymer-ui-menu-item polymer-ui-icon */ 
-    ::content polymer-ui-menu-item ^ polymer-ui-icon {
+    ::content polymer-ui-menu-item /shadow/ polymer-ui-icon {
       background-size: 48px !important;
     }
 

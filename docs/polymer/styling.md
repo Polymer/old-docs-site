@@ -292,7 +292,7 @@ This ensures styling does not leak outside the element's shadowRoot (e.g. upper 
       Note, this technique does not enforce lower bound encapsulation. For that,
       you need to [forcing strict styling](#strictstyling).
 
-1. **Replace `^` and `^^`** with a `<space>` character.
+1. **Replace `/shadow/` and `/shadow-deep/` ** with a `<space>` character.
 
 ### Forcing strict styling {#strictstyling}
 
@@ -307,9 +307,9 @@ This isn't the yet the default because it requires that you add the custom eleme
 
 ## Using Shadow DOM styling features outside of elements {#sdcss}
 
-Under the polyfill, {{site.project_title}} automatically examines any style or link elements inside of a `<polymer-element>` in order to shim Shadow DOM CSS features and process [@polyfill styling directives](#directives). For example, if you're using `^` and `^^` inside an element, the selectors are rewritten so they work in unsupported browsers. See [Remoformatting rules](#reformatrules) above.
+Under the polyfill, {{site.project_title}} automatically examines any style or link elements inside of a `<polymer-element>` in order to shim Shadow DOM CSS features and process [@polyfill styling directives](#directives). For example, if you're using `/shadow/` and `/shadow-deep/` inside an element, the selectors are rewritten so they work in unsupported browsers. See [Remoformatting rules](#reformatrules) above.
 
 However, for performance reasons styles outside of an element are not shimmed.
-Therefore, if you're using `^` and `^^` in your main page stylesheet, be sure to include `shim-shadowdom` on the `<style>` or `<link rel="stylesheet">` that contains these rules. The attribute instructs {{site.project_title}} to shim the styles inside.
+Therefore, if you're using `/shadow/` and `/shadow-deep/` in your main page stylesheet, be sure to include `shim-shadowdom` on the `<style>` or `<link rel="stylesheet">` that contains these rules. The attribute instructs {{site.project_title}} to shim the styles inside.
 
     <link rel="stylesheet"  href="main.css" shim-shadowdom>
