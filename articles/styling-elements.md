@@ -8,7 +8,7 @@ title: A Guide to Styling Elements
 article:
   author: ebidel
   published: 2013-07-11
-  updated: 2013-12-17
+  updated: 2013-03-06
   polymer_version: 0.0.20130808
   description: Learn all about how to style Polymer elements.
 tags:
@@ -392,15 +392,15 @@ It's simple being rendered elsewhere (over in Shadow DOM land).
 
 ### From outside the element {#style-fromoutside}
 
-The `^^` (Cat) and `^` (Hat) combinators pierce through Shadow DOM's boundaries can
+The `/shadow/` and `/shadow-deep/` combinators pierce through Shadow DOM's boundaries can
 can style elements within different shadow trees.
 
-#### The ^ combinator {#hat}
+#### The `/shadow/` combinator {#hat}
 
-The `^` combinator is generally equivalent to a descendant combinator (e.g. `div p {...}`), except **it crosses one shadow boundary**.
+The `/shadow/` combinator is generally equivalent to a descendant combinator (e.g. `div p {...}`), except **it crosses one shadow boundary**.
 
     <style>
-      x-foo ^ p {
+      x-foo /shadow/ p {
         color: red;
       }
     </style>
@@ -419,7 +419,7 @@ The `^` combinator is generally equivalent to a descendant combinator (e.g. `div
 **Demo:**
 
 <style>
-  x-foo-cat ^ p {
+  x-foo-cat /shadow/ p {
     color: red;
   }
 </style>
@@ -428,11 +428,11 @@ The `^` combinator is generally equivalent to a descendant combinator (e.g. `div
   <p>I am not red.</p>
 </x-foo-cat>
 
-A more full fledged example is styling a tabs component, say `<x-tabs>`. It has `<x-panel>` children in its Shadow DOM, each of which has an `h2` heading. To style those headings from the main page, one could use the `^` combinator like so:
+A more full fledged example is styling a tabs component, say `<x-tabs>`. It has `<x-panel>` children in its Shadow DOM, each of which has an `h2` heading. To style those headings from the main page, one could use the `/shadow/` combinator like so:
 
 {%raw%}
     <style>
-      x-tabs ^ x-panel ^ h2 {
+      x-tabs /shadow/ x-panel /shadow/ h2 {
         ...
       }
     </style>
@@ -456,19 +456,19 @@ A more full fledged example is styling a tabs component, say `<x-tabs>`. It has 
     <x-tabs></x-tabs>
 {%endraw%}
 
-#### The ^^ combinator {#cat}
+#### The `/shadow-deep/` combinator {#cat}
 
-The `^^` combinator is similar to `^`, but more powerful. It completely ignores all boundaries and crosses into any number of shadow trees**. 
+The `/shadow-deep/` combinator is similar to `/shadow/`, but more powerful. It completely ignores all boundaries and crosses into any number of shadow trees**. 
 
 **Example** style all `h2` elements that are descendants of an `<x-tabs>`, anywhere in a shadow tree:
 
-    x-tabs ^^ h2 {
+    x-tabs /shadow-deep/ h2 {
       ...
     }
 
 **Example** style all elements with the class `.library-theme`, anywhere in a shadow tree:
 
-    body ^^ .library-theme {
+    body /shadow-deep/ .library-theme {
       ...
     }
 
