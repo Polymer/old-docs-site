@@ -427,7 +427,7 @@ The `/shadow/` combinator is generally equivalent to a descendant combinator (e.
   <p>I am not red.</p>
 </x-foo-shadow>
 
-In this example, `<p>I am not red.</p>` remains unstyled because `x-foo /shadow/ p`
+In this example, `<p>I am not red.</p>` remains unstyled because the `x-foo /shadow/ p { ... }` rule
 only targets the `<p>` internal to x-foo (e.g. in its Shadow DOM).
 
 A more full fledged example is styling a tabs component, say `<x-tabs>`. It has `<x-panel>` children in its Shadow DOM, each of which has an `h2` heading. To style those headings from the main page, one could use the `/shadow/` combinator like so:
