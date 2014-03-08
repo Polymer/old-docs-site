@@ -207,7 +207,7 @@ that contain rules which need to be in the global scope (e.g. `@keyframe` and `@
 
 ## Including stylesheets in an element
 
-{{site.project_title}} allows you to include stylesheets in your `<polymer-element>` definitions, a feature not supported natively by Shadow DOM. {{site.project_title}} transmutes `<link rel="stylesheet">` stylesheets into equivalent `@import` rules. That is:
+{{site.project_title}} allows you to include stylesheets in your `<polymer-element>` definitions, a feature not supported natively by Shadow DOM. That is:
 
     <polymer-element name="my-element">
       <template>
