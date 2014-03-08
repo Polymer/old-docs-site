@@ -216,16 +216,14 @@ that contain rules which need to be in the global scope (e.g. `@keyframe` and `@
       </template>
     </polymer>
 
-is automatically converted to:
+{{site.project_title}} will automatically inline the `my-element.css` stylesheet using a `<style>`:
 
     <polymer-element ...>
       <template>
-        <style>@import "my-element.css";</style>
+        <style>.../* Styles from my-element.css */...</style>
          ...
       </template>
     </polymer>
-
-Where possible, we recommend explicitly using `@import` rules to include external stylesheets in an element as this avoids the above conversion step.
 
 ## Polyfill details
 
