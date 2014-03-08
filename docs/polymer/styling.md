@@ -292,7 +292,7 @@ This ensures styling does not leak outside the element's shadowRoot (e.g. upper 
       Note, this technique does not enforce lower bound encapsulation. For that,
       you need to [forcing strict styling](#strictstyling).
 
-1. **Replace `/shadow/` and `/shadow-deep/` ** with a `<space>` character.
+1. **Replace `/shadow/` and `/shadow-deep/`** with a `<space>` character.
 
 ### Forcing strict styling {#strictstyling}
 
