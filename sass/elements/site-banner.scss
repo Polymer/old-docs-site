@@ -22,20 +22,20 @@
 }
 
 :host([type="core"]) {
-  background-color: $creating-elements-color  !important;;
+  background-color: $creating-elements-color !important;
 }
 
 :host([type="elements"]) {
-  background-color: $using-elements-color !important;;
+  background-color: $using-elements-color !important;
 }
 
-/* @polyfill :host header */
+polyfill-next-selector { content: ':host header'; }
 ::content header {
   padding: 30px 0 40px 0;
   width: 100%;
 }
 
-/* @polyfill header h1 */
+polyfill-next-selector { content: 'header h1'; }
 ::content h1 {
   font-size: 45px !important;
 
@@ -43,36 +43,36 @@
   transform-origin: 0 0;
 }
 
-// /* @polyfill scroll-area:not(.scrolling) h1 */
+// polyfill-next-selector { content: 'scroll-area:not(.scrolling) h1'; }
 // :ancestor(scroll-area:not(.scrolling)) ::content header h1 {
 //   -webkit-transition: -webkit-transform 200ms linear;
 //   transition: -webkit-transform 200ms linear;
 // }
 
-/* @polyfill :host header.shrink h1 */
+polyfill-next-selector { content: ':host header.shrink h1'; }
 ::content header.shrink h1 {
   -webkit-transform: scale(0.444444444);
   transform: scale(0.444444444);
 }
 
-/* @polyfill :host header.shrink summary */
+polyfill-next-selector { content: ':host header.shrink summary'; }
 ::content header.shrink summary {
   visibility: hidden;
 }
 
-/* @polyfill :host header.shrink */
+polyfill-next-selector { content: ':host header.shrink'; }
 ::content header.shrink {
   position: fixed;
   top: 0;
   pointer-events: none;
 }
 
-/* @polyfill header a */
+polyfill-next-selector { content: 'header a'; }
 ::content a {
   color: currentcolor;
 }
 
-/* @polyfill header summary */
+polyfill-next-selector { content: 'header summary'; }
 ::content summary {
   margin-top: 20px;
   opacity: 0.6;
@@ -88,29 +88,31 @@
     box-shadow: 0 1px 5px rgba(0,0,0,0.3);
   }
 
-  /* @polyfill :host header */
+  polyfill-next-selector { content: ':host header'; }
   ::content header {
     display: none;
   }
 
-  /* @polyfill-rule header#internalheader {
+  polyfill-rule {
+    content: 'header#internalheader';
     display: block;
     padding: 0;
-  }*/
+  }
 
-  /* @polyfill-rule header#internalheader h2 {
+  polyfill-rule {
+    content: 'header#internalheader h2';
     margin: 0;
-  }*/
+  }
 }
 
 // Phone + Tablet
 @media only screen and (max-width: $break-medium) {
-  /* @polyfill :host #dropdown-toggle */
+  polyfill-next-selector { content: ':host #dropdown-toggle'; }
   ::content #dropdown-toggle {
     z-index: 1000;
   }
 
-  /* @polyfill :host dropdown-panel */
+  polyfill-next-selector { content: ':host dropdown-panel'; }
   ::content dropdown-panel {
     color: black;
   }

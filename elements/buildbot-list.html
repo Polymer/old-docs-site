@@ -4,9 +4,9 @@
 <polymer-element name="buildbot-list" attributes="project platforms inactive">
   <template>
     <style>
-    polymer-buildbot {
-      margin-right: 5px;
-    }
+      polymer-buildbot {
+        margin-right: 5px;
+      }
     </style>
     <template repeat="{{builder in builders}}">
       <polymer-buildbot builder="{{builder}}" inactive="{{inactive || builder.inactive}}"></polymer-buildbot>

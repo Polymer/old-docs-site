@@ -34,18 +34,18 @@
       top: -18px;
       left: 177px;
     }
-    
-    /* @polyfill :host polymer-ui-menu-item #label */
+
+    polyfill-next-selector { content: ':host polymer-ui-menu-item #label'; }
     ::content polymer-ui-menu-item /shadow-deep/ #label {
       font-weight: 300;
     }
 
-    /* @polyfill :host polymer-ui-menu-item polymer-ui-icon */ 
+    polyfill-next-selector { content: ':host polymer-ui-menu-item polymer-ui-icon'; }
     ::content polymer-ui-menu-item /shadow/ polymer-ui-icon {
       background-size: 48px !important;
     }
 
-    /* @polyfill :host polymer-ui-menu-item[active] */
+    polyfill-next-selector { content: ':host polymer-ui-menu-item[active]'; }
     ::content polymer-ui-menu-item[active] {
       background: rgba(0, 0, 0, 0.04);
       border: 1px solid #d9d9d9;
