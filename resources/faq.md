@@ -209,6 +209,18 @@ However, you should avoid using DOM-level id referencing (e.g. `<label for>`) wh
 
 ## Data-binding
 
+### I'm trying to render HTML using data-binding but {{site.project_title}} escapes the content. {#setinnerHTML}
+
+{{site.project_title}} does not stamp unescaped HTML via data-binding because it becomes a vulnerability for XSS attacks. Instead, you can use a [property changed watcher](/docs/polymer/polymer.html#change-watchers) and [automatic node finding](/docs/polymer/polymer.html#automatic-node-finding) to set the `.innerHTML` of an node:
+
+    <div id="div"></div>
+
+    dataChanged: function() {
+      this.$.div.innerHTML = this.data;
+    }
+
+When using `<template repeat>`, a similar approach can be taken as suggested in [stackoverflow.com/a/22311788](http://stackoverflow.com/a/22311788).
+
 ### How do I use data-binding to repeat an `<option>` or `<tr>`? {#option-tr}
 
 Until the addition of HTML `<template>`, certain elements like `<select>`, `<table>`, and [others](https://github.com/Polymer/TemplateBinding/blob/master/src/TemplateBinding.js#L148:L160) had special parser rules to prevent anything other than `<option>` and `<tr>` from being their children, respectively. Because of these legacy rules, browsers that don't support `<template>` will lift unexpected elements out of context and make them siblings, including `<template>` itself!
