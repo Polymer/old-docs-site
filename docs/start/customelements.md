@@ -75,7 +75,7 @@ Elements like `<select>` and `<polymer-select>` are _UI elements_. They render U
       <span>Four</span><span>Five</span>
     </polymer-ui-tabs>
 
-<iframe src="/components/polymer-ui-tabs/smoke.html" style="border:none;height:80px;width:100%;"></iframe>
+<iframe src="/components/polymer-ui-tabs/demo.html" style="border:none;height:80px;width:100%;"></iframe>
 
 ### Non-UI elements {#nonuielements}
 
