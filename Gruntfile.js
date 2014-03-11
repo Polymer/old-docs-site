@@ -101,7 +101,9 @@ module.exports = function(grunt) {
           imports: [
             "polymer.html$"
           ]
-        }
+        },
+        strip: false, // Flip to true when https://github.com/Polymer/vulcanize/issues/19 is fixed
+        csp: false
       },
       build: {
         files: {

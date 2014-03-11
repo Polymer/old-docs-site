@@ -14,7 +14,7 @@ h1 {
   font-size: $font-size-display;
 }
 
-/* @polyfill h1 */
+polyfill-next-selector { content: ':host h1'; }
 ::content h1 {
   font-size: $font-size-display;
 }
@@ -23,7 +23,7 @@ h2 {
   font-size: 24px;
 }
 
-/* @polyfill h2 */
+polyfill-next-selector { content: ':host h2'; }
 ::content h2 {
   font-size: 24px;
 }
@@ -32,7 +32,7 @@ h3 {
   font-size: 20px;
 }
 
-/* @polyfill h3 */
+polyfill-next-selector { content: ':host h3'; }
 ::content h3 {
   font-size: 20px;
 }
@@ -42,7 +42,7 @@ h4 {
   font-weight: 600;
 }
 
-/* @polyfill h4 */
+polyfill-next-selector { content: ':host h4'; }
 ::content h4 {
   font-size: 16px;
   font-weight: 600;
@@ -53,7 +53,7 @@ h5 {
   font-weight: 600;
 }
 
-/* @polyfill h5 */
+polyfill-next-selector { content: ':host h5'; }
 ::content h5 {
   font-size: 12px;
   font-weight: 600;

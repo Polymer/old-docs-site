@@ -8,12 +8,12 @@
   padding-left: $sidebarWidth;
 }
 
-/* @polyfill :host[sidebar] app-bar.fixed */
-:host([sidebar]) ::content app-bar.fixed {
+polyfill-next-selector { content: ':host[sidebar]:not(.mobile) app-bar.fixed'; }
+:host([sidebar]:not(.mobile)) ::content app-bar.fixed {
   margin-left: $sidebarWidth;
 }
 
-/* @polyfill :host.scrolling site-banner */
+polyfill-next-selector { content: ':host.scrolling site-banner'; }
 :host(.scrolling:not(.mobile)) ::content site-banner {
   height: $siteBannerHeightMin !important;
   padding-bottom: 0;
@@ -24,17 +24,17 @@
   box-shadow: 0 1px 5px rgba(0,0,0,0.3);
 }
 
-/* @polyfill :host.scrolling:not(.mobile) > article */
+polyfill-next-selector { content: ':host.scrolling:not(.mobile) > article'; }
 :host(.scrolling:not(.mobile)) ::content > article {
   padding-top: $siteBannerHeightMax + $additonalPadding;
 }
 
-/* @polyfill :host app-bar.fixed */
+polyfill-next-selector { content: ':host app-bar.fixed'; }
 ::content app-bar.fixed {
   position: fixed;
 }
 
-/* @polyfill :host > article */
+polyfill-next-selector { content: ':host > article'; }
 ::content > article {
   padding: $additonalPadding $additonalPadding + 40;
   max-width: 912px;
@@ -48,7 +48,7 @@
     padding-left: 0 !important;
   }
 
-  /* @polyfill :host > article */
+  polyfill-next-selector { content: ':host > article'; }
   ::content > article {
     padding-left: $mobileContentPadding;
     padding-right: $mobileContentPadding;
@@ -57,7 +57,7 @@
 
 // Phone
 @media only screen and (max-width: $break-small)  {
-  /* @polyfill :host > article */
+  polyfill-next-selector { content: ':host > article '; }
   ::content > article { 
     padding-top: $siteBannerHeightMinMobile + 10;
   }
