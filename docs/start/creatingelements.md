@@ -59,13 +59,13 @@ Two items to notice:
 
 * The `noscript` attribute indicates that this is a simple element that doesn't include any script. An element declared with `noscript` is registered automatically.
 
-#### Reuse other elements {#reuse}
+#### Reusing other elements {#reuse}
 
 By composing simple elements together we can build richer, more complex components. To reuse other elements in your `<polymer-element>`, install the element in your app:
 
     bower install Polymer/polymer-ajax
 
-and include an import to load the new dependency in `my-element.html`:
+and include an import that loads the new dependency in `my-element.html`:
 
 {%raw%}
     <link rel="import" href="../bower_components/polymer/polymer.html">
