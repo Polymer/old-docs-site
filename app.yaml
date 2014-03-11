@@ -52,6 +52,12 @@ handlers:
   http_headers:
     Access-Control-Allow-Origin: "*"
 
+- url: /polymer-body.html
+  static_files: components/polymer/polymer-body.html
+  upload: components/polymer/polymer-body.html
+  http_headers:
+    Access-Control-Allow-Origin: "*"
+
 # ------------------------------------------------------------------------------
 
 # # Map minified polymer to minified version.
