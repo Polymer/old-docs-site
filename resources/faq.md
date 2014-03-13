@@ -345,9 +345,7 @@ tool we call [Vulcanizer](/resources/tooling-strategy.html#vulcanize-build-tool)
 
 ### Crawlers understand custom elements? How does SEO work? {#seo}
 
-They don't. However, search engines have been dealing with heavy AJAX
-based application for some time now. Moving away from JS and being more declarative
-is a good thing and will generally make things better.
+Because Polymer makes use of polyfills, search engines should treat Polymer-based applications no differently than they do other javascript-based web apps. Going forward, it is a reasonable assumption that as use of native Shadow DOM increases search engine providers will try to adapt to understand it, just as they have adapted to other new web technologies in the past.
 
 ### Is there a registry of components I can play with? {#registry}
 
