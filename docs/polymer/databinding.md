@@ -83,7 +83,7 @@ This example should look mostly familiar to anyone who knows HTML, but there are
 
 #### The `<template>` element
 
-The [HTML Template element](http://www.html5rocks.com/tutorials/webcomponents/template/) allows you to declare chunks of inert HTML that may be cloned, activated, and used at some laster point.
+The [HTML Template element](http://www.html5rocks.com/tutorials/webcomponents/template/) allows you to declare chunks of inert HTML that may be cloned, activated, and used at some later point.
 
 If you loaded the above example without `<script src="platform.min.js"></script>`, that's about all `<template>` would do.
 
