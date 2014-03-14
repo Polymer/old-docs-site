@@ -66,7 +66,7 @@ polymer-ui-icon {
 }
 
 polyfill-next-selector { content: ':host a'; }
-::content a {
+:host content /content/ a {
   // opacity: 0.6;
   @include flex(1 0 auto);
   text-transform: none !important;
@@ -130,7 +130,7 @@ input {
   }
 
   polyfill-next-selector { content: ':host a'; }
-  ::content a {
+  content /content/ a {
     display: none !important;
   }
 

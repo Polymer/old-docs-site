@@ -30,50 +30,49 @@
 }
 
 polyfill-next-selector { content: ':host header'; }
-::content header {
+:host content /content/ header {
   padding: 30px 0 40px 0;
   width: 100%;
 }
 
-polyfill-next-selector { content: 'header h1'; }
-::content h1 {
+polyfill-next-selector { content: ':host header h1'; }
+:host content /content/ header h1 {
   font-size: 45px !important;
-
   -webkit-transform-origin: 0 0;
   transform-origin: 0 0;
 }
 
 // polyfill-next-selector { content: 'scroll-area:not(.scrolling) h1'; }
-// :ancestor(scroll-area:not(.scrolling)) ::content header h1 {
+// :ancestor(scroll-area:not(.scrolling)) content /content/ header h1 {
 //   -webkit-transition: -webkit-transform 200ms linear;
 //   transition: -webkit-transform 200ms linear;
 // }
 
 polyfill-next-selector { content: ':host header.shrink h1'; }
-::content header.shrink h1 {
+:host content /content/ header.shrink h1 {
   -webkit-transform: scale(0.444444444);
   transform: scale(0.444444444);
 }
 
 polyfill-next-selector { content: ':host header.shrink summary'; }
-::content header.shrink summary {
+:host content /content/ header.shrink summary {
   visibility: hidden;
 }
 
 polyfill-next-selector { content: ':host header.shrink'; }
-::content header.shrink {
+:host content /content/ header.shrink {
   position: fixed;
   top: 0;
   pointer-events: none;
 }
 
-polyfill-next-selector { content: 'header a'; }
-::content a {
-  color: currentcolor;
-}
+// polyfill-next-selector { content: 'header a'; }
+// :host content /content/ a {
+//   color: currentcolor;
+// }
 
 polyfill-next-selector { content: 'header summary'; }
-::content summary {
+:host content /content/ header summary {
   margin-top: 20px;
   opacity: 0.6;
 }
@@ -89,7 +88,7 @@ polyfill-next-selector { content: 'header summary'; }
   }
 
   polyfill-next-selector { content: ':host header'; }
-  ::content header {
+  :host content /content/ header {
     display: none;
   }
 
@@ -108,12 +107,12 @@ polyfill-next-selector { content: 'header summary'; }
 // Phone + Tablet
 @media only screen and (max-width: $break-medium) {
   polyfill-next-selector { content: ':host #dropdown-toggle'; }
-  ::content #dropdown-toggle {
+  :host content /content/ #dropdown-toggle {
     z-index: 1000;
   }
 
   polyfill-next-selector { content: ':host dropdown-panel'; }
-  ::content dropdown-panel {
+  :host content /content/ dropdown-panel {
     color: black;
   }
 }
