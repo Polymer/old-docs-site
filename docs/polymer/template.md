@@ -14,8 +14,6 @@ links:
 
 {% include spec-header.html %}
 
-<!-- {% include toc.html %} -->
-
 ## Learn the tech
 
 Template Binding extends the `<template>` element with new attributes for binding data:
@@ -124,3 +122,5 @@ a model set using the `bind` attribute, call `template.unbind('bind')`:
 ### Examples
 
 Please refer to the [HowTo examples](https://github.com/Polymer/TemplateBinding/tree/master/examples/how_to).
+
+{% include other-resources.html %}
