@@ -482,6 +482,24 @@ for several properties.
 
 In the example, `validate()` is called whenever `foo` or `bar` changes.
 
+**Example:** - using automatic node in an `observe` block
+
+When an element has an id, you can use `this.$` in the `observe` block to watch
+a property on that element:
+
+    <template>
+      <x-foo id="foo"></x-foo>
+    </template>
+    ...
+    Polymer('x-element', {
+      observe: {
+        '$.foo.someProperty': 'fooPropertyChanged'
+      },
+      fooPropertyChanged: function(oldValue, newValue) {
+        ...
+      }
+    });
+
 **Example:** - watching for changes to a nested object path
 
     Polymer('x-element', {
