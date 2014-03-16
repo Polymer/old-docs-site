@@ -11,7 +11,7 @@ subtitle: Common techniques for sharing information between custom elements
 article:
   author: ebidel
   published: 2013-08-12
-  updated: 2013-12-17
+  updated: 2014-03-16
   polymer_version: 0.0.20130808
   description: Common techniques for sharing information between custom elements
 tags:
@@ -134,7 +134,7 @@ changes `list`, `<td-model>`'s items will also change.
 Wait a sec..."list" is an array. How can it be property bound as an HTML string attribute?
 
 {{site.project_title}} is smart enough to serialize primitive types (numbers, booleans, arrays, objects) when they're used in attribute bindings. As seen in the `ready()` callback
-of `<my-app>`, be sure to initialize and/or [hint the type](/docs/polymer/polymer.html#hinting-an-attributes-type) of your properties.
+of `<my-app>`, be sure to initialize and/or [hint the type](/docs/polymer/polymer.html#attrhinting) of your properties.
 
 ### 2. Changed watchers {#changedwatchers}
 
