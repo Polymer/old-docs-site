@@ -7,6 +7,7 @@ var wasRelativeAnchorClick = false;
 
 var siteBanner = null;
 var docsMenu = null;
+var dropdownPanel = null;
 var appBar = null;
 var sidebar = null;
 var scrim = null;
@@ -141,13 +142,21 @@ function ajaxifySite() {
     });
   }
 
+  if (dropdownPanel) {
+    document.addEventListener('polymer-ready', function(e) {
+      dropdownPanel.ajaxify = true;
+    });
+  }
+
   document.addEventListener('click', function(e) {
     var viableLink = false;
 
     wasRelativeAnchorClick = !!e.target.hash;
 
-    if (e.target.localName == docsMenu.localName && e.detail.link) {
-      viableLink = e.detail.link;
+    if (e.target.localName == docsMenu.localName || e.target.localName == dropdownPanel.localName) {
+      if (e.detail.link) {
+        viableLink = e.detail.link;
+      }
     } else if (e.target.localName == 'a') {
       // Link is relative and doesn't have a target set.
       if (!e.target.getAttribute('href').match(/^(https?:|javascript:|\/\/)/) &&
@@ -206,6 +215,7 @@ document.addEventListener('polymer-ready', function(e) {
 document.addEventListener('DOMContentLoaded', function(e) {
   siteBanner = document.querySelector('site-banner');
   docsMenu = document.querySelector('docs-menu');
+  dropdownPanel = document.querySelector('dropdown-panel');
   sidebar = document.querySelector('#sidebar');
   scrim = document.querySelector('page-scrim');
   appBar = document.querySelector('app-bar');
