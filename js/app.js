@@ -136,17 +136,10 @@ function initPage(opt_inDoc) {
 
 // Hijacks page to preventDefault() on links and make site ajax.
 function ajaxifySite() {
-  if (docsMenu) {
-    document.addEventListener('polymer-ready', function(e) {
-      docsMenu.ajaxify = true;
-    });
-  }
-
-  if (dropdownPanel) {
-    document.addEventListener('polymer-ready', function(e) {
-      dropdownPanel.ajaxify = true;
-    });
-  }
+  document.addEventListener('polymer-ready', function(e) {
+    docsMenu.ajaxify = true;
+    dropdownPanel.ajaxify = true;
+  });
 
   document.addEventListener('click', function(e) {
     var viableLink = false;

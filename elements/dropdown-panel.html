@@ -81,10 +81,14 @@
       this.open();
     },
     onClick: function(e, detail, sender) {
-      if (e.target.localName == 'polymer-ui-menu-item' && this.ajaxify) {
-        this.fire('click', {link: e.target});
-        e.preventDefault();
-        e.stopPropagation();
+      if (e.target.localName == 'polymer-ui-menu-item') {
+        if (this.ajaxify) {
+          this.fire('click', {link: e.target});
+          e.preventDefault();
+          e.stopPropagation();
+        } else {
+          document.location.href = e.target.href;
+        }
       }
     }
   });
