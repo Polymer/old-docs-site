@@ -55,38 +55,60 @@ The veiling process can be used to prevent FOUC at times other than page load. T
     element.setAttribute('resolved', '');
     element.removeAttribute('unresolved');
 
-## Polyfill styling directives {#directives}
+## Including stylesheets in an element
 
-When running under the polyfill, {{site.project_title}} has `@polyfill-*`
-directives to give you more control for how Shadow DOM styling is shimmed.
+{{site.project_title}} allows you to include stylesheets in your `<polymer-element>` definitions, a feature not supported natively by Shadow DOM. That is:
 
-### @polyfill {#at-polyfill}
+    <polymer-element name="my-element">
+      <template>
+        <link rel="stylesheet" href="my-element.css">
+         ...
+      </template>
+    </polymer>
 
-The `@polyfill` directive is used to replace a native CSS selector with one that
-will work under the polyfill. For example, targeting distributed nodes using `::content` only works under native Shadow DOM. Instead, you can tell {{site.project_title}} to replace said
+{{site.project_title}} will automatically inline the `my-element.css` stylesheet using a `<style>`:
+
+    <polymer-element ...>
+      <template>
+        <style>.../* Styles from my-element.css */...</style>
+         ...
+      </template>
+    </polymer>
+
+## Polyfill CSS selectors {#directives}
+
+When running under the Shadow DOM polyfill, {{site.project_title}} provides special `polyfill-*`
+CSS selectors to give you more control on how style rules are shimmed.
+
+### polyfill-next-selector {#at-polyfill}
+
+The `polyfill-next-selector` selector is used to replace a native CSS selector with one that
+will work under the polyfill. For example, targeting distributed nodes using `/content/` only works under native Shadow DOM. Instead, you can tell {{site.project_title}} to replace said
 rules with ones compatible with the polyfill.
 
-To replace native rules, place `@polyfill` inside a CSS comment above the 
-style rule you want to replace. The string next to `"@polyfill"` indicates a
-CSS selector to replace the next style rule with. For example:
+To replace native CSS style rules, place `polyfill-next-selector {}` above the
+selector you need to polyfill. Inside of `polyfill-next-selector`, add a
+`content` property. Its value should be a CSS selector that is roughly equivalent
+the native rule. {{site.project_title}} will use this value to shim the native selector. For example:
 
-    /* @polyfill .bar */
-    ::content .bar {
+    polyfill-next-selector { content: ':host .bar'; }
+    content /content/ .bar {
       color: red;
     }
     
-    /* @polyfill :host > .bar */
-    ::content .bar {
+    polyfill-next-selector { content: ':host > .bar'; }
+    * /content/ .bar {
       color: blue;
     }
 
-    /* @polyfill .container > * */
-    ::content > * {
+    polyfill-next-selector { content: '.container > *'; }
+    * /content/ * {
       border: 1px solid black;
     }
 
-Under native Shadow DOM nothing changes. Under the polyfill the native selector 
-s replaced with the one in the `@polyfill` comment above it:
+Under native Shadow DOM nothing changes. Under the polyfill, the native selector
+is replaced with the one defined in its `polyfill-next-selector` predecessor. The previous
+examples would be shimmed into:
 
     x-foo .bar {
       color: red;
@@ -100,27 +122,27 @@ s replaced with the one in the `@polyfill` comment above it:
       border: 1px solid black;
     }
 
+### polyfill-rule {#at-polyfill-rule}
 
-**Tip:** If you use a CSS preprocessor, be careful that it doesn't strip out the `@polyfill` comments.
-{: .alert .alert-error }
+The `polyfill-rule` selector is useful for creating style rules that *only* apply when the Shadow DOM polyfill is in use. When you can't write a style rule that works across native and Shadow DOM polyfill, it's your solution. However, because of the style shimming {{site.project_title}} provides, you should rarely need to use this selector.
 
-### @polyfill-rule {#at-polyfill-rule}
+To use `polyfill-rule`, create the rule and include a list of styles. Then, add a `content` property describing the CSS selector those styles should apply to. For example:
 
-The `@polyfill-rule` directive is used to create a style rule that should apply *only* when the Shadow DOM polyfill is in use. It's a useful catch-all when it's not possible to write a rule that can automatically morph between native Shadow DOM and polyfill Shadow DOM. Because of the simulated styling {{site.project_title}} provides, you should rarely need to use this directive.
-
-To create a rule that only applies under the polyfill, place the `@polyfill-rule` directive entirely inside a CSS comment:
-
-    /* @polyfill-rule .foo {
+    polyfill-rule {
+      content: '.bar';
       background: red;
-    } */
-     
-    /* @polyfill-rule :host.foo .bar {
+    }
+
+    polyfill-rule {
+      content: ':host.foo .bar';
       background: blue;
-    } */
+    }
 
-This has no effect under native Shadow DOM but under the polyfill, the comment is removed and the selector prefixed with the element name:
+These rules are a noop under native Shadow DOM. Under the polyfill, `polyfill-rule` is replaced by the selector in `content`. {{site.project_title}} also prefixes the rule with the element name.
 
-    x-foo .foo {
+The previous examples become:
+
+    x-foo .bar {
       background: red;
     }
     
@@ -128,13 +150,24 @@ This has no effect under native Shadow DOM but under the polyfill, the comment i
       background: blue;
     }
 
-### @polyfill-unscoped-rule {#at-polyfill-unscoped-rule}
+### polyfill-unscoped-rule {#at-polyfill-unscoped-rule}
 
-`@polyfill-unscoped-rule` is exactly the same as `@polyfill-rule` except that the rules inside it are not scoped by the polyfill. The rule you write is exactly what will be applied.
+The `polyfill-unscoped-rule` selector is exactly the same as `polyfill-rule` except that the rules inside it are not scoped by the polyfill. The selector you write is exactly what will be applied.
 
-`@polyfill-unscoped-rule` should only be needed in rare cases. {{site.project_title}} uses CSSOM to modify styles and there are a several known rules that don't round-trip correctly via CSSOM (on some browsers). One example using CSS `calc()` in Safari. It's only in these rare cases that `@polyfill-unscoped-rule` should be used.
+    polyfill-unscoped-rule {
+      content: '#menu > .bar';
+      background: blue;
+    }
 
-{%comment%}
+produces:
+
+    #menu > .bar {
+      background: blue;
+    }
+
+You should only need `polyfill-unscoped-rule` in rare cases. {{site.project_title}} uses CSSOM to modify styles and there are a several known rules that don't round-trip correctly via CSSOM (on some browsers). One example using CSS `calc()` in Safari. It's only in these rare cases that `polyfill-unscoped-rule` should be used.
+
+<!-- {%comment%}
 ## Making styles global
 
 According to CSS spec, certain @-rules like `@keyframe` and `@font-face`
@@ -204,26 +237,35 @@ Stylsheets that use `polymer-scope="global"` are moved to the `<head>` of the ma
 that contain rules which need to be in the global scope (e.g. `@keyframe` and `@font-face`).
 {: .alert .alert-error}
 {%endcomment%}
+ -->
 
-## Including stylesheets in an element
+## Controlling the polyfill's CSS shimming {#stylingattrs}
 
-{{site.project_title}} allows you to include stylesheets in your `<polymer-element>` definitions, a feature not supported natively by Shadow DOM. That is:
+{{site.project_title}} provides hooks for controlling how and where the Shadow DOM polyfill
+does CSS shimming.
 
-    <polymer-element name="my-element">
-      <template>
-        <link rel="stylesheet" href="my-element.css">
-         ...
-      </template>
-    </polymer>
+### Ignoring styles from being shimmed {#noshim}
 
-{{site.project_title}} will automatically inline the `my-element.css` stylesheet using a `<style>`:
+Inside an element, the `no-shim` attribute on a `<style>` or `<link rel="stylesheet">` instructs {{site.project_title}} to ignore the styles within. No style shimming will be performed.
 
     <polymer-element ...>
-      <template>
-        <style>.../* Styles from my-element.css */...</style>
+      <template
+        <link rel="stylesheet"  href="main.css" no-shim>
+        <style no-shim>
          ...
-      </template>
-    </polymer>
+        </style>
+      ...
+
+This can be a small performance win when you know the stylesheet(s) in question do not contain any Shadow DOM CSS features.
+
+### Shimming styles outside of polymer-element {#sdcss}
+
+Under the polyfill, {{site.project_title}} automatically examines any style or link elements inside of a `<polymer-element>`. This is done so Shadow DOM CSS features can be shimmed and [polyfill-*](#directives) selectors can be processed. For example, if you're using `/shadow/` and `/shadow-deep/` inside an element, the selectors are rewritten so they work in unsupported browsers. See [Remoformatting rules](#reformatrules) above.
+
+However, for performance reasons styles outside of an element are not shimmed.
+Therefore, if you're using `/shadow/` and `/shadow-deep/` in your main page stylesheet, be sure to include `shim-shadowdom` on the `<style>` or `<link rel="stylesheet">` that contains these rules. The attribute instructs {{site.project_title}} to shim the styles inside.
+
+    <link rel="stylesheet"  href="main.css" shim-shadowdom>
 
 ## Polyfill details
 
@@ -299,15 +341,24 @@ The lower bound is the boundary between insertion points and the shadow host's c
 
 You can turn lower bound encapsulation by setting `Platform.ShadowCSS.strictStyling`:
 
-    Platform.ShadowCSS.strictStyling = true
+    Platform.ShadowCSS.strictStyling = true;
 
 This isn't the yet the default because it requires that you add the custom element's name as an attribute on all DOM nodes in the shadowRoot (e.g. `<span x-foo>`).
 
-## Using Shadow DOM styling features outside of elements {#sdcss}
 
-Under the polyfill, {{site.project_title}} automatically examines any style or link elements inside of a `<polymer-element>` in order to shim Shadow DOM CSS features and process [@polyfill styling directives](#directives). For example, if you're using `/shadow/` and `/shadow-deep/` inside an element, the selectors are rewritten so they work in unsupported browsers. See [Remoformatting rules](#reformatrules) above.
+### Manually invoking the style shimmer {#manualshim}
 
-However, for performance reasons styles outside of an element are not shimmed.
-Therefore, if you're using `/shadow/` and `/shadow-deep/` in your main page stylesheet, be sure to include `shim-shadowdom` on the `<style>` or `<link rel="stylesheet">` that contains these rules. The attribute instructs {{site.project_title}} to shim the styles inside.
+In rare cases, you may need to shim a stylesheet yourself. {{site.project_title}}'s Shadow DOM polyfill shimmer can be run manually like so:
 
-    <link rel="stylesheet"  href="main.css" shim-shadowdom>
+    <style id="newstyles">
+     ...
+    </style>
+
+    var style = document.querySelector('newstyles');
+
+    var cssText = Platform.ShadowCSS.shimCssText(
+          style.textContent, 'my-scope');
+    Platform.ShadowCSS.addCssToDocument(cssText);
+
+Running this shims the styles, scopes their rules with 'my-scope', and adds the result
+to the main document.

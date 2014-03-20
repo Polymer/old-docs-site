@@ -8,7 +8,7 @@ title: A Guide to Styling Elements
 article:
   author: ebidel
   published: 2013-07-11
-  updated: 2013-03-06
+  updated: 2014-03-20
   polymer_version: 0.0.20130808
   description: Learn all about how to style Polymer elements.
 tags:
@@ -304,27 +304,26 @@ see [styling distributed nodes](#style-distributed).
 
 #### Styling distributed nodes {#style-distributed}
 
-`<content>` elements allow you to select nodes from the ["Light DOM"](/platform/shadow-dom.html#shadow-dom-subtrees) and render them at predefined locations in your element. The CSS `::content` pseudo element is a way to style nodes that pass through an insertion point. For example, 
-you can a rule like `::content > *`.
+`<content>` elements allow you to select nodes from the ["Light DOM"](/platform/shadow-dom.html#shadow-dom-subtrees) and render them at predefined locations in your element. The CSS `/content/` combinator is a way to style nodes that pass through an insertion point.
 
 **Full example**
 
     <polymer-element name="x-foo" noscript>
       <template>
         <style>
-          content[select="p"]::content * { /* anything distributed here */
+          content[select="p"] /content/ * { /* anything distributed here */
             font-weight: bold;
           }
-          /* @polyfill p:first-child */
-          ::content p:first-child {
+          polyfill-next-selector { content: 'p:first-child'; }
+          * /content/ p:first-child {
             color: red;
           }
-          /* @polyfill footer > p */
-          ::content footer > p {
+          polyfill-next-selector { content: 'footer > p'; }
+          * /content/ footer > p {
             color: green;
           }
-          /* @polyfill :host > p */
-          ::content > p { /* scope relative selector */
+          polyfill-next-selector { content: ':host > p'; }
+          * /content/ p { /* scope relative selector */
             color: blue;
           }
         </style>
@@ -333,22 +332,21 @@ you can a rule like `::content > *`.
       </template>
     </polymer-element>
 
-    <!-- Children of x-foo are the Light DOM -->
+    <!-- Children of x-foo are the Light DOM. -->
     <x-foo>
       <p>I'm red and bold</p>
       <p>I'm blue and bold</p>
       <footer>
-        <p>I'm also red</p>
         <p>I'm green</p>
         <span>I'm black</span>
       </footer>
     </x-foo>
-
-**Note**: For complex styling like distribute nodes, {{site.project_title}} provides the `@polyfill`
-directives to polyfill certain Shadow DOM features. See the [Styling reference](/docs/polymer/styling.html#directives) for more information on the directives.
+    
+**Note**: For complex styling like distribute nodes, {{site.project_title}} provides the `polyfill-*`
+selectors to polyfill certain Shadow DOM features. See the [Styling reference](/docs/polymer/styling.html#directives) for more information on the directives.
 {: .alert .alert-info }
 
-**Remember:** styles defined in the main document continue to apply to the Light DOM nodes they target, even if those nodes are distributed into Shadow DOM. Basically, going into an insertion point doesn't change what styles are applied. An example helps illustrate this point:
+**Remember:** styles defined in the main document continue to apply to the Light DOM nodes they target, even if those nodes are distributed into Shadow DOM. Going into an insertion point doesn't change what styles are applied. An example helps illustrate this point:
 
     <style>
       x-foo > div {
