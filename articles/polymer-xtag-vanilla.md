@@ -72,12 +72,12 @@ Let’s walk through the example project to better understand what’s actually 
       <hr>
 
       <h2>X-Tag element</h2>
-      <x-switch onText="Active" offText="Inactive"></x-switch>
+      <x-switch onText="Good" offText="Bad"></x-switch>
 
       <hr>
 
       <h2>Polymer Element</h2>
-      <polymer-ui-ratings value="3"></polymer-ui-ratings>
+      <polymer-ui-ratings value="0"></polymer-ui-ratings>
 
       <script>
         document.addEventListener('polymer-ready', function(e) {
@@ -157,7 +157,7 @@ Elements coming from the [x-tag-imports project](https://github.com/x-tag/x-tag-
 Then we'll add it to the `body` of our `index` file:
 
     <h2>X-Tag Element</h2>
-    <x-switch onText="Active" offText="Inactive"></x-switch>
+    <x-switch onText="Good" offText="Bad"></x-switch>
 
 And we're good to go!
 
@@ -171,7 +171,7 @@ Lastly, let's look at how we import a Polymer UI element. Because Polymer UI ele
 Once that's done, we're ready to use it in the `body` our page.
 
     <h2>Polymer Element</h2>
-    <polymer-ui-ratings value="3"></polymer-ui-ratings>
+    <polymer-ui-ratings value="0"></polymer-ui-ratings>
 
 Easy!
 
