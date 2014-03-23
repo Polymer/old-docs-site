@@ -122,7 +122,7 @@ The following example defines a property `message`, a computed property `greetin
 using an ES5 getter, and a method `foo`: 
 
     <polymer-element name="tag-name">
-      <template>...</template>
+      <template>{{greeting}}</template>
       <script>
         Polymer('tag-name', {
           message: "Hello!",
