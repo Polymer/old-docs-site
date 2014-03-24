@@ -198,7 +198,7 @@ To achieve this, you can use the [MonoState Pattern](http://c2.com/cgi/wiki?Mono
       })();
     </polymer-element>
 
-Then use the element as you would any other, and data-bind it to a property that you can use to access it through Polymer's normal model-driven views templating:
+Then use the element as you would any other, and data-bind it to a property that you can use to access it through Polymer's data-binding:
 
     <polymer-element name="my-component">
       <template>
@@ -213,7 +213,7 @@ Then use the element as you would any other, and data-bind it to a property that
       </script>
     </polymer-element>
 
-A slight tweak of this approach will let you configure the value of the globals externally:
+A slight tweak of this approach let's you configure the value of the globals externally:
 
     <polymer-element name="app-globals">
       <script>
@@ -231,12 +231,9 @@ A slight tweak of this approach will let you configure the value of the globals 
       })();
     </polymer-element>
 
-In the main page, rather than any individual element we can then define our globals as follows:
+The main page configures the globals by passing attributes:
 
-    <app-globals firstName="Addy" lastName="Osmani">
-    </app-globals>
-
-Usage within elements would be the same. All you're changing is how the values are defined but rather not how they're used.
+    <app-globals firstName="Addy" lastName="Osmani"></app-globals>
 
 
 ### Element lifecycle methods {#lifecyclemethods}
