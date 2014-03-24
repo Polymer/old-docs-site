@@ -410,23 +410,22 @@ The `/shadow/` combinator is generally equivalent to a descendant combinator (e.
     </polymer-element>
 
     <x-foo>
-      <p>I am not red.</p>
+      <p>I am not red (under native shadow dom).</p>
     </x-foo>
 
 **Demo:**
 
-<style shimstyling>
+<style shim-shadowdom>
   x-foo-shadow /shadow/ p {
     color: red;
   }
 </style>
 
 <x-foo-shadow style="margin-bottom:20px;">
-  <p>I am not red.</p>
+  <p>I am not red (under native shadow dom).</p>
 </x-foo-shadow>
 
-In this example, `<p>I am not red.</p>` remains unstyled because the `x-foo /shadow/ p { ... }` rule
-only targets the `<p>` internal to x-foo (e.g. in its Shadow DOM).
+In this example, `<p>I am not red (under native shadow dom)</p>` remains unstyled because the `x-foo /shadow/ p { ... }` rule only targets the `<p>` internal to x-foo (e.g. in its Shadow DOM). Under the polyfill, it _is_ styled red. This is because {{site.project_title}} replaces the `/shadow/`, rewriting the rule to be `x-foo-shadow p`.
 
 A more full fledged example is styling a tabs component, say `<x-tabs>`. It has `<x-panel>` children in its Shadow DOM, each of which has an `h2` heading. To style those headings from the main page, one could use the `/shadow/` combinator like so:
 
