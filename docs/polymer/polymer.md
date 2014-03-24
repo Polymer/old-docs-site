@@ -112,6 +112,21 @@ Elements can be registered in pure JavaScript like so:
 Note that you need to add the `<polymer-element>` to the document so that the 
 Custom Elements polyfill picks it up.
 
+It is also worth noting that generally the HTML parser considers attribute names *case insensitive*. Property names in JavaScript are however *case sensitive*.
+
+This means that attributes can be written any way that you like, but if you look at an element's attribute list, the names will always be lowercase. Polymer is aware of this and will attempt to match the attributes to properties carefully. For example, this should work as expected:
+
+    <name-tag nameColor="blue" name="Blue Name"></name-tag>
+
+The fact that the `nameColor` attribute is actually lowercase in DOM can generally just be ignored.
+
+This also means that any of the below examples will also work:
+
+    <name-tag NaMeCoLoR="blue" name="Blue Name"></name-tag>
+    <name-tag NAMECOLOR="red" name="Red Name">    </name-tag>
+    <name-tag NAMEcolor="green" name="Green Name"></name-tag>
+
+    
 ### Adding public properties and methods {#propertiesmethods}
 
 If you wish to define methods/properties on your element (optional), pass an object
