@@ -249,7 +249,7 @@ does CSS shimming.
 Inside an element, the `no-shim` attribute on a `<style>` or `<link rel="stylesheet">` instructs {{site.project_title}} to ignore the styles within. No style shimming will be performed.
 
     <polymer-element ...>
-      <template
+      <template>
         <link rel="stylesheet"  href="main.css" no-shim>
         <style no-shim>
          ...

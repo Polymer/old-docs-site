@@ -415,7 +415,7 @@ The `/shadow/` combinator is generally equivalent to a descendant combinator (e.
 
 **Demo:**
 
-<style>
+<style shimstyling>
   x-foo-shadow /shadow/ p {
     color: red;
   }
