@@ -4,10 +4,15 @@
   display: block;
 }
 
+// TODO: remove when ::shadow lands.
 polymer-ui-menu > polymer-ui-submenu-item /shadow/ polymer-ui-menu-item {
   color: inherit;
 }
+polymer-ui-menu > polymer-ui-submenu-item::shadow polymer-ui-menu-item {
+  color: inherit;
+}
 
+// TODO: remove when /deep/ lands.
 polymer-ui-submenu-item /shadow-deep/ polymer-ui-menu-item,
 polymer-ui-menu-item {
   font-size: 14px !important;
@@ -17,16 +22,37 @@ polymer-ui-menu-item {
   padding: 0;
   color: initial;
 }
+polymer-ui-submenu-item /deep/ polymer-ui-menu-item,
+polymer-ui-menu-item {
+  font-size: 14px !important;
+  font-weight: 600;
+  line-height: 32px !important;
+  letter-spacing: 0.01em;
+  padding: 0;
+  color: initial;
+}
 
+// TODO: remove when /deep/ lands.
 :host /shadow-deep/ #menu {
+  margin-left: 34px;
+}
+:host /deep/ #menu {
   margin-left: 34px;
 }
 
 polymer-ui-submenu-item polymer-ui-submenu-item /shadow-deep/ #menu {
   margin-left: 24px;
 }
+polymer-ui-submenu-item polymer-ui-submenu-item /deep/ #menu {
+  margin-left: 24px;
+}
 
+// TODO: remove when /deep/ lands.
 :host /shadow-deep/ polymer-ui-icon {
+  margin-right: 6px;
+  background-size: 48px !important;
+}
+:host /deep/ polymer-ui-icon {
   margin-right: 6px;
   background-size: 48px !important;
 }

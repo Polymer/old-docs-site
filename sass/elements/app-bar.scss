@@ -19,8 +19,15 @@
   color: inherit;
 }
 
+// TODO: Remove when :host-context() lands.
 :ancestor(site-banner[navgroup="start"], site-banner[navgroup="resources"], site-banner[navgroup="community"]) ::content .active,
 :ancestor(site-banner[navgroup="start"], site-banner[navgroup="resources"], site-banner[navgroup="community"]) ::content .paper-button:hover {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 1) inset, 0 -1px 1px rgba(0, 0, 0, 1) inset, 0 2px 0px rgba(0, 0, 0, 1) inset;
+  @include background(linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%));
+}
+
+:host-context(site-banner[navgroup="start"], site-banner[navgroup="resources"], site-banner[navgroup="community"]) ::content .active,
+:host-context(site-banner[navgroup="start"], site-banner[navgroup="resources"], site-banner[navgroup="community"]) ::content .paper-button:hover {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 1) inset, 0 -1px 1px rgba(0, 0, 0, 1) inset, 0 2px 0px rgba(0, 0, 0, 1) inset;
   @include background(linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%));
 }
@@ -51,7 +58,14 @@ polyfill-unscoped-rule {
   position: fixed;
 }
 
+// TODO: remove when :host-context lands.
 :ancestor(site-banner) {
+  right: 0;
+  top: 0;
+  position: absolute;
+}
+
+:host-context(site-banner) {
   right: 0;
   top: 0;
   position: absolute;
@@ -125,7 +139,12 @@ input {
     background: initial;
   }
 
+  // TODO: remove when :host-context() lands.
   :ancestor(#welcome) {
+    @include justify-content(flex-end);
+  }
+
+  :host-context(#welcome) {
     @include justify-content(flex-end);
   }
 
@@ -142,7 +161,12 @@ input {
     display: inline-block;
   }
 
+  // TODO: remove when :host-context() lands.
   :ancestor(#welcome) #menu {
+    display: none;
+  }
+
+  :host-context(#welcome) #menu {
     display: none;
   }
 }

@@ -12,6 +12,7 @@
       #repobuildlist li {
         margin-bottom: 25px;
       }
+      /* Remove when /deep. lands. */
       :host /shadow-deep/ h3 {
         font-size: 20px;
         font-weight: 300;
@@ -19,13 +20,31 @@
         line-height: 48px;
         margin: 0;
       }
+      :host /deep/ h3 {
+        font-size: 20px;
+        font-weight: 300;
+        letter-spacing: -0.01em;
+        line-height: 48px;
+        margin: 0;
+      }
+      /* Remove when /deep. lands. */
       :host /shadow-deep/ a {
         font-size: inherit;
         font-weight: normal;
         color: #3367d6;
         text-decoration: none;
       }
+      :host /deep/ a {
+        font-size: inherit;
+        font-weight: normal;
+        color: #3367d6;
+        text-decoration: none;
+      }
+      /* Remove when /deep. lands. */
       :host /shadow-deep/ a:hover {
+        text-decoration: underline;
+      }
+      :host /deep/ a:hover {
         text-decoration: underline;
       }
     </style>
