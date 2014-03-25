@@ -306,6 +306,14 @@ footer {
   // scroll-area, etc. However, having these rules outside the element also
   // allows better FOUC prevent.
 
+  app-drawer[unresolved] {
+    position: fixed;
+    display: block;
+    height: 100%;
+    width: 265px;
+    background-color: #EEE;
+  }
+
   docs-menu {
     -webkit-transition: opacity 300ms ease-in;
     transition: opacity 300ms ease-in;
