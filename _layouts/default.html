@@ -6,8 +6,7 @@
 <body id="{{page.title | downcase | replace:' ','-' }}">
 
 <main id="content-container">
-
-  <aside id="sidebar" class="main-bg">
+  <app-drawer id="sidebar">
     <polymer-flex-layout id="logo-container" isContainer align="center">
       <a href="/" class="logo"><img src="/images/logos/lockup.svg"></a>
       <polymer-ui-icon id="dropdown-toggle" size="35" src="/images/picons/ic_arrowDropDown_dark_.png">
@@ -15,9 +14,11 @@
     </polymer-flex-layout>
 
     {% include dropdown-panel.html %}
+    
+    <docs-menu menu="{{site.data.pagetypes[page.type].menu}}" unresolved>
+    </docs-menu>
+  </app-drawer>
 
-    <docs-menu menu="{{site.data.pagetypes[page.type].menu}}" unresolved></docs-menu>
-  </aside>
   <scroll-area sidebar unresolved>
     <site-banner type="{{page.type}}" navgroup="{{page.navgroup}}" shortname="{{page.shortname}}" unresolved>
       {% include top-nav.html %}
@@ -70,6 +71,5 @@
 
 </main>
 
-<page-scrim></page-scrim>
 </body>
 </html>

@@ -67,18 +67,13 @@
     },
     open: function() {
       this.in = true;
-      document.body.addEventListener('click', this.close.bind(this), true);
-    },
-    close: function() {
-      this.in = false;
-      document.body.removeEventListener('click', this.close);
-    },
-    toggle: function() {
-      if (this.in) {
-        return this.close();
-      }
 
-      this.open();
+      var close = function() {
+        this.in = false;
+        document.body.removeEventListener('click', close, true);
+      }.bind(this);
+
+      document.body.addEventListener('click', close, true);
     },
     onClick: function(e, detail, sender) {
       if (e.target.localName == 'polymer-ui-menu-item') {
