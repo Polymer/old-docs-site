@@ -304,26 +304,26 @@ see [styling distributed nodes](#style-distributed).
 
 #### Styling distributed nodes {#style-distributed}
 
-`<content>` elements allow you to select nodes from the ["Light DOM"](/platform/shadow-dom.html#shadow-dom-subtrees) and render them at predefined locations in your element. The CSS `/content/` combinator is a way to style nodes that pass through an insertion point.
+`<content>` elements allow you to select nodes from the ["Light DOM"](/platform/shadow-dom.html#shadow-dom-subtrees) and render them at predefined locations in your element. The CSS `::content` pseudo element is a way to style nodes that pass through an insertion point.
 
 **Full example**
 
     <polymer-element name="x-foo" noscript>
       <template>
         <style>
-          content[select="p"] /content/ * { /* anything distributed here */
+          content[select="p"]::content * { /* anything distributed here */
             font-weight: bold;
           }
           polyfill-next-selector { content: 'p:first-child'; }
-          * /content/ p:first-child {
+          ::content p:first-child {
             color: red;
           }
           polyfill-next-selector { content: 'footer > p'; }
-          * /content/ footer > p {
+          ::content footer > p {
             color: green;
           }
           polyfill-next-selector { content: ':host > p'; }
-          * /content/ p { /* scope relative selector */
+          ::content p { /* scope relative selector */
             color: blue;
           }
         </style>
