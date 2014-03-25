@@ -10,11 +10,9 @@ var docsMenu = null;
 var dropdownPanel = null;
 var appBar = null;
 var sidebar = null;
-var scrim = null;
 
 function hideSidebar() {
-  sidebar.classList.remove('in');
-  scrim.hide();
+  sidebar.toggle();
 }
 
 function addPermalink(el) {
@@ -191,17 +189,15 @@ document.addEventListener('polymer-ready', function(e) {
   var dropdownPanel = document.querySelector('dropdown-panel');
 
   siteBanner.addEventListener('hamburger-time', function(e) {
-    sidebar.classList.add('in');
-    scrim.show();
+    sidebar.toggle();
   });
 
   dropdownToggle.addEventListener('click', function(e) {
-    dropdownPanel.toggle();
+    dropdownPanel.open();
     // dropdownPanel listens to clicks on the document and autocloses
     // so no need to add any more handlers
   });
 
-  scrim && scrim.addEventListener('click', hideSidebar);
 });
 
 
@@ -210,7 +206,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
   docsMenu = document.querySelector('docs-menu');
   dropdownPanel = document.querySelector('dropdown-panel');
   sidebar = document.querySelector('#sidebar');
-  scrim = document.querySelector('page-scrim');
   appBar = document.querySelector('app-bar');
 
   if (AJAXIFY_SITE && docsMenu) { // Ajaxify on pages other than the home.

@@ -112,13 +112,22 @@ module.exports = function(grunt) {
       }
     },
 
+    watch: {
+      elements: {
+        files: ['elements/**/*.html'],
+        tasks: ['vulcanize'],
+        options: {
+          spawn: false,
+        },
+      },
+    }
+
   });
 
   // Plugin and grunt tasks.
   require('load-grunt-tasks')(grunt);
 
   // Default task. Run standard jekyll server.
-  //grunt.registerTask('default', ['jekyll:server']);
   grunt.registerTask('default', ['jekyll:serve']);
 
   grunt.registerTask('apidocs', ['yuidoc:polymeruielements']);

@@ -33,6 +33,10 @@ body {
   // padding-top: 80px;
 }
 
+body.noscroll {
+  overflow: hidden;
+}
+
 img {
   max-width: 100%;
 }
@@ -379,26 +383,6 @@ footer {
   
 #sidebar {
   $leftPadding: 16px;
-
-  position: fixed;
-  @include transform(translateZ(0));
-  height: 100%;
-  width: $sidebarWidth;
-  background-color: $main-bg; //$gray-light;
-  box-shadow: rgba(0, 0, 0, 0.14902) 1px 1px 1px 0px;
-  z-index: 10; // above top sitebanner navbar
-
-  // &:after {
-  //   content: '';
-  //   box-shadow: 150px 0 0 rgba(0, 0, 0, 0.3);
-  //   display: block;
-  //   position: absolute;
-  //   top: 0;
-  //   width: 200px;
-  //   height: 100%;
-  //   z-index: -4;
-  //   right: 0;
-  // }
 
   docs-menu {
     padding: 0 $leftPadding;
