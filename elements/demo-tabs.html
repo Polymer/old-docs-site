@@ -23,8 +23,7 @@
       heading: '',
       selected: false,
       selectedChanged: function() {
-        this.selected ? this.classList.add('selected') :
-                        this.classList.remove('selected');
+        this.classList.toggle('selected', this.selected);
       }
     });
   </script>
