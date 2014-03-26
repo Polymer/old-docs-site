@@ -116,7 +116,9 @@ function injectPage(url, opt_addToHistory) {
     }
 
     // Always hide mobile sidebar upon nav item selection.
-    hideSidebar();
+    if (sidebar.mobile) {
+      hideSidebar();
+    }
   };
 
   xhr.send();
