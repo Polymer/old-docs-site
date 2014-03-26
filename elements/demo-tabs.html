@@ -53,19 +53,25 @@
   </template>
   <script>
     Polymer('demo-tabs', {
+      created: function() {
+        this.panels = [];
+      },
       attached: function() {
-        if (this.$.contentresults.getDistributedNodes().length) {
+        this.panels = [].slice.call(this.$.contentpanels.getDistributedNodes());
+
+        if (this.panels.length) {
           this.$.results.classList.add('show');
         }
       },
+      domReady: function() {
+        this.selectedIndexChanged(); // Light DOM demo-tab have been upgraded.
+      },
       selectedIndexChanged: function(oldVal) {
-        this.panels = [].slice.call(this.$.contentpanels.getDistributedNodes());
-
         if (!this.panels.length) {
           return;
         }
 
-        [].forEach.call(this.panels, function(panel, i) {
+        this.panels.forEach(function(panel, i) {
           panel.selected = false;
         });
 
