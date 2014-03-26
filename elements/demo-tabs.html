@@ -56,7 +56,7 @@
         this.panels = [];
       },
       attached: function() {
-        this.panels = [].slice.call(this.$.contentpanels.getDistributedNodes());
+        this.panels = Array.prototype.slice.call(this.$.contentpanels.getDistributedNodes());
 
         if (this.panels.length) {
           this.$.results.classList.add('show');
