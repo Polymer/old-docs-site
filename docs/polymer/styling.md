@@ -83,7 +83,7 @@ CSS selectors to give you more control on how style rules are shimmed.
 ### polyfill-next-selector {#at-polyfill}
 
 The `polyfill-next-selector` selector is used to replace a native CSS selector with one that
-will work under the polyfill. For example, targeting distributed nodes using `/content/` only works under native Shadow DOM. Instead, you can tell {{site.project_title}} to replace said
+will work under the polyfill. For example, targeting distributed nodes using `::content` only works under native Shadow DOM. Instead, you can tell {{site.project_title}} to replace said
 rules with ones compatible with the polyfill.
 
 To replace native CSS style rules, place `polyfill-next-selector {}` above the
@@ -92,17 +92,17 @@ selector you need to polyfill. Inside of `polyfill-next-selector`, add a
 the native rule. {{site.project_title}} will use this value to shim the native selector. For example:
 
     polyfill-next-selector { content: ':host .bar'; }
-    content /content/ .bar {
+    ::content .bar {
       color: red;
     }
     
     polyfill-next-selector { content: ':host > .bar'; }
-    * /content/ .bar {
+    * ::content .bar {
       color: blue;
     }
 
     polyfill-next-selector { content: '.container > *'; }
-    * /content/ * {
+    ::content * {
       border: 1px solid black;
     }
 
