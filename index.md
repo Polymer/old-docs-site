@@ -46,7 +46,7 @@ stylesheets:
       </div>
       <h1 class="elements-using">Using elements</h1>
       <h5>{{site.project_title}} from the outside</h5>
-      <p>{{site.project_title}} provides a comprehensive set of elements--both UI and non-UI--that you can use right out of the box. You can mix and match {{site.project_title}} elements with other elements, including built-in elements and other custom elements.</p>
+      <p>{{site.project_title}} provides a comprehensive set of elements—both UI and non-UI—that you can use right out of the box. You can mix and match {{site.project_title}} elements with other elements, including built-in elements and other custom elements.</p>
       <a href="/docs/start/usingelements.html" class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Use our elements</a>
     </summary>
     <summary>
