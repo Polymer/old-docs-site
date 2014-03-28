@@ -221,8 +221,8 @@ document.addEventListener('DOMContentLoaded', function(e) {
   initPage();
 });
 
-// Search box close.
 document.addEventListener('click', function(e) {
+  // Search box close.
   if (appBar.showingSearch) {
     appBar.toggleSearch(e);
   }

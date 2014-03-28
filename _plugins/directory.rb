@@ -1,6 +1,6 @@
 require 'pathname'
 
-# {% directory dir:components/polymer-ui-elements %}
+# {% directory dir:components/polymer-ui-elements org:PolymerLabs %}
 # {% directory demos:true tag:li branch:master dir:components/polymer-ui-elements glob:polymer-ui-* blaclistglob:polymer-something-* blacklist:"polymer-dev polymer-expressions polymer-elements" %}
 
 module Jekyll
@@ -32,6 +32,7 @@ module Jekyll
       @blacklist_glob = @attributes.has_key?('blacklistglob') ? @attributes['blacklistglob'] : ''
       @tag = @attributes.has_key?('tag') ? @attributes['tag'] : 'li' 
       @branch = @attributes.has_key?('branch') ? @attributes['branch'] : 'master'
+      @org = @attributes.has_key?('org') ? @attributes['org'] : 'Polymer'
       @demos = @attributes.has_key?('demos') ? @attributes['demos'] : false
 
       # Establish blacklist of elements to not include.
@@ -98,12 +99,11 @@ module Jekyll
       end
 
       <<-END
-      <#{@tag} data-element-file="/#{file_path}">
-        <header>
-          <h2 id="#{tag_name}">&lt;#{tag_name}&gt;
-            <!--<a href="#{github_url}" target="_blank"><img src="/images/picons/ic_polymer_source.svg"></a>-->
-            <a href="#{github_url}" target="_blank">source</a>
-            <a href="/#{demo_path}" target="_blank" #{'disabled' if !File.exists?(demo_path)}>demo</a>
+      <#{@tag} id="#{tag_name}" data-element-file="/#{file_path}">
+        <header onclick="this.parentElement.classList.toggle('expand');">
+          <h2><span>&lt;#{tag_name}&gt;<polymer-ui-icon src="/images/picons/ic_arrowDropDown_dark_.png"></polymer-ui-icon></span>
+            <a href="#{github_url}" target="_blank" alt="View source on Github" title="View source on Github"><polymer-ui-icon src="/images/picons/ic_polymer_source.svg"></polymer-ui-icon></a>
+            <a href="/#{demo_path}" target="_blank" #{'disabled' if !File.exists?(demo_path)} alt="Run demo" title="Run demo"><polymer-ui-icon src="/images/picons/ic_contentCopy_.png"></polymer-ui-icon></a>
           </h2>
         </header>
         <span class="bower_install_instructions">
@@ -140,7 +140,7 @@ module Jekyll
     end
 
     def github_url(element)
-      github_project_url = "https://github.com/#{@config['project_title']}"
+      github_project_url = "https://github.com/#{@org}"
 
       repo, element_path = element['path'].split('/')
 

@@ -4,25 +4,23 @@ type: elements
 navgroup: docs
 shortname: Elements
 title: Polymer elements
-subtitle: Utility elements that do not render UI
+subtitle: non-visual utility elements
 
+add_permalinks: false
 stylesheets:
   "/css/elementpage.css"
 ---
 
-**Note:** These elements and their documentation are very early.
-The "source" links below point to commented code where you can learn more about
-how to use the element.
-{: .alert .alert-info}
+{% include labs.html %}
 
 Install everything:
 
-    bower install Polymer/polymer-elements
+    bower install PolymerLabs/polymer-elements
 
 <section class="element-list">
 {%comment%}
 {% include_external /polymer-elements/docs/classes/polymer-file.html %}
 {%endcomment%}
 
-{% directory dir:components tag:div glob:polymer-* blacklistglob:polymer-ui-* blacklist:"polymer-dev polymer-expressions polymer-elements polymer-ui-elements" %}
+{% directory org:PolymerLabs dir:components tag:div glob:polymer-* blacklistglob:polymer-ui-* blacklist:"polymer-dev polymer-expressions polymer-elements polymer-ui-elements" %}
 </section>
