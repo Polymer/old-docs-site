@@ -10,7 +10,8 @@
 
 {::options parse_block_html="true" /}
 <aside class="author">
-<a href="https://plus.google.com/{{author.gplus}}?rel=author" target="blank_">![{{author.full_name}} profile pic](//www.google.com/s2/photos/profile/{{author.gplus}}?sz=40 "{{author.full_name}}")</a>
+<!-- <a href="https://plus.google.com/{{author.gplus}}?rel=author" target="blank_">![{{author.full_name}} profile pic](//www.google.com/s2/photos/profile/{{author.gplus}}?sz=40 "{{author.full_name}}")</a> -->
+<a href="https://plus.google.com/{{author.gplus}}?rel=author" target="blank_">![{{author.full_name}} profile pic]({{author.profile_pic}} "{{author.full_name}}")</a>
 
 By <a href="https://plus.google.com/{{author.gplus}}" target="blank_">{{author.full_name}}</a><br>
 Published <time pubdate datetime="{{pubdate}}">{{article.published | date: "%B %d, %Y"}}</time>
