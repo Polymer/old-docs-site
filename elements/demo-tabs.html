@@ -1,50 +1,38 @@
 <link rel="import" href="../components/polymer-selector/polymer-selector.html">
 <link rel="import" href="../components/polymer/polymer.html">
 
-<polymer-element name="demo-tab" attributes="heading type">
+
+<polymer-element name="demo-tab" attributes="heading" noscript>
   <template>
     <style>
       :host {
-        display: block;
-      }
-      polyfill-next-selector { content: ':host > *'; }
-      ::content > * {
         display: none;
       }
-      polyfill-next-selector { content: ':host.selected > *'; }
-      :host(.selected) ::content > * {
+      :host(.selected) {
         display: block;
       }
     </style>
     <content></content>
   </template>
-  <script>
-    Polymer('demo-tab', {
-      heading: '',
-      selected: false,
-      selectedChanged: function() {
-        this.classList.toggle('selected', this.selected);
-      }
-    });
-  </script>
 </polymer-element>
 
-<polymer-element name="demo-tabs" attributes="selectedIndex">
+
+<polymer-element name="demo-tabs" attributes="selected">
   <template>
     <link rel="stylesheet" href="../css/elements/demo-tabs.css">
     <div id="container">
       <div class="tab-strip">
-        <polymer-selector selected="{{selectedIndex}}" class="tab-wrapper">
+        <polymer-selector selected="{{selected}}" selectedClass="selected" class="tab-wrapper">
           <template repeat="{{panel in panels}}">
             <span>{{panel.heading}}</span>
           </template>
         </polymer-selector>
       </div>
       <div id="wrapper">
-        <div id="contents">
+        <polymer-selector id="contents" selected="{{selected}}" selectedClass="selected">
           <content id="contentpanels" select="demo-tab"></content>
-        </div>
-        <div id="results">
+        </polymer-selector>
+        <div id="results" class="show">
           <content id="contentresults" select=".result"></content>
         </div>
       </div>
@@ -52,29 +40,16 @@
   </template>
   <script>
     Polymer('demo-tabs', {
-      created: function() {
-        this.panels = [];
-      },
+      selected: 0,
       attached: function() {
-        this.panels = Array.prototype.slice.call(this.$.contentpanels.getDistributedNodes());
-
-        if (this.panels.length) {
-          this.$.results.classList.add('show');
-        }
+        this.updatePanels();
       },
-      domReady: function() {
-        this.selectedIndexChanged(); // Light DOM demo-tab have been upgraded.
-      },
-      selectedIndexChanged: function(oldVal) {
-        if (!this.panels.length) {
-          return;
-        }
-
-        this.panels.forEach(function(panel, i) {
-          panel.selected = false;
-        });
-
-        this.panels[this.selectedIndex].selected = true;
+      updatePanels: function() {
+        this.panels = Array.prototype.slice.call(
+            this.$.contentpanels.getDistributedNodes());
+        this.$.results.classList.toggle(
+            'show', this.$.contentresults.getDistributedNodes().length);
+        this.onMutation(this, this.updatePanels); // Watch changes to light dom.
       }
     });
   </script>

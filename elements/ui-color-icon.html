@@ -1,31 +1,18 @@
 <link rel="import" href="../components/polymer/polymer.html">
 <link rel="import" href="../components/polymer-ajax/polymer-ajax.html">
-<!-- <link rel="import" href="../components/polymer-ui-icon/polymer-ui-icon.html"> -->
+<link rel="import" href="../components/polymer-ui-icon/polymer-ui-icon.html">
 
-<polymer-element name="ui-color-icon" extends="polymer-ui-icon">
+<polymer-element name="ui-color-icon" extends="polymer-ui-icon" attributes="color">
   <template>
-    <!--<style>
-      :host {
-        display: inline-block;
-        height: 24px;
-        width: 24px;
-      }
-    </style>-->
-    <!-- <shadow></shadow> -->
-    <polymer-ajax url="{{src}}" auto response="{{response}}" handleAs="text"></polymer-ajax>
+    <polymer-ajax url="{{src}}" response="{{response}}" auto></polymer-ajax>
     <div id="svg"></div>
   </template>
   <script>
     Polymer('ui-color-icon', {
-      srcChanged: function() {
-
-      },
+      color: 'black',
       responseChanged: function() {
-    //      var svg = this.response.querySelector('svg');
-    // svg.classList.add('elements-creating');
-    // img.parentElement.insertBefore(svg, img);
-    // img.remove();
         this.$.svg.innerHTML = this.response;
+        this.$.svg.style.fill = this.color;
       }
     });
   </script>
