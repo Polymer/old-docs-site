@@ -8,8 +8,16 @@ title: Element Reference
 add_permalinks: false
 ---
 
-## [{{site.project_title}} Elements](polymer-elements.html)
+## {{site.project_title}}
 
-## [{{site.project_title}} UI Elements](polymer-ui-elements.html)
+<!-- ### [Core Elements](core-elements.html)
 
-## [Other](other.html)
+--- -->
+
+## {{site.project_title}} Labs
+
+### [polymer-elements](polymer-elements.html)
+
+### [polymer-ui-elements](polymer-ui-elements.html)
+
+### [Other](other.html)
