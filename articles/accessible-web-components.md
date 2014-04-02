@@ -7,7 +7,8 @@ title: "Accessible Web Components - Part 1"
 subtitle: Improving the accessibility of Web Components
 
 article:
-  author: addyosmani
+  author: alice
+  collaborator: addyosmani
   published: 2014-02-04
   polymer_version: 0.2.2
   description: Techniques for making Web Components accessible
