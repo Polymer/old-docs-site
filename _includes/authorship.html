@@ -5,7 +5,7 @@
 {% assign updated = article.updated | date: "%Y-%m-%d" %}
 
 {% if article.polymer_version %}
-<span class="forversion">Written for v{{article.polymer_version}}</span>
+<span class="forversion">Updated since v{{article.polymer_version}}</span>
 {% endif %}
 
 {::options parse_block_html="true" /}

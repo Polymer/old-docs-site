@@ -15,7 +15,7 @@ h1 {
 }
 
 polyfill-next-selector { content: ':host h1'; }
-:host content /content/ h1 {
+::content h1 {
   font-size: $font-size-display;
 }
 
@@ -24,7 +24,7 @@ h2 {
 }
 
 polyfill-next-selector { content: ':host h2'; }
-:host content /content/ h2 {
+::content h2 {
   font-size: 24px;
 }
 
@@ -33,7 +33,7 @@ h3 {
 }
 
 polyfill-next-selector { content: ':host h3'; }
-:host content /content/ h3 {
+::content h3 {
   font-size: 20px;
 }
 
@@ -43,7 +43,7 @@ h4 {
 }
 
 polyfill-next-selector { content: ':host h4'; }
-:host content /content/ h4 {
+::content h4 {
   font-size: 16px;
   font-weight: 600;
 }
@@ -54,7 +54,7 @@ h5 {
 }
 
 polyfill-next-selector { content: ':host h5'; }
-:host content /content/ h5 {
+::content h5 {
   font-size: 12px;
   font-weight: 600;
 }
