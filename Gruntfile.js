@@ -97,13 +97,16 @@ module.exports = function(grunt) {
 
     vulcanize: {
       options: {
-        excludes: {
-          imports: [
-            "polymer.html$"
-          ]
-        },
-        strip: false, // Flip to true when https://github.com/Polymer/vulcanize/issues/19 is fixed
-        csp: false
+        // TODO: Put back when https://github.com/Polymer/vulcanize/issues/27 is fixed.
+        // Manually edit elements/common_elements.vulcanized.html to remove polymer.js for now.
+        // excludes: {
+        //   imports: [
+        //     "polymer.html$" 
+        //   ]
+        // },
+        strip: true,
+        csp: false,
+        // inline: true
       },
       build: {
         files: {
