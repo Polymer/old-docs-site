@@ -211,6 +211,7 @@ To achieve this, you can use the [MonoState Pattern](http://c2.com/cgi/wiki?Mono
            }
         });
       })();
+      </script>
     </polymer-element>
 
 Then use the element as you would any other, and data-bind it to a property that you can use to access it through Polymer's data-binding:
@@ -244,6 +245,7 @@ A slight tweak of this approach let's you configure the value of the globals ext
            }
         });
       })();
+      </script>
     </polymer-element>
 
 The main page configures the globals by passing attributes:

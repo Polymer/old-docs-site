@@ -16,7 +16,7 @@ subtitle: Polymer from the outside
 - **You don't have to care how they work**. Their internals are safely encapsulated. You interact with them using a well-defined API of attributes, events, properties, methods, and how they handle child nodes. They could use some kind of space-age magic inside, but from the outside you don't know or care.
 - **They're easy to add to your project**. Elements, no matter which framework they're from, should define their dependencies using [Bower](http://bower.io). That means that setting up an element for use in your project--no matter how complex its dependencies, or which frameworks it depends on--is just a matter of running `bower install the-element`, importing the element to your page, and using it.
 
-{{site.project_title}}'s set of elements includes the usual suspects like buttons and other UI components, but also includes non-UI elements like `<polymer-ajax>`. It may sound surprising, but when you embrace the world-view that "[everything is an element](/docs/start/everything.html)" you'll find yourself reaching for pre-built elements more often than script to accomplish common tasks. {{site.project_title}}'s collection of elements is already robust, and continues to grow. 
+{{site.project_title}}'s set of elements includes the usual suspects like buttons and other UI components, but also includes non-UI elements like `<polymer-ajax>`. It may sound surprising, but when you embrace the world-view that "[everything is an element](/docs/start/everything.html)" you'll find yourself reaching for pre-built elements more often than script to accomplish common tasks. {{site.project_title}}'s collection of elements is already robust, and continues to grow.
 
 ## Installing elements {#install}
 
@@ -60,7 +60,7 @@ Don't worry about the other dependencies that were added. Bower installs them au
 Although you can grab elements independently, sometimes you want to grab a whole collection. {{site.project_title}} contains a set of [UI elements](/docs/start/customelements.html#uielements) and a set of [non-UI](/docs/start/customelements.html#nonuielements) elements:
 
 - [Polymer elements](/docs/elements/polymer-elements.html). Non-UI utility elements that perform common tasks like layout, AJAX, signaling, and storage, but don’t render anything in the browser.
-- [Polymer UI elements](/docs/elements/polymer-ui-elements.html). UI  elements that render in the browser. 
+- [Polymer UI elements](/docs/elements/polymer-ui-elements.html). UI elements that render in the browser.
 
 Each set can be downloaded separately using Bower:
 
@@ -100,7 +100,7 @@ An example `index.html` file:
               console.log(this.response);
             });
 
-            ajax.go(); // Call it's API methods.
+            ajax.go(); // Call its API methods.
           });
         </script>
       </body>
@@ -114,9 +114,9 @@ polyfill to work properly. This requirement goes away when the API is available 
 
 HTML attributes are string values, but sometimes you need to pass more complicated values into a custom element, such as objects or arrays. Ultimately, it's up to the element author to decide how to decode values passed in as attributes, but many {{site.project_title}} elements understand attribute values that are a JSON-serialized object or array. For example:
 
-    <roster-list persons="[{'name': 'John'}, {'name': 'Bob'}]"></roster-list>
+    <roster-list persons='[{"name": "John"}, {"name": "Bob"}]'></roster-list>
 
-For {{site.project_title}} elements, you can find the expected type for each attribute listed in the [Elements reference](/docs/elements/) . If you pass the wrong type, it may be decoded incorrectly.
+For {{site.project_title}} elements, you can find the expected type for each attribute listed in the [Elements reference](/docs/elements/). If you pass the wrong type, it may be decoded incorrectly.
 
 When creating your own {{site.project_title}} elements, you can choose to expose properties as attributes, as described in [Published properties](/docs/polymer/polymer.html#published-properties).
 
