@@ -260,10 +260,10 @@ This can be a small performance win when you know the stylesheet(s) in question 
 
 ### Shimming styles outside of polymer-element {#sdcss}
 
-Under the polyfill, {{site.project_title}} automatically examines any style or link elements inside of a `<polymer-element>`. This is done so Shadow DOM CSS features can be shimmed and [polyfill-*](#directives) selectors can be processed. For example, if you're using `/shadow/` and `/shadow-deep/` inside an element, the selectors are rewritten so they work in unsupported browsers. See [Remoformatting rules](#reformatrules) above.
+Under the polyfill, {{site.project_title}} automatically examines any style or link elements inside of a `<polymer-element>`. This is done so Shadow DOM CSS features can be shimmed and [polyfill-*](#directives) selectors can be processed. For example, if you're using `::shadow` and `/deep/` inside an element, the selectors are rewritten so they work in unsupported browsers. See [Reformatting rules](#reformatrules) above.
 
 However, for performance reasons styles outside of an element are not shimmed.
-Therefore, if you're using `/shadow/` and `/shadow-deep/` in your main page stylesheet, be sure to include `shim-shadowdom` on the `<style>` or `<link rel="stylesheet">` that contains these rules. The attribute instructs {{site.project_title}} to shim the styles inside.
+Therefore, if you're using `::shadow` and `/deep/` in your main page stylesheet, be sure to include `shim-shadowdom` on the `<style>` or `<link rel="stylesheet">` that contains these rules. The attribute instructs {{site.project_title}} to shim the styles inside.
 
     <link rel="stylesheet"  href="main.css" shim-shadowdom>
 
@@ -332,7 +332,7 @@ This ensures styling does not leak outside the element's shadowRoot (e.g. upper 
       Note, this technique does not enforce lower bound encapsulation. For that,
       you need to [forcing strict styling](#strictstyling).
 
-1. **Replace `/shadow/` and `/shadow-deep/`** with a `<space>` character.
+1. **Replace `::shadow` and `/deep/`** with a `<space>` character.
 
 ### Forcing strict styling {#strictstyling}
 

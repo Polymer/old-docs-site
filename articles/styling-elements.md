@@ -8,8 +8,8 @@ title: A Guide to Styling Elements
 article:
   author: ebidel
   published: 2013-07-11
-  updated: 2014-03-20
-  polymer_version: 0.0.20130808
+  updated: 2014-04-02
+  polymer_version: 0.2.2
   description: Learn all about how to style Polymer elements.
 tags:
 - CSS
@@ -107,15 +107,15 @@ When someone mouses over `<x-button>` they'll get a sexy fade-in!
 
 #### Theming an element
 
-The selector `:ancestor(<selector>)` matches the host element if it or any of its ancestors matches `<selector>`.
+The `:host-context(<selector>)` pseudo class matches the host element if it or any of its ancestors matches `<selector>`.
 
 **Example** - color the element if an ancestor has the `different` class:
 
-    :ancestor(.different) {
+    :host-context(.different) {
       color: red;
     }
 
-One reason you might find `:ancestor()` useful is for theming. For example, many people do theming by applying a class to `<html>` or `<body>`. 
+One reason you might find `:host-context()` useful is for theming. For example, many people do theming by applying a class to `<html>` or `<body>`. 
 
     <body class="different">
       <x-foo></x-foo>
@@ -126,7 +126,7 @@ One reason you might find `:ancestor()` useful is for theming. For example, many
     <polymer-element name="x-foo" noscript>
       <template>
         <style>
-          :ancestor(.different) { ... }
+          :host-context(.different) { ... }
         </style>
       </template>
     </polymer-element>
@@ -304,7 +304,7 @@ see [styling distributed nodes](#style-distributed).
 
 #### Styling distributed nodes {#style-distributed}
 
-`<content>` elements allow you to select nodes from the ["Light DOM"](/platform/shadow-dom.html#shadow-dom-subtrees) and render them at predefined locations in your element. The CSS `::content` pseudo element is a way to style nodes that pass through an insertion point.
+`<content>` elements allow you to select nodes from the ["Light DOM"](/platform/shadow-dom.html#shadow-dom-subtrees) and render them at predefined locations in your element. The CSS `::content` pseudo-element is a way to style nodes that pass through an insertion point.
 
 **Full example**
 
@@ -359,7 +359,7 @@ selectors to polyfill certain Shadow DOM features. See the [Styling reference](/
 
     <polymer-element name="x-foo" noscript>
       <template>
-        <div class="red">Shadow DOM: shouldn't be red</div>
+        <div class="red">Shadow DOM: shouldn't be red (under native Shadow DOM)</div>
         <content select="div"></content>
       </template>
     </polymer-element>
@@ -390,14 +390,19 @@ It's simple being rendered elsewhere (over in Shadow DOM land).
 
 ### From outside the element {#style-fromoutside}
 
-The `/shadow/` and `/shadow-deep/` combinators pierce through Shadow DOM's boundaries and can style elements within different shadow trees.
+The `::shadow` pseudo-element and the `/deep/` combinator pierce through Shadow DOM's boundaries and allow you to style elements within different shadow trees.
 
-#### The `/shadow/` combinator {#hat}
+#### The `::shadow` pseudo-element {#hat}
 
-The `/shadow/` combinator is generally equivalent to a descendant combinator (e.g. `div p {...}`), except **it crosses one shadow boundary**.
+If an element has at least one shadow tree, the `::shadow` pseudo-element matches the shadow roots themselves. 
+For example, say you wanted to style x-foo's internal `p` element. Writing `x-foo::shadow` selects x-foo's shadow root. From there, you can write a normal descendant selector to get at the `p`: 
 
     <style>
-      x-foo /shadow/ p {
+      x-foo::shadow p {
+        color: red;
+      }
+      /* Equivalent to previous rule (in this case). */ 
+      x-foo::shadow > p {
         color: red;
       }
     </style>
@@ -416,7 +421,7 @@ The `/shadow/` combinator is generally equivalent to a descendant combinator (e.
 **Demo:**
 
 <style shim-shadowdom>
-  x-foo-shadow /shadow/ p {
+  x-foo-shadow::shadow p {
     color: red;
   }
 </style>
@@ -425,13 +430,13 @@ The `/shadow/` combinator is generally equivalent to a descendant combinator (e.
   <p>I am not red (under native shadow dom).</p>
 </x-foo-shadow>
 
-In this example, `<p>I am not red (under native shadow dom)</p>` remains unstyled because the `x-foo /shadow/ p { ... }` rule only targets the `<p>` internal to x-foo (e.g. in its Shadow DOM). Under the polyfill, it _is_ styled red. This is because {{site.project_title}} replaces the `/shadow/`, rewriting the rule to be `x-foo-shadow p`.
+In this example, `<p>I am not red (under native shadow dom)</p>` remains unstyled because the `x-foo::shadow p { ... }` rule only targets the `<p>` internal to x-foo (e.g. in its Shadow DOM). Under the polyfill, it _is_ styled red. This is because {{site.project_title}} replaces the `::shadow`, rewriting the rule to be `x-foo p`.
 
-A more full fledged example is styling a tabs component, say `<x-tabs>`. It has `<x-panel>` children in its Shadow DOM, each of which has an `h2` heading. To style those headings from the main page, one could use the `/shadow/` combinator like so:
+A more full fledged example is styling a tabs component, say `<x-tabs>`. It has `<x-panel>` children in its Shadow DOM, each of which has an `h2` heading. To style those headings from the main page, one could use the `::shadow` pseudo-element like so:
 
 {%raw%}
     <style>
-      x-tabs /shadow/ x-panel /shadow/ h2 {
+      x-tabs::shadow x-panel::shadow h2 {
         ...
       }
     </style>
@@ -455,19 +460,19 @@ A more full fledged example is styling a tabs component, say `<x-tabs>`. It has 
     <x-tabs></x-tabs>
 {%endraw%}
 
-#### The `/shadow-deep/` combinator {#cat}
+#### The `/deep/` combinator {#cat}
 
-The `/shadow-deep/` combinator is similar to `/shadow/`, but more powerful. It completely **ignores all boundaries and crosses into any number of shadow trees**. 
+The `/deep/` combinator is similar to `::shadow`, but more powerful. It completely **ignores all shadow boundaries and crosses into any number of shadow trees**. 
 
 **Example** style all `h2` elements that are descendants of an `<x-tabs>`, anywhere in a shadow tree:
 
-    x-tabs /shadow-deep/ h2 {
+    x-tabs /deep/ h2 {
       ...
     }
 
 **Example** style all elements with the class `.library-theme`, anywhere in a shadow tree:
 
-    body /shadow-deep/ .library-theme {
+    body /deep/ .library-theme {
       ...
     }
 
