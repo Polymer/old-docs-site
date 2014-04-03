@@ -7,11 +7,11 @@ title: "Accessible Web Components - Part 1"
 subtitle: Improving the accessibility of Web Components
 
 article:
-  author: alice
-  collaborator: addyosmani
+  author: addyosmani
+  collaborator: alice
   published: 2014-02-04
   polymer_version: 0.2.2
-  description: Techniques for making Web Components accessible
+  description: Improving the accessibility of Web Components
 tags:
 - accessibility
 - a11y
@@ -25,7 +25,7 @@ tags:
 
 ## Introduction
 
-[Custom Elements](http://www.w3.org/TR/custom-elements/) present a fantastic opportunity for us to improve accessibility on the web.
+[Custom Elements](http://www.polymer-project.org/docs/start/platform.html#bundle) present a fantastic opportunity for us to improve accessibility on the web.
 
 To be accessible, elements need to work across multiple devices with varying screen-sizes and different kinds of input. Moreover, your elements should be usable by the broadest group of users, including those with disabilities.
 
@@ -59,9 +59,9 @@ When designing for accessibility, there are four key areas of disability to cons
 
 This may seem like a lot of bases to cover, but we’ll walk through the process for assessing and then improving the accessibility of your element.
 
-## Is Your Element Accessible?
+## Is your element accessible?
 
-### Summary (tl;dr)
+### Summary (tl;dr) {#tldr}
 
 When auditing your application for accessibility, ask yourself:
 
@@ -89,8 +89,7 @@ Firstly, ensure that you have a sensible **focus** target for each element. For 
 
 ![Menu displaying how to manage focus](/articles/images/accessible-web-components/image_0.png)
 
-
-Managing focus within a complex element.
+*Managing focus within a complex element*
 
 #### Using tabindex
 
@@ -104,9 +103,9 @@ There are three types of **tabindex** values:
 
 * a `tabindex` value equal to -1 will cause the element to be *programmatically* focusable, but not in the tab order.
 
-For custom elements, always use **`tabindex` values of `0` or `-1`,** as you won’t be able to determine the order of elements on a given page ahead of time - and even if we did, they may be subject to change. A `tabindex` value of `-1` is particularly useful for managing focus within complex elements as described above.
+For custom elements, always use **`tabindex` values of `0` or `-1`,** as you won’t be able to determine the order of elements on a given page ahead of time—and even if we did, they may be subject to change. A `tabindex` value of `-1` is particularly useful for managing focus within complex elements as described above.
 
-Also ensure that focus is **always visible**, whether by allowing the default focus ring style, or applying a discernible focus style. Remember not to trap the keyboard user - focus should be able to be moved away from an element using only the keyboard.
+Also ensure that focus is **always visible**, whether by allowing the default focus ring style, or applying a discernible focus style. Remember not to trap the keyboard user—focus should be able to be moved away from an element using only the keyboard.
 
 #### Using autofocus
 
@@ -116,7 +115,13 @@ Once your element is focusable, try to provide a good **keyboard interaction** s
 
 Finally, ensure that your keyboard shortcuts are **discoverable**. For example, a common practice is to have a keyboard shortcut legend (on-screen text) to inform the user that shortcuts exist. For example, "Press ? for keyboard shortcuts". Alternatively a hint such a tooltip could be used to inform the user about the shortcut existing.
 
-### Do all elements and images have meaningful text alternatives?
+### Can you use your element with a screen reader?
+
+Around 1-2% of users will be using a screen reader. At the end of this article, we list some screen readers which are free to use: try using your element with at least one of these screen readers. Can you determine all important information and interact with the element using the screen reader and keyboard alone?
+
+The following questions should help guide you in addressing screen reader accessibility:
+
+#### Do all elements and images have meaningful text alternatives?
 
 Wherever information about the *name* or *purpose* of an interactive element is conveyed visually, an accessible text alternative needs to be provided.
 
@@ -124,7 +129,8 @@ For example, if your `<x-menu>` element only displays an icon such as ![image al
 
 Any element which displays an image should provide a mechanism for providing alternative text for that image, analogous to the alt attribute.
 
-### Do your custom elements provide semantic information?
+
+#### Do your custom elements provide semantic information?
 
 Assistive technology conveys semantic information which is otherwise expressed to sighted users via visual cues such as formatting, cursor style, or position. Native elements have this semantic information built-in by the browser, but for custom elements you need to use [ARIA](http://www.w3.org/WAI/PF/aria/) to add this information in.
 
@@ -134,7 +140,7 @@ As a rule of thumb, any element which listens to a mouse click or hover event sh
 
 For example, a custom `<x-slider>` element might take an ARIA role of slider, which has some related ARIA attributes: `aria-valuenow`, `aria-valuemin` and `aria-valuemax`. By binding these attributes to the relevant properties on your custom element, you can allow users of assistive technology to interact with the element and change its value, and even cause the visual presentation of the element to change accordingly.
 
-![A range slider element](/articles/images/accessible-web-components/image_2.png)
+![A range slider element displaying a minimum value of 1, maximum value of 5 and current value of 2.5.](/articles/images/accessible-web-components/image_2.png)
 
     <x-slider role="slider" aria-valuemin="1" aria-valuemax="5" aria-valuenow="2.5">
     </x-slider>
@@ -143,7 +149,7 @@ For example, a custom `<x-slider>` element might take an ARIA role of slider, wh
 
 Color shouldn’t be used as the only means of conveying information, such as indicating a status, prompting for a response or distinguishing a visual custom element. For example, if you created an `<x-map>` element using color to distinguish between heavy, moderate and light traffic, an alternative means of distinguishing traffic levels should also  be made available: one solution might be to hover over an element to display information in a tooltip.
 
-### Is there sufficient contrast between the text/images and the background in your element? 
+### Is there sufficient contrast between the text/images and the background?
 
 Any text content displayed in your element should meet the [minimum (AA) contrast bar](http://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast). Consider providing a high-contrast theme which meets the [higher (AAA) bar](http://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast7), and also ensure that user agent style sheets can be applied if users require extreme contrast or different colors. You can use this [Color Contrast Checker](http://webaim.org/resources/contrastchecker/) as an aid when doing design.
 
