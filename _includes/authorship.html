@@ -1,4 +1,5 @@
 {% assign author = site.data.authors[page.article.author] %}
+{% assign collaborator = site.data.authors[page.article.collaborator] %}
 {% assign article = page.article %}
 
 {% assign pubdate = article.published | date: "%Y-%m-%d" %}
@@ -13,7 +14,11 @@
 <!-- <a href="https://plus.google.com/{{author.gplus}}?rel=author" target="blank_">![{{author.full_name}} profile pic](//www.google.com/s2/photos/profile/{{author.gplus}}?sz=40 "{{author.full_name}}")</a> -->
 <a href="https://plus.google.com/{{author.gplus}}?rel=author" target="blank_">![{{author.full_name}} profile pic]({{author.profile_pic}} "{{author.full_name}}")</a>
 
-By <a href="https://plus.google.com/{{author.gplus}}" target="blank_">{{author.full_name}}</a><br>
+{% if article.collaborator %}
+<a href="https://plus.google.com/{{collaborator.gplus}}?rel=author" target="blank_">![{{collaborator.full_name}} profile pic]({{collaborator.profile_pic}} "{{collaborator.full_name}}")</a>
+{% endif %}
+
+By <a href="https://plus.google.com/{{author.gplus}}" target="blank_">{{author.full_name}}</a> {% if article.collaborator %} and <a href="https://plus.google.com/{{collaborator.gplus}}" target="blank_">{{collaborator.full_name}}</a> {% endif %}<br>
 Published <time pubdate datetime="{{pubdate}}">{{article.published | date: "%B %d, %Y"}}</time>
 {% if article.updated %}
 (updated <time datetime="{{updated}}">{{article.updated | date: "%B %d, %Y"}}</time>)
