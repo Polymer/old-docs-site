@@ -64,6 +64,22 @@ as default attributes:
 
     <tag-name class="active" mycustomattr></tag-name>
 
+#### Attribute case sensitivity {#attrcase}
+
+It's worth noting that the HTML parser considers attribute names *case insensitive*. Property names in JavaScript are however *case sensitive*.
+
+This means that attributes can be written any way that you like, but if you look at an element's attribute list, the names will always be lowercase. Polymer is aware of this and will attempt to match the attributes to properties carefully. For example, this should work as expected:
+
+    <name-tag nameColor="blue" name="Blue Name"></name-tag>
+
+The fact that the `nameColor` attribute is actually lowercase in DOM can generally just be ignored.
+
+This also means that any of the below examples will also work:
+
+    <name-tag NaMeCoLoR="blue" name="Blue Name"></name-tag>
+    <name-tag NAMECOLOR="red" name="Red Name"></name-tag>
+    <name-tag NAMEcolor="green" name="Green Name"></name-tag>
+
 ### Alternate ways to register an element {#altregistration}
 
 For convenient decoupling of script and markup, you don't have to inline your script.
@@ -111,21 +127,6 @@ Elements can be registered in pure JavaScript like so:
 
 Note that you need to add the `<polymer-element>` to the document so that the 
 Custom Elements polyfill picks it up.
-
-It is also worth noting that generally the HTML parser considers attribute names *case insensitive*. Property names in JavaScript are however *case sensitive*.
-
-This means that attributes can be written any way that you like, but if you look at an element's attribute list, the names will always be lowercase. Polymer is aware of this and will attempt to match the attributes to properties carefully. For example, this should work as expected:
-
-    <name-tag nameColor="blue" name="Blue Name"></name-tag>
-
-The fact that the `nameColor` attribute is actually lowercase in DOM can generally just be ignored.
-
-This also means that any of the below examples will also work:
-
-    <name-tag NaMeCoLoR="blue" name="Blue Name"></name-tag>
-    <name-tag NAMECOLOR="red" name="Red Name">    </name-tag>
-    <name-tag NAMEcolor="green" name="Green Name"></name-tag>
-
     
 ### Adding public properties and methods {#propertiesmethods}
 
@@ -154,19 +155,17 @@ using an ES5 getter, and a method `foo`:
 
 **Important:** Be careful when initializing properties that are objects or arrays. Due to the nature of `prototype`, you may run into unexpected "shared state" across instances of the same element. If you're initializing an array or object, do it in `ready()` rather than directly on the `prototype`. 
 
-Do this:
-
+    // Good!
     Polymer('x-foo', {
       ready: function() {
         this.list = []; // Initialize and hint type to be array.
         this.person = {}; // Initialize and hint type to an object.
       }
     });
-     
-instead of this:
 
+    // Bad.
     Polymer('x-foo', {
-      list: [],
+      list: [], // Don't initialize array or objects on the prototype.
       person: {}
     });
 
@@ -264,6 +263,7 @@ All of the lifecycle callbacks are optional:
       created: function() { ... },
       ready: function() { ... },
       attached: function () { ... },
+      domReady: function() { ... },
       detached: function() { ... },
       attributeChanged: function(attrName, oldVal, newVal) {
         //var newVal = this.getAttribute(attrName);
@@ -276,11 +276,12 @@ Below is a table of the lifecycle methods according to the Custom Elements
 
 Spec | {{site.project_title}} | Called when
 |-
-createdCallback | created | an instance of the element is created
-- | ready | The `<polymer-element>` has been fully prepared (e.g. Shadow DOM created, property observers setup, event listeners attached, etc.)
-attachedCallback | attached | an instance was inserted into the document
-detachedCallback | detached | an instance was removed from the document
-attributeChangedCallback | attributeChanged | an attribute was added, removed, or updated
+createdCallback | created | An instance of the element is created.
+- | ready | The `<polymer-element>` has been fully prepared (e.g. Shadow DOM created, property observers setup, event listeners attached, etc).
+attachedCallback | attached | An instance of the element was inserted into the DOM. This is an appropriate time to poke at the element's parent or light DOM children. 
+- | domReady | Called when the element's initial set of children are guaranteed to exist. One use of `domReady` is when you have sibling custom elements (e.g. they're `.innerHTML`'d together, at the same time). Before element A can use B's API/properties, element B needs to be upgraded. The `domReady` callback insures both elements are upgraded.
+detachedCallback | detached | An instance was removed from the DOM.
+attributeChangedCallback | attributeChanged | An attribute was added, removed, or updated. **Note**: to observe changes to [published properties](#published-properties), use [*Changed watchers](#change-watchers).
 {: .table .responsive-table .lifecycle-table }
 
 ### The polymer-ready event {#polymer-ready}
