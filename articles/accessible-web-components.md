@@ -169,7 +169,7 @@ A number of tools are available that can assist with debugging the accessibility
 
 * You can examine the way that assistive technologies see web content by using [Accessibility Inspector](https://developer.apple.com/library/mac/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTesting/OSXAXTestingApps.html#//apple_ref/doc/uid/TP40001078-CH210-TPXREF101) (Mac), or [Windows Automation API Testing Tools](http://msdn.microsoft.com/en-us/library/windows/desktop/dd373661(v=vs.85).aspx) and [AccProbe](http://accessibility.linuxfoundation.org/a11yweb/util/accprobe/) (Windows). Additionally you can see the full accessibility tree that Chrome creates by navigating to *chrome://accessibility*.
 
-* The best way to test for screen reader support on a Mac is using the VoiceOver utility. You can use ⌘F5 to enable/disable, Ctrl+Option ←→ to move through the page and Ctrl+Shift+Option + ↑↓ to move up/down tree. For more detailed instructions, see the [full list of VoiceOver commands](http://www.apple.com/voiceover/info/guide/_1131.html).
+* The best way to test for screen reader support on a Mac is using the VoiceOver utility. You can use ⌘F5 to enable/disable, Ctrl+Option ←→ to move through the page and Ctrl+Shift+Option + ↑↓ to move up/down tree. For more detailed instructions, see the [full list of VoiceOver commands](http://www.apple.com/voiceover/info/guide/_1131.html) and the [list of VoiceOver Web commands](http://www.apple.com/voiceover/info/guide/_1131.html#vo27972).
 
 * On Windows, [NVDA](http://www.nvaccess.org/) is a free, open source screen reader which is fully featured and rapidly gaining in popularity. However, note that it has a much steeper learning curve for sighted users than VoiceOver.
 
