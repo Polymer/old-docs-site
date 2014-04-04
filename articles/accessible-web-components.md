@@ -142,6 +142,7 @@ For example, a custom `<x-slider>` element might take an ARIA role of slider, wh
 
 ![A range slider element displaying a minimum value of 1, maximum value of 5 and current value of 2.5.](/articles/images/accessible-web-components/image_2.png)
 
+    <!-- x-slider element template adds ARIA role and attributes which are visible in light DOM -->
     <x-slider role="slider" aria-valuemin="1" aria-valuemax="5" aria-valuenow="2.5">
     </x-slider>
 
