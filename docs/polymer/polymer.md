@@ -279,7 +279,7 @@ Spec | {{site.project_title}} | Called when
 createdCallback | created | An instance of the element is created.
 - | ready | The `<polymer-element>` has been fully prepared (e.g. Shadow DOM created, property observers setup, event listeners attached, etc).
 attachedCallback | attached | An instance of the element was inserted into the DOM. This is an appropriate time to poke at the element's parent or light DOM children. 
-- | domReady | Called when the element's initial set of children are guaranteed to exist. One use of `domReady` is when you have sibling custom elements (e.g. they're `.innerHTML`'d together, at the same time). Before element A can use B's API/properties, element B needs to be upgraded. The `domReady` callback insures both elements are upgraded.
+- | domReady | Called when the element's initial set of children are guaranteed to exist. One use of `domReady` is when you have sibling custom elements (e.g. they're `.innerHTML`'d together, at the same time). Before element A can use B's API/properties, element B needs to be upgraded. The `domReady` callback insures both elements exist.
 detachedCallback | detached | An instance was removed from the DOM.
 attributeChangedCallback | attributeChanged | An attribute was added, removed, or updated. **Note**: to observe changes to [published properties](#published-properties), use [*Changed watchers](#change-watchers).
 {: .table .responsive-table .lifecycle-table }
