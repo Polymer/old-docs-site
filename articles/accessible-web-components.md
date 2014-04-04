@@ -125,7 +125,7 @@ The following questions should help guide you in addressing screen reader access
 
 Wherever information about the *name* or *purpose* of an interactive element is conveyed visually, an accessible text alternative needs to be provided.
 
-For example, if your `<x-menu>` element only displays an icon such as ![image alt text](/articles/images/accessible-web-components/image_1.png), it needs an accessible text alternative such as "menu", which conveys the same information. You can find technical tips in [Quick Reference for Modern Accessible HTML](https://sites.google.com/a/google.com/accessibility/dev-quick-ref) and [ARIA Custom Text](https://sites.google.com/a/google.com/accessibility/workflow/product/access-201-advanced-accessibility/access-201/aria-custom-text).
+For example, if your `<x-menu>` element only displays an icon such as ![menu icon](/articles/images/accessible-web-components/image_1.png), it needs an accessible text alternative such as "menu", which conveys the same information. You can find technical tips in [Quick Reference for Modern Accessible HTML](https://sites.google.com/a/google.com/accessibility/dev-quick-ref) and [ARIA Custom Text](https://sites.google.com/a/google.com/accessibility/workflow/product/access-201-advanced-accessibility/access-201/aria-custom-text).
 
 Any element which displays an image should provide a mechanism for providing alternative text for that image, analogous to the alt attribute.
 
