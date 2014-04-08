@@ -92,8 +92,8 @@ An interesting application of `:host` is for reacting to different user-driven s
             opacity: 0.6;
             transition: opacity 400ms ease-in-out;
           }
-          :host:hover { opacity: 1; }
-          :host:active { ... }
+          :host(:hover) { opacity: 1; }
+          :host(:active) { ... }
         </style>
         <button><content></content></button>
       </template>
