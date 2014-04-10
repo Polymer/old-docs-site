@@ -111,6 +111,8 @@ Also ensure that focus is **always visible**, whether by allowing the default fo
 
 The HTML **autofocus** attribute allows an author to specify that a particular element should automatically take focus when the page is loaded. It is already supported on [all web form controls](http://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#autofocusing-a-form-control), including `<input>`. To autofocus elements in your own custom element, call the [focus()](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement.focus) method supported on all HTML elements that can be focused (e.g `document.getElementById('myButton').focus()`).
 
+#### Adding keyboard interaction
+
 Once your element is focusable, try to provide a good **keyboard interaction** story when an element is focused, by handling appropriate keyboard events - for example, allow the user to use arrow keys to select menu options, and space or enter to activate buttons. The ARIA [design patterns guide](http://www.w3.org/TR/wai-aria-practices/#aria_ex) provides some guidance here.
 
 Finally, ensure that your keyboard shortcuts are **discoverable**. For example, a common practice is to have a keyboard shortcut legend (on-screen text) to inform the user that shortcuts exist. For example, "Press ? for keyboard shortcuts". Alternatively a hint such a tooltip could be used to inform the user about the shortcut existing.
