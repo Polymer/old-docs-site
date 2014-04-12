@@ -2,9 +2,12 @@
 layout: home
 title: Welcome
 
-stylesheets:
-  "/css/homepage.css"
+#stylesheets:
+#  "/css/homepage.css"
 ---
+
+<!-- page specific stylesheet needs to be inline to the page so ajax injects it. -->
+<link rel="stylesheet" href="/css/homepage.css">
 
 <section id="future" class="main-bg">
   <div class="panel left">
@@ -69,11 +72,3 @@ stylesheets:
     </summary>
   </div>
 </section>
-<!-- <section id="quickstart">
-  <div class="panel">
-    <summary>
-      <p>content here</p>
-    </summary>
-  </div>
-</section>
- -->

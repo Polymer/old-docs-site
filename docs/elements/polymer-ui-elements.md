@@ -7,9 +7,12 @@ title: Polymer UI elements
 subtitle: basic visual elements
 
 add_permalinks: false
-stylesheets:
-  "/css/elementpage.css"
+#stylesheets:
+#  "/css/elementpage.css" 
 ---
+
+<!-- page specific stylesheet needs to be inline to the page so ajax injects it. -->
+<link rel="stylesheet" href="/css/elementpage.css">
 
 {% include labs.html %}
 

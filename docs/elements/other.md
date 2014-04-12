@@ -9,6 +9,9 @@ subtitle: Polymer labs
 add_permalinks: false
 ---
 
+<!-- page specific stylesheet needs to be inline to the page so ajax injects it. -->
+<link rel="stylesheet" href="/css/elementpage.css">
+
 {% include labs.html %}
 
 {% comment %}

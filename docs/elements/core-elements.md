@@ -8,9 +8,12 @@ subtitle: non-visual utility elements
 
 add_permalinks: false
 
-stylesheets:
-  "/css/elementpage.css"
+#stylesheets:
+#  "/css/elementpage.css"
 ---
+
+<!-- page specific stylesheet needs to be inline to the page so ajax injects it. -->
+<link rel="stylesheet" href="/css/elementpage.css">
 
 **Note:** These elements and their documentation are still early. The "source" links below point to commented code where you can learn more about how to use the element.
 {: .alert .alert-info}
