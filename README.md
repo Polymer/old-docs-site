@@ -69,7 +69,7 @@ Update the projects:
     
 Then, update the elements and polyfills:
 
-    cd components
+    cd ../../components
     ../polymer-all/tools/bin/pull-all-polymer.sh
     ../polymer-all/tools/bin/pull-all-elements.sh
 
