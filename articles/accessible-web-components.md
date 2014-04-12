@@ -111,6 +111,8 @@ Also ensure that focus is **always visible**, whether by allowing the default fo
 
 The HTML **autofocus** attribute allows an author to specify that a particular element should automatically take focus when the page is loaded. It is already supported on [all web form controls](http://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#autofocusing-a-form-control), including `<input>`. To autofocus elements in your own custom element, call the [focus()](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement.focus) method supported on all HTML elements that can be focused (e.g `document.getElementById('myButton').focus()`).
 
+#### Adding keyboard interaction
+
 Once your element is focusable, try to provide a good **keyboard interaction** story when an element is focused, by handling appropriate keyboard events - for example, allow the user to use arrow keys to select menu options, and space or enter to activate buttons. The ARIA [design patterns guide](http://www.w3.org/TR/wai-aria-practices/#aria_ex) provides some guidance here.
 
 Finally, ensure that your keyboard shortcuts are **discoverable**. For example, a common practice is to have a keyboard shortcut legend (on-screen text) to inform the user that shortcuts exist. For example, "Press ? for keyboard shortcuts". Alternatively a hint such a tooltip could be used to inform the user about the shortcut existing.
@@ -125,7 +127,7 @@ The following questions should help guide you in addressing screen reader access
 
 Wherever information about the *name* or *purpose* of an interactive element is conveyed visually, an accessible text alternative needs to be provided.
 
-For example, if your `<x-menu>` element only displays an icon such as ![settings icon](/articles/images/accessible-web-components/image_1.png) to indicate that it is a settings menu, it needs an accessible text alternative such as "settings", which conveys the same information. You can find technical tips in [Quick Reference for Modern Accessible HTML](https://sites.google.com/a/google.com/accessibility/dev-quick-ref) and [ARIA Custom Text](https://sites.google.com/a/google.com/accessibility/workflow/product/access-201-advanced-accessibility/access-201/aria-custom-text).
+For example, if your `<x-menu>` element only displays an icon such as ![settings icon](/articles/images/accessible-web-components/image_1.png) to indicate that it is a settings menu, it needs an accessible text alternative such as "settings", which conveys the same information. Depending on context, this may use an `alt` attribute, an `aria-label` attribute, an `aria-labelledby` attribute, or plain text in the Shadow DOM. You can find general technical tips in [WebAIM Quick Reference](http://webaim.org/resources/quickref/).
 
 Any element which displays an image should provide a mechanism for providing alternative text for that image, analogous to the alt attribute.
 
