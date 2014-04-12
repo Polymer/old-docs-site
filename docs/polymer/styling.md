@@ -292,7 +292,7 @@ and stylesheets. It removes these from the custom element's Shadow DOM `<templat
           <template>
             <style>
               :host { ... }
-              :host:hover { ... }
+              :host(:hover) { ... }
               :host(.foo) > .bar { ... }
             </style>
           ...
