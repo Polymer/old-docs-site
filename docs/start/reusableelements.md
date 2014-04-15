@@ -144,7 +144,7 @@ You can check out the [live](http://polymerlabs.github.io/untitled-element/compo
 
 This page uses our [core-component-page](https://github.com/Polymer/core-component-page) element to parse out documentation from your element as long as you’re using our custom flavour of [JSDoc comments](http://usejsdoc.org/about-getting-started.html). `untitled-element` includes boilerplate for these comments out of the box.
 
-This allows us to automatically group your documentation by attributes, methods and events, show an example and provide a summary of what your element does. It can also provide you to a link to an element [demo](http://addyosmani.github.io/test-element/components/test-element/demo.html).
+This allows us to automatically group your documentation by attributes, methods and events, show an example and provide a summary of what your element does. It can also provide you to a link to an element [demo](http://polymerlabs.github.io/untitled-element/components/untitled-element/demo.html).
 
 ##Where to go next?
 
