@@ -5,14 +5,14 @@ navgroup: start
 shortname: Start
 author: addyosmani
 title: Creating reusable elements
-subtitle: How to publish and deploy reusable Polymer elements to GitHub
+subtitle: How to publish and deploy reusable Polymer elements on GitHub
 ---
 
 {% include toc.html %}
 
 ## Introduction
 
-So, you want to publish your first reusable {{site.project_title}} element? Fantastic! This guide will walk you through that process. First, we’ll cover setting up the official **boilerplate** for working on a reusable {{site.project_title}} element on your local system. We’ll then walk through **deploying** a version of your element to [GitHub](http://github.io).
+So, you want to publish your first reusable {{site.project_title}} element? Fantastic! This guide will walk you through that process. First, we’ll cover setting up the official **boilerplate** for working on a reusable {{site.project_title}} element on your local system. We’ll then walk through **deploying** a version of your element to [GitHub pages](http://github.com).
 
 This guide will ensure your *master* branch contains the bare-minimum of code that needs to be consumed by other apps or elements and your *gh-pages (GitHub pages)* branch contains a landing page for your element. This branch will contain **checked-in dependencies**, **demos** and **documentation**.
 
@@ -29,7 +29,7 @@ This guide will ensure your *master* branch contains the bare-minimum of code th
 
 3. Rename the element and its files accordingly. For example, if your element is called `<test-element>` and you've renamed the `untitled-element` directory to `test-element`, your file list should look a little like this:
 
-![](/images/publishing-polymer-elements/image_0.png)
+![File list for the test-element directory showing that untitled-element.html and untitled-element.css have been accordingly renamed to test-element.html and test-element.css](/images/publishing-polymer-elements/image_0.png)
 
 4. In the terminal, run `touch .bowerrc` (or `type NUL > .bowerrc` on Windows) to create a new Bower configuration file inside your element directory. Edit the file so that Bower installs your dependencies a level up from your element. Pasting in the below and saving it should do the trick:
 
@@ -40,7 +40,7 @@ This guide will ensure your *master* branch contains the bare-minimum of code th
 
 5. Next, run `bower install` inside your element directory to install dependencies. They will end up inside the `development` directory if all goes well. You can now locally develop and serve your element up for testing purposes.
 
-![](/images/publishing-polymer-elements/image_1.png)
+![Directory listing of installed Bower packages including polymer, platform, core-component-page and core-action-icons. As this is the development directory, test-element is also shown in the directory list](/images/publishing-polymer-elements/image_1.png)
 
 ## Deploy
 
@@ -92,21 +92,21 @@ Next, you’ll want to tag a version of your element on GitHub. You can either d
 
 Navigate to the main GitHub page for your element and click the "releases" link in the main navigation. It is highlighted in red below:
 
-![](/images/publishing-polymer-elements/image_2.png)
+![Preview of the GitHub navigation bar for a repository listing four navigation items - commits, branches, releases, contributors. The releases link is highlighted](/images/publishing-polymer-elements/image_2.png)
 
 This will navigate you to the *Releases* page. For a project without any releases, this page will display a message similar to the one below. 
 
-![](/images/publishing-polymer-elements/image_3.png)
+![GitHub Releases page message stating that there aren't any releases here yet. The Create a new release button is highlighted](/images/publishing-polymer-elements/image_3.png)
 
 Click the ‘Create a new release’ button to proceed. 
 
 This will display a Release drafting page where you can enter in version and release information for your element. Below, we’ve entered in v0.0.1 as the tag we would like to create and set the `master` branch as our target. 
 
-![](/images/publishing-polymer-elements/image_4.png)
+![The GitHub releases form displaying an input field for entering in a version number, a drop-down box for selecting the target branch, a release titles field and a description field](/images/publishing-polymer-elements/image_4.png)
 
 Once you are happy with the information you have entered into the above form, click the ‘Publish release’ button to complete tagging and publishing a release of your element. Boom!
 
-![](/images/publishing-polymer-elements/image_5.png)
+![Preview of the Publish release button in the GitHub releases page](/images/publishing-polymer-elements/image_5.png)
 
 ### Publishing a demo and landing page for your element
 
@@ -138,7 +138,7 @@ This will create a new `gh-pages` branch (or clone and clear the current one) th
 
 You can now share the link to your element hosted on GitHub pages with the world. As we used the `untitled-element` repo, {{site.project_title}} will give you a styled component page out of the box that looks a little like this:
 
-![](/images/publishing-polymer-elements/image_6.png)
+![Preview of the component langing page, displaying the element title in the header with a demo link next to it. The rest of the page contains formatted summary and attribute/method/event information parsed from the documentation in your element](/images/publishing-polymer-elements/image_6.png)
 
 You can check out the [live](http://polymerlabs.github.io/untitled-element/components/untitled-element/) version of this page for the `untitled-element` project.
 
