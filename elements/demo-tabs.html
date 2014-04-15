@@ -17,18 +17,18 @@
 </polymer-element>
 
 
-<polymer-element name="demo-tabs" attributes="selected">
+<polymer-element name="demo-tabs" attributes="selected bottom">
   <template>
     <link rel="stylesheet" href="../css/elements/demo-tabs.css">
     <div id="container">
-      <div class="tab-strip">
+      <div id="tabstrip">
         <polymer-selector selected="{{selected}}" selectedClass="selected" class="tab-wrapper">
           <template repeat="{{panel in panels}}">
             <span>{{panel.heading}}</span>
           </template>
         </polymer-selector>
       </div>
-      <div id="wrapper">
+      <div id="wrapper" class="{{ {bottom: bottom} | tokenList}}">
         <polymer-selector id="contents" selected="{{selected}}" selectedClass="selected">
           <content id="contentpanels" select="demo-tab"></content>
         </polymer-selector>
@@ -41,12 +41,25 @@
   <script>
     Polymer('demo-tabs', {
       selected: 0,
-      attached: function() {
+      bottom: false, // Force results panel to be on bottom, even on desktop.
+      domReady: function() {
+        // Wait for domReady so demo-tab.panel is available in updatePanels.
         this.updatePanels();
       },
       updatePanels: function() {
         this.panels = Array.prototype.slice.call(
             this.$.contentpanels.getDistributedNodes());
+
+        // If no <demo-tab> light dom have headings attributes, hide #tabstrip.
+        var noHeadings = true;
+        for (var i = 0, panel; panel = this.panels[i]; ++i) {
+          if (panel.heading) {
+            noHeadings = false;
+            break;
+          }
+        }
+        this.$.tabstrip.hidden = noHeadings;
+
         this.$.results.classList.toggle(
             'show', this.$.contentresults.getDistributedNodes().length);
         this.onMutation(this, this.updatePanels); // Watch changes to light dom.
