@@ -41,9 +41,13 @@ Bower adds a `bower_components/` folder in the root of your project and fills it
 }
 ```
 
-#### Getting {{site.project_title}} elements
+#### Getting our elements
 
-If you'd like to install {{site.project_title}}’s collection of pre-built elements (polymer-elements and polymer-ui-elements) run this command from your terminal:
+If you'd like to install {{site.project_title}}’s collection of pre-built elements by running this command from the terminal:
+
+    bower install --save Polymer/core-elements
+
+The PolymerLabs elements (polymer-elements and polymer-ui-elements) can be installed by running:
 
     bower install --save Polymer/polymer-elements Polymer/polymer-ui-elements
 

@@ -12,7 +12,7 @@ title: Tools & Testing
 
 If something seems terrible wrong, check out {{site.project_title}}'s [build status page](/build/).
 
-## Vulcanize build tool
+## Vulcanize - element build tool
 
 > Vulcanization is process that turns polymers into more durable materials.
 
@@ -20,50 +20,69 @@ If something seems terrible wrong, check out {{site.project_title}}'s [build sta
 
 ## Debugging Shadow DOM
 
-In Chrome, native Shadow DOM is not inspectable. That is, you can't use the DevTools
-to drill down into a Shadow Root. 
+In Chrome, author defined Shadow DOM is inspectable using the DevTools.
 
-To be able to inspect Shadow DOM, turn on "Show Shadow DOM" in the DevTools general settings:
+To inspect Shadow DOM defined by the user agent (e.g. the Shadow DOM of `<input type="date">`),
+turn on "Show user agent shadow DOM" in the DevTools general settings:
 
-![Enable "Show Shadow DOM" in the Devtools](/images/showshadowdom.png 'Enable "Show Shadow DOM" in the Devtools')
+![Enable "Show user agent shadow DOM" in the Devtools](/images/showshadowdom.png 'Enable "Show user agent shadow DOM" in the Devtools')
 
-After reloading the DevTools, Shadow DOM is inspectable and renders as `#shadow-root`s in the tree.
+After reloading the DevTools, user agent Shadow DOM should be inspectable. It will render as `#shadow-root (user-agent)`s in element inspector.
 
 ## Source maps
 
 {{site.project_title}}  polyfills the [HTML Imports](/platform/html-imports.html) specification. In order for code to be debuggable at run-time, scripts embedded in components are injected into `<head>` in the main document. Tools/browsers that support [source maps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) will identify these scripts as belonging to their source components.
 
-## Minification, Testing, and Documentation
+## Building &amp; testing 
 
-To run tests, build minified files, or build documentation you need `node` and
-`grunt-cli` on your system.
+To run build individual polyfills or run tests, you need `node` and `grunt-cli` on your system.
 
 * install [NodeJS](http://nodejs.org) using the instructions on their website
 * use `npm` to install the [GruntJS](http://gruntjs.com) task runner for the command-line
   
       npm install -g grunt-cli
 
-Now for any repository in which you want to use tools, install the Node dependencies
-and use Grunt to perform tasks. In the project's root folder (e.g. `<somepath>/platform-dev/`), run:
+### Building individual polyfills
+
+If you're interested in using an individual polyfill by itself (e.g. rather that the prebuilt platform.js bundle),
+you need to build the minified file.
+
+**Example** - building the CustomElements polyfill
+
+    $ mkdir cepolyfill; cd cepolyfill
+
+    $ git clone https://github.com/Polymer/MutationObservers
+
+    $ git clone https://github.com/Polymer/tools
+
+    $ git clone https://github.com/Polymer/CustomElements
+
+    $ cd CustomElements
+
+    $ npm install
+
+    $ grunt
+
+**Note**: As seen in the example above, you may need to install other repo dependencies for the build to succeed. For example, the CustomElement polyfills requires `MutationObservers` and the `tools` repos. Sometime it is useful to look in the repo's [build.json](https://github.com/Polymer/CustomElements/blob/master/build.json) file for requirements.
+{: .alert .alert-info }
+
+### Running the tests
+
+For any repository that contains tests, in the project's root folder (e.g. `<somepath>/platform-dev/`), run:
 
     npm install
 
-### Tasks
+#### Tasks
 
 Once things are installed, you may run the tests or use `grunt` to perform tasks.
 
 Build minified project files (default):
 
     grunt
-
-Build documentation:
-
-    grunt docs
     
 Run tests:
 
     grunt test
-
 
 ## Development workflow & tooling
 
@@ -75,8 +94,6 @@ While our work in this area is just beginning, take a look at the potential work
 </div>
 
 The [{{site.project_title}} + Grunt](https://github.com/addyosmani/polymer-grunt-example) proof-of-concept project is a good start. Also follow our work on [generator-polymer](https://github.com/yeoman/generator-polymer/).
-
-We hope to announce more stable support for these projects in the near future.
 
 ## Using git {#git}
 
@@ -103,8 +120,9 @@ Go grab a coffee. This takes a few minutes!
 
 - *components/platform/platform.js* — The platform shims and polyfills.
 - *components/polymer/polymer.js* — [{{site.project_title}} core](/docs/polymer/polymer.html)
-- *components/polymer-elements/* — A folder of the meta collection of the core utility elements.
-- *components/polymer-ui-elements/* — A folder of the meta collection of the UI elements.
+- *components/core-elements/* — A folder of the meta collection of the core elements.
+- *components/polymer-elements/* — A folder of the meta collection of labs elements.
+- *components/polymer-ui-elements/* — A folder of the meta collection of labs UI elements.
 - A directory for each polyfill repo (CustomElements, HTMLImports, ShadowDOM).
 
 **projects/**
@@ -151,34 +169,38 @@ For example, the following repositories may be useful if you're interested in th
 
 #### Other useful repositories
 
-**/polymer** - [github.com/polymer/polymer](https://github.com/polymer/polymer)
+**/polymer** - [github.com/Polymer/polymer](https://github.com/Polymer/polymer)
 
 A meta repository used to distribute `polymer.js` builds.
 
-**/polymer-dev** - [github.com/polymer/polymer-dev](https://github.com/polymer/polymer-dev)
+**/polymer-dev** - [github.com/Polymer/polymer-dev](https://github.com/Polymer/polymer-dev)
 
 The [`polymer-dev`](https://github.com/polymer/polymer-dev) repository contains the
 [{{site.project_title}} core](/docs/polymer/polymer.html) and its tools and tests and is used
 by the project's developers. You should not have to touch this repository unless
 you're planning to hack on {{site.project_title}}.
 
-**/platform** - [github.com/polymer/platform](https://github.com/polymer/platform)
+**/platform** - [github.com/Polymer/platform](https://github.com/Polymer/platform)
 
 A meta repository used to distribute `platform.js` builds.
 
-**/platform-dev** - [github.com/polymer/platform-dev](https://github.com/polymer/platform-dev)
+**/platform-dev** - [github.com/Polymer/platform-dev](https://github.com/Polymer/platform-dev)
 
 The [`platform-dev`](https://github.com/polymer/platform-dev) contains integration tests, loader, and build tools for the amalgamated polyfills. It's used by the project's developers. You should not have to touch this repository unless you're planning to hack on {{site.project_title}}.
 
-**/polymer-elements** - [github.com/polymer/polymer-elements](https://github.com/polymer/polymer-elements)
+**/core-elements** - [github.com/Polymer/core-elements](https://github.com/Polymer/core-elements)
+
+A meta repository compiling the list of utility elements.
+
+**/polymer-elements** - [github.com/PolymerLabs/polymer-elements](https://github.com/Polymer/polymer-elements)
 
 A meta repository compiling the list of utility elements that do not render UI.
 
-**/polymer-ui-elements** - [github.com/polymer/polymer-ui-elements](https://github.com/polymer/polymer-ui-elements)
+**/polymer-ui-elements** - [github.com/Polymer/polymer-ui-elements](https://github.com/Polymer/polymer-ui-elements)
 
-A meta repository compiling the list of basic UI elements.
+A meta repository compiling the list of basic labs UI elements.
 
-**/more-elements** - [github.com/polymer/more-elements](https://github.com/polymer/more-elements)
+**/more-elements** - [github.com/Polymer/more-elements](https://github.com/Polymer/more-elements)
 
 A meta repository compiling the list of extra components and wrappers for third-party code. 
 Examples include Bootstrap, topcoat, Chart.js, pdf.js, x-tags, and AceEditor.
