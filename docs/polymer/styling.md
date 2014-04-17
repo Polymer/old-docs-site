@@ -51,7 +51,7 @@ The veiling process can be used to prevent FOUC at times other than page load. T
 
     element.setAttribute('unresolved', '');
 
-    // ... some time late ...
+    // ... some time later ...
     element.setAttribute('resolved', '');
     element.removeAttribute('unresolved');
 
