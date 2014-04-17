@@ -20,7 +20,7 @@ If you haven’t created a `bower.json` file for your application, run this comm
 
     bower init
 
-This generates a basic `bower.json` file. Some of the questions, like “What kind of modules do you expose,” can be ignored by pressing Enter.
+This generates a basic `bower.json` file. Some of the questions, like "What kind of modules do you expose," can be ignored by pressing Enter.
 
 The next step is to install {{site.project_title}}.
 
@@ -43,11 +43,11 @@ Bower adds a `bower_components/` folder in the root of your project and fills it
 
 #### Getting our elements
 
-If you'd like to install {{site.project_title}}’s collection of pre-built elements by running this command from the terminal:
+If you'd like to install {{site.project_title}}’s collection of pre-built elements, run this command from the terminal:
 
     bower install --save Polymer/core-elements
 
-The PolymerLabs elements (polymer-elements and polymer-ui-elements) can be installed by running:
+Other element sets, like [polymer-elements](/docs/elements/polymer-elements.html) and [polymer-ui-elements](/docs/elements/polymer-ui-elements.html) in [PolymerLabs](https://github.com/PolymerLabs), can be installed by running:
 
     bower install --save Polymer/polymer-elements Polymer/polymer-ui-elements
 
