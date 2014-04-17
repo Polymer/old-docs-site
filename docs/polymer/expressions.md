@@ -59,7 +59,7 @@ may result in:
 
 ### Filters
 
-{{site.project_title}} supports [filters](/docs/polymer/filters.html) for for use
+{{site.project_title}} supports [filters](/docs/polymer/filters.html) for use
 with expressions.
 
 ## Single-use bindings
