@@ -135,10 +135,13 @@ skip_files:
 - ^(.*/)?node_modules/.*
 - ^(.*/)?third_party/closure/.*
 - ^scripts/.*
-- ^(.*/)?\.md
+- ^.*.md|markdown
 
 # few extras to reduce number of files uploaded.
+- ^(.*/)?Makefile$
 - ^(.*/)?.*\.sublime-project
 - ^(.*/)?.*\.sublime-workspace
 - ^(.*/)?platform-dev/workbench/.*
-- ^(.*/)?(AUTHORS|LICENSE|PATENTS|COPYING)$
+- ^(.*/)?(AUTHORS|LICENSE|PATENTS|COPYING|CONTRIBUTING|README)$
+- ^(.*/)?polymer-all/labs/dfreedm/core-icon-study/.*
+- ^(.*/)?components/tools/.* # tool is already in /polymer-all
