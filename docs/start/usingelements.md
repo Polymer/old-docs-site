@@ -91,7 +91,7 @@ An example `index.html` file:
                       handleAs="json"></polymer-ajax>
 
         <script>
-          // Wait for 'polymer-ready'. Insures the element is upgraded.
+          // Wait for 'polymer-ready'. Ensures the element is upgraded.
           window.addEventListener('polymer-ready', function(e) {
             var ajax = document.querySelector('polymer-ajax');
 
