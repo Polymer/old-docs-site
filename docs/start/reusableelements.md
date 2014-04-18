@@ -31,11 +31,16 @@ This guide will ensure your *master* branch contains the bare-minimum of code th
 
 ![File list for the test-element directory showing that untitled-element.html and untitled-element.css have been accordingly renamed to test-element.html and test-element.css](/images/publishing-polymer-elements/image_0.png)
 
-4. In the terminal, run `touch .bowerrc` (or `type NUL > .bowerrc` on Windows) to create a new Bower configuration file inside your element directory. Edit the file so that Bower installs your dependencies a level up from your element. Pasting in the below and saving it should do the trick:
+4. In the terminal, create a new Bower configuration file inside your element directory. This file will help Bower so that it installs your dependencies a level up from your element. The below snippet should do the trick:
 
+        # For *nix OS
+        $ cat > .bowerc
         {
           "directory": "../"
         }
+        
+        # For Windows
+        > echo { "directory": "../" } > .bowerc
 
 
 5. Next, run `bower install` inside your element directory to install dependencies. They will end up inside the `development` directory if all goes well. You can now locally develop and serve your element up for testing purposes.
