@@ -148,5 +148,5 @@ This allows us to automatically group your documentation by attributes, methods 
 
 ##Where to go next?
 
-Now that you’ve published your {{site.project_title}} element to GitHub, you may be interested in learning how to [distribute your element using Bower](http://www.polymer-project.org/distributing-components-with-bower.html).
+Now that you’ve published your {{site.project_title}} element to GitHub, you may be interested in learning how to [distribute your element using Bower](http://www.polymer-project.org/articles/distributing-components-with-bower.html).
 
