@@ -34,13 +34,13 @@ This guide will ensure your *master* branch contains the bare-minimum of code th
 4. In the terminal, create a new Bower configuration file inside your element directory. This file will help Bower so that it installs your dependencies a level up from your element. The below snippet should do the trick:
 
         # For *nix OS
-        $ cat > .bowerc
+        $ cat > .bowerrc
         {
           "directory": "../"
         }
         
         # For Windows
-        > echo { "directory": "../" } > .bowerc
+        > echo { "directory": "../" } > .bowerrc
 
 
 5. Next, run `bower install` inside your element directory to install dependencies. They will end up inside the `development` directory if all goes well. You can now locally develop and serve your element up for testing purposes.
