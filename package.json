@@ -7,6 +7,7 @@
     "grunt-contrib-yuidoc": "*",
     "grunt-vulcanize": "*",
     "load-grunt-tasks": "~0.2.1",
-    "grunt-contrib-watch": "~0.6.0"
+    "grunt-contrib-watch": "~0.6.0",
+    "grunt-appengine": "~0.1.5"
   }
 }

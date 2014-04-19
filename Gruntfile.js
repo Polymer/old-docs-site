@@ -84,17 +84,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // copy: {
-    //   main: {
-    //     files: [{
-    //       expand: true,
-    //       cwd: '_site/', // set base for src matches.
-    //       src: ['**'], // includes files and subdirs of cwd.
-    //       dest: '<%= jekyllConfig.publish_dir %>'
-    //     }]
-    //   }
-    // }
-
     vulcanize: {
       options: {
         excludes: {
@@ -121,6 +110,20 @@ module.exports = function(grunt) {
           spawn: false,
         },
       },
+    },
+
+    appengine: {
+      options: {
+        manageFlags: {
+          oauth2: true
+        },
+        runFlags: {
+          port: 3000
+        }
+      },
+      frontend: {
+        root: '.'
+      }
     }
 
   });
@@ -132,6 +135,8 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['jekyll:serve']);
 
   grunt.registerTask('apidocs', ['yuidoc:polymeruielements']);
+
+  grunt.registerTask('serve', ['appengine:run:frontend']);
 
   // Task to build docs.
   grunt.registerTask('docs', ['apidocs', 'vulcanize:build', 'jekyll:build']);
