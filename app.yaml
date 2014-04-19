@@ -29,14 +29,18 @@ handlers:
 
 # Short URLs -------------------------------------------------------------------
 - url: /platform(.min)?.js
-  static_files: components/platform/platform.js
-  upload: components/platform/platform\.js
+  #static_files: components/platform/platform.js
+  #upload: components/platform/platform\.js
+  static_files: components/platform-dev/build/platform.js
+  upload: components/platform-dev/build/platform\.js
   http_headers:
     Access-Control-Allow-Origin: "*"
 
 - url: /platform(.min)?.js.map
-  static_files: components/platform/platform.js.map
-  upload: components/platform/platform\.js.\map
+  #static_files: components/platform/platform.js.map
+  #upload: components/platform/platform\.js.\map
+  static_files: components/platform-dev/build/platform.js.map
+  upload: components/platform-dev/build/platform\.js.\map
   http_headers:
     Access-Control-Allow-Origin: "*"
 
