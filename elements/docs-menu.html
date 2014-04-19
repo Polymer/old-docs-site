@@ -12,8 +12,10 @@
     <polymer-ui-submenu-item class="{{ {show: menu == 'start'} | tokenList}}" id="gettingstartedmenu" label="Getting started" src="/images/picons/ic_polymer_source.svg">
       <!-- <ui-color-icon src="/images/picons/ic_polymer_source.svg"></ui-color-icon> -->
       <polymer-ui-menu-item href="/docs/start/usingelements.html">Using elements</polymer-ui-menu-item>
-      <polymer-ui-menu-item href="/docs/start/creatingelements.html">Creating elements</polymer-ui-menu-item>
-      <polymer-ui-menu-item href="/docs/start/reusableelements.html">Reusable elements</polymer-ui-menu-item>
+      <polymer-ui-submenu-item label="Creating elements &#x25BE;">
+        <polymer-ui-menu-item href="/docs/start/creatingelements.html">The basics</polymer-ui-menu-item>
+        <polymer-ui-menu-item href="/docs/start/reusableelements.html">Reusable elements</polymer-ui-menu-item>
+      </polymer-ui-submenu-item>
       <polymer-ui-menu-item href="/docs/start/platform.html">The Platform</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
     <polymer-ui-submenu-item label="Concepts" class="{{ {show: menu == 'start'} | tokenList}}" src="/images/picons/ic_polymer_source.svg">
@@ -36,9 +38,9 @@
         <polymer-ui-menu-item href="/docs/polymer/expressions.html">Expressions</polymer-ui-menu-item>
         <polymer-ui-menu-item href="/docs/polymer/filters.html">Filters</polymer-ui-menu-item>
         <polymer-ui-submenu-item label="Additional libraries &#x25BE;">
-        <polymer-ui-menu-item href="/docs/polymer/template.html">Template Binding</polymer-ui-menu-item>
-        <polymer-ui-menu-item href="/docs/polymer/node_bind.html">Node.bind()</polymer-ui-menu-item>
-      </polymer-ui-submenu-item>
+          <polymer-ui-menu-item href="/docs/polymer/template.html">Template Binding</polymer-ui-menu-item>
+          <polymer-ui-menu-item href="/docs/polymer/node_bind.html">Node.bind()</polymer-ui-menu-item>
+        </polymer-ui-submenu-item>
       </polymer-ui-submenu-item>
       <polymer-ui-menu-item href="/docs/polymer/runtime-config.html">Runtime configuration</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
