@@ -2,7 +2,7 @@
 <link rel="import" href="../components/polymer-ui-menu/polymer-ui-menu.html">
 <link rel="import" href="../components/polymer-ui-arrow/polymer-ui-arrow.html">
 
-<polymer-element name="dropdown-panel" attributes="in ajaxify">
+<polymer-element name="dropdown-panel" attributes="open ajaxify">
   <template>
     <style>
     :host {
@@ -18,7 +18,7 @@
       transition: .04s .08s transform, 0.025s .1s opacity;
     }
 
-    :host([in]) {
+    :host([open]) {
       opacity: 1;
       visibility: visible;
       -webkit-transform: translate3d(0, 0, 0);
@@ -58,18 +58,20 @@
   </template>
   <script>
   Polymer('dropdown-panel', {
-    in: false,
+    publish: {
+      open: {value: false, reflect: true}
+    },
     ajaxify: false,
     attached: function() {
       var active = this.querySelector('polymer-ui-menu-item[active]');
       var index = Array.prototype.indexOf.call(this.children, active);
       this.$.mainmenu.selected = index;
     },
-    open: function() {
-      this.in = true;
+    openPanel: function() {
+      this.open = true;
 
       var close = function() {
-        this.in = false;
+        this.open = false;
         document.body.removeEventListener('click', close, true);
       }.bind(this);
 

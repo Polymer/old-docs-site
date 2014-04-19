@@ -50,7 +50,9 @@
     smallBannerSizeReached: false,
     ticking: false,
     fancyheader: true, // header sticks on scroll
-    sidebar: false,
+    publish: {
+      sidebar: {value: false, reflect: true}
+    },
     attached: function() {
       this.init();
     },

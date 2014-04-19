@@ -195,7 +195,7 @@ document.addEventListener('polymer-ready', function(e) {
   });
 
   dropdownToggle.addEventListener('click', function(e) {
-    dropdownPanel.open();
+    dropdownPanel.openPanel();
     // dropdownPanel listens to clicks on the document and autocloses
     // so no need to add any more handlers
   });
