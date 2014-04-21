@@ -80,10 +80,13 @@ more paths in the expression changes.
 
 Expressions are evaluated based on the current _scope_, which defines which identifiers and paths
 are visible. The expressions in `bind`, `repeat` or `if` attributes are evaluated in the scope of
-the parent template. For the outermost template using data binding, paths and identifiers are 
-interpreted relative to the element itself (so `this.prop` is available as {%raw%}`prop`{%endraw%}.
+the parent template. For an element's outermost template, paths and identifiers are 
+interpreted relative to the element itself (so `this.prop` is available as {%raw%}`prop`{%endraw%}).
 
-Templates that use `bind` or `repeat` without specifying an expression inherit the scope of the parent template.
+Templates that don't include `bind` or `repeat` share the current scope.
+
+A `bind` or `repeat` without an expression is the same as using an expression that 
+specifies the current scope.
 
 ### Nested scoping rules {#nested-scoping-rules}
 
