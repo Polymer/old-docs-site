@@ -94,15 +94,18 @@ If a `<template>` using a named scoped contains child `<template>`s,
 all ancestor scopes are visible, up-to and including the first ancestor **not** using a named scope. For example:
        
 {% raw %}
-    <template bind="{{ organization as organization }}">
-      <!-- organization.* available -->
-      <template bind="{{ organization.contact as contact }}">
-        <!-- organization.* & contact.* available -->
-        <template bind="{{ contact.address }}">
-          <!-- only properties of address are available -->
-          <template bind="{{ streetAddress as streetAddress}}">
-            <!-- streetAddress.* and properties of address are available. 
-                 NOT organization.* or contact.* -->
+    <template>
+      <!-- outermost template -- element's properties available -->
+      <template bind="{{ organization as organization }}">
+        <!-- organization.* available -->
+        <template bind="{{ organization.contact as contact }}">
+          <!-- organization.* & contact.* available -->
+          <template bind="{{ contact.address }}">
+            <!-- only properties of address are available -->
+            <template bind="{{ streetAddress as streetAddress}}">
+              <!-- streetAddress.* and properties of address are available. 
+                   NOT organization.* or contact.* -->
+            </template>
           </template>
         </template>
       </template>

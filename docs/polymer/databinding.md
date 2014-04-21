@@ -9,7 +9,7 @@ title: Data binding overview
 {% include toc.html %}
 
 
-{{site.project_title}} supports two-way data binding.  Data binding extends HTML and the DOM APIs to support a sensible separation between the UI (DOM) of application and its underlying data (model). Updates to the model are reflected in the DOM and user input into the DOM is immediately assigned to the model.
+{{site.project_title}} supports two-way data binding.  Data binding extends HTML and the DOM APIs to support a sensible separation between the UI (DOM) of an application and its underlying data (model). Updates to the model are reflected in the DOM and user input into the DOM is immediately assigned to the model.
 
 For {{site.project_title}} elements, the model is always the element itself. For example, consider a simple element:
 
