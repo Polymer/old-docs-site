@@ -38,7 +38,7 @@ The `<template repeat>` is hoisted out and rendered as a sibling:
       ...
     </table>
 
-For **browsers that don't support `<template>`**, {{site.project_title}} can repeat tags like `<option>` and `<tr>` directly using the `template` attribute:
+**For browsers that don't support `<template>`**, {{site.project_title}} can repeat tags like `<option>` and `<tr>` directly using the `template` attribute:
 
     <table>
       {%raw%}<tr template repeat="{{tr in rows}}">{%endraw%}
@@ -46,7 +46,7 @@ For **browsers that don't support `<template>`**, {{site.project_title}} can rep
       </tr>
     </table>
 
-Another example using`<select>`/`<option>`:
+Another example using `<select>`/`<option>`:
 
     <polymer-element name="my-select">
       <template>

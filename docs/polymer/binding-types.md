@@ -27,8 +27,7 @@ occurs. See [Node bindings](#node-bindings) for details.
 
 ## Single template instances
 
-Using the `bind` attribute, you can create a single instance of a template based on an object
-provided.
+Using the `bind` attribute, you can create a single instance of a template bound to an object.
 
 {% raw %}
     <template bind="{{ person }}">
@@ -83,7 +82,7 @@ item in the array:
 {% raw %}
     <template repeat="{{ user, userIndex in users }}">
       <template repeat="{{ userFile, userFileIndex in user }}">
-        {{ userIndex }}:{{ userFileIndex }}. {{ userFile }}
+        {{ userIndex }}:{{ userFileIndex }}.{{ userFile }}
       </template>
     </template>
 {% endraw %}
@@ -93,12 +92,12 @@ parent scope. For example, suppose you have an array of objects like this:
 
 {% raw %}
     this.items = [
-      { name: “Milk” },
-      { name: “Bread” },
-      { name: “Cereal” } ];
+      { name: "Milk" },
+      { name: "Bread" },
+      { name: "Cereal" } ];
 {% endraw %}
 
-You can use code like this to access both the array itself and and its elements:
+You can use code like this to access both the array itself and its elements:
 
 {% raw %}
     <template bind="{{items}}">
@@ -128,7 +127,7 @@ Conditional templates use the `if` attribute to conditionally create a template 
 
 {% raw %}
     <template if="{{ conditionalValue }}">
-      Binds if and only if conditionalValue is truthy. (same as *bind if*)
+      Binds if and only if conditionalValue is truthy.
     </template>
 {% endraw %}
 
@@ -267,6 +266,7 @@ In the following sample, the `intro-tag` binds to a published property on the `s
         <p>What's your name? <input value="{{yourName}}" placeholder="Enter name..."></p>
       </template>
     </polymer-element>
+
     <intro-tag></intro-tag>
 {% endraw %}
 
@@ -280,20 +280,20 @@ binding system creates the property automatically.
 {: .alert .alert-info }
 
 
-### Conditional attribute bindings
+### Conditional attributes
 
 For boolean attributes, you can control whether or not the attribute appears using the special conditional attribute syntax:
 
 {% raw %}
 <pre class="prettyprint">
-<var>attribute</var>?={{ <var>boolean-expresion</var>}}
+<var>attribute</var>?={{ <var>boolean-expresion</var> }}
 </pre>
 {%endraw%}
 
 If _boolean-expression_ is truthy, _attribute_  appears in the markup; otherwise it is omitted. For example:
 
     {% raw %}
-  <span hidden?=”{{ isHidden }}”>This may or may not be hidden.</span>
+  <span hidden?="{{ isHidden }}">This may or may not be hidden.</span>
     {% endraw %}
 
 
@@ -302,7 +302,7 @@ If _boolean-expression_ is truthy, _attribute_  appears in the markup; otherwise
 
 <span class="label label-important">Experimental</span>
 
-Sometimes, you may not need dynamic data bindings. For these cases, there are one-time bindings.
+Sometimes, you may not need dynamic bindings. For these cases, there are one-time bindings.
 
 Anywhere you use {% raw %}`{{}}`{% endraw %} in expressions, you can use double brackets 
 (`[[]]`) to set up a one-time binding. The binding becomes inactive after {{site.project_title}}

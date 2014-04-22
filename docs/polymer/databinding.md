@@ -11,7 +11,7 @@ title: Data binding overview
 
 {{site.project_title}} supports two-way data binding.  Data binding extends HTML and the DOM APIs to support a sensible separation between the UI (DOM) of an application and its underlying data (model). Updates to the model are reflected in the DOM and user input into the DOM is immediately assigned to the model.
 
-For {{site.project_title}} elements, the model is always the element itself. For example, consider a simple element:
+For {{site.project_title}} elements, **the model is always the element itself**. For example, consider a simple element:
 
 {% raw %}
     <polymer-element name="name-tag">
@@ -38,7 +38,7 @@ This is **June**'s name-tag element.
 
 
 
-## The `<template>` element
+## The `<template>` element {#template}
 
 The HTML Template element allows you to declare chunks of inert HTML that can be cloned and used at some later point. The contents of the `<template>` element are _hidden_ in the sense that they aren't rendered in the browser and can't be retrieved by `querySelector`; and _inactive_ in the sense that they don't cause resources to be loaded or scripts to be run. 
 
@@ -152,7 +152,7 @@ You can see that the template created four instances immediately following its p
 Unlike server-side templating, {{site.project_title}} data binding is _dynamic_. If you change a value in the model, the DOM observes the change and updates accordingly. The following sample adds a method to update the model. Press the button, and you can see the model data instantly reflected in
 the DOM.
 
-{% include samples/db-greeting-tag.html %}
+{% include samples/databinding/greeting-tag.html %}
 
 However, the DOM doesn't just observe data in the model. When you bind a DOM element that collects user input, it _pushes_ the collected value into the model.
 
