@@ -245,7 +245,7 @@ want to use data binding elsewhere, there are two options:
     used internally by {{site.project_title}}, and can be used directly, with or without the rest of    
     {{site.project_title}}.
 
-### Using the {{site.project_title}} body element
+### Using the `<polymer-body>` element
 
 The `<polymer-body>` element is a {{site.project_title}} custom element that extends the standard
 `<body>` element. You can use it when you want to use {{site.project_title}} features like data
