@@ -22,10 +22,7 @@ This guide will ensure your *master* branch contains the bare-minimum of code th
 
 1. Create a new directory on your system for working on {{site.project_title}} elements (e.g `"development"`).
 
-2. Clone the [untitled-element](https://github.com/polymerlabs/untitled-element) boilerplate inside this directory: 
-
-        git clone git://github.com/polymerlabs/untitled-element.git
-
+2. Download the [untitled-element](https://github.com/PolymerLabs/untitled-element/archive/master.zip) boilerplate and unzip it in your working directory.
 
 3. Rename the element and its files accordingly. For example, if your element is called `<test-element>` and you've renamed the `untitled-element` directory to `test-element`, your file list should look a little like this:
 
@@ -59,9 +56,6 @@ Next, follow the steps below:
 
     # Inside your development folder, navigate to your element directory
     cd test-element
-    
-    # Remove the git history for untitled-element from test-element
-    rm -rf .git
     
     # Initialize a new Git repository for test-element
     git init
