@@ -45,20 +45,26 @@ handlers:
     Access-Control-Allow-Origin: "*"
 
 - url: /polymer(.min)?.(js|html)
-  static_files: components/polymer/polymer.\2
-  upload: components/polymer/polymer\.(js|html)
+  #static_files: components/polymer/polymer.\2
+  #upload: components/polymer/polymer\.(js|html)
+  static_files: components/polymer-dev/build/polymer.\2
+  upload: components/polymer-dev/build/polymer\.(js|html)
   http_headers:
     Access-Control-Allow-Origin: "*"
 
 - url: /polymer(.min)?.js.map
-  static_files: components/polymer/polymer.js.map
-  upload: components/polymer/polymer\.js\.map
+  #static_files: components/polymer/polymer.js.map
+  #upload: components/polymer/polymer\.js\.map
+  static_files: components/polymer-dev/build/polymer.js.map
+  upload: components/polymer-dev/build/polymer\.js\.map
   http_headers:
     Access-Control-Allow-Origin: "*"
 
 - url: /polymer-body.html
-  static_files: components/polymer/polymer-body.html
-  upload: components/polymer/polymer-body.html
+  #static_files: components/polymer/polymer-body.html
+  #upload: components/polymer/polymer-body.html
+  static_files: components/polymer-dev/build/polymer-body.html
+  upload: components/polymer-dev/build/polymer-body.html
   http_headers:
     Access-Control-Allow-Origin: "*"
 
