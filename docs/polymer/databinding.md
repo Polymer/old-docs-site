@@ -170,8 +170,41 @@ The `repeat` attribute ensures there is one instance for each item in the
 array. We removed two elements from the middle of `salutations` and inserted one in their place. The 
 `<template>` responded by removing the two corresponding instances and creating a new one in the right location.
 
-Getting the idea? Data-binding allows you author your HTML _using_ HTML which contains information about 
+Getting the idea? Data binding allows you author your HTML _using_ HTML which contains information about 
 _where data goes_ and directives which _control the document's structure_ -- all depending on the data you provide it.
+
+## Event handling and data binding
+
+With data binding, it’s easy to add event handlers using the 
+[declarative event mapping](polymer.html#declarative-event-mapping) (on-_event_ handlers):
+
+{%raw%}
+    <template>
+      <ul>
+        <template repeat="{{s in stories}}">
+          <li on-click={{selectStory}}>{{s.headline}}</li>
+        </template>
+      </ul>
+    </template>
+{%endraw%}
+
+Often, you’ll want to identify the event with the model data used to generate 
+the template instance, either to update the model data or to access a piece 
+of data that isn’t rendered by the template.
+
+You can get the model data from the event’s `target.templateInstance.model` 
+property. Any identifiers that you could access inside the template are 
+available as properties on the `.model` object.
+
+ For example, the  `selectStory` method might look like this:
+
+    selectStory: function(e, detail, sender) {
+      var story = e.target.templateInstance.model.s;
+      console.log("Clicked " + story.headline);
+      this.loadStory(story.id); // accessing non-rendered data from the model
+    }
+
+
 
  Continue on to:
 
