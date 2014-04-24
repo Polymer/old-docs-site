@@ -47,7 +47,7 @@ pre, code {
 }
 
 ul, ol {
-  padding-left: 0;
+  //padding-left: 0;
 
   li::before {
     content: '·';
@@ -55,6 +55,7 @@ ul, ol {
     margin-left: -15px;
     position: absolute;
     // font-size: 26px;
+    font-weight: bold;
   }
 
   ul {
@@ -311,7 +312,7 @@ footer {
     display: block;
     height: 100%;
     width: 265px;
-    background-color: #EEE;
+    background-color: #eee;
   }
 
   docs-menu {
@@ -351,11 +352,11 @@ footer {
       }
 
       &[type="core"] {
-        background-color: $creating-elements-color  !important;;
+        background-color: $creating-elements-color  !important;
       }
 
       &[type="elements"] {
-        background-color: $using-elements-color !important;;
+        background-color: $using-elements-color !important;
       }
     }
 
@@ -365,6 +366,10 @@ footer {
       min-height: 300px;
       overflow: hidden;
     }
+  }
+
+  dropdown-panel {
+    display: none;
   }
 }
 
