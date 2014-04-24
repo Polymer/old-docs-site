@@ -30,7 +30,7 @@ For {{site.project_title}} elements, **the model is always the element itself**.
 
 Here the `owner` property is the model for the `name-tag` element. If you update the `owner` property:
 
-    myNameTag.owner = 'June';
+    document.querySelector('name-tag').owner = 'June';
 
 You change the contents of the tag:
 
@@ -172,3 +172,11 @@ array. We removed two elements from the middle of `salutations` and inserted one
 
 Getting the idea? Data-binding allows you author your HTML _using_ HTML which contains information about 
 _where data goes_ and directives which _control the document's structure_ -- all depending on the data you provide it.
+
+ Continue on to:
+
+<a href="/docs/polymer/binding-types.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Types of bindings</a>
+
+<a href="/docs/polymer/expressions.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Expressions</a>
+
+

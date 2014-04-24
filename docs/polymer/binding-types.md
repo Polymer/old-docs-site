@@ -90,12 +90,11 @@ item in the array:
 Like the `bind` attribute, you can omit the value from the `repeat` element and inherit the
 parent scope. For example, suppose you have an array of objects like this:
 
-{% raw %}
     this.items = [
-      { name: "Milk" },
-      { name: "Bread" },
-      { name: "Cereal" } ];
-{% endraw %}
+      {name: "Milk"},
+      {name: "Bread"},
+      {name: "Cereal"}
+    ];
 
 You can use code like this to access both the array itself and its elements:
 
@@ -183,13 +182,15 @@ You can use the `ref` attribute to define recursive templates, such as tree stru
         <ul>
           <template ref="t" repeat="{{ children }}"></template>
         </ul>
-  </li>
-</template>
+      </li>
+    </template>
 {% endraw %}
 
 In addition, you can bind to the `ref` attribute _itself_, to choose templates dynamically: 
 
+{% raw %}
     <template bind ref="{{node.nodeType}}"></template>
+{% endraw %}
 
 ## Node bindings
 
@@ -292,11 +293,9 @@ For boolean attributes, you can control whether or not the attribute appears usi
 
 If _boolean-expression_ is truthy, _attribute_  appears in the markup; otherwise it is omitted. For example:
 
-    {% raw %}
-  <span hidden?="{{ isHidden }}">This may or may not be hidden.</span>
-    {% endraw %}
-
-
+{% raw %}
+    <span hidden?="{{ isHidden }}">This may or may not be hidden.</span>
+{% endraw %}
 
 ### One-time bindings
 

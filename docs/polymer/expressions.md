@@ -124,9 +124,7 @@ default filters for working with data. They're used in bindings by piping an inp
 to the filter:
 
 <pre class="prettyprint">
-{% raw %}
-    {{ <var>expression</var> | <var>filterName</var> }}
-{% endraw %}
+{% raw %}{{ <var>expression</var> | <var>filterName</var> }}{% endraw %}
 </pre>
 
 {{site.project_title}} provides two predefined filters, `tokenList` and `styleObject`. You can also
