@@ -736,7 +736,7 @@ to "coolest".
   - [`.preventDispose`](#preventdispose)
 - [`Platform.flush()`](#flush)
 
-### Observing changes to light DOM children {#lightdomobserve}
+### Observing changes to light DOM children {#onMutation}
 
 To know when light DOM children change, you can setup a Mutation Observer to 
 be notified when nodes are added or removed. To make this more convenient, {{site.project_title}} adds an `onMutation()` callback to every element. Its first argument is the DOM element to 
