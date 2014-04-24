@@ -16,7 +16,7 @@ The recommended way to install **{{site.project_title}} {{site.latest_version}}*
 
 #### Getting the packages
 
-If you haven’t created a `bower.json` file for your application, run this command from the root of your project:
+If you haven't created a `bower.json` file for your application, run this command from the root of your project:
 
     bower init
 
@@ -24,22 +24,21 @@ This generates a basic `bower.json` file. Some of the questions, like "What kind
 
 The next step is to install {{site.project_title}}.
 
-    bower install --save polymer
+    bower install --save Polymer/polymer
 
 Bower adds a `bower_components/` folder in the root of your project and fills it with {{site.project_title}} and its dependencies.
 
-**Tip:** `--save` adds the item as dependencies in *your* app's bower.json.
-{: .alert .alert-success }
-
+**Tip:** `--save` adds the item as dependencies in *your* app's bower.json:
 ```
 {
-  "name": "my-polymer-project",
+  "name": "my-project",
   "version": "0.0.0",
   "dependencies": {
-    "polymer": "~{{site.latest_version}}"
+    "polymer": "Polymer/polymer#~{{site.latest_version}}",
   }
 }
 ```
+{: .alert .alert-success }
 
 #### Getting our elements
 
