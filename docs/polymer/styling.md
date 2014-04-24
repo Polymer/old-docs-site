@@ -3,7 +3,7 @@ layout: default
 type: core
 navgroup: docs
 shortname: Docs
-title: Styling reference
+title: Styling guide
 ---
 
 {% include toc.html %}

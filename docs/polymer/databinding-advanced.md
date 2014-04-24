@@ -4,6 +4,7 @@ type: core
 navgroup: docs
 shortname: Docs
 title: Advanced topics
+subtitle: Data-binding
 ---
 
 {% include toc.html %}

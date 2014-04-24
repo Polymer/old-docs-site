@@ -4,6 +4,7 @@ type: core
 navgroup: docs
 shortname: Docs
 title: Types of bindings
+subtitle: Data-binding
 ---
 
 {% include toc.html %}
