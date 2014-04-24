@@ -278,8 +278,8 @@ Spec | {{site.project_title}} | Called when
 |-
 createdCallback | created | An instance of the element is created.
 - | ready | The `<polymer-element>` has been fully prepared (e.g. Shadow DOM created, property observers setup, event listeners attached, etc).
-attachedCallback | attached | An instance of the element was inserted into the DOM. This is an appropriate time to poke at the element's parent or light DOM children. 
-- | domReady | Called when the element's initial set of children are guaranteed to exist. One use of `domReady` is when you have sibling custom elements (e.g. they're `.innerHTML`'d together, at the same time). Before element A can use B's API/properties, element B needs to be upgraded. The `domReady` callback ensures both elements exist.
+attachedCallback | attached | An instance of the element was inserted into the DOM. 
+- | domReady | Called when the element's initial set of children are guaranteed to exist. This is an appropriate time to poke at the element's parent or light DOM children. Another use is when you have sibling custom elements (e.g. they're `.innerHTML`'d together, at the same time). Before element A can use B's API/properties, element B needs to be upgraded. The `domReady` callback ensures both elements exist.
 detachedCallback | detached | An instance was removed from the DOM.
 attributeChangedCallback | attributeChanged | An attribute was added, removed, or updated. **Note**: to observe changes to [published properties](#published-properties), use [*Changed watchers](#change-watchers).
 {: .table .responsive-table .lifecycle-table }
@@ -731,9 +731,31 @@ to "coolest".
 ## Advanced topics {#additional-utilities}
 
 - [`async()`](#asyncmethod)
+- [`onMutation()`](#onMutation)
 - [`unbindAll()` / `cancelUnbindAll()` / `asyncUnbindAll()`](#bindings)
   - [`.preventDispose`](#preventdispose)
 - [`Platform.flush()`](#flush)
+
+### Observing changes to light DOM children {#lightdomobserve}
+
+To know when light DOM children change, you can setup a Mutation Observer to 
+be notified when nodes are added or removed. To make this more convenient, {{site.project_title}} adds an `onMutation()` callback to every element. Its first argument is the DOM element to 
+observe. The second argument is a callback which is passed the `MutationObserver` and the mutation records:
+
+    this.onMutation(domElement, someCallback);
+
+**Example** - Observe changes to (light DOM) children elements:
+
+    ready: function() {
+      // Observe a single add/remove.
+      this.onMutation(this, this.childrenUpdated);
+    },
+    childrenUpdated: function(observer, mutations) {
+      // getDistributedNodes() has new stuff.
+
+      // Monitor again.
+      this.onMutation(this, this.childrenUpdated);
+    }
 
 ### Dealing with asynchronous tasks {#asyncmethod}
 
@@ -765,8 +787,8 @@ In the case of property changes that result in DOM modifications, follow this pa
 
     Polymer('my-element', {
       propChanged: function() {
-        // If "prop" changing results in our DOM changing, schedule an update after
-        // the new microtask.
+        // If "prop" changing results in our DOM changing,
+        // schedule an update after the new microtask.
         this.async(this.updateValues);
       },
       updateValues: function() {...}

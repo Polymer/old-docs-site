@@ -387,7 +387,7 @@ a default style of `display: block` using `:host`.
 For a `<content>`, you can iterate through `content.getDistributedNodes()`
 to get the list of nodes distributed at the insertion point.
 
-In {{site.project_title}}, the best place to call this method is in the [`attached()` callback](http://www.polymer-project.org/polymer.html#lifecyclemethods) so you're guaranteed that the element is in the DOM tree.
+In {{site.project_title}}, the best place to call this method is in the [`attached()` callback](/docs/polymer/polymer.html#lifecyclemethods) so you're guaranteed that the element is in the DOM tree.
 
 Also remember that you can access the light DOM as the element's normal children
 (i.e. `this.children`, or other accessors). The difference with this approach
@@ -395,21 +395,53 @@ is that it's the entire set of *potentially* distributed nodes; not those actual
 
 ### Why do elements report zero (light DOM) children at created/ready time? {#zerochildren}
 
-It's generally a mistake to attempt to reference an element's children (light dom) in either the `createdCallback` or {{site.project_title}}'s `ready()` method. When these methods are fired, the element is not guaranteed to be in the DOM or have children. In addition, {{site.project_title}} calls `TemplateBinding.createInstance()` on an element's `<template>` to create its Shadow DOM. This process creates and binds elements in the template one by one.
+Because of subtle timing issues on element upgrades, it's generally a mistake to attempt to reference an element's children (light dom) in the `created()`, `ready()`, or `attached()` method. When these methods are fired, the element is not guaranteed to be in the DOM or have children. In addition, {{site.project_title}} calls `TemplateBinding.createInstance()` on an element's `<template>` to create its Shadow DOM. This process creates and binds elements in the template one by one.
 
-The best time to take a first look at an element's children is in `attachedCallback()`. This is when the element is in the DOM, has a parent, and possibly children. If you need to see changes to light DOM children after that, setup a Mutation Observer to do so.
+The best time to take a first look at an element's children is in `domReady()`. This is when the element is in the DOM, has a parent, its possibly children. To observe changes
+to light DOM children, [setup a mutation observer](#mutationlightdom).
 
 ### When is the best time to access an element's parent node? {#parentnode}
 
-The custom element `attachedCallback()` is the best time to access an element's parent.
+The `attached()` callback is the best time to access an element's parent.
 That way, you're guaranteed that the element is in DOM and its parent has been upgraded.
 
-To manage this dance in {{site.project_title}}, you can use `attached()` and `this.async()`. The latter insures you're in the next quantum of time (e.g. the DOM has been constructed):
+Use the `attached()` and `this.async()` to ensure you're in the next quantum of time (e.g. the DOM has been constructed):
 
     attached: function() {
       this.async(function() {
         // this.parentNode is upgraded
       });
+    }
+
+To manage this dance with more convenience, {{site.project_title}} provides
+`domReady()` to do the same thing:
+
+    domReady: function() {
+      // same 
+    }
+
+### How do I monitor changes to light dom children? {#mutationlightdom}
+
+To know when light DOM children are added or removed, setup a Mutation Observer to do so. {{site.project_title}} puts a `onMutation` callback on every element which can be used to
+observe a single DOM mutation:
+
+    ready: function() {
+      // Observe a single mutation.
+      this.onMutation(this, this.childrenUpdated);
+    },
+    childrenUpdated: function(observer, mutations) {
+      mutations.forEach(function(record) {
+        console.log(record.addedNodes);
+      }.bind(this));
+    }
+
+To observe other types of changes, setup your own `MutationObserver` in `ready()`:
+
+    ready: function() {
+      var observer = new MutationObserver(function(mutations) {
+        ...
+      }.bind(this));
+      observer.observe(this, {childList: true, attributes: true});
     }
 
 ### Can I use the `constructor` attribute without polluting the global namespace? {#constructorattr}
