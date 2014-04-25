@@ -124,7 +124,7 @@ Great. So you should now have a tagged release for your element. Next, we’re g
     # version of your page and its dependencies to a GitHub pages branch 
     # of your repository (gh-pages). Below, we pass in a GitHub username 
     # and the repo name for our element
-    ./tools/bin/gp.sh <username> test-element
+    ../tools/bin/gp.sh <username> test-element
     
     # Finally, clean-up your temporary directory as you no longer require it
     cd ..
