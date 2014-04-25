@@ -232,7 +232,7 @@ Of course, if you change one of the values that’s bound, it will be overwritte
 underlying model data changes. The two-way data binding only registers DOM changes to input elements
 -- not imperative changes to arbitrary DOM nodes.
 
-## Using data binding outside of a {{site.project_title}} element
+## Using data binding outside of a {{site.project_title}} element {#bindingoutside}
 
 This {{site.project_title}} data binding works  _inside_ a {{site.project_title}} element. If you
 want to use data binding elsewhere, there are two options:
