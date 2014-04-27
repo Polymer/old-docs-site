@@ -16,7 +16,7 @@ subtitle: Polymer from the outside
 - **You don't have to care how they work**. Their internals are safely encapsulated. You interact with them using a well-defined API of attributes, events, properties, methods, and how they handle child nodes. They could use some kind of space-age magic inside, but from the outside you don't know or care.
 - **They're easy to add to your project**. Elements, no matter which framework they're from, should define their dependencies using [Bower](http://bower.io). That means that setting up an element for use in your project--no matter how complex its dependencies, or which frameworks it depends on--is just a matter of running `bower install the-element`, importing the element to your page, and using it.
 
-{{site.project_title}}'s set of elements includes the usual suspects like buttons and other UI components, but also includes non-UI elements like `<polymer-ajax>`. It may sound surprising, but when you embrace the world-view that "[everything is an element](/docs/start/everything.html)" you'll find yourself reaching for pre-built elements more often than script to accomplish common tasks. {{site.project_title}}'s collection of elements is already robust, and continues to grow.
+{{site.project_title}}'s set of elements includes the usual suspects like buttons and other UI components, but also includes non-UI elements like `<core-ajax>`. It may sound surprising, but when you embrace the world-view that "[everything is an element](/docs/start/everything.html)" you'll find yourself reaching for pre-built elements more often than script to accomplish common tasks. {{site.project_title}}'s collection of elements is already robust, and continues to grow.
 
 ## Installing elements {#install}
 
@@ -24,21 +24,21 @@ The first step in using an element (or a set of elements) is to install it local
 
 ### Installing a single element {#installsingle}
 
-Elements can be installed individually as needed. For example, to download `<polymer-ajax>` and install it in your current project, run:
+Elements can be installed individually as needed. For example, to download `<core-ajax>` and install it in your current project, run:
 
-    bower install --save Polymer/polymer-ajax
+    bower install --save Polymer/core-ajax
 
-**Note:** `Polymer/polymer-ajax` is shorthand for the element’s github repo, [https://github.com/Polymer/polymer-ajax](https://github.com/Polymer/polymer-ajax). You can install other elements the same way.
+**Note:** `Polymer/core-ajax` is shorthand for the element’s github repo, [https://github.com/Polymer/core-ajax](https://github.com/Polymer/core-ajax). You can install other elements the same way.
 {: .alert .alert-info }
 
 
-Running this command adds a `bower_components/` folder and fills it with `<polymer-ajax>`:
+Running this command adds a `bower_components/` folder and fills it with `<core-ajax>`:
 
     yourapp/
       bower_components/
         platform/
         polymer/
-        polymer-ajax/
+        core-ajax/
 
 Using the `--save` flag  adds the element to your app's `bower.json` file:
 
@@ -46,7 +46,7 @@ Using the `--save` flag  adds the element to your app's `bower.json` file:
       "name": "your-app",
       "version": "0.0.0",
       "dependencies": {
-        "polymer-ajax": "Polymer/polymer-ajax#~0.1.4"
+        "core-ajax": "Polymer/core-ajax#~{{site.latest_version}}"
       }
     }
 
@@ -83,20 +83,20 @@ An example `index.html` file:
 
         <!-- 2. Use an HTML Import to bring in the element. -->
         <link rel="import"
-              href="bower_components/polymer-ajax/polymer-ajax.html">
+              href="bower_components/core-ajax/core-ajax.html">
       </head>
       <body>
         <!-- 3. Declare the element. Configure using its attributes. -->
-        <polymer-ajax url="http://example.com/json"
-                      handleAs="json"></polymer-ajax>
+        <core-ajax url="http://example.com/json"
+                   handleAs="json"></core-ajax>
 
         <script>
           // Wait for 'polymer-ready'. Ensures the element is upgraded.
           window.addEventListener('polymer-ready', function(e) {
-            var ajax = document.querySelector('polymer-ajax');
+            var ajax = document.querySelector('core-ajax');
 
             // Respond to events it fires.
-            ajax.addEventListener('polymer-response', function(e) {
+            ajax.addEventListener('core-response', function(e) {
               console.log(this.response);
             });
 

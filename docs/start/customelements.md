@@ -45,16 +45,16 @@ Once you have a reference to an element, you can attach event listeners, access 
 
 Guess what? **The same tricks apply to custom elements**. You can use standard DOM methods on custom elements, access their properties, attach event listeners, or style them using CSS. The major difference with custom elements is that they give authors a tool for defining new tags with built-in functionality. These tags can add their own methods, properties, attributes, and events, and define their own logic for handling children.
 
-The `<polymer-selector>` element is a good example of a basic custom element. It's a close relative to `<select>`, but provides additional functionality and more flexibility. For example, you can  use `<polymer-selector>` as a general container for selecting _any_ type of content, not just `<option>`. It also provides convenient styling hooks, events, and additional properties for interacting with its items.
+The `<core-selector>` element is a good example of a basic custom element. It's a close relative to `<select>`, but provides additional functionality and more flexibility. For example, you can  use `<core-selector>` as a general container for selecting _any_ type of content, not just `<option>`. It also provides convenient styling hooks, events, and additional properties for interacting with its items.
 
-    <polymer-selector selected="0">
+    <core-selector selected="0">
       <div>Item 1</div>
       <div>Item 2</div>
-    </polymer-selector>
+    </core-selector>
 
     <script>
-      var ps = document.querySelector('polymer-selector');
-      ps.addEventListener('polymer-select', function(e) {
+      var ps = document.querySelector('core-selector');
+      ps.addEventListener('core-select', function(e) {
         alert(e.selectedIndex == 0);
       });
     </script>
@@ -68,7 +68,7 @@ Polymer divides its custom  elements into two categories based on their use and 
 
 ###  UI elements {#uielements}
 
-Elements like `<select>` and `<polymer-select>` are _UI elements_. They render UI and are visible on the page. A few other examples are [`<polymer-ui-collapsible>`](/docs/elements/polymer-ui-elements.html#polymer-ui-collapsible), [`<polymer-ui-toolbar>`](/docs/elements/polymer-ui-elements.html#polymer-ui-toolbar), and [`<polymer-ui-tabs>`](/docs/elements/polymer-ui-elements.html#polymer-ui-tabs):
+Elements like `<select>` and `<core-selector>` are _UI elements_. They render UI and are visible on the page. A few other examples are [`<polymer-ui-collapsible>`](/docs/elements/polymer-ui-elements.html#polymer-ui-collapsible), [`<polymer-ui-toolbar>`](/docs/elements/polymer-ui-elements.html#polymer-ui-toolbar), and [`<polymer-ui-tabs>`](/docs/elements/polymer-ui-elements.html#polymer-ui-tabs):
 
     <polymer-ui-tabs selected="0">
       <span>One</span><span>Two</span><span>Three</span>
@@ -81,13 +81,13 @@ Elements like `<select>` and `<polymer-select>` are _UI elements_. They render U
 
 Non-UI elements _**don't**_ render anything to the screen. That may seem strange, but there are plenty of examples already in HTML: `<script>`, `<style>`, and `<meta>` to name a few. These elements serve a purpose and do their useful work without rendering UI.
 
-Non-UI elements provide utility behind the scenes. For example, the `<polymer-ajax>` tag lets you **make XHR requests from markup**. Feed it some configuration attributes and listen for a response:
+Non-UI elements provide utility behind the scenes. For example, the `<core-ajax>` tag lets you **make XHR requests from markup**. Feed it some configuration attributes and listen for a response:
 
-    <polymer-ajax url="http://gdata.youtube.com/feeds/api/videos/" auto
-                  params='{"alt":"json", "q":"chrome"}' handleAs="json"></polymer-ajax>
+    <core-ajax url="http://gdata.youtube.com/feeds/api/videos/" auto
+               params='{"alt":"json", "q":"chrome"}' handleAs="json"></core-ajax>
     <script>
-      var ajax = document.querySelector('polymer-ajax');
-      ajax.addEventListener('polymer-response', function(e) {
+      var ajax = document.querySelector('core-ajax');
+      ajax.addEventListener('core-response', function(e) {
         console.log(this.response);
       });
     </script>
