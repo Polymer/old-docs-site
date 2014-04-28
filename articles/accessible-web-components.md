@@ -167,7 +167,7 @@ A number of tools are available that can assist with debugging the accessibility
 ![An animation of the accessibility developer tools displaying a11y issues](/articles/images/accessible-web-components/animation.gif)
 
 
-* The [Accessibility DevTools extension](https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb?utm_source=chrome-ntp-icon) for Chrome provides a helpful audit for discovering accessibility issues. A [branch](https://github.com/GoogleChrome/accessibility-developer-tools/tree/shadow) that supports Shadow DOM is also available. 
+* The [Accessibility DevTools extension](https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb?utm_source=chrome-ntp-icon) for Chrome provides a helpful audit for discovering accessibility issues, including issues within Shadow DOM.
 
 * You can examine the way that assistive technologies see web content by using [Accessibility Inspector](https://developer.apple.com/library/mac/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTesting/OSXAXTestingApps.html#//apple_ref/doc/uid/TP40001078-CH210-TPXREF101) (Mac), or [Windows Automation API Testing Tools](http://msdn.microsoft.com/en-us/library/windows/desktop/dd373661(v=vs.85).aspx) and [AccProbe](http://accessibility.linuxfoundation.org/a11yweb/util/accprobe/) (Windows). Additionally you can see the full accessibility tree that Chrome creates by navigating to *chrome://accessibility*.
 
