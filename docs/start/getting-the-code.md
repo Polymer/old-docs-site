@@ -69,4 +69,4 @@ Now that you've installed {{site.project_title}} it's time to learn the core con
 
 <a href="/docs/start/usingelements.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Using elements</a>
 
-If you'd rather skip ahead, check out our guides on [Using Elements](/docs/start/usingelements.html) and [Creating Elements](/docs/start/creatingelements.html).
+If you'd rather skip ahead, check out our guide on [Creating Elements](/docs/start/creatingelements.html).
