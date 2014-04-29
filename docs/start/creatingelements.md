@@ -26,7 +26,7 @@ and make it even easier to build complex, web component-based applications:
 
 ### 1. Install {{site.project_title}} {#install}
 
-If you haven't already done so, install the latest version of {{site.project_title}} as described in [Getting the Code](/docs/start/getting-the-code.html).
+Install the latest version of {{site.project_title}} as described in [Getting the Code](/docs/start/getting-the-code.html).
 
 ### 2. Build a {{site.project_title}} element {#createpolyel}
 
