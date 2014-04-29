@@ -12,7 +12,7 @@ subtitle: Polymer from the inside
 {{site.project_title}} makes it simple to create web components, declaratively.
 Custom elements are defined using our custom element,  `<polymer-element>`, and can leverage
 {{site.project_title}}'s special features. These features reduce common boilerplate
-and make it evern easier to build complex, web component-based applications:
+and make it even easier to build complex, web component-based applications:
 
 - [Two-way data binding](/docs/polymer/databinding.html)
 - Declarative event handing
