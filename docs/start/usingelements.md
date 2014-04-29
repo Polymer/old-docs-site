@@ -9,18 +9,12 @@ subtitle: Polymer from the outside
 
 {% include toc.html %}
 
-## Introduction
-
-{{site.project_title}} provides a large collection of elements for you to pick from. Of course, these elements have all of the features described in [Custom Elements 101](/docs/start/customelements.html). Using them is straightforward:
-
-- **You don't have to care how they work**. Their internals are safely encapsulated. You interact with them using a well-defined API of attributes, events, properties, methods, and how they handle child nodes. They could use some kind of space-age magic inside, but from the outside you don't know or care.
-- **They're easy to add to your project**. Elements, no matter which framework they're from, should define their dependencies using [Bower](http://bower.io). That means that setting up an element for use in your project--no matter how complex its dependencies, or which frameworks it depends on--is just a matter of running `bower install the-element`, importing the element to your page, and using it.
-
-{{site.project_title}}'s set of elements includes the usual suspects like buttons and other UI components, but also includes non-UI elements like `<core-ajax>`. It may sound surprising, but when you embrace the world-view that "[everything is an element](/docs/start/everything.html)" you'll find yourself reaching for pre-built elements more often than script to accomplish common tasks. {{site.project_title}}'s collection of elements is already robust, and continues to grow.
+{{site.project_title}} provides a set of core-elements which are both [UI and non-UI components](/docs/start/customelements#elementtypes). You can reuse them in your projects simply by
+including them in your project. If you don't want to write any code, keep reading!
 
 ## Installing elements {#install}
 
-The first step in using an element (or a set of elements) is to install it locally into your app using [Bower](http://bower.io). If you haven’t already done so, check out [Getting the Code](/docs/start/getting-the-code.html) to learn more about using Bower.
+The first step to using an element is to install using [Bower](http://bower.io). If you're not familiar with Bower, check out our [Getting the Code](/docs/start/getting-the-code.html) to learn more about using it.
 
 ### Installing a single element {#installsingle}
 
@@ -64,8 +58,8 @@ Although you can grab elements independently, sometimes you want to grab a whole
 
 Each set can be downloaded separately using Bower:
 
-    bower install --save core-elements
-    bower install --save polymer-ui-elements
+    bower install --save Polymer/core-elements
+    bower install --save Polymer/polymer-ui-elements
 
 ## Using elements {#using}
 
