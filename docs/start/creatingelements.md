@@ -9,21 +9,18 @@ subtitle: Polymer from the inside
 
 {% include toc.html %}
 
-{{site.project_title}} provides a useful collection of elements to get you started, but if you've embraced the "[Everything is an element](/docs/start/everything.html)" philosophy, you'll quickly want to make your own elements—whether to share with others or just to make your own apps easier to manage.
+{{site.project_title}} makes it simple to create web components, declaratively.
+Custom elements are defined using our custom element,  `<polymer-element>`, and can leverage
+{{site.project_title}}'s special features. These features reduce common boilerplate
+and make it evern easier to build complex, web component-based applications:
 
-By building on top of the power of Web Components, {{site.project_title}} makes creating your own elements extremely easy. Define the markup you want stamped out for each instance of the element and optionally define some properties and methods. Then import the element and the browser will treat it like any other native DOM element.
-
-One of the key features of elements is that they're encapsulated—their details don't leak out to the rest of your page. That means your element can masquerade as a native element on the outside, while inside it can leverage {{site.project_title}} magic, such as:
-
-- Two-way data binding
-- Event binding
+- [Two-way data binding](/docs/polymer/databinding.html)
+- Declarative event handing
+- Declarative inheritance
+- Property observation
 - Dynamic templates
-- Automatic node finding
-- ...and much more
-
-{{site.project_title}}'s motto within this encapsulated world is "reduce boilerplate." You'll find yourself writing far less script to accomplish common tasks, and spending more time on the interesting challenges of your element.
-
-If you combine this with the ability to [use preexisting elements](/docs/start/usingelements.html) you'll quickly discover how easy it is to build rich applications out of simple building blocks.
+- Touch/gesture support
+- ...
 
 ## Setup {#basics}
 
@@ -198,7 +195,7 @@ The use of the `id` attribute has traditionally been discouraged as an anti-patt
 
 ## Next steps {#nextsteps}
 
-Now that you know how to create your own elements you're ready to unleash the true power of {{site.project_title}}. To dive even deeper, read up on [{{site.project_title}}'s core API reference](/docs/polymer/polymer.html) or if you'd like to know more about the underlying technologies that make {{site.project_title}} (and Web Components) possible, check out [the Platform guide](/docs/start/platform.html). Continue on to:
+Now that you know how to create your own elements, dive deeper and read up on [{{site.project_title}}'s core API](/docs/polymer/polymer.html). If you'd like to know more about the underlying technologies that make {{site.project_title}} and Web Components possible, check out [the Platform guide](/docs/start/platform.html). Continue on to:
 
 <a href="/docs/polymer/polymer.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>API Reference</a>
 
