@@ -349,7 +349,7 @@ Because Polymer makes use of polyfills, search engines should treat Polymer-base
 
 ### Is there a registry of components I can play with? {#registry}
 
-At http://customelements.io, you can find a growing registry of third party components and contribute yours too.
+At [http://customelements.io](http://customelements.io), you can find a growing registry of third party components and contribute yours too.
 
 ### I get errors when trying to use  `<link rel="import">` with external files. {#externalfiles}
 
