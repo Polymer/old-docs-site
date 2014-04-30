@@ -207,7 +207,7 @@ in lowercase, you could modify the `toUpperCase` as follows:
     }
 
 **Note:** If the user enters text in a bound input field, the `toModel` filter is invoked before the
-value stored to the model. However, to `toDOM` filter is only called when the model is changed
+value stored to the model. However, `toDOM` filter is only called when the model is changed
 imperatively. So the text entered by the user isn't filtered (that is, it doesn't
 get capitalized). To validate or transform a value as the user types it, you can use a `on-input`
 or `on-blur` event handler.
