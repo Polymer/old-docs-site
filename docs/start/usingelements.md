@@ -14,7 +14,7 @@ including them in your project. If you don't want to write any code, keep readin
 
 ## Installing elements {#install}
 
-The first step to using an element is to install using [Bower](http://bower.io). If you're not familiar with Bower, check out our [Getting the Code](/docs/start/getting-the-code.html) to learn more about using it.
+The first step to using an element is to install using [Bower](http://bower.io). If you're not familiar with Bower, check out [Getting the Code](/docs/start/getting-the-code.html) to learn more about using it.
 
 ### Installing a single element {#installsingle}
 
