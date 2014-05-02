@@ -3,7 +3,7 @@ layout: default
 type: core
 navgroup: docs
 shortname: Docs
-title: API reference
+title: API guide
 ---
 
 <!-- <p><buildbot-list project="polymer-dev"></buildbot-list></p> -->
