@@ -241,7 +241,7 @@ want to use data binding elsewhere, there are two options:
     `<body>` element, you can use the `<polymer-body>` element, a {{site.project_title}} element that 
     extends `<body>`.
 
-*   Use the [Template Binding](templates.html) library directly. The template binding library is 
+*   Use the [Template Binding](/docs/polymer/template.html) library directly. The template binding library is 
     used internally by {{site.project_title}}, and can be used directly, with or without the rest of    
     {{site.project_title}}.
 
