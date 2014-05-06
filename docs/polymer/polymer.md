@@ -861,3 +861,21 @@ prepare themselves even when they do not satisfies the above rules.
 
 **Note:** an element's [`ready()` lifecycle callback](#lifecyclemethods) is called after an element has been prepared. Use `ready()` to know when an element is done initializing itself.
 {: .alert .alert-success }
+
+## Resolving paths of sibling elements {#resolvepath}
+
+For the general case of element re-use and sharing, URLs in HTML Imports are meant to be relative to the location of the import. The majority of the time, the system takes care of this for you. 
+
+However, JavaScript doesn't have a notion of a local import. Therefore, {{site.project_title}} provides a `resolvePath()` utility for converting local paths to paths local to the document. 
+
+For example: If you know your import is in a folder containing a resource (e.g `x-foo.png`), you can get a path to `x-foo.png` which will work relative to the main document by calling `this.resolvePath('x-foo.png')`.
+
+Visually, this might look like the following:
+
+
+    index.html
+    components/x-foo/
+      x-foo.html
+      x-foo.png
+
+At an element level, where `this` refers to an instance of an `x-foo` created by `index.html`, `this.resolvePath('x-foo.png') === 'components/x-foo/x-foo.png'`.
