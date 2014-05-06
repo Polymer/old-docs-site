@@ -843,6 +843,23 @@ To force bindings from being removed in call cases, set `.preventDispose`:
 Data changes in {{site.project_title}} happen almost immediately (at end of a microtask)
 when `Object.observe()` is available. When it's not supported, {{site.project_title}} uses a polyfill ([observe-js](https://github.com/Polymer/observe-js)) to poll and periodically propagate data-changes throughout the system. This is done through a method called `Platform.flush()`.
 
+#### How can I resolve paths of sibling elements?
+
+{{site.project_title}} elements have a `resolvePath(relativePath)` method to support this use case. Assuming that a specified resource stays at the same relative location:
+
+    /my-app
+        /elements
+            /globalize
+                /lib
+                    /cultures
+                        globalize.culture.fr.js
+    vulcanized.html
+
+The following path resolution should work:
+
+    this.resolvePath('../globalize/lib/cultures/globalize.culture.fr.js');
+
+
 #### What is `Platform.flush()`?
 
 `Platform.flush()` is part of {{site.project_title}}'s data observation polyfill, [observe-js](https://github.com/Polymer/observe-js). It dirty check's all objects that have been observed and ensures notification callbacks are dispatched. {{site.project_title}} automatically calls `Platform.flush()` periodically, and this should be sufficient for most application workflows. However, there are times when you'll want to call `Platform.flush()` in application code.
