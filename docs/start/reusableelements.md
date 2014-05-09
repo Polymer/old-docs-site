@@ -112,7 +112,7 @@ Once you are happy with the information you have entered into the above form, cl
 Great. So you should now have a tagged release for your element. Next, we’re going to use a special script to push a landing page for your element to GitHub pages. Inside your terminal, walk through running the following commands:
 
     # Navigate back to your development directory
-    cd ../development
+    cd ..
     
     # git clone the {{site.project_title}} tools repository
     git clone git://github.com/Polymer/tools.git
