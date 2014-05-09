@@ -142,6 +142,11 @@ function ajaxifySite() {
   });
 
   document.addEventListener('click', function(e) {
+    // Allow users to open new tabs.
+    if (e.metaKey || e.ctrlKey) {
+      return;
+    }
+
     var viableLink = false;
 
     wasRelativeAnchorClick = !!e.target.hash;
