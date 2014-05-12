@@ -1,5 +1,5 @@
 application: polymer-project
-version: 20140509
+version: 20140512
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -29,42 +29,32 @@ handlers:
 
 # Short URLs -------------------------------------------------------------------
 - url: /platform(.min)?.js
-  #static_files: components/platform/platform.js
-  #upload: components/platform/platform\.js
-  static_files: components/platform-dev/build/platform.js
-  upload: components/platform-dev/build/platform\.js
+  static_files: components/platform/platform.js
+  upload: components/platform/platform\.js
   http_headers:
     Access-Control-Allow-Origin: "*"
 
 - url: /platform(.min)?.js.map
-  #static_files: components/platform/platform.js.map
-  #upload: components/platform/platform\.js.\map
-  static_files: components/platform-dev/build/platform.js.map
-  upload: components/platform-dev/build/platform\.js.\map
+  static_files: components/platform/platform.js.map
+  upload: components/platform/platform\.js.\map
   http_headers:
     Access-Control-Allow-Origin: "*"
 
 - url: /polymer(.min)?.(js|html)
-  #static_files: components/polymer/polymer.\2
-  #upload: components/polymer/polymer\.(js|html)
-  static_files: components/polymer-dev/build/polymer.\2
-  upload: components/polymer-dev/build/polymer\.(js|html)
+  static_files: components/polymer/polymer.\2
+  upload: components/polymer/polymer\.(js|html)
   http_headers:
     Access-Control-Allow-Origin: "*"
 
 - url: /polymer(.min)?.js.map
-  #static_files: components/polymer/polymer.js.map
-  #upload: components/polymer/polymer\.js\.map
-  static_files: components/polymer-dev/build/polymer.js.map
-  upload: components/polymer-dev/build/polymer\.js\.map
+  static_files: components/polymer/polymer.js.map
+  upload: components/polymer/polymer\.js\.map
   http_headers:
     Access-Control-Allow-Origin: "*"
 
 - url: /polymer-body.html
-  #static_files: components/polymer/polymer-body.html
-  #upload: components/polymer/polymer-body.html
-  static_files: components/polymer-dev/build/polymer-body.html
-  upload: components/polymer-dev/build/polymer-body.html
+  static_files: components/polymer/polymer-body.html
+  upload: components/polymer/polymer-body.html
   http_headers:
     Access-Control-Allow-Origin: "*"
 
