@@ -22,6 +22,9 @@ git submodule foreach git pull origin master
 #../tools/bin/pull-all-projects.sh
 
 # Update components and polyfills folder =====
-cd $COMPONENTS_DIR
+#cd $COMPONENTS_DIR
 echo "=== Updating: components, polymer, polyfills, projects, and labs ==="
-../polymer-all/tools/bin/pull-all.sh
+#../polymer-all/tools/bin/pull-all.sh
+./polymer-all/tools/bin/pull-all.sh
+rm -rf polymer-all/projects/
+mv projects/ polymer-all/
