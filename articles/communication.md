@@ -376,8 +376,8 @@ a click handler on itself):
 
     first(): Said hi to Eric from say-hello
     second(): Said hi to Eric from div
-    outside: Said hi to Eric from my-app
     third(): Said hi to Eric from my-app
+    outside: Said hi to Eric from my-app
 
 #### Sending messages to siblings/children
 
