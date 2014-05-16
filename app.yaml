@@ -90,10 +90,13 @@ handlers:
   static_files: polymer-all/projects/designer/index.html
   upload: index\.html
 
+# - url: /tools/designer/components
+#   static_dir: components
+
 - url: /tools/designer/(.*)
   static_files: polymer-all/projects/designer/\1
   upload: polymer-all/projects/designer/(.*)
-  
+
 # Map raw paths with trailing "/" to an index.html file.
 - url: /(.*)/$
   static_files: _site/\1/index.html
