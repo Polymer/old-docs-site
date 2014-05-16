@@ -23,16 +23,16 @@ git submodule foreach git pull origin master
 #echo "=== Updating projects ==="
 #../tools/bin/pull-all-projects.sh
 
-# Update designer =====
-cd $DESIGNER_DIR
-echo "=== Updating designer ==="
-rm -rf components # If bower components dir exists, script hangs. Remove it first.
-bower install
-
 # Update components and polyfills folder =====
-cd $COMPONENTS_DIR
+#cd $COMPONENTS_DIR
 echo "=== Updating: components, polymer, polyfills, projects, and labs ==="
 #../polymer-all/tools/bin/pull-all.sh
 ./polymer-all/tools/bin/pull-all.sh
 rm -rf polymer-all/projects/
 mv projects/ polymer-all/
+
+# Update designer =====
+cd $DESIGNER_DIR
+echo "=== Updating designer ==="
+rm -rf components # If bower components dir exists, script hangs. Remove it first.
+bower install
