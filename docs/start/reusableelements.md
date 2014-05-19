@@ -22,11 +22,11 @@ This guide will ensure your *master* branch contains the bare-minimum of code th
 
 1. Create a new directory on your system for working on {{site.project_title}} elements (e.g `"development"`).
 
-2. Download the [untitled-element](https://github.com/PolymerLabs/untitled-element/archive/master.zip) boilerplate and unzip it in your working directory.
+2. Download the [seed-element](https://github.com/PolymerLabs/seed-element/archive/master.zip) boilerplate and unzip it in your working directory.
 
-3. Rename the element and its files accordingly. For example, if your element is called `<test-element>` and you've renamed the `untitled-element` directory to `test-element`, your file list should look a little like this:
+3. Rename the element and its files accordingly. For example, if your element is called `<test-element>` and you've renamed the `seed-element` directory to `test-element`, your file list should look a little like this:
 
-![File list for the test-element directory showing that untitled-element.html and untitled-element.css have been accordingly renamed to test-element.html and test-element.css](/images/publishing-polymer-elements/image_0.png)
+![File list for the test-element directory showing that seed-element.html and seed-element.css have been accordingly renamed to test-element.html and test-element.css](/images/publishing-polymer-elements/image_0.png)
 
 4. In the terminal, create a new Bower configuration file inside your element directory. This file will help Bower so that it installs your dependencies a level up from your element. The below snippet should do the trick:
 
@@ -135,15 +135,15 @@ This will create a new `gh-pages` branch (or clone and clear the current one) th
 
 ## Share
 
-You can now share the link to your element hosted on GitHub pages with the world. As we used the `untitled-element` repo, {{site.project_title}} will give you a styled component page out of the box that looks a little like this:
+You can now share the link to your element hosted on GitHub pages with the world. As we used the `seed-element` repo, {{site.project_title}} will give you a styled component page out of the box that looks a little like this:
 
 ![Preview of the component langing page, displaying the element title in the header with a demo link next to it. The rest of the page contains formatted summary and attribute/method/event information parsed from the documentation in your element](/images/publishing-polymer-elements/image_6.png)
 
-You can check out the [live](http://polymerlabs.github.io/untitled-element/components/untitled-element/) version of this page for the `untitled-element` project.
+You can check out the [live](http://polymerlabs.github.io/seed-element/components/seed-element/) version of this page for the `seed-element` project.
 
-This page uses our [core-component-page](https://github.com/Polymer/core-component-page) element to parse out documentation from your element as long as you’re using our custom flavour of [JSDoc comments](http://usejsdoc.org/about-getting-started.html). `untitled-element` includes boilerplate for these comments out of the box.
+This page uses our [core-component-page](https://github.com/Polymer/core-component-page) element to parse out documentation from your element as long as you’re using our custom flavour of [JSDoc comments](http://usejsdoc.org/about-getting-started.html). `seed-element` includes boilerplate for these comments out of the box.
 
-This allows us to automatically group your documentation by attributes, methods and events, show an example and provide a summary of what your element does. It can also provide you to a link to an element [demo](http://polymerlabs.github.io/untitled-element/components/untitled-element/demo.html).
+This allows us to automatically group your documentation by attributes, methods and events, show an example and provide a summary of what your element does. It can also provide you to a link to an element [demo](http://polymerlabs.github.io/seed-element/components/seed-element/demo.html).
 
 ##Where to go next?
 
