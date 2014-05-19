@@ -1,1 +1,1 @@
-See https://github.com/Polymer/polymer-dev/blob/master/CONTRIBUTING.md
+See http://polymer.github.io/CONTRIBUTORS.txt
