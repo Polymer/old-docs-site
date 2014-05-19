@@ -1,0 +1,21 @@
+b-toggle-button {
+  display: inline-block;
+  position: relative;
+  min-width: 60px;
+  height: 24px;
+  overflow: hidden;
+  border: 1px solid #b6b6b6;
+  border-radius: 2px;
+  box-shadow: inset 0px 0px 1px 0 rgba(0, 0, 0, 0.1);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-transition: border 0.130s ease-out;
+  transition: border 0.130s ease-out;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+b-toggle-button.on {
+  border: 1px solid #08985f;
+}

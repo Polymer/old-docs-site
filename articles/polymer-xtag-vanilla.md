@@ -39,7 +39,7 @@ Then, `cd` into the project directory, `polymer-xtag-vanilla` and run:
 
 Lastly, you’ll need to start a local server to view the `index.html` file.
 
-<iframe src="/articles/demos/polymer-xtag-vanilla/example.html" width="380" height="400" frameborder="0"></iframe>
+<iframe src="/articles/demos/polymer-xtag-vanilla/example.html" width="380" height="440" frameborder="0"></iframe>
 
 If your screen looks like the above then you’re all set.
 
