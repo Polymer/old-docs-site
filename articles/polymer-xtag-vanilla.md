@@ -4,23 +4,24 @@ type: core
 navgroup: docs
 shortname: Articles
 title: "Custom Element Interoperability"
-subtitle: Using Polymer, X-Tag, and Vanilla Custom Elements
+subtitle: Using Polymer, X-Tag, Vanilla, and Bosonic Custom Elements
 
 article:
   author: robdodson
   published: 2014-02-28
   #updated: 2013-12-06
   polymer_version: 0.2.0
-  description: Get started using Polymer with Mozilla X-Tag and vanilla custom elements.
+  description: Get started using Polymer with Mozilla X-Tag, vanilla and Bosonic custom elements.
 tags:
 - custom elements
 - html imports
 - x-tag
+- bosonic
 - interoperability
 - bower
 ---
 
-A number of developers have asked if they can use [Polymer](http://www.polymer-project.org/) with [X-Tag](http://www.x-tags.org/)/[Brick](http://mozilla.github.io/brick/) or vanilla custom elements. We're happy to say that, yes, custom elements of any variety (be they Polymer, X-Tag or vanilla) can all happily coexist. In this guide we’ll cover what you need to do to get started working with custom elements in an interoperable fashion.
+A number of developers have asked if they can use [Polymer](http://www.polymer-project.org/) with [X-Tag](http://www.x-tags.org/)/[Brick](http://mozilla.github.io/brick/) or vanilla or [Bosonic](http://bosonic.github.io/) custom elements. We're happy to say that, yes, custom elements of any variety (be they Polymer, X-Tag, vanilla or Bosonic) can all happily coexist. In this guide we’ll cover what you need to do to get started working with custom elements in an interoperable fashion.
 
 ## Getting Setup
 
@@ -38,7 +39,7 @@ Then, `cd` into the project directory, `polymer-xtag-vanilla` and run:
 
 Lastly, you’ll need to start a local server to view the `index.html` file.
 
-<iframe src="/articles/demos/polymer-xtag-vanilla/example.html" width="380" height="320" frameborder="0"></iframe>
+<iframe src="/articles/demos/polymer-xtag-vanilla/example.html" width="380" height="400" frameborder="0"></iframe>
 
 If your screen looks like the above then you’re all set.
 
@@ -64,6 +65,9 @@ Let’s walk through the example project to better understand what’s actually 
       <link rel="import" href="bower_components/x-tag-imports/x-tag-switch.html">
       <!-- import an element written using Polymer -->
       <link rel="import" href="bower_components/polymer-ui-ratings/polymer-ui-ratings.html">
+      <!-- import an element written using Bosonic -->
+      <link rel="stylesheet" href="../../../components/b-toggle-button/dist/b-toggle-button.css">
+      <script src="../../../components/b-toggle-button/dist/b-toggle-button.js"></script>
     </head>
     <body>
       <h2>Vanilla Custom Element</h2>
@@ -92,6 +96,11 @@ Let’s walk through the example project to better understand what’s actually 
         });
       </script>
 
+      <hr>
+
+      <h2>Bosonic Element</h2>
+      <b-toggle-button checked></b-toggle-button>
+
     </body>
     </html>
 
@@ -101,6 +110,16 @@ We first load `platform.js` which polyfills support for Web Components in all mo
     <script src="bower_components/platform/platform.js"></script>
 
 This means we can now register our own element using the native APIs.
+
+### Importing a Bosonic Custom Element
+
+Bosonic provides you with a custom polyfills build, which use some Polymer polyfills mixed with our own ShadowDOM polyfill. But, as Bosonic transpiles your elements to vanilla JS Custom Elements, they are fully interoperable with Polymer and x-tags elements.
+
+In short, you can use Bosonic elements with the Polymer platform!
+
+To get started working with vanilla custom elements, take a look at [`https://github.com/bosonic/b-toggle-button/blob/master/src/b-toggle-button.html`](https://github.com/bosonic/b-toggle-button/blob/master/src/b-toggle-button.html).
+
+Get the full documentation on the [Bosonic Project homepage](http://bosonic.github.io/documentation.html).
 
 ### Importing a vanilla Custom Element
 
