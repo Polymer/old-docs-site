@@ -25,6 +25,7 @@ For {{site.project_title}} elements, **the model is always the element itself**.
             this.owner = 'Rafael';
           }
         });
+      </script>
     </polymer-element>
 {% endraw %}
 
