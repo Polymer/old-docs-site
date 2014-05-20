@@ -28,19 +28,7 @@ This guide will ensure your *master* branch contains the bare-minimum of code th
 
 ![File list for the test-element directory showing that seed-element.html and seed-element.css have been accordingly renamed to test-element.html and test-element.css](/images/publishing-polymer-elements/image_0.png)
 
-4. In the terminal, create a new Bower configuration file inside your element directory. This file will help Bower so that it installs your dependencies a level up from your element. The below snippet should do the trick:
-
-        # For *nix OS
-        $ cat > .bowerrc
-        {
-          "directory": "../"
-        }
-        
-        # For Windows
-        > echo { "directory": "../" } > .bowerrc
-
-
-5. Next, run `bower install` inside your element directory to install dependencies. They will end up inside the `development` directory if all goes well. You can now locally develop and serve your element up for testing purposes.
+4. Next, run `bower install` inside your element directory to install dependencies. They will end up inside the `development` directory if all goes well. You can now locally develop and serve your element up for testing purposes.
 
 ![Directory listing of installed Bower packages including polymer, platform, core-component-page and core-action-icons. As this is the development directory, test-element is also shown in the directory list](/images/publishing-polymer-elements/image_1.png)
 
