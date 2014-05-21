@@ -97,7 +97,17 @@ Once you are happy with the information you have entered into the above form, cl
 
 ### Publishing a demo and landing page for your element
 
-Great. So you should now have a tagged release for your element. Next, we’re going to use a special script to push a landing page for your element to GitHub pages. Inside your terminal, walk through running the following commands:
+Great—you now have a tagged release for your element. Next up, let's create a meaningful demo and landing page for your element.
+
+While optional, we recommend modifying the `demo.html` page to provide a real-world example of your element. Developers can get a feel for how your element behaves, and can use your demo as a jumping off point for integrating your element in their own projects.
+
+This is also your chance to share documentation for your element's public interface. `index.html` uses our [core-component-page](https://github.com/Polymer/core-component-page) element to parse out documentation from your element as long as you’re using our custom flavour of [JSDoc comments](http://usejsdoc.org/about-getting-started.html). `seed-element` includes boilerplate for these comments out of the box. (You can check the [core-doc-viewer issue tracker](https://github.com/Polymer/core-doc-viewer/issues) for a list of known issues with specific types of JSDoc comments.)
+
+This allows us to automatically group your documentation by attributes, methods and events, show an example and provide a summary of what your element does. It can also provide you to a link to an element [demo](http://polymerlabs.github.io/seed-element/components/seed-element/demo.html).
+
+Take a look at `demo.html` and the rendered JSDocs in `index.html` in your browser to make sure you're happy with your customizations. You'll need to access them via `http:` URIs served from a [local web server](https://www.google.com/search?q=local+web+server); they won't display properly if opened directly via `file:` URIs.
+
+Once `demo.html` the docs in `index.html` look good locally, make sure that you've pushed any changes to your repo's `master` branch. We can now use a special script to push a landing page for your element to GitHub pages. Inside your terminal, walk through running the following commands:
 
     # Navigate back to your development directory
     cd ..
@@ -128,10 +138,6 @@ You can now share the link to your element hosted on GitHub pages with the world
 ![Preview of the component langing page, displaying the element title in the header with a demo link next to it. The rest of the page contains formatted summary and attribute/method/event information parsed from the documentation in your element](/images/publishing-polymer-elements/image_6.png)
 
 You can check out the [live](http://polymerlabs.github.io/seed-element/components/seed-element/) version of this page for the `seed-element` project.
-
-This page uses our [core-component-page](https://github.com/Polymer/core-component-page) element to parse out documentation from your element as long as you’re using our custom flavour of [JSDoc comments](http://usejsdoc.org/about-getting-started.html). `seed-element` includes boilerplate for these comments out of the box.
-
-This allows us to automatically group your documentation by attributes, methods and events, show an example and provide a summary of what your element does. It can also provide you to a link to an element [demo](http://polymerlabs.github.io/seed-element/components/seed-element/demo.html).
 
 ##Where to go next?
 
