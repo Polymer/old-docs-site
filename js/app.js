@@ -28,7 +28,8 @@ function addPermalinkHeadings(opt_inDoc) {
   var permalinkEl = doc.querySelector('.show-permalinks');
   if (permalinkEl) {
     ['h2','h3','h4'].forEach(function(h, i) {
-      [].forEach.call(permalinkEl.querySelectorAll(h), addPermalink);
+      Array.prototype.forEach.call(
+          permalinkEl.querySelectorAll(h), addPermalink);
     });
   }
 }
@@ -36,9 +37,10 @@ function addPermalinkHeadings(opt_inDoc) {
 function prettyPrintPage(opt_inDoc) {
   var doc = opt_inDoc || document;
 
-  [].forEach.call(doc.querySelectorAll('pre'), function(pre, i) {
+  Array.prototype.forEach.call(doc.querySelectorAll('pre'), function(pre, i) {
     pre.classList.add('prettyprint');
   });
+
   exports.prettyPrint && prettyPrint();
 }
 
@@ -98,7 +100,7 @@ function injectPage(url, opt_addToHistory) {
     // We can't set properties directly. Instead, do old school attr replacement.
     // This runs last to help color transition be buttery smooth.
     var newDocSiteBanner = doc.querySelector('site-banner');
-    [].forEach.call(newDocSiteBanner.attributes, function(attr, i) {
+    Array.prototype.forEach.call(newDocSiteBanner.attributes, function(attr, i) {
       if (attr.name != 'unresolved') {
         siteBanner.setAttribute(attr.name, attr.value);
       }
@@ -106,7 +108,10 @@ function injectPage(url, opt_addToHistory) {
 
     // TODO(ericbidelman): still need to run HTMLImports loader for inline imports?
 
-    initPage(); // TODO: can't pass doc. prettyPrint() needs markup in DOM.
+    var hasInlineImports = !!container.querySelector('link[rel="import"]');
+
+    // TODO: can't pass doc. prettyPrint() needs markup in DOM.
+    initPage(null, hasInlineImports);
 
     // Scroll to hash, otherwise goto top of the loaded page.
     if (location.hash) {
@@ -124,14 +129,22 @@ function injectPage(url, opt_addToHistory) {
   xhr.send();
 }
 
-function initPage(opt_inDoc) {
+function initPage(opt_inDoc, hasInlineImports) {
   var doc = opt_inDoc || document;
 
   addPermalinkHeadings(doc);
 
   // TODO: Use kramdown {:.prettyprint .linenums .lang-ruby} to add the
   // <pre class="prettyprint"> instead of doing this client-side.
-  prettyPrintPage(doc);
+  if (!hasInlineImports) {
+    prettyPrintPage(doc);
+  } else {
+    // Need small delay to prevent https://github.com/Polymer/docs/issues/419.
+    // 100ms is arbitrary, but works.
+    setTimeout(function() {
+      prettyPrintPage(doc);
+    }, 100);
+  }
 }
 
 // Hijacks page to preventDefault() on links and make site ajax.
@@ -223,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
                       document.location.href);
   }
 
-  initPage();
+  initPage(null, false);
 });
 
 document.addEventListener('click', function(e) {
