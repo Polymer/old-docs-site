@@ -228,7 +228,7 @@ Then use the element as you would any other, and data-bind it to a property that
       </script>
     </polymer-element>
 
-A slight tweak of this approach let's you configure the value of the globals externally:
+A slight tweak of this approach lets you configure the value of the globals externally:
 
     <polymer-element name="app-globals">
       <script>
@@ -288,7 +288,7 @@ attributeChangedCallback | attributeChanged | An attribute was added, removed, o
 
 {{site.project_title}} parses element definitions and handles their upgrade _asynchronously_.
 If you prematurely fetch the element from the DOM before it has a chance to upgrade,
-you'll be working with an `HTMLUnknownElement`. {{site.project_title}} elements also support inline resources, such as stylesheets, that need to be loaded. These can cause FOUC issues if they're not fully loaded prior to rendering an element. To avoid FOUC, {{site.project_title}} delays registering elements until stylesheets are fully loaded.
+you'll be working with an `HTMLUnknownElement`. {{site.project_title}} elements also support inline resources, such as stylesheets, that need to be loaded. These can cause [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content) issues if they're not fully loaded prior to rendering an element. To avoid FOUC, {{site.project_title}} delays registering elements until stylesheets are fully loaded.
 
 To know when elements have been registered/upgraded, and thus ready to be interacted with, use the `polymer-ready` event.
 
