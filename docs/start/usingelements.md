@@ -9,7 +9,7 @@ subtitle: Polymer from the outside
 
 {% include toc.html %}
 
-{{site.project_title}} provides a set of core-elements which are both [UI and non-UI components](/docs/start/customelements.html#elementtypes). You can reuse them in your projects simply by
+{{site.project_title}} provides a set of [core-elements](http://polymer.github.io/core-docs/) which are both [UI and non-UI components](/docs/start/customelements.html#elementtypes). You can reuse them in your projects simply by
 including them in your project. If you don't want to write any code, keep reading!
 
 ## Installing elements {#install}
