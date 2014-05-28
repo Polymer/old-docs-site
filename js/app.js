@@ -140,10 +140,10 @@ function initPage(opt_inDoc, hasInlineImports) {
     prettyPrintPage(doc);
   } else {
     // Need small delay to prevent https://github.com/Polymer/docs/issues/419.
-    // 100ms is arbitrary, but works.
+    // 200ms is arbitrary, but works.
     setTimeout(function() {
       prettyPrintPage(doc);
-    }, 100);
+    }, 200);
   }
 }
 

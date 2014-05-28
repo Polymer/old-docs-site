@@ -22,6 +22,8 @@
   ],
   "dependencies": {
     "smoothscroll": "~0.0.2",
-    "x-tag-imports": "x-tag/x-tag-imports"
+    "x-tag-imports": "x-tag/x-tag-imports",
+    "marked": "*",
+    "highlightjs": "*"
   }
 }

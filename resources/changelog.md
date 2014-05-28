@@ -44,6 +44,12 @@ including polyfill repos, tools, projects, and UI elements.
 {% endcomment %}
 
 
+## v0.3.0 {#r2014-05-27}
+
+Released 2014-05-27. See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/0.3.0).
+
+---
+
 ## v0.2.4 {#r2014-05-12}
 
 Released 2014-05-12. See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/0.2.4).

@@ -3,6 +3,20 @@
 @import "spec";
 @import "polymer";
 
+.h1heading {
+  font-size: 35px;
+}
+
+.h5heading {
+  font-size: $font-size-secondary;
+  font-weight: normal;
+  color: $secondary-heading-color;
+  line-height: 24px;
+  letter-spacing: 0.01em;
+  margin-top: 6px;
+  margin-bottom: 18px;
+}
+
 section {
   border-bottom: 1px solid $main-bg;
 }
@@ -136,16 +150,10 @@ site-banner .logo {
     padding: $box-size / 4 35px;
   }
   h1 {
-    font-size: 35px;
+    @extend .h1heading;
   }
   h5 {
-    font-size: $font-size-secondary;
-    font-weight: normal;
-    color: $secondary-heading-color;
-    line-height: 24px;
-    letter-spacing: 0.01em;
-    margin-top: 6px;
-    margin-bottom: 18px;
+    @extend .h5heading;
   }
   p {
     font-size: $font-size-secondary;
@@ -155,5 +163,37 @@ site-banner .logo {
   img {
     height: 94px;
     width: auto;
+  }
+}
+
+#quickstart {
+  h1 {
+    @extend .h1heading;
+  }
+  h5 {
+    @extend .h5heading;
+  }
+  .panel {
+    @include flex-direction(column);
+  }
+  .example {
+    @include display-flex;
+    border-bottom: 1px solid $main-bg;
+    padding: $content-padding 0;
+
+    heading {
+      @include align-self(center);
+      @include flex(1 0 auto);
+
+      h2 {
+        line-height: 1;
+      }
+    }
+    .paper-button {
+      margin-top: $additonalPadding;
+    }
+    > div {
+      @include flex(0 1 50%);
+    }
   }
 }

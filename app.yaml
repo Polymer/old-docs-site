@@ -1,5 +1,5 @@
 application: polymer-project
-version: 20140519
+version: 20140527
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -113,6 +113,10 @@ handlers:
     Access-Control-Allow-Origin: "*"
 
 # New mappings for Bower
+- url: /components/(marked|highlightjs)/(.*)
+  static_files: js/bower_components/\1/\2
+  upload: js/bower_components/(marked|highlightjs)/(.*)
+
 - url: /components
   static_dir: components
   http_headers:
@@ -147,4 +151,6 @@ skip_files:
 - ^(.*/)?platform-dev/workbench/.*
 - ^(.*/)?(AUTHORS|LICENSE|PATENTS|COPYING|CONTRIBUTING|README)$
 - ^(.*/)?polymer-all/labs/dfreedm/core-icon-study/.*
+- ^(.*/)?polymer-all/labs/.* # don't upload all of labs
+- ^(.*/)?polymer-all/tools/doc/.*
 - ^(.*/)?components/tools/.* # tool is already in /polymer-all
