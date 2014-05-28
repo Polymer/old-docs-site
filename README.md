@@ -26,7 +26,7 @@ Run the setup script:
 
 This will run `npm install`, pull down any external dependencies, and kickoff the `grunt docs` task. **Note:** these scripts can take some time to install.
 
-During the setup process the `polymer-all/projects` directory is populated for you. Whenever the site is released you'll need to re-run `polymer-all/tools/bin/pull-all-projects.sh` in order to refresh this directory. See the [Polymer release](#polymer-release) section for more details.
+During the setup process the `polymer-all/projects` directory is populated for you. Whenever the site is released you'll need to re-run `./scripts/release.sh` in order to refresh this and other directories. See the [Polymer release](#polymer-release) section for more details.
 
 ## Making edits and previewing changes
 
