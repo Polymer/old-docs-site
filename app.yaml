@@ -113,6 +113,10 @@ handlers:
     Access-Control-Allow-Origin: "*"
 
 # New mappings for Bower
+- url: /components/(marked|highlightjs)/(.*)
+  static_files: js/bower_components/\1/\2
+  upload: js/bower_components/(marked|highlightjs)/(.*)
+
 - url: /components
   static_dir: components
   http_headers:
