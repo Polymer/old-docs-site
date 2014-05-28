@@ -557,7 +557,7 @@ For example:
       </script>
     </polymer-element>
 
-Setting `hidden = true`  on a `<disappearing-element>` causes the `hidden`
+Setting `hidden = true` on a `<disappearing-element>` causes the `hidden`
 attribute to be set:
 
     <disappearing-element hidden>Now you see me...</disappearing element>
