@@ -153,11 +153,11 @@ using an ES5 getter, and a method `foo`:
 **Note:** `this` references the custom element itself inside a {{site.project_title}} element. For example, `this.localName == 'tag-name'`.
 {: .alert .alert-info }
 
-**Important:** Be careful when initializing properties that are objects or arrays. Due to the nature of `prototype`, you may run into unexpected "shared state" across instances of the same element. If you're initializing an array or object, do it in `ready()` rather than directly on the `prototype`. 
+**Important:** Be careful when initializing properties that are objects or arrays. Due to the nature of `prototype`, you may run into unexpected "shared state" across instances of the same element. If you're initializing an array or object, do it in the `created` callback rather than directly on the `prototype`. 
 
     // Good!
     Polymer('x-foo', {
-      ready: function() {
+      created: function() {
         this.list = []; // Initialize and hint type to be array.
         this.person = {}; // Initialize and hint type to an object.
       }
@@ -195,7 +195,7 @@ techniques like anonymous self-calling functions:
 
 There are times when you may like to define properties of an application globally once and then make them available inside all of your elements. For example, you may want to define configuration information and then reference them inside individual components. You may want one single easing curve for all animations. We may want to store information like the currently logged-in user that we consider "global".
 
-To achieve this, you can use the [MonoState Pattern](http://c2.com/cgi/wiki?MonostatePattern).When defining a Polymer element, define a closure that closes over the variables in question, and then provide accessors on the object's prototype or copy them over to individual instances in the constructor.
+To achieve this, you can use the [MonoState Pattern](http://c2.com/cgi/wiki?MonostatePattern). When defining a {{site.project_title}} element, define a closure that closes over the variables in question, and then provide accessors on the object's prototype or copy them over to individual instances in the constructor.
 
     <polymer-element name="app-globals">
       <script>
@@ -213,7 +213,7 @@ To achieve this, you can use the [MonoState Pattern](http://c2.com/cgi/wiki?Mono
       </script>
     </polymer-element>
 
-Then use the element as you would any other, and data-bind it to a property that you can use to access it through Polymer's data-binding:
+Then use the element as you would any other, and data-bind it to a property that you can use to access it through {{site.project_title}}'s data-binding:
 
     <polymer-element name="my-component">
       <template>
@@ -309,19 +309,34 @@ To know when elements have been registered/upgraded, and thus ready to be intera
 
 ### Published properties
 
-When you _publish_ a property name, you're making that property two-way data-bound and part
-of the element's "public API". Published properties can be initialized by an HTML attribute
-of the same name. 
+When you _publish_ a property name, you're making that property part of the
+element's "public API". Published properties have the following features:
 
-There are two ways to publish properties:
+*   Support for two-way, declarative data binding.
 
-1. **Preferred** - Include its name in the `<polymer-element>`'s `attributes` attribute.
-2. Include the name in a `publish` object on your prototype.
+*   Declarative initialization using an HTML attribute with a matching name.
 
-As an example, here's an element that publishes three public properties, `foo`, `bar`, and `baz`, using the `attributes` attribute:
+*   Optionally, the current value of a property can be _reflected_ back to an
+    attribute with a matching name.
+
+**Note:** Property names are case sensitive, but attribute names are not.
+{{site.project_title}} matches each property name with the corresponding
+attribute name, as described in [Attribute case sensitivity](#attrcase). This
+means you can't publish two properties distinguished only by capitalization (for
+example, `name` and `NAME`).
+{: .alert .alert-info }
+
+There are two ways to publish a property:
+
+*   **Preferred** - Include its name in the `<polymer-element>`'s `attributes`
+    attribute.
+*   Include the name in a `publish` object on your prototype.
+
+As an example, here's an element that publishes three public properties, `foo`,
+`bar`, and `baz`, using the `attributes` attribute:
 
     <polymer-element name="x-foo" attributes="foo bar baz">
-      <script> 
+      <script>
         Polymer('x-foo');
       </script>
     </polymer-element>
@@ -329,34 +344,55 @@ As an example, here's an element that publishes three public properties, `foo`, 
 And here's one using the `publish` object:
 
     <polymer-element name="x-foo">
-      <script> 
+      <script>
         Polymer('x-foo', {
           publish: {
             foo: 'I am foo!',
-            bar: 'Hello, from bar',
-            baz: 'Baz up in here'
+            bar: 5,
+            baz: {
+              value: false,
+              reflect: true
+            }
           }
         });
       </script>
     </polymer-element>
 
-Let's look at the difference between the two and when you might prefer one option over the other.
+Note that the `baz` property uses a different format, to enable
+[attribute reflection](#attrreflection).
+
+Generally it's preferable to use the `attributes` attribute because it's the
+declarative approach and you can easily see all of the exposed properties at the
+top of the element.
+
+You should opt for the `publish` object when any of the following is true:
+
+*   Your element has many properties and placing them all on one line feels
+    unwieldy.
+*   You want to define default values for properties and prefer the DRYness of
+    doing it all in one place.
+*   You need to reflect changes from the property value back to the corresponding
+    attribute.
 
 #### Default property values
 
-By default, properties defined in `attributes` are `null`:
+By default, properties defined in `attributes` are initialized to `null`:
 
     <polymer-element name="x-foo" attributes="foo">
-      <script> 
-        Polymer('x-foo'); // x-foo has a foo property with null value.
+      <script>
+        // x-foo has a foo property with default value of null.
+        Polymer('x-foo');
       </script>
     </polymer-element>
 
-As such, you can provide default values using a combination of the `attributes` attribute and the `prototype`:
+Specifically, {{site.project_title}} adds `foo` to the element's prototype with a value of `null`.
+
+You can provide your own default values by explicitly specifying the default value on the elment's `prototype`:
 
     <polymer-element name="x-foo" attributes="bar">
-      <script> 
-        Polymer('x-foo', { // x-foo has a bar property with default value false.
+      <script>
+        Polymer('x-foo', {
+          // x-foo has a bar property with default value false.
           bar: false
         });
       </script>
@@ -365,59 +401,191 @@ As such, you can provide default values using a combination of the `attributes` 
 Or you can define the whole thing using the `publish` property:
 
     <polymer-element name="x-foo">
-      <script> 
+      <script>
         Polymer('x-foo', {
           publish: {
-            bar: false 
+            bar: false
           }
         });
       </script>
     </polymer-element>
 
-Generally it's preferable to use the `attributes` attribute because it's the declarative approach and you can easily see all of the exposed properties at the top of the element.
+For property values that are objects or arrays, you should set the default value
+in the `created` callback instead. This ensures that a separate object is
+created for each instance of the element:
 
-You should opt for the `publish` property when either of the following is true:
-
-1. Your element has many properties and placing them all on one line feels unwieldy.
-2. You want to define default values for properties and prefer the DRYness of doing it all in one place.
-
-#### Configuring an element via attributes
-
-Attributes are a great way for users of your element to configure it, declaratively.
-They can customize a published property by passing an initial value on the attribute
-with the same name:
-
-    <x-foo name="Bob"></x-foo>
-
-##### Hinting an attribute's type {#attrhinting}
-
-When attribute values are converted to property values, {{site.project_title}} attempts to convert the value to the correct type, depending on the default value of the property.
-
-    <polymer-element name="x-foo" attributes="foo">
-      <script> 
-        Polymer('x-foo', {
-          foo: false // hint that foo is Boolean
+    <polymer-element name="x-default" attributes="settings">
+      <script>
+        Polymer('x-default', {
+          created: function() {
+            // create a default settings object for this instance
+            this.settings = {
+              textColor = 'blue';
+            };
+          }
         });
       </script>
     </polymer-element>
 
-##### Property reflection to attributes {#attrreflection}
 
-Property values are reflected back into their attribute counterpart. For example, setting `this.name = "Joe"` or calling `this.setAttribute('name', 'Joe')` from within the element updates the markup accordingly:
+#### Configuring an element via attributes
+
+Attributes are a great way for users of your element to configure it,
+declaratively. They can customize a published property by setting its initial
+value as the attribute with the corresponding name:
+
+    <x-foo name="Bob"></x-foo>
+
+If the property value isn't a string, {{site.project_title}} tries to convert
+the attribute value to the appropriate type.
+
+The connection from attribute to property is _one way_. Changing the property
+value does **not** update the attribute value, unless
+[attribute reflection](#attrreflection) is enabled for the property.
+
+**Note**: Configuring an element using an attribute shouldn't be confused with
+[data binding](databinding.html). Data binding to a published property is
+by-reference, meaning values are not serialized and deserialized to strings.
+{: .alert .alert-info}
+
+##### Hinting a property's type {#attrhinting}
+
+When attribute values are converted to property values, {{site.project_title}}
+attempts to convert the value to the correct type, depending on the default
+value of the property.
+
+For example, suppose an `x-hint` element has a `count` property that defaults to `0`. 
+
+    <x-hint count="7"></x-hint>
+
+Since `count` has a Number value, {{site.project_title}} converts
+the string "7" to a Number.
+
+If a property takes an object or array, you can configure it using a
+double-quoted JSON string. For example:
+
+    <x-name fullname='{ "first": "Bob", "last": "Dobbs" }'></x-name>
+
+This is equivalent to setting the element's `fullname` property to an object 
+literal in JavaScript:
+
+    xname.fullname = { first: 'Bob', last: 'Dobbs' };
+
+The default value can be set on the prototype itself, in
+the `publish` object, or in the `created` callback. The following element
+includes an unlikely combination of all three:
+
+    <polymer-element name="hint-element" attributes="isReady items">
+      <script>
+        Polymer('hint-element', {
+
+          // hint that isReady is a Boolean
+          isReady: false,
+
+          publish: {
+            // hint that count is a Number
+            count: 0
+          },
+
+          created: function() {
+            // hint that items is an array
+            this.items = [];
+          }
+        });
+      </script>
+    </polymer-element>
+
+**Important:** For properties that are objects or arrays, you should always
+initialize the properties in the `created` callback. If you set the default
+value directly on the `prototype` (or on the `publish` object), you may run into
+unexpected "shared state" across different instances of the same element.
+{: .alert .alert-error }
+
+#### Property reflection to attributes {#attrreflection}
+
+Property values can be _reflected_ back into the matching attribute. For
+example, if reflection is enabled for the `name` property, setting
+`this.name = "Joe"` from within an element is equivalent to  calling
+`this.setAttribute('name', 'Joe')`.  The element updates the DOM accordingly:
 
     <x-foo name="Joe"></x-foo>
 
-### Data binding and custom attributes
+Property reflection is only useful in a few cases, so it is off by default.
+You usually only need property reflection if you want to style an element based
+on an attribute value.
 
-Published properties are data-bound inside of {{site.project_title}} elements and accessible
-via `{%raw%}{{}}{%endraw%}`. These bindings are by reference and are two-way.
+To enable reflection, define the property in the `publish` block.
+Instead of a simple value:
+
+<pre>
+<var>propertyName</var>: <var>defaultValue</var>
+</pre>
+
+Specify a reflected property using this format:
+
+<pre>
+<var>propertyName</var>: {
+  <b>value:</b> <var>defaultValue</var>,
+  <b>reflect:</b> <b>true</b>
+}
+</pre>
+
+The property value is serialized to a string based on its data type. A
+few types get special treatment:
+
+*   If the property value is an object, array, or function, the value is
+    **never** reflected, whether or not `reflect` is `true`.
+
+*   If the property value is boolean, the attribute behaves like a standard
+    boolean attribute: the reflected attribute appears only if the value is
+    truthy.
+
+Also, note that the initial value of an attribute is **not** reflected, so the
+reflected attribute does not appear in the DOM unless you set it to a different
+value.
+
+For example:
+
+    <polymer-element name="disappearing-element">
+      <script>
+        Polymer('disappearing-element', {
+          publish: {
+            hidden: {
+              value: false,
+              reflect: true
+            }
+          }
+        });
+      </script>
+    </polymer-element>
+
+Setting `hidden = true` on a `<disappearing-element>` causes the `hidden`
+attribute to be set:
+
+    <disappearing-element hidden>Now you see me...</disappearing element>
+
+Attribute _reflection_ is separate from data binding. Two-way data binding is
+available on published properties whether or not they're reflected. Consider the
+following:
+
+    <my-element name="{%raw%}{{someName}}{%endraw%}"></my-element>
+
+If the `name` property is _not_ set to reflect, the `name` attribute always
+shows up as `name="{%raw%}{{someName}}{%endraw%}"` in the DOM. If `name` _is_
+set to reflect, the DOM attribute reflects the current value of `someName`.
+
+### Data binding and published properties
+
+Published properties are data-bound inside of {{site.project_title}} elements
+and accessible via `{%raw%}{{}}{%endraw%}`. These bindings are by reference and
+are two-way.
 
 For example, we can define a `name-tag` element that publishes two properties,
 `name` and `nameColor`.
 
     <polymer-element name="name-tag" attributes="name nameColor">
       <template>
-        Hello! My name is <span style="color:{{"{{nameColor"}}}}">{{"{{name"}}}}</span>
+        Hello! My name is <span style="color:{%raw%}{{nameColor}}{%endraw%}">{%raw%}{{name}}{%endraw%}</span>
       </template>
       <script>
         Polymer('name-tag', {
@@ -426,24 +594,31 @@ For example, we can define a `name-tag` element that publishes two properties,
       </script>
     </polymer-element>
 
-In this example, `name` has initial value of `null` and `nameColor` has a value of "orange".
-Thus, the `<span>`'s color will be orange.
+In this example, the published property `name` has initial value of `null` and `nameColor` has a value of "orange". Thus, the `<span>`'s color will be orange.
 
-#### Binding objects and arrays to attribute values
+For more information see the [Data binding overview](databinding.html).
 
-**Important:** Be careful when your properties are objects or arrays. Element registration
-is evaluated once. This means only one instance of an object used in property initialization is ever created. Because of the nature of `prototype`, you may run into unexpected "shared state" across different instances of the same element if you're setting an initial value for a property which is an object or array. Do this type of initialization in `created()` rather than directly on the `prototype`. 
+#### Binding objects and arrays to published properties
+
+**Important:** Be careful when your properties are objects or arrays. Element
+registration is evaluated once. This means only one instance of an object used
+in property initialization is ever created. Because of the nature of
+`prototype`, you may run into unexpected "shared state" across different
+instances of the same element if you're setting an initial value for a property
+which is an object or array. Do this type of initialization in the `created`
+callback rather than directly on the `prototype`.
 {: .alert .alert-error }
 
-Generally, attributes are string values, but {{site.project_title}} makes it possible to bind references between elements using attributes. The binding engine interprets reference bindings
-by interrogating the [attribute's type](#attrhinting). This means you 
-can bind an an object to an HTML attribute!
+Generally, attributes are string values, but {{site.project_title}} makes it
+possible to bind references between elements using published properties.
 
-Let's modify the `name-tag` example to take an object instead of individual properties.
+Let's modify the `name-tag` example to take an object instead of individual
+properties.
 
     <polymer-element name="name-tag" attributes="person">
       <template>
-        Hello! My name is <span style="color:{{"{{person.nameColor"}}}}">{{"{{person.name"}}}}</span>
+        Hello! My name is <span style="color:"{%raw%}{{person.nameColor}}{%endraw%}">
+        {%raw%}{{person.name}}{%endraw%}</span>
       </template>
       <script>
         Polymer('name-tag', {
@@ -461,7 +636,7 @@ Now, imagine we make a new component called `<visitor-creds>` that uses `name-ta
 
     <polymer-element name="visitor-creds">
       <template>
-        <name-tag person="{{"{{person"}}}}"></name-tag>
+        <name-tag person="{%raw%}{{person}}{%endraw%}"></name-tag>
       </template>
       <script>
         Polymer('visitor-creds', {
@@ -478,6 +653,8 @@ Now, imagine we make a new component called `<visitor-creds>` that uses `name-ta
 When an instance of `<visitor-creds>` is created, its `person` property (an object)
 is also bound to `<name-tag>`'s `person` property. Now both components are using
 the same `person` object.
+
+
 
 ### Declarative event mapping
 
@@ -498,7 +675,7 @@ It uses special <code>on-<em>event</em></code> syntax to trigger this binding be
 
 In this example, the `on-keypress` declaration maps the standard DOM `"keypress"` event to the `keypressHandler` method defined on the element. Similarly, a button within the element
 declares a `on-click` handler for click events that calls the `buttonClick` method.
-All of this is achieved without the need for any glue code. 
+All of this is achieved without the need for any glue code.
 
 Some things to notice:
 
@@ -513,7 +690,7 @@ Some things to notice:
 #### Changed watchers {#change-watchers}
 
 The simplest way to observe property changes on your element is to use a changed watcher.
-All properties on {{site.project_title}} elements can be watched for changes by implementing a <code><em>propertyName</em>Changed</code> handler. When the value of a watched property changes, the appropriate change handler is automatically invoked. 
+All properties on {{site.project_title}} elements can be watched for changes by implementing a <code><em>propertyName</em>Changed</code> handler. When the value of a watched property changes, the appropriate change handler is automatically invoked.
 
     <polymer-element name="g-cool" attributes="better best">
       <script>
