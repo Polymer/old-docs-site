@@ -414,7 +414,7 @@ For property values that are objects or arrays, you should set the default value
 in the `created` callback instead. This ensures that a separate object is
 created for each instance of the element:
 
- <polymer-element name="x-default" attributes="settings">
+    <polymer-element name="x-default" attributes="settings">
       <script>
         Polymer('x-default', {
           created: function() {
@@ -454,20 +454,22 @@ When attribute values are converted to property values, {{site.project_title}}
 attempts to convert the value to the correct type, depending on the default
 value of the property.
 
-For example, suppose an element has a `show` property that defaults to `false`:
+For example, suppose an `x-hint` element has a `count` property that defaults to `0`. 
 
-    <x-hint show="true"></x-hint>
+    <x-hint count="7"></x-hint>
 
-Since `show` has a boolean value initially, {{site.project_title}} converts the string "true" to a JavaScript `true`.
+Since `count` has a Number value, {{site.project_title}} converts
+the string "7" to a Number.
 
 If a property takes an object or array, you can configure it using a
 double-quoted JSON string. For example:
 
     <x-name fullname='{ "first": "Bob", "last": "Dobbs" }'></x-name>
 
-Is equivalent to setting the `fullname` property to an object literal:
+This is equivalent to setting the element's `fullname` property to an object 
+literal in JavaScript:
 
-    xname.fullname = { first: "Bob", last: "Dobbs" };
+    xname.fullname = { first: 'Bob', last: 'Dobbs' };
 
 The default value can be set on the prototype itself, in
 the `publish` object, or in the `created` callback. The following element
@@ -615,7 +617,7 @@ properties.
 
     <polymer-element name="name-tag" attributes="person">
       <template>
-        Hello! My name is <span style="color:"{{%raw%}{{person.nameColor}}{%endraw%}">
+        Hello! My name is <span style="color:"{%raw%}{{person.nameColor}}{%endraw%}">
         {%raw%}{{person.name}}{%endraw%}</span>
       </template>
       <script>
