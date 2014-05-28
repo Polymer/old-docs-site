@@ -147,4 +147,6 @@ skip_files:
 - ^(.*/)?platform-dev/workbench/.*
 - ^(.*/)?(AUTHORS|LICENSE|PATENTS|COPYING|CONTRIBUTING|README)$
 - ^(.*/)?polymer-all/labs/dfreedm/core-icon-study/.*
+- ^(.*/)?polymer-all/labs/.* # don't upload all of labs
+- ^(.*/)?polymer-all/tools/doc/.*
 - ^(.*/)?components/tools/.* # tool is already in /polymer-all
