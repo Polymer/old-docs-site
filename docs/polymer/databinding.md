@@ -77,7 +77,7 @@ To see how this works, here's an example {{site.project_title}} element that use
       <!-- outermost template defines the element's shadow DOM -->
       <template>
         <ul>
-          <template id="greeting" repeat="{{s in salutations}}">
+          <template repeat="{{s in salutations}}">
             <li>{{s.what}}: <input type="text" value="{{s.who}}"></li>
           </template>
         </ul>
@@ -106,7 +106,7 @@ Inside that template, there's a second template that contains
 expressions surrounded by double-mustache {%raw%}`{{`&nbsp;`}}`{%endraw%} symbols:
 
 {%raw%}
-    <template id="greeting" repeat="{{s in salutations }}">
+    <template repeat="{{s in salutations }}">
       <li>{{ s.what }}: <input type="text" value="{{ s.who }}"></li>
     </template>
 {%endraw%}
