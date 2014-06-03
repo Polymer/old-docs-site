@@ -287,7 +287,7 @@ For boolean attributes, you can control whether or not the attribute appears usi
 
 {% raw %}
 <pre class="prettyprint">
-<var>attribute</var>?={{ <var>boolean-expresion</var> }}
+<var>attribute</var>?={{ <var>boolean-expression</var> }}
 </pre>
 {%endraw%}
 
