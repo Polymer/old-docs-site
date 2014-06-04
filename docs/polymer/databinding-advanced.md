@@ -255,29 +255,7 @@ binding in a document without having to create a custom element just for this pu
 For an auto-binding template, the data model is on the template itself. For example, to use 
 data binding at the top level of a document:
 
-{% raw %}
-    <body>
-      <!-- render data set -->
-      <template is="auto-binding" repeat="{{quotes}}">
-        <h3>{{quote}}</h3>
-        - <em>{{attribution}}</em>
-      </template>
-  
-      <script>
-        var t = document.querySelector('template');
-        t.quotes = [{ 
-          attribution: "Plautus", 
-          quote: "Let deeds match words."
-        }, { 
-          attribution: "Groucho Marx", 
-          quote: "Time flies like an arrow. Fruit flies like a banana."
-        }];
-        t.addEventListener('template-bound', function() {
-          console.log('Template data binding complete.');
-        });
-      </script>
-    </body>
-{% endraw %}
+{% include samples/databinding/auto-binding.html %} 
 
 The auto-binding template inserts the instances it creates immediately after
 itself in the DOM tree (_not_ in its shadow DOM). In this case, the quotes are 

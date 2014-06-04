@@ -1,0 +1,30 @@
+<!-- [START runnable-sample] -->
+<head>
+<link rel="import" href="/components/polymer/polymer.html">
+</head>
+<!-- [END runnable-sample] -->
+<!-- [START doc-sample] -->
+<body>
+  <!-- [START runnable-sample] -->
+  <!-- render data set -->
+  <template id="auto-bind-demo" is="auto-binding" repeat="{{quotes}}">
+    <h3>{{quote}}</h3>
+    - <em>{{attribution}}</em>
+  </template>
+  
+  <script>
+    var t = document.querySelector('#auto-bind-demo');
+    t.quotes = [{ 
+      attribution: "Plautus", 
+      quote: "Let deeds match words."
+    }, { 
+      attribution: "Groucho Marx", 
+      quote: "Time flies like an arrow. Fruit flies like a banana."
+    }];
+    t.addEventListener('template-bound', function() {
+      console.log('Template data binding complete.');
+    });
+  </script>
+  <!-- [END runnable-sample] -->
+</body>
+<!-- [END doc-sample] -->

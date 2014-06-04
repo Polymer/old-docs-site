@@ -41,8 +41,8 @@ module Jekyll
       @output = []
 
       begin
-        startpattern = /^\s*(?:\/\/|<!--)\s*\[START\s+(\w*)\s*\]/
-        endpattern = /^\s*(?:\/\/|<!--)\s*\[END\s+(\w*)\s*\]/
+        startpattern = /^\s*(?:\/\/|<!--)\s*\[START\s+(\S*)\s*\]/
+        endpattern = /^\s*(?:\/\/|<!--)\s*\[END\s+(\S*)\s*\]/
         f = File.new(@filename, "r")
         text = f.read()
         text.each_line do |line|
