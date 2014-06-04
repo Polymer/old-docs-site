@@ -77,6 +77,7 @@ function injectPage(url, opt_addToHistory) {
 
     // Record GA page view early; once metadata is set up and URL is updated.
     ga('send', 'pageview', location.pathname);
+    ga('devrelTracker.send', 'pageview', location.pathname);
 
     // Update app-bar links.
     appBar.innerHTML = doc.querySelector('app-bar').innerHTML;
@@ -261,8 +262,10 @@ document.querySelector('[data-twitter-follow]').addEventListener('click', functi
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-ga('create', 'UA-39334307-1', 'auto');
+ga('create', 'UA-39334307-1', 'auto', {'siteSpeedSampleRate': 50});
+ga('create', 'UA-49880327-9', 'auto', {'name': 'devrelTracker'});
 ga('send', 'pageview');
+ga('devrelTracker.send', 'pageview');
 // ---------------
 
 console && console.log("%cWelcome to Polymer!\n%cweb components are the <bees-knees>",
