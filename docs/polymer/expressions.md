@@ -33,7 +33,9 @@ Expressions support the following subset of JavaScript:
 
 | Feature | Example | Explanation
 |---------|
-|Identifiers & paths | `foo`, `foo.bar.baz` | These values are treated as relative to the current scope, extracted, and observed for changes. The expression is re-evaluated if one of the values in the expression changes.
+|Identifiers & paths | `foo`, `match.set.game` | These values are treated as relative to the current scope, extracted, and observed for changes. The expression is re-evaluated if one of the values in the expression changes. Changing a property value does not result in the expression being re-evaluated. For example, changing the value of `foo.bar` doesn't cause the expression `foo` to be re-evaluated.
+| Array access | `foo[bar]` | Where `foo` and `bar` are identifiers or paths. The expression is re-evaluated if `foo` or `bar` changes, or if the value at `foo[bar]` changes.
+| Inline function | `myFunction(arg1, arg2)` | Evaluates to the return value of `myFunction`. The expression is re-evaluated if `arg1` or `arg2` changes.
 | Logical not operator | `!` |
 | Unary operators | `+foo`, `-bar` | Converted to `Number`. Or converted to `Number`, then negated.
 | Binary operators | `foo + bar`, `foo - bar`, `foo * bar` | Supported: `+`, `-`, `*`, `/`, `%`
@@ -44,6 +46,17 @@ Expressions support the following subset of JavaScript:
 | Literal values | numbers, strings, `null`, `undefined` | Escaped strings and non-decimal numbers are not supported. |
 | Array & Object initializers | `[foo, 1]`, `{id: 1, foo: bar}` |
 {: .first-col-nowrap .responsive-table .expressions-table }
+
+**Note:** 
+Changing a property of a bound identifier or path does _not_ cause the expression to be re-evaluated.
+However, you can force specific properties to be observed by adding them to the element's `observe` object,
+with an empty function. For example, if you want the expression `foo` to update whenever the value of 
+`foo.bar` changes, you could add the following `observe` object:
+
+    observe: {
+      foo.bar: function() {} 
+    }
+{: .alert .alert-info } 
 
 In addition to the JavaScript portion, an expression can also include one or more _filters_, which
 modify the output of the JavaScript expression. See [Filtering expressions](#filters) for

@@ -243,42 +243,49 @@ want to use data binding elsewhere, there are two options:
 
 *   Use the [Template Binding](/docs/polymer/template.html) library directly. The template binding library is 
     used internally by {{site.project_title}}, and can be used directly, with or without the rest of    
-    {{site.project_title}}.
+    {{site.project_title}}. (Note that if you use template binding by itself, you cannot use {{site.project_title}}
+    expressions.)
 
-### Using the `<polymer-body>` element
+### Using the `auto-binding` template element
 
-The `<polymer-body>` element is a {{site.project_title}} custom element that extends the standard
-`<body>` element. You can use it when you want to use {{site.project_title}} features like data
-binding in a document without having to create a custom element just for this purpose. For example,
-to use data binding at the top level of a document:
+The `<auto-binding>` element is a {{site.project_title}} custom element that extends the standard
+`<template>` element. You can use it when you want to use {{site.project_title}} data
+binding in a document without having to create a custom element just for this purpose. 
+
+For an auto-binding template, the data model is on the template itself. For example, to use 
+data binding at the top level of a document:
 
 {% raw %}
-    <body is="polymer-body" unresolved>
-
+    <body>
       <!-- render data set -->
-      <template repeat="{{quotes}}">
+      <template is="auto-binding" repeat="{{quotes}}">
         <h3>{{quote}}</h3>
         - <em>{{attribution}}</em>
       </template>
-
+  
       <script>
-        window.model = {
-          quotes: [{ 
-            attribution: "Plautus", 
-            quote: "Let deeds match words."
-          }, { 
-            attribution: "Groucho Marx", 
-            quote: "Time flies like an arrow. Fruit flies like a banana."
-          }]
-        };
+        var t = document.querySelector('template');
+        t.quotes = [{ 
+          attribution: "Plautus", 
+          quote: "Let deeds match words."
+        }, { 
+          attribution: "Groucho Marx", 
+          quote: "Time flies like an arrow. Fruit flies like a banana."
+        }];
+        t.addEventListener('template-bound', function() {
+          console.log('Template data binding complete.');
+        });
       </script>
     </body>
 {% endraw %}
 
-A few things to note: since the `<polymer-body>` element doesn’t have its own model data, you need
-to make the model data available to the template by adding a `model` property on `window`. The
-`<polymer-body>` element looks for the `window.model` property and gives it special treatment.
+The auto-binding template inserts the instances it creates immediately after
+itself in the DOM tree (_not_ in its shadow DOM). In this case, the quotes are 
+inserted as children of the `body` element.
 
-The `<polymer-body>` element is currently included automatically when you load the
+When the instances are added, the auto-binding template fires the `template-bound` 
+event.
+
+The `auto-binding` element is currently included automatically when you load the
 {{site.project_title}} library.
 
