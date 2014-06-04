@@ -106,7 +106,7 @@ Inside that template, there's a second template that contains
 expressions surrounded by double-mustache {%raw%}`{{`&nbsp;`}}`{%endraw%} symbols:
 
 {%raw%}
-    <template id="greeting" repeat="{{s in salutations }}">
+    <template repeat="{{s in salutations }}">
       <li>{{ s.what }}: <input type="text" value="{{ s.who }}"></li>
     </template>
 {%endraw%}
