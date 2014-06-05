@@ -8,18 +8,23 @@
   <!-- [START runnable-sample] -->
   <!-- render data set -->
   <template id="auto-bind-demo" is="auto-binding" repeat="{{quotes}}">
-    <h3>{{quote}}</h3>
-    - <em>{{attribution}}</em>
+    <div on-tap="{{quoteClicked}}">
+      <h3>{{quote}}</h3>
+      - <em>{{attribution}}</em>
+    </div>
   </template>
   
   <script>
     var t = document.querySelector('#auto-bind-demo');
+    t.quoteClicked = function() {
+      alert('Quote clicked!');
+    };
     t.quotes = [{ 
-      attribution: "Plautus", 
-      quote: "Let deeds match words."
+      attribution: 'Plautus', 
+      quote: 'Let deeds match words.'
     }, { 
-      attribution: "Groucho Marx", 
-      quote: "Time flies like an arrow. Fruit flies like a banana."
+      attribution: 'Groucho Marx',
+      quote: 'Time flies like an arrow. Fruit flies like a banana.'
     }];
   </script>
   <!-- [END runnable-sample] -->

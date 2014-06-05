@@ -246,14 +246,19 @@ want to use data binding elsewhere, there are two options:
     {{site.project_title}}. (Note that if you use template binding by itself, you cannot use {{site.project_title}}
     expressions.)
 
-### Using the `auto-binding` template element
+### Using the auto-binding template element
 
-The `<auto-binding>` element is a {{site.project_title}} custom element that extends the standard
+The `auto-binding` element is a {{site.project_title}} custom element that extends the standard
 `<template>` element. You can use it when you want to use {{site.project_title}} data
-binding in a document without having to create a custom element just for this purpose. 
+binding in a page without having to create a custom element just for this purpose. Auto-binding
+templates support a subset of the features available when you create your own custom element:
 
-For an auto-binding template, the data model is on the template itself. For example, to use 
-data binding at the top level of a document:
+-   Full-featured data binding, with {{site.project_title}} expressions.
+-   [Declarative event mapping](polymer.html#declarative-event-mapping).
+-   [Automatic node finding](/polymer/polymer.html#automatic-node-finding). 
+
+For an auto-binding template, the data model is on the template itself. For example, to use data 
+binding at the top level of a page:
 
 {% include samples/databinding/auto-binding.html %} 
 
@@ -261,7 +266,7 @@ The auto-binding template inserts the instances it creates immediately after
 itself in the DOM tree (_not_ in its shadow DOM). In this case, the quotes are 
 inserted as children of the `body` element.
 
-When the instances are added, the auto-binding template fires the `template-bound` 
+After adding the instances, the auto-binding template fires the `template-bound` 
 event.
 
 The `auto-binding` element is currently included automatically when you load the
