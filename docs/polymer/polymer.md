@@ -598,64 +598,6 @@ In this example, the published property `name` has initial value of `null` and `
 
 For more information see the [Data binding overview](databinding.html).
 
-#### Binding objects and arrays to published properties
-
-**Important:** Be careful when your properties are objects or arrays. Element
-registration is evaluated once. This means only one instance of an object used
-in property initialization is ever created. Because of the nature of
-`prototype`, you may run into unexpected "shared state" across different
-instances of the same element if you're setting an initial value for a property
-which is an object or array. Do this type of initialization in the `created`
-callback rather than directly on the `prototype`.
-{: .alert .alert-error }
-
-Generally, attributes are string values, but {{site.project_title}} makes it
-possible to bind references between elements using published properties.
-
-Let's modify the `name-tag` example to take an object instead of individual
-properties.
-
-    <polymer-element name="name-tag" attributes="person">
-      <template>
-        Hello! My name is <span style="color:"{%raw%}{{person.nameColor}}{%endraw%}">
-        {%raw%}{{person.name}}{%endraw%}</span>
-      </template>
-      <script>
-        Polymer('name-tag', {
-          created: function() {
-            this.person = {
-              name: "Scott",
-              nameColor: "orange"
-            }
-          }
-        });
-      </script>
-    </polymer-element>
-
-Now, imagine we make a new component called `<visitor-creds>` that uses `name-tag`:
-
-    <polymer-element name="visitor-creds">
-      <template>
-        <name-tag person="{%raw%}{{person}}{%endraw%}"></name-tag>
-      </template>
-      <script>
-        Polymer('visitor-creds', {
-          created: function() {
-            this.person = {
-              name: "Scott2",
-              nameColor: "red"
-            }
-          }
-        });
-      </script>
-    </polymer-element>
-
-When an instance of `<visitor-creds>` is created, its `person` property (an object)
-is also bound to `<name-tag>`'s `person` property. Now both components are using
-the same `person` object.
-
-
-
 ### Declarative event mapping
 
 {{site.project_title}} supports declarative binding of events to methods in the component.

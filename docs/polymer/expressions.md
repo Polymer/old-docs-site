@@ -33,7 +33,8 @@ Expressions support the following subset of JavaScript:
 
 | Feature | Example | Explanation
 |---------|
-|Identifiers & paths | `foo`, `foo.bar.baz` | These values are treated as relative to the current scope, extracted, and observed for changes. The expression is re-evaluated if one of the values in the expression changes.
+|Identifiers & paths | `foo`, `match.set.game` | These values are treated as relative to the current scope, extracted, and observed for changes. The expression is re-evaluated if one of the values in the expression changes. Changing a property value does not result in the expression being re-evaluated. For example, changing the value of `foo.bar` doesn't cause the expression `foo` to be re-evaluated.
+| Array access | `foo[bar]` | Where `foo` and `bar` are identifiers or paths. The expression is re-evaluated if `foo` or `bar` changes, or if the value at `foo[bar]` changes.
 | Logical not operator | `!` |
 | Unary operators | `+foo`, `-bar` | Converted to `Number`. Or converted to `Number`, then negated.
 | Binary operators | `foo + bar`, `foo - bar`, `foo * bar` | Supported: `+`, `-`, `*`, `/`, `%`
@@ -129,6 +130,21 @@ to the filter:
 
 {{site.project_title}} provides two predefined filters, `tokenList` and `styleObject`. You can also
 create your own [custom filters](#custom-filters).
+
+If your filter depends on the properties of one of the paths or identifiers in your expression,
+note that the expression isn't re-evaluated when properties change. For example, if you have an
+expression like:
+
+    {% raw %}{{ user | formatUserName}}{% endraw %}
+
+The expression isn't re-evaluated when a property, such as `user.firstName` changes. If you need
+the filter to be re-run when a property changes, you can include it explicitly in the expression,
+like this:
+
+    {% raw %}{{ { firstName: user.firstName, lastName: user.lastName } | formatUserName }}{% endraw %}
+
+Since `user.firstName` and `user.lastName` are included explicitly in this expression, both
+properties are observed for changes.
 
 ### tokenList
 

@@ -230,7 +230,7 @@ How these bindings work depends on the element being bound:
 
 - Custom elements are also free to interpret bindings in other ways. For example, a non-{{site.project_title}} element could use the underlying [Node.bind](node_bind.html) library to override the default handling of named bindings.
 
-#### Binding to input values
+### Binding to input values
 
 Two-way bindings are supported as a special case on some user input elements. Specifically, the following attributes support two-way bindings:
 
@@ -239,7 +239,7 @@ Two-way bindings are supported as a special case on some user input elements. Sp
 - `select` element: `selectedIndex` and `value` attributes.
 - `textarea` element: `value` attribute.
 
-#### Binding to {{site.project_title}} published properties
+### Binding to {{site.project_title}} published properties
 
 When you bind to a [published property](polymer.html#published-properties) on a {{site.project_title}} element, you get a two-way binding to the property.
 
@@ -279,6 +279,56 @@ value of the `name` property, the value is pushed into the `input` element.
 **Note:** The `intro-tag` element doesn't define a `yourName` property. In this case, the data 
 binding system creates the property automatically.
 {: .alert .alert-info }
+
+
+#### Binding objects and arrays to published properties
+
+Most of the examples show data binding with simple string values, 
+but {{site.project_title}} lets you bind references between elements 
+using published properties.
+
+Let's modify the `name-tag` example to take an object instead of individual
+properties.
+
+    <polymer-element name="name-tag" attributes="person">
+      <template>
+        Hello! My name is <span style="color:"{%raw%}{{person.nameColor}}{%endraw%}">
+        {%raw%}{{person.name}}{%endraw%}</span>
+      </template>
+      <script>
+        Polymer('name-tag', {
+          created: function() {
+            this.person = {
+              name: "Scott",
+              nameColor: "orange"
+            }
+          }
+        });
+      </script>
+    </polymer-element>
+
+Now, imagine we make a new component called `<visitor-creds>` that uses `name-tag`:
+
+    <polymer-element name="visitor-creds">
+      <template>
+        <name-tag person="{%raw%}{{person}}{%endraw%}"></name-tag>
+      </template>
+      <script>
+        Polymer('visitor-creds', {
+          created: function() {
+            this.person = {
+              name: "Scott2",
+              nameColor: "red"
+            }
+          }
+        });
+      </script>
+    </polymer-element>
+
+When an instance of `<visitor-creds>` is created, its `person` property (an object)
+is also bound to `<name-tag>`'s `person` property. Now both components are using
+the same `person` object.
+
 
 
 ### Conditional attributes
