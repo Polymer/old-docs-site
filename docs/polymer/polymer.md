@@ -281,7 +281,7 @@ createdCallback | created | An instance of the element is created.
 attachedCallback | attached | An instance of the element was inserted into the DOM. 
 - | domReady | Called when the element's initial set of children are guaranteed to exist. This is an appropriate time to poke at the element's parent or light DOM children. Another use is when you have sibling custom elements (e.g. they're `.innerHTML`'d together, at the same time). Before element A can use B's API/properties, element B needs to be upgraded. The `domReady` callback ensures both elements exist.
 detachedCallback | detached | An instance was removed from the DOM.
-attributeChangedCallback | attributeChanged | An attribute was added, removed, or updated. **Note**: to observe changes to [published properties](#published-properties), use [chang watchers](#change-watchers).
+attributeChangedCallback | attributeChanged | An attribute was added, removed, or updated. **Note**: to observe changes to [published properties](#published-properties), use [changed watchers](#change-watchers).
 {: .table .responsive-table .lifecycle-table }
 
 ### The polymer-ready event {#polymer-ready}
