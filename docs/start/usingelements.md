@@ -106,7 +106,7 @@ polyfill to work properly. This requirement goes away when the API is available 
 
 ###  Passing object and array values in attributes {#objectarray}
 
-HTML attributes are string values, but sometimes you need to pass more complicated values into a custom element, such as objects or arrays. Ultimately, it's up to the element author to decide how to decode values passed in as attributes, but many {{site.project_title}} elements understand attribute values that are a JSON-serialized object or array. For example:
+[HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes) are string values, but sometimes you need to pass more complicated values into a custom element, such as objects or arrays. Ultimately, it's up to the element author to decide how to decode values passed in as attributes, but many {{site.project_title}} elements understand attribute values that are a JSON-serialized object or array. For example:
 
     <roster-list persons='[{"name": "John"}, {"name": "Bob"}]'></roster-list>
 
