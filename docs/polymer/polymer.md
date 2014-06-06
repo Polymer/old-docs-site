@@ -15,7 +15,7 @@ It expresses {{site.project_title}}'s opinion, provides the extra sugaring that 
 
 ## Element declaration
 
-At the heart of {{site.project_title}} are Custom Elements. Thus, it should be no surprise that defining a {{site.project_title}} element is similar to the way you define a standard Custom Element. The major difference is that {{site.project_title}} elements are created declaratively using `<polymer-element>`.
+At the heart of {{site.project_title}} are [Custom Elements](http://www.html5rocks.com/en/tutorials/webcomponents/customelements/). Thus, it should be no surprise that defining a {{site.project_title}} element is similar to the way you define a standard Custom Element. The major difference is that {{site.project_title}} elements are created declaratively using `<polymer-element>`.
 
     <polymer-element name="tag-name" constructor="TagName">
       <template>
