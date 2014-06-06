@@ -9,6 +9,7 @@ title: Discussion
 We've got a number of ways to stay in touch.
 
 * For **quick questions**: find us on IRC in the *#polymer* freenode channel. Logs are available [here](http://echelog.com/logs/browse/polymer).
+* For **detailed questions**: ask us on [StackOverflow](http://stackoverflow.com/), tagging the question with the "polymer" keyword.
 * To **stay entirely in the loop**: join the [polymer-dev](https://groups.google.com/forum/?fromgroups=#!forum/polymer-dev) Google group (high-traffic). The latest
 happenings are below.
 * For only the **interesting announcements**: subscribe to the [polymer-announce](https://groups.google.com/forum/?fromgroups=#!forum/polymer-announce) Google group (low-traffic).
