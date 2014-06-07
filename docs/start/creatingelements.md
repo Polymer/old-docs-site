@@ -15,9 +15,9 @@ Custom elements are defined using our custom element,  `<polymer-element>`, and 
 and make it even easier to build complex, web component-based applications:
 
 - [Two-way data binding](/docs/polymer/databinding.html)
-- Declarative event handing
-- Declarative inheritance
-- Property observation
+- [Declarative event handing](/docs/polymer/polymer.html#declarative-event-mapping)
+- [Declarative inheritance](/docs/polymer/polymer.html#extending-other-elements)
+- [Property observation](/docs/polymer/polymer.html#observeprops)
 - Dynamic templates
 - Touch/gesture support
 - ...

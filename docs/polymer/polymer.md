@@ -15,7 +15,7 @@ It expresses {{site.project_title}}'s opinion, provides the extra sugaring that 
 
 ## Element declaration
 
-At the heart of {{site.project_title}} are Custom Elements. Thus, it should be no surprise that defining a {{site.project_title}} element is similar to the way you define a standard Custom Element. The major difference is that {{site.project_title}} elements are created declaratively using `<polymer-element>`.
+At the heart of {{site.project_title}} are [Custom Elements](/platform/custom-elements.html). Thus, it should be no surprise that defining a {{site.project_title}} element is similar to the way you define a standard Custom Element. The major difference is that {{site.project_title}} elements are created declaratively using `<polymer-element>`.
 
     <polymer-element name="tag-name" constructor="TagName">
       <template>
@@ -281,7 +281,7 @@ createdCallback | created | An instance of the element is created.
 attachedCallback | attached | An instance of the element was inserted into the DOM. 
 - | domReady | Called when the element's initial set of children are guaranteed to exist. This is an appropriate time to poke at the element's parent or light DOM children. Another use is when you have sibling custom elements (e.g. they're `.innerHTML`'d together, at the same time). Before element A can use B's API/properties, element B needs to be upgraded. The `domReady` callback ensures both elements exist.
 detachedCallback | detached | An instance was removed from the DOM.
-attributeChangedCallback | attributeChanged | An attribute was added, removed, or updated. **Note**: to observe changes to [published properties](#published-properties), use [*Changed watchers](#change-watchers).
+attributeChangedCallback | attributeChanged | An attribute was added, removed, or updated. **Note**: to observe changes to [published properties](#published-properties), use [changed watchers](#change-watchers).
 {: .table .responsive-table .lifecycle-table }
 
 ### The polymer-ready event {#polymer-ready}

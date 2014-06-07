@@ -63,7 +63,7 @@ Each set can be downloaded separately using Bower:
 
 ## Using elements {#using}
 
-To use elements, first load `platform.js`. Many browsers have yet to implement the various web components APIs. Until they do, `platform.js` provides polyfill support. **Be sure to include this file before any code that touches the DOM.**
+To use elements, first load `platform.js`. Many browsers have yet to implement the various web components APIs. Until they do, `platform.js` provides [polyfill support](/docs/start/platform.html). **Be sure to include this file before any code that touches the DOM.**
 
 Once you have some elements installed and you've loaded `platform.js`, using an element is simply a matter of loading the element file using an [HTML Import](/platform/html-imports.html).
 
@@ -106,7 +106,7 @@ polyfill to work properly. This requirement goes away when the API is available 
 
 ###  Passing object and array values in attributes {#objectarray}
 
-HTML attributes are string values, but sometimes you need to pass more complicated values into a custom element, such as objects or arrays. Ultimately, it's up to the element author to decide how to decode values passed in as attributes, but many {{site.project_title}} elements understand attribute values that are a JSON-serialized object or array. For example:
+[HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes) are string values, but sometimes you need to pass more complicated values into a custom element, such as objects or arrays. Ultimately, it's up to the element author to decide how to decode values passed in as attributes, but many {{site.project_title}} elements understand attribute values that are a JSON-serialized object or array. For example:
 
     <roster-list persons='[{"name": "John"}, {"name": "Bob"}]'></roster-list>
 
