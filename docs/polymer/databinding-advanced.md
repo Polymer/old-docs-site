@@ -26,7 +26,7 @@ Consider the following DOM, which represents a template and the template instanc
 
 {% raw %}
     <table>
-        <template repeat="{{items}}">
+        <template repeat="{{item in items}}">
           <tr><td> {{item.name}} </td><td> {{item.count}} </td></tr>
         </template>
        <tr><td> Bass </td><td> 7 </td></tr>  
@@ -40,7 +40,7 @@ If you re-sort the array by `item.count`, {{site.project_title}} simply swaps th
 {% raw %}
 <pre>
 &lt;table>
-    &lt;template repeat="{{items}}">
+    &lt;template repeat="{{item in items}}">
       &lt;tr>&lt;td> {{item.name}} &lt;/td>&lt;td> {{item.count}} &lt;/td>&lt;/tr>
     &lt;/template>
    <strong>&lt;tr>&lt;td> Catfish &lt;/td>&lt;td> 8 &lt;/td>&lt;/tr> 
@@ -55,7 +55,7 @@ If you change `item.count` for one of the objects, the only thing that changes i
 {% raw %}
 <pre>
 &lt;table>
-    &lt;template repeat="{{items}}">
+    &lt;template repeat="{{item in items}}">
       &lt;tr>&lt;td> {{item.name}} &lt;/td>&lt;td> {{item.count}} &lt;/td>&lt;/tr>
     &lt;/template>
    &lt;tr>&lt;td> Catfish &lt;/td>&lt;td> 8 &lt;/td>&lt;/tr> 
