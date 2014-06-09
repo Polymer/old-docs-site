@@ -237,16 +237,20 @@ underlying model data changes. The two-way data binding only registers DOM chang
 This {{site.project_title}} data binding works  _inside_ a {{site.project_title}} element. If you
 want to use data binding elsewhere, there are two options:
 
-*   Make it a {{site.project_title}} element. If you just want to use data binding in a document’s 
-    `<body>` element, you can use the `<polymer-body>` element, a {{site.project_title}} element that 
-    extends `<body>`.
+*   If you're using {{site.project_title}}, use an [auto-binding template](#autobinding) 
+    to take advantage of data binding without creating a new custom element.
 
-*   Use the [Template Binding](/docs/polymer/template.html) library directly. The template binding library is 
+*   If you _aren't_ using the rest of {{site.project_title}}, use the 
+    [Template Binding](/docs/polymer/template.html) library directly. The template binding library is 
     used internally by {{site.project_title}}, and can be used directly, with or without the rest of    
     {{site.project_title}}. (Note that if you use template binding by itself, you cannot use {{site.project_title}}
     expressions.)
 
-### Using the auto-binding template element
+**Note:** Earlier versions of {{site.project_title}} included an element called `<polymer-body>`. 
+If you were using `<polymer-body>` previously, the closest substitute is an auto-binding template.
+{: .alert .alert-info }
+
+### Using the auto-binding template element {#autobinding}
 
 The `auto-binding` element is a {{site.project_title}} custom element that extends the standard
 `<template>` element. You can use it when you want to use {{site.project_title}} data
