@@ -186,7 +186,7 @@ Clicking on a row results in a DOM change like this (whitespace added for readab
 
 {% raw %}
     <template repeat="{{item in listItems}}">
-      <section>
+      <section on-click={{rowSelected}}>
         <h2>{{item.title}}</h2>
         <p>{{item.text}}</p>
       </section>
@@ -209,7 +209,7 @@ instance’s state persist even if the template has to reorder its instances:
 
 {% raw %}
     <template repeat="{{item in listItems}}">
-      <section>
+      <section on-click={{rowSelected}}>
         <h2>{{item.title}}</h2>
         <p>{{item.text}}</p>
       </section>
