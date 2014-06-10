@@ -2,11 +2,21 @@
   <div>
     <!-- <polymer-flex-layout align="center"></polymer-flex-layout> -->
     <polymer-ui-toolbar>
-      <a href="/docs/start/getting-the-code.html" class="paper-button" data-download-button><polymer-ui-icon src="/images/picons/ic_archive_dark_.png"></polymer-ui-icon>Get {{site.project_title}}</a>
-      <a href="http://plus.google.com/107187849809354688692/" class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_social_google_plus.png"></polymer-ui-icon>+{{site.project_title}}</a>
-      <a href="https://twitter.com/intent/follow?screen_name=polymer" data-twitter-follow title="Follow @polymer on Twitter" class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_social_twitter_dark_.png"></polymer-ui-icon>@polymer</a>
-      <a href="https://github.com/polymer" class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_social_github.png"></polymer-ui-icon>/{{site.project_title}}</a>
-      <a href="https://github.com/Polymer/polymer/issues/new" class="paper-button" borderless><polymer-ui-icon src="/images/picons/ic_addBox_dark_.png"></polymer-ui-icon>File a bug</a>
+      <a href="/docs/start/getting-the-code.html">
+        <paper-button icon="archive" label="Get {{site.project_title}}" raisedButton></paper-button>
+      </a> 
+      <a href="http://plus.google.com/107187849809354688692/">
+        <paper-button icon="social:post-gplus" label="+{{site.project_title}}"></paper-button>
+      </a>
+      <a href="https://twitter.com/intent/follow?screen_name=polymer" data-twitter-follow title="Follow @polymer on Twitter">
+        <paper-button icon="social:post-twitter" label="@polymer"></paper-button>
+      </a>
+      <a href="https://github.com/polymer">
+        <paper-button class="github" iconSrc="/images/picons/ic_social_github.png" label="/{{site.project_title}}"></paper-button>
+      </a>
+      <a href="https://github.com/Polymer/polymer/issues/new">
+        <paper-button icon="bug-report" label="File a bug"></paper-button>
+      </a>
     </polymer-ui-toolbar>
 
     <p id="copyright">&copy; 2014 {{site.project_title}} Authors. Code licensed under the <a href="https://github.com/polymer/polymer/blob/master/LICENSE" target="_blank">BSD License</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0</a>.</p>

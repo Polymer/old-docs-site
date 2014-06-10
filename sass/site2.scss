@@ -232,6 +232,13 @@ polymer-ui-toolbar {
   display: none;
 }
 
+paper-button.github::shadow core-icon {
+  $widthHeight: 24px;
+  width: $widthHeight;
+  height: $widthHeight;
+  background-size: $widthHeight * 2 !important;
+}
+
 footer {
   position: relative;
   // z-index: 100;
@@ -244,7 +251,7 @@ footer {
     margin-bottom: $content-padding;
   }
 
-  .paper-button {
+  paper-button {
     margin-right: 30px;
     //background: transparent !important;
     opacity: 0.6;

@@ -45,6 +45,7 @@ Bower adds a `bower_components/` folder in the root of your project and fills it
 If you'd like to install {{site.project_title}}’s collection of pre-built elements, run this command from the terminal:
 
     bower install --save Polymer/core-elements
+    bower install --save Polymer/paper-elements
 
 Other element sets, like [polymer-elements](/docs/elements/polymer-elements.html) and [polymer-ui-elements](/docs/elements/polymer-ui-elements.html) in [PolymerLabs](https://github.com/PolymerLabs), can be installed by running:
 
@@ -67,6 +68,8 @@ Because there are a number of dependencies we suggest you install {{site.project
 
 Now that you've installed {{site.project_title}} it's time to learn the core concepts. In the next section we'll get you up and running on using elements in a project. Continue on to:
 
-<a href="/docs/start/usingelements.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Using elements</a>
+<a href="/docs/start/usingelements.html">
+  <paper-button icon="arrow-forward" label="Using elements" raisedButton></paper-button>
+</a>
 
 If you'd rather skip ahead, check out our guide on [Creating Elements](/docs/start/creatingelements.html).

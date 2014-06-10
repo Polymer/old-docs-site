@@ -54,12 +54,12 @@ Don't worry about the other dependencies that were added. Bower installs them au
 Although you can grab elements independently, sometimes you want to grab a whole collection. {{site.project_title}} contains a set of [UI elements](/docs/start/customelements.html#uielements) and a set of [non-UI](/docs/start/customelements.html#nonuielements) elements:
 
 - <a href="/components/core-docs/index.html" target="_blank">Core elements</a>. Non-UI utility elements that perform common tasks like layout, AJAX, signaling, and storage, but don’t render anything in the browser.
-- [Polymer UI elements](/docs/elements/polymer-ui-elements.html). UI elements that render in the browser.
+- [Paper elements](/components/paper-docs/index.html). UI elements.
 
 Each set can be downloaded separately using Bower:
 
     bower install --save Polymer/core-elements
-    bower install --save Polymer/polymer-ui-elements
+    bower install --save Polymer/paper-elements
 
 ## Using elements {#using}
 
@@ -119,6 +119,8 @@ When creating your own {{site.project_title}} elements, you can choose to expose
 Now that you've got the basic idea of using and installing elements, it's time to start
 building something! In the next section we'll cover the features of {{site.project_title}} and how to create new `<polymer-element>`s. Continue on to:
 
-<a href="/docs/start/creatingelements.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Creating elements</a>
+<a href="/docs/start/creatingelements.html">
+  <paper-button icon="arrow-forward" label="Creating elements" raisedButton></paper-button>
+</a>
 
-If you'd rather browse the existing elements, check out the <a href="/components/core-docs/index.html" target="_blank">Core elements</a> and [{{site.project_title}} UI elements](/docs/elements/polymer-ui-elements.html) catalogs.
+If you'd rather browse the existing elements, check out the <a href="/components/core-docs/index.html" target="_blank">Core elements</a> and <a href="/components/paper-docs/index.html" target="_blank">Paper elements</a> catalogs.
