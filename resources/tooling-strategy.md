@@ -121,8 +121,6 @@ Go grab a coffee. This takes a few minutes!
 - *components/platform/platform.js* — The platform shims and polyfills.
 - *components/polymer/polymer.js* — [{{site.project_title}} core](/docs/polymer/polymer.html)
 - *components/core-elements/* — A folder of the meta collection of the core elements.
-- *components/polymer-elements/* — A folder of the meta collection of labs elements.
-- *components/polymer-ui-elements/* — A folder of the meta collection of labs UI elements.
 - A directory for each polyfill repo (CustomElements, HTMLImports, ShadowDOM).
 
 **projects/**
@@ -131,7 +129,7 @@ Full and sample applications.
 
 ### Test your environment {#testgit}
 
-To check that your development environment is ready, try running the playground tool:
+To check that your development environment is ready, try running the designer tool:
 
     cd projects/designer
     bower install
@@ -192,6 +190,12 @@ The [`platform-dev`](https://github.com/polymer/platform-dev) contains integrati
 
 A meta repository compiling the list of utility elements.
 
+**/paper-elements** - [github.com/Polymer/paper-elements](https://github.com/Polymer/paper-elements)
+
+A meta repository compiling the list of paper (UI) elements.
+
+
+<!-- 
 **/polymer-elements** - [github.com/PolymerLabs/polymer-elements](https://github.com/Polymer/polymer-elements)
 
 A meta repository compiling the list of utility elements that do not render UI.
@@ -204,3 +208,4 @@ A meta repository compiling the list of basic labs UI elements.
 
 A meta repository compiling the list of extra components and wrappers for third-party code. 
 Examples include Bootstrap, topcoat, Chart.js, pdf.js, x-tags, and AceEditor.
+ -->
