@@ -7,8 +7,6 @@ title: API developer guide
 subtitle: Guide
 ---
 
-<!-- <p><buildbot-list project="polymer-dev"></buildbot-list></p> -->
-
 {% include toc.html %}
 
 The {{site.project_title}} _core_ provides a thin layer of API on top of web components.
@@ -795,7 +793,9 @@ attribute. The parent's properties and methods are inherited by the child elemen
 and data-bound.
 
     <polymer-element name="polymer-cool">
-      <!-- UI-less element -->
+      <template>
+        You are {%raw%}{{praise}}{%endraw%} <content></content>!
+      </template>
       <script>
         Polymer('polymer-cool', {
           praise: 'cool'
@@ -805,34 +805,44 @@ and data-bound.
 
     <polymer-element name="polymer-cooler" extends="polymer-cool">
       <template>
-        {%raw%}{{praise}}{%endraw%} <!-- "cool" -->
+        <!-- A shadow element render's the extended
+             element's shadow dom here. --> 
+        <shadow></shadow> <!-- "You are cool Matt" -->
       </template>
       <script>
         Polymer('polymer-cooler');
       </script>
     </polymer-element>
 
+    <polymer-cooler>Matt</polymer-cooler>
+
 #### Overriding a parent's methods
 
-When you override an inherited method, you can call the parent's method with `this.super()`, and optionally pass it a list of arguments (e.g. `this.super([arg1, arg2])`). The reason the paramater is an array is so you can write `this.super(arguments)`.
+When you override an inherited method, you can call the parent's method with `this.super()`, and optionally pass it a list of arguments (e.g. `this.super([arg1, arg2])`). The reason the parameter is an array is so you can write `this.super(arguments)`.
 
 {% raw %}
     <polymer-element name="polymer-cool">
+      <template>
+        You are {{praise}} <content></content>!
+      </template>
       <script>
         Polymer('polymer-cool', {
           praise: 'cool',
           makeCoolest: function() {
-            this.praise = 'coolest';
+            this.praise = 'the coolest';
           }
         });
       </script>
     </polymer-element>
 
-    <polymer-element name="polymer-cooler" extends="polymer-cool" on-click="{{makeCoolest}}">
-      <template>polymer-cooler is {{praise}}</template>
+    <polymer-element name="polymer-cooler" extends="polymer-cool"
+                     on-click="{{makeCoolest}}">
+      <template>
+        <shadow></shadow>
+      </template>
       <script>
         Polymer('polymer-cooler', {
-          praise: 'cooler',
+          praise: 'cool',
           makeCoolest: function() {
             this.super(); // calls polymer-cool's makeCoolest()
           }
@@ -840,7 +850,7 @@ When you override an inherited method, you can call the parent's method with `th
       </script>
     </polymer-element>
 
-    <polymer-cooler></polymer-cooler>
+    <polymer-cooler>Matt</polymer-cooler>
 {% endraw %}
 
 In this example, when the user clicks on a `<polymer-cooler>` element, its
@@ -848,13 +858,9 @@ In this example, when the user clicks on a `<polymer-cooler>` element, its
 using `this.super()`. The `praise` property (inherited from `<polymer-cool>`) is set
 to "coolest".
 
-## Advanced topics {#additional-utilities}
+## Built-in element methods {#builtin}
 
-- [`async()`](#asyncmethod)
-- [`onMutation()`](#onMutation)
-- [`unbindAll()` / `cancelUnbindAll()` / `asyncUnbindAll()`](#bindings)
-  - [`.preventDispose`](#preventdispose)
-- [`Platform.flush()`](#flush)
+{{site.project_title}} includes a few handy methods on your element's prototype.
 
 ### Observing changes to light DOM children {#onMutation}
 
@@ -887,7 +893,7 @@ changes creates an optimization that (a) prevents duplicated work and (b) reduce
 are examples that fit under this async behavior. For example, conditional templates may not immediately render after setting properties because changes to those renderings are saved up and performed all at once after you return from JavaScript.
 
 To do work after changes have been processed, {{site.project_title}} provides `async()`.
-It's similar to `window.setTimeout()`, but automatically binds `this` to the correct value:
+It's similar to `window.setTimeout()`, but it automatically binds `this` to the correct value and is timed to `requestAnimationFrame`:
 
     // async(inMethod, inArgs, inTimeout)
     this.async(function() {
@@ -913,6 +919,31 @@ In the case of property changes that result in DOM modifications, follow this pa
       },
       updateValues: function() {...}
     });
+
+### Delaying work {#job}
+
+Sometimes it's useful to delay a task after an event, property change, or user interaction. A common way to do this is with `window.setTimeout()`:
+
+    this.responseChanged = function() {
+      if (this.timeout1) {
+        clearTimeout(this.toastTimeout1);
+      }
+      this.timeout1 = window.setTimeout(function() {
+        ...
+      }, 500);
+    }
+
+However, this is such a common pattern that {{site.project_title}} provides the `job()` utility for doing the same thing:
+
+    this.responseChanged = function() {
+      this.job('job1', function() { // first arg is the name of the "job"
+        this.fire('done');
+      }, 500);
+    }
+
+`job()` can be called repeatedly before the timeout but it only results in a single side-effect. In other words, if `responseChanged()` is immediately executed 250ms later, the `done` event won't fire until 750ms.
+
+## Advanced topics {#additional-utilities}
 
 ### Life of an element's bindings {#bindings}
 
@@ -1004,7 +1035,7 @@ prepare themselves even when they do not satisfies the above rules.
 **Note:** an element's [`ready()` lifecycle callback](#lifecyclemethods) is called after an element has been prepared. Use `ready()` to know when an element is done initializing itself.
 {: .alert .alert-success }
 
-## Resolving paths of sibling elements {#resolvepath}
+### Resolving paths of sibling elements {#resolvepath}
 
 For the general case of element re-use and sharing, URLs in HTML Imports are meant to be relative to the location of the import. The majority of the time, the browser takes care of this for you. 
 
@@ -1013,7 +1044,6 @@ However, JavaScript doesn't have a notion of a local import. Therefore, {{site.p
 For example: If you know your import is in a folder containing a resource (e.g `x-foo.png`), you can get a path to `x-foo.png` which will work relative to the main document by calling `this.resolvePath('x-foo.png')`.
 
 Visually, this might look like the following:
-
 
     index.html
     components/x-foo/
