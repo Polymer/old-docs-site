@@ -32,8 +32,6 @@ The platform layer is a bundle that includes the following libraries:
   <!-- - [Promises](https://github.com/Polymer/Promises). Handle asynchronous operations. -->
   - [observe-js](https://github.com/Polymer/observe-js). Observe changes on JS objects/arrays using `Object.observe` (if available).
 - Other
-  - [Pointer Events](https://github.com/Polymer/PointerEvents). Handle both touch and mouse seamlessly
-  - [Pointer Gestures](https://github.com/Polymer/PointerGestures). More complex touch gestures.
   - [Web Animations](/platform/web-animations.html). Define complex timeline animations.
 
 ## Installation & usage {#setup}
