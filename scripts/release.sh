@@ -18,6 +18,9 @@ COMPONENTS_DIR=../../../
 echo "=== Updating: submodules ==="
 git submodule foreach git pull origin master
 
+# Update site's bower_components deps. These get installed to /js/bower_components.
+bower update
+
 # Update projects folder =====
 #cd $PROJECTS_DIR
 #echo "=== Updating projects ==="
