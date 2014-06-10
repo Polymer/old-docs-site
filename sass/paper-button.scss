@@ -74,6 +74,7 @@ paper-button {
 
   // Inset highlight
   &[sink] {
+    color: inherit;
     padding: 7px 10px;
     transition: none;
 
