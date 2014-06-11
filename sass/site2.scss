@@ -166,7 +166,8 @@ summary {
   }
 
   &.alert-error {
-    //border-color: $warning-color;
+    border-color: $warning-color;
+    fill: $warning-color;
     b, strong {
       color: $warning-color;
     }
@@ -186,9 +187,14 @@ a[disabled] {
 
 @import "paper-button";
 
-app-bar .paper-button {
-  font-size: $font-size-secondary;
-  letter-spacing: normal;
+app-bar {
+  a {
+    text-decoration: none !important;
+  }
+  .paper-button {
+    font-size: $font-size-secondary;
+    letter-spacing: normal;
+  }
 }
 
 polymer-ui-icon {

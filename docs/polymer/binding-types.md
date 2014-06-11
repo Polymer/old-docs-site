@@ -350,7 +350,7 @@ If _boolean-expression_ is truthy, _attribute_  appears in the markup; otherwise
 
 ### One-time bindings
 
-<span class="label label-important">Experimental</span>
+{% include experimental.html %}
 
 Sometimes, you may not need dynamic bindings. For these cases, there are one-time bindings.
 
