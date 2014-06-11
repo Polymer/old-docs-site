@@ -260,7 +260,7 @@ Layout direction can be mirrored with the `reverse` attribute.
 
 ## Full bleed &lt;body>
 
-It's common want the entire `<body>` to fit to the viewport. By themselves, {{site.project_title}}'s layout features on `<body>` don't achieve the result. You can make `<body>` take
+It's common to want the entire `<body>` to fit to the viewport. By themselves, {{site.project_title}}'s layout features on `<body>` don't achieve the result. You can make `<body>` take
 up the entire viewport by adding the `fullbleed` attribute:
 
     <body fullbleed vertical layout>
