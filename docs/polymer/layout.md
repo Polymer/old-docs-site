@@ -3,7 +3,7 @@ layout: default
 type: core
 navgroup: docs
 shortname: Docs
-title: Application layout
+title: Element layout
 subtitle: Guide
 ---
 
