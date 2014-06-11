@@ -269,7 +269,7 @@ up the entire viewport by adding the `fullbleed` attribute:
 
 <iframe src="/samples/layout-attr.html" style="width: 100%; height: 150px;border:1px solid black"></iframe>
 
-This removes its margins and gives maximizes its height to the viewport. 
+This removes its margins and maximizes its height to the viewport. 
 
 ## General purpose attributes
 
