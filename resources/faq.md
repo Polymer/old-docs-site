@@ -306,7 +306,7 @@ For example, in a `on-*` handler, you can access the named model instance using:
 
 ## Can I use `<template>` inside an `<svg>` element? {#templateinsvg}
 
-Sure can. Here's a [demo](http://jsbin.com/EXOWUFu/2/edit).
+Sure can. Here's a [demo](http://jsbin.com/EXOWUFu/60/edit).
 
 {%raw%}
     <svg>
