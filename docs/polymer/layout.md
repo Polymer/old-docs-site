@@ -38,7 +38,7 @@ demo-tabs::shadow #results {
 
 {% include toc.html %}
 
-{{site.project_title}} includes a declarative layout system built on top of [CSS Flexbox](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes). Features in CSS Flexbox are exposed as **declare attributes** you include on elements.
+{{site.project_title}} includes a declarative layout system built on top of [CSS Flexbox](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes). Features in CSS Flexbox are exposed as **attributes** you include on elements.
 
 The layout attributes are implemented in [layout.html](/components/polymer/layout.html) - a file included whenever you import {{site.project_title}} in your element. Layout attributes use Shadow DOM's [`/deep/` rules](/articles/styling-elements.html#cat) and therefore, work across all Shadow DOM boundaries. As long as you're loading {{site.project_title}}, feel free to reuse these attributes in your own elements.
 
