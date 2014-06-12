@@ -3,7 +3,7 @@ layout: default
 type: core
 navgroup: docs
 shortname: Docs
-title: Application layout
+title: Element layout
 subtitle: Guide
 ---
 
@@ -38,9 +38,9 @@ demo-tabs::shadow #results {
 
 {% include toc.html %}
 
-{{site.project_title}} includes a declarative layout system built on top of [CSS Flexbox](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes). Features in CSS Flexbox are exposed as **declare attributes** you include on elements.
+{{site.project_title}} includes a declarative layout system built on top of [CSS Flexbox](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes). Features in CSS Flexbox are exposed as **attributes** you include on elements.
 
-The layout attributes are implemented in [layout.html](/components/polymer/layout.html) using Shadow DOM's [`/deep/` rules](/articles/styling-elements.html#cat). Therefore, they work across all Shadow DOM boundaries. As long as you're loading {{site.project_title}}, feel free to reuse these attributes in your own elements.
+The layout attributes are implemented in [layout.html](/components/polymer/layout.html) - a file included whenever you import {{site.project_title}} in your element. Layout attributes use Shadow DOM's [`/deep/` rules](/articles/styling-elements.html#cat) and therefore, work across all Shadow DOM boundaries. As long as you're loading {{site.project_title}}, feel free to reuse these attributes in your own elements.
 
 ## Horizontal and vertical layout
 
@@ -260,7 +260,7 @@ Layout direction can be mirrored with the `reverse` attribute.
 
 ## Full bleed &lt;body>
 
-It's common want the entire `<body>` to fit to the viewport. By themselves, {{site.project_title}}'s layout features on `<body>` don't achieve the result. You can make `<body>` take
+It's common to want the entire `<body>` to fit to the viewport. By themselves, {{site.project_title}}'s layout features on `<body>` don't achieve the result. You can make `<body>` take
 up the entire viewport by adding the `fullbleed` attribute:
 
     <body fullbleed vertical layout>
@@ -269,7 +269,7 @@ up the entire viewport by adding the `fullbleed` attribute:
 
 <iframe src="/samples/layout-attr.html" style="width: 100%; height: 150px;border:1px solid black"></iframe>
 
-This removes its margins and gives maximizes its height to the viewport. 
+This removes its margins and maximizes its height to the viewport. 
 
 ## General purpose attributes
 
