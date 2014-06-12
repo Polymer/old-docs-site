@@ -100,10 +100,46 @@ site-banner .logo {
 #future {
   polymer-ui-toolbar {
     @include align-items(stretch);
-    //@include justify-content(space-between);
   }
   a:not(:last-of-type) {
     margin-right: 12px;
+  }
+}
+
+#designer {
+  .panel {
+    @include flex-direction(column);
+  }
+  summary {
+    div {
+      @include display-flex;
+      @include justify-content(center);
+      @include align-items(center);
+      @include flex-direction(column);
+    }
+    h3 {
+      margin: 1em 0;
+    }
+  }
+
+  img {
+    object-fit: cover;
+    @include flex(1 0 auto);
+    margin-top: 1em;
+    object-position: 50% 0;
+    height: 300px;
+    width: 100%;
+    -webkit-mask-box-image: -webkit-linear-gradient(bottom, transparent, white 20%);
+    -moz-mask-box-image: -moz-linear-gradient(bottom, transparent, white 20%);
+    -ms-mask-box-image: -ms-linear-gradient(bottom, transparent, white 20%);
+    mask-box-image: linear-gradient(bottom, transparent, white 20%);
+  }
+
+  @supports (not (object-fit: cover)) {
+    img {
+      height: auto;
+      width: 100%;
+    }
   }
 }
 

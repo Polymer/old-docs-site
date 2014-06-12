@@ -7,7 +7,7 @@ title: Welcome
 ---
 
 <!-- page specific stylesheet needs to be inline to the page so ajax injects it. -->
-<link rel="stylesheet" href="/css/homepage.css">
+<link rel="stylesheet" href="/css/homepage.css" shim-shadowdom>
 
 <section id="future" class="main-bg">
   <div class="panel left">
@@ -44,6 +44,22 @@ title: Welcome
       </a>
     </summary>
     <img src="/images/logos/p-elements.svg">
+  </div>
+</section>
+<section id="designer">
+  <div class="panel">
+    <summary>
+      <h1>Designer</h1>
+      <a href="http://www.polymer-project.org/tools/designer/#391b62346ab74dc8ca2c"><img src="/images/designer_screenshot.png"></a>
+      <div>
+        <h3>
+        Our drag n' drop tool for prototyping apps using {{site.project_title}}'s  components. Save your experimnts as Github gists.
+        </h3>
+        <a href="http://www.polymer-project.org/tools/designer/#391b62346ab74dc8ca2c">
+          <paper-button icon="arrow-forward" label="Try it" raisedButton></paper-button>
+        </a>
+      </div>
+    </summary>
   </div>
 </section>
 <section id="architecture">
