@@ -49,12 +49,12 @@ title: Welcome
   <div class="panel">
     <summary>
       <h1>Designer</h1>
-      <a href="http://www.polymer-project.org/tools/designer/#391b62346ab74dc8ca2c"><img src="/images/designer_screenshot.png"></a>
+      <a href="/tools/designer/#391b62346ab74dc8ca2c"><img src="/images/designer_screenshot.png"></a>
       <div>
         <h3>
         Our drag n' drop tool for prototyping apps using {{site.project_title}}'s  components. Save your experimnts as Github gists.
         </h3>
-        <a href="http://www.polymer-project.org/tools/designer/#391b62346ab74dc8ca2c">
+        <a href="/tools/designer/#391b62346ab74dc8ca2c">
           <paper-button icon="arrow-forward" label="Try it" raisedButton></paper-button>
         </a>
       </div>
