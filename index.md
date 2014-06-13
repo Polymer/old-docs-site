@@ -29,21 +29,20 @@ title: Welcome
     </summary>
   </div>
 </section>
-<section id="everything-element" class="main-purple">
-  <!-- <nav class="bar" flexbox>
-    <a href="#everything-element" flex>Return to the elegance of the element</a>
-  </nav> -->
+<section id="videos" class="main-purple">
   <div class="panel right">
     <summary>
-      <h1>Everything is an element</h1>
-      <p>From <code>&lt;a&gt;</code> to <code>&lt;select&gt;</code>, elements are the building blocks of HTML. But modern applications have outgrown these built-in elements, forcing app developers to rely on JavaScript frameworks to provide dynamic, custom behavior.  The resulting apps are frequently complex and monolithic; a component developed for one may not work in another.
+      <h1>Watch</h1>
+      <p>Learn what the {{site.project_title}} team is up to through articles, videos, and presentations.
       <br><br>
-      {{site.project_title}} puts elements back at the center of web development. With {{site.project_title}}, you can craft your own HTML elements and compose them into complete, complex applications that are scalable and maintainable.</p>
-      <a href="/docs/start/everything.html">
-        <paper-button icon="arrow-forward" label="Learn more"></paper-button>
+      <a href="/resources/video.html">
+        <paper-button icon="arrow-forward" label="See more"></paper-button>
       </a>
+      </p>
     </summary>
-    <img src="/images/logos/p-elements.svg">
+    <div class="video">
+    <iframe src="http://www.youtube.com/embed/videoseries?list=PLRAVCSU_HVYu-zlRaqArF8Ytwz1jlMOIM&theme=light&controls=0" frameborder="0" allowfullscreen></iframe>
+    </div>
   </div>
 </section>
 <section id="designer">
@@ -62,6 +61,27 @@ title: Welcome
     </summary>
   </div>
 </section>
+
+{% comment %}
+<!-- <section id="everything-element" class="main-purple">
+  <!-- <nav class="bar" flexbox>
+    <a href="#everything-element" flex>Return to the elegance of the element</a>
+  </nav> -->
+  <div class="panel right">
+    <summary>
+      <h1>Everything is an element</h1>
+      <p>From <code>&lt;a&gt;</code> to <code>&lt;select&gt;</code>, elements are the building blocks of HTML. But modern applications have outgrown these built-in elements, forcing app developers to rely on JavaScript frameworks to provide dynamic, custom behavior.  The resulting apps are frequently complex and monolithic; a component developed for one may not work in another.
+      <br><br>
+      {{site.project_title}} puts elements back at the center of web development. With {{site.project_title}}, you can craft your own HTML elements and compose them into complete, complex applications that are scalable and maintainable.</p>
+      <a href="/docs/start/everything.html">
+        <paper-button icon="arrow-forward" label="Learn more"></paper-button>
+      </a>
+    </summary>
+    <img src="/images/logos/p-elements.svg">
+  </div>
+</section>
+{% endcomment %}
+
 <section id="architecture">
  <!--  <nav class="bar" flexbox>
     <a href="#architecture">The architecture of {{site.project_title}}</a>

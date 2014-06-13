@@ -106,6 +106,34 @@ site-banner .logo {
   }
 }
 
+#videos {
+  .panel {
+    padding: 50px 16px;
+  }
+  .video {
+    @include flex(1);
+    iframe {
+      // width: 640px;
+      width: 500px;
+      height: 281px;
+    }
+  }
+  summary {
+    color: #fff;
+    @include align-self(center);
+  }
+  paper-button {
+    //background: rgba(255,255,255,0.1) !important;
+    background: #262742 !important;
+    color: white;
+    fill: currentcolor;
+
+    &:hover {
+      background: rgb(58, 59, 86) !important;
+    }
+  }
+}
+
 #designer {
   .panel {
     @include flex-direction(column);
