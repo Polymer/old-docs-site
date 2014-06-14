@@ -97,6 +97,20 @@ handlers:
   static_files: polymer-all/projects/designer/\1
   upload: polymer-all/projects/designer/(.*)
 
+# Paper sampler -----
+- url: /paper-sampler/components/(.*)
+  static_files: components/\1
+  upload: components/(.*)
+
+- url: /paper-sampler/$
+  static_files: polymer-all/projects/paper-sampler/index.html
+  upload: polymer-all\/projects\/paper-sampler\/index.html
+
+- url: /paper-sampler/(.*)
+  static_files: polymer-all/projects/paper-sampler/\1
+  upload: polymer-all\/projects\/paper-sampler\/(.*)
+# -------------------
+
 # Map raw paths with trailing "/" to an index.html file.
 - url: /(.*)/$
   static_files: _site/\1/index.html
