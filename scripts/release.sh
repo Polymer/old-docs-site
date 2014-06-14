@@ -33,7 +33,7 @@ echo "=== Updating: components, polymer, polyfills, projects, and labs ==="
 # TODO(nevir): pull-all doesn't actually pull *everything* any more; the extra
 # args until polymer-* components are fully deprecated and the docs no longer
 #use them.
-./polymer-all/tools/bin/pull-all.sh ./polymer-all/tools/repo-configs/labs.json ./polymer-all/tools-private/paper.json
+./polymer-all/tools/bin/pull-all.sh ./polymer-all/tools/repo-configs/deprecated.json ./polymer-all/tools-private/paper.json
 rm -rf polymer-all/projects/
 mv projects/ polymer-all/
 
