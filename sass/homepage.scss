@@ -98,8 +98,8 @@ site-banner .logo {
 }
 
 #future {
-  polymer-ui-toolbar {
-    @include align-items(stretch);
+  a {
+    text-decoration: none;
   }
   a:not(:last-of-type) {
     margin-right: 12px;
@@ -171,6 +171,31 @@ site-banner .logo {
   }
 }
 
+#sampler, #everything-element {
+  summary {
+    color: #fff;
+  }
+  paper-button {
+    //background: rgba(255,255,255,0.1) !important;
+    background: #262742 !important;
+    color: white;
+    fill: currentcolor;
+
+    &:hover {
+      background: rgb(58, 59, 86) !important;
+    }
+  }
+}
+
+#sampler {
+  .panel img {
+    width: 530px;
+    height: 315px;
+    object-fit: cover;
+    object-position: 50% 0;
+  }
+}
+
 #everything-element {
   // .bar {
   //   border-color: rgba(255,255,255,0.3);
@@ -185,19 +210,6 @@ site-banner .logo {
   }
   .panel img {
     max-width: 312px;
-  }
-  summary {
-    color: #fff;
-  }
-  paper-button {
-    //background: rgba(255,255,255,0.1) !important;
-    background: #262742 !important;
-    color: white;
-    fill: currentcolor;
-
-    &:hover {
-      background: rgb(58, 59, 86) !important;
-    }
   }
 }
 
