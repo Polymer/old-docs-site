@@ -10,8 +10,8 @@ core:
   headertitle: Core
   menu: docs
 elements:
-  #headertitle: Elements
-  menu: docs
+  headertitle: Elements
+  menu: elements
 platform:
   headertitle: Platform
   menu: docs

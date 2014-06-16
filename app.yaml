@@ -1,4 +1,4 @@
-application: google.com:polymerdocs
+application: google.com:devnook-polymer
 version: 20140609
 runtime: python27
 api_version: 1

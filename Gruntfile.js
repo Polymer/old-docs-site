@@ -88,7 +88,7 @@ module.exports = function(grunt) {
       options: {
         excludes: {
           imports: [
-            "polymer.html$" 
+            "polymer.html$"
           ]
         },
         strip: true,

@@ -36,6 +36,8 @@ echo "=== Updating: components, polymer, polyfills, projects, and labs ==="
 ./polymer-all/tools/bin/pull-all.sh ./polymer-all/tools/repo-configs/deprecated.json ./polymer-all/tools-private/paper.json
 rm -rf polymer-all/projects/
 mv projects/ polymer-all/
+cp -R js/bower_components/highlightjs/ components/highlightjs
+cp -R js/bower_components/web-animations-js/ components/web-animations-js
 
 # Update designer =====
 cd $DESIGNER_DIR

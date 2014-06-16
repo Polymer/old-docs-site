@@ -90,14 +90,14 @@ function injectPage(url, opt_addToHistory) {
     // Set left-nav menu and highlight correct item.
     docsMenu.setAttribute(
         'menu', doc.querySelector('docs-menu').getAttribute('menu'));
-    docsMenu.highlightItemWithURL(location.pathname);
+    //docsMenu.highlightItemWithURL(location.pathname + location.hash);
 
     // Replace site-banner > header content.
     var HEADER_SELECTOR = 'site-banner header';
     var siteBannerHeader = document.querySelector(HEADER_SELECTOR);
     siteBannerHeader.innerHTML = doc.querySelector(HEADER_SELECTOR).innerHTML;
 
-    // Update site-banner attributes. Elements in xhr'd document are not upgraded.  
+    // Update site-banner attributes. Elements in xhr'd document are not upgraded.
     // We can't set properties directly. Instead, do old school attr replacement.
     // This runs last to help color transition be buttery smooth.
     var newDocSiteBanner = doc.querySelector('site-banner');
@@ -116,7 +116,8 @@ function injectPage(url, opt_addToHistory) {
 
     // Scroll to hash, otherwise goto top of the loaded page.
     if (location.hash) {
-      document.querySelector(location.hash).scrollIntoView(true, {behavior: 'smooth'});
+      var scrollTargetEl = document.querySelector(location.hash);
+      scrollTargetEl && scrollTargetEl.scrollIntoView(true, {behavior: 'smooth'});
     } else {
       exports.scrollTo(0, 0);
     }
@@ -145,6 +146,9 @@ function initPage(opt_inDoc, hasInlineImports) {
     setTimeout(function() {
       prettyPrintPage(doc);
     }, 200);
+  }
+  if (location.hash) {
+    hideOnHash();
   }
 }
 
@@ -196,13 +200,24 @@ function ajaxifySite() {
   });
 }
 
+// Hides elements with 'hide-on-hash' class if hash present.
+function hideOnHash() {
+  Array.prototype.forEach.call(
+    document.querySelectorAll('.hide-on-hash'),
+    function(el) {
+      el.style.display = 'none';
+  });
+};
+
 document.addEventListener('polymer-ready', function(e) {
   // TODO(ericbidelman): Hacky solution to get anchors scrolled to correct location
   // in page. Layout of page happens later than the browser wants to scroll.
   if (location.hash) {
     window.setTimeout(function() {
-      document.querySelector(location.hash).scrollIntoView(true, {behavior: 'smooth'});
+      var scrollTargetEl = document.querySelector(location.hash);
+      scrollTargetEl && scrollTargetEl.scrollIntoView(true, {behavior: 'smooth'});
     }, 200);
+    hideOnHash();
   }
 
   // The dropdown panel in the sidebar for mobile
@@ -253,6 +268,8 @@ document.querySelector('[data-twitter-follow]').addEventListener('click', functi
   exports.open(target.href, '', 'width=550,height=520');
 });
 
+
+window.addEventListener('hashchange', hideOnHash);
 
 // -------------------------------------------------------------------------- //
 
