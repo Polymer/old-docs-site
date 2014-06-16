@@ -9,7 +9,7 @@ subtitle: How to package your elements for broader sharing
 article:
   author: addyosmani
   published: 2014-03-07
-  #updated: 2013-12-06
+  updated: 2014-06-16
   polymer_version: 0.2.0
   description: How to package your elements for broader sharing
 tags:
@@ -107,10 +107,12 @@ An alternative to running the above `bower install` line is adding a reference t
 ### 3. Referencing dependencies {#reference-dependencies}
 
 
-We recommend custom {{site.project_title}} elements live and be referenced relative to the element’s location inside bower_components:
+We recommend custom {{site.project_title}} elements live in the same folder as your other components. That way, when your element is installed by another user, it references paths relative to the element’s install location (typically bower_components):
 
 {% raw %}
-    <link rel="import" href="bower_components/polymer/polymer.html">
+    <link rel="import" href="../polymer/polymer.html">
+    <link rel="import" href="../core-toolbar/core-toolbar.html">
+
     <polymer-element name="polymer-demo">
      <!- ... -->
 {% endraw %}
