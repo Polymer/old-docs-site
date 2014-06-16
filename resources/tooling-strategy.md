@@ -10,7 +10,7 @@ title: Tools & Testing
 
 ## Build status
 
-If something seems terrible wrong, check out {{site.project_title}}'s [build status page](/build/).
+If something seems terribly wrong, check out {{site.project_title}}'s [build status page](/build/).
 
 ## Vulcanize - element build tool
 
