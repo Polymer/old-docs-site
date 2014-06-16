@@ -105,7 +105,7 @@ your own icon sets. To create a custom icon set with SVG, import and declare
 `core-iconset-svg` in your html. Because SVG is just markup, you can put your
 SVG icons inside the `core-iconset-svg` element as its children.
 
-    <link rel="import" href="/bower_components/core-iconset-svg/core-iconset-svg.html">
+    <link rel="import" href="../bower_components/core-iconset-svg/core-iconset-svg.html">
     <core-iconset-svg id="custom-icons" iconSize="50">
       <svg>
         <defs>
