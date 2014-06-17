@@ -171,3 +171,5 @@ skip_files:
 - ^(.*/)?polymer-all/labs/.* # don't upload all of labs
 - ^(.*/)?polymer-all/tools/doc/.*
 - ^(.*/)?components/tools/.* # tool is already in /polymer-all
+- ^(.*/)?components/firebase-simple-login/firebase-simple-login-(java|objc)/.*
+- ^(.*/)?components/firebase-simple-login/lib/.*
