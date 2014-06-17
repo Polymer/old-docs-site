@@ -104,6 +104,9 @@ site-banner .logo {
   a:not(:last-of-type) {
     margin-right: 12px;
   }
+  paper-button::shadow #content span {
+    margin-left: 0;
+  }
 }
 
 #videos {
