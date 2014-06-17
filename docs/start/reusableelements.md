@@ -48,10 +48,6 @@ Next, follow the steps below:
     # Initialize a new Git repository for test-element
     git init
     
-    # Add .bowerrc to a .gitignore file so it doesn’t get checked in
-    # This can be done using the echo command or a text editor
-    echo '.bowerrc' > .gitignore
-    
     # Add the commits for your current code
     git add .
     git commit -m 'My initial version'
