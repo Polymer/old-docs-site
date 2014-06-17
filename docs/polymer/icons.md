@@ -32,7 +32,7 @@ installed in the `bower_components` directory.
 
 ## Basic usage: core-icon
 
-The simplest way of using Polymer icons is the `core-icon` element.
+The simplest way of using {{site.project_title}} icons is the `core-icon` element.
 To use it, import *core-icon.html* and declare an icon in your html:
 
     <link rel="import" href="/bower_components/core-icon/core-icon.html">
@@ -54,10 +54,10 @@ You can control the size of the icon using the `size` attribute. Since icons are
 <core-icon src="/images/icons/android.svg" size="32"></core-icon>
 <core-icon src="/images/icons/android.svg" size="48"></core-icon>
 
-The `src` attribute works well when you want to use a single icon. However, most of the time you need more than one, so Polymer makes it easy to work with *icon sets*.
+The `src` attribute works well when you want to use a single icon. However, most of the time you need more than one, so {{site.project_title}} makes it easy to work with *icon sets*.
 
 
-## Using Polymer's built-in icon sets
+## Using {{site.project_title}}'s built-in icon sets
 
 If you import `core-icons`, you get access to
 a whole range of predefined icon sets. To use an icon from an icon set, use the `icon` attribute instead of `src`:
@@ -81,7 +81,7 @@ You can browse available icon sets on the
 
 ## Styling with CSS
 
-Because icons in Polymer iconsets are SVG-based, you can control their appearance
+Because icons in {{site.project_title}} iconsets are SVG-based, you can control their appearance
 with CSS. For example, you can set properties like `fill`, `stroke` and `stroke-width` for your icons.
 
     <style>
@@ -214,7 +214,7 @@ Produces: <core-icon-button icon="av:play-arrow"></core-icon-button>
 
 ## Summary
 
-You just learned how to import Polymer's ready-made icon sets,
+You just learned how to import {{site.project_title}}'s ready-made icon sets,
 display an icon using the `core-icon` element and style it with CSS. You also learned
 how to create your own icon set using SVG or bitmap images and how to use icons
 from other elements that support this feature.
