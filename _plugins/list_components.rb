@@ -1,6 +1,27 @@
 require 'pathname'
 require 'json'
 
+#
+# Lists components names and urls as a JSON string.
+#
+# Usage:
+#
+# {% list_components dir:components prefix:core blacklist:"core-layout"%}
+#
+# Arguments:
+#
+# dir: directory to scan for components
+# prefix: component with this prefix will be included in the list
+# blacklist: space-separated list of components to ommit in the list
+#
+# When a region is selected, the region is de-indented as if the first
+# non-whitespace character in the start tag is column 0.
+#
+# Example output:
+#
+# {"core-ajax":"components/core-ajax/core-ajax.html", ...,
+#  "core-xhr":"components/core-ajax/core-xhr.html"}
+#
 module Jekyll
   class ListComponentsTag < Liquid::Tag
 
@@ -21,7 +42,6 @@ module Jekyll
 
       @dir = @attributes.has_key?('dir') ? @attributes['dir'] : nil
       @prefix = @attributes.has_key?('prefix') ? @attributes['prefix'] : '*/'
-      @blacklist_prefix = @attributes.has_key?('blacklistprefix') ? @attributes['blacklistprefix'] : ''
 
       # Establish blacklist of elements to not include.
       @blacklist = []
@@ -36,14 +56,6 @@ module Jekyll
     def render(context)
       elements = {}
       (Pathname.glob("#{@dir}/#{@prefix}-*") - Pathname.glob("#{@dir}/#{@blacklist_prefix}")).each do |i|
-        pn = Pathname.new(i.to_s + '/bower.json')
-        if pn.exist?
-          data_hash = JSON.parse(pn.read)
-          if data_hash["private"] == true
-            public = false
-          end
-        end
-
         i.children.each do |f|
           if f.extname == '.html'
             contents = f.read

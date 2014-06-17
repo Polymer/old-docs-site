@@ -18,6 +18,6 @@ add_permalinks: false
 <div class="hide-on-hash">
   <p class="alert alert-info"><strong>Note:</strong> These elements and their documentation are still early. The “source” links below point to commented code where you can learn more about how to use the element.</p>
   <p>Install everything:</p>
-  <pre class="prettyprint"><code><span class="pln">bower install </span><span class="typ">Polymer</span><span class="pun">/</span><span class="pln">core</span><span class="pun">-</span><span class="pln">elements</span></code></pre>
+  <pre class="prettyprint"><code><span class="pln">bower install </span><span class="typ">Polymer</span><span class="pun">/</span><span class="pln">elements</span></code></pre>
 </div>
-<component-docs coreElements='{% list_components dir:components prefix:core %}'></component-docs>
+<component-docs elements='{% list_components dir:components prefix:core blacklist:"core-layout" %}'></component-docs>

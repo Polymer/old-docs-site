@@ -4,7 +4,7 @@
 <link rel="import" href="../components/highlightjs-element/highlightjs-element.html">
 
 
-<polymer-element name="component-docs" attributes="coreElements">
+<polymer-element name="component-docs" attributes="elements">
   <template>
     <context-free-parser url="{{url}}" on-data-ready="{{dataReady}}"
       data="{{data}}"></context-free-parser>
@@ -16,10 +16,10 @@
     Polymer('component-docs', {
       elementName: null,
       url: null,
-      coreElements: {},
+      elements: {},
       updateElementFromHash: function() {
         var elementName = window.location.hash.slice(1);
-        if (this.elementName !== elementName && this.coreElements[elementName]) {
+        if (this.elementName !== elementName && this.elements[elementName]) {
           this.elementName = elementName;
         }
       },
@@ -28,7 +28,7 @@
         window.addEventListener('hashchange', this.updateElementFromHash.bind(this));
       },
       elementNameChanged: function() {
-        this.url = '/' + this.coreElements[this.elementName];
+        this.url = '/' + this.elements[this.elementName];
         window.location.hash = this.elementName;
       },
       dataChanged: function() {

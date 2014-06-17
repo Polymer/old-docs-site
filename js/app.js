@@ -90,7 +90,7 @@ function injectPage(url, opt_addToHistory) {
     // Set left-nav menu and highlight correct item.
     docsMenu.setAttribute(
         'menu', doc.querySelector('docs-menu').getAttribute('menu'));
-    //docsMenu.highlightItemWithURL(location.pathname + location.hash);
+    docsMenu.highlightItemWithURL(location.pathname + location.hash);
 
     // Replace site-banner > header content.
     var HEADER_SELECTOR = 'site-banner header';
@@ -268,8 +268,6 @@ document.querySelector('[data-twitter-follow]').addEventListener('click', functi
   exports.open(target.href, '', 'width=550,height=520');
 });
 
-
-window.addEventListener('hashchange', hideOnHash);
 
 // -------------------------------------------------------------------------- //
 

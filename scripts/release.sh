@@ -37,7 +37,6 @@ echo "=== Updating: components, polymer, polyfills, projects, and labs ==="
 rm -rf polymer-all/projects/
 mv projects/ polymer-all/
 cp -R js/bower_components/highlightjs/ components/highlightjs
-cp -R js/bower_components/web-animations-js/ components/web-animations-js
 
 # Update designer =====
 cd $DESIGNER_DIR

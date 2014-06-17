@@ -15,7 +15,7 @@
 
     {% include dropdown-panel.html %}
 
-    <docs-menu menu="{{site.data.pagetypes[page.type].menu}}" coreElements='{% list_components dir:components prefix:core %}' unresolved>
+    <docs-menu menu="{{site.data.pagetypes[page.type].menu}}" coreElements='{% list_components dir:components prefix:core blacklist:"core-layout" %}' unresolved>
     </docs-menu>
   </app-drawer>
 
