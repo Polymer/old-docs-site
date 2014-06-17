@@ -15,17 +15,15 @@ title: Welcome
     <summary>
       <h1>Building blocks for the web</h1>
       <p>{{site.project_title}} is a library that uses the latest web technologies to let you create custom HTML elements. Build anything from a button to a complete application as an encapsulated, reusable element that works across desktop and mobile.</p>
-      <polymer-ui-toolbar>
-        <a href="/docs/start/getting-the-code.html">
-          <paper-button icon="archive" label="Get {{site.project_title}}" raisedButton></paper-button>
-        </a>
-        <a href="/docs/start/usingelements.html">
-          <paper-button icon="arrow-forward" label="Get started" raisedButton></paper-button>
-        </a>
-        <a href="https://github.com/polymer">
-          <paper-button class="github" iconSrc="/images/picons/ic_social_github.png" label="View on Github"></paper-button>
-        </a>
-      </polymer-ui-toolbar>
+      <a href="/docs/start/getting-the-code.html">
+        <paper-button icon="archive" label="Get {{site.project_title}}" raisedButton></paper-button>
+      </a>
+      <a href="/docs/start/usingelements.html">
+        <paper-button icon="arrow-forward" label="Get started" raisedButton></paper-button>
+      </a>
+      <a href="https://github.com/polymer">
+        <paper-button class="github" iconSrc="/images/picons/ic_social_github.png" label="View on Github"></paper-button>
+      </a>
     </summary>
   </div>
 </section>
@@ -58,6 +56,19 @@ title: Welcome
           <paper-button icon="arrow-forward" label="Try it" raisedButton></paper-button>
         </a>
       </div>
+    </summary>
+  </div>
+</section>
+
+<section id="sampler" class="main-purple">
+  <div class="panel left">
+    <a href="/apps/paper-sampler/"><img src="/images/sampler.png"></a>
+    <summary>
+      <h1>Material design</h1>
+      <p>{{site.project_title}} brings an implementation of material design to the web. The paper elements are a collection of material components ranging from controls and layout, to effects and user interaction.</p>
+      <a href="/apps/paper-sampler/">
+        <paper-button icon="arrow-forward" label="Take a spin"></paper-button>
+      </a>
     </summary>
   </div>
 </section>
