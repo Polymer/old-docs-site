@@ -3,8 +3,7 @@ layout: default
 type: start
 navgroup: start
 shortname: Start
-title: >
-    Step 3: Using data binding
+title: "Step 3: Using data binding"
 subtitle: Your first Polymer application 
 ---
 
