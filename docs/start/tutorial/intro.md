@@ -34,7 +34,7 @@ To get started, download the starter project. This starter project includes all 
 
 <p layout horizontal center-justified>
   <a href="https://github.com/Polymer/polymer-tutorial/archive/master.zip">
-    <paper-button id="download-button" raisedButton label="Download Starter Project"></paper-button>
+    <paper-button id="download-button" raisedButton label="Download Starter Project" onclick="downloadStarter()"></paper-button>
   </a>
 </p>
 
@@ -55,3 +55,9 @@ Open a browser and navigate to the local server. For `SimpleHTTPServer`, this is
 <a href="/docs/start/tutorial/step-1.html">
   <paper-button icon="arrow-forward" label="Step 1: Creating the app structure" raisedButton></paper-button>
 </a>
+
+<script>
+function downloadStarter() {
+  ga('send', 'event', 'button', 'download');
+}
+</script>

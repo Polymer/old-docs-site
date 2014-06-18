@@ -26,8 +26,6 @@ pre {
 
 ## Step 1: Creating the app structure
 
-
-
 In this step, you'll use some pre-built Polymer elements to create the basic application structure, with a toolbar and tabs.
 
 
@@ -51,7 +49,7 @@ Go to the `unquote` directory and open the `index.html` file in your favorite ed
   &lt;link rel="import" 
     href="../components/font-roboto2/roboto2.html">
   ...
-  </pre>
+</pre>
 <aside>
   <h4>Key information</h4>
   <ul>
