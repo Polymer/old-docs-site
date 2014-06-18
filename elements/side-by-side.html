@@ -1,4 +1,4 @@
-<link rel="import" href="components/polymer/polymer.html">
+<link rel="import" href="/components/polymer/polymer.html">
 
 <polymer-element name="side-by-side" noscript>
   <template>
@@ -13,6 +13,7 @@
       -ms-flex-direction: column;
       -webkit-flex-direction: column;
       flex-direction: column;
+      box-sizing: border-box;
     }
     ::content > * {
       position: relative;
@@ -26,8 +27,10 @@
     }
     @media (min-width: 1092px) {
       :host {
+        /*
         margin-left: -15px;
         margin-right: -15px;
+        */
         -ms-flex-direction: row;
         -webkit-flex-direction: row;
         flex-direction: row;

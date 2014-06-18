@@ -18,8 +18,16 @@ subtitle: Your first Polymer application
 pre {
   font-size: 13px !important;
   border: 1px solid #eaeaea !important;
+  /*
   padding 5px !important;
   margin: 10px 0px !important;
+  */
+}
+side-by-side {
+  margin: 10px 0px 0px 20px;
+}
+side-by-side pre {
+  padding 5px 5px 5px 0px;
 }
 side-by-side h4 {
   line-height: 16px;
@@ -67,9 +75,12 @@ custom element, starting with some imports:
 
 <side-by-side>
 <pre>
-&lt;link rel="import" href="../components/polymer/polymer.html">
-&lt;link rel="import" href="../components/core-icon-button/core-icon-button.html">
-&lt;link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
+&lt;link rel="import" 
+  href="../components/polymer/polymer.html">
+&lt;link rel="import" 
+  href="../components/core-icon-button/core-icon-button.html">
+&lt;link rel="import" 
+  href="../components/paper-icon-button/paper-icon-button.html">
 ...
 </pre>
 <aside>
@@ -279,7 +290,8 @@ Add a `<post-card>` element to `index.html` directly after the
   &lt;/core-toolbar>
 
     <strong>&lt;post-card>
-    &lt;img width="70" height="70" src="../images/avatar-07.svg">
+    &lt;img width="70" height="70" 
+      src="../images/avatar-07.svg">
       &lt;h2>Another Developer&lt;/h2>
       &lt;h3>I'm composing with shadow DOM!&lt;/h3>
     &lt;/post-card></strong>

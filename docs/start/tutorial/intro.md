@@ -11,8 +11,8 @@ subtitle: Your first Polymer application
 #download-button {
     background: #4285f4;
     color: #fff;
-    font-size: 16px;
-    margin-left: 15px;
+    font-size: 18px;
+    fill: #fff;
 }
 
 #download-button:hover {
@@ -20,8 +20,8 @@ subtitle: Your first Polymer application
 }
 
 #download-button::shadow #ripple {
-    color: #2a56c6;
-}
+    color: #fff;
+} 
 </style>
 
 
@@ -30,17 +30,20 @@ subtitle: Your first Polymer application
 
 In this tutorial, you'll build a small {{site.project_title}} application -- a very basic client for a social networking service. The end result will look like this:
 
+<iframe class="running-app-frame" width="480" height="320" src="/samples/tutorial/finished/index.html">
+</iframe>
 
 This project will introduce you to most of the key concepts in working with {{site.project_title}}. Don't worry if you don't understand everything. Each of the concepts presented here is described in detail in the {{site.project_title}} documentation.
+
 ## Before you start: getting the sample project
 
 To get started, download the starter project. This starter project includes all of the {{site.project_title}} libraries and dependencies you’ll need to get started.
 
+<p layout horizontal center-justified>
 <a href="https://github.com/Polymer/polymer-tutorial/archive/master.zip">
-  <paper-button id="download-button" raisedButton>
-    Download Starter Project
-  </paper-button>
+  <paper-button icon="file-download" id="download-button" label="Download Starter Project" raisedButton></paper-button>
 </a>
+</p>
 
 Unzip the starter project somewhere on your local drive. 
 
