@@ -1,4 +1,4 @@
-<link rel="import" href="components/polymer/polymer.html">
+<link rel="import" href="../components/polymer/polymer.html">
 
 <polymer-element name="side-by-side" noscript>
   <template>
@@ -14,6 +14,7 @@
       -webkit-flex-direction: column;
       flex-direction: column;
     }
+    polyfill-next-selector { content: ':host > *'; }
     ::content > * {
       position: relative;
       min-height: 1px;
@@ -21,6 +22,7 @@
       padding-right: 15px;  
       width: 100%;
     }
+    polyfill-next-selector { content: ':host li'; }
     ::content li {
       margin-bottom: 20px;
     }
@@ -32,10 +34,12 @@
         -webkit-flex-direction: row;
         flex-direction: row;
       }
-       ::content > pre, ::content > [main-col] {
+      polyfill-next-selector { content: ':host > pre, :host [main-col]'; }
+      ::content > pre, ::content > [main-col] {
         width: 58.33333333%;
       }
-       ::content > aside, ::content > [notes-col] {
+      polyfill-next-selector { content: ':host > aside, :host > [notes-col]'; }
+      ::content > aside, ::content > [notes-col] {
         width: 41.666666666%;
       }
     }

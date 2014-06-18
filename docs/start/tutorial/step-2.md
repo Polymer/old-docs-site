@@ -3,8 +3,7 @@ layout: default
 type: start
 navgroup: start
 shortname: Start
-title: >
-    Step 2: Your own element
+title: "Step 2: Your own element"
 subtitle: Your first Polymer application 
 ---
 
