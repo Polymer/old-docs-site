@@ -20,7 +20,7 @@
 <link rel="import" 
   href="/components/paper-icon-button/paper-icon-button.html">
 <!-- [END imports] -->
-<style>
+<style shim-shadowdom>
   /* [START styles] */
   body {
     font-family: sans-serif;
@@ -69,8 +69,7 @@
     <core-header-panel main>
       <core-toolbar id="mainheader">
         <paper-icon-button 
-          id="navicon" icon="menu">
-        </paper-icon-button>
+          id="navicon" icon="menu"></paper-icon-button>
         <span flex>Title</span>
       </core-toolbar>
       <div class="content">

@@ -21,8 +21,9 @@ body {
 }
 core-header-panel {
   background: white;
-  height: 100%;
-  width: 100%;
+  /* height: 100% fails here on some browsers */
+  height: 100vh;
+  width: 100vw;
 }
 core-toolbar {
   background-color: #03A9F4;
@@ -44,12 +45,10 @@ p {
   <core-header-panel>
     <core-toolbar id="mainheader">
       <paper-icon-button id="navicon" 
-        icon="arrow-back">
-      </paper-icon-button>
+        icon="arrow-back"></paper-icon-button>
       <span flex>Title</span>
       <paper-icon-button id="searchbutton" 
-        icon="search" >
-      </paper-icon-button>
+        icon="search"></paper-icon-button>
     </core-toolbar>
     <p>Sample content.</p>
     <p>Sample content.</p>

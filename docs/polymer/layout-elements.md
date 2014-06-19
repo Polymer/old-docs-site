@@ -7,7 +7,7 @@ title: Layout elements
 subtitle: Guide
 ---
 
-<style>
+<style shim-shadowdom>
 .app-demo {
   border: 1px solid #eee;
   position: absolute;
@@ -92,7 +92,7 @@ Taller toolbars are useful when you want to create an app bar with tabs, for exa
 
 If the core-header-panel is in `waterfall-tall` mode, it controls the height of the toolbar automatically, so you shouldn't set `medium-tall` or `tall` on the toolbar yourself.
 
-**Tip:** For fancy scrolling effects where the toolbar animates between tall and condensed states, you can use [`<core-scroll-header-panel>`](doc link). See  the [demos](http://localhost:8080/components/core-scroll-header-panel/demo.html) here. You may need to look at the source for the demos to implement the more complicated effects.
+**Tip:** For fancy scrolling effects where the toolbar animates between tall and condensed states, you can use [`<core-scroll-header-panel>`](doc link). See  the [demos](/components/core-scroll-header-panel/demo.html) here. You may need to look at the source for the demos to implement the more complicated effects.
 {: .alert .alert-info }
 
 

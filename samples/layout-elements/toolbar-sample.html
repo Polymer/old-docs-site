@@ -25,8 +25,9 @@ body {
 core-toolbar {
   background-color: #03A9F4;
 }
-paper-icon-button::shadow #clip {
+paper-icon-button {
   width: 40px;
+  height: 40px;
 }
 /* [END styles] */
 </style>
@@ -35,12 +36,10 @@ paper-icon-button::shadow #clip {
   <!-- [START html] -->
   <core-toolbar class="medium-tall"> 
     <paper-icon-button id="navicon" 
-      icon="menu">
-    </paper-icon-button>
+      icon="menu"></paper-icon-button>
     <span flex>Title</span>
     <paper-icon-button id="morebutton" 
-      icon="more-vert">
-    </paper-icon-button>
+      icon="more-vert"></paper-icon-button>
     <paper-tabs class="bottom fit">
       <paper-tab>ONE</paper-tab>
       <paper-tab>TWO</paper-tab>
