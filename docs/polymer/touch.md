@@ -19,10 +19,6 @@ today, and that makes it hard to write cross-platform apps.
 For example, a simple finger paint app needs plenty of work to behave correctly
 with mouse and touch:
 
-Current platforms that implement touch events also provide mouse events for
-backward compatibility; however, only a subset of mouse events are fired and the
-semantics are changed.
-
 - Mouse events are only fired after the touch sequence ends.
 - Mouse events are not fired on elements without a click event handler. One must
   be attached by default, or directly on the element with “onclick”.
@@ -31,22 +27,24 @@ semantics are changed.
 - Click events are fired 300ms after the touch sequence ends.
 - More information: [Apple Developer Documentation](http://developer.apple.com/library/safari/#documentation/appleapplications/reference/safariwebcontent/HandlingEvents/HandlingEvents.html).
 
+Current platforms that implement touch events also provide mouse events for
+backward compatibility; however, only a subset of mouse events are fired and the
+semantics are changed.
+
 Additionally, Touch events are sent only to the element that received the
 touchstart. This is fundamentally different than mouse events, which fire on the
 element that is under the mouse. To make them behave similarly, touch events
 need to be retargeted with `document.elementFromPoint`.
 
 These incompatibilities lead to applications having to listen to 2 sets of events, mouse on
-desktop and touch for mobile.
+desktop and touch on mobile.
 
 **This forked interaction experience is cumbersome and hard to maintain.**
 
-Instead, there should exist a set of events that are normalized such that they
-behave exactly the same, no matter the source: touch, mouse, stylus, skull
-implant, etc. To do this right, this normalized event system needs to be
-available for all the web platform to use. Pointer Events provide a wonderful model to unify these different event systems, but they can be difficult to polyfill in a performant fashion.
+To reduce the overhead involved in managing both event systems, polymer-gestures provides a set of normalized events, which behave the same no matter what the source.
 
-*Thus, polymer-gestures!*
+**Note:** Although Pointer Events provide a wonderful model to unify these different event systems, they can be difficult to polyfill in a performant fashion. The polymer-gestures library is designed to fill the gap until the web platform provides a native solution.
+{: .alert }
 
 ### Basic Usage
 
@@ -84,7 +82,7 @@ By default, no polymer-gesture events are sent from an element. This maximizes t
 - [Multi Pointer Trac](http://polymer.github.io/PointerEvents/samples/tracker/index.html)
 - [Empty Space Game!](http://polymer.github.io/PointerEvents/samples/spaceship/index.html)
 
-## Polyfill Details
+## Library Details
 
 ### Getting Started
 
@@ -103,7 +101,7 @@ polymer-gestures should work on all "Evergreen" (self-updating) browsers.
 
 It has been tested on Chrome, Safari, Firefox, Opera, and IE 10.
 
-## Polyfill Limitations
+## Library Limitations
 
 ### touch-action
 
