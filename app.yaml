@@ -98,13 +98,13 @@ handlers:
   upload: polymer-all/projects/designer/(.*)
 # -------------------
 
-# Core/Paper/topeka apps -----
-# /apps/paper-sampler/...
+# Topeka and other apps -----
+# /apps/topeka/...
 - url: /apps/(.+)/components/(.*)
   static_files: components/\2
   upload: components/(.+)
 
-# e.g. /apps/paper-sampler/, /apps/topeka/
+# e.g. /apps/topeka/
 - url: /apps/(.+)/$
   static_files: polymer-all/projects/\1/index.html
   upload: polymer-all\/projects\/(.+)\/index.html
