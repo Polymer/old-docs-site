@@ -15,6 +15,9 @@
 # // [START region-name]
 # // [END region-name]
 #
+# /* [START region-name] */
+# /* [END region-name] */
+#
 # HTML-style comments are also supported:
 #
 # <!-- [START region-name] -->
@@ -41,8 +44,8 @@ module Jekyll
       @output = []
 
       begin
-        startpattern = /^\s*(?:\/\/|<!--)\s*\[START\s+(\S*)\s*\]/
-        endpattern = /^\s*(?:\/\/|<!--)\s*\[END\s+(\S*)\s*\]/
+        startpattern = /^\s*(?:\/\/|\/\*|<!--)\s*\[START\s+(\S*)\s*\]/
+        endpattern = /^\s*(?:\/\/|\/\*|<!--)\s*\[END\s+(\S*)\s*\]/
         f = File.new(@filename, "r")
         text = f.read()
         text.each_line do |line|
