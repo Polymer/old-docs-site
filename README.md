@@ -2,14 +2,15 @@ Polymer docs are mostly in Markdown with some HTML. [Jekyll][jekyll] is used to 
 
 ## Prereqs and installation requirements
 
-We use Jekyll 1.4.2+ and [Grunt][grunt] to generate the documentation. You'll need to install the requirements before working on the docs (these instructions assume [NPM is already installed](http://nodejs.org/download/)):
+We use Jekyll 1.4.2+ and [Grunt][grunt] to generate the documentation, and compass to compile SASS to CSS. You'll need to install the requirements before working on the docs (these instructions assume [NPM is already installed](http://nodejs.org/download/)):
 
-    gem install jekyll kramdown jekyll-page-hooks
+    gem install jekyll kramdown jekyll-page-hooks compass
     npm install -g grunt-cli
 
 **Note:** If you receive permission warnings, you may need to run the above tasks with `sudo`.
 
 You'll also need the App Engine SDK to run the dev_appserver and preview the docs locally. [Download the SDK](https://developers.google.com/appengine/downloads).
+
 
 ### Check out the documentation
 
@@ -32,6 +33,7 @@ This repo (`Polymer/docs`) is where the documentation source files live. To make
 
 1. First, fire up the App Engine dev server in this folder (`dev_appserver.py .`) to preview the docs. There's also a grunt task that starts the serve (`grunt serve`).
 1. To build the docs, in another terminal, run `grunt` in base of the docs diretory. This starts up jekyll and watches for changes as you make edits. Be sure to run `npm install` in your docs directory if it's a new checkout. It can take some time for the docs to fully regenerate and be copied to the output folder...keep refreshing!
+1. If you're modifying CSS in `.scss` files, you'll also need to run `compass watch` from another terminal window to automatically compile `.scss` changes to `.css`.
 1. Make your edits.
 
 Jekyll generates the static site in a folder named `_site`. **Note**: If you're not running jekyll to rebuild the site, you won't see your changes in the dev server.
