@@ -26,7 +26,7 @@ demo-tabs::shadow #results {
   box-sizing: border-box;
   width: 240px;
   height: 405px;
-  max-width: 40%;
+  max-width: 100%;
 }
 
 </style>
