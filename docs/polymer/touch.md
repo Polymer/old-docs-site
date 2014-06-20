@@ -9,9 +9,7 @@ subtitle: Guide
 
 {% include toc.html %}
 
-## Learn the tech
-
-### Why polymer-gestures?
+## Why polymer-gestures?
 
 Mouse events and Touch events are fundamentally different beasts in browsers
 today, and that makes it hard to write cross-platform apps.
@@ -46,7 +44,7 @@ To reduce the overhead involved in managing both event systems, polymer-gestures
 **Note:** Although Pointer Events provide a wonderful model to unify these different event systems, they can be difficult to polyfill in a performant fashion. The polymer-gestures library is designed to fill the gap until the web platform provides a native solution.
 {: .alert }
 
-### Basic Usage
+## Basic Usage
 
 By default, no polymer-gesture events are sent from an element. This maximizes the possibility that a browser can deliver smooth scrolling and jank-free gestures. If you want to receive events, you must set the `touch-action` property of that element. See the Web Fundamentals [guide to `touch-action`](https://developers.google.com/web/fundamentals/input/touch/touchevents/#control-gestures-using-touch-actions) for a primer. Below are a few examples:
 
@@ -75,31 +73,9 @@ By default, no polymer-gesture events are sent from an element. This maximizes t
 
 1. As elements come and go, or have their `touch-action` attribute changed, they will send the proper set of polymer-gesture events.
 
-### Examples
+## Examples
 
-- [Simple Event Example](http://polymer.github.io/PointerEvents/samples/simple/index.html)
-- [Pointer Painting](http://polymer.github.io/PointerEvents/samples/paint/index.html)
-- [Multi Pointer Trac](http://polymer.github.io/PointerEvents/samples/tracker/index.html)
-- [Empty Space Game!](http://polymer.github.io/PointerEvents/samples/spaceship/index.html)
-
-## Library Details
-
-### Getting Started
-
-1. Clone this repo or install from bower: `bower install Polymer/polymer-gestures`
-1. Place the loader script in the document head
-  - This Repo
-    - `<script src="polymer-gestures/polymer-gestures.js"></script>`
-  - Bower
-    - `<script src="bower_components/polymer-gestures/polymer-gestures.js"></script>`
-1. Set up your event listeners
-1. You're Done!
-
-### Where can I use polymer-gestures?
-
-polymer-gestures should work on all "Evergreen" (self-updating) browsers.
-
-It has been tested on Chrome, Safari, Firefox, Opera, and IE 10.
+- [Simple Event Example](http://polymer.github.io/polymer-gestures/samples/simple/index.html)
 
 ## Library Limitations
 
@@ -116,12 +92,5 @@ the `touch-action` attribute will be monitored for maximum flexibility.
 Touches will not generate events unless inside of an area that has a valid `touch-action` attribute defined.
 This is to maintain compositiong scrolling optimizations where possible.
 
-### Browser Compatibility
-
-#### Full Support
-
-Chrome 18+, Safari 6+, IE 10, Firefox 14+
-
-#### Partial Support
-
-Opera 12-14, does not support changes to `touch-action` attribute, nor added or removed elements
+**Note:** Opera 12-14, does not support changes to `touch-action` attribute, nor added or removed elements
+{: .alert }
