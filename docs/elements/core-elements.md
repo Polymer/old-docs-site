@@ -3,8 +3,8 @@ layout: default
 type: elements
 navgroup: elements
 shortname: Elements
-title: Core elements
-subtitle: non-visual utility elements
+title: Polymer core elements
+#subtitle: non-visual utility elements
 
 add_permalinks: false
 
@@ -16,8 +16,13 @@ add_permalinks: false
 <link rel="stylesheet" href="/css/elementpage.css">
 
 <div class="hide-on-hash">
-  <p class="alert alert-info"><strong>Note:</strong> These elements and their documentation are still early. The “source” links below point to commented code where you can learn more about how to use the element.</p>
-  <p>Install everything:</p>
-  <pre class="prettyprint"><code><span class="pln">bower install </span><span class="typ">Polymer</span><span class="pun">/</span><span class="pln">elements</span></code></pre>
+  <!-- <p class="alert alert-info"><strong>Note:</strong> These elements and their documentation are still early. The “source” links below point to commented code where you can learn more about how to use the element.</p> -->
+  <p>Install the element set:</p>
+  <pre class="prettyprint">
+bower install Polymer/core-elements
+</pre>
 </div>
-<component-docs elements='{% list_components dir:components prefix:core blacklist:"core-layout" %}'></component-docs>
+
+<component-docs
+    elements='{% list_components dir:components prefix:core blacklist:"core-layout" %}'>
+</component-docs>
