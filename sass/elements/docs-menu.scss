@@ -4,6 +4,14 @@
   display: block;
 }
 
+polymer-ui-menu {
+  display: block;
+  position: fixed;
+  overflow: scroll;
+  height: 100%;
+  padding-bottom: 130px;
+}
+
 polymer-ui-menu > polymer-ui-submenu-item::shadow polymer-ui-menu-item {
   color: inherit;
 }

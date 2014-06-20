@@ -13,11 +13,11 @@
 
 h2:target, h3:target, h4:target, h5:target {
   &:before {
-    display: block; 
-    content: " "; 
-    margin-top: -$siteBannerHeightMin + 10; 
-    height: $siteBannerHeightMin + 10; 
-    visibility: hidden; 
+    display: block;
+    content: " ";
+    margin-top: -$siteBannerHeightMin + 10;
+    height: $siteBannerHeightMin + 10;
+    visibility: hidden;
   }
 }
 
@@ -105,7 +105,7 @@ b, strong {
 
 hr {
   border: none;
-  border-bottom: 1px solid $main-bg; 
+  border-bottom: 1px solid $main-bg;
 }
 
 dl {
@@ -194,6 +194,7 @@ app-bar {
   .paper-button {
     font-size: $font-size-secondary;
     letter-spacing: normal;
+    margin: 5px;
   }
 }
 
@@ -376,6 +377,12 @@ footer {
       &[type="elements"] {
         background-color: $using-elements-color !important;
       }
+
+      /deep/ paper-button {
+        color: #fff;
+        background-color: transparent;
+      }
+
     }
 
     article {
@@ -411,7 +418,7 @@ footer {
 //   }
 // }
 
-  
+
 #sidebar {
   $leftPadding: 16px;
 
@@ -446,7 +453,7 @@ footer {
   vertical-align: top;
 }
 .has-permalink:hover .permalink {
-  display: initial; 
+  display: initial;
 }
 .no-permalink .permalink {
   display: none !important;
