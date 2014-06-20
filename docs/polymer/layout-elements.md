@@ -44,13 +44,16 @@ The core-elements and paper-elements collections include a number of elements th
 
 ## App Bars and Toolbars
 
-`<core-header-panel>` is often combined with a `<core-toolbar>`. When you use a `<core-toolbar>`, the panel automatically places it in the header area.  You can also use any type of element in your header by adding the `core-header` class to its class list. 
+[`<core-header-panel>`](/docs/elements/core-elements.html#core-header-panel) is often combined with a
+[`<core-toolbar>`](/docs/elements/core-elements.html#core-toolbar). When you use a `<core-toolbar>`,
+the panel automatically places it in the header area.  You can also use any type of element in your
+header by adding the `core-header` class to its class list.
 
-Other elements placed in the core-header-panel end up in the content area. 
+Other elements placed in the core-header-panel end up in the content area.
 
-`<core-header-panel>` is `position: relative`, and always needs to have a height set on it explicitly. 
+`<core-header-panel>` is `position: relative`, and always needs to have a height set on it explicitly.
 
-The following example app uses a `<core-header-panel>` as its top-level layout: 
+The following example app uses a `<core-header-panel>` as its top-level layout:
 
 {% include samples/layout-elements/header-app.html %}
 
@@ -89,24 +92,24 @@ Taller toolbars are useful when you want to create an app bar with tabs, for exa
 
 {% include samples/layout-elements/toolbar-sample.html %}
 
-
 If the core-header-panel is in `waterfall-tall` mode, it controls the height of the toolbar automatically, so you shouldn't set `medium-tall` or `tall` on the toolbar yourself.
 
-**Tip:** For fancy scrolling effects where the toolbar animates between tall and condensed states, you can use [`<core-scroll-header-panel>`](doc link). See  the [demos](/components/core-scroll-header-panel/demo.html) here. You may need to look at the source for the demos to implement the more complicated effects.
+**Tip:** For fancy scrolling effects where the toolbar animates between tall and condensed states, you can use [`<core-scroll-header-panel>`](/docs/elements/core-elements.html#core-scroll-header-panel). See  the [demos](/components/core-scroll-header-panel/demo.html) here. You may need to look at the source for the demos to implement the more complicated effects.
 {: .alert .alert-info }
 
 
 ## Responsive side nav
 
-The `<core-drawer-panel>` element creates a left or right side nav area alongside 
-the main content area. On narrow screens, the nav area acts as a drawer that can 
-be hidden or revealed by calling the drawer panel's `togglePanel` method. 
+The [`<core-drawer-panel>`](/docs/elements/core-elements.html#core-drawer-panel)
+element creates a left or right side nav area alongside
+the main content area. On narrow screens, the nav area acts as a drawer that can
+be hidden or revealed by calling the drawer panel's `togglePanel` method.
 
-Any children with the `drawer` attribute set are placed in the navigation area. 
+Any children with the `drawer` attribute set are placed in the navigation area.
 Any children with the `main` attribute are placed in the main panel.
 
-You can nest `<core-header-panel>` and `<core-toolbar>` elements inside a 
-`<core-drawer-panel>` to create the layout for the content area and navigation 
+You can nest `<core-header-panel>` and `<core-toolbar>` elements inside a
+`<core-drawer-panel>` to create the layout for the content area and navigation
 drawer, as shown in the following example:
 
 {% include samples/layout-elements/drawer-app.html %}
@@ -116,16 +119,14 @@ drawer, as shown in the following example:
 
 ### Side nav with `<core-scaffold>`
 
-The `<core-scaffold>` element assembles a commonly-used combination of components: 
-a `<core-drawer-panel>` with a `<core-header-panel>` and `<core-toolbar>` for the 
+The [`<core-scaffold>`](/docs/elements/core-elements.html#core-drawer-panel)  element
+assembles a commonly-used combination of components:
+a `<core-drawer-panel>` with a `<core-header-panel>` and `<core-toolbar>` for the
 main content area. It also includes a button to display the navigation drawer.
 
-The following example produces the same basic layout as the drawer panel example above. 
+The following example produces the same basic layout as the drawer panel example above:
 
 {% include samples/layout-elements/scaffold-app.html %}
 
 <a href="/samples/layout-elements/scaffold-app.html" target="_blank">Open sample in new window</a>
-
-
-
 
