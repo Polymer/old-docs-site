@@ -27,7 +27,40 @@ title: Welcome
     </summary>
   </div>
 </section>
-<section id="videos" class="main-purple">
+
+<section id="featured">
+  <div class="panel right">
+    <feature-carousel interval="5" flex>
+      <div>
+        <summary>
+          <h1>Featured</h1>
+          <p>Blah
+          <br><br>
+          {{site.project_title}} blah.</p>
+          <a href="/docs/start/everything.html">
+            <paper-button icon="arrow-forward" label="Learn more"></paper-button>
+          </a>
+        </summary>
+      </div>
+      <div>
+        <summary>
+          <h1>Watch</h1>
+          <p>Learn what the {{site.project_title}} team is up to through articles, videos, and presentations.
+          <br><br>
+          <a href="/resources/video.html">
+            <paper-button icon="arrow-forward" label="See more"></paper-button>
+          </a>
+          </p>
+        </summary>
+        <div class="video" self-center>
+          <iframe src="https://www.youtube.com/embed/videoseries?list=PLRAVCSU_HVYu-zlRaqArF8Ytwz1jlMOIM&theme=light&controls=0" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </feature-carousel>
+  </div>
+</section>
+
+<!-- <section id="videos" class="main-purple">
   <div class="panel right">
     <summary>
       <h1>Watch</h1>
@@ -42,7 +75,21 @@ title: Welcome
     <iframe src="https://www.youtube.com/embed/videoseries?list=PLRAVCSU_HVYu-zlRaqArF8Ytwz1jlMOIM&theme=light&controls=0" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
+</section> -->
+
+<section id="sampler" class="main-purple">
+  <div class="panel left">
+    <a href="/components/paper-elements/demo.html"><img src="/images/sampler.png"></a>
+    <summary>
+      <h1>Material design</h1>
+      <p>{{site.project_title}} brings an implementation of material design to the web. The paper elements are a collection of material components ranging from controls and layout, to effects and user interaction.</p>
+      <a href="/components/paper-elements/demo.html">
+        <paper-button icon="arrow-forward" label="Take a spin"></paper-button>
+      </a>
+    </summary>
+  </div>
 </section>
+
 <section id="designer">
   <div class="panel">
     <summary>
@@ -60,21 +107,8 @@ title: Welcome
   </div>
 </section>
 
-<section id="sampler" class="main-purple">
-  <div class="panel left">
-    <a href="/components/paper-elements/demo.html"><img src="/images/sampler.png"></a>
-    <summary>
-      <h1>Material design</h1>
-      <p>{{site.project_title}} brings an implementation of material design to the web. The paper elements are a collection of material components ranging from controls and layout, to effects and user interaction.</p>
-      <a href="/components/paper-elements/demo.html">
-        <paper-button icon="arrow-forward" label="Take a spin"></paper-button>
-      </a>
-    </summary>
-  </div>
-</section>
-
 {% comment %}
-<!-- <section id="everything-element" class="main-purple">
+<section id="everything-element" class="main-purple">
   <!-- <nav class="bar" flexbox>
     <a href="#everything-element" flex>Return to the elegance of the element</a>
   </nav> -->

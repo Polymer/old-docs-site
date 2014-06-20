@@ -1,0 +1,52 @@
+@import "compass/css3/transition";
+
+@import "elements";
+
+$gray-1: #e6e6e6;
+$size: 10px;
+$transitionTime: 300ms;
+
+:host {
+  display: block;
+  //position: relative;
+  //height: 400px;
+}
+
+polyfill-next-selector { content: ':host > *'; }
+::content > * {
+  display: none;
+  // transform: translateZ(0);
+  @include transition(all $transitionTime ease-in-out);
+  //opacity: 0;
+  //visibility: hidden;
+  //pointer-events: none;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+}
+
+polyfill-next-selector { content: ':host > .core-selected'; }
+::content > .core-selected {
+  display: -webkit-flex;
+  display: flex;
+  //opacity: 1;
+  //visibility: visible;
+}
+
+#paginator {
+  text-align: center;
+}
+
+.circle {
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 50%;
+  width: $size;
+  height: $size;
+  border: 1px solid $gray-1;
+  @include transition(background-color $transitionTime ease-in-out);
+
+  &.active {
+    background-color: $gray-1 !important;
+  }
+}
