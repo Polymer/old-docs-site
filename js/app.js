@@ -90,7 +90,7 @@ function injectPage(url, opt_addToHistory) {
     // Set left-nav menu and highlight correct item.
     docsMenu.setAttribute(
         'menu', doc.querySelector('docs-menu').getAttribute('menu'));
-    docsMenu.highlightItemWithURL(location.pathname + location.hash);
+    //docsMenu.highlightItemWithCurrentURL();
 
     // Replace site-banner > header content.
     var HEADER_SELECTOR = 'site-banner header';
@@ -202,11 +202,11 @@ function ajaxifySite() {
 
 // Hides elements with 'hide-on-hash' class if hash present.
 function hideOnHash() {
-  Array.prototype.forEach.call(
-    document.querySelectorAll('.hide-on-hash'),
+  Array.prototype.forEach.call(document.querySelectorAll('.hide-on-hash'),
     function(el) {
-      el.style.display = 'none';
-  });
+      el.hidden = true;
+    }
+  );
 };
 
 document.addEventListener('polymer-ready', function(e) {
