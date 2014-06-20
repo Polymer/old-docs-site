@@ -62,11 +62,11 @@ title: Welcome
 
 <section id="sampler" class="main-purple">
   <div class="panel left">
-    <a href="/paper-sampler/"><img src="/images/sampler.png"></a>
+    <a href="/components/paper-elements/demo.html"><img src="/images/sampler.png"></a>
     <summary>
       <h1>Material design</h1>
       <p>{{site.project_title}} brings an implementation of material design to the web. The paper elements are a collection of material components ranging from controls and layout, to effects and user interaction.</p>
-      <a href="/paper-sampler/">
+      <a href="/components/paper-elements/demo.html">
         <paper-button icon="arrow-forward" label="Take a spin"></paper-button>
       </a>
     </summary>

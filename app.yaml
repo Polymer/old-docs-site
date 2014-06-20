@@ -88,7 +88,7 @@ handlers:
 
 - url: /tools/designer/$
   static_files: polymer-all/projects/designer/index.html
-  upload: index\.html
+  upload: polymer-all/projects/designer/index.html
 
 # - url: /tools/designer/components
 #   static_dir: components
@@ -96,19 +96,22 @@ handlers:
 - url: /tools/designer/(.*)
   static_files: polymer-all/projects/designer/\1
   upload: polymer-all/projects/designer/(.*)
+# -------------------
 
-# Paper sampler -----
-- url: /paper-sampler/components/(.*)
-  static_files: components/\1
-  upload: components/(.*)
+# Topeka and other apps -----
+# /apps/topeka/...
+- url: /apps/(.+)/components/(.*)
+  static_files: components/\2
+  upload: components/(.+)
 
-- url: /paper-sampler/$
-  static_files: polymer-all/projects/paper-sampler/index.html
-  upload: polymer-all\/projects\/paper-sampler\/index.html
+# e.g. /apps/topeka/
+- url: /apps/(.+)/$
+  static_files: polymer-all/projects/\1/index.html
+  upload: polymer-all\/projects\/(.+)\/index.html
 
-- url: /paper-sampler/(.*)
-  static_files: polymer-all/projects/paper-sampler/\1
-  upload: polymer-all\/projects\/paper-sampler\/(.*)
+- url: /apps/(.+)/(.*)
+  static_files: polymer-all/projects/\1/\2
+  upload: polymer-all\/projects\/(core-sampler|paper-sampler|topeka)\/(.*)
 # -------------------
 
 # Map raw paths with trailing "/" to an index.html file.
@@ -168,3 +171,5 @@ skip_files:
 - ^(.*/)?polymer-all/labs/.* # don't upload all of labs
 - ^(.*/)?polymer-all/tools/doc/.*
 - ^(.*/)?components/tools/.* # tool is already in /polymer-all
+- ^(.*/)?components/firebase-simple-login/firebase-simple-login-(java|objc)/.*
+- ^(.*/)?components/firebase-simple-login/lib/.*
