@@ -33,7 +33,7 @@
     </polymer-ui-submenu-item>
 
     <polymer-ui-submenu-item src="/images/picons/ic_polymer_source.svg"
-        class="{{ {show: menu == 'elements'} | tokenList}}"
+        class="elements-using {{ {show: menu == 'elements'} | tokenList}}"
         label="Core elements &#x25BE;">
       <template repeat="{{coreElementsList}}">
         <polymer-ui-menu-item href="/docs/elements/core-elements.html#{{name}}"
@@ -41,7 +41,7 @@
       </template>
     </polymer-ui-submenu-item>
     <polymer-ui-submenu-item src="/images/picons/ic_polymer_source.svg"
-        class="{{ {show: menu == 'elements'} | tokenList}}"
+        class="elements-using {{ {show: menu == 'elements'} | tokenList}}"
         label="Paper elements &#x25BE;">
       <template repeat="{{paperElementsList}}">
         <polymer-ui-menu-item href="/docs/elements/paper-elements.html#{{name}}"

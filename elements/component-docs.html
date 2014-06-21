@@ -42,136 +42,37 @@
 
 <polymer-element name="doc-page" attributes="data" assetpath="../core-doc-viewer/elements/">
   <template>
-  <link rel="stylesheet" href="../components/highlightjs/styles/default.css">
-    <style>
-    :host {
-      display: block;
-    }
-    h1 {
-      color: #E91E63;
-      font-size: 52px;
-      line-height: 60px;
-      font-weight: normal;
-    }
-    .box {
-      margin-bottom: 40px;
-    }
-    .top pre {
-      padding: 12px 13px;
-      background-color: #f8f8f8;
-    }
-    code {
-      font-family: Consolas, monospace;
-      border: 1px solid #ddd;
-      background-color: #f8f8f8;
-      border-radius: 3px;
-      padding: 0 3px;
-    }
-    pre code {
-      max-width: 832px;
-      white-space: pre-wrap;
-      overflow: hidden;
-      border: none;
-    }
-    .details {
-      display: flex;
-    }
-    .details-name {
-      flex: 1;
-    }
-    .details-info {
-      flex: 2;
-    }
-    .attribute-box .details {
-      background-color: #FFF9C4;
-      padding: 8px 16px;
-      border-bottom: 1px solid #D1CCA1;
-    }
-    .attribute-box .ntitle {
-      padding: 24px 16px;
-    }
-    code {
-      border: none;
-      background-color: transparent;
-      border-radius: none;
-      padding: 0;
-    }
-    .attribute-box code {
-      color: #FFAB40;
-    }
-    .property-box .ntitle {
-      padding: 24px 16px;
-    }
-    .property-box code {
-      color: #4285F4;
-    }
-    .property-box .details {
-      background-color: lightblue;
-      padding: 8px 16px;
-      border-bottom: 1px solid #D1CCA1;
-    }
-    .method-box .details {
-      background-color: #F0F4C3;
-      padding: 8px 16px;
-      border-bottom: 1px solid #D1CCA1;
-    }
-    .method-box .ntitle {
-      background-color: #9E9D24;
-      padding: 24px 16px;
-    }
-    .method-box code {
-      color: #9E9D24;
-    }
-    .event-box .details {
-      background-color: #B2DFDB;
-      padding: 8px 16px;
-      border-bottom: 1px solid #92B7B3;
-    }
-    .event-box .ntitle {
-      background-color: #009688;
-      padding: 24px 16px;
-    }
-    .event-box code {
-      color: #009688;
-    }
-    .badge {
-      display: inline-block;
-      border-radius: 3px;
-      background-color: #009688;
-      color: #fff;
-      text-decoration: none;
-      text-transform: uppercase;
-      padding: 3px 5px;
-    }
-    </style>
+    <link rel="stylesheet" href="../components/highlightjs/styles/default.css">
+    <link rel="stylesheet" href="../css/elements/doc-page.css">
     <div class="main" on-marked-js-highlight="{{hilight}}">
       <h1>{{data.name}}</h1>
       <p>
-        <a class="badge" href="http://23.236.53.27/archive?{{data.name}}=Polymer/{{data.name}}">Download</a>
+        <a class="badge" href="http://bowerarchiver.appspot.com/archive?{{data.name}}=Polymer/{{data.name}}">Download</a>
         <a class="badge" target="_blank" href="/components/{{data.name}}/demo.html">Demo</a>
         <a class="badge" target="_blank" href="http://github.com/Polymer/{{data.name}}">Source</a>
       </p>
       <template if="{{data.extends}}">
         <section class="box">
-          <div class="ntitle">Extends</div>
+          <h3>Extends</h3>
           <p><a href="#{{data.extends}}">{{data.extends}}</a></p>
         </section>
       </template>
       <template if="{{data.description}}">
         <section class="box top">
-          <div class="ntitle">Summary</div>
+          <h3>Summary</h3>
           <marked-element text="{{data.description}}"></marked-element>
         </section>
       </template>
+
       <template if="{{data.attributes.length}}">
         <section class="box attribute-box">
-          <div class="ntitle" style="background-color: #FFAB40; color: white;">Attributes</div>
+          <h3>Attributes</h3>
           <template repeat="{{data.attributes}}">
-            <div class="details">
-              <div class="details-name">
+            <div class="details" horizontal layout>
+              <div class="details-name" flex>
                 <p><code>{{name}}</code></p>
               </div>
-              <div class="details-info">
+              <div class="details-info" flex two>
                 <p><code>{{type}}</code></p>
                 <marked-element text="{{description}}"></marked-element>
               </div>
@@ -182,13 +83,13 @@
 
       <template if="{{data.properties.length}}">
         <section class="box property-box">
-          <div class="ntitle" style="background-color: #4285F4; color: white;">Properties</div>
+          <h3>Properties</h3>
           <template repeat="{{data.properties}}">
-            <div class="details">
-              <div class="details-name">
+            <div class="details" horizontal layout>
+              <div class="details-name" flex>
                 <p><code>{{name}}</code></p>
               </div>
-              <div class="details-info">
+              <div class="details-info" flex two>
                 <p><code>{{type}}</code></p>
                 <marked-element text="{{description}}"></marked-element>
               </div>
@@ -199,13 +100,13 @@
 
       <template if="{{data.events.length}}">
         <section class="box event-box">
-          <div class="ntitle" style="color: white;">Events</div>
+          <h3>Events</h3>
           <template repeat="{{data.events}}">
-            <div class="details">
-              <div class="details-name">
+            <div class="details" horizontal layout>
+              <div class="details-name" flex>
                 <p><code>{{name}}</code></p>
               </div>
-              <div class="details-info">
+              <div class="details-info" flex two>
                 <marked-element text="{{description}}"></marked-element>
               </div>
             </div>
@@ -215,13 +116,13 @@
 
       <template if="{{data.methods.length}}">
         <section class="box method-box">
-          <div class="ntitle" style="color: white;">Methods</div>
+          <h3>Methods</h3>
           <template repeat="{{data.methods}}">
-            <div class="details">
-              <div class="details-name">
+            <div class="details" horizontal layout>
+              <div class="details-name" flex>
                 <p><code>{{name}}</code></p>
               </div>
-              <div class="details-info">
+              <div class="details-info" flex two>
                 <marked-element text="{{description}}"></marked-element>
               </div>
             </div>
@@ -234,7 +135,7 @@
   <script>
     Polymer('doc-page', {
       hilight: function(event, detail, sender) {
-        detail.code = hljs.highlightAuto(detail.code).value;
+        //detail.code = hljs.highlightAuto(detail.code).value;
       }
     });
   </script>

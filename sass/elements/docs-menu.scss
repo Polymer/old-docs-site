@@ -19,9 +19,9 @@ polymer-ui-menu > polymer-ui-submenu-item::shadow polymer-ui-menu-item {
 polymer-ui-submenu-item /deep/ polymer-ui-menu-item,
 polymer-ui-menu-item {
   font-size: 14px !important;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 32px !important;
-  letter-spacing: 0.01em;
+  // letter-spacing: 0.01em;
   padding: 0;
   color: initial;
 }
