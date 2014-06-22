@@ -13,30 +13,8 @@ subtitle: Guide
   .icondemo core-icon {
     margin: 20px;
   }
-  .demo-table {
-    border-collapse: collapse;
-    border-color: #fff;
-    border: 1px solid #fff;
-    background-color: #eee;
-    padding: 20px;
-    cell-padding: 10px;
-  }
-  .demo-table th {
-    text-align: left;
-    padding: 0px 20px;
-  }
-  .demo-table thead {
-    border-bottom: 1px double #fff;
-  }
-  .demo-table tr {
-    vertical-align: middle;
-    border: 1px solid #fff;
-  }
-  .demo-table td {
-    padding: 20px;
-  }
-  .demo-table paper-button,paper-slider,paper-progress,paper-input {
-    width: 100px;
+  .demo-table paper-slider,paper-progress,paper-input {
+    width: 150px;
   }
 
   paper-button.purpleRipple::shadow #ripple {
@@ -72,11 +50,10 @@ and scrolling effects.
 For more detail on the material design philosophy and guidelines, see the
 [Material design specification]().
 
-For a sample of the material design patterns in use, see the [Topeka sample
-app](/apps/topeka/).
+For a sample of the material design patterns in use, see the <a href="/apps/topeka/" target="_blank">Topeka sample
+app</a>.
 
-For quick visual demos of many of the paper elements, see the 
-[Paper elements sampler](/components/paper-elements/demo.html).
+For quick visual demos of many of the paper elements, see the <a href="/components/paper-elements/demo.html" target="_blank">Paper elements sampler</a>.
 
 ## Application layout
 
@@ -104,7 +81,7 @@ element and its associated icon sets. Using `<core-icon>` can be as simple as:
     <link rel="import" href="/components/core-icons/core-icons.html">
     <core-icon icon="info"></core-icon>
 
-`core-icons.html`is a utility import that includes the `<core-icon>` element
+`core-icons.html` is a utility import that includes the `<core-icon>` element
 and the default icon set, which  includes over 150 common icons. Here are a
 few examples:
 
@@ -123,7 +100,7 @@ few examples:
 For details on using `<core-icon>` and its relatives, see 
 [Using core icons](/docs/polymer/icons.html).
 
-## Material Controls
+## Material controls
 
 The paper elements collection includes a number of material-themed controls
 for all common areas of your application. The following table shows the common 
@@ -132,20 +109,21 @@ controls.
 <table class="demo-table">
   <thead>
     <tr>
-    <th>Control</th>
-    <th>Example</th>
+      <th>Control</th>
+      <th>Example</th>
+      <!-- <th>Info</th> -->
     </tr>
   </thead>
   <tr>
     <td>Button<br>
     <a href="/docs/elements/paper-elements.html#paper-button"><code>&lt;paper-button&gt;</code></a></td>
-    <td><paper-button label="play" raisedButton></paper-button><br>
-    <a href="/components/paper-elements/demo.html#paper-button"><core-icon icon="arrow-forward"></core-icon> More examples</a></td>
+    <td><paper-button label="play" raisedButton></paper-button></td>
+    <td><a href="/components/paper-elements/demo.html#paper-button"><core-icon icon="arrow-forward" size="16"></core-icon> More examples</a></td>
   </tr>
   <tr>
     <td>Checkbox<br>
     <a href="/docs/elements/paper-elements.html#paper-checkbox"><code>&lt;paper-checkbox&gt;</code></a></td>
-    <td><div layout horizontal><paper-checkbox></paper-checkbox>&nbsp;Enable</div></td>
+    <td><paper-checkbox label="Enable"></paper-checkbox></td>
   </tr>
   <tr>
     <td>Toggle button<br>
@@ -155,8 +133,8 @@ controls.
   <tr>
     <td>Icon button<br>
     <a href="/docs/elements/paper-elements.html#paper-icon-button"><code>&lt;paper-icon-button&gt;</code></a></td>
-    <td><paper-icon-button icon="search"></paper-icon-button><br>
-    <a href="/components/paper-elements/demo.html#paper-icon-button"><core-icon icon="arrow-forward"></core-icon> More examples</a></td>
+    <td><paper-icon-button icon="search"></paper-icon-button><paper-icon-button icon="favorite"></paper-icon-button></td>
+    <td><a href="/components/paper-elements/demo.html#paper-icon-button"><core-icon icon="arrow-forward" size="16"></core-icon> More examples</a></td>
   </tr>
   <tr>
     <td>Floating action button<br>
@@ -176,7 +154,7 @@ controls.
   <tr>
     <td>Slider<br>
     <a href="/docs/elements/paper-elements.html#paper-slider"><code>&lt;paper-slider&gt;</code></a></td>
-    <td><paper-slider></paper-slider></td>
+    <td><paper-slider pin></paper-slider></td>
   </tr>
   <tr>
     <td>Progress bar<br>
@@ -186,8 +164,9 @@ controls.
   <tr>
     <td>Input<br>
     <a href="/docs/elements/paper-elements.html#paper-input"><code>&lt;paper-input&gt;</code></a></td>
-    <td><paper-input floatingLabel label="First name"></paper-input><br>
-    <a href="/components/paper-elements/demo.html#paper-input"><core-icon icon="arrow-forward"></core-icon> More examples</a></td>
+    <td><paper-input floatingLabel label="First name"></paper-input></td>
+    <td><a href="/components/paper-elements/demo.html#paper-icon-input"><core-icon icon="arrow-forward" size="16"></core-icon> More examples</a>
+    </td>
   </tr>
 </table>
 
@@ -221,7 +200,7 @@ buttons) at the bottom of the dialog:
 The following example creates a dialog with two buttons:
 
     <paper-dialog id="dialog" heading="Launch?"
-      transition="paper-dialog-transition-bottom">
+                  transition="paper-dialog-transition-bottom">
       <p>This app would like to launch a small, unmanned vehicle
          into space.</p>
       <paper-button label="Cancel" dismissive></paper-button>
@@ -246,7 +225,7 @@ Dialogs are hidden by default. Call the dialog's `toggle` method to show or
 hide it.
 
 <a href="/components/paper-elements/demo.html#paper-dialog">
-<core-icon icon="arrow-forward"></core-icon> More examples</a>
+<core-icon icon="arrow-forward" size="16"></core-icon> More examples</a>
 
 ### Snackbars & toasts
 
@@ -264,7 +243,7 @@ Like a dialog, a `<paper-toast>` is hidden by default. Call the element's
 dismissed by swiping.
 
 <a href="/components/paper-elements/demo.html#paper-toast">
-<core-icon icon="arrow-forward"></core-icon> More examples</a>
+<core-icon icon="arrow-forward" size="16"></core-icon> More examples</a>
 
 ## Material effects
 
@@ -400,7 +379,7 @@ clip inner content, use another container inside the shadowed container.
 {: .alert .alert-info }
 
 <a href="/components/paper-elements/demo.html#paper-shadow">
-<core-icon icon="arrow-forward"></core-icon> More examples</a>
+<core-icon icon="arrow-forward" size="16"></core-icon> More examples</a>
 
 
 ## Transitions
