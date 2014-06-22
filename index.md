@@ -16,13 +16,13 @@ title: Welcome
       <h1>Building blocks for the web</h1>
       <p>{{site.project_title}} is a library that uses the latest web technologies to let you create custom HTML elements. Build anything from a button to a complete application as an encapsulated, reusable element that works across desktop and mobile.</p>
       <a href="/docs/start/getting-the-code.html">
-        <paper-button icon="archive" label="Get {{site.project_title}}" raisedButton></paper-button>
+        <paper-button icon="archive" label="Get {{site.project_title}}" raisedButton unresolved></paper-button>
       </a>
       <a href="/docs/start/usingelements.html">
-        <paper-button icon="arrow-forward" label="Get started" raisedButton></paper-button>
+        <paper-button icon="arrow-forward" label="Get started" raisedButton unresolved></paper-button>
       </a>
       <a href="https://github.com/polymer">
-        <paper-button class="github" iconSrc="/images/picons/ic_social_github.png" label="View on Github"></paper-button>
+        <paper-button class="github" iconSrc="/images/picons/ic_social_github.png" label="View on Github" unresolved></paper-button>
       </a>
     </summary>
   </div>
@@ -30,7 +30,7 @@ title: Welcome
 
 <section id="featured">
   <div class="panel right">
-    <feature-carousel interval="5" flex>
+    <feature-carousel interval="5" flex style="height:400px;" unresolved>
       <div>
         <summary>
           <h1>Featured</h1>
@@ -62,10 +62,10 @@ title: Welcome
 
 <section id="sampler" class="main-purple">
   <div class="panel left">
-    <a href="/components/paper-elements/demo.html"><img src="/images/sampler.png"></a>
+    <a href="/components/paper-elements/demo.html" target="_blank"><img src="/images/sampler.png"></a>
     <summary>
       <h1>Material design</h1>
-      <p>{{site.project_title}} brings an implementation of material design to the web. The paper elements are a collection of material components ranging from controls and layout, to effects and user interaction.</p>
+      <p>{{site.project_title}} brings an implementation of material design to the web. The paper elements are a collection of components ranging from controls and layout, to effects and user interaction.</p>
       <a href="/docs/polymer/material.html">
         <paper-button icon="arrow-forward" label="Take a spin"></paper-button>
       </a>
@@ -93,6 +93,9 @@ title: Welcome
 </section>
 
 <section id="designer">
+  <nav class="bar" layout horizontal>
+    <!-- <a href="#designer" flex>Return to the elegance of the element</a> -->
+  </nav>
   <div class="panel">
     <summary>
       <h1>Designer</h1>
@@ -101,7 +104,7 @@ title: Welcome
       </a>
       <div>
         <h3>
-        Our drag n' drop tool for prototyping apps using {{site.project_title}}'s  components. Save your experimnts as Github gists.
+        <a href="/tools/designer/#391b62346ab74dc8ca2c" target="_blank">Designer</a> is a drag n' drop tool for prototyping apps using {{site.project_title}}. Save your experiments as Github gists.
         </h3>
         <!-- <a href="/tools/designer/#391b62346ab74dc8ca2c" target="_blank">
           <paper-button icon="arrow-forward" label="Try it" raisedButton></paper-button>
@@ -132,6 +135,9 @@ title: Welcome
 {% endcomment %}
 
 <section id="architecture">
+  <nav class="bar" layout horizontal>
+    <!-- <a href="#designer" flex>Return to the elegance of the element</a> -->
+  </nav>
  <!--  <nav class="bar" flexbox>
     <a href="#architecture">The architecture of {{site.project_title}}</a>
   </nav> -->
