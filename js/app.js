@@ -66,8 +66,11 @@ function injectPage(url, opt_addToHistory) {
 
     document.title = doc.title; // Update document title to fetched one.
 
-    var metaContentName = doc.head.querySelector('meta[itemprop="name"]').content;
-    document.head.querySelector('meta[itemprop="name"]').content = metaContentName;
+    var meta = doc.head.querySelector('meta[itemprop="name"]');
+    if (meta) {
+      var metaContentName = doc.head.querySelector('meta[itemprop="name"]').content;
+      document.head.querySelector('meta[itemprop="name"]').content = metaContentName;
+    }
 
     // Update URL history now that title and URL are set.
     var addToHistory = opt_addToHistory == undefined ? true : opt_addToHistory;
@@ -80,7 +83,14 @@ function injectPage(url, opt_addToHistory) {
     ga('devrelTracker.send', 'pageview', location.pathname);
 
     // Update app-bar links.
-    appBar.innerHTML = doc.querySelector('app-bar').innerHTML;
+    var docAppBar = doc.querySelector('app-bar');
+    if (docAppBar) {
+      appBar.innerHTML = docAppBar.innerHTML;
+    } else {
+      // We're not on a doc page (e.g. demo page or something else). Just redirect.
+      location.href = url;
+      return;
+    }
 
     // Inject article body.
     var CONTAINER_SELECTOR = '#content-container scroll-area article';
