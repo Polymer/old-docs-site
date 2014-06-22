@@ -21,28 +21,39 @@ section {
   border-bottom: 1px solid $main-bg;
 }
 
-// section .bar {
-//   @include justify-content(flex-end);
-//   @include align-items(center);
-//   border-top: 1px solid $main-bg;
-//   border-bottom: 1px solid $main-bg;
+section .bar {
+  @include justify-content(flex-end);
+  @include align-items(center);
+  border-top: 1px solid $main-bg;
+  border-bottom: 1px solid $main-bg;
+  background-color: $gray-medium;
+  height: auto;
 
-//   a {
-//     color: inherit;
-//     font-size: $font-size-body;
-//     // font-weight: 600;
-//     // letter-spacing: 0.01em;
-//     // line-height: 19.2px;
-//     text-align: right;
-//     @include flex(1);
-//     opacity: 0.6;
+  &.main-purple {
+    border-color: rgba(255,255,255,0.3);
+    @extend .main-purple;
 
-//     &:after {
-//       content: '\0025BE';
-//       margin: 0 10px;
-//     }
-//   }
-// }
+    a {
+      color: white;
+    }
+  }
+
+  a {
+    color: inherit;
+    font-size: $font-size-body;
+    // font-weight: 600;
+    // letter-spacing: 0.01em;
+    // line-height: 19.2px;
+    text-align: right;
+    @include flex(1);
+    opacity: 0.6;
+
+    &:after {
+      content: '\0025BE';
+      margin: 0 10px;
+    }
+  }
+}
 
 // Manual FOUC prevention for homepage.
 site-banner {
@@ -63,7 +74,7 @@ site-banner .logo {
 
 .panel {
   @extend .content-padding;
-  padding: 100px 16px;
+  padding: 75px 16px;
   @include display-flex;
 
   $img-margin: 88px;
@@ -118,6 +129,9 @@ site-banner .logo {
 }
 
 #future {
+  .panel {
+    padding-top: 125px;
+  }
   a {
     text-decoration: none;
   }
@@ -191,14 +205,6 @@ site-banner .logo {
 }
 
 #everything-element {
-  // .bar {
-  //   border-color: rgba(255,255,255,0.3);
-  //   @extend .main-purple;
-
-  //   a {
-  //     color: white;
-  //   }
-  // }
   code {
     color: currentcolor;
   }
