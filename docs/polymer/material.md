@@ -7,7 +7,7 @@ title: Material design with Polymer
 subtitle: Guide
 ---
 
-<link rel="import" href="/elements/paper-demo-elements.html">
+<!-- <link rel="import" href="/elements/paper-demo-elements.html"> -->
 
 <style shim-shadowdom>
   .icondemo core-icon {
@@ -288,10 +288,9 @@ create a touch ripple effect.
 To use `<paper-ripple>`, declare a `<paper-ripple>` element as a child of the
 element you want to add the effect to:
 
-     <div style="position: relative;">
+    <div style="position: relative;">
       <paper-ripple fit></paper-ripple>
     </div>
-
 
 Touch the cards below to see ripple effects.
 
@@ -371,7 +370,7 @@ You can change the z-height of the target element by setting `z` on the
 <div layout horizontal>
   <div class="demo-card">
     <p>z = 1</p>
-   	<paper-shadow z="1"></paper-shadow>
+    <paper-shadow z="1"></paper-shadow>
   </div>
   <div class="demo-card">
       <p>z = 3</p>
