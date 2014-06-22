@@ -9,7 +9,7 @@
 
 .h5heading {
   font-size: $font-size-secondary;
-  font-weight: normal;
+  font-weight: 500;
   color: $secondary-heading-color;
   line-height: 24px;
   letter-spacing: 0.01em;
@@ -103,6 +103,9 @@ site-banner .logo {
   }
   a:not(:last-of-type) {
     margin-right: 12px;
+  }
+  paper-button::shadow #content span {
+    margin-left: 0;
   }
 }
 

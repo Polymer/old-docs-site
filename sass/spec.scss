@@ -1,8 +1,8 @@
 @import "base";
 
-$font-family-body: "Open Sans",Helvetica,Arial,sans-serif;
+$font-family-body: "RobotoDraft",Helvetica,Arial,sans-serif;
 //$font-family-body: "Roboto",sans-serif;
-$font-family-code: "Source Code Pro",Monaco,Menlo,Consolas,"Courier New",monospace;
+// $font-family-code: "Source Code Pro",Monaco,Menlo,Consolas,"Courier New",monospace;
 
 $font-size-meta: 12px;
 $font-size-secondary: 14px;
@@ -30,7 +30,7 @@ $link-color: #3367d6;
 body {
   font-size: $font-size-body;
   font-family: $font-family-body;
-  font-weight: normal;
+  font-weight: 300;
   line-height: $line-height-body;
   // letter-spacing: 0;
 }
@@ -52,7 +52,7 @@ button {
 a {
   // font-size: $font-size-secondary;
   font-size: inherit;
-  font-weight: normal;
+  // font-weight: normal;
   color: $link-color;
   // letter-spacing: 10pt;
   text-decoration: none;

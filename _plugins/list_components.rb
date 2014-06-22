@@ -55,7 +55,7 @@ module Jekyll
 
     def render(context)
       elements = {}
-      (Pathname.glob("#{@dir}/#{@prefix}-*") - Pathname.glob("#{@dir}/#{@blacklist_prefix}")).each do |i|
+      (Pathname.glob("#{@dir}/#{@prefix}-*") - Pathname.glob("#{@dir}/#{@blacklist}")).each do |i|
         i.children.each do |f|
           if f.extname == '.html'
             contents = f.read

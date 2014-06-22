@@ -6,6 +6,7 @@
 
 @import "spec";
 @import "polymer";
+@import "material";
 
 * {
   @include box-sizing(border-box);
@@ -94,13 +95,13 @@ table {
     text-align: left;
     padding-right: 40px;
     border-bottom: 1px solid $main-bg;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 48px;
   }
 }
 
 b, strong {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 hr {
@@ -110,7 +111,7 @@ hr {
 
 dl {
   dt {
-    font-weight: 600;
+    font-weight: 500;
   }
   &.horizontal {
     dt {
@@ -495,7 +496,7 @@ footer {
 
 #toc summary {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 /* Videos */

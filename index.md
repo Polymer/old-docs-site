@@ -83,12 +83,13 @@ title: Welcome
     <summary>
       <h1>Material design</h1>
       <p>{{site.project_title}} brings an implementation of material design to the web. The paper elements are a collection of material components ranging from controls and layout, to effects and user interaction.</p>
-      <a href="/components/paper-elements/demo.html">
+      <a href="/docs/polymer/material.html">
         <paper-button icon="arrow-forward" label="Take a spin"></paper-button>
       </a>
     </summary>
   </div>
 </section>
+
 
 <section id="designer">
   <div class="panel">
