@@ -60,23 +60,6 @@ title: Welcome
   </div>
 </section>
 
-<!-- <section id="videos" class="main-purple">
-  <div class="panel right">
-    <summary>
-      <h1>Watch</h1>
-      <p>Learn what the {{site.project_title}} team is up to through articles, videos, and presentations.
-      <br><br>
-      <a href="/resources/video.html">
-        <paper-button icon="arrow-forward" label="See more"></paper-button>
-      </a>
-      </p>
-    </summary>
-    <div class="video">
-    <iframe src="https://www.youtube.com/embed/videoseries?list=PLRAVCSU_HVYu-zlRaqArF8Ytwz1jlMOIM&theme=light&controls=0" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </div>
-</section> -->
-
 <section id="sampler" class="main-purple">
   <div class="panel left">
     <a href="/components/paper-elements/demo.html"><img src="/images/sampler.png"></a>
@@ -90,19 +73,39 @@ title: Welcome
   </div>
 </section>
 
+<section id="apps">
+  <div class="panel">
+    <summary>
+      <h1>Apps</h1>
+      <a href="/apps/topeka/" target="_blank">
+        <img src="/images/topeka_small.png" alt="Launch the Topeka app" title="Launch the Topeka app">
+      </a>
+      <div>
+        <h3 style="margin:0">
+        <a href="/apps/topeka/" target="_blank">Topeka</a> is a multi-screen app created from <a href="/docs/polymer/material.html">Polymer's material design elements</a>. It works across the multi-device web.
+        </h3>
+        <!-- <a href="/apps/topeka" target="_blank">
+          <paper-button icon="arrow-forward" label="Try it" raisedButton></paper-button>
+        </a> -->
+      </div>
+    </summary>
+  </div>
+</section>
 
 <section id="designer">
   <div class="panel">
     <summary>
       <h1>Designer</h1>
-      <a href="/tools/designer/#391b62346ab74dc8ca2c"><img src="/images/designer_screenshot.png"></a>
+      <a href="/tools/designer/#391b62346ab74dc8ca2c" target="_blank">
+        <img src="/images/designer_screenshot.png" class="cover" alt="Launch the designer tool" title="Launch the designer tool">
+      </a>
       <div>
         <h3>
         Our drag n' drop tool for prototyping apps using {{site.project_title}}'s  components. Save your experimnts as Github gists.
         </h3>
-        <a href="/tools/designer/#391b62346ab74dc8ca2c">
+        <!-- <a href="/tools/designer/#391b62346ab74dc8ca2c" target="_blank">
           <paper-button icon="arrow-forward" label="Try it" raisedButton></paper-button>
-        </a>
+        </a> -->
       </div>
     </summary>
   </div>
