@@ -65,7 +65,7 @@ using these elements.
 
 To work well with the {{site.project_title}} layout elements, you should make sure other
 parts of your app follow the same metrics described in the [material design
-spec](), such as:
+spec](http://google.com/design/spec), such as:
 
 * Baseline grids
 * Keylines
