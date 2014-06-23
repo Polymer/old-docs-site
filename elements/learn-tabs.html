@@ -1,0 +1,136 @@
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/core-media-query/core-media-query.html">
+<link rel="import" href="../components/code-explainer/code-explainer.html">
+<link rel="import" href="../components/paper-button/paper-button.html">
+<link rel="import" href="demo-tabs.html">
+
+<polymer-element name="learn-tabs">
+  <template>
+    <style>
+      .card {
+        background-color: #f8f8f8;
+      }
+      .card h2 {
+        font-weight: 300;
+        letter-spacing: -0.01em;
+        line-height: 48px;
+        margin: 0;
+        padding: 16px 16px 0 16px;
+      }
+      .card .summary {
+        padding: 16px;
+      }
+      .card a {
+        text-decoration: none;
+        color: inherit;
+      }
+    </style>
+    <core-media-query query="min-width: 640px" queryMatches="{{wide}}"></core-media-query>
+    <demo-tabs style="width:100%;">
+      <demo-tab heading="{{wide ? 'Using Elements (30 sec)' : 'Use'}}">
+        <code-explainer label="Using Polymer elements">
+          <script type="text/template">
+            <!-- Import element -->
+            [start-create]&lt;link rel="import" href="google-map.html"&gt;[end-use]
+
+            <!-- Use element -->
+            [start-use]<google-map lat="37.790" long="-122.390"></google-map>[end-create]
+          </script>
+          <code-explainer-info sec="create" label="1. Import a component you'd like to use">
+            Find a component, grab the code, and simply import the component into your page using
+            the new <code>&lt;link rel="import"&gt;</code> tag.
+          </code-explainer-info>
+          <code-explainer-info sec="use" label="2. Use the new element">
+            Once imported, custom elements can be used like any other HTML tag.
+          </code-explainer-info>
+        </code-explainer>
+      </demo-tab>
+      <demo-tab heading="{{wide ? 'Creating Elements (1 min)' : 'Create' }}">
+        <code-explainer label="Creating elements with Polymer">
+          <script type="text/template">
+            <!-- Define element -->
+            [start-def]<polymer-element name="my-counter">[end-def]
+              [start-templ]<template>[end-templ]
+                [start-style]<style> /*...*/ </style>[end-style]
+                <div id="label"><content></content></div>
+                Value: <span id="counter">[start-data]&#123;&#123;counter&#125;&#125;[end-data]</span><br>
+                <button [start-events]on-tap="&#123;&#123;increment&#125;&#125;[end-events]">Increment</button>
+              [start-templ]</template>[end-templ]
+              <script>
+                Polymer({
+                  publish: {
+                    [start-publish]counter: 0[end-publish]
+                  },
+                  [start-publish]counterChanged[end-publish]: function() {
+                    console.log('value: ' + this.counter);
+                  },
+                  [start-events]increment[end-events]: function() {
+                    this.counter++;
+                  }
+                });
+              &lt;/script>
+            [start-def]</polymer-element>[end-def]
+
+            <!-- Use element -->
+            <my-counter [start-publish]counter="10">[end-publish]</my-counter>
+          </script>
+          <code-explainer-info sec="def" label="Declarative custom element definition">
+            Polymer allows you to define new custom elements declaratively using <code>&lt;polymer-element&gt;</code>
+          </code-explainer-info>
+          <code-explainer-info sec="templ" label="View template encapsulation">
+            Contents of the element's <code>&lt;template&gt;</code> will be rendered into the Shadow DOM.
+          </code-explainer-info>
+          <code-explainer-info sec="style" label="Scoped stylesheet">
+            Styles defined in the element's stylesheet are scoped to the Shadow DOM, preventing styles from
+            leaking into our out of the element.
+          </code-explainer-info>
+          <code-explainer-info sec="publish" label="Published properties">
+            Properties that are "published" can be initialized via markup attributes and will invoke change 
+            handlers when changed.
+          </code-explainer-info>
+          <code-explainer-info sec="data" label="Declarative data binding">
+            Variables in the element's scope can be bound directly into the view, with robust support for
+            expressions.
+          </code-explainer-info>
+          <code-explainer-info sec="events" label="Declarative event binding">
+            Event handlers can be bound to functions on the element scope declaratively using 
+            <code>on-<i>event</i></code> attributes.
+          </code-explainer-info>
+        </code-explainer>
+      </demo-tab>
+      <demo-tab heading="{{wide ? 'Build an app (30 min)' : 'Tutorial' }}">
+        <div class="card">
+          <h2>Try the tutorial</h2>
+          <div layout horizontal?="{{wide}}" vertical?="{{!wide}}" center-justified?="{{!wide}}">
+            <div class="summary" flex layout vertical>
+              <div flex>
+                <p>In this tutorial, you'll build a small Polymer application -- a very basic client for a social networking service.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> 
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
+              <a href="#"><paper-button raisedButton icon="arrow-forward" label="Go to tutorial"></paper-button></a>
+            </div>
+            <img src="/images/unquote.png">
+          </div>
+        </div>
+      </demo-tab>
+      <demo-tab heading="{{wide ? 'Learn more' : 'More' }}">
+        <div class="card">
+          <h2>Go deeper with Web Components and Polymer</h2>
+          <div class="summary">
+            <ul>
+              <li>Read API documentation</li>
+              <li>Browser conceptual documentation</li>
+              <li>Watch awesome videos</li>
+              <li>Learn about the platform</li>
+            </ul>
+          </div>
+        </div>
+      </demo-tab>
+    </demo-tabs>
+  </template>
+  <script>
+    Polymer('learn-tabs', {
+    });
+  </script>
+</polymer-element>
