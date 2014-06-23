@@ -27,18 +27,21 @@
     </style>
     <core-media-query query="min-width: 640px" queryMatches="{{wide}}"></core-media-query>
     <demo-tabs style="width:100%;">
-      <demo-tab heading="{{wide ? 'Using Elements (30 sec)' : 'Use'}}">
+      <demo-tab heading="{{wide ? 'Using Elements (10 sec)' : 'Use'}}">
         <code-explainer label="Using Polymer elements">
           <script type="text/template">
-            <!-- Import element -->
-            [start-create]&lt;link rel="import" href="google-map.html"&gt;[end-use]
-
-            <!-- Use element -->
-            [start-use]<google-map lat="37.790" long="-122.390"></google-map>[end-create]
+            <head>
+              <!-- Import element -->
+              [start-create]&lt;link rel="import" href="google-map.html"&gt;[end-use]
+            </head>
+            <body>
+              <!-- Use element -->
+              [start-use]<google-map lat="37.790" long="-122.390"></google-map>[end-create]
+            </body>
           </script>
           <code-explainer-info sec="create" label="1. Import a component you'd like to use">
             Find a component, grab the code, and simply import the component into your page using
-            the new <code>&lt;link rel="import"&gt;</code> tag.
+            an HTML Import (<code>&lt;link rel="import"&gt;</code>).
           </code-explainer-info>
           <code-explainer-info sec="use" label="2. Use the new element">
             Once imported, custom elements can be used like any other HTML tag.
@@ -46,23 +49,21 @@
         </code-explainer>
       </demo-tab>
       <demo-tab heading="{{wide ? 'Creating Elements (1 min)' : 'Create' }}">
-        <code-explainer label="Creating elements with Polymer">
+        <code-explainer label="Creating custom elements with Polymer">
           <script type="text/template">
             <!-- Define element -->
-            [start-def]<polymer-element name="my-counter">[end-def]
-              [start-templ]<template>[end-templ]
-                [start-style]<style> /*...*/ </style>[end-style]
+            [start-def]<polymer-element name="my-counter" [start-publish]attributes="counter">[end-publish][end-def]
+              [start-scope]<template>[end-scope]
+                <style> /*...*/ </style>
                 <div id="label"><content></content></div>
-                Value: <span id="counter">[start-data]&#123;&#123;counter&#125;&#125;[end-data]</span><br>
+                Value: <span [start-nodefind]id="counterVal"[end-nodefind]>[start-data]&#123;&#123;counter&#125;&#125;[end-data]</span><br>
                 <button [start-events]on-tap="&#123;&#123;increment&#125;&#125;[end-events]">Increment</button>
-              [start-templ]</template>[end-templ]
+              [start-scope]</template>[end-scope]
               <script>
                 Polymer({
-                  publish: {
-                    [start-publish]counter: 0[end-publish]
-                  },
+                  [start-publish]counter: 0,[end-publish]
                   [start-publish]counterChanged[end-publish]: function() {
-                    console.log('value: ' + this.counter);
+                    [start-nodefind]this.$.counterVal[end-nodefind].classList.add('highlight');
                   },
                   [start-events]increment[end-events]: function() {
                     this.counter++;
@@ -72,29 +73,30 @@
             [start-def]</polymer-element>[end-def]
 
             <!-- Use element -->
-            <my-counter [start-publish]counter="10">[end-publish]</my-counter>
+            <my-counter [start-publish]counter="10"[end-publish]></my-counter>
           </script>
           <code-explainer-info sec="def" label="Declarative custom element definition">
             Polymer allows you to define new custom elements declaratively using <code>&lt;polymer-element&gt;</code>
           </code-explainer-info>
-          <code-explainer-info sec="templ" label="View template encapsulation">
-            Contents of the element's <code>&lt;template&gt;</code> will be rendered into the Shadow DOM.
-          </code-explainer-info>
-          <code-explainer-info sec="style" label="Scoped stylesheet">
-            Styles defined in the element's stylesheet are scoped to the Shadow DOM, preventing styles from
-            leaking into our out of the element.
+          <code-explainer-info sec="scope" label="Markup and style encapsulation">
+            Polymer uses Shadow DOM to encapsulate your element's internals.  Template markup is 
+            compartmentalized, styles don't leak out, and page styles don't bleed in.
           </code-explainer-info>
           <code-explainer-info sec="publish" label="Published properties">
-            Properties that are "published" can be initialized via markup attributes and will invoke change 
-            handlers when changed.
+            Properties that are "published" can be initialized via markup and call change 
+            handlers when modified.
           </code-explainer-info>
           <code-explainer-info sec="data" label="Declarative data binding">
-            Variables in the element's scope can be bound directly into the view, with robust support for
+            Properties on the element can be bound directly into the view, with robust support for
             expressions.
           </code-explainer-info>
           <code-explainer-info sec="events" label="Declarative event binding">
-            Event handlers can be bound to functions on the element scope declaratively using 
+            Event handlers can be bound to functions on the element declaratively using 
             <code>on-<i>event</i></code> attributes.
+          </code-explainer-info>
+          <code-explainer-info sec="nodefind" label="Automatic node finding">
+            Any template children can be referenced by <code>id</code> via <code>this.$</code>, eliminating
+            boilerplate querySelector's.
           </code-explainer-info>
         </code-explainer>
       </demo-tab>
@@ -108,7 +110,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> 
                 <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
               </div>
-              <a href="#"><paper-button raisedButton icon="arrow-forward" label="Go to tutorial"></paper-button></a>
+              <a href="/docs/start/tutorial/intro.html"><paper-button raisedButton icon="arrow-forward" label="Go to tutorial"></paper-button></a>
             </div>
             <img src="/images/unquote.png">
           </div>
