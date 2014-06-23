@@ -36,7 +36,7 @@ This guide will ensure your *master* branch contains the bare-minimum of code th
 
 Add the logic specific to your new element and verify its functionality. Good unit tests are essential 
 to your verification plan but a good way to quickly sanity test your component is to access your 
-demo.html file file via a local web server. There are several ways to do this but one easy method
+demo.html file via a local web server. There are several ways to do this but one easy method
 is to run a simple web server that ships with Python, using the following commands:
 
     $ cd ..  # You'll want to run the web server from the parent directory.
