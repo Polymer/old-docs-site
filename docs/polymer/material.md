@@ -48,7 +48,7 @@ elements that you can use to achieve material design app layouts, transitions,
 and scrolling effects.
 
 For more detail on the material design philosophy and guidelines, see the
-[Material design specification]().
+[Material design specification](http://google.com/design/spec).
 
 For a sample of the material design patterns in use, see the <a href="/apps/topeka/" target="_blank">Topeka sample app</a>.
 
@@ -65,7 +65,7 @@ using these elements.
 
 To work well with the {{site.project_title}} layout elements, you should make sure other
 parts of your app follow the same metrics described in the [material design
-spec](), such as:
+spec](http://google.com/design/spec), such as:
 
 * Baseline grids
 * Keylines
