@@ -55,13 +55,13 @@
             [start-def]<polymer-element name="my-counter" [start-publish]attributes="counter">[end-publish][end-def]
               [start-scope]<template>[end-scope]
                 <style> /*...*/ </style>
-                <div id="label"><content></content></div>
+                <div id="label">[start-content]<content></content>[end-content]</div>
                 Value: <span [start-nodefind]id="counterVal"[end-nodefind]>[start-data]&#123;&#123;counter&#125;&#125;[end-data]</span><br>
                 <button [start-events]on-tap="&#123;&#123;increment&#125;&#125;[end-events]">Increment</button>
               [start-scope]</template>[end-scope]
               <script>
                 Polymer({
-                  [start-publish]counter: 0,[end-publish]
+                  [start-publish][start-data]counter[end-data]: 0[end-publish], // Default value
                   [start-publish]counterChanged[end-publish]: function() {
                     [start-nodefind]this.$.counterVal[end-nodefind].classList.add('highlight');
                   },
@@ -73,14 +73,14 @@
             [start-def]</polymer-element>[end-def]
 
             <!-- Use element -->
-            <my-counter [start-publish]counter="10"[end-publish]></my-counter>
+            <my-counter [start-publish]counter="10"[end-publish]>[start-content]Points[end-content]</my-counter>
           </script>
           <code-explainer-info sec="def" label="Declarative custom element definition">
             Polymer allows you to define new custom elements declaratively using <code>&lt;polymer-element&gt;</code>
           </code-explainer-info>
           <code-explainer-info sec="scope" label="Markup and style encapsulation">
             Polymer uses Shadow DOM to encapsulate your element's internals.  Template markup is 
-            compartmentalized, styles don't leak out, and page styles don't bleed in.
+            compartmentalized, and styles don't leak in or out.
           </code-explainer-info>
           <code-explainer-info sec="publish" label="Published properties">
             Properties that are "published" can be initialized via markup and call change 
@@ -95,8 +95,11 @@
             <code>on-<i>event</i></code> attributes.
           </code-explainer-info>
           <code-explainer-info sec="nodefind" label="Automatic node finding">
-            Any template children can be referenced by <code>id</code> via <code>this.$</code>, eliminating
+            Any template children can be referenced by <code>id</code> on <code>this.$</code>, eliminating
             boilerplate querySelector's.
+          </code-explainer-info>
+          <code-explainer-info sec="content" label="Insertion points">
+            HTML content passed by user to element is rendered into <code>&lt;content&gt;</code> insertion point.
           </code-explainer-info>
         </code-explainer>
       </demo-tab>
