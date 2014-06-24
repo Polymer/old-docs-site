@@ -24,9 +24,9 @@ HTML as much as possible by encouraging the use of [custom element](/platform/cu
 
 {{site.project_title}} is still in its very early days, but we're excited about its potential! 
 
-### Okay, the components aren't there yet. Is the rest of {{site.project_title}} production ready? {#readiness}
+### Is {{site.project_title}} production ready? {#readiness}
 
-We don't think so, but if you're the adventurous type you're welcome to give it a try. Run the demos, play with the toolkit. Most importantly, join the mailing list and give us feedback!
+{{site.project_title}} is currently in "developer preview." However, despite the label many people have already had success using {{site.project_title}} in production. Although things might still change, We encourage developers to take {{site.project_title}} out for a test drive.
 
 ### I don't like your {components | toolkit syntax | face }! {#dislike}
 
