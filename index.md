@@ -28,7 +28,7 @@ title: Welcome
   </div>
 </section>
 
-<section id="featured">
+<section id="featured" class="main-purple">
   <div class="panel right">
     <feature-carousel interval="5" flex style="height:400px;" unresolved>
       <div>
@@ -57,6 +57,16 @@ title: Welcome
         </div>
       </div>
     </feature-carousel>
+  </div>
+</section>
+
+<section id="learn">
+  <div class="panel right">
+    <summary>
+      <h1>Learn</h1>
+      <br>
+      <learn-tabs></learn-tabs>
+    </summary>
   </div>
 </section>
 
