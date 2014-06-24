@@ -14,22 +14,22 @@ subtitle: Your first Polymer application
   font-size: 18px;
   fill: #fff;
 }
-
 #download-button:hover {
   background: #2a56c6;
 }
-
 #download-button::shadow #ripple {
   color: #fff;
+}
+.running-app-frame {
+  border: 1px solid #000;
 }
 </style>
 
 
 In this tutorial, you'll build a small {{site.project_title}} application -- a very basic client for a social networking service. The end result will look like this:
 
-<iframe class="running-app-frame" width="480" height="320" src="/samples/tutorial/finished/index.html">
-</iframe>
-
+<div layout horizontal center-justified><iframe class="running-app-frame" width="480" height="320" src="/samples/tutorial/finished/index.html">
+</iframe></div>
 
 This project will introduce you to most of the key concepts in working with {{site.project_title}}. Don't worry if you don't understand everything. Each of the concepts presented here is described in detail in the {{site.project_title}} documentation.
 
