@@ -77,7 +77,7 @@ Bootstrap and Topcoat are awesome CSS/UI libraries. Our goals for {{site.project
 
 ### How is this related to Google? {#google}
 
-We're first and foremost just a group of folks who think web components are the bee's knees--a bunch of us just happen to work at Google. We're thrilled about the community participation we've gotten already and hope you'll join in the discussion!
+Polymer, currently in developer preview, is Google's recommended solution for next-generation web application development.
 
 ### Is this project related to {Angular JS | Closure | Google Web Toolkit}? {#frameworks}
 
