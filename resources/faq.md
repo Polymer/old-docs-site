@@ -26,6 +26,9 @@ title: FAQ
 
 {{site.project_title}} is the embodiment of material design for the web. The {{site.project_title}} team works closely with the design teams behind material design. In fact, {{site.project_title}} played a key role in material design's development: it was used to quickly prototype and iterate on design concepts. The material design components are still a work in progress, but will mature over the coming months.
 
+### Do I have to use {{site.project_title}} Designer? {#designer}
+Nope! {{site.project_title}} Designer is primarily a tool to make it easy to dive in an prototype apps. It's entirely optional&mdash;although we've found that for developers who use it, it has quickly become an indispensable part of their workflow.
+
 ### I don't like your {components | toolkit syntax | face }! {#dislike}
 
 <!-- 
@@ -34,7 +37,7 @@ title: FAQ
   <figcaption>Architectural Diagram</figcaption>
 </figure> -->
 
-That's fine. We've designed {{site.project_title}}  to be cleanly layered so you can use just the parts you like. You can use our whole stack, a single polyfill, or anything in between. It's up to you.
+That's fine. We've designed {{site.project_title}}to be cleanly layered so you can use just the parts you like. You can use our whole stack, a single polyfill, or anything in between. It's up to you.
 <!-- {: style="clear:both"} -->
 
 ### Which browsers does {{site.project_title}} support? {#browsersupport}
