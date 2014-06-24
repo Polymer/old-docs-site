@@ -62,7 +62,7 @@ add_permalinks: false
       </a>
     </p>
   </section> 
-  <a href="/components/core-elements/demo.html#core-scroll-header-panel" target="_blank">
+  <a href="/components/paper-elements/demo.html#paper-button" target="_blank">
     <img src="/images/sampler-paper.png">
   </a>
 </div>
