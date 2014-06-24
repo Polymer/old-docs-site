@@ -44,8 +44,14 @@
   <template>
     <link rel="stylesheet" href="../components/highlightjs/styles/default.css">
     <link rel="stylesheet" href="../css/elements/doc-page.css">
-    <div class="main" on-marked-js-highlight="{{hilight}}">
+    <div class="main"><!-- on-marked-js-highlight="{{hilight}}"> -->
       <h1>{{data.name}}</h1>
+
+      <template if="{{data.extends}}">
+        <section class="top">
+          <h3>Extends: <a href="#{{data.extends}}">{{data.extends}}</a></h3>
+        </section>
+      </template>
 
       <p>
         <a class="badge" href="http://bowerarchiver.appspot.com/archive?{{data.name}}=Polymer/{{data.name}}">Download</a>
@@ -53,12 +59,6 @@
         <a class="badge" target="_blank" href="http://github.com/Polymer/{{data.name}}">Source</a>
       </p>
 
-      <template if="{{data.extends}}">
-        <section class="box top">
-          <h3>Extends</h3>
-          <p><a href="#{{data.extends}}">{{data.extends}}</a></p>
-        </section>
-      </template>
       <template if="{{data.description}}">
         <section class="box top">
           <h3>Summary</h3>
