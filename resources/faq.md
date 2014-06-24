@@ -61,7 +61,7 @@ There are a number of reasons why we recommend you use Bower instead of the CDN:
 
 ### When will other browsers support these APIs natively? {#nativesupport}
 
-The foundation layer in our <a href="/images/architecture-diagram.svg" target="_blank">architecture diagram</a> is based on emerging web standards. As browsers support them natively, the need for that layer will diminish and ultimately disappear. It's impossible to say when every browser will support these features natively--but the more that web developers ask for them, the sooner native support will come.
+The foundation layer in our <a href="/images/architecture-diagram.svg" target="_blank">architecture diagram</a> is based on emerging web standards. As browsers support them natively, the need for that layer will diminish and ultimately disappear. In fact, Chrome 36 is the first browser to support all of the primitives natively. It's impossible to say when every browser will support these features natively--but the more that web developers ask for them, the sooner native support will come.
 
 ### What's your mobile story? {#onmobile}
 
