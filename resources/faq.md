@@ -24,10 +24,6 @@ HTML as much as possible by encouraging the use of [custom element](/platform/cu
 
 {{site.project_title}} is still in its very early days, but we're excited about its potential! 
 
-### Where are all of the shiny magic components that are going to revolutionize the entire internet and solve all of my problems? {#uicomponents}
-
-At this point they're basically just a glimmer in our collective eye. But we've built a solid technical foundation and are working feverishly to make our ambitious vision a reality, so watch this space.
-
 ### Okay, the components aren't there yet. Is the rest of {{site.project_title}} production ready? {#readiness}
 
 We don't think so, but if you're the adventurous type you're welcome to give it a try. Run the demos, play with the toolkit. Most importantly, join the mailing list and give us feedback!
