@@ -65,7 +65,7 @@ The foundation layer in our <a href="/images/architecture-diagram.svg" target="_
 
 ### What's your mobile story? {#onmobile}
 
-One of our core goals is for {{site.project_title}} to work on mobile as a first-class citizen. For example, many parts of {{site.project_title}} work on Chrome for Android and Mobile Safari today. We're also investigating responsive components that can automatically configure themselves correctly on desktop, tablets, and phones.
+One of our core goals is for {{site.project_title}} to work on modern mobile browsers as a first-class citizen. Check out [Topeka](/apps/topeka/), one of our sample apps, to see it in action.
 
 ### What does this have to do with x-tags? {#xtags}
 
