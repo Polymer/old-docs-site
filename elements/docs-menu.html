@@ -11,8 +11,16 @@
   <polymer-ui-menu id="mainmenu" on-click="{{onClick}}" selectedItem="{{item}}">
 
     <polymer-ui-submenu-item src="/images/picons/ic_polymer_source.svg"
+        class="{{ {show: menu == 'elements'} | tokenList}}"
+        label="Element guides">
+        <polymer-ui-menu-item href="/docs/elements/layout-elements.html">Layout elements</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/docs/elements/icons.html">Using core icons</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/docs/elements/material.html">Material design with Polymer</polymer-ui-menu-item>
+    </polymer-ui-submenu-item>
+
+    <polymer-ui-submenu-item src="/images/picons/ic_polymer_source.svg"
         class="elements-using {{ {show: menu == 'elements'} | tokenList}}"
-        label="Core elements &#x25BE;">
+        label="Core elements">
       <template repeat="{{coreElementsList}}">
         <polymer-ui-menu-item href="/docs/elements/core-elements.html#{{name}}"
             data-href="/docs/elements/core-elements.html#{{name}}">{{name}}</polymer-ui-menu-item>
@@ -20,12 +28,13 @@
     </polymer-ui-submenu-item>
     <polymer-ui-submenu-item src="/images/picons/ic_polymer_source.svg"
         class="elements-using {{ {show: menu == 'elements'} | tokenList}}"
-        label="Paper elements &#x25BE;">
+        label="Paper elements">
       <template repeat="{{paperElementsList}}">
         <polymer-ui-menu-item href="/docs/elements/paper-elements.html#{{name}}"
             data-href="/docs/elements/paper-elements.html#{{name}}">{{name}}</polymer-ui-menu-item>
       </template>
     </polymer-ui-submenu-item>
+
     <polymer-ui-submenu-item
         label="Labs &#x25BE;"
         src="/images/picons/ic_polymer_source.svg"
@@ -33,14 +42,6 @@
       <polymer-ui-menu-item href="/docs/elements/polymer-elements.html">Polymer elements</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/docs/elements/polymer-ui-elements.html">Polymer UI elements</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/docs/elements/other.html">Other</polymer-ui-menu-item>
-    </polymer-ui-submenu-item>
-
-    <polymer-ui-submenu-item src="/images/picons/ic_polymer_source.svg"
-        class="{{ {show: menu == 'elements'} | tokenList}}"
-        label="Element guides &#x25BE;">
-        <polymer-ui-menu-item href="/docs/elements/layout-elements.html">Layout elements</polymer-ui-menu-item>
-      <polymer-ui-menu-item href="/docs/elements/icons.html">Using core icons</polymer-ui-menu-item>
-      <polymer-ui-menu-item href="/docs/elements/material.html">Material design with Polymer</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
 
     <polymer-ui-submenu-item class="{{ {show: menu == 'docs'} | tokenList}}" id="gettingstartedmenu" label="Getting started" src="/images/picons/ic_polymer_source.svg">
