@@ -9,7 +9,7 @@ subtitle: Polymer from the outside
 
 {% include toc.html %}
 
-{{site.project_title}} provides a set of <a href="/components/core-docs/index.html" target="_blank">Core elements</a> which are both [UI and non-UI components](/docs/start/customelements.html#elementtypes). You can reuse them in your projects simply by
+{{site.project_title}} provides several sets of elements, which you can reuse simply by
 including them in your project. If you don't want to write any code, keep reading!
 
 ## Installing elements {#install}
@@ -51,15 +51,25 @@ Don't worry about the other dependencies that were added. Bower installs them au
 
 ### Installing an element set {#installset}
 
-Although you can grab elements independently, sometimes you want to grab a whole collection. {{site.project_title}} contains a set of [UI elements](/docs/start/customelements.html#uielements) and a set of [non-UI](/docs/start/customelements.html#nonuielements) elements:
+Although you can grab elements independently, sometimes you want to grab a whole collection. 
+{{site.project_title}} contains two primary collections of elements:
 
-- <a href="/components/core-docs/index.html" target="_blank">Core elements</a>. Non-UI utility elements that perform common tasks like layout, AJAX, signaling, and storage, but don’t render anything in the browser.
-- [Paper elements](/components/paper-docs/index.html). UI elements.
+-   <a href="/docs/elements/core-elements.html">{{site.project_title}} Core elements</a>. A set of utility
+    elements including general-purpose UI elements (such as icons, layout elements, and toolbars),
+    as well as  non-UI elements providing features like AJAX, signaling and storage.
+
+-   [Paper elements](/docs/elements/paper-elements.html). A set of UI elements that implement the 
+    [material design system](/docs/polymer/material.html).
 
 Each set can be downloaded separately using Bower:
 
     bower install --save Polymer/core-elements
     bower install --save Polymer/paper-elements
+
+**Note:** The PolymerLabs github repo contains a number of unsupported elements that are either 
+experimental or deprecated. In particular, the `polymer-elements` and `polymer-ui-elements` 
+collections represent earlier work superseded by the {{site.project_title}} Core elements and 
+Paper elements.
 
 ## Using elements {#using}
 
@@ -123,4 +133,6 @@ building something! In the next section we'll cover the features of {{site.proje
   <paper-button icon="arrow-forward" label="Creating elements" raisedButton></paper-button>
 </a>
 
-If you'd rather browse the existing elements, check out the <a href="/components/core-docs/index.html" target="_blank">Core elements</a> and <a href="/components/paper-docs/index.html" target="_blank">Paper elements</a> catalogs.
+If you'd rather browse the existing elements, check out the 
+<a href="/docs/elements/core-elements.html">{{site.project_title}} Core elements</a> 
+and <a href="/docs/elements/core-elements.html">Paper elements</a> catalogs.
