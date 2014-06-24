@@ -9,26 +9,8 @@ subtitle: Your first Polymer application
 
 <link rel="import" href="/elements/side-by-side.html">
 
-<style>
-.running-app-frame {
-    border: 1px solid #000;
-    padding: 0px;
-}
-pre {
-  font-size: 13px !important;
-  border: 1px solid #eaeaea !important;
-  padding 5px !important;
-  margin: 10px 0px !important;
-}
-side-by-side h4 {
-  line-height: 16px;
-  margin-top: 0px;
-  margin-left: 25px;
-}
-side-by-side ul {
-  -webkit-padding-start: 25px;
-}
-</style>
+<link rel="stylesheet" href="tutorial.css">
+
 
 {% include toc.html %}
 
@@ -91,14 +73,17 @@ A <a href="http://www.polymer-project.org/docs/polymer/polymer.html#published-pr
 or connected to another property using two-way data binding. You'll use the `show` property
 in a later step.
 
-----
+<div class="divider" layout horizontal center center-justified>
+  <core-icon icon="polymer"></core-icon>
+</div>
 
 Add a `<post-service>` element inside the element's `<template>`:
 
 <side-by-side>
   <pre>
   ...
-  <strong>&lt;post-service id="service" posts="{%raw%}{{posts}}{%endraw%}">&lt;/post-service></strong>
+  <strong class="highlight nocode">&lt;post-service id="service" posts="{%raw%}{{posts}}{%endraw%}">
+  &lt;/post-service></strong>
   ...
   </pre>
   <aside>
@@ -112,10 +97,12 @@ Add a `<post-service>` element inside the element's `<template>`:
   </aside>
 </side-by-side>
 
-The data binding links the service element's `posts` property to a local property (also called 
+The [_data binding_](/docs/polymer/databinding.html) links the service element's `posts` property to a local property (also called 
 `posts` here). Any methods you define on your custom element can access the response as `this.posts`.
 
----- 
+<div class="divider" layout horizontal center center-justified>
+  <core-icon icon="polymer"></core-icon>
+</div> 
 
 Render a dynamic list of cards.
 
@@ -125,12 +112,9 @@ Add the following `<div>` and `<template>` tag:
 {% raw %}
 <pre>
 &lt;post-service id="service" posts="{{posts}}"></post-service>
-<strong>&lt;div layout vertical center>
+<strong class="highlight nocode">&lt;div layout vertical center>
   &lt;template repeat="{{post in posts}}">
-    &lt;post-card
-      favorite="{{post.favorite}}"
-      on-favorite-tap="{{handleFavorite}}"
-      hidden?="{{show == 'favorites' && !post.favorite}}">
+    &lt;post-card>
       &lt;img src="{{post.avatar}}" width="70" height="70">
       &lt;h2>{{post.username}}&lt;/h2>
       &lt;p>{{post.text}}&lt;/p>
@@ -163,11 +147,13 @@ replace the existing link for `post-card`:
 <pre>
 ...
 &lt;link rel="import" href="../components/paper-tabs/paper-tabs.html">
-<strong>&lt;link rel="import" href="post-list.html"></strong>
+<strong class="highlight nocode">&lt;link rel="import" href="post-list.html"></strong>
 ...
 </pre>
     
-----
+<div class="divider" layout horizontal center center-justified>
+  <core-icon icon="polymer"></core-icon>
+</div>
 
 Use the `<post-list>` element.
 
@@ -175,10 +161,12 @@ Find the `<post-card>` element you added in the last step and replace it
 with a `<post-list>`:
 
 <pre>
-<strong>
+...
+<strong class="highlight nocode">
 &lt;div class="container" layout vertical center&gt;
   &lt;post-list show="all"&gt;&lt;/post-list&gt;
-</div></strong>
+&lt;/div></strong>
+...
 </pre>
 
 ### Test your work

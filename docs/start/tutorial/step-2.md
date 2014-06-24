@@ -9,34 +9,7 @@ subtitle: Your first Polymer application
 
 <link rel="import" href="/elements/side-by-side.html">
 
-<style>
-.running-app-frame {
-    border: 1px solid #000;
-    padding: 0px;
-}
-pre {
-  font-size: 13px !important;
-  border: 1px solid #eaeaea !important;
-  /*
-  padding 5px !important;
-  margin: 10px 0px !important;
-  */
-}
-side-by-side {
-  margin: 10px 0px 0px 20px;
-}
-side-by-side pre {
-  padding 5px 5px 5px 0px;
-}
-side-by-side h4 {
-  line-height: 16px;
-  margin-top: 0px;
-  margin-left: 25px;
-}
-side-by-side ul {
-  -webkit-padding-start: 25px;
-}
-</style>
+<link rel="stylesheet" href="tutorial.css">
 
 {% include toc.html %}
 
@@ -173,7 +146,9 @@ To render the <code>&lt;h3&gt;</code> inside your <code>&lt;post-card&gt;</code>
 the shadow DOM tree.</p>
 </aside>
 
-----
+<div class="divider" layout horizontal center center-justified>
+  <core-icon icon="polymer"></core-icon>
+</div>
 
 Create the card structure.
 
@@ -183,7 +158,7 @@ Find the `CARD CONTENTS GO HERE` comment and add the `<div>` and
 <side-by-side>
   <pre>
   &lt;!-- CARD CONTENTS GO HERE -->
-  <strong>&lt;div class="card-header" layout horizontal center>
+  <strong class="highlight nocode">&lt;div class="card-header" layout horizontal center>
     &lt;content select="img">&lt;/content>
     &lt;content select="h2">&lt;/content>
   &lt;/div>
@@ -208,7 +183,9 @@ Find the `CARD CONTENTS GO HERE` comment and add the `<div>` and
 </side-by-side>
 
 
-----
+<div class="divider" layout horizontal center center-justified>
+  <core-icon icon="polymer"></core-icon>
+</div>
 
 Style the imported content.
 
@@ -220,7 +197,7 @@ To style the children added using the `<content>` element, add the
 following CSS inside the `<style>` tag:
 
 <side-by-side>
-  <pre>
+  <pre><strong class="highlight nocode">
   polyfill-next-selector { content: ".card-header h2"; }
   .card-header ::content h2 {
     margin: 0;
@@ -232,7 +209,7 @@ following CSS inside the `<style>` tag:
     width: 70px;
     border-radius: 50%;
     margin: 10px;
-  }
+  }</strong>
   </pre>
   <aside>
     <h4>Key information</h4>
@@ -267,7 +244,7 @@ the following line after your existing imports:
   ...
   &lt;link rel="import"
     href="../components/paper-tabs/paper-tabs.html">
-  &lt;link rel="import" href="post-card.html">
+  <strong class="highlight nocode">&lt;link rel="import" href="post-card.html"></strong>
   ...
   </pre>
   <aside>
@@ -278,7 +255,9 @@ the following line after your existing imports:
   </aside>
 </side-by-side>
 
- ---- 
+ <div class="divider" layout horizontal center center-justified>
+  <core-icon icon="polymer"></core-icon>
+</div> 
 
 Add a `<post-card>` element to `index.html` directly after the    
 `<core-toolbar>` element:
@@ -288,7 +267,7 @@ Add a `<post-card>` element to `index.html` directly after the
   ...   
   &lt;/core-toolbar>
 
-    <strong>&lt;post-card>
+    <strong class="highlight nocode">&lt;post-card>
     &lt;img width="70" height="70" 
       src="../images/avatar-07.svg">
       &lt;h2>Another Developer&lt;/h2>

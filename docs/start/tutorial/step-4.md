@@ -9,26 +9,7 @@ subtitle: Your first Polymer application
 
 <link rel="import" href="/elements/side-by-side.html">
 
-<style>
-.running-app-frame {
-    border: 1px solid #000;
-    padding: 0px;
-}
-pre {
-  font-size: 13px !important;
-  border: 1px solid #eaeaea !important;
-  padding 5px !important;
-  margin: 10px 0px !important;
-}
-side-by-side h4 {
-  line-height: 16px;
-  margin-top: 0px;
-  margin-left: 25px;
-}
-side-by-side ul {
-  -webkit-padding-start: 25px;
-}
-</style>
+<link rel="stylesheet" href="tutorial.css">
 
 
 ## Step 4: Finishing touches
@@ -74,7 +55,9 @@ Open `post-card.html` in your editor and add the `<core-icon>` element:
 </aside>
 </side-by-side>
 
-----
+<div class="divider" layout horizontal center center-justified>
+  <core-icon icon="polymer"></core-icon>
+</div>
 
 Add the `favorite` property and `favoriteTapped` method to the element's   
 prototype. 
@@ -82,7 +65,7 @@ prototype.
 <side-by-side>
   <pre>
   &lt;script>
-  <strong>   
+  <strong class="highlight nocode">   
   Polymer({
     publish: {
       favorite: {
@@ -100,7 +83,7 @@ prototype.
   <aside>
     <ul>
       <li>The <code>publish</code> object is another way to specify published properties,
-      like the <code>attributes</code> attribute shown in Step 3. In this case, the
+      like the <code>attributes</code> attribute shown in Step 3. Here the
       <code>favorite</code> property defaults to <code>false</code>, and it <em>reflects</em>, meaning
       the <code>favorite</code> attribute is updated whenever the property value
       changes.</li>
@@ -118,12 +101,14 @@ is set or unset.
 
 Right now, there's no visual indication that the button is pressed.
 
-----
+<div class="divider" layout horizontal center center-justified>
+  <core-icon icon="polymer"></core-icon>
+</div>
 
 Add the following CSS to style the favorite button:
 
 <side-by-side>
-  <pre>
+  <pre><strong class="highlight nocode">
   core-icon-button {
     position: absolute;
     top: 3px;
@@ -134,7 +119,7 @@ Add the following CSS to style the favorite button:
   }
   :host([favorite]) core-icon-button {
     fill: #da4336;
-  }
+  }</strong>
   </pre>
   <aside>
     <ul>
@@ -145,7 +130,9 @@ Add the following CSS to style the favorite button:
   </aside>
 </side-by-side>
 
-----
+<div class="divider" layout horizontal center center-justified>
+  <core-icon icon="polymer"></core-icon>
+</div>
 
 Save `post-card.html`.
    
@@ -157,14 +144,16 @@ work, but there are still a few steps left to finish the app.
 Open `index.html` and update the tab event handler to switch views in 
 `<post-list>` when the user switches tabs:
 
-    <script>
-    var list = document.querySelector('post-list');
-    var tabs = document.querySelector('paper-tabs');
+<pre>
+&lt;script>
+var tabs = document.querySelector('paper-tabs');
+<strong class="highlight nocode">var list = document.querySelector('post-list');
 
-    tabs.addEventListener('core-select', function() {
-      list.show = tabs.selected;
-    });
-    </script>
+tabs.addEventListener('core-select', function() {
+  list.show = tabs.selected;
+});</strong>
+&lt;/script>
+</pre>
 
 Save `index.html`.
 
@@ -179,12 +168,12 @@ favorites:
   {% raw %}
   <pre>
     &lt;template repeat="{{post in posts}}">
-      &lt;strong>
+      <strong class="highlight nocode">
       &lt;post-card
         favorite="{{post.favorite}}"
         on-favorite-tap="{{handleFavorite}}"
         hidden?="{{show == 'favorites' && !post.favorite}}">
-        &lt;/strong>
+        </strong>
         &lt;img src="{{post.avatar}}" width="70" height="70">
         &lt;h2>{{post.username}}&lt;/h2>
         &lt;p>{{post.text}}&lt;/p>
@@ -209,14 +198,16 @@ favorites:
 The binding expression for `hidden` actually does the work of switching 
 between the All and Favorites tabs.
 
-----
+<div class="divider" layout horizontal center center-justified>
+  <core-icon icon="polymer"></core-icon>
+</div>
 
 Add an event handler for the `favorite-tap` event:
 
 <side-by-side>
   <pre>
   &lt;script>
-  <strong>
+  <strong class="highlight nocode">
   Polymer({
     handleFavorite: function(event, detail, sender) {
       var post = sender.templateInstance.model.post;
@@ -259,10 +250,12 @@ If your project doesn't look quite right, check your work against the files in t
 -   [`post-list.html`](https://github.com/Polymer/polymer-tutorial/blob/master/finished/post-list.html)
 -   [`index.html`](https://github.com/Polymer/polymer-tutorial/blob/master/finished/index.html)
 
-### Next
+### Start your next project
 
-<a href="/docs/start/tutorial/step-5.html">
-  <paper-button icon="arrow-forward" label="Step 5: Starting your next project" raisedButton></paper-button>
+Ready to start a project of your own? Install some {{site.project_title}} components and get to work!
+
+<a href="/docs/start/getting-the-code.html#installing-components">
+  <paper-button icon="arrow-forward" label="Installing components" raisedButton></paper-button>
 </a>
 
 

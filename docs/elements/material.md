@@ -23,13 +23,14 @@ subtitle: Guide
   .demo-card {
     width: 100px;
     height: 100px;
-    background: #eee;
+    border: 1px solid #ccc;
     text-align: center;
     margin: 20px;
     padding: 10px 5px;
   }
-  .demo-card p {
-    padding: 5px 0px;
+  .labeled-card p {
+    text-align: center;
+    margin: 0px;
   }
 </style>
 
@@ -60,7 +61,7 @@ The {{site.project_title}} core elements set includes several elements for appli
 including creating toolbars, app bars, tabs, and side nav consistent with the
 material design guidelines.
 
-See [Layout elements](/docs/polymer/layout-elements.html) for information on
+See [Layout elements](layout-elements.html) for information on
 using these elements.
 
 To work well with the {{site.project_title}} layout elements, you should make sure other
@@ -84,7 +85,7 @@ element and its associated icon sets. Using `<core-icon>` can be as simple as:
 and the default icon set, which  includes over 150 common icons. Here are a
 few examples:
 
-<div class="icondemo" layout horizontal>
+<div class="icondemo" layout horizontal wrap>
   <core-icon icon="send"></core-icon>
   <core-icon icon="credit-card"></core-icon>
   <core-icon icon="visibility" style="fill: #5168ff;"></core-icon>
@@ -97,7 +98,7 @@ few examples:
 </div>
 
 For details on using `<core-icon>` and its relatives, see 
-[Using core icons](/docs/polymer/icons.html).
+[Using core icons](icons.html).
 
 ## Material controls
 
@@ -109,7 +110,7 @@ controls.
   <thead>
     <tr>
       <th>Control</th>
-      <th>Example</th>
+      <th colspan="2">Example</th>
       <!-- <th>Info</th> -->
     </tr>
   </thead>
@@ -255,7 +256,7 @@ When designing your own components or using generic HTML elements such as
 Material responds to input events with an touch ripple effect: an animation
 that moves out radially from the origin of the event. These effects are built
 into the 
-[paper elements collection](/docs/elements/paper-elements.html):
+[paper elements collection](paper-elements.html):
 
 <paper-button class="purpleRipple" 
   label="Show me the ripple" raisedButton></paper-button>
@@ -270,23 +271,32 @@ element you want to add the effect to:
       <paper-ripple fit></paper-ripple>
     </div>
 
-Touch the cards below to see ripple effects.
+Touch the cards and icon below to see ripple effects.
 
-<div layout horizontal>
-<div class="demo-card" style="position: relative;">
-  <p>Default ripple</p>
-  <paper-ripple fit></paper-ripple>
-</div>
-<div class="demo-card" style="position: relative;">
-  <p>Colored ripple</p>
-  <paper-ripple fit style="color: red;"></paper-ripple>
-</div>
-<div class="demo-card" style="position: relative;">
-  <p>Circular ripple</p>
-  <paper-ripple fit class="circle"></paper-ripple>
-</div>
-</div>
+<div layout horizontal wrap>
+  <div class="labeled-card" layout vertical>
+    <div class="demo-card" style="position: relative;">
+      <paper-ripple fit></paper-ripple>
+    </div>
+    <p>Default ripple</p>
+  </div>
 
+  <div class="labeled-card" layout vertical>
+    <div class="demo-card" style="position: relative;">
+      <paper-ripple fit style="color: red;"></paper-ripple>
+    </div>
+    <p>Colored ripple</p>
+  </div>
+
+  <div class="labeled-card" layout vertical>
+    <div class="demo-card" style="position: relative; border: none;" 
+      layout vertical center center-justified>
+      <core-icon icon="info"></core-icon>
+      <paper-ripple fit class="circle"></paper-ripple>
+    </div>
+    <p>Circular ripple</p>
+  </div>
+</div>
 
 The `<paper-ripple>` should be `position: absolute` and sized to fit the
 parent element. In  this example, the `fit` layout attribute is used to
@@ -295,7 +305,8 @@ position the ripple appropriately.  (See
 and other layout attributes.)
 
 You can clip the ripple to a circle by adding the `circle` class to the
-ripple's classlist.
+ripple's classlist. Circular ripples are used for small buttons used in a grid
+layout (for example, icon buttons, number pads).
 
 You can set the color of the ripple using the `color` CSS property. 
 

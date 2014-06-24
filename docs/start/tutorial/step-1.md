@@ -9,18 +9,7 @@ subtitle: Your first Polymer application
 
 <link rel="import" href="/elements/side-by-side.html">
 
-<style>
-.running-app-frame {
-    border: 1px solid #000;
-    padding: 0px;
-}
-pre {
-  font-size: 13px !important;
-  border: 1px solid #eaeaea !important;
-  padding 5px !important;
-  margin: 0 0 0 20px !important;
-}
-</style>
+<link rel="stylesheet" href="tutorial.css">
 
 {% include toc.html %}
 
@@ -32,7 +21,7 @@ In this step, you'll use some pre-built Polymer elements to create the basic app
 ### Edit index.html
 
 
-Go to the `unquote` directory and open the `index.html` file in your favorite editor. The starting file looks like this:
+Go to the `starter` directory and open the `index.html` file in your favorite editor. The starting file looks like this:
 
 <side-by-side>
 <pre>
@@ -47,7 +36,7 @@ Go to the `unquote` directory and open the `index.html` file in your favorite ed
   &lt;/script>
 
   &lt;link rel="import" 
-    href="../components/font-roboto2/roboto2.html">
+    href="../components/font-roboto/roboto.html">
   ...
 </pre>
 <aside>
@@ -79,7 +68,9 @@ Skipping over the styles for now, at the end of the file you'll find something n
 </aside>
 </side-by-side>
 
-----
+<div class="divider" layout horizontal center center-justified>
+  <core-icon icon="polymer"></core-icon>
+</div>
 
 Add an HTML import links to import the `<core-header-panel>`, `<core-toolbar>`, and `<paper-tabs>` elements:
 
@@ -88,9 +79,9 @@ Add an HTML import links to import the `<core-header-panel>`, `<core-toolbar>`, 
   &lt;script 
     src="../components/platform/platform.js"></script>
   &lt;link rel="import" 
-    href="../components/font-roboto2/roboto2.html">
+    href="../components/font-roboto/roboto.html">
 
-  <strong>&lt;link rel="import"
+  <strong class="highlight nocode">&lt;link rel="import"
     href="../components/core-header-panel/core-header-panel.html">
   &lt;link rel="import"
     href="../components/core-toolbar/core-toolbar.html">
@@ -110,13 +101,15 @@ Add an HTML import links to import the `<core-header-panel>`, `<core-toolbar>`, 
   </aside>
 </side-by-side>
 
-----
+<div class="divider" layout horizontal center center-justified>
+  <core-icon icon="polymer"></core-icon>
+</div>
 
 To add a toolbar, add the following code inside the `<body>` tag.
  
 <side-by-side>
   <pre>
-  <strong>&lt;core-header-panel>
+  <strong class="highlight nocode">&lt;core-header-panel>
       
     &lt;core-toolbar>
     &lt;/core-toolbar>
@@ -144,13 +137,15 @@ To add a toolbar, add the following code inside the `<body>` tag.
   </aside>
 </side-by-side>
 
-----
+<div class="divider" layout horizontal center center-justified>
+  <core-icon icon="polymer"></core-icon>
+</div>
 
 Add the tabs.
 
-The application will use tabs for navigating between two different views, 
-a list of all messages and a list of favorites. The `<paper-tabs>`   
-element works much like a `<select>` element, but it's styled as a set of 
+The application will use tabs for navigating between two different views,
+a list of all messages and a list of favorites. The `<paper-tabs>`
+element works much like a `<select>` element, but it's styled as a set of
 tabs.
 
 <side-by-side>
@@ -159,7 +154,7 @@ tabs.
       
     &lt;core-toolbar>
 
-      <strong>&lt;paper-tabs valueattr="name" selected="all" self-end>
+      <strong class="highlight nocode">&lt;paper-tabs valueattr="name" selected="all" self-end>
         &lt;paper-tab name="all">ALL&lt;/paper-tab>
         &lt;paper-tab name="favorites">FAVORITES&lt;/paper-tab>
       &lt;/paper-tabs></strong>
@@ -184,7 +179,9 @@ tabs.
   </aside>
 </side-by-side>
 
----- 
+<div class="divider" layout horizontal center center-justified>
+  <core-icon icon="polymer"></core-icon>
+</div> 
 
 Add a `<script>` tag at the end of the file to handle the tab switching
     event.
@@ -192,7 +189,7 @@ Add a `<script>` tag at the end of the file to handle the tab switching
 
 <side-by-side>
   <pre>
-  <strong>&lt;script>
+  <strong class="highlight nocode">&lt;script>
     var tabs = document.querySelector('paper-tabs');
 
     tabs.addEventListener('core-select', function() {
@@ -216,7 +213,7 @@ Add a `<script>` tag at the end of the file to handle the tab switching
 </side-by-side>
 
 
-Save the file and open the project in your browser (for example, `http://localhost:8000/unquote`). You have a Polymer app! 
+Save the file and open the project in your browser (for example, `http://localhost:8000/starter`). You have a Polymer app! 
 
   <iframe class="running-app-frame" width="480" height="320" src="/samples/tutorial/step-1/index.html">
   </iframe>
