@@ -1,23 +1,50 @@
 <link rel="import" href="../components/polymer/polymer.html">
 <link rel="import" href="../components/core-ajax/core-ajax.html">
 <!-- 
-  post-list provides an API for a fake service -- 
-  unquote, the read-only social networking service!
+  `<post-service>` provides an API for a fake service -- 
+  _unquote_, the read-only social networking service!
 
-  Provides a very simple API --
+  Provides a very simple API: `posts` returns the list of posts.
+  `setFavorite` pretends to persist a user's favorite choice.
 
   @element post-service
-   
+  @demo 
+  @homepage http://www.polymer-project.org/docs/start/tutorial.html
+-->
+
+<!--
   An array of post objects, with the following format:
 
-  | `uid`      | Number  | Unique ID for this post.   |
-  | `username` | String  | Poster's username.         |
-  | `avatar`   | String  | URL for the user's avatar. |
-  | `text`     | String  | Post text                  |
-  | `favorite` | Boolean | True if the current user favorited this post. |
+  <table border="0">
+    <tr>
+      <td><code>uid</code></td>
+      <td>Number</td>
+      <td>Unique ID for this post.</td>
+    </tr>
+     <tr>
+      <td><code>username</code></td>
+      <td>String</td>
+      <td>Poster's username.</td>
+    </tr>
+    <tr>
+      <td><code>avatar</code></td>
+      <td>String</td>
+      <td>URL for the user's avatar.</td>
+    </tr>  
+         <tr>
+      <td><code>text</code></td>
+      <td>String</td>
+      <td>Post text.</td>
+    </tr>  
+    <tr>
+      <td><code>favorite</code></td>
+      <td>Boolean</td>
+      <td>True if the current user favorited this post.</td>
+    </tr>
+  </table>
   
   @attribute posts 
-  @type array
+  @type Array
   @default []
 -->
 <polymer-element name="post-service" attributes="posts">
@@ -46,8 +73,8 @@
     /** 
      * Update the service with the current favorite value.
      * (Two-way data binding updates the favorite value 
-     * stored locally.) If this was a real service, the 
-     * change would need to be persisted to the service here.
+     * stored locally.) If this was a real service, this
+     * method would do something useful.
      * 
      * @method setFavorite
      * @param uid {Number} Unique ID for post.
@@ -59,5 +86,4 @@
     }
   });
   </script>
-
 </polymer-element>
