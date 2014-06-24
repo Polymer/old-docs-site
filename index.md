@@ -113,25 +113,25 @@ title: Welcome
     <div class="columns">
       <summary>
         <div class="box">
-          <a href="/apps/topeka/index.html">
+          <a href="/apps/topeka/">
             <img src="/images/topeka_square.png">
           </a>
         </div>
         <h1 class="elements-using">Topeka</h1>
         <h5>A fun quiz app built using material-design based <em>paper-elements</em></h5>
-        <a href="/apps/topeka/index.html">
+        <a href="/apps/topeka/">
           <paper-button icon="arrow-forward" label="Demo Topeka"></paper-button>
         </a>
       </summary>
       <summary>
         <div class="box">
-          <a href="/components/paper-elements/demo.html">
+          <a href="/components/paper-elements/demo.html#core-toolbar">
             <img src="/images/sampler-paper-square.png">
           </a>
         </div>
         <h1 class="elements-creating">Paper Elements</h1>
         <h5>A sampler showcasing Polymer elements based on material design</h5>
-        <a href="/components/paper-elements/demo.html">
+        <a href="/components/paper-elements/demo.html#core-toolbar">
           <paper-button icon="arrow-forward" label="Browse Elements"></paper-button>
         </a>
       </summary>

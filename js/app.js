@@ -15,10 +15,6 @@ function hideSidebar() {
   sidebar.toggle();
 }
 
-function downloadStarter() {
-  ga('send', 'event', 'button', 'download');
-}
-
 function addPermalink(el) {
   el.classList.add('has-permalink');
   el.insertAdjacentHTML('beforeend',
@@ -83,8 +79,7 @@ function injectPage(url, opt_addToHistory) {
     }
 
     // Record GA page view early; once metadata is set up and URL is updated.
-    ga('send', 'pageview', location.pathname);
-    ga('devrelTracker.send', 'pageview', location.pathname);
+    exports.recordPageview();
 
     // Update app-bar links.
     var docAppBar = doc.querySelector('app-bar');
@@ -284,6 +279,16 @@ document.querySelector('[data-twitter-follow]').addEventListener('click', functi
 });
 
 
+exports.downloadStarter = function() {
+  ga('send', 'event', 'button', 'download');
+};
+
+exports.recordPageview = function(opt_url) {
+  var url = opt_url || location.pathname + location.hash;
+  ga('send', 'pageview', url);
+  ga('devrelTracker.send', 'pageview', url);
+};
+
 // -------------------------------------------------------------------------- //
 
 // Analytics -----
@@ -294,8 +299,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 
 ga('create', 'UA-39334307-1', 'auto', {'siteSpeedSampleRate': 50});
 ga('create', 'UA-49880327-9', 'auto', {'name': 'devrelTracker'});
-ga('send', 'pageview');
-ga('devrelTracker.send', 'pageview');
+exports.recordPageview();
 // ---------------
 
 console && console.log("%cWelcome to Polymer!\n%cweb components are the <bees-knees>",

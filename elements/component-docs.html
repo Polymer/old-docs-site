@@ -49,7 +49,7 @@
 
       <p>
         <a class="badge" href="http://bowerarchiver.appspot.com/archive?{{data.name}}=Polymer/{{data.name}}">Download</a>
-        <a class="badge" target="_blank" href="/components/{{data.name}}/demo.html">Demo</a>
+        <a class="badge" target="_blank" href="/components/{{data.name}}/demo.html" on-click="{{recordDemoPageview}}">Demo</a>
         <a class="badge" target="_blank" href="http://github.com/Polymer/{{data.name}}">Source</a>
       </p>
 
@@ -136,8 +136,8 @@
   </template>
   <script>
     Polymer('doc-page', {
-      hilight: function(event, detail, sender) {
-        //detail.code = hljs.highlightAuto(detail.code).value;
+      recordDemoPageview: function(e, detail, sender) {
+        window.recordPageview && window.recordPageview(sender.href); // global pollution.
       }
     });
   </script>
