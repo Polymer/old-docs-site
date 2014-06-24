@@ -68,6 +68,16 @@
   }
 }
 
+#container.dark {
+  #tabstrip {
+    border-bottom: none;
+  }
+  .selected {
+    color: #fff !important;
+    border-bottom: 4px solid #d61a7f;
+  }
+}
+
 .show {
   display: block !important;
 }

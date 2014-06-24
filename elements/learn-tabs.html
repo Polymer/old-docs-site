@@ -7,6 +7,9 @@
 <polymer-element name="learn-tabs">
   <template>
     <style>
+      :host {
+        color: #1f2036;
+      }
       .card {
         background-color: #f8f8f8;
       }
@@ -15,7 +18,6 @@
         letter-spacing: -0.01em;
         line-height: 48px;
         margin: 0;
-        padding: 16px 16px 0 16px;
       }
       .card .summary {
         padding: 16px;
@@ -24,11 +26,19 @@
         text-decoration: none;
         color: inherit;
       }
+      .card iframe {
+        border: 0;
+        width: 400px;
+        min-height: 280px;
+      }
+      iframe.stretch {
+        width: 100%;
+      }
     </style>
     <core-media-query query="min-width: 640px" queryMatches="{{wide}}"></core-media-query>
-    <demo-tabs style="width:100%;">
-      <demo-tab heading="{{wide ? 'Using Elements (10 sec)' : 'Use'}}">
-        <code-explainer label="Using Polymer elements">
+    <demo-tabs theme="dark" style="width:100%;">
+      <demo-tab heading="{{wide ? 'Use Elements (10 sec) ➜' : 'Use ➜'}}">
+        <code-explainer label="How to use Polymer elements">
           <script type="text/template">
             <head>
               <!-- Import element -->
@@ -39,23 +49,24 @@
               [start-use]<google-map lat="37.790" long="-122.390"></google-map>[end-create]
             </body>
           </script>
+          <div>Using Polymer elements (like all web components) is an absurdly simple 2-step process:</div>
           <code-explainer-info sec="create" label="1. Import a component you'd like to use">
             Find a component, grab the code, and simply import the component into your page using
             an HTML Import (<code>&lt;link rel="import"&gt;</code>).
           </code-explainer-info>
           <code-explainer-info sec="use" label="2. Use the new element">
-            Once imported, custom elements can be used like any other HTML tag.
+            Once imported, custom elements become first-class HTML elements and can be used like any other tag.
           </code-explainer-info>
         </code-explainer>
       </demo-tab>
-      <demo-tab heading="{{wide ? 'Creating Elements (1 min)' : 'Create' }}">
-        <code-explainer label="Creating custom elements with Polymer">
+      <demo-tab heading="{{wide ? 'Create Elements (1 min) ➜' : 'Create ➜' }}">
+        <code-explainer label="How to create custom elements with Polymer">
           <script type="text/template">
             <!-- Define element -->
             [start-def]<polymer-element name="my-counter" [start-publish]attributes="counter">[end-publish][end-def]
               [start-scope]<template>[end-scope]
                 <style> /*...*/ </style>
-                <div id="label">[start-content]<content></content>[end-content]</div>
+                <div id="label"><content></content></div>
                 Value: <span [start-nodefind]id="counterVal"[end-nodefind]>[start-data]&#123;&#123;counter&#125;&#125;[end-data]</span><br>
                 <button [start-events]on-tap="&#123;&#123;increment&#125;&#125;[end-events]">Increment</button>
               [start-scope]</template>[end-scope]
@@ -75,6 +86,8 @@
             <!-- Use element -->
             <my-counter [start-publish]counter="10"[end-publish]>[start-content]Points[end-content]</my-counter>
           </script>
+          <div>Polymer sugars the new Web Components standards with awesome features to make
+            defining your own custom elements a breeze:</div>
           <code-explainer-info sec="def" label="Declarative custom element definition">
             Polymer allows you to define new custom elements declaratively using <code>&lt;polymer-element&gt;</code>
           </code-explainer-info>
@@ -83,7 +96,7 @@
             compartmentalized, and styles don't leak in or out.
           </code-explainer-info>
           <code-explainer-info sec="publish" label="Published properties">
-            Properties that are "published" can be initialized via markup and call change 
+            Properties that are "published" can be initialized via markup and invoke change 
             handlers when modified.
           </code-explainer-info>
           <code-explainer-info sec="data" label="Declarative data binding">
@@ -98,37 +111,22 @@
             Any template children can be referenced by <code>id</code> on <code>this.$</code>, eliminating
             boilerplate querySelector's.
           </code-explainer-info>
-          <code-explainer-info sec="content" label="Insertion points">
-            HTML content passed by user to element is rendered into <code>&lt;content&gt;</code> insertion point.
-          </code-explainer-info>
         </code-explainer>
       </demo-tab>
       <demo-tab heading="{{wide ? 'Build an app (30 min)' : 'Tutorial' }}">
         <div class="card">
-          <h2>Try the tutorial</h2>
-          <div layout horizontal?="{{wide}}" vertical?="{{!wide}}" center-justified?="{{!wide}}">
+          <div layout horizontal?="{{wide}}" vertical?="{{!wide}}">
             <div class="summary" flex layout vertical>
+              <h2>Build an app</h2>
               <div flex>
-                <p>In this tutorial, you'll build a small Polymer application -- a very basic client for a social networking service.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> 
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>In this tutorial, you'll build a small Polymer application -- a very basic client for a social networking service like the one at right.  It'll give you a good feel for both using pre-made
+                Polymer elements, and building custom elements of your own.</p>
+                <a href="/docs/start/tutorial/intro.html"><paper-button raisedButton icon="arrow-forward" label="Go to tutorial"></paper-button></a>
+                <p>If you'd rather keep reading, head to the Polymer docs page to dive deeper.</p> 
+                <a href="/docs/start/usingelements.html"><paper-button raisedButton icon="arrow-forward" label="Go to documentation"></paper-button></a>
               </div>
-              <a href="/docs/start/tutorial/intro.html"><paper-button raisedButton icon="arrow-forward" label="Go to tutorial"></paper-button></a>
             </div>
-            <img src="/images/unquote.png">
-          </div>
-        </div>
-      </demo-tab>
-      <demo-tab heading="{{wide ? 'Learn more' : 'More' }}">
-        <div class="card">
-          <h2>Go deeper with Web Components and Polymer</h2>
-          <div class="summary">
-            <ul>
-              <li>Read API documentation</li>
-              <li>Browser conceptual documentation</li>
-              <li>Watch awesome videos</li>
-              <li>Learn about the platform</li>
-            </ul>
+            <iframe src="/samples/tutorial/finished/index.html" class="{{ {stretch:!wide} | tokenList }}"></iframe>
           </div>
         </div>
       </demo-tab>

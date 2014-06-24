@@ -28,11 +28,9 @@ title: Welcome
   </div>
 </section>
 
-<section id="learn">
+<section id="learn" class="main-purple">
   <div class="panel right">
     <summary>
-      <h1>Learn</h1>
-      <br>
       <learn-tabs></learn-tabs>
     </summary>
   </div>
