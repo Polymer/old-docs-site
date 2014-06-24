@@ -16,11 +16,7 @@ title: FAQ
 
 ### Why should I care about this project? {#why}
 
-{{site.project_title}} is a new type of library for the web, targeting the modern
-web platform, and useful for building web applications based on Web Components.
-
-Unlike some other frameworks before it, {{site.project_title}} attempts to embrace
-HTML as much as possible by encouraging the use of [custom element](/platform/custom-elements.html) wherever possible. It includes a handful of independent polyfills for these emerging web standards (Custom Elements, Shadow DOM, etc.) that over time, diminish and ultimately disappear as browser vendors implement the native APIs.
+{{site.project_title}} is a pioneering library that makes it faster and easier than ever before to build beautiful applications on the web. {{site.project_title}} is built on top of a set of powerful new web platform primitives called Web Components. Web Components bring unprecedented composability, interoperability, and consumability to the web platform. The result is a monumental increase in developer productivity.
 
 ### Is {{site.project_title}} production ready? {#readiness}
 
