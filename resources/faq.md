@@ -93,7 +93,7 @@ polymer.dart is a Dart port of {{site.project_title}} created and maintained by 
 
 ### I see a bunch of XHRs making network requests. What gives? {#xhrrequests}
 
-One limitation of today's polyfills is that {{site.project_title}} aggressively uses XHR to shim HTML Imports. We're experimenting with packaging systems and build steps to reduce the cost of network requests. When this API lands natively in browsers, things will Just Work™. Resources will be loaded as they normally do, taking advantage of parallelism, browser caching, etc.
+One limitation of today's polyfills is that {{site.project_title}} aggressively uses XHR to shim HTML Imports. We're experimenting with packaging systems and build steps to reduce the cost of network requests. HTML imports are supported natively in Chrome 36 this API lands natively in browsers, where things will Just Work™. Resources load as they normally do, taking advantage of parallelism, browser caching, etc.
 
 You can try [Vulcanize](/articles/concatenating-web-components.html), which
 is a build tool for concatenating a list of elements and inlining their definitions into your main page.
