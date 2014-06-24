@@ -14,44 +14,8 @@ including them in your project. If you don't want to write any code, keep readin
 
 ## Installing elements {#install}
 
-The first step to using an element is to install using [Bower](http://bower.io). If you're not familiar with Bower, check out [Getting the Code](/docs/start/getting-the-code.html) to learn more about using it.
+You can install elements one at a time, or install a whole collection of elements.
 
-### Installing a single element {#installsingle}
-
-Elements can be installed individually as needed. For example, to download `<core-ajax>` and install it in your current project, run:
-
-    bower install --save Polymer/core-ajax
-
-**Note:** `Polymer/core-ajax` is shorthand for the element’s github repo, [https://github.com/Polymer/core-ajax](https://github.com/Polymer/core-ajax). You can install other elements the same way.
-{: .alert .alert-info }
-
-
-Running this command adds a `bower_components/` folder and fills it with `<core-ajax>`:
-
-    yourapp/
-      bower_components/
-        platform/
-        polymer/
-        core-ajax/
-
-Using the `--save` flag  adds the element to your app's `bower.json` file:
-
-    {
-      "name": "your-app",
-      "version": "0.0.0",
-      "dependencies": {
-        "core-ajax": "Polymer/core-ajax#~{{site.latest_version}}"
-      }
-    }
-
-**Note** If your project does not yet have a `bower.json` file, create one by running `bower init`.
-{: .alert .alert-info }
-
-Don't worry about the other dependencies that were added. Bower installs them automatically, and HTML Imports will do the heavy lifting and load them at runtime.
-
-### Installing an element set {#installset}
-
-Although you can grab elements independently, sometimes you want to grab a whole collection. 
 {{site.project_title}} contains two primary collections of elements:
 
 -   <a href="/docs/elements/core-elements.html">{{site.project_title}} Core elements</a>. A set of utility
@@ -61,10 +25,19 @@ Although you can grab elements independently, sometimes you want to grab a whole
 -   [Paper elements](/docs/elements/paper-elements.html). A set of UI elements that implement the 
     [material design system](/docs/polymer/material.html).
 
-Each set can be downloaded separately using Bower:
 
-    bower install --save Polymer/core-elements
-    bower install --save Polymer/paper-elements
+If you find an element you want while browsing the docs, simply click
+the download button and choose your install method. See 
+[Getting the Code](getting-the-code.html) for more information on the various methods.
+
+Click a button below to install one of the element collections:
+
+  <component-download-button org="Polymer" component="core-elements" label="GET THE {{site.project_title}} CORE ELEMENTS">
+  </component-download-button>
+
+  <component-download-button org="Polymer" component="paper-elements" label="GET THE PAPER ELEMENTS">
+  </component-download-button>
+
 
 **Note:** The PolymerLabs github repo contains a number of unsupported elements that are either 
 experimental or deprecated. In particular, the `polymer-elements` and `polymer-ui-elements` 
