@@ -22,8 +22,6 @@ web platform, and useful for building web applications based on Web Components.
 Unlike some other frameworks before it, {{site.project_title}} attempts to embrace
 HTML as much as possible by encouraging the use of [custom element](/platform/custom-elements.html) wherever possible. It includes a handful of independent polyfills for these emerging web standards (Custom Elements, Shadow DOM, etc.) that over time, diminish and ultimately disappear as browser vendors implement the native APIs.
 
-{{site.project_title}} is still in its very early days, but we're excited about its potential! 
-
 ### Is {{site.project_title}} production ready? {#readiness}
 
 {{site.project_title}} is currently in "developer preview." However, despite the label many people have already had success using {{site.project_title}} in production. Although things might still change, We encourage developers to take {{site.project_title}} out for a test drive.
