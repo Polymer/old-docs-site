@@ -1,7 +1,7 @@
 ---
 layout: default
 type: start
-navgroup: start
+navgroup: docs
 shortname: Start
 title: Getting Started
 subtitle: Your first Polymer application 

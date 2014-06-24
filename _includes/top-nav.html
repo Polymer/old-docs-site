@@ -7,10 +7,7 @@
 {% endcapture %}
 
 <app-bar theme="{{theme | trim }}" class="bar fixed" unresolved>
-  <a href="/docs/start/getting-the-code.html" class="paper-button {% if page.navgroup == 'start' %}active{% endif %}" borderless sink>Start</a>
-  <a href="/docs/polymer/polymer.html" class="paper-button {% if page.navgroup == 'docs' %}active{% endif %}" borderless sink>Docs</a>
+  <a href="/docs/start/tutorial/intro.html" class="paper-button {% if page.navgroup == 'docs' %}active{% endif %}" borderless sink>Learn</a>
   <a href="/docs/elements/core-elements.html" class="paper-button {% if page.navgroup == 'elements' %}active{% endif %}" borderless sink>Elements</a>
   <a href="/resources/faq.html" class="paper-button {% if page.navgroup == 'resources' %}active{% endif %}" borderless sink>Resources</a>
-  <a href="/discuss.html" class="paper-button {% if page.navgroup == 'community' %}active{% endif %}" borderless sink>Community</a>
-  <!-- <a href="#" class="paper-button" borderless sink>News</a> -->
 </app-bar>

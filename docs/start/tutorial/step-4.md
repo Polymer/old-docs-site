@@ -1,7 +1,7 @@
 ---
 layout: default
 type: start
-navgroup: start
+navgroup: docs
 shortname: Start
 title: "Step 4: Finishing touches"
 subtitle: Your first Polymer application 

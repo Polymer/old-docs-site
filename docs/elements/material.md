@@ -1,8 +1,8 @@
 ---
 layout: default
-type: core
-navgroup: docs
-shortname: Docs
+type: elements
+navgroup: elements
+shortname: Elements
 title: Material design with Polymer
 subtitle: Guide
 ---

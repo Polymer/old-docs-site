@@ -1,7 +1,7 @@
 ---
 layout: default
 type: start
-navgroup: start
+navgroup: docs
 shortname: Start
 title: "Step 5: Starting your next app"
 subtitle: Your first Polymer application 

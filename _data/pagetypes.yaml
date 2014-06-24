@@ -2,10 +2,10 @@ default:
   menu: other
 start:
   headertitle: Basics
-  menu: start
+  menu: docs
 concepts:
   headertitle: Concepts
-  menu: start
+  menu: docs
 core:
   headertitle: Polymer
   menu: docs

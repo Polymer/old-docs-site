@@ -9,28 +9,6 @@
 <template>
   <link rel="stylesheet" href="../css/elements/docs-menu.css">
   <polymer-ui-menu id="mainmenu" on-click="{{onClick}}" selectedItem="{{item}}">
-    <polymer-ui-menu-item id="getcode" href="/docs/start/getting-the-code.html" class="{{ {show: menu == 'start'} | tokenList}}" src="/images/picons/ic_archive_dark_.png">Get the Code</polymer-ui-menu-item>
-    <polymer-ui-submenu-item class="{{ {show: menu == 'start'} | tokenList}}" id="gettingstartedmenu" label="Getting started" src="/images/picons/ic_polymer_source.svg">
-      <!-- <ui-color-icon src="/images/picons/ic_polymer_source.svg"></ui-color-icon> -->
-      <polymer-ui-submenu-item label="Tutorial &#x25BE;">
-        <polymer-ui-menu-item href="/docs/start/tutorial/intro.html">Getting started</polymer-ui-menu-item>
-        <polymer-ui-menu-item href="/docs/start/tutorial/step-1.html">1: App structure</polymer-ui-menu-item>
-        <polymer-ui-menu-item href="/docs/start/tutorial/step-2.html">2: Your own element</polymer-ui-menu-item>
-        <polymer-ui-menu-item href="/docs/start/tutorial/step-3.html">3: Using data binding</polymer-ui-menu-item>
-        <polymer-ui-menu-item href="/docs/start/tutorial/step-4.html">4: Finishing touches</polymer-ui-menu-item>
-        <polymer-ui-menu-item href="/docs/start/tutorial/step-5.html">5: Your next app</polymer-ui-menu-item>
-      </polymer-ui-submenu-item>
-      <polymer-ui-menu-item href="/docs/start/usingelements.html">Using elements</polymer-ui-menu-item>
-      <polymer-ui-submenu-item label="Creating elements &#x25BE;">
-        <polymer-ui-menu-item href="/docs/start/creatingelements.html">The basics</polymer-ui-menu-item>
-        <polymer-ui-menu-item href="/docs/start/reusableelements.html">Reusable elements</polymer-ui-menu-item>
-      </polymer-ui-submenu-item>
-      <polymer-ui-menu-item href="/docs/start/platform.html">The Platform</polymer-ui-menu-item>
-    </polymer-ui-submenu-item>
-    <polymer-ui-submenu-item label="Concepts" class="{{ {show: menu == 'start'} | tokenList}}" src="/images/picons/ic_polymer_source.svg">
-      <polymer-ui-menu-item href="/docs/start/everything.html">Understanding Polymer</polymer-ui-menu-item>
-      <polymer-ui-menu-item href="/docs/start/customelements.html">Custom elements 101</polymer-ui-menu-item>
-    </polymer-ui-submenu-item>
 
     <polymer-ui-submenu-item src="/images/picons/ic_polymer_source.svg"
         class="elements-using {{ {show: menu == 'elements'} | tokenList}}"
@@ -57,7 +35,38 @@
       <polymer-ui-menu-item href="/docs/elements/other.html">Other</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
 
+    <polymer-ui-submenu-item src="/images/picons/ic_polymer_source.svg"
+        class="{{ {show: menu == 'elements'} | tokenList}}"
+        label="Element guides &#x25BE;">
+        <polymer-ui-menu-item href="/docs/elements/layout-elements.html">Layout elements</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/docs/elements/icons.html">Using core icons</polymer-ui-menu-item>
+      <polymer-ui-menu-item href="/docs/elements/material.html">Material design with Polymer</polymer-ui-menu-item>
+    </polymer-ui-submenu-item>
+
+    <polymer-ui-submenu-item class="{{ {show: menu == 'docs'} | tokenList}}" id="gettingstartedmenu" label="Getting started" src="/images/picons/ic_polymer_source.svg">
+      <polymer-ui-menu-item id="getcode" href="/docs/start/getting-the-code.html" class="{{ {show: menu == 'docs'} | tokenList}}">Get the Code</polymer-ui-menu-item>
+      <polymer-ui-submenu-item label="Tutorial &#x25BE;">
+        <polymer-ui-menu-item href="/docs/start/tutorial/intro.html">Getting started</polymer-ui-menu-item>
+        <polymer-ui-menu-item href="/docs/start/tutorial/step-1.html">1: App structure</polymer-ui-menu-item>
+        <polymer-ui-menu-item href="/docs/start/tutorial/step-2.html">2: Your own element</polymer-ui-menu-item>
+        <polymer-ui-menu-item href="/docs/start/tutorial/step-3.html">3: Using data binding</polymer-ui-menu-item>
+        <polymer-ui-menu-item href="/docs/start/tutorial/step-4.html">4: Finishing touches</polymer-ui-menu-item>
+        <polymer-ui-menu-item href="/docs/start/tutorial/step-5.html">5: Your next app</polymer-ui-menu-item>
+      </polymer-ui-submenu-item>
+      <polymer-ui-menu-item href="/docs/start/usingelements.html">Using elements</polymer-ui-menu-item>
+      <polymer-ui-submenu-item label="Creating elements &#x25BE;">
+        <polymer-ui-menu-item href="/docs/start/creatingelements.html">The basics</polymer-ui-menu-item>
+        <polymer-ui-menu-item href="/docs/start/reusableelements.html">Reusable elements</polymer-ui-menu-item>
+      </polymer-ui-submenu-item>
+      <polymer-ui-menu-item href="/docs/start/platform.html">The Platform</polymer-ui-menu-item>
+      <polymer-ui-submenu-item label="Concepts" class="{{ {show: menu == 'docs'} | tokenList}}">
+        <polymer-ui-menu-item href="/docs/start/everything.html">Understanding Polymer</polymer-ui-menu-item>
+        <polymer-ui-menu-item href="/docs/start/customelements.html">Custom elements 101</polymer-ui-menu-item>
+      </polymer-ui-submenu-item>
+    </polymer-ui-submenu-item>
+
     <polymer-ui-submenu-item id="coremenu" label="Polymer" class="elements-creating {{ {show: menu == 'docs'} | tokenList}}" src="/images/picons/ic_polymer_source.svg">
+
       <polymer-ui-menu-item href="/docs/polymer/polymer.html">API developer guide</polymer-ui-menu-item>
       <polymer-ui-submenu-item label="Data binding &#x25BE;">
         <polymer-ui-menu-item href="/docs/polymer/databinding.html">Overview</polymer-ui-menu-item>
@@ -70,14 +79,9 @@
           <polymer-ui-menu-item href="/docs/polymer/node_bind.html">Node.bind()</polymer-ui-menu-item>
         </polymer-ui-submenu-item>
       </polymer-ui-submenu-item>
-      <polymer-ui-submenu-item label="Layout &#x25BE;">
-        <polymer-ui-menu-item href="/docs/polymer/layout-attrs.html">Layout attributes</polymer-ui-menu-item>
-        <polymer-ui-menu-item href="/docs/polymer/layout-elements.html">Layout elements</polymer-ui-menu-item>
-      </polymer-ui-submenu-item>
+      <polymer-ui-menu-item href="/docs/polymer/layout-attrs.html">Layout attributes</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/docs/polymer/styling.html">Styling elements</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/docs/polymer/touch.html">Touch &amp; gestures</polymer-ui-menu-item>
-      <polymer-ui-menu-item href="/docs/polymer/icons.html">Using core icons</polymer-ui-menu-item>
-      <polymer-ui-menu-item href="/docs/polymer/material.html">Material design with Polymer</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/docs/polymer/runtime-config.html">Runtime configuration</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
     <polymer-ui-submenu-item id="platformmenu" label="Platform" class="platform {{ {show: menu == 'docs'} | tokenList}}" src="/images/picons/ic_polymer_source.svg">
@@ -95,6 +99,7 @@
       <polymer-ui-menu-item href="/resources/changelog.html">Releases</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/resources/faq.html">FAQ</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
+    <polymer-ui-menu-item href="/discuss.html" class="{{ {show: menu == 'other' || menu == 'other' || menu == ''} | tokenList}}" src="/images/picons/ic_polymer_source.svg">Community</polymer-ui-menu-item>
   </polymer-ui-menu>
 </template>
 <script>

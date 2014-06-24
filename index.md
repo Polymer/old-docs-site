@@ -18,9 +18,9 @@ title: Welcome
       <a href="/docs/start/getting-the-code.html">
         <paper-button icon="archive" label="Get {{site.project_title}}" raisedButton unresolved></paper-button>
       </a>
-      <a href="/docs/start/usingelements.html">
+     <!--  <a href="/docs/start/usingelements.html">
         <paper-button icon="arrow-forward" label="Get started" raisedButton unresolved></paper-button>
-      </a>
+      </a> -->
       <a href="https://github.com/polymer">
         <paper-button class="github" iconSrc="/images/picons/ic_social_github.png" label="View on Github" unresolved></paper-button>
       </a>
