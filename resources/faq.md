@@ -29,7 +29,7 @@ title: FAQ
 ### Do I have to use {{site.project_title}} Designer? {#designer}
 Nope! {{site.project_title}} Designer is primarily a tool to make it easy to dive in an prototype apps. It's entirely optional&mdash;although we've found that for developers who use it, it has quickly become an indispensable part of their workflow.
 
-### I don't like your {components | toolkit syntax | face }! {#dislike}
+### I don't like your {components | data binding syntax | face }! {#dislike}
 
 <!-- 
 <figure id="architecture-diagram" style="float:right">
@@ -37,7 +37,8 @@ Nope! {{site.project_title}} Designer is primarily a tool to make it easy to div
   <figcaption>Architectural Diagram</figcaption>
 </figure> -->
 
-That's fine. We've designed {{site.project_title}}to be cleanly layered so you can use just the parts you like. You can use our whole stack, a single polyfill, or anything in between. It's up to you.
+That's fine. The cool thing about Web Components-based libraries like {{site.project_title}} is that you can easily mix and match elements built using different libraries&mdash;and you don't have to use any of our databinding syntax if you just want to use some of our elements.
+
 <!-- {: style="clear:both"} -->
 
 ### Which browsers does {{site.project_title}} support? {#browsersupport}
