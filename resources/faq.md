@@ -77,7 +77,7 @@ Bootstrap and Topcoat are awesome CSS/UI libraries. Our goals for {{site.project
 
 ### Is this project related to {Angular JS | Closure | Google Web Toolkit}? {#frameworks}
 
-Nope.
+Nope. {{site.project_title}} isn't like things that have come before. {{site.project_title}} is the first of a new kind of library taking advantage of Web Components. The arrival of Web Components is a monumental change in web development, and we're really excited about the future {{site.project_title}} is demonstrating.
 
 ### How is {{site.project_title}}.dart related to {{site.project_title}}? {#dart}
 
