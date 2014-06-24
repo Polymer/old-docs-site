@@ -61,8 +61,3 @@ Open a browser and navigate to the local server. For `SimpleHTTPServer`, this is
   <paper-button icon="arrow-forward" label="Step 1: Creating the app structure" raisedButton></paper-button>
 </a>
 
-<script>
-function downloadStarter() {
-  ga('send', 'event', 'button', 'download');
-}
-</script>

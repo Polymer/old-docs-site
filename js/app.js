@@ -15,6 +15,10 @@ function hideSidebar() {
   sidebar.toggle();
 }
 
+function downloadStarter() {
+  ga('send', 'event', 'button', 'download');
+}
+
 function addPermalink(el) {
   el.classList.add('has-permalink');
   el.insertAdjacentHTML('beforeend',
