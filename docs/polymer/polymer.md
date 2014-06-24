@@ -994,7 +994,7 @@ They remain in a semi-inert state when created outside the main document (e.g. a
 3. when they're created in the `shadowRoot` of another element that is preparing itself
 
 In addition, if the `.alwaysPrepare` property is set to `true`, {{site.project_title}} elements
-prepare themselves even when they do not satisfies the above rules.
+prepare themselves even when they do not satisfy the above rules.
 
     Polymer('my-element', {
       alwaysPrepare: true
