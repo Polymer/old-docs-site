@@ -26,6 +26,10 @@ HTML as much as possible by encouraging the use of [custom element](/platform/cu
 
 {{site.project_title}} is currently in "developer preview." However, despite the label many people have already had success using {{site.project_title}} in production. Although things might still change, We encourage developers to take {{site.project_title}} out for a test drive.
 
+### How is {{site.project_title}} related to material design? {#materialdesign}
+
+{{site.project_title}} is the embodiment of material design for the web. The {{site.project_title}} team works closely with the design teams behind material design. In fact, {{site.project_title}} played a key role in material design's development: it was used to quickly prototype and iterate on design concepts. The material design components are still a work in progress, but will mature over the coming months.
+
 ### I don't like your {components | toolkit syntax | face }! {#dislike}
 
 <!-- 
