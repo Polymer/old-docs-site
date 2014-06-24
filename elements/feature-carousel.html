@@ -15,12 +15,17 @@
   </template>
   <script>
     Polymer('feature-carousel', {
-      interval: null,
+      interval: null, // num milliseconds to cycle panels.
       selected: 0,
       domReady: function() {
         // TODO: use onMutation to watch for children updates.
         this.panels = Array.prototype.slice.call(
             this.$.content.getDistributedNodes());
+
+        // Start cycler timer if we're given an interval.
+        if (this.interval != null) {
+          window.setInterval(this.next.bind(this), this.interval);
+        }
       },
       next: function(opt_Index, opt_backwards) {
         var backwards = opt_backwards == true;

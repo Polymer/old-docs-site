@@ -28,38 +28,6 @@ title: Welcome
   </div>
 </section>
 
-<section id="featured" class="main-purple">
-  <div class="panel right">
-    <feature-carousel interval="5" flex style="height:400px;" unresolved>
-      <div>
-        <summary>
-          <h1>Featured</h1>
-          <p>Blah
-          <br><br>
-          {{site.project_title}} blah.</p>
-          <a href="/docs/start/everything.html">
-            <paper-button icon="arrow-forward" label="Learn more"></paper-button>
-          </a>
-        </summary>
-      </div>
-      <div>
-        <summary>
-          <h1>Watch</h1>
-          <p>Learn what the {{site.project_title}} team is up to through articles, videos, and presentations.
-          <br><br>
-          <a href="/resources/video.html">
-            <paper-button icon="arrow-forward" label="See more"></paper-button>
-          </a>
-          </p>
-        </summary>
-        <div class="video" self-center>
-          <iframe src="https://www.youtube.com/embed/videoseries?list=PLRAVCSU_HVYu-zlRaqArF8Ytwz1jlMOIM&theme=light&controls=0" frameborder="0" allowfullscreen></iframe>
-        </div>
-      </div>
-    </feature-carousel>
-  </div>
-</section>
-
 <section id="learn">
   <div class="panel right">
     <summary>
@@ -70,34 +38,38 @@ title: Welcome
   </div>
 </section>
 
-<section id="sampler" class="main-purple">
-  <div class="panel left">
-    <a href="/components/paper-elements/demo.html" target="_blank"><img src="/images/sampler.png"></a>
+<section id="featured">
+  <div class="panel right">
     <summary>
-      <h1>Material design</h1>
-      <p>{{site.project_title}} brings an implementation of <a href="http://google.com/design/spec">material design</a> to the web. The paper elements are a collection of components ranging from controls and layout, to effects and user interaction.</p>
-      <a href="/docs/polymer/material.html">
-        <paper-button icon="arrow-forward" label="Take a spin"></paper-button>
-      </a>
-    </summary>
-  </div>
-</section>
-
-<section id="apps">
-  <div class="panel">
-    <summary>
-      <h1>Apps</h1>
-      <a href="/apps/topeka/" target="_blank">
-        <img src="/images/topeka_small.png" alt="Launch the Topeka app" title="Launch the Topeka app">
-      </a>
-      <div>
-        <h3 style="margin:0">
-        <a href="/apps/topeka/" target="_blank">Topeka</a> is a multi-screen app created from <a href="/docs/polymer/material.html">Polymer's material design elements</a>. It works across the multi-device web.
-        </h3>
-        <!-- <a href="/apps/topeka" target="_blank">
-          <paper-button icon="arrow-forward" label="Try it" raisedButton></paper-button>
-        </a> -->
-      </div>
+      <h1>Featured</h1>
+      <feature-carousel interval="5000" flex style="height:400px;" unresolved>
+        <div>
+          <summary>
+            <h2>Material design</h2>
+            <p>{{site.project_title}} brings an implementation of <a href="http://google.com/design/spec">material design</a> to the web. The paper elements are a collection of components ranging from controls and layout, to effects and user interaction.</p>
+            <a href="/docs/elements/material.html">
+              <paper-button icon="arrow-forward" label="Learn more" raisedButton></paper-button>
+            </a>
+          </summary>
+          <a href="/components/paper-elements/demo.html#core-toolbar" target="_blank">
+            <img src="/images/sampler-paper.png" class="cover">
+          </a>
+        </div>
+        <div>
+          <summary>
+            <h2>Watch</h2>
+            <p>Learn what the {{site.project_title}} team is up to through articles, videos, and presentations.
+            <br><br>
+            <a href="/resources/video.html">
+              <paper-button icon="arrow-forward" label="See more"></paper-button>
+            </a>
+            </p>
+          </summary>
+          <div class="video" self-center>
+            <iframe src="https://www.youtube.com/embed/videoseries?list=PLRAVCSU_HVYu-zlRaqArF8Ytwz1jlMOIM&theme=light&controls=0" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      </feature-carousel>
     </summary>
   </div>
 </section>
@@ -116,9 +88,6 @@ title: Welcome
         <h3>
         <a href="/tools/designer/#391b62346ab74dc8ca2c" target="_blank">Designer</a> is a drag n' drop tool for prototyping apps using {{site.project_title}}. Save your experiments as Github gists.
         </h3>
-        <!-- <a href="/tools/designer/#391b62346ab74dc8ca2c" target="_blank">
-          <paper-button icon="arrow-forward" label="Try it" raisedButton></paper-button>
-        </a> -->
       </div>
     </summary>
   </div>
@@ -143,6 +112,22 @@ title: Welcome
   </div>
 </section>
 {% endcomment %}
+
+<section id="apps">
+  <div class="panel">
+    <summary>
+      <h1>Apps</h1>
+      <a href="/apps/topeka/" target="_blank">
+        <img src="/images/topeka_small.png" alt="Launch the Topeka app" title="Launch the Topeka app">
+      </a>
+      <div>
+        <h3 style="margin:0">
+        <a href="/apps/topeka/" target="_blank">Topeka</a> is a multi-screen app created from <a href="/docs/polymer/material.html">Polymer's material design elements</a>. It works across the multi-device web.
+        </h3>
+      </div>
+    </summary>
+  </div>
+</section>
 
 <section id="architecture">
   <nav class="bar" layout horizontal>

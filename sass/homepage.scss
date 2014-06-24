@@ -119,12 +119,12 @@ site-banner .logo {
     -ms-mask-box-image: -ms-linear-gradient(bottom, transparent, white 20%);
     mask-box-image: linear-gradient(bottom, transparent, white 20%);
   }
+}
 
-  @supports (not (object-fit: cover)) {
-    img.cover {
-      height: auto;
-      width: 100%;
-    }
+@supports (not (object-fit: cover)) {
+  img.cover {
+    height: auto !important;
+    width: 100% !important;
   }
 }
 
@@ -151,6 +151,10 @@ site-banner .logo {
       //width: 500px;
       height: 338px;
     }
+  }
+  .panel img {
+    max-width: 525px;
+    border: 1px solid $main-bg;
   }
 }
 
@@ -189,20 +193,20 @@ site-banner .logo {
   }
 }
 
-#featured, #sampler, #everything-element {
+#everything-element {
   summary {
     color: #fff;
   }
 }
 
-#sampler {
-  .panel img {
-    width: 530px;
-    height: 315px;
-    object-fit: cover;
-    object-position: 50% 0;
-  }
-}
+// #sampler {
+//   .panel img {
+//     width: 530px;
+//     height: 315px;
+//     object-fit: cover;
+//     object-position: 50% 0;
+//   }
+// }
 
 #everything-element {
   code {
@@ -243,34 +247,34 @@ site-banner .logo {
   }
 }
 
-#quickstart {
-  h1 {
-    @extend .h1heading;
-  }
-  h5 {
-    @extend .h5heading;
-  }
-  .panel {
-    @include flex-direction(column);
-  }
-  .example {
-    @include display-flex;
-    border-bottom: 1px solid $main-bg;
-    padding: $content-padding 0;
+// #quickstart {
+//   h1 {
+//     @extend .h1heading;
+//   }
+//   h5 {
+//     @extend .h5heading;
+//   }
+//   .panel {
+//     @include flex-direction(column);
+//   }
+//   .example {
+//     @include display-flex;
+//     border-bottom: 1px solid $main-bg;
+//     padding: $content-padding 0;
 
-    heading {
-      @include align-self(center);
-      @include flex(1 0 auto);
+//     heading {
+//       @include align-self(center);
+//       @include flex(1 0 auto);
 
-      h2 {
-        line-height: 1;
-      }
-    }
-    paper-button {
-      margin-top: $additonalPadding;
-    }
-    > div {
-      @include flex(0 1 50%);
-    }
-  }
-}
+//       h2 {
+//         line-height: 1;
+//       }
+//     }
+//     paper-button {
+//       margin-top: $additonalPadding;
+//     }
+//     > div {
+//       @include flex(0 1 50%);
+//     }
+//   }
+// }

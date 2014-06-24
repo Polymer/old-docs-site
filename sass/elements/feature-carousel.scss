@@ -12,9 +12,10 @@ $transitionTime: 300ms;
   //height: 400px;
 }
 
-polyfill-next-selector { content: ':host > *'; }
+polyfill-next-selector { content: ':host > core-selector > *'; }
 ::content > * {
   display: none;
+  margin-top: 1em;
   // transform: translateZ(0);
   @include transition(all $transitionTime ease-in-out);
   //opacity: 0;
@@ -25,7 +26,7 @@ polyfill-next-selector { content: ':host > *'; }
   // left: 0;
 }
 
-polyfill-next-selector { content: ':host > .core-selected'; }
+polyfill-next-selector { content: ':host .core-selected'; }
 ::content > .core-selected {
   display: -webkit-flex;
   display: flex;
