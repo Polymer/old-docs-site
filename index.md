@@ -38,37 +38,36 @@ title: Welcome
 
 <section id="featured">
   <div class="panel right">
-    <summary>
-      <h1>Featured</h1>
-      <feature-carousel interval="5000" flex style="height:400px;" unresolved>
-        <div>
-          <summary>
-            <h2>Material design</h2>
-            <p>{{site.project_title}} brings an implementation of <a href="http://google.com/design/spec">material design</a> to the web. The paper elements are a collection of components ranging from controls and layout, to effects and user interaction.</p>
-            <a href="/docs/elements/material.html">
-              <paper-button icon="arrow-forward" label="Learn more" raisedButton></paper-button>
-            </a>
-          </summary>
-          <a href="/components/paper-elements/demo.html#core-toolbar" target="_blank">
-            <img src="/images/sampler-paper.png" class="cover">
+    <feature-carousel interval="5000" flex unresolved>
+      <div>
+        <a href="/components/paper-elements/demo.html#core-toolbar" target="_blank">
+          <img src="/images/sampler-paper.png">
+        </a>
+        <summary>
+          <h1>Featured: material design</h1>
+          <p>{{site.project_title}} brings an implementation of <a href="http://google.com/design/spec">material design</a> to the web. The paper elements range from controls to effects and user interaction.
+          <br><br>
+          <a href="/docs/elements/material.html">
+            <paper-button icon="arrow-forward" label="Learn more"></paper-button>
           </a>
+          </p>
+        </summary>
+      </div>
+      <div>
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/videoseries?list=PLRAVCSU_HVYu-zlRaqArF8Ytwz1jlMOIM&theme=light&controls=0" frameborder="0" allowfullscreen></iframe>
         </div>
-        <div>
-          <summary>
-            <h2>Watch</h2>
-            <p>Learn what the {{site.project_title}} team is up to through articles, videos, and presentations.
-            <br><br>
-            <a href="/resources/video.html">
-              <paper-button icon="arrow-forward" label="See more"></paper-button>
-            </a>
-            </p>
-          </summary>
-          <div class="video" self-center>
-            <iframe src="https://www.youtube.com/embed/videoseries?list=PLRAVCSU_HVYu-zlRaqArF8Ytwz1jlMOIM&theme=light&controls=0" frameborder="0" allowfullscreen></iframe>
-          </div>
-        </div>
-      </feature-carousel>
-    </summary>
+        <summary>
+          <h1>Featured: Google I/O</h1>
+          <p>Recap everything {{site.project_title}} at Google I/O 2014. Watch sessions videos and DevByte shorts.
+          <br><br>
+          <a href="/resources/video.html">
+            <paper-button icon="drive-video" label="Watch"></paper-button>
+          </a>
+          </p>
+        </summary>
+      </div>
+    </feature-carousel>
   </div>
 </section>
 
@@ -77,7 +76,7 @@ title: Welcome
     <!-- <a href="#designer" flex>Return to the elegance of the element</a> -->
   </nav>
   <div class="panel">
-    <summary>
+    <summary style="transform: translateZ(0);">
       <h1>Designer</h1>
       <a href="/tools/designer/#391b62346ab74dc8ca2c" target="_blank">
         <img src="/images/designer_screenshot.png" class="cover" alt="Launch the designer tool" title="Launch the designer tool">
@@ -112,6 +111,9 @@ title: Welcome
 {% endcomment %}
 
 <section id="apps">
+  <nav class="bar" layout horizontal>
+    <!-- <a href="#designer" flex>Return to the elegance of the element</a> -->
+  </nav>
   <div class="panel">
     <summary>
       <h1>Apps</h1>

@@ -2,12 +2,13 @@
 <link rel="import" href="../components/core-selector/core-selector.html">
 
 <polymer-element name="feature-carousel" attributes="interval">
+                 <!-- on-mouseenter="{{stopCycler}}" on-mouseleave="{{startCycler}}"> -->
   <template>
     <link rel="stylesheet" href="../css/elements/feature-carousel.css">
     <core-selector selected="{{selected}}">
       <content id="content" select="*"></content>
     </core-selector>
-    <div id="paginator">
+    <div id="paginator" horizontal layout center-justified>
       <template repeat="{{item, i in panels}}">
         <span class="circle {{ {active: i == selected} | tokenList }}" on-tap="{{selectPanel}}"></span>
       </template>
@@ -22,10 +23,7 @@
         this.panels = Array.prototype.slice.call(
             this.$.content.getDistributedNodes());
 
-        // Start cycler timer if we're given an interval.
-        if (this.interval != null) {
-          window.setInterval(this.next.bind(this), this.interval);
-        }
+        this.startCycler();
       },
       next: function(opt_Index, opt_backwards) {
         var backwards = opt_backwards == true;
@@ -42,7 +40,21 @@
         }
       },
       selectPanel: function(e, detail, sender) {
+        this.stopCycler();
         this.next(e.target.templateInstance.model.i);
+        this.startCycler();
+      },
+      stopCycler: function(e, detail, sender) {
+        if (this.intervalId) {
+          window.clearInterval(this.intervalId);
+        }
+      },
+      startCycler: function(e, detail, sender) {
+        // Start cycler timer if we're given an interval.
+        if (this.interval != null) {
+          this.intervalId = window.setInterval(
+              this.next.bind(this), this.interval);
+        }
       }
     });
   </script>
