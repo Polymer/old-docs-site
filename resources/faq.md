@@ -49,19 +49,6 @@ Note that this is fewer browsers than other frameworks support. For example, {{s
 
 See our [Browser Compatibility](/resources/compatibility.html) page for more information.
 
-### Is the code hosted on a CDN?
-
-{{site.project_title}} is maintained on [cdnjs](http://cdnjs.com/) and can be
-loaded from the following URLs:
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/polymer/{{site.latest_version}}/platform.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/polymer/{{site.latest_version}}/polymer.js"></script>
-
-There are a number of reasons why we recommend you use Bower instead of the CDN:
-
-- The CDN does not host polymer.html which removes the ability for elements to import it.
-- There are many elements which are not hosted on the CDN so it might be tricky to include all of them in your project.
-- You will not be able to [Vulcanize your code](/articles/concatenating-web-components.html).
 
 ### When will other browsers support these APIs natively? {#nativesupport}
 
@@ -86,6 +73,20 @@ Nope. {{site.project_title}} isn't like things that have come before. {{site.pro
 ### How is {{site.project_title}}.dart related to {{site.project_title}}? {#dart}
 
 polymer.dart is a Dart port of {{site.project_title}} created and maintained by the Dart team. The Dart team is collaborating with the {{site.project_title}} team to ensure that polymer.dart elements and polyfills are fully compatible with {{site.project_title}}. 
+
+### Is the code hosted on a CDN?
+
+{{site.project_title}} is maintained on [cdnjs](http://cdnjs.com/) and can be
+loaded from the following URLs:
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/polymer/{{site.latest_version}}/platform.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/polymer/{{site.latest_version}}/polymer.js"></script>
+
+There are a number of reasons why we recommend you use Bower instead of the CDN:
+
+- The CDN does not host polymer.html which removes the ability for elements to import it.
+- There are many elements which are not hosted on the CDN so it might be tricky to include all of them in your project.
+- You will not be able to [Vulcanize your code](/articles/concatenating-web-components.html).
 
 ### I see a bunch of XHRs making network requests. What gives? {#xhrrequests}
 
