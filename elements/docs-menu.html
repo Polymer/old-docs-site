@@ -18,7 +18,7 @@
       <polymer-ui-menu-item href="/docs/elements/material.html">Material design with Polymer</polymer-ui-menu-item>
     </polymer-ui-submenu-item>
 
-    <polymer-ui-submenu-item src="/images/picons/ic_polymer_source.svg"
+    <polymer-ui-submenu-item id="coreelements" src="/images/picons/ic_polymer_source.svg"
         class="elements-using {{ {show: menu == 'elements'} | tokenList}}"
         label="Core elements">
       <template repeat="{{coreElementsList}}">
@@ -26,7 +26,7 @@
             data-href="/docs/elements/core-elements.html#{{name}}">{{name}}</polymer-ui-menu-item>
       </template>
     </polymer-ui-submenu-item>
-    <polymer-ui-submenu-item src="/images/picons/ic_polymer_source.svg"
+    <polymer-ui-submenu-item id="paperelements"  src="/images/picons/ic_polymer_source.svg"
         class="elements-using {{ {show: menu == 'elements'} | tokenList}}"
         label="Paper elements">
       <template repeat="{{paperElementsList}}">
@@ -127,6 +127,12 @@
 
       if (href.match(/\/articles\//)) {
         this.$.mainmenu.selected = this.$.mainmenu.items.indexOf(this.$.articles);
+        return;
+      } else if (href.match(/core-elements.html$/)) {
+        this.$.mainmenu.selected = this.$.mainmenu.items.indexOf(this.$.coreelements);
+        return;
+      } else if (href.match(/paper-elements.html$/)) {
+        this.$.mainmenu.selected = this.$.mainmenu.items.indexOf(this.$.paperelements);
         return;
       }
 

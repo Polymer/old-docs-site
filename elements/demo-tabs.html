@@ -17,10 +17,10 @@
 </polymer-element>
 
 
-<polymer-element name="demo-tabs" attributes="selected bottom">
+<polymer-element name="demo-tabs" attributes="selected bottom theme">
   <template>
     <link rel="stylesheet" href="../css/elements/demo-tabs.css">
-    <div id="container">
+    <div id="container" class="{{theme}}">
       <div id="tabstrip">
         <polymer-selector selected="{{selected}}" selectedClass="selected" class="tab-wrapper">
           <template repeat="{{panel in panels}}">
@@ -40,6 +40,7 @@
   </template>
   <script>
     Polymer('demo-tabs', {
+      theme: 'light',
       selected: 0,
       bottom: false, // Force results panel to be on bottom, even on desktop.
       domReady: function() {

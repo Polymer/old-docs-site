@@ -4,7 +4,8 @@
     "org": "Polymer",
     "repos": [
       "code-explainer",
-      "component-download-button"
+      "component-download-button",
+      "sampler-scaffold2"
     ]
   }
 ]
