@@ -16,23 +16,20 @@ title: FAQ
 
 ### Why should I care about this project? {#why}
 
-{{site.project_title}} is a new type of library for the web, targeting the modern
-web platform, and useful for building web applications based on Web Components.
+{{site.project_title}} is a pioneering library that makes it faster and easier than ever before to build beautiful applications on the web. {{site.project_title}} is built on top of a set of powerful new web platform primitives called Web Components. Web Components bring unprecedented composability, interoperability, and consumability to the web platform. The result is a monumental increase in developer productivity.
 
-Unlike some other frameworks before it, {{site.project_title}} attempts to embrace
-HTML as much as possible by encouraging the use of [custom element](/platform/custom-elements.html) wherever possible. It includes a handful of independent polyfills for these emerging web standards (Custom Elements, Shadow DOM, etc.) that over time, diminish and ultimately disappear as browser vendors implement the native APIs.
+### Is {{site.project_title}} production ready? {#readiness}
 
-{{site.project_title}} is still in its very early days, but we're excited about its potential! 
+{{site.project_title}} is currently in "developer preview." However, despite the label many people have already had success using {{site.project_title}} in production. Although things might still change, we encourage developers to take {{site.project_title}} out for a test drive.
 
-### Where are all of the shiny magic components that are going to revolutionize the entire internet and solve all of my problems? {#uicomponents}
+### How is {{site.project_title}} related to material design? {#materialdesign}
 
-At this point they're basically just a glimmer in our collective eye. But we've built a solid technical foundation and are working feverishly to make our ambitious vision a reality, so watch this space.
+{{site.project_title}} is the embodiment of material design for the web. The {{site.project_title}} team works closely with the design teams behind material design. In fact, {{site.project_title}} played a key role in material design's development: it was used to quickly prototype and iterate on design concepts. The material design components are still a work in progress, but will mature over the coming months.
 
-### Okay, the components aren't there yet. Is the rest of {{site.project_title}} production ready? {#readiness}
+### Do I have to use {{site.project_title}} Designer? {#designer}
+Nope! [{{site.project_title}} Designer](/tools/designer/) is primarily a tool to make it easy to dive in an prototype apps. It's entirely optional&mdash;although we've found that for developers who use it, it has quickly become an indispensable part of their workflow.
 
-We don't think so, but if you're the adventurous type you're welcome to give it a try. Run the demos, play with the toolkit. Most importantly, join the mailing list and give us feedback!
-
-### I don't like your {components | toolkit syntax | face }! {#dislike}
+### I don't like your {components | data binding syntax | face }! {#dislike}
 
 <!-- 
 <figure id="architecture-diagram" style="float:right">
@@ -40,14 +37,42 @@ We don't think so, but if you're the adventurous type you're welcome to give it 
   <figcaption>Architectural Diagram</figcaption>
 </figure> -->
 
-That's fine. We've designed {{site.project_title}}  to be cleanly layered so you can use just the parts you like. You can use our whole stack, a single polyfill, or anything in between. It's up to you.
+That's fine. The cool thing about Web Components-based libraries like {{site.project_title}} is that you can easily mix and match elements built using different libraries&mdash;and you don't have to use any of our databinding syntax if you just want to use some of our elements.
+
 <!-- {: style="clear:both"} -->
 
 ### Which browsers does {{site.project_title}} support? {#browsersupport}
 
-{{site.project_title}} aims to support [evergreen browsers](http://www.yetihq.com/blog/evergreen-web-browser/). After all, we're trying to simulate the future, and as someone once said, "You're headed for trouble if all you do is stare in the rear-view mirror." In practice, this means we support the most recent versions of Chrome, Safari, Internet Explorer, and Firefox. Note that this is fewer browsers than other frameworks support. For example, {{site.project_title}} only aims to support Internet Explorer 10 and above. Some pieces of {{site.project_title}} may support more browsers if it doesn't require too much extra effort--if you find bugs in unsupported browsers, please still file them.  Most things should work in IE9 today without too much work; feel free to file bugs on what doesn't.  IE8 is incompatable due to its insufficient DOM support. 
+{{site.project_title}} aims to support [evergreen browsers](http://www.yetihq.com/blog/evergreen-web-browser/). After all, we're trying to simulate the future, and as someone once said, "You're headed for trouble if all you do is stare in the rear-view mirror." In practice, this means we support the most recent versions of Chrome, Safari, Internet Explorer, and Firefox. Chrome 36 is the first browser to ship all of the platform features {{site.project_title}} depends on natively.
+
+Note that this is fewer browsers than other frameworks support. For example, {{site.project_title}} only aims to support Internet Explorer 10 and above. Some pieces of {{site.project_title}} may support more browsers if it doesn't require too much extra effort--if you find bugs in unsupported browsers, please still file them.  Most things should work in IE9 today without too much work; feel free to file bugs on what doesn't.  IE8 is incompatable due to its insufficient DOM support. 
 
 See our [Browser Compatibility](/resources/compatibility.html) page for more information.
+
+
+### When will other browsers support these APIs natively? {#nativesupport}
+
+The foundation layer in our <a href="/images/architecture-diagram.svg" target="_blank">architecture diagram</a> is based on emerging web standards. As browsers support them natively, the need for that layer will diminish and ultimately disappear. In fact, Chrome 36 is the first browser to support all of the primitives natively. It's impossible to say when every browser will support these features natively--but the more that web developers ask for them, the sooner native support will come.
+
+### What's your mobile story? {#onmobile}
+
+One of our core goals is for {{site.project_title}} to work on modern mobile browsers as a first-class citizen. Check out [Topeka](/apps/topeka/), one of our sample apps, to see it in action.
+
+### What does this have to do with x-tags? {#xtags}
+
+[x-tags](http://x-tags.org/) is a cool project that Mozilla is working on, and it's not directly affiliated with {{site.project_title}}. However, both {{site.project_title}} and x-tags build on the emerging Custom Elements standard, which means their components are interoperable by default. Both Google and Mozilla offer polyfills for the Custom Element spec. X-Tag works on top of either, so you can use X-Tag custom elements alongside your {{site.project_title}} components. We're working actively with them to maximize compatibility between the component sets.
+
+### How is {{site.project_title}} different from Twitter's Bootstrap or Adobe's Topcoat? {#uiframeworks}
+
+Bootstrap and Topcoat are awesome CSS/UI libraries. Our goals for {{site.project_title}} are different. While we have our own set of shiny UI components, the meat of {{site.project_title}} is geared towards developers interested in building web applications on top of Web Component technologies. {{site.project_title}} also provides additional sugaring APIs to meet the demands of today's web applications.
+
+### Is this project related to {Angular JS | Closure | Google Web Toolkit}? {#frameworks}
+
+Nope. {{site.project_title}} isn't like things that have come before. {{site.project_title}} is the first of a new kind of library taking advantage of Web Components. The arrival of Web Components is a monumental change in web development, and we're really excited about the future {{site.project_title}} is demonstrating.
+
+### How is {{site.project_title}}.dart related to {{site.project_title}}? {#dart}
+
+polymer.dart is a Dart port of {{site.project_title}} created and maintained by the Dart team. The Dart team is collaborating with the {{site.project_title}} team to ensure that polymer.dart elements and polyfills are fully compatible with {{site.project_title}}. 
 
 ### Is the code hosted on a CDN?
 
@@ -63,42 +88,9 @@ There are a number of reasons why we recommend you use Bower instead of the CDN:
 - There are many elements which are not hosted on the CDN so it might be tricky to include all of them in your project.
 - You will not be able to [Vulcanize your code](/articles/concatenating-web-components.html).
 
-### When will other browsers support these APIs natively? {#nativesupport}
-
-The foundation layer in our <a href="/images/architecture-diagram.svg" target="_blank">architecture diagram</a> is based on emerging web standards. As browsers support them natively, the need for that layer will diminish and ultimately disappear. It's impossible to say when every browser will support these features natively--but the more that web developers ask for them, the sooner native support will come.
-
-### What's your mobile story? {#onmobile}
-
-One of our core goals is for {{site.project_title}} to work on mobile as a first-class citizen. For example, many parts of {{site.project_title}} work on Chrome for Android and Mobile Safari today. We're also investigating responsive components that can automatically configure themselves correctly on desktop, tablets, and phones.
-
-### What does this have to do with x-tags? {#xtags}
-
-[x-tags](http://x-tags.org/) is a cool project that Mozilla is working on, and it's not directly affiliated with {{site.project_title}}. However, both {{site.project_title}} and x-tags build on the emerging Custom Elements standard, which means their components are interoperable by default. Both Google and Mozilla offer polyfills for the Custom Element spec. X-Tag works on top of either, so you can use X-Tag custom elements alongside your {{site.project_title}} components. We're working actively with them to maximize compatibility between the component sets.
-
-### How is {{site.project_title}} different from Twitter's Bootstrap or Adobe's Topcoat? {#uiframeworks}
-
-Bootstrap and Topcoat are awesome CSS/UI libraries. Our goals for {{site.project_title}} are different. While we eventually plan to create a standard set of shiny amazing UI components, the meat of {{site.project_title}} is geared towards developers interested in building web applications on top of Web Component technologies. {{site.project_title}} also provides additional sugaring APIs to meet the demands of today's web applications.
-
-### Wait, what happened to Toolkitchen? {#toolkitchen}
-
-Toolkitchen was the first name we picked for this project. We didn't love it, so
-we changed it to {{site.project_title}}.
-
-### How is this related to Google? {#google}
-
-We're first and foremost just a group of folks who think web components are the bee's knees--a bunch of us just happen to work at Google. We're thrilled about the community participation we've gotten already and hope you'll join in the discussion!
-
-### Is this project related to {Angular JS | Closure | Google Web Toolkit}? {#frameworks}
-
-Nope.
-
-### How is {{site.project_title}}.dart related to {{site.project_title}}? {#dart}
-
-polymer.dart is a Dart port of {{site.project_title}} created and maintained by the Dart team. The Dart team is collaborating with the {{site.project_title}} team to ensure that polymer.dart elements and polyfills are fully compatible with {{site.project_title}}. 
-
 ### I see a bunch of XHRs making network requests. What gives? {#xhrrequests}
 
-One limitation of today's polyfills is that {{site.project_title}} aggressively uses XHR to shim HTML Imports. We're experimenting with packaging systems and build steps to reduce the cost of network requests. When this API lands natively in browsers, things will Just Work™. Resources will be loaded as they normally do, taking advantage of parallelism, browser caching, etc.
+One limitation of today's polyfills is that {{site.project_title}} aggressively uses XHR to shim HTML Imports. We're experimenting with packaging systems and build steps to reduce the cost of network requests. HTML imports are supported natively in Chrome 36 this API lands natively in browsers, where things will Just Work™. Resources load as they normally do, taking advantage of parallelism, browser caching, etc.
 
 You can try [Vulcanize](/articles/concatenating-web-components.html), which
 is a build tool for concatenating a list of elements and inlining their definitions into your main page.
