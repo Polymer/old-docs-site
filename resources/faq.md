@@ -75,11 +75,6 @@ One of our core goals is for {{site.project_title}} to work on modern mobile bro
 
 Bootstrap and Topcoat are awesome CSS/UI libraries. Our goals for {{site.project_title}} are different. While we have our own set of shiny UI components, the meat of {{site.project_title}} is geared towards developers interested in building web applications on top of Web Component technologies. {{site.project_title}} also provides additional sugaring APIs to meet the demands of today's web applications.
 
-### Wait, what happened to Toolkitchen? {#toolkitchen}
-
-Toolkitchen was the first name we picked for this project. We didn't love it, so
-we changed it to {{site.project_title}}.
-
 ### How is this related to Google? {#google}
 
 We're first and foremost just a group of folks who think web components are the bee's knees--a bunch of us just happen to work at Google. We're thrilled about the community participation we've gotten already and hope you'll join in the discussion!
