@@ -71,10 +71,7 @@ title: Welcome
   </div>
 </section>
 
-<section id="designer">
-  <nav class="bar" layout horizontal>
-    <!-- <a href="#designer" flex>Return to the elegance of the element</a> -->
-  </nav>
+<section id="designer" class="main-purple">
   <div class="panel">
     <summary style="transform: translateZ(0);">
       <h1>Designer</h1>
@@ -83,8 +80,11 @@ title: Welcome
       </a>
       <div>
         <h3>
-        <a href="/tools/designer/#391b62346ab74dc8ca2c" target="_blank">Designer</a> is a drag n' drop tool for prototyping apps using {{site.project_title}}. Save your experiments as Github gists.
+        Designer is a drag n' drop tool for prototyping apps using {{site.project_title}}. Save your experiments as Github gists.
         </h3>
+        <a href="/tools/designer/#391b62346ab74dc8ca2c" target="_blank">
+          <paper-button icon="arrow-forward" label="Try it now"></paper-button>
+        </a>
       </div>
     </summary>
   </div>
@@ -92,9 +92,6 @@ title: Welcome
 
 {% comment %}
 <section id="everything-element" class="main-purple">
-  <!-- <nav class="bar" flexbox>
-    <a href="#everything-element" flex>Return to the elegance of the element</a>
-  </nav> -->
   <div class="panel right">
     <summary>
       <h1>Everything is an element</h1>
@@ -111,64 +108,45 @@ title: Welcome
 {% endcomment %}
 
 <section id="apps">
-  <nav class="bar" layout horizontal>
-    <!-- <a href="#designer" flex>Return to the elegance of the element</a> -->
-  </nav>
   <div class="panel">
-    <summary>
-      <h1>Apps</h1>
-      <a href="/apps/topeka/" target="_blank">
-        <img src="/images/topeka_small.png" alt="Launch the Topeka app" title="Launch the Topeka app">
-      </a>
-      <div>
-        <h3 style="margin:0">
-        <a href="/apps/topeka/" target="_blank">Topeka</a> is a multi-screen app created from <a href="/docs/polymer/material.html">Polymer's material design elements</a>. It works across the multi-device web.
-        </h3>
-      </div>
-    </summary>
-  </div>
-</section>
-
-<section id="architecture">
-  <nav class="bar" layout horizontal>
-    <!-- <a href="#designer" flex>Return to the elegance of the element</a> -->
-  </nav>
- <!--  <nav class="bar" flexbox>
-    <a href="#architecture">The architecture of {{site.project_title}}</a>
-  </nav> -->
-  <div class="panel">
-    <summary>
-      <div class="box">
-        <img src="/images/logos/p-elements.svg">
-      </div>
-      <h1 class="elements-using">Using elements</h1>
-      <h5>{{site.project_title}} from the outside</h5>
-      <p>{{site.project_title}} provides a comprehensive set of elements—both UI and non-UI—that you can use right out of the box. You can mix and match {{site.project_title}} elements with other elements, including built-in elements and other custom elements.</p>
-      <a href="/docs/start/usingelements.html">
-        <paper-button icon="arrow-forward" label="Use our elements"></paper-button>
-      </a>
-    </summary>
-    <summary>
-      <div class="box">
-        <img src="/images/logos/p-create-elements.svg">
-      </div>
-      <h1 class="elements-creating">Creating elements</h1>
-      <h5>{{site.project_title}} from the inside</h5>
-      <p>{{site.project_title}}'s declarative syntax makes it simpler to define custom elements. Features like two-way data binding, declarative event handlers, property observation, and gesture support help you build powerful, reusable elements.</p>
-      <a href="/docs/start/creatingelements.html">
-        <paper-button icon="arrow-forward" label="Build your own"></paper-button>
-      </a>
-    </summary>
-    <summary>
-      <div class="box">
-        <img src="/images/logos/p-platform.svg">
-      </div>
-      <h1 class="platform">The platform</h1>
-      <h5>Supporting new web technologies today</h5>
-      <p>{{site.project_title}} is built on the latest web technologies like Web Components. Not all browsers support these features yet. {{site.project_title}}'s platform layer fills the gaps, implementing the APIs in JavaScript. {{site.project_title}} picks the fastest path at runtime.</p>
-      <a href="/docs/start/platform.html">
-        <paper-button icon="arrow-forward" label="Use the platform"></paper-button>
-      </a>
-    </summary>
+    <h1>Demos</h1>
+    <div class="columns">
+      <summary>
+        <div class="box">
+          <a href="/apps/topeka/index.html">
+            <img src="/images/topeka_square.png">
+          </a>
+        </div>
+        <h1 class="elements-using">Topeka</h1>
+        <h5>A fun quiz app built using material-design based <em>paper-elements</em></h5>
+        <a href="/apps/topeka/index.html">
+          <paper-button icon="arrow-forward" label="Demo Topeka"></paper-button>
+        </a>
+      </summary>
+      <summary>
+        <div class="box">
+          <a href="/components/paper-elements/demo.html">
+            <img src="/images/sampler-paper-square.png">
+          </a>
+        </div>
+        <h1 class="elements-creating">Paper Elements</h1>
+        <h5>A sampler showcasing Polymer elements based on material design</h5>
+        <a href="/components/paper-elements/demo.html">
+          <paper-button icon="arrow-forward" label="Browse Elements"></paper-button>
+        </a>
+      </summary>
+      <summary>
+        <div class="box">
+          <a href="/components/paper-calculator/demo.html">
+            <img src="/images/paper-calculator.png">
+          </a>
+        </div>
+        <h1 class="platform">Calculator</h1>
+        <h5>A calculator app mockup highlighting material ink effects</h5>
+        <a href="/components/paper-calculator/demo.html">
+          <paper-button icon="arrow-forward" label="Demo Calculator"></paper-button>
+        </a>
+      </summary>
+    </div>
   </div>
 </section>

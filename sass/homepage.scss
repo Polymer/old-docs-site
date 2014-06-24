@@ -21,6 +21,10 @@ section {
   border-bottom: 1px solid $main-bg;
 }
 
+.main-purple {
+  color: white;
+}
+
 section .bar {
   @include justify-content(flex-end);
   @include align-items(center);
@@ -187,7 +191,7 @@ site-banner .logo {
 //   }
 // }
 
-#designer, #apps {
+#designer {
   .panel {
     @include flex-direction(column);
   }
@@ -228,18 +232,28 @@ site-banner .logo {
   }
 }
 
-#architecture {
+#apps {
   .panel {
+    @include flex-direction(column);
     padding: $content-padding 16px;
+    h1 {
+      @include flex(1);
+    }
+    .columns {
+      @include display-flex;
+      margin-top: 32px;
+    }
   }
   .box {
     $box-size: 200px;
 
     @extend .main-bg;
     margin-bottom: $content-padding / 2;
-    border-radius: 50%;
+    border-radius: 20px;
     width: $box-size;
-    padding: $box-size / 4 35px;
+    height: $box-size;
+    overflow: hidden;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   }
   h1 {
     @extend .h1heading;
@@ -253,8 +267,8 @@ site-banner .logo {
     margin-top: 0;
   }
   img {
-    height: 94px;
-    width: auto;
+    height: 100%;
+    width: 100%;
   }
 }
 
