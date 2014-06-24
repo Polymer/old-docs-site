@@ -1,0 +1,41 @@
+/* Shared styles for the tutorial */
+.running-app-frame {
+    border: 1px solid #000;
+    padding: 0px;
+}
+pre {
+  font-size: 13px !important;
+  border: 1px solid #eaeaea !important;
+  padding 5px !important;
+  margin: 10px 0px !important;
+}
+
+side-by-side h4 {
+  line-height: 16px;
+  margin-top: 0px;
+  margin-left: 25px;
+}
+side-by-side {
+  margin: 10px 0px 30px 0px;
+}
+side-by-side pre {
+  padding 5px 5px 5px 0px;
+}
+side-by-side ul {
+  -webkit-padding-start: 25px;
+}
+pre .highlight {
+  font-weight: bold;
+  color: #000;
+}
+.divider {
+  margin: 20px 0px;
+  height: 3px;
+  background: #eaeaea;
+  border-radius: 2px;
+}
+.divider core-icon {
+  margin-bottom: 1px;
+  fill: #919cd6;
+  background: #fff
+}
