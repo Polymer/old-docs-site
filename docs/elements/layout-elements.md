@@ -35,7 +35,7 @@ The core-elements and paper-elements collections include a number of elements th
 
 - `<core-header-panel>`. A simple container with a header section and content section. The header can either stay in place or scroll with the content.
 
-- `<core-toolbar>`.  Can be used for an [app bar](link_to_spec) or a toolbar on a smaller UI component, such as a card. The toolbar can serve as a container for controls, such as tabs and buttons.
+- `<core-toolbar>`.  Can be used for an app bar or a toolbar on a smaller UI component, such as a card. The toolbar can serve as a container for controls, such as tabs and buttons.
 
 - `<core-drawer-panel>`. A responsive container that combines a left- or right-side drawer panel for navigation or other options and a main content area.
 

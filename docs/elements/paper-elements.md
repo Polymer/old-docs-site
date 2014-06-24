@@ -16,15 +16,19 @@ add_permalinks: false
 <link rel="stylesheet" href="/css/elementpage.css">
 
 <div class="hide-on-hash">
-  <p>The Paper elements are a set of UI elements that implement the 
-    [material design system](http://google.com/design/spec).</p>
-  <p>See <a href="material.html">Material Design Using Polymer</a> for an overview of creating a material design applicaiton using {{site.project_title}}.</p>
-  <p>For a quick visual overview of the elements, see the <a href="/components/paper-elements/demo.html">Paper elements sampler</a>.
 
-  <p>Install the element set:</p>
-  <pre class="prettyprint">
-bower install Polymer/paper-elements
-</pre>
+
+  <p>The Paper elements are a set of UI elements that implement the 
+    <a href="http://google.com/design/spec">material design system</a>.</p>
+
+  <component-download-button org="Polymer" component="paper-elements" label="GET THE PAPER ELEMENTS">
+  </component-download-button>
+
+  <h2>Related Guides</h2>
+  <p><a href="material.html">Material Design Using Polymer</a></p>
+
+  <h2>Demos</h2>
+  <p><a href="/components/paper-elements/demo.html">Paper elements sampler</a></p>
 </div>
 
 <component-docs

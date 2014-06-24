@@ -20,16 +20,16 @@ add_permalinks: false
   <p>{{site.project_title}} Core elements are a set of utility
     elements including general-purpose UI elements (such as icons, layout elements, and toolbars),
     as well as  non-UI elements providing features like AJAX, signaling and storage.</p>
-  <p>Related:</p>
-  <ul>
-    <li><a href="layout-elements.html">Application layout elements</a> for an overview of using the {{site.project_title}} Core elements for top-level application layout.</li>
-    <li><a href="icons.html">Using core icons</a> descibes the `<core-icon>` element, using the built-in icon sets, and creating custom icons and icon sets.</li>
-    <li><a href="/components/core-elements/demo.html">{{site.project_title}} Core elements sampler</a> is an interactive demonstration of the visual core elements.</li>
-  </ul>
-  <p>Install the element set:</p>
-  <pre class="prettyprint">
-bower install Polymer/core-elements
-</pre>
+
+   <component-download-button org="Polymer" component="core-elements" label="GET THE POLYMER CORE ELEMENTS">
+   </component-download-button>
+
+  <h2>Related Guides</h2>
+  <p><a href="layout-elements.html">Application layout elements</a>.</p>
+  <p><a href="icons.html">Using core icons</a></p>
+
+  <h2>Demos</h2>
+  <p><a href="/components/core-elements/demo.html">{{site.project_title}} Core elements sampler</a></p>
 </div>
 
 <component-docs
