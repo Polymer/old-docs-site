@@ -1,4 +1,4 @@
-application: google.com:polymerdocs
+application: polymer-project
 version: the-next-gen-of-web-dev-is-here
 runtime: python27
 api_version: 1
