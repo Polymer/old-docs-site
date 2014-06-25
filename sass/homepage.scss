@@ -148,9 +148,6 @@ site-banner .logo {
 }
 
 #featured {
-  feature-carousel {
-    height: 310px;
-  }
   .video {
     iframe {
       // width: 640px;
@@ -170,6 +167,13 @@ site-banner .logo {
     margin-top: 0;
     object-fit: cover;
     object-position: 50% 0;
+  }
+
+  @media only screen and (max-width: $break-medium) {
+    summary {
+      margin-left: 0 !important;
+      margin-top: 30px !important;
+    }
   }
 }
 

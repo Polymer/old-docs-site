@@ -9,7 +9,7 @@ $transitionTime: 1s;
 :host {
   display: block;
   position: relative;
-  //height: 400px;
+  height: 310px;
 }
 
 polyfill-next-selector { content: ':host > core-selector > *'; }
@@ -56,5 +56,18 @@ polyfill-next-selector { content: ':host .core-selected'; }
 
   &.active {
     background-color: $gray-1 !important;
+  }
+}
+
+@media only screen and (max-width: $break-medium) {
+  polyfill-next-selector { content: ':host > core-selector > *'; }
+  ::content > * {
+    @include flex-direction(column);
+  }
+  :host {
+    height: 550px;
+  }
+  #paginator {
+    width: 100%;
   }
 }

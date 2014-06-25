@@ -8,6 +8,13 @@
 
   <polymer-ui-menu-item
     src="/images/picons/ic_feedback_dark_.png"
+    label="Elements"
+    href="/docs/elements/"
+    {% if page.navgroup == 'elements' %}active{% endif %}>
+  </polymer-ui-menu-item>
+
+  <polymer-ui-menu-item
+    src="/images/picons/ic_feedback_dark_.png"
     label="Resources"
     href="/resources/faq.html"
     {% if page.navgroup == 'resources' %}active{% endif %}>

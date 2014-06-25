@@ -27,6 +27,19 @@ add_permalinks: false
 .panel h2 {
   margin: 0 !important;
 }
+
+@media only screen and (max-width: 850px) {
+  .panel img {
+    margin: 10px 0 0 0 !important;
+  }
+  .panel {
+    -webkit-flex-direction: column !important;
+    flex-direction: column !important;
+    margin: 0!important;
+    padding: 20px!important;
+    margin-top: 2em!important;
+  }
+}
 </style>
 
 <div horizontal layout start class="panel">
