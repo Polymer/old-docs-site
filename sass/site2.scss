@@ -508,4 +508,11 @@ footer {
   height: 480px;
 }
 
+body /deep/ doc-page::shadow paper-button,
+body /deep/ component-download-button::shadow paper-button {
+  background-color: $materialPurple;
+  fill: white;
+  color: white;
+}
+
 @import "mobile";
