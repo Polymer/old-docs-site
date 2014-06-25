@@ -43,8 +43,8 @@ commands:
     $ cd ..  # You'll want to run the web server from the parent directory.
     $ python -m SimpleHTTPServer
 
-This starts a web server on port 8000, so you can test your new element by navigating a
-browser to the URL `localhost:8000/test-element/demo.html`.
+This starts a web server on port 8000, so you can test your new element by navigating a browser 
+to the URL `localhost:8000/test-element/demo.html`. 
 
 ## Deploy
 
