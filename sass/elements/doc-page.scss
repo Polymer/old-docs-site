@@ -11,6 +11,12 @@ h1 {
   font-weight: inherit;
 }
 
+// component-download-button::shadow paper-button {
+//   background-color: $materialPurple;
+//   fill: white;
+//   color: white;
+// }
+
 .box {
   margin-bottom: 40px;
 
@@ -99,12 +105,15 @@ pre code {
   }
 }
 
+// .badge {
+//   display: inline-block;
+//   border-radius: 3px;
+//   background-color: $materialPurple;
+//   color: #fff;
+//   text-decoration: none;
+//   text-transform: uppercase;
+//   padding: 3px 5px;
+// }
 .badge {
-  display: inline-block;
-  border-radius: 3px;
-  background-color: $materialPurple;
-  color: #fff;
-  text-decoration: none;
-  text-transform: uppercase;
-  padding: 3px 5px;
+  color: currentcolor;
 }

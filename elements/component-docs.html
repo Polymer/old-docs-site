@@ -54,9 +54,15 @@
       </template>
 
       <p>
-        <a class="badge" href="http://bowerarchiver.appspot.com/archive?{{data.name}}=Polymer/{{data.name}}">Download</a>
-        <a class="badge" target="_blank" href="/components/{{data.name}}/demo.html" on-click="{{recordDemoPageview}}">Demo</a>
-        <a class="badge" target="_blank" href="http://github.com/Polymer/{{data.name}}">Source</a>
+        <component-download-button org="Polymer" component="{{data.name}}"
+        label="Get {{data.name}}"></component-download-button>
+
+        <!-- <a class="badge" href="http://bowerarchiver.appspot.com/archive?{{data.name}}=Polymer/{{data.name}}">Download</a> -->
+        <!-- <a class="badge" target="_blank" href="/components/{{data.name}}/demo.html" on-click="{{recordDemoPageview}}">Demo</a> -->
+        <a class="badge" target="_blank" href="/components/{{data.name}}/demo.html" on-click="{{recordDemoPageview}}">
+          <paper-button label="Demo" raisedButton></paper-button>
+        </a>
+        <!-- <a class="badge" target="_blank" href="http://github.com/Polymer/{{data.name}}">Source</a> -->
       </p>
 
       <template if="{{data.description}}">
