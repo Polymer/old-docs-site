@@ -13,8 +13,8 @@ title: Welcome
   <div class="panel left">
     <img src="/images/logos/p-logo.svg">
     <summary>
-      <h1>Building blocks for the web</h1>
-      <p>{{site.project_title}} is a library that uses the latest web technologies to let you create custom HTML elements. Build anything from a button to a complete application as an encapsulated, reusable element that works across desktop and mobile.</p>
+      <h1>Welcome to the future</h1>
+      <p>Web Components usher in a new era of web development based on encapsulated and interoperable custom elements that extend HTML itself. Built atop these new standards, Polymer makes it easier and faster to create anything from a button to a complete application across desktop, mobile, and beyond.</p>
       <a href="/docs/start/getting-the-code.html">
         <paper-button icon="archive" label="Get {{site.project_title}}" raisedButton unresolved></paper-button>
       </a>
@@ -110,7 +110,7 @@ title: Welcome
 <section id="apps">
   <div class="panel">
     <h1>Demos</h1>
-    <div class="columns">
+    <div class="columns" layout horizontal wrap>
       <summary>
         <div class="box">
           <a href="/apps/topeka/">
