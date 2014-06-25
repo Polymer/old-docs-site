@@ -508,8 +508,8 @@ footer {
   height: 480px;
 }
 
-body /deep/ doc-page::shadow paper-button,
-body /deep/ component-download-button::shadow paper-button {
+body /deep/ doc-page::shadow paper-button[raisedButton],
+body /deep/ component-download-button::shadow paper-button[raisedButton] {
   background-color: $materialPurple;
   fill: white;
   color: white;
