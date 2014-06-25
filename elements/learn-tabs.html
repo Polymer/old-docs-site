@@ -66,10 +66,10 @@
       <demo-tab heading="{{wide ? 'Create Elements (5 min) ➜' : 'Create ➜' }}">
         <code-explainer>
           <script type="text/template"><!-- Define element -->
-            [start-def]<polymer-element name="my-counter" [start-publish]attributes="counter">[end-publish][end-def]
+            [start-def]<polymer-element name="my-counter" [start-publish]attributes="counter"[end-publish]>[end-def]
               [start-scope]<template>[end-scope]
                 <style> /*...*/ </style>
-                <div id="label"><content></content></div>
+                <div id="label">[start-content]<content></content>[end-content]</div>
                 Value: <span [start-nodefind]id="counterVal"[end-nodefind]>[start-data]&#123;&#123;counter&#125;&#125;[end-data]</span><br>
                 <button [start-events]on-tap="&#123;&#123;increment&#125;&#125;[end-events]">Increment</button>
               [start-scope]</template>[end-scope]
