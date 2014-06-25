@@ -11,8 +11,9 @@
 
 PROJECTS_DIR=./polymer-all/projects
 DESIGNER_DIR=$PROJECTS_DIR/designer
+TOPEKA_DIR=../topeka
 #COMPONENTS_DIR=../../components
-COMPONENTS_DIR=../../../
+#COMPONENTS_DIR=../../../
 
 # Update submodules =====
 echo "=== Updating: submodules ==="
@@ -21,13 +22,7 @@ git submodule foreach git pull origin master
 # Update site's bower_components deps. These get installed to /js/bower_components.
 bower update
 
-# Update projects folder =====
-#cd $PROJECTS_DIR
-#echo "=== Updating projects ==="
-#../tools/bin/pull-all-projects.sh
-
 # Update components and polyfills folder =====
-#cd $COMPONENTS_DIR
 echo "=== Updating: components, polymer, polyfills, projects, and labs ==="
 
 # TODO(nevir): pull-all doesn't actually pull *everything* any more; the extra
@@ -43,3 +38,11 @@ cd $DESIGNER_DIR
 echo "=== Updating designer ==="
 rm -rf components # If bower components dir exists, script hangs. Remove it first.
 bower install
+
+# Update topeka =====
+cd $TOPEKA_DIR
+echo "=== Updating Topeka ==="
+rm -rf components # If bower components dir exists, script hangs. Remove it first.
+bower install
+vulcanize --inline --strip index.html -o build.html
+rm -rf components # cleanup

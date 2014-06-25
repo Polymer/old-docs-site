@@ -139,7 +139,8 @@ module.exports = function(grunt) {
   grunt.registerTask('serve', ['appengine:run:frontend']);
 
   // Task to build docs.
-  grunt.registerTask('docs', ['apidocs', 'vulcanize:build', 'jekyll:build']);
+  //grunt.registerTask('docs', ['apidocs', 'vulcanize:build', 'jekyll:build']);
+  grunt.registerTask('docs', ['vulcanize:build', 'jekyll:build']);
 
   // Task to build and copy docs over to publishing repo.
   //grunt.registerTask('publish', ['jekyll:prod', 'copy:main']);

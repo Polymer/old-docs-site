@@ -106,8 +106,8 @@ handlers:
 
 # e.g. /apps/topeka/
 - url: /apps/(.+)/$
-  static_files: polymer-all/projects/\1/index.html
-  upload: polymer-all\/projects\/(.+)\/index.html
+  static_files: polymer-all/projects/\1/build.html
+  upload: polymer-all\/projects\/(.+)\/build.html
 
 - url: /apps/(.+)/(.*)
   static_files: polymer-all/projects/\1/\2
