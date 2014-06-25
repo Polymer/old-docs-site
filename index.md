@@ -80,7 +80,7 @@ title: Welcome
       </a>
       <div>
         <h3>
-        Designer is a drag n' drop tool for prototyping apps using {{site.project_title}}. Save your experiments as Github gists.
+        Designer is a drag and drop tool for prototyping apps using {{site.project_title}}. Save your experiments as Github gists.
         </h3>
         <a href="/tools/designer/#391b62346ab74dc8ca2c" target="_blank">
           <paper-button icon="arrow-forward" label="Try it now"></paper-button>

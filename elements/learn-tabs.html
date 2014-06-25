@@ -24,7 +24,7 @@
         margin: 0;
       }
       .card .summary {
-        padding: 16px;
+        padding: 24px;
       }
       .card a {
         text-decoration: none;
@@ -42,31 +42,30 @@
     <core-media-query query="min-width: 640px" queryMatches="{{wide}}"></core-media-query>
     <demo-tabs theme="dark" style="width:100%;">
       <demo-tab heading="{{wide ? 'Use Elements (30 sec) ➜' : 'Use ➜'}}">
-        <code-explainer label="How to use Polymer elements">
-          <script type="text/template">
-            <head>
-              <!-- Import element -->
-              [start-create]&lt;link rel="import" href="google-map.html"&gt;[end-use]
-            </head>
-            <body>
-              <!-- Use element -->
-              [start-use]<google-map lat="37.790" long="-122.390"></google-map>[end-create]
-            </body>
+        <code-explainer>
+          <script type="text/template">[dim-start]<!-- Polyfill Web Components support for older browsers -->
+            <script src="components/platform/platform.js">&lt;/script>[dim-end]
+
+            <!-- Import element -->
+            [start-create]&lt;link rel="import" href="google-map.html"&gt;[end-use]
+
+            <!-- Use element -->
+            [start-use]<google-map lat="37.790" long="-122.390"></google-map>[end-create]
           </script>
-          <div>Using Polymer elements (like all web components) is an absurdly simple 2-step process:</div>
-          <code-explainer-info sec="create" label="1. Import a component you'd like to use">
-            Find a component, grab the code, and simply import the component into your page using
+          <h2>Using Polymer Elements</h2>
+          <div>Using Polymer elements (like all Web Components) is absurdly simple:</div>
+          <code-explainer-info sec="create" bullet="1" label="Import element">
+            Find a component and import its definition into your page using
             an HTML Import (<code>&lt;link rel="import"&gt;</code>).
           </code-explainer-info>
-          <code-explainer-info sec="use" label="2. Use the new element">
-            Once imported, custom elements become first-class HTML elements and can be used like any other tag.
+          <code-explainer-info sec="use" bullet="2" label="Use the new element">
+            Once imported, custom elements become first-class HTML elements and can be used like any other.
           </code-explainer-info>
         </code-explainer>
       </demo-tab>
       <demo-tab heading="{{wide ? 'Create Elements (5 min) ➜' : 'Create ➜' }}">
-        <code-explainer label="How to create custom elements with Polymer">
-          <script type="text/template">
-            <!-- Define element -->
+        <code-explainer>
+          <script type="text/template"><!-- Define element -->
             [start-def]<polymer-element name="my-counter" [start-publish]attributes="counter">[end-publish][end-def]
               [start-scope]<template>[end-scope]
                 <style> /*...*/ </style>
@@ -90,17 +89,17 @@
             <!-- Use element -->
             <my-counter [start-publish]counter="10"[end-publish]>[start-content]Points[end-content]</my-counter>
           </script>
-          <div>Polymer sugars the new Web Components standards with awesome features to make
-            defining your own custom elements a breeze:</div>
+          <h2>Creating Polymer Elements</h2>
+          <div>Polymer sugars Web Components standards with awesome features for creating custom elements:</div>
           <code-explainer-info sec="def" label="Declarative custom element definition">
-            Polymer allows you to define new custom elements declaratively using <code>&lt;polymer-element&gt;</code>
+            Define custom elements declaratively using <code>&lt;polymer-element&gt;</code>
           </code-explainer-info>
           <code-explainer-info sec="scope" label="Markup and style encapsulation">
-            Polymer uses Shadow DOM to encapsulate your element's internals.  Template markup is 
+            Shadow DOM encapsulates your element's internals.  Template markup is 
             compartmentalized, and styles don't leak in or out.
           </code-explainer-info>
           <code-explainer-info sec="publish" label="Published properties">
-            Properties that are "published" can be initialized via markup and invoke change 
+            Properties that are <em>published</em> can be initialized via markup and invoke change 
             handlers when modified.
           </code-explainer-info>
           <code-explainer-info sec="data" label="Declarative data binding">
@@ -125,7 +124,7 @@
               <div flex>
                 <p>Ready to dive deeper?  In this tutorial, you'll build a small Polymer application -- 
                 a very basic client for a social networking service like the one at right.  It'll give 
-                you a good feel for both using pre-made Polymer elements, and building custom elements 
+                you a good feel for both using pre-made Polymer elements as well as building custom elements 
                 of your own.</p>
                 <a href="/docs/start/tutorial/intro.html"><paper-button raisedButton icon="arrow-forward" label="Go to tutorial"></paper-button></a>
                 <p>If you'd rather keep reading, head to the Polymer docs page to dive deeper.</p> 
