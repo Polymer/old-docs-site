@@ -562,7 +562,7 @@ For example:
 Setting `hidden = true` on a `<disappearing-element>` causes the `hidden`
 attribute to be set:
 
-    <disappearing-element hidden>Now you see me...</disappearing element>
+    <disappearing-element hidden>Now you see me...</disappearing-element>
 
 Attribute _reflection_ is separate from data binding. Two-way data binding is
 available on published properties whether or not they're reflected. Consider the
