@@ -998,7 +998,7 @@ when `Object.observe()` is available. When it's not supported, {{site.project_ti
 
 `Platform.flush()` is part of {{site.project_title}}'s data observation polyfill, [observe-js](https://github.com/Polymer/observe-js). It dirty check's all objects that have been observed and ensures notification callbacks are dispatched. {{site.project_title}} automatically calls `Platform.flush()` periodically, and this should be sufficient for most application workflows. However, there are times when you'll want to call `Platform.flush()` in application code.
 
-**Note**: on platforms that support `Object.observe()` natively, `Platform.flush()` does nothing.
+**Note:** on platforms that support `Object.observe()` natively, `Platform.flush()` does nothing.
 {: .alert .alert-info }
 
 #### When should I call `Platform.flush()`?
@@ -1012,6 +1012,7 @@ need to manually call `Platform.flush()`. Here are specific examples:
 2. The author of a slider element wants to ensure that data can propagate from it as the user slides the slider. A user of the element, might, for example, bind the slider's value to an input and expect to see the input change while the slider is moving. To achieve this, the element author calls `Platform.flush()` after setting the element's value in the `ontrack` event handler.
 
 **Note:** {{site.project_title}} is designed such that change notifications are asynchronous. Both `Platform.flush()` and `Object.observe()` (after which it's modeled) are asynchronous. Therefore, **`Platform.flush()` should not be used to try to enforce synchronous data notifications**. Instead, always use [change watchers](#change-watchers) to be informed about state.
+{: .alert .alert-info }
 
 ### How {{site.project_title}} elements prepare themselves {#prepare}
 
