@@ -25,7 +25,7 @@ At the heart of {{site.project_title}} are [Custom Elements](/platform/custom-el
 
 ### Attributes
 
-{{site.project_title}} [reserves](https://github.com/Polymer/polymer/blob/master/src/declaration/attributes.js#L53) special attributes to be used on `<polymer-element>`:
+{{site.project_title}} reserves special attributes to be used on `<polymer-element>`:
 
 <table class="table responsive-table attributes-table">
   <tr>
