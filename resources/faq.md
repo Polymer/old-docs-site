@@ -12,7 +12,7 @@ title: FAQ
 
 {% include toc.html %}
 
-## {{site.project_title}} 
+## {{site.project_title}}
 
 ### Why should I care about this project? {#why}
 
@@ -31,7 +31,7 @@ Nope! [{{site.project_title}} Designer](/tools/designer/) is primarily a tool to
 
 ### I don't like your {components | data binding syntax | face }! {#dislike}
 
-<!-- 
+<!--
 <figure id="architecture-diagram" style="float:right">
   <iframe src="/images/architecture-diagram.svg?{{'now' | date: "%Y%m%d"}}" style="width:150px;"></iframe>
   <figcaption>Architectural Diagram</figcaption>
@@ -45,7 +45,7 @@ That's fine. The cool thing about Web Components-based libraries like {{site.pro
 
 {{site.project_title}} aims to support [evergreen browsers](http://www.yetihq.com/blog/evergreen-web-browser/). After all, we're trying to simulate the future, and as someone once said, "You're headed for trouble if all you do is stare in the rear-view mirror." In practice, this means we support the most recent versions of Chrome, Safari, Internet Explorer, and Firefox. Chrome 36 is the first browser to ship all of the platform features {{site.project_title}} depends on natively.
 
-Note that this is fewer browsers than other frameworks support. For example, {{site.project_title}} only aims to support Internet Explorer 10 and above. Some pieces of {{site.project_title}} may support more browsers if it doesn't require too much extra effort--if you find bugs in unsupported browsers, please still file them.  Most things should work in IE9 today without too much work; feel free to file bugs on what doesn't.  IE8 is incompatable due to its insufficient DOM support. 
+Note that this is fewer browsers than other frameworks support. For example, {{site.project_title}} only aims to support Internet Explorer 10 and above. Some pieces of {{site.project_title}} may support more browsers if it doesn't require too much extra effort--if you find bugs in unsupported browsers, please still file them.  Most things should work in IE9 today without too much work; feel free to file bugs on what doesn't.  IE8 is incompatable due to its insufficient DOM support.
 
 See our [Browser Compatibility](/resources/compatibility.html) page for more information.
 
@@ -72,7 +72,7 @@ Nope. {{site.project_title}} isn't like things that have come before. {{site.pro
 
 ### How is {{site.project_title}}.dart related to {{site.project_title}}? {#dart}
 
-polymer.dart is a Dart port of {{site.project_title}} created and maintained by the Dart team. The Dart team is collaborating with the {{site.project_title}} team to ensure that polymer.dart elements and polyfills are fully compatible with {{site.project_title}}. 
+polymer.dart is a Dart port of {{site.project_title}} created and maintained by the Dart team. The Dart team is collaborating with the {{site.project_title}} team to ensure that polymer.dart elements and polyfills are fully compatible with {{site.project_title}}.
 
 ### Is the code hosted on a CDN?
 
@@ -127,7 +127,7 @@ native HTML Imports (see Blink's [crbug.com/240592](http://crbug.com/240592) tra
 ### How can I contribute? {#contributing}
 
 We love to hear your comments or suggestions. [File a bug](https://github.com/polymer/polymer/issues/new) or swing by the [mailing list](/discuss.html) and say "hi"--we don't bite! If you want
-to contribute code, see our [contributor's guide](https://github.com/polymer/polymer/blob/master/CONTRIBUTING.md).
+to contribute code, see our [contributor's guide](https://github.com/Polymer/tools/blob/master/CONTRIBUTING.md).
 
 ### Where is the best place to file bugs? {#filebugs}
 
@@ -175,7 +175,7 @@ property changing, but separate out the "set value" vs. the "validated value":
 
 ### Can an element `extend` from more than one element or have multiple inheritance? {#multipleextends}
 
-For example `<polymer-element name="my-element" extends="foo bar">`. 
+For example `<polymer-element name="my-element" extends="foo bar">`.
 
 No. But {{site.project_title}} may provide a syntax for mixins in the future.
 
@@ -325,8 +325,8 @@ Note: on platforms that support `Object.observe()` natively, `Platform.flush()` 
 ### How do I package a bunch of custom elements together? {#packaging}
 
 Use a custom build step that flattens/concatenates everything into a single file,
-then use [HTML Imports](/platform/html-imports.html) (`<link rel="import">`) to 
-bring that file into your app. 
+then use [HTML Imports](/platform/html-imports.html) (`<link rel="import">`) to
+bring that file into your app.
 
 Similarly, you could write a build step that inlines any custom element definition
 directly into your main app. We've experimented with this basic idea in a
@@ -406,7 +406,7 @@ To manage this dance with more convenience, {{site.project_title}} provides
 `domReady()` to do the same thing:
 
     domReady: function() {
-      // same 
+      // same
     }
 
 ### How do I monitor changes to light dom children? {#mutationlightdom}
@@ -445,18 +445,18 @@ this, there are two options:
 
 **Note:** Steve Faulkner had a [nice writeup](http://blog.paciellogroup.com/2012/07/notes-on-web-components-aria/) on this topic a while back and found that it does. See also Marcy Sutton's more recent "[Accessibility and the Shadow DOM](http://substantial.com/blog/2014/02/05/accessibility-and-the-shadow-dom/)".
 
-A common mis-conception is that the Shadow DOM doesn't play nicely with assistive technologies. The reality is that the Shadow DOM can in fact be traversed and any node with Shadow DOM has a `shadowRoot` property which points to it's shadow document. Most assistive technologies hook directly into the browsers rendering tree, so they just see the fully composed tree.  
+A common mis-conception is that the Shadow DOM doesn't play nicely with assistive technologies. The reality is that the Shadow DOM can in fact be traversed and any node with Shadow DOM has a `shadowRoot` property which points to it's shadow document. Most assistive technologies hook directly into the browsers rendering tree, so they just see the fully composed tree.
 
 In fact, if you inspect one of the native HTML elements that use Shadow DOM, `<input type="date">` for example, you'll notice aria attributes inside the tree:
 
 ![](/images/ariashadowdom.jpg)
 
-Other types of assistive tools like [Chromevox](http://www.chromevox.com/) will [need to be updated](https://code.google.com/p/chromium/issues/detail?id=96373) to learn how to traverse the Shadow DOM. 
+Other types of assistive tools like [Chromevox](http://www.chromevox.com/) will [need to be updated](https://code.google.com/p/chromium/issues/detail?id=96373) to learn how to traverse the Shadow DOM.
 There's an ongoing discussion with accessibility experts on how best to integrate Shadow DOM with screen readers and search engines and further progress in this area is likely to come in the future.
 
 ### How do I access the `activeElement` inside a {{site.project_title}} element? {#activeelement}
 
-Shadow Roots have their own `activeElement`, which you can access internally as 
+Shadow Roots have their own `activeElement`, which you can access internally as
 `shadowRoot.activeElement`.
 
 ### Why don't my element's properties/methods autocomplete in the DevTools? {#autocomplete}
@@ -480,5 +480,3 @@ Custom elements in templates are like `<script>` and friends--inert. Their defin
 ---
 
 *Special thanks go to GitHub user md_5 who generously donated the {{site.project_title}} organization name.*
-
-
