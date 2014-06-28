@@ -60,7 +60,7 @@ Througout the site, you'll find component download buttons like this:
 The component download button offers three ways to install a component or set of components:
 
 *   Bower. **Recommended**. Bower manages dependencies, so installing a component
-    also installs any missing dependencies. Bower can also handles updating
+    also installs any missing dependencies. Bower also handles updating
     installed components. For more information, see [Installing with Bower](#using-bower).
 
 *   ZIP file. Includes all dependencies, so you can unzip it and start using it 
