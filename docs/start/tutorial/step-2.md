@@ -198,13 +198,13 @@ following CSS inside the `<style>` tag:
 
 <side-by-side>
   <pre><strong class="highlight nocode">
-  polyfill-next-selector { content: ".card-header h2"; }
+  polyfill-next-selector { content: '.card-header h2'; }
   .card-header ::content h2 {
     margin: 0;
     font-size: 1.8rem;
     font-weight: 300;
   }
-  polyfill-next-selector { content: ".card-header img"; }
+  polyfill-next-selector { content: '.card-header img'; }
   .card-header ::content img {
     width: 70px;
     border-radius: 50%;
