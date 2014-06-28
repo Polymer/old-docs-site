@@ -119,14 +119,14 @@ Elements can be registered in pure JavaScript like so:
         </polymer-element>';
       // The custom elements polyfill can't see the <polymer-element>
       // unless you put it in the DOM.
-      document.body.appendChild(el);    
+      document.body.appendChild(el);
     </script>
 
     <name-tag name="John"></name-tag>
 
-Note that you need to add the `<polymer-element>` to the document so that the 
+Note that you need to add the `<polymer-element>` to the document so that the
 Custom Elements polyfill picks it up.
-    
+
 ### Adding public properties and methods {#propertiesmethods}
 
 If you wish to define methods/properties on your element (optional), pass an object
@@ -134,7 +134,7 @@ as the second argument to `Polymer()`. This object is used to define
 the element's `prototype`.
 
 The following example defines a property `message`, a computed property `greeting`
-using an ES5 getter, and a method `foo`: 
+using an ES5 getter, and a method `foo`:
 
     <polymer-element name="tag-name">
       <template>{{greeting}}</template>
@@ -143,7 +143,7 @@ using an ES5 getter, and a method `foo`:
           message: "Hello!",
           get greeting() {
             return this.message + ' there!';
-          }, 
+          },
           foo: function() {...}
         });
       </script>
@@ -152,7 +152,7 @@ using an ES5 getter, and a method `foo`:
 **Note:** `this` references the custom element itself inside a {{site.project_title}} element. For example, `this.localName == 'tag-name'`.
 {: .alert .alert-info }
 
-**Important:** Be careful when initializing properties that are objects or arrays. Due to the nature of `prototype`, you may run into unexpected "shared state" across instances of the same element. If you're initializing an array or object, do it in the `created` callback rather than directly on the `prototype`. 
+**Important:** Be careful when initializing properties that are objects or arrays. Due to the nature of `prototype`, you may run into unexpected "shared state" across instances of the same element. If you're initializing an array or object, do it in the `created` callback rather than directly on the `prototype`.
 
     // Good!
     Polymer('x-foo', {
@@ -256,7 +256,7 @@ The main page configures the globals by passing attributes:
 {{site.project_title}} has first class support for the Custom Element lifecycle
 callbacks, though for convenience, implements them with shorter names.
 
-All of the lifecycle callbacks are optional: 
+All of the lifecycle callbacks are optional:
 
     Polymer('tag-name', {
       created: function() { ... },
@@ -277,7 +277,7 @@ Spec | {{site.project_title}} | Called when
 |-
 createdCallback | created | An instance of the element is created.
 - | ready | The `<polymer-element>` has been fully prepared (e.g. Shadow DOM created, property observers setup, event listeners attached, etc).
-attachedCallback | attached | An instance of the element was inserted into the DOM. 
+attachedCallback | attached | An instance of the element was inserted into the DOM.
 - | domReady | Called when the element's initial set of children are guaranteed to exist. This is an appropriate time to poke at the element's parent or light DOM children. Another use is when you have sibling custom elements (e.g. they're `.innerHTML`'d together, at the same time). Before element A can use B's API/properties, element B needs to be upgraded. The `domReady` callback ensures both elements exist.
 detachedCallback | detached | An instance was removed from the DOM.
 attributeChangedCallback | attributeChanged | An attribute was added, removed, or updated. **Note**: to observe changes to [published properties](#published-properties), use [changed watchers](#change-watchers).
@@ -453,7 +453,7 @@ When attribute values are converted to property values, {{site.project_title}}
 attempts to convert the value to the correct type, depending on the default
 value of the property.
 
-For example, suppose an `x-hint` element has a `count` property that defaults to `0`. 
+For example, suppose an `x-hint` element has a `count` property that defaults to `0`.
 
     <x-hint count="7"></x-hint>
 
@@ -465,7 +465,7 @@ double-quoted JSON string. For example:
 
     <x-name fullname='{ "first": "Bob", "last": "Dobbs" }'></x-name>
 
-This is equivalent to setting the element's `fullname` property to an object 
+This is equivalent to setting the element's `fullname` property to an object
 literal in JavaScript:
 
     xname.fullname = { first: 'Bob', last: 'Dobbs' };
@@ -648,7 +648,7 @@ All properties on {{site.project_title}} elements can be watched for changes by 
       </script>
     </polymer-element>
 
-In this example, there are two watched properties, `better` and `best`. The `betterChanged` and `bestChanged` function will be called whenever `better` or `best` are modified, respectively. 
+In this example, there are two watched properties, `better` and `best`. The `betterChanged` and `bestChanged` function will be called whenever `better` or `best` are modified, respectively.
 
 #### Custom property observers - `observe` blocks {#observeblock}
 
@@ -734,7 +734,7 @@ It's important to note that **{{site.project_title}} does not call the <code><em
 
 ### Automatic node finding
 
-Another useful feature of {{site.project_title}} is node reference marshalling. Every node in a component's shadow DOM that is tagged with an `id` attribute is automatically referenced in the component's `this.$` hash. 
+Another useful feature of {{site.project_title}} is node reference marshalling. Every node in a component's shadow DOM that is tagged with an `id` attribute is automatically referenced in the component's `this.$` hash.
 
 For example, the following defines a component whose template contains an `<input>` element whose `id` attribute is `nameInput`. The component can refer to that element with the expression `this.$.nameInput`.
 
@@ -762,7 +762,7 @@ Example:
 {% raw %}
     <polymer-element name="ouch-button">
       <template>
-        <button on-click="{{onClick}}">Send hurt</button> 
+        <button on-click="{{onClick}}">Send hurt</button>
       </template>
       <script>
         Polymer('ouch-button', {
@@ -806,7 +806,7 @@ and data-bound.
     <polymer-element name="polymer-cooler" extends="polymer-cool">
       <template>
         <!-- A shadow element render's the extended
-             element's shadow dom here. --> 
+             element's shadow dom here. -->
         <shadow></shadow> <!-- "You are cool Matt" -->
       </template>
       <script>
@@ -864,8 +864,8 @@ to "coolest".
 
 ### Observing changes to light DOM children {#onMutation}
 
-To know when light DOM children change, you can setup a Mutation Observer to 
-be notified when nodes are added or removed. To make this more convenient, {{site.project_title}} adds an `onMutation()` callback to every element. Its first argument is the DOM element to 
+To know when light DOM children change, you can setup a Mutation Observer to
+be notified when nodes are added or removed. To make this more convenient, {{site.project_title}} adds an `onMutation()` callback to every element. Its first argument is the DOM element to
 observe. The second argument is a callback which is passed the `MutationObserver` and the mutation records:
 
     this.onMutation(domElement, someCallback);
@@ -953,7 +953,7 @@ declared in markup.
 
 If you instantiate an element (e.g. `document.createElement('x-foo')`) and do **not** add it to the DOM,
 {{site.project_title}} asynchronously removes its {%raw%}`{{}}`{%endraw%} bindings and `*Changed` methods.
-This helps prevent memory leaks, ensuring the element will be garbage collected. 
+This helps prevent memory leaks, ensuring the element will be garbage collected.
 
 If you want the element to "remain active" when it's not in the `document`,
 call `cancelUnbindAll()` right after you create or remove it. The [lifecycle methods](#lifecyclemethods)
@@ -1037,7 +1037,7 @@ prepare themselves even when they do not satisfy the above rules.
 
 ### Resolving paths of sibling elements {#resolvepath}
 
-For the general case of element re-use and sharing, URLs in HTML Imports are meant to be relative to the location of the import. The majority of the time, the browser takes care of this for you. 
+For the general case of element re-use and sharing, URLs in HTML Imports are meant to be relative to the location of the import. The majority of the time, the browser takes care of this for you.
 
 However, JavaScript doesn't have a notion of a local import. Therefore, {{site.project_title}} provides a `resolvePath()` utility for converting paths relative to the import to paths relative to the document.
 
