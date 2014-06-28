@@ -32,13 +32,13 @@ Open `post-card.html` in your editor and add the `<core-icon>` element:
   &lt;content select="img">&lt;/content>
   &lt;content select="h2">&lt;/content>
 &lt;/div>
-&lt;strong>
+<strong class="highlight nocode">
 &lt;core-icon-button
   id="favicon"
   icon="favorite"
   on-tap="{%raw%}{{favoriteTapped}}{%endraw%}">
 &lt;/core-icon-button>
-&lt;/strong>
+</strong>
 &lt;content>&lt;/content>
 </pre>
 <aside>
@@ -49,7 +49,7 @@ Open `post-card.html` in your editor and add the `<core-icon>` element:
     scalable icons.</li>
     <li>The <code>icon="favorite"</code> attribute selects the heart icon from the
     default icon set.</li>
-    <li>The <code>on-tap=</code><wbr><code>"&#8288;{%raw%}{{favoriteTapped}}{%endraw%}"</code> attribute specifies a method to call
+    <li>The <code>on-tap=</code><wbr><code>"{%raw%}{{favoriteTapped}}{%endraw%}"</code> attribute specifies a method to call
     on the <code>post-card</code> element when the button is tapped.</li>
   </ul>
 </aside>
@@ -120,6 +120,7 @@ Add the following CSS to style the favorite button:
   :host([favorite]) core-icon-button {
     fill: #da4336;
   }</strong>
+  &lt;/style>
   </pre>
   <aside>
     <ul>
@@ -183,7 +184,7 @@ favorites:
   {% endraw %}
   <aside>
     <ul>
-      <li><code>favorite=<wbr>"&#8288;{%raw%}{{post.favorite}}{%endraw%}"</code> binds the 
+      <li><code>favorite=<wbr>"{%raw%}{{post.favorite}}{%endraw%}"</code> binds the 
       card's <code>favorite</code> value to the
       value in the array owned by the <code>&lt;post-service&gt;</code>.</li>
       <li>The <code>on-favorite-tap</code> attribute sets up a handler for the
