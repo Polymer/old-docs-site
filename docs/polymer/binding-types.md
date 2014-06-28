@@ -37,7 +37,7 @@ Using the `bind` attribute, you can create a single instance of a template bound
     </template>
 {% endraw %}
 
-Where `person` is an object (or more accurately, a [{{site.project_title}} expression](#expressions) that yields an object).
+Where `person` is an object (or more accurately, a [{{site.project_title}} expression](/docs/polymer/expressions.html) that yields an object).
 
 Bindings inside the template are evaluated in the context of the bound object. For example,
 if `person` has a property, `name`, {%raw%}`{{name}}`{%endraw%} evaluates to the value of `person.name`.
