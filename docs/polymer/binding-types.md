@@ -12,18 +12,18 @@ subtitle: Data-binding
 There are several ways to bind data to a template. You can:
 
 *   Create a single instance of a template, by specifying a single object using the `bind` attribute.
-*   Create multiple instances of a template, by specifying an array of objects using the `repeat` 
+*   Create multiple instances of a template, by specifying an array of objects using the `repeat`
      attribute.
 *   Conditionally create an instance of a template, depending on whether the the value passed to the `if`attribute is truthy.
 
-**Note:** Binding templates only works inside {{site.project_title}} elements. For example, if a 
-`<template>` element is inserted directly into a page’s `<body>` tag, the the `bind` attribute 
-doesn’t work as described here. If you need to use template binding outside of a 
-{{site.project_title}} element, see [Using data binding outside of a {{site.project_title}} element](/docs/polymer/databinding-advanced.html#bindingoutside). 
+**Note:** Binding templates only works inside {{site.project_title}} elements. For example, if a
+`<template>` element is inserted directly into a page’s `<body>` tag, the the `bind` attribute
+doesn’t work as described here. If you need to use template binding outside of a
+{{site.project_title}} element, see [Using data binding outside of a {{site.project_title}} element](/docs/polymer/databinding-advanced.html#bindingoutside).
 {: .alert .alert-info }
 
-When you use a binding _inside_ a template, you create a _node binding_, which binds a model value to a 
-DOM node. Node bindings are interpreted by the node, based on the element type and where the binding 
+When you use a binding _inside_ a template, you create a _node binding_, which binds a model value to a
+DOM node. Node bindings are interpreted by the node, based on the element type and where the binding
 occurs. See [Node bindings](#node-bindings) for details.
 
 ## Single template instances
@@ -39,7 +39,7 @@ Using the `bind` attribute, you can create a single instance of a template bound
 
 Where `person` is an object (or more accurately, a [{{site.project_title}} expression](#expressions) that yields an object).
 
-Bindings inside the template are evaluated in the context of the bound object. For example, 
+Bindings inside the template are evaluated in the context of the bound object. For example,
 if `person` has a property, `name`, {%raw%}`{{name}}`{%endraw%} evaluates to the value of `person.name`.
 
 For convenience, you can also create a _named scope_ when binding an object:
@@ -51,7 +51,7 @@ For convenience, you can also create a _named scope_ when binding an object:
     </template>
 {% endraw %}
 
-In this case, you can use the named scope `p` to access the properties of the `person` object. 
+In this case, you can use the named scope `p` to access the properties of the `person` object.
 Named scopes can be handy when nesting templates.
 
 
@@ -77,7 +77,7 @@ Like the `bind` attribute, the `repeat` attribute supports named scopes:
     </template>
 {% endraw %}
 
-Another of the `repeat` attribute provides named scopes and index values for each 
+Another of the `repeat` attribute provides named scopes and index values for each
 item in the array:
 
 {% raw %}
@@ -131,7 +131,7 @@ Conditional templates use the `if` attribute to conditionally create a template 
     </template>
 {% endraw %}
 
-The conditional template can be explicitly bound to an object using the 
+The conditional template can be explicitly bound to an object using the
 {%raw%}`bind={{expression}}`{%endraw%} syntax.
 
 Where the explicit binding is omitted, a nested template can inherit the scope of
@@ -157,9 +157,9 @@ You can also use `if` with the  `repeat` attribute.
     </template>
 {% endraw %}
 
-## Importing templates by reference 
+## Importing templates by reference
 
-Sometimes, you may want to reuse a template in multiple places, or reference a template generated elsewhere. 
+Sometimes, you may want to reuse a template in multiple places, or reference a template generated elsewhere.
 That's where the `ref` attribute comes in:
 
 {% raw %}
@@ -187,7 +187,7 @@ You can use the `ref` attribute to define recursive templates, such as tree stru
     </template>
 {% endraw %}
 
-In addition, you can bind to the `ref` attribute _itself_, to choose templates dynamically: 
+In addition, you can bind to the `ref` attribute _itself_, to choose templates dynamically:
 
 {% raw %}
     <template bind ref="{{node.nodeType}}"></template>
@@ -205,7 +205,7 @@ How nodes interpret bindings depends on the _type of element_, and the _binding 
 
 ### Binding to text
 
-If a binding occurs between tags, it creates a `textContent` binding to the element. 
+If a binding occurs between tags, it creates a `textContent` binding to the element.
 
 {% raw %}
     <p>This paragraph has some {{adjective}} text.</p>
@@ -244,7 +244,7 @@ Two-way bindings are supported as a special case on some user input elements. Sp
 
 When you bind to a [published property](polymer.html#published-properties) on a {{site.project_title}} element, you get a two-way binding to the property.
 
-In the following sample, the `intro-tag` binds to a published property on the `say-hello` element: 
+In the following sample, the `intro-tag` binds to a published property on the `say-hello` element:
 
 {% raw %}
     <!-- say-hello element publishes the 'name' property -->
@@ -273,19 +273,19 @@ In the following sample, the `intro-tag` binds to a published property on the `s
 {% endraw %}
 
 Here, `yourName` is bound to _both_ the `say-hello` element's `name` property and
-the `input` element's `value` attribute. Both bindings are two-way, so when the user enters 
-a name, it's pushed into the `say-hello` element's `name` property. If you change the 
+the `input` element's `value` attribute. Both bindings are two-way, so when the user enters
+a name, it's pushed into the `say-hello` element's `name` property. If you change the
 value of the `name` property, the value is pushed into the `input` element.
 
-**Note:** The `intro-tag` element doesn't define a `yourName` property. In this case, the data 
+**Note:** The `intro-tag` element doesn't define a `yourName` property. In this case, the data
 binding system creates the property automatically.
 {: .alert .alert-info }
 
 
 #### Binding objects and arrays to published properties
 
-Most of the examples show data binding with simple string values, 
-but {{site.project_title}} lets you bind references between elements 
+Most of the examples show data binding with simple string values,
+but {{site.project_title}} lets you bind references between elements
 using published properties.
 
 Let's modify the `name-tag` example to take an object instead of individual
@@ -354,7 +354,7 @@ If _boolean-expression_ is truthy, _attribute_  appears in the markup; otherwise
 
 Sometimes, you may not need dynamic bindings. For these cases, there are one-time bindings.
 
-Anywhere you use {% raw %}`{{}}`{% endraw %} in expressions, you can use double brackets 
+Anywhere you use {% raw %}`{{}}`{% endraw %} in expressions, you can use double brackets
 (`[[]]`) to set up a one-time binding. The binding becomes inactive after {{site.project_title}}
 sets its value for the first time.
 
@@ -363,4 +363,3 @@ Example:
     <input type="text" value="this value is inserted once: [[ obj.value ]]">
 
 One time bindings can potentially be a performance win if you don't need the overhead of setting up property observation.
-
