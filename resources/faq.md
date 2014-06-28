@@ -127,7 +127,7 @@ native HTML Imports (see Blink's [crbug.com/240592](http://crbug.com/240592) tra
 ### How can I contribute? {#contributing}
 
 We love to hear your comments or suggestions. [File a bug](https://github.com/polymer/polymer/issues/new) or swing by the [mailing list](/discuss.html) and say "hi"--we don't bite! If you want
-to contribute code, see our [contributor's guide](https://github.com/polymer/polymer/blob/master/CONTRIBUTING.md).
+to contribute code, see our [contributor's guide](https://github.com/Polymer/tools/blob/master/CONTRIBUTING.md).
 
 ### Where is the best place to file bugs? {#filebugs}
 
