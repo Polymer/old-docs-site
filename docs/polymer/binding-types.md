@@ -211,7 +211,7 @@ If a binding occurs between tags, it creates a `textContent` binding to the elem
     <p>This paragraph has some {{adjective}} text.</p>
 {% endraw %}
 
-All text nodes treat a `textContent` bindingas a one-way binding: changing the model changes the bound node, but imperatively changing the DOM value does _not_ update the model.
+All text nodes treat a `textContent` binding as a one-way binding: changing the model changes the bound node, but imperatively changing the DOM value does _not_ update the model.
 
 ### Binding to attributes
 
