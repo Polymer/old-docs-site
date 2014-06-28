@@ -18,10 +18,12 @@
     height: 100%;
     margin: 0;
     background-color: #E5E5E5;
-    font-family: 'Roboto2', sans-serif;
+    font-family: 'RobotoDraft', sans-serif;
   }
   core-header-panel {
     height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch; 
   }
   core-toolbar {
     background: #03a9f4;
@@ -29,6 +31,10 @@
   }
   paper-tabs {
     width: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
   .container {
     width: 80%;
@@ -45,7 +51,7 @@
   </style>
 </head>
 
-<body unresolved>
+<body unresolved touch-action="auto">
   <core-header-panel>
     <core-toolbar>
       <paper-tabs selected="all" valueattr="name" self-end>

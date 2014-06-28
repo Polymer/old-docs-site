@@ -53,7 +53,7 @@ Skipping over the styles for now, at the end of the file you'll find something n
 <side-by-side>
 <pre>
   ...
-&lt;body unresolved>
+&lt;body unresolved touch-action="auto">
 
 &lt;/body>
   ...
@@ -64,6 +64,7 @@ Skipping over the styles for now, at the end of the file you'll find something n
     <li>The <code>unresolved</code> attribute on the <code>&lt;body></code> element is used to prevent a flash of unstyled content 
         (FOUC) on browsers that lack native support for custom elements. For details, see the 
         <a href="http://www.polymer-project.org/docs/polymer/styling.html#fouc-prevention">Polymer styling reference</a>.</li>
+    <li>The <code>touch-action="auto"</code> attribute is there to ensure touch events are handled properly on some browsers.</li>
   </ul>
 </aside>
 </side-by-side>
@@ -87,7 +88,7 @@ Add an HTML import links to import the `<core-header-panel>`, `<core-toolbar>`, 
     href="../components/core-toolbar/core-toolbar.html">
   &lt;link rel="import"
     href="../components/paper-tabs/paper-tabs.html"></strong>
-&lt;/head>
+  &lt;style>
   </pre>
   <aside>
     <h4>Key information</h4>
