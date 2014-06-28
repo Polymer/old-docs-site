@@ -98,6 +98,9 @@ Add an HTML import links to import the `<core-header-panel>`, `<core-toolbar>`, 
         HTML imports provide dependency management, ensuring that your elements and all of their dependencies are loaded 
         before you use them.
       </li>
+      <li>
+        Throughout this tutorial, the code you need to add appears in <code><strong class="highlight nocode">bold black text</strong></code>.
+      </li>
     </ul>
   </aside>
 </side-by-side>

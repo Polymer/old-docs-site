@@ -111,7 +111,9 @@ Add the following `<div>` and `<template>` tag:
 <side-by-side>
 {% raw %}
 <pre>
-&lt;post-service id="service" posts="{{posts}}"></post-service>
+...
+&lt;post-service id="service" posts="{{posts}}">
+&lt;/post-service>
 <strong class="highlight nocode">&lt;div layout vertical center>
   &lt;template repeat="{{post in posts}}">
     &lt;post-card>
@@ -121,6 +123,7 @@ Add the following `<div>` and `<template>` tag:
     &lt;/post-card>
   &lt;/template>
 &lt;/div></strong>
+...
 </pre>
 {%endraw%}
 <aside>
@@ -162,10 +165,9 @@ with a `<post-list>`:
 
 <pre>
 ...
-<strong class="highlight nocode">
 &lt;div class="container" layout vertical center&gt;
-  &lt;post-list show="all"&gt;&lt;/post-list&gt;
-&lt;/div></strong>
+  <strong class="highlight nocode">&lt;post-list show="all"&gt;&lt;/post-list&gt;</strong>
+&lt;/div>
 ...
 </pre>
 

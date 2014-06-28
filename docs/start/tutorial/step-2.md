@@ -51,8 +51,6 @@ custom element, starting with some imports:
   href="../components/polymer/polymer.html">
 &lt;link rel="import" 
   href="../components/core-icon-button/core-icon-button.html">
-&lt;link rel="import" 
-  href="../components/paper-icon-button/paper-icon-button.html">
 ...
 </pre>
 <aside>
@@ -266,13 +264,14 @@ Add a `<post-card>` element to `index.html` directly after the
   <pre>
   ...   
   &lt;/core-toolbar>
-
-    <strong class="highlight nocode">&lt;post-card>
-    &lt;img width="70" height="70" 
-      src="../images/avatar-07.svg">
-      &lt;h2>Another Developer&lt;/h2>
-      &lt;h3>I'm composing with shadow DOM!&lt;/h3>
-    &lt;/post-card></strong>
+    <strong class="highlight nocode">&lt;div class="container" layout vertical center>
+      &lt;post-card>
+      &lt;img width="70" height="70" 
+        src="../images/avatar-07.svg">
+        &lt;h2>Another Developer&lt;/h2>
+        &lt;h3>I'm composing with shadow DOM!&lt;/h3>
+      &lt;/post-card>
+    &lt;div></strong>
   ...
   </pre>
   <aside>
