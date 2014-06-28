@@ -69,7 +69,7 @@ Open the `post-list.html` file in your editor.
 
 
 A <a href="http://www.polymer-project.org/docs/polymer/polymer.html#published-properties">
-<em>published property</em></a> is property that can be configured in markup using an attribute,
+<em>published property</em></a> is a property that can be configured in markup using an attribute,
 or connected to another property using two-way data binding. You'll use the `show` property
 in a later step.
 
