@@ -92,7 +92,7 @@ specifies the current scope.
 
 ### Nested scoping rules {#nested-scoping-rules}
 
-If a `<template>` using a named scoped contains child `<template>`s,
+If a `<template>` using a named scope contains child `<template>`s,
 all ancestor scopes are visible, up-to and including the first ancestor **not** using a named scope. For example:
        
 {% raw %}
