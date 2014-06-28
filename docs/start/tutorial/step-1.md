@@ -88,7 +88,7 @@ Add an HTML import links to import the `<core-header-panel>`, `<core-toolbar>`, 
     href="../components/core-toolbar/core-toolbar.html">
   &lt;link rel="import"
     href="../components/paper-tabs/paper-tabs.html"></strong>
-&lt;style>
+  &lt;style>
   </pre>
   <aside>
     <h4>Key information</h4>
