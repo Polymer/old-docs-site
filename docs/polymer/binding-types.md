@@ -14,10 +14,10 @@ There are several ways to bind data to a template. You can:
 *   Create a single instance of a template, by specifying a single object using the `bind` attribute.
 *   Create multiple instances of a template, by specifying an array of objects using the `repeat` 
      attribute.
-*   Conditionally create an instance of a template, depending on whether the the value passed to the `if`attribute is truthy.
+*   Conditionally create an instance of a template, depending on whether the value passed to the `if`attribute is truthy.
 
 **Note:** Binding templates only works inside {{site.project_title}} elements. For example, if a 
-`<template>` element is inserted directly into a page’s `<body>` tag, the the `bind` attribute 
+`<template>` element is inserted directly into a page’s `<body>` tag, the `bind` attribute 
 doesn’t work as described here. If you need to use template binding outside of a 
 {{site.project_title}} element, see [Using data binding outside of a {{site.project_title}} element](/docs/polymer/databinding-advanced.html#bindingoutside). 
 {: .alert .alert-info }
@@ -77,8 +77,8 @@ Like the `bind` attribute, the `repeat` attribute supports named scopes:
     </template>
 {% endraw %}
 
-Another of the `repeat` attribute provides named scopes and index values for each 
-item in the array:
+When using named scopes with the `repeat` attribute, the index value for each 
+item in the array is also available by using the following syntax:
 
 {% raw %}
     <template repeat="{{ user, userIndex in users }}">
@@ -88,7 +88,7 @@ item in the array:
     </template>
 {% endraw %}
 
-Like the `bind` attribute, you can omit the value from the `repeat` element and inherit the
+Like the `bind` attribute, you can omit the value from the `repeat` element to inherit the
 parent scope. For example, suppose you have an array of objects like this:
 
     this.items = [
@@ -362,5 +362,5 @@ Example:
 
     <input type="text" value="this value is inserted once: [[ obj.value ]]">
 
-One time bindings can potentially be a performance win if you don't need the overhead of setting up property observation.
+One-time bindings can potentially be a performance win if you don't need the overhead of setting up property observation.
 
