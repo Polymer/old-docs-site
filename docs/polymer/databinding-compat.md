@@ -13,7 +13,7 @@ subtitle: Data-binding
 A few features of native templates can’t be replicated perfectly with the polyfill library, and require some workarounds. These include:
 
 Some browsers don’t allow  `<template>` elements inside certain elements like `<select>` or `<table>`. 
-Binding to certain attributes (such as the `<img>` tag’s `src` attribute doesn’t work correctly on some browsers that don’t support templates.
+Binding to certain attributes (such as the `<img>` tag’s `src` attribute) doesn’t work correctly on some browsers that don’t support templates.
 
 ## Elements that can’t contain a template
 
