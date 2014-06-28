@@ -52,7 +52,7 @@ like the Paper element collection.
 {{site.project_title}} is very modular; you can install just the {{site.project_title}}
 library and platform polyfills, a single element, or a whole collection of elements.
 
-Througout the site, you'll find component download buttons like this:
+Throughout the site, you'll find component download buttons like this:
 
 <component-download-button org="Polymer" component="paper-elements" label="GET THE PAPER ELEMENTS">
 </component-download-button>
