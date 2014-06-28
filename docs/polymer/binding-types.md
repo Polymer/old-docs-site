@@ -145,7 +145,7 @@ the containing template. Conditional templates are frequently used this way:
     </template>
 {% endraw %}
 
-For more information on nesting templates, see [Expression scopes](#expression-scopes).
+For more information on nesting templates, see [Expression scopes](/docs/polymer/expressions.html#expression-scopes).
 
 You can also use `if` with the  `repeat` attribute.
 
