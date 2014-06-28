@@ -87,7 +87,7 @@ prototype.
       <code>favorite</code> property defaults to <code>false</code>, and it <em>reflects</em>, meaning
       the <code>favorite</code> attribute is updated whenever the property value
       changes.</li>
-      <li>The <code>favoriteTapped</code> event toggles the state of of the <code>favorite</code>
+      <li>The <code>favoriteTapped</code> event toggles the state of the <code>favorite</code>
       property (<code>this.favorite</code>), and also fires a custom event, using the
       built in <code>fire</code> method. (<code>fire</code> is one of several utility methods
       {{site.project_title}} adds to the prototype of every custom element.)</li>
