@@ -6,9 +6,8 @@
 
 #mainmenu {
   display: block;
-  position: fixed;
-  overflow: scroll;
-  height: 100%;
+  overflow: auto;
+  height: 100vh;
   padding-bottom: 130px;
 }
 
