@@ -73,7 +73,7 @@ Skipping over the styles for now, at the end of the file you'll find something n
   <core-icon icon="polymer"></core-icon>
 </div>
 
-Add an HTML import links to import the `<core-header-panel>`, `<core-toolbar>`, and `<paper-tabs>` elements:
+Add HTML import links to import the `<core-header-panel>`, `<core-toolbar>`, and `<paper-tabs>` elements:
 
 <side-by-side>
   <pre>
@@ -135,7 +135,7 @@ To add a toolbar, add the following code inside the `<body>` tag.
           header (in this case a <code>&lt;core-toolbar></code> element), and some content. By 
           default, the header stays at the top of the screen, but it can also be 
           set to scroll with the content.</li>
-      <li>The <a href="http://www.polymer-project.org/components/core-docs/index.html#core-toolbar"><code>&lt;core-toolbar></code></a> serves 
+      <li>The <a href="http://www.polymer-project.org/components/core-docs/index.html#core-toolbar"><code>&lt;core-toolbar></code></a> element serves 
           as a container for tabs, menu buttons, and other controls.</li>
     </ul>
   </aside>
