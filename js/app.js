@@ -45,6 +45,17 @@ function prettyPrintPage(opt_inDoc) {
 }
 
 /**
+ * Replaces in-page <script> tag in xhr'd body content with runnable script.
+ *
+ * @param {Node} node Container element to replace script content.
+ */
+function replaceScriptTagWithRunnableScript(node) {
+  var script  = document.createElement('script');
+  script.text = node.innerHTML;
+  node.parentNode.replaceChild(script, node);
+}
+
+/**
  * Replaces the main content of the page by loading the URL via XHR.
  *
  * @param {string} url The URL of the page to load.
@@ -94,7 +105,14 @@ function injectPage(url, opt_addToHistory) {
     // Inject article body.
     var CONTAINER_SELECTOR = '#content-container scroll-area article';
     var container = document.querySelector(CONTAINER_SELECTOR);
-    container.innerHTML = doc.querySelector(CONTAINER_SELECTOR).innerHTML;
+    var newDocContainer = doc.querySelector(CONTAINER_SELECTOR);
+    container.innerHTML = newDocContainer.innerHTML;
+
+    // .innerHTML doesn't eval script. Replace <script> in-page with runnable version.
+    var scripts = container.querySelectorAll('script');
+    Array.prototype.forEach.call(scripts, function(node, i) {
+      replaceScriptTagWithRunnableScript(node);
+    });
 
     // Set left-nav menu and highlight correct item.
     docsMenu.setAttribute(
