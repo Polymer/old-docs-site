@@ -150,13 +150,11 @@ site-banner .logo {
 #featured {
   .video {
     iframe {
-      // width: 640px;
-      //width: 500px;
       width: 525px;
       height: 273px;
     }
   }
-  .panel summary {
+  .panel feature-carousel summary {
     margin-left: 40px;
   }
   .panel img {
@@ -170,30 +168,12 @@ site-banner .logo {
   }
 
   @media only screen and (max-width: $break-medium) {
-    summary {
+    .panel feature-carousel summary {
       margin-left: 0 !important;
-      margin-top: 30px !important;
+      margin-top: 15px !important;
     }
   }
 }
-
-// #videos {
-//   .panel {
-//     padding: 50px 16px;
-//   }
-//   .video {
-//     @include flex(1);
-//     iframe {
-//       // width: 640px;
-//       width: 500px;
-//       height: 281px;
-//     }
-//   }
-//   summary {
-//     color: #fff;
-//     @include align-self(center);
-//   }
-// }
 
 #designer {
   .panel {
@@ -221,15 +201,6 @@ site-banner .logo {
     color: #fff;
   }
 }
-
-// #sampler {
-//   .panel img {
-//     width: 530px;
-//     height: 315px;
-//     object-fit: cover;
-//     object-position: 50% 0;
-//   }
-// }
 
 #everything-element {
   code {
@@ -283,35 +254,3 @@ site-banner .logo {
     width: 100%;
   }
 }
-
-// #quickstart {
-//   h1 {
-//     @extend .h1heading;
-//   }
-//   h5 {
-//     @extend .h5heading;
-//   }
-//   .panel {
-//     @include flex-direction(column);
-//   }
-//   .example {
-//     @include display-flex;
-//     border-bottom: 1px solid $main-bg;
-//     padding: $content-padding 0;
-
-//     heading {
-//       @include align-self(center);
-//       @include flex(1 0 auto);
-
-//       h2 {
-//         line-height: 1;
-//       }
-//     }
-//     paper-button {
-//       margin-top: $additonalPadding;
-//     }
-//     > div {
-//       @include flex(0 1 50%);
-//     }
-//   }
-// }

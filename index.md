@@ -35,36 +35,38 @@ stylesheets:
 
 <section id="featured">
   <div class="panel right">
-    <feature-carousel interval="5000" flex unresolved>
-      <div>
-        <a href="/components/paper-elements/demo.html#core-toolbar" target="_blank">
-          <img src="/images/sampler-paper.png">
-        </a>
-        <summary>
-          <h1>Featured: material design</h1>
-          <p>{{site.project_title}} brings an implementation of <a href="http://google.com/design/spec">material design</a> to the web. The paper elements range from controls to effects and user interaction.
-          <br><br>
-          <a href="/docs/elements/material.html">
-            <paper-button icon="arrow-forward" label="Learn more"></paper-button>
+    <summary>
+        <feature-carousel interval="5000" flex unresolved>
+        <div>
+          <a href="/components/paper-elements/demo.html#core-toolbar" target="_blank">
+            <img src="/images/sampler-paper.png">
           </a>
-          </p>
-        </summary>
-      </div>
-      <div>
-        <div class="video">
-          <iframe src="https://www.youtube.com/embed/videoseries?list=PLRAVCSU_HVYu-zlRaqArF8Ytwz1jlMOIM&theme=light&controls=0" frameborder="0" allowfullscreen></iframe>
+          <summary>
+            <h1>Featured: material design</h1>
+            <p>{{site.project_title}} brings an implementation of <a href="http://google.com/design/spec">material design</a> to the web. The paper elements range from controls to effects and user interaction.
+            <br><br>
+            <a href="/docs/elements/material.html">
+              <paper-button icon="arrow-forward" label="Learn more"></paper-button>
+            </a>
+            </p>
+          </summary>
         </div>
-        <summary>
-          <h1>Featured: Google I/O</h1>
-          <p>Recap everything {{site.project_title}} at Google I/O 2014. Watch sessions videos and DevByte shorts.
-          <br><br>
-          <a href="/resources/video.html">
-            <paper-button icon="drive-video" label="Watch"></paper-button>
-          </a>
-          </p>
-        </summary>
-      </div>
-    </feature-carousel>
+        <div>
+          <div class="video">
+            <iframe src="https://www.youtube.com/embed/videoseries?list=PLRAVCSU_HVYu-zlRaqArF8Ytwz1jlMOIM&theme=light&controls=0" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <summary>
+            <h1>Featured: Google I/O</h1>
+            <p>Recap everything {{site.project_title}} at Google I/O 2014. Watch sessions videos and DevByte shorts.
+            <br><br>
+            <a href="/resources/video.html">
+              <paper-button icon="drive-video" label="Watch"></paper-button>
+            </a>
+            </p>
+          </summary>
+        </div>
+      </feature-carousel>
+    </summary>
   </div>
 </section>
 

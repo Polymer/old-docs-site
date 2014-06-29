@@ -63,9 +63,14 @@ polyfill-next-selector { content: ':host .core-selected'; }
   polyfill-next-selector { content: ':host > core-selector > *'; }
   ::content > * {
     @include flex-direction(column);
+    width: 100%;
+  }
+  polyfill-unscoped-rule {
+    content: '#feature :host';
+    height: 550px;
   }
   :host {
-    height: 550px;
+    height: 550px !important;
   }
   #paginator {
     width: 100%;
