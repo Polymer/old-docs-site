@@ -1,6 +1,5 @@
-<link rel="import" href="../components/polymer-selector/polymer-selector.html">
 <link rel="import" href="../components/polymer/polymer.html">
-
+<link rel="import" href="../components/core-selector/core-selector.html">
 
 <polymer-element name="demo-tab" attributes="heading" noscript>
   <template>
@@ -22,16 +21,16 @@
     <link rel="stylesheet" href="../css/elements/demo-tabs.css">
     <div id="container" class="{{theme}}">
       <div id="tabstrip">
-        <polymer-selector selected="{{selected}}" selectedClass="selected" class="tab-wrapper">
+        <core-selector selected="{{selected}}" selectedClass="selected" class="tab-wrapper">
           <template repeat="{{panel in panels}}">
             <span>{{panel.heading}}</span>
           </template>
-        </polymer-selector>
+        </core-selector>
       </div>
       <div id="wrapper" class="{{ {bottom: bottom} | tokenList}}">
-        <polymer-selector id="contents" selected="{{selected}}" selectedClass="selected">
+        <core-selector id="contents" selected="{{selected}}" selectedClass="selected">
           <content id="contentpanels" select="demo-tab"></content>
-        </polymer-selector>
+        </core-selector>
         <div id="results" class="show">
           <content id="contentresults" select=".result"></content>
         </div>
