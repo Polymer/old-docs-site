@@ -69,7 +69,7 @@
             [start-def]<polymer-element name="my-counter" [start-publish]attributes="counter"[end-publish]>[end-def]
               [start-scope]<template>[end-scope]
                 <style> /*...*/ </style>
-                <div id="label">[start-content]<content></content>[end-content]</div>
+                <div id="label"><content></content></div>
                 Value: <span [start-nodefind]id="counterVal"[end-nodefind]>[start-data]&#123;&#123;counter&#125;&#125;[end-data]</span><br>
                 <button [start-events]on-tap="&#123;&#123;increment&#125;&#125;[end-events]">Increment</button>
               [start-scope]</template>[end-scope]
@@ -87,7 +87,7 @@
             [start-def]</polymer-element>[end-def]
 
             <!-- Use element -->
-            <my-counter [start-publish]counter="10"[end-publish]>[start-content]Points[end-content]</my-counter>
+            <my-counter [start-publish]counter="10"[end-publish]>Points</my-counter>
           </script>
           <h2>Creating Polymer Elements</h2>
           <div>Polymer sugars Web Components standards with awesome features for creating custom elements:</div>
