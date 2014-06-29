@@ -6,8 +6,6 @@ stylesheets:
   "/css/homepage.css"
 ---
 
-<link rel="import" href="/elements/feature-carousel.html">
-
 <section id="future" class="main-bg">
   <div class="panel left">
     <img src="/images/logos/p-logo.svg">
