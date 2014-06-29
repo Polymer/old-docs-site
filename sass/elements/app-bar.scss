@@ -20,16 +20,15 @@
   color: inherit;
 }
 
-:host-context(site-banner[type="start"], site-banner[navgroup="resources"]) ::content .active,
-:host-context(site-banner[type="start"], site-banner[navgroup="resources"]) ::content .paper-button:hover {
+:host-context(site-banner[navgroup="start"], site-banner[type="start"], site-banner[navgroup="resources"]) ::content .active,
+:host-context(site-banner[navgroup="start"], site-banner[type="start"], site-banner[navgroup="resources"]) ::content .paper-button:hover {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 1) inset, 0 -1px 1px rgba(0, 0, 0, 1) inset, 0 2px 0px rgba(0, 0, 0, 1) inset;
   @include background(linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%));
 }
 
-// TODO(ericbidelman): check with sorvell if :ancestor() is polyfill'd correctly.
 // The above is prefixed with the element name.
 polyfill-unscoped-rule {
-  content: 'site-banner[navgroup="start"] app-bar .active, site-banner[navgroup="resources"] app-bar .active, site-banner[navgroup="community"] app-bar .active, site-banner[navgroup="start"] app-bar .paper-button:hover, site-banner[navgroup="resources"] app-bar .paper-button:hover, site-banner[navgroup="community"] app-bar .paper-button:hover';
+  content: 'site-banner[navgroup="start"] app-bar .active, site-banner[type="start"] app-bar .active, site-banner[navgroup="resources"] app-bar .active, site-banner[navgroup="start"] app-bar .paper-button:hover, site-banner[type="start"] app-bar .paper-button:hover, site-banner[navgroup="resources"] app-bar .paper-button:hover';
   box-shadow: 0 1px 1px rgba(0, 0, 0, 1) inset, 0 -1px 1px rgba(0, 0, 0, 1) inset, 0 2px 0px rgba(0, 0, 0, 1) inset  !important;
   background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%)  !important;
   background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%)  !important;
