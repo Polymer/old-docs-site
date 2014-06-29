@@ -1,8 +1,7 @@
 <link rel="import" href="../components/polymer/polymer.html">
 <link rel="import" href="../components/context-free-parser/context-free-parser.html">
 <link rel="import" href="../components/marked-element/marked-element.html">
-<link rel="import" href="../components/highlightjs-element/highlightjs-element.html">
-
+<!-- <link rel="import" href="../components/highlightjs-element/highlightjs-element.html"> -->
 
 <polymer-element name="component-docs" attributes="elements">
   <template>
@@ -44,7 +43,7 @@
   <template>
     <link rel="stylesheet" href="../components/highlightjs/styles/default.css">
     <link rel="stylesheet" href="../css/elements/doc-page.css">
-    <div class="main"><!-- on-marked-js-highlight="{{hilight}}"> -->
+    <div class="main" on-marked-js-highlight="{{prettyPrint}}">
       <h1>{{data.name}}</h1>
 
       <template if="{{data.extends}}">
@@ -56,13 +55,10 @@
       <p>
         <component-download-button org="Polymer" component="{{data.name}}"
         label="Get {{data.name}}"></component-download-button>
-
-        <!-- <a class="badge" href="http://bowerarchiver.appspot.com/archive?{{data.name}}=Polymer/{{data.name}}">Download</a> -->
-        <!-- <a class="badge" target="_blank" href="/components/{{data.name}}/demo.html" on-click="{{recordDemoPageview}}">Demo</a> -->
-        <a class="badge" target="_blank" href="/components/{{data.name}}/demo.html" on-click="{{recordDemoPageview}}">
+        <a class="badge" target="_blank" href="/components/{{data.name}}/demo.html"
+                         on-click="{{recordDemoPageview}}">
           <paper-button label="Demo" raisedButton></paper-button>
         </a>
-        <!-- <a class="badge" target="_blank" href="http://github.com/Polymer/{{data.name}}">Source</a> -->
       </p>
 
       <template if="{{data.description}}">
@@ -141,11 +137,28 @@
     </div>
   </template>
   <script>
+  (function() {
+    function encodeHTMLEntities_(htmlStr) {
+      return htmlStr.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
     Polymer('doc-page', {
       recordDemoPageview: function(e, detail, sender) {
         window.recordPageview && window.recordPageview(sender.href); // global pollution.
+      },
+      prettyPrint: function(e, detail, sender) {
+        if (window.prettyPrintOne) {
+          this.async(function() {
+            var pres = this.shadowRoot.querySelectorAll('pre');
+            Array.prototype.forEach.call(pres, function(p, i) {
+              p.innerHTML = window.prettyPrintOne(encodeHTMLEntities_(detail.code));
+            });
+          });
+        }
       }
     });
+
+  })();
   </script>
 </polymer-element>
 

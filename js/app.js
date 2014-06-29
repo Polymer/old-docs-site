@@ -166,15 +166,17 @@ function initPage(opt_inDoc, hasInlineImports) {
 
   // TODO: Use kramdown {:.prettyprint .linenums .lang-ruby} to add the
   // <pre class="prettyprint"> instead of doing this client-side.
-  if (!hasInlineImports) {
-    prettyPrintPage(doc);
-  } else {
-    // Need small delay to prevent https://github.com/Polymer/docs/issues/419.
-    // 200ms is arbitrary, but works.
-    setTimeout(function() {
-      prettyPrintPage(doc);
-    }, 200);
-  }
+  // if (!hasInlineImports) {
+  //   prettyPrintPage(doc);
+  // } else {
+  //   // Need small delay to prevent https://github.com/Polymer/docs/issues/419.
+  //   // 200ms is arbitrary, but works.
+  //   setTimeout(function() {
+  //     prettyPrintPage(doc);
+  //   }, 1200);
+  // }
+  prettyPrintPage(doc);
+
   if (location.hash) {
     hideOnHash();
   }
