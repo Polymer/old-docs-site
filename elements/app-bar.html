@@ -1,12 +1,13 @@
 <link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
 
 <polymer-element name="app-bar" attributes="theme">
   <template>
     <link rel="stylesheet" href="../css/elements/app-bar.css">
     <content></content>
-    <polymer-ui-icon id="menu" on-click="{{onMenuClick}}" src="/images/picons/ic_menu_{{theme}}_.png"></polymer-ui-icon>
+    <paper-icon-button id="hamburger" on-click="{{onMenuClick}}" icon="menu"></paper-icon-button>
     <div id="search" show?="{{showingSearch}}" on-click="{{toggleSearch}}">
-      <polymer-ui-icon src="/images/picons/ic_search_{{theme}}_.png"></polymer-ui-icon>
+      <paper-icon-button icon="search"></paper-icon-button>
       <input type="search" id="input" on-keyup="{{onKeyPress}}" autocomplete="off">
     </div>
   </template>

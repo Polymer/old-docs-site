@@ -13,14 +13,15 @@
   // background: inherit;
   font-size: 14px;
   color: #000;
+  fill: currentcolor;
 }
 
 :host([theme="light"]) {
   color: inherit;
 }
 
-:host-context(site-banner[navgroup="start"], site-banner[navgroup="resources"], site-banner[navgroup="community"]) ::content .active,
-:host-context(site-banner[navgroup="start"], site-banner[navgroup="resources"], site-banner[navgroup="community"]) ::content .paper-button:hover {
+:host-context(site-banner[type="start"], site-banner[navgroup="resources"]) ::content .active,
+:host-context(site-banner[type="start"], site-banner[navgroup="resources"]) ::content .paper-button:hover {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 1) inset, 0 -1px 1px rgba(0, 0, 0, 1) inset, 0 2px 0px rgba(0, 0, 0, 1) inset;
   @include background(linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%));
 }
@@ -57,14 +58,6 @@ polyfill-unscoped-rule {
   position: absolute;
 }
 
-polymer-ui-icon {
-  $widthHeight: 24px;
-  width: $widthHeight !important;
-  height: $widthHeight !important;
-  background-size: $widthHeight * 2 !important;
-  opacity: 0.6;
-}
-
 polyfill-next-selector { content: ':host a'; }
 :host ::content a {
   // opacity: 0.6;
@@ -76,8 +69,7 @@ polyfill-next-selector { content: ':host a'; }
   @include display-flex();
   @include align-items(center);
   @include flex(0 0 auto);
-  width: 30px;
-  margin-left: 16px;
+  width: 40px;
   @include box-sizing(border-box);
   background-color: inherit;
 
@@ -113,7 +105,7 @@ input {
   -webkit-appearance: none;
 }
 
-#menu {
+#hamburger {
   display: none;
 }
 
@@ -134,15 +126,11 @@ input {
     display: none !important;
   }
 
-  polymer-ui-icon {
-    margin: 0;
-  }
-
-  #menu {
+  #hamburger {
     display: inline-block;
   }
 
-  :host-context(#welcome) #menu {
+  :host-context(#welcome) #hamburger {
     display: none;
   }
 }
