@@ -271,7 +271,7 @@ Add a `<post-card>` element to `index.html` directly after the
         &lt;h2>Another Developer&lt;/h2>
         &lt;h3>I'm composing with shadow DOM!&lt;/h3>
       &lt;/post-card>
-    &lt;div></strong>
+    &lt;/div></strong>
   ...
   </pre>
   <aside>
