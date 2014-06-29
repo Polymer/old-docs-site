@@ -225,7 +225,7 @@ Add an event handler for the `favorite-tap` event:
       <code>favorite</code> value.</li>
       <li>Every element in a custom element's shadow DOM that has an <code>id</code>
       attribute is added to the <code>this.$</code> dictionary. This is called
-      <a href="http://www.polymer-project.org/docs/polymer/polymer.html#automatic-node-finding">automatic node finding</a>.</li>
+      <a href="/docs/polymer/polymer.html#automatic-node-finding">automatic node finding</a>.</li>
       <li>If this was a real social networking service, the <code>setFavorite</code> method
       would persist the change to the server. As is, it doesn't do anything
       other than log a console message.</li>
