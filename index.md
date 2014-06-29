@@ -2,12 +2,11 @@
 layout: home
 title: Welcome
 
-#stylesheets:
-#  "/css/homepage.css"
+stylesheets:
+  "/css/homepage.css"
 ---
 
-<!-- page specific stylesheet needs to be inline to the page so ajax injects it. -->
-<link rel="stylesheet" href="/css/homepage.css" shim-shadowdom>
+<link rel="import" href="/elements/feature-carousel.html">
 
 <section id="future" class="main-bg">
   <div class="panel left">
