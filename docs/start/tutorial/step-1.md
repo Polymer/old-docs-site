@@ -63,7 +63,7 @@ Skipping over the styles for now, at the end of the file you'll find something n
   <ul>
     <li>The <code>unresolved</code> attribute on the <code>&lt;body></code> element is used to prevent a flash of unstyled content 
         (FOUC) on browsers that lack native support for custom elements. For details, see the 
-        <a href="http://www.polymer-project.org/docs/polymer/styling.html#fouc-prevention">Polymer styling reference</a>.</li>
+        <a href="/docs/polymer/styling.html#fouc-prevention">Polymer styling reference</a>.</li>
     <li>The <code>touch-action="auto"</code> attribute is there to ensure touch events are handled properly on some browsers.</li>
   </ul>
 </aside>
@@ -94,7 +94,7 @@ Add HTML import links to import the `<core-header-panel>`, `<core-toolbar>`, and
     <h4>Key information</h4>
     <ul>
       <li>
-        Polymer uses <a href="http://www.polymer-project.org/platform/html-imports.html">HTML imports</a> to load components.
+        Polymer uses <a href="/platform/html-imports.html">HTML imports</a> to load components.
         HTML imports provide dependency management, ensuring that your elements and all of their dependencies are loaded 
         before you use them.
       </li>
@@ -127,7 +127,7 @@ To add a toolbar, add the following code inside the `<body>` tag.
 
     <ul>
       <li>The 
-          <a href="http://www.polymer-project.org/components/core-docs/index.html#core-header-panel">
+          <a href="/docs/elements/core-elements.html#core-header-panel">
             <code>&lt;core-header-panel></code>
           </a>
           element is a 
@@ -135,7 +135,7 @@ To add a toolbar, add the following code inside the `<body>` tag.
           header (in this case a <code>&lt;core-toolbar></code> element), and some content. By 
           default, the header stays at the top of the screen, but it can also be 
           set to scroll with the content.</li>
-      <li>The <a href="http://www.polymer-project.org/components/core-docs/index.html#core-toolbar"><code>&lt;core-toolbar></code></a> element serves 
+      <li>The <a href="/docs/elements/core-elements.html#core-toolbar"><code>&lt;core-toolbar></code></a> element serves 
           as a container for tabs, menu buttons, and other controls.</li>
     </ul>
   </aside>
@@ -217,7 +217,7 @@ Add a `<script>` tag at the end of the file to handle the tab switching
 </side-by-side>
 
 
-Save the file and open the project in your browser (for example, `http://localhost:8000/starter`). You have a Polymer app! 
+Save the file and open the project in your browser (for example, [http://localhost:8000/starter](http://localhost:8000/starter)). You have a Polymer app! 
 
   <iframe class="running-app-frame" width="480" height="320" src="/samples/tutorial/step-1/index.html">
   </iframe>

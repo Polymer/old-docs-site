@@ -60,7 +60,7 @@ Open the `post-list.html` file in your editor.
       <li>The file already includes an import for the <code>&lt;post-service&gt;</code>
       element, so it's ready to use.</li>
       <li>The <code>attributes="show"</code> attribute creates a 
-      <a href="http://www.polymer-project.org/docs/polymer/polymer.html#published-properties">
+      <a href="/docs/polymer/polymer.html#published-properties">
       <em>published property</em></a> named <code>show</code>.
       </li>
     </ul>
@@ -68,7 +68,7 @@ Open the `post-list.html` file in your editor.
 </side-by-side>
 
 
-A <a href="http://www.polymer-project.org/docs/polymer/polymer.html#published-properties">
+A <a href="/docs/polymer/polymer.html#published-properties">
 <em>published property</em></a> is a property that can be configured in markup using an attribute,
 or connected to another property using two-way data binding. You'll use the `show` property
 in a later step.
@@ -183,7 +183,7 @@ If you have any problems, check your work against the files in the `step-3` fold
 -   [`post-list.html`](https://github.com/Polymer/polymer-tutorial/blob/master/step-3/post-list.html)
 -   [`index.html`](https://github.com/Polymer/polymer-tutorial/blob/master/step-3/index.html)
 
-**Explore:** Open up `post-service.html` to see how the component works. Internally, it uses the [`<core-ajax>`](http://www.polymer-project.org/components/core-docs/index.html#core-ajax) element to make HTTP requests.
+**Explore:** Open up `post-service.html` to see how the component works. Internally, it uses the [`<core-ajax>`](/docs/elements/core-elements.html#core-ajax) element to make HTTP requests.
 {: .alert .alert-info}
 
 ### Next
