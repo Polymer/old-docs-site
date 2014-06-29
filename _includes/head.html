@@ -24,7 +24,7 @@
 <link href="/css/site2.css?{{site.time | date: '%Y%m%d'}}" rel="stylesheet" shim-shadowdom>
 
 {% for item in page.stylesheets %}
-  <link rel="stylesheet" href="{{item}}">
+  <link rel="stylesheet" href="{{item}}" shim-shadowdom>
 {% endfor %}
 
 {% if site.load_platform %}
