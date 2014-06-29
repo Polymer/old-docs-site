@@ -113,8 +113,6 @@ Add the following CSS to style the favorite button:
     position: absolute;
     top: 3px;
     right: 3px;
-  }
-  core-icon-button {
     fill: #636363;
   }
   :host([favorite]) core-icon-button {
