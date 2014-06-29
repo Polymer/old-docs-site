@@ -79,17 +79,3 @@ add_permalinks: false
     <img src="/images/sampler-paper.png">
   </a>
 </div>
-
-{%comment%}
-## {{site.project_title}} Labs
-
-{% include labs.html %}
-
-{{site.project_title}}
-
-### [polymer-elements](polymer-elements.html)
-
-### [polymer-ui-elements](polymer-ui-elements.html)
-
-### [Other](other.html)
-{%endcomment%}
