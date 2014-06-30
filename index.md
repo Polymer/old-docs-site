@@ -74,14 +74,14 @@ stylesheets:
   <div class="panel">
     <summary style="transform: translateZ(0);">
       <h1>Designer</h1>
-      <a href="/tools/designer/#391b62346ab74dc8ca2c" target="_blank">
+      <a href="/tools/designer/" target="_blank">
         <img src="/images/designer_screenshot.png" class="cover" alt="Launch the designer tool" title="Launch the designer tool">
       </a>
       <div>
         <h3>
         Designer is a drag and drop tool for prototyping apps using {{site.project_title}}. Save your experiments as Github gists.
         </h3>
-        <a href="/tools/designer/#391b62346ab74dc8ca2c" target="_blank">
+        <a href="/tools/designer/" target="_blank">
           <paper-button icon="arrow-forward" label="Try it now"></paper-button>
         </a>
       </div>
