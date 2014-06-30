@@ -23,7 +23,7 @@ You can install elements one at a time, or install a whole collection of element
     as well as  non-UI elements providing features like AJAX, signaling and storage.
 
 -   [Paper elements](/docs/elements/paper-elements.html). A set of UI elements that implement the 
-    [material design system](/docs/polymer/material.html).
+    [material design system](/docs/elements/material.html).
 
 
 If you find an element you want while browsing the docs, simply click
