@@ -63,6 +63,15 @@ pre code {
   .details {
     @extend .material-orange-light;
     border-bottom: 1px solid rgba(255, 86, 33, 0.5);
+
+    .default {
+      .label {
+        opacity: 0.85;
+      }
+      code {
+        font-size: 14px;
+      }
+    }
   }
   h3 {
     @extend .material-orange;
