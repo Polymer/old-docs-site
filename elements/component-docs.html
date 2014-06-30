@@ -116,6 +116,15 @@
               </div>
               <div class="details-info" flex three>
                 <marked-element text="{{description}}"></marked-element>
+                <template if="{{params.length}}">
+                  <div class="params">
+                    <p>Event details:</p>
+                    <template repeat="{{params}}">
+                      <p><code>{{name}}</code><span> <code>( {{type}} )</code></span></p>
+                      <p><span>{{description}}</span></p>
+                    </template>
+                  </div>
+                </template>
               </div>
             </div>
           </template>
@@ -132,6 +141,15 @@
               </div>
               <div class="details-info" flex three>
                 <marked-element text="{{description}}"></marked-element>
+                <template if="{{params.length}}">
+                  <div class="params">
+                    <p>Method parameters:</p>
+                    <template repeat="{{params}}">
+                      <p><code>{{name}}</code><span> <code>( {{type}} )</code></span></p>
+                      <p><span>{{description}}</span></p>
+                    </template>
+                  </div>
+                </template>
               </div>
             </div>
           </template>
@@ -152,12 +170,7 @@
       },
       prettyPrint: function(e, detail, sender) {
         if (window.prettyPrintOne) {
-          this.async(function() {
-            var pres = this.shadowRoot.querySelectorAll('pre');
-            Array.prototype.forEach.call(pres, function(p, i) {
-              p.innerHTML = window.prettyPrintOne(encodeHTMLEntities_(detail.code));
-            });
-          });
+          detail.code = window.prettyPrintOne(encodeHTMLEntities_(detail.code));
         }
       }
     });

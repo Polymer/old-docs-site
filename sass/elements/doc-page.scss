@@ -17,6 +17,10 @@ h1 {
   &:not(.top) {
     .details {
       padding: 16px;
+
+      .params {
+        margin-top: 40px;
+      }
     }
 
     h3 {
@@ -28,6 +32,7 @@ h1 {
       padding: initial;
       background-color: transparent;
       margin: initial;
+      font-size: 12px;
     }
   }
 

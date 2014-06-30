@@ -33,5 +33,5 @@ add_permalinks: false
 </div>
 
 <component-docs
-    elements='{% list_components dir:components prefix:core blacklist:"core-layout core-doc-viewer core-home-page" %}'>
+    elements='{% list_components dir:components prefix:core blacklist:"core-slide core-layout core-doc-viewer core-home-page" %}'>
 </component-docs>
