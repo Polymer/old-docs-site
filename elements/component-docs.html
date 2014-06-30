@@ -48,7 +48,7 @@
 
       <template if="{{data.extends}}">
         <section class="top">
-          <h3>Extends: <a href="#{{data.extends}}">{{data.extends}}</a></h3>
+          <h3>Extends: <a href="{{data.extends | collectionPrefix}}-elements.html#{{data.extends}}">{{data.extends}}</a></h3>
         </section>
       </template>
 
@@ -172,6 +172,10 @@
         if (window.prettyPrintOne) {
           detail.code = window.prettyPrintOne(encodeHTMLEntities_(detail.code));
         }
+      },
+      collectionPrefix: function(elementName) {
+        var match = elementName.match(/(\w+)-/);
+        return match ? match[1] : 'core';
       }
     });
 
