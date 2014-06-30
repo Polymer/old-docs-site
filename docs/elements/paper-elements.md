@@ -32,6 +32,6 @@ add_permalinks: false
 </div>
 
 <component-docs
-    elements='{% list_components dir:components prefix:paper blacklist:"paper-calculator paper-doc-viewer paper-ink paper-scaffold"%}'>
+    elements='{% list_components dir:components prefix:paper blacklist:"paper-calculator paper-doc-viewer paper-ink paper-scaffold paper-menu-button-transition"%}'>
 </component-docs>
 

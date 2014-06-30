@@ -5,10 +5,11 @@
 
 <polymer-element name="component-docs" attributes="elements">
   <template>
-    <context-free-parser url="{{url}}" on-data-ready="{{dataReady}}"
-      data="{{data}}"></context-free-parser>
-    <template repeat="{{data.classes}}">
-      <doc-page id="{{name}}" name="{{name}}" data="{{}}"></doc-page>
+    <context-free-parser url="{{url}}" data="{{data}}" on-data-ready="{{dataReady}}">
+    </context-free-parser>
+    <template repeat="{{c in data.classes}}">
+      <doc-page id="{{c.name}}" name="{{c.name}}" data="{{c}}"
+                downloadable?="{{ isTopLevelElement(c.name, url) }}"></doc-page>
     </template>
   </template>
   <script>
@@ -34,12 +35,15 @@
         if (this.data.classes[0].name === 'Entity') {
           this.data.classes[0].name = this.elementName;
         }
+      },
+      isTopLevelElement: function(name, url) {
+        return url.indexOf('/components/' + name + '/') == 0;
       }
     });
   </script>
 </polymer-element>
 
-<polymer-element name="doc-page" attributes="data" assetpath="../core-doc-viewer/elements/">
+<polymer-element name="doc-page" attributes="data downloadable" assetpath="../core-doc-viewer/elements/">
   <template>
     <link rel="stylesheet" href="../components/highlightjs/styles/default.css">
     <link rel="stylesheet" href="../css/elements/doc-page.css">
@@ -52,14 +56,17 @@
         </section>
       </template>
 
-      <p>
-        <component-download-button org="Polymer" component="{{data.name}}"
-        label="Get {{data.name}}"></component-download-button>
-        <a class="badge" target="_blank" href="/components/{{data.name}}/demo.html"
-                         on-click="{{recordDemoPageview}}">
-          <paper-button label="Demo" raisedButton></paper-button>
-        </a>
-      </p>
+      <template if="{{downloadable}}">
+        <p>
+          <component-download-button id="downloadButton"
+              org="Polymer" component="{{data.name}}"
+              label="Get {{data.name}}"></component-download-button>
+          <a class="badge" target="_blank" href="/components/{{data.name}}/demo.html"
+                           on-click="{{recordDemoPageview}}">
+            <paper-button label="Demo" raisedButton></paper-button>
+          </a>
+        </p>
+      </template>
 
       <template if="{{data.description}}">
         <section class="box top">
@@ -165,6 +172,7 @@
     }
 
     Polymer('doc-page', {
+      downloadable: false,
       recordDemoPageview: function(e, detail, sender) {
         window.recordPageview && window.recordPageview(sender.href); // global pollution.
       },
