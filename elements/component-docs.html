@@ -76,8 +76,10 @@
               <div class="details-name" flex>
                 <p><code>{{name}}</code></p>
               </div>
-              <div class="details-info" flex two>
-                <p><code>{{type}}</code></p>
+              <div class="details-info" flex three>
+                <p layout horizontal center justified>
+                  <code>{{type}}</code><span class="default" hidden?="{{!default}}">default: <code>{{default}}</code></span>
+                </p>
                 <marked-element text="{{description}}"></marked-element>
               </div>
             </div>
@@ -93,8 +95,10 @@
               <div class="details-name" flex>
                 <p><code>{{name}}</code></p>
               </div>
-              <div class="details-info" flex two>
-                <p><code>{{type}}</code></p>
+              <div class="details-info" flex three>
+                <p layout horizontal center justified>
+                  <code>{{type}}</code><span class="default" hidden?="{{!default}}">default: <code>{{default}}</code></span>
+                </p>
                 <marked-element text="{{description}}"></marked-element>
               </div>
             </div>
@@ -110,7 +114,7 @@
               <div class="details-name" flex>
                 <p><code>{{name}}</code></p>
               </div>
-              <div class="details-info" flex two>
+              <div class="details-info" flex three>
                 <marked-element text="{{description}}"></marked-element>
               </div>
             </div>
@@ -126,7 +130,7 @@
               <div class="details-name" flex>
                 <p><code>{{name}}</code></p>
               </div>
-              <div class="details-info" flex two>
+              <div class="details-info" flex three>
                 <marked-element text="{{description}}"></marked-element>
               </div>
             </div>

@@ -33,28 +33,28 @@ h1 {
 
   code {
     color: currentcolor;
-    font-weight: 400;
+    font-weight: 500;
   }
 }
 
-code {
-  border: 1px solid #ddd;
-  background-color: #f8f8f8;
-  border-radius: 3px;
-  padding: 0 3px;
-}
+// code {
+//   border: 1px solid #ddd;
+//   background-color: #f8f8f8;
+//   border-radius: 3px;
+//   padding: 0 3px;
+// }
 
-// higlightjs overwrites
-code {
-  border: none;
-  background-color: transparent;
-  border-radius: none;
-  padding: 0;
-}
+// // higlightjs overwrites
+// code {
+//   border: none;
+//   background-color: transparent;
+//   border-radius: none;
+//   padding: 0;
+// }
 
-pre code {
+pre {
   max-width: 832px;
-  // white-space: pre-wrap;
+  white-space: pre-wrap;
   overflow: hidden;
   border: none;
 }
@@ -99,15 +99,6 @@ pre code {
   }
 }
 
-// .badge {
-//   display: inline-block;
-//   border-radius: 3px;
-//   background-color: $materialPurple;
-//   color: #fff;
-//   text-decoration: none;
-//   text-transform: uppercase;
-//   padding: 3px 5px;
-// }
 .badge {
   color: currentcolor;
 }
