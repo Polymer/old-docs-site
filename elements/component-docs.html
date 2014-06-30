@@ -78,6 +78,17 @@
               </div>
               <div class="details-info" flex two>
                 <p><code>{{type}}</code></p>
+                <!--
+                  Because default values are also used to hint attribute types,
+                  many are effectively noise in the docs. We try to filter out
+                  the worst offenders:
+                -->
+                <template if="{{default && default != 'null' && default != '\'\'' && default != '""'}}">
+                  <p class="default">
+                    <span class="label">default:</span>
+                    <code>{{default}}</code>
+                  </p>
+                </template>
                 <marked-element text="{{description}}"></marked-element>
               </div>
             </div>
