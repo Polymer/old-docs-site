@@ -1,0 +1,35 @@
+@import "elements";
+@import "material";
+
+:host {
+  display: block; 
+}
+
+.box {
+  position: relative;
+}
+
+h3 {
+  padding: 16px;
+  color: white;
+}
+
+:host([kind="attributes"]) h3 {
+  @extend .material-orange;
+}
+:host([kind="properties"]) h3 {
+  @extend .material-yellow;
+}
+:host([kind="events"]) h3 {
+  @extend .material-green;
+}
+:host([kind="methods"]) h3 {
+  @extend .material-blue;
+}
+
+#toggle {
+  position: absolute;
+  top: 30px;
+  right: 12px;
+  color: white;
+}

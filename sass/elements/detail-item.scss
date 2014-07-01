@@ -1,0 +1,65 @@
+@import "elements";
+@import "material";
+
+:host {
+  display: block;
+  padding: 16px;
+}
+
+.params {
+  margin-top: 40px;
+}
+
+h3 {
+  padding: 16px;
+  color: white;
+}
+
+pre {
+  padding: initial;
+  background-color: transparent;
+  margin: initial;
+  font-size: 12px;
+  max-width: 832px;
+  white-space: pre-wrap;
+  overflow: hidden;
+  border: none;
+}
+
+code {
+  color: currentcolor;
+  font-weight: 500;
+}
+
+:host-context([kind="attributes"]) {
+  @extend .material-orange-light;
+  border-bottom: 1px solid rgba(255, 86, 33, 0.5);
+}
+:host(:host-context([kind="attributes"])[inherited]) {
+  background: #FBE9E7;
+}
+
+:host-context([kind="properties"]) {
+  @extend .material-yellow-light;
+  border-bottom: 1px solid rgba(243, 179, 0, 0.5);
+}
+:host(:host-context([kind="properties"])[inherited]) {
+  background: #FEF6E0;
+}
+
+:host-context([kind="methods"]) {
+  @extend .material-blue-light;
+  border-bottom: 1px solid rgba(65, 132, 243, 0.5);
+}
+:host(:host-context([kind="methods"])[inherited]) {
+  background: #E8F0FE;
+}
+
+:host-context([kind="events"]) {
+  @extend .material-green-light;
+  border-bottom: 1px solid rgba(0, 190, 164, 0.5);
+}
+:host(:host-context([kind="events"])[inherited]) {
+  background: #E0F2F1;
+}
+
