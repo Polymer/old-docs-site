@@ -118,7 +118,8 @@ module.exports = function(grunt) {
           oauth2: true
         },
         runFlags: {
-          port: 3000
+          port: 3000,
+          host: "0.0.0.0"
         }
       },
       frontend: {
