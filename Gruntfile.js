@@ -93,7 +93,7 @@ module.exports = function(grunt) {
         },
         strip: true,
         csp: false,
-        // inline: true
+        inline: true
       },
       build: {
         files: {
