@@ -63,29 +63,29 @@ Add the `favorite` property and `favoriteTapped` method to the element's
 prototype. 
 
 <side-by-side>
-  <pre>
-  &lt;script>
-  <strong class="highlight nocode">   
-  Polymer({
-    publish: {
-      favorite: {
-        value: false,
-        reflect: true
-      }
-    },
-    favoriteTapped: function(event, detail, sender) {
-      this.favorite = !this.favorite;
-      this.fire('favorite-tap');
+<pre>
+&lt;script>
+<strong class="highlight nocode">   
+Polymer({
+  publish: {
+    favorite: {
+      value: false,
+      reflect: true
     }
-  });</strong>
-  &lt;/script>
-  </pre>
+  },
+  favoriteTapped: function(event, detail, sender) {
+    this.favorite = !this.favorite;
+    this.fire('favorite-tap');
+  }
+});</strong>
+&lt;/script>
+</pre>
   <aside>
     <ul>
       <li>The <code>publish</code> object is another way to specify published properties,
       like the <code>attributes</code> attribute shown in Step 3. Here the
       <code>favorite</code> property defaults to <code>false</code>, and it <em>reflects</em>, meaning
-      the <code>favorite</code> attribute is updated whenever the property value
+      the <code>favorite</code> attribute is updated in the DOM whenever the property value
       changes.</li>
       <li>The <code>favoriteTapped</code> event toggles the state of the <code>favorite</code>
       property (<code>this.favorite</code>), and also fires a custom event, using the
@@ -108,18 +108,18 @@ Right now, there's no visual indication that the button is pressed.
 Add the following CSS to style the favorite button:
 
 <side-by-side>
-  <pre><strong class="highlight nocode">
-  core-icon-button {
-    position: absolute;
-    top: 3px;
-    right: 3px;
-    fill: #636363;
-  }
-  :host([favorite]) core-icon-button {
-    fill: #da4336;
-  }</strong>
-  &lt;/style>
-  </pre>
+<pre><strong class="highlight nocode">
+core-icon-button {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  fill: #636363;
+}
+:host([favorite]) core-icon-button {
+  fill: #da4336;
+}</strong>
+&lt;/style>
+</pre>
   <aside>
     <ul>
       <li>The <code>fill</code> property sets the fill color on the icon.</li>
@@ -165,20 +165,20 @@ favorites:
 
 <side-by-side>
   {% raw %}
-  <pre>
-    &lt;template repeat="{{post in posts}}">
-      <strong class="highlight nocode">
-      &lt;post-card
-        favorite="{{post.favorite}}"
-        on-favorite-tap="{{handleFavorite}}"
-        hidden?="{{show == 'favorites' && !post.favorite}}">
-        </strong>
-        &lt;img src="{{post.avatar}}" width="70" height="70">
-        &lt;h2>{{post.username}}&lt;/h2>
-        &lt;p>{{post.text}}&lt;/p>
-      &lt;/post-card>
-    &lt;/template>
-  </pre>
+<pre>
+  &lt;template repeat="{{post in posts}}">
+    <strong class="highlight nocode">
+    &lt;post-card
+      favorite="{{post.favorite}}"
+      on-favorite-tap="{{handleFavorite}}"
+      hidden?="{{show == 'favorites' && !post.favorite}}">
+      </strong>
+      &lt;img src="{{post.avatar}}" width="70" height="70">
+      &lt;h2>{{post.username}}&lt;/h2>
+      &lt;p>{{post.text}}&lt;/p>
+    &lt;/post-card>
+  &lt;/template>
+</pre>
   {% endraw %}
   <aside>
     <ul>
@@ -195,27 +195,30 @@ favorites:
 </side-by-side>
 
 The binding expression for `hidden` actually does the work of switching 
-between the All and Favorites tabs.
+between the All and Favorites tabs. The `hidden` attribute is a 
+standard HTML5 attribute. The default {{site.project_title}} style sheet includes 
+a rule to style `hidden` as `display: none` for those browsers that don't support 
+`hidden` natively.
 
 <div class="divider" layout horizontal center center-justified>
   <core-icon icon="polymer"></core-icon>
 </div>
 
-Add an event handler for the `favorite-tap` event:
+Add an event handler for the `favorite-tap` event to `post-list.html`:
 
 <side-by-side>
-  <pre>
-  &lt;script>
-  <strong class="highlight nocode">
-  Polymer({
-    handleFavorite: function(event, detail, sender) {
-      var post = sender.templateInstance.model.post;
-      this.$.service.setFavorite(post.uid, post.favorite);
-    }
-  });
-  </strong>
-  &lt;/script>
-  </pre>
+<pre>
+&lt;script>
+<strong class="highlight nocode">
+Polymer({
+  handleFavorite: function(event, detail, sender) {
+    var post = sender.templateInstance.model.post;
+    this.$.service.setFavorite(post.uid, post.favorite);
+  }
+});
+</strong>
+&lt;/script>
+</pre>
   <aside>
     <h4>Key information</h4>
     <ul>
@@ -223,7 +226,8 @@ Add an event handler for the `favorite-tap` event:
       to construct a template instance. In this case, it includes the <code>post</code>
       object used to create a <code>&lt;post-card&gt;</code>, so you can retrieve its ID and
       <code>favorite</code> value.</li>
-      <li>Every element in a custom element's shadow DOM that has an <code>id</code>
+      <li><code>this.$.service</code> returns a reference to the <code>&lt;post-service&gt;</code> element.
+      Every element in a custom element's shadow DOM that has an <code>id</code>
       attribute is added to the <code>this.$</code> dictionary. This is called
       <a href="/docs/polymer/polymer.html#automatic-node-finding">automatic node finding</a>.</li>
       <li>If this was a real social networking service, the <code>setFavorite</code> method
@@ -239,8 +243,10 @@ Save `post-list.html` and refresh your page.
 
 That's it &mdash; you're done! With a bit of luck, your application looks like this:
 
-<iframe class="running-app-frame" width="480" height="320" src="/samples/tutorial/finished/index.html">
-</iframe>
+<div layout vertical center>
+  <img class="sample" src="/images/tutorial/finished.png">
+  <div><a href="/samples/tutorial/finished/index.html" target="_blank">See live demo</a></div>
+</div>
 
 
 If your project doesn't look quite right, check your work against the files in the `finished` directory:

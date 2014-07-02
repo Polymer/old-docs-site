@@ -20,16 +20,19 @@ subtitle: Your first Polymer application
 #download-button::shadow #ripple {
   color: #fff;
 }
-.running-app-frame {
-  border: 1px solid #000;
+
+img.sample {
+  border: 1px solid #eee;
 }
 </style>
 
 
 In this tutorial, you'll build a small {{site.project_title}} application -- a very basic client for a social networking service. The end result will look like this:
 
-<div layout horizontal center-justified><iframe class="running-app-frame" width="480" height="320" src="/samples/tutorial/finished/index.html">
-</iframe></div>
+<div layout vertical center>
+  <img class="sample" src="/images/tutorial/finished.png">
+  <div><a href="/samples/tutorial/finished/index.html" target="_blank">See live demo</a></div>
+</div>
 
 This project will introduce you to most of the key concepts in working with {{site.project_title}}. Don't worry if you don't understand everything. Each of the concepts presented here is described in detail in the {{site.project_title}} documentation.
 
@@ -47,15 +50,24 @@ Unzip the starter project somewhere on your local drive.
 
 The starter includes an initial version of the project you'll be working with. If you run into trouble, it also includes incremental versions of the project so you can check your work along the way. 
 
-While you're working, you'll need a basic HTTP server to serve your pages. If you have Python installed, you can run the following command in the top level of the starter project:
+While you're working, you'll need a basic HTTP server to serve your pages. If you have Python installed, you can run one of the following commands in the top level of the starter project.
 
-    python -m SimpleHTTPServer 
+    python -m SimpleHTTPServer #  Python 2.x
 
-Open a browser and navigate to the local server. For `SimpleHTTPServer`, this is typically:
+    python -m http.server # Python 3.x
 
--  [http://localhost:8000/](http://localhost:8000/)
+Test out the web server by loading the finished version of the project:
 
-### Next
+-  [http://localhost:8000/finished/](http://localhost:8000/finished/)
+
+URLs in this tutorial assume your local server is listening on port 8000. 
+If you're using a different port, substitute the port you're using.
+
+**Note:** On Windows, Python's simple HTTP server may not provide the correct MIME type for SVG images.
+If the images don't render, try a different web server.
+{: .alert .alert-info }
+
+### Next step
 
 <a href="/docs/start/tutorial/step-1.html">
   <paper-button icon="arrow-forward" label="Step 1: Creating the app structure" raisedButton></paper-button>

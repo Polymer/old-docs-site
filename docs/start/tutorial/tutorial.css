@@ -1,7 +1,6 @@
 /* Shared styles for the tutorial */
-.running-app-frame {
-    border: 1px solid #000;
-    padding: 0px;
+img.sample {
+  border: 1px solid #ccc;
 }
 pre {
   font-size: 13px !important;
