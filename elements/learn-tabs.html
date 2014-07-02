@@ -4,7 +4,7 @@
 <link rel="import" href="../components/paper-button/paper-button.html">
 <link rel="import" href="demo-tabs.html">
 
-<polymer-element name="learn-tabs">
+<polymer-element name="learn-tabs" noscript>
   <template>
     <style>
       :host {
@@ -30,12 +30,10 @@
         text-decoration: none;
         color: inherit;
       }
-      .card iframe {
-        border: 0;
+      .card img {
         width: 400px;
-        min-height: 280px;
       }
-      iframe.stretch {
+      img.stretch {
         width: 100%;
       }
     </style>
@@ -131,14 +129,12 @@
                 <a href="/docs/start/usingelements.html"><paper-button raisedButton icon="arrow-forward" label="Go to documentation"></paper-button></a>
               </div>
             </div>
-            <iframe src="/samples/tutorial/finished/index.html" class="{{ {stretch:!wide} | tokenList }}"></iframe>
+            <a href="/docs/start/tutorial/intro.html">
+              <img src="/images/unquote.png" class="{{ {stretch:!wide} | tokenList }}">
+            </a>
           </div>
         </div>
       </demo-tab>
     </demo-tabs>
   </template>
-  <script>
-    Polymer('learn-tabs', {
-    });
-  </script>
 </polymer-element>

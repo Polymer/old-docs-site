@@ -52,11 +52,15 @@ The starter includes an initial version of the project you'll be working with. I
 
 While you're working, you'll need a basic HTTP server to serve your pages. If you have Python installed, you can run one of the following commands in the top level of the starter project.
 
-    python -m SimpleHTTPServer #  Python 2.x
+Python 2.x:
 
-    python -m http.server # Python 3.x
+    python -m SimpleHTTPServer 
 
-Test out the web server by loading the finished version of the project:
+Python 3.x:
+
+    python -m http.server 
+
+Test out the web server by loading the finished version of the project. For example:
 
 -  [http://localhost:8000/finished/](http://localhost:8000/finished/)
 
