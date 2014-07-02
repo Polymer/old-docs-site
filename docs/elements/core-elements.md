@@ -1,10 +1,10 @@
 ---
 layout: default
 type: elements
-navgroup: docs
+navgroup: elements
 shortname: Elements
-title: Core elements
-subtitle: non-visual utility elements
+title: Polymer core elements
+#subtitle: non-visual utility elements
 
 add_permalinks: false
 
@@ -15,13 +15,23 @@ add_permalinks: false
 <!-- page specific stylesheet needs to be inline to the page so ajax injects it. -->
 <link rel="stylesheet" href="/css/elementpage.css">
 
-**Note:** These elements and their documentation are still early. The "source" links below point to commented code where you can learn more about how to use the element.
-{: .alert .alert-info}
+<div class="hide-on-hash">
+  <!-- <p class="alert alert-info"><strong>Note:</strong> These elements and their documentation are still early. The “source” links below point to commented code where you can learn more about how to use the element.</p> -->
+  <p>{{site.project_title}} Core elements are a set of utility
+    elements including general-purpose UI elements (such as icons, layout elements, and toolbars),
+    as well as  non-UI elements providing features like AJAX, signaling and storage.</p>
 
-Install everything:
+   <component-download-button org="Polymer" component="core-elements" label="GET THE POLYMER CORE ELEMENTS">
+   </component-download-button>
 
-    bower install Polymer/core-elements
+  <h2>Related Guides</h2>
+  <p><a href="layout-elements.html">Application layout elements</a>.</p>
+  <p><a href="icons.html">Using core icons</a></p>
 
-<section class="element-list">
-{% directory org:Polymer dir:components tag:div glob:core-* blacklist:"core-elements core-component-page-dev" %}
-</section>
+  <h2>Demos</h2>
+  <p><a href="/components/core-elements/demo.html">{{site.project_title}} Core elements sampler</a></p>
+</div>
+
+<component-docs
+    elements='{% list_components dir:components prefix:core blacklist:"core-slide core-layout core-doc-viewer core-home-page core-transition-css core-overlay-layer core-key-helper" %}'>
+</component-docs>

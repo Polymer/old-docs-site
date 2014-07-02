@@ -45,6 +45,17 @@ function prettyPrintPage(opt_inDoc) {
 }
 
 /**
+ * Replaces in-page <script> tag in xhr'd body content with runnable script.
+ *
+ * @param {Node} node Container element to replace script content.
+ */
+function replaceScriptTagWithRunnableScript(node) {
+  var script  = document.createElement('script');
+  script.text = node.innerHTML;
+  node.parentNode.replaceChild(script, node);
+}
+
+/**
  * Replaces the main content of the page by loading the URL via XHR.
  *
  * @param {string} url The URL of the page to load.
@@ -66,8 +77,11 @@ function injectPage(url, opt_addToHistory) {
 
     document.title = doc.title; // Update document title to fetched one.
 
-    var metaContentName = doc.head.querySelector('meta[itemprop="name"]').content;
-    document.head.querySelector('meta[itemprop="name"]').content = metaContentName;
+    var meta = doc.head.querySelector('meta[itemprop="name"]');
+    if (meta) {
+      var metaContentName = doc.head.querySelector('meta[itemprop="name"]').content;
+      document.head.querySelector('meta[itemprop="name"]').content = metaContentName;
+    }
 
     // Update URL history now that title and URL are set.
     var addToHistory = opt_addToHistory == undefined ? true : opt_addToHistory;
@@ -76,28 +90,42 @@ function injectPage(url, opt_addToHistory) {
     }
 
     // Record GA page view early; once metadata is set up and URL is updated.
-    ga('send', 'pageview', location.pathname);
-    ga('devrelTracker.send', 'pageview', location.pathname);
+    exports.recordPageview();
 
     // Update app-bar links.
-    appBar.innerHTML = doc.querySelector('app-bar').innerHTML;
+    var docAppBar = doc.querySelector('app-bar');
+    if (docAppBar) {
+      appBar.innerHTML = docAppBar.innerHTML;
+    } else {
+      // We're not on a doc page (e.g. demo page or something else). Just redirect.
+      location.href = url;
+      return;
+    }
 
     // Inject article body.
     var CONTAINER_SELECTOR = '#content-container scroll-area article';
     var container = document.querySelector(CONTAINER_SELECTOR);
-    container.innerHTML = doc.querySelector(CONTAINER_SELECTOR).innerHTML;
+    var newDocContainer = doc.querySelector(CONTAINER_SELECTOR);
+    container.innerHTML = newDocContainer.innerHTML;
+
+    // .innerHTML doesn't eval script. Replace <script> in-page with runnable version.
+    var scripts = container.querySelectorAll('script');
+    Array.prototype.forEach.call(scripts, function(node, i) {
+      replaceScriptTagWithRunnableScript(node);
+    });
 
     // Set left-nav menu and highlight correct item.
     docsMenu.setAttribute(
         'menu', doc.querySelector('docs-menu').getAttribute('menu'));
-    docsMenu.highlightItemWithURL(location.pathname);
+    // docsMenu.menu = doc.querySelector('docs-menu').getAttribute('menu');
+    docsMenu.highlightItemWithCurrentURL();
 
     // Replace site-banner > header content.
     var HEADER_SELECTOR = 'site-banner header';
     var siteBannerHeader = document.querySelector(HEADER_SELECTOR);
     siteBannerHeader.innerHTML = doc.querySelector(HEADER_SELECTOR).innerHTML;
 
-    // Update site-banner attributes. Elements in xhr'd document are not upgraded.  
+    // Update site-banner attributes. Elements in xhr'd document are not upgraded.
     // We can't set properties directly. Instead, do old school attr replacement.
     // This runs last to help color transition be buttery smooth.
     var newDocSiteBanner = doc.querySelector('site-banner');
@@ -116,7 +144,8 @@ function injectPage(url, opt_addToHistory) {
 
     // Scroll to hash, otherwise goto top of the loaded page.
     if (location.hash) {
-      document.querySelector(location.hash).scrollIntoView(true, {behavior: 'smooth'});
+      var scrollTargetEl = document.querySelector(location.hash);
+      scrollTargetEl && scrollTargetEl.scrollIntoView(true, {behavior: 'smooth'});
     } else {
       exports.scrollTo(0, 0);
     }
@@ -137,14 +166,19 @@ function initPage(opt_inDoc, hasInlineImports) {
 
   // TODO: Use kramdown {:.prettyprint .linenums .lang-ruby} to add the
   // <pre class="prettyprint"> instead of doing this client-side.
-  if (!hasInlineImports) {
-    prettyPrintPage(doc);
-  } else {
-    // Need small delay to prevent https://github.com/Polymer/docs/issues/419.
-    // 200ms is arbitrary, but works.
-    setTimeout(function() {
-      prettyPrintPage(doc);
-    }, 200);
+  // if (!hasInlineImports) {
+  //   prettyPrintPage(doc);
+  // } else {
+  //   // Need small delay to prevent https://github.com/Polymer/docs/issues/419.
+  //   // 200ms is arbitrary, but works.
+  //   setTimeout(function() {
+  //     prettyPrintPage(doc);
+  //   }, 1200);
+  // }
+  prettyPrintPage(doc);
+
+  if (location.hash) {
+    hideOnHash();
   }
 }
 
@@ -196,13 +230,24 @@ function ajaxifySite() {
   });
 }
 
+// Hides elements with 'hide-on-hash' class if hash present.
+function hideOnHash() {
+  Array.prototype.forEach.call(document.querySelectorAll('.hide-on-hash'),
+    function(el) {
+      el.hidden = true;
+    }
+  );
+};
+
 document.addEventListener('polymer-ready', function(e) {
   // TODO(ericbidelman): Hacky solution to get anchors scrolled to correct location
   // in page. Layout of page happens later than the browser wants to scroll.
   if (location.hash) {
     window.setTimeout(function() {
-      document.querySelector(location.hash).scrollIntoView(true, {behavior: 'smooth'});
+      var scrollTargetEl = document.querySelector(location.hash);
+      scrollTargetEl && scrollTargetEl.scrollIntoView(true, {behavior: 'smooth'});
     }, 200);
+    hideOnHash();
   }
 
   // The dropdown panel in the sidebar for mobile
@@ -254,6 +299,16 @@ document.querySelector('[data-twitter-follow]').addEventListener('click', functi
 });
 
 
+exports.downloadStarter = function() {
+  ga('send', 'event', 'button', 'download');
+};
+
+exports.recordPageview = function(opt_url) {
+  var url = opt_url || location.pathname + location.hash;
+  ga('send', 'pageview', url);
+  ga('devrelTracker.send', 'pageview', url);
+};
+
 // -------------------------------------------------------------------------- //
 
 // Analytics -----
@@ -264,8 +319,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 
 ga('create', 'UA-39334307-1', 'auto', {'siteSpeedSampleRate': 50});
 ga('create', 'UA-49880327-9', 'auto', {'name': 'devrelTracker'});
-ga('send', 'pageview');
-ga('devrelTracker.send', 'pageview');
+exports.recordPageview();
 // ---------------
 
 console && console.log("%cWelcome to Polymer!\n%cweb components are the <bees-knees>",

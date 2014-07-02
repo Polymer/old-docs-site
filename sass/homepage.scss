@@ -9,7 +9,7 @@
 
 .h5heading {
   font-size: $font-size-secondary;
-  font-weight: normal;
+  font-weight: 500;
   color: $secondary-heading-color;
   line-height: 24px;
   letter-spacing: 0.01em;
@@ -21,28 +21,43 @@ section {
   border-bottom: 1px solid $main-bg;
 }
 
-// section .bar {
-//   @include justify-content(flex-end);
-//   @include align-items(center);
-//   border-top: 1px solid $main-bg;
-//   border-bottom: 1px solid $main-bg;
+.main-purple {
+  color: white;
+}
 
-//   a {
-//     color: inherit;
-//     font-size: $font-size-body;
-//     // font-weight: 600;
-//     // letter-spacing: 0.01em;
-//     // line-height: 19.2px;
-//     text-align: right;
-//     @include flex(1);
-//     opacity: 0.6;
+section .bar {
+  @include justify-content(flex-end);
+  @include align-items(center);
+  border-top: 1px solid $main-bg;
+  border-bottom: 1px solid $main-bg;
+  background-color: $gray-medium;
+  height: auto;
 
-//     &:after {
-//       content: '\0025BE';
-//       margin: 0 10px;
-//     }
-//   }
-// }
+  &.main-purple {
+    border-color: rgba(255,255,255,0.3);
+    @extend .main-purple;
+
+    a {
+      color: white;
+    }
+  }
+
+  a {
+    color: inherit;
+    font-size: $font-size-body;
+    // font-weight: 600;
+    // letter-spacing: 0.01em;
+    // line-height: 19.2px;
+    text-align: right;
+    @include flex(1);
+    opacity: 0.6;
+
+    &:after {
+      content: '\0025BE';
+      margin: 0 10px;
+    }
+  }
+}
 
 // Manual FOUC prevention for homepage.
 site-banner {
@@ -63,7 +78,7 @@ site-banner .logo {
 
 .panel {
   @extend .content-padding;
-  padding: 150px 16px;
+  padding: 75px 16px;
   @include display-flex;
 
   $img-margin: 88px;
@@ -87,7 +102,7 @@ site-banner .logo {
     }
 
     p {
-      margin: $content-padding 0;
+      margin: 20px 0;
       line-height: 32px;
     }
   }
@@ -95,59 +110,134 @@ site-banner .logo {
   img {
     @include align-self(center);
   }
+
+  img.cover {
+    object-fit: cover;
+    object-position: 50% 0;
+    @include flex(1 0 auto);
+    margin-top: 1em;
+    height: 300px;
+    width: 100%;
+    -webkit-mask-box-image: -webkit-linear-gradient(bottom, transparent, white 20%);
+    -moz-mask-box-image: -moz-linear-gradient(bottom, transparent, white 20%);
+    -ms-mask-box-image: -ms-linear-gradient(bottom, transparent, white 20%);
+    mask-box-image: linear-gradient(bottom, transparent, white 20%);
+  }
+}
+
+@supports (not (object-fit: cover)) {
+  img.cover {
+    height: auto !important;
+    width: 100% !important;
+  }
 }
 
 #future {
-  polymer-ui-toolbar {
-    @include align-items(stretch);
-    //@include justify-content(space-between);
+  .panel {
+    padding-top: 125px;
+    min-height: 505px;
   }
-  .paper-button:not(:last-child) {
+  a {
+    text-decoration: none;
+  }
+  a:not(:last-of-type) {
     margin-right: 12px;
+  }
+  paper-button::shadow #content span {
+    margin-left: 0;
+  }
+}
+
+#featured {
+  .video {
+    iframe {
+      width: 525px;
+      height: 273px;
+    }
+  }
+  .panel feature-carousel summary {
+    margin-left: 40px;
+  }
+  .panel img {
+    width: 525px;
+    height: 273px;
+    border: 1px solid $main-bg;
+    margin-left: 0;
+    margin-top: 0;
+    object-fit: cover;
+    object-position: 50% 0;
+  }
+
+  @media only screen and (max-width: $break-medium) {
+    .panel feature-carousel summary {
+      margin-left: 0 !important;
+      margin-top: 15px !important;
+    }
+  }
+}
+
+#designer {
+  .panel {
+    @include flex-direction(column);
+  }
+  summary {
+    div {
+      @include display-flex;
+      @include justify-content(center);
+      @include align-items(center);
+      @include flex-direction(column);
+    }
+    h3 {
+      margin: 1em 0;
+    }
+  }
+}
+
+#learn {
+  min-height: 536px;
+}
+
+#learn, #everything-element {
+  summary {
+    color: #fff;
   }
 }
 
 #everything-element {
-  // .bar {
-  //   border-color: rgba(255,255,255,0.3);
-  //   @extend .main-purple;
-
-  //   a {
-  //     color: white;
-  //   }
-  // }
   code {
     color: currentcolor;
   }
   .panel img {
     max-width: 312px;
   }
-  summary {
-    color: #fff;
-  }
-  .paper-button {
-    //background: rgba(255,255,255,0.1) !important;
-    background: #262742 !important;
-    color: white;
-
-    &:hover {
-      background: rgb(58, 59, 86) !important;
-    }
-  }
 }
 
-#architecture {
+#apps {
   .panel {
-    padding: $content-padding 16px;
+    @include flex-direction(column);
+    padding: $content-padding 16px ($content-padding - 32px) 16px;
+    h1 {
+      @include flex(1);
+    }
+    .columns {
+      @include display-flex;
+      margin-top: 32px;
+    }
+    summary {
+      margin-bottom: 32px;
+      min-width: 300px;
+    }
   }
   .box {
     $box-size: 200px;
 
     @extend .main-bg;
     margin-bottom: $content-padding / 2;
-    border-radius: 50%;
+    border-radius: 2px;
     width: $box-size;
-    padding: $box-size / 4 35px;
+    height: $box-size;
+    overflow: hidden;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   }
   h1 {
     @extend .h1heading;
@@ -161,39 +251,7 @@ site-banner .logo {
     margin-top: 0;
   }
   img {
-    height: 94px;
-    width: auto;
-  }
-}
-
-#quickstart {
-  h1 {
-    @extend .h1heading;
-  }
-  h5 {
-    @extend .h5heading;
-  }
-  .panel {
-    @include flex-direction(column);
-  }
-  .example {
-    @include display-flex;
-    border-bottom: 1px solid $main-bg;
-    padding: $content-padding 0;
-
-    heading {
-      @include align-self(center);
-      @include flex(1 0 auto);
-
-      h2 {
-        line-height: 1;
-      }
-    }
-    .paper-button {
-      margin-top: $additonalPadding;
-    }
-    > div {
-      @include flex(0 1 50%);
-    }
+    height: 100%;
+    width: 100%;
   }
 }

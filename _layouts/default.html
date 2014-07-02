@@ -14,8 +14,11 @@
     </polymer-flex-layout>
 
     {% include dropdown-panel.html %}
-    
-    <docs-menu menu="{{site.data.pagetypes[page.type].menu}}" unresolved>
+
+    <docs-menu unresolved
+        menu="{{site.data.pagetypes[page.type].menu}}"
+        coreElements='{% list_components dir:components prefix:core blacklist:"core-slide core-layout core-doc-viewer core-home-page core-transition-css core-overlay-layer core-key-helper" %}'
+        paperElements='{% list_components dir:components prefix:paper blacklist:"paper-calculator paper-doc-viewer paper-ink paper-scaffold paper-menu-button-transition"%}'>
     </docs-menu>
   </app-drawer>
 
@@ -37,16 +40,16 @@
     {% endcomment %}
     {% capture permalinks_class %}
       {% if site.add_permalinks %}
-        {% case page.add_permalinks %} 
-          {% when true %} 
+        {% case page.add_permalinks %}
+          {% when true %}
             show-permalinks
           {% when false %}
             {% comment %}
               Intentionally empty in case variable isn't defined in page.
             {% endcomment %}
-          {% else %} 
-            show-permalinks 
-        {% endcase %} 
+          {% else %}
+            show-permalinks
+        {% endcase %}
       {% endif %}
     {% endcapture %}
 

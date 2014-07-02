@@ -9,57 +9,40 @@ subtitle: Polymer from the outside
 
 {% include toc.html %}
 
-{{site.project_title}} provides a set of <a href="/components/core-docs/index.html" target="_blank">Core elements</a> which are both [UI and non-UI components](/docs/start/customelements.html#elementtypes). You can reuse them in your projects simply by
+{{site.project_title}} provides several sets of elements, which you can reuse simply by
 including them in your project. If you don't want to write any code, keep reading!
 
 ## Installing elements {#install}
 
-The first step to using an element is to install using [Bower](http://bower.io). If you're not familiar with Bower, check out [Getting the Code](/docs/start/getting-the-code.html) to learn more about using it.
+You can install elements one at a time, or install a whole collection of elements.
 
-### Installing a single element {#installsingle}
+{{site.project_title}} contains two primary collections of elements:
 
-Elements can be installed individually as needed. For example, to download `<core-ajax>` and install it in your current project, run:
+-   <a href="/docs/elements/core-elements.html">{{site.project_title}} Core elements</a>. A set of utility
+    elements including general-purpose UI elements (such as icons, layout elements, and toolbars),
+    as well as  non-UI elements providing features like AJAX, signaling and storage.
 
-    bower install --save Polymer/core-ajax
-
-**Note:** `Polymer/core-ajax` is shorthand for the element’s github repo, [https://github.com/Polymer/core-ajax](https://github.com/Polymer/core-ajax). You can install other elements the same way.
-{: .alert .alert-info }
+-   [Paper elements](/docs/elements/paper-elements.html). A set of UI elements that implement the 
+    [material design system](/docs/elements/material.html).
 
 
-Running this command adds a `bower_components/` folder and fills it with `<core-ajax>`:
+If you find an element you want while browsing the docs, simply click
+the download button and choose your install method. See 
+[Getting the Code](getting-the-code.html) for more information on the various methods.
 
-    yourapp/
-      bower_components/
-        platform/
-        polymer/
-        core-ajax/
+Click a button below to install one of the element collections:
 
-Using the `--save` flag  adds the element to your app's `bower.json` file:
+  <component-download-button org="Polymer" component="core-elements" label="GET THE {{site.project_title}} CORE ELEMENTS">
+  </component-download-button>
 
-    {
-      "name": "your-app",
-      "version": "0.0.0",
-      "dependencies": {
-        "core-ajax": "Polymer/core-ajax#~{{site.latest_version}}"
-      }
-    }
+  <component-download-button org="Polymer" component="paper-elements" label="GET THE PAPER ELEMENTS">
+  </component-download-button>
 
-**Note** If your project does not yet have a `bower.json` file, create one by running `bower init`.
-{: .alert .alert-info }
 
-Don't worry about the other dependencies that were added. Bower installs them automatically, and HTML Imports will do the heavy lifting and load them at runtime.
-
-### Installing an element set {#installset}
-
-Although you can grab elements independently, sometimes you want to grab a whole collection. {{site.project_title}} contains a set of [UI elements](/docs/start/customelements.html#uielements) and a set of [non-UI](/docs/start/customelements.html#nonuielements) elements:
-
-- <a href="/components/core-docs/index.html" target="_blank">Core elements</a>. Non-UI utility elements that perform common tasks like layout, AJAX, signaling, and storage, but don’t render anything in the browser.
-- [Polymer UI elements](/docs/elements/polymer-ui-elements.html). UI elements that render in the browser.
-
-Each set can be downloaded separately using Bower:
-
-    bower install --save Polymer/core-elements
-    bower install --save Polymer/polymer-ui-elements
+**Note:** The PolymerLabs github repo contains a number of unsupported elements that are either 
+experimental or deprecated. In particular, the `polymer-elements` and `polymer-ui-elements` 
+collections represent earlier work superseded by the {{site.project_title}} Core elements and 
+Paper elements.
 
 ## Using elements {#using}
 
@@ -119,6 +102,10 @@ When creating your own {{site.project_title}} elements, you can choose to expose
 Now that you've got the basic idea of using and installing elements, it's time to start
 building something! In the next section we'll cover the features of {{site.project_title}} and how to create new `<polymer-element>`s. Continue on to:
 
-<a href="/docs/start/creatingelements.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Creating elements</a>
+<a href="/docs/start/creatingelements.html">
+  <paper-button icon="arrow-forward" label="Creating elements" raisedButton></paper-button>
+</a>
 
-If you'd rather browse the existing elements, check out the <a href="/components/core-docs/index.html" target="_blank">Core elements</a> and [{{site.project_title}} UI elements](/docs/elements/polymer-ui-elements.html) catalogs.
+If you'd rather browse the existing elements, check out the 
+<a href="/docs/elements/core-elements.html">{{site.project_title}} Core elements</a> 
+and <a href="/docs/elements/core-elements.html">Paper elements</a> catalogs.

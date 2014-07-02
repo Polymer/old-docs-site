@@ -4,6 +4,7 @@ type: core
 navgroup: docs
 shortname: Docs
 title: Filters
+subtitle: Data-binding
 ---
 
 <meta http-equiv="refresh" content="0;URL=/docs/polymer/expressions.html#filters">

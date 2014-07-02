@@ -39,22 +39,22 @@ polyfill-next-selector { content: ':host h3'; }
 
 h4 {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 polyfill-next-selector { content: ':host h4'; }
 ::content h4 {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 h5 {
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 polyfill-next-selector { content: ':host h5'; }
 ::content h5 {
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
 }

@@ -4,3 +4,6 @@
 [submodule "polymer-all/tools"]
 	path = polymer-all/tools
 	url = https://github.com/Polymer/tools.git
+[submodule "polymer-all/tools-private"]
+	path = polymer-all/tools-private
+	url = https://github.com/Polymer/tools-private

@@ -68,14 +68,16 @@ Polymer divides its custom  elements into two categories based on their use and 
 
 ###  UI elements {#uielements}
 
-Elements like `<select>` and `<core-selector>` are _UI elements_. They render UI and are visible on the page. A few other examples are [`<polymer-ui-collapsible>`](/docs/elements/polymer-ui-elements.html#polymer-ui-collapsible), [`<polymer-ui-toolbar>`](/docs/elements/polymer-ui-elements.html#polymer-ui-toolbar), and [`<polymer-ui-tabs>`](/docs/elements/polymer-ui-elements.html#polymer-ui-tabs):
+Elements like `<select>` and `<core-selector>` are _UI elements_. They render UI and are visible on the page. A few other examples are [`<core-collapse>`](/components/core-docs/index.html#core-collapse), [`<core-toolbar>`](/components/core-docs/index.html#core-toolbar), and [`<paper-tabs>`](/components/paper-docs/index.html#paper-tabs):
 
-    <polymer-ui-tabs selected="0">
-      <span>One</span><span>Two</span><span>Three</span>
-      <span>Four</span><span>Five</span>
-    </polymer-ui-tabs>
+    <paper-tabs selected="0">
+      <paper-tab>One</paper-tab>
+      <paper-tab>Two</paper-tab>
+      <paper-tab>Three</paper-tab>
+    </paper-tabs>
 
-<iframe src="/components/polymer-ui-tabs/demo.html" style="border:none;height:80px;width:100%;"></iframe>
+<!-- 
+<iframe src="/components/paper-tabs/demo.html" style="border:none;height:80px;width:100%;"></iframe> -->
 
 ### Non-UI elements {#nonuielements}
 
@@ -108,4 +110,6 @@ Because custom elements are just like regular elements, it doesn't matter what k
 
 Now that you've got an idea of what you can do with custom elements, it's time to start building something! Continue on to:
 
-<a href="/docs/start/usingelements.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Using Elements</a>
+<a href="/docs/start/usingelements.html">
+  <paper-button icon="arrow-forward" label="Using elements" raisedButton></paper-button>
+</a>

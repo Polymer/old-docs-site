@@ -1,0 +1,86 @@
+@import "vars";
+
+$materialPurple: #3e50b4;
+$materialLightPurple: #c4c9e8;
+
+$materialOrange: #ff5621;
+$materialLightOrange: #ffcbbb;
+
+$materialPink: #e81d62;
+$materialLightPink: #f7bacf;
+
+$materialYellow: #f3b300;
+$materialLightYellow: #fbe7b1;
+
+$materialGreen: #00bea4;
+$materialLightGreen: #a6ffea;
+
+$materialTeal: #00bbd3;
+$materialLightTeal: #b1eaf1;
+
+$materialBlue: #4184f3;
+$materialLightBlue: #c5d9fb;
+
+.material-purple {
+  background-color: $materialPurple;
+}
+
+.material-purple-light {
+  background-color: $materialLightPurple;
+  // border-color: $materialLightPurple;
+}
+
+.material-orange {
+  background-color: $materialOrange;
+  // border-color: $materialOrange;
+}
+.material-orange-light {
+  background-color: $materialLightOrange;
+  // border-color: $materialLightOrange;
+}
+
+.material-pink {
+  background-color: $materialPink;
+  // border-color: $materialPink;
+}
+.material-pink-light {
+  background-color: $materialLightPink;
+  // border-color: $materialLightPink;
+}
+
+.material-yellow {
+  background-color: $materialYellow;
+  // border-color: $materialYellow;
+}
+.material-yellow-light {
+  background-color: $materialLightYellow;
+  // border-color: $materialLightYellow;
+}
+
+.material-green {
+  background-color: $materialGreen;
+  // border-color: $materialGreen;
+}
+.material-green-light {
+  background-color: $materialLightGreen;
+  // border-color: $materialLightGreen;
+}
+
+.material-teal {
+  background-color: $materialTeal;
+  // border-color: $materialTeal;
+}
+.material-teal-light {
+  background-color: $materialLightTeal;
+  // border-color: $materialLightTeal;
+}
+
+.material-blue {
+  background-color: $materialBlue;
+  // border-color: $materialBlue;
+}
+.material-blue-light {
+  background-color: $materialLightBlue;
+  // border-color: $materialLightBlue;
+}
+

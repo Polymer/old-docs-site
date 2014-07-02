@@ -3,10 +3,9 @@ layout: default
 type: core
 navgroup: docs
 shortname: Docs
-title: API reference
+title: API developer guide
+subtitle: Guide
 ---
-
-<!-- <p><buildbot-list project="polymer-dev"></buildbot-list></p> -->
 
 {% include toc.html %}
 
@@ -26,7 +25,7 @@ At the heart of {{site.project_title}} are [Custom Elements](/platform/custom-el
 
 ### Attributes
 
-{{site.project_title}} [reserves](https://github.com/Polymer/polymer/blob/master/src/declaration/attributes.js#L53) special attributes to be used on `<polymer-element>`:
+{{site.project_title}} reserves special attributes to be used on `<polymer-element>`:
 
 <table class="table responsive-table attributes-table">
   <tr>
@@ -86,19 +85,19 @@ For convenient decoupling of script and markup, you don't have to inline your sc
 {{site.project_title}} elements can be created by referencing an external script
 which calls `Polymer('tag-name')`:
 
-    <!-- 2. Script referenced inside the element definition. -->
+    <!-- 1. Script referenced inside the element definition. -->
     <polymer-element name="tag-name">
       <template>...</template>
       <script src="path/to/tagname.js"></script>
     </polymer-element>
 
-    <!-- 3. Script comes before the element definition. -->
+    <!-- 2. Script comes before the element definition. -->
     <script src="path/to/tagname.js"></script>
     <polymer-element name="tag-name">
       <template>...</template>
     </polymer-element>
 
-    <!-- 4. No script -->
+    <!-- 3. No script -->
     <polymer-element name="tag-name" constructor="TagName" noscript>
       <template>
         <!-- shadow DOM here -->
@@ -120,14 +119,14 @@ Elements can be registered in pure JavaScript like so:
         </polymer-element>';
       // The custom elements polyfill can't see the <polymer-element>
       // unless you put it in the DOM.
-      document.body.appendChild(el);    
+      document.body.appendChild(el);
     </script>
 
     <name-tag name="John"></name-tag>
 
-Note that you need to add the `<polymer-element>` to the document so that the 
+Note that you need to add the `<polymer-element>` to the document so that the
 Custom Elements polyfill picks it up.
-    
+
 ### Adding public properties and methods {#propertiesmethods}
 
 If you wish to define methods/properties on your element (optional), pass an object
@@ -135,7 +134,7 @@ as the second argument to `Polymer()`. This object is used to define
 the element's `prototype`.
 
 The following example defines a property `message`, a computed property `greeting`
-using an ES5 getter, and a method `foo`: 
+using an ES5 getter, and a method `foo`:
 
     <polymer-element name="tag-name">
       <template>{{greeting}}</template>
@@ -144,7 +143,7 @@ using an ES5 getter, and a method `foo`:
           message: "Hello!",
           get greeting() {
             return this.message + ' there!';
-          }, 
+          },
           foo: function() {...}
         });
       </script>
@@ -153,7 +152,7 @@ using an ES5 getter, and a method `foo`:
 **Note:** `this` references the custom element itself inside a {{site.project_title}} element. For example, `this.localName == 'tag-name'`.
 {: .alert .alert-info }
 
-**Important:** Be careful when initializing properties that are objects or arrays. Due to the nature of `prototype`, you may run into unexpected "shared state" across instances of the same element. If you're initializing an array or object, do it in the `created` callback rather than directly on the `prototype`. 
+**Important:** Be careful when initializing properties that are objects or arrays. Due to the nature of `prototype`, you may run into unexpected "shared state" across instances of the same element. If you're initializing an array or object, do it in the `created` callback rather than directly on the `prototype`.
 
     // Good!
     Polymer('x-foo', {
@@ -257,7 +256,7 @@ The main page configures the globals by passing attributes:
 {{site.project_title}} has first class support for the Custom Element lifecycle
 callbacks, though for convenience, implements them with shorter names.
 
-All of the lifecycle callbacks are optional: 
+All of the lifecycle callbacks are optional:
 
     Polymer('tag-name', {
       created: function() { ... },
@@ -278,7 +277,7 @@ Spec | {{site.project_title}} | Called when
 |-
 createdCallback | created | An instance of the element is created.
 - | ready | The `<polymer-element>` has been fully prepared (e.g. Shadow DOM created, property observers setup, event listeners attached, etc).
-attachedCallback | attached | An instance of the element was inserted into the DOM. 
+attachedCallback | attached | An instance of the element was inserted into the DOM.
 - | domReady | Called when the element's initial set of children are guaranteed to exist. This is an appropriate time to poke at the element's parent or light DOM children. Another use is when you have sibling custom elements (e.g. they're `.innerHTML`'d together, at the same time). Before element A can use B's API/properties, element B needs to be upgraded. The `domReady` callback ensures both elements exist.
 detachedCallback | detached | An instance was removed from the DOM.
 attributeChangedCallback | attributeChanged | An attribute was added, removed, or updated. **Note**: to observe changes to [published properties](#published-properties), use [changed watchers](#change-watchers).
@@ -454,7 +453,7 @@ When attribute values are converted to property values, {{site.project_title}}
 attempts to convert the value to the correct type, depending on the default
 value of the property.
 
-For example, suppose an `x-hint` element has a `count` property that defaults to `0`. 
+For example, suppose an `x-hint` element has a `count` property that defaults to `0`.
 
     <x-hint count="7"></x-hint>
 
@@ -466,7 +465,7 @@ double-quoted JSON string. For example:
 
     <x-name fullname='{ "first": "Bob", "last": "Dobbs" }'></x-name>
 
-This is equivalent to setting the element's `fullname` property to an object 
+This is equivalent to setting the element's `fullname` property to an object
 literal in JavaScript:
 
     xname.fullname = { first: 'Bob', last: 'Dobbs' };
@@ -562,7 +561,7 @@ For example:
 Setting `hidden = true` on a `<disappearing-element>` causes the `hidden`
 attribute to be set:
 
-    <disappearing-element hidden>Now you see me...</disappearing element>
+    <disappearing-element hidden>Now you see me...</disappearing-element>
 
 Attribute _reflection_ is separate from data binding. Two-way data binding is
 available on published properties whether or not they're reflected. Consider the
@@ -649,7 +648,7 @@ All properties on {{site.project_title}} elements can be watched for changes by 
       </script>
     </polymer-element>
 
-In this example, there are two watched properties, `better` and `best`. The `betterChanged` and `bestChanged` function will be called whenever `better` or `best` are modified, respectively. 
+In this example, there are two watched properties, `better` and `best`. The `betterChanged` and `bestChanged` function will be called whenever `better` or `best` are modified, respectively.
 
 #### Custom property observers - `observe` blocks {#observeblock}
 
@@ -735,7 +734,7 @@ It's important to note that **{{site.project_title}} does not call the <code><em
 
 ### Automatic node finding
 
-Another useful feature of {{site.project_title}} is node reference marshalling. Every node in a component's shadow DOM that is tagged with an `id` attribute is automatically referenced in the component's `this.$` hash. 
+Another useful feature of {{site.project_title}} is node reference marshalling. Every node in a component's shadow DOM that is tagged with an `id` attribute is automatically referenced in the component's `this.$` hash.
 
 For example, the following defines a component whose template contains an `<input>` element whose `id` attribute is `nameInput`. The component can refer to that element with the expression `this.$.nameInput`.
 
@@ -763,7 +762,7 @@ Example:
 {% raw %}
     <polymer-element name="ouch-button">
       <template>
-        <button on-click="{{onClick}}">Send hurt</button> 
+        <button on-click="{{onClick}}">Send hurt</button>
       </template>
       <script>
         Polymer('ouch-button', {
@@ -794,7 +793,9 @@ attribute. The parent's properties and methods are inherited by the child elemen
 and data-bound.
 
     <polymer-element name="polymer-cool">
-      <!-- UI-less element -->
+      <template>
+        You are {%raw%}{{praise}}{%endraw%} <content></content>!
+      </template>
       <script>
         Polymer('polymer-cool', {
           praise: 'cool'
@@ -804,34 +805,44 @@ and data-bound.
 
     <polymer-element name="polymer-cooler" extends="polymer-cool">
       <template>
-        {%raw%}{{praise}}{%endraw%} <!-- "cool" -->
+        <!-- A shadow element render's the extended
+             element's shadow dom here. -->
+        <shadow></shadow> <!-- "You are cool Matt" -->
       </template>
       <script>
         Polymer('polymer-cooler');
       </script>
     </polymer-element>
 
+    <polymer-cooler>Matt</polymer-cooler>
+
 #### Overriding a parent's methods
 
-When you override an inherited method, you can call the parent's method with `this.super()`, and optionally pass it a list of arguments (e.g. `this.super([arg1, arg2])`). The reason the paramater is an array is so you can write `this.super(arguments)`.
+When you override an inherited method, you can call the parent's method with `this.super()`, and optionally pass it a list of arguments (e.g. `this.super([arg1, arg2])`). The reason the parameter is an array is so you can write `this.super(arguments)`.
 
 {% raw %}
     <polymer-element name="polymer-cool">
+      <template>
+        You are {{praise}} <content></content>!
+      </template>
       <script>
         Polymer('polymer-cool', {
           praise: 'cool',
           makeCoolest: function() {
-            this.praise = 'coolest';
+            this.praise = 'the coolest';
           }
         });
       </script>
     </polymer-element>
 
-    <polymer-element name="polymer-cooler" extends="polymer-cool" on-click="{{makeCoolest}}">
-      <template>polymer-cooler is {{praise}}</template>
+    <polymer-element name="polymer-cooler" extends="polymer-cool"
+                     on-click="{{makeCoolest}}">
+      <template>
+        <shadow></shadow>
+      </template>
       <script>
         Polymer('polymer-cooler', {
-          praise: 'cooler',
+          praise: 'cool',
           makeCoolest: function() {
             this.super(); // calls polymer-cool's makeCoolest()
           }
@@ -839,7 +850,7 @@ When you override an inherited method, you can call the parent's method with `th
       </script>
     </polymer-element>
 
-    <polymer-cooler></polymer-cooler>
+    <polymer-cooler>Matt</polymer-cooler>
 {% endraw %}
 
 In this example, when the user clicks on a `<polymer-cooler>` element, its
@@ -847,18 +858,14 @@ In this example, when the user clicks on a `<polymer-cooler>` element, its
 using `this.super()`. The `praise` property (inherited from `<polymer-cool>`) is set
 to "coolest".
 
-## Advanced topics {#additional-utilities}
+## Built-in element methods {#builtin}
 
-- [`async()`](#asyncmethod)
-- [`onMutation()`](#onMutation)
-- [`unbindAll()` / `cancelUnbindAll()` / `asyncUnbindAll()`](#bindings)
-  - [`.preventDispose`](#preventdispose)
-- [`Platform.flush()`](#flush)
+{{site.project_title}} includes a few handy methods on your element's prototype.
 
 ### Observing changes to light DOM children {#onMutation}
 
-To know when light DOM children change, you can setup a Mutation Observer to 
-be notified when nodes are added or removed. To make this more convenient, {{site.project_title}} adds an `onMutation()` callback to every element. Its first argument is the DOM element to 
+To know when light DOM children change, you can setup a Mutation Observer to
+be notified when nodes are added or removed. To make this more convenient, {{site.project_title}} adds an `onMutation()` callback to every element. Its first argument is the DOM element to
 observe. The second argument is a callback which is passed the `MutationObserver` and the mutation records:
 
     this.onMutation(domElement, someCallback);
@@ -886,7 +893,7 @@ changes creates an optimization that (a) prevents duplicated work and (b) reduce
 are examples that fit under this async behavior. For example, conditional templates may not immediately render after setting properties because changes to those renderings are saved up and performed all at once after you return from JavaScript.
 
 To do work after changes have been processed, {{site.project_title}} provides `async()`.
-It's similar to `window.setTimeout()`, but automatically binds `this` to the correct value:
+It's similar to `window.setTimeout()`, but it automatically binds `this` to the correct value and is timed to `requestAnimationFrame`:
 
     // async(inMethod, inArgs, inTimeout)
     this.async(function() {
@@ -913,6 +920,31 @@ In the case of property changes that result in DOM modifications, follow this pa
       updateValues: function() {...}
     });
 
+### Delaying work {#job}
+
+Sometimes it's useful to delay a task after an event, property change, or user interaction. A common way to do this is with `window.setTimeout()`:
+
+    this.responseChanged = function() {
+      if (this.timeout1) {
+        clearTimeout(this.toastTimeout1);
+      }
+      this.timeout1 = window.setTimeout(function() {
+        ...
+      }, 500);
+    }
+
+However, this is such a common pattern that {{site.project_title}} provides the `job()` utility for doing the same thing:
+
+    this.responseChanged = function() {
+      this.job('job1', function() { // first arg is the name of the "job"
+        this.fire('done');
+      }, 500);
+    }
+
+`job()` can be called repeatedly before the timeout but it only results in a single side-effect. In other words, if `responseChanged()` is immediately executed 250ms later, the `done` event won't fire until 750ms.
+
+## Advanced topics {#additional-utilities}
+
 ### Life of an element's bindings {#bindings}
 
 **Note:** The section only applies to elements that are instantiated in JavaScript, not to those
@@ -921,7 +953,7 @@ declared in markup.
 
 If you instantiate an element (e.g. `document.createElement('x-foo')`) and do **not** add it to the DOM,
 {{site.project_title}} asynchronously removes its {%raw%}`{{}}`{%endraw%} bindings and `*Changed` methods.
-This helps prevent memory leaks, ensuring the element will be garbage collected. 
+This helps prevent memory leaks, ensuring the element will be garbage collected.
 
 If you want the element to "remain active" when it's not in the `document`,
 call `cancelUnbindAll()` right after you create or remove it. The [lifecycle methods](#lifecyclemethods)
@@ -966,7 +998,7 @@ when `Object.observe()` is available. When it's not supported, {{site.project_ti
 
 `Platform.flush()` is part of {{site.project_title}}'s data observation polyfill, [observe-js](https://github.com/Polymer/observe-js). It dirty check's all objects that have been observed and ensures notification callbacks are dispatched. {{site.project_title}} automatically calls `Platform.flush()` periodically, and this should be sufficient for most application workflows. However, there are times when you'll want to call `Platform.flush()` in application code.
 
-**Note**: on platforms that support `Object.observe()` natively, `Platform.flush()` does nothing.
+**Note:** on platforms that support `Object.observe()` natively, `Platform.flush()` does nothing.
 {: .alert .alert-info }
 
 #### When should I call `Platform.flush()`?
@@ -980,6 +1012,7 @@ need to manually call `Platform.flush()`. Here are specific examples:
 2. The author of a slider element wants to ensure that data can propagate from it as the user slides the slider. A user of the element, might, for example, bind the slider's value to an input and expect to see the input change while the slider is moving. To achieve this, the element author calls `Platform.flush()` after setting the element's value in the `ontrack` event handler.
 
 **Note:** {{site.project_title}} is designed such that change notifications are asynchronous. Both `Platform.flush()` and `Object.observe()` (after which it's modeled) are asynchronous. Therefore, **`Platform.flush()` should not be used to try to enforce synchronous data notifications**. Instead, always use [change watchers](#change-watchers) to be informed about state.
+{: .alert .alert-info }
 
 ### How {{site.project_title}} elements prepare themselves {#prepare}
 
@@ -1003,16 +1036,15 @@ prepare themselves even when they do not satisfy the above rules.
 **Note:** an element's [`ready()` lifecycle callback](#lifecyclemethods) is called after an element has been prepared. Use `ready()` to know when an element is done initializing itself.
 {: .alert .alert-success }
 
-## Resolving paths of sibling elements {#resolvepath}
+### Resolving paths of sibling elements {#resolvepath}
 
-For the general case of element re-use and sharing, URLs in HTML Imports are meant to be relative to the location of the import. The majority of the time, the browser takes care of this for you. 
+For the general case of element re-use and sharing, URLs in HTML Imports are meant to be relative to the location of the import. The majority of the time, the browser takes care of this for you.
 
 However, JavaScript doesn't have a notion of a local import. Therefore, {{site.project_title}} provides a `resolvePath()` utility for converting paths relative to the import to paths relative to the document.
 
 For example: If you know your import is in a folder containing a resource (e.g `x-foo.png`), you can get a path to `x-foo.png` which will work relative to the main document by calling `this.resolvePath('x-foo.png')`.
 
 Visually, this might look like the following:
-
 
     index.html
     components/x-foo/

@@ -1,5 +1,8 @@
 /* TEAM */
-Eric Bidelman, Chrome team - https://google.com/+EricBidelman
+Eric Bidelman, Polymer team - @ebidel
+Addy Osmani, Polymer team
+Rob Dodson, Polymer team
+Arthur Evans, Polymer team
 
 /* THANKS */
 To everyone who has contributed to Polymer & its documentation!

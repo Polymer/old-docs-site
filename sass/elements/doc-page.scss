@@ -1,0 +1,109 @@
+@import "elements";
+@import "material";
+
+:host {
+  display: block;
+}
+h1 {
+  color: #E91E63;
+  /*font-size: 52px;*/
+  line-height: 60px;
+  font-weight: inherit;
+}
+
+.box {
+  margin-bottom: 40px;
+
+  &:not(.top) {
+    .details {
+      padding: 16px;
+
+      .params {
+        margin-top: 40px;
+      }
+    }
+
+    h3 {
+      padding: 16px;
+      color: white;
+    }
+
+    pre {
+      padding: initial;
+      background-color: transparent;
+      margin: initial;
+      font-size: 12px;
+    }
+  }
+
+  code {
+    color: currentcolor;
+    font-weight: 500;
+  }
+}
+
+// code {
+//   border: 1px solid #ddd;
+//   background-color: #f8f8f8;
+//   border-radius: 3px;
+//   padding: 0 3px;
+// }
+
+// // higlightjs overwrites
+// code {
+//   border: none;
+//   background-color: transparent;
+//   border-radius: none;
+//   padding: 0;
+// }
+
+pre {
+  max-width: 832px;
+  white-space: pre-wrap;
+  overflow: hidden;
+  border: none;
+}
+
+.attribute-box {
+  .details {
+    @extend .material-orange-light;
+    border-bottom: 1px solid rgba(255, 86, 33, 0.5);
+  }
+  h3 {
+    @extend .material-orange;
+  }
+}
+
+.property-box {
+  .details {
+    @extend .material-yellow-light;
+    border-bottom: 1px solid rgba(243, 179, 0, 0.5);
+  }
+  h3 {
+    @extend .material-yellow;
+  }
+}
+
+.method-box {
+  .details {
+    @extend .material-green-light;
+    border-bottom: 1px solid rgba(0, 190, 164, 0.5);
+  }
+  h3 {
+    @extend .material-green;
+  }
+}
+
+.event-box {
+  .details {
+    @extend .material-blue-light;
+    border-bottom: 1px solid rgba(65, 132, 243, 0.5);
+  }
+  h3 {
+    @extend .material-blue;
+  }
+}
+
+.badge {
+  color: currentcolor;
+}

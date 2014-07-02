@@ -11,7 +11,7 @@ subtitle: Common techniques for sharing information between custom elements
 article:
   author: ebidel
   published: 2013-08-12
-  updated: 2014-03-16
+  updated: 2014-06-29
   polymer_version: 0.0.20130808
   description: Common techniques for sharing information between custom elements
 tags:
@@ -97,7 +97,7 @@ Here's an example:
     <polymer-element name="my-app">
       <template>
         <td-model items="{{list}}"></td-model>
-        <polymer-localstorage name="myapplist" value="{{list}}"></polymer-localstorage>
+        <core-localstorage name="myapplist" value="{{list}}"></core-localstorage>
       </template>
       <script>
         Polymer('my-app', {
@@ -111,21 +111,21 @@ Here's an example:
 {% endraw %}
 
 When a {{site.project_title}} element [publishes](/docs/polymer/polymer.html#published-properties) one of its properties, you can bind to that property using an HTML attribute of the same name. In the example,
-`<td-model>.items` and `<polymer-localstorage>.value` are bound together with "list":
+`<td-model>.items` and `<core-localstorage>.value` are bound together with "list":
 
 {% raw %}
     <td-model items="{{list}}"></td-model> 
-    <polymer-localstorage name="myapplist" value="{{list}}"></polymer-localstorage>
+    <core-localstorage name="myapplist" value="{{list}}"></core-localstorage>
 {% endraw %}
 
 What's neat about this? Whenever `<td-model>` updates its `items` array internally,
 elements that bind to `list` on the outside see the changes. In this
-example, `<polymer-localstorage>`. You can think of "list" as an
+example, `<core-localstorage>`. You can think of "list" as an
 internal bus within `<my-app>`. Pop some data on it; any elements that care about
 `items` are magically **kept in sync by data-binding**. This means there is one source
 of truth. Data changes are simultaneously reflected in all contexts. There is no no dirty check.
 
-**Remember:** Property bindings are two-way. If `<polymer-localstorage>`
+**Remember:** Property bindings are two-way. If `<core-localstorage>`
 changes `list`, `<td-model>`'s items will also change.
 {: .alert .alert-info }
 
@@ -159,14 +159,14 @@ of `<my-app>`, be sure to initialize and/or [hint the type](/docs/polymer/polyme
   </tr>
 </table>
 
-Let's say someone creates `<polymer-localstorage2>` and you want to use its new
+Let's say someone creates `<core-localstorage2>` and you want to use its new
 hotness. The element still defines a `.value` property but it doesn't publish the
 property in `attributes=""`. Something like:
 
-    <polymer-element name="polymer-localstorage2" attributes="name useRaw">
+    <polymer-element name="core-localstorage2" attributes="name useRaw">
     <template>...</template>
     <script>
-      Polymer('polymer-localstorage2', {
+      Polymer('core-localstorage2', {
         value: null,
         valueChanged: function() {
           this.save();
@@ -179,10 +179,10 @@ property in `attributes=""`. Something like:
 When it comes time to use this element, we're left without a (`value`) HTML attribute
 to bind to:
 
-    <polymer-localstorage2 name="myapplist" id="storage"></polymer-localstorage2>
+    <core-localstorage2 name="myapplist" id="storage"></core-localstorage2>
 
 A desperate time like this calls for a [changed watcher](/docs/polymer/polymer.html#change-watchers) and
-a sprinkle of data-binding. We can exploit the fact that `<polymer-localstorage2>` defines
+a sprinkle of data-binding. We can exploit the fact that `<core-localstorage2>` defines
 a `valueChanged()` watcher. By setting up our own watcher for `list`, we can
 automatically persist data to `localStorage` whenever `list` changes!
 
@@ -190,7 +190,7 @@ automatically persist data to `localStorage` whenever `list` changes!
     <polymer-element name="my-app">
     <template>
       <td-model items="{{list}}"></td-model>
-      <polymer-localstorage2 name="myapplist" id="storage"></polymer-localstorage2>
+      <core-localstorage2 name="myapplist" id="storage"></core-localstorage2>
     </template>
     <script>
       Polymer('my-app', {
@@ -208,11 +208,11 @@ automatically persist data to `localStorage` whenever `list` changes!
 When `list` changes, the chain reaction is set in motion:
 
 1. {{site.project_title}} calls `<my-app>.listChanged()`
-2. Inside `listChanged()`, `<polymer-localstorage2>.value` is set
-3. This calls `<polymer-localstorage2>.valueChanged()`
+2. Inside `listChanged()`, `<core-localstorage2>.value` is set
+3. This calls `<core-localstorage2>.valueChanged()`
 4. `valueChanged()` calls `save()` which persists data to `localStorage`
 
-**Tip:** I'm using a {{site.project_title}} feature called [automatic node finding](/docs/polymer/polymer.html#automatic-node-finding) to reference `<polymer-localstorage>` by its `id` (e.g. `this.$.storage === this.querySelector('#storage')`).
+**Tip:** I'm using a {{site.project_title}} feature called [automatic node finding](/docs/polymer/polymer.html#automatic-node-finding) to reference `<core-localstorage>` by its `id` (e.g. `this.$.storage === this.querySelector('#storage')`).
 {: .alert .alert-success }
 
 ### 3. Custom events {#events}
@@ -359,17 +359,20 @@ Things become come very interesting when several elements need to respond to an 
       </script>
     </polymer-element>
 
-    <my-app></my-app>
+    <div id="container">
+     <my-app></my-app>
+    </div>
 
     <script>
-      var myApp = document.querySelector('my-app');
-      myApp.addEventListener('said-hello', function(e) {
+      var container = document.querySelector('#container');
+      container.addEventListener('said-hello', function(e) {
         alert('outside: Said hi to ' + e.detail.name + ' from ' + e.target.localName);
       });
     </script>
 {% endraw %}
 
-**Try it:** <my-app-demo></my-app-demo>
+**Try it:**
+<div><my-app-demo></my-app-demo></div>
 
 Clicking `<say-hello>` alerts the following (remember it defined
 a click handler on itself):
@@ -410,43 +413,43 @@ on `<say-bye>`.
       }
     });
 
-#### Using &lt;polymer-signals&gt;
+#### Using &lt;core-signals&gt;
 
-`<polymer-signals>`is a [utility element](/docs/elements/#polymer-signals) that
+`<core-signals>`is a [utility element](/docs/elements/#core-signals) that
 makes the pubsub pattern a bit easier, It also **works outside of {{site.projed}}
 elements**.
 
-Your element fires `polymer-signal` and names the signal in its payload:
+Your element fires `core-signal` and names the signal in its payload:
 
-    this.fire('polymer-signal', {name: "foo", data: "Foo!"});
+    this.fire('core-signal', {name: "foo", data: "Foo!"});
 
 This event bubbles up to `document` where a handler constructs and dispatches
-a new event, <code>polymer-signal<b>-foo</b></code>, to *all instances* of `<polymer-signals>`.
-Parts of your app or other {{site.project_title}} elements can declare a `<polymer-signals>`
+a new event, <code>core-signal<b>-foo</b></code>, to *all instances* of `<core-signals>`.
+Parts of your app or other {{site.project_title}} elements can declare a `<core-signals>`
 element to catch the named signal:
 
 {%raw%}
-    <polymer-signals on-polymer-signal-foo="{{fooSignal}}"></polymer-signals>
+    <core-signals on-core-signal-foo="{{fooSignal}}"></core-signals>
 {%endraw%}
 
 Here's a full example:
+
+    <link rel="import" href="bower_components/core-signals/core-signals.html">
 
     <polymer-element name="sender-element">
       <template>Hello</template>
       <script>
         Polymer('sender-element', {
-          ready: function() {
-            this.asyncFire('polymer-signal', {name: "foo", data: "Foo!"});
+          domReady: function() {
+            this.fire('core-signal', {name: "foo", data: "Foo!"});
           }
         });
       </script>
     </polymer-element>
 
-    <link rel="import" href="polymer-signals.html">
-
     <polymer-element name="my-app">
       <template>
-        <polymer-signals on-polymer-signal-foo="{%raw%}{{fooSignal}}{%endraw%}"></polymer-signals>
+        <core-signals on-core-signal-foo="{%raw%}{{fooSignal}}{%endraw%}"></core-signals>
         <content></content>
       </template>
       <script>
@@ -458,43 +461,10 @@ Here's a full example:
       </script>
     </polymer-element>
 
-    <!-- Note: polymer-signals works outside of {{site.project_title}}.
+    <!-- Note: core-signals works outside of {{site.project_title}}.
          Here, sender-element is outside of a {{site.project_title}} element. -->
     <sender-element></sender-element>
     <my-app></my-app>
-
-<!-- {% raw %}
-<polymer-element name="signal-sender-element">
-  <template>Hello</template>
-  <script>
-    Polymer('signal-sender-element', {
-      ready: function() {
-        this.fire('polymer-signal', {name: "foo", data: "Foo!"});
-      }
-    });
-  </script>
-</polymer-element>
-
-<link rel="import" href="/polymer-all/polymer-elements/polymer-signals/polymer-signals.html">
-
-<polymer-element name="my-app-signals">
-  <template>
-    <polymer-signals on-polymer-signal-foo="{{fooSignal}}" on-polymer-signal-bar="{{barSignal}}"></polymer-signals>
-    <content></content>
-  </template>
-  <script>
-    Polymer('my-app-signals', {
-      fooSignal: function(e, detail, sender) {
-        this.innerHTML += '[my-app] got a [' + detail + '] signal<br>';
-      }
-    });
-  </script>
-</polymer-element>
-{% endraw %}
-
-<signal-sender-element></signal-sender-element>
-**Demo**: <my-app-signals></my-app-signals>
- -->
 
 ### 4. Use an element's API {#api}
 
@@ -502,10 +472,10 @@ Lastly, don't forget you can always **orchestrate elements by using their public
 methods (API)**. This may seem silly to mention but it's not immediately obvious
 to most people.
 
-**Example:** instruct `<polymer-localstorage>` to save its data by call
+**Example:** instruct `<core-localstorage>` to save its data by call
 it's `save()` method (code outside a {{site.project_title}} element):
 
-    <polymer-localstorage name="myname" id="storage"></polymer-localstorage>
+    <core-localstorage name="myname" id="storage"></core-localstorage>
     <script>
       var storage = document.querySelector('#storage');
       storage.useRaw = true;
@@ -525,10 +495,12 @@ you're seeing that nothing has changed in the world of custom elements. That's
 the point :) It's the same web we've always known...just more powerful! 
 
 <script>
-  var myApp = document.querySelector('my-app-demo');
-  myApp.addEventListener('said-hello', function(e) {
+(function() {
+  var el = document.querySelector('my-app-demo').parentElement;
+  el.addEventListener('said-hello', function(e) {
     alert('outside: Said hi to ' + e.detail.name + ' from ' + e.target.localName);
   });
+})();
 </script>
 
 {% include disqus.html %}

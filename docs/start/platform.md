@@ -32,8 +32,6 @@ The platform layer is a bundle that includes the following libraries:
   <!-- - [Promises](https://github.com/Polymer/Promises). Handle asynchronous operations. -->
   - [observe-js](https://github.com/Polymer/observe-js). Observe changes on JS objects/arrays using `Object.observe` (if available).
 - Other
-  - [Pointer Events](https://github.com/Polymer/PointerEvents). Handle both touch and mouse seamlessly
-  - [Pointer Gestures](https://github.com/Polymer/PointerGestures). More complex touch gestures.
   - [Web Animations](/platform/web-animations.html). Define complex timeline animations.
 
 ## Installation & usage {#setup}
@@ -53,9 +51,9 @@ Then, include `platform.js` as you would any other script:
 Once included, you can use [HTML Imports](/platform/html-imports.html), [Custom Elements](/platform/custom-elements.html), [Shadow DOM](/platform/shadow-dom.html), and other emerging standards within your app. For example, to use a {{site.project_title}} element, just import it using an HTML Import:
 
     <link rel="import"
-          href="bower_components/polymer-ui-tabs/polymer-ui-tabs.html">
+          href="bower_components/paper-tabs/paper-tabs.html">
 
-Then use `<polymer-ui-tabs>` just like any built-in tag.
+Then use `<paper-tabs>` just like any built-in tag.
 
 While each polyfill is standalone, the recommended approach is to include the entire `platform.js` file. This ensures all dependencies are present and the largest portion of the future web platform is available. Since this is the most-used configuration, it is also the most tested. 
 
@@ -67,5 +65,7 @@ For information on how to build each polyfill library independently, see [Tools 
 
 `platform.js` is a wonderful foundation for working with Web Components in a cross-browser fashion. If you're ready to start building your own elements, and would like to learn about the additional features `polymer.js` adds, check out our guides on [Creating elements](/docs/start/creatingelements.html) and [Using elements](/docs/start/usingelements.html). Continue on to:
 
-<a href="/docs/polymer/polymer.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>API Reference</a>
+<a href="/docs/polymer/polymer.html">
+  <paper-button icon="arrow-forward" label="API developer guide" raisedButton></paper-button>
+</a>
  
