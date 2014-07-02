@@ -11,6 +11,19 @@ subtitle: Your first Polymer application
 
 <link rel="stylesheet" href="tutorial.css">
 
+<style>
+.unquote-link {
+  max-width: 360px;
+}
+.unquote-image {
+  background-image: url(/images/tutorial/finished.png);
+  background-size: cover;
+  background-position: top;
+  width: 360px;
+  height: 320px;
+  border: 1px solid black;
+}
+</style>
 
 ## Step 4: Finishing touches
 
@@ -243,9 +256,10 @@ Save `post-list.html` and refresh your page.
 
 That's it &mdash; you're done! With a bit of luck, your application looks like this:
 
-<div layout vertical center>
-  <img class="sample" src="/images/tutorial/finished.png">
-  <div><a href="/samples/tutorial/finished/index.html" target="_blank">See live demo</a></div>
+<div layout horizontal center-justified>
+  <a href="/samples/tutorial/finished/index.html" layout horizontal flex class="unquote-link">
+    <div class="unquote-image" flex></div>
+  </a>
 </div>
 
 
