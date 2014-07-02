@@ -103,7 +103,7 @@ Consider the following templates:
 {% raw %}
     <template repeat="{{user in users}}">
       <p>{{user.name}}</p>
-      <template repeat="{{alias is user.aliases}}">
+      <template repeat="{{alias in user.aliases}}">
          <p>a.k.a. {{alias}}</p>
       </template>
     </template>
@@ -117,13 +117,13 @@ whitespace is added around the template instances for readability.)
 <pre class="prettyprint">
 &lt;template repeat="{{user in users}}">
   &lt;p>{{user.name}}&lt;/p>
-  &lt;template repeat="{{alias is user.aliases}}">
+  &lt;template repeat="{{alias in user.aliases}}">
      &lt;p>a.k.a. {{alias}}&lt;/p>
   &lt;/template>
 &lt;/template>
 
 &lt;p>Bob&lt;/p>              <span class="nocode" style="color: red"><em>⇐ start of 1st outer template instance</em></span>
-&lt;template repeat="{{alias is user.aliases}}">
+&lt;template repeat="{{alias in user.aliases}}">
   &lt;p>a.k.a. {{alias}}&lt;/p>
 &lt;/template>
 
@@ -134,7 +134,7 @@ whitespace is added around the template instances for readability.)
 
 
 &lt;p>Elaine&lt;/p>           <span class="nocode" style="color: red"><em>⇐ start of 2nd outer template instance</em></span>
-&lt;template repeat="{{alias is user.aliases}}">
+&lt;template repeat="{{alias in user.aliases}}">
   &lt;p>a.k.a. {{alias}}&lt;/p>
 &lt;/template>
 
