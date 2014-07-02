@@ -67,10 +67,10 @@ polyfill-next-selector { content: ':host .core-selected'; }
   }
   polyfill-unscoped-rule {
     content: '#feature :host';
-    height: 550px;
+    height: 680px;
   }
   :host {
-    height: 550px !important;
+    height: 680px !important;
   }
   #paginator {
     width: 100%;

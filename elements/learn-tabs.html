@@ -30,11 +30,12 @@
         text-decoration: none;
         color: inherit;
       }
-      .card img {
+      .card .unquote-image {
+        background-image: url(/images/unquote.png);
+        background-size: cover;
+        background-position: top;
+        background-color: #e5e5e5;
         width: 400px;
-      }
-      img.stretch {
-        width: 100%;
       }
     </style>
     <core-media-query query="min-width: 640px" queryMatches="{{wide}}"></core-media-query>
@@ -121,16 +122,16 @@
               <h2>Build an app</h2>
               <div flex>
                 <p>Ready to dive deeper?  In this tutorial, you'll build a small Polymer application -- 
-                a very basic client for a social networking service like the one at right.  It'll give 
-                you a good feel for both using pre-made Polymer elements as well as building custom elements 
-                of your own.</p>
+                a very basic client for a social networking service<span hidden?="{{!wide}}"> like the one at right</span>.
+                It'll give you a good feel for both using pre-made Polymer elements as well as building custom
+                elements of your own.</p>
                 <a href="/docs/start/tutorial/intro.html"><paper-button raisedButton icon="arrow-forward" label="Go to tutorial"></paper-button></a>
                 <p>If you'd rather keep reading, head to the Polymer docs page to dive deeper.</p> 
-                <a href="/docs/start/usingelements.html"><paper-button raisedButton icon="arrow-forward" label="Go to documentation"></paper-button></a>
+                <a href="/docs/start/usingelements.html"><paper-button raisedButton icon="arrow-forward" label="Go to docs"></paper-button></a>
               </div>
             </div>
-            <a href="/docs/start/tutorial/intro.html">
-              <img src="/images/unquote.png" class="{{ {stretch:!wide} | tokenList }}">
+            <a href="/docs/start/tutorial/intro.html" layout vertical>
+              <div class="unquote-image" hidden?="{{!wide}}" flex>
             </a>
           </div>
         </div>

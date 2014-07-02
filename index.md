@@ -75,12 +75,12 @@ stylesheets:
     <summary style="transform: translateZ(0);">
       <h1>Designer</h1>
       <a href="/tools/designer/" target="_blank">
-        <img src="/images/designer_screenshot.png" class="cover" alt="Launch the designer tool" title="Launch the designer tool">
+        <img src="/images/designer_fadeout.png" alt="Launch the designer tool" title="Launch the designer tool">
       </a>
       <div>
-        <h3>
+        <p>
         Designer is a drag and drop tool for prototyping apps using {{site.project_title}}. Save your experiments as Github gists.
-        </h3>
+        </p>
         <a href="/tools/designer/" target="_blank">
           <paper-button icon="arrow-forward" label="Try it now"></paper-button>
         </a>
@@ -116,8 +116,8 @@ stylesheets:
             <img src="/images/topeka_square.png">
           </a>
         </div>
-        <h1 class="elements-using">Topeka</h1>
-        <h5>A fun quiz app built using material-design based <em>paper-elements</em></h5>
+        <h2 class="demo1">Topeka</h2>
+        <p>A fun quiz app built using material-design based <em>paper-elements</em></p>
         <a href="/apps/topeka/">
           <paper-button icon="arrow-forward" label="Demo Topeka"></paper-button>
         </a>
@@ -128,8 +128,8 @@ stylesheets:
             <img src="/images/sampler-paper-square.png">
           </a>
         </div>
-        <h1 class="elements-creating">Paper Elements</h1>
-        <h5>A sampler showcasing Polymer elements based on material design</h5>
+        <h2 class="demo2">Paper Elements</h2>
+        <p>A sampler showcasing Polymer elements based on material design</p>
         <a href="/components/paper-elements/demo.html#core-toolbar">
           <paper-button icon="arrow-forward" label="Browse Elements"></paper-button>
         </a>
@@ -140,8 +140,8 @@ stylesheets:
             <img src="/images/paper-calculator.png">
           </a>
         </div>
-        <h1 class="platform">Calculator</h1>
-        <h5>A calculator app mockup highlighting material ink effects</h5>
+        <h2 class="demo3">Calculator</h2>
+        <p>A calculator app mockup highlighting material ink effects</p>
         <a href="/components/paper-calculator/demo.html">
           <paper-button icon="arrow-forward" label="Demo Calculator"></paper-button>
         </a>
