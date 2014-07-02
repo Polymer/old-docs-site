@@ -147,6 +147,11 @@ site-banner .logo {
     margin-left: 0;
   }
 }
+@media only screen and (max-width: $break-medium) {
+  #future {
+    padding-top: 30px;
+  }
+}
 
 #featured {
   .video {
@@ -181,7 +186,7 @@ site-banner .logo {
     @include flex-direction(column);
   }
   summary {
-    div {
+    >div {
       @include display-flex;
       @include justify-content(center);
       @include align-items(center);
@@ -225,7 +230,6 @@ site-banner .logo {
     }
     summary {
       margin-bottom: 32px;
-      min-width: 300px;
     }
   }
   .box {
@@ -245,13 +249,21 @@ site-banner .logo {
   h5 {
     @extend .h5heading;
   }
-  p {
-    font-size: $font-size-secondary;
-    line-height: $line-height-body;
-    margin-top: 0;
-  }
   img {
     height: 100%;
     width: 100%;
+  }
+  p {
+    margin: 10px 0;
+    line-height: 24px;
+  }
+}
+
+@media only screen and (max-width: $break-medium) {
+  #apps .columns {
+    display: block;
+    summary {
+      @include flex(initial);
+    }
   }
 }

@@ -20,18 +20,26 @@ subtitle: Your first Polymer application
 #download-button::shadow #ripple {
   color: #fff;
 }
-
-img.sample {
-  border: 1px solid #eee;
+.unquote-link {
+  max-width: 360px;
+}
+.unquote-image {
+  background-image: url(/images/tutorial/finished.png);
+  background-size: cover;
+  background-position: top;
+  width: 360px;
+  height: 320px;
+  border: 1px solid black;
 }
 </style>
 
 
 In this tutorial, you'll build a small {{site.project_title}} application -- a very basic client for a social networking service. The end result will look like this:
 
-<div layout vertical center>
-  <img class="sample" src="/images/tutorial/finished.png">
-  <div><a href="/samples/tutorial/finished/index.html" target="_blank">See live demo</a></div>
+<div layout horizontal center-justified>
+  <a href="/samples/tutorial/finished/index.html" layout horizontal flex class="unquote-link">
+    <div class="unquote-image" flex></div>
+  </a>
 </div>
 
 This project will introduce you to most of the key concepts in working with {{site.project_title}}. Don't worry if you don't understand everything. Each of the concepts presented here is described in detail in the {{site.project_title}} documentation.
