@@ -51,6 +51,10 @@ While you're working, you'll need a basic HTTP server to serve your pages. If yo
 
     python -m SimpleHTTPServer 
 
+Or with python 3 :
+
+    python -m http.server
+
 Open a browser and navigate to the local server. For `SimpleHTTPServer`, this is typically:
 
 -  [http://localhost:8000/](http://localhost:8000/)
