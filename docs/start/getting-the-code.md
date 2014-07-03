@@ -127,7 +127,7 @@ You can also choose one of the commonly-used packages:
     collection.
 
 -   `Polymer/paper-elements`. The 
-    [Paper elements](/docs/elements/core-elements.html) collection.
+    [Paper elements](/docs/elements/paper-elements.html) collection.
 
 For example, if you'd like to install {{site.project_title}}’s collections 
 of pre-built elements, run the following commands from the terminal:
