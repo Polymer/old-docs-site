@@ -11,7 +11,7 @@
   <polymer-ui-menu id="mainmenu" on-click="{{onClick}}" selectedItem="{{item}}">
 
     <polymer-ui-submenu-item src="/images/picons/ic_polymer_source.svg"
-        class="{{ {show: menu == 'elements'} | tokenList}}"
+        class="elements-using  {{ {show: menu == 'elements'} | tokenList}}"
         label="Element guides">
         <polymer-ui-menu-item href="/docs/elements/layout-elements.html">Layout elements</polymer-ui-menu-item>
       <polymer-ui-menu-item href="/docs/elements/icons.html">Using core icons</polymer-ui-menu-item>
