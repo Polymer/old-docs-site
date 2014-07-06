@@ -191,7 +191,7 @@ set `Platform.ShadowCSS.strictStyling`.
 **Note:** We're setting `strictStyling` after loading `platform.js`.
 {: .alert .alert-info }
 
-More information on this feature can be found in the [Styling referencee](docs/polymer/styling.html#strictstyling).
+More information on this feature can be found in the [Styling reference](/docs/polymer/styling.html#strictstyling).
 
 <!--
 ## eval
