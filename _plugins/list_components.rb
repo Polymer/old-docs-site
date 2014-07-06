@@ -59,15 +59,15 @@ module Jekyll
         i.children.each do |f|
           if f.extname == '.html'
             contents = f.read
-            match = /^<polymer-element\sname="([a-z0-9-]+)"/.match(contents)
-            if match
-              name = match[1]
+            #match = /^<polymer-element\sname="([a-z0-9-]+)"/.match(contents)
+            contents.scan(/^<polymer-element\sname="([a-z0-9-]+)"/).each { |match|
+              name = match[0]
               prefix = Regexp.new "#{@prefix}-[a-z-]+"
               matchPrefix = prefix.match(name)
               if matchPrefix and !in_blacklist?(name)
                 elements[name] = f.to_s
               end
-            end
+            }
           end
         end
       end
