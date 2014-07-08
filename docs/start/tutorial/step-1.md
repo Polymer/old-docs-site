@@ -131,13 +131,12 @@ To add a toolbar, add the following code inside the `<body>` tag.
 
     <ul>
       <li>The 
-          <a href="/docs/elements/core-elements.html#core-header-panel">
-            <code>&lt;core-header-panel&gt;</code>
-          </a>element is a simple container that holds a 
+          <code><a href="/docs/elements/core-elements.html#core-header-panel">&lt;core-header-panel&gt;</a></code> 
+          element is a simple container that holds a 
           header (in this case a <code>&lt;core-toolbar></code> element), and some content. By 
           default, the header stays at the top of the screen, but it can also be 
           set to scroll with the content.</li>
-      <li>The <a href="/docs/elements/core-elements.html#core-toolbar"><code>&lt;core-toolbar></code></a> element serves 
+      <li>The <code><a href="/docs/elements/core-elements.html#core-toolbar">&lt;core-toolbar></a></code> element serves 
           as a container for tabs, menu buttons, and other controls.</li>
     </ul>
   </aside>
@@ -150,7 +149,8 @@ To add a toolbar, add the following code inside the `<body>` tag.
 Add the tabs.
 
 The application will use tabs for navigating between two different views,
-a list of all messages and a list of favorites. The `<paper-tabs>`
+a list of all messages and a list of favorites. The 
+<code><a href="/docs/elements/paper-elements.html#paper-tabs">&lt;paper-tabs&gt;</a></code>
 element works much like a `<select>` element, but it's styled as a set of
 tabs.
 
@@ -266,7 +266,7 @@ Save the file and open the project in your browser (for example, [http://localho
 **Note:** If you have the console open, you'll notice that you get two `core-select` 
 events each time you switch tabs &mdash; one for the previously-selected tab and one 
 for the newly-selected tab. The `<paper-tabs>` element inherits this behavior from 
-[`<core-selector>`](/docs/elements/core-elements.html#core-selector), which supports
+<code><a href="/docs/elements/core-elements.html#core-selector">&lt;core-selector&gt;</a></code>, which supports
 both single and multiple selections.
 {: .alert .alert-info }
 

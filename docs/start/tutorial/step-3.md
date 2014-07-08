@@ -190,7 +190,8 @@ If you have any problems, check your work against the files in the `step-3` fold
 -   [`post-list.html`](https://github.com/Polymer/polymer-tutorial/blob/master/step-3/post-list.html)
 -   [`index.html`](https://github.com/Polymer/polymer-tutorial/blob/master/step-3/index.html)
 
-**Explore:** Open up `post-service.html` to see how the component works. Internally, it uses the [`<core-ajax>`](/docs/elements/core-elements.html#core-ajax) element to make HTTP requests.
+**Explore:** Open up `post-service.html` to see how the component works. Internally, it uses the <code>
+<a href="/docs/elements/core-elements.html#core-ajax">&lt;core-ajax&gt;</a></code> element to make HTTP requests.
 {: .alert .alert-info}
 
 ### Next step

@@ -37,7 +37,9 @@ In this section you'll learn about:
 
 ### Edit post-card.html
 
-Open `post-card.html` in your editor and add the `<core-icon>` element:
+Open `post-card.html` in your editor and add the
+<code><a href="/docs/elements/core-elements.html#core-icon-button">&lt;core-icon-button></a></code>
+element:
 
 <side-by-side>
 <pre>
