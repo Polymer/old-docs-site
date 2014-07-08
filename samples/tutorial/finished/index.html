@@ -29,8 +29,9 @@
     background: #03a9f4;
     color: white;
   }
-  paper-tabs {
+  #tabs {
     width: 100%;
+    margin: 0;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -41,7 +42,7 @@
     margin: 50px auto;
   }
   @media (min-width: 481px) {
-    paper-tabs {
+    #tabs {
       width: 200px;
     }
     .container {
@@ -54,7 +55,7 @@
 <body unresolved touch-action="auto">
   <core-header-panel>
     <core-toolbar>
-      <paper-tabs selected="all" valueattr="name" self-end>
+      <paper-tabs id="tabs" selected="all" valueattr="name" self-end>
         <paper-tab name="all">ALL</paper-tab>
         <paper-tab name="favorites">FAVORITES</paper-tab>
       </paper-tabs>

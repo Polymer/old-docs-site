@@ -21,13 +21,13 @@ subtitle: Your first Polymer application
   color: #fff;
 }
 .unquote-link {
-  max-width: 400px;
+  max-width: 360px;
 }
 .unquote-image {
-  background-image: url(/images/unquote.png);
+  background-image: url(/images/tutorial/finished.png);
   background-size: cover;
   background-position: top;
-  width: 400px;
+  width: 360px;
   height: 320px;
   border: 1px solid black;
 }
@@ -58,19 +58,28 @@ Unzip the starter project somewhere on your local drive.
 
 The starter includes an initial version of the project you'll be working with. If you run into trouble, it also includes incremental versions of the project so you can check your work along the way. 
 
-While you're working, you'll need a basic HTTP server to serve your pages. If you have Python installed, you can run the following command in the top level of the starter project:
+While you're working, you'll need a basic HTTP server to serve your pages. If you have Python installed, you can run one of the following commands in the top level of the starter project.
+
+Python 2.x:
 
     python -m SimpleHTTPServer 
 
-Or with python 3 :
+Python 3.x:
 
-    python -m http.server
+    python -m http.server 
 
-Open a browser and navigate to the local server. For `SimpleHTTPServer`, this is typically:
+Test out the web server by loading the finished version of the project. For example:
 
--  [http://localhost:8000/](http://localhost:8000/)
+-  [http://localhost:8000/finished/](http://localhost:8000/finished/)
 
-### Next
+URLs in this tutorial assume your local server is listening on port 8000. 
+If you're using a different port, substitute the port you're using.
+
+**Note:** On Windows, Python's simple HTTP server may not provide the correct MIME type for SVG images.
+If the images don't render, try a different web server.
+{: .alert .alert-info }
+
+### Next step
 
 <a href="/docs/start/tutorial/step-1.html">
   <paper-button icon="arrow-forward" label="Step 1: Creating the app structure" raisedButton></paper-button>

@@ -29,31 +29,36 @@ To get the data, you'll use the `<post-service>` element provided as part of the
       "favorite": false
     }
 
+In this section you'll learn about:
+
+-   Data binding.
+-   Published properties.
+
 ### Edit post-list.html
 
 Open the `post-list.html` file in your editor.
 
 <side-by-side>
-  <pre>
-  &lt;link rel="import" href="../components/polymer/polymer.html">
-  &lt;link rel="import" href="post-service.html">
-  &lt;link rel="import" href="post-card.html">
+<pre>
+&lt;link rel="import" href="../components/polymer/polymer.html">
+&lt;link rel="import" href="post-service.html">
+&lt;link rel="import" href="post-card.html">
 
-  &lt;polymer-element name="post-list" attributes="show">
-    &lt;template>
-      &lt;style>
-      :host {
-        display: block;
-        width: 100%;
-      }
-      post-card {
-        margin-bottom: 30px;
-      }
-      &lt;/style>
-      
-      &lt;!-- add markup here -->
-  ...
-  </pre>
+&lt;polymer-element name="post-list" attributes="show">
+  &lt;template>
+    &lt;style>
+    :host {
+      display: block;
+      width: 100%;
+    }
+    post-card {
+      margin-bottom: 30px;
+    }
+    &lt;/style>
+    
+    &lt;!-- add markup here -->
+...
+</pre>
   <aside>
     <h4>Key information</h4>
     <ul>
@@ -80,12 +85,12 @@ in a later step.
 Add a `<post-service>` element inside the element's `<template>`:
 
 <side-by-side>
-  <pre>
-  ...
-  <strong class="highlight nocode">&lt;post-service id="service" posts="{%raw%}{{posts}}{%endraw%}">
-  &lt;/post-service></strong>
-  ...
-  </pre>
+<pre>
+...
+<strong class="highlight nocode">&lt;post-service id="service" posts="{%raw%}{{posts}}{%endraw%}">
+&lt;/post-service></strong>
+...
+</pre>
   <aside>
   <h4>Key information</h4>
     <ul>
@@ -173,20 +178,23 @@ with a `<post-list>`:
 
 ### Test your work
 
-Save the `index.html` file and reload the page in your browser.
+Save the `index.html` file and reload the page in your browser. You should see a list of cards,
+something like this:
 
-<iframe class="running-app-frame" width="480" height="320" src="/samples/tutorial/step-3/index.html">
-</iframe>
+<div layout vertical center>
+  <img class="sample" src="/images/tutorial/step-3.png">
+</div>
 
 If you have any problems, check your work against the files in the `step-3` folder:
 
 -   [`post-list.html`](https://github.com/Polymer/polymer-tutorial/blob/master/step-3/post-list.html)
 -   [`index.html`](https://github.com/Polymer/polymer-tutorial/blob/master/step-3/index.html)
 
-**Explore:** Open up `post-service.html` to see how the component works. Internally, it uses the [`<core-ajax>`](/docs/elements/core-elements.html#core-ajax) element to make HTTP requests.
+**Explore:** Open up `post-service.html` to see how the component works. Internally, it uses the <code>
+<a href="/docs/elements/core-elements.html#core-ajax">&lt;core-ajax&gt;</a></code> element to make HTTP requests.
 {: .alert .alert-info}
 
-### Next
+### Next step
 
 <a href="/docs/start/tutorial/step-4.html">
   <paper-button icon="arrow-forward" label="Step 4: Finishing touches" raisedButton></paper-button>

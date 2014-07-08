@@ -18,20 +18,22 @@ subtitle: Your first Polymer application
 
 Now that you have a basic application structure, you can start building a card element to display a post. The finished card includes space for a profile picture, name, favorite button, and a content area.
 
-<img src="/images/tutorial/card.png">
+<div layout vertical center>
+  <img class="sample" src="/images/tutorial/card.png">
+</div>
 
 In this step, you'll create a `<post-card>` element that controls the layout and styling of its children, so you can create a card like the one above using simple markup like this:
  
     <post-card>
       <img src="profile-picture.png">
       <h2>A. Developer</h2>
-      <h3>Something really profound about code.</h3>
+      <p>Something really profound about code.</p>
     </post-card>
 
-You will:
+In this step, you'll learn about:
 
--   Learn how to create a custom element using Polymer.
--   Get introduced to shadow DOM.
+-   Creating a custom element using Polymer.
+-   Working with shadow DOM.
 
 <aside class="alert alert-info">
 <p><b>Learn More:</b>Shadow DOM provides you a way to add a local DOM tree
@@ -105,9 +107,12 @@ Next is the definition of the element itself:
 </aside>
 </side-by-side>
 
-The `<polymer-element>` tag can include only one `<template>` tag as a _direct_ descendant.
+**Note:** The `<polymer-element>` tag can include only one `<template>` tag as a _direct_ descendant.
 This tag defines the shadow DOM for the element. Other `<template>` tags may be nested inside the outer
 template tag.
+{: .alert .alert-info }
+
+At the end of the element definition is a `<script>` tag:
 
 <side-by-side>
 <pre>
@@ -154,14 +159,14 @@ Find the `CARD CONTENTS GO HERE` comment and add the `<div>` and
 `<content>` tags shown below.
 
 <side-by-side>
-  <pre>
-  &lt;!-- CARD CONTENTS GO HERE -->
-  <strong class="highlight nocode">&lt;div class="card-header" layout horizontal center>
-    &lt;content select="img">&lt;/content>
-    &lt;content select="h2">&lt;/content>
-  &lt;/div>
-  &lt;content>&lt;/content></strong>
-  </pre>
+<pre>
+&lt;!-- CARD CONTENTS GO HERE -->
+<strong class="highlight nocode">&lt;div class="card-header" layout horizontal center>
+  &lt;content select="img">&lt;/content>
+  &lt;content select="h2">&lt;/content>
+&lt;/div>
+&lt;content>&lt;/content></strong>
+</pre>
   <aside>
   <h4>Key information</h4>
     <ul>
@@ -171,7 +176,7 @@ Find the `CARD CONTENTS GO HERE` comment and add the `<div>` and
     (The shadow DOM spec calls this process of selecting nodes
     <em>distribution</em>).</li>
     <li>Any <code>&lt;img&gt;</code> children match the first <code>&lt;content&gt;</code> tag and are inserted
-    here. </li>
+    here.</li>
     <li>The second <code>&lt;content&gt;</code> tag selects any <code>h2</code> children.</li>
     <li>The final <code>&lt;content&gt;</code> tag, with no <code>select</code> attribute, selects any
     nodes that haven't already been inserted. (This is probably the most
@@ -180,6 +185,10 @@ Find the `CARD CONTENTS GO HERE` comment and add the `<div>` and
   </aside>
 </side-by-side>
 
+**Selecting content**. The `select` attribute on a `content` element accepts a [limited set of 
+CSS selectors](http://w3c.github.io/webcomponents/spec/shadow/#satisfying-matching-criteria). 
+You can only select direct children of the host node, not descendents. 
+{: .alert .alert-info }
 
 <div class="divider" layout horizontal center center-justified>
   <core-icon icon="polymer"></core-icon>
@@ -195,20 +204,20 @@ To style the children added using the `<content>` element, add the
 following CSS inside the `<style>` tag:
 
 <side-by-side>
-  <pre><strong class="highlight nocode">
-  polyfill-next-selector { content: '.card-header h2'; }
-  .card-header ::content h2 {
-    margin: 0;
-    font-size: 1.8rem;
-    font-weight: 300;
-  }
-  polyfill-next-selector { content: '.card-header img'; }
-  .card-header ::content img {
-    width: 70px;
-    border-radius: 50%;
-    margin: 10px;
-  }</strong>
-  </pre>
+<pre><strong class="highlight nocode">
+polyfill-next-selector { content: '.card-header h2'; }
+.card-header ::content h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+polyfill-next-selector { content: '.card-header img'; }
+.card-header ::content img {
+  width: 70px;
+  border-radius: 50%;
+  margin: 10px;
+}</strong>
+</pre>
   <aside>
     <h4>Key information</h4>
     <ul>
@@ -235,16 +244,16 @@ You can't style the insertion point itself, so the
 Import the new element into `index.html`.
 
 Save the `post-card.html` file and open `index.html` in your editor. Add 
-the following line after your existing imports:
+the import for `post-card.html` after your existing imports:
 
 <side-by-side>
-  <pre>
-  ...
-  &lt;link rel="import"
-    href="../components/paper-tabs/paper-tabs.html">
-  <strong class="highlight nocode">&lt;link rel="import" href="post-card.html"></strong>
-  ...
-  </pre>
+<pre>
+...
+&lt;link rel="import"
+  href="../components/paper-tabs/paper-tabs.html">
+<strong class="highlight nocode">&lt;link rel="import" href="post-card.html"></strong>
+...
+</pre>
   <aside>
     <h4>Key information</h4>
     <ul>
@@ -261,19 +270,19 @@ Add a `<post-card>` element to `index.html` directly after the
 `<core-toolbar>` element:
 
 <side-by-side>
-  <pre>
-  ...   
-  &lt;/core-toolbar>
-    <strong class="highlight nocode">&lt;div class="container" layout vertical center>
-      &lt;post-card>
+<pre>
+...   
+&lt;/core-toolbar>
+  <strong class="highlight nocode">&lt;div class="container" layout vertical center>
+    &lt;post-card>
       &lt;img width="70" height="70" 
         src="../images/avatar-07.svg">
-        &lt;h2>Another Developer&lt;/h2>
-        &lt;h3>I'm composing with shadow DOM!&lt;/h3>
-      &lt;/post-card>
-    &lt;/div></strong>
-  ...
-  </pre>
+      &lt;h2>Another Developer&lt;/h2>
+      &lt;p>I'm composing with shadow DOM!&lt;/p>
+    &lt;/post-card>
+  &lt;/div></strong>
+...
+</pre>
   <aside>
     <h4>Key information</h4>
     <ul>
@@ -287,8 +296,9 @@ Add a `<post-card>` element to `index.html` directly after the
 
 Save your changes and reload the page. Your application should now look like this:
 
-<iframe class="running-app-frame" width="480" height="320" src="/samples/tutorial/step-2/index.html">
-</iframe>
+<div layout vertical center>
+  <img class="sample" src="/images/tutorial/step-2.png">
+</div>
 
 The card still needs a favorite button, but it's starting to take shape. 
 
@@ -304,7 +314,7 @@ they work. Does anything change if you reorder the `<post-card>`'s children in
 also try swapping the two `select=` attributes in `post-card.html`.
 {: .alert .alert-info }
 
-### Next
+### Next step
 
 <a href="/docs/start/tutorial/step-3.html">
   <paper-button icon="arrow-forward" label="Step 3: Using data binding" raisedButton></paper-button>
