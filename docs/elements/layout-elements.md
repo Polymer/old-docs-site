@@ -67,7 +67,7 @@ The following example uses a plain `<div>` as the header element, using the `cor
       </div>
       <div>
         My app content.
-      <div>
+      </div>
     </core-header-panel>
 
 
