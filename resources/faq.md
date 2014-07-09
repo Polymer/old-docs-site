@@ -58,6 +58,13 @@ The foundation layer in our <a href="/images/architecture-diagram.svg" target="_
 
 One of our core goals is for {{site.project_title}} to work on modern mobile browsers as a first-class citizen. Check out [Topeka](/apps/topeka/), one of our sample apps, to see it in action.
 
+
+### How do I create a single page app with routing? {#spa}
+
+By combining data-binding, [core-scaffold](/docs/elements/core-elements.html#core-scaffold), [core-pages](/docs/elements/core-elements.html#core-pages)/[core-animated-pages](/docs/elements/core-elements.html#core-animated-pages), and [`<flatiron-director>`](https://github.com/PolymerLabs/flatiron-director) (an element for routing), you can easily create a responsive SPA with deep linking.
+
+Here's a [demo](http://polymer-change.appspot.com/demos/spa.html) and [source](https://github.com/ebidel/polymer-change/blob/master/demos/spa.html).
+
 ### What does this have to do with x-tags? {#xtags}
 
 [x-tags](http://x-tags.org/) is a cool project that Mozilla is working on, and it's not directly affiliated with {{site.project_title}}. However, both {{site.project_title}} and x-tags build on the emerging Custom Elements standard, which means their components are interoperable by default. Both Google and Mozilla offer polyfills for the Custom Element spec. X-Tag works on top of either, so you can use X-Tag custom elements alongside your {{site.project_title}} components. We're working actively with them to maximize compatibility between the component sets.
