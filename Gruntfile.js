@@ -104,13 +104,24 @@ module.exports = function(grunt) {
       }
     },
 
+    compass: {
+      dist: {
+        options: {
+          sassDir: 'sass',
+          cssDir: 'css',
+          watch: true
+        }
+      }
+    },
+
     concurrent: {
       options: {
         logConcurrentOutput: true
       },
       target1: [
         'jekyll:serve',
-        'appengine:run:frontend'
+        'appengine:run:frontend',
+        'compass'
       ]
     }
 
@@ -119,6 +130,8 @@ module.exports = function(grunt) {
   // Plugin and grunt tasks.
   require('load-grunt-tasks')(grunt);
 
+  // Default task
+  // Task to run jekyll, app engine server, and compass watch
   grunt.registerTask('default', ['concurrent']);
 
   // Task to build docs.
