@@ -27,22 +27,6 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     jekyllConfig: grunt.file.readYAML('_config.yml'),
 
-    // jekyll: {
-    //       server : {
-    //         server: true,
-    //         server_port: '<%= jekyllConfig.server_port %>',
-    //         auto: true
-    //       },
-    //       dev: {
-    //         server: false,
-    //         safe: false
-    //       },
-    //       prod: {
-    //         auto: false,
-    //         server: false
-    //       }
-    //     },
-
     jekyll: {
       // options: {    // Universal options
       //         bundleExec: true,
@@ -58,13 +42,6 @@ module.exports = function(grunt) {
         }
       }
     },
-
-    // watch: { // for development run 'grunt watch'
-    //   jekyll: {
-    //     files: ['./*.html', '!**/node_modules/**', '!**/polymer-all/**', '!**/components/**'],
-    //     tasks: ['jekyll:dev']
-    //   }
-    // },
 
     yuidoc: {
       polymeruielements: {
@@ -125,6 +102,16 @@ module.exports = function(grunt) {
       frontend: {
         root: '.'
       }
+    },
+
+    concurrent: {
+      options: {
+        logConcurrentOutput: true
+      },
+      target1: [
+        'jekyll:serve',
+        'appengine:run:frontend'
+      ]
     }
 
   });
@@ -132,17 +119,15 @@ module.exports = function(grunt) {
   // Plugin and grunt tasks.
   require('load-grunt-tasks')(grunt);
 
-  // Default task. Run standard jekyll server.
-  grunt.registerTask('default', ['jekyll:serve']);
-
-  grunt.registerTask('apidocs', ['yuidoc:polymeruielements']);
-
-  grunt.registerTask('serve', ['appengine:run:frontend']);
+  grunt.registerTask('default', ['concurrent']);
 
   // Task to build docs.
   //grunt.registerTask('docs', ['apidocs', 'vulcanize:build', 'jekyll:build']);
   grunt.registerTask('docs', ['vulcanize:build', 'jekyll:build']);
 
+  grunt.registerTask('apidocs', ['yuidoc:polymeruielements']);
+
   // Task to build and copy docs over to publishing repo.
   //grunt.registerTask('publish', ['jekyll:prod', 'copy:main']);
+  
 };
