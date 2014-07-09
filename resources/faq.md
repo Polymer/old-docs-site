@@ -101,23 +101,22 @@ Deeply. And we want the entire web platform to be a buttery smooth 60fps. That s
 
 Remember our libraries go away over time! {{site.project_title}} gets better, stronger, and faster as native browser implementations pop up.
 
-### The filesize of polymer.min.js is big (~163KB). Why? {#filesize}
+### The filesize of platform.js is big (~163KB). Why? {#filesize}
 
-Minified and gzipped, polymer.min.js is ~48KB (for comparison JQuery 1.10 is 32KB). Keep
+Minified and gzipped, platform.js is ~44KB (for comparison JQuery 1.10 is 32KB). Keep
 in mind that most of this size comes from the polyfills; code which has a death wish
 and goes away over time as browsers support the native APIs.
 
 {{site.project_title}} has also been designed to be a la carte. For example, if
 you're only interested in Custom Elements, use the custom elements polyfill. If you
-only want Shadow DOM, use its polyfill. polymer.min.js is simply a convenient bundle
+only want Shadow DOM, use its polyfill. platform.js is simply a convenient bundle
 for developers that includes all of the the pieces for building
 {{site.project_title}}-based applications.
 
 ### Does {{site.project_title}} work under Content Security Policy (CSP)? {#csp}
 
-Yes. By using `polymer.min.js` and [creating elements that use external scripts](/docs/polymer/polymer.html#altregistration), {{site.project_title}} runs under [CSP](http://www.html5rocks.com/tutorials/security/content-security-policy/). If you prefer to keep your element's
-script inline to `<polymer-element>`, we recommend using [Vulcanizer](/resources/tooling-strategy.html#vulcanize-build-tool)
-and running with the `--csp` flag.
+Yes. By using `platform.js` and [creating elements that use external scripts](/docs/polymer/polymer.html#altregistration), {{site.project_title}} runs under [CSP](http://www.html5rocks.com/tutorials/security/content-security-policy/). If you prefer to keep your element's
+script inline to `<polymer-element>`, we recommend using [Vulcanize](/resources/tooling-strategy.html#vulcanize-build-tool) and running with the `--csp` flag.
 
 In other nuanced cases, {{site.project_title}} fails under CSP. This is because
 the [HTML Imports](/platform/html-imports.html) is polyfilled using XHR, which can
