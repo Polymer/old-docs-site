@@ -43,24 +43,6 @@ module.exports = function(grunt) {
       }
     },
 
-    yuidoc: {
-      polymeruielements: {
-        //name: '<%= pkg.name %>',
-        //description: '<%= pkg.description %>',
-        //version: '<%= pkg.version %>',
-        //url: '<%= pkg.homepage %>',
-        options: {
-          exclude: EXCLUDE_DIRS_APIDOCS.join(','),
-          extension: '.js,.html',
-          paths: './components/',
-          outdir: './components/docs/',
-          linkNatives: 'true',
-          tabtospace: 2,
-          themedir: 'doc_themes/footstrap'
-        }
-      }
-    },
-
     vulcanize: {
       options: {
         excludes: {
@@ -85,8 +67,8 @@ module.exports = function(grunt) {
         tasks: ['vulcanize'],
         options: {
           spawn: false,
-        },
-      },
+        }
+      }
     },
 
     appengine: {
@@ -121,7 +103,8 @@ module.exports = function(grunt) {
       target1: [
         'jekyll:serve',
         'appengine:run:frontend',
-        'compass'
+        'compass',
+        'watch'
       ]
     }
 
@@ -131,14 +114,8 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   // Default task
-  // Task to run jekyll, app engine server, and compass watch
+  // Task to run jekyll, app engine server, compass watch, vulcanize watch
   grunt.registerTask('default', ['concurrent']);
-
-  // Task to build docs.
-  //grunt.registerTask('docs', ['apidocs', 'vulcanize:build', 'jekyll:build']);
-  grunt.registerTask('docs', ['vulcanize:build', 'jekyll:build']);
-
-  grunt.registerTask('apidocs', ['yuidoc:polymeruielements']);
 
   // Task to build and copy docs over to publishing repo.
   //grunt.registerTask('publish', ['jekyll:prod', 'copy:main']);
