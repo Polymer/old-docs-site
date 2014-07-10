@@ -101,6 +101,7 @@ module.exports = function(grunt) {
         logConcurrentOutput: true
       },
       target1: [
+        'vulcanize',
         'jekyll:serve',
         'appengine:run:frontend',
         'compass',
@@ -114,8 +115,11 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   // Default task
-  // Task to run jekyll, app engine server, compass watch, vulcanize watch
+  // Task to run vulcanize, jekyll, app engine server, compass watch, vulcanize watch
   grunt.registerTask('default', ['concurrent']);
+
+  // Task to run vulcanize and build the jekyll site
+  grunt.registerTask('docs', ['vulcanize', 'jekyll:build']);
 
   // Task to build and copy docs over to publishing repo.
   //grunt.registerTask('publish', ['jekyll:prod', 'copy:main']);
