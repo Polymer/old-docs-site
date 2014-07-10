@@ -23,7 +23,7 @@ Run the setup script:
     cd docs
     ./scripts/setup.sh
 
-This will run `npm install`, pull down any external dependencies, and kickoff the `grunt docs` task. **Note:** these scripts can take some time to install.
+This will run `npm install`, pull down any external dependencies, and kickoff the `grunt` task. **Note:** these scripts can take some time to install.
 
 During the setup process the `polymer-all/projects` directory is populated for you. Whenever the site is released you'll need to re-run `./scripts/release.sh` in order to refresh this and other directories. See the [Polymer release](#polymer-release) section for more details.
 
@@ -31,12 +31,10 @@ During the setup process the `polymer-all/projects` directory is populated for y
 
 This repo (`Polymer/docs`) is where the documentation source files live. To make a change:
 
-1. First, fire up the App Engine dev server in this folder (`dev_appserver.py .`) to preview the docs. There's also a grunt task that starts the serve (`grunt serve`).
-1. To build the docs, in another terminal, run `grunt` in base of the docs diretory. This starts up jekyll and watches for changes as you make edits. Be sure to run `npm install` in your docs directory if it's a new checkout. It can take some time for the docs to fully regenerate and be copied to the output folder...keep refreshing!
-1. If you're modifying CSS in `.scss` files, you'll also need to run `compass watch` from another terminal window to automatically compile `.scss` changes to `.css`.
-1. Make your edits.
-
-Jekyll generates the static site in a folder named `_site`. **Note**: If you're not running jekyll to rebuild the site, you won't see your changes in the dev server.
+1. Be sure to run `npm install` in your docs directory if it's a new checkout.
+2. Fire up the `grunt` task. This task runs a number of processes: a local app engine server, jekyll, compass, and vulcanize. The jekyll, compass, and vulcanize tasks will all watch for file changes and update the site if you make any edits.
+**Note:** Jekyll generates the static site in a folder named `_site`. It can take some time for the docs to fully regenerate and be copied to the output folder...keep refreshing!
+3. Make your edits.
 
 Once your changes look good, `git commit` them and push.
 
@@ -67,7 +65,7 @@ Build the docs:
 
     grunt docs
     
-At this point, run the dev server and preview things locally to make sure nothing is terribly
+At this point, run the dev server with `grunt`, and preview things locally to make sure nothing is terribly
 broken after Polymer and the elements have been updated. 
 
 Next, run the deploy script in the root of the `Polymer/docs` directory:
