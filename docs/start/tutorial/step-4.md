@@ -258,12 +258,14 @@ Save `post-list.html` and refresh your page.
 
 That's it &mdash; you're done! With a bit of luck, your application looks like this:
 
-<div layout horizontal center-justified>
+<figure layout vertical center>
   <a href="/samples/tutorial/finished/index.html" layout horizontal flex class="unquote-link">
     <div class="unquote-image" flex></div>
   </a>
-</div>
-
+  <figcaption>
+    Click screenshot for demo
+  </figcaption>
+</figure>
 
 If your project doesn't look quite right, check your work against the files in the `finished` directory:
 

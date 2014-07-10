@@ -36,11 +36,14 @@ subtitle: Your first Polymer application
 
 In this tutorial, you'll build a small {{site.project_title}} application -- a very basic client for a social networking service. The end result will look like this:
 
-<div layout horizontal center-justified>
+<figure layout vertical center>
   <a href="/samples/tutorial/finished/index.html" layout horizontal flex class="unquote-link">
     <div class="unquote-image" flex></div>
   </a>
-</div>
+  <figcaption>
+    Click screenshot for demo
+  </figcaption>
+</figure>
 
 This project will introduce you to most of the key concepts in working with {{site.project_title}}. Don't worry if you don't understand everything. Each of the concepts presented here is described in detail in the {{site.project_title}} documentation.
 
