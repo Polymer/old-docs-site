@@ -130,7 +130,7 @@ script inline to `<polymer-element>`, we recommend using [Vulcanize](/resources/
 
 In other nuanced cases, {{site.project_title}} fails under CSP. This is because
 the [HTML Imports](/platform/html-imports.html) is polyfilled using XHR, which can
-in turn, execute strings as JavaScript and fail CSP. This problem will go away with
+in turn, execute strings as JavaScript and fail CSP. So if you import a file that has an inline script tag, it will fail. This problem will go away with
 native HTML Imports (see Blink's [crbug.com/240592](http://crbug.com/240592) tracking bug).
 
 ### How can I contribute? {#contributing}
