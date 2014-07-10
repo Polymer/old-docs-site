@@ -120,6 +120,9 @@ only want Shadow DOM, use its polyfill. platform.js is simply a convenient bundl
 for developers that includes all of the the pieces for building
 {{site.project_title}}-based applications.
 
+### Does {{site.project_title}} work with Chrome Apps? {#chromeapp}
+Yes. Here's [an example Polymer Chrome App](https://github.com/robdodson/polymerchromeapp) to get you started. It's important to note that Chrome Apps have a strict [Content Security Policy (CSP)](http://www.html5rocks.com/tutorials/security/content-security-policy/) which prevents the use of inline script elements. To handle the CSP limitation, this example uses our [Vulcanize](/articles/concatenating-web-components.html) build tool (in the form of [grunt-vulcanize](https://github.com/Polymer/grunt-vulcanize)) to turn inline script elements into external files. Be sure to read the [FAQ section on Content Security Policy](#csp) and the [Dealing with CSP](https://github.com/robdodson/polymerchromeapp#dealing-with-csp) section in the sample project's README.
+
 ### Does {{site.project_title}} work under Content Security Policy (CSP)? {#csp}
 
 Yes. By using `platform.js` and [creating elements that use external scripts](/docs/polymer/polymer.html#altregistration), {{site.project_title}} runs under [CSP](http://www.html5rocks.com/tutorials/security/content-security-policy/). If you prefer to keep your element's
