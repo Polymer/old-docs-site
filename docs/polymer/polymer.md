@@ -23,6 +23,21 @@ At the heart of {{site.project_title}} are [Custom Elements](/platform/custom-el
       <script>Polymer('tag-name');</script>
     </polymer-element>
 
+The `Polymer` method registers the element. If the first argument to `Polymer` is a string, it specifies
+the tag name being registered. You can omit this argument if both of the following are true:
+
+*   The `Polymer` call is made in an inline script inside the `<polymer-element>` tag.
+*   The element is defined in an HTML import, not in the main document.
+
+For example, assuming that `tag-name` is defined in an HTML import, its definition can be simplified to:
+
+    <polymer-element name="tag-name" constructor="TagName">
+      <template>
+        <!-- shadow DOM here -->
+      </template>
+      <script>Polymer();</script>
+    </polymer-element>
+
 ### Attributes
 
 {{site.project_title}} reserves special attributes to be used on `<polymer-element>`:
@@ -104,6 +119,11 @@ which calls `Polymer('tag-name')`:
       </template>
     </polymer-element>
 
+**Important:** If the script comes before or after the element definition,
+the first argument to `Polymer` must be the tag name. 
+{: .alert .alert-error }
+
+
 #### Imperative registration {#imperativeregister}
 
 Elements can be registered in pure JavaScript like so:
@@ -129,9 +149,8 @@ Custom Elements polyfill picks it up.
 
 ### Adding public properties and methods {#propertiesmethods}
 
-If you wish to define methods/properties on your element (optional), pass an object
-as the second argument to `Polymer()`. This object is used to define
-the element's `prototype`.
+To define methods/properties on your element, pass an object argument to `Polymer()`. 
+This object is used to define the element's `prototype`. 
 
 The following example defines a property `message`, a property `greeting`
 using an ES5 getter, and a method `foo`:
@@ -151,6 +170,12 @@ using an ES5 getter, and a method `foo`:
 
 **Note:** `this` references the custom element itself inside a {{site.project_title}} element. For example, `this.localName == 'tag-name'`.
 {: .alert .alert-info }
+
+A custom element's prototype is assembled in this order:
+
+-   The base prototype is copied from the DOM object that the custom element extends (by default, `HTMLElement`).
+-   {{site.project_title}} adds a set of built-in methods and properties (see [Built-in element methods](#builtin)).
+-   The properties and methods defined in the proto-object are added into the element's prototype. 
 
 **Important:** Be careful when initializing properties that are objects or arrays. Due to the nature of `prototype`, you may run into unexpected "shared state" across instances of the same element. If you're initializing an array or object, do it in the `created` callback rather than directly on the `prototype`.
 
