@@ -5,7 +5,6 @@
 <!-- <link rel="import" href="ui-color-icon.html"> -->
 
 <polymer-element name="docs-menu" attributes="menu ajaxify coreElements paperElements">
-
 <template>
   <link rel="stylesheet" href="../css/elements/docs-menu.css">
   <polymer-ui-menu id="mainmenu" on-click="{{onClick}}" selectedItem="{{item}}">
@@ -21,7 +20,7 @@
     <polymer-ui-submenu-item id="coreelements" src="/images/picons/ic_polymer_source.svg"
         class="elements-using {{ {show: menu == 'elements'} | tokenList}}"
         label="Core elements">
-      <template repeat="{{coreElementsList}}">
+      <template repeat="{{coreElementsList}}" if="{{menu == 'elements'}}">
         <polymer-ui-menu-item href="/docs/elements/core-elements.html#{{name}}"
             data-href="/docs/elements/core-elements.html#{{name}}">{{name}}</polymer-ui-menu-item>
       </template>
@@ -29,7 +28,7 @@
     <polymer-ui-submenu-item id="paperelements"  src="/images/picons/ic_polymer_source.svg"
         class="elements-using {{ {show: menu == 'elements'} | tokenList}}"
         label="Paper elements">
-      <template repeat="{{paperElementsList}}">
+      <template repeat="{{paperElementsList}}" if="{{menu == 'elements'}}">
         <polymer-ui-menu-item href="/docs/elements/paper-elements.html#{{name}}"
             data-href="/docs/elements/paper-elements.html#{{name}}">{{name}}</polymer-ui-menu-item>
       </template>
