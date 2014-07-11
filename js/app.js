@@ -117,7 +117,6 @@ function injectPage(url, opt_addToHistory) {
     // Set left-nav menu and highlight correct item.
     docsMenu.setAttribute(
         'menu', doc.querySelector('docs-menu').getAttribute('menu'));
-    // docsMenu.menu = doc.querySelector('docs-menu').getAttribute('menu');
     docsMenu.highlightItemWithCurrentURL();
 
     // Replace site-banner > header content.

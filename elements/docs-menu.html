@@ -102,23 +102,27 @@
     isReady: false,
     coreElements: {},
     paperElements: {},
-    ready: function() {
+    created: function() {
       this.coreElementsList = [];
       this.paperElementsList = [];
+    },
+    domReady: function() {
+      this.isReady = true;
+      this.async(this.menuChanged);
+    },
+    coreElementsChanged: function() {
       for (var name in this.coreElements) {
         this.coreElementsList.push({name: name, url: this.coreElements[name]});
       }
+    },
+    paperElementsChanged: function() {
       for (var name in this.paperElements) {
         this.paperElementsList.push({name: name, url: this.paperElements[name]});
       }
     },
-    domReady: function() {
-      this.isReady = true;
-      this.menuChanged();
-    },
     menuChanged: function() {
-      // Automatically select menu item when .menu is set from ajax transition.
-      if (this.isReady) {
+      if (this.isReady && this.coreElementsList.length &&
+          this.paperElementsList.length) {
         this.highlightItemWithCurrentURL();
       }
     },
