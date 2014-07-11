@@ -55,19 +55,22 @@ module Jekyll
 
     def render(context)
       elements = {}
-      (Pathname.glob("#{@dir}/#{@prefix}-*") - Pathname.glob("#{@dir}/#{@blacklist}")).each do |i|
-        i.children.each do |f|
-          if f.extname == '.html'
-            contents = f.read
-            #match = /^<polymer-element\sname="([a-z0-9-]+)"/.match(contents)
-            contents.scan(/^<polymer-element\sname="([a-z0-9-]+)"/).each { |match|
-              name = match[0]
-              prefix = Regexp.new "#{@prefix}-[a-z-]+"
-              matchPrefix = prefix.match(name)
-              if matchPrefix and !in_blacklist?(name)
-                elements[name] = f.to_s
-              end
-            }
+      prefix = Regexp.new "#{@prefix}-[a-z-]+"
+
+      glob = File.join("#{@dir}", "#{@prefix}-*", "**", "#{@prefix}-[a-z-]*.html")
+      components = Pathname.glob(glob).uniq
+
+      components.each do |f|
+        contents = f.read # Read contents of file to extra all polymer-elements
+
+        contents.scan(/^<polymer-element\sname="([a-z0-9-]+)"/).each do |match|
+          if match
+            name = match[0]
+
+            matchPrefix = prefix.match(name)
+            if (matchPrefix and !in_blacklist?(name) and !in_blacklist?(f.to_s))
+              elements[name] = f.to_s
+            end
           end
         end
       end
