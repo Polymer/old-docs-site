@@ -43,6 +43,11 @@ including polyfill repos, tools, projects, and UI elements.
 #### Shadow DOM
 {% endcomment %}
 
+## v0.3.4 {#r2014-07-11}
+
+Released 2014-07-11. See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/0.3.4).
+
+---
 
 ## v0.3.3 {#r2014-06-19}
 
