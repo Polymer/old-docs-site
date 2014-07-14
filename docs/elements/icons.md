@@ -70,7 +70,9 @@ This loads the *polymer* icon from the default iconset: <core-icon icon="polymer
 
 In the *iconset* directory
 of `core-icons` you can find more interesting icon sets.
-If the icon is not part of the default icon set, its name needs to be prefixed with the name of the icon set (e.g. `set:iconname`). For example:
+If the icon is not part of the default icon set, its name needs to be prefixed with the name of the icon set (e.g. `set:iconname`) and the iconset needs to be exported explicitly. For example:
+
+    <link rel="import" href="/bower_components/core-icons/iconsets/social-icons.html">
 
     <core-icon icon="social:cake"></core-icon>
 
@@ -218,9 +220,3 @@ You just learned how to import {{site.project_title}}'s ready-made icon sets,
 display an icon using the `core-icon` element and style it with CSS. You also learned
 how to create your own icon set using SVG or bitmap images and how to use icons
 from other elements that support this feature.
-
-
-
-
-
-
