@@ -23,20 +23,6 @@ At the heart of {{site.project_title}} are [Custom Elements](/platform/custom-el
       <script>Polymer('tag-name');</script>
     </polymer-element>
 
-The `Polymer` method registers the element. If the first argument to `Polymer` is a string, it specifies
-the tag name being registered. You can omit this argument if both of the following are true:
-
-*   The `Polymer` call is made in an inline script inside the `<polymer-element>` tag.
-*   The element is defined in an HTML import, not in the main document.
-
-For example, assuming that `tag-name` is defined in an HTML import, its definition can be simplified to:
-
-    <polymer-element name="tag-name" constructor="TagName">
-      <template>
-        <!-- shadow DOM here -->
-      </template>
-      <script>Polymer();</script>
-    </polymer-element>
 
 ### Attributes
 
@@ -94,7 +80,17 @@ This also means that any of the below examples will also work:
     <name-tag NAMECOLOR="red" name="Red Name"></name-tag>
     <name-tag NAMEcolor="green" name="Green Name"></name-tag>
 
+
+
 ### Alternate ways to register an element {#altregistration}
+
+There are several alternative ways to register elements:
+
+-   [Separating script from markup](#separatescript).
+-   [Inferring the tag name](#inferredtagname) to eliminate extra boilerplate.
+-   [Registering imperatively](#imperativeregister) using JavaScript.
+
+#### Separate script from markup {#separatescript}
 
 For convenient decoupling of script and markup, you don't have to inline your script.
 {{site.project_title}} elements can be created by referencing an external script
@@ -119,10 +115,27 @@ which calls `Polymer('tag-name')`:
       </template>
     </polymer-element>
 
-**Important:** If the script comes before or after the element definition,
-the first argument to `Polymer` must be the tag name. 
-{: .alert .alert-error }
+#### Inferred tag name {#inferredtagname}
 
+If the first argument to `Polymer` is a string, it specifies
+the tag name being registered. 
+
+You can _omit_ the tag name argument if **both of the following are true**:
+
+*   The `Polymer` call is made **in an inline script** inside the `<polymer-element>` tag.
+*   The element is defined **in an HTML import**, not in the main document.
+
+For example, assuming that `tag-name` is defined in an HTML import, its definition can be simplified to:
+
+    <polymer-element name="tag-name" constructor="TagName">
+      <template>
+        <!-- shadow DOM here -->
+      </template>
+      <script>Polymer();</script>
+    </polymer-element>
+
+If {{site.project_title}} can't infer the tag name, it logs a warning to the console, and element
+registration fails.
 
 #### Imperative registration {#imperativeregister}
 
@@ -149,8 +162,13 @@ Custom Elements polyfill picks it up.
 
 ### Adding public properties and methods {#propertiesmethods}
 
-To define methods/properties on your element, pass an object argument to `Polymer()`. 
-This object is used to define the element's `prototype`. 
+To define methods/properties on your element, pass an object argument to `Polymer()`: 
+
+<pre>
+Polymer(<em class="nocode">tag-name</em>, <em class="nocode">proto-object</em>);
+</pre>
+
+Where both _tag-name_ and _proto-object_ are optional. The _proto-object_ is used to define the element's `prototype`. 
 
 The following example defines a property `message`, a property `greeting`
 using an ES5 getter, and a method `foo`:
@@ -175,7 +193,10 @@ A custom element's prototype is assembled in this order:
 
 -   The base prototype is copied from the DOM object that the custom element extends (by default, `HTMLElement`).
 -   {{site.project_title}} adds a set of built-in methods and properties (see [Built-in element methods](#builtin)).
--   The properties and methods defined in the proto-object are added into the element's prototype. 
+-   The properties and methods defined in the _proto-object_ are added into the element's prototype. 
+
+Avoid defining a property or method with the same name as a native DOM property or method, such as `id`, `children` or 
+`focus`; the results are unpredictable.
 
 **Important:** Be careful when initializing properties that are objects or arrays. Due to the nature of `prototype`, you may run into unexpected "shared state" across instances of the same element. If you're initializing an array or object, do it in the `created` callback rather than directly on the `prototype`.
 
@@ -363,7 +384,7 @@ As an example, here's an element that publishes three public properties, `foo`,
 
     <polymer-element name="x-foo" attributes="foo bar baz">
       <script>
-        Polymer('x-foo');
+        Polymer();
       </script>
     </polymer-element>
 
@@ -371,7 +392,7 @@ And here's one using the `publish` object:
 
     <polymer-element name="x-foo">
       <script>
-        Polymer('x-foo', {
+        Polymer({
           publish: {
             foo: 'I am foo!',
             bar: 5,
@@ -407,7 +428,7 @@ By default, properties defined in `attributes` are initialized to `null`:
     <polymer-element name="x-foo" attributes="foo">
       <script>
         // x-foo has a foo property with default value of null.
-        Polymer('x-foo');
+        Polymer();
       </script>
     </polymer-element>
 
@@ -417,7 +438,7 @@ You can provide your own default values by explicitly specifying the default val
 
     <polymer-element name="x-foo" attributes="bar">
       <script>
-        Polymer('x-foo', {
+        Polymer({
           // x-foo has a bar property with default value false.
           bar: false
         });
@@ -428,7 +449,7 @@ Or you can define the whole thing using the `publish` property:
 
     <polymer-element name="x-foo">
       <script>
-        Polymer('x-foo', {
+        Polymer({
           publish: {
             bar: false
           }
@@ -442,7 +463,7 @@ created for each instance of the element:
 
     <polymer-element name="x-default" attributes="settings">
       <script>
-        Polymer('x-default', {
+        Polymer({
           created: function() {
             // create a default settings object for this instance
             this.settings = {
@@ -503,7 +524,7 @@ includes an unlikely combination of all three:
 
     <polymer-element name="hint-element" attributes="isReady items">
       <script>
-        Polymer('hint-element', {
+        Polymer({
 
           // hint that isReady is a Boolean
           isReady: false,
@@ -614,7 +635,7 @@ For example, we can define a `name-tag` element that publishes two properties,
         Hello! My name is <span style="color:{%raw%}{{nameColor}}{%endraw%}">{%raw%}{{name}}{%endraw%}</span>
       </template>
       <script>
-        Polymer('name-tag', {
+        Polymer({
           nameColor: "orange"
         });
       </script>
@@ -665,7 +686,7 @@ It uses special <code>on-<em>event</em></code> syntax to trigger this binding be
         <button on-click="{% raw %}{{buttonClick}}{% endraw %}"></button>
       </template>
       <script>
-        Polymer('g-cool', {
+        Polymer({
           keypressHandler: function(event, detail, sender) { ...},
           buttonClick: function(event, detail, sender) { ... }
         });
@@ -693,7 +714,7 @@ All properties on {{site.project_title}} elements can be watched for changes by 
 
     <polymer-element name="g-cool" attributes="better best">
       <script>
-        Polymer('g-cool', {
+        Polymer({
           better: '',
           best: '',
           betterChanged: function(oldValue, newValue) {
