@@ -467,7 +467,7 @@ created for each instance of the element:
           created: function() {
             // create a default settings object for this instance
             this.settings = {
-              textColor: 'blue';
+              textColor: 'blue'
             };
           }
         });
