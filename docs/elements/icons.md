@@ -70,7 +70,9 @@ This loads the *polymer* icon from the default iconset: <core-icon icon="polymer
 
 In the *iconset* directory
 of `core-icons` you can find more interesting icon sets.
-If the icon is not part of the default icon set, its name needs to be prefixed with the name of the icon set (e.g. `set:iconname`). For example:
+If the icon is not part of the default icon set, its name needs to be prefixed with the name of the icon set (e.g. `set:iconname`) and the icon set should be imported. For example:
+
+    <link rel="import" href="/bower_components/core-icons/social-icons.html">
 
     <core-icon icon="social:cake"></core-icon>
 
