@@ -302,6 +302,10 @@ exports.downloadStarter = function() {
   ga('send', 'event', 'button', 'download');
 };
 
+exports.recordSearch = function(term) {
+  ga('send', 'event', 'search', term);
+}
+
 exports.recordPageview = function(opt_url) {
   var url = opt_url || location.pathname + location.hash;
   ga('send', 'pageview', url);
