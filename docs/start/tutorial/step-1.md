@@ -159,7 +159,7 @@ tabs.
 ...
 &lt;core-toolbar>
 
-  <strong class="highlight nocode">&lt;paper-tabs id="tabs" valueattr="name" selected="all" self-end>
+  <strong class="highlight nocode">&lt;paper-tabs id="tabs" selected="all" self-end>
     &lt;paper-tab name="all">ALL&lt;/paper-tab>
     &lt;paper-tab name="favorites">FAVORITES&lt;/paper-tab>
   &lt;/paper-tabs></strong>
@@ -171,14 +171,20 @@ tabs.
     <h4>Key information</h4>
     <ul>
       <li>
-        By default, <code>&lt;paper-tabs></code> identifies the selected child by its index 
-        value. <code>valueattr="name"</code> specifies that it should identify its 
-        children using their </code>name</code> attribute.
+        <code>&lt;paper-tabs></code> identifies the selected child by its name
+        value or its index value.
       </li>
       <li>
-        <code>selected="all"</code> chooses the first tab as the initially selected tab.</li>
-    <li>In this case, the children are <code>&lt;paper-tab></code> elements, which provide
-         styling and the "ink ripple" animation when you touch a tab.</li>    
+        <code>selected="all"</code> chooses the first tab as the initially selected tab.
+      </li>
+      <li>In this case, the children are <code>&lt;paper-tab></code> elements, which provide
+         styling and the "ink ripple" animation when you touch a tab.
+      </li>
+      <li>
+        <code>self-end</code> is a
+        <a href="/docs/polymer/layout-attrs.html">layout attribute</a>.
+      </li>
+
     </ul>
   </aside>
 </side-by-side>
