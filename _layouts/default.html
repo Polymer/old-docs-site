@@ -7,11 +7,11 @@
 
 <main id="content-container">
   <app-drawer id="sidebar" unresolved>
-    <polymer-flex-layout id="logo-container" isContainer align="center">
+    <div id="logo-container" layout horizontal center>
       <a href="/" class="logo"><img src="/images/logos/lockup.svg"></a>
       <polymer-ui-icon id="dropdown-toggle" size="35" src="/images/picons/ic_arrowDropDown_dark_.png">
       </polymer-ui-icon>
-    </polymer-flex-layout>
+    </div>
 
     {% include dropdown-panel.html %}
 

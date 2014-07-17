@@ -6,13 +6,10 @@
 <body id="{{page.title | downcase | replace:' ','-' }}">
 
 <scroll-area>
-  <site-banner class="main-bg bar sticky" unresolved>
-    <polymer-flex-layout align="center" justify="start"></polymer-flex-layout>
-    <a href="/" class="logo" flexbox><img src="/images/logos/lockup.svg"></a>
+  <site-banner class="main-bg bar sticky" layout horizontal center start unresolved>
+    <a href="/" class="logo" layout horizontal><img src="/images/logos/lockup.svg"></a>
     {% include top-nav.html %}
-    <polymer-ui-icon id="dropdown-toggle" size="35" src="/images/picons/ic_arrowDropDown_dark_.png">
-    </polymer-ui-icon>
-
+    <core-icon id="dropdown-toggle" icon="arrow-drop-down"></core-icon>
 
     {% include dropdown-panel.html %}
   </site-banner>
