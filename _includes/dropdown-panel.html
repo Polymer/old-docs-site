@@ -1,22 +1,13 @@
 <dropdown-panel>
-  <polymer-ui-menu-item
-    src="/images/picons/ic_book_dark_.png"
-    label="Learn"
-    href="/docs/start/tutorial/intro.html"
-    {% if page.navgroup == 'docs' %}active{% endif %}>
-  </polymer-ui-menu-item>
+  <core-item icon="book" label="Learn" {% if page.navgroup == 'docs' %}active{% endif %}>
+    <a href="/docs/start/tutorial/intro.html"></a>
+  </core-item>
 
-  <polymer-ui-menu-item
-    src="/images/picons/ic_feedback_dark_.png"
-    label="Elements"
-    href="/docs/elements/"
-    {% if page.navgroup == 'elements' %}active{% endif %}>
-  </polymer-ui-menu-item>
+  <core-item icon="drive-document" label="Elements" {% if page.navgroup == 'elements' %}active{% endif %}>
+    <a href="/docs/elements/"></a>
+  </core-item>
 
-  <polymer-ui-menu-item
-    src="/images/picons/ic_feedback_dark_.png"
-    label="Resources"
-    href="/resources/faq.html"
-    {% if page.navgroup == 'resources' %}active{% endif %}>
-  </polymer-ui-menu-item>
+  <core-item icon="list" label="Resources" {% if page.navgroup == 'resources' %}active{% endif %}>
+    <a href="/resources/faq.html"></a>
+  </core-item>
 </dropdown-panel>
