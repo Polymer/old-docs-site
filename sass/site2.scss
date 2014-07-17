@@ -199,16 +199,16 @@ app-bar {
   }
 }
 
-polymer-ui-icon {
-  display: inline-block;
-  vertical-align: middle;
+// polymer-ui-icon {
+//   display: inline-block;
+//   vertical-align: middle;
 
-  $widthHeight: 24px;
-  // margin-right: 16px;
-  width: $widthHeight;
-  height: $widthHeight;
-  background-size: $widthHeight * 2 !important;
-}
+//   $widthHeight: 24px;
+//   // margin-right: 16px;
+//   width: $widthHeight;
+//   height: $widthHeight;
+//   background-size: $widthHeight * 2 !important;
+// }
 
 .bar {
   padding: 16px !important;

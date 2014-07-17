@@ -198,7 +198,7 @@ You can get the model data from the event’s `target.templateInstance.model`
 property. Any identifiers that you could access inside the template are 
 available as properties on the `.model` object.
 
- For example, the  `selectStory` method might look like this:
+For example, the  `selectStory` method might look like this:
 
     selectStory: function(e, detail, sender) {
       var story = e.target.templateInstance.model.s;
@@ -206,12 +206,12 @@ available as properties on the `.model` object.
       this.loadStory(story.id); // accessing non-rendered data from the model
     }
 
+Continue on to:
 
+<a href="/docs/polymer/binding-types.html">
+  <paper-button icon="arrow-forward" label="Types of bindings" raisedButton></paper-button>
+</a>
 
- Continue on to:
-
-<a href="/docs/polymer/binding-types.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Types of bindings</a>
-
-<a href="/docs/polymer/expressions.html" class="paper-button"><polymer-ui-icon src="/images/picons/ic_arrowForward_dark_.png"></polymer-ui-icon>Expressions</a>
-
-
+<a href="/docs/polymer/expressions.html">
+  <paper-button icon="arrow-forward" label="Expressions" raisedButton></paper-button>
+</a>
