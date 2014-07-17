@@ -297,7 +297,7 @@ document.querySelector('[data-twitter-follow]').addEventListener('click', functi
   exports.open(target.href, '', 'width=550,height=520');
 });
 
-
+// TODO: Create ga-logger component to avoid polluting the global scope.
 exports.downloadStarter = function() {
   ga('send', 'event', 'button', 'download');
 };
