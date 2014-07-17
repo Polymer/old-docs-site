@@ -107,21 +107,21 @@ Inside that template, there's a second template that contains
 expressions surrounded by double-mustache {%raw%}`{{`&nbsp;`}}`{%endraw%} symbols:
 
 {%raw%}
-    <template repeat="{{s in salutations }}">
-      <li>{{ s.what }}: <input type="text" value="{{ s.who }}"></li>
+    <template repeat="{{s in salutations}}">
+      <li>{{s.what}}: <input type="text" value="{{s.who}}"></li>
     </template>
 {%endraw%}
 
 What's going on in this template?
 
-*  The {%raw%}`repeat="{{ s in salutations }}"`{%endraw%} tells the template to 
+*  The {%raw%}`repeat="{{s in salutations}}"`{%endraw%} tells the template to 
     generate a DOM fragment (or instance) for each element in the `salutations` 
     array. 
 
 *   The contents of the template define what each instance looks like. 
     In this case, it contains a `<li>` with a text node and an `<input>` as its children. 
 
-*   The expressions {%raw%}`{{ s.what }}`{%endraw%} and {%raw%}`{{ s.who }}`{%endraw%} create 
+*   The expressions {%raw%}`{{s.what}}`{%endraw%} and {%raw%}`{{s.who}}`{%endraw%} create 
     data bindings to objects in the `salutations` array. 
 
 The values inside the {%raw%}`{{`&nbsp;`}}`{%endraw%} are <em>{{site.project_title}} expressions</em>. In the examples in this section, the expressions are either  JavaScript objects (like `salutations`) or paths (like `salutations.who`). (Expressions can also include literal values and some operators -- 
@@ -130,10 +130,10 @@ see [Expressions](#expressions) for details.)
 When you create a `<greeting-tag>` element, it initializes the `salutations` array:
 
     this.salutations = [
-      { what: 'Hello', who: 'World' },
-      { what: 'Goodbye', who: 'DOM APIs' },
-      { what: 'Hello', who: 'Declarative' },
-      { what: 'Goodbye', who: 'Imperative' }
+      {what: 'Hello', who: 'World'},
+      {what: 'Goodbye', who: 'DOM APIs'},
+      {what: 'Hello', who: 'Declarative'},
+      {what: 'Goodbye', who: 'Imperative'}
     ];
 
 Notice that this is just JavaScript data: **there's no need to import your data into special observable objects**. The `this.salutations` array serves as the _model_ for the template. 
