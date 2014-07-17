@@ -1,10 +1,10 @@
-<link rel="import" href="../components/polymer-media-query/polymer-media-query.html">
 <link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/core-media-query/core-media-query.html">
 
 <polymer-element name="scroll-area" attributes="sidebar">
   <template>
     <link rel="stylesheet" href="../css/elements/scroll-area.css">
-    <polymer-media-query query="min-width: 581px" queryMatches="{{fancyheader}}"></polymer-media-query>
+    <core-media-query query="min-width: 581px" queryMatches="{{fancyheader}}"></core-media-query>
     <content></content>
   </template>
   <script>

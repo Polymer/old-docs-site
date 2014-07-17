@@ -1,5 +1,5 @@
 <link rel="import" href="../components/polymer/polymer.html">
-<link rel="import" href="../components/polymer-media-query/polymer-media-query.html">
+<link rel="import" href="../components/core-media-query/core-media-query.html">
 <script src="../js/dynamics.js"></script>
 
 <polymer-element name="app-drawer" attributes="active mobile">
@@ -44,7 +44,7 @@
         z-index: 2;
       }
     </style>
-    <polymer-media-query query="max-width: 850px" queryMatches="{{mobile}}"></polymer-media-query>
+    <core-media-query query="max-width: 850px" queryMatches="{{mobile}}"></core-media-query>
     <div id="mask" on-tap="{{ toggle }}"></div>
     <div id="content">
       <content></content>
