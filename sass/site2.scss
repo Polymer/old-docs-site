@@ -240,13 +240,6 @@ polymer-ui-toolbar {
   display: none;
 }
 
-paper-button.github::shadow core-icon {
-  $widthHeight: 24px;
-  width: $widthHeight;
-  height: $widthHeight;
-  background-size: $widthHeight * 2 !important;
-}
-
 footer {
   position: relative;
   // z-index: 100;
@@ -378,12 +371,6 @@ footer {
       &[type="elements"] {
         background-color: $using-elements-color !important;
       }
-
-      /deep/ paper-button {
-        color: #fff;
-        background-color: transparent;
-      }
-
     }
 
     article {
@@ -507,13 +494,6 @@ footer {
   width: 853px;
   max-width: 100%;
   height: 480px;
-}
-
-body /deep/ doc-page::shadow paper-button[raisedButton],
-body /deep/ component-download-button::shadow paper-button[raisedButton] {
-  background-color: $materialPurple;
-  fill: white;
-  color: white;
 }
 
 @import "mobile";

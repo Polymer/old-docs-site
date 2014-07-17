@@ -1,0 +1,15 @@
+@import "material";
+
+paper-button.github::shadow core-icon {
+  $widthHeight: 24px;
+  width: $widthHeight;
+  height: $widthHeight;
+  background-size: $widthHeight * 2 !important;
+}
+
+body /deep/ doc-page::shadow paper-button[raisedButton],
+body /deep/ component-download-button::shadow paper-button[raisedButton] {
+  background-color: $materialPurple;
+  fill: white;
+  color: white;
+}
