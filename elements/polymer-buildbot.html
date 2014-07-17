@@ -1,5 +1,5 @@
 <link rel="import" href="../components/polymer/polymer.html">
-<link rel="import" href="../components/polymer-ajax/polymer-ajax.html">
+<link rel="import" href="../components/core-ajax/core-ajax.html">
 
 <polymer-element name="polymer-buildbot" attributes="builder details inactive browsers">
   <template>
@@ -63,7 +63,7 @@
         margin-right: 5px;
       }
     </style>
-    <polymer-ajax id="bbot" handleAs="json" on-polymer-response="{{onResponse}}"></polymer-ajax>
+    <core-ajax id="bbot" handleAs="json" on-core-response="{{onResponse}}"></core-ajax>
     <div id="badge" on-click="{{toggleDetails}}">
       <span class="builder">{{builder.platform}}</span>
       <span class="result {{result.resultStr}}">{{result.resultStr}}</span>
