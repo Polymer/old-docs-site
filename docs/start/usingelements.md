@@ -108,4 +108,4 @@ building something! In the next section we'll cover the features of {{site.proje
 
 If you'd rather browse the existing elements, check out the 
 <a href="/docs/elements/core-elements.html">{{site.project_title}} Core elements</a> 
-and <a href="/docs/elements/core-elements.html">Paper elements</a> catalogs.
+and <a href="/docs/elements/paper-elements.html">Paper elements</a> catalogs.
