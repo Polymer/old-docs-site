@@ -69,15 +69,20 @@ a whole range of predefined icon sets. To use an icon from an icon set, use the 
 This loads the *polymer* icon from the default iconset: <core-icon icon="polymer"></core-icon>
 
 In the *iconset* directory
-of `core-icons` you can find more interesting icon sets.
-If the icon is not part of the default icon set, its name needs to be prefixed with the name of the icon set (e.g. `set:iconname`). For example:
+of `core-icons` you can find more interesting icon sets. To use an icon from one of these icon sets, 
+first import the icon set. Specify the icon as <em>iconset-name</em><b>&#8239;:&#8239;</b><em>icon-name</em>.
+
+For example:
+
+    <link rel="import" href="/bower_components/core-icon/core-icon.html">
+    <link rel="import" href="/bower_components/core-icons/iconsets/social-icons.html">
 
     <core-icon icon="social:cake"></core-icon>
 
 This loads the *cake* icon from the *social* iconset: <core-icon icon="social:cake"></core-icon>
 
 You can browse available icon sets on the
-[core-icons demo page](http://polymer.github.io/core-icons/components/core-icons/demo.html).
+[core-icons demo page](http://polymer.github.io/core-icons/components/core-icons/demo.html). 
 
 ## Styling with CSS
 
@@ -193,16 +198,17 @@ Produces: <core-icon icon="custom-icons-png:place"></core-icon>
 
 ## Icons in other core components
 
-You can use icons on their own, but also use them with other elements, such as buttons. You can use the built-in and custom icon sets with any `core-` element that has an `icon` attribute. Remember to include the appropriate icon set
-before refering to an icon, otherwise the icon
-will not render.
+You can use icons on their own, but also use them with other elements, such as buttons. You can use the built-in 
+and custom icon sets with any `core-` or `paper-` element that has an `icon` attribute. Remember to include the 
+appropriate icon set before referring to an icon, otherwise the icon will not render.
 
-Here is an example of `core-icon-button`, `core-menu-button` and `core-item` using
-icons from the *default* and *av* icon sets:
+The following examples use `core-icon-button`, `core-menu-button` and `core-item` with
+icons from the *default* and *av* icon sets. (The required imports for the elements and icon sets
+are omitted here for brevity.)
 
-    <link rel="import" href="/bower_components/core-icons/iconsets/av-icons.html">
 
     <core-icon-button icon="av:play-arrow"></core-icon-button>
+
     <core-menu-button icon="menu">
       <core-item icon="settings" label="Settings"></core-item>
     </core-menu-button>

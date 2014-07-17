@@ -7,6 +7,13 @@ title: Advanced topics
 subtitle: Data-binding
 ---
 
+<style>
+pre strong {
+  color: #000;
+  font-weight: bold;
+}
+</style>
+
 {% include toc.html %}
 
 
@@ -44,7 +51,7 @@ If you re-sort the array by `item.count`, {{site.project_title}} simply swaps th
     &lt;template repeat="{{item in items}}">
       &lt;tr>&lt;td> {{item.name}} &lt;/td>&lt;td> {{item.count}} &lt;/td>&lt;/tr>
     &lt;/template>
-   <strong>&lt;tr>&lt;td> Catfish &lt;/td>&lt;td> 8 &lt;/td>&lt;/tr> 
+   <strong class="nocode">&lt;tr>&lt;td> Catfish &lt;/td>&lt;td> 8 &lt;/td>&lt;/tr> 
    &lt;tr>&lt;td> Bass &lt;/td>&lt;td> 7 &lt;/td>&lt;/tr></strong>  
    &lt;tr>&lt;td> Trout &lt;/td>&lt;td> 0 &lt;/td>&lt;/tr>   
 &lt;/table>
@@ -61,7 +68,7 @@ If you change `item.count` for one of the objects, the only thing that changes i
     &lt;/template>
    &lt;tr>&lt;td> Catfish &lt;/td>&lt;td> 8 &lt;/td>&lt;/tr> 
    &lt;tr>&lt;td> Bass &lt;/td>&lt;td> 7 &lt;/td>&lt;/tr>  
-   &lt;tr>&lt;td> Trout &lt;/td>&lt;td><strong> 2 </strong>&lt;/td>&lt;/tr>   
+   &lt;tr>&lt;td> Trout &lt;/td>&lt;td><strong class="nocode"> 2 </strong>&lt;/td>&lt;/tr>   
 &lt;/table>
 </pre>
 {% endraw %}
