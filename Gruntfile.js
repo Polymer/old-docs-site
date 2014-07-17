@@ -56,7 +56,8 @@ module.exports = function(grunt) {
       },
       build: {
         files: {
-          'elements/common_elements.vulcanized.html': 'elements/common_elements.html'
+          'elements/common_elements.vulcanized.html': 'elements/common_elements.html',
+          'elements/homepage_elements.vulcanized.html': 'elements/homepage_elements.html'
         },
       }
     },
