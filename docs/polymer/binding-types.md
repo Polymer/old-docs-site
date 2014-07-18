@@ -45,7 +45,7 @@ if `person` has a property, `name`, {%raw%}`{{name}}`{%endraw%} evaluates to the
 For convenience, you can also create a _named scope_ when binding an object:
 
 {% raw %}
-    <template bind="{{ person as p}}">
+    <template bind="{{ person as p }}">
       This template uses a named scope to access properties, like
       {{ p.name }}.
     </template>
