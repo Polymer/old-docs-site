@@ -1,9 +1,6 @@
 ---
 layout: home
 title: Welcome
-
-stylesheets:
-  "/css/homepage.css"
 ---
 
 <section id="future" class="main-bg">

@@ -199,17 +199,6 @@ app-bar {
   }
 }
 
-// polymer-ui-icon {
-//   display: inline-block;
-//   vertical-align: middle;
-
-//   $widthHeight: 24px;
-//   // margin-right: 16px;
-//   width: $widthHeight;
-//   height: $widthHeight;
-//   background-size: $widthHeight * 2 !important;
-// }
-
 .bar {
   padding: 16px !important;
   height: $siteBannerHeightMin;
@@ -219,15 +208,6 @@ app-bar {
     text-decoration: none;
   }
 }
-
-polymer-ui-toolbar {
-  font: inherit !important;
-  border: none !important;
-  background: inherit !important;
-  height: auto;
-  color: inherit !important;
-}
-
 
 .sticky {
   position: fixed !important;
@@ -248,7 +228,7 @@ footer {
   padding-left: $additonalPadding + 40;
   // box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.0980392) 0px 1px 2px 0px inset;
 
-  polymer-ui-toolbar {
+  .links {
     margin-bottom: $content-padding;
   }
 

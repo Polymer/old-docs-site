@@ -66,22 +66,6 @@ dropdown-panel {
     margin: 15px 0;
   }
 
-  #future {
-    polymer-ui-toolbar {
-      @include flex-direction(column);
-
-      a {
-        margin-right: 0 !important;
-        &:first-of-type {
-          margin-bottom: 0;
-        }
-        &:last-of-type {
-          display: none;
-        }
-      }
-    }
-  }
-
   #architecture .box {
     margin-bottom: 25px;
   }
@@ -92,7 +76,7 @@ dropdown-panel {
 
   footer {
     padding: $mobileContentPadding;
-    polymer-ui-toolbar {
+    .links {
       @include flex-direction(column);
       @include align-items(flex-start !important);
     }
@@ -165,18 +149,8 @@ dropdown-panel {
 // Landscape Tablet + Small Desktop
 @media only screen and (min-width: $break-medium + 1) and (max-width: $break-large) {
 
-  #future {
-    polymer-ui-toolbar {
-      @include flex-wrap(wrap);
-      .paper-button:not(:last-child) {
-        margin-right: 10px;
-        margin-bottom: 16px;
-      }
-    }
-  }
-
   footer {
-    polymer-ui-toolbar {
+    .links {
       @include flex-wrap(wrap);
       @include justify-content(flex-start);
 
