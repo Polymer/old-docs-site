@@ -4,7 +4,7 @@
 <link rel="import" href="../components/paper-button/paper-button.html">
 <link rel="import" href="demo-tabs.html">
 
-<polymer-element name="learn-tabs" noscript>
+<polymer-element name="learn-tabs">
   <template>
     <style>
       :host {
@@ -138,4 +138,9 @@
       </demo-tab>
     </demo-tabs>
   </template>
+  <script>
+  Polymer('learn-tabs', {
+    wide: false
+  });
+  </script>
 </polymer-element>

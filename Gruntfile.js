@@ -51,7 +51,7 @@ module.exports = function(grunt) {
           ]
         },
         strip: true,
-        csp: false,
+        csp: true,
         inline: true
       },
       build: {
