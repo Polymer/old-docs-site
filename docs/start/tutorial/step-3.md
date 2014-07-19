@@ -41,7 +41,7 @@ Open the `post-list.html` file in your editor.
 <side-by-side>
 <pre>
 &lt;link rel="import" href="../components/polymer/polymer.html">
-&lt;link rel="import" href="post-service.html">
+&lt;link rel="import" href="../post-service/post-service.html">
 &lt;link rel="import" href="post-card.html">
 
 &lt;polymer-element name="post-list" attributes="show">
