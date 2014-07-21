@@ -3,6 +3,8 @@
 @import "spec";
 @import "polymer";
 
+@import "site2"; // site wide styles
+
 .h1heading {
   font-size: 35px;
 }
@@ -142,9 +144,6 @@ site-banner .logo {
   }
   a:not(:last-of-type) {
     margin-right: 12px;
-  }
-  paper-button::shadow #content span {
-    margin-left: 0;
   }
 }
 @media only screen and (max-width: $break-medium) {
