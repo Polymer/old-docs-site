@@ -14,7 +14,7 @@ There are several ways to bind data to a template. You can:
 *   Create a single instance of a template, by specifying a single object using the `bind` attribute.
 *   Create multiple instances of a template, by specifying an array of objects using the `repeat`
      attribute.
-*   Conditionally create an instance of a template, depending on whether the value passed to the `if`attribute is truthy.
+*   Conditionally create an instance of a template, depending on whether the value passed to the `if` attribute is truthy.
 
 **Note:** Binding templates only works inside {{site.project_title}} elements. For example, if a
 `<template>` element is inserted directly into a page’s `<body>` tag, the the `bind` attribute
