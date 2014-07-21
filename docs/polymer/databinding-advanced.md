@@ -75,7 +75,7 @@ If you change `item.count` for one of the objects, the only thing that changes i
 
 ### How data binding tracks template instances
 
-When a template generates one or more instances, it inserts the instances immediate after itself. So
+When a template generates one or more instances, it inserts the instances immediately after itself. So
 the template itself serves as a marker for where the first instance starts. For each template
 instance, the template keeps track of the terminating node in the template instance. For the simple
 case, the terminating node is a clone of the last node in the template itself.
