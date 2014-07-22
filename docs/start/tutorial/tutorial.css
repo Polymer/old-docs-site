@@ -2,13 +2,11 @@
 img.sample {
   border: 1px solid #ccc;
 }
-pre {
-  font-size: 13px !important;
-  border: 1px solid #eaeaea !important;
+pre.prettyprint {
+  font-size: 13px;
+  border: 1px solid #eaeaea;
   padding 5px !important;
-  margin: 10px 0px !important;
 }
-
 side-by-side h4 {
   line-height: 16px;
   margin-top: 0px;
@@ -19,12 +17,12 @@ side-by-side {
 }
 side-by-side pre {
   padding 5px 5px 5px 0px;
+  margin: 10px 0px;
 }
 side-by-side ul {
   -webkit-padding-start: 25px;
 }
 pre .highlight, code .highlight {
-  font-weight: bold;
   color: #000;
 }
 .divider {

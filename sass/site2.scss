@@ -10,6 +10,7 @@
 
 * {
   @include box-sizing(border-box);
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 
 h2:target, h3:target, h4:target, h5:target {
@@ -43,8 +44,17 @@ img {
 }
 
 pre, code {
-  white-space: pre-wrap;
-  word-wrap: break-word;
+  white-space: pre;
+  word-wrap: normal;
+  overflow-x: scroll;
+  
+  b, strong {
+    font-weight: 700;
+  }
+}
+
+a code {
+  color: currentcolor;
 }
 
 ul, ol {
@@ -390,8 +400,8 @@ footer {
 #sidebar {
   $leftPadding: 16px;
 
-  docs-menu {
-    padding: 0 $leftPadding;
+  #sidebar-content {
+    height: 100%;
   }
 
   #logo-container {
