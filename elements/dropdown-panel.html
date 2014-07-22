@@ -44,6 +44,33 @@
       background: rgba(0, 0, 0, 0.04);
       border: 1px solid #d9d9d9;
     }
+
+    :host /deep/ core-icon {
+      margin-right: 6px;
+      background-size: 48px !important;
+    }
+
+    polyfill-next-selector { content: ':host core-item'; }
+    ::content core-item {
+      font-size: 14px !important;
+      font-weight: 500;
+      line-height: 32px !important;
+      // letter-spacing: 0.01em;
+      padding: 0;
+      color: initial;
+      opacity: 0.5;
+    }
+
+    polyfill-next-selector { content: ':host core-item:hover'; }
+    ::content core-item:hover {
+      opacity: 0.9;
+    }
+
+    polyfill-next-selector { content: ':host core-item.core-selected'; }
+    ::content core-item.core-selected {
+      opacity: 1;
+    }
+
     </style>
     <core-menu id="mainmenu" on-click="{{onClick}}">
       <content></content>

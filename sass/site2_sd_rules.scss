@@ -23,3 +23,7 @@ body /deep/ component-download-button::shadow paper-button[raisedButton] {
   fill: white;
   color: white;
 }
+
+body /deep/ core-submenu core-submenu::shadow #submenu {
+  margin-left: 24px;
+}

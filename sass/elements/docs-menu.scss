@@ -5,40 +5,56 @@
 }
 
 #mainmenu {
+  $leftPadding: 16px;
   display: block;
   overflow: auto;
-  height: 100vh;
-  padding-bottom: 130px;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 $leftPadding;
+  margin: 0;
 }
 
-polymer-ui-menu > polymer-ui-submenu-item::shadow polymer-ui-menu-item {
+core-menu > core-submenu::shadow core-item {
   color: inherit;
 }
 
-polymer-ui-submenu-item /deep/ polymer-ui-menu-item,
-polymer-ui-menu-item {
+core-submenu /deep/ core-item,
+core-item {
   font-size: 14px !important;
   font-weight: 500;
   line-height: 32px !important;
   // letter-spacing: 0.01em;
   padding: 0;
   color: initial;
+  opacity: 0.5;
+}
+
+core-submenu /deep/ core-item:hover,
+core-item:hover {
+  opacity: 0.9;
+}
+
+core-submenu /deep/ core-item[active],
+core-item[active],
+core-submenu /deep/ core-item.core-selected,
+core-item.core-selected {
+  opacity: 1;
+  font-weight: 500 !important;
 }
 
 :host /deep/ #menu {
   margin-left: 34px;
 }
 
-polymer-ui-submenu-item polymer-ui-submenu-item /deep/ #menu {
+core-submenu core-submenu /deep/ #menu {
   margin-left: 24px;
 }
 
-:host /deep/ polymer-ui-icon {
+:host /deep/ core-icon {
   margin-right: 6px;
   background-size: 48px !important;
 }
 
-polymer-ui-menu-item a {
+core-item a {
   color: currentcolor;
   text-decoration: none;
 }
