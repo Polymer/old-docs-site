@@ -20,7 +20,7 @@ This section covers advanced topics that you don’t need to understand to get d
 
 ## How data binding works
 
-It may be easiest to understand data binding is by understanding what data binding is not -- it doesn’t work like traditional template systems.
+It may be easiest to understand what data binding is, by first understanding what data binding is not -- it doesn’t work like traditional template systems.
 
 In a traditional AJAX application, templating works by replacing innerHTML for some container element. Where the container contains a non-trivial DOM subtree, this has two drawbacks:
 
