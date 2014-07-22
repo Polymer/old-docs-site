@@ -16,7 +16,7 @@ title: Welcome
         <paper-button icon="arrow-forward" label="Get started" raisedButton unresolved></paper-button>
       </a> -->
       <a href="https://github.com/polymer">
-        <paper-button class="github" iconSrc="/images/picons/ic_social_github.png" label="View on Github" unresolved></paper-button>
+        <paper-button class="github" icon="social:post-github" label="View on Github" unresolved></paper-button>
       </a>
     </summary>
   </div>
