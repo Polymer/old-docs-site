@@ -50,8 +50,9 @@ core-submenu core-submenu /deep/ #menu {
 }
 
 :host /deep/ core-icon {
-  margin-right: 6px;
-  background-size: 48px !important;
+  // margin-right: 12px !important;
+  height: 20px !important;
+  width: 20px !important;
 }
 
 core-item a {
