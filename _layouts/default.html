@@ -7,15 +7,16 @@
 
 <main id="content-container">
   <app-drawer id="sidebar" unresolved>
-    <div id="logo-container" layout horizontal center>
-      <a href="/" class="logo"><img src="/images/logos/lockup.svg"></a>
-      <polymer-ui-icon id="dropdown-toggle" size="35" src="/images/picons/ic_arrowDropDown_dark_.png">
-      </polymer-ui-icon>
+    <div layout vertical id="sidebar-content">
+      <div id="logo-container" layout horizontal center>
+        <a href="/" class="logo"><img src="/images/logos/lockup.svg"></a>
+        <core-icon id="dropdown-toggle" icon="arrow-drop-down"></core-icon>
+      </div>
+
+      {% include dropdown-panel.html %}
+
+      <docs-menu unresolved menu="{{site.data.pagetypes[page.type].menu}}" flex></docs-menu>
     </div>
-
-    {% include dropdown-panel.html %}
-
-    <docs-menu unresolved menu="{{site.data.pagetypes[page.type].menu}}"></docs-menu>
   </app-drawer>
 
   <scroll-area sidebar unresolved>

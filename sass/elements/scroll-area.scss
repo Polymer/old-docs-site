@@ -13,7 +13,7 @@ polyfill-next-selector { content: ':host[sidebar]:not(.mobile) site-banner app-b
   margin-left: $sidebarWidth;
 }
 
-polyfill-next-selector { content: ':host.scrolling site-banner'; }
+polyfill-next-selector { content: ':host.scrolling:not(.mobile) site-banner'; }
 :host(.scrolling:not(.mobile)) ::content site-banner {
   height: $siteBannerHeightMin !important;
   padding-bottom: 0;
