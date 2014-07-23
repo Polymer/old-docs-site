@@ -49,9 +49,12 @@ title: Welcome
           </summary>
         </div>
         <div>
-          <div class="video">
+          <a href="/resources/video.html">
+            <img src="/images/logos/polymer_video_thumb.jpg">
+          </a>
+          <!-- <div class="video">
             <iframe src="https://www.youtube.com/embed/videoseries?list=PLRAVCSU_HVYu-zlRaqArF8Ytwz1jlMOIM&theme=light&controls=2" frameborder="0" allowfullscreen></iframe>
-          </div>
+          </div> -->
           <summary>
             <h1>Featured: Google I/O</h1>
             <p>Recap everything {{site.project_title}} at Google I/O 2014. Watch sessions videos and DevByte shorts.
