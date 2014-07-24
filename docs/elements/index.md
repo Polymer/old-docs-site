@@ -48,12 +48,8 @@ add_permalinks: false
     <h2><a href="/docs/elements/core-elements.html#core-ajax">{{site.project_title}} core elements</a></h2>
     <p>{{site.project_title}}'s core elements are a set of visual and non-visual utility elements. They include elements for working with layout, user input, selection, and scaffolding apps.</p>
     <div horizontal layout>
-      <a href="/docs/elements/core-elements.html#core-ajax">
-        <paper-button label="Docs"></paper-button>
-      </a>
-      <a href="/components/core-elements/demo.html#core-scroll-header-panel">
-        <paper-button label="Demos"></paper-button>
-      </a>
+      <a href="/docs/elements/core-elements.html#core-ajax"><paper-button label="Docs"></paper-button></a>
+      <a href="/components/core-elements/demo.html#core-scroll-header-panel"><paper-button label="Demos"></paper-button></a>
     </div>
   </section>
   <a href="/components/core-elements/demo.html#core-scroll-header-panel" target="_blank">
@@ -67,12 +63,8 @@ add_permalinks: false
     <h2><a href="/docs/elements/paper-elements.html#paper-button">Paper elements</a></h2>
     <p>{{site.project_title}}'s paper elements collection implements material design for the web. They're a set of highly visual, highly interactive elements that include things like controls, layouts, hero transitions, and scrolling effects.</p>
     <p>
-      <a href="/docs/elements/paper-elements.html#paper-button">
-        <paper-button label="Docs"></paper-button>
-      </a>
-      <a href="/components/paper-elements/demo.html#core-toolbar">
-        <paper-button label="Demos"></paper-button>
-      </a>
+      <a href="/docs/elements/paper-elements.html#paper-button"><paper-button label="Docs"></paper-button></a>
+      <a href="/components/paper-elements/demo.html#core-toolbar"><paper-button label="Demos"></paper-button></a>
     </p>
   </section> 
   <a href="/components/paper-elements/demo.html#core-toolbar" target="_blank">
