@@ -122,6 +122,9 @@ module.exports = function(grunt) {
 
   // Task to run vulcanize and build the jekyll site
   grunt.registerTask('docs', ['vulcanize', 'jekyll:build']);
+  
+  // Task just for running the GAE dev server.
+  grunt.registerTask('serve', ['appengine:run:frontend']);
 
   // Task to build and copy docs over to publishing repo.
   //grunt.registerTask('publish', ['jekyll:prod', 'copy:main']);
