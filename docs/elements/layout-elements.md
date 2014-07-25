@@ -62,7 +62,7 @@ The following example app uses a `<core-header-panel>` as its top-level layout:
 The following example uses a plain `<div>` as the header element, using the `core-header` class:
 
     <core-header-panel>
-       <div class=“core-header”>
+      <div class=“core-header”>
          My App
       </div>
       <div>
