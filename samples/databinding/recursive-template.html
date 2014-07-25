@@ -22,10 +22,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <polymer-element name='tree-element'>
 <template>
 <ul>
-<template repeat="{{ items }}" id="t">
+<template repeat="{{items}}" id="t">
   <li>{{name}}
     <ul>
-      <template ref="t" repeat="{{ children }}"></template>
+      <template ref="t" repeat="{{children}}"></template>
     </ul>
   </li>
 </template>

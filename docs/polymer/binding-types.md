@@ -31,9 +31,9 @@ occurs. See [Node bindings](#node-bindings) for details.
 Using the `bind` attribute, you can create a single instance of a template bound to an object.
 
 {% raw %}
-    <template bind="{{ person }}">
+    <template bind="{{person}}">
       This template can bind to the person object’s properties, like
-      {{ name }}.
+      {{name}}.
     </template>
 {% endraw %}
 
@@ -45,9 +45,9 @@ if `person` has a property, `name`, {%raw%}`{{name}}`{%endraw%} evaluates to the
 For convenience, you can also create a _named scope_ when binding an object:
 
 {% raw %}
-    <template bind="{{ person as p }}">
+    <template bind="{{person as p}}">
       This template uses a named scope to access properties, like
-      {{ p.name }}.
+      {{p.name}}.
     </template>
 {% endraw %}
 
@@ -64,15 +64,18 @@ an array. Each instance is bound to an item in the array.
 The simplest format for a repeating template is:
 
 {% raw %}
-    <template repeat="{{ array }}">
-      Creates an instance with {{ bindings }} for every element in the array collection.
+    <template repeat="{{array}}">
+      Creates an instance with {{}} bindings  for every element in the array collection.
     </template>
 {% endraw %}
+
+Refer to the current item in `array` using an empty binding expression {%raw%}`{{}}`{%endraw%}, which matches
+the current binding scope. Refer to a property of the current item as {%raw%}`{{<var>propertyname</var>}}`{%endraw%}. 
 
 Like the `bind` attribute, the `repeat` attribute supports named scopes:
 
 {% raw %}
-    <template repeat="{{ user in users }}">
+    <template repeat="{{user in users}}">
       {{user.name}}
     </template>
 {% endraw %}
@@ -81,9 +84,9 @@ When using named scopes with the `repeat` attribute, the index value for each
 item in the array is also available by using the following syntax:
 
 {% raw %}
-    <template repeat="{{ user, userIndex in users }}">
-      <template repeat="{{ userFile, userFileIndex in user }}">
-        {{ userIndex }}:{{ userFileIndex }}.{{ userFile }}
+    <template repeat="{{user, userIndex in users}}">
+      <template repeat="{{userFile, userFileIndex in user}}">
+        {{userIndex}}:{{userFileIndex}}.{{userFile}}
       </template>
     </template>
 {% endraw %}
@@ -126,7 +129,7 @@ Item count: 3
 Conditional templates use the `if` attribute to conditionally create a template instance.
 
 {% raw %}
-    <template if="{{ conditionalValue }}">
+    <template if="{{conditionalValue}}">
       Binds if and only if conditionalValue is truthy.
     </template>
 {% endraw %}
@@ -138,9 +141,9 @@ Where the explicit binding is omitted, a nested template can inherit the scope o
 the containing template. Conditional templates are frequently used this way:
 
 {% raw %}
-    <template bind="{{ myOptions as m }}">
-      <template if="{{ m.showCounter }}">
-        <div>Counter: {{ m.counter }}</div>
+    <template bind="{{myOptions as m}}">
+      <template if="{{m.showCounter}}">
+        <div>Counter: {{m.counter}}</div>
       </template>
     </template>
 {% endraw %}
@@ -150,9 +153,9 @@ For more information on nesting templates, see [Expression scopes](/docs/polymer
 You can also use `if` with the  `repeat` attribute.
 
 {% raw %}
-    <template bind="{{ myList as list }}">
-      <template repeat="{{items in list.items}}" if="{{ list.showItems }}">
-        <li>{{ item.name }}</li>
+    <template bind="{{myList as list}}">
+      <template repeat="{{items in list.items}}" if="{{list.showItems}}">
+        <li>{{item.name}}</li>
       </template>
     </template>
 {% endraw %}
@@ -178,10 +181,10 @@ You can use the `ref` attribute to define recursive templates, such as tree stru
 {% raw %}
     <template>
       <ul>
-      <template repeat="{{ items }}" id="t">
+      <template repeat="{{items}}" id="t">
         <li>{{name}}
         <ul>
-          <template ref="t" repeat="{{ children }}"></template>
+          <template ref="t" repeat="{{children}}"></template>
         </ul>
       </li>
     </template>
@@ -338,14 +341,14 @@ For boolean attributes, you can control whether or not the attribute appears usi
 
 {% raw %}
 <pre class="prettyprint">
-<var>attribute</var>?={{ <var>boolean-expression</var> }}
+<var>attribute</var>?={{<var>boolean-expression</var>}}
 </pre>
 {%endraw%}
 
 If _boolean-expression_ is truthy, _attribute_  appears in the markup; otherwise it is omitted. For example:
 
 {% raw %}
-    <span hidden?="{{ isHidden }}">This may or may not be hidden.</span>
+    <span hidden?="{{isHidden}}">This may or may not be hidden.</span>
 {% endraw %}
 
 ### One-time bindings

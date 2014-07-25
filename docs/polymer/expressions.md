@@ -68,7 +68,7 @@ or a one-time binding:
 The value of the expression is evaluated and the result inserted as the value of the binding:
 
 {% raw %}
-    <div>Jill has {{ daughter.children.length + son.children.length }} grandchildren</div>
+    <div>Jill has {{daughter.children.length + son.children.length}} grandchildren</div>
 {% endraw %}
 
 may result in:
@@ -98,13 +98,13 @@ all ancestor scopes are visible, up-to and including the first ancestor **not** 
 {% raw %}
     <template>
       <!-- outermost template -- element's properties available -->
-      <template bind="{{ organization as organization }}">
+      <template bind="{{organization as organization}}">
         <!-- organization.* available -->
-        <template bind="{{ organization.contact as contact }}">
+        <template bind="{{organization.contact as contact}}">
           <!-- organization.* & contact.* available -->
-          <template bind="{{ contact.address }}">
+          <template bind="{{contact.address}}">
             <!-- only properties of address are available -->
-            <template bind="{{ streetAddress as streetAddress}}">
+            <template bind="{{streetAddress as streetAddress}}">
               <!-- streetAddress.* and properties of address are available. 
                    NOT organization.* or contact.* -->
             </template>
@@ -136,13 +136,13 @@ If your filter depends on the properties of one of the paths or identifiers in y
 note that the expression isn't re-evaluated when properties change. For example, if you have an
 expression like:
 
-    {% raw %}{{ user | formatUserName}}{% endraw %}
+    {% raw %}{{user | formatUserName}}{% endraw %}
 
 The expression isn't re-evaluated when a property, such as `user.firstName` changes. If you need
 the filter to be re-run when a property changes, you can include it explicitly in the expression,
 like this:
 
-    {% raw %}{{ { firstName: user.firstName, lastName: user.lastName } | formatUserName }}{% endraw %}
+    {% raw %}{{ {firstName: user.firstName, lastName: user.lastName} | formatUserName}}{% endraw %}
 
 Since `user.firstName` and `user.lastName` are included explicitly in this expression, both
 properties are observed for changes.
@@ -156,7 +156,7 @@ key is truthy, the name will be applied as a class.
 For example:
 
 {% raw %}
-    <div class="{{ {active: user.selected, big: user.type == 'super'} | tokenList }}"> 
+    <div class="{{ {active: user.selected, big: user.type == 'super'} | tokenList}}"> 
 {% endraw %}
 
 results in the following if `user.selected == true` and `user.type == 'super'`:
@@ -205,7 +205,7 @@ your element by adding a method to the element's prototype. For example, to add 
 And use the filter like this:
 
 {% raw %}
-    {{ s.who | toUpperCase }}
+    {{s.who | toUpperCase}}
 {% endraw %}
 
 This filter modifies values when they're being inserted into the DOM, so if `s.who` is set to `world`,
@@ -235,7 +235,7 @@ or `on-blur` event handler.
 You can pass parameters to a filter. For example:
 
 {% raw %}
-    {{ myNumber | toFixed(2) }}
+    {{myNumber | toFixed(2)}}
 {% endraw %}
 
 The code for the `toFixed` filter could look like this:
@@ -249,6 +249,6 @@ The code for the `toFixed` filter could look like this:
 You can also chain filters, passing the output of one filter to another:
 
 {% raw %}
-    {{ myNumber | toHex | toUpperCase }}
+    {{myNumber | toHex | toUpperCase}}
 {% endraw %}
 
