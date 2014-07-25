@@ -5,7 +5,8 @@
     "repos": [
       "code-explainer",
       "component-download-button",
-      "sampler-scaffold2"
+      "sampler-scaffold",
+	  "prettify-element"
     ]
   }
 ]
