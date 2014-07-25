@@ -1,9 +1,5 @@
-# Server defaults.
-#port: 4000
-
-# Project defaults.
-markdown: kramdown #redcarpet
-pygments: false
+markdown: kramdown
+highlighter: null #pygments
 lsi: false
 safe: false
 
@@ -14,15 +10,14 @@ exclude: ["node_modules", "scripts", "sass", "app.yaml", "README.md",
           "build.py", "polymer-all", "components"]
 
 kramdown:
-  #toc_levels: "2,3"
   toc_levels: 2..3
   #auto_ids: true
 
   #input: GFM # enable github flavored markdown
-  #use_coderay: true
-  #coderay:
-  # coderay_line_numbers: nil
-  # coderay_css: class
+  # use_coderay: true
+  # coderay:
+  #   coderay_line_numbers: nil
+  #   coderay_css: style
 
 # Site globals used throughout docs.
 project_title: Polymer
