@@ -161,6 +161,7 @@ function injectPage(url, opt_addToHistory) {
 function initPage(opt_inDoc, hasInlineImports) {
   var doc = opt_inDoc || document;
 
+  // TODO: do this at build time.
   addPermalinkHeadings(doc);
 
   // TODO: Use kramdown {:.prettyprint .linenums .lang-ruby} to add the
@@ -174,7 +175,11 @@ function initPage(opt_inDoc, hasInlineImports) {
   //     prettyPrintPage(doc);
   //   }, 1200);
   // }
-  prettyPrintPage(doc);
+
+  // Only syntax highlight on desktop. Saves ~200ms.
+  if (!window.matchMedia('(max-width: 580px)').matches) {
+    prettyPrintPage(doc);
+  }
 
   if (location.hash) {
     hideOnHash();
