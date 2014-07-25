@@ -308,7 +308,8 @@ footer {
   // Manual FOUC prevention.
   // TODO: This is not DRY. Styles are duplicated in site-banner,
   // scroll-area, etc. However, having these rules outside the element also
-  // allows better FOUC prevent.
+  // allows better FOUC prevent. Those styles come in after the elements are
+  // upgraded, which is too late for FOUC control.
 
   app-drawer[unresolved] {
     position: fixed;

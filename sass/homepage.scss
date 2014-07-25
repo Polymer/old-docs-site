@@ -72,6 +72,18 @@ site-banner {
     visibility: hidden;
   }
 }
+
+feature-carousel {
+  @include display-flex;
+  position: relative;
+  height: 310px;
+  
+  &[unresolved] {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
 // ----
 
 site-banner .logo {
