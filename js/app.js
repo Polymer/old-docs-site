@@ -12,7 +12,7 @@ var appBar = null;
 var sidebar = null;
 
 function hideSidebar() {
-  sidebar.toggle();
+  sidebar.close();
 }
 
 function addPermalink(el) {
@@ -37,6 +37,7 @@ function addPermalinkHeadings(opt_inDoc) {
 function prettyPrintPage(opt_inDoc) {
   var doc = opt_inDoc || document;
 
+  // TODO: Use kramdown to add the class - {:.prettyprint .lang-js}.
   Array.prototype.forEach.call(doc.querySelectorAll('pre'), function(pre, i) {
     pre.classList.add('prettyprint');
   });
@@ -134,12 +135,8 @@ function injectPage(url, opt_addToHistory) {
       }
     });
 
-    // TODO(ericbidelman): still need to run HTMLImports loader for inline imports?
-
-    var hasInlineImports = !!container.querySelector('link[rel="import"]');
-
-    // TODO: can't pass doc. prettyPrint() needs markup in DOM.
-    initPage(null, hasInlineImports);
+    // TODO: can't pass `doc` to prettyPrint() needs markup in DOM.
+    initPage();
 
     // Scroll to hash, otherwise goto top of the loaded page.
     if (location.hash) {
@@ -158,23 +155,11 @@ function injectPage(url, opt_addToHistory) {
   xhr.send();
 }
 
-function initPage(opt_inDoc, hasInlineImports) {
+function initPage(opt_inDoc) {
   var doc = opt_inDoc || document;
 
   // TODO: do this at build time.
   addPermalinkHeadings(doc);
-
-  // TODO: Use kramdown {:.prettyprint .linenums .lang-ruby} to add the
-  // <pre class="prettyprint"> instead of doing this client-side.
-  // if (!hasInlineImports) {
-  //   prettyPrintPage(doc);
-  // } else {
-  //   // Need small delay to prevent https://github.com/Polymer/docs/issues/419.
-  //   // 200ms is arbitrary, but works.
-  //   setTimeout(function() {
-  //     prettyPrintPage(doc);
-  //   }, 1200);
-  // }
 
   // Only syntax highlight on desktop. Saves ~200ms.
   if (!window.matchMedia('(max-width: 580px)').matches) {
@@ -224,14 +209,20 @@ function ajaxifySite() {
     }
   });
 
+  // TODO(ericbidelman): gave up on making this work on Safari + polyfill.
+  // Because this event fires on page in Safari/webkit, it means there's a
+  // wasteful call to injectPage().
+  // Note: Chromium no longer suffers from the popstate event firing on
+  // page load (crbug.com/63040). WebKit still does.
   exports.addEventListener('popstate', function(e) {
     if (e.state && e.state.url) {
-      // TODO(ericbidelman): Don't run this for relative anchors on the page.
+      // TODO(ericbidelman): Don't run this for relative anchors on the same page.
       injectPage(e.state.url, false);
     } else if (!wasRelativeAnchorClick && history.state) {
       history.back();
     }
   });
+
 }
 
 // Hides elements with 'hide-on-hash' class if hash present.
@@ -241,7 +232,7 @@ function hideOnHash() {
       el.hidden = true;
     }
   );
-};
+}
 
 document.addEventListener('polymer-ready', function(e) {
   // TODO(ericbidelman): Hacky solution to get anchors scrolled to correct location
@@ -286,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
                       document.location.href);
   }
 
-  initPage(null, false);
+  initPage();
 });
 
 document.addEventListener('click', function(e) {
