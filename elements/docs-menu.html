@@ -166,13 +166,6 @@
           this.$.mainmenu.selected = this.$.mainmenu.items.indexOf(submenu);
         }
       }
-    },
-    onClick: function(e, detail, sender) {
-      if (e.target.localName == 'a' && this.ajaxify) {
-        this.fire('click', {link: e.target});
-        e.preventDefault();
-        e.stopPropagation();
-      }
     }
   });
 </script>
