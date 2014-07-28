@@ -17,7 +17,8 @@
 {% endfor %}
   
 <script>var POLYMER_VERSION = '{{site.latest_version}}';</script>
-<!-- <script src="https://apis.google.com/js/plusone.js"></script> -->
+{% if page.layout != 'home' %}
 <script src="/js/prettify/prettify.js"></script>
+{% endif %}
 <!-- <script src="/js/bower_components/smoothscroll/smoothscroll.js"></script> -->
 <script src="/js/app.js"></script>
