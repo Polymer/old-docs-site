@@ -380,10 +380,36 @@ footer {
 // Phone + Tablet
 @media only screen and (max-width: $break-medium) {
   scroll-area {
+
+    &[sidebar] {
+      padding-left: 0 !important;
+    }
+
     &[unresolved] {
-      visibility: hidden;
-      -webkit-transition: opacity 300ms ease-in, background-color 300ms ease-in;
-      transition: opacity 300ms ease-in, background-color 300ms ease-in;
+      //visibility: hidden;
+      //-webkit-transition: opacity 300ms ease-in, background-color 300ms ease-in;
+      //transition: opacity 300ms ease-in, background-color 300ms ease-in;
+
+      site-banner {
+        height: $siteBannerHeightMinMobile;
+        overflow: hidden;
+      }
+
+      app-bar {
+        display: none;
+      }
+
+      header {
+        display: none;
+      }
+
+      article {
+        // padding-top: $siteBannerHeightMinMobile + 10;
+        padding-left: $mobileContentPadding;
+        padding-right: $mobileContentPadding;
+        // max-width: 100%;
+      }
+
     }
   }
 }
