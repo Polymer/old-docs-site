@@ -96,17 +96,6 @@
       }.bind(this);
 
       document.body.addEventListener('click', close, true);
-    },
-    onClick: function(e, detail, sender) {
-      if (e.target.localName == 'core-item') {
-        if (this.ajaxify) {
-          this.fire('click', {link: e.target});
-          e.preventDefault();
-          e.stopPropagation();
-        } else {
-          document.location.href = e.target.href;
-        }
-      }
     }
   });
   </script>
