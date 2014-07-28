@@ -636,7 +636,7 @@ All properties on {{site.project_title}} elements can be watched for changes by 
     <polymer-element name="g-cool" attributes="better best">
       <script>
         Polymer('g-cool', {
-          plain: '',
+          better: '',
           best: '',
           betterChanged: function(oldValue, newValue) {
             ...
