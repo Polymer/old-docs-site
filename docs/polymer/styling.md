@@ -355,7 +355,7 @@ In rare cases, you may need to shim a stylesheet yourself. {{site.project_title}
      ...
     </style>
 
-    var style = document.querySelector('newstyles');
+    var style = document.querySelector('#newstyles');
 
     var cssText = Platform.ShadowCSS.shimCssText(
           style.textContent, 'my-scope');

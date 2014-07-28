@@ -46,7 +46,7 @@ Some elements have special properties which can be two-way data bound:
 - `Text` node - only handles bindings on its `textContent` property. 
 - `HTMLInputElement` - handles bindings on its `value` and `checked` properties.
 - `HTMLTextareaElement` - handles bindings on its `value` property.
-- `HTMLSelectElement` - handles bindings on its `selectedIndex` property.
+- `HTMLSelectElement` - handles bindings on its `value` and `selectedIndex` properties.
 
 **All other elements handle bindings to attributes**.
 
