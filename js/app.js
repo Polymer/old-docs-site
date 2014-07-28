@@ -145,11 +145,6 @@ function injectPage(url, opt_addToHistory) {
     } else {
       exports.scrollTo(0, 0);
     }
-
-    // Always hide mobile sidebar upon nav item selection.
-    if (sidebar.mobile) {
-      hideSidebar();
-    }
   };
 
   xhr.send();
@@ -184,28 +179,33 @@ function ajaxifySite() {
       return;
     }
 
-    var viableLink = false;
-
-    wasRelativeAnchorClick = !!e.target.hash;
-
-    if (e.target.localName == docsMenu.localName || e.target.localName == dropdownPanel.localName) {
-      if (e.detail.link) {
-        viableLink = e.detail.link;
+    // Inject page if <a> was in the event path and matches ajax criteria:
+    // - was relative link and not javascript:
+    // - not a #hash link within the same page
+    // - is not going to a non-ajaxable page (index.html, apps, components, etc.)
+    // - was not targeted at a new window
+    for (var i=0; i<e.path.length; i++) {
+      var el = e.path[i];
+      if (el.localName == 'a') {
+        wasRelativeAnchorClick = !!el.hash;
+        if (!el.getAttribute('href').match(/^(https?:|javascript:|\/\/)/) &&
+            (location.origin == el.origin) && 
+            !(el.hash && (el.pathname == location.pathname)) && 
+            (el.pathname != '/') && 
+            (el.pathname != '/index.html') &&
+            (el.pathname.indexOf('/apps') != 0) &&
+            (el.pathname.indexOf('/components') != 0) &&
+            el.target == '') {
+          injectPage(el.href);
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        // Always hide mobile sidebar when navigating
+        if (sidebar.mobile) {
+          hideSidebar();
+        }
+        return;
       }
-    } else if (e.target.localName == 'a') {
-      // Link is relative and doesn't have a target set.
-      if (!e.target.getAttribute('href').match(/^(https?:|javascript:|\/\/)/) &&
-          !e.target.hash && e.target.target == '') {
-        viableLink = e.target;
-      }
-    }
-
-    if (viableLink) {
-      injectPage(viableLink.href);
-
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
     }
   });
 
@@ -215,12 +215,14 @@ function ajaxifySite() {
   // Note: Chromium no longer suffers from the popstate event firing on
   // page load (crbug.com/63040). WebKit still does.
   exports.addEventListener('popstate', function(e) {
-    if (e.state && e.state.url) {
-      // TODO(ericbidelman): Don't run this for relative anchors on the same page.
-      injectPage(e.state.url, false);
-    } else if (!wasRelativeAnchorClick && history.state) {
-      history.back();
-    }
+    Polymer.whenReady(function() {
+      if (e.state && e.state.url) {
+        // TODO(ericbidelman): Don't run this for relative anchors on the same page.
+        injectPage(e.state.url, false);
+      } else if (!wasRelativeAnchorClick && history.state) {
+        history.back();
+      }
+    });
   });
 
 }
