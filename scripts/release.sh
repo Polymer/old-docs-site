@@ -38,12 +38,12 @@ cp -R js/bower_components/marked/ components/marked
 cd $DESIGNER_DIR
 echo "=== Updating designer ==="
 rm -rf components # If bower components dir exists, script hangs. Remove it first.
-bower install
+bower install && bower install
 
 # Update topeka =====
 cd $TOPEKA_DIR
 echo "=== Updating Topeka ==="
 rm -rf components # If bower components dir exists, script hangs. Remove it first.
-bower install
+bower install && bower install
 vulcanize --inline --strip index.html -o build.html
 rm -rf components # cleanup
