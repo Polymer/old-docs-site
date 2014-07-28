@@ -99,7 +99,8 @@ module.exports = function(grunt) {
 
     concurrent: {
       options: {
-        logConcurrentOutput: true
+        logConcurrentOutput: true,
+        limit: 5
       },
       target1: [
         'vulcanize',

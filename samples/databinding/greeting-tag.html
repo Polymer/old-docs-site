@@ -5,7 +5,7 @@
   <template>
     <ul>
       <template repeat="{{s in salutations}}">
-        <li>{{s.what}}: <input type="text" value="{{ s.who }}"></li>
+        <li>{{s.what}}: <input type="text" value="{{s.who}}"></li>
       </template>
     </ul>
     <button on-click="{{updateModel}}">Update model</button>

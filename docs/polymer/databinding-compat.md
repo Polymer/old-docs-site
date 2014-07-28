@@ -98,17 +98,17 @@ with support, you can use the standard template
 ## Binding to attributes
 
 Binding expressions to certain attributes can produce side effects in browsers that don't implement `<template>` natively. 
-For example, running {% raw %}`<img src="/users/{{ id }}.jpg">`{% endraw %} under the polyfill produces a network request that 404s.
+For example, running {% raw %}`<img src="/users/{{id}}.jpg">`{% endraw %} under the polyfill produces a network request that 404s.
 
 In addition, browsers such as IE sanitize certain attributes, disallowing {% raw %}`{{}}`{% endraw %} replacements in their text.
 
 To avoid these side effects, bindings in certain attributes can be prefixed with "_":
 
 {% raw %}
-    <img _src="/users/{{ id }}.jpg">
-    <div _style="color: {{ color }}">
-    <a _href="{{ url }}">Link</a>
-    <input type="number" _value="{{ number }}">
+    <img _src="/users/{{id}}.jpg">
+    <div _style="color: {{color}}">
+    <a _href="{{url}}">Link</a>
+    <input type="number" _value="{{number}}">
 {% endraw %}
 
 

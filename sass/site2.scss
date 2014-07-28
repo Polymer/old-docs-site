@@ -43,8 +43,17 @@ img {
 }
 
 pre, code {
-  white-space: pre-wrap;
-  word-wrap: break-word;
+  white-space: pre;
+  word-wrap: normal;
+  overflow-x: scroll;
+  
+  b, strong {
+    font-weight: 700;
+  }
+}
+
+a code {
+  color: currentcolor;
 }
 
 ul, ol {

@@ -10,7 +10,6 @@ subtitle: Data-binding
 <style>
 pre strong {
   color: #000;
-  font-weight: bold;
 }
 </style>
 
@@ -21,7 +20,7 @@ This section covers advanced topics that you don’t need to understand to get d
 
 ## How data binding works
 
-It may be easiest to understand data binding is by understanding what data binding is not -- it doesn’t work like traditional template systems.
+It may be easiest to understand what data binding is, by first understanding what data binding is not -- it doesn’t work like traditional template systems.
 
 In a traditional AJAX application, templating works by replacing innerHTML for some container element. Where the container contains a non-trivial DOM subtree, this has two drawbacks:
 
@@ -51,8 +50,8 @@ If you re-sort the array by `item.count`, {{site.project_title}} simply swaps th
     &lt;template repeat="{{item in items}}">
       &lt;tr>&lt;td> {{item.name}} &lt;/td>&lt;td> {{item.count}} &lt;/td>&lt;/tr>
     &lt;/template>
-   <strong class="nocode">&lt;tr>&lt;td> Catfish &lt;/td>&lt;td> 8 &lt;/td>&lt;/tr> 
-   &lt;tr>&lt;td> Bass &lt;/td>&lt;td> 7 &lt;/td>&lt;/tr></strong>  
+   <span class="nocode"><strong>&lt;tr>&lt;td> Catfish &lt;/td>&lt;td> 8 &lt;/td>&lt;/tr> 
+   &lt;tr>&lt;td> Bass &lt;/td>&lt;td> 7 &lt;/td>&lt;/tr></strong></span>
    &lt;tr>&lt;td> Trout &lt;/td>&lt;td> 0 &lt;/td>&lt;/tr>   
 &lt;/table>
 </pre>
@@ -68,7 +67,7 @@ If you change `item.count` for one of the objects, the only thing that changes i
     &lt;/template>
    &lt;tr>&lt;td> Catfish &lt;/td>&lt;td> 8 &lt;/td>&lt;/tr> 
    &lt;tr>&lt;td> Bass &lt;/td>&lt;td> 7 &lt;/td>&lt;/tr>  
-   &lt;tr>&lt;td> Trout &lt;/td>&lt;td><strong class="nocode"> 2 </strong>&lt;/td>&lt;/tr>   
+   &lt;tr>&lt;td> Trout &lt;/td>&lt;td><span class="nocode"><strong> 2 </strong></span>&lt;/td>&lt;/tr>   
 &lt;/table>
 </pre>
 {% endraw %}
@@ -76,7 +75,7 @@ If you change `item.count` for one of the objects, the only thing that changes i
 
 ### How data binding tracks template instances
 
-When a template generates one or more instances, it inserts the instances immediate after itself. So
+When a template generates one or more instances, it inserts the instances immediately after itself. So
 the template itself serves as a marker for where the first instance starts. For each template
 instance, the template keeps track of the terminating node in the template instance. For the simple
 case, the terminating node is a clone of the last node in the template itself.
