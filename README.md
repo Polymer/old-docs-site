@@ -5,7 +5,7 @@ Polymer docs are mostly in Markdown with some HTML. [Jekyll][jekyll] is used to 
 We use Jekyll 2.0+ and [Grunt][grunt] to generate the documentation, and compass to compile SASS to CSS. You'll need to install the requirements before working on the docs (these instructions assume [NPM is already installed](http://nodejs.org/download/)):
 
     gem install jekyll kramdown jekyll-page-hooks compass rouge
-    npm install -g grunt-cli
+    npm install -g grunt-cli vulcanize
 
 **Note:** If you receive permission warnings, you may need to run the above tasks with `sudo`.
 
