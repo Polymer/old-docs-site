@@ -145,6 +145,12 @@ function injectPage(url, opt_addToHistory) {
     } else {
       exports.scrollTo(0, 0);
     }
+
+    // Hide mobile sidebar when injected page is finished loading. Prevents jank
+    // to do this as late as possible.
+    if (sidebar.mobile) {
+      hideSidebar();
+    }
   };
 
   xhr.send();
@@ -184,7 +190,7 @@ function ajaxifySite() {
     // - not a #hash link within the same page
     // - is not going to a non-ajaxable page (index.html, apps, components, etc.)
     // - was not targeted at a new window
-    for (var i=0; i<e.path.length; i++) {
+    for (var i = 0; i < e.path.length; ++i) {
       var el = e.path[i];
       if (el.localName == 'a') {
         wasRelativeAnchorClick = !!el.hash;
@@ -200,10 +206,7 @@ function ajaxifySite() {
           e.preventDefault();
           e.stopPropagation();
         }
-        // Always hide mobile sidebar when navigating
-        if (sidebar.mobile) {
-          hideSidebar();
-        }
+
         return;
       }
     }
