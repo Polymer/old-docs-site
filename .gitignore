@@ -7,4 +7,5 @@ _site
 *.pyc
 .sass-cache
 *.vulcanized.html
+*.vulcanized.js
 *.sublime-*
