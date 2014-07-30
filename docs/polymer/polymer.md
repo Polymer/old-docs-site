@@ -759,7 +759,7 @@ To locate other nodes inside the element's shadow DOM, you can create a
 container element with a known ID and use `querySelector` to retrieve
 descendants. For example, if your element's template looks like this:
 
-	<template>
+    <template>
       <div id="container">
         <template if="some_condition">
           <div id="inner">
