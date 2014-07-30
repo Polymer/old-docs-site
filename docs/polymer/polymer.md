@@ -751,6 +751,28 @@ For example, the following defines a component whose template contains an `<inpu
       </script>
     </polymer-element>
 
+**Note:** Nodes created using data binding are _not_ added to the `this.$` hash.
+Only nodes in the element's outermost template are added to the hash.
+{: .alert .alert-warning }
+
+To locate other nodes inside the element's shadow DOM, you can create a 
+container element with a known ID and use `querySelector` to retrieve
+descendants. For example, if your element's template looks like this:
+
+	<template>
+      <div id="container">
+        <template if="some_condition">
+          <div id="inner">
+           This content is created by data binding.
+          </div>
+        </template>
+      </div>
+    </template>
+
+You can locate the inner container using:
+
+    this.$.container.querySelector('#inner');
+
 ### Firing custom events {#fire}
 
 {{site.project_title}} core provides a convenient `fire()` method for
