@@ -296,7 +296,7 @@ properties.
 
     <polymer-element name="name-tag" attributes="person">
       <template>
-        Hello! My name is <span style="color:"{%raw%}{{person.nameColor}}{%endraw%}">
+        Hello! My name is <span style="color:{%raw%}{{person.nameColor}}{%endraw%}">
         {%raw%}{{person.name}}{%endraw%}</span>
       </template>
       <script>
