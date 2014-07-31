@@ -736,7 +736,14 @@ It's important to note that **{{site.project_title}} does not call the <code><em
 
 ### Automatic node finding
 
-Another useful feature of {{site.project_title}} is node reference marshalling. Every node in a component's shadow DOM that is tagged with an `id` attribute is automatically referenced in the component's `this.$` hash.
+Another useful feature of {{site.project_title}} is node reference 
+marshalling. Nodes in a component's shadow DOM that are tagged with an 
+`id` attribute are automatically referenced in the component's `this.$` hash.
+
+**Note:** Nodes created dynamically using data binding are _not_ added to the 
+`this.$` hash. The hash includes only _statically_ created shadow DOM nodes 
+(that is, the nodes defined in the element's outermost template).
+{: .alert .alert-warning }
 
 For example, the following defines a component whose template contains an `<input>` element whose `id` attribute is `nameInput`. The component can refer to that element with the expression `this.$.nameInput`.
 
@@ -753,18 +760,13 @@ For example, the following defines a component whose template contains an `<inpu
       </script>
     </polymer-element>
 
-**Note:** Nodes created dynamically using data binding are _not_ added to the 
-`this.$` hash. Only nodes in the element's outermost template are added 
-to the hash.
-{: .alert .alert-warning }
-
 To locate other nodes inside the element's shadow DOM, you can create a 
 container element with a known ID and use `querySelector` to retrieve
 descendants. For example, if your element's template looks like this:
 
     <template>
       <div id="container">
-        <template if="{{some_condition}}">
+        <template if="{%raw%}{{some_condition}}{%endraw%}">
           <div id="inner">
            This content is created by data binding.
           </div>
