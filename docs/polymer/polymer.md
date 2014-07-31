@@ -627,7 +627,7 @@ In the following example, when you update the input value,
 so they can't be data bound from _outside_ the element. For example,
 you can't bind to the `square` property on `square-element` using
  `<square-element square="{%raw%}{{value}}{%endraw%}>`. This
-is a known issue.
+is [a known issue](https://github.com/Polymer/polymer/issues/638).
 {: .alert .alert-warning }
 
 ### Declarative event mapping
