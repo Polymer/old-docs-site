@@ -460,7 +460,7 @@ created for each instance of the element:
 
     <polymer-element name="x-default" attributes="settings">
       <script>
-        Polymer('x-foo', {
+        Polymer('x-default', {
           created: function() {
             // create a default settings object for this instance
             this.settings = {
