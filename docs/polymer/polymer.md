@@ -278,7 +278,7 @@ Below is a table of the lifecycle methods according to the Custom Elements
 Spec | {{site.project_title}} | Called when
 |-
 createdCallback | created | An instance of the element is created.
-- | ready | The `<polymer-element>` has been fully prepared (e.g. Shadow DOM created, property observers setup, event listeners attached, etc).
+- | ready | The `<polymer-element>` has been fully prepared (e.g. shadow DOM created, property observers setup, event listeners attached, etc).
 attachedCallback | attached | An instance of the element was inserted into the DOM.
 - | domReady | Called when the element's initial set of children are guaranteed to exist. This is an appropriate time to poke at the element's parent or light DOM children. Another use is when you have sibling custom elements (e.g. they're `.innerHTML`'d together, at the same time). Before element A can use B's API/properties, element B needs to be upgraded. The `domReady` callback ensures both elements exist.
 detachedCallback | detached | An instance was removed from the DOM.
@@ -736,8 +736,8 @@ It's important to note that **{{site.project_title}} does not call the <code><em
 
 ### Automatic node finding
 
-Another useful feature of {{site.project_title}} is node reference 
-marshalling. Nodes in a component's shadow DOM that are tagged with an 
+Another useful feature of {{site.project_title}} is automatic node finding. 
+Nodes in a component's shadow DOM that are tagged with an 
 `id` attribute are automatically referenced in the component's `this.$` hash.
 
 **Note:** Nodes created dynamically using data binding are _not_ added to the 
