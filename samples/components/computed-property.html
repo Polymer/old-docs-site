@@ -1,0 +1,16 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+
+<polymer-element name="square-element">
+  <template>
+    <input type="number" value="{{num}}"><br>
+    <em>{{num}}^2 = {{square}}</em>
+  </template>
+  <script>
+    Polymer('square-element', {
+      num: '2',
+      computed: {
+        square: 'num*num'
+      }
+    });
+   </script>
+</polymer-element>
