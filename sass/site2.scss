@@ -39,6 +39,13 @@ body.noscroll {
   overflow: hidden;
 }
 
+// Control to hide elements with .hide-on-hash
+body.hide-on-hash {
+  .hide-on-hash {
+    display: none;
+  }
+}
+
 img {
   max-width: 100%;
 }

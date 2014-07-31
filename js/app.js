@@ -166,10 +166,6 @@ function initPage(opt_inDoc) {
   if (!window.matchMedia('(max-width: 580px)').matches) {
     prettyPrintPage(doc);
   }
-
-  if (location.hash) {
-    hideOnHash();
-  }
 }
 
 // Hijacks page to preventDefault() on links and make site ajax.
@@ -230,15 +226,6 @@ function ajaxifySite() {
 
 }
 
-// Hides elements with 'hide-on-hash' class if hash present.
-function hideOnHash() {
-  Array.prototype.forEach.call(document.querySelectorAll('.hide-on-hash'),
-    function(el) {
-      el.hidden = true;
-    }
-  );
-}
-
 document.addEventListener('polymer-ready', function(e) {
   // TODO(ericbidelman): Hacky solution to get anchors scrolled to correct location
   // in page. Layout of page happens later than the browser wants to scroll.
@@ -247,7 +234,6 @@ document.addEventListener('polymer-ready', function(e) {
       var scrollTargetEl = document.querySelector(location.hash);
       scrollTargetEl && scrollTargetEl.scrollIntoView(true, {behavior: 'smooth'});
     }, 200);
-    hideOnHash();
   }
 
   // The dropdown panel in the sidebar for mobile
