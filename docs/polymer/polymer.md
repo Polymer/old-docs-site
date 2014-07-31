@@ -278,7 +278,7 @@ Below is a table of the lifecycle methods according to the Custom Elements
 Spec | {{site.project_title}} | Called when
 |-
 createdCallback | created | An instance of the element is created.
-- | ready | The `<polymer-element>` has been fully prepared (e.g. Shadow DOM created, property observers setup, event listeners attached, etc).
+- | ready | The `<polymer-element>` has been fully prepared (e.g. shadow DOM created, property observers setup, event listeners attached, etc).
 attachedCallback | attached | An instance of the element was inserted into the DOM.
 - | domReady | Called when the element's initial set of children are guaranteed to exist. This is an appropriate time to poke at the element's parent or light DOM children. Another use is when you have sibling custom elements (e.g. they're `.innerHTML`'d together, at the same time). Before element A can use B's API/properties, element B needs to be upgraded. The `domReady` callback ensures both elements exist.
 detachedCallback | detached | An instance was removed from the DOM.
@@ -736,7 +736,14 @@ It's important to note that **{{site.project_title}} does not call the <code><em
 
 ### Automatic node finding
 
-Another useful feature of {{site.project_title}} is node reference marshalling. Every node in a component's shadow DOM that is tagged with an `id` attribute is automatically referenced in the component's `this.$` hash.
+Another useful feature of {{site.project_title}} is automatic node finding. 
+Nodes in a component's shadow DOM that are tagged with an 
+`id` attribute are automatically referenced in the component's `this.$` hash.
+
+**Note:** Nodes created dynamically using data binding are _not_ added to the 
+`this.$` hash. The hash includes only _statically_ created shadow DOM nodes 
+(that is, the nodes defined in the element's outermost template).
+{: .alert .alert-warning }
 
 For example, the following defines a component whose template contains an `<input>` element whose `id` attribute is `nameInput`. The component can refer to that element with the expression `this.$.nameInput`.
 
@@ -752,6 +759,24 @@ For example, the following defines a component whose template contains an `<inpu
         });
       </script>
     </polymer-element>
+
+To locate other nodes inside the element's shadow DOM, you can create a 
+container element with a known ID and use `querySelector` to retrieve
+descendants. For example, if your element's template looks like this:
+
+    <template>
+      <div id="container">
+        <template if="{%raw%}{{some_condition}}{%endraw%}">
+          <div id="inner">
+           This content is created by data binding.
+          </div>
+        </template>
+      </div>
+    </template>
+
+You can locate the inner container using:
+
+    this.$.container.querySelector('#inner');
 
 ### Firing custom events {#fire}
 
