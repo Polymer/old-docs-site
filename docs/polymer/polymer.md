@@ -229,13 +229,14 @@ Then use the element as you would any other, and data-bind it to a property that
 
 A slight tweak of this approach lets you configure the value of the globals externally:
 
-    <polymer-element name="app-globals">
+    <polymer-element name="app-globals" attributes="values">
       <script>
       (function() {
         var values = {};
 
         Polymer('app-globals', {
            ready: function() {
+             this.values = values;
              for (var i = 0; i < this.attributes.length; ++i) {
                var attr = this.attributes[i];
                values[attr.nodeName] = attr.nodeValue;
@@ -245,6 +246,7 @@ A slight tweak of this approach lets you configure the value of the globals exte
       })();
       </script>
     </polymer-element>
+
 
 The main page configures the globals by passing attributes:
 
@@ -636,7 +638,7 @@ All properties on {{site.project_title}} elements can be watched for changes by 
     <polymer-element name="g-cool" attributes="better best">
       <script>
         Polymer('g-cool', {
-          plain: '',
+          better: '',
           best: '',
           betterChanged: function(oldValue, newValue) {
             ...

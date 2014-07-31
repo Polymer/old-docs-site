@@ -17,15 +17,20 @@
       elementName: null,
       url: null,
       elements: {},
-      updateElementFromHash: function() {
+      updateElementFromHash: function(e) {
         var elementName = window.location.hash.slice(1);
         if (this.elementName !== elementName && this.elements[elementName]) {
           this.elementName = elementName;
+          document.body.classList.add('hide-on-hash'); // Hide on .hide-on-hash elements.
         }
       },
-      ready: function() {
+      domReady: function() {
         this.updateElementFromHash();
         window.addEventListener('hashchange', this.updateElementFromHash.bind(this));
+      },
+      detached: function() {
+        document.body.classList.remove('hide-on-hash');
+        window.removeEventListener('hashchange', this.updateElementFromHash.bind(this));
       },
       elementNameChanged: function() {
         this.url = '/' + this.elements[this.elementName];
