@@ -65,6 +65,9 @@ The veiling process can be used to prevent FOUC at times other than page load. T
         <link rel="stylesheet" href="my-element.css">
          ...
       </template>
+      <script>
+        Polymer('my-element',...);
+      </script>
     </polymer>
 
 {{site.project_title}} will automatically inline the `my-element.css` stylesheet using a `<style>`:
@@ -74,7 +77,12 @@ The veiling process can be used to prevent FOUC at times other than page load. T
         <style>.../* Styles from my-element.css */...</style>
          ...
       </template>
+      <script>
+        Polymer('my-element',...);
+      </script>
     </polymer>
+
+Be careful to put the stylesheet inside the template and the `<script>` tag below the template.
 
 ## Polyfill CSS selectors {#directives}
 
