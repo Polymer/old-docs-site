@@ -133,7 +133,7 @@ If you wish to define methods/properties on your element (optional), pass an obj
 as the second argument to `Polymer()`. This object is used to define
 the element's `prototype`.
 
-The following example defines a property `message`, a computed property `greeting`
+The following example defines a property `message`, a property `greeting`
 using an ES5 getter, and a method `foo`:
 
     <polymer-element name="tag-name">
@@ -598,6 +598,37 @@ For example, we can define a `name-tag` element that publishes two properties,
 In this example, the published property `name` has initial value of `null` and `nameColor` has a value of "orange". Thus, the `<span>`'s color will be orange.
 
 For more information see the [Data binding overview](databinding.html).
+
+### Computed properties
+
+In addition to standard published properties, you can define 
+properties that are computed based on other property values.
+
+Computed properties are defined in the `computed` object on the
+element's prototype:
+
+<pre class="nocode">
+<b>computed: {</b>
+  <var>property-name</var><b>: '</b><var>expression</var><b>'
+}</b>
+</pre>
+
+Each computed property is defined by a property name and a 
+[Polymer expression](/docs/polymer/expressions.html). The value
+of the computed property is updated dynamically whenever one of 
+the input values in the expression changes. 
+
+In the following example, when you update the input value,
+`num`, the computed property `square` updates automatically.
+
+{% include samples/computed-property.html %}
+
+**Limitations**: Currently, computed properties aren't published
+so they can't be data bound from _outside_ the element. For example,
+you can't bind to the `square` property on `square-element` using
+ `<square-element square="{%raw%}{{value}}{%endraw%}>`. This
+is [a known issue](https://github.com/Polymer/polymer/issues/638).
+{: .alert .alert-warning }
 
 ### Declarative event mapping
 
