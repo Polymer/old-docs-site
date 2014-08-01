@@ -95,13 +95,13 @@ For example, to make "Gamma" 2x larger than "Beta" and "Alpha" 3x larger, use `f
 
     <div horizontal layout>
       <div flex three>Alpha</div>
-      <div>Beta</div>
+      <div flex>Beta</div>
       <div flex two>Gamma</div>
     </div>
 
 <div horizontal layout class="demo">
   <div flex three>Alpha</div>
-  <div>Beta</div>
+  <div flex>Beta</div>
   <div flex two>Gamma</div>
 </div>
 

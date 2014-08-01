@@ -14,6 +14,8 @@ Within a `<polymer-element>` you can use {{site.project_title}}'s [expression
 library](https://github.com/polymer/polymer-expressions) to write inline expressions, 
 named scopes, and iterative markup, anywhere {%raw%}`{{`&nbsp;`}}`{%endraw%} bindings are used.
 
+Expressions can also be used to define [computed properties](/docs/polymer/polymer.html#computed-properties).
+
 ## Expression syntax
 
 {{site.project_title}} supports expressions in {%raw%}`{{}}`{%endraw%} with a strict
@@ -45,7 +47,9 @@ Expressions support the following subset of JavaScript:
 | Grouping (parenthesis) | `(a + b) * (c + d)` |
 | Literal values | numbers, strings, `null`, `undefined` | Escaped strings and non-decimal numbers are not supported. |
 | Array & Object initializers | `[foo, 1]`, `{id: 1, foo: bar}` |
+| Function | `reverse(my_list)` | The expression's value is the return value of the function. The function's arguments are observed for changes, and the expression is re-evaluated whenever one of the arguments changes. 
 {: .first-col-nowrap .responsive-table .expressions-table }
+
 
 In addition to the JavaScript portion, an expression can also include one or more _filters_, which
 modify the output of the JavaScript expression. See [Filtering expressions](#filters) for
@@ -53,19 +57,23 @@ information.
 
 ## Evaluating expressions
 
-Expressions are parsed when they're within a double-mustache binding:
+Expressions are parsed when they're within a binding or computed property declaration:
 
-<pre class="prettyprint">
-{%raw%}{{ <var>expression</var> }}{%endraw%}
+<pre class="nocode">
+{%raw%}<b>{{</b> <var>expression</var> <b>}}</b>{%endraw%}
 </pre>
 
-or a one-time binding:
-
-<pre class="prettyprint">
-[[ <var>expression</var> ]]
+<pre class="nocode">
+<b>[[</b> <var>expression</var> <b>]]</b>
 </pre>
 
-The value of the expression is evaluated and the result inserted as the value of the binding:
+<pre class="nocode">
+<b>computed: {</b>
+  <var>property_name</var><b>: '</b><var>expression</var><b>'
+}</b>
+</pre>
+
+The value of the expression is evaluated. In a binding, the result inserted as the value of the binding:
 
 {% raw %}
     <div>Jill has {{daughter.children.length + son.children.length}} grandchildren</div>
@@ -75,8 +83,9 @@ may result in:
 
     <div>Jill has 100 grandchildren</div>
 
-For standard (double-mustache) bindings, the expression is re-evaluated whenever the value of one or
-more paths in the expression changes.
+For standard (double-mustache) bindings and computed properties, the 
+expression is re-evaluated whenever the value of one or more paths 
+in the expression changes.
 
 ## Expression scopes {#expression-scopes}
 
@@ -84,6 +93,8 @@ Expressions are evaluated based on the current _scope_, which defines which iden
 are visible. The expressions in `bind`, `repeat` or `if` attributes are evaluated in the scope of
 the parent template. For an element's outermost template, paths and identifiers are 
 interpreted relative to the element itself (so `this.prop` is available as {%raw%}`prop`{%endraw%}).
+
+For computed properties, the scope of an expression is always the element itself.
 
 Templates that don't include `bind` or `repeat` share the current scope.
 
@@ -243,6 +254,8 @@ The code for the `toFixed` filter could look like this:
     toFixed: function(value, precision) {
       return Number(value).toFixed(precision);
     }
+
+The parameters passed to a filter are observed for changes.
 
 #### Chaining filters
 
