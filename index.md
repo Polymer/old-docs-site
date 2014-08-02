@@ -7,8 +7,8 @@ title: Welcome
   <div class="panel left">
     <img src="/images/logos/p-logo.svg">
     <summary>
-      <h1>Welcome to the future</h1>
-      <p>Web Components usher in a new era of web development based on encapsulated and interoperable custom elements that extend HTML itself. Built atop these new standards, Polymer makes it easier and faster to create anything from a button to a complete application across desktop, mobile, and beyond.</p>
+      <h1>欢迎来到明天的世界</h1>
+      <p>Web Components将Web开发引入一个新的纪元，它完全基于传承自HTML的可封装易共用的Custum elements。站在一系列新的Web标准的顶端，Polymer使得无论是创建一个普通的按钮，还是一个完善的可跨桌面和移动及更多平台的应用变得更加快速，更加简单。</p>
       <a href="/docs/start/getting-the-code.html">
         <paper-button icon="archive" label="Get {{site.project_title}}" raisedButton unresolved></paper-button>
       </a>
