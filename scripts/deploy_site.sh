@@ -41,7 +41,9 @@
 compass compile
 
 # Run jekyll and build api docs.
-grunt docs
+#grunt docs # grunt docs doesn't work on jekyll 2.0
+grunt vulcanize
+grunt jekyll:build
 
 # Deploy site to App Engine.
 appcfg.py update --oauth2 .
