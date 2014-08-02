@@ -45,9 +45,9 @@ The source image is scaled to fit the icon size, which defaults to 24px square, 
 
 You can set the size of the icon using CSS. 
 
-	<core-icon src="/images/icons/android.svg" style="width: 24px; height: 24px;"></core-icon>
-	<core-icon src="/images/icons/android.svg" style="width: 32px; height: 32px;"></core-icon>
-	<core-icon src="/images/icons/android.svg" style="width: 48px; height: 48px;"></core-icon>
+    <core-icon src="/images/icons/android.svg" style="width: 24px; height: 24px;"></core-icon>
+    <core-icon src="/images/icons/android.svg" style="width: 32px; height: 32px;"></core-icon>
+    <core-icon src="/images/icons/android.svg" style="width: 48px; height: 48px;"></core-icon>
 
 Produces: <core-icon src="/images/icons/android.svg" style="width: 24px; height: 24px;"></core-icon>
 <core-icon src="/images/icons/android.svg" style="width: 32px; height: 32px;"></core-icon>
@@ -141,7 +141,7 @@ This defines a new iconset called `custom-icons` with a single icon, `fancy-circ
 Because the icons are defined as SVG, you can style them with CSS. Make
 the fancy circles even more fancy by adding some color:
 
-    <style type="text/css">
+    <style>
       core-icon circle {
         fill: #0b50bf;
       }
@@ -160,7 +160,7 @@ defined above use `custom-icons:fancy-circles` as the `icon` attribute.
 
     <core-icon icon="custom-icons:fancy-circles" size="30"></core-icon>
 
-<style type="text/css">
+<style>
   core-icon circle {
     fill: #0b50bf;
   }
