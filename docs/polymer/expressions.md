@@ -268,61 +268,53 @@ You can also chain filters, passing the output of one filter to another:
 ### Writing global filters
 
 
-Although Polymer supports adding [custom filters](#custom-filters) to the element prototype,
+Although {{site.project_title}} supports adding [custom filters](#custom-filters) to the element prototype,
 you may want to register global filters which can be reused across multiple elements.
 
-This can be achieved by adding a custom filter to the prototype of the
-`PolymerExpressions` object. 
+To register a global filter, add a custom filter to the prototype of the
+`PolymerExpressions` object.
 
-#### Creating global filters
+#### Examples
 
-Let's create a filter for transforming the letters in any templated string
-to uppercase. Once registered, we will be able to use it as follows:
+Let's create a filter for transforming the letters in any string to uppercase.
 
 {% raw %}
     {{Hello Polymer | uppercase}}
 {% endraw %}
 
-To register `uppercase` as a global filter, we add it to the `PolymerExpressions`
-object and define our filter as a function which operates on the `input` supplied.
-In this case the input is the string `"Hello Polymer"`. Our final filter is:
+To register `uppercase` as a global filter, add it to the prototype for
+`PolymerExpressions` object:
 
 {% raw %}
-    PolymerExpressions.prototype.uppercase = function(input){
+    PolymerExpressions.prototype.uppercase = function(input) {
       return input.toUpperCase();
     };
 {% endraw %}
 
-Earlier we mentioned you can pass parameters to a filter. This is similarly
-supported for global filters. One example is a `startsWith` filter that could
-return only those items in an array that begin with a certain letter:
+You can also pass parameters to global filters. Here's an example of a `startsWith`
+filter that returns only those items in an array that begin with a certain letter:
 
 {% raw %}
     {{arrayOfFriends | startsWith('M')}}
 {% endraw %}
 
-The `letter` parameter (and any other parameters we wish to specify) can be defined
-after the initial input as used as you would in any normal function:
+Filter definition:
 
 {% raw %}
     PolymerExpressions.prototype.startsWith = function (input, letter) {
-        return input.filter(function(item){
-        	return item[0] === letter;
-        });
+      return input.filter(function(item){
+        return item[0] === letter;
+      });
     };
 {% endraw %}
 
-A community-driven [collection](https://github.com/addyosmani/polymer-filters) of Polymer filters is available if you require further
-inspiration for writing your own global filters.
+A useful set of community-driven [collection](https://github.com/addyosmani/polymer-filters) of {{site.project_title}} filters is available if you need further
+examples of global filters.
 
-#### Where to include global filters
+#### Importing global filters
 
-Filters you wish to use across multiple elements can be defined in script and
-imported in at the top of your Polymer element after Polymer has loaded. E.g:
+To use a filter across multiple elements, define it in a script and import it at the top of your element
+(after polymer.html).
 
-{% raw %}
+
     <link rel="import" href="uppercase-filter.html"/>
-{% endraw %}
-
-Alternatively, you can include filters that will only be used inside a single
-element in script before your Polymer element is registered.
