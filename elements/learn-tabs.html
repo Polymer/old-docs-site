@@ -43,31 +43,30 @@
     </style>
     <core-media-query query="min-width: 640px" queryMatches="{{wide}}"></core-media-query>
     <demo-tabs theme="dark" style="width:100%;">
-      <demo-tab heading="{{wide ? 'Use Elements (30 sec) ➜' : 'Use ➜'}}">
+      <demo-tab heading="{{wide ? '使用 Elements (30 秒) ➜' : '使用 ➜'}}">
         <code-explainer>
-          <script type="text/template">[dim-start]<!-- Polyfill Web Components support for older browsers -->
+          <script type="text/template">[dim-start]<!-- Polyfill Web Components 用来支持浏览器的落后版本 -->
             <script src="components/platform/platform.js">&lt;/script>[dim-end]
 
-            <!-- Import element -->
+            <!-- 导入 element -->
             [start-create]&lt;link rel="import" href="google-map.html"&gt;[end-use]
 
-            <!-- Use element -->
+            <!-- 使用 element -->
             [start-use]<google-map lat="37.790" long="-122.390"></google-map>[end-create]
           </script>
-          <h2>Using Polymer Elements</h2>
-          <div>Using Polymer elements (like all Web Components) is absurdly simple:</div>
-          <code-explainer-info sec="create" bullet="1" label="Import element">
-            Find a component and import its definition into your page using
-            an HTML Import (<code>&lt;link rel="import"&gt;</code>).
+          <h2>使用 Polymer Elements</h2>
+          <div>使用 Polymer elements (与所有的 Web Components 一样) 真的是简单至极:</div>
+          <code-explainer-info sec="create" bullet="1" label="导入 element">
+            找到一个 component 并使用 HTML Import(<code>&lt;link rel="import"&gt;</code>) 将它的定义导入你的页面里.
           </code-explainer-info>
-          <code-explainer-info sec="use" bullet="2" label="Use the new element">
-            Once imported, custom elements become first-class HTML elements and can be used like any other.
+          <code-explainer-info sec="use" bullet="2" label="使用刚刚导入的 element">
+            导入后，custom elements 已经变成一级 HTML elements，可以像其他 HTML elements 一样使用了。
           </code-explainer-info>
         </code-explainer>
       </demo-tab>
-      <demo-tab heading="{{wide ? 'Create Elements (5 min) ➜' : 'Create ➜' }}">
+      <demo-tab heading="{{wide ? '创建 Elements (5 分钟) ➜' : '创建 ➜' }}">
         <code-explainer>
-          <script type="text/template"><!-- Define element -->
+          <script type="text/template"><!-- 定义 element -->
             [start-def]<polymer-element name="my-counter" [start-publish]attributes="counter"[end-publish]>[end-def]
               [start-scope]<template>[end-scope]
                 <style> /*...*/ </style>
@@ -88,49 +87,42 @@
               &lt;/script>
             [start-def]</polymer-element>[end-def]
 
-            <!-- Use element -->
+            <!-- 使用 element -->
             <my-counter [start-publish]counter="10"[end-publish]>Points</my-counter>
           </script>
-          <h2>Creating Polymer Elements</h2>
-          <div>Polymer sugars Web Components standards with awesome features for creating custom elements:</div>
-          <code-explainer-info sec="def" label="Declarative custom element definition">
-            Define custom elements declaratively using <code>&lt;polymer-element&gt;</code>
+          <h2>创建 Polymer Elements</h2>
+          <div>Polymer通过一些强大的特性增强了 Web Components 标准，用以创建 custom elements:</div>
+          <code-explainer-info sec="def" label="声明式定义 custom element ">
+            使用 <code>&lt;polymer-element&gt;</code> 声明式定义 custom elements
           </code-explainer-info>
-          <code-explainer-info sec="scope" label="Markup and style encapsulation">
-            Shadow DOM encapsulates your element's internals.  Template markup is 
-            compartmentalized, and styles don't leak in or out.
+          <code-explainer-info sec="scope" label="标记和样式的封装">
+            Shadow DOM 会封装你element的内部结构。Template 标记是被隔离的，样式才不会造成污染。
           </code-explainer-info>
-          <code-explainer-info sec="publish" label="Published properties">
-            Properties that are <em>published</em> can be initialized via markup and invoke change 
-            handlers when modified.
+          <code-explainer-info sec="publish" label="公有的属性">
+            <em>公有的</em> 属性可以被标记初始化，可以在被更新时调用变更事件处理器.
           </code-explainer-info>
-          <code-explainer-info sec="data" label="Declarative data binding">
-            Properties on the element can be bound directly into the view, with robust support for
-            expressions.
+          <code-explainer-info sec="data" label="声明式数据绑定">
+            element自身的属性可以直接通过强大的表达式与视图绑定。
           </code-explainer-info>
-          <code-explainer-info sec="events" label="Declarative event binding">
-            Event handlers can be bound to functions on the element declaratively using 
-            <code>on-<i>event</i></code> attributes.
+          <code-explainer-info sec="events" label="声明式事件绑定">
+            事件处理器可以使用 <code>on-<i>event</i></code> 属性,声明式的将方法绑定到 element 上.
           </code-explainer-info>
-          <code-explainer-info sec="nodefind" label="Automatic node finding">
-            Any template children can be referenced by <code>id</code> on <code>this.$</code>, eliminating
-            boilerplate querySelector's.
+          <code-explainer-info sec="nodefind" label="全自动节点查找">
+            模板里的子节点都能通过 <code>id</code> 在 <code>this.$</code> 上被引用到，省掉了繁琐死板的querySelector方式。
           </code-explainer-info>
         </code-explainer>
       </demo-tab>
-      <demo-tab heading="{{wide ? 'Build an app (30 min)' : 'Tutorial' }}">
+      <demo-tab heading="{{wide ? '构建一个 app (30 分钟)' : '教程' }}">
         <div class="card">
           <div layout horizontal?="{{wide}}" vertical?="{{!wide}}">
             <div class="summary" flex layout vertical>
-              <h2>Build an app</h2>
+              <h2>构建一个 app</h2>
               <div flex>
-                <p>Ready to dive deeper?  In this tutorial, you'll build a small Polymer application -- 
-                a very basic client for a social networking service<span hidden?="{{!wide}}"> like the one at right</span>.
-                It'll give you a good feel for both using pre-made Polymer elements as well as building custom
-                elements of your own.</p>
-                <a href="/docs/start/tutorial/intro.html"><paper-button raisedButton icon="arrow-forward" label="Go to tutorial"></paper-button></a>
-                <p>If you'd rather keep reading, head to the Polymer docs page to dive deeper.</p> 
-                <a href="/docs/start/usingelements.html"><paper-button raisedButton icon="arrow-forward" label="Go to docs"></paper-button></a>
+                <p>准备好深入学习了吗?  通过本教程, 你将构建一个小小的Polymer应用程序 -- 一个<span hidden?="{{!wide}}"> 跟右边一样的</span>,非常基础的社交类客户端.
+                我将使你收获对,使用已有的 Polymer elements 和使用你自己创建的 custom elements, 这两者同样的好感觉</p>
+                <a href="/docs/start/tutorial/intro.html"><paper-button raisedButton icon="arrow-forward" label="跳转进教程"></paper-button></a>
+                <p>如果你更愿意继续阅读, 可以直接跳转进Polymer文档深入学习.</p> 
+                <a href="/docs/start/usingelements.html"><paper-button raisedButton icon="arrow-forward" label="跳转进文档"></paper-button></a>
               </div>
             </div>
             <a href="/docs/start/tutorial/intro.html" layout vertical>

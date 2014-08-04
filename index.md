@@ -7,16 +7,16 @@ title: Welcome
   <div class="panel left">
     <img src="/images/logos/p-logo.svg">
     <summary>
-      <h1>Welcome to the future</h1>
-      <p>Web Components usher in a new era of web development based on encapsulated and interoperable custom elements that extend HTML itself. Built atop these new standards, Polymer makes it easier and faster to create anything from a button to a complete application across desktop, mobile, and beyond.</p>
+      <h1>欢迎来到明天的世界</h1>
+      <p>Web Components将Web开发引入一个新的纪元，它完全基于传承自HTML的可封装易共用的Custum elements。站在一系列新的Web标准的顶端，Polymer使得无论是创建一个普通的按钮，还是一个完善的可跨桌面和移动及更多平台的应用程序变得更加简单快速。</p>
       <a href="/docs/start/getting-the-code.html">
-        <paper-button icon="archive" label="Get {{site.project_title}}" raisedButton unresolved></paper-button>
+        <paper-button icon="archive" label="获取 {{site.project_title}}" raisedButton unresolved></paper-button>
       </a>
      <!--  <a href="/docs/start/usingelements.html">
         <paper-button icon="arrow-forward" label="Get started" raisedButton unresolved></paper-button>
       </a> -->
       <a href="https://github.com/polymer">
-        <paper-button class="github" icon="social:post-github" label="View on Github" unresolved></paper-button>
+        <paper-button class="github" icon="social:post-github" label="到 Github 上查看" unresolved></paper-button>
       </a>
     </summary>
   </div>
@@ -39,11 +39,11 @@ title: Welcome
             <img src="/images/sampler-paper.png">
           </a>
           <summary>
-            <h1>Featured: material design</h1>
-            <p>{{site.project_title}} brings an implementation of <a href="http://google.com/design/spec">material design</a> to the web. The paper elements range from controls to effects and user interaction.
+            <h1>专题: material design</h1>
+            <p>{{site.project_title}} 给web带来了 <a href="http://google.com/design/spec">material design</a> 的实现. paper elements 涵盖了从控制器到特效响应及用户交互.
             <br><br>
             <a href="/docs/elements/material.html">
-              <paper-button icon="arrow-forward" label="Learn more"></paper-button>
+              <paper-button icon="arrow-forward" label="了解更多"></paper-button>
             </a>
             </p>
           </summary>
@@ -56,11 +56,11 @@ title: Welcome
             <iframe src="https://www.youtube.com/embed/videoseries?list=PLRAVCSU_HVYu-zlRaqArF8Ytwz1jlMOIM&theme=light&controls=2" frameborder="0" allowfullscreen></iframe>
           </div> -->
           <summary>
-            <h1>Featured: Google I/O</h1>
-            <p>Recap everything {{site.project_title}} at Google I/O 2014. Watch sessions videos and DevByte shorts.
+            <h1>专题: Google I/O</h1>
+            <p>回顾 {{site.project_title}} 在 Google I/O 2014 上的方方面面. 观看视频课程和DevByte短片.
             <br><br>
             <a href="/resources/video.html">
-              <paper-button icon="drive-video" label="Watch"></paper-button>
+              <paper-button icon="drive-video" label="观看"></paper-button>
             </a>
             </p>
           </summary>
@@ -79,10 +79,10 @@ title: Welcome
       </a>
       <div>
         <p>
-        Designer is a drag and drop tool for prototyping apps using {{site.project_title}}. Save your experiments as Github gists.
+        Designer 是个使用 {{site.project_title}} 来制作原型 app 的可视化拖拽式工具.你的作品将会被作为 Github gists 保存起来.
         </p>
         <a href="/tools/designer/" target="_blank">
-          <paper-button icon="arrow-forward" label="Try it now"></paper-button>
+          <paper-button icon="arrow-forward" label="马上试用"></paper-button>
         </a>
       </div>
     </summary>
@@ -117,9 +117,9 @@ title: Welcome
           </a>
         </div>
         <h2 class="elements-using">Topeka</h2>
-        <p>A fun quiz app built using material-design based <em>paper-elements</em></p>
+        <p>一个有趣的问答 app, 使用基于 material-design 的 <em>paper-elements</em> 创建.</p>
         <a href="/apps/topeka/">
-          <paper-button icon="arrow-forward" label="Demo Topeka"></paper-button>
+          <paper-button icon="arrow-forward" label="演示 Topeka"></paper-button>
         </a>
       </summary>
       <summary>
@@ -129,9 +129,9 @@ title: Welcome
           </a>
         </div>
         <h2 class="elements-creating">Paper Elements</h2>
-        <p>A sampler showcasing Polymer elements based on material design</p>
+        <p>基于 material design 的 Polymer elements 的实例演示</p>
         <a href="/components/paper-elements/demo.html#core-toolbar">
-          <paper-button icon="arrow-forward" label="Browse Elements"></paper-button>
+          <paper-button icon="arrow-forward" label="浏览 Elements"></paper-button>
         </a>
       </summary>
       <summary>
@@ -141,9 +141,9 @@ title: Welcome
           </a>
         </div>
         <h2 class="platform">Calculator</h2>
-        <p>A calculator app mockup highlighting material ink effects</p>
+        <p> 一个计算器 app, 突出演示了模拟油墨的特效</p>
         <a href="/components/paper-calculator/demo.html">
-          <paper-button icon="arrow-forward" label="Demo Calculator"></paper-button>
+          <paper-button icon="arrow-forward" label="演示 Calculator"></paper-button>
         </a>
       </summary>
     </div>
