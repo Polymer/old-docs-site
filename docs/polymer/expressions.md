@@ -11,7 +11,7 @@ subtitle: Data-binding
 
 
 Within a `<polymer-element>` you can use {{site.project_title}}'s [expression
-library](https://github.com/polymer/polymer-expressions) to write inline expressions, 
+library](https://github.com/polymer/polymer-expressions) to write inline expressions,
 named scopes, and iterative markup, anywhere {%raw%}`{{`&nbsp;`}}`{%endraw%} bindings are used.
 
 Expressions can also be used to define [computed properties](/docs/polymer/polymer.html#computed-properties).
@@ -47,7 +47,7 @@ Expressions support the following subset of JavaScript:
 | Grouping (parenthesis) | `(a + b) * (c + d)` |
 | Literal values | numbers, strings, `null`, `undefined` | Escaped strings and non-decimal numbers are not supported. |
 | Array & Object initializers | `[foo, 1]`, `{id: 1, foo: bar}` |
-| Function | `reverse(my_list)` | The expression's value is the return value of the function. The function's arguments are observed for changes, and the expression is re-evaluated whenever one of the arguments changes. 
+| Function | `reverse(my_list)` | The expression's value is the return value of the function. The function's arguments are observed for changes, and the expression is re-evaluated whenever one of the arguments changes.
 {: .first-col-nowrap .responsive-table .expressions-table }
 
 
@@ -83,29 +83,29 @@ may result in:
 
     <div>Jill has 100 grandchildren</div>
 
-For standard (double-mustache) bindings and computed properties, the 
-expression is re-evaluated whenever the value of one or more paths 
+For standard (double-mustache) bindings and computed properties, the
+expression is re-evaluated whenever the value of one or more paths
 in the expression changes.
 
 ## Expression scopes {#expression-scopes}
 
 Expressions are evaluated based on the current _scope_, which defines which identifiers and paths
 are visible. The expressions in `bind`, `repeat` or `if` attributes are evaluated in the scope of
-the parent template. For an element's outermost template, paths and identifiers are 
+the parent template. For an element's outermost template, paths and identifiers are
 interpreted relative to the element itself (so `this.prop` is available as {%raw%}`prop`{%endraw%}).
 
 For computed properties, the scope of an expression is always the element itself.
 
 Templates that don't include `bind` or `repeat` share the current scope.
 
-A `bind` or `repeat` without an expression is the same as using an expression that 
+A `bind` or `repeat` without an expression is the same as using an expression that
 specifies the current scope.
 
 ### Nested scoping rules {#nested-scoping-rules}
 
 If a `<template>` using a named scope contains child `<template>`s,
 all ancestor scopes are visible, up-to and including the first ancestor **not** using a named scope. For example:
-       
+
 {% raw %}
     <template>
       <!-- outermost template -- element's properties available -->
@@ -116,7 +116,7 @@ all ancestor scopes are visible, up-to and including the first ancestor **not** 
           <template bind="{{contact.address}}">
             <!-- only properties of address are available -->
             <template bind="{{streetAddress as streetAddress}}">
-              <!-- streetAddress.* and properties of address are available. 
+              <!-- streetAddress.* and properties of address are available.
                    NOT organization.* or contact.* -->
             </template>
           </template>
@@ -133,7 +133,7 @@ In other words:
 ## Filtering expressions {#filters}
 
 Filters can be used to modify the output of expressions. {{site.project_title}} supports several
-default filters for working with data. They're used in bindings by piping an input expression 
+default filters for working with data. They're used in bindings by piping an input expression
 to the filter:
 
 <pre class="prettyprint">
@@ -162,17 +162,17 @@ properties are observed for changes.
 
 The `tokenList` filter is useful for binding to the `class` attribute. It allows you
 to dynamically set/remove class names based on the object passed to it. If the object
-key is truthy, the name will be applied as a class. 
+key is truthy, the name will be applied as a class.
 
 For example:
 
 {% raw %}
-    <div class="{{ {active: user.selected, big: user.type == 'super'} | tokenList}}"> 
+    <div class="{{ {active: user.selected, big: user.type == 'super'} | tokenList}}">
 {% endraw %}
 
 results in the following if `user.selected == true` and `user.type == 'super'`:
 
-    <div class="active big"> 
+    <div class="active big">
 
 ### styleObject
 
@@ -198,7 +198,7 @@ use the `styleObject` filter to transform it into the appropriate format.
 {% endraw %}
 
 In this examples `styles` is an object of the form `{color: 'red', background: 'blue'}`, and
-the output of the `styleObject` filter is a string of CSS declarations (for example, 
+the output of the `styleObject` filter is a string of CSS declarations (for example,
 `"color: 'red'; background: 'blue'"`).
 
 ### Writing custom filters {#custom-filters}
@@ -265,3 +265,56 @@ You can also chain filters, passing the output of one filter to another:
     {{myNumber | toHex | toUpperCase}}
 {% endraw %}
 
+### Writing global filters
+
+
+Although {{site.project_title}} supports adding [custom filters](#custom-filters) to the element prototype,
+you may want to register global filters which can be reused across multiple elements.
+
+To register a global filter, add a custom filter to the prototype of the
+`PolymerExpressions` object.
+
+#### Examples
+
+Let's create a filter for transforming the letters in any string to uppercase.
+
+{% raw %}
+    {{Hello Polymer | uppercase}}
+{% endraw %}
+
+To register `uppercase` as a global filter, add it to the prototype for
+`PolymerExpressions` object:
+
+{% raw %}
+    PolymerExpressions.prototype.uppercase = function(input) {
+      return input.toUpperCase();
+    };
+{% endraw %}
+
+You can also pass parameters to global filters. Here's an example of a `startsWith`
+filter that returns only those items in an array that begin with a certain letter:
+
+{% raw %}
+    {{arrayOfFriends | startsWith('M')}}
+{% endraw %}
+
+Filter definition:
+
+{% raw %}
+    PolymerExpressions.prototype.startsWith = function (input, letter) {
+      return input.filter(function(item){
+        return item[0] === letter;
+      });
+    };
+{% endraw %}
+
+A useful set of community-driven [collection](https://github.com/addyosmani/polymer-filters) of {{site.project_title}} filters is available if you need further
+examples of global filters.
+
+#### Importing global filters
+
+To use a filter across multiple elements, define it in a script and import it at the top of your element
+(after polymer.html).
+
+
+    <link rel="import" href="uppercase-filter.html"/>
