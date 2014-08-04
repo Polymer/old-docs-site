@@ -134,10 +134,6 @@ ZIP 文件不像 Bower 那样提供更新依赖的内建方法。你可以用新
 
 ### 用 git 设置 {#git}
 
-Because there are a number of dependencies we suggest you install 
-{{site.project_title}} with Bower instead of git. If you'd like to hack on 
-the project or submit a pull request check out our guide on 
-[setting up {{site.project_title}} with git](/resources/tooling-strategy.html#git).
 因为存在一些依赖，所以我们推荐用 Bower 替代 git 安装 {{site.project_title}}。如果你想对这个项目做一些 hack 或提交 pull request，请查阅[用 git 设置 {{site.project_title}}](/resources/tooling-strategy.html#git)。
 
 ## 下一步 {#nextsteps}
