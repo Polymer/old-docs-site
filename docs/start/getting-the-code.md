@@ -123,7 +123,6 @@ Bower 会在你项目的根目录添加一个 `bower_components/` 文件夹，�
 
 当你以一个 ZIP 文件的方式下载了一个或一套组件时，这个文件绑定了你需要的所有依赖。这是一种好的起步方式，因为你无须安装额外的工具。
 
-Expand the ZIP file in your project directory to create a `components` folder.
 在你的项目目录里展开这个 ZIP 文件即创建了一个 `components` 文件夹。
 
 ![](/images/zip-file-contents.png)
