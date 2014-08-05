@@ -17,31 +17,44 @@ Polymer 的文档基本是伴随着一些 HTML 的 Markdown。[Jekyll][jekyll] �
 你还需要 App Engine SDK 来运行 dev_appserver 和在本地预览文档。[下载 SDK](https://developers.google.com/appengine/downloads)。
 
 
-### Check out the documentation
+<!-- ### Check out the documentation -->
+### 检入 (check out) 文档
 
-Checkout this repo:
+<!-- Checkout this repo: -->
+Checkout 该代码库 (repo)：
 
     git clone https://github.com/Polymer/docs.git --recursive
 
-Run the setup script:
+<!-- Run the setup script: -->
+运行下面的脚本：
 
     cd docs
     ./scripts/setup.sh
 
-This will run `npm install`, pull down any external dependencies, and kickoff the `grunt` task. **Note:** these scripts can take some time to install.
+<!-- This will run `npm install`, pull down any external dependencies, and kickoff the `grunt` task. **Note:** these scripts can take some time to install. -->
+这些脚本会运行 `npm install`，pull down 所有的外部依赖，并启动 `grunt` 任务。
+**注意：**脚本执行的时间会比较长。
 
-During the setup process the `polymer-all/projects` directory is populated for you. Whenever the site is released you'll need to re-run `./scripts/release.sh` in order to refresh this and other directories. See the [Polymer release](#polymer-release) section for more details.
+<!-- During the setup process the `polymer-all/projects` directory is populated for you. Whenever the site is released you'll need to re-run `./scripts/release.sh` in order to refresh this and other directories. See the [Polymer release](#polymer-release) section for more details. -->
+在安装过程中 `polymer-all/projects` 目录会展示于你。当网站发布的时候，你需要运行 `./scripts/release.sh` 来刷新包括这个目录在内的很多目录。详见 [Polymer 发布](#polymer-release)章节。
 
-## Making edits and previewing changes
+<!-- ## Making edits and previewing changes -->
+## 编辑与预览
 
-This repo (`Polymer/docs`) is where the documentation source files live. To make a change:
+<!-- This repo (`Polymer/docs`) is where the documentation source files live. To make a change: -->
+该代码库 (`Polymer/docs`) 就是文档的源代码。如果想对文档进行修改：
 
-1. Be sure to run `npm install` in your docs directory if it's a new checkout.
-2. Fire up the `grunt` task. This task runs a number of processes: a local app engine server, jekyll, compass, and vulcanize. The jekyll, compass, and vulcanize tasks will all watch for file changes and update the site if you make any edits.
-**Note:** Jekyll generates the static site in a folder named `_site`. It can take some time for the docs to fully regenerate and be copied to the output folder...keep refreshing!
-3. Make your edits.
+<!-- 1. Be sure to run `npm install` in your docs directory if it's a new checkout. -->
+<!-- 2. Fire up the `grunt` task. This task runs a number of processes: a local app engine server, jekyll, compass, and vulcanize. The jekyll, compass, and vulcanize tasks will all watch for file changes and update the site if you make any edits. -->
+<!-- **Note:** Jekyll generates the static site in a folder named `_site`. It can take some time for the docs to fully regenerate and be copied to the output folder...keep refreshing! -->
+<!-- 3. Make your edits. -->
+1. 新 checkout 之后请确保 在你的文档目录下运行 `npm install`。
+2. 触发 `grunt` 任务。该任务会起一系列的进程：一个本地的 app engine server、jekyll、compass 和 vulcanize。其中 jekyll、compass 和 vulcanize 任务将会监控文件的改变，你编辑的内容都会更新到网站上。
+**注意：**Jekyll 会在 `_site` 文件夹生成静态站点。重新生成完整的文档并输出到这里是比较花时间的……保持更新吧。
+3. 开始编辑。
 
-Once your changes look good, `git commit` them and push.
+<!-- Once your changes look good, `git commit` them and push. -->
+一旦你的改动看上去没问题了，就可以 `git commit` 并 push。
 
 ## Releases: pushing the docs
 
