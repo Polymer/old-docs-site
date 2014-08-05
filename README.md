@@ -18,7 +18,7 @@ Polymer 的文档基本是伴随着一些 HTML 的 Markdown。[Jekyll][jekyll] �
 
 
 <!-- ### Check out the documentation -->
-### 检入 (check out) 文档
+### Checkout 文档
 
 <!-- Checkout this repo: -->
 Checkout 该代码库 (repo)：
@@ -48,7 +48,7 @@ Checkout 该代码库 (repo)：
 <!-- **Note:** Jekyll generates the static site in a folder named `_site`. It can take some time for the docs to fully regenerate and be copied to the output folder...keep refreshing! -->
 <!-- 3. Make your edits. -->
 1. 新 checkout 之后请确保 在你的文档目录下运行 `npm install`。
-2. 触发 `grunt` 任务。该任务会启动一系列的进程：一个本地的 app engine server、jekyll、compass 和 vulcanize。其中 jekyll、compass 和 vulcanize 任务将会监控文件的改变，你编辑的内容都会更新到网站上。**注意：**Jekyll 会在 `_site` 文件夹生成静态站点。重新生成完整的文档并输出到这里是比较花时间的……保持更新吧。
+2. 触发 `grunt` 任务。该任务会启动一系列的进程：一个本地的 app engine server、jekyll、compass 和 vulcanize。其中 jekyll、compass 和 vulcanize 任务将会监控文件的改变，你编辑的内容都会更新到网站上。**注意：** Jekyll 会在 `_site` 文件夹生成静态站点。重新生成完整的文档并输出到这里是比较花时间的……保持更新吧。
 3. 开始编辑。
 
 <!-- Once your changes look good, `git commit` them and push. -->
