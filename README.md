@@ -1,15 +1,20 @@
 <!-- Polymer docs are mostly in Markdown with some HTML. [Jekyll][jekyll] is used to generate the static HTML for the site. The output is generated into a folder called `_site` and served from Google App Engine. -->
+Polymer 的文档基本是伴随着一些 HTML 的 Markdown。[Jekyll][jekyll] 是用来为站点生成静态 HTML 的。这些输出的内容会生成到 `_site` 文件夹，同时部署到 Google App Engine。
 
-## Prereqs and installation requirements
+<!-- ## Prereqs and installation requirements -->
+## 准备工作和安装须知
 
-We use Jekyll 2.0+ and [Grunt][grunt] to generate the documentation, and compass to compile SASS to CSS. You'll need to install the requirements before working on the docs (these instructions assume [NPM is already installed](http://nodejs.org/download/)):
+<!-- We use Jekyll 2.0+ and [Grunt][grunt] to generate the documentation, and compass to compile SASS to CSS. You'll need to install the requirements before working on the docs (these instructions assume [NPM is already installed](http://nodejs.org/download/)): -->
+我们用 Jekyll 2.0+ 和 [Grunt][grunt] 来生成文档，用 compass 把 SASS 编译成 CSS。在撰写文档之前，你有必要把它们都安装好 (这些步骤假定 [NPM 已经安装好了](http://nodejs.org/download/))：
 
     gem install jekyll kramdown jekyll-page-hooks compass rouge
     npm install -g grunt-cli vulcanize
 
-**Note:** If you receive permission warnings, you may need to run the above tasks with `sudo`.
+<!-- **Note:** If you receive permission warnings, you may need to run the above tasks with `sudo`. -->
+**注意：**如果你在操作过程中遇到了权限警告 (permission warnings)，请在任务命令前加上 `sudo` 再执行。
 
-You'll also need the App Engine SDK to run the dev_appserver and preview the docs locally. [Download the SDK](https://developers.google.com/appengine/downloads).
+<!-- You'll also need the App Engine SDK to run the dev_appserver and preview the docs locally. [Download the SDK](https://developers.google.com/appengine/downloads). -->
+你还需要 App Engine SDK 来运行 dev_appserver 和在本地预览文档。[下载 SDK](https://developers.google.com/appengine/downloads)。
 
 
 ### Check out the documentation
