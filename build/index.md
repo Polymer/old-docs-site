@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Build status
+title: 构建状态
 type: resources
 navgroup: resources
 shortname: Resources

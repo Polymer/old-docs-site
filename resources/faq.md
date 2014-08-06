@@ -19,7 +19,7 @@ title: FAQ
 {{site.project_title}} 是个极具开创性的库，用它来创建高端大气上档次的 web 应用程序将变得前所未有的简单和快速。{{site.project_title}} 是基于被称为 Web Components 的一系列全新强大的 web 平台而建立的。
  Web Components 给 web 平台带来了史无前例的可封装性，易共用性，和易应用性。这极大的提高了开发者的生产力。
 
-### {{site.project_title}} 可用于发布产品是吗? {#readiness}
+### {{site.project_title}} 可用于发布产品了吗? {#readiness}
 
 {{site.project_title}} 目前仍处理 "开发者预览版"。 尽管如此，还是有很多人成功在已发布的产品中使用上了目前的 {{site.project_title}}. 
 虽然好多东西都还不稳定，我们依然鼓励开发者帮助我们将 {{site.project_title}} 尽快带出实验阶段。
@@ -39,7 +39,7 @@ title: FAQ
   <figcaption>Architectural Diagram</figcaption>
 </figure> -->
 
-没关系。类似 {{site.project_title}} 这种基于组件的库最爽的地方就是，你可以轻易的使用第三方类库来混用和支配元素，并且你如果你只是想使用我们提供的一些元素可不必使用的任何我们提供数据绑定语法。
+没关系。类似 {{site.project_title}} 这种基于组件的库最爽的地方就是，你可以轻易的使用第三方类库来混用和支配元素，并且你如果你只是想使用我们提供的一些元素可不必使用任何我们提供的数据绑定语法。
 
 <!-- {: style="clear:both"} -->
 
@@ -69,23 +69,23 @@ title: FAQ
 
 ### 为什么与x-tags扯上关系? {#xtags}
 
-[x-tags](http://x-tags.org/) 是Mozilla正在开发的一个很酷的项目,  它也不直接隶属于{{site.project_title}}. 不过, {{site.project_title}} 和 x-tags 两者者基于最新的Custom Elements标准, 这意味着两者的组件默认即是相互兼容的.Google 和 Mozilla 都为Custom Element 规范提供polyfill. X-Tag两者都支持, 因此你能在{{site.project_title}} 的组件上沿用X-Tag.我们正积极的为它们和组件集合的最大兼容性而作努力.
+[x-tags](http://x-tags.org/) 是Mozilla正在开发的一个很酷的项目,  它也不直接隶属于{{site.project_title}}. 不过, {{site.project_title}} 和 x-tags 两者都基于最新的Custom Elements标准, 这意味着两者的组件默认即是相互兼容的.Google 和 Mozilla 都为Custom Element 规范提供polyfill. X-Tag两者都支持, 因此你能在{{site.project_title}} 的组件上沿用X-Tag.我们正积极的为它们和组件集合的最大兼容性而作努力.
 
 #### {{site.project_title}} 与Twitter的 Bootstrap 或者 Adobe的 Topcoat究竟区别在哪? {#uiframeworks}
 
-Bootstrap 和 Topcoat 都是很强大的 CSS/UI 库. 我们对{{site.project_title}}的定位不同. 我们最终打算为惊艳四座的UI 组件构建一系列的标准, {{site.project_title}}是完全系统而整体的, 有助于有兴趣的开发者基于Web 组件技术打造Web 应用. {{site.project_title}}也扩展了更多额外增强的API 以满足当今的Web应用.
+Bootstrap 和 Topcoat 都是很强大的 CSS/UI 库. 我们对{{site.project_title}}的定位不同. 我们最终打算为惊艳四座的UI 组件构建一系列的标准, {{site.project_title}}是完全系统而整体的, 有助于有兴趣的开发者基于 Web Components 技术打造Web 应用. {{site.project_title}}也扩展了更多额外增强的API 以满足当今的Web应用.
 
 ### {Angular JS | Closure | Google Web Toolkit}与这个项目有关联吗? {#frameworks}
 
-没关系. {{site.project_title}} 与已有的东西非常的不同. {{site.project_title}} 是首个得益于 Web Components 的新库。  Web Components 的到来将极大的改变 web 开发，我们已为 {{site.project_title}} 光明的未来感到激动不已。
+没关联. {{site.project_title}} 与已有的东西非常的不同. {{site.project_title}} 是首个得益于 Web Components 的新库。  Web Components 的到来将极大的改变 web 开发，我们已为 {{site.project_title}} 光明的未来感到激动不已。
 
-### polymer.dart为何被{{site.project_title}}扯上关系了? {#dart}
+### polymer.dart 为何被 {{site.project_title}} 扯上关系了? {#dart}
 
 polymer.dart 是Dart团队为 {{site.project_title}} 创建而维护的一部分.Dart团队正在与{{site.project_title}}团队合作确保polymer.dart组件和polyfill都完全与{{site.project_title}}兼容. 
 
 ### 源码挂在CDN上吗?
 
-{{site.project_title}} 被维护在 [cdnjs](http://cdnjs.com/) 有一份维护，可以通过以下URL加载:
+{{site.project_title}} 在 [cdnjs](http://cdnjs.com/) 有一份维护，可以通过以下URL加载:
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/polymer/{{site.latest_version}}/platform.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/polymer/{{site.latest_version}}/polymer.js"></script>
@@ -98,7 +98,7 @@ polymer.dart 是Dart团队为 {{site.project_title}} 创建而维护的一部分
 
 ### 我看到一堆XHR的连接请求。干嘛用的? {#xhrrequests}
 
-polyfill目前所受到的一个限制是{{site.project_title}}带耦合性的通过XHR模拟HTML Import. 我们正在测试改进打包系统和生成步骤来减少网络请求.当此API被浏览器原生支持, 一切还会照常工作的. 资源将会被正常的加载, 也会得益于并行加载和缓存策略等. 
+polyfill目前所受到的一个限制是 {{site.project_title}} 带耦合性的通过XHR模拟HTML Import. 我们正在测试改进打包系统和生成步骤来减少网络请求.当此API被浏览器原生支持, 一切还会照常工作的. 资源将会被正常的加载, 也会得益于并行加载和缓存策略等. 
 
 你可以使用 [Vulcanize](/articles/concatenating-web-components.html), 这个构建工具可以将一堆 elements 合并一个页面里。
 
@@ -106,14 +106,14 @@ polyfill目前所受到的一个限制是{{site.project_title}}带耦合性的�
 
 我们真心的想使整个Web平台都得到60fps的流畅度.这么说吧,  我们还没有按基准对所有polyfill进行过测试--毕竟, 我们还处于初级阶段! 如果你有兴趣帮助我们进行统计,  [请随时告诉我们](/discuss.html).
 
-别忘了我们的库是会随着时间而流逝的! {{site.project_title}}也会随着浏览器逐渐的以原生实现而变得好,  更强, 更快.
+别忘了我们的库是会随着时间而消逝的! {{site.project_title}} 也会随着浏览器逐渐的以原生实现而变得好,  更强, 更快.
 
 ### platform.js 为什么这么大 (~163KB)? {#filesize}
 
 压缩和gzip后 platform.js 仅有 ~44KB (对比 JQuery 1.10 是 32KB). 记住，占空间的大部分是polyfills；这些代码会在浏览器提供原生API后被移除的。
 
 {{site.project_title}} 同样被设计成照单点菜。例如，如果你只对 Custom Elements 有兴趣，就使用 custom elements 的 polyfill。
-如果你只想要 Shadow DOM 就用它的 polyfill。platform.js 仅是个快捷套餐，方便照单全收的开发者引制作基于 {{site.project_title}} 的应用程序。
+如果你只想要 Shadow DOM 就用它的 polyfill。platform.js 仅是个快捷套餐，方便照单全收的开发者引入制作基于 {{site.project_title}} 的应用程序。
 
 ### {{site.project_title}} 兼容 Chrome Apps 吗? {#chromeapp}
 必须的. 这里有个 [ Polymer Chrome App 的例子](https://github.com/PolymerLabs/polymerchromeapp) 供你参考。需要重视的是 Chrome Apps 有严格的 [内容安全策略 - Content Security Policy (CSP)](http://www.html5rocks.com/tutorials/security/content-security-policy/) ，这直接限制了内联脚本 elements 的使用. 
@@ -184,10 +184,10 @@ polyfill目前所受到的一个限制是{{site.project_title}}带耦合性的�
 不过某些场景下，你还是无法获得所需要的依赖，得挨个去下载。
 
 Web components 和 {{site.project_title}} 是有意细粒化的。
-这也是个目标，允许用户精确使用所需的同时没有额外的负担。除了细粒化，高层的 components 可能由 低层的 components 组件而成，
+这也是个目标，允许用户精确使用所需的同时没有额外的负担。除了细粒化，高层的 components 可能由低层的 components 组装而成，
 Bower 允许我们更容易的管理依赖关系。
 
-### 我的 components 发布后是同一个名称的不同`id`的标记。 {#multipleids}
+### 我的 components 发布后成了同一个名称的不同`id`的标记。 {#multipleids}
 
 {{site.project_title}} 很努力的去模拟原生 Shadow DOM，出现`id`相同的节点还是会被再包装。
 
@@ -195,9 +195,9 @@ Bower 允许我们更容易的管理依赖关系。
 
 ## 数据绑定(Data-binding)
 
-### 我尝试使用数据绑定的方式沉浸 HTML 时 {{site.project_title}} 却把内容给转义了。 {#setinnerHTML}
+### 我尝试使用数据绑定的方式渲染 HTML 时 {{site.project_title}} 却把内容给转义了。 {#setinnerHTML}
 
-{{site.project_title}} 在使用数据绑定时是会预防非转义的HTML，否则会出现 XSS 攻击的漏洞。 替代方案是, 你可以使用 [property changed watcher](/docs/polymer/polymer.html#change-watchers) 和 [automatic node finding](/docs/polymer/polymer.html#automatic-node-finding) 来设置节点的 `.innerHTML` :
+{{site.project_title}} 在使用数据绑定时是会预防非转义的HTML，否则会出现 XSS 攻击的漏洞。 替代方案是, 你可以使用 [属性变更监听者](/docs/polymer/polymer.html#change-watchers) 和 [全自动节点查找](/docs/polymer/polymer.html#automatic-node-finding) 来设置节点的 `.innerHTML` :
 
     <div id="div"></div>
 
@@ -209,7 +209,7 @@ Bower 允许我们更容易的管理依赖关系。
 
 ### 我如何使用数据绑定来循环输出一个 `<option>` 或者 `<tr>`? {#option-tr}
 
-在增强了HTML的 `<template>` 出现之前, 某些 elements 像 `<select>`, `<table>`, 和 [others](https://github.com/Polymer/TemplateBinding/blob/master/src/TemplateBinding.js#L141:L153) 都有特殊的解析规则以防止除`<option>` 和 `<tr>` 以外的其他子节点分别作为他们的子节点.
+在增强了HTML的 `<template>` 出现之前, 某些 elements 像 `<select>`, `<table>`, 和 [其实这些](https://github.com/Polymer/TemplateBinding/blob/master/src/TemplateBinding.js#L141:L153) 都有特殊的解析规则以防止除`<option>` 和 `<tr>` 以外的其他子节点分别作为他们的子节点.
 由于这些历史遗留的规则，不支持 `<template>` 的浏览器会将无法识别的 elements 放到内容的外面并且与内容同级，包括 `<template>` 本身。
 
 例如, 如果浏览器不支持 `<template>` 以下的代码将无效:
@@ -260,7 +260,7 @@ Bower 允许我们更容易的管理依赖关系。
 
 如果你的用户使用的是不支持 `<template>` 的浏览器, 则在这些 [特殊 elements](https://github.com/Polymer/TemplateBinding/blob/master/src/TemplateBinding.js#L117) 上使用 `template` 属性.
 
-**注意:** 支持 `<template>` 的浏览器允许 `<select>` 和 `<table>` elements 有其他类型的子节点.如查你确认你的用户使用的浏览器支持 `<template>`，你可以直接这么写:
+**注意:** 支持 `<template>` 的浏览器允许 `<select>` 和 `<table>` 元素有其他类型的子节点.如查你确认你的用户使用的浏览器支持 `<template>`，你可以直接这么写:
 
     <table>
       {%raw%}<template repeat="{{tr in rows}}">{%endraw%}
@@ -291,7 +291,7 @@ Bower 允许我们更容易的管理依赖关系。
     </polymer-element>
 {%endraw%}
 
-## 在一个 `<svg>` element 里能使用  `<template>` 吗? {#templateinsvg}
+## 在一个 `<svg>` 元素里能使用  `<template>` 吗? {#templateinsvg}
 
 当然能，参看实例 [demo](http://jsbin.com/EXOWUFu/60/edit).
 
@@ -373,7 +373,7 @@ Bower 允许我们更容易的管理依赖关系。
 
 ### 为何 element 在 created/ready 时返回的孩子节点(light DOM - 非Shadow DOM)是0个? {#zerochildren}
 
-由于 element 更新存在细微的时差问题, 在 `created()`, `ready()`, 或者 `attached()` 方法上访问 element 的子节点(light dom)其他是错误的. 
+由于 element 更新存在细微的时差问题, 在 `created()`, `ready()`, 或者 `attached()` 方法上访问 element 的子节点(light dom)其实是错误的. 
 当这些方法被触发时, element 无法保证已经在 DOM 里或者已经生成了子节点了，{{site.project_title}} 会在 element 的 `<template>` 调用 `TemplateBinding.createInstance()` 来创建它的 Shadow DOM。
 这个流程在依次创建和绑定 template 上的 elements。
 
@@ -403,7 +403,7 @@ Bower 允许我们更容易的管理依赖关系。
 ### 我如何监听子节点(light DOM)的更新? {#mutationlightdom}
 
 要想知道子节点被添加还是被删除，使用 Mutation Observer 来监听。
-{{site.project_title}} 为每个元素实现了 `onMutation` 回调，可以用来单独一个DOM的变化：
+{{site.project_title}} 为每个元素实现了 `onMutation` 回调，可以用来监听单独一个DOM的变化：
 
     ready: function() {
       // 单独监听变化.
@@ -435,7 +435,7 @@ Bower 允许我们更容易的管理依赖关系。
 
 **注意:** Steve Faulkner 不久前 [写过一篇好文](http://blog.paciellogroup.com/2012/07/notes-on-web-components-aria/) 发现是兼容的。同时请参看最近 Marcy Sutton's 写的 "[Accessibility and the Shadow DOM](http://substantial.com/blog/2014/02/05/accessibility-and-the-shadow-dom/)".
 
-比较普遍的错误设概念是 Shadow DOM 无法兼容辅助技术，实际上 Shadow DOM 是可以被遍历的，并且每个 Shadow DOM 节点都有一个 `shadowRoot` 属性指向它的 shadow document。
+比较普遍的错误概念是 Shadow DOM 无法兼容辅助技术，实际上 Shadow DOM 是可以被遍历的，并且每个 Shadow DOM 节点都有一个 `shadowRoot` 属性指向它的 shadow document。
 大多数辅助技术都是直接接入至浏览器的 rendering tree 的，所以能读到完整的 composed tree
 
 实际上，如果你查看某个使用 Shadow DOM 原生 HTML 元素,如 `<input type="date">`, 你会注意到 aria 属性在它的结构树里:
@@ -451,7 +451,7 @@ Shadow Roots 有它们自己的 `activeElement`, 你可以在内部通过 `shado
 
 ### 为什么DevTools里无法(在输入时)自动完成拼写补充我的 element 的 属性/方法 名? {#autocomplete}
 
-这属于 Shadow DOM 的 polyfill 的处理问题。它将在元素的 DOM 结构外面包了一层仅将标准的 DOM API (e.g. `querySelector`) 暴露出来。
+这属于 Shadow DOM 的 polyfill 的处理问题。它会在元素的 DOM 结构外面包了一层仅将标准的 DOM API (e.g. `querySelector`) 暴露出来。
 {{site.project_title}} 在这些外层包装上设置属性, 而不是实际的 DOM 对象上. 
 由于 DevTools 只认实际的 DOM, 所以你的元素的属性无法被在工具里看到了.
 
