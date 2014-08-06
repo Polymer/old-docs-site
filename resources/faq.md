@@ -8,28 +8,30 @@ title: FAQ
 
 {% include alpha.html %}
 
-*Don't see an answer to your question on here? Ask on the [mailing list](/discuss.html)!*
+*没找到你问题的答案? 请到[邮件清单](/discuss.html)提问!*
 
 {% include toc.html %}
 
 ## {{site.project_title}}
 
-### Why should I care about this project? {#why}
+### 为什么我要关注这个项目? {#why}
 
-{{site.project_title}} is a pioneering library that makes it faster and easier than ever before to build beautiful applications on the web. {{site.project_title}} is built on top of a set of powerful new web platform primitives called Web Components. Web Components bring unprecedented composability, interoperability, and consumability to the web platform. The result is a monumental increase in developer productivity.
+{{site.project_title}} 是个极具开创性的库，用它来创建高端大气上档次的 web 应用程序将变得前所未有的简单和快速。{{site.project_title}} 是基于被称为 Web Components 的一系列全新强大的 web 平台而建立的。
+ Web Components 给 web 平台带来了史无前例的可封装性，易共用性，和易应用性。这极大的提高了开发者的生产力。
 
-### Is {{site.project_title}} production ready? {#readiness}
+### {{site.project_title}} 可用于发布产品是吗? {#readiness}
 
-{{site.project_title}} is currently in "developer preview." However, despite the label many people have already had success using {{site.project_title}} in production. Although things might still change, we encourage developers to take {{site.project_title}} out for a test drive.
+{{site.project_title}} 目前仍处理 "开发者预览版"。 尽管如此，还是有很多人成功在已发布的产品中使用上了目前的 {{site.project_title}}. 
+虽然好多东西都还不稳定，我们依然鼓励开发者帮助我们将 {{site.project_title}} 尽快带出实验阶段。
 
-### How is {{site.project_title}} related to material design? {#materialdesign}
+### {{site.project_title}} 为何跟 material design 扯上了关系? {#materialdesign}
 
-{{site.project_title}} is the embodiment of material design for the web. The {{site.project_title}} team works closely with the design teams behind material design. In fact, {{site.project_title}} played a key role in material design's development: it was used to quickly prototype and iterate on design concepts. The material design components are still a work in progress, but will mature over the coming months.
+{{site.project_title}} 是 material design 在 web 平台的实现. {{site.project_title}} 团队与 material design 设计团队合作非常的紧密。 事实上, {{site.project_title}} 在 material design 的研发阶段扮演着关键性的角色: 它被用于快速原型化和重现设计的概念. 此 material design 组件依然处于生产阶段, 不过在未来几个月内就会成熟。
 
-### Do I have to use {{site.project_title}} Designer? {#designer}
-Nope! [{{site.project_title}} Designer](/tools/designer/) is primarily a tool to make it easy to dive in an prototype apps. It's entirely optional&mdash;although we've found that for developers who use it, it has quickly become an indispensable part of their workflow.
+### 我一定要使用 {{site.project_title}} Designer 吗? {#designer}
+非也! [{{site.project_title}} Designer](/tools/designer/) 主要是个使得了解一个 app 的原型更加容易的工具。它完全是可选的，不过我们已经发现有开发者在使用了，并且它已经完成他们开发流程中不可或缺的部分。
 
-### I don't like your {components | data binding syntax | face }! {#dislike}
+### 我不喜欢你们的{组件 | 数据绑定的语法 | 外观}! {#dislike}
 
 <!--
 <figure id="architecture-diagram" style="float:right">
@@ -37,130 +39,118 @@ Nope! [{{site.project_title}} Designer](/tools/designer/) is primarily a tool to
   <figcaption>Architectural Diagram</figcaption>
 </figure> -->
 
-That's fine. The cool thing about Web Components-based libraries like {{site.project_title}} is that you can easily mix and match elements built using different libraries&mdash;and you don't have to use any of our databinding syntax if you just want to use some of our elements.
+没关系。类似 {{site.project_title}} 这种基于组件的库最爽的地方就是，你可以轻易的使用第三方类库来混用和支配元素，并且你如果你只是想使用我们提供的一些元素可不必使用的任何我们提供数据绑定语法。
 
 <!-- {: style="clear:both"} -->
 
-### Which browsers does {{site.project_title}} support? {#browsersupport}
+### {{site.project_title}} 都支持哪些浏览器? {#browsersupport}
 
-{{site.project_title}} aims to support [evergreen browsers](http://www.yetihq.com/blog/evergreen-web-browser/). After all, we're trying to simulate the future, and as someone once said, "You're headed for trouble if all you do is stare in the rear-view mirror." In practice, this means we support the most recent versions of Chrome, Safari, Internet Explorer, and Firefox. Chrome 36 is the first browser to ship all of the platform features {{site.project_title}} depends on natively.
+{{site.project_title}} 目标是支持 [evergreen browsers](http://www.yetihq.com/blog/evergreen-web-browser/). 毕竟, 我们是在模拟未来, 正如某人所说,  "如果你总盯着后视镜那你前方肯定有麻烦了". 在实践过程中, 这意味着我们支持以下浏览器的最新版, Chrome,  Safari,  Internet Explorer,  和 Firefox. Chrome 36 是首个原生支持了全部 {{site.project_title}} 依赖的全部平台特性的浏览器。
 
-Note that this is fewer browsers than other frameworks support. For example, {{site.project_title}} only aims to support Internet Explorer 10 and above. Some pieces of {{site.project_title}} may support more browsers if it doesn't require too much extra effort--if you find bugs in unsupported browsers, please still file them.  Most things should work in IE9 today without too much work; feel free to file bugs on what doesn't.  IE8 is incompatable due to its insufficient DOM support.
+注意, 这是比其他框架所支持的浏览器还要少一些的.例如,  {{site.project_title}} 只支持IE10+. {{site.project_title}} 有些部分如果不过多考虑扩展性可能会支持更多浏览器--如果发现未支持的浏览器上有bug, 请报给我们.绝大多数东西无需过多工作也能支持IE9;哪部分有bug请随意报上来.IE8由于其对DOM支持不足因此没法兼容. 
 
-See our [Browser Compatibility](/resources/compatibility.html) page for more information.
-
-
-### When will other browsers support these APIs natively? {#nativesupport}
-
-The foundation layer in our <a href="/images/architecture-diagram.svg" target="_blank">architecture diagram</a> is based on emerging web standards. As browsers support them natively, the need for that layer will diminish and ultimately disappear. In fact, Chrome 36 is the first browser to support all of the primitives natively. It's impossible to say when every browser will support these features natively--but the more that web developers ask for them, the sooner native support will come.
-
-### What's your mobile story? {#onmobile}
-
-One of our core goals is for {{site.project_title}} to work on modern mobile browsers as a first-class citizen. Check out [Topeka](/apps/topeka/), one of our sample apps, to see it in action.
+更多资料请参考我们的 [浏览器兼容性](/resources/compatibility.html) 页面。
 
 
-### How do I create a single page app with routing? {#spa}
+### 他浏览器什么时候能原生支持这些API? {#nativesupport}
 
-By combining data-binding, [core-scaffold](/docs/elements/core-elements.html#core-scaffold), [core-pages](/docs/elements/core-elements.html#core-pages)/[core-animated-pages](/docs/elements/core-elements.html#core-animated-pages), and [`<flatiron-director>`](https://github.com/PolymerLabs/flatiron-director) (an element for routing), you can easily create a responsive SPA with deep linking.
+我们的<a href="/images/architecture-diagram.svg" target="_blank">架构图</a>里基础层是基于最新的Web标准的.任何层的需求度会随着浏览器原生支持度的增加而逐渐减少直至最终消失。事实上，Chrome 36 是首个原生支持了全部 {{site.project_title}} 依赖的全部平台特性的浏览器。很难说什么时候每个浏览器都原生支持这些特性, 但开发者的呼声越高被支持就越快. 
 
-Here's a [demo](http://polymer-change.appspot.com/demos/spa.html) and [source](https://github.com/ebidel/polymer-change/blob/master/demos/spa.html).
+### 移动这块你们是什么打算? {#onmobile}
 
-### What does this have to do with x-tags? {#xtags}
+我们的核心目标之一就是让{{site.project_title}}在移动设备的支持上得到一等公民般的待遇。可以试试我们其中一个简单的 app [Topeka](/apps/topeka/)，直接了解目前的现状。
 
-[x-tags](http://x-tags.org/) is a cool project that Mozilla is working on, and it's not directly affiliated with {{site.project_title}}. However, both {{site.project_title}} and x-tags build on the emerging Custom Elements standard, which means their components are interoperable by default. Both Google and Mozilla offer polyfills for the Custom Element spec. X-Tag works on top of either, so you can use X-Tag custom elements alongside your {{site.project_title}} components. We're working actively with them to maximize compatibility between the component sets.
 
-### How is {{site.project_title}} different from Twitter's Bootstrap or Adobe's Topcoat? {#uiframeworks}
+### 单页面我如何实现路由呢? {#spa}
 
-Bootstrap and Topcoat are awesome CSS/UI libraries. Our goals for {{site.project_title}} are different. While we have our own set of shiny UI components, the meat of {{site.project_title}} is geared towards developers interested in building web applications on top of Web Component technologies. {{site.project_title}} also provides additional sugaring APIs to meet the demands of today's web applications.
+通过结合数据绑定， [core-scaffold](/docs/elements/core-elements.html#core-scaffold), [core-pages](/docs/elements/core-elements.html#core-pages)/[core-animated-pages](/docs/elements/core-elements.html#core-animated-pages), 和 [`<flatiron-director>`](https://github.com/PolymerLabs/flatiron-director) (路由用的 element), 你可以轻轻松松制作一个深度耦合的单页面应用SPA。
 
-### Is this project related to {Angular JS | Closure | Google Web Toolkit}? {#frameworks}
+这里有个 [demo](http://polymer-change.appspot.com/demos/spa.html) ，源码在这 [source](https://github.com/ebidel/polymer-change/blob/master/demos/spa.html).
 
-Nope. {{site.project_title}} isn't like things that have come before. {{site.project_title}} is the first of a new kind of library taking advantage of Web Components. The arrival of Web Components is a monumental change in web development, and we're really excited about the future {{site.project_title}} is demonstrating.
+### 为什么与x-tags扯上关系? {#xtags}
 
-### How is {{site.project_title}}.dart related to {{site.project_title}}? {#dart}
+[x-tags](http://x-tags.org/) 是Mozilla正在开发的一个很酷的项目,  它也不直接隶属于{{site.project_title}}. 不过, {{site.project_title}} 和 x-tags 两者者基于最新的Custom Elements标准, 这意味着两者的组件默认即是相互兼容的.Google 和 Mozilla 都为Custom Element 规范提供polyfill. X-Tag两者都支持, 因此你能在{{site.project_title}} 的组件上沿用X-Tag.我们正积极的为它们和组件集合的最大兼容性而作努力.
 
-polymer.dart is a Dart port of {{site.project_title}} created and maintained by the Dart team. The Dart team is collaborating with the {{site.project_title}} team to ensure that polymer.dart elements and polyfills are fully compatible with {{site.project_title}}.
+#### {{site.project_title}} 与Twitter的 Bootstrap 或者 Adobe的 Topcoat究竟区别在哪? {#uiframeworks}
 
-### Is the code hosted on a CDN?
+Bootstrap 和 Topcoat 都是很强大的 CSS/UI 库. 我们对{{site.project_title}}的定位不同. 我们最终打算为惊艳四座的UI 组件构建一系列的标准, {{site.project_title}}是完全系统而整体的, 有助于有兴趣的开发者基于Web 组件技术打造Web 应用. {{site.project_title}}也扩展了更多额外增强的API 以满足当今的Web应用.
 
-{{site.project_title}} is maintained on [cdnjs](http://cdnjs.com/) and can be
-loaded from the following URLs:
+### {Angular JS | Closure | Google Web Toolkit}与这个项目有关联吗? {#frameworks}
+
+没关系. {{site.project_title}} 与已有的东西非常的不同. {{site.project_title}} 是首个得益于 Web Components 的新库。  Web Components 的到来将极大的改变 web 开发，我们已为 {{site.project_title}} 光明的未来感到激动不已。
+
+### polymer.dart为何被{{site.project_title}}扯上关系了? {#dart}
+
+polymer.dart 是Dart团队为 {{site.project_title}} 创建而维护的一部分.Dart团队正在与{{site.project_title}}团队合作确保polymer.dart组件和polyfill都完全与{{site.project_title}}兼容. 
+
+### 源码挂在CDN上吗?
+
+{{site.project_title}} 被维护在 [cdnjs](http://cdnjs.com/) 有一份维护，可以通过以下URL加载:
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/polymer/{{site.latest_version}}/platform.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/polymer/{{site.latest_version}}/polymer.js"></script>
 
-There are a number of reasons why we recommend you use Bower instead of the CDN:
+以下理由是我们推荐你使用 Bower 而不是 CDN:
 
-- The CDN does not host polymer.html which removes the ability for elements to import it.
-- There are many elements which are not hosted on the CDN so it might be tricky to include all of them in your project.
-- You will not be able to [Vulcanize your code](/articles/concatenating-web-components.html).
+- CDN上并没有挂载 polymer.html 这样你的 elements 就失去了导入它的这一功能.
+- 还有很多的 elements 没有挂载在CDN上，所以要想在你的项目中导入它们将变得非常的棘手。
+- 你将无法 [通过 Vulcanize 合并你的代码](/articles/concatenating-web-components.html).
 
-### I see a bunch of XHRs making network requests. What gives? {#xhrrequests}
+### 我看到一堆XHR的连接请求。干嘛用的? {#xhrrequests}
 
-One limitation of today's polyfills is that {{site.project_title}} aggressively uses XHR to shim HTML Imports. We're experimenting with packaging systems and build steps to reduce the cost of network requests. HTML imports are supported natively in Chrome 36 this API lands natively in browsers, where things will Just Work™. Resources load as they normally do, taking advantage of parallelism, browser caching, etc.
+polyfill目前所受到的一个限制是{{site.project_title}}带耦合性的通过XHR模拟HTML Import. 我们正在测试改进打包系统和生成步骤来减少网络请求.当此API被浏览器原生支持, 一切还会照常工作的. 资源将会被正常的加载, 也会得益于并行加载和缓存策略等. 
 
-You can try [Vulcanize](/articles/concatenating-web-components.html), which
-is a build tool for concatenating a list of elements and inlining their definitions into your main page.
+你可以使用 [Vulcanize](/articles/concatenating-web-components.html), 这个构建工具可以将一堆 elements 合并一个页面里。
 
-### Performance. Do you care about it? {#performancestuff}
+### 你们关注性能吗? {#performancestuff}
 
-Deeply. And we want the entire web platform to be a buttery smooth 60fps. That said, we have not yet run benchmarks on the various polyfills--we're in the early stages, after all! If you're interested in helping us put some numbers behind these guys, [let us know](/discuss.html).
+我们真心的想使整个Web平台都得到60fps的流畅度.这么说吧,  我们还没有按基准对所有polyfill进行过测试--毕竟, 我们还处于初级阶段! 如果你有兴趣帮助我们进行统计,  [请随时告诉我们](/discuss.html).
 
-Remember our libraries go away over time! {{site.project_title}} gets better, stronger, and faster as native browser implementations pop up.
+别忘了我们的库是会随着时间而流逝的! {{site.project_title}}也会随着浏览器逐渐的以原生实现而变得好,  更强, 更快.
 
-### The filesize of platform.js is big (~163KB). Why? {#filesize}
+### platform.js 为什么这么大 (~163KB)? {#filesize}
 
-Minified and gzipped, platform.js is ~44KB (for comparison JQuery 1.10 is 32KB). Keep
-in mind that most of this size comes from the polyfills; code which has a death wish
-and goes away over time as browsers support the native APIs.
+压缩和gzip后 platform.js 仅有 ~44KB (对比 JQuery 1.10 是 32KB). 记住，占空间的大部分是polyfills；这些代码会在浏览器提供原生API后被移除的。
 
-{{site.project_title}} has also been designed to be a la carte. For example, if
-you're only interested in Custom Elements, use the custom elements polyfill. If you
-only want Shadow DOM, use its polyfill. platform.js is simply a convenient bundle
-for developers that includes all of the the pieces for building
-{{site.project_title}}-based applications.
+{{site.project_title}} 同样被设计成照单点菜。例如，如果你只对 Custom Elements 有兴趣，就使用 custom elements 的 polyfill。
+如果你只想要 Shadow DOM 就用它的 polyfill。platform.js 仅是个快捷套餐，方便照单全收的开发者引制作基于 {{site.project_title}} 的应用程序。
 
-### Does {{site.project_title}} work with Chrome Apps? {#chromeapp}
-Yes. Here's [an example Polymer Chrome App](https://github.com/PolymerLabs/polymerchromeapp) to get you started. It's important to note that Chrome Apps have a strict [Content Security Policy (CSP)](http://www.html5rocks.com/tutorials/security/content-security-policy/) which prevents the use of inline script elements. To handle the CSP limitation, this example uses our [Vulcanize](/articles/concatenating-web-components.html) build tool (in the form of [grunt-vulcanize](https://github.com/Polymer/grunt-vulcanize)) to turn inline script elements into external files. Be sure to read the [FAQ section on Content Security Policy](#csp) and the [Dealing with CSP](https://github.com/PolymerLabs/polymerchromeapp#dealing-with-csp) section in the sample project's README.
+### {{site.project_title}} 兼容 Chrome Apps 吗? {#chromeapp}
+必须的. 这里有个 [ Polymer Chrome App 的例子](https://github.com/PolymerLabs/polymerchromeapp) 供你参考。需要重视的是 Chrome Apps 有严格的 [内容安全策略 - Content Security Policy (CSP)](http://www.html5rocks.com/tutorials/security/content-security-policy/) ，这直接限制了内联脚本 elements 的使用. 
+要应对 CSP 的限制，这里有个实例使用了 [Vulcanize](/articles/concatenating-web-components.html) 构建工具 (Grunt 插件用法 [grunt-vulcanize](https://github.com/Polymer/grunt-vulcanize)) 来将内联脚本 elements 转换成外链文件的方式。请务必详看 [FAQ 的 Content Security Policy 章节](#csp) 和 README里的实例项目中的 [处理 CSP](https://github.com/PolymerLabs/polymerchromeapp#dealing-with-csp) 章节。
 
-### Does {{site.project_title}} work under Content Security Policy (CSP)? {#csp}
+### {{site.project_title}} 支持内容安全策略 - Content Security Policy (CSP) 吗? {#csp}
 
-Yes. By using `platform.js` and [creating elements that use external scripts](/docs/polymer/polymer.html#altregistration), {{site.project_title}} runs under [CSP](http://www.html5rocks.com/tutorials/security/content-security-policy/). If you prefer to keep your element's
-script inline to `<polymer-element>`, we recommend using [Vulcanize](/resources/tooling-strategy.html#vulcanize-build-tool) and running with the `--csp` flag.
+支持的. 使用了 `platform.js` 且 [使用脚本外链的形式创建 elements ](/docs/polymer/polymer.html#altregistration), 则 {{site.project_title}} 支持 [CSP](http://www.html5rocks.com/tutorials/security/content-security-policy/). 
+如果你偏好将 element 的脚本内联到 `<polymer-element>`，我们推荐你使用 [Vulcanize](/resources/tooling-strategy.html#vulcanize-build-tool) 并且执行命令时带上 `--csp` 参数.
 
-In other nuanced cases, {{site.project_title}} fails under CSP. This is because
-the [HTML Imports](/platform/html-imports.html) is polyfilled using XHR, which can
-in turn, execute strings as JavaScript and fail CSP. So if you import a file that has an inline script tag, it will fail. This problem will go away with
-native HTML Imports (see Blink's [crbug.com/240592](http://crbug.com/240592) tracking bug).
+某些特殊的场景下，{{site.project_title}} 是不支持 CSP的。这是由于 [HTML Imports](/platform/html-imports.html) 是通过 XHR 的方式给 polyfill 实现的，
+这反而由于把字符串当成 JavaScript 执行而且导致不支持 CSP。因此，如果你导入一个有内联脚本的文件，那就是失败。此问题在浏览器原生支持 HTML Imports (参看 Blink 的 [crbug.com/240592](http://crbug.com/240592) bug 跟踪) 后将不存在。
 
-### How can I contribute? {#contributing}
+### 我怎样才能参与贡献? {#contributing}
 
-We love to hear your comments or suggestions. [File a bug](https://github.com/polymer/polymer/issues/new) or swing by the [mailing list](/discuss.html) and say "hi"--we don't bite! If you want
-to contribute code, see our [contributor's guide](https://github.com/Polymer/tools/blob/master/CONTRIBUTING.md).
+我们很乐意听到你的评论和建议. [报bug](https://github.com/polymer/polymer/issues/new) 或者转到[邮件清单](/discuss.html) 打声招呼"hi"--我们不会咬你的! 如果你想
+贡献代码, 参看[贡献者的指南](https://github.com/polymer/polymer/blob/master/CONTRIBUTING.md).
 
-### Where is the best place to file bugs? {#filebugs}
+### 哪里才是报bug的最佳地方? {#filebugs}
 
-We have many different demo, platform, and library repositories. If you know exactly where the problem lives in the stack, please file the bug under the appropriate repo. Otherwise, filing under the general [{{site.project_title}}](https://github.com/polymer/polymer/issues/new) project is great.
+我们有很多不同的demo, 平台, 类库的仓库. 如果你明确知道问题出在哪, 请有针对的就地报bug, 要不然就在项目通用的地方报[{{site.project_title}}](https://github.com/polymer/polymer/issues/new).
 
-### How do I manage JavaScript dependencies to prevent 1000 copies of library X? {#loadlibs}
+### 我如何组织 JavaScript 的依赖关系以防止出现 X 库 的1000次拷贝? {#loadlibs}
 
-There is no way to guarantee sharing and deduping in the general case. However, if
-you have a library of components that use a library, they can all import a
-"library.html" file that loads that library. [HTML Imports](/platform/html-imports.html)
-will de-dupe the import based on it's fully qualified path.
+通常情况下是无法保证即公用又不出现重复的。不过，如果你的 components 库依赖了另外一个库，你可以导入加载那个库的 "library.html" 文件。
+[HTML Imports](/platform/html-imports.html) 会依据它的完整路径来避免重复导入。
 
-If multiple libraries want to share a dependency, they will have to agree on a system.
-Feature detection, or an agreed upon common location for a 'jquery.html' file in a CDN, etc.
+如果多库之间需要共享依赖关系，那它们则需要遵循同个体系。
+使用功能检测，或者认同同个CDN上的同个 'jquery.html' 的公共的路径，等。
 
-### What sort of testing do you do?
+### 你们测试的方式是有哪些?
 
-{{site.project_title}} uses Chromium's continuous build infrastructure to test
-the entire system and each polyfill, individually. See our [build status page](/build/).
+{{site.project_title}} 使用 Chromium 的持续构建设施测试整个系统及每个 polyfill，分别进行。参看 [构建状态页面](/build/).
 
-### How can I validate property values? {#validateinput}
+### 我如何校验属性的值? {#validateinput}
 
-One way to validate input is to use a `*Changed` handler on to observer the
-property changing, but separate out the "set value" vs. the "validated value":
+校验输入的一个途径是使用一个 `*Changed` 事件处理器来监听属性的变更, 不过要分清 "set value" 和 "validated value":
 
     <polymer-element name="x-foo" attributes="color">
       <template>
@@ -182,23 +172,22 @@ property changing, but separate out the "set value" vs. the "validated value":
 
     <x-foo color="orange"></x-foo>
 
-### Can an element `extend` from more than one element or have multiple inheritance? {#multipleextends}
+### 一个 element 能 `继承` 自一个以上的 element 或者实现多重继承吗? {#multipleextends}
 
-For example `<polymer-element name="my-element" extends="foo bar">`.
+比如 `<polymer-element name="my-element" extends="foo bar">`.
 
-No. But {{site.project_title}} may provide a syntax for mixins in the future.
+不支持. 但是 {{site.project_title}} 以后可能会支持混淆似的语法。
 
-### I don't like package managers, can't I download {{site.project_title}} as a zip? {#bower}
+### 我不喜欢包管理工具，我能直接下载 {{site.project_title}} 的zip包吗? {#bower}
 
-{{site.project_title}} has many different pieces. Creating a one-stop-shop .zip for
-all of the different permutations is unwieldy. If you really want a .zip, Github
-provides a download link on each project page. However in some cases, you won't get the necessary
-dependencies and will need to do this on multiple repositories.
+{{site.project_title}} 分成很多的块。创建一个一步到位的包会显示非常的臃肿。如何你实在想要一个 zip包，可以直接从Github上提供的连接下载。
+不过某些场景下，你还是无法获得所需要的依赖，得挨个去下载。
 
-Web components and {{site.project_title}} are intended to be extremely granular.
-This is on purpose, to allow users to use exactly what they need and nothing more. In additional to granularity, higher-level components may be composed out of lower-level components. Bower allows us to easily manage those dependencies.
+Web components 和 {{site.project_title}} 是有意细粒化的。
+这也是个目标，允许用户精确使用所需的同时没有额外的负担。除了细粒化，高层的 components 可能由 低层的 components 组件而成，
+Bower 允许我们更容易的管理依赖关系。
 
-### My components are producing markup with multiple ids of the same name. {#multipleids}
+### 我的 components 发布后是同一个名称的不同id的标记。 {#multipleids}
 
 {{site.project_title}} tries hard to mimic native Shadow DOM, in that nodes with the same
 `id`s will still be encapsulated.

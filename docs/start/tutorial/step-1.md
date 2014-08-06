@@ -208,7 +208,7 @@ core-toolbar {
 }</strong>
 </pre>
 <aside>
-  <h4>关键点</h4>
+  <h4>要点</h4>
   <ul>
     <li><code>&lt;core-header-panel&gt;</code> 是个普通的element，可以作为整个页面的布局或作为一个有工具栏的卡片。 要作成整个页面，可滚动的容器，则需要显示的设置它的高度。
     <code>overflow</code> 和 <code>-webkit-overflow-scrolling</code> 属性确保了在触屏设备上流畅的滚动，尤其是iOS设备。</li>
