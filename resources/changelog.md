@@ -3,11 +3,10 @@ layout: default
 type: resources
 navgroup: resources
 shortname: Resources
-title: Releases
+title: 更新日志
 ---
 
-This document lists the notable changes across the entirety of the project,
-including polyfill repos, tools, projects, and UI elements.
+本文档列出整个项目发布的日志，包括 polyfill repos，工具，项目，和 UI elements。
 
 {% comment %}
 ## 2013-xx-xx {#2013-xx-xx}

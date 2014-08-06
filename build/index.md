@@ -10,7 +10,7 @@ add_permalinks: false
 
 <link rel="import" href="/elements/repos-list.html">
 
-This is a snapshot of each repository. See {{site.project_title}}'s [build waterfall](http://build.chromium.org/p/client.polymer/) for everything.
+这里是每个仓库的快照。 参看 {{site.project_title}} 的 [构建瀑布图](http://build.chromium.org/p/client.polymer/) 了解全部。
 
 <repos-list></repos-list>
 
