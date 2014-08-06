@@ -3,8 +3,8 @@ layout: default
 type: start
 navgroup: docs
 shortname: Start
-title: Getting Started
-subtitle: Your first Polymer application 
+title: 入门教程
+subtitle: 你的第一个 Polymer 应用程序 
 ---
 
 <style>
@@ -33,35 +33,34 @@ subtitle: Your first Polymer application
 }
 </style>
 
-
-In this tutorial, you'll build a small {{site.project_title}} application -- a very basic client for a social networking service. The end result will look like this:
+通过本教程, 你将构建一个小小的 {{site.project_title}} 应用程序 -- 一个非常基础的社交类客户端.最终效果如下：
 
 <figure layout vertical center>
   <a href="/samples/tutorial/finished/index.html" layout horizontal flex class="unquote-link">
     <div class="unquote-image" flex></div>
   </a>
   <figcaption>
-    Click screenshot for demo
+    点击截图去演示
   </figcaption>
 </figure>
 
-This project will introduce you to most of the key concepts in working with {{site.project_title}}. Don't worry if you don't understand everything. Each of the concepts presented here is described in detail in the {{site.project_title}} documentation.
+本项目会将使用 {{site.project_title}} 过程中的一些比较关键的概念灌输给你。不完全理解也不要担心。这里提到的每个概念在 {{site.project_title}} 文档里都有详细的说明。
 
-## Before you start: getting the sample project
+## 在你开始前：请先下载入门项目
 
-To get started, download the starter project. This starter project includes all of the {{site.project_title}} libraries and dependencies you'll need to get started.
+准备开始前，请先下载本入门项目。本入门项目包含了你将需要的所有 {{site.project_title}} 类库和依赖。
 
 <p layout horizontal center-justified>
   <a href="https://github.com/Polymer/polymer-tutorial/archive/master.zip">
-    <paper-button icon="file-download" id="download-button" raisedButton label="Download Starter Project" onclick="downloadStarter()"></paper-button>
+    <paper-button icon="file-download" id="download-button" raisedButton label="下载入门项目" onclick="downloadStarter()"></paper-button>
   </a>
 </p>
 
-Unzip the starter project somewhere on your local drive. 
+将入门项目解压到你本地硬盘任意位置。
 
-The starter includes an initial version of the project you'll be working with. If you run into trouble, it also includes incremental versions of the project so you can check your work along the way. 
+本项目包含一个初始化的版本给你。如果你遇到了困难，里面还包含有完整项目的所有增量的(每一步)版本，你可以边参考边继续下去。
 
-While you're working, you'll need a basic HTTP server to serve your pages. If you have Python installed, you can run one of the following commands in the top level of the starter project.
+开发过程中，你需要一个基础的 HTTP 服务器来放你的页面。如果你已经安装了 Python，你可以在本项目的根目录运行以下的命令其中的一个：
 
 Python 2.x:
 
@@ -71,20 +70,20 @@ Python 3.x:
 
     python -m http.server 
 
-Test out the web server by loading the finished version of the project. For example:
+运行本项目的最终版本来检测你的 web 服务器。如：
 
 -  [http://localhost:8000/finished/](http://localhost:8000/finished/)
 
-URLs in this tutorial assume your local server is listening on port 8000. 
-If you're using a different port, substitute the port you're using.
+本教程里的连接是假设你本地的 web 服务器监听的端口号是 8000.
+如果你用的其他端口号，则自行替换成你所用的。
 
-**Note:** On Windows, Python's simple HTTP server may not provide the correct MIME type for SVG images.
-If the images don't render, try a different web server.
+**注意:** 在 Windows 操作系统上, Python 的 simple HTTP 服务器可能对SVG图片的 MIME type 支持有误。
+如果图片无法渲染，尝试使用其他的 web 服务器。
 {: .alert .alert-info }
 
-### Next step
+### 下一步
 
 <a href="/docs/start/tutorial/step-1.html">
-  <paper-button icon="arrow-forward" label="Step 1: Creating the app structure" raisedButton></paper-button>
+  <paper-button icon="arrow-forward" label="步骤 1: 搭建 app 的结构" raisedButton></paper-button>
 </a>
 

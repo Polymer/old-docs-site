@@ -3,8 +3,8 @@ layout: default
 type: start
 navgroup: docs
 shortname: Start
-title: "Step 1: Creating the app structure"
-subtitle: Your first Polymer application 
+title: "步骤 1: 搭建 app 的结构"
+subtitle: 你的第一个 Polymer 应用程序
 ---
 
 <link rel="import" href="/elements/side-by-side.html">
@@ -13,19 +13,19 @@ subtitle: Your first Polymer application
 
 {% include toc.html %}
 
-## Step 1: Creating the app structure
+## 步骤 1: 搭建 app 的结构
 
-In this step, you'll use some pre-built Polymer elements to create the basic application structure, with a toolbar and tabs.
+在本步骤里，你将会用到一些已有的 Polymer elements 来搭建应用程序的基础结构，有工具栏和标签栏。
 
-In this step, you'll learn about:
+通过本步骤，你将学到：
 
--   Using HTML imports.
--   Using {{site.project_title}} elements with standard HTML, CSS and JavaScript.
+-   使用 HTML imports.
+-   结合标准的 HTML, CSS 和 JavaScript使用 {{site.project_title}} elements.
 
-### Edit index.html
+### 编辑 index.html
 
 
-Go to the `starter` directory and open the `index.html` file in your favorite editor. The starting file looks like this:
+到 `本项目` 的根目录并用你偏好的编辑器打开 `index.html` 文件. 文件开始看上去是这样的:
 
 <side-by-side>
 <pre>
@@ -44,15 +44,15 @@ Go to the `starter` directory and open the `index.html` file in your favorite ed
   ...
 </pre>
 <aside>
-  <h4>Key information</h4>
+  <h4>要点</h4>
   <ul>
-    <li>This bare-bones file defines some styles and embeds the <code>platform.js</code> script, which supplies any missing platform features.</li>
-    <li>The <code>link rel="import"</code> element is an <em>HTML import</em>, a new way of including resources into an HTML file.</li>
+    <li>这个基础的文件定义了一些样式和链入了可弥补浏览器原生不支持某些特性的 <code>platform.js</code> 脚本。</li>
+    <li> <code>link rel="import"</code> element 就是 <em>HTML import</em>啦,是一种将资源导入到一个 THML 文件里的新途径.</li>
   </ul>
 </aside>
 </side-by-side>
 
-Skipping over the styles for now, at the end of the file you'll find something new:
+先跳过样式部分，在文件的底下你会看到一些新东西：
 
 <side-by-side>
 <pre>
@@ -63,12 +63,12 @@ Skipping over the styles for now, at the end of the file you'll find something n
   ...
 </pre>
 <aside>
-  <h4>Key information</h4>
+  <h4>要点</h4>
   <ul>
-    <li>The <code>unresolved</code> attribute on the <code>&lt;body></code> element is used to prevent a flash of unstyled content 
-        (FOUC) on browsers that lack native support for custom elements. For details, see the 
+    <li>这里<code>&lt;body></code> element 上的 <code>unresolved</code> 属性是用来防止某些浏览器原生不支持 custom elements 而且引起的无样式内容闪动(flash of unstyled content - FOUC)问题 . 
+    详情请查看
         <a href="/docs/polymer/styling.html#fouc-prevention">Polymer styling reference</a>.</li>
-    <li>The <code>touch-action="auto"</code> attribute is there to ensure touch events are handled properly on some browsers.</li>
+    <li> <code>touch-action="auto"</code> 属性是保证 touch 事件在某些浏览器上被正确处理的.</li>
   </ul>
 </aside>
 </side-by-side>
@@ -77,7 +77,7 @@ Skipping over the styles for now, at the end of the file you'll find something n
   <core-icon icon="polymer"></core-icon>
 </div>
 
-Add HTML import links to import the `<core-header-panel>`, `<core-toolbar>`, and `<paper-tabs>` elements:
+追加 HTML import 连接将 `<core-header-panel>`, `<core-toolbar>`, 和 `<paper-tabs>` elements 导入:
 
 <side-by-side>
 <pre>
@@ -95,15 +95,14 @@ Add HTML import links to import the `<core-header-panel>`, `<core-toolbar>`, and
 &lt;style>
 </pre>
   <aside>
-    <h4>Key information</h4>
+    <h4>要点</h4>
     <ul>
       <li>
-        Polymer uses <a href="/platform/html-imports.html">HTML imports</a> to load components.
-        HTML imports provide dependency management, ensuring that your elements and all of their dependencies are loaded 
-        before you use them.
+        Polymer 使用 <a href="/platform/html-imports.html">HTML imports</a> 来加载 components.
+        HTML imports 提供了依赖关系的管理，保证你的 elements 和它们的依赖都加载好了你再使用它们。
       </li>
       <li>
-        Throughout this tutorial, the code you need to add appears in <code><strong class="highlight nocode">bold black text</strong></code>.
+        在本教程里，你要添加的代码就是<code><strong class="highlight nocode">加粗的黑体文本</strong></code>部分。
       </li>
     </ul>
   </aside>
@@ -113,7 +112,7 @@ Add HTML import links to import the `<core-header-panel>`, `<core-toolbar>`, and
   <core-icon icon="polymer"></core-icon>
 </div>
 
-To add a toolbar, add the following code inside the `<body>` tag.
+要添加一个工具栏，将下面的代码添加到 `<body>` 标签里.
  
 <side-by-side>
 <pre>
@@ -127,17 +126,14 @@ To add a toolbar, add the following code inside the `<body>` tag.
 &lt;/core-header-panel></strong>
 </pre>
   <aside>
-    <h4>Key information</h4>
+    <h4>要点</h4>
 
     <ul>
-      <li>The 
-          <code><a href="/docs/elements/core-elements.html#core-header-panel">&lt;core-header-panel&gt;</a></code> 
-          element is a simple container that holds a 
-          header (in this case a <code>&lt;core-toolbar></code> element), and some content. By 
-          default, the header stays at the top of the screen, but it can also be 
-          set to scroll with the content.</li>
-      <li>The <code><a href="/docs/elements/core-elements.html#core-toolbar">&lt;core-toolbar></a></code> element serves 
-          as a container for tabs, menu buttons, and other controls.</li>
+      <li><code><a href="/docs/elements/core-elements.html#core-header-panel">&lt;core-header-panel&gt;</a></code> 
+          element 是一个可以包含一个标题栏(本例是个 <code>&lt;core-toolbar></code> element)和内容的简单容器. 
+          标题栏默认是保持在页面的顶部，当然也可以设置成随页面滚动而滚动</li>
+      <li><code><a href="/docs/elements/core-elements.html#core-toolbar">&lt;core-toolbar></a></code> element 
+      	则作为包含标签栏，菜单按钮，和其他控制器相关的容器。</li>
     </ul>
   </aside>
 </side-by-side>
@@ -146,13 +142,11 @@ To add a toolbar, add the following code inside the `<body>` tag.
   <core-icon icon="polymer"></core-icon>
 </div>
 
-Add the tabs.
+添加标签栏.
 
-The application will use tabs for navigating between two different views,
-a list of all messages and a list of favorites. The 
+本应用程序会使用标签栏来作为两个不同的视图之间的导航，一个视图是所有消息列表，另一个视图是偏好列表。
 <code><a href="/docs/elements/paper-elements.html#paper-tabs">&lt;paper-tabs&gt;</a></code>
-element works much like a `<select>` element, but it's styled as a set of
-tabs.
+element 的效果与 `<select>` element 类似, 只是它的样式被定义成了一组tab标签.
 
 <side-by-side>
 <pre>
@@ -168,21 +162,19 @@ tabs.
 ...
 </pre>
   <aside>
-    <h4>Key information</h4>
+    <h4>要点</h4>
     <ul>
       <li>
-        <code>&lt;paper-tabs></code> identifies the selected child by its name
-        value or its index value.
+        <code>&lt;paper-tabs></code> 标识了子节点选中的方式是通过 name 值还是它的索引下标值.
       </li>
       <li>
-        <code>selected="all"</code> chooses the first tab as the initially selected tab.
+        <code>selected="all"</code> 表示选择第一个tab标签作为默认选中标签.
       </li>
-      <li>In this case, the children are <code>&lt;paper-tab></code> elements, which provide
-         styling and the "ink ripple" animation when you touch a tab.
+      <li>在本例里, 子节点都是 <code>&lt;paper-tab></code> elements, 提供了当你点击一个tab标签时 "水墨涟漪" 的样式和动画效果.
       </li>
       <li>
-        <code>self-end</code> is a
-        <a href="/docs/polymer/layout-attrs.html">layout attribute</a>.
+        <code>self-end</code> 是个
+        <a href="/docs/polymer/layout-attrs.html">布局属性</a>.
       </li>
 
     </ul>
@@ -193,7 +185,7 @@ tabs.
   <core-icon icon="polymer"></core-icon>
 </div> 
 
-Add styles for the new elements. Add the following CSS rules inside the `<style>` element.
+给新 elements 添加样式. 将以下的CSS规则添加到 `<style>` element 里.
 
 <side-by-side>
 <pre><strong class="highlight nocode">
@@ -216,14 +208,12 @@ core-toolbar {
 }</strong>
 </pre>
 <aside>
-  <h4>Key information</h4>
+  <h4>要点</h4>
   <ul>
-    <li>The <code>&lt;core-header-panel&gt;</code> is a generic element that can be used as either a 
-        full-page layout or for a card with a toolbar. To use it as a full-page, scrollable container,
-        set its height explicitly. The <code>overflow</code> and <code>-webkit-overflow-scrolling</code> properties ensure that
-        scrolling works smoothly on touch devices, especially iOS.</li>
-    <li>The toolbar adds a default margin on its children, to space controls appropriately. The tabs don't need this extra spacing.</li>
-    <li>The <code>user-select</code> properties prevent the user from accidentally selecting the tab text.</li>
+    <li><code>&lt;core-header-panel&gt;</code> 是个普通的element，可以作为整个页面的布局或作为一个有工具栏的卡片。 要作成整个页面，可滚动的容器，则需要显示的设置它的高度。
+    <code>overflow</code> 和 <code>-webkit-overflow-scrolling</code> 属性确保了在触屏设备上流畅的滚动，尤其是iOS设备。</li>
+    <li>工具栏为其子tab标签添加了默认的 margin 值，以便适当的控制间隔。这里的tab标签之间不需要额外的间隔。</li>
+    <li><code>user-select</code> 属性是防止用户意外的选中tab标签里的文本.</li>
   </ul>
 </aside>
 </side-by-side>
@@ -232,8 +222,7 @@ core-toolbar {
   <core-icon icon="polymer"></core-icon>
 </div> 
 
-Add a `<script>` tag at the end of the file to handle the tab switching
-    event.
+追加一个 `<script>` wk到文件的底部来处理tab标签之间的切换事件.
 
 
 <side-by-side>
@@ -248,46 +237,44 @@ Add a `<script>` tag at the end of the file to handle the tab switching
 </strong>&lt;/body>
 </pre> 
   <aside>
-    <h4>Key information</h4>
+    <h4>要点</h4>
     <ul>
       <li>
-        The <code>&lt;paper-tabs></code> element fires a <code>core-select</code> event when you select a 
-        tab. You can interact with the element just like a built-in element.
+        <code>&lt;paper-tabs></code> element 会在你选中一个标签时触发 <code>core-select</code> 事件。
+        你可以将其作为内部 element 一样与此 element 互动。
       </li> 
       <li>
-        Right now there's nothing to switch; you'll finish hooking it up later.
+      	不过目前没有什么可切换的，稍后你再完成那部分功能。
       </li>
     </ul>
   </aside>
 </side-by-side>
 
 
-Save the file and open the project in your browser (for example, [http://localhost:8000/starter/](http://localhost:8000/starter/)). You have a Polymer app! 
+保存文件并在浏览器里打开你的项目 (如, [http://localhost:8000/starter/](http://localhost:8000/starter/)). 一个 Polymer app 呈现在你的眼前! 
 
 
 <div layout vertical center>
   <img class="sample" src="/images/tutorial/step-1.png">
 </div>
 
-**Note:** If you have the console open, you'll notice that you get two `core-select` 
-events each time you switch tabs &mdash; one for the previously-selected tab and one 
-for the newly-selected tab. The `<paper-tabs>` element inherits this behavior from 
-<code><a href="/docs/elements/core-elements.html#core-selector">&lt;core-selector&gt;</a></code>, which supports
-both single and multiple selections.
+**注意:** 如果你打开了控制台,你可能已经注意到了，你每次切换tab标签时都触发了两次 `core-select` 
+事件 &mdash; 一个是先前选中tab标签的，另一个是之后选中的tab标签的。`<paper-tabs>` element 从
+<code><a href="/docs/elements/core-elements.html#core-selector">&lt;core-selector&gt;</a></code> 继承了此行为, 是同时支持单选和多选的。
 {: .alert .alert-info }
 
-If something isn't working, check your work against the `index.html` file in the `step-1` folder:
+如果哪里出了问题，可以对照 `step-1` 文件夹里的 `index.html` 文件检查你的工作：
 
 -   [`index.html`](https://github.com/Polymer/polymer-tutorial/blob/master/step-1/index.html)
 
-In this step, you used HTML imports to import custom elements, and used them to create a simple app layout.
+在本步骤里，你已经用上了 HTML imports 来导入 custom elements，并且也用这些 custom elements 搭建起了一个简单的 app 的布局。
 
-**Explore:** Can you use other children inside the `<paper-tabs>`? Try an image or a text span
+**探讨:** 你能在 `<paper-tabs>` 里使用其他子节点吗? 尝试一下 image 或者带文本的 span 标签。
 {: .alert .alert-info }
 
-### Next step
+### 下一步
 
 <a href="/docs/start/tutorial/step-2.html">
-  <paper-button icon="arrow-forward" label="Step 2: Your own element" raisedButton></paper-button>
+  <paper-button icon="arrow-forward" label="步骤 2: 你自己的 element" raisedButton></paper-button>
 </a>
 
