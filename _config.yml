@@ -21,6 +21,6 @@ kramdown:
 
 # Site globals used throughout docs.
 project_title: Polymer
-latest_version: 0.3.4
+latest_version: 0.3.5
 add_permalinks: true # adds permalinks to heading tags.
 load_disqus: true
