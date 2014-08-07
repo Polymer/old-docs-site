@@ -24,83 +24,64 @@ title: Getting the code
 
 {% include toc.html %}
 
-## Installing {{site.project_title}} {#installing-polymer}
+## 安装 {{site.project_title}} {#installing-polymer}
 
-If you want to learn {{site.project_title}}, the easiest way to get started is
- to download the starter project:
+想要入门 {{site.project_title}}，最容易的方式就是下载这个起步项目：
 
 <p layout horizontal center-justified>
   <a href="https://github.com/Polymer/polymer-tutorial/archive/master.zip">
-    <paper-button icon="file-download" id="download-button" raisedButton label="Download Starter Project" onclick="downloadStarter()"></paper-button>
+    <paper-button icon="file-download" id="download-button" raisedButton label="下载起步项目" onclick="downloadStarter()"></paper-button>
   </a>
 </p>
 
-The starter project includes {{site.project_title}}, a set of elements, and a starter app.
-Work through the tutorial for an introduction to {{site.project_title}} APIs and concepts, 
-or work through the finished app on your own.
+这个起步项目包含 {{site.project_title}}、一套元素和一个起步应用。你可以通过教程逐步了解 {{site.project_title}} 的API及其概念，或者自行研究其应用的成品。
 
 <a href="/docs/start/tutorial/intro.html">
-  <paper-button icon="arrow-forward" label="START THE TUTORIAL" raisedButton></paper-button>
+  <paper-button icon="arrow-forward" label="开始教程" raisedButton></paper-button>
 </a>
 
-If you're ready to start your own project, you can pick and choose the 
-components you want to install, or install a whole set of components, 
-like the Paper element collection.
+如果你自己已经有准备好的项目，你可以挑选安装自己需要的组件，也可以安装像 Paper 元素集这样的一整套组件。
 
-## Installing components {#installing-components}
+## 安装组件 {#installing-components}
 
-{{site.project_title}} is very modular; you can install just the {{site.project_title}}
-library and platform polyfills, a single element, or a whole collection of elements.
+{{site.project_title}}是非常模块化的，你可以只安装 {{site.project_title}} 库和平台的 polyfills、单一的元素或一整套元素。
 
-Throughout the site, you'll find component download buttons like this:
+像这样的组件下载按钮会贯穿我们的整个网站：
 
-<component-download-button org="Polymer" component="paper-elements" label="GET THE PAPER ELEMENTS">
+<component-download-button org="Polymer" component="paper-elements" label="获取 PAPER 元素集">
 </component-download-button>
 
-The component download button offers three ways to install a component or set of components:
+这些组件下载按钮提供 3 种安装一个或一套组件的方式：
 
-*   Bower. **Recommended**. Bower manages dependencies, so installing a component
-    also installs any missing dependencies. Bower also handles updating
-    installed components. For more information, see [Installing with Bower](#using-bower).
+*   Bower。**推荐**。Bower 会管理依赖，它安装一个组件的同时也会补齐所有缺失的依赖。Bower还可以让安装过的组件保持更新。更多信息参见[用 Bower 安装](#using-bower)。
 
-*   ZIP file. Includes all dependencies, so you can unzip it and start using it 
-    immediately. The ZIP file requires no extra tools, but doesn't provide a 
-    built-in method for updating dependencies. For more information, see
-    [Installing from ZIP files](#using-zip).
+*   ZIP 文件。包括所有的依赖，解压后就可以立刻使用。该 ZIP 文件不需要额外的工具，但其自身不具备更新依赖的方法。更多信息参见[用 ZIP 文件安装](#using-zip)。
 
-*   Github. When you clone a component from Github, you need to manage all of the dependencies
-    yourself. If you'd like to hack on the project or submit a pull request, see 
-    [setting up {{site.project_title}} with git](/resources/tooling-strategy.html#git).
+*   Github。当你从 Github clone 一个组件时，你需要自行管理所有的依赖。而如果你想对其做一些 hack 或提交 pull request，可参见[用 git 设置 {{site.project_title}}](/resources/tooling-strategy.html#git)。
 
-Pick your method and follow the instructions in the download dialog.
+请选择一种方式，并遵循其下载对话框里的步骤。
 
-### Installing with Bower {#using-bower}
+### 用 Bower 安装 {#using-bower}
 
-The recommended way to install **{{site.project_title}} {{site.latest_version}}**
-is through Bower. To install Bower, see the [Bower web site](http://bower.io/). 
+通过 Bower 是推荐的安装 **{{site.project_title}} {{site.latest_version}}** 的方式。Bower 的安装方式参见[Bower 网站](http://bower.io/)。
 
-Bower removes the hassle of dependency management when developing or consuming
-elements. When you install a component, Bower makes sure any dependencies are
-installed as well. 
+Bower 去除了开发或使用元素时管理依赖的麻烦。当你安装一个组件时，Bower 会确保所有的依赖都是安装好的。
 
-#### Project setup
+#### 项目设置
 
-If you haven't created a `bower.json` file for your application, run this
-command from the root of your project:
+如果你还没有为你的应用创建一个 `bower.json` 文件，请在你项目的根目录运行这条命令：
 
     bower init
 
-This generates a basic `bower.json` file. Some of the questions, like 
-"What kind of modules do you expose," can be ignored by pressing Enter.
+这条命令会生成一个基础的 `bower.json` 文件。其产生的一些诸如“你会外露什么类型的模块”的问题可以通过回车跳过。
 
-The next step is to install one or more {{site.project_title}} packages:
+下一步是安装一个或多个 {{site.project_title}} 包：
 
     bower install --save Polymer/polymer
 
-Bower adds a `bower_components/` folder in the root of your project and 
-fills it with {{site.project_title}} and its dependencies.
+Bower 会在你项目的根目录添加一个 `bower_components/` 文件夹，并填入 {{site.project_title}} 及其依赖。
 
-**Tip:** `--save` adds the item as a dependency in *your* app's bower.json:
+**提示：**`--save` 会在*你的*应用的 bower.json 文件中添加对其的依赖：
 ```
 {
   "name": "my-project",
@@ -112,73 +93,54 @@ fills it with {{site.project_title}} and its dependencies.
 ```
 {: .alert .alert-success }
 
-#### Selecting packages
+#### 选择包
 
-Using the component download button, click the **Bower** tab 
-and cut and paste the Bower install command.
+打开组件下载按钮，然后点击 **Bower** 卡片并剪切+粘贴 Bower 安装命令。
 
-You can also choose one of the commonly-used packages:
+你还可以选择其中一个常用的包：
 
--   `Polymer/polymer`. Just the {{site.project_title}} library
-    and platform polyfills. 
+-   `Polymer/polymer`。只有 {{site.project_title}} 库和平台 polyfills。
 
--   `Polymer/core-elements`. The 
-    [{{site.project_title}} Core elements](/docs/elements/core-elements.html) 
-    collection.
+-   `Polymer/core-elements`。[{{site.project_title}} Core 元素集](/docs/elements/core-elements.html)。
 
--   `Polymer/paper-elements`. The 
-    [Paper elements](/docs/elements/paper-elements.html) collection.
+-   `Polymer/paper-elements`。[Paper 元素集](/docs/elements/paper-elements.html)。
 
-For example, if you'd like to install {{site.project_title}}’s collections 
-of pre-built elements, run the following commands from the terminal:
+例如，如果你想安装 {{site.project_title}} 预创建的元素集，可在终端允许下面的命令：
 
     bower install --save Polymer/core-elements
     bower install --save Polymer/paper-elements
 
 
-#### Updating packages {#updatebower}
+#### 更新包 {#updatebower}
 
-When a new version of {{site.project_title}} is available, run `bower update`
-in your app directory to update your copy:
+当 {{site.project_title}} 有一个新版本时，在你的应用目录下运行 `bower update` 即可更新你的拷贝：
 
     bower update
 
-This updates all packages in `bower_components/`.
+它会更新所有 `bower_components/` 下所有的包。
 
-### Installing from ZIP files {#using-zip}
+### 用 ZIP 文件安装 {#using-zip}
 
-When you download a component or component set as a ZIP file, you get all of 
-the dependencies bundled into a single archive. It's a great way to get 
-started because you don't need to install any additional tools.
+当你以一个 ZIP 文件的方式下载了一个或一套组件时，这个文件绑定了你需要的所有依赖。这是一种好的起步方式，因为你无须安装额外的工具。
 
-Expand the ZIP file in your project directory to create a `components` folder.
+在你的项目目录里展开这个 ZIP 文件即创建了一个 `components` 文件夹。
 
 ![](/images/zip-file-contents.png)
 
-If you download multiple component sets as ZIP files, you'll usually end up with 
-multiple copies of some dependencies. You'll need to merge the contents of the 
-ZIP files.
+如果你下载了多套组件的 ZIP 文件，你往往会最终得到多种依赖。这时你需要合并这些 ZIP 文件的内容。
 
-Unlike Bower, the ZIP file doesn't provide a built-in method 
-for updating dependencies. You can manually update components with a new ZIP 
-file. 
+ZIP 文件不像 Bower 那样提供更新依赖的内建方法。你可以用新的 ZIP 文件手动更新组件。
 
-### Using git {#git}
+### 用 git 设置 {#git}
 
-Because there are a number of dependencies we suggest you install 
-{{site.project_title}} with Bower instead of git. If you'd like to hack on 
-the project or submit a pull request check out our guide on 
-[setting up {{site.project_title}} with git](/resources/tooling-strategy.html#git).
+因为存在一些依赖，所以我们推荐用 Bower 替代 git 安装 {{site.project_title}}。如果你想对这个项目做一些 hack 或提交 pull request，请查阅[用 git 设置 {{site.project_title}}](/resources/tooling-strategy.html#git)。
 
-## Next steps {#nextsteps}
+## 下一步 {#nextsteps}
 
-Now that you've installed {{site.project_title}} it's time to learn the core 
-concepts. In the next section we'll get you up and running on using elements 
-in a project. Continue on to:
+现在，我们已经安装了 {{site.project_title}}，是时候学习其核心概念了。在下一章我们会教您如何在一个项目中使用元素。来吧：
 
 <a href="/docs/start/usingelements.html">
-  <paper-button icon="arrow-forward" label="Using elements" raisedButton></paper-button>
+  <paper-button icon="arrow-forward" label="使用元素" raisedButton></paper-button>
 </a>
 
-If you'd rather skip ahead, check out our guide on 
-[Creating Elements](/docs/start/creatingelements.html).
+如果你想跳过这里，请查阅[创建元素](/docs/start/creatingelements.html)。
