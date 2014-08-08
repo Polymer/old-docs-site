@@ -262,7 +262,7 @@ Add a `<script>` tag at the end of the file to handle the tab switching
 </side-by-side>
 
 
-Save the file and open the project in your browser (for example, [http://localhost:8000/starter/](http://localhost:8000/starter/)). You have a Polymer app! 
+Save the file and open the project in your browser (for example, [http://localhost:3000/starter/](http://localhost:3000/starter/)). You have a Polymer app! 
 
 
 <div layout vertical center>

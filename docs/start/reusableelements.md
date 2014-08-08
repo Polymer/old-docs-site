@@ -37,14 +37,15 @@ This guide will ensure your *master* branch contains the bare-minimum of code th
 Add the logic specific to your new element and verify its functionality. Good unit tests
 are essential to your verification plan but a good way to quickly sanity test your component
 is to access your demo.html file via a local web server. There are several ways to do this
-but one easy method is to run a simple web server that ships with Python, using the following
+but one easy method is to run a simple Node-based web server, using the following
 commands:
 
+    $ npm install -g serve  # To install serve
     $ cd ..  # You'll want to run the web server from the parent directory.
-    $ python -m SimpleHTTPServer
+    $ serve
 
-This starts a web server on port 8000, so you can test your new element by navigating a browser 
-to the URL `localhost:8000/test-element/demo.html`. 
+This starts a web server on port 3000, so you can test your new element by navigating a browser 
+to the URL `localhost:3000/test-element/demo.html`. 
 
 ## Deploy
 
