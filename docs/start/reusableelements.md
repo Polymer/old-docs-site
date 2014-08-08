@@ -122,7 +122,7 @@ This allows us to:
 
 Take a look at `demo.html` and the rendered JSDocs in `index.html` in your browser to make sure you're happy with your customizations. You'll need to access them via `http:` URIs served from a [local web server](https://www.google.com/search?q=local+web+server); they won't display properly if opened directly via `file:` URIs.
 
-Once `demo.html` and the docs in `index.html` look good locally, make sure that you've pushed any changes to your repo's `master` branch. We can now use a special script to push a landing page for your element to GitHub pages. Inside your terminal, walk through running the following commands:
+Once `demo.html` and the docs in `index.html` look good locally, make sure that you've pushed any changes to your repo's `master` branch. Also, make sure that you've updated throughout your project the name and paths from the original seed element to your element, including the ones in `bower.json`. We can now use a special script to push a landing page for your element to GitHub pages. Inside your terminal, walk through running the following commands:
 
     # Navigate back to your development directory
     cd ..
