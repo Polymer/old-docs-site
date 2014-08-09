@@ -328,7 +328,7 @@ You can setup internal event delegation for your element by declaring an `on-*`
 handler on the `<polymer-element>` definition. Use it to catch events that bubble
 up from children.
 
-Things become come very interesting when several elements need to respond to an event.
+Things become very interesting when several elements need to respond to an event.
 
 {% raw %}
     <polymer-element name="my-app" on-said-hello="{{third}}">
