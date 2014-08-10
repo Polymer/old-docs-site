@@ -63,7 +63,7 @@ title: 获取源码
 
 ### 用 Bower 安装 {#using-bower}
 
-通过 Bower 是推荐的安装 **{{site.project_title}} {{site.latest_version}}** 的方式。Bower 的安装方式参见[Bower 网站](http://bower.io/)。
+使用 Bower 安装 **{{site.project_title}} {{site.latest_version}}** 是推荐的方式。Bower 的安装方式参见[Bower 网站](http://bower.io/)。
 
 Bower 去除了开发或使用 element 时管理依赖的麻烦。当你安装一个 component 时，Bower 会确保所有的依赖都是安装好的。
 
@@ -73,7 +73,7 @@ Bower 去除了开发或使用 element 时管理依赖的麻烦。当你安装�
 
     bower init
 
-这条命令会生成一个基础的 `bower.json` 文件。其产生的一些诸如“你会外露什么类型的模块”的问题可以通过回车跳过。
+这条命令会生成一个基础的 `bower.json` 文件。其产生的一些诸如“What kind of modules do you expose,”的问题可以通过回车跳过。
 
 下一步是安装一个或多个 {{site.project_title}} 包：
 
@@ -131,13 +131,13 @@ Bower 会在你项目的根目录添加一个 `bower_components/` 文件夹，�
 
 ZIP 文件不像 Bower 那样提供更新依赖的内建方法。你可以用新的 ZIP 文件手动更新 component 。
 
-### 用 git 设置 {#git}
+### 使用 git 安装 {#git}
 
-因为存在一些依赖，所以我们推荐用 Bower 替代 git 安装 {{site.project_title}}。如果你想对这个项目做一些 hack 或提交 pull request，请查阅[用 git 设置 {{site.project_title}}](/resources/tooling-strategy.html#git)。
+因为存在一些依赖，所以我们推荐用 Bower 替代 git 安装 {{site.project_title}}。如果你想对这个项目做一些 hack 或提交 pull request，请查阅[使用 git 安装 {{site.project_title}}](/resources/tooling-strategy.html#git)。
 
 ## 下一步 {#nextsteps}
 
-现在，我们已经安装了 {{site.project_title}}，是时候学习其核心概念了。在下一章我们会教您如何在一个项目中使用 element 。来吧：
+现在，我们已经安装了 {{site.project_title}}，是时候学习其核心概念了。在下一章我们会教你如何在一个项目中使用 element 。来吧：
 
 <a href="/docs/start/usingelements.html">
   <paper-button icon="arrow-forward" label="使用 element " raisedButton></paper-button>
