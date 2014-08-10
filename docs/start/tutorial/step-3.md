@@ -3,8 +3,8 @@ layout: default
 type: start
 navgroup: docs
 shortname: Start
-title: "Step 3: Using data binding"
-subtitle: Your first Polymer application 
+title: "步骤 3: 使用数据绑定"
+subtitle: 你的第一个 Polymer 应用程序 
 ---
 
 <link rel="import" href="/elements/side-by-side.html">
@@ -15,11 +15,13 @@ subtitle: Your first Polymer application
 {% include toc.html %}
 
 
-## Step 3: Using data binding
+## 步骤 3: 使用数据绑定
 
-One post is nice, but the app looks a little empty. In this step, you'll pull data from a web service and use Polymer's data binding to render it as a series of cards. 
+一条记录看上去没问题，但 app 看起来有点不充实。本步骤里，你将从服务器加载数据并使用 Polymer 的数据绑定来渲染出一系列的卡片。
 
-To get the data, you'll use the `<post-service>` element provided as part of the starter app. This element provides a very simple API for an imaginary social network. In this section, you'll use the `posts` property, which returns an array of `post` objects like this:
+要获得数据，你将使用 `<post-service>` element 来提供 app 的初始数据。 
+此 element 提供一个非常简单的 API 来模拟一个社交网络.
+本小节里，你将使用 `posts` 属性, 它返回一个像这样的数组 `记录` 对象:
 
     {
       "uid": 2,
@@ -29,14 +31,14 @@ To get the data, you'll use the `<post-service>` element provided as part of the
       "favorite": false
     }
 
-In this section you'll learn about:
+本小节，你将学到：
 
--   Data binding.
--   Published properties.
+-   数据绑定.
+-   公有的属性.
 
-### Edit post-list.html
+### 编辑 post-list.html
 
-Open the `post-list.html` file in your editor.
+在你的编器里打开 `post-list.html`。
 
 <side-by-side>
 <pre>
@@ -60,29 +62,27 @@ Open the `post-list.html` file in your editor.
 ...
 </pre>
   <aside>
-    <h4>Key information</h4>
+    <h4>要点</h4>
     <ul>
-      <li>The file already includes an import for the <code>&lt;post-service&gt;</code>
-      element, so it's ready to use.</li>
-      <li>The <code>attributes="show"</code> attribute creates a 
+      <li>文件里已经包含有 <code>&lt;post-service&gt;</code>
+      element 的导入了，已经可以使用。</li>
+      <li> <code>attributes="show"</code> 属性是声明一个名叫 <code>show</code> 的
       <a href="/docs/polymer/polymer.html#published-properties">
-      <em>published property</em></a> named <code>show</code>.
+      <em>公有属性</em></a>
       </li>
     </ul>
   </aside>
 </side-by-side>
 
 
-A <a href="/docs/polymer/polymer.html#published-properties">
-<em>published property</em></a> is a property that can be configured in markup using an attribute,
-or connected to another property using two-way data binding. You'll use the `show` property
-in a later step.
+<a href="/docs/polymer/polymer.html#published-properties">
+<em>公有的属性</em></a> 是一个可以在标记里通过属性进行配置的属性，或者与其他属性通过数据双向(two-way)绑定进行连接。你会在后面的步骤用上 `show` 属性。
 
 <div class="divider" layout horizontal center center-justified>
   <core-icon icon="polymer"></core-icon>
 </div>
 
-Add a `<post-service>` element inside the element's `<template>`:
+追加一个 `<post-service>` element 到 element 的 `<template>` 里:
 
 <side-by-side>
 <pre>
@@ -92,26 +92,25 @@ Add a `<post-service>` element inside the element's `<template>`:
 ...
 </pre>
   <aside>
-  <h4>Key information</h4>
+  <h4>要点</h4>
     <ul>
       <li>
-        The <code>posts="{%raw%}{{posts}}{%endraw%}"</code> attribute adds a two-way data binding between 
-        the <code>&lt;post-service&gt;</code> element and your custom element.
+        <code>posts="{%raw%}{{posts}}{%endraw%}"</code> 属性将数据双向绑定添加到了 <code>&lt;post-service&gt;</code> element 和你的 custom element 之间.
       </li>
     </ul>
   </aside>
 </side-by-side>
 
-The [_data binding_](/docs/polymer/databinding.html) links the service element's `posts` property to a local property (also called 
-`posts` here). Any methods you define on your custom element can access the response as `this.posts`.
+[_数据绑定_](/docs/polymer/databinding.html) 将 service element 的 `posts` 属性与一个局部属性 (这里也叫作`posts`)关联。
+你在 custom element 上定义的所有方法都可以通过 `this.posts` 来访问响应的结果。
 
 <div class="divider" layout horizontal center center-justified>
   <core-icon icon="polymer"></core-icon>
 </div> 
 
-Render a dynamic list of cards.
+动态渲染一个卡片列表。
 
-Add the following `<div>` and `<template>` tag:
+添加以下的 `<div>` 和 `<template>` 标签:
 
 <side-by-side>
 {% raw %}
@@ -132,25 +131,22 @@ Add the following `<div>` and `<template>` tag:
 </pre>
 {%endraw%}
 <aside>
- <h4>Key information</h4>
+ <h4>要点</h4>
        
  <ul>
-   <li>This new syntax <code>repeat="{%raw%}{{post in posts}}{%endraw%}"</code>, tells the template to
-   create a new instance for each item in the <code>posts</code> array.</li>
-   <li>In each template instance, the individual bindings (such as
-   <code>{%raw%}{{post.avatar}}{%endraw%}</code>) are replaced by the corresponding values for that 
-   item.</li>
+   <li>这个 <code>repeat="{%raw%}{{post in posts}}{%endraw%}"</code> 新语法，告诉 template 将 <code>posts</code> 数组里的每一项都用来新建一个实例</li>
+   <li>在每个 template 实例里, 其他单独的绑定(像
+   <code>{%raw%}{{post.avatar}}{%endraw%}</code>) 将被那一项里对应的值所替换。</li>
  </ul>
 </aside>
 </side-by-side>
 
 
-### Edit index.html
+### 编辑 index.html
 
-Import the `<post-list>` element into `index.html`.
+将 `<post-list>` element 导入到 `index.html` 里。
 
-Open `index.html` and add an import link for `post-list.html`. You can   
-replace the existing link for `post-card`:
+打开 `index.html` 并为 `post-list.html` 添加导入连接。你可以直接将原生的 `post-card`的导入连接替换掉:
 
 <pre>
 ...
@@ -163,10 +159,9 @@ replace the existing link for `post-card`:
   <core-icon icon="polymer"></core-icon>
 </div>
 
-Use the `<post-list>` element.
+使用 `<post-list>` element.
 
-Find the `<post-card>` element you added in the last step and replace it 
-with a `<post-list>`:
+找到上一个步骤里你添加的 `<post-card>` element 并将其替换成一个 `<post-list>`:
 
 <pre>
 ...
@@ -176,27 +171,26 @@ with a `<post-list>`:
 ...
 </pre>
 
-### Test your work
+### 测试你的工作
 
-Save the `index.html` file and reload the page in your browser. You should see a list of cards,
-something like this:
+保存 `index.html` 文件并在浏览器里刷新它。你应该会看到这样一个卡片列表：
 
 <div layout vertical center>
   <img class="sample" src="/images/tutorial/step-3.png">
 </div>
 
-If you have any problems, check your work against the files in the `step-3` folder:
+如果哪里出了问题，可以对照 `step-3` 文件夹里的文件检查你的工作：
 
 -   [`post-list.html`](https://github.com/Polymer/polymer-tutorial/blob/master/step-3/post-list.html)
 -   [`index.html`](https://github.com/Polymer/polymer-tutorial/blob/master/step-3/index.html)
 
-**Explore:** Open up `post-service.html` to see how the component works. Internally, it uses the <code>
-<a href="/docs/elements/core-elements.html#core-ajax">&lt;core-ajax&gt;</a></code> element to make HTTP requests.
+**探讨:** 打开 `post-service.html` 来瞧瞧此 component 是怎么工作的。 本质上，它使用 <code>
+<a href="/docs/elements/core-elements.html#core-ajax">&lt;core-ajax&gt;</a></code> element 发起 HTTP 请求的.
 {: .alert .alert-info}
 
-### Next step
+### 下一步
 
 <a href="/docs/start/tutorial/step-4.html">
-  <paper-button icon="arrow-forward" label="Step 4: Finishing touches" raisedButton></paper-button>
+  <paper-button icon="arrow-forward" label="步骤 4: 画龙点睛" raisedButton></paper-button>
 </a>
 

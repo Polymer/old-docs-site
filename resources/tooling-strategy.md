@@ -3,51 +3,52 @@ layout: default
 type: resources
 navgroup: resources
 shortname: Resources
-title: Tools & Testing
+title: 工具 & 测试
 ---
 
 {% include toc.html %}
 
-## Build status
+## 构建状态
 
-If something seems terribly wrong, check out {{site.project_title}}'s [build status page](/build/).
+如果哪里看上去严重有问题，请参看 {{site.project_title}} 的 [构建状态页面](/build/).
 
-## Vulcanize - element build tool
+## Vulcanize - element 构建工具
 
-> Vulcanization is process that turns polymers into more durable materials.
+> 硫化(合并)是使得 polymers 更加实用的处理。
 
-[Vulcanize](https://github.com/Polymer/vulcanize) is a tool to concatenate a set of web components into a single file. It's our current recommendation for a "build step". Read more about it in "[Concatenating Web Components with Vulcanize](/articles/concatenating-web-components.html)".
+[Vulcanize](https://github.com/Polymer/vulcanize) 是一个将一系列 web components 连结合并进一个文件的工具。这是我们目前推荐一个"构建步骤"。更多请参看 "[ 使用 Vulcanize 连结 Web Components](/articles/concatenating-web-components.html)".
 
-## Debugging Shadow DOM
+## 调试 Shadow DOM
 
-In Chrome, author defined Shadow DOM is inspectable using the DevTools.
+在Chrome里，客户端的 Shadow DOM 是可以通过 DevTools 来检查的。
 
-To inspect Shadow DOM defined by the user agent (e.g. the Shadow DOM of `<input type="date">`),
-turn on "Show user agent shadow DOM" in the DevTools general settings:
+要视察浏览器原生添加的 Shadow DOM (e.g. 如 `<input type="date">` 的 Shadow DOM),
+在 DevTools 的常规设置里开启 "Show user agent shadow DOM"：
 
-![Enable "Show user agent shadow DOM" in the Devtools](/images/showshadowdom.png 'Enable "Show user agent shadow DOM" in the Devtools')
+![在 Devtools 里开启 "Show user agent shadow DOM"](/images/showshadowdom.png 'Enable "Show user agent shadow DOM" in the Devtools')
 
-After reloading the DevTools, user agent Shadow DOM should be inspectable. It will render as `#shadow-root (user-agent)`s in element inspector.
+重新启动 DevTools, 客户端的 Shadow DOM 应该可以检查了。 它会作为一个 `#shadow-root (user-agent)` 的元素显示在查看器里。
 
 ## Source maps
 
-{{site.project_title}}  polyfills the [HTML Imports](/platform/html-imports.html) specification. In order for code to be debuggable at run-time, scripts embedded in components are injected into `<head>` in the main document. Tools/browsers that support [source maps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) will identify these scripts as belonging to their source components.
+{{site.project_title}}  polyfills 了 [HTML Imports](/platform/html-imports.html) 的实现。要在运行时调试代码，components 内嵌的脚本将被注入到主文档的`<head>`里。
+支持 [source maps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/)  的工具/浏览器会将这些脚本识别为源 components 所属。
 
-## Building &amp; testing 
+## 构建 &amp; 测试 
 
-To run build individual polyfills or run tests, you need `node` and `grunt-cli` on your system.
+要自定义构建或者测试 polyfills，你的系统需要安装好 `node` 和 `grunt-cli`。
 
-* install [NodeJS](http://nodejs.org) using the instructions on their website
-* use `npm` to install the [GruntJS](http://gruntjs.com) task runner for the command-line
+* 安装 [NodeJS](http://nodejs.org)，参看它官网的安装方法。
+* 使用 `npm` 安装 [GruntJS](http://gruntjs.com) 任务管理器到命令行。
   
       npm install -g grunt-cli
 
-### Building individual polyfills
+### 自定义构建 polyfills
 
-If you're interested in using an individual polyfill by itself (e.g. rather that the prebuilt platform.js bundle),
-you need to build the minified file.
+如果你对使用自定义的 polyfill 感兴趣 (e.g. 而不是使用默认的 platform.js)
+你需要构建以下的压缩文件。
 
-**Example** - building the CustomElements polyfill
+**如** - 构建 CustomElements polyfill
 
     $ mkdir cepolyfill; cd cepolyfill
 
@@ -63,47 +64,49 @@ you need to build the minified file.
 
     $ grunt
 
-**Note**: As seen in the example above, you may need to install other repo dependencies for the build to succeed. For example, the CustomElement polyfills requires `MutationObservers` and the `tools` repos. Sometime it is useful to look in the repo's [build.json](https://github.com/Polymer/CustomElements/blob/master/build.json) file for requirements.
+**注意**: 如上例所示，你可能需要安装其他依赖的repo来能构建成功。
+例如，CustomElement polyfills 依赖 `MutationObservers` 和 `tools` repos。有时候查看 repo 的 [build.json](https://github.com/Polymer/CustomElements/blob/master/build.json) 了解依赖是非常有帮助的。
 {: .alert .alert-info }
 
-### Running the tests
+### 运行测试
 
-For any repository that contains tests, in the project's root folder (e.g. `<somepath>/platform-dev/`), run:
+对于任何包含有测试的源码库，在项目的根目录(e.g. `<somepath>/platform-dev/`)运行：
 
     npm install
 
-#### Tasks
+#### 任务处理
 
-Once things are installed, you may run the tests or use `grunt` to perform tasks.
+东西都安装好后，你可以运行测试或者使用 `grunt` 来执行任务了。
 
-Build minified project files (default):
+构建压缩文件项目 (默认):
 
     grunt
     
-Run tests:
+运行测试:
 
     grunt test
 
-## Development workflow & tooling
+## 开发流程 & 工具
 
-We are currently in the early stages of investigating modern front-end tooling for projects built with {{site.project_title}}. This includes using [Yeoman](http://yeoman.io) for scaffolding out {{site.project_title}} elements, [Grunt](http://gruntjs.com) for building and optimizing projects and [Bower](http://bower.io) for component dependency management.
+我们目前还处在为基于 {{site.project_title}} 的项目使用的流行前端工具的调研初期。
+包括使用 [Yeoman](http://yeoman.io) 来搭建 {{site.project_title}} elements, [Grunt](http://gruntjs.com) 用来构建和优化项目以及 [Bower](http://bower.io) 用来管理 component 之间的依赖。
 
-While our work in this area is just beginning, take a look at the potential workflow:
+当我们在这块领域还刚刚开始时，请关注一下这些潜在的开发流程(下面是一个youtube视频)：
 
 <div class="centered" style="margin:20px;"><iframe id="video" src="http://www.youtube.com/embed/EwQkyplZHDY" frameborder="0" allowfullscreen></iframe>
 </div>
 
 The [{{site.project_title}} + Grunt](https://github.com/addyosmani/polymer-grunt-example) proof-of-concept project is a good start. Also follow our work on [generator-polymer](https://github.com/yeoman/generator-polymer/).
 
-## Using git {#git}
+## 使用 git {#git}
 
-**Note:** This section is for advanced users who want to hack on Polymer or submit a pull request. If you just want to use Polymer in a project we recommend using Bower. Please follow our guide at [Getting the Code](/docs/start/getting-the-code.html).
+**注意:** 本节是给那些想 hack Polymer 或者提交 pull request 的高级用户的。
+如果你只是想在项目中使用 Polymer 我们推荐使用 Bower。请参看我们的[获取源码](/docs/start/getting-the-code.html)指南。
 {: .alert .alert-error}
 
-### Clone the project {#clone}
+### Clone 项目 {#clone}
 
-You can clone {{site.project_title}}'s important repositories
-by running our `pull-all.sh` script:
+你可以通过执行 `pull-all.sh` 脚本来 clone {{site.project_title}} 的重要源码库：
 
     mkdir polymer_local; cd polymer_local
     git clone https://github.com/Polymer/tools.git
@@ -112,51 +115,49 @@ by running our `pull-all.sh` script:
 <!-- <p class="centered"><a href="/tools/pull-all.sh" target="_blank" class="btn btn-success" alt="Download pull-all.sh" title="Download pull-all.sh"><i class="icon-white icon-download"></i> Download pull-all.sh</a></p>
  -->
 
-Go grab a coffee. This takes a few minutes!
+去享受一杯咖啡吧，这需要几分钟的时间！
 
-`pull-all.sh` is great for hacking on the code or if you want the individual polyfill repositories. It creates two directories, `components/` and `projects/`, and checks out a number of sibling repositories to each folder.
+`pull-all.sh` 对于研究代码或者想要某个单独的 polyfill 的源码库是非常有帮助的。会生成两个目录, `components/` 和 `projects/`，并将一些子源码库检出到对应的目录里。
 
 **components/**
 
-- *components/platform/platform.js* — The platform shims and polyfills.
+- *components/platform/platform.js* — 平台用到的 shims 和 polyfills.
 - *components/polymer/polymer.js* — [{{site.project_title}} core](/docs/polymer/polymer.html)
-- *components/core-elements/* — A folder of the meta collection of the core elements.
-- A directory for each polyfill repo (CustomElements, HTMLImports, ShadowDOM).
+- *components/core-elements/* — core elements 集的文件夹。
+- 为每个 polyfill repo 开的目录(CustomElements, HTMLImports, ShadowDOM).
 
 **projects/**
 
-Full and sample applications.
+包含所有示例程序。
 
-### Test your environment {#testgit}
+### 测试你的环境 {#testgit}
 
-To check that your development environment is ready, try running the designer tool:
+要检测你的开发环境是否已经准备好，尝试运行 designer 工具：
 
     cd projects/designer
     bower install
 
-Start a web server and navigate to the designer app.
+开启一个 web 服务器然后导航到 designer app
 
-### Updating checkouts {#updategit}
+### 更新检出 {#updategit}
 
-To update your local copies, re-run `pull-all.sh`:
+要更新你本地的副本，重新运行 `pull-all.sh` ：
 
     ./tools/bin/pull-all.sh
 
-### About the repositories {#abouttherepos}
+### 关于源码库集 {#abouttherepos}
 
-The entirety of the {{site.project_title}} is composed of a many Git
-repositories. All of the polyfill libraries, projects, and individual elements
-each have their own repository.
+{{site.project_title}} 的整个项目是由很多的 Git 源码库合成的。
+全部的 polyfill 库，项目及每个 element都有自己的源码库。
 
-Specification repositories (da polyfills)
+源码库规范 (da polyfills)
 
-Each new web platform specification has a corresponding polyfill repository. The
-reasoning for this is two-fold:
+每个新的 web 平台规范都有与之对应的 polyfill 源码库。理由有两条：
 
-1. make the polyfills work across all modern browsers
-2. each polyfill can stand on its own and be used à la carte in projects.
+1. 使 polyfills 兼容所有流行的游览器。
+2. 每个 polyfill 可以独立维护并且能照单点菜。
 
-For example, the following repositories may be useful if you're interested in the individual API:
+如，以下的源码库可能对你研究个别的 API 很有帮助：
 
 * `CustomElements`
 * `HTMLImports`
@@ -165,34 +166,34 @@ For example, the following repositories may be useful if you're interested in th
 * `ShadowDOM`
 * `web-animations-js`
 
-#### Other useful repositories
+#### 其他有用的源码库
 
 **/polymer** - [github.com/Polymer/polymer](https://github.com/Polymer/polymer)
 
-A meta repository used to distribute `polymer.js` builds.
+一个用来发布 `polymer.js` 构建的源码库。
 
 **/polymer-dev** - [github.com/Polymer/polymer-dev](https://github.com/Polymer/polymer-dev)
 
-The [`polymer-dev`](https://github.com/polymer/polymer-dev) repository contains the
-[{{site.project_title}} core](/docs/polymer/polymer.html) and its tools and tests and is used
-by the project's developers. You should not have to touch this repository unless
-you're planning to hack on {{site.project_title}}.
+[`polymer-dev`](https://github.com/polymer/polymer-dev) 源码库包含
+[{{site.project_title}} 的核心](/docs/polymer/polymer.html) 和它的工具和测试用例，是给项目的开发者使用的。
+如果你不是想 hack {{site.project_title}}，你最好不要碰这个源码库。
 
 **/platform** - [github.com/Polymer/platform](https://github.com/Polymer/platform)
 
-A meta repository used to distribute `platform.js` builds.
+一个用来发布`platform.js` 构建的源码库。
 
 **/platform-dev** - [github.com/Polymer/platform-dev](https://github.com/Polymer/platform-dev)
 
-The [`platform-dev`](https://github.com/polymer/platform-dev) contains integration tests, loader, and build tools for the amalgamated polyfills. It's used by the project's developers. You should not have to touch this repository unless you're planning to hack on {{site.project_title}}.
+[`platform-dev`](https://github.com/polymer/platform-dev) 包含一体化的测试用例，加载器，和构建工具来连结polyfills的。也是项目的开发者使用。
+如果你不是想 hack {{site.project_title}}，你最好不要碰这个源码库。
 
 **/core-elements** - [github.com/Polymer/core-elements](https://github.com/Polymer/core-elements)
 
-A meta repository compiling the list of utility elements.
+编译工具 elements 列表的源码库。
 
 **/paper-elements** - [github.com/Polymer/paper-elements](https://github.com/Polymer/paper-elements)
 
-A meta repository compiling the list of paper (UI) elements.
+编译 paper (UI) elements 列表的源码库。
 
 
 <!-- 
