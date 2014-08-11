@@ -27,6 +27,7 @@ subtitle: Guide
     text-align: center;
     margin: 20px;
     padding: 10px 5px;
+    position: relative;
   }
   .labeled-card p {
     text-align: center;
@@ -345,11 +346,9 @@ When building your own elements or using standard DOM elements, you can use
 the `<paper-shadow>`  element to create the appropriate shadow effect.
 
 To apply a shadow to an element, simply add a `<paper-shadow>` element as a
-child element. The `<paper-shadow>` element automatically adds the shadow to
-its parent  element:
+child element of a relatively positioned element. The `<paper-shadow>` element automatically adds the shadow to its parent element:
 
-
-     <div style="width: 100px; height: 100px;">
+     <div style="width: 100px; height: 100px;" relative>
        <paper-shadow z="3"></paper-shadow>
      </div>
 
