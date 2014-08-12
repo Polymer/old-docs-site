@@ -104,7 +104,7 @@ The custom elements we've used so far come from {{site.project_title}}'s set and
 
 **That doesn't matter**.
 
-Because custom elements are just like regular elements, it doesn't matter what kind of technology is used to implement their internals. Different kinds of elements from different vendors can all coexist in the same page. As an example, Mozilla offers a series of custom elements called [x-tags](http://x-tags.org/) (see also: [Brick](http://mozilla.github.io/brick/)). You can use x-tags with your other elements and mix and match them. As a general rule, it doesn't matter how an element was constructed.
+Because custom elements are just like regular elements, it doesn't matter what kind of technology is used to implement their internals. Different kinds of elements from different vendors can all coexist in the same page. As an example, Mozilla offers a series of custom elements called [x-tags](http://x-tags.org/) (see also: [Brick](http://mozbrick.github.io/)). You can use x-tags with your other elements and mix and match them. As a general rule, it doesn't matter how an element was constructed.
 
 ## Next steps {#nextsteps}
 
