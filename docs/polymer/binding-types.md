@@ -31,9 +31,11 @@ occurs. See [Node bindings](#node-bindings) for details.
 Using the `bind` attribute, you can create a single instance of a template bound to an object.
 
 {% raw %}
-    <template bind="{{person}}">
-      This template can bind to the person object’s properties, like
-      {{name}}.
+    <template>
+      <template bind="{{person}}">
+        This template can bind to the person object’s properties, like
+        {{name}}.
+      </template>
     </template>
 {% endraw %}
 
@@ -45,9 +47,11 @@ if `person` has a property, `name`, {%raw%}`{{name}}`{%endraw%} evaluates to the
 For convenience, you can also create a _named scope_ when binding an object:
 
 {% raw %}
-    <template bind="{{person as p}}">
-      This template uses a named scope to access properties, like
-      {{p.name}}.
+    <template>
+      <template bind="{{person as p}}">
+        This template uses a named scope to access properties, like
+        {{p.name}}.
+      </template>
     </template>
 {% endraw %}
 
@@ -64,8 +68,10 @@ an array. Each instance is bound to an item in the array.
 The simplest format for a repeating template is:
 
 {% raw %}
-    <template repeat="{{array}}">
-      Creates an instance with {{}} bindings  for every element in the array collection.
+    <template>
+      <template repeat="{{array}}">
+        Creates an instance with {{}} bindings  for every element in the array collection.
+      </template>
     </template>
 {% endraw %}
 
@@ -75,8 +81,10 @@ the current binding scope. Refer to a property of the current item as {%raw%}`{{
 Like the `bind` attribute, the `repeat` attribute supports named scopes:
 
 {% raw %}
-    <template repeat="{{user in users}}">
-      {{user.name}}
+    <template>
+      <template repeat="{{user in users}}">
+        {{user.name}}
+      </template>
     </template>
 {% endraw %}
 
@@ -84,9 +92,11 @@ When using named scopes with the `repeat` attribute, the index value for each
 item in the array is also available by using the following syntax:
 
 {% raw %}
-    <template repeat="{{user, userIndex in users}}">
-      <template repeat="{{userFile, userFileIndex in user}}">
-        {{userIndex}}:{{userFileIndex}}.{{userFile}}
+    <template>
+      <template repeat="{{user, userIndex in users}}">
+        <template repeat="{{userFile, userFileIndex in user}}">
+          {{userIndex}}:{{userFileIndex}}.{{userFile}}
+        </template>
       </template>
     </template>
 {% endraw %}
@@ -103,15 +113,17 @@ parent scope. For example, suppose you have an array of objects like this:
 You can use code like this to access both the array itself and its elements:
 
 {% raw %}
-    <template bind="{{items}}">
-      // {{length}} evaluates as items.length
-      <p>Item count: {{length}}</p>
-      <ul>
-      <template repeat>
-        // {{name}} here evaluates as the name of a single item
-        <li>{{name}}</li>
+    <template>
+      <template bind="{{items}}">
+        // {{length}} evaluates as items.length
+        <p>Item count: {{length}}</p>
+        <ul>
+        <template repeat>
+          // {{name}} here evaluates as the name of a single item
+          <li>{{name}}</li>
+        </template>
+        </ul>
       </template>
-      </ul>
     </template>
 {% endraw %}
 
@@ -129,8 +141,10 @@ Item count: 3
 Conditional templates use the `if` attribute to conditionally create a template instance.
 
 {% raw %}
-    <template if="{{conditionalValue}}">
-      Binds if and only if conditionalValue is truthy.
+    <template>
+      <template if="{{conditionalValue}}">
+        Binds if and only if conditionalValue is truthy.
+      </template>
     </template>
 {% endraw %}
 
@@ -141,9 +155,11 @@ Where the explicit binding is omitted, a nested template can inherit the scope o
 the containing template. Conditional templates are frequently used this way:
 
 {% raw %}
-    <template bind="{{myOptions as m}}">
-      <template if="{{m.showCounter}}">
-        <div>Counter: {{m.counter}}</div>
+    <template>
+      <template bind="{{myOptions as m}}">
+        <template if="{{m.showCounter}}">
+          <div>Counter: {{m.counter}}</div>
+        </template>
       </template>
     </template>
 {% endraw %}
@@ -153,9 +169,11 @@ For more information on nesting templates, see [Expression scopes](/docs/polymer
 You can also use `if` with the  `repeat` attribute.
 
 {% raw %}
-    <template bind="{{myList as list}}">
-      <template repeat="{{items in list.items}}" if="{{list.showItems}}">
-        <li>{{item.name}}</li>
+    <template>
+      <template bind="{{myList as list}}">
+        <template repeat="{{items in list.items}}" if="{{list.showItems}}">
+          <li>{{item.name}}</li>
+        </template>
       </template>
     </template>
 {% endraw %}
@@ -166,13 +184,15 @@ Sometimes, you may want to reuse a template in multiple places, or reference a t
 That's where the `ref` attribute comes in:
 
 {% raw %}
-    <template id="myTemplate">
-      Used by any template which refers to this one by the ref attribute
-    </template>
+    <template>
+      <template id="myTemplate">
+        Used by any template which refers to this one by the ref attribute
+      </template>
 
-    <template bind ref="myTemplate">
-      When creating an instance, the content of this template will be ignored,
-      and the content of #myTemplate is used instead.
+      <template bind ref="myTemplate">
+        When creating an instance, the content of this template will be ignored,
+        and the content of #myTemplate is used instead.
+      </template>
     </template>
 {% endraw %}
 
@@ -180,20 +200,24 @@ You can use the `ref` attribute to define recursive templates, such as tree stru
 
 {% raw %}
     <template>
-      <ul>
-      <template repeat="{{items}}" id="t">
-        <li>{{name}}
+      <template>
         <ul>
-          <template ref="t" repeat="{{children}}"></template>
-        </ul>
-      </li>
+        <template repeat="{{items}}" id="t">
+          <li>{{name}}
+          <ul>
+            <template ref="t" repeat="{{children}}"></template>
+          </ul>
+        </li>
+      </template>
     </template>
 {% endraw %}
 
 In addition, you can bind to the `ref` attribute _itself_, to choose templates dynamically:
 
 {% raw %}
-    <template bind ref="{{node.nodeType}}"></template>
+    <template>
+      <template bind ref="{{node.nodeType}}"></template>
+    </template>
 {% endraw %}
 
 ## Node bindings
