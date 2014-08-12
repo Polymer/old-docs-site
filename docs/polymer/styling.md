@@ -82,7 +82,7 @@ The veiling process can be used to prevent FOUC at times other than page load. T
       </script>
     </polymer>
 
-Be careful to put the stylesheet inside the template and the `<script>` tag below the template.
+Be careful to put the stylesheet inside the template. We recommend putting the `<script>` tag below the template, especially if you include a stylesheet, however note this is optional otherwise.
 
 ## Polyfill CSS selectors {#directives}
 
