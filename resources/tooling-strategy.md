@@ -96,7 +96,7 @@ title: 工具 & 测试
 <div class="centered" style="margin:20px;"><iframe id="video" src="http://www.youtube.com/embed/EwQkyplZHDY" frameborder="0" allowfullscreen></iframe>
 </div>
 
-The [{{site.project_title}} + Grunt](https://github.com/addyosmani/polymer-grunt-example) proof-of-concept project is a good start. Also follow our work on [generator-polymer](https://github.com/yeoman/generator-polymer/).
+[{{site.project_title}} + Grunt](https://github.com/addyosmani/polymer-grunt-example) 组合是个好的开端。同时请随时关注我们正在研究的 [generator-polymer](https://github.com/yeoman/generator-polymer/).
 
 ## 使用 git {#git}
 
