@@ -64,7 +64,7 @@ An example `index.html` file:
       </head>
       <body>
         <!-- 3. Declare the element. Configure using its attributes. -->
-        <core-ajax url="http://example.com/json"
+        <core-ajax url="//example.com/json"
                    handleAs="json"></core-ajax>
 
         <script>
