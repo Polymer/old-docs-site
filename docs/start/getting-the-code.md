@@ -106,7 +106,7 @@ fills it with {{site.project_title}} and its dependencies.
   "name": "my-project",
   "version": "0.0.0",
   "dependencies": {
-    "polymer": "Polymer/polymer#~{{site.latest_version}}",
+    "polymer": "Polymer/polymer#~{{site.latest_version}}"
   }
 }
 ```
