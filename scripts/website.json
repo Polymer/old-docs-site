@@ -6,5 +6,12 @@
       "code-explainer",
       "component-download-button"
     ]
+  },
+  {
+    "dir": "projects",
+    "org": "Polymer",
+    "repos": [
+      "polymer-tutorial"
+    ]
   }
 ]

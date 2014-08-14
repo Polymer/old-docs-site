@@ -12,6 +12,7 @@
 PROJECTS_DIR=./polymer-all/projects
 DESIGNER_DIR=$PROJECTS_DIR/designer
 TOPEKA_DIR=../topeka
+TUTORIAL_DIR=../polymer-tutorial/finished
 #COMPONENTS_DIR=../../components
 #COMPONENTS_DIR=../../../
 
@@ -47,3 +48,9 @@ rm -rf components # If bower components dir exists, script hangs. Remove it firs
 bower install
 vulcanize --inline --strip index.html -o build.html
 rm -rf components # cleanup
+
+# Update tutorial
+cd $TUTORIAL_DIR
+echo "=== Updating tutorial ==="
+vulcanize --inline --strip index.html -o build.html
+

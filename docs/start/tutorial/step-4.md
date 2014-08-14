@@ -259,7 +259,7 @@ Save `post-list.html` and refresh your page.
 That's it &mdash; you're done! With a bit of luck, your application looks like this:
 
 <figure layout vertical center>
-  <a href="/samples/tutorial/finished/index.html" layout horizontal flex class="unquote-link">
+  <a href="/apps/polymer-tutorial/finished/" layout horizontal flex class="unquote-link">
     <div class="unquote-image" flex></div>
   </a>
   <figcaption>
