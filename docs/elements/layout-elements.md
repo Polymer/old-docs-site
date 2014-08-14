@@ -9,26 +9,8 @@ subtitle: Guide
 
 <style shim-shadowdom>
 .app-demo {
-  border: 1px solid #eee;
-  position: absolute;
-  top: 44px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
+  border: 1px solid #aaa;
 }
-
-demo-tabs .result {
-  position: static;
-}
-
-demo-tabs::shadow #results {
-  position: relative;
-  box-sizing: border-box;
-  width: 240px;
-  height: 405px;
-  max-width: 100%;
-}
-
 </style>
 
 The core-elements and paper-elements collections include a number of elements that can be used to structure your app’s layout. These include:
@@ -55,9 +37,16 @@ Other elements placed in the core-header-panel end up in the content area.
 
 The following example app uses a `<core-header-panel>` as its top-level layout:
 
+<a href="/samples/layout-elements/header-app.vulcanized.html" target="_blank">
+  <img class="app-demo" src="/images/layout-elements/header-app.png">
+</a>
+
+<a href="/samples/layout-elements/header-app.vulcanized.html" target="_blank">Click image for demo</a>
+
+Use the following code to create the header panel app.
+
 {% include samples/layout-elements/header-app.html %}
 
-<a href="/samples/layout-elements/header-app.html" target="_blank">Open sample in new window</a>
 
 The following example uses a plain `<div>` as the header element, using the `core-header` class:
 
@@ -90,6 +79,14 @@ In addition, you manually choose from several sizes of toolbar by adding one of 
 
 Taller toolbars are useful when you want to create an app bar with tabs, for example:
 
+<a href="/samples/layout-elements/toolbar-sample.vulcanized.html" target="_blank">
+  <img class="app-demo" src="/images/layout-elements/toolbar-sample.png">
+</a>
+
+<a href="/samples/layout-elements/toolbar-sample.vulcanized.html" target="_blank">Click image for demo</a>
+
+Use the following code to create the toolbar shown above:
+
 {% include samples/layout-elements/toolbar-sample.html %}
 
 If the core-header-panel is in `waterfall-tall` mode, it controls the height of the toolbar automatically, so you shouldn't set `medium-tall` or `tall` on the toolbar yourself.
@@ -112,10 +109,20 @@ You can nest `<core-header-panel>` and `<core-toolbar>` elements inside a
 `<core-drawer-panel>` to create the layout for the content area and navigation
 drawer, as shown in the following example:
 
+<a href="/samples/layout-elements/drawer-app.vulcanized.html" target="_blank">
+  <img class="app-demo" src="/images/layout-elements/drawer-app-closed.png">
+</a>
+
+<a href="/samples/layout-elements/drawer-app.vulcanized.html" target="_blank">Click image for demo</a>
+
+Use the following code to create the drawer panel app:
+
 {% include samples/layout-elements/drawer-app.html %}
 
-<a href="/samples/layout-elements/drawer-app.html" target="_blank">Open sample in new window</a>
-
+**Note: ** On wide screens, the drawer is always open and the menu button is hidden.
+On narrow screens, you can press the button or swipe from the left to show the drawer.
+On desktop, resize the browser window to see the different modes.
+{: .alert .alert-info }
 
 ### Side nav with `<core-scaffold>`
 
@@ -126,7 +133,14 @@ main content area. It also includes a button to display the navigation drawer.
 
 The following example produces the same basic layout as the drawer panel example above:
 
+<a href="/samples/layout-elements/scaffold-app.vulcanized.html" target="_blank">
+  <img class="app-demo" src="/images/layout-elements/scaffold-app.png">
+</a>
+
+<a href="/samples/layout-elements/scaffold-app.vulcanized.html" target="_blank">Click image for demo</a>
+
+Use the following code to create the scaffold app:
+
 {% include samples/layout-elements/scaffold-app.html %}
 
-<a href="/samples/layout-elements/scaffold-app.html" target="_blank">Open sample in new window</a>
 
