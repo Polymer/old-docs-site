@@ -37,7 +37,7 @@ To use it, import *core-icon.html* and declare an icon in your html:
 
     <link rel="import" href="/bower_components/core-icon/core-icon.html">
 
-    <core-icon src="http://www.polymer-project.org/images/icons/android.svg"></core-icon>
+    <core-icon src="//www.polymer-project.org/images/icons/android.svg"></core-icon>
 
 Produces: <core-icon src="/images/icons/android.svg"></core-icon>
 
