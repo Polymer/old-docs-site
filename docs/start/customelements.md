@@ -99,7 +99,7 @@ Polymer 基于使用的行为将它的 custom  elements 划分成两个基本的
 
 ## 共用性：默认支持 {#interop}
 
-因为 custom elements 本质上还是 HTML elements，它们之间或者与其他理解 DOM(地球上的所有框架)技术都能很好的配合。这意味着，custom elements 已经能与这些像 Angular， Ember， jQuery，等框架结合使用了。
+因为 custom elements 本质上还是 HTML elements，它们之间或者与其他理解 DOM(地球上的所有框架)的技术都能很好的配合。这意味着，custom elements 已经能与这些像 Angular， Ember， jQuery，等框架结合使用了。
 
 
 目前为止我们所使用的 custom elements 来自 {{site.project_title}} 的合集且由 [{{site.project_title}} 核心](/docs/polymer/polymer.html) 构建。 

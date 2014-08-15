@@ -3,8 +3,8 @@ layout: default
 type: elements
 navgroup: elements
 shortname: Elements
-title: Layout elements
-subtitle: Guide
+title: 布局 elements
+subtitle: 指南
 ---
 
 <style shim-shadowdom>
