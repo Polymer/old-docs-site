@@ -31,35 +31,32 @@ demo-tabs::shadow #results {
 
 </style>
 
-The core-elements and paper-elements collections include a number of elements that can be used to structure your app’s layout. These include:
+core-elements 集合和 paper-elements 集合包含一些可以用来组织你的 app 的布局的 elements。有：
 
-- `<core-header-panel>`. A simple container with a header section and content section. The header can either stay in place or scroll with the content.
+- `<core-header-panel>`. 一个包含有一个标题区和内容区的简单容器。
 
-- `<core-toolbar>`.  Can be used for an app bar or a toolbar on a smaller UI component, such as a card. The toolbar can serve as a container for controls, such as tabs and buttons.
+- `<core-toolbar>`.  可以用于 app 的导航栏，或者较小的 UI component 的工具栏，比如一个卡片。工具栏可以作为容器承载控制器，比如tab标签和工具。
 
-- `<core-drawer-panel>`. A responsive container that combines a left- or right-side drawer panel for navigation or other options and a main content area.
+- `<core-drawer-panel>`. 一个包含有用于导航的左右侧边栏和主内容区域的响应式的容器。
 
-- `<core-scaffold>`.  A quick responsive app layout that includes a navigation drawer, main app bar and content area (implemented using a core-drawer-panel, core-header-panel and core-toolbar.) The core-scaffold element is a quick way to structure an app’s UI.
+- `<core-scaffold>`. 快捷的实现 app 响应式布局，包含侧边栏导航，主导航栏和内容区域(通过 core-drawer-panel， core-header-panel 和 core-toolbar 实现的)。core-scaffold element 是搭建一个 app 的 UI 的快捷方法。
 
 
-## App Bars and Toolbars
+## App 导航栏和工具栏
 
-[`<core-header-panel>`](/docs/elements/core-elements.html#core-header-panel) is often combined with a
-[`<core-toolbar>`](/docs/elements/core-elements.html#core-toolbar). When you use a `<core-toolbar>`,
-the panel automatically places it in the header area.  You can also use any type of element in your
-header by adding the `core-header` class to its class list.
+[`<core-header-panel>`](/docs/elements/core-elements.html#core-header-panel) 通常与一个 [`<core-toolbar>`](/docs/elements/core-elements.html#core-toolbar) 组合。当你使用 `<core-toolbar>`进，工具栏会自动显示在标题栏区域。你也可以在标题栏中的任意 element 添加 `core-header` 类来实现。
 
-Other elements placed in the core-header-panel end up in the content area.
+其他放在 core-header-panel 的 elements 会在内容区底部显示。
 
-`<core-header-panel>` is `position: relative`, and always needs to have a height set on it explicitly.
+`<core-header-panel>` 是 `position: relative`的，并且总是需要显示的设置高度。
 
-The following example app uses a `<core-header-panel>` as its top-level layout:
+以下的示例 app 使用一个 `<core-header-panel>` 当作它的顶层布局：
 
 {% include samples/layout-elements/header-app.html %}
 
-<a href="/samples/layout-elements/header-app.html" target="_blank">Open sample in new window</a>
+<a href="/samples/layout-elements/header-app.html" target="_blank">从新窗口打开示例</a>
 
-The following example uses a plain `<div>` as the header element, using the `core-header` class:
+下面的示例使用一个普通的 `<div>` 作为标题 element，应用了 `core-header` 类：
 
     <core-header-panel>
       <div class=“core-header”>
@@ -71,62 +68,56 @@ The following example uses a plain `<div>` as the header element, using the `cor
     </core-header-panel>
 
 
+在标题栏上设置 `风格` element 来控制标题区与内容区之间如何互动。有以下风格
 
-Setting the `mode` element on the header panel controls how the header area and content area interact. There are several modes:
+- `standard`. 标准。标题栏显示为比内容区高一层并且底部有阴影。内容区可以从标题栏下滚过。
+- `seamed`. 缝合。标题栏显示为跟内容区同层，之间有一条缝合线(非底部阴影)。内容区可以从标题栏下滚过。
+- `waterfall`. 瀑布。标题栏初始时是跟内容区缝合。当内容区从标题下滚过，标题栏会提高一层底部会出现阴影(与 `standard` 风格相同).
+- `waterfall-tall`. 加长型瀑布。与瀑布相同，只不过工具栏开始是加长的(3倍于标准高度)，当用户滚动内容区时会收缩成标准高度。
+- `scroll`. 滚动。标题栏跟内容区缝合并跟内容区一同滚动。
+- `cover`. 覆盖。内容区从标题栏上滚过。这种风格为内容区较窄的情况而设计的(比如卡片)。
 
-- `standard`. The header appears at a higher level than the content area, with a drop shadow. Content scrolls under the header.
-- `seamed`. The header appears at the same level as the content area, with a seam between the two (no drop shadow). Content scrolls under the header.
-- `waterfall`. The header initially presents as seamed. When content scrolls under the header, the header raises up and casts a drop shadow (as in `standard` mode).
-- `waterfall-tall`. Like waterfall, except that the toolbar starts off tall (3x standard height) and condenses to a standard-height toolbar as the user scrolls.
-- `scroll`. The header is seamed with the content and scrolls with the content.
-- `cover`. The content scrolls over the header. This mode is designed to be used with narrow content (for example cards).
+参看 [`<core-header-panel>` demo](/components/core-header-panel/demo.html) 中的示例了解所有风格的实战效果。
 
-See the [`<core-header-panel>` demo](/components/core-header-panel/demo.html) for examples of all of the modes in action.
+另外，你可以通过给 core-toolbar 手动添加以下其中一个类来改变工具栏的尺寸：
 
-In addition, you manually choose from several sizes of toolbar by adding one of the following classes to the core-toolbar’s class list:
+-   medium-tall (2倍于正常高度)
+-   tall (3倍于正常高度)
 
--   medium-tall (2x normal height)
--   tall (3x normal height)
-
-Taller toolbars are useful when you want to create an app bar with tabs, for example:
+当你想创建一个有tab标签的导航栏时，较高的工具栏很实用，如：
 
 {% include samples/layout-elements/toolbar-sample.html %}
 
-If the core-header-panel is in `waterfall-tall` mode, it controls the height of the toolbar automatically, so you shouldn't set `medium-tall` or `tall` on the toolbar yourself.
+如果 core-header-panel 是 `waterfall-tall` 风格, 它会自动控制工具栏的高度，因此你不应该给工具栏设置上 `medium-tall` 或者 `tall`。
 
-**Tip:** For fancy scrolling effects where the toolbar animates between tall and condensed states, you can use [`<core-scroll-header-panel>`](/docs/elements/core-elements.html#core-scroll-header-panel). See  the [demos](/components/core-scroll-header-panel/demo.html) here. You may need to look at the source for the demos to implement the more complicated effects.
+**提示:** 对于工具栏在高度变化之间比较炫的滚动动画效果，你可以使用 [`<core-scroll-header-panel>`](/docs/elements/core-elements.html#core-scroll-header-panel)。参看这里的 [示例](/components/core-scroll-header-panel/demo.html) 。 你可能需要研究示例的源码以了解如何实现比较复杂的效果。
 {: .alert .alert-info }
 
 
-## Responsive side nav
+## 响应式的侧边栏导航
 
-The [`<core-drawer-panel>`](/docs/elements/core-elements.html#core-drawer-panel)
-element creates a left or right side nav area alongside
-the main content area. On narrow screens, the nav area acts as a drawer that can
-be hidden or revealed by calling the drawer panel's `togglePanel` method.
+[`<core-drawer-panel>`](/docs/elements/core-elements.html#core-drawer-panel)
+element 会在主内容区边沿创建一个居左或者居右的侧边栏导航，在小屏幕上，侧边栏导航会变成可显示隐藏的抽屉效果，可以通过调用 `togglePanel` 方法来触发。
 
-Any children with the `drawer` attribute set are placed in the navigation area.
-Any children with the `main` attribute are placed in the main panel.
+属于 `drawer` 属性(的元素)的子节点会显示在导航区。
+属于 `main` 属性(的元素)的子节点会显示在主内容区。
 
-You can nest `<core-header-panel>` and `<core-toolbar>` elements inside a
-`<core-drawer-panel>` to create the layout for the content area and navigation
-drawer, as shown in the following example:
+你可以将 `<core-header-panel>` 和 `<core-toolbar>` elements 嵌套到一个 `<core-drawer-panel>` 里来构建内容区的布局和侧滑导航。如下示例所示：
 
 {% include samples/layout-elements/drawer-app.html %}
 
-<a href="/samples/layout-elements/drawer-app.html" target="_blank">Open sample in new window</a>
+<a href="/samples/layout-elements/drawer-app.html" target="_blank">从新窗口打开示例</a>
 
 
-### Side nav with `<core-scaffold>`
+### 用 `<core-scaffold>` 实现侧边栏导航
 
-The [`<core-scaffold>`](/docs/elements/core-elements.html#core-drawer-panel)  element
-assembles a commonly-used combination of components:
-a `<core-drawer-panel>` with a `<core-header-panel>` and `<core-toolbar>` for the
-main content area. It also includes a button to display the navigation drawer.
+[`<core-scaffold>`](/docs/elements/core-elements.html#core-drawer-panel)  element 组装了常用的 components 组合：
+主内容区含有带一个 `<core-header-panel>` 和 一个 `<core-toolbar>` 的 `<core-drawer-panel>`。
+同时也包含一个按钮来切换显示隐藏侧边栏导航。
 
-The following example produces the same basic layout as the drawer panel example above:
+下面的示例演示了跟上边的侧边栏导航示例一样的基础布局：
 
 {% include samples/layout-elements/scaffold-app.html %}
 
-<a href="/samples/layout-elements/scaffold-app.html" target="_blank">Open sample in new window</a>
+<a href="/samples/layout-elements/scaffold-app.html" target="_blank">从新窗口打开示例</a>
 

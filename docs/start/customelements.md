@@ -11,7 +11,7 @@ subtitle: 关于基于 Polymer 的 apps 的基本原理
 
 ## 引言
 
-如果明天 HTML 被重复发明，它将比如今内置的 elements 提供更多的特性和更加强大的能力。打个比方说，想象你正在构建一个大头贴 app 来拍照，显示缩略图，和循环播放最近的相片。如果 HTML 提供了 `<camera>`, `<carousel>`, 或者 `<tabs>` element，你将不假思索的使用它们。你已经接受了功能性并开始编写代码标记。
+如果明天 HTML 被重新发明，它将比如今内置的 elements 提供更多的特性和更加强大的能力。打个比方说，想象你正在构建一个大头贴 app 来拍照，显示缩略图，和循环播放最近的相片。如果 HTML 提供了 `<camera>`, `<carousel>`, 或者 `<tabs>` element，你将不假思索的使用它们。你已经接受了功能性并开始编写代码标记。
 
 
 幸好， [Custom Elements](/platform/custom-elements.html) 铺设了一条通向 {{site.project_title}} 的 "[一切都是 element](/docs/start/everything.html#everythingis)" 哲理的道路。拥抱哲理意味着一个 web app 变成了一组定义良好，可复用的 components。
