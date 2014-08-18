@@ -3,33 +3,33 @@ layout: default
 type: core
 navgroup: docs
 shortname: Docs
-title: Styling elements
-subtitle: Guide
+title: 给 elements 上样式
+subtitle: 指南
 ---
 
 {% include toc.html %}
 
-**Note:** styling {{site.project_title}} elements is no different than styling custom elements.
-For a complete guide on the basics, see "[A Guide to Styling Elements](/articles/styling-elements.html)".
+**注意:** 给 {{site.project_title}} elements 上样式并不难于给 custom elements 上样式。
+更加全面的基础指南，请参看 "[给 Elements 上样式完全指南](/articles/styling-elements.html)".
 {: .alert }
 
-In addition to the [standard features for styling Custom Elements](/articles/styling-elements.html), {{site.project_title}} contains extra goodies for fully controlling element styling. This document outlines those features, including Flash-of-Unstyled-Content (FOUC) prevention, the specifics on how the the Shadow DOM polyfill applies styles, and workarounds for current limitations.
+除了 [给 Custom Elements 上样式的标准设置](/articles/styling-elements.html) 外， {{site.project_title}} 包含有额外的增强设置以完全控制 element 的样式化。本文档会涉及到那些额外的特性，包括预防无样式内容闪动(flash of unstyled content - FOUC), Shadow DOM polyfill 如何应用样式，及目前一些受限如何应付。
 
-## FOUC prevention
+## 预防 FOUC
 
-Before custom elements [upgrade](http://www.html5rocks.com/tutorials/webcomponents/customelements/#upgrades) they may display incorrectly. To help mitigate [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content) issues, {{site.project_title}} provides a polyfill solution for the [`:unresolved` pseudo class](/articles/styling-elements.html#preventing-fouc). For simple apps, you can add the `unresolved` attribute to body. This initially hides the page until all elements are upgraded:
+在 custom elements [更新](http://www.html5rocks.com/tutorials/webcomponents/customelements/#upgrades) 之前可能显示错乱。 为了缓解 [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content) 问题, 
+{{site.project_title}} 提供了一个 polyfill 解决方案，配合 [`:unresolved` 伪类](/articles/styling-elements.html#preventing-fouc) 使用。 
+对于简单的 app，你可以为 body 添加 `unresolved` 属性。这将在页面初始化时隐藏页面直到所有的 elements 被更新才显示。
 
     <body unresolved>
 
-Class name | Behavior
+类名 | 行为
 |-
-`body[unresolved]` | Makes the body `opacity: 0; display: block; overflow: hidden`.
-`[resolved]` | Fades-in the body over 200ms.
+`body[unresolved]` | 设置 body `opacity: 0; display: block; overflow: hidden`。
+`[resolved]` | 200毫秒后淡入显示 body。
 {: .table .responsive-table .fouc-table }
 
-If you want finer control, add `unresolved` to individual elements rather
-than body. This shows the entire page upfront but allows you to control unresolved
-element styling yourself:
+如果你想获得更精细的控制，将 `unresolved` 添加到特定的 elements 上而不是 body 上。这将会先显示整个页面而允许你控制 unresolved element 的样式：
 
     <style>
       [unresolved] {
@@ -40,25 +40,25 @@ element styling yourself:
     <x-foo unresolved>If you see me, elements are upgraded!</x-foo>
     <div unresolved></div>
 
-Upon [`polymer-ready`](/docs/polymer/polymer.html#polymer-ready) firing, {{site.project_title}} runs the following steps:
+[`polymer-ready`](/docs/polymer/polymer.html#polymer-ready) 触发前， {{site.project_title}} 会执行以下的步骤：
 
-1. removes the `[unresolved]` attribute from elements that have it
-2. adds the `[resolved]` attribute
-3. removes `[resolved]` on the first `transitionend` event the element receives
+1. 移除 elements 中 `[unresolved]` 属性
+2. 添加 `[resolved]` 属性
+3. 在 element 收到第一个  `transitionend` 时移除 `[resolved]` 
 
-### Unveiling elements after boot time {#unveilafterboot}
+### 在启动后揭开 elements {#unveilafterboot}
 
-The veiling process can be used to prevent FOUC at times other than page load. To do so, apply the `[unresolved]` attribute to the desired elements and swap it out for the `[resolved]` attribute when the elements should be displayed. For example,
+遮罩过程可能用来实时预防 FOUC。要如此这般，给目标 elements 添加 `[unresolved]` 属性，当要显示 elements 时切换到 `[resolved]` 属性。如，
 
     element.setAttribute('unresolved', '');
 
-    // ... some time later ...
+    // ... 一段时间后 ...
     element.setAttribute('resolved', '');
     element.removeAttribute('unresolved');
 
-## Including stylesheets in an element
+## 在 element 内容引入样式表
 
-{{site.project_title}} allows you to include stylesheets in your `<polymer-element>` definitions, a feature not supported natively by Shadow DOM. That is:
+{{site.project_title}} 允许你将样式表引入至 `<polymer-element>` 的定义里，这是原生 Shadow DOM 不支持的特性。如下：
 
     <polymer-element name="my-element">
       <template>
@@ -67,7 +67,7 @@ The veiling process can be used to prevent FOUC at times other than page load. T
       </template>
     </polymer>
 
-{{site.project_title}} will automatically inline the `my-element.css` stylesheet using a `<style>`:
+{{site.project_title}} 会自动通过一个 `<style>` 的方式将 `my-element.css` 的样式表内联进来：
 
     <polymer-element ...>
       <template>
@@ -76,21 +76,17 @@ The veiling process can be used to prevent FOUC at times other than page load. T
       </template>
     </polymer>
 
-## Polyfill CSS selectors {#directives}
+## Polyfill CSS 选择器 {#directives}
 
-When running under the Shadow DOM polyfill, {{site.project_title}} provides special `polyfill-*`
-CSS selectors to give you more control on how style rules are shimmed.
+当基于Shadow DOM polyfill时，{{site.project_title}} 提供了一个特殊的 `polyfill-*` CSS 选择器，给你更多填补样式规则的控制权。
 
 ### polyfill-next-selector {#at-polyfill}
 
-The `polyfill-next-selector` selector is used to replace a native CSS selector with one that
-will work under the polyfill. For example, targeting distributed nodes using `::content` only works under native Shadow DOM. Instead, you can tell {{site.project_title}} to replace said
-rules with ones compatible with the polyfill.
+`polyfill-next-selector` 选择器是用来将原生 CSS 选择器替换为 polyfill 的实现。如，要作用目标节点使用 `::content` 只有原生 Shadow DOM 下生效。换之呢，你可以告知 {{site.project_title}} 用 polyfill 去使用兼容的规则替换指定的规则。
 
-To replace native CSS style rules, place `polyfill-next-selector {}` above the
-selector you need to polyfill. Inside of `polyfill-next-selector`, add a
-`content` property. Its value should be a CSS selector that is roughly equivalent
-the native rule. {{site.project_title}} will use this value to shim the native selector. For example:
+要替换原生的 CSS 样式规则，将 `polyfill-next-selector {}` 放置在你想要 polyfill 的选择器上边。
+在 `polyfill-next-selector` 的内部，添加一个`content` 属性。它的值必须是一个与原生的规则相同的选择器。
+ {{site.project_title}} 会使用这个值去顶替原生的选择器。如：
 
     polyfill-next-selector { content: ':host .bar'; }
     ::content .bar {
@@ -107,9 +103,8 @@ the native rule. {{site.project_title}} will use this value to shim the native s
       border: 1px solid black;
     }
 
-Under native Shadow DOM nothing changes. Under the polyfill, the native selector
-is replaced with the one defined in its `polyfill-next-selector` predecessor. The previous
-examples would be shimmed into:
+
+在原生的 Shadow DOM 下不会起作用，但在 polyfill 下，原生的选择器已被那个定义在它前边的 `polyfill-next-selector` 替换。上边的例子会被转变成：
 
     x-foo .bar {
       color: red;
@@ -125,9 +120,10 @@ examples would be shimmed into:
 
 ### polyfill-rule {#at-polyfill-rule}
 
-The `polyfill-rule` selector is useful for creating style rules that *only* apply when the Shadow DOM polyfill is in use. When you can't write a style rule that works across native and Shadow DOM polyfill, it's your solution. However, because of the style shimming {{site.project_title}} provides, you should rarely need to use this selector.
+`polyfill-rule` 选择器**只**用来创建那些给 Shadow DOM polyfill 用的规则。 当你无法使一个样式规则同时在原生的 Shadow DOM polyfill 中生效时，这就是给你的解决方案。
+然而，由于这是 {{site.project_title}} 提供的样式顶替，你应该尽少的用到。
 
-To use `polyfill-rule`, create the rule and include a list of styles. Then, add a `content` property describing the CSS selector those styles should apply to. For example:
+要使用 `polyfill-rule`， 创建一个样式规则列表。添加 `content` 属性来描述那些将被应用的 CSS 选择器。如：
 
     polyfill-rule {
       content: '.bar';
@@ -139,9 +135,11 @@ To use `polyfill-rule`, create the rule and include a list of styles. Then, add 
       background: blue;
     }
 
-These rules are a noop under native Shadow DOM. Under the polyfill, `polyfill-rule` is replaced by the selector in `content`. {{site.project_title}} also prefixes the rule with the element name.
+这些规则在原生 Shadow DOM 下是无效的。在 polyfill 下 `polyfill-rule` 将被 `content` 里的选择器替换。
 
-The previous examples become:
+ {{site.project_title}} 还会给选择器前缀加上 element 的 name。
+
+上边的例子会被转变成：
 
     x-foo .bar {
       background: red;
@@ -153,29 +151,29 @@ The previous examples become:
 
 ### polyfill-unscoped-rule {#at-polyfill-unscoped-rule}
 
-The `polyfill-unscoped-rule` selector is exactly the same as `polyfill-rule` except that the rules inside it are not scoped by the polyfill. The selector you write is exactly what will be applied.
+`polyfill-unscoped-rule` 选择器跟 `polyfill-rule` 一样精确，除了里面的规则不在 polyfill 作用域内。你所写的选择器将被精确应用到对应的规则上。
 
     polyfill-unscoped-rule {
       content: '#menu > .bar';
       background: blue;
     }
 
-produces:
+结果：
 
     #menu > .bar {
       background: blue;
     }
 
-You should only need `polyfill-unscoped-rule` in rare cases. {{site.project_title}} uses CSSOM to modify styles and there are a several known rules that don't round-trip correctly via CSSOM (on some browsers). One example using CSS `calc()` in Safari. It's only in these rare cases that `polyfill-unscoped-rule` should be used.
+你需要用到 `polyfill-unscoped-rule` 的场景很少的。
+{{site.project_title}} 使用 CSSOM 来更改样式，有一些已知的规则跟 CSSOM 不太兼容 (某些浏览器下)。比如在 Safair 中使用 CSS `calc()`。只有在这类场景下 `polyfill-unscoped-rule` 才会被用到。
 
 <!-- {%comment%}
-## Making styles global
+## 全局样式
 
-According to CSS spec, certain @-rules like `@keyframe` and `@font-face`
-cannot be defined in a `<style scoped>`. Therefore, they will not work in Shadow DOM.
-Instead, you'll need to declare their definitions outside the element. 
+CSS 规定, 某些 @-rules 像 `@keyframe` 和 `@font-face` 不能定义在 `<style scoped>`。因此，它们在 Shadow DOM 中将无效。
+换之，你需要在 element 的外部声明它们的定义。
 
-Stylesheets and `<style>` elements in an HTML import are included in the main document automatically:
+HTML import 里的样式表和 `<style>` 元素会自动导入到主文档中：
 
     <link rel="stylesheet" href="animations.css">
 
@@ -183,7 +181,7 @@ Stylesheets and `<style>` elements in an HTML import are included in the main do
       <template>...</template>
     </polymer-element>
 
-Example of defining a global `<style>`:
+定义一个全局的 `<style>`：
 
     <style>
       @-webkit-keyframes blink {
@@ -202,10 +200,9 @@ Example of defining a global `<style>`:
       </template>
     </polymer-element>
 
-{{site.project_title}} also supports making a `<style>` or inline stylesheet global using the
-`polymer-scope="global"` attribute.
+{{site.project_title}} 同时也支持使用 `polymer-scope="global"` 来将一个 `<style>` 或者内联样式表全局化。
 
-**Example:** making a stylesheet global
+**示例:** 全局化一个样式表
 
     <polymer-element name="x-foo" ...>
       <template>
@@ -214,9 +211,9 @@ Example of defining a global `<style>`:
       </template>
     </polymer-element>
 
-Stylsheets that use `polymer-scope="global"` are moved to the `<head>` of the main page. This happens once.
+使用 `polymer-scope="global"` 的样式表会被移到页面的 `<head>` 里。只处理一次。
 
-**Example:** Define and use CSS animations in an element
+**示例:** 在一个 element 里定义和使用 CSS 动画
 
     <polymer-element name="x-blink" ...>
       <template>
@@ -234,20 +231,18 @@ Stylsheets that use `polymer-scope="global"` are moved to the `<head>` of the ma
       </template>
     </polymer-element>
 
-**Note:** `polymer-scope="global"` should only be used for stylesheets or `<style>`
-that contain rules which need to be in the global scope (e.g. `@keyframe` and `@font-face`).
+**注意:** `polymer-scope="global"` 应该只用于那些包含有需要作用于全局的规则的样式表或者 `<style>`(e.g. `@keyframe` 和 `@font-face`).
 {: .alert .alert-error}
 {%endcomment%}
  -->
 
-## Controlling the polyfill's CSS shimming {#stylingattrs}
+## 控制 polyfill 的 CSS 替补 {#stylingattrs}
 
-{{site.project_title}} provides hooks for controlling how and where the Shadow DOM polyfill
-does CSS shimming.
+{{site.project_title}} 提供了勾子来控制 Shadow DOM polyfill 怎样和在哪里应用 CSS 替补。
 
-### Ignoring styles from being shimmed {#noshim}
+### 忽略样式替补 {#noshim}
 
-Inside an element, the `no-shim` attribute on a `<style>` or `<link rel="stylesheet">` instructs {{site.project_title}} to ignore the styles within. No style shimming will be performed.
+在一个 element 里，`<style>` 或者 `<link rel="stylesheet">` 上的 `no-shim` 属性会指示 {{site.project_title}} 忽略里边样式的替补。样式替补将不会生效。
 
     <polymer-element ...>
       <template>
@@ -257,37 +252,36 @@ Inside an element, the `no-shim` attribute on a `<style>` or `<link rel="stylesh
         </style>
       ...
 
-This can be a small performance win when you know the stylesheet(s) in question do not contain any Shadow DOM CSS features.
+这样可能会提升不少性能，只要你确认样式表里没有任何 Shadow DOM CSS 特性。
 
-### Shimming styles outside of polymer-element {#sdcss}
+### 在 polymer-element 外部替补样式 {#sdcss}
 
-Under the polyfill, {{site.project_title}} automatically examines any style or link elements inside of a `<polymer-element>`. This is done so Shadow DOM CSS features can be shimmed and [polyfill-*](#directives) selectors can be processed. For example, if you're using `::shadow` and `/deep/` inside an element, the selectors are rewritten so they work in unsupported browsers. See [Reformatting rules](#reformatrules) above.
+polyfill 作用时，{{site.project_title}} 自动检测每个 `<polymer-element>` 里的样式或者外链的 elements。
+这么一来 Shadow DOM CSS 的特性才能被替补，[polyfill-*](#directives) 选择器才会被执行。如，
+如果你在一个 element 里使用  `::shadow` 和 `/deep/`，选择器将被重写以便在不支持的浏览器中生效。
+参看上边的 [重定义规则](#reformatrules)。
 
-However, for performance reasons styles outside of an element are not shimmed.
-Therefore, if you're using `::shadow` and `/deep/` in your main page stylesheet, be sure to include `shim-shadowdom` on the `<style>` or `<link rel="stylesheet">` that contains these rules. The attribute instructs {{site.project_title}} to shim the styles inside.
+然而，考虑到性能问题每个 element 外的样式将不会自动被替补。
+那么，如果你在主页面的样式表里使用 `::shadow` 和 `/deep/`，确保包含这些规则的 `<style>` 或者 `<link rel="stylesheet">` 上有 `shim-shadowdom` 属性。
+此属性会指示 {{site.project_title}} 替补里边的样式。
 
     <link rel="stylesheet"  href="main.css" shim-shadowdom>
 
-## Polyfill details
+## Polyfill 详解
 
-### Handling scoped styles
+### 处理作用域内的样式
 
-Native Shadow DOM gives us style encapsulation for free via scoped styles. For browsers
-that lack native support, {{site.project_title}}'s polyfills attempt to shim _some_
-of the scoping behavior.
+原生的 Shadow DOM 给我们免费的包装作用域内的样式。针对没有原生支持的浏览器 {{site.project_title}} 的 polyfills 尽力去替补 _这些_ 作用域的行为。
 
-Because polyfilling the styling behaviors of Shadow DOM is difficult, {{site.project_title}}
-has opted to favor practicality and performance over correctness. For example,
-the polyfill's do not protect Shadow DOM elements against document level CSS.
+由于要 polyfill Shadow DOM 样式的行为非常的困难，{{site.project_title}} 考虑实用性和性能优先于正确性。如，polyfill 将不会在文档级别的 CSS 面前保护 Shadow DOM elements。
  
-When {{site.project_title}} processes element definitions, it looks for `<style>` elements
-and stylesheets. It removes these from the custom element's Shadow DOM `<template>`, rejiggers them according to the rules below, and appends a `<style>` element to the main document with the reformulated rules.
+当 {{site.project_title}} 执行 element 定义时，它会查找 `<style>` 元素和样式表。然后将它们从 custom element 的 Shadow DOM `<template>` 内移除，重新按以下的规则重组它们，然后将一个包含这些新样式的 `<style>` 元素里追加到主文档里。
 
-#### Reformatting rules {#reformatrules}
+#### 重定义规则 {#reformatrules}
 
-1. **Replace `:host`, including `:host(<compound selector>)` by prefixing with the element's tag name**
+1. **将 `:host`替换掉，包含 `:host(<合成选择器>)` ，以 element 的标签名作前缀**
 
-      For example, these rules inside an `x-foo`:
+      如，`x-foo` 里的规则：
 
         <polymer-element name="x-foo">
           <template>
@@ -298,7 +292,7 @@ and stylesheets. It removes these from the custom element's Shadow DOM `<templat
             </style>
           ...
 
-      becomes:
+      变成：
 
         <polymer-element name="x-foo">
           <template>
@@ -309,10 +303,10 @@ and stylesheets. It removes these from the custom element's Shadow DOM `<templat
             </style>
           ...
 
-1. **Prepend selectors with the element name, creating a descendant selector**.
-This ensures styling does not leak outside the element's shadowRoot (e.g. upper bound encapsulation).
+1. **在选择器前追加 element 的名称，构成一个后代选择器**。
+这确保了样式不会对 shadowRoot 外边的 element 构成污染(e.g. 上界的封装).
 
-      For example, this rule inside an `x-foo`:
+      如，`x-foo` 里的规则：
 
         <polymer-element name="x-foo">
           <template>
@@ -321,7 +315,7 @@ This ensures styling does not leak outside the element's shadowRoot (e.g. upper 
             </style>
           ...
 
-      becomes:
+      变成：
 
         <polymer-element name="x-foo">
           <template>
@@ -330,26 +324,24 @@ This ensures styling does not leak outside the element's shadowRoot (e.g. upper 
             </style>
           ...
 
-      Note, this technique does not enforce lower bound encapsulation. For that,
-      you need to [forcing strict styling](#strictstyling).
+      注意，此技校不会影响下界的封装，要实现你需要 [强制样式严谨](#strictstyling).
 
-1. **Replace `::shadow` and `/deep/`** with a `<space>` character.
+1. 用 `<space>` 字符 **替换 `::shadow` 和 `/deep/`**。
 
-### Forcing strict styling {#strictstyling}
+### 强制样式严谨 {#strictstyling}
 
-By default, {{site.project_title}} does not enforce lower bound styling encapsulation.
-The lower bound is the boundary between insertion points and the shadow host's children.
+默认情况下，{{site.project_title}} 不会强制下界的样式封装。下界是指插入点与 shadow 主持的子节点间的范围。
 
-You can turn lower bound encapsulation by setting `Platform.ShadowCSS.strictStyling`:
+你可以给下界的封装设置上 `Platform.ShadowCSS.strictStyling` 来开启：
 
     Platform.ShadowCSS.strictStyling = true;
 
-This isn't the yet the default because it requires that you add the custom element's name as an attribute on all DOM nodes in the shadowRoot (e.g. `<span x-foo>`).
+这个值目前还不是默认的，因为它需要你将 custom element 的名称作为属性添加到 shadowRoot 里的所有 DOM 节点上(e.g. `<span x-foo>`)。
 
 
-### Manually invoking the style shimmer {#manualshim}
+### 手动实现样式替补 {#manualshim}
 
-In rare cases, you may need to shim a stylesheet yourself. {{site.project_title}}'s Shadow DOM polyfill shimmer can be run manually like so:
+少数场景下，你可能需要给自己的样式实现样式替补。{{site.project_title}} 的 Shadow DOM 的替补 polyfill 可以如下手动运行：
 
     <style id="newstyles">
      ...
@@ -361,5 +353,4 @@ In rare cases, you may need to shim a stylesheet yourself. {{site.project_title}
           style.textContent, 'my-scope');
     Platform.ShadowCSS.addCssToDocument(cssText);
 
-Running this shims the styles, scopes their rules with 'my-scope', and adds the result
-to the main document.
+执行此样式的替补， 将规则放到 'my-scope' 的作用域，然后将结果放到主文档里。

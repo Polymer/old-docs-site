@@ -27,6 +27,7 @@ subtitle: Guide
     text-align: center;
     margin: 20px;
     padding: 10px 5px;
+    position: relative;
   }
   .labeled-card p {
     text-align: center;
