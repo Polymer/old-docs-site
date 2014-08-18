@@ -57,7 +57,11 @@ module.exports = function(grunt) {
       build: {
         files: {
           'elements/common_elements.vulcanized.html': 'elements/common_elements.html',
-          'elements/homepage_elements.vulcanized.html': 'elements/homepage_elements.html'
+          'elements/homepage_elements.vulcanized.html': 'elements/homepage_elements.html',
+          'samples/layout-elements/drawer-app.vulcanized.html': 'samples/layout-elements/drawer-app.html',
+          'samples/layout-elements/header-app.vulcanized.html': 'samples/layout-elements/header-app.html',
+          'samples/layout-elements/scaffold-app.vulcanized.html': 'samples/layout-elements/scaffold-app.html',
+          'samples/layout-elements/toolbar-sample.vulcanized.html': 'samples/layout-elements/toolbar-sample.html'
         },
       }
     },
