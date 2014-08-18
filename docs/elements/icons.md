@@ -86,7 +86,7 @@ For example:
 This displays the *cake* icon from the *social* iconset: <core-icon icon="social:cake"></core-icon>
 
 You can browse available icon sets on the
-[core-icons demo page](http://polymer.github.io/core-icons/components/core-icons/demo.html). 
+[core-icons demo page](/components/core-icons/demo.html). 
 
 ## Styling icons with CSS {#styling-with-css}
 
