@@ -31,8 +31,8 @@ To get the data, you'll use the `<post-service>` element provided as part of the
 
 In this section you'll learn about:
 
--   Data binding.
--   Published properties.
+-   Using data binding.
+-   Publishing properties.
 
 ### Edit post-list.html
 
@@ -96,7 +96,7 @@ Add a `<post-service>` element inside the element's `<template>`:
     <ul>
       <li>
         The <code>posts="{%raw%}{{posts}}{%endraw%}"</code> attribute adds a two-way data binding between 
-        the <code>&lt;post-service&gt;</code> element and your custom element.
+        the <code>&lt;post-service&gt;</code> element and the <code>&lt;post-list&gt;</code> element.
       </li>
     </ul>
   </aside>
@@ -119,7 +119,9 @@ Add the following `<div>` and `<template>` tag:
 ...
 &lt;post-service id="service" posts="{{posts}}">
 &lt;/post-service>
+
 <strong class="highlight nocode">&lt;div layout vertical center>
+
   &lt;template repeat="{{post in posts}}">
     &lt;post-card>
       &lt;img src="{{post.avatar}}" width="70" height="70">
@@ -127,6 +129,7 @@ Add the following `<div>` and `<template>` tag:
       &lt;p>{{post.text}}&lt;/p>
     &lt;/post-card>
   &lt;/template>
+  
 &lt;/div></strong>
 ...
 </pre>
@@ -194,9 +197,11 @@ If you have any problems, check your work against the files in the `step-3` fold
 <a href="/docs/elements/core-elements.html#core-ajax">&lt;core-ajax&gt;</a></code> element to make HTTP requests.
 {: .alert .alert-info}
 
-### Next step
-
+<div layout horizontal justified class="stepnav">
+<a href="/docs/start/tutorial/step-2.html">
+  <paper-button icon="arrow-back" label="Step 2: Creating your own element"></paper-button>
+</a>
 <a href="/docs/start/tutorial/step-4.html">
   <paper-button icon="arrow-forward" label="Step 4: Finishing touches" raisedButton></paper-button>
 </a>
-
+</div>
