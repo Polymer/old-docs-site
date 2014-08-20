@@ -3,69 +3,69 @@ layout: default
 type: concepts
 navgroup: start
 shortname: Concepts
-title: The Platform
-subtitle: Supporting new web technologies today
+title: 平台
+subtitle: 目前支持新技术的方案
 ---
 
 {% include toc.html %}
 
-## Introduction
+## 引言
 
-{{site.project_title}} builds on top of the upcoming web components technologies, but they don't yet ship in all browsers.
+{{site.project_title}} 基于即将到来的 web components 技术，不过这些技术还没有被所有浏览器完全支持。
 
-The lowest layer of {{site.project_title}} is `platform.js`: a collection of libraries (or “polyfills”) for new web technologies that haven’t shipped yet across all browsers. Platform makes it possible for developers to use these standards today across all modern browsers. As these technologies are implemented in browsers, the polyfills will shrink and you'll gain the benefits of native implementations. `Platform.js` automatically detects native support and switches to the fast path when available. Your elements seamlessly start relying on the native stuff--and get faster in the process. 
+{{site.project_title}} 最底的那层就是 `platform.js`：一个解决那些还没有被所有浏览器原生支持的 web 技术的类库集合。平台使得开发者目前就能在跨所有流行浏览用上这此新的标准。随着这些技术被浏览器原生的支持，polyfills 会减少，你将直接受益于原生的实现。`Platform.js` 自动检测原生支持并在可用的情况下切换至最佳途径。你的 elements 会无缝的依赖原生的东西 -- 处理过程会更快。
 
-Although most developers will want to use everything in `platform.js`, the polyfills are designed to be used separately, as well. They're available independently and can be built standalone. For example, Mozilla's [x-tags](http://www.x-tags.org/) and Brick projects use a subset of the `platform.js` polyfills.
+虽然大部分开发者都想用上全部的 `platform.js`，但 polyfills 是被分开设计的，所以，他们可以互相依赖的使用也可以单独使用。如 Mozilla 的 [x-tags](http://www.x-tags.org/) 和 Brick 项目使用了 `platform.js` polyfills 的一个子集。
 
-## What's in Platform? {#bundle}
+## 平台里有些什么? {#bundle}
 
-The platform layer is a bundle that includes the following libraries:
+平台层就是个套餐，包含了以下的类库:
 
 - Web Components
-  - [Shadow DOM](/platform/shadow-dom.html). Encapsulate DOM subtrees and the associated CSS.
-  - [HTML Imports](/platform/html-imports.html). Load element definitions and other resources declaratively.
-  - [Custom Elements](/platform/custom-elements.html) . Define new elements in HTML.
+  - [Shadow DOM](/platform/shadow-dom.html). 自身封装 DOM 和关联相应的 CSS。
+  - [HTML Imports](/platform/html-imports.html). 显示的加载 element 的定义和其他资源。
+  - [Custom Elements](/platform/custom-elements.html) . 在 HTML 里定义新的 elements。
 - DOM
-  - [URL](https://github.com/Polymer/URL). Parse URLs in JavaScript.
-  - [WeakMap](https://github.com/Polymer/WeakMap). Shim for ES6 WeakMap type. 
-  - [Mutation Observers](https://github.com/Polymer/MutationObservers). Efficiently watch for changes in the DOM.
-  <!-- - [Promises](https://github.com/Polymer/Promises). Handle asynchronous operations. -->
-  - [observe-js](https://github.com/Polymer/observe-js). Observe changes on JS objects/arrays using `Object.observe` (if available).
-- Other
-  - [Web Animations](/platform/web-animations.html). Define complex timeline animations.
+  - [URL](https://github.com/Polymer/URL). JavaScript 解析 URLs。
+  - [WeakMap](https://github.com/Polymer/WeakMap). 填补 ES6 WeakMap 类型。
+  - [Mutation Observers](https://github.com/Polymer/MutationObservers). 高效的监听 DOM 的变化。
+  <!-- - [Promises](https://github.com/Polymer/Promises). 处理异步操作。 -->
+  - [observe-js](https://github.com/Polymer/observe-js). 使用 `Object.observe` 监听 JS 对象/数组(如果可用)。
+- 其他
+  - [Web Animations](/platform/web-animations.html). 定义复杂的时时动画。
 
-## Installation & usage {#setup}
+## 安装 & 使用 {#setup}
 
-To start using these features today, first download `platform.js` using Bower as described
-in the [Getting the code](/docs/start/getting-the-code.html) guide:
+要当下就使用这些特性，首先按 [获取源码](/docs/start/getting-the-code.html) 指南里描述的使用 Bower 下载`platform.js`：
 
     bower install --save Polymer/platform
 
-Then, include `platform.js` as you would any other script:
+然后， 像引入其他脚本一样引入 `platform.js` ：
 
     <script src="bower_components/platform/platform.js"></script>
 
-**Note**: Due to the nature of some of the polyfills, to maximize compatibility with other libraries, make sure that `platform.js` is the first script tag in your document's `<head>`.
+**注意**: 限于某些 polyfills 的本性，要与其他类库一起发挥最大的能力，请确保 `platform.js` 是 document 的 `<head>` 里首个 script 标签。
 {: .alert alert-info}
 
-Once included, you can use [HTML Imports](/platform/html-imports.html), [Custom Elements](/platform/custom-elements.html), [Shadow DOM](/platform/shadow-dom.html), and other emerging standards within your app. For example, to use a {{site.project_title}} element, just import it using an HTML Import:
+引用进入后，你就可以将 [HTML Imports](/platform/html-imports.html), [Custom Elements](/platform/custom-elements.html), [Shadow DOM](/platform/shadow-dom.html)，
+和那些新兴的标准应用到你的 app 里了。如，要使用一个 {{site.project_title}} element，直接使用一个 HTML Import 将其导入：
 
     <link rel="import"
           href="bower_components/paper-tabs/paper-tabs.html">
 
-Then use `<paper-tabs>` just like any built-in tag.
+然后像使用内部标签一样的使用 `<paper-tabs>`。
 
-While each polyfill is standalone, the recommended approach is to include the entire `platform.js` file. This ensures all dependencies are present and the largest portion of the future web platform is available. Since this is the most-used configuration, it is also the most tested. 
+虽然每个 polyfill 都是独立的，推荐直接引入整个 `platform.js` 文件。这能确保所有的依赖都到位，未来的 web 平台能最大程度的可用。由于这是最常用的配置，它被测试得也是最多的。
 
-## Building each polyfill {#build}
+## 构建每个 polyfill {#build}
 
-For information on how to build each polyfill library independently, see [Tools & Testing](/resources/tooling-strategy.html).
+有关如何单独构建每个 polyfill 的资料，请参看 [工具 & 测试](/resources/tooling-strategy.html)。
 
-## Next steps {#nextsteps}
+## 下一步 {#nextsteps}
 
-`platform.js` is a wonderful foundation for working with Web Components in a cross-browser fashion. If you're ready to start building your own elements, and would like to learn about the additional features `polymer.js` adds, check out our guides on [Creating elements](/docs/start/creatingelements.html) and [Using elements](/docs/start/usingelements.html). Continue on to:
+`platform.js` 是个很棒的使得 Web Components 跨流行浏览器工作的基础。如果你已经准备好创建你自己的 elements，也想学习更多 `polymer.js` 的附加特性，请参看我们的 [创建 elements](/docs/start/creatingelements.html) 和 [使用 elements](/docs/start/usingelements.html) 指南。 接着：
 
 <a href="/docs/polymer/polymer.html">
-  <paper-button icon="arrow-forward" label="API developer guide" raisedButton></paper-button>
+  <paper-button icon="arrow-forward" label="开发者 API 指南" raisedButton></paper-button>
 </a>
  

@@ -1,3 +1,5 @@
+> 参与贡献中文文档翻译，请参看[Polymer 中文文档翻译必读指南](https://github.com/unbug/docs/blob/ZH/CONTRIBUTING-ZH.md)
+
 <!-- Polymer docs are mostly in Markdown with some HTML. [Jekyll][jekyll] is used to generate the static HTML for the site. The output is generated into a folder called `_site` and served from Google App Engine. -->
 Polymer 的文档基本是伴随着一些 HTML 的 Markdown。[Jekyll][jekyll] 是用来为站点生成静态 HTML 的。这些输出的内容会生成到 `_site` 文件夹，同时部署到 Google App Engine。
 

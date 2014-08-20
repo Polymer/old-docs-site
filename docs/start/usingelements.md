@@ -3,109 +3,102 @@ layout: default
 type: start
 navgroup: start
 shortname: Start
-title: Using elements
+title: 使用 elements
 subtitle: Polymer from the outside
 ---
 
 {% include toc.html %}
 
-{{site.project_title}} provides several sets of elements, which you can reuse simply by
-including them in your project. If you don't want to write any code, keep reading!
+{{site.project_title}} 提供了一些 elements 集合，你可以轻松的将它们导入到你的项目里。如果你懒得多写几行代码，接着往下读！ 
 
-## Installing elements {#install}
+## 安装 elements {#install}
 
-You can install elements one at a time, or install a whole collection of elements.
+你可以一次安装一个 elements，或者安装整个 elements 集合。
 
-{{site.project_title}} contains two primary collections of elements:
+{{site.project_title}} 包含有两个主要的 elements 集合：
 
--   <a href="/docs/elements/core-elements.html">{{site.project_title}} Core elements</a>. A set of utility
-    elements including general-purpose UI elements (such as icons, layout elements, and toolbars),
-    as well as  non-UI elements providing features like AJAX, signaling and storage.
+-   <a href="/docs/elements/core-elements.html">{{site.project_title}} Core elements</a>. 工具集 elements，包含常用的 UI elements(如，icons，布局 elements，工具栏)，
+	还有非UI的 elements 可提供如AJAX，信号发送和存储。
 
--   [Paper elements](/docs/elements/paper-elements.html). A set of UI elements that implement the 
-    [material design system](/docs/elements/material.html).
+-   [Paper elements](/docs/elements/paper-elements.html). 实现了 
+    [material design 系统](/docs/elements/material.html) 的 elements 集合。
 
+如果你在文档里发现一个你想要的 elements，点击下载按钮然后选择你的安装方式。更多方法请参看[获取源码](getting-the-code.html)。
 
-If you find an element you want while browsing the docs, simply click
-the download button and choose your install method. See 
-[Getting the Code](getting-the-code.html) for more information on the various methods.
+点击以下其中一个按钮安装对应的 element 集：
 
-Click a button below to install one of the element collections:
-
-  <component-download-button org="Polymer" component="core-elements" label="GET THE {{site.project_title}} CORE ELEMENTS">
+  <component-download-button org="Polymer" component="core-elements" label="获取 {{site.project_title}} CORE ELEMENTS">
   </component-download-button>
 
-  <component-download-button org="Polymer" component="paper-elements" label="GET THE PAPER ELEMENTS">
+  <component-download-button org="Polymer" component="paper-elements" label="获取 PAPER ELEMENTS">
   </component-download-button>
 
 
-**Note:** The PolymerLabs github repo contains a number of unsupported elements that are either 
-experimental or deprecated. In particular, the `polymer-elements` and `polymer-ui-elements` 
-collections represent earlier work superseded by the {{site.project_title}} Core elements and 
-Paper elements.
+**注意:** github 上的 PolymerLabs repo 包含有不少不是实验性就是被废弃的已不被支持的 elements 。尤其是早期的 `polymer-elements` 和 `polymer-ui-elements` 已被 {{site.project_title}} Core elements 所取代。
 
-## Using elements {#using}
+## 使用 elements {#using}
 
-To use elements, first load `platform.js`. Many browsers have yet to implement the various web components APIs. Until they do, `platform.js` provides [polyfill support](/docs/start/platform.html). **Be sure to include this file before any code that touches the DOM.**
+要使用 elements，首先要加载 `platform.js`。目前大多数浏览器还没有原生实现好多 web components APIs。在它们支持前， `platform.js` 提供 [polyfill 的支持](/docs/start/platform.html). **要操作 DOM 前请确保已经引入这个文件。**
 
-Once you have some elements installed and you've loaded `platform.js`, using an element is simply a matter of loading the element file using an [HTML Import](/platform/html-imports.html).
+你安装好 elements 并加载了 `platform.js` 后，使用一个 element 就是通过一个 [HTML Import](/platform/html-imports.html) 将 element 的文件导入。 
 
-An example `index.html` file:
+`index.html` 示例：
 
     <!DOCTYPE html>
     <html>
       <head>
-        <!-- 1. Load platform.js for polyfill support. -->
+        <!-- 1. 加载 platform.js 以提供 polyfill 支持. -->
         <script src="bower_components/platform/platform.js"></script>
 
-        <!-- 2. Use an HTML Import to bring in the element. -->
+        <!-- 2. 使用一个 HTML Import 将 element 导入 -->
         <link rel="import"
               href="bower_components/core-ajax/core-ajax.html">
       </head>
       <body>
-        <!-- 3. Declare the element. Configure using its attributes. -->
+        <!-- 3. 声明 element，通过它的属性配置它。 -->
         <core-ajax url="http://example.com/json"
                    handleAs="json"></core-ajax>
 
         <script>
-          // Wait for 'polymer-ready'. Ensures the element is upgraded.
+          // 等待 'polymer-ready' 触发，确保 element 已被更新。
           window.addEventListener('polymer-ready', function(e) {
             var ajax = document.querySelector('core-ajax');
 
-            // Respond to events it fires.
+            // 响应事件的触发。
             ajax.addEventListener('core-response', function(e) {
               console.log(this.response);
             });
 
-            ajax.go(); // Call its API methods.
+            ajax.go(); // 调用它自己的 API 方法。
           });
         </script>
       </body>
     </html>
 
-**Note:** You must run your app from a web server for the [HTML Imports](/platform/html-imports.html)
-polyfill to work properly. This requirement goes away when the API is available natively.
+**注意:** 你必须将你的 app 放到一个 web server 里运行才能使 [HTML Imports](/platform/html-imports.html)
+polyfill 正常的工作。这个需求会在浏览器原生支持后消失。
 {: .alert .alert-info }
 
-###  Passing object and array values in attributes {#objectarray}
+###  在属性中传递对象和数组 {#objectarray}
 
-[HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes) are string values, but sometimes you need to pass more complicated values into a custom element, such as objects or arrays. Ultimately, it's up to the element author to decide how to decode values passed in as attributes, but many {{site.project_title}} elements understand attribute values that are a JSON-serialized object or array. For example:
+[HTML 属性](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes) 值都是字符串，
+但有时候你想传递更加复杂的参数给一个 custom element，比如对象或者数组，最后由 element 的作者决定如何解析属性中的值。
+不过很多 {{site.project_title}} 的 elements 是可以识别属性的值为 JSON序列化对象或者数组的。例如：
 
     <roster-list persons='[{"name": "John"}, {"name": "Bob"}]'></roster-list>
 
-For {{site.project_title}} elements, you can find the expected type for each attribute listed in the [Elements reference](/docs/elements/). If you pass the wrong type, it may be decoded incorrectly.
+对于 {{site.project_title}} 的 elements，你可以在 [Elements 参考书](/docs/elements/) 里找到期望的类型。如果你发错了类型，它可能无法解析。 
 
-When creating your own {{site.project_title}} elements, you can choose to expose properties as attributes, as described in [Published properties](/docs/polymer/polymer.html#published-properties).
+当你自己创建 {{site.project_title}} elements 时，你能选择性的将属性暴露成标记属性，参看 [公有的属性](/docs/polymer/polymer.html#published-properties).
 
-## Next steps {#nextsteps}
+## 下一步 {#nextsteps}
 
-Now that you've got the basic idea of using and installing elements, it's time to start
-building something! In the next section we'll cover the features of {{site.project_title}} and how to create new `<polymer-element>`s. Continue on to:
+目前你已经了解了安装 elements 的基础思路，是时候构建点东西出来了！下一章节里我们将讲解 {{site.project_title}} 的特性和如何创建一个新的 `<polymer-element>` 。接着：
 
 <a href="/docs/start/creatingelements.html">
-  <paper-button icon="arrow-forward" label="Creating elements" raisedButton></paper-button>
+  <paper-button icon="arrow-forward" label="创建 elements" raisedButton></paper-button>
 </a>
 
-If you'd rather browse the existing elements, check out the 
+如果你宁愿浏览已有的 elements，参看
 <a href="/docs/elements/core-elements.html">{{site.project_title}} Core elements</a> 
 and <a href="/docs/elements/paper-elements.html">Paper elements</a> catalogs.

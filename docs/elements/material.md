@@ -27,6 +27,7 @@ subtitle: Guide
     text-align: center;
     margin: 20px;
     padding: 10px 5px;
+    position: relative;
   }
   .labeled-card p {
     text-align: center;
@@ -350,7 +351,7 @@ its parent  element:
 
 
      <div style="width: 100px; height: 100px;">
-       <paper-shadow z="3"></paper-shadow>
+        <paper-shadow z="3"></paper-shadow>
      </div>
 
 You can change the z-height of the target element by setting `z` on the

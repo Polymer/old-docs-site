@@ -3,8 +3,8 @@ layout: default
 type: start
 navgroup: docs
 shortname: Start
-title: "Step 4: Finishing touches"
-subtitle: Your first Polymer application 
+title: "步骤 4: 画龙点睛"
+subtitle: 你的第一个 Polymer 应用程序 
 ---
 
 <link rel="import" href="/elements/side-by-side.html">
@@ -25,21 +25,21 @@ subtitle: Your first Polymer application
 }
 </style>
 
-## Step 4: Finishing touches
+## 步骤 4: 画龙点睛
 
-In this section, you'll finish up the app by adding a favorite button to the cards and connecting the tabs to the `<post-list>` control.
+本章节，你将通过添加偏好按钮和将tab标签关联 `<post-list>` 来完成这个 app.
 
-In this section you'll learn about:
+本章节，你将学到：
 
--   Declarative event handling.
--   Adding properties and methods to the element's prototype.
--   Automatic node finding.
+-   显示事件处理。
+-   给 element 追加属性和方法。
+-   全自动节点查找。
 
-### Edit post-card.html
+### 编辑 post-card.html
 
-Open `post-card.html` in your editor and add the
+在你的编辑器里打开 `post-card.html` 并追加以下
 <code><a href="/docs/elements/core-elements.html#core-icon-button">&lt;core-icon-button></a></code>
-element:
+element：
 
 <side-by-side>
 <pre>
@@ -57,15 +57,11 @@ element:
 &lt;content>&lt;/content>
 </pre>
 <aside>
-  <h4>Key information</h4>
+  <h4>要点</h4>
   <ul>
-    <li>As the name implies, <code>&lt;core-icon-button&gt;</code> creates a button with an
-    embedded icon. {{site.project_title}} includes several sets of
-    scalable icons.</li>
-    <li>The <code>icon="favorite"</code> attribute selects the heart icon from the
-    default icon set.</li>
-    <li>The <code>on-tap=</code><wbr><code>"{%raw%}{{favoriteTapped}}{%endraw%}"</code> attribute specifies a method to call
-    on the <code>post-card</code> element when the button is tapped.</li>
+    <li>正如它的名字所称， <code>&lt;core-icon-button&gt;</code> 创建一个带有 icon 的按钮。 {{site.project_title}} 含有不少可缩放的 icon 集合。</li>
+    <li><code>icon="favorite"</code> 属性是从默认 icon 集合里选择了心形 icon。</li>
+    <li><code>on-tap=</code><wbr><code>"{%raw%}{{favoriteTapped}}{%endraw%}"</code> 属性指定了一个方法给 <code>post-card</code> element 上的按钮被按时调用。</li>
   </ul>
 </aside>
 </side-by-side>
@@ -74,8 +70,7 @@ element:
   <core-icon icon="polymer"></core-icon>
 </div>
 
-Add the `favorite` property and `favoriteTapped` method to the element's   
-prototype. 
+追加 `favorite` 属性和方法 `favoriteTapped` 到 element 的属性里。 
 
 <side-by-side>
 <pre>
@@ -97,30 +92,25 @@ Polymer({
 </pre>
   <aside>
     <ul>
-      <li>The <code>publish</code> object is another way to specify published properties,
-      like the <code>attributes</code> attribute shown in Step 3. Here the
-      <code>favorite</code> property defaults to <code>false</code>, and it <em>reflects</em>, meaning
-      the <code>favorite</code> attribute is updated in the DOM whenever the property value
-      changes.</li>
-      <li>The <code>favoriteTapped</code> event toggles the state of the <code>favorite</code>
-      property (<code>this.favorite</code>), and also fires a custom event, using the
-      built in <code>fire</code> method. (<code>fire</code> is one of several utility methods
-      {{site.project_title}} adds to the prototype of every custom element.)</li>
+      <li>这里的<code>publish</code> 对象是另一种指定公有属性的方法，
+	   像步骤 3 里展示过的 <code>attributes</code> 属性。 这里的
+      <code>favorite</code> 属性默认设置为 <code>false</code>, 且是 <em>reflects</em> 的, 
+      意思是 <code>favorite</code> 属性在 DOM 里将随着它的值改变而被更新。</li>
+      <li><code>favoriteTapped</code> 事件来用切换 <code>favorite</code> 的属性 (<code>this.favorite</code>) 状态，
+       并且触发一个自定义的事件, 使用内部的 <code>fire</code> 方法。 (<code>fire</code> 是 {{site.project_title}} 为每个custom element 自动追加的工具方法中的一个方法。)</li>
     </ul>
   </aside>
 </side-by-side>
 
-The net result of these changes is that when the favorite button is 
-tapped, the favorite property is updated and its corresponding attribute 
-is set or unset.
+以上带来的改变是，当偏好按钮被点击时，favorite属性将被更新，且关联的属性将被设定或还原。
 
-Right now, there's no visual indication that the button is pressed.
+目前，按钮被按后的状态还没有加效果。
 
 <div class="divider" layout horizontal center center-justified>
   <core-icon icon="polymer"></core-icon>
 </div>
 
-Add the following CSS to style the favorite button:
+添加以下的 CSS 样式给偏好按钮上样式：
 
 <side-by-side>
 <pre><strong class="highlight nocode">
@@ -137,9 +127,8 @@ core-icon-button {
 </pre>
   <aside>
     <ul>
-      <li>The <code>fill</code> property sets the fill color on the icon.</li>
-      <li>The <code>:host([favorite]) core-icon-button</code> selector sets the
-      fill color when the <code>favorite</code> attribute is set on the custom element.</li>
+      <li><code>fill</code> 属性设置了 icon 的填充色。</li>
+      <li><code>:host([favorite]) core-icon-button</code> 选择器设置的是 custom element 的 <code>favorite</code> 属性被设定时的填充色。</li>
     </ul>
   </aside>
 </side-by-side>
@@ -148,15 +137,13 @@ core-icon-button {
   <core-icon icon="polymer"></core-icon>
 </div>
 
-Save `post-card.html`.
+保存 `post-card.html`.
    
-At this point, you can reload the page and your favorite buttons should 
-work, but there are still a few steps left to finish the app.
+到这个点时，你刷新你的页面可以看到偏好按钮正常工作了，不过完成本 app 还有几个小步骤。
 
-### Edit index.html
+### 编辑 index.html
 
-Open `index.html` and update the tab event handler to switch views in 
-`<post-list>` when the user switches tabs:
+打开 `index.html` 修改 tab 事件，使得用户在 `<post-list>`  里切换tab标签时能切换视图：
 
 <pre>
 &lt;script>
@@ -169,14 +156,13 @@ tabs.addEventListener('core-select', function() {
 &lt;/script>
 </pre>
 
-Save `index.html`.
+保存 `index.html`.
 
-### Edit post-list.html
+### 编辑 post-list.html
 
-Open `post-list.html` in your editor.
+在你的编辑器里打开 `post-list.html` 。
 
-Update the template that creates the `<post-card>` elements to wire up the 
-favorites:
+修改创建 `<post-card>` elements 的 template 来完成偏好列表的代码：
 
 <side-by-side>
   {% raw %}
@@ -197,29 +183,21 @@ favorites:
   {% endraw %}
   <aside>
     <ul>
-      <li><code>favorite=<wbr>"{%raw%}{{post.favorite}}{%endraw%}"</code> binds the 
-      card's <code>favorite</code> value to the
-      value in the array owned by the <code>&lt;post-service&gt;</code>.</li>
-      <li>The <code>on-favorite-tap</code> attribute sets up a handler for the
-      <code>favorite-tap</code> event fired by the <code>&lt;post-card&gt;</code>.</li>
-      <li>The <code>hidden?=</code><wbr><code>"{%raw%}{{}}{%endraw%}"</code> expression is special syntax for a boolean
-      attribute, which sets the attribute if the binding expression
-      evaluates to true. </li>
+      <li><code>favorite=<wbr>"{%raw%}{{post.favorite}}{%endraw%}"</code> 将卡片的 <code>favorite</code> 值绑定到 <code>&lt;post-service&gt;</code> 的数组的对应值上。</li>
+      <li><code>on-favorite-tap</code> 属性设置了一个句柄给 <code>&lt;post-card&gt;</code> 触发的 <code>favorite-tap</code> 事件。</li>
+      <li><code>hidden?=</code><wbr><code>"{%raw%}{{}}{%endraw%}"</code> 表达式是布尔属性特有的语法，如果表达式的值为 true 时则设置属性。 </li>
     </ul>
   </aside>
 </side-by-side>
 
-The binding expression for `hidden` actually does the work of switching 
-between the All and Favorites tabs. The `hidden` attribute is a 
-standard HTML5 attribute. The default {{site.project_title}} style sheet includes 
-a rule to style `hidden` as `display: none` for those browsers that don't support 
-`hidden` natively.
+`hidden`  表达式实际上是实现了全部tab标签和偏好tab标签之间的切换工作。
+`hidden` 属性是标准的 HTML5 属性。 对于不原生不支持 `hidden` 属性的浏览器，{{site.project_title}} 默认的样式包含有将 `hidden` 当作 `display: none` 的样式。
 
 <div class="divider" layout horizontal center center-justified>
   <core-icon icon="polymer"></core-icon>
 </div>
 
-Add an event handler for the `favorite-tap` event to `post-list.html`:
+在 `post-list.html` 里给 `favorite-tap` 事件添加事件处理器：
 
 <side-by-side>
 <pre>
@@ -235,28 +213,23 @@ Polymer({
 &lt;/script>
 </pre>
   <aside>
-    <h4>Key information</h4>
+    <h4>要点</h4>
     <ul>
-      <li><code>sender<wbr>.templateInstance<wbr>.model</code> is a reference to the model data used
-      to construct a template instance. In this case, it includes the <code>post</code>
-      object used to create a <code>&lt;post-card&gt;</code>, so you can retrieve its ID and
-      <code>favorite</code> value.</li>
-      <li><code>this.$.service</code> returns a reference to the <code>&lt;post-service&gt;</code> element.
-      Every element in a custom element's shadow DOM that has an <code>id</code>
-      attribute is added to the <code>this.$</code> dictionary. This is called
-      <a href="/docs/polymer/polymer.html#automatic-node-finding">automatic node finding</a>.</li>
-      <li>If this was a real social networking service, the <code>setFavorite</code> method
-      would persist the change to the server. As is, it doesn't do anything
-      other than log a console message.</li>
+      <li><code>sender<wbr>.templateInstance<wbr>.model</code> model 数据的引用,用来创建 template 实例的。
+      本例里，它包含有用来创建一个 <code>&lt;post-card&gt;</code> 的 <code>post</code> 对象，你才能恢复它的 ID 和
+      <code>favorite</code> 的值。</li>
+      <li><code>this.$.service</code> 返回的是 <code>&lt;post-service&gt;</code> element 的引用。
+      一个 custom element 的 shadow DOM 里的每个有 <code>id</code> 属性的元素都会被记录进 <code>this.$</code> 字典里。这就是 <a href="/docs/polymer/polymer.html#automatic-node-finding">全自动节点查找</a>.</li>
+      <li>如果这是一个真实的社交网络服务，<code>setFavorite</code> 方法将把变更持久化到服务器保存起来。不过呢，这里只是在控制台打印出一条消息日志。</li>
     </ul>
   </aside>
 </side-by-side>
 
-### Finished!
+### 收工!
 
-Save `post-list.html` and refresh your page.
+保存 `post-list.html` 刷新页面。
 
-That's it &mdash; you're done! With a bit of luck, your application looks like this:
+到此 &mdash; 你就搞定了! 运气不错的话，你的应用程序看上去就是这样的：
 
 <figure layout vertical center>
   <a href="/samples/tutorial/finished/index.html" layout horizontal flex class="unquote-link">
@@ -267,18 +240,18 @@ That's it &mdash; you're done! With a bit of luck, your application looks like t
   </figcaption>
 </figure>
 
-If your project doesn't look quite right, check your work against the files in the `finished` directory:
+如果你的项目看上去哪里不对劲，可以对照 `finished` 文件夹里的文件检查你的工作：
 
 -   [`post-card.html`](https://github.com/Polymer/polymer-tutorial/blob/master/finished/post-card.html)
 -   [`post-list.html`](https://github.com/Polymer/polymer-tutorial/blob/master/finished/post-list.html)
 -   [`index.html`](https://github.com/Polymer/polymer-tutorial/blob/master/finished/index.html)
 
-### Start your next project
+### 开始做你的下一个项目吧
 
-Ready to start a project of your own? Install some {{site.project_title}} components and get to work!
+准备好自己开发一个项目了吗? 安装一些 {{site.project_title}} components 然后开始吧！
 
 <a href="/docs/start/getting-the-code.html#installing-components">
-  <paper-button icon="arrow-forward" label="Installing components" raisedButton></paper-button>
+  <paper-button icon="arrow-forward" label="安装 components" raisedButton></paper-button>
 </a>
 
 
