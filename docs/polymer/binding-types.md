@@ -171,7 +171,7 @@ You can also use `if` with the  `repeat` attribute.
 {% raw %}
     <template>
       <template bind="{{myList as list}}">
-        <template repeat="{{items in list.items}}" if="{{list.showItems}}">
+        <template repeat="{{item in list.items}}" if="{{list.showItems}}">
           <li>{{item.name}}</li>
         </template>
       </template>
