@@ -10,14 +10,13 @@ $transitionTime: 1s;
   display: block;
   position: relative;
   height: 310px;
+  @include transform(translateZ(0));
 }
 
 polyfill-next-selector { content: ':host > core-selector > *'; }
 ::content > * {
   display: -webkit-flex;
   display: flex;
-  // margin-top: 1em;
-  // transform: translateZ(0);
   transform: translate3d(15px,0,0);
   @include transition(all $transitionTime ease-in-out);
   opacity: 0;
