@@ -127,16 +127,16 @@ core-icon-button {
   position: absolute;
   top: 3px;
   right: 3px;
-  fill: #636363;
+  color: #636363;
 }
 :host([favorite]) core-icon-button {
-  fill: #da4336;
+  color: #da4336;
 }</strong>
 &lt;/style>
 </pre>
   <aside>
     <ul>
-      <li>The <code>fill</code> property sets the fill color on the icon.</li>
+      <li>The <code>color</code> property sets the fill color on the icon.</li>
       <li>The <code>:host([favorite])</code> <code>core-icon-button</code> selector sets the
       fill color when the <code>favorite</code> attribute is set on the custom element.</li>
     </ul>
@@ -185,8 +185,7 @@ favorites:
     &lt;post-card
       favorite="{{post.favorite}}"
       on-favorite-tap="{{handleFavorite}}"
-      hidden?="{{show == 'favorites' && !post.favorite}}">
-      </strong>
+      hidden?="{{show == 'favorites' && !post.favorite}}"></strong>
       &lt;img src="{{post.avatar}}" width="70" height="70">
       &lt;h2>{{post.username}}&lt;/h2>
       &lt;p>{{post.text}}&lt;/p>
