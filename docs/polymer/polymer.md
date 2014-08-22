@@ -9,12 +9,11 @@ subtitle: Guide
 
 {% include toc.html %}
 
-The {{site.project_title}} _core_ provides a thin layer of API on top of web components.
-It expresses {{site.project_title}}'s opinion, provides the extra sugaring that all {{site.project_title}} elements use, and is meant to help make developing web components much easier.
+{{site.project_title}} _core_ 在 web components 之上提供了一层薄薄的 API。它表达了 {{site.project_title}} 的主张，并额外提供 {{site.project_title}} elements 使用的语法糖，以简化 web components 的开发。
 
-## Element declaration
+## Element 声明
 
-At the heart of {{site.project_title}} are [Custom Elements](/platform/custom-elements.html). Thus, it should be no surprise that defining a {{site.project_title}} element is similar to the way you define a standard Custom Element. The major difference is that {{site.project_title}} elements are created declaratively using `<polymer-element>`.
+{{site.project_title}} 的核心是 [Custom Elements](/platform/custom-elements.html)。因此毫无疑问，定义一个 {{site.project_title}} element 的方式应该和定义一个标准的 Custom Element 是一样的。它们之间主要的区别在于 {{site.project_title}} elements 是通过声明式使用 `<polymer-element>` 来创建的。
 
     <polymer-element name="tag-name" constructor="TagName">
       <template>
@@ -23,90 +22,86 @@ At the heart of {{site.project_title}} are [Custom Elements](/platform/custom-el
       <script>Polymer('tag-name');</script>
     </polymer-element>
 
-### Attributes
+### 特性(Attributes)
 
-{{site.project_title}} reserves special attributes to be used on `<polymer-element>`:
+{{site.project_title}} 为 `<polymer-element>` 储备了一些特殊的特性:
 
 <table class="table responsive-table attributes-table">
   <tr>
-    <th>Attribute</th><th>Required?</th><th>Description</th>
+    <th>特性</th><th>是否必填？</th><th>描述</th>
   </tr>
   <tr>
-    <td><code>name</code></td><td><b>required</b></td><td>Name for the custom element. Requires a "-".</td>
+    <td><code>name</code></td><td><b>必填</b></td><td>为 custom element 的名字。需要包含一个“-”。</td>
   </tr>
   <tr>
-    <td><code>attributes</code></td><td>optional</td><td>Used to <a href="#published-properties">publish properties</a>.</td>
+    <td><code>attributes</code></td><td>选填</td><td>用于<a href="#published-properties">公开的属性 (properties)</a>。</td>
   </tr>
   <tr>
-    <td><code>extends</code></td><td>optional</td><td>Used to <a href="#extending-other-elements">extend other elements</a>.</td>
+    <td><code>extends</code></td><td>选填</td><td>用于<a href="#extending-other-elements">扩展其它 elements</a>。</td>
   </tr>
   <tr>
-    <td><code>noscript</code></td><td>optional</td><td>For simple elements that don't need to call <code>Polymer()</code>. See <a href="#altregistration">Alternate ways to register an element</a>.</td>
+    <td><code>noscript</code></td><td>选填</td><td>用于不需要调用 <code>Polymer()</code> 的简单的 element。请移步至<a href="#altregistration">注册 element 的其它方法</a>。</td>
   </tr>
   <tr>
-    <td><code>constructor</code></td><td>optional</td><td>The name of the constructor to put on the global object. Allows users to create instances of your element using the <code>new</code> operator (e.g. <code>var tagName = new TagName()</code>).</td>
+    <td><code>constructor</code></td><td>选填</td><td>放到全局对象中的构造函数的名字。允许用户通过 <code>new</code> 操作 (如：<code>var tagName = new TagName()</code>) 创建你的 element 的实例。</td>
   </tr>
 </table>
 
-#### Default attributes {#defaultattrs}
+#### 默认特性 {#defaultattrs}
 
-Other attributes you declare on `<polymer-element>` will automatically be included
-on each instance of the element. For example:
+你在 `<polymer-element>` 上声明的其它特性会自动包含在每个 element 的实例中。比如：
 
     <polymer-element name="tag-name" class="active" mycustomattr>
       <template>...</template>
       <script>Polymer('tag-name');</script>
     </polymer-element>
 
-When an instance of `<tag-name>` is created, it contains `class="active" mycustomattr`
-as default attributes:
+当一个 `<tag-name>` 的实例被创建时，它会作为默认特性包含 `class="active" mycustomattr`：
 
     <tag-name class="active" mycustomattr></tag-name>
 
-#### Attribute case sensitivity {#attrcase}
+#### 特性的大小写敏感性 {#attrcase}
 
-It's worth noting that the HTML parser considers attribute names *case insensitive*. Property names in JavaScript are however *case sensitive*.
+值得一提的是，HTMl 解析器对于特性名是*大小写不敏感*的。JavaScript 中的属性名则是*大小写敏感*的。
 
-This means that attributes can be written any way that you like, but if you look at an element's attribute list, the names will always be lowercase. Polymer is aware of this and will attempt to match the attributes to properties carefully. For example, this should work as expected:
+这意味着特性可以以你喜欢的任意形式书写，但是如果查看一个 element 的特性列表时，它们的名字都是小写的。Polymer 警惕这件事，并且将会仔细的尝试将特性匹配为属性。比如，这段代码会如我们期待的那样工作：
 
     <name-tag nameColor="blue" name="Blue Name"></name-tag>
 
-The fact that the `nameColor` attribute is actually lowercase in DOM can generally just be ignored.
+事实上 `nameColor` 特性在 DOM 里是全小写的。
 
-This also means that any of the below examples will also work:
+这也意味着下面的例子都可以正常工作：
 
     <name-tag NaMeCoLoR="blue" name="Blue Name"></name-tag>
     <name-tag NAMECOLOR="red" name="Red Name"></name-tag>
     <name-tag NAMEcolor="green" name="Green Name"></name-tag>
 
-### Alternate ways to register an element {#altregistration}
+### 注册 element 的其它方法 {#altregistration}
 
-For convenient decoupling of script and markup, you don't have to inline your script.
-{{site.project_title}} elements can be created by referencing an external script
-which calls `Polymer('tag-name')`:
+为了方便把标记和脚本解耦，你不需要把脚本内联。{{site.project_title}} elements 可以通过引用一个外部的脚本调用 `Polymer('tag-name')` 进行创建：
 
-    <!-- 1. Script referenced inside the element definition. -->
+    <!-- 1. 脚本在 element 定义内部被引用。 -->
     <polymer-element name="tag-name">
       <template>...</template>
       <script src="path/to/tagname.js"></script>
     </polymer-element>
 
-    <!-- 2. Script comes before the element definition. -->
+    <!-- 2. 脚本在 element 定义之前执行。 -->
     <script src="path/to/tagname.js"></script>
     <polymer-element name="tag-name">
       <template>...</template>
     </polymer-element>
 
-    <!-- 3. No script -->
+    <!-- 3. 没有脚本 -->
     <polymer-element name="tag-name" constructor="TagName" noscript>
       <template>
         <!-- shadow DOM here -->
       </template>
     </polymer-element>
 
-#### Imperative registration {#imperativeregister}
+#### 命令式注册 {#imperativeregister}
 
-Elements can be registered in pure JavaScript like so:
+Elements 可以通过如下纯 JavaScript 的方式注册：
 
     <script>
       Polymer('name-tag', {nameColor: 'red'});
@@ -117,24 +112,19 @@ Elements can be registered in pure JavaScript like so:
             Hello <span style="color:{%raw%}{{nameColor}}{%endraw%}">{%raw%}{{name}}{%endraw%}</span>\
           </template>\
         </polymer-element>';
-      // The custom elements polyfill can't see the <polymer-element>
-      // unless you put it in the DOM.
+      // 在你将其放入 DOM 之前，custom elements polyfill 是无法用在 <polymer-element> 上的。
       document.body.appendChild(el);
     </script>
 
     <name-tag name="John"></name-tag>
 
-Note that you need to add the `<polymer-element>` to the document so that the
-Custom Elements polyfill picks it up.
+注意你需要把 `<polymer-element>` 添加到文档中以便 Custom Elements polyfill 可以对其进行处理。
 
-### Adding public properties and methods {#propertiesmethods}
+### 添加公开的属性和方法 {#propertiesmethods}
 
-If you wish to define methods/properties on your element (optional), pass an object
-as the second argument to `Polymer()`. This object is used to define
-the element's `prototype`.
+如果你希望 (可选的) 在你的 element 上定义方法/属性，请向 `Polymer()` 的第二个参数传递一个对象。这个对象用来定义该 element 的 `prototype`。
 
-The following example defines a property `message`, a property `greeting`
-using an ES5 getter, and a method `foo`:
+下面的例子定义了一个 `message` 属性、一个基于 ES5 getter 的 `greeting` 属性以及一个 `foo` 方法：
 
     <polymer-element name="tag-name">
       <template>{{greeting}}</template>
@@ -149,38 +139,37 @@ using an ES5 getter, and a method `foo`:
       </script>
     </polymer-element>
 
-**Note:** `this` references the custom element itself inside a {{site.project_title}} element. For example, `this.localName == 'tag-name'`.
+**注意：** 在一个 {{site.project_title}} element 里 `this` 引用了 custom element 自身。比如 `this.localName == 'tag-name'`。
 {: .alert .alert-info }
 
-**Important:** Be careful when initializing properties that are objects or arrays. Due to the nature of `prototype`, you may run into unexpected "shared state" across instances of the same element. If you're initializing an array or object, do it in the `created` callback rather than directly on the `prototype`.
+**重要：** 请小心初始化的属性是对象或数组的情况。由于 `prototype` 本来就是共享的，这可能会在相同 element 的实例之间产生非预期的“共享状态”。如果你想初始化一个数组或对象，请在 `created` 回调中完成它，而不是直接定义在 `prototype` 里。
 
-    // Good!
+    // 正确的！
     Polymer('x-foo', {
       created: function() {
-        this.list = []; // Initialize and hint type to be array.
-        this.person = {}; // Initialize and hint type to an object.
+        this.list = []; // 初始化并明确数组类型。
+        this.person = {}; // 初始化并明确对象类型。
       }
     });
 
-    // Bad.
+    // 错误的。
     Polymer('x-foo', {
-      list: [], // Don't initialize array or objects on the prototype.
+      list: [], // 别在 prototype 里初始化数组或对象。
       person: {}
     });
 
-### Adding private or static variables {#static}
+### 增加私有的或静态的变量 {#static}
 
-If you need private state within an element, wrap your script using standard
-techniques like anonymous self-calling functions:
+如果你需要 element 中具有私有状态，请用类似匿名自调用函数的标准技术包裹你的脚本：
 
     <polymer-element name="tag-name">
       <template>...</template>
       <script>
         (function() {
-          // Ran once. Private and static to the element.
+          // 只运行一次。对于 element 来说是私有并且静态的。
           var foo_ = new Foo();
 
-          // Ran for every instance of the element that's created.
+          // 会为每个被创建的 element 实例运行。
           Polymer('tag-name', {
             get foo() { return foo_; }
           });
@@ -190,11 +179,11 @@ techniques like anonymous self-calling functions:
 
 
 
-### Supporting global variables {#global}
+### 支持全局变量 {#global}
 
-There are times when you may like to define properties of an application globally once and then make them available inside all of your elements. For example, you may want to define configuration information and then reference them inside individual components. You may want one single easing curve for all animations. We may want to store information like the currently logged-in user that we consider "global".
+有的时候你喜欢一次定义一个应用的全局属性，并可以在内部的所有 elements 里可用。比如，你可能想定义配置信息并引用在独立的组件内部。你可能想为所有的动画公用一个单一减缓曲线。你可能想存储我们认为是全局的诸如已登录用户的信息。
 
-To achieve this, you can use the [MonoState Pattern](http://c2.com/cgi/wiki?MonostatePattern). When defining a {{site.project_title}} element, define a closure that closes over the variables in question, and then provide accessors on the object's prototype or copy them over to individual instances in the constructor.
+为了达到这一目的，你可以使用 [MonoState 模式](http://c2.com/cgi/wiki?MonostatePattern)。当定义一个 {{site.project_title}} element 时，定义一个闭包，包含这些变量，然后在对象的原型上提供访问器,或在构造函数里把它们复制到独立的实例中。
 
     <polymer-element name="app-globals">
       <script>
@@ -212,7 +201,7 @@ To achieve this, you can use the [MonoState Pattern](http://c2.com/cgi/wiki?Mono
       </script>
     </polymer-element>
 
-Then use the element as you would any other, and data-bind it to a property that you can use to access it through {{site.project_title}}'s data-binding:
+然后如你所愿使用这些 element，并绑定数据到一个属性，你可以通过 {{site.project_title}} 的 data-binding 对这一属性进行访问：
 
     <polymer-element name="my-component">
       <template>
@@ -227,7 +216,7 @@ Then use the element as you would any other, and data-bind it to a property that
       </script>
     </polymer-element>
 
-A slight tweak of this approach lets you configure the value of the globals externally:
+一个小小的建议可以让你在外部配置全局的值：
 
     <polymer-element name="app-globals" attributes="values">
       <script>
@@ -248,17 +237,16 @@ A slight tweak of this approach lets you configure the value of the globals exte
     </polymer-element>
 
 
-The main page configures the globals by passing attributes:
+主页面通过传递特性进行全局配置：
 
     <app-globals firstName="Addy" lastName="Osmani"></app-globals>
 
 
-### Element lifecycle methods {#lifecyclemethods}
+### Element 的生命周期方法 {#lifecyclemethods}
 
-{{site.project_title}} has first class support for the Custom Element lifecycle
-callbacks, though for convenience, implements them with shorter names.
+{{site.project_title}} 对 Custom Element 的生命周期回调有最高等级的支持，为了方便起见，实现了它们的短名称。
 
-All of the lifecycle callbacks are optional:
+所有的生命周期回调都是可选的：
 
     Polymer('tag-name', {
       created: function() { ... },
@@ -272,26 +260,23 @@ All of the lifecycle callbacks are optional:
       },
     });
 
-Below is a table of the lifecycle methods according to the Custom Elements
-[specification](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html#custom-element-lifecycle) vs. the names {{site.project_title}} uses.
+下面是基于 Custom Element [规范](https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html#custom-element-lifecycle)的一个生命周期方法以及 {{site.project_title}} 使用的名字的表格。
 
-Spec | {{site.project_title}} | Called when
+规范 | {{site.project_title}} | 调用时机
 |-
-createdCallback | created | An instance of the element is created.
-- | ready | The `<polymer-element>` has been fully prepared (e.g. shadow DOM created, property observers setup, event listeners attached, etc).
-attachedCallback | attached | An instance of the element was inserted into the DOM.
-- | domReady | Called when the element's initial set of children are guaranteed to exist. This is an appropriate time to poke at the element's parent or light DOM children. Another use is when you have sibling custom elements (e.g. they're `.innerHTML`'d together, at the same time). Before element A can use B's API/properties, element B needs to be upgraded. The `domReady` callback ensures both elements exist.
-detachedCallback | detached | An instance was removed from the DOM.
-attributeChangedCallback | attributeChanged | An attribute was added, removed, or updated. **Note**: to observe changes to [published properties](#published-properties), use [changed watchers](#change-watchers).
+createdCallback | created | 一个 element 实例被创建。
+- | ready | 该 `<polymer-element>` 已经完全准备好了 (如 shadow DOM 已被创建、属性观察者已设置、事件监听者已绑定等)。
+attachedCallback | attached | 一个 element 的实例被插入到 DOM 中。
+- | domReady | 当 element 的子元素初始化设置确保存在时被调用。这是针对其 element 的父元素或 light DOM 子元素的好时机。另一个用法是当你拥有兄弟 custom elements 的时候 (比如它们是通过 `.innerHTML` 同时写在一起的)。在 element A 可以使用 B 的 API/属性之前，element B 需要被升级。该 `domReady` 回调确保了这两个 elements 都存在。
+detachedCallback | detached | 一个实例从 DOM 中被移除时。
+attributeChangedCallback | attributeChanged | 一个特性被添加、移除或更改时。**注意：**为了观察[公开的属性](#published-properties)的改变，请使用 [changed watchers](#change-watchers)。
 {: .table .responsive-table .lifecycle-table }
 
-### The polymer-ready event {#polymer-ready}
+### polymer-ready 事件 {#polymer-ready}
 
-{{site.project_title}} parses element definitions and handles their upgrade _asynchronously_.
-If you prematurely fetch the element from the DOM before it has a chance to upgrade,
-you'll be working with an `HTMLUnknownElement`. {{site.project_title}} elements also support inline resources, such as stylesheets, that need to be loaded. These can cause [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content) issues if they're not fully loaded prior to rendering an element. To avoid FOUC, {{site.project_title}} delays registering elements until stylesheets are fully loaded.
+{{site.project_title}} 解析 element 定义并_异步_处理它们的升级。如果你在 element 可以升级之前从 DOM 里过早的获取了它，那么你会被作为一个 `HTMLUnknownElement` 来面对。{{site.project_title}} elements 也支持内联资源，比如需要加载的样式表。如果它们在渲染 element 之前还没有完全载入，就可能导致 [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content) 事件。为了避免 FOUC，{{site.project_title}} 推迟了注册 elements 直到样式表完全被加载。
 
-To know when elements have been registered/upgraded, and thus ready to be interacted with, use the `polymer-ready` event.
+为了知道 elements 何时被注册/升级且对交互准备就绪，请使用 `polymer-ready` 事件。
 
     <head>
       <link rel="import" href="path/to/x-foo.html">
