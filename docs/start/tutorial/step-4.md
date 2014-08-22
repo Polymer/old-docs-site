@@ -137,7 +137,7 @@ core-icon-button {
   <aside>
     <ul>
       <li>The <code>fill</code> property sets the fill color on the icon.</li>
-      <li>The <code>:host([favorite]) core-icon-button</code> selector sets the
+      <li>The <code>:host([favorite])</code> <code>core-icon-button</code> selector sets the
       fill color when the <code>favorite</code> attribute is set on the custom element.</li>
     </ul>
   </aside>

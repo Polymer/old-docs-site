@@ -92,7 +92,9 @@ Add HTML import links to import the `<core-header-panel>`, `<core-toolbar>`, and
 <side-by-side>
 <pre>
 &lt;script 
-  src="../components/platform/platform.js"></script>
+  src="../components/platform/platform.js">
+&lt;/script>
+
 &lt;link rel="import" 
   href="../components/font-roboto/roboto.html">
 <strong class="highlight nocode">&lt;link rel="import"
@@ -212,8 +214,7 @@ html,body {
   background-color: #E5E5E5;
   font-family: 'RobotoDraft', sans-serif;
 }
-<strong class="highlight nocode">
-core-header-panel {
+<strong class="highlight nocode">core-header-panel {
   height: 100%;
   overflow: auto;
   -webkit-overflow-scrolling: touch; 
