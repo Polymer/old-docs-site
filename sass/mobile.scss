@@ -30,7 +30,6 @@ dropdown-panel {
   }
   
   .panel {
-    @include flex-direction(column);
     margin: 0 30px !important;
     padding: $content-padding 0 40px 0 !important;
 
@@ -39,16 +38,6 @@ dropdown-panel {
       width: 200px;
       margin-right: auto !important;
       margin-left: 0px !important;
-    }
-    
-    &.right {
-      summary {
-        @include flex(1);
-        order: 2;
-      }
-      img {
-        order: 1;
-      }
     }
     
     summary {

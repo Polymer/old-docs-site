@@ -121,9 +121,9 @@
       <demo-tab heading="{{wide ? 'Build an app (30 min)' : 'Tutorial' }}">
         <div class="card">
           <div layout horizontal?="{{wide}}" vertical?="{{!wide}}">
-            <div class="summary" flex layout vertical>
+            <div class="summary" flex auto?="{{!wide}}" layout vertical>
               <h2>Build an app</h2>
-              <div flex>
+              <div>
                 <p>Ready to dive deeper?  In this tutorial, you'll build a small Polymer application -- 
                 a very basic client for a social networking service<span hidden?="{{!wide}}"> like the one at right</span>.
                 It'll give you a good feel for both using pre-made Polymer elements as well as building custom

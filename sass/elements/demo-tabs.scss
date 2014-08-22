@@ -9,6 +9,7 @@
   border-bottom: 1px solid #eee;
 
   span {
+    display: inline-block;
     line-height: 58px;
     text-align: center;
     padding: 0px 18px;
@@ -43,8 +44,8 @@
 }
 #contents {
   overflow: auto;
-  -webkit-flex: 1;
-  flex: 1;
+  -webkit-flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 #results {
   padding: 10px;

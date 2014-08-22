@@ -11,7 +11,8 @@
 (function() {
   function onScroll_() {
     this.previousScrollY = this.latestKnownScrollY;
-    this.latestKnownScrollY = window.scrollY;
+    /* IE10 only supports pageYOffset */
+    this.latestKnownScrollY = window.scrollY || window.pageYOffset;
     requestTick_.bind(this)();
   }
 
@@ -77,7 +78,7 @@
       this.fancyheaderChanged();
 
       // Handle pageload in middle of page.
-      if (window.scrollY && this.fancyheader) {
+      if ((window.scrollY || window.pageYOffset) && this.fancyheader) {
         this.onscroll();
       }
     },

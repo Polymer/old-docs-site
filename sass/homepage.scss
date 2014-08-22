@@ -93,7 +93,6 @@ site-banner .logo {
 .panel {
   @extend .content-padding;
   padding: 75px 16px;
-  @include display-flex;
 
   $img-margin: 88px;
 
@@ -109,7 +108,6 @@ site-banner .logo {
   }
 
   summary {
-    @include flex(1);
 
     + summary {
       margin-left: 25px;
@@ -148,8 +146,12 @@ site-banner .logo {
 
 #future {
   .panel {
+    @include display-flex;
     padding-top: 125px;
     min-height: 505px;
+  }
+  summary {
+    @include flex(1 1 0.000001px);
   }
   a {
     text-decoration: none;
@@ -161,6 +163,12 @@ site-banner .logo {
 @media only screen and (max-width: $break-medium) {
   #future {
     padding-top: 30px;
+    .panel {
+      @include flex-direction(column);
+    }
+    summary {
+      @include flex(1 1 auto);
+    }
   }
 }
 
@@ -193,16 +201,7 @@ site-banner .logo {
 }
 
 #designer {
-  .panel {
-    @include flex-direction(column);
-  }
   summary {
-    >div {
-      @include display-flex;
-      @include justify-content(center);
-      @include align-items(center);
-      @include flex-direction(column);
-    }
     h3 {
       margin: 1em 0;
     }
@@ -230,13 +229,8 @@ site-banner .logo {
 
 #apps {
   .panel {
-    @include flex-direction(column);
     padding: $content-padding 16px ($content-padding - 32px) 16px;
-    h1 {
-      @include flex(1);
-    }
     .columns {
-      @include display-flex;
       margin-top: 32px;
     }
     summary {

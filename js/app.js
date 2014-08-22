@@ -67,6 +67,7 @@ function injectPage(url, opt_addToHistory) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', url);
   xhr.responseType = 'document';
+  xhr.overrideMimeType("text/html; charset=utf-8");
   xhr.onloadend = function(e) {
     if (e.target.status != 200) {
       // TODO: use window.error and report this to server.

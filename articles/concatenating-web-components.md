@@ -174,7 +174,7 @@ build.js:
 
 ### Can I use Vulcanize with Grunt or Gulp?
 
-Although Vulcanize does a great job of flattening imports, you may have an existing build system setup that needs to uglify/minify your code or run your CSS through a preprocessor. Vulcanization can be added to Gulp using [gulp-vulcanize](https://github.com/sindresorhus/gulp-vulcanize) or to Grunt using the [grunt-vulcanize](https://github.com/Polymer/grunt-vulcanize) task. In fact, we dogfood the task on this [very](https://github.com/Polymer/docs/blob/master/Gruntfile.js#L72:L85) site :)
+Although Vulcanize does a great job of flattening imports, you may have an existing build system setup that needs to uglify/minify your code or run your CSS through a preprocessor. Vulcanization can be added to Gulp using [gulp-vulcanize](https://github.com/sindresorhus/gulp-vulcanize) or to Grunt using the [grunt-vulcanize](https://github.com/Polymer/grunt-vulcanize) task. In fact, we dogfood the task on this [very](https://github.com/Polymer/docs/blob/master/Gruntfile.js#L46:L56) site :)
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 

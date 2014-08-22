@@ -13,6 +13,14 @@
   -webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 
+/* Global fixes for x-plat compatibility */
+img {
+  border: 0;
+}
+summary {
+  display: block;
+}
+
 h2:target, h3:target, h4:target, h5:target {
   &:before {
     display: block;
@@ -53,7 +61,7 @@ img {
 pre, code {
   white-space: pre;
   word-wrap: normal;
-  overflow-x: scroll;
+  overflow-x: auto;
   
   b, strong {
     font-weight: 700;

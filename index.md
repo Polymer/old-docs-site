@@ -110,7 +110,7 @@ title: Welcome
   <div class="panel">
     <h1>Demos</h1>
     <div class="columns" layout horizontal wrap>
-      <summary>
+      <summary flex>
         <div class="box">
           <a href="/apps/topeka/">
             <img src="/images/topeka_square.png">
@@ -122,7 +122,7 @@ title: Welcome
           <paper-button icon="arrow-forward" label="Demo Topeka"></paper-button>
         </a>
       </summary>
-      <summary>
+      <summary flex>
         <div class="box">
           <a href="/components/paper-elements/demo.html#core-toolbar">
             <img src="/images/sampler-paper-square.png">
@@ -134,7 +134,7 @@ title: Welcome
           <paper-button icon="arrow-forward" label="Browse Elements"></paper-button>
         </a>
       </summary>
-      <summary>
+      <summary flex>
         <div class="box">
           <a href="/components/paper-calculator/demo.html">
             <img src="/images/paper-calculator.png">
