@@ -197,6 +197,13 @@ Add styles for the new elements. Add the following CSS rules inside the `<style>
 
 <side-by-side>
 <pre><strong class="highlight nocode">
+html,body {
+  height: 100%;
+  margin: 0;
+  background-color: #E5E5E5;
+  font-family: 'RobotoDraft', sans-serif;
+}
+
 core-header-panel {
   height: 100%;
   overflow: auto;
