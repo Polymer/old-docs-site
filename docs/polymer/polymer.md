@@ -147,8 +147,8 @@ Elements 可以通过如下纯 JavaScript 的方式注册：
     // 正确的！
     Polymer('x-foo', {
       created: function() {
-        this.list = []; // 初始化并明确数组类型。
-        this.person = {}; // 初始化并明确对象类型。
+        this.list = []; // 初始化并暗示为数组类型。
+        this.person = {}; // 初始化并暗示为对象类型。
       }
     });
 
@@ -291,35 +291,27 @@ attributeChangedCallback | attributeChanged | 一个特性被添加、移除或�
       </script>
     </body>
 
-## Features {#features}
+## 特征 {#features}
 
-### Published properties
+### 公开的属性
 
-When you _publish_ a property name, you're making that property part of the
-element's "public API". Published properties have the following features:
+当你_公开_一个属性名时，这个属性就成为了该 element 的一个“公共的 API”。公共的属性有如下几个特征：
 
-*   Support for two-way, declarative data binding.
+*   支持声明式双向数据绑定。
 
-*   Declarative initialization using an HTML attribute with a matching name.
+*   声明式初始化会使用一个与其名字匹配的 HTML 特性。
 
-*   Optionally, the current value of a property can be _reflected_ back to an
-    attribute with a matching name.
+*   可选的，一个属性的当前值可以_映射_回与其名字匹配的特性中。
 
-**Note:** Property names are case sensitive, but attribute names are not.
-{{site.project_title}} matches each property name with the corresponding
-attribute name, as described in [Attribute case sensitivity](#attrcase). This
-means you can't publish two properties distinguished only by capitalization (for
-example, `name` and `NAME`).
+**注意：** 属性名是大小写敏感的，但是特姓名不是。如[特性的大小写敏感性](#attrcase)中所描述的，{{site.project_title}} 以相应的特性名匹配每个属性名。这意味着你不能仅通过区分大小写来公开两个属性 (如 `name` 和 `NAME`)。
 {: .alert .alert-info }
 
-There are two ways to publish a property:
+公开一个属性的方式有两种：
 
-*   **Preferred** - Include its name in the `<polymer-element>`'s `attributes`
-    attribute.
-*   Include the name in a `publish` object on your prototype.
+*   **推荐的** - 将其名字包含在 `<polymer-element>` 的 `attributes` 特性中。
+*   将其名字包含在你的原型的一个 `publish` 对象上。
 
-As an example, here's an element that publishes three public properties, `foo`,
-`bar`, and `baz`, using the `attributes` attribute:
+比如，这里有一个 element，它使用 `attributes` 特性公开了 `foo`、`bar` 和 `baz` 这三个属性：
 
     <polymer-element name="x-foo" attributes="foo bar baz">
       <script>
@@ -327,7 +319,7 @@ As an example, here's an element that publishes three public properties, `foo`,
       </script>
     </polymer-element>
 
-And here's one using the `publish` object:
+而这是使用 `publish` 对象的写法：
 
     <polymer-element name="x-foo">
       <script>
@@ -344,47 +336,41 @@ And here's one using the `publish` object:
       </script>
     </polymer-element>
 
-Note that the `baz` property uses a different format, to enable
-[attribute reflection](#attrreflection).
+注意 `baz` 属性使用了一个不同的格式，以开启[特性映射](#attrreflection)。
 
-Generally it's preferable to use the `attributes` attribute because it's the
-declarative approach and you can easily see all of the exposed properties at the
-top of the element.
+通常我们倾向于用 `attributes` 特性，因为它是声明式的且在 element 顶部就易于查阅所有暴露出来的属性。
 
-You should opt for the `publish` object when any of the following is true:
+在下面的情况下，你应该可可选择性的使用 `publish` 对象：
 
-*   Your element has many properties and placing them all on one line feels
-    unwieldy.
-*   You want to define default values for properties and prefer the DRYness of
-    doing it all in one place.
-*   You need to reflect changes from the property value back to the corresponding
-    attribute.
+*   你的 element 有多个属性且把它们写成一行显得很笨拙。
+*   你想定义属性的默认值，且追求在一处完成所有重复的工作。
+*   你需要把属性的变化映射回相应的特性。
 
-#### Default property values
+#### 默认属性值
 
-By default, properties defined in `attributes` are initialized to `null`:
+定义在 `attributes` 里的属性会默认初始化为 `null`：
 
     <polymer-element name="x-foo" attributes="foo">
       <script>
-        // x-foo has a foo property with default value of null.
+        // x-foo 有一个默认值是 null 的属性 foo。
         Polymer('x-foo');
       </script>
     </polymer-element>
 
-Specifically, {{site.project_title}} adds `foo` to the element's prototype with a value of `null`.
+{{site.project_title}} 特别在 element 的原型上添加 `foo` 且值为 `null`。
 
-You can provide your own default values by explicitly specifying the default value on the elment's `prototype`:
+你可以在 element 的 `prototype` 上提供自己明确设定的默认值：
 
     <polymer-element name="x-foo" attributes="bar">
       <script>
         Polymer('x-foo', {
-          // x-foo has a bar property with default value false.
+          // x-foo 有一个默认值为 false 的 bar 属性。
           bar: false
         });
       </script>
     </polymer-element>
 
-Or you can define the whole thing using the `publish` property:
+或者你可以使用 `publish` 属性定义整个内容：
 
     <polymer-element name="x-foo">
       <script>
@@ -396,15 +382,13 @@ Or you can define the whole thing using the `publish` property:
       </script>
     </polymer-element>
 
-For property values that are objects or arrays, you should set the default value
-in the `created` callback instead. This ensures that a separate object is
-created for each instance of the element:
+对于属性值是对象或数组的情况，你应该唤为在 `created` 回调时设置默认值。它会确保每个 element 的实例都有一个独立的对象被创建：
 
     <polymer-element name="x-default" attributes="settings">
       <script>
         Polymer('x-default', {
           created: function() {
-            // create a default settings object for this instance
+            // 为该实例创建一个默认设置对象
             this.settings = {
               textColor: 'blue';
             };
@@ -414,100 +398,79 @@ created for each instance of the element:
     </polymer-element>
 
 
-#### Configuring an element via attributes
+#### 通过特性配置一个 element
 
-Attributes are a great way for users of your element to configure it,
-declaratively. They can customize a published property by setting its initial
-value as the attribute with the corresponding name:
+特性是你的 element 用户对其声明式配置的一个非常好的方式。它们可以通过设置一个相应的特性名的初始值来自定义公开的属性。
 
     <x-foo name="Bob"></x-foo>
 
-If the property value isn't a string, {{site.project_title}} tries to convert
-the attribute value to the appropriate type.
+如果属性值不是一个字符串，{{site.project_title}} 尝试把特性值转换为适当的类型。
 
-The connection from attribute to property is _one way_. Changing the property
-value does **not** update the attribute value, unless
-[attribute reflection](#attrreflection) is enabled for the property.
+从特性到属性的连接是_单向_的。改变属性值**不会**更新特性值，除非为其属性开启了[特性映射](#attrreflection)。
 
-**Note**: Configuring an element using an attribute shouldn't be confused with
-[data binding](databinding.html). Data binding to a published property is
-by-reference, meaning values are not serialized and deserialized to strings.
+**注意：**使用特性来配置一个 element 不应该和[数据绑定](databinding.html)相混淆。一个公开的属性的数据绑定是通过引用做到的，也就是说值并不会序列化或反序列化为字符串。
 {: .alert .alert-info}
 
-##### Hinting a property's type {#attrhinting}
+##### 暗示属性的类型 {#attrhinting}
 
-When attribute values are converted to property values, {{site.project_title}}
-attempts to convert the value to the correct type, depending on the default
-value of the property.
+当特性值被转换为属性值时，{{site.project_title}} 会尝试依据属性的默认值将其转换为正确的类型。
 
-For example, suppose an `x-hint` element has a `count` property that defaults to `0`.
+比如，设想一个 `x-hint` element 有一个 `count` 属性，且默认值为 `0`。
 
     <x-hint count="7"></x-hint>
 
-Since `count` has a Number value, {{site.project_title}} converts
-the string "7" to a Number.
+因为 `count` 有一个 Number 的值，{{site.project_title}} 把“7”转换为了一个 Number。
 
-If a property takes an object or array, you can configure it using a
-double-quoted JSON string. For example:
+如果一个属性是对象或数组，你可以使用一个双引号的 JSON 字符串配置它。比如：
 
     <x-name fullname='{ "first": "Bob", "last": "Dobbs" }'></x-name>
 
 This is equivalent to setting the element's `fullname` property to an object
 literal in JavaScript:
+这等价于设置 element 的 `fullname` 属性为一个 JavaScript 字面量对象：
 
     xname.fullname = { first: 'Bob', last: 'Dobbs' };
 
-The default value can be set on the prototype itself, in
-the `publish` object, or in the `created` callback. The following element
-includes an unlikely combination of all three:
+默认值可以被设置在原型自身上、在 `publish` 对象里或 `created` 回调里。下面的 element 包含了一个不太科学的三者的结合：
 
     <polymer-element name="hint-element" attributes="isReady items">
       <script>
         Polymer('hint-element', {
 
-          // hint that isReady is a Boolean
+          // 暗示 isReady 是一个 Boolean 值
           isReady: false,
 
           publish: {
-            // hint that count is a Number
+            // 暗示 count 是一个 Number 值
             count: 0
           },
 
           created: function() {
-            // hint that items is an array
+            // 暗示 items 是一个数组
             this.items = [];
           }
         });
       </script>
     </polymer-element>
 
-**Important:** For properties that are objects or arrays, you should always
-initialize the properties in the `created` callback. If you set the default
-value directly on the `prototype` (or on the `publish` object), you may run into
-unexpected "shared state" across different instances of the same element.
+**重要：**对于对象或数组的属性来说，你应该总是在 `created` 回调中初始化这些属性。如果你直接在 `prototype` 上 (或者在 `publish` 对象上) 设置了默认值，你会跨越相同 element 的多个实例出现非预期的“共享状态”。
 {: .alert .alert-error }
 
-#### Property reflection to attributes {#attrreflection}
+#### 特性的属性映射 {#attrreflection}
 
-Property values can be _reflected_ back into the matching attribute. For
-example, if reflection is enabled for the `name` property, setting
-`this.name = "Joe"` from within an element is equivalent to  calling
-`this.setAttribute('name', 'Joe')`.  The element updates the DOM accordingly:
+属性值可以被_映射_回相匹配的特性。比如，如果为 `name` 属性开启了映射，在一个 element 中设置 `this.name = "Joe"` 就等价于调用了 `this.setAttribute('name', 'Joe')`。Element 会更新相应的 DOM：
 
     <x-foo name="Joe"></x-foo>
 
-Property reflection is only useful in a few cases, so it is off by default.
-You usually only need property reflection if you want to style an element based
-on an attribute value.
+属性映射只用于少数情况，因此它是默认关闭的。你通常只在你想基于一个特性值修饰元素的时候需要属性映射。
 
-To enable reflection, define the property in the `publish` block.
-Instead of a simple value:
+开启映射的方式是在 `publish` 块中定义属性，不是用非单一值的方式：
 
 <pre>
 <var>propertyName</var>: <var>defaultValue</var>
 </pre>
 
-Specify a reflected property using this format:
+而是通过这样的格式定义一个映射属性：
 
 <pre>
 <var>propertyName</var>: {
@@ -516,21 +479,15 @@ Specify a reflected property using this format:
 }
 </pre>
 
-The property value is serialized to a string based on its data type. A
-few types get special treatment:
+这个属性值会基于其数据类型被序列化为一个字符串。但一些类型会被特殊对待：
 
-*   If the property value is an object, array, or function, the value is
-    **never** reflected, whether or not `reflect` is `true`.
+*   如果属性值是一个对象、数组或函数，则值**永远不会**被映射，无论 `reflect` 是否为 `true`。
 
-*   If the property value is boolean, the attribute behaves like a standard
-    boolean attribute: the reflected attribute appears only if the value is
-    truthy.
+*   如果属性值是布尔值，则其特性的行为会像一个标准的布尔特性：只有属性值为真时被映射的特性才出现。
 
-Also, note that the initial value of an attribute is **not** reflected, so the
-reflected attribute does not appear in the DOM unless you set it to a different
-value.
+也要注意一个特性的初始值是*不会*被映射的，因此除非你设置了不同的值，否则被映射的特性不会出现在 DOM 中。
 
-For example:
+比如：
 
     <polymer-element name="disappearing-element">
       <script>
@@ -545,20 +502,15 @@ For example:
       </script>
     </polymer-element>
 
-Setting `hidden = true` on a `<disappearing-element>` causes the `hidden`
-attribute to be set:
+在一个 `<disappearing-element>` 上设置 `hidden = true` 会导致 `hidden` 特性被设置：
 
     <disappearing-element hidden>Now you see me...</disappearing-element>
 
-Attribute _reflection_ is separate from data binding. Two-way data binding is
-available on published properties whether or not they're reflected. Consider the
-following:
+特性_映射_和数据绑定是区别看待的。双向数据绑定可用于公开的属性，不论它们是否被映射。考虑下面的情况：
 
     <my-element name="{%raw%}{{someName}}{%endraw%}"></my-element>
 
-If the `name` property is _not_ set to reflect, the `name` attribute always
-shows up as `name="{%raw%}{{someName}}{%endraw%}"` in the DOM. If `name` _is_
-set to reflect, the DOM attribute reflects the current value of `someName`.
+如果 `name` 属性_没有_被映射，则 `name` 特性总是在 DOM 里展示为 `name="{%raw%}{{someName}}{%endraw%}"`。如果 `name` _确实_被映射，其 DOM 特性映射 `someName` 的当前值。
 
 ### Data binding and published properties
 
