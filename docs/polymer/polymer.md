@@ -898,110 +898,97 @@ In this example, the `on-keypress` declaration maps the standard DOM `"keypress"
 
 ## 高阶话题 {#additional-utilities}
 
-### Life of an element's bindings {#bindings}
+### 一个 element 绑定的一生 {#bindings}
 
-**Note:** The section only applies to elements that are instantiated in JavaScript, not to those
-declared in markup.
+**注意：** 该章节只应用于在 JavaScript 中实例化，而不是在标记中被声明的 element。
 {: .alert .alert-info }
 
-If you instantiate an element (e.g. `document.createElement('x-foo')`) and do **not** add it to the DOM,
-{{site.project_title}} asynchronously removes its {%raw%}`{{}}`{%endraw%} bindings and `*Changed` methods.
-This helps prevent memory leaks, ensuring the element will be garbage collected.
+如果你实例化了一个 element (比如 `document.createElement('x-foo')`) 并且**没有**将其添加到 DOM 中，{{site.project_title}} 会异步移除它的 {%raw%}`{{}}`{%endraw%} 绑定和 `*Changed` 方法。这会帮助我们回避内存泄露，确保 element 会被垃圾回收。
 
-If you want the element to "remain active" when it's not in the `document`,
-call `cancelUnbindAll()` right after you create or remove it. The [lifecycle methods](#lifecyclemethods)
-are a good place for this:
+如果你希望 element 不在 `document` 里时也可以“保持活跃”，请在你创建或移除它之后立即调用 `cancelUnbindAll()`。[生命周期方法](#lifecyclemethods)是很好的做这件事的地方：
 
     Polymer('my-element', {
       ready: function() {
-        // Ensure bindings remain active, even if we're never added to the DOM.
+        // 哪怕我们永远不把它添加到 DOM 里，也依然确保绑定的活跃。
         this.cancelUnbindAll();
       },
       detached: function() {
-        // Also keep bindings active if we're added, but later removed.
+        // 同样的，如果我们被添加但稍后又被移除，绑定依然是活跃的。
         this.cancelUnbindAll();
       }
     });
 
-{{site.project_title}} typically handles this management for you, but when you
-explicitly call `cancelUnbindAll()` (and the element is never added to/put back in the DOM),
-it becomes your responsibility to _eventually_ unbind the element using `unbindAll()/asyncUnbindAll()`,
-otherwise your application may leak memory.
+{{site.project_title}} 会替你把这些管理好，但是当你明确调用 `cancelUnbindAll()` (并且 element 永远不会被添加到/回 DOM 中) 时，你有责任_最终_通过 `unbindAll()/asyncUnbindAll()` 解绑这个 element，否则你的应用就可能会内存泄露。
 
     var el = document.createElement('my-element');
-    // Need to unbind if el is:
-    //   1. never added to the DOM
-    //   2. put in the DOM, but later removed
+    // 需要解绑定，如果 el：
+    //   1. 永远不会添加到 DOM 中
+    //   2. 放入 DOM 中，但是稍后被移除
     el.unbindAll();
 
-#### Using preventDispose {#preventdispose}
+#### 使用 preventDispose {#preventdispose}
 
-To force bindings from being removed in call cases, set `.preventDispose`:
+为了在任何时候都在被移除的情形下强制绑定，请设置 `.preventDispose`：
 
     Polymer('my-element', {
       preventDispose: true
     });
 
-### How data changes are propagated {#flush}
+### 数据变化是如何被传播的 {#flush}
 
-Data changes in {{site.project_title}} happen almost immediately (at end of a microtask)
-when `Object.observe()` is available. When it's not supported, {{site.project_title}} uses a polyfill ([observe-js](https://github.com/Polymer/observe-js)) to poll and periodically propagate data-changes throughout the system. This is done through a method called `Platform.flush()`.
+当 `Object.observe()` 可用时，{{site.project_title}} 里的数据变化几乎 (在一个微任务的最后) 立即发生。当它不支持的时候，{{site.project_title}} 使用了一个 polyfill ([observe-js](https://github.com/Polymer/observe-js)) 在整个系统里轮询并周期性的传播数据变化。这是通过一个叫做 `Platform.flush()` 的方法来完成的。
 
-#### What is `Platform.flush()`?
+#### 何为 `Platform.flush()`？
 
-`Platform.flush()` is part of {{site.project_title}}'s data observation polyfill, [observe-js](https://github.com/Polymer/observe-js). It dirty check's all objects that have been observed and ensures notification callbacks are dispatched. {{site.project_title}} automatically calls `Platform.flush()` periodically, and this should be sufficient for most application workflows. However, there are times when you'll want to call `Platform.flush()` in application code.
+`Platform.flush()` 是 {{site.project_title}} 的数据监视 polyfill [observe-js](https://github.com/Polymer/observe-js) 的一部分。它会 dirty check 所有被监视的对象并确保提醒的回调被派发。{{site.project_title}} 自动化的周期性调用 `Platform.flush()`，且这应该足够大多数应用程序的工序。尽管如此，有的时候你还是需要在应用程序的代码里手动调用 `Platform.flush()`。
 
-**Note:** on platforms that support `Object.observe()` natively, `Platform.flush()` does nothing.
+**注意：** 在原生支持 `Object.observe()` 的平台中 `Platform.flush()` 什么事都不会做。
 {: .alert .alert-info }
 
-#### When should I call `Platform.flush()`?
+#### 我应该在什么时候调用 `Platform.flush()`？
 
-Instead of waiting for the next poll interval, one can manually schedule an update by calling `Platform.flush()`. **There are very few cases where you need to call `Platform.flush()` directly.**
+相比等到下一次轮询，我们可以调用 `Platform.flush()` 更新取而代之。**这里有几种你需要直接调用 `Platform.flush()` 的情况。**
 
-If it's important that a data change propagates before the next screen paint, you may
-need to manually call `Platform.flush()`. Here are specific examples:
+如果数据变化在下一个屏幕绘制之前传播是很重要的，你可能需要手动调用 `Polymer.flush()`。这里有一些特殊的例子：
 
-1. A property change results in a CSS class being added to a node. Often, this works out fine, but sometimes, it's important to make sure the node does not display without the styling from the added class applied to it. To ensure this, call `Platform.flush()` in the property change handler after adding the CSS class.
-2. The author of a slider element wants to ensure that data can propagate from it as the user slides the slider. A user of the element, might, for example, bind the slider's value to an input and expect to see the input change while the slider is moving. To achieve this, the element author calls `Platform.flush()` after setting the element's value in the `ontrack` event handler.
+1. 一个属性变化导致一个 CSS class 添加到结点中。这通常是工作正常的，但有时重要的是确保结点展示了新添加的 class 应用的样式。为此，在添加 CSS class 之后在属性变化句柄中调用 `Platform.flush()`。
+2. 一个滑块 element 的撰写者想确保当用户滑动滑块的时候数据可以传播。比如一个 element 的用户可以把滑块的值绑定到一个输入框，然后期待当滑块移动时输入发生改变。为了达到这一目的，element 的撰写者在设置 element 的值之后在`ontrack` 事件句柄中调用了 `Platform.flush()`。
 
-**Note:** {{site.project_title}} is designed such that change notifications are asynchronous. Both `Platform.flush()` and `Object.observe()` (after which it's modeled) are asynchronous. Therefore, **`Platform.flush()` should not be used to try to enforce synchronous data notifications**. Instead, always use [change watchers](#change-watchers) to be informed about state.
+**注意：** {{site.project_title}} 是刻意设计为异步提醒的。`Platform.flush()` 和 `Object.observe()` (在此之后被建模) 都是异步的。因此，**`Platform.flush()` 不应该用来试图强制同步进行数据提醒**。相反，请始终之用[变化观察者](#change-watchers)来知会状态。
 {: .alert .alert-info }
 
-### How {{site.project_title}} elements prepare themselves {#prepare}
+### {{site.project_title}} elements 如何准备自我 {#prepare}
 
-For performance reasons, `<polymer-element>`s avoid the expense of preparing ShadowDOM, event listeners, and property observers if they're created outside the main document.
-This behavior is similar to how native elements such as `<img>` and `<video>` behave.
-They remain in a semi-inert state when created outside the main document (e.g. an `<img>` avoids the expense of loading its `src`).
+出于性能方面的原因，如果 `<polymer-element>` 被创建在主文档之外，则它会避免准备 ShadowDOM、事件收听者和属性监听者的消耗。这一行为类似诸如 `<img>` and `<video>` 的原生 element。它们在主文档外被创建时仍处在一种半插入状态 (比如一个 `<img>` 会避免其载入 `src` 的消耗)。
 
-{{site.project_title}} elements prepare themselves automatically in the following cases:
+{{site.project_title}} elements 在下面的情况下会自动化自我准备：
 
-1. when they're created in a `document` that has a `defaultView` (the main document)
-2. when they receive the `attached` callback
-3. when they're created in the `shadowRoot` of another element that is preparing itself
+1. 当它们被创建在一个带有 `defaultView` 的 `document` 中 (主文档)
+2. 当他们收到 `attached` 回调
+3. 当他们被创建在另一个正在自我准备的 element 的 `shadowRoot` 里
 
-In addition, if the `.alwaysPrepare` property is set to `true`, {{site.project_title}} elements
-prepare themselves even when they do not satisfy the above rules.
+另外，如果 `.alwaysPrepare` 属性被设置为 `true`，{{site.project_title}} elements 会自我准备，哪怕它们并不满足上述规则。
 
     Polymer('my-element', {
       alwaysPrepare: true
     });
 
-**Note:** an element's [`ready()` lifecycle callback](#lifecyclemethods) is called after an element has been prepared. Use `ready()` to know when an element is done initializing itself.
+**注意：** 一个 element 的 [`ready()` 生命周期回调](#lifecyclemethods) 会在一个 element 自我准备就绪知会被调用。用 `ready()` 来判断一个 element 何时自身初始化完毕。
 {: .alert .alert-success }
 
-### Resolving paths of sibling elements {#resolvepath}
+### 决定兄弟 elements 的路径 {#resolvepath}
 
-For the general case of element re-use and sharing, URLs in HTML Imports are meant to be relative to the location of the import. The majority of the time, the browser takes care of this for you.
+对于 element 重用和共享的一般的情况，HTML Imports 中的 URL 是相对于该 import 的位置的。大部分情况下浏览器都会帮你把这些打理好。
 
-However, JavaScript doesn't have a notion of a local import. Therefore, {{site.project_title}} provides a `resolvePath()` utility for converting paths relative to the import to paths relative to the document.
+不过，JavaScript 没有本地 import 的观念。因此 {{site.project_title}} 提供了一个 `resolvePath()` 工具来转换相对于该 import 到该文档的路径。
 
-For example: If you know your import is in a folder containing a resource (e.g `x-foo.png`), you can get a path to `x-foo.png` which will work relative to the main document by calling `this.resolvePath('x-foo.png')`.
+比如：如果你知道你的 import 在一个包含资源 (比如 `x-foo.png`) 的文件夹里，你可以通过调用 `this.resolvePath('x-foo.png')` 获取一个相对于主文档的 `x-foo.png` 的路径。
 
-Visually, this might look like the following:
+可以形象的看做如下情形：
 
     index.html
     components/x-foo/
       x-foo.html
       x-foo.png
 
-At an element level, where `this` refers to an instance of an `x-foo` created by `index.html`, `this.resolvePath('x-foo.png') === 'components/x-foo/x-foo.png'`.
+在一个 element 的级别上，`this` 指一个被 `index.html` 创建的 `x-foo` 实例，`this.resolvePath('x-foo.png') === 'components/x-foo/x-foo.png'`。
