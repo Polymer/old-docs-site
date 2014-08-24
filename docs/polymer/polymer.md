@@ -265,11 +265,11 @@ Elements 可以通过如下纯 JavaScript 的方式注册：
 规范 | {{site.project_title}} | 调用时机
 |-
 createdCallback | created | 一个 element 实例被创建。
-- | ready | 该 `<polymer-element>` 已经完全准备好了 (如 shadow DOM 已被创建、属性观察者已设置、事件监听者已绑定等)。
+- | ready | 该 `<polymer-element>` 已经完全准备好了 (如 shadow DOM 已被创建、属性监视者已设置、事件监听者已绑定等)。
 attachedCallback | attached | 一个 element 的实例被插入到 DOM 中。
 - | domReady | 当 element 的子元素初始化设置确保存在时被调用。这是针对其 element 的父元素或 light DOM 子元素的好时机。另一个用法是当你拥有兄弟 custom elements 的时候 (比如它们是通过 `.innerHTML` 同时写在一起的)。在 element A 可以使用 B 的 API/属性之前，element B 需要被升级。该 `domReady` 回调确保了这两个 elements 都存在。
 detachedCallback | detached | 一个实例从 DOM 中被移除时。
-attributeChangedCallback | attributeChanged | 一个特性被添加、移除或更改时。**注意：**为了观察[公开的属性](#published-properties)的改变，请使用 [changed watchers](#change-watchers)。
+attributeChangedCallback | attributeChanged | 一个特性被添加、移除或更改时。**注意：**为了监视[公开的属性](#published-properties)的改变，请使用 [changed watchers](#change-watchers)。
 {: .table .responsive-table .lifecycle-table }
 
 ### polymer-ready 事件 {#polymer-ready}
@@ -581,12 +581,11 @@ In this example, the `on-keypress` declaration maps the standard DOM `"keypress"
   * `inDetail`：`inEvent.detail` 的一种便捷形式。
   * `inSender`：一个声明该句柄的结点的引用。它和 `inEvent.target` (收到事件的最小结点) 和 `inEvent.currentTarget` (处理该事件的 component) 都是不同的，所以 {{site.project_title}} 直接提供了这个参数。
 
-### Observing properties {#observeprops}
+### 监视属性 {#observeprops}
 
-#### Changed watchers {#change-watchers}
+#### 变化观察者 {#change-watchers}
 
-The simplest way to observe property changes on your element is to use a changed watcher.
-All properties on {{site.project_title}} elements can be watched for changes by implementing a <code><em>propertyName</em>Changed</code> handler. When the value of a watched property changes, the appropriate change handler is automatically invoked.
+监视你的 element 的属性变化最简单的方法就是使用变化观察者。{{site.project_title}} elements 所有的属性变化都可以通过实现一个 <code><em>propertyName</em> Changed</code> 的句柄进行观察。当被观察变化的属性值改变时，适当的变化句柄就会被自动调用。
 
     <polymer-element name="g-cool" attributes="better best">
       <script>
@@ -603,18 +602,15 @@ All properties on {{site.project_title}} elements can be watched for changes by 
       </script>
     </polymer-element>
 
-In this example, there are two watched properties, `better` and `best`. The `betterChanged` and `bestChanged` function will be called whenever `better` or `best` are modified, respectively.
+在这个例子中，有两个被观察的属性，`better` 和 `best`。函数 `betterChanged` 和 `bestChanged` 会在 `better` 和 `best` 各自被改变的时候被调用。
 
-#### Custom property observers - `observe` blocks {#observeblock}
+#### 自定义属性监视者 - `observe` 代码块 {#observeblock}
 
-Sometimes a [changed watcher](#change-watchers) is not enough. For more control over
-property observation, {{site.project_title}} provides `observe` blocks.
+有的时候一个[变化观察者](#change-watchers)并不够。为了更全面的进行属性监视，{{site.project_title}} 提供了 `observe` 代码块。
 
-An `observe` block defines a custom property/observer mapping for one or more properties.
-It can be used to watch for changes to nested objects or share the same callback
-for several properties.
+一个 `observe` 代码块自定义了一个或多个属性的属性/监视者映射。它可以用于观察嵌套对象或共享相同回调的几个属性的变化。
 
-**Example:** - share a single observer
+**例子：** - 分享一个简单的监视者
 
     Polymer('x-element', {
       foo: '',
@@ -632,12 +628,11 @@ for several properties.
       },
     });
 
-In the example, `validate()` is called whenever `foo` or `bar` changes.
+在这个例子中，`validate()` 会在 `foo` 或 `bar` 改变时被调用。
 
-**Example:** - using automatic node in an `observe` block
+**例子：** - 在一个 `observe` 代码块里自动化定位结点
 
-When an element has an id, you can use `this.$` in the `observe` block to watch
-a property on that element:
+当 element 有一个 id 的时候，你可以在 `observe` 代码块中使用 `this.$` 来观察一个 element 上的属性。
 
     <template>
       <x-foo id="foo"></x-foo>
@@ -652,7 +647,7 @@ a property on that element:
       }
     });
 
-**Example:** - watching for changes to a nested object path
+**例子：** - 观察一个嵌套对象路径的变化
 
     Polymer('x-element', {
       observe: {
@@ -672,7 +667,7 @@ a property on that element:
       }
     });
 
-It's important to note that **{{site.project_title}} does not call the <code><em>propertyName</em>Changed</code> callback for properties included in an `observe` block**. Instead, the defined observer gets called.
+值得注意的是 **{{site.project_title}} 并没有为包含在一个 `observe` 代码块中的属性回调 <code><em>propertyName</em>Changed</code>**。取而代之的是在定义好的监视者中发生调用。
 
     Polymer('x-element', {
       bar: '',
@@ -680,25 +675,21 @@ It's important to note that **{{site.project_title}} does not call the <code><em
         bar: 'validate'
       },
       barChanged: function(oldValue, newValue) {
-        console.log("I'm not called");
+        console.log("我不会被调用");
       },
       validate: function(oldValue, newValue) {
-        console.log("I'm called instead");
+        console.log("换做我被调用");
       }
     });
 
-### Automatic node finding
+### 自动化定位结点
 
-Another useful feature of {{site.project_title}} is automatic node finding. 
-Nodes in a component's shadow DOM that are tagged with an 
-`id` attribute are automatically referenced in the component's `this.$` hash.
+{{site.project_title}} 另一个给力的功能是自动化定位结点。一个 component 的 shadow DOM 中标有 `id` 特性的结点可以被自动引用在该 component 的 `this.$` 散列表中。
 
-**Note:** Nodes created dynamically using data binding are _not_ added to the 
-`this.$` hash. The hash includes only _statically_ created shadow DOM nodes 
-(that is, the nodes defined in the element's outermost template).
+**注意：**通过数据绑定动态创建的结点_无法_被添加到 `this.$` 散列表中。该散列表只包含_静态_创建的 shadow DOM 结点 (即定义在 element 外部的模板中的结点)。
 {: .alert .alert-warning }
 
-For example, the following defines a component whose template contains an `<input>` element whose `id` attribute is `nameInput`. The component can refer to that element with the expression `this.$.nameInput`.
+举个例子，下面这段代码定义了一个 component，其模板包含了一个 id 特性为 `nameInput` 的 `<input>` element。这个 component 就可以通过表达式 `this.$.nameInput` 找到这个 element。
 
     <polymer-element name="x-form">
       <template>
@@ -713,41 +704,37 @@ For example, the following defines a component whose template contains an `<inpu
       </script>
     </polymer-element>
 
-To locate other nodes inside the element's shadow DOM, you can create a 
-container element with a known ID and use `querySelector` to retrieve
-descendants. For example, if your element's template looks like this:
+为了定位 element 的 shadow DOM 里的其它结点，你可以创建一个带有确定 id 的容器 element，然后使用 `querySelector` 来获取子孙。举个例子，如果你的 element 的模板是下面这个样子：
 
     <template>
       <div id="container">
         <template if="{%raw%}{{some_condition}}{%endraw%}">
           <div id="inner">
-           This content is created by data binding.
+            该内容通过数据绑定被创建
           </div>
         </template>
       </div>
     </template>
 
-You can locate the inner container using:
+你可以在容器内这样定位：
 
     this.$.container.querySelector('#inner');
 
-### Firing custom events {#fire}
+### 触发自定义事件 {#fire}
 
-{{site.project_title}} core provides a convenient `fire()` method for
-sending custom events. Essentially, it's a wrapper around your standard `node.dispatchEvent(new CustomEvent(...))`. In cases where you need to fire an event after microtasks have completed,
-use the asynchronous version: `asyncFire()`.
+{{site.project_title}} core 提供了一个便捷的 `fire()` 方法传递自定义事件。实际上这是一个围绕标准的 `node.dispatchEvent(new CustomEvent(...))` 包装出来的。当你需要在一个微小的任务完成之后触发一个事件，请使用其异步的版本：`asyncFire()`。
 
-Example:
+例如：
 
 {% raw %}
     <polymer-element name="ouch-button">
       <template>
-        <button on-click="{{onClick}}">Send hurt</button>
+        <button on-click="{{onClick}}">伤自尊</button>
       </template>
       <script>
         Polymer('ouch-button', {
           onClick: function() {
-            this.fire('ouch', {msg: 'That hurt!'}); // fire(inType, inDetail, inToNode)
+            this.fire('嗷', {msg: '又伤自尊了！'}); // fire(inType, inDetail, inToNode)
           }
         });
       </script>
@@ -757,20 +744,17 @@ Example:
 
     <script>
       document.querySelector('ouch-button').addEventListener('ouch', function(e) {
-        console.log(e.type, e.detail.msg); // "ouch" "That hurt!"
+        console.log(e.type, e.detail.msg); // "嗷" "又伤自尊了！"
       });
     </script>
 {% endraw %}
 
-**Tip:** If your element is within another {{site.project_title}} element, you can
-use the special [`on-*`](#declarative-event-mapping) handlers to deal with the event: `<ouch-button on-ouch="{% raw %}{{myMethod}}{% endraw %}"></ouch-button>`
+**提示：**如果你的 element 在另一个 {{site.project_title}} element 中，你可以使用特殊的 [`on-*`](#declarative-event-mapping) 句柄来处理该事件：`<ouch-button on-ouch="{% raw %}{{myMethod}}{% endraw %}"></ouch-button>`
 {: .alert .alert-success }
 
-### Extending other elements
+### 扩展其它的 elements
 
-A {{site.project_title}} element can extend another element by using the `extends`
-attribute. The parent's properties and methods are inherited by the child element
-and data-bound.
+一个 {{site.project_title}} element 可以通过 `extends` 特性扩展其它的 element。子类会继承父类的属性和方法，也会进行数据绑定。
 
     <polymer-element name="polymer-cool">
       <template>
@@ -796,9 +780,9 @@ and data-bound.
 
     <polymer-cooler>Matt</polymer-cooler>
 
-#### Overriding a parent's methods
+#### 覆盖一个父类的方法
 
-When you override an inherited method, you can call the parent's method with `this.super()`, and optionally pass it a list of arguments (e.g. `this.super([arg1, arg2])`). The reason the parameter is an array is so you can write `this.super(arguments)`.
+当你覆盖一个被继承的方法时，你可以通过 `this.super()` 调用父类的方法，并可选的传递一个参数列表 (比如 `this.super([arg1, arg2])`)。以数组形式传递参数是为了方便你执行 `this.super(arguemnts)`。
 
 {% raw %}
     <polymer-element name="polymer-cool">
@@ -833,10 +817,7 @@ When you override an inherited method, you can call the parent's method with `th
     <polymer-cooler>Matt</polymer-cooler>
 {% endraw %}
 
-In this example, when the user clicks on a `<polymer-cooler>` element, its
-`makeCoolest()` method is called, which in turn calls the parent's version
-using `this.super()`. The `praise` property (inherited from `<polymer-cool>`) is set
-to "coolest".
+在这个例子中，当用户点击 `<polymer-cooler>` element，轮到用 `this.super()` 调用父类版本时，其 `makeCoolest()` 方法被调用。其(继承自 `<polymer-cool>` 的) `praise` 属性会被设置为“coolest”。
 
 ## Built-in element methods {#builtin}
 
