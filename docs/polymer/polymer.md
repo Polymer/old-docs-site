@@ -301,7 +301,7 @@ attributeChangedCallback | attributeChanged | 一个特性被添加、移除或�
 
 *   声明式初始化会使用一个与其名字匹配的 HTML 特性。
 
-*   可选的，一个属性的当前值可以_映射_回与其名字匹配的特性中。
+*   可选的，一个属性的当前值可以_反射_回与其名字匹配的特性中。
 
 **注意：** 属性名是大小写敏感的，但是特姓名不是。如[特性的大小写敏感性](#attrcase)中所描述的，{{site.project_title}} 以相应的特性名匹配每个属性名。这意味着你不能仅通过区分大小写来公开两个属性 (如 `name` 和 `NAME`)。
 {: .alert .alert-info }
@@ -336,7 +336,7 @@ attributeChangedCallback | attributeChanged | 一个特性被添加、移除或�
       </script>
     </polymer-element>
 
-注意 `baz` 属性使用了一个不同的格式，以开启[特性映射](#attrreflection)。
+注意 `baz` 属性使用了一个不同的格式，以开启[特性反射](#attrreflection)。
 
 通常我们倾向于用 `attributes` 特性，因为它是声明式的且在 element 顶部就易于查阅所有暴露出来的属性。
 
@@ -344,7 +344,7 @@ attributeChangedCallback | attributeChanged | 一个特性被添加、移除或�
 
 *   你的 element 有多个属性且把它们写成一行显得很笨拙。
 *   你想定义属性的默认值，且追求在一处完成所有重复的工作。
-*   你需要把属性的变化映射回相应的特性。
+*   你需要把属性的变化反射回相应的特性。
 
 #### 默认属性值
 
@@ -406,7 +406,7 @@ attributeChangedCallback | attributeChanged | 一个特性被添加、移除或�
 
 如果属性值不是一个字符串，{{site.project_title}} 尝试把特性值转换为适当的类型。
 
-从特性到属性的连接是_单向_的。改变属性值**不会**更新特性值，除非为其属性开启了[特性映射](#attrreflection)。
+从特性到属性的连接是_单向_的。改变属性值**不会**更新特性值，除非为其属性开启了[特性反射](#attrreflection)。
 
 **注意：**使用特性来配置一个 element 不应该和[数据绑定](databinding.html)相混淆。一个公开的属性的数据绑定是通过引用做到的，也就是说值并不会序列化或反序列化为字符串。
 {: .alert .alert-info}
@@ -456,21 +456,21 @@ literal in JavaScript:
 **重要：**对于对象或数组的属性来说，你应该总是在 `created` 回调中初始化这些属性。如果你直接在 `prototype` 上 (或者在 `publish` 对象上) 设置了默认值，你会跨越相同 element 的多个实例出现非预期的“共享状态”。
 {: .alert .alert-error }
 
-#### 特性的属性映射 {#attrreflection}
+#### 特性的属性反射 {#attrreflection}
 
-属性值可以被_映射_回相匹配的特性。比如，如果为 `name` 属性开启了映射，在一个 element 中设置 `this.name = "Joe"` 就等价于调用了 `this.setAttribute('name', 'Joe')`。Element 会更新相应的 DOM：
+属性值可以被_反射_回相匹配的特性。比如，如果为 `name` 属性开启了反射，在一个 element 中设置 `this.name = "Joe"` 就等价于调用了 `this.setAttribute('name', 'Joe')`。Element 会更新相应的 DOM：
 
     <x-foo name="Joe"></x-foo>
 
-属性映射只用于少数情况，因此它是默认关闭的。你通常只在你想基于一个特性值修饰元素的时候需要属性映射。
+属性反射只用于少数情况，因此它是默认关闭的。你通常只在你想基于一个特性值修饰元素的时候需要属性反射。
 
-开启映射的方式是在 `publish` 块中定义属性，不是用非单一值的方式：
+开启反射的方式是在 `publish` 块中定义属性，不是用非单一值的方式：
 
 <pre>
 <var>propertyName</var>: <var>defaultValue</var>
 </pre>
 
-而是通过这样的格式定义一个映射属性：
+而是通过这样的格式定义一个反射属性：
 
 <pre>
 <var>propertyName</var>: {
@@ -481,11 +481,11 @@ literal in JavaScript:
 
 这个属性值会基于其数据类型被序列化为一个字符串。但一些类型会被特殊对待：
 
-*   如果属性值是一个对象、数组或函数，则值**永远不会**被映射，无论 `reflect` 是否为 `true`。
+*   如果属性值是一个对象、数组或函数，则值**永远不会**被反射，无论 `reflect` 是否为 `true`。
 
-*   如果属性值是布尔值，则其特性的行为会像一个标准的布尔特性：只有属性值为真时被映射的特性才出现。
+*   如果属性值是布尔值，则其特性的行为会像一个标准的布尔特性：只有属性值为真时被反射的特性才出现。
 
-也要注意一个特性的初始值是*不会*被映射的，因此除非你设置了不同的值，否则被映射的特性不会出现在 DOM 中。
+也要注意一个特性的初始值是*不会*被反射的，因此除非你设置了不同的值，否则被反射的特性不会出现在 DOM 中。
 
 比如：
 
@@ -506,20 +506,17 @@ literal in JavaScript:
 
     <disappearing-element hidden>Now you see me...</disappearing-element>
 
-特性_映射_和数据绑定是区别看待的。双向数据绑定可用于公开的属性，不论它们是否被映射。考虑下面的情况：
+特性_反射_和数据绑定是区别看待的。双向数据绑定可用于公开的属性，不论它们是否被反射。考虑下面的情况：
 
     <my-element name="{%raw%}{{someName}}{%endraw%}"></my-element>
 
-如果 `name` 属性_没有_被映射，则 `name` 特性总是在 DOM 里展示为 `name="{%raw%}{{someName}}{%endraw%}"`。如果 `name` _确实_被映射，其 DOM 特性映射 `someName` 的当前值。
+如果 `name` 属性_没有_被反射，则 `name` 特性总是在 DOM 里展示为 `name="{%raw%}{{someName}}{%endraw%}"`。如果 `name` _确实_被反射，其 DOM 特性反射 `someName` 的当前值。
 
-### Data binding and published properties
+### 数据绑定与公开的属性
 
-Published properties are data-bound inside of {{site.project_title}} elements
-and accessible via `{%raw%}{{}}{%endraw%}`. These bindings are by reference and
-are two-way.
+公开的属性是绑定在 {{site.project_title}} elements 内部数据上的，并且可通过 `{%raw%}{{}}{%endraw%}` 被访问。这些数据绑定都是双向引用的。
 
-For example, we can define a `name-tag` element that publishes two properties,
-`name` and `nameColor`.
+比如，我们可以定义一个 `name-tag` element，它有两个公开的属性：`name` 和 `nameColor`。
 
     <polymer-element name="name-tag" attributes="name nameColor">
       <template>
@@ -532,17 +529,15 @@ For example, we can define a `name-tag` element that publishes two properties,
       </script>
     </polymer-element>
 
-In this example, the published property `name` has initial value of `null` and `nameColor` has a value of "orange". Thus, the `<span>`'s color will be orange.
+在这个例子中，公开的属性 `name` 有一个初始值 `null`，而 `nameColor` 有一个初始值“orange”。因此，该 `<span>` 的颜色是橙色的。
 
-For more information see the [Data binding overview](databinding.html).
+更多信息请移步至[数据绑定概述](databinding.html)。
 
-### Computed properties
+### 计算出来的属性
 
-In addition to standard published properties, you can define 
-properties that are computed based on other property values.
+除了标准的公开的属性，你还可以定义基于其它属性值计算出来的属性。
 
-Computed properties are defined in the `computed` object on the
-element's prototype:
+计算出来的属性被定义在 element 的原型的 `computed` 对象中：
 
 <pre class="nocode">
 <b>computed: {</b>
@@ -550,27 +545,18 @@ element's prototype:
 }</b>
 </pre>
 
-Each computed property is defined by a property name and a 
-[Polymer expression](/docs/polymer/expressions.html). The value
-of the computed property is updated dynamically whenever one of 
-the input values in the expression changes. 
+每个计算出来的属性都是用一个属性名和一个 [Polymer 表达式](/docs/polymer/expressions.html)定义的。计算出来的属性的值会在任何出现在表达式中的输入值发生改变时被动态更新。
 
-In the following example, when you update the input value,
-`num`, the computed property `square` updates automatically.
+在下面的例子中，当你更新输入值 `num` 的时候，计算出来的属性 `square` 就会自动被更新。
 
 {% include samples/computed-property.html %}
 
-**Limitations**: Currently, computed properties aren't published
-so they can't be data bound from _outside_ the element. For example,
-you can't bind to the `square` property on `square-element` using
- `<square-element square="{%raw%}{{value}}{%endraw%}>`. This
-is [a known issue](https://github.com/Polymer/polymer/issues/638).
+**限制：**目前，计算出来的属性并不是公开的，所以它们无法从_外部_的 element 进行数据绑定。举个例子，你无法使用 `<square-element square="{%raw%}{{value}}{%endraw%}>` 把 `square` 属性绑定到 `square-element` 上。这是[一个已知问题](https://github.com/Polymer/polymer/issues/638)。
 {: .alert .alert-warning }
 
-### Declarative event mapping
+### 声明式的事件映射
 
-{{site.project_title}} supports declarative binding of events to methods in the component.
-It uses special <code>on-<em>event</em></code> syntax to trigger this binding behavior.
+{{site.project_title}} 支持声明式在 component 里把的事件和方法绑定起来。它使用特殊的 <code>on-<em>event</em></code> 语法开启绑定行为。
 
     <polymer-element name="g-cool" on-keypress="{% raw %}{{keypressHandler}}{% endraw %}">
       <template>
@@ -584,17 +570,16 @@ It uses special <code>on-<em>event</em></code> syntax to trigger this binding be
       </script>
     </polymer-element>
 
-In this example, the `on-keypress` declaration maps the standard DOM `"keypress"` event to the `keypressHandler` method defined on the element. Similarly, a button within the element
-declares a `on-click` handler for click events that calls the `buttonClick` method.
-All of this is achieved without the need for any glue code.
+In this example, the `on-keypress` declaration maps the standard DOM `"keypress"` event to the `keypressHandler` method defined on the element. Similarly, a button within the element declares a `on-click` handler for click events that calls the `buttonClick` method. All of this is achieved without the need for any glue code.
+在这个例子中，`on-keypress` 声明把标准的 DOM `"keypress"` 事件映射到了 element 上定义的 `keypressHandler` 方法。同理，这个 element 里的按钮声明了一个 `on-click` 句柄，就会在点击事件发生时调用 `buttonClick` 方法。这些实现都不需要任何胶水代码。
 
-Some things to notice:
+几个注意事项：
 
-* The value of an event handler attribute is the string name of a method on the component. Unlike traditional syntax, you cannot put executable code in the attribute.
-* The event handler is passed the following arguments:
-  * `inEvent` is the [standard event object](http://www.w3.org/TR/DOM-Level-3-Events/#interface-Event).
-  * `inDetail`: A convenience form of `inEvent.detail`.
-  * `inSender`: A reference to the node that declared the handler. This is often different from `inEvent.target` (the lowest node that received the event) and `inEvent.currentTarget` (the component processing the event), so  {{site.project_title}} provides it directly.
+* 事件句柄特性的值是代表该 component 的一个方法名的字符串。和传统的语法不同的是，你不必在特性中放入可执行的代码。
+* 传入事件句柄的参数会遵循如下规则：
+  * `inEvent` 是[标准事件对象](http://www.w3.org/TR/DOM-Level-3-Events/#interface-Event)。
+  * `inDetail`：`inEvent.detail` 的一种便捷形式。
+  * `inSender`：一个声明该句柄的结点的引用。它和 `inEvent.target` (收到事件的最小结点) 和 `inEvent.currentTarget` (处理该事件的 component) 都是不同的，所以 {{site.project_title}} 直接提供了这个参数。
 
 ### Observing properties {#observeprops}
 
