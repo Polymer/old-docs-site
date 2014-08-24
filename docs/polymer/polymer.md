@@ -722,7 +722,7 @@ In this example, the `on-keypress` declaration maps the standard DOM `"keypress"
 
 ### 触发自定义事件 {#fire}
 
-{{site.project_title}} core 提供了一个便捷的 `fire()` 方法传递自定义事件。实际上这是一个围绕标准的 `node.dispatchEvent(new CustomEvent(...))` 包装出来的。当你需要在一个微小的任务完成之后触发一个事件，请使用其异步的版本：`asyncFire()`。
+{{site.project_title}} core 提供了一个便捷的 `fire()` 方法传递自定义事件。实际上这是一个围绕标准的 `node.dispatchEvent(new CustomEvent(...))` 包装出来的。当你需要在一个微任务完成之后触发一个事件，请使用其异步的版本：`asyncFire()`。
 
 例如：
 
@@ -819,71 +819,63 @@ In this example, the `on-keypress` declaration maps the standard DOM `"keypress"
 
 在这个例子中，当用户点击 `<polymer-cooler>` element，轮到用 `this.super()` 调用父类版本时，其 `makeCoolest()` 方法被调用。其(继承自 `<polymer-cool>` 的) `praise` 属性会被设置为“coolest”。
 
-## Built-in element methods {#builtin}
+## 内建的 element 方法 {#builtin}
 
-{{site.project_title}} includes a few handy methods on your element's prototype.
+{{site.project_title}} element 的原型中包含了几个顺手的方法。
 
-### Observing changes to light DOM children {#onMutation}
+### 监视 light DOM 子元素的变化 {#onMutation}
 
-To know when light DOM children change, you can setup a Mutation Observer to
-be notified when nodes are added or removed. To make this more convenient, {{site.project_title}} adds an `onMutation()` callback to every element. Its first argument is the DOM element to
-observe. The second argument is a callback which is passed the `MutationObserver` and the mutation records:
+为了了解 light DOM 子元素变化的时机，你可以设置一个突变监视者，在有结点增加或移除的时候进行提示。为了让这件事更便捷，{{site.project_title}} 为每个 element 增加了一个 `onMutation()` 的回调。其第一个参数是要监视的 DOM element。第二个参数是一个传递了 `MutationObserver` 和突变记录的回调。
 
     this.onMutation(domElement, someCallback);
 
-**Example** - Observe changes to (light DOM) children elements:
+**例子** - 监视 (light DOM) 子元素的变化：
 
     ready: function() {
-      // Observe a single add/remove.
+      // 监视简单的增加/移除
       this.onMutation(this, this.childrenUpdated);
     },
     childrenUpdated: function(observer, mutations) {
-      // getDistributedNodes() has new stuff.
+      // getDistributedNodes() 有了新东西
 
-      // Monitor again.
+      // 重新监视
       this.onMutation(this, this.childrenUpdated);
     }
 
-### Dealing with asynchronous tasks {#asyncmethod}
+### 处理异步任务 {#asyncmethod}
 
-Many things in {{site.project_title}} happen asynchronously. Changes are gathered up
-and executed all at once, instead of executing right away. Batching
-changes creates an optimization that (a) prevents duplicated work and (b) reduces unwanted [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content).
+{{site.project_title}} 中许多事情都是异步发生的。所有变化会召集起来并一次执行，而不是立即执行。批量变化的优化之处在于 (a) 避免了重复的工作 (b) 减少了不必要的 [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content)。
 
-[Change watchers](#change-watchers) and situations that rely on data-bindings
-are examples that fit under this async behavior. For example, conditional templates may not immediately render after setting properties because changes to those renderings are saved up and performed all at once after you return from JavaScript.
+[变化观察者](#change-watchers)和涉及数据绑定的情形都是适合这样的异步行为的例子。比如，条件模板在设置属性之前可以不立即渲染，因为这些渲染的变化被存了起来并一次性从 JavaScript 返回之后再运行。
 
-To do work after changes have been processed, {{site.project_title}} provides `async()`.
-It's similar to `window.setTimeout()`, but it automatically binds `this` to the correct value and is timed to `requestAnimationFrame`:
+为了在变化被处理之后完成这份工作，{{site.project_title}} 提供了 `async()`。它类似于 `window.setTimeout()`，但是它自动化绑定了 `this` 到正确的值，且适合 `requestAnimationFrame` 的时机。
 
     // async(inMethod, inArgs, inTimeout)
     this.async(function() {
       this.foo = 3;
     }, null, 1000);
 
-    // Roughly equivalent to:
+    // 大概相当于：
     //setTimeout(function() {
     //  this.foo = 3;
     //}.bind(this), 1000);
 
-The first argument is a function or string name for the method to call asynchronously.
-The second argument, `inArgs`, is an optional object or array of arguments to
-pass to the callback.
+第一个参数是被异步调用的一个函数或函数名的字符串。第二个参数 `inArgs` 是一个可选的传递给这个回调的对象或数组。
 
-In the case of property changes that result in DOM modifications, follow this pattern:
+在属性变化伴随 DOM 改变的情况下，遵循此模式：
 
     Polymer('my-element', {
       propChanged: function() {
-        // If "prop" changing results in our DOM changing,
-        // schedule an update after the new microtask.
+        // 如果 "prop" 的改变也改变了 DOM，
+        // 则在此微任务结束之后进行更新。
         this.async(this.updateValues);
       },
       updateValues: function() {...}
     });
 
-### Delaying work {#job}
+### 延迟工作 {#job}
 
-Sometimes it's useful to delay a task after an event, property change, or user interaction. A common way to do this is with `window.setTimeout()`:
+有的时候你需要把一个任务延迟到触发一个事件、改变一个属性或一个用户交互之后。通常的做法是 `window.setTimeout()`：
 
     this.responseChanged = function() {
       if (this.timeout1) {
@@ -894,17 +886,17 @@ Sometimes it's useful to delay a task after an event, property change, or user i
       }, 500);
     }
 
-However, this is such a common pattern that {{site.project_title}} provides the `job()` utility for doing the same thing:
+然而这是一个通用的模式，而 {{site.project_title}} 提供了 `job()` 来完成相同的工作：
 
     this.responseChanged = function() {
-      this.job('job1', function() { // first arg is the name of the "job"
+      this.job('job1', function() { // 第一个参数是“job”的名字
         this.fire('done');
       }, 500);
     }
 
-`job()` can be called repeatedly before the timeout but it only results in a single side-effect. In other words, if `responseChanged()` is immediately executed 250ms later, the `done` event won't fire until 750ms.
+`job()` 可以在超时之前被反复的调用，但它只会作用一次。换句话说，如果 `responseChanged()` 在 250ms 后立即执行，那么 `done` 事件在 750ms 之前都不会触发。
 
-## Advanced topics {#additional-utilities}
+## 高阶话题 {#additional-utilities}
 
 ### Life of an element's bindings {#bindings}
 
