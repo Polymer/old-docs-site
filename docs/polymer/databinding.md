@@ -4,7 +4,7 @@ type: core
 navgroup: docs
 shortname: Docs
 title: 数据绑定概述
-subtitle: Data-binding
+subtitle: 数据绑定
 ---
 
 {% include toc.html %}
