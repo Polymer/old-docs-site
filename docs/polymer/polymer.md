@@ -141,7 +141,7 @@ which calls `Polymer`:
       <template>...</template>
     </polymer-element>
 
-In case #2, where the script is invoked before the `<polymer-element>` tag, 
+In case #2, where the script is invoked before the `<polymer-element>` tag,
 the call to `Polymer` **must include the tag name**:
 
     // tagname.js
@@ -186,19 +186,17 @@ Elements can be registered in pure JavaScript like this:
 You need to add the `<polymer-element>` to the document so that the
 Custom Elements polyfill picks it up.
 
-**Important:** Since the `Polymer` call here is outside the `<polymer-element>`, 
+**Important:** Since the `Polymer` call here is outside the `<polymer-element>`,
 it must include the tag name argument.
 {: .alert .alert-error }
 
 ### Adding public properties and methods {#propertiesmethods}
 
-To define methods/properties on your element, pass a prototype object to `Polymer()`: 
+To define methods and properties on your element, pass a prototype object to `Polymer()`:
 
 <pre>
 Polymer([ <em class="nocode">tag-name</em>, ] <em class="nocode">prototype</em>);
 </pre>
-
-The _prototype_ can include custom properties and methods for your element.
 
 The following example defines a property `message`, a property `greeting`
 using an ES5 getter, and a method `foo`:
