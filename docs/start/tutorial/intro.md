@@ -59,7 +59,7 @@ To get started, download the starter project. This starter project includes all 
 
 Unzip the starter project somewhere on your local drive. 
 
-The starter includes an initial version of the project you'll be working with. If you run into trouble, it also includes incremental versions of the project so you can check your work along the way. 
+The starter includes an initial version of the project you'll be working with. It also includes incremental versions of the project so you can check your work along the way. 
 
 While you're working, you'll need a basic HTTP server to serve your pages. If you have Python installed, you can run one of the following commands in the top level of the starter project.
 
@@ -82,9 +82,10 @@ If you're using a different port, substitute the port you're using.
 If the images don't render, try a different web server.
 {: .alert .alert-info }
 
-### Next step
 
+<div horizontal layout end-justified class="stepnav">
 <a href="/docs/start/tutorial/step-1.html">
   <paper-button icon="arrow-forward" label="Step 1: Creating the app structure" raisedButton></paper-button>
 </a>
+</div>
 

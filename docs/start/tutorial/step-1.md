@@ -33,9 +33,12 @@ Go to the `starter` directory and open the `index.html` file in your favorite ed
 &lt;html>
 
 &lt;head>
+
   &lt;title>unquote&lt;/title>
+
   &lt;meta name="viewport" 
     content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
   &lt;script src="../components/platform/platform.js">
   &lt;/script>
 
@@ -52,15 +55,23 @@ Go to the `starter` directory and open the `index.html` file in your favorite ed
 </aside>
 </side-by-side>
 
+**Note:** The `font-roboto` import loads the `RobotoDraft` font using the 
+[Google Fonts API](https://developers.google.com/fonts/). If you're working
+offline or cannot access the Google Fonts API for any reason, this can block
+rendering of the web page. If you experience this problem, comment out the 
+import for `font-roboto`. 
+{: .alert .alert-info }
+
+
 Skipping over the styles for now, at the end of the file you'll find something new:
 
 <side-by-side>
 <pre>
-  ...
-&lt;body unresolved touch-action="auto">
+...
+&lt;body unresolved>
 
 &lt;/body>
-  ...
+...
 </pre>
 <aside>
   <h4>Key information</h4>
@@ -68,7 +79,6 @@ Skipping over the styles for now, at the end of the file you'll find something n
     <li>The <code>unresolved</code> attribute on the <code>&lt;body></code> element is used to prevent a flash of unstyled content 
         (FOUC) on browsers that lack native support for custom elements. For details, see the 
         <a href="/docs/polymer/styling.html#fouc-prevention">Polymer styling reference</a>.</li>
-    <li>The <code>touch-action="auto"</code> attribute is there to ensure touch events are handled properly on some browsers.</li>
   </ul>
 </aside>
 </side-by-side>
@@ -82,10 +92,11 @@ Add HTML import links to import the `<core-header-panel>`, `<core-toolbar>`, and
 <side-by-side>
 <pre>
 &lt;script 
-  src="../components/platform/platform.js"></script>
+  src="../components/platform/platform.js">
+&lt;/script>
+
 &lt;link rel="import" 
   href="../components/font-roboto/roboto.html">
-
 <strong class="highlight nocode">&lt;link rel="import"
   href="../components/core-header-panel/core-header-panel.html">
 &lt;link rel="import"
@@ -118,7 +129,7 @@ To add a toolbar, add the following code inside the `<body>` tag.
 <side-by-side>
 <pre>
 <strong class="highlight nocode">&lt;core-header-panel>
-    
+
   &lt;core-toolbar>
   &lt;/core-toolbar>
 
@@ -160,8 +171,8 @@ tabs.
 &lt;core-toolbar>
 
   <strong class="highlight nocode">&lt;paper-tabs id="tabs" selected="all" self-end>
-    &lt;paper-tab name="all">ALL&lt;/paper-tab>
-    &lt;paper-tab name="favorites">FAVORITES&lt;/paper-tab>
+    &lt;paper-tab name="all">All&lt;/paper-tab>
+    &lt;paper-tab name="favorites">Favorites&lt;/paper-tab>
   &lt;/paper-tabs></strong>
 
 &lt;/core-toolbar>
@@ -196,8 +207,14 @@ tabs.
 Add styles for the new elements. Add the following CSS rules inside the `<style>` element.
 
 <side-by-side>
-<pre><strong class="highlight nocode">
-core-header-panel {
+<pre>
+html,body {
+  height: 100%;
+  margin: 0;
+  background-color: #E5E5E5;
+  font-family: 'RobotoDraft', sans-serif;
+}
+<strong class="highlight nocode">core-header-panel {
   height: 100%;
   overflow: auto;
   -webkit-overflow-scrolling: touch; 
@@ -213,6 +230,7 @@ core-toolbar {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  text-transform: uppercase;
 }</strong>
 </pre>
 <aside>
@@ -220,9 +238,13 @@ core-toolbar {
   <ul>
     <li>The <code>&lt;core-header-panel&gt;</code> is a generic element that can be used as either a 
         full-page layout or for a card with a toolbar. To use it as a full-page, scrollable container,
-        set its height explicitly. The <code>overflow</code> and <code>-webkit-overflow-scrolling</code> properties ensure that
+        set its height explicitly. </li>
+    <li>Here, the height is set to 100%. This works because the existing style rules ensure that its 
+        parent elements,
+        <code>&lt;html&gt;</code> and <code>&lt;body&gt;</code>, take up 100% of the viewport height.</li>
+    <li>The <code>overflow</code> and <code>-webkit-overflow-scrolling</code> properties ensure that
         scrolling works smoothly on touch devices, especially iOS.</li>
-    <li>The toolbar adds a default margin on its children, to space controls appropriately. The tabs don't need this extra spacing.</li>
+    <li>The <code>#tabs</code> selector selects the `&lt;paper-tabs&gt;` element. The toolbar adds a default margin on its children, to space controls appropriately. The tabs don't need this extra spacing.</li>
     <li>The <code>user-select</code> properties prevent the user from accidentally selecting the tab text.</li>
   </ul>
 </aside>
@@ -232,7 +254,7 @@ core-toolbar {
   <core-icon icon="polymer"></core-icon>
 </div> 
 
-Add a `<script>` tag at the end of the file to handle the tab switching
+Add a `<script>` tag near the end of the file to handle the tab switching
     event.
 
 
@@ -282,12 +304,14 @@ If something isn't working, check your work against the `index.html` file in the
 
 In this step, you used HTML imports to import custom elements, and used them to create a simple app layout.
 
-**Explore:** Can you use other children inside the `<paper-tabs>`? Try an image or a text span
+**Explore:** Can you use other children inside the `<paper-tabs>`? Try an image or a text span.
 {: .alert .alert-info }
 
-### Next step
-
-<a href="/docs/start/tutorial/step-2.html">
-  <paper-button icon="arrow-forward" label="Step 2: Your own element" raisedButton></paper-button>
+<div layout horizontal justified class="stepnav">
+<a href="/docs/start/tutorial/intro.html">
+  <paper-button icon="arrow-back" label="Getting Started"></paper-button>
 </a>
-
+<a href="/docs/start/tutorial/step-2.html">
+  <paper-button icon="arrow-forward" label="Step 2: Creating your own element" raisedButton></paper-button>
+</a>
+</div>

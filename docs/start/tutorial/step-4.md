@@ -79,8 +79,7 @@ prototype.
 
 <side-by-side>
 <pre>
-&lt;script>
-<strong class="highlight nocode">   
+&lt;script><strong class="highlight nocode">   
 Polymer({
   publish: {
     favorite: {
@@ -138,7 +137,7 @@ core-icon-button {
   <aside>
     <ul>
       <li>The <code>color</code> property sets the fill color on the icon.</li>
-      <li>The <code>:host([favorite]) core-icon-button</code> selector sets the
+      <li>The <code>:host([favorite])</code> <code>core-icon-button</code> selector sets the
       fill color when the <code>favorite</code> attribute is set on the custom element.</li>
     </ul>
   </aside>
@@ -186,8 +185,7 @@ favorites:
     &lt;post-card
       favorite="{{post.favorite}}"
       on-favorite-tap="{{handleFavorite}}"
-      hidden?="{{show == 'favorites' && !post.favorite}}">
-      </strong>
+      hidden?="{{show == 'favorites' && !post.favorite}}"></strong>
       &lt;img src="{{post.avatar}}" width="70" height="70">
       &lt;h2>{{post.username}}&lt;/h2>
       &lt;p>{{post.text}}&lt;/p>
@@ -224,15 +222,13 @@ Add an event handler for the `favorite-tap` event to `post-list.html`:
 <side-by-side>
 <pre>
 &lt;script>
-<strong class="highlight nocode">
-Polymer({
+<strong class="highlight nocode">Polymer({
   handleFavorite: function(event, detail, sender) {
     var post = sender.templateInstance.model.post;
     this.$.service.setFavorite(post.uid, post.favorite);
   }
 });
-</strong>
-&lt;/script>
+</strong>&lt;/script>
 </pre>
   <aside>
     <h4>Key information</h4>
@@ -277,8 +273,12 @@ If your project doesn't look quite right, check your work against the files in t
 
 Ready to start a project of your own? Install some {{site.project_title}} components and get to work!
 
+<div layout horizontal justified class="stepnav">
+<a href="/docs/start/tutorial/step-3.html">
+  <paper-button icon="arrow-back" label="Step 3: Using data binding"></paper-button>
+</a>
 <a href="/docs/start/getting-the-code.html#installing-components">
   <paper-button icon="arrow-forward" label="Installing components" raisedButton></paper-button>
 </a>
-
+</div>
 

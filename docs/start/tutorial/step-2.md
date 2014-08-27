@@ -3,7 +3,7 @@ layout: default
 type: start
 navgroup: docs
 shortname: Start
-title: "Step 2: Your own element"
+title: "Step 2: Creating your own element"
 subtitle: Your first Polymer application 
 ---
 
@@ -36,7 +36,7 @@ In this step, you'll learn about:
 -   Working with shadow DOM.
 
 <aside class="alert alert-info">
-<p><b>Learn More:</b>Shadow DOM provides you a way to add a local DOM tree
+<p><b>Learn more:</b>Shadow DOM provides you a way to add a local DOM tree
 inside a DOM element, with local styles and markup that are decoupled from the rest of the web page.</p>
 <p>To learn more about shadow DOM, see the <a href="/platform/shadow-dom.html">
 Shadow DOM polyfill docs</a>.</p>
@@ -155,12 +155,13 @@ the shadow DOM tree.</p>
 
 Create the card structure.
 
-Find the `CARD CONTENTS GO HERE` comment and add the `<div>` and
+Find the `CARD CONTENTS GO HERE` comment and replace it with the `<div>` and
 `<content>` tags shown below.
 
 <side-by-side>
 <pre>
-&lt;!-- CARD CONTENTS GO HERE -->
+&lt;/style>
+
 <strong class="highlight nocode">&lt;div class="card-header" layout horizontal center>
   &lt;content select="img">&lt;/content>
   &lt;content select="h2">&lt;/content>
@@ -185,7 +186,7 @@ Find the `CARD CONTENTS GO HERE` comment and add the `<div>` and
   </aside>
 </side-by-side>
 
-**Selecting content**. The `select` attribute on a `content` element accepts a [limited set of 
+**Selecting content**: The `select` attribute on a `content` element accepts a [limited set of 
 CSS selectors](http://w3c.github.io/webcomponents/spec/shadow/#satisfying-matching-criteria). 
 You can only select direct children of the host node, not descendents. 
 {: .alert .alert-info }
@@ -201,10 +202,12 @@ file already includes a `:host` selector, discussed earlier, to style the
 top-level `<post-card>` element. 
 
 To style the children added using the `<content>` element, add the 
-following CSS inside the `<style>` tag:
+following CSS inside the `<style>` tag after the existing rules:
 
 <side-by-side>
-<pre><strong class="highlight nocode">
+<pre>.card-header {
+  margin-bottom: 10px;
+}<strong class="highlight nocode">
 polyfill-next-selector { content: '.card-header h2'; }
 .card-header ::content h2 {
   margin: 0;
@@ -217,6 +220,7 @@ polyfill-next-selector { content: '.card-header img'; }
   border-radius: 50%;
   margin: 10px;
 }</strong>
+&lt;/style>
 </pre>
   <aside>
     <h4>Key information</h4>
@@ -272,15 +276,16 @@ Add a `<post-card>` element to `index.html` directly after the
 <side-by-side>
 <pre>
 ...   
-&lt;/core-toolbar>
-  <strong class="highlight nocode">&lt;div class="container" layout vertical center>
-    &lt;post-card>
-      &lt;img width="70" height="70" 
-        src="../images/avatar-07.svg">
-      &lt;h2>Another Developer&lt;/h2>
-      &lt;p>I'm composing with shadow DOM!&lt;/p>
-    &lt;/post-card>
-  &lt;/div></strong>
+<strong class="highlight nocode">&lt;div class="container" layout vertical center>
+
+  &lt;post-card>
+    &lt;img width="70" height="70" 
+      src="../images/avatar-07.svg">
+    &lt;h2>Another Developer&lt;/h2>
+    &lt;p>I'm composing with shadow DOM!&lt;/p>
+  &lt;/post-card>
+  
+&lt;/div></strong>
 ...
 </pre>
   <aside>
@@ -314,9 +319,12 @@ they work. Does anything change if you reorder the `<post-card>`'s children in
 also try swapping the two `select=` attributes in `post-card.html`.
 {: .alert .alert-info }
 
-### Next step
 
+<div layout horizontal justified class="stepnav">
+<a href="/docs/start/tutorial/step-1.html">
+  <paper-button icon="arrow-back" label="Step 1: Creating the app structure"></paper-button>
+</a>
 <a href="/docs/start/tutorial/step-3.html">
   <paper-button icon="arrow-forward" label="Step 3: Using data binding" raisedButton></paper-button>
 </a>
-
+</div>
