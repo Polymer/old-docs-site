@@ -437,16 +437,20 @@ You should opt for the `publish` object when any of the following is true:
 
 #### Default property values
 
-By default, properties defined in `attributes` are initialized to `null`:
+By default, properties defined in `attributes` are initialized to `undefined`:
 
     <polymer-element name="x-foo" attributes="foo">
       <script>
-        // x-foo has a foo property with default value of null.
+        // x-foo has a foo property with default value of undefined.
         Polymer();
       </script>
     </polymer-element>
 
-Specifically, {{site.project_title}} adds `foo` to the element's prototype with a value of `null`.
+Specifically, {{site.project_title}} adds `foo` to the element's prototype with a value of `undefined`.
+
+**Note:** Prior to {{site.project_title}} 0.3.5, properties were initialized to 
+`null` by default.
+{: .alert .alert-info }
 
 You can provide your own default values by explicitly specifying the default value on the elment's `prototype`:
 
@@ -669,7 +673,7 @@ For example, we can define a `name-tag` element that publishes two properties,
       </script>
     </polymer-element>
 
-In this example, the published property `name` has initial value of `null` and `nameColor` has a value of "orange". Thus, the `<span>`'s color will be orange.
+In this example, the published property `name` has initial value of `undefined` and `nameColor` has a value of "orange". Thus, the `<span>`'s color will be orange.
 
 For more information see the [Data binding overview](databinding.html).
 
