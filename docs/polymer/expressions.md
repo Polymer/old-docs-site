@@ -75,11 +75,11 @@ subtitle: 数据绑定
 
 ## 表达式作用域 {#expression-scopes}
 
-表达式会被基于当前的_作用域_进行评估，其定义了哪些标识符和路径是可见的。在 `bind`、`repeat` 或 `if` 特性中的表达式会在父模板的作用域里被评估。对于一个 element 的最外层模板来说，路径和标识符是相对于 element 本身的 (所以 `this.prop` 会被评估为 {%raw%}`prop`{%endraw%})。
+表达式会被基于当前的_作用域_进行评估，其定义了哪些标识符和路径是可见的。在 `bind`、`repeat` 或 `if` 特性中的表达式会在父 template 的作用域里被评估。对于一个 element 的最外层 template 来说，路径和标识符是相对于 element 本身的 (所以 `this.prop` 会被评估为 {%raw%}`prop`{%endraw%})。
 
 对于计算出来的属性，表达式的作用域始终是 element 本身。
 
-不包含 `bind` 或 `repeat` 的模板共享当前的作用域。
+不包含 `bind` 或 `repeat` 的 template 共享当前的作用域。
 
 一个没有表达式的 `bind` 或 `repeat` 和使用表达式一样指定了当前的作用域。
 
@@ -89,7 +89,7 @@ subtitle: 数据绑定
        
 {% raw %}
     <template>
-      <!-- 最外层模板 -- element 的属性是可用的 -->
+      <!-- 最外层 template -- element 的属性是可用的 -->
       <template bind="{{organization as organization}}">
         <!-- organization.* 是可用的 -->
         <template bind="{{organization.contact as contact}}">
@@ -108,8 +108,8 @@ subtitle: 数据绑定
 
 换句话说：
 
-- 如果一个模板使用了被命名的作用域，则其父作用域可见。
-- 如果一个模板使用了未被命名的作用域，择期父作用域_不_可见。
+- 如果一个 template 使用了被命名的作用域，则其父作用域可见。
+- 如果一个 template 使用了未被命名的作用域，择期父作用域_不_可见。
 
 ## 过滤表达式 {#filters}
 
