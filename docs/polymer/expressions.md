@@ -3,61 +3,49 @@ layout: default
 type: core
 navgroup: docs
 shortname: Docs
-title: Expressions
-subtitle: Data-binding
+title: 表达式
+subtitle: 数据绑定
 ---
 
 {% include toc.html %}
 
 
-Within a `<polymer-element>` you can use {{site.project_title}}'s [expression
-library](https://github.com/polymer/polymer-expressions) to write inline expressions, 
-named scopes, and iterative markup, anywhere {%raw%}`{{`&nbsp;`}}`{%endraw%} bindings are used.
+在一个 `<polymer-element>` 里面你可以使用 {{site.project_title}} 的[表达式库](https://github.com/polymer/polymer-expressions)在任何使用 {%raw%}`{{`&nbsp;`}}`{%endraw%} 绑定的地方写内联表达式、被命名的作用域和迭代的标记。
 
-Expressions can also be used to define [computed properties](/docs/polymer/polymer.html#computed-properties).
+表达式也可以用于定义[计算出来的属性](/docs/polymer/polymer.html#computed-properties)。
 
-## Expression syntax
+## 表达式语法
 
-{{site.project_title}} supports expressions in {%raw%}`{{}}`{%endraw%} with a strict
-subset of the JavaScript language. In order to use this feature, it's
-important to understand its behavior and limitations:
+{{site.project_title}} 在 {%raw%}`{{}}`{%endraw%} 里支持表达式，该表达式严格属于一个 JavaScript 的子集。为了使用这一特征，理解其行为和局限性就很重要：
 
-- The goal for inline expressions is to allow the expression of simple value
-concepts and relationships. It is generally bad practice to put complex logic
-into your HTML (view).
-- Expressions are never run (e.g. `eval`) as page script. They cannot access any
-global state (e.g. `window`). They are parsed and converted to a simple
-interpreted form which is provided the present values of paths contained in
-the expression.
-- You can't insert HTML using expressions. To avoid XSS issues, the output of an expression
-is HTML escaped before being inserted as the value of the binding.
+- 内联表达式的目的是允许简单值的概念和关系的表达式。总体上这样在 HTML (视图) 中处理复杂的逻辑是一种不好的实践方式。
+- 表达式用不会作为页面脚本运行 (比如 `eval`)。它们无法获取任何全局状态 (比如 `window`)。它们被解析和转换为一个简单的解释形式，以展示表达式中包含的路径的值。
+- 你无法使用表达式插入 HTML。为了避免 XSS 问题，表达式的输出在作为数据绑定的值插入之前是转码过的。
 
-Expressions support the following subset of JavaScript:
+表达式支持下面的 JavaScript 子集：
 
-| Feature | Example | Explanation
+| 特征 | 例子 | 解释
 |---------|
-|Identifiers & paths | `foo`, `match.set.game` | These values are treated as relative to the current scope, extracted, and observed for changes. The expression is re-evaluated if one of the values in the expression changes. Changing a property value does not result in the expression being re-evaluated. For example, changing the value of `foo.bar` doesn't cause the expression `foo` to be re-evaluated.
-| Array access | `foo[bar]` | Where `foo` and `bar` are identifiers or paths. The expression is re-evaluated if `foo` or `bar` changes, or if the value at `foo[bar]` changes.
-| Logical not operator | `!` |
-| Unary operators | `+foo`, `-bar` | Converted to `Number`. Or converted to `Number`, then negated.
-| Binary operators | `foo + bar`, `foo - bar`, `foo * bar` | Supported: `+`, `-`, `*`, `/`, `%`
-| Comparators | `foo < bar`, `foo != bar`, `foo == bar` | Supported: `<`, `>`, `<=`, `>=`, `==`, `!=`, `===`, `!==`
-| Logical comparators | `foo && bar || baz` | Supported: `||`, `&&`
-| Ternary operator | `a ? b : c` |
-| Grouping (parenthesis) | `(a + b) * (c + d)` |
-| Literal values | numbers, strings, `null`, `undefined` | Escaped strings and non-decimal numbers are not supported. |
-| Array & Object initializers | `[foo, 1]`, `{id: 1, foo: bar}` |
-| Function | `reverse(my_list)` | The expression's value is the return value of the function. The function's arguments are observed for changes, and the expression is re-evaluated whenever one of the arguments changes. 
+|标识符 & 路径 | `foo`, `match.set.game` | 这些值相对于当前作用域被对待、取出和变化监视。如果表达式中的一个值改变了，表达式会被重新评估。而一个属性的值改变了，则并不导致表达式被重新评估。比如改变 `foo.bar` 的值不会导致表达式 `foo` 被重新评估。
+| 数组访问 | `foo[bar]` | 这里的 `foo` 和 `bar` 是标识符或路径。如果 `foo` 或 `bar` 改变了，或者 `foo[bar]` 的值变化了，表达式会重新评估。
+| 逻辑非操作符 | `!` |
+| 一元操作符 | `+foo`, `-bar` | 转换成 `Number`。或在转换成 `Number`之后取负值。
+| 二元操作符 | `foo + bar`, `foo - bar`, `foo * bar` | 支持：`+`, `-`, `*`, `/`, `%`
+| Comparators | `foo < bar`, `foo != bar`, `foo == bar` | 支持：`<`, `>`, `<=`, `>=`, `==`, `!=`, `===`, `!==`
+| 裸机操作符 | `foo && bar || baz` | 支持：`||`, `&&`
+| 三元操作符 | `a ? b : c` |
+| 归组 (小括号) | `(a + b) * (c + d)` |
+| 字面量值 | numbers, strings, `null`, `undefined` | 转换不支持的字符串和非十进制的数字 |
+| 数组或对象的初始化 | `[foo, 1]`, `{id: 1, foo: bar}` |
+| 函数 | `reverse(my_list)` | 表达式的值是该函数返回的值。函数的参数变化会被监听，表达式会在一个或多个参数改变时被重新评估。
 {: .first-col-nowrap .responsive-table .expressions-table }
 
 
-In addition to the JavaScript portion, an expression can also include one or more _filters_, which
-modify the output of the JavaScript expression. See [Filtering expressions](#filters) for
-information.
+另外对于 JavaScript 的一部分，一个表达式也可以包含一个或多个_过滤器_，该过滤器修改了 JavaScript 的表达式的输出。详见[过滤器表达式](#filters)
 
-## Evaluating expressions
+## 评估表达式
 
-Expressions are parsed when they're within a binding or computed property declaration:
+表达式会在它们在一个绑定或计算好的属性的生命中被解析：
 
 <pre class="nocode">
 {%raw%}<b>{{</b> <var>expression</var> <b>}}</b>{%endraw%}
@@ -83,28 +71,21 @@ may result in:
 
     <div>Jill has 100 grandchildren</div>
 
-For standard (double-mustache) bindings and computed properties, the 
-expression is re-evaluated whenever the value of one or more paths 
-in the expression changes.
+For standard (double-mustache) bindings and computed properties, the expression is re-evaluated whenever the value of one or more paths in the expression changes.
 
 ## Expression scopes {#expression-scopes}
 
-Expressions are evaluated based on the current _scope_, which defines which identifiers and paths
-are visible. The expressions in `bind`, `repeat` or `if` attributes are evaluated in the scope of
-the parent template. For an element's outermost template, paths and identifiers are 
-interpreted relative to the element itself (so `this.prop` is available as {%raw%}`prop`{%endraw%}).
+Expressions are evaluated based on the current _scope_, which defines which identifiers and paths are visible. The expressions in `bind`, `repeat` or `if` attributes are evaluated in the scope of the parent template. For an element's outermost template, paths and identifiers are interpreted relative to the element itself (so `this.prop` is available as {%raw%}`prop`{%endraw%}).
 
 For computed properties, the scope of an expression is always the element itself.
 
 Templates that don't include `bind` or `repeat` share the current scope.
 
-A `bind` or `repeat` without an expression is the same as using an expression that 
-specifies the current scope.
+A `bind` or `repeat` without an expression is the same as using an expression that specifies the current scope.
 
 ### Nested scoping rules {#nested-scoping-rules}
 
-If a `<template>` using a named scope contains child `<template>`s,
-all ancestor scopes are visible, up-to and including the first ancestor **not** using a named scope. For example:
+If a `<template>` using a named scope contains child `<template>`s, all ancestor scopes are visible, up-to and including the first ancestor **not** using a named scope. For example:
        
 {% raw %}
     <template>
@@ -132,37 +113,27 @@ In other words:
 
 ## Filtering expressions {#filters}
 
-Filters can be used to modify the output of expressions. {{site.project_title}} supports several
-default filters for working with data. They're used in bindings by piping an input expression 
-to the filter:
+Filters can be used to modify the output of expressions. {{site.project_title}} supports several default filters for working with data. They're used in bindings by piping an input expression to the filter:
 
 <pre class="prettyprint">
 {% raw %}{{ <var>expression</var> | <var>filterName</var> }}{% endraw %}
 </pre>
 
-{{site.project_title}} provides two predefined filters, `tokenList` and `styleObject`. You can also
-create your own [custom filters](#custom-filters).
+{{site.project_title}} provides two predefined filters, `tokenList` and `styleObject`. You can also create your own [custom filters](#custom-filters).
 
-If your filter depends on the properties of one of the paths or identifiers in your expression,
-note that the expression isn't re-evaluated when properties change. For example, if you have an
-expression like:
+If your filter depends on the properties of one of the paths or identifiers in your expression, note that the expression isn't re-evaluated when properties change. For example, if you have an expression like:
 
     {% raw %}{{user | formatUserName}}{% endraw %}
 
-The expression isn't re-evaluated when a property, such as `user.firstName` changes. If you need
-the filter to be re-run when a property changes, you can include it explicitly in the expression,
-like this:
+The expression isn't re-evaluated when a property, such as `user.firstName` changes. If you need the filter to be re-run when a property changes, you can include it explicitly in the expression, like this:
 
     {% raw %}{{ {firstName: user.firstName, lastName: user.lastName} | formatUserName}}{% endraw %}
 
-Since `user.firstName` and `user.lastName` are included explicitly in this expression, both
-properties are observed for changes.
+Since `user.firstName` and `user.lastName` are included explicitly in this expression, both properties are observed for changes.
 
 ### tokenList
 
-The `tokenList` filter is useful for binding to the `class` attribute. It allows you
-to dynamically set/remove class names based on the object passed to it. If the object
-key is truthy, the name will be applied as a class. 
+The `tokenList` filter is useful for binding to the `class` attribute. It allows you to dynamically set/remove class names based on the object passed to it. If the object key is truthy, the name will be applied as a class. 
 
 For example:
 
@@ -176,11 +147,9 @@ results in the following if `user.selected == true` and `user.type == 'super'`:
 
 ### styleObject
 
-The `styleObject` filter converts a JSON object containing CSS styles into a string of CSS suitable for
-assigning to the `style` attribute.
+The `styleObject` filter converts a JSON object containing CSS styles into a string of CSS suitable for assigning to the `style` attribute.
 
-For simple property values {{site.project_title}} allows you to bind to the `style` attribute
-directly:
+For simple property values {{site.project_title}} allows you to bind to the `style` attribute directly:
 
 {% raw %}
     <div style="color: {{color}}">{{color}}</div>
@@ -190,22 +159,17 @@ If the element's `color` property is "red", this results in the following:
 
     <div style="color: red">red</div>
 
-However, if you have an object containing a set of styles as name:value pairs,
-use the `styleObject` filter to transform it into the appropriate format.
+However, if you have an object containing a set of styles as name:value pairs, use the `styleObject` filter to transform it into the appropriate format.
 
 {% raw %}
     <div style="{{styles | styleObject}}">...</div>
 {% endraw %}
 
-In this examples `styles` is an object of the form `{color: 'red', background: 'blue'}`, and
-the output of the `styleObject` filter is a string of CSS declarations (for example, 
-`"color: 'red'; background: 'blue'"`).
+In this examples `styles` is an object of the form `{color: 'red', background: 'blue'}`, and the output of the `styleObject` filter is a string of CSS declarations (for example, `"color: 'red'; background: 'blue'"`).
 
 ### Writing custom filters {#custom-filters}
 
-A filter is simply a function that transforms the input value. You can create a _custom filter_ for
-your element by adding a method to the element's prototype. For example, to add a filter called
-`toUpperCase` to your element:
+A filter is simply a function that transforms the input value. You can create a _custom filter_ for your element by adding a method to the element's prototype. For example, to add a filter called `toUpperCase` to your element:
 
     Polymer('greeting-tag', {
       ...
@@ -219,11 +183,7 @@ And use the filter like this:
     {{s.who | toUpperCase}}
 {% endraw %}
 
-This filter modifies values when they're being inserted into the DOM, so if `s.who` is set to `world`,
-it displays as `WORLD`. You can also define a custom filter that operates when converting back from
-a DOM value to the model (for example, when binding an input element value). In this case, create
-the filter as an object with `toDOM` and `toModel` functions. For example, to keep your model text
-in lowercase, you could modify the `toUpperCase` as follows:
+This filter modifies values when they're being inserted into the DOM, so if `s.who` is set to `world`, it displays as `WORLD`. You can also define a custom filter that operates when converting back from a DOM value to the model (for example, when binding an input element value). In this case, create the filter as an object with `toDOM` and `toModel` functions. For example, to keep your model text in lowercase, you could modify the `toUpperCase` as follows:
 
     toUpperCase: {
       toDOM: function(value) {
@@ -234,11 +194,7 @@ in lowercase, you could modify the `toUpperCase` as follows:
       }
     }
 
-**Note:** If the user enters text in a bound input field, the `toModel` filter is invoked before the
-value stored to the model. However, `toDOM` filter is only called when the model is changed
-imperatively. So the text entered by the user isn't filtered (that is, it doesn't
-get capitalized). To validate or transform a value as the user types it, you can use a `on-input`
-or `on-blur` event handler.
+**Note:** If the user enters text in a bound input field, the `toModel` filter is invoked before the value stored to the model. However, `toDOM` filter is only called when the model is changed imperatively. So the text entered by the user isn't filtered (that is, it doesn't get capitalized). To validate or transform a value as the user types it, you can use a `on-input` or `on-blur` event handler.
 {: .alert .alert-info }
 
 #### Filter parameters
