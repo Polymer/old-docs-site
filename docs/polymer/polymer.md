@@ -20,8 +20,20 @@ At the heart of {{site.project_title}} are [Custom Elements](/platform/custom-el
       <template>
         <!-- shadow DOM here -->
       </template>
-      <script>Polymer('tag-name');</script>
+      <script>
+        Polymer({
+          // properties and methods here
+        });
+      </script>
     </polymer-element>
+
+The element declaration includes:
+
+-   The `name` attribute specifies the name of the new custom element.
+-   The optional `<template>` tag defines HTML content that is 
+    cloned into the shadow DOM of each instance of the element.
+-   The `Polymer` method, which _registers_ the element, so it's
+    recognized as a custom element by the browser.
 
 ### Attributes
 
@@ -41,7 +53,7 @@ At the heart of {{site.project_title}} are [Custom Elements](/platform/custom-el
     <td><code>extends</code></td><td>optional</td><td>Used to <a href="#extending-other-elements">extend other elements</a>.</td>
   </tr>
   <tr>
-    <td><code>noscript</code></td><td>optional</td><td>For simple elements that don't need to call <code>Polymer()</code>. See <a href="#altregistration">Alternate ways to register an element</a>.</td>
+    <td><code>noscript</code></td><td>optional</td><td>For simple elements that don't need to call <code>Polymer()</code>. See <a href="#altregistration">Element registration</a>.</td>
   </tr>
   <tr>
     <td><code>constructor</code></td><td>optional</td><td>The name of the constructor to put on the global object. Allows users to create instances of your element using the <code>new</code> operator (e.g. <code>var tagName = new TagName()</code>).</td>
@@ -55,7 +67,7 @@ on each instance of the element. For example:
 
     <polymer-element name="tag-name" class="active" mycustomattr>
       <template>...</template>
-      <script>Polymer('tag-name');</script>
+      <script>Polymer();</script>
     </polymer-element>
 
 When an instance of `<tag-name>` is created, it contains `class="active" mycustomattr`
@@ -79,11 +91,43 @@ This also means that any of the below examples will also work:
     <name-tag NAMECOLOR="red" name="Red Name"></name-tag>
     <name-tag NAMEcolor="green" name="Green Name"></name-tag>
 
-### Alternate ways to register an element {#altregistration}
+
+
+### Element registration {#altregistration}
+
+The `Polymer` method is used to register an element:
+
+<pre>
+Polymer([ <em class="nocode">tag-name</em>, ] [<em class="nocode">prototype</em>]);
+</pre>
+
+Where:
+
+*   _tag-name_ matches the `name` attribute in the `<polymer-element>` tag.
+    _tag-name_ is optional **unless the `<script>` tag that calls `Polymer`
+    is placed outside the `<polymer-element>` tag.**
+
+*   _prototype_ is the prototype for the new element.
+ 	See [Adding public properties and methods](#propertiesmethods).
+    _prototype_ is always optional.
+
+The simplest way to invoke `Polymer` is to place an inline script inside
+your `<polymer-element>` tag:
+
+    <polymer-element name="simple-tag">
+      <script>Polymer();</script>
+    </polymer-element>
+
+There are several alternatives to registering an element in an an inline script:
+
+-   [Separating script from markup](#separatescript).
+-   [Registering imperatively](#imperativeregister) using JavaScript.
+
+#### Separating script from markup {#separatescript}
 
 For convenient decoupling of script and markup, you don't have to inline your script.
 {{site.project_title}} elements can be created by referencing an external script
-which calls `Polymer('tag-name')`:
+which calls `Polymer`:
 
     <!-- 1. Script referenced inside the element definition. -->
     <polymer-element name="tag-name">
@@ -97,6 +141,15 @@ which calls `Polymer('tag-name')`:
       <template>...</template>
     </polymer-element>
 
+In case #2, where the script is invoked before the `<polymer-element>` tag,
+the call to `Polymer` **must include the tag name**:
+
+    // tagname.js
+    Polymer('tag-name', ... );
+
+For elements that don't require custom properties or methods, you can
+use the `noscript` attribute:
+
     <!-- 3. No script -->
     <polymer-element name="tag-name" constructor="TagName" noscript>
       <template>
@@ -104,9 +157,15 @@ which calls `Polymer('tag-name')`:
       </template>
     </polymer-element>
 
-#### Imperative registration {#imperativeregister}
+The `noscript` attribute is equivalent to including:
 
-Elements can be registered in pure JavaScript like so:
+    <script>
+    Polymer();
+    </script>
+
+#### Registering imperatively {#imperativeregister}
+
+Elements can be registered in pure JavaScript like this:
 
     <script>
       Polymer('name-tag', {nameColor: 'red'});
@@ -124,14 +183,20 @@ Elements can be registered in pure JavaScript like so:
 
     <name-tag name="John"></name-tag>
 
-Note that you need to add the `<polymer-element>` to the document so that the
+You need to add the `<polymer-element>` to the document so that the
 Custom Elements polyfill picks it up.
+
+**Important:** Since the `Polymer` call here is outside the `<polymer-element>`,
+it must include the tag name argument.
+{: .alert .alert-error }
 
 ### Adding public properties and methods {#propertiesmethods}
 
-If you wish to define methods/properties on your element (optional), pass an object
-as the second argument to `Polymer()`. This object is used to define
-the element's `prototype`.
+To define methods and properties on your element, pass a prototype object to `Polymer()`:
+
+<pre>
+Polymer([ <em class="nocode">tag-name</em>, ] <em class="nocode">prototype</em>);
+</pre>
 
 The following example defines a property `message`, a property `greeting`
 using an ES5 getter, and a method `foo`:
@@ -139,7 +204,7 @@ using an ES5 getter, and a method `foo`:
     <polymer-element name="tag-name">
       <template>{{greeting}}</template>
       <script>
-        Polymer('tag-name', {
+        Polymer({
           message: "Hello!",
           get greeting() {
             return this.message + ' there!';
@@ -152,21 +217,16 @@ using an ES5 getter, and a method `foo`:
 **Note:** `this` references the custom element itself inside a {{site.project_title}} element. For example, `this.localName == 'tag-name'`.
 {: .alert .alert-info }
 
-**Important:** Be careful when initializing properties that are objects or arrays. Due to the nature of `prototype`, you may run into unexpected "shared state" across instances of the same element. If you're initializing an array or object, do it in the `created` callback rather than directly on the `prototype`.
+#### Custom element prototype chain
 
-    // Good!
-    Polymer('x-foo', {
-      created: function() {
-        this.list = []; // Initialize and hint type to be array.
-        this.person = {}; // Initialize and hint type to an object.
-      }
-    });
+{{site.project_title}} assembles a custom element's prototype chain. The chain includes:
 
-    // Bad.
-    Polymer('x-foo', {
-      list: [], // Don't initialize array or objects on the prototype.
-      person: {}
-    });
+-   The prototype object passed to the `Polymer` method.
+-   A {{site.project_title}} base prototype that adds a set of built-in methods and properties (see [Built-in element methods](#builtin)).
+-   A prototype object for the native DOM object that the custom element extends (by default, `HTMLElement`).
+
+Avoid defining a property or method with the same name as a native DOM property or method, such as `id`, `children`,
+`focus`, `title` and `hidden`; the results are unpredictable.
 
 ### Adding private or static variables {#static}
 
@@ -177,11 +237,11 @@ techniques like anonymous self-calling functions:
       <template>...</template>
       <script>
         (function() {
-          // Ran once. Private and static to the element.
+          // Run once. Private and static to the element.
           var foo_ = new Foo();
 
-          // Ran for every instance of the element that's created.
-          Polymer('tag-name', {
+          // Run for every instance of the element that's created.
+          Polymer({
             get foo() { return foo_; }
           });
         })();
@@ -202,7 +262,7 @@ To achieve this, you can use the [MonoState Pattern](http://c2.com/cgi/wiki?Mono
         var firstName = 'John';
         var lastName = 'Smith';
 
-        Polymer('app-globals', {
+        Polymer({
            ready: function() {
              this.firstName = firstName;
              this.lastName = lastName;
@@ -221,7 +281,7 @@ Then use the element as you would any other, and data-bind it to a property that
         <div id="lastname">{{globals.lastName}}</div>
       </template>
       <script>
-        Polymer('my-component', {
+        Polymer({
           ready: function() { this.globals = this.$.globals; }
          });
       </script>
@@ -234,7 +294,7 @@ A slight tweak of this approach lets you configure the value of the globals exte
       (function() {
         var values = {};
 
-        Polymer('app-globals', {
+        Polymer({
            ready: function() {
              this.values = values;
              for (var i = 0; i < this.attributes.length; ++i) {
@@ -338,7 +398,7 @@ As an example, here's an element that publishes three public properties, `foo`,
 
     <polymer-element name="x-foo" attributes="foo bar baz">
       <script>
-        Polymer('x-foo');
+        Polymer();
       </script>
     </polymer-element>
 
@@ -346,7 +406,7 @@ And here's one using the `publish` object:
 
     <polymer-element name="x-foo">
       <script>
-        Polymer('x-foo', {
+        Polymer({
           publish: {
             foo: 'I am foo!',
             bar: 5,
@@ -382,7 +442,7 @@ By default, properties defined in `attributes` are initialized to `null`:
     <polymer-element name="x-foo" attributes="foo">
       <script>
         // x-foo has a foo property with default value of null.
-        Polymer('x-foo');
+        Polymer();
       </script>
     </polymer-element>
 
@@ -392,7 +452,7 @@ You can provide your own default values by explicitly specifying the default val
 
     <polymer-element name="x-foo" attributes="bar">
       <script>
-        Polymer('x-foo', {
+        Polymer({
           // x-foo has a bar property with default value false.
           bar: false
         });
@@ -403,7 +463,7 @@ Or you can define the whole thing using the `publish` property:
 
     <polymer-element name="x-foo">
       <script>
-        Polymer('x-foo', {
+        Polymer({
           publish: {
             bar: false
           }
@@ -417,11 +477,11 @@ created for each instance of the element:
 
     <polymer-element name="x-default" attributes="settings">
       <script>
-        Polymer('x-default', {
+        Polymer({
           created: function() {
             // create a default settings object for this instance
             this.settings = {
-              textColor: 'blue';
+              textColor: 'blue'
             };
           }
         });
@@ -478,7 +538,7 @@ includes an unlikely combination of all three:
 
     <polymer-element name="hint-element" attributes="isReady items">
       <script>
-        Polymer('hint-element', {
+        Polymer({
 
           // hint that isReady is a Boolean
           isReady: false,
@@ -501,6 +561,20 @@ initialize the properties in the `created` callback. If you set the default
 value directly on the `prototype` (or on the `publish` object), you may run into
 unexpected "shared state" across different instances of the same element.
 {: .alert .alert-error }
+
+    // Good!
+    Polymer('x-foo', {
+      created: function() {
+        this.list = []; // Initialize and hint type to be array.
+        this.person = {}; // Initialize and hint type to an object.
+      }
+    });
+
+    // Bad.
+    Polymer('x-foo', {
+      list: [], // Don't initialize array or objects on the prototype.
+      person: {}
+    });
 
 #### Property reflection to attributes {#attrreflection}
 
@@ -549,7 +623,7 @@ For example:
 
     <polymer-element name="disappearing-element">
       <script>
-        Polymer('disappearing-element', {
+        Polymer({
           publish: {
             hidden: {
               value: false,
@@ -589,7 +663,7 @@ For example, we can define a `name-tag` element that publishes two properties,
         Hello! My name is <span style="color:{%raw%}{{nameColor}}{%endraw%}">{%raw%}{{name}}{%endraw%}</span>
       </template>
       <script>
-        Polymer('name-tag', {
+        Polymer({
           nameColor: "orange"
         });
       </script>
@@ -640,7 +714,7 @@ It uses special <code>on-<em>event</em></code> syntax to trigger this binding be
         <button on-click="{% raw %}{{buttonClick}}{% endraw %}"></button>
       </template>
       <script>
-        Polymer('g-cool', {
+        Polymer({
           keypressHandler: function(event, detail, sender) { ...},
           buttonClick: function(event, detail, sender) { ... }
         });
@@ -668,7 +742,7 @@ All properties on {{site.project_title}} elements can be watched for changes by 
 
     <polymer-element name="g-cool" attributes="better best">
       <script>
-        Polymer('g-cool', {
+        Polymer({
           better: '',
           best: '',
           betterChanged: function(oldValue, newValue) {
@@ -783,7 +857,7 @@ For example, the following defines a component whose template contains an `<inpu
         <input type="text" id="nameInput">
       </template>
       <script>
-        Polymer('x-form', {
+        Polymer({
           logNameValue: function() {
             console.log(this.$.nameInput.value);
           }
@@ -823,7 +897,7 @@ Example:
         <button on-click="{{onClick}}">Send hurt</button>
       </template>
       <script>
-        Polymer('ouch-button', {
+        Polymer({
           onClick: function() {
             this.fire('ouch', {msg: 'That hurt!'}); // fire(inType, inDetail, inToNode)
           }
@@ -855,7 +929,7 @@ and data-bound.
         You are {%raw%}{{praise}}{%endraw%} <content></content>!
       </template>
       <script>
-        Polymer('polymer-cool', {
+        Polymer({
           praise: 'cool'
         });
       </script>
@@ -868,7 +942,7 @@ and data-bound.
         <shadow></shadow> <!-- "You are cool Matt" -->
       </template>
       <script>
-        Polymer('polymer-cooler');
+        Polymer();
       </script>
     </polymer-element>
 
@@ -884,7 +958,7 @@ When you override an inherited method, you can call the parent's method with `th
         You are {{praise}} <content></content>!
       </template>
       <script>
-        Polymer('polymer-cool', {
+        Polymer({
           praise: 'cool',
           makeCoolest: function() {
             this.praise = 'the coolest';
@@ -899,7 +973,7 @@ When you override an inherited method, you can call the parent's method with `th
         <shadow></shadow>
       </template>
       <script>
-        Polymer('polymer-cooler', {
+        Polymer({
           praise: 'cool',
           makeCoolest: function() {
             this.super(); // calls polymer-cool's makeCoolest()
