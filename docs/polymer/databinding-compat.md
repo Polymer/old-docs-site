@@ -3,35 +3,33 @@ layout: default
 type: core
 navgroup: docs
 shortname: Docs
-title: Compatibility notes
-subtitle: Data-binding
+title: 兼容性备忘
+subtitle: 数据绑定
 ---
 
 {% include toc.html %}
 
 
-A few features of native templates can’t be replicated perfectly with the polyfill library, and require some workarounds. These include:
+一些原生 template 的特征无法通过 polyfill 库被完美的复制，需要做一些变通，这包括：
 
-Some browsers don’t allow  `<template>` elements inside certain elements like `<select>` or `<table>`. 
-Binding to certain attributes (such as the `<img>` tag’s `src` attribute) doesn’t work correctly on some browsers that don’t support templates.
+一些浏览器在诸如 `<select>` 或 `<table>` elements 里不允许出现 `<template>` elements。在一些不支持 template 的浏览器里绑定某些特性 (诸如 `<img>` 的 `src` 特性) 不会正常工作等。
 
-## Elements that can’t contain a template
+## 无法包含 template 的 elements
 
-Until the addition of HTML `<template>`, the `<select>` and `<table>` elements had 
-special parser rules to limit the types of children they could contain. Because of these legacy rules, browsers that don't support `<template>` will lift unexpected elements out of context and make them siblings, including `<template>` itself!
+在 HTML 加入 `<template>` 之前，`<select>` 和 `<table>` elements 都有特殊的解析规则来限制它们能够包含的子元素的类型。因为这些条款，不支持 `<template>` 的浏览器会把包括 `<template>` 在内的不符合预期的 elements 都互为兄弟移到外面。
 
-For example, the following won't work correctly in browsers that don't support `<template>`:
+例如，下面的代码在不支持 `<template>` 的浏览器中无法正常工作：
 
-    <!-- Won't work in browsers that don't support <template>. -->
+    <!-- 在不支持 `<template>` 的浏览器中无法正常工作。 -->
     <table>
       {%raw%}<template repeat="{{tr in rows}}">{%endraw%}
         <tr><td>...</td></tr>
       </template>
     </table>
 
-The `<template repeat>` is hoisted out and rendered as a sibling:
+`<template repeat>` 会被渲染为外面的一个兄弟：
 
-    <!-- Unsupported browsers make the child <template> a sibling. -->
+    <!-- 不支持的浏览器会把子元素 <template> 变成兄弟。 -->
     {%raw%}<template repeat="{{tr in rows}}">{%endraw%}
       <tr><td>...</td></tr>
     </template>
@@ -39,7 +37,7 @@ The `<template repeat>` is hoisted out and rendered as a sibling:
       ...
     </table>
 
-**For browsers that don't support `<template>`**, {{site.project_title}} can repeat tags like `<option>` and `<tr>` directly using the `template` attribute:
+**对于不支持 `<template>` 的浏览器来说**，{{site.project_title}} 可以直接使用 `template` 特性来重复诸如 `<option>` 和 `<tr>` 标签。
 
     <table>
       {%raw%}<tr template repeat="{{tr in rows}}">{%endraw%}
@@ -47,7 +45,7 @@ The `<template repeat>` is hoisted out and rendered as a sibling:
       </tr>
     </table>
 
-Another example using `<select>`/`<option>`:
+另一个用到 `<select>`/`<option>` 的例子：
 
     <polymer-element name="my-select">
       <template>
@@ -66,9 +64,8 @@ Another example using `<select>`/`<option>`:
       select.options = ['One', 'Two', 'Three'];
     </script>
 
-If your users are using browsers that don't support `<template>`, use the `template`
-attribute on these special elements:
-    
+如果你的用户使用不支持 `<template>` 的浏览器，请在这些特殊的 elements 上使用 `template` 特性：
+
 * `caption`
 * `col`
 * `colgroup`
@@ -81,9 +78,7 @@ attribute on these special elements:
 * `tr`
 * `thead`
 
-**Note:** browsers with native support for `<template>` allow it to be a child
-of elements `<select>` and `<table>`. If you know your users are using a browser
-with support, you can use the standard template 
+**注意：**原生支持 `<template>` 的浏览器允许其作为 `<select>` 和 `<table>` 的子 elements。如果你确定你的用户都在使用这样的浏览器，你可以使用标准的 template。
 {: .alert .alert-info }
 
 
@@ -95,14 +90,13 @@ with support, you can use the standard template
       </template>
     </table>
 
-## Binding to attributes
+## 绑定到特性
 
-Binding expressions to certain attributes can produce side effects in browsers that don't implement `<template>` natively. 
-For example, running {% raw %}`<img src="/users/{{id}}.jpg">`{% endraw %} under the polyfill produces a network request that 404s.
+绑定表达式到某些特性可能在不原生支持 `<template>` 的浏览器中产生副作用。例如，在 polyfill 下运行 {% raw %}`<img src="/users/{{id}}.jpg">`{% endraw %} 会产生一个 404 的网络请求。
 
-In addition, browsers such as IE sanitize certain attributes, disallowing {% raw %}`{{}}`{% endraw %} replacements in their text.
+另外，IE 等浏览器会保护某些特性不允许在其中做 {% raw %}`{{}}`{% endraw %} 这样的文本替换。
 
-To avoid these side effects, bindings in certain attributes can be prefixed with "_":
+为了避免这些副作用，绑定这些特性时可以加“_”前缀：
 
 {% raw %}
     <img _src="/users/{{id}}.jpg">
