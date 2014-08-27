@@ -98,18 +98,18 @@ This also means that any of the below examples will also work:
 The `Polymer` method is used to register an element:
 
 <pre>
-Polymer(<em class="nocode">tag-name</em>, <em class="nocode">proto-object</em>);
+Polymer([ <em class="nocode">tag-name</em>, ] [<em class="nocode">prototype</em>]);
 </pre>
 
 Where:
 
 *   _tag-name_ matches the `name` attribute in the `<polymer-element>` tag.
-    _tag-name_ is **optional** as long as **the `<script>` tag that calls `Polymer` 
-    is placed inside the `<polymer-element>` tag.** 
+    _tag-name_ is optional **unless the `<script>` tag that calls `Polymer`
+    is placed outside the `<polymer-element>` tag.**
 
-*   _proto-object_ defines properties and methods to add to the 
-    elements prototype. See [Adding public properties and methods](#propertiesmethods).
-    _proto-object_ is always optional.
+*   _prototype_ is the prototype for the new element.
+ 	See [Adding public properties and methods](#propertiesmethods).
+    _prototype_ is always optional.
 
 The simplest way to invoke `Polymer` is to place an inline script inside
 your `<polymer-element>` tag:
@@ -118,12 +118,12 @@ your `<polymer-element>` tag:
       <script>Polymer();</script>
     </polymer-element>
 
-There are several alternative ways to register elements:
+There are several alternatives to registering an element in an an inline script:
 
 -   [Separating script from markup](#separatescript).
 -   [Registering imperatively](#imperativeregister) using JavaScript.
 
-#### Separate script from markup {#separatescript}
+#### Separating script from markup {#separatescript}
 
 For convenient decoupling of script and markup, you don't have to inline your script.
 {{site.project_title}} elements can be created by referencing an external script
@@ -163,7 +163,7 @@ The `noscript` attribute is equivalent to including:
     Polymer();
     </script>
 
-#### Imperative registration {#imperativeregister}
+#### Registering imperatively {#imperativeregister}
 
 Elements can be registered in pure JavaScript like this:
 
@@ -192,13 +192,13 @@ it must include the tag name argument.
 
 ### Adding public properties and methods {#propertiesmethods}
 
-To define methods/properties on your element, pass an object argument to `Polymer()`: 
+To define methods/properties on your element, pass a prototype object to `Polymer()`: 
 
 <pre>
-Polymer([ <em class="nocode">tag-name</em>, ] <em class="nocode">proto-object</em>);
+Polymer([ <em class="nocode">tag-name</em>, ] <em class="nocode">prototype</em>);
 </pre>
 
-The _proto-object_ contains properties and methods to add to the element's `prototype`. 
+The _prototype_ can include custom properties and methods for your element.
 
 The following example defines a property `message`, a property `greeting`
 using an ES5 getter, and a method `foo`:
@@ -219,31 +219,16 @@ using an ES5 getter, and a method `foo`:
 **Note:** `this` references the custom element itself inside a {{site.project_title}} element. For example, `this.localName == 'tag-name'`.
 {: .alert .alert-info }
 
-A custom element's prototype is assembled in this order:
+#### Custom element prototype chain
 
--   The base prototype is copied from the DOM object that the custom element extends (by default, `HTMLElement`).
--   {{site.project_title}} adds a set of built-in methods and properties (see [Built-in element methods](#builtin)).
--   The properties and methods defined in the _proto-object_ are added into the element's prototype. 
+{{site.project_title}} assembles a custom element's prototype chain. The chain includes:
+
+-   The prototype object passed to the `Polymer` method.
+-   A {{site.project_title}} base prototype that adds a set of built-in methods and properties (see [Built-in element methods](#builtin)).
+-   A prototype object for the native DOM object that the custom element extends (by default, `HTMLElement`).
 
 Avoid defining a property or method with the same name as a native DOM property or method, such as `id`, `children`,
 `focus`, `title` and `hidden`; the results are unpredictable.
-
-**Important:** Be careful when initializing properties that are objects or arrays. Due to the nature of `prototype`, you may run into unexpected "shared state" across instances of the same element. If you're initializing an array or object, do it in the `created` callback rather than directly on the `prototype`.
-{: .alert .alert-error }
-
-    // Good!
-    Polymer('x-foo', {
-      created: function() {
-        this.list = []; // Initialize and hint type to be array.
-        this.person = {}; // Initialize and hint type to an object.
-      }
-    });
-
-    // Bad.
-    Polymer('x-foo', {
-      list: [], // Don't initialize array or objects on the prototype.
-      person: {}
-    });
 
 ### Adding private or static variables {#static}
 
@@ -578,6 +563,20 @@ initialize the properties in the `created` callback. If you set the default
 value directly on the `prototype` (or on the `publish` object), you may run into
 unexpected "shared state" across different instances of the same element.
 {: .alert .alert-error }
+
+    // Good!
+    Polymer('x-foo', {
+      created: function() {
+        this.list = []; // Initialize and hint type to be array.
+        this.person = {}; // Initialize and hint type to an object.
+      }
+    });
+
+    // Bad.
+    Polymer('x-foo', {
+      list: [], // Don't initialize array or objects on the prototype.
+      person: {}
+    });
 
 #### Property reflection to attributes {#attrreflection}
 
