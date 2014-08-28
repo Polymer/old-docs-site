@@ -3,8 +3,8 @@ layout: default
 type: core
 navgroup: docs
 shortname: Docs
-title: Advanced topics
-subtitle: Data-binding
+title: 高阶话题
+subtitle: 数据绑定
 ---
 
 <style>
@@ -16,20 +16,19 @@ pre strong {
 {% include toc.html %}
 
 
-This section covers advanced topics that you don’t need to understand to get data binding working in a {{site.project_title}} application.
+未来在一个 {{site.project_title}} 应用中绑定数据，本章涵盖的一些你不需必要理解的高阶话题。
 
-## How data binding works
+## 数据绑定如何工作
 
-It may be easiest to understand what data binding is, by first understanding what data binding is not -- it doesn’t work like traditional template systems.
+最易于理解数据绑定的方式可能就是首先要理解数据绑定不是什么——它有别于传统模板系统的工作原理。
 
-In a traditional AJAX application, templating works by replacing innerHTML for some container element. Where the container contains a non-trivial DOM subtree, this has two drawbacks:
+在传统的 AJAX 应用中，模板的工作原理就是替换一些容器 element 的 innerHTML。容器包含了一个小的 DOM 子树，这样有两个缺点：
 
-Replacing the existing child nodes destroys the transient state of the DOM nodes, such as event listeners and form input values.
-The entire set of nodes is destroyed and recreated, even if only a few values change.
+替换已存在的子结点破坏了 DOM 结点的短暂状态，比如事件收听者和表单的输入值。整套结点都被销毁或重建，即便只有一小部分值变化。
 
-In contrast, {{site.project_title}} data binding **makes the smallest changes to the DOM necessary**. The DOM nodes representing a template instance are maintained as long as the corresponding model data is in place.
+相反，{{site.project_title}} 数据绑定**将 DOM 的改动最小化**。重现了 template 实例的 DOM 结点会和相应的数据模型一直持续下去。
 
-Consider the following DOM, which represents a template and the template instances it manages: 
+考虑下面的 DOM，其展现了一个 template 及其管理的 template 实例：
 
 {% raw %}
     <table>
@@ -42,7 +41,7 @@ Consider the following DOM, which represents a template and the template instanc
     </table>
 {% endraw %}
 
-If you re-sort the array by `item.count`, {{site.project_title}} simply swaps the order of the corresponding DOM subtrees. No nodes are created or destroyed, and the only mutation is the re-ordering of two nodes (in bold):
+如果你按 `item.count` 顺序重排数组，{{site.project_title}} 只会单纯的调换相应的 DOM 子树的位置。不会创建或销毁任何结点，唯一的变化是改变了两个结点的排序 (加粗的部分)：
 
 {% raw %}
 <pre>
@@ -57,7 +56,7 @@ If you re-sort the array by `item.count`, {{site.project_title}} simply swaps th
 </pre>
 {% endraw %}
 
-If you change `item.count` for one of the objects, the only thing that changes in the DOM tree is the binding value (in bold):
+如果你改变了一个对象的 `item.count`，唯一的变化是改变了绑定该值的 DOM 树发生变化 (加粗的部分)：
 
 {% raw %}
 <pre>
@@ -73,14 +72,11 @@ If you change `item.count` for one of the objects, the only thing that changes i
 {% endraw %}
 
 
-### How data binding tracks template instances
+### 数据绑定如何跟踪 template 实例
 
-When a template generates one or more instances, it inserts the instances immediately after itself. So
-the template itself serves as a marker for where the first instance starts. For each template
-instance, the template keeps track of the terminating node in the template instance. For the simple
-case, the terminating node is a clone of the last node in the template itself.
+当一个 template 生成一个或多个实例时，这些实例立即插入会在其身后。所以 template 本身就是第一个实例开始的标记。对每个 template 实例来说，template 对其最终的结点保持跟踪。在单个的例子里，终止结点是 template 本身的最后一个结点的克隆。
 
-The following diagram represents the DOM for a template and its instances:
+下面的图展示了一个 template 及其实例的 DOM：
 
 {% raw %}
 <pre>
@@ -89,23 +85,19 @@ The following diagram represents the DOM for a template and its instances:
       &lt;span>{{item.name}}&lt;/span>
     &lt;/template>                  
     &lt;img>
-    &lt;span>foo&lt;/span>   <span class="nocode" style="color: red"><em>⇐ terminating node in template instance</em></span>
+    &lt;span>foo&lt;/span>   <span class="nocode" style="color: red"><em>⇐ template 实例的终止结点</em></span>
     &lt;img>
-    &lt;span>bar&lt;/span>   <span class="nocode" style="color: red"><em>⇐ terminating node in template instance</em></span>
+    &lt;span>bar&lt;/span>   <span class="nocode" style="color: red"><em>⇐ template 实例的终止结点</em></span>
     &lt;img>
-    &lt;span>baz&lt;/span>   <span class="nocode" style="color: red"><em>⇐ terminating node in template instance</em></span>
+    &lt;span>baz&lt;/span>   <span class="nocode" style="color: red"><em>⇐ template 实例的终止结点</em></span>
 </pre>
 {% endraw %}
 
-All sibling nodes (and their children) following the template node up to and including the first
-terminating node make up the  DOM for the first template instance. Each subsequent template instance
-is identified the same way.
+所有 template 结点内且包含了第一终止结点的兄弟结点 (及其子结点) 组成了第一个 template 实例的 DOM。每个后面的 template 实例也是同样的辨识方式。
 
-If the objects in the myList array are moved or deleted, the template can move or remove the
-corresponding DOM nodes.
+如果 myList 数组内的对象被移动或删除，template 可以移动或删除相应的 DOM 结点。
 
-In the case of nested templates, identifying the terminating node is somewhat more complicated.
-Consider the following templates:
+在嵌套的 templates 情况下，识别终止结点是一件更复杂的事情。考虑下面的 templates：
 
 {% raw %}
     <template repeat="{{user in users}}">
@@ -116,9 +108,7 @@ Consider the following templates:
     </template>
 {% endraw %}
 
-In this case, the last node in the outer template is the inner template. However, when the template
-instances are created, the inner template generates its own instances. (In the following example,
-whitespace is added around the template instances for readability.)
+在这个例子中，最外层 template 最后的结点是内层的 template。当 template 实例被创建时，内层 template 生成他自己的实例。(在下面的例子中，空格被添加到了 template 实例的周围以确保可读性。)
 
 {% raw %}
 <pre class="prettyprint">
@@ -129,38 +119,34 @@ whitespace is added around the template instances for readability.)
   &lt;/template>
 &lt;/template>
 
-&lt;p>Bob&lt;/p>              <span class="nocode" style="color: red"><em>⇐ start of 1st outer template instance</em></span>
+&lt;p>Bob&lt;/p>              <span class="nocode" style="color: red"><em>⇐ 开始第 1 个最外层的 template 实例</em></span>
 &lt;template repeat="{{alias in user.aliases}}">
   &lt;p>a.k.a. {{alias}}&lt;/p>
 &lt;/template>
 
-&lt;p>a.k.a. Lefty&lt;/p>     <span class="nocode" style="color: red"><em>⇐ 1st inner template instance</em></span>
+&lt;p>a.k.a. Lefty&lt;/p>     <span class="nocode" style="color: red"><em>⇐ 第 1 个内层 template 实例</em></span>
 
-&lt;p>a.k.a. Mr. Clean&lt;/p> <span class="nocode" style="color: red"><em>⇐ 2nd inner template instance</em></span>
-                         <span class="nocode" style="color: red"><em> (terminating node for outer template instance)</em></span>
+&lt;p>a.k.a. Mr. Clean&lt;/p> <span class="nocode" style="color: red"><em>⇐ 第 2 个内层 template 实例</em></span>
+                         <span class="nocode" style="color: red"><em> (最外层 template 实例的终止结点)</em></span>
 
 
-&lt;p>Elaine&lt;/p>           <span class="nocode" style="color: red"><em>⇐ start of 2nd outer template instance</em></span>
+&lt;p>Elaine&lt;/p>           <span class="nocode" style="color: red"><em>⇐ 开始第 2 个最外层的 template 实例</em></span>
 &lt;template repeat="{{alias in user.aliases}}">
   &lt;p>a.k.a. {{alias}}&lt;/p>
 &lt;/template>
 
-&lt;p>a.k.a. The Wiz&lt;/p>    <span class="nocode" style="color: red"><em>⇐ 1st inner template instance</em></span>
-                          <span class="nocode" style="color: red"><em> (terminating node for outer template instance)</em></span>
+&lt;p>a.k.a. The Wiz&lt;/p>    <span class="nocode" style="color: red"><em>⇐ 第 1 个内层 template 实例</em></span>
+                          <span class="nocode" style="color: red"><em> (最外层 template 实例的终止结点)</em></span>
 </pre>
 {% endraw %}
 
-In this case, note that the terminating node of the outer instance is the same as the terminating
-node of the last inner instance.
+在这个例子中，注意最外层实例的终止结点和最后一个内层实例的终止结点是相同的。
 
-### Mutating template-generated DOM nodes
+### 改变 template 生成的 DOM 结点
 
-In general, **you shouldn’t need to manually mutate the DOM nodes generated by template bindings** &mdash;
-you can do most things you need to do simply by setting up bindings and mutating the model object.
+通常**你犯不着手动改变由 template 绑定生成的 DOM 结点**——你可以通过简单的绑定设置和数据模型对象修改完成几乎所有的事情。
 
-If you _do_ need to mutate the DOM nodes generated by a template, it is safe to do so as long as you
-don't remove the terminating node of a template instance. The easiest way to do this is to wrap the
-template contents in a container element:
+如果你_确实_需要改变由 template 生成的 DOM 结点，安全的方法是不要移除 template 实例的终止结点。最简单的方式就是把 template 的内容用一个容器 element 包裹一下：
 
 {% raw %}
     <template repeat="{{item in listItems}}">
@@ -171,10 +157,7 @@ template contents in a container element:
     </template>
 {% endraw %}
 
-In this case, the outer <section> will serve as the terminating node for each template instance. You
-can mutate the DOM nodes inside each <section> as long as you don’t remove the <section> node
-itself. For example, the rowSelected event handler invoked when a section is clicked could do
-something like this:
+这样，外层的 <section> 会在每个 template 实例中充当终止结点的角色。你可以改变每个 <section> 里面的 DOM 结点直到 <section> 结点自身被移除。例如，当一个 section 被点击时，被调用的 rowSelected 事件句柄可以做这样的事情：
 
 {% raw %}
     rowSelected: function(e, detail, sender) {
@@ -184,12 +167,11 @@ something like this:
     }
 {% endraw %}
 
-**Note:** In practice, it would be easier and cleaner to set a value on the model and use a conditional
-template. This example just demonstrates how the data binding system handles mutation. 
+**注意：**在实践中，在数据模型上设置一个值或使用条件性 template 比这样做更容易也更清晰。这个例子只是用于演示数据绑定系统处理变化的方式。
 {: .alert .alert-info }
 
 
-Clicking on a row results in a DOM change like this (whitespace added for readability):
+点击行的 DOM 变化如下 (增加了空格以确保可读性)：
 
 {% raw %}
     <template repeat="{{item in listItems}}">
@@ -211,8 +193,7 @@ Clicking on a row results in a DOM change like this (whitespace added for readab
     </section>
 {% endraw %}
 
-Because the template identifies each instance by the terminating node, changes to the 
-instance’s state persist even if the template has to reorder its instances:
+因为 template 通过终止结点识别了每个实例，实例状态的变化是持续的，哪怕其实例被重新排序：
 
 {% raw %}
     <template repeat="{{item in listItems}}">
@@ -235,51 +216,34 @@ instance’s state persist even if the template has to reorder its instances:
 {% endraw %}
 
 
-Of course, if you change one of the values that’s bound, it will be overwritten the next time the
-underlying model data changes. The two-way data binding only registers DOM changes to input elements
--- not imperative changes to arbitrary DOM nodes.
+当然，如果你改变了其绑定的一个值，它会在下一次底层数据变化的时候被重写。双向数据绑定只注册 input elements 的 DOM 改变——而不是改变任意 DOM 结点。
 
-## Using data binding outside of a {{site.project_title}} element {#bindingoutside}
+## 在 {{site.project_title}} element 外使用数据绑定 {#bindingoutside}
 
-This {{site.project_title}} data binding works  _inside_ a {{site.project_title}} element. If you
-want to use data binding elsewhere, there are two options:
+{{site.project_title}} 数据绑定在一个 {{site.project_title}} element _内部_可以正常工作。如果你想在其它地方使用数据绑定，有两种可选的办法：
 
-*   If you're using {{site.project_title}}, use an [auto-binding template](#autobinding) 
-    to take advantage of data binding without creating a new custom element.
+*   如果你使用了 {{site.project_title}}，通过一个[自动绑定的 template](#autobinding) 来创建一个带有数据绑定的 custom element。
 
-*   If you _aren't_ using the rest of {{site.project_title}}, use the 
-    [Template Binding](/docs/polymer/template.html) library directly. The template binding library is 
-    used internally by {{site.project_title}}, and can be used directly, with or without the rest of    
-    {{site.project_title}}. (Note that if you use template binding by itself, you cannot use {{site.project_title}}
-    expressions.)
+*   如果你不使用 {{site.project_title}} 别的部分，可直接使用 [template 绑定](/docs/polymer/template.html)库。Template 绑定库被用在 {{site.project_title}} 内部，也可以脱离 {{site.project_title}} 的其它部分直接使用。(注意如果你自行使用 template 绑定，你就无法使用 {{site.project_title}} 表达式了。)
 
-**Note:** Earlier versions of {{site.project_title}} included an element called `<polymer-body>`. 
-If you were using `<polymer-body>` previously, the closest substitute is an auto-binding template.
+**注意：**早期的 {{site.project_title}} 版本包含了一个 element 名叫 `<polymer-body>`。如果你想使用早期的 `<polymer-body>`，最接近的替代方案就是自动绑定 template。
 {: .alert .alert-info }
 
-### Using the auto-binding template element {#autobinding}
+### 使用自动绑定 template element {#autobinding}
 
-The `auto-binding` element is a {{site.project_title}} custom element that extends the standard
-`<template>` element. You can use it when you want to use {{site.project_title}} data
-binding in a page without having to create a custom element just for this purpose. Auto-binding
-templates support a subset of the features available when you create your own custom element:
+`auto-binding` element 是一个扩展自标准的 `<template>` element 的 {{site.project_title}} custom element。你可以在需要使用 {{site.project_title}} 数据绑定但没必要创建一个 custom element 的时候用到它。自动绑定 template 支持当你创建你自己的 custom element 时可用的特征的一个子集：
 
--   Full-featured data binding, with {{site.project_title}} expressions.
--   [Declarative event mapping](polymer.html#declarative-event-mapping).
--   [Automatic node finding](/polymer/polymer.html#automatic-node-finding). 
+-   带有 {{site.project_title}} 表达式的全功能数据绑定
+-   [声明式事件映射](polymer.html#declarative-event-mapping).
+-   [自动化定位结点](/polymer/polymer.html#automatic-node-finding). 
 
-For an auto-binding template, the data model is on the template itself. For example, to use data 
-binding at the top level of a page:
+对于一个自动绑定的 template，其数据模型在 template 本身之上。例如，在页面的定级使用数据绑定：
 
 {% include samples/databinding/auto-binding.html %} 
 
-The auto-binding template inserts the instances it creates immediately after
-itself in the DOM tree (_not_ in its shadow DOM). In this case, the quotes are 
-inserted as children of the `body` element.
+自动绑定 template 插入在其 DOM 树之后立即创建的实例 (_不在_ shadow DOM 中)。这时，quote 被作为 `body` element 的子元素被插入。
 
-After adding the instances, the auto-binding template fires the `template-bound` 
-event.
+添加实例之后，自动绑定 template 触发 `template-bound` 事件。
 
-The `auto-binding` element is currently included automatically when you load the
-{{site.project_title}} library.
+目前当你载入 {{site.project_title}} 库时，`auto-binding` element 是自动包含的。
 
