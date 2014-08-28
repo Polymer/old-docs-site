@@ -267,11 +267,11 @@ polyfill 作用时，{{site.project_title}} 自动检测每个 `<polymer-element
 
     <link rel="stylesheet"  href="main.css" shim-shadowdom>
 
-## Polyfill 详解
+## Polyfill 详解 {#polyfill-details}
 
-### 处理作用域内的样式
+### 处理局部样式 {#handling-scoped-styles}
 
-原生的 Shadow DOM 给我们免费的包装作用域内的样式。针对没有原生支持的浏览器 {{site.project_title}} 的 polyfills 尽力去替补 _这些_ 作用域的行为。
+原生的 Shadow DOM 给我们免费的包装局部样式。针对没有原生支持的浏览器 {{site.project_title}} 的 polyfills 尽力去替补 _这些_ 局部的行为。
 
 由于要 polyfill Shadow DOM 样式的行为非常的困难，{{site.project_title}} 考虑实用性和性能优先于正确性。如，polyfill 将不会在文档级别的 CSS 面前保护 Shadow DOM elements。
  

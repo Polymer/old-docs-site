@@ -52,7 +52,7 @@ title: FAQ
 更多资料请参考我们的 [浏览器兼容性](/resources/compatibility.html) 页面。
 
 
-### 他浏览器什么时候能原生支持这些API? {#nativesupport}
+### 其他浏览器什么时候能原生支持这些API? {#nativesupport}
 
 我们的<a href="/images/architecture-diagram.svg" target="_blank">架构图</a>里基础层是基于最新的Web标准的.任何层的需求度会随着浏览器原生支持度的增加而逐渐减少直至最终消失。事实上，Chrome 36 是首个原生支持了全部 {{site.project_title}} 依赖的全部平台特性的浏览器。很难说什么时候每个浏览器都原生支持这些特性, 但开发者的呼声越高被支持就越快. 
 
