@@ -4,26 +4,24 @@ type: core
 navgroup: docs
 shortname: Docs
 title: Node.bind()
-subtitle: Library
+subtitle: 库
 
 feature:
-  summary: "[`Node.bind()`](https://github.com/polymer/NodeBind) is Polymer's data-binding library which allows DOM nodes to bind properties to data. Although internal in Polymer, it is also useful standalone."
+  summary: "[`Node.bind()`](https://github.com/polymer/NodeBind) 是 Polymer 数据绑定库，该库允许把 DOM 结点的属性绑定到数据。虽然是 Polymer 内部的东西，但是也可以独立使用。"
 
 ---
 
 {% include spec-header.html %}
 
-## Learn the tech
+## 学习这项技术
 
-### Why Node.bind()?
+### 为什么用 Node.bind()？
 
-`Node.bind()` is a new method added to all DOM nodes which instructs them to bind the named
-property to the data provided. These allows applications to create a data model
-in JavaScript that DOM reacts to.
+`Node.bind()` 是一个 DOM 结点新增加的方法，用来将其被命名的属性绑定到提供的数据上。其允许应用程序创建一个反应在 DOM 上的 JavaScript 数据模型。
 
-### Basic usage
+### 基本用法
 
-"Bind the value in `obj.path.to.value` to a TextNode's `.textContent`":
+"把 `obj.path.to.value` 绑定到一个文本结点的 `.textContent` 中"：
 
     var obj = {
       path: {
@@ -36,130 +34,126 @@ in JavaScript that DOM reacts to.
     var textNode = document.createTextNode('mytext');
     textNode.bind('textContent', new PathObserver(obj, 'path.to.value'));
 
-When the value in `path.to.value` changes, `Node.bind()` keeps `.textContent` up to date.
+当 `path.to.value` 的值变化时，`Node.bind()` 会保持 `.textContent` 的更新。
 
-## Binding types
+## 绑定类型
 
-The meaning of the binding name is interpreted by the node on which `bind()` is called.
-Some elements have special properties which can be two-way data bound:
+绑定名称的意思是通过调用了 `bind()` 的结点解释的。有些 elements 具备特殊的可以双向绑定数据的属性：
 
-- `Text` node - only handles bindings on its `textContent` property. 
-- `HTMLInputElement` - handles bindings on its `value` and `checked` properties.
-- `HTMLTextareaElement` - handles bindings on its `value` property.
-- `HTMLSelectElement` - handles bindings on its `value` and `selectedIndex` properties.
+- `Text` 结点 - 只处理 `textContent` 属性的绑定。 
+- `HTMLInputElement` - 处理其 `value` 和 `checked` 属性的绑定。
+- `HTMLTextareaElement` - 处理其 `value` 属性的绑定。
+- `HTMLSelectElement` - 处理其 `value` 和 `selectedIndex` 属性的绑定。
 
-**All other elements handle bindings to attributes**.
+**所有其它的 elements 句柄都绑定在特性上**。
 
-### Text nodes
+### Text 结点
 
     textNode.bind('textContent', new PathObserver(someObj, 'path.to.value'));
 
-Instructs the `Text` node to make its `textContent` property dependent on the
-value `someObj.path.to.value`.
+构造 `Text` 结点，并使得 `textContent` 属性依赖于 `someObj.path.to.value` 的值。
 
 <table class="table">
   <tr>
-    <th>Case</th><th>Result</th>
+    <th>情形</th><th>结果</th>
   </tr>
   <tr>
-    <td>Bound value is interpreted as</td>
+    <td>被绑定的值被解释为</td>
     <td><code>String(someObj.path.to.value)</code></td>
   </tr>
   <tr>
-    <td>The path is <code>null</code>, <code>undefined</code>, or unreachable</td>
-    <td><code>""</code> (the empty string)</td>
+    <td>其路径为 <code>null</code>、<code>undefined</code> 或不可达到</td>
+    <td><code>""</code> (空字符串)</td>
   </tr>
 </table>
 
 ### &lt;input> element {#inputelements}
 
-The `<input>` element has two special properties, `value` and `checked` for two-way binding.
+`<input>` element 有两个特殊的属性：`value` 和 `checked` 且都是双向绑定。
 
 #### value
 
     myValueInput.bind('value', new PathObserver(someObj, 'path.to.value'));
 
-Instructs the `input` to ensure its `value` property is equal to `String(someObj.path.to.value)`. Upon binding, if the path is reachable, `value` is set to the path value. If the path is unreachable but can be made reachable by setting a single property on the final object, the property is set to `value`.
+构造 `input` 来确认其 `value` 属性等同于 `String(someObj.path.to.value)`。在绑定中，如果路径是可达到的，`value` 会被设为路径的值。如果路径不可达到但是可以通过设置一个属性来解决，则属性会被设为 `value`。
 
 #### checked
 
     myCheckboxOrRadioInput.bind('checked', new PathObserver(someObj, 'path.to.value'));
 
-Instructs the `input` to ensure its `checked` property is equal to `Boolean(someObje.path.to.value)`.
+构造 `input` 来确认其 `checked` 属性等同于 `Boolean(someObj.path.to.value)`。
 
 <table class="table">
   <tr>
-    <th>Case</th><th>Result</th>
+    <th>情形</th><th>结果</th>
   </tr>
   <tr>
-    <td>Bound value is interpreted as</td>
+    <td>被绑定的值被解释为</td>
     <td><code>Boolean(someObje.path.to.value)</code></td>
   </tr>
   <tr>
-    <td>The path is <code>null</code>, <code>undefined</code>, or unreachable</td>
-    <td><code>false</code> for <code>&lt;input type="checked"></code> and <code>&lt;input type="radio"></code>.</td>
+    <td>其路径为 <code>null</code>、<code>undefined</code> 或不可达到</td>
+    <td>对于 <code>&lt;input type="checked"></code> 和 <code>&lt;input type="radio"></code> 来说是 <code>false</code>。</td>
   </tr>
 </table>
 
 ### &lt;textarea> element {#textarea}
 
-The `<textarea>` element has a special property, `value` for two-way binding.
+`<textarea>` element 有一个特殊的属性：`value` 且是双向绑定的。
 
 #### value
 
     textarea.bind('value', new PathObserver(someObj, 'path.to.value'));
 
-`HTMLTextAreaElement.value` mimics the behavior of `input.value` (see above).
+`HTMLTextAreaElement.value` 等同于 `input.value` (如之前所述)。
 
 ### &lt;select> element {#select}
 
-The `<select>` element has two special properties, `selectedIndex` and `value` for two-way binding.
+`<select>` element 有量个特殊的属性：`selectedIndex` 和 `value` 且都是双向绑定的。
 
 #### value
 
     select.bind('value', new PathObserver(someObj, 'path.to.value'));
 
-Instructs the `HTMLSelectElement` to make its `value` property dependent on the
-value in `path.to.value`.
+构造 `HTMLSelectElement` 来使其 `value` 属性依赖于 `puth.to.value` 的值。
 
 #### selectedIndex
 
     select.bind('selectedIndex', new PathObserver(someObj, 'path.to.value'));
 
-Instructs the `HTMLSelectElement` to make its `selectedIndex` property dependent on the
-value in `path.to.value`. Note, "`selectedIndex`" is case sensitive.
+构造 `HTMLSelectElement` 来使其 `selecteIndex` 属性依赖于 `path.to.value` 的值。注意，“`selectedIndex`” 是大小写敏感的。
 
 <table class="table">
   <tr>
-    <th>Case</th><th>Result</th>
+    <th>情形</th><th>结果</th>
   </tr>
   <tr>
-    <td>Bound value is interpreted as</td>
+    <td>被绑定的值被解释为</td>
     <td><code>Number(someObj.path.to.value)</code></td>
   </tr>
   <tr>
-    <td>The path is <code>null</code>, <code>undefined</code>, or unreachable</td>
+    <td>其路径为 <code>null</code>、<code>undefined</code> 或不可达到</td>
     <td><code>0</code></td>
   </tr>
 </table>
 
-### Element attribute values {#attributevalues}
+### Element 特性的 values {#attributevalues}
 
     myElement.bind('title', new PathObserver(someObj, 'path.to.value'));
 
-Instructs the element to make the value its `title` attribute dependent on the value `someObj.path.to.value`.
+构造 element 使其 `title` 特性依赖于 `someObj.path.to.value` 的值。
 
 <table class="table">
   <tr>
-    <th>Case</th><th>Result</th>
+    <th>情形</th><th>结果</th>
   </tr>
   <tr>
-    <td>Bound value is interpreted as</td>
+    <td>被绑定的值被解释为</td>
     <td><code>String(someObj.path.to.value)</code></td>
   </tr>
   <tr>
-    <td>The path is <code>null</code>, <code>undefined</code>, or unreachable</td>
-    <td><code>""</code> (the empty string)</td>
+    <td>其路径为 <code>null</code>、<code>undefined</code> 或不可达到</td>
+    <td><code>""</code> (空字符串)</td>
   </tr>
 </table>
 
@@ -171,22 +165,21 @@ Instructs the element add/remove its `hidden` attribute based on the truthiness 
 
 <table class="table">
   <tr>
-    <th>Case</th><th>Result</th>
+    <th>情形</th><th>结果</th>
   </tr>
   <tr>
-    <td>Bound value is interpreted as</td>
+    <td>被绑定的值被解释为</td>
     <td><code>""</code> (the empty string) if <code>someObj.path.to.value</code> is reachable and truthy</td>
   </tr>
   <tr>
-    <td>Other cases</td>
-    <td>The attribute is removed from the element</td>
+    <td>其它情形</td>
+    <td>特性被从 element 移除</td>
   </tr>
 </table>
 
-## Custom element bindings
+## Custom element 绑定
 
-[Custom Elements](/platform/custom-elements.html) may choose to interpret bindings
-as they wish. They do this by overriding the `bind()` method.
+[Custom Elements](/platform/custom-elements.html) 可以根据他们的意愿解释绑定。他们通过重载 `bind()` 方法来解决。
 
     MyFancyHTMLWidget.prototype.bind = function(name, observable, oneTime) {
       if (name == 'myBinding') {
@@ -203,5 +196,4 @@ as they wish. They do this by overriding the `bind()` method.
       }
     };
 
-If the element does not handle the binding, it should give its super class the
-opportunity to by invoking its `bind()` method.
+如果 element 没有处理绑定，它应该为其超类提供调用 `bind()` 方法的机会。
