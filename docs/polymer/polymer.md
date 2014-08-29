@@ -729,12 +729,12 @@ In this example, the `on-keypress` declaration maps the standard DOM `"keypress"
 {% raw %}
     <polymer-element name="ouch-button">
       <template>
-        <button on-click="{{onClick}}">伤自尊</button>
+        <button on-click="{{onClick}}">Send hurt</button>
       </template>
       <script>
         Polymer('ouch-button', {
           onClick: function() {
-            this.fire('嗷', {msg: '又伤自尊了！'}); // fire(inType, inDetail, inToNode)
+            this.fire('ouch', {msg: 'That hurt!'}); // fire(inType, inDetail, inToNode)
           }
         });
       </script>
@@ -744,7 +744,7 @@ In this example, the `on-keypress` declaration maps the standard DOM `"keypress"
 
     <script>
       document.querySelector('ouch-button').addEventListener('ouch', function(e) {
-        console.log(e.type, e.detail.msg); // "嗷" "又伤自尊了！"
+        console.log(e.type, e.detail.msg); // "ouch" "That hurt!"
       });
     </script>
 {% endraw %}
