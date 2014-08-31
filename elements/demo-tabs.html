@@ -9,6 +9,7 @@
 -->
 <link rel="import" href="../components/polymer/polymer.html">
 <link rel="import" href="../components/core-selector/core-selector.html">
+<link rel="import" href="../components/core-icons/core-icons.html">
 
 <polymer-element name="demo-tab" attributes="heading" noscript>
   <template>
@@ -25,16 +26,34 @@
 </polymer-element>
 
 
-<polymer-element name="demo-tabs" attributes="selected bottom theme">
+<polymer-element name="demo-tabs" attributes="selected bottom theme preview">
   <template>
+    <style>
+    .preview {
+      padding-right: 9px;
+    }
+    .preview paper-button {
+      color: white;
+      background: #3367d6;
+    }
+    .preview paper-button::shadow #content span {
+      vertical-align: middle;
+      margin: 5px 8px 5px 0;
+    }
+    </style>
     <link rel="stylesheet" href="../css/elements/demo-tabs.css">
     <div id="container" class="{{theme}}">
-      <div id="tabstrip">
-        <core-selector selected="{{selected}}" selectedClass="selected" class="tab-wrapper">
+      <div id="tabstrip" layout horizontal center>
+        <core-selector selected="{{selected}}" selectedClass="selected" class="tab-wrapper" flex>
           <template repeat="{{panel in panels}}">
             <span>{{panel.heading}}</span>
           </template>
         </core-selector>
+        <template if="{{preview}}">
+          <a class="preview" href="{{preview}}">
+            <paper-button icon="exit-to-app" label="Try it on Plunker" raisedbutton="" role="button" tabindex="0" aria-label="Try it on Plunker"></paper-button>
+          </a>
+        </template>
       </div>
       <div id="wrapper" class="{{ {bottom: bottom} | tokenList}}">
         <core-selector id="contents" selected="{{selected}}" selectedClass="selected">
@@ -48,6 +67,7 @@
   </template>
   <script>
     Polymer('demo-tabs', {
+      preview: null,
       theme: 'light',
       selected: 0,
       bottom: false, // Force results panel to be on bottom, even on desktop.
