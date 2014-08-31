@@ -122,7 +122,7 @@ detailed information on each of these features.
 
 ### Add properties and methods {#propertiesmethods}
 
-When you're creating a new element, you'll often need to expose a [public API](/polymer/polymer.html#published-properties) so users can configure it. To define a public API, include a `<script>` tag that calls `{{site.project_title}}('your-tagname')`.  The `{{site.project_title}}(...)` constructor is a convenience wrapper for [`document.registerElement`](/platform/custom-elements.html#documentregister), but also endows the element with special features like data binding and event mapping. Its first argument is the name of the element you're creating. The second argument (optional) is an object that defines your element's prototype.
+When you're creating a new element, you'll often need to expose a [public API](docs/polymer/polymer.html#published-properties) so users can configure it. To define a public API, include a `<script>` tag that calls `{{site.project_title}}('your-tagname')`.  The `{{site.project_title}}(...)` constructor is a convenience wrapper for [`document.registerElement`](/platform/custom-elements.html#documentregister), but also endows the element with special features like data binding and event mapping. Its first argument is the name of the element you're creating. The second argument (optional) is an object that defines your element's prototype.
 
 {% include samples/tk-element-proto.html %}
 
