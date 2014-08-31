@@ -1,0 +1,8 @@
+{
+  "name": "Binding between components and built-in elements",
+  "description": "You can use bindings with built-in elements just like you would with Polymer elements.",
+  "files": [
+    "index.html",
+    "age-slider-plunker.html"
+  ]
+}

@@ -1,0 +1,16 @@
+<link rel="import"
+      href="http://www.polymer-project.org/components/polymer/polymer.html">
+
+<polymer-element name="fav-color">
+  <template>
+    This is <b>{{owner}}</b>'s fav-color element. 
+    {{owner}} likes the color 
+    <span style="color: {{color}}">{{color}}</span>.
+  </template>
+  <script>
+    Polymer('fav-color', {
+      owner: "Daniel",
+      color: "red"
+    });
+  </script>
+</polymer-element>

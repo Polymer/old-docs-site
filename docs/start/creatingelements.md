@@ -124,7 +124,7 @@ detailed information on each of these features.
 
 When you're creating a new element, you'll often need to expose a [public API](/polymer/polymer.html#published-properties) so users can configure it. To define a public API, include a `<script>` tag that calls `{{site.project_title}}('your-tagname')`.  The `{{site.project_title}}(...)` constructor is a convenience wrapper for [`document.registerElement`](/platform/custom-elements.html#documentregister), but also endows the element with special features like data binding and event mapping. Its first argument is the name of the element you're creating. The second argument (optional) is an object that defines your element's prototype.
 
-{% include samples/tk-element-proto.html %}
+{% include samples/proto-element.html %}
 
 ### Adding lifecycle methods
 
@@ -133,7 +133,7 @@ When you're creating a new element, you'll often need to expose a [public API](/
 When a custom element has been registered it calls its `created()` callback (if one has been defined). When {{site.project_title}} finishes its initialization, the `ready()` method is called.
 The `ready` callback is a great place to do constructor-like initialization work.
 
-{% include samples/tk-element-created.html %}
+{% include samples/ready-element.html %}
 
 Learn more about all of the [lifecycle callbacks](/docs/polymer/polymer.html#lifecyclemethods).
 
@@ -141,7 +141,7 @@ Learn more about all of the [lifecycle callbacks](/docs/polymer/polymer.html#lif
 
 Data binding is a great way to quickly propagate changes in your element and reduce boilerplate code. You can bind properties in your component using the "double-mustache" syntax (`{%raw%}{{}}{%endraw%}`). The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced between the brackets.
 
-{% include samples/tk-element-databinding.html %}
+{% include samples/name-tag.html %}
 
 Note: {{site.project_title}}'s data-binding is powered under the covers by a sub-library called [TemplateBinding](/docs/polymer/template.html), designed for other libraries to build on top of.
 {: .alert .alert-info}
@@ -150,13 +150,13 @@ Note: {{site.project_title}}'s data-binding is powered under the covers by a sub
 
 You can use binding expressions in most HTML markup, except for tag names themselves. In the following example, we create a new property on our component named `color` whose value is bound to the value of the `color` style applied to the custom element. Bindings ensure that any time a property like `color` is changed, the new value will be propagated to all binding points.
 
-{% include samples/tk-element-databinding-color.html %}
+{% include samples/fav-color.html %}
 
 #### Binding between components and built-in elements {#bindingtobuiltin}
 
 You can use bindings with built-in elements just like you would with Polymer elements. This is a great way to leverage existing APIs to build complex components. The following example demonstrates binding component properties to attributes of native input elements.
 
-{% include samples/tk-binding-to-elements.html %}
+{% include samples/age-slider.html %}
 
 **Note:** Giving `age` an initial value `25` gives {{site.project_title}}
 a hint that this property is an integer.
@@ -175,7 +175,7 @@ _Publish_ a property by listing it in the `attributes` attribute in your `<polym
 The following example defines two data-bound properties on the element, `owner` and `color`,
 and gives them default values:
 
-{% include samples/tk-element-property-public.html %}
+{% include samples/color-picker.html %}
 
 In this example the user overrides the defaults for `owner` and `color`
 by configuring the element with initial attribute values (e.g. `<color-picker owner="Scott" color="blue">`).
@@ -189,7 +189,7 @@ by configuring the element with initial attribute values (e.g. `<color-picker ow
 
 The use of the `id` attribute has traditionally been discouraged as an anti-pattern because the document requires element IDs to be unique. Shadow DOM, on the other hand, is a self-contained document-like subtree; IDs in that subtree do not interact with IDs in other trees. This means the use of IDs in Shadow DOM is not only permissible, it's actually encouraged. Each {{site.project_title}} element generates a map of IDs to node references in the element's template. This map is accessible as `$` on the element and can be used to quickly select the node you wish to work with. 
 
-{% include samples/tk-node-finding.html %}
+{% include samples/editable-color-picker.html %}
 
 [Learn more about automatic node finding](/docs/polymer/polymer.html#automatic-node-finding)
 
