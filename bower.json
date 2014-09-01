@@ -24,6 +24,7 @@
     "smoothscroll": "~0.0.2",
     "x-tag-imports": "x-tag/x-tag-imports",
     "marked": "*",
-    "highlightjs": "*"
+    "highlightjs": "*",
+    "plunker-button": "robdodson/plunker-button#~0.1.1"
   }
 }
