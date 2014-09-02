@@ -123,7 +123,7 @@ elements that bind to `list` on the outside see the changes. In this
 example, `<core-localstorage>`. You can think of "list" as an
 internal bus within `<my-app>`. Pop some data on it; any elements that care about
 `items` are magically **kept in sync by data-binding**. This means there is one source
-of truth. Data changes are simultaneously reflected in all contexts. There is no no dirty check.
+of truth. Data changes are simultaneously reflected in all contexts. There is no 'dirty check'.
 
 **Remember:** Property bindings are two-way. If `<core-localstorage>`
 changes `list`, `<td-model>`'s items will also change.
@@ -285,7 +285,7 @@ And someone listening could use that information:
 
 #### Using declarative event mappings {#declartivemappings}
 
-The {{site.project_title}}ic approach to events is combine event bubbling
+The {{site.project_title}}ic approach to events is to combine event bubbling
 and [`on-*` declarative event mapping](/docs/polymer/polymer.html#declarative-event-mapping).
 Combining the two gives you a declarative way to listen for events and requires very little code.
 
@@ -485,7 +485,7 @@ it's `save()` method (code outside a {{site.project_title}} element):
 
 ## Conclusion
 
-The unique "messaging" feature that {{site.project_title}} brings to the table two-way
+The unique "messaging" features that {{site.project_title}} brings to the table are two-way
 data-binding and changed watchers. However, data binding has been a part of
 other frameworks for a long time, so technically it's not a new concept.
 
