@@ -34,6 +34,8 @@ rm -rf polymer-all/projects/
 mv projects/ polymer-all/
 cp -R js/bower_components/highlightjs/ components/highlightjs
 cp -R js/bower_components/marked/ components/marked
+cp -R js/bower_components/plunker-button/ components/plunker-button
+cp -R js/bower_components/native-promise-only/ components/native-promise-only
 
 # Update designer =====
 cd $DESIGNER_DIR
