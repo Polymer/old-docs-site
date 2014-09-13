@@ -7,6 +7,8 @@ title: Using core icons
 subtitle: Guide
 ---
 
+<link rel="import" href="/components/google-youtube/google-youtube.html">
+
 {% include toc.html %}
 
 {{site.project_title}}'s Core Elements provide utility components
@@ -29,8 +31,17 @@ You can install them using Bower:
 The rest of this article assumes the components are
 installed in the `bower_components` directory.
 
-
 ## Basic usage: core-icon
+
+<div class="yt-embed">
+  <google-youtube
+    videoid="jrt7sMq9lO0"
+    thumbnail="/images/polycasts/PC001.jpg"
+    autoplay="0"
+    rel="0"
+    fluid>
+  </google-youtube>
+</div>
 
 The simplest way of using {{site.project_title}} icons is the `core-icon` element.
 To use it, import *core-icon.html* and declare an icon in your html:
@@ -117,6 +128,16 @@ can also set the `fill` property directly, but it requires a more specific CSS s
 Produces: <core-icon icon="android"></core-icon>
 
 ## Creating custom icon sets {#roll-your-own}
+
+<div class="yt-embed">
+  <google-youtube
+    videoid="xfiOJP8vuX4"
+    thumbnail="/images/polycasts/PC002.jpg"
+    autoplay="0"
+    rel="0"
+    fluid>
+  </google-youtube>
+</div>
 
 The styling possibilities become even more exciting when you want to make
 your own icon sets. To create a custom icon set with SVG, import and declare
