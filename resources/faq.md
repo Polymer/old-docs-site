@@ -83,17 +83,31 @@ polymer.dart is a Dart port of {{site.project_title}} created and maintained by 
 
 ### Is the code hosted on a CDN?
 
-{{site.project_title}} is maintained on [cdnjs](http://cdnjs.com/) and can be
-loaded from the following URLs:
+There is no official CDN version of {{site.project_title}}. Some community members 
+maintain a copy of {{site.project_title}} on [cdnjs](http://cdnjs.com/):
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/polymer/{{site.latest_version}}/platform.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/polymer/{{site.latest_version}}/polymer.js"></script>
+<pre>
+&lt;script src="//cdnjs.cloudflare.com/ajax/libs/polymer/<em>&lt;version&gt;</em>/platform.js"></script>
+&lt;script src="//cdnjs.cloudflare.com/ajax/libs/polymer/<em>&lt;version&gt;</em>/polymer.js"></script>
+</pre>
+
+Where <em>&lt;version&gt;</em> is the latest version of {{site.project_title}} available on cdnjs.
 
 There are a number of reasons why we recommend you use Bower instead of the CDN:
 
-- The CDN does not host polymer.html which removes the ability for elements to import it.
+- The CDN does not host `polymer.html` which removes the ability for elements to import it.
 - There are many elements which are not hosted on the CDN so it might be tricky to include all of them in your project.
 - You will not be able to [Vulcanize your code](/articles/concatenating-web-components.html).
+
+For testing and reproducing bugs, you can link to the current versions of the `platform.js` 
+and `polymer.html` files on `polymer-project.org`:
+
+    <script src="//polymer-project.org/platform.js"></script>
+    <link rel="import" href="//polymer-project.org/components/polymer/polymer.html">
+
+(Many of the Core and Paper elements can also be found under `components`.)
+**Please do not these URLs in production applications.** They should only
+be used for testing.
 
 ### I see a bunch of XHRs making network requests. What gives? {#xhrrequests}
 
@@ -164,7 +178,7 @@ property changing, but separate out the "set value" vs. the "validated value":
 
     <polymer-element name="x-foo" attributes="color">
       <template>
-        Do you like the color <span style="color:{%raw%}{{validColor}}{%endraw%}">{{validColor}}</span>?
+        Do you like the color <span style="color:{%raw%}{{validColor}}{%endraw%}">{%raw%}{{validColor}}{%endraw%}</span>?
       </template>
       <script>
         Polymer('x-foo', {
