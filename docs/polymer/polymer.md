@@ -709,7 +709,7 @@ You can publish a computed property like any other propery,
 by adding it to the `attributes` list or to the `publish` object.
 Any default value specified in the `publish` object is ignored.
 
-**Limitations**: In Polymer 0.4.0 and earlier, computed properties 
+**Limitations**: In {{site.project_title}} 0.4.0 and earlier, computed properties 
 couldn't be published.
 For example, you couldn't bind to the `square` property on `square-element` using
  `<square-element square="{%raw%}{{value}}{%endraw%}>`. 
