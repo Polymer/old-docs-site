@@ -105,9 +105,10 @@ and `polymer.html` files on `polymer-project.org`:
     <script src="//polymer-project.org/platform.js"></script>
     <link rel="import" href="//polymer-project.org/components/polymer/polymer.html">
 
-(Many of the Core and Paper elements can also be found under `components`.)
-**Please do not these URLs in production applications.** They should only
-be used for testing.
+Many of the Core and Paper elements can also be found under `components`.
+
+**Please do not use these URLs in production applications.** They should only
+be used for testing and may break in the future!
 
 ### I see a bunch of XHRs making network requests. What gives? {#xhrrequests}
 
