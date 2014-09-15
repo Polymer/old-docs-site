@@ -352,7 +352,7 @@ You can turn lower bound encapsulation by setting `Platform.ShadowCSS.strictStyl
 
     Platform.ShadowCSS.strictStyling = true;
 
-This isn't the yet the default because it requires that you add the custom element's name as an attribute on all DOM nodes in the shadowRoot (e.g. `<span x-foo>`).
+This isn't yet the default because it requires that you add the custom element's name as an attribute on all DOM nodes in the shadowRoot (e.g. `<span x-foo>`).
 
 
 ### Manually invoking the style shimmer {#manualshim}
