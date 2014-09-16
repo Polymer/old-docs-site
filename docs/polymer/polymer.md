@@ -903,7 +903,7 @@ Example:
       <script>
         Polymer({
           onClick: function() {
-            this.fire('ouch', {msg: 'That hurt!'}); // fire(inType, inDetail, inToNode)
+            this.fire('ouch', {msg: 'That hurt!'}); // fire(type, detail, targetNode, bubbles?, cancelable?)
           }
         });
       </script>
