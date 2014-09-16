@@ -7,7 +7,7 @@
     <span id="el">Not ready...</span>
   </template>
   <script>  
-    Polymer('ready-element', {
+    Polymer({
       owner: "Daniel",
       ready: function() {
         this.$.el.textContent = this.owner +
