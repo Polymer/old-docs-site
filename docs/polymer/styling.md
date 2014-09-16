@@ -92,44 +92,37 @@ CSS selectors to give you more control on how style rules are shimmed.
 ### polyfill-next-selector {#at-polyfill}
 
 The `polyfill-next-selector` selector is used to replace a native CSS selector with one that
-will work under the polyfill. For example, targeting distributed nodes using `::content` only works under native Shadow DOM. Instead, you can tell {{site.project_title}} to replace said
-rules with ones compatible with the polyfill.
+will work under the polyfill.
 
 To replace native CSS style rules, place `polyfill-next-selector {}` above the
 selector you need to polyfill. Inside of `polyfill-next-selector`, add a
-`content` property. Its value should be a CSS selector that is roughly equivalent
-the native rule. {{site.project_title}} will use this value to shim the native selector. For example:
+`content` property. Its value should be a CSS selector that is roughly equivalent to
+the native rule. {{site.project_title}} will use this value to shim the native selector.
 
-    polyfill-next-selector { content: ':host .bar'; }
-    ::content .bar {
+For example, in earlier versions of {{site.project_title}} targeting distributed nodes using `::content` only worked under the native Shadow DOM. This is no longer the case and in polyfilled browsers the `::content` elements will be removed. Under the polyfill, the following selector:
+
+    .foo ::content .bar {
       color: red;
     }
-    
-    polyfill-next-selector { content: ':host > .bar'; }
-    * ::content .bar {
-      color: blue;
-    }
 
-    polyfill-next-selector { content: '.container > *'; }
-    ::content * {
-      border: 1px solid black;
-    }
+Becomes:
 
-Under native Shadow DOM nothing changes. Under the polyfill, the native selector
-is replaced with the one defined in its `polyfill-next-selector` predecessor. The previous
-examples would be shimmed into:
-
-    x-foo .bar {
+    .foo .bar {
       color: red;
     }
-    
-    x-foo > .bar {
-      color: blue;
-    }
 
-    x-foo .container > * {
-      border: 1px solid black;
-    }
+This means you only need `polyfill-next selector` when doing something that would not work if `::content` were removed.
+
+For example: `::content > *` will not work in a polyfilled browser because `> *` is not a valid selector. This selector could be rewritten as follows:
+
+    :host ::content > * { }
+
+or as:
+
+    polyfill-next-selector { content: ':host > *' }
+    ::content > * { }
+
+Under native Shadow DOM nothing changes. Under the polyfill, the native selector is replaced with the one defined in its `polyfill-next-selector` predecessor.
 
 ### polyfill-rule {#at-polyfill-rule}
 
@@ -154,7 +147,7 @@ The previous examples become:
     x-foo .bar {
       background: red;
     }
-    
+
     x-foo.foo .bar {
       background: blue;
     }
@@ -181,7 +174,7 @@ You should only need `polyfill-unscoped-rule` in rare cases. {{site.project_titl
 
 According to CSS spec, certain @-rules like `@keyframe` and `@font-face`
 cannot be defined in a `<style scoped>`. Therefore, they will not work in Shadow DOM.
-Instead, you'll need to declare their definitions outside the element. 
+Instead, you'll need to declare their definitions outside the element.
 
 Stylesheets and `<style>` elements in an HTML import are included in the main document automatically:
 
@@ -287,7 +280,7 @@ of the scoping behavior.
 Because polyfilling the styling behaviors of Shadow DOM is difficult, {{site.project_title}}
 has opted to favor practicality and performance over correctness. For example,
 the polyfill's do not protect Shadow DOM elements against document level CSS.
- 
+
 When {{site.project_title}} processes element definitions, it looks for `<style>` elements
 and stylesheets. It removes these from the custom element's Shadow DOM `<template>`, rejiggers them according to the rules below, and appends a `<style>` element to the main document with the reformulated rules.
 
