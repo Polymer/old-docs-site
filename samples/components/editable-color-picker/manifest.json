@@ -1,0 +1,8 @@
+{
+  "name": "Automatic node finding",
+  "description": "Each Polymer element generates a map of IDs to node references in the element’s template.",
+  "files": [
+    "index.html",
+    "editable-color-picker-plunker.html"
+  ]
+}

@@ -9,6 +9,8 @@
 -->
 <link rel="import" href="../components/polymer/polymer.html">
 <link rel="import" href="../components/core-selector/core-selector.html">
+<link rel="import" href="../components/core-icons/core-icons.html">
+<link rel="import" href="../components/plunker-button/plunker-button.html">
 
 <polymer-element name="demo-tab" attributes="heading" noscript>
   <template>
@@ -25,16 +27,28 @@
 </polymer-element>
 
 
-<polymer-element name="demo-tabs" attributes="selected bottom theme">
+<polymer-element name="demo-tabs" attributes="selected bottom theme demoSrc">
   <template>
+    <style>
+    plunker-button {
+      margin-right: 9px;
+    }
+    plunker-button::shadow paper-button {
+      color: white;
+      background: #3367d6;
+    }
+    </style>
     <link rel="stylesheet" href="../css/elements/demo-tabs.css">
     <div id="container" class="{{theme}}">
-      <div id="tabstrip">
-        <core-selector selected="{{selected}}" selectedClass="selected" class="tab-wrapper">
+      <div id="tabstrip" layout horizontal center>
+        <core-selector selected="{{selected}}" selectedClass="selected" class="tab-wrapper" flex>
           <template repeat="{{panel in panels}}">
             <span>{{panel.heading}}</span>
           </template>
         </core-selector>
+        <template if="{{demoSrc}}">
+          <plunker-button src="{{demoSrc}}"></plunker-button>
+        </template>
       </div>
       <div id="wrapper" class="{{ {bottom: bottom} | tokenList}}">
         <core-selector id="contents" selected="{{selected}}" selectedClass="selected">
@@ -48,6 +62,18 @@
   </template>
   <script>
     Polymer('demo-tabs', {
+      /**
+       * If set, the `demoSrc` attribute will add a `plunker-button` to let the
+       * user preview the demo on the Plunker service. The value of `demoSrc`
+       * should be a path that points to the `manifest.json` for the demo.
+       *
+       * ex: <demo-tabs demoSrc="/samples/components/age-slider/manifest.json">
+       *
+       * @attribute demoSrc
+       * @type string
+       * @default null
+       */
+      demoSrc: null,
       theme: 'light',
       selected: 0,
       bottom: false, // Force results panel to be on bottom, even on desktop.

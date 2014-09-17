@@ -1,0 +1,8 @@
+{
+  "name": "Declarative data binding",
+  "description": "You can bind properties in your component using the “double-mustache” syntax ({{}}).",
+  "files": [
+    "index.html",
+    "name-tag-plunker.html"
+  ]
+}
