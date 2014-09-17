@@ -705,7 +705,7 @@ In the following example, when you update the input value,
 Computed properties are read-only: for example, setting 
 the `square` property on `square-element` has no effect.
 
-You can publish a computed property like any other propery,
+You can publish a computed property like any other property,
 by adding it to the `attributes` list or to the `publish` object.
 Any default value specified in the `publish` object is ignored.
 
