@@ -25,6 +25,6 @@
     "x-tag-imports": "x-tag/x-tag-imports",
     "marked": "*",
     "highlightjs": "*",
-    "plunker-button": "robdodson/plunker-button#~0.2.0"
+    "plunker-button": "robdodson/plunker-button#~0.3.0"
   }
 }
