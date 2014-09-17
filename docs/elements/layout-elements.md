@@ -61,7 +61,7 @@ The following example uses a plain `<div>` as the header element, using the `cor
 
 
 
-Setting the `mode` element on the header panel controls how the header area and content area interact. There are several modes:
+Setting the `mode` attribute on the header panel controls how the header area and content area interact. There are several modes:
 
 - `standard`. The header appears at a higher level than the content area, with a drop shadow. Content scrolls under the header.
 - `seamed`. The header appears at the same level as the content area, with a seam between the two (no drop shadow). Content scrolls under the header.
