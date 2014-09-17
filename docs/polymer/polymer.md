@@ -679,8 +679,9 @@ For more information see the [Data binding overview](databinding.html).
 
 ### Computed properties
 
-In addition to standard published properties, you can define 
-properties that are computed based on other property values.
+Computed properties are dynamic properties that are computed 
+based on other property values. You can also publish a computed
+property, so it can be data bound outside the element.
 
 Computed properties are defined in the `computed` object on the
 element's prototype:
@@ -701,11 +702,17 @@ In the following example, when you update the input value,
 
 {% include samples/computed-property.html %}
 
-**Limitations**: Currently, computed properties aren't published
-so they can't be data bound from _outside_ the element. For example,
-you can't bind to the `square` property on `square-element` using
- `<square-element square="{%raw%}{{value}}{%endraw%}>`. This
-is [a known issue](https://github.com/Polymer/polymer/issues/638).
+Computed properties are read-only: for example, setting 
+the `square` property on `square-element` has no effect.
+
+You can publish a computed property like any other propery,
+by adding it to the `attributes` list or to the `publish` object.
+Any default value specified in the `publish` object is ignored.
+
+**Limitations**: In {{site.project_title}} 0.4.0 and earlier, computed properties 
+couldn't be published.
+For example, you couldn't bind to the `square` property on `square-element` using
+ `<square-element square="{%raw%}{{value}}{%endraw%}>`. 
 {: .alert .alert-warning }
 
 ### Declarative event mapping
