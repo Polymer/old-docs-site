@@ -40,7 +40,7 @@ Our boilerplate for new Polymer elements, [`<seed-element>`](https://github.com/
 
 With the server running, load [http://localhost:9000/seed-element/tests/index.html](http://localhost:9000/seed-element/tests/index.html) in a browser to run the tests included. You should hopefully see something that looks like:
 
-![](/articles/images/unit-testing-elements/image_0.png)
+<img src="/articles/images/unit-testing-elements/image_0.png" alt="Test runner displaying a single test passing for seed-element"/>
 
 You can then start authoring new tests in the `tests` directory and look at a [sample test](https://github.com/PolymerLabs/seed-element/blob/master/tests/seed-element-basic.html) we've written for you. Continue reading to learn about our recommended way to structure and author your tests.
 
@@ -231,15 +231,13 @@ We can now begin testing our element. Let’s test that nothing is by default se
 
 Include a `done();` statement at the very end of your assertions. This is an optional callback that is useful for testing work that is asynchronous. Next, fire up seed-element/tests/index.html on a local server to check everything is working as expected:
 
-![](/articles/images/unit-testing-elements/image_1.png)
+<img src="/articles/images/unit-testing-elements/image_1.png" alt=""/>
 
 If all goes well your tests should be green. Great. 
 
 How about testing if an attribute is the default value we expect it to be? `<core-selector>` supports a multi attribute in case you want to support multiple items being selectable. Let’s add this before `done();` along with our other assertions:
 
 	assert.isFalse(s.multi);
-
-![](/articles/images/unit-testing-elements/image_2.png)
 
 So far, so good.
 
