@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+<title>Single page app using web components</title>
+<script src="/components/platform/platform.js"></script>
+<!-- <link rel="import" href="../bower_components/core-icons/core-icons.html"> -->
+<link rel="import" href="/components/core-pages/core-pages.html">
+<link rel="import" href="/components/core-toolbar/core-toolbar.html">
+<link rel="import" href="/components/core-scaffold/core-scaffold.html">
+<link rel="import" href="/components/core-header-panel/core-header-panel.html">
+<link rel="import" href="/components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="/components/core-menu/core-menu.html">
+<link rel="import" href="/components/core-item/core-item.html">
+<link rel="import" href="/components/flatiron-director/flatiron-director.html">
+<link rel="import" href="/components/paper-shadow/paper-shadow.html">
+<link rel="import" href="/components/font-roboto/roboto.html">
+<style>/
+  body {
+    font-family: "Roboto";
+    font-weight: 300;
+  }
+  core-pages {
+    width: 75%;
+    height: 75%;
+    border: none;
+    -webkit-user-select: none;
+    border-radius: 5px;
+    transform: translateZ(0);
+  }
+
+  core-pages > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: inherit;
+    opacity: 0;
+    -webkit-transform: translate3d(0, 50px, 0) scale(0.9);
+    transform: translate3d(0, 50px, 0) scale(0.9);
+    transform-origin: 50% 50%;
+    transition: all 300ms cubic-bezier(.03,.56,.7,.98);
+    font-size: 50px;
+    background-color: white;
+  }
+/*
+  core-pages > div:nth-child(1) {
+    background-color: red;
+  }
+
+  core-pages > div:nth-child(2) {
+    background-color: green;
+  }
+
+  core-pages > div:nth-child(3) {
+    background-color: blue;
+  }
+
+  core-pages > div:nth-child(4) {
+    background-color: purple;
+  }
+
+  core-pages > div:nth-child(5) {
+    background-color: black;
+  }*/
+
+/*  core-pages .core-selected + div {
+    -webkit-transform: translate3d(100px, 0, 0) scale(0.9);
+    transform: translate3d(100px, 0, 0) scale(1);
+  }*/
+
+  core-pages .core-selected {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+/*  core-pages div.begin {
+    -webkit-transform: translate3d(100px, 0, 0) scale(0.9);
+    transform: translate3d(100px, 0, 0) scale(0.9);
+  }
+*/
+  body /deep/ core-header-panel {
+    fill: #fff;
+  }
+
+  body /deep/ core-toolbar {
+    background-color: rgb(15, 167, 88);
+  }
+
+  core-toolbar {
+    color: #fff;
+    fill: currentcolor;
+  }
+  core-menu {
+    fill: currentcolor;
+  }
+
+  @media all and (max-width: 480px) {
+    .paper-shadow  {
+      display: none;
+    }
+    core-pages {
+      width: 100%;
+      height: 100%;
+    }
+    core-pages > div {
+      transition: none;
+    }
+  }
+</style>
+</head>
+<body unresolved fullbleed>
+
+<template is="auto-binding">
+
+  <flatiron-director route="{{route}}" autoHash
+                     on-director-route="{{routeChanged}}"></flatiron-director>
+
+  <core-scaffold fit>
+  
+    <core-header-panel navigation mode="seamed" flex>
+      <core-toolbar>Application</core-toolbar>
+      <core-menu>
+        <template repeat="{{page, i in pages}}">
+          <core-item icon="label-outline" label="{{page.name}}" 
+                     active?="{{route == page.hash}}"
+                     class="{{ {'core-selected' : route == page.hash} | tokenList }}">
+            <a href="#{{page.hash}}"></a>
+          </core-item>
+        </template>
+      </core-menu>
+    </core-header-panel>
+
+    <core-toolbar tool flex>
+      <div flex></div>
+      <paper-icon-button icon="refresh"></paper-icon-button>
+      <paper-icon-button icon="add"></paper-icon-button>
+    </core-toolbar>
+
+    <div layout horizontal center center-justified fit style="overflow-x: hidden;">
+      <core-pages selected="{{route}}" valueattr="hash">
+        <template repeat="{{page, i in pages}}">
+          <div hash="{{page.hash}}">
+            <paper-shadow z="2"></paper-shadow>
+            {{page.name}}
+          </div>
+        </template>
+      </core-pages>
+    </div>
+  
+  </core-scaffold>
+
+</template>
+
+<script>
+var template = document.querySelector('template');
+var pages = null;
+
+template.pages = [
+  {name: 'Single', hash: 'one'},
+  {name: 'page', hash: 'two'},
+  {name: 'app', hash: 'three'},
+  {name: 'using', hash: 'four'},
+  {name: 'Polymer', hash: 'five'},
+];
+
+template.addEventListener('template-bound', function() {
+
+  pages = document.querySelector('core-pages');
+  pages.addEventListener('click', function(e) {
+    var idx = (this.selectedIndex + 1) % this.items.length;
+    template.route = this.items[idx].getAttribute('hash');
+  });
+
+  this.route = this.route || 'one';
+});
+
+document.addEventListener('keydown', function(e) {
+  var direction = null;
+
+  switch (e.keyCode) {
+    case 37: // left arrow
+      direction = -1;
+      if (pages.selectedIndex <= 0) {
+        return;
+      }
+      break;
+    case 39: // right arrow
+      direction = 1;
+      if (pages.selectedIndex >= pages.items.length - 1) {
+        return;
+      }
+      break;
+  }
+
+  template.route = pages.items[pages.selectedIndex + direction].getAttribute('hash');
+});
+</script>
+</body>
+</html> 
