@@ -500,6 +500,14 @@ footer {
 .article .byline {
   font-size: smaller;
   color: #ccc;
+
+  &.author {
+    img {
+      vertical-align: middle;
+      width: 25px;
+      height: 25px;
+    }
+  }
 }
 
 .author {

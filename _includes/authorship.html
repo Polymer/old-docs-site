@@ -1,12 +1,11 @@
-{% assign author = site.data.authors[page.article.author] %}
-{% assign collaborator = site.data.authors[page.article.collaborator] %}
-{% assign article = page.article %}
+{% assign author = site.data.authors[page.author] %}
+{% assign collaborator = site.data.authors[page.collaborator] %}
 
-{% assign pubdate = article.published | date: "%Y-%m-%d" %}
-{% assign updated = article.updated | date: "%Y-%m-%d" %}
+{% assign pubdate = page.published | date: "%Y-%m-%d" %}
+{% assign updated = page.updated | date: "%Y-%m-%d" %}
 
-{% if article.polymer_version %}
-<span class="forversion">Updated since v{{article.polymer_version}}</span>
+{% if polymer_version %}
+<span class="forversion">Updated since v{{polymer_version}}</span>
 {% endif %}
 
 {::options parse_block_html="true" /}
@@ -14,13 +13,13 @@
 <!-- <a href="https://plus.google.com/{{author.gplus}}?rel=author" target="blank_">![{{author.full_name}} profile pic](//www.google.com/s2/photos/profile/{{author.gplus}}?sz=40 "{{author.full_name}}")</a> -->
 <a href="https://plus.google.com/{{author.gplus}}?rel=author" target="blank_">![{{author.full_name}} profile pic]({{author.profile_pic}} "{{author.full_name}}")</a>
 
-{% if article.collaborator %}
+{% if collaborator %}
 <a href="https://plus.google.com/{{collaborator.gplus}}?rel=author" target="blank_">![{{collaborator.full_name}} profile pic]({{collaborator.profile_pic}} "{{collaborator.full_name}}")</a>
 {% endif %}
 
-By <a href="https://plus.google.com/{{author.gplus}}" target="blank_">{{author.full_name}}</a> {% if article.collaborator %} and <a href="https://plus.google.com/{{collaborator.gplus}}" target="blank_">{{collaborator.full_name}}</a> {% endif %}<br>
-Published <time pubdate datetime="{{pubdate}}">{{article.published | date: "%B %d, %Y"}}</time>
-{% if article.updated %}
-(updated <time datetime="{{updated}}">{{article.updated | date: "%B %d, %Y"}}</time>)
+By <a href="https://plus.google.com/{{author.gplus}}" target="blank_">{{author.full_name}}</a> {% if collaborator %} and <a href="https://plus.google.com/{{collaborator.gplus}}" target="blank_">{{collaborator.full_name}}</a> {% endif %}<br>
+Published <time pubdate datetime="{{pubdate}}">{{page.published | date: "%B %d, %Y"}}</time>
+{% if updated %}
+(updated <time datetime="{{updated}}">{{updated | date: "%B %d, %Y"}}</time>)
 {% endif %}
 </aside>

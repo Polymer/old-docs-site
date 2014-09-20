@@ -5,12 +5,13 @@ navgroup: docs
 shortname: Articles
 title: A Guide to Styling Elements
 
-article:
-  author: ebidel
-  published: 2013-07-11
-  updated: 2014-04-11
-  polymer_version: 0.2.2
-  description: Learn all about how to style Polymer elements.
+article: true
+author: ebidel
+published: 2013-07-11
+updated: 2014-04-11
+polymer_version: 0.2.2
+description: Learn all about how to style Polymer elements.
+
 tags:
 - CSS
 ---

@@ -6,12 +6,13 @@ shortname: Articles
 title: "Distributing Components With Bower"
 subtitle: How to package your elements for broader sharing 
 
-article:
-  author: addyosmani
-  published: 2014-03-07
-  updated: 2014-06-16
-  polymer_version: 0.2.0
-  description: How to package your elements for broader sharing
+article: true
+author: addyosmani
+published: 2014-03-07
+updated: 2014-06-16
+polymer_version: 0.2.0
+description: How to package your elements for broader sharing
+
 tags:
 - distributing
 - packages

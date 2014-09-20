@@ -6,12 +6,13 @@ shortname: Articles
 title: "Accessible Web Components - Part 1"
 subtitle: Improving the accessibility of Web Components
 
-article:
-  author: addyosmani
-  collaborator: alice
-  published: 2014-04-02
-  polymer_version: 0.2.2
-  description: Improving the accessibility of Web Components
+article: true
+author: addyosmani
+collaborator: alice
+published: 2014-04-02
+polymer_version: 0.2.2
+description: Improving the accessibility of Web Components
+
 tags:
 - accessibility
 - a11y

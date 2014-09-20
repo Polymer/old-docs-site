@@ -6,12 +6,13 @@ shortname: Articles
 title: "Concatenating Web Components with Vulcanize"
 subtitle: Reduce network requests by flattening HTML Imports
 
-article:
-  author: addyosmani
-  published: 2013-12-20
-  #updated: 2013-12-06
-  polymer_version: 0.1.1
-  description: Techniques for concatenating elements and their HTML imported dependencies into a single file.
+article: true
+author: addyosmani
+published: 2013-12-20
+#updated: 2013-12-06
+polymer_version: 0.1.1
+description: Techniques for concatenating elements and their HTML imported dependencies into a single file.
+
 tags:
 - concatenation
 - optimization
