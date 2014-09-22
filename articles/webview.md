@@ -3,19 +3,19 @@ layout: default
 type: core
 navgroup: docs
 shortname: Articles
-title: "Using Polymer in a Webview app"
-subtitle: How to setup Polymer in a native webview
+title: "Using Polymer in a WebView app"
+subtitle: How to setup Polymer in a native WebView
 
 article: true
 #draft: true
-description: How to building a mobile Polymer app that runs in a webview.
-published: 2014-09-20
-#updated: 2014-09-20
+description: How to building a mobile Polymer app that runs in a WebView.
+published: 2014-09-22
+#updated: 2014-09-22
 author: ebidel
 polymer_version: 0.4.1
 
 tags:
-- webview
+- WebView
 - android
 - app
 - spa
@@ -23,50 +23,206 @@ tags:
 - hybrid
 ---
 
+<style>
+#download-button {
+  background: #259b24;
+  color: #fff;
+  font-size: 18px;
+  fill: #fff;
+}
+#download-button:hover {
+  background: #0a7e07;
+}
+#download-button::shadow #ripple {
+  color: #fff;
+}
+</style>
+
 {% include authorship.html %}
 
 {% include toc.html %}
 
-TODO
-
 ## Introduction
 
-A lot of developers as us how to use {{site.project_title}} in 
+**Note** This article assumes you are familiar with creating a WebView app on Android. If you're not familiar with WebView development, check out the excellent guides on the Android documentation, [Getting Started: WebView-based Applications for Web Developers](https://developer.chrome.com/multidevice/webview/gettingstarted) and [WebView for Android Overvieww](https://developer.chrome.com/multidevice/webview/overview).
+{: .alert .alert-info }
 
-[WebView for Android](https://developer.chrome.com/multidevice/webview/overview)
+Many developers ask if {{site.project_title}} can be used inside a WebView.
+The answer of course is, **yes**. Using {{site.project_title}} in a WebView is no different than creating a normal web app that runs inside a WebView. However, in some cases it's not immediately obvious how to structure an app or get things setup. This guide walks you through starting a new Android WebView project and tweaking it to work with {{site.project_title}}.
 
-The first Chromium-powered webview shipped **Android 4.4.3** with version **33.0.0.0**.
+[Material design](/docs/elements/material.html) allows developers to create
+highly visual apps that look and feel the same across Android and web. If your app
+doesn't need access to native device APIs, it's much simpler to create a mobile web app.
+{{site.project_title}}'s [paper elements](/docs/elements/paper-elements.html#paper-button) provide the web's implementation of material design and are an excellent, low overhead way achieve its design principles. Just build a web app and wrap it in a WebView.
 
-Polymer only supports the latest modern browsers. This includes the legacy Android,
-which means the legacy Android webview is not supported.
+## Getting started
 
-To gain native support for all the web component APIs, be sure to target Android L (SDK version 20).
+<p layout horizontal center-justified>
+  <a href="#">
+    <paper-button icon="file-download" id="download-button" raisedButton label="Download the WebView Starter Kit"></paper-button>
+  </a>
+</p>
 
-**Android L Developer Preview**, which ships with Chrome webview **36.0.0.0**.
+The WebView starter .zip provides an example Android Studio project to get you up and running. It contains a basic mobile web app that uses some of {{site.project_title}}'s [core](/docs/elements/core-elements.html) and [paper elements](/docs/elements/paper-elements.html). You should be able load it directly onto an Android L device/emulator and see it in action. More on minimum Android/SDK versions in the next section.
 
-[Getting Started: WebView-based Applications for Web Developers](https://developer.chrome.com/multidevice/webview/gettingstarted)
+**Pro Tip:** Before you begin, develop your app as a standalone web app first. Leave the fancy WebView stuff until the end. The Android Emulator can be painfully slow to run and is extremely clunky for debugging web apps. It's much faster to iterate using your normal workflow. Once are the sharp edges are ironed out, dive into WebView-fying it.
 
-Chrome 36 was the first browser to ship all of the web components APIs, natively.
+## Installing the minimum Android and SDK versions
 
+**Note** {{site.project_title}} does not support the legacy Android Browser, which means the default WebView in older versions of Android (< 4.4.3) will not work. If you need to support older versions
+of Android, see [Supporting older versions of Android}(#oldandroid).
+{: .alert .alert-info }
 
+{{site.project_title}} works under Android 4.4.3+, which ships with the Chromium-based WebView version 33.0.0.0. However, to gain native browser support for all of the web component APIs (HTML Imports, Custom elements, templates, and Shadow DOM), it's important to target **Android L (SDK version 20)**, where **Chrome 36.0.0.0** is the default WebView. Anything pre-Android L will require {{site.project_title}}'s polyfills and you won't see the awesome performance benefits of having native browser support.
 
-TODO
+To install/update Android SDK, run the SDK manager in Android Studio:
 
-## App structure
+<img src="images/webview/sdkmanager.png" style="width:500px">
 
-TODO
+then download the L Preview packages (API 20):
+
+<img src="images/webview/sdkinstall.png" style="width:500px">
+
+That's it for the prereqs!
+
+## Recommended app structure
+
+The web app which powers your webview app should be entirely in the project's `src/main/assets` folder. Android reserves this directory for raw files that your app needs access to. It's perfect for static web files.
+
+Inside of the `assets` folder, it's generally recommended to create a `www` folder to stash your web app. This folder is also where installed element dependences (e.g. `bower_components`) will go.
+
+### Using Bower to install elements
+
+Create a `bower.json` file in `src/main/assets/www` that lists your app's element dependencies. In this case, we'll just pull in all the paper and core elements:
+
+In `src/main/assets/www`, create **bower.json**:
+
+    {
+      "name": "PolymerWebView",
+      ...
+      "dependencies": {
+        "core-elements": "Polymer/core-elements#~{{site.latest_version}}",
+        "paper-elements": "Polymer/paper-elements#~{{site.latest_version}}"
+      }
+    }
+
+Running `bower install` in the same directory creates and downloads the element dependencies into `bower_components`. If you're new to Bower, see
+[Installing elements](/docs/start/getting-the-code.html#installing-components).
+
+Your final folder structure should look something like this:
+
+<img src="images/webview/folders.png">
 
 ## Configuring app permissions
 
-### Ensure HTML Imports work
+Now that you have the Android L Preview installed, you need to tell your app to use that version of the SDK.
 
+In `AndroidManifest.xml`, set the minium and target SDK versions to Android L. If your app also needs access remote URLs, request the `android.permission.INTERNET` permission.
 
-## Dropping in your app
+**AndroidManifest.xml**:
 
-TODO
+<pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;manifest ...&gt;
 
-## Conclusion
+  <b>&lt;uses-sdk
+      android:minSdkVersion=&quot;android-L&quot;
+      android:targetSdkVersion=&quot;L&quot; /&gt;</b>
 
-TODO
+  <b>&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;</b>
+
+  &lt;application ...&gt;
+      ...
+&lt;/manifest&gt;
+</pre>
+
+### Tweaking the WebView settings
+
+Out of the box, {{site.project_title}} will not run in a WebView. There are
+a few settings that need to be enabled on the WebView for things to work:
+
+- Enable JavaScript!
+- Enable access to `file://` so HTML Imports can be loaded off `file://` URLs.
+- Ensure local links/redirects act on the WebView (and do not open in the browser).
+
+In **MainActivity.java**, enable the following on your `WebSettings` object:
+
+<pre>
+public class MyActivity extends Activity {
+
+  private WebView mWebView;
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    ...
+    WebSettings webSettings = mWebView.getSettings();
+
+    // Enable Javascript.</b>
+    <b>webSettings.setJavaScriptEnabled(true);</b>
+
+    // Enable HTML Imports to be loaded from file://.
+    <b>webSettings.setAllowFileAccessFromFileURLs(true);</b>
+
+    // Ensure local links/redirects in WebView, not the browser.
+    mWebView.setWebViewClient(new MyAppWebViewClient());
+  }
+}
+</pre>
+
+If you ever see the following runtime error, it's from HTML Imports not having access to `file://`.
+
+> "Imported resource from origin 'file://' has been blocked from loading by Cross-Origin Resource Sharing policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'null' is therefore not allowed access.", source: file:///android_asset/www/index.html
+
+Be sure you're calling `setAllowFileAccessFromFileURLs(true)`.
+
+## Loading you main page
+
+Your app is built and in `src/main/assets/www`. The last step is to instruction the WevView to load it from the filesystem.
+
+**MainActivity.java**:
+
+<pre>
+public class MyActivity extends Activity {
+
+  private WebView mWebView;
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    ...
+
+    // Load main page into webview.
+    <b>mWebView.loadUrl("file:///android_asset/www/index.html");</b>
+
+    // Ensure local links/redirects in WebView, not the browser.
+    mWebView.setWebViewClient(new MyAppWebViewClient());
+  }
+}
+</pre>
+
+You also want to override `shouldOverrideUrlLoading()` so non-local links open in the browser and not the WebView. In **MyAppWebViewClient.java**:
+
+    public class MyAppWebViewClient extends WebViewClient {
+      @Override
+      public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        if (Uri.parse(url).getHost().length() == 0) {
+            return false;
+        }
+
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        view.getContext().startActivity(intent);
+        return true;
+      }
+    }
+
+## Supporting older versions of Android {#oldandroid}
+
+[Crosswalk](https://crosswalk-project.org) is a tool for running the Chrome webview
+to older versions of Android (**Android <= 4.4**) 
+
+## Resources
+
+- [Getting Started: WebView-based Applications for Web Developers](https://developer.chrome.com/multidevice/webview/gettingstarted)
+- [WebView for Android Overvieww](https://developer.chrome.com/multidevice/webview/overview)
+- [Building Web Apps in WebView](http://developer.android.com/guide/webapps/webview.html)
 
 {% include disqus.html %}
