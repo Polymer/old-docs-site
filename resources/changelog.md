@@ -831,7 +831,7 @@ To use the tool, open the JavaScript console and type `sinspect()`.
 
 **Note**: The tool opens in a pop-up window so you may have to unblock it.
 
-![](images/changelog/sinspect-screen.png)
+![](/images/changelog/sinspect-screen.png)
 
 
 
