@@ -52,7 +52,7 @@ The answer is, **of course**! Using {{site.project_title}} in a WebView is no di
 
 ## Getting started
 
-Before you start, develop a standalone web app first. Leave out the fancy WebView stuff until the end. The Android Emulator can be painfully slow to run and is extremely clunky for debugging web apps. It's much faster to iterate using your normal workflow. Once the sharp edges are ironed out, dive into WebView-fying and uploading it to Google Play.
+Before you start, develop a standalone web app first. Leave out the fancy WebView stuff until the end. The Android Emulator is painfully slow to test because you cannot enable the emulator's [hardware acceleration](http://developer.android.com/tools/devices/emulator.html#acceleration) for WebView apps. It's much faster to iterate using your normal workflow. Once the sharp edges are ironed out, dive into WebView-fying and uploading it to Google Play.
 
 <p layout horizontal center-justified>
   <a href="#">
