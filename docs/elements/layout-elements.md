@@ -50,7 +50,7 @@ Use the following code to create the header panel app.
 
 The following example uses a plain `<div>` as the header element, using the `core-header` class:
 
-    <core-header-panel vertical layout>
+    <core-header-panel flex>
       <div class=“core-header”>
          My App
       </div>
