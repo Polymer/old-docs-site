@@ -144,7 +144,7 @@ When all is said and done, your final folder structure should look something lik
 
 Now that you have the Android L Preview installed and app structure in place, it's time to set some app permissions and select the correct version of the SDK.
 
-In `AndroidManifest.xml`, set the minimum and target SDK versions to Android L. If your app needs access remote resources (e.g. images, multimedia, JSON endpoints), also request the `android.permission.INTERNET` permission.
+In `AndroidManifest.xml`, set the minimum and target SDK versions to Android L (or an earlier version if you're relying on the polyfills or Crosswalk). If your app needs access remote resources (e.g. images, multimedia, JSON endpoints), also request the `android.permission.INTERNET` permission.
 
 **AndroidManifest.xml**:
 
@@ -180,10 +180,14 @@ public class MyActivity extends Activity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    ...
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_my);
+
+    mWebView = (WebView) findViewById(R.id.activity_main_webview);
+
     WebSettings webSettings = mWebView.getSettings();
 
-    // Enable Javascript.</b>
+    // Enable Javascript.
     <b>webSettings.setJavaScriptEnabled(true);</b>
 
     // Enable HTML Imports to be loaded from file://.
@@ -203,28 +207,9 @@ Be sure you're calling `setAllowFileAccessFromFileURLs(true)` when setting up th
 
 ## Loading the main page
 
-Congrats! Your app is built and chillaxing in `src/main/assets/www`. The last step is to load your index.html from the filesystem.
+Congrats! Your app is built and chillaxing in `src/main/assets/www`. There are a couple of more finishing touches.
 
-**MainActivity.java**:
-
-<pre>
-public class MyActivity extends Activity {
-
-  private WebView mWebView;
-
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    ...
-
-    // Load main page into webview.
-    <b>mWebView.loadUrl("file:///android_asset/www/index.html");</b>
-
-    ...
-  }
-}
-</pre>
-
-You'll also want to override `shouldOverrideUrlLoading()` so non-local links open in the browser and not the WebView. In **MyAppWebViewClient.java**:
+First, override `shouldOverrideUrlLoading()` so non-local links open in the browser rather than the WebView. In **MyAppWebViewClient.java**:
 
     public class MyAppWebViewClient extends WebViewClient {
       @Override
@@ -238,6 +223,37 @@ You'll also want to override `shouldOverrideUrlLoading()` so non-local links ope
         return true;
       }
     }
+
+Lastly, load index.html from the filesystem. In **MainActivity.java**:
+
+<pre>
+public class MyActivity extends Activity {
+
+  private WebView mWebView;
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_my);
+
+    mWebView = (WebView) findViewById(R.id.activity_main_webview);
+
+    WebSettings webSettings = mWebView.getSettings();
+
+    // Enable Javascript.
+    webSettings.setJavaScriptEnabled(true);
+
+    // Enable HTML Imports to be loaded from file://.
+    webSettings.setAllowFileAccessFromFileURLs(true);
+
+    // Load main page into webview.
+    <b>mWebView.loadUrl("file:///android_asset/www/index.html");</b>
+
+    // Ensure local links/redirects in WebView, not the browser.
+    mWebView.setWebViewClient(new MyAppWebViewClient());
+  }
+}
+</pre>
 
 ## Tips &amp; tricks
 
