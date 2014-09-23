@@ -44,18 +44,15 @@ tags:
 
 ## Introduction
 
-**Important** - this article assumes you are familiar with creating a WebView app on Android. If you're not familiar with WebView development, check out the excellent guides on the Android documentation, [Getting Started: WebView-based Applications for Web Developers](https://developer.chrome.com/multidevice/webview/gettingstarted) and [WebView for Android Overvieww](https://developer.chrome.com/multidevice/webview/overview).
+**Important** - This article assumes you are familiar with creating a WebView app on Android. If you're not familiar with WebView development, check out the excellent guides on the Android documentation, [Getting Started: WebView-based Applications for Web Developers](https://developer.chrome.com/multidevice/webview/gettingstarted) and [WebView for Android Overview](https://developer.chrome.com/multidevice/webview/overview).
 {: .alert .alert-info }
 
-Many developers ask if {{site.project_title}} can be used inside a WebView.
-The answer of course is, **yes**. Using {{site.project_title}} in a WebView is no different than creating a normal web app that runs inside a WebView. However, in some cases it's not immediately obvious how to structure an app or get things setup. This guide walks you through starting a new Android WebView project and tweaking it to work with {{site.project_title}}.
-
-[Material design](/docs/elements/material.html) allows developers to create
-highly visual apps that look and feel the same across Android and web. If your app
-doesn't need access to native device APIs, it's much simpler to create a mobile web app.
-{{site.project_title}}'s [paper elements](/docs/elements/paper-elements.html#paper-button) provide the web's implementation of material design and are an excellent, low overhead way achieve its design principles. Just build a web app and wrap it in a WebView.
+Many developers ask us if {{site.project_title}} can be used inside a WebView.
+The answer is, **of course**! Using {{site.project_title}} in a WebView is no different than creating a normal web app that runs inside a WebView. However, in some cases it's not immediately obvious how to structure an app or get things setup for WebView development. This guide walks you through starting a new Android WebView project and tweaking it to work with {{site.project_title}}.
 
 ## Getting started
+
+Before you start, develop a standalone web app first. Leave out the fancy WebView stuff until the end. The Android Emulator can be painfully slow to run and is extremely clunky for debugging web apps. It's much faster to iterate using your normal workflow. Once the sharp edges are ironed out, dive into WebView-fying and uploading it to Google Play.
 
 <p layout horizontal center-justified>
   <a href="#">
@@ -63,13 +60,11 @@ doesn't need access to native device APIs, it's much simpler to create a mobile 
   </a>
 </p>
 
-The WebView starter .zip provides an example Android Studio project to get you up and running. It contains a basic mobile web app that uses some of {{site.project_title}}'s [core](/docs/elements/core-elements.html) and [paper elements](/docs/elements/paper-elements.html). You should be able load it directly onto an Android L device/emulator and see it in action. More on minimum Android/SDK versions in the next section.
-
-**Pro Tip:** Before you begin, develop your app as a standalone web app first. Leave the fancy WebView stuff until the end. The Android Emulator can be painfully slow to run and is extremely clunky for debugging web apps. It's much faster to iterate using your normal workflow. Once are the sharp edges are ironed out, dive into WebView-fying it.
+The WebView starter .zip provides an example Android Studio project to get you up and running. It contains a basic mobile web app that uses _some_ of {{site.project_title}}'s [core](/docs/elements/core-elements.html) and [material design](/docs/elements/material.html) [paper elements](/docs/elements/paper-elements.html). You should be able load it directly onto an device running Android L or the emulator to see it in action. More on minimum Android/SDK versions, later.
 
 ## Minimum Android and SDK versions
 
-{{site.project_title}} works under Android 4.4.3+, which ships with the Chromium-based WebView version 33.0.0.0. However, to gain native browser support for all of the web component APIs (HTML Imports, Custom elements, templates, and Shadow DOM), it's important to target **Android L (SDK version 20)**, where **Chrome 36.0.0.0** is the default WebView. Anything pre-Android L will require {{site.project_title}}'s polyfills and you won't see the awesome performance benefits of having native browser support.
+{{site.project_title}} works under Android 4.4.3+, which ships with the Chromium-based WebView version 33.0.0.0. However, to gain native browser support for all of the web component APIs (HTML Imports, Custom elements, `<template>`, Shadow DOM), it's important to target **Android L (SDK version 20)**, where **Chrome 36.0.0.0** is the default WebView. Anything pre-Android L will require {{site.project_title}}'s polyfills and you won't see the awesome performance benefits of having native browser support.
 
 To install/update Android SDK, run the SDK manager in Android Studio:
 
@@ -83,17 +78,21 @@ then download the L Preview packages (API 20):
 
 {{site.project_title}} does not support the legacy Android Browser, which means the default WebView in older versions of Android (< 4.4.3) will not work.
 
-If you need to support older versions of Android, try [Crosswalk](https://crosswalk-project.org). It's a tool for bringing the new Chromium webview to Android 4.0+. One downside is that the entire Chromium runtime gets bundled with your application. According to the [Crosswalk FAQ](https://crosswalk-project.org/#documentation/about/faq), this means 24Kb web app can be turned into 19.63MB after it's packaged. Something to consider.
+If you need to support older versions of Android, try [Crosswalk](https://crosswalk-project.org). It's a tool for bringing the new Chromium webview to Android 4.0+. One downside is that the entire Chromium runtime gets bundled with your application. According to the [Crosswalk FAQ](https://crosswalk-project.org/#documentation/about/faq), this means 24KB web app can balloon into 19.63MB after it's packaged. The tradeoff is something to consider.
 
 ## Recommended app structure
 
-The web app which powers your webview app should be entirely in the project's `src/main/assets` folder. Android reserves this directory for raw files that your app needs access to. It's perfect for static web files.
+The files that power your WebView should be entirely within the project's `src/main/assets` folder. Android reserves this directory for raw files that your app needs access to. It's perfect for static web files.
 
 Inside of the `assets` folder, it's generally recommended to create a `www` folder to stash your web app. This folder is also where installed element dependences (e.g. `bower_components`) will go.
 
 ### Using Bower to install elements
 
-Create a `bower.json` file in `src/main/assets/www` that lists your app's element dependencies. In this case, we'll just pull in all the paper and core elements:
+**Tip** - If you're not familiar with Bower, see
+[Installing elements](/docs/start/getting-the-code.html#installing-components).
+{: .alert .alert-info }
+
+Create a `bower.json` file in `src/main/assets/www` that lists your element dependencies. In this case, we'll just pull in all the paper and core elements:
 
 In `src/main/assets/www`, create **bower.json**:
 
@@ -106,21 +105,20 @@ In `src/main/assets/www`, create **bower.json**:
       }
     }
 
+Run `bower install` in the `www` directory to populate the `bower_components` folder.
+
 ### Using HTML Imports
 
-Run `bower install` in the same directory to create and populate the `bower_components` folder. If you're new to Bower, see
-[Installing elements](/docs/start/getting-the-code.html#installing-components).
-
-Create `src/main/assets/www/elements.html`, an HTML Import includes all of the imports your app will use:
+Create `src/main/assets/www/elements.html`, an [HTML Import](/platform/html-imports.html) that in turn, includes all of the element imports your app will use:
 
     <link rel="import" href="bower_components/core-drawer-panel/core-drawer-panel.html">
     <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
     <link rel="import" href="bower_components/core-icons/core-icons.html">
     ...
 
-### The main page
+### Main page setup
 
-Create your main page app as `src/main/assets/www/index.html`:
+Create your main page app as `src/main/assets/www/index.html` and use an HTML Import to load `elements.html`:
 
     <!doctype html>
     <html>
@@ -136,19 +134,17 @@ Create your main page app as `src/main/assets/www/index.html`:
     </body>
     </html>
 
-It's worth noting that platform.js is not needed in Chrome 36. However, if you're
-creating an app for multiple platforms, it's still a good idea to include the
-polyfills for portability.
+It's worth noting that platform.js is not needed in WebViews powered by Chromium 36+. However, if you’re creating an app for multiple platforms, it's still recommended to include the polyfills for portability.
 
-Your final folder structure should look something like this:
+When all is said and done, your final folder structure should look something like this:
 
 <img src="images/webview/folders.png">
 
 ## Configuring app permissions
 
-Now that you have the Android L Preview installed, you need to tell your app to use that version of the SDK.
+Now that you have the Android L Preview installed and app structure in place, it's time to set some app permissions and select the correct version of the SDK.
 
-In `AndroidManifest.xml`, set the minium and target SDK versions to Android L. If your app also needs access remote URLs, request the `android.permission.INTERNET` permission.
+In `AndroidManifest.xml`, set the minimum and target SDK versions to Android L. If your app needs access remote resources (e.g. images, multimedia, JSON endpoints), also request the `android.permission.INTERNET` permission.
 
 **AndroidManifest.xml**:
 
@@ -169,14 +165,13 @@ In `AndroidManifest.xml`, set the minium and target SDK versions to Android L. I
 
 ### Tweaking the WebView settings
 
-Out of the box, {{site.project_title}} will not run in a WebView. There are
-a few settings that need to be enabled on the WebView for things to work:
+Out of the box, {{site.project_title}} will not run under the default WebView security settings. The following settings need to be enabled:
 
 - Enable JavaScript!
 - Enable access to `file://` so HTML Imports can be loaded off `file://` URLs.
 - Ensure local links/redirects act on the WebView (and do not open in the browser).
 
-In **MainActivity.java**, enable the following on your `WebSettings` object:
+In **MainActivity.java**, enable the following on your [`WebSettings`](http://developer.android.com/reference/android/webkit/WebSettings.html) object:
 
 <pre>
 public class MyActivity extends Activity {
@@ -200,7 +195,7 @@ public class MyActivity extends Activity {
 }
 </pre>
 
-If you ever see the following runtime error, it's from HTML Imports not having access to `file://`.
+If you see the following runtime error, it's from HTML Imports not having access to `file://`.
 
 > "Imported resource from origin 'file://' has been blocked from loading by Cross-Origin Resource Sharing policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'null' is therefore not allowed access.", source: file:///android_asset/www/index.html
 
@@ -250,14 +245,16 @@ You'll also want to override `shouldOverrideUrlLoading()` so non-local links ope
 
         <body unresolved fullbleed>
 
-  The [`fullbleed`](/docs/polymer/layout-attrs.html) attribute removes `<body>` margins and maximizes its height to the viewport. The [`unresolved` attribute](/docs/polymer/styling.html#fouc-prevention) minimized FOUC.
+  The [`fullbleed`](/docs/polymer/layout-attrs.html) attribute removes `<body>` margins and maximizes its height to the viewport. The [`unresolved` attribute](/docs/polymer/styling.html#fouc-prevention) minimizes FOUC.
 
-2. Use [Vulcanize](/articles/concatenating-web-components.html) to crush your HTML Imports into a single import. Doing reduce load time. It's recommended to run Vulcanize with the `--csp --inline --strip` flags.
+2. Use [Vulcanize](/articles/concatenating-web-components.html) to crush your HTML Imports into a single import. Doing so can reduce page load time. I recommend running Vulcanize with the `--csp --inline --strip` flags.
 
 3. You only need to load the platform.js polyfills if your WebView version is before Chrome 36.
 
         <!-- Only needed if your WebView version is before Chrome 36.-->
         <script src="bower_components/platform/platform.js"></script>
+
+4. Use `on-tap` event handlers instead of `on-click` to capture user input. The former has no 300ms click-delay.
 
 ## Resources
 
