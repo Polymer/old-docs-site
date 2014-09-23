@@ -3,8 +3,8 @@ layout: default
 type: core
 navgroup: docs
 shortname: Articles
-title: "Using Polymer in a WebView app"
-subtitle: How to setup Polymer in a native WebView
+title: "Using Polymer in a WebView"
+subtitle: How to setup Polymer in an Android WebView app
 
 article: true
 #draft: true
@@ -44,7 +44,7 @@ tags:
 
 ## Introduction
 
-**Note** This article assumes you are familiar with creating a WebView app on Android. If you're not familiar with WebView development, check out the excellent guides on the Android documentation, [Getting Started: WebView-based Applications for Web Developers](https://developer.chrome.com/multidevice/webview/gettingstarted) and [WebView for Android Overvieww](https://developer.chrome.com/multidevice/webview/overview).
+**Important** - this article assumes you are familiar with creating a WebView app on Android. If you're not familiar with WebView development, check out the excellent guides on the Android documentation, [Getting Started: WebView-based Applications for Web Developers](https://developer.chrome.com/multidevice/webview/gettingstarted) and [WebView for Android Overvieww](https://developer.chrome.com/multidevice/webview/overview).
 {: .alert .alert-info }
 
 Many developers ask if {{site.project_title}} can be used inside a WebView.
@@ -67,11 +67,7 @@ The WebView starter .zip provides an example Android Studio project to get you u
 
 **Pro Tip:** Before you begin, develop your app as a standalone web app first. Leave the fancy WebView stuff until the end. The Android Emulator can be painfully slow to run and is extremely clunky for debugging web apps. It's much faster to iterate using your normal workflow. Once are the sharp edges are ironed out, dive into WebView-fying it.
 
-## Installing the minimum Android and SDK versions
-
-**Note** {{site.project_title}} does not support the legacy Android Browser, which means the default WebView in older versions of Android (< 4.4.3) will not work. If you need to support older versions
-of Android, see [Supporting older versions of Android}(#oldandroid).
-{: .alert .alert-info }
+## Minimum Android and SDK versions
 
 {{site.project_title}} works under Android 4.4.3+, which ships with the Chromium-based WebView version 33.0.0.0. However, to gain native browser support for all of the web component APIs (HTML Imports, Custom elements, templates, and Shadow DOM), it's important to target **Android L (SDK version 20)**, where **Chrome 36.0.0.0** is the default WebView. Anything pre-Android L will require {{site.project_title}}'s polyfills and you won't see the awesome performance benefits of having native browser support.
 
@@ -83,7 +79,11 @@ then download the L Preview packages (API 20):
 
 <img src="images/webview/sdkinstall.png" style="width:500px">
 
-That's it for the prereqs!
+### Supporting older versions of Android {#oldandroid}
+
+{{site.project_title}} does not support the legacy Android Browser, which means the default WebView in older versions of Android (< 4.4.3) will not work.
+
+If you need to support older versions of Android, try [Crosswalk](https://crosswalk-project.org). It's a tool for bringing the new Chromium webview to Android 4.0+. One downside is that the entire Chromium runtime gets bundled with your application. According to the [Crosswalk FAQ](https://crosswalk-project.org/#documentation/about/faq), this means 24Kb web app can be turned into 19.63MB after it's packaged. Something to consider.
 
 ## Recommended app structure
 
@@ -106,8 +106,39 @@ In `src/main/assets/www`, create **bower.json**:
       }
     }
 
-Running `bower install` in the same directory creates and downloads the element dependencies into `bower_components`. If you're new to Bower, see
+### Using HTML Imports
+
+Run `bower install` in the same directory to create and populate the `bower_components` folder. If you're new to Bower, see
 [Installing elements](/docs/start/getting-the-code.html#installing-components).
+
+Create `src/main/assets/www/elements.html`, an HTML Import includes all of the imports your app will use:
+
+    <link rel="import" href="bower_components/core-drawer-panel/core-drawer-panel.html">
+    <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
+    <link rel="import" href="bower_components/core-icons/core-icons.html">
+    ...
+
+### The main page
+
+Create your main page app as `src/main/assets/www/index.html`:
+
+    <!doctype html>
+    <html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Note: platform.js is only needed in non-Chrome 36 browsers. It's included here for portability. -->
+      <script src="bower_components/platform/platform.js"></script>
+      <link rel="import" href="elements.html">
+      ...
+    </head>
+    <body unresolved fullbleed>
+      ...
+    </body>
+    </html>
+
+It's worth noting that platform.js is not needed in Chrome 36. However, if you're
+creating an app for multiple platforms, it's still a good idea to include the
+polyfills for portability.
 
 Your final folder structure should look something like this:
 
@@ -173,11 +204,11 @@ If you ever see the following runtime error, it's from HTML Imports not having a
 
 > "Imported resource from origin 'file://' has been blocked from loading by Cross-Origin Resource Sharing policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'null' is therefore not allowed access.", source: file:///android_asset/www/index.html
 
-Be sure you're calling `setAllowFileAccessFromFileURLs(true)`.
+Be sure you're calling `setAllowFileAccessFromFileURLs(true)` when setting up the Activity.
 
-## Loading you main page
+## Loading the main page
 
-Your app is built and in `src/main/assets/www`. The last step is to instruction the WevView to load it from the filesystem.
+Congrats! Your app is built and chillaxing in `src/main/assets/www`. The last step is to load your index.html from the filesystem.
 
 **MainActivity.java**:
 
@@ -193,13 +224,12 @@ public class MyActivity extends Activity {
     // Load main page into webview.
     <b>mWebView.loadUrl("file:///android_asset/www/index.html");</b>
 
-    // Ensure local links/redirects in WebView, not the browser.
-    mWebView.setWebViewClient(new MyAppWebViewClient());
+    ...
   }
 }
 </pre>
 
-You also want to override `shouldOverrideUrlLoading()` so non-local links open in the browser and not the WebView. In **MyAppWebViewClient.java**:
+You'll also want to override `shouldOverrideUrlLoading()` so non-local links open in the browser and not the WebView. In **MyAppWebViewClient.java**:
 
     public class MyAppWebViewClient extends WebViewClient {
       @Override
@@ -214,10 +244,20 @@ You also want to override `shouldOverrideUrlLoading()` so non-local links open i
       }
     }
 
-## Supporting older versions of Android {#oldandroid}
+## Tips &amp; tricks
 
-[Crosswalk](https://crosswalk-project.org) is a tool for running the Chrome webview
-to older versions of Android (**Android <= 4.4**) 
+1. Include the `fullbleed` and `unresolved` attributes on `<body>`:
+
+        <body unresolved fullbleed>
+
+  The [`fullbleed`](/docs/polymer/layout-attrs.html) attribute removes `<body>` margins and maximizes its height to the viewport. The [`unresolved` attribute](/docs/polymer/styling.html#fouc-prevention) minimized FOUC.
+
+2. Use [Vulcanize](/articles/concatenating-web-components.html) to crush your HTML Imports into a single import. Doing reduce load time. It's recommended to run Vulcanize with the `--csp --inline --strip` flags.
+
+3. You only need to load the platform.js polyfills if your WebView version is before Chrome 36.
+
+        <!-- Only needed if your WebView version is before Chrome 36.-->
+        <script src="bower_components/platform/platform.js"></script>
 
 ## Resources
 
