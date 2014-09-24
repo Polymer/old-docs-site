@@ -48,15 +48,24 @@ tags:
 {: .alert .alert-info }
 
 Many developers ask us if {{site.project_title}} can be used inside a WebView.
-The answer is, **of course**! Using {{site.project_title}} in a WebView is no different than creating a normal web app that runs inside a WebView. However, in some cases it's not immediately obvious how to structure an app or get things setup for WebView development. This guide walks you through starting a new Android WebView project and tweaking it to work with {{site.project_title}}.
+The answer is, **of course**! Using {{site.project_title}} in a WebView is no different than creating a normal web app that runs inside a WebView. However, in some cases it's not immediately obvious how to structure an app or get things setup for WebView development. This guide walks you through starting a new Android WebView project and tweaking it to work with {{site.project_title}}. If you want to also target iOS, see the suggestions under [Writing one app across Web, Android 4.0+, and iOS](#oneapp).
 
 ## Getting started
 
-Before you start, develop a standalone web app first. Leave out the fancy WebView stuff until the end. The Android Emulator is painfully slow to test because you cannot enable the emulator's [hardware acceleration](http://developer.android.com/tools/devices/emulator.html#acceleration) for WebView apps. It's much faster to iterate using your normal workflow. Once the sharp edges are ironed out, dive into WebView-fying and uploading it to Google Play.
+Before you start, **develop a standalone web app first**. Leave out the fancy WebView stuff until the end. Why?
+
+- The Android Emulator is painfully slow to debug and test.
+- The emulator's [hardware acceleration](http://developer.android.com/tools/devices/emulator.html#acceleration) cannot be enabled for WebView apps.
+- It's much faster to iterate using your normal tools and workflow. 
+- The DevTools [remote USB debugging](https://developer.chrome.com/devtools/docs/remote-debugging) is second to none.
+
+Once sharp edges are ironed out, dive into WebView-fying and uploading it to Google Play.
+
+### The Android WebView starter kit
 
 <p layout horizontal center-justified>
   <a href="#">
-    <paper-button icon="file-download" id="download-button" raisedButton label="Download the WebView Starter Kit"></paper-button>
+    <paper-button icon="file-download" id="download-button" raisedButton label="Download the WebView Starter"></paper-button>
   </a>
 </p>
 
@@ -64,7 +73,10 @@ The WebView starter .zip provides an example Android Studio project to get you u
 
 ## Minimum Android and SDK versions
 
-{{site.project_title}} works under Android 4.4.3+, which ships with the Chromium-based WebView version 33.0.0.0. However, to gain native browser support for all of the web component APIs (HTML Imports, Custom elements, `<template>`, Shadow DOM), it's important to target **Android L (SDK version 20)**, where **Chrome 36.0.0.0** is the default WebView. Anything pre-Android L will require {{site.project_title}}'s polyfills and you won't see the awesome performance benefits of having native browser support.
+To gain native browser support for all of the web component APIs (HTML Imports, Custom elements, `<template>`, Shadow DOM), it's important to target **Android L (SDK version 20)**, where **Chrome 36.0.0.0** is the default WebView. Targeting pre-Android L means you'll be need {{site.project_title}}'s polyfills and won't see the awesome performance benefits of native browser support.
+
+**Note** {{site.project_title}} does work under Android 4.4.3+, but it will use the polyfills. KitKat ships with a Chromium-based WebView, but it is version 33.0.0.0.
+{: .alert .alert-info }
 
 To install/update Android SDK, run the SDK manager in Android Studio:
 
@@ -78,7 +90,7 @@ then download the L Preview packages (API 20):
 
 {{site.project_title}} does not support the legacy Android Browser, which means the default WebView in older versions of Android (< 4.4.3) will not work.
 
-If you need to support older versions of Android, try [Crosswalk](https://crosswalk-project.org). It's a tool for bringing the new Chromium webview to Android 4.0+. One downside is that the entire Chromium runtime gets bundled with your application. According to the [Crosswalk FAQ](https://crosswalk-project.org/#documentation/about/faq), this means 24KB web app can balloon into 19.63MB after it's packaged. The tradeoff is something to consider.
+If you need to support older versions of Android, try [Crosswalk](https://crosswalk-project.org). It's basically a tool that brings the new Chromium webview to Android 4.0+. One downside is that the entire Chromium runtime gets bundled with your application. According to the [Crosswalk FAQ](https://crosswalk-project.org/#documentation/about/faq), this means 24KB web app can balloon into 19.63MB after it's packaged. The tradeoff is something to consider.
 
 ## Recommended app structure
 
@@ -88,9 +100,9 @@ Inside of the `assets` folder, it's generally recommended to create a `www` fold
 
 ### Using Bower to install elements
 
-**Tip** - If you're not familiar with Bower, see
+**Tip** If you're not familiar with Bower, see
 [Installing elements](/docs/start/getting-the-code.html#installing-components).
-{: .alert .alert-info }
+{: .alert .alert-success }
 
 Create a `bower.json` file in `src/main/assets/www` that lists your element dependencies. In this case, we'll just pull in all the paper and core elements:
 
@@ -165,11 +177,11 @@ In `AndroidManifest.xml`, set the minimum and target SDK versions to Android L (
 
 ### Tweaking the WebView settings
 
-Out of the box, {{site.project_title}} will not run under the default WebView security settings. The following settings need to be enabled:
+Out of the box, the WebView disables some features that {{site.project_title}} needs. You can enable them by changing the WebView's `WebSettings`:
 
-- Enable JavaScript!
-- Enable access to `file://` so HTML Imports can be loaded off `file://` URLs.
-- Ensure local links/redirects act on the WebView (and do not open in the browser).
+- JavaScript!
+- Access to `file://` so HTML Imports can be loaded off `file://` URLs.
+- Local links/redirects act on the WebView (and do not open in the browser).
 
 In **MainActivity.java**, enable the following on your [`WebSettings`](http://developer.android.com/reference/android/webkit/WebSettings.html) object:
 
@@ -199,11 +211,12 @@ public class MyActivity extends Activity {
 }
 </pre>
 
-If you see the following runtime error, it's from HTML Imports not having access to `file://`.
+**Tip** Other useful WebSettings can be found in the <a href="https://github.com/GoogleChrome/chromium-webview-samples/blob/master/jsinterface-example/src/com/google/chrome/android/example/jsinterface/MainActivity.java#L193" target="_blank">chromium-webview-samples</a>.
+{: .alert .alert-success }
+
+If you see the following runtime error in logcat, it's from HTML Imports not having access to `file://`. Be sure you're calling `setAllowFileAccessFromFileURLs(true)` when setting up the Activity:
 
 > "Imported resource from origin 'file://' has been blocked from loading by Cross-Origin Resource Sharing policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'null' is therefore not allowed access.", source: file:///android_asset/www/index.html
-
-Be sure you're calling `setAllowFileAccessFromFileURLs(true)` when setting up the Activity.
 
 ## Loading the main page
 
@@ -214,6 +227,8 @@ First, override `shouldOverrideUrlLoading()` so non-local links open in the brow
     public class MyAppWebViewClient extends WebViewClient {
       @Override
       public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
+        // Handle local URLs.
         if (Uri.parse(url).getHost().length() == 0) {
             return false;
         }
@@ -255,27 +270,47 @@ public class MyActivity extends Activity {
 }
 </pre>
 
-## Tips &amp; tricks
+## Other tips &amp; tricks
 
 1. Include the `fullbleed` and `unresolved` attributes on `<body>`:
 
         <body unresolved fullbleed>
 
-  The [`fullbleed`](/docs/polymer/layout-attrs.html) attribute removes `<body>` margins and maximizes its height to the viewport. The [`unresolved` attribute](/docs/polymer/styling.html#fouc-prevention) minimizes FOUC.
+   The [`fullbleed`](/docs/polymer/layout-attrs.html) attribute removes `<body>` margins and maximizes its height to the viewport. The [`unresolved` attribute](/docs/polymer/styling.html#fouc-prevention) minimizes FOUC.
 
 2. Use [Vulcanize](/articles/concatenating-web-components.html) to crush your HTML Imports into a single import. Doing so can reduce page load time. I recommend running Vulcanize with the `--csp --inline --strip` flags.
 
-3. You only need to load the platform.js polyfills if your WebView version is before Chrome 36.
+3. Only load the platform.js polyfills if you're **not** targeting Android L or using Crosswalk for its Chrome 36+ WebView support.
 
-        <!-- Only needed if your WebView version is before Chrome 36.-->
-        <script src="bower_components/platform/platform.js"></script>
+4. Use `on-tap` event instead of `on-click` handlers when capturing user interactions. Click handlers introduce 300ms delay to user interactions. `on-tap` uses [polymer-gestures](/docs/polymer/touch.html) touch library and circumvents the delay.
 
-4. Use `on-tap` event handlers instead of `on-click` to capture user input. The former has no 300ms click-delay.
+5. Set a mobile viewport! 
 
-## Resources
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+### Writing one app across Web, Android 4.0+, and iOS. {#oneapp}
+
+If you want to target both Android _and_ iOS, your best option is [Cordova](http://cordova.apache.org/). However, out of the box, Cordova won't get you the Chromium 36 WebView on older Android devices. 
+
+For maximum platform reach, try the [Chrome Apps for mobile](https://github.com/MobileChromeApps/mobile-chrome-apps) project. It uses Cordova and [Crosswalk](https://crosswalk-project.org) to bring your mobile web app to Web, Android 4.0+, and iOS. [Matt Gaunt](https://twitter.com/gauntface) also has a [nice Gulp worfklow](https://gauntface.com/blog/2014/07/16/building-mobile-cordova-apps-with-web-starter-kit) that you can integrate without much hassle.
+
+## Additional resources
+
+Android
 
 - [Getting Started: WebView-based Applications for Web Developers](https://developer.chrome.com/multidevice/webview/gettingstarted)
 - [WebView for Android Overvieww](https://developer.chrome.com/multidevice/webview/overview)
 - [Building Web Apps in WebView](http://developer.android.com/guide/webapps/webview.html)
+
+iOS 8
+
+- [WKWebView reference](https://developer.apple.com/library/ios/documentation/WebKit/Reference/WKWebView_Ref/index.html) - iOS8's new WebView. Use it! It can be [~20% faster](http://developer.telerik.com/featured/why-ios-8s-wkwebview-is-a-big-deal-for-hybrid-development/) than the old `UIWebView`.
+
+Tools
+
+- [Chrome Apps for mobile](https://github.com/MobileChromeApps/mobile-chrome-apps) documentation
+- [Crosswalk](https://crosswalk-project.org/) project
+- [Cordova](http://cordova.apache.org/) - hybrid Android/iOS solution
 
 {% include disqus.html %}
