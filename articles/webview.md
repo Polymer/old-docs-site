@@ -288,6 +288,12 @@ public class MyActivity extends Activity {
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+6. To use [DevTools remote debugging](https://developer.chrome.com/devtools/docs/remote-debugging) on your WebView, enable it:
+
+        // Enable remote debugging via chrome://inspect
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            WebView.setWebContentsDebuggingEnabled(true);
+        }
 
 ### Writing one app across Web, Android 4.0+, and iOS. {#oneapp}
 
