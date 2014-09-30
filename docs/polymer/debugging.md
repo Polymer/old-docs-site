@@ -71,8 +71,17 @@ For more details, see [Shadow DOM polyfill](#shadowdom).
 
 When debugging Polymer applications, one frequent problem is unregistered elements. There are two common problems that cause unregistered elements:
 
-Missing or incorrect HTML import statement for a custom element. In this case, the element shows up in the DOM as a simple element, with no shadow DOM. The element may still be rendered, but without the custom element's styling and behavior. The rest of the page should render normally.
-Missing call to `Polymer` or an incorrect tag name in the `Polymer` call. By design, Polymer waits until all element definitions are complete before registering any elements. If the `Polymer` call is missing for one element, none of the Polymer elements are registered. The `polymer-ready` event never fires, and the screen is frequently blank, since none of the Polymer elements render properly. 
+-   Missing or incorrect HTML import statement for a custom element. In this case, the element 
+    shows up in the DOM as a simple element, with no shadow DOM. The element may still be rendered,
+    but without the custom element's styling and behavior. The rest of the page should render normally.
+
+-   Missing call to `Polymer` or an incorrect tag name in the `Polymer` call. By design, Polymer waits 
+    until all element definitions are complete before registering any elements. This ensures that all 
+    elements have been registered before the `polymer-ready` event fires, _even if some calls to `Polymer` are
+    made in asynchronous scripts._
+    
+    However, if the `Polymer` call is missing for one element, none of the Polymer elements are registered. 
+    The `polymer-ready` event never fires, and the screen is frequently blank, since none of the Polymer elements render properly. 
 
 For example, the mismatched tag name in the following element causes Polymer to block element registration:
 
