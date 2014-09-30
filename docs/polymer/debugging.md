@@ -7,15 +7,18 @@ title: Debugging tips and tricks
 subtitle: Guide
 ---
 
+{% include toc.html %}
+
 Since the Web Components standards are relatively new, and not implemented in all browsers, debugging web components such as Polymer elements can be a challenge.
 
-Chrome 36 and later includes native support for web components, and improved support for debugging them in DevTools. Opera 23 and later also includes native support for web components.
+Chrome 36 and later includes native support for web components, and improved support for debugging them in Chrome DevTools. Opera 23 and later also includes native support for web components.
 
 Many of the techniques described here can be used on browsers without native web components support, with a few adjustments. For details, see [Debugging under the polyfills](#polyfills).
 
 ## Inspecting HTML imports
 
-To see the contents of an HTML import in the **Elements** panel, expand the `<link>` tag. The import contents appear as a nested `#document` node.
+To see the contents of an HTML import in the **Elements** panel, expand the `<link>` tag in the DOM tree view. 
+The import contents appear as a nested `#document` node.
 
 ![HTML import link expanded in DevTools Elements panel](/images/debugging/html-import.png)
 
@@ -90,28 +93,28 @@ Wherever possible, omit the tag name from the `Polymer` call. Since Polymer 0.4.
 
 ### Unregistered element bookmarklet
 
-To quickly check whether elements are registered, you can use this bookmarklet (written by Aleks Totic and [Eric Bidelman](twitter.com/ebidel)):
+To quickly check whether elements are registered, you can use this bookmarklet (written by [Aleks Totic](https://twitter.com/atotic) and [Eric Bidelman](twitter.com/ebidel)):
 
-[https://gist.github.com/ebidel/cea24a0c4fdcda8f8af2](https://gist.github.com/ebidel/cea24a0c4fdcda8f8af2)
+<a href="javascript:(function(){function isUnregisteredCustomElement(el){if(el.constructor==HTMLElement){console.error('Found unregistered custom element:',el);return true;}return false;}function isCustomEl(el){return el.localName.indexOf('-')!=-1||el.getAttribute('is');}var allCustomElements=document.querySelectorAll('html /deep/ *');allCustomElements=Array.prototype.slice.call(allCustomElements).filter(function(el){return isCustomEl(el);});var foundSome=false;for(var i=0,el;el=allCustomElements[i];++i){if(isUnregisteredCustomElement(el)){foundSome=true;}}if(foundSome){alert('Oops: found one or more unregistered custom elements in use! Check the console.');}else{alert('Good: All custom elements are registered :)');}})();">Check for Unregistered Elements</a>
 
-The bookmarklet checks for element that are look like custom elements, but have the generic `HTMLElement` constructor. An element "looks like" a custom element if it has a dash in its name or uses the `is` attribute:
+The bookmarklet checks for element that look like custom elements, but have the generic `HTMLElement` constructor. An element "looks like" a custom element if it has a dash in its name or uses the `is` attribute:
 
     <paper-button></paper-button>
     <form is="ajax-form></form>
 
 Since this method doesn't use any Polymer APIs, it works for any custom element, Polymer or otherwise. 
 
-To add the bookmarklet in Chrome:
+To add the bookmarklet to your browser, drag the <a href="javascript:(function(){function isUnregisteredCustomElement(el){if(el.constructor==HTMLElement){console.error('Found unregistered custom element:',el);return true;}return false;}function isCustomEl(el){return el.localName.indexOf('-')!=-1||el.getAttribute('is');}var allCustomElements=document.querySelectorAll('html /deep/ *');allCustomElements=Array.prototype.slice.call(allCustomElements).filter(function(el){return isCustomEl(el);});var foundSome=false;for(var i=0,el;el=allCustomElements[i];++i){if(isUnregisteredCustomElement(el)){foundSome=true;}}if(foundSome){alert('Oops: found one or more unregistered custom elements in use! Check the console.');}else{alert('Good: All custom elements are registered :)');}})();">Check for Unregistered Elements</a> 
+link to the bookmarks toolbar or Favorites bar. (The bookmarks toolbar or Favorites bar must already be displayed.)
 
-1.  Open [https://gist.github.com/ebidel/cea24a0c4fdcda8f8af2](https://gist.github.com/ebidel/cea24a0c4fdcda8f8af2) in a browser tab.
-2.  Click the **Raw** button next to  unregistered_custom_elements.bookmarklet.js.
-3.  Select and copy the JavaScript.
-4.  Press Control+D (Command+D on OS X) to bookmark the current page.
-5.  Click **Edit**.
-6.  Replace the bookmark URL with the copied JavaScript.
-7.  Set the bookmark title to something meaningful (such as **Unregistered Elements**).
 
-Click the bookmark to check the current page for unregistered elements.
+You can see the complete code for the bookmarklet here:
+
+[https://gist.github.com/ebidel/cea24a0c4fdcda8f8af2](https://gist.github.com/ebidel/cea24a0c4fdcda8f8af2)
+
+
+Click the bookmark to check the current page for unregistered elements. The bookmarklet displays an alert showing the 
+page status. In the case of missing imports, more detailed information is logged to the console.
 
 In the case of a missing HTML import, the bookmarklet lists the element with a missing import.
 
@@ -162,7 +165,7 @@ In the case of nested templates, copies of the inner templates appear in the DOM
 
     <polymer-element name="binding-test">
       <template>
-        <template repeat="{{item in list}}">
+        <template repeat="{%raw%}{{item in list}}{%endraw%}">
           <p>{{item.name}}:</p>
           <ul>
           <template repeat="{{field in item.fields}}">
@@ -190,18 +193,19 @@ This generates a DOM structure like the following:
 ![DevTools showing DOM structure](/images/debugging/bound-dom.png)
 
 The numbers in the diagram identify elements of the DOM structure:
-Root of the element's shadow DOM tree. 
-Outer `<template repeat>`. 
-DOM nodes generated by the outer `<template repeat>`, representing a single item.
-Inner `<template repeat>`. Note that one copy appears in the DOM for each item in the outer `<template repeat>`. 
-Generated DOM nodes from the inner `<template repeat>`.
+
+1.  Root of the element's shadow DOM tree. 
+2.  Outer `<template repeat>`. 
+3.  DOM nodes generated by the outer `<template repeat>`. Highlighted box shows the nodes representing the first item.
+4.  Inner `<template repeat>`. Note that one copy appears in the DOM for each item in the outer `<template repeat>`. 
+5.  Generated DOM nodes from the inner `<template repeat>`.
 
 To inspect the data bound to a template:
 
 1.  In the **Elements** panel, select the template tag in the element's shadow root.
 2.  In the **Console**, type:
 
-		    $0.model
+        $0.model
 
     On browsers without native shadow DOM, add the `wrap` function:
 
@@ -213,19 +217,19 @@ To inspect the data bound to a template:
 
 The `model` property returns the template's scope object, which contains all the identifiers that are in scope for the current template. For the outermost template, this is the custom element itself.
 
-To inspect the data used to create a generated node:
+To inspect the data used to **create** a generated node:
 
 1.  In the **Elements** panel, select the generated node.
 2.  In the **Console**, type:
 
-		    $0.templateInstance.model
+        $0.templateInstance.model
 
-    ![DevTools console](/images/debugging/templateinstance-model.png)
 
-	   On browsers without native shadow DOM, add the `wrap` function:
+    On browsers without native shadow DOM, add the `wrap` function:
 
         wrap($0).templateInstance.model
 
+![DevTools console](/images/debugging/templateinstance-model.png)
 
 `templateInstance.model` returns the data used to generate the DOM nodes. In this case, it includes the `item` object corresponding to the first item in the list.
 
