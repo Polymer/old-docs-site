@@ -4,16 +4,16 @@ type: core
 navgroup: docs
 shortname: Articles
 title: "Building single page apps"
-subtitle: How to build single page applications using web components
+subtitle: The Polymer web components approach to building single page applications
 
 draft: true
 
 article:
   author: ebidel
-  published: 2014-08-04
-  #updated: 2014-06-29
-  polymer_version: 0.3.4
-  description: Common techniques for sharing information between custom elements
+  published: 2014-09-29
+  #updated: 2014-09-29
+  polymer_version: 0.4.1
+  description: The Polymer approach to building single page applications
 tags:
 - routing
 - spa
