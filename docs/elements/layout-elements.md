@@ -33,7 +33,7 @@ header by adding the `core-header` class to its class list.
 
 Other elements placed in the core-header-panel end up in the content area.
 
-`<core-header-panel>` is `position: relative`, and always needs to have a height set on it explicitly.
+`<core-header-panel>` is `position: relative`, and always needs to have a height set on it explicitly. An easy way to go about this is to use [layout attributes](/docs/polymer/layout-attrs.html). Add `fullbleed`, `vertical`, and `layout` attributes to the `<body>` and then add a `flex` attribute to the `<core-header-panel>` itself.
 
 The following example app uses a `<core-header-panel>` as its top-level layout:
 
@@ -50,7 +50,7 @@ Use the following code to create the header panel app.
 
 The following example uses a plain `<div>` as the header element, using the `core-header` class:
 
-    <core-header-panel>
+    <core-header-panel flex>
       <div class=“core-header”>
          My App
       </div>

@@ -21,9 +21,6 @@ body {
 }
 core-header-panel {
   background: white;
-  /* height: 100% fails here on some browsers */
-  height: 100vh;
-  width: 100vw;
 }
 core-toolbar {
   background-color: #03A9F4;
@@ -40,9 +37,9 @@ p {
 <!-- [START html] -->
 <!-- use fullbleed attribute to specify 
      the body should fill the viewport -->
-<body fullbleed unresolved>
+<body fullbleed vertical layout unresolved>
 <!-- [START runnable] -->
-  <core-header-panel>
+  <core-header-panel flex>
     <core-toolbar id="mainheader">
       <paper-icon-button id="navicon" 
         icon="arrow-back"></paper-icon-button>
