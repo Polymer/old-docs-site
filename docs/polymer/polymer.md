@@ -452,7 +452,7 @@ Specifically, {{site.project_title}} adds `foo` to the element's prototype with 
 `null` by default.
 {: .alert .alert-info }
 
-You can provide your own default values by explicitly specifying the default value on the elment's `prototype`:
+You can provide your own default values by explicitly specifying the default value on the element's `prototype`:
 
     <polymer-element name="x-foo" attributes="bar">
       <script>
