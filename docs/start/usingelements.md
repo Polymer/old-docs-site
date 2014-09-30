@@ -63,7 +63,8 @@ An example `index.html` file:
               href="bower_components/core-ajax/core-ajax.html">
       </head>
       <body>
-        <!-- 3. Declare the element. Configure using its attributes. -->
+        <!-- 3. Declare the element. Configure using its attributes. 
+        Replace '//example.com/json' with valid json file -->
         <core-ajax url="//example.com/json"
                    handleAs="json"></core-ajax>
 
