@@ -17,7 +17,7 @@ There are several ways to bind data to a template. You can:
 *   Conditionally create an instance of a template, depending on whether the value passed to the `if` attribute is truthy.
 
 **Note:** Binding templates only works inside {{site.project_title}} elements. For example, if a
-`<template>` element is inserted directly into a page’s `<body>` tag, the the `bind` attribute
+`<template>` element is inserted directly into a page’s `<body>` tag, the `bind` attribute
 doesn’t work as described here. If you need to use template binding outside of a
 {{site.project_title}} element, see [Using data binding outside of a {{site.project_title}} element](/docs/polymer/databinding-advanced.html#bindingoutside).
 {: .alert .alert-info }
