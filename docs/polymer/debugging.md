@@ -9,6 +9,18 @@ subtitle: Guide
 
 {% include toc.html %}
 
+<style>
+.bookmarklet {
+  background: #657CFE;
+  color: white;
+  border-radius: 6px;
+  padding: 4px 8px 4px 4px;
+}
+.bookmarklet core-icon {
+  margin-bottom: 2px;
+}
+</style>
+
 Since the Web Components standards are relatively new, and not implemented in all browsers, debugging web components such as Polymer elements can be a challenge.
 
 Chrome 36 and later includes native support for web components, and improved support for debugging them in Chrome DevTools. Opera 23 and later also includes native support for web components.
@@ -104,7 +116,7 @@ Wherever possible, omit the tag name from the `Polymer` call. Since Polymer 0.4.
 
 To quickly check whether elements are registered, you can use this bookmarklet (written by [Aleks Totic](https://twitter.com/atotic) and [Eric Bidelman](twitter.com/ebidel)):
 
-<a href="javascript:(function(){function isUnregisteredCustomElement(el){if(el.constructor==HTMLElement){console.error('Found unregistered custom element:',el);return true;}return false;}function isCustomEl(el){return el.localName.indexOf('-')!=-1||el.getAttribute('is');}var allCustomElements=document.querySelectorAll('html /deep/ *');allCustomElements=Array.prototype.slice.call(allCustomElements).filter(function(el){return isCustomEl(el);});var foundSome=false;for(var i=0,el;el=allCustomElements[i];++i){if(isUnregisteredCustomElement(el)){foundSome=true;}}if(foundSome){alert('Oops: found one or more unregistered custom elements in use! Check the console.');}else{alert('Good: All custom elements are registered :)');}})();">Check for Unregistered Elements</a>
+<a class="bookmarklet" href="javascript:(function(){function isUnregisteredCustomElement(el){if(el.constructor==HTMLElement){console.error('Found unregistered custom element:',el);return true;}return false;}function isCustomEl(el){return el.localName.indexOf('-')!=-1||el.getAttribute('is');}var allCustomElements=document.querySelectorAll('html /deep/ *');allCustomElements=Array.prototype.slice.call(allCustomElements).filter(function(el){return isCustomEl(el);});var foundSome=false;for(var i=0,el;el=allCustomElements[i];++i){if(isUnregisteredCustomElement(el)){foundSome=true;}}if(foundSome){alert('Oops: found one or more unregistered custom elements in use! Check the console.');}else{alert('Good: All custom elements are registered :)');}})();"><core-icon icon="bookmark"></core-icon> Unregistered Elements</a>
 
 The bookmarklet checks for element that look like custom elements, but have the generic `HTMLElement` constructor. An element "looks like" a custom element if it has a dash in its name or uses the `is` attribute:
 
@@ -113,7 +125,7 @@ The bookmarklet checks for element that look like custom elements, but have the 
 
 Since this method doesn't use any Polymer APIs, it works for any custom element, Polymer or otherwise. 
 
-To add the bookmarklet to your browser, drag the <a href="javascript:(function(){function isUnregisteredCustomElement(el){if(el.constructor==HTMLElement){console.error('Found unregistered custom element:',el);return true;}return false;}function isCustomEl(el){return el.localName.indexOf('-')!=-1||el.getAttribute('is');}var allCustomElements=document.querySelectorAll('html /deep/ *');allCustomElements=Array.prototype.slice.call(allCustomElements).filter(function(el){return isCustomEl(el);});var foundSome=false;for(var i=0,el;el=allCustomElements[i];++i){if(isUnregisteredCustomElement(el)){foundSome=true;}}if(foundSome){alert('Oops: found one or more unregistered custom elements in use! Check the console.');}else{alert('Good: All custom elements are registered :)');}})();">Check for Unregistered Elements</a> 
+To add the bookmarklet to your browser, drag the <a class="bookmarklet" href="javascript:(function(){function isUnregisteredCustomElement(el){if(el.constructor==HTMLElement){console.error('Found unregistered custom element:',el);return true;}return false;}function isCustomEl(el){return el.localName.indexOf('-')!=-1||el.getAttribute('is');}var allCustomElements=document.querySelectorAll('html /deep/ *');allCustomElements=Array.prototype.slice.call(allCustomElements).filter(function(el){return isCustomEl(el);});var foundSome=false;for(var i=0,el;el=allCustomElements[i];++i){if(isUnregisteredCustomElement(el)){foundSome=true;}}if(foundSome){alert('Oops: found one or more unregistered custom elements in use! Check the console.');}else{alert('Good: All custom elements are registered :)');}})();"><core-icon icon="bookmark"></core-icon> Unregistered Elements</a> 
 link to the bookmarks toolbar or Favorites bar. (The bookmarks toolbar or Favorites bar must already be displayed.)
 
 
@@ -125,11 +137,13 @@ You can see the complete code for the bookmarklet here:
 Click the bookmark to check the current page for unregistered elements. The bookmarklet displays an alert showing the 
 page status. In the case of missing imports, more detailed information is logged to the console.
 
-In the case of a missing HTML import, the bookmarklet lists the element with a missing import.
+-   In the case of a missing HTML import, the bookmarklet lists the element with a missing import.
 
-In the case of a missing `Polymer` call, the bookmarklet lists _all_ of the Polymer elements, since none of them are registered. (The next section describes how to use the new `Polymer.waitingFor` method to pinpoint exactly which element is causing the problems.)
+-   In the case of a missing `Polymer` call, the bookmarklet lists _all_ of the Polymer elements, since none of them are registered. 
+    (The next section describes how to use the new `Polymer.waitingFor` method to pinpoint exactly which element is causing the problems.)
 
-The bookmarklet returns false positives for tags that include a dash but _aren't_ custom elements, such as Angular directives. 
+**Note:** The bookmarklet returns false positives for tags that include a dash but _aren't_ custom elements, such as Angular directives. 
+{: .alert .alert-info }
 
 ### Polymer waitingFor and forceReady methods
 
