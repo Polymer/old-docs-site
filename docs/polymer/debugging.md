@@ -30,7 +30,7 @@ For elements with separate script files, the script file should be alongside the
 
 You can set breakpoints in inline scripts inside an HTML import.
 
-**Note:** For production deployment, HTML imports are usually concatenated using [vulcanize](https://www.polymer-project.org/articles/concatenating-web-components.html). However,
+**Note:** For production deployment, HTML imports are usually concatenated using [vulcanize](/articles/concatenating-web-components.html). However,
 unlike JavaScript and CSS, there is no sourcemap format for HTML files, so there's no way to map vulcanized files to their non-vulcanized counterparts. As a result, it's much easier to debug non-vulcanized files.
 
 ## Inspecting custom elements
