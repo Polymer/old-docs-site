@@ -65,11 +65,8 @@ By combining data-binding, [core-scaffold](/docs/elements/core-elements.html#cor
 
 Here's a [demo](http://polymer-change.appspot.com/demos/spa.html) and [source](https://github.com/ebidel/polymer-change/blob/master/demos/spa.html).
 
-Another solution would be to use [app-router](http://erikringsmuth.github.io/app-router/), which 
+See [customelements.io](http://customelements.io/?q=route) for further solutions.
 
->Works with Polymer, X-Tag, and natively with the platform polyfill.
-
-Its features include data-binding of path variables and query parameters as well as HTML5 API compatibility.
 
 ### What does this have to do with x-tags? {#xtags}
 
