@@ -108,8 +108,8 @@ To quickly check whether elements are registered, you can use this bookmarklet (
 
 The bookmarklet checks for element that look like custom elements, but have the generic `HTMLElement` constructor. An element "looks like" a custom element if it has a dash in its name or uses the `is` attribute:
 
-    <paper-button></paper-button>
-    <form is="ajax-form></form>
+    <paper-button>Button</paper-button>
+    <form is="ajax-form"></form>
 
 Since this method doesn't use any Polymer APIs, it works for any custom element, Polymer or otherwise. 
 
