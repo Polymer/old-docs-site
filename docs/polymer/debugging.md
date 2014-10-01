@@ -30,7 +30,7 @@ For elements with separate script files, the script file should be alongside the
 
 You can set breakpoints in inline scripts inside an HTML import.
 
-**Note:** For production deployment, HTML imports are usually concatenated using [vulcanize](https://www.polymer-project.org/articles/concatenating-web-components.html). However,
+**Note:** For production deployment, HTML imports are usually concatenated using [vulcanize](/articles/concatenating-web-components.html). However,
 unlike JavaScript and CSS, there is no sourcemap format for HTML files, so there's no way to map vulcanized files to their non-vulcanized counterparts. As a result, it's much easier to debug non-vulcanized files.
 
 ## Inspecting custom elements
@@ -102,7 +102,7 @@ Wherever possible, omit the tag name from the `Polymer` call. Since Polymer 0.4.
 
 ### Unregistered element bookmarklet
 
-To quickly check whether elements are registered, you can use this bookmarklet (written by [Aleks Totic](https://twitter.com/atotic) and [Eric Bidelman](twitter.com/ebidel)):
+To quickly check whether elements are registered, you can use this bookmarklet (written by [Aleks Totic](https://twitter.com/atotic) and [Eric Bidelman](https://twitter.com/ebidel)):
 
 <a href="javascript:(function(){function isUnregisteredCustomElement(el){if(el.constructor==HTMLElement){console.error('Found unregistered custom element:',el);return true;}return false;}function isCustomEl(el){return el.localName.indexOf('-')!=-1||el.getAttribute('is');}var allCustomElements=document.querySelectorAll('html /deep/ *');allCustomElements=Array.prototype.slice.call(allCustomElements).filter(function(el){return isCustomEl(el);});var foundSome=false;for(var i=0,el;el=allCustomElements[i];++i){if(isUnregisteredCustomElement(el)){foundSome=true;}}if(foundSome){alert('Oops: found one or more unregistered custom elements in use! Check the console.');}else{alert('Good: All custom elements are registered :)');}})();">Check for Unregistered Elements</a>
 
