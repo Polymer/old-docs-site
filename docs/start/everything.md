@@ -56,5 +56,5 @@ Now that you've got the basic concepts of {{site.project_title}}, it's time to
 start digging in a bit more. Continue on to:
 
 <a href="/docs/start/customelements.html">
-  <paper-button icon="arrow-forward" label="Custom Elements 101" raisedButton></paper-button>
+  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Custom Elements 101</paper-button>
 </a>

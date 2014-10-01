@@ -17,7 +17,7 @@ subtitle: Guide
     width: 150px;
   }
 
-  paper-button.purpleRipple::shadow #ripple {
+  paper-button.purpleRipple::shadow paper-ripple {
     color: #9f499b;
   }
   .demo-card {
@@ -118,7 +118,7 @@ controls.
   <tr>
     <td>Button<br>
     <a href="/docs/elements/paper-elements.html#paper-button"><code>&lt;paper-button&gt;</code></a></td>
-    <td><paper-button label="play" raisedButton></paper-button></td>
+    <td><paper-button>play</paper-button></td>
     <td><a href="/components/paper-elements/demo.html#paper-button"><core-icon icon="arrow-forward" size="16"></core-icon> More examples</a></td>
   </tr>
   <tr>
@@ -204,19 +204,19 @@ The following example creates a dialog with two buttons:
                   transition="paper-dialog-transition-bottom">
       <p>This app would like to launch a small, unmanned vehicle
          into space.</p>
-      <paper-button label="Cancel" dismissive></paper-button>
-      <paper-button label="OK" affirmative default></paper-button>
+      <paper-button dismissive>Cancel</paper-button>
+      <paper-button affirmative default>OK</paper-button>
     </paper-dialog>
 
 <paper-dialog id="dialog" heading="Launch?" transition="paper-dialog-transition-bottom">
 <p>This app would like to launch a small, unmanned vehicle into space.</p>
 
-<paper-button label="Cancel" dismissive></paper-button>
-<paper-button label="OK" affirmative default></paper-button>
+<paper-button dismissive>Cancel</paper-button>
+<paper-button affirmative default>OK</paper-button>
 
 </paper-dialog>
 
-<paper-button id="dialog-button" label="Show me the dialog" raisedButton></paper-button>
+<paper-button id="dialog-button" raised>Show me the dialog</paper-button>
 
 In this example, the default button has a `default` attribute. The dialog
 doesn't apply any special treatment for a default option; you can style it
@@ -237,7 +237,7 @@ lower-left on mobile. Use the `text` attribute to specify the text to display.
 
 <paper-toast id="toast" text="Your draft has been discarded."></paper-toast>
 
-<paper-button id="toast-button" label="Show me the snackbar" raisedButton></paper-button>
+<paper-button id="toast-button" raised>Show me the snackbar</paper-button>
 
 Like a dialog, a `<paper-toast>` is hidden by default. Call the element's
 `open` method to display it. The toast disappears after a timeout, or can be
@@ -259,8 +259,7 @@ that moves out radially from the origin of the event. These effects are built
 into the 
 [paper elements collection](paper-elements.html):
 
-<paper-button class="purpleRipple" 
-  label="Show me the ripple" raisedButton></paper-button>
+<paper-button class="purpleRipple" raised>Show me the ripple</paper-button>
 
 When working with other elements, you can use the `<paper-ripple>` element to
 create a touch ripple effect.
@@ -268,7 +267,7 @@ create a touch ripple effect.
 To use `<paper-ripple>`, declare a `<paper-ripple>` element as a child of the
 element you want to add the effect to:
 
-    <div style="position: relative;">
+    <div>
       <paper-ripple fit></paper-ripple>
     </div>
 
@@ -276,22 +275,21 @@ Touch the cards and icon below to see ripple effects.
 
 <div layout horizontal wrap>
   <div class="labeled-card" layout vertical>
-    <div class="demo-card" style="position: relative;">
+    <div class="demo-card">
       <paper-ripple fit></paper-ripple>
     </div>
     <p>Default ripple</p>
   </div>
 
   <div class="labeled-card" layout vertical>
-    <div class="demo-card" style="position: relative;">
+    <div class="demo-card">
       <paper-ripple fit style="color: red;"></paper-ripple>
     </div>
     <p>Colored ripple</p>
   </div>
 
   <div class="labeled-card" layout vertical>
-    <div class="demo-card" style="position: relative; border: none;" 
-      layout vertical center center-justified>
+    <div class="demo-card" style="border: none;" layout vertical center-center>
       <core-icon icon="info"></core-icon>
       <paper-ripple fit class="circle"></paper-ripple>
     </div>
@@ -306,7 +304,7 @@ position the ripple appropriately.  (See
 and other layout attributes.)
 
 You can clip the ripple to a circle by adding the `circle` class to the
-ripple's classlist. Circular ripples are used for small buttons used in a grid
+ripple's `classlist`. Circular ripples are used for small buttons used in a grid
 layout (for example, icon buttons, number pads).
 
 You can set the color of the ripple using the `color` CSS property. 
@@ -316,17 +314,16 @@ You can set the color of the ripple using the `color` CSS property.
     }
 
 When using a paper element, check the element API doc to find the CSS selector 
-to style the ripple. Most elements that have a ripple have a `<paper-ripple>` 
-in the shadow DOM with an ID of `ink` or `ripple`. For example, to style a 
-button:
+to style the ripple. Elements that have a ripple have a `<paper-ripple>` 
+in the shadow DOM. For example, to style a  button:
 
-    paper-button::shadow #ripple {
+    paper-button::shadow paper-ripple {
       color: blue;
     }
 
 To style a checkbox:
 
-    paper-checkbox::shadow #ink {
+    paper-checkbox::shadow paper-ripple {
       color: blue;
     }
 
@@ -337,10 +334,10 @@ elements can  have a z-height between 0 and 5. Material can raise or lower in
 response to user input.
 
 The `paper-elements` have shadow effects built-in. For example, a 
-`<paper-button>` declared  with the `raisedButton` attribute appears raised 
-above thesurface it rests on, and raises  up when touched.
+`<paper-button>` declared  with the `raised` attribute appears raised 
+above the surface it rests on, and raises  up when touched.
 
-<paper-button label="Raised button" raisedButton></paper-button>
+<paper-button raised>Raised button</paper-button>
 
 When building your own elements or using standard DOM elements, you can use
 the `<paper-shadow>`  element to create the appropriate shadow effect.

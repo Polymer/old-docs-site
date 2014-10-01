@@ -103,7 +103,7 @@ Now that you've got the basic idea of using and installing elements, it's time t
 building something! In the next section we'll cover the features of {{site.project_title}} and how to create new `<polymer-element>`s. Continue on to:
 
 <a href="/docs/start/creatingelements.html">
-  <paper-button icon="arrow-forward" label="Creating elements" raisedButton></paper-button>
+  <paper-button raised><core-icon icon="arrow-forward" ></core-icon>Creating elements</paper-button>
 </a>
 
 If you'd rather browse the existing elements, check out the 

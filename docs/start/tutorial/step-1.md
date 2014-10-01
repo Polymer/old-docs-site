@@ -309,9 +309,9 @@ In this step, you used HTML imports to import custom elements, and used them to 
 
 <div layout horizontal justified class="stepnav">
 <a href="/docs/start/tutorial/intro.html">
-  <paper-button icon="arrow-back" label="Getting Started"></paper-button>
+  <paper-button><core-icon icon="arrow-back"></core-icon>Getting Started</paper-button>
 </a>
 <a href="/docs/start/tutorial/step-2.html">
-  <paper-button icon="arrow-forward" label="Step 2: Creating your own element" raisedButton></paper-button>
+  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Step 2: Creating your own element</paper-button>
 </a>
 </div>

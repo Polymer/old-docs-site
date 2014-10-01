@@ -17,7 +17,7 @@ subtitle: Your first Polymer application
 #download-button:hover {
   background: #2a56c6;
 }
-#download-button::shadow #ripple {
+#download-button::shadow paper-ripple {
   color: #fff;
 }
 .unquote-link {
@@ -53,7 +53,7 @@ To get started, download the starter project. This starter project includes all 
 
 <p layout horizontal center-justified>
   <a href="https://github.com/Polymer/polymer-tutorial/archive/master.zip">
-    <paper-button icon="file-download" id="download-button" raisedButton label="Download Starter Project" onclick="downloadStarter()"></paper-button>
+    <paper-button id="download-button" raised onclick="downloadStarter()"><core-icon icon="file-download"></core-icon>Download Starter Project</paper-button>
   </a>
 </p>
 
@@ -85,7 +85,7 @@ If the images don't render, try a different web server.
 
 <div horizontal layout end-justified class="stepnav">
 <a href="/docs/start/tutorial/step-1.html">
-  <paper-button icon="arrow-forward" label="Step 1: Creating the app structure" raisedButton></paper-button>
+  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Step 1: Creating the app structure</paper-button>
 </a>
 </div>
 

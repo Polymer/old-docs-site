@@ -209,9 +209,9 @@ For example, the  `selectStory` method might look like this:
 Continue on to:
 
 <a href="/docs/polymer/binding-types.html">
-  <paper-button icon="arrow-forward" label="Types of bindings" raisedButton></paper-button>
+  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Types of bindings</paper-button>
 </a>
 
 <a href="/docs/polymer/expressions.html">
-  <paper-button icon="arrow-forward" label="Expressions" raisedButton></paper-button>
+  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Expressions</paper-button>
 </a>

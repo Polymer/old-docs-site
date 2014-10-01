@@ -199,9 +199,9 @@ If you have any problems, check your work against the files in the `step-3` fold
 
 <div layout horizontal justified class="stepnav">
 <a href="/docs/start/tutorial/step-2.html">
-  <paper-button icon="arrow-back" label="Step 2: Creating your own element"></paper-button>
+  <paper-button><core-icon icon="arrow-back"></core-icon>Step 2: Creating your own element</paper-button>
 </a>
 <a href="/docs/start/tutorial/step-4.html">
-  <paper-button icon="arrow-forward" label="Step 4: Finishing touches" raisedButton></paper-button>
+  <paper-button raises><core-icon icon="arrow-forward"></core-icon>Step 4: Finishing touches</paper-button>
 </a>
 </div>
