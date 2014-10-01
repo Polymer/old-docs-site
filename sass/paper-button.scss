@@ -12,14 +12,15 @@
 
 paper-button {
   color: rgb(102, 102, 102);
-  line-height: initial;
+  font-size: 14px;
   white-space: nowrap;
-  background: none;
-  font-size: 13px;
 
-  &[raisedButton] {
+  > core-icon {
+    margin-right: 4px;
+  }
+
+  &[raised] {
     background: $gray-medium;
-    box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px, rgba(0, 0, 0, 0.0980392) 0px 1px 2px 0px;
   }
 
   &:hover, &.active {
