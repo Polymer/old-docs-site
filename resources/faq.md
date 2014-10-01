@@ -65,6 +65,12 @@ By combining data-binding, [core-scaffold](/docs/elements/core-elements.html#cor
 
 Here's a [demo](http://polymer-change.appspot.com/demos/spa.html) and [source](https://github.com/ebidel/polymer-change/blob/master/demos/spa.html).
 
+Another solution would be to use [app-router](http://erikringsmuth.github.io/app-router/), which 
+
+>Works with Polymer, X-Tag, and natively with the platform polyfill.
+
+Its features include data-binding of path variables and query parameters as well as HTML5 API compatibility.
+
 ### What does this have to do with x-tags? {#xtags}
 
 [x-tags](http://x-tags.org/) is a cool project that Mozilla is working on, and it's not directly affiliated with {{site.project_title}}. However, both {{site.project_title}} and x-tags build on the emerging Custom Elements standard, which means their components are interoperable by default. Both Google and Mozilla offer polyfills for the Custom Element spec. X-Tag works on top of either, so you can use X-Tag custom elements alongside your {{site.project_title}} components. We're working actively with them to maximize compatibility between the component sets.
