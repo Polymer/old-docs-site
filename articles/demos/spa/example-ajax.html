@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>Tutorial SPA Demo</title>
+  <script src="/components/platform/platform.js"></script>
+  <link rel="import" href="elements.html">
+  <link rel="import" href="/components/core-ajax/core-ajax.html">
+  <link rel="stylesheet" href="styles.css" shim-shadowdom>
+  <style>
+    core-animated-pages > *  {
+      font-size: inherit;
+      overflow-y: auto;
+      padding: 30px;
+    }
+  </style>
+</head>
+<body unresolved fullbleed>
+
+<template is="auto-binding" id="t">
+
+  <!-- Route controller. -->
+  <flatiron-director route="{{route}}" autoHash></flatiron-director>
+
+  <!-- Keyboard nav controller. -->
+  <core-a11y-keys id="keys" keys="up down left right space space+shift"
+                  on-keys-pressed="{{arrowHandler}}"></core-a11y-keys>                 
+
+  <!-- Content controll -->
+  <core-ajax id="ajax" auto handleAs="document"
+             on-core-response="{{onResponse}}"></core-ajax>
+
+  <core-scaffold id="scaffold">
+
+    <nav>
+      <core-toolbar>
+        <span>Polymer Tutorial SPA</span>
+      </core-toolbar>
+      <core-menu id="menu" valueattr="hash" selected="{{route}}" selectedItem="{{selectedPage}}"
+                 on-core-select="{{menuItemSelected}}" on-click="{{ajaxLoad}}">
+        <template repeat="{{page, i in pages}}">
+          <paper-item icon="label{{route != page.hash ? '-outline' : ''}}"
+                      label="{{page.name}}" hash="{{page.hash}}">
+            <a href="{{page.url}}"></a>
+          </paper-item>
+        </template>
+      </core-menu>
+    </nav>
+
+    <core-toolbar tool flex>
+      <div flex>{{selectedPage.label}}</div>
+      <core-icon-button icon="refresh"></core-icon-button>
+      <core-icon-button icon="add"></core-icon-button>
+    </core-toolbar>
+
+    <div layout horizontal center-center fit>
+      <core-animated-pages id="pages" selected="{{route}}" valueattr="hash"
+                           transitions="slide-from-right"
+                           on-tap="{{cyclePages}}">
+        <template repeat="{{page, i in pages}}">
+          <section hash="{{page.hash}}" layout vertical center-center>
+            <div style="max-width:100%;">{{page.name}}</div>
+          </section>
+        </template>
+      </core-animated-pages>
+    </div>
+
+  </core-scaffold>
+
+</template>
+
+<script src="app.js"></script>
+<script>
+var template = document.querySelector('#t');
+var ajax;
+var cache = {};
+
+template.pages = [
+  {name: 'Intro', hash: 'one', url: '/docs/start/tutorial/intro.html'},
+  {name: 'Step 1', hash: 'two', url: '/docs/start/tutorial/step-1.html'},
+  {name: 'Step 2', hash: 'three', url: '/docs/start/tutorial/step-2.html'},
+  {name: 'Step 3', hash: 'four', url: '/docs/start/tutorial/step-3.html'},
+  {name: 'Step 4', hash: 'five', url: '/docs/start/tutorial/step-4.html'},
+];
+
+template.addEventListener('template-bound', function(e) {
+  // Wait on rAF so app.js's template-bound has fired and the menu's
+  // selectedModel is populated.
+  template.async(function() {
+    ajax = document.querySelector('#ajax');
+    ajax.url = document.querySelector('#menu').selectedModel.page.url;
+  });
+});
+
+template.menuItemSelected = function(e, detail, sender) {
+  if (detail.isSelected && ajax) {
+    //var url = detail.item.templateInstance.model.page.url;
+    var url = detail.item.firstElementChild.href;
+
+    if (!cache[url]) {
+      ajax.url = url;
+    }
+
+    document.querySelector('#scaffold').closeDrawer();
+  }
+};
+
+template.ajaxLoad = function(e, detail, sender) {
+  e.preventDefault(); // prevent link navigation.
+};
+
+template.onResponse = function(e, detail, sender) {
+  var article = detail.response.querySelector('scroll-area article');
+  var html = article.innerHTML;
+
+  cache[detail.xhr.responseURL] = html;
+
+  var pages = document.querySelector('#pages');
+  this.injectBoundHTML(html, pages.selectedItem.firstElementChild);
+};
+</script>
+</body>
+</html> 

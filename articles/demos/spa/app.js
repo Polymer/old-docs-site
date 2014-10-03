@@ -14,55 +14,54 @@ template.pages = [
 ];
 
 template.addEventListener('template-bound', function(e) {
-  this.$.keys.target = document;
+  var keys = document.querySelector('#keys');
+
+  keys.target = document;
 
   // Allow selecting pages by num keypad. Dynamically add
   // [1, template.pages.length] to key mappings.
-  var keys = Array.apply(null, template.pages).map(function(x, i) {
+  var keysToAdd = Array.apply(null, template.pages).map(function(x, i) {
     return i + 1;
   }).reduce(function(x, y) {
     return x + ' ' + y;
   });
-  this.$.keys.keys += ' ' + keys;
+  keys.keys += ' ' + keysToAdd;
 
   this.route = this.route || DEFAULT_ROUTE; // Select initial route.
 });
 
 template.arrowHandler = function(e, detail, sender) {
+  var pages = document.querySelector('#pages');
 
   // Select page by num key. 
   var num = parseInt(detail.key);
   if (!isNaN(num) && num <= this.pages.length) {
-    this.$.pages.selectIndex(num - 1);
+    pages.selectIndex(num - 1);
     return;
   }
 
   switch (detail.key) {
     case 'left':
     case 'up':
-      this.$.pages.selectPrevious();
+      pages.selectPrevious();
       break;
     case 'right':
     case 'down':
-      this.$.pages.selectNext();
+      pages.selectNext();
       break;
     case 'space':
-      detail.shift ? this.$.pages.selectPrevious() : this.$.pages.selectNext();
+      detail.shift ? pages.selectPrevious() : pages.selectNext();
       break;
   }
 };
 
 template.cyclePages = function(e, detail, sender) {
-  // If we've already hit the last page, loop back to the first.
-  if (sender.selectedIndex == sender.items.length - 1) {
-    sender.selectedIndex = -1;
-  }
-  sender.selectNext();
+  e.shiftKey ? sender.selectPrevious(true) : sender.selectNext(true);
 };
 
 template.menuItemSelected = function(e, detail, sender) {
   if (detail.isSelected) {
-    this.$ && this.$.scaffold.closeDrawer();
+    document.querySelector('#scaffold').closeDrawer();
   }
 };
 

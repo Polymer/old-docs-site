@@ -19,11 +19,11 @@ tags:
 ---
 
 <style>
-paper-button {
+paper-button.blue {
   background: #4285f4;
   color: #fff;
 }
-paper-button:hover {
+paper-button.blue:hover {
   background: #2a56c6;
 }
 </style>
@@ -46,11 +46,13 @@ In this tutorial, we'll build a full-featured single page app:
 - URL routing and deep linking
 - Keyboard accessible
 
+<p layout vertical center-center>
 <a href="demos/spa/final.html" target="_blank">
-  <paper-button raised>
+  <paper-button raised class="blue">
     <core-icon icon="arrow-forward"></core-icon>Open the demo
   </paper-button>
 </a>
+</p>
 
 ## App structure
 {:style="clear:both"}
@@ -146,12 +148,12 @@ By now you should have <a href="demos/spa/example1.html" target="_blank">a basic
 
 <p>
 <a href="demos/spa/example1.html" target="_blank">
-  <paper-button raised>
+  <paper-button raised class="blue">
     <core-icon icon="arrow-forward"></core-icon>See it in action: without CSS
   </paper-button>
 </a>
 <a href="demos/spa/example1-style.html" target="_blank">
-  <paper-button raised>
+  <paper-button raised class="blue">
     <core-icon icon="arrow-forward"></core-icon>See it in action: with CSS
   </paper-button>
 </a>
@@ -237,14 +239,76 @@ to use the `hash` attribute as the selected value.
 Now, when a user clicks a nav item the view updates accordingly.
 
 <a href="demos/spa/example2.html" target="_blank">
-  <paper-button raised>
+  <paper-button raised class="blue">
     <core-icon icon="arrow-forward"></core-icon>See it in action
   </paper-button>
 </a>
 
 ## URL routing &amp; deep linking
 
+[`<flatiron-director>`](https://github.com/PolymerLabs/flatiron-director) is a web component for URL routingt that wraps the [flatiron director JS library](https://github.com/flatiron/director). Settings its `route` property updates to URL hash to the same value.
+
+For our SPA, we want to persist the last view across a page reload. Once again,
+we can turn to data-binding to connect the director's `route` property with the menu and page selection:
+
+{%raw%}
+    <flatiron-director route="{{route}}" autoHash></flatiron-director>
+    ...
+    <core-menu selected="{{route}}">
+    ...
+    <core-animated-pages selected="{{route}}">
+{%endraw%}
+
+Lastly, we initialize the `route` property when the template is ready to go on page load:
+
+    template.addEventListener('template-bound', function(e) {
+      this.route = this.route || 'one'; // Use existing route. If none, use a default.
+    };
+
+If there's already a hash in the URL, that page is selected. Otherwise, the route is
+set the first page.
+
+### Alternatives to `<flatiron-director>` {#flatironalt}
+
+I like `<flatiron-director>` because it's simple to use and works well with `<core-animated-pages>`. If you're interested in more complex routing features, checkout [`<app-router>`](https://github.com/erikringsmuth/app-router). That element uses the HTML5 History API, supports wildcards, and can load content on demand:
+
+    <app-route path="/home" import="/pages/home-page.html"></app-route>
+    <app-route path="/customer/*" import="/pages/customer-page.html"></app-route>
+    <app-route path="/order/:id" import="/pages/order-page.html"></app-route>
+
 ## Keyboard navigation
+
+    <core-a11y-keys id="keys" keys="up down left right space space+shift"
+                    on-keys-pressed="{{arrowHandler}}"></core-a11y-keys>                 
+
+    template.addEventListener('template-bound', function(e) {
+      this.$.keys.target = document;
+      this.route = this.route || DEFAULT_ROUTE; // Select initial route.
+    };
+
+    template.arrowHandler = function(e, detail, sender) {
+
+      // Select page by num key. 
+      var num = parseInt(detail.key);
+      if (!isNaN(num) && num <= this.pages.length) {
+        this.$.pages.selectIndex(num - 1);
+        return;
+      }
+
+      switch (detail.key) {
+        case 'left':
+        case 'up':
+          this.$.pages.selectPrevious();
+          break;
+        case 'right':
+        case 'down':
+          this.$.pages.selectNext();
+          break;
+        case 'space':
+          detail.shift ? this.$.pages.selectPrevious(true) : this.$.pages.selectNext(true);
+          break;
+      }
+    };
 
 ## Dynamically loading content
 
@@ -252,22 +316,22 @@ Loading content on-demand can be a challenge.
 
 ## Extra polish
 
-1. When a menu item is selected, close the app drawer:
+When a menu item is selected, close the app drawer:
 
 {%raw%}
-        <core-menu ... on-core-select="{{menuItemSelected}}">
+    <core-menu ... on-core-select="{{menuItemSelected}}">
 
-        template.menuItemSelected = function(e, detail, sender) {
-          if (detail.isSelected) {
-            this.$ && this.$.scaffold.closeDrawer();
-          }
-        };
+    template.menuItemSelected = function(e, detail, sender) {
+      if (detail.isSelected) {
+        this.$ && this.$.scaffold.closeDrawer();
+      }
+    };
 {%endraw%}
 
-2. Render a different icon for the selected nav item:
+Render a different icon for the selected nav item:
 
 {%raw%}
-        <paper-item icon="label{{route != page.hash ? '-outline' : ''}}"...>
+  <paper-item icon="label{{route != page.hash ? '-outline' : ''}}"...>
 {%endraw%}
 
 ## Conclusion
