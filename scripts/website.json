@@ -8,6 +8,13 @@
     ]
   },
   {
+    "dir": "components",
+    "org": "robdodson",
+    "repos": [
+      "plunker-button"
+    ]
+  },
+  {
     "dir": "projects",
     "org": "Polymer",
     "repos": [
