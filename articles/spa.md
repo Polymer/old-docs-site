@@ -195,11 +195,11 @@ To leverage Polymer's data-binding features outside of a `<polymer-element>`, we
 
 An auto-binding `<template>` allows us to use {%raw%}`{{}}`{%endraw%} bindings, [expressions](/docs/polymer/expressions.html), and [`on-*` declarative event handlers](/docs/polymer/polymer.html#declarative-event-mapping) inside the main page.
 
-You can greatly **reduce the amount of markup you write by generating it from a data model**. In our case, we can render the menu items and pages with a `<template repeat>`:
+You can greatly **reduce the amount of markup you write by generating it from a data model**. In our case, we can render all the menu items and pages with a pair of `<template repeat>`:
 
 {%raw%}
     <core-menu valueattr="hash" selected="{{route}}">
-      <template repeat="{{page, i in pages}}">
+      <template repeat="{{page in pages}}">
         <paper-item label="{{page.name}}" hash="{{page.hash}}">
           <a href="#{{page.hash}}"></a>
         </paper-item>
@@ -207,7 +207,7 @@ You can greatly **reduce the amount of markup you write by generating it from a 
     </core-menu>
 
     <core-animated-pages valueattr="hash" selected="{{route}}" ...>
-      <template repeat="{{page, i in pages}}">
+      <template repeat="{{page in pages}}">
         <section hash="{{page.hash}}" layout vertical center-center>
           <div>{{page.name}}</div>
         </section>
@@ -251,14 +251,14 @@ their `selected` attributes** together. Now, when a user clicks on a nav item th
 For our SPA, we want to persist the last view across page reloads. Once again, data-binding comes in handle. Connect the director's `route` property with the menu and page so all three are in lock-step one one updates:
 
 {%raw%}
-    <flatiron-director route="{{route}}" autoHash></flatiron-director>
+    <flatiron-director route="{{route}}" autoHash>
     ...
     <core-menu selected="{{route}}">
     ...
     <core-animated-pages selected="{{route}}">
 {%endraw%}
 
-To get **deep linking**, initialize the `route` when the template is ready to go:
+**Deep linking** - initialize the `route` when the template is ready to go:
 
     template.addEventListener('template-bound', function(e) {
       // Use URL hash for initial route. Otherwise, use the first page.
