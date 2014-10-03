@@ -10,13 +10,14 @@ title: Welcome
       <h1>Welcome to the future</h1>
       <p>Web Components usher in a new era of web development based on encapsulated and interoperable custom elements that extend HTML itself. Built atop these new standards, Polymer makes it easier and faster to create anything from a button to a complete application across desktop, mobile, and beyond.</p>
       <a href="/docs/start/getting-the-code.html">
-        <paper-button icon="archive" label="Get {{site.project_title}}" raisedButton unresolved></paper-button>
+        <paper-button raised unresolved>
+          <core-icon icon="archive"></core-icon> Get {{site.project_title}}
+        </paper-button>
       </a>
-     <!--  <a href="/docs/start/usingelements.html">
-        <paper-button icon="arrow-forward" label="Get started" raisedButton unresolved></paper-button>
-      </a> -->
       <a href="https://github.com/polymer">
-        <paper-button class="github" icon="social:post-github" label="View on Github" unresolved></paper-button>
+        <paper-button class="github" unresolved>
+          <core-icon icon="social:post-github"></core-icon> View on Github
+        </paper-button>
       </a>
     </summary>
   </div>
@@ -43,7 +44,9 @@ title: Welcome
             <p>{{site.project_title}} brings an implementation of <a href="http://google.com/design/spec">material design</a> to the web. The paper elements range from controls to effects and user interaction.
             <br><br>
             <a href="/docs/elements/material.html">
-              <paper-button icon="arrow-forward" label="Learn more"></paper-button>
+              <paper-button>
+                <core-icon icon="arrow-forward"></core-icon> Learn more
+              </paper-button>
             </a>
             </p>
           </summary>
@@ -60,7 +63,9 @@ title: Welcome
             <p>Recap everything {{site.project_title}} at Google I/O 2014. Watch sessions videos and DevByte shorts.
             <br><br>
             <a href="/resources/video.html">
-              <paper-button icon="drive-video" label="Watch"></paper-button>
+              <paper-button>
+                <core-icon icon="drive-video"></core-icon> Watch
+              </paper-button>
             </a>
             </p>
           </summary>
@@ -82,7 +87,9 @@ title: Welcome
         Designer is a drag and drop tool for prototyping apps using {{site.project_title}}. Save your experiments as Github gists.
         </p>
         <a href="/tools/designer/" target="_blank">
-          <paper-button icon="arrow-forward" label="Try it now"></paper-button>
+          <paper-button>
+            <core-icon icon="arrow-forward"></core-icon> Try it now
+          </paper-button>
         </a>
       </div>
     </summary>
@@ -98,7 +105,9 @@ title: Welcome
       <br><br>
       {{site.project_title}} puts elements back at the center of web development. With {{site.project_title}}, you can craft your own HTML elements and compose them into complete, complex applications that are scalable and maintainable.</p>
       <a href="/docs/start/everything.html">
-        <paper-button icon="arrow-forward" label="Learn more"></paper-button>
+        <paper-button>
+          <core-icon icon="arrow-forward"></core-icon> Learn more
+        </paper-button>
       </a>
     </summary>
     <img src="/images/logos/p-elements.svg">
@@ -119,7 +128,9 @@ title: Welcome
         <h2 class="elements-using">Topeka</h2>
         <p>A fun quiz app built using material-design based <em>paper-elements</em></p>
         <a href="/apps/topeka/">
-          <paper-button icon="arrow-forward" label="Demo Topeka"></paper-button>
+          <paper-button>
+            <core-icon icon="arrow-forward"></core-icon> Demo Topeka
+          </paper-button>
         </a>
       </summary>
       <summary flex>
@@ -131,7 +142,9 @@ title: Welcome
         <h2 class="elements-creating">Paper Elements</h2>
         <p>A sampler showcasing Polymer elements based on material design</p>
         <a href="/components/paper-elements/demo.html#core-toolbar">
-          <paper-button icon="arrow-forward" label="Browse Elements"></paper-button>
+          <paper-button>
+            <core-icon icon="arrow-forward"></core-icon> Browse Elements
+          </paper-button>
         </a>
       </summary>
       <summary flex>
@@ -143,7 +156,9 @@ title: Welcome
         <h2 class="platform">Calculator</h2>
         <p>A calculator app mockup highlighting material ink effects</p>
         <a href="/components/paper-calculator/demo.html">
-          <paper-button icon="arrow-forward" label="Demo Calculator"></paper-button>
+          <paper-button>
+            <core-icon icon="arrow-forward"></core-icon> Demo Calculator
+          </paper-button>
         </a>
       </summary>
     </div>
