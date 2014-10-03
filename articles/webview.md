@@ -65,7 +65,7 @@ Once sharp edges are ironed out, dive into WebView-fying and uploading it to Goo
 
 <p layout horizontal center-justified>
   <a href="#">
-    <paper-button icon="file-download" id="download-button" raisedButton label="Download the WebView Starter"></paper-button>
+    <paper-button id="download-button" raised><core-icon icon="file-download"></core-icon>Download the WebView Starter</paper-button>
   </a>
 </p>
 
