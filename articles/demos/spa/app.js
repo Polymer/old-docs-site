@@ -30,7 +30,7 @@ template.addEventListener('template-bound', function(e) {
   this.route = this.route || DEFAULT_ROUTE; // Select initial route.
 });
 
-template.arrowHandler = function(e, detail, sender) {
+template.keyHandler = function(e, detail, sender) {
   var pages = document.querySelector('#pages');
 
   // Select page by num key. 
@@ -56,6 +56,11 @@ template.arrowHandler = function(e, detail, sender) {
 };
 
 template.cyclePages = function(e, detail, sender) {
+  // Click clicks should navigate and not cycle pages.
+  if (e.path[0].localName == 'a') {
+    return;
+  }
+
   e.shiftKey ? sender.selectPrevious(true) : sender.selectNext(true);
 };
 

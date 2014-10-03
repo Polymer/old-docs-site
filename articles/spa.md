@@ -259,56 +259,55 @@ we can turn to data-binding to connect the director's `route` property with the 
     <core-animated-pages selected="{{route}}">
 {%endraw%}
 
-Lastly, we initialize the `route` property when the template is ready to go on page load:
+Lastly, we initialize the `route` when the template is bound and ready to go:
 
     template.addEventListener('template-bound', function(e) {
-      this.route = this.route || 'one'; // Use existing route. If none, use a default.
+      this.route = this.route || DEFAULT_ROUTE; // DEFAULT_ROUTE == 'one'
     };
 
-If there's already a hash in the URL, that page is selected. Otherwise, the route is
-set the first page.
-
-### Alternatives to `<flatiron-director>` {#flatironalt}
-
-I like `<flatiron-director>` because it's simple to use and works well with `<core-animated-pages>`. If you're interested in more complex routing features, checkout [`<app-router>`](https://github.com/erikringsmuth/app-router). That element uses the HTML5 History API, supports wildcards, and can load content on demand:
-
-    <app-route path="/home" import="/pages/home-page.html"></app-route>
-    <app-route path="/customer/*" import="/pages/customer-page.html"></app-route>
-    <app-route path="/order/:id" import="/pages/order-page.html"></app-route>
+If there's already a hash in the URL, that page is selected. Otherwise, the route defaults
+to the first page.
 
 ## Keyboard navigation
 
-    <core-a11y-keys id="keys" keys="up down left right space space+shift"
-                    on-keys-pressed="{{arrowHandler}}"></core-a11y-keys>                 
+The keyboard-enabled our SPA, we can use [`<core-a11y-keys>`](/docs/elements/core-elements.html#core-a11y-keys), a component for normalizing browser keyboard handling.
+
+Set its `key` property to a space-separated list of keys/key combinations to listen for. When one of those keys are pressed, the `keys-pressed` event is fired: 
+
+{%raw%}
+    <core-a11y-keys id="keys"
+        keys="up down left right space space+shift"
+        on-keys-pressed="{{keyHandler}}"></core-a11y-keys>                 
+{%endraw%}
+
+Next, we set the `document` as the target for key presses:
 
     template.addEventListener('template-bound', function(e) {
-      this.$.keys.target = document;
-      this.route = this.route || DEFAULT_ROUTE; // Select initial route.
+      var keys = document.querySelector('#keys');
+      keys.target = document;
+      ...
     };
 
-    template.arrowHandler = function(e, detail, sender) {
-
-      // Select page by num key. 
-      var num = parseInt(detail.key);
-      if (!isNaN(num) && num <= this.pages.length) {
-        this.$.pages.selectIndex(num - 1);
-        return;
-      }
+    template.keyHandler = function(e, detail, sender) {
+      var pages = document.querySelector('#pages');
 
       switch (detail.key) {
         case 'left':
         case 'up':
-          this.$.pages.selectPrevious();
+          pages.selectPrevious();
           break;
         case 'right':
         case 'down':
-          this.$.pages.selectNext();
+          pages.selectNext();
           break;
         case 'space':
-          detail.shift ? this.$.pages.selectPrevious(true) : this.$.pages.selectNext(true);
+          detail.shift ? pages.selectPrevious() : pages.selectNext();
           break;
       }
     };
+{%endraw%}
+
+Whenever one of our key combinations is pressed, `keyHandler` gets called. Inside, I'm using `<core-animated-pages>`'s `selectPrevious`/`selectNext` API to go to the previous/next page.
 
 ## Dynamically loading content
 
@@ -323,7 +322,7 @@ When a menu item is selected, close the app drawer:
 
     template.menuItemSelected = function(e, detail, sender) {
       if (detail.isSelected) {
-        this.$ && this.$.scaffold.closeDrawer();
+        document.querySelector('#scaffold').closeDrawer();
       }
     };
 {%endraw%}
@@ -333,6 +332,17 @@ Render a different icon for the selected nav item:
 {%raw%}
   <paper-item icon="label{{route != page.hash ? '-outline' : ''}}"...>
 {%endraw%}
+
+## Alternative routing libs
+
+If `<flatiron-director>` is not your cup of tea, checkout [`<app-router>`](https://github.com/erikringsmuth/app-router). It can do more complex routing with wildcards, has HTML5 History API support, and can load content on demand:
+
+    <app-route path="/home" import="/pages/home-page.html"></app-route>
+    <app-route path="/customer/*" import="/pages/customer-page.html"></app-route>
+    <app-route path="/order/:id" import="/pages/order-page.html"></app-route>
+    <app-route path="*" import="/pages/not-found-page.html"></app-route>
+
+I personally like `<flatiron-director>` because it's simple works well with `<core-animated-pages>`. 
 
 ## Conclusion
 

@@ -8,6 +8,8 @@
   <link rel="import" href="elements.html">
   <link rel="import" href="/components/core-ajax/core-ajax.html">
   <link rel="stylesheet" href="styles.css" shim-shadowdom>
+  <link rel="stylesheet" href="/docs/start/tutorial/tutorial.css">
+  <base target="_blank"></base>
   <style>
     core-animated-pages > *  {
       font-size: inherit;
@@ -25,7 +27,7 @@
 
   <!-- Keyboard nav controller. -->
   <core-a11y-keys id="keys" keys="up down left right space space+shift"
-                  on-keys-pressed="{{arrowHandler}}"></core-a11y-keys>                 
+                  on-keys-pressed="{{keyHandler}}"></core-a11y-keys>                 
 
   <!-- Content controll -->
   <core-ajax id="ajax" auto handleAs="document"
