@@ -146,7 +146,7 @@ and drop in your content:
 
 By now you should have <a href="demos/spa/example1.html" target="_blank">a basic app</a>, but **there's something subtle to notice**. Thanks to Polymer's [layout attributes](/docs/polymer/layout-attrs.html) and the [default styles](/articles/styling-elements.html#default-styles) provided by each element, **you've achieved a responsive app without writing a lick of CSS**! Of course, with a little inspiration from the [material design color palette](http://www.google.com/design/spec/style/color.html), [less than 10 CSS rules](demos/spa/styles.css) turns the app into something beautiful.
 
-<p>
+<p layout horizontal center-center>
 <a href="demos/spa/example1.html" target="_blank">
   <paper-button raised class="blue">
     <core-icon icon="arrow-forward"></core-icon>See it in action: without CSS
@@ -159,7 +159,7 @@ By now you should have <a href="demos/spa/example1.html" target="_blank">a basic
 </a>
 </p>
 
-### Using data binding to simplify the markup
+### Using data binding to simplify markup
 
 At this point, we have an app but it's nothing to write home about. The app is not DRY. Similar markup is repeated all over the place:
 
@@ -213,6 +213,9 @@ You can greatly **reduce the amount of markup you write by generating it from a 
         </section>
       </template>
     </core-animated-pages>
+{%endraw%}
+
+Which is fed by this data model:
 
     <script>
       var template = document.querySelector('#t');
@@ -224,19 +227,16 @@ You can greatly **reduce the amount of markup you write by generating it from a 
         {name: 'Polymer', hash: 'five'}
       ];
     </script>
-{%endraw%}
 
-Notice that `<core-animated-pages>` and `<core-menu>` are also linked by binding
-their `selected` attributes together. The `valueattr="hash"` tells both elements
-to use the `hash` attribute as the selected value.
+Notice that `<core-animated-pages>` and `<core-menu>` are **linked by binding
+their `selected` attributes** together. Now, when a user clicks on a nav item the view updates accordingly. The `valueattr="hash"` tells both elements to use the `hash` attribute as the selected value.
 
 {%raw%}
+    <!-- data-bind the menu selection with the page selection -->
     <core-menu valueattr="hash" selected="{{route}}">
     ...
     <core-animated-pages valueattr="hash" selected="{{route}}">
 {%endraw%}
-
-Now, when a user clicks a nav item the view updates accordingly.
 
 <a href="demos/spa/example2.html" target="_blank">
   <paper-button raised class="blue">
@@ -248,8 +248,7 @@ Now, when a user clicks a nav item the view updates accordingly.
 
 [`<flatiron-director>`](https://github.com/PolymerLabs/flatiron-director) is a web component for URL routingt that wraps the [flatiron director JS library](https://github.com/flatiron/director). Settings its `route` property updates to URL hash to the same value.
 
-For our SPA, we want to persist the last view across a page reload. Once again,
-we can turn to data-binding to connect the director's `route` property with the menu and page selection:
+For our SPA, we want to persist the last view across page reloads. Once again, data-binding comes in handle. Connect the director's `route` property with the menu and page so all three are in lock-step one one updates:
 
 {%raw%}
     <flatiron-director route="{{route}}" autoHash></flatiron-director>
@@ -259,18 +258,18 @@ we can turn to data-binding to connect the director's `route` property with the 
     <core-animated-pages selected="{{route}}">
 {%endraw%}
 
-Lastly, we initialize the `route` when the template is bound and ready to go:
+To get **deep linking**, initialize the `route` when the template is ready to go:
 
     template.addEventListener('template-bound', function(e) {
-      this.route = this.route || DEFAULT_ROUTE; // DEFAULT_ROUTE == 'one'
+      // Use URL hash for initial route. Otherwise, use the first page.
+      this.route = this.route || DEFAULT_ROUTE;
     };
-
-If there's already a hash in the URL, that page is selected. Otherwise, the route defaults
-to the first page.
 
 ## Keyboard navigation
 
-The keyboard-enabled our SPA, we can use [`<core-a11y-keys>`](/docs/elements/core-elements.html#core-a11y-keys), a component for normalizing browser keyboard handling.
+Good SPAs support keyboard navigation. It's important for [accessibility](/articles/accessible-web-components.html) but also makes the app feel more...appy :)
+
+We can use [`<core-a11y-keys>`](/docs/elements/core-elements.html#core-a11y-keys), a component for normalizing browser keyboard handling.
 
 Set its `key` property to a space-separated list of keys/key combinations to listen for. When one of those keys are pressed, the `keys-pressed` event is fired: 
 
@@ -305,7 +304,6 @@ Next, we set the `document` as the target for key presses:
           break;
       }
     };
-{%endraw%}
 
 Whenever one of our key combinations is pressed, `keyHandler` gets called. Inside, I'm using `<core-animated-pages>`'s `selectPrevious`/`selectNext` API to go to the previous/next page.
 
