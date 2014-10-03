@@ -19,21 +19,22 @@
   <core-a11y-keys id="keys" keys="up down left right space space+shift"
                   on-keys-pressed="{{arrowHandler}}"></core-a11y-keys>                 
 
-  <core-scaffold id="scaffold" fit>
+  <core-scaffold id="scaffold">
   
-    <core-header-panel navigation mode="seamed" flex>
+    <nav>
       <core-toolbar>
         <span>Single Page Polymer</span>
       </core-toolbar>
-      <core-menu valueattr="hash" selected="{{route}}" selectedItem="{{selectedPage}}">
+      <core-menu valueattr="hash" selected="{{route}}" selectedItem="{{selectedPage}}"
+                 on-core-select="{{menuItemSelected}}">
         <template repeat="{{page, i in pages}}">
-          <core-item icon="label{{route != page.hash ? '-outline' : ''}}"
+          <paper-item icon="label{{route != page.hash ? '-outline' : ''}}"
                      label="{{page.name}}" hash="{{page.hash}}">
             <a href="#{{page.hash}}"></a>
-          </core-item>
+          </paper-item>
         </template>
       </core-menu>
-    </core-header-panel>
+    </nav>
 
     <core-toolbar tool flex>
       <div flex>{{selectedPage.label}}</div>
@@ -44,7 +45,7 @@
     <div layout horizontal center-center fit>
       <core-animated-pages id="pages" selected="{{route}}" valueattr="hash"
                            transitions="slide-from-right"
-                           on-tap="{{cyclePages}}" on-core-select="{{menuItemSelected}}">
+                           on-tap="{{cyclePages}}">
         <template repeat="{{page, i in pages}}">
           <section hash="{{page.hash}}" layout vertical center-center>
             <div>{{page.name}}</div>
@@ -64,7 +65,8 @@
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-43475701-2', 'auto');
+  ga('create', 'UA-43475701-2', 'auto'); // ebidel's
+  ga('create', 'UA-39334307-1', 'auto'); // pp.org
   ga('send', 'pageview');
 </script>
 </body>

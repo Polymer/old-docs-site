@@ -23,7 +23,6 @@ template.addEventListener('template-bound', function(e) {
   }).reduce(function(x, y) {
     return x + ' ' + y;
   });
-
   this.$.keys.keys += ' ' + keys;
 
   this.route = this.route || DEFAULT_ROUTE; // Select initial route.

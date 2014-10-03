@@ -2,6 +2,7 @@ body {
   font-family: "RobotoDraft";
   font-weight: 300;
 }
+
 core-animated-pages {
   width: 85%;
   height: 85%;
@@ -17,24 +18,20 @@ core-animated-pages > * {
 
 body /deep/ core-toolbar {
   background-color: #03a9f4;
-}
-
-core-toolbar {
   color: #fff;
 }
 
 core-menu {
   color: #01579b;
+  margin: 10px 0 0 0;
 }
 
-core-menu core-item {
-  opacity: 0.5;
-  transition: opacity 300ms ease-in-out;
+core-menu > paper-item {
+  transition: all 300ms ease-in-out;
 }
 
-core-menu core-item.core-selected {
-  background: #eee;
-  opacity: 1;
+core-menu > paper-item.core-selected {
+  background: #e1f5fe;
 }
 
 @media all and (max-width: 480px) {
