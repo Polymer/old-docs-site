@@ -20,8 +20,8 @@ paper-button {
   }
 }
 
-body /deep/ doc-page::shadow paper-button[raisedButton],
-body /deep/ component-download-button::shadow paper-button[raisedButton] {
+body /deep/ doc-page::shadow paper-button[raised],
+body /deep/ component-download-button::shadow paper-button[raised] {
   background-color: $materialPurple;
   fill: white;
   color: white;
