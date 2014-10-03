@@ -79,7 +79,7 @@ On browsers without native shadow DOM, use the `wrap` function to access methods
 
 For more details, see [Shadow DOM polyfill](#shadowdom).
 
-## Hunting down unregistered elements
+## Hunting down unregistered elements {#unregistered}
 
 When debugging Polymer applications, one frequent problem is unregistered elements. There are two common problems that cause unregistered elements:
 
