@@ -32,7 +32,7 @@ For example, if you have the following element:
     <link rel="import" href="components/polymer/polymer.html">
     <polymer-element name="dynamic-element" attributes="description">
       <template>
-        <p>I'm {{description}}, now!</p>
+        <p>I'm {%raw%}{{description}}{%endraw%}, now!</p>
       </template>
       <script>
         Polymer({
