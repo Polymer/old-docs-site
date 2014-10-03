@@ -275,10 +275,10 @@ Ready to start a project of your own? Install some {{site.project_title}} compon
 
 <div layout horizontal justified class="stepnav">
 <a href="/docs/start/tutorial/step-3.html">
-  <paper-button icon="arrow-back" label="Step 3: Using data binding"></paper-button>
+  <paper-button><core-icon icon="arrow-back"></core-icon>Step 3: Using data binding</paper-button>
 </a>
 <a href="/docs/start/getting-the-code.html#installing-components">
-  <paper-button icon="arrow-forward" label="Installing components" raisedButton></paper-button>
+  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Installing components</paper-button>
 </a>
 </div>
 

@@ -77,7 +77,7 @@ Children of an element using the `layout` attribute can use `flex` attributes to
 
 The same is true for children of `vertical` elements:
 
-    <div vertical layout>
+    <div vertical layout style="height:250px">
       <div>Alpha</div>
       <div flex>Beta (flex)</div>
       <div>Gamma</div>
@@ -88,6 +88,8 @@ The same is true for children of `vertical` elements:
   <div flex>Beta (flex)</div>
   <div>Gamma</div>
 </div>
+
+**Note**: for vertical layouts, the container needs to have a height for the children to flex correctly.
 
 Children elements can be told to take up more space by including a "flex ratio" with the `flex` atribute. A flex ratio is specified with a number string: _one_, _two_, _three_, currently up to _twelve_.
 

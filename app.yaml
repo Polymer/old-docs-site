@@ -1,5 +1,5 @@
 application: polymer-project
-version: 2014-09-18
+version: 2014-10-02-ssl
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -19,6 +19,7 @@ handlers:
 - url: /$
   static_files: _site/index.html
   upload: _site/index\.html
+  secure: always
 
 - url: /build/$
   static_files: _site/build/index.html
@@ -52,53 +53,18 @@ handlers:
   http_headers:
     Access-Control-Allow-Origin: "*"
 
-- url: /polymer-body.html
-  static_files: components/polymer/polymer-body.html
-  upload: components/polymer/polymer-body.html
-  http_headers:
-    Access-Control-Allow-Origin: "*"
-
-# ------------------------------------------------------------------------------
-
-# # Map minified polymer to minified version.
-# # This also preservers old URL (/polymer/polymer.min.js)
-# # COMMENT OUT TO TEST UNIMINIFIED Polymer
-# - url: /(polymer-all\/)?polymer/polymer(.min)?.js
-#   static_files: components/polymer/polymer.js
-#   upload: components/polymer/polymer\.js
-
-# / Elements -------------------------------------------------------------------
-# - url: /(polymer-all\/)?(polymer|polymer-ui|more)-elements/(.*)
-#   static_files: polymer-all/\1-elements/\2
-#   upload: polymer-all/(polymer|polymer-ui|more)-elements/(.*)
-#   http_headers:
-#     Access-Control-Allow-Origin: "*"
-
-# - url: /(toolkit-ui|web-animations-js)/(.*)
-#   static_files: polymer-all/\1/\2
-#   upload: polymer-all/(toolkit-ui|web-animations-js)/(.*)
-#   http_headers:
-#     Access-Control-Allow-Origin: "*"
-
 # /tools -----------------------------------------------------------------------
-  #curl https://polymer-project.org/tools/pull-all.sh | bash
-#- url: /tools/pull-all\.sh$
-#  static_files: polymer-all/tools/bin/pull-all.sh
-#  upload: polymer-all/tools/bin/pull-all\.sh
-
 - url: /tools/designer/$
   static_files: polymer-all/projects/designer/index.html
   upload: polymer-all/projects/designer/index.html
-
-# - url: /tools/designer/components
-#   static_dir: components
+  secure: always
 
 - url: /tools/designer/(.*)
   static_files: polymer-all/projects/designer/\1
   upload: polymer-all/projects/designer/(.*)
 # -------------------
 
-# Topeka and other apps -----
+# Topeka and other apps --------------------------------------------------------
 # /apps/topeka/...
 - url: /apps/(.+)/components/(.*)
   static_files: components/\2
@@ -108,13 +74,15 @@ handlers:
 - url: /apps/(.+)/$
   static_files: polymer-all/projects/\1/build.html
   upload: polymer-all\/projects\/(.+)\/build.html
+  secure: always
 
 - url: /apps/(.+)/(.*)
   static_files: polymer-all/projects/\1/\2
   upload: polymer-all\/projects\/(core-sampler|paper-sampler|topeka)\/(.*)
+  secure: always
 # -------------------
 
-# tutorial -----
+# tutorial ---------------------------------------------------------------------
 - url: /samples/tutorial/components/
   static_dir: components
 # -------------------
@@ -123,6 +91,7 @@ handlers:
 - url: /(.*)/$
   static_files: _site/\1/index.html
   upload: _site/(.*)/index.html
+  secure: always
 
 - url: /polymer-all
   static_dir: polymer-all
@@ -143,12 +112,14 @@ handlers:
   static_dir: components
   http_headers:
     Access-Control-Allow-Origin: "*"
+  secure: always
 
 # All other URLs map directly to their path in _site/.
 - url: /
   static_dir: _site
   http_headers:
     Access-Control-Allow-Origin: "*"
+  secure: always
 
 skip_files:
 - ^(.*/)?app\.yaml
