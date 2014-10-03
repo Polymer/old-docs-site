@@ -198,11 +198,11 @@ The use of the `id` attribute has traditionally been discouraged as an anti-patt
 Now that you know how to create your own elements, dive deeper and read up on [{{site.project_title}}'s core API](/docs/polymer/polymer.html). If you'd like to know more about the underlying technologies that make {{site.project_title}} and Web Components possible, check out [the Platform guide](/docs/start/platform.html). Continue on to:
 
 <a href="/docs/polymer/polymer.html">
-  <paper-button icon="arrow-forward" label="API developer guide" raisedButton></paper-button>
+  <paper-button raised><core-icon icon="arrow-forward"></core-icon>API developer guide</paper-button>
 </a>
 
 <a href="/docs/start/platform.html">
-  <paper-button icon="arrow-forward" label="The Platform" raisedButton></paper-button>
+  <paper-button raised><core-icon icon="arrow-forward"></core-icon>The Platform</paper-button>
 </a>
 
 

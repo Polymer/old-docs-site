@@ -16,7 +16,7 @@ title: Getting the code
 #download-button:hover {
   background: #2a56c6;
 }
-#download-button::shadow #ripple {
+#download-button::shadow paper-ripple {
   color: #fff;
 }
 </style>
@@ -29,9 +29,9 @@ title: Getting the code
 If you want to learn {{site.project_title}}, the easiest way to get started is
  to download the starter project:
 
-<p layout horizontal center-justified>
+<p layout horizontal center-center>
   <a href="https://github.com/Polymer/polymer-tutorial/archive/master.zip">
-    <paper-button icon="file-download" id="download-button" raisedButton label="Download Starter Project" onclick="downloadStarter()"></paper-button>
+    <paper-button id="download-button" raised onclick="downloadStarter()"><core-icon icon="file-download"></core-icon>Download Starter Project</paper-button>
   </a>
 </p>
 
@@ -40,7 +40,7 @@ Work through the tutorial for an introduction to {{site.project_title}} APIs and
 or work through the finished app on your own.
 
 <a href="/docs/start/tutorial/intro.html">
-  <paper-button icon="arrow-forward" label="START THE TUTORIAL" raisedButton></paper-button>
+  <paper-button raised><core-icon icon="arrow-forward" ></core-icon>Start the tutorial</paper-button>
 </a>
 
 If you're ready to start your own project, you can pick and choose the 
@@ -177,7 +177,7 @@ concepts. In the next section we'll get you up and running on using elements
 in a project. Continue on to:
 
 <a href="/docs/start/usingelements.html">
-  <paper-button icon="arrow-forward" label="Using elements" raisedButton></paper-button>
+  <paper-button raised><core-icon icon="arrow-forward" ></core-icon>Using elements</paper-button>
 </a>
 
 If you'd rather skip ahead, check out our guide on 

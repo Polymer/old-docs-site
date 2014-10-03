@@ -111,5 +111,5 @@ Because custom elements are just like regular elements, it doesn't matter what k
 Now that you've got an idea of what you can do with custom elements, it's time to start building something! Continue on to:
 
 <a href="/docs/start/usingelements.html">
-  <paper-button icon="arrow-forward" label="Using elements" raisedButton></paper-button>
+  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Using elements</paper-button>
 </a>

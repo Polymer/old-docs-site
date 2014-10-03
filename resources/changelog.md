@@ -9,39 +9,11 @@ title: Releases
 This document lists the notable changes across the entirety of the project,
 including polyfill repos, tools, projects, and UI elements.
 
-{% comment %}
-## 2013-xx-xx {#2013-xx-xx}
+## v0.4.2 {#r2014-10-02}
 
-<i class="icon-download icon-large"></i> [download this version](https://github.com/Polymer/polymer-all/releases/tag/v0.0.2013xxxx) or see the [full list of changes](https://github.com/Polymer/polymer/releases/tag/v0.0.2013xxxx).
+Released 2014-10-02. See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/0.4.2).
 
-### {{site.project_title}}
-
-#### General
-
-**Changes**
-
-**Features**
-
-#### Core
-
-### Elements & Projects
-
-#### polymer-elements
-
-#### polymer-ui-elements
-
-### Platform
-
-#### Custom Elements
-
-#### HTML Imports
-
-#### MDV
-
-#### Pointer Events
-
-#### Shadow DOM
-{% endcomment %}
+---
 
 ## v0.4.1 {#r2014-09-18}
 

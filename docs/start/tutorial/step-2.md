@@ -322,9 +322,9 @@ also try swapping the two `select=` attributes in `post-card.html`.
 
 <div layout horizontal justified class="stepnav">
 <a href="/docs/start/tutorial/step-1.html">
-  <paper-button icon="arrow-back" label="Step 1: Creating the app structure"></paper-button>
+  <paper-button><core-icon icon="arrow-back"></core-icon>Step 1: Creating the app structure</paper-button>
 </a>
 <a href="/docs/start/tutorial/step-3.html">
-  <paper-button icon="arrow-forward" label="Step 3: Using data binding" raisedButton></paper-button>
+  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Step 3: Using data binding</paper-button>
 </a>
 </div>
