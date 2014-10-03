@@ -25,6 +25,7 @@
     "x-tag-imports": "x-tag/x-tag-imports",
     "marked": "*",
     "highlightjs": "*",
+    "plunker-button": "robdodson/plunker-button#^0.4.1",
     "topeka": "Polymer/topeka"
   }
 }
