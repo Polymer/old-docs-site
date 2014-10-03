@@ -26,9 +26,6 @@ bower update
 # Update components and polyfills folder =====
 echo "=== Updating: components, polymer, polyfills, projects, and labs ==="
 
-# TODO(nevir): pull-all doesn't actually pull *everything* any more; the extra
-# args until polymer-* components are fully deprecated and the docs no longer
-#use them.
 ./polymer-all/tools/bin/pull-all.sh ./polymer-all/tools/repo-configs/deprecated.json ./scripts/website.json
 rm -rf polymer-all/projects/
 mv projects/ polymer-all/
@@ -37,19 +34,28 @@ cp -R js/bower_components/marked/ components/marked
 cp -R js/bower_components/plunker-button/ components/plunker-button
 cp -R js/bower_components/native-promise-only/ components/native-promise-only
 
+# Update topeka =====
+cd js/bower_components/topeka
+bower install --config.directory=components
+vulcanize --inline --strip index.html -o build.html
+rm -rf components # cleanup
+cd ../../../
+rm -rf polymer-all/projects/topeka/
+mv js/bower_components/topeka ./polymer-all/projects/
+
 # Update designer =====
 cd $DESIGNER_DIR
 echo "=== Updating designer ==="
 rm -rf components # If bower components dir exists, script hangs. Remove it first.
 bower install
 
-# Update topeka =====
-cd $TOPEKA_DIR
-echo "=== Updating Topeka ==="
-rm -rf components # If bower components dir exists, script hangs. Remove it first.
-bower install
-vulcanize --inline --strip index.html -o build.html
-rm -rf components # cleanup
+## Update topeka =====
+#cd $TOPEKA_DIR
+#echo "=== Updating Topeka ==="
+#rm -rf components # If bower components dir exists, script hangs. Remove it first.
+#bower install
+#vulcanize --inline --strip index.html -o build.html
+#rm -rf components # cleanup
 
 # Update tutorial
 cd $TUTORIAL_DIR
