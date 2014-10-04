@@ -195,7 +195,7 @@ To leverage Polymer's data-binding features outside of a `<polymer-element>`, we
 
 An auto-binding `<template>` allows us to use {%raw%}`{{}}`{%endraw%} bindings, [expressions](/docs/polymer/expressions.html), and [`on-*` declarative event handlers](/docs/polymer/polymer.html#declarative-event-mapping) inside the main page.
 
-You can greatly **reduce the amount of markup you write by generating it from a data model**. In our case, we can render all the menu items and pages with a pair of `<template repeat>`:
+You can greatly **reduce the amount of markup you write by generating it from a data model**. In our case, all the menu items and pages can be rendered with a pair of `<template repeat>`:
 
 {%raw%}
     <core-menu valueattr="hash" selected="{{route}}">
@@ -215,7 +215,7 @@ You can greatly **reduce the amount of markup you write by generating it from a 
     </core-animated-pages>
 {%endraw%}
 
-Which is fed by this data model:
+Which is driven by this data model:
 
     <script>
       var template = document.querySelector('#t');
@@ -246,9 +246,9 @@ their `selected` attributes** together. Now, when a user clicks on a nav item th
 
 ## URL routing &amp; deep linking
 
-[`<flatiron-director>`](https://github.com/PolymerLabs/flatiron-director) is a web component for URL routingt that wraps the [flatiron director JS library](https://github.com/flatiron/director). Settings its `route` property updates to URL hash to the same value.
+[`<flatiron-director>`](https://github.com/PolymerLabs/flatiron-director) is a web component for URL routingt that wraps the [flatiron director JS library](https://github.com/flatiron/director). Setting its `route` property updates the URL hash to the same value.
 
-For our SPA, we want to persist the last view across page reloads. Once again, data-binding comes in handle. Connect the director's `route` property with the menu and page so all three are in lock-step one one updates:
+We want to persist the last view across page reloads. Once again, data-binding comes in handle. Connecting the director with the menu and page elements put all three in lock-step. When one updates, the others do too.
 
 {%raw%}
     <flatiron-director route="{{route}}" autoHash>
@@ -267,25 +267,18 @@ For our SPA, we want to persist the last view across page reloads. Once again, d
 
 ## Keyboard navigation
 
-Good SPAs support keyboard navigation. It's important for [accessibility](/articles/accessible-web-components.html) but also makes the app feel more...appy :)
+Keyboard support is not only important for [accessibility](/articles/accessible-web-components.html), but it also makes an app feel more...appy!
 
-We can use [`<core-a11y-keys>`](/docs/elements/core-elements.html#core-a11y-keys), a component for normalizing browser keyboard handling.
-
-Set its `key` property to a space-separated list of keys/key combinations to listen for. When one of those keys are pressed, the `keys-pressed` event is fired: 
+[`<core-a11y-keys>`](/docs/elements/core-elements.html#core-a11y-keys) is a component for normalizing browser events and keyboard-enabling your SPA. Here's an example:
 
 {%raw%}
-    <core-a11y-keys id="keys"
-        keys="up down left right space space+shift"
-        on-keys-pressed="{{keyHandler}}"></core-a11y-keys>                 
+    <core-a11y-keys target="{{parentElement}}"
+                    keys="up down left right space space+shift"
+                    on-keys-pressed="{{keyHandler}}"></core-a11y-keys>                 
+              
 {%endraw%}
 
-Next, we set the `document` as the target for key presses:
-
-    template.addEventListener('template-bound', function(e) {
-      var keys = document.querySelector('#keys');
-      keys.target = document;
-      ...
-    };
+The target for events is data bound to the `parentElement` of the auto-binding template. In this case, that's `<body>`. T`key` attribute contains a space-separated list of keys to listen for. When one of those combinations is pressed, `<core-a11y-keys>` fires a `keys-pressed` event and invokes your callback:
 
     template.keyHandler = function(e, detail, sender) {
       var pages = document.querySelector('#pages');
@@ -305,9 +298,10 @@ Next, we set the `document` as the target for key presses:
       }
     };
 
-Whenever one of our key combinations is pressed, `keyHandler` gets called. Inside, I'm using `<core-animated-pages>`'s `selectPrevious`/`selectNext` API to go to the previous/next page.
+**Note** `keyHandler` uses `<core-animated-pages>`'s `selectPrevious`/`selectNext` API to go to the previous/next page.
+{: .alert .alert-info }
 
-## Dynamically loading content
+## Loading content on-demand
 
 Loading content on-demand can be a challenge.
 
@@ -340,10 +334,11 @@ If `<flatiron-director>` is not your cup of tea, checkout [`<app-router>`](https
     <app-route path="/order/:id" import="/pages/order-page.html"></app-route>
     <app-route path="*" import="/pages/not-found-page.html"></app-route>
 
-I personally like `<flatiron-director>` because it's simple works well with `<core-animated-pages>`. 
+I personally like `<flatiron-director>` because it's super simple works well with `<core-animated-pages>`. 
 
 ## Conclusion
 
-TODO
+By now you should understand the basic structure of building a single page app using Polymer and web components. Sure, it's bit different than building a tradition app, but ultimately,
+components make things simplier.
 
 {% include disqus.html %}

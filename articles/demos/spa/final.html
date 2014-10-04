@@ -16,7 +16,8 @@
   <flatiron-director route="{{route}}" autoHash></flatiron-director>
 
   <!-- Keyboard nav controller. -->
-  <core-a11y-keys id="keys" keys="up down left right space space+shift"
+  <core-a11y-keys id="keys" target="{{parentElement}}"
+                  keys="up down left right space space+shift"
                   on-keys-pressed="{{keyHandler}}"></core-a11y-keys>                 
 
   <core-scaffold id="scaffold">

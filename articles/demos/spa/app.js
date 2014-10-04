@@ -16,8 +16,6 @@ template.pages = [
 template.addEventListener('template-bound', function(e) {
   var keys = document.querySelector('#keys');
 
-  keys.target = document;
-
   // Allow selecting pages by num keypad. Dynamically add
   // [1, template.pages.length] to key mappings.
   var keysToAdd = Array.apply(null, template.pages).map(function(x, i) {
