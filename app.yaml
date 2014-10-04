@@ -112,7 +112,6 @@ handlers:
   static_dir: components
   http_headers:
     Access-Control-Allow-Origin: "*"
-  secure: always
 
 # All other URLs map directly to their path in _site/.
 - url: /
