@@ -12,7 +12,7 @@ description: How to building a mobile Polymer app that runs in a WebView.
 published: 2014-09-22
 #updated: 2014-09-22
 author: ebidel
-polymer_version: 0.4.1
+polymer_version: 0.4.2
 
 tags:
 - WebView
@@ -280,7 +280,7 @@ public class MyActivity extends Activity {
 
 2. Use [Vulcanize](/articles/concatenating-web-components.html) to crush your HTML Imports into a single import. Doing so can reduce page load time. I recommend running Vulcanize with the `--csp --inline --strip` flags.
 
-3. Only load the platform.js polyfills if you're **not** targeting Android L or using Crosswalk for its Chrome 36+ WebView support.
+3. Only load the platform.js polyfills if you're targeting releases prior to Android L, *and* you're not using Crosswalk.
 
 4. Use `on-tap` event instead of `on-click` handlers when capturing user interactions. Click handlers introduce 300ms delay to user interactions. `on-tap` uses [polymer-gestures](/docs/polymer/touch.html) touch library and circumvents the delay.
 
