@@ -385,7 +385,7 @@ a default style of `display: block` using `:host`.
     <polymer-element name="my-element">
       <template>
         <style>
-          :host { * { display: block; } }
+          :host { display: block; }
         </style>
         ...
       </template>
