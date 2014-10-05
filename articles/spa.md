@@ -8,9 +8,9 @@ subtitle: The Polymer approach to building single page applications
 
 article:
   author: ebidel
-  published: 2014-10-01
-  #updated: 2014-10-01
-  polymer_version: 0.4.1
+  published: 2014-10-06
+  #updated: 2014-10-06
+  polymer_version: 0.4.2
   description: The Polymer approach to building single page applications
 tags:
 - routing
@@ -32,24 +32,25 @@ paper-button.blue:hover {
 
 {% include toc.html %}
 
-So how does one build a single page application (SPA) using web components? On the Polymer team we get this question a lot. Our answer (as always) is,..."Use components!" However, it's never obvious to folks how a bunch of modular components can compose together into a larger, functional app. The goal of those tutorial is to help you 
+So how does one build a single page application (SPA) using web components? On the Polymer team we get this question a lot. Our answer (as always) is,..."use components!" However, it's never immediately obvious how to tackle an existing problem with new technologies. How do you compose a bunch of modular components into a larger, functional app?
 
 <p layout vertical center style="float:right;margin: 0 0 0 10px;">
   <a href="demos/spa/final.html" target="_blank"><img src="images/spa/screenshot.png" style="width:300px;"></a>
 </p>
 
-In this tutorial, we'll build a full-featured single page app:
+In this tutorial, I'll show you how to build a full-featured single page application:
 
 - Built entirely using Polymer's [core elements](/docs/elements/core-elements.html)
 - Responsive
 - Transitions between views using data-binding features
 - URL routing and deep linking
 - Keyboard accessible
+- Loads content dynamically on-demand (optional)
 
 <p layout vertical center-center>
 <a href="demos/spa/final.html" target="_blank">
   <paper-button raised class="blue">
-    <core-icon icon="arrow-forward"></core-icon>Open the demo
+    <core-icon icon="arrow-forward"></core-icon>Launch the demo
   </paper-button>
 </a>
 </p>
@@ -57,10 +58,12 @@ In this tutorial, we'll build a full-featured single page app:
 ## App structure
 {:style="clear:both"}
 
-Designing a layout is one of your first tasks when starting a project. As part of its [core element collection](/docs/elements/core-elements.html), Polymer
-has several [layout elements](/docs/elements/layout-elements.html) (`<core-header-panel>`, `<core-drawer-panel>`, `<core-toolbar>`) for scaffolding an application's structure. These components are useful by themselves, but for an even quicker start, check out `<core-scaffold>`. It starts you off with a responsive, mobile layout by assembling several of the foundational elements.
+Designing a layout is one of the first tasks when starting a project. As part of its [core element collection](/docs/elements/core-elements.html), Polymer
+has several [layout elements](/docs/elements/layout-elements.html) (`<core-header-panel>`, `<core-drawer-panel>`, `<core-toolbar>`) for scaffolding an application's structure. These components are useful by themselves, but for an even quicker start, we're going to focus on `<core-scaffold>`. It starts you off with a responsive mobile layout by assembling several of the foundational elements.
 
 `<core-scaffold>`'s children are arranged by specifying attributes and/or using specific tags. For example, using a `<nav>` element creates the app drawer. Alternatively, you can use the `navigation` attribute on any element (e.g `<core-header-panel navigation>`). The toolbar is designated with the `tool` attribute. All other children end up in the main content area.
+
+**Example** 
 
 <pre>
 &lt;body unresolved fullbleed&gt;
@@ -76,8 +79,8 @@ Let's dive deeper on each of these sections.
 
 ### Drawer
 
-Markup that you put in the chosen navigation element end up in a slide-away app drawer.
-For our purposes, we'll stick with a heading `<core-toolbar>` and `<core-menu>` of navigational links:
+Markup that you put in the navigation element end up in a slide-away app drawer.
+For our purposes, we'll stick with a heading (`<core-toolbar>`) and navigational links (`<core-menu>`):
 
     <nav>
       <core-toolbar><span>Single Page Polymer</span></core-toolbar>
@@ -92,12 +95,12 @@ For our purposes, we'll stick with a heading `<core-toolbar>` and `<core-menu>` 
       </core-menu>
     </nav>
 
-**Note** Right now, `<core-menu selected="0">` is hardcoded to select the first item. We'll make that dynamic later.
+**Note** Right now, `<core-menu selected="0">` is hardcoded to select the first item. We'll [make that dynamic](#databinding) later.
 {: .alert .alert-info }
 
 ### Toolbar
 
-The toolbar spans the top of the page and contains functional icon buttons. A perfect
+A toolbar spans the top of the page and contains functional icon buttons. A perfect
 element for that type of behavior is `<core-toolbar>`:
 
     <core-toolbar tool flex> <!-- flex makes the bar span across the top -->
@@ -118,14 +121,14 @@ The `fit` attribute instructs the main area to take up the full width/height of 
 
 ## Creating "views"
 
-You can create multiple views (or pages) within an app by using `<core-pages>` or `<core-animated-pages>`. Both of these elements are useful for displaying only one of their children at a time. The benefit of `<core-animated-pages>` is that it provides more defaults and sexy transitions.
+Multiple views (or pages) can be created with `<core-pages>` or `<core-animated-pages>`. Both elements are useful for displaying only one child at a time. The benefit of `<core-animated-pages>` is that it provides more defaults and sexy transitions between pages.
 
-Since the demo uses the `slide-from-right` transition, the first thing to do is import the element definition _and_ the the `slide-from-right` transition:
+The demo SPA uses `<core-animated-pages>` with the `slide-from-right` transition. The first thing to do is import the element definition _and_ the `slide-from-right` transition:
 
     <link rel="import" href="components/core-animated-pages/core-animated-pages.html">
     <link rel="import" href="components/core-animated-pages/transitions/slide-from-right.html">
 
-and drop in your content:
+then drop in your content:
 
 <pre>
 &lt;div layout horizontal center-center fit&gt;
@@ -141,27 +144,27 @@ and drop in your content:
 &lt;/div&gt;
 </pre>
 
-**Note** Right now, `<core-animated-pages selected="0">` is hardcoded to select the first page. We'll make that dynamic later.
+**Note** Right now, `<core-animated-pages selected="0">` is hardcoded to select the first page. We'll [make that dynamic](#databinding) later.
 {: .alert .alert-info }
 
-By now you should have <a href="demos/spa/example1.html" target="_blank">a basic app</a>, but **there's something subtle to notice**. Thanks to Polymer's [layout attributes](/docs/polymer/layout-attrs.html) and the [default styles](/articles/styling-elements.html#default-styles) provided by each element, **you've achieved a responsive app without writing a lick of CSS**! Of course, with a little inspiration from the [material design color palette](http://www.google.com/design/spec/style/color.html), [less than 10 CSS rules](demos/spa/styles.css) turns the app into something beautiful.
+By now you should have <a href="demos/spa/example1.html" target="_blank">a basic app</a>, but there's **something subtle to notice**. Thanks to Polymer's [layout attributes](/docs/polymer/layout-attrs.html) and the [default styles](/articles/styling-elements.html#default-styles) provided by each element, we've **achieved a responsive app without writing a lick of CSS**! Of course, with a little inspiration from the [material design color palette](http://www.google.com/design/spec/style/color.html), [less than 10 CSS rules](demos/spa/styles.css) turns the app into something beautiful.
 
 <p layout horizontal center-center>
 <a href="demos/spa/example1.html" target="_blank">
   <paper-button raised class="blue">
-    <core-icon icon="arrow-forward"></core-icon>See it in action: without CSS
+    <core-icon icon="arrow-forward"></core-icon>Demo: without CSS
   </paper-button>
 </a>
 <a href="demos/spa/example1-style.html" target="_blank">
   <paper-button raised class="blue">
-    <core-icon icon="arrow-forward"></core-icon>See it in action: with CSS
+    <core-icon icon="arrow-forward"></core-icon>Demo: with CSS
   </paper-button>
 </a>
 </p>
 
-### Using data binding to simplify markup
+### Using data binding {#databinding}
 
-At this point, we have an app but it's nothing to write home about. The app is not DRY. Similar markup is repeated all over the place:
+We have an app, but it's nothing to write home about. It's far from DRY. Similar markup is repeated all over the place:
 
     <nav>
       <core-menu selected="0">
@@ -178,10 +181,11 @@ At this point, we have an app but it's nothing to write home about. The app is n
       </core-menu>
     </nav>
 
-The app is also not dynamic. When a user selects a menu item the view doesn't update.
-Luckily, both of these problems are easily solved with Polymer's [data binding features](/docs/polymer/databinding.html).
+It's also not dynamic. When a user selects a menu item the view doesn't update. Luckily, both of these problems are easily solved with Polymer's [data binding features](/docs/polymer/databinding.html). 
 
-To leverage Polymer's data-binding features outside of a `<polymer-element>`, we can wrap our app inside an auto-binding `<template>`:
+#### Auto-binding template {#autobinding}
+
+To leverage data-binding outside of a `<polymer-element>`, Wrap Yo App&#0153; inside an auto-binding `<template>`:
 
 <pre>
 &lt;body unresolved fullbleed>
@@ -193,7 +197,10 @@ To leverage Polymer's data-binding features outside of a `<polymer-element>`, we
 &lt;/body>
 </pre>
 
-An auto-binding `<template>` allows us to use {%raw%}`{{}}`{%endraw%} bindings, [expressions](/docs/polymer/expressions.html), and [`on-*` declarative event handlers](/docs/polymer/polymer.html#declarative-event-mapping) inside the main page.
+**Tip** An auto-binding `<template>` allows us to use {%raw%}`{{}}`{%endraw%} bindings, [expressions](/docs/polymer/expressions.html), and [`on-*` declarative event handlers](/docs/polymer/polymer.html#declarative-event-mapping) inside the main page.
+{: .alert .alert-info}
+
+#### Simplifying the markup using a data model {#datamodel}
 
 You can greatly **reduce the amount of markup you write by generating it from a data model**. In our case, all the menu items and pages can be rendered with a pair of `<template repeat>`:
 
@@ -223,13 +230,12 @@ Which is driven by this data model:
         {name: 'Single', hash: 'one'},
         {name: 'page', hash: 'two'},
         {name: 'app', hash: 'three'},
-        {name: 'using', hash: 'four'},
-        {name: 'Polymer', hash: 'five'}
+        ...
       ];
     </script>
 
 Notice that `<core-animated-pages>` and `<core-menu>` are **linked by binding
-their `selected` attributes** together. Now, when a user clicks on a nav item the view updates accordingly. The `valueattr="hash"` tells both elements to use the `hash` attribute as the selected value.
+their `selected` attributes** together. Now, when a user clicks on a nav item the view updates accordingly. The `valueattr="hash"` tells both elements to use the `hash` attribute on each item as the selected value.
 
 {%raw%}
     <!-- data-bind the menu selection with the page selection -->
@@ -240,15 +246,15 @@ their `selected` attributes** together. Now, when a user clicks on a nav item th
 
 <a href="demos/spa/example2.html" target="_blank">
   <paper-button raised class="blue">
-    <core-icon icon="arrow-forward"></core-icon>See it in action
+    <core-icon icon="arrow-forward"></core-icon>Demo
   </paper-button>
 </a>
 
-## URL routing &amp; deep linking
+## URL routing &amp; deep linking {#routing}
 
-[`<flatiron-director>`](https://github.com/PolymerLabs/flatiron-director) is a web component for URL routingt that wraps the [flatiron director JS library](https://github.com/flatiron/director). Setting its `route` property updates the URL hash to the same value.
+[`<flatiron-director>`](https://github.com/PolymerLabs/flatiron-director) is a web component for routing that wraps the [flatiron director JS library](https://github.com/flatiron/director). Changing its `route` property updates the URL hash to the same value.
 
-We want to persist the last view across page reloads. Once again, data-binding comes in handle. Connecting the director with the menu and page elements put all three in lock-step. When one updates, the others do too.
+We want to persist the last view across page reloads. Once again, data-binding comes in handy. Connecting the director, menu, and page elements put all three in lock-step. When one updates, the others do too.
 
 {%raw%}
     <flatiron-director route="{{route}}" autoHash>
@@ -265,11 +271,24 @@ We want to persist the last view across page reloads. Once again, data-binding c
       this.route = this.route || DEFAULT_ROUTE;
     };
 
-## Keyboard navigation
+### Alternative routing libs {#routinglibs}
 
-Keyboard support is not only important for [accessibility](/articles/accessible-web-components.html), but it also makes an app feel more...appy!
+If `<flatiron-director>` is not your cup of tea, check out [`<app-router>`](https://github.com/erikringsmuth/app-router). It can do more complex routing (wildcards, HTML5 History API, dynamic content).
 
-[`<core-a11y-keys>`](/docs/elements/core-elements.html#core-a11y-keys) is a component for normalizing browser events and keyboard-enabling your SPA. Here's an example:
+**Example**
+
+    <app-route path="/home" import="/pages/home-page.html"></app-route>
+    <app-route path="/customer/*" import="/pages/customer-page.html"></app-route>
+    <app-route path="/order/:id" import="/pages/order-page.html"></app-route>
+    <app-route path="*" import="/pages/not-found-page.html"></app-route>
+
+I personally like `<flatiron-director>` because it's simple and works well with `<core-animated-pages>`. 
+
+## Keyboard navigation {#keyboard}
+
+Keyboard support is not only important for [accessibility](/articles/accessible-web-components.html) but it'll also make your SPA feel...more appy!
+
+[`<core-a11y-keys>`](/docs/elements/core-elements.html#core-a11y-keys) is a drop-in component for normalizing browser keyboard events and can be used to add keyboard support to your app. Here's an example:
 
 {%raw%}
     <core-a11y-keys target="{{parentElement}}"
@@ -278,7 +297,12 @@ Keyboard support is not only important for [accessibility](/articles/accessible-
               
 {%endraw%}
 
-The target for events is data bound to the `parentElement` of the auto-binding template. In this case, that's `<body>`. T`key` attribute contains a space-separated list of keys to listen for. When one of those combinations is pressed, `<core-a11y-keys>` fires a `keys-pressed` event and invokes your callback:
+**Notes**
+
+- The `target` for events is data bound to the `parentElement` of our auto-binding template. In this case, that's `<body>`.
+- The `key` attribute contains a space-separated list of keys to listen for. When one of those combinations is pressed, `<core-a11y-keys>` fires a `keys-pressed` event and invokes your callback.
+
+The handler for the `keys-pressed` uses `<core-animated-pages>`'s `selectNext`/`selectPrevious` API to advance to the next page or go back to the previous page:
 
     template.keyHandler = function(e, detail, sender) {
       var pages = document.querySelector('#pages');
@@ -298,47 +322,98 @@ The target for events is data bound to the `parentElement` of the auto-binding t
       }
     };
 
-**Note** `keyHandler` uses `<core-animated-pages>`'s `selectPrevious`/`selectNext` API to go to the previous/next page.
-{: .alert .alert-info }
+## Loading content on-demand {#ajax}
 
-## Loading content on-demand
+What if you want to load content dynamically as a user navigates your app? With just a couple of changes, we can support dynamically loaded pages.
 
-Loading content on-demand can be a challenge.
+First, update the data model to include content URLs:
 
-## Extra polish
+    template.pages = [
+      {name: 'Intro', hash: 'one', url: '/tutorial/intro.html'},
+      {name: 'Step 1', hash: 'two', url: '/tutorial/step-1.html'},
+      ...
+    ];
+
+Then change the menu links to point at  `page.url` instead of the hash:
+
+{%raw%}
+<pre>
+&lt;paper-item label="{{page.name}}" hash="{{page.hash}}">
+  <b>&lt;a href="{{page.url}}">&lt;/a></b>
+&lt;/paper-item>
+</pre>
+{%endraw%}
+
+The last pieces is to use our good buddy `<core-ajax>` for fetching the content:
+
+{%raw%}
+<pre>
+&lt;core-ajax id="ajax" auto <b>url="{{selectedPage.page.url}}"</b>
+           <b>handleAs="document"</b> on-core-response="{{onResponse}}">
+&lt;/core-ajax>
+</pre>
+{%endraw%}
+
+You can think of `<core-ajax>` as a content controller. Its `url` attribute is data-bound to `selectedPage.page.url`, which means that whenever a new menu item is selected, an XHR fires off to fetch that page. When `core-response` fires, `onResponse` injects a portion of the returned `document` into its placeholder container:
+
+<pre>
+template.onResponse = function(e, detail, sender) {
+  var article = detail.response.querySelector('scroll-area article');
+
+  var pages = document.querySelector('#pages');
+  <b>this.injectBoundHTML(article.innerHTML,
+                       pages.selectedItem.firstElementChild);</b>
+};
+</pre>
+
+<a href="demos/spa/example-ajax.html" target="_blank">
+  <paper-button raised class="blue">
+    <core-icon icon="arrow-forward"></core-icon>AJAX Demo
+  </paper-button>
+</a>
+
+## Polish and finishing touches {#extras}
 
 When a menu item is selected, close the app drawer:
 
 {%raw%}
     <core-menu ... on-core-select="{{menuItemSelected}}">
-
-    template.menuItemSelected = function(e, detail, sender) {
-      if (detail.isSelected) {
-        document.querySelector('#scaffold').closeDrawer();
-      }
-    };
 {%endraw%}
+
+<pre>
+template.menuItemSelected = function(e, detail, sender) {
+  if (detail.isSelected) {
+    scaffold.closeDrawer();
+  }
+};
+</pre>
 
 Render a different icon for the selected nav item:
 
 {%raw%}
-  <paper-item icon="label{{route != page.hash ? '-outline' : ''}}"...>
+    <paper-item icon="label{{route != page.hash ? '-outline' : ''}}"...>
 {%endraw%}
 
-## Alternative routing libs
+Tapping on a page cycles through the pages:
 
-If `<flatiron-director>` is not your cup of tea, checkout [`<app-router>`](https://github.com/erikringsmuth/app-router). It can do more complex routing with wildcards, has HTML5 History API support, and can load content on demand:
+{%raw%}
+    <core-animated-pages ... on-tap="{{cyclePages}}">
+{%endraw%}
 
-    <app-route path="/home" import="/pages/home-page.html"></app-route>
-    <app-route path="/customer/*" import="/pages/customer-page.html"></app-route>
-    <app-route path="/order/:id" import="/pages/order-page.html"></app-route>
-    <app-route path="*" import="/pages/not-found-page.html"></app-route>
-
-I personally like `<flatiron-director>` because it's super simple works well with `<core-animated-pages>`. 
+<pre>
+template.cyclePages = function(e, detail, sender) {
+  // If click was on a link, navigate and don't cycle page.
+  if (e.path[0].localName == 'a') {
+    return;
+  }
+  e.shiftKey ? sender.selectPrevious(true) :
+               sender.selectNext(true);
+};
+</pre>
 
 ## Conclusion
 
-By now you should understand the basic structure of building a single page app using Polymer and web components. Sure, it's bit different than building a tradition app, but ultimately,
-components make things simplier.
+By now you should understand the basic structure of building a single page app using Polymer and web components. It may feel a bit different than building a tradition app, but ultimately,
+components make things a lot simpler. When you reuse (core) elements and leverage Polymer's data-binding features, the amount of CSS/JS you have to wire up is minimal. Writing less code feels good!
 
 {% include disqus.html %}

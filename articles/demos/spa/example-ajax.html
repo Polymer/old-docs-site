@@ -8,7 +8,7 @@
   <link rel="import" href="elements.html">
   <link rel="import" href="/components/core-ajax/core-ajax.html">
   <link rel="stylesheet" href="styles.css" shim-shadowdom>
-  <link rel="stylesheet" href="/docs/start/tutorial/tutorial.css">
+  <!-- <link rel="stylesheet" href="/docs/start/tutorial/tutorial.css"> -->
   <base target="_blank"></base>
   <style>
     core-animated-pages > *  {
@@ -29,10 +29,9 @@
   <core-a11y-keys id="keys" target="{{parentElement}}"
                   keys="up down left right space space+shift"
                   on-keys-pressed="{{keyHandler}}"></core-a11y-keys>                 
-               
 
-  <!-- Content controll -->
-  <core-ajax id="ajax" auto handleAs="document"
+  <!-- Dynamic content controller -->
+  <core-ajax id="ajax" url="{{selectedPage.page.url}}" handleAs="document"
              on-core-response="{{onResponse}}"></core-ajax>
 
   <core-scaffold id="scaffold">
@@ -41,7 +40,9 @@
       <core-toolbar>
         <span>Polymer Tutorial SPA</span>
       </core-toolbar>
-      <core-menu id="menu" valueattr="hash" selected="{{route}}" selectedItem="{{selectedPage}}"
+      <core-menu id="menu" valueattr="hash"
+                 selected="{{route}}"
+                 selectedModel="{{selectedPage}}"
                  on-core-select="{{menuItemSelected}}" on-click="{{ajaxLoad}}">
         <template repeat="{{page, i in pages}}">
           <paper-item icon="label{{route != page.hash ? '-outline' : ''}}"
@@ -53,7 +54,7 @@
     </nav>
 
     <core-toolbar tool flex>
-      <div flex>{{selectedPage.label}}</div>
+      <div flex>{{selectedPage.name}}</div>
       <core-icon-button icon="refresh"></core-icon-button>
       <core-icon-button icon="add"></core-icon-button>
     </core-toolbar>
@@ -74,56 +75,7 @@
 
 </template>
 
-<script src="app.js"></script>
-<script>
-var template = document.querySelector('#t');
-var ajax;
-var cache = {};
-
-template.pages = [
-  {name: 'Intro', hash: 'one', url: '/docs/start/tutorial/intro.html'},
-  {name: 'Step 1', hash: 'two', url: '/docs/start/tutorial/step-1.html'},
-  {name: 'Step 2', hash: 'three', url: '/docs/start/tutorial/step-2.html'},
-  {name: 'Step 3', hash: 'four', url: '/docs/start/tutorial/step-3.html'},
-  {name: 'Step 4', hash: 'five', url: '/docs/start/tutorial/step-4.html'},
-];
-
-template.addEventListener('template-bound', function(e) {
-  // Wait on rAF so app.js's template-bound has fired and the menu's
-  // selectedModel is populated.
-  template.async(function() {
-    ajax = document.querySelector('#ajax');
-    ajax.url = document.querySelector('#menu').selectedModel.page.url;
-  });
-});
-
-template.menuItemSelected = function(e, detail, sender) {
-  if (detail.isSelected && ajax) {
-    //var url = detail.item.templateInstance.model.page.url;
-    var url = detail.item.firstElementChild.href;
-
-    if (!cache[url]) {
-      ajax.url = url;
-    }
-
-    document.querySelector('#scaffold').closeDrawer();
-  }
-};
-
-template.ajaxLoad = function(e, detail, sender) {
-  e.preventDefault(); // prevent link navigation.
-};
-
-template.onResponse = function(e, detail, sender) {
-  var article = detail.response.querySelector('scroll-area article');
-  var html = article.innerHTML;
-
-  cache[detail.xhr.responseURL] = html;
-
-  var pages = document.querySelector('#pages');
-  this.injectBoundHTML(html, pages.selectedItem.firstElementChild);
-};
-</script>
+<script src="app-ajax.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

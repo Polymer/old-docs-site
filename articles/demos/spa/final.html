@@ -26,7 +26,7 @@
       <core-toolbar>
         <span>Single Page Polymer</span>
       </core-toolbar>
-      <core-menu valueattr="hash" selected="{{route}}" selectedItem="{{selectedPage}}"
+      <core-menu valueattr="hash" selected="{{route}}" selectedModel="{{selectedPage}}"
                  on-core-select="{{menuItemSelected}}">
         <template repeat="{{page, i in pages}}">
           <paper-item icon="label{{route != page.hash ? '-outline' : ''}}"
