@@ -9,7 +9,7 @@ We use Jekyll 2.0+ and [Grunt][grunt] to generate the documentation, and compass
 
 **Note:** If you receive permission warnings, you may need to run the above tasks with `sudo`.
 
-You'll also need the App Engine SDK to run the dev_appserver and preview the docs locally. [Download the SDK](https://developers.google.com/appengine/downloads).
+You'll also need the Python App Engine SDK to run the dev_appserver and preview the docs locally. [Download the SDK](https://developers.google.com/appengine/downloads).
 
 
 ### Check out the documentation
