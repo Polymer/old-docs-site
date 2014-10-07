@@ -61,9 +61,9 @@ template.menuItemSelected = function(e, detail, sender) {
 
     // Need to wait one rAF so <core-ajax> has it's URL set.
     this.async(function() {
-     if (!cache[ajax.url]) {
-       ajax.go();
-     }
+      if (!cache[ajax.url]) {
+        ajax.go();
+      }
 
       scaffold.closeDrawer();
     });

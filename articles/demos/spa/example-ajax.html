@@ -8,7 +8,6 @@
   <link rel="import" href="elements.html">
   <link rel="import" href="/components/core-ajax/core-ajax.html">
   <link rel="stylesheet" href="styles.css" shim-shadowdom>
-  <!-- <link rel="stylesheet" href="/docs/start/tutorial/tutorial.css"> -->
   <base target="_blank"></base>
   <style>
     core-animated-pages > *  {
@@ -61,11 +60,10 @@
 
     <div layout horizontal center-center fit>
       <core-animated-pages id="pages" selected="{{route}}" valueattr="hash"
-                           transitions="slide-from-right"
-                           on-tap="{{cyclePages}}">
+                           transitions="slide-from-right">
         <template repeat="{{page, i in pages}}">
           <section hash="{{page.hash}}" layout vertical center-center>
-            <div style="max-width:100%;">{{page.name}}</div>
+            <div style="max-width:100%;">Loading...</div>
           </section>
         </template>
       </core-animated-pages>

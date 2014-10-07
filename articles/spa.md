@@ -38,7 +38,7 @@ So how does one build a single page application (SPA) using web components? On t
   <a href="demos/spa/final.html" target="_blank"><img src="images/spa/screenshot.png" style="width:300px;"></a>
 </p>
 
-In this tutorial, I'll show you how to build a full-featured single page application:
+In this tutorial, I'll show you how to build a full-featured single page application that's:
 
 - Built entirely using Polymer's [core elements](/docs/elements/core-elements.html)
 - Responsive
@@ -79,7 +79,7 @@ Let's dive deeper on each of these sections.
 
 ### Drawer
 
-Markup that you put in the navigation element end up in a slide-away app drawer.
+Markup that you put in the navigation element ends up in a slide-away app drawer.
 For our purposes, we'll stick with a heading (`<core-toolbar>`) and navigational links (`<core-menu>`):
 
     <nav>
@@ -123,7 +123,7 @@ The `fit` attribute instructs the main area to take up the full width/height of 
 
 Multiple views (or pages) can be created with `<core-pages>` or `<core-animated-pages>`. Both elements are useful for displaying only one child at a time. The benefit of `<core-animated-pages>` is that it provides more defaults and sexy transitions between pages.
 
-The demo SPA uses `<core-animated-pages>` with the `slide-from-right` transition. The first thing to do is import the element definition _and_ the `slide-from-right` transition:
+The demo uses `<core-animated-pages>` with the `slide-from-right` transition. The first thing to do is import the element definition _and_ the `slide-from-right` transition:
 
     <link rel="import" href="components/core-animated-pages/core-animated-pages.html">
     <link rel="import" href="components/core-animated-pages/transitions/slide-from-right.html">
