@@ -38,13 +38,13 @@ So how does one build a single page application (SPA) using web components? On t
   <a href="demos/spa/final.html" target="_blank"><img src="images/spa/screenshot.png" style="width:300px;"></a>
 </p>
 
-In this tutorial, I'll show you how to build a full-featured single page application that's:
+In this tutorial, I'll show you how to build a full-featured single page application that:
 
-- Built entirely using Polymer's [core elements](/docs/elements/core-elements.html)
-- Responsive
+- Is built entirely using Polymer's [core elements](/docs/elements/core-elements.html)
+- Practices eesponsive design
 - Transitions between views using data-binding features
-- URL routing and deep linking
-- Keyboard accessible
+- Features URL routing and deep linking
+- Is keyboard accessible
 - Loads content dynamically on-demand (optional)
 
 <p layout vertical center-center>
@@ -189,7 +189,7 @@ To leverage data-binding outside of a `<polymer-element>`, Wrap Yo App&#0153; in
 
 <pre>
 &lt;body unresolved fullbleed>
-  <b>&lt;template is="auto-binding" id="t"></b>
+  <b>&lt;template is="auto-binding"></b>
     &lt;core-scaffold id="scaffold">
       ...
     &lt;/core-scaffold>
@@ -225,7 +225,7 @@ You can greatly **reduce the amount of markup you write by generating it from a 
 Which is driven by this data model:
 
     <script>
-      var template = document.querySelector('#t');
+      var template = document.querySelector('template[is="auto-binding"]');
       template.pages = [
         {name: 'Single', hash: 'one'},
         {name: 'page', hash: 'two'},
