@@ -252,18 +252,27 @@ techniques like anonymous self-calling functions:
 
 ### Supporting global variables {#global}
 
-There are times when you may like to define properties of an application globally once and then make them available inside all of your elements. For example, you may want to define configuration information and then reference them inside individual components. You may want one single easing curve for all animations. We may want to store information like the currently logged-in user that we consider "global".
+There are times when you may want to define properties of an application globally,
+and then make them available inside all of your elements. For example:
 
-To achieve this, you can use the [MonoState Pattern](http://c2.com/cgi/wiki?MonostatePattern). When defining a {{site.project_title}} element, define a closure that closes over the variables in question, and then provide accessors on the object's prototype or copy them over to individual instances in the constructor.
+- A single easing curve for all animations. 
+- Information about the currently logged-in user that you consider "global".
+
+To achieve this, you can use the [MonoState Pattern](http://c2.com/cgi/wiki?MonostatePattern). 
+When defining a {{site.project_title}} element, define a closure that closes over the variables 
+in question, and then provide accessors on the object's prototype or copy them over to individual 
+instances in the `ready` callback.
 
     <polymer-element name="app-globals">
       <script>
       (function() {
+        // these variables are shared by all instances of app-globals
         var firstName = 'John';
         var lastName = 'Smith';
 
         Polymer({
            ready: function() {
+             // copy global values into instance properties
              this.firstName = firstName;
              this.lastName = lastName;
            }
@@ -272,18 +281,21 @@ To achieve this, you can use the [MonoState Pattern](http://c2.com/cgi/wiki?Mono
       </script>
     </polymer-element>
 
-Then use the element as you would any other, and data-bind it to a property that you can use to access it through {{site.project_title}}'s data-binding:
+Then use the `<app-globals>` element as you would any other. You can access its properties 
+using {{site.project_title}} data binding or plain JavaScript:
 
     <polymer-element name="my-component">
       <template>
         <app-globals id="globals"></app-globals>
-        <div id="firstname">{{globals.firstName}}</div>
-        <div id="lastname">{{globals.lastName}}</div>
+        <div id="firstname">{%raw%}{{$.globals.firstName}}{%endraw%}</div>
+        <div id="lastname">{%raw%}{{$.globals.lastName}}{%endraw%}</div>
       </template>
       <script>
         Polymer({
-          ready: function() { this.globals = this.$.globals; }
-         });
+          ready: function() { 
+            console.log('Last name: ' + this.$.globals.lastName); 
+          }
+        });
       </script>
     </polymer-element>
 
@@ -310,8 +322,17 @@ A slight tweak of this approach lets you configure the value of the globals exte
 
 The main page configures the globals by passing attributes:
 
-    <app-globals firstName="Addy" lastName="Osmani"></app-globals>
+    <app-globals firstname="Addy" lastname="Osmani"></app-globals>
 
+This second version of `app-globals` has a slightly different API than
+the first. The global variables are properties of the `values` object instead of 
+direct properties of `app-globals`. Setting values using attributes imposes two 
+limitations: the values must be strings, and the variable names are lowercase.
+(See [Attribute case sensitivity](#attrcase) for more information.) 
+
+To use this `<app-globals>` element with the previous `<my-component>` example,
+you'd need to update the paths that refer to the global variables (for example 
+`$.globals.values.lastname` instead of `$.globals.lastName`).
 
 ### Element lifecycle methods {#lifecyclemethods}
 
