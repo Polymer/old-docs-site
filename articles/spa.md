@@ -8,8 +8,8 @@ subtitle: The Polymer approach to building single page applications
 
 article:
   author: ebidel
-  published: 2014-10-06
-  #updated: 2014-10-06
+  published: 2014-10-14
+  #updated: 2014-10-14
   polymer_version: 0.4.2
   description: The Polymer approach to building single page applications
 tags:
@@ -32,7 +32,7 @@ paper-button.blue:hover {
 
 {% include toc.html %}
 
-So how does one build a single page application (SPA) using web components? On the Polymer team we get this question a lot. Our answer (as always) is,..."use components!" However, it's never immediately obvious how to tackle an existing problem with new technologies. How do you compose a bunch of modular components into a larger, functional app?
+So how does one build a single page application (SPA) using web components? On the Polymer team we get this question a lot. Our answer (as always) is..."use components!" However, it's never immediately obvious how to tackle an existing problem with new technologies. How do you compose a bunch of modular components into a larger, functional app?
 
 <p layout vertical center style="float:right;margin: 0 0 0 10px;">
   <a href="demos/spa/final.html" target="_blank"><img src="images/spa/screenshot.png" style="width:300px;"></a>
@@ -41,7 +41,7 @@ So how does one build a single page application (SPA) using web components? On t
 In this tutorial, I'll show you how to build a full-featured single page application that:
 
 - Is built entirely using Polymer's [core elements](/docs/elements/core-elements.html)
-- Practices eesponsive design
+- Practices responsive design
 - Transitions between views using data-binding features
 - Features URL routing and deep linking
 - Is keyboard accessible
@@ -95,7 +95,7 @@ For our purposes, we'll stick with a heading (`<core-toolbar>`) and navigational
       </core-menu>
     </nav>
 
-**Note** Right now, `<core-menu selected="0">` is hardcoded to select the first item. We'll [make that dynamic](#databinding) later.
+**Note** Right now, `<core-menu selected="0">` is hard-coded to select the first item. We'll [make that dynamic](#databinding) later.
 {: .alert .alert-info }
 
 ### Toolbar
@@ -117,7 +117,7 @@ The last section is left for your content! It can be any type of element. A `<di
       <!-- fill with pages -->
     </div>
 
-The `fit` attribute instructs the main area to take up the full width/height of its parent and `layout horizontal center-center` horizontally/vertically centers that content using flexbox.
+The `fit` attribute instructs the main area to take up the full width/height of its parent and `layout horizontal center-center` centers that content horizontally and vertically using flexbox.
 
 ## Creating "views"
 
@@ -144,7 +144,7 @@ then drop in your content:
 &lt;/div&gt;
 </pre>
 
-**Note** Right now, `<core-animated-pages selected="0">` is hardcoded to select the first page. We'll [make that dynamic](#databinding) later.
+**Note** Right now, `<core-animated-pages selected="0">` is hard-coded to select the first page. We'll [make that dynamic](#databinding) later.
 {: .alert .alert-info }
 
 By now you should have <a href="demos/spa/example1.html" target="_blank">a basic app</a>, but there's **something subtle to notice**. Thanks to Polymer's [layout attributes](/docs/polymer/layout-attrs.html) and the [default styles](/articles/styling-elements.html#default-styles) provided by each element, we've **achieved a responsive app without writing a lick of CSS**! Of course, with a little inspiration from the [material design color palette](http://www.google.com/design/spec/style/color.html), [less than 10 CSS rules](demos/spa/styles.css) turns the app into something beautiful.
