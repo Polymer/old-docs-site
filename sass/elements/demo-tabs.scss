@@ -18,7 +18,7 @@
   white-space: nowrap;
   border-bottom: 1px solid #eee;
 
-  span {
+  > core-selector > span {
     display: inline-block;
     line-height: 58px;
     text-align: center;
@@ -98,6 +98,14 @@ polyfill-next-selector { content: ':host pre'; }
   margin: 0 !important;
   /*background-color: transparent;*/
   /*padding-left: 0;*/
+}
+
+plunker-button {
+  margin-right: 9px;
+}
+plunker-button::shadow paper-button[raised] {
+  color: white;
+  background: #3367d6;
 }
 
 @media only screen and (min-width: 990px)  {

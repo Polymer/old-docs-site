@@ -244,7 +244,7 @@ core-toolbar {
         <code>&lt;html&gt;</code> and <code>&lt;body&gt;</code>, take up 100% of the viewport height.</li>
     <li>The <code>overflow</code> and <code>-webkit-overflow-scrolling</code> properties ensure that
         scrolling works smoothly on touch devices, especially iOS.</li>
-    <li>The <code>#tabs</code> selector selects the `&lt;paper-tabs&gt;` element. The toolbar adds a default margin on its children, to space controls appropriately. The tabs don't need this extra spacing.</li>
+    <li>The <code>#tabs</code> selector selects the <code>&lt;paper-tabs&gt;</code> element. The toolbar adds a default margin on its children, to space controls appropriately. The tabs don't need this extra spacing.</li>
     <li>The <code>user-select</code> properties prevent the user from accidentally selecting the tab text.</li>
   </ul>
 </aside>
