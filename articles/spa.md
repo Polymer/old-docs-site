@@ -273,16 +273,34 @@ We want to persist the last view across page reloads. Once again, data-binding c
 
 ### Alternative routing libs {#routinglibs}
 
-If `<flatiron-director>` is not your cup of tea, check out [`<app-router>`](https://github.com/erikringsmuth/app-router). It can do more complex routing (wildcards, HTML5 History API, dynamic content).
+If `<flatiron-director>` is not your cup of tea, check out [`<app-router>`](https://github.com/erikringsmuth/app-router) or [`<more-routing>`](https://github.com/polymore/more-routing). Both can do more complex routing (wildcards, HTML5 History API, dynamic content). I personally like `<flatiron-director>` because it's simple and works well with `<core-animated-pages>`.
 
-**Example**
+**Example**: [`<more-routing>`](https://github.com/polymore/more-routing)
+
+{%raw%}
+    <more-route-switch>
+      <template when-route="user">
+        <header>User {{params.userId}}</header>
+        <template if="{{ route('user-bio').active }}">
+          All the details about {{params.userId}}.
+        </template>
+      </template>
+      <template when-route="/about">
+        It's a routing demo!
+        <a href="{{ urlFor('user-bio', {userId: 1}) }}">Read about user 1</a>.
+      </template>
+      <template else>
+        The index.
+      </template>
+    </more-route-switch>
+{%endraw%}
+
+**Example**: [`<app-router>`](https://github.com/erikringsmuth/app-router)
 
     <app-route path="/home" import="/pages/home-page.html"></app-route>
     <app-route path="/customer/*" import="/pages/customer-page.html"></app-route>
     <app-route path="/order/:id" import="/pages/order-page.html"></app-route>
-    <app-route path="*" import="/pages/not-found-page.html"></app-route>
-
-I personally like `<flatiron-director>` because it's simple and works well with `<core-animated-pages>`. 
+    <app-route path="*" import="/pages/not-found-page.html"></app-route> 
 
 ## Keyboard navigation {#keyboard}
 
