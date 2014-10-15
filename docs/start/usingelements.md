@@ -46,16 +46,16 @@ Paper elements.
 
 ## Using elements {#using}
 
-To use elements, first load `platform.js`. Many browsers have yet to implement the various web components APIs. Until they do, `platform.js` provides [polyfill support](/docs/start/platform.html). **Be sure to include this file before any code that touches the DOM.**
+To use elements, first load `webcomponents.js`. Many browsers have yet to implement the various web components APIs. Until they do, `webcomponents.js` provides [polyfill support](/docs/start/platform.html). **Be sure to include this file before any code that touches the DOM.**
 
-Once you have some elements installed and you've loaded `platform.js`, using an element is simply a matter of loading the element file using an [HTML Import](/platform/html-imports.html).
+Once you have some elements installed and you've loaded `webcomponents.js`, using an element is simply a matter of loading the element file using an [HTML Import](/platform/html-imports.html).
 
 An example `index.html` file:
 
     <!DOCTYPE html>
     <html>
       <head>
-        <!-- 1. Load platform.js for polyfill support. -->
+        <!-- 1. Load webcomponents.js for polyfill support. -->
         <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
 
         <!-- 2. Use an HTML Import to bring in the element. -->

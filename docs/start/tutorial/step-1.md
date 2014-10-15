@@ -49,7 +49,7 @@ Go to the `starter` directory and open the `index.html` file in your favorite ed
 <aside>
   <h4>Key information</h4>
   <ul>
-    <li>This bare-bones file defines some styles and embeds the <code>platform.js</code> script, which supplies any missing platform features.</li>
+    <li>This bare-bones file defines some styles and embeds the <code>webcomponents.js</code> script, which supplies any missing platform features.</li>
     <li>The <code>link rel="import"</code> element is an <em>HTML import</em>, a new way of including resources into an HTML file.</li>
   </ul>
 </aside>
