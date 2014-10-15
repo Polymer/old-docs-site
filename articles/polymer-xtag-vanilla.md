@@ -57,7 +57,7 @@ Let’s walk through the example project to better understand what’s actually 
     <head>
       <title>Polymer + X-Tag + vanilla Custom Elements</title>
       <!-- web components -->
-      <script src="bower_components/platform/platform.js"></script>
+      <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
       <!-- import an element written without a library -->
       <link rel="import" href="elements/icon-button.html">
       <!-- import an element written using X-Tag -->
@@ -98,7 +98,7 @@ Let’s walk through the example project to better understand what’s actually 
 We first load `platform.js` which polyfills support for Web Components in all modern browsers.
 
     <!-- web components -->
-    <script src="bower_components/platform/platform.js"></script>
+    <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
 
 This means we can now register our own element using the native APIs.
 

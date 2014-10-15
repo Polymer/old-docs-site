@@ -43,7 +43,7 @@ in the [Getting the code](/docs/start/getting-the-code.html) guide:
 
 Then, include `platform.js` as you would any other script:
 
-    <script src="bower_components/platform/platform.js"></script>
+    <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
 
 **Note**: Due to the nature of some of the polyfills, to maximize compatibility with other libraries, make sure that `platform.js` is the first script tag in your document's `<head>`.
 {: .alert alert-info}

@@ -118,7 +118,7 @@ Go grab a coffee. This takes a few minutes!
 
 **components/**
 
-- *components/platform/platform.js* — The platform shims and polyfills.
+- *components/webcomponentsjs/webcomponents.js* — The platform shims and polyfills.
 - *components/polymer/polymer.js* — [{{site.project_title}} core](/docs/polymer/polymer.html)
 - *components/core-elements/* — A folder of the meta collection of the core elements.
 - A directory for each polyfill repo (CustomElements, HTMLImports, ShadowDOM).

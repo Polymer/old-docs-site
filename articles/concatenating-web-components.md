@@ -66,7 +66,7 @@ index.html:
     <!doctype html>
     <html>
       <head>
-        <script src="bower_components/platform/platform.js"></script>
+        <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
         <link rel="import" href="app.html">
       </head>
       <body>

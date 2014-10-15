@@ -56,7 +56,7 @@ An example `index.html` file:
     <html>
       <head>
         <!-- 1. Load platform.js for polyfill support. -->
-        <script src="bower_components/platform/platform.js"></script>
+        <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
 
         <!-- 2. Use an HTML Import to bring in the element. -->
         <link rel="import"

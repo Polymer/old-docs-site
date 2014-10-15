@@ -39,7 +39,7 @@ Go to the `starter` directory and open the `index.html` file in your favorite ed
   &lt;meta name="viewport" 
     content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
 
-  &lt;script src="../components/platform/platform.js">
+  &lt;script src="../components/webcomponentsjs/webcomponents.js">
   &lt;/script>
 
   &lt;link rel="import" 
@@ -92,7 +92,7 @@ Add HTML import links to import the `<core-header-panel>`, `<core-toolbar>`, and
 <side-by-side>
 <pre>
 &lt;script 
-  src="../components/platform/platform.js">
+  src="../components/webcomponentsjs/webcomponents.js">
 &lt;/script>
 
 &lt;link rel="import" 
