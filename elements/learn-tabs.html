@@ -52,7 +52,7 @@
       }
     </style>
     <core-media-query query="min-width: 640px" queryMatches="{{wide}}"></core-media-query>
-    <demo-tabs theme="dark" style="width:100%;">
+    <demo-tabs theme="dark" style="width:100%;" selected="{{tab}}" on-core-activate="{{tabTapped}}">
       <demo-tab heading="{{wide ? 'Use Elements (30 sec) ➜' : 'Use ➜'}}">
         <code-explainer>
           <script type="text/template">[dim-start]<!-- Polyfill Web Components support for older browsers -->
@@ -153,7 +153,10 @@
   </template>
   <script>
   Polymer('learn-tabs', {
-    wide: false
+    wide: false,
+    tabTapped: function() {
+      this.fire('tab-changed', {tab:this.tab});
+    }
   });
   </script>
 </polymer-element>
