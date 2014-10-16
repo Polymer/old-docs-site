@@ -315,15 +315,15 @@ document.querySelector('[data-twitter-follow]').addEventListener('click', functi
 
 // TODO: Create ga-logger component to avoid polluting the global scope.
 exports.tabChanged = function(tabContainer, tab) {
-  ga('send', 'event', tabContainer, 'select', 'tab-'+tab);
+  ga('send', 'event', tabContainer, 'select', 'tab-' + tab);
 }
 
 // send a separate event for a clickthrough inside a special container
 // (carousel, learn-tabs). 
 exports.recordClickthrough = function(container, event) {
-  for (var i=0; i<event.path.length; i++) {
+  for (var i=0; i < event.path.length; i++) {
     var el = event.path[i];
-    if (el.localName == 'a') {
+    if (el.localName === 'a') {
       ga('send', 'event', container, 'clickthrough', el.getAttribute('href'));
       return;
     }
