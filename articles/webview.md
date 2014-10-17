@@ -9,8 +9,8 @@ subtitle: How to setup Polymer in an Android WebView app
 article: true
 #draft: true
 description: How to building a mobile Polymer app that runs in a WebView.
-published: 2014-09-22
-#updated: 2014-09-22
+published: 2014-10-20
+#updated: 2014-10-20
 author: ebidel
 polymer_version: 0.4.2
 
@@ -73,7 +73,7 @@ The WebView starter .zip provides an example Android Studio project to get you u
 
 ## Minimum Android and SDK versions
 
-To gain native browser support for all of the web component APIs (HTML Imports, Custom elements, `<template>`, Shadow DOM), it's important to target **Android L (SDK version 20)**, where **Chrome 36.0.0.0** is the default WebView. Targeting pre-Android L means you'll be need {{site.project_title}}'s polyfills and won't see the awesome performance benefits of native browser support.
+To gain native browser support for all of the web component APIs (HTML Imports, Custom elements, `<template>`, Shadow DOM), you need Chrome 36+. That's why it's important to target **Android L (SDK version 21)**, where **Chrome 37.0.0.0** is the default WebView. Targeting pre-Android L means you'll be need {{site.project_title}}'s polyfills and won't see the awesome performance benefits of native browser support.
 
 **Note** {{site.project_title}} does work under Android 4.4.3+, but it will use the polyfills. KitKat ships with a Chromium-based WebView, but it is version 33.0.0.0.
 {: .alert .alert-info }
@@ -82,7 +82,7 @@ To install/update Android SDK, run the SDK manager in Android Studio:
 
 <img src="images/webview/sdkmanager.png" style="width:500px">
 
-then download the L Preview packages (API 20):
+then download the L packages (API 21):
 
 <img src="images/webview/sdkinstall.png" style="width:500px">
 
@@ -146,7 +146,7 @@ Create your main page app as `src/main/assets/www/index.html` and use an HTML Im
     </body>
     </html>
 
-It's worth noting that platform.js is not needed in WebViews powered by Chromium 36+. However, if you’re creating an app for multiple platforms, it's still recommended to include the polyfills for portability.
+It's worth noting that platform.js is not needed in WebViews powered by Chromium 36+. However, if you're creating an app for multiple platforms, it's still recommended to include the polyfills for portability.
 
 When all is said and done, your final folder structure should look something like this:
 
@@ -154,7 +154,7 @@ When all is said and done, your final folder structure should look something lik
 
 ## Configuring app permissions
 
-Now that you have the Android L Preview installed and app structure in place, it's time to set some app permissions and select the correct version of the SDK.
+Now that you have the Android L installed and app structure in place, it's time to set some app permissions and select the correct version of the SDK.
 
 In `AndroidManifest.xml`, set the minimum and target SDK versions to Android L (or an earlier version if you're relying on the polyfills or Crosswalk). If your app needs access remote resources (e.g. images, multimedia, JSON endpoints), also request the `android.permission.INTERNET` permission.
 
