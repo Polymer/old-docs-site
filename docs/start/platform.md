@@ -13,9 +13,12 @@ subtitle: Supporting new web technologies today
 
 {{site.project_title}} builds on top of the upcoming web components technologies, but they don't yet ship in all browsers.
 
-The lowest layer of {{site.project_title}} is `platform.js`: a collection of libraries (or “polyfills”) for new web technologies that haven’t shipped yet across all browsers. Platform makes it possible for developers to use these standards today across all modern browsers. As these technologies are implemented in browsers, the polyfills will shrink and you'll gain the benefits of native implementations. `Platform.js` automatically detects native support and switches to the fast path when available. Your elements seamlessly start relying on the native stuff--and get faster in the process. 
+The lowest layer of {{site.project_title}} is `platform.js`: a collection of libraries (or “polyfills”) for new web technologies that haven’t shipped yet across all browsers. Platform makes it possible for developers to use these standards today across all modern browsers. As these technologies are implemented in browsers, the polyfills will shrink and you'll gain the benefits of native implementations. `Platform.js` automatically detects native support and switches to the fast path when available. Your elements seamlessly start relying on the native stuff--and get faster in the process.
 
 Although most developers will want to use everything in `platform.js`, the polyfills are designed to be used separately, as well. They're available independently and can be built standalone. For example, Mozilla's [x-tags](http://www.x-tags.org/) and Brick projects use a subset of the `platform.js` polyfills.
+
+**Note**: The `platform.js` polyfill layer is no longer needed for browsers that fully implement the Web Components APIs, such as Chrome 36+.  This means the total payload for using Polymer on your site, for fully-compliant browsers, is a mere 32kb of `polymer.js`.
+{: .alert alert-info}
 
 ## What's in Platform? {#bundle}
 
@@ -27,7 +30,7 @@ The platform layer is a bundle that includes the following libraries:
   - [Custom Elements](/platform/custom-elements.html) . Define new elements in HTML.
 - DOM
   - [URL](https://github.com/Polymer/URL). Parse URLs in JavaScript.
-  - [WeakMap](https://github.com/Polymer/WeakMap). Shim for ES6 WeakMap type. 
+  - [WeakMap](https://github.com/Polymer/WeakMap). Shim for ES6 WeakMap type.
   - [Mutation Observers](https://github.com/Polymer/MutationObservers). Efficiently watch for changes in the DOM.
   <!-- - [Promises](https://github.com/Polymer/Promises). Handle asynchronous operations. -->
   - [observe-js](https://github.com/Polymer/observe-js). Observe changes on JS objects/arrays using `Object.observe` (if available).
@@ -55,7 +58,7 @@ Once included, you can use [HTML Imports](/platform/html-imports.html), [Custom 
 
 Then use `<paper-tabs>` just like any built-in tag.
 
-While each polyfill is standalone, the recommended approach is to include the entire `platform.js` file. This ensures all dependencies are present and the largest portion of the future web platform is available. Since this is the most-used configuration, it is also the most tested. 
+While each polyfill is standalone, the recommended approach is to include the entire `platform.js` file. This ensures all dependencies are present and the largest portion of the future web platform is available. Since this is the most-used configuration, it is also the most tested.
 
 ## Building each polyfill {#build}
 
@@ -68,4 +71,3 @@ For information on how to build each polyfill library independently, see [Tools 
 <a href="/docs/polymer/polymer.html">
   <paper-button raised><core-icon icon="arrow-forward" ></core-icon>API developer guide</paper-button>
 </a>
- 
