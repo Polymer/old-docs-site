@@ -8,8 +8,8 @@ subtitle: The Polymer approach to building single page applications
 
 article:
   author: ebidel
-  published: 2014-10-14
-  #updated: 2014-10-14
+  published: 2014-10-17
+  #updated: 2014-10-17
   polymer_version: 0.4.2
   description: The Polymer approach to building single page applications
 tags:
