@@ -165,8 +165,8 @@ In `AndroidManifest.xml`, set the minimum and target SDK versions to Android L (
 &lt;manifest ...&gt;
 
   <b>&lt;uses-sdk
-      android:minSdkVersion=&quot;android-L&quot;
-      android:targetSdkVersion=&quot;L&quot; /&gt;</b>
+      android:minSdkVersion=&quot;21&quot;
+      android:targetSdkVersion=&quot;21&quot; /&gt;</b>
 
   <b>&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;</b>
 
@@ -306,8 +306,9 @@ For maximum platform reach, try the [Chrome Apps for mobile](https://github.com/
 Android
 
 - [Getting Started: WebView-based Applications for Web Developers](https://developer.chrome.com/multidevice/webview/gettingstarted)
-- [WebView for Android Overvieww](https://developer.chrome.com/multidevice/webview/overview)
+- [WebView for Android Overview](https://developer.chrome.com/multidevice/webview/overview)
 - [Building Web Apps in WebView](http://developer.android.com/guide/webapps/webview.html)
+- [Android 5.0 APIs](http://developer.android.com/about/versions/android-5.0.html)
 
 iOS 8
 
