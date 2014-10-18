@@ -103,8 +103,10 @@ For our purposes, we'll stick with a heading (`<core-toolbar>`) and navigational
 A toolbar spans the top of the page and contains functional icon buttons. A perfect
 element for that type of behavior is `<core-toolbar>`:
 
-    <core-toolbar tool flex> <!-- flex makes the bar span across the top -->
-      <div flex>Application</div> <!-- flex justifies the icons to the right-side -->
+    <!-- flex makes the bar span across the top of the main content area -->
+    <core-toolbar tool flex>
+      <!-- flex spaces this element and jusifies the icons to the right-side -->
+      <div flex>Application</div>
       <core-icon-button icon="refresh"></core-icon-button>
       <core-icon-button icon="add"></core-icon-button>
     </core-toolbar>
@@ -117,11 +119,11 @@ The last section is left for your content! It can be any type of element. A `<di
       <!-- fill with pages -->
     </div>
 
-The `fit` attribute instructs the main area to take up the full width/height of its parent and `layout horizontal center-center` centers that content horizontally and vertically using flexbox.
+The `fit` attribute instructs the main area to take up the full width and height of its parent and `layout horizontal center-center` centers that content horizontally and vertically using flexbox.
 
 ## Creating "views"
 
-Multiple views (or pages) can be created with `<core-pages>` or `<core-animated-pages>`. Both elements are useful for displaying only one child at a time. The benefit of `<core-animated-pages>` is that it provides more defaults and sexy transitions between pages.
+Multiple views (or pages) can be created with `<core-pages>` or `<core-animated-pages>`. Both elements are useful for displaying only one child at a time. The benefit of `<core-animated-pages>` is that it provides more defaults and slick transitions between pages.
 
 The demo uses `<core-animated-pages>` with the `slide-from-right` transition. The first thing to do is import the element definition _and_ the `slide-from-right` transition:
 
@@ -147,7 +149,7 @@ then drop in your content:
 **Note** Right now, `<core-animated-pages selected="0">` is hard-coded to select the first page. We'll [make that dynamic](#databinding) later.
 {: .alert .alert-info }
 
-By now you should have <a href="demos/spa/example1.html" target="_blank">a basic app</a>, but there's **something subtle to notice**. Thanks to Polymer's [layout attributes](/docs/polymer/layout-attrs.html) and the [default styles](/articles/styling-elements.html#default-styles) provided by each element, we've **achieved a responsive app without writing a lick of CSS**! Of course, with a little inspiration from the [material design color palette](http://www.google.com/design/spec/style/color.html), [less than 10 CSS rules](demos/spa/styles.css) turns the app into something beautiful.
+By now you should have <a href="demos/spa/example1.html" target="_blank">a basic app</a>, but there's **something subtle to notice**. Thanks to Polymer's [layout attributes](/docs/polymer/layout-attrs.html) and the [default styles](/articles/styling-elements.html#default-styles) provided by each element, you've **achieved a responsive app without writing a lick of CSS**! Of course, with a little inspiration from the [material design color palette](http://www.google.com/design/spec/style/color.html), [less than 10 CSS rules](demos/spa/styles.css) turns the app into something beautiful.
 
 <p layout horizontal center-center>
 <a href="demos/spa/example1.html" target="_blank">
@@ -181,11 +183,11 @@ We have an app, but it's nothing to write home about. It's far from DRY. Similar
       </core-menu>
     </nav>
 
-It's also not dynamic. When a user selects a menu item the view doesn't update. Luckily, both of these problems are easily solved with Polymer's [data binding features](/docs/polymer/databinding.html). 
+It's also not dynamic. When a user selects a menu item the view doesn't update. Luckily, both of these problems are easily solved with Polymer's [data-binding features](/docs/polymer/databinding.html). 
 
 #### Auto-binding template {#autobinding}
 
-To leverage data-binding outside of a `<polymer-element>`, Wrap Yo App&#0153; inside an auto-binding `<template>`:
+To leverage data binding outside of a `<polymer-element>`, Wrap Yo App&#0153; inside an auto-binding `<template>` elements:
 
 <pre>
 &lt;body unresolved fullbleed>
@@ -213,7 +215,8 @@ You can greatly **reduce the amount of markup you write by generating it from a 
       </template>
     </core-menu>
 
-    <core-animated-pages valueattr="hash" selected="{{route}}" ...>
+    <core-animated-pages valueattr="hash" selected="{{route}}"
+                         transitions="slide-from-right">
       <template repeat="{{page in pages}}">
         <section hash="{{page.hash}}" layout vertical center-center>
           <div>{{page.name}}</div>
@@ -320,7 +323,7 @@ Keyboard support is not only important for [accessibility](/articles/accessible-
 - The `target` for events is data bound to the `parentElement` of our auto-binding template. In this case, that's `<body>`.
 - The `key` attribute contains a space-separated list of keys to listen for. When one of those combinations is pressed, `<core-a11y-keys>` fires a `keys-pressed` event and invokes your callback.
 
-The handler for the `keys-pressed` uses `<core-animated-pages>`'s `selectNext`/`selectPrevious` API to advance to the next page or go back to the previous page:
+The handler for the `keys-pressed` event uses `<core-animated-pages>`'s `selectNext`/`selectPrevious` API to advance to the next page or go back to the previous page:
 
     template.keyHandler = function(e, detail, sender) {
       var pages = document.querySelector('#pages');
@@ -391,6 +394,8 @@ template.onResponse = function(e, detail, sender) {
 </a>
 
 ## Polish and finishing touches {#extras}
+
+There are a couple of more final tips and tricks that you can add to polish up your app.
 
 When a menu item is selected, close the app drawer:
 
