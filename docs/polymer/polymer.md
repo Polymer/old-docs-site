@@ -311,7 +311,7 @@ A slight tweak of this approach lets you configure the value of the globals exte
              this.values = values;
              for (var i = 0; i < this.attributes.length; ++i) {
                var attr = this.attributes[i];
-               values[attr.nodeName] = attr.nodeValue;
+               values[attr.nodeName] = attr.value;
              }
            }
         });
