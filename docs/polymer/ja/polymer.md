@@ -9,12 +9,12 @@ subtitle: Guide
 
 {% include toc.html %}
 
-The {{site.project_title}} _core_ provides a thin layer of API on top of web components.
-It expresses {{site.project_title}}'s opinion, provides the extra sugaring that all {{site.project_title}} elements use, and is meant to help make developing web components much easier.
+{{site.project_title}} _core_ は _web component_ の上に薄いAPI層を供給します.
+このAPI層はすべての {{site.project_title}} の要素が使用する特別なシンタックスを提供するという{{site.project_title}}の意見を表現し、 _web component_ の開発をより簡単にする手助けするためのものです.
 
-## Element declaration
+## 要素の宣言
 
-At the heart of {{site.project_title}} are [Custom Elements](/platform/custom-elements.html). Thus, it should be no surprise that defining a {{site.project_title}} element is similar to the way you define a standard Custom Element. The major difference is that {{site.project_title}} elements are created declaratively using `<polymer-element>`.
+{{site.project_title}} の中心となるのは[Custom Elements](/platform/custom-elements.html)です. 次のように、 {{site.project_title}} 要素の定義方法が標準的なカスタム要素の定義方法と非常に似通っていたとしても驚くことはありません. これらの主な違いは {{site.project_title}} 要素が宣言的に `<polymer-element>` を使用して作成されていることです.
 
     <polymer-element name="tag-name" constructor="TagName">
       <template>
@@ -27,65 +27,61 @@ At the heart of {{site.project_title}} are [Custom Elements](/platform/custom-el
       </script>
     </polymer-element>
 
-The element declaration includes:
+要素の宣言には以下の様なものが含まれています.:
 
--   The `name` attribute specifies the name of the new custom element.
--   The optional `<template>` tag defines HTML content that is 
-    cloned into the shadow DOM of each instance of the element.
--   The `Polymer` method, which _registers_ the element, so it's
-    recognized as a custom element by the browser.
+-   `name` 属性は、新しいカスタム要素の名前を指定します.
+-   追加の `<template>` は、要素の各インスタンスの _shadow DOM_ に複製されるHTMLコンテンツを定義します.
+-   `Polymer` メソッドは要素を _登録_ し、ブラウザにカスタム要素として認識させます.
 
-### Attributes
+### 属性
 
-{{site.project_title}} reserves special attributes to be used on `<polymer-element>`:
+{{site.project_title}} は特定の属性を `<polymer-element>` で利用するために予約しています.:
 
 <table class="table responsive-table attributes-table">
   <tr>
-    <th>Attribute</th><th>Required?</th><th>Description</th>
+    <th>属性名</th><th>必須?</th><th>説明</th>
   </tr>
   <tr>
-    <td><code>name</code></td><td><b>required</b></td><td>Name for the custom element. Requires a "-".</td>
+    <td><code>name</code></td><td><b>必須</b></td><td>カスタム要素の名前です. ひとつ以上の `-` が必要です.</td>
   </tr>
   <tr>
-    <td><code>attributes</code></td><td>optional</td><td>Used to <a href="#published-properties">publish properties</a>.</td>
+    <td><code>attributes</code></td><td>オプション</td><td><a href="#published-properties">プロパティの公開</a>のために利用されます.</td>
   </tr>
   <tr>
-    <td><code>extends</code></td><td>optional</td><td>Used to <a href="#extending-other-elements">extend other elements</a>.</td>
+    <td><code>extends</code></td><td>オプション</td><td><a href="#extending-other-elements">他の要素の継承</a>のために利用されます.</td>
   </tr>
   <tr>
-    <td><code>noscript</code></td><td>optional</td><td>For simple elements that don't need to call <code>Polymer()</code>. See <a href="#altregistration">Element registration</a>.</td>
+    <td><code>noscript</code></td><td>オプション</td><td><code>Polymer()</code> 関数を呼び出す必要のないシンプルな要素のために利用されます. <a href="#altregistration">要素の登録</a>を参照してください.</td>
   </tr>
   <tr>
-    <td><code>constructor</code></td><td>optional</td><td>The name of the constructor to put on the global object. Allows users to create instances of your element using the <code>new</code> operator (e.g. <code>var tagName = new TagName()</code>).</td>
+    <td><code>constructor</code></td><td>オプション</td><td>グローバルオブジェクトに登録するコンストラクタの名前です. <code>new</code> オペレータを使うことで、ユーザはカスタム要素のインスタンスを生成することができます. (e.g. <code>var tagName = new TagName()</code>).</td>
   </tr>
 </table>
 
-#### Default attributes {#defaultattrs}
+#### デフォルト属性 {#defaultattrs}
 
-Other attributes you declare on `<polymer-element>` will automatically be included
-on each instance of the element. For example:
+`<polymer-element>`で宣言した上記以外の属性は自動的にカスタム要素のそれぞれのインスタンスに含まれます.例えば:
 
     <polymer-element name="tag-name" class="active" mycustomattr>
       <template>...</template>
       <script>Polymer();</script>
     </polymer-element>
 
-When an instance of `<tag-name>` is created, it contains `class="active" mycustomattr`
-as default attributes:
+`<tag-name>`のインスタンスが作成された時、そのインスタンスには `class="active" mycustomattr` がデフォルト属性として含まれています:
 
     <tag-name class="active" mycustomattr></tag-name>
 
-#### Attribute case sensitivity {#attrcase}
+#### 属性の大文字、小文字の区別 {#attrcase}
 
-It's worth noting that the HTML parser considers attribute names *case insensitive*. Property names in JavaScript are however *case sensitive*.
+HTMLパーサで属性の大文字小文字が区別されないことは注目にすべきことです.一方でJavaScript内では属性名は大文字小文字が区別されます.
 
-This means that attributes can be written any way that you like, but if you look at an element's attribute list, the names will always be lowercase. Polymer is aware of this and will attempt to match the attributes to properties carefully. For example, this should work as expected:
+つまり、属性は好きなように書くことができますが、要素の属性リストを見ると属性名は常に小文字になることを意味しています. Polymerはこれを認識しており、属性をプロパティへ慎重に一致させようとします. 例えば、次の表記は期待通りに動作するはずです:
 
     <name-tag nameColor="blue" name="Blue Name"></name-tag>
 
-The fact that the `nameColor` attribute is actually lowercase in DOM can generally just be ignored.
+DOM上で `nameColor` 属性が小文字になっているという事実は無視することができます.
 
-This also means that any of the below examples will also work:
+つまり、以下の様な表記はどれでも正常に動作するということです。
 
     <name-tag NaMeCoLoR="blue" name="Blue Name"></name-tag>
     <name-tag NAMECOLOR="red" name="Red Name"></name-tag>
@@ -93,35 +89,33 @@ This also means that any of the below examples will also work:
 
 
 
-### Element registration {#altregistration}
+### 要素の登録 {#altregistration}
 
-The `Polymer` method is used to register an element:
+`Polymer` メソッドは要素の登録のために使用されます:
 
 <pre>
 Polymer([ <em class="nocode">tag-name</em>, ] [<em class="nocode">prototype</em>]);
 </pre>
 
-Where:
+上記のコードを解説すると:
 
-*   _tag-name_ matches the `name` attribute in the `<polymer-element>` tag.
-    _tag-name_ is optional **unless the `<script>` tag that calls `Polymer`
-    is placed outside the `<polymer-element>` tag.**
+*   _tag-name_ は `<polymer-element>` タグの `name` 属性と一致します.
+    _tag-name_ は ** `Polymer` を実行する `<script>` タグが `<polymer-element>` タグの外側に位置している場合を除いて** オプショナルな引数です.
 
-*   _prototype_ is the prototype for the new element.
- 	See [Adding public properties and methods](#propertiesmethods).
-    _prototype_ is always optional.
+*   _prototype_ は新しく作成される要素のプロトタイプです.
+ 	より詳しい情報は [公開メソッド、プロパティの追加](#propertiesmethods) を参照してください.
+    _prototype_ は常にオプショナルな引数です.
 
-The simplest way to invoke `Polymer` is to place an inline script inside
-your `<polymer-element>` tag:
+`Polymer` を実行する最もシンプルな方法は、作成する `<polymer-element>` タグの内部にインラインスクリプトで記述する方法です:
 
     <polymer-element name="simple-tag">
       <script>Polymer();</script>
     </polymer-element>
 
-There are several alternatives to registering an element in an an inline script:
+インラインスクリプト内で要素を登録する方法はこれ以外にもいくつか存在します:
 
--   [Separating script from markup](#separatescript).
--   [Registering imperatively](#imperativeregister) using JavaScript.
+-   [マークアップからスクリプトを分離する](#separatescript).
+-   JavaScriptを使って [厳格に登録する](#imperativeregister).
 
 #### Separating script from markup {#separatescript}
 
