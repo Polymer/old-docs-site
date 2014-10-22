@@ -770,7 +770,7 @@ Some things to notice:
 Alternatively, you can add event handlers to a {{site.project_title}} element imperatively.
 
 **Note:** In general, the declarative form is preferred.
-{: .alert .alert-warning }
+{: .alert .alert-info}
 
     <polymer-element name="g-button">
       <template>
@@ -782,7 +782,7 @@ Alternatively, you can add event handlers to a {{site.project_title}} element im
             up: 'onTap',
             down: 'onTap'
           },
-          onTap: function(e, detail, sender) {
+          onTap: function(event, detail, sender) {
             ...
           }
         });
@@ -792,10 +792,17 @@ Alternatively, you can add event handlers to a {{site.project_title}} element im
 The example adds event listeners for `up` and `down` events
 to the {{site.project_title}} element called `g-button`.
 The listeners are added to the host element rather than to individual
-elements within it.
-These listeners handle events on the host element itself,
-in addition to events that bubble up from within the host element.
-You can still set event listeners on individual elements within the host.
+elements it contains.
+These listeners handle events on the host element
+in addition to events that bubble up from within it.
+This code is equivalent
+to adding an <code>on-<em>event</em></code>
+handler directly on a `<polymer-element>`.
+
+The relationship between the <code>on-<em>event</em></code> attribute
+and the `eventDelegates` object
+is analogous to the relationship between the
+`attributes` attribute and the `publish` object.
 
 The keys within the `eventDelegates` object are the event names to listen for.
 The values are the callback function names, here `onTap`.
