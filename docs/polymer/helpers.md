@@ -129,7 +129,7 @@ place the mixin in an HTML import and assign the mixin to a global variable:
 
     <polymer-element name="client-element">
     <script>
-      Polymer(Polymer.mixin({
+      Polymer('client-element', Polymer.mixin({
         // local prototype
       }, window.sharedMixin);
     </script>
