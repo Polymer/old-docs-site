@@ -32,7 +32,8 @@ paper-button.blue:hover {
 
 {% include toc.html %}
 
-So how does one build a single page application (SPA)? On the Polymer team we get this question a lot. Our answer (as always) is..."use web components!" However, it's never immediately obvious how to tackle an existing problem with new technologies. How do you compose a bunch of modular components into a larger, functional app?
+So how do you build a single page application (SPA) with Polymer? On the Polymer team we get this question a lot. Our answer (as always) is..."use components!" However, it's never immediately obvious how to tackle an existing problem with new technologies. How do you compose a bunch of modular components into a larger, functional app?
+
 
 <p layout vertical center style="float:right;margin: 0 0 0 10px;">
   <a href="demos/spa/final.html" target="_blank"><img src="images/spa/screenshot.png" style="width:300px;"></a>
