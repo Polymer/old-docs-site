@@ -30,37 +30,38 @@ handlers:
 
 # Short URLs -------------------------------------------------------------------
 # backward compatibility
-- url: /platform(.min)?.js
+- url: /platform(\.min)?\.js
   static_files: components/platform/platform.js
   upload: components/platform/platform\.js
   http_headers:
     Access-Control-Allow-Origin: "*"
 
-- url: /platform(.min)?.js.map
+- url: /platform(\.min)?\.js.map
   static_files: components/platform/platform.js.map
-  upload: components/webcomponentsjs/webcomponents\.js.\map
+  upload: components/platform/platform\.js.\map
   http_headers:
     Access-Control-Allow-Origin: "*"
 
-- url: /webcomponents(.min)?.js
-  static_files: components/webcomponentsjs/webcomponents.js
-  upload: components/webcomponentsjs/webcomponents\.js
+# For webcomponents.js, serve both minified and non-minifed versions
+- url: /webcomponents(\.min|)\.js
+  static_files: components/webcomponentsjs/webcomponents\1.js
+  upload: components/webcomponentsjs/webcomponents(\.min)?\.js
   http_headers:
     Access-Control-Allow-Origin: "*"
 
-- url: /webcomponents(.min)?.js.map
-  static_files: components/webcomponentsjs/webcomponents.js.map
-  upload: components/webcomponentsjs/webcomponents\.js.\map
+- url: /webcomponents(\.min|)\.js.map
+  static_files: components/webcomponentsjs/webcomponents\1.js.map
+  upload: components/webcomponentsjs/webcomponents(\.min)?\.js.\map
   http_headers:
     Access-Control-Allow-Origin: "*"
 
-- url: /polymer(.min)?.(js|html)
+- url: /polymer(\.min)?\.(js|html)
   static_files: components/polymer/polymer.\2
   upload: components/polymer/polymer\.(js|html)
   http_headers:
     Access-Control-Allow-Origin: "*"
 
-- url: /polymer(.min)?.js.map
+- url: /polymer(\.min)?\.js\.map
   static_files: components/polymer/polymer.js.map
   upload: components/polymer/polymer\.js\.map
   http_headers:

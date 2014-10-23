@@ -14,7 +14,7 @@ subtitle: Supporting new web technologies today
 {{site.project_title}} builds on top of the upcoming web components technologies, 
 which don't yet ship in all browsers.
 
-To do this, {{site.project_title}} builds on top of `webcomponents.js`: a collection of 
+To do this, {{site.project_title}} uses `webcomponents.js`, a collection of
 libraries (or “polyfills”) for new web technologies that haven’t shipped yet across 
 all browsers. The web components polyfills make it possible for developers to use 
 these standards today across all modern browsers. As these technologies are implemented 
