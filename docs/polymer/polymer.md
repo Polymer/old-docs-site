@@ -765,6 +765,50 @@ Some things to notice:
   * `inDetail`: A convenience form of `inEvent.detail`.
   * `inSender`: A reference to the node that declared the handler. This is often different from `inEvent.target` (the lowest node that received the event) and `inEvent.currentTarget` (the component processing the event), so  {{site.project_title}} provides it directly.
 
+#### Imperative event mapping
+
+Alternatively, you can add event handlers to a {{site.project_title}} element imperatively.
+
+**Note:** In general, the declarative form is preferred.
+{: .alert .alert-info}
+
+    <polymer-element name="g-button">
+      <template>
+        <button>Click Me!</button>
+      </template>
+      <script>
+        Polymer({
+          eventDelegates: {
+            up: 'onTap',
+            down: 'onTap'
+          },
+          onTap: function(event, detail, sender) {
+            ...
+          }
+        });
+      </script>
+    </polymer-element>
+
+The example adds event listeners for `up` and `down` events
+to the {{site.project_title}} element called `g-button`.
+The listeners are added to the host element rather than to individual
+elements it contains.
+These listeners handle events on the host element
+in addition to events that bubble up from within it.
+This code is equivalent
+to adding an <code>on-<em>event</em></code>
+handler directly on a `<polymer-element>`.
+
+The relationship between the <code>on-<em>event</em></code> attribute
+and the `eventDelegates` object
+is analogous to the relationship between the
+`attributes` attribute and the `publish` object.
+
+The keys within the `eventDelegates` object are the event names to listen for.
+The values are the callback function names, here `onTap`.
+Event handler functions defined imperatively
+receive the same arguments as those defined declaratively.
+
 ### Observing properties {#observeprops}
 
 #### Changed watchers {#change-watchers}
