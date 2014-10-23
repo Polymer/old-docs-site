@@ -29,15 +29,28 @@ handlers:
   script: build.application
 
 # Short URLs -------------------------------------------------------------------
+# backward compatibility
 - url: /platform(.min)?.js
-  static_files: components/webcomponentsjs/webcomponents.js
+  static_files: components/platform/platform.js
   upload: components/platform/platform\.js
   http_headers:
     Access-Control-Allow-Origin: "*"
 
 - url: /platform(.min)?.js.map
+  static_files: components/platform/platform.js.map
+  upload: components/webcomponentsjs/webcomponents\.js.\map
+  http_headers:
+    Access-Control-Allow-Origin: "*"
+
+- url: /webcomponents(.min)?.js
+  static_files: components/webcomponentsjs/webcomponents.js
+  upload: components/webcomponentsjs/webcomponents\.js
+  http_headers:
+    Access-Control-Allow-Origin: "*"
+
+- url: /webcomponents(.min)?.js.map
   static_files: components/webcomponentsjs/webcomponents.js.map
-  upload: components/platform/platform\.js.\map
+  upload: components/webcomponentsjs/webcomponents\.js.\map
   http_headers:
     Access-Control-Allow-Origin: "*"
 
