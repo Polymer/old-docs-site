@@ -127,10 +127,10 @@ core-icon-button {
   position: absolute;
   top: 3px;
   right: 3px;
-  color: #636363;
+  fill: #636363;
 }
 :host([favorite]) core-icon-button {
-  color: #da4336;
+  fill: #da4336;
 }</strong>
 &lt;/style>
 </pre>
