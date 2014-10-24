@@ -1,0 +1,156 @@
+<element name="b-toggle-button">
+    <style>
+    :host {
+        display: inline-block;
+        position: relative;
+        min-width: 60px;
+        height: 24px;
+        overflow: hidden;
+        border: 1px solid #b6b6b6;
+        border-radius: 2px;
+        box-shadow: inset 0px 0px 1px 0 rgba(0, 0, 0, 0.1);
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-transition: border 0.130s ease-out;
+        transition: border 0.130s ease-out;
+        cursor: pointer;
+        font-size: 10px;
+    }
+    :host(.on) {
+        border: 1px solid #08985f;
+    }
+    </style>
+    <template>
+        <style>
+        .b-toggle-button {
+            position: absolute;
+            left: -webkit-calc(-100% + 24px);
+            left: -moz-calc(-100% + 24px);
+            left: calc(-100% + 24px);
+            width: -webkit-calc(200% - 24px);
+            width: -moz-calc(200% - 24px);
+            width: calc(200% - 24px);
+            height: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            transition: left 0.130s ease-out;
+        }
+        .b-toggle-button.on {
+            left: 0;
+        }
+        .b-toggle-button > * {
+            float: left;
+        }
+        .b-toggle-on, .b-toggle-off {
+            width: 50%;
+            height: 100%;
+            text-align: center;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            line-height: 24px;
+        }
+        .b-toggle-on {
+            padding-right: 12px;
+            background-color: #48985f;
+            color: white;
+        }
+        .b-toggle-off {
+            padding-left: 12px;
+            background-color: #bfbfbf;
+            color: #716f6f;
+        }
+        .b-toggle-thumb {
+            position: absolute;
+            left: -webkit-calc(50% - 12px);
+            left: -moz-calc(50% - 12px);
+            left: calc(50% - 12px);
+            width: 24px;
+            height: 100%;
+            border-radius: 1px;
+            background-color: white;
+        }
+        </style>
+        <div class="b-toggle-button">
+            <span class="b-toggle-on"></span>
+            <span class="b-toggle-thumb"></span>
+            <span class="b-toggle-off"></span>
+        </div>
+    </template>
+    <script>
+    var KEY = {
+        ENTER: 13,
+        SPACE: 32
+    };
+
+    function keydownHandler(e) {
+        if(e.keyCode === KEY.ENTER || e.keyCode === KEY.SPACE) {
+            this.toggle();
+        }
+    };
+
+    ({
+        get noCaption() {
+            return this.hasAttribute('nocaption') || this.getAttribute('nocaption') === 'true';
+        },
+
+        get onCaption() {
+            return this.getAttribute('oncaption') || 'ON';
+        },
+
+        get offCaption() {
+            return this.getAttribute('offcaption') || 'OFF';
+        },
+
+        get value() {
+            return this.checked;
+        },
+
+        get checked() {
+            return this.hasAttribute('checked');
+        },
+
+        set checked(value) {
+            if (value) {
+                this.querySelector('.b-toggle-button').classList.add('on');
+                this.classList.add('on');
+                this.setAttribute('aria-checked', 'true');
+                this.setAttribute('checked', '');
+            } else {
+                this.querySelector('.b-toggle-button').classList.remove('on');
+                this.classList.remove('on');
+                this.setAttribute('aria-checked', 'false');
+                this.removeAttribute('checked');
+            }
+        },
+
+        createdCallback: function() {
+            this.appendChild(this.template.content.cloneNode(true));
+            if (!this.noCaption) {
+                this.querySelector('.b-toggle-on').textContent = this.onCaption;
+                this.querySelector('.b-toggle-off').textContent = this.offCaption;
+            }
+
+            this.setAttribute('role', 'checkbox');
+            this.setAttribute('tabindex', '0');
+
+            this.checked ? this.activate() : this.deactivate();
+
+            this.addEventListener('click', this.toggle, false);
+            this.addEventListener('keydown', keydownHandler.bind(this), false);
+        },
+
+        activate: function() {
+            this.checked = true;
+        },
+
+        deactivate: function() {
+            this.checked = false;
+        },
+
+        toggle: function() {
+            this.checked = !this.checked;
+        }
+    });
+    </script>
+</element>
