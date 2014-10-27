@@ -1,4 +1,4 @@
-require "jekyll-page-hooks"
+require "octopress-hooks"
 #gem 'jekyll-page-hooks'
 
 module Jekyll

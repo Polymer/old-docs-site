@@ -370,7 +370,7 @@ attributeChangedCallback | attributeChanged | An attribute was added, removed, o
 
 {{site.project_title}} parses element definitions and handles their upgrade _asynchronously_.
 If you prematurely fetch the element from the DOM before it has a chance to upgrade,
-you'll be working with an `HTMLUnknownElement`. {{site.project_title}} elements also support inline resources, such as stylesheets, that need to be loaded. These can cause [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content) issues if they're not fully loaded prior to rendering an element. To avoid FOUC, {{site.project_title}} delays registering elements until stylesheets are fully loaded.
+you'll be working with a plain `HTMLElement`, instead of your custom element. {{site.project_title}} elements also support inline resources, such as stylesheets, that need to be loaded. These can cause [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content) issues if they're not fully loaded prior to rendering an element. To avoid FOUC, {{site.project_title}} delays registering elements until stylesheets are fully loaded.
 
 To know when elements have been registered/upgraded, and thus ready to be interacted with, use the `polymer-ready` event.
 
@@ -764,6 +764,50 @@ Some things to notice:
   * `inEvent` is the [standard event object](http://www.w3.org/TR/DOM-Level-3-Events/#interface-Event).
   * `inDetail`: A convenience form of `inEvent.detail`.
   * `inSender`: A reference to the node that declared the handler. This is often different from `inEvent.target` (the lowest node that received the event) and `inEvent.currentTarget` (the component processing the event), so  {{site.project_title}} provides it directly.
+
+#### Imperative event mapping
+
+Alternatively, you can add event handlers to a {{site.project_title}} element imperatively.
+
+**Note:** In general, the declarative form is preferred.
+{: .alert .alert-info}
+
+    <polymer-element name="g-button">
+      <template>
+        <button>Click Me!</button>
+      </template>
+      <script>
+        Polymer({
+          eventDelegates: {
+            up: 'onTap',
+            down: 'onTap'
+          },
+          onTap: function(event, detail, sender) {
+            ...
+          }
+        });
+      </script>
+    </polymer-element>
+
+The example adds event listeners for `up` and `down` events
+to the {{site.project_title}} element called `g-button`.
+The listeners are added to the host element rather than to individual
+elements it contains.
+These listeners handle events on the host element
+in addition to events that bubble up from within it.
+This code is equivalent
+to adding an <code>on-<em>event</em></code>
+handler directly on a `<polymer-element>`.
+
+The relationship between the <code>on-<em>event</em></code> attribute
+and the `eventDelegates` object
+is analogous to the relationship between the
+`attributes` attribute and the `publish` object.
+
+The keys within the `eventDelegates` object are the event names to listen for.
+The values are the callback function names, here `onTap`.
+Event handler functions defined imperatively
+receive the same arguments as those defined declaratively.
 
 ### Observing properties {#observeprops}
 
