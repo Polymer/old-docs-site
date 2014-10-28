@@ -728,7 +728,7 @@ See the [full list of changes](https://github.com/polymer/ShadowDOM/pull/139)
 ### Toolkit
 
 * If you're writing a [Toolkit component](/polymer.html), there's
-no longer need to include `platform.js` alongside `toolkit.js`. `toolkit.js` now loads `platform.js` under the hood. 
+no longer need to include `webcomponents.js` alongside `toolkit.js`. `toolkit.js` now loads `webcomponents.js` under the hood. 
 
 ### Platform
 
@@ -762,7 +762,7 @@ the default view on Github.
 * `g-component.html` no longer exists as the Tookit kernel. It has been replaced
 with loading in `toolkit.js` instead.
 * Added `debug` [runtime flags](/docs/polymer/runtime-config.html) to conditionally load debug
-version of `platform.js`.
+version of `webcomponents.js`.
 
 ---
 

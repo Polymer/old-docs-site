@@ -79,7 +79,7 @@ and include an import that loads the new dependency in `my-element.html`:
 
 ### 3. Create an app {#creatapp}
 
-Lastly, create an `index.html` that imports your new element. Remember to include `platform.js`
+Lastly, create an `index.html` that imports your new element. Remember to include `webcomponents.js`
 to load polyfills for the native APIs.
 
 Here's the full example:
@@ -88,7 +88,7 @@ Here's the full example:
     <html>
       <head>
         <!-- 1. Load platform support before any code that touches the DOM. -->
-        <script src="bower_components/platform/platform.js"></script>
+        <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
         <!-- 2. Load the component using an HTML Import -->
         <link rel="import" href="elements/my-element.html">
       </head>

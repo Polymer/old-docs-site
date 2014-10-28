@@ -30,14 +30,26 @@ handlers:
 
 # Short URLs -------------------------------------------------------------------
 - url: /platform(.min)?.js
-  static_files: components/platform/platform.js
-  upload: components/platform/platform\.js
+  static_files: components/webcomponentsjs/webcomponents.js
+  upload: components/webcomponentsjs/webcomponentsjs\.js
   http_headers:
     Access-Control-Allow-Origin: "*"
 
 - url: /platform(.min)?.js.map
-  static_files: components/platform/platform.js.map
-  upload: components/platform/platform\.js.\map
+  static_files: components/webcomponentsjs/webcomponents.js.map
+  upload: components/webcomponentsjs/webcomponentsjs\.js.\map
+  http_headers:
+    Access-Control-Allow-Origin: "*"
+
+- url: /webcomponents(.min)?.js
+  static_files: components/webcomponentsjs/webcomponents.js
+  upload: components/webcomponentsjs/webcomponentsjs\.js
+  http_headers:
+    Access-Control-Allow-Origin: "*"
+
+- url: /webcomponents(.min)?.js.map
+  static_files: components/webcomponentsjs/webcomponents.js.map
+  upload: components/webcomponentsjs/webcomponentsjs\.js.\map
   http_headers:
     Access-Control-Allow-Origin: "*"
 

@@ -129,7 +129,7 @@ To use a component, simply import it, then use it.</p>
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="platform.js"></script>
+  <script src="webcomponents.js"></script>
   <link rel="import" href="element.html">
 </head>
 <body>
