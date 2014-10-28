@@ -17,6 +17,9 @@ The lowest layer of {{site.project_title}} is `webcomponents.js`: a collection o
 
 Although most developers will want to use everything in `webcomponents.js`, the polyfills are designed to be used separately, as well. They're available independently and can be built standalone. For example, Mozilla's [x-tags](http://www.x-tags.org/) and Brick projects use a subset of the `webcomponents.js` polyfills.
 
+**Note**: The `webcomponents.js` polyfill layer is no longer needed for browsers that fully implement the Web Components APIs, such as Chrome 36+.  This means the total payload for using Polymer on your site, for fully-compliant browsers, is a mere 32kb of `polymer.js`.
+{: .alert alert-info}
+
 ## What's in Platform? {#bundle}
 
 The platform layer is a bundle that includes the following libraries:
@@ -27,7 +30,7 @@ The platform layer is a bundle that includes the following libraries:
   - [Custom Elements](/platform/custom-elements.html) . Define new elements in HTML.
 - DOM
   - [URL](https://github.com/Polymer/URL). Parse URLs in JavaScript.
-  - [WeakMap](https://github.com/Polymer/WeakMap). Shim for ES6 WeakMap type. 
+  - [WeakMap](https://github.com/Polymer/WeakMap). Shim for ES6 WeakMap type.
   - [Mutation Observers](https://github.com/Polymer/MutationObservers). Efficiently watch for changes in the DOM.
   <!-- - [Promises](https://github.com/Polymer/Promises). Handle asynchronous operations. -->
   - [observe-js](https://github.com/Polymer/observe-js). Observe changes on JS objects/arrays using `Object.observe` (if available).
@@ -68,4 +71,3 @@ For information on how to build each polyfill library independently, see [Tools 
 <a href="/docs/polymer/polymer.html">
   <paper-button raised><core-icon icon="arrow-forward" ></core-icon>API developer guide</paper-button>
 </a>
- 
