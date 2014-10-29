@@ -112,8 +112,8 @@ For example, to make "Gamma" 2x larger than "Beta" and "Alpha" 3x larger, use `f
 For vertical layouts, you can use the `auto-vertical` attribute
 on a child element to set an automatic flex basis on that element.
 Use this attribute for responsive designs
-if you want elements laid out in columns when the display is wide
-or in rows when narrow.
+if you want elements laid out horizontally when the display is wide
+or vertically when narrow.
 
 The following code uses `core-media-query` to get the screen size.
 If it's smaller than 640 pixels,
