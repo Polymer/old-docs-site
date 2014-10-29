@@ -50,7 +50,7 @@ like the Paper element collection.
 ## Installing components {#installing-components}
 
 {{site.project_title}} is very modular; you can install just the {{site.project_title}}
-library and platform polyfills, a single element, or a whole collection of elements.
+library and web components polyfills, a single element, or a whole collection of elements.
 
 Throughout the site, you'll find component download buttons like this:
 
@@ -120,7 +120,7 @@ and cut and paste the Bower install command.
 You can also choose one of the commonly-used packages:
 
 -   `Polymer/polymer`. Just the {{site.project_title}} library
-    and platform polyfills. 
+    and web components polyfills. 
 
 -   `Polymer/core-elements`. The 
     [{{site.project_title}} Core elements](/docs/elements/core-elements.html) 

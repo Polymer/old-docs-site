@@ -18,9 +18,7 @@ and make it even easier to build complex, web component-based applications:
 - [Declarative event handing](/docs/polymer/polymer.html#declarative-event-mapping)
 - [Declarative inheritance](/docs/polymer/polymer.html#extending-other-elements)
 - [Property observation](/docs/polymer/polymer.html#observeprops)
-- Dynamic templates
-- Touch/gesture support
-- ...
+
 
 ## Setup {#basics}
 
@@ -34,7 +32,7 @@ Install the latest version of {{site.project_title}} as described in [Getting th
 
 To create a new element:
 
-1. Load [{{site.project_title}} core](/docs/polymer/polymer.html) (`polymer.html`).
+1. Load the [{{site.project_title}} core](/docs/polymer/polymer.html) (`polymer.html`).
 2. Declare your custom element using `<polymer-element>`.
 
 In the following example, we define a new element named `<my-element>`, save
@@ -106,7 +104,7 @@ Your final directory structure should look something like this:
 
     yourapp/
       bower_components/
-        platform/
+        webcomponentsjs/
         polymer/
       elements/
         my-element.html
