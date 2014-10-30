@@ -333,40 +333,67 @@ Material has an apparent elevation (z-height) and casts shadows. In {{site.proje
 elements can  have a z-height between 0 and 5. Material can raise or lower in
 response to user input.
 
+**Note:** The material design specification describes z-heights as being
+specified in display independent pixels (DIPs). The current implementation of
+`<paper-shadow>` doesn't correspond to the spec in this regard. The z-values
+are arbitrary values ranging from 0 (no elevation) to 5 (maximum elevation), and don't
+correspond to DIPs.
+{: .alert .alert-info }
+
 The `paper-elements` have shadow effects built-in. For example, a 
 `<paper-button>` declared  with the `raised` attribute appears raised 
 above the surface it rests on, and raises  up when touched.
+
+    <paper-button raised>Raised button</paper-button>
 
 <paper-button raised>Raised button</paper-button>
 
 When building your own elements or using standard DOM elements, you can use
 the `<paper-shadow>`  element to create the appropriate shadow effect.
 
-To apply a shadow to an element, simply add a `<paper-shadow>` element as a
-child element of a relatively positioned element. The `<paper-shadow>` element automatically adds the shadow to its parent element:
+To apply a shadow to an element, simply use a `<paper-shadow>` element as a 
+container. The `<paper-shadow>` element automatically adds a shadow around its contents.
+The `<paper-shadow>` element is `display: block` by default.
 
-     <div style="width: 100px; height: 100px;" relative>
-       <paper-shadow z="3"></paper-shadow>
-     </div>
+    <style>
+      .span-shadow {
+        display: inline-block;
+        padding: 8px;
+      }
+    </style>
+    <paper-shadow z="3" class="span-shadow">
+      <span>I have a shadow!</span>
+    </paper-shadow>
 
-You can change the z-height of the target element by setting `z` on the
-`<paper-shadow>`  element. Z values range from 0 (no shadow) to 5.
+<style>
+  .span-shadow {
+    display: inline-block;
+    padding: 8px;
+  }
+</style>
+<paper-shadow z="3" class="span-shadow">
+  <span>I have a shadow!</span>
+</paper-shadow>
+
+You can set the **initial** z-height of the target element by setting the `z` attribute on the
+`<paper-shadow>`  element. Z values range from 0 (no shadow) to 5. 
 
 <div layout horizontal>
-  <div class="demo-card">
+  <paper-shadow z="1" class="demo-card">
     <p>z = 1</p>
-    <paper-shadow z="1"></paper-shadow>
-  </div>
-  <div class="demo-card">
-      <p>z = 3</p>
-      <paper-shadow z="3"></paper-shadow>
-  </div>
-  <div class="demo-card">
+  </paper-shadow>
+  <paper-shadow z="3" class="demo-card">
+    <p>z = 3</p>
+  </paper-shadow>
+  <paper-shadow z="5" class="demo-card">
     <p>z = 5</p>
-    <paper-shadow z="5"></paper-shadow>
-  </div>
+  </paper-shadow>
 </div>
 
+Changing the `z` attribute after the element is instantiated has no effect.
+To change the z height dynamically, call the `setZ` method.
+
+    this.$.my-shadow.setZ(5);
 
 The apparent height of the element (the z-height value) is absolute &mdash;
 that is, an  element with a z-height of 3 casts the same size shadow
@@ -374,14 +401,11 @@ regardless of the z-heights of  the background elements. In addition, the
 z-height does not affect the stacking order of  elements. To change stacking
 order of sibling elements, use the `z-index` CSS property as  usual.
 
-You can apply a shadow to a different element (other than the parent element)
-by setting  the `<paper-shadow>` element's `target` property. However, the
-target must still be an  element that accepts children. (For example, you
-can't add a shadow directly to an `<img>`  element.)
-
-**Note:** The `<paper-shadow>` element sets its target to `overflow: visible`
-so the  shadows are visible outside of the element's borders. If you need to
-clip inner content, use another container inside the shadowed container. 
+**Note:** 
+The `<paper-shadow>` element's behavior changed in version 0.5.0.
+Prior to 0.5.0, the `<paper-shadow>` element added a shadow to its 
+_parent element_, and supported changing the z-height by setting the
+`z` property directly.
 {: .alert .alert-info }
 
 <a href="/components/paper-elements/demo.html#paper-shadow">
