@@ -96,8 +96,7 @@ Here's the full example:
       </body>
     </html>
 
-**Note:** You must run your app from a web server for the [HTML Imports](/platform/html-imports.html)
-polyfill to work properly. This requirement goes away when the API is available natively.
+**Note:** You must run your app from a web server for the [HTML Imports](/platform/html-imports.html) to work properly. They cannot be loaded from `file://` due to the browser's security restrictions.
 {: .alert .alert-info }
 
 Your final directory structure should look something like this:
