@@ -30,10 +30,16 @@ At the heart of {{site.project_title}} are [Custom Elements](/platform/custom-el
 The element declaration includes:
 
 -   The `name` attribute specifies the name of the new custom element.
--   The optional `<template>` tag defines HTML content that is 
+-   The optional `<template>` element defines HTML content that is
     cloned into the shadow DOM of each instance of the element.
--   The `Polymer` method, which _registers_ the element, so it's
-    recognized as a custom element by the browser.
+-   An inline script that _registers_ the element by calling the
+    the `Polymer` method and passing in the element's prototype.
+    Registering the element allows it be recognized as a custom element
+    by the browser.
+
+**Note:** When the `<polymer-element>` declaration includes both `<template>` and `<script>`
+elements, the `<template>` element **must come first.**
+{: .alert .alert-info }
 
 ### Attributes
 
@@ -115,8 +121,13 @@ The simplest way to invoke `Polymer` is to place an inline script inside
 your `<polymer-element>` tag:
 
     <polymer-element name="simple-tag">
+      <template> ... </template>
       <script>Polymer();</script>
     </polymer-element>
+
+**Note:** When the `<polymer-element>` declaration includes both `<template>` and `<script>`
+elements, the `<template>` element **must come first.**
+{: .alert .alert-info }
 
 There are several alternatives to registering an element in an an inline script:
 
