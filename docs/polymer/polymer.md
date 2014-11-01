@@ -1166,43 +1166,41 @@ However, this is such a common pattern that {{site.project_title}} provides the 
 
 ### Life of an element's bindings {#bindings}
 
-**Note:** The section only applies to elements that are instantiated in JavaScript, not to those
-declared in markup.
-{: .alert .alert-info }
-
-If you instantiate an element (e.g. `document.createElement('x-foo')`) and do **not** add it to the DOM,
-{{site.project_title}} asynchronously removes its {%raw%}`{{}}`{%endraw%} bindings and `*Changed` methods.
-This helps prevent memory leaks, ensuring the element will be garbage collected.
+When you remove an element from the DOM, {{site.project_title}} asynchronously
+deactivates its {%raw%}`{{}}`{%endraw%} bindings and `*Changed` methods. This helps prevent
+memory leaks, ensuring the element will be garbage collected.
 
 If you want the element to "remain active" when it's not in the `document`,
-call `cancelUnbindAll()` right after you create or remove it. The [lifecycle methods](#lifecyclemethods)
+call `cancelUnbindAll()` right after you remove it. The [lifecycle methods](#lifecyclemethods)
 are a good place for this:
 
     Polymer('my-element', {
-      ready: function() {
-        // Ensure bindings remain active, even if we're never added to the DOM.
-        this.cancelUnbindAll();
-      },
       detached: function() {
-        // Also keep bindings active if we're added, but later removed.
+        // Keep bindings active when this element is removed
         this.cancelUnbindAll();
       }
     });
 
-{{site.project_title}} typically handles this management for you, but when you
-explicitly call `cancelUnbindAll()` (and the element is never added to/put back in the DOM),
-it becomes your responsibility to _eventually_ unbind the element using `unbindAll()/asyncUnbindAll()`,
-otherwise your application may leak memory.
+If you explicitly call `cancelUnbindAll()`, {{site.project_title}} won't manage
+the bindings automatically. It's your responsibility to manage the element's
+bindings by eventually doing one of the following:
 
-    var el = document.createElement('my-element');
-    // Need to unbind if el is:
-    //   1. never added to the DOM
-    //   2. put in the DOM, but later removed
+-   Adding the element back into the DOM.
+-   Explicitly unbinding the element by calling the `unbindAll` or
+    `asyncUnbindAll` method.
+
+    var el = document.querySelector('my-element');
+    el.parentNode.removeChild(el);
+
+     ...
+    // finished with this element, not going to reinsert it.
     el.unbindAll();
+
+If you fail to unbind or reinsert an element, your application may leak memory.
 
 #### Using preventDispose {#preventdispose}
 
-To force bindings from being removed in call cases, set `.preventDispose`:
+To force bindings from being removed in all cases, set `.preventDispose`:
 
     Polymer('my-element', {
       preventDispose: true
