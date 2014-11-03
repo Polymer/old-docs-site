@@ -359,6 +359,16 @@ Finally, let’s check that the selected item has the correct CSS class (the "co
 
 **Note:** While not covered in this guide, the `wct` tool has Gulp and Grunt integration as well as support for testing both local and remote browsers. For detailed information on how to use these features, see the `wct` [documentation](https://github.com/Polymer/web-component-tester).
 
+## Additional Mocha helpers
+
+Mocha supports some useful, but less well-known [helpers](https://github.com/mochajs/mocha/blob/master/lib/interfaces/tdd.js) which we've found incredibly useful when writing tests for Polymer elements. These include:
+
+* `test.skip` - skip a pending test case
+* `suite.skip` - skip a pending test suite
+* `test.only` - an exclusive test case
+* `suite.only` - an exclusive test suite
+* `suiteSetup` and `suiteTeardown`
+
 ## Conclusion
 
 **Go forth and write tests!** They can be simple and powerful.
@@ -372,3 +382,5 @@ Thanks for reading and do let us know if you have any questions about unit testi
 ## More Unit Test Samples
 
 If you are looking for an example of a real-world element using web-component-tester to author and run tests, checkout the tests for the [google-map](https://github.com/GoogleWebComponents/google-map/tree/master/test) element.
+
+
