@@ -37,7 +37,7 @@ Our boilerplate for new Polymer elements, [`<seed-element>`](https://github.com/
 	$ bower install
   $ npm install -g web-component-tester
 	$ cd ..
-	$ wct test # where `test` is the directory your tests are located
+	$ wct
 
 The WCT (web-component-tester) tool will run your tests in multiple browsers at once. If all goes well, you should see some output resembling the following in your terminal:
 
@@ -65,7 +65,7 @@ Out of the box, web-component-tester also includes [Lodash](https://lodash.com/)
 
 Great question. When working with Web Components, we regularly find ourselves wanting to write tests within .html sources. A large number of tests require that you write HTML and we wanted something more convenient than two files per suite - your fixtures and tests. We also wanted a test runner that didn't have configuration hooks for running server-executable code to allow for environments like [Travis CI](https://travis-ci.org/). 
 
-We considered both [Karma](http://karma-runner.github.io/0.12/index.html) and [Protractor](https://github.com/angular/protractor) while evaluating our tooling options. Karma unfortunately didn't support [WebDriver](http://docs.seleniumhq.org/projects/webdriver/) commands outside of lauching and lacked first-class support for .html sources (without the use of iframes! and gnarly workarounds). Protractor had a similar JS-centriv view of the world and focused more on integration style testing rather than unit style testing. As we felt quite strongly about 
+We considered both [Karma](http://karma-runner.github.io/0.12/index.html) and [Protractor](https://github.com/angular/protractor) while evaluating our tooling options. Karma unfortunately didn't support [WebDriver](http://docs.seleniumhq.org/projects/webdriver/) commands outside of lauching and lacked first-class support for .html sources. Protractor had a similar JS-centric view of the world and focused more on integration style testing rather than unit style testing.
 
 Ultimately, having considered the options we found it more efficient to build WCT rather than modify these tools outright.
 
@@ -160,7 +160,7 @@ To create a new HTML test page:
           'core-selector-basic-test.html',
         ]);
 
-That's it. In general, you should now be able to run `wct test` and see any tests defined in the suite running.
+That's it. In general, you should now be able to run `wct` and see any tests defined in the suite running.
 
 ## Assertion styles
 
@@ -294,7 +294,7 @@ Let’s test that nothing is by default selected (i.e that our current selection
       assert.equal(s.selected, null);
     });
 
-**Note:** You can include a `done();` statement at the very end of your assertions. This is an optional callback that is useful for testing work that is asynchronous. Next, run `wct test` to ensure everything is working as expected.
+**Note:** You can include a `done();` statement at the very end of your assertions. This is an optional callback that is useful for testing work that is asynchronous. Next, run `wct` to ensure everything is working as expected.
 
 Next, add the core-selector-tests.html file we've started work on to `test/index.html`. We can use the `loadSuites()` method to achieve this so that it is run with all of our other tests:
 
@@ -304,7 +304,7 @@ Next, add the core-selector-tests.html file we've started work on to `test/index
       ]);
     </script>
 
-We can now run the `wct test` command to execute the tests written above. If all goes well your tests should be green. Great.
+We can now run the `wct` command to execute the tests written above. If all goes well your tests should be green. Great.
 
 <img src="/articles/images/unit-testing-elements/wct-tests-passed.png" alt=""/>
 
@@ -364,9 +364,9 @@ Which will trigger the `core-select` event to be fired.
 
 `flush()`, as we covered earlier, allows us to asynchronously dirty check pending objects are observed and ensures notification callbacks are dispatched accordingly. It also triggers a flush of any pending events.
 
-This is only needed for browsers that don’t support `Object.observe()` natively. At present, this represents all browsers except Chrome and Opera. A synchronous alternative is `[element].deliverChanges()`.
+This is useful, even if a browser already supports `Object.observe()` natively. Observers are not synchronous so `flush()` can be helpful for getting a callback after all observer micro-tasks have run. A synchronous alternative is `[element].deliverChanges()`.
 
-As we can see, when we run `wct test` once again we’re still all green:
+As we can see, when we run `wct` once again we’re still all green:
 
 ![](/articles/images/unit-testing-elements/wct-more-tests.png)
 
@@ -393,7 +393,7 @@ Finally, let’s check that the selected item has the correct CSS class (the "co
       }, 50);
     });
 
-And of course, we then run `wct test` to ensure everything runs as expected.
+And of course, we then run `wct` to ensure everything runs as expected.
 
 **Note:** You may want to test outside usage of your element as part of `polymer-ready`. Code written outside of `test` functions will execute immediately, including `suite` functions such as the one above. By default, WCT will wait until `polymer-ready` has completed to run your tests to ensure everything behaves as expected. However, you may not have upgraded elements outside of them. For scenarious like this, the [testImmedate](https://github.com/Polymer/web-component-tester/blob/master/browser/environment/helpers.js#L41) helper is useful for running tests before `polymer-ready`. 
 
