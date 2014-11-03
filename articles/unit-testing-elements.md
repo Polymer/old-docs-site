@@ -37,7 +37,8 @@ Our boilerplate for new Polymer elements, [`<seed-element>`](https://github.com/
 	$ bower install
   $ npm install -g web-component-tester
 	$ cd ..
-	$ wct
+  $ # Finally, run wct where `test` is the directory your tests are in
+	$ wct test
 
 The WCT (web-component-tester) tool will run your tests in multiple browsers at once. You should hopefully see something that looks like:
 
@@ -159,7 +160,7 @@ To create a new HTML test page:
      'core-selector-basic-test.html',
     ]);
 
-That's it. In general, you should now be able to run `wct` and see any tests defined in the suite running.
+That's it. In general, you should now be able to run `wct test` and see any tests defined in the suite running.
 
 ## Assertion styles
 
@@ -224,7 +225,6 @@ First, get `<seed-element>` setup in a new `development` directory (if you haven
 
 
 You can then install `<core-selector>` beside into your `<seed-element>` project as follows:
-
 
 	$ bower install Polymer/core-selector --save
 
@@ -294,7 +294,7 @@ Let’s test that nothing is by default selected (i.e that our current selection
     assert.equal(s.selected, null);
   });
 
-**Note:** You can include a `done();` statement at the very end of your assertions. This is an optional callback that is useful for testing work that is asynchronous. Next, run `wct` to ensure everything is working as expected.
+**Note:** You can include a `done();` statement at the very end of your assertions. This is an optional callback that is useful for testing work that is asynchronous. Next, run `wct test` to ensure everything is working as expected.
 
 Next, add the core-selector-tests.html file we've started work on to `test/index.html`. We can use the `loadSuites()` method to achieve this so that it is run with all of our other tests:
 
@@ -304,7 +304,7 @@ Next, add the core-selector-tests.html file we've started work on to `test/index
       ]);
     </script>
 
-Next run the `wct` command to execute the tests written above. If all goes well your tests should be green. Great.
+We can now run the `wct test` command to execute the tests written above. If all goes well your tests should be green. Great.
 
 <img src="/articles/images/unit-testing-elements/image_1.png" alt=""/>
 
@@ -364,7 +364,7 @@ Which will trigger the "core-select" event to be fired.
 
 This is only needed for browsers that don’t support `Object.observe()` natively. At present, this represents all browsers except Chrome and Opera. A synchronous alternative is `[element].deliverChanges()`.
 
-As we can see, when we run `wct` once again we’re still all green:
+As we can see, when we run `wct test` once again we’re still all green:
 
 ![](/articles/images/unit-testing-elements/image_3.png)
 
@@ -391,11 +391,13 @@ Finally, let’s check that the selected item has the correct CSS class (the "co
       }, 50);
     });
 
+And of course, we then run `wct test` to ensure everything runs as expected.
+
 **Note:** You may want to test outside usage of your element as part of `polymer-ready`. Code written outside of `test` functions will execute immediately, including `suite` functions such as the one above. By default, WCT will wait until `polymer-ready` has completed to run your tests to ensure everything behaves as expected. However, you may not have upgraded elements outside of them. For scenarious like this, the [testImmedate](https://github.com/Polymer/web-component-tester/blob/master/browser/environment/helpers.js#L41) helper is useful for running tests before `polymer-ready`. 
 
 **That’s it!** We now have some simple assertion tests to test the attributes and events for a Polymer element work as expected. For a more complete reference to how we’ve gone about unit testing some of our elements, including `<core-selector>`, take a look at [`<core-tests>`](https://github.com/Polymer/core-tests).
 
-**Note:** While not covered in this guide, the WCT tool has Gulp and Grunt integration as well as support for testing both local and remote browsers. For detailed information on how to use these features, see the `wct` [documentation](https://github.com/Polymer/web-component-tester).
+**Note:** While not covered in this guide, the WCT tool has Gulp and Grunt integration as well as support for testing both local and remote browsers. For detailed information on how to use these features, see the WCT [documentation](https://github.com/Polymer/web-component-tester).
 
 ## Conclusion
 
