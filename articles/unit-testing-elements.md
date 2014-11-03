@@ -121,7 +121,7 @@ To create a new HTML test page:
 
 2. Author your tests in the file you created (e.g in `core-selector-basic-test.html`). Some tips are available in the tutorial later on on how to test attributes and events.
 
-3. That said, you can optionally define a new suite for a set of tests around a new element. For the my-tabs element, this might look as follows:
+3. The `wct` test runner creates an implicit suite for the entire test file. This means you can have any number of top level `test`s as you would like. That said, you can optionally define a new suite for a set of tests around a new element too. For the my-tabs element, this might look as follows:
 
 
 		suite('<my-tabs>', function() {
