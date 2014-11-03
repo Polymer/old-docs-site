@@ -249,22 +249,6 @@ We can repurpose the existing "basic-test.html" file for this purpose. Let’s r
     <seed-element></seed-element>
 
 
-Then, we can add the test file we just wrote to `test/index.html` (using the `loadSuites()` method) so that it is run with all of our other tests:
-
-    <script>
-      WCT.loadSuites([
-        'core-selector-tests.html'
-      ]);
-    </script>
-
-We can then define a suite of tests in the `script` blocks of our core-selector-tests.html file as follows:
-
-    suite('<core-selector>', function() {
-      test('our first test', function() {
-        // ...
-      });
-    });
-
 ### Step 3: Writing test assertions for attributes
 
 So back to core-selector-tests.html - let’s flesh out our `<core-selector>` to include some real items:
@@ -289,9 +273,17 @@ Next, we'll query the DOM for the "selector1" element we just included included:
   });
 </script>
 
-**Note:** You may want to test outside usage of your element as part of `polymer-ready`. Code written outside of `test` functions will execute immediately, including `suite` functions such as the one above. By default, WCT will wait until `polymer-ready` has completed to run your tests to ensure everything behaves as expected. However, you may not have upgraded elements outside of them. For scenarious like this, the [testImmedate](https://github.com/Polymer/web-component-tester/blob/master/browser/environment/helpers.js#L41) helper is useful for running tests before `polymer-ready`. 
+We can now begin testing our element.
 
-We can now begin testing our element. Let’s test that nothing is by default selected (i.e that our current selection is `null`).
+First, we define a test in the suite for our core-selector-tests.html file as follows:
+
+    suite('<core-selector>', function() {
+      test('our first test', function() {
+          // ...
+      });
+    });
+
+Let’s test that nothing is by default selected (i.e that our current selection is `null`). We can replace `our first test` label with the more descriptive `nothing is selected by default` while we're at it:
 
   test('nothing is selected by default', function(done) {
     assert.equal(s.selected, null);
@@ -299,9 +291,17 @@ We can now begin testing our element. Let’s test that nothing is by default se
 
 **Note:** You can include a `done();` statement at the very end of your assertions. This is an optional callback that is useful for testing work that is asynchronous. Next, run `wct` to ensure everything is working as expected.
 
-<img src="/articles/images/unit-testing-elements/image_1.png" alt=""/>
+Next, add the core-selector-tests.html file we've started work on to `test/index.html`. We can use the `loadSuites()` method to achieve this so that it is run with all of our other tests:
 
-If all goes well your tests should be green. Great.
+    <script>
+      WCT.loadSuites([
+        'core-selector-tests.html'
+      ]);
+    </script>
+
+Next run the `wct` command to execute the tests written above. If all goes well your tests should be green. Great.
+
+<img src="/articles/images/unit-testing-elements/image_1.png" alt=""/>
 
 How about testing if an attribute is the default value we expect it to be? `<core-selector>` supports a multi attribute in case you want to support multiple items being selectable. Let’s add this before `done();` along with our other assertions:
 
@@ -319,11 +319,9 @@ As `<core-selector>` has a property items representing the current list of items
 
 `<core-selector>` by default uses a specific CSS class to highlight when an item is selected. It’s called `core-selected` (big surprise!). A user can override this class by setting the custom `selectedClass` attribute on this element. Let’s test to make sure the right class (default) is set.
 
-
   test('if the correct class is used on selection', function() {
     assert.equal(s.selectedClass, ‘core-selected’);
   });
-
 
 ### Step 4: Writing test assertions for events
 
@@ -361,7 +359,7 @@ Which will trigger the "core-select" event to be fired.
 
 This is only needed for browsers that don’t support `Object.observe()` natively. At present, this represents all browsers except Chrome and Opera. A synchronous alternative is `[element].deliverChanges()`.
 
-As we can see, we’re still all green:
+As we can see, when we run `wct` once again we’re still all green:
 
 ![](/articles/images/unit-testing-elements/image_3.png)
 
@@ -387,6 +385,8 @@ Finally, let’s check that the selected item has the correct CSS class (the "co
 
       }, 50);
     });
+
+**Note:** You may want to test outside usage of your element as part of `polymer-ready`. Code written outside of `test` functions will execute immediately, including `suite` functions such as the one above. By default, WCT will wait until `polymer-ready` has completed to run your tests to ensure everything behaves as expected. However, you may not have upgraded elements outside of them. For scenarious like this, the [testImmedate](https://github.com/Polymer/web-component-tester/blob/master/browser/environment/helpers.js#L41) helper is useful for running tests before `polymer-ready`. 
 
 **That’s it!** We now have some simple assertion tests to test the attributes and events for a Polymer element work as expected. For a more complete reference to how we’ve gone about unit testing some of our elements, including `<core-selector>`, take a look at [`<core-tests>`](https://github.com/Polymer/core-tests).
 
