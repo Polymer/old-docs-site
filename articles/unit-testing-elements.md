@@ -192,9 +192,13 @@ Chai supports all of the above assertion styles but we’re going to use the fir
 
 ## Tutorial
 
-### Step 1: Install the element
+In this tutorial, we're going to add an existing Polymer element, [`<core-selector>`](http://www.polymer-project.org/docs/elements/core-elements.html#core-selector) to a fresh `<seed-element>` project as a feature. We're then going to write tests for it.
 
-Let’s try to follow this workflow to create tests for [`<core-selector>`](http://www.polymer-project.org/docs/elements/core-elements.html#core-selector), an existing element that allows you to select items on a list.
+`core-selector` is an element that manages a list of elements that can be selected. It happens to build on the `core-selection` element we used in the last section. Go go composability!.
+
+**Note:** we generally recommend that tests for individual elements live alongside the source for those elements. This is why the `<seed-element>` boilerplate includes a [test](https://github.com/PolymerLabs/seed-element/tree/master/test) directory by default.
+
+### Step 1: Install the element
 
 First, get `<seed-element>` setup in a new `development` directory (if you haven't already in the Quick Start):
 
