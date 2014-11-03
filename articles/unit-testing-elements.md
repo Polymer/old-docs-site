@@ -48,16 +48,17 @@ You can then start authoring new tests in the `test` directory and look at a [sa
 
 The Polymer team created [web-component-tester](https://github.com/Polymer/web-component-tester) to make testing a breeze. It uses some familiar tools for unit testing elements - namely, [Mocha](http://visionmedia.github.io/mocha/) and [Chai](http://chaijs.com/). Using Mocha as our testing framework allows us to write tests that support development and integration without the need for workarounds.
 
-Mocha (as you probably know) was designed to be flexible and needs a few extra pieces in order to make it complete. Perhaps the most important extra piece we use is a JavaScript assertion library called Chai.
+### Mocha
 
-Chai supports a lot of the assertion styles you might want to use (expect, assert, should). The real difference in these styles is their readability and you’ll likely pick a style that fits in with your or your teams own preferences.
+Mocha is a flexible, feature-rich testing framework that runs in both node and the browser. It makes asynchronous testing simple and allows for accurate reporting while mapping uncaught exceptions to the correct tests cases. There are [quite](https://github.com/nelsonic/learn-mocha) [a](http://blog.codeship.io/2014/01/22/testing-frontend-javascript-code-using-mocha-chai-and-sinon.html) [few](http://developers.lyst.com/javascript/testing/2014/03/03/javascript-unit-testing/) online guides available in case you're new to the tool.
 
-Out of the box, web-component-tester includes:
+The only real piece missing from Mocha are helpers for performing assertions against your code. That's where Chai comes in.
 
-* [Mocha][mocha] as a test framework.
-* [Chai][chai] assertions.
-* [Async][async] to keep your sanity.
-* [Lodash][lodash] to repeat fewer things.
+### Chai
+
+Chai supports a lot of the assertion styles you might want to use (expect, assert, should). The real difference in these styles is their readability and you’ll likely pick a style that fits in with your or your teams own preferences. The Chai [docs](http://chaijs.com/guide/styles/) explain their assertion styles in more detail.
+
+Out of the box, web-component-tester also includes [Lodash](https://lodash.com/) to repeat fewer things and [Async](https://github.com/caolan/async) to keep your sanity.
 
 ### Why create a new tool?
 
@@ -405,5 +406,6 @@ Thanks for reading and do let us know if you have any questions about unit testi
 ## More Unit Test Samples
 
 If you are looking for an example of a real-world element using web-component-tester to author and run tests, checkout the tests for the [google-map](https://github.com/GoogleWebComponents/google-map/tree/master/test) element.
+
 
 
