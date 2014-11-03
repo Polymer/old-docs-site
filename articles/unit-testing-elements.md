@@ -35,6 +35,7 @@ Our boilerplate for new Polymer elements, [`<seed-element>`](https://github.com/
 	$ git clone git://github.com/PolymerLabs/seed-element.git
 	$ cd seed-element
 	$ bower install
+  $ npm install -g web-component-tester
 	$ cd ..
 	$ wct
 
@@ -217,6 +218,9 @@ First, get `<seed-element>` setup in a new `development` directory (if you haven
 
 	# Install the seed-element dependencies
 	$ bower install
+
+  # Install web-component-tester globally
+  $ npm install -g web-component-tester
 
 
 You can then install `<core-selector>` beside into your `<seed-element>` project as follows:
