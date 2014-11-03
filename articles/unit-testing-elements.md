@@ -8,7 +8,7 @@ subtitle: Authoring Unit Tests for your elements
 
 article:
   author: addyosmani
-  published: 2014-20-09
+  published: 2014-03-11
   polymer_version: 0.4.2
   description: Authoring Unit Tests for your elements
 tags:
