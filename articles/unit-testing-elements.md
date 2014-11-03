@@ -113,7 +113,7 @@ Or, you can write tests in separate `.html` documents. For example, `test/awesom
 
 ## Structuring tests as HTML pages
 
-We prefer to run entire HTML pages (e.g pages containing elements) as individual tests in a suite.
+We prefer to run entire HTML pages (e.g pages containing elements) as individual tests in a suite. In the same way your Web Components are used in HTML, it's convenient to set up and test your elements in the same sort of environment.
 
 To create a new HTML test page:
 
@@ -121,7 +121,7 @@ To create a new HTML test page:
 
 2. Author your tests in the file you created (e.g in `core-selector-basic-test.html`). Some tips are available in the tutorial later on on how to test attributes and events.
 
-3. You will want to define a new suite for a set of tests around a new element. For the my-tabs element, this might look as follows:
+3. That said, you can optionally define a new suite for a set of tests around a new element. For the my-tabs element, this might look as follows:
 
 
 		suite('<my-tabs>', function() {
