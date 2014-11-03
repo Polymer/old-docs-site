@@ -203,7 +203,7 @@ You can then install `<core-selector>` beside into your `<seed-element>` project
 
 We begin writing our first test with a new HTML file in the "tests" directory of `<seed-element>` which we’ll call core-selector-tests.html. This will contain the tests and a few dependencies for running them. For our new test, we will need:
 
-* Polymer’s platform.js
+* The Web Component polyfills ([webcomponents.js](https://github.com/Polymer/webcomponentsjs))
 
 * web-component-tester
 
@@ -211,7 +211,7 @@ We begin writing our first test with a new HTML file in the "tests" directory of
 
 We can repurpose the existing "basic-test.html" file for this purpose. Let’s rename it to “core-selector-tests.html” and customize it for `<core-selector>`:
 
-    <script src="../../platform/platform.js"></script>
+    <script src="../../webcomponentsjs/webcomponents.js"></script>
     <script src="../../web-component-tester/browser.js"></script>
 
     <!-- Step 1: import the element to test -->
