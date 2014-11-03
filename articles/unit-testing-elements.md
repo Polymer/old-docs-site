@@ -326,9 +326,11 @@ Great. Now to set the `selected` item in the list to "2" we can write:
 
 Which will trigger the "core-select" event to be fired.
 
-**Note:** In Polymer’s unit tests, just to ensure that all of our bindings are correctly getting updated when we dynamically change values in this way, we can call `Platform.flush()`:
+**Note:** In Polymer’s unit tests, just to ensure that all of our bindings are correctly getting updated when we dynamically change values in this way, we can call `flush()`:
 
-	Platform.flush();
+	flush();
+
+`flush()` allows us to asynchronously dirty check pending objects are observed and ensures notification callbacks are dispatched accordingly. It also triggers a flush of any pending events
 
 This is only needed for browsers that don’t support `Object.observe()` natively. At present, this represents all browsers except Chrome and Opera. A synchronous alternative is `[element].deliverChanges()`.
 
