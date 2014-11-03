@@ -59,8 +59,6 @@ Out of the box, web-component-tester includes:
 * [Async][async] to keep your sanity.
 * [Lodash][lodash] to repeat fewer things.
 
-Additionally, WCT provides integration with `selenium`, so that you can easily run your test suites across multiple browsers.
-
 ### Why create a new tool?
 
 Great question. When working with HTML imports, we regularly find ourselves wanting to write tests within .html sources. A large number of tests require that you write HTML and we wanted something more convenient than two files per suite - your fixtures and tests. We also wanted a test runner that didn't have configuration hooks for running server-executable code to allow for environments like Travis CI. 
