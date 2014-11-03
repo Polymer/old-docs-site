@@ -67,6 +67,28 @@ We considered both [Karma](http://karma-runner.github.io/0.12/index.html) (which
 
 Working with .html sources as a first-class citizen involved lots of work (and iframes!). Ultimately, having considered the options we found it more efficient to build WCT rather than modify these tools outright.
 
+## Unit test helpers
+
+### WCT-specific helpers
+
+WCT includes a number of helpful utilities meant to ease testing Web Components. These include `flush()` and `testImmediate()`.
+
+`flush()` triggers a flush of any pending events and observations, ensuring that notification callbacks are dispatched after they have been processed.
+
+`testImmediate()` allows you to run your test at declaration time before Mocha has begun tests. It's handy when you need to test document initialization. `testImmediate(name, testFn)` accepts a test name and test function. If an argument is accepted to `testFn`, the test will be treated as async, similar to Mocha tests.
+
+Note that with `testImmediate()`, should any errors be thrown asynchronously cannot be tied to your test. If you wish to catch them and pass them to the `done` event instead, a [safeStep()](https://github.com/Polymer/web-component-tester/blob/master/browser/environment/helpers.js#L19) utility is available to help. 
+
+### Mocha helpers
+
+Mocha also supports some useful, but less well-known [helpers](https://github.com/mochajs/mocha/blob/master/lib/interfaces/tdd.js) which we've found incredibly useful when writing tests for Polymer elements. These include:
+
+* `test.skip` - skip a pending test case
+* `suite.skip` - skip a pending test suite
+* `test.only` - an exclusive test case
+* `suite.only` - an exclusive test suite
+* `suiteSetup` and `suiteTeardown`
+
 ## Polymer’s testing conventions
 
 Each test tests the component’s DOM, templates, Shadow DOM and API. You don’t have to use this convention if it doesn’t match your tastes.
@@ -332,7 +354,7 @@ Which will trigger the "core-select" event to be fired.
 
 	flush();
 
-`flush()` allows us to asynchronously dirty check pending objects are observed and ensures notification callbacks are dispatched accordingly. It also triggers a flush of any pending events
+`flush()`, as we covered earlier, allows us to asynchronously dirty check pending objects are observed and ensures notification callbacks are dispatched accordingly. It also triggers a flush of any pending events.
 
 This is only needed for browsers that don’t support `Object.observe()` natively. At present, this represents all browsers except Chrome and Opera. A synchronous alternative is `[element].deliverChanges()`.
 
@@ -366,16 +388,6 @@ Finally, let’s check that the selected item has the correct CSS class (the "co
 **That’s it!** We now have some simple assertion tests to test the attributes and events for a Polymer element work as expected. For a more complete reference to how we’ve gone about unit testing some of our elements, including `<core-selector>`, take a look at [`<core-tests>`](https://github.com/Polymer/core-tests).
 
 **Note:** While not covered in this guide, the `wct` tool has Gulp and Grunt integration as well as support for testing both local and remote browsers. For detailed information on how to use these features, see the `wct` [documentation](https://github.com/Polymer/web-component-tester).
-
-## Additional Mocha helpers
-
-Mocha supports some useful, but less well-known [helpers](https://github.com/mochajs/mocha/blob/master/lib/interfaces/tdd.js) which we've found incredibly useful when writing tests for Polymer elements. These include:
-
-* `test.skip` - skip a pending test case
-* `suite.skip` - skip a pending test suite
-* `test.only` - an exclusive test case
-* `suite.only` - an exclusive test suite
-* `suiteSetup` and `suiteTeardown`
 
 ## Conclusion
 
