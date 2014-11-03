@@ -288,9 +288,9 @@ Next, we'll query the DOM for the "selector1" element we just included included:
 
 **Note:** You may want to test outside usage of your element as part of `polymer-ready`. Code written outside of `test` functions will execute immediately, including `suite` functions such as the one above. By default, WCT will wait until `polymer-ready` has completed to run your tests to ensure everything behaves as expected. However, you may not have upgraded elements outside of them. For scenarious like this, the [testImmedate](https://github.com/Polymer/web-component-tester/blob/master/browser/environment/helpers.js#L41) helper is useful for running tests before `polymer-ready`. 
 
-We can now begin testing our element. Let’s test that nothing is by default selected (i.e that our current selection is null).
+We can now begin testing our element. Let’s test that nothing is by default selected (i.e that our current selection is `null`).
 
-  test('nothing is selected by default', function() {
+  test('nothing is selected by default', function(done) {
     assert.equal(s.selected, null);
   });
 
