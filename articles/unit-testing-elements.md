@@ -37,12 +37,11 @@ Our boilerplate for new Polymer elements, [`<seed-element>`](https://github.com/
 	$ bower install
   $ npm install -g web-component-tester
 	$ cd ..
-  $ # Finally, run wct where `test` is the directory your tests are in
-	$ wct test
+	$ wct test # where `test` is the directory your tests are located
 
-The WCT (web-component-tester) tool will run your tests in multiple browsers at once. You should hopefully see something that looks like:
+The WCT (web-component-tester) tool will run your tests in multiple browsers at once. If all goes well, you should see some output resembling the following in your terminal:
 
-<img src="change me" alt="Test runner displaying a single test passing for seed-element"/>
+<img src="/articles/images/unit-testing-elements/wct-terminal.png" alt="Test runner displaying a single test passing for seed-element"/>
 
 You can then start authoring new tests in the `test` directory and look at a [sample test](https://github.com/PolymerLabs/seed-element/blob/master/test/basic-test.html) we've written for you. Continue reading to learn about our recommended way to structure and author your tests.
 
@@ -149,16 +148,17 @@ To create a new HTML test page:
 3. The WCT test runner creates an implicit suite for the entire test file. This means you can have any number of top level `test`s as you would like. That said, you can optionally define a new suite for a set of tests around a new element too. For the my-tabs element, this might look as follows:
 
 
-    suite('<my-tabs>', function() {
-      // ...
-    });
+        suite('<my-tabs>', function() {
+          // ...
+        });
+
 
 4. Finally, add your test to the `test/index.html` file's `loadSuites` list. This would look as follows:
 
-    // Load and run all tests (.html, .js) as one suite:
-    WCT.loadSuites([
-     'core-selector-basic-test.html',
-    ]);
+        // Load and run all tests (.html, .js) as one suite:
+        WCT.loadSuites([
+          'core-selector-basic-test.html',
+        ]);
 
 That's it. In general, you should now be able to run `wct test` and see any tests defined in the suite running.
 
@@ -288,11 +288,11 @@ First, we define a test in the suite for our core-selector-tests.html file as fo
       });
     });
 
-Let’s test that nothing is by default selected (i.e that our current selection is `null`). We can replace `our first test` label with the more descriptive `nothing is selected by default` while we're at it:
+Let’s test that nothing is by default selected (i.e that our current selection is `null`). We can replace "our first test" label with the more descriptive "nothing is selected by default" while we're at it:
 
-  test('nothing is selected by default', function(done) {
-    assert.equal(s.selected, null);
-  });
+    test('nothing is selected by default', function(done) {
+      assert.equal(s.selected, null);
+    });
 
 **Note:** You can include a `done();` statement at the very end of your assertions. This is an optional callback that is useful for testing work that is asynchronous. Next, run `wct test` to ensure everything is working as expected.
 
@@ -306,7 +306,7 @@ Next, add the core-selector-tests.html file we've started work on to `test/index
 
 We can now run the `wct test` command to execute the tests written above. If all goes well your tests should be green. Great.
 
-<img src="/articles/images/unit-testing-elements/image_1.png" alt=""/>
+<img src="/articles/images/unit-testing-elements/wct-tests-passed.png" alt=""/>
 
 How about testing if an attribute is the default value we expect it to be? `<core-selector>` supports a multi attribute in case you want to support multiple items being selectable. Let’s add this before `done();` along with our other assertions:
 
@@ -318,15 +318,15 @@ So far, so good.
 
 As `<core-selector>` has a property items representing the current list of items defined as children, we can also test to make sure it understands that we have 3 items at the moment.
 
-  test('if an attribute is the default value expected', function() {
-    assert.equal(s.items.length, 3);
-  });
+    test('if an attribute is the default value expected', function() {
+      assert.equal(s.items.length, 3);
+    });
 
 `<core-selector>` by default uses a specific CSS class to highlight when an item is selected. It’s called `core-selected` (big surprise!). A user can override this class by setting the custom `selectedClass` attribute on this element. Let’s test to make sure the right class (default) is set.
 
-  test('if the correct class is used on selection', function() {
-    assert.equal(s.selectedClass, ‘core-selected’);
-  });
+    test('if the correct class is used on selection', function() {
+      assert.equal(s.selectedClass, ‘core-selected’);
+    });
 
 ### Step 4: Writing test assertions for events
 
@@ -334,11 +334,12 @@ What about testing events? A simple event supported by `<core-selector>` that we
 
 First, setup a counter that will be incremented each time the `core-select event is fired:
 
-	var selectEventCounter = 0;
+    var selectEventCounter = 0;
 
-If this is the case two properties - `s.selectedItem` and `e.detail.item` (returned by the event) should be the same. Hooking this up to the "core-select" event, we get:
+If this is the case two properties - `s.selectedItem` and `e.detail.item` (returned by the event) should be the same. Hooking this up to the `core-select` event, we get:
 
-    test('if core-select is fired each time a different item in a list is selected', function() {
+    test('if core-select is fired when a different item in a list is selected', 
+    function() {
       s.addEventListener(‘core-select’, function(e) {
           if (e.detail.isSelected){
               selectEventCounter++;
@@ -349,12 +350,13 @@ If this is the case two properties - `s.selectedItem` and `e.detail.item` (retur
 
 Great. Now to set the `selected` item in the list to "2" we can write:
 
-    test('if core-select is fired each time a different item in a list is selected', function() {
+    test('if core-select is fired when a different item in a list is selected', 
+    function() {
       // ...
       s.selected = 2;
     });
 
-Which will trigger the "core-select" event to be fired.
+Which will trigger the `core-select` event to be fired.
 
 **Note:** In Polymer’s unit tests, just to ensure that all of our bindings are correctly getting updated when we dynamically change values in this way, we can call `flush()`:
 
@@ -366,7 +368,7 @@ This is only needed for browsers that don’t support `Object.observe()` nativel
 
 As we can see, when we run `wct test` once again we’re still all green:
 
-![](/articles/images/unit-testing-elements/image_3.png)
+![](/articles/images/unit-testing-elements/wct-more-tests.png)
 
 Finally, let’s check that the selected item has the correct CSS class (the "core-selected" class) and the `selectedItem` attribute, which returns the currently selected item, are both the value we would expect. A timeout is used here to allow sufficient time for controls to render:
 
