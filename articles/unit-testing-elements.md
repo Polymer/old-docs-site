@@ -124,10 +124,16 @@ To create a new HTML test page:
 3. The `wct` test runner creates an implicit suite for the entire test file. This means you can have any number of top level `test`s as you would like. That said, you can optionally define a new suite for a set of tests around a new element too. For the my-tabs element, this might look as follows:
 
 
-		suite('<my-tabs>', function() {
+    suite('<my-tabs>', function() {
       // ...
-      });
+    });
 
+4. Finally, add your test to the `test/index.html` file's `loadSuites` list. This would look as follows:
+
+    // Load and run all tests (.html, .js) as one suite:
+    WCT.loadSuites([
+     'core-selector-basic-test.html',
+    ]);
 
 That's it. In general, you should now be able to run `wct` and see any tests defined in the suite running.
 
