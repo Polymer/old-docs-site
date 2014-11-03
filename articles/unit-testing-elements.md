@@ -61,6 +61,14 @@ Out of the box, web-component-tester includes:
 
 Additionally, WCT provides integration with `selenium`, so that you can easily run your test suites across multiple browsers.
 
+### Why create a new tool?
+
+Great question. When working with HTML imports, we regularly find ourselves wanting to write tests within .html sources. A large number of tests require that you write HTML and we wanted something more convenient than two files per suite - your fixtures and tests. We also wanted a test runner that didn't have configuration hooks for running server-executable code to allow for environments like Travis CI. 
+
+We considered both [Karma](http://karma-runner.github.io/0.12/index.html) (which didn't support WebDriver commands outside of launching) as well as [Protractor](https://github.com/angular/protractor) (which focuses on an integration style of testing, whilst we were after unit style testing) but both took a very JavaScript centric view of the world. 
+
+Working with .html sources as a first-class citizen involved lots of work (and iframes!). Ultimately, having considered the options we found it more efficient to build WCT rather than modify these tools outright.
+
 ## Polymer’s testing conventions
 
 Each test tests the component’s DOM, templates, Shadow DOM and API. You don’t have to use this convention if it doesn’t match your tastes.
