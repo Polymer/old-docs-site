@@ -166,7 +166,7 @@ A simple assertion test using an assert-style test for this could be written as 
 
 Chai supports all of the above assertion styles but we’re going to use the first option ("assert style") for the sake of simplicity.
 
-**Note:** If you wish to use one of the other assertion styles, you will need to set it up manually as we currently default to [chai.assert](https://github.com/Polymer/polymer-test-tools/blob/master/tools.html#L13).
+**Note:** If you wish to use one of the other assertion styles, including `expect`, these are made available by [default](https://github.com/Polymer/web-component-tester/blob/master/browser/environment/chai.js#L12). If however you want to use Chai's `should` assertion styles, you will need to set this up manually.
 
 ## Tutorial
 
