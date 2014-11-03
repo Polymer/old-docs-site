@@ -38,7 +38,7 @@ Our boilerplate for new Polymer elements, [`<seed-element>`](https://github.com/
 	$ cd ..
 	$ wct
 
-The `wct` (web-component-tester) tool will run your tests in multiple browsers at once. You should hopefully see something that looks like:
+The WCT (web-component-tester) tool will run your tests in multiple browsers at once. You should hopefully see something that looks like:
 
 <img src="change me" alt="Test runner displaying a single test passing for seed-element"/>
 
@@ -61,11 +61,11 @@ Out of the box, web-component-tester includes:
 
 ### Why create a new tool?
 
-Great question. When working with HTML imports, we regularly find ourselves wanting to write tests within .html sources. A large number of tests require that you write HTML and we wanted something more convenient than two files per suite - your fixtures and tests. We also wanted a test runner that didn't have configuration hooks for running server-executable code to allow for environments like Travis CI. 
+Great question. When working with Web Components, we regularly find ourselves wanting to write tests within .html sources. A large number of tests require that you write HTML and we wanted something more convenient than two files per suite - your fixtures and tests. We also wanted a test runner that didn't have configuration hooks for running server-executable code to allow for environments like [Travis CI](https://travis-ci.org/). 
 
-We considered both [Karma](http://karma-runner.github.io/0.12/index.html) (which didn't support WebDriver commands outside of launching) as well as [Protractor](https://github.com/angular/protractor) (which focuses on an integration style of testing, whilst we were after unit style testing) but both took a very JavaScript centric view of the world. 
+We considered both [Karma](http://karma-runner.github.io/0.12/index.html) and [Protractor](https://github.com/angular/protractor) while evaluating our tooling options. Karma unfortunately didn't support [WebDriver](http://docs.seleniumhq.org/projects/webdriver/) commands outside of lauching and lacked first-class support for .html sources (without the use of iframes! and gnarly workarounds). Protractor had a similar JS-centriv view of the world and focused more on integration style testing rather than unit style testing. As we felt quite strongly about 
 
-Working with .html sources as a first-class citizen involved lots of work (and iframes!). Ultimately, having considered the options we found it more efficient to build WCT rather than modify these tools outright.
+Ultimately, having considered the options we found it more efficient to build WCT rather than modify these tools outright.
 
 ## Unit test helpers
 
@@ -143,7 +143,7 @@ To create a new HTML test page:
 
 2. Author your tests in the file you created (e.g in `core-selector-basic-test.html`). Some tips are available in the tutorial later on on how to test attributes and events.
 
-3. The `wct` test runner creates an implicit suite for the entire test file. This means you can have any number of top level `test`s as you would like. That said, you can optionally define a new suite for a set of tests around a new element too. For the my-tabs element, this might look as follows:
+3. The WCT test runner creates an implicit suite for the entire test file. This means you can have any number of top level `test`s as you would like. That said, you can optionally define a new suite for a set of tests around a new element too. For the my-tabs element, this might look as follows:
 
 
     suite('<my-tabs>', function() {
@@ -390,7 +390,7 @@ Finally, let’s check that the selected item has the correct CSS class (the "co
 
 **That’s it!** We now have some simple assertion tests to test the attributes and events for a Polymer element work as expected. For a more complete reference to how we’ve gone about unit testing some of our elements, including `<core-selector>`, take a look at [`<core-tests>`](https://github.com/Polymer/core-tests).
 
-**Note:** While not covered in this guide, the `wct` tool has Gulp and Grunt integration as well as support for testing both local and remote browsers. For detailed information on how to use these features, see the `wct` [documentation](https://github.com/Polymer/web-component-tester).
+**Note:** While not covered in this guide, the WCT tool has Gulp and Grunt integration as well as support for testing both local and remote browsers. For detailed information on how to use these features, see the `wct` [documentation](https://github.com/Polymer/web-component-tester).
 
 ## Conclusion
 
