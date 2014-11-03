@@ -245,8 +245,7 @@ We can repurpose the existing "basic-test.html" file for this purpose. Let’s r
     <seed-element></seed-element>
 
 
-In our index.html `script` block, we can load a suite of HTML tests for `<core-selector>` using the `WCT.loadSuites()` method:
-
+Then, we can add the test file we just wrote to `test/index.html` (using the `loadSuites()` method) so that it is run with all of our other tests:
 
     <script>
       WCT.loadSuites([
