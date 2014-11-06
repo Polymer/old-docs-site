@@ -43,9 +43,9 @@ handlers:
     Access-Control-Allow-Origin: "*"
 
 # For webcomponents.js, serve both minified and non-minifed versions
-- url: /webcomponents(\.min|)\.js
+- url: /webcomponents(\.min|)?\.js
   static_files: components/webcomponentsjs/webcomponents\1.js
-  upload: components/webcomponentsjs/webcomponents(\.min)?\.js
+  upload: components/webcomponentsjs/webcomponents(\.min|)?.js
   http_headers:
     Access-Control-Allow-Origin: "*"
 
