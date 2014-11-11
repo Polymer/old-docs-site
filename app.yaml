@@ -184,7 +184,7 @@ skip_files:
 - ^(.*/)?components/firebase-simple-login/lib/.*
 - ^(.*/)?components/code-mirror/codemirror-4.0/bin/.*
 - ^(.*/)?components/web-component-tester/.*
-- ^(.*/)?components/web-animations-js/test/.*
+- ^(.*/)?components/web-animations-(js|next)/test/.*
 - ^(.*/)?components/extern-generator/.*
 - ^(.*/)?components/polymer-expressions/third_party/.*
 - ^(.*/)?codereview.setting
