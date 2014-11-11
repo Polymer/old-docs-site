@@ -1,5 +1,5 @@
 application: polymer-project
-version: 2014-11-11
+version: 2014-11-11-1
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -55,12 +55,18 @@ handlers:
   http_headers:
     Access-Control-Allow-Origin: "*"
 
-- url: /polymer(\.min)?\.(js|html)
-  static_files: components/polymer/polymer.\2
-  upload: components/polymer/polymer\.(js|html)
+- url: /polymer(\.min)?\.html
+  static_files: components/polymer/polymer.html
+  upload: components/polymer/polymer\.html
   http_headers:
     Access-Control-Allow-Origin: "*"
 
+- url: /polymer(\.min)?\.js
+  static_files: components/polymer/polymer.min.js
+  upload: components/polymer/polymer\.js
+  http_headers:
+    Access-Control-Allow-Origin: "*"
+    
 - url: /polymer(\.min)?\.js\.map
   static_files: components/polymer/polymer.js.map
   upload: components/polymer/polymer\.js\.map
@@ -72,6 +78,18 @@ handlers:
   static_files: polymer-all/projects/designer/index.html
   upload: polymer-all/projects/designer/index.html
   secure: always
+
+- url: /tools/designer/components/webcomponentsjs/webcomponents.js
+  static_files: components/webcomponentsjs/webcomponents.min.js
+  upload: components/webcomponentsjs/webcomponents.min.js
+
+- url: /tools/designer/components/polymer/polymer.html
+  static_files: components/polymer/polymer.html
+  upload: /tools/designer/components/polymer/polymer.html
+
+- url: /tools/designer/components/polymer/polymer.js
+  static_files: components/polymer/polymer.min.js
+  upload: /tools/designer/components/polymer/polymer.js
 
 - url: /tools/designer/(.*)
   static_files: polymer-all/projects/designer/\1
