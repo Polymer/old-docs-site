@@ -31,7 +31,8 @@ add_permalinks: false
 {% if p.article.updated %}(updated <time datetime="{{updated}}">{{updated}}</time>){% endif %}
 </div>
 
-<summary>{{p.article.description}}</summary>
+<summary>{{p.article.description}}
+</summary>
 
 </div>
 {% endif %}
