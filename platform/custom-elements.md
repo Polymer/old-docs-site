@@ -8,7 +8,7 @@ subtitle: polyfill
 
 feature:
   spec: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html
-  code: https://github.com/polymer/CustomElements
+  code: https://github.com/Polymer/webcomponentsjs
   summary: Enables authors to define and use new types of DOM elements in a document.
   
 links:
