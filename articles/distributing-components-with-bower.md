@@ -85,7 +85,7 @@ This will produce a bower.json file containing something like:
 
 ### 2. Adding the Polymer dependencies {#add-dependencies}
 
-Next, you will want to install platform.js (the Web Component polyfills) and polymer.html so that your {{site.project_title}} elements can consume them. This can be done by running the following one-liner: 
+Next, you will want to install webcomponents.js (the Web Component polyfills) and polymer.html so that your {{site.project_title}} elements can consume them. This can be done by running the following one-liner: 
 
     bower install --save polymer
 
@@ -102,7 +102,7 @@ We pass the `--save` flag to Bower so that a reference to the dependencies liste
 
 When you run `bower install`, Bower clones the package's Git repositories, caches the package and then copies the package to our current project's bower_components directory (Bower will create this if it doesn't exist). This directory can be customized using a [.bowerrc](https://github.com/bower/bower#custom-install-directory) file.
 
-An alternative to running the above `bower install` line is adding a reference to {{site.project_title}} and platform.js manually in the generated bower.json file.
+An alternative to running the above `bower install` line is adding a reference to {{site.project_title}} and webcomponents.js manually in the generated bower.json file.
 
 ### 3. Referencing dependencies {#reference-dependencies}
 

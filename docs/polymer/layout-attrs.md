@@ -107,6 +107,37 @@ For example, to make "Gamma" 2x larger than "Beta" and "Alpha" 3x larger, use `f
   <div flex two>Gamma</div>
 </div>
 
+### Auto-vertical
+
+For vertical layouts, you can use the `auto-vertical` attribute
+on a child element to set an automatic flex basis on that element.
+Use this attribute for responsive designs
+if you want elements laid out horizontally when the display is wide
+or vertically when narrow.
+
+The following code uses `core-media-query` to get the screen size.
+If it's smaller than 640 pixels,
+the layout becomes vertical and the elements layout on a flex basis.
+Otherwise, the layout becomes horizontal and the elements are laid out
+normally.
+
+{% raw %}
+    <core-media-query query="max-width: 640px"
+                      queryMatches="{{phoneScreen}}"></core-media-query>
+    <div layout vertical?="{{phoneScreen}}"
+         horizontal?="{{!phoneScreen}}">
+      <div auto-vertical>Alpha</div>
+      <div auto-vertical>Beta</div>
+      <div auto-vertical>Gamma</div>
+    </div>
+{% endraw %}
+
+<div vertical layout class="demo" style="height:170px">
+  <div auto-vertical>Alpha</div>
+  <div auto-vertical>Beta</div>
+  <div auto-vertical>Gamma</div>
+</div>
+
 ### Cross-axis alignment
 
 By default, children stretch to fit the cross-axis (e.g. _vertical_ stretching in a _horizontal_ layout).

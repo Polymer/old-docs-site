@@ -39,7 +39,7 @@ Go to the `starter` directory and open the `index.html` file in your favorite ed
   &lt;meta name="viewport" 
     content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
 
-  &lt;script src="../components/platform/platform.js">
+  &lt;script src="../components/webcomponentsjs/webcomponents.js">
   &lt;/script>
 
   &lt;link rel="import" 
@@ -49,7 +49,7 @@ Go to the `starter` directory and open the `index.html` file in your favorite ed
 <aside>
   <h4>Key information</h4>
   <ul>
-    <li>This bare-bones file defines some styles and embeds the <code>platform.js</code> script, which supplies any missing platform features.</li>
+    <li>This bare-bones file defines some styles and embeds the <code>webcomponents.js</code> script, which supplies any missing platform features.</li>
     <li>The <code>link rel="import"</code> element is an <em>HTML import</em>, a new way of including resources into an HTML file.</li>
   </ul>
 </aside>
@@ -92,7 +92,7 @@ Add HTML import links to import the `<core-header-panel>`, `<core-toolbar>`, and
 <side-by-side>
 <pre>
 &lt;script 
-  src="../components/platform/platform.js">
+  src="../components/webcomponentsjs/webcomponents.js">
 &lt;/script>
 
 &lt;link rel="import" 
@@ -244,7 +244,7 @@ core-toolbar {
         <code>&lt;html&gt;</code> and <code>&lt;body&gt;</code>, take up 100% of the viewport height.</li>
     <li>The <code>overflow</code> and <code>-webkit-overflow-scrolling</code> properties ensure that
         scrolling works smoothly on touch devices, especially iOS.</li>
-    <li>The <code>#tabs</code> selector selects the `&lt;paper-tabs&gt;` element. The toolbar adds a default margin on its children, to space controls appropriately. The tabs don't need this extra spacing.</li>
+    <li>The <code>#tabs</code> selector selects the <code>&lt;paper-tabs&gt;</code> element. The toolbar adds a default margin on its children, to space controls appropriately. The tabs don't need this extra spacing.</li>
     <li>The <code>user-select</code> properties prevent the user from accidentally selecting the tab text.</li>
   </ul>
 </aside>

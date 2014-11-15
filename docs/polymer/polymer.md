@@ -30,10 +30,16 @@ At the heart of {{site.project_title}} are [Custom Elements](/platform/custom-el
 The element declaration includes:
 
 -   The `name` attribute specifies the name of the new custom element.
--   The optional `<template>` tag defines HTML content that is 
+-   The optional `<template>` element defines HTML content that is
     cloned into the shadow DOM of each instance of the element.
--   The `Polymer` method, which _registers_ the element, so it's
-    recognized as a custom element by the browser.
+-   An inline script that _registers_ the element by calling the
+    the `Polymer` method and passing in the element's prototype.
+    Registering the element allows it be recognized as a custom element
+    by the browser.
+
+**Note:** When the `<polymer-element>` declaration includes both `<template>` and `<script>`
+elements, the `<template>` element **must come first.**
+{: .alert .alert-info }
 
 ### Attributes
 
@@ -115,8 +121,13 @@ The simplest way to invoke `Polymer` is to place an inline script inside
 your `<polymer-element>` tag:
 
     <polymer-element name="simple-tag">
+      <template> ... </template>
       <script>Polymer();</script>
     </polymer-element>
+
+**Note:** When the `<polymer-element>` declaration includes both `<template>` and `<script>`
+elements, the `<template>` element **must come first.**
+{: .alert .alert-info }
 
 There are several alternatives to registering an element in an an inline script:
 
@@ -252,18 +263,27 @@ techniques like anonymous self-calling functions:
 
 ### Supporting global variables {#global}
 
-There are times when you may like to define properties of an application globally once and then make them available inside all of your elements. For example, you may want to define configuration information and then reference them inside individual components. You may want one single easing curve for all animations. We may want to store information like the currently logged-in user that we consider "global".
+There are times when you may want to define properties of an application globally,
+and then make them available inside all of your elements. For example:
 
-To achieve this, you can use the [MonoState Pattern](http://c2.com/cgi/wiki?MonostatePattern). When defining a {{site.project_title}} element, define a closure that closes over the variables in question, and then provide accessors on the object's prototype or copy them over to individual instances in the constructor.
+- A single easing curve for all animations. 
+- Information about the currently logged-in user that you consider "global".
+
+To achieve this, you can use the [MonoState Pattern](http://c2.com/cgi/wiki?MonostatePattern). 
+When defining a {{site.project_title}} element, define a closure that closes over the variables 
+in question, and then provide accessors on the object's prototype or copy them over to individual 
+instances in the `ready` callback.
 
     <polymer-element name="app-globals">
       <script>
       (function() {
+        // these variables are shared by all instances of app-globals
         var firstName = 'John';
         var lastName = 'Smith';
 
         Polymer({
            ready: function() {
+             // copy global values into instance properties
              this.firstName = firstName;
              this.lastName = lastName;
            }
@@ -272,18 +292,21 @@ To achieve this, you can use the [MonoState Pattern](http://c2.com/cgi/wiki?Mono
       </script>
     </polymer-element>
 
-Then use the element as you would any other, and data-bind it to a property that you can use to access it through {{site.project_title}}'s data-binding:
+Then use the `<app-globals>` element as you would any other. You can access its properties 
+using {{site.project_title}} data binding or plain JavaScript:
 
     <polymer-element name="my-component">
       <template>
         <app-globals id="globals"></app-globals>
-        <div id="firstname">{{globals.firstName}}</div>
-        <div id="lastname">{{globals.lastName}}</div>
+        <div id="firstname">{%raw%}{{$.globals.firstName}}{%endraw%}</div>
+        <div id="lastname">{%raw%}{{$.globals.lastName}}{%endraw%}</div>
       </template>
       <script>
         Polymer({
-          ready: function() { this.globals = this.$.globals; }
-         });
+          ready: function() { 
+            console.log('Last name: ' + this.$.globals.lastName); 
+          }
+        });
       </script>
     </polymer-element>
 
@@ -299,7 +322,7 @@ A slight tweak of this approach lets you configure the value of the globals exte
              this.values = values;
              for (var i = 0; i < this.attributes.length; ++i) {
                var attr = this.attributes[i];
-               values[attr.nodeName] = attr.nodeValue;
+               values[attr.nodeName] = attr.value;
              }
            }
         });
@@ -310,8 +333,17 @@ A slight tweak of this approach lets you configure the value of the globals exte
 
 The main page configures the globals by passing attributes:
 
-    <app-globals firstName="Addy" lastName="Osmani"></app-globals>
+    <app-globals firstname="Addy" lastname="Osmani"></app-globals>
 
+This second version of `app-globals` has a slightly different API than
+the first. The global variables are properties of the `values` object instead of 
+direct properties of `app-globals`. Setting values using attributes imposes two 
+limitations: the values must be strings, and the variable names are lowercase.
+(See [Attribute case sensitivity](#attrcase) for more information.) 
+
+To use this `<app-globals>` element with the previous `<my-component>` example,
+you'd need to update the paths that refer to the global variables (for example 
+`$.globals.values.lastname` instead of `$.globals.lastName`).
 
 ### Element lifecycle methods {#lifecyclemethods}
 
@@ -349,7 +381,7 @@ attributeChangedCallback | attributeChanged | An attribute was added, removed, o
 
 {{site.project_title}} parses element definitions and handles their upgrade _asynchronously_.
 If you prematurely fetch the element from the DOM before it has a chance to upgrade,
-you'll be working with an `HTMLUnknownElement`. {{site.project_title}} elements also support inline resources, such as stylesheets, that need to be loaded. These can cause [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content) issues if they're not fully loaded prior to rendering an element. To avoid FOUC, {{site.project_title}} delays registering elements until stylesheets are fully loaded.
+you'll be working with a plain `HTMLElement`, instead of your custom element. {{site.project_title}} elements also support inline resources, such as stylesheets, that need to be loaded. These can cause [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content) issues if they're not fully loaded prior to rendering an element. To avoid FOUC, {{site.project_title}} delays registering elements until stylesheets are fully loaded.
 
 To know when elements have been registered/upgraded, and thus ready to be interacted with, use the `polymer-ready` event.
 
@@ -744,6 +776,50 @@ Some things to notice:
   * `inDetail`: A convenience form of `inEvent.detail`.
   * `inSender`: A reference to the node that declared the handler. This is often different from `inEvent.target` (the lowest node that received the event) and `inEvent.currentTarget` (the component processing the event), so  {{site.project_title}} provides it directly.
 
+#### Imperative event mapping
+
+Alternatively, you can add event handlers to a {{site.project_title}} element imperatively.
+
+**Note:** In general, the declarative form is preferred.
+{: .alert .alert-info}
+
+    <polymer-element name="g-button">
+      <template>
+        <button>Click Me!</button>
+      </template>
+      <script>
+        Polymer({
+          eventDelegates: {
+            up: 'onTap',
+            down: 'onTap'
+          },
+          onTap: function(event, detail, sender) {
+            ...
+          }
+        });
+      </script>
+    </polymer-element>
+
+The example adds event listeners for `up` and `down` events
+to the {{site.project_title}} element called `g-button`.
+The listeners are added to the host element rather than to individual
+elements it contains.
+These listeners handle events on the host element
+in addition to events that bubble up from within it.
+This code is equivalent
+to adding an <code>on-<em>event</em></code>
+handler directly on a `<polymer-element>`.
+
+The relationship between the <code>on-<em>event</em></code> attribute
+and the `eventDelegates` object
+is analogous to the relationship between the
+`attributes` attribute and the `publish` object.
+
+The keys within the `eventDelegates` object are the event names to listen for.
+The values are the callback function names, here `onTap`.
+Event handler functions defined imperatively
+receive the same arguments as those defined declaratively.
+
 ### Observing properties {#observeprops}
 
 #### Changed watchers {#change-watchers}
@@ -1090,43 +1166,41 @@ However, this is such a common pattern that {{site.project_title}} provides the 
 
 ### Life of an element's bindings {#bindings}
 
-**Note:** The section only applies to elements that are instantiated in JavaScript, not to those
-declared in markup.
-{: .alert .alert-info }
-
-If you instantiate an element (e.g. `document.createElement('x-foo')`) and do **not** add it to the DOM,
-{{site.project_title}} asynchronously removes its {%raw%}`{{}}`{%endraw%} bindings and `*Changed` methods.
-This helps prevent memory leaks, ensuring the element will be garbage collected.
+When you remove an element from the DOM, {{site.project_title}} asynchronously
+deactivates its {%raw%}`{{}}`{%endraw%} bindings and `*Changed` methods. This helps prevent
+memory leaks, ensuring the element will be garbage collected.
 
 If you want the element to "remain active" when it's not in the `document`,
-call `cancelUnbindAll()` right after you create or remove it. The [lifecycle methods](#lifecyclemethods)
+call `cancelUnbindAll()` right after you remove it. The [lifecycle methods](#lifecyclemethods)
 are a good place for this:
 
     Polymer('my-element', {
-      ready: function() {
-        // Ensure bindings remain active, even if we're never added to the DOM.
-        this.cancelUnbindAll();
-      },
       detached: function() {
-        // Also keep bindings active if we're added, but later removed.
+        // Keep bindings active when this element is removed
         this.cancelUnbindAll();
       }
     });
 
-{{site.project_title}} typically handles this management for you, but when you
-explicitly call `cancelUnbindAll()` (and the element is never added to/put back in the DOM),
-it becomes your responsibility to _eventually_ unbind the element using `unbindAll()/asyncUnbindAll()`,
-otherwise your application may leak memory.
+If you explicitly call `cancelUnbindAll()`, {{site.project_title}} won't manage
+the bindings automatically. It's your responsibility to manage the element's
+bindings by eventually doing one of the following:
 
-    var el = document.createElement('my-element');
-    // Need to unbind if el is:
-    //   1. never added to the DOM
-    //   2. put in the DOM, but later removed
+-   Adding the element back into the DOM.
+-   Explicitly unbinding the element by calling the `unbindAll` or
+    `asyncUnbindAll` method.
+
+    var el = document.querySelector('my-element');
+    el.parentNode.removeChild(el);
+
+     ...
+    // finished with this element, not going to reinsert it.
     el.unbindAll();
+
+If you fail to unbind or reinsert an element, your application may leak memory.
 
 #### Using preventDispose {#preventdispose}
 
-To force bindings from being removed in call cases, set `.preventDispose`:
+To force bindings from being removed in all cases, set `.preventDispose`:
 
     Polymer('my-element', {
       preventDispose: true

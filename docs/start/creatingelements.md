@@ -18,9 +18,7 @@ and make it even easier to build complex, web component-based applications:
 - [Declarative event handing](/docs/polymer/polymer.html#declarative-event-mapping)
 - [Declarative inheritance](/docs/polymer/polymer.html#extending-other-elements)
 - [Property observation](/docs/polymer/polymer.html#observeprops)
-- Dynamic templates
-- Touch/gesture support
-- ...
+
 
 ## Setup {#basics}
 
@@ -34,7 +32,7 @@ Install the latest version of {{site.project_title}} as described in [Getting th
 
 To create a new element:
 
-1. Load [{{site.project_title}} core](/docs/polymer/polymer.html) (`polymer.html`).
+1. Load the [{{site.project_title}} core](/docs/polymer/polymer.html) (`polymer.html`).
 2. Declare your custom element using `<polymer-element>`.
 
 In the following example, we define a new element named `<my-element>`, save
@@ -79,7 +77,7 @@ and include an import that loads the new dependency in `my-element.html`:
 
 ### 3. Create an app {#creatapp}
 
-Lastly, create an `index.html` that imports your new element. Remember to include `platform.js`
+Lastly, create an `index.html` that imports your new element. Remember to include `webcomponents.js`
 to load polyfills for the native APIs.
 
 Here's the full example:
@@ -88,7 +86,7 @@ Here's the full example:
     <html>
       <head>
         <!-- 1. Load platform support before any code that touches the DOM. -->
-        <script src="bower_components/platform/platform.js"></script>
+        <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
         <!-- 2. Load the component using an HTML Import -->
         <link rel="import" href="elements/my-element.html">
       </head>
@@ -98,15 +96,14 @@ Here's the full example:
       </body>
     </html>
 
-**Note:** You must run your app from a web server for the [HTML Imports](/platform/html-imports.html)
-polyfill to work properly. This requirement goes away when the API is available natively.
+**Note:** You must run your app from a web server for the [HTML Imports](/platform/html-imports.html) to work properly. They cannot be loaded from `file://` due to the browser's security restrictions.
 {: .alert .alert-info }
 
 Your final directory structure should look something like this:
 
     yourapp/
       bower_components/
-        platform/
+        webcomponentsjs/
         polymer/
       elements/
         my-element.html

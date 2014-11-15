@@ -44,7 +44,7 @@ If your screen looks like the above then you’re all set.
 
 ## Understanding Elements
 
-Under the hood, x-tags relies on the polyfills from Polymer's [`platform.js`](http://www.polymer-project.org/docs/start/platform.html). This can be a point of confusion for developers who assume that x-tags has its own set of polyfills that might break Polymer. In fact, the polyfill layer is shared between both projects, making them totally interoperable.
+Under the hood, x-tags relies on the polyfills from Polymer's [`webcomponents.js`](http://www.polymer-project.org/docs/start/platform.html). This can be a point of confusion for developers who assume that x-tags has its own set of polyfills that might break Polymer. In fact, the polyfill layer is shared between both projects, making them totally interoperable.
 
 Since both projects adhere to the work-in-progress Web Components standards, it also makes them compatible with vanilla custom elements and any future projects which adhere to these same standards. **So long as everyone makes their elements according to spec, they can all coexist happily!**
 
@@ -57,7 +57,7 @@ Let’s walk through the example project to better understand what’s actually 
     <head>
       <title>Polymer + X-Tag + vanilla Custom Elements</title>
       <!-- web components -->
-      <script src="bower_components/platform/platform.js"></script>
+      <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
       <!-- import an element written without a library -->
       <link rel="import" href="elements/icon-button.html">
       <!-- import an element written using X-Tag -->
@@ -95,10 +95,10 @@ Let’s walk through the example project to better understand what’s actually 
     </body>
     </html>
 
-We first load `platform.js` which polyfills support for Web Components in all modern browsers.
+We first load `webcomponents.js` which polyfills support for Web Components in all modern browsers.
 
     <!-- web components -->
-    <script src="bower_components/platform/platform.js"></script>
+    <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
 
 This means we can now register our own element using the native APIs.
 

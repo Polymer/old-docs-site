@@ -13,9 +13,9 @@ and toggling between native APIs and their polyfill counterparts.
 
 Flags can be used in combination with each other and settable three different ways:
 
-1. as attributes on the `<script>` tag that loads `platform.js`
+1. as attributes on the `<script>` tag that loads `webcomponents.js`
 2. as URL query parameter
-3. directly on the `Platform.flags` object before loading `platform.js`. 
+3. directly on the `Platform.flags` object before loading `webcomponents.js`. 
 
 ## Debug flags
 
@@ -23,7 +23,7 @@ To use the debugging options, you must install and use the debug version of libr
 
 1. Install `polymer-dev` and `platform-dev` and then tweak the references
   - `bower install Polymer/platform-dev Polymer/polymer-dev`
-  - Rewrite `platform/platform.js` to `platform-dev/platform.js` in `index.html`
+  - Rewrite `webcomponentsjs/webcomponents.js` to `platform-dev/webcomponents.js` in `index.html`
   - Comment out line 12 and uncomment line 13 in [polymer.html](https://github.com/Polymer/polymer/blob/master/polymer.html)
 1. Install `platform-dev` and `polymer-dev` on top of the minified versions
   - `bower install polymer=Polymer/polymer-dev platform=Polymer/platform-dev`
@@ -38,14 +38,14 @@ URL param:
 
 Attribute:
 
-    <script src="platform.js" debug></script>
+    <script src="webcomponents.js" debug></script>
 
 Setting `Platform.flags`:
 
     <script>
       Platform = {flags: {debug: true}};
     </script>
-    <script src="platform.js"></script>
+    <script src="webcomponents.js"></script>
 
 ### log
 
@@ -82,14 +82,14 @@ URL param:
 
 Attribute:
 
-    <script src="platform.js" log="bind,ready"></script>
+    <script src="webcomponents.js" log="bind,ready"></script>
 
 Setting `Platform.flags`:
 
     <script>
       Platform = {flags: {log: 'bind,ready'}};
     </script>
-    <script src="platform.js"></script>
+    <script src="webcomponents.js"></script>
 
 ## Configuration flags {#configuration-switches}
 
@@ -101,7 +101,7 @@ Including `register` forces the Custom Elements polyfill in browsers that suppor
 
 Attribute:
 
-    <script src="platform.js" register></script>
+    <script src="webcomponents.js" register></script>
 
 URL param:
 
@@ -112,7 +112,7 @@ Setting `Platform.flags`:
     <script>
       Platform = {flags: {register: true}};
     </script>
-    <script src="platform.js"></script>
+    <script src="webcomponents.js"></script>
 
 ### shadow
 
@@ -138,7 +138,7 @@ Possible values:
 
 Attribute:
 
-    <script src="platform.js" debug shadow></script>
+    <script src="webcomponents.js" debug shadow></script>
 
 URL param:
 
@@ -149,7 +149,7 @@ Setting `Platform.flags`:
     <script>
       Platform = {flags: {shadow: 'polyfill'}};
     </script>
-    <script src="platform.js"></script>
+    <script src="webcomponents.js"></script>
 
 ## Polyfill settings {#polyfillsettings}
 
@@ -170,7 +170,7 @@ resulting in FOUC. The `eager` flag can help mitigate these potential FOUC issue
     <script>
       CustomElements = {flags: {eager: true}};
     </script>
-    <script src="platform.js"></script>
+    <script src="webcomponents.js"></script>
 
 Or, equivalently:
 
@@ -183,12 +183,12 @@ set `Platform.ShadowCSS.strictStyling`.
 
 **Example usage**
 
-    <script src="platform.js"></script>
+    <script src="webcomponents.js"></script>
     <script>
       Platform.ShadowCSS.strictStyling = true;
     </script>
 
-**Note:** We're setting `strictStyling` after loading `platform.js`.
+**Note:** We're setting `strictStyling` after loading `webcomponents.js`.
 {: .alert .alert-info }
 
 More information on this feature can be found in the [Styling reference](/docs/polymer/styling.html#strictstyling).
@@ -200,7 +200,7 @@ When `true`, component scripts are executed with `eval` instead of script tag in
 
 Example:
 
-    <script src="platform.js" eval="true"></script>
+    <script src="webcomponents.js" eval="true"></script>
 
   or
 

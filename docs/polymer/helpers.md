@@ -47,7 +47,7 @@ You can dynamically load it like this:
 
     <html>
       <head>
-        <script src="components/platform/platform.js"></script>
+        <script src="components/webcomponentsjs/webcomponents.js"></script>
         <link rel="import" href="components/polymer/polymer.html">
       </head>
       <body>

@@ -27,7 +27,7 @@ title: FAQ
 {{site.project_title}} is the embodiment of material design for the web. The {{site.project_title}} team works closely with the design teams behind material design. In fact, {{site.project_title}} played a key role in material design's development: it was used to quickly prototype and iterate on design concepts. The material design components are still a work in progress, but will mature over the coming months.
 
 ### Do I have to use {{site.project_title}} Designer? {#designer}
-Nope! [{{site.project_title}} Designer](/tools/designer/) is primarily a tool to make it easy to dive in an prototype apps. It's entirely optional&mdash;although we've found that for developers who use it, it has quickly become an indispensable part of their workflow.
+Nope! [{{site.project_title}} Designer](/tools/designer/) is primarily a tool to make it easy to dive in and prototype apps. It's entirely optional&mdash;although we've found that for developers who use it, it has quickly become an indispensable part of their workflow.
 
 ### I don't like your {components | data binding syntax | face }! {#dislike}
 
@@ -90,7 +90,7 @@ There is no official CDN version of {{site.project_title}}. Some community membe
 maintain a copy of {{site.project_title}} on [cdnjs](http://cdnjs.com/):
 
 <pre>
-&lt;script src="//cdnjs.cloudflare.com/ajax/libs/polymer/<em>&lt;version&gt;</em>/platform.js"></script>
+&lt;script src="//cdnjs.cloudflare.com/ajax/libs/polymer/<em>&lt;version&gt;</em>/webcomponents.js"></script>
 &lt;script src="//cdnjs.cloudflare.com/ajax/libs/polymer/<em>&lt;version&gt;</em>/polymer.js"></script>
 </pre>
 
@@ -102,10 +102,10 @@ There are a number of reasons why we recommend you use Bower instead of the CDN:
 - There are many elements which are not hosted on the CDN so it might be tricky to include all of them in your project.
 - You will not be able to [Vulcanize your code](/articles/concatenating-web-components.html).
 
-For testing and reproducing bugs, you can link to the current versions of the `platform.js` 
+For testing and reproducing bugs, you can link to the current versions of the `webcomponents.js` 
 and `polymer.html` files on `polymer-project.org`:
 
-    <script src="//polymer-project.org/platform.js"></script>
+    <script src="//polymer-project.org/webcomponents.js"></script>
     <link rel="import" href="//polymer-project.org/components/polymer/polymer.html">
 
 Many of the Core and Paper elements can also be found under `components`.
@@ -126,15 +126,15 @@ Deeply. And we want the entire web platform to be a buttery smooth 60fps. That s
 
 Remember our libraries go away over time! {{site.project_title}} gets better, stronger, and faster as native browser implementations pop up.
 
-### The filesize of platform.js is big (~163KB). Why? {#filesize}
+### The filesize of webcomponents.js is big (~163KB). Why? {#filesize}
 
-Minified and gzipped, platform.js is ~44KB (for comparison JQuery 1.10 is 32KB). Keep
+Minified and gzipped, webcomponents.js is ~44KB (for comparison JQuery 1.10 is 32KB). Keep
 in mind that most of this size comes from the polyfills; code which has a death wish
 and goes away over time as browsers support the native APIs.
 
 {{site.project_title}} has also been designed to be a la carte. For example, if
 you're only interested in Custom Elements, use the custom elements polyfill. If you
-only want Shadow DOM, use its polyfill. platform.js is simply a convenient bundle
+only want Shadow DOM, use its polyfill. webcomponents.js is simply a convenient bundle
 for developers that includes all of the the pieces for building
 {{site.project_title}}-based applications.
 
@@ -143,7 +143,7 @@ Yes. Here's [an example Polymer Chrome App](https://github.com/PolymerLabs/polym
 
 ### Does {{site.project_title}} work under Content Security Policy (CSP)? {#csp}
 
-Yes. By using `platform.js` and [creating elements that use external scripts](/docs/polymer/polymer.html#altregistration), {{site.project_title}} runs under [CSP](http://www.html5rocks.com/tutorials/security/content-security-policy/). If you prefer to keep your element's
+Yes. By using `webcomponents.js` and [creating elements that use external scripts](/docs/polymer/polymer.html#altregistration), {{site.project_title}} runs under [CSP](http://www.html5rocks.com/tutorials/security/content-security-policy/). If you prefer to keep your element's
 script inline to `<polymer-element>`, we recommend using [Vulcanize](/resources/tooling-strategy.html#vulcanize-build-tool) and running with the `--csp` flag.
 
 In other nuanced cases, {{site.project_title}} fails under CSP. This is because

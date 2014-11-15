@@ -9,6 +9,18 @@ title: Releases
 This document lists the notable changes across the entirety of the project,
 including polyfill repos, tools, projects, and UI elements.
 
+## v0.5.1 {#r2014-11-13}
+
+Released 2014-11-13. See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/0.5.1).
+
+---
+
+## v0.5.0 {#r2014-11-11}
+
+Released 2014-11-11. See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/0.5.0).
+
+---
+
 ## v0.4.2 {#r2014-10-02}
 
 Released 2014-10-02. See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/0.4.2).
@@ -728,7 +740,7 @@ See the [full list of changes](https://github.com/polymer/ShadowDOM/pull/139)
 ### Toolkit
 
 * If you're writing a [Toolkit component](/polymer.html), there's
-no longer need to include `platform.js` alongside `toolkit.js`. `toolkit.js` now loads `platform.js` under the hood. 
+no longer need to include `webcomponents.js` alongside `toolkit.js`. `toolkit.js` now loads `webcomponents.js` under the hood. 
 
 ### Platform
 
@@ -762,7 +774,7 @@ the default view on Github.
 * `g-component.html` no longer exists as the Tookit kernel. It has been replaced
 with loading in `toolkit.js` instead.
 * Added `debug` [runtime flags](/docs/polymer/runtime-config.html) to conditionally load debug
-version of `platform.js`.
+version of `webcomponents.js`.
 
 ---
 

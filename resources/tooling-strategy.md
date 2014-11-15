@@ -44,7 +44,7 @@ To run build individual polyfills or run tests, you need `node` and `grunt-cli` 
 
 ### Building individual polyfills
 
-If you're interested in using an individual polyfill by itself (e.g. rather that the prebuilt platform.js bundle),
+If you're interested in using an individual polyfill by itself (e.g. rather that the prebuilt webcomponents.js bundle),
 you need to build the minified file.
 
 **Example** - building the CustomElements polyfill
@@ -118,7 +118,7 @@ Go grab a coffee. This takes a few minutes!
 
 **components/**
 
-- *components/platform/platform.js* — The platform shims and polyfills.
+- *components/webcomponentsjs/webcomponents.js* — The platform shims and polyfills.
 - *components/polymer/polymer.js* — [{{site.project_title}} core](/docs/polymer/polymer.html)
 - *components/core-elements/* — A folder of the meta collection of the core elements.
 - A directory for each polyfill repo (CustomElements, HTMLImports, ShadowDOM).
@@ -180,7 +180,7 @@ you're planning to hack on {{site.project_title}}.
 
 **/platform** - [github.com/Polymer/platform](https://github.com/Polymer/platform)
 
-A meta repository used to distribute `platform.js` builds.
+A meta repository used to distribute `webcomponents.js` builds.
 
 **/platform-dev** - [github.com/Polymer/platform-dev](https://github.com/Polymer/platform-dev)
 

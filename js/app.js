@@ -270,6 +270,8 @@ document.addEventListener('DOMContentLoaded', function(e) {
   dropdownPanel = document.querySelector('dropdown-panel');
   sidebar = document.querySelector('#sidebar');
   appBar = document.querySelector('app-bar');
+  learnTabs = document.querySelector('learn-tabs');
+  featureCarousel = document.querySelector('feature-carousel');
 
   if (AJAXIFY_SITE && docsMenu) { // Ajaxify on pages other than the home.
     ajaxifySite();
@@ -277,6 +279,21 @@ document.addEventListener('DOMContentLoaded', function(e) {
     // Insure add current page to history so back button has an URL for popstate.
     history.pushState({url: document.location.href}, document.title,
                       document.location.href);
+  }
+
+  if (learnTabs) {
+    learnTabs.addEventListener('tab-changed', function(e) {
+      exports.tabChanged('learn-tabs', e.detail.tab);
+    });
+    learnTabs.addEventListener('click', function(e) {
+      exports.recordClickthrough('learn-tabs', e);
+    });
+  }
+
+  if (featureCarousel) {
+    featureCarousel.addEventListener('click', function(e) {
+      exports.recordClickthrough('carousel', e);
+    });
   }
 
   initPage();
@@ -295,7 +312,24 @@ document.querySelector('[data-twitter-follow]').addEventListener('click', functi
   exports.open(target.href, '', 'width=550,height=520');
 });
 
+
 // TODO: Create ga-logger component to avoid polluting the global scope.
+exports.tabChanged = function(tabContainer, tab) {
+  ga('send', 'event', tabContainer, 'select', 'tab-' + tab);
+}
+
+// send a separate event for a clickthrough inside a special container
+// (carousel, learn-tabs). 
+exports.recordClickthrough = function(container, event) {
+  for (var i=0; i < event.path.length; i++) {
+    var el = event.path[i];
+    if (el.localName === 'a') {
+      ga('send', 'event', container, 'clickthrough', el.getAttribute('href'));
+      return;
+    }
+  }
+}
+
 exports.downloadStarter = function() {
   ga('send', 'event', 'button', 'download');
 };
