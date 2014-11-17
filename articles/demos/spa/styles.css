@@ -30,6 +30,12 @@ core-menu > paper-item {
   transition: all 300ms ease-in-out;
 }
 
+paper-item a {
+  text-decoration: none;
+  color: currentcolor;
+  margin-left: 5px;
+}
+
 core-menu > paper-item.core-selected {
   background: #e1f5fe;
 }

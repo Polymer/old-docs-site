@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <title>Tutorial SPA Demo</title>
-  <script src="/components/platform/platform.js"></script>
+  <script src="/webcomponents.min.js"></script>
   <link rel="import" href="vulcanized.html">
   <link rel="stylesheet" href="styles.css" shim-shadowdom>
   <base target="_blank"></base>
@@ -26,7 +26,7 @@
   <!-- Keyboard nav controller. -->
   <core-a11y-keys id="keys" target="{{parentElement}}"
                   keys="up down left right space space+shift"
-                  on-keys-pressed="{{keyHandler}}"></core-a11y-keys>                 
+                  on-keys-pressed="{{keyHandler}}"></core-a11y-keys>
 
   <!-- Dynamic content controller -->
   <core-ajax id="ajax" url="{{selectedPage.page.url}}" handleAs="document"
@@ -43,9 +43,9 @@
                  selectedModel="{{selectedPage}}"
                  on-core-select="{{menuItemSelected}}" on-click="{{ajaxLoad}}">
         <template repeat="{{page, i in pages}}">
-          <paper-item icon="label{{route != page.hash ? '-outline' : ''}}"
-                      label="{{page.name}}" hash="{{page.hash}}">
-            <a href="{{page.url}}"></a>
+          <paper-item hash="{{page.hash}}" noink>
+            <core-icon icon="label{{route != page.hash ? '-outline' : ''}}"></core-icon>
+            <a href="{{page.url}}">{{page.name}}</a>
           </paper-item>
         </template>
       </core-menu>
@@ -84,4 +84,4 @@
   ga('send', 'pageview');
 </script>
 </body>
-</html> 
+</html>

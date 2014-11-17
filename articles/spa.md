@@ -9,7 +9,7 @@ subtitle: The Polymer approach to building single page applications
 article:
   author: ebidel
   published: 2014-10-17
-  #updated: 2014-10-17
+  updated: 2014-11-16
   polymer_version: 0.4.2
   description: The Polymer approach to building single page applications
 tags:
@@ -64,7 +64,7 @@ has several [layout elements](/docs/elements/layout-elements.html) (`<core-heade
 
 `<core-scaffold>`'s children are arranged by specifying attributes and/or using specific tags. For example, using a `<nav>` element creates the app drawer. Alternatively, you can use the `navigation` attribute on any element (e.g `<core-header-panel navigation>`). The toolbar is designated with the `tool` attribute. All other children end up in the main content area.
 
-**Example** 
+**Example**
 
 <pre>
 &lt;body unresolved fullbleed&gt;
@@ -76,7 +76,7 @@ has several [layout elements](/docs/elements/layout-elements.html) (`<core-heade
 &lt;/body&gt;
 </pre>
 
-Let's dive deeper on each of these sections. 
+Let's dive deeper on each of these sections.
 
 ### Drawer
 
@@ -86,11 +86,13 @@ For our purposes, we'll stick with a heading (`<core-toolbar>`) and navigational
     <nav>
       <core-toolbar><span>Single Page Polymer</span></core-toolbar>
       <core-menu selected="0">
-        <paper-item icon="label-outline" label="Single">
-          <a href="#one"></a>
+        <paper-item noink>
+          <core-icon icon="label-outline"></core-icon>
+          <a href="#one">Single</a>
         </paper-item>
-        <paper-item icon="label-outline" label="page">
-          <a href="#two"></a>
+        <paper-item noink>
+          <core-icon icon="label-outline"></core-icon>
+          <a href="#two">page</a>
         </paper-item>
         ...
       </core-menu>
@@ -171,20 +173,23 @@ We have an app, but it's nothing to write home about. It's far from DRY. Similar
 
     <nav>
       <core-menu selected="0">
-        <paper-item icon="label-outline" label="Single">
-          <a href="#one"></a>
+        <paper-item noink>
+          <core-icon icon="label-outline"></core-icon>
+          <a href="#one">Single</a>
         </paper-item>
-        <paper-item icon="label-outline" label="page">
-          <a href="#two"></a>
+        <paper-item noink>
+          <core-icon icon="label-outline"></core-icon>
+          <a href="#two">page</a>
         </paper-item>
-        <paper-item icon="label-outline" label="app">
-          <a href="#three"></a>
+        <paper-item noink>
+          <core-icon icon="label-outline"></core-icon>
+          <a href="#three">app</a>
         </paper-item>
         ...
       </core-menu>
     </nav>
 
-It's also not dynamic. When a user selects a menu item the view doesn't update. Luckily, both of these problems are easily solved with Polymer's [data-binding features](/docs/polymer/databinding.html). 
+It's also not dynamic. When a user selects a menu item the view doesn't update. Luckily, both of these problems are easily solved with Polymer's [data-binding features](/docs/polymer/databinding.html).
 
 #### Auto-binding template {#autobinding}
 
@@ -210,8 +215,9 @@ You can greatly **reduce the amount of markup you write by generating it from a 
 {%raw%}
     <core-menu valueattr="hash" selected="{{route}}">
       <template repeat="{{page in pages}}">
-        <paper-item label="{{page.name}}" hash="{{page.hash}}">
-          <a href="#{{page.hash}}"></a>
+        <paper-item hash="{{page.hash}}" noink>
+          <core-icon icon="label-outline"></core-icon>
+          <a href="#{{page.hash}}">{{page.name}}</a>
         </paper-item>
       </template>
     </core-menu>
@@ -304,7 +310,7 @@ If `<flatiron-director>` is not your cup of tea, check out [`<app-router>`](http
     <app-route path="/home" import="/pages/home-page.html"></app-route>
     <app-route path="/customer/*" import="/pages/customer-page.html"></app-route>
     <app-route path="/order/:id" import="/pages/order-page.html"></app-route>
-    <app-route path="*" import="/pages/not-found-page.html"></app-route> 
+    <app-route path="*" import="/pages/not-found-page.html"></app-route>
 
 ## Keyboard navigation {#keyboard}
 
@@ -315,8 +321,8 @@ Keyboard support is not only important for [accessibility](/articles/accessible-
 {%raw%}
     <core-a11y-keys target="{{parentElement}}"
                     keys="up down left right space space+shift"
-                    on-keys-pressed="{{keyHandler}}"></core-a11y-keys>                 
-              
+                    on-keys-pressed="{{keyHandler}}"></core-a11y-keys>
+
 {%endraw%}
 
 **Notes**
@@ -360,8 +366,8 @@ Then change the menu links to point at  `page.url` instead of the hash:
 
 {%raw%}
 <pre>
-&lt;paper-item label="{{page.name}}" hash="{{page.hash}}">
-  <b>&lt;a href="{{page.url}}">&lt;/a></b>
+&lt;paper-item hash="{{page.hash}}" noink>
+  <b>&lt;a href="{{page.url}}">{{page.name}}&lt;/a></b>
 &lt;/paper-item>
 </pre>
 {%endraw%}
@@ -415,7 +421,8 @@ template.menuItemSelected = function(e, detail, sender) {
 Render a different icon for the selected nav item:
 
 {%raw%}
-    <paper-item icon="label{{route != page.hash ? '-outline' : ''}}"...>
+    <paper-item noink>
+      &lt;ore-icon icon="label{{route != page.hash ? '-outline' : ''}}">&lt;/core-icon>
 {%endraw%}
 
 Tapping on a page cycles through the pages:

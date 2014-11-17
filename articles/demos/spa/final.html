@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <title>Single page app using Polymer</title>
-  <script src="/components/platform/platform.js"></script>
+  <script src="/webcomponents.min.js"></script>
   <link rel="import" href="vulcanized.html">
   <link rel="stylesheet" href="styles.css" shim-shadowdom>
 </head>
@@ -18,10 +18,10 @@
   <!-- Keyboard nav controller. -->
   <core-a11y-keys id="keys" target="{{parentElement}}"
                   keys="up down left right space space+shift"
-                  on-keys-pressed="{{keyHandler}}"></core-a11y-keys>                 
+                  on-keys-pressed="{{keyHandler}}"></core-a11y-keys>
 
   <core-scaffold id="scaffold">
-  
+
     <nav>
       <core-toolbar>
         <span>Single Page Polymer</span>
@@ -29,9 +29,9 @@
       <core-menu valueattr="hash" selected="{{route}}" selectedModel="{{selectedPage}}"
                  on-core-select="{{menuItemSelected}}">
         <template repeat="{{page, i in pages}}">
-          <paper-item icon="label{{route != page.hash ? '-outline' : ''}}"
-                     label="{{page.name}}" hash="{{page.hash}}">
-            <a href="#{{page.hash}}"></a>
+          <paper-item hash="{{page.hash}}" noink>
+            <core-icon icon="label{{route != page.hash ? '-outline' : ''}}"></core-icon>
+            <a href="#{{page.hash}}">{{page.name}}</a>
           </paper-item>
         </template>
       </core-menu>
@@ -54,7 +54,7 @@
         </template>
       </core-animated-pages>
     </div>
-  
+
   </core-scaffold>
 
 </template>
@@ -71,4 +71,4 @@
   ga('send', 'pageview');
 </script>
 </body>
-</html> 
+</html>
