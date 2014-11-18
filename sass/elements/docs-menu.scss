@@ -23,6 +23,7 @@
 
 #mainmenu > core-submenu::shadow core-item {
   font-weight: 500;
+  color: #424242;
 }
 
 polyfill-rule {
@@ -65,7 +66,7 @@ core-item {
   font-size: 13px !important;
   line-height: 32px !important;
   padding: 0;
-  color: initial;
+  color: #212121;
   height: 48px;
 }
 
