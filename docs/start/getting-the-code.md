@@ -26,38 +26,9 @@ title: Getting the code
 
 ## Installing {{site.project_title}} {#installing-polymer}
 
-If you want to learn {{site.project_title}}, the easiest way to get started is
- to download the starter project:
+If you're ready to start your own project, you can install {{site.project_title}}
+in one of several ways:
 
-<p layout horizontal center-center>
-  <a href="https://github.com/Polymer/polymer-tutorial/archive/master.zip">
-    <paper-button id="download-button" raised onclick="downloadStarter()"><core-icon icon="file-download"></core-icon>Download Starter Project</paper-button>
-  </a>
-</p>
-
-The starter project includes {{site.project_title}}, a set of elements, and a starter app.
-Work through the tutorial for an introduction to {{site.project_title}} APIs and concepts, 
-or work through the finished app on your own.
-
-<a href="/docs/start/tutorial/intro.html">
-  <paper-button raised><core-icon icon="arrow-forward" ></core-icon>Start the tutorial</paper-button>
-</a>
-
-If you're ready to start your own project, you can pick and choose the 
-components you want to install, or install a whole set of components, 
-like the Paper element collection.
-
-## Installing components {#installing-components}
-
-{{site.project_title}} is very modular; you can install just the {{site.project_title}}
-library and web components polyfills, a single element, or a whole collection of elements.
-
-Throughout the site, you'll find component download buttons like this:
-
-<component-download-button org="Polymer" component="paper-elements" label="GET THE PAPER ELEMENTS">
-</component-download-button>
-
-The component download button offers three ways to install a component or set of components:
 
 *   Bower. **Recommended**. Bower manages dependencies, so installing a component
     also installs any missing dependencies. Bower also handles updating
@@ -72,7 +43,13 @@ The component download button offers three ways to install a component or set of
     yourself. If you'd like to hack on the project or submit a pull request, see 
     [setting up {{site.project_title}} with git](/resources/tooling-strategy.html#git).
 
-Pick your method and follow the instructions in the download dialog.
+When you install {{site.project_title}} using Bower or the ZIP file, you get the 
+[Web Components polyfill library](/docs/start/platform.html). Using the polyfills 
+ensures that you can use {{site.project_title}} with browsers that don't support 
+the Web Components specifications natively.
+
+**Note:** For information about installing elements from the Core and Paper element 
+collection, see [Using elements](/docs/start/using-elements.html).
 
 ### Installing with Bower {#using-bower}
 
@@ -93,7 +70,7 @@ command from the root of your project:
 This generates a basic `bower.json` file. Some of the questions, like 
 "What kind of modules do you expose," can be ignored by pressing Enter.
 
-The next step is to install one or more {{site.project_title}} packages:
+The next step is to install {{site.project_title}}:
 
     bower install --save Polymer/polymer
 
@@ -112,30 +89,6 @@ fills it with {{site.project_title}} and its dependencies.
 ```
 {: .alert .alert-success }
 
-#### Selecting packages
-
-Using the component download button, click the **Bower** tab 
-and cut and paste the Bower install command.
-
-You can also choose one of the commonly-used packages:
-
--   `Polymer/polymer`. Just the {{site.project_title}} library
-    and web components polyfills. 
-
--   `Polymer/core-elements`. The 
-    [{{site.project_title}} Core elements](/docs/elements/core-elements.html) 
-    collection.
-
--   `Polymer/paper-elements`. The 
-    [Paper elements](/docs/elements/paper-elements.html) collection.
-
-For example, if you'd like to install {{site.project_title}}’s collections 
-of pre-built elements, run the following commands from the terminal:
-
-    bower install --save Polymer/core-elements
-    bower install --save Polymer/paper-elements
-
-
 #### Updating packages {#updatebower}
 
 When a new version of {{site.project_title}} is available, run `bower update`
@@ -147,7 +100,13 @@ This updates all packages in `bower_components/`.
 
 ### Installing from ZIP files {#using-zip}
 
-When you download a component or component set as a ZIP file, you get all of 
+To download {{site.project_title}} as a ZIP file, click the **GET POLYMER** button
+then click **Download ZIP**.
+
+<component-download-button org="Polymer" component="polymer" label="GET POLYMER">
+</component-download-button>
+
+When you download {{site.project_title}} as a ZIP file, you get all of 
 the dependencies bundled into a single archive. It's a great way to get 
 started because you don't need to install any additional tools.
 
@@ -176,9 +135,9 @@ Now that you've installed {{site.project_title}} it's time to learn the core
 concepts. In the next section we'll get you up and running on using elements 
 in a project. Continue on to:
 
-<a href="/docs/start/usingelements.html">
-  <paper-button raised><core-icon icon="arrow-forward" ></core-icon>Using elements</paper-button>
+<a href="/docs/start/creatingelements.html">
+  <paper-button raised><core-icon icon="arrow-forward" ></core-icon>Polymer in 10 minutes</paper-button>
 </a>
 
-If you'd rather skip ahead, check out our guide on 
-[Creating Elements](/docs/start/creatingelements.html).
+If you'd rather skip ahead, check out the
+[API developer guide](/docs/polymer/polymer.html).

@@ -43,12 +43,24 @@ In the old world, script was your concrete, and the solution to most of your pro
 
 There are three conceptual layers to {{site.project_title}}:
 
-1. **[Using elements](/docs/start/usingelements.html)**: {{site.project_title}} provides a comprehensive set of elements--both UI and non-UI--that you can use right out of the box. You can mix and match {{site.project_title}} elements with other elements, including built-in elements and other custom elements.
+1. **[Web components](/docs/start/platform.html)**: {{site.project_title}} is built on 
+the Web Components standards. Not all browsers support these features yet, so 
+the [web components polyfill layer](/docs/start/platform.html) fills the gaps, 
+implementing the APIs in JavaScript. At runtime, {{site.project_title}} automatically 
+picks the fastest path -- native implementation or JavaScript.
 
-1. **[Creating elements](/docs/start/creatingelements.html)**: {{site.project_title}}'s declarative syntax makes it simpler to define custom elements. Features like two-way data binding, property observation, and gesture support help you build powerful, reusable elements.
+1. **[The {{site.project_title}} library](/docs/start/creatingelements.html)**: The {{site.project_title}}
+library provides a declarative syntax that makes it simpler to define custom elements.  
+And it adds features like two-way data binding, property observation, and gesture 
+support help you build powerful, reusable elements.
 
-1. **[The Platform](/docs/start/platform.html)**: {{site.project_title}} is built on the latest web technologies, like Web Components and Object.observe. Not all browsers support these features yet, so {{site.project_title}}'s platform layer fills the gaps, implementing the APIs in JavaScript. At runtime, {{site.project_title}} automatically picks the fastest path -- native implementation or JavaScript.
-
+1. **[Elements](/docs/start/usingelements.html)**: The Core and Paper element sets 
+form a comprehensive set of UI and non-UI elements that you can use right out of the box. 
+These elements depend on the {{site.project_title}} library, but are separate and optional.
+You can use the elements without using {{site.project_title}} directly, or you can use
+{{site.project_title}} to create your own elements and not use the Core or Paper elements at all.
+You can mix and match the Core and Paper elements with other elements, including 
+built-in elements and other custom elements.
 
 ## Next steps {#nextsteps}
 
@@ -57,4 +69,10 @@ start digging in a bit more. Continue on to:
 
 <a href="/docs/start/customelements.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>Custom Elements 101</paper-button>
+</a>
+
+Or jump straight to:
+
+<a href="/docs/polymer/polymer.html">
+  <paper-button raised><core-icon icon="arrow-forward"></core-icon>API developer guide</paper-button>
 </a>
