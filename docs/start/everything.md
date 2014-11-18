@@ -1,7 +1,7 @@
 ---
 layout: default
 type: start
-shortname: Concepts
+shortname: Start
 title: Understanding Polymer
 subtitle: The concepts and layering
 ---

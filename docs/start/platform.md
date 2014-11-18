@@ -1,6 +1,7 @@
 ---
+layout: default
 type: start
-shortname: Web Components
+shortname: Concepts
 title: Web components polyfills
 subtitle: Supporting new web technologies today
 ---
@@ -50,7 +51,10 @@ of JavaScript (minified and compressed).
 
 ## Installation & usage {#setup}
 
-To start using these features today, first download `webcomponents.js` using Bower:
+If you install the {{site.project_title}} library using Bower or from a ZIP file,
+you'll automatically get `webcomponents.js`.
+
+You can also manually install `webcomponents.js` using Bower:
 
     bower install --save webcomponents.js
 
