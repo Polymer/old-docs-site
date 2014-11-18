@@ -1,7 +1,6 @@
 ---
 layout: default
-type: concepts
-navgroup: start
+type: start
 shortname: Concepts
 title: Understanding Polymer
 subtitle: The concepts and layering
@@ -17,7 +16,7 @@ The philosophy that "_Everything is an element_" is core to understanding {{site
 
 Ever since the beginning of the web, browsers have shipped with a default set of elements. Most of them, like `<div>`, didn't do very much. But some elements are quite powerful. Consider the humble `<select>`. We take it for granted, but it's actually pretty impressive:
 
-- **Functional**. The browser already knows what to do with a `<select>` element. When it encounters `<select>` in markup it creates an interactive control for the user. 
+- **Functional**. The browser already knows what to do with a `<select>` element. When it encounters `<select>` in markup it creates an interactive control for the user.
 - **Reusable**. The `<select>` element is a reusable package of functionality that you don’t have to implement yourself.
 - **Interoperable**. Every JavaScript library knows how to interact with DOM elements.
 - **Encapsulated**. It keeps its internals all tucked away, so including one won't break the rest of your page.

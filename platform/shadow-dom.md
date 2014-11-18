@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Shadow DOM
-type: platform
-navgroup: docs
+type: guide
 shortname: Platform
 subtitle: polyfill
 

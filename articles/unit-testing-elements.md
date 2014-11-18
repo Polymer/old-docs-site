@@ -1,7 +1,6 @@
 ---
 layout: default
-type: core
-navgroup: docs
+type: guide
 shortname: Articles
 title: "Unit Testing Polymer Elements"
 subtitle: Authoring Unit Tests for your elements
@@ -61,7 +60,7 @@ Out of the box, web-component-tester also includes [Lodash](https://lodash.com/)
 
 ### Why create a new tool?
 
-Great question. When working with Web Components, we regularly find ourselves wanting to write tests within .html sources. A large number of tests require that you write HTML and we wanted something more convenient than two files per suite - your fixtures and tests. We also wanted a test runner that didn't have configuration hooks for running server-executable code to allow for environments like [Travis CI](https://travis-ci.org/). 
+Great question. When working with Web Components, we regularly find ourselves wanting to write tests within .html sources. A large number of tests require that you write HTML and we wanted something more convenient than two files per suite - your fixtures and tests. We also wanted a test runner that didn't have configuration hooks for running server-executable code to allow for environments like [Travis CI](https://travis-ci.org/).
 
 We considered both [Karma](http://karma-runner.github.io/0.12/index.html) and [Protractor](https://github.com/angular/protractor) while evaluating our tooling options. Karma unfortunately didn't support [WebDriver](http://docs.seleniumhq.org/projects/webdriver/) commands outside of lauching and lacked first-class support for .html sources. Protractor had a similar JS-centric view of the world and focused more on integration style testing rather than unit style testing.
 
@@ -77,7 +76,7 @@ WCT includes a number of helpful utilities meant to ease testing Web Components.
 
 `testImmediate()` allows you to run your test at declaration time before Mocha has begun tests. It's handy when you need to test document initialization. `testImmediate(name, testFn)` accepts a test name and test function. If an argument is accepted to `testFn`, the test will be treated as async, similar to Mocha tests.
 
-Note that with `testImmediate()`, should any errors be thrown asynchronously cannot be tied to your test. If you wish to catch them and pass them to the `done` event instead, a [safeStep()](https://github.com/Polymer/web-component-tester/blob/master/browser/environment/helpers.js#L19) utility is available to help. 
+Note that with `testImmediate()`, should any errors be thrown asynchronously cannot be tied to your test. If you wish to catch them and pass them to the `done` event instead, a [safeStep()](https://github.com/Polymer/web-component-tester/blob/master/browser/environment/helpers.js#L19) utility is available to help.
 
 ### Mocha helpers
 
@@ -336,7 +335,7 @@ First, setup a counter that will be incremented each time the `core-select event
 
 If this is the case two properties - `s.selectedItem` and `e.detail.item` (returned by the event) should be the same. Hooking this up to the `core-select` event, we get:
 
-    test('if core-select is fired when a different item in a list is selected', 
+    test('if core-select is fired when a different item in a list is selected',
     function() {
       s.addEventListener('core-select', function(e) {
           if (e.detail.isSelected){
@@ -348,7 +347,7 @@ If this is the case two properties - `s.selectedItem` and `e.detail.item` (retur
 
 Great. Now to set the `selected` item in the list to "2" we can write:
 
-    test('if core-select is fired when a different item in a list is selected', 
+    test('if core-select is fired when a different item in a list is selected',
     function() {
       // ...
       s.selected = 2;
@@ -393,7 +392,7 @@ Finally, let's check that the selected item has the correct CSS class (the "core
 
 And of course, we then run `wct` to ensure everything runs as expected.
 
-**Note:** You may want to test outside usage of your element as part of `polymer-ready`. Code written outside of `test` functions will execute immediately, including `suite` functions such as the one above. By default, WCT will wait until `polymer-ready` has completed to run your tests to ensure everything behaves as expected. However, you may not have upgraded elements outside of them. For scenarious like this, the [testImmedate](https://github.com/Polymer/web-component-tester/blob/master/browser/environment/helpers.js#L41) helper is useful for running tests before `polymer-ready`. 
+**Note:** You may want to test outside usage of your element as part of `polymer-ready`. Code written outside of `test` functions will execute immediately, including `suite` functions such as the one above. By default, WCT will wait until `polymer-ready` has completed to run your tests to ensure everything behaves as expected. However, you may not have upgraded elements outside of them. For scenarious like this, the [testImmedate](https://github.com/Polymer/web-component-tester/blob/master/browser/environment/helpers.js#L41) helper is useful for running tests before `polymer-ready`.
 
 **That's it!** We now have some simple assertion tests to test the attributes and events for a Polymer element work as expected. For a more complete reference to how we've gone about unit testing some of our elements, including `<core-selector>`, take a look at [`<core-tests>`](https://github.com/Polymer/core-tests).
 

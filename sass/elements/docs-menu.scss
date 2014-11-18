@@ -21,13 +21,15 @@
   margin: 0;
 }
 
-// core-menu > core-submenu::shadow core-item {
-//   color: inherit;
-// }
-
 #mainmenu > core-submenu::shadow core-item {
   font-weight: 500;
 }
+
+polyfill-rule {
+  content: "#mainmenu > core-submenu core-item";
+  font-weight: normal;
+}
+
 
 #mainmenu > core-submenu {
   $leftPadding: 24px;
@@ -46,6 +48,17 @@
 #mainmenu > core-submenu.core-selected::shadow core-item::shadow core-icon {
    color: currentcolor;
 }
+
+polyfill-rule {
+  content: "#mainmenu > core-submenu.core-selected core-item";
+  color: initial;
+}
+
+polyfill-rule {
+  content: "#mainmenu > core-submenu.core-selected > #submenuItem:first-of-type";
+  color: currentcolor !important;
+}
+
 
 core-submenu /deep/ core-item,
 core-item {

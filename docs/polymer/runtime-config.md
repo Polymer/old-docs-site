@@ -1,7 +1,6 @@
 ---
 layout: default
-type: core
-navgroup: docs
+type: guide
 shortname: Docs
 title: Runtime configuration
 ---
@@ -15,7 +14,7 @@ Flags can be used in combination with each other and settable three different wa
 
 1. as attributes on the `<script>` tag that loads `webcomponents.js`
 2. as URL query parameter
-3. directly on the `Platform.flags` object before loading `webcomponents.js`. 
+3. directly on the `Platform.flags` object before loading `webcomponents.js`.
 
 ## Debug flags
 

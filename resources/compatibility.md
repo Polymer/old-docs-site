@@ -1,7 +1,6 @@
 ---
 layout: default
-type: resources
-navgroup: resources
+type: guide
 shortname: Resources
 title: Browser Compatibility
 ---

@@ -1,7 +1,6 @@
 ---
 layout: default
-type: core
-navgroup: docs
+type: guide
 shortname: Articles
 title: "Accessible Web Components - Part 1"
 subtitle: Improving the accessibility of Web Components
@@ -39,21 +38,21 @@ When designing for accessibility, there are four key areas of disability to cons
 
 * Ensure all user interface elements can be used with assistive technologies such as screen readers, magnifiers and braille displays. This entails ensuring that elements are marked up such that accessibility APIs can programmatically determine the *role*, *state*, *value* and *title* of any element.
 
-**Hearing** issues mean a user may have issues hearing sound emitted from a page. 
+**Hearing** issues mean a user may have issues hearing sound emitted from a page.
 
-* Make the content understandable using [text alternatives](http://www.w3.org/TR/WCAG20/#media-equiv-av-only-alt) for all content that is not strictly text. 
+* Make the content understandable using [text alternatives](http://www.w3.org/TR/WCAG20/#media-equiv-av-only-alt) for all content that is not strictly text.
 
 * Ensure you test that your elements are still functional [without sound](http://www.w3.org/TR/2008/REC-WCAG20-20081211/#content-structure-separation-understanding).
 
-**Mobility** issues can include the inability to operate a mouse, a keyboard or touch-screen. 
+**Mobility** issues can include the inability to operate a mouse, a keyboard or touch-screen.
 
 * Make the content of your elements [functionally accessible from a keyboard](http://www.w3.org/TR/wai-aria-practices/#keyboard) for any actions one would otherwise use a mouse for.
 
 * Ensure user interface elements are correctly marked up for assistive technologies; these users may use technologies such as voice control software and physical switch controls, which tend to use the same APIs as other assistive technologies like screen readers.
 
-**Cognitive** issues mean a user may require assistive technologies to help them with reading text, so it’s important to ensure text alternatives exist. 
+**Cognitive** issues mean a user may require assistive technologies to help them with reading text, so it’s important to ensure text alternatives exist.
 
-* Avoid a visual presentation that is [repetitive](http://www.w3.org/TR/WCAG20/#time-limits) or flashing as this can cause some users [issues](http://www.w3.org/TR/WCAG20/#seizure). 
+* Avoid a visual presentation that is [repetitive](http://www.w3.org/TR/WCAG20/#time-limits) or flashing as this can cause some users [issues](http://www.w3.org/TR/WCAG20/#seizure).
 
 * Avoid interactions that are timing-based.
 
@@ -79,13 +78,13 @@ Native controls (such as `<button>` and `<select>`) have accessibility built-in 
 
 Custom elements (with the exception of elements that extend native elements like `<button>`) do not have any built-in functionality, including accessibility, so this needs to be provided by you. A good place to start when implementing accessibility is to compare your custom element to an analogous native element (or a combination of several native elements, depending on how complex your component is).
 
-The following is a list of questions you can ask yourself when attempting to make your custom elements more accessible. 
+The following is a list of questions you can ask yourself when attempting to make your custom elements more accessible.
 
-### Can your element be used with the keyboard alone? 
+### Can your element be used with the keyboard alone?
 
-Ideally, ensure that all functionality in your element can be reached by a keyboard. During your UX design, think about how you would use your element with the keyboard alone, and figure out a consistent set of keyboard interactions. 
+Ideally, ensure that all functionality in your element can be reached by a keyboard. During your UX design, think about how you would use your element with the keyboard alone, and figure out a consistent set of keyboard interactions.
 
-Firstly, ensure that you have a sensible **focus** target for each element. For example, a complex element like a menu may be one focus target within a page, but should then manage focus within itself so that the active menu item always takes focus. 
+Firstly, ensure that you have a sensible **focus** target for each element. For example, a complex element like a menu may be one focus target within a page, but should then manage focus within itself so that the active menu item always takes focus.
 
 ![Menu displaying how to manage focus](/articles/images/accessible-web-components/image_0.png)
 
@@ -136,7 +135,7 @@ Any element which displays an image should provide a mechanism for providing alt
 
 Assistive technology conveys semantic information which is otherwise expressed to sighted users via visual cues such as formatting, cursor style, or position. Native elements have this semantic information built-in by the browser, but for custom elements you need to use [ARIA](http://www.w3.org/WAI/PF/aria/) to add this information in.
 
-One technology which is critical for custom element accessibility is [WAI-ARIA](http://www.w3.org/WAI/PF/aria/). ARIA is a specification defining support for accessible web apps. It defines markup extensions (implemented as attributes on elements), which can be used to provide additional information about the semantics of elements to assistive technologies like screen readers. 
+One technology which is critical for custom element accessibility is [WAI-ARIA](http://www.w3.org/WAI/PF/aria/). ARIA is a specification defining support for accessible web apps. It defines markup extensions (implemented as attributes on elements), which can be used to provide additional information about the semantics of elements to assistive technologies like screen readers.
 
 As a rule of thumb, any element which listens to a mouse click or hover event should not only have some kind of keyboard event listener, but also an ARIA role and potentially ARIA states and attributes.
 
@@ -156,7 +155,7 @@ Color shouldn’t be used as the only means of conveying information, such as in
 
 Any text content displayed in your element should meet the [minimum (AA) contrast bar](http://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast). Consider providing a high-contrast theme which meets the [higher (AAA) bar](http://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast7), and also ensure that user agent style sheets can be applied if users require extreme contrast or different colors. You can use this [Color Contrast Checker](http://webaim.org/resources/contrastchecker/) as an aid when doing design.
 
-### Is the moving or flashing content in your elements stoppable and safe? 
+### Is the moving or flashing content in your elements stoppable and safe?
 
 Content that moves, scrolls or blinks that lasts for anything more than 5 seconds should be able to be paused, stopped or hidden. In general, try to flash no more than three times per second.
 

@@ -1,7 +1,6 @@
 ---
 layout: default
-type: core
-navgroup: docs
+type: guide
 shortname: Docs
 title: Layout attributes
 subtitle: Guide
@@ -58,7 +57,7 @@ You can specify `horizontal`, `vertical` to change the orientation:
   <div>Two</div>
   <div>Three</div>
 </div>
-    
+
 ### Flexible children
 
 Children of an element using the `layout` attribute can use `flex` attributes to control their own sizing. For example:
@@ -150,7 +149,7 @@ By default, children stretch to fit the cross-axis (e.g. _vertical_ stretching i
   <div>Stretch Fill</div>
 </div>
 
-Center _across_ the main axis (e.g. _vertical_ centering elements in a _horizontal_ layout) 
+Center _across_ the main axis (e.g. _vertical_ centering elements in a _horizontal_ layout)
 by adding `center`.
 
     <div horizontal layout center>
@@ -174,7 +173,7 @@ You can also position at the top/bottom (or left/right in `vertical` layouts) us
     <div horizontal layout end>
       <div>end</div>
     </div>
-    
+
 <div horizontal layout end class="demo tall">
   <div>end</div>
 </div>
@@ -302,7 +301,7 @@ up the entire viewport by adding the `fullbleed` attribute:
 
 <iframe src="/samples/layout-attr.html" style="width: 100%; height: 150px;border:1px solid black"></iframe>
 
-This removes its margins and maximizes its height to the viewport. 
+This removes its margins and maximizes its height to the viewport.
 
 ## General purpose attributes
 

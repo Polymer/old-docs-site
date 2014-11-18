@@ -181,7 +181,9 @@ function initPage(opt_inDoc) {
 function ajaxifySite() {
   document.addEventListener('polymer-ready', function(e) {
     docsMenu.ajaxify = true;
-    dropdownPanel.ajaxify = true;
+    if (dropdownPanel) {
+      dropdownPanel.ajaxify = true;
+    }
   });
 
   document.addEventListener('click', function(e) {
@@ -253,7 +255,7 @@ document.addEventListener('polymer-ready', function(e) {
     sidebar.toggle();
   });
 
-  dropdownToggle.addEventListener('click', function(e) {
+  dropdownToggle && dropdownToggle.addEventListener('click', function(e) {
     dropdownPanel.openPanel();
     // dropdownPanel listens to clicks on the document and autocloses
     // so no need to add any more handlers

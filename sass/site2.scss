@@ -376,27 +376,15 @@ footer {
         transition: opacity 300ms ease-in;
       }
 
-      // &[type="platform"] {
-      //   background-color: $platform-color !important;
-      // }
-
-      // &[type="core"] {
-      //   background-color: $creating-elements-color  !important;
-      // }
-
-      // &[type="elements"] {
-      //   background-color: $using-elements-color !important;
-      // }
-
-      :host([type="guide"]) {
+      &[type="guide"] {
         background-color: $guides-resources-color !important;
       }
 
-      :host([type="elements"]) {
+      &[type="elements"] {
         background-color: $elements-color !important;
       }
 
-      :host([type="start"]) {
+      &[type="start"] {
         background-color: $getting-started-color !important;
       }
 

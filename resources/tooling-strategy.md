@@ -1,7 +1,6 @@
 ---
 layout: default
-type: resources
-navgroup: resources
+type: guide
 shortname: Resources
 title: Tools & Testing
 ---
@@ -33,13 +32,13 @@ After reloading the DevTools, user agent Shadow DOM should be inspectable. It wi
 
 {{site.project_title}}  polyfills the [HTML Imports](/platform/html-imports.html) specification. In order for code to be debuggable at run-time, scripts embedded in components are injected into `<head>` in the main document. Tools/browsers that support [source maps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) will identify these scripts as belonging to their source components.
 
-## Building &amp; testing 
+## Building &amp; testing
 
 To run build individual polyfills or run tests, you need `node` and `grunt-cli` on your system.
 
 * install [NodeJS](http://nodejs.org) using the instructions on their website
 * use `npm` to install the [GruntJS](http://gruntjs.com) task runner for the command-line
-  
+
       npm install -g grunt-cli
 
 ### Building individual polyfills
@@ -79,7 +78,7 @@ Once things are installed, you may run the tests or use `grunt` to perform tasks
 Build minified project files (default):
 
     grunt
-    
+
 Run tests:
 
     grunt test
@@ -195,7 +194,7 @@ A meta repository compiling the list of utility elements.
 A meta repository compiling the list of paper (UI) elements.
 
 
-<!-- 
+<!--
 **/polymer-elements** - [github.com/PolymerLabs/polymer-elements](https://github.com/Polymer/polymer-elements)
 
 A meta repository compiling the list of utility elements that do not render UI.
@@ -206,6 +205,6 @@ A meta repository compiling the list of basic labs UI elements.
 
 **/more-elements** - [github.com/Polymer/more-elements](https://github.com/Polymer/more-elements)
 
-A meta repository compiling the list of extra components and wrappers for third-party code. 
+A meta repository compiling the list of extra components and wrappers for third-party code.
 Examples include Bootstrap, topcoat, Chart.js, pdf.js, x-tags, and AceEditor.
  -->

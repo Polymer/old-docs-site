@@ -1,7 +1,6 @@
 ---
 layout: default
-type: core
-navgroup: docs
+type: guide
 shortname: Articles
 title: "Communication & Message Passing"
 subtitle: Common techniques for sharing information between custom elements
@@ -50,7 +49,7 @@ We'll cover the following techniques:
 1. [Data binding](#binding)
 1. [Changed watchers](#changedwatchers)
 1. [Custom events](#events)
-1. [Using an element's API](#api) 
+1. [Using an element's API](#api)
 
 ### 1. Data binding {#binding}
 
@@ -114,7 +113,7 @@ When a {{site.project_title}} element [publishes](/docs/polymer/polymer.html#pub
 `<td-model>.items` and `<core-localstorage>.value` are bound together with "list":
 
 {% raw %}
-    <td-model items="{{list}}"></td-model> 
+    <td-model items="{{list}}"></td-model>
     <core-localstorage name="myapplist" value="{{list}}"></core-localstorage>
 {% endraw %}
 
@@ -271,7 +270,7 @@ a user of `<say-hello>` can setup a handler for the event:
 
 As with normal DOM events outside of {{site.project_title}}, you can attach additional data to a custom event. This makes **events an ideal way to distribute arbitrary information to other elements**.
 
-**Example:** include the `name` property as part of the payload: 
+**Example:** include the `name` property as part of the payload:
 
     sayHi: function() {
       this.fire('said-hello', {name: this.name});
@@ -348,7 +347,7 @@ Things become very interesting when several elements need to respond to an event
             first: function(e, detail, sender) {
               logger('first():', detail, sender);
             },
-            second: function(e, detail, sender) { 
+            second: function(e, detail, sender) {
               logger('second():', detail, sender);
             },
             third: function(e, detail, sender) {
@@ -398,7 +397,7 @@ sibling or child elements. That is:
 When `<say-hello>` fires `said-hello`, it bubbles and `sayHi()` handles it.
 However, suppose `<say-bye>` has setup an internal listener for the same event.
 It wants in on the action! Unfortunately, this means we can no longer exploit
-the benefits of event bubbling...by itself. 
+the benefits of event bubbling...by itself.
 
 This particular problem isn't new to the web but you can easily handle it in
 {{site.project_title}}. Just use event delegation and manually fire the event
@@ -492,7 +491,7 @@ other frameworks for a long time, so technically it's not a new concept.
 Whether you're inside or outside a `<polymer-element>`, there are plenty of
 ways to send instructions/messages/data to other web components. Hopefully,
 you're seeing that nothing has changed in the world of custom elements. That's
-the point :) It's the same web we've always known...just more powerful! 
+the point :) It's the same web we've always known...just more powerful!
 
 <script>
 (function() {

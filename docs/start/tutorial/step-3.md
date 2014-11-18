@@ -1,10 +1,9 @@
 ---
 layout: default
 type: start
-navgroup: docs
 shortname: Start
 title: "Step 3: Using data binding"
-subtitle: Your first Polymer application 
+subtitle: Your first Polymer application
 ---
 
 <link rel="import" href="/elements/side-by-side.html">
@@ -17,7 +16,7 @@ subtitle: Your first Polymer application
 
 ## Step 3: Using data binding
 
-One post is nice, but the app looks a little empty. In this step, you'll pull data from a web service and use Polymer's data binding to render it as a series of cards. 
+One post is nice, but the app looks a little empty. In this step, you'll pull data from a web service and use Polymer's data binding to render it as a series of cards.
 
 To get the data, you'll use the `<post-service>` element provided as part of the starter app. This element provides a very simple API for an imaginary social network. In this section, you'll use the `posts` property, which returns an array of `post` objects like this:
 
@@ -55,7 +54,7 @@ Open the `post-list.html` file in your editor.
       margin-bottom: 30px;
     }
     &lt;/style>
-    
+
     &lt;!-- add markup here -->
 ...
 </pre>
@@ -64,7 +63,7 @@ Open the `post-list.html` file in your editor.
     <ul>
       <li>The file already includes an import for the <code>&lt;post-service&gt;</code>
       element, so it's ready to use.</li>
-      <li>The <code>attributes="show"</code> attribute creates a 
+      <li>The <code>attributes="show"</code> attribute creates a
       <a href="/docs/polymer/polymer.html#published-properties">
       <em>published property</em></a> named <code>show</code>.
       </li>
@@ -95,19 +94,19 @@ Add a `<post-service>` element inside the element's `<template>`:
   <h4>Key information</h4>
     <ul>
       <li>
-        The <code>posts="{%raw%}{{posts}}{%endraw%}"</code> attribute adds a two-way data binding between 
+        The <code>posts="{%raw%}{{posts}}{%endraw%}"</code> attribute adds a two-way data binding between
         the <code>&lt;post-service&gt;</code> element and the <code>&lt;post-list&gt;</code> element.
       </li>
     </ul>
   </aside>
 </side-by-side>
 
-The [_data binding_](/docs/polymer/databinding.html) links the service element's `posts` property to a local property (also called 
+The [_data binding_](/docs/polymer/databinding.html) links the service element's `posts` property to a local property (also called
 `posts` here). Any methods you define on your custom element can access the response as `this.posts`.
 
 <div class="divider" layout horizontal center center-justified>
   <core-icon icon="polymer"></core-icon>
-</div> 
+</div>
 
 Render a dynamic list of cards.
 
@@ -129,19 +128,19 @@ Add the following `<div>` and `<template>` tag:
       &lt;p>{{post.text}}&lt;/p>
     &lt;/post-card>
   &lt;/template>
-  
+
 &lt;/div></strong>
 ...
 </pre>
 {%endraw%}
 <aside>
  <h4>Key information</h4>
-       
+
  <ul>
    <li>This new syntax <code>repeat="{%raw%}{{post in posts}}{%endraw%}"</code>, tells the template to
    create a new instance for each item in the <code>posts</code> array.</li>
    <li>In each template instance, the individual bindings (such as
-   <code>{%raw%}{{post.avatar}}{%endraw%}</code>) are replaced by the corresponding values for that 
+   <code>{%raw%}{{post.avatar}}{%endraw%}</code>) are replaced by the corresponding values for that
    item.</li>
  </ul>
 </aside>
@@ -152,7 +151,7 @@ Add the following `<div>` and `<template>` tag:
 
 Import the `<post-list>` element into `index.html`.
 
-Open `index.html` and add an import link for `post-list.html`. You can   
+Open `index.html` and add an import link for `post-list.html`. You can
 replace the existing link for `post-card`:
 
 <pre>
@@ -161,14 +160,14 @@ replace the existing link for `post-card`:
 <strong class="highlight nocode">&lt;link rel="import" href="post-list.html"></strong>
 ...
 </pre>
-    
+
 <div class="divider" layout horizontal center center-justified>
   <core-icon icon="polymer"></core-icon>
 </div>
 
 Use the `<post-list>` element.
 
-Find the `<post-card>` element you added in the last step and replace it 
+Find the `<post-card>` element you added in the last step and replace it
 with a `<post-list>`:
 
 <pre>

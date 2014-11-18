@@ -1,7 +1,6 @@
 ---
 layout: default
-type: core
-navgroup: docs
+type: guide
 shortname: Docs
 title: API developer guide
 subtitle: Guide
@@ -266,12 +265,12 @@ techniques like anonymous self-calling functions:
 There are times when you may want to define properties of an application globally,
 and then make them available inside all of your elements. For example:
 
-- A single easing curve for all animations. 
+- A single easing curve for all animations.
 - Information about the currently logged-in user that you consider "global".
 
-To achieve this, you can use the [MonoState Pattern](http://c2.com/cgi/wiki?MonostatePattern). 
-When defining a {{site.project_title}} element, define a closure that closes over the variables 
-in question, and then provide accessors on the object's prototype or copy them over to individual 
+To achieve this, you can use the [MonoState Pattern](http://c2.com/cgi/wiki?MonostatePattern).
+When defining a {{site.project_title}} element, define a closure that closes over the variables
+in question, and then provide accessors on the object's prototype or copy them over to individual
 instances in the `ready` callback.
 
     <polymer-element name="app-globals">
@@ -292,7 +291,7 @@ instances in the `ready` callback.
       </script>
     </polymer-element>
 
-Then use the `<app-globals>` element as you would any other. You can access its properties 
+Then use the `<app-globals>` element as you would any other. You can access its properties
 using {{site.project_title}} data binding or plain JavaScript:
 
     <polymer-element name="my-component">
@@ -303,8 +302,8 @@ using {{site.project_title}} data binding or plain JavaScript:
       </template>
       <script>
         Polymer({
-          ready: function() { 
-            console.log('Last name: ' + this.$.globals.lastName); 
+          ready: function() {
+            console.log('Last name: ' + this.$.globals.lastName);
           }
         });
       </script>
@@ -336,13 +335,13 @@ The main page configures the globals by passing attributes:
     <app-globals firstname="Addy" lastname="Osmani"></app-globals>
 
 This second version of `app-globals` has a slightly different API than
-the first. The global variables are properties of the `values` object instead of 
-direct properties of `app-globals`. Setting values using attributes imposes two 
+the first. The global variables are properties of the `values` object instead of
+direct properties of `app-globals`. Setting values using attributes imposes two
 limitations: the values must be strings, and the variable names are lowercase.
-(See [Attribute case sensitivity](#attrcase) for more information.) 
+(See [Attribute case sensitivity](#attrcase) for more information.)
 
 To use this `<app-globals>` element with the previous `<my-component>` example,
-you'd need to update the paths that refer to the global variables (for example 
+you'd need to update the paths that refer to the global variables (for example
 `$.globals.values.lastname` instead of `$.globals.lastName`).
 
 ### Element lifecycle methods {#lifecyclemethods}
@@ -480,7 +479,7 @@ By default, properties defined in `attributes` are initialized to `undefined`:
 
 Specifically, {{site.project_title}} adds `foo` to the element's prototype with a value of `undefined`.
 
-**Note:** Prior to {{site.project_title}} 0.3.5, properties were initialized to 
+**Note:** Prior to {{site.project_title}} 0.3.5, properties were initialized to
 `null` by default.
 {: .alert .alert-info }
 
@@ -711,7 +710,7 @@ For more information see the [Data binding overview](databinding.html).
 
 ### Computed properties
 
-Computed properties are dynamic properties that are computed 
+Computed properties are dynamic properties that are computed
 based on other property values. You can also publish a computed
 property, so it can be data bound outside the element.
 
@@ -724,27 +723,27 @@ element's prototype:
 }</b>
 </pre>
 
-Each computed property is defined by a property name and a 
+Each computed property is defined by a property name and a
 [Polymer expression](/docs/polymer/expressions.html). The value
-of the computed property is updated dynamically whenever one of 
-the input values in the expression changes. 
+of the computed property is updated dynamically whenever one of
+the input values in the expression changes.
 
 In the following example, when you update the input value,
 `num`, the computed property `square` updates automatically.
 
 {% include samples/computed-property.html %}
 
-Computed properties are read-only: for example, setting 
+Computed properties are read-only: for example, setting
 the `square` property on `square-element` has no effect.
 
 You can publish a computed property like any other property,
 by adding it to the `attributes` list or to the `publish` object.
 Any default value specified in the `publish` object is ignored.
 
-**Limitations**: In {{site.project_title}} 0.4.0 and earlier, computed properties 
+**Limitations**: In {{site.project_title}} 0.4.0 and earlier, computed properties
 couldn't be published.
 For example, you couldn't bind to the `square` property on `square-element` using
- `<square-element square="{%raw%}{{value}}{%endraw%}>`. 
+ `<square-element square="{%raw%}{{value}}{%endraw%}>`.
 {: .alert .alert-warning }
 
 ### Declarative event mapping
@@ -928,12 +927,12 @@ It's important to note that **{{site.project_title}} does not call the <code><em
 
 ### Automatic node finding
 
-Another useful feature of {{site.project_title}} is automatic node finding. 
-Nodes in a component's shadow DOM that are tagged with an 
+Another useful feature of {{site.project_title}} is automatic node finding.
+Nodes in a component's shadow DOM that are tagged with an
 `id` attribute are automatically referenced in the component's `this.$` hash.
 
-**Note:** Nodes created dynamically using data binding are _not_ added to the 
-`this.$` hash. The hash includes only _statically_ created shadow DOM nodes 
+**Note:** Nodes created dynamically using data binding are _not_ added to the
+`this.$` hash. The hash includes only _statically_ created shadow DOM nodes
 (that is, the nodes defined in the element's outermost template).
 {: .alert .alert-warning }
 
@@ -952,7 +951,7 @@ For example, the following defines a component whose template contains an `<inpu
       </script>
     </polymer-element>
 
-To locate other nodes inside the element's shadow DOM, you can create a 
+To locate other nodes inside the element's shadow DOM, you can create a
 container element with a known ID and use `querySelector` to retrieve
 descendants. For example, if your element's template looks like this:
 

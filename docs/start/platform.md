@@ -1,7 +1,6 @@
 ---
 layout: default
-type: concepts
-navgroup: start
+type: start
 shortname: Concepts
 title: The Platform
 subtitle: Supporting new web technologies today

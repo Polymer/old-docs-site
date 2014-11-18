@@ -1,7 +1,6 @@
 ---
 layout: default
 type: start
-navgroup: start
 shortname: Start
 title: Using elements
 subtitle: Polymer from the outside

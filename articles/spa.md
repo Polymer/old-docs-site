@@ -1,7 +1,6 @@
 ---
 layout: default
-type: core
-navgroup: docs
+type: guide
 shortname: Articles
 title: "Building single page apps using web components"
 subtitle: The Polymer approach to building single page applications
