@@ -1,7 +1,6 @@
 ---
 layout: default
 type: start
-navgroup: start
 shortname: Start
 title: Custom elements 101
 subtitle: Learn about the foundation of Polymer-based apps
@@ -64,7 +63,7 @@ The `<core-selector>` element is a good example of a basic custom element. It's 
 Polymer divides its custom  elements into two categories based on their use and behavior:
 
 - UI elements, which render UI to the screen.
-- Non-UI elements, which provide other utilities. 
+- Non-UI elements, which provide other utilities.
 
 ###  UI elements {#uielements}
 
@@ -76,7 +75,7 @@ Elements like `<select>` and `<core-selector>` are _UI elements_. They render UI
       <paper-tab>Three</paper-tab>
     </paper-tabs>
 
-<!-- 
+<!--
 <iframe src="/components/paper-tabs/demo.html" style="border:none;height:80px;width:100%;"></iframe> -->
 
 ### Non-UI elements {#nonuielements}

@@ -1,7 +1,6 @@
 ---
 layout: default
 type: elements
-navgroup: elements
 shortname: Elements
 title: Using elements
 subtitle: Element guides
@@ -9,8 +8,7 @@ subtitle: Element guides
 
 {% include toc.html %}
 
-{{site.project_title}} provides several sets of elements, which you can reuse simply by
-including them in your project. If you don't want to write any code, keep reading!
+To use elements, first load `webcomponents.min.js`. Many browsers have yet to implement the various web components APIs. Until they do, `webcomponents.min.js` provides [polyfill support](/docs/start/platform.html). **Be sure to include this file before any code that touches the DOM.**
 
 ## Installing elements {#install}
 
@@ -167,15 +165,15 @@ An example `index.html` file:
     <!DOCTYPE html>
     <html>
       <head>
-        <!-- 1. Load webcomponents.js for polyfill support. -->
-        <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+        <!-- 1. Load webcomponents.min.js for polyfill support. -->
+        <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
 
         <!-- 2. Use an HTML Import to bring in the element. -->
         <link rel="import"
               href="bower_components/core-ajax/core-ajax.html">
       </head>
       <body>
-        <!-- 3. Declare the element. Configure using its attributes. 
+        <!-- 3. Declare the element. Configure using its attributes.
         Replace '//example.com/json' with valid json file -->
         <core-ajax url="//example.com/json"
                    handleAs="json"></core-ajax>

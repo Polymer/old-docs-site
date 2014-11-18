@@ -2,7 +2,6 @@
 layout: default
 type: start
 shortname: Start
-navgroup: start
 title: Getting the code
 ---
 
@@ -34,13 +33,13 @@ in one of several ways:
     also installs any missing dependencies. Bower also handles updating
     installed components. For more information, see [Installing with Bower](#using-bower).
 
-*   ZIP file. Includes all dependencies, so you can unzip it and start using it 
-    immediately. The ZIP file requires no extra tools, but doesn't provide a 
+*   ZIP file. Includes all dependencies, so you can unzip it and start using it
+    immediately. The ZIP file requires no extra tools, but doesn't provide a
     built-in method for updating dependencies. For more information, see
     [Installing from ZIP files](#using-zip).
 
 *   Github. When you clone a component from Github, you need to manage all of the dependencies
-    yourself. If you'd like to hack on the project or submit a pull request, see 
+    yourself. If you'd like to hack on the project or submit a pull request, see
     [setting up {{site.project_title}} with git](/resources/tooling-strategy.html#git).
 
 When you install {{site.project_title}} using Bower or the ZIP file, you get the 
@@ -51,30 +50,35 @@ the Web Components specifications natively.
 **Note:** For information about installing elements from the Core and Paper element 
 collection, see [Using elements](/docs/start/using-elements.html).
 
-### Installing with Bower {#using-bower}
+**Note:** The PolymerLabs github repo contains a number of unsupported elements that are either
+experimental or deprecated. In particular, the `polymer-elements` and `polymer-ui-elements`
+collections represent earlier work superseded by the {{site.project_title}} Core elements and
+Paper elements.
+
+## Installing with Bower {#using-bower}
 
 The recommended way to install **{{site.project_title}} {{site.latest_version}}**
-is through Bower. To install Bower, see the [Bower web site](http://bower.io/). 
+is through Bower. To install Bower, see the [Bower web site](http://bower.io/).
 
 Bower removes the hassle of dependency management when developing or consuming
 elements. When you install a component, Bower makes sure any dependencies are
-installed as well. 
+installed as well.
 
-#### Project setup
+### Project setup
 
 If you haven't created a `bower.json` file for your application, run this
 command from the root of your project:
 
     bower init
 
-This generates a basic `bower.json` file. Some of the questions, like 
+This generates a basic `bower.json` file. Some of the questions, like
 "What kind of modules do you expose," can be ignored by pressing Enter.
 
 The next step is to install {{site.project_title}}:
 
     bower install --save Polymer/polymer
 
-Bower adds a `bower_components/` folder in the root of your project and 
+Bower adds a `bower_components/` folder in the root of your project and
 fills it with {{site.project_title}} and its dependencies.
 
 **Tip:** `--save` adds the item as a dependency in *your* app's bower.json:
@@ -98,7 +102,7 @@ in your app directory to update your copy:
 
 This updates all packages in `bower_components/`.
 
-### Installing from ZIP files {#using-zip}
+## Installing from ZIP files {#using-zip}
 
 To download {{site.project_title}} as a ZIP file, click the **GET POLYMER** button
 then click **Download ZIP**.
@@ -114,30 +118,31 @@ Expand the ZIP file in your project directory to create a `components` folder.
 
 ![](/images/zip-file-contents.png)
 
-If you download multiple component sets as ZIP files, you'll usually end up with 
-multiple copies of some dependencies. You'll need to merge the contents of the 
+If you download multiple component sets as ZIP files, you'll usually end up with
+multiple copies of some dependencies. You'll need to merge the contents of the
 ZIP files.
 
-Unlike Bower, the ZIP file doesn't provide a built-in method 
-for updating dependencies. You can manually update components with a new ZIP 
-file. 
+Unlike Bower, the ZIP file doesn't provide a built-in method
+for updating dependencies. You can manually update components with a new ZIP
+file.
 
-### Using git {#git}
+## Using git {#git}
 
-Because there are a number of dependencies we suggest you install 
-{{site.project_title}} with Bower instead of git. If you'd like to hack on 
-the project or submit a pull request check out our guide on 
+Because there are a number of dependencies we suggest you install
+{{site.project_title}} with Bower instead of git. If you'd like to hack on
+the project or submit a pull request check out our guide on
 [setting up {{site.project_title}} with git](/resources/tooling-strategy.html#git).
 
 ## Next steps {#nextsteps}
 
-Now that you've installed {{site.project_title}} it's time to learn the core 
-concepts. In the next section we'll get you up and running on using elements 
-in a project. Continue on to:
+Now that you've installed {{site.project_title}} it's time to learn the core
+concepts. In the next section we'll get you up and running on creating elements
+using {{site.project_title}}. Continue on to:
 
 <a href="/docs/start/creatingelements.html">
   <paper-button raised><core-icon icon="arrow-forward" ></core-icon>Polymer in 10 minutes</paper-button>
 </a>
 
 If you'd rather skip ahead, check out the
+[tutorial](/docs/start/tutorial/intro.html), or skip to the
 [API developer guide](/docs/polymer/polymer.html).

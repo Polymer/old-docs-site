@@ -1,7 +1,6 @@
 ---
 layout: default
-type: resources
-navgroup: resources
+type: guide
 shortname: Resources
 title: FAQ
 ---
@@ -86,7 +85,7 @@ polymer.dart is a Dart port of {{site.project_title}} created and maintained by 
 
 ### Is the code hosted on a CDN?
 
-There is no official CDN version of {{site.project_title}}. Some community members 
+There is no official CDN version of {{site.project_title}}. Some community members
 maintain a copy of {{site.project_title}} on [cdnjs](http://cdnjs.com/):
 
 <pre>
@@ -102,7 +101,7 @@ There are a number of reasons why we recommend you use Bower instead of the CDN:
 - There are many elements which are not hosted on the CDN so it might be tricky to include all of them in your project.
 - You will not be able to [Vulcanize your code](/articles/concatenating-web-components.html).
 
-For testing and reproducing bugs, you can link to the current versions of the `webcomponents.js` 
+For testing and reproducing bugs, you can link to the current versions of the `webcomponents.js`
 and `polymer.html` files on `polymer-project.org`:
 
     <script src="//polymer-project.org/webcomponents.js"></script>

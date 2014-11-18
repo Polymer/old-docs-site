@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <title>Single page app using Polymer</title>
-  <script src="/components/platform/platform.js"></script>
+  <script src="/webcomponents.min.js"></script>
   <link rel="import" href="vulcanized.html">
   <link rel="stylesheet" href="styles.css" shim-shadowdom>
 </head>
@@ -15,20 +15,25 @@
   <nav>
     <core-toolbar><span>Single Page Polymer</span></core-toolbar>
     <core-menu selected="1">
-      <paper-item icon="label-outline" label="Single">
-        <a href="#one"></a>
+      <paper-item noink>
+        <core-icon icon="label-outline"></core-icon>
+        <a href="#one">Single</a>
       </paper-item>
-      <paper-item icon="label-outline" label="page">
-        <a href="#two"></a>
+      <paper-item noink>
+        <core-icon icon="label-outline"></core-icon>
+        <a href="#two">page</a>
       </paper-item>
-      <paper-item icon="label-outline" label="app">
-        <a href="#three"></a>
+      <paper-item noink>
+        <core-icon icon="label-outline"></core-icon>
+        <a href="#three">app</a>
       </paper-item>
-      <paper-item icon="label-outline" label="using">
-        <a href="#four"></a>
+      <paper-item noink>
+        <core-icon icon="label-outline"></core-icon>
+        <a href="#four">using</a>
       </paper-item>
-      <paper-item icon="label-outline" label="Polymer">
-        <a href="#five"></a>
+      <paper-item noink>
+        <core-icon icon="label-outline"></core-icon>
+        <a href="#five">Polymer</a>
       </paper-item>
     </core-menu>
   </nav>
@@ -62,4 +67,4 @@
 </core-scaffold>
 
 </body>
-</html> 
+</html>

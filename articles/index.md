@@ -1,7 +1,6 @@
 ---
 layout: default
-type: core
-navgroup: docs
+type: guide
 shortname: Docs
 title: Articles
 subtitle: Core concepts of build apps on top of Polymer and web components
@@ -31,7 +30,8 @@ add_permalinks: false
 {% if p.article.updated %}(updated <time datetime="{{updated}}">{{updated}}</time>){% endif %}
 </div>
 
-<summary>{{p.article.description}}</summary>
+<summary>{{p.article.description}}
+</summary>
 
 </div>
 {% endif %}

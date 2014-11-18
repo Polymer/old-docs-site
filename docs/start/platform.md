@@ -1,8 +1,6 @@
 ---
-layout: default
-type: concepts
-navgroup: start
-shortname: Concepts
+type: start
+shortname: Web Components
 title: Web components polyfills
 subtitle: Supporting new web technologies today
 ---
@@ -11,7 +9,7 @@ subtitle: Supporting new web technologies today
 
 ## Introduction
 
-{{site.project_title}} builds on top of the upcoming web components technologies, 
+{{site.project_title}} builds on top of the upcoming web components technologies,
 which don't yet ship in all browsers.
 
 However, you can run {{site.project_title}} in any evergreen browser using the 
@@ -40,7 +38,7 @@ of JavaScript (minified and compressed).
 
 ## What's in the web components polyfill? {#bundle}
 
-`webcomponents.js` is a bundle that includes the following libraries:
+`webcomponents.min.js` is a bundle that includes the following libraries:
 
 - Web Components:
   - [Shadow DOM](/platform/shadow-dom.html). Encapsulate DOM subtrees and the associated CSS.
@@ -60,18 +58,18 @@ To start using these features today, first download `webcomponents.js` using Bow
 [Getting the code](/docs/start/getting-the-code.html).
 {: .alert .alert-info } 
 
-Then, include `webcomponents.js` as you would any other script:
+Then, include `webcomponents.min.js` as you would any other script:
 
-    <script src="bower_components/webcomponents.js/webcomponents.js"></script>
+    <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
 
-**Note**: Due to the nature of some of the polyfills, to maximize compatibility with other 
-libraries, make sure that `webcomponents.js` is the first script tag in your document's `<head>`.
+**Note**: Due to the nature of some of the polyfills, to maximize compatibility with other
+libraries, make sure that `webcomponents.min.js` is the first script tag in your document's `<head>`.
 {: .alert alert-info}
 
-Once included, you can use [HTML Imports](html-imports.html), 
-[Custom Elements](custom-elements.html), [Shadow DOM](shadow-dom.html), 
-and other emerging standards in your app. For example, to use a {{site.project_title}} 
-element, just import it using an HTML Import:
+Once included, you can use [HTML Imports](/platform/html-imports.html),
+[Custom Elements](/platform/custom-elements.html), [Shadow DOM](/platform/shadow-dom.html),
+and other emerging standards in your app. For example, to use a {{site.project_title}} element,
+just import it using an HTML Import:
 
     <link rel="import"
           href="bower_components/paper-tabs/paper-tabs.html">
@@ -85,10 +83,10 @@ go to [WebComponents.org](http://webcomponents.org).
 
 ## Next steps {#nextsteps}
 
-`webcomponents.js` is a wonderful foundation for working with Web Components in a 
-cross-browser fashion. If you're ready to start building your own elements, and would 
+`webcomponents.min.js` is a wonderful foundation for working with Web Components in a
+cross-browser fashion. If you're ready to start building your own elements, and would
 like to learn about the additional features {{site.project_title}} adds, check out our guide
-on [Creating elements](/docs/start/creatingelements.html) or follow 
+on [Creating elements](/docs/start/creatingelements.html) or follow
 [the tutorial](/docs/start/tutorial/intro.html) to write your first {{site.project_title}} application.
 
 Or continue on to:

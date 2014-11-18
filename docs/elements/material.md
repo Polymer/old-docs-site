@@ -1,7 +1,6 @@
 ---
 layout: default
 type: elements
-navgroup: elements
 shortname: Elements
 title: Material design with Polymer
 subtitle: Guide
@@ -98,13 +97,13 @@ few examples:
 <div class="icondemo" layout horizontal>
 </div>
 
-For details on using `<core-icon>` and its relatives, see 
+For details on using `<core-icon>` and its relatives, see
 [Using core icons](icons.html).
 
 ## Material controls
 
 The paper elements collection includes a number of material-themed controls
-for all common areas of your application. The following table shows the common 
+for all common areas of your application. The following table shows the common
 controls.
 
 <table class="demo-table">
@@ -230,7 +229,7 @@ hide it.
 
 ### Snackbars & toasts
 
-A `<paper-toast>` element appears at the bottom of the screen or on the 
+A `<paper-toast>` element appears at the bottom of the screen or on the
 lower-left on mobile. Use the `text` attribute to specify the text to display.
 
     <paper-toast id="toast" text="Your draft has been discarded."></paper-toast>
@@ -256,7 +255,7 @@ When designing your own components or using generic HTML elements such as
 
 Material responds to input events with an touch ripple effect: an animation
 that moves out radially from the origin of the event. These effects are built
-into the 
+into the
 [paper elements collection](paper-elements.html):
 
 <paper-button class="purpleRipple" raised>Show me the ripple</paper-button>
@@ -299,22 +298,22 @@ Touch the cards and icon below to see ripple effects.
 
 The `<paper-ripple>` should be `position: absolute` and sized to fit the
 parent element. In  this example, the `fit` layout attribute is used to
-position the ripple appropriately.  (See 
-[layout attributes](/docs/polymer/layout-attrs.html) for information on `fit` 
+position the ripple appropriately.  (See
+[layout attributes](/docs/polymer/layout-attrs.html) for information on `fit`
 and other layout attributes.)
 
 You can clip the ripple to a circle by adding the `circle` class to the
 ripple's `classlist`. Circular ripples are used for small buttons used in a grid
 layout (for example, icon buttons, number pads).
 
-You can set the color of the ripple using the `color` CSS property. 
+You can set the color of the ripple using the `color` CSS property.
 
     paper-ripple {
       color: red;
     }
 
-When using a paper element, check the element API doc to find the CSS selector 
-to style the ripple. Elements that have a ripple have a `<paper-ripple>` 
+When using a paper element, check the element API doc to find the CSS selector
+to style the ripple. Elements that have a ripple have a `<paper-ripple>`
 in the shadow DOM. For example, to style a  button:
 
     paper-button::shadow paper-ripple {
@@ -340,8 +339,8 @@ are arbitrary values ranging from 0 (no elevation) to 5 (maximum elevation), and
 correspond to DIPs.
 {: .alert .alert-info }
 
-The `paper-elements` have shadow effects built-in. For example, a 
-`<paper-button>` declared  with the `raised` attribute appears raised 
+The `paper-elements` have shadow effects built-in. For example, a
+`<paper-button>` declared  with the `raised` attribute appears raised
 above the surface it rests on, and raises  up when touched.
 
     <paper-button raised>Raised button</paper-button>
@@ -351,7 +350,7 @@ above the surface it rests on, and raises  up when touched.
 When building your own elements or using standard DOM elements, you can use
 the `<paper-shadow>`  element to create the appropriate shadow effect.
 
-To apply a shadow to an element, simply use a `<paper-shadow>` element as a 
+To apply a shadow to an element, simply use a `<paper-shadow>` element as a
 container. The `<paper-shadow>` element automatically adds a shadow around its contents.
 The `<paper-shadow>` element is `display: block` by default.
 
@@ -376,7 +375,7 @@ The `<paper-shadow>` element is `display: block` by default.
 </paper-shadow>
 
 You can set the **initial** z-height of the target element by setting the `z` attribute on the
-`<paper-shadow>`  element. Z values range from 0 (no shadow) to 5. 
+`<paper-shadow>`  element. Z values range from 0 (no shadow) to 5.
 
 <div layout horizontal>
   <paper-shadow z="1" class="demo-card">
@@ -401,9 +400,9 @@ regardless of the z-heights of  the background elements. In addition, the
 z-height does not affect the stacking order of  elements. To change stacking
 order of sibling elements, use the `z-index` CSS property as  usual.
 
-**Note:** 
+**Note:**
 The `<paper-shadow>` element's behavior changed in version 0.5.0.
-Prior to 0.5.0, the `<paper-shadow>` element added a shadow to its 
+Prior to 0.5.0, the `<paper-shadow>` element added a shadow to its
 _parent element_, and supported changing the z-height by setting the
 `z` property directly.
 {: .alert .alert-info }
@@ -415,33 +414,33 @@ _parent element_, and supported changing the z-height by setting the
 ## Transitions
 
 Support for transitions is rapidly evolving. The `<core-animated-pages>`
-element displays a single child element at a time, and provides support for 
+element displays a single child element at a time, and provides support for
 sophisticated transitions between two children, or _pages_.
 
 You can define a set of transitions to be executed when transitioning between
 pages. To provide visual continuity across transitions, animated pages support
 _hero transitions_, where a selected element on the starting page appears to
 morph into a related element on the ending page. Use hero transitions to link
-important elements together, while using a simpler transition such as a 
+important elements together, while using a simpler transition such as a
 cross-fade for the remaining elements.
 
-For example transitions, see the [`<core-animated-pages>` demos](/components/core-animated-pages/demo.html). 
-The <a href="/apps/topeka/" target="_blank">Topeka sample app</a> also 
+For example transitions, see the [`<core-animated-pages>` demos](/components/core-animated-pages/demo.html).
+The <a href="/apps/topeka/" target="_blank">Topeka sample app</a> also
 demonstrates a number of transitions in context.
 
 ## Scrolling techniques
 
-The [`<core-scroll-header-panel>`](/docs/elements/core-elements.html#core-scroll-header-panel) 
-element supports a number of scrolling effects described in the material 
-design spec, including condensing and expanding the toolbar as the user 
-scrolls and hiding or showing the toolbar. 
+The [`<core-scroll-header-panel>`](/docs/elements/core-elements.html#core-scroll-header-panel)
+element supports a number of scrolling effects described in the material
+design spec, including condensing and expanding the toolbar as the user
+scrolls and hiding or showing the toolbar.
 
-For resizing toolbars, `<core-scroll-header-panel>` lets you define how to 
-transition the toolbar's contents between states &mdash; resizing text, 
-showing or hiding /components, and cross-fading between backgrounds, for 
+For resizing toolbars, `<core-scroll-header-panel>` lets you define how to
+transition the toolbar's contents between states &mdash; resizing text,
+showing or hiding /components, and cross-fading between backgrounds, for
 example.
 
-See the [`<core-scroll-header-panel>` demos](/components/core-scroll-header-panel/demo.html) 
+See the [`<core-scroll-header-panel>` demos](/components/core-scroll-header-panel/demo.html)
 for some examples of the effects possible.
 
 <script>

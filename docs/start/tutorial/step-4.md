@@ -1,10 +1,9 @@
 ---
 layout: default
 type: start
-navgroup: docs
 shortname: Start
 title: "Step 4: Finishing touches"
-subtitle: Your first Polymer application 
+subtitle: Your first Polymer application
 ---
 
 <link rel="import" href="/elements/side-by-side.html">
@@ -74,12 +73,12 @@ element:
   <core-icon icon="polymer"></core-icon>
 </div>
 
-Add the `favorite` property and `favoriteTapped` method to the element's   
-prototype. 
+Add the `favorite` property and `favoriteTapped` method to the element's
+prototype.
 
 <side-by-side>
 <pre>
-&lt;script><strong class="highlight nocode">   
+&lt;script><strong class="highlight nocode">
 Polymer({
   publish: {
     favorite: {
@@ -109,8 +108,8 @@ Polymer({
   </aside>
 </side-by-side>
 
-The net result of these changes is that when the favorite button is 
-tapped, the favorite property is updated and its corresponding attribute 
+The net result of these changes is that when the favorite button is
+tapped, the favorite property is updated and its corresponding attribute
 is set or unset.
 
 Right now, there's no visual indication that the button is pressed.
@@ -148,13 +147,13 @@ core-icon-button {
 </div>
 
 Save `post-card.html`.
-   
-At this point, you can reload the page and your favorite buttons should 
+
+At this point, you can reload the page and your favorite buttons should
 work, but there are still a few steps left to finish the app.
 
 ### Edit index.html
 
-Open `index.html` and update the tab event handler to switch views in 
+Open `index.html` and update the tab event handler to switch views in
 `<post-list>` when the user switches tabs:
 
 <pre>
@@ -174,7 +173,7 @@ Save `index.html`.
 
 Open `post-list.html` in your editor.
 
-Update the template that creates the `<post-card>` elements to wire up the 
+Update the template that creates the `<post-card>` elements to wire up the
 favorites:
 
 <side-by-side>
@@ -195,7 +194,7 @@ favorites:
   {% endraw %}
   <aside>
     <ul>
-      <li><code>favorite=<wbr>"{%raw%}{{post.favorite}}{%endraw%}"</code> binds the 
+      <li><code>favorite=<wbr>"{%raw%}{{post.favorite}}{%endraw%}"</code> binds the
       card's <code>favorite</code> value to the
       value in the array owned by the <code>&lt;post-service&gt;</code>.</li>
       <li>The <code>on-favorite-tap</code> attribute sets up a handler for the
@@ -207,10 +206,10 @@ favorites:
   </aside>
 </side-by-side>
 
-The binding expression for `hidden` actually does the work of switching 
-between the All and Favorites tabs. The `hidden` attribute is a 
-standard HTML5 attribute. The default {{site.project_title}} style sheet includes 
-a rule to style `hidden` as `display: none` for those browsers that don't support 
+The binding expression for `hidden` actually does the work of switching
+between the All and Favorites tabs. The `hidden` attribute is a
+standard HTML5 attribute. The default {{site.project_title}} style sheet includes
+a rule to style `hidden` as `display: none` for those browsers that don't support
 `hidden` natively.
 
 <div class="divider" layout horizontal center center-justified>

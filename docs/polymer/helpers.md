@@ -1,7 +1,6 @@
 ---
 layout: default
-type: core
-navgroup: docs
+type: guide
 shortname: Docs
 title: Polymer helper methods
 subtitle: Guide
@@ -15,7 +14,7 @@ element, such as dynamically importing files, using mixins, and managing element
 
 ## Using dynamic HTML imports
 
-The `Polymer.import` method can be used to dynamically import one or more HTML files: 
+The `Polymer.import` method can be used to dynamically import one or more HTML files:
 
 <pre>
 Polymer.import(<var>urls</var>, <var>callback</var>);
@@ -69,19 +68,19 @@ You can dynamically load it like this:
     </html>
 
 The `<dynamic-element>` in `index.html` is parsed as a generic `HTMLElement`.
-When you click the button, the import is loaded and the `<dynamic-element>` 
+When you click the button, the import is loaded and the `<dynamic-element>`
 instance is upgraded to a custom element.
 
-You can think of the `import` callback as equivalent to the `polymer-ready` event on page load. 
+You can think of the `import` callback as equivalent to the `polymer-ready` event on page load.
 When the callback is invoked, all of the newly-imported elements are ready to use.
 
-As on initial page load, if any element is lacking a corresponding `Polymer` call, it 
-blocks registration of _all_ elements, which means the callback is never invoked. See 
+As on initial page load, if any element is lacking a corresponding `Polymer` call, it
+blocks registration of _all_ elements, which means the callback is never invoked. See
 [Hunting down unregistered elements](/docs/polymer/debugging.html#unregistered) for information
 on diagnosing problems with element registration.
 
-**Note:** {{site.project_title}} provides a related mechanism: `HTMLImports.whenReady(callback)`. 
-The callback is invoked when all of the imports in the document have finished loading. 
+**Note:** {{site.project_title}} provides a related mechanism: `HTMLImports.whenReady(callback)`.
+The callback is invoked when all of the imports in the document have finished loading.
 (Not including any imports added to the document _after_ calling `whenReady`.)
 {: .alert .alert-info }
 
@@ -100,7 +99,7 @@ You can use `mixin` to share functionality between custom elements, by creating 
         // ...
       }
     }
-     
+
     <polymer-element name="my-element">
     <script>
       Polymer(Polymer.mixin({
@@ -111,8 +110,8 @@ You can use `mixin` to share functionality between custom elements, by creating 
 
 The `mixin` method makes a shallow copy of the mixin objects, and doesn't attempt to merge nested objects.
 
-Since mixin objects are ordinary JavaScript objects, you can do anything with them that you'd do with an 
-ordinary object. For example, to share a mixin across multiple custom elements in separate HTML imports, 
+Since mixin objects are ordinary JavaScript objects, you can do anything with them that you'd do with an
+ordinary object. For example, to share a mixin across multiple custom elements in separate HTML imports,
 place the mixin in an HTML import and assign the mixin to a global variable:
 
 `shared-mixin.html`:
@@ -135,7 +134,7 @@ place the mixin in an HTML import and assign the mixin to a global variable:
     </script>
     </polymer-element>
 
-## Forcing element registration  
+## Forcing element registration
 
 By default, {{site.project_title}} waits until all elements are ready before registering and upgrading them.
 If one `<polymer-element>` tag is missing its corresponding `Polymer` call (and doesn't have the `noscript` attribute),
@@ -143,7 +142,7 @@ it blocks all elements from registering.
 
 The `Polymer.waitingFor` helper returns a list of `<polymer-element>` tags that are blocking registration.
 
-`Polymer.forceReady` notifies {{site.project_title}} to register all available elements immediately, ignoring any 
+`Polymer.forceReady` notifies {{site.project_title}} to register all available elements immediately, ignoring any
 incomplete elements.
 
 For more details and example usage, see [Hunting down unregistered elements](/docs/polymer/debugging.html#unregistered).

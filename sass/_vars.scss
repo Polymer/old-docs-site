@@ -47,9 +47,13 @@ $gray-medium: #fafafa;
 // $pink-light: #ff4081;
 // $pink-dark: #d61a7f;
 
-$using-elements-color: #3e50b4; //#5c6bc0; //#4558c9;
-$creating-elements-color: #e81d62;//#d61a7f;//#D93089;
-$platform-color: #9f499b;//#6a3167;
+$using-elements-color: #ff4080;//#3e50b4; //#5c6bc0; //#4558c9;
+$creating-elements-color: #7986cb;//#e81d62;//#d61a7f;//#D93089;
+$platform-color: #536df2;//#9f499b;//#6a3167;
+
+$guides-resources-color: #ff4080;
+$elements-color: #7986cb;
+$getting-started-color: #536dfe;
 
 $warning-color: #ff4120;
 $info-color: #3367d6;
@@ -139,11 +143,11 @@ $info-color: #3367d6;
   user-select: $val;
 }
 
-@mixin calc($property, $expression) { 
-  #{$property}: -moz-calc(#{$expression}); 
-  #{$property}: -o-calc(#{$expression}); 
-  #{$property}: -webkit-calc(#{$expression}); 
-  #{$property}: calc(#{$expression}); 
+@mixin calc($property, $expression) {
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -o-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
 }
 
 

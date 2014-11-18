@@ -8,11 +8,10 @@ var ajax, pages, scaffold;
 var cache = {};
 
 template.pages = [
-  {name: 'Intro', hash: 'one', url: '/docs/start/tutorial/intro.html'},
-  {name: 'Step 1', hash: 'two', url: '/docs/start/tutorial/step-1.html'},
-  {name: 'Step 2', hash: 'three', url: '/docs/start/tutorial/step-2.html'},
-  {name: 'Step 3', hash: 'four', url: '/docs/start/tutorial/step-3.html'},
-  {name: 'Step 4', hash: 'five', url: '/docs/start/tutorial/step-4.html'},
+  {name: 'Shadow DOM 101', hash: 'one', url: 'http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/'},
+  {name: 'Shadow DOM 201', hash: 'two', url: 'http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/'},
+  {name: 'Shadow DOM 301', hash: 'three', url: 'http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-301/'},
+  {name: 'Custom Elements', hash: 'four', url: 'http://www.html5rocks.com/en/tutorials/webcomponents/customelements/'}
 ];
 
 template.addEventListener('template-bound', function(e) {
@@ -34,7 +33,7 @@ template.addEventListener('template-bound', function(e) {
 });
 
 template.keyHandler = function(e, detail, sender) {
-  // Select page by num key. 
+  // Select page by num key.
   var num = parseInt(detail.key);
   if (!isNaN(num) && num <= this.pages.length) {
     pages.selectIndex(num - 1);
@@ -76,7 +75,15 @@ template.ajaxLoad = function(e, detail, sender) {
 };
 
 template.onResponse = function(e, detail, sender) {
-  var article = detail.response.querySelector('scroll-area article');
+  var article = detail.response.querySelector('#article-content');
+
+  article.querySelector('.byline').remove();
+
+  // Fix up image paths to not be local.
+  [].forEach.call(article.querySelectorAll('img'), function(img) {
+    img.setAttribute('src', img.src);
+  });
+
   var html = article.innerHTML;
 
   cache[ajax.url] = html; // Primitive caching by URL.

@@ -1,7 +1,6 @@
 ---
 layout: default
-type: core
-navgroup: docs
+type: guide
 shortname: Docs
 title: Node.bind()
 subtitle: Library
@@ -43,7 +42,7 @@ When the value in `path.to.value` changes, `Node.bind()` keeps `.textContent` up
 The meaning of the binding name is interpreted by the node on which `bind()` is called.
 Some elements have special properties which can be two-way data bound:
 
-- `Text` node - only handles bindings on its `textContent` property. 
+- `Text` node - only handles bindings on its `textContent` property.
 - `HTMLInputElement` - handles bindings on its `value` and `checked` properties.
 - `HTMLTextareaElement` - handles bindings on its `value` property.
 - `HTMLSelectElement` - handles bindings on its `value` and `selectedIndex` properties.

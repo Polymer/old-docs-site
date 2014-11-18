@@ -1,14 +1,13 @@
 ---
 layout: default
 title: Shadow DOM
-type: platform
-navgroup: docs
+type: guide
 shortname: Platform
 subtitle: polyfill
 
 feature:
   spec: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html
-  code: https://github.com/polymer/ShadowDOM
+  code: https://github.com/Polymer/webcomponentsjs
   summary: "Shadow DOM is designed to provide encapsulation by hiding DOM subtrees under shadow
 roots. It provides a method of establishing and maintaining functional boundaries
 between DOM trees and how these trees interact with each other within a document,

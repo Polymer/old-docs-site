@@ -1,7 +1,6 @@
 ---
 layout: default
-type: core
-navgroup: docs
+type: guide
 shortname: Docs
 title: Types of bindings
 subtitle: Data-binding
@@ -76,7 +75,7 @@ The simplest format for a repeating template is:
 {% endraw %}
 
 Refer to the current item in `array` using an empty binding expression {%raw%}`{{}}`{%endraw%}, which matches
-the current binding scope. Refer to a property of the current item as {%raw%}`{{<var>propertyname</var>}}`{%endraw%}. 
+the current binding scope. Refer to a property of the current item as {%raw%}`{{<var>propertyname</var>}}`{%endraw%}.
 
 Like the `bind` attribute, the `repeat` attribute supports named scopes:
 
@@ -88,7 +87,7 @@ Like the `bind` attribute, the `repeat` attribute supports named scopes:
     </template>
 {% endraw %}
 
-When using named scopes with the `repeat` attribute, the index value for each 
+When using named scopes with the `repeat` attribute, the index value for each
 item in the array is also available by using the following syntax:
 
 {% raw %}

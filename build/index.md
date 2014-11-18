@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Build status
-type: resources
-navgroup: resources
+type: guide
 shortname: Resources
 
 add_permalinks: false

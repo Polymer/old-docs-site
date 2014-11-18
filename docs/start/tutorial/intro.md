@@ -1,10 +1,9 @@
 ---
 layout: default
 type: start
-navgroup: docs
 shortname: Start
 title: Getting Started
-subtitle: Your first Polymer application 
+subtitle: Your first Polymer application
 ---
 
 <style>
@@ -57,25 +56,25 @@ To get started, download the starter project. This starter project includes all 
   </a>
 </p>
 
-Unzip the starter project somewhere on your local drive. 
+Unzip the starter project somewhere on your local drive.
 
-The starter includes an initial version of the project you'll be working with. It also includes incremental versions of the project so you can check your work along the way. 
+The starter includes an initial version of the project you'll be working with. It also includes incremental versions of the project so you can check your work along the way.
 
 While you're working, you'll need a basic HTTP server to serve your pages. If you have Python installed, you can run one of the following commands in the top level of the starter project.
 
 Python 2.x:
 
-    python -m SimpleHTTPServer 
+    python -m SimpleHTTPServer
 
 Python 3.x:
 
-    python -m http.server 
+    python -m http.server
 
 Test out the web server by loading the finished version of the project. For example:
 
 -  [http://localhost:8000/finished/](http://localhost:8000/finished/)
 
-URLs in this tutorial assume your local server is listening on port 8000. 
+URLs in this tutorial assume your local server is listening on port 8000.
 If you're using a different port, substitute the port you're using.
 
 **Note:** On Windows, Python's simple HTTP server may not provide the correct MIME type for SVG images.

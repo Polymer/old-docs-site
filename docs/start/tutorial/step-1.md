@@ -1,10 +1,9 @@
 ---
 layout: default
 type: start
-navgroup: docs
 shortname: Start
 title: "Step 1: Creating the app structure"
-subtitle: Your first Polymer application 
+subtitle: Your first Polymer application
 ---
 
 <link rel="import" href="/elements/side-by-side.html">
@@ -36,13 +35,13 @@ Go to the `starter` directory and open the `index.html` file in your favorite ed
 
   &lt;title>unquote&lt;/title>
 
-  &lt;meta name="viewport" 
+  &lt;meta name="viewport"
     content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
 
   &lt;script src="../components/webcomponentsjs/webcomponents.js">
   &lt;/script>
 
-  &lt;link rel="import" 
+  &lt;link rel="import"
     href="../components/font-roboto/roboto.html">
   ...
 </pre>
@@ -55,11 +54,11 @@ Go to the `starter` directory and open the `index.html` file in your favorite ed
 </aside>
 </side-by-side>
 
-**Note:** The `font-roboto` import loads the `RobotoDraft` font using the 
+**Note:** The `font-roboto` import loads the `RobotoDraft` font using the
 [Google Fonts API](https://developers.google.com/fonts/). If you're working
 offline or cannot access the Google Fonts API for any reason, this can block
-rendering of the web page. If you experience this problem, comment out the 
-import for `font-roboto`. 
+rendering of the web page. If you experience this problem, comment out the
+import for `font-roboto`.
 {: .alert .alert-info }
 
 
@@ -76,8 +75,8 @@ Skipping over the styles for now, at the end of the file you'll find something n
 <aside>
   <h4>Key information</h4>
   <ul>
-    <li>The <code>unresolved</code> attribute on the <code>&lt;body></code> element is used to prevent a flash of unstyled content 
-        (FOUC) on browsers that lack native support for custom elements. For details, see the 
+    <li>The <code>unresolved</code> attribute on the <code>&lt;body></code> element is used to prevent a flash of unstyled content
+        (FOUC) on browsers that lack native support for custom elements. For details, see the
         <a href="/docs/polymer/styling.html#fouc-prevention">Polymer styling reference</a>.</li>
   </ul>
 </aside>
@@ -91,11 +90,11 @@ Add HTML import links to import the `<core-header-panel>`, `<core-toolbar>`, and
 
 <side-by-side>
 <pre>
-&lt;script 
+&lt;script
   src="../components/webcomponentsjs/webcomponents.js">
 &lt;/script>
 
-&lt;link rel="import" 
+&lt;link rel="import"
   href="../components/font-roboto/roboto.html">
 <strong class="highlight nocode">&lt;link rel="import"
   href="../components/core-header-panel/core-header-panel.html">
@@ -110,7 +109,7 @@ Add HTML import links to import the `<core-header-panel>`, `<core-toolbar>`, and
     <ul>
       <li>
         Polymer uses <a href="/platform/html-imports.html">HTML imports</a> to load components.
-        HTML imports provide dependency management, ensuring that your elements and all of their dependencies are loaded 
+        HTML imports provide dependency management, ensuring that your elements and all of their dependencies are loaded
         before you use them.
       </li>
       <li>
@@ -125,7 +124,7 @@ Add HTML import links to import the `<core-header-panel>`, `<core-toolbar>`, and
 </div>
 
 To add a toolbar, add the following code inside the `<body>` tag.
- 
+
 <side-by-side>
 <pre>
 <strong class="highlight nocode">&lt;core-header-panel>
@@ -133,7 +132,7 @@ To add a toolbar, add the following code inside the `<body>` tag.
   &lt;core-toolbar>
   &lt;/core-toolbar>
 
-  &lt;!-- main page content will go here --> 
+  &lt;!-- main page content will go here -->
 
 &lt;/core-header-panel></strong>
 </pre>
@@ -141,13 +140,13 @@ To add a toolbar, add the following code inside the `<body>` tag.
     <h4>Key information</h4>
 
     <ul>
-      <li>The 
-          <code><a href="/docs/elements/core-elements.html#core-header-panel">&lt;core-header-panel&gt;</a></code> 
-          element is a simple container that holds a 
-          header (in this case a <code>&lt;core-toolbar></code> element), and some content. By 
-          default, the header stays at the top of the screen, but it can also be 
+      <li>The
+          <code><a href="/docs/elements/core-elements.html#core-header-panel">&lt;core-header-panel&gt;</a></code>
+          element is a simple container that holds a
+          header (in this case a <code>&lt;core-toolbar></code> element), and some content. By
+          default, the header stays at the top of the screen, but it can also be
           set to scroll with the content.</li>
-      <li>The <code><a href="/docs/elements/core-elements.html#core-toolbar">&lt;core-toolbar></a></code> element serves 
+      <li>The <code><a href="/docs/elements/core-elements.html#core-toolbar">&lt;core-toolbar></a></code> element serves
           as a container for tabs, menu buttons, and other controls.</li>
     </ul>
   </aside>
@@ -160,7 +159,7 @@ To add a toolbar, add the following code inside the `<body>` tag.
 Add the tabs.
 
 The application will use tabs for navigating between two different views,
-a list of all messages and a list of favorites. The 
+a list of all messages and a list of favorites. The
 <code><a href="/docs/elements/paper-elements.html#paper-tabs">&lt;paper-tabs&gt;</a></code>
 element works much like a `<select>` element, but it's styled as a set of
 tabs.
@@ -202,7 +201,7 @@ tabs.
 
 <div class="divider" layout horizontal center center-justified>
   <core-icon icon="polymer"></core-icon>
-</div> 
+</div>
 
 Add styles for the new elements. Add the following CSS rules inside the `<style>` element.
 
@@ -217,7 +216,7 @@ html,body {
 <strong class="highlight nocode">core-header-panel {
   height: 100%;
   overflow: auto;
-  -webkit-overflow-scrolling: touch; 
+  -webkit-overflow-scrolling: touch;
 }
 core-toolbar {
   background: #03a9f4;
@@ -236,10 +235,10 @@ core-toolbar {
 <aside>
   <h4>Key information</h4>
   <ul>
-    <li>The <code>&lt;core-header-panel&gt;</code> is a generic element that can be used as either a 
+    <li>The <code>&lt;core-header-panel&gt;</code> is a generic element that can be used as either a
         full-page layout or for a card with a toolbar. To use it as a full-page, scrollable container,
         set its height explicitly. </li>
-    <li>Here, the height is set to 100%. This works because the existing style rules ensure that its 
+    <li>Here, the height is set to 100%. This works because the existing style rules ensure that its
         parent elements,
         <code>&lt;html&gt;</code> and <code>&lt;body&gt;</code>, take up 100% of the viewport height.</li>
     <li>The <code>overflow</code> and <code>-webkit-overflow-scrolling</code> properties ensure that
@@ -252,7 +251,7 @@ core-toolbar {
 
 <div class="divider" layout horizontal center center-justified>
   <core-icon icon="polymer"></core-icon>
-</div> 
+</div>
 
 Add a `<script>` tag near the end of the file to handle the tab switching
     event.
@@ -268,14 +267,14 @@ Add a `<script>` tag near the end of the file to handle the tab switching
   });
 &lt;/script>
 </strong>&lt;/body>
-</pre> 
+</pre>
   <aside>
     <h4>Key information</h4>
     <ul>
       <li>
-        The <code>&lt;paper-tabs></code> element fires a <code>core-select</code> event when you select a 
+        The <code>&lt;paper-tabs></code> element fires a <code>core-select</code> event when you select a
         tab. You can interact with the element just like a built-in element.
-      </li> 
+      </li>
       <li>
         Right now there's nothing to switch; you'll finish hooking it up later.
       </li>
@@ -284,16 +283,16 @@ Add a `<script>` tag near the end of the file to handle the tab switching
 </side-by-side>
 
 
-Save the file and open the project in your browser (for example, [http://localhost:8000/starter/](http://localhost:8000/starter/)). You have a Polymer app! 
+Save the file and open the project in your browser (for example, [http://localhost:8000/starter/](http://localhost:8000/starter/)). You have a Polymer app!
 
 
 <div layout vertical center>
   <img class="sample" src="/images/tutorial/step-1.png">
 </div>
 
-**Note:** If you have the console open, you'll notice that you get two `core-select` 
-events each time you switch tabs &mdash; one for the previously-selected tab and one 
-for the newly-selected tab. The `<paper-tabs>` element inherits this behavior from 
+**Note:** If you have the console open, you'll notice that you get two `core-select`
+events each time you switch tabs &mdash; one for the previously-selected tab and one
+for the newly-selected tab. The `<paper-tabs>` element inherits this behavior from
 <code><a href="/docs/elements/core-elements.html#core-selector">&lt;core-selector&gt;</a></code>, which supports
 both single and multiple selections.
 {: .alert .alert-info }

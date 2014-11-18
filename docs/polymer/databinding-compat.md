@@ -1,7 +1,6 @@
 ---
 layout: default
-type: core
-navgroup: docs
+type: guide
 shortname: Docs
 title: Compatibility notes
 subtitle: Data-binding
@@ -12,12 +11,12 @@ subtitle: Data-binding
 
 A few features of native templates can’t be replicated perfectly with the polyfill library, and require some workarounds. These include:
 
-Some browsers don’t allow  `<template>` elements inside certain elements like `<select>` or `<table>`. 
+Some browsers don’t allow  `<template>` elements inside certain elements like `<select>` or `<table>`.
 Binding to certain attributes (such as the `<img>` tag’s `src` attribute) doesn’t work correctly on some browsers that don’t support templates.
 
 ## Elements that can’t contain a template
 
-Until the addition of HTML `<template>`, the `<select>` and `<table>` elements had 
+Until the addition of HTML `<template>`, the `<select>` and `<table>` elements had
 special parser rules to limit the types of children they could contain. Because of these legacy rules, browsers that don't support `<template>` will lift unexpected elements out of context and make them siblings, including `<template>` itself!
 
 For example, the following won't work correctly in browsers that don't support `<template>`:
@@ -68,7 +67,7 @@ Another example using `<select>`/`<option>`:
 
 If your users are using browsers that don't support `<template>`, use the `template`
 attribute on these special elements:
-    
+
 * `caption`
 * `col`
 * `colgroup`
@@ -83,7 +82,7 @@ attribute on these special elements:
 
 **Note:** browsers with native support for `<template>` allow it to be a child
 of elements `<select>` and `<table>`. If you know your users are using a browser
-with support, you can use the standard template 
+with support, you can use the standard template
 {: .alert .alert-info }
 
 
@@ -97,7 +96,7 @@ with support, you can use the standard template
 
 ## Binding to attributes
 
-Binding expressions to certain attributes can produce side effects in browsers that don't implement `<template>` natively. 
+Binding expressions to certain attributes can produce side effects in browsers that don't implement `<template>` natively.
 For example, running {% raw %}`<img src="/users/{{id}}.jpg">`{% endraw %} under the polyfill produces a network request that 404s.
 
 In addition, browsers such as IE sanitize certain attributes, disallowing {% raw %}`{{}}`{% endraw %} replacements in their text.

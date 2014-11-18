@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Pointer Events
-type: platform
-navgroup: docs
+type: guide
 shortname: Platform
 subtitle: polyfill
 

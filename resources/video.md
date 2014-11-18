@@ -1,7 +1,6 @@
 ---
 layout: default
-type: resources
-navgroup: resources
+type: guide
 shortname: Videos
 title: Videos and presentations
 subtitle: Go deeper, learn more

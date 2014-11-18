@@ -1,7 +1,6 @@
 ---
 layout: default
-type: core
-navgroup: docs
+type: guide
 shortname: Articles
 title: A Guide to Styling Elements
 
@@ -50,7 +49,7 @@ As with any HTML element, users of your Custom Element can define styles on it:
 
     <x-foo></x-foo>
 
-However, it's common for a Custom Element to define its own look. 
+However, it's common for a Custom Element to define its own look.
 
 ### Element-defined styles
 
@@ -78,7 +77,7 @@ rule that targets the host if it matches `<selector>`: For example:
 matches
 
     :host(.different) {
-      ...  
+      ...
     }
 
 #### Reacting to user states
@@ -115,7 +114,7 @@ The `:host-context(<selector>)` pseudo class matches the host element if it or a
       color: red;
     }
 
-One reason you might find `:host-context()` useful is for theming. For example, many people do theming by applying a class to `<html>` or `<body>`. 
+One reason you might find `:host-context()` useful is for theming. For example, many people do theming by applying a class to `<html>` or `<body>`.
 
     <body class="different">
       <x-foo></x-foo>
@@ -137,7 +136,7 @@ One reason you might find `:host-context()` useful is for theming. For example, 
 
 #### Programmatically modifying styles
 
-You can dynamically change an element's styling by, you guessed it, modifying 
+You can dynamically change an element's styling by, you guessed it, modifying
 its `.style` property.
 
 From the outside:
@@ -162,7 +161,7 @@ From within the element:
       <script>
         Polymer('x-foo', {
           changeBg: function() {
-            this.style.background = 'blue'; 
+            this.style.background = 'blue';
           }
         });
       </script>
@@ -255,7 +254,7 @@ event that signifies all elements have been upgraded.
 
     <style>
       x-foo[unresolved] {
-        /* custom styling */ 
+        /* custom styling */
       }
     </style>
     <x-foo unresolved></x-foo>
@@ -341,7 +340,7 @@ see [styling distributed nodes](#style-distributed).
         <span>I'm black</span>
       </footer>
     </x-foo>
-    
+
 **Note**: For complex styling like distribute nodes, {{site.project_title}} provides the `polyfill-*`
 selectors to polyfill certain Shadow DOM features. See the [Styling reference](/docs/polymer/styling.html#directives) for more information on the directives.
 {: .alert .alert-info }
@@ -353,7 +352,7 @@ selectors to polyfill certain Shadow DOM features. See the [Styling reference](/
         color: green;
       }
       .red {
-        color: red; 
+        color: red;
       }
     </style>
 
@@ -373,7 +372,7 @@ selectors to polyfill certain Shadow DOM features. See the [Styling reference](/
     color: green;
   }
   .red {
-    color: red; 
+    color: red;
   }
 </style>
 
@@ -394,14 +393,14 @@ The `::shadow` pseudo-element and the `/deep/` combinator pierce through Shadow 
 
 #### The `::shadow` pseudo-element {#hat}
 
-If an element has at least one shadow tree, the `::shadow` pseudo-element matches the shadow roots themselves. 
-For example, say you wanted to style x-foo's internal `p` element. Writing `x-foo::shadow` selects x-foo's shadow root. From there, you can write a normal descendant selector to get at the `p`: 
+If an element has at least one shadow tree, the `::shadow` pseudo-element matches the shadow roots themselves.
+For example, say you wanted to style x-foo's internal `p` element. Writing `x-foo::shadow` selects x-foo's shadow root. From there, you can write a normal descendant selector to get at the `p`:
 
     <style>
       x-foo::shadow p {
         color: red;
       }
-      /* Equivalent to previous rule (in this case). */ 
+      /* Equivalent to previous rule (in this case). */
       x-foo::shadow > p {
         color: red;
       }
@@ -462,7 +461,7 @@ A more full fledged example is styling a tabs component, say `<x-tabs>`. It has 
 
 #### The `/deep/` combinator {#cat}
 
-The `/deep/` combinator is similar to `::shadow`, but more powerful. It completely **ignores all shadow boundaries and crosses into any number of shadow trees**. 
+The `/deep/` combinator is similar to `::shadow`, but more powerful. It completely **ignores all shadow boundaries and crosses into any number of shadow trees**.
 
 **Example** style all `h2` elements that are descendants of an `<x-tabs>`, anywhere in a shadow tree:
 

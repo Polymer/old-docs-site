@@ -1,7 +1,6 @@
 ---
 layout: default
 type: elements
-navgroup: elements
 shortname: Elements
 title: Using core icons
 subtitle: Guide
@@ -54,7 +53,7 @@ Produces: <core-icon src="/images/icons/android.svg"></core-icon>
 
 The source image is scaled to fit the icon size, which defaults to 24px square, and is used as the icon element’s background.
 
-You can set the size of the icon using CSS. 
+You can set the size of the icon using CSS.
 
     <core-icon src="/images/icons/android.svg" style="width: 24px; height: 24px;"></core-icon>
     <core-icon src="/images/icons/android.svg" style="width: 32px; height: 32px;"></core-icon>
@@ -64,8 +63,8 @@ Produces: <core-icon src="/images/icons/android.svg" style="width: 24px; height:
 <core-icon src="/images/icons/android.svg" style="width: 32px; height: 32px;"></core-icon>
 <core-icon src="/images/icons/android.svg" style="width: 48px; height: 48px;"></core-icon>
 
-**Note:** In {{site.project_title}} 0.3.4 and earlier, `core-icon` included a 
-`size` attribute and didn't support sizing using CSS. 
+**Note:** In {{site.project_title}} 0.3.4 and earlier, `core-icon` included a
+`size` attribute and didn't support sizing using CSS.
 {: .alert .alert-info }
 
 The `src` attribute works well when you want to use a single icon. However, most of the time you need more than one, so {{site.project_title}} makes it easy to work with *icon sets*.
@@ -84,7 +83,7 @@ a whole range of predefined icon sets. To use an icon from an icon set, use the 
 This loads the *polymer* icon from the default iconset: <core-icon icon="polymer"></core-icon>
 
 You can find more interesting icon sets in the `core-icons` directory.
-To use an icon from one of these icon sets, first import the icon set. 
+To use an icon from one of these icon sets, first import the icon set.
 Specify the icon as <em>iconset-name</em><b>&#8239;:&#8239;</b><em>icon-name</em>.
 
 For example:
@@ -97,16 +96,16 @@ For example:
 This displays the *cake* icon from the *social* iconset: <core-icon icon="social:cake"></core-icon>
 
 You can browse available icon sets on the
-[core-icons demo page](/components/core-icons/demo.html). 
+[core-icons demo page](/components/core-icons/demo.html).
 
 ## Styling icons with CSS {#styling-with-css}
 
 Because icons in {{site.project_title}} iconsets are SVG-based, you can control their appearance
-with CSS. In addition to setting standard CSS properties like sizes and background colors, 
+with CSS. In addition to setting standard CSS properties like sizes and background colors,
 you can set SVG-specific CSS properties like `fill`, `stroke` and `stroke-width` for your icons.
 
 By default, icons use `fill: currentcolor`, so they match the current text color.
-The easiest way to override the icon color is to set the `color` property. (You 
+The easiest way to override the icon color is to set the `color` property. (You
 can also set the `fill` property directly, but it requires a more specific CSS selector.)
 
     <style>
@@ -174,7 +173,7 @@ the fancy circles even more fancy by adding some color:
       }
     </style>
 
-Now you can display the icon with `core-icon` using the same 
+Now you can display the icon with `core-icon` using the same
 <em>iconset-name</em><b>&#8239;:&#8239;</b><em>icon-name</em>
 format used for built-in icon sets. For example, to display the icon
 defined above use `custom-icons:fancy-circles` as the `icon` attribute.
@@ -235,8 +234,8 @@ Produces: <core-icon icon="custom-icons-png:place"></core-icon>
 
 ## Using icons with other elements {#icons-in-other-core-components}
 
-You can use icons on their own, but also use them with other elements, such as buttons. You can use the built-in 
-and custom icon sets with any `core-` or `paper-` element that has an `icon` attribute. Remember to include the 
+You can use icons on their own, but also use them with other elements, such as buttons. You can use the built-in
+and custom icon sets with any `core-` or `paper-` element that has an `icon` attribute. Remember to include the
 appropriate icon set before referring to an icon, otherwise the icon will not render.
 
 The following examples use `core-icon-button`, `core-menu-button` and `core-item` with
@@ -254,7 +253,7 @@ Produces: <core-icon-button icon="av:play-arrow"></core-icon-button>
   <core-item icon="settings" label="Settings"></core-item>
 </core-menu-button>
 
-There are two ways to style the icons inside another element. Since `color` is an 
+There are two ways to style the icons inside another element. Since `color` is an
 inherited property, you can set `color` on the parent element:
 
     <style>

@@ -1,7 +1,6 @@
 ---
 layout: default
-type: core
-navgroup: docs
+type: guide
 shortname: Docs
 title: Template Binding
 subtitle: Library
@@ -112,7 +111,7 @@ a model set using the `bind` attribute, call `template.unbind('bind')`:
         salutations: { what: 'GoodBye', who: 'Imperative' }
       };
       t.model = model;
-        
+
       function removeGo() {
         t.unbind('bind');
       }
