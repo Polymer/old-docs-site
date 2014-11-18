@@ -1,17 +1,6 @@
-default:
-  menu: other
 start:
   headertitle: Basics
-  menu: start
-concepts:
-  headertitle: Concepts
-  menu: start
-core:
+guides:
   headertitle: "Guides & Resources"
-  menu: guides
 elements:
   headertitle: Elements
-  menu: elements
-platform:
-  headertitle: Platform
-  menu: start
