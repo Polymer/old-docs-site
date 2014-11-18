@@ -112,4 +112,6 @@ pre, .prettyprint {
   @include align-items(center);
   line-height: 1;
   color: #fff;
+  box-sizing: border-box;
+  margin: 0 24px;
 }

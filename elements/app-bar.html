@@ -19,7 +19,7 @@
     <template if="{{home}}">
       <content></content>
     </template>
-    <span class="polymer-status-badge" hidden?="{{badge}}">{{badge}}</span>
+    <span class="polymer-status-badge" hidden?="{{!badge.length}}">{{badge}}</span>
     <div id="search" show?="{{showingSearch}}" on-click="{{toggleSearch}}">
       <paper-icon-button icon="search"></paper-icon-button>
       <input type="search" id="input" on-keyup="{{onKeyPress}}" autocomplete="off">
@@ -30,7 +30,7 @@
       theme: 'dark',
       home: false,
       showingSearch: false,
-      badge: null,
+      badge: '',
       toggleSearch: function(e, detail, sender) {
         if (e) { // comes first
           e.stopPropagation();
