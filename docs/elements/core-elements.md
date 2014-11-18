@@ -1,7 +1,6 @@
 ---
 layout: default
 type: elements
-navgroup: elements
 shortname: Elements
 title: Polymer core elements
 #subtitle: non-visual utility elements

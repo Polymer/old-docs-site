@@ -1,10 +1,9 @@
 ---
 layout: default
-type: core
-navgroup: docs
+type: guide
 shortname: Articles
 title: "Distributing Components With Bower"
-subtitle: How to package your elements for broader sharing 
+subtitle: How to package your elements for broader sharing
 
 article:
   author: addyosmani
@@ -47,7 +46,7 @@ Run `bower init` to generate a valid bower.json manifest to lock down your proje
     [?] name: polymer-demo
     [?] version: 0.0.1
     [?] description: An awesome {{site.project_title}} element
-    [?] main file: 
+    [?] main file:
     [?] keywords: {{site.project_title}}, web-components
     [?] authors: John Smith
     [?] license: MIT
@@ -85,7 +84,7 @@ This will produce a bower.json file containing something like:
 
 ### 2. Adding the Polymer dependencies {#add-dependencies}
 
-Next, you will want to install webcomponents.js (the Web Component polyfills) and polymer.html so that your {{site.project_title}} elements can consume them. This can be done by running the following one-liner: 
+Next, you will want to install webcomponents.js (the Web Component polyfills) and polymer.html so that your {{site.project_title}} elements can consume them. This can be done by running the following one-liner:
 
     bower install --save polymer
 
@@ -150,9 +149,9 @@ Your element should now be available on the [bower registry](http://bower.io/sea
 
 ### How do I install Bower? {#bower-install}
 
-Bower depends on [Node](http://nodejs.com) and [npm](http://npmjs.org) and is generally used via the command-line. 
+Bower depends on [Node](http://nodejs.com) and [npm](http://npmjs.org) and is generally used via the command-line.
 
-You can download and install Node from [nodejs.org](http://nodejs.org). npm comes bundled with each binary package, so when you install Node, npm should automatically be installed at the same time. You’ll also need to have Git installed, as Bower uses Git endpoints to locate packages. If you don’t have Git installed, you can download it from [http://git-scm.com/downloads](git-scm.com/downloads). 
+You can download and install Node from [nodejs.org](http://nodejs.org). npm comes bundled with each binary package, so when you install Node, npm should automatically be installed at the same time. You’ll also need to have Git installed, as Bower uses Git endpoints to locate packages. If you don’t have Git installed, you can download it from [http://git-scm.com/downloads](git-scm.com/downloads).
 
 You can then install Bower using npm:
 
@@ -176,7 +175,7 @@ To list what packages you have installed in the current project, pass the `list`
 
 This won’t display any information until a package has been installed, but you can do this with the `install` command:
 
-    bower install {{site.project_title}}/platform 
+    bower install {{site.project_title}}/platform
 
 Uninstalling packages is just as easy as installing them. In this case we use the `bower uninstall` command.
 

@@ -1,7 +1,6 @@
 ---
 layout: default
 type: elements
-navgroup: elements
 shortname: Elements
 title: Layout elements
 subtitle: Guide

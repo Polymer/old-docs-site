@@ -1,7 +1,6 @@
 ---
 layout: default
-type: core
-navgroup: docs
+type: guide
 shortname: Docs
 title: Advanced topics
 subtitle: Data-binding
@@ -29,16 +28,16 @@ The entire set of nodes is destroyed and recreated, even if only a few values ch
 
 In contrast, {{site.project_title}} data binding **makes the smallest changes to the DOM necessary**. The DOM nodes representing a template instance are maintained as long as the corresponding model data is in place.
 
-Consider the following DOM, which represents a template and the template instances it manages: 
+Consider the following DOM, which represents a template and the template instances it manages:
 
 {% raw %}
     <table>
         <template repeat="{{item in items}}">
           <tr><td> {{item.name}} </td><td> {{item.count}} </td></tr>
         </template>
-       <tr><td> Bass </td><td> 7 </td></tr>  
-       <tr><td> Catfish </td><td> 8 </td></tr> 
-       <tr><td> Trout </td><td> 0 </td></tr>   
+       <tr><td> Bass </td><td> 7 </td></tr>
+       <tr><td> Catfish </td><td> 8 </td></tr>
+       <tr><td> Trout </td><td> 0 </td></tr>
     </table>
 {% endraw %}
 
@@ -50,9 +49,9 @@ If you re-sort the array by `item.count`, {{site.project_title}} simply swaps th
     &lt;template repeat="{{item in items}}">
       &lt;tr>&lt;td> {{item.name}} &lt;/td>&lt;td> {{item.count}} &lt;/td>&lt;/tr>
     &lt;/template>
-   <span class="nocode"><strong>&lt;tr>&lt;td> Catfish &lt;/td>&lt;td> 8 &lt;/td>&lt;/tr> 
+   <span class="nocode"><strong>&lt;tr>&lt;td> Catfish &lt;/td>&lt;td> 8 &lt;/td>&lt;/tr>
    &lt;tr>&lt;td> Bass &lt;/td>&lt;td> 7 &lt;/td>&lt;/tr></strong></span>
-   &lt;tr>&lt;td> Trout &lt;/td>&lt;td> 0 &lt;/td>&lt;/tr>   
+   &lt;tr>&lt;td> Trout &lt;/td>&lt;td> 0 &lt;/td>&lt;/tr>
 &lt;/table>
 </pre>
 {% endraw %}
@@ -65,9 +64,9 @@ If you change `item.count` for one of the objects, the only thing that changes i
     &lt;template repeat="{{item in items}}">
       &lt;tr>&lt;td> {{item.name}} &lt;/td>&lt;td> {{item.count}} &lt;/td>&lt;/tr>
     &lt;/template>
-   &lt;tr>&lt;td> Catfish &lt;/td>&lt;td> 8 &lt;/td>&lt;/tr> 
-   &lt;tr>&lt;td> Bass &lt;/td>&lt;td> 7 &lt;/td>&lt;/tr>  
-   &lt;tr>&lt;td> Trout &lt;/td>&lt;td><span class="nocode"><strong> 2 </strong></span>&lt;/td>&lt;/tr>   
+   &lt;tr>&lt;td> Catfish &lt;/td>&lt;td> 8 &lt;/td>&lt;/tr>
+   &lt;tr>&lt;td> Bass &lt;/td>&lt;td> 7 &lt;/td>&lt;/tr>
+   &lt;tr>&lt;td> Trout &lt;/td>&lt;td><span class="nocode"><strong> 2 </strong></span>&lt;/td>&lt;/tr>
 &lt;/table>
 </pre>
 {% endraw %}
@@ -87,7 +86,7 @@ The following diagram represents the DOM for a template and its instances:
     &lt;template repeat="{{item in myList}}">
        &lt;img>
       &lt;span>{{item.name}}&lt;/span>
-    &lt;/template>                  
+    &lt;/template>
     &lt;img>
     &lt;span>foo&lt;/span>   <span class="nocode" style="color: red"><em>⇐ terminating node in template instance</em></span>
     &lt;img>
@@ -185,7 +184,7 @@ something like this:
 {% endraw %}
 
 **Note:** In practice, it would be easier and cleaner to set a value on the model and use a conditional
-template. This example just demonstrates how the data binding system handles mutation. 
+template. This example just demonstrates how the data binding system handles mutation.
 {: .alert .alert-info }
 
 
@@ -211,7 +210,7 @@ Clicking on a row results in a DOM change like this (whitespace added for readab
     </section>
 {% endraw %}
 
-Because the template identifies each instance by the terminating node, changes to the 
+Because the template identifies each instance by the terminating node, changes to the
 instance’s state persist even if the template has to reorder its instances:
 
 {% raw %}
@@ -244,16 +243,16 @@ underlying model data changes. The two-way data binding only registers DOM chang
 This {{site.project_title}} data binding works  _inside_ a {{site.project_title}} element. If you
 want to use data binding elsewhere, there are two options:
 
-*   If you're using {{site.project_title}}, use an [auto-binding template](#autobinding) 
+*   If you're using {{site.project_title}}, use an [auto-binding template](#autobinding)
     to take advantage of data binding without creating a new custom element.
 
-*   If you _aren't_ using the rest of {{site.project_title}}, use the 
-    [Template Binding](/docs/polymer/template.html) library directly. The template binding library is 
-    used internally by {{site.project_title}}, and can be used directly, with or without the rest of    
+*   If you _aren't_ using the rest of {{site.project_title}}, use the
+    [Template Binding](/docs/polymer/template.html) library directly. The template binding library is
+    used internally by {{site.project_title}}, and can be used directly, with or without the rest of
     {{site.project_title}}. (Note that if you use template binding by itself, you cannot use {{site.project_title}}
     expressions.)
 
-**Note:** Earlier versions of {{site.project_title}} included an element called `<polymer-body>`. 
+**Note:** Earlier versions of {{site.project_title}} included an element called `<polymer-body>`.
 If you were using `<polymer-body>` previously, the closest substitute is an auto-binding template.
 {: .alert .alert-info }
 
@@ -266,18 +265,18 @@ templates support a subset of the features available when you create your own cu
 
 -   Full-featured data binding, with {{site.project_title}} expressions.
 -   [Declarative event mapping](polymer.html#declarative-event-mapping).
--   [Automatic node finding](/polymer/polymer.html#automatic-node-finding). 
+-   [Automatic node finding](/polymer/polymer.html#automatic-node-finding).
 
-For an auto-binding template, the data model is on the template itself. For example, to use data 
+For an auto-binding template, the data model is on the template itself. For example, to use data
 binding at the top level of a page:
 
-{% include samples/databinding/auto-binding.html %} 
+{% include samples/databinding/auto-binding.html %}
 
 The auto-binding template inserts the instances it creates immediately after
-itself in the DOM tree (_not_ in its shadow DOM). In this case, the quotes are 
+itself in the DOM tree (_not_ in its shadow DOM). In this case, the quotes are
 inserted as children of the `body` element.
 
-After adding the instances, the auto-binding template fires the `template-bound` 
+After adding the instances, the auto-binding template fires the `template-bound`
 event.
 
 The `auto-binding` element is currently included automatically when you load the

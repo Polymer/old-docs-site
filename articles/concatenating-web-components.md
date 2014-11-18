@@ -1,7 +1,6 @@
 ---
 layout: default
-type: core
-navgroup: docs
+type: guide
 shortname: Articles
 title: "Concatenating Web Components with Vulcanize"
 subtitle: Reduce network requests by flattening HTML Imports
@@ -25,7 +24,7 @@ tags:
 
 We all know that reducing network requests is important. In the {{site.project_title}} world, [Vulcanize](https://github.com/Polymer/vulcanize) is the name given to a build tool that lets you **concatenate** a set of elements and their HTML imported dependencies into a single file. If your app has lots of top-level imports, consider squashing them into a single file and importing it instead!
 
-Vulcanize recursively pulls in all your imports, flattens their dependencies and spits out something that can potentially **reduce the number of network requests** your app makes. 
+Vulcanize recursively pulls in all your imports, flattens their dependencies and spits out something that can potentially **reduce the number of network requests** your app makes.
 
 In the future, we will hopefully have the tech to do away with needing Vulcanize using advanced HTTP techniques (e.g HTTP 2.0). In the mean time, it's an excellent tool for cutting down on the network requests made by your {{site.project_title}} apps.
 
@@ -52,7 +51,7 @@ The output file can be specified using the `--output` or `-o` flag:
 
     vulcanize -o build.html index.html
 
-No additional configuration is necessary. build.html now contains a version of index.html with all imports inlined and dependencies flattened. Paths to any URLs are automatically adjusted for the new output location, with the exception of those set in JavaScript. 
+No additional configuration is necessary. build.html now contains a version of index.html with all imports inlined and dependencies flattened. Paths to any URLs are automatically adjusted for the new output location, with the exception of those set in JavaScript.
 
 If no output is specified, vulcanized.html is used by default.
 
@@ -132,7 +131,7 @@ Inline the imported requests with the `--inline` flag.
 
     vulcanize -o build.html index.html --inline
 
-Vulcanize also supports the opposite of this process, extracting inline scripts to external files for the purposes of CSP. 
+Vulcanize also supports the opposite of this process, extracting inline scripts to external files for the purposes of CSP.
 
 ## Content Security Policy
 
@@ -220,13 +219,13 @@ For more information on how to configure the `grunt-vulcanize` task, read the [o
 
 ### Is concatenation a good idea?
 
-This depends on how large your application is. Excessive requests are often far worse than filesize. Hypothetically, let's say you have 20 HTML files/imports of 0.5MB each. Out of which only 2 (1MB) are required on the first page. You might want to keep them separate and combine others or load others in a deferred mode while on the first page. 
+This depends on how large your application is. Excessive requests are often far worse than filesize. Hypothetically, let's say you have 20 HTML files/imports of 0.5MB each. Out of which only 2 (1MB) are required on the first page. You might want to keep them separate and combine others or load others in a deferred mode while on the first page.
 
 Some of the things that you should think about before combining a large number of imports are when you combine 100 files together, you're cutting down on 99 requests, but you're also doing the following:
 
 * Increasing how long it takes to download that single file (and potentially block loading of an important page)
 
-* Accounting for the additional time spent parsing and rendering that additional code we just pulled from the server, which may not be required at this point. 
+* Accounting for the additional time spent parsing and rendering that additional code we just pulled from the server, which may not be required at this point.
 
 The short answer is "don't guess it, test it". There is always a trade-off when it comes to concatenation but tools like [WebPageTest](http://webpagetest.org) can be useful for determining what your true bottlenecks are.
 

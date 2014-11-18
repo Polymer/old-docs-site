@@ -10,11 +10,16 @@
 <link rel="import" href="../components/polymer/polymer.html">
 <link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
 
-<polymer-element name="app-bar" attributes="theme">
+<polymer-element name="app-bar" attributes="theme home badge">
   <template>
     <link rel="stylesheet" href="../css/elements/app-bar.css">
-    <content></content>
-    <paper-icon-button id="hamburger" on-click="{{onMenuClick}}" icon="menu"></paper-icon-button>
+    <div layout horizontal center flex>
+      <paper-icon-button id="hamburger" on-click="{{onMenuClick}}" icon="menu"></paper-icon-button>
+    </div>
+    <template if="{{home}}">
+      <content></content>
+    </template>
+    <span class="polymer-status-badge" hidden?="{{!badge.length}}">{{badge}}</span>
     <div id="search" show?="{{showingSearch}}" on-click="{{toggleSearch}}">
       <paper-icon-button icon="search"></paper-icon-button>
       <input type="search" id="input" on-keyup="{{onKeyPress}}" autocomplete="off">
@@ -23,7 +28,9 @@
   <script>
     Polymer('app-bar', {
       theme: 'dark',
+      home: false,
       showingSearch: false,
+      badge: '',
       toggleSearch: function(e, detail, sender) {
         if (e) { // comes first
           e.stopPropagation();

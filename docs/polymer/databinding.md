@@ -1,7 +1,6 @@
 ---
 layout: default
-type: core
-navgroup: docs
+type: guide
 shortname: Docs
 title: Data binding overview
 subtitle: Data-binding
@@ -42,33 +41,33 @@ This is **June**'s name-tag element.
 
 ## The `<template>` element {#template}
 
-The HTML Template element allows you to declare chunks of inert HTML that can be cloned and used at some later point. The contents of the `<template>` element are _hidden_ in the sense that they aren't rendered in the browser and can't be retrieved by `querySelector`; and _inactive_ in the sense that they don't cause resources to be loaded or scripts to be run. 
+The HTML Template element allows you to declare chunks of inert HTML that can be cloned and used at some later point. The contents of the `<template>` element are _hidden_ in the sense that they aren't rendered in the browser and can't be retrieved by `querySelector`; and _inactive_ in the sense that they don't cause resources to be loaded or scripts to be run.
 
 In {{site.project_title}}, templates have two special purposes:
 
-*   In a {{site.project_title}} element declaration, the first (top-level) `<template>` element is used 
-    to define the custom element's shadow DOM. 
+*   In a {{site.project_title}} element declaration, the first (top-level) `<template>` element is used
+    to define the custom element's shadow DOM.
 
-*   Inside a {{site.project_title}} element, you can use templates with data binding to render dynamic 
-   content. 
+*   Inside a {{site.project_title}} element, you can use templates with data binding to render dynamic
+   content.
 
 **Note:** The `<template>` element is a new element in the HTML standard. For information on using templates
-_outside_ of {{site.project_title}}, see [HTML's New  Template Tag](http://www.html5rocks.com/tutorials/webcomponents/template/) 
-on HTML5Rocks. 
+_outside_ of {{site.project_title}}, see [HTML's New  Template Tag](http://www.html5rocks.com/tutorials/webcomponents/template/)
+on HTML5Rocks.
 {: .alert .alert-info }
 
 ## Templates with data binding
 
-Templates by themselves are useful. {{site.project_title}} adds declarative, two-way data 
+Templates by themselves are useful. {{site.project_title}} adds declarative, two-way data
 binding to templates. Data binding lets you assign, or bind, a JavaScript object as the template’s _data model_.  A bound template can:
 
-*   Maintain a single copy of the template’s contents (a _template instance_). The template 
+*   Maintain a single copy of the template’s contents (a _template instance_). The template
     instance is inserted in the DOM tree as a sibling of the original template.
 
-*   Maintain  a _set of template instances_ for each item in an array, where each instance is 
+*   Maintain  a _set of template instances_ for each item in an array, where each instance is
     bound to an item in the array.
 
-*   Maintain two-way _bindings_ inside each template instance between values in DOM nodes 
+*   Maintain two-way _bindings_ inside each template instance between values in DOM nodes
      and the model data bound to the instance.
 
 To see how this works, here's an example {{site.project_title}} element that uses data binding:
@@ -103,7 +102,7 @@ To see how this works, here's an example {{site.project_title}} element that use
 
 As usual, this custom element includes an outer `<template>` element to define its shadow DOM, as shown in [Element declaration](polymer.html#element-declaration).
 
-Inside that template, there's a second template that contains 
+Inside that template, there's a second template that contains
 expressions surrounded by double-mustache {%raw%}`{{`&nbsp;`}}`{%endraw%} symbols:
 
 {%raw%}
@@ -114,17 +113,17 @@ expressions surrounded by double-mustache {%raw%}`{{`&nbsp;`}}`{%endraw%} symbol
 
 What's going on in this template?
 
-*  The {%raw%}`repeat="{{s in salutations}}"`{%endraw%} tells the template to 
-    generate a DOM fragment (or instance) for each element in the `salutations` 
-    array. 
+*  The {%raw%}`repeat="{{s in salutations}}"`{%endraw%} tells the template to
+    generate a DOM fragment (or instance) for each element in the `salutations`
+    array.
 
-*   The contents of the template define what each instance looks like. 
-    In this case, it contains a `<li>` with a text node and an `<input>` as its children. 
+*   The contents of the template define what each instance looks like.
+    In this case, it contains a `<li>` with a text node and an `<input>` as its children.
 
-*   The expressions {%raw%}`{{s.what}}`{%endraw%} and {%raw%}`{{s.who}}`{%endraw%} create 
-    data bindings to objects in the `salutations` array. 
+*   The expressions {%raw%}`{{s.what}}`{%endraw%} and {%raw%}`{{s.who}}`{%endraw%} create
+    data bindings to objects in the `salutations` array.
 
-The values inside the {%raw%}`{{`&nbsp;`}}`{%endraw%} are <em>{{site.project_title}} expressions</em>. In the examples in this section, the expressions are either  JavaScript objects (like `salutations`) or paths (like `salutations.who`). (Expressions can also include literal values and some operators -- 
+The values inside the {%raw%}`{{`&nbsp;`}}`{%endraw%} are <em>{{site.project_title}} expressions</em>. In the examples in this section, the expressions are either  JavaScript objects (like `salutations`) or paths (like `salutations.who`). (Expressions can also include literal values and some operators --
 see [Expressions](#expressions) for details.)
 
 When you create a `<greeting-tag>` element, it initializes the `salutations` array:
@@ -136,7 +135,7 @@ When you create a `<greeting-tag>` element, it initializes the `salutations` arr
       {what: 'Goodbye', who: 'Imperative'}
     ];
 
-Notice that this is just JavaScript data: **there's no need to import your data into special observable objects**. The `this.salutations` array serves as the _model_ for the template. 
+Notice that this is just JavaScript data: **there's no need to import your data into special observable objects**. The `this.salutations` array serves as the _model_ for the template.
 
 The template is set in motion when you create or modify the model. Here's the result:
 
@@ -146,7 +145,7 @@ and here's what the DOM looks like:
 
 ![ScreenShot](/images/databinding/example-1-dom.png)
 
-You can see that the template created four instances immediately following its position in the document. 
+You can see that the template created four instances immediately following its position in the document.
 
 
 ## Dynamic, two-way data binding
@@ -160,24 +159,24 @@ However, the DOM doesn't just observe data in the model. When you bind a DOM ele
 
 ![ScreenShot](/images/databinding/input-to-model.png)
 
-**Note:** You can use [change watchers and observe blocks](polymer.html#observeprops) to trigger 
-custom behavior when the model data changes. 
+**Note:** You can use [change watchers and observe blocks](polymer.html#observeprops) to trigger
+custom behavior when the model data changes.
 {: .alert .alert-info }
 
 Lastly, see what happens when you add and remove items from the `salutations` array:
 
 ![ScreenShot](/images/databinding/update-model-array.png)
 
-The `repeat` attribute ensures there is one instance for each item in the 
-array. We removed two elements from the middle of `salutations` and inserted one in their place. The 
+The `repeat` attribute ensures there is one instance for each item in the
+array. We removed two elements from the middle of `salutations` and inserted one in their place. The
 `<template>` responded by removing the two corresponding instances and creating a new one in the right location.
 
-Getting the idea? Data binding allows you author your HTML _using_ HTML which contains information about 
+Getting the idea? Data binding allows you author your HTML _using_ HTML which contains information about
 _where data goes_ and directives which _control the document's structure_ -- all depending on the data you provide it.
 
 ## Event handling and data binding
 
-With data binding, it’s easy to add event handlers using the 
+With data binding, it’s easy to add event handlers using the
 [declarative event mapping](polymer.html#declarative-event-mapping) (on-_event_ handlers):
 
 {%raw%}
@@ -190,12 +189,12 @@ With data binding, it’s easy to add event handlers using the
     </template>
 {%endraw%}
 
-Often, you’ll want to identify the event with the model data used to generate 
-the template instance, either to update the model data or to access a piece 
+Often, you’ll want to identify the event with the model data used to generate
+the template instance, either to update the model data or to access a piece
 of data that isn’t rendered by the template.
 
-You can get the model data from the event’s `target.templateInstance.model` 
-property. Any identifiers that you could access inside the template are 
+You can get the model data from the event’s `target.templateInstance.model`
+property. Any identifiers that you could access inside the template are
 available as properties on the `.model` object.
 
 For example, the  `selectStory` method might look like this:

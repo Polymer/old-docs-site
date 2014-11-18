@@ -63,9 +63,7 @@ title: Welcome
             <p>Recap everything {{site.project_title}} at Google I/O 2014. Watch sessions videos and DevByte shorts.
             <br><br>
             <a href="/resources/video.html">
-              <paper-button>
-                <core-icon icon="drive-video"></core-icon> Watch
-              </paper-button>
+              <paper-button>Watch</paper-button>
             </a>
             </p>
           </summary>
@@ -125,7 +123,7 @@ title: Welcome
             <img src="/images/topeka_square.png">
           </a>
         </div>
-        <h2 class="elements-using">Topeka</h2>
+        <h2 class="start">Topeka</h2>
         <p>A fun quiz app built using material-design based <em>paper-elements</em></p>
         <a href="/apps/topeka/">
           <paper-button>
@@ -139,7 +137,7 @@ title: Welcome
             <img src="/images/sampler-paper-square.png">
           </a>
         </div>
-        <h2 class="elements-creating">Paper Elements</h2>
+        <h2 class="elements">Paper Elements</h2>
         <p>A sampler showcasing Polymer elements based on material design</p>
         <a href="/components/paper-elements/demo.html#core-toolbar">
           <paper-button>
@@ -153,7 +151,7 @@ title: Welcome
             <img src="/images/paper-calculator.png">
           </a>
         </div>
-        <h2 class="platform">Calculator</h2>
+        <h2 class="guide">Calculator</h2>
         <p>A calculator app mockup highlighting material ink effects</p>
         <a href="/components/paper-calculator/demo.html">
           <paper-button>

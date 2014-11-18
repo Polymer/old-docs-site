@@ -1,7 +1,6 @@
 ---
 layout: default
 type: elements
-navgroup: elements
 shortname: Elements
 title: Polymer paper elements
 subtitle: material design
@@ -18,7 +17,7 @@ add_permalinks: false
 <div class="hide-on-hash">
 
 
-  <p>The Paper elements are a set of UI elements that implement the 
+  <p>The Paper elements are a set of UI elements that implement the
     <a href="http://google.com/design/spec">material design system</a>.</p>
 
   <component-download-button org="Polymer" component="paper-elements" label="GET THE PAPER ELEMENTS">

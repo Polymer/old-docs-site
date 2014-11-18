@@ -1,8 +1,7 @@
 ---
 layout: default
 title: HTML Imports
-type: platform
-navgroup: docs
+type: guide
 shortname: Platform
 subtitle: polyfill
 

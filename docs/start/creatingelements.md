@@ -1,7 +1,6 @@
 ---
 layout: default
 type: start
-navgroup: start
 shortname: Start
 title: Creating elements
 subtitle: Polymer from the inside
@@ -77,7 +76,7 @@ and include an import that loads the new dependency in `my-element.html`:
 
 ### 3. Create an app {#creatapp}
 
-Lastly, create an `index.html` that imports your new element. Remember to include `webcomponents.js`
+Lastly, create an `index.html` that imports your new element. Remember to include `webcomponents.min.js`
 to load polyfills for the native APIs.
 
 Here's the full example:
@@ -86,7 +85,7 @@ Here's the full example:
     <html>
       <head>
         <!-- 1. Load platform support before any code that touches the DOM. -->
-        <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+        <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
         <!-- 2. Load the component using an HTML Import -->
         <link rel="import" href="elements/my-element.html">
       </head>
@@ -184,7 +183,7 @@ by configuring the element with initial attribute values (e.g. `<color-picker ow
 
 ### Automatic node finding
 
-The use of the `id` attribute has traditionally been discouraged as an anti-pattern because the document requires element IDs to be unique. Shadow DOM, on the other hand, is a self-contained document-like subtree; IDs in that subtree do not interact with IDs in other trees. This means the use of IDs in Shadow DOM is not only permissible, it's actually encouraged. Each {{site.project_title}} element generates a map of IDs to node references in the element's template. This map is accessible as `$` on the element and can be used to quickly select the node you wish to work with. 
+The use of the `id` attribute has traditionally been discouraged as an anti-pattern because the document requires element IDs to be unique. Shadow DOM, on the other hand, is a self-contained document-like subtree; IDs in that subtree do not interact with IDs in other trees. This means the use of IDs in Shadow DOM is not only permissible, it's actually encouraged. Each {{site.project_title}} element generates a map of IDs to node references in the element's template. This map is accessible as `$` on the element and can be used to quickly select the node you wish to work with.
 
 {% include samples/editable-color-picker.html %}
 

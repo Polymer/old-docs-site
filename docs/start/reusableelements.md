@@ -1,7 +1,6 @@
 ---
 layout: default
 type: start
-navgroup: start
 shortname: Start
 author: addyosmani
 title: Creating reusable elements
@@ -43,8 +42,8 @@ commands:
     $ cd ..  # You'll want to run the web server from the parent directory.
     $ python -m SimpleHTTPServer
 
-This starts a web server on port 8000, so you can test your new element by navigating a browser 
-to the URL `localhost:8000/test-element/demo.html`. 
+This starts a web server on port 8000, so you can test your new element by navigating a browser
+to the URL `localhost:8000/test-element/demo.html`.
 
 ## Deploy
 
@@ -58,29 +57,29 @@ Next, follow the steps below:
 
     # Inside your development folder, navigate to your element directory
     cd test-element
-    
+
     # Initialize a new Git repository for test-element
     git init
-    
+
     # Add the commits for your current code
     git add .
     git commit -m 'My initial version'
-    
-    # Add a remote pointing to the GitHub repository you created. 
+
+    # Add a remote pointing to the GitHub repository you created.
     git remote add origin https://github.com/<username>/test-element.git
-    
-    # Push your code to master by running 
+
+    # Push your code to master by running
     git push -u origin master
 
 
-Next, you’ll want to tag a version of your element on GitHub. You can either do this directly through the GitHub UI **or** via the terminal. 
+Next, you’ll want to tag a version of your element on GitHub. You can either do this directly through the GitHub UI **or** via the terminal.
 
 ####Via the terminal
 
     # Once you feel you have a version of your element you can release, tag it
     # Below we’re tagging version 0.0.1
     git tag -a v0.0.1 -m '0.0.1'
-    
+
     # Then, push your tag to GitHub
     git push --tags
 
@@ -91,13 +90,13 @@ Navigate to the main GitHub page for your element and click the "releases" link 
 
 ![Preview of the GitHub navigation bar for a repository listing four navigation items - commits, branches, releases, contributors. The releases link is highlighted](/images/publishing-polymer-elements/image_2.png)
 
-This will navigate you to the *Releases* page. For a project without any releases, this page will display a message similar to the one below. 
+This will navigate you to the *Releases* page. For a project without any releases, this page will display a message similar to the one below.
 
 ![GitHub Releases page message stating that there aren't any releases here yet. The Create a new release button is highlighted](/images/publishing-polymer-elements/image_3.png)
 
-Click the ‘Create a new release’ button to proceed. 
+Click the ‘Create a new release’ button to proceed.
 
-This will display a Release drafting page where you can enter in version and release information for your element. Below, we’ve entered in v0.0.1 as the tag we would like to create and set the `master` branch as our target. 
+This will display a Release drafting page where you can enter in version and release information for your element. Below, we’ve entered in v0.0.1 as the tag we would like to create and set the `master` branch as our target.
 
 ![The GitHub releases form displaying an input field for entering in a version number, a drop-down box for selecting the target branch, a release titles field and a description field](/images/publishing-polymer-elements/image_4.png)
 
@@ -126,19 +125,19 @@ Once `demo.html` and the docs in `index.html` look good locally, make sure that 
 
     # Navigate back to your development directory
     cd ..
-    
+
     # git clone the {{site.project_title}} tools repository
     git clone git://github.com/Polymer/tools.git
-    
+
     # Create a temporary directory for publishing your element and cd into it
     mkdir temp && cd temp
-    
-    # Run the gp.sh script. This will allow you to push a demo-friendly 
-    # version of your page and its dependencies to a GitHub pages branch 
-    # of your repository (gh-pages). Below, we pass in a GitHub username 
+
+    # Run the gp.sh script. This will allow you to push a demo-friendly
+    # version of your page and its dependencies to a GitHub pages branch
+    # of your repository (gh-pages). Below, we pass in a GitHub username
     # and the repo name for our element
     ../tools/bin/gp.sh <username> test-element
-    
+
     # Finally, clean-up your temporary directory as you no longer require it
     cd ..
     rm -rf temp

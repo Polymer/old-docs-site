@@ -1,7 +1,6 @@
 ---
 layout: default
-type: resources
-navgroup: resources
+type: guide
 shortname: Resources
 title: Releases
 ---
@@ -407,7 +406,7 @@ with the standard methods like anonymous self calling functions.
 #### HTML Imports
 
 - Scripts within `<template>` content are now executed. Fixes [#22](https://github.com/Polymer/HTMLImports/issues/22).
-- Non-JS script tags are no longer parsed ([commit](https://github.com/Polymer/HTMLImports/commit/0f35bd21fab3e0e9b99b525581d1135f27787dd1)) 
+- Non-JS script tags are no longer parsed ([commit](https://github.com/Polymer/HTMLImports/commit/0f35bd21fab3e0e9b99b525581d1135f27787dd1))
 
 #### MDV
 
@@ -600,7 +599,7 @@ See the [full list of changes](https://github.com/Polymer/polymer/pull/135).
 
 #### MDV
 
-* Correct event type for checkbox bindings ([commit](https://github.com/Polymer/mdv/commit/2c675cab75aea2ef3d1b981a616469587b9210fe)) 
+* Correct event type for checkbox bindings ([commit](https://github.com/Polymer/mdv/commit/2c675cab75aea2ef3d1b981a616469587b9210fe))
 
 #### HTML Imports
 
@@ -662,7 +661,7 @@ as numbers, srings as strings, dates as `Date`, etc. ([commit](https://github.co
 
   * Added `.unbind()` and additional machinery for MDV bindings ([commit](https://github.com/polymer/polymer/commit/197d6f3c6fe08953fd915e243ce2cf8861347ee1))
 
-  * MDV bindings are more comprehensive, with Node, Text, and `<input>` elements ([commit](https://github.com/polymer/polymer/commit/2e11ba658916df02c8ba87ead037ce0104a6b205)) 
+  * MDV bindings are more comprehensive, with Node, Text, and `<input>` elements ([commit](https://github.com/polymer/polymer/commit/2e11ba658916df02c8ba87ead037ce0104a6b205))
 
 * `Toolkit.getBinding(element, name)` no longer generates an exception if element is null [[commit](https://github.com/polymer/polymer/commit/a270417d136b6f00205ea60d451be9d296e9745d))
 
@@ -740,7 +739,7 @@ See the [full list of changes](https://github.com/polymer/ShadowDOM/pull/139)
 ### Toolkit
 
 * If you're writing a [Toolkit component](/polymer.html), there's
-no longer need to include `webcomponents.js` alongside `toolkit.js`. `toolkit.js` now loads `webcomponents.js` under the hood. 
+no longer need to include `webcomponents.js` alongside `toolkit.js`. `toolkit.js` now loads `webcomponents.js` under the hood.
 
 ### Platform
 

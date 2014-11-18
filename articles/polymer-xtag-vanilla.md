@@ -1,7 +1,6 @@
 ---
 layout: default
-type: core
-navgroup: docs
+type: guide
 shortname: Articles
 title: "Custom Element Interoperability"
 subtitle: Using Polymer, X-Tag, and Vanilla Custom Elements
