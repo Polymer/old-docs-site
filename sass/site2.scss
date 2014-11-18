@@ -72,7 +72,7 @@ pre, code {
   white-space: pre;
   word-wrap: normal;
   overflow-x: auto;
-  
+
   b, strong {
     font-weight: 700;
   }
@@ -232,6 +232,9 @@ app-bar {
     letter-spacing: normal;
     margin: 5px;
   }
+  .polymer-status-badge {
+    margin: 0 24px;
+  }
 }
 
 .bar {
@@ -376,17 +379,30 @@ footer {
         transition: opacity 300ms ease-in;
       }
 
-      &[type="platform"] {
-        background-color: $platform-color !important;
+      // &[type="platform"] {
+      //   background-color: $platform-color !important;
+      // }
+
+      // &[type="core"] {
+      //   background-color: $creating-elements-color  !important;
+      // }
+
+      // &[type="elements"] {
+      //   background-color: $using-elements-color !important;
+      // }
+
+      :host([type="guide"]) {
+        background-color: $guides-resources-color !important;
       }
 
-      &[type="core"] {
-        background-color: $creating-elements-color  !important;
+      :host([type="elements"]) {
+        background-color: $elements-color !important;
       }
 
-      &[type="elements"] {
-        background-color: $using-elements-color !important;
+      :host([type="start"]) {
+        background-color: $getting-started-color !important;
       }
+
     }
 
     article {
@@ -450,7 +466,7 @@ footer {
 
 
 #sidebar {
-  $leftPadding: 16px;
+  $leftPadding: 24px;
 
   #sidebar-content {
     height: 100%;
@@ -461,7 +477,6 @@ footer {
     //@include justify-content(center);
     @include align-items(center);
     height: $siteBannerHeightMin;
-    margin-bottom: $additonalPadding;
     padding-left: $leftPadding;
   }
 }

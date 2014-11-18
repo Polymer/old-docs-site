@@ -27,16 +27,28 @@
   // @include transform(translate3d(0,0,0));
 }
 
-:host([type="platform"]) {
-  background-color: $platform-color !important;
-}
+// :host([type="platform"]) {
+//   background-color: $platform-color !important;
+// }
 
-:host([type="core"]) {
-  background-color: $creating-elements-color !important;
+// :host([type="core"]) {
+//   background-color: $creating-elements-color !important;
+// }
+
+// :host([type="elements"]) {
+//   background-color: $using-elements-color !important;
+// }
+
+:host([type="guide"]) {
+  background-color: $guides-resources-color !important;
 }
 
 :host([type="elements"]) {
-  background-color: $using-elements-color !important;
+  background-color: $elements-color !important;
+}
+
+:host([type="start"]) {
+  background-color: $getting-started-color !important;
 }
 
 polyfill-next-selector { content: ':host header'; }

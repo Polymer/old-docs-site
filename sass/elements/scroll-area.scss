@@ -68,7 +68,7 @@ polyfill-next-selector { content: ':host > article'; }
 // Phone
 @media only screen and (max-width: $break-small)  {
   polyfill-next-selector { content: ':host > article '; }
-  ::content article { 
+  ::content article {
     padding-top: $siteBannerHeightMinMobile + 10;
   }
 }

@@ -127,8 +127,6 @@ function injectPage(url, opt_addToHistory) {
     });
 
     // Set left-nav menu and highlight correct item.
-    docsMenu.setAttribute(
-        'menu', doc.querySelector('docs-menu').getAttribute('menu'));
     docsMenu.highlightItemWithCurrentURL();
 
     // Replace site-banner > header content.
@@ -202,9 +200,9 @@ function ajaxifySite() {
       if (el.localName == 'a') {
         wasRelativeAnchorClick = !!el.hash;
         if (!el.getAttribute('href').match(/^(https?:|javascript:|\/\/)/) &&
-            (location.origin == el.origin) && 
-            !(el.hash && (el.pathname == location.pathname)) && 
-            (el.pathname != '/') && 
+            (location.origin == el.origin) &&
+            !(el.hash && (el.pathname == location.pathname)) &&
+            (el.pathname != '/') &&
             (el.pathname != '/index.html') &&
             (el.pathname.indexOf('/apps') != 0) &&
             (el.pathname.indexOf('/components') != 0) &&
@@ -319,7 +317,7 @@ exports.tabChanged = function(tabContainer, tab) {
 }
 
 // send a separate event for a clickthrough inside a special container
-// (carousel, learn-tabs). 
+// (carousel, learn-tabs).
 exports.recordClickthrough = function(container, event) {
   for (var i=0; i < event.path.length; i++) {
     var el = event.path[i];

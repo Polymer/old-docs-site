@@ -12,19 +12,31 @@
 
 @import "typography";
 
-.platform {
-  color: $platform-color;
-  // fill: $platform-color;
+// .platform {
+//   color: $platform-color;
+//   // fill: $platform-color;
+// }
+
+// .elements-using {
+//   color: $using-elements-color;
+//   // fill: $using-elements-color;
+// }
+
+// .elements-creating {
+//   color: $creating-elements-color;
+//   // fill: $creating-elements-color;
+// }
+
+.start {
+  color: $getting-started-color;
 }
 
-.elements-using {
-  color: $using-elements-color;
-  // fill: $using-elements-color;
+.elements {
+  color: $elements-color;
 }
 
-.elements-creating {
-  color: $creating-elements-color;
-  // fill: $creating-elements-color;
+.guide {
+  color: $guides-resources-color;
 }
 
 .main-bg {
@@ -86,4 +98,18 @@ pre, .prettyprint {
   .com, .comment {
     color: #8a8a8a;
   }
+}
+
+.polymer-status-badge {
+  height: 20px;
+  background-color: rgba(0,0,0,.26);
+  text-transform: uppercase;
+  border-radius: 2px;
+  font-size: 11px;
+  padding: 10px;
+  @include display-flex;
+  @include justify-content(center);
+  @include align-items(center);
+  line-height: 1;
+  color: #fff;
 }

@@ -2,16 +2,16 @@ default:
   menu: other
 start:
   headertitle: Basics
-  menu: docs
+  menu: start
 concepts:
   headertitle: Concepts
-  menu: docs
+  menu: start
 core:
-  headertitle: Polymer
-  menu: docs
+  headertitle: "Guides & Resources"
+  menu: guides
 elements:
   headertitle: Elements
   menu: elements
 platform:
   headertitle: Platform
-  menu: docs
+  menu: start

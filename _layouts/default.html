@@ -15,7 +15,9 @@
 
       {% include dropdown-panel.html %}
 
-      <docs-menu unresolved menu="{{site.data.pagetypes[page.type].menu}}" flex></docs-menu>
+      <docs-menu unresolved menu="{{site.data.pagetypes[page.type].menu}}" flex
+                 coreElements='{% list_components dir:components prefix:core blacklist:"core-slide core-layout core-doc-viewer core-home-page core-home-page-dev core-transition-css core-overlay-layer core-key-helper core-doc-toc core-doc-page core-component-page core-popup-menu" %}'
+                 paperElements='{% list_components dir:components prefix:paper blacklist:"paper-calculator paper-doc-viewer paper-ink paper-scaffold paper-menu-button-transition paper-menu-button-overlay-container paper-form paper-row paper-group paper-doc-toc paper-doc-page"%}'></docs-menu>
     </div>
   </app-drawer>
 
@@ -71,16 +73,5 @@
 
 </main>
 
-<script>
-{%comment%}
-// Set the docs-menu core and paper element list. Cannot be in the docs-menu
-// element because Jekyll has to process the list_components.rb script.
-{%endcomment%}
-document.addEventListener('polymer-ready', function(e) {
-  var docsMenu = document.querySelector('docs-menu');
-  docsMenu.coreElements = {% list_components dir:components prefix:core blacklist:"core-slide core-layout core-doc-viewer core-home-page core-home-page-dev core-transition-css core-overlay-layer core-key-helper core-doc-toc core-doc-page core-component-page core-popup-menu" %};
-  docsMenu.paperElements = {% list_components dir:components prefix:paper blacklist:"paper-calculator paper-doc-viewer paper-ink paper-scaffold paper-menu-button-transition paper-menu-button-overlay-container paper-form paper-row paper-group paper-doc-toc paper-doc-page"%};
-});
-</script>
 </body>
 </html>
