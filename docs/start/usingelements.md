@@ -8,7 +8,13 @@ subtitle: Element guides
 
 {% include toc.html %}
 
-To use elements, first load `webcomponents.min.js`. Many browsers have yet to implement the various web components APIs. Until they do, `webcomponents.min.js` provides [polyfill support](/docs/start/platform.html). **Be sure to include this file before any code that touches the DOM.**
+The Core and Paper element sets provide elements that you can use
+in your web pages and apps. These elements are built with the {{site.project_title}}
+library.  
+
+You don't need to use {{site.project_title}} directly to use these elements. 
+However, using {{site.project_title}} you can take advantage of special 
+features such as data binding.
 
 ## Installing elements {#install}
 
