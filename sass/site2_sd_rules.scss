@@ -9,6 +9,7 @@
  */
 
 @import "material";
+@import "vars";
 
 
 paper-button {
@@ -25,4 +26,13 @@ body /deep/ component-download-button::shadow paper-button[raised] {
   background-color: $materialPurple;
   fill: white;
   color: white;
+}
+
+
+// Phone
+@media only screen and (max-width: $break-small)  {
+
+  #welcome /deep/ .polymer-status-badge {
+     display: none;
+  }
 }
