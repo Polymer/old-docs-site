@@ -136,7 +136,7 @@ When you download a component or component set as a ZIP file, you get all of
 the dependencies bundled into a single archive. It's a great way to get 
 started because you don't need to install any additional tools.
 
-Expand the ZIP file in your project directory to create a `components` folder.
+Expand the ZIP file in your project directory to create a `bower_components` folder.
 
 ![](/images/zip-file-contents.png)
 
