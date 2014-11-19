@@ -56,7 +56,7 @@ you'll automatically get `webcomponents.js`.
 
 You can also manually install `webcomponents.js` using Bower:
 
-    bower install --save webcomponents.js
+    bower install --save webcomponentsjs
 
 **Note:** For more information on using Bower, see 
 [Getting the code](/docs/start/getting-the-code.html).
@@ -89,8 +89,8 @@ go to [WebComponents.org](http://webcomponents.org).
 
 `webcomponents.min.js` is a wonderful foundation for working with Web Components in a
 cross-browser fashion. If you're ready to start building your own elements, and would
-like to learn about the additional features {{site.project_title}} adds, check out our guide
-on [Creating elements](/docs/start/creatingelements.html) or follow
+like to learn about the additional features {{site.project_title}} adds, check out 
+[Polymer in 10 minutes](/docs/start/creatingelements.html) or follow
 [the tutorial](/docs/start/tutorial/intro.html) to write your first {{site.project_title}} application.
 
 Or continue on to:
