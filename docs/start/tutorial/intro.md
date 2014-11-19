@@ -2,7 +2,7 @@
 layout: default
 type: start
 shortname: Start
-title: Getting Started
+title: Getting the starter project
 subtitle: Your first Polymer application
 ---
 
@@ -46,7 +46,7 @@ In this tutorial, you'll build a small {{site.project_title}} application -- a v
 
 This project will introduce you to most of the key concepts in working with {{site.project_title}}. Don't worry if you don't understand everything. Each of the concepts presented here is described in detail in the {{site.project_title}} documentation.
 
-## Before you start: getting the sample project
+## Before you start: getting the starter project
 
 To get started, download the starter project. This starter project includes all of the {{site.project_title}} libraries and dependencies you'll need to get started.
 

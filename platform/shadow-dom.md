@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Shadow DOM
+title: About shadow DOM
 type: start
 shortname: Platform
-subtitle: The Shadow DOM encapsulates objects within a custom element.
+subtitle: Define local DOM trees and control composition.
 
 feature:
   spec: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Web Animations
+title: About web animations
 type: start
 shortname: Platform
 subtitle: polyfill

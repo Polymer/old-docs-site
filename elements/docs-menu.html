@@ -20,23 +20,23 @@
   <core-menu id="mainmenu" on-click="{{onClick}}" selectedItem="{{item}}" fit>
 
     <core-submenu id="gettingstartedmenu" label="Getting Started" icon="social:school" class="start">
-      <core-item label="Get the Code" id="getcode"><a href="/docs/start/getting-the-code.html"></a></core-item>
-      <core-item label="Polymer in 10 min"><a href="/docs/start/creatingelements.html"></a></core-item>
-      <core-item label="Using elements"><a href="/docs/start/usingelements.html"></a></core-item>
-      <core-item label="Your first Polymer app"><a href="/docs/start/tutorial/intro.html"></a></core-item>
-      <!-- <core-submenu label="Your first Polymer app" icon="hardware:keyboard-arrow-down">
-        <core-item label="Intro"><a href="/docs/start/tutorial/intro.html"></a></core-item>
-        <core-item label="Step 1: Creating App Structure"><a href="/docs/start/tutorial/step-1.html"></a></core-item>
-        <core-item label="Step 2: Your Own Element"><a href="/docs/start/tutorial/step-2.html"></a></core-item>
-        <core-item label="Step 3: Using Data Binding"><a href="/docs/start/tutorial/step-3.html"></a></core-item>
-        <core-item label="Step 4: Finishing Touches"><a href="/docs/start/tutorial/step-4.html"></a></core-item>
-      </core-submenu> -->
+      <core-item label="Getting the code" id="getcode"><a href="/docs/start/getting-the-code.html"></a></core-item>
+      <core-item label="Polymer in 10 minutes"><a href="/docs/start/creatingelements.html"></a></core-item>
+      <!-- <core-item label="Your first Polymer app"><a href="/docs/start/tutorial/intro.html"></a></core-item> -->
+      <core-submenu label="Your first Polymer app" icon="hardware:keyboard-arrow-down">
+        <core-item label="Getting the starter project"><a href="/docs/start/tutorial/intro.html"></a></core-item>
+        <core-item label="Step 1: Creating the app structure"><a href="/docs/start/tutorial/step-1.html"></a></core-item>
+        <core-item label="Step 2: Your own element"><a href="/docs/start/tutorial/step-2.html"></a></core-item>
+        <core-item label="Step 3: Using data binding"><a href="/docs/start/tutorial/step-3.html"></a></core-item>
+        <core-item label="Step 4: Finishing touches"><a href="/docs/start/tutorial/step-4.html"></a></core-item>
+      </core-submenu>
       <core-item label="Understanding Polymer"><a href="/docs/start/everything.html"></a></core-item>
-      <core-submenu label="Understanding Web Components" icon="hardware:keyboard-arrow-down">
-        <core-item label="About Custom Elements"><a href="/platform/custom-elements.html"></a></core-item>
-        <core-item label="About Shadow DOM"><a href="/platform/shadow-dom.html"></a></core-item>
-        <core-item label="About HTML Imports"><a href="/platform/html-imports.html"></a></core-item>
-        <core-item label="About Web Animations"><a href="/platform/web-animations.html"></a></core-item>
+      <core-submenu label="Understanding web components" icon="hardware:keyboard-arrow-down">
+        <core-item label="About custom elements"><a href="/platform/custom-elements.html"></a></core-item>
+        <core-item label="About shadow DOM"><a href="/platform/shadow-dom.html"></a></core-item>
+        <core-item label="About HTML imports"><a href="/platform/html-imports.html"></a></core-item>
+        <core-item label="About web animations"><a href="/platform/web-animations.html"></a></core-item>
+        <core-item label="Web components polyfills"><a href="/docs/start/platform.html"></a></core-item>
       </core-submenu>
     </core-submenu>
 
@@ -49,7 +49,7 @@
       </core-submenu> -->
 
     <core-submenu id="coremenu" label="Guides &amp; Resources" icon="description" class="guide">
-      <core-item label="API Developer Guide"><a href="/docs/polymer/polymer.html"></a></core-item>
+      <core-item label="API developer guide"><a href="/docs/polymer/polymer.html"></a></core-item>
       <core-submenu label="Data binding" icon="hardware:keyboard-arrow-down">
         <core-item label="Overview"><a href="/docs/polymer/databinding.html"></a></core-item>
         <core-item label="Types of bindings"><a href="/docs/polymer/binding-types.html"></a></core-item>
@@ -84,10 +84,11 @@
     </core-submenu>
 
     <core-submenu label="Elements" icon="polymer" class="elements">
-      <core-submenu label="Element Guides" icon="hardware:keyboard-arrow-down">
-        <core-item label="Layout Elements"><a href="/docs/elements/layout-elements.html"></a></core-item>
-        <core-item label="Using Core Icons"><a href="/docs/elements/icons.html"></a></core-item>
-        <core-item label="Material Design with Polymer"><a href="/docs/elements/material.html"></a></core-item>
+      <core-submenu label="Element guides" icon="hardware:keyboard-arrow-down">
+        <core-item label="Using elements"><a href="/docs/start/usingelements.html"></a></core-item>
+        <core-item label="Layout elements"><a href="/docs/elements/layout-elements.html"></a></core-item>
+        <core-item label="Using core icons"><a href="/docs/elements/icons.html"></a></core-item>
+        <core-item label="Material design with Polymer"><a href="/docs/elements/material.html"></a></core-item>
       </core-submenu>
       <core-submenu id="coreelements" label="Core elements" icon="hardware:keyboard-arrow-down">
         <template repeat="{{coreElementsList}}">
