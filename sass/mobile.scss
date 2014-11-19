@@ -31,6 +31,10 @@ dropdown-panel {
 // Phone
 @media only screen and (max-width: $break-small)  {
 
+  #welcome /deep/ .polymer-status-badge {
+     display: none;
+  }
+
   .onlyonmobile {
     display: block !important;
   }
