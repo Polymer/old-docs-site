@@ -3,7 +3,7 @@ layout: default
 title: Custom Elements
 type: start
 shortname: Platform
-subtitle: polyfill
+subtitle: Define and use new types of DOM elements in a document.
 
 feature:
   spec: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html
@@ -13,8 +13,6 @@ feature:
 links:
 - "Custom Elements - defining new elements in HTML": http://www.html5rocks.com/en/tutorials/webcomponents/customelements/
 ---
-
-{% include spec-header.html %}
 
 {% include toc.html %}
 
@@ -92,9 +90,9 @@ Use the `<polymer-element>` tag to define a {{site.project_title}} element.
 The `<template>` tag defines UI for the element,
 and the `Polymer()` method within the `<script>` tag registers the element.
 
-**Note: {{site.project_title}} element names must always contain a dash (-).**
+**Note: Custom element names must always contain a dash (-).**
 
-For more information on defining Custom Elements with {{site.project_title}},
+For more information on defining custom elements with {{site.project_title}},
 see [Element declaration](https://www.polymer-project.org/docs/polymer/polymer.html#element-declaration).
 
 ## Instantiating a {{site.project_title}} element
@@ -201,12 +199,10 @@ and hide the details of a complex API like `XMLHttpRequest`.
 
 ## Next steps {#nextsteps}
 
-Now that you've got an idea of what you can do with Custom Elements
-and Polymer elements, it's time to start building something! Continue on to:
+Learn more about shadow DOM, another building block of the Polymer library,
+or read more about the Polymer core APIs.
 
-<a href="/docs/start/usingelements.html">
-  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Using elements</paper-button>
-</a>
-
-
-{% include other-resources.html %}
+<a href="/docs/start/shadow-dom.html">
+   <paper-button raised><core-icon icon="arrow-forward"></core-icon>Shadow DOM</paper-button>
+<a href="/docs/polymer/polymer.html">
+   <paper-button raised><core-icon icon="arrow-forward"></core-icon>API Developer Guide</paper-button>

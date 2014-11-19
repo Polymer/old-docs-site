@@ -3,7 +3,7 @@ layout: default
 title: Shadow DOM
 type: start
 shortname: Platform
-subtitle: polyfill
+subtitle: The Shadow DOM encapsulates objects within a custom element.
 
 feature:
   spec: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html
@@ -22,8 +22,6 @@ links:
 
 ---
 
-{% include spec-header.html %}
-
 {% include toc.html %}
 
 ## Why Shadow DOM?
@@ -33,7 +31,10 @@ eliminating naming conflicts and improving code expression.
 
 ## Basic usage
 
-This custom element has a Shadom DOM subtree defined by the `template` tag:
+The Shadow DOM spec provides a programmatic method `createShadowRoot`
+for adding a shadow DOM subtree to an element.
+When you define a {{site.project_title}} element,
+you can specify the contents of the elements' shadow DOM using a <template> tag:
 
     <polymer-element name="my-custom-element" noscript>
       <template>

@@ -3,7 +3,7 @@ layout: default
 title: HTML Imports
 type: start
 shortname: Platform
-subtitle: polyfill
+subtitle: Include HTML documents in other HTML documents.
 
 feature:
   spec: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/imports/index.html
@@ -13,8 +13,6 @@ feature:
 links:
 - "HTML5Rocks - HTML Imports: #include for the web": http://www.html5rocks.com/tutorials/webcomponents/imports/
 ---
-
-{% include spec-header.html %}
 
 {% include toc.html %}
 
