@@ -1,6 +1,6 @@
 ---
 layout: default
-title: HTML Imports
+title: About HTML imports
 type: start
 shortname: Platform
 subtitle: Include HTML documents in other HTML documents.

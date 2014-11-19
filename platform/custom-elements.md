@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Custom Elements
+title: About custom elements
 type: start
 shortname: Platform
 subtitle: Define and use new types of DOM elements in a document.

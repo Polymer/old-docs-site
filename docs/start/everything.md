@@ -66,8 +66,8 @@ built-in elements and other custom elements.
 Now that you've got the basic concepts of {{site.project_title}}, it's time to
 start digging in a bit more. Continue on to:
 
-<a href="/docs/start/customelements.html">
-  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Custom Elements 101</paper-button>
+<a href="/platform/custom-elements.html">
+  <paper-button raised><core-icon icon="arrow-forward"></core-icon>About custom elements</paper-button>
 </a>
 
 Or jump straight to:
