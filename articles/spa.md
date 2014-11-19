@@ -296,7 +296,7 @@ If `<flatiron-director>` is not your cup of tea, check out [`<app-router>`](http
       </template>
       <template when-route="/about">
         It's a routing demo!
-        <a href="{{ urlFor('user-bio', {userId: 1}) }}">Read about user 1</a>.
+        <a _href="{{ urlFor('user-bio', {userId: 1}) }}">Read about user 1</a>.
       </template>
       <template else>
         The index.
@@ -366,7 +366,7 @@ Then change the menu links to point at  `page.url` instead of the hash:
 {%raw%}
 <pre>
 &lt;paper-item hash="{{page.hash}}" noink>
-  <b>&lt;a href="{{page.url}}">{{page.name}}&lt;/a></b>
+  <b>&lt;a _href="{{page.url}}">{{page.name}}&lt;/a></b>
 &lt;/paper-item>
 </pre>
 {%endraw%}
