@@ -28,13 +28,13 @@ Okay, not quite, but you need tests because you're not Chuck Norris. Chuck Norri
 
 Our boilerplate for new Polymer elements, [`<seed-element>`](https://github.com/PolymerLabs/seed-element), contains everything you need to start writing unit tests for your element. To fetch it and install all the dependencies you'll need, run the following commands in the terminal:
 
-  $ mkdir development
-  $ git clone git://github.com/PolymerLabs/seed-element.git
-  $ cd seed-element
-  $ bower install
-  $ npm install -g web-component-tester
-  $ cd ..
-  $ wct
+        $ mkdir development
+        $ git clone git://github.com/PolymerLabs/seed-element.git
+        $ cd seed-element
+        $ bower install
+        $ npm install -g web-component-tester
+        $ cd ..
+        $ wct
 
 The WCT (web-component-tester) tool will run your tests in multiple browsers at once. If all goes well, you should see some output resembling the following in your terminal:
 
@@ -239,7 +239,7 @@ We begin writing our first test with a new HTML file in the "tests" directory of
 
 We can repurpose the existing "basic-test.html" file for this purpose. Let's rename it to "core-selector-tests.html" and customize it for `<core-selector>`:
 
-      <script src="../../webcomponentsjs/webcomponents.js"></script>
+      <script src="../../webcomponentsjs/webcomponents.min.js"></script>
       <script src="../../web-component-tester/browser.js"></script>
 
       <!-- Step 1: import the element to test -->
