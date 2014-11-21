@@ -176,7 +176,7 @@ block using CSSOM:
 {% raw %}
     <polymer-element name="x-foo" on-click="{{changeBg}}">
       <template>
-        <style>
+        <style>i
           :host { background: red; }
         </style>
       </template>
@@ -197,7 +197,7 @@ block using CSSOM:
 
 The only reason to do this would be to programmatically add/remove pseudo-class rules.
 It's also worth noting that this trick doesn't work under {{site.project_title}}'s Shadow DOM polyfill.
-See [issue #23](https://github.com/Polymer/platform/issues/23).
+See [issue #7](https://github.com/webcomponents/webcomponentsjs/issues/7).
 
 ## Preventing FOUC
 
