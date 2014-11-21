@@ -176,7 +176,7 @@ the entire system and each polyfill, individually. See our [build status page](/
 
 ### How can I validate property values? {#validateinput}
 
-One way to validate input is to use a `*Changed` handler on to observer the
+One way to validate input is to use a `*Changed` handler to observe the
 property changing, but separate out the "set value" vs. the "validated value":
 
     <polymer-element name="x-foo" attributes="color">
