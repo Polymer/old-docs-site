@@ -176,7 +176,7 @@ block using CSSOM:
 {% raw %}
     <polymer-element name="x-foo" on-click="{{changeBg}}">
       <template>
-        <style>i
+        <style>
           :host { background: red; }
         </style>
       </template>
