@@ -11,8 +11,9 @@
 <link rel="import" href="../components/core-menu/core-menu.html">
 <link rel="import" href="../components/core-item/core-item.html">
 
-<polymer-element name="dropdown-panel" attributes="open ajaxify">
+<polymer-element name="dropdown-panel" attributes="open ajaxify badge">
   <template>
+    <link rel="stylesheet" href="../css/polymer.css">
     <style>
     :host {
       background: white;
@@ -84,6 +85,7 @@
     <core-menu id="mainmenu" on-click="{{onClick}}">
       <content></content>
     </core-menu>
+    <span class="polymer-status-badge" hidden?="{{!badge.length}}">{{badge}}</span>
   </template>
   <script>
   Polymer('dropdown-panel', {
