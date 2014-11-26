@@ -253,7 +253,7 @@ When designing your own components or using generic HTML elements such as
 
 ### Touch ripple effect
 
-Material responds to input events with an touch ripple effect: an animation
+Material responds to input events with a touch ripple effect: an animation
 that moves out radially from the origin of the event. These effects are built
 into the
 [paper elements collection](paper-elements.html):
