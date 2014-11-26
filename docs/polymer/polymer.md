@@ -883,7 +883,7 @@ a property on that element:
     ...
     Polymer('x-element', {
       observe: {
-        '$.foo.someProperty': 'fooPropertyChanged'
+        'this.$.foo.someProperty': 'fooPropertyChanged'
       },
       fooPropertyChanged: function(oldValue, newValue) {
         ...
