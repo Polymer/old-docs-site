@@ -1023,8 +1023,8 @@ and data-bound.
 
     <polymer-element name="polymer-cooler" extends="polymer-cool">
       <template>
-        <!-- A shadow element render's the extended
-             element's shadow dom here. -->
+        <!-- A shadow element renders the extended
+             element's shadow DOM here. -->
         <shadow></shadow> <!-- "You are cool Matt" -->
       </template>
       <script>
