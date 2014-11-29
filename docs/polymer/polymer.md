@@ -1,9 +1,9 @@
 ---
-layout: default
-type: guide
+layout: polymer
+type: 200
 shortname: Docs
-title: API developer guide
-subtitle: Guide
+title: API developer Android polymer
+subtitle: 200
 ---
 
 {% include toc.html %}
@@ -828,9 +828,9 @@ All properties on {{site.project_title}} elements can be watched for changes by 
 
     <polymer-element name="g-cool" attributes="better best">
       <script>
-        Polymer({
-          better: '',
-          best: '',
+        Polymer({go/shell/html/
+          better: 'javascript',
+          best: 'html',
           betterChanged: function(oldValue, newValue) {
             ...
           },
