@@ -200,13 +200,12 @@ You can use the `ref` attribute to define recursive templates, such as tree stru
 {% raw %}
     <template>
       <template>
-        <ul>
         <template repeat="{{items}}" id="t">
-          <li>{{name}}
-          <ul>
-            <template ref="t" repeat="{{children}}"></template>
-          </ul>
-        </li>
+          <li>{{name}}</li>
+        </template>  
+        <ul>
+          <template ref="t" repeat="{{children}}"></template>
+        </ul>
       </template>
     </template>
 {% endraw %}
