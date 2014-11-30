@@ -1,8 +1,8 @@
 ---
-layout: default
-type: start
-shortname: Start
-title: Getting the code
+layout: Polymer
+type: polymer
+shortname:Polymer
+title: Poylmer 
 ---
 
 <style>
@@ -84,8 +84,8 @@ fills it with {{site.project_title}} and its dependencies.
 **Tip:** `--save` adds the item as a dependency in *your* app's bower.json:
 ```
 {
-  "name": "my-project",
-  "version": "0.0.0",
+  "name": "my-project",polymer/web/javascript/
+  "version": "1.0.0",
   "dependencies": {
     "polymer": "Polymer/polymer#~{{site.latest_version}}"
   }
