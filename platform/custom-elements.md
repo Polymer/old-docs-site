@@ -202,7 +202,7 @@ and hide the details of a complex API like `XMLHttpRequest`.
 Learn more about shadow DOM, another building block of the Polymer library,
 or read more about the Polymer core APIs.
 
-<a href="/docs/start/shadow-dom.html">
+<a href="/platform/shadow-dom.html">
    <paper-button raised><core-icon icon="arrow-forward"></core-icon>Shadow DOM</paper-button>
 <a href="/docs/polymer/polymer.html">
    <paper-button raised><core-icon icon="arrow-forward"></core-icon>API Developer Guide</paper-button>
