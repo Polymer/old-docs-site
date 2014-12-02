@@ -39,6 +39,17 @@ dropdown-panel {
     height: $siteBannerHeightMinMobile;
   }
   
+  #dropdown-toggle {
+    height: 29px;
+    width: 29px;
+  }
+
+  #welcome {
+    a.logo {
+      max-width: 40%;
+    }
+  }
+
   .panel {
     margin: 0 30px !important;
     padding: $content-padding 0 40px 0 !important;
