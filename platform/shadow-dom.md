@@ -34,7 +34,7 @@ eliminating naming conflicts and improving code expression.
 The Shadow DOM spec provides a programmatic method `createShadowRoot`
 for adding a shadow DOM subtree to an element.
 When you define a {{site.project_title}} element,
-you can specify the contents of the elements' shadow DOM using a <template> tag:
+you can specify the contents of the element's shadow DOM using a `<template>` tag:
 
     <polymer-element name="my-custom-element" noscript>
       <template>
