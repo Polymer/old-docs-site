@@ -104,7 +104,7 @@ There are a number of reasons why we recommend you use Bower instead of the CDN:
 For testing and reproducing bugs, you can link to the current versions of the `webcomponents.js`
 and `polymer.html` files on `polymer-project.org`:
 
-    <script src="//www.polymer-project.org/webcomponents.js"></script>
+    <script src="//www.polymer-project.org/webcomponents.min.js"></script>
     <link rel="import" href="//www.polymer-project.org/components/polymer/polymer.html">
 
 Many of the Core and Paper elements can also be found under `components`.
