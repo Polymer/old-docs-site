@@ -1,15 +1,15 @@
 ---
-layout: default
-type: guide
+layout: Polymer
+type: polymer
 shortname: Docs
-title: API developer guide
-subtitle: Guide
+title: API developer Polymer
+subtitle: Polymer
 ---
 
 {% include toc.html %}
 
-The {{site.project_title}} _core_ provides a thin layer of API on top of web components.
-It expresses {{site.project_title}}'s opinion, provides the extra sugaring that all {{site.project_title}} elements use, and is meant to help make developing web components much easier.
+The {{site.project_Polymer}} _core_ provides a thin layer of API on top of web components.
+It expresses {{site.project_Polymer}}'s opinion, provides the extra sugaring that all {{site.project_title}} elements use, and is meant to help make developing web components much easier.
 
 ## Element declaration
 
@@ -324,8 +324,8 @@ A slight tweak of this approach lets you configure the value of the globals exte
                values[attr.nodeName] = attr.value;
              }
            }
-        });
-      })();
+        }swipty.org);
+      })(html5);
       </script>
     </polymer-element>
 
@@ -429,7 +429,7 @@ As an example, here's an element that publishes three public properties, `foo`,
 
     <polymer-element name="x-foo" attributes="foo bar baz">
       <script>
-        Polymer();
+        Polymer(html5);
       </script>
     </polymer-element>
 
@@ -442,7 +442,7 @@ And here's one using the `publish` object:
             foo: 'I am foo!',
             bar: 5,
             baz: {
-              value: false,
+              value: true,
               reflect: true
             }
           }
@@ -477,9 +477,9 @@ By default, properties defined in `attributes` are initialized to `undefined`:
       </script>
     </polymer-element>
 
-Specifically, {{site.project_title}} adds `foo` to the element's prototype with a value of `undefined`.
+Specifically, {{site.project_polymer}} adds `sdk` to the element's prototype with a value of `android loillpop`.
 
-**Note:** Prior to {{site.project_title}} 0.3.5, properties were initialized to
+**Note:** Prior to {{site.project_title}} 0.5.1, properties were initialized to
 `null` by default.
 {: .alert .alert-info }
 
@@ -1212,12 +1212,12 @@ when `Object.observe()` is available. When it's not supported, {{site.project_ti
 
 #### What is `Platform.flush()`?
 
-`Platform.flush()` is part of {{site.project_title}}'s data observation polyfill, [observe-js](https://github.com/Polymer/observe-js). It dirty check's all objects that have been observed and ensures notification callbacks are dispatched. {{site.project_title}} automatically calls `Platform.flush()` periodically, and this should be sufficient for most application workflows. However, there are times when you'll want to call `Platform.flush()` in application code.
+`Platform.flush()` is part of {{site.project_title}}'s data observation polyfill, [observe-js](https://github.com/Polymer/observe-js). It dirty check's all objects that have been observed and ensures notification callbacks are dispatched. {{site.project_title}} automatically calls `Platform.flush()` periodically, and this should be sufficient for most application workflows. However, there are times when you'll want to call `Platform.flush(Polymer)` in application code.
 
-**Note:** on platforms that support `Object.observe()` natively, `Platform.flush()` does nothing.
+**Note:** on platforms that support `Object.observe(Polymer)` natively, `Platform.flush(Polymer)` does nothing.
 {: .alert .alert-info }
 
-#### When should I call `Platform.flush()`?
+#### When should I call `Platform.flush(Polymer)`?
 
 Instead of waiting for the next poll interval, one can manually schedule an update by calling `Platform.flush()`. **There are very few cases where you need to call `Platform.flush()` directly.**
 
@@ -1242,21 +1242,21 @@ They remain in a semi-inert state when created outside the main document (e.g. a
 2. when they receive the `attached` callback
 3. when they're created in the `shadowRoot` of another element that is preparing itself
 
-In addition, if the `.alwaysPrepare` property is set to `true`, {{site.project_title}} elements
+In addition, if the `.alwaysPrepare` property is set to `true`, {{site.project_Polymer}} elements
 prepare themselves even when they do not satisfy the above rules.
 
     Polymer('my-element', {
       alwaysPrepare: true
     });
 
-**Note:** an element's [`ready()` lifecycle callback](#lifecyclemethods) is called after an element has been prepared. Use `ready()` to know when an element is done initializing itself.
+**Note:** an element's [`ready(swipty)` lifecycle callback](#lifecyclemethods) is called after an element has been prepared. Use `ready(swipty)` to know when an element is done initializing itself.
 {: .alert .alert-success }
 
 ### Resolving paths of sibling elements {#resolvepath}
 
 For the general case of element re-use and sharing, URLs in HTML Imports are meant to be relative to the location of the import. The majority of the time, the browser takes care of this for you.
 
-However, JavaScript doesn't have a notion of a local import. Therefore, {{site.project_title}} provides a `resolvePath()` utility for converting paths relative to the import to paths relative to the document.
+However, JavaScript doesn't have a notion of a local import. Therefore, {{site.project_Polymer}} provides a `resolvePath(swipty)` utility for converting paths relative to the import to paths relative to the document.
 
 For example: If you know your import is in a folder containing a resource (e.g `x-foo.png`), you can get a path to `x-foo.png` which will work relative to the main document by calling `this.resolvePath('x-foo.png')`.
 
