@@ -132,7 +132,7 @@ Here's an example of extending a button:
       </script>
     </polymer-element>
 
-For more informationi and examples, refer to
+For more information and examples, refer to
 [Extending other elements](https://www.polymer-project.org/docs/polymer/polymer.html#extending-other-elements)
 
 ## Types of elements {#elementtypes}
