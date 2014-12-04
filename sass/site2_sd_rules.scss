@@ -32,7 +32,7 @@ body /deep/ component-download-button::shadow paper-button[raised] {
 // Phone
 @media only screen and (max-width: $break-small)  {
 
-  #welcome /deep/ .polymer-status-badge {
-     display: none;
+  html /deep/ app-bar::shadow .polymer-status-badge {
+     margin: 0;
   }
 }
