@@ -73,60 +73,14 @@ handlers:
   http_headers:
     Access-Control-Allow-Origin: "*"
 
-# /tools -----------------------------------------------------------------------
-- url: /tools/designer/$
-  static_files: polymer-all/projects/designer/index.html
-  upload: polymer-all/projects/designer/index.html
-  secure: always
-
-- url: /tools/designer/components/webcomponentsjs/webcomponents.js
-  static_files: components/webcomponentsjs/webcomponents.min.js
-  upload: components/webcomponentsjs/webcomponents.min.js
-
-- url: /tools/designer/components/polymer/polymer.html
-  static_files: components/polymer/polymer.html
-  upload: /tools/designer/components/polymer/polymer.html
-
-- url: /tools/designer/components/polymer/polymer.js
-  static_files: components/polymer/polymer.min.js
-  upload: /tools/designer/components/polymer/polymer.js
-
-- url: /tools/designer/(.*)
-  static_files: polymer-all/projects/designer/\1
-  upload: polymer-all/projects/designer/(.*)
-# -------------------
-
-# Topeka and other apps --------------------------------------------------------
-# /apps/topeka/...
-- url: /apps/(.+)/components/(.*)
-  static_files: components/\2
-  upload: components/(.+)
-
-# e.g. /apps/topeka/
-- url: /apps/(.+)/$
-  static_files: polymer-all/projects/\1/build.html
-  upload: polymer-all\/projects\/(.+)\/build.html
-  secure: always
-
-- url: /apps/(.+)/(.*)
-  static_files: polymer-all/projects/\1/\2
-  upload: polymer-all\/projects\/(core-sampler|paper-sampler|topeka)\/(.*)
-  secure: always
-# -------------------
-
-# tutorial ---------------------------------------------------------------------
-- url: /samples/tutorial/components/
-  static_dir: components
-# -------------------
-
 # Map raw paths with trailing "/" to an index.html file.
 - url: /(.*)/$
   static_files: _site/\1/index.html
   upload: _site/(.*)/index.html
   secure: always
 
-- url: /polymer-all
-  static_dir: polymer-all
+- url: /projects
+  static_dir: projects
   http_headers:
     Access-Control-Allow-Origin: "*"
 
@@ -175,10 +129,7 @@ skip_files:
 - ^(.*/)?.*\.sublime-workspace
 - ^(.*/)?platform-dev/workbench/.*
 - ^(.*/)?(AUTHORS|LICENSE|PATENTS|COPYING|CONTRIBUTING|README)$
-- ^(.*/)?polymer-all/labs/dfreedm/core-icon-study/.*
-- ^(.*/)?polymer-all/labs/.* # don't upload all of labs
-- ^(.*/)?polymer-all/tools/doc/.*
-- ^(.*/)?polymer-all/tools/bind/.*
+- ^(.*/)?projects/(designer|polymer-tutorial|topeka)/components/.*
 - ^(.*/)?components/tools/.* # tool is already in /polymer-all
 - ^(.*/)?components/firebase-simple-login/firebase-simple-login-(java|objc)/.*
 - ^(.*/)?components/firebase-simple-login/lib/.*

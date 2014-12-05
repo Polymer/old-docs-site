@@ -77,14 +77,14 @@ title: Welcome
   <div class="panel">
     <summary style="transform: translateZ(0);">
       <h1>Designer</h1>
-      <a href="/tools/designer/" target="_blank">
+      <a href="http://polymer-designer.appspot.com" target="_blank">
         <img src="/images/designer_fadeout.png" alt="Launch the designer tool" title="Launch the designer tool">
       </a>
       <div>
         <p>
         Designer is a drag and drop tool for prototyping apps using {{site.project_title}}. Save your experiments as Github gists.
         </p>
-        <a href="/tools/designer/" target="_blank">
+        <a href="http://polymer-designer.appspot.com" target="_blank">
           <paper-button>
             <core-icon icon="arrow-forward"></core-icon> Try it now
           </paper-button>
@@ -119,13 +119,13 @@ title: Welcome
     <div class="columns" layout horizontal wrap>
       <summary flex>
         <div class="box">
-          <a href="/apps/topeka/">
+          <a href="http://polymer-topeka.appspot.com">
             <img src="/images/topeka_square.png">
           </a>
         </div>
         <h2 class="start">Topeka</h2>
         <p>A fun quiz app built using material-design based <em>paper-elements</em></p>
-        <a href="/apps/topeka/">
+        <a href="http://polymer-topeka.appspot.com">
           <paper-button>
             <core-icon icon="arrow-forward"></core-icon> Demo Topeka
           </paper-button>

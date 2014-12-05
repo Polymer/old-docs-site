@@ -1,6 +1,0 @@
-[submodule "labs"]
-	path = polymer-all/labs
-	url = https://github.com/Polymer/labs.git
-[submodule "polymer-all/tools"]
-	path = polymer-all/tools
-	url = https://github.com/Polymer/tools.git
