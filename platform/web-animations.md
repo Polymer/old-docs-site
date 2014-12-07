@@ -47,13 +47,13 @@ a `<div>` over 0.5 seconds. The animation alternates producing a pulsing effect.
     <div class="pulse" style="width:150px;">Hello world!</div>
     <script>
       var elem = document.querySelector('.pulse');
-      var player = document.timeline.play(new Animation(elem, [
-          {opacity: "0.5", transform: "scale(0.5)"}, 
+      var player = elem.animate([
+          {opacity: "0.5", transform: "scale(0.5)"},
           {opacity: "1.0", transform: "scale(1)"}
         ],
         {
           direction: "alternate", duration: 500, iterations: Infinity
-        }));
+        });
     </script>
 
 ## The animation model
