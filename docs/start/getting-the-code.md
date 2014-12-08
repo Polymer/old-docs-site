@@ -38,7 +38,7 @@ in one of several ways:
     built-in method for updating dependencies. For more information, see
     [Installing from ZIP files](#using-zip).
 
-*   Github. When you clone a component from Github, you need to manage all of the dependencies
+*   GitHub. When you clone a component from GitHub, you need to manage all of the dependencies
     yourself. If you'd like to hack on the project or submit a pull request, see
     [setting up {{site.project_title}} with git](/resources/tooling-strategy.html#git).
 
@@ -50,7 +50,7 @@ the Web Components specifications natively.
 **Note:** For information about installing elements from the Core and Paper element 
 collection, see [Using elements](/docs/start/using-elements.html).
 
-**Note:** The PolymerLabs github repo contains a number of unsupported elements that are either
+**Note:** The PolymerLabs GitHub repo contains a number of unsupported elements that are either
 experimental or deprecated. In particular, the `polymer-elements` and `polymer-ui-elements`
 collections represent earlier work superseded by the {{site.project_title}} Core elements and
 Paper elements.
