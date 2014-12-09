@@ -287,11 +287,11 @@ First, we define a test in the suite for our core-selector-tests.html file as fo
 
 Let's test that nothing is by default selected (i.e that our current selection is `null`). We can replace "our first test" label with the more descriptive "nothing is selected by default" while we're at it:
 
-    test('nothing is selected by default', function(done) {
+    test('nothing is selected by default', function() {
       assert.equal(s.selected, null);
     });
 
-**Note:** You can include a `done();` statement at the very end of your assertions. This is an optional callback that is useful for testing work that is asynchronous. Next, run `wct` to ensure everything is working as expected.
+Let's run `wct` to ensure everything is working as expected; awesome, all good!
 
 Next, add the core-selector-tests.html file we've started work on to `test/index.html`. We can use the `loadSuites()` method to achieve this so that it is run with all of our other tests:
 
@@ -325,72 +325,88 @@ As `<core-selector>` has a property items representing the current list of items
       assert.equal(s.selectedClass, 'core-selected');
     });
 
-### Step 4: Writing test assertions for events
+
+### Step 4: Testing Asynchronous Changes
+
+Many Polymer elements rely heavily on observers to perform their work - often directly via [`observe` declarations](https://www.polymer-project.org/docs/polymer/polymer.html#observeblock) or indirectly via tools such as [template binding](https://www.polymer-project.org/docs/polymer/template.html). The unfortunate reality is that you will often need to set up asynchronous tests to deal with this.
+
+Let's test support for assignment to the `selected` property!
+
+When mutating your elements, it is a good idea to ensure that your changes are cleaned up after the test. One approach is to have multiple fixture elements (one for each test that performs mutations). Another is to take advantage of Mocha's `setup`/`teardown`/`suiteSetup`/`suiteTeardown` helpers.
+
+We'll go with the setup/teardown approach for this example, by adding a new suite to contain our mutation tests:
+
+    suite('with two selected items', function() {
+
+      // Clean up after ourselves.
+      teardown(function(done) {
+        s.clearSelection();
+        s.multi = false;
+        // Wait for observers to resolve before moving on to more tests.
+        flush(done);
+      });
+
+      test('single selects by index', function(done) {
+        s.selected = 1;
+        // We flush to allow observers to resolve before we check the state:
+        flush(function() {
+          assert.equal(s.selectedIndex, 1);
+          assert(!s.children[0].classList.contains('core-selected'));
+          assert(s.children[1].classList.contains('core-selected'));
+          assert(!s.children[2].classList.contains('core-selected'));
+
+          done();
+        });
+      });
+
+      test('multi selects by index', function(done) {
+        s.multi = true;
+        s.selected = [0, 2];
+
+        flush(function() {
+          assert.equal(s.selectedIndex, [0, 2]);
+          assert(s.children[0].classList.contains('core-selected'));
+          assert(!s.children[1].classList.contains('core-selected'));
+          assert(s.children[2].classList.contains('core-selected'));
+
+          done();
+        });
+      });
+
+    });
+
+So the first thing you may notice is our use `flush()`.  As we covered earlier, `flush` allows us to asynchronously dirty check pending objects are observed and ensures notification callbacks are dispatched accordingly. A synchronous alternative is `[element].deliverChanges()`, but that only works for observers declared directly on the element.
+
+By calling `flush` after making changes to the element, we can ensure that our tests are performing assertions after all observers have resolved and events have fired. If we were to perform our asserts prior to that, they would most likely be testing the wrong state!
+
+Additionally, notice that all of the callbacks we pass to Mocha have an extra `done` argument. This tells Mocha that it should treat the callbacks as asynchronous.
+
+
+### Step 5: Writing test assertions for events
 
 What about testing events? A simple event supported by `<core-selector>` that we can test is the "core-select" event. It's fired every time a different item in a list is selected.
 
-First, setup a counter that will be incremented each time the `core-select event is fired:
-
-    var selectEventCounter = 0;
-
 If this is the case two properties - `s.selectedItem` and `e.detail.item` (returned by the event) should be the same. Hooking this up to the `core-select` event, we get:
 
-    test('if core-select is fired when a different item in a list is selected',
-    function() {
+    test('core-select fires when selection changes', function(done) {
       s.addEventListener('core-select', function(e) {
-          if (e.detail.isSelected){
-              selectEventCounter++;
-              assert.equal(e.detail.item, s.selectedItem);
-            }
+        assert.equal(e.detail.item, s.selectedItem);
+        done();  // Finish our test.
       });
     });
 
 Great. Now to set the `selected` item in the list to "2" we can write:
 
-    test('if core-select is fired when a different item in a list is selected',
-    function() {
+    test('core-select fires when selection changes', function() {
       // ...
       s.selected = 2;
     });
 
-Which will trigger the `core-select` event to be fired.
-
-**Note:** In Polymer's unit tests, just to ensure that all of our bindings are correctly getting updated when we dynamically change values in this way, we can call `flush()`:
-
-    flush();
-
-`flush()`, as we covered earlier, allows us to asynchronously dirty check pending objects are observed and ensures notification callbacks are dispatched accordingly. It also triggers a flush of any pending events.
-
-This is useful, even if a browser already supports `Object.observe()` natively. Observers are not synchronous so `flush()` can be helpful for getting a callback after all observer micro-tasks have run. A synchronous alternative is `[element].deliverChanges()`.
+Which will trigger the `core-select` event to be fired (asynchronously).
 
 As we can see, when we run `wct` once again we're still all green:
 
 ![](/articles/images/unit-testing-elements/wct-more-tests.png)
-
-Finally, let's check that the selected item has the correct CSS class (the "core-selected" class) and the `selectedItem` attribute, which returns the currently selected item, are both the value we would expect. A timeout is used here to allow sufficient time for controls to render:
-
-
-    test('if the selected item has the correct CSS class', function() {
-      setTimeout(function() {
-
-          // check the expected number of core-select events
-          // have been fired
-          assert.equal(selectEventCounter, 1);
-
-          // check the core-selected class is contained in the
-          // classList for the selected item
-          assert.isTrue(s.children[2].classList.contains('core-selected'));
-
-          // check the selectedItem attribute value is equal to
-          // the child we set it to
-          assert.equal(s.selectedItem, s.children[2]);
-
-          done();
-
-      }, 50);
-    });
-
-And of course, we then run `wct` to ensure everything runs as expected.
 
 **Note:** You may want to test outside usage of your element as part of `polymer-ready`. Code written outside of `test` functions will execute immediately, including `suite` functions such as the one above. By default, WCT will wait until `polymer-ready` has completed to run your tests to ensure everything behaves as expected. However, you may not have upgraded elements outside of them. For scenarious like this, the [testImmedate](https://github.com/Polymer/web-component-tester/blob/master/browser/environment/helpers.js#L41) helper is useful for running tests before `polymer-ready`.
 
@@ -411,6 +427,3 @@ Thanks for reading and do let us know if you have any questions about unit testi
 ## More Unit Test Samples
 
 If you are looking for an example of a real-world element using web-component-tester to author and run tests, checkout the tests for the [google-map](https://github.com/GoogleWebComponents/google-map/tree/master/test) element.
-
-
-
