@@ -282,3 +282,40 @@ event.
 The `auto-binding` element is currently included automatically when you load the
 {{site.project_title}} library.
 
+## Inserting data-bound HTML {#boundhtml}
+
+The {{site.project_title}} data binding escapes any HTML in the bound data.
+This avoids many potential security pitfalls with including arbitrary HTML.
+
+However, for those special cases where you need to add HTML dynamically, {{site.project_title}} 
+elements provide the `injectBoundHTML` instance method. `injectBoundHTML` replaces
+the contents of a target element with an arbitrary block of HTML. Any data binding 
+expressions in the HTML are bound to the element.
+
+For example, in the following example, a message is injected into the `message_area` `<div>`.
+
+Changing the `message` property changes the data displayed in the `message_area`.
+
+{%raw%}
+    <polymer-element name="my-element">
+      <template>
+        <style>
+          :host {
+            display: block;
+          }
+        </style>
+        <div id="message_area"></div>
+      </template>
+      <script>
+        Polymer('my-element', {
+          message: 'hi there',
+          ready: function() {
+            this.injectBoundHTML('<b>{{message}}</b>', this.$.message_area);
+          }
+        });
+      </script>
+    </polymer-element>
+{%endraw%}
+
+Note that the rules for data binding using `injectBoundHTML` are the same as the rules for 
+standard data binding. For example, if `message` contains HTML, the HTML is escaped.
