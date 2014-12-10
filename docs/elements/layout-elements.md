@@ -157,7 +157,7 @@ On desktop, resize the browser window to see the different modes.
 
 ### Side nav with `<core-scaffold>`
 
-The [`<core-scaffold>`](/docs/elements/core-elements.html#core-drawer-panel)  element
+The [`<core-scaffold>`](/docs/elements/core-elements.html#core-scaffold)  element
 assembles a commonly-used combination of components:
 a `<core-drawer-panel>` with a `<core-header-panel>` and `<core-toolbar>` for the
 main content area. It also includes a button to display the navigation drawer.
