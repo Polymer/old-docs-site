@@ -104,8 +104,8 @@ There are a number of reasons why we recommend you use Bower instead of the CDN:
 For testing and reproducing bugs, you can link to the current versions of the `webcomponents.js`
 and `polymer.html` files on `polymer-project.org`:
 
-    <script src="//polymer-project.org/webcomponents.js"></script>
-    <link rel="import" href="//polymer-project.org/components/polymer/polymer.html">
+    <script src="//www.polymer-project.org/webcomponents.min.js"></script>
+    <link rel="import" href="//www.polymer-project.org/components/polymer/polymer.html">
 
 Many of the Core and Paper elements can also be found under `components`.
 
@@ -176,7 +176,7 @@ the entire system and each polyfill, individually. See our [build status page](/
 
 ### How can I validate property values? {#validateinput}
 
-One way to validate input is to use a `*Changed` handler on to observer the
+One way to validate input is to use a `*Changed` handler to observe the
 property changing, but separate out the "set value" vs. the "validated value":
 
     <polymer-element name="x-foo" attributes="color">

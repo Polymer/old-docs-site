@@ -313,19 +313,19 @@ A slight tweak of this approach lets you configure the value of the globals exte
 
     <polymer-element name="app-globals" attributes="values">
       <script>
-      (function() {
-        var values = {};
-
-        Polymer({
-           ready: function() {
-             this.values = values;
-             for (var i = 0; i < this.attributes.length; ++i) {
-               var attr = this.attributes[i];
-               values[attr.nodeName] = attr.value;
+        (function() {
+          var values = {};
+          
+          Polymer({
+             ready: function() {
+               this.values = values;
+               for (var i = 0; i < this.attributes.length; ++i) {
+                 var attr = this.attributes[i];
+                 values[attr.nodeName] = attr.value;
+               }
              }
-           }
-        });
-      })();
+          });
+        })();
       </script>
     </polymer-element>
 
@@ -883,7 +883,7 @@ a property on that element:
     ...
     Polymer('x-element', {
       observe: {
-        '$.foo.someProperty': 'fooPropertyChanged'
+        'this.$.foo.someProperty': 'fooPropertyChanged'
       },
       fooPropertyChanged: function(oldValue, newValue) {
         ...
@@ -1023,8 +1023,8 @@ and data-bound.
 
     <polymer-element name="polymer-cooler" extends="polymer-cool">
       <template>
-        <!-- A shadow element render's the extended
-             element's shadow dom here. -->
+        <!-- A shadow element renders the extended
+             element's shadow DOM here. -->
         <shadow></shadow> <!-- "You are cool Matt" -->
       </template>
       <script>

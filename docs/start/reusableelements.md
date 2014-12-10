@@ -1,7 +1,7 @@
 ---
 layout: default
-type: start
-shortname: Start
+type: guide
+shortname: Docs
 author: addyosmani
 title: Creating reusable elements
 subtitle: How to publish and deploy reusable Polymer elements on GitHub

@@ -190,9 +190,9 @@ In the case of nested templates, copies of the inner templates appear in the DOM
         <template repeat="{%raw%}{{item in list}}{%endraw%}">
           <p>{{item.name}}:</p>
           <ul>
-          <template repeat="{%raw%}{{field in item.fields}}{%endraw%}">
-            <li>{{field}}</li>
-          </template>
+            <template repeat="{%raw%}{{field in item.fields}}{%endraw%}">
+              <li>{{field}}</li>
+            </template>
           </ul>
         </template>
       </template>

@@ -1,9 +1,9 @@
 ---
 layout: default
-title: HTML Imports
-type: guide
+title: About HTML imports
+type: start
 shortname: Platform
-subtitle: polyfill
+subtitle: Include HTML documents in other HTML documents.
 
 feature:
   spec: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/imports/index.html
@@ -14,10 +14,19 @@ links:
 - "HTML5Rocks - HTML Imports: #include for the web": http://www.html5rocks.com/tutorials/webcomponents/imports/
 ---
 
-{% include spec-header.html %}
-
 {% include toc.html %}
 
-{% include_external components/HTMLImports/README.md %}
+## Why HTML Imports?
+
+HTML Imports let you include and reuse HTML documents in other HTML documents,
+just as `<script>` tags let you include external Javascript in their pages.
+In particular, imports let you include
+custom element definitions from external URLs.
+
+## Basic usage
+
+For HTML imports use the `import` relation on a standard `<link>` tag, for example:
+
+    <link rel="import" href="my-custom-element.html">
 
 {% include other-resources.html %}

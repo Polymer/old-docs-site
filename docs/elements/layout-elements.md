@@ -6,6 +6,8 @@ title: Layout elements
 subtitle: Guide
 ---
 
+<link rel="import" href="/components/google-youtube/google-youtube.html">
+
 <style shim-shadowdom>
 .app-demo {
   border: 1px solid #aaa;
@@ -24,6 +26,16 @@ The core-elements and paper-elements collections include a number of elements th
 
 
 ## App Bars and Toolbars
+
+<div class="yt-embed">
+  <google-youtube
+    videoid="qDhHdi8RtwI"
+    thumbnail="/images/polycasts/PC003.jpg"
+    autoplay="0"
+    rel="0"
+    fluid>
+  </google-youtube>
+</div>
 
 [`<core-header-panel>`](/docs/elements/core-elements.html#core-header-panel) is often combined with a
 [`<core-toolbar>`](/docs/elements/core-elements.html#core-toolbar). When you use a `<core-toolbar>`,
@@ -71,6 +83,16 @@ Setting the `mode` attribute on the header panel controls how the header area an
 
 See the [`<core-header-panel>` demo](/components/core-header-panel/demo.html) for examples of all of the modes in action.
 
+<div class="yt-embed">
+  <google-youtube
+    videoid="ZAc51_0Xa_M"
+    thumbnail="/images/polycasts/PC004.jpg"
+    autoplay="0"
+    rel="0"
+    fluid>
+  </google-youtube>
+</div>
+
 In addition, you manually choose from several sizes of toolbar by adding one of the following classes to the core-toolbar’s class list:
 
 -   medium-tall (2x normal height)
@@ -104,6 +126,16 @@ be hidden or revealed by calling the drawer panel's `togglePanel` method.
 Any children with the `drawer` attribute set are placed in the navigation area.
 Any children with the `main` attribute are placed in the main panel.
 
+<div class="yt-embed">
+  <google-youtube
+    videoid="GAjpaM4HcCQ"
+    thumbnail="/images/polycasts/PC005.jpg"
+    autoplay="0"
+    rel="0"
+    fluid>
+  </google-youtube>
+</div>
+
 You can nest `<core-header-panel>` and `<core-toolbar>` elements inside a
 `<core-drawer-panel>` to create the layout for the content area and navigation
 drawer, as shown in the following example:
@@ -125,7 +157,7 @@ On desktop, resize the browser window to see the different modes.
 
 ### Side nav with `<core-scaffold>`
 
-The [`<core-scaffold>`](/docs/elements/core-elements.html#core-drawer-panel)  element
+The [`<core-scaffold>`](/docs/elements/core-elements.html#core-scaffold)  element
 assembles a commonly-used combination of components:
 a `<core-drawer-panel>` with a `<core-header-panel>` and `<core-toolbar>` for the
 main content area. It also includes a button to display the navigation drawer.

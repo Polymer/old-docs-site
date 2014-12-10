@@ -2,8 +2,8 @@
 layout: default
 type: start
 shortname: Start
-title: Creating elements
-subtitle: Polymer from the inside
+title: Polymer in 10 minutes 
+subtitle: Creating elements
 ---
 
 {% include toc.html %}
@@ -23,7 +23,12 @@ and make it even easier to build complex, web component-based applications:
 
 ### 1. Install {{site.project_title}} {#install}
 
-Install the latest version of {{site.project_title}} as described in [Getting the Code](/docs/start/getting-the-code.html).
+Install the latest version of {{site.project_title}} as described in 
+[Getting the code](/docs/start/getting-the-code.html).
+
+If you want to play with {{site.project_title}} without installing anything, 
+skip to [Using {{site.project_title}}'s features](#features). You can run and 
+edit the samples online using [Plunker](http://plnkr.co/).
 
 ### 2. Build a {{site.project_title}} element {#createpolyel}
 
@@ -191,14 +196,18 @@ The use of the `id` attribute has traditionally been discouraged as an anti-patt
 
 ## Next steps {#nextsteps}
 
-Now that you know how to create your own elements, dive deeper and read up on [{{site.project_title}}'s core API](/docs/polymer/polymer.html). If you'd like to know more about the underlying technologies that make {{site.project_title}} and Web Components possible, check out [the Platform guide](/docs/start/platform.html). Continue on to:
+Now that you know how to create your own elements, follow the 
+[tutorial](/docs/start/tutorial/intro.html) to create your first 
+{{site.project_title}} app, or dive deeper and read up on 
+[{{site.project_title}}'s core API](/docs/polymer/polymer.html). 
+Continue on to:
 
 <a href="/docs/polymer/polymer.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>API developer guide</paper-button>
 </a>
 
-<a href="/docs/start/platform.html">
-  <paper-button raised><core-icon icon="arrow-forward"></core-icon>The Platform</paper-button>
+<a href="/docs/start/tutorial/intro.html">
+  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Your first {{site.project_title}} app</paper-button>
 </a>
 
 

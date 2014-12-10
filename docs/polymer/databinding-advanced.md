@@ -265,7 +265,7 @@ templates support a subset of the features available when you create your own cu
 
 -   Full-featured data binding, with {{site.project_title}} expressions.
 -   [Declarative event mapping](polymer.html#declarative-event-mapping).
--   [Automatic node finding](/polymer/polymer.html#automatic-node-finding).
+-   [Automatic node finding](polymer.html#automatic-node-finding).
 
 For an auto-binding template, the data model is on the template itself. For example, to use data
 binding at the top level of a page:
