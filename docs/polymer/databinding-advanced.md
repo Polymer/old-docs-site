@@ -299,15 +299,10 @@ Changing the `message` property changes the data displayed in the `message_area`
 {%raw%}
     <polymer-element name="my-element">
       <template>
-        <style>
-          :host {
-            display: block;
-          }
-        </style>
         <div id="message_area"></div>
       </template>
       <script>
-        Polymer('my-element', {
+        Polymer({
           message: 'hi there',
           ready: function() {
             this.injectBoundHTML('<b>{{message}}</b>', this.$.message_area);
