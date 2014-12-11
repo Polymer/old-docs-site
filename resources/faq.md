@@ -217,22 +217,31 @@ This is on purpose, to allow users to use exactly what they need and nothing mor
 
 ### My components are producing markup with multiple ids of the same name. {#multipleids}
 
-{{site.project_title}} tries hard to mimic native Shadow DOM, in that nodes with the same
+The Shadow DOM polyfill tries hard to mimic native Shadow DOM, in that nodes with the same
 `id`s will still be encapsulated.
 
-However, you should avoid using DOM-level id referencing (e.g. `<label for>`) when using {{site.project_title}}. The `id` may not resolve correctly when under the Shadow DOM polyfill.
+However, you should avoid using DOM-level id referencing (e.g. `<label for>`) when using 
+the polyfill. The `id` may not resolve correctly when under the Shadow DOM polyfill.
 
 ## Data-binding
 
 ### I'm trying to render HTML using data-binding but {{site.project_title}} escapes the content. {#setinnerHTML}
 
-{{site.project_title}} does not stamp unescaped HTML via data-binding because it becomes a vulnerability for XSS attacks. Instead, you can use a [property changed watcher](/docs/polymer/polymer.html#change-watchers) and [automatic node finding](/docs/polymer/polymer.html#automatic-node-finding) to set the `.innerHTML` of an node:
+{{site.project_title}} does not stamp unescaped HTML via data-binding because 
+it becomes a vulnerability for XSS attacks. For those cases where you need to 
+insert HTML with bindings _after_ your element is created, {{site.project_title}} 
+supplies the [`injectBoundHTML` method](/docs/polymer/databinding-advanced.html#boundhtml).
+
+You can also use a [property changed watcher](/docs/polymer/polymer.html#change-watchers) 
+and [automatic node finding](/docs/polymer/polymer.html#automatic-node-finding) to set the 
+`.innerHTML` of an node:
 
     <div id="div"></div>
 
     dataChanged: function() {
       this.$.div.innerHTML = this.data;
     }
+
 
 When using `<template repeat>`, a similar approach can be taken as suggested in [stackoverflow.com/a/22311788](http://stackoverflow.com/a/22311788).
 
