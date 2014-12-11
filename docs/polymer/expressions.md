@@ -31,6 +31,10 @@ the expression.
 - You can't insert HTML using expressions. To avoid XSS issues, the output of an expression
 is HTML escaped before being inserted as the value of the binding.
 
+**Note:** For the rare instance where you need to insert HTML dynamically, 
+see [Inserting data-bound HTML](databinding-advanced.html#boundhtml)
+{: .alert alert-info }
+
 Expressions support the following subset of JavaScript:
 
 | Feature | Example | Explanation

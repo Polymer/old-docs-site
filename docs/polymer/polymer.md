@@ -1079,6 +1079,16 @@ to "coolest".
 ## Built-in element methods {#builtin}
 
 {{site.project_title}} includes a few handy methods on your element's prototype.
+A few of the utility methods are documented here:
+
+* [`onMutation`](#onMutation) can be used to set up a callback when the element's children change.
+* [`async`](#asyncmethod) schedules a task to be executed after a configurable timeout, and is 
+  synchronized with `requestAnimationFrame`.
+* [`job`](#job) can be used to debounce event handlers, ensuring that a task is executed only
+  once during a given time window.
+
+An additional instance method, [`injectBoundHTML`](databinding-advanced.html#boundhtml), 
+is documented in the data-binding section.
 
 ### Observing changes to light DOM children {#onMutation}
 
