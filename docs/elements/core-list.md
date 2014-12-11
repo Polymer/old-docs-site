@@ -195,7 +195,7 @@ that you can use to set the approximate height, on average, of the list items in
 to render based on its viewport size.
 Normally you don't need to adjust this value unless the average
 size is much larger or smaller than the default of 200.
-In the example above that displays names, the items` height was 30 pixels.
+In the example above that displays names, the items' height was 30 pixels.
 This example needs to use the `height` property on the `core-list`.
 
 The basic rule is that if you have fixed-height rows, set the `height` property
