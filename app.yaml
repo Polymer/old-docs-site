@@ -1,5 +1,5 @@
 application: polymer-project
-version: 2014-11-13
+version: 2014-12-11
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -43,8 +43,9 @@ handlers:
     Access-Control-Allow-Origin: "*"
 
 # For webcomponents.js, serve both minified and non-minifed versions
+# Workaround for https://github.com/Polymer/docs/issues/823 -- always serve minified
 - url: /webcomponents(\.min|)?\.js
-  static_files: components/webcomponentsjs/webcomponents\1.js
+  static_files: components/webcomponentsjs/webcomponents.min.js
   upload: components/webcomponentsjs/webcomponents(\.min|)?.js
   http_headers:
     Access-Control-Allow-Origin: "*"
