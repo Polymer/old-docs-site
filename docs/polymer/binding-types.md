@@ -75,7 +75,7 @@ The simplest format for a repeating template is:
 {% endraw %}
 
 Refer to the current item in `array` using an empty binding expression {%raw%}`{{}}`{%endraw%}, which matches
-the current binding scope. Refer to a property of the current item as {%raw%}`{{<var>propertyname</var>}}`{%endraw%}.
+the current binding scope. Refer to a property of the current item as {%raw%}<code>{{<var>propertyname</var>}}</code>{%endraw%}.
 
 Like the `bind` attribute, the `repeat` attribute supports named scopes:
 
