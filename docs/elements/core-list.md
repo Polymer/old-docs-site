@@ -8,8 +8,6 @@ subtitle: Guide
 
 <link rel="import" href="/elements/side-by-side.html">
 
-<!--<link rel="stylesheet" href="tutorial.css">-->
-
 <link rel="stylesheet" href="core-list.css">
 
 
@@ -23,7 +21,7 @@ which displays a virtual, infinite list of homogeneous items.
 A `core-list` item can contain text, images, or other kinds of elements.
 In addition, an item can be composed of multiple elements.
 
-<img src="/images/core-list/unsorted-names.png" height="280px" width="180px" style="float:left">
+<img src="/images/core-list/unsorted-names.png" height="280px" width="150px" style="float:left">
 <img src="/images/core-list/small-images.png" height="279px" width="110px" style="float:left;margin-left:30px">
 <img src="/images/core-list/multiple-elements.png" height="280px" width="265px" style="margin-left:30px">
 
@@ -65,11 +63,11 @@ but could be inside a {{site.project_title}} element.
 
 <pre>
 &lt;template is="auto-binding" id="my-core-list"&gt;
-  &lt;div&gt;
-    &lt;core-list id="list" <strong class="highlight nocode">data="{%raw%}{{data}}{%endraw%}"</strong> flex>
+  &lt;div class="content" flex&gt;
+    &lt;core-list <strong class="highlight nocode">data="{%raw%}{{data}}{%endraw%}"</strong> flex height="30">
       &lt;template>
         &lt;div class="item">
-          <strong class="highlight nocode">&lt;span>{%raw%}{{model.name}}{%endraw%}&lt;/span></strong>
+          <strong class="highlight nocode">&lt;span class="from">{%raw%}{{model.name}}{%endraw%}&lt;/span></strong>
         &lt;/div>
       &lt;/template>  
     &lt;/core-list>
@@ -118,6 +116,12 @@ For example, the 4th item in the list of names might have this model:
 }
 </pre>
 
+You refer to values in the model using a key:
+
+<pre>
+{%raw%}{{model.name}}{%endraw%}
+</pre>
+
 ## Using core-image with core-list
 
 Recall that just enough template elements are rendered to fill the viewport and that
@@ -158,8 +162,8 @@ This `core-list` uses a `<core-image>` element to display each image using the d
 &lt;core-list id="list" data="<strong class="highlight nocode">{%raw%}{{data}}{%endraw%}</strong>" flex&gt;
   &lt;template&gt;
     &lt;div class="item"&gt;
-      <strong class="highlight nocode">&lt;core-image src="{%raw%}{{model.image.src}}{%endraw%}"
-           style="width:{%raw%}{{model.image.width}}{%endraw%}; height:{%raw%}{{model.image.height}}{%endraw%}"&gt;&lt;/core-image&gt;</strong>
+      <strong class="highlight nocode">&lt;core-image class="image" src="{%raw%}{{model.image.src}}{%endraw%}"
+          width="{%raw%}{{model.image.width}}{%endraw%}" height="{%raw%}{{model.image.height}}{%endraw%}" style="background:Gray" preload&gt;&lt;/core-image&gt;</strong>
     &lt;/div&gt;
   &lt;/template&gt;
 &lt;/core-list&gt;
@@ -169,8 +173,12 @@ This `core-list` uses a `<core-image>` element to display each image using the d
 
 The `preload` attribute means that the `core-image` shows the background color or an alternate image (set with the `placeholder` attribute) until the true image is completely loaded. So instead of seeing stale images in the recycled templates, you see a background color or another image.
 
-## Providing heights
- 
+## Essential: Providing heights
+
+**A `core-list` must have a size so that its contents scroll when the height of the items is large enough to overflow that size.** By "must have a size", this generally means it has a `fit` or `flex` layout attribute, or has an explicit `height` set in CSS. `flex` only has meaning if its parent has either `layout horizontal` or `layout vertical`.
+
+### Image heights
+
 The browser must be able to determine the height of the item at the point the model is bound to the template. So `<img>` or `<core-image>` elements must have explicit heights and must not rely on loading the image to determine the height. The list will break unless you set the height of the image explicitly either:
 
 with the CSS height attribute (as in the name example above)
@@ -179,14 +187,20 @@ with the `core-list` `height` property
 
 Furthermore, custom elements must not change their height asynchronously (for example, in response to UI events, `setTimeout()`, animations, and so on).
 
-### Using the height attribute
+### Setting row height
 
 The `core-list` element has a `height` attribute
-that you can use to set the approximate height on average of the list items in pixels.
+that you can use to set the approximate height, on average, of the list items in pixels.
 `core-list` uses this value to determine how many elements
 to render based on its viewport size.
 Normally you don't need to adjust this value unless the average
 size is much larger or smaller than the default of 200.
+In the example above that displays names, the items` height was 30 pixels.
+This example needs to use the `height` property on the `core-list`.
+
+The basic rule is that if you have fixed-height rows, set the `height` property
+of the `core-list`.  If you have variable height rows, set the `height` property
+if the average height is much larger or smaller than the default of 200px.
 
 <pre>
 &lt;core-list id="list" data="{%raw%}{{data}}{%endraw%}" height="80" flex&gt;
@@ -201,7 +215,7 @@ size is much larger or smaller than the default of 200.
 The `core-list` in the following example includes checkboxes, select elements,
 input elements along with text elements.
 
-![Core-list that contains different kinds of elements](core-list-images/multiple-elements.png)
+![Core-list that contains different kinds of elements](/images/core-list/multiple-elements.png)
 
 Here’s the code that puts the checkbox, the text input field, and the select element in
 the `core-list` template.
@@ -232,28 +246,27 @@ The user data in the model mirrors the elements in the template.
 
 ## Using core-header-panel with core-list {#list-with-core-header-panel}
 
-A common way to provide a header with a `core-list`
-is to use a
-<code><a href="/docs/elements/core-elements.html#core-header-panel">core-header-panel</a></code>, which 
-contains a <code><a href="/docs/elements/core-elements.html#core-toolbar">core-toolbar</a></code>.
+A common way to provide a header with a `core-list` is to use a
+<code><a href="/docs/elements/core-elements.html#core-header-panel">core-header-panel</a></code>. The `core-header-panel` has a header section and a content section. You can use a 
+<code><a href="/docs/elements/core-elements.html#core-toolbar">core-toolbar</a></code> to implement the header section. Let’s look at an example.
 
-Remember to install and import the two new elements in the header of your HTML code!
+Remember to install and import the two new elements in the header of your HTML code.
 
     <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
     <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
 
-Embed the `core-list` within the `core-toolbar` within a `core-header-panel`.
+Embed the `core-list` in a `core-header-panel`. Include a `core-toolbar` as well. The `core-toolbar` remains in place at the top of the viewport as the user scrolls. It has a shadow, which gives the illusion of the `core-list` items scrolling up under the toolbar.
 
 <pre>
   <strong class="highlight nocode">&lt;core-header-panel id="hPanel" flex&gt;
-    &lt;core-toolbar&gt;Images&lt;/core-toolbar&gt;</strong>
+    &lt;core-toolbar&gt;Variable height images&lt;/core-toolbar&gt;</strong>
     &lt;core-list id="list" data="{%raw%}{{data}}{%endraw%}" flex&gt;
       ...
     &lt;/core-list&gt;
   <strong class="highlight nocode">&lt;/core-header-panel&gt;</strong>
 </pre>
 
-The `core-list` in this example is contained within a {{site.project_title}} element, so the initialization code appears in the `ready()` method.
+The `core-list` in this example is contained within a {{site.project_title}} element, so the code that populates the `core-list` appears in the `ready()` method.
 
 The highlighted line of code below is critical.
 It tells the `core-list` to listen for scroll events
@@ -278,20 +291,24 @@ You can also set the scroll target in markup as follows:
 
 ## Summary
 
+You can use `core-list` to display a large list of homogenous items. You must explicitly manage the heights of the items and of the `core-list` itself to get proper behavior. A `core-list` can contain many different kinds of elements. Use a `core-header-panel` along with a `core-toolbar` to provide a header. When displaying images, use `core-image` to avoid displaying stale images due to slower loading times.
+
+## More Resources
+
 Use these links to find the source code for the samples used in this guide
 and to run them:
 
-* [core-list with names](https://github.com/marycampione/core-list-examples/blob/master/core-list-names.html)
+* [core-list with names](/samples/core-list/core-list-names.txt)
 <a href="core-list-examples/core-list-names.html" class="link_button"
-         target="_blank" >DEMO</a>
+         target="_blank" >Run it</a>
 
-* [core-list with variable height images and core-header-panel](https://github.com/marycampione/core-list-examples/blob/master/core-list-no-stale-images.html)
+* [core-list with variable height images and core-header-panel](/samples/core-list/core-list-no-stale-images.txt)
 <a href="core-list-examples/core-list-no-stale-images.html" class="link_button"
-         target="_blank" >DEMO</a>
+         target="_blank" >Run it</a>
 
-* [core-list with a variety of elements](https://github.com/marycampione/core-list-examples/blob/master/multiple-elements.html)
+* [core-list with a variety of elements](/samples/core-list/multiple-elements.txt)
 <a href="core-list-examples/multiple-elements.html" class="link_button"
-         target="_blank" >DEMO</a>
+         target="_blank" >Run it</a>
 
 For more information about the core elements used in this guide,
 check out the API docs:

@@ -8,6 +8,7 @@
   <style>
     core-list {
       border: solid 1px purple;
+      height: 200px;
     }
       
     div.item {
@@ -25,7 +26,7 @@
 
   <template is="auto-binding" id="my-core-list">
     <div class="content" flex>
-      <core-list data="{{data}}" flex>
+      <core-list data="{{data}}" flex height="30">
         <template>
           <div class="item">
             <span class="from">{{model.name}}</span>
@@ -36,11 +37,11 @@
   </template>
   
   <script>
-    var c = document.querySelector('#my-core-list');
+    var cl = document.querySelector('#my-core-list');
     names = [ 'Elizabeth', 'Jane', 'Kitty', 'Lydia', 'Mary', 'Mrs. Bennet', 'Mr. Bennet', 'Mr. Bingley', 'Mr. Darcy', '...'] ;
-    c.data = [];
+    cl.data = [];
     for (i = 0; i < names.length; i++) {
-      c.data.push({name: names[i]});
+      cl.data.push({name: names[i]});
     }
   </script>
 

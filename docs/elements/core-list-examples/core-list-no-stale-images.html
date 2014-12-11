@@ -25,6 +25,9 @@
     <polymer-element name="list-test" layout vertical>
       <template>
         <style>
+          .image {
+            background-color: lightgray;
+          }
         </style>
 
         <core-header-panel id="hPanel" flex>
@@ -32,9 +35,7 @@
           <core-list id="list" data="{{data}}" flex>
             <template>
               <div class="item">
-              <core-image src="{{model.image.src}}"
-                   style="width:{{model.image.width}};
-                   height:{{model.image.height}}; background-color: lightgray;" preload></core-image>
+              <core-image class="image" src="{{model.image.src}}" width="{{model.image.width}}" height="{{model.image.height}}" preload></core-image>
               </div>
             </template>
           </core-list>
