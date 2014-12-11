@@ -624,7 +624,7 @@ Property reflection is only useful in a few cases, so it is off by default.
 You usually only need property reflection if you want to style an element based
 on an attribute value.
 
-To enable reflection, define the property in the `publish` block.
+To enable reflection, define the property in the `publish` object.
 Instead of a simple value:
 
 <pre>
@@ -819,112 +819,6 @@ The values are the callback function names, here `onTap`.
 Event handler functions defined imperatively
 receive the same arguments as those defined declaratively.
 
-### Observing properties {#observeprops}
-
-#### Changed watchers {#change-watchers}
-
-The simplest way to observe property changes on your element is to use a changed watcher.
-All properties on {{site.project_title}} elements can be watched for changes by implementing a <code><em>propertyName</em>Changed</code> handler. When the value of a watched property changes, the appropriate change handler is automatically invoked.
-
-    <polymer-element name="g-cool" attributes="better best">
-      <script>
-        Polymer({
-          better: '',
-          best: '',
-          betterChanged: function(oldValue, newValue) {
-            ...
-          },
-          bestChanged: function(oldValue, newValue) {
-            ...
-          }
-        });
-      </script>
-    </polymer-element>
-
-In this example, there are two watched properties, `better` and `best`. The `betterChanged` and `bestChanged` function will be called whenever `better` or `best` are modified, respectively.
-
-#### Custom property observers - `observe` blocks {#observeblock}
-
-Sometimes a [changed watcher](#change-watchers) is not enough. For more control over
-property observation, {{site.project_title}} provides `observe` blocks.
-
-An `observe` block defines a custom property/observer mapping for one or more properties.
-It can be used to watch for changes to nested objects or share the same callback
-for several properties.
-
-**Example:** - share a single observer
-
-    Polymer('x-element', {
-      foo: '',
-      bar: '',
-      observe: {
-        foo: 'validate',
-        bar: 'validate'
-      },
-      ready: function() {
-        this.foo = 'bar';
-        this.bar = 'foo';
-      },
-      validate: function(oldValue, newValue) {
-        ...
-      },
-    });
-
-In the example, `validate()` is called whenever `foo` or `bar` changes.
-
-**Example:** - using automatic node in an `observe` block
-
-When an element has an id, you can use `this.$` in the `observe` block to watch
-a property on that element:
-
-    <template>
-      <x-foo id="foo"></x-foo>
-    </template>
-    ...
-    Polymer('x-element', {
-      observe: {
-        'this.$.foo.someProperty': 'fooPropertyChanged'
-      },
-      fooPropertyChanged: function(oldValue, newValue) {
-        ...
-      }
-    });
-
-**Example:** - watching for changes to a nested object path
-
-    Polymer('x-element', {
-      observe: {
-        'a.b.c': 'validateSubPath'
-      },
-      ready: function() {
-        this.a = {
-          b: {
-            c: 'exists'
-          }
-        };
-      },
-      validateSubPath: function(oldValue, newValue) {
-        var value = Path.get('a.b.c').getValueFrom(this);
-        // oldValue == undefined
-        // newValue == value == this.a.b.c === 'exists'
-      }
-    });
-
-It's important to note that **{{site.project_title}} does not call the <code><em>propertyName</em>Changed</code> callback for properties included in an `observe` block**. Instead, the defined observer gets called.
-
-    Polymer('x-element', {
-      bar: '',
-      observe: {
-        bar: 'validate'
-      },
-      barChanged: function(oldValue, newValue) {
-        console.log("I'm not called");
-      },
-      validate: function(oldValue, newValue) {
-        console.log("I'm called instead");
-      }
-    });
-
 ### Automatic node finding
 
 Another useful feature of {{site.project_title}} is automatic node finding.
@@ -968,6 +862,118 @@ descendants. For example, if your element's template looks like this:
 You can locate the inner container using:
 
     this.$.container.querySelector('#inner');
+
+### Observing properties {#observeprops}
+
+#### Changed watchers {#change-watchers}
+
+The simplest way to observe property changes on your element is to use a changed watcher.
+All properties on {{site.project_title}} elements can be watched for changes by implementing a <code><em>propertyName</em>Changed</code> handler. When the value of a watched property changes, the appropriate change handler is automatically invoked.
+
+    <polymer-element name="g-cool" attributes="better best">
+      <script>
+        Polymer({
+          better: '',
+          best: '',
+          betterChanged: function(oldValue, newValue) {
+            ...
+          },
+          bestChanged: function(oldValue, newValue) {
+            ...
+          }
+        });
+      </script>
+    </polymer-element>
+
+In this example, there are two watched properties, `better` and `best`. The `betterChanged` and `bestChanged` function will be called whenever `better` or `best` are modified, respectively.
+
+#### Custom property observers &mdash; the `observe` object {#observeblock}
+
+Sometimes a [changed watcher](#change-watchers) is not enough. For more control over
+property observation, {{site.project_title}} provides the `observe` object.
+
+An `observe` object defines a custom property/observer mapping for one or more properties.
+It can be used to watch for changes to nested objects or share the same callback
+for several properties.
+
+**Example:** sharing a single observer
+
+    Polymer('x-element', {
+      foo: '',
+      bar: '',
+      observe: {
+        foo: 'validate',
+        bar: 'validate'
+      },
+      ready: function() {
+        this.foo = 'bar';
+        this.bar = 'foo';
+      },
+      validate: function(oldValue, newValue) {
+        ...
+      },
+    });
+
+In the example, `validate()` is called whenever `foo` or `bar` changes.
+
+**Example:** using automatic node finding in an `observe` object
+
+When an element has an ID, you can use the `this.$` hash in the `observe` object to watch
+a property on that element. 
+
+    <template>
+      <x-foo id="foo"></x-foo>
+    </template>
+    ...
+    Polymer('x-element', {
+      observe: {
+        '$.foo.someProperty': 'fooPropertyChanged'
+      },
+      fooPropertyChanged: function(oldValue, newValue) {
+        ...
+      }
+    });
+
+All property names in the `observe` object are relative to `this`, so `$.foo.someProperty` 
+refers to a property on the `<x-foo>` element. See the section on 
+[automatic node finding](#automatic-node-finding) for more infomration on the `this.$`
+hash and its limitations.
+
+**Example:** watching for changes to a nested object path
+
+    Polymer('x-element', {
+      observe: {
+        'a.b.c': 'validateSubPath'
+      },
+      ready: function() {
+        this.a = {
+          b: {
+            c: 'exists'
+          }
+        };
+      },
+      validateSubPath: function(oldValue, newValue) {
+        var value = Path.get('a.b.c').getValueFrom(this);
+        // oldValue == undefined
+        // newValue == value == this.a.b.c === 'exists'
+      }
+    });
+
+It's important to note that **{{site.project_title}} does not call the <code><em>propertyName</em>Changed</code> callback for properties included in the `observe` object**. Instead, the defined observer gets called.
+
+    Polymer('x-element', {
+      bar: '',
+      observe: {
+        bar: 'validate'
+      },
+      barChanged: function(oldValue, newValue) {
+        console.log("I'm not called");
+      },
+      validate: function(oldValue, newValue) {
+        console.log("I'm called instead");
+      }
+    });
+
 
 ### Firing custom events {#fire}
 
