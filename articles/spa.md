@@ -278,7 +278,7 @@ We want to persist the last view across page reloads. Once again, data-binding c
     template.addEventListener('template-bound', function(e) {
       // Use URL hash for initial route. Otherwise, use the first page.
       this.route = this.route || DEFAULT_ROUTE;
-    };
+    });
 
 ### Alternative routing libs {#routinglibs}
 
