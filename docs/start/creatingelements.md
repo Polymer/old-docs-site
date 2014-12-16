@@ -159,7 +159,7 @@ You can use bindings with built-in elements just like you would with Polymer ele
 
 {% include samples/age-slider.html %}
 
-**Note:** Giving `age` an initial value `25` gives {{site.project_title}}
+**Note:** Giving `age` an initial value of `25` gives {{site.project_title}}
 a hint that this property is an integer.
 {: .alert alert-info}
 
