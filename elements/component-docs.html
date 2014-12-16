@@ -64,10 +64,40 @@
     <div class="main" on-marked-js-highlight="{{prettyPrint}}">
       <h1>{{data.name}}</h1>
 
-      <template if="{{data.extends}}">
-        <section class="top">
-          <h3>Extends: <a href="{{data.extends | collectionPrefix}}-elements.html#{{data.extends}}">{{data.extends}}</a></h3>
-        </section>
+      <template bind="{{data as data}}" if="{{data.extends || data.mixins}}">
+        <div class="inheritance">
+          <template if="{{data.extends}}">
+            <section class="top extends" layout horizontal center>
+              <h3 data-anchor-id="{{data.name}}.extends">
+                Extends:
+                <template repeat="{{e, i in data.extends}}">
+                  <template if="{{e.url}}">
+                    <a href="{{e.url}}">{{e.name}}</a>
+                  </template>
+                  <template if="{{!e.url}}">
+                    <a href="{{e.name | collectionPrefix}}-elements.html#{{e.name}}">{{e.name}}</a>
+                  </template>
+                  <span hidden?="{{i == data.extends.length - 1}}">,</span>
+                </template>
+              </h3>
+            </section>
+          </template>
+
+          <template if="{{data.mixins}}">
+            <section class="top mixins" layout horizontal center>
+              <h3 data-anchor-id="{{data.name}}.mixins">
+                Mixins:
+                <template repeat="{{e, i in data.mixins}}">
+                  <template if="{{e.url}}">
+                    <a href="{{e.url ? e.url : e.name}}">{{e.name}}</a>
+                  </template>
+                  <template if="{{!e.url}}"><span>{{e.name}}</span></template>
+                  <span hidden?="{{i == data.mixins.length - 1}}">,</span>
+                </template>
+              </h3>
+            </section>
+          </template>
+        </div>
       </template>
 
       <template if="{{downloadable}}">
