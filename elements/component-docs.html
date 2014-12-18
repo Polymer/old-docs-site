@@ -217,9 +217,13 @@
         return match ? match[1] : 'core';
       },
       dataChanged: function() {
-        // Wrap this in an async to ensure that the <template> has a chance to
-        // be stamped out first.
-        this.async(this.scrollToAnchor);
+        // HACK: There is some sort of phantom scrolling going on that will, under some
+        // circumstances, scroll back to the top of the page if we scroll down to the
+        // anchor element immediately after the data changes. This behavior doesn't
+        // happen if we delay for a bit before triggering our scroll.
+        // To get around this, we wrap the scrolling in an async with a 200ms delay,
+        // similar to what's done in app.js's polymer-ready listener.
+        this.async(this.scrollToAnchor, null, 200);
       },
       scrollToAnchor: function() {
         var anchorId = window.location.hash.slice(1);
@@ -227,9 +231,10 @@
         if (elementToFocus) {
           // We can't use elementToFocus.scrollIntoView() because the top of
           // the element would be cut off by the banner, so calculate an
-          // appropriate y coordinate that takes the banner into account.
+          // appropriate y coordinate that takes the banner into account,
+          // as well as the current scroll position.
           var boundingRect = elementToFocus.getBoundingClientRect();
-          window.scrollTo(0, boundingRect.top - this.bannerHeight);
+          window.scrollTo(0, boundingRect.top - this.bannerHeight + window.pageYOffset);
         }
       },
       // This handler is invoked on all clicks within the <doc-page>, and checks
@@ -238,6 +243,7 @@
       handleAnchorIdClick: function(e) {
         if (e.target.dataset.anchorId) {
           window.location.hash = e.target.dataset.anchorId;
+          this.scrollToAnchor();
         }
       }
     });
