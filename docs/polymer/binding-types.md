@@ -57,8 +57,6 @@ For convenience, you can also create a _named scope_ when binding an object:
 In this case, you can use the named scope `p` to access the properties of the `person` object.
 Named scopes can be handy when nesting templates.
 
-
-
 ## Iterative templates
 
 Iterative, or repeating, templates, generate a single template instance for each item in
@@ -188,36 +186,75 @@ That's where the `ref` attribute comes in:
         Used by any template which refers to this one by the ref attribute
       </template>
 
-      <template bind ref="myTemplate">
+      <template bind="{{}}" ref="myTemplate">
         When creating an instance, the content of this template will be ignored,
         and the content of #myTemplate is used instead.
       </template>
     </template>
 {% endraw %}
 
+You must include the `bind` or `repeat` attribute along with the `ref` 
+attribute to activate binding on the template. 
+(The empty binding expression used here, {%raw%}`{{}}`{%endraw%}, matches the current scope.)
+
+### Recursive and dynamic templates
+
+You can also use the `ref` attribute to create recursive templates
+or to select templates dynamically. These features are complex and
+rarely used, and are only described briefly here.
+
 You can use the `ref` attribute to define recursive templates, such as tree structures:
 
 {% raw %}
     <template>
-      <template>
-        <ul>
+      <ul>
         <template repeat="{{items}}" id="t">
           <li>{{name}}
-          <ul>
-            <template ref="t" repeat="{{children}}"></template>
-          </ul>
-        </li>
-      </template>
+            <ul>
+              <template ref="t" repeat="{{children}}"></template>
+            </ul>
+          </li>
+        </template>
+      </ul>
     </template>
 {% endraw %}
 
-In addition, you can bind to the `ref` attribute _itself_, to choose templates dynamically:
+Here the innermost template is a recursive reference to the outer `template` with the ID `t`.
+Instead of iterating over `items`, the innermost template iterates over the `children` property 
+on the current scope.
+
+This code assumes a data structure like this:
+
+    items: [  
+      { 
+        name: "1", 
+        children: [ 
+          { 
+            name: "1.1", 
+            children: []  
+          }, {
+            name: "1.2",
+            children: [
+              {
+                name: "1.2.1"
+                children: []
+              }
+            ] 
+          }
+        ]
+      }
+    ]
+
+You can also bind to the `ref` attribute _itself_, to choose templates dynamically:
 
 {% raw %}
-    <template>
-      <template bind ref="{{node.nodeType}}"></template>
+    <template repeat="{{node in nodes}}">
+      <template bind="{{}}" ref="{{node.nodeType}}"></template>
     </template>
 {% endraw %}
+
+Here, the _value_ of `node.nodeType` is a string that identifies 
+the ID of the template to use.
 
 ## Node bindings
 

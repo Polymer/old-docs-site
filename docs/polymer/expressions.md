@@ -102,7 +102,8 @@ For computed properties, the scope of an expression is always the element itself
 Templates that don't include `bind` or `repeat` share the current scope.
 
 A `bind` or `repeat` without an expression is the same as using an expression that
-specifies the current scope.
+specifies the current scope. An empty binding expression, {%raw%}`{{}}`{%endraw%} 
+also specifies the current scope.
 
 ### Nested scoping rules {#nested-scoping-rules}
 
