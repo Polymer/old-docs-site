@@ -173,7 +173,7 @@ A simple assertion test using an assert-style test for this could be written as 
     selector.addEventListener('core-select', function(event) {
 
        // with an assert style
-       assert.equal(event.detail.item, '(item).);
+       assert.equal(event.detail.item, '(item)');
 
        // or an expect style
        expect(event.detail.item).to.equal('(item)');
