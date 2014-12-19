@@ -77,7 +77,7 @@
   <template>
     <link rel="stylesheet" href="../components/highlightjs/styles/default.css">
     <link rel="stylesheet" href="../css/elements/doc-page.css">
-    <div class="main" on-marked-js-highlight="{{prettyPrint}}" on-click="{{handleAnchorIdClick}}">
+    <div id="main" class="main" on-marked-js-highlight="{{prettyPrint}}" on-click="{{handleAnchorIdClick}}">
       <h1 data-anchor-id="{{data.name}}">{{data.name}}</h1>
 
       <template if="{{data.extends}}">
@@ -227,14 +227,11 @@
       },
       scrollToAnchor: function() {
         var anchorId = window.location.hash.slice(1);
-        var elementToFocus = this.shadowRoot.querySelector('[data-anchor-id="' + anchorId + '"]');
+        var elementToFocus = this.$.main.querySelector('[data-anchor-id="' + anchorId + '"]');
         if (elementToFocus) {
-          // We can't use elementToFocus.scrollIntoView() because the top of
-          // the element would be cut off by the banner, so calculate an
-          // appropriate y coordinate that takes the banner into account,
-          // as well as the current scroll position.
-          var boundingRect = elementToFocus.getBoundingClientRect();
-          window.scrollTo(0, boundingRect.top - this.bannerHeight + window.pageYOffset);
+          // Take the banner height into consideration when calculating where to scroll to.
+          // Otherwise, the element would be obscured.
+          window.scrollTo(0, elementToFocus.offsetTop - this.bannerHeight);
         }
       },
       // This handler is invoked on all clicks within the <doc-page>, and checks
