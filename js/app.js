@@ -149,8 +149,14 @@ function injectPage(url, opt_addToHistory) {
 
     // Scroll to hash, otherwise goto top of the loaded page.
     if (location.hash) {
-      var scrollTargetEl = document.querySelector(location.hash);
-      scrollTargetEl && scrollTargetEl.scrollIntoView(true, {behavior: 'smooth'});
+      // Wrap this scrolling logic in a timeout to ensure that the <template>s are fully
+      // stamped out, and that if the user agent tries to reset the scroll position (e.g.
+      // after a reload), our logic kicks in afterward.
+      // See https://github.com/Polymer/docs/pull/836 for a discussion of this behavior.
+      window.setTimeout(function() {
+        var scrollTargetEl = document.querySelector(location.hash);
+        scrollTargetEl && exports.scrollTo(0, scrollTargetEl.offsetTop - siteBanner.offsetHeight);
+      }, 200);
     } else {
       exports.scrollTo(0, 0);
     }
