@@ -16,7 +16,7 @@ title: Welcome
       </a>
       <a href="https://github.com/polymer">
         <paper-button class="github" unresolved>
-          <core-icon icon="social:post-github"></core-icon> View on Github
+          <core-icon icon="social:post-github"></core-icon> View on GitHub
         </paper-button>
       </a>
     </summary>
@@ -82,7 +82,7 @@ title: Welcome
       </a>
       <div>
         <p>
-        Designer is a drag and drop tool for prototyping apps using {{site.project_title}}. Save your experiments as Github gists.
+        Designer is a drag and drop tool for prototyping apps using {{site.project_title}}. Save your experiments as GitHub gists.
         </p>
         <a href="/tools/designer/" target="_blank">
           <paper-button>
