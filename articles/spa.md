@@ -421,7 +421,8 @@ Render a different icon for the selected nav item:
 
 {%raw%}
     <paper-item noink>
-      &lt;ore-icon icon="label{{route != page.hash ? '-outline' : ''}}">&lt;/core-icon>
+      <core-icon icon="label{{route != page.hash ? '-outline' : ''}}"></core-icon>
+    </paper-item>
 {%endraw%}
 
 Tapping on a page cycles through the pages:
