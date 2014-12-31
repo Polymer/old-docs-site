@@ -18,6 +18,8 @@ tags:
 
 {% include authorship.html %}
 
+{% include not-an-intro.html %}
+
 {% include toc.html %}
 
 **Writing tests feels great**. When you've written a new Polymer element and verified it works as expected you know the API you're shipping is rock solid. You see ticks in your test runner and all your tests pass. BOOM! You've just written some of the most reliable code ever.
