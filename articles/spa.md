@@ -29,6 +29,8 @@ paper-button.blue:hover {
 
 {% include authorship.html %}
 
+{% include not-an-intro.html %}
+
 {% include toc.html %}
 
 So how do you build a single page application (SPA) with Polymer? On the Polymer team we get this question a lot. Our answer (as always) is..."use components!" However, it's never immediately obvious how to tackle an existing problem with new technologies. How do you compose a bunch of modular components into a larger, functional app?
@@ -38,7 +40,7 @@ So how do you build a single page application (SPA) with Polymer? On the Polymer
   <a href="demos/spa/final.html" target="_blank"><img src="images/spa/screenshot.png" style="width:300px;"></a>
 </p>
 
-In this tutorial, I'll show you how to build a full-featured single page application that:
+In this article, I'll show you how to build a full-featured single page application that:
 
 - Is built entirely using Polymer's [core elements](/docs/elements/core-elements.html)
 - Practices responsive design
@@ -47,13 +49,26 @@ In this tutorial, I'll show you how to build a full-featured single page applica
 - Is keyboard accessible
 - Loads content dynamically on-demand (optional)
 
-<p layout vertical center-center>
+<p layout horizontal center-center>
 <a href="demos/spa/final.html" target="_blank">
   <paper-button raised class="blue">
     <core-icon icon="arrow-forward"></core-icon>Launch the demo
   </paper-button>
 </a>
 </p>
+
+If you like to eat dessert first, you can find the files for the 
+finished demo here:
+
+-   <a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/final.html" target="_blank">
+    HTML (<code>final.html</code>)</a>
+-   <a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/elements.html" target="_blank">
+    Imports (<code>elements.html</code>)</a>
+-   <a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/app.js" target="_blank">
+    JavaScript (<code>app.js</code>)</a>
+-   <a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/styles.css" target="_blank">
+    CSS (<code>styles.css</code>)</a>
+
 
 ## App structure
 {:style="clear:both"}
@@ -63,7 +78,6 @@ has several [layout elements](/docs/elements/layout-elements.html) (`<core-heade
 
 `<core-scaffold>`'s children are arranged by specifying attributes and/or using specific tags. For example, using a `<nav>` element creates the app drawer. Alternatively, you can use the `navigation` attribute on any element (e.g `<core-header-panel navigation>`). The toolbar is designated with the `tool` attribute. All other children end up in the main content area.
 
-**Example**
 
 <pre>
 &lt;body unresolved fullbleed&gt;
@@ -166,6 +180,20 @@ By now you should have <a href="demos/spa/example1.html" target="_blank">a basic
 </a>
 </p>
 
+<p layout horizontal center-center>
+<a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/example1-style.html" target="_blank">
+  <paper-button raised class="blue">
+    <core-icon icon="arrow-forward"></core-icon>See the HTML 
+  </paper-button>
+</a>
+
+<a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/styles.css" target="_blank">
+  <paper-button raised class="blue">
+    <core-icon icon="arrow-forward"></core-icon>See the CSS
+  </paper-button>
+</a>
+</p>
+
 ### Using data binding {#databinding}
 
 We have an app, but it's nothing to write home about. It's far from DRY. Similar markup is repeated all over the place:
@@ -253,11 +281,19 @@ their `selected` attributes** together. Now, when a user clicks on a nav item th
     <core-animated-pages valueattr="hash" selected="{{route}}">
 {%endraw%}
 
+<p layout horizontal center-center>
 <a href="demos/spa/example2.html" target="_blank">
   <paper-button raised class="blue">
     <core-icon icon="arrow-forward"></core-icon>Demo
   </paper-button>
 </a>
+
+<a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/example2.html" target="_blank">
+  <paper-button raised class="blue">
+    <core-icon icon="arrow-forward"></core-icon>See the HTML
+  </paper-button>
+</a>
+</p>
 
 ## URL routing &amp; deep linking {#routing}
 
@@ -393,11 +429,25 @@ template.onResponse = function(e, detail, sender) {
 };
 </pre>
 
+<p layout horizontal center-center>
 <a href="demos/spa/example-ajax.html" target="_blank">
   <paper-button raised class="blue">
     <core-icon icon="arrow-forward"></core-icon>AJAX Demo
   </paper-button>
 </a>
+
+<a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/example-ajax.html" target="_blank">
+  <paper-button raised class="blue">
+    <core-icon icon="arrow-forward"></core-icon>See the HTML
+  </paper-button>
+</a>
+
+<a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/app-ajax.js" target="_blank">
+  <paper-button raised class="blue">
+    <core-icon icon="arrow-forward"></core-icon>See the JavaScript
+  </paper-button>
+</a>
+</p>
 
 ## Polish and finishing touches {#extras}
 

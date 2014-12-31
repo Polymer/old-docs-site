@@ -8,10 +8,10 @@ var ajax, pages, scaffold;
 var cache = {};
 
 template.pages = [
-  {name: 'Shadow DOM 101', hash: 'one', url: 'http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/'},
-  {name: 'Shadow DOM 201', hash: 'two', url: 'http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/'},
-  {name: 'Shadow DOM 301', hash: 'three', url: 'http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-301/'},
-  {name: 'Custom Elements', hash: 'four', url: 'http://www.html5rocks.com/en/tutorials/webcomponents/customelements/'}
+  {name: 'Shadow DOM 101', hash: 'one', url: 'https://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/'},
+  {name: 'Shadow DOM 201', hash: 'two', url: 'https://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/'},
+  {name: 'Shadow DOM 301', hash: 'three', url: 'https://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-301/'},
+  {name: 'Custom Elements', hash: 'four', url: 'https://www.html5rocks.com/en/tutorials/webcomponents/customelements/'}
 ];
 
 template.addEventListener('template-bound', function(e) {

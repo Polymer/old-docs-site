@@ -19,6 +19,8 @@ tags:
 - bower
 ---
 
+{% include not-an-intro.html %}
+
 A number of developers have asked if they can use [Polymer](http://www.polymer-project.org/) with [X-Tag](http://www.x-tags.org/)/[Brick](http://mozilla.github.io/brick/) or vanilla custom elements. We're happy to say that, yes, custom elements of any variety (be they Polymer, X-Tag or vanilla) can all happily coexist. In this guide we’ll cover what you need to do to get started working with custom elements in an interoperable fashion.
 
 ## Getting Setup

@@ -20,6 +20,8 @@ tags:
 
 {% include authorship.html %}
 
+{% include not-an-intro.html %}
+
 {% include toc.html %}
 
 We all know that reducing network requests is important. In the {{site.project_title}} world, [Vulcanize](https://github.com/Polymer/vulcanize) is the name given to a build tool that lets you **concatenate** a set of elements and their HTML imported dependencies into a single file. If your app has lots of top-level imports, consider squashing them into a single file and importing it instead!
