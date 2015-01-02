@@ -38,8 +38,9 @@ you can specify the contents of the element's shadow DOM using a `<template>` ta
 
     <polymer-element name="my-custom-element" noscript>
       <template>
-        <span>People say: </span>
-          <content select="q"></content> 
+        <span>People say: 
+          <content select="q"></content>
+        </span>  
         <footer>sometimes</footer>
       </template>
     </polymer-element>
