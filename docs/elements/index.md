@@ -61,7 +61,7 @@ add_permalinks: false
   <!-- <paper-shadow z="1"></paper-shadow> -->
   <section flex>
     <h2><a href="/docs/elements/paper-elements.html#paper-button">Paper elements</a></h2>
-    <p>{{site.project_title}}'s paper elements collection implements material design for the web. They're a set of highly visual, highly interactive elements that include things like controls, layouts, hero transitions, and scrolling effects.</p>
+    <p>{{site.project_title}}'s paper elements collectfion implements material design for the web. They're a set of highly visual, highly interactive elements that include things like controls, layouts, hero transitions, and scrolling effects.</p>
     <p>
       <a href="/docs/elements/paper-elements.html#paper-button"><paper-button>Docs</paper-button></a>
       <a href="/components/paper-elements/demo.html#core-toolbar"><paper-button>Demos</paper-button></a>
