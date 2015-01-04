@@ -35,7 +35,6 @@ Our boilerplate for new Polymer elements, [`<seed-element>`](https://github.com/
         $ cd seed-element
         $ bower install
         $ npm install -g web-component-tester
-        $ cd ..
         $ wct
 
 The WCT (web-component-tester) tool will run your tests in multiple browsers at once. If all goes well, you should see some output resembling the following in your terminal:
