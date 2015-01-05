@@ -25,11 +25,22 @@ In addition, an item can be composed of multiple elements.
 <img src="/images/core-list/small-images.png" height="279px" width="110px" style="float:left;margin-left:30px">
 <img src="/images/core-list/multiple-elements.png" height="280px" width="265px" style="margin-left:30px">
 
-The list automatically adjusts for items of different heights,
-but care must be taken to provide the heights when the model is assigned to the item. You can learn more in [Providing heights](#providing-heights).
+When using a `<core-list>`, you provide a list of JavaScript objects (the data model),
+and a `<template>` element that defines how to render a single item.
+The `<core-list>` creates enough copies of the template to fill the viewport.
+As the user scrolls, these "virtual" items are recycled to display the items in the data model.
 
-For performance reasons, just enough template elements are rendered to fill the viewport.
-As the user scrolls, the template elements are recycled. This can cause issues with images and other data that might take some time to load.  See [Using core-image with core-list](#using-core-image-with-core-list) for a solution when working with images.
+Use `<core-list>` when working with lists large enough that
+data binding (`template repeat`) is impractical.
+
+The list automatically adjusts for items of different heights,
+but care must be taken to provide the heights when the model is assigned to the item.
+You can learn more in [Providing heights](#providing-heights).
+
+As the user scrolls, the template elements are recycled.
+This can cause issues with images and other data that take time to load.
+See [Using core-image with core-list](#using-core-image-with-core-list)
+for a solution when working with images.
 
 ## Installation
 
@@ -52,13 +63,13 @@ When the array changes, the `core-list` updates.
 [The data model](#the-data-model) section provides more information
 about the structure of the data.
 
-`core-list` fills its viewport with data items,
+`core-list` fills its viewport with items,
 which display vertically by default.
-The DOM for each item is stamped out from the template.
+The template defines the DOM tree for each item.
 
 The following code uses a
 `core-list` to display names with a simple `span` element.
-This `core-list` is within an auto-bound template,
+This `core-list` is within an auto-binding template,
 but could be inside a {{site.project_title}} element.
 
 <pre>
@@ -77,28 +88,24 @@ but could be inside a {{site.project_title}} element.
 
 ### The script {#the-script}
 
-The script for the auto-bound template generates the data model for `core-list`. 
+The script for the auto-binding template generates the data model for `core-list`. 
 
 <pre>
   &lt;script&gt;
-    var cl = document.querySelector('#my-core-list');
-    names = [ 'Elizabeth', 'Jane', 'Kitty', ... ] ;
-      cl.data = [];
-      for (i = 0; i &lt; names.length; i++) {
-        cl.data.push({name: names[i]});
-      }
+  var cl = document.querySelector('#my-core-list');
+  cl.data = [ {name: 'Elizabeth'}, {name: 'Jane'}, {name: 'Kitty'}, ... ];
   &lt;/script&gt;
 </pre>
 
 The array, `cl.data`, is bound to the `core-list`'s `data` attribute.
-Here, `cl.data` is built from a static array, but could be the output
+Here, `cl.data` is populated using a static array of maps, but could be the output
 of a database or an AJAX request.
 
 ### The data model {#the-data-model}
  
-Each list item is bound to a map&mdash;the model for the data.
-The map contains an index, a boolean indicating whether the
-item is selected, and finally, a model object, which contains
+Each list item is bound to a JavaScript object that provides the model for the data.
+The model contains an index, a boolean indicating whether the
+item is selected, and finally, a user model, which contains
 the data specific to the item.
  
 In the example that displays the list of names,
