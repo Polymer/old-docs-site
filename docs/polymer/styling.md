@@ -114,11 +114,7 @@ This means you only need `polyfill-next selector` when doing something that woul
 
 For example: `::content > *` will not work in a polyfilled browser because `> *` is not a valid selector. This selector could be rewritten as follows:
 
-    ::content > * { }
-
-or as:
-
-    polyfill-next-selector { content: '> *' }
+    polyfill-next-selector { content: ':host > *' }
     ::content > * { }
 
 Under native Shadow DOM nothing changes. Under the polyfill, the native selector is replaced with the one defined in its `polyfill-next-selector` predecessor.

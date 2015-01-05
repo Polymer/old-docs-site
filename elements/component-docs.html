@@ -12,22 +12,32 @@
 <link rel="import" href="../components/marked-element/marked-element.html">
 <!-- <link rel="import" href="../components/highlightjs-element/highlightjs-element.html"> -->
 
-<polymer-element name="component-docs" attributes="elements">
+<polymer-element name="component-docs" attributes="bannerHeight elements">
   <template>
     <context-free-parser url="{{url}}" data="{{data}}" on-data-ready="{{dataReady}}">
     </context-free-parser>
     <template repeat="{{c in data.classes}}">
       <doc-page id="{{c.name}}" name="{{c.name}}" data="{{c}}"
+                bannerHeight="{{bannerHeight}}"
                 downloadable?="{{ isTopLevelElement(c.name, url) }}"></doc-page>
     </template>
   </template>
   <script>
     Polymer('component-docs', {
+      // Default to the height of the banner on the current site, though this can
+      // be overridden by the page that uses <compontent-docs> as needed.
+      bannerHeight: 80,
       elementName: null,
       url: null,
       elements: {},
       updateElementFromHash: function(e) {
-        var elementName = window.location.hash.slice(1);
+        // The URL fragment might be just an element name,
+        // or it might be an element name followed by a '.' and then
+        // a section of the page.
+        // We want to match on just element names here, so split on '.'.
+        // E.g.: 'core-ajax.properties.xhrArgs' -> 'core-ajax'
+        //       'core-xhr' -> 'core-xhr'
+        var elementName = window.location.hash.slice(1).split('.')[0];
         if (this.elementName !== elementName && this.elements[elementName]) {
           this.elementName = elementName;
           document.body.classList.add('hide-on-hash'); // Hide on .hide-on-hash elements.
@@ -43,7 +53,13 @@
       },
       elementNameChanged: function() {
         this.url = '/' + this.elements[this.elementName];
-        window.location.hash = this.elementName;
+        // Only update the location.hash here if the name of the new element
+        // isn't already at the start of the hash (position 1, after the '#').
+        // This will ensure that we don't overwrite a hash like
+        // #<elementName>.something.something with #<elementName>
+        if (window.location.hash.indexOf(this.elementName) !== 1) {
+          window.location.hash = this.elementName;
+        }
       },
       dataChanged: function() {
         if (this.data.classes[0].name === 'Entity') {
@@ -57,17 +73,47 @@
   </script>
 </polymer-element>
 
-<polymer-element name="doc-page" attributes="data downloadable" assetpath="../core-doc-viewer/elements/">
+<polymer-element name="doc-page" attributes="bannerHeight data downloadable" assetpath="../core-doc-viewer/elements/">
   <template>
     <link rel="stylesheet" href="../components/highlightjs/styles/default.css">
     <link rel="stylesheet" href="../css/elements/doc-page.css">
-    <div class="main" on-marked-js-highlight="{{prettyPrint}}">
-      <h1>{{data.name}}</h1>
+    <div id="main" class="main" on-marked-js-highlight="{{prettyPrint}}" on-click="{{handleAnchorIdClick}}">
+      <h1 data-anchor-id="{{data.name}}">{{data.name}}</h1>
 
-      <template if="{{data.extends}}">
-        <section class="top">
-          <h3>Extends: <a href="{{data.extends | collectionPrefix}}-elements.html#{{data.extends}}">{{data.extends}}</a></h3>
-        </section>
+      <template bind="{{data as data}}" if="{{data.extends || data.mixins}}">
+        <div class="inheritance">
+          <template if="{{data.extends}}">
+            <section class="top extends" layout horizontal center>
+              <h3 data-anchor-id="{{data.name}}.extends">
+                Extends:
+                <template repeat="{{e, i in data.extends}}">
+                  <template if="{{e.url}}">
+                    <a href="{{e.url}}">{{e.name}}</a>
+                  </template>
+                  <template if="{{!e.url}}">
+                    <a href="{{e.name | collectionPrefix}}-elements.html#{{e.name}}">{{e.name}}</a>
+                  </template>
+                  <span hidden?="{{i == data.extends.length - 1}}">,</span>
+                </template>
+              </h3>
+            </section>
+          </template>
+
+          <template if="{{data.mixins}}">
+            <section class="top mixins" layout horizontal center>
+              <h3 data-anchor-id="{{data.name}}.mixins">
+                Mixins:
+                <template repeat="{{e, i in data.mixins}}">
+                  <template if="{{e.url}}">
+                    <a href="{{e.url ? e.url : e.name}}">{{e.name}}</a>
+                  </template>
+                  <template if="{{!e.url}}"><span>{{e.name}}</span></template>
+                  <span hidden?="{{i == data.mixins.length - 1}}">,</span>
+                </template>
+              </h3>
+            </section>
+          </template>
+        </div>
       </template>
 
       <template if="{{downloadable}}">
@@ -84,24 +130,24 @@
 
       <template if="{{data.description}}">
         <section class="box top">
-          <h3>Summary</h3>
+          <h3 data-anchor-id="{{data.name}}.summary">Summary</h3>
           <marked-element text="{{data.description}}"></marked-element>
         </section>
       </template>
 
       <template if="{{data.attributes.length}}">
         <section class="box attribute-box">
-          <h3>Attributes</h3>
-          <template repeat="{{data.attributes}}">
+          <h3 data-anchor-id="{{data.name}}.attributes">Attributes</h3>
+          <template repeat="{{attribute in data.attributes}}">
             <div class="details" horizontal layout>
               <div class="details-name" flex>
-                <p><code>{{name}}</code></p>
+                <p><code data-anchor-id="{{data.name}}.attributes.{{attribute.name}}">{{attribute.name}}</code></p>
               </div>
               <div class="details-info" flex three>
                 <p layout horizontal center justified>
-                  <code>{{type}}</code><span class="default" hidden?="{{!default}}">default: <code>{{default}}</code></span>
+                  <code>&lt;<em>{{attribute.type}}</em>&gt;</code><span class="default" hidden?="{{!attribute.default}}">default: <code>{{attribute.default}}</code></span>
                 </p>
-                <marked-element text="{{description}}"></marked-element>
+                <marked-element text="{{attribute.description}}"></marked-element>
               </div>
             </div>
           </template>
@@ -110,17 +156,17 @@
 
       <template if="{{data.properties.length}}">
         <section class="box property-box">
-          <h3>Properties</h3>
-          <template repeat="{{data.properties}}">
+          <h3 data-anchor-id="{{data.name}}.properties">Properties</h3>
+          <template repeat="{{property in data.properties}}">
             <div class="details" horizontal layout>
               <div class="details-name" flex>
-                <p><code>{{name}}</code></p>
+                <p><code data-anchor-id="{{data.name}}.properties.{{property.name}}">{{property.name}}</code></p>
               </div>
               <div class="details-info" flex three>
                 <p layout horizontal center justified>
-                  <code>{{type}}</code><span class="default" hidden?="{{!default}}">default: <code>{{default}}</code></span>
+                  <code>&lt;<em>{{property.type}}</em>&gt;</code><span class="default" hidden?="{{!property.default}}">default: <code>{{property.default}}</code></span>
                 </p>
-                <marked-element text="{{description}}"></marked-element>
+                <marked-element text="{{property.description}}"></marked-element>
               </div>
             </div>
           </template>
@@ -129,20 +175,20 @@
 
       <template if="{{data.events.length}}">
         <section class="box event-box">
-          <h3>Events</h3>
-          <template repeat="{{data.events}}">
+          <h3 data-anchor-id="{{data.name}}.events">Events</h3>
+          <template repeat="{{event in data.events}}">
             <div class="details" horizontal layout>
               <div class="details-name" flex>
-                <p><code>{{name}}</code></p>
+                <p><code data-anchor-id="{{data.name}}.events.{{event.name}}">{{event.name}}</code></p>
               </div>
               <div class="details-info" flex three>
-                <marked-element text="{{description}}"></marked-element>
-                <template if="{{params.length}}">
+                <marked-element text="{{event.description}}"></marked-element>
+                <template if="{{event.params.length}}">
                   <div class="params">
                     <p>Event details:</p>
-                    <template repeat="{{params}}">
-                      <p><code>{{name}}</code><span> <code>( {{type}} )</code></span></p>
-                      <p><span>{{description}}</span></p>
+                    <template repeat="{{param in event.params}}">
+                      <p><code>&lt;<em>{{param.type}}</em>&gt; {{param.name}}</code></p>
+                      <p><span>{{param.description}}</span></p>
                     </template>
                   </div>
                 </template>
@@ -154,20 +200,20 @@
 
       <template if="{{data.methods.length}}">
         <section class="box method-box">
-          <h3>Methods</h3>
-          <template repeat="{{data.methods}}">
+          <h3 data-anchor-id="{{data.name}}.methods">Methods</h3>
+          <template repeat="{{method in data.methods}}">
             <div class="details" horizontal layout>
               <div class="details-name" flex>
-                <p><code>{{name}}</code></p>
+                <p><code data-anchor-id="{{data.name}}.methods.{{method.name}}">{{method.name}}</code></p>
               </div>
               <div class="details-info" flex three>
-                <marked-element text="{{description}}"></marked-element>
-                <template if="{{params.length}}">
+                <marked-element text="{{method.description}}"></marked-element>
+                <template if="{{method.params.length}}">
                   <div class="params">
                     <p>Method parameters:</p>
-                    <template repeat="{{params}}">
-                      <p><code>{{name}}</code><span> <code>( {{type}} )</code></span></p>
-                      <p><span>{{description}}</span></p>
+                    <template repeat="{{param in method.params}}">
+                      <p><code>&lt;<em>{{param.type}}</em>&gt; {{param.name}}</code></p>
+                      <p><span>{{param.description}}</span></p>
                     </template>
                   </div>
                 </template>
@@ -186,6 +232,7 @@
     }
 
     Polymer('doc-page', {
+      bannerHeight: 0,
       downloadable: false,
       recordDemoPageview: function(e, detail, sender) {
         window.recordPageview && window.recordPageview(sender.href); // global pollution.
@@ -198,10 +245,36 @@
       collectionPrefix: function(elementName) {
         var match = elementName.match(/(\w+)-/);
         return match ? match[1] : 'core';
+      },
+      dataChanged: function() {
+        // HACK: There is some sort of phantom scrolling going on that will, under some
+        // circumstances, scroll back to the top of the page if we scroll down to the
+        // anchor element immediately after the data changes. This behavior doesn't
+        // happen if we delay for a bit before triggering our scroll.
+        // To get around this, we wrap the scrolling in an async with a 200ms delay,
+        // similar to what's done in app.js's polymer-ready listener.
+        this.async(this.scrollToAnchor, null, 200);
+      },
+      scrollToAnchor: function() {
+        var anchorId = window.location.hash.slice(1);
+        var elementToFocus = this.$.main.querySelector('[data-anchor-id="' + anchorId + '"]');
+        if (elementToFocus) {
+          // Take the banner height into consideration when calculating where to scroll to.
+          // Otherwise, the element would be obscured.
+          window.scrollTo(0, elementToFocus.offsetTop - this.bannerHeight);
+        }
+      },
+      // This handler is invoked on all clicks within the <doc-page>, and checks
+      // to see if the element clicked on has an id that can be used as a page
+      // anchor. If so, it sets location.hash to that id.
+      handleAnchorIdClick: function(e) {
+        if (e.target.dataset.anchorId) {
+          window.location.hash = e.target.dataset.anchorId;
+          this.scrollToAnchor();
+        }
       }
     });
 
   })();
   </script>
 </polymer-element>
-

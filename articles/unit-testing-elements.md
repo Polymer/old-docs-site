@@ -18,6 +18,8 @@ tags:
 
 {% include authorship.html %}
 
+{% include not-an-intro.html %}
+
 {% include toc.html %}
 
 **Writing tests feels great**. When you've written a new Polymer element and verified it works as expected you know the API you're shipping is rock solid. You see ticks in your test runner and all your tests pass. BOOM! You've just written some of the most reliable code ever.
@@ -29,11 +31,11 @@ Okay, not quite, but you need tests because you're not Chuck Norris. Chuck Norri
 Our boilerplate for new Polymer elements, [`<seed-element>`](https://github.com/PolymerLabs/seed-element), contains everything you need to start writing unit tests for your element. To fetch it and install all the dependencies you'll need, run the following commands in the terminal:
 
         $ mkdir development
+        $ cd development
         $ git clone git://github.com/PolymerLabs/seed-element.git
         $ cd seed-element
         $ bower install
         $ npm install -g web-component-tester
-        $ cd ..
         $ wct
 
 The WCT (web-component-tester) tool will run your tests in multiple browsers at once. If all goes well, you should see some output resembling the following in your terminal:
@@ -173,7 +175,7 @@ A simple assertion test using an assert-style test for this could be written as 
     selector.addEventListener('core-select', function(event) {
 
        // with an assert style
-       assert.equal(event.detail.item, '(item).);
+       assert.equal(event.detail.item, '(item)');
 
        // or an expect style
        expect(event.detail.item).to.equal('(item)');

@@ -23,6 +23,8 @@ tags:
 
 {% include authorship.html %}
 
+{% include not-an-intro.html %}
+
 {% include toc.html %}
 
 You're off creating new elements in HTML! There will come a time
