@@ -30,6 +30,8 @@ Okay, not quite, but you need tests because you're not Chuck Norris. Chuck Norri
 
 Our boilerplate for new Polymer elements, [`<seed-element>`](https://github.com/PolymerLabs/seed-element), contains everything you need to start writing unit tests for your element. To fetch it and install all the dependencies you'll need, run the following commands in the terminal:
 
+        $ mkdir development
+        $ cd development
         $ git clone git://github.com/PolymerLabs/seed-element.git
         $ cd seed-element
         $ bower install
