@@ -22,14 +22,15 @@
   ],
   "dependencies": {
     "smoothscroll": "^0.0.2",
-    "x-tag-imports": "x-tag/x-tag-imports",
+    "x-tag-imports": "x-tag/x-tag-imports#latest",
     "marked": "*",
     "highlightjs": "*",
-    "plunker-button": "robdodson/plunker-button#^0.5.0",
-    "core-elements": "Polymer/core-elements#^0.5.2",
-    "paper-elements": "Polymer/paper-elements#^0.5.2",
-    "component-download-button": "Polymer/component-download-button#^0.5.2",
-    "code-explainer": "Polymer/code-explainer#^0.5.2",
-    "google-youtube": "GoogleWebComponents/google-youtube#^1.0.1"
+    "plunker-button": "robdodson/plunker-button#latest",
+    "core-elements": "Polymer/core-elements#latest",
+    "paper-elements": "Polymer/paper-elements#latest",
+    "component-download-button": "Polymer/component-download-button#latest",
+    "code-explainer": "Polymer/code-explainer#latest",
+    "google-youtube": "GoogleWebComponents/google-youtube#latest",
+    "paper-calculator": "Polymer/paper-calculator#latest"
   }
 }

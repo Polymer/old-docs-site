@@ -51,7 +51,7 @@ and scrolling effects.
 For more detail on the material design philosophy and guidelines, see the
 [Material design specification](http://google.com/design/spec).
 
-For a sample of the material design patterns in use, see the <a href="http://polymer-topeka.appspot.com" target="_blank">Topeka sample app</a>.
+For a sample of the material design patterns in use, see the <a href="https://polymer-topeka.appspot.com" target="_blank">Topeka sample app</a>.
 
 For quick visual demos of many of the paper elements, see the <a href="/components/paper-elements/demo.html" target="_blank">Paper elements sampler</a>.
 
@@ -425,7 +425,7 @@ important elements together, while using a simpler transition such as a
 cross-fade for the remaining elements.
 
 For example transitions, see the [`<core-animated-pages>` demos](/components/core-animated-pages/demo.html).
-The <a href="http://polymer-topeka.appspot.com" target="_blank">Topeka sample app</a> also
+The <a href="https://polymer-topeka.appspot.com" target="_blank">Topeka sample app</a> also
 demonstrates a number of transitions in context.
 
 ## Scrolling techniques

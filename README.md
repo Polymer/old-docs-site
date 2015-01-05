@@ -39,7 +39,7 @@ It's a good idea to run `grunt` before pushing the docs, as it runs a number of 
 
 ### Release
 
-Run `bower upate` to make sure you have the latest component dependencies.
+Run `bower update` to make sure you have the latest component dependencies.
 
 Once these are updated, you need to update some versions for the docs:
 
