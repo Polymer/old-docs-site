@@ -121,7 +121,7 @@ element for that type of behavior is `<core-toolbar>`:
 
     <!-- flex makes the bar span across the top of the main content area -->
     <core-toolbar tool flex>
-      <!-- flex spaces this element and jusifies the icons to the right-side -->
+      <!-- flex spaces this element and justifies the icons to the right-side -->
       <div flex>Application</div>
       <core-icon-button icon="refresh"></core-icon-button>
       <core-icon-button icon="add"></core-icon-button>
@@ -302,7 +302,7 @@ their `selected` attributes** together. Now, when a user clicks on a nav item th
 We want to persist the last view across page reloads. Once again, data-binding comes in handy. Connecting the director, menu, and page elements put all three in lock-step. When one updates, the others do too.
 
 {%raw%}
-    <flatiron-director route="{{route}}" autoHash>
+    <flatiron-director route="{{route}}" autoHash></flatiron-director>
     ...
     <core-menu selected="{{route}}">
     ...
