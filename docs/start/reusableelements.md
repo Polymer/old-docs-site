@@ -51,7 +51,7 @@ to the URL `localhost:8000/test-element/demo.html`.
 
 Once you're happy with your element, you’ll want to push the code for `test-element` to GitHub and tag a new version of it.
 
-Click [here](https://github.com/new) to create a new repository on GitHub. Try to keep the name of the repository consistent with the naming of your element (e.g if your element is `<test-element>`, your repository should be called `test-element`).
+Click <a href="https://github.com/new" target="_blank">here</a> to create a new repository on GitHub. Try to keep the name of the repository consistent with the naming of your element (e.g if your element is `<test-element>`, your repository should be called `test-element`).
 
 Next, follow the steps below:
 
