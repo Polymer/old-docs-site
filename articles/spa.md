@@ -397,13 +397,17 @@ First, update the data model to include content URLs:
       ...
     ];
 
-Then change the menu links to point at  `page.url` instead of the hash:
+Then add a parameter to the `<core-menu>` elements and change the menu links to point at  `page.url` instead of the hash:
 
 {%raw%}
 <pre>
-&lt;paper-item hash="{{page.hash}}" noink>
-  <b>&lt;a _href="{{page.url}}">{{page.name}}&lt;/a></b>
-&lt;/paper-item>
+&lt;core-menu ... selectedModel="{{selectedPage}}">
+  ...
+  &lt;paper-item hash="{{page.hash}}" noink>
+    <b>&lt;a _href="{{page.url}}">{{page.name}}&lt;/a></b>
+  &lt;/paper-item>
+  ...
+&lt;core-menu>
 </pre>
 {%endraw%}
 
