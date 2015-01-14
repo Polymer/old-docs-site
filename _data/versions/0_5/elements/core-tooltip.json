@@ -1,0 +1,68 @@
+{
+  "name": "core-tooltip",
+  "description": "\nThe `core-tooltip` element creates a hover tooltip centered for the content\nit contains. It can be positioned on the top|bottom|left|right of content using\nthe `position` attribute.\n\nTo include HTML in the tooltip, include the `tip` attribute on the relevant\ncontent.\n\n<b>Example</b>:\n\n    <core-tooltip label=\"I'm a tooltip\">\n      <span>Hover over me.</span>\n    </core-tooltip>\n\n<b>Example</b> - positioning the tooltip to the right:\n\n    <core-tooltip label=\"I'm a tooltip to the right\" position=\"right\">\n      <core-icon-button icon=\"drawer\"></core-icon-button>\n    </core-tooltip>\n\n<b>Example</b> - no arrow and showing by default:\n\n    <core-tooltip label=\"Tooltip with no arrow and always on\" noarrow show>\n      <img src=\"image.jpg\">\n    </core-tooltip>\n\n<b>Example</b> - disable the tooltip.\n\n    <core-tooltip label=\"Disabled label never shows\" disabled>\n      ...\n    </core-tooltip>\n\n<b>Example</b> - rich tooltip using the `tip` attribute:\n\n    <core-tooltip>\n      <div>Example of a rich information tooltip</div>\n      <div tip>\n        <img src=\"profile.jpg\">Foo <b>Bar</b> - <a href=\"#\">@baz</a>\n      </div>\n    </core-tooltip>\n\nBy default, the `tip` attribute specifies the HTML content for a rich tooltip.\nYou can customize this attribute with the `tipAttribute` attribute:\n\n    <core-tooltip tipAttribute=\"htmltooltip\">\n      <div>Example of a rich information tooltip</div>\n      <div htmltooltip>\n        ...\n      </div>\n    </core-tooltip>\n\n",
+  "mixins": [
+    {
+      "name": "Polymer.CoreFocusable",
+      "url": "https://github.com/polymer/core-focusable"
+    },
+    {
+      "name": "Polymer.CoreResizable",
+      "url": "https://github.com/polymer/core-resizable"
+    }
+  ],
+  "homepage": "http://www.polymer-project.org/components/core-tooltip/index.html",
+  "attributes": [
+    {
+      "name": "label",
+      "description": "\nA simple string label for the tooltip to display. To display a rich\nHTML tooltip instead, omit `label` and include the `tip` attribute\non a child node of `core-tooltip`.\n\n",
+      "type": "string",
+      "default": "null"
+    },
+    {
+      "name": "show",
+      "description": "\nForces the tooltip to display. If `disabled` is set, this property is ignored.\n\n",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "position",
+      "description": "\nPositions the tooltip to the top, right, bottom, left of its content.\n\n",
+      "type": "string",
+      "default": "'bottom'"
+    },
+    {
+      "name": "noarrow",
+      "description": "\nIf true, the tooltip an arrow pointing towards the content.\n\n",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "tipAttribute",
+      "description": "\nCustomizes the attribute used to specify which content\nis the rich HTML tooltip.\n\n",
+      "type": "string",
+      "default": "'tip'"
+    }
+  ],
+  "location": "0.5/components/core-tooltip/core-tooltip.html",
+  "inherited": {
+    "methods": [
+      {
+        "name": "CoreResizable",
+        "methods": [
+          {
+            "name": "resizableAttachedHandler",
+            "description": "\nUser must call from `attached` callback\n\n"
+          },
+          {
+            "name": "resizableDetachedHandler",
+            "description": "\nUser must call from `detached` callback\n\n"
+          }
+        ]
+      }
+    ],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

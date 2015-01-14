@@ -1,0 +1,33 @@
+{
+  "name": "core-media-query",
+  "description": "\n\n\ncore-media-query can be used to data bind to a CSS media query.\nThe \"query\" property is a bare CSS media query.\nThe \"queryMatches\" property will be a boolean representing if the page matches that media query.\n\ncore-media-query uses media query listeners to dynamically update the \"queryMatches\" property.\nA \"core-media-change\" event also fires when queryMatches changes.\n\nExample:\n\n     <core-media-query query=\"max-width: 640px\" queryMatches=\"{{phoneScreen}}\"></core-media-query>\n\n\n\nFired when the media query state changes\n\n\n",
+  "status": "beta",
+  "homepage": "github.io",
+  "events": [
+    {
+      "name": "core-media-change",
+      "description": "\n\n\ncore-media-query can be used to data bind to a CSS media query.\nThe \"query\" property is a bare CSS media query.\nThe \"queryMatches\" property will be a boolean representing if the page matches that media query.\n\ncore-media-query uses media query listeners to dynamically update the \"queryMatches\" property.\nA \"core-media-change\" event also fires when queryMatches changes.\n\nExample:\n\n     <core-media-query query=\"max-width: 640px\" queryMatches=\"{{phoneScreen}}\"></core-media-query>\n\n\n\nFired when the media query state changes\n\n\n"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "queryMatches",
+      "description": "\nThe Boolean return value of the media query\n\n",
+      "type": "Boolean",
+      "default": "false"
+    },
+    {
+      "name": "query",
+      "description": "\nThe CSS media query to evaulate\n\n",
+      "type": "string",
+      "default": "''"
+    }
+  ],
+  "location": "0.5/components/core-media-query/core-media-query.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

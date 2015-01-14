@@ -1,0 +1,59 @@
+{
+  "name": "CoreResizer",
+  "description": "\n  `Polymer.CoreResizable` and `Polymer.CoreResizer` are a set of mixins that can be used\n  in Polymer elements to coordinate the flow of resize events between \"resizers\" (elements\n  that control the size or hidden state of their children) and \"resizables\" (elements that\n  need to be notified when they are resized or un-hidden by their parents in order to take\n  action on their new measurements).\n\n  Elements that cause their children to be resized (e.g. a splitter control) or hide/show\n  their children (e.g. overlay) should add the `Core.CoreResizer` mixin to their \n  Polymer prototype definition and then call `this.notifyResize()` any time the element\n  resizes or un-hides its children.\n\n  `CoreResizer`'s must manually call the `resizerAttachedHandler` from the element's\n  `attached` callback and `resizerDetachedHandler` from the element's `detached`\n  callback.\n\n  Note: `CoreResizer` extends `CoreResizable`, and can listen for the `core-resize` event\n  on itself if it needs to perform resize work on itself before notifying children.\n  In this case, returning `false` from the `core-resize` event handler (or calling\n  `preventDefault` on the event) will prevent notification of children if required.\n\n",
+  "extends": [
+    {
+      "name": "CoreResizable",
+      "url": null
+    }
+  ],
+  "status": "beta",
+  "homepage": "github.io",
+  "methods": [
+    {
+      "name": "resizerAttachedHandler",
+      "description": "\nUser must call from `attached` callback\n\n"
+    },
+    {
+      "name": "resizerDetachedHandler",
+      "description": "\nUser must call from `detached` callback\n\n"
+    },
+    {
+      "name": "notifyResize",
+      "description": "\nUser should call when resizing or un-hiding children\n\n"
+    },
+    {
+      "name": "resizeerShouldNotify",
+      "description": "\nUser should implement to introduce filtering when notifying children.\nGenerally, children that are hidden by the CoreResizer (e.g. non-active\npages) need not be notified during resize, since they will be notified\nagain when becoming un-hidden.\n\nReturn `true` if CoreResizable passed as argument should be notified of\nresize.\n\n"
+    }
+  ],
+  "properties": [
+    {
+      "name": "resizerIsPeer",
+      "description": "\nSet to `true` if the resizer is actually a peer to the elements it\nresizes (e.g. splitter); in this case it will listen for resize requests\nevents from its peers on its parent.\n\n",
+      "type": "Boolean",
+      "default": "false"
+    }
+  ],
+  "location": "0.5/components/core-resizable/core-resizable.html",
+  "inherited": {
+    "methods": [
+      {
+        "name": "CoreResizable",
+        "methods": [
+          {
+            "name": "resizableAttachedHandler",
+            "description": "\nUser must call from `attached` callback\n\n"
+          },
+          {
+            "name": "resizableDetachedHandler",
+            "description": "\nUser must call from `detached` callback\n\n"
+          }
+        ]
+      }
+    ],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "core-drag-drop",
+  "description": "\n",
+  "homepage": "github.io",
+  "location": "0.5/components/core-drag-drop/core-drag-drop.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

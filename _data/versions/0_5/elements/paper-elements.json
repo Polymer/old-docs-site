@@ -1,0 +1,13 @@
+{
+  "name": "paper-elements",
+  "description": "\nThe `paper-elements` component aggregates numerous `paper-*` components\ninto one package (by depending on them).\n\nSee `bower.json` for the complete list of components.\n\n",
+  "group": "Polymer Paper Elements",
+  "homepage": "github.io",
+  "location": "0.5/components/paper-elements/paper-elements.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

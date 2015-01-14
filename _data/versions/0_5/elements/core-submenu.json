@@ -1,0 +1,41 @@
+{
+  "name": "core-submenu",
+  "description": "\nUse to create nested menus inside of `core-menu` elements.\n\n    <core-menu selected=\"0\">\n    \n      <core-submenu icon=\"settings\" label=\"Topics\">\n        <core-item label=\"Topic 1\"></core-item>\n        <core-item label=\"Topic 2\"></core-item>\n      </core-submenu>\n      \n      <core-submenu icon=\"settings\" label=\"Favorites\">\n        <core-item label=\"Favorite 1\"></core-item>\n        <core-item label=\"Favorite 2\"></core-item>\n        <core-item label=\"Favorite 3\"></core-item>\n      </core-submenu>\n      \n    </core-menu>\n    \nThere is a margin set on the submenu to indent the items.\nYou can override the margin by doing:\n\n    core-submenu::shadow #submenu {\n      margin-left: 20px;\n    }\n\nTo style the item for the submenu, do something like this:\n\n    core-submenu::shadow > #submenuItem {\n      color: blue;\n    }\n    \nTo style all the `core-item`s in the light DOM:\n\n    polyfill-next-selector { content: 'core-submenu > #submenu > core-item'; }\n    core-submenu > core-item {\n      color: red;\n    }\n    \nThe above will style `Topic1` and `Topic2` to have font color red.\n\n    <core-submenu icon=\"settings\" label=\"Topics\">\n      <core-item label=\"Topic1\"></core-item>\n      <core-item label=\"Topic2\"></core-item>\n    </core-submenu>\n    \n",
+  "extends": [
+    {
+      "name": "core-item",
+      "url": null
+    }
+  ],
+  "location": "0.5/components/core-menu/core-submenu.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [
+      {
+        "name": "core-item",
+        "attributes": [
+          {
+            "name": "src",
+            "description": "\nThe URL of an image for the icon.\n\n",
+            "type": "string",
+            "default": "''"
+          },
+          {
+            "name": "icon",
+            "description": "\nSpecifies the icon from the Polymer icon set.\n\n",
+            "type": "string",
+            "default": "''"
+          },
+          {
+            "name": "label",
+            "description": "\nSpecifies the label for the menu item.\n\n",
+            "type": "string",
+            "default": "''"
+          }
+        ]
+      }
+    ],
+    "events": [],
+    "properties": []
+  }
+}

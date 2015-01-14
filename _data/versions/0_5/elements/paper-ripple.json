@@ -1,0 +1,39 @@
+{
+  "name": "paper-ripple",
+  "description": "\n`paper-ripple` provides a visual effect that other paper elements can\nuse to simulate a rippling effect emanating from the point of contact.  The\neffect can be visualized as a concentric circle with motion.\n\nExample:\n\n    <paper-ripple></paper-ripple>\n\n`paper-ripple` listens to \"down\" and \"up\" events so it would display ripple\neffect when touches on it.  You can also defeat the default behavior and\nmanually route the down and up actions to the ripple element.  Note that it is\nimportant if you call downAction() you will have to make sure to call upAction()\nso that `paper-ripple` would end the animation loop.\n\nExample:\n\n    <paper-ripple id=\"ripple\" style=\"pointer-events: none;\"></paper-ripple>\n    ...\n    downAction: function(e) {\n      this.$.ripple.downAction({x: e.x, y: e.y});\n    },\n    upAction: function(e) {\n      this.$.ripple.upAction();\n    }\n\nStyling ripple effect:\n\n  Use CSS color property to style the ripple:\n\n    paper-ripple {\n      color: #4285f4;\n    }\n\n  Note that CSS color property is inherited so it is not required to set it on\n  the `paper-ripple` element directly.\n\nBy default, the ripple is centered on the point of contact.  Apply `recenteringTouch` \nclass to have the ripple grow toward the center of its container.\n\n    <paper-ripple class=\"recenteringTouch\"></paper-ripple>\n\nApply `circle` class to make the rippling effect within a circle.\n\n    <paper-ripple class=\"circle\"></paper-ripple>\n\n",
+  "homepage": "github.io",
+  "events": [
+    {
+      "name": "core-transitionend",
+      "description": "\nFired when the animation finishes. This is useful if you want to wait until the ripple\nanimation finishes to perform some action.\n\n",
+      "params": [
+        {
+          "type": "Object",
+          "name": "detail.node",
+          "description": "The animated node"
+        }
+      ]
+    }
+  ],
+  "attributes": [
+    {
+      "name": "initialOpacity",
+      "description": "\nThe initial opacity set on the wave.\n\n",
+      "type": "number",
+      "default": "0.25"
+    },
+    {
+      "name": "opacityDecayVelocity",
+      "description": "\nHow fast (opacity per second) the wave fades out.\n\n",
+      "type": "number",
+      "default": "0.8"
+    }
+  ],
+  "location": "0.5/components/paper-ripple/paper-ripple.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "name": "core-xhr",
+  "description": "\n\n\ncore-xhr can be used to perform XMLHttpRequests.\n\n    <core-xhr id=\"xhr\"></core-xhr>\n    ...\n    this.$.xhr.request({url: url, params: params, callback: callback});\n\n\n",
+  "methods": [
+    {
+      "name": "request",
+      "description": "\nSends a HTTP request to the server and returns the XHR object.\n\n",
+      "params": [
+        {
+          "type": "String",
+          "name": "inOptions.url",
+          "description": "The url to which the request is sent."
+        },
+        {
+          "type": "String",
+          "name": "inOptions.method",
+          "description": "The HTTP method to use, default is GET."
+        },
+        {
+          "type": "boolean",
+          "name": "inOptions.sync",
+          "description": "By default, all requests are sent asynchronously. To send synchronous requests, set to true."
+        },
+        {
+          "type": "Object",
+          "name": "inOptions.params",
+          "description": "Data to be sent to the server."
+        },
+        {
+          "type": "Object",
+          "name": "inOptions.body",
+          "description": "The content for the request body for POST method."
+        },
+        {
+          "type": "Object",
+          "name": "inOptions.headers",
+          "description": "HTTP request headers."
+        },
+        {
+          "type": "String",
+          "name": "inOptions.responseType",
+          "description": "The response type. Default is 'text'."
+        },
+        {
+          "type": "boolean",
+          "name": "inOptions.withCredentials",
+          "description": "Whether or not to send credentials on the request. Default is false."
+        },
+        {
+          "type": "Object",
+          "name": "inOptions.callback",
+          "description": "Called when request is completed."
+        }
+      ]
+    }
+  ],
+  "returns": "{Object} XHR object.",
+  "location": "0.5/components/core-ajax/core-xhr.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "core-elements",
+  "description": "\nThe `core-elements` component aggregates numerous `core-*` components\ninto one package (by depending on them).\n\nSee `bower.json` for the complete list of components.\n\n",
+  "group": "Polymer Core Elements",
+  "homepage": "github.io",
+  "location": "0.5/components/core-elements/core-elements.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

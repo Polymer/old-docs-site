@@ -1,0 +1,23 @@
+{
+  "name": "CoreResizable",
+  "description": "\n  `Polymer.CoreResizable` and `Polymer.CoreResizer` are a set of mixins that can be used\n  in Polymer elements to coordinate the flow of resize events between \"resizers\" (elements\n  that control the size or hidden state of their children) and \"resizables\" (elements that\n  need to be notified when they are resized or un-hidden by their parents in order to take\n  action on their new measurements).\n\n  Elements that perform measurement should add the `Core.Resizable` mixin to their \n  Polymer prototype definition and listen for the `core-resize` event on themselves.\n  This event will be fired when they become showing after having been hidden,\n  when they are resized explicitly by a `CoreResizer`, or when the window has been resized.\n  Note, the `core-resize` event is non-bubbling.\n\n  `CoreResizable`'s must manually call the `resizableAttachedHandler` from the element's\n  `attached` callback and `resizableDetachedHandler` from the element's `detached`\n  callback.\n\n",
+  "status": "beta",
+  "homepage": "github.io",
+  "methods": [
+    {
+      "name": "resizableAttachedHandler",
+      "description": "\nUser must call from `attached` callback\n\n"
+    },
+    {
+      "name": "resizableDetachedHandler",
+      "description": "\nUser must call from `detached` callback\n\n"
+    }
+  ],
+  "location": "0.5/components/core-resizable/core-resizable.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "name": "core-transition-css",
+  "description": "\n\n`<core-transition-css>` implements CSS transitions as `<core-transition>` objects so they can be\nreused in a pluggable transition system such as in `<core-overlay>`. Currently this class has\nsome specific support to animate an element from and to the viewport such as a dialog, but you\ncan override it for different effects.\n\nExample:\n\nmy-css-transition.html:\n\n    <polymer-element name=\"my-css-transition\" extends=\"core-transition-css\">\n    <template>\n        <style>\n            :host(.my-transition) {\n                opacity: 0;\n                transition: transform 1s ease-out, opacity 1s ease-out;\n            }\n            :host(.my-transition.my-opened) {\n                opacity: 1;\n                transform: none;\n            }\n            :host(.my-transition-top) {\n                transform: translateY(-100vh);\n            }\n            :host(.my-transition-bottom) {\n                transform: translateY(100vh);\n            }\n        </style>\n    </template>\n    <script>\n      Polymer({\n        baseClass: 'my-transition',\n        openedClass: 'my-opened'\n      });\n    <\\/script>\n    </polymer-element>\n\n    <my-css-transition id=\"my-transition-top\" transitionType=\"top\"></my-css-transition>\n    <my-css-transition id=\"my-transition-bottom\" transitionType=\"bottom\"></my-css-transition>\n\nmy-css-transition-demo.html\n\n    <link href=\"components/core-meta/core-meta.html\" rel=\"import\">\n    <link href=\"my-css-transition.html\">\n\n    <div id=\"animate-me\"></div>\n\n    <script>\n        // Get the core-transition\n        var meta = document.createElement('core-meta');\n        meta.type = 'transition';\n        var transition1 = meta.byId('my-transition-top');\n\n        // Set up the animation\n        var animated = document.getElementById('animate-me');\n        transition1.setup(animated);\n        transition1.go(animated, {opened: true});\n    <\\/script>\n\nThe first element in the template of a `<core-transition-css>` object should be a stylesheet. It\nwill be injected to the scope of the animated node in the `setup` function. The node is initially\ninvisible with `opacity: 0`, and you can transition it to an \"opened\" state by passing\n`{opened: true}` to the `go` function.\n\nAll nodes being animated will get the class `my-transition` added in the `setup` function.\nAdditionally, the class `my-transition-<transitionType>` will be applied. You can use the\n`transitionType` attribute to implement several different behaviors with the same\n`<core-transition-css>` object. In the above example, `<my-css-transition>` implements both\nsliding the node from the top of the viewport and from the bottom of the viewport.\n\nAvailable transitions\n---------------------\n\n`<core-transition-css>` includes several commonly used transitions.\n\n`core-transition-fade`: Animates from `opacity: 0` to `opacity: 1` when it opens.\n\n`core-transition-center`: Zooms the node into the final size.\n\n`core-transition-top`: Slides the node into the final position from the top.\n\n`core-transition-bottom`: Slides the node into the final position from the bottom.\n\n`core-transition-left`: Slides the node into the final position from the left.\n\n`core-transition-right`: Slides the node into the final position from the right.\n\n",
+  "extends": [
+    {
+      "name": "core-transition",
+      "url": null
+    }
+  ],
+  "status": "beta",
+  "homepage": "github.io",
+  "attributes": [
+    {
+      "name": "baseClass",
+      "description": "\nThe class that will be applied to all animated nodes.\n\n",
+      "type": "string",
+      "default": "\"core-transition\""
+    },
+    {
+      "name": "openedClass",
+      "description": "\nThe class that will be applied to nodes in the opened state.\n\n",
+      "type": "string",
+      "default": "\"core-opened\""
+    },
+    {
+      "name": "closedClass",
+      "description": "\nThe class that will be applied to nodes in the closed state.\n\n",
+      "type": "string",
+      "default": "\"core-closed\""
+    },
+    {
+      "name": "completeEventName",
+      "description": "\nEvent to listen to for animation completion.\n\n",
+      "type": "string",
+      "default": "\"transitionEnd\""
+    },
+    {
+      "name": "transitionType",
+      "description": "\nA secondary configuration attribute for the animation. The class\n`<baseClass>-<transitionType` is applied to the animated node during\n`setup`.\n\n",
+      "type": "string"
+    }
+  ],
+  "location": "0.5/components/core-transition/core-transition-css.html",
+  "inherited": {
+    "methods": [
+      {
+        "name": "core-meta",
+        "methods": [
+          {
+            "name": "byId",
+            "description": "\nRetrieves meta-data by ID.\n\n",
+            "params": [
+              {
+                "type": "String",
+                "name": "id",
+                "description": "The ID of the meta-data to be returned."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "core-transition",
+        "methods": [
+          {
+            "name": "go",
+            "description": "\nRun the animation.\n\n",
+            "params": [
+              {
+                "type": "Node",
+                "name": "node",
+                "description": "The node to apply the animation on"
+              },
+              {
+                "type": "Object",
+                "name": "state",
+                "description": "State info"
+              }
+            ]
+          },
+          {
+            "name": "setup",
+            "description": "\nSet up the animation. This may include injecting a stylesheet,\napplying styles, creating a web animations object, etc.. This\n\n",
+            "params": [
+              {
+                "type": "Node",
+                "name": "node",
+                "description": "The animated node"
+              }
+            ]
+          },
+          {
+            "name": "teardown",
+            "description": "\nTear down the animation.\n\n",
+            "params": [
+              {
+                "type": "Node",
+                "name": "node",
+                "description": "The animated node"
+              }
+            ]
+          },
+          {
+            "name": "complete",
+            "description": "\nCalled when the animation completes. This function also fires the\n`core-transitionend` event.\n\n",
+            "params": [
+              {
+                "type": "Node",
+                "name": "node",
+                "description": "The animated node"
+              }
+            ]
+          },
+          {
+            "name": "listenOnce",
+            "description": "\nUtility function to listen to an event on a node once.\n\n",
+            "params": [
+              {
+                "type": "Node",
+                "name": "node",
+                "description": "The animated node"
+              },
+              {
+                "type": "string",
+                "name": "event",
+                "description": "Name of an event"
+              },
+              {
+                "type": "Function",
+                "name": "fn",
+                "description": "Event handler"
+              },
+              {
+                "type": "Array",
+                "name": "args",
+                "description": "Additional arguments to pass to `fn`"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "attributes": [
+      {
+        "name": "core-meta",
+        "attributes": [
+          {
+            "name": "type",
+            "description": "\nThe type of meta-data.  All meta-data with the same type with be\nstored together.\n\n",
+            "type": "string",
+            "default": "'default'"
+          }
+        ]
+      }
+    ],
+    "events": [
+      {
+        "name": "core-transition",
+        "events": [
+          {
+            "name": "core-transitionend",
+            "description": "\nFired when the animation finishes.\n\n",
+            "params": [
+              {
+                "type": "Object",
+                "name": "detail.node",
+                "description": "The animated node"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "name": "core-meta",
+        "properties": [
+          {
+            "name": "list",
+            "description": "\nReturns a list of all meta-data elements with the same type.\n\n",
+            "type": "array",
+            "default": "[]"
+          }
+        ]
+      }
+    ]
+  }
+}

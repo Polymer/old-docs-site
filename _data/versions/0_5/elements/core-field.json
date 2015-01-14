@@ -1,0 +1,12 @@
+{
+  "name": "core-field",
+  "description": "\nThe `core-field` supplies a horizontal layout, anticipating an input.\n\nExample:\n\n    <core-field>\n      <core-icon icon=\"menu\"></core-icon>\n      <label>I'm a label!</label>\n      <input placeholder=\"I have a label\" flex>\n    </core-field>\n\n",
+  "homepage": "github.io",
+  "location": "0.5/components/core-field/core-field.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "paper-shadow",
+  "description": "\n\n`paper-shadow` is a container that renders two shadows on top of each other to\ncreate the effect of a lifted piece of paper.\n\nExample:\n\n    <paper-shadow z=\"1\">\n      ... card content ...\n    </paper-shadow>\n\n",
+  "attributes": [
+    {
+      "name": "z",
+      "description": "\nThe z-depth of this shadow, from 0-5. Setting this property\nafter element creation has no effect. Use `setZ()` instead.\n\n",
+      "type": "number",
+      "default": "1"
+    },
+    {
+      "name": "animated",
+      "description": "\nSet this to true to animate the shadow when setting a new\n`z` value.\n\n",
+      "type": "boolean",
+      "default": "false"
+    }
+  ],
+  "methods": [
+    {
+      "name": "setZ",
+      "description": "\nSet the z-depth of the shadow. This should be used after element\ncreation instead of setting the z property directly.\n\n"
+    }
+  ],
+  "location": "0.5/components/paper-shadow/paper-shadow.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

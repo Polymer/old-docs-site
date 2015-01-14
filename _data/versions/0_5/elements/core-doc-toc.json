@@ -1,0 +1,11 @@
+{
+  "name": "core-doc-toc",
+  "description": "\n",
+  "location": "0.5/components/core-doc-viewer/elements/core-doc-toc.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

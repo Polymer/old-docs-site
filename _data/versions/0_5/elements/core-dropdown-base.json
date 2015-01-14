@@ -1,0 +1,21 @@
+{
+  "name": "core-dropdown-base",
+  "description": "\n\n`core-dropdown-base` is a base class for implementing controls that displays\nan overlay when tapped on.\n\nThe child element with the class `dropdown` will be used as the drop-down. It\nshould be a `core-dropdown` or other overlay element.\n\n",
+  "status": "unstable",
+  "homepage": "github.io",
+  "attributes": [
+    {
+      "name": "opened",
+      "description": "\nTrue if the menu is open.\n\n",
+      "type": "boolean",
+      "default": "false"
+    }
+  ],
+  "location": "0.5/components/core-dropdown/core-dropdown-base.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

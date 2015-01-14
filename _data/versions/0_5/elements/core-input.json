@@ -1,0 +1,38 @@
+{
+  "name": "core-input",
+  "description": "\n\n`core-input` is an unstyled single-line input field. It extends the native\n`input` element.\n\nExample:\n\n    <input is=\"core-input\">\n\nThe input's value is considered \"committed\" if the user hits the \"enter\" key\nor blurs the input after changing the value. The committed value is stored in\nthe `committedValue` property.\n\nIf the input has `type = number`, this element will also prevent non-numeric characters\nfrom being typed into the text field.\n\nAccessibility\n-------------\n\nThe following ARIA attributes are set automatically:\n\n- `aria-label`: set to the `placeholder` attribute\n- `aria-disabled`: set if `disabled` is true\n\n",
+  "extends": [
+    {
+      "name": "input",
+      "url": null
+    }
+  ],
+  "homepage": "github.io",
+  "attributes": [
+    {
+      "name": "committedValue",
+      "description": "\nThe \"committed\" value of the input, ie. the input value when the user\nhits the \"enter\" key or blurs the input after changing the value. You\ncan bind to this value instead of listening for the \"change\" event.\nSetting this property has no effect on the input value.\n\n",
+      "type": "string",
+      "default": "''"
+    },
+    {
+      "name": "preventInvalidInput",
+      "description": "\nSet to true to prevent invalid input from being entered.\n\n",
+      "type": "boolean",
+      "default": "false"
+    }
+  ],
+  "methods": [
+    {
+      "name": "commit",
+      "description": "\nCommits the `value` to `committedValue`\n\n"
+    }
+  ],
+  "location": "0.5/components/core-input/core-input.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

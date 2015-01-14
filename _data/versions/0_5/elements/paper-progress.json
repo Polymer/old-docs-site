@@ -1,0 +1,68 @@
+{
+  "name": "paper-progress",
+  "description": "\nThe progress bars are for situations where the percentage completed can be \ndetermined. They give users a quick sense of how much longer an operation \nwill take.\n\nExample:\n\n    <paper-progress value=\"10\"></paper-progress>\n    \nThere is also a secondary progress which is useful for displaying intermediate \nprogress, such as the buffer level during a streaming playback progress bar.\n\nExample:\n\n    <paper-progress value=\"10\" secondaryProgress=\"30\"></paper-progress>\n\nStyling progress bar:\n\nTo change the active progress bar color:\n\n    paper-progress::shadow #activeProgress {\n      background-color: #e91e63;\n    }\n\nTo change the secondary progress bar color:\n\n    paper-progress::shadow #secondaryProgress {\n      background-color: #f8bbd0;\n    }\n    \nTo change the progress bar background color:\n\n    paper-progress::shadow #progressContainer {\n      background-color: #64ffda;\n    }\n\n",
+  "extends": [
+    {
+      "name": "core-range",
+      "url": null
+    }
+  ],
+  "homepage": "github.io",
+  "attributes": [
+    {
+      "name": "secondaryProgress",
+      "description": "\nThe number that represents the current secondary progress.\n\n",
+      "type": "number",
+      "default": "0"
+    },
+    {
+      "name": "indeterminate",
+      "description": "\nUse an indeterminate progress indicator.\n\n",
+      "type": "boolean",
+      "default": "false"
+    }
+  ],
+  "location": "0.5/components/paper-progress/paper-progress.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [
+      {
+        "name": "core-range",
+        "attributes": [
+          {
+            "name": "value",
+            "description": "\nThe number that represents the current value.\n\n",
+            "type": "number",
+            "default": "0"
+          },
+          {
+            "name": "min",
+            "description": "\nThe number that indicates the minimum value of the range.\n\n",
+            "type": "number",
+            "default": "0"
+          },
+          {
+            "name": "max",
+            "description": "\nThe number that indicates the maximum value of the range.\n\n",
+            "type": "number",
+            "default": "100"
+          },
+          {
+            "name": "step",
+            "description": "\nSpecifies the value granularity of the range's value.\n\n",
+            "type": "number",
+            "default": "1"
+          },
+          {
+            "name": "ratio",
+            "description": "\nReturns the ratio of the value.\n\n",
+            "type": "number",
+            "default": "0"
+          }
+        ]
+      }
+    ],
+    "events": [],
+    "properties": []
+  }
+}

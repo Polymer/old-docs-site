@@ -1,0 +1,52 @@
+{
+  "name": "core-localstorage",
+  "description": "\nElement access to localStorage.  The \"name\" property\nis the key to the data (\"value\" property) stored in localStorage.\n\n`core-localstorage` automatically saves the value to localStorage when\nvalue is changed.  Note that if value is an object auto-save will be\ntriggered only when value is a different instance.\n\n    <core-localstorage name=\"my-app-storage\" value=\"{{value}}\"></core-localstorage>\n\n",
+  "blurb": "Element access to localStorage.",
+  "url": "github.io",
+  "categories": "Data",
+  "events": [
+    {
+      "name": "core-localstorage-load",
+      "description": "\nFired when a value is loaded from localStorage.\n"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "name",
+      "description": "\nThe key to the data stored in localStorage.\n\n",
+      "type": "string",
+      "default": "null"
+    },
+    {
+      "name": "value",
+      "description": "\nThe data associated with the specified name.\n\n",
+      "type": "object",
+      "default": "null"
+    },
+    {
+      "name": "useRaw",
+      "description": "\nIf true, the value is stored and retrieved without JSON processing.\n\n",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "autoSaveDisabled",
+      "description": "\nIf true, auto save is disabled.\n\n",
+      "type": "boolean",
+      "default": "false"
+    }
+  ],
+  "methods": [
+    {
+      "name": "save",
+      "description": " \nSaves the value to localStorage.\n\n"
+    }
+  ],
+  "location": "0.5/components/core-localstorage/core-localstorage.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

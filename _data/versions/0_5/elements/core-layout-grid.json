@@ -1,0 +1,13 @@
+{
+  "name": "core-layout-grid",
+  "description": "\n\n\nTODO\n",
+  "status": "beta",
+  "homepage": "github.io",
+  "location": "0.5/components/core-layout-grid/core-layout-grid.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

@@ -166,6 +166,8 @@ function injectPage(url, opt_addToHistory) {
     if (sidebar.mobile) {
       hideSidebar();
     }
+
+    document.dispatchEvent(new Event('page-injected'));
   };
 
   xhr.send();

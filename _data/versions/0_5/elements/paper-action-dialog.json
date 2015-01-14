@@ -1,0 +1,230 @@
+{
+  "name": "paper-action-dialog",
+  "description": "\n\nMaterial Design: <a href=\"http://www.google.com/design/spec/components/dialogs.html\">Dialogs</a>\n\n`paper-action-dialog` is a `paper-dialog` with a row of buttons at the bottom that\nindicate user action. The action buttons do not scroll with the dialog body.\n\nThe buttons should have either the `affirmative` or `dismissive` attribute. See\nthe Material Design spec for more info.\n\nExample:\n\n    <paper-action-dialog heading=\"Dialog Title\">\n      <p>Some content</p>\n      <paper-button dismissive>More Info</paper-button>\n      <paper-button affirmative>Decline</paper-button>\n      <paper-button affirmative>Accept</paper-button>\n    </paper-action-dialog>\n\n",
+  "extends": [
+    {
+      "name": "paper-dialog-base",
+      "url": null
+    }
+  ],
+  "homepage": "github.io",
+  "status": "unstable",
+  "attributes": [
+    {
+      "name": "closeSelector",
+      "description": "\n",
+      "type": "string",
+      "default": "'[affirmative],[dismissive]'"
+    }
+  ],
+  "location": "0.5/components/paper-dialog/paper-action-dialog.html",
+  "inherited": {
+    "methods": [
+      {
+        "name": "CoreResizable",
+        "methods": [
+          {
+            "name": "resizableAttachedHandler",
+            "description": "\nUser must call from `attached` callback\n\n"
+          },
+          {
+            "name": "resizableDetachedHandler",
+            "description": "\nUser must call from `detached` callback\n\n"
+          }
+        ]
+      },
+      {
+        "name": "CoreResizer",
+        "methods": [
+          {
+            "name": "resizerAttachedHandler",
+            "description": "\nUser must call from `attached` callback\n\n"
+          },
+          {
+            "name": "resizerDetachedHandler",
+            "description": "\nUser must call from `detached` callback\n\n"
+          },
+          {
+            "name": "notifyResize",
+            "description": "\nUser should call when resizing or un-hiding children\n\n"
+          },
+          {
+            "name": "resizeerShouldNotify",
+            "description": "\nUser should implement to introduce filtering when notifying children.\nGenerally, children that are hidden by the CoreResizer (e.g. non-active\npages) need not be notified during resize, since they will be notified\nagain when becoming un-hidden.\n\nReturn `true` if CoreResizable passed as argument should be notified of\nresize.\n\n"
+          }
+        ]
+      },
+      {
+        "name": "core-overlay",
+        "methods": [
+          {
+            "name": "toggle",
+            "description": " \nToggle the opened state of the overlay.\n"
+          },
+          {
+            "name": "open",
+            "description": " \nOpen the overlay. This is equivalent to setting the `opened`\nproperty to true.\n"
+          },
+          {
+            "name": "close",
+            "description": " \nClose the overlay. This is equivalent to setting the `opened` \nproperty to false.\n"
+          },
+          {
+            "name": "resizeHandler",
+            "description": "\nExtensions of core-overlay should implement the `resizeHandler`\nmethod to adjust the size and position of the overlay when the \nbrowser window resizes.\n"
+          }
+        ]
+      }
+    ],
+    "attributes": [
+      {
+        "name": "core-overlay",
+        "attributes": [
+          {
+            "name": "target",
+            "description": "\nThe target element that will be shown when the overlay is \nopened. If unspecified, the core-overlay itself is the target.\n\n",
+            "type": "Object",
+            "default": "the overlay element"
+          },
+          {
+            "name": "sizingTarget",
+            "description": "\nA `core-overlay`'s size is guaranteed to be \nconstrained to the window size. To achieve this, the sizingElement\nis sized with a max-height/width. By default this element is the \ntarget element, but it can be specifically set to a specific element\ninside the target if that is more appropriate. This is useful, for \nexample, when a region inside the overlay should scroll if needed.\n\n",
+            "type": "Object",
+            "default": "the target element"
+          },
+          {
+            "name": "opened",
+            "description": "\nSet opened to true to show an overlay and to false to hide it.\nA `core-overlay` may be made initially opened by setting its\n`opened` attribute.\n",
+            "type": "boolean",
+            "default": "false"
+          },
+          {
+            "name": "backdrop",
+            "description": "\nIf true, the overlay has a backdrop darkening the rest of the screen.\nThe backdrop element is attached to the document body and may be styled\nwith the class `core-overlay-backdrop`. When opened the `core-opened`\nclass is applied.\n\n",
+            "type": "boolean",
+            "default": "false"
+          },
+          {
+            "name": "layered",
+            "description": "\nIf true, the overlay is guaranteed to display above page content.\n\n",
+            "type": "boolean",
+            "default": "false"
+          },
+          {
+            "name": "autoCloseDisabled",
+            "description": "\nBy default an overlay will close automatically if the user\ntaps outside it or presses the escape key. Disable this\nbehavior by setting the `autoCloseDisabled` property to true.\n",
+            "type": "boolean",
+            "default": "false"
+          },
+          {
+            "name": "autoFocusDisabled",
+            "description": "\nBy default an overlay will focus its target or an element inside\nit with the `autoFocus` attribute. Disable this\nbehavior by setting the `autoFocusDisabled` property to true.\n",
+            "type": "boolean",
+            "default": "false"
+          },
+          {
+            "name": "closeAttribute",
+            "description": "\nThis property specifies an attribute on elements that should\nclose the overlay on tap. Should not set `closeSelector` if this\nis set.\n\n",
+            "type": "string",
+            "default": "\"core-overlay-toggle\""
+          },
+          {
+            "name": "closeSelector",
+            "description": "\nThis property specifies a selector matching elements that should\nclose the overlay on tap. Should not set `closeAttribute` if this\nis set.\n\n",
+            "type": "string",
+            "default": "\"\""
+          },
+          {
+            "name": "transition",
+            "description": "\nThe transition property specifies a string which identifies a \n<a href=\"../core-transition/\">`core-transition`</a> element that \nwill be used to help the overlay open and close. The default\n`core-transition-fade` will cause the overlay to fade in and out.\n\n",
+            "type": "string",
+            "default": "'core-transition-fade'"
+          }
+        ]
+      },
+      {
+        "name": "paper-dialog-base",
+        "attributes": [
+          {
+            "name": "heading",
+            "description": "\nThe title of the dialog.\n\n",
+            "type": "string",
+            "default": "''"
+          },
+          {
+            "name": "transition",
+            "description": "\n",
+            "type": "string",
+            "default": "''"
+          },
+          {
+            "name": "layered",
+            "description": "\n",
+            "type": "boolean",
+            "default": "true"
+          }
+        ]
+      }
+    ],
+    "events": [
+      {
+        "name": "core-overlay",
+        "events": [
+          {
+            "name": "core-overlay-open",
+            "description": "\nFired when the `core-overlay`'s `opened` property changes.\n\n",
+            "params": [
+              {
+                "type": "Object",
+                "name": "detail.opened",
+                "description": "the opened state"
+              }
+            ]
+          },
+          {
+            "name": "core-overlay-open-completed",
+            "description": "\nFired when the `core-overlay` has completely opened.\n\n"
+          },
+          {
+            "name": "core-overlay-close-completed",
+            "description": "\nFired when the `core-overlay` has completely closed.\n\n"
+          },
+          {
+            "name": "core-overlay-position",
+            "description": "\nFired when the `core-overlay` needs to position itself. Optionally, implement\nin order to position an overlay via code. If the overlay was not otherwise\npositioned, it's important to indicate how the overlay has been positioned by\nsetting the `dimensions.position` object. For example, if the overlay has been\npositioned via setting `right` and `top`, set dimensions.position to an\nobject like this: `{v: 'top', h: 'right'}`.\n\n",
+            "params": [
+              {
+                "type": "Object",
+                "name": "detail.target",
+                "description": "the overlay target"
+              },
+              {
+                "type": "Object",
+                "name": "detail.sizingTarget",
+                "description": "the overlay sizing target"
+              },
+              {
+                "type": "Object",
+                "name": "detail.opened",
+                "description": "the opened state"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "name": "CoreResizer",
+        "properties": [
+          {
+            "name": "resizerIsPeer",
+            "description": "\nSet to `true` if the resizer is actually a peer to the elements it\nresizes (e.g. splitter); in this case it will listen for resize requests\nevents from its peers on its parent.\n\n",
+            "type": "Boolean",
+            "default": "false"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "core-animation-keyframe",
+  "description": "\n`core-animation-keyframe` represents a keyframe in a `core-animation`. Use them as children of\n`core-animation` elements to create web animations declaratively. If the `offset` property is\nunset, the keyframes will be distributed evenly within the animation duration. Use\n`core-animation-prop` elements as children of this element to specify the CSS properties for\nthe animation.\n\n",
+  "status": "beta",
+  "homepage": "github.io",
+  "properties": [
+    {
+      "name": "offset",
+      "description": "\nAn offset from 0 to 1.\n\n",
+      "type": "Number"
+    }
+  ],
+  "location": "0.5/components/core-animation/core-animation.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

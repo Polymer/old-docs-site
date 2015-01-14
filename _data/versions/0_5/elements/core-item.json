@@ -1,0 +1,32 @@
+{
+  "name": "core-item",
+  "description": "\n`core-item` is a simple line-item object: a label and/or an icon that can also \nact as a link.\n\nExample:\n\n    <core-item icon=\"settings\" label=\"Settings\"></core-item>\n    \nTo use as a link, put &lt;a&gt; element in the item.\n\nExample:\n\n    <core-item icon=\"settings\" label=\"Settings\">\n      <a href=\"#settings\" target=\"_self\"></a>\n    </core-item>\n\n",
+  "homepage": "github.io",
+  "attributes": [
+    {
+      "name": "src",
+      "description": "\nThe URL of an image for the icon.\n\n",
+      "type": "string",
+      "default": "''"
+    },
+    {
+      "name": "icon",
+      "description": "\nSpecifies the icon from the Polymer icon set.\n\n",
+      "type": "string",
+      "default": "''"
+    },
+    {
+      "name": "label",
+      "description": "\nSpecifies the label for the menu item.\n\n",
+      "type": "string",
+      "default": "''"
+    }
+  ],
+  "location": "0.5/components/core-item/core-item.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

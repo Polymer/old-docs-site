@@ -1,0 +1,30 @@
+{
+  "name": "paper-menu-button",
+  "description": "\n\n`paper-menu-button` works together with a button and a `paper-dropdown` to\nimplement a button that displays a drop-down when tapped on.\n\nThe child element with the class `dropdown` will be used as the drop-down\nmenu. It should be a `paper-dropdown` or other overlay element.\n\nExample:\n\n    <paper-menu-button>\n        <paper-icon-button icon=\"menu\" noink></paper-icon-button>\n        <paper-dropdown class=\"dropdown\">\n            <core-menu class=\"menu\">\n                <paper-item>Share</paper-item>\n                <paper-item>Settings</paper-item>\n                <paper-item>Help</paper-item>\n            </core-menu>\n        </paper-dropdown>\n    </paper-menu-button>\n\n",
+  "extends": [
+    {
+      "name": "core-dropdown-base",
+      "url": null
+    }
+  ],
+  "status": "unstable",
+  "location": "0.5/components/paper-menu-button/paper-menu-button.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [
+      {
+        "name": "core-dropdown-base",
+        "attributes": [
+          {
+            "name": "opened",
+            "description": "\nTrue if the menu is open.\n\n",
+            "type": "boolean",
+            "default": "false"
+          }
+        ]
+      }
+    ],
+    "events": [],
+    "properties": []
+  }
+}

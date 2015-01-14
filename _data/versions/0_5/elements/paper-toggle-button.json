@@ -1,0 +1,36 @@
+{
+  "name": "paper-toggle-button",
+  "description": "\n`paper-toggle-button` provides a ON/OFF switch that user can toggle the state\nby tapping or by dragging the swtich.\n\nExample:\n\n    <paper-toggle-button></paper-toggle-button>\n\nStyling toggle button:\n\nTo change the toggle color:\n\n    paper-toggle-button::shadow .toggle {\n      background-color: #9c27b0;\n    }\n\nTo change the ink color:\n    \n    paper-toggle-button::shadow .toggle-ink {\n      color: #009688;\n    }\n\nTo change the checked toggle color:\n\n    paper-toggle-button::shadow [checked] .toggle {\n      background-color: #4285f4;\n    }\n\nTo change the checked ink color:\n\n    paper-toggle-button::shadow [checked] .toggle-ink {\n      color: #4285f4;\n    }\n\nTo change the toggle bar and toggle button colors separately:\n\n    paper-toggle-button::shadow .toggle-bar {\n      background-color: #5677fc;\n    }\n\n    paper-toggle-button::shadow .toggle-button {\n      background-color: #9c27b0;\n    }\n\n",
+  "homepage": "github.io",
+  "events": [
+    {
+      "name": "change",
+      "description": "\nFired when the checked state changes due to user interaction.\n\n"
+    },
+    {
+      "name": "core-change",
+      "description": "\nFired when the checked state changes.\n\n"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "checked",
+      "description": "\nGets or sets the state, `true` is checked and `false` is unchecked.\n\n",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "disabled",
+      "description": "\nIf true, the toggle button is disabled.  A disabled toggle button cannot\nbe tapped or dragged to change the checked state.\n\n",
+      "type": "boolean",
+      "default": "false"
+    }
+  ],
+  "location": "0.5/components/paper-toggle-button/paper-toggle-button.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

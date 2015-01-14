@@ -1,0 +1,65 @@
+{
+  "name": "core-collapse",
+  "description": "\n`core-collapse` creates a collapsible block of content.  By default, the content\nwill be collapsed.  Use `opened` or `toggle()` to show/hide the content.\n\n    <button on-click=\"{{toggle}}\">toggle collapse</button>\n    \n    <core-collapse id=\"collapse\">\n      Content goes here...\n    </core-collapse>\n    \n    ...\n\n    toggle: function() {\n      this.$.collapse.toggle();\n    }\n    \n`core-collapse` adjusts the height/width of the collapsible element to show/hide\nthe content.  So avoid putting padding/margin/border on the collapsible directly,\nand instead put a div inside and style that.\n\n    <style>\n      .collapse-content {\n        padding: 15px;\n        border: 1px solid #dedede;\n      }\n    </style>\n\n    <core-collapse>\n      <div class=\"collapse-content\">\n        Content goes here...\n      </div>\n    </core-collapse>\n\n",
+  "events": [
+    {
+      "name": "core-collapse-open",
+      "description": "\nFired when the `core-collapse`'s `opened` property changes.\n\n"
+    },
+    {
+      "name": "core-resize",
+      "description": "\nFired when the target element has been resized as a result of the opened\nstate changing.\n\n"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "target",
+      "description": "\nThe target element that will be opened when the `core-collapse` is \nopened. If unspecified, the `core-collapse` itself is the target.\n\n",
+      "type": "Object",
+      "default": "null"
+    },
+    {
+      "name": "horizontal",
+      "description": "\nIf true, the orientation is horizontal; otherwise is vertical.\n\n",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "opened",
+      "description": "\nSet opened to true to show the collapse element and to false to hide it.\n\n",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "duration",
+      "description": "\nCollapsing/expanding animation duration in second.\n\n",
+      "type": "number",
+      "default": "0.33"
+    },
+    {
+      "name": "fixedSize",
+      "description": "\nIf true, the size of the target element is fixed and is set\non the element.  Otherwise it will try to \nuse auto to determine the natural size to use\nfor collapsing/expanding.\n\n",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "allowOverflow",
+      "description": "\nBy default the collapsible element is set to overflow hidden. This helps\navoid element bleeding outside the region and provides consistent overflow\nstyle across opened and closed states. Set this property to true to allow \nthe collapsible element to overflow when it's opened.\n\n",
+      "type": "boolean",
+      "default": "false"
+    }
+  ],
+  "methods": [
+    {
+      "name": "toggle",
+      "description": "\nToggle the opened state.\n\n"
+    }
+  ],
+  "location": "0.5/components/core-collapse/core-collapse.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

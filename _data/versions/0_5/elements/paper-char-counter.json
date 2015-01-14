@@ -1,0 +1,26 @@
+{
+  "name": "paper-char-counter",
+  "description": "\n\nMaterial Design: <a href=\"http://www.google.com/design/spec/components/text-fields.html#text-fields-character-counter\">Character counter</a>\n\n`paper-char-counter` adds a character counter for paper input fields with a character restriction in place.\n\nExample:\n\n    <paper-input-decorator>\n      <input id=\"input1\" is=\"core-input\" maxlength=\"5\">\n      <paper-char-counter class=\"footer\" target=\"input1\"></paper-char-counter>\n    </paper-input-decorator>\n\nTheming\n-------\n\n`paper-char-counter` uses `paper-input-decorator`'s error `core-style` for global theming.\n\n",
+  "homepage": "github.io",
+  "attributes": [
+    {
+      "name": "target",
+      "description": "\nThe id of the textinput or textarea that should be monitored.\n\n",
+      "type": "string",
+      "default": "null"
+    },
+    {
+      "name": "showCounter",
+      "description": "\nIf false, don't show the character counter. Used in conjunction with\n`paper-input-decorator's` `error` field.\n\n",
+      "type": "boolean",
+      "default": "true"
+    }
+  ],
+  "location": "0.5/components/paper-input/paper-char-counter.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

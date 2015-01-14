@@ -1,0 +1,63 @@
+{
+  "name": "core-selection",
+  "description": "\n\nThe `<core-selection>` element is used to manage selection state. It has no\nvisual appearance and is typically used in conjunction with another element.\nFor example, [core-selector](#core-selector)\nuses a `<core-selection>` to manage selection.\n\nTo mark an item as selected, call the `select(item)` method on \n`<core-selection>`. The item itself is an argument to this method.\n\nThe `<core-selection>`element manages selection state for any given set of\nitems. When an item is selected, the `core-select` event is fired.\n\nThe attribute `multi` indicates if multiple items can be selected at once.\n  \nExample:\n \n    <polymer-element name=\"selection-example\">\n       <template>\n         <style>\n           polyfill-next-selector { content: ':host > .selected'; }\n           ::content > .selected {\n             font-weight: bold;\n             font-style: italic;\n           }\n         </style>\n         <ul on-tap=\"{{itemTapAction}}\">\n           <content></content>\n         </ul>\n         <core-selection id=\"selection\" multi\n                         on-core-select=\"{{selectAction}}\"></core-selection>\n       </template>\n       <script>\n         Polymer('selection-example', {\n           itemTapAction: function(e, detail, sender) {\n             this.$.selection.select(e.target);\n           },\n           selectAction: function(e, detail, sender) {\n             detail.item.classList.toggle('selected', detail.isSelected);\n           }\n         });\n       <\\/script>\n    </polymer-element>\n\n    <selection-example>\n      <li>Red</li>\n      <li>Green</li>\n      <li>Blue</li>\n    </selection-example>\n \n",
+  "events": [
+    {
+      "name": "core-select",
+      "description": "\nFired when an item's selection state is changed. This event is fired both\nwhen an item is selected or deselected. The `isSelected` detail property\ncontains the selection state.\n\n",
+      "params": [
+        {
+          "type": "boolean",
+          "name": "detail.isSelected",
+          "description": "true for selection and false for de-selection"
+        },
+        {
+          "type": "Object",
+          "name": "detail.item",
+          "description": "the item element"
+        }
+      ]
+    }
+  ],
+  "attributes": [
+    {
+      "name": "multi",
+      "description": "\nIf true, multiple selections are allowed.\n\n",
+      "type": "boolean",
+      "default": "false"
+    }
+  ],
+  "methods": [
+    {
+      "name": "getSelection",
+      "description": "\nRetrieves the selected item(s).\ngetSelection will return an array, otherwise it will return \nthe selected item or undefined if there is no selection.\n"
+    },
+    {
+      "name": "isSelected",
+      "description": "\nIndicates if a given item is selected.\n",
+      "params": [
+        {
+          "type": "any",
+          "name": "item",
+          "description": "The item whose selection state should be checked."
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "description": "\nSet the selection state for a given `item`. If the multi property\nis true, then the selected state of `item` will be toggled; otherwise\nthe `item` will be selected.\n"
+    },
+    {
+      "name": "toggle",
+      "description": "\nToggles the selection state for `item`.\n"
+    }
+  ],
+  "returns": "Returns true if `item` is selected.",
+  "location": "0.5/components/core-selection/core-selection.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

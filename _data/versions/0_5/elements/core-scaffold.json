@@ -1,0 +1,71 @@
+{
+  "name": "core-scaffold",
+  "description": "\n`core-scaffold` provides general application layout, introducing a \nresponsive scaffold containing a header, toolbar, menu, title and \nareas for application content.\n\nExample:\n\n    <core-scaffold>\n      <core-header-panel navigation flex mode=\"seamed\">\n        <core-toolbar>Application</core-toolbar>\n        <core-menu theme=\"core-light-theme\">\n          <core-item icon=\"settings\" label=\"item1\"></core-item>\n          <core-item icon=\"settings\" label=\"item2\"></core-item>\n        </core-menu>\n      </core-header-panel>\n      <div tool>Title</div>\n      <div>Main content goes here...</div>\n    </core-scaffold>\n\nUse `mode` to control the header and scrolling behavior of `core-header-panel`\nand `responsiveWidth` to change the layout of the scaffold.  Use 'disableSwipe'\nto disable swipe-to-open on toolbar.\n\nUse `rightDrawer` to move position of folding toolbar to the right instead of\nleft (default).  This will also position content to the left of the menu button\ninstead of the right.  You can use `flex` within your `tool` content to push the menu\nbutton to the far right:\n\n    <core-scaffold rightDrawer>\n      <div tool flex >Title</div>\n    </core-scaffold>\n    \nYou may also add `middle` or `bottom` classes to your `tool` content when using tall\nmodes to adjust vertical content positioning in the core-toolbar (e.g. when using \nmode=\"waterfall-tall\"):\n\n    <core-scaffold rightDrawer mode=\"waterfall-tall\">\n      <div tool flex >Title</div>\n      <div tool horizontal layout flex center-justified class=\"middle\">Title-middle</div>\n      <div tool horizontal layout flex end-justified class=\"bottom\">Title-bottom</div>\n    </core-scaffold>\n\nTo have the content fit to the main area, use `fit` attribute.\n\n    <core-scaffold>\n      <core-header-panel navigation flex mode=\"seamed\">\n        ....\n      </core-header-panel>\n      <div tool>Title</div>\n      <div fit>Content fits to the main area</div>\n    </core-scaffold>\n\n",
+  "homepage": "github.io",
+  "events": [
+    {
+      "name": "scroll",
+      "description": "\nFired when the main content has been scrolled.  `event.detail.target` returns\nthe scrollable element which you can use to access scroll info such as\n`scrollTop`.\n\n    <core-scaffold on-scroll=\"{{scrollHandler}}\">\n      ...\n    </core-scaffold>\n\n\n    scrollHandler: function(event) {\n      var scroller = event.detail.target;\n      console.log(scroller.scrollTop);\n    }\n\n"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "drawerWidth",
+      "description": "\nWidth of the drawer panel.\n\n",
+      "type": "string",
+      "default": "'256px'"
+    },
+    {
+      "name": "responsiveWidth",
+      "description": "\nWhen the browser window size is smaller than the `responsiveWidth`, \n`core-drawer-panel` changes to a narrow layout. In narrow layout, \nthe drawer will be stacked on top of the main panel.\n\n",
+      "type": "string",
+      "default": "'600px'"
+    },
+    {
+      "name": "rightDrawer",
+      "description": "\nIf true, position the drawer to the right. Also place menu icon to\nthe right of the content instead of left.\n\n",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "disableSwipe",
+      "description": "\nIf true, swipe to open/close the drawer is disabled.\n\n",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "mode",
+      "description": "\nUsed to control the header and scrolling behaviour of `core-header-panel`\n\n",
+      "type": "string",
+      "default": "'seamed'"
+    }
+  ],
+  "methods": [
+    {
+      "name": "togglePanel",
+      "description": "\nToggle the drawer panel\n"
+    },
+    {
+      "name": "openDrawer",
+      "description": "\nOpen the drawer panel\n"
+    },
+    {
+      "name": "closeDrawer",
+      "description": "\nClose the drawer panel\n"
+    }
+  ],
+  "properties": [
+    {
+      "name": "scroller",
+      "description": "\nReturns the scrollable element on the main area.\n\n",
+      "type": "Object"
+    }
+  ],
+  "location": "0.5/components/core-scaffold/core-scaffold.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

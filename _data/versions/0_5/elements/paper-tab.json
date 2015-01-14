@@ -1,0 +1,20 @@
+{
+  "name": "paper-tab",
+  "description": "\n`paper-tab` is styled to look like a tab.  It should be used in conjunction with\n`paper-tabs`.\n\nExample:\n\n    <paper-tabs selected=\"0\">\n      <paper-tab>TAB 1</paper-tab>\n      <paper-tab>TAB 2</paper-tab>\n      <paper-tab>TAB 3</paper-tab>\n    </paper-tabs>\n    \nStyling tab:\n\nTo change the ink color:\n\n    .pink paper-tab::shadow #ink {\n      color: #ff4081;\n    }\n\n",
+  "homepage": "github.io",
+  "attributes": [
+    {
+      "name": "noink",
+      "description": "\nIf true, ink ripple effect is disabled.\n\n",
+      "type": "boolean",
+      "default": "false"
+    }
+  ],
+  "location": "0.5/components/paper-tabs/paper-tab.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

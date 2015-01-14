@@ -1,0 +1,44 @@
+{
+  "name": "core-range",
+  "description": "\nThe `core-range` element is used for managing a numeric value within a given \nrange.  It has no visual appearance and is typically used in conjunction with \nanother element.\n\nOne can build a progress bar using `core-range` like this:\n\n    <core-range min=\"0\" max=\"200\" value=\"100\" ratio=\"{{ratio}}\"></core-range>\n    <div class=\"progress-bar\" style=\"width: {{ratio}}%;\"></div>\n\n\n",
+  "homepage": "github.io",
+  "attributes": [
+    {
+      "name": "value",
+      "description": "\nThe number that represents the current value.\n\n",
+      "type": "number",
+      "default": "0"
+    },
+    {
+      "name": "min",
+      "description": "\nThe number that indicates the minimum value of the range.\n\n",
+      "type": "number",
+      "default": "0"
+    },
+    {
+      "name": "max",
+      "description": "\nThe number that indicates the maximum value of the range.\n\n",
+      "type": "number",
+      "default": "100"
+    },
+    {
+      "name": "step",
+      "description": "\nSpecifies the value granularity of the range's value.\n\n",
+      "type": "number",
+      "default": "1"
+    },
+    {
+      "name": "ratio",
+      "description": "\nReturns the ratio of the value.\n\n",
+      "type": "number",
+      "default": "0"
+    }
+  ],
+  "location": "0.5/components/core-range/core-range.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

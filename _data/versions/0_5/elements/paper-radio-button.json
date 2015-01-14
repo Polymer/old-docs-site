@@ -1,0 +1,48 @@
+{
+  "name": "paper-radio-button",
+  "description": "\n`paper-radio-button` is a button that can be either checked or unchecked.\nUser can tap the radio button to check it.  But it cannot be unchecked by\ntapping once checked.\n\nUse `paper-radio-group` to group a set of radio buttons.  When radio buttons\nare inside a radio group, only one radio button in the group can be checked.\n\nExample:\n\n    <paper-radio-button></paper-radio-button>\n    \nStyling radio button:\n\nTo change the ink color for checked state:\n\n    paper-radio-button::shadow #ink[checked] {\n      color: #4285f4;\n    }\n    \nTo change the radio checked color:\n    \n    paper-radio-button::shadow #onRadio {\n      background-color: #4285f4;\n    }\n\n    paper-radio-button[checked]::shadow #offRadio {\n      border-color: #4285f4;\n    }\n\nTo change the ink color for unchecked state:\n\n    paper-radio-button::shadow #ink {\n      color: #b5b5b5;\n    }\n    \nTo change the radio unchecked color:\n    \n    paper-radio-button::shadow #offRadio {\n      border-color: #b5b5b5;\n    }\n\n",
+  "homepage": "github.io",
+  "events": [
+    {
+      "name": "change",
+      "description": "\nFired when the checked state changes due to user interaction.\n\n"
+    },
+    {
+      "name": "core-change",
+      "description": "\nFired when the checked state changes.\n\n"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "checked",
+      "description": "\nGets or sets the state, `true` is checked and `false` is unchecked.\n\n",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "label",
+      "description": "\nThe label for the radio button.\n\n",
+      "type": "string",
+      "default": "''"
+    },
+    {
+      "name": "toggles",
+      "description": "\nNormally the user cannot uncheck the radio button by tapping once\nchecked.  Setting this property to `true` makes the radio button\ntoggleable from checked to unchecked.\n\n",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "disabled",
+      "description": "\nIf true, the user cannot interact with this element.\n\n",
+      "type": "boolean",
+      "default": "false"
+    }
+  ],
+  "location": "0.5/components/paper-radio-button/paper-radio-button.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

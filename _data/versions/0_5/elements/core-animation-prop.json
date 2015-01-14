@@ -1,0 +1,25 @@
+{
+  "name": "core-animation-prop",
+  "description": "\n`core-animation-prop` represents a CSS property and value pair to use with\n`core-animation-keyframe`.\n\n",
+  "status": "beta",
+  "homepage": "github.io",
+  "properties": [
+    {
+      "name": "name",
+      "description": "\nA CSS property name.\n\n",
+      "type": "string"
+    },
+    {
+      "name": "value",
+      "description": "\nThe value for the CSS property.\n\n",
+      "type": "string|number"
+    }
+  ],
+  "location": "0.5/components/core-animation/core-animation.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

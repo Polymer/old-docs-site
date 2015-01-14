@@ -1,0 +1,75 @@
+{
+  "name": "paper-dropdown-menu",
+  "description": "\n\n`paper-dropdown-menu` works together with `paper-dropdown` and `core-menu` to\nimplement a drop-down menu. The currently selected item is displayed in the\ncontrol. If no item is selected, the `label` is displayed instead.\n\nThe child element with the class `dropdown` will be used as the drop-down\nmenu. It should be a `paper-dropdown` or other overlay element. You should\nalso provide a `core-selector` or other selector element, such as `core-menu`,\nin the drop-down. You should apply the class `menu` to the selector element.\n\nExample:\n\n    <paper-dropdown-menu label=\"Your favorite pastry\">\n        <paper-dropdown class=\"dropdown\">\n            <core-menu class=\"menu\">\n                <paper-item>Croissant</paper-item>\n                <paper-item>Donut</paper-item>\n                <paper-item>Financier</paper-item>\n                <paper-item>Madeleine</paper-item>\n            </core-menu>\n        </paper-dropdown>\n    </paper-dropdown-menu>\n\nThis example renders a drop-down menu with 4 options.\n\n",
+  "extends": [
+    {
+      "name": "core-dropdown-base",
+      "url": null
+    }
+  ],
+  "mixins": [
+    {
+      "name": "Polymer.CoreFocusable",
+      "url": "https://github.com/polymer/core-focusable"
+    }
+  ],
+  "status": "unstable",
+  "homepage": "github.io",
+  "events": [
+    {
+      "name": "core-select",
+      "description": "\nFired when an item's selection state is changed. This event is fired both\nwhen an item is selected or deselected. The `isSelected` detail property\ncontains the selection state.\n\n",
+      "params": [
+        {
+          "type": "boolean",
+          "name": "detail.isSelected",
+          "description": "true for selection and false for deselection"
+        },
+        {
+          "type": "Object",
+          "name": "detail.item",
+          "description": "the item element"
+        }
+      ]
+    }
+  ],
+  "attributes": [
+    {
+      "name": "label",
+      "description": "\nA label for the control. The label is displayed if no item is selected.\n\n",
+      "type": "string",
+      "default": "'Select an item'"
+    },
+    {
+      "name": "openedIcon",
+      "description": "\nThe icon to display when the drop-down is opened.\n\n",
+      "type": "string",
+      "default": "'arrow-drop-up'"
+    },
+    {
+      "name": "closedIcon",
+      "description": "\nThe icon to display when the drop-down is closed.\n\n",
+      "type": "string",
+      "default": "'arrow-drop-down'"
+    }
+  ],
+  "location": "0.5/components/paper-dropdown-menu/paper-dropdown-menu.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [
+      {
+        "name": "core-dropdown-base",
+        "attributes": [
+          {
+            "name": "opened",
+            "description": "\nTrue if the menu is open.\n\n",
+            "type": "boolean",
+            "default": "false"
+          }
+        ]
+      }
+    ],
+    "events": [],
+    "properties": []
+  }
+}

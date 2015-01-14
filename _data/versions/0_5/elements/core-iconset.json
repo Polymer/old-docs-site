@@ -1,0 +1,141 @@
+{
+  "name": "core-iconset",
+  "description": "\n\n\nThe `core-iconset` element allows users to define their own icon sets. \nThe `src` property specifies the url of the icon image. Multiple icons may\nbe included in this image and they may be organized into rows.\nThe `icons` property is a space separated list of names corresponding to the\nicons. The names must be ordered as the icons are ordered in the icon image.\nIcons are expected to be square and are the size specified by the `iconSize`\nproperty. The `width` property corresponds to the width of the icon image \nand must be specified if icons are arranged into multiple rows in the image.\n\nAll `core-iconset` elements are available for use by other `core-iconset`\nelements via a database keyed by id. Typically, an element author that wants\nto support a set of custom icons uses a `core-iconset` to retrieve \nand use another, user-defined iconset.\n\nExample:\n\n    <core-iconset id=\"my-icons\" src=\"my-icons.png\" width=\"96\" iconSize=\"24\"\n        icons=\"location place starta stopb bus car train walk\">\n    </core-iconset>\n\nThis will automatically register the icon set \"my-icons\" to the iconset\ndatabase.  To use these icons from within another element, make a \n`core-iconset` element and call the `byId` method to retrieve a\ngiven iconset. To apply a particular icon to an element, use the \n`applyIcon` method. For example:\n\n    iconset.applyIcon(iconNode, 'car');\n\nThemed icon sets are also supported. The `core-iconset` can contain child\n`property` elements that specify a theme with an offsetX and offsetY of the\ntheme within the icon resource. For example.\n\n    <core-iconset id=\"my-icons\" src=\"my-icons.png\" width=\"96\" iconSize=\"24\"\n        icons=\"location place starta stopb bus car train walk\">\n      <property theme=\"special\" offsetX=\"256\" offsetY=\"24\"></property>\n    </core-iconset>\n\nThen a themed icon can be applied like this:\n\n    iconset.applyIcon(iconNode, 'car', 'special');\n\n\n",
+  "extends": [
+    {
+      "name": "core-meta",
+      "url": null
+    }
+  ],
+  "homepage": "github.io",
+  "attributes": [
+    {
+      "name": "src",
+      "description": "\nThe URL of the iconset image.\n\n",
+      "type": "string",
+      "default": "''"
+    },
+    {
+      "name": "width",
+      "description": "\nThe width of the iconset image. This must only be specified if the\nicons are arranged into separate rows inside the image.\n\n",
+      "type": "number",
+      "default": "0"
+    },
+    {
+      "name": "icons",
+      "description": "\nA space separated list of names corresponding to icons in the iconset\nimage file. This list must be ordered the same as the icon images\nin the image file.\n\n",
+      "type": "string",
+      "default": "''"
+    },
+    {
+      "name": "iconSize",
+      "description": "\nThe size of an individual icon. Note that icons must be square.\n\n",
+      "type": "number",
+      "default": "24"
+    },
+    {
+      "name": "offsetX",
+      "description": "\nThe horizontal offset of the icon images in the inconset src image.\nThis is typically used if the image resource contains additional images\nbeside those intended for the iconset.\n\n",
+      "type": "number",
+      "default": "0"
+    },
+    {
+      "name": "offsetY",
+      "description": "\nThe vertical offset of the icon images in the inconset src image.\nThis is typically used if the image resource contains additional images\nbeside those intended for the iconset.\n\n",
+      "type": "number",
+      "default": "0"
+    }
+  ],
+  "methods": [
+    {
+      "name": "getOffset",
+      "description": "\nReturns an object containing `offsetX` and `offsetY` properties which\nspecify the pixel locaion in the iconset's src file for the given\n`icon` and `theme`. It's uncommon to call this method. It is useful,\nfor example, to manually position a css backgroundImage to the proper\noffset. It's more common to use the `applyIcon` method.\n\nicon within in the icon image.\nwithin the icon resource file; `offsetX` is the horizontal offset and\n`offsetY` is the vertical offset. Both values are in pixel units.\n",
+      "params": [
+        {
+          "type": "String|Number",
+          "name": "icon",
+          "description": "The name of the icon or the index of the"
+        },
+        {
+          "type": "String",
+          "name": "theme",
+          "description": "The name of the theme."
+        }
+      ]
+    },
+    {
+      "name": "applyIcon",
+      "description": "\nApplies an icon to the given element as a css background image. This\nmethod does not size the element, and it's often necessary to set \nthe element's height and width so that the background image is visible.\n\napplied.\nwith which the icon can be magnified.\n",
+      "params": [
+        {
+          "type": "Element",
+          "name": "element",
+          "description": "The element to which the background is"
+        },
+        {
+          "type": "String|Number",
+          "name": "icon",
+          "description": "The name or index of the icon to apply."
+        },
+        {
+          "type": "Number",
+          "name": "scale",
+          "description": "(optional, defaults to 1) A scaling factor "
+        }
+      ],
+      "return": {
+        "type": "Element",
+        "description": "The icon element."
+      }
+    }
+  ],
+  "returns": "{Object} An object specifying the offset of the given icon ",
+  "location": "0.5/components/core-iconset/core-iconset.html",
+  "inherited": {
+    "methods": [
+      {
+        "name": "core-meta",
+        "methods": [
+          {
+            "name": "byId",
+            "description": "\nRetrieves meta-data by ID.\n\n",
+            "params": [
+              {
+                "type": "String",
+                "name": "id",
+                "description": "The ID of the meta-data to be returned."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "attributes": [
+      {
+        "name": "core-meta",
+        "attributes": [
+          {
+            "name": "type",
+            "description": "\nThe type of meta-data.  All meta-data with the same type with be\nstored together.\n\n",
+            "type": "string",
+            "default": "'default'"
+          }
+        ]
+      }
+    ],
+    "events": [],
+    "properties": [
+      {
+        "name": "core-meta",
+        "properties": [
+          {
+            "name": "list",
+            "description": "\nReturns a list of all meta-data elements with the same type.\n\n",
+            "type": "array",
+            "default": "[]"
+          }
+        ]
+      }
+    ]
+  }
+}

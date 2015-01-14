@@ -1,0 +1,11 @@
+{
+  "name": "core-overlay-layer",
+  "description": "\n",
+  "location": "0.5/components/core-overlay/core-overlay-layer.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

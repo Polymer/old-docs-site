@@ -1,0 +1,255 @@
+{
+  "name": "core-animated-pages",
+  "description": "\n\n`core-animated-pages` selects one of its children \"pages\" to show and runs a transition\nwhen switching between them. The transitions are designed to be pluggable, and can\naccept any object that is an instance of a `core-transition-pages`. Transitions to run\nare specified in the `transitions` attribute as a space-delimited string of `id`s of\ntransition elements. Several transitions are available with `core-animated-pages` by\ndefault, including `hero-transition`, `cross-fade`, and `tile-cascade`.\n\nExample:\n\n    <style>\n      #hero1 {\n        position: absolute;\n        top: 0;\n        left: 0;\n        width: 300px;\n        height: 300px;\n        background-color: orange;\n      }\n      #hero2 {\n        position: absolute;\n        top: 200px;\n        left: 300px;\n        width: 300px;\n        height: 300px;\n        background-color: orange;\n      }\n      #bottom1, #bottom2 {\n        position: absolute;\n        bottom: 0;\n        top: 0;\n        left: 0;\n        height: 50px;\n      }\n      #bottom1 {\n        background-color: blue;\n      }\n      #bottom2 {\n        background-color: green;\n      }\n    </style>\n    // hero-transition and cross-fade are declared elsewhere\n    <core-animated-pages transitions=\"hero-transition cross-fade\">\n      <section id=\"page1\">\n        <div id=\"hero1\" hero-id=\"hero\" hero></div>\n        <div id=\"bottom1\" cross-fade></div>\n      </section>\n      <section id=\"page2\">\n        <div id=\"hero2\" hero-id=\"hero\" hero></div>\n        <div id=\"bottom2\" cross-fade></div>\n      </section>\n    </core-animated-pages>\n\nIn the above example, two transitions (`hero-transition` and `cross-fade`) are run when switching\nbetween `page1` and `page2`. `hero-transition` transforms elements with the same `hero-id` such\nthat they appear to be shared across different pages. `cross-fade` fades out the elements marked\n`cross-fade` in the outgoing page, and fades in those in the incoming page. See the individual\ntransition's documentation for specific details.\n\nFinding elements to transition\n------------------------------\n\nIn general, a transition is applied to elements marked with a certain attribute. For example,\n`hero-transition` applies the transition on elements with the `hero` and `hero-id` attribute.\nAmong the transitions included with `core-animated-pages`, script-based transitions such as\n`hero-transition` generally look for elements up to one level of shadowRoot from the\n`core-animated-pages` element, and CSS-based transitions such as `cross-fade` look for elements\nwithin any shadowRoot within the `core-animated-pages` element. This means you can use \ncustom elements as pages and mark elements in their shadowRoots as heroes, or mark \nelements in deeper shadowRoots with other transitions.\n\nExample:\n\n    <polymer-element name=\"x-el\" noscript>\n    <template>\n      <style>\n        #hero {\n          position: absolute;\n          top: 0;\n          right: 0;\n          width: 50px;\n          height: 300px;\n          background-color: blue;\n        }\n      </style>\n      <div id=\"hero\" hero-id=\"bar\" hero></div>\n    </template>\n    </polymer-element>\n\n    <polymer-element name=\"x-page-1\" noscript>\n    <template>\n      <style>\n        #hero1 {\n          position: absolute;\n          top: 0;\n          left: 0;\n          width: 300px;\n          height: 300px;\n          background-color: orange;\n        }\n      </style>\n      <div id=\"hero1\" hero-id=\"foo\" hero></div>\n      <div id=\"hero2\" hero-id=\"bar\" hero></div>\n    </template>\n    </polymer-element>\n\n    <polymer-element name=\"x-page-2\" noscript>\n    <template>\n      <style>\n        #hero1 {\n          position: absolute;\n          top: 200px;\n          left: 300px;\n          width: 300px;\n          height: 300px;\n          background-color: orange;\n        }\n        #hero2 {\n          background-color: blue;\n          height: 150px;\n          width: 400px;\n        }\n      </style>\n      // The below element is one level of shadow from the core-animated-pages and will\n      // be transitioned.\n      <div id=\"hero1\" hero-id=\"foo\" hero></div>\n      // The below element contains a hero inside its shadowRoot making it two levels away\n      // from the core-animated-pages, and will not be transitioned.\n      <x-el></x-el>\n    </template>\n    </polymer-element>\n\n    <core-animated-pages transitions=\"hero-transition\">\n      <x-page-1></x-page-1>\n      <x-page-2></x-page-2>\n    </core-animated-pages>\n\nNote that the container element of the page does not participate in the transition.\n\n    // This does not work\n    <core-animated-pages transitions=\"cross-fade\">\n      <section cross-fade></section>\n      <section cross-fade></section>\n    </core-animated-pages>\n\n    // This works\n    <core-animated-pages transitions=\"cross-fade\">\n      <section>\n        <div cross-fade></div>\n      </section>\n      <section>\n        <div cross-fade></div>\n      </section>\n    </core-animated-pages>\n\nDynamically setting up transitions\n----------------------------------\n\nAn easy way to set up transitions dynamically is to use property binding on\nthe transition attributes. \n\nExample:\n\n    <core-animated-pages selected=\"{{selected}}\">\n      <section id=\"page1\">\n        <div hero-id=\"hero\" hero></div>\n      </section>\n      <section id=\"page2\">\n        <div id=\"foo\" hero-id=\"hero\" hero?=\"{{selected === 1 || selected === 0}}\" cross-fade=\"{{selected === 2}}\"></div>\n      </section>\n      <section id=\"page3\">\n      </section>\n    </core-animated-pages>\n\nIn the above example, the \"foo\" element only behaves as a hero element if transitioning between\n`#page1` and `#page2`. It gets cross-faded when transition to or from `#page3`.\n\nNesting pages\n-------------\n\nIt is possible to nest core-animated-pages elements for organization. Excessive nesting is\nnot encouraged, however, since it makes setting up the transition more complex.\n\nTo nest core-animated-pages, the page containing the nested core-animated-pages element should\nhave a `selectedItem` property bound to the `selectedItem` property of the nested element. This\nwill allow the outer core-animated-pages to know which nested page it is actually transitioning\nto.\n\nExample:\n\n    <polymer-element name=\"nested-page\" attributes=\"selectedItem\">\n    <template>\n      <core-animated-pages selectedItem=\"{{selectedItem}}\">\n        ...\n      </core-animated-pages>\n    </template>\n    </polymer-element>\n\n    <core-animated-pages>\n      <section id=\"page1\"></section>\n      <nested-page id=\"page2\"></nested-page>\n    </core-animated-pages>\n\n",
+  "extends": [
+    {
+      "name": "core-selector",
+      "url": null
+    }
+  ],
+  "mixins": [
+    {
+      "name": "Polymer.CoreResizer",
+      "url": "https://github.com/polymer/core-resizable"
+    }
+  ],
+  "status": "beta",
+  "homepage": "github.io",
+  "events": [
+    {
+      "name": "core-animated-pages-transition-prepare",
+      "description": "\nFired before a page transition occurs. Both pages involved in the transition are visible when\nthis event fires. This is useful if there is something the client needs to do when a page becomes\nvisible.\n\n"
+    },
+    {
+      "name": "core-animated-pages-transition-end",
+      "description": "\nFired when a page transition completes.\n\n"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "transitions",
+      "description": "\nA space-delimited string of transitions to use when switching between pages in this element.\nThe strings are `id`s of `core-transition-pages` elements included elsewhere. See the\nindividual transition's document for specific details.\n\n",
+      "type": "string",
+      "default": "''"
+    },
+    {
+      "name": "lastSelected",
+      "description": "\nThe last page selected. This property is useful to dynamically set transitions based\non incoming and outgoing pages.\n\n",
+      "type": "Object",
+      "default": "null"
+    }
+  ],
+  "location": "0.5/components/core-animated-pages/core-animated-pages.html",
+  "inherited": {
+    "methods": [
+      {
+        "name": "core-selector",
+        "methods": [
+          {
+            "name": "selectPrevious",
+            "description": "\nSelects the previous item. This should be used in single selection only.\n\n                 wrap to the end\n",
+            "params": [
+              {
+                "type": "boolean",
+                "name": "wrapped",
+                "description": "if true and it is already at the first item,"
+              }
+            ]
+          },
+          {
+            "name": "selectNext",
+            "description": "\nSelects the next item.  This should be used in single selection only.\n\n                 wrap to the front\n",
+            "params": [
+              {
+                "type": "boolean",
+                "name": "wrapped",
+                "description": "if true and it is already at the last item,"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "CoreResizable",
+        "methods": [
+          {
+            "name": "resizableAttachedHandler",
+            "description": "\nUser must call from `attached` callback\n\n"
+          },
+          {
+            "name": "resizableDetachedHandler",
+            "description": "\nUser must call from `detached` callback\n\n"
+          }
+        ]
+      },
+      {
+        "name": "CoreResizer",
+        "methods": [
+          {
+            "name": "resizerAttachedHandler",
+            "description": "\nUser must call from `attached` callback\n\n"
+          },
+          {
+            "name": "resizerDetachedHandler",
+            "description": "\nUser must call from `detached` callback\n\n"
+          },
+          {
+            "name": "notifyResize",
+            "description": "\nUser should call when resizing or un-hiding children\n\n"
+          },
+          {
+            "name": "resizeerShouldNotify",
+            "description": "\nUser should implement to introduce filtering when notifying children.\nGenerally, children that are hidden by the CoreResizer (e.g. non-active\npages) need not be notified during resize, since they will be notified\nagain when becoming un-hidden.\n\nReturn `true` if CoreResizable passed as argument should be notified of\nresize.\n\n"
+          }
+        ]
+      }
+    ],
+    "attributes": [
+      {
+        "name": "core-selector",
+        "attributes": [
+          {
+            "name": "selected",
+            "description": "\nGets or sets the selected element.  Default to use the index\nof the item element.\n\nIf you want a specific attribute value of the element to be\nused instead of index, set \"valueattr\" to that attribute name.\n\nExample:\n\n    <core-selector valueattr=\"label\" selected=\"foo\">\n      <div label=\"foo\"></div>\n      <div label=\"bar\"></div>\n      <div label=\"zot\"></div>\n    </core-selector>\n\nIn multi-selection this should be an array of values.\n\nExample:\n\n    <core-selector id=\"selector\" valueattr=\"label\" multi>\n      <div label=\"foo\"></div>\n      <div label=\"bar\"></div>\n      <div label=\"zot\"></div>\n    </core-selector>\n\n    this.$.selector.selected = ['foo', 'zot'];\n\n",
+            "type": "Object",
+            "default": "null"
+          },
+          {
+            "name": "multi",
+            "description": "\nIf true, multiple selections are allowed.\n\n",
+            "type": "boolean",
+            "default": "false"
+          },
+          {
+            "name": "valueattr",
+            "description": "\nSpecifies the attribute to be used for \"selected\" attribute.\n\n",
+            "type": "string",
+            "default": "'name'"
+          },
+          {
+            "name": "selectedClass",
+            "description": "\nSpecifies the CSS class to be used to add to the selected element.\n\n",
+            "type": "string",
+            "default": "'core-selected'"
+          },
+          {
+            "name": "selectedProperty",
+            "description": "\nSpecifies the property to be used to set on the selected element\nto indicate its active state.\n\n",
+            "type": "string",
+            "default": "''"
+          },
+          {
+            "name": "selectedAttribute",
+            "description": "\nSpecifies the attribute to set on the selected element to indicate\nits active state.\n\n",
+            "type": "string",
+            "default": "'active'"
+          },
+          {
+            "name": "selectedItem",
+            "description": "\nReturns the currently selected element. In multi-selection this returns\nan array of selected elements.\nNote that you should not use this to set the selection. Instead use\n`selected`.\n\n",
+            "type": "Object",
+            "default": "null"
+          },
+          {
+            "name": "selectedModel",
+            "description": "\nIn single selection, this returns the model associated with the\nselected element.\nNote that you should not use this to set the selection. Instead use\n`selected`.\n\n",
+            "type": "Object",
+            "default": "null"
+          },
+          {
+            "name": "selectedIndex",
+            "description": "\nIn single selection, this returns the selected index.\nNote that you should not use this to set the selection. Instead use\n`selected`.\n\n",
+            "type": "number",
+            "default": "-1"
+          },
+          {
+            "name": "excludedLocalNames",
+            "description": "\nNodes with local name that are in the list will not be included\nin the selection items.  In the following example, `items` returns four\n`core-item`'s and doesn't include `h3` and `hr`.\n\n    <core-selector excludedLocalNames=\"h3 hr\">\n      <h3>Header</h3>\n      <core-item>Item1</core-item>\n      <core-item>Item2</core-item>\n      <hr>\n      <core-item>Item3</core-item>\n      <core-item>Item4</core-item>\n    </core-selector>\n\n",
+            "type": "string",
+            "default": "''"
+          },
+          {
+            "name": "target",
+            "description": "\nThe target element that contains items.  If this is not set\ncore-selector is the container.\n\n",
+            "type": "Object",
+            "default": "null"
+          },
+          {
+            "name": "itemsSelector",
+            "description": "\nThis can be used to query nodes from the target node to be used for\nselection items.  Note this only works if `target` is set\nand is not `core-selector` itself.\n\nExample:\n\n    <core-selector target=\"{{$.myForm}}\" itemsSelector=\"input[type=radio]\"></core-selector>\n    <form id=\"myForm\">\n      <label><input type=\"radio\" name=\"color\" value=\"red\"> Red</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"green\"> Green</label> <br>\n      <label><input type=\"radio\" name=\"color\" value=\"blue\"> Blue</label> <br>\n      <p>color = {{color}}</p>\n    </form>\n\n",
+            "type": "string",
+            "default": "''"
+          },
+          {
+            "name": "activateEvent",
+            "description": "\nThe event that would be fired from the item element to indicate\nit is being selected.\n\n",
+            "type": "string",
+            "default": "'tap'"
+          },
+          {
+            "name": "notap",
+            "description": "\nSet this to true to disallow changing the selection via the\n`activateEvent`.\n\n",
+            "type": "boolean",
+            "default": "false"
+          }
+        ]
+      }
+    ],
+    "events": [
+      {
+        "name": "core-selector",
+        "events": [
+          {
+            "name": "core-select",
+            "description": "\nFired when an item's selection state is changed. This event is fired both\nwhen an item is selected or deselected. The `isSelected` detail property\ncontains the selection state.\n\n",
+            "params": [
+              {
+                "type": "boolean",
+                "name": "detail.isSelected",
+                "description": "true for selection and false for deselection"
+              },
+              {
+                "type": "Object",
+                "name": "detail.item",
+                "description": "the item element"
+              }
+            ]
+          },
+          {
+            "name": "core-activate",
+            "description": "\nFired when an item element is tapped.\n\n",
+            "params": [
+              {
+                "type": "Object",
+                "name": "detail.item",
+                "description": "the item element"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "name": "core-selector",
+        "properties": [
+          {
+            "name": "items",
+            "description": "\nReturns an array of all items.\n\n"
+          }
+        ]
+      },
+      {
+        "name": "CoreResizer",
+        "properties": [
+          {
+            "name": "resizerIsPeer",
+            "description": "\nSet to `true` if the resizer is actually a peer to the elements it\nresizes (e.g. splitter); in this case it will listen for resize requests\nevents from its peers on its parent.\n\n",
+            "type": "Boolean",
+            "default": "false"
+          }
+        ]
+      }
+    ]
+  }
+}

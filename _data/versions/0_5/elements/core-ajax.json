@@ -1,0 +1,125 @@
+{
+  "name": "core-ajax",
+  "description": "\n\nThe `core-ajax` element exposes `XMLHttpRequest` functionality.\n\n    <core-ajax\n        auto\n        url=\"http://gdata.youtube.com/feeds/api/videos/\"\n        params='{\"alt\":\"json\", \"q\":\"chrome\"}'\n        handleAs=\"json\"\n        on-core-response=\"{{handleResponse}}\"></core-ajax>\n\nWith `auto` set to `true`, the element performs a request whenever\nits `url`, `params` or `body` properties are changed.\n\nNote: The `params` attribute must be double quoted JSON.\n\nYou can trigger a request explicitly by calling `go` on the\nelement.\n\n",
+  "status": "beta",
+  "homepage": "github.io",
+  "events": [
+    {
+      "name": "core-response",
+      "description": "\nFired when a response is received.\n\n"
+    },
+    {
+      "name": "core-error",
+      "description": "\nFired when an error is received.\n\n"
+    },
+    {
+      "name": "core-complete",
+      "description": "\nFired whenever a response or an error is received.\n\n"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "url",
+      "description": "\nThe URL target of the request.\n\n",
+      "type": "string",
+      "default": "''"
+    },
+    {
+      "name": "handleAs",
+      "description": "\nSpecifies what data to store in the `response` property, and\nto deliver as `event.response` in `response` events.\n\nOne of:\n\n   `text`: uses `XHR.responseText`.\n\n   `xml`: uses `XHR.responseXML`.\n\n   `json`: uses `XHR.responseText` parsed as JSON.\n\n   `arraybuffer`: uses `XHR.response`.\n\n   `blob`: uses `XHR.response`.\n\n   `document`: uses `XHR.response`.\n\n",
+      "type": "string",
+      "default": "'text'"
+    },
+    {
+      "name": "auto",
+      "description": "\nIf true, automatically performs an Ajax request when either `url` or `params` changes.\n\n",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "params",
+      "description": "\nParameters to send to the specified URL, as JSON.\n\n",
+      "type": "string",
+      "default": "''"
+    },
+    {
+      "name": "response",
+      "description": "\nThe response for the current request, or null if it hasn't\ncompleted yet or the request resulted in error.\n\n",
+      "type": "Object",
+      "default": "null"
+    },
+    {
+      "name": "error",
+      "description": "\nThe error for the current request, or null if it hasn't\ncompleted yet or the request resulted in success.\n\n",
+      "type": "Object",
+      "default": "null"
+    },
+    {
+      "name": "loading",
+      "description": "\nWhether the current request is currently loading.\n\n",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "progress",
+      "description": "\nThe progress of the current request.\n\n",
+      "type": "{loaded: number, total: number, lengthComputable: boolean}",
+      "default": "{}"
+    },
+    {
+      "name": "method",
+      "description": "\nThe HTTP method to use such as 'GET', 'POST', 'PUT', or 'DELETE'.\nDefault is 'GET'.\n\n",
+      "type": "string",
+      "default": "''"
+    },
+    {
+      "name": "headers",
+      "description": "\nHTTP request headers to send.\n\nExample:\n\n    <core-ajax\n        auto\n        url=\"http://somesite.com\"\n        headers='{\"X-Requested-With\": \"XMLHttpRequest\"}'\n        handleAs=\"json\"\n        on-core-response=\"{{handleResponse}}\"></core-ajax>\n\n",
+      "type": "Object",
+      "default": "null"
+    },
+    {
+      "name": "body",
+      "description": "\nOptional raw body content to send when method === \"POST\".\n\nExample:\n\n    <core-ajax method=\"POST\" auto url=\"http://somesite.com\"\n        body='{\"foo\":1, \"bar\":2}'>\n    </core-ajax>\n\n",
+      "type": "Object",
+      "default": "null"
+    },
+    {
+      "name": "contentType",
+      "description": "\nContent type to use when sending data.\n\n",
+      "type": "string",
+      "default": "'application/x-www-form-urlencoded'"
+    },
+    {
+      "name": "withCredentials",
+      "description": "\nSet the withCredentials flag on the request.\n\n",
+      "type": "boolean",
+      "default": "false"
+    }
+  ],
+  "properties": [
+    {
+      "name": "xhrArgs",
+      "description": "\nAdditional properties to send to core-xhr.\n\nCan be set to an object containing default properties\nto send as arguments to the `core-xhr.request()` method\nwhich implements the low-level communication.\n\n",
+      "type": "Object",
+      "default": "null"
+    }
+  ],
+  "methods": [
+    {
+      "name": "go",
+      "description": "\nPerforms an Ajax request to the specified URL.\n\n"
+    },
+    {
+      "name": "abort",
+      "description": "\nAborts the current active request if there is one and resets internal\nstate appropriately.\n\n"
+    }
+  ],
+  "location": "0.5/components/core-ajax/core-ajax.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

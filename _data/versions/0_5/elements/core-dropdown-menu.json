@@ -1,0 +1,51 @@
+{
+  "name": "core-dropdown-menu",
+  "description": "\n\n`core-dropdown-menu` works together with `core-dropdown` and `core-selector` to\nimplement a drop-down menu. The currently selected item is displayed in the\ncontrol. If no item is selected, the `label` is displayed instead.\n\nThe child element with the class `dropdown` will be used as the drop-down\nmenu. It should be a `core-dropdown` or other overlay element. You should\nalso provide a `core-selector` or other selector element, such as `core-menu`,\nin the drop-down.\n\nExample:\n\n    <core-dropdown-menu label=\"Choose a pastry\">\n        <core-dropdown class=\"dropdown\">\n            <core-selector>\n              <core-item label=\"Croissant\"></core-item>\n              <core-item label=\"Donut\"></core-item>\n              <core-item label=\"Financier\"></core-item>\n              <core-item label=\"Madeleine\"></core-item>\n            </core-selector>\n        </core-dropdown>\n    </core-dropdown-menu>\n\n",
+  "extends": [
+    {
+      "name": "core-dropdown-base",
+      "url": null
+    }
+  ],
+  "status": "unstable",
+  "homepage": "github.io",
+  "attributes": [
+    {
+      "name": "label",
+      "description": "\nA label for the control. The label is displayed if no item is selected.\n\n",
+      "type": "string",
+      "default": "'Select an item'"
+    },
+    {
+      "name": "openedIcon",
+      "description": "\nThe icon to display when the drop-down is opened.\n\n",
+      "type": "string",
+      "default": "'arrow-drop-up'"
+    },
+    {
+      "name": "closedIcon",
+      "description": "\nThe icon to display when the drop-down is closed.\n\n",
+      "type": "string",
+      "default": "'arrow-drop-down'"
+    }
+  ],
+  "location": "0.5/components/core-dropdown-menu/core-dropdown-menu.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [
+      {
+        "name": "core-dropdown-base",
+        "attributes": [
+          {
+            "name": "opened",
+            "description": "\nTrue if the menu is open.\n\n",
+            "type": "boolean",
+            "default": "false"
+          }
+        ]
+      }
+    ],
+    "events": [],
+    "properties": []
+  }
+}

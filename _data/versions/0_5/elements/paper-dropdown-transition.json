@@ -1,0 +1,198 @@
+{
+  "name": "paper-dropdown-transition",
+  "description": "\n\n`paper-dropdown-transition` is a transition for `paper-dropdown`.\n\nAdd the class `menu` to a `core-selector` child of the `paper-dropdown` to\nenable the optional list cascade transition.\n\n",
+  "extends": [
+    {
+      "name": "core-transition-css",
+      "url": null
+    }
+  ],
+  "status": "unstable",
+  "attributes": [
+    {
+      "name": "duration",
+      "description": "\nThe duration of the transition in ms. You can also set the duration by\nsetting a `duration` attribute on the target:\n\n   <paper-dropdown duration=\"1000\"></paper-dropdown>\n\n",
+      "type": "number",
+      "default": "500"
+    }
+  ],
+  "location": "0.5/components/paper-dropdown/paper-dropdown-transition.html",
+  "inherited": {
+    "methods": [
+      {
+        "name": "core-meta",
+        "methods": [
+          {
+            "name": "byId",
+            "description": "\nRetrieves meta-data by ID.\n\n",
+            "params": [
+              {
+                "type": "String",
+                "name": "id",
+                "description": "The ID of the meta-data to be returned."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "core-transition",
+        "methods": [
+          {
+            "name": "go",
+            "description": "\nRun the animation.\n\n",
+            "params": [
+              {
+                "type": "Node",
+                "name": "node",
+                "description": "The node to apply the animation on"
+              },
+              {
+                "type": "Object",
+                "name": "state",
+                "description": "State info"
+              }
+            ]
+          },
+          {
+            "name": "setup",
+            "description": "\nSet up the animation. This may include injecting a stylesheet,\napplying styles, creating a web animations object, etc.. This\n\n",
+            "params": [
+              {
+                "type": "Node",
+                "name": "node",
+                "description": "The animated node"
+              }
+            ]
+          },
+          {
+            "name": "teardown",
+            "description": "\nTear down the animation.\n\n",
+            "params": [
+              {
+                "type": "Node",
+                "name": "node",
+                "description": "The animated node"
+              }
+            ]
+          },
+          {
+            "name": "complete",
+            "description": "\nCalled when the animation completes. This function also fires the\n`core-transitionend` event.\n\n",
+            "params": [
+              {
+                "type": "Node",
+                "name": "node",
+                "description": "The animated node"
+              }
+            ]
+          },
+          {
+            "name": "listenOnce",
+            "description": "\nUtility function to listen to an event on a node once.\n\n",
+            "params": [
+              {
+                "type": "Node",
+                "name": "node",
+                "description": "The animated node"
+              },
+              {
+                "type": "string",
+                "name": "event",
+                "description": "Name of an event"
+              },
+              {
+                "type": "Function",
+                "name": "fn",
+                "description": "Event handler"
+              },
+              {
+                "type": "Array",
+                "name": "args",
+                "description": "Additional arguments to pass to `fn`"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "attributes": [
+      {
+        "name": "core-meta",
+        "attributes": [
+          {
+            "name": "type",
+            "description": "\nThe type of meta-data.  All meta-data with the same type with be\nstored together.\n\n",
+            "type": "string",
+            "default": "'default'"
+          }
+        ]
+      },
+      {
+        "name": "core-transition-css",
+        "attributes": [
+          {
+            "name": "baseClass",
+            "description": "\nThe class that will be applied to all animated nodes.\n\n",
+            "type": "string",
+            "default": "\"core-transition\""
+          },
+          {
+            "name": "openedClass",
+            "description": "\nThe class that will be applied to nodes in the opened state.\n\n",
+            "type": "string",
+            "default": "\"core-opened\""
+          },
+          {
+            "name": "closedClass",
+            "description": "\nThe class that will be applied to nodes in the closed state.\n\n",
+            "type": "string",
+            "default": "\"core-closed\""
+          },
+          {
+            "name": "completeEventName",
+            "description": "\nEvent to listen to for animation completion.\n\n",
+            "type": "string",
+            "default": "\"transitionEnd\""
+          },
+          {
+            "name": "transitionType",
+            "description": "\nA secondary configuration attribute for the animation. The class\n`<baseClass>-<transitionType` is applied to the animated node during\n`setup`.\n\n",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "events": [
+      {
+        "name": "core-transition",
+        "events": [
+          {
+            "name": "core-transitionend",
+            "description": "\nFired when the animation finishes.\n\n",
+            "params": [
+              {
+                "type": "Object",
+                "name": "detail.node",
+                "description": "The animated node"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "name": "core-meta",
+        "properties": [
+          {
+            "name": "list",
+            "description": "\nReturns a list of all meta-data elements with the same type.\n\n",
+            "type": "array",
+            "default": "[]"
+          }
+        ]
+      }
+    ]
+  }
+}

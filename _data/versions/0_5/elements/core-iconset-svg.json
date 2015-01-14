@@ -1,0 +1,105 @@
+{
+  "name": "core-iconset-svg",
+  "description": "\n\n\nThe `core-iconset-svg` element allows users to define their own icon sets\nthat contain svg icons. The svg icon elements should be children of the\n`core-iconset-svg` element. Multiple icons should be given distinct id's.\n\nUsing svg elements to create icons has a few advantages over traditional\nbitmap graphics like jpg or png. Icons that use svg are vector based so they\nare resolution independent and should look good on any device. They are\nstylable via css. Icons can be themed, colorized, and even animated.\n\nExample:\n\n    <core-iconset-svg id=\"my-svg-icons\" iconSize=\"24\">\n      <svg>\n        <defs>\n          <g id=\"shape\">\n            <rect x=\"50\" y=\"50\" width=\"50\" height=\"50\" />\n            <circle cx=\"50\" cy=\"50\" r=\"50\" />\n          </g>\n        </defs>\n      </svg>\n    </core-iconset-svg>\n\nThis will automatically register the icon set \"my-svg-icons\" to the iconset\ndatabase.  To use these icons from within another element, make a\n`core-iconset` element and call the `byId` method\nto retrieve a given iconset. To apply a particular icon inside an\nelement use the `applyIcon` method. For example:\n\n    iconset.applyIcon(iconNode, 'car');\n\n\n",
+  "extends": [
+    {
+      "name": "core-meta",
+      "url": null
+    }
+  ],
+  "homepage": "github.io",
+  "attributes": [
+    {
+      "name": "iconSize",
+      "description": "\nThe size of an individual icon. Note that icons must be square.\n\n",
+      "type": "number",
+      "default": "24"
+    }
+  ],
+  "methods": [
+    {
+      "name": "applyIcon",
+      "description": "\nApplies an icon to the given element. The svg icon is added to the\nelement's shadowRoot if one exists or directly to itself.\n\napplied.\n",
+      "params": [
+        {
+          "type": "Element",
+          "name": "element",
+          "description": "The element to which the icon is"
+        },
+        {
+          "type": "String|Number",
+          "name": "icon",
+          "description": "The name the icon to apply."
+        }
+      ],
+      "return": {
+        "type": "Element",
+        "description": "The icon element"
+      }
+    },
+    {
+      "name": "updateIcons",
+      "description": "\nTell users of the iconset, that the set has loaded.\nThis finds all elements matching the selector argument and calls \nthe method argument on them.\ndefaults to '[icon]'\ndefaults to 'updateIcon'\n",
+      "params": [
+        {
+          "type": "string",
+          "name": "css",
+          "description": "selector to identify iconset users, "
+        },
+        {
+          "type": "string",
+          "name": "method",
+          "description": "to call on found elements, "
+        }
+      ]
+    }
+  ],
+  "location": "0.5/components/core-iconset-svg/core-iconset-svg.html",
+  "inherited": {
+    "methods": [
+      {
+        "name": "core-meta",
+        "methods": [
+          {
+            "name": "byId",
+            "description": "\nRetrieves meta-data by ID.\n\n",
+            "params": [
+              {
+                "type": "String",
+                "name": "id",
+                "description": "The ID of the meta-data to be returned."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "attributes": [
+      {
+        "name": "core-meta",
+        "attributes": [
+          {
+            "name": "type",
+            "description": "\nThe type of meta-data.  All meta-data with the same type with be\nstored together.\n\n",
+            "type": "string",
+            "default": "'default'"
+          }
+        ]
+      }
+    ],
+    "events": [],
+    "properties": [
+      {
+        "name": "core-meta",
+        "properties": [
+          {
+            "name": "list",
+            "description": "\nReturns a list of all meta-data elements with the same type.\n\n",
+            "type": "array",
+            "default": "[]"
+          }
+        ]
+      }
+    ]
+  }
+}

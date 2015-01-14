@@ -1,0 +1,32 @@
+{
+  "name": "core-icon-button",
+  "description": "\n`core-icon-button` is an icon with button behaviors.\n\n    <core-icon-button src=\"star.png\"></core-icon-button>\n\n`core-icon-button` includes a default icon set.  Use `icon` to specify \nwhich icon from the icon set to use.\n\n    <core-icon-button icon=\"menu\"></core-icon-button>\n\nSee [`core-iconset`](#core-iconset) for more information about \nhow to use a custom icon set.\n\n",
+  "homepage": "github.io",
+  "attributes": [
+    {
+      "name": "src",
+      "description": "\nThe URL of an image for the icon.  Should not use `icon` property\nif you are using this property.\n\n",
+      "type": "string",
+      "default": "''"
+    },
+    {
+      "name": "active",
+      "description": "\nIf true, border is placed around the button to indicate it's\nactive state.\n\n",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "icon",
+      "description": "\nSpecifies the icon name or index in the set of icons available in\nthe icon set.  Should not use `src` property if you are using this\nproperty.\n\n",
+      "type": "string",
+      "default": "''"
+    }
+  ],
+  "location": "0.5/components/core-icon-button/core-icon-button.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

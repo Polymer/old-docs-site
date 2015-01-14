@@ -1,0 +1,91 @@
+{
+  "name": "core-splitter",
+  "description": "\n`core-splitter` provides a split bar and dragging on the split bar\nwill resize the sibling element.  Use its `direction` property to indicate\nwhich sibling element to be resized and the orientation.  Usually you would want\nto use `core-splitter` along with flex layout so that the other sibling\nelement can be _flexible_.\n\nExample:\n\n    <div horizontal layout>\n      <div>left</div>\n      <core-splitter direction=\"left\"></core-splitter>\n      <div flex>right</div>\n    </div>\n\nIn the above example, dragging the splitter will resize the _left_ element.  And\nsince the parent container is a flexbox and the _right_ element has\n`flex`, the _right_ element will be auto-resized.\n\nFor horizontal splitter set `direction` to `up` or `down`.\n\nExample:\n\n    <div vertical layout>\n      <div>top</div>\n      <core-splitter direction=\"up\"></core-splitter>\n      <div flex>bottom</div>\n    </div>\n\n",
+  "mixins": [
+    {
+      "name": "Polymer.CoreResizer",
+      "url": "https://github.com/polymer/core-resizable"
+    }
+  ],
+  "homepage": "github.io",
+  "attributes": [
+    {
+      "name": "direction",
+      "description": "\nPossible values are `left`, `right`, `up` and `down`.\n\n",
+      "type": "string",
+      "default": "'left'"
+    },
+    {
+      "name": "minSize",
+      "description": "\nMinimum width to which the splitter target can be sized, e.g. \n`minSize=\"100px\"`\n\n",
+      "type": "string",
+      "default": "''"
+    },
+    {
+      "name": "locked",
+      "description": "\nLocks the split bar so it can't be dragged.\n\n",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "allowOverflow",
+      "description": "\nBy default the parent and siblings of the splitter are set to overflow hidden. This helps\navoid elements bleeding outside the splitter regions. Set this property to true to allow\nthese elements to overflow.\n\n",
+      "type": "boolean",
+      "default": "false"
+    }
+  ],
+  "location": "0.5/components/core-splitter/core-splitter.html",
+  "inherited": {
+    "methods": [
+      {
+        "name": "CoreResizable",
+        "methods": [
+          {
+            "name": "resizableAttachedHandler",
+            "description": "\nUser must call from `attached` callback\n\n"
+          },
+          {
+            "name": "resizableDetachedHandler",
+            "description": "\nUser must call from `detached` callback\n\n"
+          }
+        ]
+      },
+      {
+        "name": "CoreResizer",
+        "methods": [
+          {
+            "name": "resizerAttachedHandler",
+            "description": "\nUser must call from `attached` callback\n\n"
+          },
+          {
+            "name": "resizerDetachedHandler",
+            "description": "\nUser must call from `detached` callback\n\n"
+          },
+          {
+            "name": "notifyResize",
+            "description": "\nUser should call when resizing or un-hiding children\n\n"
+          },
+          {
+            "name": "resizeerShouldNotify",
+            "description": "\nUser should implement to introduce filtering when notifying children.\nGenerally, children that are hidden by the CoreResizer (e.g. non-active\npages) need not be notified during resize, since they will be notified\nagain when becoming un-hidden.\n\nReturn `true` if CoreResizable passed as argument should be notified of\nresize.\n\n"
+          }
+        ]
+      }
+    ],
+    "attributes": [],
+    "events": [],
+    "properties": [
+      {
+        "name": "CoreResizer",
+        "properties": [
+          {
+            "name": "resizerIsPeer",
+            "description": "\nSet to `true` if the resizer is actually a peer to the elements it\nresizes (e.g. splitter); in this case it will listen for resize requests\nevents from its peers on its parent.\n\n",
+            "type": "Boolean",
+            "default": "false"
+          }
+        ]
+      }
+    ]
+  }
+}

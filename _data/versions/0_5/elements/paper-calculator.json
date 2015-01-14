@@ -1,0 +1,38 @@
+{
+  "name": "paper-calculator",
+  "description": "\n\n\nA fancy looking calculator that can only perform simple math calculation. \n\n\n",
+  "homepage": "github.io",
+  "attributes": [
+    {
+      "name": "wideMode",
+      "description": "\nIf true, calculator changes to wide layout.\n\n",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "responsiveWidth",
+      "description": "\nMin-width when calculator changes to wide layout.\n\n",
+      "type": "string",
+      "default": "''"
+    },
+    {
+      "name": "expression",
+      "description": "\nThe expression entered to the calculator.\n\n",
+      "type": "string",
+      "default": "''"
+    },
+    {
+      "name": "result",
+      "description": "\nThe result from evaluating the expression.\n\n",
+      "type": "string",
+      "default": "''"
+    }
+  ],
+  "location": "0.5/components/paper-calculator/paper-calculator.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

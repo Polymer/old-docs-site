@@ -1,0 +1,72 @@
+{
+  "name": "paper-checkbox",
+  "description": "\n`paper-checkbox` is a button that can be either checked or unchecked.  User\ncan tap the checkbox to check or uncheck it.  Usually you use checkboxes\nto allow user to select multiple options from a set.  If you have a single\nON/OFF option, avoid using a single checkbox and use `paper-toggle-button`\ninstead.\n\nExample:\n\n    <paper-checkbox></paper-checkbox>\n\n    <paper-checkbox checked></paper-checkbox>\n\nStyling checkbox:\n\nTo change the ink color for checked state:\n\n    paper-checkbox::shadow #ink[checked] {\n      color: #4285f4;\n    }\n\nTo change the checkbox checked color:\n\n    paper-checkbox::shadow #checkbox.checked {\n      background-color: #4285f4;\n      border-color: #4285f4;\n    }\n\nTo change the ink color for unchecked state:\n\n    paper-checkbox::shadow #ink {\n      color: #b5b5b5;\n    }\n\nTo change the checkbox unchecked color:\n\n    paper-checkbox::shadow #checkbox {\n      border-color: #b5b5b5;\n    }\n\n",
+  "extends": [
+    {
+      "name": "paper-radio-button",
+      "url": null
+    }
+  ],
+  "homepage": "github.io",
+  "events": [
+    {
+      "name": "change",
+      "description": "\nFired when the checked state changes due to user interaction.\n\n"
+    },
+    {
+      "name": "core-change",
+      "description": "\nFired when the checked state changes.\n\n"
+    }
+  ],
+  "location": "0.5/components/paper-checkbox/paper-checkbox.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [
+      {
+        "name": "paper-radio-button",
+        "attributes": [
+          {
+            "name": "checked",
+            "description": "\nGets or sets the state, `true` is checked and `false` is unchecked.\n\n",
+            "type": "boolean",
+            "default": "false"
+          },
+          {
+            "name": "label",
+            "description": "\nThe label for the radio button.\n\n",
+            "type": "string",
+            "default": "''"
+          },
+          {
+            "name": "toggles",
+            "description": "\nNormally the user cannot uncheck the radio button by tapping once\nchecked.  Setting this property to `true` makes the radio button\ntoggleable from checked to unchecked.\n\n",
+            "type": "boolean",
+            "default": "false"
+          },
+          {
+            "name": "disabled",
+            "description": "\nIf true, the user cannot interact with this element.\n\n",
+            "type": "boolean",
+            "default": "false"
+          }
+        ]
+      }
+    ],
+    "events": [
+      {
+        "name": "paper-radio-button",
+        "events": [
+          {
+            "name": "change",
+            "description": "\nFired when the checked state changes due to user interaction.\n\n"
+          },
+          {
+            "name": "core-change",
+            "description": "\nFired when the checked state changes.\n\n"
+          }
+        ]
+      }
+    ],
+    "properties": []
+  }
+}

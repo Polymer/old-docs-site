@@ -1,0 +1,45 @@
+{
+  "name": "core-header-panel",
+  "description": "\n`core-header-panel` contains a header section and a content panel section.\n\n__Important:__ The `core-header-panel` will not display if its parent does not have a height.\n\nUsing [layout attributes](http://www.polymer-project.org/docs/polymer/layout-attrs.html), you can easily make the `core-header-panel` fill the screen\n\n    <body fullbleed layout vertical>\n      <core-header-panel flex>\n        <core-toolbar>\n          <div>Hello World!</div>\n        </core-toolbar>\n      </core-header-panel>\n    </body>\n\nor, if you would prefer to do it in CSS, just give `html`, `body`, and `core-header-panel` a height of 100%:\n\n    html, body {\n      height: 100%;\n      margin: 0;\n    }\n    core-header-panel {\n      height: 100%;\n    }\n\nSpecial support is provided for scrolling modes when one uses a core-toolbar or equivalent\nfor the header section.\n\nExample:\n\n    <core-header-panel>\n      <core-toolbar>Header</core-toolbar>\n      <div>Content goes here...</div>\n    </core-header-panel>\n\nIf you want to use other than `core-toolbar` for the header, add\n`core-header` class to that element.\n\nExample:\n\n    <core-header-panel>\n      <div class=\"core-header\">Header</div>\n      <div>Content goes here...</div>\n    </core-header-panel>\n\nTo have the content fits to the main area, use `fit` attribute.\n\n    <core-header-panel>\n      <div class=\"core-header\">standard</div>\n      <div class=\"content\" fit>content fits 100% below the header</div>\n    </core-header-panel>\n\nUse `mode` to control the header and scrolling behavior.\n\n",
+  "homepage": "github.io",
+  "events": [
+    {
+      "name": "scroll",
+      "description": "\nFired when the content has been scrolled.  `event.detail.target` returns\nthe scrollable element which you can use to access scroll info such as\n`scrollTop`.\n\n    <core-header-panel on-scroll=\"{{scrollHandler}}\">\n      ...\n    </core-header-panel>\n\n\n    scrollHandler: function(event) {\n      var scroller = event.detail.target;\n      console.log(scroller.scrollTop);\n    }\n\n"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "mode",
+      "description": "\nControls header and scrolling behavior. Options are\n`standard`, `seamed`, `waterfall`, `waterfall-tall`, `scroll` and \n`cover`. Default is `standard`.\n\n`standard`: The header is a step above the panel. The header will consume the\npanel at the point of entry, preventing it from passing through to the\nopposite side.\n\n`seamed`: The header is presented as seamed with the panel.\n\n`waterfall`: Similar to standard mode, but header is initially presented as\nseamed with panel, but then separates to form the step.\n\n`waterfall-tall`: The header is initially taller (`tall` class is added to\nthe header).  As the user scrolls, the header separates (forming an edge)\nwhile condensing (`tall` class is removed from the header).\n\n`scroll`: The header keeps its seam with the panel, and is pushed off screen.\n\n`cover`: The panel covers the whole `core-header-panel` including the\nheader. This allows user to style the panel in such a way that the panel is\npartially covering the header.\n\n    <style>\n      core-header-panel[mode=cover]::shadow #mainContainer {\n        left: 80px;\n      }\n      .content {\n        margin: 60px 60px 60px 0;\n      }\n    </style>\n\n    <core-header-panel mode=\"cover\">\n      <core-toolbar class=\"tall\">\n        <core-icon-button icon=\"menu\"></core-icon-button>\n      </core-toolbar>\n      <div class=\"content\"></div>\n    </core-header-panel>\n\n",
+      "type": "string",
+      "default": "''"
+    },
+    {
+      "name": "tallClass",
+      "description": "\nThe class used in waterfall-tall mode.  Change this if the header\naccepts a different class for toggling height, e.g. \"medium-tall\"\n\n",
+      "type": "string",
+      "default": "'tall'"
+    },
+    {
+      "name": "shadow",
+      "description": "\nIf true, the drop-shadow is always shown no matter what mode is set to.\n\n",
+      "type": "boolean",
+      "default": "false"
+    }
+  ],
+  "properties": [
+    {
+      "name": "scroller",
+      "description": "\nReturns the scrollable element.\n\n",
+      "type": "Object"
+    }
+  ],
+  "location": "0.5/components/core-header-panel/core-header-panel.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

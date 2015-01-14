@@ -1,0 +1,34 @@
+{
+  "name": "core-doc-viewer",
+  "description": "\nDisplays formatted source documentation scraped from input urls.\n\nDocumentation can be encoded into html comments (&lt;!-- ... --&gt;) or using JsDoc notation (/&#42;&#42; ... &#42;/).\n\nWhen using JsDoc notation, remember that the left-margin includes an asterisk and a single space.\nThis is important for markdown constructs that count spaces. Code blocks for example, must be\nfive spaces from the first asterisk.\n\n## Markdown\n\nMarkdown format is supported.\n\n### Links\n\nArbitrary links can be encoded using [standard markdown format](http://daringfireball.net/projects/markdown/syntax). \n[GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown) is also supported.\n\nLinks to other topics can be made with hash-links [core-doc-viewer](#core-doc-viewer).\n\n### Code\n\nExample\n\n    Four space indents indicate code blocks.\n    \n    <code>blocks are syntax highlighted</code>\n    \n    <script>\n      while(true) {\n        javascript('is highlighted also');\n      }\n    <\\/script>\n\n### Blockquote\n\n > Blockquote is supported for long text that needs to wrap with a common left side indent.\n > Blockquote is supported for long text that needs to wrap with a common left side indent.  \n\n### Lists\n \n1.  enumerated\n1.  lists\n \nUse - or + for bullet points:\n \n- bullet\n- lists\n\n### Tables\n\n| First Header  | Second Header |\n| ------------- | ------------- |\n| Content Cell  | Content Cell  |\n| Content Cell  | Content Cell  |\n\n### HTML\n\nArbitrary HTML is also supported\n\n<input><button>Button</button><hr/>\n\n",
+  "homepage": "github.io",
+  "attributes": [
+    {
+      "name": "url",
+      "description": "\nA single file to parse for docs\n\n",
+      "type": "String",
+      "default": "''"
+    },
+    {
+      "name": "sources",
+      "description": "\nFiles to parse for docs\n\n",
+      "type": "Array",
+      "default": "[]"
+    }
+  ],
+  "properties": [
+    {
+      "name": "classes",
+      "description": "\nClass documentation extracted from the parser\n\n",
+      "type": "Array",
+      "default": "[]"
+    }
+  ],
+  "location": "0.5/components/core-doc-viewer/core-doc-viewer.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

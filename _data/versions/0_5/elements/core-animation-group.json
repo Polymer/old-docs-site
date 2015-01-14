@@ -1,0 +1,32 @@
+{
+  "name": "core-animation-group",
+  "description": "\n\n`core-animation-group` combines `core-animation` or `core-animation-group` elements to\ncreate a grouped web animation. The group may be parallel (type is `par`) or sequential\n(type is `seq`). Parallel groups play all the children elements simultaneously, and\nsequential groups play the children one after another.\n\nExample of an animation group to rotate and then fade an element:\n\n    <core-animation-group type=\"seq\">\n      <core-animation id=\"fadeout\" duration=\"500\">\n        <core-animation-keyframe>\n          <core-animation-prop name=\"transform\" value=\"rotate(0deg)\"></core-animation-prop>\n          <core-animation-prop name=\"transform\" value=\"rotate(45deg)\"></core-animation-prop>\n        </core-animation-keyframe>\n      </core-animation>\n      <core-animation id=\"fadeout\" duration=\"500\">\n        <core-animation-keyframe>\n          <core-animation-prop name=\"opacity\" value=\"1\"></core-animation-prop>\n        </core-animation-keyframe>\n        <core-animation-keyframe>\n          <core-animation-prop name=\"opacity\" value=\"0\"></core-animation-prop>\n        </core-animation-keyframe>\n      </core-animation>\n    </core-animation-group>\n\n",
+  "status": "beta",
+  "homepage": "github.io",
+  "properties": [
+    {
+      "name": "target",
+      "description": "\nIf target is set, any children without a target will be assigned the group's\ntarget when this property is set.\n\n",
+      "type": "HTMLElement|Node|Array|Array<HTMLElement|Node>"
+    },
+    {
+      "name": "duration",
+      "description": "\nFor a `core-animation-group`, a duration of \"auto\" means the duration should\nbe the specified duration of its children. If set to anything other than\n\"auto\", any children without a set duration will be assigned the group's duration.\n\n",
+      "type": "number",
+      "default": "\"auto\""
+    },
+    {
+      "name": "type",
+      "description": "\nThe type of the animation group. 'par' creates a parallel group and 'seq' creates\na sequential group.\n\n",
+      "type": "String",
+      "default": "'par'"
+    }
+  ],
+  "location": "0.5/components/core-animation/core-animation-group.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

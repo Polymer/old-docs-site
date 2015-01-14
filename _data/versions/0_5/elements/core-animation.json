@@ -1,0 +1,138 @@
+{
+  "name": "core-animation",
+  "description": "\n\n`core-animation` is a convenience element to use web animations with Polymer elements. It\nallows you to create a web animation declaratively. You can extend this class to create\nnew types of animations and combine them with `core-animation-group`.\n\nExample to create animation to fade out an element over 500ms:\n\n    <core-animation id=\"fadeout\" duration=\"500\">\n      <core-animation-keyframe>\n        <core-animation-prop name=\"opacity\" value=\"1\"></core-animation-prop>\n      </core-animation-keyframe>\n      <core-animation-keyframe>\n        <core-animation-prop name=\"opacity\" value=\"0\"></core-animation-prop>\n      </core-animation-keyframe>\n    </core-animation>\n\n    <div id=\"el\">Fade me out</div>\n\n    <script>\n      var animation = document.getElementById('fadeout');\n      animation.target = document.getElementById('el');\n      animation.play();\n    <\\/script>\n\nOr do the same imperatively:\n\n    var animation = new CoreAnimation();\n    animation.duration = 500;\n    animation.keyframes = [\n      {opacity: 1},\n      {opacity: 0}\n    ];\n    animation.target = document.getElementById('el');\n    animation.play();\n\nYou can also provide a javascript function instead of keyframes to the animation. This\nbehaves essentially the same as `requestAnimationFrame`:\n\n    var animation = new CoreAnimation();\n    animation.customEffect = function(timeFraction, target, animation) {\n      // do something custom\n    };\n    animation.play();\n\nElements that are targets to a `core-animation` are given the `core-animation-target` class.\n\n",
+  "status": "beta",
+  "homepage": "github.io",
+  "events": [
+    {
+      "name": "core-animation-finish",
+      "description": "\nFired when the animation completes.\n\n"
+    },
+    {
+      "name": "core-animation-change",
+      "description": "\n\nFired when the web animation object changes.\n\n"
+    }
+  ],
+  "properties": [
+    {
+      "name": "target",
+      "description": "\nOne or more nodes to animate.\n\n",
+      "type": "HTMLElement|Node|Array<HTMLElement|Node>"
+    },
+    {
+      "name": "keyframes",
+      "description": "\nAnimation keyframes specified as an array of dictionaries of\n&lt;css properties&gt;:&lt;array of values&gt; pairs. For example,\n\n",
+      "type": "Object"
+    },
+    {
+      "name": "customEffect",
+      "description": "\nA custom animation function. Either provide this or `keyframes`. The signature\nof the callback is `EffectsCallback(timeFraction, target, animation)`\n\n",
+      "type": "Function(number, Object, Object)"
+    },
+    {
+      "name": "composite",
+      "description": "\nControls the composition behavior. If set to \"replace\", the effect overrides\nthe underlying value for the target. If set the \"add\", the effect is added to\nthe underlying value for the target. If set to \"accumulate\", the effect is\naccumulated to the underlying value for the target.\n\nIn cases such as numbers or lengths, \"add\" and \"accumulate\" produce the same\nvalue. In list values, \"add\" is appending to the list, while \"accumulate\" is\nadding the individual components of the list.\n\nFor example, adding `translateX(10px)` and `translateX(25px)` produces\n`translateX(10px) translateX(25px)` and accumulating produces `translateX(35px)`.\n\n",
+      "type": "\"replace\"|\"add\"|\"accumulate\"",
+      "default": "\"replace\""
+    },
+    {
+      "name": "duration",
+      "description": "\nAnimation duration in milliseconds, \"Infinity\", or \"auto\". \"auto\" is\nequivalent to 0.\n\n",
+      "type": "number|\"Infinity\"",
+      "default": "\"auto\""
+    },
+    {
+      "name": "fill",
+      "description": "\nControls the effect the animation has on the target when it's not playing.\nThe possible values are \"none\", \"forwards\", \"backwards\", \"both\" or \"auto\".\n\n\"none\" means the animation has no effect when it's not playing.\n\n\"forwards\" applies the value at the end of the animation after it's finished.\n\n\"backwards\" applies the value at the start of the animation to the target\nbefore it starts playing and has no effect when the animation finishes.\n\n\"both\" means \"forwards\" and \"backwards\". \"auto\" is equivalent to \"none\".\n\n",
+      "type": "\"none\"|\"forwards\"|\"backwards\"|\"both\"|\"auto\"",
+      "default": "\"auto\""
+    },
+    {
+      "name": "easing",
+      "description": "\nA transition timing function. The values are equivalent to the CSS\ncounterparts.\n\n",
+      "type": "string",
+      "default": "\"linear\""
+    },
+    {
+      "name": "delay",
+      "description": "\nThe number of milliseconds to delay before beginning the animation.\n\n",
+      "type": "Number",
+      "default": "0"
+    },
+    {
+      "name": "endDelay",
+      "description": "\nThe number of milliseconds to wait after the animation finishes. This is\nuseful, for example, in an animation group to wait for some time before\nbeginning the next item in the animation group.\n\n",
+      "type": "number",
+      "default": "0"
+    },
+    {
+      "name": "iterations",
+      "description": "\nThe number of iterations this animation should run for.\n\n",
+      "type": "Number|'Infinity'",
+      "default": "1"
+    },
+    {
+      "name": "iterationStart",
+      "description": "\nNumber of iterations into the animation in which to begin the effect.\nFor example, setting this property to 0.5 and `iterations` to 2 will\ncause the animation to begin halfway through the first iteration but still\nrun twice.\n\n",
+      "type": "Number",
+      "default": "0"
+    },
+    {
+      "name": "iterationComposite",
+      "description": "\n(not working in web animations polyfill---do not use)\n\nControls the iteration composition behavior. If set to \"replace\", the effect for\nevery iteration is independent of each other. If set to \"accumulate\", the effect\nfor iterations of the animation will build upon the value in the previous iteration.\n\nExample:\n\n   // Moves the target 50px on the x-axis over 5 iterations.\n   <core-animation iterations=\"5\" iterationComposite=\"accumulate\">\n     <core-animation-keyframe>\n       <core-animation-prop name=\"transform\" value=\"translateX(10px)\"></core-animation-prop>\n     </core-animation-keyframe>\n   </core-animation>\n\n",
+      "type": "\"replace\"|\"accumulate\"",
+      "default": "false"
+    },
+    {
+      "name": "direction",
+      "description": "\nThe playback direction of the animation. \"normal\" plays the animation in the\nnormal direction. \"reverse\" plays it in the reverse direction. \"alternate\"\nalternates the playback direction every iteration such that even iterations are\nplayed normally and odd iterations are reversed. \"alternate-reverse\" plays\neven iterations in the reverse direction and odd iterations in the normal\ndirection.\n\n",
+      "type": "\"normal\"|\"reverse\"|\"alternate\"|\"alternate-reverse\"",
+      "default": "\"normal\""
+    },
+    {
+      "name": "playbackRate",
+      "description": "\nA multiplier to the playback rate to the animation.\n\n",
+      "type": "number",
+      "default": "1"
+    },
+    {
+      "name": "autoplay",
+      "description": "\nIf set to true, play the animation when it is created or a property is updated.\n\n",
+      "type": "boolean",
+      "default": "false"
+    }
+  ],
+  "methods": [
+    {
+      "name": "play",
+      "description": "\nPlays the animation. If the animation is currently paused, seeks the animation\nto the beginning before starting playback.\n\n"
+    },
+    {
+      "name": "cancel",
+      "description": "\nStops the animation and clears all effects on the target.\n\n"
+    },
+    {
+      "name": "finish",
+      "description": "\nSeeks the animation to the end.\n\n"
+    },
+    {
+      "name": "pause",
+      "description": "\nPauses the animation.\n\n"
+    },
+    {
+      "name": "hasTarget",
+      "description": "\n"
+    },
+    {
+      "name": "apply",
+      "description": "\nCreates a web animations object based on this object's properties, and\nplays it if autoplay is true.\n\n"
+    }
+  ],
+  "location": "0.5/components/core-animation/core-animation.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

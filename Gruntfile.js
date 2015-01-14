@@ -114,6 +114,17 @@ module.exports = function(grunt) {
         'compass',
         'watch'
       ]
+    },
+
+    doc_merge: {
+      default: {
+        options: {
+          prefix: ['core', 'paper'],
+          merge: true
+        },
+        src: 'components',
+        dest: '_data/elements'
+      }
     }
 
   });
@@ -133,8 +144,8 @@ module.exports = function(grunt) {
   });
 
   // Task to run vulcanize and build the jekyll site
-  grunt.registerTask('docs', ['vulcanize-elements', 'jekyll:build']);
-
+  grunt.registerTask('docs', ['doc_merge', 'vulcanize', 'jekyll:build']);
+  
   // Task just for running the GAE dev server.
   grunt.registerTask('serve', ['appengine:run:frontend']);
 

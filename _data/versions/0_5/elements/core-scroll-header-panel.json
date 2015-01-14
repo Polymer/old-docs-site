@@ -1,0 +1,105 @@
+{
+  "name": "core-scroll-header-panel",
+  "description": "\n`core-scroll-header-panel` contains a header section and a content section.  The\nheader is initially on the top part of the view but it scrolls away with the \nrest of the scrollable content.  Upon scrolling slightly up at any point, the \nheader scrolls back into view.  This saves screen space and allows users to\naccess important controls by easily moving them back to the view.\n\n__Important:__ The `core-scroll-header-panel` will not display if its parent does not have a height.\n\nUsing [layout attributes](http://www.polymer-project.org/docs/polymer/layout-attrs.html), you can easily make the `core-scroll-header-panel` fill the screen\n\n    <body fullbleed layout vertical>\n      <core-scroll-header-panel flex>\n        <core-toolbar>\n          <div>Hello World!</div>\n        </core-toolbar>\n      </core-scroll-header-panel>\n    </body>\n\nor, if you would prefer to do it in CSS, just give `html`, `body`, and `core-scroll-header-panel` a height of 100%:\n\n    html, body {\n      height: 100%;\n      margin: 0;\n    }\n    core-scroll-header-panel {\n      height: 100%;\n    }\n\n`core-scroll-header-panel` works well with `core-toolbar` but can use any element \nthat represents a header by adding a `core-header` class to it.\n\n    <core-scroll-header-panel>\n      <core-toolbar>Header</core-toolbar>\n      <div>Content goes here...</div>\n    </core-scroll-header-panel>\n\n",
+  "mixins": [
+    {
+      "name": "Polymer.CoreResizable",
+      "url": "https://github.com/polymer/core-resizable"
+    }
+  ],
+  "homepage": "github.io",
+  "events": [
+    {
+      "name": "scroll",
+      "description": "\nFired when the content has been scrolled.\n\n"
+    },
+    {
+      "name": "core-header-transform",
+      "description": "\nFired when the header is transformed.\n\n"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "condenses",
+      "description": "\nIf true, the header's height will condense to `_condensedHeaderHeight`\nas the user scrolls down from the top of the content area.\n\n",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "noDissolve",
+      "description": "\nIf true, no cross-fade transition from one background to another.\n\n",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "noReveal",
+      "description": "\nIf true, the header doesn't slide back in when scrolling back up.\n\n",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "fixed",
+      "description": "\nIf true, the header is fixed to the top and never moves away.\n\n",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "keepCondensedHeader",
+      "description": "\nIf true, the condensed header is always shown and does not move away.\n\n",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "name": "headerHeight",
+      "description": "\nThe height of the header when it is at its full size.\n\nBy default, the height will be measured when it is ready.  If the height\nchanges later the user needs to either set this value to reflect the\nnew height or invoke `measureHeaderHeight()`.\n\n",
+      "type": "number",
+      "default": "0"
+    },
+    {
+      "name": "condensedHeaderHeight",
+      "description": "\nThe height of the header when it is condensed.\n\nBy default, `_condensedHeaderHeight` is 1/3 of `headerHeight` unless\nthis is specified.\n\n",
+      "type": "number",
+      "default": "0"
+    },
+    {
+      "name": "scrollAwayTopbar",
+      "description": "\nBy default, the top part of the header stays when the header is being\ncondensed.  Set this to true if you want the top part of the header\nto be scrolled away.\n\n",
+      "type": "boolean",
+      "default": "false"
+    }
+  ],
+  "properties": [
+    {
+      "name": "scroller",
+      "description": "\nReturns the scrollable element.\n\n",
+      "type": "Object"
+    }
+  ],
+  "methods": [
+    {
+      "name": "measureHeaderHeight",
+      "description": "\nInvoke this to tell `core-scroll-header-panel` to re-measure the header's\nheight.\n\n"
+    }
+  ],
+  "location": "0.5/components/core-scroll-header-panel/core-scroll-header-panel.html",
+  "inherited": {
+    "methods": [
+      {
+        "name": "CoreResizable",
+        "methods": [
+          {
+            "name": "resizableAttachedHandler",
+            "description": "\nUser must call from `attached` callback\n\n"
+          },
+          {
+            "name": "resizableDetachedHandler",
+            "description": "\nUser must call from `detached` callback\n\n"
+          }
+        ]
+      }
+    ],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}

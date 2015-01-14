@@ -60,7 +60,7 @@ One of our core goals is for {{site.project_title}} to work on modern mobile bro
 
 ### How do I create a single page app with routing? {#spa}
 
-By combining data-binding, [core-scaffold](../docs/elements/core-elements.html#core-scaffold), [core-pages](../docs/elements/core-elements.html#core-pages)/[core-animated-pages](../docs/elements/core-elements.html#core-animated-pages), and [`<flatiron-director>`](https://github.com/PolymerLabs/flatiron-director) (an element for routing), you can easily create a responsive SPA with deep linking.
+By combining data-binding, [core-scaffold](../docs/elements/core-scaffold.html), [core-pages](../docs/elements/core-pages.html)/[core-animated-pages](../docs/elements/core-animated-pages.html), and [`<flatiron-director>`](https://github.com/PolymerLabs/flatiron-director) (an element for routing), you can easily create a responsive SPA with deep linking.
 
 Here's a [demo](http://polymer-change.appspot.com/demos/spa.html) and [source](https://github.com/ebidel/polymer-change/blob/master/demos/spa.html).
 

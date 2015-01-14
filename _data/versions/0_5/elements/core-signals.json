@@ -1,0 +1,13 @@
+{
+  "name": "core-signals",
+  "description": "\n`core-signals` provides basic publish-subscribe functionality.\n\nNote: avoid using `core-signals` whenever you can use\na controller (parent element) to mediate communication\ninstead.\n\nTo send a signal, fire a custom event of type `core-signal`, with\na detail object containing `name` and `data` fields.\n\n    this.fire('core-signal', {name: 'hello', data: null});\n    \nTo receive a signal, listen for `core-signal-<name>` event on a \n`core-signals` element.\n\n  <core-signals on-core-signal-hello=\"{{helloSignal}}\">\n\nYou can fire a signal event from anywhere, and all \n`core-signals` elements will receive the event, regardless\nof where they are in DOM.\n\n",
+  "status": "stable",
+  "homepage": "github.io",
+  "location": "0.5/components/core-signals/core-signals.html",
+  "inherited": {
+    "methods": [],
+    "attributes": [],
+    "events": [],
+    "properties": []
+  }
+}
