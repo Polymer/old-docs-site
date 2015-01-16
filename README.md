@@ -12,20 +12,11 @@ We use Jekyll 2.4 and [Grunt][grunt] to generate the documentation, and compass 
 You'll also need the Python App Engine SDK to run the dev_appserver and preview the docs locally. [Download the SDK](https://developers.google.com/appengine/downloads).
 
 
-### Check out the documentation
+### Getting Started
 
-Checkout this repo:
-
-    git clone https://github.com/Polymer/docs.git --recursive
-
-Run the setup script:
-
-    cd docs
-    ./scripts/setup.sh
-
-This will run `npm install`, pull down any external dependencies, and kickoff the `grunt` task. **Note:** these scripts can take some time to install.
-
-During the setup process the `polymer-all/projects` directory is populated for you. Whenever the site is released you'll need to re-run `./scripts/release.sh` in order to refresh this and other directories. See the [Polymer release](#polymer-release) section for more details.
+- `git clone https://github.com/Polymer/docs.git`
+- `npm install` (this will also run `bower install` for you)
+- `grunt` (or `npm start`)
 
 ## Making edits and previewing changes
 
@@ -44,16 +35,11 @@ Once your changes look good, `git commit` them and push.
 
 ### Preview locally
 
-It's a good idea to run `grunt docs` before pushing the docs, as it runs a number of grunt tasks. Verify things went well and preview your changes locally using the dev server.
+It's a good idea to run `grunt` before pushing the docs, as it runs a number of grunt tasks. Verify things went well and preview your changes locally using the dev server.
 
 ### Release
 
-When we push a new version of Polymer, the site should be updated to use it. In addition,
-the element reference and other projects will need updating.
-
-To update polymer.js, the poyfills, components, projects, etc., run the following in the root of the docs directory:
-
-    ./scripts/release.sh
+Run `bower update` to make sure you have the latest component dependencies.
 
 Once these are updated, you need to update some versions for the docs:
 

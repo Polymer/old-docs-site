@@ -11,5 +11,9 @@
     "grunt-jekyll": "*",
     "grunt-vulcanize": "*",
     "load-grunt-tasks": "^0.6.0"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+    "start": "grunt"
   }
 }

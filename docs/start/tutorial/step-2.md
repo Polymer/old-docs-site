@@ -26,8 +26,11 @@ In this step, you'll create a `<post-card>` element that controls the layout and
  
     <post-card>
       <img src="profile-picture.png">
-      <h2>A. Developer</h2>
-      <p>Something really profound about code.</p>
+      <h2>A Developer</h2>
+      <p>
+        Just getting started with Polymer.<br>
+        Feels like the future!
+      </p>
     </post-card>
 
 In this step, you'll learn about:

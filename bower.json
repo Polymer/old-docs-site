@@ -21,11 +21,16 @@
     "tests"
   ],
   "dependencies": {
-    "smoothscroll": "~0.0.2",
-    "x-tag-imports": "x-tag/x-tag-imports",
+    "smoothscroll": "^0.0.2",
+    "x-tag-imports": "x-tag/x-tag-imports#latest",
     "marked": "*",
     "highlightjs": "*",
-    "plunker-button": "robdodson/plunker-button#^0.4.1",
-    "topeka": "Polymer/topeka"
+    "plunker-button": "robdodson/plunker-button#latest",
+    "core-elements": "Polymer/core-elements#latest",
+    "paper-elements": "Polymer/paper-elements#latest",
+    "component-download-button": "Polymer/component-download-button#latest",
+    "code-explainer": "Polymer/code-explainer#latest",
+    "google-youtube": "GoogleWebComponents/google-youtube#latest",
+    "paper-calculator": "Polymer/paper-calculator#latest"
   }
 }

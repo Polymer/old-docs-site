@@ -48,7 +48,7 @@ ensures that you can use {{site.project_title}} with browsers that don't support
 the Web Components specifications natively.
 
 **Note:** For information about installing elements from the Core and Paper element 
-collection, see [Using elements](/docs/start/using-elements.html).
+collection, see [Using elements](/docs/start/usingelements.html).
 
 **Note:** The PolymerLabs GitHub repo contains a number of unsupported elements that are either
 experimental or deprecated. In particular, the `polymer-elements` and `polymer-ui-elements`

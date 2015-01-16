@@ -26,7 +26,7 @@ title: FAQ
 {{site.project_title}} is the embodiment of material design for the web. The {{site.project_title}} team works closely with the design teams behind material design. In fact, {{site.project_title}} played a key role in material design's development: it was used to quickly prototype and iterate on design concepts. The material design components are still a work in progress, but will mature over the coming months.
 
 ### Do I have to use {{site.project_title}} Designer? {#designer}
-Nope! [{{site.project_title}} Designer](/tools/designer/) is primarily a tool to make it easy to dive in and prototype apps. It's entirely optional&mdash;although we've found that for developers who use it, it has quickly become an indispensable part of their workflow.
+Nope! [{{site.project_title}} Designer](https://polymer-designer.appspot.com) is primarily a tool to make it easy to dive in and prototype apps. It's entirely optional&mdash;although we've found that for developers who use it, it has quickly become an indispensable part of their workflow.
 
 ### I don't like your {components | data binding syntax | face }! {#dislike}
 
@@ -55,7 +55,7 @@ The foundation layer in our <a href="/images/architecture-diagram.svg" target="_
 
 ### What's your mobile story? {#onmobile}
 
-One of our core goals is for {{site.project_title}} to work on modern mobile browsers as a first-class citizen. Check out [Topeka](/apps/topeka/), one of our sample apps, to see it in action.
+One of our core goals is for {{site.project_title}} to work on modern mobile browsers as a first-class citizen. Check out [Topeka](https://polymer-topeka.appspot.com), one of our sample apps, to see it in action.
 
 
 ### How do I create a single page app with routing? {#spa}
