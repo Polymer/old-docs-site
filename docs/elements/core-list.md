@@ -129,6 +129,8 @@ You refer to values in the model using a key:
 {%raw%}{{model.name}}{%endraw%}
 </pre>
 
+[See the full sample](https://github.com/Polymer/docs/blob/master/samples/core-list/core-list-names/index.html) or <plunker-button src="/samples/core-list/core-list-names/manifest.json">edit on plunker</plunker-button>
+
 ## Using core-image with core-list
 
 Recall that just enough template elements are rendered to fill the viewport and that
@@ -179,6 +181,8 @@ This `core-list` uses a `<core-image>` element to display each image using the d
 `core-list` automatically adjusts to accommodate images of different heights. However, when using items of different heights you must explicitly set the heights in a timely manner. The next section, [Providing heights](#providing-heights), provides details.
 
 The `preload` attribute means that the `core-image` shows the background color or an alternate image (set with the `placeholder` attribute) until the true image is completely loaded. So instead of seeing stale images in the recycled templates, you see a background color or another image.
+
+[See the full sample](https://github.com/Polymer/docs/blob/master/samples/core-list/core-list-images/index.html) or <plunker-button src="/samples/core-list/core-list-images/manifest.json">edit on plunker</plunker-button>
 
 ## Essential: Providing heights
 
@@ -251,6 +255,9 @@ The user data in the model mirrors the elements in the template.
 }
 </pre>
 
+[See the full sample](https://github.com/Polymer/docs/blob/master/samples/core-list/multiple-elements/index.html) or <plunker-button src="/samples/core-list/multiple-elements/manifest.json">edit on plunker</plunker-button>
+
+
 ## Using core-header-panel with core-list {#list-with-core-header-panel}
 
 A common way to provide a header with a `core-list` is to use a
@@ -287,14 +294,14 @@ ready: function() {
     this.data.push({ … });
   }
   <strong class="highlight nocode">this.$.list.scrollTarget = this.$.hPanel.scroller;</strong>
-  // or use the following instead:
-  // scrollTarget="{%raw%}{{$.hPanel.scroller}}{%endraw%}"
 },
 </pre>
 
 You can also set the scroll target in markup as follows:
 
-    <core-list scrollTarget=”$.hPanel.Scroller”>
+    <core-list scrollTarget="{%raw%}{{$.hPanel.scroller}}{%endraw%}">
+
+[See the full sample](https://github.com/Polymer/docs/blob/master/samples/core-list/core-list-images/index.html) or <plunker-button src="/samples/core-list/core-list-images/manifest.json">edit on plunker</plunker-button>
 
 ## Summary
 
@@ -305,16 +312,15 @@ You can use `core-list` to display a large list of homogenous items. You must ex
 Use these links to find the source code for the samples used in this guide
 and to run them:
 
-* [core-list with names](/samples/core-list/core-list-names.txt)
-<a href="core-list-examples/core-list-names.html" class="link_button"
+* [core-list with names](https://github.com/Polymer/docs/blob/master/samples/core-list/core-list-names/index.html) 
+  <a href="/samples/core-list/core-list-names/index.html" class="link_button"
          target="_blank" >Run it</a>
 
-* [core-list with variable height images and core-header-panel](/samples/core-list/core-list-no-stale-images.txt)
-<a href="core-list-examples/core-list-no-stale-images.html" class="link_button"
+
+* [core-list with variable height images and core-header-panel](https://github.com/Polymer/docs/blob/master/samples/core-list/core-list-images/index.html) <a href="/samples/core-list/core-list-images/index.html" class="link_button"
          target="_blank" >Run it</a>
 
-* [core-list with a variety of elements](/samples/core-list/multiple-elements.txt)
-<a href="core-list-examples/multiple-elements.html" class="link_button"
+* [core-list with a variety of elements](https://github.com/Polymer/docs/blob/master/samples/core-list/multiple-elements/index.html) <a href="/samples/core-list/multiple-elements/index.html" class="link_button"
          target="_blank" >Run it</a>
 
 For more information about the core elements used in this guide,

@@ -43,7 +43,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <style>
     .item {
       box-sizing: border-box;
-      height: 80px;
       border-bottom: 1px solid #ddd;
       padding: 4px;
       cursor: default;
@@ -57,7 +56,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     .message {
       padding-left: 77px;
-      line-height: 167%;
+      line-height: 120%;
       background-repeat: no-repeat;
       background-position: 10px 10px;
       background-size: 60px;
@@ -122,7 +121,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     selection="{{selection}}" height="80" flex multi?={{multi}}>
     <template>
       <div class="item {{ {selected: selected} | tokenList }}">
-        <div class="message" style="background-image: url(images/{{model.image}}.png);">
+        <div class="message" style="background-image: url(http://lorempixel.com/120/120/people/{{model.image}}/);">
           <span class="from">{{model.name}}</span>
           <div class="subject">Row: {{index}}, Record ID: {{model.id}}</div>
           <input type="checkbox" checked="{{model.checked}}">
@@ -156,7 +155,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   };
 
-  Polymer('list-test', {
+  Polymer({
     addIdx: 0,
     deleteIdx: 0,
     count: 50000,
