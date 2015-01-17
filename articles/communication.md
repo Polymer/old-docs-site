@@ -422,7 +422,7 @@ elements**.
 
 Your element fires `core-signal` and names the signal in its payload:
 
-    this.fire('core-signal', {name: "foo", data: "Foo!"});
+    this.fire('core-signal', {name: "foo-signal", data: "Foo!"});
 
 This event bubbles up to `document` where a handler constructs and dispatches
 a new event, <code>core-signal<b>-foo</b></code>, to *all instances* of `<core-signals>`.
@@ -430,7 +430,7 @@ Parts of your app or other {{site.project_title}} elements can declare a `<core-
 element to catch the named signal:
 
 {%raw%}
-    <core-signals on-core-signal-foo="{{fooSignal}}"></core-signals>
+    <core-signals on-core-signal-foo-signal="{{fooSignal}}"></core-signals>
 {%endraw%}
 
 Here's a full example:
@@ -442,7 +442,9 @@ Here's a full example:
       <script>
         Polymer('sender-element', {
           domReady: function() {
-            this.fire('core-signal', {name: "foo", data: "Foo!"});
+            // name: shall be lowercase (with or without dasheds) e.g. my-foo
+            //       don't use names like 'myFoo' as the event will not be fired
+            this.fire('core-signal', {name: "my-foo", data: "Foo!"});
           }
         });
       </script>
@@ -450,7 +452,7 @@ Here's a full example:
 
     <polymer-element name="my-app">
       <template>
-        <core-signals on-core-signal-foo="{%raw%}{{fooSignal}}{%endraw%}"></core-signals>
+        <core-signals on-core-signal-my-foo="{%raw%}{{fooSignal}}{%endraw%}"></core-signals>
         <content></content>
       </template>
       <script>
