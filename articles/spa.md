@@ -397,7 +397,7 @@ First, update the data model to include content URLs:
       ...
     ];
 
-Then add the selectedModel attribute to the `<core-menu>` element to bind it to the currently selected page, and change the menu links to point at  `page.url` instead of the hash:
+Then add the `selectedModel` attribute to the `<core-menu>` element to bind it to the currently selected page, and change the menu links to point at  `page.url` instead of the hash:
 
 {%raw%}
 <pre>
