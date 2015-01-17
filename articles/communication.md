@@ -417,21 +417,27 @@ on `<say-bye>`.
 #### Using &lt;core-signals&gt;
 
 `<core-signals>`is a [utility element](/docs/elements/#core-signals) that
-makes the pubsub pattern a bit easier, It also **works outside of {{site.projed}}
+makes the pubsub pattern a bit easier, It also **works outside of {{site.project_title}}
 elements**.
 
 Your element fires `core-signal` and names the signal in its payload:
 
-    this.fire('core-signal', {name: "foo-signal", data: "Foo!"});
+    this.fire('core-signal', {name: "new-data", data: "Foo!"});
 
 This event bubbles up to `document` where a handler constructs and dispatches
-a new event, <code>core-signal<b>-foo</b></code>, to *all instances* of `<core-signals>`.
+a new event, <code>core-signal<b>-new-data</b></code>, to *all instances* of `<core-signals>`.
 Parts of your app or other {{site.project_title}} elements can declare a `<core-signals>`
 element to catch the named signal:
 
 {%raw%}
-    <core-signals on-core-signal-foo-signal="{{fooSignal}}"></core-signals>
+    <core-signals on-core-signal-new-data="{{newData}}"></core-signals>
 {%endraw%}
+
+**Lowercase event names.** When you use a declarative handler, the event name 
+is convered to lowercase, because attributes are case-insensitive.
+So the attribute `on-core-signal-newData` sets up a listener for `core-signal-newdata`, 
+_not_ `core-signal-newData`. To avoid confusion, always use lowercase event names.
+{: .alert .alert-info } 
 
 Here's a full example:
 
@@ -442,9 +448,8 @@ Here's a full example:
       <script>
         Polymer('sender-element', {
           domReady: function() {
-            // name: shall be lowercase (with or without dasheds) e.g. my-foo
-            //       don't use names like 'myFoo' as the event will not be fired
-            this.fire('core-signal', {name: "my-foo", data: "Foo!"});
+            // name should be lowercase (with or without dashes) e.g. new-data
+            this.fire('core-signal', {name: "new-data", data: "Foo!"});
           }
         });
       </script>
@@ -452,12 +457,12 @@ Here's a full example:
 
     <polymer-element name="my-app">
       <template>
-        <core-signals on-core-signal-my-foo="{%raw%}{{fooSignal}}{%endraw%}"></core-signals>
+        <core-signals on-core-signal-new-data="{%raw%}{{newData}}{%endraw%}"></core-signals>
         <content></content>
       </template>
       <script>
         Polymer('my-app', {
-          fooSignal: function(e, detail, sender) {
+          newData: function(e, detail, sender) {
             this.innerHTML += '<br>[my-app] got a [' + detail + '] signal<br>';
           }
         });
