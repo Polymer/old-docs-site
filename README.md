@@ -4,7 +4,7 @@ Polymer docs are mostly in Markdown with some HTML. [Jekyll][jekyll] is used to 
 
 We use Jekyll 2.4 and [Grunt][grunt] to generate the documentation, and compass to compile SASS to CSS. You'll need to install the requirements before working on the docs (these instructions assume [NPM is already installed](http://nodejs.org/download/)):
 
-    gem install jekyll kramdown octopress-hooks compass rouge
+    gem install bundler
     npm install -g grunt-cli vulcanize bower
 
 **Note:** If you receive permission warnings, you may need to run the above tasks with `sudo`.
@@ -15,6 +15,7 @@ You'll also need the Python App Engine SDK to run the dev_appserver and preview 
 ### Getting Started
 
 - `git clone https://github.com/Polymer/docs.git`
+- `bundle install`
 - `npm install` (this will also run `bower install` for you)
 - `grunt` (or `npm start`)
 
