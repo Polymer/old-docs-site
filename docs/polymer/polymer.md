@@ -769,7 +769,11 @@ All of this is achieved without the need for any glue code.
 
 Some things to notice:
 
-* The value of an event handler attribute is the string name of a method on the component. Unlike traditional syntax, you cannot put executable code in the attribute.
+* The value of an event handler attribute is the string name of a method on the component. Unlike traditional syntax, **you cannot put executable code in the attribute.**
+
+* Because attributes are case-insensitive, **event names are converted to lowercase.** `on-TAP` and 
+  `on-tap` both add listeners for the `tap` event.
+
 * The event handler is passed the following arguments:
   * `inEvent` is the [standard event object](http://www.w3.org/TR/DOM-Level-3-Events/#interface-Event).
   * `inDetail`: A convenience form of `inEvent.detail`.
