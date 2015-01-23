@@ -51,7 +51,7 @@ picks the fastest path -- native implementation or JavaScript.
 1. **[The {{site.project_title}} library](/docs/start/creatingelements.html)**: The {{site.project_title}}
 library provides a declarative syntax that makes it simpler to define custom elements.  
 And it adds features like two-way data binding, property observation, and gesture 
-support help you build powerful, reusable elements.
+support to help you build powerful, reusable elements.
 
 1. **[Elements](/docs/start/usingelements.html)**: The Core and Paper element sets 
 form a comprehensive set of UI and non-UI elements that you can use right out of the box. 
