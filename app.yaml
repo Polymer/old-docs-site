@@ -74,6 +74,12 @@ handlers:
   http_headers:
     Access-Control-Allow-Origin: "*"
 
+# Redirects
+# This needs to appear above the block below, otherwise anything with a trailing
+# slash will fail to redirect
+- url: /apps/.*
+  script: main.app
+
 # Map raw paths with trailing "/" to an index.html file.
 - url: /(.*)/$
   static_files: _site/\1/index.html
