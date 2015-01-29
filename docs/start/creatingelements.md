@@ -109,6 +109,7 @@ Your final directory structure should look something like this:
       bower_components/
         webcomponentsjs/
         polymer/
+        core-ajax/
       elements/
         my-element.html
       index.html
