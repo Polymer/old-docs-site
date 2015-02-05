@@ -2,7 +2,7 @@
 layout: default
 type: elements
 shortname: Elements
-title: Using core lists
+title: Using core list
 subtitle: Guide
 ---
 
@@ -309,19 +309,22 @@ You can use `core-list` to display a large list of homogenous items. You must ex
 
 ## More Resources
 
-Use these links to find the source code for the samples used in this guide
-and to run them:
+Use these links to find the source code for the samples used in this guide:
+<!-- and to run them: -->
+<!-- run links broken ATM -->
 
 * [core-list with names](https://github.com/Polymer/docs/blob/master/samples/core-list/core-list-names/index.html) 
-  <a href="/samples/core-list/core-list-names/index.html" class="link_button"
-         target="_blank" >Run it</a>
+  <!-- <a href="/samples/core-list/core-list-names/index.html" class="link_button"
+         target="_blank" >Run it</a> -->
 
 
-* [core-list with variable height images and core-header-panel](https://github.com/Polymer/docs/blob/master/samples/core-list/core-list-images/index.html) <a href="/samples/core-list/core-list-images/index.html" class="link_button"
-         target="_blank" >Run it</a>
+* [core-list with variable height images and core-header-panel](https://github.com/Polymer/docs/blob/master/samples/core-list/core-list-images/index.html) 
+  <!-- <a href="/samples/core-list/core-list-images/index.html" class="link_button"
+         target="_blank" >Run it</a> -->
 
-* [core-list with a variety of elements](https://github.com/Polymer/docs/blob/master/samples/core-list/multiple-elements/index.html) <a href="/samples/core-list/multiple-elements/index.html" class="link_button"
-         target="_blank" >Run it</a>
+* [core-list with a variety of elements](https://github.com/Polymer/docs/blob/master/samples/core-list/multiple-elements/index.html) 
+  <!-- <a href="/samples/core-list/multiple-elements/index.html" class="link_button"
+         target="_blank" >Run it</a> -->
 
 For more information about the core elements used in this guide,
 check out the API docs:

@@ -1,5 +1,5 @@
 application: polymer-project
-version: 2014-12-11
+version: 0-5-4-take3
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -78,6 +78,9 @@ handlers:
 # This needs to appear above the block below, otherwise anything with a trailing
 # slash will fail to redirect
 - url: /apps/.*
+  script: main.app
+
+- url: /tools/.*
   script: main.app
 
 # Map raw paths with trailing "/" to an index.html file.
