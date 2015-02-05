@@ -8,6 +8,12 @@ title: Releases
 This document lists the notable changes across the entirety of the project,
 including polyfill repos, tools, projects, and UI elements.
 
+## v0.5.4 {#r2015-01-23}
+
+Released 2015-01-23. See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/0.5.4).
+
+---
+
 ## v0.5.3 {#r2015-01-21}
 
 Released 2015-01-21. See the [full list of changes](https://github.com/Polymer/polymer/releases/tag/0.5.3).
