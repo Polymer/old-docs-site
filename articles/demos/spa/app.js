@@ -10,7 +10,7 @@ template.pages = [
   {name: 'page', hash: 'two'},
   {name: 'app', hash: 'three'},
   {name: 'using', hash: 'four'},
-  {name: 'Polymer', hash: 'five'},
+  {name: 'Polymer', hash: 'five'}
 ];
 
 template.addEventListener('template-bound', function(e) {
