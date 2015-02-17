@@ -1,0 +1,8 @@
+{
+  "name": "Publishing properties",
+  "description": "Published properties can be used to define an element’s “public API”.",
+  "files": [
+    "index.html",
+    "color-picker-plunker.html"
+  ]
+}

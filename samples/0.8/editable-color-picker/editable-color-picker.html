@@ -1,0 +1,40 @@
+<link rel="import"
+      href="/components/polymer/polymer.html">
+<link rel="import"
+      href="/components/x-elements/x-input.html">
+
+<dom-module id="editable-color-picker">
+  <template>
+    <p>
+    This is a <strong>{{owner}}</strong>'s editable-color-picker.
+    He likes the color <b style="{{styleText}}">{{color}}</b>.
+    </p>
+    <button on-click="setFocus">Set focus to text input</button>
+    <input is="x-input" id="nameInput" currentvalue="{{owner}}"
+      placeholder="Your name here...">
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: "editable-color-picker",
+    published: {
+      owner: String
+    },
+    computed: {
+      styleText: 'computeStyle(color)'
+    },
+    computeStyle: function(color) {
+      return "color: " + color + ";"
+    },
+    configure: function() {
+      return {
+        color: "red",
+        owner: "Daniel"
+      }
+    },
+    setFocus: function() {
+      this.$.nameInput.focus();
+    }
+  });
+</script>

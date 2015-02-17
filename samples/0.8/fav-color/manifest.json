@@ -1,0 +1,8 @@
+{
+  "name": "Binding to markup",
+  "description": "You can use binding expressions in most HTML markup, except for tag names themselves.",
+  "files": [
+    "index.html",
+    "fav-color-plunker.html"
+  ]
+}

@@ -1,0 +1,34 @@
+<link rel="import"
+      href="/components/polymer/polymer.html">
+
+<dom-module id="color-picker">
+  <template>
+    This is a <strong>{{owner}}</strong>'s color-picker. 
+    He likes the color <b style="{{stylish}}">{{color}}</b>.
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: "color-picker",
+    published: {
+      color: String,
+      owner: String,
+    },
+    computed: {
+      stylish: 'computeStyle(color)'
+    },
+    computeStyle: function(color) {
+      return 'color: ' + color + ';';
+    },
+    configure: function() {
+      return {
+        // These default values are overridden
+        // by the user's attribute values.
+        color: "red",
+        owner: "Daniel",
+      }
+    }
+  });
+</script>
+

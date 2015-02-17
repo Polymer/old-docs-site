@@ -1,0 +1,8 @@
+{
+  "name": "Adding lifecycle methods",
+  "description": "Lifecycle callbacks are special methods you can define on your element which fire when the element goes through important transitions.",
+  "files": [
+    "index.html",
+    "ready-element-plunker.html"
+  ]
+}
