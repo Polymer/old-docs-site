@@ -38,6 +38,16 @@ Once your changes look good, `git commit` them and push.
 
 It's a good idea to run `grunt` before pushing the docs, as it runs a number of grunt tasks. Verify things went well and preview your changes locally using the dev server.
 
+### Update apps
+
+When updating the version of Polymer that the site uses, make sure to also update it in the following apps:
+
+- [Tutorial](https://github.com/Polymer/polymer-tutorial)
+- [Topeka](https://github.com/Polymer/topeka)
+- [Designer](https://github.com/Polymer/designer)
+
+Unzip the release candidate into the `bower_components` directory of each app, verify, then run the app's `deploy.sh` script. In the case of the Tutorial, you'll need to follow the deploy instructions on the repo itself.
+
 ### Release
 
 Run `bower update` to make sure you have the latest component dependencies.
