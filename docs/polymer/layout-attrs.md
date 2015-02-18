@@ -121,14 +121,16 @@ Otherwise, the layout becomes horizontal and the elements are laid out
 normally.
 
 {% raw %}
-    <core-media-query query="max-width: 640px"
-                      queryMatches="{{phoneScreen}}"></core-media-query>
-    <div layout vertical?="{{phoneScreen}}"
-         horizontal?="{{!phoneScreen}}">
-      <div auto-vertical>Alpha</div>
-      <div auto-vertical>Beta</div>
-      <div auto-vertical>Gamma</div>
-    </div>
+    <template is="auto-binding">
+      <core-media-query query="max-width: 640px"
+                        queryMatches="{{phoneScreen}}"></core-media-query>
+      <div layout vertical?="{{phoneScreen}}"
+           horizontal?="{{!phoneScreen}}">
+        <div auto-vertical>Alpha</div>
+        <div auto-vertical>Beta</div>
+        <div auto-vertical>Gamma</div>
+      </div>
+    </template>
 {% endraw %}
 
 <div vertical layout class="demo" style="height:170px">
