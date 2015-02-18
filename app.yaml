@@ -1,5 +1,5 @@
 application: polymer-project
-version: 0-5-4-take3
+version: zerodoteight
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -67,7 +67,7 @@ handlers:
   upload: components/polymer/polymer\.js
   http_headers:
     Access-Control-Allow-Origin: "*"
-    
+
 - url: /polymer(\.min)?\.js\.map
   static_files: components/polymer/polymer.js.map
   upload: components/polymer/polymer\.js\.map
@@ -77,6 +77,18 @@ handlers:
 # Redirects
 # This needs to appear above the block below, otherwise anything with a trailing
 # slash will fail to redirect
+
+# /0.5/docs/start/getting-the-code.html
+- url: /(.+)?/docs/
+  static_files: _site/\1/docs
+  upload: _site/(.+)?/docs/
+  http_headers:
+    Access-Control-Allow-Origin: "*"
+
+# No version goes through redirect to latest version.
+- url: /docs/.*
+  script: main.app
+
 - url: /apps/.*
   script: main.app
 
