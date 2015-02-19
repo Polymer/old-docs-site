@@ -543,4 +543,17 @@ footer {
   max-width: 576px;
 }
 
+// Browser compat page
+#browser-compatibility paper-checkbox {
+  pointer-events: none;
+}
+#browser-compatibility th {
+  white-space: nowrap;
+  padding-right: 20px;
+}
+#browser-compatibility .feature-title {
+   white-space: nowrap;
+}
+
+
 @import "mobile";

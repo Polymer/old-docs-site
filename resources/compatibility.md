@@ -5,19 +5,6 @@ shortname: Resources
 title: Browser Compatibility
 ---
 
-<style>
-#browser-compatibility paper-checkbox {
-  pointer-events: none;
-}
-#browser-compatibility th {
-  white-space: nowrap;
-  padding-right: 20px;
-}
-#browser-compatibility .feature-title {
-   white-space: nowrap;
-}
-</style>
-
 Unlike other frameworks, **{{site.project_title}} and its polyfills are intended to work in the _latest
 version_ of "evergreen" browsers**. This means that your favorite browser might not be supported. For more about what that means in practice, check out the [FAQ](faq.html#browsersupport). The support matrix for each polyfill and their
 native browser implementation is below.
@@ -40,29 +27,29 @@ native browser implementation is below.
 <tr>
   <td class="feature-title"><a href="//www.polymer-project.org/platform/html-imports.html">HTML Imports</a></td>
   <td><paper-checkbox checked></paper-checkbox></td>
-  <td>flag*</td>
-  <td><paper-checkbox></paper-checkbox></td>
-  <td><paper-checkbox></paper-checkbox></td>
-  <td><paper-checkbox></paper-checkbox></td>
-  <td><paper-checkbox></paper-checkbox></td>
+  <td>dev flag*</td>
+  <td><paper-checkbox disabled></paper-checkbox></td>
+  <td><paper-checkbox disabled></paper-checkbox></td>
+  <td><paper-checkbox disabled></paper-checkbox></td>
+  <td><paper-checkbox disabled></paper-checkbox></td>
 </tr>
 <tr>
   <td class="feature-title"><a href="//www.polymer-project.org/platform/custom-elements.html">Custom Elements</a></td>
   <td><paper-checkbox checked></paper-checkbox></td>
-  <td>flag</td>
-  <td><paper-checkbox></paper-checkbox></td>
-  <td><paper-checkbox></paper-checkbox></td>
+  <td>dev flag</td>
+  <td><paper-checkbox disabled></paper-checkbox></td>
+  <td><paper-checkbox disabled></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
-  <td><paper-checkbox></paper-checkbox></td>
+  <td><paper-checkbox disabled></paper-checkbox></td>
 </tr>
 <tr>
   <td class="feature-title"><a href="//www.polymer-project.org/platform/shadow-dom.html">Shadow DOM</a></td>
   <td><paper-checkbox checked></paper-checkbox></td>
-  <td>flag</td>
-  <td><paper-checkbox></paper-checkbox></td>
-  <td><paper-checkbox></paper-checkbox></td>
+  <td>dev flag</td>
+  <td><paper-checkbox disabled></paper-checkbox></td>
+  <td><paper-checkbox disabled></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
-  <td><paper-checkbox></paper-checkbox></td>
+  <td><paper-checkbox disabled></paper-checkbox></td>
 </tr>
 </table>
 
@@ -81,11 +68,11 @@ In addition to the main web components APIs, Polymer uses other new platform fea
 <tr>
   <td class="feature-title"><code>Object.observe()</code></td>
   <td><paper-checkbox checked></paper-checkbox></td>
-  <td><paper-checkbox></paper-checkbox></td>
-  <td><paper-checkbox></paper-checkbox></td>
-  <td><paper-checkbox></paper-checkbox></td>
-  <td><paper-checkbox></paper-checkbox></td>
-  <td><paper-checkbox></paper-checkbox></td>
+  <td><paper-checkbox disabled></paper-checkbox></td>
+  <td><paper-checkbox disabled></paper-checkbox></td>
+  <td><paper-checkbox disabled></paper-checkbox></td>
+  <td><paper-checkbox disabled></paper-checkbox></td>
+  <td><paper-checkbox disabled></paper-checkbox></td>
 </tr>
 <tr>
   <td class="feature-title">Mutation Observers</td>
@@ -99,11 +86,11 @@ In addition to the main web components APIs, Polymer uses other new platform fea
 <tr>
   <td class="feature-title">Web Animations API</td>
   <td><paper-checkbox checked></paper-checkbox></td>
-  <td><paper-checkbox></paper-checkbox></td>
-  <td><paper-checkbox></paper-checkbox></td>
-  <td><paper-checkbox></paper-checkbox></td>
+  <td><paper-checkbox disabled></paper-checkbox></td>
+  <td><paper-checkbox disabled></paper-checkbox></td>
+  <td><paper-checkbox disabled></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
-  <td><paper-checkbox></paper-checkbox></td>
+  <td><paper-checkbox disabled></paper-checkbox></td>
 </tr>
 </table>
 
