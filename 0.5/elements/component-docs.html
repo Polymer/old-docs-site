@@ -23,7 +23,7 @@
     </template>
   </template>
   <script>
-    Polymer('component-docs', {
+    Polymer({
       // Default to the height of the banner on the current site, though this can
       // be overridden by the page that uses <compontent-docs> as needed.
       bannerHeight: 80,
@@ -76,7 +76,7 @@
 <polymer-element name="doc-page" attributes="bannerHeight data downloadable" assetpath="../core-doc-viewer/elements/">
   <template>
     <link rel="stylesheet" href="../components/highlightjs/styles/default.css">
-    <link rel="stylesheet" href="../css/elements/doc-page.css">
+    <link rel="stylesheet" href="../../css/elements/doc-page.css">
     <div id="main" class="main" on-marked-js-highlight="{{prettyPrint}}" on-click="{{handleAnchorIdClick}}">
       <h1 data-anchor-id="{{data.name}}">{{data.name}}</h1>
 
@@ -231,7 +231,7 @@
       return htmlStr.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     }
 
-    Polymer('doc-page', {
+    Polymer({
       bannerHeight: 0,
       downloadable: false,
       recordDemoPageview: function(e, detail, sender) {

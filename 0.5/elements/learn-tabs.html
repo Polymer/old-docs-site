@@ -152,7 +152,7 @@
     </demo-tabs>
   </template>
   <script>
-  Polymer('learn-tabs', {
+  Polymer({
     wide: false,
     tabTapped: function() {
       this.fire('tab-changed', {tab:this.tab});

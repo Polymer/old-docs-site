@@ -12,7 +12,7 @@
 
 <polymer-element name="scroll-area" attributes="sidebar">
   <template>
-    <link rel="stylesheet" href="../css/elements/scroll-area.css">
+    <link rel="stylesheet" href="../../css/elements/scroll-area.css">
     <core-media-query query="min-width: 581px" queryMatches="{{fancyheader}}"></core-media-query>
     <content></content>
   </template>
@@ -54,7 +54,7 @@
     }
   }
 
-  Polymer('scroll-area', {
+  Polymer({
     latestKnownScrollY: 0,
     previousScrollY: 0,
     smallBannerSizeReached: false,

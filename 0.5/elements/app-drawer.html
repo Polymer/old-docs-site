@@ -9,7 +9,7 @@
 -->
 <link rel="import" href="../components/polymer/polymer.html">
 <link rel="import" href="../components/core-media-query/core-media-query.html">
-<script src="../js/dynamics.js"></script>
+<script src="../../js/dynamics.js"></script>
 
 <polymer-element name="app-drawer" attributes="active mobile">
   <template>
@@ -62,7 +62,7 @@
     </div>
   </template>
   <script>
-    Polymer('app-drawer', {
+    Polymer({
       publish: {
         mobile: {value: false, reflect: true}
       },

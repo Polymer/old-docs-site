@@ -12,7 +12,7 @@
 
 <polymer-element name="site-banner" attributes="shortname">
   <template>
-    <link rel="stylesheet" href="../css/elements/site-banner.css">
+    <link rel="stylesheet" href="../../css/elements/site-banner.css">
     <core-media-query query="max-width: 581px" queryMatches="{{isPhone}}"></core-media-query>
     <template if="{{isPhone && shortname}}">
       <header id="internalheader">
@@ -23,7 +23,7 @@
   </template>
   <script>
   (function() {
-    Polymer('site-banner', {
+    Polymer({
       shortname: '',
       // type: 'default',
       isPhone: false,

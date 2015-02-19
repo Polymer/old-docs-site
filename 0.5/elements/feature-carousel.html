@@ -13,7 +13,7 @@
 <polymer-element name="feature-carousel" attributes="interval">
                  <!-- on-mouseenter="{{stopCycler}}" on-mouseleave="{{startCycler}}"> -->
   <template>
-    <link rel="stylesheet" href="../css/elements/feature-carousel.css">
+    <link rel="stylesheet" href="../../css/elements/feature-carousel.css">
     <core-selector selected="{{selected}}">
       <content id="content" select="*"></content>
     </core-selector>
@@ -24,7 +24,7 @@
     </div>
   </template>
   <script>
-    Polymer('feature-carousel', {
+    Polymer({
       interval: null, // num milliseconds to cycle panels.
       selected: 0,
       domReady: function() {

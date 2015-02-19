@@ -29,7 +29,7 @@
 
 <polymer-element name="demo-tabs" attributes="selected bottom theme demoSrc">
   <template>
-    <link rel="stylesheet" href="../css/elements/demo-tabs.css">
+    <link rel="stylesheet" href="../../css/elements/demo-tabs.css">
     <div id="container" class="{{theme}}">
       <div id="tabstrip" layout horizontal center>
         <core-selector selected="{{selected}}" selectedClass="selected" class="tab-wrapper" flex>
@@ -52,7 +52,7 @@
     </div>
   </template>
   <script>
-    Polymer('demo-tabs', {
+    Polymer({
       /**
        * If set, the `demoSrc` attribute will add a `plunker-button` to let the
        * user preview the demo on the Plunker service. The value of `demoSrc`
