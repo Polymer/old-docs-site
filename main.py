@@ -32,19 +32,19 @@ def get_dirs(root='.'):
 def get_latest_polymer_version_dir():
   current_app_version = os.environ['CURRENT_VERSION_ID'].split('.')[0]
 
-  latest_version = memcache.get('latest_version', namespace=current_app_version)
-  if latest_version is None:
+  default_version = memcache.get('default_version', namespace=current_app_version)
+  if default_version is None:
     f = open('_config.yml', 'r')
     config = yaml.load(f)
 
-    latest_version = config.get('latest_version')
-    memcache.add('latest_version', latest_version, namespace=current_app_version)
+    default_version = config.get('default_version')
+    memcache.add('default_version', default_version, namespace=current_app_version)
 
-  dirs = get_dirs(root='.')
-  # ['0.5', '0.6', '1.0.1'] -> max(['05', '06', '101']) -> '101' -> '1.0.1'
-  latest = '.'.join(max([x.replace('.', '') for x in dirs]))
+  # dirs = get_dirs(root='.')
+  # # ['0.5', '0.6', '1.0.1'] -> max(['05', '06', '101']) -> '101' -> '1.0.1'
+  # latest = '.'.join(max([x.replace('.', '') for x in dirs]))
 
-  return latest
+  return default_version
 
 
 class VersionHandler(webapp2.RequestHandler):
