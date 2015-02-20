@@ -51,7 +51,7 @@ class VersionHandler(webapp2.RequestHandler):
 
   def get(self, version=None):
     version_dir = get_latest_polymer_version_dir()
-    self.response.write('serve %s docs' % version_dir)
+    self.redirect('/%s%s' % (version_dir, self.request.path))
 
 
 routes = [
