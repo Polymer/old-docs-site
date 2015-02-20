@@ -83,7 +83,7 @@ If the images don't render, try a different web server.
 
 
 <div horizontal layout end-justified class="stepnav">
-<a href="/docs/start/tutorial/step-1.html">
+<a href="step-1.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>Step 1: Creating the app structure</paper-button>
 </a>
 </div>

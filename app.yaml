@@ -57,6 +57,13 @@ handlers:
   http_headers:
     Access-Control-Allow-Origin: "*"
 
+# This rule needs to proceed the one that follows.
+- url: /(.+)/docs/polymer/polymer.html$
+  static_files: _site/\1/docs/polymer/polymer.html
+  upload: _site/(.+)/docs/polymer/polymer.html
+  http_headers:
+    Access-Control-Allow-Origin: "*"
+
 - url: /(.+)/polymer.html$
   static_files: \1/components/polymer/polymer.html
   upload: (.+)/components/polymer/polymer.html

@@ -6,7 +6,7 @@ title: "Step 1: Creating the app structure"
 subtitle: Your first Polymer application
 ---
 
-<link rel="import" href="/elements/side-by-side.html">
+<link rel="import" href="../../../elements/side-by-side.html">
 
 <link rel="stylesheet" href="tutorial.css">
 
@@ -77,7 +77,7 @@ Skipping over the styles for now, at the end of the file you'll find something n
   <ul>
     <li>The <code>unresolved</code> attribute on the <code>&lt;body></code> element is used to prevent a flash of unstyled content
         (FOUC) on browsers that lack native support for custom elements. For details, see the
-        <a href="/docs/polymer/styling.html#fouc-prevention">Polymer styling reference</a>.</li>
+        <a href="../../polymer/styling.html#fouc-prevention">Polymer styling reference</a>.</li>
   </ul>
 </aside>
 </side-by-side>
@@ -141,12 +141,12 @@ To add a toolbar, add the following code inside the `<body>` tag.
 
     <ul>
       <li>The
-          <code><a href="/docs/elements/core-elements.html#core-header-panel">&lt;core-header-panel&gt;</a></code>
+          <code><a href="../../elements/core-elements.html#core-header-panel">&lt;core-header-panel&gt;</a></code>
           element is a simple container that holds a
           header (in this case a <code>&lt;core-toolbar></code> element), and some content. By
           default, the header stays at the top of the screen, but it can also be
           set to scroll with the content.</li>
-      <li>The <code><a href="/docs/elements/core-elements.html#core-toolbar">&lt;core-toolbar></a></code> element serves
+      <li>The <code><a href="../../elements/core-elements.html#core-toolbar">&lt;core-toolbar></a></code> element serves
           as a container for tabs, menu buttons, and other controls.</li>
     </ul>
   </aside>
@@ -160,7 +160,7 @@ Add the tabs.
 
 The application will use tabs for navigating between two different views,
 a list of all messages and a list of favorites. The
-<code><a href="/docs/elements/paper-elements.html#paper-tabs">&lt;paper-tabs&gt;</a></code>
+<code><a href="../../elements/paper-elements.html#paper-tabs">&lt;paper-tabs&gt;</a></code>
 element works much like a `<select>` element, but it's styled as a set of
 tabs.
 
@@ -192,7 +192,7 @@ tabs.
       </li>
       <li>
         <code>self-end</code> is a
-        <a href="/docs/polymer/layout-attrs.html">layout attribute</a>.
+        <a href="../../polymer/layout-attrs.html">layout attribute</a>.
       </li>
 
     </ul>
@@ -293,7 +293,7 @@ Save the file and open the project in your browser (for example, [http://localho
 **Note:** If you have the console open, you'll notice that you get two `core-select`
 events each time you switch tabs &mdash; one for the previously-selected tab and one
 for the newly-selected tab. The `<paper-tabs>` element inherits this behavior from
-<code><a href="/docs/elements/core-elements.html#core-selector">&lt;core-selector&gt;</a></code>, which supports
+<code><a href="../../elements/core-elements.html#core-selector">&lt;core-selector&gt;</a></code>, which supports
 both single and multiple selections.
 {: .alert .alert-info }
 
@@ -307,10 +307,10 @@ In this step, you used HTML imports to import custom elements, and used them to 
 {: .alert .alert-info }
 
 <div layout horizontal justified class="stepnav">
-<a href="/docs/start/tutorial/intro.html">
+<a href="intro.html">
   <paper-button><core-icon icon="arrow-back"></core-icon>Getting Started</paper-button>
 </a>
-<a href="/docs/start/tutorial/step-2.html">
+<a href="step-2.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>Step 2: Creating your own element</paper-button>
 </a>
 </div>

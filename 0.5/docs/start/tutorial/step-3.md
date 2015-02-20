@@ -6,7 +6,7 @@ title: "Step 3: Using data binding"
 subtitle: Your first Polymer application
 ---
 
-<link rel="import" href="/elements/side-by-side.html">
+<link rel="import" href="../../../elements/side-by-side.html">
 
 <link rel="stylesheet" href="tutorial.css">
 
@@ -64,7 +64,7 @@ Open the `post-list.html` file in your editor.
       <li>The file already includes an import for the <code>&lt;post-service&gt;</code>
       element, so it's ready to use.</li>
       <li>The <code>attributes="show"</code> attribute creates a
-      <a href="/docs/polymer/polymer.html#published-properties">
+      <a href="../../polymer/polymer.html#published-properties">
       <em>published property</em></a> named <code>show</code>.
       </li>
     </ul>
@@ -72,7 +72,7 @@ Open the `post-list.html` file in your editor.
 </side-by-side>
 
 
-A <a href="/docs/polymer/polymer.html#published-properties">
+A <a href="../../polymer/polymer.html#published-properties">
 <em>published property</em></a> is a property that can be configured in markup using an attribute,
 or connected to another property using two-way data binding. You'll use the `show` property
 in a later step.
@@ -101,7 +101,7 @@ Add a `<post-service>` element inside the element's `<template>`:
   </aside>
 </side-by-side>
 
-The [_data binding_](/docs/polymer/databinding.html) links the service element's `posts` property to a local property (also called
+The [_data binding_](../../polymer/databinding.html) links the service element's `posts` property to a local property (also called
 `posts` here). Any methods you define on your custom element can access the response as `this.posts`.
 
 <div class="divider" layout horizontal center center-justified>
@@ -193,14 +193,14 @@ If you have any problems, check your work against the files in the `step-3` fold
 -   [`index.html`](https://github.com/Polymer/polymer-tutorial/blob/master/step-3/index.html)
 
 **Explore:** Open up `post-service.html` to see how the component works. Internally, it uses the <code>
-<a href="/docs/elements/core-elements.html#core-ajax">&lt;core-ajax&gt;</a></code> element to make HTTP requests.
+<a href="../../elements/core-elements.html#core-ajax">&lt;core-ajax&gt;</a></code> element to make HTTP requests.
 {: .alert .alert-info}
 
 <div layout horizontal justified class="stepnav">
-<a href="/docs/start/tutorial/step-2.html">
+<a href="step-2.html">
   <paper-button><core-icon icon="arrow-back"></core-icon>Step 2: Creating your own element</paper-button>
 </a>
-<a href="/docs/start/tutorial/step-4.html">
+<a href="step-4.html">
   <paper-button raises><core-icon icon="arrow-forward"></core-icon>Step 4: Finishing touches</paper-button>
 </a>
 </div>

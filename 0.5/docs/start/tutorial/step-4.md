@@ -6,7 +6,7 @@ title: "Step 4: Finishing touches"
 subtitle: Your first Polymer application
 ---
 
-<link rel="import" href="/elements/side-by-side.html">
+<link rel="import" href="../../../elements/side-by-side.html">
 
 <link rel="stylesheet" href="tutorial.css">
 
@@ -37,7 +37,7 @@ In this section you'll learn about:
 ### Edit post-card.html
 
 Open `post-card.html` in your editor and add the
-<code><a href="/docs/elements/core-elements.html#core-icon-button">&lt;core-icon-button></a></code>
+<code><a href="../../elements/core-elements.html#core-icon-button">&lt;core-icon-button></a></code>
 element:
 
 <side-by-side>
@@ -239,7 +239,7 @@ Add an event handler for the `favorite-tap` event to `post-list.html`:
       <li><code>this.$.service</code> returns a reference to the <code>&lt;post-service&gt;</code> element.
       Every element in a custom element's shadow DOM that has an <code>id</code>
       attribute is added to the <code>this.$</code> dictionary. This is called
-      <a href="/docs/polymer/polymer.html#automatic-node-finding">automatic node finding</a>.</li>
+      <a href="../../polymer/polymer.html#automatic-node-finding">automatic node finding</a>.</li>
       <li>If this was a real social networking service, the <code>setFavorite</code> method
       would persist the change to the server. As is, it doesn't do anything
       other than log a console message.</li>
@@ -254,7 +254,7 @@ Save `post-list.html` and refresh your page.
 That's it &mdash; you're done! With a bit of luck, your application looks like this:
 
 <figure layout vertical center>
-  <a href="/apps/polymer-tutorial/finished/" class="unquote-link">
+  <a href="https://polymer-tut.appspot.com/" class="unquote-link">
     <div class="unquote-image"></div>
   </a>
   <figcaption>
@@ -273,10 +273,10 @@ If your project doesn't look quite right, check your work against the files in t
 Ready to start a project of your own? Install some {{site.project_title}} components and get to work!
 
 <div layout horizontal justified class="stepnav">
-<a href="/docs/start/tutorial/step-3.html">
+<a href="step-3.html">
   <paper-button><core-icon icon="arrow-back"></core-icon>Step 3: Using data binding</paper-button>
 </a>
-<a href="/docs/start/getting-the-code.html#installing-components">
+<a href="../getting-the-code.html#installing-components">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>Installing components</paper-button>
 </a>
 </div>
