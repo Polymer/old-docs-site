@@ -42,18 +42,18 @@ materials, such as paper and ink. Material surfaces interact in a shared
 space. Surfaces can have elevation (z-height) and cast shadows on other
 surfaces to convey relationships.
 
-{{site.project_title}}'s [paper elements collection](/docs/elements/paper-elements.html)
+{{site.project_title}}'s [paper elements collection](paper-elements.html)
 implements material design for the web. The [{{site.project_title}} core elements
-collection](/docs/elements/core-elements.html) provides a number of unthemed
+collection](core-elements.html) provides a number of unthemed
 elements that you can use to achieve material design app layouts, transitions,
 and scrolling effects.
 
 For more detail on the material design philosophy and guidelines, see the
-[Material design specification](http://google.com/design/spec).
+[Material design specificationn](http://google.com/design/spec).
 
 For a sample of the material design patterns in use, see the <a href="https://polymer-topeka.appspot.com" target="_blank">Topeka sample app</a>.
 
-For quick visual demos of many of the paper elements, see the <a href="/components/paper-elements/demo.html" target="_blank">Paper elements sampler</a>.
+For quick visual demos of many of the paper elements, see the <a href="../../components/paper-elements/demo.html" target="_blank">Paper elements sampler</a>.
 
 ## Application layout
 
@@ -116,35 +116,35 @@ controls.
   </thead>
   <tr>
     <td>Button<br>
-    <a href="/docs/elements/paper-elements.html#paper-button"><code>&lt;paper-button&gt;</code></a></td>
+    <a href="paper-elements.html#paper-button"><code>&lt;paper-button&gt;</code></a></td>
     <td><paper-button>play</paper-button></td>
-    <td><a href="/components/paper-elements/demo.html#paper-button"><core-icon icon="arrow-forward" size="16"></core-icon> More examples</a></td>
+    <td><a href="../../components/paper-elements/demo.html#paper-button"><core-icon icon="arrow-forward" size="16"></core-icon> More examples</a></td>
   </tr>
   <tr>
     <td>Checkbox<br>
-    <a href="/docs/elements/paper-elements.html#paper-checkbox"><code>&lt;paper-checkbox&gt;</code></a></td>
+    <a href="paper-elements.html#paper-checkbox"><code>&lt;paper-checkbox&gt;</code></a></td>
     <td><paper-checkbox label="Enable"></paper-checkbox></td>
   </tr>
   <tr>
     <td>Toggle button<br>
-    <a href="/docs/elements/paper-elements.html#paper-toggle-button"><code>&lt;paper-toggle-button&gt;</code></a></td>
+    <a href="paper-elements.html#paper-toggle-button"><code>&lt;paper-toggle-button&gt;</code></a></td>
     <td><paper-toggle-button label="play"></paper-toggle-button></td>
   </tr>
   <tr>
     <td>Icon button<br>
-    <a href="/docs/elements/paper-elements.html#paper-icon-button"><code>&lt;paper-icon-button&gt;</code></a></td>
+    <a href="paper-elements.html#paper-icon-button"><code>&lt;paper-icon-button&gt;</code></a></td>
     <td><paper-icon-button icon="search"></paper-icon-button><paper-icon-button icon="favorite"></paper-icon-button></td>
-    <td><a href="/components/paper-elements/demo.html#paper-icon-button"><core-icon icon="arrow-forward" size="16"></core-icon> More examples</a></td>
+    <td><a href="../../components/paper-elements/demo.html#paper-icon-button"><core-icon icon="arrow-forward" size="16"></core-icon> More examples</a></td>
   </tr>
   <tr>
     <td>Floating action button<br>
-    <a href="/docs/elements/paper-elements.html#paper-fab"><code>&lt;paper-fab&gt;</code></a></td>
+    <a href="paper-elements.html#paper-fab"><code>&lt;paper-fab&gt;</code></a></td>
     <td><paper-fab icon="add"></paper-fab></td>
   </tr>
   <tr>
     <td>Radio buttons<br>
-    <a href="/docs/elements/paper-elements.html#paper-radio-group"><code>&lt;paper-radio-group&gt;</code></a><br>
-    <a href="/docs/elements/paper-elements.html#paper-radio-button"><code>&lt;paper-radio-button&gt;</code></a></td>
+    <a href="paper-elements.html#paper-radio-group"><code>&lt;paper-radio-group&gt;</code></a><br>
+    <a href="paper-elements.html#paper-radio-button"><code>&lt;paper-radio-button&gt;</code></a></td>
     <td>
       <paper-radio-group selected="0">
         <paper-radio-button label="Now"></paper-radio-button><br>
@@ -153,23 +153,22 @@ controls.
   </tr>
   <tr>
     <td>Slider<br>
-    <a href="/docs/elements/paper-elements.html#paper-slider"><code>&lt;paper-slider&gt;</code></a></td>
+    <a href="paper-elements.html#paper-slider"><code>&lt;paper-slider&gt;</code></a></td>
     <td><paper-slider pin></paper-slider></td>
   </tr>
   <tr>
     <td>Progress bar<br>
-    <a href="/docs/elements/paper-elements.html#paper-progress"><code>&lt;paper-progress&gt;</code></a></td>
+    <a href="paper-elements.html#paper-progress"><code>&lt;paper-progress&gt;</code></a></td>
     <td><paper-progress value="30"></paper-progress></td>
   </tr>
   <tr>
     <td>Input<br>
-    <a href="/docs/elements/paper-elements.html#paper-input"><code>&lt;paper-input&gt;</code></a></td>
+    <a href="paper-elements.html#paper-input"><code>&lt;paper-input&gt;</code></a></td>
     <td><paper-input floatingLabel label="First name"></paper-input></td>
-    <td><a href="/components/paper-elements/demo.html#paper-icon-input"><core-icon icon="arrow-forward" size="16"></core-icon> More examples</a>
+    <td><a href="../../components/paper-elements/demo.html#paper-input"><core-icon icon="arrow-forward" size="16"></core-icon> More examples</a>
     </td>
   </tr>
 </table>
-
 
 ## Dialogs, snackbars, and toasts
 
@@ -224,7 +223,7 @@ differently using CSS.
 Dialogs are hidden by default. Call the dialog's `toggle` method to show or
 hide it.
 
-<a href="/components/paper-elements/demo.html#paper-dialog">
+<a href="../../components/paper-elements/demo.html#paper-dialog">
 <core-icon icon="arrow-forward" size="16"></core-icon> More examples</a>
 
 ### Snackbars & toasts
@@ -242,7 +241,7 @@ Like a dialog, a `<paper-toast>` is hidden by default. Call the element's
 `open` method to display it. The toast disappears after a timeout, or can be
 dismissed by swiping.
 
-<a href="/components/paper-elements/demo.html#paper-toast">
+<a href="../../components/paper-elements/demo.html#paper-toast">
 <core-icon icon="arrow-forward" size="16"></core-icon> More examples</a>
 
 ## Material effects
@@ -299,7 +298,7 @@ Touch the cards and icon below to see ripple effects.
 The `<paper-ripple>` should be `position: absolute` and sized to fit the
 parent element. In  this example, the `fit` layout attribute is used to
 position the ripple appropriately.  (See
-[layout attributes](/docs/polymer/layout-attrs.html) for information on `fit`
+[layout attributes](../polymer/layout-attrs.html) for information on `fit`
 and other layout attributes.)
 
 You can clip the ripple to a circle by adding the `circle` class to the
@@ -407,9 +406,8 @@ _parent element_, and supported changing the z-height by setting the
 `z` property directly.
 {: .alert .alert-info }
 
-<a href="/components/paper-elements/demo.html#paper-shadow">
+<a href="../../components/paper-elements/demo.html#paper-shadow">
 <core-icon icon="arrow-forward" size="16"></core-icon> More examples</a>
-
 
 ## Transitions
 
@@ -424,13 +422,13 @@ morph into a related element on the ending page. Use hero transitions to link
 important elements together, while using a simpler transition such as a
 cross-fade for the remaining elements.
 
-For example transitions, see the [`<core-animated-pages>` demos](/components/core-animated-pages/demo.html).
+For example transitions, see the [`<core-animated-pages>` demos](../../components/core-animated-pages/demo.html).
 The <a href="https://polymer-topeka.appspot.com" target="_blank">Topeka sample app</a> also
 demonstrates a number of transitions in context.
 
 ## Scrolling techniques
 
-The [`<core-scroll-header-panel>`](/docs/elements/core-elements.html#core-scroll-header-panel)
+The [`<core-scroll-header-panel>`](core-elements.html#core-scroll-header-panel)
 element supports a number of scrolling effects described in the material
 design spec, including condensing and expanding the toolbar as the user
 scrolls and hiding or showing the toolbar.
@@ -440,7 +438,7 @@ transition the toolbar's contents between states &mdash; resizing text,
 showing or hiding /components, and cross-fading between backgrounds, for
 example.
 
-See the [`<core-scroll-header-panel>` demos](/components/core-scroll-header-panel/demo.html)
+See the [`<core-scroll-header-panel>` demos](../../components/core-scroll-header-panel/demo.html)
 for some examples of the effects possible.
 
 <script>
