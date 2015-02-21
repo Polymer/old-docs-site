@@ -60,6 +60,7 @@ routes = [
     RedirectRoute('/apps/polymer-tutorial/finished/', name='tutorial',
         redirect_to='https://polymer-tut.appspot.com/', strict_slash=True),
     ('/docs/.*', VersionHandler),
+    ('/$', VersionHandler),
 ]
 
 app = webapp2.WSGIApplication(routes=routes, debug=False)

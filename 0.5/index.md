@@ -9,7 +9,7 @@ title: Welcome
     <summary>
       <h1>Welcome to the future</h1>
       <p>Web Components usher in a new era of web development based on encapsulated and interoperable custom elements that extend HTML itself. Built atop these new standards, Polymer makes it easier and faster to create anything from a button to a complete application across desktop, mobile, and beyond.</p>
-      <a href="/docs/start/getting-the-code.html">
+      <a href="docs/start/getting-the-code.html">
         <paper-button raised unresolved>
           <core-icon icon="archive"></core-icon> Get {{site.project_title}}
         </paper-button>
@@ -36,14 +36,14 @@ title: Welcome
     <summary>
         <feature-carousel interval="5000" flex unresolved>
         <div>
-          <a href="/components/paper-elements/demo.html#core-toolbar" target="_blank">
+          <a href="components/paper-elements/demo.html#core-toolbar" target="_blank">
             <img src="/images/sampler-paper.png">
           </a>
           <summary>
             <h1>Featured: material design</h1>
             <p>{{site.project_title}} brings an implementation of <a href="http://google.com/design/spec">material design</a> to the web. The paper elements range from controls to effects and user interaction.
             <br><br>
-            <a href="/docs/elements/material.html">
+            <a href="docs/elements/material.html">
               <paper-button>
                 <core-icon icon="arrow-forward"></core-icon> Learn more
               </paper-button>
@@ -102,7 +102,7 @@ title: Welcome
       <p>From <code>&lt;a&gt;</code> to <code>&lt;select&gt;</code>, elements are the building blocks of HTML. But modern applications have outgrown these built-in elements, forcing app developers to rely on JavaScript frameworks to provide dynamic, custom behavior.  The resulting apps are frequently complex and monolithic; a component developed for one may not work in another.
       <br><br>
       {{site.project_title}} puts elements back at the center of web development. With {{site.project_title}}, you can craft your own HTML elements and compose them into complete, complex applications that are scalable and maintainable.</p>
-      <a href="/docs/start/everything.html">
+      <a href="docs/start/everything.html">
         <paper-button>
           <core-icon icon="arrow-forward"></core-icon> Learn more
         </paper-button>
@@ -133,13 +133,13 @@ title: Welcome
       </summary>
       <summary flex>
         <div class="box">
-          <a href="/components/paper-elements/demo.html#core-toolbar">
+          <a href="components/paper-elements/demo.html#core-toolbar">
             <img src="/images/sampler-paper-square.png">
           </a>
         </div>
         <h2 class="elements">Paper Elements</h2>
         <p>A sampler showcasing Polymer elements based on material design</p>
-        <a href="/components/paper-elements/demo.html#core-toolbar">
+        <a href="components/paper-elements/demo.html#core-toolbar">
           <paper-button>
             <core-icon icon="arrow-forward"></core-icon> Browse Elements
           </paper-button>
@@ -147,13 +147,13 @@ title: Welcome
       </summary>
       <summary flex>
         <div class="box">
-          <a href="/components/paper-calculator/demo.html">
+          <a href="components/paper-calculator/demo.html">
             <img src="/images/paper-calculator.png">
           </a>
         </div>
         <h2 class="guide">Calculator</h2>
         <p>A calculator app mockup highlighting material ink effects</p>
-        <a href="/components/paper-calculator/demo.html">
+        <a href="components/paper-calculator/demo.html">
           <paper-button>
             <core-icon icon="arrow-forward"></core-icon> Demo Calculator
           </paper-button>

@@ -91,15 +91,15 @@
         <core-item label="Material design with Polymer"><a href="/[[versionPrefix]]/docs/elements/material.html"></a></core-item>
       </core-submenu>
       <core-submenu id="coreelements" label="Core elements" icon="hardware:keyboard-arrow-down">
-        <template repeat="{{coreElementsList}}">
-          <core-item label="{{name}}"><a href="/[[versionPrefix]]/docs/elements/core-elements.html#{{name}}"
-              data-href="/[[versionPrefix]]/docs/elements/core-elements.html#{{name}}"></a></core-item>
+        <template repeat="{{el in coreElementsList}}">
+          <core-item label="[[el.name]]"><a href="/{{versionPrefix}}/docs/elements/core-elements.html#[[el.name]]"
+              data-href="/{{versionPrefix}}/docs/elements/core-elements.html#[[el.name]]"></a></core-item>
         </template>
       </core-submenu>
       <core-submenu id="paperelements" icon="hardware:keyboard-arrow-down" label="Paper elements">
-        <template repeat="{{paperElementsList}}">
-          <core-item label="{{name}}"><a href="/[[versionPrefix]]/docs/elements/paper-elements.html#{{name}}"
-              data-href="/[[versionPrefix]]/docs/elements/paper-elements.html#{{name}}"></a></core-item>
+        <template repeat="{{el in paperElementsList}}">
+          <core-item label="[[el.name]]"><a href="/{{versionPrefix}}/docs/elements/paper-elements.html#[[el.name]]"
+              data-href="/{{versionPrefix}}/docs/elements/paper-elements.html#[[el.name]]"></a></core-item>
         </template>
       </core-submenu>
     </core-submenu>

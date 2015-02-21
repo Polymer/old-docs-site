@@ -16,7 +16,6 @@ add_permalinks: false
 
 <div class="hide-on-hash">
 
-
   <p>The Paper elements are a set of UI elements that implement the
     <a href="http://google.com/design/spec">material design system</a>.</p>
 
@@ -27,7 +26,7 @@ add_permalinks: false
   <p><a href="material.html">Material Design Using Polymer</a></p>
 
   <h2>Demos</h2>
-  <p><a href="/components/paper-elements/demo.html">Paper elements sampler</a></p>
+  <p><a href="../..components/paper-elements/demo.html">Paper elements sampler</a></p>
 </div>
 
 <component-docs

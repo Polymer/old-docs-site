@@ -28,7 +28,7 @@ add_permalinks: false
   <p><a href="icons.html">Using core icons</a></p>
 
   <h2>Demos</h2>
-  <p><a href="/components/core-elements/demo.html">{{site.project_title}} Core elements sampler</a></p>
+  <p><a href="../../components/core-elements/demo.html">{{site.project_title}} Core elements sampler</a></p>
 </div>
 
 <component-docs

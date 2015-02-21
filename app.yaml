@@ -15,19 +15,6 @@ libraries:
 
 handlers:
 
-# Top-level URLs ---------------------------------------------------------------
-- url: /$
-  static_files: _site/index.html
-  upload: _site/index\.html
-  secure: always
-
-# - url: /build/$
-#   static_files: _site/build/index.html
-#   upload: _site/build/index\.html
-
-# - url: /build/(.*)
-#   script: build.application
-
 # These needs to be in this order and come for the short URL versions.
 - url: /(.+)/components/(.*)/webcomponents(\.min)?.js$
   static_files: \1/components/\2/webcomponents.min.js
@@ -82,16 +69,22 @@ handlers:
   http_headers:
     Access-Control-Allow-Origin: "*"
 
-# Redirects
-# This needs to appear above the block below, otherwise anything with a trailing
-# slash will fail to redirect
-
+# This needs to appear above the rediret block below, otherwise anything with a
+# trailing slash will fail to redirect
 # /0.5/docs/start/getting-the-code.html
 - url: /(.+)/docs/
   static_files: _site/\1/docs
   upload: _site/(.+)/docs/
+  secure: always
   http_headers:
     Access-Control-Allow-Origin: "*"
+
+# Redirects --------------------------------------------------------------------
+- url: /$
+  #static_files: _site/index.html
+  #upload: _site/index\.html
+  script: main.app
+  secure: always
 
 # No version goes through redirect to latest version.
 - url: /docs/.*
@@ -108,16 +101,6 @@ handlers:
   static_files: _site/\1/index.html
   upload: _site/(.*)/index.html
   secure: always
-
-# - url: /samples
-#   static_dir: samples
-#   http_headers:
-#     Access-Control-Allow-Origin: "*"
-
-# - url: /components
-#   static_dir: components
-#   http_headers:
-#     Access-Control-Allow-Origin: "*"
 
 # All other URLs map directly to their path in _site/.
 - url: /

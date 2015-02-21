@@ -7,8 +7,8 @@
 {% endcapture %}
 
 <app-bar theme="{{theme | trim }}" {% if page.layout == 'home'%}home{% endif %} badge="{{site.project_status}}" class="bar fixed" unresolved>
-  <a href="/docs/start/getting-the-code.html" class="paper-button" borderless sink>Get Started</a>
-  <a href="/docs/polymer/polymer.html" class="paper-button" borderless sink>Guides &amp; Resources</a>
-  <a href="/docs/elements/" class="paper-button" borderless sink>Elements</a>
+  <a href="/{% polymer_version_dir %}/docs/start/getting-the-code.html" class="paper-button" borderless sink>Get Started</a>
+  <a href="/{% polymer_version_dir %}/docs/polymer/polymer.html" class="paper-button" borderless sink>Guides &amp; Resources</a>
+  <a href="/{% polymer_version_dir %}/docs/elements/" class="paper-button" borderless sink>Elements</a>
   <a href="//blog.polymer-project.org" target="_blank" class="paper-button" borderless sink>Blog</a>
 </app-bar>

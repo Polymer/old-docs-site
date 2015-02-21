@@ -5,12 +5,18 @@
 
 class PolymerVersionDir < Liquid::Tag
   def initialize(tag_name, markup, tokens)
-     super
+    super
   end
 
   def render(context)
     page_url = context.environments.first['page']['url']
-    page_url = page_url.split('/')[1]
+    version = page_url.split('/')[1]
+    begin
+      v = Integer(version[0]) # check if there's a version in the URL.
+    rescue ArgumentError
+      version = nil
+    end
+    version
   end
 end
 
