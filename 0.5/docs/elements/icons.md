@@ -6,7 +6,7 @@ title: Using core icons
 subtitle: Guide
 ---
 
-<link rel="import" href="/components/google-youtube/google-youtube.html">
+<link rel="import" href="../../components/google-youtube/google-youtube.html">
 
 {% include toc.html %}
 
@@ -96,7 +96,7 @@ For example:
 This displays the *cake* icon from the *social* iconset: <core-icon icon="social:cake"></core-icon>
 
 You can browse available icon sets on the
-[core-icons demo page](/components/core-icons/demo.html).
+[core-icons demo page](../../components/core-icons/demo.html).
 
 ## Styling icons with CSS {#styling-with-css}
 
@@ -209,8 +209,8 @@ there is also an element for that: `core-iconset`.
 
 For example, if you have a *png* file containing icons:
 
-<a href="/components/core-iconset/my-icons.png" target="_blank">
-  <img src="/components/core-iconset/my-icons.png">
+<a href="../../components/core-iconset/my-icons.png" target="_blank">
+  <img src="../../components/core-iconset/my-icons.png">
 </a>
 
 You can set the `src` attribute of `core-iconset` to point to this file.
@@ -227,7 +227,7 @@ Now you can use the icons in your custom set just like the built-in icons.
 
     <core-icon icon="custom-icons-png:place"></core-icon>
 
-<core-iconset id="custom-icons-png" src="/components/core-iconset/my-icons.png" width="96" iconSize="24"
+<core-iconset id="custom-icons-png" src="../../components/core-iconset/my-icons.png" width="96" iconSize="24"
   icons="location place starta stopb bus car train walk">
 </core-iconset>
 Produces: <core-icon icon="custom-icons-png:place"></core-icon>
