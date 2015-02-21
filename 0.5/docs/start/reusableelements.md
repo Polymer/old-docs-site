@@ -155,5 +155,5 @@ You can check out the [live](http://polymerlabs.github.io/seed-element/component
 
 ##Where to go next?
 
-Now that you’ve published your {{site.project_title}} element to GitHub, you may be interested in learning how to [distribute your element using Bower](/articles/distributing-components-with-bower.html).
+Now that you’ve published your {{site.project_title}} element to GitHub, you may be interested in learning how to [distribute your element using Bower](../../articles/distributing-components-with-bower.html).
 
