@@ -29,7 +29,7 @@ def get_dirs(root='.'):
   a = re.compile(r'^\d.\d(\.\d)?$')
   return [x for x in os.listdir(root) if os.path.isdir(x) and a.match(x)]
 
-def get_latest_polymer_version_dir():
+def get_default_polymer_version():
   current_app_version = os.environ['CURRENT_VERSION_ID'].split('.')[0]
 
   default_version = memcache.get('default_version', namespace=current_app_version)
@@ -40,17 +40,13 @@ def get_latest_polymer_version_dir():
     default_version = config.get('default_version')
     memcache.add('default_version', default_version, namespace=current_app_version)
 
-  # dirs = get_dirs(root='.')
-  # # ['0.5', '0.6', '1.0.1'] -> max(['05', '06', '101']) -> '101' -> '1.0.1'
-  # latest = '.'.join(max([x.replace('.', '') for x in dirs]))
-
   return default_version
 
 
 class VersionHandler(webapp2.RequestHandler):
 
   def get(self, version=None):
-    version_dir = get_latest_polymer_version_dir()
+    version_dir = get_default_polymer_version()
     self.redirect('/%s%s' % (version_dir, self.request.path))
 
 

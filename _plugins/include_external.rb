@@ -72,7 +72,6 @@ module Jekyll
         endpattern = /^\s*(?:\/\/|\/\*|<!--)\s*\[END\s+(\S*)\s*\]/
         f = File.new(@filename, "r")
         text = f.read()
-        @output << text # Start with entire file if no regions are found.
         text.each_line do |line|
           if m = startpattern.match(line)
             if @region && @region ==  m[1]
@@ -99,13 +98,15 @@ module Jekyll
         f.close unless f.nil?
       end
 
+      # Use entire file if no regions were found.
+      if @output.length == 0
+        @output << text
+      end
+
       super
     end
 
     def render(context)
-      if @attributes.has_key?('version_prefix')
-        puts @filename
-      end
       @output.join("")
     end
   end
