@@ -262,6 +262,12 @@ Therefore, if you're using `::shadow` and `/deep/` in your main page stylesheet,
 
     <link rel="stylesheet"  href="main.css" shim-shadowdom>
 
+**Note:** Using `shim-shadowdow` on a large stylesheet can be a potential performance hit. Polymer XHRs the stylesheet content and shims the styles manually, at runtime. If you need to shim Shadow DOM styles in your main page stylesheet, consider separating out the Shadow DOM CSS rules from the bulk of the page CSS and use `shim-shadowdom` on the other file:
+
+    <link rel="stylesheet"  href="main.css">
+    <link rel="stylesheet"  href="main_sd.css" shim-shadowdom>
+{: .alert }
+
 ## Polyfill details
 
 ### Handling scoped styles
