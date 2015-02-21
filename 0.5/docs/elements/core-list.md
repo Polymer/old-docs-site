@@ -6,17 +6,16 @@ title: Using core list
 subtitle: Guide
 ---
 
-<link rel="import" href="/elements/side-by-side.html">
+<link rel="import" href="../../elements/side-by-side.html">
 
 <link rel="stylesheet" href="core-list.css">
-
 
 {% include toc.html %}
 
 ## Introduction
 
 {{site.project_title}}'s Core Elements collection contains
-<code><a href="/docs/elements/core-elements.html#core-list">core-list</a></code>,
+<code><a href="core-elements.html#core-list">core-list</a></code>,
 which displays a virtual, infinite list of homogeneous items.
 A `core-list` item can contain text, images, or other kinds of elements.
 In addition, an item can be composed of multiple elements.
@@ -80,7 +79,7 @@ but could be inside a {{site.project_title}} element.
         &lt;div class="item">
           <strong class="highlight nocode">&lt;span class="from">{%raw%}{{model.name}}{%endraw%}&lt;/span></strong>
         &lt;/div>
-      &lt;/template>  
+      &lt;/template>
     &lt;/core-list>
   &lt;/div&gt;
 &lt;/template&gt;
@@ -88,26 +87,22 @@ but could be inside a {{site.project_title}} element.
 
 ### The script {#the-script}
 
-The script for the auto-binding template generates the data model for `core-list`. 
+The script for the auto-binding template generates the data model for `core-list`.
 
-<pre>
-  &lt;script&gt;
-  var cl = document.querySelector('#my-core-list');
-  cl.data = [ {name: 'Elizabeth'}, {name: 'Jane'}, {name: 'Kitty'}, ... ];
-  &lt;/script&gt;
-</pre>
+    var cl = document.querySelector('#my-core-list');
+    cl.data = [{name: 'Elizabeth'}, {name: 'Jane'}, {name: 'Kitty'}, ...];
 
 The array, `cl.data`, is bound to the `core-list`'s `data` attribute.
 Here, `cl.data` is populated using a static array of maps, but could be the output
 of a database or an AJAX request.
 
 ### The data model {#the-data-model}
- 
+
 Each list item is bound to a JavaScript object that provides the model for the data.
 The model contains an index, a boolean indicating whether the
 item is selected, and finally, a user model, which contains
 the data specific to the item.
- 
+
 In the example that displays the list of names,
 `model` contains only one key/value pair:
 the key `name` and the value, which varies for every list item.
@@ -125,25 +120,25 @@ For example, the 4th item in the list of names might have this model:
 
 You refer to values in the model using a key:
 
-<pre>
-{%raw%}{{model.name}}{%endraw%}
-</pre>
+{%raw%}
+    {{model.name}}
+{%endraw%}
 
-[See the full sample](https://github.com/Polymer/docs/blob/master/samples/core-list/core-list-names/index.html) or <plunker-button src="/samples/core-list/core-list-names/manifest.json">edit on plunker</plunker-button>
+[See the full sample](https://github.com/Polymer/docs/blob/master/samples/core-list/core-list-names/index.html) or <plunker-button src="../../samples/core-list/core-list-names/manifest.json">edit on plunker</plunker-button>
 
 ## Using core-image with core-list
 
 Recall that just enough template elements are rendered to fill the viewport and that
 these elements are recycled when the user scrolls. This can cause issues with images.
 If a user is scrolling through the images very quickly, the recycled item shows a stale image
-while it waits for the new one to load. You can use <code><a href="/docs/elements/core-elements.html#core-image">core-image</a></code> instead of `img` to fix this problem. 
+while it waits for the new one to load. You can use <code><a href="core-elements.html#core-image">core-image</a></code> instead of `img` to fix this problem.
 
 Remember to install and include `core-image` in the `<head>` section as you did with `core-list`.
 
 <img src="/images/core-list/variable-height-images.png" height="690" width="382">
 
 This example uses a
-<code><a href="/docs/elements/core-elements.html#core-header-panel">core-header-panel</a></code> to provide
+<code><a href="core-elements.html#core-header-panel">core-header-panel</a></code> to provide
 a header above the images.
 See [Using core-header-panel with core-list](#list-with-core-header-panel)
 for details.
@@ -182,7 +177,7 @@ This `core-list` uses a `<core-image>` element to display each image using the d
 
 The `preload` attribute means that the `core-image` shows the background color or an alternate image (set with the `placeholder` attribute) until the true image is completely loaded. So instead of seeing stale images in the recycled templates, you see a background color or another image.
 
-[See the full sample](https://github.com/Polymer/docs/blob/master/samples/core-list/core-list-images/index.html) or <plunker-button src="/samples/core-list/core-list-images/manifest.json">edit on plunker</plunker-button>
+[See the full sample](https://github.com/Polymer/docs/blob/master/samples/core-list/core-list-images/index.html) or <plunker-button src="../../samples/core-list/core-list-images/manifest.json">edit on plunker</plunker-button>
 
 ## Essential: Providing heights
 
@@ -232,9 +227,9 @@ Here’s the code that puts the checkbox, the text input field, and the select e
 the `core-list` template.
 
 <pre>
-  &lt;input type="checkbox" checked="{%raw%}{{model.checked}}{%endraw%}"&gt;
-  &lt;input type="number" value="{%raw%}{{model.value}}{%endraw%}" class="narrow"&gt;
-  &lt;select selectedIndex="{%raw%}{{model.type}}{%endraw%}"&gt;&lt;option&gt;a&lt;/option&gt;&lt;option&gt;b&lt;/option&gt;&lt;option&gt;c&lt;/option&gt;&lt;/select&gt;
+&lt;input type="checkbox" checked="{%raw%}{{model.checked}}{%endraw%}"&gt;
+&lt;input type="number" value="{%raw%}{{model.value}}{%endraw%}" class="narrow"&gt;
+&lt;select selectedIndex="{%raw%}{{model.type}}{%endraw%}"&gt;&lt;option&gt;a&lt;/option&gt;&lt;option&gt;b&lt;/option&gt;&lt;option&gt;c&lt;/option&gt;&lt;/select&gt;
 </pre>
 
 The user data in the model mirrors the elements in the template.
@@ -255,14 +250,13 @@ The user data in the model mirrors the elements in the template.
 }
 </pre>
 
-[See the full sample](https://github.com/Polymer/docs/blob/master/samples/core-list/multiple-elements/index.html) or <plunker-button src="/samples/core-list/multiple-elements/manifest.json">edit on plunker</plunker-button>
-
+[See the full sample](https://github.com/Polymer/docs/blob/master/samples/core-list/multiple-elements/index.html) or <plunker-button src="../../samples/core-list/multiple-elements/manifest.json">edit on plunker</plunker-button>
 
 ## Using core-header-panel with core-list {#list-with-core-header-panel}
 
 A common way to provide a header with a `core-list` is to use a
-<code><a href="/docs/elements/core-elements.html#core-header-panel">core-header-panel</a></code>. The `core-header-panel` has a header section and a content section. You can use a 
-<code><a href="/docs/elements/core-elements.html#core-toolbar">core-toolbar</a></code> to implement the header section. Let’s look at an example.
+<code><a href="core-elements.html#core-header-panel">core-header-panel</a></code>. The `core-header-panel` has a header section and a content section. You can use a
+<code><a href="core-elements.html#core-toolbar">core-toolbar</a></code> to implement the header section. Let’s look at an example.
 
 Remember to install and import the two new elements in the header of your HTML code.
 
@@ -272,12 +266,12 @@ Remember to install and import the two new elements in the header of your HTML c
 Embed the `core-list` in a `core-header-panel`. Include a `core-toolbar` as well. The `core-toolbar` remains in place at the top of the viewport as the user scrolls. It has a shadow, which gives the illusion of the `core-list` items scrolling up under the toolbar.
 
 <pre>
-  <strong class="highlight nocode">&lt;core-header-panel id="hPanel" flex&gt;
-    &lt;core-toolbar&gt;Variable height images&lt;/core-toolbar&gt;</strong>
-    &lt;core-list id="list" data="{%raw%}{{data}}{%endraw%}" flex&gt;
-      ...
-    &lt;/core-list&gt;
-  <strong class="highlight nocode">&lt;/core-header-panel&gt;</strong>
+<strong class="highlight nocode">&lt;core-header-panel id="hPanel" flex&gt;
+  &lt;core-toolbar&gt;Variable height images&lt;/core-toolbar&gt;</strong>
+  &lt;core-list id="list" data="{%raw%}{{data}}{%endraw%}" flex&gt;
+    ...
+  &lt;/core-list&gt;
+<strong class="highlight nocode">&lt;/core-header-panel&gt;</strong>
 </pre>
 
 The `core-list` in this example is contained within a {{site.project_title}} element, so the code that populates the `core-list` appears in the `ready()` method.
@@ -291,7 +285,7 @@ otherwise the `core-list` and the `core-header-panel` don't play well together.
 ready: function() {
   this.data = [];
   for (var i = 0; i < 100; i++) {
-    this.data.push({ … });
+    this.data.push({ ... });
   }
   <strong class="highlight nocode">this.$.list.scrollTarget = this.$.hPanel.scroller;</strong>
 },
@@ -301,7 +295,7 @@ You can also set the scroll target in markup as follows:
 
     <core-list scrollTarget="{%raw%}{{$.hPanel.scroller}}{%endraw%}">
 
-[See the full sample](https://github.com/Polymer/docs/blob/master/samples/core-list/core-list-images/index.html) or <plunker-button src="/samples/core-list/core-list-images/manifest.json">edit on plunker</plunker-button>
+[See the full sample](https://github.com/Polymer/docs/blob/master/samples/core-list/core-list-images/index.html) or <plunker-button src="../../samples/core-list/core-list-images/manifest.json">edit on plunker</plunker-button>
 
 ## Summary
 
@@ -313,24 +307,17 @@ Use these links to find the source code for the samples used in this guide:
 <!-- and to run them: -->
 <!-- run links broken ATM -->
 
-* [core-list with names](https://github.com/Polymer/docs/blob/master/samples/core-list/core-list-names/index.html) 
-  <!-- <a href="/samples/core-list/core-list-names/index.html" class="link_button"
-         target="_blank" >Run it</a> -->
+* [core-list with names](https://github.com/Polymer/docs/blob/master/samples/core-list/core-list-names/index.html)
 
+* [core-list with variable height images and core-header-panel](https://github.com/Polymer/docs/blob/master/samples/core-list/core-list-images/index.html)
 
-* [core-list with variable height images and core-header-panel](https://github.com/Polymer/docs/blob/master/samples/core-list/core-list-images/index.html) 
-  <!-- <a href="/samples/core-list/core-list-images/index.html" class="link_button"
-         target="_blank" >Run it</a> -->
-
-* [core-list with a variety of elements](https://github.com/Polymer/docs/blob/master/samples/core-list/multiple-elements/index.html) 
-  <!-- <a href="/samples/core-list/multiple-elements/index.html" class="link_button"
-         target="_blank" >Run it</a> -->
+* [core-list with a variety of elements](https://github.com/Polymer/docs/blob/master/samples/core-list/multiple-elements/index.html)
 
 For more information about the core elements used in this guide,
 check out the API docs:
 
-* <a href="/docs/elements/core-elements.html#core-list">core-list</a>
-* <a href="/docs/elements/core-elements.html#core-image">core-image</a>
-* <a href="/docs/elements/core-elements.html#core-header-panel">core-header-panel</a>
-* <a href="/docs/elements/core-elements.html#core-toolbar">core-toolbar</a>
+* <a href="core-elements.html#core-list">core-list</a>
+* <a href="core-elements.html#core-image">core-image</a>
+* <a href="core-elements.html#core-header-panel">core-header-panel</a>
+* <a href="core-elements.html#core-toolbar">core-toolbar</a>
 
