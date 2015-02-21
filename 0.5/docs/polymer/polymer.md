@@ -96,8 +96,6 @@ This also means that any of the below examples will also work:
     <name-tag NAMECOLOR="red" name="Red Name"></name-tag>
     <name-tag NAMEcolor="green" name="Green Name"></name-tag>
 
-
-
 ### Element registration {#altregistration}
 
 The `Polymer` method is used to register an element:
@@ -130,8 +128,8 @@ elements, the `<template>` element **must come first.**
 
 There are several alternatives to registering an element in an an inline script:
 
--   [Separating script from markup](#separatescript).
--   [Registering imperatively](#imperativeregister) using JavaScript.
+- [Separating script from markup](#separatescript).
+- [Registering imperatively](#imperativeregister) using JavaScript.
 
 #### Separating script from markup {#separatescript}
 
@@ -169,9 +167,7 @@ use the `noscript` attribute:
 
 The `noscript` attribute is equivalent to including:
 
-    <script>
-    Polymer();
-    </script>
+    <script>Polymer();</script>
 
 #### Registering imperatively {#imperativeregister}
 
@@ -235,8 +231,7 @@ using an ES5 getter, and a method `foo`:
 -   A {{site.project_title}} base prototype that adds a set of built-in methods and properties (see [Built-in element methods](#builtin)).
 -   A prototype object for the native DOM object that the custom element extends (by default, `HTMLElement`).
 
-Avoid defining a property or method with the same name as a native DOM property or method, such as `id`, `children`,
-`focus`, `title` and `hidden`; the results are unpredictable.
+Avoid defining a property or method with the same name as a native DOM property or method, such as `id`, `children`, `focus`, `title` and `hidden`; the results are unpredictable.
 
 ### Adding private or static variables {#static}
 
@@ -257,8 +252,6 @@ techniques like anonymous self-calling functions:
         })();
       </script>
     </polymer-element>
-
-
 
 ### Supporting global variables {#global}
 
@@ -281,11 +274,11 @@ instances in the `ready` callback.
         var lastName = 'Smith';
 
         Polymer({
-           ready: function() {
-             // copy global values into instance properties
-             this.firstName = firstName;
-             this.lastName = lastName;
-           }
+          ready: function() {
+            // copy global values into instance properties
+            this.firstName = firstName;
+            this.lastName = lastName;
+          }
         });
       })();
       </script>
@@ -315,7 +308,7 @@ A slight tweak of this approach lets you configure the value of the globals exte
       <script>
         (function() {
           var values = {};
-          
+
           Polymer({
              ready: function() {
                this.values = values;
@@ -329,7 +322,6 @@ A slight tweak of this approach lets you configure the value of the globals exte
       </script>
     </polymer-element>
 
-
 The main page configures the globals by passing attributes:
 
     <app-globals firstname="Addy" lastname="Osmani"></app-globals>
@@ -338,7 +330,7 @@ This second version of `app-globals` has a slightly different API than
 the first. The global variables are properties of the `values` object instead of
 direct properties of `app-globals`. Setting values using attributes imposes two
 limitations: the values must be strings, and the variable names are lowercase.
-(See [Attribute case sensitivity](#attrcase) for more information.)
+(See [Attribute case sensitivityy](#attrcase) for more information.)
 
 To use this `<app-globals>` element with the previous `<my-component>` example,
 you'd need to update the paths that refer to the global variables (for example
@@ -523,7 +515,6 @@ created for each instance of the element:
       </script>
     </polymer-element>
 
-
 #### Configuring an element via attributes
 
 Attributes are a great way for users of your element to configure it,
@@ -643,16 +634,14 @@ Specify a reflected property using this format:
 The property value is serialized to a string based on its data type. A
 few types get special treatment:
 
-*   If the property value is an object, array, or function, the value is
-    **never** reflected, whether or not `reflect` is `true`.
+* If the property value is an object, array, or function, the value is
+  **never** reflected, whether or not `reflect` is `true`.
 
-*   If the property value is boolean, the attribute behaves like a standard
-    boolean attribute: the reflected attribute appears only if the value is
-    truthy.
+* If the property value is boolean, the attribute behaves like a standard
+  boolean attribute: the reflected attribute appears only if the value is truthy.
 
 Also, note that the initial value of an attribute is **not** reflected, so the
-reflected attribute does not appear in the DOM unless you set it to a different
-value.
+reflected attribute does not appear in the DOM unless you set it to a different value.
 
 For example:
 
@@ -724,14 +713,43 @@ element's prototype:
 </pre>
 
 Each computed property is defined by a property name and a
-[Polymer expression](/docs/polymer/expressions.html). The value
+[Polymer expression](expressions.html). The value
 of the computed property is updated dynamically whenever one of
 the input values in the expression changes.
 
 In the following example, when you update the input value,
 `num`, the computed property `square` updates automatically.
 
-{% include samples/computed-property.html %}
+<link rel="import" href="../start/components/computed-property.html">
+
+<demo-tabs selected="0">
+  <demo-tab heading="square-element.html">
+{% highlight html %}
+<link rel="import"
+      href="../bower_components/polymer/polymer.html">
+
+{% include_external /docs/start/components/computed-property.html version_prefix:0.5 %}
+
+{% endhighlight %}
+  </demo-tab>
+  <demo-tab heading="index.html">
+{% highlight html %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="webcomponents.min.js"></script>
+    <link rel="import" href="square-element.html">
+  </head>
+  <body>
+    <square-element></square-element>
+  </body>
+</html>
+{% endhighlight %}
+  </demo-tab>
+  <div class="result">
+    <square-element></square-element>
+  </div>
+</demo-tabs>
 
 Computed properties are read-only: for example, setting
 the `square` property on `square-element` has no effect.
@@ -771,7 +789,7 @@ Some things to notice:
 
 * The value of an event handler attribute is the string name of a method on the component. Unlike traditional syntax, **you cannot put executable code in the attribute.**
 
-* Because attributes are case-insensitive, **event names are converted to lowercase.** `on-TAP` and 
+* Because attributes are case-insensitive, **event names are converted to lowercase.** `on-TAP` and
   `on-tap` both add listeners for the `tap` event.
 
 * The event handler is passed the following arguments:
@@ -923,7 +941,7 @@ In the example, `validate()` is called whenever `foo` or `bar` changes.
 **Example:** using automatic node finding in an `observe` object
 
 When an element has an ID, you can use the `this.$` hash in the `observe` object to watch
-a property on that element. 
+a property on that element.
 
     <template>
       <x-foo id="foo"></x-foo>
@@ -938,8 +956,8 @@ a property on that element.
       }
     });
 
-All property names in the `observe` object are relative to `this`, so `$.foo.someProperty` 
-refers to a property on the `<x-foo>` element. See the section on 
+All property names in the `observe` object are relative to `this`, so `$.foo.someProperty`
+refers to a property on the `<x-foo>` element. See the section on
 [automatic node finding](#automatic-node-finding) for more infomration on the `this.$`
 hash and its limitations.
 
@@ -1092,12 +1110,12 @@ to "coolest".
 A few of the utility methods are documented here:
 
 * [`onMutation`](#onMutation) can be used to set up a callback when the element's children change.
-* [`async`](#asyncmethod) schedules a task to be executed after a configurable timeout, and is 
+* [`async`](#asyncmethod) schedules a task to be executed after a configurable timeout, and is
   synchronized with `requestAnimationFrame`.
 * [`job`](#job) can be used to debounce event handlers, ensuring that a task is executed only
   once during a given time window.
 
-An additional instance method, [`injectBoundHTML`](databinding-advanced.html#boundhtml), 
+An additional instance method, [`injectBoundHTML`](databinding-advanced.html#boundhtml),
 is documented in the data-binding section.
 
 ### Observing changes to light DOM children {#onMutation}

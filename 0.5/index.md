@@ -34,14 +34,43 @@ title: Welcome
 <section id="featured">
   <div class="panel right">
     <summary>
-        <feature-carousel interval="5000" flex unresolved>
+      <feature-carousel interval="7000" flex unresolved>
+        <div>
+          <a href="https://www.youtube.com/playlist?list=PLOU2XLYxmsII5c3Mgw6fNYCzaWrsM3sMN">
+            <img src="//img.youtube.com/vi/82LfXCeuaOo/hqdefault.jpg">
+          </a>
+          <summary>
+            <h1>Polycasts</h1>
+            <p>Join Rob Dodson as he explores the ins and outs of {{site.project_title}}.
+            <br>Learn about the basics and see how to compose elements into buttery smooth mobile experiences.
+            <br><br>
+            <a href="https://www.youtube.com/playlist?list=PLOU2XLYxmsII5c3Mgw6fNYCzaWrsM3sMN">
+              <paper-button>Watch</paper-button>
+            </a>
+            </p>
+          </summary>
+        </div>
+        <div>
+          <a href="/resources/video.html">
+            <img src="//img.youtube.com/vi/0LT6W5QVCJI/hqdefault.jpg">
+          </a>
+          <summary>
+            <h1>Chrome Dev Summit 2014</h1>
+            <p>Recap everything {{site.project_title}} at Chrome Dev Summit 2014, including an introduction to  Polymer 0.8.
+            <br><br>
+            <a href="/resources/video.html">
+              <paper-button>Watch</paper-button>
+            </a>
+            </p>
+          </summary>
+        </div>
         <div>
           <a href="components/paper-elements/demo.html#core-toolbar" target="_blank">
             <img src="/images/sampler-paper.png">
           </a>
           <summary>
-            <h1>Featured: material design</h1>
-            <p>{{site.project_title}} brings an implementation of <a href="http://google.com/design/spec">material design</a> to the web. The paper elements range from controls to effects and user interaction.
+            <h1>Material design using Polymer</h1>
+            <p>{{site.project_title}} brings an implementation of <a href="http://google.com/design/spec">material design</a> to the web.<br>The paper elements range from controls to effects and user interaction.
             <br><br>
             <a href="docs/elements/material.html">
               <paper-button>
@@ -55,11 +84,8 @@ title: Welcome
           <a href="/resources/video.html">
             <img src="/images/logos/polymer_video_thumb.jpg">
           </a>
-          <!-- <div class="video">
-            <iframe src="https://www.youtube.com/embed/videoseries?list=PLRAVCSU_HVYu-zlRaqArF8Ytwz1jlMOIM&theme=light&controls=2" frameborder="0" allowfullscreen></iframe>
-          </div> -->
           <summary>
-            <h1>Featured: Google I/O</h1>
+            <h1>Google I/O 2014</h1>
             <p>Recap everything {{site.project_title}} at Google I/O 2014. Watch sessions videos and DevByte shorts.
             <br><br>
             <a href="/resources/video.html">

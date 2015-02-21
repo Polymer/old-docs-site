@@ -20,14 +20,12 @@ title: Getting the code
 }
 </style>
 
-
 {% include toc.html %}
 
 ## Installing {{site.project_title}} {#installing-polymer}
 
 If you're ready to start your own project, you can install {{site.project_title}}
 in one of several ways:
-
 
 *   Bower. **Recommended**. Bower manages dependencies, so installing a component
     also installs any missing dependencies. Bower also handles updating
@@ -42,13 +40,13 @@ in one of several ways:
     yourself. If you'd like to hack on the project or submit a pull request, see
     [setting up {{site.project_title}} with git](/resources/tooling-strategy.html#git).
 
-When you install {{site.project_title}} using Bower or the ZIP file, you get the 
-[Web Components polyfill library](/docs/start/platform.html). Using the polyfills 
-ensures that you can use {{site.project_title}} with browsers that don't support 
+When you install {{site.project_title}} using Bower or the ZIP file, you get the
+[Web Components polyfill library](platform.html). Using the polyfills
+ensures that you can use {{site.project_title}} with browsers that don't support
 the Web Components specifications natively.
 
-**Note:** For information about installing elements from the Core and Paper element 
-collection, see [Using elements](/docs/start/usingelements.html).
+**Note:** For information about installing elements from the Core and Paper element
+collection, see [Using elements](usingelements.html).
 
 **Note:** The PolymerLabs GitHub repo contains a number of unsupported elements that are either
 experimental or deprecated. In particular, the `polymer-elements` and `polymer-ui-elements`
@@ -110,8 +108,8 @@ then click **Download ZIP**.
 <component-download-button org="Polymer" component="polymer" label="GET POLYMER">
 </component-download-button>
 
-When you download {{site.project_title}} as a ZIP file, you get all of 
-the dependencies bundled into a single archive. It's a great way to get 
+When you download {{site.project_title}} as a ZIP file, you get all of
+the dependencies bundled into a single archive. It's a great way to get
 started because you don't need to install any additional tools.
 
 Expand the ZIP file in your project directory to create a `bower_components` folder.
@@ -139,10 +137,10 @@ Now that you've installed {{site.project_title}} it's time to learn the core
 concepts. In the next section we'll get you up and running on creating elements
 using {{site.project_title}}. Continue on to:
 
-<a href="/docs/start/creatingelements.html">
-  <paper-button raised><core-icon icon="arrow-forward" ></core-icon>Polymer in 10 minutes</paper-button>
+<a href="creatingelements.html">
+  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Polymer in 10 minutes</paper-button>
 </a>
 
 If you'd rather skip ahead, check out the
-[tutorial](/docs/start/tutorial/intro.html), or skip to the
-[API developer guide](/docs/polymer/polymer.html).
+[tutorial](tutorial/intro.html), or skip to the
+[API developer guide](../polymer/polymer.html).
