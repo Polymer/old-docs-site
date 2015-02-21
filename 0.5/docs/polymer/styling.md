@@ -9,26 +9,27 @@ subtitle: Guide
 {% include toc.html %}
 
 **Note:** styling {{site.project_title}} elements is no different than styling custom elements.
-For a complete guide on the basics, see "[A Guide to Styling Elements](/articles/styling-elements.html)".
+For a complete guide on the basics, see "[A Guide to Styling Elements](../../articles/styling-elements.html)".
 {: .alert }
 
-In addition to the [standard features for styling Custom Elements](/articles/styling-elements.html), {{site.project_title}} contains extra goodies for fully controlling element styling. This document outlines those features, including Flash-of-Unstyled-Content (FOUC) prevention, the specifics on how the the Shadow DOM polyfill applies styles, and workarounds for current limitations.
+In addition to the [standard features for styling Custom Elements](../../articles/styling-elements.html), {{site.project_title}} contains extra goodies for fully controlling element styling. This document outlines those features, including Flash-of-Unstyled-Content (FOUC) prevention, the specifics on how the the Shadow DOM polyfill applies styles, and workarounds for current limitations.
 
 ## FOUC prevention
 
-Before custom elements [upgrade](http://www.html5rocks.com/tutorials/webcomponents/customelements/#upgrades) they may display incorrectly. To help mitigate [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content) issues, {{site.project_title}} provides a polyfill solution for the [`:unresolved` pseudo class](/articles/styling-elements.html#preventing-fouc). For simple apps, you can add the `unresolved` attribute to body. This initially hides the page until all elements are upgraded:
+Before custom elements [upgrade](http://www.html5rocks.com/tutorials/webcomponents/customelements/#upgrades) they may display incorrectly. To help mitigate [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content) issues, {{site.project_title}} provides a polyfill solution for the [`:unresolved` pseudo class](../../articles/styling-elements.html#preventing-fouc). For simple apps, you can add the `unresolved` attribute to body. This initially hides the page until all elements are upgraded:
 
     <body unresolved>
 
 Class name | Behavior
 |-
-`body[unresolved]` | Makes the body `opacity: 0; display: block; overflow: hidden`.
-`[resolved]` | Fades-in the body over 200ms.
+`body[unresolved]` | Makes the body `opacity: 0; display: block; overflow: hidden; transition: opacity ease-in 0.2s;`.
 {: .table .responsive-table .fouc-table }
 
-If you want finer control, add `unresolved` to individual elements rather
-than body. This shows the entire page upfront but allows you to control unresolved
-element styling yourself:
+Upon [`polymer-ready`](polymer.html#polymer-ready) firing, {{site.project_title}} removes this
+attribute and fades-in the body over 200ms.
+
+If you want finer control, don't add `unresolved` to `body`. Instead, add it custom
+elements and define your own styling. For example, this will show the entire page upfront but allow you to control/style `x-foo` before it is resolved.
 
     <style>
       [unresolved] {
@@ -37,13 +38,10 @@ element styling yourself:
       }
     </style>
     <x-foo unresolved>If you see me, elements are upgraded!</x-foo>
-    <div unresolved></div>
 
-Upon [`polymer-ready`](/docs/polymer/polymer.html#polymer-ready) firing, {{site.project_title}} runs the following steps:
-
-1. removes the `[unresolved]` attribute from elements that have it
-2. adds the `[resolved]` attribute
-3. removes `[resolved]` on the first `transitionend` event the element receives
+{{site.project_title}} will automatically remove the `unresolved` attribute
+from your polymer-elements but, unlike the default `body` styling, you are responsible
+for providing the styling.
 
 ### Unveiling elements after boot time {#unveilafterboot}
 
@@ -65,7 +63,7 @@ The veiling process can be used to prevent FOUC at times other than page load. T
          ...
       </template>
       <script>
-        Polymer('my-element',...);
+        Polymer(...);
       </script>
     </polymer-element>
 
@@ -77,7 +75,7 @@ The veiling process can be used to prevent FOUC at times other than page load. T
          ...
       </template>
       <script>
-        Polymer('my-element',...);
+        Polymer(...);
       </script>
     </polymer-element>
 

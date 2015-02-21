@@ -46,7 +46,7 @@ You can dynamically load it like this:
 
     <html>
       <head>
-        <script src="components/webcomponentsjs/webcomponents.js"></script>
+        <script src="components/webcomponentsjs/webcomponents.min.js"></script>
         <link rel="import" href="components/polymer/polymer.html">
       </head>
       <body>
@@ -76,7 +76,7 @@ When the callback is invoked, all of the newly-imported elements are ready to us
 
 As on initial page load, if any element is lacking a corresponding `Polymer` call, it
 blocks registration of _all_ elements, which means the callback is never invoked. See
-[Hunting down unregistered elements](/docs/polymer/debugging.html#unregistered) for information
+[Hunting down unregistered elements](debugging.html#unregistered) for information
 on diagnosing problems with element registration.
 
 **Note:** {{site.project_title}} provides a related mechanism: `HTMLImports.whenReady(callback)`.
@@ -145,4 +145,4 @@ The `Polymer.waitingFor` helper returns a list of `<polymer-element>` tags that 
 `Polymer.forceReady` notifies {{site.project_title}} to register all available elements immediately, ignoring any
 incomplete elements.
 
-For more details and example usage, see [Hunting down unregistered elements](/docs/polymer/debugging.html#unregistered).
+For more details and example usage, see [Hunting down unregistered elements](debugging.html#unregistered).
