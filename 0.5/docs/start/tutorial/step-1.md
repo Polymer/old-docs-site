@@ -108,7 +108,7 @@ Add HTML import links to import the `<core-header-panel>`, `<core-toolbar>`, and
     <h4>Key information</h4>
     <ul>
       <li>
-        Polymer uses <a href="/platform/html-imports.html">HTML imports</a> to load components.
+        Polymer uses <a href="../../../platform/html-imports.html">HTML imports</a> to load components.
         HTML imports provide dependency management, ensuring that your elements and all of their dependencies are loaded
         before you use them.
       </li>

@@ -46,7 +46,7 @@ That's fine. The cool thing about Web Components-based libraries like {{site.pro
 
 Note that this is fewer browsers than other frameworks support. For example, {{site.project_title}} only aims to support Internet Explorer 10 and above. Some pieces of {{site.project_title}} may support more browsers if it doesn't require too much extra effort--if you find bugs in unsupported browsers, please still file them.  Most things should work in IE9 today without too much work; feel free to file bugs on what doesn't.  IE8 is incompatable due to its insufficient DOM support.
 
-See our [Browser Compatibility](/resources/compatibility.html) page for more information.
+See our [Browser Compatibility](compatibility.html) page for more information.
 
 
 ### When will other browsers support these APIs natively? {#nativesupport}
@@ -60,7 +60,7 @@ One of our core goals is for {{site.project_title}} to work on modern mobile bro
 
 ### How do I create a single page app with routing? {#spa}
 
-By combining data-binding, [core-scaffold](/docs/elements/core-elements.html#core-scaffold), [core-pages](/docs/elements/core-elements.html#core-pages)/[core-animated-pages](/docs/elements/core-elements.html#core-animated-pages), and [`<flatiron-director>`](https://github.com/PolymerLabs/flatiron-director) (an element for routing), you can easily create a responsive SPA with deep linking.
+By combining data-binding, [core-scaffold](../docs/elements/core-elements.html#core-scaffold), [core-pages](../docs/elements/core-elements.html#core-pages)/[core-animated-pages](../docs/elements/core-elements.html#core-animated-pages), and [`<flatiron-director>`](https://github.com/PolymerLabs/flatiron-director) (an element for routing), you can easily create a responsive SPA with deep linking.
 
 Here's a [demo](http://polymer-change.appspot.com/demos/spa.html) and [source](https://github.com/ebidel/polymer-change/blob/master/demos/spa.html).
 
@@ -142,11 +142,11 @@ Yes. Here's [an example Polymer Chrome App](https://github.com/PolymerLabs/polym
 
 ### Does {{site.project_title}} work under Content Security Policy (CSP)? {#csp}
 
-Yes. By using `webcomponents.js` and [creating elements that use external scripts](/docs/polymer/polymer.html#altregistration), {{site.project_title}} runs under [CSP](http://www.html5rocks.com/tutorials/security/content-security-policy/). If you prefer to keep your element's
-script inline to `<polymer-element>`, we recommend using [Vulcanize](/resources/tooling-strategy.html#vulcanize-build-tool) and running with the `--csp` flag.
+Yes. By using `webcomponents.js` and [creating elements that use external scripts](../docs/polymer/polymer.html#altregistration), {{site.project_title}} runs under [CSP](http://www.html5rocks.com/tutorials/security/content-security-policy/). If you prefer to keep your element's
+script inline to `<polymer-element>`, we recommend using [Vulcanize](tooling-strategy.html#vulcanize-build-tool) and running with the `--csp` flag.
 
 In other nuanced cases, {{site.project_title}} fails under CSP. This is because
-the [HTML Imports](/platform/html-imports.html) is polyfilled using XHR, which can
+the [HTML Imports](../platform/html-imports.html) is polyfilled using XHR, which can
 in turn, execute strings as JavaScript and fail CSP. So if you import a file that has an inline script tag, it will fail. This problem will go away with
 native HTML Imports (see Blink's [crbug.com/240592](http://crbug.com/240592) tracking bug).
 
@@ -163,7 +163,7 @@ We have many different demo, platform, and library repositories. If you know exa
 
 There is no way to guarantee sharing and deduping in the general case. However, if
 you have a library of components that use a library, they can all import a
-"library.html" file that loads that library. [HTML Imports](/platform/html-imports.html)
+"library.html" file that loads that library. [HTML Imports](../platform/html-imports.html)
 will de-dupe the import based on it's fully qualified path.
 
 If multiple libraries want to share a dependency, they will have to agree on a system.
@@ -220,20 +220,20 @@ This is on purpose, to allow users to use exactly what they need and nothing mor
 The Shadow DOM polyfill tries hard to mimic native Shadow DOM, in that nodes with the same
 `id`s will still be encapsulated.
 
-However, you should avoid using DOM-level id referencing (e.g. `<label for>`) when using 
+However, you should avoid using DOM-level id referencing (e.g. `<label for>`) when using
 the polyfill. The `id` may not resolve correctly when under the Shadow DOM polyfill.
 
 ## Data-binding
 
 ### I'm trying to render HTML using data-binding but {{site.project_title}} escapes the content. {#setinnerHTML}
 
-{{site.project_title}} does not stamp unescaped HTML via data-binding because 
-it becomes a vulnerability for XSS attacks. For those cases where you need to 
-insert HTML with bindings _after_ your element is created, {{site.project_title}} 
-supplies the [`injectBoundHTML` method](/docs/polymer/databinding-advanced.html#boundhtml).
+{{site.project_title}} does not stamp unescaped HTML via data-binding because
+it becomes a vulnerability for XSS attacks. For those cases where you need to
+insert HTML with bindings _after_ your element is created, {{site.project_title}}
+supplies the [`injectBoundHTML` method](../docs/polymer/databinding-advanced.html#boundhtml).
 
-You can also use a [property changed watcher](/docs/polymer/polymer.html#change-watchers) 
-and [automatic node finding](/docs/polymer/polymer.html#automatic-node-finding) to set the 
+You can also use a [property changed watcher](../docs/polymer/polymer.html#change-watchers)
+and [automatic node finding](../docs/polymer/polymer.html#automatic-node-finding) to set the
 `.innerHTML` of an node:
 
     <div id="div"></div>
@@ -268,7 +268,7 @@ The `<template repeat>` is hoisted out and rendered as a sibling:
       ...
     </table>
 
-For **browsers that don't support `<template>`**, the [TemplateBinding](/docs/polymer/template.html) [prollyfill](http://prollyfill.org/) has the ability to repeat `<option>` and `<tr>` directly using the `template` attribute:
+For **browsers that don't support `<template>`**, the [TemplateBinding](../docs/polymer/template.html) [prollyfill](http://prollyfill.org/) has the ability to repeat `<option>` and `<tr>` directly using the `template` attribute:
 
     <table>
       {%raw%}<tr template repeat="{{tr in rows}}">{%endraw%}
@@ -360,12 +360,12 @@ Note: on platforms that support `Object.observe()` natively, `Platform.flush()` 
 ### How do I package a bunch of custom elements together? {#packaging}
 
 Use a custom build step that flattens/concatenates everything into a single file,
-then use [HTML Imports](/platform/html-imports.html) (`<link rel="import">`) to
+then use [HTML Imports](../platform/html-imports.html) (`<link rel="import">`) to
 bring that file into your app.
 
 Similarly, you could write a build step that inlines any custom element definition
 directly into your main app. We've experimented with this basic idea in a
-tool we call [Vulcanizer](/resources/tooling-strategy.html#vulcanize-build-tool).
+tool we call [Vulcanizer](tooling-strategy.html#vulcanize-build-tool).
 
 ### Crawlers understand custom elements? How does SEO work? {#seo}
 
@@ -382,7 +382,7 @@ Unfortunately, this is a limitation of the HTML Import spec and the polyfill fol
 {%comment%}
 ### How can I use web fonts or CSS Animations in my custom element? {#fontsanimations}
 
-See "[Making styles global](/docs/polymer/styling.html#making-styles-global)".
+See "[Making styles global](../docs/polymer/styling.html#making-styles-global)".
 {%endcomment%}
 
 ### Why does my element claim its `.clientWidth/clientHeight` is 0? {#clientDimenstions}
@@ -411,7 +411,7 @@ a default style of `display: block` using `:host`.
 For a `<content>`, you can iterate through `content.getDistributedNodes()`
 to get the list of nodes distributed at the insertion point.
 
-In {{site.project_title}}, the best place to call this method is in the [`attached()` callback](/docs/polymer/polymer.html#lifecyclemethods) so you're guaranteed that the element is in the DOM tree.
+In {{site.project_title}}, the best place to call this method is in the [`attached()` callback](../docs/polymer/polymer.html#lifecyclemethods) so you're guaranteed that the element is in the DOM tree.
 
 Also remember that you can access the light DOM as the element's normal children
 (i.e. `this.children`, or other accessors). The difference with this approach

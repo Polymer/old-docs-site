@@ -48,12 +48,11 @@ a `<div>` over 0.5 seconds. The animation alternates producing a pulsing effect.
     <script>
       var elem = document.querySelector('.pulse');
       var player = elem.animate([
-          {opacity: "0.5", transform: "scale(0.5)"},
-          {opacity: "1.0", transform: "scale(1)"}
-        ],
-        {
-          direction: "alternate", duration: 500, iterations: Infinity
-        });
+        {opacity: "0.5", transform: "scale(0.5)"},
+        {opacity: "1.0", transform: "scale(1)"}
+      ], {
+        direction: "alternate", duration: 500, iterations: Infinity
+      });
     </script>
 
 ## The animation model
@@ -190,7 +189,7 @@ second child animation will only play for the first 3 of its 5 second duration
 - The `AnimationGroup` has no explicit duration, and will be provided with a
 calculated duration of the max (`duration + delay`) of its children - in this case 9 seconds.
 - Although `fill: "both"` is specified for the second `Animation` within the `AnimationSequence`, the `AnimationSequence` itself has a `fill` of "none". Hence, as the animation ends right at the end of the `AnimationSequence`, the animation will only fill backwards, and only up until the boundary of the `AnimationSequence` (i.e. 3 seconds after the start of the `AnimationGroup`).
-- The `Animation` inside the `AnimationGroup` and the `AnimationGroup` are both `fill: "forwards"`. Therefore the animation will fill forward in two places: 
+- The `Animation` inside the `AnimationGroup` and the `AnimationGroup` are both `fill: "forwards"`. Therefore the animation will fill forward in two places:
     - from 8 seconds after the `AnimationGroup` starts until the second iteration of the `AnimationGroup` starts (i.e. for 1 second)
     - from 17 seconds after the `AnimationGroup` starts, extending forward indefinitely.
 

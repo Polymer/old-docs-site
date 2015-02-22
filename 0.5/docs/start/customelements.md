@@ -6,6 +6,7 @@ title: Custom elements 101
 subtitle: Learn about the foundation of Polymer-based apps
 ---
 
-<script>
-location.pathname = '/platform/custom-elements.html'
-</script>
+<meta http-equiv="refresh" content="0;URL=../platform/custom-elements.html">
+
+This content has moved [here](../platform/custom-elements.html).
+

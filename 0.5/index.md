@@ -51,14 +51,14 @@ title: Welcome
           </summary>
         </div>
         <div>
-          <a href="/resources/video.html">
+          <a href="resources/video.html">
             <img src="//img.youtube.com/vi/0LT6W5QVCJI/hqdefault.jpg">
           </a>
           <summary>
             <h1>Chrome Dev Summit 2014</h1>
             <p>Recap everything {{site.project_title}} at Chrome Dev Summit 2014, including an introduction to  Polymer 0.8.
             <br><br>
-            <a href="/resources/video.html">
+            <a href="resources/video.html">
               <paper-button>Watch</paper-button>
             </a>
             </p>
@@ -81,14 +81,14 @@ title: Welcome
           </summary>
         </div>
         <div>
-          <a href="/resources/video.html">
+          <a href="resources/video.html">
             <img src="/images/logos/polymer_video_thumb.jpg">
           </a>
           <summary>
             <h1>Google I/O 2014</h1>
             <p>Recap everything {{site.project_title}} at Google I/O 2014. Watch sessions videos and DevByte shorts.
             <br><br>
-            <a href="/resources/video.html">
+            <a href="resources/video.html">
               <paper-button>Watch</paper-button>
             </a>
             </p>

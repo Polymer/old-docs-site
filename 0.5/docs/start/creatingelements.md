@@ -99,7 +99,7 @@ Here's the full example:
       </body>
     </html>
 
-**Note:** You must run your app from a web server for the [HTML Imports](/platform/html-imports.html) to work properly. They cannot be loaded from `file://` due to the browser's security restrictions.
+**Note:** You must run your app from a web server for the [HTML Imports](../../platform/html-imports.html) to work properly. They cannot be loaded from `file://` due to the browser's security restrictions.
 {: .alert .alert-info }
 
 Your final directory structure should look something like this:
@@ -123,7 +123,7 @@ detailed information on each of these features.
 
 ### Add properties and methods {#propertiesmethods}
 
-When you're creating a new element, you'll often need to expose a [public API](../polymer/polymer.html#published-properties) so users can configure it. To define a public API, include a `<script>` tag that calls the `{{site.project_title}}(...)` constructor.  The `{{site.project_title}}(...)` constructor is a convenience wrapper for [`document.registerElement`](/platform/custom-elements.html#documentregister), but also endows the element with special features like data binding and event mapping. The {{site.project_title}} constructor takes as an argument an object that defines your element's prototype.
+When you're creating a new element, you'll often need to expose a [public API](../polymer/polymer.html#published-properties) so users can configure it. To define a public API, include a `<script>` tag that calls the `{{site.project_title}}(...)` constructor.  The `{{site.project_title}}(...)` constructor is a convenience wrapper for [`document.registerElement`](../../platform/custom-elements.html#documentregister), but also endows the element with special features like data binding and event mapping. The {{site.project_title}} constructor takes as an argument an object that defines your element's prototype.
 
 <link rel="import" href="components/proto-element/proto-element.html">
 

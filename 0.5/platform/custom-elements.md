@@ -24,7 +24,7 @@ For example, if HTML provided `<camera>`, `<carousel>`, and `<tabs>` elements,
 imagine the efficiency and ease of building a photo booth app.
 
 Fortunately, Custom Elements pave a path to {{site.project_title}}'s
-"[Everything is an element](/docs/start/everything.html#everythingis)"
+"[Everything is an element](../docs/start/everything.html#everythingis)"
 philosophy.
 Embracing this philosophy means a web app becomes a collection of well-defined,
 reusable components.
@@ -83,9 +83,9 @@ Use the `<polymer-element>` tag to define a {{site.project_title}} element.
         <div> Hello </div>
       </template>
       <script>
-        Polymer();
+        Polymer(...);
       </script>
-    </polymer-element> 
+    </polymer-element>
 
 The `<template>` tag defines UI for the element,
 and the `Polymer()` method within the `<script>` tag registers the element.
@@ -93,7 +93,7 @@ and the `Polymer()` method within the `<script>` tag registers the element.
 **Note: Custom element names must always contain a dash (-).**
 
 For more information on defining custom elements with {{site.project_title}},
-see [Element declaration](https://www.polymer-project.org/docs/polymer/polymer.html#element-declaration).
+see [Element declaration](../docs/polymer/polymer.html#element-declaration).
 
 ## Instantiating a {{site.project_title}} element
 
@@ -133,7 +133,7 @@ Here's an example of extending a button:
     </polymer-element>
 
 For more information and examples, refer to
-[Extending other elements](https://www.polymer-project.org/docs/polymer/polymer.html#extending-other-elements)
+[Extending other elements](../docs/polymer/polymer.html#extending-other-elements)
 
 ## Types of elements {#elementtypes}
 
@@ -141,7 +141,7 @@ You can divide elements into two categories
 based on their use and behavior:
 
 - UI elements, which render UI to the screen.
-- Non-UI elements, which provide other utilities. 
+- Non-UI elements, which provide other utilities.
 
 You can use {{site.project_title}} to create both UI and non-UI elements.
 
@@ -149,18 +149,15 @@ You can use {{site.project_title}} to create both UI and non-UI elements.
 
 Elements like `<select>` and `<core-selector>` are _UI elements_.
 They render UI and are visible on the page.
-A few other examples are [`<core-collapse>`](/components/core-docs/index.html#core-collapse),
-[`<core-toolbar>`](/components/core-docs/index.html#core-toolbar),
-and [`<paper-tabs>`](/components/paper-docs/index.html#paper-tabs):
+A few other examples are [`<core-collapse>`](../components/core-docs/index.html#core-collapse),
+[`<core-toolbar>`](../components/core-docs/index.html#core-toolbar),
+and [`<paper-tabs>`](../components/paper-docs/index.html#paper-tabs):
 
     <paper-tabs selected="0">
       <paper-tab>One</paper-tab>
       <paper-tab>Two</paper-tab>
       <paper-tab>Three</paper-tab>
     </paper-tabs>
-
-<!-- 
-<iframe src="/components/paper-tabs/demo.html" style="border:none;height:80px;width:100%;"></iframe> -->
 
 ### Non-UI elements {#nonuielements}
 
@@ -202,7 +199,7 @@ and hide the details of a complex API like `XMLHttpRequest`.
 Learn more about shadow DOM, another building block of the Polymer library,
 or read more about the Polymer core APIs.
 
-<a href="/platform/shadow-dom.html">
+<a href="shadow-dom.html">
    <paper-button raised><core-icon icon="arrow-forward"></core-icon>Shadow DOM</paper-button>
-<a href="/docs/polymer/polymer.html">
+<a href="../docs/polymer/polymer.html">
    <paper-button raised><core-icon icon="arrow-forward"></core-icon>API Developer Guide</paper-button>

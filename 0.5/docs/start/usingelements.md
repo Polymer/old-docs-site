@@ -50,7 +50,7 @@ The component download button offers three ways to install a component or set of
 
 *   Github. When you clone a component from Github, you need to manage all of the dependencies
     yourself. If you'd like to hack on the project or submit a pull request, see
-    [setting up {{site.project_title}} with git](/resources/tooling-strategy.html#git).
+    [setting up {{site.project_title}} with git](../../resources/tooling-strategy.html#git).
 
 Pick your method and follow the instructions in the download dialog.
 
@@ -152,7 +152,7 @@ file.
 Because there are a number of dependencies we suggest you install
 {{site.project_title}} with Bower instead of git. If you'd like to hack on
 the project or submit a pull request check out our guide on
-[setting up {{site.project_title}} with git](/resources/tooling-strategy.html#git).
+[setting up {{site.project_title}} with git](../../resources/tooling-strategy.html#git).
 
 ## Using elements {#using}
 
@@ -163,7 +163,7 @@ this file before any code that touches the DOM.**
 
 Once you have some elements installed and you've loaded `webcomponents.js`,
 using an element is simply a matter of loading the element file using an
-[HTML Import](/platform/html-imports.html).
+[HTML Import](../../platform/html-imports.html).
 
 An example `index.html` file:
 
@@ -199,7 +199,7 @@ An example `index.html` file:
       </body>
     </html>
 
-**Note:** You must run your app from a web server for the [HTML Imports](/platform/html-imports.html)
+**Note:** You must run your app from a web server for the [HTML Imports](../../platform/html-imports.html)
 polyfill to work properly. This requirement goes away when the API is available natively.
 {: .alert .alert-info }
 

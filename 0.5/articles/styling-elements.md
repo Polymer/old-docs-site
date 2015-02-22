@@ -14,14 +14,14 @@ tags:
 - CSS
 ---
 
-<link rel="import" href="/articles/demos/styling/elements.html">
+<link rel="import" href="demos/styling/elements.html">
 
 {% include authorship.html %}
 
 {% include toc.html %}
 
 This article covers many of the new CSS rules, properties, and concepts for
-styling [Custom Elements](/platform/custom-elements.html). While much of it is applicable to general Web Components, it specifically focuses on:
+styling [Custom Elements](../platform/custom-elements.html). While much of it is applicable to general Web Components, it specifically focuses on:
 
 1. How to use these new CSS features with {{site.project_title}}
 2. How {{site.project_title}}'s polyfills shim certain behaviors
@@ -206,13 +206,13 @@ happily on the page as a regular `HTMLElement`. Only when the browser registers 
 does `<x-foo>` become magical.
 
 Before an element gets registered, the process of upgrading it may take more time than expected.
-For example, an [HTML Import](/platform/html-imports.html) that defines your element might
+For example, an [HTML Import](../platform/html-imports.html) that defines your element might
 be slow due to poor network conditions.
 
 To combat these types of UX issues and mitigate things like [FOUC](http://en.wikipedia.org/wiki/Flash_of_unstyled_content), you can use the CSS `:unresolved` pseudo class. It applies to unknown elements right up until the point the lifecycle `createdCallback` is called.
 
 **Support:** CSS `:unresolved` is supported natively in Chrome 29. If you're using
-a browser where it is not available natively, use {{site.project_title}}'s [FOUC prevention](/docs/polymer/styling.html#fouc-prevention) features.
+a browser where it is not available natively, use {{site.project_title}}'s [FOUC prevention](../docs/polymer/styling.html#fouc-prevention) features.
 {: .alert .alert-success}
 
 **Example:** fade in an element when it's registered
@@ -247,7 +247,7 @@ a browser where it is not available natively, use {{site.project_title}}'s [FOUC
 ### Polyfilling :unresolved
 
 {{site.project_title}} provides the `[unresolved]` attribute to polyfill the CSS
-`:unresolved` pseudo class. See [FOUC prevention](/docs/polymer/styling.html#fouc-prevention). The attribute is automatically removed from elements at `polymer-ready` time, the
+`:unresolved` pseudo class. See [FOUC prevention](../docs/polymer/styling.html#fouc-prevention). The attribute is automatically removed from elements at `polymer-ready` time, the
 event that signifies all elements have been upgraded.
 
 **Example**
@@ -295,7 +295,7 @@ from the outside or using a styling rule that's too broad.
 
 **Note** For browsers that don't support Shadow DOM natively, the polyfill
 attempts to mimic scoped styling as much as possible. See the
-[polyfill details on scoped styling](/docs/polymer/styling.html#polyfill-details).
+[polyfill details on scoped styling](../docs/polymer/styling.html#polyfill-details).
 {: .alert .alert-info }
 
 If you need to style nodes distributed into your element from the user's Light DOM,
@@ -303,7 +303,7 @@ see [styling distributed nodes](#style-distributed).
 
 #### Styling distributed nodes {#style-distributed}
 
-`<content>` elements allow you to select nodes from the ["Light DOM"](/platform/shadow-dom.html#shadow-dom-subtrees) and render them at predefined locations in your element. The CSS `::content` pseudo-element is a way to style nodes that pass through an insertion point.
+`<content>` elements allow you to select nodes from the ["Light DOM"](../platform/shadow-dom.html#shadow-dom-subtrees) and render them at predefined locations in your element. The CSS `::content` pseudo-element is a way to style nodes that pass through an insertion point.
 
 **Full example**
 
@@ -342,7 +342,7 @@ see [styling distributed nodes](#style-distributed).
     </x-foo>
 
 **Note**: For complex styling like distribute nodes, {{site.project_title}} provides the `polyfill-*`
-selectors to polyfill certain Shadow DOM features. See the [Styling reference](/docs/polymer/styling.html#directives) for more information on the directives.
+selectors to polyfill certain Shadow DOM features. See the [Styling reference](../docs/polymer/styling.html#directives) for more information on the directives.
 {: .alert .alert-info }
 
 **Remember:** styles defined in the main document continue to apply to the Light DOM nodes they target, even if those nodes are distributed into Shadow DOM. Going into an insertion point doesn't change what styles are applied. An example helps illustrate this point:

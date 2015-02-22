@@ -44,12 +44,15 @@ handlers:
   http_headers:
     Access-Control-Allow-Origin: "*"
 
-# This rule needs to proceed the one that follows.
+# These two rules need to proceed the one that follows so the redirect can catch it.
 - url: /(.+)/docs/polymer/polymer.html$
   static_files: _site/\1/docs/polymer/polymer.html
   upload: _site/(.+)/docs/polymer/polymer.html
   http_headers:
     Access-Control-Allow-Origin: "*"
+
+- url: /docs/polymer/polymer.html$
+  script: main.app
 
 - url: /(.+)/polymer.html$
   static_files: \1/components/polymer/polymer.html
@@ -69,15 +72,15 @@ handlers:
   http_headers:
     Access-Control-Allow-Origin: "*"
 
-# This needs to appear above the rediret block below, otherwise anything with a
+# This needs to appear above the redirect block below, otherwise anything with a
 # trailing slash will fail to redirect
-# /0.5/docs/start/getting-the-code.html
-- url: /(.+)/docs/
-  static_files: _site/\1/docs
-  upload: _site/(.+)/docs/
-  secure: always
-  http_headers:
-    Access-Control-Allow-Origin: "*"
+# Example: /0.5/docs/start/getting-the-code.html
+# - url: /(.+)/docs/
+#   static_files: _site/docs/\1
+#   upload: _site/(.+)/docs/
+#   secure: always
+#   http_headers:
+#     Access-Control-Allow-Origin: "*"
 
 # Redirects --------------------------------------------------------------------
 - url: /$
@@ -86,14 +89,9 @@ handlers:
   script: main.app
   secure: always
 
-# No version goes through redirect to latest version.
-- url: /docs/.*
-  script: main.app
-
-- url: /apps/.*
-  script: main.app
-
-- url: /tools/.*
+# No version in URL goes through redirect to latest version.
+# Also redirect old apps and tools stuff.
+- url: /(apps|docs|platform|resources|tools)/.*
   script: main.app
 
 # Map raw paths with trailing "/" to an index.html file.

@@ -30,7 +30,7 @@ After reloading the DevTools, user agent Shadow DOM should be inspectable. It wi
 
 ## Source maps
 
-{{site.project_title}}  polyfills the [HTML Imports](/platform/html-imports.html) specification. In order for code to be debuggable at run-time, scripts embedded in components are injected into `<head>` in the main document. Tools/browsers that support [source maps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) will identify these scripts as belonging to their source components.
+{{site.project_title}}  polyfills the [HTML Imports](../platform/html-imports.html) specification. In order for code to be debuggable at run-time, scripts embedded in components are injected into `<head>` in the main document. Tools/browsers that support [source maps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) will identify these scripts as belonging to their source components.
 
 ## Building &amp; testing
 

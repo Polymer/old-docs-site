@@ -38,7 +38,7 @@ in one of several ways:
 
 *   GitHub. When you clone a component from GitHub, you need to manage all of the dependencies
     yourself. If you'd like to hack on the project or submit a pull request, see
-    [setting up {{site.project_title}} with git](/resources/tooling-strategy.html#git).
+    [setting up {{site.project_title}} with git](../../resources/tooling-strategy.html#git).
 
 When you install {{site.project_title}} using Bower or the ZIP file, you get the
 [Web Components polyfill library](platform.html). Using the polyfills
@@ -129,7 +129,7 @@ file.
 Because there are a number of dependencies we suggest you install
 {{site.project_title}} with Bower instead of git. If you'd like to hack on
 the project or submit a pull request check out our guide on
-[setting up {{site.project_title}} with git](/resources/tooling-strategy.html#git).
+[setting up {{site.project_title}} with git](../../resources/tooling-strategy.html#git).
 
 ## Next steps {#nextsteps}
 
