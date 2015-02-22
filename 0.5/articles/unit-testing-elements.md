@@ -40,7 +40,7 @@ Our boilerplate for new Polymer elements, [`<seed-element>`](https://github.com/
 
 The WCT (web-component-tester) tool will run your tests in multiple browsers at once. If all goes well, you should see some output resembling the following in your terminal:
 
-<img src="/articles/images/unit-testing-elements/wct-terminal.png" alt="Test runner displaying a single test passing for seed-element"/>
+<img src="images/unit-testing-elements/wct-terminal.png" alt="Test runner displaying a single test passing for seed-element"/>
 
 You can then start authoring new tests in the `test` directory and look at a [sample test](https://github.com/PolymerLabs/seed-element/blob/master/test/basic-test.html) we've written for you. Continue reading to learn about our recommended way to structure and author your tests.
 
@@ -305,7 +305,7 @@ Next, add the core-selector-tests.html file we've started work on to `test/index
 
 We can now run the `wct` command to execute the tests written above. If all goes well your tests should be green. Great.
 
-<img src="/articles/images/unit-testing-elements/wct-tests-passed.png" alt="Tests passes"/>
+<img src="images/unit-testing-elements/wct-tests-passed.png" alt="Tests passes"/>
 
 How about testing if an attribute is the default value we expect it to be? `<core-selector>` supports a multi attribute in case you want to support multiple items being selectable. Let's add this before `done();` along with our other assertions:
 
@@ -408,7 +408,7 @@ Which will trigger the `core-select` event to be fired (asynchronously).
 
 As we can see, when we run `wct` once again we're still all green:
 
-![](/articles/images/unit-testing-elements/wct-more-tests.png)
+![](images/unit-testing-elements/wct-more-tests.png)
 
 **Note:** You may want to test outside usage of your element as part of `polymer-ready`. Code written outside of `test` functions will execute immediately, including `suite` functions such as the one above. By default, WCT will wait until `polymer-ready` has completed to run your tests to ensure everything behaves as expected. However, you may not have upgraded elements outside of them. For scenarious like this, the [testImmedate](https://github.com/Polymer/web-component-tester/blob/master/browser/environment/helpers.js#L41) helper is useful for running tests before `polymer-ready`.
 
