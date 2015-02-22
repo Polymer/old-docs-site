@@ -46,7 +46,7 @@
 <link rel="import" href="{{version_prefix}}/components/polymer/polymer.html">
 
 {% if page.layout == 'home' %}
-  <link rel="import" href="{{version_prefix}}/elements/homepage_elements.html?{{site.time | date: '%Y%m%d'}}">
+  <link rel="import" href="{{version_prefix}}/elements/homepage_elements.vulcanized.html?{{site.time | date: '%Y%m%d'}}">
 {% else %}
-  <link rel="import" href="{{version_prefix}}/elements/common_elements.html?{{site.time | date: '%Y%m%d'}}">
+  <link rel="import" href="{{version_prefix}}/elements/common_elements.vulcanized.html?{{site.time | date: '%Y%m%d'}}">
 {% endif %}
