@@ -9,12 +9,12 @@ subtitle: Data-binding
 {% include toc.html %}
 
 
-A few features of native templates can’t be replicated perfectly with the polyfill library, and require some workarounds. These include:
+A few features of native templates can't be replicated perfectly with the polyfill library, and require some workarounds. These include:
 
-Some browsers don’t allow  `<template>` elements inside certain elements like `<select>` or `<table>`.
-Binding to certain attributes (such as the `<img>` tag’s `src` attribute) doesn’t work correctly on some browsers that don’t support templates.
+Some browsers don't allow  `<template>` elements inside certain elements like `<select>` or `<table>`.
+Binding to certain attributes (such as the `<img>` tag's `src` attribute) doesn't work correctly on some browsers that don't support templates.
 
-## Elements that can’t contain a template
+## Elements that can't contain a template
 
 Until the addition of HTML `<template>`, the `<select>` and `<table>` elements had
 special parser rules to limit the types of children they could contain. Because of these legacy rules, browsers that don't support `<template>` will lift unexpected elements out of context and make them siblings, including `<template>` itself!
@@ -85,7 +85,6 @@ of elements `<select>` and `<table>`. If you know your users are using a browser
 with support, you can use the standard template
 {: .alert .alert-info }
 
-
     <table>
       {%raw%}<template repeat="{{tr in rows}}">{%endraw%}
         <tr>
@@ -109,5 +108,3 @@ To avoid these side effects, bindings in certain attributes can be prefixed with
     <a _href="{{url}}">Link</a>
     <input type="number" _value="{{number}}">
 {% endraw %}
-
-

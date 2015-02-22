@@ -142,7 +142,6 @@ Once `demo.html` and the docs in `index.html` look good locally, make sure that 
     cd ..
     rm -rf temp
 
-
 This will create a new `gh-pages` branch (or clone and clear the current one) then push a shareable version of your element to it.
 
 ## Share

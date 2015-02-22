@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="import" href="/components/polymer/polymer.html">
+  <link rel="import" href="../../components/polymer/polymer.html">
 </head>
 <body>
   <!-- [START runnable-sample] -->
@@ -13,16 +13,16 @@
       - <em>{{attribution}}</em>
     </div>
   </template>
-  
+
   <script>
     var t = document.querySelector('#auto-bind-demo');
     t.quoteClicked = function() {
       alert('Quote clicked!');
     };
-    t.quotes = [{ 
-      attribution: 'Plautus', 
+    t.quotes = [{
+      attribution: 'Plautus',
       quote: 'Let deeds match words.'
-    }, { 
+    }, {
       attribution: 'Groucho Marx',
       quote: 'Time flies like an arrow. Fruit flies like a banana.'
     }];

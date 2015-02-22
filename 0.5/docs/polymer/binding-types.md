@@ -10,15 +10,14 @@ subtitle: Data-binding
 
 There are several ways to bind data to a template. You can:
 
-*   Create a single instance of a template, by specifying a single object using the `bind` attribute.
-*   Create multiple instances of a template, by specifying an array of objects using the `repeat`
-     attribute.
-*   Conditionally create an instance of a template, depending on whether the value passed to the `if` attribute is truthy.
+* Create a single instance of a template, by specifying a single object using the `bind` attribute.
+* Create multiple instances of a template, by specifying an array of objects using the `repeat` attribute.
+* Conditionally create an instance of a template, depending on whether the value passed to the `if` attribute is truthy.
 
 **Note:** Binding templates only works inside {{site.project_title}} elements. For example, if a
 `<template>` element is inserted directly into a page’s `<body>` tag, the `bind` attribute
 doesn’t work as described here. If you need to use template binding outside of a
-{{site.project_title}} element, see [Using data binding outside of a {{site.project_title}} element](/docs/polymer/databinding-advanced.html#bindingoutside).
+{{site.project_title}} element, see [Using data binding outside of a {{site.project_title}} element](databinding-advanced.html#bindingoutside).
 {: .alert .alert-info }
 
 When you use a binding _inside_ a template, you create a _node binding_, which binds a model value to a
@@ -38,7 +37,7 @@ Using the `bind` attribute, you can create a single instance of a template bound
     </template>
 {% endraw %}
 
-Where `person` is an object (or more accurately, a [{{site.project_title}} expression](/docs/polymer/expressions.html) that yields an object).
+Where `person` is an object (or more accurately, a [{{site.project_title}} expression](expressions.html) that yields an object).
 
 Bindings inside the template are evaluated in the context of the bound object. For example,
 if `person` has a property, `name`, {%raw%}`{{name}}`{%endraw%} evaluates to the value of `person.name`.
@@ -161,7 +160,7 @@ the containing template. Conditional templates are frequently used this way:
     </template>
 {% endraw %}
 
-For more information on nesting templates, see [Expression scopes](/docs/polymer/expressions.html#expression-scopes).
+For more information on nesting templates, see [Expression scopes](expressions.html#expression-scopes).
 
 You can also use `if` with the  `repeat` attribute.
 
@@ -193,8 +192,8 @@ That's where the `ref` attribute comes in:
     </template>
 {% endraw %}
 
-You must include the `bind` or `repeat` attribute along with the `ref` 
-attribute to activate binding on the template. 
+You must include the `bind` or `repeat` attribute along with the `ref`
+attribute to activate binding on the template.
 (The empty binding expression used here, {%raw%}`{{}}`{%endraw%}, matches the current scope.)
 
 ### Recursive and dynamic templates
@@ -220,18 +219,18 @@ You can use the `ref` attribute to define recursive templates, such as tree stru
 {% endraw %}
 
 Here the innermost template is a recursive reference to the outer `template` with the ID `t`.
-Instead of iterating over `items`, the innermost template iterates over the `children` property 
+Instead of iterating over `items`, the innermost template iterates over the `children` property
 on the current scope.
 
 This code assumes a data structure like this:
 
-    items: [  
-      { 
-        name: "1", 
-        children: [ 
-          { 
-            name: "1.1", 
-            children: []  
+    items: [
+      {
+        name: "1",
+        children: [
+          {
+            name: "1.1",
+            children: []
           }, {
             name: "1.2",
             children: [
@@ -239,7 +238,7 @@ This code assumes a data structure like this:
                 name: "1.2.1"
                 children: []
               }
-            ] 
+            ]
           }
         ]
       }
@@ -253,7 +252,7 @@ You can also bind to the `ref` attribute _itself_, to choose templates dynamical
     </template>
 {% endraw %}
 
-Here, the _value_ of `node.nodeType` is a string that identifies 
+Here, the _value_ of `node.nodeType` is a string that identifies
 the ID of the template to use.
 
 ## Node bindings
@@ -412,8 +411,6 @@ If _boolean-expression_ is truthy, _attribute_  appears in the markup; otherwise
 {% endraw %}
 
 ### One-time bindings
-
-{% include experimental.html %}
 
 Sometimes, you may not need dynamic bindings. For these cases, there are one-time bindings.
 

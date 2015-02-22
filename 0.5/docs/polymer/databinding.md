@@ -8,7 +8,6 @@ subtitle: Data-binding
 
 {% include toc.html %}
 
-
 {{site.project_title}} supports two-way data binding.  Data binding extends HTML and the DOM APIs to support a sensible separation between the UI (DOM) of an application and its underlying data (model). Updates to the model are reflected in the DOM and user input into the DOM is immediately assigned to the model.
 
 For {{site.project_title}} elements, **the model is always the element itself**. For example, consider a simple element:
@@ -36,8 +35,6 @@ Here the `owner` property is the model for the `name-tag` element. If you update
 You change the contents of the tag:
 
 This is **June**'s name-tag element.
-
-
 
 ## The `<template>` element {#template}
 
@@ -113,15 +110,14 @@ expressions surrounded by double-mustache {%raw%}`{{`&nbsp;`}}`{%endraw%} symbol
 
 What's going on in this template?
 
-*  The {%raw%}`repeat="{{s in salutations}}"`{%endraw%} tells the template to
-    generate a DOM fragment (or instance) for each element in the `salutations`
-    array.
+* The {%raw%}`repeat="{{s in salutations}}"`{%endraw%} tells the template to
+  generate a DOM fragment (or instance) for each element in the `salutations` array.
 
-*   The contents of the template define what each instance looks like.
-    In this case, it contains a `<li>` with a text node and an `<input>` as its children.
+*  The contents of the template define what each instance looks like.
+   In this case, it contains a `<li>` with a text node and an `<input>` as its children.
 
-*   The expressions {%raw%}`{{s.what}}`{%endraw%} and {%raw%}`{{s.who}}`{%endraw%} create
-    data bindings to objects in the `salutations` array.
+*  The expressions {%raw%}`{{s.what}}`{%endraw%} and {%raw%}`{{s.who}}`{%endraw%} create
+   data bindings to objects in the `salutations` array.
 
 The values inside the {%raw%}`{{`&nbsp;`}}`{%endraw%} are <em>{{site.project_title}} expressions</em>. In the examples in this section, the expressions are either  JavaScript objects (like `salutations`) or paths (like `salutations.who`). (Expressions can also include literal values and some operators --
 see [Expressions](#expressions) for details.)
@@ -147,13 +143,42 @@ and here's what the DOM looks like:
 
 You can see that the template created four instances immediately following its position in the document.
 
-
 ## Dynamic, two-way data binding
 
 Unlike server-side templating, {{site.project_title}} data binding is _dynamic_. If you change a value in the model, the DOM observes the change and updates accordingly. The following sample adds a method to update the model. Press the button, and you can see the model data instantly reflected in
 the DOM.
 
-{% include samples/databinding/greeting-tag.html %}
+<link rel="import" href="../../samples/databinding/greeting-tag.html">
+
+<demo-tabs selected="1" bottom>
+  <demo-tab heading="greeting-tag.html">
+{% highlight html %}
+{% include_external /samples/databinding/greeting-tag.html version_prefix:0.5 %}
+{% endhighlight %}
+  </demo-tab>
+  <demo-tab heading="greeting-tag.js">
+{% highlight html %}
+{% include_external /samples/databinding/greeting-tag.js version_prefix:0.5 %}
+{% endhighlight %}
+  </demo-tab>
+  <demo-tab heading="index.html">
+{% highlight html %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="webcomponents.min.js"></script>
+    <link rel="import" href="greeting-tag.html">
+  </head>
+  <body>
+    <greeting-tag></greeting-tag>
+  </body>
+</html>
+{% endhighlight %}
+  </demo-tab>
+  <div class="result">
+    <greeting-tag></greeting-tag>
+  </div>
+</demo-tabs>
 
 However, the DOM doesn't just observe data in the model. When you bind a DOM element that collects user input, it _pushes_ the collected value into the model.
 
@@ -176,24 +201,24 @@ _where data goes_ and directives which _control the document's structure_ -- all
 
 ## Event handling and data binding
 
-With data binding, it’s easy to add event handlers using the
+With data binding, it's easy to add event handlers using the
 [declarative event mapping](polymer.html#declarative-event-mapping) (on-_event_ handlers):
 
 {%raw%}
     <template>
       <ul>
         <template repeat="{{s in stories}}">
-          <li on-click={{selectStory}}>{{s.headline}}</li>
+          <li on-click="{{selectStory}}">{{s.headline}}</li>
         </template>
       </ul>
     </template>
 {%endraw%}
 
-Often, you’ll want to identify the event with the model data used to generate
+Often, you'll want to identify the event with the model data used to generate
 the template instance, either to update the model data or to access a piece
-of data that isn’t rendered by the template.
+of data that isn't rendered by the template.
 
-You can get the model data from the event’s `target.templateInstance.model`
+You can get the model data from the event's `target.templateInstance.model`
 property. Any identifiers that you could access inside the template are
 available as properties on the `.model` object.
 
@@ -207,10 +232,10 @@ For example, the  `selectStory` method might look like this:
 
 Continue on to:
 
-<a href="/docs/polymer/binding-types.html">
+<a href="binding-types.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>Types of bindings</paper-button>
 </a>
 
-<a href="/docs/polymer/expressions.html">
+<a href="expressions.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>Expressions</paper-button>
 </a>

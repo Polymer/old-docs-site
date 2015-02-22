@@ -32,12 +32,12 @@ Consider the following DOM, which represents a template and the template instanc
 
 {% raw %}
     <table>
-        <template repeat="{{item in items}}">
-          <tr><td> {{item.name}} </td><td> {{item.count}} </td></tr>
-        </template>
-       <tr><td> Bass </td><td> 7 </td></tr>
-       <tr><td> Catfish </td><td> 8 </td></tr>
-       <tr><td> Trout </td><td> 0 </td></tr>
+      <template repeat="{{item in items}}">
+        <tr><td>{{item.name}}</td><td>{{item.count}}</td></tr>
+      </template>
+      <tr><td> Bass </td><td> 7 </td></tr>
+      <tr><td> Catfish </td><td> 8 </td></tr>
+      <tr><td> Trout </td><td> 0 </td></tr>
     </table>
 {% endraw %}
 
@@ -46,12 +46,12 @@ If you re-sort the array by `item.count`, {{site.project_title}} simply swaps th
 {% raw %}
 <pre>
 &lt;table>
-    &lt;template repeat="{{item in items}}">
-      &lt;tr>&lt;td> {{item.name}} &lt;/td>&lt;td> {{item.count}} &lt;/td>&lt;/tr>
-    &lt;/template>
+  &lt;template repeat="{{item in items}}">
+    &lt;tr>&lt;td> {{item.name}} &lt;/td>&lt;td> {{item.count}} &lt;/td>&lt;/tr>
+  &lt;/template>
    <span class="nocode"><strong>&lt;tr>&lt;td> Catfish &lt;/td>&lt;td> 8 &lt;/td>&lt;/tr>
-   &lt;tr>&lt;td> Bass &lt;/td>&lt;td> 7 &lt;/td>&lt;/tr></strong></span>
-   &lt;tr>&lt;td> Trout &lt;/td>&lt;td> 0 &lt;/td>&lt;/tr>
+  &lt;tr>&lt;td> Bass &lt;/td>&lt;td> 7 &lt;/td>&lt;/tr></strong></span>
+  &lt;tr>&lt;td> Trout &lt;/td>&lt;td> 0 &lt;/td>&lt;/tr>
 &lt;/table>
 </pre>
 {% endraw %}
@@ -61,12 +61,12 @@ If you change `item.count` for one of the objects, the only thing that changes i
 {% raw %}
 <pre>
 &lt;table>
-    &lt;template repeat="{{item in items}}">
-      &lt;tr>&lt;td> {{item.name}} &lt;/td>&lt;td> {{item.count}} &lt;/td>&lt;/tr>
-    &lt;/template>
-   &lt;tr>&lt;td> Catfish &lt;/td>&lt;td> 8 &lt;/td>&lt;/tr>
-   &lt;tr>&lt;td> Bass &lt;/td>&lt;td> 7 &lt;/td>&lt;/tr>
-   &lt;tr>&lt;td> Trout &lt;/td>&lt;td><span class="nocode"><strong> 2 </strong></span>&lt;/td>&lt;/tr>
+  &lt;template repeat="{{item in items}}">
+    &lt;tr>&lt;td> {{item.name}} &lt;/td>&lt;td> {{item.count}} &lt;/td>&lt;/tr>
+  &lt;/template>
+  &lt;tr>&lt;td> Catfish &lt;/td>&lt;td> 8 &lt;/td>&lt;/tr>
+  &lt;tr>&lt;td> Bass &lt;/td>&lt;td> 7 &lt;/td>&lt;/tr>
+  &lt;tr>&lt;td> Trout &lt;/td>&lt;td><span class="nocode"><strong> 2 </strong></span>&lt;/td>&lt;/tr>
 &lt;/table>
 </pre>
 {% endraw %}
@@ -83,16 +83,16 @@ The following diagram represents the DOM for a template and its instances:
 
 {% raw %}
 <pre>
-    &lt;template repeat="{{item in myList}}">
-       &lt;img>
-      &lt;span>{{item.name}}&lt;/span>
-    &lt;/template>
+  &lt;template repeat="{{item in myList}}">
     &lt;img>
-    &lt;span>foo&lt;/span>   <span class="nocode" style="color: red"><em>⇐ terminating node in template instance</em></span>
-    &lt;img>
-    &lt;span>bar&lt;/span>   <span class="nocode" style="color: red"><em>⇐ terminating node in template instance</em></span>
-    &lt;img>
-    &lt;span>baz&lt;/span>   <span class="nocode" style="color: red"><em>⇐ terminating node in template instance</em></span>
+    &lt;span>{{item.name}}&lt;/span>
+  &lt;/template>
+  &lt;img>
+  &lt;span>foo&lt;/span>   <span class="nocode" style="color: red"><em>⇐ terminating node in template instance</em></span>
+  &lt;img>
+  &lt;span>bar&lt;/span>   <span class="nocode" style="color: red"><em>⇐ terminating node in template instance</em></span>
+  &lt;img>
+  &lt;span>baz&lt;/span>   <span class="nocode" style="color: red"><em>⇐ terminating node in template instance</em></span>
 </pre>
 {% endraw %}
 
@@ -247,7 +247,7 @@ want to use data binding elsewhere, there are two options:
     to take advantage of data binding without creating a new custom element.
 
 *   If you _aren't_ using the rest of {{site.project_title}}, use the
-    [Template Binding](/docs/polymer/template.html) library directly. The template binding library is
+    [Template Binding](template.html) library directly. The template binding library is
     used internally by {{site.project_title}}, and can be used directly, with or without the rest of
     {{site.project_title}}. (Note that if you use template binding by itself, you cannot use {{site.project_title}}
     expressions.)
@@ -263,23 +263,36 @@ The `auto-binding` element is a {{site.project_title}} custom element that exten
 binding in a page without having to create a custom element just for this purpose. Auto-binding
 templates support a subset of the features available when you create your own custom element:
 
--   Full-featured data binding, with {{site.project_title}} expressions.
--   [Declarative event mapping](polymer.html#declarative-event-mapping).
--   [Automatic node finding](polymer.html#automatic-node-finding).
+- Full-featured data binding, with {{site.project_title}} expressions.
+- [Declarative event mapping](polymer.html#declarative-event-mapping).
+- [Automatic node finding](polymer.html#automatic-node-finding).
 
 For an auto-binding template, the data model is on the template itself. For example, to use data
 binding at the top level of a page:
 
-{% include samples/databinding/auto-binding.html %}
+<demo-tabs selected="0" bottom>
+  <demo-tab heading="index.html">
+{% highlight html %}
+{% include_external /samples/databinding/auto-binding.html doc-sample version_prefix:0.5 %}
+{% endhighlight %}
+  </demo-tab>
+  <div class="result">
+    {% include_external /samples/databinding/auto-binding.html runnable-sample version_prefix:0.5 %}
+  </div>
+</demo-tabs>
 
 The auto-binding template inserts the instances it creates immediately after
 itself in the DOM tree (_not_ in its shadow DOM). In this case, the quotes are
 inserted as children of the `body` element.
 
 After adding the instances, the auto-binding template fires the `template-bound`
-event.
+event:
 
-The `auto-binding` element is currently included automatically when you load the
+    template.addEventListener('template-bound', function() {
+      // template has been stamped.
+    });
+
+The `auto-binding` template is currently included automatically when you load the
 {{site.project_title}} library.
 
 ## Inserting data-bound HTML {#boundhtml}
@@ -287,9 +300,9 @@ The `auto-binding` element is currently included automatically when you load the
 The {{site.project_title}} data binding escapes any HTML in the bound data.
 This avoids many potential security pitfalls with including arbitrary HTML.
 
-However, for those special cases where you need to add HTML dynamically, {{site.project_title}} 
+However, for those special cases where you need to add HTML dynamically, {{site.project_title}}
 elements provide the `injectBoundHTML` instance method. `injectBoundHTML` replaces
-the contents of a target element with an arbitrary block of HTML. Any data binding 
+the contents of a target element with an arbitrary block of HTML. Any data binding
 expressions in the HTML are bound to the element.
 
 For example, in the following example, a message is injected into the `message_area` `<div>`.
@@ -312,5 +325,5 @@ Changing the `message` property changes the data displayed in the `message_area`
     </polymer-element>
 {%endraw%}
 
-Note that the rules for data binding using `injectBoundHTML` are the same as the rules for 
+Note that the rules for data binding using `injectBoundHTML` are the same as the rules for
 standard data binding. For example, if `message` contains HTML, the HTML is escaped.

@@ -13,7 +13,7 @@ Within a `<polymer-element>` you can use {{site.project_title}}'s [expression
 library](https://github.com/polymer/polymer-expressions) to write inline expressions,
 named scopes, and iterative markup, anywhere {%raw%}`{{`&nbsp;`}}`{%endraw%} bindings are used.
 
-Expressions can also be used to define [computed properties](/docs/polymer/polymer.html#computed-properties).
+Expressions can also be used to define [computed properties](polymer.html#computed-properties).
 
 ## Expression syntax
 
@@ -31,7 +31,7 @@ the expression.
 - You can't insert HTML using expressions. To avoid XSS issues, the output of an expression
 is HTML escaped before being inserted as the value of the binding.
 
-**Note:** For the rare instance where you need to insert HTML dynamically, 
+**Note:** For the rare instance where you need to insert HTML dynamically,
 see [Inserting data-bound HTML](databinding-advanced.html#boundhtml)
 {: .alert alert-info }
 
@@ -102,7 +102,7 @@ For computed properties, the scope of an expression is always the element itself
 Templates that don't include `bind` or `repeat` share the current scope.
 
 A `bind` or `repeat` without an expression is the same as using an expression that
-specifies the current scope. An empty binding expression, {%raw%}`{{}}`{%endraw%} 
+specifies the current scope. An empty binding expression, {%raw%}`{{}}`{%endraw%}
 also specifies the current scope.
 
 ### Nested scoping rules {#nested-scoping-rules}
@@ -319,6 +319,5 @@ examples of global filters.
 
 To use a filter across multiple elements, define it in a script and import it at the top of your element
 (after polymer.html).
-
 
     <link rel="import" href="uppercase-filter.html"/>

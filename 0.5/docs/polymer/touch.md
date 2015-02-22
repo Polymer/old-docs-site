@@ -18,7 +18,7 @@ with mouse and touch:
 
 - Mouse events are only fired after the touch sequence ends.
 - Mouse events are not fired on elements without a click event handler. One must
-  be attached by default, or directly on the element with “onclick”.
+  be attached by default, or directly on the element with "onclick".
 - Click events are not fired if the content of the page changes in a mousemove
   or mouseover event.
 - Click events are fired 300ms after the touch sequence ends.
