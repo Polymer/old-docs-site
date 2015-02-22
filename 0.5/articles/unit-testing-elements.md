@@ -194,7 +194,7 @@ Chai supports all of the above assertion styles but we're going to use the first
 
 ## Tutorial
 
-In this tutorial, we're going to add an existing Polymer element, [`<core-selector>`](http://www.polymer-project.org/docs/elements/core-elements.html#core-selector) to a fresh `<seed-element>` project as a feature. We're then going to write tests for it.
+In this tutorial, we're going to add an existing Polymer element, [`<core-selector>`](../docs/elements/core-elements.html#core-selector) to a fresh `<seed-element>` project as a feature. We're then going to write tests for it.
 
 `core-selector` is an element that manages a list of elements that can be selected. It happens to build on the `core-selection` element we used in the last section. Go go composability!.
 
@@ -227,7 +227,7 @@ You can then install `<core-selector>` beside into your `<seed-element>` project
 
     $ bower install Polymer/core-selector --save
 
-**Note:** You can learn more about our recommendations for dependency paths when working with `<seed-element>` in our [reusable elements guide](http://www.polymer-project.org/docs/start/reusableelements.html).
+**Note:** You can learn more about our recommendations for dependency paths when working with `<seed-element>` in our [reusable elements guide](../docs/start/reusableelements.html).
 
 ### Step 2: Write your first test file
 
@@ -330,7 +330,7 @@ As `<core-selector>` has a property items representing the current list of items
 
 ### Step 4: Testing Asynchronous Changes
 
-Many Polymer elements rely heavily on observers to perform their work - often directly via [`observe` declarations](https://www.polymer-project.org/docs/polymer/polymer.html#observeblock) or indirectly via tools such as [template binding](https://www.polymer-project.org/docs/polymer/template.html). The unfortunate reality is that you will often need to set up asynchronous tests to deal with this.
+Many Polymer elements rely heavily on observers to perform their work - often directly via [`observe` declarations](../docs/polymer/polymer.html#observeblock) or indirectly via tools such as [template binding](../docs/polymer/template.html). The unfortunate reality is that you will often need to set up asynchronous tests to deal with this.
 
 Let's test support for assignment to the `selected` property!
 

@@ -24,7 +24,7 @@ tags:
 
 ## Introduction
 
-[Custom Elements](http://www.polymer-project.org/docs/start/platform.html#bundle) present a fantastic opportunity for us to improve accessibility on the web.
+[Custom Elements](../docs/start/platform.html#bundle) present a fantastic opportunity for us to improve accessibility on the web.
 
 To be accessible, elements need to work across multiple devices with varying screen-sizes and different kinds of input. Moreover, your elements should be usable by the broadest group of users, including those with disabilities.
 
@@ -86,7 +86,7 @@ Ideally, ensure that all functionality in your element can be reached by a keybo
 
 Firstly, ensure that you have a sensible **focus** target for each element. For example, a complex element like a menu may be one focus target within a page, but should then manage focus within itself so that the active menu item always takes focus.
 
-![Menu displaying how to manage focus](/articles/images/accessible-web-components/image_0.png)
+![Menu displaying how to manage focus](images/accessible-web-components/image_0.png)
 
 *Managing focus within a complex element*
 
@@ -126,7 +126,7 @@ The following questions should help guide you in addressing screen reader access
 
 Wherever information about the *name* or *purpose* of an interactive element is conveyed visually, an accessible text alternative needs to be provided.
 
-For example, if your `<x-menu>` element only displays an icon such as ![settings icon](/articles/images/accessible-web-components/image_1.png) to indicate that it is a settings menu, it needs an accessible text alternative such as "settings", which conveys the same information. Depending on context, this may use an `alt` attribute, an `aria-label` attribute, an `aria-labelledby` attribute, or plain text in the Shadow DOM. You can find general technical tips in [WebAIM Quick Reference](http://webaim.org/resources/quickref/).
+For example, if your `<x-menu>` element only displays an icon such as ![settings icon](images/accessible-web-components/image_1.png) to indicate that it is a settings menu, it needs an accessible text alternative such as "settings", which conveys the same information. Depending on context, this may use an `alt` attribute, an `aria-label` attribute, an `aria-labelledby` attribute, or plain text in the Shadow DOM. You can find general technical tips in [WebAIM Quick Reference](http://webaim.org/resources/quickref/).
 
 Any element which displays an image should provide a mechanism for providing alternative text for that image, analogous to the alt attribute.
 
@@ -141,7 +141,7 @@ As a rule of thumb, any element which listens to a mouse click or hover event sh
 
 For example, a custom `<x-slider>` element might take an ARIA role of slider, which has some related ARIA attributes: `aria-valuenow`, `aria-valuemin` and `aria-valuemax`. By binding these attributes to the relevant properties on your custom element, you can allow users of assistive technology to interact with the element and change its value, and even cause the visual presentation of the element to change accordingly.
 
-![A range slider element displaying a minimum value of 1, maximum value of 5 and current value of 2.5.](/articles/images/accessible-web-components/image_2.png)
+![A range slider element displaying a minimum value of 1, maximum value of 5 and current value of 2.5.](images/accessible-web-components/image_2.png)
 
     <!-- x-slider element template adds ARIA role and attributes which are visible in light DOM -->
     <x-slider role="slider" aria-valuemin="1" aria-valuemax="5" aria-valuenow="2.5">
@@ -163,7 +163,7 @@ Content that moves, scrolls or blinks that lasts for anything more than 5 second
 
 A number of tools are available that can assist with debugging the accessibility of your elements. These include:
 
-![An animation of the accessibility developer tools displaying a11y issues](/articles/images/accessible-web-components/animation.gif)
+![An animation of the accessibility developer tools displaying a11y issues](images/accessible-web-components/animation.gif)
 
 
 * The [Accessibility DevTools extension](https://chrome.google.com/webstore/detail/accessibility-developer-t/fpkknkljclfencbdbgkenhalefipecmb?utm_source=chrome-ntp-icon) for Chrome provides a helpful audit for discovering accessibility issues, including issues within Shadow DOM.

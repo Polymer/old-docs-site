@@ -19,7 +19,7 @@ tags:
 - communication
 ---
 
-<link rel="import" href="/articles/demos/communication/elements.html">
+<link rel="import" href="demos/communication/elements.html">
 
 {% include authorship.html %}
 
@@ -79,7 +79,7 @@ The first (and most {{site.project_title}}ic) way for elements to relay informat
 to one another is to use data binding. {{site.project_title}} implements
 two-way data binding. Binding to a common property
 is useful if you're working inside a {{site.project_title}} element and want to
-"link" elements together via their [published properties](/docs/polymer/polymer.html#published-properties).
+"link" elements together via their [published properties](../docs/polymer/polymer.html#published-properties).
 
 Here's an example:
 
@@ -111,7 +111,7 @@ Here's an example:
     </polymer-element>
 {% endraw %}
 
-When a {{site.project_title}} element [publishes](/docs/polymer/polymer.html#published-properties) one of its properties, you can bind to that property using an HTML attribute of the same name. In the example,
+When a {{site.project_title}} element [publishes](../docs/polymer/polymer.html#published-properties) one of its properties, you can bind to that property using an HTML attribute of the same name. In the example,
 `<td-model>.items` and `<core-localstorage>.value` are bound together with "list":
 
 {% raw %}
@@ -135,7 +135,7 @@ changes `list`, `<td-model>`'s items will also change.
 Wait a sec..."list" is an array. How can it be property bound as an HTML string attribute?
 
 {{site.project_title}} is smart enough to serialize primitive types (numbers, booleans, arrays, objects) when they're used in attribute bindings. As seen in the `ready()` callback
-of `<my-app>`, be sure to initialize and/or [hint the type](/docs/polymer/polymer.html#attrhinting) of your properties.
+of `<my-app>`, be sure to initialize and/or [hint the type](../docs/polymer/polymer.html#attrhinting) of your properties.
 
 ### 2. Changed watchers {#changedwatchers}
 
@@ -182,7 +182,7 @@ to bind to:
 
     <core-localstorage2 name="myapplist" id="storage"></core-localstorage2>
 
-A desperate time like this calls for a [changed watcher](/docs/polymer/polymer.html#change-watchers) and
+A desperate time like this calls for a [changed watcher](../docs/polymer/polymer.html#change-watchers) and
 a sprinkle of data-binding. We can exploit the fact that `<core-localstorage2>` defines
 a `valueChanged()` watcher. By setting up our own watcher for `list`, we can
 automatically persist data to `localStorage` whenever `list` changes!
@@ -213,7 +213,7 @@ When `list` changes, the chain reaction is set in motion:
 3. This calls `<core-localstorage2>.valueChanged()`
 4. `valueChanged()` calls `save()` which persists data to `localStorage`
 
-**Tip:** I'm using a {{site.project_title}} feature called [automatic node finding](/docs/polymer/polymer.html#automatic-node-finding) to reference `<core-localstorage>` by its `id` (e.g. `this.$.storage === this.querySelector('#storage')`).
+**Tip:** I'm using a {{site.project_title}} feature called [automatic node finding](../docs/polymer/polymer.html#automatic-node-finding) to reference `<core-localstorage>` by its `id` (e.g. `this.$.storage === this.querySelector('#storage')`).
 {: .alert .alert-success }
 
 ### 3. Custom events {#events}
@@ -241,7 +241,7 @@ When `list` changes, the chain reaction is set in motion:
 </table>
 
 A third technique is to **emit custom events from within your element**. Other elements
-can listen for said events and respond accordingly. {{site.project_title}} has two nice helpers for sending events, [fire() and asyncFire()](/docs/polymer/polymer.html#fire). They're essentially wrappers around `node.dispatchEvent(new CustomEvent(...))`. Use the asynchronous version for when you need to fire an event after [microtasks](http://www.whatwg.org/specs/web-apps/current-work/#perform-a-microtask-checkpoint) have completed.
+can listen for said events and respond accordingly. {{site.project_title}} has two nice helpers for sending events, [fire() and asyncFire()](../docs/polymer/polymer.html#fire). They're essentially wrappers around `node.dispatchEvent(new CustomEvent(...))`. Use the asynchronous version for when you need to fire an event after [microtasks](http://www.whatwg.org/specs/web-apps/current-work/#perform-a-microtask-checkpoint) have completed.
 
 Let's walk through an example:
 
@@ -287,7 +287,7 @@ And someone listening could use that information:
 #### Using declarative event mappings {#declartivemappings}
 
 The {{site.project_title}}ic approach to events is to combine event bubbling
-and [`on-*` declarative event mapping](/docs/polymer/polymer.html#declarative-event-mapping).
+and [`on-*` declarative event mapping](../docs/polymer/polymer.html#declarative-event-mapping).
 Combining the two gives you a declarative way to listen for events and requires very little code.
 
 **Example:** Defining an `on-click` that calls `sayHi()` whenever the element is clicked:
@@ -416,7 +416,7 @@ on `<say-bye>`.
 
 #### Using &lt;core-signals&gt;
 
-`<core-signals>`is a [utility element](/docs/elements/#core-signals) that
+`<core-signals>`is a [utility element](../docs/elements/core-elements.html#core-signals) that
 makes the pubsub pattern a bit easier, It also **works outside of {{site.project_title}}
 elements**.
 
@@ -433,11 +433,11 @@ element to catch the named signal:
     <core-signals on-core-signal-new-data="{{newData}}"></core-signals>
 {%endraw%}
 
-**Lowercase event names.** When you use a declarative handler, the event name 
+**Lowercase event names.** When you use a declarative handler, the event name
 is converted to lowercase, because attributes are case-insensitive.
-So the attribute `on-core-signal-newData` sets up a listener for `core-signal-newdata`, 
+So the attribute `on-core-signal-newData` sets up a listener for `core-signal-newdata`,
 _not_ `core-signal-newData`. To avoid confusion, always use lowercase event names.
-{: .alert .alert-info } 
+{: .alert .alert-info }
 
 Here's a full example:
 

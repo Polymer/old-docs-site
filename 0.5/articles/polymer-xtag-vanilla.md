@@ -39,13 +39,13 @@ Then, `cd` into the project directory, `polymer-xtag-vanilla` and run:
 
 Lastly, you’ll need to start a local server to view the `index.html` file.
 
-<iframe src="/articles/demos/polymer-xtag-vanilla/example.html" width="380" height="320" frameborder="0"></iframe>
+<iframe src="demos/polymer-xtag-vanilla/example.html" width="380" height="320" frameborder="0"></iframe>
 
 If your screen looks like the above then you’re all set.
 
 ## Understanding Elements
 
-Under the hood, x-tags relies on the polyfills from Polymer's [`webcomponents.js`](http://www.polymer-project.org/docs/start/platform.html). This can be a point of confusion for developers who assume that x-tags has its own set of polyfills that might break Polymer. In fact, the polyfill layer is shared between both projects, making them totally interoperable.
+Under the hood, x-tags relies on the polyfills from Polymer's [`webcomponents.js`](../docs/start/platform.html). This can be a point of confusion for developers who assume that x-tags has its own set of polyfills that might break Polymer. In fact, the polyfill layer is shared between both projects, making them totally interoperable.
 
 Since both projects adhere to the work-in-progress Web Components standards, it also makes them compatible with vanilla custom elements and any future projects which adhere to these same standards. **So long as everyone makes their elements according to spec, they can all coexist happily!**
 
@@ -195,7 +195,7 @@ The final step is to get all of the elements working in harmony. Note the script
 
 `polymer-ready` informs us when all of our HTML Imports have loaded. We’re then able to `querySelector` the different elements and store their references. The `click` handler on our button uses these references to toggle the switch and set the value of the ratings element. With that in place we’ve got a working application that links X-Tag, Polymer, and vanilla Custom Elements. Give it a spin!
 
-<iframe src="/articles/demos/polymer-xtag-vanilla/example.html" width="380" height="320" frameborder="0"></iframe>
+<iframe src="demos/polymer-xtag-vanilla/example.html" width="380" height="320" frameborder="0"></iframe>
 
 ## Conclusion
 

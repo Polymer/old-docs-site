@@ -42,7 +42,7 @@ So how do you build a single page application (SPA) with Polymer? On the Polymer
 
 In this article, I'll show you how to build a full-featured single page application that:
 
-- Is built entirely using Polymer's [core elements](/docs/elements/core-elements.html)
+- Is built entirely using Polymer's [core elements](../docs/elements/core-elements.html)
 - Practices responsive design
 - Transitions between views using data-binding features
 - Features URL routing and deep linking
@@ -57,7 +57,7 @@ In this article, I'll show you how to build a full-featured single page applicat
 </a>
 </p>
 
-If you like to eat dessert first, you can find the files for the 
+If you like to eat dessert first, you can find the files for the
 finished demo here:
 
 -   <a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/final.html" target="_blank">
@@ -73,8 +73,8 @@ finished demo here:
 ## App structure
 {:style="clear:both"}
 
-Designing a layout is one of the first tasks when starting a project. As part of its [core element collection](/docs/elements/core-elements.html), Polymer
-has several [layout elements](/docs/elements/layout-elements.html) (`<core-header-panel>`, `<core-drawer-panel>`, `<core-toolbar>`) for scaffolding an application's structure. These components are useful by themselves, but for an even quicker start, we're going to focus on `<core-scaffold>`. It starts you off with a responsive mobile layout by assembling several of the foundational elements.
+Designing a layout is one of the first tasks when starting a project. As part of its [core element collection](../docs/elements/core-elements.html), Polymer
+has several [layout elements](../docs/elements/layout-elements.html) (`<core-header-panel>`, `<core-drawer-panel>`, `<core-toolbar>`) for scaffolding an application's structure. These components are useful by themselves, but for an even quicker start, we're going to focus on `<core-scaffold>`. It starts you off with a responsive mobile layout by assembling several of the foundational elements.
 
 `<core-scaffold>`'s children are arranged by specifying attributes and/or using specific tags. For example, using a `<nav>` element creates the app drawer. Alternatively, you can use the `navigation` attribute on any element (e.g `<core-header-panel navigation>`). The toolbar is designated with the `tool` attribute. All other children end up in the main content area.
 
@@ -165,7 +165,7 @@ then drop in your content:
 **Note** Right now, `<core-animated-pages selected="0">` is hard-coded to select the first page. We'll [make that dynamic](#databinding) later.
 {: .alert .alert-info }
 
-By now you should have <a href="demos/spa/example1.html" target="_blank">a basic app</a>, but there's **something subtle to notice**. Thanks to Polymer's [layout attributes](/docs/polymer/layout-attrs.html) and the [default styles](/articles/styling-elements.html#default-styles) provided by each element, you've **achieved a responsive app without writing a lick of CSS**! Of course, with a little inspiration from the [material design color palette](http://www.google.com/design/spec/style/color.html), [less than 10 CSS rules](demos/spa/styles.css) turns the app into something beautiful.
+By now you should have <a href="demos/spa/example1.html" target="_blank">a basic app</a>, but there's **something subtle to notice**. Thanks to Polymer's [layout attributes](../docs/polymer/layout-attrs.html) and the [default styles](/articles/styling-elements.html#default-styles) provided by each element, you've **achieved a responsive app without writing a lick of CSS**! Of course, with a little inspiration from the [material design color palette](http://www.google.com/design/spec/style/color.html), [less than 10 CSS rules](demos/spa/styles.css) turns the app into something beautiful.
 
 <p layout horizontal center-center>
 <a href="demos/spa/example1.html" target="_blank">
@@ -183,7 +183,7 @@ By now you should have <a href="demos/spa/example1.html" target="_blank">a basic
 <p layout horizontal center-center>
 <a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/example1-style.html" target="_blank">
   <paper-button raised class="blue">
-    <core-icon icon="arrow-forward"></core-icon>See the HTML 
+    <core-icon icon="arrow-forward"></core-icon>See the HTML
   </paper-button>
 </a>
 
@@ -216,7 +216,7 @@ We have an app, but it's nothing to write home about. It's far from DRY. Similar
       </core-menu>
     </nav>
 
-It's also not dynamic. When a user selects a menu item the view doesn't update. Luckily, both of these problems are easily solved with Polymer's [data-binding features](/docs/polymer/databinding.html).
+It's also not dynamic. When a user selects a menu item the view doesn't update. Luckily, both of these problems are easily solved with Polymer's [data-binding features](../docs/polymer/databinding.html).
 
 #### Auto-binding template {#autobinding}
 
@@ -232,7 +232,7 @@ To leverage data binding outside of a `<polymer-element>`, Wrap Yo App&#0153; in
 &lt;/body>
 </pre>
 
-**Tip** An auto-binding `<template>` allows us to use {%raw%}`{{}}`{%endraw%} bindings, [expressions](/docs/polymer/expressions.html), and [`on-*` declarative event handlers](/docs/polymer/polymer.html#declarative-event-mapping) inside the main page.
+**Tip** An auto-binding `<template>` allows us to use {%raw%}`{{}}`{%endraw%} bindings, [expressions](../docs/polymer/expressions.html), and [`on-*` declarative event handlers](../docs/polymer/polymer.html#declarative-event-mapping) inside the main page.
 {: .alert .alert-info}
 
 #### Simplifying the markup using a data model {#datamodel}
@@ -351,7 +351,7 @@ If `<flatiron-director>` is not your cup of tea, check out [`<app-router>`](http
 
 Keyboard support is not only important for [accessibility](/articles/accessible-web-components.html) but it'll also make your SPA feel...more appy!
 
-[`<core-a11y-keys>`](/docs/elements/core-elements.html#core-a11y-keys) is a drop-in component for normalizing browser keyboard events and can be used to add keyboard support to your app. Here's an example:
+[`<core-a11y-keys>`](../docs/elements/core-elements.html#core-a11y-keys) is a drop-in component for normalizing browser keyboard events and can be used to add keyboard support to your app. Here's an example:
 
 {%raw%}
     <core-a11y-keys target="{{parentElement}}"
