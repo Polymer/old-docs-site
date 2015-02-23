@@ -330,7 +330,7 @@ This second version of `app-globals` has a slightly different API than
 the first. The global variables are properties of the `values` object instead of
 direct properties of `app-globals`. Setting values using attributes imposes two
 limitations: the values must be strings, and the variable names are lowercase.
-(See [Attribute case sensitivityy](#attrcase) for more information.)
+(See [Attribute case sensitivity](#attrcase) for more information.)
 
 To use this `<app-globals>` element with the previous `<my-component>` example,
 you'd need to update the paths that refer to the global variables (for example
