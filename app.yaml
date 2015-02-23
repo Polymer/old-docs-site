@@ -1,5 +1,5 @@
 application: polymer-project
-version: 0-5-4-take3
+version: 0-5-5
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -64,7 +64,7 @@ handlers:
 
 - url: /polymer(\.min)?\.js
   static_files: components/polymer/polymer.min.js
-  upload: components/polymer/polymer\.js
+  upload: components/polymer/polymer\\.min\\.js
   http_headers:
     Access-Control-Allow-Origin: "*"
     
