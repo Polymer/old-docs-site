@@ -32,7 +32,7 @@ The element declaration includes:
 -   The optional `<template>` element defines HTML content that is
     cloned into the shadow DOM of each instance of the element.
 -   An inline script that _registers_ the element by calling the
-    the `Polymer` method and passing in the element's prototype.
+    `Polymer` method and passing in the element's prototype.
     Registering the element allows it be recognized as a custom element
     by the browser.
 
