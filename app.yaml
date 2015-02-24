@@ -15,6 +15,10 @@ libraries:
 
 handlers:
 
+- url: /latest.*
+  script: main.app
+  secure: always
+
 # These needs to be in this order and come for the short URL versions.
 - url: /(.+)/components/(.*)/webcomponents(\.min)?.js$
   static_files: \1/components/\2/webcomponents.min.js

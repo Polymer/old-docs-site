@@ -47,7 +47,11 @@ class VersionHandler(webapp2.RequestHandler):
 
   def get(self, version=None):
     version_dir = get_default_polymer_version()
-    self.redirect('/%s%s' % (version_dir, self.request.path))
+    if self.request.path.startswith('/latest'):
+      path = self.request.path.replace('/latest', '/%s' % version_dir)
+      return self.redirect('%s' % path)
+
+    return self.redirect('/%s%s' % (version_dir, self.request.path))
 
 
 routes = [
@@ -59,6 +63,7 @@ routes = [
         redirect_to='https://polymer-designer.appspot.com/', strict_slash=True),
     RedirectRoute('/apps/polymer-tutorial/finished/', name='tutorial',
         redirect_to='https://polymer-tut.appspot.com/', strict_slash=True),
+    ('/latest.*', VersionHandler),
     ('/docs/.*', VersionHandler),
     ('/resources/.*', VersionHandler),
     ('/platform/.*', VersionHandler),
