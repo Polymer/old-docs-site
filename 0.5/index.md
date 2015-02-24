@@ -56,7 +56,7 @@ title: Welcome
           </a>
           <summary>
             <h1>Chrome Dev Summit 2014</h1>
-            <p>Recap everything {{site.project_title}} at Chrome Dev Summit 2014, including an introduction to  Polymer 0.8.
+            <p>Recap everything {{site.project_title}} at Chrome Dev Summit 2014, including an introduction to Polymer 0.8.
             <br><br>
             <a href="resources/video.html">
               <paper-button>Watch</paper-button>
