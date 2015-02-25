@@ -304,7 +304,7 @@ using {{site.project_title}} data binding or plain JavaScript:
 
 A slight tweak of this approach lets you configure the value of the globals externally:
 
-    <polymer-element name="app-globals" attributes="values">
+    <polymer-element name="app-globals">
       <script>
         (function() {
           var values = {};
@@ -761,7 +761,7 @@ Any default value specified in the `publish` object is ignored.
 **Limitations**: In {{site.project_title}} 0.4.0 and earlier, computed properties
 couldn't be published.
 For example, you couldn't bind to the `square` property on `square-element` using
- `<square-element square="{%raw%}{{value}}{%endraw%}>`.
+ `<square-element square="{%raw%}{{value}}{%endraw%}">`.
 {: .alert .alert-warning }
 
 ### Declarative event mapping
@@ -1182,7 +1182,7 @@ Sometimes it's useful to delay a task after an event, property change, or user i
 
     this.responseChanged = function() {
       if (this.timeout1) {
-        clearTimeout(this.toastTimeout1);
+        clearTimeout(this.timeout1);
       }
       this.timeout1 = window.setTimeout(function() {
         ...
