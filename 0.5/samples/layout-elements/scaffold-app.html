@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- [START imports] -->
+<script
+  src="../../components/webcomponentsjs/webcomponents.js">
+</script>
+<link rel="import"
+  href="../../components/core-toolbar/core-toolbar.html">
+<link rel="import"
+  href="../../components/core-menu/core-menu.html">
+<link rel="import"
+  href="../../components/core-item/core-item.html">
+<link rel="import"
+  href="../../components/core-header-panel/core-header-panel.html">
+<link rel="import"
+  href="../../components/core-drawer-panel/core-drawer-panel.html">
+<link rel="import"
+  href="../../components/core-scaffold/core-scaffold.html">
+<!-- [END imports] -->
+<style shim-shadowdom>
+  /* [START styles] */
+  body {
+    font-family: sans-serif;
+  }
+  #navheader {
+    background-color: #56BA89;
+  }
+  .content {
+    padding: 20px;
+  }
+  /* [END styles] */
+  /* secret demo-only styles */
+  core-scaffold /deep/ #drawer {
+    width: 140px;
+  }
+  core-scaffold /deep/ #main {
+    left: 140px;
+  }
+</style>
+</head>
+<body unresolved>
+  <!-- [START html] -->
+  <core-scaffold>
+
+    <core-header-panel navigation flex>
+      <core-toolbar id="navheader">
+        <span>Menu</span>
+      </core-toolbar>
+      <core-menu>
+        <core-item label="One"></core-item>
+        <core-item label="Two"></core-item>
+      </core-menu>
+    </core-header-panel>
+
+    <span tool>Title</span>
+
+    <div class="content">
+        If drawer is hidden, press button to display drawer.
+    </div>
+  </core-scaffold>
+  <!-- [END html] -->
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!--
+    @license
+    Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+    Code distributed by Google as part of the polymer project is also
+    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
+
+<polymer-element name="app-bar" attributes="theme home badge">
+  <template>
+    <link rel="stylesheet" href="../../css/elements/app-bar.css">
+    <div layout horizontal center flex>
+      <paper-icon-button id="hamburger" on-click="{{onMenuClick}}" icon="menu"></paper-icon-button>
+    </div>
+    <template if="{{home}}">
+      <content></content>
+    </template>
+    <span class="polymer-status-badge" hidden?="{{!badge.length}}">{{badge}}</span>
+    <div id="search" show?="{{showingSearch}}" on-click="{{toggleSearch}}">
+      <paper-icon-button icon="search"></paper-icon-button>
+      <input type="search" id="input" on-keyup="{{onKeyPress}}" autocomplete="off">
+    </div>
+  </template>
+  <script>
+    Polymer({
+      theme: 'dark',
+      home: false,
+      showingSearch: false,
+      badge: '',
+      toggleSearch: function(e, detail, sender) {
+        if (e) { // comes first
+          e.stopPropagation();
+        }
+        if (e.target === this.$.input) {
+          return;
+        }
+
+        this.showingSearch = !this.showingSearch;
+        this.classList.toggle('search-on');
+        this.async(function() {
+          this.$.input.focus();
+        });
+      },
+      onKeyPress: function(e, detail, sender) {
+        if (e.keyCode == 13) { // Enter
+          if (sender.value) {
+            recordSearch(sender.value);
+            var q = 'site:polymer-project.org+' + sender.value;
+            window.open('https://www.google.com/search?q=' + q);
+          }
+        }
+      },
+      onMenuClick: function () {
+        this.fire('hamburger-time');
+      }
+    });
+  </script>
+</polymer-element>

@@ -194,7 +194,7 @@ function ajaxifySite() {
 
   document.addEventListener('click', function(e) {
     // Allow users to open new tabs.
-    if (e.metaKey || e.ctrlKey) {
+    if (e.metaKey || e.ctrlKey || e.which == 2) {
       return;
     }
 

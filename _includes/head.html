@@ -1,6 +1,13 @@
+{% capture version %}{% polymer_version_dir %}{% endcapture %}
+{% if version != '' %}
+  {% assign version_prefix = version | prepend:'/' %}
+{% else %}
+  {% assign version_prefix = '' %}
+{% endif %}
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1">
 <meta name="google-site-verification" content="pnjjbQFvjPwaWhEXY6nSyaS9iyghmH-M_yLHBveDX2M">
 <meta itemprop="name" content="{{site.project_title}}{% if page.title %} - {{page.title}}{% endif %}">
 <meta itemprop="description" content="{% if page.description %}{{page.description}}{% else %}Polymer is a library that uses the latest web technologies to let you create custom HTML elements. Build anything from a button to a complete application as an encapsulated, reusable element that works across desktop and mobile.{% endif %}">
@@ -8,12 +15,12 @@
 {% if page.snippet_img %}
 <meta itemprop="image" content="{{page.snippet_img}}">
 {% else %}
-<meta itemprop="image" content="http://www.polymer-project.org/images/instacod.png">
+<meta itemprop="image" content="https://www.polymer-project.org/images/instacod.png">
 {% endif %}
 
 <title>
   {% if page.title %}
-    {{page.title}} - 
+    {{page.title}} -
   {% else %}
     Welcome - A new type of library for the web, built on top of Web Components
   {% endif %} {{site.project_title}}
@@ -34,12 +41,12 @@
   <link rel="stylesheet" href="{{item}}?{{site.time | date: '%Y%m%d'}}" shim-shadowdom>
 {% endfor %}
 
-<script src="/webcomponents.min.js?{{site.time | date: '%Y%m%d'}}"></script>
+<script src="{{version_prefix}}/components/webcomponentsjs/webcomponents.min.js?{{site.time | date: '%Y%m%d'}}"></script>
 <!-- TODO: remove when https://github.com/Polymer/polymer/issues/391 is fixed -->
-<link rel="import" href="/components/polymer/polymer.html">
+<link rel="import" href="{{version_prefix}}/components/polymer/polymer.html">
 
 {% if page.layout == 'home' %}
-  <link rel="import" href="/elements/homepage_elements.vulcanized.html?{{site.time | date: '%Y%m%d'}}">
+  <link rel="import" href="{{version_prefix}}/elements/homepage_elements.vulcanized.html?{{site.time | date: '%Y%m%d'}}">
 {% else %}
-  <link rel="import" href="/elements/common_elements.vulcanized.html?{{site.time | date: '%Y%m%d'}}">
+  <link rel="import" href="{{version_prefix}}/elements/common_elements.vulcanized.html?{{site.time | date: '%Y%m%d'}}">
 {% endif %}
