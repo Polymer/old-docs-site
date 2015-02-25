@@ -6,8 +6,7 @@ safe: false
 #permalink: /news/:year/:month/:day/:title.html
 
 exclude: ["node_modules", "scripts", "sass", "app.yaml", "README.md",
-          "CONTRIBUTING.md", "Gruntfile.js", "package.json", "config.rb",
-          "build.py", "polymer-all", "components"]
+          "CONTRIBUTING.md", "Gruntfile.js", "package.json", "config.rb"]
 
 kramdown:
   toc_levels: 2..3
@@ -23,5 +22,6 @@ kramdown:
 project_title: Polymer
 project_status: 'Dev preview'
 latest_version: 0.5.5
+default_version: 0.5 # default version the docs should serve
 add_permalinks: true # adds permalinks to heading tags.
 load_disqus: true

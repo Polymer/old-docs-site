@@ -1,0 +1,12 @@
+<polymer-element name="greeting-tag">
+  <!-- outermost template defines the element's shadow DOM -->
+  <template>
+    <ul>
+      <template repeat="{{s in salutations}}">
+        <li>{{s.what}}: <input type="text" value="{{s.who}}"></li>
+      </template>
+    </ul>
+    <button on-click="{{updateModel}}">Update model</button>
+  </template>
+  <script src="greeting-tag.js"></script>
+</polymer-element>

@@ -54,10 +54,18 @@ module Jekyll
     end
 
     def render(context)
+
+      component_dir = "#{@dir}"
+
+      polymer_version = PolymerVersionDir.new('','','').render(context)
+      if polymer_version
+        component_dir = "#{polymer_version}/#{@dir}"
+      end
+
       elements = {}
       prefix = Regexp.new "#{@prefix}-[a-z-]+"
 
-      glob = File.join("#{@dir}", "#{@prefix}-*", "**", "#{@prefix}-[a-z-]*.html")
+      glob = File.join("#{component_dir}", "#{@prefix}-*", "**", "#{@prefix}-[a-z-]*.html")
       components = Pathname.glob(glob).uniq
 
       components.each do |f|

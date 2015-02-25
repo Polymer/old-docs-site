@@ -16,6 +16,7 @@
       <!-- {% include dropdown-panel.html %} -->
 
       <docs-menu unresolved flex
+                 versionPrefix="{% polymer_version_dir %}"
                  coreElements='{% list_components dir:components prefix:core blacklist:"core-slide core-layout core-doc-viewer core-home-page core-home-page-dev core-transition-css core-overlay-layer core-key-helper core-doc-toc core-doc-page core-component-page core-popup-menu" %}'
                  paperElements='{% list_components dir:components prefix:paper blacklist:"paper-calculator paper-doc-viewer paper-ink paper-scaffold paper-menu-button-transition paper-menu-button-overlay-container paper-form paper-row paper-group paper-doc-toc paper-doc-page"%}'></docs-menu>
     </div>

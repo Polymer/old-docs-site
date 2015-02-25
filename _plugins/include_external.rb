@@ -1,10 +1,14 @@
 #
-# Includes external code. 
-# Supports including named regions from a sample file. 
-# 
+# Includes external code.
+# Supports including named regions from a sample file.
+#
 # Usage:
 #
 # {% include_external filename %}
+#
+# or, to render a document under a polymer version directory:
+#
+# {% include_external filename version_prefix:0.5 %}
 #
 # or:
 #
@@ -23,24 +27,44 @@
 # <!-- [START region-name] -->
 # <!-- [END region-name] -->
 #
-# Regions may overlap. Region start and end tags are always omitted from the 
+# Regions may overlap. Region start and end tags are always omitted from the
 # included content.
 #
-# When a region is selected, the region is de-indented as if the first 
+# When a region is selected, the region is de-indented as if the first
 # non-whitespace character in the start tag is column 0.
 #
 #
 module Jekyll
   class IncludeExternal < Liquid::Tag
 
+    include Liquid::StandardFilters
+    Syntax = /(#{Liquid::QuotedFragment}+)?/
+
     def initialize(tag_name, param_string, tokens)
       params = param_string.split(" ").map(&:strip)
       @filename = params[0]
       @inregion = true
-      if (params.length > 1) 
+      if (params.length > 1)
         @region = params[1]
         @inregion = false
       end
+
+      @attributes = {}
+
+      # Parse named parameters
+      if param_string =~ Syntax
+        param_string.scan(Liquid::TagAttributes) do |key, value|
+          @attributes[key] = value
+        end
+      else
+        raise SyntaxError.new("Syntax Error in 'include_external' - Valid syntax: include_external version_prefix:0.5 filename region-name")
+      end
+
+      # Prepend docs version directory prefix to the pathname (if one was passed).
+      if @attributes.has_key?('version_prefix')
+        @filename.prepend(@attributes['version_prefix'].to_s)
+      end
+
       @output = []
 
       begin
@@ -59,7 +83,7 @@ module Jekyll
               @inregion = false
             end
           else
-            if @inregion 
+            if @inregion
               if @base_indent
                 line = line.sub(@base_indent,"")
               end
@@ -72,6 +96,11 @@ module Jekyll
         @output << "<div class=\"error\">IncludeExternal error: #{e}</div>"
       ensure
         f.close unless f.nil?
+      end
+
+      # Use entire file if no regions were found.
+      if @output.length == 0
+        @output << text
       end
 
       super

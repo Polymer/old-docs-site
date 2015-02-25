@@ -1,0 +1,111 @@
+<!--
+    @license
+    Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+    Code distributed by Google as part of the polymer project is also
+    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/core-menu/core-menu.html">
+<link rel="import" href="../components/core-item/core-item.html">
+
+<polymer-element name="dropdown-panel" attributes="open ajaxify">
+  <template>
+    <style>
+    :host {
+      background: white;
+      opacity: 0;
+      visibility: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      -webkit-transform: translate3d(0, -6px, 0);
+      -webkit-transition: .04s .08s -webkit-transform, 0.025s .1s opacity;
+      -moz-transform: translate3d(0, -6px, 0);
+      -moz-transition: .04s .08s -moz-transform, 0.025s .1s opacity;
+      transform: translate3d(0, -6px, 0);
+      transition: .04s .08s transform, 0.025s .1s opacity;
+    }
+
+    :host([open]) {
+      opacity: 1;
+      visibility: visible;
+      -webkit-transform: translate3d(0, 0, 0);
+      -webkit-transition: .04s -webkit-transform, 0.025s opacity;
+      -moz-transform: translate3d(0, -6px, 0);
+      -moz-transition: .04s .08s -moz-transform, 0.025s .1s opacity;
+      transform: translate3d(0, 0, 0);
+      transition: .04s transform, 0.025s opacity;
+    }
+
+    polyfill-next-selector { content: ':host core-item #label'; }
+    ::content core-item /deep/ #label {
+      font-weight: 300;
+    }
+
+    polyfill-next-selector { content: ':host core-item core-icon'; }
+    ::content core-item::shadow core-icon {
+      background-size: 48px !important;
+    }
+
+    polyfill-next-selector { content: ':host core-item[active]'; }
+    ::content core-item[active] {
+      background: rgba(0, 0, 0, 0.04);
+      border: 1px solid #d9d9d9;
+    }
+
+    :host /deep/ core-icon {
+      margin-right: 6px;
+      background-size: 48px !important;
+    }
+
+    polyfill-next-selector { content: ':host core-item'; }
+    ::content core-item {
+      font-size: 14px !important;
+      font-weight: 500;
+      line-height: 32px !important;
+      // letter-spacing: 0.01em;
+      padding: 0;
+      color: initial;
+      opacity: 0.5;
+    }
+
+    polyfill-next-selector { content: ':host core-item:hover'; }
+    ::content core-item:hover {
+      opacity: 0.9;
+    }
+
+    polyfill-next-selector { content: ':host core-item.core-selected'; }
+    ::content core-item.core-selected {
+      opacity: 1;
+    }
+
+    </style>
+    <core-menu id="mainmenu" on-click="{{onClick}}">
+      <content></content>
+    </core-menu>
+  </template>
+  <script>
+  Polymer({
+    publish: {
+      open: {value: false, reflect: true}
+    },
+    ajaxify: false,
+    attached: function() {
+      var active = this.querySelector('core-item[active]');
+      var index = Array.prototype.indexOf.call(this.children, active);
+      this.$.mainmenu.selected = index;
+    },
+    openPanel: function() {
+      this.open = true;
+
+      var close = function() {
+        this.open = false;
+        document.body.removeEventListener('click', close, true);
+      }.bind(this);
+
+      document.body.addEventListener('click', close, true);
+    }
+  });
+  </script>
+</polymer-element>
