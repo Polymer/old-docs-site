@@ -9,4 +9,4 @@ _site
 *.vulcanized.html
 *.vulcanized.js
 *.sublime-*
-_data/elements
+_data/versions

@@ -33,7 +33,7 @@
 
     h2 {
       margin: 0 !important;
-      // Note: permalink :target anchors don't work when these are flexbox.
+      /* Note: permalink :target anchors don't work when these are flexbox. */
       @include display-flex;
       @include align-items(center);
       @include justify-content(flex-end);

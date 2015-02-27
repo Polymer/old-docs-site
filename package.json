@@ -14,7 +14,7 @@
     "load-grunt-tasks": "^0.6.0"
   },
   "scripts": {
-    "postinstall": "bower install",
+    "postinstall": "cd 0.5; bower install",
     "start": "grunt"
   }
 }

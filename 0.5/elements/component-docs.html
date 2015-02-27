@@ -12,9 +12,17 @@
 
 <polymer-element name="component-docs" attributes="bannerHeight elements data">
   <template>
-    <doc-page id="{{data.name}}" name="{{data.name}}" data="{{data}}"
+    
+    <style>
+    :host {
+      display: block;
+    }
+    </style>
+
+    <doc-page id="{{doc.name}}" name="{{doc.name}}" data="{{doc}}"
                 bannerHeight="{{bannerHeight}}"
-                downloadable?="{{ isTopLevelElement(data.name, data.location) }}"></doc-page>
+                downloadable?="{{isTopLevelElement(doc.name, doc.location)}}"></doc-page>
+
   </template>
   <script>
     Polymer({
@@ -22,6 +30,18 @@
       // be overridden by the page that uses <compontent-docs> as needed.
       bannerHeight: 80,
       data: {},
+      dataChanged: function(oldVal, newVal) {
+        this.doc = this.sanitize_(newVal);
+      },
+      /**
+       * Fix escaped closing script tags in descriptions
+       */
+      sanitize_: function(data) {
+        data.description = data.description.replace(
+          '<\\/script>', '<\/script>'
+        );
+        return data;
+      },
       isTopLevelElement: function(name, url) {
         if (!name || !url) {
           return;
