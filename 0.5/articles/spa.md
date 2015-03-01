@@ -60,13 +60,13 @@ In this article, I'll show you how to build a full-featured single page applicat
 If you like to eat dessert first, you can find the files for the
 finished demo here:
 
--   <a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/final.html" target="_blank">
+-   <a href="https://github.com/Polymer/docs/blob/master/0.5/articles/demos/spa/final.html" target="_blank">
     HTML (<code>final.html</code>)</a>
--   <a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/elements.html" target="_blank">
+-   <a href="https://github.com/Polymer/docs/blob/master/0.5/articles/demos/spa/elements.html" target="_blank">
     Imports (<code>elements.html</code>)</a>
--   <a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/app.js" target="_blank">
+-   <a href="https://github.com/Polymer/docs/blob/master/0.5/articles/demos/spa/app.js" target="_blank">
     JavaScript (<code>app.js</code>)</a>
--   <a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/styles.css" target="_blank">
+-   <a href="https://github.com/Polymer/docs/blob/master/0.5/articles/demos/spa/styles.css" target="_blank">
     CSS (<code>styles.css</code>)</a>
 
 
