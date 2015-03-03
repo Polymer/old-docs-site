@@ -67,6 +67,7 @@ routes = [
     ('/docs/.*', VersionHandler),
     ('/resources/.*', VersionHandler),
     ('/platform/.*', VersionHandler),
+    ('/articles/.*', VersionHandler),
     ('/$', VersionHandler),
 ]
 

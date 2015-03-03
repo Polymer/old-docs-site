@@ -43,7 +43,7 @@ and <a href="https://plus.google.com/{{collaborator.gplus}}?rel=author" target="
 {% if p.updated %}(updated <time datetime="{{updated}}">{{updated}}</time>){% endif %}
 </div>
 
-<summary>{{p.description}}</summary>
+<p>{{p.description}}</p>
 
 </div>
 {% endif %}

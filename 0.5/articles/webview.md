@@ -1,7 +1,6 @@
 ---
 layout: default
-type: core
-navgroup: docs
+type: guide
 shortname: Articles
 title: "Using Polymer in a WebView"
 subtitle: How to setup Polymer in an Android WebView app
@@ -9,10 +8,10 @@ subtitle: How to setup Polymer in an Android WebView app
 article: true
 #draft: true
 description: How to building a mobile Polymer app that runs in a WebView.
-published: 2014-10-20
+published: 2015-03-04
 #updated: 2014-10-20
 author: ebidel
-polymer_version: 0.4.2
+polymer_version: 0.5.5
 
 tags:
 - WebView
@@ -69,7 +68,7 @@ Once sharp edges are ironed out, dive into WebView-fying and uploading it to Goo
   </a>
 </p>
 
-The WebView starter .zip provides an example Android Studio project to get you up and running. It contains a basic mobile web app that uses _some_ of {{site.project_title}}'s [core](/docs/elements/core-elements.html) and [material design](/docs/elements/material.html) [paper elements](/docs/elements/paper-elements.html). You should be able load it directly onto an device running Android L or the emulator to see it in action. More on minimum Android/SDK versions, later.
+The WebView starter .zip provides an example Android Studio project to get you up and running. It contains a basic mobile web app that uses _some_ of {{site.project_title}}'s [core](../docs/elements/core-elements.html) and [material design](../docs/elements/material.html) [paper elements](../docs/elements/paper-elements.html). You should be able load it directly onto an device running Android L or the emulator to see it in action. More on minimum Android/SDK versions, later.
 
 ## Minimum Android and SDK versions
 
@@ -101,7 +100,7 @@ Inside of the `assets` folder, it's generally recommended to create a `www` fold
 ### Using Bower to install elements
 
 **Tip** If you're not familiar with Bower, see
-[Installing elements](/docs/start/getting-the-code.html#installing-components).
+[Installing elements](../docs/start/getting-the-code.html#installing-components).
 {: .alert .alert-success }
 
 Create a `bower.json` file in `src/main/assets/www` that lists your element dependencies. In this case, we'll just pull in all the paper and core elements:
@@ -121,7 +120,7 @@ Run `bower install` in the `www` directory to populate the `bower_components` fo
 
 ### Using HTML Imports
 
-Create `src/main/assets/www/elements.html`, an [HTML Import](/platform/html-imports.html) that in turn, includes all of the element imports your app will use:
+Create `src/main/assets/www/elements.html`, an [HTML Import](../platform/html-imports.html) that in turn, includes all of the element imports your app will use:
 
     <link rel="import" href="bower_components/core-drawer-panel/core-drawer-panel.html">
     <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
@@ -136,8 +135,8 @@ Create your main page app as `src/main/assets/www/index.html` and use an HTML Im
     <html>
     <head>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!-- Note: platform.js is only needed in non-Chrome 36 browsers. It's included here for portability. -->
-      <script src="bower_components/platform/platform.js"></script>
+      <!-- Note: webcomponents.js is only needed in non-Chrome 36 browsers. It's included here for portability. -->
+      <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
       <link rel="import" href="elements.html">
       ...
     </head>
@@ -146,7 +145,7 @@ Create your main page app as `src/main/assets/www/index.html` and use an HTML Im
     </body>
     </html>
 
-It's worth noting that platform.js is not needed in WebViews powered by Chromium 36+. However, if you're creating an app for multiple platforms, it's still recommended to include the polyfills for portability.
+It's worth noting that webcomponents.js is not needed in WebViews powered by Chromium 36+. However, if you're creating an app for multiple platforms, it's still recommended to include the polyfills for portability.
 
 When all is said and done, your final folder structure should look something like this:
 
@@ -199,7 +198,7 @@ public class MyActivity extends Activity {
 
     WebSettings webSettings = mWebView.getSettings();
 
-    // Enable Javascript.
+    // Enable JavaScript.
     <b>webSettings.setJavaScriptEnabled(true);</b>
 
     // Enable HTML Imports to be loaded from file://.
@@ -276,13 +275,13 @@ public class MyActivity extends Activity {
 
         <body unresolved fullbleed>
 
-   The [`fullbleed`](/docs/polymer/layout-attrs.html) attribute removes `<body>` margins and maximizes its height to the viewport. The [`unresolved` attribute](/docs/polymer/styling.html#fouc-prevention) minimizes FOUC.
+   The [`fullbleed`](../docs/polymer/layout-attrs.html) attribute removes `<body>` margins and maximizes its height to the viewport. The [`unresolved` attribute](../docs/polymer/styling.html#fouc-prevention) minimizes FOUC.
 
-2. Use [Vulcanize](/articles/concatenating-web-components.html) to crush your HTML Imports into a single import. Doing so can reduce page load time. I recommend running Vulcanize with the `--csp --inline --strip` flags.
+2. Use [Vulcanize](concatenating-web-components.html) to crush your HTML Imports into a single import. Doing so can reduce page load time. I recommend running Vulcanize with the `--csp --inline --strip` flags.
 
-3. Only load the platform.js polyfills if you're targeting releases prior to Android L, *and* you're not using Crosswalk.
+3. Only load the webcomponents.js polyfills if you're targeting releases prior to Android L, *and* you're not using Crosswalk.
 
-4. Use `on-tap` event instead of `on-click` handlers when capturing user interactions. Click handlers introduce 300ms delay to user interactions. `on-tap` uses [polymer-gestures](/docs/polymer/touch.html) touch library and circumvents the delay.
+4. Use `on-tap` event instead of `on-click` handlers when capturing user interactions. Click handlers introduce 300ms delay to user interactions. `on-tap` uses [polymer-gestures](../docs/polymer/touch.html) touch library and circumvents the delay.
 
 5. Set a mobile viewport! 
 
