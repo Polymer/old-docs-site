@@ -2,32 +2,22 @@ Polymer docs are mostly in Markdown with some HTML. [Jekyll][jekyll] is used to 
 
 ## Prereqs and installation requirements
 
-We use Jekyll 2.1 and [Grunt][grunt] to generate the documentation, and compass to compile SASS to CSS. You'll need to install the requirements before working on the docs (these instructions assume [NPM is already installed](http://nodejs.org/download/)):
+We use Jekyll 2.4 and [Grunt][grunt] to generate the documentation, and compass to compile SASS to CSS. You'll need to install the requirements before working on the docs (these instructions assume [NPM is already installed](http://nodejs.org/download/)):
 
-    gem install jekyll:2.1.1 kramdown jekyll-page-hooks compass rouge
+    gem install bundler
     npm install -g grunt-cli vulcanize bower
-
-The build does **not work with Jekyll 2.4**. This is a [known issue](https://github.com/Polymer/docs/issues/686). These instructions have been tested with Jekyll 2.1.1.
 
 **Note:** If you receive permission warnings, you may need to run the above tasks with `sudo`.
 
 You'll also need the Python App Engine SDK to run the dev_appserver and preview the docs locally. [Download the SDK](https://developers.google.com/appengine/downloads).
 
 
-### Check out the documentation
+### Getting Started
 
-Checkout this repo:
-
-    git clone https://github.com/Polymer/docs.git --recursive
-
-Run the setup script:
-
-    cd docs
-    ./scripts/setup.sh
-
-This will run `npm install`, pull down any external dependencies, and kickoff the `grunt` task. **Note:** these scripts can take some time to install.
-
-During the setup process the `polymer-all/projects` directory is populated for you. Whenever the site is released you'll need to re-run `./scripts/release.sh` in order to refresh this and other directories. See the [Polymer release](#polymer-release) section for more details.
+- `git clone https://github.com/Polymer/docs.git`
+- `bundle install`
+- `npm install` (this will also run `bower install` for you)
+- `grunt` (or `npm start`)
 
 ## Making edits and previewing changes
 
@@ -46,16 +36,21 @@ Once your changes look good, `git commit` them and push.
 
 ### Preview locally
 
-It's a good idea to run `grunt docs` before pushing the docs, as it runs a number of grunt tasks. Verify things went well and preview your changes locally using the dev server.
+It's a good idea to run `grunt` before pushing the docs, as it runs a number of grunt tasks. Verify things went well and preview your changes locally using the dev server.
+
+### Update apps
+
+When updating the version of Polymer that the site uses, make sure to also update it in the following apps:
+
+- [Tutorial](https://github.com/Polymer/polymer-tutorial)
+- [Topeka](https://github.com/Polymer/topeka)
+- [Designer](https://github.com/Polymer/designer)
+
+Unzip the release candidate into the `bower_components` directory of each app, verify, then run the app's `deploy.sh` script. In the case of the Tutorial, you'll need to follow the deploy instructions on the repo itself.
 
 ### Release
 
-When we push a new version of Polymer, the site should be updated to use it. In addition,
-the element reference and other projects will need updating.
-
-To update polymer.js, the poyfills, components, projects, etc., run the following in the root of the docs directory:
-
-    ./scripts/release.sh
+Run `bower update` to make sure you have the latest component dependencies.
 
 Once these are updated, you need to update some versions for the docs:
 

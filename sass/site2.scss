@@ -72,7 +72,7 @@ pre, code {
   white-space: pre;
   word-wrap: normal;
   overflow-x: auto;
-  
+
   b, strong {
     font-weight: 700;
   }
@@ -376,17 +376,18 @@ footer {
         transition: opacity 300ms ease-in;
       }
 
-      &[type="platform"] {
-        background-color: $platform-color !important;
-      }
-
-      &[type="core"] {
-        background-color: $creating-elements-color  !important;
+      &[type="guide"] {
+        background-color: $guides-resources-color !important;
       }
 
       &[type="elements"] {
-        background-color: $using-elements-color !important;
+        background-color: $elements-color !important;
       }
+
+      &[type="start"] {
+        background-color: $getting-started-color !important;
+      }
+
     }
 
     article {
@@ -450,7 +451,7 @@ footer {
 
 
 #sidebar {
-  $leftPadding: 16px;
+  $leftPadding: 24px;
 
   #sidebar-content {
     height: 100%;
@@ -461,7 +462,6 @@ footer {
     //@include justify-content(center);
     @include align-items(center);
     height: $siteBannerHeightMin;
-    margin-bottom: $additonalPadding;
     padding-left: $leftPadding;
   }
 }
@@ -550,5 +550,18 @@ footer {
   width: 100%;
   max-width: 576px;
 }
+
+// Browser compat page
+#browser-compatibility paper-checkbox {
+  pointer-events: none;
+}
+#browser-compatibility th {
+  white-space: nowrap;
+  padding-right: 20px;
+}
+#browser-compatibility .feature-title {
+   white-space: nowrap;
+}
+
 
 @import "mobile";

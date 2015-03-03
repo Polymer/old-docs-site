@@ -127,8 +127,6 @@ function injectPage(url, opt_addToHistory) {
     });
 
     // Set left-nav menu and highlight correct item.
-    docsMenu.setAttribute(
-        'menu', doc.querySelector('docs-menu').getAttribute('menu'));
     docsMenu.highlightItemWithCurrentURL();
 
     // Replace site-banner > header content.
@@ -151,8 +149,14 @@ function injectPage(url, opt_addToHistory) {
 
     // Scroll to hash, otherwise goto top of the loaded page.
     if (location.hash) {
-      var scrollTargetEl = document.querySelector(location.hash);
-      scrollTargetEl && scrollTargetEl.scrollIntoView(true, {behavior: 'smooth'});
+      // Wrap this scrolling logic in a timeout to ensure that the <template>s are fully
+      // stamped out, and that if the user agent tries to reset the scroll position (e.g.
+      // after a reload), our logic kicks in afterward.
+      // See https://github.com/Polymer/docs/pull/836 for a discussion of this behavior.
+      window.setTimeout(function() {
+        var scrollTargetEl = document.querySelector(location.hash);
+        scrollTargetEl && exports.scrollTo(0, scrollTargetEl.offsetTop - siteBanner.offsetHeight);
+      }, 200);
     } else {
       exports.scrollTo(0, 0);
     }
@@ -183,12 +187,14 @@ function initPage(opt_inDoc) {
 function ajaxifySite() {
   document.addEventListener('polymer-ready', function(e) {
     docsMenu.ajaxify = true;
-    dropdownPanel.ajaxify = true;
+    if (dropdownPanel) {
+      dropdownPanel.ajaxify = true;
+    }
   });
 
   document.addEventListener('click', function(e) {
     // Allow users to open new tabs.
-    if (e.metaKey || e.ctrlKey) {
+    if (e.metaKey || e.ctrlKey || e.which == 2) {
       return;
     }
 
@@ -202,9 +208,9 @@ function ajaxifySite() {
       if (el.localName == 'a') {
         wasRelativeAnchorClick = !!el.hash;
         if (!el.getAttribute('href').match(/^(https?:|javascript:|\/\/)/) &&
-            (location.origin == el.origin) && 
-            !(el.hash && (el.pathname == location.pathname)) && 
-            (el.pathname != '/') && 
+            (location.origin == el.origin) &&
+            !(el.hash && (el.pathname == location.pathname)) &&
+            (el.pathname != '/') &&
             (el.pathname != '/index.html') &&
             (el.pathname.indexOf('/apps') != 0) &&
             (el.pathname.indexOf('/components') != 0) &&
@@ -255,7 +261,7 @@ document.addEventListener('polymer-ready', function(e) {
     sidebar.toggle();
   });
 
-  dropdownToggle.addEventListener('click', function(e) {
+  dropdownToggle && dropdownToggle.addEventListener('click', function(e) {
     dropdownPanel.openPanel();
     // dropdownPanel listens to clicks on the document and autocloses
     // so no need to add any more handlers
@@ -319,7 +325,7 @@ exports.tabChanged = function(tabContainer, tab) {
 }
 
 // send a separate event for a clickthrough inside a special container
-// (carousel, learn-tabs). 
+// (carousel, learn-tabs).
 exports.recordClickthrough = function(container, event) {
   for (var i=0; i < event.path.length; i++) {
     var el = event.path[i];
