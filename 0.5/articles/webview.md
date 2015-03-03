@@ -47,7 +47,7 @@ tags:
 {: .alert .alert-info }
 
 Many developers ask us if {{site.project_title}} can be used inside a WebView.
-The answer is, **of course**! Using {{site.project_title}} in a WebView is no different than creating a normal web app that runs inside a WebView. However, in some cases it's not immediately obvious how to structure an app or get things setup for WebView development. This guide walks you through starting a new Android WebView project and tweaking it to work with {{site.project_title}}. If you want to also target iOS, see the suggestions under [Writing one app across Web, Android 4.0+, and iOS](#oneapp).
+The answer is **of course**! Using {{site.project_title}} in a WebView is no different than creating a standalone web app that runs inside a WebView. However, in some cases it's not immediately obvious how to structure and app for WebView development. This guide walks you through starting a new Android WebView project and tweaking it to work with {{site.project_title}}. If you want to also target iOS, see the suggestions under [Writing one app across Web, Android 4.0+, and iOS](#oneapp).
 
 ## Getting started
 
@@ -60,7 +60,7 @@ Before you start, **develop a standalone web app first**. Leave out the fancy We
 
 Once sharp edges are ironed out, dive into WebView-fying and uploading it to Google Play.
 
-### The Android WebView starter kit
+### WebView starter kit (Android)
 
 <p layout horizontal center-justified>
   <a href="#">
@@ -89,13 +89,13 @@ then download the L packages (API 21):
 
 {{site.project_title}} does not support the legacy Android Browser, which means the default WebView in older versions of Android (< 4.4.3) will not work.
 
-If you need to support older versions of Android, try [Crosswalk](https://crosswalk-project.org). It's basically a tool that brings the new Chromium webview to Android 4.0+. One downside is that the entire Chromium runtime gets bundled with your application. According to the [Crosswalk FAQ](https://crosswalk-project.org/#documentation/about/faq), this means 24KB web app can balloon into 19.63MB after it's packaged. The tradeoff is something to consider.
+If you need to support older versions of Android, try [Crosswalk](https://crosswalk-project.org). Crosswalk is a tool that brings the new Chromium webview to Android 4.0+. One downside is that the entire Chromium runtime gets bundled with your application. According to the [Crosswalk FAQ](https://crosswalk-project.org/#documentation/about/faq), this means 24KB web app can balloon into 19.63MB after it's packaged. The tradeoff is something to consider.
 
 ## Recommended app structure
 
-The files that power your WebView should be entirely within the project's `src/main/assets` folder. Android reserves this directory for raw files that your app needs access to. It's perfect for static web files.
+The files that power your WebView should be entirely within the project's `src/main/assets` folder. Android reserves this directory for raw files that your app needs access to. Perfect for static web files!
 
-Inside of the `assets` folder, it's generally recommended to create a `www` folder to stash your web app. This folder is also where installed element dependences (e.g. `bower_components`) will go.
+Inside of the `assets` folder, it's recommended to create a `www` folder to stash your web app. This folder is also where installed element dependences (e.g. `bower_components`) can go.
 
 ### Using Bower to install elements
 
@@ -103,7 +103,7 @@ Inside of the `assets` folder, it's generally recommended to create a `www` fold
 [Installing elements](../docs/start/getting-the-code.html#installing-components).
 {: .alert .alert-success }
 
-Create a `bower.json` file in `src/main/assets/www` that lists your element dependencies. In this case, we'll just pull in all the paper and core elements:
+Create a `bower.json` file in `src/main/assets/www` that lists your element dependencies. As an example, lets pull in all the paper and core elements:
 
 In `src/main/assets/www`, create **bower.json**:
 
@@ -111,16 +111,16 @@ In `src/main/assets/www`, create **bower.json**:
       "name": "PolymerWebView",
       ...
       "dependencies": {
-        "core-elements": "Polymer/core-elements#~{{site.latest_version}}",
-        "paper-elements": "Polymer/paper-elements#~{{site.latest_version}}"
+        "core-elements": "Polymer/core-elements#^{{site.latest_version}}",
+        "paper-elements": "Polymer/paper-elements#^{{site.latest_version}}"
       }
     }
 
-Run `bower install` in the `www` directory to populate the `bower_components` folder.
+In the `www` directory, run `bower install`  to populate the `bower_components` folder.
 
 ### Using HTML Imports
 
-Create `src/main/assets/www/elements.html`, an [HTML Import](../platform/html-imports.html) that in turn, includes all of the element imports your app will use:
+Create `src/main/assets/www/elements.html`, an [HTML Import](../platform/html-imports.html) that includes all of the element imports your app will use:
 
     <link rel="import" href="bower_components/core-drawer-panel/core-drawer-panel.html">
     <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
@@ -129,7 +129,7 @@ Create `src/main/assets/www/elements.html`, an [HTML Import](../platform/html-im
 
 ### Main page setup
 
-Create your main page app as `src/main/assets/www/index.html` and use an HTML Import to load `elements.html`:
+Create a main page, `src/main/assets/www/index.html` and use an HTML Import to load `elements.html`:
 
     <!doctype html>
     <html>
@@ -145,7 +145,7 @@ Create your main page app as `src/main/assets/www/index.html` and use an HTML Im
     </body>
     </html>
 
-It's worth noting that webcomponents.js is not needed in WebViews powered by Chromium 36+. However, if you're creating an app for multiple platforms, it's still recommended to include the polyfills for portability.
+It's worth noting that webcomponents.js isn't required for the Chromium 36+ Android WebView. However, if you're creating an app for multiple platforms, it's recommended to include the polyfills for portability.
 
 When all is said and done, your final folder structure should look something like this:
 
@@ -153,9 +153,9 @@ When all is said and done, your final folder structure should look something lik
 
 ## Configuring app permissions
 
-Now that you have the Android L installed and app structure in place, it's time to set some app permissions and select the correct version of the SDK.
+Now that you have Android L installed and a folder structure in place, it's time to select the correct version of the SDK and tweak WebView permissions.
 
-In `AndroidManifest.xml`, set the minimum and target SDK versions to Android L (or an earlier version if you're relying on the polyfills or Crosswalk). If your app needs access remote resources (e.g. images, multimedia, JSON endpoints), also request the `android.permission.INTERNET` permission.
+In `AndroidManifest.xml`, set the minimum and target SDK versions to Android L (or an earlier version if you're relying on the polyfills or Crosswalk). If your app needs access to remote resources (e.g. images, multimedia, JSON endpoints), also request the `android.permission.INTERNET` permission.
 
 **AndroidManifest.xml**:
 
@@ -178,7 +178,7 @@ In `AndroidManifest.xml`, set the minimum and target SDK versions to Android L (
 
 Out of the box, the WebView disables some features that {{site.project_title}} needs. You can enable them by changing the WebView's `WebSettings`:
 
-- JavaScript!
+- Enable JavaScript.
 - Access to `file://` so HTML Imports can be loaded off `file://` URLs.
 - Local links/redirects act on the WebView (and do not open in the browser).
 
@@ -219,7 +219,7 @@ If you see the following runtime error in logcat, it's from HTML Imports not hav
 
 ## Loading the main page
 
-Congrats! Your app is built and chillaxing in `src/main/assets/www`. There are a couple of more finishing touches.
+There are a couple of more finishing touches to get the main page up and running.
 
 First, override `shouldOverrideUrlLoading()` so non-local links open in the browser rather than the WebView. In **MyAppWebViewClient.java**:
 
@@ -238,7 +238,7 @@ First, override `shouldOverrideUrlLoading()` so non-local links open in the brow
       }
     }
 
-Lastly, load index.html from the filesystem. In **MainActivity.java**:
+Lastly, load the main page from the filesystem. In **MainActivity.java**:
 
 <pre>
 public class MyActivity extends Activity {
@@ -285,9 +285,9 @@ public class MyActivity extends Activity {
 
 5. Set a mobile viewport! 
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1">
 
-6. To use [DevTools remote debugging](https://developer.chrome.com/devtools/docs/remote-debugging) on your WebView, enable it:
+6. For debugging, enable [DevTools remote debugging](https://developer.chrome.com/devtools/docs/remote-debugging) on your WebView:
 
         // Enable remote debugging via chrome://inspect
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -296,9 +296,9 @@ public class MyActivity extends Activity {
 
 ### Writing one app across Web, Android 4.0+, and iOS. {#oneapp}
 
-If you want to target both Android _and_ iOS, your best option is [Cordova](http://cordova.apache.org/). However, out of the box, Cordova won't get you the Chromium 36 WebView on older Android devices. 
+If you want to target both Android _and_ iOS, your best option is [Cordova](http://cordova.apache.org/). Note: out of the box Cordova won't get you the Chromium 36 WebView on older Android devices. 
 
-For maximum platform reach, try the [Chrome Apps for mobile](https://github.com/MobileChromeApps/mobile-chrome-apps) project. It uses Cordova and [Crosswalk](https://crosswalk-project.org) to bring your mobile web app to Web, Android 4.0+, and iOS. [Matt Gaunt](https://twitter.com/gauntface) also has a [nice Gulp worfklow](https://gauntface.com/blog/2014/07/16/building-mobile-cordova-apps-with-web-starter-kit) that you can integrate without much hassle.
+For maximum platform reach, try the [Chrome Apps for mobile](https://github.com/MobileChromeApps/mobile-chrome-apps) project. It uses Cordova + [Crosswalk](https://crosswalk-project.org) to deliver your mobile app to Web, Android 4.0+, and iOS. [Matt Gaunt](https://twitter.com/gauntface) also has a [nice Gulp worfklow](https://gauntface.com/blog/2014/07/16/building-mobile-cordova-apps-with-web-starter-kit) that you can integrate without much hassle.
 
 ## Additional resources
 
