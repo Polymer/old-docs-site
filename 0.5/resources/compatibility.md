@@ -16,10 +16,10 @@ native browser implementation is below.
   <tr><th></th><th>Chrome</th><th>Firefox</th><th>IE 10+</th><th>Safari 8+</th><th>Chrome (Android)</th><th>Safari (iOS 8.1)</th></tr>
 </thead>
 <tr>
-  <td class="feature-title"><a href="//www.html5rocks.com/en/tutorials/webcomponents/template/">Template</a></td>
+  <td class="feature-title"><a href="http://www.html5rocks.com/en/tutorials/webcomponents/template/">Template</a></td>
   <td><paper-checkbox checked></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
-  <td><paper-checkbox checked></paper-checkbox></td>
+  <td><paper-checkbox disabled></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
@@ -30,7 +30,7 @@ native browser implementation is below.
   <td>dev flag*</td>
   <td><paper-checkbox disabled></paper-checkbox></td>
   <td><paper-checkbox disabled></paper-checkbox></td>
-  <td><paper-checkbox disabled></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
   <td><paper-checkbox disabled></paper-checkbox></td>
 </tr>
 <tr>
@@ -71,7 +71,7 @@ In addition to the main web components APIs, Polymer uses other new platform fea
   <td><paper-checkbox disabled></paper-checkbox></td>
   <td><paper-checkbox disabled></paper-checkbox></td>
   <td><paper-checkbox disabled></paper-checkbox></td>
-  <td><paper-checkbox disabled></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
   <td><paper-checkbox disabled></paper-checkbox></td>
 </tr>
 <tr>
