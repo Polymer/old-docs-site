@@ -20,9 +20,16 @@ published: false
       // FOUC prevention
       setTimeout(function() {
         document.querySelector('component-docs').data = elementDoc;
-      }, 100);
+      }, 0);
     }
-    initDoc();
+    
+    document.addEventListener('polymer-ready', function(e) {
+      initDoc();
+    });
+
+    document.addEventListener('page-injected', function(e) {
+      initDoc();
+    });
 
   })();
 </script>
