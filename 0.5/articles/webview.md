@@ -63,16 +63,19 @@ Once sharp edges are ironed out, dive into WebView-fying and uploading it to Goo
 ### WebView starter kit (Android)
 
 <p layout horizontal center-justified>
-  <a href="#">
+  <a href="demos/webview/PolymerWebViewApp.zip">
     <paper-button id="download-button" raised><core-icon icon="file-download"></core-icon>Download the WebView Starter</paper-button>
   </a>
 </p>
+
+**Note** Only interested in the web app's code? [View it on Github](https://github.com/ebidel/polymer-gmail).
+{: .alert .alert-info }
 
 The WebView starter .zip provides an example Android Studio project to get you up and running. It contains a basic mobile web app that uses _some_ of {{site.project_title}}'s [core](../docs/elements/core-elements.html) and [material design](../docs/elements/material.html) [paper elements](../docs/elements/paper-elements.html). You should be able load it directly onto an device running Android L or the emulator to see it in action. More on minimum Android/SDK versions, later.
 
 ## Minimum Android and SDK versions
 
-To gain native browser support for all of the web component APIs (HTML Imports, Custom elements, `<template>`, Shadow DOM), you need Chrome 36+. That's why it's important to target **Android L (SDK version 21)**, where **Chrome 37.0.0.0** is the default WebView. Targeting pre-Android L means you'll be need {{site.project_title}}'s polyfills and won't see the awesome performance benefits of native browser support.
+To gain native browser support for all of the web component APIs (HTML Imports, Custom elements, `<template>`, Shadow DOM), you need Chrome 36+. That's why it's important to target **Android 5.0.1+ (SDK version 21)**, where **Chrome 37.0.0.0** is the default WebView. Targeting pre-Android L means you'll be need {{site.project_title}}'s polyfills and won't see the awesome performance benefits of native browser support.
 
 **Note** {{site.project_title}} does work under Android 4.4.3+, but it will use the polyfills. KitKat ships with a Chromium-based WebView, but it is version 33.0.0.0.
 {: .alert .alert-info }
@@ -81,7 +84,7 @@ To install/update Android SDK, run the SDK manager in Android Studio:
 
 <img src="images/webview/sdkmanager.png" style="width:500px">
 
-then download the L packages (API 21):
+then download the Android 5.0.1+ packages (API 21):
 
 <img src="images/webview/sdkinstall.png" style="width:500px">
 
