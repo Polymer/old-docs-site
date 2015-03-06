@@ -194,7 +194,7 @@ Chai supports all of the above assertion styles but we're going to use the first
 
 ## Tutorial
 
-In this tutorial, we're going to add an existing Polymer element, [`<core-selector>`](../docs/elements/core-elements.html#core-selector) to a fresh `<seed-element>` project as a feature. We're then going to write tests for it.
+In this tutorial, we're going to add an existing Polymer element, [`<core-selector>`](../docs/elements/core-selector.html) to a fresh `<seed-element>` project as a feature. We're then going to write tests for it.
 
 `core-selector` is an element that manages a list of elements that can be selected. It happens to build on the `core-selection` element we used in the last section. Go go composability!.
 

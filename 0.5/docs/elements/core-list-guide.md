@@ -8,14 +8,14 @@ subtitle: Guide
 
 <link rel="import" href="../../elements/side-by-side.html">
 
-<link rel="stylesheet" href="core-list.css">
+<link rel="stylesheet" href="core-list-guide.css">
 
 {% include toc.html %}
 
 ## Introduction
 
 {{site.project_title}}'s Core Elements collection contains
-<code><a href="core-elements.html#core-list">core-list</a></code>,
+<code><a href="core-list.html">core-list</a></code>,
 which displays a virtual, infinite list of homogeneous items.
 A `core-list` item can contain text, images, or other kinds of elements.
 In addition, an item can be composed of multiple elements.
@@ -130,16 +130,13 @@ You refer to values in the model using a key:
 
 Recall that just enough template elements are rendered to fill the viewport and that
 these elements are recycled when the user scrolls. This can cause issues with images.
-If a user is scrolling through the images very quickly, the recycled item shows a stale image
-while it waits for the new one to load. You can use <code><a href="core-elements.html#core-image">core-image</a></code> instead of `img` to fix this problem.
+If a user is scrolling through the images very quickly, the recycled item shows a stale image while it waits for the new one to load. You can use <code><a href="core-image.html">core-image</a></code> instead of `img` to fix this problem.
 
 Remember to install and include `core-image` in the `<head>` section as you did with `core-list`.
 
 <img src="/images/core-list/variable-height-images.png" height="690" width="382">
 
-This example uses a
-<code><a href="core-elements.html#core-header-panel">core-header-panel</a></code> to provide
-a header above the images.
+This example uses a <code><a href="core-header-panel.html">core-header-panel</a></code> to provide a header above the images.
 See [Using core-header-panel with core-list](#list-with-core-header-panel)
 for details.
 {: .alert .alert-info }
@@ -255,8 +252,8 @@ The user data in the model mirrors the elements in the template.
 ## Using core-header-panel with core-list {#list-with-core-header-panel}
 
 A common way to provide a header with a `core-list` is to use a
-<code><a href="core-elements.html#core-header-panel">core-header-panel</a></code>. The `core-header-panel` has a header section and a content section. You can use a
-<code><a href="core-elements.html#core-toolbar">core-toolbar</a></code> to implement the header section. Let’s look at an example.
+<code><a href="core-header-panel.html">core-header-panel</a></code>. The `core-header-panel` has a header section and a content section. You can use a
+<code><a href="core-toolbar.html">core-toolbar</a></code> to implement the header section. Let’s look at an example.
 
 Remember to install and import the two new elements in the header of your HTML code.
 
@@ -316,8 +313,8 @@ Use these links to find the source code for the samples used in this guide:
 For more information about the core elements used in this guide,
 check out the API docs:
 
-* <a href="core-elements.html#core-list">core-list</a>
-* <a href="core-elements.html#core-image">core-image</a>
-* <a href="core-elements.html#core-header-panel">core-header-panel</a>
-* <a href="core-elements.html#core-toolbar">core-toolbar</a>
+* <a href="core-list.html">core-list</a>
+* <a href="core-image.html">core-image</a>
+* <a href="core-header-panel.html">core-header-panel</a>
+* <a href="core-toolbar.html">core-toolbar</a>
 

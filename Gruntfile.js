@@ -108,12 +108,23 @@ module.exports = function(grunt) {
         limit: 5
       },
       target1: [
-        'vulcanize',
+        'vulcanize-elements',
         'jekyll:serve',
         'appengine:run:frontend',
         'compass',
         'watch'
       ]
+    },
+
+    doc_merge: {
+      default: {
+        options: {
+          prefix: ['core', 'paper'],
+          merge: true
+        },
+        src: '<%= polymerVersion %>/components',
+        dest: '_data/versions/<%= polymerDataVersion %>/elements'
+      }
     }
 
   });
@@ -132,8 +143,18 @@ module.exports = function(grunt) {
     });
   });
 
+  grunt.task.registerTask('doc-merge-all', 'Doc merge all element sets', function() {
+    POLYMER_VERSIONS.forEach(function(ver) {
+      grunt.config.set('polymerVersion', ver);
+      // Replace version 0.5 with 0_5 because the _data folder
+      // can't have directories with dots in their name
+      grunt.config.set('polymerDataVersion', ver.replace('.', '_'));
+      grunt.task.run('doc_merge');
+    });
+  });
+
   // Task to run vulcanize and build the jekyll site
-  grunt.registerTask('docs', ['vulcanize-elements', 'jekyll:build']);
+  grunt.registerTask('docs', ['doc-merge-all', 'vulcanize-elements', 'jekyll:build']);
 
   // Task just for running the GAE dev server.
   grunt.registerTask('serve', ['appengine:run:frontend']);

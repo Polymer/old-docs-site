@@ -193,7 +193,7 @@ If you have any problems, check your work against the files in the `step-3` fold
 -   [`index.html`](https://github.com/Polymer/polymer-tutorial/blob/master/step-3/index.html)
 
 **Explore:** Open up `post-service.html` to see how the component works. Internally, it uses the <code>
-<a href="../../elements/core-elements.html#core-ajax">&lt;core-ajax&gt;</a></code> element to make HTTP requests.
+<a href="../../elements/core-ajax.html">&lt;core-ajax&gt;</a></code> element to make HTTP requests.
 {: .alert .alert-info}
 
 <div layout horizontal justified class="stepnav">

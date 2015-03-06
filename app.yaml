@@ -98,6 +98,9 @@ handlers:
 - url: /(apps|docs|platform|resources|tools|articles)/.*
   script: main.app
 
+- url: /docs/elements/(core|paper)-elements.html
+  script: main.app
+
 # Map raw paths with trailing "/" to an index.html file.
 - url: /(.*)/$
   static_files: _site/\1/index.html

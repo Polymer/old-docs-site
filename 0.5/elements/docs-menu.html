@@ -86,19 +86,19 @@
         <core-item label="Using elements"><a href="/[[versionPrefix]]/docs/start/usingelements.html"></a></core-item>
         <core-item label="Using layout elements"><a href="/[[versionPrefix]]/docs/elements/layout-elements.html"></a></core-item>
         <core-item label="Using core icons"><a href="/[[versionPrefix]]/docs/elements/icons.html"></a></core-item>
-        <core-item label="Using core list"><a href="/[[versionPrefix]]/docs/elements/core-list.html"></a></core-item>
+        <core-item label="Using core list"><a href="/[[versionPrefix]]/docs/elements/core-list-guide.html"></a></core-item>
         <core-item label="Material design with Polymer"><a href="/[[versionPrefix]]/docs/elements/material.html"></a></core-item>
       </core-submenu>
       <core-submenu id="coreelements" label="Core elements" icon="hardware:keyboard-arrow-down">
         <template repeat="{{el in coreElementsList}}">
-          <core-item label="[[el.name]]"><a href="/{{versionPrefix}}/docs/elements/core-elements.html#[[el.name]]"
-              data-href="/{{versionPrefix}}/docs/elements/core-elements.html#[[el.name]]"></a></core-item>
+          <core-item label="[[el.name]]"><a href="/{{versionPrefix}}/docs/elements/[[el.name]].html"
+              data-href="/{{versionPrefix}}/docs/elements/[[el.name]].html"></a></core-item>
         </template>
       </core-submenu>
       <core-submenu id="paperelements" icon="hardware:keyboard-arrow-down" label="Paper elements">
         <template repeat="{{el in paperElementsList}}">
-          <core-item label="[[el.name]]"><a href="/{{versionPrefix}}/docs/elements/paper-elements.html#[[el.name]]"
-              data-href="/{{versionPrefix}}/docs/elements/paper-elements.html#[[el.name]]"></a></core-item>
+          <core-item label="[[el.name]]"><a href="/{{versionPrefix}}/docs/elements/[[el.name]].html"
+              data-href="/{{versionPrefix}}/docs/elements/[[el.name]].html"></a></core-item>
         </template>
       </core-submenu>
     </core-submenu>
