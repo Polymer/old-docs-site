@@ -12,24 +12,11 @@ published: false
 
 <script>
   (function() {
+    
     // JSON for each element will be rendered here.
     // Grab the element's JSON and hand it to the `component-docs` element
     // when the page boots up
-    function initDoc() {
-      var elementDoc = {{element | jsonify}};
-      // FOUC prevention
-      setTimeout(function() {
-        document.querySelector('component-docs').data = elementDoc;
-      }, 0);
-    }
-    
-    document.addEventListener('polymer-ready', function(e) {
-      initDoc();
-    });
-
-    document.addEventListener('page-injected', function(e) {
-      initDoc();
-    });
+    window.elementDoc = {{element | jsonify}};
 
   })();
 </script>
