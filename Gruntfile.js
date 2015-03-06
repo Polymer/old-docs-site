@@ -23,10 +23,9 @@ module.exports = function(grunt) {
     polymerVersion: null,
 
     jekyll: {
-      // options: {    // Universal options
-      //         bundleExec: true,
-      //         src : '<%= app %>'
-      //       },
+      options: {   // Universal options
+        bundleExec: true,
+      },
       build: {
       },
       serve: {
