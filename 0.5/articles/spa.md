@@ -5,12 +5,13 @@ shortname: Articles
 title: "Building single page apps using web components"
 subtitle: The Polymer approach to building single page applications
 
-article:
-  author: ebidel
-  published: 2014-10-17
-  updated: 2014-03-02
-  polymer_version: 0.4.2
-  description: The Polymer approach to building single page applications
+article: true
+description: The Polymer approach to building single page applications
+published: 2014-10-17
+#updated: 2014-10-17
+author: ebidel
+polymer_version: 0.4.2
+
 tags:
 - routing
 - spa
