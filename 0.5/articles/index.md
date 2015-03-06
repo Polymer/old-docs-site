@@ -8,7 +8,8 @@ subtitle: Core concepts of build apps on top of Polymer and web components
 add_permalinks: false
 ---
 
-{% assign sorted_pages = site.pages | sort: 'published' | reverse %}
+{% assign articles = (site.pages | where:"article",true %}
+{% assign sorted_pages = articles | sort: 'published' | reverse %}
 
 {% for p in sorted_pages %}
 
