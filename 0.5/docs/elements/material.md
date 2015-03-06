@@ -116,35 +116,35 @@ controls.
   </thead>
   <tr>
     <td>Button<br>
-    <a href="paper-elements.html#paper-button"><code>&lt;paper-button&gt;</code></a></td>
+    <a href="paper-button.html"><code>&lt;paper-button&gt;</code></a></td>
     <td><paper-button>play</paper-button></td>
     <td><a href="../../components/paper-elements/demo.html#paper-button"><core-icon icon="arrow-forward" size="16"></core-icon> More examples</a></td>
   </tr>
   <tr>
     <td>Checkbox<br>
-    <a href="paper-elements.html#paper-checkbox"><code>&lt;paper-checkbox&gt;</code></a></td>
+    <a href="paper-checkbox.html"><code>&lt;paper-checkbox&gt;</code></a></td>
     <td><paper-checkbox label="Enable"></paper-checkbox></td>
   </tr>
   <tr>
     <td>Toggle button<br>
-    <a href="paper-elements.html#paper-toggle-button"><code>&lt;paper-toggle-button&gt;</code></a></td>
+    <a href="paper-toggle-button.html"><code>&lt;paper-toggle-button&gt;</code></a></td>
     <td><paper-toggle-button label="play"></paper-toggle-button></td>
   </tr>
   <tr>
     <td>Icon button<br>
-    <a href="paper-elements.html#paper-icon-button"><code>&lt;paper-icon-button&gt;</code></a></td>
+    <a href="paper-icon-button.html"><code>&lt;paper-icon-button&gt;</code></a></td>
     <td><paper-icon-button icon="search"></paper-icon-button><paper-icon-button icon="favorite"></paper-icon-button></td>
     <td><a href="../../components/paper-elements/demo.html#paper-icon-button"><core-icon icon="arrow-forward" size="16"></core-icon> More examples</a></td>
   </tr>
   <tr>
     <td>Floating action button<br>
-    <a href="paper-elements.html#paper-fab"><code>&lt;paper-fab&gt;</code></a></td>
+    <a href="paper-fab.html"><code>&lt;paper-fab&gt;</code></a></td>
     <td><paper-fab icon="add"></paper-fab></td>
   </tr>
   <tr>
     <td>Radio buttons<br>
-    <a href="paper-elements.html#paper-radio-group"><code>&lt;paper-radio-group&gt;</code></a><br>
-    <a href="paper-elements.html#paper-radio-button"><code>&lt;paper-radio-button&gt;</code></a></td>
+    <a href="paper-radio-group.html"><code>&lt;paper-radio-group&gt;</code></a><br>
+    <a href="paper-radio-button.html"><code>&lt;paper-radio-button&gt;</code></a></td>
     <td>
       <paper-radio-group selected="0">
         <paper-radio-button label="Now"></paper-radio-button><br>
@@ -153,17 +153,17 @@ controls.
   </tr>
   <tr>
     <td>Slider<br>
-    <a href="paper-elements.html#paper-slider"><code>&lt;paper-slider&gt;</code></a></td>
+    <a href="paper-slider.html"><code>&lt;paper-slider&gt;</code></a></td>
     <td><paper-slider pin></paper-slider></td>
   </tr>
   <tr>
     <td>Progress bar<br>
-    <a href="paper-elements.html#paper-progress"><code>&lt;paper-progress&gt;</code></a></td>
+    <a href="paper-progress.html"><code>&lt;paper-progress&gt;</code></a></td>
     <td><paper-progress value="30"></paper-progress></td>
   </tr>
   <tr>
     <td>Input<br>
-    <a href="paper-elements.html#paper-input"><code>&lt;paper-input&gt;</code></a></td>
+    <a href="paper-input.html"><code>&lt;paper-input&gt;</code></a></td>
     <td><paper-input floatingLabel label="First name"></paper-input></td>
     <td><a href="../../components/paper-elements/demo.html#paper-input"><core-icon icon="arrow-forward" size="16"></core-icon> More examples</a>
     </td>
@@ -428,7 +428,7 @@ demonstrates a number of transitions in context.
 
 ## Scrolling techniques
 
-The [`<core-scroll-header-panel>`](core-elements.html#core-scroll-header-panel)
+The [`<core-scroll-header-panel>`](core-scroll-header-panel.html)
 element supports a number of scrolling effects described in the material
 design spec, including condensing and expanding the toolbar as the user
 scrolls and hiding or showing the toolbar.

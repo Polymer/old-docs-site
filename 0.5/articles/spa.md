@@ -350,7 +350,7 @@ If `<flatiron-director>` is not your cup of tea, check out [`<app-router>`](http
 
 Keyboard support is not only important for [accessibility](/articles/accessible-web-components.html) but it'll also make your SPA feel...more appy!
 
-[`<core-a11y-keys>`](../docs/elements/core-elements.html#core-a11y-keys) is a drop-in component for normalizing browser keyboard events and can be used to add keyboard support to your app. Here's an example:
+[`<core-a11y-keys>`](../docs/elements/core-a11y-keys.html) is a drop-in component for normalizing browser keyboard events and can be used to add keyboard support to your app. Here's an example:
 
 {%raw%}
     <core-a11y-keys target="{{parentElement}}"

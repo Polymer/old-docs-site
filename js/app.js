@@ -166,6 +166,8 @@ function injectPage(url, opt_addToHistory) {
     if (sidebar.mobile) {
       hideSidebar();
     }
+
+    document.dispatchEvent(new Event('page-injected'));
   };
 
   xhr.send();
@@ -243,6 +245,21 @@ function ajaxifySite() {
 
 }
 
+// Every element doc page has a json string containing the definition
+// for the elemnt itself. This string needs to be handed to the component-docs
+// element to render. See 0.5/docs/elements/element-template.md for page template
+function initElementDoc() {
+  if (window.location.href.indexOf('docs/elements') !== -1) {
+    // Hacky FOUC control
+    setTimeout(function() {
+      var node = document.querySelector('component-docs');
+      if (node) {
+        node.data = window.elementDoc;
+      }
+    }, 0);
+  }
+}
+
 document.addEventListener('polymer-ready', function(e) {
   // TODO(ericbidelman): Hacky solution to get anchors scrolled to correct location
   // in page. Layout of page happens later than the browser wants to scroll.
@@ -266,6 +283,16 @@ document.addEventListener('polymer-ready', function(e) {
     // dropdownPanel listens to clicks on the document and autocloses
     // so no need to add any more handlers
   });
+
+  // Kickoff element doc pages
+  initElementDoc();
+
+});
+
+document.addEventListener('page-injected', function(e) {
+  
+  // Kickoff element doc pages
+  initElementDoc();
 
 });
 
