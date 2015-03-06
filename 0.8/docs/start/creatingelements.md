@@ -139,7 +139,35 @@ When you're creating a new element, you'll often need to expose a [public API](/
 To define a public API, include a `<script>` tag that calls the `{{site.project_title}}(...)` method.  
 The `{{site.project_title}}(...)` constructor is a convenience wrapper for [`document.registerElement`](/platform/custom-elements.html#documentregister), but also endows the element with special features like data binding and event mapping. The {{site.project_title}} constructor takes as an argument an object that defines your element's prototype.
 
-{% include samples/0.8/proto-element.html %}
+<link rel="import" href="samples/proto-element/proto-element.html">
+
+<demo-tabs selected="0" demoSrc="components/proto-element/manifest.json">
+  <demo-tab heading="proto-element.html">
+{% highlight html %}
+<link rel="import"
+      href="../bower_components/polymer/polymer.html">
+
+{% include_external samples/proto-element/proto-element.html %}
+{% endhighlight %}
+  </demo-tab>
+  <demo-tab heading="index.html">
+{% highlight html %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <link rel="import" href="elements/proto-element.html">
+  </head>
+  <body>
+    <proto-element></proto-element>
+  </body>
+</html>
+{% endhighlight %}
+  </demo-tab>
+  <div class="result">
+    <proto-element></proto-element>
+  </div>
+</demo-tabs>
 
 ### Adding lifecycle methods
 
@@ -148,7 +176,7 @@ The `{{site.project_title}}(...)` constructor is a convenience wrapper for [`doc
 When a custom element has been registered it calls its `created()` callback (if one has been defined). When {{site.project_title}} finishes its initialization, the `ready()` method is called.
 The `ready` callback is a great place to do constructor-like initialization work.
 
-{% include samples/0.8/ready-element.html %}
+<!--  include samples/0.8/ready-element.html -->
 
 Learn more about all of the [lifecycle callbacks](/docs/polymer/polymer.html#lifecyclemethods).
 
@@ -156,7 +184,35 @@ Learn more about all of the [lifecycle callbacks](/docs/polymer/polymer.html#lif
 
 Data binding is a great way to quickly propagate changes in your element and reduce boilerplate code. You can bind properties in your component using the "double-mustache" syntax (`{%raw%}{{}}{%endraw%}`). The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced between the brackets.
 
-{% include samples/name-tag.html %}
+<link rel="import" href="components/name-tag/name-tag.html">
+
+<demo-tabs selected="0" demoSrc="components/name-tag/manifest.json">
+  <demo-tab heading="name-tag.html">
+{% highlight html %}
+<link rel="import"
+      href="../bower_components/polymer/polymer.html">
+
+{% include_external /docs/start/components/name-tag/name-tag.html version_prefix:0.8 %}
+{% endhighlight %}
+  </demo-tab>
+  <demo-tab heading="index.html">
+{% highlight html %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <link rel="import" href="elements/name-tag.html">
+  </head>
+  <body>
+    <name-tag></name-tag>
+  </body>
+</html>
+{% endhighlight %}
+  </demo-tab>
+  <div class="result">
+    <name-tag></name-tag>
+  </div>
+</demo-tabs>
 
 Note: {{site.project_title}}'s data-binding is powered under the covers by a sub-library called [TemplateBinding](/docs/polymer/template.html), designed for other libraries to build on top of.
 {: .alert .alert-info}
@@ -165,13 +221,69 @@ Note: {{site.project_title}}'s data-binding is powered under the covers by a sub
 
 You can use binding expressions in most HTML markup, except for tag names themselves. In the following example, we create a new property on our component named `color` whose value is bound to the value of the `color` style applied to the custom element. Bindings ensure that any time a property like `color` is changed, the new value will be propagated to all binding points.
 
-{% include samples/fav-color.html %}
+<link rel="import" href="samples/fav-color/fav-color.html">
+
+<demo-tabs selected="0" demoSrc="samples/fav-color/manifest.json">
+  <demo-tab heading="fav-color.html">
+{% highlight html %}
+<link rel="import"
+      href="../bower_components/polymer/polymer.html">
+
+{% include_external /docs/start/samples/fav-color/fav-color.html version_prefix:0.8 %}
+{% endhighlight %}
+  </demo-tab>
+  <demo-tab heading="index.html">
+{% highlight html %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <link rel="import" href="elements/fav-color.html">
+  </head>
+  <body>
+    <fav-color></fav-color>
+  </body>
+</html>
+{% endhighlight %}
+  </demo-tab>
+  <div class="result">
+    <fav-color></fav-color>
+  </div>
+</demo-tabs>
 
 #### Binding between components and built-in elements {#bindingtobuiltin}
 
 You can use bindings with built-in elements just like you would with Polymer elements. This is a great way to leverage existing APIs to build complex components. The following example demonstrates binding component properties to attributes of native input elements.
 
-{% include samples/age-slider.html %}
+<link rel="import" href="samples/age-slider/age-slider.html">
+
+<demo-tabs selected="0" demoSrc="samples/age-slider/manifest.json">
+  <demo-tab heading="age-slider.html">
+{% highlight html %}
+<link rel="import"
+      href="../bower_components/polymer/polymer.html">
+
+{% include_external /docs/start/samples/age-slider/age-slider.html version_prefix:0.8 %}
+{% endhighlight %}
+  </demo-tab>
+  <demo-tab heading="index.html">
+{% highlight html %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <link rel="import" href="elements/age-slider.html">
+  </head>
+  <body>
+    <age-slider></age-slider>
+  </body>
+</html>
+{% endhighlight %}
+  </demo-tab>
+  <div class="result">
+    <age-slider></age-slider>
+  </div>
+</demo-tabs>
 
 **Note:** Giving `age` an initial value of `25` gives {{site.project_title}}
 a hint that this property is an integer.
@@ -190,7 +302,35 @@ _Publish_ a property by listing it in the `attributes` attribute in your `<polym
 The following example defines two data-bound properties on the element, `owner` and `color`,
 and gives them default values:
 
-{% include samples/color-picker.html %}
+<link rel="import" href="samples/color-picker/color-picker.html">
+
+<demo-tabs selected="0" demoSrc="samples/color-picker/manifest.json">
+  <demo-tab heading="color-picker.html">
+{% highlight html %}
+<link rel="import"
+      href="../bower_components/polymer/polymer.html">
+
+{% include_external /docs/start/samples/color-picker/color-picker.html version_prefix:0.8 %}
+{% endhighlight %}
+  </demo-tab>
+  <demo-tab heading="index.html">
+{% highlight html %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="bower_components/webcomponents.min.js"></script>
+    <link rel="import" href="elements/color-picker.html">
+  </head>
+  <body>
+    <color-picker owner="Scott" color="blue"></color-picker>
+  </body>
+</html>
+{% endhighlight %}
+  </demo-tab>
+  <div class="result">
+    <color-picker owner="Scott" color="blue"></color-picker>
+  </div>
+</demo-tabs>
 
 In this example the user overrides the defaults for `owner` and `color`
 by configuring the element with initial attribute values (e.g. `<color-picker owner="Scott" color="blue">`).
@@ -204,7 +344,7 @@ by configuring the element with initial attribute values (e.g. `<color-picker ow
 
 The use of the `id` attribute has traditionally been discouraged as an anti-pattern because the document requires element IDs to be unique. Shadow DOM, on the other hand, is a self-contained document-like subtree; IDs in that subtree do not interact with IDs in other trees. This means the use of IDs in Shadow DOM is not only permissible, it's actually encouraged. Each {{site.project_title}} element generates a map of IDs to node references in the element's template. This map is accessible as `$` on the element and can be used to quickly select the node you wish to work with.
 
-{% include samples/editable-color-picker.html %}
+<!-- include samples/editable-color-picker.html -->
 
 [Learn more about automatic node finding](/docs/polymer/polymer.html#automatic-node-finding)
 
