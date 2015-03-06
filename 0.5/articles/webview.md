@@ -47,7 +47,7 @@ tags:
 {: .alert .alert-info }
 
 Many developers ask us if {{site.project_title}} can be used inside a WebView.
-The answer is **of course**! Using {{site.project_title}} in a WebView is no different than creating a standalone web app that runs inside a WebView. However, in some cases it's not immediately obvious how to structure and app for WebView development. This guide walks you through starting a new Android WebView project and tweaking it to work with {{site.project_title}}. If you want to also target iOS, see the suggestions under [Writing one app across Web, Android 4.0+, and iOS](#oneapp).
+The answer is **of course**! Using {{site.project_title}} in a WebView is no different than creating a standalone web app that runs inside a WebView. However, in some cases it's not immediately obvious how to structure an app for WebView development. This guide walks you through starting a new Android WebView project and tweaking it to work with {{site.project_title}}. If you want to also target iOS, see the suggestions under [Writing one app across Web, Android 4.0+, and iOS](#oneapp).
 
 ## Getting started
 
@@ -58,7 +58,7 @@ Before you start, **develop a standalone web app first**. Leave out the fancy We
 - It's much faster to iterate using your normal tools and workflow. 
 - The DevTools [remote USB debugging](https://developer.chrome.com/devtools/docs/remote-debugging) is second to none.
 
-Once sharp edges are ironed out, dive into WebView-fying and uploading it to Google Play.
+Once you've got the wrinkles ironed out, dive into WebView-ifying and uploading it to Google Play.
 
 ### WebView starter kit (Android)
 
@@ -148,7 +148,7 @@ Create a main page, `src/main/assets/www/index.html` and use an HTML Import to l
     </body>
     </html>
 
-It's worth noting that webcomponents.js isn't required for the Chromium 36+ Android WebView. However, if you're creating an app for multiple platforms, it's recommended to include the polyfills for portability.
+It's worth noting that `webcomponents.js` isn't required for the Chromium 36+ Android WebView. However, if you're creating an app for multiple platforms, it's recommended to include the polyfills for portability.
 
 When all is said and done, your final folder structure should look something like this:
 
@@ -282,7 +282,7 @@ public class MyActivity extends Activity {
 
 2. Use [Vulcanize](concatenating-web-components.html) to crush your HTML Imports into a single import. Doing so can reduce page load time. I recommend running Vulcanize with the `--csp --inline --strip` flags.
 
-3. Only load the webcomponents.js polyfills if you're targeting releases prior to Android L, *and* you're not using Crosswalk.
+3. Only load the `webcomponents.js` polyfills if you're targeting releases prior to Android L, *and* you're not using Crosswalk.
 
 4. Use `on-tap` event instead of `on-click` handlers when capturing user interactions. Click handlers introduce 300ms delay to user interactions. `on-tap` uses [polymer-gestures](../docs/polymer/touch.html) touch library and circumvents the delay.
 
