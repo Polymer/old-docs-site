@@ -7,7 +7,7 @@ subtitle: How to setup Polymer in an Android WebView app
 
 article: true
 #draft: true
-description: How to building a mobile Polymer app that runs in a WebView.
+description: How to build a mobile Polymer app that runs in a WebView.
 published: 2015-03-04
 #updated: 2014-10-20
 author: ebidel
