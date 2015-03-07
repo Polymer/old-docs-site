@@ -95,7 +95,7 @@ handlers:
 
 # No version in URL goes through redirect to latest version.
 # Also redirect old apps and tools stuff.
-- url: /(apps|docs|platform|resources|tools)/.*
+- url: /(apps|docs|platform|resources|tools|articles)/.*
   script: main.app
 
 - url: /docs/elements/(core|paper)-elements.html

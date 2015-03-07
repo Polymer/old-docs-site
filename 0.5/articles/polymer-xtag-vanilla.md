@@ -5,12 +5,13 @@ shortname: Articles
 title: "Custom Element Interoperability"
 subtitle: Using Polymer, X-Tag, and Vanilla Custom Elements
 
-article:
-  author: robdodson
-  published: 2014-02-28
-  #updated: 2013-12-06
-  polymer_version: 0.2.0
-  description: Get started using Polymer with Mozilla X-Tag and vanilla custom elements.
+article: true
+author: robdodson
+published: 2014-02-28
+#updated: 2013-12-06
+polymer_version: 0.2.0
+description: Get started using Polymer with Mozilla X-Tag and vanilla custom elements.
+
 tags:
 - custom elements
 - html imports

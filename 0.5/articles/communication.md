@@ -7,12 +7,13 @@ subtitle: Common techniques for sharing information between custom elements
 
 #draft: true
 
-article:
-  author: ebidel
-  published: 2013-08-12
-  updated: 2014-06-29
-  polymer_version: 0.0.20130808
-  description: Common techniques for sharing information between custom elements
+article: true
+author: ebidel
+published: 2013-08-12
+updated: 2014-06-29
+polymer_version: 0.0.20130808
+description: Common techniques for sharing information between custom elements
+
 tags:
 - signaling
 - messaging
