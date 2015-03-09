@@ -7,7 +7,7 @@
     {% assign location = element.location | split: '/' %}
     <a href="https://github.com/Polymer/{{location[1]}}/blob/master/{{location[2]}}">Edit on GitHub</a>
   {% else %}
-    <a href="https://github.com/Polymer/docs/edit/master/0.5/{{page.path}}">Edit on GitHub</a>
+    <a href="https://github.com/Polymer/docs/edit/master/{{page.path}}">Edit on GitHub</a>
   {% endif %}
 </span>
 <div><!-- intentionally blank --></div>
