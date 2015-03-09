@@ -96,6 +96,6 @@ In addition to the main web components APIs, Polymer uses other new platform fea
 
 ## Polyfill browser support
 
-<p>Polymer uses the <a href="https://github.com/WebComponents/webcomponentsjs">webcomponents.js polfyills</a> that work in the latest versions of evergreen browsers. See the <a href="https://github.com/WebComponents/webcomponentsjs#browser-support">compatibility maxtrix</a> for more details.</p>
+<p>Polymer uses the <a href="https://github.com/WebComponents/webcomponentsjs">webcomponents.js polyfills</a> that work in the latest versions of evergreen browsers. See the <a href="https://github.com/WebComponents/webcomponentsjs#browser-support">compatibility maxtrix</a> for more details.</p>
 
 <!-- <iframe src="https://docs.google.com/spreadsheet/pub?key=0Anye-JMjUkZZdDdoblh6dTlwcWRLQkhKbTVzdHJtcXc&single=true&gid=2&output=html&range=A1:Q43" seamless style="border:none;width:100%;height:830px;"></iframe> -->
