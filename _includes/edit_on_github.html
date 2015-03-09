@@ -1,13 +1,15 @@
 <span class="edit-on-github">
-  {% assign element = site.data.elements[page.element] %}
+  {% capture version %}{% polymer_version_dir %}{% endcapture %}
+  {% assign dir = version | replace:'.','_' %}
+  {% assign element = site.data.versions[dir].elements[page.element] %}
 
   {% if element %}
     <!-- example location from _data/elements/core-submenu.json -->
     <!-- components/core-menu/core-submenu.html -->
     {% assign location = element.location | split: '/' %}
-    <a href="https://github.com/Polymer/{{location[1]}}/blob/master/{{location[2]}}">Edit on GitHub</a>
+    <a href="https://github.com/Polymer/{{location[2]}}/blob/master/{{location[3]}}">Edit on GitHub</a>
   {% else %}
-    <a href="https://github.com/Polymer/docs/edit/master/0.5/{{page.path}}">Edit on GitHub</a>
+    <a href="https://github.com/Polymer/docs/edit/master/{{page.path}}">Edit on GitHub</a>
   {% endif %}
 </span>
 <div><!-- intentionally blank --></div>
