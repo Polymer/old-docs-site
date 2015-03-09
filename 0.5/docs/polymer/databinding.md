@@ -119,7 +119,7 @@ What's going on in this template?
 *  The expressions {%raw%}`{{s.what}}`{%endraw%} and {%raw%}`{{s.who}}`{%endraw%} create
    data bindings to objects in the `salutations` array.
 
-The values inside the {%raw%}`{{`&nbsp;`}}`{%endraw%} are <em>{{site.project_title}} expressions</em>. In the examples in this section, the expressions are either  JavaScript objects (like `salutations`) or paths (like `salutations.who`). (Expressions can also include literal values and some operators --
+The values inside the {%raw%}`{{`&nbsp;`}}`{%endraw%} are <em>{{site.project_title}} expressions</em>. In the examples in this section, the expressions are either  JavaScript objects (like `salutations`) or paths (like `s.who`). (Expressions can also include literal values and some operators --
 see [Expressions](#expressions) for details.)
 
 When you create a `<greeting-tag>` element, it initializes the `salutations` array:
