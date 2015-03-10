@@ -52,17 +52,17 @@ module.exports = function(grunt) {
             ]
           }
         },
-        files: {
-          '<%= polymerVersion %>/elements/common_elements.vulcanized.html': '<%= polymerVersion %>/elements/common_elements.html',
-          '<%= polymerVersion %>/elements/homepage_elements.vulcanized.html': '<%= polymerVersion %>/elements/homepage_elements.html',
-        }
+        // files: {
+        //   '<%= polymerVersion %>/elements/common_elements.vulcanized.html': '<%= polymerVersion %>/elements/common_elements.html',
+        //   '<%= polymerVersion %>/elements/homepage_elements.vulcanized.html': '<%= polymerVersion %>/elements/homepage_elements.html',
+        // }
       },
       samples: {
         files: {
-          '<%= polymerVersion %>/samples/layout-elements/drawer-app.vulcanized.html': '<%= polymerVersion %>/samples/layout-elements/drawer-app.html',
-          '<%= polymerVersion %>/samples/layout-elements/header-app.vulcanized.html': '<%= polymerVersion %>/samples/layout-elements/header-app.html',
-          '<%= polymerVersion %>/samples/layout-elements/scaffold-app.vulcanized.html': '<%= polymerVersion %>/samples/layout-elements/scaffold-app.html',
-          '<%= polymerVersion %>/samples/layout-elements/toolbar-sample.vulcanized.html': '<%= polymerVersion %>/samples/layout-elements/toolbar-sample.html'
+          '0.5/samples/layout-elements/drawer-app.vulcanized.html': '0.5/samples/layout-elements/drawer-app.html',
+          '0.5/samples/layout-elements/header-app.vulcanized.html': '0.5/samples/layout-elements/header-app.html',
+          '0.5/samples/layout-elements/scaffold-app.vulcanized.html': '0.5/samples/layout-elements/scaffold-app.html',
+          '0.5/samples/layout-elements/toolbar-sample.vulcanized.html': '0.5/samples/layout-elements/toolbar-sample.html'
         }
       }
     },
@@ -137,10 +137,20 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['concurrent']);
 
   grunt.task.registerTask('vulcanize-elements', 'Vulcanizes site elements', function() {
+
+    var vulcanize = grunt.config.get('vulcanize') || {};
+
+    vulcanize.elements.files = vulcanize.elements.files || {};
+
+    // Dynamic add vulcanize rules for each polymer version.
     POLYMER_VERSIONS.forEach(function(ver) {
-      grunt.config.set('polymerVersion', ver);
-      grunt.task.run('vulcanize');
+      var files = vulcanize.elements.files;
+      files[ver + '/elements/common_elements.vulcanized.html'] = ver + '/elements/common_elements.html';
+      files[ver + '/elements/homepage_elements.vulcanized.html'] = ver + '/elements/homepage_elements.html';
     });
+
+    grunt.config.set('vulcanize', vulcanize);
+    grunt.task.run('vulcanize');
   });
 
   grunt.task.registerTask('doc-merge-all', 'Doc merge all element sets', function() {
