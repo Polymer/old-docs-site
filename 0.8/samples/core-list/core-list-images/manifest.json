@@ -1,0 +1,7 @@
+{
+  "name": "Core list with images",
+  "description": "Core list with variable-height images using core-image.",
+  "files": [
+    "index.html"
+  ]
+}
