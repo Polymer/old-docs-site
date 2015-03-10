@@ -117,13 +117,13 @@ module.exports = function(grunt) {
     },
 
     doc_merge: {
-      default: {
+      '0_5': {
         options: {
           prefix: ['core', 'paper'],
           merge: true
         },
-        src: '<%= polymerVersion %>/components',
-        dest: '_data/versions/<%= polymerDataVersion %>/elements'
+        src: '0.5/components',
+        dest: '_data/versions/0_5/elements'
       }
     }
 
@@ -139,7 +139,6 @@ module.exports = function(grunt) {
   grunt.task.registerTask('vulcanize-elements', 'Vulcanizes site elements', function() {
 
     var vulcanize = grunt.config.get('vulcanize') || {};
-
     vulcanize.elements.files = vulcanize.elements.files || {};
 
     // Dynamic add vulcanize rules for each polymer version.
@@ -154,13 +153,24 @@ module.exports = function(grunt) {
   });
 
   grunt.task.registerTask('doc-merge-all', 'Doc merge all element sets', function() {
-    POLYMER_VERSIONS.forEach(function(ver) {
-      grunt.config.set('polymerVersion', ver);
+
+    var docMerge = grunt.config.get('doc_merge') || {};
+
+    // Exclude 0.5 because it's hardcoded in task.
+    POLYMER_VERSIONS.slice(1).forEach(function(ver) {
       // Replace version 0.5 with 0_5 because the _data folder
       // can't have directories with dots in their name
-      grunt.config.set('polymerDataVersion', ver.replace('.', '_'));
-      grunt.task.run('doc_merge');
+      var verUnderscore = ver.replace('.', '_');
+
+      docMerge[verUnderscore] = {
+        src: ver + '/components',
+        dest: '_data/versions/' + verUnderscore + '/elements'
+      };
+      docMerge[verUnderscore].options = docMerge['0_5'].options;
     });
+
+    grunt.config.set('doc_merge', docMerge);
+    grunt.task.run('doc_merge');
   });
 
   // Task to run vulcanize and build the jekyll site
