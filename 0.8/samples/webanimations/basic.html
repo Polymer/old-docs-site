@@ -1,0 +1,19 @@
+<button onclick="run()">Play/Pause</button>
+<div class="pulse" style="width:150px;background:rgba(255,0,0,0.5);">Hello world!</div>
+
+<script>
+  var player = null;
+  function run() {
+    if (!player) {
+      var elem = document.querySelector('.pulse');
+      player = document.timeline.play(new Animation(elem, {
+        opacity: ["0.5", "1.0"], 
+        transform: ["scale(0.5)", "scale(1)"]
+      }, {
+        direction: "alternate", duration: 0.5, iterationCount: Infinity
+      }));
+    } else {
+      player.paused = !player.paused;
+    }
+  }
+</script>

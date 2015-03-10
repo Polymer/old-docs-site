@@ -1,0 +1,70 @@
+<!--
+    @license
+    Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+    Code distributed by Google as part of the polymer project is also
+    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/core-selector/core-selector.html">
+
+<polymer-element name="feature-carousel" attributes="interval">
+                 <!-- on-mouseenter="{{stopCycler}}" on-mouseleave="{{startCycler}}"> -->
+  <template>
+    <link rel="stylesheet" href="../../css/elements/feature-carousel.css">
+    <core-selector selected="{{selected}}">
+      <content id="content" select="*"></content>
+    </core-selector>
+    <div id="paginator" horizontal layout center-justified>
+      <template repeat="{{item, i in panels}}">
+        <span class="circle {{ {active: i == selected} | tokenList }}" on-tap="{{selectPanel}}"></span>
+      </template>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      interval: null, // num milliseconds to cycle panels.
+      selected: 0,
+      domReady: function() {
+        // TODO: use onMutation to watch for children updates.
+        this.panels = Array.prototype.slice.call(
+            this.$.content.getDistributedNodes());
+
+        this.startCycler();
+      },
+      next: function(opt_Index, opt_backwards) {
+        var backwards = opt_backwards == true;
+
+        // If index is given, select that panel. Otherwise, select the next.
+        if (opt_Index != undefined) {
+          this.selected = opt_Index;
+        } else {
+          this.selected += (backwards ? -1 : 1);
+          this.selected %= this.panels.length;
+          if (this.selected < 0) {
+            this.selected = this.panels.length - 1;
+          }
+        }
+      },
+      selectPanel: function(e, detail, sender) {
+        this.stopCycler();
+        this.next(e.target.templateInstance.model.i);
+        this.startCycler();
+      },
+      stopCycler: function(e, detail, sender) {
+        if (this.intervalId) {
+          window.clearInterval(this.intervalId);
+        }
+      },
+      startCycler: function(e, detail, sender) {
+        // Start cycler timer if we're given an interval.
+        if (this.interval != null) {
+          this.intervalId = window.setInterval(
+              this.next.bind(this), this.interval);
+        }
+      }
+    });
+  </script>
+</polymer-element>
