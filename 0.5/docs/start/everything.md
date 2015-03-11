@@ -63,12 +63,16 @@ built-in elements and other custom elements.
 Now that you've got the basic concepts of {{site.project_title}}, it's time to
 start digging in a bit more. Continue on to:
 
+<div>
 <a href="../../platform/custom-elements.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>About custom elements</paper-button>
 </a>
+</div>
 
 Or jump straight to:
 
+<div>
 <a href="../polymer/polymer.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>API developer guide</paper-button>
 </a>
+</div>
