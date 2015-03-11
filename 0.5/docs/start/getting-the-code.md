@@ -137,9 +137,11 @@ Now that you've installed {{site.project_title}} it's time to learn the core
 concepts. In the next section we'll get you up and running on creating elements
 using {{site.project_title}}. Continue on to:
 
+<p>
 <a href="creatingelements.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>Polymer in 10 minutes</paper-button>
 </a>
+</p>
 
 If you'd rather skip ahead, check out the
 [tutorial](tutorial/intro.html), or skip to the
