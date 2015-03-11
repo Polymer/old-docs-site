@@ -5,11 +5,12 @@ shortname: Articles
 title: "Unit Testing Polymer Elements"
 subtitle: Authoring Unit Tests for your elements
 
-article:
-  author: addyosmani
-  published: 2014-11-06
-  polymer_version: 0.5.0
-  description: Authoring Unit Tests for your elements
+article: true
+author: addyosmani
+published: 2014-11-06
+polymer_version: 0.5.0
+description: Authoring Unit Tests for your elements
+
 tags:
 - testing
 - tests
