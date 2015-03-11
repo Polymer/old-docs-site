@@ -107,7 +107,6 @@ function injectPage(url, opt_addToHistory) {
     // Update app-bar links.
     var docAppBar = doc.querySelector('app-bar');
     if (docAppBar) {
-      appBar.badge = docAppBar.getAttribute('badge');
       appBar.innerHTML = docAppBar.innerHTML;
     } else {
       // We're not on a doc page (e.g. demo page or something else). Just redirect.
@@ -291,7 +290,7 @@ document.addEventListener('polymer-ready', function(e) {
 });
 
 document.addEventListener('page-injected', function(e) {
-
+  
   // Kickoff element doc pages
   initElementDoc();
 

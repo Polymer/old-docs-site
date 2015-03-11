@@ -37,10 +37,6 @@ section {
   color: white;
 }
 
-.main-light-purple {
-  background-color: $elements-color;
-}
-
 section .bar {
   @include justify-content(flex-end);
   @include align-items(center);
@@ -183,24 +179,6 @@ site-banner .logo {
     summary {
       @include flex(1 1 auto);
     }
-  }
-}
-
-#release08 {
-  color: white;
-  border-bottom: none;
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .panel {
-    padding: 25px 16px;
-  }
-
-  core-icon {
-    margin-right: 10px;
   }
 }
 
