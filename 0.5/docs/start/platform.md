@@ -95,8 +95,8 @@ like to learn about the additional features {{site.project_title}} adds, check o
 
 Or continue on to:
 
-<div>
+<p>
 <a href="../docs/polymer/polymer.html">
   <paper-button raised><core-icon icon="arrow-forward" ></core-icon>API developer guide</paper-button>
 </a>
-</div>
+</p>
