@@ -23,10 +23,5 @@ project_title: Polymer
 project_status: 'Dev preview'
 latest_version: 0.5.5
 default_version: 0.5 # default version the docs should serve
-
-versions:
-  '0.5': 'dev preview'
-  '0.8': 'alpha'
-
 add_permalinks: true # adds permalinks to heading tags.
 load_disqus: true
