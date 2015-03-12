@@ -350,7 +350,7 @@ and gives them default values:
 In this example the user overrides the defaults for `owner` and `color`
 by configuring the element with initial attribute values (e.g. `<color-picker owner="Scott" color="blue">`).
 
-**Note**: When binding  a property that takes a type other than String, it's important to [hint a property's type](..//polymer/polymer.html#attrhinting). {{site.project_title}} relies on this information to correctly serialize and de-serialize values.
+**Note**: When binding  a property that takes a type other than String, it's important to [hint a property's type](../polymer/polymer.html#attrhinting). {{site.project_title}} relies on this information to correctly serialize and de-serialize values.
 {: .alert .alert-success }
 
 [Learn more about published properties](../polymer/polymer.html#published-properties).
