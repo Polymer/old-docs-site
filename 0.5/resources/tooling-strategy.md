@@ -7,9 +7,6 @@ title: Tools & Testing
 
 {% include toc.html %}
 
-## Build status
-
-If something seems terribly wrong, check out {{site.project_title}}'s [build status page](/build/).
 
 ## Vulcanize - element build tool
 
@@ -17,9 +14,9 @@ If something seems terribly wrong, check out {{site.project_title}}'s [build sta
 
 [Vulcanize](https://github.com/Polymer/vulcanize) is a tool to concatenate a set of web components into a single file. It's our current recommendation for a "build step". Read more about it in "[Concatenating Web Components with Vulcanize](/articles/concatenating-web-components.html)".
 
-## Debugging Shadow DOM
+## Debugging user agent Shadow DOM
 
-In Chrome, author defined Shadow DOM is inspectable using the DevTools.
+In Chrome, author defined Shadow DOM is inspectable using the DevTools. 
 
 To inspect Shadow DOM defined by the user agent (e.g. the Shadow DOM of `<input type="date">`),
 turn on "Show user agent shadow DOM" in the DevTools general settings:
@@ -27,6 +24,8 @@ turn on "Show user agent shadow DOM" in the DevTools general settings:
 ![Enable "Show user agent shadow DOM" in the Devtools](/images/showshadowdom.png 'Enable "Show user agent shadow DOM" in the Devtools')
 
 After reloading the DevTools, user agent Shadow DOM should be inspectable. It will render as `#shadow-root (user-agent)`s in element inspector.
+
+For more information on debugging Polymer, see [Debugging Tips & Tricks](../docs/polymer/debugging.html).
 
 ## Source maps
 
