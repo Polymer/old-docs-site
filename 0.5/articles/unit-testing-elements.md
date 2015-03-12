@@ -47,7 +47,7 @@ You can then start authoring new tests in the `test` directory and look at a [sa
 
 ## web-component-tester
 
-The Polymer team created [web-component-tester](https://github.com/Polymer/web-component-tester) to make testing a breeze. It uses some familiar tools for unit testing elements - namely, [Mocha](http://visionmedia.github.io/mocha/) and [Chai](http://chaijs.com/). Using Mocha as our testing framework allows us to write tests that support development and integration without the need for workarounds.
+The Polymer team created [web-component-tester](https://github.com/Polymer/web-component-tester) to make testing a breeze. It uses some familiar tools for unit testing elements - namely, [Mocha](http://mochajs.org/) and [Chai](http://chaijs.com/). Using Mocha as our testing framework allows us to write tests that support development and integration without the need for workarounds.
 
 ### Mocha
 
@@ -191,7 +191,7 @@ A simple assertion test using an assert-style test for this could be written as 
 
 Chai supports all of the above assertion styles but we're going to use the first option ("assert style") for the sake of simplicity.
 
-**Note:** If you wish to use one of the other assertion styles, including `expect`, these are made available by [default](https://github.com/Polymer/web-component-tester/blob/master/browser/environment/chai.js#L12). If however you want to use Chai's `should` assertion styles, you will need to set this up manually.
+**Note:** If you wish to use one of the other assertion styles, including `expect`, these are made available by [default](https://github.com/Polymer/web-component-tester/blob/master/environment/chai.js#L10). If however you want to use Chai's `should` assertion styles, you will need to set this up manually.
 
 ## Tutorial
 
