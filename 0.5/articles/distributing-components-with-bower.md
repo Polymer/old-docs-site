@@ -154,7 +154,7 @@ Your element should now be available on the [bower registry](http://bower.io/sea
 
 Bower depends on [Node](http://nodejs.com) and [npm](http://npmjs.org) and is generally used via the command-line.
 
-You can download and install Node from [nodejs.org](http://nodejs.org). npm comes bundled with each binary package, so when you install Node, npm should automatically be installed at the same time. You’ll also need to have Git installed, as Bower uses Git endpoints to locate packages. If you don’t have Git installed, you can download it from [http://git-scm.com/downloads](git-scm.com/downloads).
+You can download and install Node from [nodejs.org](http://nodejs.org). npm comes bundled with each binary package, so when you install Node, npm should automatically be installed at the same time. You’ll also need to have Git installed, as Bower uses Git endpoints to locate packages. If you don’t have Git installed, you can download it from [http://git-scm.com/downloads](git-scm.com/download).
 
 You can then install Bower using npm:
 
