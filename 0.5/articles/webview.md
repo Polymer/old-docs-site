@@ -215,7 +215,7 @@ public class MyActivity extends Activity {
 }
 </pre>
 
-**Tip** Other useful WebSettings can be found in the <a href="https://github.com/GoogleChrome/chromium-webview-samples/blob/master/jsinterface-example/src/com/google/chrome/android/example/jsinterface/MainActivity.java#L193" target="_blank">chromium-webview-samples</a>.
+**Tip** Other useful WebSettings can be found in the <a href="https://github.com/GoogleChrome/chromium-webview-samples/blob/master/jsinterface-example/app/src/main/java/jsinterfacesample/android/chrome/google/com/jsinterface_example/MainFragment.java#L91" target="_blank">chromium-webview-samples repo</a>.
 {: .alert .alert-success }
 
 If you see the following runtime error in logcat, it's from HTML Imports not having access to `file://`. Be sure you're calling `setAllowFileAccessFromFileURLs(true)` when setting up the Activity:
