@@ -86,14 +86,14 @@ polymer.dart is a Dart port of {{site.project_title}} created and maintained by 
 ### Is the code hosted on a CDN?
 
 There is no official CDN version of {{site.project_title}}. Some community members
-maintain a copy of {{site.project_title}} on [cdnjs](http://cdnjs.com/):
+maintain a copy of {{site.project_title}} on [CloudFlare](http://cdnjs.cloudflare.com/):
 
 <pre>
 &lt;script src="//cdnjs.cloudflare.com/ajax/libs/polymer/<em>&lt;version&gt;</em>/webcomponents.js"></script>
 &lt;script src="//cdnjs.cloudflare.com/ajax/libs/polymer/<em>&lt;version&gt;</em>/polymer.js"></script>
 </pre>
 
-Where <em>&lt;version&gt;</em> is the latest version of {{site.project_title}} available on cdnjs.
+Where <em>&lt;version&gt;</em> is the latest version of {{site.project_title}} available on CloudFlare.
 
 There are a number of reasons why we recommend you use Bower instead of the CDN:
 
@@ -172,7 +172,7 @@ Feature detection, or an agreed upon common location for a 'jquery.html' file in
 ### What sort of testing do you do?
 
 {{site.project_title}} uses Chromium's continuous build infrastructure to test
-the entire system and each polyfill, individually. See our [build status page](/build/).
+the entire system and each polyfill, individually.
 
 ### How can I validate property values? {#validateinput}
 
