@@ -48,7 +48,7 @@ To run build individual polyfills or run tests, you need `node` and `grunt-cli` 
 
 ### Building individual polyfills
 
-If you're interested in using an individual polyfill by itself (e.g. rather that the prebuilt webcomponents.js bundle),
+If you're interested in using an individual polyfill by itself (e.g. rather that the prebuilt [webcomponents.js](https://github.com/webcomponents/webcomponentsjs) bundle),
 you need to build the minified file.
 
 **Example** - building the CustomElements polyfill
