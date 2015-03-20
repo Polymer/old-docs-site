@@ -109,7 +109,7 @@ Also ensure that focus is **always visible**, whether by allowing the default fo
 
 #### Using autofocus
 
-The HTML **autofocus** attribute allows an author to specify that a particular element should automatically take focus when the page is loaded. It is already supported on [all web form controls](http://www.whatwg.org/specs/web-apps/current-work/multipage/association-of-controls-and-forms.html#autofocusing-a-form-control), including `<input>`. To autofocus elements in your own custom element, call the [focus()](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement.focus) method supported on all HTML elements that can be focused (e.g `document.getElementById('myButton').focus()`).
+The HTML **autofocus** attribute allows an author to specify that a particular element should automatically take focus when the page is loaded. It is already supported on [all web form controls](https://html.spec.whatwg.org/multipage/forms.html#association-of-controls-and-forms), including `<input>`. To autofocus elements in your own custom element, call the [focus()](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement.focus) method supported on all HTML elements that can be focused (e.g `document.getElementById('myButton').focus()`).
 
 #### Adding keyboard interaction
 
