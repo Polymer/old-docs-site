@@ -86,14 +86,14 @@ Run tests:
 
 We are actively investigating modern front-end tooling for projects built with {{site.project_title}}. 
 
-This includes using [Yeoman](http://yeoman.io) for scaffolding out {{site.project_title}} elements, [Grunt](http://gruntjs.com) for building and optimizing projects and [Bower](http://bower.io) for component dependency management.
+This includes using [Yeoman](http://yeoman.io) for scaffolding out {{site.project_title}} apps and elements, [Grunt](http://gruntjs.com) for building and optimizing projects and [Bower](http://bower.io) for component dependency management.
 
-While our work in this area is just beginning, take a look at the potential workflow:
+While our work in this area is still evolving, take a look at the potential workflow:
 
 <div class="centered" style="margin:20px;"><iframe id="video" src="http://www.youtube.com/embed/INH_OW4lFSs" frameborder="0" allowfullscreen></iframe>
 </div>
 
-Also follow our work on [generator-polymer](https://github.com/yeoman/generator-polymer/).
+You can follow along our work on Yeoman and Polymer tooling in [generator-polymer](https://github.com/yeoman/generator-polymer/). It features app scaffolds, support for Sass and rapid deployment to GitHub pages. 
 
 ## Using git {#git}
 
