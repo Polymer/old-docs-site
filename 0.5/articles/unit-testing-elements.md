@@ -57,7 +57,7 @@ The only real piece missing from Mocha are helpers for performing assertions aga
 
 ### Chai
 
-Chai supports a lot of the assertion styles you might want to use (expect, assert, should). The real difference in these styles is their readability and you'll likely pick a style that fits in with your or your teams own preferences. The Chai [docs](http://chaijs.com/guide/styles/) explain their assertion styles in more detail.
+Chai supports a lot of the assertion styles you might want to use (expect, assert, should). The real difference in these styles is their readability and you'll likely pick a style that fits in with your or your team's own preferences. The Chai [docs](http://chaijs.com/guide/styles/) explain their assertion styles in more detail.
 
 Out of the box, web-component-tester also includes [Lodash](https://lodash.com/) to repeat fewer things and [Async](https://github.com/caolan/async) to keep your sanity.
 
@@ -79,7 +79,7 @@ WCT includes a number of helpful utilities meant to ease testing Web Components.
 
 `testImmediate()` allows you to run your test at declaration time before Mocha has begun tests. It's handy when you need to test document initialization. `testImmediate(name, testFn)` accepts a test name and test function. If an argument is accepted to `testFn`, the test will be treated as async, similar to Mocha tests.
 
-Note that with `testImmediate()`, should any errors be thrown asynchronously cannot be tied to your test. If you wish to catch them and pass them to the `done` event instead, a [safeStep()](https://github.com/Polymer/web-component-tester/blob/master/browser/environment/helpers.js#L19) utility is available to help.
+Note that with `testImmediate()`, should any errors be thrown asynchronously they cannot be tied to your test. If you wish to catch them and pass them to the `done` event instead, a [safeStep()](https://github.com/Polymer/web-component-tester/blob/master/browser/environment/helpers.js#L19) utility is available to help.
 
 ### Mocha helpers
 
@@ -101,7 +101,7 @@ Typically, we write many assertions inside of a single large test. This is on pu
 
 ### `.js` Suites
 
-web-component-tester test suites can either be `.js` sources, which run in the context of your text index. For example, `test/awesome-tests.js`:
+web-component-tester test suites can be `.js` sources, which run in the context of your text index. For example, `test/awesome-tests.js`:
 
 
     suite('AwesomeLib', function() {
@@ -113,7 +113,7 @@ web-component-tester test suites can either be `.js` sources, which run in the c
 
 ### `.html` Suites
 
-Or, you can write tests in separate `.html` documents. For example, `test/awesomest-tests.html`:
+Alternatively, you can write tests in separate `.html` documents. For example, `test/awesomest-tests.html`:
 
     <!doctype html>
     <html>
@@ -143,9 +143,9 @@ To create a new HTML test page:
 
 1. Create a new HTML file in the tests directory (e.g core-selector-basic-test.html). You can use our `<seed-element>` [unit test boilerplate](https://github.com/PolymerLabs/seed-element/blob/master/test/basic-test.html) as a starting point. It already references the relevant web-component-tester dependencies you'll need.
 
-2. Author your tests in the file you created (e.g in `core-selector-basic-test.html`). Some tips are available in the tutorial later on on how to test attributes and events.
+2. Author your tests in the file you created (e.g in `core-selector-basic-test.html`). Some tips are available in the tutorial below on how to test attributes and events.
 
-3. The WCT test runner creates an implicit suite for the entire test file. This means you can have any number of top level `test`s as you would like. That said, you can optionally define a new suite for a set of tests around a new element too. For the my-tabs element, this might look as follows:
+3. The WCT test runner creates an implicit suite for the entire test file. This means you can have any number of top level `test`s. That said, you can optionally define a new suite for a set of tests around a new element too. For the my-tabs element, this might look as follows:
 
 
     suite('<my-tabs>', function() {
@@ -168,7 +168,7 @@ We can quickly compare the differences in assertion styles using an existing ele
 
     <core-selection></core-selection>
 
-And then somewhere else in our application, we're listened out for events being emitted from this element once an item has been selected in it. The event in question is "core-select".
+And then somewhere else in our application, we're listening out for events being emitted from this element once an item has been selected in it. The event in question is "core-select".
 
 A simple assertion test using an assert-style test for this could be written as follows:
 
@@ -191,7 +191,7 @@ A simple assertion test using an assert-style test for this could be written as 
 
 Chai supports all of the above assertion styles but we're going to use the first option ("assert style") for the sake of simplicity.
 
-**Note:** If you wish to use one of the other assertion styles, including `expect`, these are made available by [default](https://github.com/Polymer/web-component-tester/blob/master/environment/chai.js#L10). If however you want to use Chai's `should` assertion styles, you will need to set this up manually.
+**Note:** If you wish to use one of the other assertion styles, including `expect`, these are made available by [default](https://github.com/Polymer/web-component-tester/blob/master/environment/chai.js#L10). If, however, you want to use Chai's `should` assertion styles, you will need to set this up manually.
 
 ## Tutorial
 
@@ -205,7 +205,7 @@ In this tutorial, we're going to add an existing Polymer element, [`<core-select
 
 First, get `<seed-element>` setup in a new `development` directory (if you haven't already in the Quick Start):
 
-    # Create a new directory to work in
+    # Create a new directory to work in (?)
     $ mkdir development
 
     # Move into the development directory
@@ -240,7 +240,7 @@ We begin writing our first test with a new HTML file in the "tests" directory of
 
 * An import for our element (core-selector)
 
-We can repurpose the existing "basic-test.html" file for this purpose. Let's rename it to "core-selector-tests.html" and customize it for `<core-selector>`:
+We can repurpose the existing "basic-test.html" file for this purpose. Let's rename it to "core-selector-tests.html" and customize it for `<core-selector>` (? has it been changed?):
 
       <script src="../../webcomponentsjs/webcomponents.min.js"></script>
       <script src="../../web-component-tester/browser.js"></script>
@@ -269,7 +269,7 @@ Give it an ID so we can easily reference it amongst other instances on the page.
 Next, we'll query the DOM for the "selector1" element we just included included:
 
     <script>
-      var s = document.querySelector('#selector1');
+      var s = document.querySelector('#selector1'); // why not byid?
 
       suite('<core-selector>', function() {
 
@@ -288,7 +288,7 @@ First, we define a test in the suite for our core-selector-tests.html file as fo
       });
     });
 
-Let's test that nothing is by default selected (i.e that our current selection is `null`). We can replace "our first test" label with the more descriptive "nothing is selected by default" while we're at it:
+Let's test that, by default, nothing is selected (i.e that our current selection is `null`). We can replace "our first test" label with the more descriptive "nothing is selected by default" while we're at it:
 
     test('nothing is selected by default', function() {
       assert.equal(s.selected, null);
@@ -308,7 +308,7 @@ We can now run the `wct` command to execute the tests written above. If all goes
 
 <img src="images/unit-testing-elements/wct-tests-passed.png" alt="Tests passes"/>
 
-How about testing if an attribute is the default value we expect it to be? `<core-selector>` supports a multi attribute in case you want to support multiple items being selectable. Let's add this before `done();` along with our other assertions:
+How about testing if an attribute is the default value we expect it to be? `<core-selector>` supports a `multi` attribute in case you want to support multiple items being selectable. Let's add this before `done();` along with our other assertions:
 
     test('if an attribute is the default value expected', function() {
       assert.isFalse(s.multi);
@@ -316,7 +316,7 @@ How about testing if an attribute is the default value we expect it to be? `<cor
 
 So far, so good.
 
-As `<core-selector>` has a property items representing the current list of items defined as children, we can also test to make sure it understands that we have 3 items at the moment.
+As `<core-selector>` has property items representing the current list of items defined as children, we can also add tests to make sure it understands that we have 3 items at the moment.
 
     test('if an attribute is the default value expected', function() {
       assert.equal(s.items.length, 3);
@@ -378,7 +378,7 @@ We'll go with the setup/teardown approach for this example, by adding a new suit
 
     });
 
-So the first thing you may notice is our use `flush()`.  As we covered earlier, `flush` allows us to asynchronously dirty check pending objects are observed and ensures notification callbacks are dispatched accordingly. A synchronous alternative is `[element].deliverChanges()`, but that only works for observers declared directly on the element.
+So the first thing you may notice is our use of `flush()`.  As we covered earlier, `flush` allows us to asynchronously dirty check pending objects are observed (what??) and ensures notification callbacks are dispatched accordingly. A synchronous alternative is `[element].deliverChanges()`, but that only works for observers declared directly on the element.
 
 By calling `flush` after making changes to the element, we can ensure that our tests are performing assertions after all observers have resolved and events have fired. If we were to perform our asserts prior to that, they would most likely be testing the wrong state!
 
@@ -389,7 +389,7 @@ Additionally, notice that all of the callbacks we pass to Mocha have an extra `d
 
 What about testing events? A simple event supported by `<core-selector>` that we can test is the "core-select" event. It's fired every time a different item in a list is selected.
 
-If this is the case two properties - `s.selectedItem` and `e.detail.item` (returned by the event) should be the same. Hooking this up to the `core-select` event, we get:
+If this is the case, two properties - `s.selectedItem` and `e.detail.item` (returned by the event) - should be the same. Hooking this up to the `core-select` event, we get:
 
     test('core-select fires when selection changes', function(done) {
       s.addEventListener('core-select', function(e) {
@@ -405,7 +405,7 @@ Great. Now to set the `selected` item in the list to "2" we can write:
       s.selected = 2;
     });
 
-Which will trigger the `core-select` event to be fired (asynchronously).
+This will trigger the `core-select` event to be fired (asynchronously).
 
 As we can see, when we run `wct` once again we're still all green:
 
@@ -421,11 +421,11 @@ As we can see, when we run `wct` once again we're still all green:
 
 **Go forth and write tests!** They can be simple and powerful.
 
-Remember, testing Web Components isn't vastly different to unit testing the JavaScript components you build everyday. Many of the same best practices apply. You're still working with events, objects and an API.
+Remember, testing Web Components isn't vastly different to unit testing the JavaScript components you build every day. Many of the same best practices apply. You're still working with events, objects and an API.
 
 The beauty of sticking with Mocha and Chai is tests can execute equally well in both the browser and continuous integration.
 
-Thanks for reading and do let us know if you have any questions about unit testing your elements!
+Thanks for reading and do let us know if you have any questions about unit testing your elements! (How/where?)
 
 ## More Unit Test Samples
 
