@@ -90,7 +90,7 @@ This includes using [Yeoman](http://yeoman.io) for scaffolding out {{site.projec
 
 While our work in this area is just beginning, take a look at the potential workflow:
 
-<div class="centered" style="margin:20px;"><iframe id="video" src="http://www.youtube.com/embed/EwQkyplZHDY" frameborder="0" allowfullscreen></iframe>
+<div class="centered" style="margin:20px;"><iframe id="video" src="http://www.youtube.com/embed/INH_OW4lFSs" frameborder="0" allowfullscreen></iframe>
 </div>
 
 Also follow our work on [generator-polymer](https://github.com/yeoman/generator-polymer/).
