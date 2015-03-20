@@ -79,7 +79,7 @@ WCT includes a number of helpful utilities meant to ease testing Web Components.
 
 `testImmediate()` allows you to run your test at declaration time before Mocha has begun tests. It's handy when you need to test document initialization. `testImmediate(name, testFn)` accepts a test name and test function. If an argument is accepted to `testFn`, the test will be treated as async, similar to Mocha tests.
 
-Note that with `testImmediate()`, should any errors be thrown asynchronously cannot be tied to your test. If you wish to catch them and pass them to the `done` event instead, a [safeStep()](https://github.com/Polymer/web-component-tester/blob/master/browser/environment/helpers.js#L19) utility is available to help.
+Note that with `testImmediate()`, should any errors be thrown asynchronously they cannot be tied to your test. If you wish to catch them and pass them to the `done` event instead, a [safeStep()](https://github.com/Polymer/web-component-tester/blob/master/browser/environment/helpers.js#L19) utility is available to help.
 
 ### Mocha helpers
 
@@ -143,7 +143,7 @@ To create a new HTML test page:
 
 1. Create a new HTML file in the tests directory (e.g core-selector-basic-test.html). You can use our `<seed-element>` [unit test boilerplate](https://github.com/PolymerLabs/seed-element/blob/master/test/basic-test.html) as a starting point. It already references the relevant web-component-tester dependencies you'll need.
 
-2. Author your tests in the file you created (e.g in `core-selector-basic-test.html`). Some tips are available in the tutorial later on on how to test attributes and events.
+2. Author your tests in the file you created (e.g in `core-selector-basic-test.html`). Some tips are available in the tutorial later on covering how to test attributes and events.
 
 3. The WCT test runner creates an implicit suite for the entire test file. This means you can have any number of top level `test`s as you would like. That said, you can optionally define a new suite for a set of tests around a new element too. For the my-tabs element, this might look as follows:
 
