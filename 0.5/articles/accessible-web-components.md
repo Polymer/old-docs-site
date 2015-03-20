@@ -2,7 +2,7 @@
 layout: default
 type: guide
 shortname: Articles
-title: "Accessible Web Components - Part 1"
+title: "Accessible Web Components"
 subtitle: Improving the accessibility of Web Components
 
 article: true
@@ -75,7 +75,7 @@ When auditing your application for accessibility, ask yourself:
 
 * **Can your element work with high-contrast mode enabled?** All modern operating systems support a high contrast mode.
 
-Native controls (such as `<button>` and `<select>`) have accessibility built-in by the browser. They are focusable using the tab key, respond to keyboard events like enter, space and arrow keys, and have semantic roles, states and properties used by accessibility tools. The default styling should also meet the accessibility requirements listed above.
+Native controls (such as `<button>` and `<select>`) have accessibility built-in by the browser. They are focusable using the tab key, respond to keyboard events (like Enter, space and arrow keys), and have semantic roles, states and properties used by accessibility tools. The default styling should also meet the accessibility requirements listed above.
 
 Custom elements (with the exception of elements that extend native elements like `<button>`) do not have any built-in functionality, including accessibility, so this needs to be provided by you. A good place to start when implementing accessibility is to compare your custom element to an analogous native element (or a combination of several native elements, depending on how complex your component is).
 
