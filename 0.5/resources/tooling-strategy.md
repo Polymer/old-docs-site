@@ -14,6 +14,12 @@ title: Tools & Testing
 
 [Vulcanize](https://github.com/Polymer/vulcanize) is a tool to concatenate a set of web components into a single file. It's our current recommendation for a "build step". Read more about it in "[Concatenating Web Components with Vulcanize](/articles/concatenating-web-components.html)".
 
+## Web Component Tester - element unit-testing tool
+
+> web-component-tester makes testing your web components a breeze!
+
+[web-component-tester](https://github.com/Polymer/web-component-tester) is a tool providing a browser-based testing environment. Out of the box it includes support for Mocha, Chai, Async and Sinon. Read more about it in "[/articles/unit-testing-elements.html](Unit Testing Elements)".
+
 ## Debugging user agent Shadow DOM
 
 In Chrome, author defined Shadow DOM is inspectable using the DevTools. 
