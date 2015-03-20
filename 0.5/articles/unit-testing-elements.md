@@ -378,7 +378,7 @@ We'll go with the setup/teardown approach for this example, by adding a new suit
 
     });
 
-So the first thing you may notice is our use `flush()`.  As we covered earlier, `flush` allows us to asynchronously dirty check pending objects are observed and ensures notification callbacks are dispatched accordingly. A synchronous alternative is `[element].deliverChanges()`, but that only works for observers declared directly on the element.
+So the first thing you may notice is our use of `flush()`.  As we covered earlier, `flush` allows us to asynchronously dirty check pending objects are observed and ensures notification callbacks are dispatched accordingly. A synchronous alternative is `[element].deliverChanges()`, but that only works for observers declared directly on the element.
 
 By calling `flush` after making changes to the element, we can ensure that our tests are performing assertions after all observers have resolved and events have fired. If we were to perform our asserts prior to that, they would most likely be testing the wrong state!
 
