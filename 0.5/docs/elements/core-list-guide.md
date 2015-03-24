@@ -176,7 +176,7 @@ The `preload` attribute means that the `core-image` shows the background color o
 
 [See the full sample](https://github.com/Polymer/docs/blob/master/0.5/samples/core-list/core-list-images/index.html) or <plunker-button src="../../samples/core-list/core-list-images/manifest.json">edit on plunker</plunker-button>
 
-## Essential: Providing heights
+## Essential: Providing heights {#providing-heights}
 
 **A `core-list` must have a size so that its contents scroll when the height of the items is large enough to overflow that size.** By "must have a size", this generally means it has a `fit` or `flex` layout attribute, or has an explicit `height` set in CSS. `flex` only has meaning if its parent has either `layout horizontal` or `layout vertical`.
 
