@@ -190,7 +190,7 @@ Example 3: One-way binding (downward)
       Polymer({
         is: 'custom-element',
         properties: {
-          prop: String    // no `notify:true`!
+          prop: String    // no notify:true!
         }
       });
 
