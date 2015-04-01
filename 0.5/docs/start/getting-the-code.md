@@ -47,11 +47,7 @@ the Web Components specifications natively.
 
 **Note:** For information about installing elements from the Core and Paper element
 collection, see [Using elements](usingelements.html).
-
-**Note:** The PolymerLabs GitHub repo contains a number of unsupported elements that are either
-experimental or deprecated. In particular, the `polymer-elements` and `polymer-ui-elements`
-collections represent earlier work superseded by the {{site.project_title}} Core elements and
-Paper elements.
+{: .alert .alert-info }
 
 ## Installing with Bower {#using-bower}
 
@@ -74,7 +70,7 @@ This generates a basic `bower.json` file. Some of the questions, like
 
 The next step is to install {{site.project_title}}:
 
-    bower install --save Polymer/polymer
+    bower install --save Polymer/polymer#^0.5
 
 Bower adds a `bower_components/` folder in the root of your project and
 fills it with {{site.project_title}} and its dependencies.
@@ -85,7 +81,7 @@ fills it with {{site.project_title}} and its dependencies.
   "name": "my-project",
   "version": "0.0.0",
   "dependencies": {
-    "polymer": "Polymer/polymer#~{{site.latest_version}}"
+    "polymer": "Polymer/polymer#^{{site.latest_version}}"
   }
 }
 ```

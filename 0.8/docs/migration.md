@@ -2,35 +2,36 @@
 layout: default
 type: guide
 shortname: Migration
-title: Polymer 0.8 Migration Guide
+title: Migration guide
 subtitle: Guide
 ---
 
 {% include toc.html %}
 
-Migrating an element to 0.8
+This guide describes the changes required to migrate a {{site.project_title}} 
+element from 0.5 to 0.8.  
 
 When migrating to 0.8, the following items can be translated easily from 0.5 to 0.8:
 
-*   Web components polyfill library
-*   Element registration
-*   Local DOM template
-*   Property definitions
-*   Default attributes
-*   Layout attributes 
+*   [Web components polyfill library](#polyfill)
+*   [Element registration](#registration)
+*   [Local DOM template](#local-dom-template)
+*   [Property definitions](#properties)
+*   [Default attributes](#default-attributes)
+*   [Layout attributes](#layout-attributes)
 
 Other areas may require more changes to work correctly, either because there are
 significant API changes from 0.5, feature gaps, or both. These areas include:
 
-*   Imperative DOM manipulation
-*   Data binding
-*   Styling
-*   Inheritance
+*   [Imperative DOM manipulation](#dom-apis)
+*   [Data binding](#data-binding)
+*   [Styling](#styling)
+*   [Inheritance](#inheritance)
 
 The following sections discuss the changes required to migrate your code from
 0.5 to 0.8, starting with the simpler topics.
 
-## Web components polyfill library
+## Web components polyfill library {#polyfill}
 
 {{site.project_title}} 0.8 no longer requires the shadow DOM polyfill, which 
 is included in `webcomponents.js`. Use the smaller `webcomponents-lite.js` library
@@ -45,7 +46,7 @@ After:
     <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
 
 
-## Element registration
+## Element registration {#registration}
 
 Registration in 0.8 always uses the `Polymer` method. The element name is
 specified using the `is` property (required).
@@ -94,7 +95,7 @@ These are now declared using the `properties` object on the prototype. For examp
 
 See [Properties](#properties) for details.
 
-## Local DOM template
+## Local DOM template {#local-dom-template}
 
 0.8 replaces the shadow DOM with the abstract local DOM mechanism. Local DOM can
 be implemented using native shadow DOM or using a lightweight alternative,
@@ -140,7 +141,7 @@ is, if `<parent-element>` includes `<child-element>` in its local DOM,
 `<child-element>` must be registered before `<parent-element>`.
 
 
-## Properties
+## Properties {#properties}
 
 Polymer 0.5 has two mechanisms to publish properties &mdash; the `attributes`
 attribute and the `publish` object. Either of these mechanisms can be used to
@@ -257,7 +258,7 @@ for more information.
 </tr>
 <tr>
 <td><code>observer</code></td>
-<td>Type: <code>String</code><br>
+<td>Type: <code>string</code><br>
 
 The value is interpreted as a method name to be invoked when the property value 
 changes. Note that unlike in 0.5, **property change handlers must be registered 
@@ -428,7 +429,7 @@ New (0.8):
 
 For more information, see [Property change callbacks (observers)](devguide/properties.html#change-callbacks) in the Developer guide.
        
-## Default attributes
+## Default attributes {#default-attributes}
 
 In 0.5, default attributes are defined on the `<polymer-element>` declaration:
 
@@ -453,7 +454,7 @@ set an attribute dynamically based on a property value, see
 [Reflecting properties to attributes](devguide/properties.html#attribute-reflection) 
 in the Developer guide, or use `setAttribute` directly.
 
-## Layout attributes => layout classes
+## Layout attributes => layout classes {#layout-attributes}
 
 The layout attributes stylesheet that's included in Polymer 0.5 has been
 replaced with an optional stylesheet that uses classes. If your element uses
@@ -495,7 +496,7 @@ After (0.8):
     });
     </script>
 
-## Manipulating DOM
+## Manipulating DOM {#dom-apis}
 
 If your element manipulates its light DOM or local DOM imperatively, or your
 application manipulates the children of Polymer elements using the standard DOM
@@ -595,9 +596,9 @@ normalized event has the following properties:
     (equivalent to `event.path` under shadow DOM).
 
 
-## Data binding 
+## Data binding {#data-binding}
 
-Data binding in 0.8 is much simpler than in 0.5. It is based on generated
+Data binding in 0.8 is simpler than in 0.5. It is based on generated
 property accessors, generated at element registration time, which provides high
 performance with minimal cost at instantiation time. The main differences in
 binding are:
@@ -717,7 +718,7 @@ results. For example, use a computed property to cast the original property to
 a Boolean.
 {: .alert .alert-info }
 
-### Inline computed properties
+### Annotated computed properties
 
 Computed properties only needed in the template can be bound directly in the
 template without an intermediate property on the instance:
@@ -764,9 +765,13 @@ Pass data to the `<x-repeat>` by specifying an `items` array, and bind to indivi
 Note that browsers that do not support templates natively don't allow `<template>` tags inside of `<table>` or `<select>` elements. {{site.project_title}} 0.5 provided a workaround for this using the [`template` attribute](/0.5/docs/polymer/databinding-compat.html#elements-that-cant-contain-a-template). There is no equivalent workaround for 0.8 at this point.
 
 For more information, see [Template repeater](devguide/experimental.html#x-repeat)
+
 #### Nested template scopes
 
-Polymer 0.8 does not support nested template scopes. An `<x-repeat>` cannot access the parent template's scope, only its own `items`.
+Polymer 0.8 does not support nested template scopes. An `<x-repeat>` cannot
+access the parent template's scope, only its own `items`. 
+
+A solution for this issue is expected before 1.0.
 
 #### Autobinding templates
 
@@ -777,7 +782,9 @@ There is no supported replacement for autobinding templates at this time. You ca
 
 #### Conditional templates {#conditional-templates}
 
-Conditional templates (`<template if=condition>`) has proven to be mostly an antipattern, and there is no equivalent in 0.8. Use conditional display (`hidden`, `display: none`) instead.
+Conditional templates (`<template if=condition>`) has proven to be mostly an anti-pattern, and there is no equivalent in 0.8. There are some valid use cases for a feature like this, however, and the team is investigating providing a solution.
+
+In the meantime, use conditional display (`hidden`, `display: none`) instead.
 
 #### Binding to native input elements {#input-values}
 
@@ -819,6 +826,8 @@ Usage:
     {% raw %}
     <my-input type="number" current-value="{{inputValue}}"></my-input>
     {% endraw %}
+
+A more general solution to this issue is in the works and should be available before 1.0.
 
 ### Binding to sibling elements
 

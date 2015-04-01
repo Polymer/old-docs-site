@@ -46,4 +46,10 @@ This guide divides the features into the following groups:
     Feature layering.
 
 
+If you're migrating an existing 0.5 element to the 0.8 APIs, see the [Migration guide](../migration.html)
+for advice.
+
+
+
+
 
