@@ -81,9 +81,11 @@ the entire  content of the tag:
 
 String concatenation is **not** supported inside a tag:
 
-          <!-- Not currently supported! -->
-          <div>First: {{first}}</div>
-          <div>Last: {{last}}</div>
+    {% raw %}
+    <!-- Not currently supported! -->
+    <div>First: {{first}}</div>
+    <div>Last: {{last}}</div>
+    {% endraw %}
 
 
 Binding annotations can also include paths to sub-properties, as shown below:
