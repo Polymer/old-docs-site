@@ -65,7 +65,7 @@ information, see [Inheritance](#inheritance).
 
 In 0.8, `Polymer` returns a working constructor:
 
-    var RegisterMe = Polymer({ is: "register-me" });
+    var RegisterMe = Polymer({is: "register-me"});
     var el = new RegisterMe();
     // equivalent to:
     var el = document.createElement("register-me");
