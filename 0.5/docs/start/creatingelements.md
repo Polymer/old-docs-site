@@ -399,11 +399,11 @@ Now that you know how to create your own elements, follow the
 [{{site.project_title}}'s core API](../polymer/polymer.html).
 Continue on to:
 
-<a href="../polymer/polymer.html">
+<p><a href="../polymer/polymer.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>API developer guide</paper-button>
-</a>
+</a></p>
 
-<a href="tutorial/intro.html">
+<p><a href="tutorial/intro.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>Your first {{site.project_title}} app</paper-button>
-</a>
+</a></p>
 
