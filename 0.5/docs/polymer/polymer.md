@@ -958,7 +958,7 @@ a property on that element.
 
 All property names in the `observe` object are relative to `this`, so `$.foo.someProperty`
 refers to a property on the `<x-foo>` element. See the section on
-[automatic node finding](#automatic-node-finding) for more infomration on the `this.$`
+[automatic node finding](#automatic-node-finding) for more information on the `this.$`
 hash and its limitations.
 
 **Example:** watching for changes to a nested object path
