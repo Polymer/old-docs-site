@@ -9,7 +9,7 @@ article: true
 #draft: true
 description: How to build a mobile Polymer app that runs in a WebView.
 published: 2015-03-04
-#updated: 2014-10-20
+updated: 2015-03-10
 author: ebidel
 polymer_version: 0.5.5
 
@@ -62,9 +62,11 @@ Once you've got the wrinkles ironed out, dive into WebView-ifying and uploading 
 
 ### WebView starter kit (Android)
 
+The download is big! Be patient.
+
 <p layout horizontal center-justified>
-  <a href="demos/webview/PolymerWebViewApp.zip">
-    <paper-button id="download-button" raised><core-icon icon="file-download"></core-icon>Download the WebView Starter</paper-button>
+  <a href="https://github.com/Polymer/docs/blob/master/0.5/articles/demos/webview/PolymerWebViewApp.zip?raw=true">
+    <paper-button id="download-button" raised><core-icon icon="file-download"></core-icon>Download the WebView Starter (23MB)</paper-button>
   </a>
 </p>
 
@@ -213,7 +215,7 @@ public class MyActivity extends Activity {
 }
 </pre>
 
-**Tip** Other useful WebSettings can be found in the <a href="https://github.com/GoogleChrome/chromium-webview-samples/blob/master/jsinterface-example/src/com/google/chrome/android/example/jsinterface/MainActivity.java#L193" target="_blank">chromium-webview-samples</a>.
+**Tip** Other useful WebSettings can be found in the <a href="https://github.com/GoogleChrome/chromium-webview-samples/blob/master/jsinterface-example/app/src/main/java/jsinterfacesample/android/chrome/google/com/jsinterface_example/MainFragment.java#L91" target="_blank">chromium-webview-samples repo</a>.
 {: .alert .alert-success }
 
 If you see the following runtime error in logcat, it's from HTML Imports not having access to `file://`. Be sure you're calling `setAllowFileAccessFromFileURLs(true)` when setting up the Activity:

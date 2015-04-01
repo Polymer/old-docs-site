@@ -324,7 +324,7 @@ A slight tweak of this approach lets you configure the value of the globals exte
 
 The main page configures the globals by passing attributes:
 
-    <app-globals id ="globals" "firstname="Addy" lastname="Osmani"></app-globals>
+    <app-globals id="globals" firstname="Addy" lastname="Osmani"></app-globals>
 
 This second version of `app-globals` has a slightly different API than
 the first. The global variables are properties of the `values` object instead of

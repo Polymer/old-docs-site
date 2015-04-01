@@ -1,5 +1,5 @@
 application: polymer-project
-version: zerodoteight
+version: 2014-03-16
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -20,6 +20,13 @@ handlers:
   secure: always
 
 # These needs to be in this order and come for the short URL versions.
+# Map unversioned wc.js allowed because it will churn less.
+- url: /webcomponents(\.min)?.js$
+  static_files: _site/0.5/components/webcomponentsjs/webcomponents.min.js
+  upload: 0.5/components/webcomponentsjs/webcomponents(\.min)?.js
+  http_headers:
+    Access-Control-Allow-Origin: "*"
+
 - url: /(.+)/components/(.*)/webcomponents(\.min)?.js$
   static_files: _site/\1/components/\2/webcomponents.min.js
   upload: (.+)/components/(.*)/webcomponents(\.min)?.js

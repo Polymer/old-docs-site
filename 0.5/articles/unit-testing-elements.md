@@ -5,11 +5,12 @@ shortname: Articles
 title: "Unit Testing Polymer Elements"
 subtitle: Authoring Unit Tests for your elements
 
-article:
-  author: addyosmani
-  published: 2014-11-06
-  polymer_version: 0.5.0
-  description: Authoring Unit Tests for your elements
+article: true
+author: addyosmani
+published: 2014-11-06
+polymer_version: 0.5.0
+description: Authoring Unit Tests for your elements
+
 tags:
 - testing
 - tests
@@ -46,7 +47,7 @@ You can then start authoring new tests in the `test` directory and look at a [sa
 
 ## web-component-tester
 
-The Polymer team created [web-component-tester](https://github.com/Polymer/web-component-tester) to make testing a breeze. It uses some familiar tools for unit testing elements - namely, [Mocha](http://visionmedia.github.io/mocha/) and [Chai](http://chaijs.com/). Using Mocha as our testing framework allows us to write tests that support development and integration without the need for workarounds.
+The Polymer team created [web-component-tester](https://github.com/Polymer/web-component-tester) to make testing a breeze. It uses some familiar tools for unit testing elements - namely, [Mocha](http://mochajs.org/) and [Chai](http://chaijs.com/). Using Mocha as our testing framework allows us to write tests that support development and integration without the need for workarounds.
 
 ### Mocha
 
@@ -78,7 +79,7 @@ WCT includes a number of helpful utilities meant to ease testing Web Components.
 
 `testImmediate()` allows you to run your test at declaration time before Mocha has begun tests. It's handy when you need to test document initialization. `testImmediate(name, testFn)` accepts a test name and test function. If an argument is accepted to `testFn`, the test will be treated as async, similar to Mocha tests.
 
-Note that with `testImmediate()`, should any errors be thrown asynchronously cannot be tied to your test. If you wish to catch them and pass them to the `done` event instead, a [safeStep()](https://github.com/Polymer/web-component-tester/blob/master/browser/environment/helpers.js#L19) utility is available to help.
+Note that with `testImmediate()`, should any errors be thrown asynchronously they cannot be tied to your test. If you wish to catch them and pass them to the `done` event instead, a [safeStep()](https://github.com/Polymer/web-component-tester/blob/master/browser/environment/helpers.js#L19) utility is available to help.
 
 ### Mocha helpers
 
@@ -142,7 +143,7 @@ To create a new HTML test page:
 
 1. Create a new HTML file in the tests directory (e.g core-selector-basic-test.html). You can use our `<seed-element>` [unit test boilerplate](https://github.com/PolymerLabs/seed-element/blob/master/test/basic-test.html) as a starting point. It already references the relevant web-component-tester dependencies you'll need.
 
-2. Author your tests in the file you created (e.g in `core-selector-basic-test.html`). Some tips are available in the tutorial later on on how to test attributes and events.
+2. Author your tests in the file you created (e.g in `core-selector-basic-test.html`). Some tips are available in the tutorial later on covering how to test attributes and events.
 
 3. The WCT test runner creates an implicit suite for the entire test file. This means you can have any number of top level `test`s as you would like. That said, you can optionally define a new suite for a set of tests around a new element too. For the my-tabs element, this might look as follows:
 
@@ -190,7 +191,7 @@ A simple assertion test using an assert-style test for this could be written as 
 
 Chai supports all of the above assertion styles but we're going to use the first option ("assert style") for the sake of simplicity.
 
-**Note:** If you wish to use one of the other assertion styles, including `expect`, these are made available by [default](https://github.com/Polymer/web-component-tester/blob/master/browser/environment/chai.js#L12). If however you want to use Chai's `should` assertion styles, you will need to set this up manually.
+**Note:** If you wish to use one of the other assertion styles, including `expect`, these are made available by [default](https://github.com/Polymer/web-component-tester/blob/master/environment/chai.js#L10). If however you want to use Chai's `should` assertion styles, you will need to set this up manually.
 
 ## Tutorial
 
@@ -377,7 +378,7 @@ We'll go with the setup/teardown approach for this example, by adding a new suit
 
     });
 
-So the first thing you may notice is our use `flush()`.  As we covered earlier, `flush` allows us to asynchronously dirty check pending objects are observed and ensures notification callbacks are dispatched accordingly. A synchronous alternative is `[element].deliverChanges()`, but that only works for observers declared directly on the element.
+So the first thing you may notice is our use of `flush()`.  As we covered earlier, `flush` allows us to asynchronously dirty check pending objects are observed and ensures notification callbacks are dispatched accordingly. A synchronous alternative is `[element].deliverChanges()`, but that only works for observers declared directly on the element.
 
 By calling `flush` after making changes to the element, we can ensure that our tests are performing assertions after all observers have resolved and events have fired. If we were to perform our asserts prior to that, they would most likely be testing the wrong state!
 

@@ -19,6 +19,7 @@ You'll also need the Python App Engine SDK to run the dev_appserver and preview 
 - `npm install`
 - `cd 0.5`
 - `bower install`
+- `grunt docs`
 - `grunt` (or `npm start`)
 
 ## Making edits and previewing changes

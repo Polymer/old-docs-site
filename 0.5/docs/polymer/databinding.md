@@ -232,10 +232,14 @@ For example, the  `selectStory` method might look like this:
 
 Continue on to:
 
+<p>
 <a href="binding-types.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>Types of bindings</paper-button>
 </a>
+</p>
 
+<p>
 <a href="expressions.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>Expressions</paper-button>
 </a>
+</p>

@@ -350,7 +350,7 @@ and gives them default values:
 In this example the user overrides the defaults for `owner` and `color`
 by configuring the element with initial attribute values (e.g. `<color-picker owner="Scott" color="blue">`).
 
-**Note**: When binding  a property that takes a type other than String, it's important to [hint a property's type](..//polymer/polymer.html#attrhinting). {{site.project_title}} relies on this information to correctly serialize and de-serialize values.
+**Note**: When binding  a property that takes a type other than String, it's important to [hint a property's type](../polymer/polymer.html#attrhinting). {{site.project_title}} relies on this information to correctly serialize and de-serialize values.
 {: .alert .alert-success }
 
 [Learn more about published properties](../polymer/polymer.html#published-properties).
@@ -399,11 +399,13 @@ Now that you know how to create your own elements, follow the
 [{{site.project_title}}'s core API](../polymer/polymer.html).
 Continue on to:
 
-<p><a href="../polymer/polymer.html">
+<p>
+<a href="../polymer/polymer.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>API developer guide</paper-button>
-</a></p>
+</a>
+</p>
 
 <p><a href="tutorial/intro.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>Your first {{site.project_title}} app</paper-button>
-</a></p>
-
+</a>
+</p>
