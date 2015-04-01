@@ -57,7 +57,7 @@ The simplest custom element in 0.5 looked like this:
 
 The same element in 0.8 looks like this:
 
-    Polymer({ is: "register-me" });
+    Polymer({is: "register-me"});
 
 Polymer 0.8 supports the `extends` keyword as in 0.5, but at this point **you
 can only extend built-in DOM elements, such as `<button>`.** For more
@@ -73,7 +73,7 @@ In 0.8, `Polymer` returns a working constructor:
 If you have default attributes on your `<polymer-element>` declaration, make a
 note of them for later:
 
-    <polymer-element name="register-me" tabindex="0" >
+    <polymer-element name="register-me" tabindex="0">
 
 These are now declared using the `hostAttributes` object on the prototype. For example:
 
@@ -127,7 +127,7 @@ To specify a local DOM template in 0.8, use a `dom-module` tag, with your custom
       </template>  
       </dom-module>
     <script>
-      Polymer({ is: "template-me" });
+      Polymer({is: "template-me"});
     </script>
 
 As you can see, in 0.8, element styles are defined outside of the `<template>` tag. 
@@ -162,14 +162,14 @@ property observers (the `computed` and `observe` objects).
 
 Polymer 0.8 combines all of these configurations into a single object, the `properties` object:
 
-      Polymer({
+    Polymer({
       is: "publish-me",
       properties: {
         prop: Number,
         observedProp: {
           type: Number,
           value: 42,
-          observer: 'prop2Changed'
+          observer: 'observedPropChanged'
         },
         computedProp: {
           type: String,
@@ -376,7 +376,7 @@ change observers with multiple dependencies:
     properties: {
       x: Number,
       y: Number,
-     z: Number
+      z: Number
     },
     observers: {
       "x y z": "coordinatesChanged"
@@ -647,7 +647,7 @@ Data binding is now one-way by default:  the property can be _set_ from the
 outside, but does not propagate changes to the outside. For a property that can
 be two-way data bound, add the `notify` property:
 
-      Polymer({
+    Polymer({
       is: "publish-me",
       properties: {
         value: {
@@ -679,7 +679,7 @@ The element requesting the binding can explicitly specify one-way binding using 
 
 To make your code more easier to read, you may want to use the
 <code>[[<var>property</var>]]</code> form by default, and only use
-<code>{{<var>property</var>}}</code> for two-way bindings.
+<code>{%raw%}{{<var>property</var>}}{%endraw%}</code> for two-way bindings.
  
 For more details, see [Data binding](devguide/data-binding.html) in the developer guide.
 
@@ -904,7 +904,7 @@ element for compatibility with shady DOM.
     </style>
 
     <template>
-      <div class=”wrapper”>
+      <div class="wrapper">
         <content></content>
       </div>
     </template>

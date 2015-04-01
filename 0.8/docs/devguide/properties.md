@@ -460,48 +460,13 @@ the dependent properties.
       });
     </script>
 
-Note: Only direct properties of the element (as opposed to sub-properties of an
+Only direct properties of the element (as opposed to sub-properties of an
 object) can be used as dependencies at this time.
 
-## Annotated computed properties {#annotated-computed}
-
-Anonymous computed properties may also be placed directly in template binding
-annotations.  This is useful when the property need not be a part of the
-element's API or otherwise used by logic in the element, and is only used for
-downward data propagation.  Note: this is the only form of functions allowed in
-template bindings.
-
-Example:
-
-    <dom-module id="x-custom">
-      <template>
-        My name is <span>{%raw%}{{computeFullName(first, last)}}{%endraw%}</span>
-      </template>
-    <dom-module id="x-custom">
-
-    <script>
-      Polymer({
-
-        is: 'x-custom',
-
-        properties: {
-
-          first: String,
-
-          last: String
-          
-        },
-
-        computeFullName: function(first, last) {
-          return first + ' ' + last;
-        }
-
-        ...
-
-      });
-    </script>
-
-
+**Note:** If you only need a computed property for a data binding, you
+can declare the computed property directly in the binding. See 
+[Annotated computed properties](data-binding.html#annotated-computed).
+{: .alert .alert-info }
 
 ## Reflecting properties to attributes {#attribute-reflection}
 

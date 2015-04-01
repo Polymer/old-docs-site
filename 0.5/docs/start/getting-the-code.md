@@ -31,10 +31,16 @@ in one of several ways:
     also installs any missing dependencies. Bower also handles updating
     installed components. For more information, see [Installing with Bower](#using-bower).
 
-*   ZIP file. Includes all dependencies, so you can unzip it and start using it
+*   ZIP file. **Temporarily unavailable.** We are working out some 
+    issues with the download server, and hope to have the ZIP download service
+    back online soon.
+
+    <!-- 
+    Includes all dependencies, so you can unzip it and start using it
     immediately. The ZIP file requires no extra tools, but doesn't provide a
     built-in method for updating dependencies. For more information, see
     [Installing from ZIP files](#using-zip).
+    -->
 
 *   GitHub. When you clone a component from GitHub, you need to manage all of the dependencies
     yourself. If you'd like to hack on the project or submit a pull request, see
@@ -81,7 +87,7 @@ fills it with {{site.project_title}} and its dependencies.
   "name": "my-project",
   "version": "0.0.0",
   "dependencies": {
-    "polymer": "Polymer/polymer#^{{site.latest_version}}"
+    "polymer": "Polymer/polymer#^0.5"
   }
 }
 ```
@@ -98,11 +104,18 @@ This updates all packages in `bower_components/`.
 
 ## Installing from ZIP files {#using-zip}
 
+**ZIP downloads temporarily unavailable.** We are working out some 
+issues with the download server, and hope to have the ZIP download service
+back online soon.
+{: .alert .alert-error }
+
+<!-- Commented out while service is down.
 To download {{site.project_title}} as a ZIP file, click the **GET POLYMER** button
 then click **Download ZIP**.
 
 <component-download-button org="Polymer" component="polymer" label="GET POLYMER">
 </component-download-button>
+-->
 
 When you download {{site.project_title}} as a ZIP file, you get all of
 the dependencies bundled into a single archive. It's a great way to get

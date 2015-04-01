@@ -59,39 +59,34 @@ To bind to a child element's `textContent`, you can simply include the
 annotation inside the child element. The binding annotation must currently span
 the entire  content of the tag:
 
+    {% raw %}
     <dom-module id="user-view">
-        <template>
-          {% raw %}
-          <!-- Supported -->
+        <template>   
           First: <span>{{first}}</span><br>
           Last: <span>{{last}}</span>
-
-          <!-- Not currently supported! -->
-          <div>First: {{first}}</div>
-          <div>Last: {{last}}</div>
-          {% endraw %}
         </template>
     </dom-module>
-
+    {% endraw %}
     <script>
-
       Polymer({
-
         is: 'user-view',
-
         properties: {
           first: String,
           last: String
         }
-
       });
-
     </script>
 
     <user-view first="Samuel" last="Adams"></user-view>
 
-Binding annotations can also include paths to sub-properties.
-See [Binding to structured data](#path-binding) for details.
+String concatenation is **not** supported inside a tag:
+
+          <!-- Not currently supported! -->
+          <div>First: {{first}}</div>
+          <div>Last: {{last}}</div>
+
+
+Binding annotations can also include paths to sub-properties, as shown below:
 
     <dom-module id="main-view">
       <template>
@@ -100,19 +95,15 @@ See [Binding to structured data](#path-binding) for details.
     </dom-module>
 
     <script>
-
       Polymer({
-
         is: 'main-view',
-
         properties: {
           user: Object
         }
-
       });
-
     </script>
 
+See [Binding to structured data](#path-binding) for details.
 
 ### Property change notification and two-way binding {#property-notification}
 
@@ -156,7 +147,6 @@ one-way (upward, child-to-host).)
 Example 1: Two-way binding
 
     <script>
-
       Polymer({
         is: 'custom-element',
         properties: {
@@ -166,13 +156,12 @@ Example 1: Two-way binding
           }
         }
       });
-
     </script>
     ...
 
-    <!-- changes to `value` propagate downward to `prop` on child -->
-    <!-- changes to `prop` propagate upward to `value` on host  -->
-    <custom-element prop="{{value}}"></custom-element>
+    <!-- changes to "value" propagate downward to "prop" on child -->
+    <!-- changes to "prop" propagate upward to "value" on host  -->
+    <custom-element prop="{%raw%}{{value}}{%raw%}"></custom-element>
 
 Example 2: One-way binding (downward)
 
@@ -190,8 +179,8 @@ Example 2: One-way binding (downward)
 
     ...
 
-    <!-- changes to `value` propagate downward to `prop` on child -->
-    <!-- changes to `prop` are ignored by host due to square-bracket syntax -->
+    <!-- changes to "value" propagate downward to "prop" on child -->
+    <!-- changes to "prop" are ignored by host due to square-bracket syntax -->
     <custom-element prop="[[value]]"></custom-element>
 
 Example 3: One-way binding (downward)
@@ -208,8 +197,8 @@ Example 3: One-way binding (downward)
     </script>
     ...
 
-    <!-- changes to `value` propagate downward to `prop` on child -->
-    <!-- changes to `prop` are not notified to host due to notify:falsey -->
+    <!-- changes to "value" propagate downward to "prop" on child -->
+    <!-- changes to "prop" are not notified to host due to notify:falsey -->
     <custom-element prop="{{value}}"></custom-element>
 
 Example 4: One-way binding (upward, child-to-host)
@@ -229,14 +218,13 @@ Example 4: One-way binding (upward, child-to-host)
 
     ...
 
-    <!-- changes to `value` are ignored by child due to readOnly:true -->
-    <!-- changes to `prop` propagate upward to `value` on host  -->
+    <!-- changes to "value" are ignored by child due to readOnly:true -->
+    <!-- changes to "prop" propagate upward to "value" on host  -->
     <custom-element prop="{%raw%}{{value}}{%endraw%}"></custom-element>
 
 Example 5: Error / non-sensical state
 
     <script>
-
       Polymer({
         is: 'custom-element',
         properties: {
@@ -247,13 +235,10 @@ Example 5: Error / non-sensical state
             }
         }
       });
-
     </script>
-
     ...
-
-    <!-- changes to `value` are ignored by child due to readOnly:true -->
-    <!-- changes to `prop` are ignored by host due to square-bracket syntax -->
+    <!-- changes to "value" are ignored by child due to readOnly:true -->
+    <!-- changes to "prop" are ignored by host due to square-bracket syntax -->
     <!-- binding serves no purpose -->
     <custom-element prop="[[value]]"></custom-element>
 
@@ -342,15 +327,12 @@ Example:
 
     <script>
       Polymer({
-
         is: 'custom-element',
-
         reassignManager: function(newManager) {
           this.user.manager = newManager;
           // Notification required for binding to update!
           this.notifyPath('user.manager', this.user.manager);
         }
-
       });
     </script>
 
@@ -398,26 +380,20 @@ Example:
 
     <script>
       Polymer({
-
         is: 'x-custom',
-
         properties: {
-
           first: String,
-
-          last: String
-          
+          last: String       
         },
-
         computeFullName: function(first, last) {
           return first + ' ' + last;
         }
-
         ...
-
       });
     </script>
 
+In this case, the span's `textContent` property is bound to the return value 
+of `computeFullName`, which is recalculated whenever `first` or `last` changes.
 
 See [Computed properties](properties.html#computed-properties) for more information.
 

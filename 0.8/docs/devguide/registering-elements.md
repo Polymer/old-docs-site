@@ -30,11 +30,11 @@ Example:
 
     });
 
-    // create an element
-    var el1 = new MyElement();
+    // create an instance with createElement:
+    var el1 = document.createElement('my-element');
 
-    // equivalent to:
-    var el2 = document.createElement('my-element');
+    // ... or with the constructor:
+    var el2 = new MyElement();
 
 The `Polymer` function registers the element with the browser and returns a
 constructor that can be used to create new instances of your element via code.

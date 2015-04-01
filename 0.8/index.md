@@ -39,7 +39,7 @@ for details.
 
 ## Benchmarks {#benchmarks}
 
-As a sample of the performance difference between 0.5 and 0.8, below are the results from our `medium-list` benchmark. The benchmark instantiates templates for a few thousand nested custom elements and binds data down through each of them. It measures time to first paint. You can poke around with this [benchmark](github.com/polymerlabs/benchmarks/) yourself &mdash; note that device specs vary wildly, so the only valid comparisons to draw from these numbers are between 0.5 and 0.8, and not across browsers.
+As a sample of the performance difference between 0.5 and 0.8, below are the results from our `medium-list` benchmark. The benchmark instantiates templates for a few thousand nested custom elements and binds data down through each of them. It measures time to first paint. You can poke around with this [benchmark](//github.com/polymerlabs/benchmarks/) yourself &mdash; note that device specs vary wildly, so the only valid comparisons to draw from these numbers are between 0.5 and 0.8, and not across browsers.
 
 |             | Chrome | Desktop Safari | Mobile Safari |
 |-------------|--------|----------------|---------------|
@@ -97,7 +97,7 @@ The "theming problem" &mdash; you want to be able to easily style Polymer elemen
 
 *   Nested scope binding.
 
-*   Compound binding: {%raw%}`&lt;p&gt; Dear {{ title }} {{ lastName }}, &lt;/p&gt;`{%endraw%}
+*   Compound binding: {%raw%}`<div>Dear {{ title }} {{ lastName }},</div>`{%endraw%}
 
 *   Exploring helpers for binding to class and style.
 
@@ -120,6 +120,9 @@ and missing many pieces, such as introductory  tutorials and tooling
 information. We'll be filling out the documention set as we move towards 1.0.
 Expect a full on-ramp for developers new to Polymer, a more in-depth developer
 guide, and much more.
+
+If you find errors or missing information in the documentation, please 
+[file an issue](https://github.com/Polymer/docs/issues).
 
 ### 1.1 Priorities
 _These haven't made the cut for the 1.0 feature set, though we are always open to feedback as well as pull requests!_
