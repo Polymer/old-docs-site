@@ -19,11 +19,7 @@ This release is **intended for early adopters** who want to **test out the new A
 <div class="alert alert-error"><strong>BREAKING CHANGES.</strong> 
 This release is <strong>not compatible with the 0.5 APIs.</strong> For
 guidance on migrating an existing 0.5 element to the 0.8 APIs, see 
-the <a href="docs/migration.html">Migration guide</a>.<br><br>
-
-If you're <b>not ready to move to 0.8</b> and you're using Bower, be sure to <b>update
-your <code>bower.json</code> files</b> so you don't get 0.8 by accident. See  
-<a href="https://blog.polymer-project.org/updates/2015/03/10/updated-site/#make-sure-to-pin-your-bowerjson-versions">the blog</a> for details. </div>
+the <a href="docs/migration.html">Migration guide</a>.</div>
 
 
 ## Highlights
