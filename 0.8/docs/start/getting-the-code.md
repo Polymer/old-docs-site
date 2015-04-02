@@ -31,33 +31,28 @@ in one of several ways:
     also installs any missing dependencies. Bower also handles updating
     installed components. For more information, see [Installing with Bower](#using-bower).
 
-*   ZIP file. **Temporarily unavailable.** We are working out some 
-    issues with the download server, and hope to have the ZIP download service
-    back online soon.
-
-    <!-- 
-    Includes all dependencies, so you can unzip it and start using it
+<!--
+*   ZIP file. Includes all dependencies, so you can unzip it and start using it
     immediately. The ZIP file requires no extra tools, but doesn't provide a
     built-in method for updating dependencies. For more information, see
     [Installing from ZIP files](#using-zip).
-    -->
+-->
 
 *   GitHub. When you clone a component from GitHub, you need to manage all of the dependencies
-    yourself. If you'd like to hack on the project or submit a pull request, see
-    [setting up {{site.project_title}} with git](../../resources/tooling-strategy.html#git).
+    yourself.
 
-When you install {{site.project_title}} using Bower or the ZIP file, you get the
-[Web Components polyfill library](platform.html). Using the polyfills
-ensures that you can use {{site.project_title}} with browsers that don't support
+When you install {{site.project_title}} using Bower, you get the
+[Web Components polyfill library](/0.5/docs/start/platform.html). 
+For {{site.project_title}} 0.8, you need the `webcomponents-lite` version of the 
+library, which doesn't include the shadow DOM polyfill.
+
+Using the polyfills ensures that you can use {{site.project_title}} with browsers that don't support
 the Web Components specifications natively.
 
-**Note:** For information about installing elements from the Core and Paper element
-collection, see [Using elements](usingelements.html).
-{: .alert .alert-info }
 
 ## Installing with Bower {#using-bower}
 
-The recommended way to install **{{site.project_title}} {{site.latest_version}}**
+The recommended way to install **{{site.project_title}} 0.8**
 is through Bower. To install Bower, see the [Bower web site](http://bower.io/).
 
 Bower removes the hassle of dependency management when developing or consuming
@@ -76,7 +71,7 @@ This generates a basic `bower.json` file. Some of the questions, like
 
 The next step is to install {{site.project_title}}:
 
-    bower install --save Polymer/polymer#^0.5
+    bower install --save Polymer/polymer#^0.8
 
 Bower adds a `bower_components/` folder in the root of your project and
 fills it with {{site.project_title}} and its dependencies.
@@ -87,7 +82,7 @@ fills it with {{site.project_title}} and its dependencies.
   "name": "my-project",
   "version": "0.0.0",
   "dependencies": {
-    "polymer": "Polymer/polymer#^0.5"
+    "polymer": "Polymer/polymer#^0.8"
   }
 }
 ```
@@ -102,20 +97,14 @@ in your app directory to update your copy:
 
 This updates all packages in `bower_components/`.
 
+<!-- 
 ## Installing from ZIP files {#using-zip}
 
-**ZIP downloads temporarily unavailable.** We are working out some 
-issues with the download server, and hope to have the ZIP download service
-back online soon.
-{: .alert .alert-error }
-
-<!-- Commented out while service is down.
 To download {{site.project_title}} as a ZIP file, click the **GET POLYMER** button
 then click **Download ZIP**.
 
 <component-download-button org="Polymer" component="polymer" label="GET POLYMER">
 </component-download-button>
--->
 
 When you download {{site.project_title}} as a ZIP file, you get all of
 the dependencies bundled into a single archive. It's a great way to get
@@ -133,25 +122,21 @@ Unlike Bower, the ZIP file doesn't provide a built-in method
 for updating dependencies. You can manually update components with a new ZIP
 file.
 
+-->
+
 ## Using git {#git}
 
 Because there are a number of dependencies we suggest you install
 {{site.project_title}} with Bower instead of git. If you'd like to hack on
-the project or submit a pull request check out our guide on
-[setting up {{site.project_title}} with git](../../resources/tooling-strategy.html#git).
+the project or submit a pull request, you can [visit the GitHub repo](https://github.com/Polymer/polymer).
 
 ## Next steps {#nextsteps}
 
 Now that you've installed {{site.project_title}} it's time to learn the core
-concepts. In the next section we'll get you up and running on creating elements
-using {{site.project_title}}. Continue on to:
+concepts.  Continue on to:
 
-<p>
-<a href="creatingelements.html">
-  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Polymer in 10 minutes</paper-button>
-</a>
-</p>
+<p><a href="../devguide/feature-overview.html">
+  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Feature overview</paper-button>
+</a></p>
 
-If you'd rather skip ahead, check out the
-[tutorial](tutorial/intro.html), or skip to the
-[API developer guide](../polymer/polymer.html).
+If you're coming from {{site.project_title}} 0.5, check out the [Migration Guide](../migration.html).
