@@ -16,6 +16,7 @@ When migrating to 0.8, the following items can be translated easily from 0.5 to 
 *   [Web components polyfill library](#polyfill)
 *   [Element registration](#registration)
 *   [Local DOM template](#local-dom-template)
+*   [Declarative event handlers](#declarative-handlers)
 *   [Property definitions](#properties)
 *   [Default attributes](#default-attributes)
 *   [Layout attributes](#layout-attributes)
@@ -51,24 +52,35 @@ After:
 Registration in 0.8 always uses the `Polymer` method. The element name is
 specified using the `is` property (required).
 
-The simplest custom element in 0.5 looked like this:
+A simple custom element in 0.5 looks like this:
 
-    <polymer-element name="register-me" noscript></polymer-element>
+    <polymer-element name="register-me">
+      <template>
+        <div>Hello from my local DOM</div>
+      </template>
+      <script>
+        Polymer();
+      </script>
+    </polymer-element>
 
 The same element in 0.8 looks like this:
 
-    Polymer({is: "register-me"});
+    <dom-module id="register-me">
+      <template>
+        <div>Hello from my local DOM</div>
+      </template>
+    </dom-module>
+
+    <script>
+      Polymer({is: "register-me"});
+    </script>
+
+As you can see, the local DOM template and the registration are separated.
+(The [local DOM template](#local-dom-template) is discussed later.)
 
 Polymer 0.8 supports the `extends` keyword as in 0.5, but at this point **you
 can only extend built-in DOM elements, such as `<button>`.** For more
 information, see [Inheritance](#inheritance).
-
-In 0.8, `Polymer` returns a working constructor:
-
-    var RegisterMe = Polymer({is: "register-me"});
-    var el = new RegisterMe();
-    // equivalent to:
-    var el = document.createElement("register-me");
 
 If you have default attributes on your `<polymer-element>` declaration, make a
 note of them for later:
@@ -94,6 +106,13 @@ These are now declared using the `properties` object on the prototype. For examp
     }
 
 See [Properties](#properties) for details.
+
+One other difference: in 0.8, the `Polymer` function returns a working constructor:
+
+    var RegisterMe = Polymer({is: "register-me"});
+    var el = new RegisterMe();
+    // equivalent to:
+    var el = document.createElement("register-me");
 
 ## Local DOM template {#local-dom-template}
 
@@ -140,6 +159,19 @@ Any custom element that the element depends on must be registered first. That
 is, if `<parent-element>` includes `<child-element>` in its local DOM, 
 `<child-element>` must be registered before `<parent-element>`.
 
+
+## Declarative event handlers {#declarative-handlers}
+
+In 0.8, curly brackets ({%raw%}{{}}{%endraw%}) are **not** used for
+declarative event handlers in the template. 
+
+Before:
+
+    <input on-input="{%raw%}{{checkValue}}{%endraw%}">
+
+After: 
+
+    <input on-input="checkValue">
 
 ## Properties {#properties}
 
@@ -293,18 +325,18 @@ In 0.5, only properties that are explicitly published can be data bound from out
 ### Property name to attribute name mapping
 
 For data binding, deserializing properties from attributes, and reflecting
-properties back to attributes, Polymer must map attribute names to property
-names and the reverse. However, attribute names are case-insensitive and can
-contain dashes, while property names are case-sensitive and cannot contain
-dashes.
+properties back to attributes, Polymer maps attribute names to property
+names and the reverse. 
 
-When mapping attribute names to property names, the general rule is that
-attribute names are converted to lowercase (since the DOM is case-insensitive
-for attribute names).
+When mapping attribute names to property names:
 
-Attribute names with _dashes_ are converted to _camelCase_ property names by
-capitalizing the character following each dash, then removing the dashes. For
-example, `camel-case-prop` is converted to camelCaseProp.
+
+*   Attribute names are converted to lowercase property names. For example,
+    the attribute `firstName` maps to `firstname`.
+
+*   Attribute names with _dashes_ are converted to _camelCase_ property names 
+    by capitalizing the character following each dash, then removing the dashes. 
+    For example, the attribute `first-name` maps to `firstName`.
 
 The same mappings happen in reverse when converting property names to attribute
 names (for example, if a property is defined using `reflectToAttribute: true`.)
@@ -314,6 +346,40 @@ For example, the attribute `foobar` would map to the property `fooBar` if it was
 defined on the element. This **does not happen in 0.8** &mdash; attribute to property
 mappings are set up on the element at registration time based on the rules
 described above.
+
+Before: 
+
+    <polymer-element name="map-me" attributes="foobar">
+      <script>
+        Polymer({
+          fooBar: ""
+        });
+      </script>
+    </polymer-element>
+
+    <map-me foobar="test1"></map-me>  <!-- sets map-me.fooBar -->
+    <map-me FOOBAR="test2"></map-me>  <!-- sets map-me.fooBar -->
+    <map-me foo-bar="test3"></map-me>  <!-- no matching property to set -->
+
+
+After:
+
+    <script>
+      Polymer({
+        is: "map-me"
+        properties: {
+          fooBar: {
+            type: String,
+            value: ""
+          }
+        }
+      });
+    </script>
+
+    <map-me foo-bar="test2"></map-me> <!-- sets map-me.fooBar -->
+    <map-me FOO-BAR="test3"></map-me> <!-- sets map-me.fooBar -->
+    <map-me foobar="test1"></map-me> <!-- no matching property, doesn't set anything on map-me -->
+
 
 ### Default values {#default-values}
 
