@@ -49,10 +49,11 @@ After:
 
 ## Element registration {#registration}
 
-Registration in 0.8 always uses the `Polymer` method. The element name is
-specified using the `is` property (required).
+The `<polymer-element>` tag is no longer used to define an element. In 0.8,
+these are replaced by a `<dom-module>` element (to define local DOM and styles)
+and the `Polymer` call (to register the element).
 
-A simple custom element in 0.5 looks like this:
+Before:
 
     <polymer-element name="register-me">
       <template>
@@ -63,7 +64,7 @@ A simple custom element in 0.5 looks like this:
       </script>
     </polymer-element>
 
-The same element in 0.8 looks like this:
+After:
 
     <dom-module id="register-me">
       <template>
@@ -75,12 +76,20 @@ The same element in 0.8 looks like this:
       Polymer({is: "register-me"});
     </script>
 
-As you can see, the local DOM template and the registration are separated.
-(The [local DOM template](#local-dom-template) is discussed later.)
+In 0.8:
 
-Polymer 0.8 supports the `extends` keyword as in 0.5, but at this point **you
-can only extend built-in DOM elements, such as `<button>`.** For more
-information, see [Inheritance](#inheritance).
+*   The element name is specified using the `is` property on the prototype (required).
+
+*   If you supply a [local DOM template](#local-dom-template), it's wrapped in a 
+    `<dom-module>` element with an ID that matches the element name.
+
+*   Polymer 0.8 supports the `extends` keyword as in 0.5, but at this point **you
+    can only extend built-in DOM elements, such as `<button>`.** For more
+    information, see [Inheritance](#inheritance).
+
+In 0.5, you can defined published properties and default attributes by setting
+attributes on the `<polymer-element>` tag. These features are now only available 
+on the prototype. 
 
 If you have default attributes on your `<polymer-element>` declaration, make a
 note of them for later:
@@ -99,15 +108,16 @@ If you've published any properties using the `attributes` attribute, make a note
 
     <polymer-element name="register-me" attributes="foo">
 
-These are now declared using the `properties` object on the prototype. For example:
+In general, any property published in 0.5 should be declared on 
+the `properties` object in 0.8. For example:
 
     properties: {
       foo: { type: String } 
     }
 
-See [Properties](#properties) for details.
+See [Declared properties](#properties) for details.
 
-One other difference: in 0.8, the `Polymer` function returns a working constructor:
+In 0.8, the `Polymer` function returns a working constructor:
 
     var RegisterMe = Polymer({is: "register-me"});
     var el = new RegisterMe();
@@ -173,9 +183,9 @@ After:
 
     <input on-input="checkValue">
 
-## Properties {#properties}
+## Declared poperties {#properties}
 
-Polymer 0.5 has two mechanisms to publish properties &mdash; the `attributes`
+{{site.project_title}} 0.5 has two mechanisms to publish properties &mdash; the `attributes`
 attribute and the `publish` object. Either of these mechanisms can be used to
 publish a property:
 
@@ -192,7 +202,9 @@ or:
 In addition, 0.5 has separate objects for defining computed properties and
 property observers (the `computed` and `observe` objects).
 
-Polymer 0.8 combines all of these configurations into a single object, the `properties` object:
+{{site.project_title}} 0.8 replaces all of these mechanisms with a single
+property configuration object, the `properties` object:
+
 
     Polymer({
       is: "publish-me",
@@ -300,6 +312,7 @@ invoked automatically. For details see <a href="#observers">Property observers &
 </tr>
 </table>
 
+Any property in your element's public API should be declared in the `properties` object.
 
 ### Attribute deserialization {#attr}
 
@@ -307,14 +320,20 @@ For any property listed in the `properties` object, the user can set a value on 
 
 There are two differences from 0.5:
 
-The `type` field is used to determine how to deserialize the attribute value. If no type is specified, the property takes the string value of the attribute. In 0.5, the type was determined implicitly, from the type of the default value.
-0.8 does not modify the string before JSON parsing `Object` and `Array` values. In 0.5, Polymer replaced single quotes with double quotes. This allowed some invalid JSON to work correctly but broke some valid JSON.
+*   The `type` field is used to determine how to deserialize the attribute
+    value. If no type is specified, the property takes the string value of the
+    attribute. In 0.5, the type was determined implicitly, from the type of the
+    default value.
 
-Old (0.5) reversed quotes accepted:
+*   0.8 does not modify the string before JSON parsing `Object` and `Array`
+    values. In 0.5, Polymer replaced single quotes with double quotes. This
+    allowed some invalid JSON to work correctly but broke some valid JSON.
+
+Before (reversed quotes accepted):
 
     <my-element foo="{ 'title': 'Persuasion', 'author': 'Austen' }"></my-element>
 
-New (0.8) correct JSON quotes required:
+After (correct JSON quotes required):
 
     <my-element foo='{ "title": "Persuasion", "author": "Austen" }'></my-element>
 
@@ -349,7 +368,7 @@ described above.
 
 Before: 
 
-    <polymer-element name="map-me" attributes="foobar">
+    <polymer-element name="map-me" attributes="fooBar">
       <script>
         Polymer({
           fooBar: ""
@@ -458,7 +477,7 @@ properties of local DOM children. However, in some cases you can use data
 binding to bind a property to the child element's property, and observe the
 local property instead.
 
-Old (0.5): 
+Before: 
 
     <polymer-element name="observe-me">
       <template>
@@ -474,7 +493,7 @@ Old (0.5):
        </script>
     </polymer-element>
 
-New (0.8):
+After:
 
     <dom-module id="observe-me">
       <template>
@@ -530,7 +549,7 @@ you'll need to make some changes:
 Add an import for `layout.html` on any element that used the layout attributes.
 Replace the layout attributes with classes.
 
-Before (0.5):
+Before:
 
     <link rel="import" href="/components/polymer/polymer.html">
 
@@ -543,7 +562,7 @@ Before (0.5):
       </script>
     </polymer-element>
 
-After (0.8):
+After:
 
     <link rel="import" href="/components/polymer/polymer.html">
     <link rel="import" href="/components/layout/layout.html">
@@ -603,27 +622,27 @@ differences:
 *   Method and properties that return a list of nodes return an `Array`, not  a
     `NodeList` as in standard DOM.
 
-Old (append to the element's light DOM):
+Before (append to the element's light DOM):
 
     this.appendChild(node);
 
-New:
+After:
 
     Polymer.dom(this).appendChild(node);
 
-Old (append child to the shadow root):
+Before (append child to the shadow root):
 
     this.shadowRoot.appendChild(node);
 
-New:
+After:
 
     Polymer.dom(this.root).appendChild(node);
 
-Old (append to a container in local DOM):
+Before (append to a container in local DOM):
 
     this.$.container.appendChild(node);
 
-New:
+After:
 
    Polymer.dom(this.$.container).appendChild(node);
 
@@ -679,7 +698,7 @@ binding are:
     text content, you can also add additional nodes (for example, wrap the
     binding in a `<span>` tag.
 
-Old (0.5):
+Before:
 
     {% raw %}
     <my-foo fullname="{{firstname + ' ' + lastname}}">
@@ -687,7 +706,7 @@ Old (0.5):
     </my-foo>
     {% endraw %}
 
-New (0.8):
+After:
 
     {% raw %}
     <my-foo fullname="{{computeFullName}}>
@@ -701,6 +720,10 @@ experimental at this point. See [Data binding gaps](#data-binding-gaps) for
 details. Support for conditional templates (`<template if>`) has been removed.
 See [Conditional templates](#conditional-templates) for more information and
 workarounds.
+
+There are many subtle differences between the old and new binding systems as well.
+See [Data binding](devguide/data-binding.html) in the Developer guide for 
+more details on the new system.
 
 ### Property bindings {#property-bindings}
 
@@ -747,7 +770,7 @@ To make your code more easier to read, you may want to use the
 <code>[[<var>property</var>]]</code> form by default, and only use
 <code>{%raw%}{{<var>property</var>}}{%endraw%}</code> for two-way bindings.
  
-For more details, see [Data binding](devguide/data-binding.html) in the developer guide.
+For more details, see [Data binding](devguide/data-binding.html) in the Developer guide.
 
 ### Attribute bindings
 
