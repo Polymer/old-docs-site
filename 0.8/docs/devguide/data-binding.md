@@ -244,6 +244,49 @@ Example 5: Error / non-sensical state
     <!-- binding serves no purpose -->
     <custom-element prop="[[value]]"></custom-element>
 
+### Two-way binding to native elements {#two-way-native}
+
+As mentioned above, {{site.project.title}} uses an event naming convention to achieve two-way
+binding. The act of two-way binding to a property using 
+<code><var>target-prop</var>="{%raw%}{{<var>hostProp</var>}}{%endraw%}"</code> 
+syntax results in Polymer adding  a <code><var>target-prop</var>-changed</code>
+event listener to the element. {{site.project_title}} elements use this convention to 
+send change notifications for any property defined with `notify: true`.
+
+To two-way bind to native elements or non-Polymer elements that don't
+follow this event naming convention, you can specify a
+custom change event name in the annotation using the following syntax:
+
+
+<code><var>target-prop</var>="{%raw%}{{<var>hostProp</var>::<var>target-change-event</var>}}{%endraw%}"</code>
+
+
+Example:
+
+    {% raw %}
+    <!-- Listens for `input` event and sets hostValue to <input>.value -->
+    <input value="{{hostValue::input}}">
+
+    <!-- Listens for `change` event and sets hostChecked to <input>.checked -->
+    <input type="checkbox" checked="{{hostChecked::change}}">
+
+    <!-- Listens for `timeupdate ` event and sets hostTime to <video>.currentTime -->
+    <video url="..." current-time="{{hostTime::timeupdate}}">
+    {% endraw %}
+
+Note: When binding to standard notifying properties on Polymer elements,
+specifying the event name is unnecessary, as the default convention will be
+used.  The following constructions are equivalent:
+
+    {% raw %}
+    <!-- Listens for `value-changed` event -->
+    <my-element value="{{hostValue::value-changed}}">
+
+    <!-- Listens for `value-changed` event using Polymer convention by default -->
+    <my-element value="{{hostValue}}">
+    {% endraw %}
+
+
 ### Binding to structured data {#path-binding}
 
 Sub-properties of the host may be two-way bound to properties of custom elements
