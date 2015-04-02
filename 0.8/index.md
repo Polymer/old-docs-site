@@ -12,12 +12,21 @@ shortname: Introduction
 
 The 0.8 release of the {{site.project_title}} core library is now out.
 
-Consider the 0.8 release to be our _proposed API_ for 1.0. It is an "alpha" release &mdash; we fully expect some breaking changes as a result of the feedback we get.
+Consider the 0.8 release to be our **proposed API for 1.0**. It is an "alpha" release &mdash; we fully expect some breaking changes as a result of the feedback we get.
 
-**Note:** This release is intended for early adopters who want to test out the new APIs and provide feedback. This release is optimized for performance and size, and is not yet a feature-complete replacement for 0.5. We're working hard on getting to feature parity.  See the [roadmap](#roadmap) for more detailed timelines.
-{: .alert .alert-success }
+This release is **intended for early adopters** who want to **test out the new APIs and provide feedback.** This release is optimized for performance and size, and is not yet a feature-complete replacement for 0.5. We're working hard on getting to feature parity.  See the [roadmap](#roadmap) for more detailed timelines.
 
-**The highlights:**
+<div class="alert alert-error"><strong>BREAKING CHANGES.</strong> 
+This release is <strong>not compatible with the 0.5 APIs.</strong> For
+guidance on migrating an existing 0.5 element to the 0.8 APIs, see 
+the <a href="docs/migration.html">Migration guide</a>.<br><br>
+
+If you're <b>not ready to move to 0.8</b> and you're using Bower, be sure to <b>update
+your <code>bower.json</code> files</b> so you don't get 0.8 by accident. See  
+<a href="https://blog.polymer-project.org/updates/2015/03/10/updated-site/#make-sure-to-pin-your-bowerjson-versions">the blog</a> for details. </div>
+
+
+## Highlights
 
 * Dramatically faster startup time and runtime performance than 0.5, even in Chrome where web components are natively supported.
 * Significantly smaller payload than 0.5.
@@ -28,14 +37,6 @@ Consider the 0.8 release to be our _proposed API_ for 1.0. It is an "alpha" rele
 
 There's a lot more to 0.8 &mdash; check out the [Developer guide](docs/devguide/feature-overview.html) for 
 the run-down of all the features.
-
-**BREAKING CHANGES.** This release is **not compatible with the 0.5 APIs.** For
-guidance on migrating an existing 0.5 element to the 0.8 APIs, see the [Migration guide](docs/migration.html).
-{: .alert .alert-error }
-
-If you're not ready to update to 0.8 and you're using Bower, be sure to update your `bower.json` files so
-you don't get 0.8 by accident. See [the blog](https://blog.polymer-project.org/updates/2015/03/10/updated-site/#make-sure-to-pin-your-bowerjson-versions)
-for details.
 
 ## Benchmarks {#benchmarks}
 
