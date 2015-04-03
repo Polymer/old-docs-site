@@ -15,8 +15,13 @@ its _light DOM_ for clarity.
 {{site.project_title}} supports multiple local DOM implementations. On browsers
 that support shadow DOM, shadow DOM may be used to create local DOM. On other
 supported browsers, {{site.project_title}} provides local DOM via a custom
-implementation called shady DOM which is inspired by and compatible with shadow
+implementation called _shady DOM_ which is inspired by and compatible with shadow
 DOM.
+
+**Note:** 
+Currently {{site.project_title}} uses shady DOM by default on all browsers.
+To opt-in to using shadow DOM where available, see [Global settings](settings.html)
+{: .alert .alert-info }
 
 ## Local DOM template {#template-stamping}
 
