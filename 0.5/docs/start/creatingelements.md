@@ -23,7 +23,7 @@ and make it even easier to build complex, web component-based applications:
 ### 1. Install {{site.project_title}} {#install}
 
 Install the latest version of {{site.project_title}} as described in
-[Getting the code](getting-the-code.html).
+[Get the code](getting-the-code.html).
 
 If you want to play with {{site.project_title}} without installing anything,
 skip to [Using {{site.project_title}}'s features](#features). You can run and

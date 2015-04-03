@@ -8,13 +8,17 @@ subtitle: Developer guide
 
 {% include toc.html %}
 
-The features in this section are experimental and subject to change without notice.
+We call the DOM that an element is in charge of creating and managing its _local
+DOM_. This is distinct from the element's children which are sometimes called
+its _light DOM_ for clarity.
+
+{{site.project_title}} supports multiple local DOM implementations. On browsers
+that support shadow DOM, shadow DOM may be used to create local DOM. On other
+supported browsers, {{site.project_title}} provides local DOM via a custom
+implementation called shady DOM which is inspired by and compatible with shadow
+DOM.
 
 ## Local DOM template {#template-stamping}
-
-We call the DOM which an element is in charge of creating an managing its `local
-DOM`. This is distinct from the element's children which are sometimes called
-its `light DOM` for clarity.
 
 To specify DOM to use for an element's local DOM, use the `<dom-module>` element.
 Give the `<dom-module>` an `id` attribute that matches its element's
@@ -141,11 +145,6 @@ point at which an element's light DOM is combined with its local DOM. The
 `<content>` element supports a `select` attribute which filters nodes via a
 simple selector.
 
-Polymer supports multiple local DOM implementations. On browsers that support
-shadow DOM, shadow DOM may be used to create local DOM. On other supported
-browsers, Polymer provides local DOM via a custom implementation called shady DOM
-which is inspired by and compatible with shadow DOM.
-
 Example:
 
     <template>
@@ -232,7 +231,7 @@ Example:
     var div = Polymer.dom(xFoo).querySelector('div');
     var content = Polymer.dom(xFoo.root).querySelector('content');
     var distributed = Polymer.dom(content).getDistributedNodes()[0];
-    var insertedTo = Polymer.dom(div).getDestinationInsertionPoints();
+    var insertedTo = Polymer.dom(div).getDestinationInsertionPoints()[0];
 
     // the following should be true:
     assert.equal(distributed, div);
