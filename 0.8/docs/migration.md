@@ -480,8 +480,8 @@ After:
     });
 
 
-Note that the arguments to the 0.8 observer are in the **opposite order** compared to 
-0.5.
+Note that the arguments to the 0.8 observer are currently in the 
+**opposite order** compared to 0.5.
 
 The `observers` object is still supported and should be used for
 change observers with multiple dependencies:

@@ -305,6 +305,10 @@ Example:
 
     });
 
+**Compatibility note:** The argument order for change handlers is currently the
+**opposite** of the order used in 0.5. 
+{: .alert .alert-info }
+
 Property change observation is achieved in Polymer by installing setters on the
 custom element prototype for properties with registered interest (as opposed to
 observation via `Object.observe` or dirty checking, for example).

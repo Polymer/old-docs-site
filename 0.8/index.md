@@ -6,6 +6,16 @@ subtitle: Introduction
 shortname: Introduction
 ---
 
+<style>
+  .benchmark img {
+    max-width: 500px;
+  }
+  .benchmark figcaption {
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+</style>
+
 {% include toc.html %}
 
 ## Introducing {{site.project_title}} 0.8
@@ -36,15 +46,29 @@ the run-down of all the features.
 
 ## Benchmarks {#benchmarks}
 
-As a sample of the performance difference between 0.5 and 0.8, below are the results from our `medium-list` benchmark. The benchmark instantiates templates for a few thousand nested custom elements and binds data down through each of them. It measures time to first paint. You can poke around with this [benchmark](//github.com/polymerlabs/benchmarks/) yourself &mdash; note that device specs vary wildly, so the only valid comparisons to draw from these numbers are between 0.5 and 0.8, and not across browsers.
+As a sample of the performance difference between 0.5 and 0.8, below are the
+results from our `medium-list` benchmark. The benchmark measures time to first
+paint for an application with a few thousand nested custom elements, with data 
+binding.
 
-|             | Chrome | Desktop Safari | Mobile Safari |
-|-------------|--------|----------------|---------------|
-| 0.5         | 1062ms | 1400ms         | 4030ms        |
-| 0.8         | 317ms  | 323ms          | 684ms         |
-| Improvement | 3.35x  | 4.3x           | 5.9x          |
+<figure class="benchmark" layout vertical center-center>
+<figcaption>Time to first paint (lower is better)</figcaption>
 
-As with all benchmarks, your mileage may vary, and please do poke around and create your own &mdash; we'd love to see them. But with this particular test it's clear that the same Polymer-based app written in 0.8 will be multiple times faster to start up than one written in 0.5, across all environments.
+<img src="images/benchmark.svg" alt="Chrome (Desktop) showed a 4.1x speed
+improvement, Safari (Desktop) a 5.3x speed improvement, Safari (iOS) a 5.3x
+speed improvement, and Firefox (Desktop) an 8x speed improvement going from 
+0.5 to 0.8. Mobile Safari tested on an iPhone 6, other browsers on a Macbook Pro.">
+</figure>
+
+Device specs vary wildly, so the differences between browsers are less 
+significant than the difference between 0.5 and 0.8 on each browser. For this test
+it's clear that the same Polymer-based app written in 0.8 will be multiple times 
+faster to start up than one written in 0.5, across all environments.
+
+You can find the benchmark code [on
+GitHub](//github.com/polymerlabs/benchmarks/). As with all benchmarks, your
+mileage may vary. Please try it out or create  your own tests &mdash; we'd love
+to see them. 
 
 ## Roadmap {#roadmap}
 

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 510 370" enable-background="new 0 0 510 370" xml:space="preserve">
+<line fill="none" stroke="#86888A" stroke-miterlimit="10" x1="19" y1="319" x2="496.5" y2="319"/>
+<rect x="19" y="311.8" fill="none" width="79.5" height="14.5"/>
+<text transform="matrix(1 0 0 1 19 317.8457)" fill="#86888A" font-family="'Roboto-Regular'" font-size="8">0</text>
+<line fill="none" stroke="#86888A" stroke-miterlimit="10" x1="19" y1="247" x2="496.5" y2="247"/>
+<rect x="19" y="239.8" fill="none" width="79.5" height="14.5"/>
+<text transform="matrix(1 0 0 1 19 245.8457)" fill="#86888A" font-family="'Roboto-Regular'" font-size="8">1000</text>
+<line fill="none" stroke="#86888A" stroke-miterlimit="10" x1="19" y1="174.5" x2="496.5" y2="174.5"/>
+<rect x="19" y="167.2" fill="none" width="79.5" height="14.5"/>
+<text transform="matrix(1 0 0 1 19 173.3457)" fill="#86888A" font-family="'Roboto-Regular'" font-size="8">2000</text>
+<line fill="none" stroke="#86888A" stroke-miterlimit="10" x1="19" y1="103.5" x2="496.5" y2="103.5"/>
+<rect x="19" y="96.2" fill="none" width="79.5" height="14.5"/>
+<text transform="matrix(1 0 0 1 19 102.3203)" fill="#86888A" font-family="'Roboto-Regular'" font-size="8">3000</text>
+<line fill="none" stroke="#86888A" stroke-miterlimit="10" x1="19" y1="31" x2="496.5" y2="31"/>
+<rect x="27.6" y="276.7" fill="#7783C0" width="45" height="41.8"/>
+<rect x="82" y="310.2" fill="#EE3E7C" width="45" height="8.3"/>
+<rect x="199" y="307.5" fill="#EE3E7C" width="45" height="11"/>
+<rect x="144.2" y="256.1" fill="#7783C0" width="45" height="62.4"/>
+<rect x="262" y="103.5" fill="#7783C0" width="45" height="215"/>
+<rect x="316" y="271.5" fill="#EE3E7C" width="45" height="47"/>
+<rect x="379.5" y="66.2" fill="#7783C0" width="45" height="252.8"/>
+<rect x="432" y="285.9" fill="#EE3E7C" width="45" height="32.6"/>
+<rect x="19" y="23.8" fill="none" width="79.5" height="14.5"/>
+<text transform="matrix(1 0 0 1 19 29.8457)" fill="#86888A" font-family="'Roboto-Regular'" font-size="8">4000ms</text>
+<rect x="33.4" y="326.2" fill="none" width="89.5" height="38.5"/>
+<text transform="matrix(1 0 0 1 40.7744 333.8701)"><tspan x="0" y="0" font-family="'Roboto-Regular'" font-size="10">Desktop Chrome </tspan><tspan x="7.5" y="12" font-family="'Roboto-Regular'" font-size="10">Macbook Pro</tspan><tspan x="12.3" y="24" font-family="'Roboto-Regular'" font-size="10">4.1x Faster</tspan></text>
+<rect x="149.5" y="326.2" fill="none" width="89.5" height="38.5"/>
+<text transform="matrix(1 0 0 1 161.1205 333.8701)"><tspan x="0" y="0" font-family="'Roboto-Regular'" font-size="10">Desktop Safari </tspan><tspan x="3.2" y="12" font-family="'Roboto-Regular'" font-size="10">Macbook Pro</tspan><tspan x="8" y="24" font-family="'Roboto-Regular'" font-size="10">5.3x Faster</tspan></text>
+<rect x="267.4" y="326.2" fill="none" width="89.5" height="38.5"/>
+<text transform="matrix(1 0 0 1 282.3257 333.8701)"><tspan x="0" y="0" font-family="'Roboto-Regular'" font-size="10">Mobile Safari </tspan><tspan x="10.1" y="12" font-family="'Roboto-Regular'" font-size="10">iPhone 6</tspan><tspan x="4.7" y="24" font-family="'Roboto-Regular'" font-size="10">5.3x Faster</tspan></text>
+<rect x="383.9" y="326.2" fill="none" width="89.5" height="38.5"/>
+<text transform="matrix(1 0 0 1 393.2397 333.8701)"><tspan x="0" y="0" font-family="'Roboto-Regular'" font-size="10">Desktop Firefox </tspan><tspan x="5.5" y="12" font-family="'Roboto-Regular'" font-size="10">Macbook Pro</tspan><tspan x="14.4" y="24" font-family="'Roboto-Regular'" font-size="10">8x Faster</tspan></text>
+<g>
+	<rect x="202" y="7" fill="#7783C0" width="45" height="14.9"/>
+	<rect x="200.5" y="10" fill="none" width="49.5" height="17.5"/>
+	<text transform="matrix(1 0 0 1 218.2798 17.5853)" fill="#FFFFFF" font-family="'Roboto-Regular'" font-size="10">0.5</text>
+	<rect x="259.2" y="7" fill="#EE3E7C" width="45" height="14.9"/>
+	<rect x="257.8" y="10" fill="none" width="49.5" height="17.5"/>
+	<text transform="matrix(1 0 0 1 275.5298 17.5853)" fill="#FFFFFF" font-family="'Roboto-Regular'" font-size="10">0.8</text>
+</g>
+</svg>

@@ -46,7 +46,7 @@ A basic {{site.project_title}} element definition looks like this:
           // declare properties for the element's public API
           greeting: {
             type: String,
-            default: "Hello!"
+            value: "Hello!"
           }
         }
       });
