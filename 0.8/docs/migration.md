@@ -87,7 +87,7 @@ In 0.8:
     can only extend built-in DOM elements, such as `<button>`.** For more
     information, see [Inheritance](#inheritance).
 
-In 0.5, you can defined published properties and default attributes by setting
+In 0.5, you can define _published properties_ and _default attributes_ by setting
 attributes on the `<polymer-element>` tag. These features are now only available 
 on the prototype. 
 
@@ -108,7 +108,7 @@ If you've published any properties using the `attributes` attribute, make a note
 
     <polymer-element name="register-me" attributes="foo">
 
-In general, any property published in 0.5 should be declared on 
+In general, any property _published_ in 0.5 should be declared on 
 the `properties` object in 0.8. For example:
 
     properties: {
