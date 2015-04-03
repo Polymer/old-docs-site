@@ -448,14 +448,42 @@ For more information, see [Computed properties](devguide/properties.html
 0.5 supported _implicit_ change handlers. If a property `foo` changed, the
 corresponding `fooChanged` handler was called automatically. If your element
 uses any <code><var>propertyName</var>Changed</code> handlers, you must
-explicitly register them in the `properties` object:
+explicitly register them in the `properties` object.
 
-    properties: {
-      foo: {
-        observer: 'fooChanged'
+Before:
+
+    <polymer-element name="observe-prop" attributes="foo">
+      <script>
+        Polymer({
+          foo: '',
+          fooChanged: function(oldValue, newValue) {
+            ...
+          }
+        });
+      </script>
+    </polymer-element>
+
+After: 
+
+    Polymer({
+      is: "observe-prop",
+      properties: {
+        foo: {
+          type: String,
+          value: '',
+          observer: 'fooChanged'
+        }
+      },
+      fooChanged: function(newValue, oldValue) { 
+        ... 
       }
+    });
 
-Note that the `observers` object is still supported and should be used for
+
+Note that the arguments to the 0.8 observer are in the **opposite order** compared to 
+0.5.
+
+The `observers` object is still supported and should be used for
 change observers with multiple dependencies:
 
     properties: {
