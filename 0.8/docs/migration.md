@@ -16,6 +16,7 @@ When migrating to 0.8, the following items can be translated easily from 0.5 to 
 *   [Web components polyfill library](#polyfill)
 *   [Element registration](#registration)
 *   [Local DOM template](#local-dom-template)
+*   [Declarative event handlers](#declarative-handlers)
 *   [Property definitions](#properties)
 *   [Default attributes](#default-attributes)
 *   [Layout attributes](#layout-attributes)
@@ -48,27 +49,47 @@ After:
 
 ## Element registration {#registration}
 
-Registration in 0.8 always uses the `Polymer` method. The element name is
-specified using the `is` property (required).
+The `<polymer-element>` tag is no longer used to define an element. In 0.8,
+these are replaced by a `<dom-module>` element (to define local DOM and styles)
+and the `Polymer` call (to register the element).
 
-The simplest custom element in 0.5 looked like this:
+Before:
 
-    <polymer-element name="register-me" noscript></polymer-element>
+    <polymer-element name="register-me">
+      <template>
+        <div>Hello from my local DOM</div>
+      </template>
+      <script>
+        Polymer();
+      </script>
+    </polymer-element>
 
-The same element in 0.8 looks like this:
+After:
 
-    Polymer({is: "register-me"});
+    <dom-module id="register-me">
+      <template>
+        <div>Hello from my local DOM</div>
+      </template>
+    </dom-module>
 
-Polymer 0.8 supports the `extends` keyword as in 0.5, but at this point **you
-can only extend built-in DOM elements, such as `<button>`.** For more
-information, see [Inheritance](#inheritance).
+    <script>
+      Polymer({is: "register-me"});
+    </script>
 
-In 0.8, `Polymer` returns a working constructor:
+In 0.8:
 
-    var RegisterMe = Polymer({is: "register-me"});
-    var el = new RegisterMe();
-    // equivalent to:
-    var el = document.createElement("register-me");
+*   The element name is specified using the `is` property on the prototype (required).
+
+*   If you supply a [local DOM template](#local-dom-template), it's wrapped in a 
+    `<dom-module>` element with an ID that matches the element name.
+
+*   Polymer 0.8 supports the `extends` keyword as in 0.5, but at this point **you
+    can only extend built-in DOM elements, such as `<button>`.** For more
+    information, see [Inheritance](#inheritance).
+
+In 0.5, you can define _published properties_ and _default attributes_ by setting
+attributes on the `<polymer-element>` tag. These features are now only available 
+on the prototype. 
 
 If you have default attributes on your `<polymer-element>` declaration, make a
 note of them for later:
@@ -87,13 +108,21 @@ If you've published any properties using the `attributes` attribute, make a note
 
     <polymer-element name="register-me" attributes="foo">
 
-These are now declared using the `properties` object on the prototype. For example:
+In general, any property _published_ in 0.5 should be declared on 
+the `properties` object in 0.8. For example:
 
     properties: {
       foo: { type: String } 
     }
 
-See [Properties](#properties) for details.
+See [Declared properties](#properties) for details.
+
+In 0.8, the `Polymer` function returns a working constructor:
+
+    var RegisterMe = Polymer({is: "register-me"});
+    var el = new RegisterMe();
+    // equivalent to:
+    var el = document.createElement("register-me");
 
 ## Local DOM template {#local-dom-template}
 
@@ -141,9 +170,22 @@ is, if `<parent-element>` includes `<child-element>` in its local DOM,
 `<child-element>` must be registered before `<parent-element>`.
 
 
-## Properties {#properties}
+## Declarative event handlers {#declarative-handlers}
 
-Polymer 0.5 has two mechanisms to publish properties &mdash; the `attributes`
+In 0.8, curly brackets ({%raw%}{{}}{%endraw%}) are **not** used for
+declarative event handlers in the template. 
+
+Before:
+
+    <input on-input="{%raw%}{{checkValue}}{%endraw%}">
+
+After: 
+
+    <input on-input="checkValue">
+
+## Declared poperties {#properties}
+
+{{site.project_title}} 0.5 has two mechanisms to publish properties &mdash; the `attributes`
 attribute and the `publish` object. Either of these mechanisms can be used to
 publish a property:
 
@@ -160,7 +202,9 @@ or:
 In addition, 0.5 has separate objects for defining computed properties and
 property observers (the `computed` and `observe` objects).
 
-Polymer 0.8 combines all of these configurations into a single object, the `properties` object:
+{{site.project_title}} 0.8 replaces all of these mechanisms with a single
+property configuration object, the `properties` object:
+
 
     Polymer({
       is: "publish-me",
@@ -268,43 +312,23 @@ invoked automatically. For details see <a href="#observers">Property observers &
 </tr>
 </table>
 
-
-### Attribute deserialization {#attr}
-
-For any property listed in the `properties` object, the user can set a value on the corresponding attribute to initialize the property. This works much like (where any property in the `publish` object was deserialized).
-
-There are two differences from 0.5:
-
-The `type` field is used to determine how to deserialize the attribute value. If no type is specified, the property takes the string value of the attribute. In 0.5, the type was determined implicitly, from the type of the default value.
-0.8 does not modify the string before JSON parsing `Object` and `Array` values. In 0.5, Polymer replaced single quotes with double quotes. This allowed some invalid JSON to work correctly but broke some valid JSON.
-
-Old (0.5) reversed quotes accepted:
-
-    <my-element foo="{ 'title': 'Persuasion', 'author': 'Austen' }"></my-element>
-
-New (0.8) correct JSON quotes required:
-
-    <my-element foo='{ "title": "Persuasion", "author": "Austen" }'></my-element>
-
-### Binding to properties
-
-In 0.5, only properties that are explicitly published can be data bound from outside the element. In 0.8, any property is available for data binding, whether or not it is listed in the `properties` object. For more details on data binding in 0.8, see [Data binding](#data-binding).
+Any property in your element's public API should be declared in the `properties` object.
 
 ### Property name to attribute name mapping
 
 For data binding, deserializing properties from attributes, and reflecting
-properties back to attributes, Polymer must map attribute names to property
-names and the reverse. However, attribute names are case-insensitive and can
-contain dashes, while property names are case-sensitive and cannot contain
-dashes.
+properties back to attributes, Polymer maps attribute names to property
+names and the reverse. 
 
-When mapping attribute names to property names, the general rule is that
-attribute names are converted to lowercase (since the DOM is case-insensitive
-for attribute names).
+When mapping attribute names to property names:
 
-Attribute names with _dashes_ are converted to _camelCase_ property names by
-capitalizing the character following each dash, then removing the dashes. For
-example, `camel-case-prop` is converted to camelCaseProp.
+
+*   Attribute names are converted to lowercase property names. For example,
+    the attribute `firstName` maps to `firstname`.
+
+*   Attribute names with _dashes_ are converted to _camelCase_ property names 
+    by capitalizing the character following each dash, then removing the dashes. 
+    For example, the attribute `first-name` maps to `firstName`.
 
 The same mappings happen in reverse when converting property names to attribute
 names (for example, if a property is defined using `reflectToAttribute: true`.)
@@ -314,6 +338,66 @@ For example, the attribute `foobar` would map to the property `fooBar` if it was
 defined on the element. This **does not happen in 0.8** &mdash; attribute to property
 mappings are set up on the element at registration time based on the rules
 described above.
+
+Before: 
+
+    <polymer-element name="map-me" attributes="fooBar">
+      <script>
+        Polymer({
+          fooBar: ""
+        });
+      </script>
+    </polymer-element>
+
+    <map-me foobar="test1"></map-me>  <!-- sets map-me.fooBar -->
+    <map-me FOOBAR="test2"></map-me>  <!-- sets map-me.fooBar -->
+    <map-me foo-bar="test3"></map-me>  <!-- no matching property to set -->
+
+
+After:
+
+    <script>
+      Polymer({
+        is: "map-me"
+        properties: {
+          fooBar: {
+            type: String,
+            value: ""
+          }
+        }
+      });
+    </script>
+
+    <map-me foo-bar="test2"></map-me> <!-- sets map-me.fooBar -->
+    <map-me FOO-BAR="test3"></map-me> <!-- sets map-me.fooBar -->
+    <map-me foobar="test1"></map-me> <!-- no matching property, doesn't set anything on map-me -->
+
+### Attribute deserialization {#attr}
+
+For any property listed in the `properties` object, the user can set a value on the corresponding attribute to initialize the property. This works much like (where any property in the `publish` object was deserialized).
+
+There are two differences from 0.5:
+
+*   The `type` field is used to determine how to deserialize the attribute
+    value. If no type is specified, the property takes the string value of the
+    attribute. In 0.5, the type was determined implicitly, from the type of the
+    default value.
+
+*   0.8 does not modify the string before JSON parsing `Object` and `Array`
+    values. In 0.5, Polymer replaced single quotes with double quotes. This
+    allowed some invalid JSON to work correctly but broke some valid JSON.
+
+Before (reversed quotes accepted):
+
+    <my-element foo="{ 'title': 'Persuasion', 'author': 'Austen' }"></my-element>
+
+After (correct JSON quotes required):
+
+    <my-element foo='{ "title": "Persuasion", "author": "Austen" }'></my-element>
+
+### Binding to properties
+
+In 0.5, only properties that are explicitly published can be data bound from outside the element. In 0.8, any property is available for data binding, whether or not it is listed in the `properties` object. For more details on data binding in 0.8, see [Data binding](#data-binding).
 
 ### Default values {#default-values}
 
@@ -363,14 +447,42 @@ For more information, see [Computed properties](devguide/properties.html
 0.5 supported _implicit_ change handlers. If a property `foo` changed, the
 corresponding `fooChanged` handler was called automatically. If your element
 uses any <code><var>propertyName</var>Changed</code> handlers, you must
-explicitly register them in the `properties` object:
+explicitly register them in the `properties` object.
 
-    properties: {
-      foo: {
-        observer: 'fooChanged'
+Before:
+
+    <polymer-element name="observe-prop" attributes="foo">
+      <script>
+        Polymer({
+          foo: '',
+          fooChanged: function(oldValue, newValue) {
+            ...
+          }
+        });
+      </script>
+    </polymer-element>
+
+After: 
+
+    Polymer({
+      is: "observe-prop",
+      properties: {
+        foo: {
+          type: String,
+          value: '',
+          observer: 'fooChanged'
+        }
+      },
+      fooChanged: function(newValue, oldValue) { 
+        ... 
       }
+    });
 
-Note that the `observers` object is still supported and should be used for
+
+Note that the arguments to the 0.8 observer are currently in the 
+**opposite order** compared to 0.5.
+
+The `observers` object is still supported and should be used for
 change observers with multiple dependencies:
 
     properties: {
@@ -392,7 +504,7 @@ properties of local DOM children. However, in some cases you can use data
 binding to bind a property to the child element's property, and observe the
 local property instead.
 
-Old (0.5): 
+Before: 
 
     <polymer-element name="observe-me">
       <template>
@@ -408,7 +520,7 @@ Old (0.5):
        </script>
     </polymer-element>
 
-New (0.8):
+After:
 
     <dom-module id="observe-me">
       <template>
@@ -464,7 +576,7 @@ you'll need to make some changes:
 Add an import for `layout.html` on any element that used the layout attributes.
 Replace the layout attributes with classes.
 
-Before (0.5):
+Before:
 
     <link rel="import" href="/components/polymer/polymer.html">
 
@@ -477,7 +589,7 @@ Before (0.5):
       </script>
     </polymer-element>
 
-After (0.8):
+After:
 
     <link rel="import" href="/components/polymer/polymer.html">
     <link rel="import" href="/components/layout/layout.html">
@@ -537,27 +649,27 @@ differences:
 *   Method and properties that return a list of nodes return an `Array`, not  a
     `NodeList` as in standard DOM.
 
-Old (append to the element's light DOM):
+Before (append to the element's light DOM):
 
     this.appendChild(node);
 
-New:
+After:
 
     Polymer.dom(this).appendChild(node);
 
-Old (append child to the shadow root):
+Before (append child to the shadow root):
 
     this.shadowRoot.appendChild(node);
 
-New:
+After:
 
     Polymer.dom(this.root).appendChild(node);
 
-Old (append to a container in local DOM):
+Before (append to a container in local DOM):
 
     this.$.container.appendChild(node);
 
-New:
+After:
 
    Polymer.dom(this.$.container).appendChild(node);
 
@@ -613,7 +725,7 @@ binding are:
     text content, you can also add additional nodes (for example, wrap the
     binding in a `<span>` tag.
 
-Old (0.5):
+Before:
 
     {% raw %}
     <my-foo fullname="{{firstname + ' ' + lastname}}">
@@ -621,7 +733,7 @@ Old (0.5):
     </my-foo>
     {% endraw %}
 
-New (0.8):
+After:
 
     {% raw %}
     <my-foo fullname="{{computeFullName}}>
@@ -635,6 +747,10 @@ experimental at this point. See [Data binding gaps](#data-binding-gaps) for
 details. Support for conditional templates (`<template if>`) has been removed.
 See [Conditional templates](#conditional-templates) for more information and
 workarounds.
+
+There are many subtle differences between the old and new binding systems as well.
+See [Data binding](devguide/data-binding.html) in the Developer guide for 
+more details on the new system.
 
 ### Property bindings {#property-bindings}
 
@@ -681,7 +797,7 @@ To make your code more easier to read, you may want to use the
 <code>[[<var>property</var>]]</code> form by default, and only use
 <code>{%raw%}{{<var>property</var>}}{%endraw%}</code> for two-way bindings.
  
-For more details, see [Data binding](devguide/data-binding.html) in the developer guide.
+For more details, see [Data binding](devguide/data-binding.html) in the Developer guide.
 
 ### Attribute bindings
 

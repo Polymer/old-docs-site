@@ -70,6 +70,10 @@ Example:
 
     </script>
 
+**Compatibility note:** The syntax differs from 0.5, which required curly brackets ({%raw%}{{}}{%endraw%})
+around the event handler name.
+{: .alert .alert-info }
+
 ## Event retargeting {#retargeting}
 
 Shadow DOM has a feature called "event retargeting" which changes an event's

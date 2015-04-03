@@ -2,28 +2,29 @@
 layout: default
 type: guide
 shortname: Docs
-title: Properties
+title: Declared properties
 subtitle: Developer guide
 ---
 
 {% include toc.html %}
 
-## Configuring properties {#property-config}
 
-You can configure dynamic properties on your custom element by adding them to
-the `properties` object on your prototype. The `properties` object lets you 
-specify the property's type and default value.
+You can declare properties on your custom element by adding them to
+the `properties` object on your prototype. Adding a property to the `properties` 
+object allows a user to configure the property from markup (see 
+[attribute deserialization](#attribute-deserialization) for details).
+**Any property that's part of your element's public API should be declared in the 
+`properties` object.**
 
-Adding a property to the `properties` object allows a user to configure the 
-property from markup (see [attribute deserialization](#attribute-deserialization) for details).
+In addition, the `properties` object can be used to specify:
 
-In addition, there are several features for each 
-property in the `properties` object:
-
+* Property type. 
+* Default value. 
 * Property change observer. Calls a method whenever the property value changes.
-* Read-only property. Prevents accidental changes to the property value.
+* Read-only status. Prevents accidental changes to the property value.
 * Two-way data binding support. Fires an event whenever the property value changes.
 * Computed property. Dynamically calculates a value based on other properties.
+* Property reflection to attribute. Updates the corresponding attribute value when the property value changes.
 
 Example:
 
@@ -135,22 +136,27 @@ for more information.
 ## Property name to attribute name mapping {#property-name-mapping}
 
 For data binding, deserializing properties from attributes, and reflecting
-properties back to attributes, {{site.project_title}} must map attribute names to property
-names and the reverse. However, attribute names are case-insensitive and can
-contain dashes, while property names are case-sensitive and cannot contain
-dashes.
+properties back to attributes, {{site.project_title}} maps attribute names to property
+names and the reverse. 
 
-When mapping attribute names to property names, the general rule is that
-attribute names are converted to lowercase (since the DOM is case-insensitive
-for attribute names).
+When mapping attribute names to property names:
 
-Attribute names with _dashes_ are converted to _camelCase_ property names by
-capitalizing the character following each dash, then removing the dashes. For
-example, `camel-case-prop` is converted to camelCaseProp.
+*   Attribute names are converted to lowercase property names. For example,
+    the attribute `firstName` maps to `firstname`.
+
+*   Attribute names with _dashes_ are converted to _camelCase_ property names 
+    by capitalizing the character following each dash, then removing the dashes. 
+    For example, the attribute `first-name` maps to `firstName`.
 
 The same mappings happen in reverse when converting property names to attribute
 names (for example, if a property is defined using `reflectToAttribute: true`.)
 
+**Compatibility note:** In 0.5, Polymer attempted to map attribute names to corresponding properties.
+For example, the attribute `foobar` would map to the property `fooBar` if it was
+defined on the element. This **does not happen in 0.8** &mdash; attribute to property
+mappings are set up on the element at registration time based on the rules
+described above.
+{: .alert .alert-info }
 
 ## Attribute deserialization {#attribute-deserialization}
 
@@ -298,6 +304,10 @@ Example:
       }
 
     });
+
+**Compatibility note:** The argument order for change handlers is currently the
+**opposite** of the order used in 0.5. 
+{: .alert .alert-info }
 
 Property change observation is achieved in Polymer by installing setters on the
 custom element prototype for properties with registered interest (as opposed to

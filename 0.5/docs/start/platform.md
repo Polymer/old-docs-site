@@ -59,7 +59,7 @@ You can also manually install `webcomponents.js` using Bower:
     bower install --save webcomponentsjs
 
 **Note:** For more information on using Bower, see
-[Getting the code](getting-the-code.html).
+[Get the code](getting-the-code.html).
 {: .alert .alert-info }
 
 Then, include `webcomponents.min.js` as you would any other script:

@@ -2,7 +2,7 @@
 layout: default
 type: start
 shortname: Start
-title: Getting the code
+title: Get the code
 ---
 
 <style>
@@ -136,7 +136,7 @@ Now that you've installed {{site.project_title}} it's time to learn the core
 concepts.  Continue on to:
 
 <p><a href="../devguide/feature-overview.html">
-  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Feature overview</paper-button>
+  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Developer guide</paper-button>
 </a></p>
 
-If you're coming from {{site.project_title}} 0.5, check out the [Migration Guide](../migration.html).
+If you're coming from {{site.project_title}} 0.5, check out the [Migration guide](../migration.html).
