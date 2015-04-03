@@ -314,33 +314,6 @@ invoked automatically. For details see <a href="#observers">Property observers &
 
 Any property in your element's public API should be declared in the `properties` object.
 
-### Attribute deserialization {#attr}
-
-For any property listed in the `properties` object, the user can set a value on the corresponding attribute to initialize the property. This works much like (where any property in the `publish` object was deserialized).
-
-There are two differences from 0.5:
-
-*   The `type` field is used to determine how to deserialize the attribute
-    value. If no type is specified, the property takes the string value of the
-    attribute. In 0.5, the type was determined implicitly, from the type of the
-    default value.
-
-*   0.8 does not modify the string before JSON parsing `Object` and `Array`
-    values. In 0.5, Polymer replaced single quotes with double quotes. This
-    allowed some invalid JSON to work correctly but broke some valid JSON.
-
-Before (reversed quotes accepted):
-
-    <my-element foo="{ 'title': 'Persuasion', 'author': 'Austen' }"></my-element>
-
-After (correct JSON quotes required):
-
-    <my-element foo='{ "title": "Persuasion", "author": "Austen" }'></my-element>
-
-### Binding to properties
-
-In 0.5, only properties that are explicitly published can be data bound from outside the element. In 0.8, any property is available for data binding, whether or not it is listed in the `properties` object. For more details on data binding in 0.8, see [Data binding](#data-binding).
-
 ### Property name to attribute name mapping
 
 For data binding, deserializing properties from attributes, and reflecting
@@ -399,6 +372,32 @@ After:
     <map-me FOO-BAR="test3"></map-me> <!-- sets map-me.fooBar -->
     <map-me foobar="test1"></map-me> <!-- no matching property, doesn't set anything on map-me -->
 
+### Attribute deserialization {#attr}
+
+For any property listed in the `properties` object, the user can set a value on the corresponding attribute to initialize the property. This works much like (where any property in the `publish` object was deserialized).
+
+There are two differences from 0.5:
+
+*   The `type` field is used to determine how to deserialize the attribute
+    value. If no type is specified, the property takes the string value of the
+    attribute. In 0.5, the type was determined implicitly, from the type of the
+    default value.
+
+*   0.8 does not modify the string before JSON parsing `Object` and `Array`
+    values. In 0.5, Polymer replaced single quotes with double quotes. This
+    allowed some invalid JSON to work correctly but broke some valid JSON.
+
+Before (reversed quotes accepted):
+
+    <my-element foo="{ 'title': 'Persuasion', 'author': 'Austen' }"></my-element>
+
+After (correct JSON quotes required):
+
+    <my-element foo='{ "title": "Persuasion", "author": "Austen" }'></my-element>
+
+### Binding to properties
+
+In 0.5, only properties that are explicitly published can be data bound from outside the element. In 0.8, any property is available for data binding, whether or not it is listed in the `properties` object. For more details on data binding in 0.8, see [Data binding](#data-binding).
 
 ### Default values {#default-values}
 
