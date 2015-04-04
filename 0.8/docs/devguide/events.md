@@ -90,7 +90,9 @@ normalized event has the following properties:
     `shady DOM).
 
 *   `localTarget`: Retargeted event target (equivalent to `event.target` under
-    shadow DOM)   * `path`: Array of nodes through which event will pass 
+    shadow DOM)
+
+*   `path`: Array of nodes through which event will pass 
     (equivalent to `event.path` under shadow DOM).
 
 
