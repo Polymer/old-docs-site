@@ -39,7 +39,7 @@ property, with an annotation as the attribute value:
 
 While HTML attributes are used to specify bindings, values are
 assigned directly to JavaScript properties, **not** to the HTML attributes of the
-elements. (There is a [special attribute binding syntax]](#attribute-binding) for
+elements. (There is a [special attribute binding syntax](#attribute-binding) for
 those cases where you want to bind to an attribute value.)
 
 Attribute names are mapped to property names as described in [Property name to
