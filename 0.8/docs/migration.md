@@ -183,7 +183,7 @@ After:
 
     <input on-input="checkValue">
 
-## Declared poperties {#properties}
+## Declared properties {#properties}
 
 {{site.project_title}} 0.5 has two mechanisms to publish properties &mdash; the `attributes`
 attribute and the `publish` object. Either of these mechanisms can be used to
