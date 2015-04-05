@@ -154,7 +154,7 @@ To specify a local DOM template in 0.8, use a `dom-module` tag, with your custom
       <template>
         <div>This is local DOM</div>
       </template>  
-      </dom-module>
+    </dom-module>
     <script>
       Polymer({is: "template-me"});
     </script>
