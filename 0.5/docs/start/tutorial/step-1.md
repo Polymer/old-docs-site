@@ -169,7 +169,7 @@ tabs.
 ...
 &lt;core-toolbar>
 
-  <strong class="highlight nocode">&lt;paper-tabs id="tabs" selected="all" self-end>
+  <strong class="highlight nocode">&lt;paper-tabs valueattr="name" id="tabs" selected="all" self-end>
     &lt;paper-tab name="all">All&lt;/paper-tab>
     &lt;paper-tab name="favorites">Favorites&lt;/paper-tab>
   &lt;/paper-tabs></strong>
