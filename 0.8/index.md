@@ -191,7 +191,7 @@ an important one, and we aim to continue to reinforce this going forward.
 #### Will you continue to support Polymer 0.5?
 
 We recognize that many projects rely on 0.5, and won’t be able to switch to 0.8
-until the elements already. We’ll continue viewing and merging PR’s until the
+until the elements are ready. We’ll continue viewing and merging PR’s until the
 elements are ported.  We intend for 0.8 to be the new baseline though, and to
 work within this high-performance, production-ready mindset going forward. Any
 incremental 0.5 releases, if needed, will be available in a branch.
