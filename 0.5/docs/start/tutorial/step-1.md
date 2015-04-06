@@ -185,7 +185,7 @@ tabs.
         value or its index value.
       </li>
       <li>
-        <code>selected="all"</code> chooses the first tab as the initially selected tab.
+        <code>selected="all"</code> chooses the first tab with a matching `name` attribute as the initially selected tab. See the [`core-selector` docs](../../elements/core-selector.html#core-selector.attributes.valueattr).
       </li>
       <li>In this case, the children are <code>&lt;paper-tab></code> elements, which provide
          styling and the "ink ripple" animation when you touch a tab.

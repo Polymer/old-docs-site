@@ -245,9 +245,10 @@ techniques like anonymous self-calling functions:
           // Run once. Private and static to the element.
           var foo_ = new Foo();
 
-          // Run for every instance of the element that's created.
+          // created() is run for every instance of the element that is created.
           Polymer({
             get foo() { return foo_; }
+            created: function() { ... }
           });
         })();
       </script>
