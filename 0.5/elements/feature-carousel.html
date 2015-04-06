@@ -28,10 +28,7 @@
       interval: null, // num milliseconds to cycle panels.
       selected: 0,
       domReady: function() {
-        this.panels = Array.prototype.slice.call(
-            this.$.content.getDistributedNodes());
-
-        this.onMutation(this, this.childrenUpdated);
+        this.childrenUpdated();
         this.startCycler();
       },
       childrenUpdated: function(observer, mutations) {
