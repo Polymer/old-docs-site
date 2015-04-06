@@ -28,11 +28,17 @@
       interval: null, // num milliseconds to cycle panels.
       selected: 0,
       domReady: function() {
-        // TODO: use onMutation to watch for children updates.
         this.panels = Array.prototype.slice.call(
             this.$.content.getDistributedNodes());
 
+        this.onMutation(this, this.childrenUpdated);
         this.startCycler();
+      },
+      childrenUpdated: function(observer, mutations) {
+        this.panels = Array.prototype.slice.call(
+            this.$.content.getDistributedNodes());
+
+        this.onMutation(this, this.childrenUpdated);
       },
       next: function(opt_Index, opt_backwards) {
         var backwards = opt_backwards == true;
