@@ -174,10 +174,12 @@ function injectPage(url, opt_addToHistory) {
   xhr.send();
 }
 
+// Old API reference URLs have the page name in the hash. After
+// server-side redirects, they end up as "docs/elements/#page-name"
+// The page name may be followed by a deep link, like ".attributes.data".
+// Rewrite here to "docs/elements/page-name.html", leaving any hash
+// in place to preserve the deep link.
 function redirectOldAPIDocs() {
-  // Old API reference URLs have the page name in the hash. After
-  // server-side redirects, they end up as "docs/elements/#page-name".
-  // Rewrite here to "docs/elements/page-name.html"
   var oldAPILanding = 'docs/elements/'
   var path = window.location.pathname;
   var hash = window.location.hash;
@@ -185,9 +187,7 @@ function redirectOldAPIDocs() {
   var lastIndex =  path.indexOf(oldAPILanding, position);
   if (lastIndex !== -1 && lastIndex == position) {
     if (hash) {
-      var newPath = path + hash.slice(1) + '.html';
-      window.location.hash = '';
-      window.location.pathname = newPath;
+      location.href = location.href.replace(/(\/docs\/elements\/)#([^.]*)(.*)$/, '$1$2.html#$2$3')
     }
   }
 }
