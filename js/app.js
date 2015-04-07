@@ -174,8 +174,30 @@ function injectPage(url, opt_addToHistory) {
   xhr.send();
 }
 
+function redirectOldAPIDocs() {
+  // Old API reference URLs have the page name in the hash. After
+  // server-side redirects, they end up as "docs/elements/#page-name".
+  // Rewrite here to "docs/elements/page-name.html"
+  var oldAPILanding = 'docs/elements/'
+  var path = window.location.pathname;
+  var hash = window.location.hash;
+  var position = path.length - oldAPILanding.length;
+  var lastIndex =  path.indexOf(oldAPILanding, position);
+  if (lastIndex !== -1 && lastIndex == position) {
+    if (hash) {
+      var newPath = path + hash.slice(1) + '.html';
+      window.location.hash = '';
+      window.location.pathname = newPath;
+    }
+  }
+}
+
 function initPage(opt_inDoc) {
   var doc = opt_inDoc || document;
+
+  // TODO: surely there's a better way to do this?
+  redirectOldAPIDocs();
+
 
   // TODO: do this at build time.
   addPermalinkHeadings(doc);
