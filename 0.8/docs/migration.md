@@ -128,8 +128,8 @@ In 0.8, the `Polymer` function returns a working constructor:
 
 0.8 replaces the shadow DOM with the abstract local DOM mechanism. Local DOM can
 be implemented using native shadow DOM or using a lightweight alternative,
-"shady DOM". Polymer 0.8 uses shady DOM by default on all browsers. You can opt
-into using native shadow DOM where available.
+"shady DOM". Polymer 0.8 uses shady DOM by default on all browsers. You can [opt
+into using native shadow DOM](devguide/settings.html) where available.
 
 In 0.5, the local DOM template is specified as a child of the `<polymer-element>`:
 
@@ -570,7 +570,7 @@ in the Developer guide, or use `setAttribute` directly.
 
 The layout attributes stylesheet that's included in Polymer 0.5 has been
 replaced with an optional stylesheet that uses classes. If your element uses
-[layout attributes] (https://www.polymer-project.org/0.5/docs/polymer/layout-attrs.html), 
+[layout attributes](https://www.polymer-project.org/0.5/docs/polymer/layout-attrs.html), 
 you'll need to make some changes:
 
 Add an import for `layout.html` on any element that used the layout attributes.
