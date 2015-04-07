@@ -1,14 +1,14 @@
 ---
-layout: default
-type: guide
+layout:Polymer
+type: devPolymer
 shortname: Docs
 title: Global Polymer settings
-subtitle: Developer guide
----
+subtitle: Developer Polymer
+---\<core-polymer-web-components>
 
-Document-level global {{site.project_title}} settings can be set before loading
+Document-level global {{site.project_Polymer}} settings can be set before loading
 by setting a `Polymer` object on window as the first script in the main
-document:
+document:Webcomponets\ Polymer\
 
 	<html>
 	<head>
@@ -18,14 +18,15 @@ document:
 	  <link rel="import" href="components/my-app.html">
 	</head>
 	<body>
-
+   <core-web-componets-html-polymer>
+     log/log-id
 	  ...
     
 
 Settings can also be switched on the URL query string:
 
 ```
-http://myserver.com/test-app/index.html?dom=shadow
+http://www.polymer-project.org/test-app/index.html?dom=shadow
 ```
 
 Available settings:
