@@ -1,5 +1,5 @@
 application: polymer-project
-version: zerodoteight
+version: 2015-04-03
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -20,20 +20,27 @@ handlers:
   secure: always
 
 # These needs to be in this order and come for the short URL versions.
+# Map unversioned wc.js allowed because it will churn less.
+- url: /webcomponents(\.min)?.js$
+  static_files: _site/0.5/components/webcomponentsjs/webcomponents.min.js
+  upload: 0.5/components/webcomponentsjs/webcomponents(\.min)?.js
+  http_headers:
+    Access-Control-Allow-Origin: "*"
+
 - url: /(.+)/components/(.*)/webcomponents(\.min)?.js$
-  static_files: \1/components/\2/webcomponents.min.js
+  static_files: _site/\1/components/\2/webcomponents.min.js
   upload: (.+)/components/(.*)/webcomponents(\.min)?.js
   http_headers:
     Access-Control-Allow-Origin: "*"
 
 - url: /(.+)/components/(.*)/polymer(\.min)?.js$
-  static_files: \1/components/\2/polymer.min.js
+  static_files: _site/\1/components/\2/polymer.min.js
   upload: (.+)/components/(.*)/polymer(\.min)?.js
   http_headers:
     Access-Control-Allow-Origin: "*"
 
 - url: /(.+)/components/(.*)
-  static_files: \1/components/\2
+  static_files: _site/\1/components/\2
   upload: (.+)/components/(.*)
   http_headers:
     Access-Control-Allow-Origin: "*"
@@ -43,7 +50,7 @@ handlers:
 # Workaround for https://github.com/Polymer/docs/issues/823 -- always serve minified
 
 - url: /(.+)/webcomponents(\.min)?.js$
-  static_files: \1/components/webcomponentsjs/webcomponents.min.js
+  static_files: _site/\1/components/webcomponentsjs/webcomponents.min.js
   upload: (.+)/components/webcomponentsjs/webcomponents(\.min)?.js
   http_headers:
     Access-Control-Allow-Origin: "*"
@@ -59,19 +66,19 @@ handlers:
   script: main.app
 
 - url: /(.+)/polymer.html$
-  static_files: \1/components/polymer/polymer.html
+  static_files: _site/\1/components/polymer/polymer.html
   upload: (.+)/components/polymer/polymer.html
   http_headers:
     Access-Control-Allow-Origin: "*"
 
 - url: /(.+)/polymer(\.min)?.js$
-  static_files: \1/components/polymer/polymer.min.js
+  static_files: _site/\1/components/polymer/polymer.min.js
   upload: (.+)/components/polymer/polymer(\.min)?.js
   http_headers:
     Access-Control-Allow-Origin: "*"
 
 - url: /(.+)/layout.html$
-  static_files: \1/components/polymer/layout.html
+  static_files: _site/\1/components/polymer/layout.html
   upload: (.+)/components/polymer/layout.html
   http_headers:
     Access-Control-Allow-Origin: "*"

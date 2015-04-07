@@ -221,9 +221,11 @@ building something!
 In the next section we'll cover using the Core layout elements
 to structure an application's layout.  Continue on to:
 
+<p>
 <a href="../elements/layout-elements.html">
   <paper-button raised><core-icon icon="arrow-forward" ></core-icon>Layout elements</paper-button>
 </a>
+</p>
 
 To learn about building your own elements using the {{site.project_title}} library, see
 [{{site.project_title}} in 10 minutes](creatingelements.html).

@@ -49,7 +49,7 @@ elements that you can use to achieve material design app layouts, transitions,
 and scrolling effects.
 
 For more detail on the material design philosophy and guidelines, see the
-[Material design specificationn](http://google.com/design/spec).
+[Material design specification](http://google.com/design/spec).
 
 For a sample of the material design patterns in use, see the <a href="https://polymer-topeka.appspot.com" target="_blank">Topeka sample app</a>.
 

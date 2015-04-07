@@ -2,7 +2,7 @@
 layout: default
 type: start
 shortname: Start
-title: Getting the code
+title: Get the code
 ---
 
 <style>
@@ -31,10 +31,16 @@ in one of several ways:
     also installs any missing dependencies. Bower also handles updating
     installed components. For more information, see [Installing with Bower](#using-bower).
 
-*   ZIP file. Includes all dependencies, so you can unzip it and start using it
+*   ZIP file. **Temporarily unavailable.** We are working out some 
+    issues with the download server, and hope to have the ZIP download service
+    back online soon.
+
+    <!-- 
+    Includes all dependencies, so you can unzip it and start using it
     immediately. The ZIP file requires no extra tools, but doesn't provide a
     built-in method for updating dependencies. For more information, see
     [Installing from ZIP files](#using-zip).
+    -->
 
 *   GitHub. When you clone a component from GitHub, you need to manage all of the dependencies
     yourself. If you'd like to hack on the project or submit a pull request, see
@@ -47,11 +53,7 @@ the Web Components specifications natively.
 
 **Note:** For information about installing elements from the Core and Paper element
 collection, see [Using elements](usingelements.html).
-
-**Note:** The PolymerLabs GitHub repo contains a number of unsupported elements that are either
-experimental or deprecated. In particular, the `polymer-elements` and `polymer-ui-elements`
-collections represent earlier work superseded by the {{site.project_title}} Core elements and
-Paper elements.
+{: .alert .alert-info }
 
 ## Installing with Bower {#using-bower}
 
@@ -74,7 +76,7 @@ This generates a basic `bower.json` file. Some of the questions, like
 
 The next step is to install {{site.project_title}}:
 
-    bower install --save Polymer/polymer
+    bower install --save Polymer/polymer#^0.5
 
 Bower adds a `bower_components/` folder in the root of your project and
 fills it with {{site.project_title}} and its dependencies.
@@ -85,7 +87,7 @@ fills it with {{site.project_title}} and its dependencies.
   "name": "my-project",
   "version": "0.0.0",
   "dependencies": {
-    "polymer": "Polymer/polymer#~{{site.latest_version}}"
+    "polymer": "Polymer/polymer#^0.5"
   }
 }
 ```
@@ -102,11 +104,18 @@ This updates all packages in `bower_components/`.
 
 ## Installing from ZIP files {#using-zip}
 
+**ZIP downloads temporarily unavailable.** We are working out some 
+issues with the download server, and hope to have the ZIP download service
+back online soon.
+{: .alert .alert-error }
+
+<!-- Commented out while service is down.
 To download {{site.project_title}} as a ZIP file, click the **GET POLYMER** button
 then click **Download ZIP**.
 
 <component-download-button org="Polymer" component="polymer" label="GET POLYMER">
 </component-download-button>
+-->
 
 When you download {{site.project_title}} as a ZIP file, you get all of
 the dependencies bundled into a single archive. It's a great way to get
@@ -137,9 +146,11 @@ Now that you've installed {{site.project_title}} it's time to learn the core
 concepts. In the next section we'll get you up and running on creating elements
 using {{site.project_title}}. Continue on to:
 
+<p>
 <a href="creatingelements.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>Polymer in 10 minutes</paper-button>
 </a>
+</p>
 
 If you'd rather skip ahead, check out the
 [tutorial](tutorial/intro.html), or skip to the

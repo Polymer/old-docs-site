@@ -6,7 +6,9 @@
   {% endif %}
 {% endcapture %}
 
-<app-bar theme="{{theme | trim }}" {% if page.layout == 'home'%}home{% endif %} badge="{{site.project_status}}" class="bar fixed" unresolved>
+{% capture ver %}{% polymer_version_dir %}{% endcapture %}
+
+<app-bar theme="{{theme | trim }}" {% if page.layout == 'home'%}home{% endif %} badge="{% polymer_version_dir %} {{site.versions[ver]}}" class="bar fixed" unresolved>
   <a href="/{% polymer_version_dir %}/docs/start/getting-the-code.html" class="paper-button" borderless sink>Get Started</a>
   <a href="/{% polymer_version_dir %}/docs/polymer/polymer.html" class="paper-button" borderless sink>Guides &amp; Resources</a>
   <a href="/{% polymer_version_dir %}/docs/elements/" class="paper-button" borderless sink>Elements</a>

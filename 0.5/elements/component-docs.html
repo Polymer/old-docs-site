@@ -42,11 +42,19 @@
         );
         return data;
       },
+      /**
+       * Check if element is top level or nested inside another element's
+       * directory structure. This affects whether or not a demo and download
+       * buttuon will be shown for it in the docs page
+       */
       isTopLevelElement: function(name, url) {
         if (!name || !url) {
           return;
         }
-        return url.indexOf('components/' + name + '/') == 0;
+        // Will take the url 0.5/components/core-ajax/core-ajax.html
+        // and return components/core-ajax/core-ajax.html
+        var versionFreeUrl = url.split('/').slice(1).join('/');
+        return versionFreeUrl.indexOf('components/' + name + '/') == 0;
       }
     });
   </script>

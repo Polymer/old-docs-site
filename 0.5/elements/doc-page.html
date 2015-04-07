@@ -58,7 +58,8 @@
           <component-download-button id="downloadButton"
               org="Polymer" component="{{data.name}}"
               label="Get {{data.name}}"></component-download-button>
-          <a class="badge" target="_blank" href="/components/{{data.name}}/demo.html"
+          <a class="badge" target="_blank"
+                           href="{{data.location | getDemoUrl_}}"
                            on-click="{{recordDemoPageview_}}">
             <paper-button raised>Demo</paper-button>
           </a>
@@ -395,6 +396,18 @@
         // injected, the $ does not seem to rebuild properly. It only
         // contains the topmost element (#main)
         this.$.main.querySelector(sender.dataset.target).toggle();
+      },
+
+      /**
+       * Filter to return the element's demo url based on its
+       * install location
+       */
+      getDemoUrl_: function(url) {
+        // Given:   0.5/components/core-ajax/core-ajax.html
+        // Returns: /0.5/components/core-ajax/demo.html
+        return '/' +
+               url.split('/').slice(0, -1).join('/') +
+               '/demo.html';
       }
     });
 

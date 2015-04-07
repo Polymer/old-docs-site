@@ -59,7 +59,7 @@ You can also manually install `webcomponents.js` using Bower:
     bower install --save webcomponentsjs
 
 **Note:** For more information on using Bower, see
-[Getting the code](getting-the-code.html).
+[Get the code](getting-the-code.html).
 {: .alert .alert-info }
 
 Then, include `webcomponents.min.js` as you would any other script:
@@ -95,6 +95,8 @@ like to learn about the additional features {{site.project_title}} adds, check o
 
 Or continue on to:
 
-<a href="../docs/polymer/polymer.html">
+<p>
+<a href="../polymer/polymer.html">
   <paper-button raised><core-icon icon="arrow-forward" ></core-icon>API developer guide</paper-button>
 </a>
+</p>

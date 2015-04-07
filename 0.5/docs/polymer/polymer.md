@@ -245,9 +245,10 @@ techniques like anonymous self-calling functions:
           // Run once. Private and static to the element.
           var foo_ = new Foo();
 
-          // Run for every instance of the element that's created.
+          // created() is run for every instance of the element that is created.
           Polymer({
             get foo() { return foo_; }
+            created: function() { ... }
           });
         })();
       </script>
@@ -324,7 +325,7 @@ A slight tweak of this approach lets you configure the value of the globals exte
 
 The main page configures the globals by passing attributes:
 
-    <app-globals id ="globals" "firstname="Addy" lastname="Osmani"></app-globals>
+    <app-globals id="globals" firstname="Addy" lastname="Osmani"></app-globals>
 
 This second version of `app-globals` has a slightly different API than
 the first. The global variables are properties of the `values` object instead of
@@ -958,7 +959,7 @@ a property on that element.
 
 All property names in the `observe` object are relative to `this`, so `$.foo.someProperty`
 refers to a property on the `<x-foo>` element. See the section on
-[automatic node finding](#automatic-node-finding) for more infomration on the `this.$`
+[automatic node finding](#automatic-node-finding) for more information on the `this.$`
 hash and its limitations.
 
 **Example:** watching for changes to a nested object path

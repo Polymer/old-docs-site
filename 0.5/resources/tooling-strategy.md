@@ -7,9 +7,6 @@ title: Tools & Testing
 
 {% include toc.html %}
 
-## Build status
-
-If something seems terribly wrong, check out {{site.project_title}}'s [build status page](/build/).
 
 ## Vulcanize - element build tool
 
@@ -17,9 +14,15 @@ If something seems terribly wrong, check out {{site.project_title}}'s [build sta
 
 [Vulcanize](https://github.com/Polymer/vulcanize) is a tool to concatenate a set of web components into a single file. It's our current recommendation for a "build step". Read more about it in "[Concatenating Web Components with Vulcanize](/articles/concatenating-web-components.html)".
 
-## Debugging Shadow DOM
+## Web Component Tester - element unit-testing tool
 
-In Chrome, author defined Shadow DOM is inspectable using the DevTools.
+> web-component-tester makes testing your web components a breeze!
+
+[web-component-tester](https://github.com/Polymer/web-component-tester) is a tool providing a browser-based testing environment. Out of the box it includes support for Mocha, Chai, Async and Sinon. Read more about it in "[/articles/unit-testing-elements.html](Unit Testing Elements)".
+
+## Debugging user agent Shadow DOM
+
+In Chrome, author defined Shadow DOM is inspectable using the DevTools. 
 
 To inspect Shadow DOM defined by the user agent (e.g. the Shadow DOM of `<input type="date">`),
 turn on "Show user agent shadow DOM" in the DevTools general settings:
@@ -27,6 +30,8 @@ turn on "Show user agent shadow DOM" in the DevTools general settings:
 ![Enable "Show user agent shadow DOM" in the Devtools](/images/showshadowdom.png 'Enable "Show user agent shadow DOM" in the Devtools')
 
 After reloading the DevTools, user agent Shadow DOM should be inspectable. It will render as `#shadow-root (user-agent)`s in element inspector.
+
+For more information on debugging Polymer, see [Debugging Tips & Tricks](../docs/polymer/debugging.html).
 
 ## Source maps
 
@@ -43,7 +48,7 @@ To run build individual polyfills or run tests, you need `node` and `grunt-cli` 
 
 ### Building individual polyfills
 
-If you're interested in using an individual polyfill by itself (e.g. rather that the prebuilt webcomponents.js bundle),
+If you're interested in using an individual polyfill by itself (e.g. rather that the prebuilt [webcomponents.js](https://github.com/webcomponents/webcomponentsjs) bundle),
 you need to build the minified file.
 
 **Example** - building the CustomElements polyfill
@@ -85,14 +90,16 @@ Run tests:
 
 ## Development workflow & tooling
 
-We are currently in the early stages of investigating modern front-end tooling for projects built with {{site.project_title}}. This includes using [Yeoman](http://yeoman.io) for scaffolding out {{site.project_title}} elements, [Grunt](http://gruntjs.com) for building and optimizing projects and [Bower](http://bower.io) for component dependency management.
+We are actively investigating modern front-end tooling for projects built with {{site.project_title}}. 
 
-While our work in this area is just beginning, take a look at the potential workflow:
+This includes using [Yeoman](http://yeoman.io) for scaffolding out {{site.project_title}} apps and elements, [Grunt](http://gruntjs.com) for building and optimizing projects and [Bower](http://bower.io) for component dependency management.
 
-<div class="centered" style="margin:20px;"><iframe id="video" src="http://www.youtube.com/embed/EwQkyplZHDY" frameborder="0" allowfullscreen></iframe>
+While our work in this area is still evolving, take a look at the potential workflow:
+
+<div class="centered" style="margin:20px;"><iframe id="video" src="http://www.youtube.com/embed/INH_OW4lFSs" frameborder="0" allowfullscreen></iframe>
 </div>
 
-The [{{site.project_title}} + Grunt](https://github.com/addyosmani/polymer-grunt-example) proof-of-concept project is a good start. Also follow our work on [generator-polymer](https://github.com/yeoman/generator-polymer/).
+You can follow along our work on Yeoman and Polymer tooling in [generator-polymer](https://github.com/yeoman/generator-polymer/). It features app scaffolds, support for Sass and rapid deployment to GitHub pages. 
 
 ## Using git {#git}
 
