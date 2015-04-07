@@ -16,7 +16,7 @@ module Jekyll
       isPaperElement = element.start_with? "paper-"
 
       self.data['element'] = element
-      self.data['title'] = "Polymer #{isPaperElement ? 'paper' : 'core'} elements"
+      self.data['title'] = "#{element} - Polymer #{isPaperElement ? 'paper' : 'core'} elements"
       self.data['type'] = 'elements'
       self.data['shortname'] = 'Elements'
       if isPaperElement
