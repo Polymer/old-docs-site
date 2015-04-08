@@ -214,7 +214,9 @@ your element by adding a method to the element's prototype. For example, to add 
     Polymer('greeting-tag', {
       ...
       toUpperCase: function(value) {
-        return value.toUpperCase();
+        if (value) {
+          return value.toUpperCase();
+        }
       },
 
 And use the filter like this:
@@ -231,10 +233,14 @@ in lowercase, you could modify the `toUpperCase` as follows:
 
     toUpperCase: {
       toDOM: function(value) {
-        return value.toUpperCase();
+        if (value) {
+          return value.toUpperCase();
+        }
       },
       toModel: function(value) {
-        return value.toLowerCase();
+        if (value) {
+          return value.toLowerCase();
+        }
       }
     }
 
@@ -256,7 +262,9 @@ You can pass parameters to a filter. For example:
 The code for the `toFixed` filter could look like this:
 
     toFixed: function(value, precision) {
-      return Number(value).toFixed(precision);
+      if (value) {
+        return Number(value).toFixed(precision);
+      }
     }
 
 The parameters passed to a filter are observed for changes.
@@ -291,7 +299,9 @@ To register `uppercase` as a global filter, add it to the prototype for
 
 {% raw %}
     PolymerExpressions.prototype.uppercase = function(input) {
-      return input.toUpperCase();
+      if (input) {
+        return input.toUpperCase();
+      }
     };
 {% endraw %}
 
@@ -306,9 +316,11 @@ Filter definition:
 
 {% raw %}
     PolymerExpressions.prototype.startsWith = function (input, letter) {
-      return input.filter(function(item){
-        return item[0] === letter;
-      });
+      if (input) {
+        return input.filter(function(item){
+          return item[0] === letter;
+        });
+      }
     };
 {% endraw %}
 
