@@ -857,12 +857,13 @@ For example, the following defines a component whose template contains an `<inpu
 
     <polymer-element name="x-form">
       <template>
-        <input type="text" id="nameInput">
+        <input id="nameInput" placeholder="Name">
+        <button on-click="{{sayHello}}">Say hello</button>
       </template>
       <script>
         Polymer({
-          logNameValue: function() {
-            console.log(this.$.nameInput.value);
+          sayHello: function() {
+            alert("Hello " + this.$.nameInput.value);
           }
         });
       </script>
