@@ -174,8 +174,30 @@ function injectPage(url, opt_addToHistory) {
   xhr.send();
 }
 
+// Old API reference URLs have the page name in the hash. After
+// server-side redirects, they end up as "docs/elements/#page-name"
+// The page name may be followed by a deep link, like ".attributes.data".
+// Rewrite here to "docs/elements/page-name.html", leaving any hash
+// in place to preserve the deep link.
+function redirectOldAPIDocs() {
+  var oldAPILanding = 'docs/elements/'
+  var path = window.location.pathname;
+  var hash = window.location.hash;
+  var position = path.length - oldAPILanding.length;
+  var lastIndex =  path.indexOf(oldAPILanding, position);
+  if (lastIndex !== -1 && lastIndex == position) {
+    if (hash) {
+      location.href = location.href.replace(/(\/docs\/elements\/)#([^.]*)(.*)$/, '$1$2.html#$2$3')
+    }
+  }
+}
+
 function initPage(opt_inDoc) {
   var doc = opt_inDoc || document;
+
+  // TODO: surely there's a better way to do this?
+  redirectOldAPIDocs();
+
 
   // TODO: do this at build time.
   addPermalinkHeadings(doc);
