@@ -163,7 +163,7 @@ Example 1: Two-way binding
 
     <!-- changes to "value" propagate downward to "prop" on child -->
     <!-- changes to "prop" propagate upward to "value" on host  -->
-    <custom-element prop="{%raw%}{{value}}{%raw%}"></custom-element>
+    <custom-element prop="{%raw%}{{value}}{%endraw%}"></custom-element>
 
 Example 2: One-way binding (downward)
 
@@ -201,7 +201,7 @@ Example 3: One-way binding (downward)
 
     <!-- changes to "value" propagate downward to "prop" on child -->
     <!-- changes to "prop" are not notified to host due to notify:falsey -->
-    <custom-element prop="{{value}}"></custom-element>
+    <custom-element prop="{%raw%}{{value}}{%endraw%}"></custom-element>
 
 Example 4: One-way binding (upward, child-to-host)
 
