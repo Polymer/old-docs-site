@@ -299,7 +299,7 @@ To register `uppercase` as a global filter, add it to the prototype for
 
 {% raw %}
     PolymerExpressions.prototype.uppercase = function(input) {
-      if (value) {
+      if (input) {
         return input.toUpperCase();
       }
     };
