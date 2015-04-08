@@ -61,7 +61,7 @@ Two items to notice:
 
 By composing simple elements together we can build richer, more complex components. To reuse other elements in your `<polymer-element>`, install the element in your app:
 
-    bower install Polymer/core-ajax
+    bower install --save Polymer/core-ajax
 
 and include an import that loads the new dependency in `my-element.html`:
 
@@ -72,6 +72,7 @@ and include an import that loads the new dependency in `my-element.html`:
     <polymer-element name="my-element" noscript>
       <template>
         <span>I'm <b>my-element</b>. This is my Shadow DOM.</span>
+        <!-- to retrieve actual data, replace example.com with a real URL -->
         <core-ajax url="http://example.com/json" auto response="{{resp}}"></core-ajax>
         <textarea value="{{resp}}"></textarea>
       </template>
@@ -106,11 +107,13 @@ Your final directory structure should look something like this:
 
     yourapp/
       bower_components/
-        webcomponentsjs/
-        polymer/
         core-ajax/
+        core-component-page/
+        polymer/
+        webcomponentsjs/
       elements/
         my-element.html
+      bower.json
       index.html
 
 Now that you've got the basic setup, it's time to start using the features!
