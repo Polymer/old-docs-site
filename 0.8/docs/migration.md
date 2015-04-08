@@ -671,7 +671,7 @@ Before (append to a container in local DOM):
 
 After:
 
-   Polymer.dom(this.$.container).appendChild(node);
+    Polymer.dom(this.$.container).appendChild(node);
 
 Note that `Polymer.dom` provides only a subset of the standard DOM API, so for
 example `firstChild` must be replaced with `childNodes[0]`:
