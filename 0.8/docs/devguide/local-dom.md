@@ -139,11 +139,11 @@ This implies:
 
         .content-wrapper > special
 
-## Local node marshalling {#node-marshalling}
+## Automatic node finding {#node-finding}
 
 {{site.project_title}} automatically builds a map of instance nodes stamped into
 its local DOM, to provide convenient access to frequently used nodes without
-the need to query for (and memoize) them manually.  Any node specified in the
+the need to query for them manually.  Any node specified in the
 element's template with an `id` is stored on the `this.$` hash by `id`.
 
 Example:

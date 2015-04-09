@@ -177,7 +177,7 @@ local DOM when the element is constructed.
       this.$.header.textContent = 'Hello!';
     }
 
-**Note:** This example uses [Local node marshalling](local-dom.html#node-marshalling) to
+**Note:** This example uses [Automatic node finding](local-dom.html#node-finding) to
 access a local DOM element. 
 {: .alert .alert-info }
 

@@ -614,7 +614,7 @@ The Polymer standard layer adds declarative data binding, events, property notif
 
 | Feature | Usage
 |---------|-------
-| [Local node marshalling](local-dom.html#node-marshalling) | this.$.\<id>
+| [Automatic node finding](local-dom.html#node-finding) | this.$.\<id>
 | [Event listener setup](events.html#event-listeners)| listeners: { ‘\<node>.\<event>’: ‘function’, ... }
 | [Annotated event listener setup](events.html#annotated-listeners) | \<element on-[event]=”function”>
 | [Property change callbacks](properties.html#change-callbacks) | properties: \<prop>: { observer: ‘function’ }
