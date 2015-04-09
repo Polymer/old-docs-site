@@ -219,7 +219,7 @@ case should be used in the attribute name.  Example:
         is: 'x-custom',
 
         properties: {
-          userName: String,
+          userName: String
         }
 
       });
