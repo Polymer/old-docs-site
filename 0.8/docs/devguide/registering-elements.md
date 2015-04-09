@@ -216,7 +216,7 @@ Example:
 
         hostAttributes: {
           role: 'button',
-          'aria-disabled': true
+          'aria-disabled': true,
           tabindex: 0
         }
 
