@@ -139,7 +139,42 @@ This implies:
 
         .content-wrapper > special
 
+## Automatic node finding {#node-finding}
 
+{{site.project_title}} automatically builds a map of instance nodes stamped into
+its local DOM, to provide convenient access to frequently used nodes without
+the need to query for them manually.  Any node specified in the
+element's template with an `id` is stored on the `this.$` hash by `id`.
+
+Example:
+
+    <dom-module id="x-custom">
+      <template>
+        Hello World from <span id="name"></span>!
+      </template>
+    </dom-module>
+
+    <script>
+
+      Polymer({
+
+        is: 'x-custom',
+
+        ready: function() {
+          this.$.name.textContent = this.name;
+        }
+
+      });
+
+    </script>
+
+
+**Note:** The `this.$` hash is populated when the element's local DOM is constructed
+from its template, so it's available by the time the [`ready` callback](registering-elements.html#ready-method)
+is called. It is **not updated** for dynamically-created elements (for example,
+if you have an `x-repeat` in your template, the `x-repeat`'s children are not added to
+the `this.$` hash).
+{: .alert .alert-info }
 
 
 ## DOM (re-)distribution {#dom-distribution}

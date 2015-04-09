@@ -50,13 +50,13 @@ share code between elements.
 
 ### Defining a custom constructor {#custom-constructor}
 
-While the `Polymer` method returns a basic constructor that can be used to
-instantiate the custom element, {{site.project_title}}. If you want to 
+The `Polymer` method returns a basic constructor that can be used to
+instantiate the custom element. If you want to 
 pass arguments to the constructor to configure the new element, you can 
-specify a custom `constructor` function on the prototype that can. 
+specify a custom `constructor` function on the prototype. 
 
-This function is not a true constructor, but a configuration function.
-The actual constructor returned from `Polymer` creates an instance using 
+This function is not a _true_ constructor, but a configuration function.
+The constructor returned from `Polymer` creates an instance using 
 `document.createElement`, then invokes the user-supplied `constructor` function 
 with `this` bound to the element instance. Any arguments passed to the actual
 constructor are passed on to `constructor` function.
@@ -171,9 +171,15 @@ parents, deserialized attributes, or else default values) and had their `ready`
 method called. Implement `ready` when it's necessary to manipulate an element's
 local DOM when the element is constructed.
 
+
     ready: function() {
-      this.$.ajax.go();
+      <!-- access a local DOM element by ID using this.$ -->
+      this.$.header.textContent = 'Hello!';
     }
+
+**Note:** This example uses [Automatic node finding](local-dom.html#node-finding) to
+access a local DOM element. 
+{: .alert .alert-info }
 
 The element's basic initialization order is:
 
@@ -183,6 +189,8 @@ The element's basic initialization order is:
 - ready callback
 - custom constructor (if any)
 - attached callback
+
+In particular, the `ready` callback is always called before `attached`.
 
 Use the `ready` callback for any code that needs to interact with the element's local DOM.
 
