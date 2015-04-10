@@ -61,7 +61,7 @@ Two items to notice:
 
 By composing simple elements together we can build richer, more complex components. To reuse other elements in your `<polymer-element>`, install the element in your app:
 
-    bower install --save Polymer/core-ajax
+    bower install --save Polymer/core-ajax#^0.5
 
 and include an import that loads the new dependency in `my-element.html`:
 
