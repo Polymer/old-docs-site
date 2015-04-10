@@ -6,16 +6,25 @@ title: Get the code
 ---
 
 <style>
-#download-button {
+ paper-button[raised].cta {
+      background-color: #0f9d58;
+      color: white;
+      fill: white;
+      margin: 10px;
+}
+
+.download-button {
   background: #4285f4;
   color: #fff;
   font-size: 18px;
   fill: #fff;
 }
-#download-button:hover {
+
+.download-button:hover {
   background: #2a56c6;
 }
-#download-button::shadow paper-ripple {
+
+.download-button::shadow paper-ripple {
   color: #fff;
 }
 </style>
@@ -31,12 +40,10 @@ in one of several ways:
     also installs any missing dependencies. Bower also handles updating
     installed components. For more information, see [Installing with Bower](#using-bower).
 
-<!--
 *   ZIP file. Includes all dependencies, so you can unzip it and start using it
     immediately. The ZIP file requires no extra tools, but doesn't provide a
     built-in method for updating dependencies. For more information, see
     [Installing from ZIP files](#using-zip).
--->
 
 *   GitHub. When you clone a component from GitHub, you need to manage all of the dependencies
     yourself.
@@ -49,10 +56,9 @@ library, which doesn't include the shadow DOM polyfill.
 Using the polyfills ensures that you can use {{site.project_title}} with browsers that don't support
 the Web Components specifications natively.
 
-
 ## Installing with Bower {#using-bower}
 
-The recommended way to install **{{site.project_title}} 0.8**
+The recommended way to install **{{site.project_title}} {% polymer_version_dir %}**
 is through Bower. To install Bower, see the [Bower web site](http://bower.io/).
 
 Bower removes the hassle of dependency management when developing or consuming
@@ -95,16 +101,15 @@ in your app directory to update your copy:
 
     bower update
 
-This updates all packages in `bower_components/`.
+This updates all packages in `bower_components/` to the latest stable version.
 
-<!-- 
 ## Installing from ZIP files {#using-zip}
 
-To download {{site.project_title}} as a ZIP file, click the **GET POLYMER** button
-then click **Download ZIP**.
+Click the button to download {{site.project_title}} {% polymer_version_dir %} as a ZIP file.
 
-<component-download-button org="Polymer" component="polymer" label="GET POLYMER">
-</component-download-button>
+<p><a href="http://zipper.bowerarchiver.appspot.com/archive?polymer=Polymer/polymer%230.8.0-rc.2">
+  <paper-button class="cta" raised><core-icon icon="file-download"></core-icon>Download ZIP</paper-button>
+</a></p>
 
 When you download {{site.project_title}} as a ZIP file, you get all of
 the dependencies bundled into a single archive. It's a great way to get
@@ -112,17 +117,16 @@ started because you don't need to install any additional tools.
 
 Expand the ZIP file in your project directory to create a `bower_components` folder.
 
-![](/images/zip-file-contents.png)
-
-If you download multiple component sets as ZIP files, you'll usually end up with
-multiple copies of some dependencies. You'll need to merge the contents of the
-ZIP files.
+![](/{% polymer_version_dir %}/images/zip-file-contents.png)
 
 Unlike Bower, the ZIP file doesn't provide a built-in method
 for updating dependencies. You can manually update components with a new ZIP
-file.
+file. 
 
--->
+**Note:**  If you decide to install Bower later, you can use Bower to update the 
+components you installed from the ZIP file. Follow the instructions in 
+[Updating packages](#updatebower).
+{: .alert .alert-info }
 
 ## Using git {#git}
 
