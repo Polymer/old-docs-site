@@ -736,7 +736,7 @@ Before:
 After:
 
     {% raw %}
-    <my-foo fullname="{{computeFullName}}>
+    <my-foo fullname="{{computeFullName}}">
             Hi, my name is <span>{{firstname}}</span>.
     </my-foo>
     {% endraw %}
