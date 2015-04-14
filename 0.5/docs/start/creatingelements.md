@@ -23,7 +23,7 @@ and make it even easier to build complex, web component-based applications:
 ### 1. Install {{site.project_title}} {#install}
 
 Install the latest version of {{site.project_title}} as described in
-[Getting the code](getting-the-code.html).
+[Get the code](getting-the-code.html).
 
 If you want to play with {{site.project_title}} without installing anything,
 skip to [Using {{site.project_title}}'s features](#features). You can run and
@@ -61,7 +61,7 @@ Two items to notice:
 
 By composing simple elements together we can build richer, more complex components. To reuse other elements in your `<polymer-element>`, install the element in your app:
 
-    bower install Polymer/core-ajax
+    bower install --save Polymer/core-ajax#^0.5
 
 and include an import that loads the new dependency in `my-element.html`:
 
@@ -72,6 +72,7 @@ and include an import that loads the new dependency in `my-element.html`:
     <polymer-element name="my-element" noscript>
       <template>
         <span>I'm <b>my-element</b>. This is my Shadow DOM.</span>
+        <!-- to retrieve actual data, replace example.com with a real URL -->
         <core-ajax url="http://example.com/json" auto response="{{resp}}"></core-ajax>
         <textarea value="{{resp}}"></textarea>
       </template>
@@ -106,11 +107,13 @@ Your final directory structure should look something like this:
 
     yourapp/
       bower_components/
-        webcomponentsjs/
-        polymer/
         core-ajax/
+        core-component-page/
+        polymer/
+        webcomponentsjs/
       elements/
         my-element.html
+      bower.json
       index.html
 
 Now that you've got the basic setup, it's time to start using the features!
@@ -350,7 +353,7 @@ and gives them default values:
 In this example the user overrides the defaults for `owner` and `color`
 by configuring the element with initial attribute values (e.g. `<color-picker owner="Scott" color="blue">`).
 
-**Note**: When binding  a property that takes a type other than String, it's important to [hint a property's type](..//polymer/polymer.html#attrhinting). {{site.project_title}} relies on this information to correctly serialize and de-serialize values.
+**Note**: When binding  a property that takes a type other than String, it's important to [hint a property's type](../polymer/polymer.html#attrhinting). {{site.project_title}} relies on this information to correctly serialize and de-serialize values.
 {: .alert .alert-success }
 
 [Learn more about published properties](../polymer/polymer.html#published-properties).
@@ -399,11 +402,13 @@ Now that you know how to create your own elements, follow the
 [{{site.project_title}}'s core API](../polymer/polymer.html).
 Continue on to:
 
+<p>
 <a href="../polymer/polymer.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>API developer guide</paper-button>
 </a>
+</p>
 
-<a href="tutorial/intro.html">
+<p><a href="tutorial/intro.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>Your first {{site.project_title}} app</paper-button>
 </a>
-
+</p>

@@ -12,24 +12,31 @@
 
 $materialPurple: #3e50b4;
 $materialLightPurple: #c4c9e8;
+$materialLighestPurple: #e8eaf6;
 
 $materialOrange: #ff5621;
 $materialLightOrange: #ffcbbb;
+$materialLightestOrange: #fbe9e7;
 
 $materialPink: #e81d62;
 $materialLightPink: #f7bacf;
+$materialLightestPink: #fce4ec;
 
 $materialYellow: #f3b300;
 $materialLightYellow: #fbe7b1;
+$materialLightestYellow: #fff8e1;
 
 $materialGreen: #00bea4;
 $materialLightGreen: #a6ffea;
+$materialLightestGreen: #e0f2f1;
 
 $materialTeal: #00bbd3;
 $materialLightTeal: #b1eaf1;
+$materialLightestTeal: #e0f7fa;
 
 $materialBlue: #4184f3;
 $materialLightBlue: #c5d9fb;
+$materialLightestBlue: #e3f2fd;
 
 .material-purple {
   background-color: $materialPurple;
@@ -38,6 +45,9 @@ $materialLightBlue: #c5d9fb;
 .material-purple-light {
   background-color: $materialLightPurple;
   // border-color: $materialLightPurple;
+}
+.material-purple-lightest {
+  background-color: $materialLighestPurple;
 }
 
 .material-orange {
@@ -48,6 +58,9 @@ $materialLightBlue: #c5d9fb;
   background-color: $materialLightOrange;
   // border-color: $materialLightOrange;
 }
+.material-orange-lightest {
+  background-color: $materialLightestOrange;
+}
 
 .material-pink {
   background-color: $materialPink;
@@ -56,6 +69,9 @@ $materialLightBlue: #c5d9fb;
 .material-pink-light {
   background-color: $materialLightPink;
   // border-color: $materialLightPink;
+}
+.material-pink-lightest {
+  background-color: $materialLightestPink;
 }
 
 .material-yellow {
@@ -66,6 +82,9 @@ $materialLightBlue: #c5d9fb;
   background-color: $materialLightYellow;
   // border-color: $materialLightYellow;
 }
+.material-yellow-lightest {
+  background-color: $materialLightestYellow;
+}
 
 .material-green {
   background-color: $materialGreen;
@@ -74,6 +93,9 @@ $materialLightBlue: #c5d9fb;
 .material-green-light {
   background-color: $materialLightGreen;
   // border-color: $materialLightGreen;
+}
+.material-green-lightest {
+  background-color: $materialLightestGreen;
 }
 
 .material-teal {
@@ -84,6 +106,9 @@ $materialLightBlue: #c5d9fb;
   background-color: $materialLightTeal;
   // border-color: $materialLightTeal;
 }
+.material-teal-lightest {
+  background-color: $materialLightestTeal;
+}
 
 .material-blue {
   background-color: $materialBlue;
@@ -92,5 +117,8 @@ $materialLightBlue: #c5d9fb;
 .material-blue-light {
   background-color: $materialLightBlue;
   // border-color: $materialLightBlue;
+}
+.material-blue-lightest {
+  background-color: $materialLightestBlue;
 }
 

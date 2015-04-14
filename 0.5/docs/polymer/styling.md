@@ -12,7 +12,7 @@ subtitle: Guide
 For a complete guide on the basics, see "[A Guide to Styling Elements](../../articles/styling-elements.html)".
 {: .alert }
 
-In addition to the [standard features for styling Custom Elements](../../articles/styling-elements.html), {{site.project_title}} contains extra goodies for fully controlling element styling. This document outlines those features, including Flash-of-Unstyled-Content (FOUC) prevention, the specifics on how the the Shadow DOM polyfill applies styles, and workarounds for current limitations.
+In addition to the [standard features for styling Custom Elements](../../articles/styling-elements.html), {{site.project_title}} contains extra goodies for fully controlling element styling. This document outlines those features, including Flash-of-Unstyled-Content (FOUC) prevention, the specifics on how the Shadow DOM polyfill applies styles, and workarounds for current limitations.
 
 ## FOUC prevention
 

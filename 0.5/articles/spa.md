@@ -5,12 +5,13 @@ shortname: Articles
 title: "Building single page apps using web components"
 subtitle: The Polymer approach to building single page applications
 
-article:
-  author: ebidel
-  published: 2014-10-17
-  updated: 2014-11-16
-  polymer_version: 0.4.2
-  description: The Polymer approach to building single page applications
+article: true
+description: The Polymer approach to building single page applications
+published: 2014-10-17
+#updated: 2014-10-17
+author: ebidel
+polymer_version: 0.4.2
+
 tags:
 - routing
 - spa
@@ -34,7 +35,6 @@ paper-button.blue:hover {
 {% include toc.html %}
 
 So how do you build a single page application (SPA) with Polymer? On the Polymer team we get this question a lot. Our answer (as always) is..."use components!" However, it's never immediately obvious how to tackle an existing problem with new technologies. How do you compose a bunch of modular components into a larger, functional app?
-
 
 <p layout vertical center style="float:right;margin: 0 0 0 10px;">
   <a href="demos/spa/final.html" target="_blank"><img src="images/spa/screenshot.png" style="width:300px;"></a>
@@ -60,13 +60,13 @@ In this article, I'll show you how to build a full-featured single page applicat
 If you like to eat dessert first, you can find the files for the
 finished demo here:
 
--   <a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/final.html" target="_blank">
+-   <a href="https://github.com/Polymer/docs/blob/master/0.5/articles/demos/spa/final.html" target="_blank">
     HTML (<code>final.html</code>)</a>
--   <a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/elements.html" target="_blank">
+-   <a href="https://github.com/Polymer/docs/blob/master/0.5/articles/demos/spa/elements.html" target="_blank">
     Imports (<code>elements.html</code>)</a>
--   <a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/app.js" target="_blank">
+-   <a href="https://github.com/Polymer/docs/blob/master/0.5/articles/demos/spa/app.js" target="_blank">
     JavaScript (<code>app.js</code>)</a>
--   <a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/styles.css" target="_blank">
+-   <a href="https://github.com/Polymer/docs/blob/master/0.5/articles/demos/spa/styles.css" target="_blank">
     CSS (<code>styles.css</code>)</a>
 
 
@@ -181,13 +181,13 @@ By now you should have <a href="demos/spa/example1.html" target="_blank">a basic
 </p>
 
 <p layout horizontal center-center>
-<a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/example1-style.html" target="_blank">
+<a href="https://github.com/Polymer/docs/blob/master/0.5/articles/demos/spa/example1-style.html" target="_blank">
   <paper-button raised class="blue">
     <core-icon icon="arrow-forward"></core-icon>See the HTML
   </paper-button>
 </a>
 
-<a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/styles.css" target="_blank">
+<a href="https://github.com/Polymer/docs/blob/master/0.5/articles/demos/spa/styles.css" target="_blank">
   <paper-button raised class="blue">
     <core-icon icon="arrow-forward"></core-icon>See the CSS
   </paper-button>
@@ -288,7 +288,7 @@ their `selected` attributes** together. Now, when a user clicks on a nav item th
   </paper-button>
 </a>
 
-<a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/example2.html" target="_blank">
+<a href="https://github.com/Polymer/docs/blob/master/0.5/articles/demos/spa/example2.html" target="_blank">
   <paper-button raised class="blue">
     <core-icon icon="arrow-forward"></core-icon>See the HTML
   </paper-button>
@@ -351,7 +351,7 @@ If `<flatiron-director>` is not your cup of tea, check out [`<app-router>`](http
 
 Keyboard support is not only important for [accessibility](/articles/accessible-web-components.html) but it'll also make your SPA feel...more appy!
 
-[`<core-a11y-keys>`](../docs/elements/core-elements.html#core-a11y-keys) is a drop-in component for normalizing browser keyboard events and can be used to add keyboard support to your app. Here's an example:
+[`<core-a11y-keys>`](../docs/elements/core-a11y-keys.html) is a drop-in component for normalizing browser keyboard events and can be used to add keyboard support to your app. Here's an example:
 
 {%raw%}
     <core-a11y-keys target="{{parentElement}}"
@@ -440,13 +440,13 @@ template.onResponse = function(e, detail, sender) {
   </paper-button>
 </a>
 
-<a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/example-ajax.html" target="_blank">
+<a href="https://github.com/Polymer/docs/blob/master/0.5/articles/demos/spa/example-ajax.html" target="_blank">
   <paper-button raised class="blue">
     <core-icon icon="arrow-forward"></core-icon>See the HTML
   </paper-button>
 </a>
 
-<a href="https://github.com/Polymer/docs/blob/master/articles/demos/spa/app-ajax.js" target="_blank">
+<a href="https://github.com/Polymer/docs/blob/master/0.5/articles/demos/spa/app-ajax.js" target="_blank">
   <paper-button raised class="blue">
     <core-icon icon="arrow-forward"></core-icon>See the JavaScript
   </paper-button>

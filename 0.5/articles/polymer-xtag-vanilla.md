@@ -5,12 +5,13 @@ shortname: Articles
 title: "Custom Element Interoperability"
 subtitle: Using Polymer, X-Tag, and Vanilla Custom Elements
 
-article:
-  author: robdodson
-  published: 2014-02-28
-  #updated: 2013-12-06
-  polymer_version: 0.2.0
-  description: Get started using Polymer with Mozilla X-Tag and vanilla custom elements.
+article: true
+author: robdodson
+published: 2014-02-28
+#updated: 2013-12-06
+polymer_version: 0.2.0
+description: Get started using Polymer with Mozilla X-Tag and vanilla custom elements.
+
 tags:
 - custom elements
 - html imports
@@ -21,7 +22,7 @@ tags:
 
 {% include not-an-intro.html %}
 
-A number of developers have asked if they can use [Polymer](http://www.polymer-project.org/) with [X-Tag](http://www.x-tags.org/)/[Brick](http://mozilla.github.io/brick/) or vanilla custom elements. We're happy to say that, yes, custom elements of any variety (be they Polymer, X-Tag or vanilla) can all happily coexist. In this guide we’ll cover what you need to do to get started working with custom elements in an interoperable fashion.
+A number of developers have asked if they can use [Polymer](http://www.polymer-project.org/) with [X-Tag](http://www.x-tags.org/)/[Brick](http://brick.mozilla.io/) or vanilla custom elements. We're happy to say that, yes, custom elements of any variety (be they Polymer, X-Tag or vanilla) can all happily coexist. In this guide we’ll cover what you need to do to get started working with custom elements in an interoperable fashion.
 
 ## Getting Setup
 

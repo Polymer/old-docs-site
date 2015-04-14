@@ -1,0 +1,66 @@
+<!--
+    @license
+    Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+    Code distributed by Google as part of the polymer project is also
+    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../components/polymer/polymer.html">
+
+<polymer-element name="side-by-side" noscript>
+  <template>
+    <style>
+    :host {
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -ms-flex-direction: column;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      -ms-flex-align: start;
+      -webkit-align-items: flex-start;
+      align-items: flex-start;
+      box-sizing: border-box;
+    }
+    polyfill-next-selector { content: ':host > *'; }
+    ::content > * {
+      position: relative;
+      min-height: 1px;
+      padding-left: 15px;
+      padding-right: 15px;  
+      width: 100%;
+    }
+    polyfill-next-selector { content: ':host li'; }
+    ::content li {
+      margin-bottom: 20px;
+    }
+    @media (min-width: 1092px) {
+      :host {
+        /*
+        margin-left: -15px;
+        margin-right: -15px;
+        */
+        -ms-flex-direction: row;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+      }
+      polyfill-next-selector { content: ':host > pre, :host [main-col]'; }
+      ::content > pre, ::content > [main-col] {
+        width: 58.33333333%;
+      }
+      polyfill-next-selector { content: ':host > aside, :host > [notes-col]'; }
+      ::content > aside, ::content > [notes-col] {
+        width: 41.666666666%;
+      }
+    }
+    </style>
+    <content select="pre,[main-col]"></content>
+    <content select="aside,[notes-col]"></content>
+  </template>
+
+</polymer-element>

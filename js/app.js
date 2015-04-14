@@ -107,6 +107,7 @@ function injectPage(url, opt_addToHistory) {
     // Update app-bar links.
     var docAppBar = doc.querySelector('app-bar');
     if (docAppBar) {
+      appBar.badge = docAppBar.getAttribute('badge');
       appBar.innerHTML = docAppBar.innerHTML;
     } else {
       // We're not on a doc page (e.g. demo page or something else). Just redirect.
@@ -166,13 +167,37 @@ function injectPage(url, opt_addToHistory) {
     if (sidebar.mobile) {
       hideSidebar();
     }
+
+    document.dispatchEvent(new Event('page-injected'));
   };
 
   xhr.send();
 }
 
+// Old API reference URLs have the page name in the hash. After
+// server-side redirects, they end up as "docs/elements/#page-name"
+// The page name may be followed by a deep link, like ".attributes.data".
+// Rewrite here to "docs/elements/page-name.html", leaving any hash
+// in place to preserve the deep link.
+function redirectOldAPIDocs() {
+  var oldAPILanding = 'docs/elements/'
+  var path = window.location.pathname;
+  var hash = window.location.hash;
+  var position = path.length - oldAPILanding.length;
+  var lastIndex =  path.indexOf(oldAPILanding, position);
+  if (lastIndex !== -1 && lastIndex == position) {
+    if (hash) {
+      location.href = location.href.replace(/(\/docs\/elements\/)#([^.]*)(.*)$/, '$1$2.html#$2$3')
+    }
+  }
+}
+
 function initPage(opt_inDoc) {
   var doc = opt_inDoc || document;
+
+  // TODO: surely there's a better way to do this?
+  redirectOldAPIDocs();
+
 
   // TODO: do this at build time.
   addPermalinkHeadings(doc);
@@ -243,6 +268,21 @@ function ajaxifySite() {
 
 }
 
+// Every element doc page has a json string containing the definition
+// for the elemnt itself. This string needs to be handed to the component-docs
+// element to render. See 0.5/docs/elements/element-template.md for page template
+function initElementDoc() {
+  if (window.location.href.indexOf('docs/elements') !== -1) {
+    // Hacky FOUC control
+    setTimeout(function() {
+      var node = document.querySelector('component-docs');
+      if (node) {
+        node.data = window.elementDoc;
+      }
+    }, 0);
+  }
+}
+
 document.addEventListener('polymer-ready', function(e) {
   // TODO(ericbidelman): Hacky solution to get anchors scrolled to correct location
   // in page. Layout of page happens later than the browser wants to scroll.
@@ -266,6 +306,16 @@ document.addEventListener('polymer-ready', function(e) {
     // dropdownPanel listens to clicks on the document and autocloses
     // so no need to add any more handlers
   });
+
+  // Kickoff element doc pages
+  initElementDoc();
+
+});
+
+document.addEventListener('page-injected', function(e) {
+
+  // Kickoff element doc pages
+  initElementDoc();
 
 });
 

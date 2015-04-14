@@ -119,8 +119,8 @@ What's going on in this template?
 *  The expressions {%raw%}`{{s.what}}`{%endraw%} and {%raw%}`{{s.who}}`{%endraw%} create
    data bindings to objects in the `salutations` array.
 
-The values inside the {%raw%}`{{`&nbsp;`}}`{%endraw%} are <em>{{site.project_title}} expressions</em>. In the examples in this section, the expressions are either  JavaScript objects (like `salutations`) or paths (like `salutations.who`). (Expressions can also include literal values and some operators --
-see [Expressions](#expressions) for details.)
+The values inside the {%raw%}`{{`&nbsp;`}}`{%endraw%} are <em>{{site.project_title}} expressions</em>. In the examples in this section, the expressions are either  JavaScript objects (like `salutations`) or paths (like `s.who`). (Expressions can also include literal values and some operators --
+see [Expressions](expressions.html) for details.)
 
 When you create a `<greeting-tag>` element, it initializes the `salutations` array:
 
@@ -232,10 +232,14 @@ For example, the  `selectStory` method might look like this:
 
 Continue on to:
 
+<p>
 <a href="binding-types.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>Types of bindings</paper-button>
 </a>
+</p>
 
+<p>
 <a href="expressions.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>Expressions</paper-button>
 </a>
+</p>

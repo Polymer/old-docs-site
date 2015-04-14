@@ -60,7 +60,7 @@ One of our core goals is for {{site.project_title}} to work on modern mobile bro
 
 ### How do I create a single page app with routing? {#spa}
 
-By combining data-binding, [core-scaffold](../docs/elements/core-elements.html#core-scaffold), [core-pages](../docs/elements/core-elements.html#core-pages)/[core-animated-pages](../docs/elements/core-elements.html#core-animated-pages), and [`<flatiron-director>`](https://github.com/PolymerLabs/flatiron-director) (an element for routing), you can easily create a responsive SPA with deep linking.
+By combining data-binding, [core-scaffold](../docs/elements/core-scaffold.html), [core-pages](../docs/elements/core-pages.html)/[core-animated-pages](../docs/elements/core-animated-pages.html), and [`<flatiron-director>`](https://github.com/PolymerLabs/flatiron-director) (an element for routing), you can easily create a responsive SPA with deep linking.
 
 Here's a [demo](http://polymer-change.appspot.com/demos/spa.html) and [source](https://github.com/ebidel/polymer-change/blob/master/demos/spa.html).
 
@@ -86,14 +86,14 @@ polymer.dart is a Dart port of {{site.project_title}} created and maintained by 
 ### Is the code hosted on a CDN?
 
 There is no official CDN version of {{site.project_title}}. Some community members
-maintain a copy of {{site.project_title}} on [cdnjs](http://cdnjs.com/):
+maintain a copy of {{site.project_title}} on [CloudFlare](http://cdnjs.cloudflare.com/):
 
 <pre>
 &lt;script src="//cdnjs.cloudflare.com/ajax/libs/polymer/<em>&lt;version&gt;</em>/webcomponents.js"></script>
 &lt;script src="//cdnjs.cloudflare.com/ajax/libs/polymer/<em>&lt;version&gt;</em>/polymer.js"></script>
 </pre>
 
-Where <em>&lt;version&gt;</em> is the latest version of {{site.project_title}} available on cdnjs.
+Where <em>&lt;version&gt;</em> is the latest version of {{site.project_title}} available on CloudFlare.
 
 There are a number of reasons why we recommend you use Bower instead of the CDN:
 
@@ -104,8 +104,8 @@ There are a number of reasons why we recommend you use Bower instead of the CDN:
 For testing and reproducing bugs, you can link to the current versions of the `webcomponents.js`
 and `polymer.html` files on `polymer-project.org`:
 
-    <script src="//www.polymer-project.org/webcomponents.min.js"></script>
-    <link rel="import" href="//www.polymer-project.org/components/polymer/polymer.html">
+    <script src="//www.polymer-project.org/{% polymer_version_dir %}/components/webcomponentsjs/webcomponents.min.js"></script>
+    <link rel="import" href="//www.polymer-project.org/{% polymer_version_dir %}/components/polymer/polymer.html">
 
 Many of the Core and Paper elements can also be found under `components`.
 
@@ -172,7 +172,7 @@ Feature detection, or an agreed upon common location for a 'jquery.html' file in
 ### What sort of testing do you do?
 
 {{site.project_title}} uses Chromium's continuous build infrastructure to test
-the entire system and each polyfill, individually. See our [build status page](/build/).
+the entire system and each polyfill, individually.
 
 ### How can I validate property values? {#validateinput}
 

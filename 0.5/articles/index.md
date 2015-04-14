@@ -8,15 +8,19 @@ subtitle: Core concepts of build apps on top of Polymer and web components
 add_permalinks: false
 ---
 
-{% for p in site.pages %}
+{% assign articles = (site.pages | where:"article",true %}
+{% assign sorted_pages = articles | sort: 'published' | reverse %}
+
+{% for p in sorted_pages %}
 
 {% unless p.draft %}
 
 {% if p.article %}
 
-{% assign pubdate = p.article.published | date: "%Y-%m-%d" %}
-{% assign updated = p.article.updated | date: "%Y-%m-%d" %}
-{% assign author = site.data.authors[p.article.author] %}
+{% assign pubdate = p.published | date: "%Y-%m-%d" %}
+{% assign updated = p.updated | date: "%Y-%m-%d" %}
+{% assign author = site.data.authors[p.author] %}
+{% assign collaborator = site.data.authors[p.collaborator] %}
 
 {::options parse_block_html="true" /}
 <div class="article">
@@ -26,12 +30,21 @@ add_permalinks: false
 {% for tag in p.tags %}<span>{{ tag }}</span>{% endfor %}
 </span> -->
 
-<div class="byline"><a href="https://plus.google.com/{{author.gplus}}" target="blank_">{{author.full_name}}</a>, <time pubdate datetime="{{pubdate}}">{{p.article.published | date: "%B %Y"}}</time>
-{% if p.article.updated %}(updated <time datetime="{{updated}}">{{updated}}</time>){% endif %}
+<div class="byline author">
+<a href="https://plus.google.com/{{author.gplus}}?rel=author" target="blank_">![{{author.full_name}} profile pic]({{author.profile_pic}} "{{author.full_name}}")</a> 
+  <a href="https://plus.google.com/{{author.gplus}}" target="blank_">{{author.full_name}}</a>
+
+{% if collaborator %}
+and <a href="https://plus.google.com/{{collaborator.gplus}}?rel=author" target="blank_">![{{collaborator.full_name}} profile pic]({{collaborator.profile_pic}} "{{collaborator.full_name}}")</a>
+<a href="https://plus.google.com/{{collaborator.gplus}}" target="blank_">{{collaborator.full_name}}</a>
+{% endif %}
+
+, <time pubdate datetime="{{pubdate}}">{{p.published | date: "%B %Y"}}</time>
+
+{% if p.updated %}(updated <time datetime="{{updated}}">{{updated}}</time>){% endif %}
 </div>
 
-<summary>{{p.article.description}}
-</summary>
+<p>{{p.description}}</p>
 
 </div>
 {% endif %}

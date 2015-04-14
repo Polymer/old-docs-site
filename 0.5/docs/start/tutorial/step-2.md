@@ -41,8 +41,7 @@ In this step, you'll learn about:
 <aside class="alert alert-info">
 <p><b>Learn more:</b>Shadow DOM provides you a way to add a local DOM tree
 inside a DOM element, with local styles and markup that are decoupled from the rest of the web page.</p>
-<p>To learn more about shadow DOM, see the <a href="../../platform/shadow-dom.html">
-Shadow DOM polyfill docs</a>.</p>
+<p>To learn more, see <a href="../../../platform/shadow-dom.html">About shadow DOM</a>.</p>
 </aside>
 
 ### Edit post-card.html

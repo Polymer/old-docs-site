@@ -245,9 +245,10 @@ techniques like anonymous self-calling functions:
           // Run once. Private and static to the element.
           var foo_ = new Foo();
 
-          // Run for every instance of the element that's created.
+          // created() is run for every instance of the element that is created.
           Polymer({
             get foo() { return foo_; }
+            created: function() { ... }
           });
         })();
       </script>
@@ -263,21 +264,21 @@ and then make them available inside all of your elements. For example:
 
 To achieve this, you can use the [MonoState Pattern](http://c2.com/cgi/wiki?MonostatePattern).
 When defining a {{site.project_title}} element, define a closure that closes over the variables
-in question, and then provide accessors on the object's prototype or copy them over to individual
-instances in the `ready` callback.
+in question, and then provide accessors on the object's prototype or expose a single global object.
 
     <polymer-element name="app-globals">
       <script>
       (function() {
         // these variables are shared by all instances of app-globals
-        var firstName = 'John';
-        var lastName = 'Smith';
+        var values = {
+          firstName: 'John',
+          lastName: 'Smith'
+        }
 
         Polymer({
           ready: function() {
-            // copy global values into instance properties
-            this.firstName = firstName;
-            this.lastName = lastName;
+            // make global values available on instance.
+            this.values = values;
           }
         });
       })();
@@ -290,13 +291,13 @@ using {{site.project_title}} data binding or plain JavaScript:
     <polymer-element name="my-component">
       <template>
         <app-globals id="globals"></app-globals>
-        <div id="firstname">{%raw%}{{$.globals.firstName}}{%endraw%}</div>
-        <div id="lastname">{%raw%}{{$.globals.lastName}}{%endraw%}</div>
+        <div id="firstname">{%raw%}{{$.globals.values.firstName}}{%endraw%}</div>
+        <div id="lastname">{%raw%}{{$.globals.values.lastName}}{%endraw%}</div>
       </template>
       <script>
         Polymer({
           ready: function() {
-            console.log('Last name: ' + this.$.globals.lastName);
+            console.log('Last name: ' + this.$.globals.values.lastName);
           }
         });
       </script>
@@ -304,7 +305,7 @@ using {{site.project_title}} data binding or plain JavaScript:
 
 A slight tweak of this approach lets you configure the value of the globals externally:
 
-    <polymer-element name="app-globals" attributes="values">
+    <polymer-element name="app-globals">
       <script>
         (function() {
           var values = {};
@@ -324,17 +325,11 @@ A slight tweak of this approach lets you configure the value of the globals exte
 
 The main page configures the globals by passing attributes:
 
-    <app-globals firstname="Addy" lastname="Osmani"></app-globals>
+    <app-globals id="globals" firstname="Addy" lastname="Osmani"></app-globals>
 
-This second version of `app-globals` has a slightly different API than
-the first. The global variables are properties of the `values` object instead of
-direct properties of `app-globals`. Setting values using attributes imposes two
-limitations: the values must be strings, and the variable names are lowercase.
+Setting values using attributes imposes two limitations: the values 
+must be strings, and the variable names are lowercase.
 (See [Attribute case sensitivity](#attrcase) for more information.)
-
-To use this `<app-globals>` element with the previous `<my-component>` example,
-you'd need to update the paths that refer to the global variables (for example
-`$.globals.values.lastname` instead of `$.globals.lastName`).
 
 ### Element lifecycle methods {#lifecyclemethods}
 
@@ -761,7 +756,7 @@ Any default value specified in the `publish` object is ignored.
 **Limitations**: In {{site.project_title}} 0.4.0 and earlier, computed properties
 couldn't be published.
 For example, you couldn't bind to the `square` property on `square-element` using
- `<square-element square="{%raw%}{{value}}{%endraw%}>`.
+ `<square-element square="{%raw%}{{value}}{%endraw%}">`.
 {: .alert .alert-warning }
 
 ### Declarative event mapping
@@ -856,12 +851,13 @@ For example, the following defines a component whose template contains an `<inpu
 
     <polymer-element name="x-form">
       <template>
-        <input type="text" id="nameInput">
+        <input id="nameInput" placeholder="Name">
+        <button on-click="{{sayHello}}">Say hello</button>
       </template>
       <script>
         Polymer({
-          logNameValue: function() {
-            console.log(this.$.nameInput.value);
+          sayHello: function() {
+            alert("Hello " + this.$.nameInput.value);
           }
         });
       </script>
@@ -958,7 +954,7 @@ a property on that element.
 
 All property names in the `observe` object are relative to `this`, so `$.foo.someProperty`
 refers to a property on the `<x-foo>` element. See the section on
-[automatic node finding](#automatic-node-finding) for more infomration on the `this.$`
+[automatic node finding](#automatic-node-finding) for more information on the `this.$`
 hash and its limitations.
 
 **Example:** watching for changes to a nested object path
@@ -1182,7 +1178,7 @@ Sometimes it's useful to delay a task after an event, property change, or user i
 
     this.responseChanged = function() {
       if (this.timeout1) {
-        clearTimeout(this.toastTimeout1);
+        clearTimeout(this.timeout1);
       }
       this.timeout1 = window.setTimeout(function() {
         ...
