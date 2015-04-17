@@ -94,10 +94,7 @@ more information.
 <td><code>readOnly</code></td>
 <td>Type: <code>boolean</code><br> 
 
-If `true`, the property can't be set directly by assignment or data binding. An
-internal setter is generated, <code>_set<var>Prop</var></code>, where
-<code><var>Prop</var></code> is the property name with the first letter
-capitalized. See <a href="#read-only">Read-only properties</a>.
+If `true`, the property can't be set directly by assignment or data binding. See <a href="#read-only">Read-only properties</a>.
 </td>
 </tr>
 <tr>
