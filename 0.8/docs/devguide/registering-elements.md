@@ -224,7 +224,7 @@ Example:
 
         hostAttributes: {
           role: 'button',
-          'aria-disabled': true,
+          'aria-disabled': 'true',
           tabindex: 0
         }
 
@@ -234,7 +234,12 @@ Example:
 
 Results in:
 
-    <x-custom role="button" aria-disabled tabindex="0"></x-custom>
+    <x-custom role="button" aria-disabled="true" tabindex="0"></x-custom>
+    
+**Note:** The `aria-disabled` attribute is set to the string "true" rather than 
+the boolean value `true` because ARIA attributes follow a non-standard convention of 
+using the string values "true" or "false" for boolean states.
+{: .alert .alert-info }
 
 ## Prototype mixins {#prototype-mixins}
 
