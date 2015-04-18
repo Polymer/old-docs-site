@@ -385,7 +385,7 @@ one of the following ways**:
 When a property is set to `notify: true`, an event,
 <code><var>propertyName</var>-changed</code>, is fired whenever the property
 value changes. These events are used by the two-way data binding system, and can
-also external scripts and frameworks to respond to changes in the element.
+also notify external scripts and frameworks to respond to changes in the element.
 
 For more on property change notifications and data binding, see  [Property
 change notification and two-way binding](data-binding.html#property-notification).
