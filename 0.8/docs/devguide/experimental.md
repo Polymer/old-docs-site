@@ -239,7 +239,7 @@ Example:
       </style>
       
       <template>
-        <span class=".title">{%raw%}{{title}}{%endraw%}</span>
+        <span class="title">{%raw%}{{title}}{%endraw%}</span>
       </template>
       
       <script>
@@ -286,7 +286,7 @@ Example usage of `my-toolbar`:
 
 The `--my-toolbar-title-color` property will only affect the color of the title
 element encapsulated in `my-toolbar`'s internal implementation.  If in the
-future the `my-toolbar` author chose to rename the `.title` class or otherwise
+future the `my-toolbar` author chose to rename the `title` class or otherwise
 restructure the internal details of `my-toolbar`, users are shielded from this
 change via the indirection afforded by custom properties.
 
@@ -322,7 +322,7 @@ Example:
       </style>
       
       <template>
-        <span class=".title">{%raw%}{{title}}{%endraw%}</span>
+        <span class="title">{%raw%}{{title}}{%endraw%}</span>
       </template>
       
       ...
