@@ -576,37 +576,58 @@ you'll need to make some changes:
 Add an import for `layout.html` on any element that used the layout attributes.
 Replace the layout attributes with classes.
 
+If you had default layout attributes on your `<polymer-element>` declaration,
+you can add a default `class` attribute to the host using the `hostAttributes` object, as described in 
+[Default attributes](#default-attributes).
+
 Before:
 
     <link rel="import" href="/components/polymer/polymer.html">
 
-    <polymer-element name="x-foo" layout horizontal wrap>
+    {% raw %}
+    <!-- layout attributes for the host defined on <polymer-element> -->
+    <polymer-element name="x-profile" layout vertical>
       <template>
-        <content></content>
+        <!-- layout attributes for a local DOM element -->
+        <div layout horizontal center>
+          <img src="{{avatarUrl}}">
+          <span class="name">{{name}}</span>
+        </div>
+        <p>{{details}}</p>
       </template>
       <script>
-        Polymer({ });
+        Polymer({ ... });
       </script>
     </polymer-element>
+    {% endraw %}
 
 After:
 
     <link rel="import" href="/components/polymer/polymer.html">
     <link rel="import" href="/components/layout/layout.html">
 
-    <dom-module id="test-element">
+    {% raw %}
+    <dom-module id="x-profile">
       <template>
-        <content></content>
+        <!-- layout classes for a local DOM element -->
+        <div class="layout horizontal center">
+          <img src="{{avatarUrl}}">
+          <span class="name">{{name}}</span>
+        </div>
+        <p>{{details}}</p>
        </template>
     </dom-module>
     <script>
     Polymer({
-      is: "x-foo",
+      is: "x-profile",
       hostAttributes: {
-        class: "layout horizontal wrap"
-      }
+        // layout classes for the host element
+        class: "layout vertical"
+      },
+      ...
     });
     </script>
+    {% endraw %}
 
 ## Manipulating DOM {#dom-apis}
 
