@@ -18,7 +18,7 @@ title: Tools & Testing
 
 > web-component-tester makes testing your web components a breeze!
 
-[web-component-tester](https://github.com/Polymer/web-component-tester) is a tool providing a browser-based testing environment. Out of the box it includes support for Mocha, Chai, Async and Sinon. Read more about it in "[/articles/unit-testing-elements.html](Unit Testing Elements)".
+[web-component-tester](https://github.com/Polymer/web-component-tester) is a tool providing a browser-based testing environment. Out of the box it includes support for Mocha, Chai, Async and Sinon. Read more about it in "[Unit Testing Elements](/articles/unit-testing-elements.html)".
 
 ## Debugging user agent Shadow DOM
 
