@@ -35,6 +35,7 @@ Our boilerplate for new Polymer elements, [`<seed-element>`](https://github.com/
         $ cd development
         $ git clone git://github.com/PolymerLabs/seed-element.git
         $ cd seed-element
+        $ echo '{ "directory": "../" }' > .bowerrc
         $ bower install
         $ npm install -g web-component-tester
         $ wct
