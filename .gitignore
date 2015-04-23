@@ -10,3 +10,4 @@ _site
 *.vulcanized.js
 *.sublime-*
 _data/versions
+*log/log-id
