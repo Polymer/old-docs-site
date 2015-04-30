@@ -201,6 +201,6 @@ If you have any problems, check your work against the files in the `step-3` fold
   <paper-button><core-icon icon="arrow-back"></core-icon>Step 2: Creating your own element</paper-button>
 </a>
 <a href="step-4.html">
-  <paper-button raises><core-icon icon="arrow-forward"></core-icon>Step 4: Finishing touches</paper-button>
+  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Step 4: Finishing touches</paper-button>
 </a>
 </div>
