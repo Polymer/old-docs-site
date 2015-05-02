@@ -119,7 +119,10 @@ Example:
     var el2 = document.createElement('input', 'my-input');
     console.log(el2 instanceof HTMLInputElement); // true
 
-## Lifecycle callbacks {#basic-callbacks}
+<!-- legacy anchor -->
+<a id="basic-callbacks"></a>
+
+## Lifecycle callbacks {#lifecycle-callbacks}
 
 Polymer's Base prototype implements the standard Custom Element lifecycle
 callbacks to perform tasks necessary for Polymer's built-in features.  The hooks

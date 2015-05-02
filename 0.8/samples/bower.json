@@ -1,0 +1,27 @@
+{
+  "name": "polymer-site",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Polymer/docs",
+  "authors": [
+    "Eric Bidelman <ebidel@gmail.com>"
+  ],
+  "description": "Polymer website",
+  "keywords": [
+    "polymer",
+    "web components",
+    "documentation"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^0.8.0-rc.7",
+    "iron-input": "PolymerElements/iron-input"
+  }
+}
