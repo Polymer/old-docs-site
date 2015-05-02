@@ -1,7 +1,7 @@
 markdown: kramdown
 highlighter: null #pygments
-lsi: false
-safe: false
+lsi: true
+safe: true
 
 #permalink: /news/:year/:month/:day/:title.html
 
