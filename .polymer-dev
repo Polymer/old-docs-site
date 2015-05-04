@@ -10,3 +10,6 @@ _site
 *.vulcanized.js
 *.sublime-*
 _data/versions
+*Polymer 
+*log/lg-id 
+*Polymer/log/log-id
