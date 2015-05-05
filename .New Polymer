@@ -9,4 +9,5 @@ _site
 *.vulcanized.html
 *.vulcanized.js
 *.sublime-*
-_data/versions
+_data/versions 
+*.Polymer.components.js
