@@ -1,5 +1,5 @@
 application: polymer-project
-version: 2015-04-13
+version: 09-databinding
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -103,6 +103,10 @@ handlers:
 # No version in URL goes through redirect to latest version.
 # Also redirect old apps and tools stuff.
 - url: /(apps|docs|platform|resources|tools|articles)/.*
+  script: main.app
+
+# Obsolete versions need redirects, too.
+- url: /0.8/.*
   script: main.app
 
 - url: /docs/elements/(core|paper)-elements.html
