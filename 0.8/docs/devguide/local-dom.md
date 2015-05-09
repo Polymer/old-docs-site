@@ -51,93 +51,7 @@ in the same html file or in separate files.
 {: .alert .alert-info }
 
 
-## Scoped styling {#scoped-styling}
 
-Polymer 0.8 uses [Shadow DOM styling
-rules](http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/) for
-providing scoped styling of the element's local DOM.  Scoped styles should be
-provided via `<style>` tags placed inside the `<dom-module>` for an element (but
-not inside the `<template>` -- note this is a slight deviation from typical
-Shadow DOM rules).
-
-    <dom-module id="my-element">
-      
-      <style>
-        :host {
-          display: block;
-          border: 1px solid red;
-        }
-        #child-element {
-          background: yellow;
-        }
-        /* styling elements distributed to content (via ::content) requires */
-        /* using a wrapper element for compatibility with shady DOM         */
-        .content-wrapper > ::content .special {
-          background: orange;
-        }
-      </style>
-      
-      <template>
-        <div id="child-element">In local Dom!</div>
-        <div class="content-wrapper"><content></content></div>
-      </template>
-      
-    </dom-module>
-
-    <script>
-
-        Polymer({
-            is: 'my-element'
-        });
-
-    </script>
-
-Loading external stylesheets (as opposed to defining them inline in HTML) for
-styling local DOM is currently supported via an [experimental
-feature](experimental.html#external-stylesheets).
-
-### Styling distributed children (::content)
-
-Under shady DOM, the `<content>` tag doesn't appear in the DOM tree. Styles are rewritten to remove the 
-`::content` pseudo-element, **and any combinator immediately to the left of `::content`.**
-
-This implies:
-
-*   You must have a selector to the left of the `::content` pseudo-element.
-
-        :host ::content div
-
-    Becomes:
-
-        x-foo div
-
-    (Where `x-foo` is the name of the custom element.)
-
-*   To limit styles to elements inside the ::content tag, add a wrapper element around the 
-    `<content>` element. This is especially important when using a child combinator (`>`) to
-    select top-level children.
-
-        <dom-module id="my-element">
-          
-          <style>
-            .content-wrapper > ::content .special {
-              background: orange;
-            }
-          </style>
-          
-          <template>
-            <div class="content-wrapper"><content></content></div>
-          </template>
-          
-        </dom-module>
-
-    In this case, the rule:
-
-        .content-wrapper ::content > .special
-
-    Becomes:
-
-        .content-wrapper > special
 
 ## Automatic node finding {#node-finding}
 
@@ -177,7 +91,7 @@ the `this.$` hash).
 {: .alert .alert-info }
 
 
-## DOM (re-)distribution {#dom-distribution}
+## DOM distribution {#dom-distribution}
 
 To support composition of an element's light DOM with its local DOM, Polymer
 supports the `<content>` element. The `<content>` element provides an insertion
@@ -276,3 +190,93 @@ Example:
     // the following should be true:
     assert.equal(distributed, div);
     assert.equal(insertedTo, content)
+
+## Styling local DOM {#scoped-styling}
+
+Polymer uses [Shadow DOM styling
+rules](http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/) for
+providing scoped styling of the element's local DOM.  Scoped styles should be
+provided via `<style>` tags placed inside the `<dom-module>` for an element (but
+not inside the `<template>` -- note this is a slight deviation from typical
+Shadow DOM rules).
+
+    <dom-module id="my-element">
+      
+      <style>
+        :host {
+          display: block;
+          border: 1px solid red;
+        }
+        #child-element {
+          background: yellow;
+        }
+        /* styling elements distributed to content (via ::content) requires */
+        /* using a wrapper element for compatibility with shady DOM         */
+        .content-wrapper > ::content .special {
+          background: orange;
+        }
+      </style>
+      
+      <template>
+        <div id="child-element">In local Dom!</div>
+        <div class="content-wrapper"><content></content></div>
+      </template>
+      
+    </dom-module>
+
+    <script>
+
+        Polymer({
+            is: 'my-element'
+        });
+
+    </script>
+
+Loading external stylesheets (as opposed to defining them inline in HTML) for
+styling local DOM is currently supported via an [experimental
+feature](experimental.html#external-stylesheets).
+
+### Styling distributed children (::content)
+
+Under shady DOM, the `<content>` tag doesn't appear in the DOM tree. Styles are rewritten to remove the 
+`::content` pseudo-element, **and any combinator immediately to the left of `::content`.**
+
+This implies:
+
+*   You must have a selector to the left of the `::content` pseudo-element.
+
+        :host ::content div
+
+    Becomes:
+
+        x-foo div
+
+    (Where `x-foo` is the name of the custom element.)
+
+*   To limit styles to elements inside the ::content tag, add a wrapper element around the 
+    `<content>` element. This is especially important when using a child combinator (`>`) to
+    select top-level children.
+
+        <dom-module id="my-element">
+          
+          <style>
+            .content-wrapper > ::content .special {
+              background: orange;
+            }
+          </style>
+          
+          <template>
+            <div class="content-wrapper"><content></content></div>
+          </template>
+          
+        </dom-module>
+
+    In this case, the rule:
+
+        .content-wrapper ::content > .special
+
+    Becomes:
+
+        .content-wrapper > special
+
+

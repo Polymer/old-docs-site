@@ -50,7 +50,7 @@ in one of several ways:
 
 When you install {{site.project_title}} using Bower, you get the
 [Web Components polyfill library](/0.5/docs/start/platform.html). 
-For {{site.project_title}} 0.8, you need the `webcomponents-lite` version of the 
+For this version of {{site.project_title}}, you need the `webcomponents-lite` version of the 
 library, which doesn't include the shadow DOM polyfill.
 
 Using the polyfills ensures that you can use {{site.project_title}} with browsers that don't support
@@ -77,7 +77,7 @@ This generates a basic `bower.json` file. Some of the questions, like
 
 The next step is to install {{site.project_title}}:
 
-    bower install --save Polymer/polymer#^0.8.0-rc.2
+    bower install --save Polymer/polymer#^0.9.0
 
 Bower adds a `bower_components/` folder in the root of your project and
 fills it with {{site.project_title}} and its dependencies.
@@ -88,7 +88,7 @@ fills it with {{site.project_title}} and its dependencies.
   "name": "my-project",
   "version": "0.0.0",
   "dependencies": {
-    "polymer": "Polymer/polymer#^0.8.0-rc.2"
+    "polymer": "Polymer/polymer#^0.9.0
   }
 }
 ```
@@ -107,7 +107,7 @@ This updates all packages in `bower_components/` to the latest stable version.
 
 Click the button to download {{site.project_title}} {% polymer_version_dir %} as a ZIP file.
 
-<p><a href="http://zipper.bowerarchiver.appspot.com/archive?polymer=Polymer/polymer%230.8.0-rc.2">
+<p><a href="http://zipper.bowerarchiver.appspot.com/archive?polymer=Polymer/polymer%230.9.0">
   <paper-button class="cta" raised><core-icon icon="file-download"></core-icon>Download ZIP</paper-button>
 </a></p>
 

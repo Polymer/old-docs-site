@@ -471,8 +471,8 @@ Only direct properties of the element (as opposed to sub-properties of an
 object) can be used as dependencies at this time.
 
 **Note:** If you only need a computed property for a data binding, you
-can declare the computed property directly in the binding. See 
-[Annotated computed properties](data-binding.html#annotated-computed).
+can use an inline function instead. See 
+[Inline function](data-binding.html#annotated-computed).
 {: .alert .alert-info }
 
 ## Reflecting properties to attributes {#attribute-reflection}

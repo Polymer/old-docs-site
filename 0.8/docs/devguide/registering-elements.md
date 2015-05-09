@@ -53,13 +53,12 @@ share code between elements.
 The `Polymer` method returns a basic constructor that can be used to
 instantiate the custom element. If you want to 
 pass arguments to the constructor to configure the new element, you can 
-specify a custom `constructor` function on the prototype. 
+specify a custom `factoryImpl` function on the prototype.
 
-This function is not a _true_ constructor, but a configuration function.
 The constructor returned from `Polymer` creates an instance using 
-`document.createElement`, then invokes the user-supplied `constructor` function 
+`document.createElement`, then invokes the user-supplied `factoryImpl` function 
 with `this` bound to the element instance. Any arguments passed to the actual
-constructor are passed on to `constructor` function.
+constructor are passed on to `factoryImpl` function.
 
 Example:
 
@@ -67,7 +66,7 @@ Example:
 
       is: 'my-element',
 
-      constructor: function(foo, bar) {
+      factoryImpl: function(foo, bar) {
         this.foo = foo;
         this.configureWithBar(bar);
       },
@@ -83,17 +82,17 @@ Example:
 
 Two notes about the custom constructor:
 
-*   The custom constructor is _only_ invoked when you create an element using the 
-    constructor. The custom constructor is not called if the element is created 
+*   The `factoryImpl` method is _only_ invoked when you create an element using the 
+    constructor. The `factoryImpl` method is not called if the element is created 
     from markup by the HTML parser, or if the element is created using `document.createElement`. 
 
-*   The custom constructor is called after the element is initialized (local DOM 
+*   The `factoryImpl` method is called **afte**r the element is initialized (local DOM 
     created, default values set, and so on). See
     [Ready callback and element initialization](#ready-method) for more information.
 
 ### Extending Native HTML elements {#type-extension}
 
-Polymer 0.8 currently only supports extending native HTML elements (for example,
+Polymer currently only supports extending native HTML elements (for example,
 `input`, or `button`, as opposed to 
 [extending other custom elements](#todo-inheritance)). To extend a native HTML element, 
 set the `extends` property to the tag name of the element to extend.
@@ -183,12 +182,12 @@ access a local DOM element.
 
 The element's basic initialization order is:
 
-- created callback  
+- `created` callback  
 - local DOM constructed
 - default values set 
-- ready callback
-- custom constructor (if any)
-- attached callback
+- `ready` callback
+- [`factoryImpl` callback](#custom-constructor)
+- `attached` callback
 
 In particular, the `ready` callback is always called before `attached`.
 
@@ -236,56 +235,13 @@ Results in:
 
     <x-custom role="button" aria-disabled tabindex="0"></x-custom>
 
-## Prototype mixins {#prototype-mixins}
+## Behaviors {#prototype-mixins}
 
-Polymer will "mixin" objects specified in a `mixin` array into the prototype.
-This can be useful for adding common code between multiple elements.
+Elements can share code in the form of _behaviors_, which can define 
+properties, lifecycle callbacks, event listeners, and other features.
 
-The current mixin feature in 0.8 is basic; it simply loops over properties in
-the provided object and adds property descriptors for those on the prototype
-(such that `set`/`get` accessors are copied in addition to properties and
-functions).  
+For more information, see [Behaviors](behaviors.html).
 
-**Mixin lifecycle:** A mixin can't directly configure properties
-or hook info lifecycle callbacks. Instead, the mixin should supply functions 
-to be called by the target element at specific points in the element's lifecycle.
-These methods should be documented as part of the mixin's usage contract.  
-These limitations will likely be revisited in the future.
-{: .alert .alert-info }
-
-
-Example: `fun-mixin.html`
-
-    FunMixin = {
-
-        funCreatedCallback: function() {
-          this.makeElementFun();
-        },
-
-        makeElementFun: function() {
-          this.style.border = 'border: 20px dotted fuchsia;';
-        }
-      };
-
-    });
-
-Example: `my-element.html`
-
-    <link rel="import" href="fun-mixin.html">
-
-    <script>
-      Polymer({
-
-        is: 'my-element',
-
-        mixins: [FunMixin],
-
-        created: function() {
-          this.funCreatedCallback();
-        }
-
-      });
-    </script>
 
 ## Class-style constructor {#element-constructor}
 

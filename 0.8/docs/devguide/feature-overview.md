@@ -56,7 +56,7 @@ This guide divides the features into the following groups:
 
 *   [Registration and lifecycle](registering-elements.html). Registering an
     element associates a class (prototype) with a custom element name. The
-    element provides callbacks to manage its lifecycle. Use prototype mixins to
+    element provides callbacks to manage its lifecycle. Use behaviors to
     share code.
 
 *   [Declared properties](properties.html). Declared properties can be 
