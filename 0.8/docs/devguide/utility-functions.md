@@ -20,8 +20,8 @@ The {{site.project_title}} `Base` prototype provides a set of useful convenience
 
 *   `toggleAttribute(name, bool, [node])`. Like `toggleClass`, but toggles the named boolean attribute.
 
-*   `attributeFollows(name, new, old)`. Moves a boolean attribute from `old` to
-    `new`, unsetting the attribute (if set) on `old` and setting it on `new`.
+*   `attributeFollows(name, newValue, oldValue)`. Moves a boolean attribute from `oldValue` to
+    `newValue`, unsetting the attribute (if set) on `oldValue` and setting it on `newValue`.
 
 *   `fire(type, [detail], [onNode], [bubbles], [cancelable])`. Fires a custom event.
 
