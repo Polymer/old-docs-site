@@ -77,7 +77,7 @@ index.html:
     </html>
 {% endraw %}
 
-app.html:
+x-app.html:
 
 {% raw %}
     <link rel="import" href="bower_components/polymer/polymer.html">
