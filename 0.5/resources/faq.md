@@ -377,7 +377,10 @@ At [http://customelements.io](http://customelements.io), you can find a growing 
 
 ### I get errors when trying to use  `<link rel="import">` with external files. {#externalfiles}
 
-Unfortunately, this is a limitation of the HTML Import spec and the polyfill follows suit. The polyfill uses XHR to pull down external imports. These will fail if they are not [CORs-enabled](http://www.html5rocks.com/tutorials/cors/).
+HTML Imports follow the same restrictions as XHR:
+
+1. URLs need to have an `http(s)` protocol. The browser imposes security restriction son what you can do with `file://`.
+- The resource needs to be [CORs-enabled](http://www.html5rocks.com/tutorials/cors/) if it is remote to your server.
 
 {%comment%}
 ### How can I use web fonts or CSS Animations in my custom element? {#fontsanimations}
