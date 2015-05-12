@@ -11,7 +11,11 @@ subtitle: Developer guide
 
 ## Utility Functions {#utility-functions}
 
-The {{site.project_title}} `Base` prototype provides a set of useful convenience functions for instances to use.  
+All {{site.project_title}} elements inherit from `{{site.project_title}}.Base`, which 
+provides a set of useful convenience functions for instances to use.
+
+*   `$$(selector)`. Returns the first node in this element's local DOM that matches
+    `selector`.
 
 *   `toggleClass(name, bool, [node])`. Toggles the named boolean class on the
     host element, adding the class if `bool` is truthy and removing it if
@@ -24,13 +28,13 @@ The {{site.project_title}} `Base` prototype provides a set of useful convenience
     `newNode`, unsetting the attribute (if set) on `oldNode` and setting it on `newNode`.
 
 *   `fire(type, [detail], [options])`. Fires a custom event. The `options` object can contain
- 	  the following properties:
+      the following properties:
 
- 	  *   `node`. Node to fire the event on (defaults to `this`).
+    -   `node`. Node to fire the event on (defaults to `this`).
 
- 	  *   `bubbles`. Whether the event should bubble. Defaults to `true`.
+    -   `bubbles`. Whether the event should bubble. Defaults to `true`.
 
- 	  *   `cancelable`. Whether the event can be canceled with `preventDefault`. Defaults to `false`.
+    -   `cancelable`. Whether the event can be canceled with `preventDefault`. Defaults to `false`.
 
 *   `async(method, [wait])`. Calls `method` asynchronously. If no wait time is specified,
     runs tasks with microtask timing (after the current method finishes, but before the 
@@ -48,13 +52,13 @@ The {{site.project_title}} `Base` prototype provides a set of useful convenience
 
 *   `flushDebouncer(jobName)`. Calls the debounced callback immediately and cancels the debouncer.
 
-*  	`isDebouncerActive(jobName)`. Returns true if the named debounce task is waiting to run.
+*   `isDebouncerActive(jobName)`. Returns true if the named debounce task is waiting to run.
 
 *   `transform(transform, node)`. Applies a CSS transform to the specified node,
     or this element if no node is specified.
     `transform` is specified as a string. For example:
 
-	     this.transform('rotateX(90deg)', this.$.myDiv);
+         this.transform('rotateX(90deg)', this.$.myDiv);
 
 *   `translate3d(x, y, z, node)`. Transforms the specified node, or this element
     if no node is specified. For example:

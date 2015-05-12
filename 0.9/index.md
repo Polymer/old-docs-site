@@ -18,18 +18,22 @@ shortname: Introduction
 
 {% include toc.html %}
 
-## Introducing {{site.project_title}} 0.8
+## Introducing {{site.project_title}} 0.9
 
-The 0.8 release of the {{site.project_title}} core library is now out.
+The 0.9 release of the {{site.project_title}} core library is now out.
 
-Consider the 0.8 release to be our **proposed API for 1.0**. It is an "alpha" release &mdash; we fully expect some breaking changes as a result of the feedback we get.
+Consider the 0.9 release a beta for 1.0. It is an "beta" release &mdash; we fully expect some breaking changes as a result of the feedback we get.
 
 This release is **intended for early adopters** who want to **test out the new APIs and provide feedback.** This release is optimized for performance and size, and is not yet a feature-complete replacement for 0.5. We're working hard on getting to feature parity.  See the [roadmap](#roadmap) for more detailed timelines.
 
 <div class="alert alert-error"><strong>BREAKING CHANGES.</strong> 
-This release is <strong>not compatible with the 0.5 APIs.</strong> For
-guidance on migrating an existing 0.5 element to the 0.8 APIs, see 
-the <a href="docs/migration.html">Migration guide</a>.</div>
+This release is <strong>not compatible with the 0.5 APIs.</strong></div>
+
+*   For guidance on migrating an existing 0.5 element to the 0.9 APIs, 
+    see the <a href="docs/migration.html">Migration guide</a>.
+
+*   For changes from 0.8 to 0.9, see the <a href="docs/release-notes.html">
+    Release notes</a>.
 
 
 ## Highlights
@@ -41,12 +45,13 @@ the <a href="docs/migration.html">Migration guide</a>.</div>
 * Brand new, lightweight shadow DOM shim called `shady DOM`, that lets you avoid the complexity, size, performance penalty, and invasiveness of the shadow DOM polyfill.
 * Upper bound _and lower bound_ scoped styling, even without native shadow DOM: scoped styles don’t bleed out, and children in their own roots are protected from descendant selectors in a shadow root.
 
-There's a lot more to 0.8 &mdash; check out the [Developer guide](docs/devguide/feature-overview.html) for 
+There's a lot more to 0.9 &mdash; check out the [Developer guide](docs/devguide/feature-overview.html) for 
 the run-down of all the features.
 
 ## Benchmarks {#benchmarks}
 
-As a sample of the performance difference between 0.5 and 0.8, below are the
+As a sample of the performance difference between 0.5 and the new codebase,
+below are the
 results from our `medium-list` benchmark. The benchmark measures time to first
 paint for an application with a few thousand nested custom elements, with data 
 binding.
@@ -57,7 +62,7 @@ binding.
 <img src="images/benchmark.svg" alt="Chrome (Desktop) showed a 4.1x speed
 improvement, Safari (Desktop) a 5.3x speed improvement, Safari (iOS) a 5.3x
 speed improvement, and Firefox (Desktop) an 8x speed improvement going from 
-0.5 to 0.8. Mobile Safari tested on an iPhone 6, other browsers on a Macbook Pro.">
+0.5 to the new codebase. Mobile Safari tested on an iPhone 6, other browsers on a Macbook Pro.">
 </figure>
 
 Device specs vary wildly, so the differences between browsers are less 
@@ -190,13 +195,13 @@ an important one, and we aim to continue to reinforce this going forward.
 
 #### Will you continue to support Polymer 0.5?
 
-We recognize that many projects rely on 0.5, and won’t be able to switch to 0.8
+We recognize that many projects rely on 0.5, and won’t be able to switch to 0.9
 until the elements are ready. We’ll continue viewing and merging PR’s until the
-elements are ported.  We intend for 0.8 to be the new baseline though, and to
+elements are ported.  We intend for 0.9 to be the new baseline though, and to
 work within this high-performance, production-ready mindset going forward. Any
 incremental 0.5 releases, if needed, will be available in a branch.
 
-#### Where and how can I give feedback on 0.8?
+#### Where and how can I give feedback on 0.9?
 
 The best place for feedback is on Github, [by filing an
 issue](https://github.com/polymer/polymer/issues), adding to an existing one, or
@@ -208,7 +213,7 @@ understand the question or suggestion.
 
 ## Next steps
 
-Continue on to the {{site.project_title}} 0.8 docs:
+Continue on to the {{site.project_title}} 0.9 docs:
 
 <div layout horizontal wrap>
 <p><a href="docs/start/getting-the-code.html">

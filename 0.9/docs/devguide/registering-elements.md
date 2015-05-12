@@ -210,7 +210,7 @@ attribute name and values are the values to be assigned.  Values should
 typically be provided as strings, as HTML attributes can only be strings;
 however, the standard `serialize` method is used to convert values to strings,
 so `true` will serialize to an empty attribute, and `false` will result in no
-attribtue set, and so forth (see [here](#attribute-serialization) for more
+attribtue set, and so forth (see [Attribute serialization](properties.html#attribute-serialization) for more
 details).
 
 Example:
@@ -235,13 +235,16 @@ Results in:
 
     <x-custom role="button" aria-disabled tabindex="0"></x-custom>
 
+**Note:** As of {{site.project_title}} 0.9, the `class` attribute can't be 
+configured using `hostAttributes`.
+{: .alert .alert-error }
+
 ## Behaviors {#prototype-mixins}
 
 Elements can share code in the form of _behaviors_, which can define 
 properties, lifecycle callbacks, event listeners, and other features.
 
 For more information, see [Behaviors](behaviors.html).
-
 
 ## Class-style constructor {#element-constructor}
 

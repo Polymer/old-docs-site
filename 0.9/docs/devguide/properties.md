@@ -265,10 +265,10 @@ Example:
     });
 
 
-## Property change callbacks (observers) {#change-callbacks}
+## Property change observers {#change-callbacks}
 
 Custom element properties may be observed for changes by specifying `observer`
-property in the `properties` for the property that gives the name of a function
+property in the `properties` object for the property that gives the name of a function
 to call.  When the property changes, the change handler will be called with the
 new and old values as arguments.
 
@@ -310,12 +310,19 @@ Property change observation is achieved in Polymer by installing setters on the
 custom element prototype for properties with registered interest (as opposed to
 observation via `Object.observe` or dirty checking, for example).
 
-### Observing changes to multiple properties
+### Observing changes to multiple properties {#multi-property-observers}
 
 To observe changes to a set of properties, use the `observers`
-object. Specifying a space-separated list of dependent properties that
-should result in a change function being called.  These observers differ from
-single-property observers in that the change handler is called asynchronously.
+array.  
+
+These observers differ from single-property observers in a few ways:
+
+*   The observer function is called asynchronously.
+*   Observers are not invoked until once all dependent properties are defined (`!== undefined`).  
+    So each dependent properties should have a default `value` defined in `properties` (or otherwise 
+    be initialized to a non-`undefined` value) to ensure the observer is called.
+*   Observers do not receive `old` values as arguments, only new values.  Only single-property 
+    observers defined in the `properties` object receive both `old` and `new` values.
 
 Example:
 
@@ -329,9 +336,9 @@ Example:
         size: String
       },
 
-      observers: {
-        'preload src size': 'updateImage'
-      },
+      observers: [
+        'updateImage(preload, src, size)'
+      ],
 
       updateImage: function(preload, src, size) {
         // ... do work using dependent values
@@ -339,13 +346,14 @@ Example:
 
     });
 
-### Observing changes to sub-properties {#observing-path-changes}
+In addition to properties, observers can also observe [paths to sub-properties](#observing-path-changes),
+[paths with wildcards](#deep-observation), or [array changes](#array-observation).
+
+### Observing path changes {#observing-path-changes}
 
 You can also observe changes to object sub-properties using the 
-`observers` object, by specifying a full path (`user.manager.name`) 
-or partial path (`user.*`) and a function name to call.  In this case, 
-the third argument to the callback indicates the path that changed. 
-Note that currently the second argument (old value) is not valid.
+`observers` array, by specifying a full path (`user.manager.name`)
+as a function argument.
 
 Example:
 
@@ -357,18 +365,12 @@ Example:
         user: Object
       },
 
-      observers: {
-        'user.manager.*': 'userManagerChanged'
-      },
+      observers: [
+        'userManagerChanged(user.manager)'
+      ],
 
-      userManagerChanged: function(newValue, oldValue, path) {
-        if (path) {
-          // sub-property of user.manager changed
-          console.log('manager ' + path.split('.').pop() + ' changed to ' + newValue);
-        } else {
-          // user.manager object itself changed
-          console.log('new manager name is ' + newValue.name);
-        }
+      userManagerChanged: function(user) {
+        console.log('new manager name is ' + user.name);
       }
 
     });
@@ -377,8 +379,128 @@ To observe a change to a path (object sub-property) the value **must be changed 
 one of the following ways**:
 
 *   Using a Polymer [property binding](data-binding.html#property-binding) to another element.
-*   Using the [`setPathValue`](data-binding.html#set-path) API, which provides the
+*   Using the [`set`](data-binding.html#set-path) API, which provides the
     required notification to elements with registered interest.
+
+### Deep path observation {#deep-observation}
+
+To call an observer when any (deep) sub-property of an
+object changes, specify a path with a wildcard (`*`).
+
+When you specify a path with a wildcard, the argument passed to your
+observer is a change record object with the following properties:
+
+*   `path`. Path to the property that changed. 
+*   `value`. New value of the path that changed.
+*   `base`. The object matching the non-wildcard portion of the path. 
+
+Example:
+
+    Polymer({
+
+      is: 'x-custom',
+
+      properties: {
+        user: Object
+      },
+
+      observers: [
+        'userManagerChanged(user.manager.*)'
+      ],
+
+      userManagerChanged: function(changeRecord) {
+        if (changeRecord.path == 'user.manager') {
+          // user.manager object itself changed
+          console.log('new manager name is ' + newValue.name);
+        } else {
+          // sub-property of user.manager changed
+          console.log(changeRecord.path + ' changed to ' + changeRecord.value);
+        }
+      }
+
+    });
+
+### Array observation {#array-observation}
+
+Finally, to observe mutations to arrays (changes resulting from calls to `push`,
+`pop`, `shift`, `unshift`, and `splice`, generally referred to as "splices"),
+specify a path to an array followed by `.splices` as an argument to the observer 
+function.  
+
+The value received by the observer for the `splices` path of an array is a
+change records with the following properties:
+
+*   `indexSplices`. Lists the set of changes that occurred to the array, in 
+     terms of array indicies. Each `indexSplices` record contains the following 
+     properties:
+
+     -   `index`. Position where the splice started.
+     -   `removed`. Array of `removed` items.
+     -   `addedCount`. Number of new items inserted at `index`. 
+
+*   `keySplices`. Lists the set of changes that occurred to the array in terms
+    of "keys" used by Polymer for identifying array elements. Each `keySplices` record 
+    contains the following properties: 
+
+    -   `added`. Array of added keys.
+    -   `removed`. Array of removed keys. 
+
+    Polymer({
+
+      is: 'x-custom',
+
+      properties: {
+        users: Array
+      },
+
+      observers: [
+        'usersAddedOrRemoved(users.splices)'
+      ],
+
+      usersAddedOrRemoved: function(changeRecord) {
+        changeRecord.indexSplices.forEach(function(s) {
+          s.removed.forEach(function(user) {
+            console.log(user.name + ' was removed');
+          });
+          console.log(s.addedCount + ' users were added');
+        }, this);
+      }
+
+    });
+
+**Array mutation APIs.** Observing changes to arrays is dependent on the change to the array
+being made through one of the [array mutation API's](#array-mutation) provided
+on Polymer elements, which provides the required notification to elements with
+registered interest.
+{: .alert .alert-info }
+
+When you specify a wildcard path on an array, the observer is for both splices as
+well as array element sub-property changes.  So the  observer in the
+following example will be called for all additions, removals, and deep changes
+that occur in the array:
+
+    Polymer({
+
+      is: 'x-custom',
+
+      properties: {
+        users: Array
+      },
+
+      observers: [
+        'usersChanged(users.*)'
+      ],
+
+      usersChanged: function(changeRecord) {
+        if (changeRecord.path == 'users.splices') {
+          // a user was added or removed
+        } else {
+          // an individual user or its sub-properties changed
+          // check "changeRecord.path" to determine what changed
+        }
+      }
+
+    });
 
 ## Property change notification events (notify) {#notify}
 
@@ -389,6 +511,7 @@ also notify external scripts and frameworks to respond to changes in the element
 
 For more on property change notifications and data binding, see  [Property
 change notification and two-way binding](data-binding.html#property-notification).
+
 
 ## Read-only properties {#read-only}
 
@@ -427,10 +550,28 @@ Polymer supports virtual properties whose values are calculated from other
 properties.
 
 To define a computed property, add it the `properties` object with a 
-`computed` key mapping to a computing function. The function is provided 
-as a string with dependent properties as arguments in parenthesis. 
-The function will be called once (asynchronously) for any change to 
+`computed` key mapping to a computing function:
+
+    fullName: {
+      type: String,
+      computed: 'computeFullName(first, last)'
+    } 
+
+
+The function is provided as a string with dependent properties as arguments 
+in parenthesis. The function will be called once (asynchronously) for any change to 
 the dependent properties.
+
+The computing function is not invoked until once **all** dependent properties 
+are defined (`!== undefined`). So each dependent properties should have a 
+default `value` defined in `properties` (or otherwise be initialized to a 
+non-`undefined` value) to ensure the property is computed.
+
+**Note:** The definition of a computing function looks like the 
+definition of a [multi-property observer](#multi-property-observers),
+and the two act almost identically. The only difference is that the 
+computed property function returns a value that's exposed as a virtual property.
+{: .alert .alert-info }
 
     <dom-module id="x-custom">
       <template>
@@ -467,8 +608,10 @@ the dependent properties.
       });
     </script>
 
-Only direct properties of the element (as opposed to sub-properties of an
-object) can be used as dependencies at this time.
+Arguments to computing functions may be simple properties on the element, as 
+well as any of the arguments types supported by `observers`, including [paths](#path-observation), 
+[paths with wildcards](#deep-observation), and [paths to array splices](#array-observation).  
+The arguments received by the computing function match those described in the sections referenced above.
 
 **Note:** If you only need a computed property for a data binding, you
 can use an inline function instead. See 

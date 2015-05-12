@@ -9,9 +9,9 @@ subtitle: Guide
 {% include toc.html %}
 
 This guide describes the changes required to migrate a {{site.project_title}} 
-element from 0.5 to 0.8.  
+element from 0.5 to 0.9.  
 
-When migrating to 0.8, the following items can be translated easily from 0.5 to 0.8:
+When migrating, the following items can be translated easily from 0.5 to this release:
 
 *   [Web components polyfill library](#polyfill)
 *   [Element registration](#registration)
@@ -29,12 +29,12 @@ significant API changes from 0.5, feature gaps, or both. These areas include:
 *   [Styling](#styling)
 *   [Inheritance](#inheritance)
 
-The following sections discuss the changes required to migrate your code from
-0.5 to 0.8, starting with the simpler topics.
+The following sections discuss the changes required to migrate your code to this 
+release, starting with the simpler topics.
 
 ## Web components polyfill library {#polyfill}
 
-{{site.project_title}} 0.8 no longer requires the shadow DOM polyfill, which 
+{{site.project_title}} no longer requires the shadow DOM polyfill, which 
 is included in `webcomponents.js`. Use the smaller `webcomponents-lite.js` library
 instead:
 
@@ -49,7 +49,7 @@ After:
 
 ## Element registration {#registration}
 
-The `<polymer-element>` tag is no longer used to define an element. In 0.8,
+The `<polymer-element>` tag is no longer used to define an element. In this release,
 these are replaced by a `<dom-module>` element (to define local DOM and styles)
 and the `Polymer` call (to register the element).
 
@@ -76,14 +76,14 @@ After:
       Polymer({is: "register-me"});
     </script>
 
-In 0.8:
+In this release:
 
 *   The element name is specified using the `is` property on the prototype (required).
 
 *   If you supply a [local DOM template](#local-dom-template), it's wrapped in a 
     `<dom-module>` element with an ID that matches the element name.
 
-*   Polymer 0.8 supports the `extends` keyword as in 0.5, but at this point **you
+*   {{site.project_title}} supports the `extends` keyword as in 0.5, but at this point **you
     can only extend built-in DOM elements, such as `<button>`.** For more
     information, see [Inheritance](#inheritance).
 
@@ -109,7 +109,7 @@ If you've published any properties using the `attributes` attribute, make a note
     <polymer-element name="register-me" attributes="foo">
 
 In general, any property _published_ in 0.5 should be declared on 
-the `properties` object in 0.8. For example:
+the `properties` object now. For example:
 
     properties: {
       foo: { type: String } 
@@ -117,7 +117,7 @@ the `properties` object in 0.8. For example:
 
 See [Declared properties](#properties) for details.
 
-In 0.8, the `Polymer` function returns a working constructor:
+Now the `Polymer` function returns a working constructor:
 
     var RegisterMe = Polymer({is: "register-me"});
     var el = new RegisterMe();
@@ -126,16 +126,16 @@ In 0.8, the `Polymer` function returns a working constructor:
 
 ## Local DOM template {#local-dom-template}
 
-0.8 replaces the shadow DOM with the abstract local DOM mechanism. Local DOM can
+{{site.project_title}} now uses an abstract local DOM mechanism. Local DOM can
 be implemented using native shadow DOM or using a lightweight alternative,
-"shady DOM". Polymer 0.8 uses shady DOM by default on all browsers. You can [opt
+"shady DOM". {{site.project_title}} uses shady DOM by default on all browsers. You can [opt
 into using native shadow DOM](devguide/settings.html) where available.
 
 In 0.5, the local DOM template is specified as a child of the `<polymer-element>`:
 
     <polymer-element name="template-me" noscript>
       <template>
-        <!-- 0.5 styles INSIDE template --> 
+        <!-- Old: styles INSIDE template --> 
         <style>
           div { color: red } 
         </style>
@@ -143,11 +143,11 @@ In 0.5, the local DOM template is specified as a child of the `<polymer-element>
       </template>
     </polymer-element>
 
-To specify a local DOM template in 0.8, use a `dom-module` tag, with your custom element name as its `id`:
+To specify a local DOM template now, use a `dom-module` tag, with your custom element name as its `id`:
 
     <!-- ID attribute must match element name passed to Polymer() --> 
     <dom-module id="template-me">
-      <!-- 0.8 styles OUTSIDE of template -->
+      <!-- New: styles OUTSIDE of template -->
       <style>
         div { color: red } 
       </style>
@@ -159,7 +159,7 @@ To specify a local DOM template in 0.8, use a `dom-module` tag, with your custom
       Polymer({is: "template-me"});
     </script>
 
-As you can see, in 0.8, element styles are defined outside of the `<template>` tag. 
+As you can see, element styles are now defined **outside** of the `<template>` tag. 
 
 The `dom-module` must be parsed before the call to `Polymer`. 
 
@@ -172,7 +172,7 @@ is, if `<parent-element>` includes `<child-element>` in its local DOM,
 
 ## Declarative event handlers {#declarative-handlers}
 
-In 0.8, curly brackets ({%raw%}{{}}{%endraw%}) are **not** used for
+Curly brackets ({%raw%}{{}}{%endraw%}) are **not** used for
 declarative event handlers in the template. 
 
 Before:
@@ -202,7 +202,7 @@ or:
 In addition, 0.5 has separate objects for defining computed properties and
 property observers (the `computed` and `observe` objects).
 
-{{site.project_title}} 0.8 replaces all of these mechanisms with a single
+{{site.project_title}} now provides a single
 property configuration object, the `properties` object:
 
 
@@ -333,11 +333,11 @@ When mapping attribute names to property names:
 The same mappings happen in reverse when converting property names to attribute
 names (for example, if a property is defined using `reflectToAttribute: true`.)
 
-In 0.5, Polymer attempted to map attribute names to corresponding properties.
+In 0.5, {{site.project_title}} attempted to map attribute names to corresponding properties.
 For example, the attribute `foobar` would map to the property `fooBar` if it was
-defined on the element. This **does not happen in 0.8** &mdash; attribute to property
-mappings are set up on the element at registration time based on the rules
-described above.
+defined on the element. {{site.project_title}} **does not do this anymore** &mdash; 
+attribute to property mappings are set up on the element at registration time 
+based on the rules described above.
 
 Before: 
 
@@ -383,7 +383,7 @@ There are two differences from 0.5:
     attribute. In 0.5, the type was determined implicitly, from the type of the
     default value.
 
-*   0.8 does not modify the string before JSON parsing `Object` and `Array`
+*   {{site.project_title}} does not modify the string before JSON parsing `Object` and `Array`
     values. In 0.5, Polymer replaced single quotes with double quotes. This
     allowed some invalid JSON to work correctly but broke some valid JSON.
 
@@ -397,13 +397,13 @@ After (correct JSON quotes required):
 
 ### Binding to properties
 
-In 0.5, only properties that are explicitly published can be data bound from outside the element. In 0.8, any property is available for data binding, whether or not it is listed in the `properties` object. For more details on data binding in 0.8, see [Data binding](#data-binding).
+In 0.5, only properties that are explicitly published can be data bound from outside the element. Now, any property is available for data binding, whether or not it is listed in the `properties` object. For more details on data binding in the this release, see [Data binding](#data-binding).
 
 ### Default values {#default-values}
 
 In Polymer 0.5, default values can be specified multiple ways: directly on the
 prototype, in the `publish` object, or in the `created` method (for objects and
-arrays). In 0.8, default values are specified on the `properties`
+arrays). Now, default values are specified on the `properties`
 object, using the `value` key.
 
 For `value`, you can provide either a default value or a function that returns
@@ -436,7 +436,7 @@ After:
     }
 
 Computed properties are always read-only (in the sense that they can't be set
-directly or via data binding).  All properties can be data bound in 0.8, so
+directly or via data binding).  All properties can be data bound now, so
 unlike 0.5, there is no need to explicitly publish a computed property.
 
 For more information, see [Computed properties](devguide/properties.html
@@ -479,7 +479,7 @@ After:
     });
 
 
-Note that the arguments to the 0.8 observer are currently in the 
+Note that the arguments to the observer are currently in the 
 **opposite order** compared to 0.5.
 
 The `observers` object is still supported and should be used for
@@ -548,7 +548,7 @@ In 0.5, default attributes are defined on the `<polymer-element>` declaration:
   <polymer-element name="register-me" checked tabindex="0" role="checkbox" noscript>
   </polymer-element>
 
-In 0.8, define default attributes by adding a `hostAttributes` object to the prototype:
+Now you define default attributes by adding a `hostAttributes` object to the prototype:
 
     hostAttributes: {
       checked: true,
@@ -566,19 +566,28 @@ set an attribute dynamically based on a property value, see
 [Reflecting properties to attributes](devguide/properties.html#attribute-reflection) 
 in the Developer guide, or use `setAttribute` directly.
 
-## Layout attributes => layout classes {#layout-attributes}
+Also, note that the `class` attribute is ignored if it is specified in the `hostAttributes` 
+object.
+
+## Layout attributes replaced by custom properties {#layout-attributes}
 
 The layout attributes stylesheet that's included in Polymer 0.5 has been
-replaced with an optional stylesheet that uses classes. If your element uses
+replaced with an optional stylesheet that uses custom properties. If your element uses
 [layout attributes](https://www.polymer-project.org/0.5/docs/polymer/layout-attrs.html), 
 you'll need to make some changes:
 
-Add an import for `layout.html` on any element that used the layout attributes.
-Replace the layout attributes with classes.
+1.  Install the `iron-flex-layout` component:
 
-If you had default layout attributes on your `<polymer-element>` declaration,
-you can add a default `class` attribute to the host using the `hostAttributes` object, as described in 
-[Default attributes](#default-attributes).
+        bower install --save PolymerElements/iron-flex-layout
+
+2.  Add an import for `iron-flex-layout.html` on any element that used the layout attributes.
+
+        <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout.html">
+
+3.  Replace the layout attributes with custom properties, using `@apply` inside
+    your element's CSS.
+
+        @apply(--layout-horizontal --layout-wrap);
 
 Before:
 
@@ -608,9 +617,21 @@ After:
 
     {% raw %}
     <dom-module id="x-profile">
+      <style>   
+
+        :host {
+          /* layout properties for the host element */
+          @apply(--layout-vertical);
+        }
+        
+        .header {
+          /* layout properties for a local DOM element */
+          @apply(--layout-horizontal --layout-center);
+        }
+      </style>
       <template>
         <!-- layout classes for a local DOM element -->
-        <div class="layout horizontal center">
+        <div class="header">
           <img src="{{avatarUrl}}">
           <span class="name">{{name}}</span>
         </div>
@@ -619,15 +640,18 @@ After:
     </dom-module>
     <script>
     Polymer({
-      is: "x-profile",
-      hostAttributes: {
-        // layout classes for the host element
-        class: "layout vertical"
-      },
-      ...
+      is: "x-profile"
     });
     </script>
     {% endraw %}
+
+To see the available custom layout properties, see the [`iron-flex-layout` source]
+(https://github.com/PolymerElements/iron-flex-layout/blob/master/iron-flex-layout.html).
+For more examples of the layout properties in use, see the 
+[demo](https://github.com/PolymerElements/iron-flex-layout/blob/master/iron-flex-layout.html).
+
+**Note:** This area may be subject to more change before 1.0.
+{: .alert .alert-info }
 
 ## Manipulating DOM {#dom-apis}
 
@@ -731,7 +755,7 @@ normalized event has the following properties:
 
 ## Data binding {#data-binding}
 
-Data binding in 0.8 is simpler than in 0.5. It is based on generated
+Data binding in this release is based on generated
 property accessors, generated at element registration time, which provides high
 performance with minimal cost at instantiation time. The main differences in
 binding are:
@@ -744,7 +768,7 @@ binding are:
     of an attribute. So string concatenation is **not** supported. For attribute
     values, you can use computed properties instead of string concatenation. For
     text content, you can also add additional nodes (for example, wrap the
-    binding in a `<span>` tag.
+    binding in a `<span>` tag).
 
 Before:
 
@@ -763,11 +787,8 @@ After:
     {% endraw %}
 
 
-Support for repeating templates and autobinding templates is entirely
-experimental at this point. See [Data binding gaps](#data-binding-gaps) for
-details. Support for conditional templates (`<template if>`) has been removed.
-See [Conditional templates](#conditional-templates) for more information and
-workarounds.
+Support for repeating templates, conditional templates and autobinding templates 
+is provided by [helper elements](devguide/templates.html). 
 
 There are many subtle differences between the old and new binding systems as well.
 See [Data binding](devguide/data-binding.html) in the Developer guide for 
@@ -775,7 +796,7 @@ more details on the new system.
 
 ### Property bindings {#property-bindings}
 
-Note: Unlike 0.5, 0.8 properties don't need to be explicitly published to enable
+Note: Unlike 0.5, properties don't need to be explicitly published to enable
 data binding. An element can bind to a property on any element in its local DOM
 using the corresponding attribute name. By convention, properties not intended
 for external use should be prefixed with an underscore.
@@ -828,15 +849,15 @@ In 0.5, you can bind a binary attribute value like this:
     <div hidden?="{{isHidden}}">Boo!</div>
     {% endraw %}
 
-Where the `hidden` attribute is added if, and only if, `isHidden` is truthy. For
-0.8, change this expression to 
+Where the `hidden` attribute is added if, and only if, `isHidden` is truthy. 
+Change this expression to 
 {%raw%}<code><var>attributeName</var>$="{{<var>propertyName</var>}}"</code>.{%endraw%}
 
 For example:
 
     <div hidden$="[[isHidden]]">Boo!</div>
 
-The 0.8 version is more general-purpose: it can handle both boolean and valued
+The new version is more general-purpose: it can handle both boolean and valued
 attributes. The property value is serialized, just like it is  for reflected
 properties (see [Attribute serialization](devguide/properties.html#attribute-serialization) 
 in the Developer guide for details).
@@ -855,7 +876,7 @@ results. For example, use a computed property to cast the original property to
 a Boolean.
 {: .alert .alert-info }
 
-### Annotated computed properties
+### Inline functions
 
 Computed properties only needed in the template can be bound directly in the
 template without an intermediate property on the instance:
@@ -879,49 +900,49 @@ template without an intermediate property on the instance:
       });
     </script>
 
-### Data binding gaps {#data-binding-gaps}
+### Data binding helper elements {#helper-elements}
 
 Several data binding features from 0.5 are either missing or experimental in this release.
 
 #### Template Repeat 
 
-There is no supported replacement for template repeat at this time. You can use the experimental `<x-repeat>` as a replacement, but note that the element name and API may change.
+The `template repeat` mechanism is replaced by the new `dom-repeat` helper element. 
 
-**Note:** `<x-repeat>` and the other experimental elements described here are included as part of the Polymer library, and do not need to be installed or imported separately.
+**Note:** `dom-repeat` and the other helper elements described here are included as part 
+of the Polymer library, and do not need to be installed or imported separately.
 {: .alert .alert-info }
 
-Pass data to the `<x-repeat>` by specifying an `items` array, and bind to individual item properties using `item.`_propertyName_:
+Pass data to the `<dom-repeat>` by specifying an `items` array, and bind to individual item properties using `item.`_propertyName_:
 
     {% raw %}
-    <template is="x-repeat" items="{{myData}}">
+    <template is="dom-repeat" items="{{myData}}">
       <p>{{item.name}}</p>
     </template>
     {% endraw %}
 
 
-Note that browsers that do not support templates natively don't allow `<template>` tags inside of `<table>` or `<select>` elements. {{site.project_title}} 0.5 provided a workaround for this using the [`template` attribute](/0.5/docs/polymer/databinding-compat.html#elements-that-cant-contain-a-template). There is no equivalent workaround for 0.8 at this point.
+Note that browsers that do not support templates natively don't allow `<template>` tags inside of `<table>` or `<select>` elements. {{site.project_title}} 0.5 provided a workaround for this using the [`template` attribute](/0.5/docs/polymer/databinding-compat.html#elements-that-cant-contain-a-template). There is no equivalent workaround for the new release at this point.
 
-For more information, see [Template repeater](devguide/experimental.html#x-repeat)
-
-#### Nested template scopes
-
-Polymer 0.8 does not support nested template scopes. An `<x-repeat>` cannot
-access the parent template's scope, only its own `items`. 
-
-A solution for this issue is expected before 1.0.
+For more information, see [Template repeater](devguide/templates.html#dom-repeat).
 
 #### Autobinding templates
 
-There is no supported replacement for autobinding templates at this time. You can use the experimental `<x-autobind>` as a replacement, but note that the element name and API may change.
+Autobinding templates are replaced by the new `dom-bind` helper element.
 
-**Note:** `<x-autobind>` is included as part of the Polymer library, and does not need to be installed or imported separately.
+**Note:** `dom-bind` is included as part of the Polymer library, and does not need to be installed or imported separately.
 {: .alert .alert-info }
+
+For more information, see [Autobinding templates](devguide/templates.html#dom-bind).
 
 #### Conditional templates {#conditional-templates}
 
-Conditional templates (`<template if=condition>`) has proven to be mostly an anti-pattern, and there is no equivalent in 0.8. There are some valid use cases for a feature like this, however, and the team is investigating providing a solution.
+Conditional templates (`<template if=condition>`) are replaced by the new `dom-if` helper element.
 
-In the meantime, use conditional display (`hidden`, `display: none`) instead.
+
+**Note:** `dom-if` is included as part of the Polymer library, and does not need to be installed or imported separately.
+{: .alert .alert-info }
+
+For more information, see [Conditional templates](devguide/templates.html#dom-if).
 
 #### Binding to native input elements {#input-values}
 
@@ -939,7 +960,7 @@ in the binding, like this:
     <input value="{{hostValue::change}}">
     {% endraw %}
 
-For more information, see [Two-way binding to native elements](data-binding.html#two-way-native).
+For more information, see [Two-way binding to native elements](devguide/data-binding.html#two-way-native).
 
 ### Binding to sibling elements
 
@@ -976,35 +997,36 @@ Element-level styling should be placed inside the `<dom-module>` tag but **outsi
       </template>
     </dom-module>
 
-External stylesheets are supported _experimentally_ using HTML Imports. See
-[External stylesheets](devguide/experimental.html#external-stylesheets) in
+External stylesheets are supported  using HTML Imports. See
+[External stylesheets](devguide/styling.html#external-stylesheets) in
 the Developer guide for details.
 
-Document-level styling can be added using the experimental `x-style` element:
+Document-level styling can be added using the `custom-style` element:
 
-    <style is="x-style">
+    <style is="custom-style">
       html /deep/ core-icon { 
         color: red;
       } 
     </style>
 
-The `x-style` element modifies the style sheets to work with either shady DOM or
+The `custom-style` element modifies the style sheets to work with either shady DOM or
 shadow DOM.  As such, it's the equivalent of the `shim-shadowdom` attribute
 supported in 0.5.
 
 In addition to shimming shadow DOM selectors (`/deep/` and `::shadow`),
-`x-style` prevents styles from leaking downward into the shady DOM trees. 
+`custom-style` prevents styles from leaking downward into the shady DOM trees. 
 
 
-**Note: `<x-style>` is included as part of the Polymer library, and does not
+**Note: `<custom-style>` is included as part of the Polymer library, and does not
 need to be installed or imported separately.
 {: .alert .alert-info }
 
-For more information on the `x-style` element, see the [Developer guide](devguide/experimental.html#x-style). 
+For more information on the `custom-style` element, see [Custom element for document styling](devguide/styling.html#custom-style)
+in the Developer guide.
 
 ### Styling distributed children with `::content`
 
-See [scoped styling](devguide/experimental.html#scoped-styling).
+See [Styling local DOM](devguide/styling.html).
 
 Styling elements distributed to content (via ::content) requires using a wrapper
 element for compatibility with shady DOM.
@@ -1023,7 +1045,7 @@ element for compatibility with shady DOM.
 
 ## Inheritance
 
-Polymer 0.8 doesn't support inheriting from other custom elements &mdash; only from
+This release doesn't support inheriting from other custom elements &mdash; only from
 standard DOM elements. This will be supported in a future release.
 
 In the meantime, you can achieve many of the same results using either
@@ -1031,15 +1053,23 @@ composition or [mixins](devguide/registering-elements.html#prototype-mixins) to
 share functionality between elements.
 
 
-## Other changes
+## Element method changes
 
-### Element Methods &mdash; async
+### Element methods: job renamed to debounce
+
+The `job` method in 0.5 is replaced by `debounce`. The arguments are identical.
+
+This release includes several related methods, including methods for 
+canceling a pending task, and immediately executing a pending task.
+For details, see [Utility functions](devguide/utility-functions.html).
+
+### Element methods &mdash; async
 
 The `async` method works slightly differently than in 0.5 when called without a specified delay, like:
 
     this.async(doSomething);
 
-In 0.8, this adds a callback to the browser's  _microtask queue_, which is
+In this release, this adds a callback to the browser's  _microtask queue_, which is
 handled asynchronously, but before the next event from the event queue is
 handled. If you call `async` from within the `async` callback, the second
 `async` callback is called during the same task as the first callback.
@@ -1049,3 +1079,14 @@ In 0.5, the `async` method without a delay scheduled work using
 the second `async` callback is fired during a subsequent task (in the next frame
 interval). If you want this behavior, use `requestAnimationFrame` instead.
 
+#### Element methods: fire API changes
+
+The `fire` method now takes three arguments:
+
+    fire(type, [detail], [options]);
+
+The `options` object can contain the following properties:
+
+*   `node`. Node to fire the event on. Defaults to `this`.
+*   `bubbles`. Whether the event should bubble. Defaults to `true`.
+*   `cancelable`. Whether the event can be canceled with `preventDefault`. Defaults to `false`.
