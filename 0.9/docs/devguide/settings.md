@@ -6,21 +6,30 @@ title: Global Polymer settings
 subtitle: Developer guide
 ---
 
-Document-level global {{site.project_title}} settings can be set before loading
-by setting a `Polymer` object on window as the first script in the main
-document:
+Document-level global {{site.project_title}} settings can be set 
+by creating a `Polymer` object on window before importing the {{site.project_title}}
+library:
 
 	<html>
 	<head>
 	  <meta charset="utf-8">
-	  <script>Polymer = {dom: 'shadow'};</script>
-	  <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
-	  <link rel="import" href="components/my-app.html">
+	  <script src="components/webcomponentsjs/webcomponents-lite.js"></script>
+	  <script>
+        window.Polymer = window.Polymer || {};
+        window.Polymer.dom = 'shadow';
+      </script>
+      <!-- import a component that relies on Polymer -->
+	  <link rel="import" href="elements/my-app.html">
 	</head>
 	<body>
 
 	  ...
     
+**Note:**  The _full_ version of `webcomponents.js` includes a stub version
+of the `Polymer` function. Setting the value this way avoids overwriting the 
+stub.
+{: .alert .alert-info }
+
 
 Settings can also be switched on the URL query string:
 

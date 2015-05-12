@@ -1,0 +1,29 @@
+<link rel="import"
+      href="../../components/polymer/polymer.html">
+<!-- [START docs-sample] -->
+<dom-module id="picture-frame">
+  <!-- scoped CSS for this element -->
+  <style>
+    div {
+      background-color: #aaa;
+      border: 2px solid #333;
+      border-radius: 8px;
+      padding: 4px;
+    }
+    div ::content img {
+      border-radius: 100%;
+    }
+  </style>
+  <template>
+    <div class="backdrop">
+      <content select="img"></content>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: "picture-frame",
+  });
+</script>
+<!-- [END docs-sample] -->
