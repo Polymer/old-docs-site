@@ -941,7 +941,7 @@ a Boolean.
 Computed properties only needed in the template can be bound directly in the
 template without an intermediate property on the instance:
 
-    <dom-module id="inline-compute>
+    <dom-module id="inline-compute">
       <template>
         ...
         <button hidden$="[[_computeButtonHidden(dirty)]]">
