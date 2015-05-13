@@ -49,7 +49,7 @@ argument an object that defines your element's prototype.
 <link rel="import"
       href="bower_components/polymer/polymer.html">
 
-{% include_external /samples/start/proto-element/proto-element.html docs-sample version_prefix:0.8 %}
+{% include_external /samples/start/proto-element/proto-element.html docs-sample version_prefix:0.9 %}
 {% endhighlight %}
   </demo-tab>
   <demo-tab heading="index.html">
@@ -103,7 +103,7 @@ Many elements include some internal DOM nodes to implement the element's UI and 
 <link rel="import"
       href="bower_components/polymer/polymer.html">
 
-{% include_external /samples/start/dom-element/dom-element.html docs-sample version_prefix:0.8 %}
+{% include_external /samples/start/dom-element/dom-element.html docs-sample version_prefix:0.9 %}
 {% endhighlight %}
   </demo-tab>
   <demo-tab heading="index.html">
@@ -149,7 +149,7 @@ with a styled `<div>` tag.
 <link rel="import"
       href="bower_components/polymer/polymer.html">
 
-{% include_external /samples/start/picture-frame/picture-frame.html docs-sample version_prefix:0.8 %}
+{% include_external /samples/start/picture-frame/picture-frame.html docs-sample version_prefix:0.9 %}
 {% endhighlight %}
   </demo-tab>
   <demo-tab heading="index.html">
@@ -202,7 +202,7 @@ The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced 
 <link rel="import"
       href="bower_components/polymer/polymer.html">
 
-{% include_external /samples/start/name-tag/name-tag.html docs-sample version_prefix:0.8 %}
+{% include_external /samples/start/name-tag/name-tag.html docs-sample version_prefix:0.9 %}
 {% endhighlight %}
   </demo-tab>
   <demo-tab heading="index.html">
@@ -248,7 +248,7 @@ and configure it in `index.html`.
 <link rel="import"
       href="bower_components/polymer/polymer.html">
 
-{% include_external /samples/start/configurable-name-tag/configurable-name-tag.html docs-sample version_prefix:0.8 %}
+{% include_external /samples/start/configurable-name-tag/configurable-name-tag.html docs-sample version_prefix:0.9 %}
 {% endhighlight %}
   </demo-tab>
   <demo-tab heading="index.html">
@@ -289,7 +289,7 @@ can optionally support two-way binding.
 This example uses two-way binding: binding the value of a custom input element (`iron-input`)
 to the element's `owner` property, so it's updated as the user types.
 
-<demo-tabs selected="0" bottom demoSrc="samples/editable-name-tag/manifest.json">
+<demo-tabs selected="0" demoSrc="samples/editable-name-tag/manifest.json">
   <demo-tab heading="editable-name-tag.html">
 {% highlight html %}
 <link rel="import"
@@ -298,7 +298,7 @@ to the element's `owner` property, so it's updated as the user types.
 <link rel="import"
       href="bower_components/iron-input/iron-input.html">
 
-{% include_external /samples/start/editable-name-tag/editable-name-tag.html docs-sample version_prefix:0.8 %}
+{% include_external /samples/start/editable-name-tag/editable-name-tag.html docs-sample version_prefix:0.9 %}
 {% endhighlight %}
   </demo-tab>
   <demo-tab heading="index.html">
@@ -333,14 +333,16 @@ to create your first {{site.project_title}} project, or dive deeper in the
 Continue on to:
 
 <p>
+<a href="getting-the-code.html">
+  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Get the code</paper-button>
+</a>
+</p>
+
+<p>
 <a href="../devguide/feature-overview.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>Developer guide</paper-button>
 </a>
 </p>
 
-<p>
-<a href="getting-the-code.html">
-  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Get the code</paper-button>
-</a>
-</p>
+
 

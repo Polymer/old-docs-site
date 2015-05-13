@@ -22,9 +22,13 @@ shortname: Introduction
 
 The 0.9 release of the {{site.project_title}} core library is now out.
 
-Consider the 0.9 release a beta for 1.0. It is an "beta" release &mdash; we fully expect some breaking changes as a result of the feedback we get.
+Consider 0.9 a beta release of {{site.project_title}} 1.0. As such, we 
+expect there may still be some breaking changes before 1.0.
 
-This release is **intended for early adopters** who want to **test out the new APIs and provide feedback.** This release is optimized for performance and size, and is not yet a feature-complete replacement for 0.5. We're working hard on getting to feature parity.  See the [roadmap](#roadmap) for more detailed timelines.
+This release is optimized for performance and size, and is not yet a 
+feature-complete replacement for 0.5. We're working hard on getting to 
+feature parity.  See the [roadmap](#roadmap) for more detailed
+timelines.
 
 <div class="alert alert-error"><strong>BREAKING CHANGES.</strong> 
 This release is <strong>not compatible with the 0.5 APIs.</strong></div>
@@ -83,16 +87,6 @@ The following is a high-level outline of our plans for the library toward 1.0 an
 
 The following items are high priorities for 1.0, and many will be available before 1.0 rolls out.
 
-#### Content Security Policy (CSP) Support
-
-In order to achieve some of the optimizations around data binding, 0.8 uses
-generated property accessors. This makes data binding faster, but unfortunately
-the generated code causes problems with CSP. We believe it will be possible to
-get around this but it requires more work and investigation. We didn't want to
-delay the release of 0.8 for CSP, but it will be a high priority going forward.
-If your app needs to run under CSP, we’d recommend starting development outside
-of the CSP environment or just hanging tight until CSP support is released.
-
 #### Gestures
 
 {{site.project_title}} 0.5 had a fairly robust gesture recognition system &mdash; we still have
@@ -102,28 +96,31 @@ click-delay issues on certain browsers.
 
 #### Shady DOM system improvements
 
-The shady DOM system is new to Polymer in 0.8, and radically improves performance and decreases the size of the polyfill needed to run on browsers that don’t support shadow DOM natively. The shadow DOM polyfill was optimized for correctness, though it remained impossible to perfectly polyfill shadow DOM. Shady DOM is optimized for speed. In the 0.9 timeframe, we will explore possible ways to do better custom element interop for external frameworks not expecting the shady DOM system.
+The shady DOM system is new to Polymer in 0.8, and radically improves
+performance and decreases the size of the polyfill needed to run on browsers
+that don’t support shadow DOM natively. The shadow DOM polyfill was optimized
+for correctness, though it remained impossible to perfectly polyfill shadow DOM.
+Shady DOM is optimized for speed. 0.9 added additional DOM accessors.
+
+In the 1.0 timeframe, we will explore possible ways to do better custom element
+interop for external frameworks not expecting the shady DOM system, and improve
+dynamic redistribution of children based on class and attribute changes.
 
 #### Cross-scope styling
 
-The "theming problem" &mdash; you want to be able to easily style Polymer elements from the outside, but `::shadow` and `/deep/` are far too painful (we agree!). We are exploring a robust system for ergonomic cross-scope styling inspired by and based on [CSS Custom Properties](http://dev.w3.org/csswg/css-variables/) &mdash; experimental support for cross-scope styling is included in 0.8.
+The "theming problem" &mdash; you want to be able to easily style Polymer
+elements from the outside, but `::shadow` and `/deep/` are far too painful (we
+agree!). This release includes a system for ergonomic cross-scope styling
+inspired by and based on [CSS Custom Properties](http://dev.w3.org/csswg/css-
+variables/), which we will continue improve in 1.0.
 
 #### Templating features
 
-*   `x-autobind`, `x-repeat`, and others
-
-	We have a number of templating features in the 0.8 codebase that are still
-	experimental &mdash; we'll keep the `x` prefix for any element baked in the library
-	that we are still tinkering with. These template features in particular
-	were useful in 0.5 &mdash; we intend to bring them to 0.8 in some fashion ASAP.
-	Expect these `x-*` prefixed elements to be deprecated very soon in favor of
-	standard versions.
-
 *   Support for parser-challenged elements like `<table>`, `<select>`, etc.
 
-*   Nested scope binding.
-
-*   Compound binding: {%raw%}`<div>Dear {{ title }} {{ lastName }},</div>`{%endraw%}
+*   Compound binding/string interpolation in bindings: 
+    
+        {%raw%}<div>Dear {{ title }} {{ lastName }},</div>{%endraw%}
 
 *   Exploring helpers for binding to class and style.
 
@@ -141,11 +138,10 @@ measurement in general.
 
 #### Documentation
 
-The [0.8 documentation](docs/devguide/feature-overview.html) is in draft form
-and missing many pieces, such as introductory  tutorials and tooling
-information. We'll be filling out the documention set as we move towards 1.0.
-Expect a full on-ramp for developers new to Polymer, a more in-depth developer
-guide, and much more.
+The [documentation](docs/devguide/feature-overview.html) is in draft form
+and missing some pieces, such as  tutorials and tooling information. We'll be 
+filling out the documention set as we move towards 1.0. Expect a full on-ramp for d
+evelopers new to Polymer, a more in-depth developer guide, and much more.
 
 If you find errors or missing information in the documentation, please 
 [file an issue](https://github.com/Polymer/docs/issues).
@@ -180,28 +176,37 @@ _We'll update this section as asked-questions become frequently-asked._
 
 #### Where did the elements go?
 
-We're releasing 0.8 right away, to get feedback as soon as possible. The
-codebase has only been stable for a brief period of time, so we haven't yet had
-time to port all the previous elements to 0.8. That said, we have begun work on
-many of the previous elements in branches, so feel free to take a look and
-contribute!
+Not all elements have been ported to the current release, but you
+can find work-in-progress versions of many elements in the 
+ [PolymerElements repo](https://github.com/PolymerElements).
 
-We have grand plans for the element sets, and intend for them to stand on their
-own in terms of scope and roadmap as full-fledged "products". We'll be
-versioning them independently from the library, and likely keeping their
-documentation separate from the library documentation found on this site.  The
-distinction between Polymer-the-library and the elements-built-using-Polymer is
-an important one, and we aim to continue to reinforce this going forward.
+As part of an effort to rationalize the element product lines, some elements
+are being replaced or renamed. The core elments are being moved to a 
+new "iron elements" collection. The following components are changing names 
+and/or moving from one collection to another:
+
+| **Old component** | **New component**
+| ------------------|------------------
+| core-focusable | iron-behaviors 
+| core-menu | paper-menu 
+| core-range | iron-range-behavior 
+| core-resizable | iron-resizable-behavior 
+| core-toolbar | paper-toolbar 
+| paper-shadow | paper-material 
+
+
+These element sets will be launching with their own site sometime around
+the {{site.project_title}} 1.0 timeframe.
 
 #### Will you continue to support Polymer 0.5?
 
-We recognize that many projects rely on 0.5, and won’t be able to switch to 0.9
-until the elements are ready. We’ll continue viewing and merging PR’s until the
-elements are ported.  We intend for 0.9 to be the new baseline though, and to
+We recognize that many projects rely on 0.5, and won’t be able to switch to the 
+new codebase  until the elements are ready. We’ll continue viewing and merging PR’s until the
+elements are ported.  We intend for 1.0 to be the new baseline though, and to
 work within this high-performance, production-ready mindset going forward. Any
 incremental 0.5 releases, if needed, will be available in a branch.
 
-#### Where and how can I give feedback on 0.9?
+#### Where and how can I give feedback on this release?
 
 The best place for feedback is on Github, [by filing an
 issue](https://github.com/polymer/polymer/issues), adding to an existing one, or
@@ -213,7 +218,7 @@ understand the question or suggestion.
 
 ## Next steps
 
-Continue on to the {{site.project_title}} 0.9 docs:
+Continue on to the {{site.project_title}} docs:
 
 <div layout horizontal wrap>
 <p><a href="docs/start/getting-the-code.html">

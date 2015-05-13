@@ -20,6 +20,8 @@ When migrating, the following items can be translated easily from 0.5 to this re
 *   [Property definitions](#properties)
 *   [Default attributes](#default-attributes)
 *   [Layout attributes](#layout-attributes)
+*   [Use WebComponentsReady instead of the polymer-ready event](#polymer-ready)
+*   [Gestures](#gestures)
 
 Other areas may require more changes to work correctly, either because there are
 significant API changes from 0.5, feature gaps, or both. These areas include:
@@ -314,6 +316,18 @@ invoked automatically. For details see <a href="#observers">Property observers &
 
 Any property in your element's public API should be declared in the `properties` object.
 
+### ES5 accessors not supported
+
+You cannot define a declared property that uses ES5 accessors. {{site.project_title}} creates 
+its own accessors to monitor property changes for observers, data binding, and 
+computed properties.
+
+For some use cases, you may be able to accomplish the same thing with either 
+computed properties, observers, or read-only properties.
+
+If you don't need any of the features of declared properties, you can simply add a 
+property with ES5 accessors to your prototype.
+
 ### Property name to attribute name mapping
 
 For data binding, deserializing properties from attributes, and reflecting
@@ -419,12 +433,21 @@ the array or object inside a function.
 
 ### Computed properties {#computed-properties}
 
-Computed properties must be moved from the `computed` object to the `properties` object. Otherwise, they work much like computed properties in 0.5.
+Computed properties must be moved from the `computed` object to the `properties` object. 
+All computed properties are defined using a function name and one or more dependent properties,
+in parentheses.
+
+Arbitrary expressions are not supported in computed properties — they need to be moved to 
+functions.
 
 Before:
 
     computed: {
-       product: 'multiply(x,y)'
+       product: 'multiply(x,y)',
+       sum: 'x + y'
+    },
+    multiply: function(a, b) {
+      return a * b;
     }
 
 After:
@@ -432,8 +455,18 @@ After:
     properties: {
       product: {
         computed: 'multiply(x,y)'
+      },
+      sum: {
+        computed: 'add(x,y)'
       }
+    },
+    multiply: function(a, b) {
+      return a * b;
+    },
+    add: function(a, b) {
+      return a + b;
     }
+
 
 Computed properties are always read-only (in the sense that they can't be set
 directly or via data binding).  All properties can be data bound now, so
@@ -653,6 +686,32 @@ For more examples of the layout properties in use, see the
 **Note:** This area may be subject to more change before 1.0.
 {: .alert .alert-info }
 
+## Use WebComponentsReady instead of polymer-ready {#polymer-ready}
+
+The `polymer-ready` event was supported in release 0.5 because {{site.project_title}}
+elements performed some asynchronous initialization which meant that they weren't ready 
+to use when the polyfill `WebComponentsReady` event fired. This initialization is now synchronous,
+so the `WebComponentsReady` event can be used instead.
+
+If you are **not** using the web components polyfills (for example, in a Chrome extension),
+the `WebComponentsReady` event will not fire. With native HTML imports and custom elements,
+elements upgrade synchronously, so the event is not required. Simply place any scripts that 
+manipulate {{site.project_title}} elements at the end of the page, and all elements should 
+be ready.
+
+## Gestures
+
+This release includes support for a limited number of gestures, including, `tap`, `up`, `down`, and
+`track`. If you are using these events using either declarative event handlers or the `listeners`
+object, you shouldn't need to update anything. 
+
+Note that `trackstart` and `trackend` are  not fired as separate events, but as `track` events with
+`detail.state` set to `start` or `end`, respectively.
+
+For more details, see [Gesture events](devguide/events.html#gestures)
+
+Complex gestures ()
+
 ## Manipulating DOM {#dom-apis}
 
 If your element manipulates its light DOM or local DOM imperatively, or your
@@ -764,11 +823,13 @@ binding are:
     operator, `!`, is supported for convenience.) In many cases, computed
     properties can be used in place of complex binding expressions.
 
-*   A binding can replace the entire text content of a node, or the entire value
-    of an attribute. So string concatenation is **not** supported. For attribute
-    values, you can use computed properties instead of string concatenation. For
-    text content, you can also add additional nodes (for example, wrap the
-    binding in a `<span>` tag).
+*   A binding must replace the **entire text content of a node**, or the **entire value
+    of an attribute**. So string concatenation is **not** supported. For attribute
+    values, you can use [computed bindings](devguide/data-binding.html#annotated-computed) 
+    instead of string concatenation. For text content, you can also add additional 
+    nodes (for example, wrap the binding in a `<span>` tag).
+
+    Note that this means a node **can't include any whitespace around the binding annotation**.
 
 Before:
 
@@ -785,7 +846,6 @@ After:
             Hi, my name is <span>{{firstname}}</span>.
     </my-foo>
     {% endraw %}
-
 
 Support for repeating templates, conditional templates and autobinding templates 
 is provided by [helper elements](devguide/templates.html). 
@@ -872,11 +932,11 @@ If `isComplete` is `true` and `completedLabel` is "Completed", this appears as:
 
 **Note:** If you are using the <code><var>attributeName</var>$=</code> syntax with
 a non-boolean property, you'll need to change your code to get the same
-results. For example, use a computed property to cast the original property to
+results. For example, use a computed binding to cast the original property to
 a Boolean.
 {: .alert .alert-info }
 
-### Inline functions
+### Computed bindings
 
 Computed properties only needed in the template can be bound directly in the
 template without an intermediate property on the instance:
@@ -899,6 +959,9 @@ template without an intermediate property on the instance:
         ...
       });
     </script>
+
+The arguments to a computed binding are evaluated relative to the current binding scope.
+For more details, see [Computed bindings](devguide/data-binding.html#annotated-computed).
 
 ### Data binding helper elements {#helper-elements}
 
@@ -1004,7 +1067,7 @@ the Developer guide for details.
 Document-level styling can be added using the `custom-style` element:
 
     <style is="custom-style">
-      html /deep/ core-icon { 
+      html /deep/ iron-icon { 
         color: red;
       } 
     </style>
@@ -1015,7 +1078,6 @@ supported in 0.5.
 
 In addition to shimming shadow DOM selectors (`/deep/` and `::shadow`),
 `custom-style` prevents styles from leaking downward into the shady DOM trees. 
-
 
 **Note: `<custom-style>` is included as part of the Polymer library, and does not
 need to be installed or imported separately.
@@ -1043,7 +1105,7 @@ element for compatibility with shady DOM.
       </div>
     </template>
 
-## Inheritance
+## Inheritance {#inheritance}
 
 This release doesn't support inheriting from other custom elements &mdash; only from
 standard DOM elements. This will be supported in a future release.
@@ -1051,7 +1113,6 @@ standard DOM elements. This will be supported in a future release.
 In the meantime, you can achieve many of the same results using either
 composition or [mixins](devguide/registering-elements.html#prototype-mixins) to
 share functionality between elements.
-
 
 ## Element method changes
 

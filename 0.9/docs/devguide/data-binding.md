@@ -62,7 +62,7 @@ syntax. For more information, see [Binding to native element attributes](#native
 
 To bind to a child element's `textContent`, you can simply include the
 annotation inside the child element. The binding annotation must currently span
-the entire  content of the tag:
+the **entire content** of the tag:
 
     {% raw %}
     <dom-module id="user-view">
@@ -84,12 +84,18 @@ the entire  content of the tag:
 
     <user-view first="Samuel" last="Adams"></user-view>
 
-String concatenation is **not** supported inside a tag:
+String concatenation is **not** supported inside a tag, and the tag **can't 
+contain any whitespace**:
 
     {% raw %}
     <!-- Not currently supported! -->
     <div>First: {{first}}</div>
     <div>Last: {{last}}</div>
+
+    <!-- Not currently supported! -->
+    <div>
+      {{title}}
+    </div>
     {% endraw %}
 
 Binding to text content is always one-way, host-to-child.
@@ -424,20 +430,21 @@ The two exceptions are:
           <div hidden="{%raw%}{{!enabled}}{%endraw%}"></div>
         </template>
 
-*   Inline functions, as described in 
-    [Inline functions](#annotated-computed), below.
+*   Computed bindings, as described in 
+    [Computed bindings](#annotated-computed), below.
 
-## Inline function bindings {#annotated-computed}
+## Computed bindings {#annotated-computed}
 
-For more complicated bindings, you can use an inline function binding.
-An inline function is similar to a computed property. 
+For more complicated bindings, you can use a computed binding.
+A computed binding is similar to a computed property. 
 
-Inline functions are useful you don't need to expose a computed property
+The computed binding must take at least one dependent property. A computed binding's 
+dependent properties are interpreted relative to the current _binding scope_, which 
+is useful inside a [template repeater](#dom-repeat).
+
+Computed bindings are useful you don't need to expose a computed property
 as part of the element's API, or use it elsewhere in the element, and is 
 only used for downward data propagation.
-
-Unlike a computed property, an inline function's arguments are interpreted relative to 
-the current binding _scope_, which is useful inside a [template repeater](#dom-repeat).
 
 **Note:** this is the only form of function allowed in binding annotations.
 {: .alert .alert-info }
@@ -467,7 +474,7 @@ Example:
 In this case, the span's `textContent` property is bound to the return value 
 of `computeFullName`, which is recalculated whenever `first` or `last` changes.
 
-**Note:** The inline function is not called until all dependent properties are defined 
+**Note:** The computed binding is not called until all dependent properties are defined 
 (`!=undefined`). So each dependent properties should have a 
 default `value` defined in `properties` (or otherwise be initialized to a 
 non-`undefined` value) to ensure the function value is computed.

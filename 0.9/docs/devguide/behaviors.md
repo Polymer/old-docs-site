@@ -38,48 +38,45 @@ by a behavior.** If multiple behaviors define the same function, the
 **last** behavior in the `behaviors` array takes precedence. 
 
 
-Example: `highlight-behavior.html`
 
-```js
-HighlightBehavior = {
+`highlight-behavior.html`:
 
-  properties: {
-    isHighlighted: {
-      type: Boolean,
-      value: false,
-      notify: true,
-      observer: '_highlightChanged'
-    }
-  },
-  
-  listeners: {
-    click: '_toggleHighlight'
-  },
-  
-  created: function() {
-    console.log('Highlighting for ', this, + 'enabled!');
-  },
+    HighlightBehavior = {
 
-  _toggleHighlight: function() {
-    this.isHighlighted = !this.isHighlighted;
-  },
-  
-  _highlightChanged: function(value) {
-    this.toggleClass('highlighted', value);
-  }
+      properties: {
+        isHighlighted: {
+          type: Boolean,
+          value: false,
+          notify: true,
+          observer: '_highlightChanged'
+        }
+      },
+      
+      listeners: {
+        click: '_toggleHighlight'
+      },
+      
+      created: function() {
+        console.log('Highlighting for ', this, + 'enabled!');
+      },
 
-};
-```
+      _toggleHighlight: function() {
+        this.isHighlighted = !this.isHighlighted;
+      },
+      
+      _highlightChanged: function(value) {
+        this.toggleClass('highlighted', value);
+      }
 
-Example: `my-element.html`
+    };
 
-```html
-<link rel="import" href="highlight-behavior.html">
+`my-element.html`:
 
-<script>
-  Polymer({
-    is: 'my-element',
-    behaviors: [HighlightBehavior]
-  });
-</script>
-```
+    <link rel="import" href="highlight-behavior.html">
+
+    <script>
+      Polymer({
+        is: 'my-element',
+        behaviors: [HighlightBehavior]
+      });
+    </script>

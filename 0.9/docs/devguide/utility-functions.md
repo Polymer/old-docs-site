@@ -65,4 +65,14 @@ provides a set of useful convenience functions for instances to use.
 
         this.translate3d('100px', '100px', '100px');
 
-*   `importHref(href, onload, onerror)`
+*   `importHref(href, onload, onerror)`. Dynamically imports an HTML document.
+
+        this.importHref('path/to/page.html', function(e) {
+            // e.target.import is the import document.
+        }, function(e) {
+            // loading error
+        });
+
+    **Note:** To call `importHref` from outside a Polymer element, use `Polymer.Base.importHref`.
+    {: .alert .alert-info }
+

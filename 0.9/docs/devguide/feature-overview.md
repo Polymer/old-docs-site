@@ -8,7 +8,7 @@ subtitle: Developer guide
 
 {% include toc.html %}
 
-**Note:** Polymer 0.8 and this document are a WORK IN PROGRESS and APIs are subject to change.
+**Note:** Polymer 0.9 and this document are a WORK IN PROGRESS and APIs are subject to change.
 {: .alert .alert-error }
 
 
@@ -71,14 +71,18 @@ This guide divides the features into the following groups:
 
 *   [Data binding](data-binding.html). Property bindings. Binding to attributes.
 
+*   [Behaviors](behaviors.html). Behaviors are reusable modules of code that can be 
+    mixed into {{site.project_title}} elements.
+
 *   [Utility functions](utility-functions.html). Helper methods for common tasks.
 
 *   [Experimental features and elements](experimental.html). Experimental template and styling features.
     Feature layering.
 
-
-If you're migrating an existing 0.5 element to the 0.8 APIs, see the [Migration guide](../migration.html)
+If you're migrating an existing 0.5 element to the new APIs, see the [Migration guide](../migration.html)
 for advice.
+
+If you're upgrading from the 0.8 release, see the [Release notes](../release-notes.html).
 
 
 

@@ -9,7 +9,7 @@ subtitle: Developer guide
 {% include toc.html %}
 
 
-## Registering a custom element {#register-element}
+## Register a custom element {#register-element}
 
 
 To register a custom element, use the `Polymer` function, and pass in the
@@ -48,7 +48,7 @@ share code between elements.
 **Note:** Defining an element in the main HTML document is not currently supported.
 {: .alert .alert-info }
 
-### Defining a custom constructor {#custom-constructor}
+### Define a custom constructor {#custom-constructor}
 
 The `Polymer` method returns a basic constructor that can be used to
 instantiate the custom element. If you want to 
@@ -90,12 +90,15 @@ Two notes about the custom constructor:
     created, default values set, and so on). See
     [Ready callback and element initialization](#ready-method) for more information.
 
-### Extending Native HTML elements {#type-extension}
+### Extend native HTML elements {#type-extension}
 
 Polymer currently only supports extending native HTML elements (for example,
-`input`, or `button`, as opposed to 
-[extending other custom elements](#todo-inheritance)). To extend a native HTML element, 
-set the `extends` property to the tag name of the element to extend.
+`input`, or `button`, as opposed to extending other custom elements, which will
+be supported in a future release). These native element extensions are called
+_type extension custom elements_.
+
+To extend a native HTML element, set the `extends` property on your prototype to 
+the tag name of the element to extend.
 
 
 Example:
@@ -117,6 +120,11 @@ Example:
 
     var el2 = document.createElement('input', 'my-input');
     console.log(el2 instanceof HTMLInputElement); // true
+
+To use a type-extension element in markup, use the _native_ tag and add an
+`is` attribute that specifies the extension type name:
+
+    <input is="my-input">
 
 <!-- legacy anchor -->
 <a id="basic-callbacks"></a>

@@ -159,7 +159,7 @@ Rather than exposing the details of an element's internal implementation for
 theming, instead an element author defines one or more custom CSS
 properties as part of the element's API.
 
-These custom properties can be defined similar to other standard CSS properties
+These custom properties can be defined similarly to other standard CSS properties
 and will inherit from the point of definition down the composed DOM tree,
 similar to the effect of `color` and `font-family`.
 
@@ -391,7 +391,7 @@ dynamism will continue to be explored.
     from rules that set properties in scope(s) above it, or in a `:host` rule for
     that scope.  Within a given element's local DOM scope, a custom property can
     only have a single value.  Calculating property changes within a scope would be
-    prohibitvely expensive for the shim and are not required to achieve cross-scope
+    prohibitively expensive for the shim and are not required to achieve cross-scope
     styling for custom elements, which is the primary goal of the shim.
 
        <dom-module>
@@ -435,7 +435,8 @@ of Polymer's styling system:
 
 *   Custom properties used by Polymer's experimental 
     [shim for cross-scope styling](#xscope-styling-details) may be defined in an 
-    `custom-style`.
+    `custom-style`. Use the `:root` selector to define custom properties that apply
+    to all custom elements.
 
 Example:
 
@@ -458,7 +459,7 @@ Example:
         }
         
         /* Custom properties that inherit down the document tree may be defined */
-        body {
+        :root {
           --my-toolbar-title-color: green;
         }
         
@@ -472,10 +473,13 @@ Example:
     </body>
     </html>
 
-Note, all features of `custom-style` are available when defining styles as part of
+All features of `custom-style` are available when defining styles as part of
 Polymer elements (for example, in `<style>` elements within a custom element's
-`<dom-module>`. **The `custom-style` extension should only be used for
+`<dom-module>`). The exception is the `:root` selector, which is only useful at 
+the document level. **The `custom-style` extension should only be used for
 defining document styles, outside of a custom element's local DOM.**
+
+
 
 ## External stylesheets {#external-stylesheets}
 
@@ -511,3 +515,25 @@ Example:
       </script>
 
     </dom-module>
+
+To include an external stylesheet at the document level that includes
+local DOM aware rules, use a _standard_ HTML import to import a document
+that includes a `custom-style` element.
+
+`index.html`:
+
+    <html>
+    <head>
+      <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+      <link rel="import" href="my-custom-styles.css">
+    </head>
+      ...
+
+`my-custom-styles.css`:
+
+    <style is="custom-style">
+      html /deep/ iron-icon { 
+        color: red;
+      } 
+    </style>      
+

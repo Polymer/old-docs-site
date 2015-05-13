@@ -53,10 +53,10 @@ The Polymer micro layer provides bare-minimum Custom Element sugaring.
 |---------|-------
 | [Custom element constructor](registering-elements.html#element-constructor) | Polymer.Class({ … });
 | [Custom element registration](registering-elements.html#register-element) | Polymer({ is: ‘...’,  … }};
-| [Bespoke constructor support](registering-elements.html#bespoke-constructor) | constructor: function() { … }
+| [Custom constructor support](registering-elements.html#bespoke-constructor) | constructor: function() { … }
 | [Basic lifecycle callbacks](registering-elements.html#basic-callbacks) | created, attached, detached, attributeChanged
 | [Native HTML element extension](registering-elements.html#type-extension) | extends: ‘…’
-| [Configure properties](properties.html#property-config) | properties: { … }
+| [Declared properties](properties.html#property-config) | properties: { … }
 | [Attribute deserialization to property](properties.html#attribute-deserialization) | properties: { \<property>: \<Type> }
 | [Static attributes on host](registering-elements.html#host-attributes) | hostAttributes: { \<attribute>: \<value> }
 | [Behaviors](behaviors.html) | behaviors: [ … ]
@@ -71,7 +71,7 @@ tree lifecycle.
 | Feature | Usage
 |---------|-------
 | [Template stamping into local DOM](local-dom.html#template-stamping) | \<dom-module>\<template>...\</template>\</dom-module>
-| [DOM (re-)distribution](local-dom.html#dom-distribution) | \<content>
+| [DOM distribution](local-dom.html#dom-distribution) | \<content>
 | [DOM API](local-dom.html#dom-api)  | Polymer.dom
 | [Configuring default values](properties.html#configure-values)  | properties: \<prop>: { value: \<primitive>\|\<function> }
 | [Bottom-up callback after configuration](registering-elements.html#ready-method) | ready: function() { … }
@@ -95,7 +95,7 @@ The Polymer standard layer adds declarative data binding, events, property notif
 | [Declarative attribute binding](data-binding.html#attribute-binding) | \<element attr$=”{%raw%}{{property\|path}}{%endraw%}”>
 | [Reflecting properties to attributes](properties.html#attribute-reflection) | properties: \<prop>: { reflectToAttribute: true } }
 | [Computed properties](properties.html#computed-properties) | computed: { \<property>: ‘computeFn(dep1, dep2)’ }
-| [Annotated computed properties](data-binding.html#annotated-computed) | \<span>{%raw%}{{computeFn(dep1, dep2)}}{%endraw%}\</span>
+| [Computed bindings](data-binding.html#annotated-computed) | \<span>{%raw%}{{computeFn(dep1, dep2)}}{%endraw%}\</span>
 | [Read-only properties](properties.html#read-only) |  properties: { \<prop>: { readOnly: true } }
 | [Utility functions](utility-functions.html) | toggleClass, toggleAttribute, fire, async, …
 | [Scoped styling](styling.html) | \<style> in \<dom-module>, Shadow-DOM styling rules (:host, ...)

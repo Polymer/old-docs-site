@@ -27,8 +27,8 @@ It adds two properties to the binding scope for each instance:
 *   `index`. The index of `item` in the array. (The `index` value changes if 
     the array is sorted or filtered)
 
-The template repeater is a type-extension custom element that extends the 
-built-in `<template>` element, so it is written as `<template is="dom-repeat">`.
+The template repeater is a [type-extension custom element](registering-elements.html#type-extension) 
+that extends the built-in `<template>` element, so it is written as `<template is="dom-repeat">`.
 
 Example:
 
@@ -119,11 +119,12 @@ The `model` is an instance of `Polymer.Base`, so `set`, `get` and the array
 manipulation methods are all available on the `model` object, and should be used
 to manipulate the model.
 
-**Note:** The `model` property is **not** added for event listeners added 
+**Note:** The `model` property is **not** added for event listeners registered 
 imperatively (using `addEventListener`), or listeners added to one of the
 `<dom-repeat>` template's parent nodes. In these cases, you can use
 the `<dom-repeat>` `modelForElement` method to retrieve the 
-model data that generated a given element.
+model data that generated a given element. (There are also corresponding 
+`itemForElement` and `indexForElement` methods.)
 {: .alert .alert-info }
 
 
@@ -319,7 +320,7 @@ screen.  Hiding/showing elements is as simple as attribute-binding to the
 require conditional templating at all.
 
 However, using a conditional template may be appropriate in the case of an admin
-screen that's only be shown to admin users of an app.  Since most users
+screen that's only shown to admin users of an app.  Since most users
 aren't admins, there may be performance benefits to not burdening most of
 the users with the cost of stamping the elements for the admin page, especially
 if it is relatively heavyweight.

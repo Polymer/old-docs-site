@@ -614,8 +614,8 @@ well as any of the arguments types supported by `observers`, including [paths](#
 The arguments received by the computing function match those described in the sections referenced above.
 
 **Note:** If you only need a computed property for a data binding, you
-can use an inline function instead. See 
-[Inline function](data-binding.html#annotated-computed).
+can use a computed binding instead. See 
+[Computed bindings](data-binding.html#annotated-computed).
 {: .alert .alert-info }
 
 ## Reflecting properties to attributes {#attribute-reflection}

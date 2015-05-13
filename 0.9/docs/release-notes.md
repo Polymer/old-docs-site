@@ -9,9 +9,9 @@ subtitle: Guide
 {% include toc.html %}
 
 <style>
-.breaking ::after {
+.breaking {
   color: red;
-  content "FOO!"
+  text-transform: capitalize;
   }
 </style>
 
@@ -20,9 +20,8 @@ subtitle: Guide
 A number of APIs changed between 0.8-rc.2 and 0.9. This document summarizes the changes.
 
 ### Element registration changes
-{: .breaking }
 
-<h4 class="breaking">Breaking change: Mixins replaced by behaviors</h4>
+#### <span class="breaking">breaking change:</span> Mixins replaced by behaviors</h4>
 
 Mixins have been replaced by _behaviors_, which can define properties, add
 lifecycle callbacks, observers, and event listeners.
@@ -34,21 +33,21 @@ Specify behaviors using the `behaviors` array on the prototype:
       behaviors: [CoolBehavior]
     });
 
-For details, see [Behaviors](behaviors.html).
+For details, see [Behaviors](devguide/behaviors.html).
 
-#### <span class="breaking">Breaking change:</span> constructor renamed to factoryImpl
+#### <span class="breaking">breaking change:</span> constructor renamed to factoryImpl
 
 When creating a custom constructor, the configuration function is
 renamed from `constructor` to `factoryImpl`, to aid compilation tools.
 
-#### <span class="breaking>Breaking change:</span> hostAttributes changes.
+#### <span class="breaking">breaking change:</span> hostAttributes changes.
 
 Static attributes defined in `hostAttributes` can now be overridden from markup.
 
 As a part of this change, the `class` attribute can no longer be set from 
 `hostAttributes`. 
 
-<h3><span class="breaking">Breaking change:</span> Property observer changes</h3>
+### <span class="breaking">breaking change:</span> Property observer changes
 
 The format for property observers has changed to be more like the format for computed properties:
 
@@ -85,7 +84,7 @@ This release includes several enhancements and changes to custom property suppor
 *   Custom property support is enabled for all elements. The `enableCustomStyleProperties` 
     flag is no longer required.
 
-*   <span class="breaking">Breaking change:</span> Style mixins are applied with `@apply` instead of `mixin`.
+*   <span class="breaking">breaking change:</span> Style mixins are applied with `@apply` instead of `mixin`.
 
         @apply(--my-style-mixin)
 
@@ -102,7 +101,7 @@ This release includes several enhancements and changes to custom property suppor
         };
 
 
-#### <span class="breaking>Breaking change:</span> x-style renamed to custom-style
+#### <span class="breaking">breaking change:</span> x-style renamed to custom-style
 
 The `custom-style` element replaces the experimental `x-style` element.
 
@@ -113,9 +112,11 @@ For more details, see [Custom element for document styling](devguide/styling.htm
 #### Support for :root selector
 
 Styling now supports the [`:root` pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/:root)
-inside `<custom-style>`. The `:root` selector the matches the document's root scope. <<<Waiting for primer updates for more details>>>
+inside `custom-style`. In the context of a `custom-style` element, the `:root` selector lets
+you define a custom property that applies to all custom elements. (In 0.8, applying a property to 
+all custom elements required a more expensive `*` selector.)
 
-#### <span class="breaking>Breaking change:</span> Layout classes replaced by custom properties {#layout-properties}
+#### <span class="breaking">breaking change:</span> Layout classes replaced by custom properties {#layout-properties}
 
 Layout attributes, introduced in 0.8 to replace layout classes, have been removed in favor 
 of a system based on custom properties.
@@ -152,17 +153,17 @@ Your 0.9 element should use:
 
 For another example, see the [Migration guide](migration.html#layout-attributes).
 
-To see the available custom layout properties, see the [`iron-flex-layout` source]
-(https://github.com/PolymerElements/iron-flex-layout/blob/master/iron-flex-layout.html).
+To see the available custom layout properties, see the [`iron-flex-layout` source
+](https://github.com/PolymerElements/iron-flex-layout/blob/master/iron-flex-layout.html).
 For more examples of the layout properties in use, see the 
-[demo](https://github.com/PolymerElements/iron-flex-layout/blob/master/iron-flex-layout.html).
+[demo](https://github.com/PolymerElements/iron-flex-layout/blob/master/demo/x-app.html).
 
 **Note:** This area may be subject to more change before 1.0.
 {: .alert .alert-info }
 
 ### Data binding changes
 
-#### <span class="breaking>Breaking change:</span> Template helper elements no longer experimental
+#### <span class="breaking">breaking change:</span> Template helper elements no longer experimental
 
 The template helper elements are no longer experimental, and have been renamed:
 
@@ -176,7 +177,7 @@ The template helper elements are no longer experimental, and have been renamed:
 As of 0.9, nested templates can access their parent's scope. See [Nesting dom-repeat templates]
 (devguide/templates.html#nesting-templates) for details.
 
-#### <span class="breaking>Breaking change:</span> Array mutation methods
+#### <span class="breaking">breaking change:</span> Array mutation methods
 
 In 0.8, an array observer was used to monitor the mutation of arrays, so adding an 
 item to an array was observed automatically, but changing a value in an array item required
@@ -191,9 +192,26 @@ is a string path to the array.
 this.push('users', { first: "Stephen", last: "Maturin" });
 ```
 
+### Gesture support
+
+This release adds limited gesture support. For details, see [Gesture events](devguide/events.html#gestures).
+
+### Content security policy (CSP) {#csp}
+
+CSP issues in the initial release of 0.8 have been resolved. CSP still requires separate script and
+HTML files.
+
+The CSP-specific functions of [`vulcanize`](https://github.com/Polymer/vulcanize) have been 
+split into a separate utility, [`crisper`](https://github.com/PolymerLabs/crisper). To prepare a site for
+deployment in a CSP environment, you can use a command like this:
+
+    vulcanize --inline-scripts --inline-css target.html | crisper --html build.html --js build.js
+
+For more details on the `vulcanize` arguments, see the [README](https://github.com/Polymer/vulcanize).
+
 ### Utility functions
 
-#### <span class="breaking>Breaking change:</span> transform and translate3d API changes
+#### <span class="breaking">breaking change:</span> transform and translate3d API changes
 
 The method signatures for the `transform` and `translate3d` utility methods have
 changed to match the other utility methods. The `node` argument is now the last argument,
@@ -209,7 +227,7 @@ After:
     transform(transform, node);
     translate3d(x, y, z, node);
 
-#### <span class="breaking>Breaking change:</span> fire API changes
+#### <span class="breaking">breaking change:</span> fire API changes
 
 The `fire` method now takes three arguments:
 
@@ -233,7 +251,7 @@ from the earlier documentation:
 *   `flushDebouncer`
 *   `isDebouncerActive`
 
-For details, see [Utility functions](utility-functions.html).
+For details, see [Utility functions](devguide/utility-functions.html).
 
 ### Bug fixes
 

@@ -128,10 +128,12 @@ The following methods are provided:
 
 DOM manipulation APIs:
 
-  * `Polymer.dom(parent).appendChild(node)`
-  * `Polymer.dom(parent).insertBefore(node, beforeNode)`
-  * `Polymer.dom(parent).removeChild(node)`
-  * `Polymer.dom.flush()`
+*   `Polymer.dom(parent).appendChild(node)`
+*   `Polymer.dom(parent).insertBefore(node, beforeNode)`
+*   `Polymer.dom(parent).removeChild(node)`
+*   `Polymer.dom.flush()`
+
+Calling `append`/`insertBefore` where `parent` is a custom Polymer element adds the node to the light DOM of the element.  In order to insert/append into the shadow root of a custom element, use `this.root` as the parent.
 
  **Async operations:** The insert, append, and remove operations are transacted lazily in certain cases for performance.  In order to interrogate the dom (e.g. `offsetHeight`, `getComputedStyle`, etc.) immediately after one of these operations, call `Polymer.dom.flush()` first.
 {: .alert .alert-info }
@@ -159,7 +161,6 @@ Content APIs:
   * `Polymer.dom(contentElement).getDistributedNodes()`
   * `Polymer.dom(node).getDestinationInsertionPoints()`
 
-Calling `append`/`insertBefore` where `parent` is a custom Polymer element adds the node to the light DOM of the element.  In order to insert/append into the shadow root of a custom element, use `this.root` as the parent.
 
 `Polymer.dom` properties and methods that return a list of nodes return an `Array`, not a `NodeList` like the standard DOM equivalent.
 
@@ -174,7 +175,7 @@ Example:
 
     var allSpans = Polymer.dom(this).querySelectorAll('span');
 
-You can use `Polymer.dom` on any node, whether or not it has a local DOM tree:
+You can use `Polymer.dom` on any node, whether or not it has a local DOM tree.
 
 Example:
 
