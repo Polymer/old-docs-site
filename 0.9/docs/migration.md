@@ -653,8 +653,9 @@ the `ready` callback).
 
 The `polymer-ready` event was supported in release 0.5 because {{site.project_title}}
 elements performed some asynchronous initialization which meant that they weren't ready 
-to use when the polyfill `WebComponentsReady` event fired. This initialization is now synchronous,
-so the `WebComponentsReady` event can be used instead.
+to use when the polyfill [`WebComponentsReady`](https://github.com/webcomponents/webcomponentsjs#webcomponentsready) 
+event fired. This initialization is now synchronous, so the `WebComponentsReady` event 
+can be used instead.
 
 If you are **not** using the web components polyfills (for example, in a Chrome extension),
 the `WebComponentsReady` event will not fire. With native HTML imports and custom elements,
