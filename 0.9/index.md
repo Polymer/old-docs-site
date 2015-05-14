@@ -221,8 +221,8 @@ understand the question or suggestion.
 Continue on to the {{site.project_title}} docs:
 
 <div layout horizontal wrap>
-<p><a href="docs/start/getting-the-code.html">
-  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Get the code</paper-button>
+<p><a href="docs/start/quick-tour.html">
+  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Quick tour of {{site.project_title}}</paper-button>
 </a></p>
 
 <p><a href="docs/devguide/feature-overview.html">

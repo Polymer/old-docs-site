@@ -119,7 +119,9 @@ The document's DOM tree is effectively the composed tree.
 
 ## DOM API {#dom-api}
 
-Polymer provides custom API for manipulating DOM such that local DOM and light DOM trees are properly maintained.
+Polymer provides a custom API for manipulating DOM such that local DOM and light DOM trees are properly maintained. These methods
+and properties have the same signatures as their standard DOM equivalents, except that properties and methods 
+that return a list of nodes return an `Array`, not a `NodeList`.
 
 **Note:** All DOM manipulation must use this API, as opposed to DOM API directly on nodes.
 {: .alert .alert-error }
@@ -161,23 +163,37 @@ Content APIs:
   * `Polymer.dom(contentElement).getDistributedNodes()`
   * `Polymer.dom(node).getDestinationInsertionPoints()`
 
+Node mutation APIs:
 
-`Polymer.dom` properties and methods that return a list of nodes return an `Array`, not a `NodeList` like the standard DOM equivalent.
+  * `Polymer.dom(node).setAttribute(attribute, value)`
+  * `Polymer.dom(node).removeAttribute(attribute)`
+  * `Polymer.dom(node).classList`
 
-Example:
+Using these node mutation APIs when manipulating children ensures that shady DOM 
+can distribute content elements dynamically. If you change attributes or classes
+that could affect distribution **without** using the `Polymer.dom` API, call
+`distributeContent` on the host element to force it to update its distribution.
+
+### DOM API examples 
+
+Some examples of using the `Polymer.dom`.
+
+Add a child to the light DOM:
 
     var toLight = document.createElement('div');
     Polymer.dom(this).appendChild(toLight);
+
+Insert a child into the local DOM:
 
     var toLocal = document.createElement('div');
     var beforeNode = Polymer.dom(this.root).childNodes[0];
     Polymer.dom(this.root).insertBefore(toLocal, beforeNode);
 
+Retrieve all `<span>` elements in the light DOM.
+
     var allSpans = Polymer.dom(this).querySelectorAll('span');
 
-You can use `Polymer.dom` on any node, whether or not it has a local DOM tree.
-
-Example:
+You can use `Polymer.dom` on any node, whether or not it has a local DOM tree:
 
     <template>
       <div id="container">
@@ -191,9 +207,8 @@ Example:
     var insert = document.createElement('div');
     Polymer.dom(this.$.container).insertBefore(insert, this.$.first);
 
-Sometimes it's necessary to access the elements which have been distributed to a given `<content>` insertion point or to know to which `<content>` a given node has been distributed. The `getDistributedNodes` and `getDestinationInsertionPoints` respectively provide this information.
+Sometimes it's necessary to access the elements which have been distributed to a given `<content>` insertion point or to know to which `<content>` a given node has been distributed. The `getDistributedNodes` and `getDestinationInsertionPoints` methods, respectively, provide this information:
 
-Example:
 
     <x-foo>
       <div></div>

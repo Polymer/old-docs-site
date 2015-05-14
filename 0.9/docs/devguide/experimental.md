@@ -99,5 +99,4 @@ The Polymer standard layer adds declarative data binding, events, property notif
 | [Read-only properties](properties.html#read-only) |  properties: { \<prop>: { readOnly: true } }
 | [Utility functions](utility-functions.html) | toggleClass, toggleAttribute, fire, async, …
 | [Scoped styling](styling.html) | \<style> in \<dom-module>, Shadow-DOM styling rules (:host, ...)
-| [Sharing stylesheets](experimental.html#shared-stylesheets) | styleModules: [ ... ]
 | [General polymer settings](#settings) | \<script> Polymer = { ... }; \</script>

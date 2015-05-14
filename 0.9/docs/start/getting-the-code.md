@@ -139,6 +139,11 @@ the project or submit a pull request, you can [visit the GitHub repo](https://gi
 Now that you've installed {{site.project_title}} it's time to learn the core
 concepts.  Continue on to:
 
+<p><a href="quick-tour.html">
+  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Quick tour of {{site.project_title}}</paper-button>
+</a></p>
+
+
 <p><a href="../devguide/feature-overview.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>Developer guide</paper-button>
 </a></p>
