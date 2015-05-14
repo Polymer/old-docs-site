@@ -13,6 +13,9 @@ subtitle: Developer guide
 Add event listeners to the host element by providing a 
 `listeners` object that maps events to event handler function names.
 
+Also you can add event listener to any element in `this.$` collection with the next syntax: 
+`nodeId.eventName: handlerName`.
+
 Example:
 
     <dom-module id="x-custom">
@@ -20,6 +23,8 @@ Example:
         <div>I will respond</div>
         <div>to a click on</div>
         <div>any of my children!</div>
+        
+        <div id='special'>I am a special!</div>
       </template>
     </dom-module>
 
@@ -30,11 +35,16 @@ Example:
         is: 'x-custom',
 
         listeners: {
-          'click': 'handleClick'
+          'click': 'regularClick',
+          'special.click': 'specialClick'
         },
 
-        handleClick: function(e) {
+        regularClick: function(e) {
           alert("Thank you for clicking");
+        },
+        
+        specialClick: function(e) {
+          alert("It was special clicking");
         }
 
       });
