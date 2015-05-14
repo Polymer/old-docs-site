@@ -6,8 +6,6 @@ title: Feature overview
 subtitle: Developer guide
 ---
 
-{% include toc.html %}
-
 **Note:** Polymer 0.9 and this document are a WORK IN PROGRESS and APIs are subject to change.
 {: .alert .alert-error }
 

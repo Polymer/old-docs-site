@@ -18,7 +18,7 @@ subtitle: Get started
 {{site.project_title}} makes it simple to create web components, declaratively.
 
 Custom elements can leverage {{site.project_title}}'s special features to reduce boilerplate
-and make it even easier to build complex, web component-based applications:
+and make it even easier to build complex, interactive elements:
 
 - Registering elements
 - Lifecycle callbacks

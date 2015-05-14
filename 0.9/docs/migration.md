@@ -608,13 +608,13 @@ The layout attributes stylesheet that’s included in {{site.project_title}} 0.5
 been replaced  with an optional stylesheet that uses classes. If your element uses 
 layout attributes, you’ll need to make some changes:
 
-1.  Install the `iron-flex-layout` component:
+1.  Install the `layout` component:
 
-        bower install --save PolymerElements/iron-flex-layout
+        bower install --save Polymer/layout
 
-2.  Add an import for `iron-flex-layout.html` on any element that used the layout attributes.
+2.  Add an import for `layout.html` on any element that used the layout attributes.
 
-        <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout.html">
+        <link rel="import" href="bower_components/layout/layout.html">
 
 3.  Replace the layout attributes with layout classes.
 
@@ -635,7 +635,7 @@ Before:
 After:
 
     <link rel="import" href="/components/polymer/polymer.html">
-    <link rel="import" href="/components/iron-flex-layout/iron-flex-layout.html">
+    <link rel="import" href="/components/layout/layout.html">
 
         ...
 
@@ -685,17 +685,44 @@ should use the `Polymer.dom` versions, which are aware of local DOM trees. If
 you do not do any imperative DOM manipulation, you can skip this section.
 
 The `Polymer.dom` method takes a DOM node as an argument and returns a wrapper
-that implements the following methods and properties:
+that implements the following methods and properties.
 
-* `Polymer.dom(parent).appendChild(node)`
-* `Polymer.dom(parent).insertBefore(node, beforeNode)`
-* `Polymer.dom(parent).removeChild(node)`
-* `Polymer.dom(parent).querySelector(selector)`
-* `Polymer.dom(parent).querySelectorAll(selector)`
-* `Polymer.dom(parent).childNodes`
-* `Polymer.dom(node).parentNode`
-* `Polymer.dom(contentElement).getDistributedNodes()`
-* `Polymer.dom(node).getDestinationInsertionPoints()`
+Adding and removing children:
+
+  * `Polymer.dom(parent).appendChild(node)`
+  * `Polymer.dom(parent).insertBefore(node, beforeNode)`
+  * `Polymer.dom(parent).removeChild(node)`
+  * `Polymer.dom.flush()`
+
+Parent and child accessors:
+
+  * `Polymer.dom(parent).childNodes`
+  * `Polymer.dom(node).parentNode`
+  * `Polymer.dom(node).firstChild`
+  * `Polymer.dom(node).lastChild`
+  * `Polymer.dom(node).firstElementChild`
+  * `Polymer.dom(node).lastElementChild`
+  * `Polymer.dom(node).previousSibling`
+  * `Polymer.dom(node).nextSibling`
+  * `Polymer.dom(node).textContent`
+  * `Polymer.dom(node).innerHTML`
+
+Query selector:
+
+  * `Polymer.dom(parent).querySelector(selector)`
+  * `Polymer.dom(parent).querySelectorAll(selector)`
+
+Content APIs:
+
+  * `Polymer.dom(contentElement).getDistributedNodes()`
+  * `Polymer.dom(node).getDestinationInsertionPoints()`
+
+Node mutation APIs:
+
+  * `Polymer.dom(node).setAttribute(attribute, value)`
+  * `Polymer.dom(node).removeAttribute(attribute)`
+  * `Polymer.dom(node).classList`
+
 
 In each case, the `Polymer.dom` methods and properties behave like the standard
 DOM would on a browser with native Shadow DOM support, with the following
@@ -704,7 +731,7 @@ differences:
 *   The insert, append, and remove operations are transacted lazily in certain cases
     for performance. In order to interrogate the DOM (for example, offsetHeight,
     getComputedStyle, etc.) immediately after one of these operations, call
-    Polymer.dom.flush() first.
+    `Polymer.dom.flush()` first.
 
 *   Calling `append`/`insertBefore` where parent is a custom Polymer element adds
     the node to the light DOM of the element. In order to add children to the local

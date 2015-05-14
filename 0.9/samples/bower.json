@@ -21,7 +21,11 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^0.9.0-rc.1",
-    "iron-input": "PolymerElements/iron-input"
+    "polymer": "Polymer/polymer#^0.9.0",
+    "iron-input": "PolymerElements/iron-input#^0.9.0"
+  },
+  "resolutions": {
+    "polymer": "0.9.0",
+    "webcomponentsjs": "^0.7.0"
   }
 }

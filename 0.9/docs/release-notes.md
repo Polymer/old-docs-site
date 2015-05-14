@@ -40,7 +40,7 @@ For details, see [Behaviors](devguide/behaviors.html).
 When creating a custom constructor, the configuration function is
 renamed from `constructor` to `factoryImpl`, to aid compilation tools.
 
-#### <span class="breaking">breaking change:</span> hostAttributes changes {#host-attribute}
+#### <span class="breaking">breaking change:</span> hostAttributes changes {#host-attributes}
 
 Static attributes defined in `hostAttributes` can now be overridden from markup.
 
@@ -116,35 +116,6 @@ Styling now supports the [`:root` pseudo-class](https://developer.mozilla.org/en
 inside `custom-style`. In the context of a `custom-style` element, the `:root` selector lets
 you define a custom property that applies to all custom elements. (In 0.8, applying a property to 
 all custom elements required a more expensive `*` selector.)
-
-#### <span class="breaking">breaking change:</span> Layout stylesheet renamed {#layout-properties}
-
-The stylesheet defining layout classes has moved out of the {{site.project_title}} repo and 
-been renamed to `iron-flex-layout`.
-
-To use layout classes:
-
-1.  Install the `iron-flex-layout` component:
-
-        bower install --save PolymerElements/iron-flex-layout
-
-2.  Import `iron-flex-layout`:
-
-        <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout.html">
-
-**Note:** If your 0.8 element was using `hostAttributes` to specify layout classes, note that
-[this is no longer supported](#host-attributes).
-{: .alert .alert-info } 
-
-For another example, see the [Migration guide](migration.html#layout-attributes).
-
-To see the available custom layout properties, see the [`iron-flex-layout` source
-](https://github.com/PolymerElements/iron-flex-layout/blob/master/iron-flex-layout.html).
-For more examples of the layout properties in use, see the 
-[demo](https://github.com/PolymerElements/iron-flex-layout/blob/master/demo/x-app.html).
-
-**Note:** This area may be subject to more change before 1.0.
-{: .alert .alert-info }
 
 ### Data binding changes
 

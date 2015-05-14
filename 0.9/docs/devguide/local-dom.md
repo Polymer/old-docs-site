@@ -126,9 +126,9 @@ that return a list of nodes return an `Array`, not a `NodeList`.
 **Note:** All DOM manipulation must use this API, as opposed to DOM API directly on nodes.
 {: .alert .alert-error }
 
-The following methods are provided:
+The following methods and properties are provided.
 
-DOM manipulation APIs:
+Adding and removing children:
 
 *   `Polymer.dom(parent).appendChild(node)`
 *   `Polymer.dom(parent).insertBefore(node, beforeNode)`

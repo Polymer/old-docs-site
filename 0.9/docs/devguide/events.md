@@ -24,7 +24,7 @@ Example:
         <div>to a tap on</div>
         <div>any of my children!</div>
         
-        <div id='special'>I am special!</div>
+        <div id="special">I am special!</div>
       </template>
     </dom-module>
 

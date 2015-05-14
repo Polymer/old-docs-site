@@ -438,13 +438,12 @@ The two exceptions are:
 For more complicated bindings, you can use a computed binding.
 A computed binding is similar to a computed property. 
 
-The computed binding must take at least one dependent property. A computed binding's 
+The computed binding **must take at least one dependent property.** A computed binding's 
 dependent properties are interpreted relative to the current _binding scope_, which 
 is useful inside a [template repeater](#dom-repeat).
 
-Computed bindings are useful you don't need to expose a computed property
-as part of the element's API, or use it elsewhere in the element, and is 
-only used for downward data propagation.
+A computed binding is useful if you don't need to expose a computed property
+as part of the element's API, or use it elsewhere in the element.
 
 **Note:** this is the only form of function allowed in binding annotations.
 {: .alert .alert-info }

@@ -140,8 +140,7 @@ measurement in general.
 
 The [documentation](docs/devguide/feature-overview.html) is in draft form
 and missing some pieces, such as  tutorials and tooling information. We'll be 
-filling out the documention set as we move towards 1.0. Expect a full on-ramp for d
-evelopers new to Polymer, a more in-depth developer guide, and much more.
+filling out the documentation set as we move towards 1.0. 
 
 If you find errors or missing information in the documentation, please 
 [file an issue](https://github.com/Polymer/docs/issues).
@@ -176,27 +175,29 @@ _We'll update this section as asked-questions become frequently-asked._
 
 #### Where did the elements go?
 
-Not all elements have been ported to the current release, but you
-can find work-in-progress versions of many elements in the 
- [PolymerElements repo](https://github.com/PolymerElements).
+Not all elements have been ported to the current release, but we're porting them
+as fast as we can. You can find work-in-progress versions of many elements in the 
+[PolymerElements GitHub organization](https://github.com/PolymerElements).
 
-As part of an effort to rationalize the element product lines, some elements
-are being replaced or renamed. The core elments are being moved to a 
-new "iron elements" collection. The following components are changing names 
-and/or moving from one collection to another:
+The elements are being reorganized into more consistent product lines, including:
 
-| **Old component** | **New component**
-| ------------------|------------------
-| core-focusable | iron-behaviors 
-| core-menu | paper-menu 
-| core-range | iron-range-behavior 
-| core-resizable | iron-resizable-behavior 
-| core-toolbar | paper-toolbar 
-| paper-shadow | paper-material 
+*   Iron elements. Basic elements that don't express a visual style. 
+    Most of the old `core-` elements are being renamed to `iron-`. 
+    Some former `core-` elements that implemented material design (such as `core-toolbar`,
+    `core-menu`, `core-header-panel`) are being migrated to `paper-`.
 
+*   Paper elements. Material design elements. All of the old `paper-` elements,
+    plus a few of the old `core-` elements.
+
+*   Neon elements. Animation elements.
 
 These element sets will be launching with their own site sometime around
-the {{site.project_title}} 1.0 timeframe.
+the {{site.project_title}} 1.0 timeframe. The new site will include API docs
+for the elements. If you want to get started with the work-in-progress versions,
+the individual repos are the best source for information about the elements right now.
+
+You can also check out the community [Road to Polymer](http://chuckh.github.io/road-to-polymer/)
+project which is tracking the status of {{site.project_title}} elements.
 
 #### Will you continue to support Polymer 0.5?
 
