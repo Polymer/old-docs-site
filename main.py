@@ -52,6 +52,11 @@ class VersionHandler(webapp2.RequestHandler):
 
     return self.redirect('/%s%s' % (version_dir, self.request.path))
 
+class ObsoleteVersionHandler(webapp2.RequestHandler):
+
+  def get(self, version=None):
+    path = self.request.path.replace('/0.8', '/0.9')
+    return self.redirect('%s' % path)
 
 routes = [
     RedirectRoute('/apps/topeka/', name='topeka',
@@ -71,6 +76,7 @@ routes = [
     ('/resources/.*', VersionHandler),
     ('/platform/.*', VersionHandler),
     ('/articles/.*', VersionHandler),
+    ('/0.8/.*', ObsoleteVersionHandler),
     ('/$', VersionHandler),
 ]
 

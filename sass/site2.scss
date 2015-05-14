@@ -71,41 +71,26 @@ img {
 pre, code {
   white-space: pre;
   word-wrap: normal;
-  overflow-x: auto;
 
   b, strong {
     font-weight: 700;
   }
 }
 
+pre {
+  overflow-x: auto;
+}
+
+
 a code {
   color: currentcolor;
 }
 
 ul, ol {
-  //padding-left: 0;
 
   li::before {
-    content: '·';
     color: $secondary-heading-color;
-    margin-left: -15px;
-    position: absolute;
-    // font-size: 26px;
-    font-weight: bold;
   }
-
-  ul {
-    margin-left: 30px;
-    // font-size: initial;
-  }
-}
-ol {
-  li::before {
-    content: '';
-  }
-}
-ul {
-  list-style: none;
 }
 
 table {
