@@ -674,6 +674,21 @@ Note that `trackstart` and `trackend` are  not fired as separate events, but as 
 
 For more details, see [Gesture events](devguide/events.html#gestures).
 
+## Vulcanize
+
+The latest versions of the [`vulcanize`](https://github.com/Polymer/vulcanize) tool are updated for the new {{site.project_title}}
+element format. Newer versions of vulcanize are **not** backward compatible:
+
+* `vulcanize` versions 1.0 and higher are compatible with {{site.project_title}} 0.8+ **only**. The current version is 1.4.2.
+* `vulcanize` versions below 1.0 are compatible with {{site.project_title}} 0.5 **only**. The current version is 0.7.10.
+
+The `--csp` option to `vulcanize` is now a separate utility, [`crisper`](https://github.com/PolymerLabs/crisper). Typical usage 
+is:
+
+    vulcanize --inline-scripts --inline-css target.html | \
+        crisper --html build.html --js build.js
+
+For more details on the `vulcanize` arguments, see the [README](https://github.com/Polymer/vulcanize).
 
 ## Manipulating DOM {#dom-apis}
 
@@ -809,7 +824,7 @@ property accessors, generated at element registration time, which provides high
 performance with minimal cost at instantiation time. The main differences in
 binding are:
 
-*   No expression support. Binding is to properties or paths only. (The negation
+*   No expression or filter support. Binding is to properties or paths only. (The negation
     operator, `!`, is supported for convenience.) In many cases, computed
     properties can be used in place of complex binding expressions.
 
@@ -832,10 +847,16 @@ Before:
 After:
 
     {% raw %}
-    <my-foo fullname="{{computeFullName}}">
+    <my-foo fullname="{{computeFullName(firstname, lastname)}}">
             Hi, my name is <span>{{firstname}}</span>.
     </my-foo>
     {% endraw %}
+
+    ...
+
+    computeFullName: function(first, last) {
+      return first + ' ' + last;
+    }
 
 Support for repeating templates, conditional templates and autobinding templates 
 is provided by [helper elements](devguide/templates.html). 
@@ -905,7 +926,7 @@ Change this expression to
 
 For example:
 
-    <div hidden$="[[isHidden]]">Boo!</div>
+    <div hidden$="{%raw%}{{isHidden}}{%endraw%}">Boo!</div>
 
 The new version is more general-purpose: it can handle both boolean and valued
 attributes. The property value is serialized, just like it is  for reflected
@@ -914,7 +935,10 @@ in the Developer guide for details).
 
 For example:
 
-    <input type="checkbox" checked$="[[isComplete]]" aria-label$="[[completedLabel]]">
+    {%raw%}
+    <input type="checkbox" checked$="{{isComplete}}" 
+        aria-label$="{{completedLabel}}">
+    {%endraw%}
 
 If `isComplete` is `true` and `completedLabel` is "Completed", this appears as:
  
