@@ -22,6 +22,7 @@ When migrating, the following items can be translated easily from 0.5 to this re
 *   [Layout attributes](#layout-attributes)
 *   [Use WebComponentsReady instead of the polymer-ready event](#polymer-ready)
 *   [Gestures](#gestures)
+*   [Vulcanize](#vulcanize)
 
 Other areas may require more changes to work correctly, either because there are
 significant API changes from 0.5, feature gaps, or both. These areas include:
@@ -674,7 +675,7 @@ Note that `trackstart` and `trackend` are  not fired as separate events, but as 
 
 For more details, see [Gesture events](devguide/events.html#gestures).
 
-## Vulcanize
+## Vulcanize {#vulcanize}
 
 The latest versions of the [`vulcanize`](https://github.com/Polymer/vulcanize) tool are updated for the new {{site.project_title}}
 element format. Newer versions of vulcanize are **not** backward compatible:
