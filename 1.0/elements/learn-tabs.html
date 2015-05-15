@@ -1,0 +1,162 @@
+<!--
+    @license
+    Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+    Code distributed by Google as part of the polymer project is also
+    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/core-icon/core-icon.html">
+<link rel="import" href="../components/core-media-query/core-media-query.html">
+<link rel="import" href="../components/code-explainer/code-explainer.html">
+<link rel="import" href="../components/paper-button/paper-button.html">
+<link rel="import" href="demo-tabs.html">
+
+<polymer-element name="learn-tabs">
+  <template>
+    <style>
+      :host {
+        color: #1f2036;
+      }
+      .card {
+        color: rgb(31, 32, 54);
+        background-color: #f8f8f8;
+      }
+      .card p {
+        margin: 1em 0 !important;
+      }
+      .card h2 {
+        font-weight: 300;
+        letter-spacing: -0.01em;
+        line-height: 48px;
+        margin: 0;
+      }
+      .card .summary {
+        padding: 24px;
+      }
+      .card a {
+        text-decoration: none;
+        color: inherit;
+      }
+      .card .unquote-image {
+        background-image: url(/images/unquote.png);
+        background-size: cover;
+        background-position: top;
+        background-color: #e5e5e5;
+        width: 400px;
+      }
+      demo-tabs code-explainer-info code {
+        color: white;
+      }
+    </style>
+    <core-media-query query="min-width: 640px" queryMatches="{{wide}}"></core-media-query>
+    <demo-tabs theme="dark" style="width:100%;" selected="{{tab}}" on-core-activate="{{tabTapped}}">
+      <demo-tab heading="{{wide ? 'Use Elements (30 sec) ➜' : 'Use ➜'}}">
+        <code-explainer>
+          <script type="text/template">[dim-start]<!-- Polyfill Web Components support for older browsers -->
+            <script src="components/webcomponentsjs/webcomponents.min.js">&lt;/script>[dim-end]
+
+            <!-- Import element -->
+            [start-create]&lt;link rel="import" href="google-map.html"&gt;[end-use]
+
+            <!-- Use element -->
+            [start-use]<google-map lat="37.790" long="-122.390"></google-map>[end-create]
+          </script>
+          <h2>Using Polymer Elements</h2>
+          <div>Using Polymer elements (like all Web Components) is absurdly simple:</div>
+          <code-explainer-info sec="create" bullet="1" label="Import element">
+            Find a component and import its definition into your page using
+            an HTML Import (<code>&lt;link rel="import"&gt;</code>).
+          </code-explainer-info>
+          <code-explainer-info sec="use" bullet="2" label="Use the new element">
+            Once imported, custom elements become first-class HTML elements and can be used like any other.
+          </code-explainer-info>
+        </code-explainer>
+      </demo-tab>
+      <demo-tab heading="{{wide ? 'Create Elements (5 min) ➜' : 'Create ➜' }}">
+        <code-explainer>
+          <script type="text/template"><!-- Define element -->
+            [start-def]<polymer-element name="my-counter" [start-publish]attributes="counter"[end-publish]>[end-def]
+              [start-scope]<template>[end-scope]
+                <style> /*...*/ </style>
+                <div id="label"><content></content></div>
+                Value: <span [start-nodefind]id="counterVal"[end-nodefind]>[start-data]&#123;&#123;counter&#125;&#125;[end-data]</span><br>
+                <button [start-events]on-tap="&#123;&#123;increment&#125;&#125;[end-events]">Increment</button>
+              [start-scope]</template>[end-scope]
+              <script>
+                Polymer({
+                  [start-publish][start-data]counter[end-data]: 0[end-publish], // Default value
+                  [start-publish]counterChanged[end-publish]: function() {
+                    [start-nodefind]this.$.counterVal[end-nodefind].classList.add('highlight');
+                  },
+                  [start-events]increment[end-events]: function() {
+                    this.counter++;
+                  }
+                });
+              &lt;/script>
+            [start-def]</polymer-element>[end-def]
+
+            <!-- Use element -->
+            <my-counter [start-publish]counter="10"[end-publish]>Points</my-counter>
+          </script>
+          <h2>Creating Polymer Elements</h2>
+          <div>Polymer sugars Web Components standards with awesome features for creating custom elements:</div>
+          <code-explainer-info sec="def" label="Declarative custom element definition">
+            Define custom elements declaratively using <code>&lt;polymer-element&gt;</code>
+          </code-explainer-info>
+          <code-explainer-info sec="scope" label="Markup and style encapsulation">
+            Shadow DOM encapsulates your element's internals.  Template markup is
+            compartmentalized, and styles don't leak in or out.
+          </code-explainer-info>
+          <code-explainer-info sec="publish" label="Published properties">
+            Properties that are <em>published</em> can be initialized via markup and invoke change
+            handlers when modified.
+          </code-explainer-info>
+          <code-explainer-info sec="data" label="Declarative data binding">
+            Properties on the element can be bound directly into the view, with robust support for
+            expressions.
+          </code-explainer-info>
+          <code-explainer-info sec="events" label="Declarative event binding">
+            Event handlers can be bound to functions on the element declaratively using
+            <code>on-<i>event</i></code> attributes.
+          </code-explainer-info>
+          <code-explainer-info sec="nodefind" label="Automatic node finding">
+            Any template children can be referenced by <code>id</code> on <code>this.$</code>, eliminating
+            boilerplate querySelector's.
+          </code-explainer-info>
+        </code-explainer>
+      </demo-tab>
+      <demo-tab heading="{{wide ? 'Build an app (30 min)' : 'Tutorial' }}">
+        <div class="card">
+          <div layout horizontal?="{{wide}}" vertical?="{{!wide}}">
+            <div class="summary" flex auto?="{{!wide}}" layout vertical>
+              <h2>Build an app</h2>
+              <div>
+                <p>Ready to dive deeper?  In this tutorial, you'll build a small Polymer application --
+                a very basic client for a social networking service<span hidden?="{{!wide}}"> like the one at right</span>.
+                It'll give you a good feel for both using pre-made Polymer elements as well as building custom
+                elements of your own.</p>
+                <a href="/docs/start/tutorial/intro.html"><paper-button raised><core-icon icon="arrow-forward"></core-icon>Go to tutorial</paper-button></a>
+                <p>If you'd rather keep reading, head to the Polymer docs page to dive deeper.</p>
+                <a href="/docs/start/usingelements.html"><paper-button raised><core-icon icon="arrow-forward"></core-icon>Go to docs</paper-button></a>
+              </div>
+            </div>
+            <a href="/docs/start/tutorial/intro.html" layout vertical>
+              <div class="unquote-image" hidden?="{{!wide}}" flex></div>
+            </a>
+          </div>
+        </div>
+      </demo-tab>
+    </demo-tabs>
+  </template>
+  <script>
+  Polymer({
+    wide: false,
+    tabTapped: function() {
+      this.fire('tab-changed', {tab:this.tab});
+    }
+  });
+  </script>
+</polymer-element>

@@ -310,6 +310,87 @@ footer {
   }
 }
 
+.one-oh {
+  font-size: 200px;
+  font-weight: bold;
+  line-height: 200px;
+  text-align: center;
+  letter-spacing: -8px;
+}
+
+#features .panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.badge {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.badge-wrapper {
+  padding: 30px;
+  border-radius: 50%;
+  background: #F5F5F5;
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1);
+}
+
+.badge-wrapper > core-icon {
+  width: 100px;
+  height: 100px;
+}
+
+.checklist-item {
+  font-size: 35px;
+}
+
+.checklist-item core-icon {
+  width: 80px;
+  height: 80px;
+  margin-right: 16px;
+}
+
+.example:not(:last-of-type) {
+  margin-bottom: 64px;
+}
+
+.example-header {
+  margin-bottom: 16px;
+}
+
+.example-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-code pre {
+  margin: 0 0 16px;
+}
+
+.example-result {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.example-result iframe {
+  flex: 1;
+}
+
+.example-google-map iframe {
+  height: 300px; 
+}
+
+.example-contact-card iframe {
+  height: 100px; 
+}
+
+.example-friend-list iframe {
+  height: 300px;
+}
+
 // Reference, article, other pages ---------------------------------------------
 
 // Desktop or larger
@@ -385,6 +466,59 @@ footer {
 
   dropdown-panel {
     display: none;
+  }
+}
+
+// Tablet + Desktop
+@media only screen and (min-width: $break-medium) {
+  #features .panel {
+    flex-direction: row;
+  }
+
+  #features .feature {
+    flex: 1;
+  }
+
+  #features .feature:not(:last-of-type) {
+    margin-right: 40px;
+  }
+
+  .badge {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .example-wrapper,
+  .example-code,
+  .example-code .highlight,
+  .example-code .prettyprint {
+    min-height: 300px;
+  }
+
+  .example-code .highlight + .highlight,
+  .example-code .highlight + .highlight .prettyprint {
+    margin-top: 16px;
+    min-height: 0;
+  }
+
+  .example-wrapper {
+    flex-direction: row;
+    min-height: 300px;
+  }
+
+  .example-code {
+    flex: 2;
+  }
+
+  .example-result {
+    margin-left: 16px;
+  }
+
+  /* 2/3rds the width to match example-code */
+  .example-caption {
+    width: 66.6% 
   }
 }
 

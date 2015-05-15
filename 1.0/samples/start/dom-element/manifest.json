@@ -1,0 +1,8 @@
+{
+  "name": "Local DOM",
+  "description": "Create an element's Local DOM from a template.",
+  "files": [
+    "index-plunker.html",
+    "dom-element-plunker.html"
+  ]
+}

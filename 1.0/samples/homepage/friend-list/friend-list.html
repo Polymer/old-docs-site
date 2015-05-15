@@ -1,0 +1,23 @@
+<link rel="import" href="../../components/firebase-element/firebase-element.html">
+<link rel="import" href="../contact-card/contact-card.html">
+
+<dom-module id="friend-list">
+  <link rel="import" type="css" href="friend-list.css">
+  <template>
+    <firebase-element data="{{data}}"
+                      location="https://users1.firebaseio.com/users">
+    </firebase-element>
+    <template is="dom-repeat" items="{{data}}">
+      <contact-card starred="{{item.starred}}">
+        <img src="{{item.img}}" alt="{{item.name}}">
+        <span>{{item.name}}</span>
+      </contact-card>
+    </template>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'friend-list'
+  });
+</script>
