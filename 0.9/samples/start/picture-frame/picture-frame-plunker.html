@@ -1,22 +1,20 @@
 <link rel="import"
-      href="../../components/polymer/polymer.html">
-<!-- [START docs-sample] -->
+      href="http://www.polymer-project.org/0.9/samples/components/polymer/polymer.html">
+
 <dom-module id="picture-frame">
   <!-- scoped CSS for this element -->
   <style>
     div {
-      background-color: #aaa;
-      border: 2px solid #333;
+      display: inline-block;
+      background-color: #ccc;
       border-radius: 8px;
       padding: 4px;
     }
-    div ::content img {
-      border-radius: 100%;
-    }
   </style>
   <template>
-    <div class="backdrop">
-      <content select="img"></content>
+    <div>
+      <!-- any children are rendered here -->
+      <content></content>
     </div>
   </template>
 </dom-module>
@@ -26,4 +24,3 @@
     is: "picture-frame",
   });
 </script>
-<!-- [END docs-sample] -->
