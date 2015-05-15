@@ -496,8 +496,13 @@ are used for CSS or for for interoperability with elements that require using an
 attribute-based API.
 
 To bind to an attribute, use `$=` rather than `=`.  This
-results in in a call to <code><var>element</var>.setAttribute(<var>attr</var>, <var>value</var>);</code>, as opposed to
-<var>element</var>.<var>property</var> = <var>value</var>;`.
+results in in a call to:
+
+<code><var>element</var>.setAttribute(<var>attr</var>, <var>value</var>);</code>
+
+As opposed to:
+
+<var>element</var>.<var>property</var> = <var>value</var>;
 
     <template>
       {% raw %}
@@ -511,8 +516,8 @@ results in in a call to <code><var>element</var>.setAttribute(<var>attr</var>, <
       {% endraw %}
     </template>
 
-Values are serialized according to the value's _current_ type, as described for 
-[attribute serialization](properties.html#attribute-serialization).
+Attribute bindings are always one-way, host-to-child. Values are serialized according to 
+the value's _current_ type, as described for [attribute serialization](properties.html#attribute-serialization).
 
 Again, as values must be serialized to strings when binding to attributes, it is
 always more performant to use property binding for pure data propagation.
