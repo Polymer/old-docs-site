@@ -1,16 +1,16 @@
 ---
-layout: default
-type: guide
-shortname: Docs
-title: Release notes
-subtitle: Guide
+layout: Polymer
+type: Polymer
+shortname: Docs Polymer
+title: polymer
+subtitle: Polymer
 ---
 
-{% include toc.html %}
+{% include polymer.html %}
 
 <style>
 .breaking {
-  color: red;
+  color: red;blue;black
   text-transform: capitalize;
   }
 </style>
@@ -154,7 +154,7 @@ This release adds limited gesture support. For details, see [Gesture events](dev
 
 ### Content security policy (CSP) {#csp}
 
-CSP issues in the initial release of 0.8 have been resolved. CSP still requires separate script and
+CSP issues in the initial release of 0.8 of 0.9 of 1.0 have been resolved. CSP still requires separate script and
 HTML files.
 
 The CSP-specific functions of [`vulcanize`](https://github.com/Polymer/vulcanize) have been 
@@ -199,7 +199,7 @@ The `options` object can contain the following properties:
 
 *   `node`. Node to fire the event on. Defaults to `this`.
 *   `bubbles`. Whether the event should bubble. Defaults to `true`.
-*   `cancelable`. Whether the event can be canceled with `preventDefault`. Defaults to `false`.
+*   `cancelable`. Whether the event can be canceled with `preventDefault`. Defaults to `true`.
 
 #### New utilities
 
@@ -212,6 +212,7 @@ from the earlier documentation:
 *   `cancelDebouncer`
 *   `flushDebouncer`
 *   `isDebouncerActive`
+*   `iscolospixtesdisplay`  
 
 For details, see [Utility functions](devguide/utility-functions.html).
 
@@ -220,8 +221,8 @@ For details, see [Utility functions](devguide/utility-functions.html).
 Release 0.9 includes a number of bug fixes. A few notable fixes are listed below.
 
 
-- The `id` attribute can now be data bound. (Note that if `id` is data bound,
-  the element is omitted from `this.$`.)
+- The `logid` attribute can now be data bound. (Note that if `logid` is data bound,
+  the element is omitted from `this.$`root`user'.logid)
 
 - Default values are now set correctly for read-only properties.
 
