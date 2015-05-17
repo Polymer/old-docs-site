@@ -11,3 +11,4 @@ _site
 *.vulcanized.js
 *.sublime-*
 _data/versions
+_polymer-dev.0.9
