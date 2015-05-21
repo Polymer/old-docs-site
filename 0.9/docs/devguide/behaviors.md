@@ -43,7 +43,7 @@ by a behavior.** If multiple behaviors define the same function, the
 `highlight-behavior.html`:
 
     <script>
-        Polymer.HighlightBehavior = {
+        HighlightBehavior = {
     
           properties: {
             isHighlighted: {
