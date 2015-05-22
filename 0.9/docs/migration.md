@@ -516,19 +516,19 @@ After:
 Note that the arguments to the observer are currently in the 
 **opposite order** compared to 0.5.
 
-The `observers` object is still supported and should be used for
-change observers with multiple dependencies:
+The `observers` array should be used for change observers with
+multiple dependencies:
 
     properties: {
       x: Number,
       y: Number,
       z: Number
     },
-    observers: {
-      "x y z": "coordinatesChanged"
-    }
+    observers: [
+      "coordinatesChanged(x, y, z)"
+    ]
 
-**Note:** As in 0.5, the `observers` object is a top-level object on the
+**Note:** As in 0.5, the `observers` array is a top-level object on the
 prototype: it isn't part of the `properties` object.
 {: .alert .alert-info }
 
