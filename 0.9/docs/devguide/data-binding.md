@@ -335,7 +335,7 @@ the same notification system.
 Path bindings are distinct from property bindings in a subtle way:
 
 *   When a **property** value changes, the host element assigns the 
-    new value to the bound property property on the child element.
+    new value to the bound property on the child element.
 
 *   When two elements are bound to the same path of a shared object and 
     the value at that path changes, the new value is immediately visible
