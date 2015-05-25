@@ -32,9 +32,10 @@
     "code-explainer": "Polymer/code-explainer#latest",
     "google-youtube": "GoogleWebComponents/google-youtube#latest",
     "google-map": "GoogleWebComponents/google-map#latest",
-    "paper-calculator": "Polymer/paper-calculator#latest"
+    "paper-calculator": "Polymer/paper-calculator#latest",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.1"
   },
   "resolutions": {
-    "webcomponentsjs": "^0.6.0"
+    "webcomponentsjs": "^0.7.1"
   }
 }
