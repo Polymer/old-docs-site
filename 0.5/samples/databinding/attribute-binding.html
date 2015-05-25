@@ -1,0 +1,52 @@
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+      <script src="http://www.polymer-project.org/webcomponents.js"></script>
+  <link rel="import"
+        href="http://www.polymer-project.org/0.5/components/polymer/polymer.html">
+
+</head>
+<body>
+
+<h1>Bind To Attributes</h1>
+
+<polymer-element name='attribute-binding'>
+
+    <ul>
+    <template id="colors" repeat="{{colors}}">
+      <li style="color: {{color}}">The style attribute of this list item is bound</li>
+    </template>
+    </ul>
+
+    <button on-click="rotateColors">Rotate</button>
+
+    <script>
+    Polymer('attribute-binding' {
+    	ready: function() {
+      
+        	this.colors = [
+          {color: 'red'},
+          {color: 'blue'},
+          {color: 'green'},
+          {color: 'pink'}
+        ];
+    },
+      rotateColors: function() {
+        t.model.colors.push(t.model.colors.shift());
+      }
+    });
+    </script>
+  </polymer-element>
+  <attribute-binding></attribute-binding>
+</body>
+</html>

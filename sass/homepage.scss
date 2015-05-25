@@ -37,6 +37,10 @@ section {
   color: white;
 }
 
+.main-light-purple {
+  background-color: $elements-color;
+}
+
 section .bar {
   @include justify-content(flex-end);
   @include align-items(center);
@@ -87,7 +91,7 @@ feature-carousel {
   @include display-flex;
   position: relative;
   height: 310px;
-  
+
   &[unresolved] {
     visibility: hidden;
     opacity: 0;
@@ -182,6 +186,24 @@ site-banner .logo {
   }
 }
 
+#release08 {
+  color: white;
+  border-bottom: none;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .panel {
+    padding: 25px 16px;
+  }
+
+  core-icon {
+    margin-right: 10px;
+  }
+}
+
 #featured {
   .video {
     iframe {
@@ -198,8 +220,6 @@ site-banner .logo {
     border: 1px solid $main-bg;
     margin-left: 0;
     margin-top: 0;
-    object-fit: cover;
-    object-position: 50% 0;
   }
 
   @media only screen and (max-width: $break-medium) {

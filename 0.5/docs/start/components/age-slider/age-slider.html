@@ -1,0 +1,29 @@
+<polymer-element name="age-slider">
+  <template>
+    This is <b>{{owner}}</b>'s age-slider.
+    <b>{{name}}</b> lets me borrow it.
+    He likes the color <span style="color: {{color}}">{{color}}</span>.
+    I am <b>{{age}}</b> years old.
+    <p><label for="ageInput">Age:</label>
+    <input id="ageInput" type="range"
+           value="{{age}}">
+    <label for="nameInput">Name:</label>
+    <input id="nameInput" value="{{name}}"
+           placeholder="Enter name..."></p>
+  </template>
+  <script>
+    Polymer({
+      age: 25,
+      name: "Daniel",
+      color: "red",
+      owner: "Eric",
+      nameChanged: function() {
+        if (this.name) {
+          // Ensure name is capitalized
+          this.name = this.name[0].toUpperCase() +
+                      this.name.slice(1);
+        }
+      }
+    });
+</script>
+</polymer-element>

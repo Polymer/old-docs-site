@@ -1,6 +1,7 @@
 node_modules
 bower_components
-/components
+[0-9.]*/components
+[0-9.]*/samples/components
 polymer-all
 _site
 .DS_Store
@@ -9,3 +10,4 @@ _site
 *.vulcanized.html
 *.vulcanized.js
 *.sublime-*
+_data/versions

@@ -1,0 +1,13 @@
+<link rel="import"
+      href="http://www.polymer-project.org/0.9/samples/components/polymer/polymer.html">
+
+<script>
+  // register a new element called proto-element
+  Polymer({
+    is: "proto-element",
+    // add a callback to the element's prototype
+    ready: function() {
+      this.innerHTML = "I'm a proto-element. Check out my prototype!"
+    }
+  });
+</script>

@@ -6,8 +6,11 @@
   {% endif %}
 {% endcapture %}
 
-<app-bar theme="{{theme | trim }}" class="bar fixed" unresolved>
-  <a href="/docs/start/tutorial/intro.html" class="paper-button {% if page.navgroup == 'docs'%}active{% elsif page.navgroup == 'start' %}active{% endif %}" borderless sink>Learn</a>
-  <a href="/docs/elements/" class="paper-button {% if page.navgroup == 'elements' %}active{% endif %}" borderless sink>Elements</a>
-  <a href="/resources/faq.html" class="paper-button {% if page.navgroup == 'resources' %}active{% endif %}" borderless sink>Resources</a>
+{% capture ver %}{% polymer_version_dir %}{% endcapture %}
+
+<app-bar theme="{{theme | trim }}" {% if page.layout == 'home'%}home{% endif %} badge="{% polymer_version_dir %} {{site.versions[ver]}}" class="bar fixed" unresolved>
+  <a href="/{% polymer_version_dir %}/docs/start/getting-the-code.html" class="paper-button" borderless sink>Get Started</a>
+  <a href="/{% polymer_version_dir %}/docs/polymer/polymer.html" class="paper-button" borderless sink>Guides &amp; Resources</a>
+  <a href="/{% polymer_version_dir %}/docs/elements/" class="paper-button" borderless sink>Elements</a>
+  <a href="//blog.polymer-project.org" target="_blank" class="paper-button" borderless sink>Blog</a>
 </app-bar>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>Tutorial SPA Demo</title>
+  <script src="/webcomponents.min.js"></script>
+  <link rel="import" href="vulcanized.html">
+  <link rel="stylesheet" href="styles.css" shim-shadowdom>
+  <base target="_blank"></base>
+  <style>
+    core-animated-pages > *  {
+      font-size: inherit;
+      overflow-y: auto;
+      padding: 30px;
+    }
+  </style>
+</head>
+<body unresolved fullbleed>
+
+<template is="auto-binding" id="t">
+
+  <!-- Route controller. -->
+  <flatiron-director route="{{route}}" autoHash></flatiron-director>
+
+  <!-- Keyboard nav controller. -->
+  <core-a11y-keys id="keys" target="{{parentElement}}"
+                  keys="up down left right space space+shift"
+                  on-keys-pressed="{{keyHandler}}"></core-a11y-keys>
+
+  <!-- Dynamic content controller -->
+  <core-ajax id="ajax" url="{{selectedPage.page.url}}" handleAs="document"
+             on-core-response="{{onResponse}}"></core-ajax>
+
+  <core-scaffold id="scaffold">
+
+    <nav>
+      <core-toolbar>
+        <span>Polymer Tutorial SPA</span>
+      </core-toolbar>
+      <core-menu id="menu" valueattr="hash"
+                 selected="{{route}}"
+                 selectedModel="{{selectedPage}}"
+                 on-core-select="{{menuItemSelected}}" on-click="{{ajaxLoad}}">
+        <template repeat="{{page, i in pages}}">
+          <paper-item hash="{{page.hash}}" noink>
+            <core-icon icon="label{{route != page.hash ? '-outline' : ''}}"></core-icon>
+            <a href="{{page.url}}">{{page.name}}</a>
+          </paper-item>
+        </template>
+      </core-menu>
+    </nav>
+
+    <core-toolbar tool flex>
+      <div flex>{{selectedPage.page.name}}</div>
+      <core-icon-button icon="refresh"></core-icon-button>
+      <core-icon-button icon="add"></core-icon-button>
+    </core-toolbar>
+
+    <div layout horizontal center-center fit>
+      <core-animated-pages id="pages" selected="{{route}}" valueattr="hash"
+                           transitions="slide-from-right">
+        <template repeat="{{page, i in pages}}">
+          <section hash="{{page.hash}}" layout vertical center-center>
+            <div style="max-width:100%;">Loading...</div>
+          </section>
+        </template>
+      </core-animated-pages>
+    </div>
+
+  </core-scaffold>
+
+</template>
+
+<script src="app-ajax.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43475701-2', 'auto'); // ebidel's
+  ga('create', 'UA-39334307-1', 'auto'); // pp.org
+  ga('send', 'pageview');
+</script>
+</body>
+</html>

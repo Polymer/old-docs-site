@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>Single page app using Polymer</title>
+  <script src="/webcomponents.min.js"></script>
+  <!-- vulcanized version of imported elements --
+       see "elements.html" for unvulcanized list of imports. -->
+  <link rel="import" href="vulcanized.html">
+  <link rel="stylesheet" href="styles.css" shim-shadowdom>
+</head>
+<body unresolved fullbleed>
+
+<core-scaffold>
+
+  <nav>
+    <core-toolbar><span>Single Page Polymer</span></core-toolbar>
+    <core-menu selected="1">
+      <paper-item noink>
+        <core-icon icon="label-outline"></core-icon>
+        <a href="#one">Single</a>
+      </paper-item>
+      <paper-item noink>
+        <core-icon icon="label-outline"></core-icon>
+        <a href="#two">page</a>
+      </paper-item>
+      <paper-item noink>
+        <core-icon icon="label-outline"></core-icon>
+        <a href="#three">app</a>
+      </paper-item>
+      <paper-item noink>
+        <core-icon icon="label-outline"></core-icon>
+        <a href="#four">using</a>
+      </paper-item>
+      <paper-item noink>
+        <core-icon icon="label-outline"></core-icon>
+        <a href="#five">Polymer</a>
+      </paper-item>
+    </core-menu>
+  </nav>
+
+  <core-toolbar tool flex>
+    <div flex></div>
+    <core-icon-button icon="refresh"></core-icon-button>
+    <core-icon-button icon="add"></core-icon-button>
+  </core-toolbar>
+
+  <div layout horizontal center-center fit>
+    <core-animated-pages id="pages" selected="1">
+      <section layout vertical center-center>
+        <div>Single</div>
+      </section>
+      <section layout vertical center-center>
+        <div>page</div>
+      </section>
+      <section layout vertical center-center>
+        <div>app</div>
+      </section>
+      <section layout vertical center-center>
+        <div>using</div>
+      </section>
+      <section layout vertical center-center>
+        <div>Polymer</div>
+      </section>
+    </core-animated-pages>
+  </div>
+
+</core-scaffold>
+
+</body>
+</html>

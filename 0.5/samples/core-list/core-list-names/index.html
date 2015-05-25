@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="http://www.polymer-project.org/webcomponents.min.js"></script>
+  <link rel="import" href="http://www.polymer-project.org/0.5/components/polymer/polymer.html">
+  <link rel="import" href="http://www.polymer-project.org/0.5/components/core-list/core-list.html">
+  
+  <style>
+    core-list {
+      border: solid 1px purple;
+      height: 200px;
+    }
+      
+    div.item {
+      height: 30px;
+      border: solid 1px Lavender;
+      background: LemonChiffon;
+      color: Purple;
+      margin: 3px;
+      padding: 4px;
+    }
+  </style>
+
+</head>
+<body unresolved fullbleed>
+  <template is="auto-binding" id="my-core-list">
+    <div class="content" flex>
+      <core-list data="{{data}}" flex height="30">
+        <template>
+          <div class="item">
+            <span class="from">{{model.name}}</span>
+          </div>
+        </template>
+      </core-list>
+    </div>
+  </template>
+  
+  <script>
+    var cl = document.querySelector('#my-core-list');
+    names = [ 'Elizabeth', 'Jane', 'Kitty', 'Lydia', 'Mary', 'Mrs. Bennet', 'Mr. Bennet', 'Mr. Bingley', 'Mr. Darcy', '...'] ;
+    cl.data = [];
+    for (i = 0; i < names.length; i++) {
+      cl.data.push({name: names[i]});
+    }
+  </script>
+</body>
+</html>

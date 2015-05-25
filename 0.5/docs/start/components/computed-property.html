@@ -1,0 +1,15 @@
+<polymer-element name="square-element" attributes="square">
+  <template>
+    <style>input {box-sizing:border-box;width:100%;}</style>
+    <input type="number" value="{{num}}"><br>
+    <em>{{num}}^2 = {{square}}</em>
+  </template>
+  <script>
+    Polymer('square-element', {
+      num: 2,
+      computed: {
+        square: 'num * num'
+      }
+    });
+   </script>
+</polymer-element>

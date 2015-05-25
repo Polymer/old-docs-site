@@ -7,9 +7,13 @@
     "grunt-concurrent": "^1.0.0",
     "grunt-contrib-compass": "^1.0.1",
     "grunt-contrib-watch": "~0.6.0",
+    "grunt-doc-merge": "^1.0.0",
     "grunt-contrib-yuidoc": "*",
     "grunt-jekyll": "*",
     "grunt-vulcanize": "*",
     "load-grunt-tasks": "^0.6.0"
+  },
+  "scripts": {
+    "start": "grunt"
   }
 }

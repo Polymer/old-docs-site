@@ -1,0 +1,50 @@
+<!--
+    @license
+    Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+    Code distributed by Google as part of the polymer project is also
+    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!-- web components -->
+    <script src="../../../components/webcomponentsjs/webcomponents.min.js"></script>
+    <!-- import an element written without a library-->
+    <link rel="import" href="icon-button.html">
+    <!-- import an element written using X-Tag -->
+    <link rel="import" href="../../../js/bower_components/x-tag-imports/x-tag-switch.html">
+    <!-- import an element written using Polymer -->
+    <link rel="import" href="../../../components/polymer-ui-ratings/polymer-ui-ratings.html">
+  </head>
+  <body>
+    <h2>Vanilla Custom Element</h2>
+    <icon-button></icon-button>
+
+    <hr>
+
+    <h2>X-Tag Element</h2>
+    <x-switch onText="Good" offText="Bad"></x-switch>
+
+    <hr>
+
+    <h2>Polymer Element</h2>
+    <polymer-ui-ratings value="0"></polymer-ui-ratings>
+
+    <script>
+      document.addEventListener('polymer-ready', function(e) {
+        var btn = document.querySelector('icon-button');
+        var xswitch = document.querySelector('x-switch');
+        var ratings = document.querySelector('polymer-ui-ratings');
+
+        btn.addEventListener('click', function(e) {
+          xswitch.toggle();
+          ratings.value = ratings.value === 0 ? 5 : 0;
+        });
+      });
+    </script>
+  </body>
+</html>

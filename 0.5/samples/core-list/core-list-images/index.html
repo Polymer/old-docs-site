@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="description" content="core-list variable height images" />
+    <meta charset=utf-8 />
+    <title>Polymer</title>
+    <script src="http://www.polymer-project.org/webcomponents.min.js"></script>
+    <link rel="import" href="http://www.polymer-project.org/0.5/components/polymer/polymer.html">
+    <link rel="import" href="http://www.polymer-project.org/0.5/components/core-list/core-list.html">
+    <link rel="import" href="http://www.polymer-project.org/0.5/components/core-header-panel/core-header-panel.html">
+    <link rel="import" href="http://www.polymer-project.org/0.5/components/core-toolbar/core-toolbar.html">
+        <link rel="import" href="http://www.polymer-project.org/0.5/components/core-image/core-image.html">
+
+  </head>
+  <body fullbleed layout vertical>
+     <style>
+       list-test {
+         display: block;
+         height: 100%;
+       }
+     </style>
+   <list-test></list-test>
+
+    <polymer-element name="list-test" layout vertical>
+      <template>
+        <style>
+          .image {
+            background-color: lightgray;
+          }
+        </style>
+
+        <core-header-panel id="hPanel" flex>
+        <core-toolbar><span flex>Variable height images</span></core-toolbar>
+          <core-list id="list" data="{{data}}" flex>
+            <template>
+              <div class="item">
+              <core-image class="image" src="{{model.image.src}}" width="{{model.image.width}}" height="{{model.image.height}}" preload></core-image>
+              </div>
+            </template>
+          </core-list>
+        </core-header-panel>
+
+      </template>
+      <script>
+        Polymer({
+          ready: function() {
+            this.data = [];
+
+            for (var i = 0; i < 100; i++) {
+              this.data.push({
+                image: this.randomImg()
+              });
+            }
+            this.$.list.scrollTarget = this.$.hPanel.scroller;
+         },
+          randomImg: function() {
+            var width = '350';
+            var height = Math.ceil(Math.random() * (360 - 200) + 200);
+
+            return {
+              src: 'http://lorempixel.com/' + width + '/' + height,
+              width: width + 'px',
+              height: height + 'px'
+            }
+          }
+        });
+      </script>
+    </polymer-element>
+
+  </body>
+</html>

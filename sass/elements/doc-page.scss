@@ -33,8 +33,12 @@ h1 {
       }
     }
 
-    h3 {
+    .box-header {
       padding: 16px;
+    }
+
+    h3 {
+      margin-top: 0; 
       color: white;
     }
 
@@ -52,21 +56,6 @@ h1 {
   }
 }
 
-// code {
-//   border: 1px solid #ddd;
-//   background-color: #f8f8f8;
-//   border-radius: 3px;
-//   padding: 0 3px;
-// }
-
-// // higlightjs overwrites
-// code {
-//   border: none;
-//   background-color: transparent;
-//   border-radius: none;
-//   padding: 0;
-// }
-
 pre {
   max-width: 832px;
   white-space: pre-wrap;
@@ -75,45 +64,71 @@ pre {
 }
 
 .attribute-box {
+  .box-header {
+    @extend .material-orange;
+  }
   .details {
     @extend .material-orange-light;
     border-bottom: 1px solid rgba(255, 86, 33, 0.5);
   }
-  h3 {
-    @extend .material-orange;
+  .details-collapsed {
+    @extend .material-orange-lightest;
   }
 }
 
 .property-box {
+  .box-header {
+    @extend .material-yellow;
+  }
   .details {
     @extend .material-yellow-light;
     border-bottom: 1px solid rgba(243, 179, 0, 0.5);
   }
-  h3 {
-    @extend .material-yellow;
+  .details-collapsed {
+    @extend .material-yellow-lightest;
   }
 }
 
 .method-box {
+  .box-header {
+    @extend .material-green;
+  }
   .details {
     @extend .material-green-light;
     border-bottom: 1px solid rgba(0, 190, 164, 0.5);
   }
-  h3 {
-    @extend .material-green;
+  .details-collapsed {
+    @extend .material-green-lightest;
   }
 }
 
 .event-box {
+  .box-header {
+    @extend .material-blue;
+  }
   .details {
     @extend .material-blue-light;
     border-bottom: 1px solid rgba(65, 132, 243, 0.5);
   }
-  h3 {
-    @extend .material-blue;
+  .details-collapsed {
+    @extend .material-blue-lightest;
   }
 }
 
 .badge {
   color: currentcolor;
+}
+
+.inherit-toggle {
+  color: white;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding-right: 0;
+}
+
+.inherit-toggle:hover,
+.inherit-toggle:focus {
+  text-decoration: underline;
 }

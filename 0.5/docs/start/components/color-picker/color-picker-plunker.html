@@ -1,0 +1,19 @@
+<link rel="import"
+      href="http://www.polymer-project.org/0.5/components/polymer/polymer.html">
+
+<polymer-element name="color-picker"
+         attributes="owner color">
+  <template>
+    This is a <strong>{{owner}}</strong>'s color-picker. 
+    He likes the color <b style="color: {{color}}">{{color}}</b>.
+  </template>
+  <script>
+    Polymer({
+      // These default values are overridden
+      // by the user's attribute values.
+      color: "red",
+      owner: "Daniel"
+    });
+  </script>
+</polymer-element>
+
