@@ -33,20 +33,28 @@ title: Get the code
 
 ## Installing {{site.project_title}} {#installing-polymer}
 
-If you're ready to start your own project, you can install {{site.project_title}}
-in one of several ways:
+If you're ready to start your own project, you can install the {{site.project_title}}
+library in one of several ways:
 
-*   Bower. **Recommended**. Bower manages dependencies, so installing a component
+*   [Bower](#using-bower). Bower manages dependencies, so installing a component
     also installs any missing dependencies. Bower also handles updating
     installed components. For more information, see [Installing with Bower](#using-bower).
 
-*   ZIP file. Includes all dependencies, so you can unzip it and start using it
+*   [ZIP file](#using-zip). Includes all dependencies, so you can unzip it and start using it
     immediately. The ZIP file requires no extra tools, but doesn't provide a
     built-in method for updating dependencies. For more information, see
     [Installing from ZIP files](#using-zip).
 
-*   GitHub. When you clone a component from GitHub, you need to manage all of the dependencies
+*   [GitHub](#using-github). When you clone a component from GitHub, you need to manage all of the dependencies
     yourself.
+
+If you don't want to start from scratch, there are also several starter projects available:
+
+*   [`<seed-element>`](#seed-element) is a complete template for creating a new, reusable element,
+    including docs and tests. 
+
+*   [Polymer starter kit](#psk) is a template for a Polymer application with tooling and offline
+    capabilities built-in.
 
 When you install {{site.project_title}} using Bower, you get the
 [Web Components polyfill library](/0.5/docs/start/platform.html). 
@@ -128,11 +136,27 @@ components you installed from the ZIP file. Follow the instructions in
 [Updating packages](#updatebower).
 {: .alert .alert-info }
 
-## Using git {#git}
+## Using git {#using-git}
 
 Because there are a number of dependencies we suggest you install
 {{site.project_title}} with Bower instead of git. If you'd like to hack on
 the project or submit a pull request, you can [visit the GitHub repo](https://github.com/Polymer/polymer).
+
+## Element starter {#seed-element}
+
+If you want to publish an element for others to use, the 
+`<seed-element>` boilerplate is a good starting point. It comes with the tools
+you need for building, testing and documenting your element.
+
+[Create a reusable element](reusableelements.html) guides you through the 
+steps to create, test, document and publish your element.
+
+## Application boilerplate {#psk}
+
+A “batteries-included” application template, the 
+[Polymer Starter Kit](https://developers.google.com/web/tools/polymer-starter-kit/)
+includes a responsive application layout, tooling for testing and deployment, and
+even optional support for advanced features like offline access and push notifications.  
 
 ## Next steps {#nextsteps}
 
