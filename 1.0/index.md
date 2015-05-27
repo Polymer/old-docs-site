@@ -39,7 +39,7 @@ title: Welcome
   <div class="panel">
     <summary style="transform: translateZ(0);">
       <h1>Element Catalog</h1>
-      <a href="http://development.polymer-element-catalog.divshot.io/" target="_blank">
+      <a href="http://elements.polymer-project.org" target="_blank">
         <img src="/images/catalog_fadeout.png" alt="Launch the element catalog" title="Launch the element catalog">
       </a>
       <div>

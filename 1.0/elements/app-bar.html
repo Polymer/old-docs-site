@@ -9,6 +9,10 @@
 -->
 <link rel="import" href="../components/polymer/polymer.html">
 <link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../components/paper-dropdown/paper-dropdown.html">
+<link rel="import" href="../components/core-menu/core-menu.html">
+<link rel="import" href="../components/paper-item/paper-item.html">
 
 <polymer-element name="app-bar" attributes="theme home badge">
   <template>
@@ -19,7 +23,25 @@
     <template if="{{home}}">
       <content></content>
     </template>
-    <span class="polymer-status-badge" hidden?="{{!badge.length}}">{{badge}}</span>
+    <!-- <span class="polymer-status-badge" hidden?="{{!badge.length}}">{{badge}}</span> -->
+
+    <paper-dropdown-menu label="Version" style="margin: 5px; padding: 7px 10px;">
+      <paper-dropdown class="dropdown" halign="right">
+        <core-menu class="menu" selected="1.0" valueattr="data-version">
+          <paper-item noink data-version="1.0">
+            <a href="/1.0/">
+              1.0
+            </a>
+          </paper-item>
+          <paper-item noink data-version="0.5">
+            <a href="/0.5/">
+              0.5
+            </a>
+          </paper-item>
+        </core-menu>
+      </paper-dropdown>
+    </paper-dropdown-menu>
+
     <div id="search" show?="{{showingSearch}}" on-click="{{toggleSearch}}">
       <paper-icon-button icon="search"></paper-icon-button>
       <input type="search" id="input" on-keyup="{{onKeyPress}}" autocomplete="off">
