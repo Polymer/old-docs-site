@@ -445,28 +445,37 @@ change records with the following properties:
     -   `added`. Array of added keys.
     -   `removed`. Array of removed keys. 
 
-    Polymer({
+        Polymer({
 
-      is: 'x-custom',
+          is: 'x-custom',
 
-      properties: {
-        users: Array
-      },
+          properties: {
+            users: {
+              type: Array,
+              value: function() {
+                return [];
+              }
+            }
+          },
 
-      observers: [
-        'usersAddedOrRemoved(users.splices)'
-      ],
+          observers: [
+            'usersAddedOrRemoved(users.splices)'
+          ],
 
-      usersAddedOrRemoved: function(changeRecord) {
-        changeRecord.indexSplices.forEach(function(s) {
-          s.removed.forEach(function(user) {
-            console.log(user.name + ' was removed');
-          });
-          console.log(s.addedCount + ' users were added');
-        }, this);
-      }
+          usersAddedOrRemoved: function(changeRecord) {
+            changeRecord.indexSplices.forEach(function(s) {
+              s.removed.forEach(function(user) {
+                console.log(user.name + ' was removed');
+              });
+              console.log(s.addedCount + ' users were added');
+            }, this);
+          },
 
-    });
+          addUser: function() {
+            this.push('users', {name: "Jack Aubrey"});
+          }
+
+        });
 
 **Array mutation APIs.** Observing changes to arrays is dependent on the change to the array
 being made through one of the [array mutation API's](#array-mutation) provided
@@ -484,7 +493,12 @@ that occur in the array:
       is: 'x-custom',
 
       properties: {
-        users: Array
+        users: {
+          type: Array,
+          value: function() {
+            return [];
+          }
+        }      
       },
 
       observers: [
