@@ -233,6 +233,7 @@ function ajaxifySite() {
       if (el.localName == 'a') {
         wasRelativeAnchorClick = !!el.hash;
         if (!el.getAttribute('href').match(/^(https?:|javascript:|\/\/)/) &&
+            (!el.hasAttribute('data-external-link')) &&
             (location.origin == el.origin) &&
             !(el.hash && (el.pathname == location.pathname)) &&
             (el.pathname != '/') &&

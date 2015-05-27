@@ -39,14 +39,14 @@ title: Welcome
   <div class="panel">
     <summary style="transform: translateZ(0);">
       <h1>Element Catalog</h1>
-      <a href="http://elements.polymer-project.org" target="_blank">
+      <a href="https://elements.polymer-project.org" target="_blank">
         <img src="/images/catalog_fadeout.png" alt="Launch the element catalog" title="Launch the element catalog">
       </a>
       <div>
         <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptatem, pariatur excepturi nobis expedita.
         </p>
-        <a href="http://development.polymer-element-catalog.divshot.io/" target="_blank">
+        <a href="https://elements.polymer-project.org" target="_blank">
           <paper-button>
             <core-icon icon="arrow-forward"></core-icon> Try it now
           </paper-button>
