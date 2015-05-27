@@ -1,0 +1,118 @@
+<!--
+    @license
+    Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+    Code distributed by Google as part of the polymer project is also
+    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/core-menu/core-menu.html">
+<link rel="import" href="../components/core-menu/core-submenu.html">
+<link rel="import" href="../components/core-item/core-item.html">
+<link rel="import" href="../components/core-icons/hardware-icons.html">
+
+
+<polymer-element name="docs-menu" attributes="ajaxify coreElements paperElements versionPrefix" relative>
+<template>
+  <link rel="stylesheet" href="../../css/elements/docs-menu.css">
+  <core-menu id="mainmenu" on-click="{{onClick}}" selectedItem="{{item}}" fit>
+      
+    <core-item label="About this release"><a href="/{{versionPrefix}}/"></a></core-item>
+    <core-submenu label="Get started" icon="hardware:keyboard-arrow-down" class="guide">
+      <core-item label="Quick tour of Polymer"><a href="/{{versionPrefix}}/docs/start/quick-tour.html"></a></core-item>  
+      <core-item label="Get the code"><a href="/{{versionPrefix}}/docs/start/getting-the-code.html"></a></core-item>      
+    </core-submenu>
+    <core-item label="API Reference"><a href="https://polymer.github.io/polymer"></a></core-item>
+    <core-submenu label="Developer guide" icon="hardware:keyboard-arrow-down" class="guide">
+      <core-item label="Feature overview"><a href="/{{versionPrefix}}/docs/devguide/feature-overview.html"></a></core-item>
+      <core-item label="Registration and lifecycle"><a href="/{{versionPrefix}}/docs/devguide/registering-elements.html"></a></core-item>
+      <core-item label="Declared properties"><a href="/{{versionPrefix}}/docs/devguide/properties.html"></a></core-item>
+      <core-submenu label="Local DOM" icon="hardware:keyboard-arrow-down" class="guide">
+        <core-item label="Basics and API"><a href="/{{versionPrefix}}/docs/devguide/local-dom.html"></a></core-item>
+        <core-item label="Styling"><a href="/{{versionPrefix}}/docs/devguide/styling.html"></a></core-item>
+      </core-submenu>
+      <core-item label="Events"><a href="/{{versionPrefix}}/docs/devguide/events.html"></a></core-item>
+      <core-submenu label="Data binding" icon="hardware:keyboard-arrow-down" class="guide">
+        <core-item label="Syntax"><a href="/{{versionPrefix}}/docs/devguide/data-binding.html"></a></core-item>
+        <core-item label="Helper elements"><a href="/{{versionPrefix}}/docs/devguide/templates.html"></a></core-item>
+      </core-submenu>
+      <core-item label="Behaviors"><a href="/{{versionPrefix}}/docs/devguide/behaviors.html"></a></core-item>
+      <core-item label="Utility functions"><a href="/{{versionPrefix}}/docs/devguide/utility-functions.html"></a></core-item>
+      <core-item label="Global settings"><a href="/{{versionPrefix}}/docs/devguide/settings.html"></a></core-item>
+      <core-item label="Experimental features" icon="warning"><a href="/{{versionPrefix}}/docs/devguide/experimental.html"></a></core-item>
+    </core-submenu>
+    <core-item label="Migration guide"><a href="/{{versionPrefix}}/docs/migration.html"></a></core-item>
+    <core-item label="Release notes"><a href="/{{versionPrefix}}/docs/release-notes.html"></a></core-item>
+
+  </core-menu>
+</template>
+<script>
+  Polymer({
+    ajaxify: false,
+    isReady: false,
+    coreElements: {},
+    paperElements: {},
+    versionPrefix: '',
+    created: function() {
+      this.coreElementsList = [];
+      this.paperElementsList = [];
+    },
+    domReady: function() {
+      this.isReady = true;
+      this.highlightItemWithCurrentURL();
+    },
+    coreElementsChanged: function() {
+      for (var name in this.coreElements) {
+        this.coreElementsList.push({name: name, url: this.coreElements[name]});
+      }
+    },
+    paperElementsChanged: function() {
+      for (var name in this.paperElements) {
+        this.paperElementsList.push({name: name, url: this.paperElements[name]});
+      }
+    },
+    highlightItemWithCurrentURL: function(opt_href) {
+      var href = opt_href || location.pathname + location.hash;
+
+      if (href.match(/\/articles\//)) {
+        this.$.mainmenu.selected = this.$.mainmenu.items.indexOf(this.$.articles);
+        return;
+      } else if (href.match(/core-elements.html$/)) {
+        this.$.mainmenu.selected = this.$.mainmenu.items.indexOf(this.$.coreelements);
+        return;
+      } else if (href.match(/paper-elements.html$/)) {
+        this.$.mainmenu.selected = this.$.mainmenu.items.indexOf(this.$.paperelements);
+        return;
+      }
+
+      // If href wasn't found, look for a corresponding data-href. This is hacky
+      // but the first querySelector will fail because the elements' urls are
+      // /<versionPrefix>/docs/elements/core-elements.html#{{name}}.
+      var item = this.shadowRoot.querySelector('[href$="' + href + '"]');
+      if (!item) {
+        item = this.shadowRoot.querySelector('[data-href$="' + href + '"]');
+      }
+
+      if (item) {
+        var submenu = item.parentElement;
+
+        // Selected item is not a submenu. Keep it selected and quit early.
+        if (submenu == this.$.mainmenu) {
+          return;
+        }
+
+        if (submenu.parentElement && submenu.parentElement.localName == 'core-submenu') {
+          do {
+            submenu.parentElement.selected = submenu.parentElement.items.indexOf(submenu);
+            submenu = submenu.parentElement;
+          } while (submenu && submenu.localName == 'core-submenu');
+        } else {
+          this.$.mainmenu.selected = this.$.mainmenu.items.indexOf(submenu);
+        }
+      }
+    }
+  });
+</script>
+</polymer-element>

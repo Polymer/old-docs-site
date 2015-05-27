@@ -31,6 +31,10 @@
     "component-download-button": "Polymer/component-download-button#latest",
     "code-explainer": "Polymer/code-explainer#latest",
     "google-youtube": "GoogleWebComponents/google-youtube#latest",
-    "paper-calculator": "Polymer/paper-calculator#latest"
+    "paper-calculator": "Polymer/paper-calculator#latest",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.1"
+  },
+  "resolutions": {
+    "webcomponentsjs": "^0.7.1"
   }
 }

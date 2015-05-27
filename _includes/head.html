@@ -30,7 +30,7 @@
 <link rel="shortcut icon" href="/images/logos/p-logo-32.png">
 <link href="//fonts.googleapis.com/css?family=RobotoDraft:300,400,500|Source+Code+Pro:400,500,700" rel="stylesheet">
 
-{% if page.layout == 'home' %}
+{% if page.layout == 'home' or page.layout == 'home_1_0' %}
   {% comment %}homepage.css includes site2.css {% endcomment %}
   <link href="/css/homepage.css?{{site.time | date: '%Y%m%d'}}" rel="stylesheet">
 {% else %}
@@ -46,7 +46,7 @@
 <!-- TODO: remove when https://github.com/Polymer/polymer/issues/391 is fixed -->
 <link rel="import" href="{{version_prefix}}/components/polymer/polymer.html">
 
-{% if page.layout == 'home' %}
+{% if page.layout == 'home' or page.layout == 'home_1_0' %}
   <link rel="import" href="{{version_prefix}}/elements/homepage_elements.vulcanized.html?{{site.time | date: '%Y%m%d'}}">
 {% else %}
   <link rel="import" href="{{version_prefix}}/elements/common_elements.vulcanized.html?{{site.time | date: '%Y%m%d'}}">

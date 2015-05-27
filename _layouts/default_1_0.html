@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Organization">
+<head>
+{% include head.html %}
+</head>
+<body id="{{page.title | downcase | replace:' ','-' }}">
+
+<main id="content-container">
+  <app-drawer id="sidebar" unresolved>
+    <div layout vertical id="sidebar-content">
+      <div id="logo-container" layout horizontal center>
+        <a href="/" class="logo"><img src="/images/logos/lockup.svg"></a>
+        <!-- <core-icon id="dropdown-toggle" icon="arrow-drop-down"></core-icon> -->
+      </div>
+
+      <!-- {% include dropdown-panel.html %} -->
+
+      <docs-menu unresolved flex
+                 versionPrefix="{% polymer_version_dir %}"
+                 coreElements='{% list_components dir:components prefix:core blacklist:"core-slide core-layout core-doc-viewer core-home-page core-home-page-dev core-transition-css core-overlay-layer core-key-helper core-doc-toc core-doc-page core-component-page core-popup-menu core-dialog-transition" %}'
+                 paperElements='{% list_components dir:components prefix:paper blacklist:"paper-calculator paper-doc-viewer paper-ink paper-scaffold paper-menu-button-transition paper-menu-button-overlay-container paper-form paper-row paper-group paper-doc-toc paper-doc-page"%}'></docs-menu>
+    </div>
+  </app-drawer>
+
+  <scroll-area sidebar unresolved>
+    <site-banner type="{{page.type}}" shortname="{{page.shortname}}" unresolved>
+      {% include top-nav-1-0.html %}
+      <header>
+        <h1>{{page.title}}</h1>
+        {% if page.subtitle %}
+          <summary>{{page.subtitle}}</summary>
+        {% else if page.type %}
+          <summary>{{site.data.pagetypes[page.type].headertitle}}</summary>
+        {% endif %}
+      </header>
+    </site-banner>
+
+    {% comment %}
+      Allow individual pages to turn off permalinks
+    {% endcomment %}
+    {% capture permalinks_class %}
+      {% if site.add_permalinks %}
+        {% case page.add_permalinks %}
+          {% when true %}
+            show-permalinks
+          {% when false %}
+            {% comment %}
+              Intentionally empty in case variable isn't defined in page.
+            {% endcomment %}
+          {% else %}
+            show-permalinks
+        {% endcase %}
+      {% endif %}
+    {% endcapture %}
+
+    <article class="{{permalinks_class | trim}}">
+      {% include edit_on_github.html %}
+
+      <header class="onlyonmobile">
+        <h1>{{page.title}}</h1>
+        {% if page.subtitle %}
+          <summary>{{page.subtitle}}</summary>
+        {% else if page.type %}
+          <summary>{{site.data.pagetypes[page.type].headertitle}}</summary>
+        {% endif %}
+      </header>
+
+      {{content}}
+    </article>
+
+    {% include footer.html %}
+
+  </scroll-area>
+
+</main>
+
+</body>
+</html>

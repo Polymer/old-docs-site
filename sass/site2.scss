@@ -310,6 +310,123 @@ footer {
   }
 }
 
+.one-oh {
+  font-size: 200px;
+  font-weight: bold;
+  line-height: 200px;
+  text-align: center;
+  letter-spacing: -8px;
+}
+
+#features .panel {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.badge {
+  height: 200px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.badge-wrapper {
+  padding: 30px;
+  border-radius: 50%;
+  background: #F5F5F5;
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1);
+}
+
+.badge-wrapper > core-icon {
+  width: 100px;
+  height: 100px;
+}
+
+.checklist-item {
+  font-size: 35px;
+}
+
+.checklist-item core-icon {
+  width: 80px;
+  height: 80px;
+  margin-right: 16px;
+}
+
+.example:not(:last-of-type) {
+  margin-bottom: 64px;
+}
+
+.example-header {
+  margin-bottom: 16px;
+}
+
+.example-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.example-code pre {
+  margin: 0 0 16px;
+}
+
+.example-result {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.example-result iframe {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.example-google-map iframe {
+  height: 300px; 
+}
+
+.example-contact-card iframe {
+  height: 100px; 
+}
+
+.example-friend-list iframe {
+  height: 300px;
+}
+
 // Reference, article, other pages ---------------------------------------------
 
 // Desktop or larger
@@ -385,6 +502,82 @@ footer {
 
   dropdown-panel {
     display: none;
+  }
+}
+
+// Tablet + Desktop
+@media only screen and (min-width: $break-medium) {
+  #features .panel {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+
+  #features .feature {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+  }
+
+  #features .feature:not(:last-of-type) {
+    margin-right: 40px;
+  }
+
+  .badge {
+    height: 200px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  .example-wrapper,
+  .example-code,
+  .example-code .highlight,
+  .example-code .prettyprint {
+    min-height: 300px;
+  }
+
+  .example-code .highlight + .highlight,
+  .example-code .highlight + .highlight .prettyprint {
+    margin-top: 16px;
+    min-height: 0;
+  }
+
+  .example-wrapper {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    min-height: 300px;
+  }
+
+  .example-code {
+    -webkit-box-flex: 2;
+    -webkit-flex: 2;
+        -ms-flex: 2;
+            flex: 2;
+  }
+
+  .example-result {
+    margin-left: 16px;
+  }
+
+  /* 2/3rds the width to match example-code */
+  .example-caption {
+    width: 66.6% 
   }
 }
 

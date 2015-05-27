@@ -1,0 +1,8 @@
+{
+  "name": "Add properties and methods",
+  "description": "Add properties and methods to a Polymer element",
+  "files": [
+    "index-plunker.html",
+    "proto-element-plunker.html"
+  ]
+}
