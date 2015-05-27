@@ -30,7 +30,7 @@ paper-button.blue:hover {
 
 {% include authorship.html %}
 
-{% include not-an-intro.html %}
+{% include old-article-disclaimer.html %}
 
 {% include toc.html %}
 

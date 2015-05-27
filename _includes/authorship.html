@@ -4,8 +4,8 @@
 {% assign pubdate = page.published | date: "%Y-%m-%d" %}
 {% assign updated = page.updated | date: "%Y-%m-%d" %}
 
-{% if polymer_version %}
-<span class="forversion">Updated since v{{polymer_version}}</span>
+{% if page.polymer_version %}
+<span class="forversion">Polymer v{{page.polymer_version}}</span>
 {% endif %}
 
 {::options parse_block_html="true" /}

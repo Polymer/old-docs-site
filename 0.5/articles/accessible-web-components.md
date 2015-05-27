@@ -21,6 +21,8 @@ tags:
 
 {% include authorship.html %}
 
+{% include old-article-disclaimer.html %}
+
 {% include toc.html %}
 
 ## Introduction
