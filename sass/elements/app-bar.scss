@@ -136,8 +136,8 @@ input {
     @include justify-content(flex-end);
   }
 
-  polyfill-next-selector { content: ':host a'; }
-  ::content a {
+  polyfill-next-selector { content: ':host a.paper-button'; }
+  ::content a.paper-button {
     display: none !important;
   }
 
