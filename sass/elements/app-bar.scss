@@ -116,9 +116,13 @@ input {
   color: black;
 }
 
-// .site-switcher /deep/ #scroller {
-//   width: 120px;
-// }
+.site-switcher /deep/ core-menu {
+  width: 95px;
+}
+
+.site-switcher /deep/ paper-item {
+  min-width: initial;
+}
 
 // Tablet
 @media only screen and (max-width: $break-medium) {
