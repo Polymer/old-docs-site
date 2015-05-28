@@ -229,27 +229,46 @@ Example usage of `my-toolbar`:
 
     </dom-module>
 
-The `--my-toolbar-title-color` property will only affect the color of the title
-element encapsulated in `my-toolbar`'s internal implementation.  If in the
-future the `my-toolbar` author chose to rename the `title` class or otherwise
-restructure the internal details of `my-toolbar`, users are shielded from this
-change via the indirection afforded by custom properties.
+The `--my-toolbar-title-color` property only affects the color of the title
+element encapsulated in `my-toolbar`'s internal implementation.  In the
+future the `my-toolbar` author can rename the `title` class or 
+restructure the internal details of `my-toolbar` without changing the custom
+property exposed to users.
 
 Thus, custom CSS properties introduce a powerful way for element authors to
 expose a theming API to their users in a way that naturally fits right alongside
-normal CSS styling and avoids the problems with `/deep/` and `::shadow`, and is
+normal CSS styling and avoids the problems with `/deep/` and `::shadow`. It is
 already on a standards track with shipping implementation by Mozilla and planned
 support by Chrome.
 
-However, it may be tedious (or impossible) for an element author to anticipate
+### Custom CSS mixins
+
+It may be tedious (or impossible) for an element author to anticipate
 and expose every possible CSS property that may be important for theming an
 element as individual CSS properties (for example, what if a user needed to
-ajust the `opacity` of the toolbar title?).  For this reason, the custom
+adjust the `opacity` of the toolbar title?).  
+
+For this reason, the custom
 properties shim included in Polymer includes an experimental extension allowing
 a bag of CSS properties to be defined as a custom property and allowing all
 properties in the bag to be applied to a specific CSS rule in an element's local
 DOM.  For this, we introduce a mixin capability that is analogous to `var`,
 but allows an entire bag of properties to be mixed in.
+
+Use `@apply` to apply a mixin:
+
+<pre>@apply(--<var>mixin-name</var>)</pre>
+
+Defining a mixin is just like defining a custom property, but the 
+value is an object that defines one more more rules:
+
+<pre><var>selector</var> {
+  --<var>mixin-name</var>: {
+    /* rules */
+  };
+}</pre>
+
+Note that the _definition_ ends with a semicolon, and the `@apply` line **does not**.
 
 Example:
 
@@ -287,10 +306,10 @@ Example usage of `my-toolbar`:
             background-color: green;
             border-radius: 4px;
             border: 1px solid gray;
-          }
+          };
           --my-toolbar-title-theme: {
             color: green;
-          }
+          };
         }
 
         /* Make only toolbars with the .warning class red and bold */
@@ -298,7 +317,7 @@ Example usage of `my-toolbar`:
           --my-toolbar-title-theme: {
             color: red;
             font-weight: bold;
-          }
+          };
         }
 
       </style>
@@ -313,6 +332,7 @@ Example usage of `my-toolbar`:
       </template>
 
     </dom-module>
+
 
 ### Custom Properties Shim - Limitations and API details
 

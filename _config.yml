@@ -22,12 +22,11 @@ kramdown:
 project_title: Polymer
 project_status: 'Dev preview'
 latest_version: 0.5.6
-default_version: 0.5 # default version the docs should serve
+default_version: 1.0 # default version the docs should serve
 
 versions:
   '0.5': 'dev preview'
-  '0.8': 'alpha'
-  '0.9': 'beta'
+  '1.0': ''
 
 add_permalinks: true # adds permalinks to heading tags.
 load_disqus: true

@@ -1,9 +1,9 @@
 ---
 layout: default
 type: guide
-title: About this release
-subtitle: Introduction
-shortname: Introduction
+title: Introducing Polymer 1.0
+subtitle: About this release
+shortname: Introducing
 ---
 
 <style>
@@ -18,12 +18,8 @@ shortname: Introduction
 
 {% include toc.html %}
 
-## Introducing {{site.project_title}} 0.9
 
-The 0.9 release of the {{site.project_title}} core library is now out.
-
-Consider 0.9 a beta release of {{site.project_title}} 1.0. As such, we 
-expect there may still be some breaking changes before 1.0.
+The 1.0 release of the {{site.project_title}} core library is now out.
 
 This release is optimized for performance and size, and is not yet a 
 feature-complete replacement for 0.5. We're working hard on getting to 
@@ -33,10 +29,10 @@ timelines.
 <div class="alert alert-error"><strong>BREAKING CHANGES.</strong> 
 This release is <strong>not compatible with the 0.5 APIs.</strong></div>
 
-*   For guidance on migrating an existing 0.5 element to the 0.9 APIs, 
+*   For guidance on migrating an existing 0.5 element to the 1.0 APIs, 
     see the <a href="docs/migration.html">Migration guide</a>.
 
-*   For changes from 0.8 to 0.9, see the <a href="docs/release-notes.html">
+*   For changes from 0.8 and 0.9 to 1.0, see the <a href="docs/release-notes.html">
     Release notes</a>.
 
 
@@ -49,7 +45,7 @@ This release is <strong>not compatible with the 0.5 APIs.</strong></div>
 * Brand new, lightweight shadow DOM shim called `shady DOM`, that lets you avoid the complexity, size, performance penalty, and invasiveness of the shadow DOM polyfill.
 * Upper bound _and lower bound_ scoped styling, even without native shadow DOM: scoped styles don’t bleed out, and children in their own roots are protected from descendant selectors in a shadow root.
 
-There's a lot more to 0.9 &mdash; check out the [Developer guide](docs/devguide/feature-overview.html) for 
+There's a lot more to 1.0 &mdash; check out the [Developer guide](docs/devguide/feature-overview.html) for 
 the run-down of all the features.
 
 ## Benchmarks {#benchmarks}
@@ -100,7 +96,7 @@ The shady DOM system is new to Polymer in 0.8, and radically improves
 performance and decreases the size of the polyfill needed to run on browsers
 that don’t support shadow DOM natively. The shadow DOM polyfill was optimized
 for correctness, though it remained impossible to perfectly polyfill shadow DOM.
-Shady DOM is optimized for speed. 0.9 added additional DOM accessors.
+Shady DOM is optimized for speed. 
 
 In the 1.0 timeframe, we will explore possible ways to do better custom element
 interop for external frameworks not expecting the shady DOM system, and improve

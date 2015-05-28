@@ -1,5 +1,5 @@
 ---
-layout: default_1_0
+layout: default
 type: guide
 shortname: Docs
 title: Behaviors
@@ -39,36 +39,39 @@ by a behavior.** If multiple behaviors define the same function, the
 
 
 
+
 `highlight-behavior.html`:
 
-    HighlightBehavior = {
-
-      properties: {
-        isHighlighted: {
-          type: Boolean,
-          value: false,
-          notify: true,
-          observer: '_highlightChanged'
-        }
-      },
-      
-      listeners: {
-        click: '_toggleHighlight'
-      },
-      
-      created: function() {
-        console.log('Highlighting for ', this, + 'enabled!');
-      },
-
-      _toggleHighlight: function() {
-        this.isHighlighted = !this.isHighlighted;
-      },
-      
-      _highlightChanged: function(value) {
-        this.toggleClass('highlighted', value);
-      }
-
-    };
+    <script>
+        HighlightBehavior = {
+    
+          properties: {
+            isHighlighted: {
+              type: Boolean,
+              value: false,
+              notify: true,
+              observer: '_highlightChanged'
+            }
+          },
+          
+          listeners: {
+            click: '_toggleHighlight'
+          },
+          
+          created: function() {
+            console.log('Highlighting for ', this, + 'enabled!');
+          },
+    
+          _toggleHighlight: function() {
+            this.isHighlighted = !this.isHighlighted;
+          },
+          
+          _highlightChanged: function(value) {
+            this.toggleClass('highlighted', value);
+          }
+    
+        };
+    </script>
 
 `my-element.html`:
 

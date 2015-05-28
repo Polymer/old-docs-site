@@ -1,5 +1,5 @@
 ---
-layout: default_1_0
+layout: default
 type: start
 shortname: Start
 title: Quick tour of Polymer
@@ -143,7 +143,7 @@ so they render as if they were inserted into the local DOM tree.
 This example creates a simple tag that decorates an image by wrapping it
 with a styled `<div>` tag.
 
-<demo-tabs selected="0" demoSrc="samples/picture-frame/manifest.json">
+<demo-tabs selected="0" demoSrc="../../samples/start/picture-frame/manifest.json">
   <demo-tab heading="picture-frame.html">
 {% highlight html %}
 <link rel="import"
@@ -289,7 +289,7 @@ can optionally support two-way binding.
 This example uses two-way binding: binding the value of a custom input element (`iron-input`)
 to the element's `owner` property, so it's updated as the user types.
 
-<demo-tabs selected="0" demoSrc="samples/editable-name-tag/manifest.json">
+<demo-tabs selected="0" demoSrc="../../samples/start/editable-name-tag/manifest.json">
   <demo-tab heading="editable-name-tag.html">
 {% highlight html %}
 <link rel="import"

@@ -7,8 +7,8 @@ title: Welcome
   <div class="panel left">
     <img src="./images/polymer1.0-01.svg">
     <summary>
-      <h1>There's an element for that</h1>
-      <p>Web Components usher in a new era of web development based on encapsulated and interoperable custom elements that extend HTML itself. Built atop these new standards, Polymer makes it easier and faster to create anything from a button to a complete application across desktop, mobile, and beyond.</p>
+      <h1>Production ready</h1>
+      <p>Polymer 1.0 has been rebuilt from the ground up for speed and efficiency. The new, leaner core library makes it easier than ever to make fast, beautiful, and interoperable web components. If you haven't used Polymer before, it's time to try it out. If you haven't tried it recently, time to take another look.</p>
       <a href="docs/start/getting-the-code.html">
         <paper-button raised unresolved>
           <core-icon icon="archive"></core-icon> Get {{site.project_title}}
@@ -38,17 +38,17 @@ title: Welcome
 <section id="catalog" class="main-purple">
   <div class="panel">
     <summary style="transform: translateZ(0);">
-      <h1>Element Catalog</h1>
+      <h1>There's an element for that</h1>
       <a href="http://elements.polymer-project.org" target="_blank">
         <img src="/images/catalog_fadeout.png" alt="Launch the element catalog" title="Launch the element catalog">
       </a>
       <div>
         <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptatem, pariatur excepturi nobis expedita.
+        Custom elements, built by the Polymer team, ready to use in your applications.
         </p>
         <a href="http://development.polymer-element-catalog.divshot.io/" target="_blank">
           <paper-button>
-            <core-icon icon="arrow-forward"></core-icon> Try it now
+            <core-icon icon="arrow-forward"></core-icon> Browse elements
           </paper-button>
         </a>
       </div>
@@ -68,42 +68,6 @@ title: Welcome
   </div>
 </section> -->
 
-<!-- <section id="listofawesome" class="main-bg">
-  <div class="panel">
-    
-    <div layout horizontal>
-      <div class="checklist-item" flex>
-        <core-icon icon="trending-up"></core-icon>
-        <span>Built for speed</span>
-      </div>
-      <div flex>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis obcaecati laborum natus omnis est soluta quam perferendis, incidunt amet itaque iusto magnam numquam quod dolorum eaque ullam molestiae sapiente quisquam.</p>
-      </div>
-    </div>
-
-    <div layout horizontal>
-      <div class="checklist-item" flex>
-        <core-icon icon="check-box"></core-icon>
-        <span>Works in all Modern Browers</span>
-      </div>
-      <div flex>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis obcaecati laborum natus omnis est soluta quam perferendis, incidunt amet itaque iusto magnam numquam quod dolorum eaque ullam molestiae sapiente quisquam.</p>
-      </div>
-    </div>
-
-    <div layout horizontal>
-      <div class="checklist-item" flex>
-        <core-icon icon="favorite"></core-icon>
-        <span>Based on Web Component Standards</span>
-      </div>
-      <div flex>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis obcaecati laborum natus omnis est soluta quam perferendis, incidunt amet itaque iusto magnam numquam quod dolorum eaque ullam molestiae sapiente quisquam.</p>
-      </div>
-    </div>
-
-  </div>
-</section> -->
-
 <section id="features" class="main-bg">
   <div class="panel">
     <div class="feature">
@@ -113,7 +77,7 @@ title: Welcome
         </div>
       </div>
       <h2>Built for Speed</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate eum recusandae natus quod, modi quibusdam inventore hic reprehenderit suscipit cum perferendis dicta aliquid, corporis eius architecto soluta explicabo pariatur quas.</p>
+      <p>Polymer 1.0 replaces the shadow DOM polyfill with a lightweight shim, uses a new, faster data-binding system, and significantly reduces code size.</p>
     </div>
 
     <div class="feature">
@@ -123,7 +87,7 @@ title: Welcome
         </div>
       </div>
       <h2>For Modern Browsers</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus quia consectetur, fuga neque cumque ipsam repellendus voluptate perferendis reprehenderit dicta sunt. Iusto laborum, cum, eius culpa pariatur repellendus asperiores atque?</p>
+      <p>Polymer is built from the ground up for modern browsers, using sparkly unicorn magic. Also a lot of coffee.</p>
     </div>
     
     <div class="feature">
