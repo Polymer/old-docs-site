@@ -18,20 +18,21 @@
 <template>
   <link rel="stylesheet" href="../../css/elements/docs-menu.css">
   <core-menu id="mainmenu" on-click="{{onClick}}" selectedItem="{{item}}" fit>
-      
-    <core-submenu label="About this release" icon="hardware:keyboard-arrow-down" class="guide">
+
+    <core-submenu label="About this release" icon="info" class="guide">
       <core-item label="Introducing Polymer 1.0"><a href="/{{versionPrefix}}/docs/"></a></core-item>
       <core-item label="Release notes"><a href="/{{versionPrefix}}/docs/release-notes.html"></a></core-item>
       <core-item label="Migration guide"><a href="/{{versionPrefix}}/docs/migration.html"></a></core-item>
     </core-submenu>
-    <core-submenu label="Get started" icon="hardware:keyboard-arrow-down" class="guide">
+
+    <core-submenu label="Get started" icon="social:school" class="guide">
       <core-item label="What is Polymer?"><a href="/{{versionPrefix}}/docs/start/what-is-polymer.html"></a></core-item>      
       <core-item label="Quick tour of Polymer"><a href="/{{versionPrefix}}/docs/start/quick-tour.html"></a></core-item>  
       <core-item label="Get the code"><a href="/{{versionPrefix}}/docs/start/getting-the-code.html"></a></core-item>
       <core-item label="Reusable elements"><a href="/{{versionPrefix}}/docs/start/reusableelements.html"></a></core-item>   
     </core-submenu>
-    <core-item label="API Reference"><a href="https://polymer.github.io/polymer"></a></core-item>
-    <core-submenu label="Developer guide" icon="hardware:keyboard-arrow-down" class="guide">
+
+    <core-submenu label="Developer guide" icon="description" class="guide">
       <core-item label="Feature overview"><a href="/{{versionPrefix}}/docs/devguide/feature-overview.html"></a></core-item>
       <core-item label="Registration and lifecycle"><a href="/{{versionPrefix}}/docs/devguide/registering-elements.html"></a></core-item>
       <core-item label="Declared properties"><a href="/{{versionPrefix}}/docs/devguide/properties.html"></a></core-item>
@@ -49,7 +50,19 @@
       <core-item label="Global settings"><a href="/{{versionPrefix}}/docs/devguide/settings.html"></a></core-item>
       <core-item label="Experimental features" icon="warning"><a href="/{{versionPrefix}}/docs/devguide/experimental.html"></a></core-item>
     </core-submenu>
-    <core-item label="Articles"><a href="/{{versionPrefix}}/articles"></a></core-item>
+
+    <core-item label="API Reference" icon="subject">
+      <a href="https://polymer.github.io/polymer"></a>
+    </core-item>
+
+    <core-item label="Articles" icon="book">
+      <a href="/{{versionPrefix}}/articles/"></a>
+    </core-item>
+
+    <core-item label="Catalog" icon="polymer">
+      <a href="http://elements.polymer-project.org/"></a>
+    </core-item>
+
   </core-menu>
 </template>
 <script>

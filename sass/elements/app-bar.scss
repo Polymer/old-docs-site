@@ -101,6 +101,29 @@ input {
   display: none;
 }
 
+.site-switcher {
+  color: #757575;
+  margin: 5px;
+  padding: 7px 16px 7px 20px;
+  background: #FAFAFA;
+  font-weight: bold;
+  border-bottom: none;
+}
+
+.site-switcher a {
+  font-size: 14px;
+  text-decoration: none;
+  color: black;
+}
+
+.site-switcher /deep/ core-menu {
+  width: 95px;
+}
+
+.site-switcher /deep/ paper-item {
+  min-width: initial;
+}
+
 // Tablet
 @media only screen and (max-width: $break-medium) {
   :host {

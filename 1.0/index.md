@@ -38,15 +38,15 @@ title: Welcome
 <section id="catalog" class="main-purple">
   <div class="panel">
     <summary style="transform: translateZ(0);">
-      <h1>There's an element for that</h1>
-      <a href="http://elements.polymer-project.org" target="_blank">
+      <h1>Element Catalog</h1>
+      <a href="https://elements.polymer-project.org" target="_blank">
         <img src="/images/catalog_fadeout.png" alt="Launch the element catalog" title="Launch the element catalog">
       </a>
       <div>
         <p>
         Custom elements, built by the Polymer team, ready to use in your applications.
         </p>
-        <a href="http://development.polymer-element-catalog.divshot.io/" target="_blank">
+        <a href="https://elements.polymer-project.org" target="_blank">
           <paper-button>
             <core-icon icon="arrow-forward"></core-icon> Browse elements
           </paper-button>
@@ -186,9 +186,9 @@ title: Welcome
 <dom-module id="friend-list">
   <link rel="import" type="css" href="friend-list.css">
   <template>
-    <firebase-element data="{{data}}"
+    <firebase-collection data="{{data}}"
                       location="https://users1.firebaseio.com/users">
-    </firebase-element>
+    </firebase-collection>
     <template is="dom-repeat" items="{{data}}">
       <contact-card starred="{{item.starred}}">
         <img src="{{item.img}}" alt="{{item.name}}">
@@ -217,6 +217,20 @@ title: Welcome
       </div>
       <div class="example-caption">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur ad molestias esse alias dicta enim eaque neque voluptatum, doloribus provident nihil laudantium commodi quibusdam debitis ex facilis excepturi magnam itaque?</p>
+      </div>
+      
+      <div class="button-row">
+        <a href="/{{versionPrefix}}/docs/start/quick-tour.html">
+          <paper-button raised>
+            <core-icon icon="arrow-forward"></core-icon> Take Tour
+          </paper-button>
+        </a>
+
+        <a href="/{{versionPrefix}}/docs/start/getting-the-code.html">
+          <paper-button raised>
+            <core-icon icon="archive"></core-icon> Get The Code
+          </paper-button>
+        </a>
       </div>
     </div>
     

@@ -25,7 +25,7 @@
     "iron-input": "PolymerElements/iron-input#^0.9.0",
     "iron-icon": "PolymerElements/iron-icon#^0.9.0",
     "iron-icons": "PolymerElements/iron-icons#^0.9.0",
-    "firebase-element": "PolymerElements/firebase-element#f6ba282f072bc32706d626de5815d4ef049eedc3",
+    "firebase-element": "PolymerElements/firebase-element#~0.9.0",
     "google-map": "GoogleWebComponents/google-map#eedbd58fc6ca5279301f05549210c7f1b72b8e0d"
   },
   "resolutions": {
