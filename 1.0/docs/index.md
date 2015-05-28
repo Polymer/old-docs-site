@@ -96,7 +96,7 @@ The shady DOM system is new to Polymer in 0.8, and radically improves
 performance and decreases the size of the polyfill needed to run on browsers
 that don’t support shadow DOM natively. The shadow DOM polyfill was optimized
 for correctness, though it remained impossible to perfectly polyfill shadow DOM.
-Shady DOM is optimized for speed. 0.9 added additional DOM accessors.
+Shady DOM is optimized for speed. 
 
 In the 1.0 timeframe, we will explore possible ways to do better custom element
 interop for external frameworks not expecting the shady DOM system, and improve
