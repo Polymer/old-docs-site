@@ -218,6 +218,20 @@ title: Welcome
       <div class="example-caption">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur ad molestias esse alias dicta enim eaque neque voluptatum, doloribus provident nihil laudantium commodi quibusdam debitis ex facilis excepturi magnam itaque?</p>
       </div>
+      
+      <div class="button-row">
+        <a href="/{{versionPrefix}}/docs/start/quick-tour.html">
+          <paper-button raised>
+            <core-icon icon="arrow-forward"></core-icon> Take Tour
+          </paper-button>
+        </a>
+
+        <a href="/{{versionPrefix}}/docs/start/getting-the-code.html">
+          <paper-button raised>
+            <core-icon icon="archive"></core-icon> Get The Code
+          </paper-button>
+        </a>
+      </div>
     </div>
     
   </div>

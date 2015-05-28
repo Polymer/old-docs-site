@@ -294,6 +294,14 @@ site-banner .logo {
   }
 }
 
+.button-row {
+  margin-top: 30px;
+}
+
+.button-row paper-button {
+  margin-right: 16px;
+}
+
 @media only screen and (max-width: $break-medium) {
   #apps .columns {
     display: block;
