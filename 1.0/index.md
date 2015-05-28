@@ -186,9 +186,9 @@ title: Welcome
 <dom-module id="friend-list">
   <link rel="import" type="css" href="friend-list.css">
   <template>
-    <firebase-element data="{{data}}"
+    <firebase-collection data="{{data}}"
                       location="https://users1.firebaseio.com/users">
-    </firebase-element>
+    </firebase-collection>
     <template is="dom-repeat" items="{{data}}">
       <contact-card starred="{{item.starred}}">
         <img src="{{item.img}}" alt="{{item.name}}">
