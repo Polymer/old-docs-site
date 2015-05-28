@@ -87,7 +87,7 @@ title: Welcome
         </div>
       </div>
       <h2>For Modern Browsers</h2>
-      <p>Polymer is built from the ground up for modern browsers, using sparkly unicorn magic. Also a lot of coffee.</p>
+      <p>Polymer is built from the ground up for modern browsers, using the latest web platform APIs. Polyfills provide support on evergreen browsers for APIs that aren't universal yet.</p>
     </div>
     
     <div class="feature">
@@ -97,7 +97,7 @@ title: Welcome
         </div>
       </div>
       <h2>Using Web Components</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis nihil eius beatae, impedit aut nostrum fugiat, non corporis consequatur, fugit asperiores cupiditate accusamus, dolores ad ullam provident recusandae ex eveniet?</p>
+      <p>Polymer leverages <em>web components</em>, a new set of standards designed to provide reusable components for the web.</p>
     </div>
   </div>
 
@@ -119,7 +119,7 @@ title: Welcome
 <link rel="import" href="components/google-map/google-map.html">
 
 <!-- Use element -->
-<google-map lat="37.790" long="-122.390" flex></google-map>
+<google-map lat="37.790" long="-122.390"></google-map>
 {%endraw%}
         {% endhighlight %}
         </div>
@@ -129,7 +129,7 @@ title: Welcome
         </div>
       </div>
       <div class="example-caption">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur ad molestias esse alias dicta enim eaque neque voluptatum, doloribus provident nihil laudantium commodi quibusdam debitis ex facilis excepturi magnam itaque?</p>
+        <p>An element built with Polymer looks and works just like any other HTML element. Simply find an element you’d like to use in your app, import it with an HTML import, and then add the tag to your page.</p>
       </div>
     </div>
 
@@ -172,7 +172,7 @@ title: Welcome
         </div>
       </div>
       <div class="example-caption">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur ad molestias esse alias dicta enim eaque neque voluptatum, doloribus provident nihil laudantium commodi quibusdam debitis ex facilis excepturi magnam itaque?</p>
+        <p>The Polymer library makes it easy to create your own powerful elements. Give your element some markup and properties, and then use it on a site. Polymer provides useful features like templating and data binding to reduce the amount of boilerplate you need to write.</p>
       </div>
     </div>
 
@@ -216,17 +216,17 @@ title: Welcome
         </div>
       </div>
       <div class="example-caption">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur ad molestias esse alias dicta enim eaque neque voluptatum, doloribus provident nihil laudantium commodi quibusdam debitis ex facilis excepturi magnam itaque?</p>
+        <p>Build more sophisticated elements by composing simpler elements together. Elements can provide simple abstractions to powerful APIs. The <code>&lt;firebase-collection&gt;</code> used here pulls data from a Firebase database. </p>
       </div>
       
       <div class="button-row">
-        <a href="/{{versionPrefix}}/docs/start/quick-tour.html">
+        <a href="docs/start/quick-tour.html">
           <paper-button raised>
             <core-icon icon="arrow-forward"></core-icon> Take Tour
           </paper-button>
         </a>
 
-        <a href="/{{versionPrefix}}/docs/start/getting-the-code.html">
+        <a href="docs/start/getting-the-code.html">
           <paper-button raised>
             <core-icon icon="archive"></core-icon> Get The Code
           </paper-button>

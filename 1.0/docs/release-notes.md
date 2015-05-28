@@ -15,9 +15,35 @@ subtitle: Guide
   }
 </style>
 
+## Release 1.0
+
+Release 1.0 includes the following bug fixes since 0.9:
+
+* Custom style system performance optimizations and parsing robustness.
+* Fixed Shady DOM style scoping on IE.
+* Avoid binding `undefined` string into textContent and inputs.
+* Allow `behaviors` to accept nested arrays of behaviors.
+* Properly update `dom-repeat` rendering following array mutations when both `sort` and `filter` are used.
+* Support literal strings & numbers in inline computed functions.
+* Support no-argument functions in inline computed functions.
+* Update Shady DOM distribution when using `Polymer.dom(node).classList` or `Polymer.dom(node).setAttribute` on distribution candidates.
+* Fixed gesture exception when dragging outside the document.
+* Fix ordering of behavior application.
+* Allow `dom-bind` to be imperatively created and filled with elements to be bound.
+* Fixed tap not firing the first time after tracking another element.
+* Fix `dom-bind` to ensure dependencies have resolved before stamping.
+* Fixed certain use cases of dynamically stamping a `<content>` using `dom-if`.
+* Prevent mustache content from being set to `<input>` value on IE.
+* Added warnings for common user mistakes.
+* Fix `dom-bind` from improperly scoping element classes.
+* Allow observation and binding of `array.length`.
+* Fix `:host` specificity for custom style properties.
+* Added `Polymer.version` property.
+
+
 ## Release 0.9
 
-A number of APIs changed between 0.8-rc.2 and 0.9. This document summarizes the changes.
+A number of APIs changed between 0.8-rc.2 and 0.9. This section summarizes the changes.
 
 ### Element registration changes
 
