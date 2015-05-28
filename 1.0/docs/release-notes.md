@@ -1,5 +1,5 @@
 ---
-layout: default_1_0
+layout: default
 type: guide
 shortname: Docs
 title: Release notes
@@ -161,9 +161,15 @@ The CSP-specific functions of [`vulcanize`](https://github.com/Polymer/vulcanize
 split into a separate utility, [`crisper`](https://github.com/PolymerLabs/crisper). To prepare a site for
 deployment in a CSP environment, you can use a command like this:
 
-    vulcanize --inline-scripts --inline-css target.html | crisper --html build.html --js build.js
+    vulcanize --inline-scripts --inline-css target.html | \
+        crisper --html build.html --js build.js
 
 For more details on the `vulcanize` arguments, see the [README](https://github.com/Polymer/vulcanize).
+
+**Note:** The latest versions of `vulcanize` are **not** compatible with {{site.project_title}} 0.5.
+For 0.5 projects, use `vulcanize` versions **earlier than 1.0**. `vulcanize` 0.7.10 is the latest version
+supporting 0.5 projects.
+{: .alert .alert-info }
 
 ### Utility functions
 
