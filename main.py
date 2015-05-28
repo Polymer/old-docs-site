@@ -39,18 +39,27 @@ def get_default_polymer_version():
     default_version = config.get('default_version')
     memcache.add('default_version', default_version, namespace=current_app_version)
 
-  return default_version
+  legacy_version = memcache.get('legacy_version', namespace=current_app_version)
+  if legacy_version is None:
+    legacy_version = config.get('legacy_version')
+    memcache.add('legacy_version', legacy_version, namespace=current_app_version)
+
+  return (default_version, legacy_version)
 
 
 class VersionHandler(webapp2.RequestHandler):
 
   def get(self, version=None):
-    version_dir = get_default_polymer_version()
+    version_dir, legacy_version_dir = get_default_polymer_version()
     if self.request.path.startswith('/latest'):
       path = self.request.path.replace('/latest', '/%s' % version_dir)
       return self.redirect('%s' % path)
-
-    return self.redirect('/%s%s' % (version_dir, self.request.path))
+    # redirect raw path to new version
+    if self.request.path == '/':
+      return self.redirect('/%s/' % (version_dir))
+    
+    # redirect unversioned legacy URLs
+    return self.redirect('/%s%s' % (legacy_version_dir, self.request.path))
 
 class ObsoleteVersionHandler(webapp2.RequestHandler):
 
