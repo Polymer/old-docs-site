@@ -32,17 +32,19 @@ def get_default_polymer_version():
   current_app_version = os.environ['CURRENT_VERSION_ID'].split('.')[0]
 
   default_version = memcache.get('default_version', namespace=current_app_version)
-  if default_version is None:
+  legacy_version = memcache.get('legacy_version', namespace=current_app_version)
+
+  if default_version is None or legacy_version is None:
     f = open('_config.yml', 'r')
     config = yaml.load(f)
 
-    default_version = config.get('default_version')
-    memcache.add('default_version', default_version, namespace=current_app_version)
+    if default_version is None:
+      default_version = config.get('default_version')
+      memcache.add('default_version', default_version, namespace=current_app_version)
 
-  legacy_version = memcache.get('legacy_version', namespace=current_app_version)
-  if legacy_version is None:
-    legacy_version = config.get('legacy_version')
-    memcache.add('legacy_version', legacy_version, namespace=current_app_version)
+    if legacy_version is None:
+      legacy_version = config.get('legacy_version')
+      memcache.add('legacy_version', legacy_version, namespace=current_app_version)
 
   return (default_version, legacy_version)
 
