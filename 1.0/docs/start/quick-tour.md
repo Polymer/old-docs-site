@@ -49,7 +49,7 @@ argument an object that defines your element's prototype.
 <link rel="import"
       href="bower_components/polymer/polymer.html">
 
-{% include_external /samples/start/proto-element/proto-element.html docs-sample version_prefix:0.9 %}
+{% include_external /samples/start/proto-element/proto-element.html docs-sample version_prefix:1.0 %}
 {% endhighlight %}
   </demo-tab>
   <demo-tab heading="index.html">
@@ -103,7 +103,7 @@ Many elements include some internal DOM nodes to implement the element's UI and 
 <link rel="import"
       href="bower_components/polymer/polymer.html">
 
-{% include_external /samples/start/dom-element/dom-element.html docs-sample version_prefix:0.9 %}
+{% include_external /samples/start/dom-element/dom-element.html docs-sample version_prefix:1.0 %}
 {% endhighlight %}
   </demo-tab>
   <demo-tab heading="index.html">
@@ -149,7 +149,7 @@ with a styled `<div>` tag.
 <link rel="import"
       href="bower_components/polymer/polymer.html">
 
-{% include_external /samples/start/picture-frame/picture-frame.html docs-sample version_prefix:0.9 %}
+{% include_external /samples/start/picture-frame/picture-frame.html docs-sample version_prefix:1.0 %}
 {% endhighlight %}
   </demo-tab>
   <demo-tab heading="index.html">
@@ -202,7 +202,7 @@ The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced 
 <link rel="import"
       href="bower_components/polymer/polymer.html">
 
-{% include_external /samples/start/name-tag/name-tag.html docs-sample version_prefix:0.9 %}
+{% include_external /samples/start/name-tag/name-tag.html docs-sample version_prefix:1.0 %}
 {% endhighlight %}
   </demo-tab>
   <demo-tab heading="index.html">
@@ -248,7 +248,7 @@ and configure it in `index.html`.
 <link rel="import"
       href="bower_components/polymer/polymer.html">
 
-{% include_external /samples/start/configurable-name-tag/configurable-name-tag.html docs-sample version_prefix:0.9 %}
+{% include_external /samples/start/configurable-name-tag/configurable-name-tag.html docs-sample version_prefix:1.0 %}
 {% endhighlight %}
   </demo-tab>
   <demo-tab heading="index.html">
@@ -298,7 +298,7 @@ to the element's `owner` property, so it's updated as the user types.
 <link rel="import"
       href="bower_components/iron-input/iron-input.html">
 
-{% include_external /samples/start/editable-name-tag/editable-name-tag.html docs-sample version_prefix:0.9 %}
+{% include_external /samples/start/editable-name-tag/editable-name-tag.html docs-sample version_prefix:1.0 %}
 {% endhighlight %}
   </demo-tab>
   <demo-tab heading="index.html">

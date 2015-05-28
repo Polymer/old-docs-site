@@ -53,7 +53,7 @@ If you don't want to start from scratch, there are also several starter projects
 *   [`<seed-element>`](#seed-element) is a complete template for creating a new, reusable element,
     including docs and tests. 
 
-*   [Polymer starter kit](#psk) is a template for a Polymer application with tooling and offline
+*   [Polymer Starter Kit](#psk) is a template for a Polymer application with tooling and offline
     capabilities built-in.
 
 When you install {{site.project_title}} using Bower, you get the
@@ -85,7 +85,7 @@ This generates a basic `bower.json` file. Some of the questions, like
 
 The next step is to install {{site.project_title}}:
 
-    bower install --save Polymer/polymer#^0.9.0
+    bower install --save Polymer/polymer#^1.0.0
 
 Bower adds a `bower_components/` folder in the root of your project and
 fills it with {{site.project_title}} and its dependencies.
@@ -96,7 +96,7 @@ fills it with {{site.project_title}} and its dependencies.
   "name": "my-project",
   "version": "0.0.0",
   "dependencies": {
-    "polymer": "Polymer/polymer#^0.9.0
+    "polymer": "Polymer/polymer#^1.0.0
   }
 }
 ```
@@ -115,7 +115,7 @@ This updates all packages in `bower_components/` to the latest stable version.
 
 Click the button to download {{site.project_title}} {% polymer_version_dir %} as a ZIP file.
 
-<p><a href="http://zipper.bowerarchiver.appspot.com/archive?polymer=Polymer/polymer%230.9.0">
+<p><a href="http://zipper.bowerarchiver.appspot.com/archive?polymer=Polymer/polymer%231.0.0">
   <paper-button class="cta" raised><core-icon icon="file-download"></core-icon>Download ZIP</paper-button>
 </a></p>
 
@@ -151,7 +151,7 @@ you need for building, testing and documenting your element.
 [Create a reusable element](reusableelements.html) guides you through the 
 steps to create, test, document and publish your element.
 
-## Application boilerplate {#psk}
+## Polymer Starter Kit {#psk}
 
 A “batteries-included” application template, the 
 [Polymer Starter Kit](https://developers.google.com/web/tools/polymer-starter-kit/)

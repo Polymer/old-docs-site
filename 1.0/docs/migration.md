@@ -9,9 +9,9 @@ subtitle: Guide
 {% include toc.html %}
 
 This guide describes the changes required to migrate a {{site.project_title}} 
-element from 0.5 to 0.9.  
+element from 0.5 to 1.0.  
 
-When migrating, the following items can be translated easily from 0.5 to this release:
+When migrating, the following items can be translated easily from 0.5 to 1.0:
 
 *   [Web components polyfill library](#polyfill)
 *   [Element registration](#registration)

@@ -6,9 +6,6 @@ title: Feature overview
 subtitle: Developer guide
 ---
 
-**Note:** Polymer 0.9 and this document are a WORK IN PROGRESS and APIs are subject to change.
-{: .alert .alert-error }
-
 
 The Polymer library provides a set of features for creating custom elements. These features are designed 
 to make it easier and faster to make custom elements that work like standard DOM elements. With a standard DOM element, you might expect:
