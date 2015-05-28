@@ -18,38 +18,73 @@
 <template>
   <link rel="stylesheet" href="../../css/elements/docs-menu.css">
   <core-menu id="mainmenu" on-click="{{onClick}}" selectedItem="{{item}}" fit>
-      
-    <core-submenu label="About this release" icon="hardware:keyboard-arrow-down" class="guide">
-      <core-item label="Introducing Polymer 1.0"><a href="/{{versionPrefix}}/docs/"></a></core-item>
-      <core-item label="Release notes"><a href="/{{versionPrefix}}/docs/release-notes.html"></a></core-item>
-      <core-item label="Migration guide"><a href="/{{versionPrefix}}/docs/migration.html"></a></core-item>
-    </core-submenu>
-    <core-submenu label="Get started" icon="hardware:keyboard-arrow-down" class="guide">
-      <core-item label="What is Polymer?"><a href="/{{versionPrefix}}/docs/start/what-is-polymer.html"></a></core-item>      
-      <core-item label="Quick tour of Polymer"><a href="/{{versionPrefix}}/docs/start/quick-tour.html"></a></core-item>  
-      <core-item label="Get the code"><a href="/{{versionPrefix}}/docs/start/getting-the-code.html"></a></core-item>
-      <core-item label="Reusable elements"><a href="/{{versionPrefix}}/docs/start/reusableelements.html"></a></core-item>   
-    </core-submenu>
-    <core-item label="API Reference"><a href="https://polymer.github.io/polymer"></a></core-item>
-    <core-submenu label="Developer guide" icon="hardware:keyboard-arrow-down" class="guide">
-      <core-item label="Feature overview"><a href="/{{versionPrefix}}/docs/devguide/feature-overview.html"></a></core-item>
-      <core-item label="Registration and lifecycle"><a href="/{{versionPrefix}}/docs/devguide/registering-elements.html"></a></core-item>
-      <core-item label="Declared properties"><a href="/{{versionPrefix}}/docs/devguide/properties.html"></a></core-item>
-      <core-submenu label="Local DOM" icon="hardware:keyboard-arrow-down" class="guide">
-        <core-item label="Basics and API"><a href="/{{versionPrefix}}/docs/devguide/local-dom.html"></a></core-item>
-        <core-item label="Styling"><a href="/{{versionPrefix}}/docs/devguide/styling.html"></a></core-item>
+
+    <core-submenu id="gettingstartedmenu" label="Getting Started" icon="social:school" class="start">
+      <core-item label="Get the code" id="getcode"><a href="/[[versionPrefix]]/docs/start/getting-the-code.html"></a></core-item>
+      <core-item label="Polymer in 10 minutes"><a href="/[[versionPrefix]]/docs/start/creatingelements.html"></a></core-item>
+      <!-- <core-item label="Your first Polymer app"><a href="/[[versionPrefix]]/docs/start/tutorial/intro.html"></a></core-item> -->
+      <core-submenu label="Your first Polymer app" icon="hardware:keyboard-arrow-down">
+        <core-item label="Getting the starter project"><a href="/[[versionPrefix]]/docs/start/tutorial/intro.html"></a></core-item>
+        <core-item label="Step 1: Creating the app structure"><a href="/[[versionPrefix]]/docs/start/tutorial/step-1.html"></a></core-item>
+        <core-item label="Step 2: Your own element"><a href="/[[versionPrefix]]/docs/start/tutorial/step-2.html"></a></core-item>
+        <core-item label="Step 3: Using data binding"><a href="/[[versionPrefix]]/docs/start/tutorial/step-3.html"></a></core-item>
+        <core-item label="Step 4: Finishing touches"><a href="/[[versionPrefix]]/docs/start/tutorial/step-4.html"></a></core-item>
       </core-submenu>
-      <core-item label="Events"><a href="/{{versionPrefix}}/docs/devguide/events.html"></a></core-item>
-      <core-submenu label="Data binding" icon="hardware:keyboard-arrow-down" class="guide">
-        <core-item label="Syntax"><a href="/{{versionPrefix}}/docs/devguide/data-binding.html"></a></core-item>
-        <core-item label="Helper elements"><a href="/{{versionPrefix}}/docs/devguide/templates.html"></a></core-item>
+      <core-item label="Understanding Polymer"><a href="/[[versionPrefix]]/docs/start/everything.html"></a></core-item>
+      <core-submenu label="Understanding web components" icon="hardware:keyboard-arrow-down">
+        <core-item label="About custom elements"><a href="/[[versionPrefix]]/platform/custom-elements.html"></a></core-item>
+        <core-item label="About shadow DOM"><a href="/[[versionPrefix]]/platform/shadow-dom.html"></a></core-item>
+        <core-item label="About HTML imports"><a href="/[[versionPrefix]]/platform/html-imports.html"></a></core-item>
+        <core-item label="About web animations"><a href="/[[versionPrefix]]/platform/web-animations.html"></a></core-item>
+        <core-item label="Web components polyfills"><a href="/[[versionPrefix]]/docs/start/platform.html"></a></core-item>
       </core-submenu>
-      <core-item label="Behaviors"><a href="/{{versionPrefix}}/docs/devguide/behaviors.html"></a></core-item>
-      <core-item label="Utility functions"><a href="/{{versionPrefix}}/docs/devguide/utility-functions.html"></a></core-item>
-      <core-item label="Global settings"><a href="/{{versionPrefix}}/docs/devguide/settings.html"></a></core-item>
-      <core-item label="Experimental features" icon="warning"><a href="/{{versionPrefix}}/docs/devguide/experimental.html"></a></core-item>
     </core-submenu>
-    <core-item label="Articles"><a href="/{{versionPrefix}}/articles"></a></core-item>
+
+    <!-- <core-item label="The platform"><a href="/[[versionPrefix]]/docs/start/platform.html"></a></core-item> -->
+     <!--  <core-submenu id="platformmenu" label="Platform" class="platform" icon="polymer">
+        <core-item label="Custom Elements"><a href="/[[versionPrefix]]/platform/custom-elements.html"></a></core-item>
+        <core-item label="Shadow DOM"><a href="/[[versionPrefix]]/platform/shadow-dom.html"></a></core-item>
+        <core-item label="HTML Imports"><a href="//[[versionPrefix]]platform/html-imports.html"></a></core-item>
+        <core-item label="Web Animations"><a href="/[[versionPrefix]]/platform/web-animations.html"></a></core-item>
+      </core-submenu> -->
+
+    <core-submenu id="coremenu" label="Guides &amp; Resources" icon="description" class="guide">
+      <core-item label="API developer guide"><a href="/[[versionPrefix]]/docs/polymer/polymer.html"></a></core-item>
+      <core-submenu label="Data binding" icon="hardware:keyboard-arrow-down">
+        <core-item label="Overview"><a href="/[[versionPrefix]]/docs/polymer/databinding.html"></a></core-item>
+        <core-item label="Types of bindings"><a href="/[[versionPrefix]]/docs/polymer/binding-types.html"></a></core-item>
+        <core-item label="Expressions"><a href="/[[versionPrefix]]/docs/polymer/expressions.html"></a></core-item>
+        <core-item label="Compatibility notes"><a href="/[[versionPrefix]]/docs/polymer/databinding-compat.html"></a></core-item>
+        <core-item label="Advanced topics"><a href="/[[versionPrefix]]/docs/polymer/databinding-advanced.html"></a></core-item>
+        <core-submenu label="Related libraries" icon="hardware:keyboard-arrow-down">
+          <core-item label="Template Binding"><a href="/[[versionPrefix]]/docs/polymer/template.html"></a></core-item>
+          <core-item label="Node.bind()"><a href="/[[versionPrefix]]/docs/polymer/node_bind.html"></a></core-item>
+        </core-submenu>
+      </core-submenu>
+      <core-item label="Polymer helper methods"><a href="/[[versionPrefix]]/docs/polymer/helpers.html"></a></core-item>
+      <core-item label="Layout attributes"><a href="/[[versionPrefix]]/docs/polymer/layout-attrs.html"></a></core-item>
+      <core-item label="Styling elements"><a href="/[[versionPrefix]]/docs/polymer/styling.html"></a></core-item>
+      <core-item label="Touch &amp; gestures"><a href="/[[versionPrefix]]/docs/polymer/touch.html"></a></core-item>
+      <core-item label="Debugging tips and tricks"><a href="/[[versionPrefix]]/docs/polymer/debugging.html"></a></core-item>
+      <core-submenu label="Packaging and distribution" icon="hardware:keyboard-arrow-down">
+        <core-item label="Creating reusable elements"><a href="/[[versionPrefix]]/docs/start/reusableelements.html"></a></core-item>
+      </core-submenu>
+      <!-- <core-item label="Runtime configuration"><a href="/[[versionPrefix]]/docs/polymer/runtime-config.html"></a></core-item> -->
+      <core-item id="articles" label="Articles"><a href="/[[versionPrefix]]/articles/"></a></core-item>
+      <core-item label="Videos"><a href="/[[versionPrefix]]/resources/video.html"></a></core-item>
+      <core-item label="Community"><a href="/[[versionPrefix]]/resources/discuss.html"></a></core-item>
+       <core-submenu label="Resources" icon="hardware:keyboard-arrow-down">
+        <core-item label="Tools &amp; testing"><a href="/[[versionPrefix]]/resources/tooling-strategy.html"></a></core-item>
+        <core-item label="Browser compatibility"><a href="/[[versionPrefix]]/resources/compatibility.html"></a></core-item>
+        <core-item label="Releases"><a href="/[[versionPrefix]]/resources/changelog.html"></a></core-item>
+        <core-item label="FAQ"><a href="/[[versionPrefix]]/resources/faq.html"></a></core-item>
+      </core-submenu>
+    </core-submenu>
+
+    <core-item label="Catalog" icon="polymer">
+      <a href="http://elements.polymer-project.org/"></a>
+    </core-item>
+
   </core-menu>
 </template>
 <script>
