@@ -12,8 +12,12 @@
   Polymer({
     is: "configurable-name-tag",
     // declare the owner property
-    ready: function() {
-      this.owner = "Daniel";
+    properties: {
+      // declare the owner property
+      owner: {
+        type: String,
+        value: "Daniel"
+      }
     }
   });
 </script>
