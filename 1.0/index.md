@@ -222,13 +222,19 @@ title: Welcome
       <div class="button-row">
         <a href="docs/start/quick-tour.html">
           <paper-button raised>
-            <core-icon icon="arrow-forward"></core-icon> Take Tour
+            <core-icon icon="arrow-forward"></core-icon> Take a Tour
           </paper-button>
         </a>
 
         <a href="docs/start/getting-the-code.html">
           <paper-button raised>
             <core-icon icon="archive"></core-icon> Get The Code
+          </paper-button>
+        </a>
+
+        <a href="docs/index.html">
+          <paper-button raised>
+            <core-icon icon="info"></core-icon> Learn More
           </paper-button>
         </a>
       </div>
