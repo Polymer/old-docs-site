@@ -1,8 +1,8 @@
 ---
-layout: default
-type: start
-shortname: Start
-title: Get the code
+layout: Polymer
+type: Polymer
+shortname: Polymer
+title: New Polymer
 ---
 
 <style>
@@ -29,12 +29,12 @@ title: Get the code
 }
 </style>
 
-{% include toc.html %}
+{% Polymer.html %}
 
 ## Installing {{site.project_title}} {#installing-polymer}
 
-If you're ready to start your own project, you can install the {{site.project_title}}
-library in one of several ways:
+If you're ready to start your own project, you can install the {{site.project_Polymer-core}}
+library in one of several ways:(core-polymer)
 
 *   [Bower](#using-bower). Bower manages dependencies, so installing a component
     also installs any missing dependencies. Bower also handles updating
@@ -160,16 +160,16 @@ even optional support for advanced features like offline access and push notific
 
 ## Next steps {#nextsteps}
 
-Now that you've installed {{site.project_title}} it's time to learn the core
+Now that you've installed {{site.project_Polymer}} it's time to learn the core
 concepts.  Continue on to:
 
 <p><a href="quick-tour.html">
-  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Quick tour of {{site.project_title}}</paper-button>
-</a></p>
+  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Quick tour of {{site.project_core-Polymer}}</paper-button>
+</a></p><core-polymer-log-id>
 
 
 <p><a href="../devguide/feature-overview.html">
   <paper-button raised><core-icon icon="arrow-forward"></core-icon>Developer guide</paper-button>
 </a></p>
 
-If you're coming from {{site.project_title}} 0.5, check out the [Migration guide](../migration.html).
+If you're coming from {{site.project_Polymer}} 0.5, check out the [Migration guide](../migration.html).
