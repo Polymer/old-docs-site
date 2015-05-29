@@ -66,7 +66,10 @@ class VersionHandler(webapp2.RequestHandler):
 class ObsoleteVersionHandler(webapp2.RequestHandler):
 
   def get(self, version=None):
-    path = self.request.path.replace('/0.8', '/0.9')
+    logging.warning("OVH got %s" % self.request.path)
+    version_dir, legacy_dir = get_default_polymer_version()
+    path = re.sub(r'^/[^/]*/', ('/%s/' % (version_dir)), self.request.path)
+    logging.warning("OVH redirect to %s" % path)
     return self.redirect('%s' % path)
 
 routes = [
@@ -87,7 +90,7 @@ routes = [
     ('/resources/.*', VersionHandler),
     ('/platform/.*', VersionHandler),
     ('/articles/.*', VersionHandler),
-    ('/0.8/.*', ObsoleteVersionHandler),
+    ('/0.[89]/.*', ObsoleteVersionHandler),
     ('/$', VersionHandler),
 ]
 
