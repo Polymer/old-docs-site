@@ -1,0 +1,8 @@
+{
+  "name": "Compose with local DOM",
+  "description": "Use local DOM to control composition.",
+  "files": [
+    "index-plunker.html",
+    "picture-frame-plunker.html"
+  ]
+}

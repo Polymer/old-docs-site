@@ -1,0 +1,8 @@
+{
+  "name": "Two-way binding",
+  "description": "Two-way binding to a custom input element.",
+  "files": [
+    "index-plunker.html",
+    "editable-name-tag-plunker.html"
+  ]
+}

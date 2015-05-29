@@ -2,7 +2,7 @@
 #
 #
 #
-component_dirs="0.5 0.9 0.9/samples"
+component_dirs="0.5 1.0 1.0/samples"
 
 for dir in $component_dirs
 do 

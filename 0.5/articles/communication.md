@@ -11,7 +11,7 @@ article: true
 author: ebidel
 published: 2013-08-12
 updated: 2014-06-29
-polymer_version: 0.0.20130808
+polymer_version: 0.3.3
 description: Common techniques for sharing information between custom elements
 
 tags:
@@ -24,7 +24,7 @@ tags:
 
 {% include authorship.html %}
 
-{% include not-an-intro.html %}
+{% include old-article-disclaimer.html %}
 
 {% include toc.html %}
 

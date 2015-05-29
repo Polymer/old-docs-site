@@ -1,0 +1,23 @@
+<link rel="import"
+      href="http://www.polymer-project.org/1.0/samples/components/polymer/polymer.html">
+
+<dom-module id="configurable-name-tag">
+  <template>
+    <!-- bind to the "owner" property -->
+    This is <b>{{owner}}</b>'s configurable-name-tag element.
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: "configurable-name-tag",
+    // declare the owner property
+    properties: {
+      // declare the owner property
+      owner: {
+        type: String,
+        value: "Daniel"
+      }
+    }
+  });
+</script>

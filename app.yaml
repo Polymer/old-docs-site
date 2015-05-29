@@ -1,5 +1,5 @@
 application: polymer-project
-version: oh-nine
+version: new-landing
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -106,7 +106,7 @@ handlers:
   script: main.app
 
 # Obsolete versions need redirects, too.
-- url: /0.8/.*
+- url: /0.[89]/.*
   script: main.app
 
 - url: /docs/elements/(core|paper)-elements.html
