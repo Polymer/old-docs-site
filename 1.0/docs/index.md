@@ -28,9 +28,9 @@ timelines.
 This release is <strong>not compatible with the 0.5 APIs.</strong></div>
 
 *   For guidance on migrating an existing 0.5 element to the 1.0 APIs, 
-    see the <a href="docs/migration.html">Migration guide</a>.
+    see the <a href="migration.html">Migration guide</a>.
 
-*   For changes between 0.8 and 1.0, see the <a href="docs/release-notes.html">
+*   For changes between 0.8 and 1.0, see the <a href="release-notes.html">
     Release notes</a>.
 
 
@@ -166,7 +166,8 @@ incremental 0.5 releases, if needed, will be available in a branch.
 
 #### Where and how can I give feedback on this release?
 
-Checkout our [contributing guide](https://github.com/Polymer/polymer/blob/master/CONTRIBUTING.md) for the full rundown of how to contribute. The best place for feedback is on Github, [by filing an
+Checkout our [contributing guide](https://github.com/Polymer/polymer/blob/master/CONTRIBUTING.md) 
+for the full rundown of how to contribute. The best place for feedback is on Github, [by filing an
 issue](https://github.com/polymer/polymer/issues), adding to an existing one, or
 submitting a pull request.  Feedback and contributions are critical to
 keeping {{site.project_title}} successful.  
