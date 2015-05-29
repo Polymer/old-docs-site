@@ -603,52 +603,86 @@ in the Developer guide, or use `setAttribute` directly.
 Also, note that the `class` attribute is ignored if it is specified in the `hostAttributes` 
 object.
 
-## Layout attributes replaced by layout classes {#layout-attributes}
+## Layout attributes replaced by custom properties {#layout-attributes}
 
-The layout attributes stylesheet that’s included in {{site.project_title}} 0.5 has 
-been replaced  with an optional stylesheet that uses classes. If your element uses 
-layout attributes, you’ll need to make some changes:
+The layout attributes stylesheet that's included in Polymer 0.5 has been
+replaced with an optional stylesheet that uses custom properties. If your element uses
+[layout attributes](https://www.polymer-project.org/0.5/docs/polymer/layout-attrs.html), 
+you'll need to make some changes:
 
-1.  Install the `layout` component:
+1.  Install the `iron-flex-layout` component:
 
-        bower install --save Polymer/layout
+        bower install --save PolymerElements/iron-flex-layout
 
-2.  Add an import for `layout.html` on any element that used the layout attributes.
+2.  Add an import for `iron-flex-layout.html` on any element that used the layout attributes.
 
-        <link rel="import" href="bower_components/layout/layout.html">
+        <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout.html">
 
-3.  Replace the layout attributes with layout classes.
+3.  Replace the layout attributes with custom properties, using `@apply` inside
+    your element's CSS.
 
-        <div class="layout vertical">
-
+        @apply(--layout-horizontal --layout-wrap);
 
 Before:
 
     <link rel="import" href="/components/polymer/polymer.html">
 
-        ...
-    
-        {%raw%}<div layout horizontal center>
+    {% raw %}
+    <!-- layout attributes for the host defined on <polymer-element> -->
+    <polymer-element name="x-profile" layout vertical>
+      <template>
+        <!-- layout attributes for a local DOM element -->
+        <div layout horizontal center>
           <img src="{{avatarUrl}}">
           <span class="name">{{name}}</span>
-        </div>{%endraw%}
+        </div>
+        <p>{{details}}</p>
+      </template>
+      <script>
+        Polymer({ ... });
+      </script>
+    </polymer-element>
+    {% endraw %}
 
 After:
 
     <link rel="import" href="/components/polymer/polymer.html">
     <link rel="import" href="/components/layout/layout.html">
 
-        ...
+    {% raw %}
+    <dom-module id="x-profile">
+      <style>   
 
-        {%raw%}<div class="layout horizontal center">
+        :host {
+          /* layout properties for the host element */
+          @apply(--layout-vertical);
+        }
+        
+        .header {
+          /* layout properties for a local DOM element */
+          @apply(--layout-horizontal --layout-center);
+        }
+      </style>
+      <template>
+        <div class="header">
           <img src="{{avatarUrl}}">
           <span class="name">{{name}}</span>
-        </div>{%endraw%}
+        </div>
+        <p>{{details}}</p>
+       </template>
+    </dom-module>
+    <script>
+    Polymer({
+      is: "x-profile"
+    });
+    </script>
+    {% endraw %}
 
-**Note:** If you had layout attributes specified on the host, you
-will need to add layout classes imperatively for now (for example, in
-the `ready` callback).   
-{: .alert .alert-info }
+To see the available custom layout properties, see the [`iron-flex-layout` source]
+(https://github.com/PolymerElements/iron-flex-layout/blob/master/iron-flex-layout.html).
+For more examples of the layout properties in use, see the 
+[demo](https://github.com/PolymerElements/iron-flex-layout/blob/master/iron-flex-layout.html).
+
 
 ## Use WebComponentsReady instead of polymer-ready {#polymer-ready}
 

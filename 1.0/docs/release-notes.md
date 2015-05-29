@@ -40,6 +40,14 @@ Release 1.0 includes the following bug fixes since 0.9:
 * Fix `:host` specificity for custom style properties.
 * Added `Polymer.version` property.
 
+### Documentation correction
+
+The Migration guide has been updated to reflect that the 
+[`iron-flex-layout`](migration.html#layout-attributes) 
+custom properties are the recommended replacement for layout attributes in 
+Release 1.0. The layout classes previously described 
+in the Migration guide for Releases 0.8 and 0.9 will continue to work for 
+now, but are deprecated.
 
 ## Release 0.9
 
