@@ -646,8 +646,8 @@ Before:
 
 After:
 
-    <link rel="import" href="/components/polymer/polymer.html">
-    <link rel="import" href="/components/layout/layout.html">
+    <link rel="import" href="/bower_components/polymer/polymer.html">
+    <link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout.html">
 
     {% raw %}
     <dom-module id="x-profile">
