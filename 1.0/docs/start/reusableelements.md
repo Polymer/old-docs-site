@@ -48,8 +48,7 @@ will need some extra configuration. See
 1.  Create a new directory on your system for working on {{site.project_title}}
     elements (e.g `"development"`).
 
-2.  Download the [seed-element](https://github.com/PolymerLabs/seed-
-    element/archive/v0.1.5.zip) boilerplate and unzip it in your working directory.
+2.  Download the [seed-element](https://github.com/PolymerElements/seed-element/archive/v1.0.0.zip) boilerplate and unzip it in your working directory.
 
 3.  Rename the element and its files accordingly. For example, if your element is
     called `<test-element>` and you've renamed the `seed-element` directory to
