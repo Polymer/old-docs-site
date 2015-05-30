@@ -162,7 +162,7 @@ with a styled `<div>` tag.
   </head>
   <body>
     <picture-frame>
-      <image src="images/p-logo.svg">
+      <img src="images/p-logo.svg">
     </picture-frame>
   </body>
 </html>
