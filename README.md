@@ -17,7 +17,7 @@ You'll also need the Python App Engine SDK to run the dev_appserver and preview 
 - `git clone https://github.com/Polymer/docs.git`
 - `bundle install`
 - `npm install`
-- `cd 0.5`
+- `cd 1.0`
 - `bower install`
 - `grunt docs`
 - `grunt` (or `npm start`)
