@@ -591,7 +591,7 @@ computed property function returns a value that's exposed as a virtual property.
       <template>
         My name is <span>{%raw%}{{fullName}}{%endraw%}</span>
       </template>
-    <dom-module id="x-custom">
+    </dom-module>
 
     <script>
       Polymer({
