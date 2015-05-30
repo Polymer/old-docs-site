@@ -74,7 +74,7 @@ After the `makeFade` call, let’s say the DOM looks something like this:
       <canvas></canvas>
     </x-fade>
 
-`x-fade needs to add some DOM elements to implement its behavior. Sadly, these
+`x-fade` needs to add some DOM elements to implement its behavior. Sadly, these
 elements are now exposed to the world. Exposing these nodes is problematic:
 
 
