@@ -1,0 +1,41 @@
+{
+  "name": "polymer-site",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Polymer/docs",
+  "authors": [
+    "Eric Bidelman <ebidel@gmail.com>"
+  ],
+  "description": "Polymer website",
+  "keywords": [
+    "polymer",
+    "web components",
+    "documentation"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "smoothscroll": "^0.0.2",
+    "x-tag-imports": "x-tag/x-tag-imports#latest",
+    "marked": "*",
+    "highlightjs": "*",
+    "plunker-button": "robdodson/plunker-button#latest",
+    "core-elements": "Polymer/core-elements#latest",
+    "paper-elements": "Polymer/paper-elements#latest",
+    "component-download-button": "Polymer/component-download-button#latest",
+    "code-explainer": "Polymer/code-explainer#latest",
+    "google-youtube": "GoogleWebComponents/google-youtube#latest",
+    "google-map": "GoogleWebComponents/google-map#latest",
+    "paper-calculator": "Polymer/paper-calculator#latest",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.1"
+  },
+  "resolutions": {
+    "webcomponentsjs": "^0.7.1"
+  }
+}

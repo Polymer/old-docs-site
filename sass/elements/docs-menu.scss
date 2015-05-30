@@ -60,6 +60,24 @@ polyfill-rule {
   color: currentcolor !important;
 }
 
+core-menu > core-item {
+  padding: 0 24px;
+  font-weight: 500;
+  border-bottom: 1px solid #ccc;
+}
+
+core-menu > core-item:last-of-type {
+  border-bottom: none;
+}
+
+core-menu > core-item > a {
+  color: rgb(66, 66, 66);
+}
+
+core-menu > core-item /deep/ #icon {
+  color: #757575;
+  margin: 0 16px 0 0;
+}
 
 core-submenu /deep/ core-item,
 core-item {

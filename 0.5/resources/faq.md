@@ -42,7 +42,7 @@ That's fine. The cool thing about Web Components-based libraries like {{site.pro
 
 ### Which browsers does {{site.project_title}} support? {#browsersupport}
 
-{{site.project_title}} aims to support [evergreen browsers](http://www.yetihq.com/blog/evergreen-web-browser/). After all, we're trying to simulate the future, and as someone once said, "You're headed for trouble if all you do is stare in the rear-view mirror." In practice, this means we support the most recent versions of Chrome, Safari, Internet Explorer, and Firefox. Chrome 36 is the first browser to ship all of the platform features {{site.project_title}} depends on natively.
+{{site.project_title}} aims to support [evergreen browsers](http://eisenbergeffect.bluespire.com/evergreen-browsers/). After all, we're trying to simulate the future, and as someone once said, "You're headed for trouble if all you do is stare in the rear-view mirror." In practice, this means we support the most recent versions of Chrome, Safari, Internet Explorer, and Firefox. Chrome 36 is the first browser to ship all of the platform features {{site.project_title}} depends on natively.
 
 Note that this is fewer browsers than other frameworks support. For example, {{site.project_title}} only aims to support Internet Explorer 10 and above. Some pieces of {{site.project_title}} may support more browsers if it doesn't require too much extra effort--if you find bugs in unsupported browsers, please still file them.  Most things should work in IE9 today without too much work; feel free to file bugs on what doesn't.  IE8 is incompatable due to its insufficient DOM support.
 
@@ -377,7 +377,10 @@ At [http://customelements.io](http://customelements.io), you can find a growing 
 
 ### I get errors when trying to use  `<link rel="import">` with external files. {#externalfiles}
 
-Unfortunately, this is a limitation of the HTML Import spec and the polyfill follows suit. The polyfill uses XHR to pull down external imports. These will fail if they are not [CORs-enabled](http://www.html5rocks.com/tutorials/cors/).
+HTML Imports follow the same restrictions as XHR:
+
+1. URLs need to have an `http(s)` protocol. The browser imposes security restriction son what you can do with `file://`.
+- The resource needs to be [CORs-enabled](http://www.html5rocks.com/tutorials/cors/) if it is remote to your server.
 
 {%comment%}
 ### How can I use web fonts or CSS Animations in my custom element? {#fontsanimations}

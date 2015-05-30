@@ -88,7 +88,7 @@ The same is true for children of `vertical` elements:
 
 **Note**: for vertical layouts, the container needs to have a height for the children to flex correctly.
 
-Children elements can be told to take up more space by including a "flex ratio" with the `flex` atribute. A flex ratio is specified with a number string: _one_, _two_, _three_, currently up to _twelve_.
+Children elements can be told to take up more space by including a "flex ratio" with the `flex` attribute. A flex ratio is specified with a number string: _one_, _two_, _three_, currently up to _twelve_.
 
 For example, to make "Gamma" 2x larger than "Beta" and "Alpha" 3x larger, use `flex two` and `flex three`, respectively:
 

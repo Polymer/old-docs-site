@@ -27,22 +27,17 @@ title: Get the code
 If you're ready to start your own project, you can install {{site.project_title}}
 in one of several ways:
 
-*   Bower. **Recommended**. Bower manages dependencies, so installing a component
+*   **Bower**. _Recommended_. Bower manages dependencies, so installing a component
     also installs any missing dependencies. Bower also handles updating
     installed components. For more information, see [Installing with Bower](#using-bower).
 
-*   ZIP file. **Temporarily unavailable.** We are working out some 
-    issues with the download server, and hope to have the ZIP download service
-    back online soon.
-
-    <!-- 
+*   **ZIP file**. 
     Includes all dependencies, so you can unzip it and start using it
     immediately. The ZIP file requires no extra tools, but doesn't provide a
     built-in method for updating dependencies. For more information, see
     [Installing from ZIP files](#using-zip).
-    -->
 
-*   GitHub. When you clone a component from GitHub, you need to manage all of the dependencies
+*   **GitHub**. When you clone a component from GitHub, you need to manage all of the dependencies
     yourself. If you'd like to hack on the project or submit a pull request, see
     [setting up {{site.project_title}} with git](../../resources/tooling-strategy.html#git).
 
@@ -104,18 +99,11 @@ This updates all packages in `bower_components/`.
 
 ## Installing from ZIP files {#using-zip}
 
-**ZIP downloads temporarily unavailable.** We are working out some 
-issues with the download server, and hope to have the ZIP download service
-back online soon.
-{: .alert .alert-error }
-
-<!-- Commented out while service is down.
 To download {{site.project_title}} as a ZIP file, click the **GET POLYMER** button
 then click **Download ZIP**.
 
 <component-download-button org="Polymer" component="polymer" label="GET POLYMER">
 </component-download-button>
--->
 
 When you download {{site.project_title}} as a ZIP file, you get all of
 the dependencies bundled into a single archive. It's a great way to get
@@ -125,13 +113,15 @@ Expand the ZIP file in your project directory to create a `bower_components` fol
 
 ![](/images/zip-file-contents.png)
 
-If you download multiple component sets as ZIP files, you'll usually end up with
-multiple copies of some dependencies. You'll need to merge the contents of the
-ZIP files.
-
 Unlike Bower, the ZIP file doesn't provide a built-in method
 for updating dependencies. You can manually update components with a new ZIP
 file.
+
+**Note:**  If you decide to install Bower later, you can use Bower to update the 
+components you installed from the ZIP file. Follow the instructions in 
+[Updating packages](#updatebower).
+{: .alert .alert-info }
+
 
 ## Using git {#git}
 

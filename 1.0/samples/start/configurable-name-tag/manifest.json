@@ -1,0 +1,8 @@
+{
+  "name": "Declared properties",
+  "description": "You can configure declared properties from markup.",
+  "files": [
+    "index-plunker.html",
+    "configurable-name-tag-plunker.html"
+  ]
+}

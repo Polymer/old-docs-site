@@ -21,7 +21,7 @@ tags:
 
 {% include authorship.html %}
 
-{% include not-an-intro.html %}
+{% include old-article-disclaimer.html %}
 
 {% include toc.html %}
 
@@ -77,7 +77,7 @@ index.html:
     </html>
 {% endraw %}
 
-app.html:
+x-app.html:
 
 {% raw %}
     <link rel="import" href="bower_components/polymer/polymer.html">

@@ -26,8 +26,8 @@ title: Welcome
 <section id="release08" class="main-light-purple">
   <div class="panel">
     <summary>
-      <a href="/0.8/">
-        <h2 layout horizontal center><core-icon icon="av:new-releases"></core-icon> Learn about the Polymer 0.8 alpha release</h2>
+      <a href="/0.9/">
+        <h2 layout horizontal center><core-icon icon="av:new-releases"></core-icon> Learn about the Polymer 0.9 beta release</h2>
       </a>
     </summary>
   </div>

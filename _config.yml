@@ -21,12 +21,14 @@ kramdown:
 # Site globals used throughout docs.
 project_title: Polymer
 project_status: 'Dev preview'
-latest_version: 0.5.5
-default_version: 0.5 # default version the docs should serve
+# TODO: add version global for new, 1.0 docs.
+latest_version: 0.5.6 # version global used in 0.5 docs.
+default_version: 1.0 # default homepage version the docs should serve 
+legacy_version: 0.5 # version for legacy versionless URLs
 
 versions:
   '0.5': 'dev preview'
-  '0.8': 'alpha'
+  '1.0': ''
 
 add_permalinks: true # adds permalinks to heading tags.
 load_disqus: true

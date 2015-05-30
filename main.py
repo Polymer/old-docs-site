@@ -32,26 +32,45 @@ def get_default_polymer_version():
   current_app_version = os.environ['CURRENT_VERSION_ID'].split('.')[0]
 
   default_version = memcache.get('default_version', namespace=current_app_version)
-  if default_version is None:
+  legacy_version = memcache.get('legacy_version', namespace=current_app_version)
+
+  if default_version is None or legacy_version is None:
     f = open('_config.yml', 'r')
     config = yaml.load(f)
 
-    default_version = config.get('default_version')
-    memcache.add('default_version', default_version, namespace=current_app_version)
+    if default_version is None:
+      default_version = config.get('default_version')
+      memcache.add('default_version', default_version, namespace=current_app_version)
 
-  return default_version
+    if legacy_version is None:
+      legacy_version = config.get('legacy_version')
+      memcache.add('legacy_version', legacy_version, namespace=current_app_version)
+
+  return (default_version, legacy_version)
 
 
 class VersionHandler(webapp2.RequestHandler):
 
   def get(self, version=None):
-    version_dir = get_default_polymer_version()
+    version_dir, legacy_version_dir = get_default_polymer_version()
     if self.request.path.startswith('/latest'):
       path = self.request.path.replace('/latest', '/%s' % version_dir)
       return self.redirect('%s' % path)
+    # redirect raw path to new version
+    if self.request.path == '/':
+      return self.redirect('/%s/' % (version_dir))
+    
+    # redirect unversioned legacy URLs
+    return self.redirect('/%s%s' % (legacy_version_dir, self.request.path))
 
-    return self.redirect('/%s%s' % (version_dir, self.request.path))
+class ObsoleteVersionHandler(webapp2.RequestHandler):
 
+  def get(self, version=None):
+    logging.warning("OVH got %s" % self.request.path)
+    version_dir, legacy_dir = get_default_polymer_version()
+    path = re.sub(r'^/[^/]*/', ('/%s/' % (version_dir)), self.request.path)
+    logging.warning("OVH redirect to %s" % path)
+    return self.redirect('%s' % path)
 
 routes = [
     RedirectRoute('/apps/topeka/', name='topeka',
@@ -71,6 +90,7 @@ routes = [
     ('/resources/.*', VersionHandler),
     ('/platform/.*', VersionHandler),
     ('/articles/.*', VersionHandler),
+    ('/0.[89]/.*', ObsoleteVersionHandler),
     ('/$', VersionHandler),
 ]
 
