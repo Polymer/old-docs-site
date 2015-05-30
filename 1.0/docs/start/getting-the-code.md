@@ -45,7 +45,7 @@ library in one of several ways:
     built-in method for updating dependencies. For more information, see
     [Installing from ZIP files](#using-zip).
 
-*   [GitHub](#using-github). When you clone a component from GitHub, you need to manage all of the dependencies
+*   [GitHub](#using-git). When you clone a component from GitHub, you need to manage all of the dependencies
     yourself.
 
 If you don't want to start from scratch, there are also several starter projects available:
