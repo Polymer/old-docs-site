@@ -111,8 +111,7 @@ Example:
     </template>
 
 In shadow DOM, the browser maintains separate light DOM and shadow DOM trees, and creates a 
-merged view (the _composed tree_) for rendering purposes. `addChild` adds a node to an element's 
-light DOM.
+merged view (the _composed tree_) for rendering purposes.
 
 In shady DOM, {{site.project_title}} maintains its own light DOM and shady DOM trees.
 The document's DOM tree is effectively the composed tree. 
