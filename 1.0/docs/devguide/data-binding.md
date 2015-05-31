@@ -440,7 +440,7 @@ A computed binding is similar to a computed property.
 
 The computed binding **must take at least one dependent property.** A computed binding's 
 dependent properties are interpreted relative to the current _binding scope_, which 
-is useful inside a [template repeater](#dom-repeat).
+is useful inside a [template repeater](templates.html#dom-repeat).
 
 A computed binding is useful if you don't need to expose a computed property
 as part of the element's API, or use it elsewhere in the element.
