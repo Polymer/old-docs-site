@@ -492,7 +492,7 @@ new value to the JavaScript property on the element.
 
 However, sometimes you need to set an attribute on
 an element, as opposed to a property.  These include when attribute selectors
-are used for CSS or for for interoperability with elements that require using an
+are used for CSS or for interoperability with elements that require using an
 attribute-based API.
 
 To bind to an attribute, use `$=` rather than `=`.  This

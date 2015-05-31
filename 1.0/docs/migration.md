@@ -625,7 +625,7 @@ you'll need to make some changes:
 
 Before:
 
-    <link rel="import" href="/components/polymer/polymer.html">
+    <link rel="import" href="/bower_components/polymer/polymer.html">
 
     {% raw %}
     <!-- layout attributes for the host defined on <polymer-element> -->
@@ -678,8 +678,8 @@ After:
     </script>
     {% endraw %}
 
-To see the available custom layout properties, see the [`iron-flex-layout` source]
-(https://github.com/PolymerElements/iron-flex-layout/blob/master/iron-flex-layout.html).
+To see the available custom layout properties, see the [`iron-flex-layout` 
+source](https://github.com/PolymerElements/iron-flex-layout/blob/master/iron-flex-layout.html).
 For more examples of the layout properties in use, see the 
 [demo](https://github.com/PolymerElements/iron-flex-layout/blob/master/iron-flex-layout.html).
 

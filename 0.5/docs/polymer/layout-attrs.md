@@ -37,7 +37,7 @@ demo-tabs::shadow #results {
 
 {{site.project_title}} includes a declarative layout system built on top of [CSS Flexbox](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes). Features in CSS Flexbox are exposed as **attributes** you include on elements.
 
-The layout attributes are implemented in [layout.html](https://github.com/Polymer/polymer/blob/master/layout.html) - a file included whenever you import {{site.project_title}} in your element. Layout attributes use Shadow DOM's [`/deep/` rules](../../articles/styling-elements.html#cat) and therefore, work across all Shadow DOM boundaries. As long as you're loading {{site.project_title}}, feel free to reuse these attributes in your own elements.
+The layout attributes are implemented in [layout.html](https://github.com/Polymer/polymer/blob/0.5.x/layout.html) - a file included whenever you import {{site.project_title}} in your element. Layout attributes use Shadow DOM's [`/deep/` rules](../../articles/styling-elements.html#cat) and therefore, work across all Shadow DOM boundaries. As long as you're loading {{site.project_title}}, feel free to reuse these attributes in your own elements.
 
 ## Horizontal and vertical layout
 
