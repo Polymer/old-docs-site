@@ -85,7 +85,7 @@ This generates a basic `bower.json` file. Some of the questions, like
 
 The next step is to install {{site.project_title}}:
 
-    bower install --save Polymer/polymer#^1.0.0
+    bower install --save "Polymer/polymer#^1.0.0"
 
 Bower adds a `bower_components/` folder in the root of your project and
 fills it with {{site.project_title}} and its dependencies.
@@ -96,7 +96,7 @@ fills it with {{site.project_title}} and its dependencies.
   "name": "my-project",
   "version": "0.0.0",
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.0.0
+    "polymer": "Polymer/polymer#^1.0.0"
   }
 }
 ```
