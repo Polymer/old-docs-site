@@ -156,7 +156,7 @@ To specify a local DOM template now, use a `dom-module` tag, with your custom el
       </style>
       <template>
         <div>This is local DOM</div>
-      </template>  
+      </template>
     </dom-module>
     <script>
       Polymer({is: "template-me"});
