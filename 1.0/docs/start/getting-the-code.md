@@ -45,7 +45,7 @@ library in one of several ways:
     built-in method for updating dependencies. For more information, see
     [Installing from ZIP files](#using-zip).
 
-*   [GitHub](#using-github). When you clone a component from GitHub, you need to manage all of the dependencies
+*   [GitHub](#using-git). When you clone a component from GitHub, you need to manage all of the dependencies
     yourself.
 
 If you don't want to start from scratch, there are also several starter projects available:
@@ -85,7 +85,7 @@ This generates a basic `bower.json` file. Some of the questions, like
 
 The next step is to install {{site.project_title}}:
 
-    bower install --save Polymer/polymer#^1.0.0
+    bower install --save "Polymer/polymer#^1.0.0"
 
 Bower adds a `bower_components/` folder in the root of your project and
 fills it with {{site.project_title}} and its dependencies.
@@ -96,7 +96,7 @@ fills it with {{site.project_title}} and its dependencies.
   "name": "my-project",
   "version": "0.0.0",
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.0.0
+    "polymer": "Polymer/polymer#^1.0.0"
   }
 }
 ```

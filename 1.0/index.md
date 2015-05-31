@@ -35,9 +35,34 @@ title: Welcome
   </div>
 </section> -->
 
+<section id="googleio" class="main-light-purple">
+  <div class="panel" layout horizontal>
+    <span class="iologo" layout vertical>
+      <img src="https://events.google.com/io2015/images/io15-color.png" alt="Polymer at Google I/O 2015">
+    </span>
+    <a href="https://www.youtube.com/embed/fD2As5RmM8Q" target="_blank" onclick="document.getElementById('iovideo').toggle();return false;" style="margin-left:25px;" layout vertical>
+      <h4>Watch Google I/O 2015</h4>
+      <h2>Polymer and modern web APIs: In production at Google scale</h2>
+    </a>
+  </div>
+</section>
+
+<!-- 
+<section id="featured">
+  <div class="panel" layout horizontal>
+    <div flex>
+      <h1>Google I/O 2015</h1>
+      <h2>Polymer and modern web APIs: In production at Google scale</h2>
+      <p class="video">
+        <iframe src="https://www.youtube.com/embed/fD2As5RmM8Q?rel=0" frameborder="0" allowfullscreen></iframe>
+      </p>
+    </div>
+  </div>
+</section> -->
+
 <section id="catalog" class="main-purple">
   <div class="panel">
-    <summary style="transform: translateZ(0);">
+    <summary>
       <h1>Element Catalog</h1>
       <a href="https://elements.polymer-project.org" target="_blank">
         <img src="/images/catalog_fadeout.png" alt="Launch the element catalog" title="Launch the element catalog">
@@ -113,7 +138,7 @@ title: Welcome
         {% highlight html %}
 {%raw%}
 <!-- Polyfill Web Components support for older browsers -->
-<script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+<script src="components/webcomponentsjs/webcomponents-lite.min.js"></script>
 
 <!-- Import element -->
 <link rel="import" href="components/google-map/google-map.html">
@@ -242,6 +267,10 @@ title: Welcome
     
   </div>
 </section>
+
+<paper-dialog id="iovideo" transition="core-transition-center" backdrop layered="false">
+  <iframe src="https://www.youtube.com/embed/fD2As5RmM8Q" frameborder="0" allowfullscreen fit></iframe>
+</paper-dialog>
 
 {% comment %}
 <section id="everything-element" class="main-purple">
