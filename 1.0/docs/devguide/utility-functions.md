@@ -54,13 +54,13 @@ provides a set of useful convenience functions for instances to use.
 
 *   `isDebouncerActive(jobName)`. Returns true if the named debounce task is waiting to run.
 
-*   `transform(transform, node)`. Applies a CSS transform to the specified node,
-    or this element if no node is specified.
+*   `transform(transform, [node])`. Applies a CSS transform to the specified node,
+    or host element if no node is specified.
     `transform` is specified as a string. For example:
 
          this.transform('rotateX(90deg)', this.$.myDiv);
 
-*   `translate3d(x, y, z, node)`. Transforms the specified node, or this element
+*   `translate3d(x, y, z, [node])`. Transforms the specified node, or host element
     if no node is specified. For example:
 
         this.translate3d('100px', '100px', '100px');
