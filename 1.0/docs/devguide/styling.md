@@ -545,11 +545,11 @@ that includes a `custom-style` element.
     <html>
     <head>
       <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
-      <link rel="import" href="my-custom-styles.css">
+      <link rel="import" href="my-custom-styles.html">
     </head>
       ...
 
-`my-custom-styles.css`:
+`my-custom-styles.html`:
 
     <style is="custom-style">
       html /deep/ iron-icon { 
