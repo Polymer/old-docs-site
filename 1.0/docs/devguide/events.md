@@ -98,7 +98,7 @@ mouse devices.  For example, `tap` should be used instead of
 
 Listening for certain gestures controls the scrolling direction for touch input.
 For example, nodes with a listener for the `track` event will prevent scrolling
-by default. Elements can be override scroll direction with
+by default. Elements can override scroll direction with
 `this.setScrollDirection(direction, node)`, where `direction` is one of `'x'`,
 `'y'`, `'none'`, or `'all'`, and `node` defaults to `this`.
 
