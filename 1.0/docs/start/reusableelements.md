@@ -304,7 +304,7 @@ In this structure, `iron-icon.html` can import {{site.project_title}} like this:
 And `paper-icon-button.html` can import _both_ {{site.project_title}} and `<iron-icon>` like this:
 
     <link rel="import" href="../polymer/polymer.html">
-    <link rel="import" href="../icon-icon/icon-icon.html">
+    <link rel="import" href="../iron-icon/iron-icon.html">
 
 If you want to create a re-usable component that depends on {{site.project_title}}, you
 need to use the same relative path structure.
