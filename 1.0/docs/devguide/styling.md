@@ -447,7 +447,7 @@ styles in the main document that can take advantage of several special features
 of Polymer's styling system:
 
 *   Document styles defined in an `custom-style` will be shimmed to ensure they do
-    not leak into local DOM when running on browsers without non-native Shadow
+    not leak into local DOM when running on browsers without native Shadow
     DOM.
 
 *   Shadow DOM-specific `/deep/` and `::shadow` combinators will be shimmed on
