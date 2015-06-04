@@ -267,7 +267,7 @@ binding.
 
 ### Two-way binding to native elements {#two-way-native}
 
-As mentioned above, {{site.project.title}} uses an event naming convention to achieve two-way
+As mentioned above, {{site.project_title}} uses an event naming convention to achieve two-way
 binding. 
 
 To two-way bind to native elements or non-Polymer elements that _don't_
