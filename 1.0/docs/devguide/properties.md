@@ -295,7 +295,7 @@ Example:
 
       highlightChanged: function() {
         this.classList.add('highlight');
-        setTimeout(function() {
+        this.async(function() {
           this.classList.remove('highlight');
         }, 300);
       }
