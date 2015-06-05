@@ -216,7 +216,7 @@ title: Welcome
     </firebase-collection>
     <template is="dom-repeat" items="{{data}}">
       <contact-card starred="{{item.starred}}">
-        <img src="{{item.img}}" alt="{{item.name}}">
+        <img src="{{item.img}}">
         <span>{{item.name}}</span>
       </contact-card>
     </template>
