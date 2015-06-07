@@ -496,7 +496,7 @@ are used for CSS or for interoperability with elements that require using an
 attribute-based API.
 
 To bind to an attribute, use `$=` rather than `=`.  This
-results in in a call to:
+results in a call to:
 
 <code><var>element</var>.setAttribute(<var>attr</var>, <var>value</var>);</code>
 
