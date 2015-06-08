@@ -281,19 +281,19 @@ Example:
       properties: {
         disabled: {
           type: Boolean,
-          observer: 'disabledChanged'
+          observer: '_disabledChanged'
         },
         highlight: {
-          observer: 'highlightChanged'
+          observer: '_highlightChanged'
         }
       },
 
-      disabledChanged: function(newValue, oldValue) {
+      _disabledChanged: function(newValue, oldValue) {
         this.toggleClass('disabled', newValue);
         this.highlight = true;
       },
 
-      highlightChanged: function() {
+      _highlightChanged: function() {
         this.classList.add('highlight');
         this.async(function() {
           this.classList.remove('highlight');
