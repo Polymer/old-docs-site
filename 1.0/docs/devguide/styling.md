@@ -348,7 +348,7 @@ possible in CSS with practicality and performance.
 Below are current limitations of this system. Improvements to performance and
 dynamism will continue to be explored.
 
-*   Only rules which match the element at *creation timeare applied. Any dynamic
+*   Only rules which match the element at *creation time* are applied. Any dynamic
     changes that update variable values are not applied automatically.
 
     HTML:
