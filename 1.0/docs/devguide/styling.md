@@ -446,12 +446,12 @@ An experimental `<style is="custom-style">` custom element is provided for defin
 styles in the main document that can take advantage of several special features
 of Polymer's styling system:
 
-*   Document styles defined in an `custom-style` will be shimmed to ensure they do
+*   Document styles defined in a `custom-style` will be shimmed to ensure they do
     not leak into local DOM when running on browsers without native Shadow
     DOM.
 
 *   Shadow DOM-specific `/deep/` and `::shadow` combinators will be shimmed on
-    browsers without non-native Shadow DOM.
+    browsers without native Shadow DOM.
 
 *   Custom properties used by Polymer's experimental 
     [shim for cross-scope styling](#xscope-styling-details) may be defined in an 
