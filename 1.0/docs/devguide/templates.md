@@ -354,13 +354,21 @@ itself as the binding scope.
 
         <iron-ajax url="http://..." last-response="{{data}}"></iron-ajax>
 
-        <template is="dom-repeat" items="{{data}}">
+        <template id="t" is="dom-repeat" items="{{data}}">
             <div><span>{{item.first}}</span> <span>{{item.last}}</span></div>
         </template>
 
       </template>
 
     </body>
+    <script>
+      var t = document.querySelector('#t');
+      
+      // The dom-change event signifies when the template has stamped its DOM.
+      t.addEventListener('dom-change', function() {
+        // auto-binding template is ready.
+      });
+    </script>
     </html>
     {% endraw %}
 
