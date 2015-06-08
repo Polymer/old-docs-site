@@ -78,7 +78,7 @@ module.exports = function(grunt) {
     },
 
     appengine: {
-      options: {
+      options: { true
         manageFlags: {
           oauth2: true
         },
