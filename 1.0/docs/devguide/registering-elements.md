@@ -183,7 +183,7 @@ local DOM when the element is constructed.
 
 
     ready: function() {
-      <!-- access a local DOM element by ID using this.$ -->
+      // access a local DOM element by ID using this.$
       this.$.header.textContent = 'Hello!';
     }
 
