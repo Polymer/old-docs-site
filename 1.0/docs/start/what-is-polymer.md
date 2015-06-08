@@ -1,6 +1,6 @@
 ---
 layout: default
-type: guide
+type: start
 shortname: Docs
 title: What is Polymer?
 subtitle: Get started

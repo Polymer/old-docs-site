@@ -1,6 +1,6 @@
 ---
 layout: default
-type: guide
+type: article
 shortname: Articles
 title: "What is shady DOM?"
 subtitle: Why do we need a new kind of DOM?

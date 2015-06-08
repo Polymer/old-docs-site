@@ -1,9 +1,9 @@
 ---
 layout: default
-type: guide
+type: about
 shortname: Migration
 title: Migration guide
-subtitle: Guide
+subtitle: About this release
 ---
 
 {% include toc.html %}

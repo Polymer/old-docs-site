@@ -31,7 +31,7 @@
   background-color: $guides-resources-color !important;
 }
 
-:host([type="elements"]) {
+:host([type="elements"]),:host([type="about"]),:host([type="article"]) {
   background-color: $elements-color !important;
 }
 

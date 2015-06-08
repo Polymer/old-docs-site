@@ -1,9 +1,9 @@
 ---
 layout: default
-type: guide
+type: about
 shortname: Docs
 title: Release notes
-subtitle: Guide
+subtitle: About this release
 ---
 
 {% include toc.html %}
