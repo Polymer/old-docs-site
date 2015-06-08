@@ -565,7 +565,7 @@ For more on read-only properties and data binding, see
 Polymer supports virtual properties whose values are calculated from other
 properties.
 
-To define a computed property, add it the `properties` object with a 
+To define a computed property, add it to the `properties` object with a 
 `computed` key mapping to a computing function:
 
     fullName: {
