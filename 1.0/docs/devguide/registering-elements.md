@@ -86,7 +86,7 @@ Two notes about the custom constructor:
     constructor. The `factoryImpl` method is not called if the element is created 
     from markup by the HTML parser, or if the element is created using `document.createElement`. 
 
-*   The `factoryImpl` method is called **afte**r the element is initialized (local DOM 
+*   The `factoryImpl` method is called **after** the element is initialized (local DOM 
     created, default values set, and so on). See
     [Ready callback and element initialization](#ready-method) for more information.
 
