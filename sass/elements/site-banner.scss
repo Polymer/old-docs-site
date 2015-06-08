@@ -84,7 +84,7 @@ polyfill-next-selector { content: ':host header.shrink'; }
 polyfill-next-selector { content: 'header summary'; }
 :host ::content header summary {
   margin-top: 20px;
-  opacity: 0.6;
+  font-size: 20px;
 }
 
 // Phone
