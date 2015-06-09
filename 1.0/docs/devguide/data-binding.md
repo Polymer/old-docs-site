@@ -454,7 +454,7 @@ Example:
       <template>
         My name is <span>{%raw%}{{computeFullName(first, last)}}{%endraw%}</span>
       </template>
-    <dom-module id="x-custom">
+    </dom-module>
 
     <script>
       Polymer({
