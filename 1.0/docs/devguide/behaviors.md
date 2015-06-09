@@ -8,8 +8,6 @@ subtitle: Developer guide
 
 {% include toc.html %}
 
-## Behaviors {#behaviors}
-
 {{site.project_title}} supports extending custom element prototypes with 
 shared code modules called _behaviors_.
 
@@ -37,7 +35,10 @@ defined on the prototype always takes precedence over a function defined
 by a behavior.** If multiple behaviors define the same function, the 
 **last** behavior in the `behaviors` array takes precedence. 
 
+## Definining behaviors
 
+To define a behavior, create a JavaScript object that you can reference from your element definition.
+The following example simply adds `HighlightBehavior` to the global scope:
 
 
 `highlight-behavior.html`:
@@ -83,3 +84,36 @@ by a behavior.** If multiple behaviors define the same function, the
         behaviors: [HighlightBehavior]
       });
     </script>
+
+{{site.project_title}} doesn't specify any
+particular method for referencing your behaviors. Behaviors created by the {{site.project_title}}
+team are added to the {{site.project_title}} object. When creating your own behaviors, you should 
+use some other namespace to avoid collisions with future {{site.project_title}} behaviors. For example:
+
+    MyBehaviors = MyBehaviors || {};
+    MyBehaviors.HighlightBehavior = { ... }
+
+## Extending behaviors {#extending}
+
+To extend a behavior, or create a behavior that includes an existing behavior, you can define a 
+behavior as an array of behaviors:
+
+    <!-- import an existing behavior -->
+    <link rel="import" href="oldbehavior.html">
+
+    <script>
+      // Implement the extended behavior
+      NewBehaviorImpl = {
+        // new stuff here 
+      }
+
+      // Define the behavior
+      NewBehavior = [ OldBehavior, NewBehaviorImpl ]
+    </script>
+
+As with the element's `behaviors` array, the rightmost behavior takes precedence over behaviors earlier in the array. 
+In this case, anything defined in `NewBehaviorImpl` takes precedence over anything defined in `OldBehavior`.
+
+Naming each element in the behavior array is a good practice, since it allows behaviors to explicitly reference methods 
+on the behaviors they extend (for example, `NewBehaviorImpl` can call to methods on `OldBehavior`). 
+
