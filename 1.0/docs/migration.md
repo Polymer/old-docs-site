@@ -621,7 +621,8 @@ you'll need to make some changes:
 3.  Replace the layout attributes with custom properties, using `@apply` inside
     your element's CSS.
 
-        @apply(--layout-horizontal --layout-wrap);
+        @apply(--layout-horizontal);
+        @apply(--layout-wrap);
 
 Before:
 
@@ -660,7 +661,8 @@ After:
         
         .header {
           /* layout properties for a local DOM element */
-          @apply(--layout-horizontal --layout-center);
+          @apply(--layout-horizontal);
+          @apply(--layout-center);
         }
       </style>
       <template>
