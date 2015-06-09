@@ -257,7 +257,7 @@ but allows an entire bag of properties to be mixed in.
 
 Use `@apply` to apply a mixin:
 
-<pre>@apply(--<var>mixin-name</var>)</pre>
+<pre>@apply(--<var>mixin-name</var>);</pre>
 
 Defining a mixin is just like defining a custom property, but the 
 value is an object that defines one more more rules:
@@ -268,8 +268,6 @@ value is an object that defines one more more rules:
   };
 }</pre>
 
-Note that the _definition_ ends with a semicolon, and the `@apply` line **does not**.
-
 Example:
 
     <dom-module id="my-toolbar">
@@ -279,10 +277,10 @@ Example:
           padding: 4px;
           background-color: gray;
           /* apply a mixin */
-          @apply(--my-toolbar-theme)
+          @apply(--my-toolbar-theme);
         }
         .title {
-          @apply(--my-toolbar-title-theme)
+          @apply(--my-toolbar-title-theme);
         }
       </style>
       
