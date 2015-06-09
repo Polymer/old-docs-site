@@ -70,14 +70,17 @@ Before:
 After:
 
     <dom-module id="register-me">
+
       <template>
         <div>Hello from my local DOM</div>
       </template>
+
+      <script>
+        Polymer({is: "register-me"});
+      </script>
+
     </dom-module>
 
-    <script>
-      Polymer({is: "register-me"});
-    </script>
 
 In this release:
 
@@ -150,21 +153,27 @@ To specify a local DOM template now, use a `dom-module` tag, with your custom el
 
     <!-- ID attribute must match element name passed to Polymer() --> 
     <dom-module id="template-me">
+
       <!-- New: styles OUTSIDE of template -->
       <style>
         div { color: red } 
       </style>
+
       <template>
         <div>This is local DOM</div>
       </template>
+
+      <script>
+        Polymer({is: "template-me"});
+      </script>
+
     </dom-module>
-    <script>
-      Polymer({is: "template-me"});
-    </script>
+
 
 As you can see, element styles are now defined **outside** of the `<template>` tag. 
 
-The `dom-module` must be parsed before the call to `Polymer`. 
+The `<script>` tag can be inside or outside of the `<dom-module>` element, but the element's 
+template must be parsed before the call to `Polymer`. 
 
 ### Dependency Ordering
 
@@ -557,21 +566,25 @@ Before:
 After:
 
     <dom-module id="observe-me">
+
       <template>
          {%raw%}<my-input value="{{inputval}}">{%endraw%}
       </template>
+
+      <script>
+         Polymer({
+          is: "observe-me",
+          properties: {
+            inputval: {
+              observer: 'valueChanged'
+            }
+          },
+          valueChanged: function() { … } 
+         });
+       </script> 
+
     </dom-module>
-    <script>
-       Polymer({
-        is: "observe-me",
-        properties: {
-          inputval: {
-            observer: 'valueChanged'
-          }
-        },
-        valueChanged: function() { … } 
-       });
-     </script>
+
 
 For more information, see [Property change callbacks (observers)](devguide/properties.html#change-callbacks) in the Developer guide.
        
@@ -652,8 +665,8 @@ After:
 
     {% raw %}
     <dom-module id="x-profile">
-      <style>   
 
+      <style>   
         :host {
           /* layout properties for the host element */
           @apply(--layout-vertical);
@@ -665,19 +678,22 @@ After:
           @apply(--layout-center);
         }
       </style>
+
       <template>
         <div class="header">
           <img src="{{avatarUrl}}">
           <span class="name">{{name}}</span>
         </div>
         <p>{{details}}</p>
-       </template>
+      </template>
+
+      <script>
+        Polymer({
+          is: "x-profile"
+        });
+      </script>
+
     </dom-module>
-    <script>
-    Polymer({
-      is: "x-profile"
-    });
-    </script>
     {% endraw %}
 
 To see the available custom layout properties, see the [`iron-flex-layout` 
@@ -928,13 +944,17 @@ If another element includes `publish-me` in its local DOM and binds to the
 
     {% raw %}
     <dom-module id="binding-owner">
+
       <template>
         <publish-me value="{{twoway}}"></publish-me>
       </template>
+
+      <script>
+        Polymer({ is: "binding-owner" });
+      </script>   
+
     </dom-module>
-    <script>
-      Polymer({ is: "binding-owner" });
-    </script>
+
     {% endraw %}
 
 In this example, when `publish-me.value` changes, the change is pushed up to `binding-owner.twoway`.
@@ -993,23 +1013,27 @@ Computed properties only needed in the template can be bound directly in the
 template without an intermediate property on the instance:
 
     <dom-module id="inline-compute">
+
       <template>
         ...
         <button hidden$="[[_computeButtonHidden(dirty)]]">
           Save
         </button>
       </template>
+      
+      <script>
+        Polymer({
+          is: "inline-compute",
+          _computeButtonHidden: function(dirty) {
+            return !dirty;
+          },
+          ...
+        });
+      </script>
+
     </dom-module>
 
-    <script>
-      Polymer({
-        is: "inline-compute",
-        _computeButtonHidden: function(dirty) {
-          return !dirty;
-        },
-        ...
-      });
-    </script>
+
 
 The arguments to a computed binding are evaluated relative to the current binding scope.
 For more details, see [Computed bindings](devguide/data-binding.html#annotated-computed).

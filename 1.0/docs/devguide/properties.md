@@ -590,39 +590,43 @@ computed property function returns a value that's exposed as a virtual property.
 {: .alert .alert-info }
 
     <dom-module id="x-custom">
+    
       <template>
         My name is <span>{%raw%}{{fullName}}{%endraw%}</span>
       </template>
+
+      <script>
+        Polymer({
+
+          is: 'x-custom',
+
+          properties: {
+
+            first: String,
+
+            last: String,
+
+            fullName: {
+              type: String,
+              // when `first` or `last` changes `computeFullName` is called once
+              // (asynchronously) and the value it returns is stored as `fullName`
+              computed: 'computeFullName(first, last)'
+            } 
+
+          },
+
+          computeFullName: function(first, last) {
+            return first + ' ' + last;
+          }
+
+          ...
+
+        });
+      </script>
+
     </dom-module>
 
-    <script>
-      Polymer({
-
-        is: 'x-custom',
-
-        properties: {
-
-          first: String,
-
-          last: String,
-
-          fullName: {
-            type: String,
-            // when `first` or `last` changes `computeFullName` is called once
-            // (asynchronously) and the value it returns is stored as `fullName`
-            computed: 'computeFullName(first, last)'
-          } 
-
-        },
-
-        computeFullName: function(first, last) {
-          return first + ' ' + last;
-        }
-
-        ...
-
-      });
-    </script>
+  
 
 Arguments to computing functions may be simple properties on the element, as 
 well as any of the arguments types supported by `observers`, including [paths](#path-observation), 

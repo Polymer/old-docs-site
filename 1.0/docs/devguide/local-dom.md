@@ -33,14 +33,18 @@ Polymer will automatically clone this template's contents into the element's loc
 Example:
 
     <dom-module id="x-foo">
+
       <template>I am x-foo!</template>
+
+      <script>
+        Polymer({
+          is: 'x-foo'
+        });
+      </script>
+
     </dom-module>
 
-    <script>
-      Polymer({
-        is: 'x-foo'
-      });
-    </script>
+
 
 We say that an element definition has an imperative and declarative portion. The imperative
 portion is the call to `Polymer({...})`, and the declarative portion is the `<dom-module>`
@@ -68,24 +72,28 @@ element's template with an `id` is stored on the `this.$` hash by `id`.
 Example:
 
     <dom-module id="x-custom">
+
       <template>
         Hello World from <span id="name"></span>!
       </template>
+
+      <script>
+
+        Polymer({
+
+          is: 'x-custom',
+
+          ready: function() {
+            this.$.name.textContent = this.name;
+          }
+
+        });
+
+      </script>
+
     </dom-module>
 
-    <script>
-
-      Polymer({
-
-        is: 'x-custom',
-
-        ready: function() {
-          this.$.name.textContent = this.name;
-        }
-
-      });
-
-    </script>
+  
 
 For locating dynamically-created nodes in your element's local DOM, use the `$$` 
 method:

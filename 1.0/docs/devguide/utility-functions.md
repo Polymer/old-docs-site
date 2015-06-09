@@ -27,6 +27,9 @@ provides a set of useful convenience functions for instances to use.
 *   `attributeFollows(name, newNode, oldNode)`. Moves a boolean attribute from `oldNode` to
     `newNode`, unsetting the attribute (if set) on `oldNode` and setting it on `newNode`.
 
+*   `classFollows(name, newNode, oldNode)`. Moves a class from `oldNode` to
+    `newNode`, removing the class (if present) on `oldNode` and adding it to `newNode`.
+
 *   `fire(type, [detail], [options])`. Fires a custom event. The `options` object can contain
       the following properties:
 
@@ -76,3 +79,6 @@ provides a set of useful convenience functions for instances to use.
     **Note:** To call `importHref` from outside a Polymer element, use `Polymer.Base.importHref`.
     {: .alert .alert-info }
 
+*   `resolveUrl(url)`. Takes a URL relative to the `<dom-module>` of an imported {{site.project_title}} 
+    element, and returns a path relative to the current document. This method can be used, for example,
+    to refer to an asset delivered alongside an HTML import.

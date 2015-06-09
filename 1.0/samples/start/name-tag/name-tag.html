@@ -2,13 +2,13 @@
       href="../../components/polymer/polymer.html">
 <!-- [START docs-sample] -->
 <dom-module id="name-tag">
+
   <template>
     <!-- bind to the "owner" property -->
     This is <b>{{owner}}</b>'s name-tag element.
   </template>
-</dom-module>
 
-<script>
+  <script>
   Polymer({
     is: "name-tag",
     ready: function() {
@@ -16,5 +16,7 @@
       this.owner = "Daniel";
     }
   });
-</script>
+  </script>
+  
+</dom-module>
 <!-- [END docs-sample] -->
