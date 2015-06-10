@@ -38,7 +38,7 @@ detailed information on each of these features.
 To register a new element, call the `{{site.project_title}}` function, which 
 _registers_ a new element with the browser. Registering an element associates
 a tag name with a prototype, so you can add properties and methods to your custom
-element.
+element. The custom element's name **must contain a dash (-)**. 
 
 The {{site.project_title}} function takes as an 
 argument an object that defines your element's prototype. 

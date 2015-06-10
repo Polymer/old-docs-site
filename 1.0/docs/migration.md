@@ -747,7 +747,7 @@ For more details on the `vulcanize` arguments, see the [README](https://github.c
 ## Element & helper method changes {#methods}
 
 Some element methods and helper methods have been renamed, moved, or changed signatures.
-For a complete list of element methods, see the [API docs](http://polymer.github.io/polymer/).
+For a complete list of element methods, see the [API reference](http://polymer.github.io/polymer/).
 
 ### Element methods: job renamed to debounce
 
