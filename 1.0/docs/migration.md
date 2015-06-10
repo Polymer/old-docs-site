@@ -683,7 +683,7 @@ After:
 To see the available custom layout properties, see the [`iron-flex-layout` 
 source](https://github.com/PolymerElements/iron-flex-layout/blob/master/iron-flex-layout.html).
 For more examples of the layout properties in use, see the 
-[demo](https://github.com/PolymerElements/iron-flex-layout/blob/master/iron-flex-layout.html).
+[demo](https://elements.polymer-project.org/elements/iron-flex-layout?view=demo:demo/index.html).
 
 
 ## Use WebComponentsReady instead of polymer-ready {#polymer-ready}
