@@ -1092,7 +1092,8 @@ For more details, see [Computed bindings](devguide/data-binding.html#annotated-c
 
 ### Data binding helper elements {#helper-elements}
 
-Several data binding features from 0.5 are either missing or experimental in this release.
+Support for repeating templates, conditional templates and autobinding templates 
+is provided by [helper elements](devguide/templates.html). 
 
 #### Template Repeat 
 
@@ -1111,13 +1112,25 @@ Pass data to the `<dom-repeat>` by specifying an `items` array, and bind to indi
     {% endraw %}
 
 
-Note that browsers that do not support templates natively don't allow `<template>` tags inside of `<table>` or `<select>` elements. {{site.project_title}} 0.5 provided a workaround for this using the [`template` attribute](/0.5/docs/polymer/databinding-compat.html#elements-that-cant-contain-a-template). There is no equivalent workaround for the new release at this point.
+Note that browsers that do not support templates natively don't allow
+`<template>` tags inside of `<table>` or `<select>` elements.
+{{site.project_title}} 0.5 provided a workaround for this using the [`template`
+attribute](/0.5/docs/polymer/databinding-compat.html#elements-that-cant-
+contain-a-template). There is no equivalent workaround for the new release at
+this point.
+
+If you are using `event.target.templateInstance.model` to get model information for events,
+in most cases you can replace this with `event.model`. For more information, see 
+[Handling events in `dom-repeat` templates](devguide/templates.html#handling-events).
 
 For more information, see [Template repeater](devguide/templates.html#dom-repeat).
 
 #### Autobinding templates
 
 Autobinding templates are replaced by the new `dom-bind` helper element.
+
+If you are relying on the `template-bound` event fired by auto-binding templates
+in 0.5, note that all of the template helpers in 1.0 fire an equivalent `dom-change` event.
 
 **Note:** `dom-bind` is included as part of the Polymer library, and does not need to be installed or imported separately.
 {: .alert .alert-info }
