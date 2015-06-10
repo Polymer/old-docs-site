@@ -255,8 +255,8 @@ footer {
   paper-button {
     margin-right: 30px;
     //background: transparent !important;
-    opacity: 0.6;
-    color: black;
+    // opacity: 0.6;
+    color: #666666;
   }
 
   > :first-child {
@@ -264,7 +264,7 @@ footer {
   }
 
   #copyright {
-    color: #b3b3b3;
+    color: #757575;
     font-size: $font-size-secondary;
 
     a {
@@ -676,7 +676,7 @@ footer {
 }
 .article .byline {
   font-size: smaller;
-  color: #ccc;
+  color: #757575;
 
   &.author {
     img {
