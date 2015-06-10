@@ -88,7 +88,10 @@ Example:
 
     </dom-module>
 
-
+Because the event name is specified using an HTML attribute, **the event name is always
+converted to lowercase**. This is because HTML attribute names are case 
+insensitive. So specifying `on-myEvent` adds a listener for `myevent`. The event handler 
+_name_ (for example, `handleClick`) **is** case sensitive.
 
 **Compatibility note:** The syntax differs from 0.5, which required curly brackets ({%raw%}{{}}{%endraw%})
 around the event handler name.
