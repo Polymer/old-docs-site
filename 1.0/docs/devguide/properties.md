@@ -317,7 +317,6 @@ array.
 
 These observers differ from single-property observers in a few ways:
 
-*   The observer function is called asynchronously.
 *   Observers are not invoked until once all dependent properties are defined (`!== undefined`).  
     So each dependent properties should have a default `value` defined in `properties` (or otherwise 
     be initialized to a non-`undefined` value) to ensure the observer is called.
@@ -575,7 +574,7 @@ To define a computed property, add it to the `properties` object with a
 
 
 The function is provided as a string with dependent properties as arguments 
-in parenthesis. The function will be called once (asynchronously) for any change to 
+in parenthesis. The function will be called once for any change to 
 the dependent properties.
 
 The computing function is not invoked until once **all** dependent properties 
@@ -590,7 +589,7 @@ computed property function returns a value that's exposed as a virtual property.
 {: .alert .alert-info }
 
     <dom-module id="x-custom">
-    
+
       <template>
         My name is <span>{%raw%}{{fullName}}{%endraw%}</span>
       </template>
@@ -609,7 +608,7 @@ computed property function returns a value that's exposed as a virtual property.
             fullName: {
               type: String,
               // when `first` or `last` changes `computeFullName` is called once
-              // (asynchronously) and the value it returns is stored as `fullName`
+              // and the value it returns is stored as `fullName`
               computed: 'computeFullName(first, last)'
             } 
 
