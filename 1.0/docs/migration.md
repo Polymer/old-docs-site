@@ -23,6 +23,7 @@ When migrating, the following items can be translated easily from 0.5 to 1.0:
 *   [Use WebComponentsReady instead of the polymer-ready event](#polymer-ready)
 *   [Gestures](#gestures)
 *   [Vulcanize](#vulcanize)
+*   [Element & helper method changes](#methods)
 
 Other areas may require more changes to work correctly, either because there are
 significant API changes from 0.5, feature gaps, or both. These areas include:
@@ -743,6 +744,57 @@ is:
 
 For more details on the `vulcanize` arguments, see the [README](https://github.com/Polymer/vulcanize).
 
+## Element & helper method changes {#methods}
+
+Some element methods and helper methods have been renamed, moved, or changed signatures.
+For a complete list of element methods, see the [API docs](http://polymer.github.io/polymer/).
+
+### Element methods: job renamed to debounce
+
+The `job` method in 0.5 is replaced by `debounce`. The arguments are identical.
+
+This release includes several related methods, including methods for 
+canceling a pending task, and immediately executing a pending task.
+For details, see [Utility functions](devguide/utility-functions.html).
+
+### Element methods &mdash; async
+
+The `async` method works slightly differently than in 0.5 when called without a specified delay, like:
+
+    this.async(doSomething);
+
+In this release, this adds a callback to the browser's  _microtask queue_, which is
+handled asynchronously, but before the next event from the event queue is
+handled. If you call `async` from within the `async` callback, the second
+`async` callback is called during the same task as the first callback.
+
+In 0.5, the `async` method without a delay scheduled work using
+`requestAnimationFrame`. If you call `async` from within an `async` callback,
+the second `async` callback is fired during a subsequent task (in the next frame
+interval). If you want this behavior, use `requestAnimationFrame` instead.
+
+### Element methods: fire API changes
+
+The `fire` method now takes three arguments:
+
+    fire(type, [detail], [options]);
+
+The `options` object can contain the following properties:
+
+*   `node`. Node to fire the event on. Defaults to `this`.
+*   `bubbles`. Whether the event should bubble. Defaults to `true`.
+*   `cancelable`. Whether the event can be canceled with `preventDefault`. Defaults to `false`.
+
+### Element methods &mdash; resolvePath renamed to resolveUrl
+
+The `resolvePath` method in 0.5 is replaced by `resolveUrl`. The arguments are identical.
+
+### Element methods &mdash; Polymer.import replaced by importHref
+
+The global `Polymer.import` function is replaced by `importHref`. The
+new method can be invoked from an element as `this.importHref`. Outside
+an element, it can be called as as `Polymer.Base.importHref`.
+
 ## Manipulating DOM {#dom-apis}
 
 If your element manipulates its light DOM or local DOM imperatively, or your
@@ -1020,7 +1072,7 @@ template without an intermediate property on the instance:
           Save
         </button>
       </template>
-      
+
       <script>
         Polymer({
           is: "inline-compute",
@@ -1189,40 +1241,6 @@ In the meantime, you can achieve many of the same results using either
 composition or [mixins](devguide/registering-elements.html#prototype-mixins) to
 share functionality between elements.
 
-## Element method changes
 
-### Element methods: job renamed to debounce
 
-The `job` method in 0.5 is replaced by `debounce`. The arguments are identical.
 
-This release includes several related methods, including methods for 
-canceling a pending task, and immediately executing a pending task.
-For details, see [Utility functions](devguide/utility-functions.html).
-
-### Element methods &mdash; async
-
-The `async` method works slightly differently than in 0.5 when called without a specified delay, like:
-
-    this.async(doSomething);
-
-In this release, this adds a callback to the browser's  _microtask queue_, which is
-handled asynchronously, but before the next event from the event queue is
-handled. If you call `async` from within the `async` callback, the second
-`async` callback is called during the same task as the first callback.
-
-In 0.5, the `async` method without a delay scheduled work using
-`requestAnimationFrame`. If you call `async` from within an `async` callback,
-the second `async` callback is fired during a subsequent task (in the next frame
-interval). If you want this behavior, use `requestAnimationFrame` instead.
-
-#### Element methods: fire API changes
-
-The `fire` method now takes three arguments:
-
-    fire(type, [detail], [options]);
-
-The `options` object can contain the following properties:
-
-*   `node`. Node to fire the event on. Defaults to `this`.
-*   `bubbles`. Whether the event should bubble. Defaults to `true`.
-*   `cancelable`. Whether the event can be canceled with `preventDefault`. Defaults to `false`.
