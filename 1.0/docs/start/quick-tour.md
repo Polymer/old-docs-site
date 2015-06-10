@@ -135,7 +135,7 @@ Local DOM is encapsulated inside the element.
   </a>
 </p>
 
-### Composition with local DOM
+### Compose with local DOM
 
 Local DOM lets you control _composition_. The element's children can be _distributed_
 so they render as if they were inserted into the local DOM tree.
@@ -186,7 +186,7 @@ So the `div` rule here only affects `<div>` tags inside `<picture-frame>`.
   </a>
 </p>
 
-### Data binding
+### Use data binding
 
 Of course, it's not enough to have static local DOM. You usually want to have your element update
 its local DOM dynamically.
@@ -233,7 +233,7 @@ The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced 
 </p>
 
 
-### Declared properties
+### Declare a property
 
 Properties are an important part of an element's public API. {{site.project_title}} 
 _declared properties_ support a number of common patterns for properties — setting default
@@ -280,7 +280,7 @@ and configure it in `index.html`.
   </a>
 </p>
 
-#### Binding to properties
+### Bind to a property
 
 In addition to text content, you can bind to an element's _properties_ (using
 `property-name="{%raw%}{{binding}}{%endraw%}"`). {{site.project_title}} properties 

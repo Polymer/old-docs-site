@@ -15,6 +15,17 @@ subtitle: Guide
   }
 </style>
 
+## Documentation updates 9 June 2015
+
+*   Documented [extending behaviors](devguide/behaviors.html#extending).
+*   Corrected `@apply` example in Migration guide to show only one mixin per `@apply` statement.
+*   Added documentation for [custom properties API](devguide/styling.html#style-api).
+*   Moved `<script>` tags inside `<dom-module>` according to latest recommendations.
+*   Updated documentation on [computed bindings](devguide/data-binding.html#annotated-computed) to
+    cover literal arguments and no-arg computed bindings.
+*   Added notes on several more renamed element and helper methods to the [migration guide](migration.html#methods).
+*   Added notes about replacing `template-bound` and `templateInstance` when using the template [helper elements](migration.html#helper-elements).
+
 ## Release 1.0
 
 Release 1.0 includes the following bug fixes since 0.9:
