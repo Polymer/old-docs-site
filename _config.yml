@@ -29,6 +29,7 @@ legacy_version: 0.5 # version for legacy versionless URLs
 versions:
   '0.5': 'dev preview'
   '1.0': ''
-
+  '1.1': ''  
+    
 add_permalinks: true # adds permalinks to heading tags.
 load_disqus: true
