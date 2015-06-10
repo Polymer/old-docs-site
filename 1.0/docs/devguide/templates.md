@@ -156,9 +156,10 @@ For example, for a `dom-repeat` with a filter of the following:
 
 Then the `observe` property should be configured as follows:
 
-
+    {% raw %}
     <template is="dom-repeat" items="{{employees}}"
         filter="isEngineer" observe="type manager.type">
+    {% endraw %}    
 
 Changing a `manager.type` field should now cause the list to be re-sorted:
 
