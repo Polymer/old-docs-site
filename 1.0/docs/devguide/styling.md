@@ -271,7 +271,7 @@ Use `@apply` to apply a mixin:
 <pre>@apply(--<var>mixin-name</var>);</pre>
 
 Defining a mixin is just like defining a custom property, but the 
-value is an object that defines one more more rules:
+value is an object that defines one more rules:
 
 <pre><var>selector</var> {
   --<var>mixin-name</var>: {
