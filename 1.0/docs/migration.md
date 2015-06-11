@@ -21,8 +21,10 @@ When migrating, the following items can be translated easily from 0.5 to 1.0:
 *   [Default attributes](#default-attributes)
 *   [Layout attributes](#layout-attributes)
 *   [Use WebComponentsReady instead of the polymer-ready event](#polymer-ready)
+*   [domReady event](#domready)
 *   [Gestures](#gestures)
 *   [Vulcanize](#vulcanize)
+*   [Element & helper method changes](#methods)
 
 Other areas may require more changes to work correctly, either because there are
 significant API changes from 0.5, feature gaps, or both. These areas include:
@@ -70,14 +72,17 @@ Before:
 After:
 
     <dom-module id="register-me">
+
       <template>
         <div>Hello from my local DOM</div>
       </template>
+
+      <script>
+        Polymer({is: "register-me"});
+      </script>
+
     </dom-module>
 
-    <script>
-      Polymer({is: "register-me"});
-    </script>
 
 In this release:
 
@@ -150,21 +155,27 @@ To specify a local DOM template now, use a `dom-module` tag, with your custom el
 
     <!-- ID attribute must match element name passed to Polymer() --> 
     <dom-module id="template-me">
+
       <!-- New: styles OUTSIDE of template -->
       <style>
         div { color: red } 
       </style>
+
       <template>
         <div>This is local DOM</div>
       </template>
+
+      <script>
+        Polymer({is: "template-me"});
+      </script>
+
     </dom-module>
-    <script>
-      Polymer({is: "template-me"});
-    </script>
+
 
 As you can see, element styles are now defined **outside** of the `<template>` tag. 
 
-The `dom-module` must be parsed before the call to `Polymer`. 
+The `<script>` tag can be inside or outside of the `<dom-module>` element, but the element's 
+template must be parsed before the call to `Polymer`. 
 
 ### Dependency Ordering
 
@@ -557,21 +568,25 @@ Before:
 After:
 
     <dom-module id="observe-me">
+
       <template>
          {%raw%}<my-input value="{{inputval}}">{%endraw%}
       </template>
+
+      <script>
+         Polymer({
+          is: "observe-me",
+          properties: {
+            inputval: {
+              observer: 'valueChanged'
+            }
+          },
+          valueChanged: function() { … } 
+         });
+       </script> 
+
     </dom-module>
-    <script>
-       Polymer({
-        is: "observe-me",
-        properties: {
-          inputval: {
-            observer: 'valueChanged'
-          }
-        },
-        valueChanged: function() { … } 
-       });
-     </script>
+
 
 For more information, see [Property change callbacks (observers)](devguide/properties.html#change-callbacks) in the Developer guide.
        
@@ -652,8 +667,8 @@ After:
 
     {% raw %}
     <dom-module id="x-profile">
-      <style>   
 
+      <style>   
         :host {
           /* layout properties for the host element */
           @apply(--layout-vertical);
@@ -665,19 +680,22 @@ After:
           @apply(--layout-center);
         }
       </style>
+
       <template>
         <div class="header">
           <img src="{{avatarUrl}}">
           <span class="name">{{name}}</span>
         </div>
         <p>{{details}}</p>
-       </template>
+      </template>
+
+      <script>
+        Polymer({
+          is: "x-profile"
+        });
+      </script>
+
     </dom-module>
-    <script>
-    Polymer({
-      is: "x-profile"
-    });
-    </script>
     {% endraw %}
 
 To see the available custom layout properties, see the [`iron-flex-layout` 
@@ -699,6 +717,23 @@ the `WebComponentsReady` event will not fire. With native HTML imports and custo
 elements upgrade synchronously, so the event is not required. Simply place any scripts that 
 manipulate {{site.project_title}} elements at the end of the page, and all elements should 
 be ready.
+
+## domReady event {#domready}
+
+This release doesn't support the `domReady` callback. This callback was a partial
+solution to the problem of determining when sibling elements and light DOM children were ready.
+
+A more complete solution is in progress. In the meantime, if you are using `domReady` in 
+1.0 you can replace it by using the `async` method inside your `attached` callback:
+
+    attached: function() {
+       this.async(function() {
+          // code that formerly resided in `domReady`
+       });
+    }
+
+For more on element initialization, see: [Initialization order](devguide/registering-elements.html#initialization-order)
+in the Developer guide.
 
 ## Gestures
 
@@ -726,6 +761,57 @@ is:
         crisper --html build.html --js build.js
 
 For more details on the `vulcanize` arguments, see the [README](https://github.com/Polymer/vulcanize).
+
+## Element & helper method changes {#methods}
+
+Some element methods and helper methods have been renamed, moved, or changed signatures.
+For a complete list of element methods, see the [API reference](http://polymer.github.io/polymer/).
+
+### Element methods: job renamed to debounce
+
+The `job` method in 0.5 is replaced by `debounce`. The arguments are identical.
+
+This release includes several related methods, including methods for 
+canceling a pending task, and immediately executing a pending task.
+For details, see [Utility functions](devguide/utility-functions.html).
+
+### Element methods &mdash; async
+
+The `async` method works slightly differently than in 0.5 when called without a specified delay, like:
+
+    this.async(doSomething);
+
+In this release, this adds a callback to the browser's  _microtask queue_, which is
+handled asynchronously, but before the next event from the event queue is
+handled. If you call `async` from within the `async` callback, the second
+`async` callback is called during the same task as the first callback.
+
+In 0.5, the `async` method without a delay scheduled work using
+`requestAnimationFrame`. If you call `async` from within an `async` callback,
+the second `async` callback is fired during a subsequent task (in the next frame
+interval). If you want this behavior, use `requestAnimationFrame` instead.
+
+### Element methods: fire API changes
+
+The `fire` method now takes three arguments:
+
+    fire(type, [detail], [options]);
+
+The `options` object can contain the following properties:
+
+*   `node`. Node to fire the event on. Defaults to `this`.
+*   `bubbles`. Whether the event should bubble. Defaults to `true`.
+*   `cancelable`. Whether the event can be canceled with `preventDefault`. Defaults to `false`.
+
+### Element methods &mdash; resolvePath renamed to resolveUrl
+
+The `resolvePath` method in 0.5 is replaced by `resolveUrl`. The arguments are identical.
+
+### Element methods &mdash; Polymer.import replaced by importHref
+
+The global `Polymer.import` function is replaced by `importHref`. The
+new method can be invoked from an element as `this.importHref`. Outside
+an element, it can be called as as `Polymer.Base.importHref`.
 
 ## Manipulating DOM {#dom-apis}
 
@@ -928,13 +1014,17 @@ If another element includes `publish-me` in its local DOM and binds to the
 
     {% raw %}
     <dom-module id="binding-owner">
+
       <template>
         <publish-me value="{{twoway}}"></publish-me>
       </template>
+
+      <script>
+        Polymer({ is: "binding-owner" });
+      </script>   
+
     </dom-module>
-    <script>
-      Polymer({ is: "binding-owner" });
-    </script>
+
     {% endraw %}
 
 In this example, when `publish-me.value` changes, the change is pushed up to `binding-owner.twoway`.
@@ -993,30 +1083,35 @@ Computed properties only needed in the template can be bound directly in the
 template without an intermediate property on the instance:
 
     <dom-module id="inline-compute">
+
       <template>
         ...
         <button hidden$="[[_computeButtonHidden(dirty)]]">
           Save
         </button>
       </template>
+
+      <script>
+        Polymer({
+          is: "inline-compute",
+          _computeButtonHidden: function(dirty) {
+            return !dirty;
+          },
+          ...
+        });
+      </script>
+
     </dom-module>
 
-    <script>
-      Polymer({
-        is: "inline-compute",
-        _computeButtonHidden: function(dirty) {
-          return !dirty;
-        },
-        ...
-      });
-    </script>
+
 
 The arguments to a computed binding are evaluated relative to the current binding scope.
 For more details, see [Computed bindings](devguide/data-binding.html#annotated-computed).
 
 ### Data binding helper elements {#helper-elements}
 
-Several data binding features from 0.5 are either missing or experimental in this release.
+Support for repeating templates, conditional templates and autobinding templates 
+is provided by [helper elements](devguide/templates.html). 
 
 #### Template Repeat 
 
@@ -1035,13 +1130,25 @@ Pass data to the `<dom-repeat>` by specifying an `items` array, and bind to indi
     {% endraw %}
 
 
-Note that browsers that do not support templates natively don't allow `<template>` tags inside of `<table>` or `<select>` elements. {{site.project_title}} 0.5 provided a workaround for this using the [`template` attribute](/0.5/docs/polymer/databinding-compat.html#elements-that-cant-contain-a-template). There is no equivalent workaround for the new release at this point.
+Note that browsers that do not support templates natively don't allow
+`<template>` tags inside of `<table>` or `<select>` elements.
+{{site.project_title}} 0.5 provided a workaround for this using the [`template`
+attribute](/0.5/docs/polymer/databinding-compat.html#elements-that-cant-
+contain-a-template). There is no equivalent workaround for the new release at
+this point.
+
+If you are using `event.target.templateInstance.model` to get model information for events,
+in most cases you can replace this with `event.model`. For more information, see 
+[Handling events in `dom-repeat` templates](devguide/templates.html#handling-events).
 
 For more information, see [Template repeater](devguide/templates.html#dom-repeat).
 
 #### Autobinding templates
 
 Autobinding templates are replaced by the new `dom-bind` helper element.
+
+If you are relying on the `template-bound` event fired by auto-binding templates
+in 0.5, note that all of the template helpers in 1.0 fire an equivalent `dom-change` event.
 
 **Note:** `dom-bind` is included as part of the Polymer library, and does not need to be installed or imported separately.
 {: .alert .alert-info }
@@ -1165,40 +1272,6 @@ In the meantime, you can achieve many of the same results using either
 composition or [mixins](devguide/registering-elements.html#prototype-mixins) to
 share functionality between elements.
 
-## Element method changes
 
-### Element methods: job renamed to debounce
 
-The `job` method in 0.5 is replaced by `debounce`. The arguments are identical.
 
-This release includes several related methods, including methods for 
-canceling a pending task, and immediately executing a pending task.
-For details, see [Utility functions](devguide/utility-functions.html).
-
-### Element methods &mdash; async
-
-The `async` method works slightly differently than in 0.5 when called without a specified delay, like:
-
-    this.async(doSomething);
-
-In this release, this adds a callback to the browser's  _microtask queue_, which is
-handled asynchronously, but before the next event from the event queue is
-handled. If you call `async` from within the `async` callback, the second
-`async` callback is called during the same task as the first callback.
-
-In 0.5, the `async` method without a delay scheduled work using
-`requestAnimationFrame`. If you call `async` from within an `async` callback,
-the second `async` callback is fired during a subsequent task (in the next frame
-interval). If you want this behavior, use `requestAnimationFrame` instead.
-
-#### Element methods: fire API changes
-
-The `fire` method now takes three arguments:
-
-    fire(type, [detail], [options]);
-
-The `options` object can contain the following properties:
-
-*   `node`. Node to fire the event on. Defaults to `this`.
-*   `bubbles`. Whether the event should bubble. Defaults to `true`.
-*   `cancelable`. Whether the event can be canceled with `preventDefault`. Defaults to `false`.

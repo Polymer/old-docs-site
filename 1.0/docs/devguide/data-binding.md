@@ -66,21 +66,25 @@ the **entire content** of the tag:
 
     {% raw %}
     <dom-module id="user-view">
+
         <template>   
           First: <span>{{first}}</span><br>
           Last: <span>{{last}}</span>
         </template>
+
+        <script>
+          Polymer({
+            is: 'user-view',
+            properties: {
+              first: String,
+              last: String
+            }
+          });
+        </script>
+
     </dom-module>
     {% endraw %}
-    <script>
-      Polymer({
-        is: 'user-view',
-        properties: {
-          first: String,
-          last: String
-        }
-      });
-    </script>
+
 
     <user-view first="Samuel" last="Adams"></user-view>
 
@@ -105,19 +109,23 @@ Binding to text content is always one-way, host-to-child.
 Binding annotations can also include paths to sub-properties, as shown below:
 
     <dom-module id="main-view">
+
       <template>
         {%raw%}<user-view first="{{user.first}}" last="{{user.last}}"></user-view>{%endraw%}
       </template>
+
+      <script>
+        Polymer({
+          is: 'main-view',
+          properties: {
+            user: Object
+          }
+        });
+      </script>
+
     </dom-module>
 
-    <script>
-      Polymer({
-        is: 'main-view',
-        properties: {
-          user: Object
-        }
-      });
-    </script>
+
 
 See [Binding to structured data](#path-binding) for details.
 
@@ -388,21 +396,25 @@ a **string** identifying the path (relative to the host element).
 Example:
 
     <dom-module id="custom-element">
+
       <template>
         <div>{%raw%}{{user.manager.name}}{%endraw%}</div>
       </template>
+
+      <script>
+        Polymer({
+          is: 'custom-element',
+          reassignManager: function(newManager) {
+            this.user.manager = newManager;
+            // Notification required for binding to update!
+            this.notifyPath('user.manager', this.user.manager);
+          }
+        });
+      </script>
+
     </dom-module>
 
-    <script>
-      Polymer({
-        is: 'custom-element',
-        reassignManager: function(newManager) {
-          this.user.manager = newManager;
-          // Notification required for binding to update!
-          this.notifyPath('user.manager', this.user.manager);
-        }
-      });
-    </script>
+
 
 Most of the time, `notifyPath` is called directly after an
 assignment, so a convenience function `set` is provided that performs both
@@ -436,11 +448,9 @@ The two exceptions are:
 ## Computed bindings {#annotated-computed}
 
 For more complicated bindings, you can use a computed binding.
-A computed binding is similar to a computed property. 
-
-The computed binding **must take at least one dependent property.** A computed binding's 
-dependent properties are interpreted relative to the current _binding scope_, which 
-is useful inside a [template repeater](templates.html#dom-repeat).
+A computed binding is similar to a computed property: it includes a computing function
+and zero or more arguments. Arguments can be dependent properties or string
+or number literals.
 
 A computed binding is useful if you don't need to expose a computed property
 as part of the element's API, or use it elsewhere in the element.
@@ -451,38 +461,92 @@ as part of the element's API, or use it elsewhere in the element.
 Example:
 
     <dom-module id="x-custom">
+
       <template>
         My name is <span>{%raw%}{{computeFullName(first, last)}}{%endraw%}</span>
       </template>
+
+      <script>
+        Polymer({
+          is: 'x-custom',
+          properties: {
+            first: String,
+            last: String       
+          },
+          computeFullName: function(first, last) {
+            return first + ' ' + last;
+          }
+          ...
+        });
+      </script>
+
     <dom-module id="x-custom">
 
-    <script>
-      Polymer({
-        is: 'x-custom',
-        properties: {
-          first: String,
-          last: String       
-        },
-        computeFullName: function(first, last) {
-          return first + ' ' + last;
-        }
-        ...
-      });
-    </script>
 
 In this case, the span's `textContent` property is bound to the return value 
 of `computeFullName`, which is recalculated whenever `first` or `last` changes.
 
-**Note:** The computed binding is not called until all dependent properties are defined 
-(`!=undefined`). So each dependent properties should have a 
+### Dependent properties in computed bindings
+
+Arguments to computing functions may be _dependent properties_, which include
+any of argument types supported by the `observers` object:
+
+*   simple properties on the current scope
+*   [paths](#path-observation)
+*   [paths with wildcards](#deep-observation)
+*   [paths to array splices](#array-observation)
+
+For each type of dependent property, the argument _received_ by the computing function is the
+same as that passed to an observer.
+
+The computing function **is not called until all dependent properties are defined 
+(`!=undefined`)**. So each dependent properties should have a 
 default `value` defined in `properties` (or otherwise be initialized to a 
 non-`undefined` value) to ensure the function value is computed.
+
+A computed binding's dependent properties are interpreted relative to the current 
+_binding scope_. For example, inside a [template repeater](templates.html#dom-repeat),
+a dependent property could refer to the current `item`.
+
+### Literal arguments to computed bindings {#literals}
+
+Arguments to computed bindings may also be string or number liberals.
+Strings may be  either single- or double-quoted. In an attribute or 
+property binding, if you use double quotes for the attribute value, use single
+quotes for string literals, or the reverse.
+
+**Commas in literal strings:** Any comma occurring in a string literal
+_must_ be escaped using a backslash (`\`).
 {: .alert .alert-info }
 
-Arguments to computing functions may be simple properties on the current scope, as 
-well as any of the arguments types supported by `observers`, including [paths](#path-observation), 
-[paths with wildcards](#deep-observation), and [paths to array splices](#array-observation).  
-The arguments received by the computing function match those described in the sections referenced above.
+Example:
+
+    <dom-module id="x-custom">
+      <template>
+        <span>{%raw%}{{translate('Hello\, nice to meet you', first, last)}}{%endraw%}</span>
+      </template>
+    </dom-module>
+
+Finally, if a computed binding has no dependent properties, it is only evaluated once:
+
+    <dom-module id="x-custom">
+      <template>
+        <span>{%raw%}{{doThisOnce()}}{%endraw%}</span>
+      </template>
+
+      <script>
+       Polymer({
+
+         is: 'x-custom',
+
+         doThisOnce: function() {
+           return Math.random();
+         }
+
+       });
+      </script>
+    </dom-module>
+
 
 ## Annotated attribute binding {#attribute-binding}
 

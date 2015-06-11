@@ -5,25 +5,27 @@
       href="../../components/iron-input/iron-input.html">
 <!-- [START docs-sample] -->
 <dom-module id="editable-name-tag">
+
   <template>
     <p>
-      This is <strong>{{owner}}</strong>'s editable-name-tag.
+    This is a <strong>{{owner}}</strong>'s editable-name-tag.
     </p>
     <!-- iron-input exposes a two-way bindable input value -->
     <input is="iron-input" bind-value="{{owner}}"
       placeholder="Your name here...">
   </template>
-</dom-module>
 
-<script>
-  Polymer({
-    is: "editable-name-tag",
-    properties: {
-      owner: {
-        type: String,
-        value: "Daniel"
+  <script>
+    Polymer({
+      is: "editable-name-tag",
+      properties: {
+        owner: {
+          type: String,
+          value: "Daniel"
+        }
       }
-    }
-  });
-</script>
+    });
+  </script>
+
+</dom-module>
 <!-- [END docs-sample] -->

@@ -8,13 +8,14 @@
     <content></content>
     <iron-icon icon="star" hidden$="{{!starred}}"></iron-icon>
   </template>
+  <script>
+    Polymer({
+      is: 'contact-card',
+      properties: {
+        starred: Boolean
+      }
+    });
+  </script>
 </dom-module>
 
-<script>
-  Polymer({
-    is: 'contact-card',
-    properties: {
-      starred: Boolean
-    }
-  });
-</script>
+

@@ -39,15 +39,17 @@ Shadow DOM rules).
         <div class="content-wrapper"><content></content></div>
       </template>
       
+      <script>
+
+          Polymer({
+              is: 'my-element'
+          });
+
+      </script>
+
     </dom-module>
 
-    <script>
 
-        Polymer({
-            is: 'my-element'
-        });
-
-    </script>
 
 Loading external stylesheets (as opposed to defining them inline in HTML) for
 styling local DOM is currently supported via an [experimental
@@ -227,6 +229,10 @@ Example usage of `my-toolbar`:
       
       </template>
 
+      <script>
+        Polymer({ is: 'my-element'});
+      </script>
+
     </dom-module>
 
 The `--my-toolbar-title-color` property only affects the color of the title
@@ -234,6 +240,11 @@ element encapsulated in `my-toolbar`'s internal implementation.  In the
 future the `my-toolbar` author can rename the `title` class or 
 restructure the internal details of `my-toolbar` without changing the custom
 property exposed to users.
+
+You can also include a default value in the `var()` function, to use in case the user 
+doesn't set the custom property:
+
+    color: var(--my-toolbar-title-color, blue); 
 
 Thus, custom CSS properties introduce a powerful way for element authors to
 expose a theming API to their users in a way that naturally fits right alongside
@@ -257,7 +268,7 @@ but allows an entire bag of properties to be mixed in.
 
 Use `@apply` to apply a mixin:
 
-<pre>@apply(--<var>mixin-name</var>)</pre>
+<pre>@apply(--<var>mixin-name</var>);</pre>
 
 Defining a mixin is just like defining a custom property, but the 
 value is an object that defines one more more rules:
@@ -268,8 +279,6 @@ value is an object that defines one more more rules:
   };
 }</pre>
 
-Note that the _definition_ ends with a semicolon, and the `@apply` line **does not**.
-
 Example:
 
     <dom-module id="my-toolbar">
@@ -279,10 +288,10 @@ Example:
           padding: 4px;
           background-color: gray;
           /* apply a mixin */
-          @apply(--my-toolbar-theme)
+          @apply(--my-toolbar-theme);
         }
         .title {
-          @apply(--my-toolbar-title-theme)
+          @apply(--my-toolbar-title-theme);
         }
       </style>
       
@@ -331,8 +340,51 @@ Example usage of `my-toolbar`:
       
       </template>
 
+      <script>
+        Polymer({ is: 'my-element'});
+      </script>
+
     </dom-module>
 
+
+### Custom property API for {{site.project_title}} elements {#style-api}
+
+{{site.project_title}}'s custom property shim evaluates and applies custom property values once
+at element creation time.  In order to have an element (and its subtree) re-
+evaluate custom property values due to dynamic changes such as application of
+CSS classes, etc., call `this.updateStyles()` on the element.
+To update all elements on the page, you can also call `Polymer.updateStyles()`.
+
+The user can also directly modify a {{site.project_title}} element's custom property by setting
+key-value pairs in `customStyle` on the element (analogous to setting `style`)
+and then calling `updateStyles()`.
+
+Example:
+
+    <dom-module id="x-custom">
+
+      <style>
+        :host {
+          --my-toolbar-color: red;
+        }
+      </style>
+
+      <template>
+        <my-toolbar>My awesome app</my-toolbar>
+        <button on-tap="changeTheme">Change theme</button>
+      </template>
+      
+      <script>
+        Polymer({
+          is: 'x-custom',
+          changeTheme: function() {
+            this.customStyle['--my-toolbar-color'] = 'blue';
+            this.updateStyles();
+          }
+        });
+      </script>
+
+    </dom-module>
 
 ### Custom Properties Shim - Limitations and API details
 
@@ -414,8 +466,9 @@ dynamism will continue to be explored.
     prohibitively expensive for the shim and are not required to achieve cross-scope
     styling for custom elements, which is the primary goal of the shim.
 
-       <dom-module>
-         <style>
+        <dom-module id="my-element">
+
+          <style>
            :host {
              --custom-color: red;
            }
@@ -429,14 +482,19 @@ dynamism will continue to be explored.
              /* This will be always be red. */
              color: var(--custom-color);
            }
-         </style>
+          </style>
 
-         <template>
+          <template>
            <div class="container">
              <div class="child">I will be red</div>
            </div>
-         </template>
-       </dom-module>
+          </template>
+
+          <script>
+            Polymer({ is: 'my-element'});
+          </script>         
+
+        </dom-module>
    
 
 ## Custom element for document styling (custom-style) {#custom-style}

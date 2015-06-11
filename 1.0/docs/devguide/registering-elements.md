@@ -16,6 +16,8 @@ To register a custom element, use the `Polymer` function, and pass in the
 prototype for the new element. The prototype must have an `is` property that
 specifies the HTML tag name for your custom element.
 
+By specification, the custom element's name **must contain a dash (-)**. 
+
 Example:
 
     // register an element
@@ -172,15 +174,17 @@ Example:
 
     });
 
-### Ready callback and element initialization {#ready-method} 
+### Ready callback and local DOM initialization {#ready-method} 
 
-The `ready` method is part of an element's lifecycle and is automatically called
-'bottom-up' after the element's template has been stamped and all elements
-inside the element's local DOM have been configured (with values bound from
+The `ready` callback is called when an element's local DOM is ready.
+
+It is called after the element's template has been stamped and all elements
+**inside the element's local DOM** have been configured (with values bound from
 parents, deserialized attributes, or else default values) and had their `ready`
-method called. Implement `ready` when it's necessary to manipulate an element's
-local DOM when the element is constructed.
+method called. 
 
+Implement `ready` when it's necessary to manipulate an element's
+local DOM when the element is constructed.
 
     ready: function() {
       // access a local DOM element by ID using this.$
@@ -191,20 +195,45 @@ local DOM when the element is constructed.
 access a local DOM element. 
 {: .alert .alert-info }
 
+Within a given tree, `ready` is generally called in _document order_, but you should not
+rely on the ordering of initialization callbacks between sibling elements, or between 
+a host element and its light DOM children.
+
+
+### Initialization order {#initialization-order}
+
 The element's basic initialization order is:
 
 - `created` callback  
-- local DOM constructed
-- default values set 
+- local DOM initialized 
 - `ready` callback
 - [`factoryImpl` callback](#custom-constructor)
 - `attached` callback
 
-In particular, the `ready` callback is always called before `attached`.
+Note that **initialization order of may vary** depending on whether or not the
+browser includes native support for web components. In particular, there are no
+guarantees with regard to initialization timing  between **sibling elements** or
+between **parents and light DOM children**. You should not rely on observed
+timing to be identical across browsers, except as noted below.
 
-Use the `ready` callback for any code that needs to interact with the element's local DOM.
+For a given element:
 
+*   The `created` callback is always called before `ready`.
+*   The `ready` callback is always called before `attached`.
+*   The `ready` callback is called on any **local DOM children** before it's called
+    on the host element.
 
+This means that an element's **light DOM children** may be initialized **before or after** 
+the parent element, and an element's **siblings may become `ready` in any order**.
+
+For accessing sibling elements when an element initializes you can call `async` from inside
+the `attached` callback:
+
+    attached: function() {
+       this.async(function() {
+          // access sibling or parent elements here
+       });
+    }
 
 ### Registration callback
 

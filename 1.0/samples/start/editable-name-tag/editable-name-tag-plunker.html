@@ -5,6 +5,7 @@
       href="http://www.polymer-project.org/1.0/samples/components/iron-input/iron-input.html">
 
 <dom-module id="editable-name-tag">
+
   <template>
     <p>
     This is a <strong>{{owner}}</strong>'s editable-name-tag.
@@ -13,16 +14,19 @@
     <input is="iron-input" bind-value="{{owner}}"
       placeholder="Your name here...">
   </template>
+
+  <script>
+    Polymer({
+      is: "editable-name-tag",
+      properties: {
+        owner: {
+          type: String,
+          value: "Daniel"
+        }
+      }
+    });
+  </script>
+
 </dom-module>
 
-<script>
-  Polymer({
-    is: "editable-name-tag",
-    properties: {
-      owner: {
-        type: String,
-        value: "Daniel"
-      }
-    }
-  });
-</script>
+

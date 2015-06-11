@@ -1,6 +1,7 @@
 <link rel="import"
       href="http://www.polymer-project.org/1.0/samples/components/polymer/polymer.html">
 <dom-module id="picture-frame">
+
   <!-- scoped CSS for this element -->
   <style>
     div {
@@ -10,16 +11,20 @@
       padding: 4px;
     }
   </style>
+
   <template>
     <div>
       <!-- any children are rendered here -->
       <content></content>
     </div>
   </template>
+
+  <script>
+    Polymer({
+      is: "picture-frame",
+    });
+  </script>
+
 </dom-module>
 
-<script>
-  Polymer({
-    is: "picture-frame",
-  });
-</script>
+

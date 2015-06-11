@@ -170,16 +170,15 @@ title: Welcome
     <content></content>
     <iron-icon icon="star" hidden$="{{!starred}}"></iron-icon>
   </template>
+  <script>
+    Polymer({
+      is: 'contact-card',
+      properties: {
+        starred: Boolean
+      }
+    });
+  </script>
 </dom-module>
-
-<script>
-  Polymer({
-    is: 'contact-card',
-    properties: {
-      starred: Boolean
-    }
-  });
-</script>
 {%endraw%}
       {% endhighlight %}
       
@@ -221,13 +220,12 @@ title: Welcome
       </contact-card>
     </template>
   </template>
+  <script>
+    Polymer({
+      is: 'friend-list'
+    });
+  </script>
 </dom-module>
-
-<script>
-  Polymer({
-    is: 'friend-list'
-  });
-</script>
 {%endraw%}
         {%endhighlight%}
         {%highlight html%}

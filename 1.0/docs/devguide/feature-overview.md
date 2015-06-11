@@ -20,32 +20,37 @@ to make it easier and faster to make custom elements that work like standard DOM
 A basic {{site.project_title}} element definition looks like this:
 
     <dom-module id="element-name">
+
       <style>
         /* CSS rules for your element */
       </style>
+      
       <template>
         <!-- local DOM for your element -->
 
         <div>{%raw%}{{greeting}}{%endraw%}</div> <!-- data bindings in local DOM -->
       </template>
+
+      <script>
+        // element registration
+        Polymer({
+          is: "element-name",
+
+          // add properties and methods on the element's prototype
+
+          properties: {
+            // declare properties for the element's public API
+            greeting: {
+              type: String,
+              value: "Hello!"
+            }
+          }
+        });
+      </script>
+
     </dom-module>
 
-    <script>
-      // element registration
-      Polymer({
-        is: "element-name",
 
-        // add properties and methods on the element's prototype
-
-        properties: {
-          // declare properties for the element's public API
-          greeting: {
-            type: String,
-            value: "Hello!"
-          }
-        }
-      });
-    </script>
 
 This guide divides the features into the following groups:
 

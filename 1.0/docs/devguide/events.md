@@ -19,6 +19,7 @@ using the syntax <code><var>nodeId</var>.<var>eventName</var>.
 Example:
 
     <dom-module id="x-custom">
+
       <template>
         <div>I will respond</div>
         <div>to a tap on</div>
@@ -26,30 +27,33 @@ Example:
         
         <div id="special">I am special!</div>
       </template>
+
+      <script>
+
+        Polymer({
+
+          is: 'x-custom',
+
+          listeners: {
+            'tap': 'regularTap',
+            'special.tap': 'specialTap'
+          },
+
+          regularTap: function(e) {
+            alert("Thank you for tapping");
+          },
+          
+          specialTap: function(e) {
+            alert("It was special tapping");
+          }
+
+        });
+
+      </script>
+
     </dom-module>
 
-    <script>
 
-      Polymer({
-
-        is: 'x-custom',
-
-        listeners: {
-          'tap': 'regularTap',
-          'special.tap': 'specialTap'
-        },
-
-        regularTap: function(e) {
-          alert("Thank you for tapping");
-        },
-        
-        specialTap: function(e) {
-          alert("It was special tapping");
-        }
-
-      });
-
-    </script>
 
 
 
@@ -63,24 +67,31 @@ binding an event listener.
 Example:
 
     <dom-module id="x-custom">
+
       <template>
         <button on-click="handleClick">Kick Me</button>
       </template>
+
+      <script>
+
+        Polymer({
+
+          is: 'x-custom',
+
+          handleClick: function() {
+            alert('Ow!');
+          }
+
+        });
+
+      </script>
+
     </dom-module>
 
-    <script>
-
-      Polymer({
-
-        is: 'x-custom',
-
-        handleClick: function() {
-          alert('Ow!');
-        }
-
-      });
-
-    </script>
+Because the event name is specified using an HTML attribute, **the event name is always
+converted to lowercase**. This is because HTML attribute names are case 
+insensitive. So specifying `on-myEvent` adds a listener for `myevent`. The event handler 
+_name_ (for example, `handleClick`) **is** case sensitive.
 
 **Compatibility note:** The syntax differs from 0.5, which required curly brackets ({%raw%}{{}}{%endraw%})
 around the event handler name.
@@ -139,6 +150,7 @@ and list of detail properties available on `event.detail` for each type:
 Example:
 
     <dom-module id="drag-me">
+
       <style>
         #dragme {
           width: 500px;
@@ -146,77 +158,88 @@ Example:
           background: gray;
         }
       </style>
+
       <template>
         <div id="dragme" on-track="handleTrack">{{message}}</div>
       </template>
+
+      <script>
+
+        Polymer({
+
+          is: 'drag-me',
+
+          handleTrack: function(e) {
+            switch(e.detail.state) {
+              case 'start':
+                this.message = 'Tracking started!';
+                break;
+              case 'track':
+                this.message = 'Tracking in progress... ' +
+                  e.detail.x + ', ' + e.detail.y;
+                break;
+              case 'end':
+                this.message = 'Tracking ended!';
+                break;
+            }
+          }
+
+        });
+
+      </script>
+
     </dom-module>
 
-    <script>
 
-      Polymer({
-
-        is: 'drag-me',
-
-        handleTrack: function(e) {
-          switch(e.detail.state) {
-            case 'start':
-              this.message = 'Tracking started!';
-              break;
-            case 'track':
-              this.message = 'Tracking in progress... ' +
-                e.detail.x + ', ' + e.detail.y;
-              break;
-            case 'end':
-              this.message = 'Tracking ended!';
-              break;
-          }
-        }
-
-      });
-
-    </script>
 
 
 Example with `listeners`:
 
-    <style>
-      drag-me {
-        width: 500px;
-        height: 500px;
-        background: gray;
-      }
-    </style>
     <dom-module id="drag-me">
+
+      <style>
+        drag-me {
+          width: 500px;
+          height: 500px;
+          background: gray;
+        }
+      </style>
+
+      <template>
+        <div id="dragme" on-track="handleTrack">{{message}}</div>
+      </template>
+
+      <script>
+
+        Polymer({
+
+          is: 'drag-me',
+
+          listeners: {
+            track: 'handleTrack'
+          },
+
+          handleTrack: function(e) {
+            switch(e.detail.state) {
+              case 'start':
+                this.message = 'Tracking started!';
+                break;
+              case 'track':
+                this.message = 'Tracking in progress... ' +
+                  e.detail.x + ', ' + e.detail.y;
+                break;
+              case 'end':
+                this.message = 'Tracking ended!';
+                break;
+            }
+          }
+
+        });
+
+      </script>
+
     </dom-module>
 
-    <script>
-
-      Polymer({
-
-        is: 'drag-me',
-
-        listeners: {
-          track: 'handleTrack'
-        },
-
-        handleTrack: function(e) {
-          switch(e.detail.state) {
-            case 'start':
-              this.message = 'Tracking started!';
-              break;
-            case 'track':
-              this.message = 'Tracking in progress... ' +
-                e.detail.x + ', ' + e.detail.y;
-              break;
-            case 'end':
-              this.message = 'Tracking ended!';
-              break;
-          }
-        }
-
-      });
-
-    </script>
 
 
 ## Event retargeting {#retargeting}

@@ -15,6 +15,49 @@ subtitle: About this release
   }
 </style>
 
+## Documentation updates 10 June 2015
+
+*   Documented [extending behaviors](devguide/behaviors.html#extending).
+*   Corrected [`@apply` example](migration.html#layout-attributes) in Migration guide to show only one mixin per `@apply` statement.
+*   Added documentation for [custom properties API](devguide/styling.html#style-api).
+*   Moved `<script>` tags inside `<dom-module>` according to latest recommendations.
+*   Updated documentation on [computed bindings](devguide/data-binding.html#annotated-computed) to
+    cover literal arguments and no-arg computed bindings.
+*   Added notes on several more renamed element and helper methods to the [migration guide](migration.html#methods).
+*   Added notes about replacing `template-bound` and `templateInstance` when using the template [helper elements](migration.html#helper-elements).
+*   Updated docs on [`ready` callback](devguide/registering-elements.html#ready-method) to clarify element initialization order.
+*   Added a note about replacing the [`domReady` callback](migration.html#domready).
+*   Fixed some accessibility issues related to text contrast and bad alt text.
+
+## Release 1.0.3
+
+Release 1.0.3 includes the following bug fixes:
+
+-   `dom-if` showing invalid HTML. [Fixes #1632.](https://github.com/Polymer/polymer/issues/1632)
+
+-   Custom CSS property fix for IE. ([commit](https://github.com/Polymer/polymer/commit/1f3b4ea))
+
+-   Move non-webcomponents script unresolved case to `load` instead of synchronous. ([commit](https://github.com/Polymer/polymer/commit/2258920))
+
+-   `dom-repeat`: re-insert rows when re-attaching. [Fixes #1498](https://github.com/Polymer/polymer/issues/1498).
+
+-   Make `__styleScoped` a one-time optimization. [Fixes #1733](https://github.com/Polymer/polymer/issues/1733).
+
+
+## Release 1.0.2
+
+Release 1.0.2 includes the following bug fix:
+
+-   Refactor ghost click code. ([commit](https://github.com/Polymer/polymer/commit/d96917a))
+
+## Release 1.0.1
+
+Release 1.0.1 includes the following bug fixes:
+
+-   Add `sourceEvent` property to `track` event. ([commit](https://github.com/Polymer/polymer/commit/bdf191b))
+-   Fix tap distance check: [Fixes #1652.](https://github.com/Polymer/polymer/issues/1652)
+-   Fix `element.click()` sending `tap` on IE10 [Fixes #1640.](https://github.com/Polymer/polymer/issues/1640)
+
 ## Release 1.0
 
 Release 1.0 includes the following bug fixes since 0.9:
