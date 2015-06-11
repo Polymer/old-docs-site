@@ -195,12 +195,12 @@ local DOM when the element is constructed.
 access a local DOM element. 
 {: .alert .alert-info }
 
-Within a given tree, `ready` is generally called in _document order_. For example,
-an element's **light DOM children** are generally initialized **after** the parent
-element. If the parent needs to perform initialization after light DOM children are ready, the 
-children should fire an event from the `attached` callback.
+Within a given tree, `ready` is generally called in _document order_, but you should not
+rely on the ordering of initialization callbacks between sibling elements, or between 
+a host element and its light DOM children.
 
-### Initialization ordering 
+
+### Initialization order {#initialization-order}
 
 The element's basic initialization order is:
 
@@ -210,10 +210,11 @@ The element's basic initialization order is:
 - [`factoryImpl` callback](#custom-constructor)
 - `attached` callback
 
-Note that initialization order of may vary depending on whether or not the browser includes
-native support for web components. In particular, there are no guarantees with regard to initialization timing 
-between sibling elements. You should not rely on observed timing to be identical
-across browsers, except as noted below.
+Note that **initialization order of may vary** depending on whether or not the
+browser includes native support for web components. In particular, there are no
+guarantees with regard to initialization timing  between **sibling elements** or
+between **parents and light DOM children**. You should not rely on observed
+timing to be identical across browsers, except as noted below.
 
 For a given element:
 
@@ -222,6 +223,17 @@ For a given element:
 *   The `ready` callback is called on any **local DOM children** before it's called
     on the host element.
 
+This means that an element's **light DOM children** may be initialized **before or after** 
+the parent element, and an element's **siblings may become `ready` in any order**.
+
+For accessing sibling elements when an element initializes you can call `async` from inside
+the `attached` callback:
+
+    attached: function() {
+       this.async(function() {
+          // access sibling or parent elements here
+       });
+    }
 
 ### Registration callback
 

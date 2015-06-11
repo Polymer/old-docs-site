@@ -21,6 +21,7 @@ When migrating, the following items can be translated easily from 0.5 to 1.0:
 *   [Default attributes](#default-attributes)
 *   [Layout attributes](#layout-attributes)
 *   [Use WebComponentsReady instead of the polymer-ready event](#polymer-ready)
+*   [domReady event](#domready)
 *   [Gestures](#gestures)
 *   [Vulcanize](#vulcanize)
 *   [Element & helper method changes](#methods)
@@ -716,6 +717,23 @@ the `WebComponentsReady` event will not fire. With native HTML imports and custo
 elements upgrade synchronously, so the event is not required. Simply place any scripts that 
 manipulate {{site.project_title}} elements at the end of the page, and all elements should 
 be ready.
+
+## domReady event {#domready}
+
+This release doesn't support the `domReady` callback. This callback was a partial
+solution to the problem of determining when sibling elements and light DOM children were ready.
+
+A more complete solution is in progress. In the meantime, if you are using `domReady` in 
+1.0 you can replace it by using the `async` method inside your `attached` callback:
+
+    attached: function() {
+       this.async(function() {
+          // code that formerly resided in `domReady`
+       });
+    }
+
+For more on element initialization, see: [Initialization order](devguide/registering-elements.html#initialization-order)
+in the Developer guide.
 
 ## Gestures
 

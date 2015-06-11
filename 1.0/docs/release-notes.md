@@ -26,6 +26,8 @@ subtitle: Guide
 *   Added notes on several more renamed element and helper methods to the [migration guide](migration.html#methods).
 *   Added notes about replacing `template-bound` and `templateInstance` when using the template [helper elements](migration.html#helper-elements).
 *   Updated docs on [`ready` callback](devguide/registering-elements.html#ready-method) to clarify element initialization order.
+*   Added a note about replacing the [`domReady` callback](migration.html#domready).
+*   Fixed some accessibility issues related to text contrast and bad alt text.
 
 ## Release 1.0.3
 
