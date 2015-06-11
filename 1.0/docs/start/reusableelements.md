@@ -1,6 +1,6 @@
 ---
 layout: default
-type: guide
+type: start
 shortname: Docs
 author: addyosmani
 title: Create a reusable element

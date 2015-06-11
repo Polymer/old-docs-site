@@ -1,6 +1,6 @@
 ---
 layout: default
-type: guide
+type: about
 title: Introducing Polymer 1.0
 subtitle: About this release
 shortname: Introducing

@@ -5,7 +5,7 @@ title: Welcome
 
 <section id="future" class="main-bg">
   <div class="panel left">
-    <img src="./images/polymer1.0-01.svg">
+    <img src="./images/polymer1.0-01.svg" alt="">
     <summary>
       <h1>Production ready</h1>
       <p>Polymer 1.0 has been rebuilt from the ground up for speed and efficiency. The new, leaner core library makes it easier than ever to make fast, beautiful, and interoperable web components. If you haven't used Polymer before, it's time to try it out. If you haven't tried it recently, time to take another look.</p>
@@ -216,7 +216,7 @@ title: Welcome
     </firebase-collection>
     <template is="dom-repeat" items="{{data}}">
       <contact-card starred="{{item.starred}}">
-        <img src="{{item.img}}" alt="{{item.name}}">
+        <img src="{{item.img}}">
         <span>{{item.name}}</span>
       </contact-card>
     </template>
