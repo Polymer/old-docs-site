@@ -11,3 +11,6 @@ _site
 *.vulcanized.js
 *.sublime-*
 _data/versions
+*Polymer 
+*log/log-id 
+*componets
