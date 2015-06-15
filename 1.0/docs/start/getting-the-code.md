@@ -36,7 +36,7 @@ title: Get the code
 If you're ready to start your own project, you can install the {{site.project_title}}
 library in one of several ways:
 
-*   [Bower](#using-bower). Bower manages dependencies, so installing a component
+*   [Bower](#using-bower) (recommended). Bower manages dependencies, so installing a component
     also installs any missing dependencies. Bower also handles updating
     installed components. For more information, see [Installing with Bower](#using-bower).
 
