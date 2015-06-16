@@ -43,7 +43,7 @@ Example:
       },
 
       ready: function() {
-        this.innerHTML = 'Hello World, I am a <b>Custom Element!</b>';
+        this.textContent = 'Hello World, I am a Custom Element!';
       }
 
     });
@@ -191,7 +191,7 @@ Example:
 
         attached: function() {
           // render
-          this.innerHTML = 'Hello World, my user is ' + (this.user || 'nobody') + '.\n' +
+          this.textContent = 'Hello World, my user is ' + (this.user || 'nobody') + '.\n' +
             'This user is ' + (this.manager ? '' : 'not') + ' a manager.';
         }
 
@@ -201,7 +201,7 @@ Example:
 
     <x-custom user="Scott" manager></x-custom>
     <!--
-    <x-custom>'s innerHTML becomes:
+    <x-custom>'s text content becomes:
     Hello World, my user is Scott.
     This user is a manager.
     -->
@@ -628,7 +628,7 @@ computed property function returns a value that's exposed as a virtual property.
   
 
 Arguments to computing functions may be simple properties on the element, as 
-well as any of the arguments types supported by `observers`, including [paths](#path-observation), 
+well as any of the arguments types supported by `observers`, including [paths](#observing-path-changes), 
 [paths with wildcards](#deep-observation), and [paths to array splices](#array-observation).  
 The arguments received by the computing function match those described in the sections referenced above.
 
