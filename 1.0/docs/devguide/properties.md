@@ -628,7 +628,7 @@ computed property function returns a value that's exposed as a virtual property.
   
 
 Arguments to computing functions may be simple properties on the element, as 
-well as any of the arguments types supported by `observers`, including [paths](#path-observation), 
+well as any of the arguments types supported by `observers`, including [paths](#observing-path-changes), 
 [paths with wildcards](#deep-observation), and [paths to array splices](#array-observation).  
 The arguments received by the computing function match those described in the sections referenced above.
 

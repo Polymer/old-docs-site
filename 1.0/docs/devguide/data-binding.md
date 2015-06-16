@@ -492,9 +492,9 @@ Arguments to computing functions may be _dependent properties_, which include
 any of argument types supported by the `observers` object:
 
 *   simple properties on the current scope
-*   [paths](#path-observation)
-*   [paths with wildcards](#deep-observation)
-*   [paths to array splices](#array-observation)
+*   [paths to subproperties](properties.html#observing-path-changes)
+*   [paths with wildcards](properties.html#deep-observation)
+*   [paths to array splices](properties.html#array-observation)
 
 For each type of dependent property, the argument _received_ by the computing function is the
 same as that passed to an observer.
