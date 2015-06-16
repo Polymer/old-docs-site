@@ -43,7 +43,7 @@ Example:
       },
 
       ready: function() {
-        this.innerHTML = 'Hello World, I am a <b>Custom Element!</b>';
+        this.textContent = 'Hello World, I am a Custom Element!';
       }
 
     });
@@ -191,7 +191,7 @@ Example:
 
         attached: function() {
           // render
-          this.innerHTML = 'Hello World, my user is ' + (this.user || 'nobody') + '.\n' +
+          this.textContent = 'Hello World, my user is ' + (this.user || 'nobody') + '.\n' +
             'This user is ' + (this.manager ? '' : 'not') + ' a manager.';
         }
 
@@ -201,7 +201,7 @@ Example:
 
     <x-custom user="Scott" manager></x-custom>
     <!--
-    <x-custom>'s innerHTML becomes:
+    <x-custom>'s text content becomes:
     Hello World, my user is Scott.
     This user is a manager.
     -->

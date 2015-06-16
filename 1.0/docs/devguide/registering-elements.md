@@ -27,7 +27,7 @@ Example:
 
       // See below for lifecycle callbacks
       created: function() {
-        this.innerHTML = 'My element!';
+        this.textContent = 'My element!';
       }
 
     });
@@ -307,7 +307,7 @@ Example:
 
       // See below for lifecycle callbacks
       created: function() {
-        this.innerHTML = 'My element!';
+        this.textContent = 'My element!';
       }
 
     });
