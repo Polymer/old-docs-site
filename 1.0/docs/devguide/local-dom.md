@@ -143,7 +143,7 @@ Adding and removing children:
 *   `Polymer.dom(parent).removeChild(node)`
 *   `Polymer.dom.flush()`
 
-Calling `append`/`insertBefore` where `parent` is a custom Polymer element adds the node to the light DOM of the element.  In order to insert/append into the shadow root of a custom element, use `this.root` as the parent.
+Calling `append`/`insertBefore` where `parent` is a custom Polymer element adds the node to the light DOM of the element.  In order to insert/append into the local dom of a custom element, use `this.root` as the parent.
 
  **Async operations:** The insert, append, and remove operations are transacted lazily in certain cases for performance.  In order to interrogate the dom (e.g. `offsetHeight`, `getComputedStyle`, etc.) immediately after one of these operations, call `Polymer.dom.flush()` first.
 {: .alert .alert-info }
