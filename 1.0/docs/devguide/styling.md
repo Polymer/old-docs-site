@@ -114,7 +114,7 @@ into the local DOM of other elements inside.
 This is great for *protecting* scopes from unwanted style leakage.  But what
 about when you intentionally want to *customize* the style of a custom element's
 local DOM, as the user of an element?  This often comes up under the umbrella of
-"theming".  For example a "custom-checkbox" element that may interally use a
+"theming".  For example a "custom-checkbox" element that may internally use a
 `.checked` class can protect itself from being affected by CSS from other
 components that may also happen to use a `.checked` class.  However, as the user
 of the checkbox you may wish to intentionally change the color of the check to
