@@ -505,6 +505,12 @@ footer {
   }
 }
 
+// custom search engine
+#search-results-container {
+  margin: 4.5em auto;
+  max-width: 1000px;
+}
+
 // Tablet + Desktop
 @media only screen and (min-width: $break-medium) {
   #features .panel {

@@ -363,6 +363,21 @@ document.addEventListener('click', function(e) {
   }
 });
 
+document.addEventListener('run-search', function(e) {
+  recordSearch(e.detail);
+  console.log(e.detail);
+  if (document.location.pathname.match(/^\/[0-9.]+\/search.html/)) {
+    // already on search page. search element automatically loads results when 
+    // query string changes
+    document.location.search = '?q=' + e.detail
+  } else {
+    var versionMatch = document.location.pathname.match(/^(\/[0-9.]+\/)/)
+    if (versionMatch && versionMatch.length > 1) {
+      injectPage(versionMatch[1] + 'search.html?q=' + e.detail);
+    }
+  }
+});
+
 document.querySelector('[data-twitter-follow]').addEventListener('click', function(e) {
   e.preventDefault();
   var target = e.target.localName != 'a' ? e.target.parentElement : e.target;
@@ -391,7 +406,7 @@ exports.downloadStarter = function() {
   ga('send', 'event', 'button', 'download');
 };
 
-exports.recordSearch = function(term) {
+function recordSearch(term) {
   ga('send', 'event', 'search', term);
 }
 
