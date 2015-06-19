@@ -510,7 +510,7 @@ a dependent property could refer to the current `item`.
 
 ### Literal arguments to computed bindings {#literals}
 
-Arguments to computed bindings may also be string or number liberals.
+Arguments to computed bindings may also be string or number literals.
 Strings may be  either single- or double-quoted. In an attribute or 
 property binding, if you use double quotes for the attribute value, use single
 quotes for string literals, or the reverse.
