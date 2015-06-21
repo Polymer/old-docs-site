@@ -206,7 +206,7 @@ Example with `listeners`:
       </style>
 
       <template>
-        <div id="dragme" on-track="handleTrack">{{message}}</div>
+        <div id="dragme">{{message}}</div>
       </template>
 
       <script>
@@ -216,7 +216,7 @@ Example with `listeners`:
           is: 'drag-me',
 
           listeners: {
-            track: 'handleTrack'
+            track: 'dragme.handleTrack'
           },
 
           handleTrack: function(e) {
