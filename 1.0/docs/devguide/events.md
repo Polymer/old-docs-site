@@ -198,7 +198,7 @@ Example with `listeners`:
     <dom-module id="drag-me">
 
       <style>
-        drag-me {
+        #dragme {
           width: 500px;
           height: 500px;
           background: gray;
