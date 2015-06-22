@@ -480,7 +480,7 @@ Example:
         });
       </script>
 
-    <dom-module id="x-custom">
+    </dom-module>
 
 
 In this case, the span's `textContent` property is bound to the return value 
