@@ -197,6 +197,11 @@ After:
 
     <input on-input="checkValue">
 
+The event handler is no longer passed the third argument, `inSender`, but is still passed the first two:
+
+*   `inEvent` is the [standard event object](http://www.w3.org/TR/DOM-Level-3-Events/#interface-Event).
+*   `inDetail` is a convenience form of `inEvent.detail`.
+
 ## Declared properties {#properties}
 
 {{site.project_title}} 0.5 has two mechanisms to publish properties &mdash; the `attributes`
