@@ -72,31 +72,31 @@ pre, .prettyprint {
 
   .typ, .inline {
     // color: #bec945;
-    color: #6b499f;
+    color: #9c27b0;
   }
   .pun {
-    color: #5c6bc0;
+    color: #455a64;
   }
   .str, .string {
-    color: #ff4081;
+    color: #689f38;
   }
   .pln {
-    color: #7986cb;
+    color: #455a64; 
   }
   .kwd {
-    color: #d61a7f;
+    color: #00838f;
   }
   .tag {
-
+    color: #00838f;
   }
   .atn, .attribute-name {
-    color: #6b499f;
+    color: #455a64;
   }
   .atv, .attribute-value {
-    color: #7986cb;
+    color: #689f38;
   }
   .com, .comment {
-    color: #8a8a8a;
+    color: #d81b60;
   }
 }
 
