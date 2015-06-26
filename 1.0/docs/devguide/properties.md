@@ -478,8 +478,8 @@ Example:
 
     });
 
-**Array mutation APIs.** Observing changes to arrays is dependent on the change to the array
-being made through one of the [array mutation APIs](#array-mutation) provided
+**Array mutation methods.** Observing changes to arrays is dependent on the change to the array
+being made through one of the [array mutation methods](#array-mutation) provided
 on Polymer elements, which provides the required notification to elements with
 registered interest.
 {: .alert .alert-info }
