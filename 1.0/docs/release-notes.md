@@ -274,8 +274,7 @@ The template helper elements are no longer experimental, and have been renamed:
 
 #### Nested template support
 
-As of 0.9, nested templates can access their parent's scope. See [Nesting dom-repeat templates]
-(devguide/templates.html#nesting-templates) for details.
+As of 0.9, nested templates can access their parent's scope. See [Nesting dom-repeat templates](devguide/templates.html#nesting-templates) for details.
 
 #### <span class="breaking">breaking change:</span> Array mutation methods
 
