@@ -357,7 +357,7 @@ Path bindings are distinct from property bindings in a subtle way:
 **Path bindings are two-way.** There is no concept of one-way bindings for 
 paths, since the data does not propagate. That is, all bindings and 
 change handlers for the same path will always be notified and update when the 
-value of the path changes.
+value of the path changes. 
 {: .alert .alert-info }
 
 ### Path change notification {#set-path}
@@ -389,7 +389,7 @@ as `Object.observe` or dirty-checking in order to achieve the best startup and
 runtime performance cross-platform for the most common use cases, changing an
 object's sub-properties directly requires cooperation from the user.
 
-Specifically, Polymer provides two API's that allow such changes to be notified
+Specifically, Polymer provides two methods that allow such changes to be notified
 to the system: `notifyPath(path, value)` and `set(path, value)`, where `path` is 
 a **string** identifying the path (relative to the host element). 
 
@@ -425,9 +425,12 @@ actions:
     }
 
 
-**Note:** Paths do not support array access notation (such as `users[2]`),
-but do support array indexes in dotted paths (that is, `users.2`).
+**Note:** Paths do not support array access notation (such as `users[2]`).
+String keys (such as `users[bob]`) can be replaced with dotted paths (`users.bob`).
+But direct bindings to array items by index (`{%raw%}{{array.0}}{%endraw%}`) isn't supported. 
+See [Binding to array items](#array-binding).
 {: .alert .alert-info }
+    
 
 ## Expressions in binding annotations
 
@@ -486,7 +489,7 @@ Example:
 In this case, the span's `textContent` property is bound to the return value 
 of `computeFullName`, which is recalculated whenever `first` or `last` changes.
 
-### Dependent properties in computed bindings
+### Dependent properties in computed bindings {#dependent-properties}
 
 Arguments to computing functions may be _dependent properties_, which include
 any of argument types supported by the `observers` object:
@@ -497,7 +500,7 @@ any of argument types supported by the `observers` object:
 *   [paths to array splices](properties.html#array-observation)
 
 For each type of dependent property, the argument _received_ by the computing function is the
-same as that passed to an observer.
+same as that passed to an observer. 
 
 The computing function **is not called until all dependent properties are defined 
 (`!=undefined`)**. So each dependent properties should have a 
@@ -507,6 +510,8 @@ non-`undefined` value) to ensure the function value is computed.
 A computed binding's dependent properties are interpreted relative to the current 
 _binding scope_. For example, inside a [template repeater](templates.html#dom-repeat),
 a dependent property could refer to the current `item`.
+
+For an example computed binding using a path with a wildcard, see [Binding to array items](#array-binding).
 
 ### Literal arguments to computed bindings {#literals}
 
@@ -547,6 +552,62 @@ Finally, if a computed binding has no dependent properties, it is only evaluated
       </script>
     </dom-module>
 
+## Binding to array items {#array-binding}
+
+Explicit bindings to array items by index isn't supported:
+    
+    <!-- don't do this! -->
+    <span>{%raw%}{{array[0]}}{%endraw%}</span>
+    <!-- or this! -->
+    <span>{%raw%}{{array.0}}{%endraw%}</span>
+
+You can use a computed binding to bind to a specific array item, or to a 
+subproperty of an array item, like `array[index].name`. 
+
+The following example shows to access a property from an array item using a computed binding.
+The computing function needs to be called if the subproperty value changes, 
+_or_ if the array  itself is mutated, so the binding uses a wildcard path, `myArray.*`.
+
+
+    
+    <dom-module id="bind-array-element">
+
+      <template>
+        <div>[[arrayItem(myArray.*, 0, 'name')]]</div>
+        <div>[[arrayItem(myArray.*, 1, 'name')]]</div>
+      </template>
+
+      <script>
+        Polymer({
+
+          is: 'binding-test',
+
+          properties: {
+
+            myArray: {
+              type: Array,
+              value: [{ name: 'Bob' }, { name: 'Doug' } ]
+            }
+          },
+         
+          // first argument is the change record for the array change,
+          // change.base is the array specified in the binding
+          arrayItem: function(change, index, path) {
+            // this.get(path, root) returns a value for a path
+            // relative to a root object.
+            return this.get(path, change.base[index]);
+          },
+         
+          ready: function() {
+            // mutate the array
+            this.unshift('myArray', { name: 'Susan' });
+            // change a subproperty
+            this.set('myArray.1.name', 'Rupert');
+          }
+        });
+      </script>
+
+    </dom-module>
 
 ## Annotated attribute binding {#attribute-binding}
 

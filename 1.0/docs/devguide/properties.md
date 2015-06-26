@@ -479,7 +479,7 @@ Example:
     });
 
 **Array mutation APIs.** Observing changes to arrays is dependent on the change to the array
-being made through one of the [array mutation API's](#array-mutation) provided
+being made through one of the [array mutation APIs](#array-mutation) provided
 on Polymer elements, which provides the required notification to elements with
 registered interest.
 {: .alert .alert-info }
@@ -516,6 +516,53 @@ that occur in the array:
       }
 
     });
+
+### Array mutation methods {#array-mutation}
+
+When modifying arrays, a set of array mutation methods are provided on {{site.project_title}}
+element prototypes which mimic `Array.prototype` methods, with the exception that
+they take a `path` string as the first argument.  The `path` argument identifies
+an array on the element to mutate, with the following arguments matching those
+of the native `Array` methods.  
+
+These methods perform the mutation action on
+the array, and then notify other elements that may be bound to the same
+array of the changes.  You must use these methods when mutating an array
+to ensure that any elements watching the array (via observers, computed properties,
+or data bindings) are kept in sync.
+
+Every Polymer element has the following array mutation methods available:
+
+* `push(path, item1, [..., itemN])`
+* `pop(path)`
+* `unshift(path, item1, [..., itemN])`
+* `shift(path)`
+* `splice(path, index, removeCount, [item1, ..., itemN])`
+
+Example:
+
+    <dom-module id="custom-element">
+      <template>
+        <template is="dom-repeat">{{users}}</div>
+      </template>
+
+      <script>
+        Polymer({
+
+          is: 'custom-element',
+
+          addUser: function(user) {
+            this.push('users', user);
+          },
+
+          removeUser: function(user) {
+            var index = this.users.indexOf(user);
+            this.splice('users', index, 1);
+          }
+
+        });
+      </script>
+    </dom-module>
 
 ## Property change notification events (notify) {#notify}
 
