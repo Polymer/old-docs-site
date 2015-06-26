@@ -15,6 +15,73 @@ subtitle: About this release
   }
 </style>
 
+## [Release 1.0.5](https://github.com/Polymer/polymer/tree/v1.0.5) (2015-06-25)
+
+**Fixed issues:**
+
+- Bindings to concrete types not propagating correctly from template to collection [\#1839](https://github.com/Polymer/polymer/issues/1839)
+
+- Setting individual array elements not working [\#1854](https://github.com/Polymer/polymer/issues/1854)
+
+- CustomStyle change has no effect [\#1851](https://github.com/Polymer/polymer/issues/1851)
+
+- With Shady DOM, `<content>` doesn't get passed to another element inside dom-if [#1902](https://github.com/Polymer/polymer/issues/1902)
+
+- Provide a convenience method for setting `customStyle` and calling `updateStyles` [\#1915](https://github.com/Polymer/polymer/issues/1915)
+
+- If an async callback throws an error, it's never removed from the callback list [\#1759](https://github.com/Polymer/polymer/issues/1759)
+
+- dom-if: undefined is considered falsy only once [\#1742](https://github.com/Polymer/polymer/issues/1742)
+
+- Setting readOnly **and** computed on properties [\#1925](https://github.com/Polymer/polymer/issues/1925)
+
+- Uncaught TypeError: this.mixin is not a function [\#1911](https://github.com/Polymer/polymer/issues/1911)
+
+- `Polymer.Base.async` "infinite loop" condition [\#1933](https://github.com/Polymer/polymer/issues/1933)
+
+- Custom property resolver tripping over some selectors? [\#1938](https://github.com/Polymer/polymer/issues/1938)
+
+- Annotated attribute binding issues [\#1874](https://github.com/Polymer/polymer/issues/1874)
+
+- Parsing compressed CSS does not work [\#1927](https://github.com/Polymer/polymer/issues/1927)
+
+
+## [Release 1.0.4](https://github.com/Polymer/polymer/tree/v1.0.4) (2015-06-17)
+
+**Fixed issues:**
+
+- Need a way to cancel track and tap from down [#1823](https://github.com/Polymer/polymer/issues/1823)
+
+- `array-selector` doesn't work with multi unless toggle is specified [#1810](https://github.com/Polymer/polymer/issues/1810)
+
+- Style shim only converts a single `::shadow` or `/deep/` in a selector [#1809](https://github.com/Polymer/polymer/issues/1809)
+
+- Incorrect style for custom CSS properties when extending a native element [#1807](https://github.com/Polymer/polymer/issues/1807)
+
+- Unwrapped `dom-if` causes `DOMException` [#1804](https://github.com/Polymer/polymer/issues/1804)
+
+- `dom-if` fails to add rows to a table if they contain `<content>` [#1800](https://github.com/Polymer/polymer/issues/1800)
+
+- Data binding causes infinite loop if value is NaN [#1799](https://github.com/Polymer/polymer/issues/1799)
+
+- Do not resolve hash-only urls used for routing [#1757](https://github.com/Polymer/polymer/issues/1757)
+
+- Content nodes in `dom-if` template do not distribute correctly [#1753](https://github.com/Polymer/polymer/issues/1753)
+
+- An element that uses only values supplied by variable defaults can be styled incorrectly [#1752](https://github.com/Polymer/polymer/issues/1752)
+
+- Nested `dom-repeat` with sort attribute shows duplicate entries when adding new items. [#1744](https://github.com/Polymer/polymer/issues/1744)
+
+- `::before` / `::after` pseudo selectors in a `custom-style` [#1668](https://github.com/Polymer/polymer/issues/1668)
+
+- Need `Polymer.Base.unlisten` to remove the event listener [#1639](https://github.com/Polymer/polymer/issues/1639)
+
+- `custom-style` sometimes does not apply variables [#1637](https://github.com/Polymer/polymer/issues/1637)
+
+- `dom-if` template doesn't stamp when its content contains a wrapped insertion point [#1631](https://github.com/Polymer/polymer/issues/1631)
+
+
+
 ## Documentation updates 10 June 2015
 
 *   Documented [extending behaviors](devguide/behaviors.html#extending).
