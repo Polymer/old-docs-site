@@ -250,7 +250,7 @@ attribute name and values are the values to be assigned.  Values should
 typically be provided as strings, as HTML attributes can only be strings;
 however, the standard `serialize` method is used to convert values to strings,
 so `true` will serialize to an empty attribute, and `false` will result in no
-attribtue set, and so forth (see [Attribute serialization](properties.html#attribute-serialization) for more
+attribute set, and so forth (see [Attribute serialization](properties.html#attribute-serialization) for more
 details).
 
 Example:
@@ -262,8 +262,8 @@ Example:
         is: 'x-custom',
 
         hostAttributes: {
-          role: 'button',
-          'aria-disabled': true,
+          string-attribute: 'Value',
+          boolean-attribute: true
           tabindex: 0
         }
 
@@ -273,10 +273,9 @@ Example:
 
 Results in:
 
-    <x-custom role="button" aria-disabled tabindex="0"></x-custom>
+    <x-custom string-attribute="Value" boolean-attribute tabindex="0"></x-custom>
 
-**Note:** As of {{site.project_title}} 0.9, the `class` attribute can't be 
-configured using `hostAttributes`.
+**Note:** The `class` attribute can't be configured using `hostAttributes`.
 {: .alert .alert-error }
 
 ## Behaviors {#prototype-mixins}
