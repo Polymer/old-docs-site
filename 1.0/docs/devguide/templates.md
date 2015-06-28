@@ -38,6 +38,7 @@ Example:
 
         <div> Employee list: </div>
         <template is="dom-repeat" items="{{employees}}">
+            <div># <span>{{index}}</span></div>
             <div>First name: <span>{{item.first}}</span></div>
             <div>Last name: <span>{{item.last}}</span></div>
         </template>
