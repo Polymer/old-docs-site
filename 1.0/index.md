@@ -144,7 +144,7 @@ title: Welcome
 <link rel="import" href="components/google-map/google-map.html">
 
 <!-- Use element -->
-<google-map lat="37.790" long="-122.390"></google-map>
+<google-map latitude="37.790" longitude="-122.390"></google-map>
 {%endraw%}
         {% endhighlight %}
         </div>
