@@ -122,8 +122,8 @@ for more information.
 <td>Type: <code>string</code><br>
 
 The value is interpreted as a method name to be invoked when the property value 
-changes. Note that unlike in 0.5, **property change handlers must be registered 
-explicitly.** The <code><var>propertyName</var>-changed</code> method will not be 
+changes. Note that unlike in 0.5, <strong>property change handlers must be registered 
+explicitly.</strong> The <code><var>propertyName</var>-changed</code> method will not be 
 invoked automatically. See <a href="#change-callbacks">Property change callbacks (observers)</a> 
 for more information.
 </td>
