@@ -93,7 +93,7 @@ The Polymer standard layer adds declarative data binding, events, property notif
 | [Binding to structured data](data-binding.html#path-binding) | \<element prop=”{%raw%}{{obj.sub.path}}{%endraw%}”>
 | [Path change notification](data-binding.html#set-path) | set(\<path>, \<value>)
 | [Declarative attribute binding](data-binding.html#attribute-binding) | \<element attr$=”{%raw%}{{property\|path}}{%endraw%}”>
-| [Reflecting properties to attributes](properties.html#attribute-reflection) | properties: \<prop>: { reflectToAttribute: true } }
+| [Reflecting properties to attributes](properties.html#attribute-reflection) | properties: { \<prop>: { reflectToAttribute: true } }
 | [Computed properties](properties.html#computed-properties) | computed: { \<property>: ‘computeFn(dep1, dep2)’ }
 | [Computed bindings](data-binding.html#annotated-computed) | \<span>{%raw%}{{computeFn(dep1, dep2)}}{%endraw%}\</span>
 | [Read-only properties](properties.html#read-only) |  properties: { \<prop>: { readOnly: true } }
