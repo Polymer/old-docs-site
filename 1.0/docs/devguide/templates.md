@@ -143,7 +143,7 @@ In both cases, the value can be either a function object, or a string identifyin
 function defined on the host element.
 
 By default, the `filter` and `sort` functions only run when the array itself
-is mutated (for example, by adding or removing items using )
+is mutated (for example, by adding or removing items).
 
 To re-run the `filter` or `sort` functions when certain sub-fields
 of `items` change, set the `observe` property to a space-separated list of
