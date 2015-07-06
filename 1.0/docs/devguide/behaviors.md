@@ -35,7 +35,7 @@ defined on the prototype always takes precedence over a function defined
 by a behavior.** If multiple behaviors define the same function, the 
 **last** behavior in the `behaviors` array takes precedence. 
 
-## Definining behaviors
+## Defining behaviors
 
 To define a behavior, create a JavaScript object that you can reference from your element definition.
 The following example simply adds `HighlightBehavior` to the global scope:
