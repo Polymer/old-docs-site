@@ -210,9 +210,9 @@ The element's basic initialization order is:
 - [`factoryImpl` callback](#custom-constructor)
 - `attached` callback
 
-Note that **initialization order of may vary** depending on whether or not the
+Note that the **initialization order may vary** depending on whether or not the
 browser includes native support for web components. In particular, there are no
-guarantees with regard to initialization timing  between **sibling elements** or
+guarantees with regard to initialization timing between **sibling elements** or
 between **parents and light DOM children**. You should not rely on observed
 timing to be identical across browsers, except as noted below.
 
