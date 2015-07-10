@@ -2,7 +2,8 @@
 layout: default
 type: start
 shortname: Start
-title: Get the code
+title: Get the Polymer library
+subtitle: Get started
 ---
 
 <style>
