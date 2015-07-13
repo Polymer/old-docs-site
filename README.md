@@ -129,7 +129,7 @@ version 1.0.
 
 Change directories to the root of the repository:
 
-    cd ../../..
+    cd ../..
 
 Build the website:
 
