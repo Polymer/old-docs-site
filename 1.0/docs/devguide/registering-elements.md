@@ -47,9 +47,6 @@ chaining it to the {{site.project_title}} `Base` prototype (which provides
 prototype chain. However, you can use [prototype mixins](#prototype-mixins) to
 share code between elements.
 
-**Note:** Defining an element in the main HTML document is not currently supported.
-{: .alert .alert-info }
-
 ### Define a custom constructor {#custom-constructor}
 
 The `Polymer` method returns a basic constructor that can be used to
@@ -131,7 +128,7 @@ To use a type-extension element in markup, use the _native_ tag and add an
 <!-- legacy anchor -->
 <a id="basic-callbacks"></a>
 
-### Define an element in the main HTML document
+### Define an element in the main HTML document {#main-document-definitions}
 
 To define an element in your main HTML document, define the element
 from `HTMLImports.whenReady(callback)`. `callback` is invoked when 
