@@ -10,7 +10,7 @@
     "grunt-doc-merge": "^1.0.0",
     "grunt-contrib-yuidoc": "*",
     "grunt-jekyll": "*",
-    "grunt-vulcanize": "*",
+    "grunt-vulcanize": "^0.6.4",
     "load-grunt-tasks": "^0.6.0"
   },
   "scripts": {

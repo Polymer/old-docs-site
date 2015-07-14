@@ -1,26 +1,149 @@
-Polymer docs are mostly in Markdown with some HTML. [Jekyll][jekyll] is used to generate the static HTML for the site. The output is generated into a folder called `_site` and served from Google App Engine.
+Polymer docs are mostly in Markdown with some HTML. [Jekyll][jekyll] is used 
+to generate the static HTML for the site. The output is generated into a 
+folder called `_site` and served from Google App Engine.
 
-## Prereqs and installation requirements
-
-We use Jekyll 2.4 and [Grunt][grunt] to generate the documentation, and compass to compile SASS to CSS. You'll need to install the requirements before working on the docs (these instructions assume [NPM is already installed](http://nodejs.org/download/)):
-
-    gem install bundler
-    npm install -g grunt-cli vulcanize bower
-
-**Note:** If you receive permission warnings, you may need to run the above tasks with `sudo`.
-
-You'll also need the Python App Engine SDK to run the dev_appserver and preview the docs locally. [Download the SDK](https://developers.google.com/appengine/downloads).
+We use Jekyll 2.4 and [Grunt][grunt] to generate the documentation, and compass to compile SASS to CSS.
 
 
-### Getting Started
 
-- `git clone https://github.com/Polymer/docs.git`
-- `bundle install`
-- `npm install`
-- `cd 1.0`
-- `bower install`
-- `grunt docs`
-- `grunt` (or `npm start`)
+## Setup
+
+In this section you learn how to:
+
+1. install all of the tools needed to build the site
+2. build the site
+3. locally preview the site
+
+These setup instructions were validated against Mac OS X 10.10.3.
+
+We've included brief descriptions on how each tool is used in the build
+process. The build process is automated, so you don't really need 
+to know this stuff, but it will be very useful to know when
+things go wrong.
+
+Install npm:
+
+    http://nodejs.org/download
+
+npm is a JavaScript dependency manager. It is bundled with Node.js 
+by default.
+
+Install Bundler:
+
+    gem install bundler --user-install 
+
+Bundler is a Ruby dependency manager. We use it to manage 
+Jekyll (the tool we use to generate static HTML from markdown), and 
+its dependencies. 
+
+The `--user-install` flag in the command above installs the gem to your home
+directory (usually `~/.gem/ruby/1.9.1`). The default behavior is to
+install to the system-wide Ruby directory
+(usually `/var/lib/gems/1.9.1`) which can create all kinds of
+problems down the line. 
+
+If Ruby warns you that the user install directory is not on your
+path, add it now by adding the following to your `.bashrc` file
+(or whatever is appropriate for your development environment):
+
+    PATH="$PATH:$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
+
+Next, install Grunt, Vulcanize, and Bower:
+
+    npm install -g grunt-cli vulcanize@0.7 bower
+
+Grunt automates repetitive tasks, like minifying 
+JavaScript, compiling SASS, and deploying the website.
+Vulcanize (built by the Polymer team) reduces HTML files and their 
+dependent HTML imports into one file. Bower is another tool for
+managing JavaScript dependencies.
+
+`vulcanize@0.7` instructs npm to istall version 0.7. If you omitted this,
+it would install the latest release, which does not play nicely
+with our build toolchain.
+
+The `-g` flag installs these command-line tools globally, so that 
+you can use them in any directory. Some of the build scripts expect
+the tools to be globally accessible.
+
+Download and install the Google App Engine Python SDK:
+
+    https://developers.google.com/appengine/downloads
+
+We'll use the App Engine to locally preview and deploy the website.
+
+Clone this repository. For sake of example, we'll assume you clone 
+it to `~/Polymer/docs`.
+
+    git clone https://github.com/Polymer/docs.git
+
+Change directories to this repository.
+
+    cd ~/Polymer/docs
+
+Install Jekyll and its dependencies:
+
+    bundle install --path ~/.gem
+
+This installs all gems to the same location as Bundler, rather 
+than the system-wide Ruby directory.
+
+Install Grunt and various other tools for building / deploying the site: 
+
+    npm install
+
+`npm` reads `package.json` and installs all of the dependencies
+it finds into `node_modules`.
+
+Change directories to the directory for 0.5 documents:
+
+    cd 0.5
+
+Install a bunch of dependencies:
+
+    bower install
+
+When bower instructs you to select a Polymer version, select `0.5`.
+
+Change directories to the directory for Polymer version 1.0 documents:
+
+    cd ../1.0
+
+Install more dependencies: 
+
+    bower install
+
+When it prompts you to specify which version of Polymer to use, select
+`0.5` again.
+
+Change directories to the `samples` directory:
+
+    cd samples/
+
+Install dependencies:
+
+    bower install
+
+Unlike the rest of the website, the samples are built with Polymer
+version 1.0.
+
+Change directories to the root of the repository:
+
+    cd ../..
+
+Build the website:
+
+    grunt docs
+
+Deploy the site locally:
+
+    grunt
+
+Open a web browser and view the website at the following location:
+
+    http://localhost:3000
+
+You're done. Phew!
 
 ## Making edits and previewing changes
 
