@@ -135,6 +135,11 @@ Build the website:
 
     grunt docs
 
+When grunt runs the `doc_merge:0_5` and `doc_merge:1_0` tasks, you will see 
+a list of errors along the lines of `Unable to find @extends input from
+core-input` or `Unable to find @mixins CoreFocusable from core-tooltip`. You
+can safely ignore these errors.
+
 Deploy the site locally:
 
     grunt
