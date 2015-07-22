@@ -137,30 +137,30 @@ all imports in the document have finished loading.
 
     <!DOCTYPE html>
     <html>
-        <head>
-            <script src="bower_components/webcomponentsjs/webcomponents-lite.js">
-            </script>
-            <link rel="import" href="bower_components/polymer/polymer.html">
-            <title>Defining a Polymer Element from the Main Document</title>
-        </head>
-        <body>
-            <dom-module id="main-document-element">
-                <template>
-                    <p>
-                        Hi! I'm a Polymer element that was defined in the
-                        main document!
-                    </p>
-                </template>
-                <script>
-                    HTMLImports.whenReady(function () {
-                        Polymer({
-                            is: 'main-document-element'
-                        });
-                    });
-                </script>
-            </dom-module>
-            <main-document-element></main-document-element>
-        </body>
+      <head>
+        <script src="bower_components/webcomponentsjs/webcomponents-lite.js">
+        </script>
+        <link rel="import" href="bower_components/polymer/polymer.html">
+        <title>Defining a Polymer Element from the Main Document</title>
+      </head>
+      <body>
+        <dom-module id="main-document-element">
+          <template>
+            <p>
+              Hi! I'm a Polymer element that was defined in the
+              main document!
+            </p>
+          </template>
+          <script>
+            HTMLImports.whenReady(function () {
+              Polymer({
+                is: 'main-document-element'
+              });
+            });
+          </script>
+        </dom-module>
+        <main-document-element></main-document-element>
+      </body>
     </html>
 
 Defining elements from the main document is primarily useful for small 
