@@ -97,7 +97,7 @@ _name_ (for example, `handleClick`) **is** case sensitive.
 around the event handler name.
 
 **Lowercase event names.** When you use a declarative handler, the event name 
-is convered to lowercase, because attributes are case-insensitive.
+is converted to lowercase, because attributes are case-insensitive.
 So the attribute `on-core-signal-newData` sets up a listener for `core-signal-newdata`, 
 _not_ `core-signal-newData`. To avoid confusion, always use lowercase event names.
 {: .alert .alert-info } 
