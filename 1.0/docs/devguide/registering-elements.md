@@ -47,9 +47,6 @@ chaining it to the {{site.project_title}} `Base` prototype (which provides
 prototype chain. However, you can use [prototype mixins](#prototype-mixins) to
 share code between elements.
 
-**Note:** Defining an element in the main HTML document is not currently supported.
-{: .alert .alert-info }
-
 ### Define a custom constructor {#custom-constructor}
 
 The `Polymer` method returns a basic constructor that can be used to
@@ -130,6 +127,45 @@ To use a type-extension element in markup, use the _native_ tag and add an
 
 <!-- legacy anchor -->
 <a id="basic-callbacks"></a>
+
+### Define an element in the main HTML document {#main-document-definitions}
+
+**Note:** You should only define elements from the main document when 
+experimenting. In production, elements should always be defined in 
+separate files and imported into your main document. 
+{: .alert .alert-info }
+
+To define an element in your main HTML document, define the element
+from `HTMLImports.whenReady(callback)`. `callback` is invoked when 
+all imports in the document have finished loading.
+
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <script src="bower_components/webcomponentsjs/webcomponents-lite.js">
+        </script>
+        <link rel="import" href="bower_components/polymer/polymer.html">
+        <title>Defining a Polymer Element from the Main Document</title>
+      </head>
+      <body>
+        <dom-module id="main-document-element">
+          <template>
+            <p>
+              Hi! I'm a Polymer element that was defined in the
+              main document!
+            </p>
+          </template>
+          <script>
+            HTMLImports.whenReady(function () {
+              Polymer({
+                is: 'main-document-element'
+              });
+            });
+          </script>
+        </dom-module>
+        <main-document-element></main-document-element>
+      </body>
+    </html>
 
 ## Lifecycle callbacks {#lifecycle-callbacks}
 
