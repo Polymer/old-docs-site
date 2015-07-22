@@ -543,7 +543,7 @@ Example:
 
     <dom-module id="custom-element">
       <template>
-        <template is="dom-repeat">{{users}}</div>
+        <template is="dom-repeat">{{users}}</template>
       </template>
 
       <script>
