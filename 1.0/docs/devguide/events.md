@@ -216,7 +216,7 @@ Example with `listeners`:
           is: 'drag-me',
 
           listeners: {
-            track: 'dragme.handleTrack'
+            'dragme.track': 'handleTrack'
           },
 
           handleTrack: function(e) {
