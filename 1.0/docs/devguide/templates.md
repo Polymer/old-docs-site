@@ -268,8 +268,8 @@ property become truthy again.  To disable this behavior, set the
 elements are destroyed and re-stamped each time.
 
 All text children of the template, including leading and trailing whitespace, will be
-wrapped in a `<span>`. Note that this will cause layout trouble if you use dom-if
-inside a <table>, flexbox, or component where spans are styled directly.
+wrapped in a `<span>`. Note that this will impact your layout if you use dom-if
+inside a <table>, flexbox, or a component where spans are styled directly.
 
 The following is a simple example to show how conditional templates work. Read below for
 guidance on recommended usage of conditional templates.
