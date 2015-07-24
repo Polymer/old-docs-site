@@ -12,3 +12,4 @@ _site
 *.sublime-*
 _data/versions
 .bundle
+summit/dist
