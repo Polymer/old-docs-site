@@ -42,28 +42,35 @@ a {
 .center {
   display: -ms-flexbox;
   display: -webkit-flex;
+  display: -webkit-box;
   display: flex;
   -ms-flex-direction: column;
   -webkit-flex-direction: column;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
   -ms-flex-align: center;
   -webkit-align-items: center;
-  align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
 }
 
 .center-horiz {
   display: -ms-flexbox;
   display: -webkit-flex;
+  display: -webkit-box;
   display: flex;
   -ms-flex-align: center;
   -webkit-align-items: center;
-  align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
 }
 
 .middle {
   -ms-flex-pack: center;
   -webkit-justify-content: center;
-  justify-content: center;
+  -webkit-box-pack: center;
+          justify-content: center;
 }
 
 .header {
@@ -84,7 +91,8 @@ a {
   height: 100%;
   -ms-flex: 1;
   -webkit-flex: 1;
-  flex: 1;
+  -webkit-box-flex: 1;
+          flex: 1;
   background-repeat: no-repeat;
   background-size: auto 100%;
 }
@@ -165,7 +173,8 @@ a {
   border-radius: 2px;
   color: #fff;
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
-  transition: box-shadow 0.18s;
+  -webkit-transition: box-shadow 0.18s;
+          transition: box-shadow 0.18s;
 }
 
 .register-btn:hover:not(:active) {
@@ -197,7 +206,8 @@ a {
   background: url(../images/muziekgebouw.jpg) no-repeat center center;
   background-size: cover;
   -webkit-transform-origin: center center;
-  transform-origin: center center;
+  -ms-transform-origin: center center;
+      transform-origin: center center;
   -webkit-transform: translateZ(-2px) scale(1.41);
   transform: translateZ(-2px) scale(1.41);
 }
@@ -273,5 +283,20 @@ footer > a:not(:last-child) {
   .badge-blue, .badge-white {
     width: 260px;
     height: 260px;
+  }
+}
+
+@media
+(-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+  /* Retina-specific stuff here */
+  .badge-blue {
+    background: url(../images/badge-blue@2x.png) no-repeat center center;
+    background-size: contain;
+  }
+
+  .badge-white {
+    background: url(../images/badge-white@2x.png) no-repeat center center;
+    background-size: contain;
   }
 }
