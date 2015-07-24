@@ -14,22 +14,12 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var del = require('del');
 
-var AUTOPREFIXER_BROWSERS = [
-  'ie >= 10',
-  'ie_mob >= 10',
-  'ff >= 30',
-  'chrome >= 34',
-  'safari >= 7',
-  'opera >= 23',
-  'ios >= 7',
-  'android >= 4.4',
-  'bb >= 10'
-];
-
 // Autoprefix and minify CSS
 gulp.task('styles', ['clean'], function() {
   return gulp.src('app/styles/**/*.css')
-    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
+    // No matter what setting I use it seems to add -webkit-box which breaks
+    // the logo :(
+    // .pipe($.autoprefixer(['last 2 versions', 'ios 8', 'Safari 8']))
     .pipe($.cssmin())
     .pipe(gulp.dest('dist/styles'));
 });
