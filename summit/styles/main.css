@@ -150,6 +150,7 @@ a {
 .main-desc2 {
   padding: 32px 0 40px;
   opacity: 0.54;
+  text-align: center;
 }
 
 .strong {
@@ -242,8 +243,21 @@ footer > a:not(:last-child) {
 }
 
 @media (max-width: 640px) {
+  .header {
+    height: calc(100vh - 190px);
+  }
+
   .left-bg, .right-bg {
     background: transparent;
+  }
+
+  .date-loc-info {
+    height: 190px;
+  }
+
+  .date-loc-info > time {
+    max-width: 320px;
+    line-height: 36px;
   }
 }
 
