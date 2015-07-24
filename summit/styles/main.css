@@ -1,0 +1,302 @@
+/*
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/
+
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  background: #f2f2f2;
+  color: #000;
+  font-family: 'Roboto', sans-serif;
+  font-size: 23px;
+  font-weight: 300;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-perspective: 5px;
+  perspective: 5px;
+  -webkit-perspective-origin: 50% 0;
+  perspective-origin: 50% 0;
+}
+
+a {
+  text-decoration: none;
+  font-size: inherit;
+  color: inherit;
+}
+
+.center {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.center-horiz {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.middle {
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+
+.header {
+  height: calc(100vh - 140px);
+  background-color: #41A4F4;
+  border-top: 7px solid #F9518C;
+}
+
+.badge-blue {
+  width: 400px;
+  height: 400px;
+  margin: 0 5%;
+  background: url(../images/badge-blue.png) no-repeat center center;
+  background-size: contain;
+}
+
+.left-bg, .right-bg {
+  height: 100%;
+  -ms-flex: 1;
+  -webkit-flex: 1;
+  -webkit-box-flex: 1;
+          flex: 1;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+}
+
+.left-bg {
+  background-image: url(../images/left-bg.png);
+  background-position: top right;
+}
+
+.right-bg {
+  background-image: url(../images/right-bg.png);
+  background-position: top left;
+}
+
+.logo {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 63px);
+  width: 125px;
+  height: 40px;
+  background-color: #fff;
+  font-size: 20px;
+  color: #2a2a2a;
+  box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.14);
+}
+
+.logo::before {
+  content: '';
+  float: left;
+  width: 28px;
+  height: 32px;
+  margin-right: 4px;
+  background: url(../images/polymer.svg) 50% no-repeat;
+  background-size: contain;
+}
+
+.date-loc-info {
+  height: 140px;
+  padding: 28px 0;
+  box-sizing: border-box;
+  background-color: #1464BF;
+  text-align: center;
+  color: #fff;
+}
+
+.date-loc-info > .divider {
+  width: 150px;
+  margin: 18px 0;
+  border-bottom: 2px solid #F9518C;
+}
+
+.main {
+  padding: 96px 16px;
+  line-height: 40px;
+}
+
+.main-desc, main-desc2 {
+  max-width: 568px;
+  opacity: 0.87;
+  text-align: center;
+}
+
+.main-desc2 {
+  padding: 32px 0 40px;
+  opacity: 0.54;
+  text-align: center;
+}
+
+.strong {
+  font-weight: bold;
+}
+
+.register-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 0;
+  background-color: #F9518C;
+  border-radius: 2px;
+  color: #fff;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
+  -webkit-transition: box-shadow 0.18s;
+          transition: box-shadow 0.18s;
+}
+
+.register-btn:hover:not(:active) {
+  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.24);
+}
+
+.amsterdam {
+  position: relative;
+  height: 1000px;
+  overflow: hidden;
+}
+
+.parallax {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.parallax > .bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 140%;
+  background: url(../images/muziekgebouw.jpg) no-repeat center center;
+  background-size: cover;
+  -webkit-transform-origin: center center;
+  -ms-transform-origin: center center;
+      transform-origin: center center;
+  -webkit-transform: translateZ(-2px) scale(1.41);
+  transform: translateZ(-2px) scale(1.41);
+}
+
+.parallax > .scrim {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.badge-white {
+  width: 400px;
+  height: 400px;
+  background: url(../images/badge-white.png) no-repeat center center;
+  background-size: contain;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.amsterdam-content > .date-loc-info {
+  background-color: transparent;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+footer {
+  height: 240px;
+  padding: 0 24px;
+}
+
+footer > a {
+  font-size: 20px;
+  color: #1C94C4;
+}
+
+footer > a:not(:last-child) {
+  margin-right: 32px;
+}
+
+@media (max-width: 640px) {
+  .header {
+    height: calc(100vh - 190px);
+  }
+
+  .left-bg, .right-bg {
+    background: transparent;
+  }
+
+  .date-loc-info {
+    height: 190px;
+  }
+
+  .date-loc-info > time {
+    max-width: 320px;
+    line-height: 36px;
+  }
+}
+
+@media (max-width: 460px) {
+  .main {
+    line-height: 32px;
+  }
+
+  .amsterdam {
+    height: 600px;
+  }
+
+  .badge-blue, .badge-white {
+    width: 260px;
+    height: 260px;
+  }
+}
+
+@media
+(-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+  /* Retina-specific stuff here */
+  .badge-blue {
+    background: url(../images/badge-blue@2x.png) no-repeat center center;
+    background-size: contain;
+  }
+
+  .badge-white {
+    background: url(../images/badge-white@2x.png) no-repeat center center;
+    background-size: contain;
+  }
+}

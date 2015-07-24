@@ -1,5 +1,5 @@
 application: polymer-project
-version: 2015-05-30
+version: summit-rc2
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -116,6 +116,13 @@ handlers:
 - url: /(.*)/$
   static_files: _site/\1/index.html
   upload: _site/(.*)/index.html
+  secure: always
+
+# Special exception for the summit site so it doesn't require
+# a trailing slash
+- url: /summit
+  static_files: _site/summit/index.html
+  upload: _site/summit/index.html
   secure: always
 
 # All other URLs map directly to their path in _site/.
