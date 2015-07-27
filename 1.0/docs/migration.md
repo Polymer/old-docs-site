@@ -11,10 +11,10 @@ subtitle: About this release
 This guide describes the changes required to migrate a {{site.project_title}} 
 element from 0.5 to 1.0.  
 
-## Polyup 
+## Polyup Tool
 
 We have been working on a tool called `polyup` to automatically
-perform many of the changes detailed here. See an interactive demo 
+perform many of the changes detailed in this guide. See an interactive demo 
 [here](http://polymerlabs.github.io/polyup/), and check out the list of current 
 and planned upgrades that it performs on its 
 [README at github](https://github.com/PolymerLabs/polyup#html).
