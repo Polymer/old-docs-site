@@ -102,15 +102,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     );
     anchors.forEach(function(anchor) {
       anchor.addEventListener('click', function(e) {
-        e.preventDefault();
         var url = anchor.href;
         var label = anchor.getAttribute('data-outbound');
         label = label || '';
-        ga('send', 'event', 'outbound', 'click', label, {'hitCallback':
-          function () {
-            document.location = url;
-          }
-        });
+        ga('send', 'event', 'outbound', 'click', label);
       });
     });
   </script>
