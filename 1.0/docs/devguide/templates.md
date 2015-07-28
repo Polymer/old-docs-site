@@ -354,7 +354,7 @@ itself as the binding scope.
       <!-- allow use of Polymer bindings in main document -->
       <template id="t" is="dom-bind">
 
-        <iron-ajax url="http://..." last-response="{{data}}"></iron-ajax>
+        <iron-ajax url="http://..." last-response="{{data}}" auto></iron-ajax>
 
         <template is="dom-repeat" items="{{data}}">
             <div><span>{{item.first}}</span> <span>{{item.last}}</span></div>
