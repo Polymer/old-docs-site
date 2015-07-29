@@ -352,11 +352,11 @@ itself as the binding scope.
 
       <!-- Wrap elements with auto-binding template to -->
       <!-- allow use of Polymer bindings in main document -->
-      <template is="dom-bind">
+      <template id="t" is="dom-bind">
 
-        <iron-ajax url="http://..." last-response="{{data}}"></iron-ajax>
+        <iron-ajax url="http://..." last-response="{{data}}" auto></iron-ajax>
 
-        <template id="t" is="dom-repeat" items="{{data}}">
+        <template is="dom-repeat" items="{{data}}">
             <div><span>{{item.first}}</span> <span>{{item.last}}</span></div>
         </template>
 
