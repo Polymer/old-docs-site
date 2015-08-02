@@ -71,7 +71,7 @@
         if (e.keyCode == 13) { // Enter
           if (sender.value) {
             recordSearch(sender.value);
-            var q = 'site:polymer-project.org+' + sender.value;
+            var q = 'site:polymer-project.org/1.0+' + sender.value;
             window.open('https://www.google.com/search?q=' + q);
           }
         }
