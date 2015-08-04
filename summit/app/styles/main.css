@@ -36,7 +36,7 @@ body {
 a {
   text-decoration: none;
   font-size: inherit;
-  color: inherit;
+  color: #E91E63;
 }
 
 .center {
@@ -141,7 +141,7 @@ a {
   line-height: 40px;
 }
 
-.main-desc, main-desc2 {
+.main-desc, .main-desc2 {
   max-width: 568px;
   opacity: 0.87;
   text-align: center;
