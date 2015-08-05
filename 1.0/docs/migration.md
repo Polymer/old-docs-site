@@ -609,8 +609,8 @@ For more information, see [Property change callbacks (observers)](devguide/prope
 
 In 0.5, default attributes are defined on the `<polymer-element>` declaration:
 
-  <polymer-element name="register-me" checked tabindex="0" role="checkbox" noscript>
-  </polymer-element>
+    <polymer-element name="register-me" checked tabindex="0" role="checkbox" noscript>
+    </polymer-element>
 
 Now you define default attributes by adding a `hostAttributes` object to the prototype:
 
@@ -632,6 +632,23 @@ in the Developer guide, or use `setAttribute` directly.
 
 Also, note that the `class` attribute is ignored if it is specified in the `hostAttributes` 
 object.
+
+## Listeners {#listeners}
+
+In 0.5 you could declare event listeners for a custom element as an attribute on the 
+`polymer-element` declaration:
+
+    <polymer-element name="magic-button" on-scroll="{{onScrollHandler}}" on-tap="{{wasTapped}}">
+    </polymer-element>
+
+Now you define these listeners on the `listeners` object on the prototype:
+
+    listeners: {
+      scroll: 'onScrollHandler',
+      tap: 'wasTapped'
+    }
+
+For more info, see [Event listener setup](devguide/events.html#event-listeners) in the Developer guide.
 
 ## Layout attributes replaced by layout classes and custom properties {#layout-attributes}
 
