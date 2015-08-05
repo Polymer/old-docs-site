@@ -638,10 +638,10 @@ object.
 In 0.5 you could declare event listeners for a custom element as an attribute on the 
 `polymer-element` declaration:
 
-    <polymer-element name='magic-button' on-scroll='{{onScrollHandler}}' on-tap='{{wasTapped}}'>
+    <polymer-element name="magic-button" on-scroll="{{onScrollHandler}}" on-tap="{{wasTapped}}">
     </polymer-element>
 
-Now you define these listeners on the listeners object on the prototype:
+Now you define these listeners on the `listeners` object on the prototype:
 
     listeners: {
       scroll: 'onScrollHandler',
