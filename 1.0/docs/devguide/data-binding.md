@@ -261,9 +261,10 @@ When you configure a declared property with the `notify` flag set to `true`,
 *   When the property changes, the element fires a non-bubbling DOM
     event to indicate those changes to interested hosts. 
 
-*   The event follows a naming convention of <code><var>property</var>-changed</code>, 
-    and contains a `value` property in the `event.detail` object indicating 
-    the property's new value.
+*   The event type follows a naming convention of <code><var>property</var>-changed</code>, 
+    where property's mixedCase words are written with dashes. E.g. a change to 
+    `this.firstName` will fire `first-name-changed`. Listeners will receive an event object 
+    whose `e.detail.value` attribute has the changing property's new value.
 
 When using a {{site.project_title}} element with other elements or frameworks, you can 
 manually attach an <code>on-<var>property</var>-changed</code> listener to an element to
