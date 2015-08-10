@@ -68,16 +68,16 @@ the **entire content** of the tag:
     <dom-module id="user-view">
 
         <template>   
-          First: <span>{{first}}</span><br>
-          Last: <span>{{last}}</span>
+          First: <span>{{firstName}}</span><br>
+          Last: <span>{{lastName}}</span>
         </template>
 
         <script>
           Polymer({
             is: 'user-view',
             properties: {
-              first: String,
-              last: String
+              firstName: String,
+              lastName: String
             }
           });
         </script>
@@ -86,15 +86,15 @@ the **entire content** of the tag:
     {% endraw %}
 
 
-    <user-view first="Samuel" last="Adams"></user-view>
+    <user-view first-name="Samuel" last-name="Adams"></user-view>
 
 String concatenation is **not** supported inside a tag, and the tag **can't 
 contain any whitespace**:
 
     {% raw %}
     <!-- Not currently supported! -->
-    <div>First: {{first}}</div>
-    <div>Last: {{last}}</div>
+    <div>First: {{firstName}}</div>
+    <div>Last: {{lastName}}</div>
 
     <!-- Not currently supported! -->
     <div>
@@ -161,7 +161,7 @@ Example 1: Two-way binding
       Polymer({
         is: 'custom-element',
         properties: {
-          prop: {
+          someProp: {
             type: String,
             notify: true
           }
@@ -170,9 +170,9 @@ Example 1: Two-way binding
     </script>
     ...
 
-    <!-- changes to "value" propagate downward to "prop" on child -->
-    <!-- changes to "prop" propagate upward to "value" on host  -->
-    <custom-element prop="{%raw%}{{value}}{%endraw%}"></custom-element>
+    <!-- changes to "value" propagate downward to "someProp" on child -->
+    <!-- changes to "someProp" propagate upward to "value" on host  -->
+    <custom-element some-prop="{%raw%}{{value}}{%endraw%}"></custom-element>
 
 Example 2: One-way binding (downward)
 
@@ -180,7 +180,7 @@ Example 2: One-way binding (downward)
       Polymer({
         is: 'custom-element',
         properties: {
-          prop: {
+          someProp: {
             type: String,
             notify: true
           }
@@ -190,9 +190,9 @@ Example 2: One-way binding (downward)
 
     ...
 
-    <!-- changes to "value" propagate downward to "prop" on child -->
-    <!-- changes to "prop" are ignored by host due to square-bracket syntax -->
-    <custom-element prop="[[value]]"></custom-element>
+    <!-- changes to "value" propagate downward to "someProp" on child -->
+    <!-- changes to "someProp" are ignored by host due to square-bracket syntax -->
+    <custom-element some-prop="[[value]]"></custom-element>
 
 Example 3: One-way binding (downward)
 
@@ -201,16 +201,16 @@ Example 3: One-way binding (downward)
       Polymer({
         is: 'custom-element',
         properties: {
-          prop: String    // no notify:true!
+          someProp: String    // no notify:true!
         }
       });
 
     </script>
     ...
 
-    <!-- changes to "value" propagate downward to "prop" on child -->
-    <!-- changes to "prop" are not notified to host due to notify:falsey -->
-    <custom-element prop="{%raw%}{{value}}{%endraw%}"></custom-element>
+    <!-- changes to "value" propagate downward to "someProp" on child -->
+    <!-- changes to "someProp" are not notified to host due to notify:falsey -->
+    <custom-element some-prop="{%raw%}{{value}}{%endraw%}"></custom-element>
 
 Example 4: One-way binding (upward, child-to-host)
 
@@ -218,7 +218,7 @@ Example 4: One-way binding (upward, child-to-host)
       Polymer({
         is: 'custom-element',
         properties: {
-          prop: {
+          someProp: {
               type: String,
               notify: true,
               readOnly: true
@@ -230,8 +230,8 @@ Example 4: One-way binding (upward, child-to-host)
     ...
 
     <!-- changes to "value" are ignored by child due to readOnly:true -->
-    <!-- changes to "prop" propagate upward to "value" on host  -->
-    <custom-element prop="{%raw%}{{value}}{%endraw%}"></custom-element>
+    <!-- changes to "someProp" propagate upward to "value" on host  -->
+    <custom-element some-prop="{%raw%}{{value}}{%endraw%}"></custom-element>
 
 Example 5: Error / non-sensical state
 
@@ -239,7 +239,7 @@ Example 5: Error / non-sensical state
       Polymer({
         is: 'custom-element',
         properties: {
-          prop: {
+          someProp: {
               type: String,
               notify: true,
               readOnly: true
@@ -249,9 +249,9 @@ Example 5: Error / non-sensical state
     </script>
     ...
     <!-- changes to "value" are ignored by child due to readOnly:true -->
-    <!-- changes to "prop" are ignored by host due to square-bracket syntax -->
+    <!-- changes to "someProp" are ignored by host due to square-bracket syntax -->
     <!-- binding serves no purpose -->
-    <custom-element prop="[[value]]"></custom-element>
+    <custom-element some-prop="[[value]]"></custom-element>
 
 ### Change notification protocol
 
