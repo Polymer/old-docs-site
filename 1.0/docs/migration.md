@@ -415,7 +415,10 @@ After:
 
 ### Attribute deserialization {#attr}
 
-For any property listed in the `properties` object, the user can set a value on the corresponding attribute to initialize the property. This works much like (where any property in the `publish` object was deserialized).
+For any property listed in the `properties` object, the user can set a value 
+on the corresponding attribute to initialize the property. Deserialization works much 
+like it did in 0.5 (where any property in the `publish` object 
+was deserialized).
 
 There are two differences from 0.5:
 
