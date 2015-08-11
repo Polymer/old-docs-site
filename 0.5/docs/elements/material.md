@@ -223,8 +223,10 @@ differently using CSS.
 Dialogs are hidden by default. Call the dialog's `toggle` method to show or
 hide it.
 
+<p>
 <a href="../../components/paper-elements/demo.html#paper-dialog">
 <core-icon icon="arrow-forward" size="16"></core-icon> More examples</a>
+</p>
 
 ### Snackbars & toasts
 
@@ -241,8 +243,10 @@ Like a dialog, a `<paper-toast>` is hidden by default. Call the element's
 `open` method to display it. The toast disappears after a timeout, or can be
 dismissed by swiping.
 
+<p>
 <a href="../../components/paper-elements/demo.html#paper-toast">
 <core-icon icon="arrow-forward" size="16"></core-icon> More examples</a>
+</p>
 
 ## Material effects
 
@@ -406,8 +410,10 @@ _parent element_, and supported changing the z-height by setting the
 `z` property directly.
 {: .alert .alert-info }
 
+<p>
 <a href="../../components/paper-elements/demo.html#paper-shadow">
 <core-icon icon="arrow-forward" size="16"></core-icon> More examples</a>
+</p>
 
 ## Transitions
 
