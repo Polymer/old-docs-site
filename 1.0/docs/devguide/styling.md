@@ -53,7 +53,7 @@ Shadow DOM rules).
 
 Loading external stylesheets (as opposed to defining them inline in HTML) for
 styling local DOM is currently supported via an [experimental
-feature](experimental.html#external-stylesheets).
+feature](styling.html#external-stylesheets).
 
 ### Styling distributed children (::content)
 
