@@ -19,7 +19,7 @@ override using CSS.
 
 Anyone can use these elements to build a simple web page. But they're 
 limited. To build something as simple as a set of tabs, you need HTML 
-plus CSS and usually script, too.
+plus CSS and usually a script, too.
 
 With custom elements, you can extend the vocabulary of HTML with your own elements. 
 Elements that provide sophisticated UI. Elements that are as easy to use as `<select>`: 
