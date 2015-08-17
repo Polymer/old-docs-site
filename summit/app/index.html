@@ -18,6 +18,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <title>Polymer Summit 2015</title>
 
+  <link rel="shortcut icon" href="images/logo-32.png">
+
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="application-name" content="Polymer Summit 2015">
 
@@ -36,73 +38,252 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta property="og:description" content="Join us for an evening of breakout sessions and code labs, followed by an all-day summit of Polymer tech talks and an after hours event.">
   <meta property="og:type" content="Event">
 
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto+Mono:400,400italic,500,500italic,700,700italic|Roboto:400,400italic,500,500italic,700,700italic">
   <link rel="stylesheet" href="/summit/styles/main.css">
-  <script src="/summit/scripts/webcomponents-lite.min.js" charset="utf-8"></script>
-  <link rel="import" href="/summit/elements.html">
+
+  <script src="/summit/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="/summit/src/elements.html">
 </head>
-<body>
+<body unresolved>
 
-  <header class="header center-horiz">
-    <div class="logo center-horiz middle">polymer</div>
-    <div class="left-bg"></div>
-    <div class="badge-blue"></div>
-    <div class="right-bg"></div>
-  </header>
+  <template is="dom-bind" id="app">
 
-  <div class="date-loc-info center">
-    <time>Monday, September 14th & Tuesday, September 15th, 2015</time>
-    <div class="divider"></div>
-    <div class="location">Amsterdam, Netherlands</div>
-  </div>
+    <x-drawer-layout force-narrow right-drawer>
 
-  <section class="main center">
-    <div class="main-desc">Join us for an evening of breakout sessions and code labs, followed by an all-day summit of Polymer tech talks and an after hours event.</div>
-    <div class="main-desc2"><span class="strong">We've reached capacity</span>! <br>  You can sign up for <a href="https://polymer.eventfarm.com/orders/soldOut/7fff5387-0000-4556-a4c1-610d82a69538">the waitlist</a> or join us on the <a href="https://www.youtube.com/user/GoogleDevelopers">Google Developers YouTube channel</a> for the live stream.</div>
-  </section>
-
-  <a class="amsterdam center middle" target="_blank" href="https://www.google.com/maps/place/Muziekgebouw+aan+'t+IJ/@52.3783041,4.9131203,15z/data=!4m2!3m1!1s0x0:0x84b02f41a342e459"
-  data-outbound="image-map" aria-label="Open venue map">
-    <div class="parallax">
-      <div class="bg"></div>
-      <div class="scrim"></div>
-    </div>
-    <div class="amsterdam-content center middle">
-      <div class="badge-white"></div>
-      <div class="date-loc-info center">
-        <time>Monday, September 14th & Tuesday, September 15th, 2015</time>
-        <div class="divider"></div>
-        <div class="location">Amsterdam, Netherlands</div>
+      <div class="nav fit" drawer>
+        <iron-selector class="menu" selected="[[page]]" activate-event="click" attr-for-selected="name">
+          <a name="home" class="menu-item" href="">HOME</a><br>
+          <a name="schedule" class="menu-item" href="/summit/schedule">SCHEDULE</a><br>
+          <a name="speakers" class="menu-item" href="/summit/speakers">SPEAKERS</a>
+        </iron-selector>
       </div>
-    </div>
-  </a>
 
-  <footer class="center-horiz middle">
-    <a href="https://www.polymer-project.org" target="_blank" data-outbound="about-polymer">About Polymer</a>
-    <a href="http://polymer.github.io/LICENSE.txt" target="_blank" data-outbound="license-txt">&copy; 2015 Polymer Authors</a>
-  </footer>
+      <x-header-layout class="header-layout" main page$="[[page]]">
+
+        <x-header class="main-header" waterfall fixed="[[!narrowLayout]]" threadhold="232">
+          <x-toolbar class="main-toolbar">
+            <a class="toolbar-badge badge-blue-small" href="/summit"></a>
+
+            <div class="flex horizontal center-center layout">
+              <iron-selector class="wide-only" selected="[[page]]" activate-event="click" attr-for-selected="name">
+                <a name="schedule" class="tab" href="/summit/schedule">SCHEDULE</a>
+                <a name="speakers" class="tab" href="/summit/speakers">SPEAKERS</a>
+              </iron-selector>
+            </div>
+
+            <div class="header-tools horizontal center layout">
+              <a href="https://plus.google.com/+PolymerProject" target="_blank">
+                <iron-icon class="header-social-icon" icon="summit:post-gplus"></iron-icon>
+              </a>
+              <a href="https://twitter.com/polymer" target="_blank">
+                <iron-icon class="header-social-icon" icon="summit:post-twitter"></iron-icon>
+              </a>
+              <iron-icon class="menu-icon narrow-only" icon="menu" drawer-toggle></iron-icon>
+            </div>
+          </x-toolbar>
+        </x-header>
+
+        <div class="speakers-banner blue-banner home-page-hidden responsive horizontal center-center layout">
+          <div class="horizontal center layout">
+            <div>18 Speakers</div><div class="dot-separator"></div><div>10 Code labs</div>
+          </div>
+          <div class="dot-separator wide-only"></div>
+          <div>Monday & Tuesday</div>
+        </div>
+
+        <iron-pages selected="{{page}}" attr-for-selected="name" selected-attribute="showing">
+
+          <section name="home">
+
+            <header class="home-header horizontal center-center layout">
+              <div class="badge-blue"></div>
+            </header>
+
+            <div class="date-loc-banner blue-banner responsive horizontal center-center layout">
+              <div class="location">Amsterdam, Netherlands</div>
+              <div class="dot-separator wide-only"></div>
+              <time>September 14-15, 2015</time>
+            </div>
+
+            <div class="vertical center layout">
+              <div class="welcome-msg">
+                <section class="bottom-spacer responsive horizontal layout">
+                  <time>September 14</time>
+                  <div class="flex-auto">Join us for an evening of breakout sessions and code labs for hands-on learning.</div>
+                </section>
+                <section class="responsive horizontal layout">
+                  <time>September 15</time>
+                  <div class="flex-auto">Come out for an all-day summit of Polymer tech talks and an after hours event.</div>
+                </section>
+              </div>
+            </div>
+
+            <div class="wait-list-banner">
+              <div class="responsive horizontal center-center layout">
+                <span>Whoa! We’re already at capacity.</span>
+                <a class="pink-arrow-btn " target="_blank" href="https://polymer.eventfarm.com/orders/soldOut/7fff5387-0000-4556-a4c1-610d82a69538">Join the Waiting List</a>
+              </div>
+              <div class="responsive horizontal center-center layout">
+                <span class="horizontal center layout">
+                  <span>Or,</span>
+                  <a class="signup-live-stream-btn pink-arrow-btn " target="_blank" href="https://services.google.com/fb/forms/polymer2015/">Sign up</a>
+                </span>
+                <span>to watch the livestream from anywhere.</span>
+              </div>
+            </div>
+
+            <a class="amsterdam-bg" target="_blank" data-outbound="image-map"
+                href="https://www.google.com/maps/place/Muziekgebouw+aan+'t+IJ/@52.3783041,4.9131203,15z/data=!4m2!3m1!1s0x0:0x84b02f41a342e459"></a>
+
+            <div class="amsterdam-info responsive horizontal layout">
+              <div class="about-waterfront flex vertical center layout">
+                <section>
+                  <h3>Waterfront. Amsterdam.</h3>
+                  <p>Muziekgebouw aan ‘t IJ is a leading, open and welcoming stage which excels in concerts of contemporary music and related genres of classical, jazz, electronic pop and world music.</p>
+                </section>
+              </div>
+              <div class="getting-there flex vertical center layout">
+                <section>
+                  <h3>Getting There.</h3>
+                  <div class="direction">Piet Heinkade 1, 1019 BR Amsterdam, Netherlands (Near the Amsterdam Central train station)</div>
+                  <div>BY FOOT</div>
+                  <div class="direction">Approx 15 minutes from Central Station</div>
+                  <div>BY TRAM</div>
+                  <div class="direction">Line 26, ‘stop Muziegebouw / Bimhuis’</div>
+                  <div>BY CAR</div>
+                  <div class="direction">5 minutes from the A10 ring road motorway</div>
+                </section>
+              </div>
+            </div>
+
+            <div class="misc-banner vertical center-center layout">
+              <h3>SUMMIT EXTENDED</h3>
+              <div class="divider"></div>
+              <div class="desc">Be There From Anywhere</div>
+            </div>
+
+            <div class="vertical center layout">
+              <paper-material class="misc-card responsive horizontal layout">
+                <section class="misc-card-content flex-auto">
+                  <h3>Can’t make it this year?</h3>
+                  <p>Streaming video, Polymer Code labs, and our social media community are a few alternatives for staying connected if you’re unable to attend.</p>
+                </section>
+                <div class="tools">
+                  <div class="bottom-spacer horizontal layout">
+                    <a class="extended-gplus-link flex" tabindex="-1" target="_blank" href="https://plus.google.com/+PolymerProject">
+                      <paper-button class="anchor-button blue" raised>
+                        <iron-icon class="extended-icon" icon="summit:post-gplus"></iron-icon>Google+
+                      </paper-button>
+                    </a>
+                    <a class="flex" tabindex="-1" target="_blank" href="https://twitter.com/polymer">
+                      <paper-button class="anchor-button blue" raised>
+                        <iron-icon class="extended-icon" icon="summit:post-twitter"></iron-icon>Twitter
+                      </paper-button>
+                    </a>
+                  </div>
+                  <a tabindex="-1" target="_blank" href="https://www.youtube.com/user/GoogleDevelopers">
+                    <paper-button class="anchor-button red" raised>Stream Video During the Summit</paper-button>
+                  </a>
+                </div>
+              </paper-material>
+            </div>
+
+            <div class="misc-banner vertical center-center layout">
+              <h3>POLYMER CODE LABS</h3><div class="divider"></div>
+              <div class="desc">Learn and Build with the Polymer Team</div>
+            </div>
+
+            <div class="vertical center layout">
+              <paper-material class="misc-card">
+                <div class="codelabs">
+                  <h3>Code labs will be happening during the Summit,</h3>
+                  <p>but even if you won’t be attendance these will be available online for you to work from the comfort of your own home...or favorite coffee shop.</p>
+                </div>
+                <a tabindex="-1" target="_blank" href="">
+                  <paper-button class="anchor-button blue" disabled raised>Coming Soon!</paper-button>
+                </a>
+              </paper-material>
+            </div>
+
+          </section>
+
+          <schedule-grid name="schedule" schedule="{{schedule}}" narrow-layout="{{narrowLayout}}"></schedule-grid>
+
+          <speakers-grid name="speakers" speakers="{{speakers}}" narrow-layout="{{narrowLayout}}"></speakers-grid>
+
+        </iron-pages>
+
+        <div class="wait-list-banner home-page-hidden">
+          <div class="responsive horizontal center-center layout">
+            <span>Whoa! We’re already at capacity.</span>
+            <a class="pink-arrow-btn " target="_blank" href="https://polymer.eventfarm.com/orders/soldOut/7fff5387-0000-4556-a4c1-610d82a69538">Join the Waiting List</a>
+          </div>
+          <div class="responsive horizontal center-center layout">
+            <span class="horizontal center layout">
+              <span>Or,</span>
+              <a class="signup-live-stream-btn pink-arrow-btn " target="_blank" href="https://services.google.com/fb/forms/polymer2015/">Sign up</a>
+            </span>
+            <span>to watch the livestream from anywhere.</span>
+          </div>
+        </div>
+
+        <a class="amsterdam-bg home-page-hidden vertical center-center layout" target="_blank" data-outbound="image-map"
+            href="https://www.google.com/maps/place/Muziekgebouw+aan+'t+IJ/@52.3783041,4.9131203,15z/data=!4m2!3m1!1s0x0:0x84b02f41a342e459">
+          <div class="amsterdam-scrim"></div>
+          <div class="badge-white"></div>
+        </a>
+
+        <div class="home-bottom-banner blue-banner home-page-only horizontal center-center layout">
+          <div class="badge-white"></div>
+        </div>
+
+        <footer>
+          <div class="footer-inner responsive horizontal center layout">
+            <a class="horizontal center layout" target="_blank" href="https://www.polymer-project.org">
+              <div class="logo"></div><div class="title">Polymer</div>
+            </a>
+            <div class="flex"></div>
+            <a target="_blank" href="http://polymer.github.io/LICENSE.txt" data-outbound="license-txt">&copy; 2015 Polymer Authors</a>
+            <div class="dot-separator wide-only"></div>
+            <a target="_blank" href="https://www.polymer-project.org" data-outbound="about-polymer">About Polymer</a>
+            <div class="dot-separator wide-only"></div>
+            <a target="_blank" href="https://docs.google.com/document/d/1RgLpLH5qMgN9sn3ieQ23Cpcab94-MS40HyAe9EdfFEo/edit" data-outbound="code-of-conduct">Code of Conduct</a>
+          </div>
+        </footer>
+
+      </x-header-layout>
+
+    </x-drawer-layout>
+
+    <iron-media-query query="(max-width: 623px)" query-matches="{{narrowLayout}}"></iron-media-query>
+
+    <iron-ajax auto url="/summit/data/speakers.json" last-response="{{speakers}}"></iron-ajax>
+    <iron-ajax auto url="/summit/data/schedule.json" last-response="{{schedule}}"></iron-ajax>
+
+    <x-scrollpos-control selected="[[page]]"></x-scrollpos-control>
+
+  </template>
 
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-39334307-11', 'auto');
-    ga('send', 'pageview');
-
-    // Track outbound links
-    var anchors = Array.prototype.slice.call(
-      document.querySelectorAll('a[data-outbound]')
-    );
-    anchors.forEach(function(anchor) {
-      anchor.addEventListener('click', function(e) {
-        var url = anchor.href;
-        var label = anchor.getAttribute('data-outbound');
-        label = label || '';
-        ga('send', 'event', 'outbound', 'click', label);
-      });
-    });
+    // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    // (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    // m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    // })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    //
+    // ga('create', 'UA-39334307-11', 'auto');
+    // ga('send', 'pageview');
+    //
+    // // Track outbound links
+    // var anchors = Array.prototype.slice.call(
+    //   document.querySelectorAll('a[data-outbound]')
+    // );
+    // anchors.forEach(function(anchor) {
+    //   anchor.addEventListener('click', function(e) {
+    //     var url = anchor.href;
+    //     var label = anchor.getAttribute('data-outbound');
+    //     label = label || '';
+    //     ga('send', 'event', 'outbound', 'click', label);
+    //   });
+    // });
   </script>
 
 </body>

@@ -7,284 +7,567 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
-html {
-  height: 100%;
-  overflow: hidden;
-}
-
 body {
-  height: 100%;
   margin: 0;
+  font-family: 'Roboto', sans-serif;
   background: #f2f2f2;
   color: #000;
-  font-family: 'Roboto', sans-serif;
-  font-size: 23px;
-  font-weight: 300;
-  line-height: 24px;
+  font-size: 22px;
+  line-height: 25px;
   letter-spacing: -0.01em;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  -webkit-perspective: 5px;
-  perspective: 5px;
-  -webkit-perspective-origin: 50% 0;
-  perspective-origin: 50% 0;
 }
 
 a {
   text-decoration: none;
   font-size: inherit;
-  color: #E91E63;
+  color: inherit;
 }
 
-.center {
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -ms-flex-direction: column;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
+p {
+  line-height: 36px;
 }
 
-.center-horiz {
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
+h3 {
+  font-size: 32px;
+  line-height: 48px;
+  margin: 0;
+  padding: 0;
 }
 
-.middle {
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
+.bottom-spacer {
+  margin-bottom: 24px;
 }
 
-.header {
-  height: calc(100vh - 140px);
-  background-color: #41A4F4;
-  border-top: 7px solid #F9518C;
+.dot-separator {
+  padding: 0 8px;
+}
+
+.dot-separator::after {
+  content: '\2022';
 }
 
 .badge-blue {
-  width: 400px;
-  height: 400px;
-  margin: 0 5%;
-  background: url(../images/badge-blue.png) no-repeat center center;
+  width: 300px;
+  height: 300px;
+  background: url(../images/badge_blue.png) no-repeat center center;
   background-size: contain;
 }
 
-.left-bg, .right-bg {
-  height: 100%;
-  -ms-flex: 1;
-  -webkit-flex: 1;
-  flex: 1;
-  background-repeat: no-repeat;
-  background-size: auto 100%;
+.badge-white {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  background: url(../images/badge_white.png) no-repeat center center;
+  background-size: contain;
 }
 
-.left-bg {
-  background-image: url(../images/left-bg.png);
-  background-position: top right;
-}
-
-.right-bg {
-  background-image: url(../images/right-bg.png);
-  background-position: top left;
+.badge-blue-small {
+  width: 100px;
+  height: 60px;
+  background: url(../images/badge_blue_small.png) no-repeat center center;
+  background-size: contain;
 }
 
 .logo {
-  position: absolute;
-  top: 0;
-  left: calc(50% - 63px);
-  width: 125px;
+  width: 40px;
   height: 40px;
-  background-color: #fff;
-  font-size: 20px;
-  color: #2a2a2a;
-  box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.14);
-}
-
-.logo::before {
-  content: '';
-  float: left;
-  width: 28px;
-  height: 32px;
-  margin-right: 4px;
+  margin-right: 8px;
   background: url(../images/polymer.svg) 50% no-repeat;
   background-size: contain;
 }
 
-.date-loc-info {
-  height: 140px;
-  padding: 28px 0;
-  box-sizing: border-box;
-  background-color: #1464BF;
-  text-align: center;
-  color: #fff;
+.main-header {
+  background-color: #4FB6F7;
 }
 
-.date-loc-info > .divider {
-  width: 150px;
-  margin: 18px 0;
-  border-bottom: 2px solid #F9518C;
+.header-layout:not([page=home]) > .main-header {
+  background-color: #fff;
 }
 
-.main {
-  padding: 96px 16px;
-  line-height: 40px;
+.header-layout:not([page=home]) .tab:not(.iron-selected) {
+  color: #4FB6F7;
+  border-color: #eee;
 }
 
-.main-desc, .main-desc2 {
-  max-width: 568px;
-  opacity: 0.87;
-  text-align: center;
+.header-layout:not([page=home]) .tab.iron-selected {
+  border-color: #FC6C9C;
 }
 
-.main-desc2 {
-  padding: 32px 0 40px;
-  opacity: 0.54;
-  text-align: center;
+.header-layout[page=home] .home-page-hidden {
+  display: none;
 }
 
-.strong {
-  font-weight: bold;
+.header-layout:not([page=home]) .home-page-only {
+  display: none;
 }
 
-.register-btn {
-  background-color: #F9518C;
-  color: #fff;
-}
-
-.register-btn:hover:not(:active) {
-  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.24);
-}
-
-.amsterdam {
+.main-toolbar {
   position: relative;
-  height: 1000px;
-  overflow: hidden;
+  height: 80px;
 }
 
-.parallax {
+.toolbar-badge {
+  position: absolute;
+  left: 24px;
+  top: 10px;
+  transition: opacity 0.1s, visibility 0.1s;
+}
+
+.header-tools {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+}
+
+.header-social-icon {
+  padding: 18px 12px;
+  color: #147BCC;
+}
+
+.header-layout[page=home] .main-header:not([threadhold-matches]) .toolbar-badge {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.tab {
+  padding: 12px 0;
+  margin: 0 16px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #147BCC;
+  border-bottom: 2px solid #147BCC;
+}
+
+.menu-icon {
+  height: 32px !important;
+  width: 32px !important;
+  padding: 16px;
+  color: #147BCC;
+  cursor: pointer;
+}
+
+.nav {
+  background-color: #1F2036;
+  padding: 56px 24px 24px;
+}
+
+.menu-item {
+  display: inline-block;
+  padding: 8px 0;
+  margin-bottom: 24px;
+  color: #fff;
+  border-bottom: 2px solid;
+  opacity: 0.5;
+}
+
+.menu-item.iron-selected {
+  opacity: 1;
+  border-color: #FC6C9C;
+}
+
+.home-header {
+  height: 420px;
+  background-color: #4FB6F7;
+}
+
+.blue-banner {
+  background:
+    url(../images/Angle_Pattern/Lt_Blue_BG/Summit_AnglePattern_Blue_Sm.png) center center,
+    url(../images/Angle_Pattern/Lt_Blue_BG/Summit_AnglePattern_Blue_Lg.png) center center;
+  background-size: 630px 305px, 512px 300px;
+  background-color: #147BCC;
+}
+
+.date-loc-banner, .speakers-banner {
+  position: relative;
+  padding: 48px 0;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.speakers-banner {
+  font-weight: 300;
+}
+
+.date-loc-banner::after {
+  content: '';
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
+  margin: 16px 0;
+  border: 2px solid #fff;
+  border-right: none;
+  border-left: none;
 }
 
-.parallax > .bg {
+.welcome-msg {
+  max-width: 600px;
+  padding: 64px 16px;
+  line-height: 32px;
+}
+
+.welcome-msg time {
+  min-width: 150px;
+  font-weight: 600;
+}
+
+.wait-list-banner {
+  position: relative;
+  padding: 24px 8px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 30px;
+  line-height: 46px;
+  color: #fff;
+  /* pink pattern */
+  background:
+    url(../images/Pink_BG_Pattern/Desktop/Summit_PinkBGPattern_Left.png) center left repeat-y,
+    url(../images/Pink_BG_Pattern/Desktop/Summit_PinkBGPattern_Right.png) center right repeat-y;
+  background-color: #FC6C9C;
+  background-size: 25%;
+}
+
+.pink-arrow-btn {
+  display: block;
+  position: relative;
+  padding: 16px;
+  margin-left: 16px;
+  background-color: #E45484;
+  font-size: 23px;
+  line-height: 24px;
+}
+
+.pink-arrow-btn::after {
+  content: '';
   position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  height: 140%;
-  background: url(../images/muziekgebouw.jpg) no-repeat center center;
+  top: calc(50% - 14px);
+  right: -14px;
+  width: 0;
+  height: 0;
+  border-color: transparent #E45484;
+  border-width: 14px 0 14px 14px;
+  border-style: solid;
+  -webkit-transform: scaleY(2.0);
+  transform: scaleY(2.0);
+}
+
+.signup-live-stream-btn {
+  margin-right: 24px;
+}
+
+.amsterdam-bg {
+  display: block;
+  position: relative;
+  height: 600px;
+  background: url(../images/muziekgebouw.jpg) no-repeat center 0%;
   background-size: cover;
-  -webkit-transform-origin: center center;
-  transform-origin: center center;
-  -webkit-transform: translateZ(-2px) scale(1.41);
-  transform: translateZ(-2px) scale(1.41);
 }
 
-.parallax > .scrim {
+.amsterdam-scrim {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+  background-color: rgba(0, 0, 0, 0.56);
 }
 
-.badge-white {
-  width: 400px;
-  height: 400px;
-  background: url(../images/badge-white.png) no-repeat center center;
-  background-size: contain;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+.amsterdam-info h3 {
+  padding-bottom: 8px;
+  margin: 16px 0;
+  border-bottom: 2px solid;
 }
 
-.amsterdam-content > .date-loc-info {
-  background-color: transparent;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+.about-waterfront h3 {
+  color: #4FB6F7;
 }
 
-footer {
-  height: 240px;
-  padding: 0 24px;
+.getting-there h3 {
+  color: #147BCC;
 }
 
-footer > a {
+.amsterdam-info section {
+  max-width: 400px;
+}
+
+.about-waterfront {
+  padding: 48px 24px 24px 16px;
+  color: #147BCC;
+}
+
+.about-waterfront h3 {
+  color: #4FB6F7;
+}
+
+.getting-there {
+  padding: 48px 8px 24px 24px;
+  background-color: #4FB6F7;
+  color: #fff;
+}
+
+.getting-there .direction {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.misc-banner {
+  padding: 24px 16px;
+  text-align: center;
+  /* dark pattern */
+  background:
+    url(../images/Angle_Pattern/DkBlue_Royal_Footer/Summit_AnglePattern_Sm.png) center center,
+    url(../images/Angle_Pattern/DkBlue_Royal_Footer/Summit_AnglePattern_Md.png) center center,
+    url(../images/Angle_Pattern/DkBlue_Royal_Footer/Summit_AnglePattern_Lg.png) center center;
+  background-size: 420px 210px, 600px 300px, 600px 600px;
+  background-color: #1F1F35;
+}
+
+.misc-banner > h3 {
+  color: #fff;
+}
+
+.misc-banner > .divider {
+  width: 200px;
+  padding-top: 24px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid #4FB6F7;
+}
+
+.misc-banner > .desc {
+  color: #4FB6F7;
+  text-align: center;
+  font-size: 28px;
+  line-height: 36px;
+  font-style: italic;
+}
+
+.misc-card {
+  max-width: 900px;
+  margin: 120px 32px;
+  padding: 32px;
+  color: #147BCC;
+  background-color: #fff;
+}
+
+.misc-card h3 {
+  color: #4FB6F7;
+}
+
+.misc-card-content {
+  margin-right: 24px;
+}
+
+.misc-card > .tools {
+  min-width: 400px;
+}
+
+.misc-card > .tools > a {
+  display: block;
+}
+
+.misc-card paper-button {
+  width: 100%;
+  text-transform: none;
+}
+
+paper-button.anchor-button {
+  margin: 0;
+}
+
+.anchor-button.blue {
+  background-color: #4FB6F7;
+  color: #fff;
+}
+
+.anchor-button.red {
+  background-color: #FC6C9C;
+  color: #fff;
+}
+
+.extended-gplus-link {
+  margin-right: 16px;
+}
+
+.extended-icon {
+  margin-right: 4px;
+}
+
+.codelabs {
+  margin: 48px;
+}
+
+.home-bottom-banner {
+  position: relative;
+  height: 360px;
+}
+
+.home-bottom-banner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 16px 0;
+  border: 2px solid #4FB6F7;
+  border-right: none;
+  border-left: none;
+}
+
+.footer-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  font-size: 18px;
+  color: #147BCC;
+  line-height: 48px;
+}
+
+.footer-inner .title {
   font-size: 20px;
-  color: #1C94C4;
+  color: #333;
 }
 
-footer > a:not(:last-child) {
-  margin-right: 32px;
-}
-
-@media (max-width: 640px) {
-  .header {
-    height: calc(100vh - 190px);
-  }
-
-  .left-bg, .right-bg {
-    background: transparent;
-  }
-
-  .date-loc-info {
-    height: 190px;
-  }
-
-  .date-loc-info > time {
-    max-width: 320px;
-    line-height: 36px;
-  }
-
-  footer > a {
-    font-size: 16px;
+@media (min-width: 801px) {
+  .narrow-only {
+    display: none !important;
   }
 }
 
-@media (max-width: 460px) {
-  .main {
-    line-height: 32px;
+@media (max-width: 800px) {
+  .responsive.horizontal.layout {
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
   }
 
-  .amsterdam {
-    height: 600px;
+  .wide-only {
+    display: none !important;
   }
 
-  .badge-blue, .badge-white {
-    width: 260px;
-    height: 260px;
+  .date-loc-banner > .location, .wait-list-banner > h3 {
+    margin-bottom: 16px;
+  }
+
+  .wait-list-banner > :first-child {
+    margin-bottom: 24px;
+  }
+
+  .speakers-banner {
+    padding: 24px 0 8px;
+  }
+
+  .speakers-banner > * {
+    margin-bottom: 16px;
+  }
+
+  .about-waterfront, .getting-there {
+    padding: 16px;
+  }
+
+  .about-waterfront > section, .getting-there > section {
+    width: 400px;
+  }
+
+  .codelabs {
+    margin: 0;
+  }
+
+  .misc-card {
+    margin: 16px;
+    padding: 16px;
+  }
+
+  paper-material[elevation].misc-card {
+    box-shadow: none;
+  }
+
+  .misc-card-content {
+    margin: 0;
+  }
+
+  .misc-card > .tools {
+    min-width: 0;
+  }
+
+  .wait-list-banner {
+    background: #FC6C9C url(../images/Pink_BG_Pattern/Mobile/Summit_PinkBGMobile.png) center center;
+    background-size: cover;
   }
 }
 
-@media
-(-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 192dpi) {
-  /* Retina-specific stuff here */
+@media (max-width: 420px) {
+  .welcome-msg {
+    padding: 32px 16px;
+  }
+
+  .amsterdam-info section {
+    width: 100%;
+  }
+
+  .amsterdam-info h3 {
+    font-size: 30px;
+  }
+
+  .misc-card {
+    margin: 0;
+    padding: 16px;
+  }
+}
+
+/* high resolution devices */
+@media (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
   .badge-blue {
-    background: url(../images/badge-blue@2x.png) no-repeat center center;
+    background: url(../images/badge_blue@2x.png) no-repeat center center;
     background-size: contain;
   }
 
   .badge-white {
-    background: url(../images/badge-white@2x.png) no-repeat center center;
+    background: url(../images/badge_white@2x.png) no-repeat center center;
     background-size: contain;
+  }
+
+  .badge-blue-small {
+    background: url(../images/badge_blue_small@2x.png) no-repeat center center;
+    background-size: contain;
+  }
+
+  .blue-banner {
+    background:
+      url(../images/Angle_Pattern/Lt_Blue_BG/Summit_AnglePattern_Blue_Sm@2x.png) center center,
+      url(../images/Angle_Pattern/Lt_Blue_BG/Summit_AnglePattern_Blue_Lg@2x.png) center center;
+    background-size: 630px 305px, 512px 300px;
+    background-color: #147BCC;
+  }
+
+  .wait-list-banner {
+    background:
+      url(../images/Pink_BG_Pattern/Desktop/Summit_PinkBGPattern_Left@2x.png) center left repeat-y,
+      url(../images/Pink_BG_Pattern/Desktop/Summit_PinkBGPattern_Right@2x.png) center right repeat-y;
+    background-color: #FC6C9C;
+    background-size: 25%;
+  }
+
+  .misc-banner {
+    background:
+      url(../images/Angle_Pattern/DkBlue_Royal_Footer/Summit_AnglePattern_Sm@2x.png) center center,
+      url(../images/Angle_Pattern/DkBlue_Royal_Footer/Summit_AnglePattern_Md@2x.png) center center,
+      url(../images/Angle_Pattern/DkBlue_Royal_Footer/Summit_AnglePattern_Lg@2x.png) center center;
+    background-size: 420px 210px, 600px 300px, 600px 600px;
+    background-color: #1F1F35;
+  }
+}
+
+@media (max-width: 800px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+  .wait-list-banner {
+    background: #FC6C9C url(../images/Pink_BG_Pattern/Mobile/Summit_PinkBGMobile@2x.png) center center;
+    background-size: cover;
   }
 }

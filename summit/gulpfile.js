@@ -11,6 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 // Include Gulp & Tools We'll Use
 var gulp = require('gulp');
+var merge = require('merge-stream');
 var $ = require('gulp-load-plugins')();
 var del = require('del');
 
@@ -47,19 +48,24 @@ gulp.task('html', ['clean'], function() {
 
 // Vulcanize
 gulp.task('vulcanize', ['clean'], function () {
-  return gulp.src('app/elements.html')
+  return gulp.src('app/src/elements.html')
     .pipe($.vulcanize({
       stripComments: true,
       inlineCss: true,
       inlineScripts: true
     }))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist/src'));
 });
 
 // Copy over polyfills
 gulp.task('copy', ['clean'], function() {
-  return gulp.src('app/bower_components/webcomponentsjs/webcomponents-lite.min.js')
-    .pipe(gulp.dest('dist/scripts'))
+  var polyfills = gulp.src('app/bower_components/webcomponentsjs/webcomponents-lite.min.js')
+    .pipe(gulp.dest('dist/bower_components/webcomponentsjs'));
+  var router = gulp.src('app/bower_components/page/*.js')
+    .pipe(gulp.dest('dist/bower_components/page'));
+  var data = gulp.src('app/data/*.json')
+    .pipe(gulp.dest('dist/data'));
+  return merge(polyfills, router, data);
 });
 
 // Clean Output Directory

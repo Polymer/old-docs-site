@@ -1,0 +1,187 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/paper-styles/shadow.html">
+<link rel="import" href="cascaded-animation-behavior.html">
+<link rel="import" href="collapsible-card.html">
+<link rel="import" href="grid-view.html">
+<link rel="import" href="summit-icons.html">
+
+<dom-module id="schedule-grid">
+
+  <style>
+
+    :host {
+      display: block;
+    }
+
+    .date-card {
+      position: relative;
+      @apply(--shadow-elevation-2dp);
+      padding: 32px 16px;
+      background-color: #147BCC;
+      font-size: 38px;
+      line-height: 50px;
+      color: #fff;
+    }
+
+    .date-card:first-child {
+      background-color: #4FB6F7;
+    }
+
+    .card {
+      padding-top: 16px;
+      background-color: #fff;
+      min-height: 400px;
+    }
+
+    .card, .date-card {
+      -webkit-transform: translateZ(0);
+      will-change: transform;
+    }
+
+    .card[narrow] {
+      min-height: 0;
+      box-shadow: none;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .content {
+      position: relative;
+      padding: 16px;
+    }
+
+    .name, .speaker {
+      line-height: 30px;
+    }
+
+    .name {
+      font-weight: 600;
+      color: #147BCC;
+    }
+
+    .speaker {
+      margin-bottom: 16px;
+      font-size: 20px;
+      font-weight: 600;
+      font-style: italic;
+      color: #4FB6F7;
+    }
+
+    .time, .location {
+      font-size: 18px;
+      line-height: 28px;
+      color: #555;
+    }
+
+    [collapsible-content] {
+      padding: 16px 16px 40px;
+    }
+
+    .card[narrow] [collpsible-content] {
+      padding: 16px 16px 24px;
+    }
+
+    .desc {
+      font-size: 16px;
+    }
+
+    .toggle-icon {
+      position: absolute;
+      right: 8px;
+      bottom: 4px;
+      --iron-icon-width: 40px;
+      --iron-icon-height: 40px;
+      padding: 8px;
+      color: #4FB6F7;
+      cursor: pointer;
+    }
+
+    .card:not([narrow]) .toggle-icon {
+      display: none;
+    }
+
+    .card[opened] .toggle-icon {
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+    }
+
+    template {
+      display: none;
+    }
+
+  </style>
+
+  <template>
+
+    <grid-view>
+      <template is="dom-repeat" items="[[schedule]]">
+
+        <div class="date-card" cascaded>
+          <div><span>[[item.day]]</span><span>,</span></div>
+          <div>[[item.date]]</div>
+        </div>
+
+        <template is="dom-repeat" items="[[item.sessions]]" on-dom-change="_updateCascadedNodes">
+
+          <collapsible-card class="card" cascaded opened="[[!narrowLayout]]" narrow$="{{narrowLayout}}">
+
+            <div class="content">
+              <div class="name">[[item.name]]</div>
+              <div class="speaker">[[item.speaker]]</div>
+              <div class="time">[[item.time]]</div>
+              <div class="location">[[item.location]]</div>
+              <iron-icon class="toggle-icon" icon="arrow-drop-down" collapsible-toggle></iron-icon>
+            </div>
+
+            <div collapsible-content>
+              <div class="desc">[[item.desc]]</div>
+            </div>
+
+          </collapsible-card>
+
+        </template>
+
+      </template>
+    </grid-view>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'schedule-grid',
+
+      behaviors: [
+        Polymer.CascadedAnimationBehavior,
+      ],
+
+      properties: {
+
+        schedule: {
+          type: Array
+        },
+
+        narrowLayout: {
+          type: Boolean,
+          value: false
+        }
+
+      }
+
+    });
+
+  </script>
+
+</dom-module>
