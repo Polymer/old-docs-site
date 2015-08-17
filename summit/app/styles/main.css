@@ -435,6 +435,10 @@ paper-button.anchor-button {
   color: #333;
 }
 
+schedule-grid, speakers-grid {
+ min-height: 90vh;
+}
+
 @media (min-width: 801px) {
   .narrow-only {
     display: none !important;
