@@ -1,5 +1,5 @@
 application: polymer-project
-version: 2015-08-04
+version: summit-site-alpha
 runtime: python27
 api_version: 1
 threadsafe: yes
