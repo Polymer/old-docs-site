@@ -125,6 +125,11 @@ handlers:
   upload: _site/summit/dist/index.html
   secure: always
 
+- url: /summit/(schedule|speakers)
+  static_files: _site/summit/dist/index.html
+  upload: _site/summit/dist/index.html
+  secure: always
+
 - url: /summit/(.*)
   static_files: _site/summit/dist/\1
   upload: _site/summit/dist/(.*)

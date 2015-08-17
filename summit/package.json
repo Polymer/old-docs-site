@@ -10,6 +10,7 @@
     "gulp-imagemin": "^2.3.0",
     "gulp-load-plugins": "^1.0.0-rc.1",
     "gulp-minify-html": "^1.0.4",
-    "gulp-vulcanize": "^6.0.1"
+    "gulp-vulcanize": "^6.0.1",
+    "merge-stream": "^1.0.0"
   }
 }

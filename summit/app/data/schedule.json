@@ -1,0 +1,55 @@
+[
+  {
+    "date":"Septemper 14th",
+    "day":"Monday",
+    "sessions":[
+      {
+        "name":"Code Labs",
+        "time":"Monday 5pm - 9pm",
+        "location":"Location",
+        "desc":"Polymer code labs provide a guided, tutorial, hands-on coding experience. Learn and build elements and applications with the Polymer Team."
+      }
+    ]
+  },
+  {
+    "date":"September 15th",
+    "day":"Tuesday",
+    "sessions":[
+      {
+        "name":"Performance Patterns in Polymer",
+        "speaker":"Eric Bidelman",
+        "time":"Tuesday @ 0:00pm",
+        "location":"Location",
+        "desc":"Let's face it, building web apps is hard. There's a lot to remember! Web components allow us to componentize the web's best practices but that doesn't mean footguns are a thing of the past. In this talk, we'll cover tips and tricks for building fast Polymer apps right from the start."
+      },
+      {
+        "name":"Platinum Elements",
+        "speaker":"Mat Scales",
+        "time":"Tuesday @ 0:00pm",
+        "location":"Location",
+        "desc":"Web Components aren't the only hot new thing on the web. Learn about how we're bringing the magic of Polymer to brand new Web Platform features like Offline, Push Messaging, and Background Sync."
+      },
+      {
+        "name":"There’s an Element for that — but what if there isn't?",
+        "speaker":"Surma",
+        "time":"Tuesday @ 0:00pm",
+        "location":"Location",
+        "desc":"This talk is about wrapping your own, possibly existing API in an element. Specifically about the patterns we are using in PolymerElements, how to handle RESTful-ness and WebSockets. I'd probably use an example backend written in Go."
+      },
+      {
+        "name":"Doing a Perf Audit of your Polymer App",
+        "speaker":"Paul Irish",
+        "time":"Tuesday @ 0:00pm",
+        "location":"Location",
+        "desc":"Performance is measured from the ground truth of the browser internals, and you're operating a few levels up, with the DOM, framework code, and JavaScript sitting between your users finger and the resulting screen paints. In this session Paul Irish will show how the Chrome DevTools can help you understand where time is spent in your app and effective means of profiling your performance. You'll walk away with a solid understanding of how your polymer work can be as fast-loading and responsive-to-the-touch as you like."
+      },
+      {
+        "name":"Performance Patterns in Polymer",
+        "speaker":"Eric Bidelman",
+        "time":"Tuesday @ 0:00pm",
+        "location":"Location",
+        "desc":"Let's face it, building web apps is hard. There's a lot to remember! Web components allow us to componentize the web's best practices but that doesn't mean footguns are a thing of the past. In this talk, we'll cover tips and tricks for building fast Polymer apps right from the start."
+      }
+    ]
+  }
+]
