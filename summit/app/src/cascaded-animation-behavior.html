@@ -58,6 +58,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     attached: function() {
       this.style.opacity = 0;
+      this._updateCascadedNodes();
     },
 
     _showingChanged: function(showing) {
