@@ -96,11 +96,11 @@ h3 {
 }
 
 .header-layout[page=home] .home-page-hidden {
-  display: none;
+  display: none !important;
 }
 
 .header-layout:not([page=home]) .home-page-only {
-  display: none;
+  display: none !important;
 }
 
 .main-toolbar {
@@ -210,6 +210,7 @@ h3 {
 .welcome-msg {
   max-width: 600px;
   padding: 64px 16px;
+  margin: 0 auto;
   line-height: 32px;
 }
 
@@ -220,7 +221,8 @@ h3 {
 
 .wait-list-banner {
   position: relative;
-  padding: 24px 8px;
+  padding: 24px 16px;
+  margin: 0 auto;
   box-sizing: border-box;
   text-align: center;
   font-size: 30px;
@@ -235,10 +237,10 @@ h3 {
 }
 
 .pink-arrow-btn {
-  display: block;
+  display: inline-block;
   position: relative;
   padding: 16px;
-  margin-left: 16px;
+  margin: 0 16px;
   background-color: #E45484;
   font-size: 23px;
   line-height: 24px;
@@ -336,7 +338,7 @@ h3 {
 .misc-banner > .divider {
   width: 200px;
   padding-top: 24px;
-  margin-bottom: 24px;
+  margin: 0 auto 24px;
   border-bottom: 2px solid #4FB6F7;
 }
 
@@ -436,7 +438,7 @@ paper-button.anchor-button {
 }
 
 schedule-grid, speakers-grid {
- min-height: 90vh;
+  min-height: 90vh;
 }
 
 @media (min-width: 801px) {
@@ -450,6 +452,10 @@ schedule-grid, speakers-grid {
     -ms-flex-direction: column;
     -webkit-flex-direction: column;
     flex-direction: column;
+  }
+
+  .responsive.horizontal.layout:not(.center):not(.center-center) {
+    display: block;
   }
 
   .wide-only {

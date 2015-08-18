@@ -51,7 +51,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <div class="nav fit" drawer>
         <iron-selector class="menu" selected="[[page]]" activate-event="click" attr-for-selected="name">
-          <a name="home" class="menu-item" href="">HOME</a><br>
+          <a name="home" class="menu-item" href="/summit">HOME</a><br>
           <a name="schedule" class="menu-item" href="/summit/schedule">SCHEDULE</a><br>
           <a name="speakers" class="menu-item" href="/summit/speakers">SPEAKERS</a>
         </iron-selector>
@@ -104,7 +104,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <time>September 14-15, 2015</time>
             </div>
 
-            <div class="vertical center layout">
+            <div>
               <div class="welcome-msg">
                 <section class="bottom-spacer responsive horizontal layout">
                   <time>September 14</time>
@@ -118,15 +118,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
 
             <div class="wait-list-banner">
-              <div class="responsive horizontal center-center layout">
+              <div>
                 <span>Whoa! We’re already at capacity.</span>
                 <a class="pink-arrow-btn " target="_blank" href="https://polymer.eventfarm.com/orders/soldOut/7fff5387-0000-4556-a4c1-610d82a69538">Join the Waiting List</a>
               </div>
-              <div class="responsive horizontal center-center layout">
-                <span class="horizontal center layout">
-                  <span>Or,</span>
-                  <a class="signup-live-stream-btn pink-arrow-btn " target="_blank" href="https://services.google.com/fb/forms/polymer2015/">Sign up</a>
-                </span>
+              <div>
+                <span>Or,</span>
+                <a class="signup-live-stream-btn pink-arrow-btn " target="_blank" href="https://services.google.com/fb/forms/polymer2015/">Sign up</a>
                 <span>to watch the livestream from anywhere.</span>
               </div>
             </div>
@@ -155,13 +153,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </div>
             </div>
 
-            <div class="misc-banner vertical center-center layout">
+            <div class="misc-banner">
               <h3>SUMMIT EXTENDED</h3>
               <div class="divider"></div>
               <div class="desc">Be There From Anywhere</div>
             </div>
 
-            <div class="vertical center layout">
+            <div class="horizontal center-center layout">
               <paper-material class="misc-card responsive horizontal layout">
                 <section class="misc-card-content flex-auto">
                   <h3>Can’t make it this year?</h3>
@@ -187,12 +185,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </paper-material>
             </div>
 
-            <div class="misc-banner vertical center-center layout">
+            <div class="misc-banner">
               <h3>POLYMER CODE LABS</h3><div class="divider"></div>
               <div class="desc">Learn and Build with the Polymer Team</div>
             </div>
 
-            <div class="vertical center layout">
+            <div class="horizontal center-center layout">
               <paper-material class="misc-card">
                 <div class="codelabs">
                   <h3>Code labs will be happening during the Summit,</h3>
@@ -213,15 +211,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </iron-pages>
 
         <div class="wait-list-banner home-page-hidden">
-          <div class="responsive horizontal center-center layout">
+          <div>
             <span>Whoa! We’re already at capacity.</span>
             <a class="pink-arrow-btn " target="_blank" href="https://polymer.eventfarm.com/orders/soldOut/7fff5387-0000-4556-a4c1-610d82a69538">Join the Waiting List</a>
           </div>
-          <div class="responsive horizontal center-center layout">
-            <span class="horizontal center layout">
-              <span>Or,</span>
-              <a class="signup-live-stream-btn pink-arrow-btn " target="_blank" href="https://services.google.com/fb/forms/polymer2015/">Sign up</a>
-            </span>
+          <div>
+            <span>Or,</span>
+            <a class="signup-live-stream-btn pink-arrow-btn " target="_blank" href="https://services.google.com/fb/forms/polymer2015/">Sign up</a>
             <span>to watch the livestream from anywhere.</span>
           </div>
         </div>
@@ -254,7 +250,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </x-drawer-layout>
 
-    <iron-media-query query="(max-width: 623px)" query-matches="{{narrowLayout}}"></iron-media-query>
+    <iron-media-query query="(max-width: 643px)" query-matches="{{narrowLayout}}"></iron-media-query>
 
     <iron-ajax auto url="/summit/data/speakers.json" last-response="{{speakers}}"></iron-ajax>
     <iron-ajax auto url="/summit/data/schedule.json" last-response="{{schedule}}"></iron-ajax>
