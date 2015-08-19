@@ -61,23 +61,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <x-header class="main-header" waterfall fixed="[[!narrowLayout]]" threadhold="232">
           <x-toolbar class="main-toolbar">
-            <a class="toolbar-badge badge-blue-small" href="/summit" tabindex="1"></a>
+            <a class="toolbar-badge badge-blue-small" href="/summit"></a>
 
             <div class="flex horizontal center-center layout">
               <iron-selector class="wide-only" selected="[[page]]" activate-event="click" attr-for-selected="name">
-                <a name="schedule" class="tab" href="/summit/schedule" tabindex="2">SCHEDULE</a>
-                <a name="speakers" class="tab" href="/summit/speakers" tabindex="3">SPEAKERS</a>
+                <a name="schedule" class="tab" href="/summit/schedule">SCHEDULE</a>
+                <a name="speakers" class="tab" href="/summit/speakers">SPEAKERS</a>
               </iron-selector>
             </div>
 
             <div class="header-tools horizontal center layout">
-              <a href="https://plus.google.com/+PolymerProject" target="_blank" tabindex="4" aria-label="Follow Polymer on G Plus">
+              <a href="https://plus.google.com/+PolymerProject" target="_blank" aria-label="Follow Polymer on G Plus">
                 <iron-icon class="header-social-icon" icon="summit:post-gplus"></iron-icon>
               </a>
-              <a href="https://twitter.com/polymer" target="_blank" tabindex="5" aria-label="Follow Polymer on Twitter">
+              <a href="https://twitter.com/polymer" target="_blank" aria-label="Follow Polymer on Twitter">
                 <iron-icon class="header-social-icon" icon="summit:post-twitter"></iron-icon>
               </a>
-              <iron-icon role="button" aria-label="Open menu" on-keyup="_toggleDrawer" class="menu-icon narrow-only" icon="menu" drawer-toggle tabindex="6"></iron-icon>
+              <iron-icon role="button" aria-label="Open menu" on-keyup="_toggleDrawer" class="menu-icon narrow-only" icon="menu" drawer-toggle tabindex="0"></iron-icon>
             </div>
           </x-toolbar>
         </x-header>
@@ -108,7 +108,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <div class="welcome-msg">
                 <section class="bottom-spacer responsive horizontal layout">
                   <time>September 14</time>
-                  <div class="flex-auto">Join us for an evening of code labs for hands-on learning.</div>
+                  <div class="flex-auto">Join us for an evening of code labs for hands-on learning. <strong>BYOL (Bring Your Own Laptop).</strong></div>
                 </section>
                 <section class="responsive horizontal layout">
                   <time>September 15</time>
@@ -129,7 +129,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </div>
             </div>
 
-            <a class="amsterdam-bg" target="_blank" data-outbound="image-map"
+            <a class="amsterdam-bg" aria-label="Event map" target="_blank" data-outbound="image-map"
                 href="https://www.google.com/maps/place/Muziekgebouw+aan+'t+IJ/@52.3783041,4.9131203,15z/data=!4m2!3m1!1s0x0:0x84b02f41a342e459"></a>
 
             <div class="amsterdam-info responsive horizontal layout">

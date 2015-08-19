@@ -14,7 +14,7 @@
   ],
   "dependencies": {
     "polymer": "polymer/polymer#^1.0.0",
-    "app-layout": "polymerlabs/app-layout#^0.0.1",
+    "app-layout": "polymerlabs/app-layout#^0.0.2",
     "font-roboto": "polymerelements/font-roboto#^1.0.0",
     "iron-ajax": "polymerelements/iron-ajax#^1.0.0",
     "iron-collapse": "polymerelements/iron-collapse#^1.0.0",
