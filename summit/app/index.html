@@ -47,7 +47,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <template is="dom-bind" id="app">
 
-    <x-drawer-layout force-narrow right-drawer>
+    <x-drawer-layout force-narrow right-drawer opened="{{opened}}">
 
       <div class="nav fit" drawer>
         <iron-selector class="menu" selected="[[page]]" activate-event="click" attr-for-selected="name">
@@ -61,23 +61,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <x-header class="main-header" waterfall fixed="[[!narrowLayout]]" threadhold="232">
           <x-toolbar class="main-toolbar">
-            <a class="toolbar-badge badge-blue-small" href="/summit"></a>
+            <a class="toolbar-badge badge-blue-small" href="/summit" tabindex="1"></a>
 
             <div class="flex horizontal center-center layout">
               <iron-selector class="wide-only" selected="[[page]]" activate-event="click" attr-for-selected="name">
-                <a name="schedule" class="tab" href="/summit/schedule">SCHEDULE</a>
-                <a name="speakers" class="tab" href="/summit/speakers">SPEAKERS</a>
+                <a name="schedule" class="tab" href="/summit/schedule" tabindex="2">SCHEDULE</a>
+                <a name="speakers" class="tab" href="/summit/speakers" tabindex="3">SPEAKERS</a>
               </iron-selector>
             </div>
 
             <div class="header-tools horizontal center layout">
-              <a href="https://plus.google.com/+PolymerProject" target="_blank">
+              <a href="https://plus.google.com/+PolymerProject" target="_blank" tabindex="4">
                 <iron-icon class="header-social-icon" icon="summit:post-gplus"></iron-icon>
               </a>
-              <a href="https://twitter.com/polymer" target="_blank">
+              <a href="https://twitter.com/polymer" target="_blank" tabindex="5">
                 <iron-icon class="header-social-icon" icon="summit:post-twitter"></iron-icon>
               </a>
-              <iron-icon class="menu-icon narrow-only" icon="menu" drawer-toggle></iron-icon>
+              <iron-icon class="menu-icon narrow-only" icon="menu" drawer-toggle tabindex="6"></iron-icon>
             </div>
           </x-toolbar>
         </x-header>
@@ -142,7 +142,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <div class="getting-there flex vertical center layout">
                 <section>
                   <h3>Getting There.</h3>
-                  <div class="direction">Piet Heinkade 1, 1019 BR Amsterdam, Netherlands (Near the Amsterdam Central train station)</div>
+                  <div class="direction">
+                    <a href="https://www.google.com/maps/place/Muziekgebouw+aan+'t+IJ/@52.3782504,4.9134354,17z/data=!4m7!1m4!3m3!1s0x47c609af7723b7bf:0x655d54a4fc5cc595!2sPiet+Heinkade+1,+1019+BR+Amsterdam,+Netherlands!3b1!3m1!1s0x0000000000000000:0x84b02f41a342e459">Muziekgebouw aan ‘t IJ</a><br>
+                    Piet Heinkade 1, 1019 BR Amsterdam, Netherlands (Near the Amsterdam Central train station)</div>
                   <div>BY FOOT</div>
                   <div class="direction">Approx 15 minutes from Central Station</div>
                   <div>BY TRAM</div>

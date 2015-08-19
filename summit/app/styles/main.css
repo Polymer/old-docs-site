@@ -319,6 +319,11 @@ h3 {
   margin-bottom: 16px;
 }
 
+.direction a {
+  border-bottom: 1px dotted #fff;
+  outline-color: #fff;
+}
+
 .misc-banner {
   padding: 24px 16px;
   text-align: center;
