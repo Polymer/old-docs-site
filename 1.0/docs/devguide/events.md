@@ -254,8 +254,8 @@ equivalent target data on both shady DOM and shadow DOM. Specifically, the
 normalized event has the following properties:
 
 *   `rootTarget`: The original or root target before shadow retargeting
-    `(equivalent to `event.path[0]` under shadow DOM or `event.target` under
-    `shady DOM).
+    (equivalent to `event.path[0]` under shadow DOM or `event.target` under
+    shady DOM).
 
 *   `localTarget`: Retargeted event target (equivalent to `event.target` under
     shadow DOM)
