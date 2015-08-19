@@ -47,7 +47,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <template is="dom-bind" id="app">
 
-    <x-drawer-layout force-narrow right-drawer opened="{{opened}}">
+    <x-drawer-layout id="drawerLayout" force-narrow right-drawer>
 
       <div class="nav fit" drawer>
         <iron-selector class="menu" selected="[[page]]" activate-event="click" attr-for-selected="name">
@@ -71,13 +71,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
 
             <div class="header-tools horizontal center layout">
-              <a href="https://plus.google.com/+PolymerProject" target="_blank" tabindex="4">
+              <a href="https://plus.google.com/+PolymerProject" target="_blank" tabindex="4" aria-label="Follow Polymer on G Plus">
                 <iron-icon class="header-social-icon" icon="summit:post-gplus"></iron-icon>
               </a>
-              <a href="https://twitter.com/polymer" target="_blank" tabindex="5">
+              <a href="https://twitter.com/polymer" target="_blank" tabindex="5" aria-label="Follow Polymer on Twitter">
                 <iron-icon class="header-social-icon" icon="summit:post-twitter"></iron-icon>
               </a>
-              <iron-icon class="menu-icon narrow-only" icon="menu" drawer-toggle tabindex="6"></iron-icon>
+              <iron-icon role="button" aria-label="Open menu" on-keyup="_toggleDrawer" class="menu-icon narrow-only" icon="menu" drawer-toggle tabindex="6"></iron-icon>
             </div>
           </x-toolbar>
         </x-header>
@@ -262,6 +262,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
+    var app = document.querySelector('#app');
+    app.addEventListener('dom-change', function() {
+      // Keyboard handler to toggle drawer menu
+      this._toggleDrawer = function(e) {
+        if (e.keyCode === 13) {
+          this.$.drawerLayout.toggleDrawer();
+        }
+      }
+    });
     // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     // (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     // m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
