@@ -37,13 +37,13 @@ gulp.task('images', ['clean'], function () {
 
 // Minify html
 gulp.task('html', ['clean'], function() {
-  return gulp.src('app/index.html')
+  gulp.src('app/*.html')
     .pipe($.minifyHtml({
       quotes: true,
       empty: true,
       spare: true
     }))
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('dist'));
 });
 
 // Vulcanize
