@@ -169,6 +169,7 @@ h3 {
   color: #fff;
   border-bottom: 2px solid;
   opacity: .5
+  outline-color: #fff;
 }
 
 .menu-item.iron-selected {

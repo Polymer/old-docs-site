@@ -47,7 +47,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <template is="dom-bind" id="app">
 
-    <x-drawer-layout id="drawerLayout" force-narrow right-drawer>
+    <x-drawer-layout id="drawerLayout" force-narrow right-drawer on-opened-changed="_handleDrawerOpen">
 
       <div class="nav fit" drawer>
         <iron-selector class="menu" selected="[[page]]" activate-event="click" attr-for-selected="name">
@@ -61,7 +61,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <x-header class="main-header" waterfall fixed="[[!narrowLayout]]" threadhold="232">
           <x-toolbar class="main-toolbar">
-            <a class="toolbar-badge badge-blue-small" href="/summit"></a>
+            <a class="toolbar-badge badge-blue-small" href="/summit" aria-label="Home"></a>
 
             <div class="flex horizontal center-center layout">
               <iron-selector class="wide-only" selected="[[page]]" activate-event="click" attr-for-selected="name">
@@ -263,14 +263,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <script>
     var app = document.querySelector('#app');
-    app.addEventListener('dom-change', function() {
-      // Keyboard handler to toggle drawer menu
-      this._toggleDrawer = function(e) {
-        if (e.keyCode === 13) {
-          this.$.drawerLayout.toggleDrawer();
-        }
+    app._toggleDrawer = function(e) {
+      if (e.keyCode === 13) {
+        this.$.drawerLayout.toggleDrawer();
       }
-    });
+    }
+    app._handleDrawerOpen = function(e, detail) {
+      if (detail.value === true) {
+        document.querySelector('[drawer] a').focus();
+      }
+    }
     // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     // (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     // m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
