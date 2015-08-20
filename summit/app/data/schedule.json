@@ -110,6 +110,12 @@
         "speaker":"Paul Irish",
         "time":"Tuesday @ 4:45pm",
         "desc":"Performance is measured from the ground truth of the browser internals, and you're operating a few levels up, with the DOM, framework code, and JavaScript sitting between your users finger and the resulting screen paints. In this session Paul Irish will show how the Chrome DevTools can help you understand where time is spent in your app and effective means of profiling your performance. You'll walk away with a solid understanding of how your polymer work can be as fast-loading and responsive-to-the-touch as you like."
+      },
+      {
+        "name":"PolyPanel",
+        "speaker":"The Polymer Team",
+        "time":"Tuesday @ 5:15pm",
+        "desc":"A wrap-up discussion panel with members of the Polymer team."
       }
     ]
   }
