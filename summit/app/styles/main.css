@@ -512,6 +512,10 @@ schedule-grid,speakers-grid {
     padding:32px 16px
   }
 
+  .amsterdam-bg {
+    height: 400px;
+  }
+
   .amsterdam-info section {
     width: 100%
   }
@@ -523,6 +527,12 @@ schedule-grid,speakers-grid {
   .misc-card {
     margin: 0;
     padding: 16px
+  }
+}
+
+@media (min-width: 1600px) {
+  .amsterdam-bg {
+    height: 960px;
   }
 }
 
