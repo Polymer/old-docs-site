@@ -37,7 +37,7 @@ gulp.task('images', ['clean'], function () {
 
 // Minify html
 gulp.task('html', ['clean'], function() {
-  gulp.src('app/*.html')
+  gulp.src('app/index.html')
     .pipe($.minifyHtml({
       quotes: true,
       empty: true,
@@ -65,7 +65,9 @@ gulp.task('copy', ['clean'], function() {
     .pipe(gulp.dest('dist/bower_components/page'));
   var data = gulp.src('app/data/*.json')
     .pipe(gulp.dest('dist/data'));
-  return merge(polyfills, router, data);
+  var CoC = gulp.src('app/code-of-conduct.html')
+    .pipe(gulp.dest('dist'));
+  return merge(polyfills, router, data, CoC);
 });
 
 // Clean Output Directory
