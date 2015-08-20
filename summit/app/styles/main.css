@@ -389,6 +389,16 @@ paper-button.anchor-button {
   color: #fff
 }
 
+.anchor-button.blue[focused] {
+  background: #fff;
+  color: #4FB6F7;
+}
+
+.anchor-button.red[focused] {
+  background: #fff;
+  color: #FC6C9C;
+}
+
 .extended-gplus-link {
   margin-right: 16px
 }
