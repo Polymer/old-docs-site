@@ -112,15 +112,14 @@ handlers:
 - url: /docs/elements/(core|paper)-elements.html
   script: main.app
 
-# Map raw paths with trailing "/" to an index.html file.
-- url: /(.*)/$
-  static_files: _site/\1/index.html
-  upload: _site/(.*)/index.html
-  secure: always
-
 # Special exception for the summit site so it doesn't require
 # a trailing slash
 - url: /summit
+  static_files: _site/summit/dist/index.html
+  upload: _site/summit/dist/index.html
+  secure: always
+
+- url: /summit/$
   static_files: _site/summit/dist/index.html
   upload: _site/summit/dist/index.html
   secure: always
@@ -133,6 +132,12 @@ handlers:
 - url: /summit/(.*)
   static_files: _site/summit/dist/\1
   upload: _site/summit/dist/(.*)
+  secure: always
+
+# Map raw paths with trailing "/" to an index.html file.
+- url: /(.*)/$
+  static_files: _site/\1/index.html
+  upload: _site/(.*)/index.html
   secure: always
 
 # All other URLs map directly to their path in _site/.
