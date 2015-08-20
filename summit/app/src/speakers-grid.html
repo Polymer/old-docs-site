@@ -135,7 +135,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <collapsible-card class="card" cascaded opened="[[!narrowLayout]]" narrow$="{{narrowLayout}}">
           <div class="photo-wrap">
-            <img class="photo" src="[[item.photo]]">
+            <img class="photo" src="[[item.photo]]" aria-hidden="true">
           </div>
 
           <div class="content">
@@ -147,10 +147,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div collapsible-content>
             <div class="bio">[[item.bio]]</div>
             <div class="bottom-tools">
-              <a href="[[_gplusUrl(item.gplus)]]" target="_blank" hidden$="[[!item.gplus]]">
+              <a href="[[_gplusUrl(item.gplus)]]" target="_blank" hidden$="[[!item.gplus]]" aria-label="Follow on G Plus">
                 <iron-icon class="tool-icon" icon="summit:post-gplus"></iron-icon>
               </a>
-              <a href="[[_twitterUrl(item.twitter)]]" target="_blank" hidden$="[[!item.twitter]]">
+              <a href="[[_twitterUrl(item.twitter)]]" target="_blank" hidden$="[[!item.twitter]]" aria-label="Follow on Twitter">
                 <iron-icon class="tool-icon" icon="summit:post-twitter"></iron-icon>
               </a>
             </div>
