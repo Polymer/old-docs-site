@@ -25,15 +25,15 @@ To add a behavior to a {{site.project_title}} element definition, include it in 
       behaviors: [SuperBehavior]
     });
 
-Lifecycle callbacks are called on the base prototype first, then for each
-behavior in the order given in the `behaviors` array.
+For lifecycle events, the lifecycle callback is called for each 
+behavior in the order given in the `behaviors` array, followed by the 
+callback on the prototype. 
 
 Any non-lifecycle functions on the behavior object are mixed into
-the base prototype. These may be useful for adding APIs or implementing 
-observer or event listener callbacks defined by the behavior. **A function
-defined on the prototype always takes precedence over a function defined 
-by a behavior.** If multiple behaviors define the same function, the 
-**last** behavior in the `behaviors` array takes precedence. 
+the base prototype, **unless the prototype already defines a function 
+of the same name.**  If multiple behaviors define the same function, the 
+**last** behavior in the `behaviors` array takes precedence over other 
+behaviors.
 
 ## Defining behaviors
 

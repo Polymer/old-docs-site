@@ -21,11 +21,11 @@ A basic {{site.project_title}} element definition looks like this:
 
     <dom-module id="element-name">
 
-      <style>
-        /* CSS rules for your element */
-      </style>
-      
       <template>
+        <style>
+          /* CSS rules for your element */
+        </style>
+      
         <!-- local DOM for your element -->
 
         <div>{%raw%}{{greeting}}{%endraw%}</div> <!-- data bindings in local DOM -->

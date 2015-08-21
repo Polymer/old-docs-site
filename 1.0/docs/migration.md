@@ -153,7 +153,7 @@ In 0.5, the local DOM template is specified as a child of the `<polymer-element>
 
     <polymer-element name="template-me" noscript>
       <template>
-        <!-- Old: styles INSIDE template --> 
+        <!-- local DOM styles --> 
         <style>
           div { color: red } 
         </style>
@@ -166,12 +166,13 @@ To specify a local DOM template now, use a `dom-module` tag, with your custom el
     <!-- ID attribute must match element name passed to Polymer() --> 
     <dom-module id="template-me">
 
-      <!-- New: styles OUTSIDE of template -->
-      <style>
-        div { color: red } 
-      </style>
 
       <template>
+        <!-- local DOM styles --> 
+        <style>
+          div { color: red } 
+        </style>
+
         <div>This is local DOM</div>
       </template>
 
@@ -182,7 +183,11 @@ To specify a local DOM template now, use a `dom-module` tag, with your custom el
     </dom-module>
 
 
-As you can see, element styles are now defined **outside** of the `<template>` tag. 
+**Note:** Prior to {{site.project_title}} 1.1, we recommended placing 
+element styles **outside** of the `<template>` tag. As of 1.1, styles
+outside the template are supported, but this is slower than placing styles
+inside the template and is no longer recommended.
+{: .alert .alert-info }
 
 The `<script>` tag can be inside or outside of the `<dom-module>` element, but the element's 
 template must be parsed before the call to `Polymer`. 
@@ -703,20 +708,21 @@ After:
     {% raw %}
     <dom-module id="x-profile">
 
-      <style>   
-        :host {
-          /* layout properties for the host element */
-          @apply(--layout-vertical);
-        }
-        
-        .header {
-          /* layout properties for a local DOM element */
-          @apply(--layout-horizontal);
-          @apply(--layout-center);
-        }
-      </style>
-
       <template>
+
+        <style>   
+          :host {
+            /* layout properties for the host element */
+            @apply(--layout-vertical);
+          }
+          
+          .header {
+            /* layout properties for a local DOM element */
+            @apply(--layout-horizontal);
+            @apply(--layout-center);
+          }
+        </style>
+
         <div class="header">
           <img src="{{avatarUrl}}">
           <span class="name">{{name}}</span>
@@ -1255,19 +1261,22 @@ In most cases, this can be replaced by binding both values to a shared property:
 
 ## Styling
 
-Element-level styling should be placed inside the `<dom-module>` tag but **outside** the `<template>` tag. 
+Element-level styling should be placed inside the local DOM `<template>` tag, as
+in 0.5. 
 
     <dom-module>
-      <style>
-        :host { display: block }
-      </style>
+
       <template>
+
+        <style>
+          :host { display: block }
+        </style>
         ...
       </template>
     </dom-module>
 
 External stylesheets are supported  using HTML Imports. See
-[External stylesheets](devguide/styling.html#external-stylesheets) in
+[Shared styles and external stylesheets](devguide/styling.html#style-modules) in
 the Developer guide for details.
 
 Document-level styling can be added using the `custom-style` element:
@@ -1299,13 +1308,16 @@ See [Styling local DOM](devguide/styling.html).
 Styling elements distributed to content (via ::content) requires using a wrapper
 element for compatibility with shady DOM.
 
-    <style>
-      .wrapper > ::content .foo {
-        color: lemonchiffon;
-      }
-    </style>
+
 
     <template>
+
+      <style>
+        .wrapper > ::content .foo {
+          color: lemonchiffon;
+        }
+      </style>
+
       <div class="wrapper">
         <content></content>
       </div>
