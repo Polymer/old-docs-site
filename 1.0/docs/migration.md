@@ -740,7 +740,7 @@ For more examples of the layout properties in use, see the
 
 ### Using the layout classes directly
 
-The layout classes can be imported and used simliar to the layout attributes. This is useful if you want to use the classes from within the main page or do not want to define a style rule just to use one of the custom properties:
+The layout classes can be imported and used similar to the layout attributes. This is useful if you want to use the classes from within the main page or do not want to define a style rule just to use one of the custom properties:
 
 Example of using the layout classes in the main page:
 
