@@ -30,7 +30,7 @@
     "paper-elements": "Polymer/paper-elements#latest",
     "component-download-button": "Polymer/component-download-button#latest",
     "code-explainer": "Polymer/code-explainer#latest",
-    "google-youtube": "GoogleWebComponents/google-youtube#latest",
+    "google-youtube": "GoogleWebComponents/google-youtube#^1.0.6",
     "paper-calculator": "Polymer/paper-calculator#latest",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.1"
   },
