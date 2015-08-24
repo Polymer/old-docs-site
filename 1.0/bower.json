@@ -33,10 +33,10 @@
     "google-youtube": "GoogleWebComponents/google-youtube#latest",
     "google-map": "GoogleWebComponents/google-map#latest",
     "paper-calculator": "Polymer/paper-calculator#latest",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.1"
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.6.0"
   },
   "resolutions": {
-    "webcomponentsjs": "^0.7.1",
+    "webcomponentsjs": "^0.6.0",
     "polymer": "^0.5.0"
   }
 }
