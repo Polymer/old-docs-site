@@ -574,7 +574,10 @@ defining document styles, outside of a custom element's local DOM.**
 
 ## Shared styles and external stylesheets {#style-modules}
 
-To share style declarations between elements, create a _style module_.
+To share style declarations between elements, you can package a set 
+of style declarations inside a `<dom-module>` element. In this section,
+a `<dom-module>` holding styles is called a _style module_ for convenience.
+
 A style module declares a named set of style rules that can be imported into 
 an element definition, or into a `custom-style` element.
 
@@ -595,10 +598,10 @@ element.
     </dom-module>
 
 The `id` attribute specifies the name you'll use to reference
-the style module. Style module names use the same namespace as elements, 
+your shared styles. Style module names use the same namespace as elements, 
 so your style modules must have unique names.
 
-Using the shared style module is a two-step process: you need to use a `<link>` tag
+Using the shared styles is a two-step process: you need to use a `<link>` tag
 to _import_ the module, and a `<style>` tag to _include_ the styles in the correct place.
 
 To use a style module in an element:
@@ -621,6 +624,18 @@ You can also use a shared style module in a `custom-style` element.
     <link rel="import" href="../shared-styles/shared-styles.html">
     <!-- include the shared styles -->
     <style is="custom-style" include="shared-styles"></style>
+
+A single style tag can both `include` shared styles
+and define local rules:
+
+    <style include="shared-styles">
+      :host { display: block; }
+    </style>
+
+(This works for both `custom-style` elements and `<style>` tags inside
+custom elements.) Currently, the shared styles are applied _after_ the styles defined
+inside the body of the `<style>` tag, so the shared styles take precedence.
+However, this order may change in a future release.
 
 
 ### External stylesheets (deprecated) {#external-stylesheets}
