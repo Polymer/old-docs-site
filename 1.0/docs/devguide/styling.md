@@ -12,31 +12,34 @@ subtitle: Developer guide
 Polymer uses [Shadow DOM styling
 rules](http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/) for
 providing scoped styling of the element's local DOM.  Scoped styles should be
-provided via `<style>` tags placed inside the `<dom-module>` for an element (but
-not inside the `<template>` -- note this is a slight deviation from typical
-Shadow DOM rules).
+provided via `<style>` tags placed inside the element's local DOM `<template>`.
+
 
     <dom-module id="my-element">
       
-      <style>
-        :host {
-          display: block;
-          border: 1px solid red;
-        }
-        #child-element {
-          background: yellow;
-        }
-        /* styling elements distributed to content (via ::content) requires */
-        /* selecting the parent of the <content> element for compatibility with */
-        /* shady DOM . This can be :host or a wrapper element. */
-        .content-wrapper > ::content .special {
-          background: orange;
-        }
-      </style>
+
       
       <template>
+
+        <style>
+          :host {
+            display: block;
+            border: 1px solid red;
+          }
+          #child-element {
+            background: yellow;
+          }
+          /* styling elements distributed to content (via ::content) requires */
+          /* selecting the parent of the <content> element for compatibility with */
+          /* shady DOM . This can be :host or a wrapper element. */
+          .content-wrapper > ::content .special {
+            background: orange;
+          }
+        </style>
+
         <div id="child-element">In local DOM!</div>
         <div class="content-wrapper"><content></content></div>
+
       </template>
       
       <script>
@@ -49,11 +52,14 @@ Shadow DOM rules).
 
     </dom-module>
 
+To place styles outside of the element, or share styles between elements, you can create 
+a [style module](#style-modules). 
 
+**Note:**  Prior to Polymer 1.1, the recommendation was to place `<style>` tags 
+inside the `<dom-module>` for an element (but _outside_ the `<template>`). This
+ is still supported, but is no longer recommended.
+{: .alert .alert-info }
 
-Loading external stylesheets (as opposed to defining them inline in HTML) for
-styling local DOM is currently supported via an [experimental
-feature](styling.html#external-stylesheets).
 
 ### Styling distributed children (::content)
 
@@ -78,14 +84,16 @@ This implies:
 
         <dom-module id="my-element">
           
-          <style>
-            .content-wrapper > ::content .special {
-              background: orange;
-            }
-          </style>
-          
           <template>
+
+            <style>
+              .content-wrapper > ::content .special {
+                background: orange;
+              }
+            </style>
+
             <div class="content-wrapper"><content></content></div>
+
           </template>
           
         </dom-module>
@@ -176,19 +184,21 @@ defined, similar to other standard inheriting CSS properties.
 Example:
 
     <dom-module id="my-toolbar">
-
-      <style>
-        :host {
-          padding: 4px;
-          background-color: gray;
-        }
-        .title {
-          color: var(--my-toolbar-title-color);
-        }
-      </style>
       
       <template>
+
+        <style>
+          :host {
+            padding: 4px;
+            background-color: gray;
+          }
+          .title {
+            color: var(--my-toolbar-title-color);
+          }
+        </style>
+
         <span class="title">{%raw%}{{title}}{%endraw%}</span>
+
       </template>
       
       <script>
@@ -206,22 +216,23 @@ Example usage of `my-toolbar`:
 
     <dom-module id="my-element">
 
-      <style>
-
-        /* Make all toolbar titles in this host green by default */
-        :host {
-          --my-toolbar-title-color: green;
-        }
-
-        /* Make only toolbars with the .warning class red */
-        .warning {
-          --my-toolbar-title-color: red;
-        }
-
-      </style>
       
       <template>
-      
+
+        <style>
+
+          /* Make all toolbar titles in this host green by default */
+          :host {
+            --my-toolbar-title-color: green;
+          }
+
+          /* Make only toolbars with the .warning class red */
+          .warning {
+            --my-toolbar-title-color: red;
+          }
+
+        </style>      
+
         <my-toolbar title="This one is green."></my-toolbar>
         <my-toolbar title="This one is green too."></my-toolbar>
 
@@ -283,20 +294,22 @@ Example:
 
     <dom-module id="my-toolbar">
 
-      <style>
-        :host {
-          padding: 4px;
-          background-color: gray;
-          /* apply a mixin */
-          @apply(--my-toolbar-theme);
-        }
-        .title {
-          @apply(--my-toolbar-title-theme);
-        }
-      </style>
-      
       <template>
+
+        <style>
+          :host {
+            padding: 4px;
+            background-color: gray;
+            /* apply a mixin */
+            @apply(--my-toolbar-theme);
+          }
+          .title {
+            @apply(--my-toolbar-title-theme);
+          }
+        </style>
+
         <span class="title">{%raw%}{{title}}{%endraw%}</span>
+
       </template>
       
       ...
@@ -306,33 +319,31 @@ Example:
 Example usage of `my-toolbar`:
 
     <dom-module id="my-element">
-
-      <style>
-
-        /* Apply custom theme to toolbars */
-        :host {
-          --my-toolbar-theme: {
-            background-color: green;
-            border-radius: 4px;
-            border: 1px solid gray;
-          };
-          --my-toolbar-title-theme: {
-            color: green;
-          };
-        }
-
-        /* Make only toolbars with the .warning class red and bold */
-        .warning {
-          --my-toolbar-title-theme: {
-            color: red;
-            font-weight: bold;
-          };
-        }
-
-      </style>
       
       <template>
-      
+
+        <style>
+          /* Apply custom theme to toolbars */
+          :host {
+            --my-toolbar-theme: {
+              background-color: green;
+              border-radius: 4px;
+              border: 1px solid gray;
+            };
+            --my-toolbar-title-theme: {
+              color: green;
+            };
+          }
+
+          /* Make only toolbars with the .warning class red and bold */
+          .warning {
+            --my-toolbar-title-theme: {
+              color: red;
+              font-weight: bold;
+            };
+          }
+        </style>
+
         <my-toolbar title="This one is green."></my-toolbar>
         <my-toolbar title="This one is green too."></my-toolbar>
 
@@ -363,15 +374,17 @@ Example:
 
     <dom-module id="x-custom">
 
-      <style>
-        :host {
-          --my-toolbar-color: red;
-        }
-      </style>
-
       <template>
+
+        <style>
+          :host {
+            --my-toolbar-color: red;
+          }
+        </style>
+
         <my-toolbar>My awesome app</my-toolbar>
         <button on-tap="changeTheme">Change theme</button>
+
       </template>
       
       <script>
@@ -468,26 +481,28 @@ dynamism will continue to be explored.
 
         <dom-module id="my-element">
 
-          <style>
-           :host {
-             --custom-color: red;
-           }
-           .container {
-             /* Setting the custom property here will not change */
-             /* the value of the property for other elements in  */
-             /* this scope.                                      */
-             --custom-color: blue;
-           }
-           .child {
-             /* This will be always be red. */
-             color: var(--custom-color);
-           }
-          </style>
-
           <template>
-           <div class="container">
-             <div class="child">I will be red</div>
-           </div>
+
+            <style>
+             :host {
+               --custom-color: red;
+             }
+             .container {
+               /* Setting the custom property here will not change */
+               /* the value of the property for other elements in  */
+               /* this scope.                                      */
+               --custom-color: blue;
+             }
+             .child {
+               /* This will be always be red. */
+               color: var(--custom-color);
+             }
+            </style>
+
+            <div class="container">
+              <div class="child">I will be red</div>
+            </div>
+
           </template>
 
           <script>
@@ -557,9 +572,78 @@ Polymer elements (for example, in `<style>` elements within a custom element's
 the document level. **The `custom-style` extension should only be used for
 defining document styles, outside of a custom element's local DOM.**
 
+## Shared styles and external stylesheets {#style-modules}
+
+To share style declarations between elements, you can package a set 
+of style declarations inside a `<dom-module>` element. In this section,
+a `<dom-module>` holding styles is called a _style module_ for convenience.
+
+A style module declares a named set of style rules that can be imported into 
+an element definition, or into a `custom-style` element.
+
+**Note:** Style modules were introduced in {{site.project_title}} 1.1;
+they replace the experimental support for [external stylesheets](#external-styleshees).
+{: .alert .alert-info }
+
+Define a style module inside an HTML import using the `<dom-module>` 
+element. 
+
+    <!-- shared-styles.html -->
+    <dom-module id="shared-styles">
+      <template>
+        <style>
+          .red { color: red; }
+        </style> 
+      </template>
+    </dom-module>
+
+The `id` attribute specifies the name you'll use to reference
+your shared styles. Style module names use the same namespace as elements, 
+so your style modules must have unique names.
+
+Using the shared styles is a two-step process: you need to use a `<link>` tag
+to _import_ the module, and a `<style>` tag to _include_ the styles in the correct place.
+
+To use a style module in an element:
+
+    <!-- import the module  -->
+    <link rel="import" href="../shared-styles/shared-styles.html">
+    <dom-module id="x-foo">
+      <template>
+        <!-- include the style module by name -->
+        <style include="shared-styles"></style>
+        <style>:host { display: block; }</style>
+        Hi
+      </template>
+      <script>Polymer({is: 'x-foo'});</script>
+    </dom-module>
+
+You can also use a shared style module in a `custom-style` element.
+
+    <!-- import the shared styles  -->
+    <link rel="import" href="../shared-styles/shared-styles.html">
+    <!-- include the shared styles -->
+    <style is="custom-style" include="shared-styles"></style>
+
+A single style tag can both `include` shared styles
+and define local rules:
+
+    <style include="shared-styles">
+      :host { display: block; }
+    </style>
+
+(This works for both `custom-style` elements and `<style>` tags inside
+custom elements.) Currently, the shared styles are applied _after_ the styles defined
+inside the body of the `<style>` tag, so the shared styles take precedence.
+However, this order may change in a future release.
 
 
-## External stylesheets {#external-stylesheets}
+### External stylesheets (deprecated) {#external-stylesheets}
+
+**Note:** This experimental feature is now deprecated in favor of 
+[style modules](#style-modules). It is still supported, but support will
+be removed in the future.
+{: .alert .alert-info }
 
 Polymer includes an experimental feature to support loading external stylesheets
 that will be applied to the local DOM of an element.  This is typically
