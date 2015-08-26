@@ -151,16 +151,19 @@ Example:
 
     <dom-module id="drag-me">
 
-      <style>
-        #dragme {
-          width: 500px;
-          height: 500px;
-          background: gray;
-        }
-      </style>
 
       <template>
+
+        <style>
+          #dragme {
+            width: 500px;
+            height: 500px;
+            background: gray;
+          }
+        </style>
+
         <div id="dragme" on-track="handleTrack">{{message}}</div>
+
       </template>
 
       <script>
@@ -197,16 +200,18 @@ Example with `listeners`:
 
     <dom-module id="drag-me">
 
-      <style>
-        #dragme {
-          width: 500px;
-          height: 500px;
-          background: gray;
-        }
-      </style>
-
       <template>
+
+        <style>
+          #dragme {
+            width: 500px;
+            height: 500px;
+            background: gray;
+          }
+        </style>
+
         <div id="dragme">{{message}}</div>
+        
       </template>
 
       <script>

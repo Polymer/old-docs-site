@@ -30,13 +30,13 @@
     "paper-elements": "Polymer/paper-elements#latest",
     "component-download-button": "Polymer/component-download-button#latest",
     "code-explainer": "Polymer/code-explainer#latest",
-    "google-youtube": "GoogleWebComponents/google-youtube#latest",
-    "google-map": "GoogleWebComponents/google-map#latest",
+    "google-youtube": "GoogleWebComponents/google-youtube#1.0.6",
     "paper-calculator": "Polymer/paper-calculator#latest",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.1"
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.6.0"
   },
   "resolutions": {
-    "webcomponentsjs": "^0.7.1",
-    "polymer": "^0.5.0"
+    "webcomponentsjs": "^0.6.0",
+    "polymer": "^0.5.0",
+    "google-apis": "~0.4.3"
   }
 }
