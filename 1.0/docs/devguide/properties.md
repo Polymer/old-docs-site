@@ -123,7 +123,7 @@ for more information.
 
 The value is interpreted as a method name to be invoked when the property value 
 changes. Note that unlike in 0.5, <strong>property change handlers must be registered 
-explicitly.</strong> The <code><var>propertyName</var>-changed</code> method will not be 
+explicitly.</strong> The <code><var>propertyName</var>Changed</code> method will not be 
 invoked automatically. See <a href="#change-callbacks">Property change callbacks (observers)</a> 
 for more information.
 </td>
@@ -150,7 +150,7 @@ names (for example, if a property is defined using `reflectToAttribute: true`.)
 
 **Compatibility note:** In 0.5, Polymer attempted to map attribute names to corresponding properties.
 For example, the attribute `foobar` would map to the property `fooBar` if it was
-defined on the element. This **does not happen in 0.8** &mdash; attribute to property
+defined on the element. This **does not happen in v1** &mdash; attribute to property
 mappings are set up on the element at registration time based on the rules
 described above.
 {: .alert .alert-info }
