@@ -268,4 +268,16 @@ normalized event has the following properties:
 *   `path`: Array of nodes through which event will pass 
     (equivalent to `event.path` under shadow DOM).
 
+Example of `localTarget`:
 
+    <link rel="import" href="iron-form/iron-form.html">
+    <link rel="import" href="paper-button/paper-button.html">
+
+    <form is="iron-form" method="get" action="/">
+      <paper-button onclick="clickHandler(event)">Submit</paper-button>
+    </form>
+    <script>
+      function clickHandler(event) {
+        Polymer.dom(event).localTarget.parentElement.submit();
+      }
+    </script>
