@@ -150,7 +150,7 @@ names (for example, if a property is defined using `reflectToAttribute: true`.)
 
 **Compatibility note:** In 0.5, Polymer attempted to map attribute names to corresponding properties.
 For example, the attribute `foobar` would map to the property `fooBar` if it was
-defined on the element. This **does not happen in v1** &mdash; attribute to property
+defined on the element. This **does not happen in 1.0** &mdash; attribute to property
 mappings are set up on the element at registration time based on the rules
 described above.
 {: .alert .alert-info }
