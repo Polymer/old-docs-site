@@ -19,6 +19,10 @@ handlers:
   script: main.app
   secure: always
 
+- url: /robots.txt
+  static_files: robots.txt
+  upload: robots.txt
+
 # These needs to be in this order and come for the short URL versions.
 # Map unversioned wc.js allowed because it will churn less.
 - url: /webcomponents(\.min)?.js$
