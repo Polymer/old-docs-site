@@ -38,10 +38,10 @@
         "time": "Tuesday @ 10:30am"
       },
       {
-        "name":"Using Polymer on the Bleeding Edge: ES6, other future web platform features with Polymer",
+        "name":"Using ES6 with Polymer",
         "speaker":"Eric Bidelman",
         "time":"Tuesday @ 11:00am",
-        "desc":"Polymer's mission is to evolve with modern web. In this 3-part talk, we'll discuss the state of web components and where things are headed. Then, we'll cover tips for building a fast Polymer app today. Finally, learn how bleeding edge standards like ES6, Web Animations, and CSS snap points are playing a role in Polymer's future. If there's not an element, we'll create one!"
+        "desc":"Polymer's mission is to evolve with modern web. In this talk, we'll take a look at the new features in ECMAScript 2015 (aka ES6), how to use them today, and what role they play in Polymer's future."
       },
       {
         "name":"Testing Polymer Web Components",
@@ -112,10 +112,10 @@
         "desc":"In 2015, framework-less web development using elements + micro-libraries can get you really far on the web platform. It's powerful. We'll cover the tools now available to help you build with Polymer in production including Polymer Starter Kit, Polyup, Vulcanize, Crisper, web-component-tester, our docs and code viewer tools and much more!"
       },
       {
-        "name":"Performance Patterns in Polymer",
+        "name":"Polymer Performance Patterns",
         "speaker":"Eric Bidelman",
         "time":"Tuesday @ 4:15pm",
-        "desc":"Let's face it, building web apps is hard. There's a lot to remember! Web components allow us to componentize the web's best practices but that doesn't mean footguns are a thing of the past. In this talk, we'll cover tips and tricks for building fast Polymer apps right from the start."
+        "desc":"Let's face it, building a web app is hard. There's a lot to remember! Web components allow us to componentize the web's best practices but that doesn't mean footguns are a thing of the past. In this talk, we'll cover tips and tricks for speeding up first paint, lazy loading components, and various runtime optimizations."
       },
       {
         "name":"Doing a Perf Audit of your Polymer App",
