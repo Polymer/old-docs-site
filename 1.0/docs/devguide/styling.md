@@ -104,7 +104,7 @@ This implies:
 
     Becomes:
 
-        .content-wrapper > special
+        .content-wrapper > .special
 
 
 
