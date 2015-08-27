@@ -298,8 +298,8 @@ Example:
         is: 'x-custom',
 
         hostAttributes: {
-          string-attribute: 'Value',
-          boolean-attribute: true
+          'string-attribute': 'Value',
+          'boolean-attribute': true
           tabindex: 0
         }
 
