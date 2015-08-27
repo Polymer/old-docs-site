@@ -44,7 +44,7 @@ constructor that can be used to create new instances of your element via code.
 The `Polymer` function sets up the prototype chain for your custom element,
 chaining it to the {{site.project_title}} `Base` prototype (which provides
 {{site.project_title}} value-added features), so you cannot set up your own
-prototype chain. However, you can use [prototype mixins](#prototype-mixins) to
+prototype chain. However, you can use [behaviors](#prototype-mixins) to
 share code between elements.
 
 ### Define a custom constructor {#custom-constructor}
@@ -57,7 +57,7 @@ specify a custom `factoryImpl` function on the prototype.
 The constructor returned from `Polymer` creates an instance using 
 `document.createElement`, then invokes the user-supplied `factoryImpl` function 
 with `this` bound to the element instance. Any arguments passed to the actual
-constructor are passed on to `factoryImpl` function.
+constructor are passed on to the `factoryImpl` function.
 
 Example:
 
@@ -262,7 +262,7 @@ For a given element:
 This means that an element's **light DOM children** may be initialized **before or after** 
 the parent element, and an element's **siblings may become `ready` in any order**.
 
-For accessing sibling elements when an element initializes you can call `async` from inside
+For accessing sibling elements when an element initializes, you can call `async` from inside
 the `attached` callback:
 
     attached: function() {
