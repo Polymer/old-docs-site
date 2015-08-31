@@ -16,7 +16,7 @@ title: Welcome
       </a>
       <a href="https://github.com/polymer">
         <paper-button class="github" unresolved>
-          <core-icon icon="social:post-github"></core-icon> View on GitHub
+          <core-icon src="/images/icons/github.png"></core-icon> View on GitHub
         </paper-button>
       </a>
     </summary>

@@ -44,7 +44,7 @@
 
     <div id="search" show?="{{showingSearch}}" on-click="{{toggleSearch}}">
       <paper-icon-button icon="search"></paper-icon-button>
-      <input type="search" id="input" on-keyup="{{onKeyPress}}" autocomplete="off">
+      <input type="search" id="input" on-keyup="{{onKeyPress}}" on-blur="{{disableSearch}}" autocomplete="off">
     </div>
   </template>
   <script>
@@ -66,6 +66,10 @@
         this.async(function() {
           this.$.input.focus();
         });
+      },
+      disableSearch: function() {
+        this.classList.remove('search-on');
+        this.showingSearch = false;
       },
       onKeyPress: function(e, detail, sender) {
         if (e.keyCode == 13) { // Enter
