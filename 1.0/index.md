@@ -11,7 +11,7 @@ title: Welcome
       <p>Polymer 1.0 has been rebuilt from the ground up for speed and efficiency. The new, leaner core library makes it easier than ever to make fast, beautiful, and interoperable web components. If you haven't used Polymer before, it's time to try it out. If you haven't tried it recently, time to take another look.</p>
       <a href="docs/start/getting-the-code.html">
         <paper-button raised unresolved>
-          <core-icon icon="archive"></core-icon> Get {{site.project_title}}
+          <core-icon icon="file-download"></core-icon> Get {{site.project_title}}
         </paper-button>
       </a>
       <a href="https://github.com/polymer">
