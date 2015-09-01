@@ -104,7 +104,7 @@ _not_ `core-signal-newData`. To avoid confusion, always use lowercase event name
 
 ## Custom Events {#custom-events}
 
-To fire a custom event from the host element use `this.fire()`. You can also pass in data to event handlers as an argument to `this.fire()`.
+To fire a custom event from the host element use the `fire` method. You can also pass in data to event handlers as an argument to `fire`.
 
 Example:
 
@@ -120,8 +120,8 @@ Example:
 
           is: 'x-custom',
 
-          handleClick: function() {
-            this.fire('kick', { kicked: true })
+          handleClick: function(e, detail) {
+            this.fire('kick', {kicked: true});
           }
 
         });
@@ -130,11 +130,11 @@ Example:
 
     </dom-module>
     
-    <x-custom> </x-custom>
+    <x-custom></x-custom>
     
     <script>
-        document.querySelector('x-custom').addEventListener('kick', function (e){
-            console.log (e.kicked); //Prints true
+        document.querySelector('x-custom').addEventListener('kick', function (e) {
+            console.log(e.detail.kicked); // true
         })
     </script>
 
