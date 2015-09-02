@@ -45,7 +45,7 @@
       },
       {
         "name":"Testing Polymer Web Components",
-        "speaker":"Chris Joel & Dan Freedman",
+        "speaker":"Chris Joel",
         "time":"Tuesday @ 11:20am",
         "desc":"This session will include a rundown of test environment helpers we have created, the new test-fixture element and the accessibility testing functionality added to WCT. We will also cover examples of different non-trivial testing scenarios related to web components and provide strategies to address them."
       },
@@ -53,7 +53,7 @@
         "name":"Platinum Elements",
         "speaker":"Mat Scales",
         "time":"Tuesday @ 11:40am",
-        "desc":"Web Components aren't the only hot new thing on the web. Learn about how we're bringing the magic of Polymer to brand new Web Platform features like Offline, Push Messaging, and Background Sync."
+        "desc":"Web Components aren't the only hot new thing on the web. Learn about how we're bringing the magic of Polymer to brand new Web Platform features like Offline, Push Messaging, and more."
       },
       {
         "name":"There’s an Element for that — but what if there isn't?",
