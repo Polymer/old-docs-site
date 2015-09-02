@@ -102,6 +102,41 @@ So the attribute `on-core-signal-newData` sets up a listener for `core-signal-ne
 _not_ `core-signal-newData`. To avoid confusion, always use lowercase event names.
 {: .alert .alert-info } 
 
+## Custom Events {#custom-events}
+
+To fire a custom event from the host element use the `fire` method. You can also pass in data to event handlers as an argument to `fire`.
+
+Example:
+
+    <dom-module id="x-custom">
+
+      <template>
+        <button on-click="handleClick">Kick Me</button>
+      </template>
+
+      <script>
+
+        Polymer({
+
+          is: 'x-custom',
+
+          handleClick: function(e, detail) {
+            this.fire('kick', {kicked: true});
+          }
+
+        });
+
+      </script>
+
+    </dom-module>
+    
+    <x-custom></x-custom>
+    
+    <script>
+        document.querySelector('x-custom').addEventListener('kick', function (e) {
+            console.log(e.detail.kicked); // true
+        })
+    </script>
 
 ## Gesture events {#gestures}
 
