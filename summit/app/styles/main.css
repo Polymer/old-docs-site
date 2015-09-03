@@ -238,6 +238,11 @@ h3 {
   background-size: 25%;
 }
 
+.livestream-container {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
 .pink-arrow-btn {
   display: inline-block;
   position: relative;
