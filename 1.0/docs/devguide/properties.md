@@ -598,8 +598,6 @@ generated setter of the convention <code>_set<var>Property</var>(value)</code>.
           this._setResponse(response);
         }
 
-        ...
-
       });
     </script>
 
@@ -664,8 +662,6 @@ computed property function returns a value that's exposed as a virtual property.
           computeFullName: function(first, last) {
             return first + ' ' + last;
           }
-
-          ...
 
         });
       </script>
