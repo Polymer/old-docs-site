@@ -6,7 +6,7 @@ shortname: Platform
 subtitle: polyfill
 
 feature:
-  spec: http://dev.w3.org/fxtf/web-animations/
+  spec: https://w3c.github.io/web-animations/
   code: https://github.com/web-animations/web-animations-js
   summary: "Web Animations defines APIs for synchronizing several of the web's animation models with complex, scriptable animations."
 
@@ -21,19 +21,17 @@ feature:
 
 ## Why Web Animations?
 
-Four animation-related specifications already exist on the web platform: [CSS Transitions](http://dev.w3.org/csswg/css-transitions/),
-[CSS Animations](http://dev.w3.org/csswg/css-animations/), [SVG Animations](http://www.w3.org/TR/SVG/animate.html) / [SMIL](http://www.w3.org/TR/2001/REC-smil-animation-20010904/), and `requestAnimationFrame()`. However:
+Several animation-related specifications already exist on the web platform: [CSS Transitions](http://dev.w3.org/csswg/css-transitions/),
+[CSS Animations](http://dev.w3.org/csswg/css-animations/), and `requestAnimationFrame()`. However:
 
 - *CSS Transitions / CSS Animations are not very expressive* - animations can't
 be composed, or sequenced, or even reliably run in parallel; and animations can't be tweaked from script.
-- *SVG Animations are very expressive, but also very complicated*. SVG Animations
-can't be applied to HTML content.
 - *`requestAnimationFrame()` is not a declarative approach* - it requires the use
 of the main thread, and will therefore jank if the main thread is busy.
 
 Web Animations is a new specification for animated content on the web. It's being
 developed as a W3C specification as part of the CSS and SVG working groups. It aims
-to address the deficiencies inherent in these four specifications. Web Animations also aims to replace the underlying implementations of CSS Transitions, CSS Animations and SVG Animations, so that:
+to address the deficiencies inherent in these specifications. Web Animations also aims to replace the underlying implementations of CSS Transitions and CSS Animations, so that:
 
 - The code cost of supporting animations on the web is reduced.
 - The various animations specifications are interoperable.
@@ -55,36 +53,32 @@ a `<div>` over 0.5 seconds. The animation alternates producing a pulsing effect.
       });
     </script>
 
+For more information on this `Animatable` interface, see the [specification](https://w3c.github.io/web-animations/#the-animatable-interface). It's supported natively in Chrome and Opera, and available with the [web-animations.min.js polyfill](https://github.com/web-animations/web-animations-js#web-animationsminjs) on other modern browsers.
+
 ## The animation model
 
-The Web Animations model is a description of an engine for animation content on the web. The engine is sufficiently powerful to support CSS Transitions, CSS Animations and SVG Animations.
+The Web Animations model is a description of an engine for animation content on the web. In browsers like Chrome, the engine is sufficiently powerful to support CSS animations.
 
 Web Animations also exposes a JS API to the model. This API defines a number of
 new interfaces that are exposed to JavaScript. We'll go through some of the more
-important ones here: Animations, AnimationEffects, TimingDictionaries, TimingGroups, and AnimationPlayers.
-
-An `Animation` object defines a single animation effect that applies to a single element target. For example:
-
-    var animation = new Animation(targetElement,
-        [{left: '0px'}, {left: '100px'}], 2000);
-
-Here, the target element's "left" CSS property is modified smoothly from `0px` to `100px` over 2 seconds.
+important ones here: `KeyframeEffect`, `AnimationEffectReadOnly`, `AnimationEffectTiming`, and `Animation`.
 
 ## Specifying animation effects
 
-An `AnimationEffect` object controls which CSS properties and SVG attributes are
-modified by an animation, and the values that those properties and attributes
-vary between. AnimationEffect objects also control whether the effect replaces
-or adds to the underlying value.
+A `KeyframeEffect` object defines a single keyframe effect that applies to a single element target. For example:
 
-There are three major kinds of effects: `KeyframeEffect`, `MotionPathEffect`, and `EffectCallback`.
+    var effect = new KeyframeEffect(targetElement,
+        [{left: '0px'}, {left: '100px'}], 2000);
+
+Here, the target element's "left" CSS property is modified smoothly from `0px` to `100px` over 2 seconds. It's a subclass of `AnimationEffectReadOnly`, which provides timing configuration.
+
+Note! Animating the "left" property is good for simple sites, but it will cause the browser to run layout on every frame. Regardless of your approach to animation, try to stick to animating "tranform" and "opacity" for the greatest performance.
 
 ### Animating between keyframes
 
 A `KeyframeEffect` controls one or more properties/attributes by linearly
 interpolating values between specified keyframes. KeyframeEffects are usually
-defined by specifying the keyframe offset and the property-value pair in a
-dictionary:
+defined by specifying a sequence of keyframes, each including an offset and the property-value pair in a dictionary:
 
     [
       {offset: 0.2, left: "35px"},
@@ -97,60 +91,75 @@ between 0 and 1.
 
     [{left: "35px"}, {left: "50px"}, {left: "70px"}]
 
-See the [specification](http://www.w3.org/TR/web-animations/#keyframe-animation-effects) for the details
-of the keyframe distribution procedure, and how KeyframeEffects are
+See the [specification](https://w3c.github.io/web-animations/#keyframe-effects) for the details
+of the keyframe distribution procedure, and how keyframe effects are
 evaluated at offsets outside those specified by the keyframes.
 
 ### Animating along paths
 
-A `MotionPathEffect` allows elements to be animated along SVG-style paths. For example:
+Use the `KeyframeEffect` along with the CSS `motion-path` and `motion-offset` properties to animate an object along a path. These are upcoming CSS features, supported natively in Chrome 46+.
 
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-      <defs>
-        <path id=path d="M 100,100 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0"/>
-      </defs>
-    </svg>
+    .object {
+      motion-path: path("M 100,100 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0");
+    }
+
+    <div class="object">Hello world!</div>
     <script>
-      var animFunc = new MotionPathEffect(document.querySelector('#path').pathSegList);
-      var animation = new Animation(targetElement, animFunc, 2000);
+      var object = document.querySelector('.object');
+      var player = object.animate([
+        {'motion-offset': '0%'},
+        {'motion-offset': '100%'}
+      ], {
+        duration: 2000, easing: 'ease-in-out'
+      });
     </script>
+
+For more information on `motion-path`, see the [specification](http://www.w3.org/TR/motion-1/).
 
 ### Custom animation effects
 
-An `EffectCallback` allows animations to generate call-outs to JavaScript
-rather than manipulating properties directly. Please see the
-[specification](http://www.w3.org/TR/web-animations/#custom-effects) for more details on this
-feature.
+Setting the `onsample` property of a `KeyframeEffect` allows animations to generate call-outs to JavaScript
+rather than manipulating properties directly.
+
+    var myEffect = new KeyframeEffect(element, [], 1000);
+    effect.onsample = function(timeFraction, effect, animation) {
+       effect.target.style.opacity = timeFraction;
+    };
+    var myAnimation = document.timeline.play(myEffect);
+
+As this is an experimental feature, for more information, see the release notes of the [JavaScript polyfill](https://github.com/web-animations/web-animations-js/releases/tag/2.1.1).
 
 ## Sequencing and synchronizing animations
 
-Two different types of TimingGroups (`AnimationGroup` and `AnimationSequence`) allow animations to be synchronized and sequenced.
+Two different types of groups (`GroupEffect` and `SequenceEffect`) allow animations to be synchronized and sequenced.
 
 To play a list of animations in parallel:
 
-    var animationGroup = new AnimationGroup([new Animation(...), new Animation(...)]);
+    var groupEffect = new GroupEffect([new KeyframeEffect(...), new KeyframeEffect(...)]);
 
 To play a list in sequence:
 
-    var animationSequence = new AnimationSequence([new Animation(...), new Animation(...)]);
+    var sequenceEffect = new SequenceEffect([new KeyframeEffect(...), new KeyframeEffect(...)]);
 
-Because `Animation`, `AnimationGroup`, `AnimationSequence` are all TimedItems, groups can be nested:
+Because `KeyframeEffect`, `GroupEffect`, `SequenceEffect` are all TimedItems, groups can be nested:
 
-    var animationGroup = new AnimationGroup([
-      new AnimationSequence([
-        new Animation(...),
-        new Animation(...),
+    var groupEffect = new GroupEffect([
+      new SequenceEffect([
+        new KeyframeEffect(...),
+        new KeyframeEffect(...),
       ]),
-      new Animation(...)
+      new KeyframeEffect(...)
     ]);
 
-Groups also take an optional TimingDictionary parameter (see below), which among other things allows iteration and timing functions to apply at the group level:
+Groups also take an optional `AnimationEffectTiming` parameter (see below), which among other things allows iteration and timing functions to apply at the group level:
 
-    var animationGroup = new AnimationGroup([new Animation(...), new Animation(...)], {iterations: 4});
+    var groupEffect = new GroupEffect(
+      [new KeyframeEffect(...), new KeyframeEffect(...)],
+      {iterations: 4});
 
 ## Controlling the animation timing
 
-TimingDictionaries are used to control the internal timing of an animation (players control how an animation progresses relative to document time). TimingDictionaries have several properties that can be tweaked:
+Timing objects are used to control the internal timing of an animation (players control how an animation progresses relative to document time). The `AnimationEffectTiming` object has several properties that can be tweaked:
 
 - **duration**: the duration of a single iteration of the animation
 - **iterations**: the number of iterations of the animation that will be played (fractional iterations are allowed)
@@ -161,7 +170,7 @@ TimingDictionaries are used to control the internal timing of an animation (play
 - **direction**: the direction in which successive iterations of the animation play back
 - **easing**: fine-grained control over how external time impacts an animation across the total active duration of the animation.
 
-The values provided within TimingDictionaries combine with the animation hierarchy
+The values provided within `AnimationEffectTiming` combine with the animation hierarchy
 to generate concrete start and end values for animation iterations, animation
 backwards fills, and animation forwards fills. There are a few simple rules which govern this:
 
@@ -169,42 +178,39 @@ backwards fills, and animation forwards fills. There are a few simple rules whic
 - Animations only fill beyond their parent iteration if:
     - the relevant fill value is selected for the animation;
     - the matching fill value is selected for the parent; and
-    - this is the first parent iteration (for `fill: 'backwards'`) or last parent iteration (for `fill: 'forwards'`)
-- Missing `duration` values for TimingGroups are generated based on the calculated durations of the child animations.
+    - this is the first parent iteration (for `fill: 'backwards'`, `fill: 'both'`) or last parent iteration (for `fill: 'forwards', fill: 'both'`)
+- Missing `duration` values for `AnimationEffectTiming` are generated based on the calculated durations of the child animations.
 
 The following example illustrates these rules:
 
-    var animationGroup = new AnimationGroup([
-      new AnimationSequence([
-        new Animation(..., {duration: 3000}),
-        new Animation(..., {duration: 5000, fill: 'both'})
+    var groupEffect = new GroupEffect([
+      new SequenceEffect([
+        new KeyframeEffect(..., {duration: 3000}),
+        new KeyframeEffect(..., {duration: 5000, fill: 'both'})
       ], {duration: 6000, delay: 3000, fill: 'none'}),
-      new Animation(..., {duration: 8000, fill: 'forwards'})
+      new KeyframeEffect(..., {duration: 8000, fill: 'forwards'})
     ], {iterations: 2, fill: 'forwards'});
 
 In this example:
 
-- The `AnimationSequence` has an explicit `duration` of 6 seconds, and so the
+- The `SequenceEffect` has an explicit `duration` of 6 seconds, and so the
 second child animation will only play for the first 3 of its 5 second duration
-- The `AnimationGroup` has no explicit duration, and will be provided with a
+- The `GroupEffect` has no explicit duration, and will be provided with a
 calculated duration of the max (`duration + delay`) of its children - in this case 9 seconds.
-- Although `fill: "both"` is specified for the second `Animation` within the `AnimationSequence`, the `AnimationSequence` itself has a `fill` of "none". Hence, as the animation ends right at the end of the `AnimationSequence`, the animation will only fill backwards, and only up until the boundary of the `AnimationSequence` (i.e. 3 seconds after the start of the `AnimationGroup`).
-- The `Animation` inside the `AnimationGroup` and the `AnimationGroup` are both `fill: "forwards"`. Therefore the animation will fill forward in two places:
-    - from 8 seconds after the `AnimationGroup` starts until the second iteration of the `AnimationGroup` starts (i.e. for 1 second)
-    - from 17 seconds after the `AnimationGroup` starts, extending forward indefinitely.
+- Although `fill: "both"` is specified for the second `KeyframeEffect` within the `SequenceEffect`, the `SequenceEffect` itself has a `fill` of "none". Hence, as the animation ends right at the end of the `SequenceEffect`, the animation will only fill backwards, and only up until the boundary of the `SequenceEffect` (i.e. 3 seconds after the start of the `GroupEffect`).
+- The `KeyframeEffect` inside the `GroupEffect` and the `GroupEffect` are both `fill: "forwards"`. Therefore the animation will fill forward in two places:
+    - from 8 seconds after the `GroupEffect` starts until the second iteration of the `GroupEffect` starts (i.e. for 1 second)
+    - from 17 seconds after the `GroupEffect` starts, extending forward indefinitely.
 
 ## Playing Animations
 
-In order to play an `Animation` or `TimingGroup`, an `AnimationPlayer` must be constructed:
+In order to play an `MotionEffect` or other `AnimationEffectReadOnly` (such as a group or sequence), an `Animation` must be constructed:
 
-    var player = document.timeline.play(myAnimation);
+    var animation = document.timeline.play(myEffect);
 
-AnimationPlayers provide complete control the start time and current playback head of their attached animation. However, players can't modify any internal details of an animation.
+Animations provide complete control the start time and current playback head of their attached animation. However, players can't modify any internal details of an animation.
 
-AnimationPlayers can be used to pause, seek, reverse, or modify the playback rate of an animation.
-
-`document.timeline.currentTime` is a timeline's global time. It gives the number
-of seconds since the document fired its load event.
+Animations can be used to pause, seek, reverse, or modify the playback rate of an animation. For more information on these operations, check out [this Web Updates blogpost](https://developers.google.com/web/updates/2014/12/web-animation-playback?hl=en).
 
 
 {% include other-resources.html %}
