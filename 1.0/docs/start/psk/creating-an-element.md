@@ -48,7 +48,7 @@ Polymer({
 1. Test out your new element by including it in the application content
    area. Open `app/index.html` and modify the `books` section which 
    you created in the [Creating a page](creating-a-page.html) tutorial.
-   After you are complete the `section` should look like the code
+   After you make your changes the `section` should look like the code
    snippet below.
 
 {% highlight html %}
@@ -83,11 +83,11 @@ is automatically displayed in a `p` tag. When the user hits Enter,
 the text is logged to the console. 
 
 1. Edit `app/elements/my-books-feed/my-books-feed.html` so that it 
-   matches the code below. Code that has not been modified has been
-   omitted.
+   matches the code below.
 
 {% highlight html %}
-...
+<dom-module id="my-books-feed">
+  <style></style>
   <template>
     <iron-a11y-keys id="a11y" target="[[target]]" keys="enter"
                     on-keys-pressed="onEnter"></iron-a11y-keys>
@@ -117,7 +117,9 @@ Polymer({
   onEnter: function() {
     console.log(this.query);
   },
-...
+});
+  </script>
+</dom-module>
 {% endhighlight %}
 
 If you try to build and preview the site, the changes won't display 
@@ -135,7 +137,7 @@ imported into `app/elements/elements.html`.
        <link rel="import" href="../bower_components/iron-a11y-keys/iron-a11y-keys.html">
        ...
        <link rel="import" href="../bower_components/paper-input/paper-input.html">
-
+       ...
 
 If you build and preview the site now, everything should be working. Type
 some text into the text field. Hit enter and your input should be logged
@@ -150,7 +152,7 @@ Here's an overview of how all of the changes you just made work.
 third-party element. Notice the `paper` prefix again. Can you guess
 what that means? Right, it's another Material Design element.
 
-* `value="{{query::input}}" means "set the `query` property to the user
+* `value="{{query::input}}"` means "set the `query` property to the user
   input." The value of `query` gets updated with each keystroke. You
   saw this in action in the `p` element below the text field.
 
@@ -232,7 +234,7 @@ a query to Google Books, and then display the top results.
 {% endhighlight %}
 
 You are using a new element, called `iron-ajax`. So, you need to import
-it, just like you needed to import `paper-input` and `iron-a11y-keys`.
+it, just like you needed to import `paper-input` and `iron-a11y-keys` earlier.
 
 1. Open `app/elements/elements.html` and import `iron-ajax`. Group it 
    so that it is with the rest of the `iron` elements.
@@ -262,7 +264,7 @@ Here's an overview of how this last iteration of changes work.
   URL as `https://googleapis.com/books/v1/volumes?q=JavaScript`.
 * Finally, the `generateRequest` method (in `onEnter`) initiates the actual
   request. Tip: you can also set the `auto` attribute in `iron-ajax` and 
-  to make it automatically send a request whenever its `url` 
+  make it automatically send a request whenever its `url` 
   attribute or `params` property changes.
 * `iron-ajax` converts the response to nested JavaScript objects. For example,
   if you set the `iron-ajax` attribute `last-response` to `data` and the 
@@ -270,20 +272,20 @@ Here's an overview of how this last iteration of changes work.
   `data.book.title`.
 
 That's how the web service request is handled. The last component 
-is parsing and displaying the response data? The key here is the 
+is parsing and displaying the response data. The key here is the 
 `dom-repeat` template, displayed again below for your convenience.
 
 {% highlight html %}
-    ...
-    <template is="dom-repeat" items="[[data.items]]">
-      <h3>[[item.volumeInfo.title]]</h3>
-      <p><em>By <span>[[item.volumeInfo.authors.0]]</span></em></p>
-      <a href="[[item.accessInfo.webReaderLink]]" target="_blank">
-        <img src="[[item.volumeInfo.imageLinks.thumbnail]]"></img>
-      </a>
-      <p>[[item.volumeInfo.description]]</p>
-    </template>
-    ...
+...
+<template is="dom-repeat" items="[[data.items]]">
+  <h3>[[item.volumeInfo.title]]</h3>
+  <p><em>By <span>[[item.volumeInfo.authors.0]]</span></em></p>
+  <a href="[[item.accessInfo.webReaderLink]]" target="_blank">
+    <img src="[[item.volumeInfo.imageLinks.thumbnail]]"></img>
+  </a>
+  <p>[[item.volumeInfo.description]]</p>
+</template>
+...
 {% endhighlight %}
 
 * A `dom-repeat` template applies its template for each item that it 
