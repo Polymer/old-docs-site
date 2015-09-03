@@ -133,6 +133,16 @@ handlers:
   upload: _site/summit/dist/index.html
   secure: always
 
+- url: /summit/codelabs/$
+  static_files: _site/summit/dist/codelabs.html
+  upload: _site/summit/dist/codelabs.html
+  secure: always
+
+- url: /summit/codelabs$
+  static_files: _site/summit/dist/codelabs.html
+  upload: _site/summit/dist/codelabs.html
+  secure: always
+
 - url: /summit/(.*)
   static_files: _site/summit/dist/\1
   upload: _site/summit/dist/(.*)
