@@ -65,8 +65,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             <div class="flex horizontal center-center layout">
               <iron-selector class="wide-only" selected="[[page]]" activate-event="click" attr-for-selected="name">
-                <a name="schedule" class="tab" href="/summit/schedule">SCHEDULE</a>
-                <a name="speakers" class="tab" href="/summit/speakers">SPEAKERS</a>
+                <a name="schedule" on-tap="_pauseLivestream" class="tab" href="/summit/schedule">SCHEDULE</a>
+                <a name="speakers" on-tap="_pauseLivestream" class="tab" href="/summit/speakers">SPEAKERS</a>
               </iron-selector>
             </div>
 
@@ -118,16 +118,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
 
             <div class="wait-list-banner">
-              <div>
-                <span>Good news! We have more space.</span>
-                <a class="pink-arrow-btn " target="_blank" href="https://polymer.eventfarm.com" data-outbound="join-waiting-list">Register now!</a>
-              </div>
-              <div>
-                <span>Or,</span>
-                <a class="signup-live-stream-btn pink-arrow-btn " target="_blank" href="https://services.google.com/fb/forms/polymer2015/"
-                data-outbound="signup-livestream">Sign up</a>
-                <span>to watch the livestream from anywhere.</span>
-              </div>
+
+              <template is="dom-if" if="[[hasLivestream]]">
+                <div class="livestream-container">
+                  <google-youtube class="livestream"
+                                  video-id="PxJ2PWwVYbQ"
+                                  fluid>
+                  </google-youtube>
+                </div>
+              </template>
+
+              <template is="dom-if" if="[[!hasLivestream]]">
+                <div>
+                  <span>Good news! We have more space.</span>
+                  <a class="pink-arrow-btn " target="_blank" href="https://polymer.eventfarm.com" data-outbound="join-waiting-list">Register now!</a>
+                </div>
+                <div>
+                  <span>Or,</span>
+                  <a class="signup-live-stream-btn pink-arrow-btn " target="_blank" href="https://services.google.com/fb/forms/polymer2015/"
+                  data-outbound="signup-livestream">Sign up</a>
+                  <span>to watch the livestream from anywhere.</span>
+                </div>
+              </template>
+
             </div>
 
             <a class="amsterdam-bg" aria-label="Event map" target="_blank"
@@ -266,6 +279,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     var app = document.querySelector('#app');
 
+    // Flip to true to make the livestream player go live
+    app.hasLivestream = false;
+
     app._toggleDrawer = function(e) {
       if (e.keyCode === 13) {
         this.$.drawerLayout.toggleDrawer();
@@ -276,6 +292,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (detail && detail.value === true) {
         document.querySelector('[drawer] a').focus();
       }
+    };
+
+    app._pauseLivestream = function() {
+      var livestream = document.querySelector('.livestream');
+      // state -1 is unstarted
+      if (livestream.state === -1) {
+        return;
+      }
+      livestream.pause();
     };
 
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
