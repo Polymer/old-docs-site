@@ -65,8 +65,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             <div class="flex horizontal center-center layout">
               <iron-selector class="wide-only" selected="[[page]]" activate-event="click" attr-for-selected="name">
-                <a name="schedule" on-tap="_pauseLivestream" class="tab" href="/summit/schedule">SCHEDULE</a>
-                <a name="speakers" on-tap="_pauseLivestream" class="tab" href="/summit/speakers">SPEAKERS</a>
+                <a name="schedule" class="tab" href="/summit/schedule">SCHEDULE</a>
+                <a name="speakers" class="tab" href="/summit/speakers">SPEAKERS</a>
               </iron-selector>
             </div>
 
@@ -294,7 +294,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     };
 
-    app._pauseLivestream = function() {
+    app.pauseLivestream = function() {
       var livestream = document.querySelector('.livestream');
       // state -1 is unstarted
       if (livestream.state === -1) {
