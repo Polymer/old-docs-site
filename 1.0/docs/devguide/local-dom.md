@@ -51,6 +51,9 @@ portion is the call to `Polymer({...})`, and the declarative portion is the `<do
 element. The imperative and declarative portions of an element's definition may be placed
 in the same html file or in separate files.
 
+The `<script>` tag can be inside or outside of the `<dom-module>` element, 
+but the element’s template must be parsed before the call to Polymer.
+
 **Note:** Elements should generally be defined outside of the main document, except for 
 testing. For caveats about defining elements in the main document, see 
 [main document definitions](registering-elements.html#main-document-definitions).
