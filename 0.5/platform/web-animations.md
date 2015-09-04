@@ -67,12 +67,14 @@ important ones here: `KeyframeEffect`, `AnimationEffectReadOnly`, `AnimationEffe
 
 A `KeyframeEffect` object defines a single keyframe effect that applies to a single element target. For example:
 
-    var effect = new KeyframeEffect(targetElement,
-        [{left: '0px'}, {left: '100px'}], 2000);
+    var effect = new KeyframeEffect(targetElement, [
+        {transform: 'translate(0)'},
+        {transform: 'translate(100px)'}
+    ], 2000);
 
-Here, the target element's "left" CSS property is modified smoothly from `0px` to `100px` over 2 seconds. It's a subclass of `AnimationEffectReadOnly`, which provides timing configuration.
+Here, the target element's "transform" CSS property is modified smoothly from `0px` to `100px` over 2 seconds. The `KeyframeEffect` is a subclass of `AnimationEffectReadOnly`, which provides timing configuration.
 
-Note! Animating the "left" property is good for simple sites, but it will cause the browser to run layout on every frame. Regardless of your approach to animation, try to stick to animating "tranform" and "opacity" for the greatest performance.
+See the Web Fundamentals [guide to Animations and Performance](https://developers.google.com/web/fundamentals/look-and-feel/animations/animations-and-performance) for more information on the best CSS properties to animate, and other animation best practices.
 
 ### Animating between keyframes
 
