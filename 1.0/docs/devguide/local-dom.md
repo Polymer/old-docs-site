@@ -51,7 +51,9 @@ portion is the call to `Polymer({...})`, and the declarative portion is the `<do
 element. The imperative and declarative portions of an element's definition may be placed
 in the same html file or in separate files.
 
-**Note:** Defining an element in the main HTML document is not currently supported.
+**Note:** Elements should generally be defined outside of the main document, except for 
+testing. For caveats about defining elements in the main document, see 
+[main document definitions](registering-elements.html#main-document-definitions).
 {: .alert .alert-info }
 
 
