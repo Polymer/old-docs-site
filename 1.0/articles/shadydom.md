@@ -87,7 +87,7 @@ elements are now exposed to the world. Exposing these nodes is problematic:
 
 ## Tree Scoping
 
-This is where shadow DOM comes in, or more generally speaking, there is where
+This is where shadow DOM comes in, or more generally speaking, this is where
 _tree-scoping_ comes in. Tree-scoping is the ability to take a DOM subtree and
 hide it from the main document scope. This is where the shadow nomenclature
 comes from, as if we are hiding some DOM in the shadows (which is awesome, but
