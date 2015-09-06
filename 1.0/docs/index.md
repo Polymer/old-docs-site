@@ -92,7 +92,7 @@ We’ll continue to refine and improve the performance of this system. We’ll a
 
 There are a few binding and template features we’ll be working on.
 
-We’ll explore growing support for parser-challenged elements like `<table>` in <dom-repeat>’s. 
+We’ll explore growing support for parser-challenged elements like `<table>` in {%raw%}<dom-repeat>{%endraw%}’s. 
 
 We’ll also be adding in support for compound binding and string interpolation in bindings: 
     
