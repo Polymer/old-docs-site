@@ -73,7 +73,7 @@ Polymer Starter Kit (PSK) for local development in less than 15 minutes.
        gulp serve
 
    The task above automatically opens up your default web browser and
-   fetches the locally-hosted application (at `http://localhost:3000`).
+   fetches the locally-hosted application (at `http://localhost:5000`).
 
    The local development server automatically detects file modifications
    and re-builds the application. As long as you keep the `gulp serve`
