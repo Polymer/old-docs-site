@@ -96,14 +96,42 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           <section name="home">
 
-            <header class="home-header horizontal center-center layout">
-              <div class="badge-blue"></div>
-            </header>
+            <template is="dom-if" if="[[hasLivestream]]">
+              <header class="home-header-livestream">
+                <div class="livestream-container">
+                  <google-youtube class="livestream"
+                                  video-id="PxJ2PWwVYbQ"
+                                  fluid>
+                  </google-youtube>
+                </div>
+              </header>
+            </template>
+
+            <template is="dom-if" if="[[!hasLivestream]]">
+              <header class="home-header horizontal center-center layout">
+                <div class="badge-blue"></div>
+              </header>
+            </template>
 
             <div class="date-loc-banner blue-banner responsive horizontal center-center layout">
               <div class="location">Amsterdam, Netherlands</div>
               <div class="dot-separator wide-only"></div>
               <time>September 14-15, 2015</time>
+            </div>
+
+            <div class="wait-list-banner">
+              <div>
+                <span>Registration is now closed! See you at the summit!</span>
+                <br>
+                <span>Can't make it?</span>
+                <a class="pink-arrow-btn" href="mailto:polymer-dev-summit@google.com?subject=Can%27t%20make%20it">Email us</a>
+              </div>
+              <div>
+                <span>And,</span>
+                <a class="signup-live-stream-btn pink-arrow-btn " target="_blank" href="https://services.google.com/fb/forms/polymer2015/"
+                data-outbound="signup-livestream">Sign up</a>
+                <span>to watch the livestream from anywhere.</span>
+              </div>
             </div>
 
             <div>
@@ -120,34 +148,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   You can pre-register on 14 September between 5pm-9pm. You can also register on the day of the event starting at 7:30am.
                 </section>
               </div>
-            </div>
-
-            <div class="wait-list-banner">
-
-              <template is="dom-if" if="[[hasLivestream]]">
-                <div class="livestream-container">
-                  <google-youtube class="livestream"
-                                  video-id="PxJ2PWwVYbQ"
-                                  fluid>
-                  </google-youtube>
-                </div>
-              </template>
-
-              <template is="dom-if" if="[[!hasLivestream]]">
-                <div>
-                  <span>Registration is now closed! See you at the summit!</span>
-                  <br>
-                  <span>Can't make it?</span>
-                  <a class="pink-arrow-btn" href="mailto:polymer-dev-summit@google.com?subject=Can%27t%20make%20it">Email us</a>
-                </div>
-                <div>
-                  <span>And,</span>
-                  <a class="signup-live-stream-btn pink-arrow-btn " target="_blank" href="https://services.google.com/fb/forms/polymer2015/"
-                  data-outbound="signup-livestream">Sign up</a>
-                  <span>to watch the livestream from anywhere.</span>
-                </div>
-              </template>
-
             </div>
 
             <a class="amsterdam-bg" aria-label="Event map" target="_blank"
@@ -289,7 +289,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     var app = document.querySelector('#app');
 
     // Flip to true to make the livestream player go live
-    app.hasLivestream = false;
+    app.hasLivestream = true;
 
     app._toggleDrawer = function(e) {
       if (e.keyCode === 13) {
