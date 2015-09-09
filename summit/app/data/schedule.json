@@ -26,7 +26,7 @@
         "desc":"A warm welcome to the first ever Polymer Summit. We'll talk briefly about how we're thinking about Polymer's past, present, and future, and get the show on the road."
       },
       {
-        "name":"Using Vanilla Polymer aka Building Apps with Polymer",
+        "name":"Thinking in Polymer",
         "speaker":"Kevin Schaaf",
         "time":"Tuesday @ 9:30am",
         "desc":"Polymer embraces encapsulated Custom Elements as its main organizing unit.  This simple-sounding concept is actually an incredibly powerful tool that can revolutionize how you think about solving complex problems, collaborate within large teams, reduce technology lock-in, and of course, build amazing apps for the web.  Hear how we think about building apps using custom elements directly from one of the Polymer core team engineers, and how to best employ this simple concept for the most leverage in your own projects."
