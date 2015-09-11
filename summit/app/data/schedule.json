@@ -35,7 +35,7 @@
         "name":"End to End with Polymer",
         "speaker":"Rob Dodson",
         "time":"Tuesday @ 10:00am",
-        "desc":"Developers are really excited by Polymer and Web Components, but they're not always sure how to connect the dots to get a full blown, production-ready app. Where should you store your data? How do you handle user authentication? What are the patterns that make up a good Polymer app? In this session I'll answer these questions, and guide you through the process of building an awesome offline-first Progressive webapp using Polymer Starter Kit, the Platinum elements, and Firebase."
+        "desc":"Developers are really excited by Polymer and Web Components, but they're not always sure how to connect the dots to get a full blown, production-ready app. Where should you store your data? How do you handle user authentication? What are the patterns that make up a good Polymer app? In this session I'll answer these questions, and guide you through the process of building an awesome offline-first Progressive webapp using Polymer Starter Kit and Firebase."
       },
       {
         "name":"Break",
