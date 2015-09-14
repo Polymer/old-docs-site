@@ -67,7 +67,9 @@ gulp.task('copy', ['clean'], function() {
     .pipe(gulp.dest('dist/data'));
   var CoC = gulp.src('app/code-of-conduct.html')
     .pipe(gulp.dest('dist'));
-  return merge(polyfills, router, data, CoC);
+  var codelabs = gulp.src('app/codelabs.html')
+    .pipe(gulp.dest('dist'));
+  return merge(polyfills, router, data, CoC, codelabs);
 });
 
 // Clean Output Directory

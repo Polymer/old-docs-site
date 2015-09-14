@@ -54,6 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a name="home" class="menu-item" href="/summit">HOME</a><br>
           <a name="schedule" class="menu-item" href="/summit/schedule">SCHEDULE</a><br>
           <a name="speakers" class="menu-item" href="/summit/speakers">SPEAKERS</a>
+          <a name="codelabs" class="menu-item" href="/summit/codelabs" target="_blank">CODELABS</a>
         </iron-selector>
       </div>
 
@@ -67,6 +68,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <iron-selector class="wide-only" selected="[[page]]" activate-event="click" attr-for-selected="name">
                 <a name="schedule" class="tab" href="/summit/schedule">SCHEDULE</a>
                 <a name="speakers" class="tab" href="/summit/speakers">SPEAKERS</a>
+                <a name="codelabs" class="tab" href="/summit/codelabs" target="_blank">CODELABS</a>
               </iron-selector>
             </div>
 
@@ -214,12 +216,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <div class="horizontal center-center layout">
               <paper-material class="misc-card">
                 <div class="codelabs">
-                  <h3>Code labs will be happening during the Summit,</h3>
-                  <p>but even if you won’t be attendance these will be available online for you to work from the comfort of your own home or favorite coffee shop.</p>
+                  <h3>Code labs are available throughout the Summit,</h3>
+                  <p>even if you're not in attendance, they're available online for you to work from the comfort of your own home or favorite coffee shop.</p>
                 </div>
-                <!-- <a tabindex="-1" target="_blank" href="" data-outbound="code-labs"> -->
-                  <paper-button class="anchor-button blue" disabled raised>Coming Soon!</paper-button>
-                <!-- </a> -->
+                <a tabindex="-1" target="_blank" href="/summit/codelabs" data-outbound="code-labs">
+                  <paper-button class="anchor-button blue" raised>Start a codelab!</paper-button>
+                </a>
               </paper-material>
             </div>
 
