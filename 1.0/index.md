@@ -35,7 +35,7 @@ title: Welcome
   </div>
 </section> -->
 
-<section id="googleio" class="main-light-purple">
+<!-- <section id="googleio" class="main-light-purple">
   <div class="panel" layout horizontal>
     <span class="iologo" layout vertical>
       <img src="https://events.google.com/io2015/images/io15-color.png" alt="Polymer at Google I/O 2015">
@@ -45,9 +45,22 @@ title: Welcome
       <h2>Polymer and modern web APIs: In production at Google scale</h2>
     </a>
   </div>
+</section> -->
+
+<section id="summit-banner" class="main-light-purple">
+  <div class="panel" layout horizontal center>
+    <span class="summitlogo" layout vertical>
+      <img src="/summit/images/badge_blue_small.png" alt="Polymer Summit 2015">
+    </span>
+    <a href="https://www.polymer-project.org/summit" target="_blank">
+      <h2>Watch Polymer Summit 2015</h2>
+      <h4>A full day of talks and code labs from the Polymer team</h4>
+    </a>
+  </div>
 </section>
 
-<!-- 
+
+<!--
 <section id="featured">
   <div class="panel" layout horizontal>
     <div flex>
@@ -114,7 +127,7 @@ title: Welcome
       <h2>For Modern Browsers</h2>
       <p>Polymer is built from the ground up for modern browsers, using the latest web platform APIs. Polyfills provide support on evergreen browsers for APIs that aren't universal yet.</p>
     </div>
-    
+
     <div class="feature">
       <div class="badge">
         <div class="badge-wrapper">
@@ -148,7 +161,7 @@ title: Welcome
 {%endraw%}
         {% endhighlight %}
         </div>
-        
+
         <div class="example-result example-google-map">
           <iframe frameborder="0" src="samples/homepage/google-map/index.html" width="100%"></iframe>
         </div>
@@ -181,7 +194,7 @@ title: Welcome
 </dom-module>
 {%endraw%}
       {% endhighlight %}
-      
+
       {% highlight html %}
 {%raw%}
 <contact-card starred>
@@ -241,7 +254,7 @@ title: Welcome
       <div class="example-caption">
         <p>Build more sophisticated elements by composing simpler elements together. Elements can provide simple abstractions to powerful APIs. The <code>&lt;firebase-collection&gt;</code> used here pulls data from a Firebase database. </p>
       </div>
-      
+
       <div class="button-row">
         <a href="docs/start/quick-tour.html">
           <paper-button raised>
@@ -262,7 +275,7 @@ title: Welcome
         </a>
       </div>
     </div>
-    
+
   </div>
 </section>
 
