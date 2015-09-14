@@ -116,16 +116,16 @@
         "desc":"In 2015, framework-less web development using elements + micro-libraries can get you really far on the web platform. It's powerful. We'll cover the tools now available to help you build with Polymer in production including Polymer Starter Kit, Polyup, Vulcanize, Crisper, web-component-tester, our docs and code viewer tools and much more!"
       },
       {
-        "name":"Polymer Performance Patterns",
-        "speaker":"Eric Bidelman",
-        "time":"Tuesday @ 4:15pm",
-        "desc":"Let's face it, building a web app is hard. There's a lot to remember! Web components allow us to componentize the web's best practices but that doesn't mean footguns are a thing of the past. In this talk, we'll cover tips and tricks for speeding up first paint, lazy loading components, and various runtime optimizations."
-      },
-      {
         "name":"Doing a Perf Audit of your Polymer App",
         "speaker":"Paul Irish",
-        "time":"Tuesday @ 4:45pm",
+        "time":"Tuesday @ 4:15pm",
         "desc":"Performance is measured from the ground truth of the browser internals, and you're operating a few levels up, with the DOM, framework code, and JavaScript sitting between your users finger and the resulting screen paints. In this session Paul Irish will show how the Chrome DevTools can help you understand where time is spent in your app and effective means of profiling your performance. You'll walk away with a solid understanding of how your polymer work can be as fast-loading and responsive-to-the-touch as you like."
+      },
+      {
+        "name":"Polymer Performance Patterns",
+        "speaker":"Eric Bidelman",
+        "time":"Tuesday @ 4:45pm",
+        "desc":"Let's face it, building a web app is hard. There's a lot to remember! Web components allow us to componentize the web's best practices but that doesn't mean footguns are a thing of the past. In this talk, we'll cover tips and tricks for speeding up first paint, lazy loading components, and various runtime optimizations."
       },
       {
         "name":"PolyPanel",
