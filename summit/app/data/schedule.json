@@ -23,21 +23,21 @@
         "name":"Opening Keynote",
         "speaker":"Matthew McNulty & Taylor Savage",
         "time":"Tuesday @ 9:00am",
-		"video": "https://www.youtube.com/watch?v=jVn8tlnwAEs&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J&index=1",
+        "video": "https://www.youtube.com/watch?v=jVn8tlnwAEs&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J&index=1",
         "desc":"A warm welcome to the first ever Polymer Summit. We'll talk briefly about how we're thinking about Polymer's past, present, and future, and get the show on the road."
       },
       {
         "name":"Thinking in Polymer",
         "speaker":"Kevin Schaaf",
         "time":"Tuesday @ 9:30am",
-		"video": "https://www.youtube.com/watch?v=ZDjiUmx51y8&index=2&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
+        "video": "https://www.youtube.com/watch?v=ZDjiUmx51y8&index=2&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
         "desc":"Polymer embraces encapsulated Custom Elements as its main organizing unit.  This simple-sounding concept is actually an incredibly powerful tool that can revolutionize how you think about solving complex problems, collaborate within large teams, reduce technology lock-in, and of course, build amazing apps for the web.  Hear how we think about building apps using custom elements directly from one of the Polymer core team engineers, and how to best employ this simple concept for the most leverage in your own projects."
       },
       {
         "name":"End to End with Polymer",
         "speaker":"Rob Dodson",
         "time":"Tuesday @ 10:00am",
-		"video": "https://www.youtube.com/watch?v=1f_Tj_JnStA&index=3&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
+        "video": "https://www.youtube.com/watch?v=1f_Tj_JnStA&index=3&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
         "desc":"Developers are really excited by Polymer and Web Components, but they're not always sure how to connect the dots to get a full blown, production-ready app. Where should you store your data? How do you handle user authentication? What are the patterns that make up a good Polymer app? In this session I'll answer these questions, and guide you through the process of building an awesome webapp using Polymer Starter Kit and Firebase."
       },
       {
@@ -48,28 +48,28 @@
         "name":"Using ES6 with Polymer",
         "speaker":"Eric Bidelman",
         "time":"Tuesday @ 11:00am",
-		"video": "https://www.youtube.com/watch?v=bX3_tN23M_Y&index=4&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
+        "video": "https://www.youtube.com/watch?v=bX3_tN23M_Y&index=4&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
         "desc":"Polymer's mission is to evolve with modern web. In this talk, we'll take a look at the new features in ECMAScript 2015 (aka ES6), how to use them today, and what role they play in Polymer's future."
       },
       {
         "name":"Testing Polymer Web Components",
         "speaker":"Chris Joel",
         "time":"Tuesday @ 11:20am",
-		"video": "https://www.youtube.com/watch?v=kX2INPJY4Y4&index=5&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
+        "video": "https://www.youtube.com/watch?v=kX2INPJY4Y4&index=5&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
         "desc":"This session will include a rundown of test environment helpers we have created, the new test-fixture element and the accessibility testing functionality added to WCT. We will also cover examples of different non-trivial testing scenarios related to web components and provide strategies to address them."
       },
       {
         "name":"Platinum Elements",
         "speaker":"Mat Scales",
         "time":"Tuesday @ 11:40am",
-		"video": "https://www.youtube.com/watch?v=EXn-Zr-qmqo&index=6&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
+        "video": "https://www.youtube.com/watch?v=EXn-Zr-qmqo&index=6&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
         "desc":"Web Components aren't the only hot new thing on the web. Learn about how we're bringing the magic of Polymer to brand new Web Platform features like Offline, Push Messaging, and more."
       },
       {
         "name":"There’s an Element for that — but what if there isn't?",
         "speaker":"Surma",
         "time":"Tuesday @ 12:00pm",
-		"video": "https://www.youtube.com/watch?v=qogKAkxrfrk&index=7&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
+        "video": "https://www.youtube.com/watch?v=qogKAkxrfrk&index=7&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
         "desc":"You have your own service. It has a very nice API. Is there an element for that? Probably not! In this session we’ll talk about patterns that occur when writing your own elements while wrapping an API or while writing new visual elements."
       },
       {
@@ -80,42 +80,42 @@
         "name":"Adaptive UI with Material Design and Paper Elements",
         "speaker":"Zach Gibson, Yuin Chien, & Addy Osmani",
         "time":"Tuesday @ 1:30pm",
-		"video": "https://www.youtube.com/watch?v=YiiXKoLYLMo&index=8&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
+        "video": "https://www.youtube.com/watch?v=YiiXKoLYLMo&index=8&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
         "desc":"A look into Material Design's latest thinking around adaptive user interface design patterns and best practices. Polymer's paper elements make it easy to design cross form factor."
       },
       {
         "name":"Polymer's Styling System",
         "speaker":"Monica Dinculescu",
         "time":"Tuesday @ 2:00pm",
-		"video": "https://www.youtube.com/watch?v=IbOaJwqLgog&index=9&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
+        "video": "https://www.youtube.com/watch?v=IbOaJwqLgog&index=9&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
         "desc":"Traditionally, CSS stylesheets have a terrible opinion about style encapsulation: the only thing stopping one element’s style from stomping over another’s is a “well chosen class name”. The Shadow DOM fixes this by building a little castle and a moat around each element, so that styles can’t get in and out of the web component castle. But what happens if you _do_ want to style this custom element? How do you cross the moat? Custom properties, that’s how."
       },
       {
         "name":"Polymer's Animation System",
         "speaker":"Yvonne Yip",
         "time":"Tuesday @ 2:15pm",
-		"video": "https://www.youtube.com/watch?v=-tX0e29GQa4&index=10&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
+        "video": "https://www.youtube.com/watch?v=-tX0e29GQa4&index=10&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
         "desc":"Great transitions and animations are an important part of your web application's visual design. However building them using CSS and Javascript is not always straightforward. In this talk we'll cover how neon-animation system helps you build animations in Polymer and we'll build some page transitions."
       },
       {
         "name":"Lightning Talk: Upgrading to 1.0 with polyup",
         "speaker":"Peter Burns",
         "time":"Tuesday @ 2:30pm",
-		"video": "https://www.youtube.com/watch?v=maygsoPKLpE&index=11&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
+        "video": "https://www.youtube.com/watch?v=maygsoPKLpE&index=11&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
         "desc":"A lot changed from Polymer 0.5 to 1.0! Fortunately you don't have to upgrade all of your code by hand, polyup will do a lot of the work for you. We'll walk through upgrading a full app from 0.5 to 1.0 in under ten minutes."
       },
       {
         "name":"Lightning Talk: Polymer's Gesture System",
         "speaker":"Dan Freedman",
         "time":"Tuesday @ 2:35pm",
-		"video": "https://www.youtube.com/watch?v=EUpUz3RUvdc&index=12&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
+        "video": "https://www.youtube.com/watch?v=EUpUz3RUvdc&index=12&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
         "desc":"A look at the breadth and depth of Polymer's built-in gesture library, and how your elements can be interactive, responsive, and cross-platform."
       },
       {
         "name":"A11y with Polymer",
         "speaker":"Alice Boxhall & Laura Palmaro",
         "time":"Tuesday @ 2:45pm",
-		"video": "https://www.youtube.com/watch?v=o6yLWihykVA&index=13&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
+        "video": "https://www.youtube.com/watch?v=o6yLWihykVA&index=13&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
         "desc":"One in six people will experience a disability at some point in their life, so it's crucial for sites and apps to work smoothly for users with a wide range of abilities. A well crafted site is usable whether or not a person can see, use a mouse, or distinguish red from green - to mention just a few of the assumptions we inadvertently make. Come and learn about how and why we hold the Polymer 1.0 widget set to a high bar for accessibility, and how you can use the Polymer libraries to create your own accessible custom elements."
       },
       {
@@ -126,28 +126,28 @@
         "name":"Polymer Power Tools",
         "speaker":"Addy Osmani",
         "time":"Tuesday @ 3:45pm",
-		"video": "https://www.youtube.com/watch?v=LMqM4PfrFxs&index=14&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
+        "video": "https://www.youtube.com/watch?v=LMqM4PfrFxs&index=14&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
         "desc":"In 2015, framework-less web development using elements + micro-libraries can get you really far on the web platform. It's powerful. We'll cover the tools now available to help you build with Polymer in production including Polymer Starter Kit, Polyup, Vulcanize, Crisper, web-component-tester, our docs and code viewer tools and much more!"
       },
       {
         "name":"Doing a Perf Audit of your Polymer App",
         "speaker":"Paul Irish",
         "time":"Tuesday @ 4:15pm",
-		"video": "https://www.youtube.com/watch?v=SkN5Q7nf7Vg&index=15&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
+        "video": "https://www.youtube.com/watch?v=SkN5Q7nf7Vg&index=15&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
         "desc":"Performance is measured from the ground truth of the browser internals, and you're operating a few levels up, with the DOM, framework code, and JavaScript sitting between your users finger and the resulting screen paints. In this session Paul Irish will show how the Chrome DevTools can help you understand where time is spent in your app and effective means of profiling your performance. You'll walk away with a solid understanding of how your polymer work can be as fast-loading and responsive-to-the-touch as you like."
       },
       {
         "name":"Polymer Performance Patterns",
         "speaker":"Eric Bidelman",
         "time":"Tuesday @ 4:45pm",
-		"video": "https://www.youtube.com/watch?v=Yr84DpNaMfk&index=16&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
+        "video": "https://www.youtube.com/watch?v=Yr84DpNaMfk&index=16&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
         "desc":"Let's face it, building a web app is hard. There's a lot to remember! Web components allow us to componentize the web's best practices but that doesn't mean footguns are a thing of the past. In this talk, we'll cover tips and tricks for speeding up first paint, lazy loading components, and various runtime optimizations."
       },
       {
         "name":"PolyPanel",
         "speaker":"The Polymer Team",
         "time":"Tuesday @ 5:15pm",
-		"video": "https://www.youtube.com/watch?v=mw0ozps3jLM&index=17&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
+        "video": "https://www.youtube.com/watch?v=mw0ozps3jLM&index=17&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
         "desc":"A wrap-up discussion panel with members of the Polymer team."
       },
       {
