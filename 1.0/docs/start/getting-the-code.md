@@ -53,7 +53,7 @@ This generates a basic `bower.json` file. Some of the questions, like
 
 The next step is to install {{site.project_title}}:
 
-    bower install --save Polymer/polymer#^1.0.0
+    bower install --save Polymer/polymer#^1.1.0
 
 Bower adds a `bower_components/` folder in the root of your project and
 fills it with {{site.project_title}} and its dependencies.
@@ -64,7 +64,7 @@ fills it with {{site.project_title}} and its dependencies.
   "name": "my-project",
   "version": "0.0.0",
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.0.0"
+    "polymer": "Polymer/polymer#^1.1.0"
   }
 }
 ```
@@ -83,7 +83,7 @@ This updates all packages in `bower_components/` to the latest stable version.
 
 Click the button to download {{site.project_title}} {% polymer_version_dir %} as a ZIP file.
 
-<p><a href="http://zipper.bowerarchiver.appspot.com/archive?polymer=Polymer/polymer%231.0.0">
+<p><a href="http://zipper.bowerarchiver.appspot.com/archive?polymer=Polymer/polymer%23%5E1.1.0">
   <paper-button class="cta" raised><core-icon icon="file-download"></core-icon>Download ZIP</paper-button>
 </a></p>
 
