@@ -167,11 +167,11 @@ directly as the value of the property in the `properties` object; otherwise it
 should be provided as the value to the `type` key in the `properties`
 configuration object.
 
-The type system includes support for Object and Array values expressed as JSON,
-or Date objects expressed as any Date-parsable string representation. Boolean
-properties set based on the existence of the attribute: if the attribute exists
-at all, its value is true, regardless of its string-value (and the value is only
-false if the attribute does not exist).
+The type system includes support for Number values, Object and Array values 
+expressed as JSON, or Date objects expressed as any Date-parsable string 
+representation. Boolean properties set based on the existence of the attribute: 
+if the attribute exists at all, its value is true, regardless of its string-value 
+(and the value is only false if the attribute does not exist).
 
 Example:
 
@@ -233,6 +233,19 @@ encouraged that attributes only be used for configuring properties in static
 markup, and instead that properties are set directly for changes at runtime. 
 {: .alert .alert-info }
 
+### Configuring boolean properties
+
+For a Boolean property to be configurable from markup, it must default to `false`. If it defaults to `true`, you cannot set it to `false` from markup, since the presence of the attribute, with or without a value, equates to `true`. This is the standard behavior for attributes in the web platform.
+
+If the standard behavior doesn't fit your use case, you can use a string-valued or number-valued attribute instead.
+
+### Configuring object and array properties
+
+For object and array properties you can pass an object or array in JSON format: 
+
+    <my-element book='{ "title": "Persuasion", "author": "Austen" }'></my-element>
+
+Note that JSON requires double quotes, as shown above.
 
 ## Configuring default property values {#configure-values}
 
