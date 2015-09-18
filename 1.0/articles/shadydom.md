@@ -201,7 +201,7 @@ The upshot is that shady DOM provides enough tree-scoping for Polymer to act as
 if shadow DOM is available on all platforms, without compromising performance.
 
 It’s important to note that we've made shady DOM and shadow DOM compatible. This
-means that the shady DOM API employs real shadow DOM where it's available.
+means that the shady DOM API can optionally employ real shadow DOM where it's available.
 Therefore, you can write one code base that works on all platforms, but you
 enjoy improved performance and robustness on platforms that implement Shadow
 DOM.
