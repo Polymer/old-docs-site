@@ -167,11 +167,14 @@ directly as the value of the property in the `properties` object; otherwise it
 should be provided as the value to the `type` key in the `properties`
 configuration object.
 
-The type system includes support for Number values, Object and Array values 
+The type system includes support for Boolean and Number values, Object and Array values 
 expressed as JSON, or Date objects expressed as any Date-parsable string 
-representation. Boolean properties set based on the existence of the attribute: 
-if the attribute exists at all, its value is true, regardless of its string-value 
-(and the value is only false if the attribute does not exist).
+representation. 
+
+Boolean properties are set based on the _presence_ of the attribute: 
+if the attribute exists at all, the property is set to `true`, regardless 
+of the attribute _value_. If the attribute is absent, the property 
+gets its default value.
 
 Example:
 
@@ -237,7 +240,7 @@ markup, and instead that properties are set directly for changes at runtime.
 
 For a Boolean property to be configurable from markup, it must default to `false`. If it defaults to `true`, you cannot set it to `false` from markup, since the presence of the attribute, with or without a value, equates to `true`. This is the standard behavior for attributes in the web platform.
 
-If the standard behavior doesn't fit your use case, you can use a string-valued or number-valued attribute instead.
+If this behavior doesn't fit your use case, you can use a string-valued or number-valued attribute instead.
 
 ### Configuring object and array properties
 
