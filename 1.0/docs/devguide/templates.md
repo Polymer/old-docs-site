@@ -198,7 +198,7 @@ different name for the index property.
 
 ## Array selector (array-selector) {#array-selector}
 
-Keeping structured data in sync requires that {{site.project_title}} understand the path
+Keeping structured data in sync requires that {{site.project_title}} understands the path
 associations of data being bound.  The `array-selector` element ensures path
 linkage when selecting specific items from an array. The array selector supports
 either single or multiple selection.
