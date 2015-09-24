@@ -279,10 +279,6 @@ title: Welcome
   </div>
 </section>
 
-<paper-dialog id="iovideo" transition="core-transition-center" backdrop layered="false">
-  <iframe src="https://www.youtube.com/embed/fD2As5RmM8Q" frameborder="0" allowfullscreen fit></iframe>
-</paper-dialog>
-
 {% comment %}
 <section id="everything-element" class="main-purple">
   <div class="panel right">
