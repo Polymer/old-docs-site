@@ -15,7 +15,54 @@ subtitle: About this release
   }
 </style>
 
-## [Release 1.1.1](https://github.com/Polymer/polymer/tree/v1.1.1) (2015-08-20)
+## [Release 1.1.4](https://github.com/Polymer/polymer/tree/v1.1.4) (2015-09-25)
+
+This release fixes the following issues:
+
+-   [Fixes #2452](https://github.com/Polymer/polymer/issues/2452). Work around 
+    a [Chromium bug](https://code.google.com/p/chromium/issues/detail?id=529941) 
+    that caused memory to leak on page refresh.
+
+-   [Fixes #2048](https://github.com/Polymer/polymer/issues/2048). Allow multiple 
+    paths to be linked using `linkPath`. 
+
+
+**Web Components polyfill updated to 0.7.13.** The latest version of `webcomponents-lite.js`
+fixes an issue that affected SEO of Polymer 1.x apps. 
+{: .alert .alert-info }
+
+## [Release 1.1.3](https://github.com/Polymer/polymer/tree/v1.1.3) (2015-09-04)
+
+-   [Fixes #2403](https://github.com/Polymer/polymer/issues/2403). Fixes a regression
+    that affected legacy projects using Chrome 39.
+
+## [Release 1.1.2](https://github.com/Polymer/polymer/issues/2403) (2014-08-28)
+
+-   [Fixes #2356](https://github.com/Polymer/polymer/issues/2356). Log a warning
+    if the included style module cannot be found.
+   
+-   [Fixes #2357](https://github.com/Polymer/polymer/issues/2357). Styles included
+    with `include=` are inserted _before_ any styles defined in the body of
+    the style element.
+
+-   [Fixes #2363](https://github.com/Polymer/polymer/issues/2363). Explicitly create 
+    `Polymer` object on `window` to satisfy strict mode.
+
+-   [Fixes #2329](https://github.com/Polymer/polymer/issues/2329). Registration changes
+    to support ES6 classes.
+
+-   [Fixes #2341](https://github.com/Polymer/polymer/issues/2341). Branch `Polymer.dom` to 
+    use native dom methods under Shadow DOM for `appendChild`, `insertBefore`, `removeChild`, 
+    `replaceChild`, and `cloneNode`.
+
+-   [Fixes #2334](https://github.com/Polymer/polymer/issues/2341). When composing nodes 
+    in shady DOM, check if a node is where we expect it to be before removing it from 
+    its distributed position. We do this because the node may have been moved by 
+    `Polymer.dom` in a way that triggered distribution of its previous location. The 
+    node is already where it needs to be so removing it from its parent when it's no 
+    longer distributed is destructive. 
+
+[Release 1.1.1](https://github.com/Polymer/polymer/tree/v1.1.1) (2015-08-20)
 
 This release fixes a serious regression in Release 1.1 related to shady DOM distribution. Related issues:
 
