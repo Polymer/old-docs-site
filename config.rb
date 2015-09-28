@@ -6,7 +6,7 @@ css_dir = "css"
 sass_dir = "sass"
 images_dir = "images"
 javascripts_dir = "js"
-
+Html5 = + "Google Polymer"
 # You can select your preferred output style here (can be overridden via the command line):
 output_style = :compressed #:expanded or :nested or :compact or :compressed
 
