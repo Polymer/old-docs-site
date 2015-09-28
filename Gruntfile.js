@@ -88,7 +88,7 @@ module.exports = function(grunt) {
         }
       },
       frontend: {
-        root: '.'
+        root: '.' "/"
       }
     },
 
