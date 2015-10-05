@@ -178,7 +178,8 @@ several important differences:
 1. There's no need to use `extends HTMLElement`. Polymer extends the element for you.
 2. Use the `beforeRegister` method instead of `createdCallback`. This is a special method
 Polymer calls before creating your element and is where you should define your `is` property (element's name) and [`properties` object](../docs/devguide/properties.html).
-3. When registering an element, use the `Polymer()` constructor instead of `document.registerElement`.
+3. If you're using [behaviors](../docs/devguide/behaviors.html), define a getter that returns the array: `get behaviors() { return [MyBehavior]; }`
+4. When registering an element, use the `Polymer()` constructor instead of `document.registerElement`.
 
 Here's our stock ticker:
 
@@ -197,7 +198,14 @@ Here's our stock ticker:
     (function() {
       'use strict';
 
+      let MyBehavior = { ... };
+
       class StockTicker {
+
+        // Define behaviors with a getter.
+        get behaviors() {
+          return [MyBehavior];
+        }
 
         // Element setup goes in beforeRegister instead of createdCallback.
         beforeRegister() {
