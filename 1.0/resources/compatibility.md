@@ -18,7 +18,7 @@ requires.
 
 <table>
 <thead>
-  <tr><th></th><th>Chrome</th><th>Firefox</th><th>IE&nbsp;10+*</th><th>Safari 8+</th><th>Chrome (Android)</th><th>Safari (iOS&nbsp;8.1)</th></tr>
+  <tr><th></th><th>Chrome</th><th>Firefox</th><th>IE&nbsp;10+*</th><th>Safari 8+</th><th>Chrome (Android)</th><th>Safari (iOS&nbsp;8.1)</th><th>Opera</th></tr>
 </thead>
 <tr>
   <td class="feature-title"><a href="http://www.html5rocks.com/en/tutorials/webcomponents/template/">Template</a></td>
@@ -28,6 +28,7 @@ requires.
   <td><paper-checkbox checked></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
+  <td>?</td>
 </tr>
 <tr>
   <td class="feature-title"><a href="//www.polymer-project.org/platform/html-imports.html">HTML Imports</a></td>
@@ -37,6 +38,7 @@ requires.
   <td><paper-checkbox disabled></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
   <td><paper-checkbox disabled></paper-checkbox></td>
+  <td>?</td>
 </tr>
 <tr>
   <td class="feature-title"><a href="//www.polymer-project.org/platform/custom-elements.html">Custom Elements</a></td>
@@ -46,6 +48,7 @@ requires.
   <td><paper-checkbox disabled></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
   <td><paper-checkbox disabled></paper-checkbox></td>
+  <td>?</td>
 </tr>
 <tr>
   <td class="feature-title"><a href="//www.polymer-project.org/platform/shadow-dom.html">Shadow DOM</a></td>
@@ -55,6 +58,7 @@ requires.
   <td><paper-checkbox disabled></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
   <td><paper-checkbox disabled></paper-checkbox></td>
+  <td>?</td>
 </tr>
 </table>
 
@@ -78,7 +82,7 @@ In addition to the main web components APIs, Polymer uses other new platform fea
 
 <table>
 <thead>
-  <tr><th></th><th>Chrome</th><th>Firefox</th><th>IE 11+*</th><th>Safari 8+</th><th>Chrome (Android)</th><th>Safari (iOS 8.1)</th></tr>
+  <tr><th></th><th>Chrome</th><th>Firefox</th><th>IE 11+*</th><th>Safari 8+</th><th>Chrome (Android)</th><th>Safari (iOS 8.1)</th><th>Opera</th></tr>
 </thead>
 <tr>
   <td class="feature-title">Mutation Observers</td>
@@ -88,6 +92,7 @@ In addition to the main web components APIs, Polymer uses other new platform fea
   <td><paper-checkbox checked></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
+  <td>?</td>
 </tr>
 <tr>
   <td class="feature-title">Web Animations API</td>
@@ -97,6 +102,7 @@ In addition to the main web components APIs, Polymer uses other new platform fea
   <td><paper-checkbox disabled></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
   <td><paper-checkbox disabled></paper-checkbox></td>
+  <td>?</td>
 </tr>
 </table>
 
