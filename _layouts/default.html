@@ -1,3 +1,5 @@
+{% capture ver %}{% polymer_version_dir %}{% endcapture %}
+
 <!DOCTYPE html>
 <html itemscope itemtype="http://schema.org/Organization">
 <head>
@@ -5,7 +7,7 @@
 </head>
 <body id="{{page.title | downcase | replace:' ','-' }}">
 
-<main id="content-container">
+<main id="content-container" class="polymer-{{ver | replace: '.','_'}}-content">
   <app-drawer id="sidebar" unresolved>
     <div layout vertical id="sidebar-content">
       <div id="logo-container" layout horizontal center>
@@ -33,6 +35,7 @@
           <summary>{{site.data.pagetypes[page.type].headertitle}}</summary>
         {% endif %}
       </header>
+      {% include version_warning.html %}
     </site-banner>
 
     {% comment %}
