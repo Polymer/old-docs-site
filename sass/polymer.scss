@@ -81,7 +81,7 @@ pre, .prettyprint {
     color: #689f38;
   }
   .pln {
-    color: #455a64; 
+    color: #455a64;
   }
   .kwd {
     color: #00838f;
@@ -114,4 +114,34 @@ pre, .prettyprint {
   color: #fff;
   box-sizing: border-box;
   margin: 0 24px;
+}
+
+.version_warning_bar {
+  position: absolute;
+  background: #FFEBEE !important;
+  color: #D32F2F !important;
+  width: 100%;
+  left: 0;
+  border: 0 !important;
+  bottom: -44px !important;
+  font-weight: 400;
+
+  core-icon {
+    margin-right: 8px;
+  }
+}
+
+@media only screen and (min-width: $break-small + 1)  {
+  main.polymer-0_5-content scroll-area article {
+    padding-top: 60px;
+  }
+
+}
+
+// Phone
+@media only screen and (max-width: $break-small)  {
+  .version_warning_bar {
+    position: fixed;
+    bottom: 0 !important;
+  }
 }
