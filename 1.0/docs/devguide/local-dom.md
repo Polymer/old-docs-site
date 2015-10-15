@@ -90,7 +90,7 @@ Example:
           is: 'x-custom',
 
           ready: function() {
-            this.$.name.textContent = this.name;
+            this.$.name.textContent = this.tagName;
           }
 
         });
