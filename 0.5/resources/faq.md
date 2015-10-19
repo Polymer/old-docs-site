@@ -268,7 +268,7 @@ The `<template repeat>` is hoisted out and rendered as a sibling:
       ...
     </table>
 
-For **browsers that don't support `<template>`**, the [TemplateBinding](../docs/polymer/template.html) [prollyfill](http://prollyfill.org/) has the ability to repeat `<option>` and `<tr>` directly using the `template` attribute:
+For **browsers that don't support `<template>`**, the [TemplateBinding](../docs/polymer/template.html) polyfill has the ability to repeat `<option>` and `<tr>` directly using the `template` attribute:
 
     <table>
       {%raw%}<tr template repeat="{{tr in rows}}">{%endraw%}
