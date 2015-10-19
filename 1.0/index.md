@@ -9,12 +9,12 @@ title: Welcome
     <summary>
       <h1>Production ready</h1>
       <p>Polymer 1.0 has been rebuilt from the ground up for speed and efficiency. The new, leaner core library makes it easier than ever to make fast, beautiful, and interoperable web components. If you haven't used Polymer before, it's time to try it out. If you haven't tried it recently, time to take another look.</p>
-      <a href="docs/start/getting-the-code.html">
+      <a href="docs/start/getting-the-code.html" tabindex="-1">
         <paper-button raised unresolved>
           <core-icon icon="archive"></core-icon> Get {{site.project_title}}
         </paper-button>
       </a>
-      <a href="https://github.com/polymer">
+      <a href="https://github.com/polymer" tabindex="-1">
         <paper-button class="github" unresolved>
           <core-icon icon="social:post-github"></core-icon> View on GitHub
         </paper-button>
@@ -71,7 +71,7 @@ title: Welcome
         <p>
         Custom elements, built by the Polymer team, ready to use in your applications.
         </p>
-        <a href="https://elements.polymer-project.org" target="_blank">
+        <a href="https://elements.polymer-project.org" target="_blank" tabindex="-1">
           <paper-button>
             <core-icon icon="arrow-forward"></core-icon> Browse elements
           </paper-button>
@@ -243,19 +243,19 @@ title: Welcome
       </div>
       
       <div class="button-row">
-        <a href="docs/start/quick-tour.html">
+        <a href="docs/start/quick-tour.html" tabindex="-1">
           <paper-button raised>
             <core-icon icon="arrow-forward"></core-icon> Take a Tour
           </paper-button>
         </a>
 
-        <a href="docs/start/getting-the-code.html">
+        <a href="docs/start/getting-the-code.html" tabindex="-1">
           <paper-button raised>
             <core-icon icon="archive"></core-icon> Get The Code
           </paper-button>
         </a>
 
-        <a href="docs/index.html">
+        <a href="docs/index.html" tabindex="-1">
           <paper-button raised>
             <core-icon icon="info"></core-icon> Learn More
           </paper-button>
@@ -278,7 +278,7 @@ title: Welcome
       <p>From <code>&lt;a&gt;</code> to <code>&lt;select&gt;</code>, elements are the building blocks of HTML. But modern applications have outgrown these built-in elements, forcing app developers to rely on JavaScript frameworks to provide dynamic, custom behavior.  The resulting apps are frequently complex and monolithic; a component developed for one may not work in another.
       <br><br>
       {{site.project_title}} puts elements back at the center of web development. With {{site.project_title}}, you can craft your own HTML elements and compose them into complete, complex applications that are scalable and maintainable.</p>
-      <a href="docs/start/everything.html">
+      <a href="docs/start/everything.html" tabindex="-1">
         <paper-button>
           <core-icon icon="arrow-forward"></core-icon> Learn more
         </paper-button>
