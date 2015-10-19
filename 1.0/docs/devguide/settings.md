@@ -10,20 +10,27 @@ Document-level global {{site.project_title}} settings can be set
 by creating a `Polymer` object on window before importing the {{site.project_title}}
 library:
 
+First create `scripts/polymer-settings` with this content:
+```javascript
+window.Polymer = window.Polymer || {};
+window.Polymer.dom = 'shadow';
+```
+
+Then reference `scripts/polymer-settings` right before importing `Polymer`
+
+```html
 	<html>
 	<head>
 	  <meta charset="utf-8">
 	  <script src="components/webcomponentsjs/webcomponents-lite.js"></script>
-	  <script>
-        window.Polymer = window.Polymer || {};
-        window.Polymer.dom = 'shadow';
-      </script>
-      <!-- import a component that relies on Polymer -->
+	  <script src="scripts/polymer-settings"></script>
+	  <!-- import a component that relies on Polymer -->
 	  <link rel="import" href="elements/my-app.html">
 	</head>
 	<body>
 
 	  ...
+```
     
 **Note:**  The _full_ version of `webcomponents.js` includes a stub version
 of the `Polymer` function. Setting the value this way avoids overwriting the 
