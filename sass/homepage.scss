@@ -305,6 +305,16 @@ site-banner .logo {
   }
 }
 
+#catalog {
+  .screenshot {
+    display: block;
+    text-align: center;
+  }
+  .panel img {
+    margin-top: 32px;
+  }
+}
+
 #designer {
   summary {
     h3 {

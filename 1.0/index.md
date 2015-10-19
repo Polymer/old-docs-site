@@ -77,8 +77,8 @@ title: Welcome
   <div class="panel">
     <summary>
       <h1>Element Catalog</h1>
-      <a href="https://elements.polymer-project.org" target="_blank">
-        <img src="/images/catalog_fadeout.png" alt="Launch the element catalog" title="Launch the element catalog">
+      <a href="https://elements.polymer-project.org" target="_blank" class="screenshot">
+        <img src="/images/catalog_fadeout.jpg" alt="Launch the element catalog" title="Launch the element catalog">
       </a>
       <div>
         <p>
