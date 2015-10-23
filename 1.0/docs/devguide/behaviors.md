@@ -90,8 +90,8 @@ particular method for referencing your behaviors. Behaviors created by the {{sit
 team are added to the {{site.project_title}} object. When creating your own behaviors, you should 
 use some other namespace to avoid collisions with future {{site.project_title}} behaviors. For example:
 
-    MyBehaviors = MyBehaviors || {};
-    MyBehaviors.HighlightBehavior = { ... }
+    window.MyBehaviors = window.MyBehaviors || {};
+    window.MyBehaviors.HighlightBehavior = { ... }
 
 ## Extending behaviors {#extending}
 
