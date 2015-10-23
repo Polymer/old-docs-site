@@ -68,7 +68,7 @@ Extending `HTMLElement` creates the element with the correct `prototype`, inheri
 leaving it off the other examples on this page.
 {: .alert .alert-info }
 
-### Element "constructors" 
+### Element "constructors"
 
 Normally when creating a class, you define a `constructor` to do initialization work. However,
 in the world of custom elements this doesn't apply. Instead, you'll need to use
@@ -107,14 +107,14 @@ elements are created by the browser.
 
 One nice thing I'm doing here is using a [template string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings) to create Shadow DOM from an HTML snippet. Rather than concatenating strings or using escape sequences, we get a nicely formatted multiline string.
 
-### Adding properties and methods 
+### Adding properties and methods
 
 Say we wanted to add a `symbols` property to our element. Users should be able to
 configure the list of ticker symbols through the property:
 
     document.querySelector('stock-ticker').symbols = ["GOOG", "GOOGL"];
 
-and also declaratively, using an HTML attribute: 
+and also declaratively, using an HTML attribute:
 
     <stock-ticker symbols='["GOOG", "GOOGL"]'>Loading...</stock-ticker>
 
@@ -155,7 +155,7 @@ Check. It. Out! We're using ES6 [object shorthand](https://developer.mozilla.org
 
 ### Registering an element
 
-So far, we've only defined a custom element using class syntax. The last step is to register the tag. This tells the browser about the element and allows you to create instances. 
+So far, we've only defined a custom element using class syntax. The last step is to register the tag. This tells the browser about the element and allows you to create instances.
 
     class StockTicker extends HTMLElement {
       ...
