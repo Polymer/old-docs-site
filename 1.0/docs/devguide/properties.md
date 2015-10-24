@@ -256,6 +256,7 @@ Default values for properties may be specified in the `properties` object using
 the `value` field.  The value may either be a primitive value, or a function
 that returns a value (which should be used for initializing Objects and Arrays
 to avoid shared objects on instances).
+If you provide a function, as we do here, Polymer will call that _per element instance_. We can do that to ensure that each element gets its own copy of the value, rather than having it shared across all instances (via the prototype).
 
 Example:
 
