@@ -582,7 +582,7 @@ A style module declares a named set of style rules that can be imported into
 an element definition, or into a `custom-style` element.
 
 **Note:** Style modules were introduced in {{site.project_title}} 1.1;
-they replace the experimental support for [external stylesheets](#external-styleshees).
+they replace the experimental support for [external stylesheets](#external-stylesheets).
 {: .alert .alert-info }
 
 Define a style module inside an HTML import using the `<dom-module>` 
