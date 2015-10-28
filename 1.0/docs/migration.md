@@ -1005,35 +1005,16 @@ binding are:
     operator, `!`, is supported for convenience.) In many cases, computed
     properties can be used in place of complex binding expressions.
 
-*   A binding must replace the **entire text content of a node**, or the **entire value
-    of an attribute**. So string concatenation is **not** supported. For attribute
-    values, you can use [computed bindings](devguide/data-binding.html#annotated-computed) 
-    instead of string concatenation. For text content, you can also add additional 
-    nodes (for example, wrap the binding in a `<span>` tag).
+*   {{site.project_title}} doesn't use `Object.observe` to watch object changes,
+    so in some cases your code needs to use explicit APIs for manipulating
+    objects in order for bindings to update. For more information, see
+    [Binding to structured data](devguide/data-binding.html#path-binding), and 
+    [Array mutation methods](devguide/properties.html#array-mutation).
 
-    Note that this means a node **can't include any whitespace around the binding annotation**.
+As of release 1.2.0, {{site.project_title}} includes support for compound bindings, 
+which combine binding annotations and literal strings:
 
-Before:
-
-    {% raw %}
-    <my-foo fullname="{{firstname + ' ' + lastname}}">
-      Hi, my name is {{firstname}}.
-    </my-foo>
-    {% endraw %}
-
-After:
-
-    {% raw %}
-    <my-foo fullname="{{computeFullName(firstname, lastname)}}">
-            Hi, my name is <span>{{firstname}}</span>.
-    </my-foo>
-    {% endraw %}
-
-    ...
-
-    computeFullName: function(first, last) {
-      return first + ' ' + last;
-    }
+    <span>Name: {%raw%}{{lastname}}, {{firstname}}{%endraw%}</span>
 
 Support for repeating templates, conditional templates and autobinding templates 
 is provided by [helper elements](devguide/templates.html). 

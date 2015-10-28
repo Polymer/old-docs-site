@@ -58,11 +58,11 @@ For example:
 syntax. For more information, see [Binding to native element attributes](#native-binding). 
 {: .alert .alert-info }
 
+
 ### Binding to text content 
 
 To bind to a child element's `textContent`, you can simply include the
-annotation inside the child element. The binding annotation must currently span
-the **entire content** of the tag:
+annotation inside the child element. 
 
     {% raw %}
     <dom-module id="user-view">
@@ -88,21 +88,23 @@ the **entire content** of the tag:
 
     <user-view first-name="Samuel" last-name="Adams"></user-view>
 
-String concatenation is **not** supported inside a tag, and the tag **can't 
-contain any whitespace**:
-
-    {% raw %}
-    <!-- Not currently supported! -->
-    <div>First: {{firstName}}</div>
-    <div>Last: {{lastName}}</div>
-
-    <!-- Not currently supported! -->
-    <div>
-      {{title}}
-    </div>
-    {% endraw %}
-
 Binding to text content is always one-way, host-to-child.
+
+### Compound bindings {#compound-bindings}
+
+You can combine string literals and bindings in a single property binding or
+text content binding:
+
+    <img src="https://www.example.com/profiles/{%raw%}{{userId}}{%endraw%}.jpg">
+
+    <span>Name: {%raw%}{{lastname}}, {{firstname}}{%endraw%}</span>
+
+Compound bindings are re-evaluated whenever the value of any of the individual
+bindings changes. Undefined values are interpolated as empty strings.
+
+You can use either one-way (`[[]]`) or automatic (`{%raw%}{{}}{%endraw%}`)
+binding annotations in a compound binding, but the bindings are **always one-
+way, host-to-target.**
 
 ### Binding to sub-properties
 
@@ -448,6 +450,9 @@ The two exceptions are:
 
 *   Computed bindings, as described in 
     [Computed bindings](#annotated-computed), below.
+
+
+In addition, multiple binding annotations can be combined with string literals in a single [compound binding](#compound-binding).
 
 ## Computed bindings {#annotated-computed}
 
