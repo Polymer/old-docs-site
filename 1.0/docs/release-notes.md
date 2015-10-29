@@ -15,6 +15,58 @@ subtitle: About this release
   }
 </style>
 
+## [Release 1.2.0](https://github.com/Polymer/polymer/tree/v1.2.0) (2015-10-22)
+
+This release includes the following new features:
+
+-   Compound binding support. In place of a single binding annotation, you 
+    can now use a compound binding consisting of string literals and 
+    binding annotations:
+
+        <span>Name: {%raw%}{{lastname}}, {{firstname}}{%endraw%}</span>
+
+    See [Compound bindings](devguide/data-binding.html#compound-bindings) for details.
+
+-   New `observeNodes` method for tracking addition and removal of child 
+    nodes and distributed nodes. See [Observe added and removed children](devguide/local-dom.html#observe-nodes).
+
+-   New _effective children_ APIs that provide a composition-aware view of
+    light DOM children. See [Effective children](devguide/local-dom.html#effective-children).
+
+-   Improvements to path API. 
+    [Fixes #2007](https://github.com/Polymer/polymer/issues/2007), 
+    [#2509](https://github.com/Polymer/polymer/issues/2509). 
+    
+    *    Allows `set` to take paths with array keys, identified by 
+         <code>#<var>key</var></code>.
+    *    Allows `notifyPath` to take paths with array indices.
+    *    Exposes public `notifySplices` API.
+
+
+-   [Fixes #2582](https://github.com/Polymer/polymer/issues/2582). Fix IE10 regressions  
+    in dom-repeat, dom-bind, and dom-module-inline  
+
+-   Fix deepEqual on Safari 9 due to Safari enumeration bug.
+
+-   Add `Polymer.dom(node).notifyObservers` method to 'kick' observers, for example, 
+    when attributes change under Shadow DOM. 
+
+
+## [Release 1.1.5](https://github.com/Polymer/polymer/tree/v1.1.5) (2015-10-08)
+
+This release includes the following new features:
+
+-   Added `isLightDescendent` and `isLocalDescendent` utility methods to 
+    {{site.project_title}} elements. 
+
+-   The `fire` method's `detail` argument can take any primitive value, not just objects.
+
+This release fixes the following issues:
+
+- [Fixes #2504](https://github.com/Polymer/polymer/issues/2504). Templatizer: Variables in the parent scope are not passed during initialization. 
+
+- [Fixes #2505](https://github.com/Polymer/polymer/issues/2504). Templatizer: Changes to array/object properties from the parent scope not notified.
+
 ## [Release 1.1.4](https://github.com/Polymer/polymer/tree/v1.1.4) (2015-09-25)
 
 This release fixes the following issues:

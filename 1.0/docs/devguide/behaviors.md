@@ -91,7 +91,9 @@ team are added to the {{site.project_title}} object. When creating your own beha
 use some other namespace to avoid collisions with future {{site.project_title}} behaviors. For example:
 
     window.MyBehaviors = window.MyBehaviors || {};
-    window.MyBehaviors.HighlightBehavior = { ... }
+    MyBehaviors.HighlightBehavior = { ... }
+
+Here the `MyBehaviors` namespace is explicitly added to the global `window` object, so the behavior can be referenced from your elements as `MyBehaviors.HighlightBehavior`.
 
 ## Extending behaviors {#extending}
 
