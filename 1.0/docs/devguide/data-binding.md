@@ -326,8 +326,8 @@ Example:
       <user-element user="{%raw%}{{user}}{%endraw%}"></user-element>
     </template>
 
-The path syntax doesn't support array-style accessors (such as `users[0].name`). 
-However, you can include indexes directly in the path (`users.0.name`).
+The path syntax **doesn't** support array-style accessors (such as `users[0].name`). 
+You must use a computed binding as described in [Binding to array items](#array-binding).
 
 For a path binding to update, the path value must be updated in one of the 
 following ways: 
