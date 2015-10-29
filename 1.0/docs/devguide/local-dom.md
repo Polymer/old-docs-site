@@ -220,7 +220,8 @@ root of its local DOM tree. You can manipulate the tree using `Polymer.dom` meth
 
 You can use the [automatic node finding](#node-finding) feature to locate local DOM nodes:
 
-    Polymer.dom(this.$.container).appendNode(append);
+    var item = document.createElement('li');
+    Polymer.dom(this.$.list).appendChild(item);
 
 You can also locate nodes in the local DOM using `querySelector`, `querySelectorAll`, or the `$$` utility method:
 
@@ -286,7 +287,7 @@ both methods default to the first `<content>` element in the local DOM.)
 
     <dom-module id="simple-content">
       <template>
-        <content id="myContent"></content></span>
+        <content id="myContent"></content>
       </template>
       <script>
         Polymer({
@@ -302,7 +303,8 @@ both methods default to the first `<content>` element in the local DOM.)
 
 #### Effective children {#effective-children}
 
-Effective children are the  set of an element's light DOM children, _with any insertion points replaced by their distributed children._
+Effective children are the  set of an element's light DOM children, _with 
+any insertion points replaced by their distributed children._
 
 Consider a simple image carousel element with no local DOM. It's used like this:
 
@@ -312,14 +314,19 @@ Consider a simple image carousel element with no local DOM. It's used like this:
       <img src="three.jpg">
     <simple-carousel>
 
-The carousel adds dots underneath the current image that let the user select a different image, so the carousel needs to know how many children it has. This is simple enough: the carousel can check its children the `attached` method:
+The carousel adds dots underneath the current image that let the user select 
+a different image, so the carousel needs to know how many children it has. 
+This is simple enough: the carousel can check its children in the `attached` 
+callback:
 
     attached: function() {
       this.childCount = Polymer.dom(this).children.length;
       // do something with childCount ...
     }
 
-But there are a few issues here. What if you create a new element, `<popup-carousel>`, that includes a simple carousel in its local DOM? You use the new element the same way:
+But there are a few issues here. What if you create a new element, 
+`<popup-carousel>`, that includes a simple carousel in its local DOM? You 
+use the new element the same way:
 
     <popup-carousel>
       <img src="one.jpg">
@@ -337,15 +344,22 @@ Internally, the popup-carousel does something like this:
       ...
     </dom-module>
 
-The popup carousel simply passes its children on to the simple carousel by including a `<content>` tag. But now the simple carousel's `attached` method doesn't work: `Polymer.dom(this).children.length` will always return 1, because the carousel only has a single child, the `<content>` tag. 
+The popup carousel simply passes its children on to the simple carousel by 
+including a `<content>` tag. But now the simple carousel's `attached` method 
+doesn't work: `Polymer.dom(this).children.length` will always return 1, 
+because the carousel only has a single child, the `<content>` tag. 
 
-Clearly, `children` isn't what you want here. You want a list of children, with any `<content>` tags replaced by their distributed children. Unfortunately, the platform doesn't have a primitive for this, so Polymer has added the concept of "effective children" in its DOM API.
+Clearly, `children` isn't what you want here. You want a list of children, 
+with any `<content>` tags replaced by their distributed children. 
+Unfortunately, the platform doesn't have a primitive for this, so Polymer 
+has added the concept of "effective children" in its DOM API.
 
 You can retrieve an element's effective child nodes using:
 
     var effectiveChildren = Polymer.dom(element).getEffectiveChildNodes();
 
-For convenience, several utility methods are available on the Polymer element prototype:
+For convenience, several utility methods are available on the Polymer 
+element prototype:
 
 *   `getEffeciveChildNodes()`. Returns a list of effective child nodes for 
     this element.
@@ -356,15 +370,18 @@ For convenience, several utility methods are available on the Polymer element pr
 *   `queryAllEffectiveChildren(selector)`. Returns a list of effective
     children that match <var>selector</var>.
 
-Replacing `children` with the `getEffectiveChildren` method gives you the result you want:
+Replacing `children` with the `getEffectiveChildren` method gives you the 
+result you want:
 
     this.childCount = this.getEffectiveChildren().length;
 
-You can think of `getEffectiveChildren` as a composition-friendly version of `children`.
+You can think of `getEffectiveChildren` as a composition-friendly version of 
+`children`.
 
 ### Observe added and removed children {#observe-nodes}
 
-Use the DOM API's `observeNodes` method to track when children are added and removed from
+Use the DOM API's `observeNodes` method to track when children are added and 
+removed from
 your element:
 
     this._observer = Polymer.dom(this.$.contentNode).observeNodes(function(info) {
@@ -372,8 +389,9 @@ your element:
       this.processRemovedNodes(info.removedNodes);
     });
 
-You pass `observeNodes` callback be invoked when nodes are added or removed.
-The callback takes a single Object argument, with `addedNodes` and `removedNodes` arrays. 
+You pass `observeNodes` a callback to be invoked when nodes are added or 
+removed. The callback takes a single Object argument, with `addedNodes` and 
+`removedNodes` arrays. 
 
 The method returns a handle that can be used to stop observation:
 
@@ -389,7 +407,8 @@ node being observed:
 
 A few notes on `observeNodes`:
 
--   Since the method is attached to the DOM API, the callback is called the observed node as the `this` value. So if you do:
+*   Since the method is attached to the DOM API, the callback is called the 
+    observed node as the `this` value. So if you do:
 
         this._observer = Polymer.dom(this.$.content).observeNodes(_childrenChanged);
 
