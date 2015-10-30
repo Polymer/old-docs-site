@@ -95,7 +95,7 @@ Binding to text content is always one-way, host-to-child.
 You can combine string literals and bindings in a single property binding or
 text content binding:
 
-    <img src="https://www.example.com/profiles/{%raw%}{{userId}}{%endraw%}.jpg">
+    <img src$="https://www.example.com/profiles/{%raw%}{{userId}}{%endraw%}.jpg">
 
     <span>Name: {%raw%}{{lastname}}, {{firstname}}{%endraw%}</span>
 
