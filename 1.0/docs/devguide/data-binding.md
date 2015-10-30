@@ -452,7 +452,7 @@ The two exceptions are:
     [Computed bindings](#annotated-computed), below.
 
 
-In addition, multiple binding annotations can be combined with string literals in a single [compound binding](#compound-binding).
+In addition, multiple binding annotations can be combined with string literals in a single [compound binding](#compound-bindings).
 
 ## Computed bindings {#annotated-computed}
 
