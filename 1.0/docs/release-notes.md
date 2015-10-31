@@ -15,6 +15,22 @@ subtitle: About this release
   }
 </style>
 
+## [Release 1.2.1](https://github.com/Polymer/polymer/tree/v1.2.1) (2015-10-29)
+
+This release includes the following new features:
+
+-   Add `deepContains` method to DOM API.
+
+This release includes fixes for the following issues:
+
+-   Make parsing of mixin declarations more robust.
+
+-   [Fixes #2556](https://github.com/Polymer/polymer/issues/2556). 
+    `notifyPath`: Ensure outer paths aren't forwarded to instance props.
+
+-   [Fixes #2610](https://github.com/Polymer/polymer/issues/2610).
+    `isLightDescendant` should return false for self.
+
 ## [Release 1.2.0](https://github.com/Polymer/polymer/tree/v1.2.0) (2015-10-22)
 
 This release includes the following new features:
