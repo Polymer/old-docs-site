@@ -54,6 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a name="home" class="menu-item" href="/summit">HOME</a><br>
           <a name="schedule" class="menu-item" href="/summit/schedule">SCHEDULE</a><br>
           <a name="speakers" class="menu-item" href="/summit/speakers">SPEAKERS</a>
+          <a name="codelabs" class="menu-item" href="/summit/codelabs" target="_blank">CODELABS</a>
         </iron-selector>
       </div>
 
@@ -67,6 +68,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <iron-selector class="wide-only" selected="[[page]]" activate-event="click" attr-for-selected="name">
                 <a name="schedule" class="tab" href="/summit/schedule">SCHEDULE</a>
                 <a name="speakers" class="tab" href="/summit/speakers">SPEAKERS</a>
+                <a name="codelabs" class="tab" href="/summit/codelabs" target="_blank">CODELABS</a>
               </iron-selector>
             </div>
 
@@ -94,14 +96,43 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           <section name="home">
 
-            <header class="home-header horizontal center-center layout">
-              <div class="badge-blue"></div>
-            </header>
+            <template is="dom-if" if="[[hasLivestream]]">
+              <header class="home-header-livestream">
+                <div class="livestream-container">
+                  <google-youtube class="livestream"
+                                  list-type="playlist"
+                                  list="PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J"
+                                  video-id="jVn8tlnwAEs"
+                                  fluid>
+                  </google-youtube>
+                </div>
+              </header>
+            </template>
+
+            <template is="dom-if" if="[[!hasLivestream]]">
+              <header class="home-header horizontal center-center layout">
+                <div class="badge-blue"></div>
+              </header>
+            </template>
 
             <div class="date-loc-banner blue-banner responsive horizontal center-center layout">
               <div class="location">Amsterdam, Netherlands</div>
               <div class="dot-separator wide-only"></div>
               <time>September 14-15, 2015</time>
+            </div>
+
+            <div class="wait-list-banner">
+              <div>
+                <span>The Summit is over, but not forgotten.</span>
+                <br>
+                <span>Missed something? You can always</span>
+                <a class="pink-arrow-btn" href="https://www.youtube.com/playlist?list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J">Watch the videos</a>
+              </div>
+              <div>
+                <span>Or </span>
+                  <a class="pink-arrow-btn" target="_blank" href="/summit/codelabs" data-outbound="code-labs">Try a codelab
+                  </a> from home.
+              </div>
             </div>
 
             <div>
@@ -110,37 +141,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   <time>September 14</time>
                   <div class="flex-auto">Join us for an evening of code labs for hands-on learning. <strong>BYOL (Bring Your Own Laptop).</strong></div>
                 </section>
-                <section class="responsive horizontal layout">
+                <section class="bottom-spacer responsive horizontal layout">
                   <time>September 15</time>
                   <div class="flex-auto">Come out for an all-day summit of Polymer tech talks and an after hours event.</div>
                 </section>
+                <section>
+                  You can pre-register on 14 September between 5pm-9pm. You can also register on the day of the event starting at 7:30am.
+                </section>
               </div>
-            </div>
-
-            <div class="wait-list-banner">
-
-              <template is="dom-if" if="[[hasLivestream]]">
-                <div class="livestream-container">
-                  <google-youtube class="livestream"
-                                  video-id="PxJ2PWwVYbQ"
-                                  fluid>
-                  </google-youtube>
-                </div>
-              </template>
-
-              <template is="dom-if" if="[[!hasLivestream]]">
-                <div>
-                  <span>Good news! We have more space.</span>
-                  <a class="pink-arrow-btn " target="_blank" href="https://polymer.eventfarm.com" data-outbound="join-waiting-list">Register now!</a>
-                </div>
-                <div>
-                  <span>Or,</span>
-                  <a class="signup-live-stream-btn pink-arrow-btn " target="_blank" href="https://services.google.com/fb/forms/polymer2015/"
-                  data-outbound="signup-livestream">Sign up</a>
-                  <span>to watch the livestream from anywhere.</span>
-                </div>
-              </template>
-
             </div>
 
             <a class="amsterdam-bg" aria-label="Event map" target="_blank"
@@ -194,8 +202,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       </paper-button>
                     </a>
                   </div>
-                  <a tabindex="-1" target="_blank" href="https://www.youtube.com/user/ChromeDevelopers" data-outbound="stream-video">
-                    <paper-button class="anchor-button red" raised>Stream Video During the Summit</paper-button>
+                  <a tabindex="-1" target="_blank" href="https://www.youtube.com/playlist?list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J" data-outbound="stream-video">
+                    <paper-button class="anchor-button red" raised>Watch the Polymer Summit Videos</paper-button>
                   </a>
                 </div>
               </paper-material>
@@ -209,12 +217,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <div class="horizontal center-center layout">
               <paper-material class="misc-card">
                 <div class="codelabs">
-                  <h3>Code labs will be happening during the Summit,</h3>
-                  <p>but even if you won’t be attendance these will be available online for you to work from the comfort of your own home or favorite coffee shop.</p>
+                  <h3>Code labs are available throughout the Summit</h3>
+                  <p>Even if you're not in attendance, they're available online for you to work from the comfort of your own home or favorite coffee shop.</p>
                 </div>
-                <!-- <a tabindex="-1" target="_blank" href="" data-outbound="code-labs"> -->
-                  <paper-button class="anchor-button blue" disabled raised>Coming Soon!</paper-button>
-                <!-- </a> -->
+                <a tabindex="-1" target="_blank" href="/summit/codelabs" data-outbound="code-labs">
+                  <paper-button class="anchor-button blue" raised>Start a codelab!</paper-button>
+                </a>
               </paper-material>
             </div>
 
@@ -228,14 +236,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <div class="wait-list-banner home-page-hidden">
           <div>
-            <span>Good news! We have more space.</span>
-            <a class="pink-arrow-btn " target="_blank" href="https://polymer.eventfarm.com" data-outbound="register-now">Register now!</a>
+            <span>The Summit is over, but not forgotten.</span>
+            <br>
+            <span>Missed something? You can always</span>
+            <a class="pink-arrow-btn" href="https://www.youtube.com/playlist?list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J">Watch the videos</a>
           </div>
           <div>
-            <span>Or,</span>
-            <a class="signup-live-stream-btn pink-arrow-btn " target="_blank" href="https://services.google.com/fb/forms/polymer2015/"
-            data-outbound="signup-livestream">Sign up</a>
-            <span>to watch the livestream from anywhere.</span>
+            <span>Or </span>
+            <a class="pink-arrow-btn" target="_blank" href="/summit/codelabs" data-outbound="code-labs">Try a codelab
+            </a> from home.
           </div>
         </div>
 
@@ -280,7 +289,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     var app = document.querySelector('#app');
 
     // Flip to true to make the livestream player go live
-    app.hasLivestream = false;
+    app.hasLivestream = true;
 
     app._toggleDrawer = function(e) {
       if (e.keyCode === 13) {

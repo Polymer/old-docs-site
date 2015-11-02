@@ -582,7 +582,7 @@ A style module declares a named set of style rules that can be imported into
 an element definition, or into a `custom-style` element.
 
 **Note:** Style modules were introduced in {{site.project_title}} 1.1;
-they replace the experimental support for [external stylesheets](#external-styleshees).
+they replace the experimental support for [external stylesheets](#external-stylesheets).
 {: .alert .alert-info }
 
 Define a style module inside an HTML import using the `<dom-module>` 
@@ -633,10 +633,9 @@ and define local rules:
     </style>
 
 (This works for both `custom-style` elements and `<style>` tags inside
-custom elements.) Currently, the shared styles are applied _after_ the styles defined
-inside the body of the `<style>` tag, so the shared styles take precedence.
-However, this order may change in a future release.
-
+custom elements.) The shared styles are applied _before_ the styles defined
+inside the body of the `<style>` tag, so the shared styles can be overridden
+by the styles defined in the body.
 
 ### External stylesheets (deprecated) {#external-stylesheets}
 

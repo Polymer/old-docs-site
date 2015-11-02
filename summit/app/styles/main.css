@@ -134,10 +134,10 @@ h3 {
   color: #147BCC;
 }
 
-.header-layout[page=home] .main-header:not([threadhold-matches]) .toolbar-badge {
+/*.header-layout[page=home] .main-header:not([threadhold-matches]) .toolbar-badge {
   opacity: 0;
   visibility: hidden;
-}
+}*/
 
 .tab {
   padding: 12px 8px;
@@ -180,6 +180,16 @@ h3 {
 .home-header {
   height: 420px;
   background-color: #4FB6F7;
+}
+
+.home-header-livestream {
+  background-color: #4FB6F7;
+}
+
+.livestream-container {
+  margin: 0 auto;
+  max-width: 720px;
+  padding: 24px 16px;
 }
 
 .blue-banner {
@@ -236,11 +246,6 @@ h3 {
   color: #fff;
   background: url(../images/Pink_BG_Pattern/Desktop/Summit_PinkBGPattern_Left.png) center left repeat-y,url(../images/Pink_BG_Pattern/Desktop/Summit_PinkBGPattern_Right.png) center right repeat-y #FC6C9C;
   background-size: 25%;
-}
-
-.livestream-container {
-  margin: 0 auto;
-  max-width: 1000px;
 }
 
 .pink-arrow-btn {

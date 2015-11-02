@@ -53,7 +53,7 @@ This generates a basic `bower.json` file. Some of the questions, like
 
 The next step is to install {{site.project_title}}:
 
-    bower install --save Polymer/polymer#^1.0.0
+    bower install --save Polymer/polymer#^1.2.0
 
 Bower adds a `bower_components/` folder in the root of your project and
 fills it with {{site.project_title}} and its dependencies.
@@ -64,7 +64,7 @@ fills it with {{site.project_title}} and its dependencies.
   "name": "my-project",
   "version": "0.0.0",
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.0.0"
+    "polymer": "Polymer/polymer#^1.2.0"
   }
 }
 ```
@@ -83,7 +83,7 @@ This updates all packages in `bower_components/` to the latest stable version.
 
 Click the button to download {{site.project_title}} {% polymer_version_dir %} as a ZIP file.
 
-<p><a href="http://zipper.bowerarchiver.appspot.com/archive?polymer=Polymer/polymer%231.0.0">
+<p><a href="http://zipper.bowerarchiver.appspot.com/archive?polymer=Polymer/polymer%23%5E1.2.0">
   <paper-button class="cta" raised><core-icon icon="file-download"></core-icon>Download ZIP</paper-button>
 </a></p>
 
@@ -97,18 +97,18 @@ Expand the ZIP file in your project directory to create a `bower_components` fol
 
 Unlike Bower, the ZIP file doesn't provide a built-in method
 for updating dependencies. You can manually update components with a new ZIP
-file. 
+file.
 
-**Note:**  If you decide to install Bower later, you can use Bower to update the 
-components you installed from the ZIP file. Follow the instructions in 
+**Note:**  If you decide to install Bower later, you can use Bower to update the
+components you installed from the ZIP file. Follow the instructions in
 [Updating packages](#updatebower).
 {: .alert .alert-info }
 
 ## Using the Polyfills
 
 When you install {{site.project_title}} (either with Bower or as a ZIP), you get the
-[Web Components polyfill library](/0.5/docs/start/platform.html). 
-For this version of {{site.project_title}}, you need the `webcomponents-lite` version of the 
+[Web Components polyfill library](/0.5/docs/start/platform.html).
+For this version of {{site.project_title}}, you need the `webcomponents-lite` version of the
 library, which doesn't include the shadow DOM polyfill.
 
 Using the polyfills ensures that you can use {{site.project_title}} with browsers that don't support
@@ -116,19 +116,19 @@ the Web Components specifications natively.
 
 ## Element starter {#seed-element}
 
-If you want to publish an element for others to use, [the 
+If you want to publish an element for others to use, [the
 `<seed-element>` boilerplate](https://github.com/polymerelements/seed-element) is a good starting point. It comes with the tools
 you need for building, testing and documenting your element.
 
-[Create a reusable element](reusableelements.html) guides you through the 
+[Create a reusable element](reusableelements.html) guides you through the
 steps to create, test, document and publish your element.
 
 ## Polymer Starter Kit {#psk}
 
-A “batteries-included” application template, the 
+A “batteries-included” application template, the
 [Polymer Starter Kit](https://developers.google.com/web/tools/polymer-starter-kit/)
 includes a responsive application layout, tooling for testing and deployment, and
-even optional support for advanced features like offline access and push notifications. 
+even optional support for advanced features like offline access and push notifications.
 
 ## Contributing to the Project {#using-git}
 

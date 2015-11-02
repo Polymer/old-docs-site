@@ -1,0 +1,15 @@
+{% capture v %}{% polymer_version_dir %}{% endcapture %}
+
+{% case v %}
+{% when "1.0" %}
+  {% assign latest_version = true %}
+{% else %}
+  {% assign latest_version = false %}
+{% endcase %}
+
+{% unless latest_version %}
+<div class="alert alert-error version_warning_bar">
+  <core-icon icon="info"></core-icon>
+  You're viewing an older (deprecated) version of {{site.project_title}}. Please see <a href="/{{site.default_version}}/docs/start/quick-tour.html" onclick="location='/{{site.default_version}}/docs/start/quick-tour.html'">Polymer {{site.default_version}}</a> for the latest.
+</div>
+{% endunless %}

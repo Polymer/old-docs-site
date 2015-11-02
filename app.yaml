@@ -1,5 +1,5 @@
 application: polymer-project
-version: robot-rollcall
+version: happy-halloween
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -131,6 +131,16 @@ handlers:
 - url: /summit/(schedule|speakers)
   static_files: _site/summit/dist/index.html
   upload: _site/summit/dist/index.html
+  secure: always
+
+- url: /summit/codelabs/$
+  static_files: _site/summit/dist/codelabs.html
+  upload: _site/summit/dist/codelabs.html
+  secure: always
+
+- url: /summit/codelabs$
+  static_files: _site/summit/dist/codelabs.html
+  upload: _site/summit/dist/codelabs.html
   secure: always
 
 - url: /summit/(.*)

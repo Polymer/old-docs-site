@@ -87,7 +87,7 @@ elements are now exposed to the world. Exposing these nodes is problematic:
 
 ## Tree Scoping
 
-This is where shadow DOM comes in, or more generally speaking, there is where
+This is where shadow DOM comes in, or more generally speaking, this is where
 _tree-scoping_ comes in. Tree-scoping is the ability to take a DOM subtree and
 hide it from the main document scope. This is where the shadow nomenclature
 comes from, as if we are hiding some DOM in the shadows (which is awesome, but
@@ -201,7 +201,7 @@ The upshot is that shady DOM provides enough tree-scoping for Polymer to act as
 if shadow DOM is available on all platforms, without compromising performance.
 
 It’s important to note that we've made shady DOM and shadow DOM compatible. This
-means that the shady DOM API employs real shadow DOM where it's available.
+means that the shady DOM API can optionally employ real shadow DOM where it's available.
 Therefore, you can write one code base that works on all platforms, but you
 enjoy improved performance and robustness on platforms that implement Shadow
 DOM.

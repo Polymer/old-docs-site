@@ -280,9 +280,9 @@ for Polymer features.
 
 ## Static attributes on host {#host-attributes}
 
-If a custom elements needs HTML attributes set on it at create-time, these may
+If a custom element needs HTML attributes set on it at create-time, the attributes may
 be declared in a `hostAttributes` property on the prototype, where keys are the
-attribute name and values are the values to be assigned.  Values should
+attribute names and values are the values to be assigned.  Values should
 typically be provided as strings, as HTML attributes can only be strings;
 however, the standard `serialize` method is used to convert values to strings,
 so `true` will serialize to an empty attribute, and `false` will result in no
