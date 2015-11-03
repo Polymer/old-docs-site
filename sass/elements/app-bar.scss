@@ -114,14 +114,20 @@ input {
   font-size: 14px;
   text-decoration: none;
   color: black;
+  text-align: center;
+  padding: 0.9em 1em;
 }
 
 .site-switcher /deep/ core-menu {
-  width: 95px;
+  margin: 0;
 }
 
 .site-switcher /deep/ paper-item {
-  min-width: initial;
+  width: 100%;
+}
+
+.site-switcher /deep/ .button-content {
+  padding: 0;
 }
 
 // Tablet
