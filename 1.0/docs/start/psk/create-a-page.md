@@ -2,11 +2,11 @@
 layout: default
 type: start
 shortname: Start
-title: Creating a new page
+title: Create a new page
 subtitle: Polymer Starter Kit
 ---
 
-## Creating a new page
+## Create a new page
 
 This Polymer Starter Kit tutorial teaches you how to:
 
@@ -16,7 +16,7 @@ This Polymer Starter Kit tutorial teaches you how to:
 
 This guide assumes you have already completed the [Set up guide](setting-up.html).
 
-## Setting up
+## Set up
 
 1. `cd` to the base directory of your project.
 
@@ -29,7 +29,7 @@ This guide assumes you have already completed the [Set up guide](setting-up.html
    modifications, re-builds the application, and reloads your browser
    automatically. There is no need to re-load the browser or the application.
 
-## Creating a navigation menu item
+## Create a navigation menu item
 
 1. Open `app/index.html`. 
 
@@ -91,7 +91,7 @@ next section to do that now.
 
 <!-- image with new nav item -->
 
-## Adding content
+## Add content
 
 In the previous section you added a navigation menu item to enable the 
 user to navigate to a new page. Now, you add the content for that new page.
@@ -174,7 +174,7 @@ You now have content to link your new navigation item to, but the routing
 system for the Polymer Starter Kit is not quite set up properly yet. Proceed
 to the next section to link your navigation item to your new content.
 
-## Routing traffic to the new content
+## Route traffic to the new content
 
 In this last tutorial, you make a minor modification to the routing system
 so that when a user clicks on the new "Books" navigation menu item, they 

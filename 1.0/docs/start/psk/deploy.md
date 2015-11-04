@@ -2,11 +2,11 @@
 layout: default
 type: start
 shortname: Start
-title: Hosting
+title: Deploy
 subtitle: Polymer Starter Kit
 ---
 
-## Hosting a Polymer Starter Kit application
+## Deploy a Polymer Starter Kit application
 
 This guide teaches you how to deploy your Polymer Starter Kit application.
 

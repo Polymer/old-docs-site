@@ -2,11 +2,11 @@
 layout: default
 type: start
 shortname: Start
-title: Setting up
+title: Set up
 subtitle: Polymer Starter Kit
 ---
 
-## Setting up the Polymer Starter Kit
+## Set up the Polymer Starter Kit
 
 Follow the instructions below to install, build, and set up the
 Polymer Starter Kit (PSK) for local development in less than 15 minutes.
