@@ -18,7 +18,7 @@ This Polymer Starter Kit tutorial teaches you how to:
 
 This guide assumes you have already completed the [Set up guide](setting-up.html).
 
-## Set up
+## Serve the app locally
 
 1. `cd` to the base directory of your project.
 
