@@ -49,8 +49,8 @@ This guide assumes you have already completed the [Set up guide](setting-up.html
 ...
 {% endhighlight %}
 
-Each navigation menu item consists of an `a` element with two children: 
-`iron-icon` and `span`.
+Each navigation menu item consists of an anchor element (`<a>`) with two 
+children: `iron-icon` and `span`.
 
 * `iron-icon` displays a single icon. 
 * `span` displays the text next to the icon.
