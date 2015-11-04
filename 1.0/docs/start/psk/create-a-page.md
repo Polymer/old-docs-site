@@ -12,9 +12,9 @@ subtitle: Polymer Starter Kit
 
 This Polymer Starter Kit tutorial teaches you how to:
 
-* create a new menu item in the navigation menu
-* create content for a new page
-* route traffic to your new page
+* Create a new menu item in the navigation menu.
+* Create content for a new page.
+* Route traffic to your new page.
 
 This guide assumes you have already completed the [Set up guide](setting-up.html).
 
