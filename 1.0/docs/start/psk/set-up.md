@@ -6,10 +6,12 @@ title: Set up
 subtitle: Polymer Starter Kit
 ---
 
-## Set up the Polymer Starter Kit
+{% include toc.html %}
 
-Follow the instructions below to install, build, and set up the
-Polymer Starter Kit (PSK) for local development in less than 15 minutes.
+Follow the instructions below to install, build, and run the 
+Polymer Starter Kit (PSK) locally in less than 15 minutes.
+
+## Install the Polymer Starter Kit and dependencies
 
 1. Install [Node.js](https://nodejs.org/) (`node`) version 0.12 or above. 
    Node.js includes Node Package Manager (`npm`) by default. The PSK uses `npm` to 
@@ -33,9 +35,6 @@ Polymer Starter Kit (PSK) for local development in less than 15 minutes.
    globally is because some scripts in the PSK expect
    `gulp` and `bower` to be available from the command line. 
 
-   [//]: # (discussion of the Git workflow)
-
-
 1. Download the [latest PSK release](https://github.com/PolymerElements/polymer-starter-kit/releases/latest).
    
    There are two versions of the PSK, a light version (e.g. `polymer-starter-kit-light-x.x.x.zip`)
@@ -46,7 +45,20 @@ Polymer Starter Kit (PSK) for local development in less than 15 minutes.
    directory called `polymer-starter-kit-x.x.x`. You can rename the directory to
    something more relevant to your project.
 
-1. `cd` into the directory.
+1. Install the build and toolchain dependencies.
+
+       npm install
+
+1. Install the application dependencies.
+
+       bower install
+
+## Initializine Git repository (optional)
+
+Your PSK installment does not contain any version control system. Follow the 
+instructions below if you want to manage your source code with Git.
+
+1. `cd` into the base directory of your PSK installment.
 
 1. Initialize a Git repository.
 
@@ -56,13 +68,7 @@ Polymer Starter Kit (PSK) for local development in less than 15 minutes.
 
        git add . && git commit -m "Add Polymer Starter Kit."
 
-1. Install build and toolchain depencies.
-
-       npm install
-
-1. Install application dependencies.
-
-       bower install
+## Build and serve 
 
 1. Build the app.
 
@@ -72,10 +78,10 @@ Polymer Starter Kit (PSK) for local development in less than 15 minutes.
 
        gulp serve
 
-   The task above automatically opens up your default web browser and
-   fetches the locally-hosted application (at `http://localhost:5000`).
+The task above automatically opens up your default web browser and
+fetches the locally-hosted application (at `http://localhost:5000`).
 
-   The local development server automatically detects file modifications
-   and re-builds the application. As long as you keep the `gulp serve`
-   task running there is no need to re-build or re-serve the app while
-   you develop. 
+The local development server automatically detects file modifications
+and re-builds the application. As long as you keep the `gulp serve`
+task running there is no need to re-build or re-serve the app while
+you develop. 
