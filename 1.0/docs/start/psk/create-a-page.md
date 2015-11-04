@@ -24,7 +24,7 @@ This guide assumes you have already completed the [Set up guide](setting-up.html
 
 1. Start the local development server.
 
-       grunt
+       gulp serve
 
    The local development server opens the application in your default
    web browser. As you modify your application, the server detects the
