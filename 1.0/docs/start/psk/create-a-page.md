@@ -6,6 +6,8 @@ title: Create a new page
 subtitle: Polymer Starter Kit
 ---
 
+{% include toc.html %}
+
 ## Create a new page
 
 This Polymer Starter Kit tutorial teaches you how to:
