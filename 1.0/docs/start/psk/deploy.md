@@ -3,7 +3,7 @@ layout: default
 type: start
 shortname: Start
 title: Deploy
-subtitle: Polymer Starter Kit
+subtitle: Using Polymer Starter Kit
 ---
 
 This guide teaches you how to deploy your Polymer Starter Kit application.

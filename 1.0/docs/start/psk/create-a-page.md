@@ -3,7 +3,7 @@ layout: default
 type: start
 shortname: Start
 title: Create a new page
-subtitle: Polymer Starter Kit
+subtitle: Using Polymer Starter Kit
 ---
 
 {% include toc.html %}
