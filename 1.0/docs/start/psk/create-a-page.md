@@ -50,10 +50,10 @@ automatically. There is no need to re-load the browser or the application.
 {% endhighlight %}
 
 Each navigation menu item consists of an anchor element (`<a>`) with two 
-children: `iron-icon` and `span`.
+children: `<iron-icon>` and `<span>`.
 
-*   `iron-icon` displays a single icon. 
-*   `span` displays the text next to the icon.
+*   `<iron-icon>` displays a single icon. 
+*   `<span>` displays the text next to the icon.
    
 1.  Add the following new navigation item to the bottom of the menu.
 
@@ -126,10 +126,10 @@ user to navigate to a new page. Now, you add the content for that new page.
     ...
 {% endhighlight %}
 
-*   Each page of the application is a `section` element. 
+*   Each page of the application is a `<section>` element. 
 *   The `data-route` attribute is an identifier for the routing system. 
     You'll set that up for your new page in the next section.
-*   The `paper-material` element creates a card which floats on top of the
+*   The `<paper-material>` element creates a card which floats on top of the
     main content area. All text, images, and other content should always
     be contained within one of these cards.
 *   The `elevation` attribute determines how high the card appears to visually
