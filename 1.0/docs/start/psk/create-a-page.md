@@ -33,7 +33,7 @@ This guide assumes you have already completed the [Set up guide](setting-up.html
 
 ## Create a navigation menu item
 
-1.  Open `app/index.html`. 
+1.  Open `app/index.html` in a text editor.
 
 1.  Find the navigation menu. The beginning of it is diplayed in the code
     snippet below.
@@ -98,9 +98,9 @@ next section to do that now.
 In the previous section you added a navigation menu item to enable the 
 user to navigate to a new page. Now, you add the content for that new page.
 
-1.  Open `app/index.html` and find the main content. The beginning of the main
-    content section is provided in the code snippet below (some code omitted for
-    brevity).
+1.  Open `app/index.html` in a text editor and find the main content. 
+    The beginning of the main content section is provided in the code 
+    snippet below (some code omitted for brevity).
 
 {% highlight html %}
 <div class="content">
@@ -182,8 +182,9 @@ In this last tutorial, you make a minor modification to the routing system
 so that when a user clicks on the new "Books" navigation menu item, they 
 get routed properly to your new page.
 
-1.  Open `app/elements/routing.html` and add the following code near the 
-    bottom of the script, just above the page rule for `/`.
+1.  Open `app/elements/routing.html` in a text editor and add the 
+    following code near the bottom of the script, just above the 
+    page rule for `/`.
 
 {% highlight javascript %}
 page('/books', function () {
