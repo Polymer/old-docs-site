@@ -134,7 +134,7 @@ you develop.
 
 Now that your PSK is up and running, learn how to [add a new page of 
 content](create-a-page.html), or how to [deploy the app to the 
-web](deploy.html) using Firebase.
+web](deploy.html).
 
 ## Appendix: complete app structure
 
