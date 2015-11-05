@@ -26,10 +26,10 @@ This guide assumes you have already completed the [Set up guide](setting-up.html
 
         gulp serve
 
-    The local development server opens the application in your default
-    web browser. As you modify your application, the server detects the
-    modifications, re-builds the application, and reloads your browser
-    automatically. There is no need to re-load the browser or the application.
+The local development server opens the application in your default
+web browser. As you modify your application, the server detects the
+modifications, re-builds the application, and reloads your browser
+automatically. There is no need to re-load the browser or the application.
 
 ## Create a navigation menu item
 
