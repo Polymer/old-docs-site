@@ -8,8 +8,6 @@ subtitle: Polymer Starter Kit
 
 {% include toc.html %}
 
-## Create a new page
-
 This Polymer Starter Kit tutorial teaches you how to:
 
 *   Create a new menu item in the navigation menu.
