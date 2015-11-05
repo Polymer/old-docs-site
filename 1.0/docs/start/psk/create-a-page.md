@@ -164,9 +164,8 @@ Your code should now look like the following:
 ...
 {% endhighlight %}
 
-You now have content to link your new navigation item to, but the routing
-system for the Polymer Starter Kit is not quite set up properly yet. Proceed
-to the next section to link your navigation item to your new content.
+You now have content to link your new navigation item to. In the 
+next section you'll link your navigation item to your new content.
 
 ## Route traffic to the new content
 
