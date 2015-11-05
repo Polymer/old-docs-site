@@ -55,6 +55,36 @@ Polymer Starter Kit (PSK) locally in less than 15 minutes.
 
         bower install
 
+## Directory structure 
+
+The diagram below is a brief summary of the directories within the PSK. The
+appendix of this tutorial contains a complete overview of the entire PSK
+app structure.
+
+/
+|---app/ 
+|   |---elements/ 
+|   |---images/ 
+|   |---scripts/ 
+|   |---styles/
+|   |---test/ 
+|---docs/ 
+|---dist/
+ 
+*   `app/` is where you store all of your source code and do all of your
+    development. 
+*   `elements/` is where you keep your custom elements. 
+*   `images/` is for static images.
+*   `scripts/` is the place for JS scripts. 
+*   `styles/` houses your app's [shared styles][shared styles] and CSS rules.
+*   `test/` is where you [define tests for your web
+    components](https://github.com/Polymer/web-component-tester).
+*   `docs/` contains optional "recipes" (how-to guides) for adding features
+    to your application or for using optional tools or editors. 
+*   `dist/` is the directory you want to deploy to production. When you run the
+    build task, files are prepared for production (HTML imports are
+    vulcanzied, scripts are minimized, and so on) and output to this directory.
+
 ## Initializine Git repository (optional)
 
 Your PSK installment does not contain any version control system. Follow the 
@@ -87,3 +117,65 @@ The local development server automatically detects file modifications
 and re-builds the application. As long as you keep the `gulp serve`
 task running there is no need to re-build or re-serve the app while
 you develop. 
+
+## Appendix: complete app structure
+
+The diagram below represents the complete directory structure of the 
+PSK. Items that end in `/` represent directories. The rest are individual
+files. The content after the `#` describes why you would potentially interact
+with that directory or file.
+
+/  # Root directory.
+|---app/  # Source code directory. Make all changes in this directory.
+|   |---elements/  # Add your custom elements here.
+|   |   |---my-greeting/  # Sample element demonstrating data-binding.
+|   |   |   |---my-greeting.html
+|   |   |---my-list/  # Sample element demonstrating dom-repeat templates.
+|   |   |   |---my-list.html
+|   |   |---elements.html  # Add element imports here.
+|   |   |---routing.html  # Define URL routing rules here. 
+|   |---images/  # Logos for adding app link to different device homescreens.
+|   |   |---touch/
+|   |       |---apple-touch-icon.png
+|   |       |---chrome-splashscreen-icon-384x384.png
+|   |       |---chrome-touch-icon-192x192.png
+|   |       |---icon-128x128.png
+|   |       |---ms-icon-144x144.png
+|   |       |---ms-touch-icon-144x144-precomposed.png
+|   |---scripts/  # Add JS scripts here.
+|   |   |---app.js  # Add app-level scripts here.
+|   |---styles/
+|   |   |---app-theme.html  # Define app-level styles here.
+|   |   |---main.css  # Define pure CSS rules here.
+|   |   |---shared-styles.html  # Share styles between elements here.
+|   |---test/  # Add Web Component tests here.
+|   |   |---index.html
+|   |   |---my-greeting-basic.html  # Tests for my-greeting sample element.
+|   |   |---my-list-basic.html   # Ttests for my-list sample element.
+|   |---cache-config.json  # Service worker cache config. See comment in file.
+|   |---favicon.ico 
+|   |---index.html  # Add app navigation and content here.
+|   |---manifest.json  # Manifest file for Chrome apps.
+|   |---robots.txt  # Define how search engines can crawl your app here.
+|   |---sw-import.js  # Sservice worker import script.
+|---docs/  # Optional "recipes" for adding features, using tools, etc.
+|   |---README.md
+|   |---add-es2015-support-babel.md  # How to use ES2015 language features.
+|   |---chrome-dev-editor.md  # How to use Chrome Dev Editor.
+|   |---polymer-perf.md  # How to optimize web component loading.
+|---.editorconfig  # Define code style.
+|---.gitattributes  # Configure rules for how Git stores files.
+|---.gitignore  # Tell Git which files to ignore.
+|---.jscsrc  # Configure JSCS here.
+|---.jshintc  # Configure JSHint here.
+|---CONTRIBUTING.md  # Learn how to contribute to PSK.
+|---LICENSE.md  # Learn how you can use and distribute PSK.
+|---README.md  # Read feature overviews and how to install PSK.
+|---bower.json  # Define app dependencies.
+|---gulpfile.js  # Define tasks for building, testing, serving, etc. here.
+|---package.json  # Define build and toolchain dependencies.
+|---dist/  # Deploy this directory to production. 
+
+
+
+[shared styles]: https://www.polymer-project.org/1.0/docs/devguide/styling.html#style-modules
