@@ -85,10 +85,7 @@ Your menu should now look like the following:
 {% endhighlight %}
 
 If you view the app now, you should see your new item in the navigation
-menu, but the link does not point to a valid page yet. Proceed to the 
-next section to do that now.
-
-<!-- image with new nav item -->
+menu, but the link does not point to a valid page yet. 
 
 ## Add content
 
@@ -129,7 +126,7 @@ user to navigate to a new page. Now, you add the content for that new page.
     be contained within one of these cards.
 *   The `elevation` attribute determines how high the card appears to visually
     float above the main content area. Experiment by setting it to values 
-    between `0` and `1` to see for yourself.
+    between `0` and `5` to see for yourself.
 
 1.  Add the following content to the bottom of the main section area.
 
