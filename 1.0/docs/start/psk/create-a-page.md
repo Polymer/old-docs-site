@@ -33,8 +33,7 @@ automatically. There is no need to re-load the browser or the application.
 
 1.  Open `app/index.html` in a text editor.
 
-1.  Find the navigation menu. The beginning of it is diplayed in the code
-    snippet below.
+1.  Find the navigation menu. 
 
 {% highlight html %}
 ...
@@ -62,7 +61,7 @@ children: `<iron-icon>` and `<span>`.
 </a>
 {% endhighlight %}
 
-Your menu should now look like the code below (some code has been omitted).
+Your menu should now look like the following:
 
 {% highlight html %}
 ...
@@ -97,8 +96,6 @@ In the previous section you added a navigation menu item to enable the
 user to navigate to a new page. Now, you add the content for that new page.
 
 1.  Open `app/index.html` in a text editor and find the main content. 
-    The beginning of the main content section is provided in the code 
-    snippet below (some code omitted for brevity).
 
 {% highlight html %}
 <div class="content">
@@ -144,7 +141,7 @@ user to navigate to a new page. Now, you add the content for that new page.
 </section>
 {% endhighlight %}
 
-Your code should now look like the code snippet below (some code omitted).
+Your code should now look like the following:
 
 {% highlight html %}
 ...
@@ -190,7 +187,7 @@ page('/books', function () {
 });
 {% endhighlight %}
 
-Your script should now look like the code snippet below (some code omitted).
+Your script should now look like the following:
 
 {% highlight javascript %}
 ...
