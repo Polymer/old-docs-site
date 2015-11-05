@@ -6,11 +6,9 @@ title: Deploy
 subtitle: Polymer Starter Kit
 ---
 
-## Deploy a Polymer Starter Kit application
-
 This guide teaches you how to deploy your Polymer Starter Kit application.
 
-### Firebase (recommended)
+## Deploy with Firebase (recommended)
 
 Firebase is a very simple and secure way to deploy a PSK site. You can sign
 up for a free account and deploy your application in less than 5 minutes.
