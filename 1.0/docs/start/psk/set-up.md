@@ -8,6 +8,14 @@ subtitle: Using Polymer Starter Kit
 
 {% include toc.html %}
 
+The Polymer Starter Kit is a complete starting point for a Polymer 1.0 
+application. It includes:
+
+*   A [Material Design][md] layout
+*   Routing with Page.js
+*   Web component unit testing
+*   An end-to-end build and local development toolchain
+
 Follow the instructions below to install, build, and run the 
 Polymer Starter Kit (PSK) locally in less than 15 minutes.
 
@@ -104,6 +112,8 @@ instructions below if you want to manage your source code with Git.
 
 ## Build and serve 
 
+The PSK is ready to be built and ran locally. 
+
 1.  Build the app.
 
         gulp 
@@ -119,6 +129,12 @@ The local development server automatically detects file modifications
 and re-builds the application. As long as you keep the `gulp serve`
 task running there is no need to re-build or re-serve the app while
 you develop. 
+
+## Next steps
+
+Now that your PSK is up and running, learn how to [add a new page of 
+content](create-a-page.html), or how to [deploy the app to the 
+web](deploy.html) using Firebase.
 
 ## Appendix: complete app structure
 
@@ -182,3 +198,4 @@ purpose of that item or why you would potentially interact with it.
 
 
 [shared styles]: https://www.polymer-project.org/1.0/docs/devguide/styling.html#style-modules
+[md]: http://www.google.com/design/spec/material-design/introduction.html
