@@ -61,6 +61,7 @@ The diagram below is a brief summary of the directories within the PSK. The
 appendix of this tutorial contains a complete overview of the entire PSK
 app structure.
 
+<pre>
 /
 |---app/ 
 |   |---elements/ 
@@ -70,7 +71,8 @@ app structure.
 |   |---test/ 
 |---docs/ 
 |---dist/
- 
+</pre>
+
 *   `app/` is where you store all of your source code and do all of your
     development. 
 *   `elements/` is where you keep your custom elements. 
@@ -81,7 +83,7 @@ app structure.
     components](https://github.com/Polymer/web-component-tester).
 *   `docs/` contains optional "recipes" (how-to guides) for adding features
     to your application or for using optional tools or editors. 
-*   `dist/` is the directory you want to deploy to production. When you run the
+*   `dist/` is the directory to deploy to production. When you run the
     build task, files are prepared for production (HTML imports are
     vulcanzied, scripts are minimized, and so on) and output to this directory.
 
@@ -121,10 +123,11 @@ you develop.
 ## Appendix: complete app structure
 
 The diagram below represents the complete directory structure of the 
-PSK. Items that end in `/` represent directories. The rest are individual
-files. The content after the `#` describes why you would potentially interact
-with that directory or file.
+PSK. An item that ends in a forward slash (`/`) represents a directory. The 
+rest are individual files. Content after a hashtag (`#`) describes the
+purpose of that item or why you would potentially interact with it.
 
+<pre>
 /  # Root directory.
 |---app/  # Source code directory. Make all changes in this directory.
 |   |---elements/  # Add your custom elements here.
@@ -134,7 +137,7 @@ with that directory or file.
 |   |   |   |---my-list.html
 |   |   |---elements.html  # Add element imports here.
 |   |   |---routing.html  # Define URL routing rules here. 
-|   |---images/  # Logos for adding app link to different device homescreens.
+|   |---images/  # Logos for adding app icons to device homescreens.
 |   |   |---touch/
 |   |       |---apple-touch-icon.png
 |   |       |---chrome-splashscreen-icon-384x384.png
@@ -151,13 +154,13 @@ with that directory or file.
 |   |---test/  # Add Web Component tests here.
 |   |   |---index.html
 |   |   |---my-greeting-basic.html  # Tests for my-greeting sample element.
-|   |   |---my-list-basic.html   # Ttests for my-list sample element.
+|   |   |---my-list-basic.html   # Tests for my-list sample element.
 |   |---cache-config.json  # Service worker cache config. See comment in file.
 |   |---favicon.ico 
 |   |---index.html  # Add app navigation and content here.
 |   |---manifest.json  # Manifest file for Chrome apps.
 |   |---robots.txt  # Define how search engines can crawl your app here.
-|   |---sw-import.js  # Sservice worker import script.
+|   |---sw-import.js  # Service worker import script.
 |---docs/  # Optional "recipes" for adding features, using tools, etc.
 |   |---README.md
 |   |---add-es2015-support-babel.md  # How to use ES2015 language features.
@@ -175,7 +178,7 @@ with that directory or file.
 |---gulpfile.js  # Define tasks for building, testing, serving, etc. here.
 |---package.json  # Define build and toolchain dependencies.
 |---dist/  # Deploy this directory to production. 
-
+</pre>
 
 
 [shared styles]: https://www.polymer-project.org/1.0/docs/devguide/styling.html#style-modules
