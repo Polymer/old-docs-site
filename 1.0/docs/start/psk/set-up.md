@@ -55,6 +55,8 @@ Polymer Starter Kit (PSK) locally in less than 15 minutes.
     you should have a directory called `polymer-starter-kit-x.x.x`. 
     You can rename the directory to something more relevant to your project.
 
+1. `cd` into the base directory of your PSK project.
+
 1.  Install the build and toolchain dependencies.
 
         npm install
@@ -95,12 +97,12 @@ app structure.
     build task, files are prepared for production (HTML imports are
     vulcanzied, scripts are minimized, and so on) and output to this directory.
 
-## Initializine Git repository (optional)
+## Initialize Git repository (optional)
 
 Your PSK installment does not contain any version control system. Follow the 
 instructions below if you want to manage your source code with Git.
 
-1.  `cd` into the base directory of your PSK installment.
+1.  `cd` into the base directory of your PSK project.
 
 1.  Initialize a Git repository.
 
@@ -114,6 +116,8 @@ instructions below if you want to manage your source code with Git.
 
 The PSK is ready to be built and ran locally. 
 
+1. `cd` into the base directory of your PSK project.
+
 1.  Build the app.
 
         gulp 
@@ -122,13 +126,15 @@ The PSK is ready to be built and ran locally.
 
         gulp serve
 
-The task above automatically opens up your default web browser and
-fetches the locally-hosted application (at `http://localhost:5000`).
+    The local development server automatically detects file modifications
+    and re-builds the application. As long as you keep the `gulp serve`
+    task running there is no need to re-build or re-serve the app while
+    you develop. 
 
-The local development server automatically detects file modifications
-and re-builds the application. As long as you keep the `gulp serve`
-task running there is no need to re-build or re-serve the app while
-you develop. 
+    The task above automatically opens up your default web browser and
+    fetches the locally-hosted application (at `http://localhost:5000`).
+
+![](/{% polymer_version_dir %}/images/psk-home.png)
 
 ## Next steps
 

@@ -203,3 +203,8 @@ page({
 });
 ...
 {% endhighlight %}
+
+Your new page is now ready! Open your web browser and view it at 
+[http://localhost:5000/#!/books](http://localhost:5000/#!/books).
+
+![](/{% polymer_version_dir %}/images/psk-tutorial-books-page.png)
