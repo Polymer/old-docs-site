@@ -226,7 +226,7 @@ You can also locate nodes in the local DOM using `querySelector`, `querySelector
 
     var cancelButton = Polymer.dom(this.root).querySelector('#cancelButton');
 
-    // Shorthand for finding local DOM children by selector
+    // Shorthand for finding a local DOM child by selector
     // (equivalent to the above):
     this.$$('#cancelButton');
 
