@@ -14,7 +14,8 @@ This Polymer Starter Kit tutorial teaches you how to:
 *   Create content for a new page.
 *   Route traffic to your new page.
 
-This guide assumes you have already completed the [Set up guide](setting-up.html).
+This tutorial assumes you have already completed the 
+[Set up tutorial](set-up.html).
 
 ## Serve the app locally
 
@@ -118,15 +119,18 @@ user to navigate to a new page. Now, you add the content for that new page.
     ...
 {% endhighlight %}
 
-*   Each page of the application is a `<section>` element. 
+*   The PSK's design pattern for structuring pages is to make each page a 
+    `<section>` element. The `<iron-pages>` element controls which page is 
+    displayed at any given time.
 *   The `data-route` attribute is an identifier for the routing system. 
     You'll set that up for your new page in the next section.
 *   The `<paper-material>` element creates a card which floats on top of the
-    main content area. All text, images, and other content should always
-    be contained within one of these cards.
-*   The `elevation` attribute determines how high the card appears to visually
-    float above the main content area. Experiment by setting it to values 
-    between `0` and `5` to see for yourself.
+    main content area. If you want to follow the Material Design
+    specification, all main content should be displayed on top of one of these 
+    cards.
+*   The `elevation` attribute determines how high a `<paper-material>` element 
+    appears to visually float above the main content area. Experiment by 
+    setting it to values between `0` and `5`.
 
 1.  Add the following content to the bottom of the main section area.
 

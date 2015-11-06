@@ -6,7 +6,13 @@ title: Deploy
 subtitle: Using Polymer Starter Kit
 ---
 
-This guide teaches you how to deploy your Polymer Starter Kit application.
+<!-- This page does not have a ToC because it currently only has one H2.
+     Add a ToC if you add another H2. -->
+
+This tutorial teaches you how to deploy your Polymer Starter Kit application.
+
+If you have not completed the [Set up tutorial](set-up.html), do so now
+before attempting this tutorial.
 
 ## Deploy with Firebase (recommended)
 
