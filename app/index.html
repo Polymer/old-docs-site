@@ -1,0 +1,13 @@
+{% extends "templates/base.html" %}
+
+{% block title %}page title{% endblock %}
+
+{% block content %}
+
+<p>{{{5+5}}}</p>
+
+<template id="t" is="dom-bind">
+ dom bind (<span>{{test}}</span>)
+</template>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+body {
+  $color: red;
+  color: $color;
+}
+
+main {
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+}
+

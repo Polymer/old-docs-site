@@ -1,0 +1,46 @@
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+libraries:
+  - name: jinja2
+    version: "2.6"
+  - name: webapp2
+    version: "latest"
+
+handlers:
+
+- url: /bower_components
+  static_dir: app/bower_components
+  secure: always
+
+- url: /css
+  static_dir: app/css
+  secure: always
+
+- url: /elements
+  static_dir: app/elements
+  secure: always
+
+- url: /js
+  static_dir: app/js
+  secure: always
+
+- url: /humans.txt
+  static_files: humans.txt
+  upload: humans.txt
+
+- url: .*
+  script: main.app
+  secure: always
+
+skip_files:
+  - ^(.*/)?#.*#$
+  - ^(.*/)?.*~$
+  - ^(.*/)?.*\.py[co]$
+  - ^(.*/)?.*\.md$
+  - ^(.*/)?.*/RCS/.*$
+  - ^(.*/)?\..*$
+  - gulpfile.js
+  - app/bower_components/[^/]+/bower_components/.*$
+  - app/bower_components/(.+/)+(test/|demo/|README|AUTHORS|CONTRIBUTING|PATENTS|Makefile)

@@ -1,0 +1,16 @@
+{
+  "name": "PolymerDocs",
+  "description": "Polymer documentation site",
+  "homepage": "https://www.polymer-project.org/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "iron-elements": "PolymerElements/iron-elements#^1.0.4",
+    "paper-elements": "PolymerElements/paper-elements#^1.0.5"
+  }
+}
