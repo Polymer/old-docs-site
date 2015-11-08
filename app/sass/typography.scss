@@ -1,0 +1,22 @@
+@import "material";
+
+body {
+  @include md-font-body1;
+}
+
+h1 {
+  @include md-font-display3();
+}
+
+h2 {
+  @include md-font-display2();
+}
+
+h3 {
+  @include md-font-display1();
+}
+
+h4 {
+  @include md-font-headline();
+}
+

@@ -52,15 +52,19 @@ exports.recordSearch = recordSearch;
 exports.downloadStarter = downloadStarter;
 
 // Analytics -----
+/* jshint ignore:start */
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+/* jshint ignore:end */
 
 ga('create', 'UA-39334307-1', 'auto', {'siteSpeedSampleRate': 50});
 ga('create', 'UA-49880327-9', 'auto', {'name': 'devrelTracker'});
 recordPageview();
 
-console && console.log("%cWelcome to Polymer!\n%cweb components are the <bees-knees>",
-                       "font-size:1.5em;color:#4558c9;", "color:#d61a7f;font-size:1em;");
+if (console) {
+  console.log("%cWelcome to Polymer!\n%cweb components are the <bees-knees>",
+              "font-size:1.5em;color:#4558c9;", "color:#d61a7f;font-size:1em;");
+}
 })(window);

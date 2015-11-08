@@ -22,6 +22,10 @@ handlers:
   static_dir: app/elements
   secure: always
 
+- url: /images
+  static_dir: app/images
+  secure: always
+
 - url: /js
   static_dir: app/js
   secure: always

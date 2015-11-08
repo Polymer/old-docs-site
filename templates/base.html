@@ -8,12 +8,22 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <!DOCTYPE html>
-<html>
+<html itemscope itemtype="http://schema.org/Organization">
 <head>
 <meta charset="utf-8">
-<title>{% block title %}{% endblock %} - Polymer Project</title>
+<meta http-equiv="X-UA-Compatible" content="chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<meta name="google-site-verification" content="k0e8DrbD40s54xHNBqwIsRrSSAkZoprwtEYDnNY06bU" />
+<meta name="google-site-verification" content="pnjjbQFvjPwaWhEXY6nSyaS9iyghmH-M_yLHBveDX2M">
+<meta itemprop="image" content="https://www.polymer-project.org/images/logos/p-logo-32.png">
+<meta itemprop="description" content="Polymer is a library that uses the latest web technologies to let you create custom HTML elements. Build anything from a button to a complete application as an encapsulated, reusable component that works across desktop and mobile.">
 {% block meta %}{% endblock %}
+
+<title>{% block title %}{% endblock %} - Polymer Project</title>
+
+<link rel="publisher" href="https://plus.google.com/107187849809354688692">
+<link rel="shortcut icon" href="/images/logos/p-logo-32.png">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500|Source+Code+Pro:400,500,700">
 
 <!-- <link rel="shortcut icon" href="/static/img/chromium-128.png"> -->
 
@@ -29,7 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="/elements/elements.html">
 {% block imports %}{% endblock %}
 </head>
-<body>
+<body class="fullbleed">
 
 {% include "templates/header.html" %}
 

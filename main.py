@@ -1,23 +1,16 @@
 #!/usr/bin/env python
 
-# Copyright 2015 Google Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+# This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+# The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+# The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+# Code distributed by Google as part of the polymer project is also
+# subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 
 __author__ = 'ericbidelman@chromium.org (Eric Bidelman)'
 
-#import sys
-#sys.path.insert(0, 'lib')
+import sys
+sys.path.insert(0, 'lib')
 
 import logging
 import os
@@ -26,7 +19,7 @@ import webapp2
 
 from google.appengine.api import memcache
 from google.appengine.ext.webapp import template
-# import http2push.http2push as http2push
+import http2push.http2push as http2push
 
 env = jinja2.Environment(
   loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -40,8 +33,9 @@ env = jinja2.Environment(
 # })
 
 
-class Site(webapp2.RequestHandler):
+class Site(http2push.PushHandler):
 
+  @http2push.push()
   def get(self, path):
     if not path: # / servers /index.html
       path = 'index.html'

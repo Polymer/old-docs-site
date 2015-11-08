@@ -1,13 +1,22 @@
 {% extends "templates/base.html" %}
 
-{% block title %}page title{% endblock %}
+{% block title %}Welcome{% endblock %}
 
 {% block content %}
 
+{#
 <p>{{{5+5}}}</p>
+#}
 
+<ul>
+<li><a href="/docs/">Docs</a>
+<li><a href="/docs/index.html">Docs index.html</a>
+</ul>
+
+<div>
 <template id="t" is="dom-bind">
- dom bind (<span>{{test}}</span>)
+ Dom bind stamped!
 </template>
+</div>
 
 {% endblock %}

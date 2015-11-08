@@ -1,0 +1,11 @@
+{
+  "/bower_components/webcomponentsjs/webcomponents-lite.min.js": {
+    "type": "script"
+  },
+  "/elements/elements.html": {
+    "type": "document"
+  },
+  "/js/app.js": {
+    "type": "script"
+  }
+}

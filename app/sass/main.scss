@@ -7,6 +7,16 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
-@import "typography";
-@import "main";
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
 
+header, footer {
+  padding: 32px;
+  background: #eee;
+}
+
+main {
+  padding: 32px;
+}
