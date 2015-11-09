@@ -132,9 +132,9 @@ even optional support for advanced features like offline access and push notific
 
 Check out the Polymer Starter Kit (PSK) tutorials to learn how to:
 
-*   [Install, build, and locally run](1.0/docs/start/psk/set-up.html) the PSK.
-*   [Create a new page of content](1.0/docs/start/psk/create-a-page.html).
-*   [Deploy the PSK](1.0/docs/start/psk/deploy.html) to the web.
+*   [Install, build, and locally run](psk/set-up.html) the PSK.
+*   [Create a new page of content](psk/create-a-page.html).
+*   [Deploy the PSK](psk/deploy.html) to the web.
 
 ## Contributing to the Project {#using-git}
 
