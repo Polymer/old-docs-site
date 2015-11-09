@@ -11,6 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var stylemod = require('gulp-style-modules');
 var argv = require('yargs').argv;
 var browserSync = require('browser-sync').create();
 var del = require('del');
@@ -61,6 +62,7 @@ gulp.task('styles', function() {
     .pipe($.changed('dist/css'))
     .pipe($.sass(sassOpts))
     .pipe($.autoprefixer(['last 2 versions', 'ios 8', 'Safari 8']))
+    // .pipe(stylemod()) // Wrap CSS in Polymer style module
     .pipe(gulp.dest('app/css')) // Save unminimized css to dev directory.
     .pipe($.cssmin())
     .pipe(license())
