@@ -5,8 +5,6 @@ shortname: Resources
 title: Browser Compatibility
 ---
 
-TL;DR:
-
 > **{{site.project_title}} 1.0 works in all _latest version_ "evergreen" browsers (Chrome, Firefox, IE, Opera, and Safari)**.
 
 ---
@@ -63,7 +61,7 @@ With the polyfills, {{site.project_title}} works in these browsers:
 
 Notes:
 
-- Android Browser is not supported. Chrome for Android is.
+- **Android Browser is not supported**. Chrome for Android is supported.
 
 
 #### Should I use webcomponents-lite.js or webcomponents.js?
