@@ -206,10 +206,8 @@ gulp.task('watch', function() {
 });
 
 // Clean up your mess!
-gulp.task('clean', function(done) {
-  del(['dist', 'app/css']).then(paths => {
-    done();
-  });
+gulp.task('clean', function() {
+  return del(['dist', 'app/css']);
 });
 
 // Default task. Build the dest dir.

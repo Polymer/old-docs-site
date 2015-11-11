@@ -8,21 +8,22 @@ https://www.polymer-project.org/
   cd docs
   npm install
 
-### Making changes
+### Running the site
 
-Run the App Engine dev server on `dist/app.yaml`:
+The first time you run the site, run `gulp` to build the site in its entirety:
+
+    gulp
+
+Then start the App Engine dev server on `dist/app.yaml`:
 
     dev_appserver.py dist/
 
 The site will be served from http://localhost:8080.
 
-If you're not making changes to SASS, elements, or md files, this is enough to see
-changes when refreshing pages.
+#### Making changes / watching files / live reload
 
-#### Watch files / live reload
-
-If you're authoring a markdown page or prefer to live reload the page when
-making changes, use the `watch` task with `--reload`:
+If you're marking changes use the `watch` task. Optionally add `--reload` to live
+reload the tab when changes are saved.
 
     gulp watch --reload
 
