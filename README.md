@@ -10,23 +10,23 @@ https://www.polymer-project.org/
 
 ### Making changes
 
-Run the App Engine dev server:
+Run the App Engine dev server on `dist/app.yaml`:
 
-    dev_appserver.py .
+    dev_appserver.py dist/
 
 The site will be served from http://localhost:8080.
 
-If you're not making changes to SASS files or elements, this is enough to see
-changes when refreshing the page.
+If you're not making changes to SASS, elements, or md files, this is enough to see
+changes when refreshing pages.
 
 #### Watch files / live reload
 
-If you also prefer to live reload the page when making changes, use the `watch`
-task with `--reload`:
+If you're authoring a markdown page or prefer to live reload the page when
+making changes, use the `watch` task with `--reload`:
 
     gulp watch --reload
 
-The site will be proxied to http://localhost:3000. Making changes will refresh
+The site will be served on http://localhost:3000. Making changes will refresh
 the browser tab.
 
 Optional flags:

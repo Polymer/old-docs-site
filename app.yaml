@@ -11,23 +11,23 @@ libraries:
 handlers:
 
 - url: /bower_components
-  static_dir: app/bower_components
+  static_dir: bower_components
   secure: always
 
 - url: /css
-  static_dir: app/css
+  static_dir: css
   secure: always
 
 - url: /elements
-  static_dir: app/elements
+  static_dir: elements
   secure: always
 
 - url: /images
-  static_dir: app/images
+  static_dir: images
   secure: always
 
 - url: /js
-  static_dir: app/js
+  static_dir: js
   secure: always
 
 - url: /humans.txt
@@ -46,5 +46,5 @@ skip_files:
   - ^(.*/)?.*/RCS/.*$
   - ^(.*/)?\..*$
   - gulpfile.js
-  - app/bower_components/[^/]+/bower_components/.*$
-  - app/bower_components/(.+/)+(test/|demo/|README|AUTHORS|CONTRIBUTING|PATENTS|Makefile)
+  - bower_components/[^/]+/bower_components/.*$
+  - bower_components/(.+/)+(test/|demo/|README|AUTHORS|CONTRIBUTING|PATENTS|Makefile)

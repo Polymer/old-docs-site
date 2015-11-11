@@ -47,7 +47,7 @@ class Site(http2push.PushHandler):
       return self.redirect('/' + path, permanent=True)
 
     try:
-      template = env.get_template('app/' + path)
+      template = env.get_template(path)
     except jinja2.exceptions.TemplateNotFound as e:
       self.abort(404)
 
