@@ -43,7 +43,7 @@ This release is <strong>not compatible with the 0.5 APIs.</strong></div>
 * Brand new, lightweight shadow DOM shim called `shady DOM`, that lets you avoid the complexity, size, performance penalty, and invasiveness of the shadow DOM polyfill.
 * Upper bound _and lower bound_ scoped styling, even without native shadow DOM: scoped styles don’t bleed out, and children in their own roots are protected from descendant selectors in a shadow root.
 
-There's a lot more to 1.0 &mdash; check out the [Developer guide](devguide/feature-overview.html) for 
+There's a lot more to 1.0—check out the [Developer guide](devguide/feature-overview.html) for 
 the run-down of all the features.
 
 ## Benchmarks {#benchmarks}
@@ -55,7 +55,7 @@ binding.
 
 You can find the benchmark code [on
 GitHub](//github.com/polymerlabs/benchmarks/). As with all benchmarks, your
-mileage may vary. Please try it out or create your own tests &mdash; we'd love
+mileage may vary. Please try it out or create your own tests—we'd love
 to see them. 
 
 ## Roadmap {#roadmap}
@@ -64,7 +64,7 @@ The following is a high-level outline of our plans for the library post-1.0.
 
 #### Gestures
 
-{{site.project_title}} 0.5 had a fairly robust gesture recognition system &mdash; 1.0 includes [basic gestures](devguide/events.html#gestures) as part of the core library. More sophisticated gestures may be added in a future release as an optional components.
+{{site.project_title}} 0.5 had a fairly robust gesture recognition system—1.0 includes [basic gestures](devguide/events.html#gestures) as part of the core library. More sophisticated gestures may be added in a future release as an optional components.
 
 #### Shady DOM Interoperability
 
@@ -80,7 +80,7 @@ In the immediate future we’ll be exploring improvements to the shady DOM syste
 
 #### Cross-scope styling
 
-The "theming problem" &mdash; you want to be able to easily style Polymer
+The "theming problem"—you want to be able to easily style Polymer
 elements from the outside, but `::shadow` and `/deep/` proved to be a poor solution and are slated to be removed from the Shadow DOM spec. This release includes a robust [system for ergonomic cross-scope styling](devguide/styling.html#xscope-styling-details)
 inspired by and based on [CSS Custom Properties](http://dev.w3.org/csswg/css-
 variables/).
@@ -108,7 +108,7 @@ We’d like to explore modularizing the shady DOM shim to be able to utilize its
 
 Currently Polymer uses a run-time shim for CSS custom properties to enable theming and styling elements. If you know that your styles won’t change dynamically, there is a potential performance improvement to realize by calculating all the resulting styles in advance.
 
-We’re working on building a tool — either as an extension to `vulcanize` or as a separate package — that will allow you to generate all the cross-scope styling at build-time, and bump performance a bit.
+We’re working on building a tool—either as an extension to `vulcanize` or as a separate package—that will allow you to generate all the cross-scope styling at build-time, and bump performance a bit.
 
 #### Tooling
 
@@ -117,7 +117,7 @@ The {{site.project_title}} team is devoting a lot of work to tooling. There are 
 - Stylesheet preprocessor.
 - {{site.project_title}} linter to help catch common errors that come up when developing with {{site.project_title}}. 
 - “Data explorer” to help visualize data flow within a {{site.project_title}} application. 
-- A tool to help teams manage releases for large numbers of inter-dependent elements — we certainly are in dire need of this ourselves!
+- A tool to help teams manage releases for large numbers of inter-dependent elements—we certainly are in dire need of this ourselves!
 
 
 #### Inheritance

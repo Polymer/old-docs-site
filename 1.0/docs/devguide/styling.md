@@ -400,7 +400,7 @@ Example:
 
     </dom-module>
 
-### Custom Properties Shim - Limitations and API details
+### Custom properties shim—limitations and API details
 
 Cross-platform support for custom properties is provided in Polymer by a
 JavaScript library that approximates the capabilities of the CSS Variables

@@ -21,7 +21,7 @@ these standards today across all modern browsers. As these technologies are impl
 in browsers, the polyfills will shrink and you'll gain the benefits of native implementations.
 
 `webcomponents.js` automatically detects native support and switches to the fast
-path when available. Your elements seamlessly start relying on the native stuff&mdash;and
+path when available. Your elements seamlessly start relying on the native stuff—and
 get faster in the process.
 
 In the past, the web components polyfills were maintained by

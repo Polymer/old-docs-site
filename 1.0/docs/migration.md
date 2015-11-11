@@ -219,7 +219,7 @@ The event handler is no longer passed the third argument, `inSender`, but is sti
 
 ## Declared properties {#properties}
 
-{{site.project_title}} 0.5 has two mechanisms to publish properties &mdash; the `attributes`
+{{site.project_title}} 0.5 has two mechanisms to publish properties—the `attributes`
 attribute and the `publish` object. Either of these mechanisms can be used to
 publish a property:
 
@@ -379,11 +379,11 @@ When mapping attribute names to property names:
 The same mappings happen in reverse when converting property names to attribute
 names (for example, if a property is defined using `reflectToAttribute: true`.)
 
-In 0.5, {{site.project_title}} attempted to map attribute names to corresponding properties.
-For example, the attribute `foobar` would map to the property `fooBar` if it was
-defined on the element. {{site.project_title}} **does not do this anymore** &mdash; 
-attribute to property mappings are set up on the element at registration time 
-based on the rules described above.
+In 0.5, {{site.project_title}} attempted to map attribute names to corresponding
+properties. For example, the attribute `foobar` would map to the property
+`fooBar` if it was defined on the element. {{site.project_title}} **does not do
+this  anymore**—attribute to property mappings are set up on the element at
+registration time  based on the rules described above.
 
 Before: 
 
@@ -472,7 +472,7 @@ Computed properties must be moved from the `computed` object to the `properties`
 All computed properties are defined using a function name and one or more dependent properties,
 in parentheses.
 
-Arbitrary expressions are not supported in computed properties — they need to be moved to 
+Arbitrary expressions are not supported in computed properties—they need to be moved to 
 functions.
 
 Before:
@@ -630,7 +630,7 @@ Now you define default attributes by adding a `hostAttributes` object to the pro
 
 Default attributes are added to the instance at creation time. The default
 attribute values are serialized based on the value type. Boolean attributes use
-the standard HTML mechanism &mdash; the attribute is present if true, absent if false.
+the standard HTML mechanism—the attribute is present if true, absent if false.
 (So adding a default attribute with a value of `false` has no effect.)
 
 Note that `hostAttributes` only specifies **_static, default_** attributes. To
@@ -829,7 +829,7 @@ This release includes several related methods, including methods for
 canceling a pending task, and immediately executing a pending task.
 For details, see [Utility functions](devguide/utility-functions.html).
 
-### Element methods &mdash; async
+### Element methods—async
 
 The `async` method works slightly differently than in 0.5 when called without a specified delay, like:
 
@@ -857,11 +857,11 @@ The `options` object can contain the following properties:
 *   `bubbles`. Whether the event should bubble. Defaults to `true`.
 *   `cancelable`. Whether the event can be canceled with `preventDefault`. Defaults to `false`.
 
-### Element methods &mdash; resolvePath renamed to resolveUrl
+### Element methods—resolvePath renamed to resolveUrl
 
 The `resolvePath` method in 0.5 is replaced by `resolveUrl`. The arguments are identical.
 
-### Element methods &mdash; Polymer.import replaced by importHref
+### Element methods—Polymer.import replaced by importHref
 
 The global `Polymer.import` function is replaced by `importHref`. The
 new method can be invoked from an element as `this.importHref`. Outside
@@ -1308,7 +1308,7 @@ element for compatibility with shady DOM.
 
 ## Inheritance {#inheritance}
 
-This release doesn't support inheriting from other custom elements &mdash; only from
+This release doesn't support inheriting from other custom elements—only from
 standard DOM elements. This will be supported in a future release.
 
 In the meantime, you can achieve many of the same results using either
