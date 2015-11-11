@@ -1,0 +1,8 @@
+# Unconditionally redirects the first URL to the second.
+
+# /0.5/ /1.0/
+
+# ------------------------------------------------------------------------------
+# Note: keep these for the tests!
+- /oldpage/ /
+- /some/page/that/is/old.html /docs/

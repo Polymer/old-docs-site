@@ -21,10 +21,24 @@ let del = require('del');
 let marked = require('marked');
 let merge = require('merge-stream');
 let runSequence = require('run-sequence');
+let toc = require('toc');
 
 let AUTOPREFIXER_BROWSERS = ['last 2 versions', 'ios 8', 'Safari 8'];
 
+// var renderer = new marked.Renderer();
+
+// renderer.heading = function(text, level) {
+//   let escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+
+//   return `
+//   <h${level} class="has-permalink">
+//     ${text}
+//     <a name="${escapedText}" class="permalink" href="#${escapedText}">#</a>
+//   </h${level}>`;
+// };
+
 marked.setOptions({
+  //renderer: renderer,//new kramed.Renderer(),
   highlight: code => {
     return require('highlight.js').highlightAuto(code).value;
   }
@@ -113,7 +127,13 @@ gulp.task('md', function() {
       data.content = marked(file.content); // Markdown -> HTML.
       data.title = data.title || '';
 
-      $.util.replaceExtension(file, '.html'); // file.js
+      data.content = toc.process(data.content, {
+        header: '<h<%= level %><%= attrs %> id="<%= anchor %>" class="has-permalink"><%= header %></h<%= level %>>',
+        TOC: '<details id="toc"><summary>Table of contents</summary><%= toc %></details>',
+        tocMax: 3
+      });
+
+      $.util.replaceExtension(file, '.html'); // file.md -> file.html
 
       let tmpl = fs.readFileSync('templates/page.template');
       let renderTemplate = $.util.template(tmpl);
@@ -173,7 +193,7 @@ gulp.task('vulcanize', function() {
 gulp.task('copy', function() {
   let app = gulp.src([
       '*',
-      'app/index.html',
+      'app/{index.html,manifest.json}',
       '!{README.md, package.json,gulpfile.js}',
     ], {nodir: true})
     .pipe(gulp.dest('dist'));
@@ -184,7 +204,7 @@ gulp.task('copy', function() {
     .pipe(gulp.dest('dist'));
 
   let gae = gulp.src([
-      '{templates,lib}/**/*'
+      '{templates,lib,tests}/**/*'
      ])
     .pipe(gulp.dest('dist'));
 
@@ -203,6 +223,15 @@ gulp.task('watch', function() {
   gulp.watch(['app/{js,elements}/**/*.js'], ['jshint', reload]);
   gulp.watch('app/**/*.md', ['md', reload]);
   gulp.watch(['templates/*.html', 'app/**/*.html'], ['copy', reload]);
+  // Watch for changes to server itself.
+  gulp.watch('*.py', function(files) {
+    gulp.src('*.py').pipe(gulp.dest('dist'));
+    reload();
+  });
+  gulp.watch('*.yaml', function(files) {
+    gulp.src('*.yaml').pipe(gulp.dest('dist'));
+    reload();
+  });
 });
 
 // Clean up your mess!

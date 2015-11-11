@@ -6,7 +6,7 @@ libraries:
   - name: jinja2
     version: "2.6"
   - name: webapp2
-    version: "latest"
+    version: "2.5.2"
 
 handlers:
 
@@ -35,7 +35,7 @@ handlers:
   upload: humans.txt
 
 - url: .*
-  script: main.app
+  script: server.app
   secure: always
 
 skip_files:
@@ -46,5 +46,6 @@ skip_files:
   - ^(.*/)?.*/RCS/.*$
   - ^(.*/)?\..*$
   - gulpfile.js
+  - test*
   - bower_components/[^/]+/bower_components/.*$
   - bower_components/(.+/)+(test/|demo/|README|AUTHORS|CONTRIBUTING|PATENTS|Makefile)

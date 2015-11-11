@@ -34,3 +34,20 @@ Optional flags:
 
 - `--reload`: refreshes the browser tab when changes are made
 - `--open`: opens a new browser tab when `gulp watch` is started
+
+### Run tests
+
+Install [WebTest framework](http://webtest.pythonpaste.org/en/latest/):
+
+    pip install WebTest
+
+Then run:
+
+    npm test
+
+### Deployment
+
+Build and deploy version `YYY-MM-DD` of the site: 
+
+    gulp
+    npm run deploy YYYY-MM-DD

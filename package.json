@@ -8,7 +8,8 @@
   },
   "scripts": {
     "postinstall": "bower install; gulp",
-    "deploy": "scripts/deploy.sh"
+    "deploy": "scripts/deploy.sh",
+    "test": "python dist/test_runner.py ~/google-cloud-sdk tests/"
   },
   "repository": {
     "type": "git",
@@ -44,6 +45,7 @@
     "marked": "^0.3.5",
     "merge-stream": "^1.0.0",
     "run-sequence": "^1.1.4",
+    "toc": "^0.4.0",
     "yargs": "^3.29.0"
   }
 }

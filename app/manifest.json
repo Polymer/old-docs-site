@@ -1,0 +1,37 @@
+{
+  "name": "Polymer Project",
+  "short_name": "Polymer",
+  "icons": [{
+    "src": "images/logos/p-logo-32.png",
+    "type": "image/png",
+    "sizes": "32x32"
+  }, {
+    "src": "images/logos/p-logo.svg",
+    "type": "image/svg",
+    "sizes": "128x128"
+  }, {
+    "src": "images/logos/p-logo.svg",
+    "type": "image/svg",
+    "sizes": "152x152"
+  }, {
+    "src": "images/logos/p-logo.svg",
+    "type": "image/svg",
+    "sizes": "144x144"
+  }, {
+    "src": "images/logos/p-logo.svg",
+    "type": "image/svg",
+    "sizes": "192x192"
+  }, {
+    "src": "images/logos/p-logo.svg",
+    "type": "image/svg",
+    "sizes": "256x256"
+  }, {
+    "src": "images/logos/p-logo.svg",
+    "type": "image/svg",
+    "sizes": "512x512"
+  }],
+  "start_url": "/?utm_source=web_app_manifest",
+  "display": "standalone",
+  "background_color": "#3f51b5",
+  "theme_color": "#3f51b5"
+}
