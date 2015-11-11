@@ -370,34 +370,36 @@ Example:
 In addition to properties, observers can also observe [paths to sub-properties](#observing-path-changes),
 [paths with wildcards](#deep-observation), or [array changes](#array-observation).
 
-### Observing path changes {#observing-path-changes}
+### Observing sub-property changes {#observing-path-changes}
 
-To observe changes in object paths (sub-properties):
+To observe changes in object sub-properties:
 
 1.  Initialize your object to a default value.
 2.  Define an `observers` array.
-3.  For each object path that you want to observe, add an element to
+3.  For each object sub-property that you want to observe, add an element to
     the `observers` array. Each element must be a method call that 
-    accepts a single argument. The argument is the value of the object path. 
-    The method is the action that you wish to take when the object path changes.
+    accepts a single argument. The argument is the path to the object
+    sub-property. The method is the action that you wish to take when the 
+    object sub-property changes. The value of the sub-property is passed to
+    the method.
 4.  Define each method in your element registration.
 
-In order for Polymer to properly detect the path change, the path must be 
-updated in one of the following two ways:
+In order for Polymer to properly detect the sub-property change, the 
+sub-property must be updated in one of the following two ways:
 
 *   Via a [property binding](data-binding.html#property-binding).
 *   By calling [`set`](data-binding.html#set-path).
 
 Example:
 
-    <dom-module id="x-path-observer">
+    <dom-module id="x-sub-property-observer">
       <template>
-        <!-- Path is updated via property binding. -->
+        <!-- Sub-property is updated via property binding. -->
         <input value="{% raw %}{{user.name::input}}{% endraw %}">
       </template>
       <script>
         Polymer({
-          is: 'x-path-observer',
+          is: 'x-sub-property-observer',
           properties: {
             user: {
               type: Object,
@@ -407,8 +409,8 @@ Example:
               }
             }
           },
-          /* Each element of observers array is method call that takes a 
-             single argument. Argument is the value of the observed path. */
+          /* Each element of observers array is a method call that takes a 
+             single argument. Argument is the path to the sub-property. */
           observers: [
             'userNameChanged(user.name)'
           ],
@@ -420,7 +422,7 @@ Example:
       </script>
     </dom-module>
 
-### Deep path observation {#deep-observation}
+### Deep sub-property observation {#deep-observation}
 
 To call an observer when any (deep) sub-property of an
 object changes, specify a path with a wildcard (`*`).
