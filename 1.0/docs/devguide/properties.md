@@ -372,36 +372,53 @@ In addition to properties, observers can also observe [paths to sub-properties](
 
 ### Observing path changes {#observing-path-changes}
 
-You can also observe changes to object sub-properties using the 
-`observers` array, by specifying a full path (`user.manager.name`)
-as a function argument.
+To observe changes in object paths (sub-properties):
+
+1.  Initialize your object to a default value.
+2.  Define an `observers` array.
+3.  For each object path that you want to observe, add an element to
+    the `observers` array. Each element must be a method call that 
+    accepts a single argument. The argument is the value of the object path. 
+    The method is the action that you wish to take when the object path changes.
+4.  Define each method in your element registration.
+
+In order for Polymer to properly detect the path change, the path must be 
+updated in one of the following two ways:
+
+*   Via a [property binding](data-binding.html#property-binding).
+*   By calling [`set`](data-binding.html#set-path).
 
 Example:
 
-    Polymer({
-
-      is: 'x-custom',
-
-      properties: {
-        user: Object
-      },
-
-      observers: [
-        'userManagerChanged(user.manager)'
-      ],
-
-      userManagerChanged: function(user) {
-        console.log('new manager name is ' + user.name);
-      }
-
-    });
-
-To observe a change to a path (object sub-property) the value **must be changed in
-one of the following ways**:
-
-*   Using a Polymer [property binding](data-binding.html#property-binding) to another element.
-*   Using the [`set`](data-binding.html#set-path) API, which provides the
-    required notification to elements with registered interest.
+    <dom-module id="x-path-observer">
+      <template>
+        <!-- Path is updated via property binding. -->
+        <input value="{% raw %}{{user.name::input}}{% endraw %}">
+      </template>
+      <script>
+        Polymer({
+          is: 'x-path-observer',
+          properties: {
+            user: {
+              type: Object,
+              value: function() {
+                // Observed object is initialized to default value.
+                return {};
+              }
+            }
+          },
+          /* Each element of observers array is method call that takes a 
+             single argument. Argument is the value of the observed path. */
+          observers: [
+            'userNameChanged(user.name)'
+          ],
+          // Each method in observers is defined in element registration.
+          userNameChanged: function(name) {
+            console.log('new name: ' + name);
+          },
+        });
+      </script>
+    </dom-module>
 
 ### Deep path observation {#deep-observation}
 
@@ -417,29 +434,34 @@ observer is a change record object with the following properties:
 
 Example:
 
-    Polymer({
-
-      is: 'x-custom',
-
-      properties: {
-        user: Object
-      },
-
-      observers: [
-        'userManagerChanged(user.manager.*)'
-      ],
-
-      userManagerChanged: function(changeRecord) {
-        if (changeRecord.path == 'user.manager') {
-          // user.manager object itself changed
-          console.log('new manager name is ' + changeRecord.value.name);
-        } else {
-          // sub-property of user.manager changed
-          console.log(changeRecord.path + ' changed to ' + changeRecord.value);
-        }
-      }
-
-    });
+    <dom-module id="x-deep-observer">
+      <template>
+        <input value="{% raw %}{{user.name.first::input}}{% endraw %}" 
+               placeholder="First Name">
+        <input value="{% raw %}{{user.name.last::input}}{% endraw %}" 
+               placeholder="Last Name">
+      </template>
+      <script>
+        Polymer({
+          is: 'x-deep-observer',
+          properties: {
+            user: {
+              type: Object,
+              value: function() {
+                return {'name':{}};
+              }
+            }
+          },
+          observers: [
+            'userNameChanged(user.name.*)'
+          ],
+          userNameChanged: function(changeRecord) {
+            console.log('path: ' + changeRecord.path);
+            console.log('value: ' + changeRecord.value);
+          },
+        });
+      </script>
+    </dom-module>
 
 ### Array observation {#array-observation}
 
