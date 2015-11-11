@@ -265,17 +265,18 @@ support by Chrome.
 
 ### Custom CSS mixins
 
-It may be tedious (or impossible) for an element author to anticipate
-and expose every possible CSS property that may be important for theming an
-element as individual CSS properties (for example, what if a user needed to
-adjust the `opacity` of the toolbar title?).  
+It may be tedious (or impossible) for an element author to predict every 
+CSS property that may be important for theming, let alone expose every 
+property individually. 
 
-For this reason, the custom
-properties shim included in Polymer includes an experimental extension allowing
-a bag of CSS properties to be defined as a custom property and allowing all
-properties in the bag to be applied to a specific CSS rule in an element's local
-DOM.  For this, we introduce a mixin capability that is analogous to `var`,
-but allows an entire bag of properties to be mixed in.
+The custom properties shim includes an extension that enables an element
+author to define a set of CSS properties as a single custom property and
+then allow all properties in the set to be applied to a specific CSS rule
+in an element's local DOM. The extension enables this with a mixin capability
+that is analogous to `var`, but which allows an entire set of properties
+to be mixed in. This extension adheres to the 
+[CSS @apply rule](http://tabatkins.github.io/specs/css-apply-rule/) 
+proposal.
 
 Use `@apply` to apply a mixin:
 
