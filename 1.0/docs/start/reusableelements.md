@@ -172,7 +172,7 @@ Next, you’ll want to tag a version of your element on GitHub. You can either d
 
 Navigate to the main GitHub page for your element and click the "releases" link in the main navigation. It is highlighted in red below:
 
-![Preview of the GitHub navigation bar for a repository listing four navigation items - commits, branches, releases, contributors. The releases link is highlighted](/images/publishing-polymer-elements/image_2.png)
+![Preview of the GitHub navigation bar for a repository listing four navigation items—commits, branches, releases, and contributors. The releases link is highlighted.](/images/publishing-polymer-elements/image_2.png)
 
 This will navigate you to the *Releases* page. For a project without any releases, this page will display a message similar to the one below.
 

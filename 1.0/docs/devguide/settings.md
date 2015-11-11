@@ -39,6 +39,6 @@ http://myserver.com/test-app/index.html?dom=shadow
 
 Available settings:
 
-* `dom` - options:
+* `dom`—options:
     * `shady`. All local DOM is rendered using shady DOM, even where shadow DOM is supported (current default).
     * `shadow`. Local DOM is rendered using shadow DOM where supported (this will be the default in the future).

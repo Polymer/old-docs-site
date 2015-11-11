@@ -102,7 +102,7 @@ So the attribute `on-core-signal-newData` sets up a listener for `core-signal-ne
 _not_ `core-signal-newData`. To avoid confusion, always use lowercase event names.
 {: .alert .alert-info } 
 
-## Custom Events {#custom-events}
+## Custom events {#custom-events}
 
 To fire a custom event from the host element use the `fire` method. You can also pass in data to event handlers as an argument to `fire`.
 
@@ -157,30 +157,30 @@ by default. Elements can override scroll direction with
 The following are the gesture event types supported, with a short description
 and list of detail properties available on `event.detail` for each type:
 
-* **down** - finger/button went down
-  * `x` - clientX coordinate for event
-  * `y` - clientY coordinate for event
-  * `sourceEvent` - the original DOM event that caused the `down` action
-* **up** - finger/button went up
-  * `x` - clientX coordinate for event
-  * `y` - clientY coordinate for event
-  * `sourceEvent` - the original DOM event that caused the `up` action
-* **tap** - down & up occurred
-  * `x` - clientX coordinate for event
-  * `y` - clientY coordinate for event
-  * `sourceEvent` - the original DOM event that caused the `tap` action
-* **track** - moving while finger/button is down
-  * `state` - a string indicating the tracking state:
-      * `start` - fired when tracking is first detected (finger/button down and moved past a pre-set distance threshold)
-      * `track` - fired while tracking
-      * `end` - fired when tracking ends
-  * `x` - clientX coordinate for event
-  * `y` - clientY coordinate for event
-  * `dx` - change in pixels horizontally since the first track event
-  * `dy` - change in pixels vertically since the first track event
-  * `ddx` - change in pixels horizontally since last track event
-  * `ddy` - change in pixels vertically since last track event
-  * `hover()` - a function that may be called to determine the element currently being hovered
+* **down**—finger/button went down
+  * `x`—clientX coordinate for event
+  * `y`—clientY coordinate for event
+  * `sourceEvent`—the original DOM event that caused the `down` action
+* **up**—finger/button went up
+  * `x`—clientX coordinate for event
+  * `y`—clientY coordinate for event
+  * `sourceEvent`—the original DOM event that caused the `up` action
+* **tap**—down & up occurred
+  * `x`—clientX coordinate for event
+  * `y`—clientY coordinate for event
+  * `sourceEvent`—the original DOM event that caused the `tap` action
+* **track**—moving while finger/button is down
+  * `state`—a string indicating the tracking state:
+      * `start`—fired when tracking is first detected (finger/button down and moved past a pre-set distance threshold)
+      * `track`—fired while tracking
+      * `end`—fired when tracking ends
+  * `x`—clientX coordinate for event
+  * `y`—clientY coordinate for event
+  * `dx`—change in pixels horizontally since the first track event
+  * `dy`—change in pixels vertically since the first track event
+  * `ddx`—change in pixels horizontally since last track event
+  * `ddy`—change in pixels vertically since last track event
+  * `hover()`—a function that may be called to determine the element currently being hovered
 
 Example:
 
