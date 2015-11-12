@@ -699,3 +699,23 @@ that includes a `custom-style` element.
       } 
     </style>      
 
+## Third-party libraries that modify local DOM
+
+If you are using a third-party library that adds local DOM nodes to your
+Polymer element, you may notice that styles on the element do not update
+properly. 
+
+The correct way to add DOM nodes to a Polymer element's local DOM is via
+`Polymer.dom`. This method adds the proper scoping classes
+to the element, which ensures that styles are updated properly. 
+
+Many libaries do not know about this method, so they do not add DOM nodes 
+correctly. Define the `scopeSubtree` method in your element's `ready` method to 
+enable a mutation observer on your element. This mutation observer applies
+proper CSS scoping to the element's local DOM whenever a third-party library
+manipulates the local DOM.
+
+    ready: function() {
+      this.scopeSubtree(this.$.content, true);
+    }
+
