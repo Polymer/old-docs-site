@@ -710,12 +710,10 @@ The correct way to add DOM nodes to a Polymer element's local DOM is via
 to the element, which ensures that styles are updated properly. 
 
 Many libaries do not know about this method, so they do not add DOM nodes 
-correctly. Define the `scopeSubtree` method in your element's `ready` method to 
-enable a mutation observer on your element. This mutation observer applies
-proper CSS scoping to the element's local DOM whenever a third-party library
-manipulates the local DOM.
+correctly. Call `scopeSubtree` in `ready` to enable a mutation observer on 
+your element's local DOM. This mutation observer detects changes to the 
+local DOM, and applies proper CSS scoping to the element and its descendants.
 
     ready: function() {
       this.scopeSubtree(this.$.content, true);
     }
-
