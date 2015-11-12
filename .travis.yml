@@ -1,0 +1,18 @@
+language: python
+python:
+  - "2.7"
+install:
+  - npm install
+  - pip install WebTest
+before_script:
+  - wget https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.28.zip -nv
+  - unzip -q google_appengine_1.9.28.zip
+script:
+  - npm test
+
+# SEe http://docs.travis-ci.com/user/deployment/google-app-engine/
+#deploy:
+#  provider: gae
+#  keyfile: "YOUR SERVICE ACCOUNT JSON FILE"
+#  default: true
+#  project: "YOUR PROJECT ID"

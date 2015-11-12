@@ -228,8 +228,8 @@ gulp.task('watch', function() {
     gulp.src('*.py').pipe(gulp.dest('dist'));
     reload();
   });
-  gulp.watch('*.yaml', function(files) {
-    gulp.src('*.yaml').pipe(gulp.dest('dist'));
+  gulp.watch('*.{yaml,yml}', function(files) {
+    gulp.src('*.{yml,yaml}').pipe(gulp.dest('dist'));
     reload();
   });
 });
