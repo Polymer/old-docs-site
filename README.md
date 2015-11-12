@@ -35,6 +35,8 @@ Optional flags:
 - `--reload`: refreshes the browser tab when changes are made
 - `--open`: opens a new browser tab when `gulp watch` is started
 
+**Tip** - run `gulp help` to see the list of available gulp tasks.
+
 ### Run tests
 
 Install [WebTest framework](http://webtest.pythonpaste.org/en/latest/):

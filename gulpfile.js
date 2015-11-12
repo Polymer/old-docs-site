@@ -9,36 +9,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 'use strict';
 
-let fs = require('fs');
-let path = require('path');
-let gulp = require('gulp');
+// let gulp = require('gulp');
+let gulp = require('gulp-help')(require('gulp'));
 let $ = require('gulp-load-plugins')();
-let styleMod = require('gulp-style-modules');
 let matter = require('gulp-gray-matter');
+let styleMod = require('gulp-style-modules');
+
 let argv = require('yargs').argv;
 let browserSync = require('browser-sync').create();
 let del = require('del');
+let fs = require('fs');
 let marked = require('marked');
 let merge = require('merge-stream');
+let path = require('path');
 let runSequence = require('run-sequence');
 let toc = require('toc');
 
 let AUTOPREFIXER_BROWSERS = ['last 2 versions', 'ios 8', 'Safari 8'];
 
-// var renderer = new marked.Renderer();
-
-// renderer.heading = function(text, level) {
-//   let escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
-
-//   return `
-//   <h${level} class="has-permalink">
-//     ${text}
-//     <a name="${escapedText}" class="permalink" href="#${escapedText}">#</a>
-//   </h${level}>`;
-// };
-
 marked.setOptions({
-  //renderer: renderer,//new kramed.Renderer(),
   highlight: code => {
     return require('highlight.js').highlightAuto(code).value;
   }
@@ -76,8 +65,7 @@ function createReloadServer() {
   });
 }
 
-// Autoprefix and minify CSS
-gulp.task('style', function() {
+gulp.task('style', 'Compile sass, autoprefix, and minify CSS', function() {
   let sassOpts = {
     precision: 10,
     outputStyle: 'expanded',
@@ -95,7 +83,7 @@ gulp.task('style', function() {
     .pipe(gulp.dest('dist/css'))
 });
 
-gulp.task('style:modules', function() {
+gulp.task('style:modules', 'Wrap CSS in Polymer style modules', function() {
   return gulp.src('node_modules/highlight.js/styles/github.css')
     .pipe($.rename({basename: 'syntax-color'}))
     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
@@ -108,8 +96,7 @@ gulp.task('style:modules', function() {
     .pipe(gulp.dest('dist/css'))
 });
 
-// Optimize Images
-gulp.task('images', function() {
+gulp.task('images', 'Optimize images', function() {
   return gulp.src('app/images/**/*')
     .pipe($.changed('dist/images'))
     .pipe($.imagemin({
@@ -119,7 +106,7 @@ gulp.task('images', function() {
     .pipe(gulp.dest('dist/images'));
 });
 
-gulp.task('md', function() {
+gulp.task('md', 'Markdown -> HTML conversion. Syntax highlight and TOC generation', function() {
   return gulp.src(['*!README.md', 'app/docs/**/*.md'], {base: 'app/'})
     .pipe(matter(function(file) { // pull out front matter data.
       let data = file.data;
@@ -152,8 +139,7 @@ gulp.task('md', function() {
 //     .pipe(gulp.dest('dist'));
 // });
 
-// Lint JavaScript
-gulp.task('jshint', function() {
+gulp.task('jshint', 'Lint JS', function() {
   return gulp.src([
       'gruntfile.js',
       'app/js/**/*.js',
@@ -167,14 +153,13 @@ gulp.task('jshint', function() {
     .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
-gulp.task('js', ['jshint'], function() {
+gulp.task('js', 'Minify JS to dist/', ['jshint'], function() {
   return gulp.src(['app/js/**/*.js'])
     .pipe(uglifyJS()) // Minify js output
     .pipe(gulp.dest('dist/js'));
 });
 
-// Vulcanize
-gulp.task('vulcanize', function() {
+gulp.task('vulcanize', 'Vulcanize elements to dist/', function() {
   return gulp.src('app/elements/elements.html')
     // .pipe($.changed('dist/elements'))
     .pipe($.vulcanize({
@@ -189,8 +174,7 @@ gulp.task('vulcanize', function() {
     .pipe(gulp.dest('dist/elements'));
 });
 
-// Copy over polyfills
-gulp.task('copy', function() {
+gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', function() {
   let app = gulp.src([
       '*',
       'app/{index.html,manifest.json}',
@@ -216,7 +200,7 @@ gulp.task('copy', function() {
   return merge(app, docs, gae, bower);
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', 'Watch files for changes', function() {
   createReloadServer();
   gulp.watch('app/sass/**/*.scss', ['style', reload]);
   gulp.watch('app/elements/**/*', ['vulcanize', reload]);
@@ -232,15 +216,19 @@ gulp.task('watch', function() {
     gulp.src('*.{yml,yaml}').pipe(gulp.dest('dist'));
     reload();
   });
+}, {
+  options: {
+    'reload': 'Reloads browser tab when watched files change',
+    'open': 'Opens a browser tab when launched'
+  }
 });
 
-// Clean up your mess!
-gulp.task('clean', function() {
+gulp.task('clean', 'Remove dist/ and other built files', function() {
   return del(['dist', 'app/css']);
 });
 
 // Default task. Build the dest dir.
-gulp.task('default', ['clean', 'jshint'], function(done) {
+gulp.task('default', 'Build site', ['clean', 'jshint'], function(done) {
   runSequence(
     ['style', 'style:modules', 'images', 'vulcanize', 'js'],
     'copy', 'md',
