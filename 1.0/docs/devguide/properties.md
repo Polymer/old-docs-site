@@ -374,15 +374,14 @@ In addition to properties, observers can also observe [paths to sub-properties](
 
 To observe changes in object sub-properties:
 
-1.  Initialize your object to a default value.
-2.  Define an `observers` array.
-3.  For each object sub-property that you want to observe, add an element to
+*   Define an `observers` array.
+*   For each object sub-property that you want to observe, add an element to
     the `observers` array. Each element must be a method call that 
     accepts a single argument. The argument is the path to the object
     sub-property. The method is the action that you wish to take when the 
     object sub-property changes. The value of the sub-property is passed to
     the method.
-4.  Define each method in your element registration.
+*   Define each method in your element registration.
 
 In order for Polymer to properly detect the sub-property change, the 
 sub-property must be updated in one of the following two ways:
@@ -404,7 +403,6 @@ Example:
             user: {
               type: Object,
               value: function() {
-                // Observed object is initialized to default value.
                 return {};
               }
             }
