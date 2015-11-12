@@ -8,7 +8,7 @@ before_script:
   - wget https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.28.zip -nv
   - unzip -q google_appengine_1.9.28.zip
 script:
-  - npm test
+  - python dist/test_runner.py ~/google_appengine tests/
 
 # SEe http://docs.travis-ci.com/user/deployment/google-app-engine/
 #deploy:
