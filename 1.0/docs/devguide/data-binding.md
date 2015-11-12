@@ -586,7 +586,7 @@ _or_ if the array  itself is mutated, so the binding uses a wildcard path, `myAr
       <script>
         Polymer({
 
-          is: 'binding-test',
+          is: 'bind-array-element',
 
           properties: {
 
