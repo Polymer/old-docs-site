@@ -372,15 +372,16 @@ In addition to properties, observers can also observe [paths to sub-properties](
 
 ### Observing sub-property changes {#observing-path-changes}
 
-To observe changes in an object sub-property:
+To observe changes in object sub-properties:
 
 *   Define an `observers` array.
-*   Add an item to the `observers` array. The item must be a method call that 
-    accepts a single argument. The argument is the path to the object
-    sub-property. The method is the action that you wish to take when the 
-    object sub-property changes. The value of the sub-property is passed to
-    the method.
-*   Define the method in your element registration.
+*   Add an item to the `observers` array. The item must be a method name
+    followed by a comma-separated list of one or more paths. For example,
+    `onNameChange(dog.name)` for one path, or 
+    `onNameChange(dog.name, cat.name)` for multiple paths. Each path is a
+    sub-property that you want to observe.
+*   Define the method in your element prototype. When the method is called,
+    the argument to the method is the new value of the sub-property.
 
 In order for Polymer to properly detect the sub-property change, the 
 sub-property must be updated in one of the following two ways:
@@ -406,12 +407,14 @@ Example:
               }
             }
           },
-          /* Each item of observers array is a method call that takes a 
-             single argument. Argument is the path to the sub-property. */
+          /* Each item of observers array is a method name followed by 
+             a comma-separated list of one or more paths. */
           observers: [
             'userNameChanged(user.name)'
           ],
-          // Each method in observers is defined in element registration.
+          /* Each method referenced in observers must be defined in 
+           * element prototype. The argument to the method is the new value
+           * of the sub-property. */
           userNameChanged: function(name) {
             console.log('new name: ' + name);
           },
