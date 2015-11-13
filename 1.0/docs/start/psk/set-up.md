@@ -67,9 +67,7 @@ Polymer Starter Kit (PSK) locally in less than 15 minutes.
 
 ## Directory structure 
 
-The diagram below is a brief summary of the directories within the PSK. The
-appendix of this tutorial contains a complete overview of the entire PSK
-app structure.
+The diagram below is a brief summary of the directories within the PSK.
 
 <pre>
 /
