@@ -407,14 +407,14 @@ Example:
               }
             }
           },
-          /* Each item of observers array is a method name followed by 
-             a comma-separated list of one or more paths. */
+          // Each item of observers array is a method name followed by 
+          // a comma-separated list of one or more paths.
           observers: [
             'userNameChanged(user.name)'
           ],
-          /* Each method referenced in observers must be defined in 
-           * element prototype. The argument to the method is the new value
-           * of the sub-property. */
+          // Each method referenced in observers must be defined in 
+          // element prototype. The argument to the method is the new value
+          // of the sub-property. 
           userNameChanged: function(name) {
             console.log('new name: ' + name);
           },
