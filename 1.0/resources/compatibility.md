@@ -5,26 +5,27 @@ shortname: Resources
 title: Browser Compatibility
 ---
 
-Unlike other frameworks, **{{site.project_title}} is intended to work in the _latest
-version_ of "evergreen" browsers**. That is, Chrome, Firefox, IE, Opera and Safari. 
-This means that your favorite browser might not be supported. 
+> **{{site.project_title}} 1.0 works in all _latest version_ "evergreen" browsers (Chrome, Firefox, IE, Opera, and Safari)**.
 
-The features required by {{site.project_title}} are not supported natively in 
-all of the evergreen browsers, but a set of web components polyfills are available
-that **do** run in the evergreen browsers and provide the support {{site.project_title}}
-requires.
+---
 
-## Native browser support
+## Browser support
+
+The features used by {{site.project_title}} are not (yet) supported natively in 
+all browsers. For web components support, {{site.project_title}}
+uses the [polyfills](http://webcomponents.org/polyfills/) from [webcomponents.js](http://webcomponents.org). They're lightweight, work well, and provide the feature support {{site.project_title}} requires.
+
+With the polyfills, {{site.project_title}} works in these browsers:
 
 <table>
 <thead>
-  <tr><th></th><th>Chrome</th><th>Firefox</th><th>IE&nbsp;10+*</th><th>Safari 8+</th><th>Chrome (Android)</th><th>Safari (iOS&nbsp;8.1)</th></tr>
+  <tr><th></th><th>Chrome</th><th>Firefox</th><th>IE&nbsp;10+/Edge</th><th>Safari 8+</th><th>Chrome (Android)</th><th>Safari (iOS&nbsp;8.1)</th></tr>
 </thead>
 <tr>
   <td class="feature-title"><a href="http://www.html5rocks.com/en/tutorials/webcomponents/template/">Template</a></td>
   <td><paper-checkbox checked></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
-  <td><paper-checkbox disabled></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
@@ -32,53 +33,56 @@ requires.
 <tr>
   <td class="feature-title"><a href="//www.polymer-project.org/platform/html-imports.html">HTML Imports</a></td>
   <td><paper-checkbox checked></paper-checkbox></td>
-  <td>dev flag **</td>
-  <td><paper-checkbox disabled></paper-checkbox></td>
-  <td><paper-checkbox disabled></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
-  <td><paper-checkbox disabled></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
 </tr>
 <tr>
   <td class="feature-title"><a href="//www.polymer-project.org/platform/custom-elements.html">Custom Elements</a></td>
   <td><paper-checkbox checked></paper-checkbox></td>
-  <td>dev flag **</td>
-  <td><paper-checkbox disabled></paper-checkbox></td>
-  <td><paper-checkbox disabled></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
-  <td><paper-checkbox disabled></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
 </tr>
 <tr>
   <td class="feature-title"><a href="//www.polymer-project.org/platform/shadow-dom.html">Shadow DOM</a></td>
   <td><paper-checkbox checked></paper-checkbox></td>
-  <td>dev flag **</td>
-  <td><paper-checkbox disabled></paper-checkbox></td>
-  <td><paper-checkbox disabled></paper-checkbox></td>
   <td><paper-checkbox checked></paper-checkbox></td>
-  <td><paper-checkbox disabled></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
 </tr>
 </table>
 
-<p>
-<small>* Includes Edge</small>
-</p>
+Notes:
 
-<p>
-<small>** Firefox currently supports some of the web components behind a flag. {{site.project_title}} 
-<strong>does not work correctly</strong> with this flag enabled, because of an incompatibility with the web components
-polyfills. Also, although currently implemented behind a flag, Mozilla 
-<a href="https://hacks.mozilla.org/2014/12/mozilla-and-web-components/">announced</a> they will not ship 
-an implementation of HTML Imports.</small>
-</p>
+- **Android Browser is not supported**. Chrome for Android is supported.
 
-<p>Also see <a href="http://caniuse.com/">caniuse.com</a> and <a href="http://jonrimmer.github.io/are-we-componentized-yet/">Are We Componentized Yet?</a> for up to date information on native support.</p>
 
-### Other APIs
+#### Should I use webcomponents-lite.js or webcomponents.js?
 
-In addition to the main web components APIs, Polymer uses other new platform features:
+We recommend using the `webcomponents-lite.js` version of the polyfills with {{site.project_title}} 1.0. This version uses [Shady DOM](https://www.polymer-project.org/1.0/articles/shadydom.html).
+
+Although the full `webcomponents.js` polyfill works with {{site.project_title}} 1.0,
+we do not recommend using it. Thsi version contains the full Shadow DOM polyfill,
+which is known to have performance overhead.
+
+**See** the webcomponents.js [compatibility matrix](https://github.com/WebComponents/webcomponentsjs#browser-support) for more details on support.
+{: .alert .alert-info }
+
+#### Other features used by Polymer or the elements
+
+In addition to the web component standards, {{site.project_title}} uses these other
+new web platform features which are covered by polyfills:
 
 <table>
 <thead>
-  <tr><th></th><th>Chrome</th><th>Firefox</th><th>IE 11+*</th><th>Safari 8+</th><th>Chrome (Android)</th><th>Safari (iOS 8.1)</th></tr>
+  <tr><th></th><th>Chrome</th><th>Firefox</th><th>IE 11/Edge+*</th><th>Safari 8+</th><th>Chrome (Android)</th><th>Safari (iOS 8.1)</th></tr>
 </thead>
 <tr>
   <td class="feature-title">Mutation Observers</td>
@@ -90,7 +94,53 @@ In addition to the main web components APIs, Polymer uses other new platform fea
   <td><paper-checkbox checked></paper-checkbox></td>
 </tr>
 <tr>
-  <td class="feature-title">Web Animations API</td>
+  <td class="feature-title"><a href="https://github.com/web-animations/web-animations-js">Web Animations polyfill</a></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
+</tr>
+</table>
+
+Notes:
+
+- IE 10 has flaky Mutation Observer support. We recommend IE 11/Edge.
+
+## Progress of native browser support
+
+As of 2015-11-03, Chrome is the only browser to support all of the web components APIs
+natively. However, the landscape is changing quickly. Other browsers are implementing
+Shadow DOM v1 and/or have implementations behind runtime flags. 
+
+**See** [Are We Componentized Yet?](http://jonrimmer.github.io/are-we-componentized-yet/)
+and [caniuse.com](http://caniuse.com/) for more information on native browser support for web components.
+{: .alert .alert-info }
+
+Notes:
+
+- WebKit Nightly has a working implementation of Shadow DOM v1.
+- Firefox currently supports some of the web components behind a flag. {{site.project_title}} 
+**does not work correctly** with this flag enabled, because of an incompatibility with the web components polyfills. Also, although currently implemented behind a flag, Mozilla 
+
+#### Other features
+
+<table>
+<thead>
+  <tr><th></th><th>Chrome</th><th>Firefox</th><th>IE 11/Edge+*</th><th>Safari 8+</th><th>Chrome (Android)</th><th>Safari (iOS 8.1)</th></tr>
+</thead>
+<tr>
+  <td class="feature-title">Mutation Observers</td>
+  <td><paper-checkbox checked></paper-checkbox></td>
+   <td><paper-checkbox checked></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
+  <td><paper-checkbox checked></paper-checkbox></td>
+</tr>
+<tr>
+  <td class="feature-title">Web Animations</td>
   <td><paper-checkbox checked></paper-checkbox></td>
   <td><paper-checkbox disabled></paper-checkbox></td>
   <td><paper-checkbox disabled></paper-checkbox></td>
@@ -100,22 +150,7 @@ In addition to the main web components APIs, Polymer uses other new platform fea
 </tr>
 </table>
 
-<p>
-<small>* Includes Edge</small>
-</p>
-
 **Note:** {{site.project_title}} 1.0 **does not** use `Object.observe`, which was used
 by {{site.prject_title}} 0.5 and earlier.
 {: .alert .alert-info }
 
-## Polyfill browser support
-
-<p>Polymer uses the <a href="https://github.com/WebComponents/webcomponentsjs">webcomponents.js polyfills</a> that work in the latest versions of evergreen browsers. See the <a href="https://github.com/WebComponents/webcomponentsjs#browser-support">compatibility matrix</a> for more details.</p>
-
-<p>
-{{site.project_title}} 1.0 requires the <code>webcomponents-lite.js</code> version of the polyfills.
-It can also be used with the full <code>webcomponents.js</code> polyfill, which includes the shadow DOM polyfill,
-but this is not recommended, because of performance concerns with the shadow DOM polyfill.
-</p>
-
-<!-- <iframe src="https://docs.google.com/spreadsheet/pub?key=0Anye-JMjUkZZdDdoblh6dTlwcWRLQkhKbTVzdHJtcXc&single=true&gid=2&output=html&range=A1:Q43" seamless style="border:none;width:100%;height:830px;"></iframe> -->

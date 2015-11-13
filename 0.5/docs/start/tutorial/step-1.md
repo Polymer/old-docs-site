@@ -293,7 +293,7 @@ Save the file and open the project in your browser (for example, [http://localho
 </div>
 
 **Note:** If you have the console open, you'll notice that you get two `core-select`
-events each time you switch tabs &mdash; one for the previously-selected tab and one
+events each time you switch tabs—one for the previously-selected tab and one
 for the newly-selected tab. The `<paper-tabs>` element inherits this behavior from <code><a href="../../elements/core-selector.html">&lt;core-selector&gt;</a></code>, which supports
 both single and multiple selections.
 {: .alert .alert-info }

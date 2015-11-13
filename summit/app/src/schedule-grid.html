@@ -84,6 +84,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       color: #555;
     }
 
+    .video {
+      font-size: 17px;
+      line-height: 28px;
+      color: #4FB6F7;
+    }
+
     [collapsible-content] {
       padding: 16px 16px 40px;
     }
@@ -141,6 +147,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <div class="speaker">[[item.speaker]]</div>
               <div class="time">[[item.time]]</div>
               <div class="location">[[item.location]]</div>
+              <template is="dom-if" if="[[item.video]]">
+                <div class="video"><a href="[[item.video]]">WATCH THE VIDEO</a></div>
+              </template>
               <iron-icon class="toggle-icon" icon="arrow-drop-down" collapsible-toggle></iron-icon>
             </div>
 

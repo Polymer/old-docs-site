@@ -26,7 +26,7 @@ title: FAQ
 {{site.project_title}} is the embodiment of material design for the web. The {{site.project_title}} team works closely with the design teams behind material design. In fact, {{site.project_title}} played a key role in material design's development: it was used to quickly prototype and iterate on design concepts. The material design components are still a work in progress, but will mature over the coming months.
 
 ### Do I have to use {{site.project_title}} Designer? {#designer}
-Nope! [{{site.project_title}} Designer](https://polymer-designer.appspot.com) is primarily a tool to make it easy to dive in and prototype apps. It's entirely optional&mdash;although we've found that for developers who use it, it has quickly become an indispensable part of their workflow.
+Nope! [{{site.project_title}} Designer](https://polymer-designer.appspot.com) is primarily a tool to make it easy to dive in and prototype apps. It's entirely optional—although we've found that for developers who use it, it has quickly become an indispensable part of their workflow.
 
 ### I don't like your {components | data binding syntax | face }! {#dislike}
 
@@ -36,7 +36,7 @@ Nope! [{{site.project_title}} Designer](https://polymer-designer.appspot.com) is
   <figcaption>Architectural Diagram</figcaption>
 </figure> -->
 
-That's fine. The cool thing about Web Components-based libraries like {{site.project_title}} is that you can easily mix and match elements built using different libraries&mdash;and you don't have to use any of our databinding syntax if you just want to use some of our elements.
+That's fine. The cool thing about Web Components-based libraries like {{site.project_title}} is that you can easily mix and match elements built using different libraries—and you don't have to use any of our databinding syntax if you just want to use some of our elements.
 
 <!-- {: style="clear:both"} -->
 
