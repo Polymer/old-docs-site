@@ -60,6 +60,13 @@ def handle_500(req, resp, e):
   #render(resp, '500.html')
   resp.write('Oops! There was an issue on our end.')
 
+
+# class VersionHandler(http2push.PushHandler):
+
+#   def get(self, version):
+#     render(self.response, '/%s/index.html' % version)
+
+
 class Site(http2push.PushHandler):
 
   def redirect_if_needed(self, path):
@@ -104,6 +111,7 @@ class Site(http2push.PushHandler):
     render(self.response, path, data)
 
 routes = [
+  # ('/(\d\.\d)/$', VersionHandler),
   ('/(.*)', Site),
 ]
 

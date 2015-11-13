@@ -14,11 +14,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 header, footer {
   padding: 32px;
-  background: #eee;
+  color: white;
+  background-color: #eee;
+
+  a {
+    color: currentcolor;
+    text-decoration: none;
+  }
+}
+
+header {
+  .logo {
+    margin-right: 16px;
+  }
+}
+
+footer {
+  background: #d81b60;
 }
 
 main {
   padding: 32px;
+}
+
+a {
+  color: #3367d6;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 

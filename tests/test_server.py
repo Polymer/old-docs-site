@@ -46,38 +46,39 @@ class HandlerTest(unittest.TestCase):
 
   def testMainHandler(self):
     resp = self.testapp.get('/')
+    assert resp.status_code == 301
+    resp = resp.maybe_follow()
     assert resp.status_code == 200
     assert resp.content_type == 'text/html'
     assert 'rel=preload' in resp.headers['Link']
 
-    resp = self.testapp.get('/docs/')
+    resp = self.testapp.get('/1.0/')
     assert resp.status_code == 200
     assert resp.content_type == 'text/html'
 
-    resp = self.testapp.get('/docs/page.html')
+    resp = self.testapp.get('/1.0/page.html')
     assert resp.status_code == 301
-    self.assertTrue(resp.location.endswith('/docs/page'))
+    self.assertTrue(resp.location.endswith('/1.0/page'))
 
   def test404(self):
     resp = self.testapp.get('/pagethatdoesnotexist', status=404)
     assert resp.status_code == 404
 
   def testIndexRedirects(self):
-    # TODO: figure out how to test final URL.
-    expected_resp = self.testapp.get('/')
+    expected_resp = self.testapp.get('/1.0/')
 
     self.__redirect_resolves('/index.html', expected_resp)
     self.__redirect_resolves('/index', expected_resp)
 
-    expected_resp = self.testapp.get('/docs/')
-    self.__redirect_resolves('/docs/index.html', expected_resp)
-    self.__redirect_resolves('/docs/index', expected_resp)
+    expected_resp = self.testapp.get('/1.0/')
+    self.__redirect_resolves('/1.0/index.html', expected_resp)
+    self.__redirect_resolves('/1.0/index', expected_resp)
 
-    expected_resp = self.testapp.get('/docs/page')
-    self.__redirect_resolves('/docs/page.html', expected_resp)
+    expected_resp = self.testapp.get('/1.0/page')
+    self.__redirect_resolves('/1.0/page.html', expected_resp)
 
   def testMarkdownAuthoring(self):
-    resp = self.testapp.get('/docs/test')
+    resp = self.testapp.get('/1.0/test')
     assert resp.status_code == 200
     assert resp.content_type == 'text/html'
     assert 'rel=preload' in resp.headers['Link']

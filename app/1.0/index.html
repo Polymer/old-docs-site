@@ -1,0 +1,27 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+
+{#<p>{{{5+5}}}</p>#}
+
+<p>
+<template id="t" is="dom-bind">
+ Dom bind stamped!
+</template>
+</p>
+<br>
+
+<p>Try:</p>
+<ul>
+<li><a href="index.html">docs/index.html redirects</a>
+<li><a href="page.html">page.html -> page</a>
+<li><a href="test.html">markdown authored file</a>
+<li><a href="subfolder/">subfolder</a>
+
+<li><a href="/oldpage/">Redirect 1</a>
+<li><a href="/some/page/that/is/old.html">Redirect 2</a>
+</ul>
+
+{% endblock %}

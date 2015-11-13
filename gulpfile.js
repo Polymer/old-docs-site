@@ -101,13 +101,14 @@ gulp.task('images', 'Optimize images', function() {
     .pipe($.changed('dist/images'))
     .pipe($.imagemin({
       progressive: true,
-      interlaced: true
+      interlaced: true,
+      svgoPlugins: [{convertTransform: false}]
     }))
     .pipe(gulp.dest('dist/images'));
 });
 
 gulp.task('md', 'Markdown -> HTML conversion. Syntax highlight and TOC generation', function() {
-  return gulp.src(['*!README.md', 'app/docs/**/*.md'], {base: 'app/'})
+  return gulp.src(['*!README.md', 'app/**/*.md'], {base: 'app/'})
     .pipe(matter(function(file) { // pull out front matter data.
       let data = file.data;
       data.file = file;
@@ -177,13 +178,13 @@ gulp.task('vulcanize', 'Vulcanize elements to dist/', function() {
 gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', function() {
   let app = gulp.src([
       '*',
-      'app/{index.html,manifest.json}',
+      'app/manifest.json',
       '!{README.md, package.json,gulpfile.js}',
     ], {nodir: true})
     .pipe(gulp.dest('dist'));
 
   let docs = gulp.src([
-      'app/docs/**/*.html'
+      'app/**/*.html'
      ], {base: 'app/'})
     .pipe(gulp.dest('dist'));
 
