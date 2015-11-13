@@ -236,7 +236,7 @@ The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced 
 ### Declare a property
 
 Properties are an important part of an element's public API. {{site.project_title}} 
-_declared properties_ support a number of common patterns for properties — setting default
+_declared properties_ support a number of common patterns for properties—setting default
 values, configuring properties from markup, observing property changes, and more.
 
 In the following example, we add a declared `owner` property with a default value, 

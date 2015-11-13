@@ -144,7 +144,7 @@ These methods and properties have the same signatures as their standard DOM equi
     of nodes return an `Array`, not a `NodeList`.
 
 *   **Local DOM root**. Use the `root` property to access a 
-    {{site.project_title}} element's local DOM root &mdash; equivalent to 
+    {{site.project_title}} element's local DOM root—equivalent to 
     the shadow root in native shadow DOM.
 
 *   **Async operations.** Insert, append, and remove operations are 
@@ -441,7 +441,7 @@ For the simple case, you can use a mutation observer to detect when children are
 To detect those changes, `<simple-carousel>` would have to check its child list for `<content>` nodes. If it's got a `<content>` node in its `children`, it would need to add _another_ mutation observer on its shadow host (in this case, `<popup-carousel>`). And so on. Suddenly, the `<simple-carousel>` isn't so simple anymore. 
 
 The `observeNodes` method handles this complexity for you. It uses mutation observers internally to track DOM changes, and handles the extra bookkeeping required to track local DOM distributions. 
-Unlike a mutation observer, the `observeNodes` callback is only invoked when nodes are added or removed &mdash; it doesn't handle attribute changes or character data changes.
+Unlike a mutation observer, the `observeNodes` callback is only invoked when nodes are added or removed—it doesn't handle attribute changes or character data changes.
 
 ### DOM API examples 
 

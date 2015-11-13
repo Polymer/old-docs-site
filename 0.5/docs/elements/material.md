@@ -397,8 +397,8 @@ To change the z height dynamically, call the `setZ` method.
 
     this.$.my-shadow.setZ(5);
 
-The apparent height of the element (the z-height value) is absolute &mdash;
-that is, an  element with a z-height of 3 casts the same size shadow
+The apparent height of the element (the z-height value) is absolute—that 
+is, an  element with a z-height of 3 casts the same size shadow
 regardless of the z-heights of  the background elements. In addition, the
 z-height does not affect the stacking order of  elements. To change stacking
 order of sibling elements, use the `z-index` CSS property as  usual.
@@ -440,7 +440,7 @@ design spec, including condensing and expanding the toolbar as the user
 scrolls and hiding or showing the toolbar.
 
 For resizing toolbars, `<core-scroll-header-panel>` lets you define how to
-transition the toolbar's contents between states &mdash; resizing text,
+transition the toolbar's contents between states—resizing text,
 showing or hiding /components, and cross-fading between backgrounds, for
 example.
 
