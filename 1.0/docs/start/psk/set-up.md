@@ -11,10 +11,10 @@ subtitle: Using Polymer Starter Kit
 The Polymer Starter Kit is a complete starting point for a Polymer 1.0 
 application. It includes:
 
-*   A [Material Design][md] layout
-*   Routing with Page.js
-*   Web component unit testing
-*   An end-to-end build and local development toolchain
+*   A [Material Design][md] layout.
+*   Routing with Page.js.
+*   Unit testing with [web-component-tester](https://github.com/Polymer/web-component-tester).
+*   An end-to-end toolchain for build and local development.
 
 Follow the instructions below to install, build, and run the 
 Polymer Starter Kit (PSK) locally in less than 15 minutes.
@@ -141,67 +141,6 @@ The PSK is ready to be built and ran locally.
 Now that your PSK is up and running, learn how to [add a new page of 
 content](create-a-page.html), or how to [deploy the app to the 
 web](deploy.html).
-
-## Appendix: complete app structure
-
-The diagram below represents the complete directory structure of the 
-PSK. An item that ends in a forward slash (`/`) represents a directory. The 
-rest are individual files. Content after a hashtag (`#`) describes the
-purpose of that item or why you would potentially interact with it.
-
-<pre>
-/  # Root directory.
-|---app/  # Source code directory. Make all changes in this directory.
-|   |---elements/  # Add your custom elements here.
-|   |   |---my-greeting/  # Sample element demonstrating data-binding.
-|   |   |   |---my-greeting.html
-|   |   |---my-list/  # Sample element demonstrating dom-repeat templates.
-|   |   |   |---my-list.html
-|   |   |---elements.html  # Add element imports here.
-|   |   |---routing.html  # Define URL routing rules here. 
-|   |---images/  # Logos for adding app icons to device homescreens.
-|   |   |---touch/
-|   |       |---apple-touch-icon.png
-|   |       |---chrome-splashscreen-icon-384x384.png
-|   |       |---chrome-touch-icon-192x192.png
-|   |       |---icon-128x128.png
-|   |       |---ms-icon-144x144.png
-|   |       |---ms-touch-icon-144x144-precomposed.png
-|   |---scripts/  # Add JS scripts here.
-|   |   |---app.js  # Add app-level scripts here.
-|   |---styles/
-|   |   |---app-theme.html  # Define app-level styles here.
-|   |   |---main.css  # Define pure CSS rules here.
-|   |   |---shared-styles.html  # Share styles between elements here.
-|   |---test/  # Add Web Component tests here.
-|   |   |---index.html
-|   |   |---my-greeting-basic.html  # Tests for my-greeting sample element.
-|   |   |---my-list-basic.html   # Tests for my-list sample element.
-|   |---cache-config.json  # Service worker cache config. See comment in file.
-|   |---favicon.ico 
-|   |---index.html  # Add app navigation and content here.
-|   |---manifest.json  # Manifest file for Chrome apps.
-|   |---robots.txt  # Define how search engines can crawl your app here.
-|   |---sw-import.js  # Service worker import script.
-|---docs/  # Optional "recipes" for adding features, using tools, etc.
-|   |---README.md
-|   |---add-es2015-support-babel.md  # How to use ES2015 language features.
-|   |---chrome-dev-editor.md  # How to use Chrome Dev Editor.
-|   |---polymer-perf.md  # How to optimize web component loading.
-|---.editorconfig  # Define code style.
-|---.gitattributes  # Configure rules for how Git stores files.
-|---.gitignore  # Tell Git which files to ignore.
-|---.jscsrc  # Configure JSCS here.
-|---.jshintc  # Configure JSHint here.
-|---CONTRIBUTING.md  # Learn how to contribute to PSK.
-|---LICENSE.md  # Learn how you can use and distribute PSK.
-|---README.md  # Read feature overviews and how to install PSK.
-|---bower.json  # Define app dependencies.
-|---gulpfile.js  # Define tasks for building, testing, serving, etc. here.
-|---package.json  # Define build and toolchain dependencies.
-|---dist/  # Deploy this directory to production. 
-</pre>
-
 
 [shared styles]: https://www.polymer-project.org/1.0/docs/devguide/styling.html#style-modules
 [md]: http://www.google.com/design/spec/material-design/introduction.html
