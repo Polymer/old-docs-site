@@ -108,7 +108,10 @@ gulp.task('images', 'Optimize images', function() {
 });
 
 gulp.task('md', 'Markdown -> HTML conversion. Syntax highlight and TOC generation', function() {
-  return gulp.src(['*!README.md', 'app/**/*.md'], {base: 'app/'})
+  return gulp.src([
+      'app/**/*.md',
+      '!app/{bower_components,elements,images,js,sass}/**',
+    ], {base: 'app/'})
     .pipe(matter(function(file) { // pull out front matter data.
       let data = file.data;
       data.file = file;
