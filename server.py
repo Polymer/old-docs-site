@@ -105,7 +105,7 @@ class Site(http2push.PushHandler):
       path += '.html'
 
     data = {
-      # todo
+      'edit_on_github_url': path.replace('.html', '.md')
     }
 
     render(self.response, path, data)

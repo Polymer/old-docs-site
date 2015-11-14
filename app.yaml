@@ -33,6 +33,13 @@ handlers:
 - url: /humans.txt
   static_files: humans.txt
   upload: humans.txt
+  secure: always
+
+- url: /manifest.json
+  static_files: manifest.json
+  upload: manifest.json
+  mime_type: application/manifest+json
+  secure: always
 
 - url: .*
   script: server.app

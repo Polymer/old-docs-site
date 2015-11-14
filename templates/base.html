@@ -51,6 +51,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 {% include "templates/header.html" %}
 
+{% if edit_on_github_url %}
+<span class="edit-on-github">
+  <!-- TODO: This doesn't work for .md authored files. -->
+  <a href="https://github.com/Polymer/docs/edit/master/{{{edit_on_github_url}}}">Edit on GitHub</a>
+</span>
+{% endif %}
+
 <main>
   {% block content %}{% endblock %}
 </main>
