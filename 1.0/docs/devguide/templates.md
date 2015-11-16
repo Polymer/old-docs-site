@@ -134,8 +134,10 @@ model data that generated a given element. (There are also corresponding
 To filter or sort the _displayed_ items in your list, specify a `filter` or 
 `sort` property on the `dom-repeat` (or both):
 
-*   `filter`. Specifies a filter callback function following the standard 
-    `Array` [`filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) API.
+*   `filter`. Specifies a filter callback function, that takes a single argument
+    (the item) and returns true to display the item, false to omit it.
+    (Note that this is **similar** to the standard 
+    `Array` [`filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) API, but the callback only takes a single argument.)
 *   `sort`. Specifies a comparison function following the standard `Array` 
     [`sort`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) API.
 
@@ -165,6 +167,79 @@ Then the `observe` property should be configured as follows:
 Changing a `manager.type` field should now cause the list to be re-sorted:
 
     this.set('employees.0.manager.type', 'engineer');
+
+#### Dynamic sort and filter changes
+
+The `observe` property lets you specify item sub-properties to 
+observe for filtering and sorting purposes. However, sometimes you want to
+dynamically change the sort or filter based on another unrelated value. In 
+this case, you can use a computed binding to _return_ a dynamic filter or 
+sort function when one or more dependent properties changes.
+
+    <dom-module id="employee-search">
+
+      <template>{% raw %}
+        <input value="{{searchString::change}}">
+        <template is="dom-repeat" items="{{employees}}" as="employee"
+            filter="{{matches(searchString)}}">
+            <div>{{employee.lastname}}, {{employee.firstname}}</div>
+        </template>{% endraw %}
+      </template>
+
+      <script>
+        Polymer({
+          is: "employee-search",
+          matches: function(string) {
+            if (!string) {
+              // if no search string, show all records
+              return function() { return true; }
+            } else {
+              // return a filter function for the current search string
+              string = string.toLowerCase();
+              return function(employee) {
+                var first = employee.firstname.toLowerCase();
+                var last = employee.lastname.toLowerCase();
+                return first.includes(string) ||
+                    last.includes(string);
+              }
+            }
+          },
+          properties: {
+            employees: {
+              type: Array,
+              value: function() {
+                return [
+                  { firstname: "Jack", lastname: "Aubrey" },
+                  { firstname: "Anne", lastname: "Elliot" },
+                  { firstname: "Stepehen", lastname: "Maturin" },
+                  { firstname: "Emma", lastname: "Woodhouse" }
+                ]
+              }
+            }
+          }
+        });
+      </script> 
+    </dom-module>
+
+#### Filtering on array index
+
+Because of the way {{site.project_title}} tracks arrays internally, the array 
+index isn't passed to the filter function. Looking up the array index for an
+item is an O(n) operation. Doing so  in a filter function could have 
+**significant performance impact**.
+
+If you want to look up the array index, you can use code like this:
+
+    filter: function(item) {
+      var index = this.items.indexOf(item);
+      ...
+    }
+
+The filter function is called with the `dom-repeat` as the `this` value, so 
+you can access the original array as `this.items` and use it to look up the index.
+
+This lookup returns the items index in the **original** array, which may not match 
+the index of the array as displayed (filtered and sorted).
 
 ### Nesting dom-repeat templates {#nesting-templates}
 
