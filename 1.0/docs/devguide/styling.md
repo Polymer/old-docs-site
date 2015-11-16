@@ -699,3 +699,30 @@ that includes a `custom-style` element.
       } 
     </style>      
 
+## Third-party libraries that modify local DOM {#scope-subtree}
+
+If you are using a third-party library that adds local DOM nodes to your
+Polymer element, you may notice that styles on the element do not update
+properly. 
+
+The correct way to add DOM nodes to a Polymer element's local DOM is via
+the Polymer DOM API. This API lets you manipulate nodes in a way that respects
+the local DOM and ensures that styles are updated properly.
+
+When using third-party libraries that do not know about the Polymer DOM
+API, use `scopeSubtree` to apply proper CSS scoping to a node and all of its
+descendants. 
+
+    scopeSubtree(containerNode, false);
+
+`containerNode` is the root node of the tree you wish to scope. Setting 
+the second argument to `false` scopes the specified node and descendants 
+once. Setting it to `true` enables a mutation observer that applies CSS 
+scoping whenever `containerNode` or any of its descendants are modified.
+
+Example:
+
+    ready: function() {
+      this.scopeSubtree(this.$.container, true);
+    }
+
