@@ -130,6 +130,12 @@ A “batteries-included” application template, the
 includes a responsive application layout, tooling for testing and deployment, and
 even optional support for advanced features like offline access and push notifications.
 
+Check out the Polymer Starter Kit (PSK) tutorials to learn how to:
+
+*   [Install, build, and locally run](psk/set-up.html) the PSK.
+*   [Create a new page of content](psk/create-a-page.html).
+*   [Deploy the PSK](psk/deploy.html) to the web.
+
 ## Contributing to the Project {#using-git}
 
 If you'd like to hack on
