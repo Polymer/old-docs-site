@@ -370,40 +370,59 @@ Example:
 In addition to properties, observers can also observe [paths to sub-properties](#observing-path-changes),
 [paths with wildcards](#deep-observation), or [array changes](#array-observation).
 
-### Observing path changes {#observing-path-changes}
+### Observing sub-property changes {#observing-path-changes}
 
-You can also observe changes to object sub-properties using the 
-`observers` array, by specifying a full path (`user.manager.name`)
-as a function argument.
+To observe changes in object sub-properties:
+
+*   Define an `observers` array.
+*   Add an item to the `observers` array. The item must be a method name
+    followed by a comma-separated list of one or more paths. For example,
+    `onNameChange(dog.name)` for one path, or 
+    `onNameChange(dog.name, cat.name)` for multiple paths. Each path is a
+    sub-property that you want to observe.
+*   Define the method in your element prototype. When the method is called,
+    the argument to the method is the new value of the sub-property.
+
+In order for Polymer to properly detect the sub-property change, the 
+sub-property must be updated in one of the following two ways:
+
+*   Via a [property binding](data-binding.html#property-binding).
+*   By calling [`set`](data-binding.html#set-path).
 
 Example:
 
-    Polymer({
+    <dom-module id="x-sub-property-observer">
+      <template>
+        <!-- Sub-property is updated via property binding. -->
+        <input value="{% raw %}{{user.name::input}}{% endraw %}">
+      </template>
+      <script>
+        Polymer({
+          is: 'x-sub-property-observer',
+          properties: {
+            user: {
+              type: Object,
+              value: function() {
+                return {};
+              }
+            }
+          },
+          // Each item of observers array is a method name followed by 
+          // a comma-separated list of one or more paths.
+          observers: [
+            'userNameChanged(user.name)'
+          ],
+          // Each method referenced in observers must be defined in 
+          // element prototype. The argument to the method is the new value
+          // of the sub-property. 
+          userNameChanged: function(name) {
+            console.log('new name: ' + name);
+          },
+        });
+      </script>
+    </dom-module>
 
-      is: 'x-custom',
-
-      properties: {
-        user: Object
-      },
-
-      observers: [
-        'userManagerChanged(user.manager)'
-      ],
-
-      userManagerChanged: function(user) {
-        console.log('new manager name is ' + user.name);
-      }
-
-    });
-
-To observe a change to a path (object sub-property) the value **must be changed in
-one of the following ways**:
-
-*   Using a Polymer [property binding](data-binding.html#property-binding) to another element.
-*   Using the [`set`](data-binding.html#set-path) API, which provides the
-    required notification to elements with registered interest.
-
-### Deep path observation {#deep-observation}
+### Deep sub-property observation {#deep-observation}
 
 To call an observer when any (deep) sub-property of an
 object changes, specify a path with a wildcard (`*`).
@@ -417,29 +436,34 @@ observer is a change record object with the following properties:
 
 Example:
 
-    Polymer({
-
-      is: 'x-custom',
-
-      properties: {
-        user: Object
-      },
-
-      observers: [
-        'userManagerChanged(user.manager.*)'
-      ],
-
-      userManagerChanged: function(changeRecord) {
-        if (changeRecord.path == 'user.manager') {
-          // user.manager object itself changed
-          console.log('new manager name is ' + changeRecord.value.name);
-        } else {
-          // sub-property of user.manager changed
-          console.log(changeRecord.path + ' changed to ' + changeRecord.value);
-        }
-      }
-
-    });
+    <dom-module id="x-deep-observer">
+      <template>
+        <input value="{% raw %}{{user.name.first::input}}{% endraw %}" 
+               placeholder="First Name">
+        <input value="{% raw %}{{user.name.last::input}}{% endraw %}" 
+               placeholder="Last Name">
+      </template>
+      <script>
+        Polymer({
+          is: 'x-deep-observer',
+          properties: {
+            user: {
+              type: Object,
+              value: function() {
+                return {'name':{}};
+              }
+            }
+          },
+          observers: [
+            'userNameChanged(user.name.*)'
+          ],
+          userNameChanged: function(changeRecord) {
+            console.log('path: ' + changeRecord.path);
+            console.log('value: ' + changeRecord.value);
+          },
+        });
+      </script>
+    </dom-module>
 
 ### Array observation {#array-observation}
 
