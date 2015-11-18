@@ -182,7 +182,7 @@ sort function when one or more dependent properties changes.
     <dom-module id="employee-search">
 
       <template>{% raw %}
-        <input value="{{searchString::change}}">
+        <input value="{{searchString::input}}">
         <template is="dom-repeat" items="{{employees}}" as="employee"
             filter="{{computeFilter(searchString)}}">
             <div>{{employee.lastname}}, {{employee.firstname}}</div>
@@ -202,9 +202,9 @@ sort function when one or more dependent properties changes.
               return function(employee) {
                 var first = employee.firstname.toLowerCase();
                 var last = employee.lastname.toLowerCase();
-                return first.includes(string) ||
-                    last.includes(string);
-              }
+                return (first.indexOf(string) != -1 ||
+                    last.indexOf(string) != -1);
+              };
             }
           },
           properties: {
