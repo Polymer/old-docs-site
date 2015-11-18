@@ -15,6 +15,76 @@ subtitle: About this release
   }
 </style>
 
+## [Release 1.2.3](https://github.com/Polymer/polymer/tree/v1.2.3) (2015-11-16)
+
+This release fixes the following issues:
+
+-   Fixes [#2381](https://github.com/Polymer/polymer/issues/2381), 
+    [#2708](https://github.com/Polymer/polymer/issues/2708): Fix ordering 
+    issues with `custom-style` elements that apply custom properties defined 
+    in other `custom-style` elements.
+
+## [Release 1.2.2](https://github.com/Polymer/polymer/tree/v1.2.2) (2015-11-12)
+
+This release includes a number of small optimizations affecting startup time. 
+
+This release includes the following new features:
+
+-   Fixes [#2511](https://github.com/Polymer/polymer/issues/2511). Add 
+    support for `strip-whitespace` attribute on templates. A template defined 
+    with the `strip-whitespace` attribute removes any empty text nodes from the 
+    template contents, which can result in a minor performance improvement.
+
+
+-   Fixes [#2537](https://github.com/Polymer/polymer/issues/2537). Add optional 
+    incremental "chunked" rendering to `dom-repeat`.
+
+    New properties:
+
+    -   `initialCount`. Enables incremental rendering and sets initial render count
+    -   `targetFramerate`. Determines the target frame budget for rendering the remaining items.
+
+    If `initialCount` is set, after setting (or re-setting) `items`, the initial count will be rendered pre-paint, and all remaining items will be incrementally rendered at `requestAnimationFrame` timing. The template makes a best-effort attempt to hit 
+    the framerate specified by `targetFramerate`.
+
+-   Fixes [#2690](https://github.com/Polymer/polymer/issues/2690). Add new 
+    `getComputedStyleValue` method to determine the computedn style of a custom 
+    property. Usage:
+
+    <code><var>propertyValue</var> = <var>element</var>.getComputedStyleValue(<var>propertyName</var>);</code>
+
+    This is equivalent to the native:
+
+    <code><var>propertyValue</var> = getComputedStyle(<var>element</var>).getPropertyValue(<var>property</var>);
+
+
+This release includes the following bug fixes and improvements:
+
+-   Fix compound bindings with braces in literals.
+
+-   Fixes [#2639](https://github.com/Polymer/polymer/issues/2639). Fix for 
+    BEM-like CSS selectors under media queries. This issue affected CSS selectors
+    that included two dashes inline, such as `foo--bar`. 
+
+-   Fixes [#2641](https://github.com/Polymer/polymer/issues/2641). Fix gestures 
+    when using shadow DOM polyfill.
+
+-   Fixes [#2649](https://github.com/Polymer/polymer/issues/2649). 
+    `queryAllEffectiveChildren` method throws an exception.
+
+-   Fixes [#2650](https://github.com/Polymer/polymer/issues/2650). Add support 
+    for short unicode escape sequences in CSS rules.
+
+-   Fixes [#2660](https://github.com/Polymer/polymer/issues/2660). Fix parsing 
+    of custom properties with 'var' in value.
+
+-   Fixes [#2670](https://github.com/Polymer/polymer/issues/2670). Fix 
+    for multiple consequent spaces present in CSS selectors.
+
+-   Fixes [#2685](https://github.com/Polymer/polymer/issues/2685): `dom-if` 
+    throws exception if detached before instance is stamped. 
+
+
 ## [Release 1.2.1](https://github.com/Polymer/polymer/tree/v1.2.1) (2015-10-29)
 
 This release includes the following new features:
