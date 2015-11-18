@@ -202,9 +202,9 @@ sort function when one or more dependent properties changes.
               return function(employee) {
                 var first = employee.firstname.toLowerCase();
                 var last = employee.lastname.toLowerCase();
-                return first.includes(string) ||
-                    last.includes(string);
-              }
+                return (first.indexOf(string) != -1 ||
+                    last.indexOf(string) != -1);
+              };
             }
           },
           properties: {
