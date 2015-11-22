@@ -121,8 +121,8 @@ and [caniuse.com](http://caniuse.com/) for more information on native browser su
 Notes:
 
 - WebKit Nightly has a working implementation of Shadow DOM v1.
-- Firefox currently supports some of the web components behind a flag. {{site.project_title}} 
-**does not work correctly** with this flag enabled, because of an incompatibility with the web components polyfills. Also, although currently implemented behind a flag, Mozilla 
+- Firefox currently supports some of the web component APIs behind a flag. {{site.project_title}} 
+**does not work correctly** with this flag enabled, because of an incompatibility with the web components polyfills. Also, although currently implemented behind a flag, Mozilla has [no plans to implement HTML Imports](https://developer.mozilla.org/en-US/docs/Web/Web_Components/HTML_Imports) at this time.
 
 #### Other features
 
