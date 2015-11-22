@@ -69,7 +69,7 @@ Notes:
 We recommend using the `webcomponents-lite.js` version of the polyfills with {{site.project_title}} 1.0. This version uses [Shady DOM](https://www.polymer-project.org/1.0/articles/shadydom.html).
 
 Although the full `webcomponents.js` polyfill works with {{site.project_title}} 1.0,
-we do not recommend using it. Thsi version contains the full Shadow DOM polyfill,
+we do not recommend using it. This version contains the full Shadow DOM polyfill,
 which is known to have performance overhead.
 
 **See** the webcomponents.js [compatibility matrix](https://github.com/WebComponents/webcomponentsjs#browser-support) for more details on support.
