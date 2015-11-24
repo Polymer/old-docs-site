@@ -46,7 +46,7 @@ def read_redirects_file(filename):
   with open(filename, 'r') as f:
     redirects = yaml.load(f)
     # Break lines into dict.
-    # e.g. "/0.5/oage.html /1.0/oage" -> {"/0.5/oage.html": "/1.0/oage")
+    # e.g. "/0.5/page.html /1.0/page" -> {"/0.5/page.html": "/1.0/page")
     redirects = dict([(r.split()[0], r.split()[1]) for r in redirects])
   return redirects
 
