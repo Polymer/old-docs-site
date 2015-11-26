@@ -12,7 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   -webkit-font-smoothing: antialiased;
 }
 
-@mixin md-font-body1 {
+@mixin md-font-body1() {
   font-family: 'Roboto', 'Noto', sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: 14px;
