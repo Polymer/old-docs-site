@@ -70,7 +70,7 @@ property's type is explicit, specified using the type's constructor. See
 <td>
 Type: <code>boolean</code>, <code>number</code>, <code>string</code> or <code>function</code>.<br>
 
-Default value for the property. If `value` is a function, the function is
+Default value for the property. If <code>value</code> is a function, the function is
 invoked and the return value is used as the default value of the property. If
 the default value should be an array or object unique to the instance, create
 the array or object inside a function. See 
@@ -81,11 +81,11 @@ the array or object inside a function. See
 <td><code>reflectToAttribute</code></td>
 <td>Type: <code>boolean</code><br> 
 
-Set to `true` to cause the corresponding attribute to be set on the host node
+Set to <code>true</code> to cause the corresponding attribute to be set on the host node
 when the property value changes. If the property value is Boolean, the attribute
 is created as a standard HTML boolean attribute (set if true, not set if false).
 For other property types, the attribute value is a string representation of the
-property value. Equivalent to `reflect` in {{site.project_title}} 0.5.
+property value. Equivalent to <code>reflect</code> in {{site.project_title}} 0.5.
 See <a href="#attribute-reflection">Reflecting properties to attributes</a> for
 more information.
 </td>
@@ -94,14 +94,14 @@ more information.
 <td><code>readOnly</code></td>
 <td>Type: <code>boolean</code><br> 
 
-If `true`, the property can't be set directly by assignment or data binding. See <a href="#read-only">Read-only properties</a>.
+If <code>true</code>, the property can't be set directly by assignment or data binding. See <a href="#read-only">Read-only properties</a>.
 </td>
 </tr>
 <tr>
 <td><code>notify</code></td>
 <td>Type: <code>boolean</code><br> 
 
-If `true`, the property is available for two-way data binding. In addition, an
+If <code>true</code>, the property is available for two-way data binding. In addition, an
 event, <code><var>propertyName</var>-changed</code> is fired whenever the
 property changes. See <a href="#notify">Property change notification events (notify)</a>
 for more information.
