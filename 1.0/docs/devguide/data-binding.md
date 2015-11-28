@@ -103,8 +103,8 @@ Compound bindings are re-evaluated whenever the value of any of the individual
 bindings changes. Undefined values are interpolated as empty strings.
 
 You can use either one-way (`[[]]`) or automatic (`{%raw%}{{}}{%endraw%}`)
-binding annotations in a compound binding, but the bindings are **always one-
-way, host-to-target.**
+binding annotations in a compound binding, but the bindings are **always
+one-way, host-to-target.**
 
 ### Binding to sub-properties
 
@@ -153,7 +153,7 @@ property being bound does not have the `notify` flag set, only one-way
 (downward) binding will occur.)
 
 3. The child property being bound to must **not** be configured with the `readOnly`
-flag set to true.  (If the child property is `notify: true` and `readOnly:true`,
+flag set to true.  (If the child property is `notify: true` and `readOnly: true`,
 and the host binding uses curly-brace syntax, the binding is
 one-way, **upward** (child-to-host).)
 
@@ -386,8 +386,8 @@ registered interest in that path so that side effects occur.
 
 This system "just works" to the extent that changes to object sub-properties
 occur as a result of being bound to a notifying custom element property that
-changed.  However, sometimes imperative code needs to change an object's sub-
-properties directly.  As we avoid more sophisticated observation mechanisms such
+changed.  However, sometimes imperative code needs to change an object's
+sub-properties directly.  As we avoid more sophisticated observation mechanisms such
 as `Object.observe` or dirty-checking in order to achieve the best startup and
 runtime performance cross-platform for the most common use cases, changing an
 object's sub-properties directly requires cooperation from the user.
@@ -633,7 +633,7 @@ results in a call to:
 
 As opposed to:
 
-<var>element</var>.<var>property</var> = <var>value</var>;
+<code><var>element</var>.<var>property</var> = <var>value</var>;</code>
 
     <template>
       {% raw %}
