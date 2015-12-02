@@ -360,7 +360,7 @@ You can retrieve an element's effective child nodes using:
 For convenience, several utility methods are available on the Polymer 
 element prototype:
 
-*   `getEffeciveChildNodes()`. Returns a list of effective child nodes for 
+*   `getEffectiveChildNodes()`. Returns a list of effective child nodes for 
     this element.
 *   `getEffectiveChildren()`. Returns a list of effective child elements for
     this element.
