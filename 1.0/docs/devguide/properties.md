@@ -422,70 +422,44 @@ Example:
       </script>
     </dom-module>
 
-### Deep sub-property observation {#deep-observation}
+### Observe array mutations {#array-observation}
 
-To call an observer when any (deep) sub-property of an
-object changes, specify a path with a wildcard (`*`).
+Use an array mutation observer to call an observer function whenever an array 
+item is added or deleted via `push`, `pop`, `shift`, `unshift`, or `splice`. 
+Whenever the array is mutated, the observer receives a change record 
+representing the mutation as a set of array splices.
 
-When you specify a path with a wildcard, the argument passed to your
-observer is a change record object with the following properties:
+In many cases, you'll want to observe both array mutations **and** changes to 
+sub-properties of array items, in which case you should use a [deep 
+sub-property observer](#deep-observation).
 
-*   `path`. Path to the property that changed. 
-*   `value`. New value of the path that changed.
-*   `base`. The object matching the non-wildcard portion of the path. 
+**Never use the built-in JavaScript array methods to splice your arrays.**
+Always use Polymer's [array mutation methods](#array-mutation).
+These methods ensure that elements with registered interest in the array
+splices are properly notified.
+{: .alert .alert-info }
 
-Example:
+To create a splice observer, specify a path to an array followed by `.splices`
+in your `observers` array.
 
-    <dom-module id="x-deep-observer">
-      <template>
-        <input value="{% raw %}{{user.name.first::input}}{% endraw %}" 
-               placeholder="First Name">
-        <input value="{% raw %}{{user.name.last::input}}{% endraw %}" 
-               placeholder="Last Name">
-      </template>
-      <script>
-        Polymer({
-          is: 'x-deep-observer',
-          properties: {
-            user: {
-              type: Object,
-              value: function() {
-                return {'name':{}};
-              }
-            }
-          },
-          observers: [
-            'userNameChanged(user.name.*)'
-          ],
-          userNameChanged: function(changeRecord) {
-            console.log('path: ' + changeRecord.path);
-            console.log('value: ' + changeRecord.value);
-          },
-        });
-      </script>
-    </dom-module>
+    observers: [
+      'usersAddedOrRemoved(users.splices)'
+    ]
 
-### Array observation {#array-observation}
+Your observer method should accept a single argument. When your observer method
+is called, it receives a change record of the mutations that 
+occurred on the array. Each change record provides the following properties:
 
-Finally, to observe mutations to arrays (changes resulting from calls to `push`,
-`pop`, `shift`, `unshift`, and `splice`, generally referred to as "splices"),
-specify a path to an array followed by `.splices` as an argument to the observer 
-function.  
-
-The value received by the observer for the `splices` path of an array is a
-change records with the following properties:
-
-*   `indexSplices`. Lists the set of changes that occurred to the array, in 
-     terms of array indicies. Each `indexSplices` record contains the following 
+*   `indexSplices`. The set of changes that occurred to the array, in 
+     terms of array indexes. Each `indexSplices` record contains the following 
      properties:
 
      -   `index`. Position where the splice started.
      -   `removed`. Array of `removed` items.
      -   `addedCount`. Number of new items inserted at `index`. 
 
-*   `keySplices`. Lists the set of changes that occurred to the array in terms
-    of "keys" used by Polymer for identifying array elements. Each `keySplices` record 
-    contains the following properties: 
+*   `keySplices`. The set of changes that occurred to the array in terms
+    of array keys. Each `keySplices` record contains the following properties: 
 
     -   `added`. Array of added keys.
     -   `removed`. Array of removed keys. 
@@ -524,44 +498,73 @@ Example:
 
     });
 
-**Array mutation methods.** Observing changes to arrays is dependent on the change to the array
-being made through one of the [array mutation methods](#array-mutation) provided
-on Polymer elements, which provides the required notification to elements with
-registered interest.
-{: .alert .alert-info }
+### Deep sub-property observation {#deep-observation}
 
-When you specify a wildcard path on an array, the observer is for both splices as
-well as array element sub-property changes.  So the  observer in the
-following example will be called for all additions, removals, and deep changes
-that occur in the array:
+To call an observer when any (deep) sub-property of an
+object or array changes, specify a path with a wildcard (`*`).
 
-    Polymer({
+When you specify a path with a wildcard, the argument passed to your
+observer is a change record object with the following properties:
 
-      is: 'x-custom',
+*   `path`. Path to the property that changed. Use this to determine whether
+    a property changed, a sub-property changed, or an array was mutated.
+*   `value`. New value of the path that changed.
+*   `base`. The object matching the non-wildcard portion of the path. 
 
-      properties: {
-        users: {
-          type: Array,
-          value: function() {
-            return [];
-          }
-        }      
-      },
+For array mutations, `path` is the path to the array that changed, 
+followed by `.splices`. And the change record includes the `indexSplices` and 
+`keySplices` properties described in 
+[Observe array mutations](#array-observation).
 
-      observers: [
-        'usersChanged(users.*)'
-      ],
+Example:
 
-      usersChanged: function(changeRecord) {
-        if (changeRecord.path == 'users.splices') {
-          // a user was added or removed
-        } else {
-          // an individual user or its sub-properties changed
-          // check "changeRecord.path" to determine what changed
-        }
-      }
+    <dom-module id="x-deep-observer">
+      <template>
+        <input value="{% raw %}{{user.name.first::input}}{% endraw %}" 
+               placeholder="First Name">
+        <input value="{% raw %}{{user.name.last::input}}{% endraw %}" 
+               placeholder="Last Name">
+      </template>
+      <script>
+        Polymer({
+          is: 'x-deep-observer',
+          properties: {
+            user: {
+              type: Object,
+              value: function() {
+                return {'name':{}};
+              }
+            }
+          },
+          observers: [
+            'userNameChanged(user.name.*)'
+          ],
+          userNameChanged: function(changeRecord) {
+            console.log('path: ' + changeRecord.path);
+            console.log('value: ' + changeRecord.value);
+          },
+        });
+      </script>
+    </dom-module>
 
-    });
+#### Deep sub-property changes on array items
+
+When a sub-property of an array is modified, `changeRecord.path` references 
+the "key" of the array item that was modified, not the array index. For 
+example:
+
+    console.log(changeRecord.path); // users.#0.name
+
+`#0` signifies the key of this example array item. All keys are prefixed 
+with a number sign (`#`) by convention to distinguish them from array indexes.
+Keys provide stable references to array items, regardless of any splices
+(additions or removals) on the array.
+
+If for some reason you need a reference to the index of an array item, you 
+can retrieve it via the `Polymer.Collection` internal abstraction:
+
+   var collection = Polymer.Collection.get(changeRecord.base);
+   var index = changeRecord.base.indexOf(collection.getItem(key));
 
 ### Array mutation methods {#array-mutation}
 
