@@ -4,9 +4,11 @@ https://www.polymer-project.org/
 
 ### Install
 
-    git clone https://github.com/Polymer/docs2
+    git clone https://github.com/Polymer/docs2 --recursive
     cd docs2
     npm install
+
+Note: `--recursive` will init and checkout submodules as well.
 
 ### Running the site
 
