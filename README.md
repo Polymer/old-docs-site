@@ -4,9 +4,9 @@ https://www.polymer-project.org/
 
 ### Install
 
-  git clone https://github.com/Polymer/docs
-  cd docs
-  npm install
+    git clone https://github.com/Polymer/docs
+    cd docs
+    npm install
 
 ### Running the site
 
