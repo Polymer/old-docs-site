@@ -319,7 +319,7 @@ in the Developer guide for more information.
 <td>Type: <code>boolean</code><br>
 
 If <code>true</code>, the property is available for two-way data binding. In addition, an
-event, <code><var>propertyName</var>-changed</code> is fired whenever the
+event, <code><var>property-name</var>-changed</code> is fired whenever the
 property changes. See <a href="devguide/properties.html#notify">Property change notification events</a> 
 in the Developer guide for more information.
 </td>

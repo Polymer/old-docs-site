@@ -102,7 +102,7 @@ If <code>true</code>, the property can't be set directly by assignment or data b
 <td>Type: <code>boolean</code><br> 
 
 If <code>true</code>, the property is available for two-way data binding. In addition, an
-event, <code><var>propertyName</var>-changed</code> is fired whenever the
+event, <code><var>property-name</var>-changed</code> is fired whenever the
 property changes. See <a href="#notify">Property change notification events (notify)</a>
 for more information.
 </td>
@@ -613,7 +613,7 @@ Example:
 ## Property change notification events (notify) {#notify}
 
 When a property is set to `notify: true`, an event,
-<code><var>propertyName</var>-changed</code>, is fired whenever the property
+<code><var>property-name</var>-changed</code>, is fired whenever the property
 value changes. These events are used by the two-way data binding system, and can
 also notify external scripts and frameworks to respond to changes in the element.
 
