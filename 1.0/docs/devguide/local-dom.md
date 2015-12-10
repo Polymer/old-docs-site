@@ -8,7 +8,7 @@ subtitle: Developer guide
 
 {% include toc.html %}
 
-We call the DOM that an element is in charge of creating and managing its _local
+The DOM that an element creates and manages is called its _local
 DOM_. This is distinct from the element's children which are sometimes called
 its _light DOM_ for clarity.
 
