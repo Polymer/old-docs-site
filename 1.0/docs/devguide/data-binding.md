@@ -570,9 +570,9 @@ Explicit bindings to array items by index isn't supported:
 You can use a computed binding to bind to a specific array item, or to a 
 subproperty of an array item, like `array[index].name`. 
 
-The following example shows to access a property from an array item using a computed binding.
+The following example shows how to access a property from an array item using a computed binding.
 The computing function needs to be called if the subproperty value changes, 
-_or_ if the array  itself is mutated, so the binding uses a wildcard path, `myArray.*`.
+_or_ if the array itself is mutated, so the binding uses a wildcard path, `myArray.*`.
 
 
     
