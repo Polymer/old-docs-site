@@ -2,7 +2,7 @@
 #
 #
 #
-component_dirs="0.5 1.0 1.0/v1components summit"
+component_dirs="0.5 1.0 summit"
 
 for dir in $component_dirs
 do
