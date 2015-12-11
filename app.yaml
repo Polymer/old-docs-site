@@ -1,5 +1,5 @@
 application: polymer-project
-version: 2015-12-11
+version: component-swap
 runtime: python27
 api_version: 1
 threadsafe: yes
