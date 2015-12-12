@@ -206,7 +206,7 @@ Example:
           is: 'my-toolbar',
           properties: {
             title: String
-          },
+          }
         });
       </script>
 
