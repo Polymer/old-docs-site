@@ -21,22 +21,16 @@
     "tests"
   ],
   "dependencies": {
-    "smoothscroll": "^0.0.2",
-    "x-tag-imports": "x-tag/x-tag-imports#latest",
-    "marked": "*",
-    "highlightjs": "*",
-    "plunker-button": "robdodson/plunker-button#latest",
-    "core-elements": "Polymer/core-elements#latest",
-    "paper-elements": "Polymer/paper-elements#latest",
-    "component-download-button": "Polymer/component-download-button#latest",
-    "code-explainer": "Polymer/code-explainer#latest",
-    "google-youtube": "GoogleWebComponents/google-youtube#1.0.6",
-    "paper-calculator": "Polymer/paper-calculator#latest",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.6.0"
+    "polymer": "Polymer/polymer#master",
+    "iron-input": "PolymerElements/iron-input#^1.0.0",
+    "iron-icon": "PolymerElements/iron-icon#^1.0.0",
+    "iron-icons": "PolymerElements/iron-icons#^1.0.0",
+    "firebase-element": "GoogleWebComponents/firebase-element#^1.0.0",
+    "google-map": "GoogleWebComponents/google-map#^1.0.5",
+    "iron-component-page": "PolymerElements/iron-component-page#^1.1.2"
   },
   "resolutions": {
-    "webcomponentsjs": "^0.6.0",
-    "polymer": "^0.5.0",
-    "google-apis": "~0.4.3"
+    "webcomponentsjs": "^0.7.0",
+    "polymer": "master"
   }
 }
