@@ -103,15 +103,14 @@ setting up unit tests for your own element.
 
 ## Control which tests are run
 
-Define an index.
-
-Define your test suites in `test/index.html`.
+You can define an explicit index to control which tests are run.
 
 {% highlight html %}
+<!doctype html>
 <html>
   <head>
+    <meta charset="utf-8">
     <script src=”../bower_components/webcomponentsjs/web-components-lite.js”></script>
-    <!-- wct runtime -->
     <script src=”../bower_components/web-component-tester/browser.js”></script>
   </head>
   <body>
@@ -124,56 +123,7 @@ Define your test suites in `test/index.html`.
 </html>
 {% endhighlight %}
 
-Implement your test suite as an HTML document:
-
-Or as a script:
-
-From here you can implement your test suites as [HTML documents](#html) or
-[scripts](#js).
-
-## Test suites as HTML documents (recommended) {#html}
-
-Example: 
-
-{% highlight html %}
-<!-- x-el.html -->
-<dom-module id="x-el">
-  <script>
-    Polymer({
-      is: 'x-el',
-      properties: {
-        name: {
-          type: String,
-          value: 'John'
-        }
-      }
-  </script>
-</dom-module>
-
-<!-- test/basic.html -->
-<html>
-  <head>
-    <!-- import these if you want to execute as standalone test -->
-    <script src=”webcomponentsjs/web-components-lite.js”></script>
-    <script src=”web-component-tester/browser.js”></script>
-    <!-- import the element to test -->
-    <link rel="import" href="../x-el.html">
-  </head>
-  <body>
-    <x-el></x-el>
-    <script>
-      var el = document.querySelector('x-el');
-      suite('x-el basic test suite', function () {
-        test('name equals "John"', function () {
-          assert.equal(el.name, 'John');
-        });
-      });
-    </script>
-  </body>
-</html>
-{% endhighlight %}
-
-### Test fixtures
+### Test fixtures {#test-fixtures}
 
 Test fixtures enable you to define a template of content and copy a clean,
 new instance of that content into each test suite. Use test fixtures to
@@ -182,22 +132,26 @@ minimize the amount of shared state between test suites.
 To use a test fixture:
 
 *   Define the test fixture template and give it an ID.
-*   Define a variable in your test suite to reference the template.
-*   Instantiate a new instance of the template in your `setup()` method.
+*   Define a variable in your test script to reference the template.
+*   Instantiate a new instance of the fixture in your `setup()` method.
 
 {% highlight html %}
-<test-fixture id="fixture">
+<test-fixture id="seed-element-fixture">
   <template>
-    <seed-element>Hello, Tests!</seed-element>
+    <seed-element>
+      <h2>seed-element</h2>
+    </seed-element>
   </template>
 </test-fixture>
 
 <script>
-  suite('<seed-element>`, function() {
-    var el;
-    // runs before every unit test
+  suite('<seed-element>', function() {
+    var myEl;
     setup(function() {
-      el = fixture('fixture');
+      myEl = fixture('seed-element-fixture');
+    });
+    test('defines the "author" property', function() {
+      assert.equal(myEl.author.name, 'Dimitri Glazkov');
     });
   });
 </script>
