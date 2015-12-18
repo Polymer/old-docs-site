@@ -221,10 +221,10 @@ Example 4: One-way binding (upward, child-to-host)
         is: 'custom-element',
         properties: {
           someProp: {
-              type: String,
-              notify: true,
-              readOnly: true
-            }
+            type: String,
+            notify: true,
+            readOnly: true
+          }
         }
       });
     </script>
@@ -242,10 +242,10 @@ Example 5: Error / non-sensical state
         is: 'custom-element',
         properties: {
           someProp: {
-              type: String,
-              notify: true,
-              readOnly: true
-            }
+            type: String,
+            notify: true,
+            readOnly: true
+          }
         }
       });
     </script>
@@ -698,5 +698,3 @@ Attribute binding to dynamic values (use `$=`):
     <!-- dataset -->
     <div data-bar$="{{baz}}"></div>
     {% endraw %}
-
-
