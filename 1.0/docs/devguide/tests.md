@@ -6,6 +6,8 @@ title: Unit tests
 subtitle: Developer guide
 ---
 
+<link rel="import" href="../../../0.5/components/google-youtube/google-youtube.html">
+
 {% include toc.html %}
 
 Use Web Component Tester (`wct`) to unit test your Polymer elements. 
@@ -15,19 +17,32 @@ enables you to test your elements locally, against all of your installed
 browsers, or remotely, via Sauce Labs. `wct` is composed of the following
 tools:
 
-* Mocha for test framework, complete with support for BDD and TDD.
-* Chai for assertions. 
-* Async asynchronous unit tests.
-* Sinon for spies, stubs, and mocks.
-* Selenium for running tests against multiple browsers. 
-
-https://youtu.be/YBNBr9ECXLo
+*   [Mocha](https://mochajs.org/) for test framework, complete with support 
+    for BDD and TDD.
+*   [Chai](http://chaijs.com/) for assertions. 
+*   [Sinon](http://sinonjs.org/) for spies, stubs, and mocks.
+*   [Selenium](http://www.seleniumhq.org/) for running tests against 
+    multiple browsers. 
 
 ## Quick start
 
-This section teaches you how to set up unit tests for `<seed-element>`, create
-a simple test, and then run that test. Follow the workflow outlined in this
-section when setting up unit tests for your own element. 
+Watch the Polycast below to learn how to set up `wct` and create and run
+some simple unit tests.
+
+<div class="yt-embed">
+  <google-youtube
+    videoid="YBNBr9ECXLo"
+    autoplay="0"
+    rel="0"
+    fluid>
+  </google-youtube>
+</div>
+
+If you prefer step-by-step instructions, the instructions below 
+teach you how to set up `wct`, create a unit test for
+[`<seed-element>`](https://github.com/PolymerElements/seed-element), and then
+run the test. Note that `<seed-element>` is already set up to support `wct`,
+this is just an example of how to set up your own elements to support `wct`.
 
 1.  Install Web Component Tester globally so that you can run it from 
     the command line.
@@ -103,13 +118,10 @@ section when setting up unit tests for your own element.
     `wct` automatically finds all of the browsers on your system and runs
     your tests against each one.
 
-## Stubs
+## Create stub methods
 
-Replace element default implementations with custom methods. Useful for
-catching side effects  
-
-Don't have to use it directly on an element reference. You can override
-an implementation for all elements of a given type. 
+Stubs enable you to replace default implementations with custom methods. This
+is useful for catching side effects. 
 
     setup(function() {
       stub('paper-button', {
@@ -119,9 +131,12 @@ an implementation for all elements of a given type.
       });
     });
 
-## Replace elements
+You don't have to use stubs directly on individual elements. You can override
+the implementation for all elements of a given type. 
 
-Use `replace()` to substitute tags.
+## Create stub elements
+
+Use `replace()` to create stub elements. 
 
     setup(function() {
       replace('paper-button').with('fake-paper-button');
@@ -151,7 +166,14 @@ reverted at the end of each test.
 
 ## AJAX
 
-https://www.youtube.com/watch?v=_9qARcdCAn4 
+<div class="yt-embed">
+  <google-youtube
+    videoid="_9qARcdCAn4"
+    autoplay="0"
+    rel="0"
+    fluid>
+  </google-youtube>
+</div>
 
 `wct` includes [Sinon](http://sinonjs.org/), which enables you to mock XHR
 requests and create fake servers. 
@@ -224,7 +246,7 @@ Check out Sinon's documentation for more in-depth examples.
 </html>
 {% endhighlight %}
 
-## Test indexes
+## Control which tests are run
 
 Use a test index to run a subset of suites.
 
@@ -250,7 +272,7 @@ Use a test index to run a subset of suites.
 You can also use test indexes to configure your tests via query strings
 when `wct` loads them. See [Test Shadow DOM](#shadow-dom) for an example.
 
-## Test fixtures {#test-fixtures}
+## Prevent shared state with test fixtures {#test-fixtures}
 
 Test fixtures enable you to define a template of content and copy a clean,
 new instance of that content into each test suite. Use test fixtures to
@@ -284,7 +306,7 @@ To use a test fixture:
 </script>
 {% endhighlight %}
 
-## Asynchronous tests
+## Make tests asynchronous
 
 To create an asynchronous test, pass `done` as an argument to the test function
 and then call `done()` when the test is complete. The `done` argument is a
@@ -322,14 +344,20 @@ API.
     
 ## Learn more
 
-*   Check out [`<seed-element>`][seed-element]
-    for an example of a basic boilerplate element with support for `wct`.
+<div class="yt-embed">
+  <google-youtube
+    videoid="kX2INPJY4Y4"
+    autoplay="0"
+    rel="0"
+    fluid>
+  </google-youtube>
+</div>
 
-*   [Web Component Tester README][wct-readme].
+Check out [`<seed-element>`][seed-element]
+for an example of a basic boilerplate element with support for `wct`.
 
-*   [Web Component Tester Polycast][wct-polycast].
-
-*   [Testing AJAX with Web Component Tester Polycast][ajax-polycast].
+The [Web Component Tester README][wct-readme] has more in-depth information
+about `wct` usage. 
 
 [seed-element]: https://github.com/PolymerElements/seed-element
 [wct-readme]: https://github.com/Polymer/web-component-tester/blob/master/README.md
