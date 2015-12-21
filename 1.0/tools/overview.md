@@ -82,42 +82,6 @@ Usage:
 
 Source: [github.com/PolymerLabs/polybuild](https://github.com/PolymerLabs/polybuild)
 
-## Serving tools
-
-### <b>polyserve</b> - web server for developing elements {#polyserve}
-
-[polyserve](https://github.com/PolymerLabs/polyserve) is simple web server for serving `bower_components`, locally. It's useful when developing your own elements. 
-
-polyserve serves the component from the current directory as `/components/{element-name}/`, where `element-name` is defined as the name in `bower.json`. All other dependencies are served from `./bower_components/`.
-
-Install:
-
-    npm install -g polyserve
-
-Usage: 
-
-    cd my-element/
-    polyserve -p 8080
-
-Source: [github.com/PolymerLabs/polyserve](https://github.com/PolymerLabs/polyserve)
-
-### <b>polygit</b> - CDN web service for serving components {#polygit}
-
-[polygit](http://polygit.org/) is proxy server for serving components from a CDN. **It is not meant to be used for production apps**, but is very useful when prototyping and sharing jsbins.
-
-Usage:
-
-    <head>
-      <base href="https://polygit.org/components/"> <!-- saves typing! -->
-      <script src="webcomponentsjs/webcomponents-lite.min.js"></script>
-      <link rel="import" href="paper-button/paper-button.html">
-      <link rel="import" href="iron-selector/iron-selector.html">
-    </head>
-
-For more documentation, see [http://polygit.org](http://polygit.org/).
-
-Source: [github.com/PolymerLabs/polygit](https://github.com/PolymerLabs/polygit)
-
 ## Development tools {#dev}
 
 ### <b>&lt;seed-element></b> - boilerplate starter for creating a resuable element on Github {#seedelement}
@@ -152,6 +116,40 @@ Usage:
 
 - [Sublime plugin](https://github.com/nomego/SublimeLinter-contrib-polylint)
 - [Atom package](https://github.com/PolymerLabs/polylint#installing-the-atom-package)
+
+### <b>polyserve</b> - web server for developing elements {#polyserve}
+
+[polyserve](https://github.com/PolymerLabs/polyserve) is simple web server for serving `bower_components`, locally. It's useful when developing your own elements. 
+
+polyserve serves the component from the current directory as `/components/{element-name}/`, where `element-name` is defined as the name in `bower.json`. All other dependencies are served from `./bower_components/`.
+
+Install:
+
+    npm install -g polyserve
+
+Usage: 
+
+    cd my-element/
+    polyserve -p 8080
+
+Source: [github.com/PolymerLabs/polyserve](https://github.com/PolymerLabs/polyserve)
+
+### <b>polygit</b> - CDN web service for serving components {#polygit}
+
+[polygit](http://polygit.org/) is proxy server for serving components from a CDN. **It is not meant to be used for production apps**, but is very useful when prototyping and sharing jsbins.
+
+Usage:
+
+    <head>
+      <base href="https://polygit.org/components/"> <!-- saves typing! -->
+      <script src="webcomponentsjs/webcomponents-lite.min.js"></script>
+      <link rel="import" href="paper-button/paper-button.html">
+      <link rel="import" href="iron-selector/iron-selector.html">
+    </head>
+
+For more documentation, see [http://polygit.org](http://polygit.org/).
+
+Source: [github.com/PolymerLabs/polygit](https://github.com/PolymerLabs/polygit)
 
 ### <b>polystyle</b> - web service for creating style modules {#polystyle}
 
