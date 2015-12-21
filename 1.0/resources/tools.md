@@ -124,6 +124,8 @@ Source: [github.com/PolymerLabs/polygit](https://github.com/PolymerLabs/polygit)
 
 See [Create a reusable element](/1.0/docs/start/reusableelements.html).
 
+Source: [github.com/polymerelements/seed-element](https://github.com/polymerelements/seed-element)
+
 ### <b>Polymer Starter Kit</b> - starter project for building Polymer apps {#psk}
 
 The Polymer Starter Kit is a complete starting point for building Polymer-based applications See [Using Polymer Starter Kit](/1.0/docs/start/psk/set-up.html) for more information on getting started.
