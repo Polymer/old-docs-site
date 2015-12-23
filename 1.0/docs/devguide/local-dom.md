@@ -8,7 +8,7 @@ subtitle: Developer guide
 
 {% include toc.html %}
 
-We call the DOM that an element is in charge of creating and managing its _local
+The DOM that an element creates and manages is called its _local
 DOM_. This is distinct from the element's children which are sometimes called
 its _light DOM_ for clarity.
 
@@ -360,7 +360,7 @@ You can retrieve an element's effective child nodes using:
 For convenience, several utility methods are available on the Polymer 
 element prototype:
 
-*   `getEffeciveChildNodes()`. Returns a list of effective child nodes for 
+*   `getEffectiveChildNodes()`. Returns a list of effective child nodes for 
     this element.
 *   `getEffectiveChildren()`. Returns a list of effective child elements for
     this element.

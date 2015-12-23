@@ -7,11 +7,16 @@
     Code distributed by Google as part of the polymer project is also
     subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
-<link rel="import" href="../components/polymer/polymer.html">
-<link rel="import" href="../components/core-menu/core-menu.html">
-<link rel="import" href="../components/core-menu/core-submenu.html">
-<link rel="import" href="../components/core-item/core-item.html">
-<link rel="import" href="../components/core-icons/hardware-icons.html">
+<link rel="import" href="/0.5/components/polymer/polymer.html">
+<link rel="import" href="/0.5/components/core-menu/core-menu.html">
+<link rel="import" href="/0.5/components/core-menu/core-submenu.html">
+<link rel="import" href="/0.5/components/core-item/core-item.html">
+
+<core-iconset-svg id="editor" iconSize="24">
+<svg><defs>
+<g id="format-paint"><path d="M18 4V3c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V6h1v4H9v11c0 .55.45 1 1 1h2c.55 0 1-.45 1-1v-9h8V4h-3z"/></g>
+</defs></svg>
+</core-iconset-svg>
 
 
 <polymer-element name="docs-menu" attributes="ajaxify coreElements paperElements versionPrefix" relative>
@@ -21,6 +26,7 @@
 
     <core-submenu label="About this release" icon="info" class="guide">
       <core-item label="Introducing Polymer 1.0"><a href="/{{versionPrefix}}/docs/"></a></core-item>
+      <core-item label="Browser compatibility"><a href="/{{versionPrefix}}/resources/compatibility.html"></a></core-item>
       <core-item label="Release notes"><a href="/{{versionPrefix}}/docs/release-notes.html"></a></core-item>
       <core-item label="Migration guide"><a href="/{{versionPrefix}}/docs/migration.html"></a></core-item>
     </core-submenu>
@@ -29,13 +35,13 @@
       <core-item label="What is Polymer?"><a href="/{{versionPrefix}}/docs/start/what-is-polymer.html"></a></core-item>
       <core-item label="Quick tour of Polymer"><a href="/{{versionPrefix}}/docs/start/quick-tour.html"></a></core-item>
       <core-item label="Get the Polymer library"><a href="/{{versionPrefix}}/docs/start/getting-the-code.html"></a></core-item>
-      <core-submenu label="Get elements" icon="hardware:keyboard-arrow-down" class="guide">
+      <core-submenu label="Get elements" icon="arrow-drop-down" class="guide">
         <core-item label="Browse Element Catalog">
           <a href="http://elements.polymer-project.org/" target="_blank"></a>
         </core-item>
         <core-item label="Using elements"><a href="https://elements.polymer-project.org/guides/using-elements" target="_blank"></a></core-item>
       </core-submenu>
-      <core-submenu label="Build your first element" icon="hardware:keyboard-arrow-down" class="guide">
+      <core-submenu label="Build your first element" icon="arrow-drop-down" class="guide">
         <core-item label="1. Get set up">
           <a href="/{{versionPrefix}}/docs/start/first-element/intro.html"></a>
         </core-item>
@@ -52,7 +58,7 @@
           <a href="/{{versionPrefix}}/docs/start/first-element/step-5.html"></a>
         </core-item>
       </core-submenu>
-      <core-submenu label="Build an app" icon="hardware:keyboard-arrow-down" class="guide">
+      <core-submenu label="Build an app" icon="arrow-drop-down" class="guide">
         <core-item label="Set up">
           <a href="/{{versionPrefix}}/docs/start/psk/set-up.html"></a>
         </core-item>
@@ -73,20 +79,22 @@
       <core-item label="Local DOM"><a href="/{{versionPrefix}}/docs/devguide/local-dom.html"></a></core-item>
       <core-item label="Styling"><a href="/{{versionPrefix}}/docs/devguide/styling.html"></a></core-item>
       <core-item label="Events"><a href="/{{versionPrefix}}/docs/devguide/events.html"></a></core-item>
-      <core-submenu label="Data binding" icon="hardware:keyboard-arrow-down" class="guide">
+      <core-submenu label="Data binding" icon="arrow-drop-down" class="guide">
         <core-item label="Syntax"><a href="/{{versionPrefix}}/docs/devguide/data-binding.html"></a></core-item>
         <core-item label="Helper elements"><a href="/{{versionPrefix}}/docs/devguide/templates.html"></a></core-item>
       </core-submenu>
       <core-item label="Behaviors"><a href="/{{versionPrefix}}/docs/devguide/behaviors.html"></a></core-item>
       <core-item label="Utility functions"><a href="/{{versionPrefix}}/docs/devguide/utility-functions.html"></a></core-item>
       <core-item label="Global settings"><a href="/{{versionPrefix}}/docs/devguide/settings.html"></a></core-item>
-      <core-item label="Browser compatibility"><a href="/{{versionPrefix}}/resources/compatibility.html"></a></core-item>
       <core-item label="Experimental features" icon="warning"><a href="/{{versionPrefix}}/docs/devguide/experimental.html"></a></core-item>
     </core-submenu>
 
-
     <core-item label="API Reference" icon="subject">
       <a href="https://polymer.github.io/polymer" target="_blank"></a>
+    </core-item>
+
+    <core-item label="Tools" icon="editor:format-paint">
+      <a href="/{{versionPrefix}}/tools/overview.html"></a>
     </core-item>
 
     <core-item label="Articles" icon="book">
@@ -96,8 +104,6 @@
     <core-item label="Browse Element Catalog" icon="polymer">
       <a href="http://elements.polymer-project.org/" target="_blank"></a>
     </core-item>
-
-
 
   </core-menu>
 </template>

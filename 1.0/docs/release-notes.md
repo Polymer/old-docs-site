@@ -174,7 +174,7 @@ fixes an issue that affected SEO of Polymer 1.x apps.
 -   [Fixes #2403](https://github.com/Polymer/polymer/issues/2403). Fixes a regression
     that affected legacy projects using Chrome 39.
 
-## [Release 1.1.2](https://github.com/Polymer/polymer/issues/2403) (2014-08-28)
+## [Release 1.1.2](https://github.com/Polymer/polymer/issues/2403) (2015-08-28)
 
 -   [Fixes #2356](https://github.com/Polymer/polymer/issues/2356). Log a warning
     if the included style module cannot be found.

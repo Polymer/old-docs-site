@@ -42,9 +42,9 @@
   <link rel="stylesheet" href="{{item}}?{{site.time | date: '%Y%m%d'}}" shim-shadowdom>
 {% endfor %}
 
-<script src="{{version_prefix}}/components/webcomponentsjs/webcomponents.min.js?{{site.time | date: '%Y%m%d'}}"></script>
+<script src="/0.5/components/webcomponentsjs/webcomponents.min.js?{{site.time | date: '%Y%m%d'}}"></script>
 <!-- TODO: remove when https://github.com/Polymer/polymer/issues/391 is fixed -->
-<link rel="import" href="{{version_prefix}}/components/polymer/polymer.html">
+<link rel="import" href="/0.5/components/polymer/polymer.html">
 
 {% if page.layout == 'home' or page.layout == 'home_1_0' %}
   <link rel="import" href="{{version_prefix}}/elements/homepage_elements.vulcanized.html?{{site.time | date: '%Y%m%d'}}">

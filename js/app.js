@@ -88,6 +88,7 @@ function injectPage(url, opt_addToHistory) {
     var doc = e.target.response;
 
     document.title = doc.title; // Update document title to fetched one.
+    document.body.id = doc.body.id;
 
     var meta = doc.head.querySelector('meta[itemprop="name"]');
     if (meta) {
