@@ -18,12 +18,15 @@ subtitle: Learn the Polymer library APIs
 #download-button::shadow paper-ripple {
   color: #fff;
 }
+.stepnav {
+  margin-top: 24px;
+}
 </style>
 
 {% include toc.html %}
 
 
-In this codelab, you’ll learn how to build elements using Polymer 1.0. You'll
+In this tutorial, you’ll learn how to build elements using Polymer 1.0. You'll
 create a simple Polymer element, a toggle button. The finished button will look
 something like this:
 
@@ -52,10 +55,13 @@ To follow this tutorial, you'll need:
 -   Node.js and Polyserve command-line tools to run the demo.
 
 
-**Note:** If you're not comfortable using the command-line tools, try the alternate
-version of this tutorial on the Google Codelabs site, which uses the
-Chrome Dev Editor IDE: [Your first element—Google Codelabs](https://codelabs.developers.google.com/codelabs/polymer-first-elements/).
+**Don't want to install anything?** To run through this tutorial online,
+open the [starter project on Plunker](http://plnkr.co/edit/QfsudzAPCbAu56Qpb7eB?p=preview){:target="_blank"}
+and click **Fork** to create your own working copy. Then skip straight to
+<a href="step-2.html">Step 2: Add local DOM.</a>
 {: .alert .alert-info }
+
+
 
 ### Download the starting code
 
@@ -89,7 +95,7 @@ Chrome Dev Editor IDE: [Your first element—Google Codelabs](https://codelabs.d
 
 ### Install Node.js and Polyserve
 
-If you're not using CDE, you'll need to install some command-line tools to run the demo.
+You need to install some command-line tools to run the demo.
 
 1.  Download and install Node from [https://nodejs.org/](https://nodejs.org/).
     Node includes the node package manager command, `npm`.
@@ -121,9 +127,8 @@ very interesting, but it shows that everything is working.
 
 <img src="../../../images/first-element/starting-state.png" alt="Initial state of the demo. The demo shows three icon-toggle elements, two labeled 'statically-configured icon toggles' and one labeled 'data-bound icon toggle'. Since the icon toggles are not implemented yet, they appear as placeholder text reading 'Not much here yet'." title="Initial demo">
 
-<div class="alert alert-info">
-<strong>If this text doesn't appear</strong>, make sure you clicked on the the demo folder itself, or on `demo/index.html`.
-</div>
+**If this text doesn't appear**, make sure you clicked on the the demo folder itself, or on `demo/index.html`.
+{: .alert .alert-info }
 
 <div horizontal layout end-justified class="stepnav">
   <a href="step-2.html">

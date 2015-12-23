@@ -20,22 +20,21 @@ In this step, you'll learn about:
 *   Working with local DOM.
 
 
-<div class="alert alert-info"><strong>Learn more: local DOM.</strong> Local DOM
-lets you add a <em>scoped</em> DOM tree inside an element, with local styles and
-markup that are decoupled from the rest of the web page. The element containing
-the local DOM tree is called a <em>host element</em>. To learn more, see <a
-href="https://www.polymer-project.org/1.0/docs/devguide/local-dom.html">Local
-DOM</a> in the Polymer library docs.
-</div>
+_Local DOM_ is the set of DOM elements managed by your element. You'll learn more
+about it in this section.
+
+**Local DOM? Shadow DOM?** If you're familiar with _shadow DOM_, a new proposed
+web standard, local DOM is just a generic term for the same concept. Polymer's
+local DOM works with or without native shadow DOM support.
+{: .alert .alert-info }
 
 ## Edit icon-toggle.html
 
-Click on `icon-toggle.html `in the root of the Chrome Dev Editor
-navigation panel. This file contains the skeleton of a custom element.
+Open `icon-toggle.html `. This file contains the skeleton of a custom element.
 
 Unlike most HTML files, this file <em>won't display anything if you load it in a
-browser</em>—it just <em>defines</em> a new element. The demo <em>imports</em>
-`icon-toggle.html` so it can use the `&lt;icon-toggle&gt;`
+browser</em>—it just <em>defines</em> a new element. The demo imports
+`icon-toggle.html` so it can use the `<icon-toggle>`
 element. As you add features to the element in the following steps, they'll show
 up in the demo.
 
@@ -59,6 +58,10 @@ Key information:
 *   These lines import the Polymer library and another custom element called
     `iron-icon` that you'll use later in this step.
 
+**Learn more: HTML Imports.** See [HTML Imports: #include for the web](http://www.html5rocks.com/en/tutorials/webcomponents/imports/)
+on HTML5Rocks.com for an in-depth discussion of HTML Imports.
+{: .alert .alert-info }
+
 Next is the definition of the element itself:
 
 #### Starting code—local DOM template
@@ -81,12 +84,11 @@ Next is the definition of the element itself:
 
 Key information:
 
-*   The `<dom-module>` tag is an optional part of the element
-    definition. It defines the element's internal DOM structure, or local DOM as
-    well as the element's local styling. In this case, you're creating an element
-    called `icon-toggle`.
-*   The `<template>` defines the element's local DOM structure. This
-    is where you'll add markup for your custom element.
+*   The `<dom-module>` tag wraps an element's local DOM definition.
+    In this case, the `id` attribute shows that this module includes the
+    local DOM for an element called `icon-toggle`.
+*   The `<template>` actually defines the element's local DOM structure and
+    styling. This is where you'll add markup for your custom element.
 *   The `<style>` element inside the `<template>` lets you
     define styles that are <em>scoped</em>  to the local DOM, so they don't
     affect the rest of the document.
@@ -94,14 +96,17 @@ Key information:
     defining (in this case, the `<icon-toggle>`). This is the element
     that contains or <em>hosts </em>the local DOM tree.
 
-
-<p class="alert alert-info">
-The first &lt;template> tag inside a &lt;dom-module> defines the local DOM for
-the element. Any sibling &lt;template> tags are ignored by the library.
-</p>
+**Learn more: local DOM.** Local DOM
+lets you add a <em>scoped</em> DOM tree inside an element, with local styles and
+markup that are decoupled from the rest of the web page. Local DOM is based on
+the proposed Shadow DOM specification, and works with native shadow DOM where available.
+To learn more, see <a href="https://www.polymer-project.org/1.0/docs/devguide/local-dom.html">Local
+DOM</a> in the Polymer library docs.
+{: .alert .alert-info }
 
 At the end of the element definition is some JavaScript that registers the
-element. If the element has a `<dom-module>`, this script is usually placed <em>inside</em> the `<dom-module>` to keep everything together.
+element. If the element has a `<dom-module>`, this script is usually placed
+<em>inside</em> the `<dom-module>` to keep everything together.
 
 
 #### Starting code—element registration
@@ -206,7 +211,7 @@ Your custom element definition should now look like this:
 &lt;dom-module id="icon-toggle">
   &lt;template>
     &lt;style>
-      /* local styles go here */
+      /* local DOM styles go here */
       :host {
         display: inline-block;
       }
@@ -230,26 +235,32 @@ Your custom element definition should now look like this:
 &lt;/dom-module>
 </pre>
 
-Reload the demo, or re-run it by right-clicking on the `demo` folder
-and selecting <strong>Run</strong>. You should see the toggle buttons show up
-with the hard-coded icon.
+Run the demo. If you're using Polyserve, make sure Polyserve is running and
+reload the demo page.
+
+If you're using Plunker, your changes should show up immediately.
+If they don't, you may need to click **Stop** followed by **Run** to
+refresh the preview.
+
+You should see the toggle buttons show up with the hard-coded icon.
 
 <img src="../../../images/first-element/hardcoded-toggles.png" alt="Demo showing icon toggles displaying Polymer icon">
 
-You'll notice that one toggle is styled as pressed, because the `pressed` attribute is set in the demo. But click all you want, the button won't toggle
+You'll notice that one toggle is styled as pressed, because the `pressed`
+attribute is set in the demo. But click all you want, the button won't toggle
 yet; there's no code to change the `pressed` property.
 
 
-<p class="alert alert-info">
-<strong>If you don't see the new toggles</strong>, double-check your file against the code above. If you see a blank page, make
+**If you don't see the new toggles,** double-check your file against the code above. If you see a blank page, make
 sure you're clicking on the demo folder or on demo/index.html.
-</p>
+{: .alert .alert-info }
 
 <div horizontal layout  class="stepnav">
   <a href="intro.html">
     <paper-button raised><core-icon icon="arrow-back"></core-icon>Step 1: Get set up</paper-button>
   </a>
     <a href="step-3.html">
-    <paper-button raised><core-icon icon="arrow-forward"></core-icon>Step 3: Use data binding and properties</paper-button>
+    <paper-button raised><core-icon icon="arrow-forward"></core-icon>Step 3: Use
+    data binding and properties</paper-button>
   </a>
 </div>
