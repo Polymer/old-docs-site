@@ -300,6 +300,8 @@ from inside the `attached` callback:
 
     attached: function() { this.async(function() { // access sibling or parent
     elements here }); }
+
+
 ### Registration callback
 
 `Polymer.Base` also implements `registerCallback`, which is called by `Polymer()`
