@@ -55,6 +55,10 @@ The next step is to install {{site.project_title}}:
 
     bower install --save Polymer/polymer#^1.2.0
 
+Depending on your shell, `Polymer/polymer#^1.2.0` may need to be escaped appropriately.
+If you get an error somewhere around the lines of 'match not found', try surrounding 
+it with single or double quotes.
+
 Bower adds a `bower_components/` folder in the root of your project and
 fills it with {{site.project_title}} and its dependencies.
 
