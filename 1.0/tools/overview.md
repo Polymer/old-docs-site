@@ -82,6 +82,16 @@ Usage:
 
 Source: [github.com/PolymerLabs/polybuild](https://github.com/PolymerLabs/polybuild)
 
+### <b>polyicon</b> - create an optimized custom icon set {#polyicon}
+
+[polyicon](https://github.com/PolymerLabs/polyicon) is an online tool to generate
+an optimized custom icon set for your app, with only the icons that you need.
+Instead of loading entire sets, this tool creates a slimmer (custom) icon set that you can load and use in your app.
+
+Try it out: [https://poly-icon.appspot.com/](https://poly-icon.appspot.com/)
+
+Source: [github.com/PolymerLabs/polyicon](https://github.com/PolymerLabs/polyicon)
+
 ## Development tools {#dev}
 
 ### <b>&lt;seed-element></b> - boilerplate starter for creating a resuable element on Github {#seedelement}
