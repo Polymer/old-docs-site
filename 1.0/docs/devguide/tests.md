@@ -10,24 +10,40 @@ subtitle: Developer guide
 
 {% include toc.html %}
 
-Use Web Component Tester (`wct`) to unit test your Polymer elements. 
+Use Web Component Tester to unit test your Polymer elements. Web 
+Component Tester is an end-to-end testing environment built by the Polymer 
+team. It enables you to test your elements locally, against all of your 
+installed browsers, or remotely, via Sauce Labs. It is built on top of 
+popular third-party tools, including: 
 
-`wct` is an end-to-end testing environment built by the Polymer core team. It
-enables you to test your elements locally, against all of your installed
-browsers, or remotely, via Sauce Labs. `wct` is composed of the following
-tools:
-
-*   [Mocha](https://mochajs.org/) for test framework, complete with support 
+*   [Mocha](https://mochajs.org/) for a test framework, complete with support 
     for BDD and TDD.
-*   [Chai](http://chaijs.com/) for assertions. 
+*   [Chai](http://chaijs.com/) for more assertion types that can be used with
+    your Mocha tests.
 *   [Sinon](http://sinonjs.org/) for spies, stubs, and mocks.
 *   [Selenium](http://www.seleniumhq.org/) for running tests against 
     multiple browsers. 
+*   [Accessibility Developer 
+    Tools](https://github.com/GoogleChrome/accessibility-developer-tools) 
+    for accessibility audits.
+
+This guide refers to Web Component Tester as `wct`, which is its command 
+line interface.
 
 ## Quick start
 
-Watch the Polycast below to learn how to set up `wct` and create and run
-some simple unit tests.
+This section shows you how to:
+
+*   Set up `wct`.
+*   Create a unit test for 
+    [`<seed-element>`](https://github.com/PolymerElements/seed-element).
+*   Run the unit test.
+
+Note that `<seed-element>` and Polymer Starter Kit come complete with 
+basic test suites, so if you're starting from one of those projects, you can
+skip to step 6 to run the tests.
+
+Follow the steps below to get set up, or watch the Polycast:
 
 <div class="yt-embed">
   <google-youtube
@@ -38,51 +54,45 @@ some simple unit tests.
   </google-youtube>
 </div>
 
-If you prefer step-by-step instructions, the instructions below 
-teach you how to set up `wct`, create a unit test for
-[`<seed-element>`](https://github.com/PolymerElements/seed-element), and then
-run the test. Note that `<seed-element>` is already set up to support `wct`,
-this is just an example of how to set up your own elements to support `wct`.
-
 1.  Install Web Component Tester globally so that you can run it from 
     the command line.
 
-        npm -g install web-component-tester
+        npm install -g web-component-tester
 
     On Mac OS X you need to [manually install][selenium] the latest Safari 
     extension for Selenium. See the 
     [Web Component Tester Polycast][workaround-example] for 
     a demonstration.
 
-1.  `cd` to the base directory of the element.
+2.  `cd` to the base directory of the element.
 
-1.  (Optional) Install and save `wct` locally as a bower component so that your 
+3.  (Optional) Install and save `wct` locally as a bower component so that your 
     tests can always import the `wct` runtime.
 
         bower install --save Polymer/web-component-tester
 
-    The global `wct` that you installed earlier actually serves its own 
+    If you installed `wct` globally, it actually serves its own 
     copy of the `wct` runtime (`browser.js`) whenever it encounters any URL
     that ends with `web-component-tester/browser.js`. Installing it locally
     is just a precaution. 
 
-1.  Create a directory for the tests. 
+4.  Create a directory for the tests. 
 
         mkdir test
 
     When you run `wct` with no arguments, it automatically searches for
-    a directory named `test` and runs any tests it finds in there. You
-    can use another name for your directory, but you'll need to specify
+    a directory named `test` and runs any tests it finds in there. If you use
+    another name for your directory, you'll need to specify
     the path to the directory when you run `wct` (`wct path/to/tests`).
 
-1.  Create a test.
+5.  Create a test.
 
         <!doctype html>
         <html>
           <head>
             <meta charset="utf-8">
             <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-            <script src="../bower_components//web-component-tester/browser.js"></script>
+            <script src="../bower_components/web-component-tester/browser.js"></script>
             <!-- import the element to test -->
             <link rel="import" href="../seed-element.html">
           </head>
@@ -109,14 +119,49 @@ this is just an example of how to set up your own elements to support `wct`.
           </body>
         </html>
 
-1.  Go to the base directory of your element and run your tests.
+6.  Go to the base directory of your element and run your tests.
 
         wct
 
     ![output from successful wct unit test run](/1.0/images/wct-output.png)
 
     `wct` automatically finds all of the browsers on your system and runs
-    your tests against each one.
+    your tests against each one. You can use `wct -l chrome` to test Google
+    Chrome only.
+
+## Prevent shared state with test fixtures {#test-fixtures}
+
+Test fixtures enable you to define a template of content and copy a clean,
+new instance of that content into each test suite. Use test fixtures to
+minimize the amount of shared state between test suites. 
+
+To use a test fixture:
+
+*   Define the test fixture template and give it an ID.
+*   Define a variable in your test script to reference the template.
+*   Instantiate a new instance of the fixture in your `setup()` method.
+
+{% highlight html %}
+<test-fixture id="seed-element-fixture">
+  <template>
+    <seed-element>
+      <h2>seed-element</h2>
+    </seed-element>
+  </template>
+</test-fixture>
+
+<script>
+  suite('<seed-element>', function() {
+    var myEl;
+    setup(function() {
+      myEl = fixture('seed-element-fixture');
+    });
+    test('defines the "author" property', function() {
+      assert.equal(myEl.author.name, 'Dimitri Glazkov');
+    });
+  });
+</script>
+{% endhighlight %}
 
 ## Create stub methods
 
@@ -135,6 +180,12 @@ You don't have to use stubs directly on individual elements. You can override
 the implementation for all elements of a given type. 
 
 ## Create stub elements
+
+Use [stub elements](http://stackoverflow.com/questions/463278/what-is-a-stub) 
+to test elements in isolation. For example, if one of your tests
+depends on another element to return data, rather than importing the other
+(possibly unstable) element into your tests, you can implement a stub of the
+other element that always returns consistent data. 
 
 Use `replace()` to create stub elements. 
 
@@ -183,72 +234,64 @@ Below is an example of a simple XHR unit test suite for
 Check out Sinon's documentation for more in-depth examples. 
 
 {% highlight html %}
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" 
-        content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-  <script src="../../web-component-tester/browser.js"></script>
-  <!-- import the element -->
-  <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
-</head>
-<body>
-  <!-- create test fixture template -->
-  <test-fixture id="simple-get">
-    <template>
-      <iron-ajax url="/responds_to_get_with_json"></iron-ajax>
-    </template>
-  </test-fixture>
-  <script>
-    suite('<iron-ajax>', function() {
-      var ajax;
-      var request;
-      var server;
-      var responseHeaders = {
-        json: { 'Content-Type': 'application/json' }
-      };
+<!-- create test fixture template -->
+<test-fixture id="simple-get">
+  <template>
+    <iron-ajax url="/responds_to_get_with_json"></iron-ajax>
+  </template>
+</test-fixture>
+<script>
+  suite('<iron-ajax>', function() {
+    var ajax;
+    var request;
+    var server;
+    var responseHeaders = {
+      json: { 'Content-Type': 'application/json' }
+    };
+    setup(function() {
+      server = sinon.fakeServer.create();
+      server.respondWith(
+        'GET',
+        /\/responds_to_get_with_json.*/, [
+          200,
+          responseHeaders.json,
+          '{"success":true}'
+        ]
+      );
+    });
+    teardown(function() {
+      server.restore();
+    });
+    suite('when making simple GET requests for JSON', function() {
       setup(function() {
-        server = sinon.fakeServer.create();
-        server.respondWith(
-          'GET',
-          /\/responds_to_get_with_json.*/, [
-            200,
-            responseHeaders.json,
-            '{"success":true}'
-          ]
-        );
+        // get fresh instance of iron-ajax before every test
+        ajax = fixture('simple-get');
       });
-      teardown(function() {
-        server.restore();
+      test('has sane defaults that love you', function() {
+        request = ajax.generateRequest();
+        server.respond();
+        expect(request.response).to.be.ok;
+        expect(request.response).to.be.an('object');
+        expect(request.response.success).to.be.equal(true);
       });
-      suite('when making simple GET requests for JSON', function() {
-        setup(function() {
-          // get fresh instance of iron-ajax before every test
-          ajax = fixture('simple-get');
-        });
-        test('has sane defaults that love you', function() {
-          request = ajax.generateRequest();
-          server.respond();
-          expect(request.response).to.be.ok;
-          expect(request.response).to.be.an('object');
-          expect(request.response.success).to.be.equal(true);
-        });
-        test('has the correct xhr method', function() {
-          request = ajax.generateRequest();
-          expect(request.xhr.method).to.be.equal('GET');
-        });
+      test('has the correct xhr method', function() {
+        request = ajax.generateRequest();
+        expect(request.xhr.method).to.be.equal('GET');
       });
     });
-  </script>
-</body>
-</html>
+  });
+</script>
 {% endhighlight %}
 
-## Control which tests are run
+The example above uses Chai's [`expect`](http://chaijs.com/api/bdd/) assertion
+style. 
+{: .alert .alert-info }
 
-Use a test index to run a subset of suites.
+## Run a subset of tests {#test-subsets}
+
+To run a subset of tests, create an HTML file and call `loadSuites()`. When
+running `wct`, specify the path to the HTML file as the first argument 
+(for example, `wct test/my-test-subset.html`.
 
 {% highlight html %}
 <!doctype html>
@@ -269,44 +312,12 @@ Use a test index to run a subset of suites.
 </html>
 {% endhighlight %}
 
-You can also use test indexes to configure your tests via query strings
-when `wct` loads them. See [Test Shadow DOM](#shadow-dom) for an example.
+The argument to `loadSuites()` should be an array of strings. Each string
+should be a relative URL to a test suite. You can configure your tests 
+using query strings in the URLs. See [Test Shadow DOM](#shadow-dom)
+for an example.
 
-## Prevent shared state with test fixtures {#test-fixtures}
-
-Test fixtures enable you to define a template of content and copy a clean,
-new instance of that content into each test suite. Use test fixtures to
-minimize the amount of shared state between test suites. 
-
-To use a test fixture:
-
-*   Define the test fixture template and give it an ID.
-*   Define a variable in your test script to reference the template.
-*   Instantiate a new instance of the fixture in your `setup()` method.
-
-{% highlight html %}
-<test-fixture id="seed-element-fixture">
-  <template>
-    <seed-element>
-      <h2>seed-element</h2>
-    </seed-element>
-  </template>
-</test-fixture>
-
-<script>
-  suite('<seed-element>', function() {
-    var myEl;
-    setup(function() {
-      myEl = fixture('seed-element-fixture');
-    });
-    test('defines the "author" property', function() {
-      assert.equal(myEl.author.name, 'Dimitri Glazkov');
-    });
-  });
-</script>
-{% endhighlight %}
-
-## Make tests asynchronous
+## Asynchronous tests
 
 To create an asynchronous test, pass `done` as an argument to the test function
 and then call `done()` when the test is complete. The `done` argument is a
@@ -314,17 +325,18 @@ signal to Mocha that the test is asynchronous. When Mocha runs the tests it
 waits until it encounters the `done()` call, and eventually times out if it 
 does not encounter it. 
 
-    test('defines the "author" property', function(done) {
-      setTimeout(function() {
-        assert.equal(myEl.author.name, 'Dimitri Glazkov');
+    test('fires lasers', function(done) {
+      myEl.addEventListener('seed-element-lasers', function(event) {
+        assert.equal(event.detail.sound, 'Pew pew!');
         done();
-      }, 1000);
+      });
+      myEl.fireLasers();
     });
 
 ## Test Shadow DOM {#shadow-dom}
 
 To test out how a test suite behaves when the browser runs native
-Shadow DOM, create a [test index](#test-indexes) and pass `dom=shadow` as 
+Shadow DOM, create a [test subset](#test-subsets) and pass `dom=shadow` as 
 a query string when `wct` loads your test suites.
 
 {% highlight javascript %}
@@ -334,14 +346,20 @@ WCT.loadSuites([
 ]);
 {% endhighlight %}
 
-Within your tests, you can access Shadow DOM elements using Polymer's DOM 
-API.
+This sample runs `basic-test.html` twice, once using Shady DOM and once
+using native Shadow DOM (if the browser supports it).
+
+Use Polymer's DOM API to access local DOM children.
 
     test('click sets isWaiting to true', function() {
-      Polymer.dom(myEl.root).querySelector('button').click();
+      myEl.$$('button').click();
       assert(myEl.isWaiting, true);
     });
-    
+   
+`myEl.$$('button')` returns the first `button` element encountered
+in the local DOM of `myEl`.
+{: .alert .alert-info }
+ 
 ## Learn more
 
 <div class="yt-embed">
