@@ -27,7 +27,8 @@
     "iron-icons": "PolymerElements/iron-icons#^1.0.0",
     "firebase-element": "GoogleWebComponents/firebase-element#^1.0.0",
     "google-map": "GoogleWebComponents/google-map#^1.0.5",
-    "iron-component-page": "PolymerElements/iron-component-page#^1.1.2"
+    "iron-component-page": "PolymerElements/iron-component-page#^1.1.2",
+    "google-youtube": "GoogleWebComponents/google-youtube#~1.1.2"
   },
   "resolutions": {
     "webcomponentsjs": "^0.7.0",
