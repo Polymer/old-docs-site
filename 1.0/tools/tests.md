@@ -129,6 +129,23 @@ Follow the steps below to get set up, or watch the Polycast:
     your tests against each one. You can use `wct -l chrome` to test Google
     Chrome only.
 
+## Asynchronous tests
+
+To create an asynchronous test, pass `done` as an argument to the test function
+and then call `done()` when the test is complete. The `done` argument is a
+signal to Mocha that the test is asynchronous. When Mocha runs the test it 
+it waits until the test code invokes the `done()` callback. If the `done()`
+callback isn't invoked, the test eventually times out and Mocha reports the test
+as a failure.
+
+    test('fires lasers', function(done) {
+      myEl.addEventListener('seed-element-lasers', function(event) {
+        assert.equal(event.detail.sound, 'Pew pew!');
+        done();
+      });
+      myEl.fireLasers();
+    });
+
 ## Prevent shared state with test fixtures {#test-fixtures}
 
 Test fixtures enable you to define a template of content and copy a clean,
@@ -287,11 +304,11 @@ The example above uses Chai's [`expect`](http://chaijs.com/api/bdd/) assertion
 style. 
 {: .alert .alert-info }
 
-## Run a subset of tests {#test-subsets}
+## Run a set of tests {#test-sets}
 
-To run a subset of tests, create an HTML file and call `loadSuites()`. When
+To run a set of tests, create an HTML file and call `loadSuites()`. When
 running `wct`, specify the path to the HTML file as the first argument 
-(for example, `wct test/my-test-subset.html`.
+(for example, `wct test/my-test-set.html`.
 
 {% highlight html %}
 <!doctype html>
@@ -314,42 +331,13 @@ running `wct`, specify the path to the HTML file as the first argument
 
 The argument to `loadSuites()` should be an array of strings. Each string
 should be a relative URL to a test suite. You can configure your tests 
-using query strings in the URLs. See [Test Shadow DOM](#shadow-dom)
+using query strings in the URLs. See [Test shadow DOM](#shadow-dom)
 for an example.
 
-## Asynchronous tests
+## Test local DOM
 
-To create an asynchronous test, pass `done` as an argument to the test function
-and then call `done()` when the test is complete. The `done` argument is a
-signal to Mocha that the test is asynchronous. When Mocha runs the tests it 
-waits until it encounters the `done()` call, and eventually times out if it 
-does not encounter it. 
-
-    test('fires lasers', function(done) {
-      myEl.addEventListener('seed-element-lasers', function(event) {
-        assert.equal(event.detail.sound, 'Pew pew!');
-        done();
-      });
-      myEl.fireLasers();
-    });
-
-## Test Shadow DOM {#shadow-dom}
-
-To test out how a test suite behaves when the browser runs native
-Shadow DOM, create a [test subset](#test-subsets) and pass `dom=shadow` as 
-a query string when `wct` loads your test suites.
-
-{% highlight javascript %}
-WCT.loadSuites([
-  'basic-test.html',
-  'basic-test.html?dom=shadow'
-]);
-{% endhighlight %}
-
-This sample runs `basic-test.html` twice, once using Shady DOM and once
-using native Shadow DOM (if the browser supports it).
-
-Use Polymer's DOM API to access local DOM children.
+Use Polymer's [DOM API](/1.0/docs/devguide/local-dom.html#dom-api) to access 
+and modify local DOM children.
 
     test('click sets isWaiting to true', function() {
       myEl.$$('button').click();
@@ -360,6 +348,43 @@ Use Polymer's DOM API to access local DOM children.
 in the local DOM of `myEl`.
 {: .alert .alert-info }
  
+### Test asynchronous mutations
+
+Always wrap your test in `flush` if your element template contains a [template 
+repeater (`dom-repeat`)][/1.0/docs/devguide/templates.html#dom-repeat] or
+[conditional template (`dom-if`)](/1.0/docs/devguide/templates.html#dom-if],
+or if your test involves a local DOM mutation. Polymer lazily performs these 
+operations in some cases for performance. `flush` ensures that asynchronous 
+changes have taken place.
+
+For example, if you set the `items` property of a `dom-repeat` template, 
+then want to inspect the generated DOM nodes, use `flush` to ensure the 
+items have been rendered:
+
+ test('creates one list item per item', function() {
+   myEl.items  = [ 'One', 'Two', 'Three' ];
+   // wait for items to render
+   flush(function() {
+     assert.equal(Polymer.dom(myEl.root).querySelectorAll('li').length, 3);
+  });
+ });
+
+### Test with native shadow DOM {#shadow-dom}
+
+To test out how a test suite behaves when the browser runs native
+shadow DOM, create a [test set](#test-sets) and pass `dom=shadow` as 
+a query string when `wct` loads your test suites.
+
+{% highlight javascript %}
+WCT.loadSuites([
+  'basic-test.html',
+  'basic-test.html?dom=shadow'
+]);
+{% endhighlight %}
+
+This sample runs `basic-test.html` twice, once using shady DOM and once
+using native shadow DOM (if the browser supports it).
+
 ## Learn more
 
 <div class="yt-embed">
