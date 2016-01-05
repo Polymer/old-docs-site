@@ -403,7 +403,7 @@ screen.  Hiding/showing elements is as simple as attribute-binding to the
 `hidden` attribute (e.g. `<div hidden$="{{!shouldShow}}">`), and does not
 require conditional templating at all.
 
-However, using a conditional template may be appropriate in the case of an admin
+However, using a conditional template may not be appropriate in the case of an admin
 screen that's only shown to admin users of an app.  Since most users
 aren't admins, there may be performance benefits to not burdening most of
 the users with the cost of stamping the elements for the admin page, especially
