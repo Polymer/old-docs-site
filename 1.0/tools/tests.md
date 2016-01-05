@@ -351,8 +351,8 @@ in the local DOM of `myEl`.
 ### Test asynchronous mutations
 
 Always wrap your test in `flush` if your element template contains a [template 
-repeater (`dom-repeat`)][/1.0/docs/devguide/templates.html#dom-repeat] or
-[conditional template (`dom-if`)](/1.0/docs/devguide/templates.html#dom-if],
+repeater (`dom-repeat`)](/1.0/docs/devguide/templates.html#dom-repeat) or
+[conditional template (`dom-if`)](/1.0/docs/devguide/templates.html#dom-if),
 or if your test involves a local DOM mutation. Polymer lazily performs these 
 operations in some cases for performance. `flush` ensures that asynchronous 
 changes have taken place.
