@@ -361,13 +361,13 @@ For example, if you set the `items` property of a `dom-repeat` template,
 then want to inspect the generated DOM nodes, use `flush` to ensure the 
 items have been rendered:
 
- test('creates one list item per item', function() {
-   myEl.items  = [ 'One', 'Two', 'Three' ];
-   // wait for items to render
-   flush(function() {
-     assert.equal(Polymer.dom(myEl.root).querySelectorAll('li').length, 3);
-  });
- });
+    test('creates one list item per item', function() {
+      myEl.items  = [ 'One', 'Two', 'Three' ];
+      // wait for items to render
+      flush(function() {
+        assert.equal(Polymer.dom(myEl.root).querySelectorAll('li').length, 3);
+     });
+    });
 
 ### Test with native shadow DOM {#shadow-dom}
 
