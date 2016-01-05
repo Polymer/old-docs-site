@@ -300,8 +300,8 @@ Check out Sinon's documentation for more in-depth examples.
 </script>
 {% endhighlight %}
 
-The example above uses Chai's [`expect`](http://chaijs.com/api/bdd/) assertion
-style. 
+**Note:** The example above uses Chai's [`expect`](http://chaijs.com/api/bdd/) 
+assertion style. 
 {: .alert .alert-info }
 
 ## Run a set of tests {#test-sets}
@@ -344,11 +344,11 @@ and modify local DOM children.
       assert(myEl.isWaiting, true);
     });
    
-`myEl.$$('button')` returns the first `button` element encountered
+**Note:** `myEl.$$('button')` returns the first `button` element encountered
 in the local DOM of `myEl`.
 {: .alert .alert-info }
  
-### Test asynchronous mutations
+### DOM mutations
 
 Always wrap your test in `flush` if your element template contains a [template 
 repeater (`dom-repeat`)](/1.0/docs/devguide/templates.html#dom-repeat) or
