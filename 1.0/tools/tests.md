@@ -359,7 +359,7 @@ changes have taken place. The test function should take one argument, `done`,
 to indicate that it is [asynchronous](#async), and it should call
 `done()` at the end of `flush`.
 
-    test('Item lengths should be equalled', function(done) {
+    test('Item lengths should be equal', function(done) {
       list.items = [
         'Responsive Web App boilerplate',
         'Iron Elements and Paper Elements',
