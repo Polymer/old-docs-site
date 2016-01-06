@@ -129,7 +129,7 @@ Follow the steps below to get set up, or watch the Polycast:
     your tests against each one. You can use `wct -l chrome` to test Google
     Chrome only.
 
-## Asynchronous tests
+## Asynchronous tests {#async}
 
 To create an asynchronous test, pass `done` as an argument to the test function
 and then call `done()` when the test is complete. The `done` argument is a
@@ -355,18 +355,26 @@ repeater (`dom-repeat`)](/1.0/docs/devguide/templates.html#dom-repeat) or
 [conditional template (`dom-if`)](/1.0/docs/devguide/templates.html#dom-if),
 or if your test involves a local DOM mutation. Polymer lazily performs these 
 operations in some cases for performance. `flush` ensures that asynchronous 
-changes have taken place.
+changes have taken place. The test function should take one argument, `done`,
+to indicate that it is [asynchronous](#async), and it should call
+`done()` at the end of `flush()`.
 
-For example, if you set the `items` property of a `dom-repeat` template, 
-then want to inspect the generated DOM nodes, use `flush` to ensure the 
-items have been rendered:
-
-    test('creates one list item per item', function() {
-      myEl.items  = [ 'One', 'Two', 'Three' ];
-      // wait for items to render
+    test('Item lengths should be equalled', function(done) {
+      list.items = [
+        'Responsive Web App boilerplate',
+        'Iron Elements and Paper Elements',
+        'End-to-end Build Tooling (including Vulcanize)',
+        'Unit testing with Web Component Tester',
+        'Routing with Page.js',
+        'Offline support with the Platinum Service Worker Elements'
+      ];
+      // Data bindings will stamp out new DOM asynchronously
+      // so wait to check for updates
       flush(function() {
-        assert.equal(Polymer.dom(myEl.root).querySelectorAll('li').length, 3);
-     });
+        listItems = list.querySelectorAll('li');
+        assert.equal(list.items.length, listItems.length);
+        done();
+      });
     });
 
 ### Test with native shadow DOM {#shadow-dom}
