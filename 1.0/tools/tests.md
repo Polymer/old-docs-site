@@ -357,7 +357,7 @@ or if your test involves a local DOM mutation. Polymer lazily performs these
 operations in some cases for performance. `flush` ensures that asynchronous 
 changes have taken place. The test function should take one argument, `done`,
 to indicate that it is [asynchronous](#async), and it should call
-`done()` at the end of `flush()`.
+`done()` at the end of `flush`.
 
     test('Item lengths should be equalled', function(done) {
       list.items = [
