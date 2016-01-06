@@ -348,7 +348,7 @@ and modify local DOM children.
 in the local DOM of `myEl`.
 {: .alert .alert-info }
  
-### DOM mutations
+### Test DOM mutations
 
 Always wrap your test in `flush` if your element template contains a [template 
 repeater (`dom-repeat`)](/1.0/docs/devguide/templates.html#dom-repeat) or
