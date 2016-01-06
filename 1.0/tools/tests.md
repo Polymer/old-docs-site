@@ -359,23 +359,26 @@ changes have taken place. The test function should take one argument, `done`,
 to indicate that it is [asynchronous](#async), and it should call
 `done()` at the end of `flush`.
 
-    test('Item lengths should be equal', function(done) {
-      list.items = [
-        'Responsive Web App boilerplate',
-        'Iron Elements and Paper Elements',
-        'End-to-end Build Tooling (including Vulcanize)',
-        'Unit testing with Web Component Tester',
-        'Routing with Page.js',
-        'Offline support with the Platinum Service Worker Elements'
-      ];
-      // Data bindings will stamp out new DOM asynchronously
-      // so wait to check for updates
-      flush(function() {
-        listItems = list.querySelectorAll('li');
-        assert.equal(list.items.length, listItems.length);
-        done();
+    suite('my-list tests', function() {
+      var list, listItems;
+      setup(function() {
+        list = fixture('basic');
       });
-    });
+      test('Item lengths should be equal', function(done) {
+        list.items = [
+          'Responsive Web App boilerplate',
+          'Unit testing with Web Component Tester',
+          'Offline support with the Platinum Service Worker Elements'
+        ];
+        // Data bindings will stamp out new DOM asynchronously
+        // so wait to check for updates
+        flush(function() {
+          listItems = Polymer.dom(list.root).querySelectorAll('li');
+          assert.equal(list.items.length, listItems.length);
+          done();
+        });
+      });
+    )};
 
 ### Test with native shadow DOM {#shadow-dom}
 
