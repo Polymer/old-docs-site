@@ -239,9 +239,11 @@ a host element and its light DOM children.
 
 The element's basic initialization order for a given element is:
 
-- `created` callback   local DOM initialized (This means that **local DOM**
-- children are created, their property values are set as specified in the
-- template, and `ready()` has been called on them) `ready` callback
+- `created` callback
+- local DOM initialized (This means that **local DOM** children are created,
+  their property values are set as specified in the template, and `ready()`
+  has been called on them)
+- `ready` callback
 - [`factoryImpl` callback](#custom-constructor) `attached` callback
 
 Note that while the life cycle callbacks listed above will be called in the
@@ -252,19 +254,21 @@ support for web components.
 #### Initialization timing for light DOM children
 
 As far as initialization timing of light DOM children, there are no guarantees
-at all; it can generally be expected them to be ready in document order, and
-that they will be _usually_ initialized after their parents. The user can add
-light children at any time after the parent element has been defined.
+at all; in general elements are initialized in document order, so children are
+usually initialized after their parents. The user can add light children at
+any time after the parent element has been defined.
 
 For example, consider this light DOM for an element `avarar-list` (which would
 presumably have, in its local DOM, a `<content>` element with selector on
 `.photo`):
 
-    <avatar-list> <my-photo class="photo" src="one.jpg">First photo</my-photo>
-    <my-photo class="photo" src="two.jpg">Second photo</my-photo> </avatar-list>
+    <avatar-list>
+      <my-photo class="photo" src="one.jpg">First photo</my-photo>
+      <my-photo class="photo" src="two.jpg">Second photo</my-photo>
+    </avatar-list>
 
-`<avatar-list>` is _likely_ to have its `ready` before the various `<my-photo>`
-elements do.
+`<avatar-list>` is _likely_ to have its `ready` method called before the various
+`<my-photo>` elements do.
 
 #### Initialization timing for local DOM children
 
@@ -274,19 +278,19 @@ called on them _before_ their parent's `ready` is.
 
 There are two caveats:
 
-* `dom-repeat` and `dom-if` create DOM asynchronously based on the property
-* values set on them (e.g. `if`, `items`, etc.). Note that `dom-repeat` isn't a
-* "special" statement: it's a normal custom element. When you set an items value
-* on it, it responds by asynchronously creating instances of its template
-* contents. When you use it inside an element's template, the parent element
-* instantiates a `dom-repeat` element, sets its items property, and calls ready
-* on it -- at that point, the `dom-repeat` starts its own (async) work, while
-* the parent element has its `ready` callback called.
+ * `dom-repeat` and `dom-if` create DOM asynchronously based on the property
+   values set on them (e.g. `if`, `items`, etc.). Note that `dom-repeat` isn't a
+   "special" statement: it's a normal custom element. When you set an items
+   value on it, it responds by asynchronously creating instances of its template
+   contents. When you use it inside an element's template, the parent element
+   instantiates a `dom-repeat` element, sets its items property, and calls ready
+   on it -- at that point, the `dom-repeat` starts its own (async) work, while
+   the parent element has its `ready` callback called.
 
 * Polymer guarantees that local DOM children have their `ready` callback called
-* before their parent's; however, it cannot guarantee the same thing for the
-* `attached` callback. This is one fundamental difference between native
-* behaviour and  polyfill behavior.
+   before their parent's; however, it cannot guarantee the same thing for the
+   `attached` callback. This is one fundamental difference between native
+   behaviour and  polyfill behavior.
 
 #### Initialization timing for siblings
 
@@ -298,8 +302,11 @@ This means that siblings may become `ready` in any order.
 For accessing sibling elements when an element initializes, you can call `async`
 from inside the `attached` callback:
 
-    attached: function() { this.async(function() { // access sibling or parent
-    elements here }); }
+    attached: function() {
+      this.async(function() {
+        // access sibling or parent elements here
+      });
+    }
 
 
 ### Registration callback
