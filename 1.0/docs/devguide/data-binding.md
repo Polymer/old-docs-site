@@ -68,8 +68,8 @@ annotation inside the child element.
     <dom-module id="user-view">
 
         <template>   
-          First: <span>{{firstName}}</span><br>
-          Last: <span>{{lastName}}</span>
+          First: {{firstName}}<br>
+          Last: {{lastName}}
         </template>
 
         <script>
