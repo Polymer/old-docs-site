@@ -65,18 +65,16 @@ The `--save` adds the item as a dependency in *your* app's bower.json:
   "name": "my-project",
   "version": "0.0.0",
   "dependencies": {
-    "polymer": "Polymer/polymer#~<var>currentVersion</var>"
+    "polymer": "Polymer/polymer#~1.<var>X.X</var>"
   }
 }
 </pre>
 
-Where <var>currentVersion</var> is the current stable version of
-{{site.project_title}}, for example, `1.2.3`. If you use Bower
-to update the dependencies later, you'll receive the latest stable
-version with the same major version number (for example, if the
-dependency version is `#~1.2.3`, Bower will update to 1.3 or 1.9
-but not to 2.0).
-
+Where <code>1.<var>X.X</var></code> is the current stable version of
+{{site.project_title}}. For example, if the current version is 1.2.3,
+the dependency line will show `#~1.2.3`, which means that your project
+requires a {{site.project_title}} version equal to or greater than 1.2.3,
+but less than 2.0.
 
 #### Updating packages {#updatebower}
 
