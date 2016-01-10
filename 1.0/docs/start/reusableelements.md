@@ -263,8 +263,7 @@ a styled component page out of the box that looks a little like this:
 
 ![Preview of the component langing page, displaying the element title in the header with a demo link next to it. The rest of the page contains formatted summary and attribute/method/event information parsed from the documentation in your element](/images/publishing-polymer-elements/image_6.png)
 
-You can check out the [live](http://polymerlabs.github.io/seed-
-element/components/seed-element/) version of this page for the `seed-element`
+You can check out the [live](https://github.com/PolymerElements/seed-element) version of this page for the `seed-element`
 project.
 
 
