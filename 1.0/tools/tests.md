@@ -31,9 +31,9 @@ This guide refers to Web Component Tester as `wct`, which is its command
 line interface.
 
 Note: You can also use [polyserve](https://github.com/PolymerLabs/polyserve)
-to run your test suite in the browser. This allows you to use all browser
-features like the dev tools and HTML inspection to debug your unit test.
-You can simply open the corresponding HTML page which contains the test
+to run your test suite in the browser. This allows you to use browser
+features like dev tools and HTML inspection to debug your unit tests.
+You can then open the corresponding HTML page which contains the test
 suite in your browser and immediately view the successful and failing tests.
 
 ## Quick start
