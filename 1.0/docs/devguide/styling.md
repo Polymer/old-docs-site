@@ -16,9 +16,9 @@ provided via `<style>` tags placed inside the element's local DOM `<template>`.
 
 
     <dom-module id="my-element">
-      
 
-      
+
+
       <template>
 
         <style>
@@ -41,7 +41,7 @@ provided via `<style>` tags placed inside the element's local DOM `<template>`.
         <div class="content-wrapper"><content></content></div>
 
       </template>
-      
+
       <script>
 
           Polymer({
@@ -52,10 +52,10 @@ provided via `<style>` tags placed inside the element's local DOM `<template>`.
 
     </dom-module>
 
-To place styles outside of the element, or share styles between elements, you can create 
-a [style module](#style-modules). 
+To place styles outside of the element, or share styles between elements, you can create
+a [style module](#style-modules).
 
-**Note:**  Prior to Polymer 1.1, the recommendation was to place `<style>` tags 
+**Note:**  Prior to Polymer 1.1, the recommendation was to place `<style>` tags
 inside the `<dom-module>` for an element (but _outside_ the `<template>`). This
  is still supported, but is no longer recommended.
 {: .alert .alert-info }
@@ -63,7 +63,7 @@ inside the `<dom-module>` for an element (but _outside_ the `<template>`). This
 
 ### Styling distributed children (::content)
 
-Under shady DOM, the `<content>` tag doesn't appear in the DOM tree. Styles are rewritten to remove the 
+Under shady DOM, the `<content>` tag doesn't appear in the DOM tree. Styles are rewritten to remove the
 `::content` pseudo-element, **and any combinator immediately to the left of `::content`.**
 
 This implies:
@@ -78,12 +78,12 @@ This implies:
 
     (Where `x-foo` is the name of the custom element.)
 
-*   To limit styles to elements inside the ::content tag, add a wrapper element around the 
+*   To limit styles to elements inside the ::content tag, add a wrapper element around the
     `<content>` element. This is especially important when using a child combinator (`>`) to
     select top-level children.
 
         <dom-module id="my-element">
-          
+
           <template>
 
             <style>
@@ -95,7 +95,7 @@ This implies:
             <div class="content-wrapper"><content></content></div>
 
           </template>
-          
+
         </dom-module>
 
     In this case, the rule:
@@ -146,7 +146,7 @@ reasons:
 
 *   Although Shadow DOM's style encapsulation *improves* the predictability of
     style recalc performance since the side effects of a style change are
-    limited to a small subset of the document, using `/deep/` and `::shadow` 
+    limited to a small subset of the document, using `/deep/` and `::shadow`
     re-opens the style invalidation area and reduces Shadow DOM's effectiveness as a
     performance primitive.
 
@@ -159,10 +159,10 @@ obsolescence of `/deep/` and `::shadow` altogether.
 
 ### Custom CSS properties {#xscope-styling-details}
 
-Polymer includes a shim for custom CSS properties inspired by (and compatible with) 
+Polymer includes a shim for custom CSS properties inspired by (and compatible with)
 the future W3C [CSS Custom Properties for Cascading Variables](http://dev.w3.org/csswg/css-variables/)
-specification (see 
-[Using CSS Variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables) 
+specification (see
+[Using CSS Variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables)
 on the Mozilla Developer Network).
 
 Rather than exposing the details of an element's internal implementation for
@@ -184,7 +184,7 @@ defined, similar to other standard inheriting CSS properties.
 Example:
 
     <dom-module id="my-toolbar">
-      
+
       <template>
 
         <style>
@@ -200,7 +200,7 @@ Example:
         <span class="title">{%raw%}{{title}}{%endraw%}</span>
 
       </template>
-      
+
       <script>
         Polymer({
           is: 'my-toolbar',
@@ -216,7 +216,7 @@ Example usage of `my-toolbar`:
 
     <dom-module id="my-element">
 
-      
+
       <template>
 
         <style>
@@ -237,7 +237,7 @@ Example usage of `my-toolbar`:
         <my-toolbar title="This one is green too."></my-toolbar>
 
         <my-toolbar class="warning" title="This one is red."></my-toolbar>
-      
+
       </template>
 
       <script>
@@ -248,14 +248,14 @@ Example usage of `my-toolbar`:
 
 The `--my-toolbar-title-color` property only affects the color of the title
 element encapsulated in `my-toolbar`'s internal implementation.  In the
-future the `my-toolbar` author can rename the `title` class or 
+future the `my-toolbar` author can rename the `title` class or
 restructure the internal details of `my-toolbar` without changing the custom
 property exposed to users.
 
-You can also include a default value in the `var()` function, to use in case the user 
+You can also include a default value in the `var()` function, to use in case the user
 doesn't set the custom property:
 
-    color: var(--my-toolbar-title-color, blue); 
+    color: var(--my-toolbar-title-color, blue);
 
 Thus, custom CSS properties introduce a powerful way for element authors to
 expose a theming API to their users in a way that naturally fits right alongside
@@ -265,24 +265,24 @@ support by Chrome.
 
 ### Custom CSS mixins
 
-It may be tedious (or impossible) for an element author to predict every 
-CSS property that may be important for theming, let alone expose every 
-property individually. 
+It may be tedious (or impossible) for an element author to predict every
+CSS property that may be important for theming, let alone expose every
+property individually.
 
 The custom properties shim includes an extension that enables an element
 author to define a set of CSS properties as a single custom property and
 then allow all properties in the set to be applied to a specific CSS rule
 in an element's local DOM. The extension enables this with a mixin capability
 that is analogous to `var`, but which allows an entire set of properties
-to be mixed in. This extension adheres to the 
-[CSS @apply rule](http://tabatkins.github.io/specs/css-apply-rule/) 
+to be mixed in. This extension adheres to the
+[CSS @apply rule](http://tabatkins.github.io/specs/css-apply-rule/)
 proposal.
 
 Use `@apply` to apply a mixin:
 
 <pre>@apply(--<var>mixin-name</var>);</pre>
 
-Defining a mixin is just like defining a custom property, but the 
+Defining a mixin is just like defining a custom property, but the
 value is an object that defines one or more rules:
 
 <pre><var>selector</var> {
@@ -312,15 +312,15 @@ Example:
         <span class="title">{%raw%}{{title}}{%endraw%}</span>
 
       </template>
-      
+
       ...
-      
+
     </dom-module>
 
 Example usage of `my-toolbar`:
 
     <dom-module id="my-element">
-      
+
       <template>
 
         <style>
@@ -349,7 +349,7 @@ Example usage of `my-toolbar`:
         <my-toolbar title="This one is green too."></my-toolbar>
 
         <my-toolbar class="warning" title="This one is red."></my-toolbar>
-      
+
       </template>
 
       <script>
@@ -369,7 +369,10 @@ To update all elements on the page, you can also call `Polymer.updateStyles()`.
 
 The user can also directly modify a {{site.project_title}} element's custom property by setting
 key-value pairs in `customStyle` on the element (analogous to setting `style`)
-and then calling `updateStyles()`.
+and then calling `updateStyles()`. To get the value of a custom
+property on an element, use `getComputedStyleValue(propertyName)`.
+
+
 
 Example:
 
@@ -387,7 +390,7 @@ Example:
         <button on-tap="changeTheme">Change theme</button>
 
       </template>
-      
+
       <script>
         Polymer({
           is: 'x-custom',
@@ -447,7 +450,7 @@ dynamism will continue to be explored.
 
 *   Dynamic effects are reflected at the point of a variable’s application, but not its definition.
 
-    For the following example, adding/removing the `highlighted` class on the `#title` element will 
+    For the following example, adding/removing the `highlighted` class on the `#title` element will
     have the desired effect, since the dynamism is related to *application* of a custom property.
 
         #title {
@@ -511,7 +514,7 @@ dynamism will continue to be explored.
           </script>         
 
         </dom-module>
-   
+
 
 ## Custom element for document styling (custom-style) {#custom-style}
 
@@ -527,8 +530,8 @@ of Polymer's styling system:
 *   Shadow DOM-specific `/deep/` and `::shadow` combinators will be shimmed on
     browsers without native Shadow DOM.
 
-*   Custom properties used by Polymer's experimental 
-    [shim for cross-scope styling](#xscope-styling-details) may be defined in an 
+*   Custom properties used by Polymer's experimental
+    [shim for cross-scope styling](#xscope-styling-details) may be defined in an
     `custom-style`. Use the `:root` selector to define custom properties that apply
     to all custom elements.
 
@@ -541,22 +544,22 @@ Example:
       <link rel="import" href="components/polymer/polymer.html">
 
       <style is="custom-style">
-        
+
         /* Will be prevented from affecting local DOM of Polymer elements */
         * {
           box-sizing: border-box;
         }
-        
+
         /* Can use /deep/ and ::shadow combinators */
         body /deep/ .my-special-view::shadow #thing-inside {
           background: yellow;
         }
-        
+
         /* Custom properties that inherit down the document tree may be defined */
         :root {
           --my-toolbar-title-color: green;
         }
-        
+
       </style>
 
     </head>
@@ -569,37 +572,37 @@ Example:
 
 All features of `custom-style` are available when defining styles as part of
 Polymer elements (for example, in `<style>` elements within a custom element's
-`<dom-module>`). The exception is the `:root` selector, which is only useful at 
+`<dom-module>`). The exception is the `:root` selector, which is only useful at
 the document level. **The `custom-style` extension should only be used for
 defining document styles, outside of a custom element's local DOM.**
 
 ## Shared styles and external stylesheets {#style-modules}
 
-To share style declarations between elements, you can package a set 
+To share style declarations between elements, you can package a set
 of style declarations inside a `<dom-module>` element. In this section,
 a `<dom-module>` holding styles is called a _style module_ for convenience.
 
-A style module declares a named set of style rules that can be imported into 
+A style module declares a named set of style rules that can be imported into
 an element definition, or into a `custom-style` element.
 
 **Note:** Style modules were introduced in {{site.project_title}} 1.1;
 they replace the experimental support for [external stylesheets](#external-stylesheets).
 {: .alert .alert-info }
 
-Define a style module inside an HTML import using the `<dom-module>` 
-element. 
+Define a style module inside an HTML import using the `<dom-module>`
+element.
 
     <!-- shared-styles.html -->
     <dom-module id="shared-styles">
       <template>
         <style>
           .red { color: red; }
-        </style> 
+        </style>
       </template>
     </dom-module>
 
 The `id` attribute specifies the name you'll use to reference
-your shared styles. Style module names use the same namespace as elements, 
+your shared styles. Style module names use the same namespace as elements,
 so your style modules must have unique names.
 
 Using the shared styles is a two-step process: you need to use a `<link>` tag
@@ -640,7 +643,7 @@ by the styles defined in the body.
 
 ### External stylesheets (deprecated) {#external-stylesheets}
 
-**Note:** This experimental feature is now deprecated in favor of 
+**Note:** This experimental feature is now deprecated in favor of
 [style modules](#style-modules). It is still supported, but support will
 be removed in the future.
 {: .alert .alert-info }
@@ -664,11 +667,11 @@ Example:
 
       <!-- special import with type=css used to load remote CSS -->
       <link rel="import" type="css" href="my-awesome-button.css">
-      
+
       <template>
         ...
       </template>
-      
+
       <script>
         Polymer({
           is: 'my-awesome-button',
@@ -694,16 +697,16 @@ that includes a `custom-style` element.
 `my-custom-styles.html`:
 
     <style is="custom-style">
-      html /deep/ iron-icon { 
+      html /deep/ iron-icon {
         color: red;
-      } 
+      }
     </style>      
 
 ## Third-party libraries that modify local DOM {#scope-subtree}
 
 If you are using a third-party library that adds local DOM nodes to your
 Polymer element, you may notice that styles on the element do not update
-properly. 
+properly.
 
 The correct way to add DOM nodes to a Polymer element's local DOM is via
 the Polymer DOM API. This API lets you manipulate nodes in a way that respects
@@ -711,13 +714,13 @@ the local DOM and ensures that styles are updated properly.
 
 When using third-party libraries that do not know about the Polymer DOM
 API, use `scopeSubtree` to apply proper CSS scoping to a node and all of its
-descendants. 
+descendants.
 
     scopeSubtree(containerNode, false);
 
-`containerNode` is the root node of the tree you wish to scope. Setting 
-the second argument to `false` scopes the specified node and descendants 
-once. Setting it to `true` enables a mutation observer that applies CSS 
+`containerNode` is the root node of the tree you wish to scope. Setting
+the second argument to `false` scopes the specified node and descendants
+once. Setting it to `true` enables a mutation observer that applies CSS
 scoping whenever `containerNode` or any of its descendants are modified.
 
 Example:
@@ -725,4 +728,3 @@ Example:
     ready: function() {
       this.scopeSubtree(this.$.container, true);
     }
-
