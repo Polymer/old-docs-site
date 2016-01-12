@@ -30,12 +30,6 @@ popular third-party tools, including:
 This guide refers to Web Component Tester as `wct`, which is its command 
 line interface.
 
-Note: You can also use [polyserve](https://github.com/PolymerLabs/polyserve)
-to run your test suite in the browser. This allows you to use browser
-features like dev tools and HTML inspection to debug your unit tests.
-You can then open the corresponding HTML page which contains the test
-suite in your browser and immediately view the successful and failing tests.
-
 ## Quick start
 
 This section shows you how to:
@@ -134,6 +128,14 @@ Follow the steps below to get set up, or watch the Polycast:
     `wct` automatically finds all of the browsers on your system and runs
     your tests against each one. You can use `wct -l chrome` to test Google
     Chrome only.
+    
+### Run tests interactively with Polyserve
+
+You can also use [polyserve](https://github.com/PolymerLabs/polyserve)
+to run your test suite in the browser. This allows you to use browser
+features like dev tools and HTML inspection to debug your unit tests.
+You can then open the corresponding HTML page which contains the test
+suite in your browser and immediately view the successful and failing tests.
 
 ## Asynchronous tests {#async}
 
