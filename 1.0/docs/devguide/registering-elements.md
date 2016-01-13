@@ -16,7 +16,7 @@ To register a custom element, use the `Polymer` function, and pass in the
 prototype for the new element. The prototype must have an `is` property that
 specifies the HTML tag name for your custom element.
 
-By specification, the custom element's name **must contain a dash (-)**. 
+By specification, the custom element's name **must contain a dash (-)**.
 
 Example:
 
@@ -50,12 +50,12 @@ share code between elements.
 ### Define a custom constructor {#custom-constructor}
 
 The `Polymer` method returns a basic constructor that can be used to
-instantiate the custom element. If you want to 
-pass arguments to the constructor to configure the new element, you can 
+instantiate the custom element. If you want to
+pass arguments to the constructor to configure the new element, you can
 specify a custom `factoryImpl` function on the prototype.
 
-The constructor returned from `Polymer` creates an instance using 
-`document.createElement`, then invokes the user-supplied `factoryImpl` function 
+The constructor returned from `Polymer` creates an instance using
+`document.createElement`, then invokes the user-supplied `factoryImpl` function
 with `this` bound to the element instance. Any arguments passed to the actual
 constructor are passed on to the `factoryImpl` function.
 
@@ -81,11 +81,11 @@ Example:
 
 Two notes about the custom constructor:
 
-*   The `factoryImpl` method is _only_ invoked when you create an element using the 
-    constructor. The `factoryImpl` method is not called if the element is created 
-    from markup by the HTML parser, or if the element is created using `document.createElement`. 
+*   The `factoryImpl` method is _only_ invoked when you create an element using the
+    constructor. The `factoryImpl` method is not called if the element is created
+    from markup by the HTML parser, or if the element is created using `document.createElement`.
 
-*   The `factoryImpl` method is called **after** the element is initialized (local DOM 
+*   The `factoryImpl` method is called **after** the element is initialized (local DOM
     created, default values set, and so on). See
     [Ready callback and element initialization](#ready-method) for more information.
 
@@ -96,7 +96,7 @@ Polymer currently only supports extending native HTML elements (for example,
 be supported in a future release). These native element extensions are called
 _type extension custom elements_.
 
-To extend a native HTML element, set the `extends` property on your prototype to 
+To extend a native HTML element, set the `extends` property on your prototype to
 the tag name of the element to extend.
 
 
@@ -130,13 +130,13 @@ To use a type-extension element in markup, use the _native_ tag and add an
 
 ### Define an element in the main HTML document {#main-document-definitions}
 
-**Note:** You should only define elements from the main document when 
-experimenting. In production, elements should always be defined in 
-separate files and imported into your main document. 
+**Note:** You should only define elements from the main document when
+experimenting. In production, elements should always be defined in
+separate files and imported into your main document.
 {: .alert .alert-info }
 
 To define an element in your main HTML document, define the element
-from `HTMLImports.whenReady(callback)`. `callback` is invoked when 
+from `HTMLImports.whenReady(callback)`. `callback` is invoked when
 all imports in the document have finished loading.
 
     <!DOCTYPE html>
@@ -210,14 +210,14 @@ Example:
 
     });
 
-### Ready callback and local DOM initialization {#ready-method} 
+### Ready callback and local DOM initialization {#ready-method}
 
 The `ready` callback is called when an element's local DOM is ready.
 
 It is called after the element's template has been stamped and all elements
 **inside the element's local DOM** have been configured (with values bound from
 parents, deserialized attributes, or else default values) and had their `ready`
-method called. 
+method called.
 
 Implement `ready` when it's necessary to manipulate an element's
 local DOM when the element is constructed.
@@ -228,53 +228,91 @@ local DOM when the element is constructed.
     }
 
 **Note:** This example uses [Automatic node finding](local-dom.html#node-finding) to
-access a local DOM element. 
+access a local DOM element.
 {: .alert .alert-info }
 
 Within a given tree, `ready` is generally called in _document order_, but you should not
-rely on the ordering of initialization callbacks between sibling elements, or between 
+rely on the ordering of initialization callbacks between sibling elements, or between
 a host element and its light DOM children.
 
+### Initialization order and timing {#initialization-order}
 
-### Initialization order {#initialization-order}
+The element's basic initialization order for a given element is:
 
-The element's basic initialization order is:
-
-- `created` callback  
-- local DOM initialized 
+- `created` callback
+- local DOM initialized (This means that **local DOM** children are created,
+  their property values are set as specified in the template, and `ready()`
+  has been called on them)
 - `ready` callback
-- [`factoryImpl` callback](#custom-constructor)
-- `attached` callback
+- [`factoryImpl` callback](#custom-constructor) `attached` callback
 
-Note that the **initialization order may vary** depending on whether or not the
-browser includes native support for web components. In particular, there are no
-guarantees with regard to initialization timing between **sibling elements** or
-between **parents and light DOM children**. You should not rely on observed
-timing to be identical across browsers, except as noted below.
+Note that while the life cycle callbacks listed above will be called in the
+described order for any given element, the  **initialization timing between
+elements may vary** depending on whether or not the browser includes native
+support for web components.
 
-For a given element:
+#### Initialization timing for light DOM children
 
-*   The `created` callback is always called before `ready`.
-*   The `ready` callback is always called before `attached`.
-*   The `ready` callback is called on any **local DOM children** before it's called
-    on the host element.
+As far as initialization timing of light DOM children, there are no guarantees
+at all; in general elements are initialized in document order, so children are
+usually initialized after their parents. The user can add light children at
+any time after the parent element has been defined.
 
-This means that an element's **light DOM children** may be initialized **before or after** 
-the parent element, and an element's **siblings may become `ready` in any order**.
+For example, consider this light DOM for an element `avarar-list` (which would
+presumably have, in its local DOM, a `<content>` element with selector on
+`.photo`):
 
-For accessing sibling elements when an element initializes, you can call `async` from inside
-the `attached` callback:
+    <avatar-list>
+      <my-photo class="photo" src="one.jpg">First photo</my-photo>
+      <my-photo class="photo" src="two.jpg">Second photo</my-photo>
+    </avatar-list>
+
+`<avatar-list>` is _likely_ to have its `ready` method called before the various
+`<my-photo>` elements do.
+
+#### Initialization timing for local DOM children
+
+In terms of local DOM and initialization timing, Local DOM children are created,
+their property values are set as specified in the template, and `ready` is
+called on them _before_ their parent's `ready` is.
+
+There are two caveats:
+
+ * `dom-repeat` and `dom-if` create DOM asynchronously based on the property
+   values set on them (e.g. `if`, `items`, etc.). Note that `dom-repeat` isn't a
+   "special" statement: it's a normal custom element. When you set an items
+   value on it, it responds by asynchronously creating instances of its template
+   contents. When you use it inside an element's template, the parent element
+   instantiates a `dom-repeat` element, sets its items property, and calls ready
+   on it -- at that point, the `dom-repeat` starts its own (async) work, while
+   the parent element has its `ready` callback called.
+
+* Polymer guarantees that local DOM children have their `ready` callback called
+   before their parent's; however, it cannot guarantee the same thing for the
+   `attached` callback. This is one fundamental difference between native
+   behaviour and  polyfill behavior.
+
+#### Initialization timing for siblings
+
+There are no guarantees with regard to initialization timing between sibling
+elements.
+
+This means that siblings may become `ready` in any order.
+
+For accessing sibling elements when an element initializes, you can call `async`
+from inside the `attached` callback:
 
     attached: function() {
-       this.async(function() {
-          // access sibling or parent elements here
-       });
+      this.async(function() {
+        // access sibling or parent elements here
+      });
     }
+
 
 ### Registration callback
 
-`Polymer.Base` also implements `registerCallback`, which is called by `Polymer()` 
-to allow `Polymer.Base` to supply a [layering system](experimental.html#feature-layering) 
+`Polymer.Base` also implements `registerCallback`, which is called by `Polymer()`
+to allow `Polymer.Base` to supply a [layering system](experimental.html#feature-layering)
 for Polymer features.
 
 
@@ -316,7 +354,7 @@ Results in:
 
 ## Behaviors {#prototype-mixins}
 
-Elements can share code in the form of _behaviors_, which can define 
+Elements can share code in the form of _behaviors_, which can define
 properties, lifecycle callbacks, event listeners, and other features.
 
 For more information, see [Behaviors](behaviors.html).
@@ -331,7 +369,7 @@ constructor  that can be passed to `document.registerElement` to register your
 element with the browser, and after  which can be used to instantiate new
 instances of your element via code.
 
-If you want to define and register the custom element in one step, use the 
+If you want to define and register the custom element in one step, use the
 [`Polymer` function](#register-element).
 
 Example:
@@ -354,4 +392,4 @@ Example:
     var el2 = document.createElement('my-element');
 
 `Polymer.Class` is designed to provide similar ergonomics to a speculative future
-where an ES6 class may be defined and provided to `document.registerElement`. 
+where an ES6 class may be defined and provided to `document.registerElement`.
