@@ -91,6 +91,12 @@ Two notes about the custom constructor:
 
 ### Extend native HTML elements {#type-extension}
 
+**Note:** When using Shadow DOM, extension of native elements can have
+unexpected behavior and is sometimes not permitted. It is suggested that
+you test your element with Shadow DOM enabled to catch any problems
+during development.
+{: .alert .alert-info }
+
 Polymer currently only supports extending native HTML elements (for example,
 `input`, or `button`, as opposed to extending other custom elements, which will
 be supported in a future release). These native element extensions are called
