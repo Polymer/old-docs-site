@@ -231,7 +231,7 @@ Example usage of `my-toolbar`:
             --my-toolbar-title-color: red;
           }
 
-        </style>      
+        </style>
 
         <my-toolbar title="This one is green."></my-toolbar>
         <my-toolbar title="This one is green too."></my-toolbar>
@@ -367,7 +367,7 @@ evaluate custom property values due to dynamic changes such as application of
 CSS classes, etc., call `this.updateStyles()` on the element.
 To update all elements on the page, you can also call `Polymer.updateStyles()`.
 
-The user can also directly modify a {{site.project_title}} element's custom property by setting
+You can also directly modify a {{site.project_title}} element's custom property by setting
 key-value pairs in `customStyle` on the element (analogous to setting `style`)
 and then calling `updateStyles()`. To get the value of a custom
 property on an element, use `getComputedStyleValue(propertyName)`.
@@ -511,7 +511,7 @@ dynamism will continue to be explored.
 
           <script>
             Polymer({ is: 'my-element'});
-          </script>         
+          </script>
 
         </dom-module>
 
@@ -700,7 +700,7 @@ that includes a `custom-style` element.
       html /deep/ iron-icon {
         color: red;
       }
-    </style>      
+    </style>
 
 ## Third-party libraries that modify local DOM {#scope-subtree}
 
