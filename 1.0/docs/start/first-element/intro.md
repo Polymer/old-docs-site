@@ -56,7 +56,7 @@ To follow this tutorial, you'll need:
 
 
 **Don't want to install anything?** To run through this tutorial online,
-open the [starter project on Plunker](http://plnkr.co/edit/QfsudzAPCbAu56Qpb7eB?p=preview){:target="_blank"}
+open the [starter project on Plunker](https://plnkr.co/edit/QfsudzAPCbAu56Qpb7eB?p=preview){:target="_blank"}
 and click **Fork** to create your own working copy. Then skip straight to
 <a href="step-2.html">Step 2: Add local DOM.</a>
 {: .alert .alert-info }

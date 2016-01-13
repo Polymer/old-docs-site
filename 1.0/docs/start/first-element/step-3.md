@@ -29,28 +29,23 @@ Key information:
 yet.
   * The `icon="[[toggleIcon]]" `assignment is a <em>data binding</em>. It links your element's `toggleIcon` <em>property</em> with the `<iron-icon>`'s `icon` property.
 
-You could now use your element and set the `toggleIcon` property in markup or using JavaScript, as shown in the following examples. <em>(You don't need to add this code to your project.)</em>
+You could now use your element and set the `toggleIcon` property in markup or
+using JavaScript. If you're doing this tutorial in Plunker, you should see the
+icons change as soon as you add the `toggleIcon` binding.
 
-#### Example—setting the icon using markup
+If you're curious about where the new icons come from, you can take a
+look at `demo/icon-toggle-demo.html`. You'll see lines like this.
+
+#### icon-toggle-demo.html—existing demo code
 {: .caption }
 
-
 <pre class="prettyprint">
-&lt;icon-toggle toggle-icon="favorite">&lt;/icon-toggle>
+&lt;icon-toggle toggle-icon="star">&lt;/icon-toggle>
+&lt;icon-toggle toggle-icon="star" pressed>&lt;/icon-toggle>
 </pre>
 
 
-#### Example—setting the icon from JavaScript
-{: .caption }
-
-
-<pre class="prettyprint">
-var myToggle = document.querySelector('icon-toggle');
-myToggle.toggleIcon = "favorite";
-</pre>
-
-
-**Learn more: attribute and property names.** You'll note that the markup example
+**Learn more: attribute and property names.** You'll note that the markup above
 uses `toggle-icon`, not `toggleIcon`. Polymer represents camelCase property names
 using dash-case attribute names. To learn more, see <a href="https://www.polymer-project.org/1.0/docs/devguide/properties.html#property-name-mapping">Property
 name to attribute name mapping</a> in the Polymer library docs.
@@ -121,7 +116,7 @@ Key information:
  *   For this more complicated property, you supply a configuration object with
 several fields.
 *   The `value` specifies the property's [default value](https://www.polymer-project.org/1.0/docs/devguide/properties.html#configure-values).
-*   The `notify` property tells Polymer to <em>generate property change events
+*   The `notify` property tells Polymer to <em>dispatch property change events
     </em>when the property value changes. This lets the change be observed by
     other nodes.
 *   The `reflectToAttribute` property tells Polymer to
@@ -146,16 +141,6 @@ hard-coded icon from the previous step:
 
 <img src="../../../images/first-element/static-toggles.png" alt="Demo showing icon toggles with star and heart icons">
 
-
-If you're curious about where the stars and hearts come from, you can take a
-look at `demo/icon-toggle-demo.html`. You'll see lines like this:
-
-
-<pre class="prettyprint">
-&lt;icon-toggle toggle-icon="star">&lt;/icon-toggle>
-&lt;icon-toggle toggle-icon="star" pressed>&lt;/icon-toggle>
-</pre>
-
 <div horizontal layout  class="stepnav">
   <a href="step-2.html">
     <paper-button raised><core-icon icon="arrow-back"></core-icon>Step 2: Add local DOM</paper-button>
@@ -164,4 +149,5 @@ look at `demo/icon-toggle-demo.html`. You'll see lines like this:
     <paper-button raised><core-icon icon="arrow-forward"></core-icon>Step 4: React to input</paper-button>
   </a>
 </div>
+
 
