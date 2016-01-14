@@ -96,6 +96,13 @@ Polymer currently only supports extending native HTML elements (for example,
 be supported in a future release). These native element extensions are called
 _type extension custom elements_.
 
+**Note:** When using native shadow DOM, extension of native elements can have
+unexpected behavior and is sometimes not permitted. Test your element with
+native shadow DOM enabled to catch any problems during development.
+For information on enabling native shadow DOM, see
+[Global Polymer settings](https://www.polymer-project.org/1.0/docs/devguide/settings.html).
+{: .alert .alert-info }
+
 To extend a native HTML element, set the `extends` property on your prototype to 
 the tag name of the element to extend.
 
