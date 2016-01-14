@@ -2,8 +2,8 @@
 layout: default
 type: guide
 shortname: Docs
-title: Unit tests
-subtitle: Test your code with Web Component Tester
+title: Test your elements
+subtitle: Unit test your code with Web Component Tester
 ---
 
 <link rel="import" href="../../../0.5/components/google-youtube/google-youtube.html">
