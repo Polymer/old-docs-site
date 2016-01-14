@@ -6,6 +6,8 @@ title: "Step 3: Use data binding and properties"
 subtitle: Build your first Polymer element
 ---
 
+<link rel="stylesheet" href="first-element.css">
+
 
 Right now, the element doesn't do much. In this step, you'll give it a basic
 API, allowing you to configure the icon from markup, using an attribute, or
@@ -31,19 +33,24 @@ yet.
 
 You could now use your element and set the `toggleIcon` property in markup or
 using JavaScript. If you're doing this tutorial in Plunker, you should see the
-icons change as soon as you add the `toggleIcon` binding.
+icons change as soon as you add the `toggleIcon` binding. If you're curious about
+where the new icons come from, take a look at `icon-toggle-demo.html`. (If you
+downloaded the starting code, this file is in the `demo` folder. If you're using
+Plunker, all files are at the same level.)
 
-If you're curious about where the new icons come from, you can take a
-look at `demo/icon-toggle-demo.html`. You'll see lines like this.
+You'll see lines like this:
 
 #### icon-toggle-demo.html—existing demo code
 {: .caption }
 
-<pre class="prettyprint">
-&lt;icon-toggle toggle-icon="star">&lt;/icon-toggle>
+<pre class="prettyprint">&lt;icon-toggle toggle-icon="star">&lt;/icon-toggle>
 &lt;icon-toggle toggle-icon="star" pressed>&lt;/icon-toggle>
 </pre>
 
+These lines are _already in place_, you don't have to add them. These lines
+are part of the demo you see on screen. But if you'd like to experiment, try
+adding a new `<toggle-icon>` element to the `icon-toggle-demo.html` file. Some
+icon names you can try are `add`, `menu`, and `settings`.
 
 **Learn more: attribute and property names.** You'll note that the markup above
 uses `toggle-icon`, not `toggleIcon`. Polymer represents camelCase property names

@@ -95,7 +95,8 @@ and click **Fork** to create your own working copy. Then skip straight to
 
 ### Install Node.js and Polyserve
 
-You need to install some command-line tools to run the demo.
+
+You need to install some command-line tools to run the demo locally.
 
 1.  Download and install Node from [https://nodejs.org/](https://nodejs.org/).
     Node includes the node package manager command, `npm`.
@@ -127,7 +128,8 @@ very interesting, but it shows that everything is working.
 
 <img src="../../../images/first-element/starting-state.png" alt="Initial state of the demo. The demo shows three icon-toggle elements, two labeled 'statically-configured icon toggles' and one labeled 'data-bound icon toggle'. Since the icon toggles are not implemented yet, they appear as placeholder text reading 'Not much here yet'." title="Initial demo">
 
-**If this text doesn't appear**, make sure you clicked on the the demo folder itself, or on `demo/index.html`.
+**If this text doesn't appear**, make sure you're looking at the the demo folder itself, or at `demo/index.html`,
+not at `toggle-icon.html` or `toggle-icon-demo.html`.
 {: .alert .alert-info }
 
 <div horizontal layout end-justified class="stepnav">

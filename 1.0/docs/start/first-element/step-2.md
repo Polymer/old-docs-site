@@ -6,11 +6,7 @@ title: "Step 2: Add Local DOM"
 subtitle: Build your first Polymer element
 ---
 
-<style>
-.caption + pre,.caption + .prettyprint {
-  margin-top: 0px;
-}
-</style>
+<link rel="stylesheet" href="first-element.css">
 
 Next, you'll create a simple element that displays an icon.
 

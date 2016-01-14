@@ -6,6 +6,7 @@ title: "Step 4: React to input"
 subtitle: Build your first Polymer element
 ---
 
+<link rel="stylesheet" href="first-element.css">
 
 Of course, a button isn't a button if you can't click it. To toggle the button,
 add an event listener. To add event listeners on the host element (in this
@@ -46,13 +47,14 @@ Key information:
     when the user clicks or taps on a target with a mouse or finger. (The `listeners` object works with built-in events
     like `keydown` and `keyup`, too.)
 
-Save the `icon-toggle.html` file and run the demo again. You should be able to press the button and see it
+Save the `icon-toggle.html` file and look at the demo again. You should be able to press the button and see it
 toggle between its pressed and unpressed states.
 
 <img src="../../../images/first-element/databound-toggles.png" alt="Demo showing icon toggles with star and heart icons. The icons have a black border, and the pressed icons are colored red.">
 
-**Learn more: data binding.** To see how the demo works, open `demo/icon-toggle-demo.html`
-and take a look around. Yes, the demo for this element is _also_ an element. The
+**Learn more: data binding.** To see how the demo works, open `icon-toggle-demo.html`
+and take a look around (if you downloaded the code, you'll find this file in the `demo` folder.)
+Yes, the demo for this element is _also_ an element. The
 element uses <a href="https://www.polymer-project.org/1.0/docs/devguide/data-binding.html#property-notification">two-way
 data binding</a> and a <a href="https://www.polymer-project.org/1.0/docs/devguide/data-binding.html#annotated-computed">computed
 binding</a> to change the string displayed when you toggle the button.

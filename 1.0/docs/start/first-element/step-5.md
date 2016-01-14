@@ -6,6 +6,7 @@ title: "Step 5: Theming with custom CSS properties"
 subtitle: Build your first Polymer element
 ---
 
+<link rel="stylesheet" href="first-element.css">
 
 You now have a button that's basically functional. But it's stuck using the
 existing text color for both pressed and unpressed states. What if you want to
@@ -53,7 +54,8 @@ values with custom properties:
 Because of the default values, you can still style the `<icon-toggle>` just by
 setting `color`, but now you have other options.
 
-Open up `demo/icon-toggle-demo.html `and set the new properties:
+Open up `icon-toggle-demo.html `and set the new properties. (If you downloaded
+the starting code, this file is in the `demo` folder.)
 
 #### icon-toggle-demo.html
 {: .caption }
