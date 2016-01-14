@@ -12,7 +12,7 @@ subtitle: Publish reusable Polymer elements on GitHub
 ## Introduction
 
 So, you want to publish your first reusable {{site.project_title}} element?
-Fantastic! This guide walks you through the process. 
+Fantastic! This guide walks you through the process.
 
 When you're done, you'll have:
 
@@ -31,15 +31,15 @@ account you can use to publish your elements.**
 
 Because of the way HTML imports works, you'll need a local web server to test your elements.
 
-Polyserve is a simple web server that lets you use local Bower components. It's great 
+Polyserve is a simple web server that lets you use local Bower components. It's great
 for testing elements during development. Install it using `npm`:
 
     npm install -g polyserve
 
 
-**Note:** 
+**Note:**
 You can skip this step and use any local web server to test your elements, but you
-will need some extra configuration. See 
+will need some extra configuration. See
 [Testing elements with local bower dependencies](#local-dependencies) for details.
 {: .alert .alert-info }
 
@@ -57,21 +57,21 @@ will need some extra configuration. See
 ![File list for the test-element directory showing that seed-element.html has been renamed to test-element.html](../../images/reusableelements/initial-folder-structure.png)
 
 4.  Next, run `bower install` inside your element directory to install
-    dependencies. The dependencies are installed in the `bower_components` directory. 
+    dependencies. The dependencies are installed in the `bower_components` directory.
     You can now locally develop and serve your element up for testing
     purposes.
 
 ## Develop and Test
 
-Add the logic specific to your new element and verify its functionality. 
+Add the logic specific to your new element and verify its functionality.
 
-When importing other components, follow the examples in `<seed-element>` and write 
+When importing other components, follow the examples in `<seed-element>` and write
 the paths as if the component folders were siblings to your `test-element` folder.
 
     <link rel="import" href="../paper-button/paper-button.html">
 
-A good way to quickly sanity 
-test your component is to access your demo.html file using polyserve. There are several ways to do this
+A good way to quickly sanity
+test your component is to access your demo file using polyserve. There are several ways to do this
 but one easy method is to run a simple web server that ships with Python, using the following
 commands:
 
@@ -83,7 +83,7 @@ commands:
 This starts a web server on port 8080, so you can test your new element by navigating a browser
 to the URL `localhost:8080/components/test-element/demo/`.
 
-If you have another process listening on port 8080, you can specify an alternate port # to 
+If you have another process listening on port 8080, you can specify an alternate port # to
 Polyserve using the `-p` argument:
 
     $ polyserve -p 9999
@@ -96,7 +96,7 @@ files in the `test` directory as a starting point for your own unit tests.
 
 ### Documentation
 
-The `seed-element` repo comes with built-in documentation using 
+The `seed-element` repo comes with built-in documentation using
 [`iron-component-page`](https://github.com/PolymerElements/iron-component-page).
 Loading the element's top-level `index.html` shows you the generated docs:
 
@@ -121,14 +121,14 @@ This allows you to:
 There are two steps to publishing an element on GitHub:
 
 -   Push your work to a GitHub repo and tag it with
-    a release number, so people can install it using Bower. 
+    a release number, so people can install it using Bower.
 
-    In this step you create a *master* branch containing the bare-minimum 
+    In this step you create a *master* branch containing the bare-minimum
     of code that needs to be consumed by other apps or elements
 
 -   Push a `gh-pages` branch to your repo. This provides live docs and previews of your element via GitHub pages.
 
-    In this step you create a *gh-pages (GitHub pages)* branch containing a landing page for your element. 
+    In this step you create a *gh-pages (GitHub pages)* branch containing a landing page for your element.
     This branch contain **checked-in dependencies**, **demos** and **documentation**.
 
 ### Pushing your element to GitHub
@@ -180,12 +180,12 @@ This will navigate you to the *Releases* page. For a project without any release
 
 Click the ‘Create a new release’ button to proceed.
 
-This will display a Release drafting page where you can enter in version and release information for your element. 
+This will display a Release drafting page where you can enter in version and release information for your element.
 For example, setting v0.0.1 as the tag to create and the `master` branch as target
 
 ![The GitHub releases form displaying an input field for entering in a version number, a drop-down box for selecting the target branch, a release titles field and a description field](/images/publishing-polymer-elements/image_4.png)
 
-Once you are happy with the information you have entered into the above form, click the ‘Publish release’ button to complete tagging and publishing a release of your element. 
+Once you are happy with the information you have entered into the above form, click the ‘Publish release’ button to complete tagging and publishing a release of your element.
 
 ![Preview of the Publish release button in the GitHub releases page](/images/publishing-polymer-elements/image_5.png)
 
@@ -200,34 +200,33 @@ You should now be able to install your component. Change to a new directory for 
 Now you have a tagged release for your element. Next up, create a
 meaningful demo and landing page for your element.
 
-While optional, we recommend modifying the `demo/index.html` page to provide a real-
-world [example](http://googlewebcomponents.github.io/google-chart/components
-/google-chart/demo.html) of your element. Developers can get a feel for how your
+While optional, we recommend modifying the `demo/index.html` page to provide a
+real-world example of your element.  Developers can get a feel for how your
 element behaves, and can use your demo as a jumping off point for integrating
 your element in their own projects.
 
 This is also your chance to update the [documentation](#documentation) for your
-element's public interface. 
+element's public interface.
 
 
 To check your docs and demo, start up Polyserve again:
 
     $ polyserve
 
-Take a look at the rendered docs in `index.html` and the demo in `demo/index.html` 
-in your browser to make sure you're happy with your customizations. 
+Take a look at the rendered docs in `index.html` and the demo in `demo/index.html`
+in your browser to make sure you're happy with your customizations.
 
 Once the demo and the docs look good locally, **make sure that
 you've pushed any changes to your repo's `master` branch.** Also, make sure that
-you've updated the name and paths throughout your project, including the ones 
+you've updated the name and paths throughout your project, including the ones
 in `bower.json`. You shouldn't have any remaining references to `seed-element`.
 
-You can now use the `gp.sh` script to push a landing page for your element to 
+You can now use the `gp.sh` script to push a landing page for your element to
 GitHub pages. Inside your terminal, walk through running the following commands.
 
 **Important:** Make sure you run the `gp.sh` script in a temporary directory,
 as described below. The script overwrites the contents of the current directory.
-{: .alert .alert-error } 
+{: .alert .alert-error }
 
     # Navigate back to your development directory
     cd ..
@@ -248,7 +247,7 @@ as described below. The script overwrites the contents of the current directory.
     cd ..
     rm -rf temp
 
-This will create a new `gh-pages` branch (or clone and clear the current one) then 
+This will create a new `gh-pages` branch (or clone and clear the current one) then
 push a shareable version of your element to it. To see your newly-published docs,
 point a browser at:
 
@@ -261,29 +260,24 @@ You can now share the link to your element hosted on GitHub pages with the
 world. As we used the `seed-element` repo, {{site.project_title}} will give you
 a styled component page out of the box that looks a little like this:
 
-![Preview of the component langing page, displaying the element title in the header with a demo link next to it. The rest of the page contains formatted summary and attribute/method/event information parsed from the documentation in your element](/images/publishing-polymer-elements/image_6.png)
+![Preview of the component langing page, displaying the element title in the header with a demo link next to it. The rest of the page contains formatted summary and attribute/method/event information parsed from the documentation in your element](../../images/reusableelements/documentation-page.png)
 
-You can check out the [live](http://polymerlabs.github.io/seed-
-element/components/seed-element/) version of this page for the `seed-element`
-project.
+Now that you’ve published your {{site.project_title}} element to GitHub, you may be interested in
+learning how to [distribute your element using Bower](/0.5/articles/distributing-components-with-bower.html).
 
-
-Now that you’ve published your {{site.project_title}} element to GitHub, you may be interested in 
-learning how to [distribute your element using Bower](/0.5/articles/distributing-components-with-bower.html). 
-
-Or read on to find out more about why `<seed-element>` is structured the way it is. 
+Or read on to find out more about why `<seed-element>` is structured the way it is.
 
 ## Reusable component structure {#structure}
 
 This section contains _background_ information about creating reusable elements.
-If you follow the steps above and stick to the patterns used by the `<seed-element>` 
-boilerplate, you can publish reusable elements. 
+If you follow the steps above and stick to the patterns used by the `<seed-element>`
+boilerplate, you can publish reusable elements.
 
 If you're curious about the steps or the project structure, read on.
 
 ### HTML imports and dependency management
 
-For HTML imports to de-duplicate your resources correctly, each component you 
+For HTML imports to de-duplicate your resources correctly, each component you
 use needs to have a single, canonical URL. The {{site.project_title}} components handle this
 by assuming that all components are installed in sibling directories:
 
@@ -337,9 +331,9 @@ the default Bower install gives you:
           my-dependency.html
       my-element.html
 
-This breaks the relative paths for `my-element` and `my-dependency`. 
+This breaks the relative paths for `my-element` and `my-dependency`.
 
-The easiest way to fix this is by setting up a local server that remaps the 
-paths so that all of the components in `bower_components` appear to be 
+The easiest way to fix this is by setting up a local server that remaps the
+paths so that all of the components in `bower_components` appear to be
 in sibling directories to `my-element`. Polyserve does this for you automatically.
 
