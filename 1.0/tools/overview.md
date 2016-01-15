@@ -3,7 +3,7 @@ layout: default
 type: guide
 shortname: Tools
 title: Tools
-subtitle: tools for developing, debugging, and productizing Polymer apps
+subtitle: Tools for developing, debugging, and productizing Polymer apps
 ---
 
 {% include toc.html %}
@@ -12,7 +12,7 @@ The Polymer team has built modular tools for developing, debugging, and producti
 
 ## Build / optimization tools {#build}
 
-### <b>vulcanize</b> - optimize HTML Imports {#vulcanize}
+### <b>vulcanize</b>—optimize HTML Imports {#vulcanize}
 
 [vulcanize](https://github.com/polymer/vulcanize) is a tool for crushing an HTML Import file and its dependent HTML Imports into one file. Think of it as a build step for web components. Vulcanize reduces the number of requests made by your application by concatenating imports into a single file.
 
@@ -35,7 +35,7 @@ Related tools
 - [grunt-vulcanize](https://www.npmjs.com/package/grunt-vulcanize)
 - [broccoli-vulcanize](https://www.npmjs.com/package/broccoli-vulcanize)
 
-### <b>crisper</b> - extract inline script from an HTML Import {#crisper}
+### <b>crisper</b>—extract inline script from an HTML Import {#crisper}
 
 [crisper](https://github.com/PolymerLabs/crisper) is a tool for extracting inline scripts from an HTML file and splitting them into a separate file. This is useful for cases where you need CSP compliance.
 
@@ -54,7 +54,7 @@ Related tools
 - [gulp-crisper](https://www.npmjs.com/package/gulp-crisper)
 - [grunt-crisper](https://www.npmjs.com/package/grunt-crisper)
 
-### <b>polyclean</b> - minify JS/CSS/HTML {#polyclean}
+### <b>polyclean</b>—minify JS/CSS/HTML {#polyclean}
 
 [polyclean](https://github.com/PolymerLabs/polyclean) provides basic Gulp plugins for minifying and cleaning JS, CSS, and HTML.
 
@@ -68,7 +68,7 @@ Usage:
 
 Source: [github.com/PolymerLabs/polyclean](https://github.com/PolymerLabs/polyclean)
 
-### <b>polybuild</b> - all-in-one build tool for optimizing apps {#polybuild}
+### <b>polybuild</b>—all-in-one build tool for optimizing apps {#polybuild}
 
 [polybuild](https://github.com/PolymerLabs/polybuild) is an all-in-one build tool that combines vulcanize, crisper, and polyclean. Although less flexible than using the tools individually, polybuild is an easy solution if you want quick defaults.
 
@@ -82,7 +82,7 @@ Usage:
 
 Source: [github.com/PolymerLabs/polybuild](https://github.com/PolymerLabs/polybuild)
 
-### <b>polyicon</b> - create an optimized custom icon set {#polyicon}
+### <b>polyicon</b>—create an optimized custom icon set {#polyicon}
 
 [polyicon](https://github.com/PolymerLabs/polyicon) is an online tool to generate
 an optimized custom icon set for your app, with only the icons that you need.
@@ -94,19 +94,19 @@ Source: [github.com/PolymerLabs/polyicon](https://github.com/PolymerLabs/polyico
 
 ## Development tools {#dev}
 
-### <b>&lt;seed-element></b> - boilerplate starter for creating a resuable element on Github {#seedelement}
+### <b>&lt;seed-element></b>—boilerplate starter for creating a resuable element on Github {#seedelement}
 
 See [Create a reusable element](/1.0/docs/start/reusableelements.html).
 
 Source: [github.com/polymerelements/seed-element](https://github.com/polymerelements/seed-element)
 
-### <b>Polymer Starter Kit</b> - starter project for building Polymer apps {#psk}
+### <b>Polymer Starter Kit</b>—starter project for building Polymer apps {#psk}
 
 The Polymer Starter Kit is a complete starting point for building Polymer-based applications See [Using Polymer Starter Kit](/1.0/docs/start/psk/set-up.html) for more information on getting started.
 
 Source: [github.com/PolymerElements/polymer-starter-kit](https://github.com/PolymerElements/polymer-starter-kit)
 
-### <b>polylint</b> - lint projects for errors and common mistakes {#polylint}
+### <b>polylint</b>—lint projects for errors and common mistakes {#polylint}
 
 [polylint](https://github.com/PolymerLabs/polylint) is a linting tool to detect
 common mistakes and errors in your projects.
@@ -127,7 +127,7 @@ Usage:
 - [Sublime plugin](https://github.com/nomego/SublimeLinter-contrib-polylint)
 - [Atom package](https://github.com/PolymerLabs/polylint#installing-the-atom-package)
 
-### <b>polyserve</b> - web server for developing elements {#polyserve}
+### <b>polyserve</b>—web server for developing elements {#polyserve}
 
 [polyserve](https://github.com/PolymerLabs/polyserve) is simple web server for serving `bower_components`, locally. It's useful when developing your own elements. 
 
@@ -144,7 +144,7 @@ Usage:
 
 Source: [github.com/PolymerLabs/polyserve](https://github.com/PolymerLabs/polyserve)
 
-### <b>polygit</b> - CDN web service for serving components {#polygit}
+### <b>polygit</b>—CDN web service for serving components {#polygit}
 
 [polygit](http://polygit.org/) is proxy server for serving components from a CDN. **It is not meant to be used for production apps**, but is very useful when prototyping and sharing jsbins.
 
@@ -161,7 +161,7 @@ For more documentation, see [http://polygit.org](http://polygit.org/).
 
 Source: [github.com/PolymerLabs/polygit](https://github.com/PolymerLabs/polygit)
 
-### <b>polystyle</b> - web service for creating style modules {#polystyle}
+### <b>polystyle</b>—web service for creating style modules {#polystyle}
 
 [polystyle](https://poly-style.appspot.com/demo/) is a web service that can wrap an existing stylesheet on a remote server as Polymer [style module](https://www.polymer-project.org/1.0/docs/devguide/styling.html#style-modules). This is useful if you have a hosted third-party stylesheet that you want to use in an element or your application.
 
@@ -179,15 +179,23 @@ For more information, see [https://poly-style.appspot.com/demo/](https://poly-st
 
 **Related tools**
 
-- [gulp-style-modules](https://github.com/MaKleSoft/gulp-style-modules) - 3rd party Gulp plugin for wrapping local CSS files into style modules
+- [gulp-style-modules](https://github.com/MaKleSoft/gulp-style-modules)—3rd party Gulp plugin for wrapping local CSS files into style modules
 
 Source: [github.com/PolymerLabs/polystyles](https://github.com/PolymerLabs/polystyles)
 
+## Documentation {#documentation}
+
+The Polymer team uses the `iron-component-page` element to create
+API docs for Polymer elements and behaviors.
+
+See [Document your elements](documentation.html) for details on
+writing API docs and viewing them with `iron-component-page`.
+
 ## Testing / debugging {#testing}
 
-### Web component tester - unit-testing tool for elements {#wct}
+### Web component tester—unit-testing tool for elements {#wct}
 
-[Web component tester](https://github.com/Polymer/web-component-tester) is a tool providing a browser-based testing environment for web components. Out of the box it includes support for Mocha, Chai, Async and Sinon. Read more about it in "Unit Testing Polymer Elements](/articles/unit-testing-elements.html)".
+[Web component tester](https://github.com/Polymer/web-component-tester) is a tool providing a browser-based testing environment for web components. Out of the box it includes support for Mocha, Chai, Async and Sinon. See [Test your elements](tests.html) for detailed usage.
 
 Install:
 
@@ -221,7 +229,7 @@ Source: [github.com/PolymerLabs/polydev](https://github.com/PolymerLabs/polydev)
 
 ## Misc
 
-### <b>polyup</b> - Polymer 0.5 to 1.0 migration tool {#polyup}
+### <b>polyup</b>—Polymer 0.5 to 1.0 migration tool {#polyup}
 
 [polyup](https://github.com/PolymerLabs/polyup) is a migration tool and web service for Polymer v0.5 to 1.0. It does many of the boring mechanical parts for you.
 

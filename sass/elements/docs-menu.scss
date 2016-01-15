@@ -79,6 +79,14 @@ core-menu > core-item /deep/ #icon {
   margin: 0 16px 0 0;
 }
 
+core-menu > core-item core-icon.outlink,
+core-submenu > core-item core-icon.outlink {
+  color: #757575;
+  width: 16px;
+  height: 16px;
+  margin: 0 0 0 12px;
+}
+
 core-submenu /deep/ core-item,
 core-item {
   font-size: 13px !important;
