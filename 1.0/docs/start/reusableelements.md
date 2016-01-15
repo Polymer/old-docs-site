@@ -70,10 +70,7 @@ the paths as if the component folders were siblings to your `test-element` folde
 
     <link rel="import" href="../paper-button/paper-button.html">
 
-A good way to quickly sanity
-test your component is to access your demo file using polyserve. There are several ways to do this
-but one easy method is to run a simple web server that ships with Python, using the following
-commands:
+A good way to quickly sanity test your component is to access your demo file using polyserve:
 
     $ polyserve
     Starting Polyserve on port 8080
