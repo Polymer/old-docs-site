@@ -49,13 +49,10 @@ If you want to document multiple files:
 
         <iron-component-page src="all-imports.html"></iron-component-page>
 
-**Host your API docs.** See [Create a reusable element](../docs/start/reusableelements.html#publish)
-for information on publishing an element on GitHub, and hosting its API docs
-using GitHub pages.
-{: .alert .alert-info }
-
-
 ## View element docs
+
+You can use [`polyserve`](overview.html#polyserve) to preview element docs while
+you're developing a component.
 
 To view the element docs:
 
@@ -73,7 +70,14 @@ element, even if you haven't written any doc comments yet.
 If you have multiple elements or behaviors, use the pulldown menu in the top-left
 corner to choose a documentation page.
 
+**Host your API docs.** See [Create a reusable element](../docs/start/reusableelements.html#publish)
+for information on publishing an element on GitHub, and hosting its API docs
+using GitHub pages.
+{: .alert .alert-info }
+
 ## Write element docs
+
+Add API docs to your element by adding inline HTML or JavaScript comments.
 
 ### Element Summaries
 
@@ -118,10 +122,9 @@ immediately preceeding the `Polymer()` call:
     Polymer({
       is: 'awesome-sauce',
 
-You can use Markdown headings to break up a long element summaries:
+You can use Markdown headings to break up long element summaries:
 
     ### Accessibility
-
 
 Add element-level tags at the **end** of the element summary, as part
 of the same comment block. Two tags are supported currently:
@@ -135,8 +138,8 @@ of the same comment block. Two tags are supported currently:
 
         @demo
 
-        @demo path/to/demo1  Super cool demo, with sharks!
-        @demo path/to/demo2  Even cooler demo. The sharks have lasers!
+        @demo path/to/demo1.html  Super cool demo, with sharks!
+        @demo path/to/demo2.html  Even cooler demo. The sharks have lasers!
 
 Any other tags will be ignored.
 
