@@ -205,7 +205,6 @@ Usage:
 
     wct
     wct -l chrome (runs tests in chrome only)
-    wct wct path/to/files
 
 By default, any tests under `test/` will be run. You can override this by specifying particular files (or globs of files) via `wct path/to/files`.
 
