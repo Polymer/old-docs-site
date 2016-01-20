@@ -185,9 +185,6 @@ in turn call shorter-named lifecycle methods on your prototype.
 - `detached` instead of `detachedCallback`
 - `attributeChanged` instead of `attributeChangedCallback`
 
-You can fallback to using the low-level methods if you prefer (in other
-words, you can simply implement `createdCallback` in your prototype).
-
 Polymer adds an extra callback, `ready`, which is invoked when Polymer has
 finished creating and initializing the element's local DOM.
 
