@@ -404,7 +404,26 @@ WCT.loadSuites([
 This sample runs `basic-test.html` twice, once using shady DOM and once
 using native shadow DOM (if the browser supports it).
 
+## Automated testing in the cloud
+
+It's important to get a good testing setup in place for your project as 
+early as possible. Using services like Travis for continuous integration, 
+and Sauce Labs for cross-browser testing means you can be confident that 
+changes you push to your project will work well on different platforms and 
+devices. For guidance on setting up these tools check out the Polycast below.
+
+<div class="yt-embed">
+  <google-youtube
+    videoid="afy_EEq_4Go"
+    autoplay="0"
+    rel="0"
+    fluid>
+  </google-youtube>
+</div>
+
 ## Learn more
+
+Polymer Summit 2015 video on testing:
 
 <div class="yt-embed">
   <google-youtube
