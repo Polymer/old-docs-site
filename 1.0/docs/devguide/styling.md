@@ -87,7 +87,7 @@ This implies:
           <template>
 
             <style>
-              .content-wrapper > ::content .special {
+              .content-wrapper ::content > .special {
                 background: orange;
               }
             </style>
