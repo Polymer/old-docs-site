@@ -32,7 +32,7 @@ provided via `<style>` tags placed inside the element's local DOM `<template>`.
           /* styling elements distributed to content (via ::content) requires */
           /* selecting the parent of the <content> element for compatibility with */
           /* shady DOM . This can be :host or a wrapper element. */
-          .content-wrapper > ::content .special {
+          .content-wrapper ::content > .special {
             background: orange;
           }
         </style>
