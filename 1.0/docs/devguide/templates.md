@@ -465,5 +465,4 @@ When one of the template helper elements updates the DOM tree, it fires a `dom-c
 
 In most cases, you should interact with the created DOM by changing the _model data_, not by 
 interacting directly with the created nodes. For those cases where you need to access the 
-nodes directly, you can use the `dom-change` event. 
-
+nodes directly, you can use the `dom-change` event.

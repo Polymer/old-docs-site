@@ -471,5 +471,36 @@ You can use `Polymer.dom` on any node, whether or not it has a local DOM tree:
     Polymer.dom(this.$.container).insertBefore(insert, this.$.first);
 
 
+## strip-whitespace {#strip-whitespace}
 
+Add the `strip-whitespace` boolean attribute to a template to remove
+any empty text nodes from the template's contents. This can result in a
+minor performance improvement.
+
+    <dom-module id="has-whitespace">
+      <template> <div>A</div> <div>B</div> </template>
+      <script>
+        Polymer({
+          is: 'has-whitespace',
+          ready: function() {
+            console.log(Polymer.dom(this.root).childNodes.length); // 5
+          }
+        });
+      </script>
+    </dom-module>
+
+    <dom-module id="no-whitespace">
+      <template strip-whitespace>
+        <div>A</div>
+        <div>B</div>
+      </template>
+      <script>
+        Polymer({
+          is: 'no-whitespace',
+          ready: function() {
+            console.log(Polymer.dom(this.root).childNodes.length); // 2
+          }
+        });
+      </script>
+    </dom-module>
 
