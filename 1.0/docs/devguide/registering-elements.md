@@ -210,7 +210,9 @@ finished creating and initializing the element's local DOM.
   </tr>
   <tr>
     <td><code>attached</code></td>
-    <td>Called after the element is attached to the document.
+    <td>Called after the element is attached to the document. Can be called multiple
+        times during the lifetime of an element. The first `attached`  callback
+        is guaranteed not to fire until after `ready`.
       <p>Uses include accessing computed style information, and adding
         document-level event listeners. (If you use declarative
         event handling, such as <a href="events.html#annotated-listeners">annotated
@@ -225,7 +227,8 @@ finished creating and initializing the element's local DOM.
   </tr>
   <tr>
     <td><code>detached</code></td>
-    <td>Called after the element is attached to the document.
+    <td>Called after the element is detached from the document. Can be called
+        multiple times during the lifetime of an element.
       <p>Uses include removing event listeners added in <code>attached</code>.
       </p>
       <p>Use instead of <code>detachedCallback</code>.
@@ -400,11 +403,18 @@ from inside the `attached` callback:
       });
     }
 
-### Registration callback
+### Registration callback {#registration-callback}
 
-`Polymer.Base` also implements `registerCallback`, which is called by `Polymer()`
-to allow `Polymer.Base` to supply a [layering system](experimental.html#feature-layering)
-for Polymer features.
+{{site.project_title}} also provides two registration-time callbacks, `beforeRegister`
+and `registered`.
+
+Use the `beforeRegister` callback to transform an element's prototype before
+registration. This is useful when registering an element using an ES6 class,
+as described in the article, [Building web components using ES6 classes](../../articles/es6.html).
+
+You can implement the `registered` callback to perform one-time initialization
+when an element is registered. This is primarily useful when implementing
+[behaviors](behaviors.html).
 
 ## Static attributes on host {#host-attributes}
 
