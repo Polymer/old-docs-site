@@ -17,8 +17,6 @@ provided via `<style>` tags placed inside the element's local DOM `<template>`.
 
     <dom-module id="my-element">
 
-
-
       <template>
 
         <style>
