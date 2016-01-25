@@ -413,8 +413,8 @@ A few notes on `observeNodes`:
 
     The callback is invoked with `this.$.content` as the `this` value. If you want to use the custom element as the `this` value, you need to bind the callback:
 
-      var boundHandler = this._childNodesChanged.bind(this);
-      this._observer = Polymer.dom(this.$.content).observeNodes(boundHandler);
+        var boundHandler = this._childNodesChanged.bind(this);
+        this._observer = Polymer.dom(this.$.content).observeNodes(boundHandler);
 
 *   The callback argument lists added and removed nodes, not just elements. 
     If you're only interested in elements, you can filter the node list:
