@@ -613,6 +613,17 @@ Example:
       </script>
     </dom-module>
 
+#### Using native array mutation methods {#notifysplices}
+
+Whenever possible you should always use Polymer's 
+[array mutation methods](#array-mutation). However, this isn't always
+possible. For example, you may be using a third-party library
+that does not use Polymer's array mutation methods. 
+In these scenarios you can call 
+[`notifySplices`](/{% polymer_version_dir %}/api/#Polymer.Base:method-notifySplices) 
+after each mutation to ensure that any Polymer elements observing the array 
+are properly notified of the changes.
+
 ## Property change notification events (notify) {#notify}
 
 When a property is set to `notify: true`, an event,
