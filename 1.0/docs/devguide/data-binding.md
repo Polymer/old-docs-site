@@ -268,13 +268,13 @@ When you configure a declared property with the `notify` flag set to `true`,
     `this.firstName` will fire `first-name-changed`. Listeners will receive an event object 
     whose `e.detail.value` attribute has the changing property's new value.
 
-When using a {{site.project_title}} element with other elements or frameworks, you can 
-manually attach an <code>on-<var>property</var>-changed</code> listener to an element to
-be notified of property changes, and take the necessary actions based on the new value. 
+You can manually attach a <code><var>property</var>-changed</code> 
+listener to an element to [notify external elements, frameworks,
+or libraries](/1.0/docs/devguide/properties.html#notify-external) of property 
+changes.
 
-This is essentially what {{site.project_title}} does when you create a two-way data
-binding.
-
+This is essentially what {{site.project_title}} does when you create a 
+two-way data binding.
 
 ### Two-way binding to native elements {#two-way-native}
 
