@@ -102,6 +102,26 @@ So the attribute `on-core-signal-newData` sets up a listener for `core-signal-ne
 _not_ `core-signal-newData`. To avoid confusion, always use lowercase event names.
 {: .alert .alert-info } 
 
+## Imperatively add and remove listeners {#imperative-listeners}
+
+Use [automatic node finding](local-dom.html#node-finding) and the 
+convenience methods 
+[`listen`](/{% polymer_version_dir %}/api/#Polymer.Base:method-listen) and 
+[`unlisten`](/{% polymer_version_dir %}/api/#Polymer.Base:method-unlisten).
+
+    this.listen(this.$.myButton, 'tap', 'onTap');
+
+    this.unlisten(this.$.myButton, 'tap', 'onTap');
+
+The listener callbacks are invoked with `this` set to the element instance.
+
+If you add a listener imperatively, you need to remove it imperatively. 
+This is commonly done in the `attached` and `detached` 
+[callbacks](registering-elements.html#lifecycle-callbacks). If you use
+the [`listeners`](#event-listeners) object or [annotated event 
+listeners](#annotated-listeners), {{site.project_title}} automatically adds 
+and removes the event listeners.
+
 ## Custom events {#custom-events}
 
 To fire a custom event from the host element use the `fire` method. You can also pass in data to event handlers as an argument to `fire`.
