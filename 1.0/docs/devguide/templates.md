@@ -66,14 +66,12 @@ instances, which update via the normal [structured data notification system
 ](#path-binding).
 
 Mutations to the `items` array itself (`push`, `pop`, `splice`, `shift`,
-`unshift`) must be performed using methods provided on Polymer elements, such
-that the changes are observable to any elements bound to the same array in the
-tree. For example:
-
-    this.push('employees', { first: 'Jack', last: 'Aubrey' });
-
-You can use the `render` method to force a `dom-repeat` to update (for example, 
-if you're using a third-party library that mutates the array).
+`unshift`), should be performed using Polymer's
+[array mutation methods](properties.html#array-mutation).
+These methods ensure that any elements observing the array are kept in sync.
+If you can't avoid using the native `Array.prototype` methods, make sure to
+call [`notifySplices`](properties.html#notifysplices) to ensure that any
+elements watching `items` are properly updated.
 
 ### Handling events in `dom-repeat` templates {#handling-events}
 
@@ -147,8 +145,16 @@ To filter or sort the _displayed_ items in your list, specify a `filter` or
 In both cases, the value can be either a function object, or a string identifying a 
 function defined on the host element.
 
-By default, the `filter` and `sort` functions only run when the array itself
-is mutated (for example, by adding or removing items).
+By default, the `filter` and `sort` functions only run when one of the
+following occurs: 
+
+*   The array itself is mutated (for example, by adding or removing items).
+*   The `filter` or `sort` function is changed.
+
+To re-run the `filter` or `sort` when an unrelated piece of data changes, 
+call [`render`](#synchronous-renders). For example, if your element has a 
+`sortOrder` property that changes how the `sort` function works, you can 
+call `render` when `sortOrder` changes.
 
 To re-run the `filter` or `sort` functions when certain sub-fields
 of `items` change, set the `observe` property to a space-separated list of
@@ -277,6 +283,25 @@ different name for the index property.
     </template>
     {% endraw %}
 
+### Forcing synchronous renders {#synchronous-renders}
+
+Call [`render`](/{% polymer_version_dir %}/api/#dom-repeat:method-render) 
+to force a `dom-repeat` template to synchronously render any changes to its 
+data. Normally changes are batched and rendered asynchronously. Synchronous
+rendering has a performance cost, but can be useful in a few scenarios:
+
+*   For unit testing, to ensure items have rendered before checking the 
+    generated DOM.
+*   To ensure a list of items have rendered before scrolling to a 
+    specific item.
+*   To re-run the `sort` or `filter` functions when a piece of data changes
+    *outside* the array (sort order or filter criteria, for example).
+
+`render` **only** works with changes made with Polymer's 
+[array mutation methods](properties.html#array-mutation). 
+If you or a third-party library mutate the array without Polymer's methods, 
+you need to call [`notifySplices`](#notifysplices) to ensure that any elements
+watching the array are properly notified.
 
 ## Array selector (array-selector) {#array-selector}
 
