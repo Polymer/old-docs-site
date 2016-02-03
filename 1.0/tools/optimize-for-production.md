@@ -6,12 +6,25 @@ title: Optimize for production
 subtitle: Developer guide
 ---
 
+<link rel="import" href="../../../0.5/components/google-youtube/google-youtube.html">
+
 {% include toc.html %}
 
 Reducing network requests is important for a performant app experience. In the {{site.project_title}} world, [Vulcanize](https://github.com/Polymer/vulcanize) is the name given to a build tool that lets you **concatenate** a set of elements and their HTML imported dependencies into a single file. Vulcanize recursively pulls in all your imports, flattens their dependencies and spits out something that can **reduce the number of network requests** your app makes.
 
 **Note:** for more great info on performance considerations worth keeping in mind when using HTML Imports, see [HTML Imports - #include for the web](http://www.html5rocks.com/en/tutorials/webcomponents/imports/#performance)
 {: .alert .alert-info }
+
+Follow the steps below to get set up, or watch the Polycast:
+
+<div class="yt-embed">
+  <google-youtube
+    videoid="EUZWE8EZ0IU"
+    autoplay="0"
+    rel="0"
+    fluid>
+  </google-youtube>
+</div>
 
 ## Installation
 
@@ -188,6 +201,15 @@ This results in a `elements.vulcanized.html` that looks a little like this:
 [Content Security Policy](http://en.wikipedia.org/wiki/Content_Security_Policy) (CSP) is a JavaScript security model that aims to prevent XSS and other attacks. In so doing, it prohibits the use of inline scripts.
 
 To use {{site.project_title}} in a CSP environment that doesn't support inline scripts, you can use the Crisper project. Crisper removes all scripts from the HTML Imports and places their contents into an output JavaScript file. This is useful in amongst other things, using {{site.project_title}} in a Chrome App.
+
+<div class="yt-embed">
+  <google-youtube
+    videoid="VrajHIZZbE4"
+    autoplay="0"
+    rel="0"
+    fluid>
+  </google-youtube>
+</div>
 
 Like Vulcanize, Crisper can be used either from the command line, or as a `gulp` plugin.
 
