@@ -84,7 +84,8 @@ module.exports = function(grunt) {
         },
         runFlags: {
           port: 3000,
-          host: "0.0.0.0"
+          host: "0.0.0.0",
+          skip_sdk_update_check : 'yes'
         }
       },
       frontend: {
