@@ -12,9 +12,9 @@ subtitle: Developer guide
 shared code modules called _behaviors_.
 
 A behavior is an object that looks similar to a typical
-{{site.project_title}} prototype.  A behavior can define [lifecycle callbacks
-](registering-elements.html#basic-callbacks),  [declared
-properties](properties.html), [default attributes](registering-elements.html#host-attributes),
+{{site.project_title}} prototype.  A behavior can define
+[lifecycle callbacks](registering-elements.html#basic-callbacks),
+[declared properties](properties.html), [default attributes](registering-elements.html#host-attributes),
 [`observers`](properties.html#observing-changes-to-multiple-properties), and [`listeners`](events.html#event-listeners).
 
 To add a behavior to a {{site.project_title}} element definition, include it in a
