@@ -68,7 +68,7 @@ the tools to be globally accessible.
 
 Download and install the Google App Engine Python SDK:
 
-    https://developers.google.com/appengine/downloads
+    https://cloud.google.com/appengine/downloads#Google_App_Engine_SDK_for_Python
 
 We'll use the App Engine to locally preview and deploy the website.
 
