@@ -663,7 +663,8 @@ Example:
 
     <dom-module id="my-awesome-button">
 
-      <!-- special import with type=css used to load remote CSS -->
+      <!-- special import with type=css used to load remote CSS
+           Note: this style of importing CSS is deprecatd -->
       <link rel="import" type="css" href="my-awesome-button.css">
 
       <template>
