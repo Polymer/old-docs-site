@@ -10,10 +10,10 @@ subtitle: Developer guide
 
 ## Event listener setup {#event-listeners}
 
-Add event listeners to the host element by providing a 
+Add event listeners to the host element by providing a
 `listeners` object that maps events to event handler function names.
 
-You can also add an event listener to any element in the `this.$` collection 
+You can also add an event listener to any element in the `this.$` collection
 using the syntax <code><var>nodeId</var>.<var>eventName</var>.
 
 Example:
@@ -24,7 +24,7 @@ Example:
         <div>I will respond</div>
         <div>to a tap on</div>
         <div>any of my children!</div>
-        
+
         <div id="special">I am special!</div>
       </template>
 
@@ -42,7 +42,7 @@ Example:
           regularTap: function(e) {
             alert("Thank you for tapping");
           },
-          
+
           specialTap: function(e) {
             alert("It was special tapping");
           }
@@ -89,25 +89,25 @@ Example:
     </dom-module>
 
 Because the event name is specified using an HTML attribute, **the event name is always
-converted to lowercase**. This is because HTML attribute names are case 
-insensitive. So specifying `on-myEvent` adds a listener for `myevent`. The event handler 
+converted to lowercase**. This is because HTML attribute names are case
+insensitive. So specifying `on-myEvent` adds a listener for `myevent`. The event handler
 _name_ (for example, `handleClick`) **is** case sensitive.
 
 **Compatibility note:** The syntax differs from 0.5, which required curly brackets ({%raw%}{{}}{%endraw%})
 around the event handler name.
 
-**Lowercase event names.** When you use a declarative handler, the event name 
+**Lowercase event names.** When you use a declarative handler, the event name
 is converted to lowercase, because attributes are case-insensitive.
-So the attribute `on-core-signal-newData` sets up a listener for `core-signal-newdata`, 
+So the attribute `on-core-signal-newData` sets up a listener for `core-signal-newdata`,
 _not_ `core-signal-newData`. To avoid confusion, always use lowercase event names.
-{: .alert .alert-info } 
+{: .alert .alert-info }
 
 ## Imperatively add and remove listeners {#imperative-listeners}
 
-Use [automatic node finding](local-dom.html#node-finding) and the 
-convenience methods 
-[`listen`](/{% polymer_version_dir %}/api/#Polymer.Base:method-listen) and 
-[`unlisten`](/{% polymer_version_dir %}/api/#Polymer.Base:method-unlisten).
+Use [automatic node finding](local-dom.html#node-finding) and the
+convenience methods
+[`listen`](/{% polymer_version_dir %}/api/#Polymer.Base:method-listen){:target="_blank"} and
+[`unlisten`](/{% polymer_version_dir %}/api/#Polymer.Base:method-unlisten){:target="_blank"} .
 
     this.listen(this.$.myButton, 'tap', 'onTap');
 
@@ -115,11 +115,11 @@ convenience methods
 
 The listener callbacks are invoked with `this` set to the element instance.
 
-If you add a listener imperatively, you need to remove it imperatively. 
-This is commonly done in the `attached` and `detached` 
+If you add a listener imperatively, you need to remove it imperatively.
+This is commonly done in the `attached` and `detached`
 [callbacks](registering-elements.html#lifecycle-callbacks). If you use
-the [`listeners`](#event-listeners) object or [annotated event 
-listeners](#annotated-listeners), {{site.project_title}} automatically adds 
+the [`listeners`](#event-listeners) object or [annotated event
+listeners](#annotated-listeners), {{site.project_title}} automatically adds
 and removes the event listeners.
 
 ## Custom events {#custom-events}
@@ -149,9 +149,9 @@ Example:
       </script>
 
     </dom-module>
-    
+
     <x-custom></x-custom>
-    
+
     <script>
         document.querySelector('x-custom').addEventListener('kick', function (e) {
             console.log(e.detail.kicked); // true
@@ -266,7 +266,7 @@ Example with `listeners`:
         </style>
 
         <div id="dragme">{{message}}</div>
-        
+
       </template>
 
       <script>
@@ -320,7 +320,7 @@ normalized event has the following properties:
 *   `localTarget`: Retargeted event target (equivalent to `event.target` under
     shadow DOM)
 
-*   `path`: Array of nodes through which event will pass 
+*   `path`: Array of nodes through which event will pass
     (equivalent to `event.path` under shadow DOM).
 
 
