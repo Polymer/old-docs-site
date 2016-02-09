@@ -15,28 +15,134 @@ subtitle: About this release
   }
 </style>
 
+## [Release 1.2.4](https://github.com/Polymer/polymer/tree/v1.2.4) (2016-01-27)
+
+This release fixes the following issues:
+
+
+-   Fixes [2407](https://github.com/Polymer/polymer/issues/2407). `scopeSubtree`
+    doesn't work on SVG elements.
+
+-   Fixes [2506](https://github.com/Polymer/polymer/issues/2506). Fix for method
+    parsing in computed bindings.
+
+-   Fixes [2555](https://github.com/Polymer/polymer/issues/2555). Produce nicer
+    error on malformed observer.
+
+-   Fixes [2617](https://github.com/Polymer/polymer/issues/2617). Added
+    `polymer-mini.html` and `polymer-micro.html` to Bower distribution.
+
+-   Fixes [2645](https://github.com/Polymer/polymer/issues/2645). Improve
+    performance of `Polymer.dom` `prevSibling`, `nextSibling` operations.
+
+-   Fixes [2666](https://github.com/Polymer/polymer/issues/2666). Fix using
+    `value$` on input element.
+
+-   Fixes [2704](https://github.com/Polymer/polymer/issues/2704). Fix compound
+    bindings with braces in literals.
+
+-   Fixes [3018](https://github.com/Polymer/polymer/issues/3018). Avoid throwing
+    with invalid keys/paths. Recent changes caused calls that used to fail
+    gracefully  on unexpected input to throw exceptions, which could cause
+    unexpected breakage. For example, the following calls improperly generated
+    an exception:
+
+    -   Calling `Polymer.Collection.getItem(key)` with an undefined key.
+    -   Calling `Polymer.Base.notifyPath(path, value)` where the path cannot be
+        dereferenced to the leaf.
+
+    These now fail gracefully again.
+
+-   Fixes [3065](https://github.com/Polymer/polymer/issues/3065). Add
+    `dom-repeat.renderedItemCount` property.
+
+-   Fixes [3076](https://github.com/Polymer/polymer/issues/3076). The
+    `beforeRegister` callback was being called twice.
+
+-   Fixes [3077](https://github.com/Polymer/polymer/issues/3077). Listeners on
+    `data-change` events may not be called if the property is bound. This was a
+    regression introduced in Release 1.2.2.
+
+-   Fixes [3083](https://github.com/Polymer/polymer/issues/3083). Remove closures
+    holding element references after `mouseup`/`touchend`.
+
+-   Fixes [3084](https://github.com/Polymer/polymer/issues/3084). Bindings with
+    wildcard arguments to inline computing functions fail to parse Include
+    wildcard character in identifier.
+
+-   Fixes [3108](https://github.com/Polymer/polymer/issues/3108). Moves `debounce`
+    functionality from polymer-micro to polymer-mini. The functionality belongs
+    in the mini layer and was never actually functional in micro.
+
+-   Fixes [3113](https://github.com/Polymer/polymer/issues/3113). Add an optional
+    async argument to `importHref`.
+
+-   Fixes [3115](https://github.com/Polymer/polymer/issues/3115). Make
+    `Polymer.dom.flush` reentrant-safe.
+
+-   Fixes [3125](https://github.com/Polymer/polymer/issues/3125). Ensure `dom-if`
+    in host does not restamp when host detaches.
+
+-   Fixes [3128](https://github.com/Polymer/polymer/issues/3128),
+    [3121](https://github.com/Polymer/polymer/issues/3121). Computed bindings:
+    outer scope property forwarding errantly forwarded literals as properties.
+    This triggered a bug on Safari,"TypeError: Attempting to change the setter of
+    an unconfigurable property."
+
+-   Fixes [3157](https://github.com/Polymer/polymer/issues/3157). Data-bound text
+    nodes in a dom-if show up when they should be hidden.
+
+-   Fixes [3214](https://github.com/Polymer/polymer/issues/3214). Fix for
+    `Polymer.dom(...)._query()` method doesn't exist which causes
+    `Polymer.updateStyles()` to fail.
+
+-   Fixes [3270](https://github.com/Polymer/polymer/issues/3270). Cannot bind to
+    `isAttached`.
+
+-   Fixes [3285](https://github.com/Polymer/polymer/issues/3285). SVGs inside an
+    element's local DOM are styled improperly on IE.
+
+-   Fixes [3295](https://github.com/Polymer/polymer/issues/3295). `getOwnerRoot`
+    incorrect when queried after an element is added from within a document
+    fragment.
+
+-   Fixes [3308](https://github.com/Polymer/polymer/issues/3308). `Polymer.dom`
+    element accessors can be incorrect when an element has no logical nodes.
+
+-   Fixes [3321](https://github.com/Polymer/polymer/issues/3321).  Only let
+    `dom-repeat` insert elements in attached if it has been previously detached;
+    correctly avoid re-adding children in document fragments to an element's
+    logical linked list if they are already there.
+
+-   Fixes [3324](https://github.com/Polymer/polymer/issues/3324). Ensure `dom-if`
+    moved into doc fragment is torn down.
+
+-   Fixes [3337](https://github.com/Polymer/polymer/issues/3337). Fixes an issue
+    that was detected when an a doc fragment that did not include an insertion
+    point was added after one that did but before distribution.
+
 ## [Release 1.2.3](https://github.com/Polymer/polymer/tree/v1.2.3) (2015-11-16)
 
 This release fixes the following issues:
 
--   Fixes [#2381](https://github.com/Polymer/polymer/issues/2381), 
-    [#2708](https://github.com/Polymer/polymer/issues/2708): Fix ordering 
-    issues with `custom-style` elements that apply custom properties defined 
+-   Fixes [#2381](https://github.com/Polymer/polymer/issues/2381),
+    [#2708](https://github.com/Polymer/polymer/issues/2708): Fix ordering
+    issues with `custom-style` elements that apply custom properties defined
     in other `custom-style` elements.
 
 ## [Release 1.2.2](https://github.com/Polymer/polymer/tree/v1.2.2) (2015-11-12)
 
-This release includes a number of small optimizations affecting startup time. 
+This release includes a number of small optimizations affecting startup time.
 
 This release includes the following new features:
 
--   Fixes [#2511](https://github.com/Polymer/polymer/issues/2511). Add 
-    support for `strip-whitespace` attribute on templates. A template defined 
-    with the `strip-whitespace` attribute removes any empty text nodes from the 
+-   Fixes [#2511](https://github.com/Polymer/polymer/issues/2511). Add
+    support for `strip-whitespace` attribute on templates. A template defined
+    with the `strip-whitespace` attribute removes any empty text nodes from the
     template contents, which can result in a minor performance improvement.
 
 
--   Fixes [#2537](https://github.com/Polymer/polymer/issues/2537). Add optional 
+-   Fixes [#2537](https://github.com/Polymer/polymer/issues/2537). Add optional
     incremental "chunked" rendering to `dom-repeat`.
 
     New properties:
@@ -44,11 +150,11 @@ This release includes the following new features:
     -   `initialCount`. Enables incremental rendering and sets initial render count
     -   `targetFramerate`. Determines the target frame budget for rendering the remaining items.
 
-    If `initialCount` is set, after setting (or re-setting) `items`, the initial count will be rendered pre-paint, and all remaining items will be incrementally rendered at `requestAnimationFrame` timing. The template makes a best-effort attempt to hit 
+    If `initialCount` is set, after setting (or re-setting) `items`, the initial count will be rendered pre-paint, and all remaining items will be incrementally rendered at `requestAnimationFrame` timing. The template makes a best-effort attempt to hit
     the framerate specified by `targetFramerate`.
 
--   Fixes [#2690](https://github.com/Polymer/polymer/issues/2690). Add new 
-    `getComputedStyleValue` method to determine the computedn style of a custom 
+-   Fixes [#2690](https://github.com/Polymer/polymer/issues/2690). Add new
+    `getComputedStyleValue` method to determine the computedn style of a custom
     property. Usage:
 
     <code><var>propertyValue</var> = <var>element</var>.getComputedStyleValue(<var>propertyName</var>);</code>
@@ -62,27 +168,27 @@ This release includes the following bug fixes and improvements:
 
 -   Fix compound bindings with braces in literals.
 
--   Fixes [#2639](https://github.com/Polymer/polymer/issues/2639). Fix for 
+-   Fixes [#2639](https://github.com/Polymer/polymer/issues/2639). Fix for
     BEM-like CSS selectors under media queries. This issue affected CSS selectors
-    that included two dashes inline, such as `foo--bar`. 
+    that included two dashes inline, such as `foo--bar`.
 
--   Fixes [#2641](https://github.com/Polymer/polymer/issues/2641). Fix gestures 
+-   Fixes [#2641](https://github.com/Polymer/polymer/issues/2641). Fix gestures
     when using shadow DOM polyfill.
 
--   Fixes [#2649](https://github.com/Polymer/polymer/issues/2649). 
+-   Fixes [#2649](https://github.com/Polymer/polymer/issues/2649).
     `queryAllEffectiveChildren` method throws an exception.
 
--   Fixes [#2650](https://github.com/Polymer/polymer/issues/2650). Add support 
+-   Fixes [#2650](https://github.com/Polymer/polymer/issues/2650). Add support
     for short unicode escape sequences in CSS rules.
 
--   Fixes [#2660](https://github.com/Polymer/polymer/issues/2660). Fix parsing 
+-   Fixes [#2660](https://github.com/Polymer/polymer/issues/2660). Fix parsing
     of custom properties with 'var' in value.
 
--   Fixes [#2670](https://github.com/Polymer/polymer/issues/2670). Fix 
+-   Fixes [#2670](https://github.com/Polymer/polymer/issues/2670). Fix
     for multiple consequent spaces present in CSS selectors.
 
--   Fixes [#2685](https://github.com/Polymer/polymer/issues/2685): `dom-if` 
-    throws exception if detached before instance is stamped. 
+-   Fixes [#2685](https://github.com/Polymer/polymer/issues/2685): `dom-if`
+    throws exception if detached before instance is stamped.
 
 
 ## [Release 1.2.1](https://github.com/Polymer/polymer/tree/v1.2.1) (2015-10-29)
@@ -95,7 +201,7 @@ This release includes fixes for the following issues:
 
 -   Make parsing of mixin declarations more robust.
 
--   [Fixes #2556](https://github.com/Polymer/polymer/issues/2556). 
+-   [Fixes #2556](https://github.com/Polymer/polymer/issues/2556).
     `notifyPath`: Ensure outer paths aren't forwarded to instance props.
 
 -   [Fixes #2610](https://github.com/Polymer/polymer/issues/2610).
@@ -105,51 +211,51 @@ This release includes fixes for the following issues:
 
 This release includes the following new features:
 
--   Compound binding support. In place of a single binding annotation, you 
-    can now use a compound binding consisting of string literals and 
+-   Compound binding support. In place of a single binding annotation, you
+    can now use a compound binding consisting of string literals and
     binding annotations:
 
         <span>Name: {%raw%}{{lastname}}, {{firstname}}{%endraw%}</span>
 
     See [Compound bindings](devguide/data-binding.html#compound-bindings) for details.
 
--   New `observeNodes` method for tracking addition and removal of child 
+-   New `observeNodes` method for tracking addition and removal of child
     nodes and distributed nodes. See [Observe added and removed children](devguide/local-dom.html#observe-nodes).
 
 -   New _effective children_ APIs that provide a composition-aware view of
     light DOM children. See [Effective children](devguide/local-dom.html#effective-children).
 
--   Improvements to path API. 
-    [Fixes #2007](https://github.com/Polymer/polymer/issues/2007), 
-    [#2509](https://github.com/Polymer/polymer/issues/2509). 
-    
-    *    Allows `set` to take paths with array keys, identified by 
+-   Improvements to path API.
+    [Fixes #2007](https://github.com/Polymer/polymer/issues/2007),
+    [#2509](https://github.com/Polymer/polymer/issues/2509).
+
+    *    Allows `set` to take paths with array keys, identified by
          <code>#<var>key</var></code>.
     *    Allows `notifyPath` to take paths with array indices.
     *    Exposes public `notifySplices` API.
 
 
--   [Fixes #2582](https://github.com/Polymer/polymer/issues/2582). Fix IE10 regressions  
-    in dom-repeat, dom-bind, and dom-module-inline  
+-   [Fixes #2582](https://github.com/Polymer/polymer/issues/2582). Fix IE10 regressions
+    in dom-repeat, dom-bind, and dom-module-inline
 
 -   Fix deepEqual on Safari 9 due to Safari enumeration bug.
 
--   Add `Polymer.dom(node).notifyObservers` method to 'kick' observers, for example, 
-    when attributes change under Shadow DOM. 
+-   Add `Polymer.dom(node).notifyObservers` method to 'kick' observers, for example,
+    when attributes change under Shadow DOM.
 
 
 ## [Release 1.1.5](https://github.com/Polymer/polymer/tree/v1.1.5) (2015-10-08)
 
 This release includes the following new features:
 
--   Added `isLightDescendent` and `isLocalDescendent` utility methods to 
-    {{site.project_title}} elements. 
+-   Added `isLightDescendent` and `isLocalDescendent` utility methods to
+    {{site.project_title}} elements.
 
 -   The `fire` method's `detail` argument can take any primitive value, not just objects.
 
 This release fixes the following issues:
 
-- [Fixes #2504](https://github.com/Polymer/polymer/issues/2504). Templatizer: Variables in the parent scope are not passed during initialization. 
+- [Fixes #2504](https://github.com/Polymer/polymer/issues/2504). Templatizer: Variables in the parent scope are not passed during initialization.
 
 - [Fixes #2505](https://github.com/Polymer/polymer/issues/2504). Templatizer: Changes to array/object properties from the parent scope not notified.
 
@@ -157,16 +263,16 @@ This release fixes the following issues:
 
 This release fixes the following issues:
 
--   [Fixes #2452](https://github.com/Polymer/polymer/issues/2452). Work around 
-    a [Chromium bug](https://code.google.com/p/chromium/issues/detail?id=529941) 
+-   [Fixes #2452](https://github.com/Polymer/polymer/issues/2452). Work around
+    a [Chromium bug](https://code.google.com/p/chromium/issues/detail?id=529941)
     that caused memory to leak on page refresh.
 
--   [Fixes #2048](https://github.com/Polymer/polymer/issues/2048). Allow multiple 
-    paths to be linked using `linkPath`. 
+-   [Fixes #2048](https://github.com/Polymer/polymer/issues/2048). Allow multiple
+    paths to be linked using `linkPath`.
 
 
 **Web Components polyfill updated to 0.7.13.** The latest version of `webcomponents-lite.js`
-fixes an issue that affected SEO of Polymer 1.x apps. 
+fixes an issue that affected SEO of Polymer 1.x apps.
 {: .alert .alert-info }
 
 ## [Release 1.1.3](https://github.com/Polymer/polymer/tree/v1.1.3) (2015-09-04)
@@ -178,27 +284,27 @@ fixes an issue that affected SEO of Polymer 1.x apps.
 
 -   [Fixes #2356](https://github.com/Polymer/polymer/issues/2356). Log a warning
     if the included style module cannot be found.
-   
+
 -   [Fixes #2357](https://github.com/Polymer/polymer/issues/2357). Styles included
     with `include=` are inserted _before_ any styles defined in the body of
     the style element.
 
--   [Fixes #2363](https://github.com/Polymer/polymer/issues/2363). Explicitly create 
+-   [Fixes #2363](https://github.com/Polymer/polymer/issues/2363). Explicitly create
     `Polymer` object on `window` to satisfy strict mode.
 
 -   [Fixes #2329](https://github.com/Polymer/polymer/issues/2329). Registration changes
     to support ES6 classes.
 
--   [Fixes #2341](https://github.com/Polymer/polymer/issues/2341). Branch `Polymer.dom` to 
-    use native dom methods under Shadow DOM for `appendChild`, `insertBefore`, `removeChild`, 
+-   [Fixes #2341](https://github.com/Polymer/polymer/issues/2341). Branch `Polymer.dom` to
+    use native dom methods under Shadow DOM for `appendChild`, `insertBefore`, `removeChild`,
     `replaceChild`, and `cloneNode`.
 
--   [Fixes #2334](https://github.com/Polymer/polymer/issues/2341). When composing nodes 
-    in shady DOM, check if a node is where we expect it to be before removing it from 
-    its distributed position. We do this because the node may have been moved by 
-    `Polymer.dom` in a way that triggered distribution of its previous location. The 
-    node is already where it needs to be so removing it from its parent when it's no 
-    longer distributed is destructive. 
+-   [Fixes #2334](https://github.com/Polymer/polymer/issues/2341). When composing nodes
+    in shady DOM, check if a node is where we expect it to be before removing it from
+    its distributed position. We do this because the node may have been moved by
+    `Polymer.dom` in a way that triggered distribution of its previous location. The
+    node is already where it needs to be so removing it from its parent when it's no
+    longer distributed is destructive.
 
 [Release 1.1.1](https://github.com/Polymer/polymer/tree/v1.1.1) (2015-08-20)
 
@@ -217,7 +323,7 @@ This release fixes a serious regression in Release 1.1 related to shady DOM dist
 
 - `array-selector`: Add `selectedItem` property. ([commit](https://github.com/Polymer/polymer/commit/d65acd0))
 
-- `dom-repeat`: [Fixes #2297](https://github.com/Polymer/polymer/issues/2297), Where a 
+- `dom-repeat`: [Fixes #2297](https://github.com/Polymer/polymer/issues/2297), Where a
 `dom-repeat` with a `sort` property threw an exception when removing 10 or more items at a time. ([commit](https://github.com/Polymer/polymer/commit/fccbd8a))
 
 - [Fixes #2267](https://github.com/Polymer/polymer/issues/2267): Properly find dom-module for mixed case elements. ([commit](https://github.com/Polymer/polymer/commit/76c58b8))
@@ -240,8 +346,8 @@ the Developer guide for details.
 
 As a result of these changes, several recommendations are changing:
 
-*   `<link rel="import" type="css">` is deprecated and will eventually be removed. This syntax 
-    allowed users to use a pure .css file, but the file is parsed as HTML which is a 
+*   `<link rel="import" type="css">` is deprecated and will eventually be removed. This syntax
+    allowed users to use a pure .css file, but the file is parsed as HTML which is a
     security and performance concern.
 
 *   We now recommend placing an element's `<style>` tag _inside_ the element's local DOM
@@ -277,7 +383,7 @@ As a result of these changes, several recommendations are changing:
 - [Fixes #2193](https://github.com/Polymer/polymer/issues/2193): Implements workaround for [chromium bug #516550](https://code.google.com/p/chromium/issues/detail?id=516550) by adding `Polymer.RenderStatus.whenReady` and using it to defer `attached`. ([commit](https://github.com/Polymer/polymer/commit/2bffc4c))
 
 - Fixes [vulcanize#209](https://github.com/Polymer/vulcanize/issues/209).
-    Fixes issue where polyfilled templates may not upgrade correctly. 
+    Fixes issue where polyfilled templates may not upgrade correctly.
     ([commit](https://github.com/Polymer/polymer/commit/d78c934))
 
 - Use `_clientsReadied` to avoid missing attribute->property sets in ready. ([commit](https://github.com/Polymer/polymer/commit/165f716))
@@ -341,7 +447,7 @@ As a result of these changes, several recommendations are changing:
 
 - `dom-repeat`: Remove unnecessary keys bookkeeping. ([commit](https://github.com/Polymer/polymer/commit/3e02bfd))
 
-- `dom-repeat`: Always use placeholders; fix insertion reference bug. ([commit](https://github.com/Polymer/polymer/commit/4a45d4f), 
+- `dom-repeat`: Always use placeholders; fix insertion reference bug. ([commit](https://github.com/Polymer/polymer/commit/4a45d4f),
     [commit](https://github.com/Polymer/polymer/commit/5eda235))
 
 - `dom-repeat`: Fix reuse logic to handle multiple mutations in same turn. [Fixes #2009](https://github.com/Polymer/polymer/issues/2009). ([commit](https://github.com/Polymer/polymer/commit/1bf5f6d))
@@ -532,11 +638,11 @@ Release 1.0 includes the following bug fixes since 0.9:
 
 ### Documentation correction
 
-The Migration guide has been updated to reflect that the 
-[`iron-flex-layout`](migration.html#layout-attributes) 
-custom properties are the recommended replacement for layout attributes in 
-Release 1.0. The layout classes previously described 
-in the Migration guide for Releases 0.8 and 0.9 will continue to work for 
+The Migration guide has been updated to reflect that the
+[`iron-flex-layout`](migration.html#layout-attributes)
+custom properties are the recommended replacement for layout attributes in
+Release 1.0. The layout classes previously described
+in the Migration guide for Releases 0.8 and 0.9 will continue to work for
 now, but are deprecated.
 
 ## Release 0.9
@@ -568,7 +674,7 @@ renamed from `constructor` to `factoryImpl`, to aid compilation tools.
 
 Static attributes defined in `hostAttributes` can now be overridden from markup.
 
-As a part of this change, the `class` attribute can no longer be set from 
+As a part of this change, the `class` attribute can no longer be set from
 `hostAttributes`. If you need to set classes on the host, you can do so
 imperatively (for example, by calling `classList.add` from the `ready` callback).
 
@@ -606,7 +712,7 @@ default values set.
 
 This release includes several enhancements and changes to custom property support:
 
-*   Custom property support is enabled for all elements. The `enableCustomStyleProperties` 
+*   Custom property support is enabled for all elements. The `enableCustomStyleProperties`
     flag is no longer required.
 
 *   <span class="breaking">breaking change:</span> Style mixins are applied with `@apply` instead of `mixin`.
@@ -638,7 +744,7 @@ For more details, see [Custom element for document styling](devguide/styling.htm
 
 Styling now supports the [`:root` pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/:root)
 inside `custom-style`. In the context of a `custom-style` element, the `:root` selector lets
-you define a custom property that applies to all custom elements. (In 0.8, applying a property to 
+you define a custom property that applies to all custom elements. (In 0.8, applying a property to
 all custom elements required a more expensive `*` selector.)
 
 ### Data binding changes
@@ -658,7 +764,7 @@ As of 0.9, nested templates can access their parent's scope. See [Nesting dom-re
 
 #### <span class="breaking">breaking change:</span> Array mutation methods
 
-In 0.8, an array observer was used to monitor the mutation of arrays, so adding an 
+In 0.8, an array observer was used to monitor the mutation of arrays, so adding an
 item to an array was observed automatically, but changing a value in an array item required
 the `setPathValue` method (now renamed to `set`).
 
@@ -680,7 +786,7 @@ This release adds limited gesture support. For details, see [Gesture events](dev
 CSP issues in the initial release of 0.8 have been resolved. CSP still requires separate script and
 HTML files.
 
-The CSP-specific functions of [`vulcanize`](https://github.com/Polymer/vulcanize) have been 
+The CSP-specific functions of [`vulcanize`](https://github.com/Polymer/vulcanize) have been
 split into a separate utility, [`crisper`](https://github.com/PolymerLabs/crisper). To prepare a site for
 deployment in a CSP environment, you can use a command like this:
 
@@ -726,7 +832,7 @@ The `options` object can contain the following properties:
 
 #### New utilities
 
-The following utility functions were added since 0.8-rc.2 _or_ were missing 
+The following utility functions were added since 0.8-rc.2 _or_ were missing
 from the earlier documentation:
 
 *   `$$`
