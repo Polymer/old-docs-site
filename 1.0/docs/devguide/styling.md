@@ -105,6 +105,11 @@ This implies:
         .content-wrapper > .special
 
 
+**Custom properties can't style distributed children.** The {{site.project_title}}
+[custom properties]({#xscope-styling-details) shim doesn't support styling
+distributed children.
+{: .alert .alert-info }
+
 
 ## Cross-scope styling {#xscope-styling}
 
@@ -128,32 +133,11 @@ match your product's branding, for example.  The same "protection" that Shadow
 DOM provides at the same time introduces a practical barrier to "theming" use
 cases.
 
-One solution the Shadow DOM spec authors provided to address the theming problem
-are the `/deep/` and `::shadow` combinators, which allow writing rules that
-pierce through the Shadow DOM encapsulation boundary.  Although Polymer 0.5
-promoted this mechanism for theming, it was ultimately unsatisfying for several
-reasons:
-
-*   Using `/deep/` and `::shadow` for theming leaks details of an otherwise
-    encapsulated element to the user, leading to brittle selectors piercing into
-    the internal details of an element's Shadow DOM that are prone to breakage
-    when the internal implementation changes.  As a result, the structure of of
-    an element's Shadow DOM inadvertently becomes API surface subject to
-    breakage, diminishing the practical effectiveness of Shadow DOM as an
-    encapsulation primitive.
-
-*   Although Shadow DOM's style encapsulation *improves* the predictability of
-    style recalc performance since the side effects of a style change are
-    limited to a small subset of the document, using `/deep/` and `::shadow`
-    re-opens the style invalidation area and reduces Shadow DOM's effectiveness as a
-    performance primitive.
-
-*   Using `/deep/` and `::shadow` leads to verbose and difficult to understand
-    selectors.
-
-For the reasons above, the Polymer team is currently exploring other options for
-theming that address the shortcomings above and provide a possible path to
-obsolescence of `/deep/` and `::shadow` altogether.
+**Deprecated shadow DOM selectors.** One solution the Shadow DOM spec authors
+provided to address the theming problem was the `/deep/` combinator and `::shadow`
+pseudo-element, which allowed writing rules that pierce through the Shadow DOM
+encapsulation boundary. However, these proved problematic and have been deprecated.
+{: .alert .alert-info }
 
 ### Custom CSS properties {#xscope-styling-details}
 
@@ -257,9 +241,8 @@ doesn't set the custom property:
 
 Thus, custom CSS properties introduce a powerful way for element authors to
 expose a theming API to their users in a way that naturally fits right alongside
-normal CSS styling and avoids the problems with `/deep/` and `::shadow`. It is
-already on a standards track with shipping implementation by Mozilla and planned
-support by Chrome.
+normal CSS styling. It is,already on a standards track with support in
+Firefox and planned support announced in Chrome and Safari.
 
 ### Custom CSS mixins
 
@@ -362,14 +345,17 @@ Example usage of `my-toolbar`:
 {{site.project_title}}'s custom property shim evaluates and applies custom property values once
 at element creation time.  In order to have an element (and its subtree) re-
 evaluate custom property values due to dynamic changes such as application of
-CSS classes, etc., call `this.updateStyles()` on the element.
-To update all elements on the page, you can also call `Polymer.updateStyles()`.
+CSS classes, etc., call the [`updateStyles`](../../api/#Polymer.Base:method-updateStyles){:target="_blank"}
+method on the element. To update all elements on the page, you can also call
+`Polymer.updateStyles`.
 
-You can also directly modify a {{site.project_title}} element's custom property by setting
-key-value pairs in `customStyle` on the element (analogous to setting `style`)
-and then calling `updateStyles()`. To get the value of a custom
-property on an element, use `getComputedStyleValue(propertyName)`.
+You can  directly modify a {{site.project_title}} element's custom property by setting
+key-value pairs in [`customStyle`](../../api/#Polymer.Base:property-customStyle) on the
+element (analogous to setting `style`) and then calling `updateStyles`. Or you can pass
+a dictionary of property names and values as an argumen to `updateStyles`.
 
+To get the value of a custom property on an element, use
+[`getComputedStyleValue`](../../api/#Polymer.Base:method-getComputedStyleValue){:target="_blank"}.
 
 
 Example:
@@ -401,22 +387,30 @@ Example:
 
     </dom-module>
 
-### Custom properties shim—limitations and API details
+### Custom properties shim limitations
 
 Cross-platform support for custom properties is provided in Polymer by a
-JavaScript library that approximates the capabilities of the CSS Variables
+JavaScript library that **approximates** the capabilities of the CSS Variables
 specification  *for the specific use case of theming custom elements*, while
 also extending it to add the capability to mixin property sets to rules as
-described above.  **It is important to note that this is not a full polyfill**,
-as doing so would be prohibitively expensive; rather this is a shim that is
-inspired by that specification and trades off aspects of the full dynamism
-possible in CSS with practicality and performance.
+described above. For performance reasons, {{site.project_title}} **does
+not attempt to replicate all aspects of native custom properties.**
+The shim trades off aspects of the full dynamism possible in CSS in the
+interests of practicality and performance.
 
-Below are current limitations of this system. Improvements to performance and
+Below are current limitations of the shim. Improvements to performance and
 dynamism will continue to be explored.
 
-*   Only rules which match the element at *creation time* are applied. Any dynamic
-    changes that update variable values are not applied automatically.
+#### Dynamism limitations
+
+Only property definitions which match the element at *creation time* are applied.
+Any dynamic changes that update property values are not applied automatically. You
+can force styles to be re-evaluated by calling the
+[`updateStyles`](../../api/#Polymer.Base:method-updateStyles){:target="_blank"} method on a
+{{site.project_title}} element, or `Polymer.updateStyles` to update all element
+styles.
+
+For example, given this markup inside an element:
 
     HTML:
 
@@ -439,99 +433,94 @@ dynamism will continue to be explored.
           --nog: blue;
         }
 
-*   Re-evaluation of custom property styles does not currently occur as a result
-    of changes to the DOM.  Re-evaluation can be forced by calling
-    `this.updateStyles()` on a Polymer element (or `Polymer.updateStyles()` to
-    update all element styles).  For example, if class `b` was added to `x-foo`
-    above, the scope must call `this.updateStyles()` to apply the styling. This
-    re-calcs/applies styles down the tree from this point.
+After adding class `b` to `x-foo` above, the host element must call `this.updateStyles`
+to apply the new styling. This re-calculates and applies styles down the tree from this point.
 
-*   Dynamic effects are reflected at the point of a variable’s application, but not its definition.
+Dynamic effects **are** reflected at the point of a property's application.
 
-    For the following example, adding/removing the `highlighted` class on the `#title` element will
-    have the desired effect, since the dynamism is related to *application* of a custom property.
+For the following example, adding/removing the `highlighted` class on the `#title` element will
+have the desired effect, since the dynamism is related to *application* of a custom property.
 
-        #title {
-          background-color: var(--title-background-normal);
-        }
+    #title {
+      background-color: var(--title-background-normal);
+    }
 
-        #title.highlighted {
-          background-color: var(--title-background-highlighted);
-        }
+    #title.highlighted {
+      background-color: var(--title-background-highlighted);
+    }
 
-    However, the shim does not currently support dynamism at the point of
-    *definition* of a custom property.  In the following example,
-    `this.updateStyles()` would be required to update the value of `--title-
-    background` being applied to `#title` when the `highlighted` class was added
-    or removed.
+#### Inheritance limitations
 
-        #title {
-          --title-background: gray;
-        }
+Unlike normal CSS inheritance which flows from parent to child, custom
+properties in Polymer's shim can only change when inherited by a custom element
+from rules that set properties in scope(s) above it, or in a `:host` rule for
+that scope.  **Within a given element's local DOM scope, a custom property can
+only have a single value.**  Calculating property changes within a scope would be
+prohibitively expensive for the shim and is not required to achieve cross-scope
+styling for custom elements, which is the primary goal of the shim.
 
-        #title.highlighted {
-          --title-background: yellow;
-        }
+    <dom-module id="my-element">
 
-*   Unlike normal CSS inheritance which flows from parent to child, custom
-    properties in Polymer's shim can only change when inherited by a custom element
-    from rules that set properties in scope(s) above it, or in a `:host` rule for
-    that scope.  Within a given element's local DOM scope, a custom property can
-    only have a single value.  Calculating property changes within a scope would be
-    prohibitively expensive for the shim and are not required to achieve cross-scope
-    styling for custom elements, which is the primary goal of the shim.
+      <template>
 
-        <dom-module id="my-element">
+        <style>
+         :host {
+           --custom-color: red;
+         }
+         .container {
+           /* Setting the custom property here will not change */
+           /* the value of the property for other elements in  */
+           /* this scope.                                      */
+           --custom-color: blue;
+         }
+         .child {
+           /* This will be always be red. */
+           color: var(--custom-color);
+         }
+        </style>
 
-          <template>
+        <div class="container">
+          <div class="child">I will be red</div>
+        </div>
 
-            <style>
-             :host {
-               --custom-color: red;
-             }
-             .container {
-               /* Setting the custom property here will not change */
-               /* the value of the property for other elements in  */
-               /* this scope.                                      */
-               --custom-color: blue;
-             }
-             .child {
-               /* This will be always be red. */
-               color: var(--custom-color);
-             }
-            </style>
+      </template>
 
-            <div class="container">
-              <div class="child">I will be red</div>
-            </div>
+      <script>
+        Polymer({ is: 'my-element'});
+      </script>
 
-          </template>
+    </dom-module>
 
-          <script>
-            Polymer({ is: 'my-element'});
-          </script>
 
-        </dom-module>
+#### Styling distributed elements not supported
 
+The custom properties shim doesn't support styling distributed elements.
+
+    /* Not supported */
+    :host ::content div {
+      --custom-color: red;
+    }
 
 ## Custom element for document styling (custom-style) {#custom-style}
 
 
-An experimental `<style is="custom-style">` custom element is provided for defining
-styles in the main document that can take advantage of several special features
-of Polymer's styling system:
+{{site.project_title}} provides a `<style is="custom-style">` custom element
+for defining styles **in the main document** that can take advantage of several
+special features of Polymer's styling system:
 
-*   Document styles defined in a `custom-style` will be shimmed to ensure they do
+*   Document styles defined in a `custom-style` are shimmed to ensure they do
     not leak into local DOM when running on browsers without native Shadow
     DOM.
 
-*   Shadow DOM-specific `/deep/` and `::shadow` combinators will be shimmed on
-    browsers without native Shadow DOM.
-
-*   Custom properties used by Polymer's experimental
+*   Custom properties used by Polymer's
     [shim for cross-scope styling](#xscope-styling-details) may be defined in an
     `custom-style`. Use the `:root` selector to define custom properties that apply
     to all custom elements.
+
+*   For backwards compatibility, the deprecated `/deep/` combinator and `::shadow`
+    pseudo-element are shimmed on browsers without native Shadow DOM. You should avoid
+    using these in new code.
+
 
 Example:
 
@@ -548,12 +537,8 @@ Example:
           box-sizing: border-box;
         }
 
-        /* Can use /deep/ and ::shadow combinators */
-        body /deep/ .my-special-view::shadow #thing-inside {
-          background: yellow;
-        }
-
-        /* Custom properties that inherit down the document tree may be defined */
+        /* Use the :root selector to define custom properties and mixins */
+        /* at the document level  */
         :root {
           --my-toolbar-title-color: green;
         }
@@ -641,7 +626,7 @@ by the styles defined in the body.
 
 ### External stylesheets (deprecated) {#external-stylesheets}
 
-**Note:** This experimental feature is now deprecated in favor of
+**Deprecated feature.** This experimental feature is now deprecated in favor of
 [style modules](#style-modules). It is still supported, but support will
 be removed in the future.
 {: .alert .alert-info }
@@ -664,7 +649,7 @@ Example:
     <dom-module id="my-awesome-button">
 
       <!-- special import with type=css used to load remote CSS
-           Note: this style of importing CSS is deprecatd -->
+           Note: this style of importing CSS is deprecated -->
       <link rel="import" type="css" href="my-awesome-button.css">
 
       <template>
@@ -680,26 +665,6 @@ Example:
 
     </dom-module>
 
-To include an external stylesheet at the document level that includes
-local DOM aware rules, use a _standard_ HTML import to import a document
-that includes a `custom-style` element.
-
-`index.html`:
-
-    <html>
-    <head>
-      <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
-      <link rel="import" href="my-custom-styles.html">
-    </head>
-      ...
-
-`my-custom-styles.html`:
-
-    <style is="custom-style">
-      html /deep/ iron-icon {
-        color: red;
-      }
-    </style>
 
 ## Third-party libraries that modify local DOM {#scope-subtree}
 
@@ -708,22 +673,37 @@ Polymer element, you may notice that styles on the element do not update
 properly.
 
 The correct way to add DOM nodes to a Polymer element's local DOM is via
-the Polymer DOM API. This API lets you manipulate nodes in a way that respects
-the local DOM and ensures that styles are updated properly.
+the Polymer [DOM API](local-dom.html#dom-api). This API lets you manipulate
+nodes in a way that respects the local DOM and ensures that styles are
+updated properly.
 
-When using third-party libraries that do not know about the Polymer DOM
-API, use `scopeSubtree` to apply proper CSS scoping to a node and all of its
-descendants.
+When using third-party libraries that **do not use** the Polymer DOM
+API, use the [`scopeSubtree`](../../api/#Polymer.Base:method-scopeSubtree){:target="_blank"}
+method to apply proper CSS scoping to a node and all of its descendants.
 
-    scopeSubtree(containerNode, false);
+1.  Create a container node inside your element's local DOM, and have your
+    third-party library create DOM under that container node.
 
-`containerNode` is the root node of the tree you wish to scope. Setting
-the second argument to `false` scopes the specified node and descendants
-once. Setting it to `true` enables a mutation observer that applies CSS
-scoping whenever `containerNode` or any of its descendants are modified.
+        <dom-module is="x-example">
+          <template>
+            <div id="container">
+            </div>
+          </template>
+        </dom-module>
 
-Example:
+2.  Call `scopeSubtree` on the container node.
 
-    ready: function() {
-      this.scopeSubtree(this.$.container, true);
-    }
+        ready: function() {
+          this.scopeSubtree(this.$.container, true);
+        }
+
+    `containerNode` is the root node of the tree you wish to scope. Setting
+    the second argument to `false` scopes the specified node and descendants
+    **once.** Setting it to `true` enables a mutation observer that applies CSS
+    scoping whenever `containerNode` or any of its descendants are modified.
+
+**Not for use on {{site.project_title}} elements.** If the subtree that you scope
+contains any {{site.project_title}} elements with local DOM, `scopeSubtree` will
+cause the descendants' local DOM to be styled incorrectly.
+{: .alert .alert-error }
+

@@ -10,16 +10,16 @@ subtitle: Developer guide
 
 
 You can declare properties on your custom element by adding them to
-the `properties` object on your prototype. Adding a property to the `properties` 
-object allows a user to configure the property from markup (see 
+the `properties` object on your prototype. Adding a property to the `properties`
+object allows a user to configure the property from markup (see
 [attribute deserialization](#attribute-deserialization) for details).
-**Any property that's part of your element's public API should be declared in the 
+**Any property that's part of your element's public API should be declared in the
 `properties` object.**
 
 In addition, the `properties` object can be used to specify:
 
-* Property type. 
-* Default value. 
+* Property type.
+* Default value.
 * Property change observer. Calls a method whenever the property value changes.
 * Read-only status. Prevents accidental changes to the property value.
 * Two-way data binding support. Fires an event whenever the property value changes.
@@ -60,7 +60,7 @@ The `properties` object supports the following keys for each property:
 Type: constructor (one of <code>Boolean</code>, <code>Date</code>, <code>Number</code>, <code>String</code>, <code>Array</code> or <code>Object</code>)<br>
 
 Attribute type, used for deserializing from an attribute. Unlike 0.5, the
-property's type is explicit, specified using the type's constructor. See 
+property's type is explicit, specified using the type's constructor. See
 <a href="#attribute-deserialization">attribute deserialization</a> for more information.
 
 </td>
@@ -73,13 +73,13 @@ Type: <code>boolean</code>, <code>number</code>, <code>string</code> or <code>fu
 Default value for the property. If <code>value</code> is a function, the function is
 invoked and the return value is used as the default value of the property. If
 the default value should be an array or object unique to the instance, create
-the array or object inside a function. See 
+the array or object inside a function. See
 <a href="#configure-values">Configuring default property values</a> for more information.
 </td>
 </tr>
 <tr>
 <td><code>reflectToAttribute</code></td>
-<td>Type: <code>boolean</code><br> 
+<td>Type: <code>boolean</code><br>
 
 Set to <code>true</code> to cause the corresponding attribute to be set on the host node
 when the property value changes. If the property value is Boolean, the attribute
@@ -92,14 +92,14 @@ more information.
 </tr>
 <tr>
 <td><code>readOnly</code></td>
-<td>Type: <code>boolean</code><br> 
+<td>Type: <code>boolean</code><br>
 
 If <code>true</code>, the property can't be set directly by assignment or data binding. See <a href="#read-only">Read-only properties</a>.
 </td>
 </tr>
 <tr>
 <td><code>notify</code></td>
-<td>Type: <code>boolean</code><br> 
+<td>Type: <code>boolean</code><br>
 
 If <code>true</code>, the property is available for two-way data binding. In addition, an
 event, <code><var>property-name</var>-changed</code> is fired whenever the
@@ -113,7 +113,7 @@ for more information.
 
 The value is interpreted as a method name and argument list. The method is invoked
 to calculate the value whenever any of the argument values changes. Computed
-properties are always read-only. See <a href="#computed-properties">Computed properties</a> 
+properties are always read-only. See <a href="#computed-properties">Computed properties</a>
 for more information.
 </td>
 </tr>
@@ -121,10 +121,10 @@ for more information.
 <td><code>observer</code></td>
 <td>Type: <code>string</code><br>
 
-The value is interpreted as a method name to be invoked when the property value 
-changes. Note that unlike in 0.5, <strong>property change handlers must be registered 
-explicitly.</strong> The <code><var>propertyName</var>Changed</code> method will not be 
-invoked automatically. See <a href="#change-callbacks">Property change callbacks (observers)</a> 
+The value is interpreted as a method name to be invoked when the property value
+changes. Note that unlike in 0.5, <strong>property change handlers must be registered
+explicitly.</strong> The <code><var>propertyName</var>Changed</code> method will not be
+invoked automatically. See <a href="#change-callbacks">Property change callbacks (observers)</a>
 for more information.
 </td>
 </tr>
@@ -134,15 +134,15 @@ for more information.
 
 For data binding, deserializing properties from attributes, and reflecting
 properties back to attributes, {{site.project_title}} maps attribute names to property
-names and the reverse. 
+names and the reverse.
 
 When mapping attribute names to property names:
 
 *   Attribute names are converted to lowercase property names. For example,
     the attribute `firstName` maps to `firstname`.
 
-*   Attribute names with _dashes_ are converted to _camelCase_ property names 
-    by capitalizing the character following each dash, then removing the dashes. 
+*   Attribute names with _dashes_ are converted to _camelCase_ property names
+    by capitalizing the character following each dash, then removing the dashes.
     For example, the attribute `first-name` maps to `firstName`.
 
 The same mappings happen in reverse when converting property names to attribute
@@ -167,13 +167,13 @@ directly as the value of the property in the `properties` object; otherwise it
 should be provided as the value to the `type` key in the `properties`
 configuration object.
 
-The type system includes support for Boolean and Number values, Object and Array values 
-expressed as JSON, or Date objects expressed as any Date-parsable string 
-representation. 
+The type system includes support for Boolean and Number values, Object and Array values
+expressed as JSON, or Date objects expressed as any Date-parsable string
+representation.
 
-Boolean properties are set based on the _presence_ of the attribute: 
-if the attribute exists at all, the property is set to `true`, regardless 
-of the attribute _value_. If the attribute is absent, the property 
+Boolean properties are set based on the _presence_ of the attribute:
+if the attribute exists at all, the property is set to `true`, regardless
+of the attribute _value_. If the attribute is absent, the property
 gets its default value.
 
 Example:
@@ -233,7 +233,7 @@ case should be used in the attribute name.  Example:
 **Note:** Deserialization occurs both at create time, and at runtime (for
 example, when the attribute is changed using `setAttribute`).  However, it is
 encouraged that attributes only be used for configuring properties in static
-markup, and instead that properties are set directly for changes at runtime. 
+markup, and instead that properties are set directly for changes at runtime.
 {: .alert .alert-info }
 
 ### Configuring boolean properties
@@ -244,7 +244,7 @@ If this behavior doesn't fit your use case, you can use a string-valued or numbe
 
 ### Configuring object and array properties
 
-For object and array properties you can pass an object or array in JSON format: 
+For object and array properties you can pass an object or array in JSON format:
 
     <my-element book='{ "title": "Persuasion", "author": "Austen" }'></my-element>
 
@@ -257,10 +257,10 @@ the `value` field.  The value may either be a primitive value, or a function
 that returns a value.
 
 If you provide a function, {{site.project_title}} calls the function once
-_per element instance_. 
+_per element instance_.
 
-When initializing a property to an object or array value, use a function to 
-ensure that each element gets its own copy of the value, rather than having 
+When initializing a property to an object or array value, use a function to
+ensure that each element gets its own copy of the value, rather than having
 an object or array shared across all instances of the element.
 
 Example:
@@ -268,20 +268,20 @@ Example:
     Polymer({
 
       is: 'x-custom',
-       
+
       properties: {
-      
+
         mode: {
           type: String,
           value: 'auto'
         },
-        
+
         data: {
           type: Object,
           notify: true,
           value: function() { return {}; }
         }
-      
+
       }
 
     });
@@ -325,7 +325,7 @@ Example:
     });
 
 **Compatibility note:** The argument order for change handlers is currently the
-**opposite** of the order used in 0.5. 
+**opposite** of the order used in 0.5.
 {: .alert .alert-info }
 
 Property change observation is achieved in Polymer by installing setters on the
@@ -335,14 +335,14 @@ observation via `Object.observe` or dirty checking, for example).
 ### Observing changes to multiple properties {#multi-property-observers}
 
 To observe changes to a set of properties, use the `observers`
-array.  
+array.
 
 These observers differ from single-property observers in a few ways:
 
-*   Observers are not invoked until all dependent properties are defined (`!== undefined`).  
-    So each dependent properties should have a default `value` defined in `properties` (or otherwise 
+*   Observers are not invoked until all dependent properties are defined (`!== undefined`).
+    So each dependent properties should have a default `value` defined in `properties` (or otherwise
     be initialized to a non-`undefined` value) to ensure the observer is called.
-*   Observers do not receive `old` values as arguments, only new values.  Only single-property 
+*   Observers do not receive `old` values as arguments, only new values.  Only single-property
     observers defined in the `properties` object receive both `old` and `new` values.
 
 Example:
@@ -377,13 +377,13 @@ To observe changes in object sub-properties:
 *   Define an `observers` array.
 *   Add an item to the `observers` array. The item must be a method name
     followed by a comma-separated list of one or more paths. For example,
-    `onNameChange(dog.name)` for one path, or 
+    `onNameChange(dog.name)` for one path, or
     `onNameChange(dog.name, cat.name)` for multiple paths. Each path is a
     sub-property that you want to observe.
 *   Define the method in your element prototype. When the method is called,
     the argument to the method is the new value of the sub-property.
 
-In order for Polymer to properly detect the sub-property change, the 
+In order for Polymer to properly detect the sub-property change, the
 sub-property must be updated in one of the following two ways:
 
 *   Via a [property binding](data-binding.html#property-binding).
@@ -407,14 +407,14 @@ Example:
               }
             }
           },
-          // Each item of observers array is a method name followed by 
+          // Each item of observers array is a method name followed by
           // a comma-separated list of one or more paths.
           observers: [
             'userNameChanged(user.name)'
           ],
-          // Each method referenced in observers must be defined in 
+          // Each method referenced in observers must be defined in
           // element prototype. The argument to the method is the new value
-          // of the sub-property. 
+          // of the sub-property.
           userNameChanged: function(name) {
             console.log('new name: ' + name);
           },
@@ -424,13 +424,13 @@ Example:
 
 ### Observe array mutations {#array-observation}
 
-Use an array mutation observer to call an observer function whenever an array 
-item is added or deleted via `push`, `pop`, `shift`, `unshift`, or `splice`. 
-Whenever the array is mutated, the observer receives a change record 
+Use an array mutation observer to call an observer function whenever an array
+item is added or deleted via `push`, `pop`, `shift`, `unshift`, or `splice`.
+Whenever the array is mutated, the observer receives a change record
 representing the mutation as a set of array splices.
 
-In many cases, you'll want to observe both array mutations **and** changes to 
-sub-properties of array items, in which case you should use a [deep 
+In many cases, you'll want to observe both array mutations **and** changes to
+sub-properties of array items, in which case you should use a [deep
 sub-property observer](#deep-observation).
 
 **Never use the built-in JavaScript array methods to splice your arrays.**
@@ -447,22 +447,22 @@ in your `observers` array.
     ]
 
 Your observer method should accept a single argument. When your observer method
-is called, it receives a change record of the mutations that 
+is called, it receives a change record of the mutations that
 occurred on the array. Each change record provides the following properties:
 
-*   `indexSplices`. The set of changes that occurred to the array, in 
-     terms of array indexes. Each `indexSplices` record contains the following 
+*   `indexSplices`. The set of changes that occurred to the array, in
+     terms of array indexes. Each `indexSplices` record contains the following
      properties:
 
      -   `index`. Position where the splice started.
      -   `removed`. Array of `removed` items.
-     -   `addedCount`. Number of new items inserted at `index`. 
+     -   `addedCount`. Number of new items inserted at `index`.
 
 *   `keySplices`. The set of changes that occurred to the array in terms
-    of array keys. Each `keySplices` record contains the following properties: 
+    of array keys. Each `keySplices` record contains the following properties:
 
     -   `added`. Array of added keys.
-    -   `removed`. Array of removed keys. 
+    -   `removed`. Array of removed keys.
 
 Example:
 
@@ -509,20 +509,20 @@ observer is a change record object with the following properties:
 *   `path`. Path to the property that changed. Use this to determine whether
     a property changed, a sub-property changed, or an array was mutated.
 *   `value`. New value of the path that changed.
-*   `base`. The object matching the non-wildcard portion of the path. 
+*   `base`. The object matching the non-wildcard portion of the path.
 
-For array mutations, `path` is the path to the array that changed, 
-followed by `.splices`. And the change record includes the `indexSplices` and 
-`keySplices` properties described in 
+For array mutations, `path` is the path to the array that changed,
+followed by `.splices`. And the change record includes the `indexSplices` and
+`keySplices` properties described in
 [Observe array mutations](#array-observation).
 
 Example:
 
     <dom-module id="x-deep-observer">
       <template>
-        <input value="{% raw %}{{user.name.first::input}}{% endraw %}" 
+        <input value="{% raw %}{{user.name.first::input}}{% endraw %}"
                placeholder="First Name">
-        <input value="{% raw %}{{user.name.last::input}}{% endraw %}" 
+        <input value="{% raw %}{{user.name.last::input}}{% endraw %}"
                placeholder="Last Name">
       </template>
       <script>
@@ -549,18 +549,18 @@ Example:
 
 #### Deep sub-property changes on array items
 
-When a sub-property of an array is modified, `changeRecord.path` references 
-the "key" of the array item that was modified, not the array index. For 
+When a sub-property of an array is modified, `changeRecord.path` references
+the "key" of the array item that was modified, not the array index. For
 example:
 
     console.log(changeRecord.path); // users.#0.name
 
-`#0` signifies the key of this example array item. All keys are prefixed 
+`#0` signifies the key of this example array item. All keys are prefixed
 with a number sign (`#`) by convention to distinguish them from array indexes.
 Keys provide stable references to array items, regardless of any splices
 (additions or removals) on the array.
 
-If for some reason you need a reference to the index of an array item, you 
+If for some reason you need a reference to the index of an array item, you
 can retrieve it via the `Polymer.Collection` internal abstraction:
 
    var collection = Polymer.Collection.get(changeRecord.base);
@@ -572,7 +572,7 @@ When modifying arrays, a set of array mutation methods are provided on {{site.pr
 element prototypes which mimic `Array.prototype` methods, with the exception that
 they take a `path` string as the first argument.  The `path` argument identifies
 an array on the element to mutate, with the following arguments matching those
-of the native `Array` methods.  
+of the native `Array` methods.
 
 These methods perform the mutation action on
 the array, and then notify other elements that may be bound to the same
@@ -615,13 +615,13 @@ Example:
 
 #### Using native array mutation methods {#notifysplices}
 
-Whenever possible you should always use Polymer's 
+Whenever possible you should always use Polymer's
 [array mutation methods](#array-mutation). However, this isn't always
 possible. For example, you may be using a third-party library
-that does not use Polymer's array mutation methods. 
-In these scenarios you can call 
-[`notifySplices`](/{% polymer_version_dir %}/api/#Polymer.Base:method-notifySplices) 
-after each mutation to ensure that any Polymer elements observing the array 
+that does not use Polymer's array mutation methods.
+In these scenarios you can call
+[`notifySplices`](/{% polymer_version_dir %}/api/#Polymer.Base:method-notifySplices){:target="_blank"}
+after each mutation to ensure that any Polymer elements observing the array
 are properly notified of the changes.
 
 ## Property change notification events (notify) {#notify}
@@ -661,7 +661,7 @@ generated setter of the convention <code>_set<var>Property</var>(value)</code>.
       });
     </script>
 
-For more on read-only properties and data binding, see 
+For more on read-only properties and data binding, see
 [Property change notification and two-way binding](data-binding.html#property-notification).
 
 ## Computed properties {#computed-properties}
@@ -669,27 +669,27 @@ For more on read-only properties and data binding, see
 Polymer supports virtual properties whose values are calculated from other
 properties.
 
-To define a computed property, add it to the `properties` object with a 
+To define a computed property, add it to the `properties` object with a
 `computed` key mapping to a computing function:
 
     fullName: {
       type: String,
       computed: 'computeFullName(first, last)'
-    } 
+    }
 
 
-The function is provided as a string with dependent properties as arguments 
-in parenthesis. The function will be called once for any change to 
+The function is provided as a string with dependent properties as arguments
+in parenthesis. The function will be called once for any change to
 the dependent properties.
 
-The computing function is not invoked until **all** dependent properties 
-are defined (`!== undefined`). So each dependent properties should have a 
-default `value` defined in `properties` (or otherwise be initialized to a 
+The computing function is not invoked until **all** dependent properties
+are defined (`!== undefined`). So each dependent properties should have a
+default `value` defined in `properties` (or otherwise be initialized to a
 non-`undefined` value) to ensure the property is computed.
 
-**Note:** The definition of a computing function looks like the 
+**Note:** The definition of a computing function looks like the
 definition of a [multi-property observer](#multi-property-observers),
-and the two act almost identically. The only difference is that the 
+and the two act almost identically. The only difference is that the
 computed property function returns a value that's exposed as a virtual property.
 {: .alert .alert-info }
 
@@ -715,7 +715,7 @@ computed property function returns a value that's exposed as a virtual property.
               // when `first` or `last` changes `computeFullName` is called once
               // and the value it returns is stored as `fullName`
               computed: 'computeFullName(first, last)'
-            } 
+            }
 
           },
 
@@ -728,15 +728,15 @@ computed property function returns a value that's exposed as a virtual property.
 
     </dom-module>
 
-  
 
-Arguments to computing functions may be simple properties on the element, as 
-well as any of the arguments types supported by `observers`, including [paths](#observing-path-changes), 
-[paths with wildcards](#deep-observation), and [paths to array splices](#array-observation).  
+
+Arguments to computing functions may be simple properties on the element, as
+well as any of the arguments types supported by `observers`, including [paths](#observing-path-changes),
+[paths with wildcards](#deep-observation), and [paths to array splices](#array-observation).
 The arguments received by the computing function match those described in the sections referenced above.
 
 **Note:** If you only need a computed property for a data binding, you
-can use a computed binding instead. See 
+can use a computed binding instead. See
 [Computed bindings](data-binding.html#annotated-computed).
 {: .alert .alert-info }
 
@@ -767,7 +767,7 @@ to the property to be serialized out to an attribute of the same name.
 
 ### Attribute serialization {#attribute-serialization}
 
-When reflecting a property to an attribute or 
+When reflecting a property to an attribute or
 [binding a property to an attribute](data-binding.html#attribute-binding),
 the property value is _serialized_ to the attribute.
 
@@ -775,8 +775,8 @@ By default, values are serialized according to value's  _current_ type
 (regardless of the property's `type` value):
 
 *   `String`. No serialization required.
-*   `Date` or `Number`. Serialized using  `toString`.  
+*   `Date` or `Number`. Serialized using  `toString`.
 *   `Boolean`. Results in a non-valued attribute to be either set (`true`) or removed (`false`).
-*   `Array` or `Object`. Serialized using `JSON.stringify`. 
+*   `Array` or `Object`. Serialized using `JSON.stringify`.
 
 To supply custom serialization for a custom element, override your element's `serialize` method.
