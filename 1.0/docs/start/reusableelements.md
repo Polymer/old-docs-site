@@ -110,7 +110,7 @@ This allows you to:
 * Provide a summary of what your element does.
 * Automatically group your documentation by attributes, methods and events.
 * Show an example of your element in action.
-* Link up to an element [demo](http://polymerlabs.github.io/seed-element/components/seed-element/demo.html).
+* Link up to an element demo.
 
 
 ## Publish
