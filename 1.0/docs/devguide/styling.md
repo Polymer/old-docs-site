@@ -512,7 +512,7 @@ special features of Polymer's styling system:
     not leak into local DOM when running on browsers without native Shadow
     DOM.
 
-*   Custom properties used by Polymer's experimental
+*   Custom properties used by Polymer's
     [shim for cross-scope styling](#xscope-styling-details) may be defined in an
     `custom-style`. Use the `:root` selector to define custom properties that apply
     to all custom elements.
