@@ -8,11 +8,27 @@ subtitle: Developer guide
 
 {% include toc.html %}
 
-
 Polymer uses [Shadow DOM styling
 rules](http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/) for
-providing scoped styling of the element's local DOM.  Scoped styles should be
-provided via `<style>` tags placed inside the element's local DOM `<template>`.
+providing scoped styling of the element's local DOM. This allows elements to
+create style rules that will only apply to the element's light DOM or local
+DOM, as well as advanced theming with CSS custom properties and CSS mixins.
+
+Scoped styles should be provided via `<style>` tags placed inside the element's
+local DOM `<template>`.
+
+To place styles outside of the element, or share styles between elements, you
+can create a [style module](#style-modules).
+
+**NOTE: I think a nice introduction, without code, works a lot better. I also added a brief explanation.**
+
+# Styling the local DOM
+
+**NOTE: I think it's nice to introduce the "super-basic" example of shadow dom styling, without ::content**
+
+Here is a basic example of an element that uses `<style>` to style its local
+DOM. Note that any other element of class `child-element` within the page will
+not be affected:
 
 
     <dom-module id="my-element">
@@ -24,92 +40,148 @@ provided via `<style>` tags placed inside the element's local DOM `<template>`.
             display: block;
             border: 1px solid red;
           }
-          #child-element {
+          /* In shady DOM this will become `.child-element.my-element {` */
+          .child-element {
             background: yellow;
           }
-          /* styling elements distributed to content (via ::content) requires */
-          /* selecting the parent of the <content> element for compatibility with */
-          /* shady DOM . This can be :host or a wrapper element. */
-          .content-wrapper ::content > .special {
-            background: orange;
-          }
+
         </style>
 
-        <div id="child-element">In local DOM!</div>
-        <div class="content-wrapper"><content></content></div>
+        <div class="child-element">In local DOM!</div>
+        <content></content>
 
       </template>
 
       <script>
-
           Polymer({
               is: 'my-element'
           });
-
       </script>
 
     </dom-module>
 
-To place styles outside of the element, or share styles between elements, you can create
-a [style module](#style-modules).
+In the page, you might have:
+
+    <my-element>
+        <!-- In shady DOM the class is "child-element style-scope my-element" -->
+        <div class="child-element">In light DOM!</div>
+    </my-element>
+
+And see that only `In local DOM` has a yellow background.
 
 **Note:**  Prior to Polymer 1.1, the recommendation was to place `<style>` tags
 inside the `<dom-module>` for an element (but _outside_ the `<template>`). This
  is still supported, but is no longer recommended.
 {: .alert .alert-info }
 
+**NOTE: I like introducing what shadow DOM styling SHOULD be like, and then explain what we should do with shady DOM, and why.**
 
-### Styling distributed children (::content)
+#### Shim limitations
 
-Under shady DOM, the `<content>` tag doesn't appear in the DOM tree. Styles are rewritten to remove the
-`::content` pseudo-element, **and any combinator immediately to the left of `::content`.**
-
-This implies:
-
-*   You must have a selector to the left of the `::content` pseudo-element.
-
-        :host ::content div
-
-    Becomes:
-
-        x-foo div
-
-    (Where `x-foo` is the name of the custom element.)
-
-*   To limit styles to elements inside the ::content tag, add a wrapper element around the
-    `<content>` element. This is especially important when using a child combinator (`>`) to
-    select top-level children.
-
-        <dom-module id="my-element">
-
-          <template>
-
-            <style>
-              .content-wrapper ::content > .special {
-                background: orange;
-              }
-            </style>
-
-            <div class="content-wrapper"><content></content></div>
-
-          </template>
-
-        </dom-module>
-
-    In this case, the rule:
-
-        .content-wrapper ::content > .special
-
-    Becomes:
-
-        .content-wrapper > .special
+There is no need to do any special workaround in this simple case, since shady
+DOM will automatically change the style as well as the element's class to make
+sure that styling in the local DOM doesn't leak out of `my-element` by adding a
+required class, `my-element`, to the created element (and to the selector).
 
 
+### Styling distributed children (`::content`)
+
+In shadow DOM, you can style an element's light DOM using the `::content` pseudo element. So, you can do this:
+
+    <dom-module id="my-element">
+
+      <template>
+
+        <style>
+          /* WARNING: This does NOT work in shady DOM */
+          ::content > .special {
+            background: orange;
+          }
+        </style>
+
+       <div class="special">This should not be affected</div>
+       <content></content>
+      </template>
+
+      <script>
+          Polymer({
+              is: 'my-element'
+          });
+      </script>
+
+    </dom-module>
+
+
+In shadow DOM, the `.special` class will only ever affect elements in the light
+DOM. So when you use your element:
+
+    <my-element>
+        <div class="special">This should be special!</div>
+    </my-element>
+
+Only `This should be special!` will have an orange background.
+
+#### Shim limitations
+
+Shady DOM is much more limited than shadow DOM.
+
+Under shady DOM,  the `<content>` tag doesn't appear in the DOM tree, and styles
+are rewritten to remove the `::content` pseudo-element **as well as and any
+combinator immediately to the left of `::content`.** (E.g. `> :: content` where `>`
+is the combinator before it).
+
+Using shady DOM, the example above sees the style `::content > .special {`
+is rewritten as `my-element > .special`. This means that the rule will not apply
+just to the light DOM (as it should), but to the local DOM too (which it
+shouldn't).
+
+**NOTE: The original documentation is very confusing here, as it says that you must have a selector before `::content` (for example `:host`), but in my experience that doesn't actually do anything since BOTH `:host ::content div` and `::content div` becomes `element div` (which is obviously not enough). I wonder if adding `element` was a recent-ish addition, and earlier versions of polymer had `::content div` turn into a dangerous, leaky `div`!**
+
+This means that if you want to target only and only the light DOM, you will need
+to wrap `<content></content>` in a `div`, and target that specific `div` in your
+rules:
+
+    <dom-module id="my-element">
+
+      <template>
+
+        <style>
+          .content-wrapper ::content > .special {
+            background: orange;
+          }
+        </style>
+
+        <div class=".special">I am not special!</div>
+        <div class="content-wrapper"><content></content></div>
+
+      </template>
+
+      <script>
+          Polymer({
+              is: 'my-element'
+          });
+      </script>
+
+    </dom-module>
+
+In this case, the rule:
+
+    .content-wrapper ::content > .special
+
+Becomes:
+
+    .content-wrapper.my-element  > .special
+
+**NOTE: I have a bit of a problem here as the chapter hasn't yet introduced**
+**custom properties, and yet it warns "Custom properties can't style distributed**
+**children. I am commenting this warning out for now**
+
+<!--
 **Custom properties can't style distributed children.** The {{site.project_title}}
 [custom properties]({#xscope-styling-details) shim doesn't support styling
 distributed children.
 {: .alert .alert-info }
-
+-->
 
 ## Cross-scope styling {#xscope-styling}
 
@@ -138,6 +210,10 @@ provided to address the theming problem was the `/deep/` combinator and `::shado
 pseudo-element, which allowed writing rules that pierce through the Shadow DOM
 encapsulation boundary. However, these proved problematic and have been deprecated.
 {: .alert .alert-info }
+
+The recommended current way of affecting the look of an element's local DOM is by using
+custom CSS properties and custom CSS mixins, which offer great flexibility without
+paying the price of giving up encapsulation.
 
 ### Custom CSS properties {#xscope-styling-details}
 
@@ -179,7 +255,7 @@ Example:
           }
         </style>
 
-        <span class="title">{%raw%}{{title}}{%endraw%}</span>
+        <span class="title">{{title}}</span>
 
       </template>
 
@@ -197,7 +273,6 @@ Example:
 Example usage of `my-toolbar`:
 
     <dom-module id="my-element">
-
 
       <template>
 
@@ -229,20 +304,20 @@ Example usage of `my-toolbar`:
     </dom-module>
 
 The `--my-toolbar-title-color` property only affects the color of the title
-element encapsulated in `my-toolbar`'s internal implementation.  In the
-future the `my-toolbar` author can rename the `title` class or
-restructure the internal details of `my-toolbar` without changing the custom
-property exposed to users.
+element encapsulated in `my-toolbar`'s internal implementation.  In the future
+the `my-toolbar` author can rename the `title` class or restructure the internal
+details of `my-toolbar` without changing the custom property exposed to users.
 
-You can also include a default value in the `var()` function, to use in case the user
-doesn't set the custom property:
+You can also include a default value in the `var()` function, to use in case the
+user doesn't set the custom property:
 
     color: var(--my-toolbar-title-color, blue);
 
 Thus, custom CSS properties introduce a powerful way for element authors to
 expose a theming API to their users in a way that naturally fits right alongside
-normal CSS styling. It is,already on a standards track with support in
-Firefox and planned support announced in Chrome and Safari.
+normal CSS styling. It is,already on a standards track with support in Firefox
+and planned support announced in Chrome and Safari.
+
 
 ### Custom CSS mixins
 
@@ -290,11 +365,15 @@ Example:
           }
         </style>
 
-        <span class="title">{%raw%}{{title}}{%endraw%}</span>
+        <span class="title">{{title}}</span>
 
       </template>
 
-      ...
+      <script>
+        Polymer({
+          is: 'my-toolbar'
+        })
+      </script>
 
     </dom-module>
 
@@ -308,9 +387,9 @@ Example usage of `my-toolbar`:
           /* Apply custom theme to toolbars */
           :host {
             --my-toolbar-theme: {
-              background-color: green;
+              background-color: gray;
               border-radius: 4px;
-              border: 1px solid gray;
+              border: 1px solid black;
             };
             --my-toolbar-title-theme: {
               color: green;
@@ -342,112 +421,195 @@ Example usage of `my-toolbar`:
 
 ### Custom property API for {{site.project_title}} elements {#style-api}
 
-{{site.project_title}}'s custom property shim evaluates and applies custom property values once
-at element creation time.  In order to have an element (and its subtree) re-
-evaluate custom property values due to dynamic changes such as application of
-CSS classes, etc., call the [`updateStyles`](../../api/#Polymer.Base:method-updateStyles){:target="_blank"}
-method on the element. To update all elements on the page, you can also call
-`Polymer.updateStyles`.
+You can directly modify a {{site.project_title}} element's custom property by
+setting key-value pairs in
+[`customStyle`](../../api/#Polymer.Base:property-customStyle) on the element.
+This is analogous to setting `style` on an element.
 
-You can  directly modify a {{site.project_title}} element's custom property by setting
-key-value pairs in [`customStyle`](../../api/#Polymer.Base:property-customStyle) on the
-element (analogous to setting `style`) and then calling `updateStyles`. Or you can pass
-a dictionary of property names and values as an argumen to `updateStyles`.
+Note that in shady DOM you then need to call `updateStyles()` in order for the
+change to take effect. You can also pass a dictionary of property names and
+values as an argumen to `updateStyles`. See the next section for details about
+the shim's limitations.
 
 To get the value of a custom property on an element, use
 [`getComputedStyleValue`](../../api/#Polymer.Base:method-getComputedStyleValue){:target="_blank"}.
 
-
-Example:
-
-    <dom-module id="x-custom">
-
-      <template>
-
-        <style>
-          :host {
-            --my-toolbar-color: red;
-          }
-        </style>
-
-        <my-toolbar>My awesome app</my-toolbar>
-        <button on-tap="changeTheme">Change theme</button>
-
-      </template>
-
-      <script>
-        Polymer({
-          is: 'x-custom',
-          changeTheme: function() {
-            this.customStyle['--my-toolbar-color'] = 'blue';
-            this.updateStyles();
-          }
-        });
-      </script>
-
-    </dom-module>
-
-### Custom properties shim limitations
+### Shim limitations
 
 Cross-platform support for custom properties is provided in Polymer by a
 JavaScript library that **approximates** the capabilities of the CSS Variables
 specification  *for the specific use case of theming custom elements*, while
 also extending it to add the capability to mixin property sets to rules as
-described above. For performance reasons, {{site.project_title}} **does
-not attempt to replicate all aspects of native custom properties.**
-The shim trades off aspects of the full dynamism possible in CSS in the
-interests of practicality and performance.
+described above. For performance reasons, {{site.project_title}} **does not
+attempt to replicate all aspects of native custom properties.** The shim trades
+off aspects of the full dynamism possible in CSS in the interests of
+practicality and performance.
 
 Below are current limitations of the shim. Improvements to performance and
 dynamism will continue to be explored.
 
 #### Dynamism limitations
 
-Only property definitions which match the element at *creation time* are applied.
-Any dynamic changes that update property values are not applied automatically. You
-can force styles to be re-evaluated by calling the
-[`updateStyles`](../../api/#Polymer.Base:method-updateStyles){:target="_blank"} method on a
-{{site.project_title}} element, or `Polymer.updateStyles` to update all element
-styles.
+{{site.project_title}}'s custom property shim evaluates and applies custom
+property values once at element creation time.  In order to have an element (and
+its subtree) re- evaluate custom property values due to dynamic changes such as
+application of CSS classes, changes to the ``customStyles` object etc., call the
+[`updateStyles`](../../api/#Polymer.Base:method-updateStyles){:target="_blank"}
+method on the element. To update all elements on the page, you can also call
+`Polymer.updateStyles`.
 
-For example, given this markup inside an element:
+Example:
 
-    HTML:
+    <!-- this is the same my-toolbar seen earlier -->
+    <dom-module id="my-toolbar">
 
-        <div class="container">
-          <x-foo class="a"></x-foo>
-        </div>
+      <template>
 
-    CSS:
+        <style>
+          :host {
+            padding: 4px;
+            background-color: gray;
+          }
+          .title {
+            color: var(--my-toolbar-title-color);
+          }
+        </style>
 
-        /* applies */
-        x-foo.a {
-          --foo: brown;
-        }
-        /* does not apply */
-        x-foo.b {
-          --foo: orange;
-        }
-        /* does not apply to x-foo */
-        .container {
-          --nog: blue;
-        }
+        <span class="title">{{title}}</span>
 
-After adding class `b` to `x-foo` above, the host element must call `this.updateStyles`
-to apply the new styling. This re-calculates and applies styles down the tree from this point.
+      </template>
+
+      <script>
+        Polymer({
+          is: 'my-toolbar',
+          properties: {
+            title: String
+          }
+        });
+      </script>
+
+    </dom-module>
+
+
+    <dom-module id="my-element">
+
+      <template>
+
+        <style>
+          :host {
+            --my-toolbar-title-color: red;
+          }
+        </style>
+
+        <my-toolbar title="My awesome app"></my-toolbar>
+        <button on-tap="changeTheme">Change theme</button>
+
+      </template>
+
+      <script>
+        Polymer({
+          is: 'my-element',
+          changeTheme: function() {
+            console.log("Currently the style is:", this.getComputedStyleValue('--my-toolbar-title-color') );
+            this.customStyle['--my-toolbar-title-color'] = 'blue';
+            this.updateStyles();
+            console.log("After the change, the style is:", this.getComputedStyleValue('--my-toolbar-title-color') );
+          }
+        });
+      </script>
+
+    </dom-module>
+
+As you can see, from this code, `my-element` needs to call `this.updateStyles`,
+or the change in the `--my-toolbar-title-color` custom property won't be carried
+on to `my-toolbar`
 
 Dynamic effects **are** reflected at the point of a property's application.
 
-For the following example, adding/removing the `highlighted` class on the `#title` element will
-have the desired effect, since the dynamism is related to *application* of a custom property.
+For the following example, adding/removing the `urgent` class on the
+`<my-toolbar>` element will have the desired effect, since the dynamism is
+related to *application* of a custom property.
 
-    #title {
-      background-color: var(--title-background-normal);
-    }
+**NOTE: as a selector, I used `:host.urgent span.title` rather than
+**:host(.urgent) span.title mainly because the :host(.selector) syntax hasn't
+**been used at all in the guide before now. I hope it's OK and it's "formally"
+**correct**
 
-    #title.highlighted {
-      background-color: var(--title-background-highlighted);
-    }
+
+<dom-module id="my-toolbar">
+
+  <template>
+
+    <style>
+      :host {
+        padding: 4px;
+        background-color: gray;
+      }
+
+      span.title {
+        color: var(--my-toolbar-title-color)
+       }
+
+      :host.urgent span.title {
+        color: var(--my-toolbar-title-color-urgent)
+       }
+
+    </style>
+
+    <span class="title">{{title}}</span>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-toolbar',
+      properties: {
+        title: String
+      }
+    });
+  </script>
+
+</dom-module>
+
+
+<dom-module id="my-element">
+
+  <template>
+
+    <style>
+      :host {
+        --my-toolbar-title-color: black;
+        --my-toolbar-title-color-urgent: red;
+      }
+    </style>
+
+    <my-toolbar id="one" title="My awesome toolbar, normal"></my-toolbar>
+    <my-toolbar id="two" title="My awesome toolbar, urgent" class="urgent"></my-toolbar>
+    <button on-tap="changeTheme">Change theme</button>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-element',
+      changeTheme: function() {
+        this.$.one.className += " urgent";
+        console.log("HERE!");
+      }
+    });
+  </script>
+
+</dom-module>
+
+Here, `my-toolbar` offers a really good example of how custom property values
+can be used efficiently to theme an element: the selector `:host.urgent
+span.title` _within_ `my-toolbar` is able to check, thanks to `:host`, if the
+host element itself has a specific class assigned to it (in this case,
+`urgent`). Remember that `my-element` has no access to the toolbar's local DOM.
+So, it's unable to add classes to the `<span>` within the toolbar. However, by
+adding a class to the _toolbar itself_ (the "host" element), and then making
+sure that the toolbar's local DOM is styled according to clases added to the
+host itself, will ensure encapsulation and themability.
 
 #### Inheritance limitations
 
@@ -458,6 +620,8 @@ that scope.  **Within a given element's local DOM scope, a custom property can
 only have a single value.**  Calculating property changes within a scope would be
 prohibitively expensive for the shim and is not required to achieve cross-scope
 styling for custom elements, which is the primary goal of the shim.
+
+For example:
 
     <dom-module id="my-element">
 
@@ -491,15 +655,118 @@ styling for custom elements, which is the primary goal of the shim.
 
     </dom-module>
 
+A more complex example that shows the difference between custom elements and normal ones:
+
+    <my-element></my-element>
+
+    <!-- this is the same my-toolbar seen earlier -->
+    <dom-module id="my-toolbar">
+
+      <template>
+
+        <style>
+          :host {
+            padding: 4px;
+            background-color: gray;
+          }
+          .title {
+            color: var(--my-toolbar-title-color);
+          }
+        </style>
+
+        <span class="title">{{title}}</span>
+
+      </template>
+
+      <script>
+        Polymer({
+          is: 'my-toolbar',
+          properties: {
+            title: String
+          }
+        });
+      </script>
+    </dom-module>
+
+
+    <dom-module id="my-element">
+
+      <template>
+
+        <style>
+
+          :host {
+            --my-toolbar-title-color: red;
+          }
+
+          span {
+            --my-toolbar-title-color: black;
+          }
+
+          span {
+            color: var(--my-toolbar-title-color)
+          }
+        </style>
+
+        <my-toolbar title="My awesome app"></my-toolbar>
+
+        <span>I will start red, and turn blue </span>
+
+        <button on-tap="changeTheme">Change theme</button>
+
+      </template>
+
+      <script>
+        Polymer({
+          is: 'my-element',
+          changeTheme: function() {
+
+            this.customStyle['--my-toolbar-title-color'] = 'blue';
+            this.updateStyles();
+          }
+        });
+      </script>
+
+    </dom-module>
+
+So, why did the `span` start as red? If the shim was limit-less, the rule
+`span { --my-toolbar-title-color: black; } would have insured that the span
+inherited the right value for `--my-toolbar-title-color`, and therefore started
+as black.
+
+**NOTE: This is what I made up after spending a few hours on documentation, specifications and Polymer's code. I am 98% unsure that I wrote something that makes sense. However, I really really think something along those lines would be highly beneficial to understand fully the shim's limitations. Maybe it's totally oversimplified, but at least it gives developers a sense of what's going on...**
+
+What happened here is simple. When the CSS was parsed and the elements created:
+
+* When `<my-element>` was instanced (thanks to `<my-element></my-element>`),
+ it assigned the value `red`  to the custom property `--my-toolbar-title-color`.
+ Remember that an element can only hold one value for a custom property: in
+ this case, it will be `red`.
+
+* When `<my-toolbar>` was instanced, Polymer assigned the value `red` to the
+  custom property `--my-toolbar-title-color` (_within `<my-toolbar>`'s scope_).
+  Since `my-toolbar` is a custom element, the shim did the hard work of
+  1) resolving correctly `--custom-color` depending on CSS rules of `my-element`
+  2) Assigning the correct value for `--custom-color` to `my-toolbar`'s scope.
+
+* When `<span>` was instanced, since it was a normal (non-Polymer) element,
+  Polymer didn't do anything speficic: in
+   `div { color: var(--my-toolbar-title-color); }`, the custom property
+   `--my-toolbar-title-color` was resolved as `red`.
+
+**NOTE: I am not sure why having this in my-element's CSS: `my-toolbar { --my-toolbar-title-color: pink; }` WORKS, but then when I tap on the button, it fails to turn blue: http://jsbin.com/goxofe/edit . If it's a bug, please tell me and I will report it. If it's WAI, it would ne great to know why :D**
 
 #### Styling distributed elements not supported
 
-The custom properties shim doesn't support styling distributed elements.
+The custom properties shim doesn't support styling distributed elements (using ::content).
 
     /* Not supported */
     :host ::content div {
       --custom-color: red;
     }
+
+This means that you will only be able to style element _within the element's
+local DOM_ while using custom properties.
 
 ## Custom element for document styling (custom-style) {#custom-style}
 
@@ -706,4 +973,3 @@ method to apply proper CSS scoping to a node and all of its descendants.
 contains any {{site.project_title}} elements with local DOM, `scopeSubtree` will
 cause the descendants' local DOM to be styled incorrectly.
 {: .alert .alert-error }
-
