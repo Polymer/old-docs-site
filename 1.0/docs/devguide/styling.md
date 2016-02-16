@@ -241,8 +241,7 @@ doesn't set the custom property:
 
 Thus, custom CSS properties introduce a powerful way for element authors to
 expose a theming API to their users in a way that naturally fits right alongside
-normal CSS styling. It is,already on a standards track with support in
-Firefox and planned support announced in Chrome and Safari.
+normal CSS styling. It is already on a standards track (currently in the candidate recommendation (CR) stage of the process) with support in Firefox, Safari, and [Chrome 49](https://www.chromestatus.com/features/6401356696911872).
 
 ### Custom CSS mixins
 
