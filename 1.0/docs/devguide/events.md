@@ -217,7 +217,7 @@ Example:
           }
         </style>
 
-        <div id="dragme" on-track="handleTrack">{{message}}</div>
+        <div id="dragme" on-track="handleTrack">{%raw%}{{message}}{%endraw%}</div>
 
       </template>
 
@@ -265,7 +265,7 @@ Example with `listeners`:
           }
         </style>
 
-        <div id="dragme">{{message}}</div>
+        <div id="dragme">{%raw%}{{message}}{%endraw%}</div>
 
       </template>
 
@@ -299,7 +299,6 @@ Example with `listeners`:
       </script>
 
     </dom-module>
-
 
 
 ## Event retargeting {#retargeting}
