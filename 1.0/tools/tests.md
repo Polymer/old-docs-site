@@ -59,9 +59,9 @@ Follow the steps below to get set up, or watch the Polycast:
 
         npm install -g web-component-tester
 
-    On Mac OS X you need to [manually install][selenium] the latest Safari 
-    extension for Selenium. See the 
-    [Web Component Tester Polycast][workaround-example] for 
+    On Mac OS X you need to [manually install][selenium] the latest SafariDriver
+    extension for Selenium [(`SafariDriver.safariextz`)][safaridriver]. See the
+    [Web Component Tester Polycast][workaround-example] for
     a demonstration.
 
 2.  `cd` to the base directory of the element.
@@ -442,7 +442,8 @@ about `wct` usage.
 
 [seed-element]: https://github.com/PolymerElements/seed-element
 [wct-readme]: https://github.com/Polymer/web-component-tester/blob/master/README.md
-[selenium]: https://code.google.com/p/selenium/issues/detail?id=7933#c23
+[selenium]: https://github.com/SeleniumHQ/selenium/wiki/SafariDriver#getting-started
+[safaridriver]: http://selenium-release.storage.googleapis.com/2.48/SafariDriver.safariextz
 [workaround-example]: https://youtu.be/YBNBr9ECXLo?t=74
 [wct-polycast]: https://youtu.be/YBNBr9ECXLo
 [ajax-polycast]: https://www.youtube.com/watch?v=_9qARcdCAn4
