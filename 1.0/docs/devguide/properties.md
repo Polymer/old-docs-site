@@ -324,9 +324,11 @@ Example:
 
     });
 
-**Compatibility note:** The argument order for change handlers is currently the
-**opposite** of the order used in 0.5.
-{: .alert .alert-info }
+**Warning:** A single property observer shouldn't rely on any other properties,
+sub-properties, or paths because the observer can be called while these 
+dependencies are undefined. See [Always include dependencies
+as observer arguments](#dependencies) for details.
+{: .alert alert-warning }
 
 Property change observation is achieved in Polymer by installing setters on the
 custom element prototype for properties with registered interest (as opposed to
@@ -623,6 +625,65 @@ In these scenarios you can call
 [`notifySplices`](/{% polymer_version_dir %}/api/#Polymer.Base:method-notifySplices){:target="_blank"}
 after each mutation to ensure that any Polymer elements observing the array
 are properly notified of the changes.
+
+### Always include dependencies as observer arguments {#dependencies}
+
+Observers shouldn't rely on any properties, sub-properties, or paths other 
+than those listed as arguments to the observer. This is because the observer 
+can be called while the other dependencies are still undefined. For example:
+
+    properties: {
+      firstName: {
+        type: String,
+        observer: 'nameChanged'
+      },
+      lastName: {
+        type: String
+      }
+    },
+    // WARNING: ANTI-PATTERN! DO NOT USE
+    nameChanged: function(newFirstName, oldFirstName) {
+      // this.lastName could be undefined!
+      console.log('new name:', newFirstName, this.lastName); 
+    }
+ 
+Note that {{project.site_title}} doesn't guarantee that properties are 
+initialized in any particular order. 
+
+In general, if your observer relies on multiple dependencies, use a 
+[multi-property observer](#multi-property-observers) and list every dependency
+as an argument to the observer. This ensures that all dependencies are 
+defined before the observer is called.
+
+    properties: {
+      firstName: {
+        type: String
+      },
+      lastName: {
+        type: String
+      }
+    },
+    observers: [
+      'nameChanged(firstName, lastName)'
+    ],
+    nameChanged: function(firstName, lastName) {
+      console.log('new name:', firstName, lastName); 
+    }
+
+If you must use a single property and must rely on other properties (for
+example, if you need access to the old value of the observed property, which
+you won't be able to access with a multi-property observer), 
+take the following precautions:
+
+*   Check that all dependecies are defined 
+    (for example, `if this.lastName !== undefined`) before using them in your 
+    observer.
+*   Set default values on the dependencies.
+
+Keep in mind, however, that the observer is only called when one of the
+dependencies listed in its arguments changes. For example, if an observer
+relies on `this.firstName` but does not list it as an argument, the observer
+is not called when `this.firstName` changes.
 
 ## Property change notification events (notify) {#notify}
 
