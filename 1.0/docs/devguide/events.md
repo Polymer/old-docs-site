@@ -53,13 +53,9 @@ Example:
 
     </dom-module>
 
-
-
-
-
 ## Annotated event listener setup {#annotated-listeners}
 
-To add event listeners to local-DOM children, use
+To add event listeners to local DOM children, use
 <code>on-<var>event</var></code>  annotations in your template. This often
 eliminates the need to give an element an `id` solely for  the purpose of
 binding an event listener.
@@ -67,26 +63,23 @@ binding an event listener.
 Example:
 
     <dom-module id="x-custom">
-
       <template>
-        <button on-click="handleClick">Kick Me</button>
+        <button on-tap="handleTap">Kick Me</button>
       </template>
-
       <script>
-
         Polymer({
-
           is: 'x-custom',
-
-          handleClick: function() {
+          handleTap: function() {
             alert('Ow!');
           }
-
         });
-
       </script>
-
     </dom-module>
+
+**Tip: Use `on-tap` rather than `on-click` for an event that fires consistently
+across both touch (mobile) and click (desktop) devices**. See [gesture 
+events](#gestures) for a complete list of reliable, cross-platform events.
+{: .alert .alert-info }
 
 Because the event name is specified using an HTML attribute, **the event name is always
 converted to lowercase**. This is because HTML attribute names are case
