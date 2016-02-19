@@ -10,7 +10,7 @@ subtitle: Developer guide
 
 {% include toc.html %}
 
-Reducing network requests is important for a performant app experience. In the {{site.project_title}} world, [Vulcanize](https://github.com/Polymer/vulcanize) is the name given to a build tool that lets you **concatenate** a set of elements and their HTML imported dependencies into a single file. Vulcanize recursively pulls in all your imports, flattens their dependencies and spits out something that can **reduce the number of network requests** your app makes.
+Reducing network requests is important for a performant app experience. In the {{site.project_title}} world, [Vulcanize](https://github.com/Polymer/vulcanize) is the name given to a build tool that lets you **concatenate** a set of elements and their HTML imported dependencies into a single file. Vulcanize recursively pulls in all your imports, flattens their dependencies and spits out something that can **reduce the number of network requests** your app makes. Additionally, the Polymer build tools can also be used to transform your code to run in an environment that enforces [content security policy (CSP)](#content-security-policy), including Chrome Apps and Extensions.
 
 **Note:** for more great info on performance considerations worth keeping in mind when using HTML Imports, see [HTML Imports - #include for the web](http://www.html5rocks.com/en/tutorials/webcomponents/imports/#performance)
 {: .alert .alert-info }
@@ -200,7 +200,7 @@ This results in a `elements.vulcanized.html` that looks a little like this:
 
 [Content Security Policy](http://en.wikipedia.org/wiki/Content_Security_Policy) (CSP) is a JavaScript security model that aims to prevent XSS and other attacks. In so doing, it prohibits the use of inline scripts.
 
-To use {{site.project_title}} in a CSP environment that doesn't support inline scripts, you can use the Crisper project. Crisper removes all scripts from the HTML Imports and places their contents into an output JavaScript file. This is useful in amongst other things, using {{site.project_title}} in a Chrome App.
+To use {{site.project_title}} in a CSP environment (such as a Chrome App or Extension), you can use the Crisper project. Crisper removes all scripts from the HTML Imports and places their contents into an external JavaScript file.
 
 <div class="yt-embed">
   <google-youtube
