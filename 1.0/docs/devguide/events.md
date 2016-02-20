@@ -337,24 +337,26 @@ Example:
           is: 'event-retargeting',
 
           listeners: {
-            'myButton.click': 'handleTap',
+            'myButton.click': 'handleClick',
           },
 
-          handleTap(e) {
-            console.info(e.target.id + ' was tapped.');
+          handleClick(e) {
+            console.info(e.target.id + ' was clicked.');
           }
 
         });
 
     </script>
 
-  </dom-module>
+    </dom-module>
 
-  <script>
-    document.querySelector('event-retargeting').addEventListener('click', function(){
-      var normalizedEventObject = Polymer.dom(event);
-      console.info('rootTarget is:', normalizedEventObject.rootTarget); // logs #myButton
-      console.info('localTarget is:', normalizedEventObject.localTarget); // logs an instance of event-targeting
-      console.info('path is:', normalizedEventObject.path); // logs [#myButton, document-fragment, event-retargeting, body, html, document, Window]
-    });
-  </script>
+    <event-retargeting></event-retargeting>
+
+    <script>
+      document.querySelector('event-retargeting').addEventListener('click', function(){
+        var normalizedEventObject = Polymer.dom(event);
+        console.info('rootTarget is:', normalizedEventObject.rootTarget); // logs #myButton
+        console.info('localTarget is:', normalizedEventObject.localTarget); // logs an instance of event-targeting that was originally queried
+        console.info('path is:', normalizedEventObject.path); // logs [#myButton, document-fragment, event-retargeting, body, html, document, Window]
+      });
+    </script>
