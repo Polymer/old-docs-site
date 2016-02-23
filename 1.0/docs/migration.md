@@ -658,7 +658,7 @@ Now you define these listeners on the `listeners` object on the prototype:
 
 For more info, see [Event listener setup](devguide/events.html#event-listeners) in the Developer guide.
 
-## Layout attributes replaced by layout classes and custom properties {#layout-attributes}
+## Layout attributes replaced by custom properties {#layout-attributes}
 
 The layout attributes stylesheet that's included in Polymer 0.5 has been
 replaced with an optional stylesheet that uses custom properties. If your element uses
@@ -744,19 +744,6 @@ source](https://github.com/PolymerElements/iron-flex-layout/blob/master/iron-fle
 For more examples of the layout properties in use, see the 
 [demo](https://elements.polymer-project.org/elements/iron-flex-layout?view=demo:demo/index.html).
 
-### Using the layout classes directly
-
-The layout classes can be imported and used similar to the layout attributes. This is useful if you want to use the classes from within the main page or do not want to define a style rule just to use one of the custom properties:
-
-Example of using the layout classes in the main page:
-
-    <head>
-      ...
-      <link rel="import" href="/bower_components/iron-flex-layout/classes/iron-flex-layout.html">
-    </head>
-    <body class="fullbleed layout horizontal center-center">
-     ...
-    </body>
 
 ## Use WebComponentsReady instead of polymer-ready {#polymer-ready}
 
