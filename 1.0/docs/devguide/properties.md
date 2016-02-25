@@ -626,14 +626,22 @@ are properly notified of the changes.
 
 ## Property change notification events (notify) {#notify}
 
-When a property is set to `notify: true`, an event,
-<code><var>property-name</var>-changed</code>, is fired whenever the property
-value changes. These events are used by the two-way data binding system, and can
-also notify external scripts and frameworks to respond to changes in the element.
+When a property is set to `notify: true`, an event is fired whenever the 
+property value changes. The event name is:
 
-For more on property change notifications and data binding, see  [Property
-change notification and two-way binding](data-binding.html#property-notification).
+<code><var>property-name</var>-changed</code>
 
+Where <code><var>property-name</var></code> is the dash-case version of 
+the property name. For example, a change to `this.firstName` fires 
+`first-name-changed`. 
+
+These events are used by the two-way data binding system. External 
+scripts can also listen for events (such as `first-name-changed`) 
+directly using `addEventListener`.
+
+For more on property change notifications and data binding, see 
+[Property change notification and two-way 
+binding](data-binding.html#property-notification).
 
 ## Read-only properties {#read-only}
 
