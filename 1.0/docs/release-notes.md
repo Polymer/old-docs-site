@@ -15,6 +15,272 @@ subtitle: About this release
   }
 </style>
 
+
+## [Release 1.3.0](https://github.com/Polymer/polymer/tree/v1.3.0) (2016-02-22) {#v1-3-0}
+
+This release includes the following new features:
+
+-   [#2348](https://github.com/Polymer/polymer/issues/2348). Allow late
+    upgrading of bound elements. Fixed an issue where setting properties on an
+    un-upgraded element Polymer's setters, preventing property effects (bindings,
+    observers, and computed properties) from working.
+
+-   [#3023](https://github.com/Polymer/polymer/issues/3023). Add support for
+    `[attribute~="value"]` selector.
+
+-   [#3299](https://github.com/Polymer/polymer/issues/3299). Support dynamic
+    functions for computed annotations. See
+    [Support for dynamic functions in bindings](#1.3.0-dynamic-fns) for details.
+
+-   [#2399](https://github.com/Polymer/polymer/pulls/2399). Add support for
+    custom properties in `@keyframes` rules.
+
+-   [#2486](https://github.com/Polymer/polymer/pulls/2486). Allow newlines in
+    computed binding argument list. For example:
+
+        <div hidden$="[[_someVeryLongFunctionName(
+            someVeryLongArg,
+            anotherCrazyLongArg)]]">
+
+
+This release fixes the following issues:
+
+-   [#1715](https://github.com/Polymer/polymer/issues/1715). Allow two-way binding
+    for negated expressions. (For example, `checked="{%raw%}{{!hidden}}{%endraw%}"`.)
+
+
+-   [#1727](https://github.com/Polymer/polymer/issues/1727). Eliminate the need
+    to add `:host` or other selector in front of `::content` in some situations.
+    This applies if the `<content>` tag is a top-level local DOM child, and there
+    are no other local DOM nodes that could match the selector, for example:
+
+        <template>
+          <content></content>
+        </template>
+
+
+    If you are using a wrapper element around the `<content>` tag as described
+    in [Styling distributed children](devguide/styling.html#styling-distributed-children-content)
+    you should keep using the wrapper.
+
+-   [#2291](https://github.com/Polymer/polymer/pulls/2291). Make `isDebouncerActive`
+    actually return a boolean.
+
+-   [#3063](https://github.com/Polymer/polymer/issues/3063). Templatizer: bug in
+    templatize depending on the parent properties. In certain circumstances, an
+    element using the Templatizer behavior could throw the error "Uncaught
+    TypeError: template._propertySetter is not a function".
+
+-   [#3206](https://github.com/Polymer/polymer/issues/3206). Camel case declared
+    properties with single letter in the middle are ignored. (For example,
+    `align-x-axis` did not map to `alignXAxis`.) This was a regression introduced
+    by a performance improvement in 1.2.2.
+
+-   [#3221](https://github.com/Polymer/polymer/issues/3221). Custom properties
+    don't use default values if they contain parenthesis. For example:
+
+        background-image: var(--foo-background-image, url(http://placehold.it/400x300));
+
+-   [#3222](https://github.com/Polymer/polymer/pulls/3222). Fix for scoping when
+    class is not specified on element.
+
+-   [#3288](https://github.com/Polymer/polymer/issues/3288). Fixed a case where
+    attribute bindings set a property where they should not have.
+    For details, see [Attribute binding fix](#1.3.0-attribute-binding).
+
+-   [#3326](https://github.com/Polymer/polymer/issues/3326). Fix incorrect CSS
+    specificity when using custom properties. For details, see
+    [CSS specificity changes](#1.3.0-css-specificity).
+
+-   [#3349](https://github.com/Polymer/polymer/issues/3349). Allow binding to a
+    path that includes a dash. (For example, `"{%raw%}{{foo.some-value}}{%endraw%}"`.)
+
+-   [#3365](https://github.com/Polymer/polymer/issues/3365). Behavior callbacks
+    can be called multiple times when a behavior appears more than once in the
+    flattened behavior list.
+
+-   [#3405](https://github.com/Polymer/polymer/issues/3405). Unexpected tap event
+    from child when parent fires track events.
+
+-   [#3443](https://github.com/Polymer/polymer/issues/3443). Attributes bindings
+    initially set to `false` are configured to `true`.
+
+-   [#3446](https://github.com/Polymer/polymer/issues/3446). Elements without
+    property effects do not receive configured properties.
+
+-   [#3354](https://github.com/Polymer/polymer/pulls/3354). Fix ordering of
+    property effects.
+
+-   [#3373](https://github.com/Polymer/polymer/pulls/3373). `dom-template`: Parent
+    properties should not override argument-based properties.
+
+-   [#3442](https://github.com/Polymer/polymer/pulls/3442). Restrict early
+    property set to properties that have accessors. This allows users to set
+    properties in `created` which are listed in `properties` but which have no
+    accessor.
+
+
+### Support for dynamic functions in bindings (#3299) {#v1-3-0-dynamic-fns}
+
+Computed bindings and observers will trigger when a function changes. Computed
+bindings on functions can be used to lazily trigger bindings on external changes,
+or encapsulate dependencies.
+
+A good example is a translate function for i18n that depends on external
+translation tables.
+
+Example:
+
+    <dom-module id="i18n-string">
+      <template>
+        [[translate(input)]]
+      </template>
+      <script>
+      Polymer({
+        is: 'i18n-string',
+        properties: {
+          translate: {
+            type: Function,
+            computed: '_computeTranslateFn(translationService)'
+          },
+          translationService: {
+            type: Function,
+            value: function() {
+              return function(str){ return str + 'ish'; };
+            }
+          }
+        },
+        _computeTranslateFn: function(ts) {
+          return function(str) {
+            return ts(str);
+          }
+        }
+      });
+      </script>
+    </dom-module>
+
+    <!-- initially displays "helloish" -->
+    <i18n-string input="hello"></i18n-string>
+
+In this example, `<i18n-string>` can wait for `translationService` to be set
+before  attempting translations, and updates update translations when
+`translationService` is changed. This encapsulates the dependency on
+`translationService` in the computed `translate` function, so it doesn't need
+to be included in the binding.
+
+### Attribute binding fix (#3288) {#v1-3-0-attribute-binding}
+
+Prior to Polymer v1.3.0, a bug existed related to attribute bindings to unknown
+attributes (that is, attributes that do not map to properties that Polymer
+creates accessors for). The bug resulted in the value of the attribute being
+mirrored to a property of the same name _once_ (but subsequent changes in the
+attribute were not mirrored).
+
+Polymer's contract is to only deserialize attributes to properties that Polymer
+is managing. That is, properties declared in the `properties` object or used as
+dependencies to bindings, observers, or computed functions. You should review
+your code to ensure that you're not relying on the unintentional one-time
+deserialization of unknown attributes. For example, the following will not
+initialize the property `foo`:
+
+```
+<!-- binding to unknown attribute: will not deserialize to property -->
+<button foo$="{%raw%}{{property}}{%endraw%}">`
+```
+
+```
+// Passes:
+assert(button.getAttribute('foo') == this.property);
+// Fails:
+assert(button.foo == this.property);
+```
+
+If you need to access the _property_ value of a bound element,
+you should ensure you are binding to a property as opposed to an attribute:
+
+```
+<!-- binding to unknown property always works -->
+<button foo="{%raw%}{{property}}{%endraw%}">
+```
+
+```
+// Passes:
+assert(button.foo == this.property);
+```
+
+### CSS specificity changes {#v1-3-0-css-specificity}
+
+This release fixes an issue with CSS specificity, where rules that applied
+custom properties improperly received higher specificity than a rules with no
+custom properties.
+
+    <dom-module id="x-foo">
+      <template>
+        <style>
+          :host {
+            background: var(--foo, red);
+          }
+          :host(.zap) {
+            background: orange;
+          }
+        </style>
+        <content></content>
+      </template>
+      <script>Polymer({is: 'x-foo'});</script>
+    </dom-module>
+
+    <x-foo>i am red</x-foo><br>
+    <x-foo class='zap'>I should be orange</x-foo>
+
+This fix changes how some styles are shimmed, and may change how some styles
+are displayed until shady DOM. In particular: rules defined in a `:host` selector
+inside an element's local DOM _should_ be lower specificity than an type selector
+in the main document:
+
+    <!-- main document -->
+    <style>
+      my-element {
+        color: red;
+      }
+    </style>
+
+    <my-element>I should be red.<my-element>
+
+    <!-- my-element.html -->
+    <dom-module>
+      <template>
+        <style>
+          :host {
+            color: blue;
+          }
+        </style>
+        <content></content>
+      </template>
+      <script>
+        Polymer({ is: 'my-element'});
+      </script>
+    </dom-module>
+
+With this change, the text in this example renders (incorrectly) as blue under
+shady DOM. Using a `custom-style` element for document-level styling corrects
+this issue:
+
+    <style is="custom-style">
+      my-element {
+        color: red;
+      }
+    </style>
+
+If this solution isn't possible, you can also use a more specific selector in your
+document styles (for example, a class selector).
+
+### Known issues {#v1-3-0-known-issues}
+
+The following issue was discovered after the release of 1.3.0:
+
+-   [#3461](https://github.com/Polymer/polymer/issues/3461).
+    Using var in a css mixin breaks the scoped style of the element.
+
 ## [Release 1.2.4](https://github.com/Polymer/polymer/tree/v1.2.4) (2016-01-27)
 
 This release fixes the following issues:
