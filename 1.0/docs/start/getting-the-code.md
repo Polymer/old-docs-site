@@ -65,16 +65,24 @@ The `--save` adds the item as a dependency in *your* app's bower.json:
   "name": "my-project",
   "version": "0.0.0",
   "dependencies": {
-    "polymer": "Polymer/polymer#~1.<var>X.X</var>"
+    "polymer": "Polymer/polymer#^1.<var>X.Y</var>"
   }
 }
 </pre>
 
-Where <code>1.<var>X.X</var></code> is the current stable version of
-{{site.project_title}}. For example, if the current version is 1.2.3,
-the dependency line will show `#~1.2.3`, which means that your project
-requires a {{site.project_title}} version equal to or greater than 1.2.3,
+Where <code>1.<var>X.Y</var></code> is the current stable version of
+{{site.project_title}}. For example, if the current version is 1.3.1,
+the dependency line will show `#^1.3.1`, which means that your project
+requires a {{site.project_title}} version equal to or greater than 1.3.1,
 but less than 2.0.
+
+**Note:** Bower versions prior to 1.7.5 defaulted to a narrower version
+range, using the tilde operator. For example, `#~1.3.1`, which
+matches  any version equal to or greater than 1.3.1, but less than
+**1.4.0**. If you're using an older version of Bower, we recommend
+updating to the latest version and checking the version ranges in your
+`bower.json` files.
+{: .alert .alert-info }
 
 #### Updating packages {#updatebower}
 
@@ -84,6 +92,13 @@ in your app directory to update your copy:
     bower update
 
 This updates all packages in `bower_components/` to the latest stable version.
+
+If the packages don't update as expected, check the version ranges in your
+`bower.json` file as described in [Installing with Bower](#using-bower).
+If they're correct, try clearing Bower's cache and re-running the update:
+
+    bower cache clean
+    bower update
 
 ## Installing from ZIP files {#using-zip}
 
