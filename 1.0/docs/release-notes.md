@@ -279,7 +279,30 @@ document styles (for example, a class selector).
 The following issue was discovered after the release of 1.3.0:
 
 -   [#3461](https://github.com/Polymer/polymer/issues/3461).
-    Using var in a css mixin breaks the scoped style of the element.
+    Using var in a css mixin breaks the scoped style of the element. An
+    element with styles like the following triggers this bug:
+
+        <style>
+          :host {
+            color: white;
+            --my-mixin: {
+              // Apply a custom property inside a mixin
+              background: var(--my-background);
+            }
+          }
+        </style>
+
+    This issue will be fixed in the next release.
+
+    As a temporary workaround, you can add a ruleset like this to the start af
+    your element's `<style>` tag (before any other other styles).
+
+        /* Workaround for issue #3461 */
+        :host {
+          --workaround: inherit;
+          color: var(--workaround);
+        }
+
 
 ## [Release 1.2.4](https://github.com/Polymer/polymer/tree/v1.2.4) (2016-01-27)
 
