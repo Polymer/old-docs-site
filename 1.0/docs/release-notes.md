@@ -61,7 +61,28 @@ This release fixes the following issues:
 
     If you are using a wrapper element around the `<content>` tag as described
     in [Styling distributed children](devguide/styling.html#styling-distributed-children-content)
-    you should keep using the wrapper.
+    you should keep using the wrapper. For example:
+
+        <dom-module id="styled-content">
+          <template>
+            <style>
+              .wrapper ::content * {
+                color: red;
+              }
+            </style>
+            <h2>I am in local DOM</h2>
+            <div class="wrapper">
+              <content></content>
+            </div>
+          </template>
+          <script>
+            Polymer({ is: 'styled-content' });
+          </script>
+        </dom-module>
+
+    Changing this selector to `::content *` results in the `<h2>` element
+    being styled red under shady DOM, because the style rule is rewritten as
+    `styled-content *`.
 
 -   [#2291](https://github.com/Polymer/polymer/pulls/2291). Make `isDebouncerActive`
     actually return a boolean.
