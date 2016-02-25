@@ -30,7 +30,7 @@ This release includes the following new features:
 
 -   [#3299](https://github.com/Polymer/polymer/issues/3299). Support dynamic
     functions for computed annotations. See
-    [Support for dynamic functions in bindings](#v1.3.0-dynamic-fns) for details.
+    [Support for dynamic functions in bindings](#v1-3-0-dynamic-fns) for details.
 
 -   [#2399](https://github.com/Polymer/polymer/pulls/2399). Add support for
     custom properties in `@keyframes` rules.
