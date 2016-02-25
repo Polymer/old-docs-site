@@ -6,6 +6,8 @@ title: Document your elements
 subtitle: Create API docs with iron-component-page
 ---
 
+{% include toc.html %}
+
 You can provide API docs for {{site.project_title}} custom elements by writing
 documentation comments in your source files. Using the `iron-component-pages` element,
 you can create a simple documentation page for your elements that parses these comments
