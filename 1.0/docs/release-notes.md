@@ -30,7 +30,7 @@ This release includes the following new features:
 
 -   [#3299](https://github.com/Polymer/polymer/issues/3299). Support dynamic
     functions for computed annotations. See
-    [Support for dynamic functions in bindings](#1.3.0-dynamic-fns) for details.
+    [Support for dynamic functions in bindings](#v1.3.0-dynamic-fns) for details.
 
 -   [#2399](https://github.com/Polymer/polymer/pulls/2399). Add support for
     custom properties in `@keyframes` rules.
@@ -107,11 +107,11 @@ This release fixes the following issues:
 
 -   [#3288](https://github.com/Polymer/polymer/issues/3288). Fixed a case where
     attribute bindings set a property where they should not have.
-    For details, see [Attribute binding fix](#1.3.0-attribute-binding).
+    For details, see [Attribute binding fix](#v1-3-0-attribute-binding).
 
 -   [#3326](https://github.com/Polymer/polymer/issues/3326). Fix incorrect CSS
     specificity when using custom properties. For details, see
-    [CSS specificity changes](#1.3.0-css-specificity).
+    [CSS specificity changes](#v1-3-0-css-specificity).
 
 -   [#3349](https://github.com/Polymer/polymer/issues/3349). Allow binding to a
     path that includes a dash. (For example, `"{%raw%}{{foo.some-value}}{%endraw%}"`.)
@@ -300,12 +300,16 @@ document styles (for example, a class selector).
 The following issue was discovered after the release of 1.3.0:
 
 -   [#3461](https://github.com/Polymer/polymer/issues/3461).
-    Using var in a css mixin breaks the scoped style of the element. An
+    Using `var()` in a css mixin or custom property definition
+    breaks the scoped style of the element. An
     element with styles like the following triggers this bug:
 
         <style>
           :host {
             color: white;
+            // Apply a custom property when defining a custom property
+            --my-property: var(--another-property);
+            // OR:
             --my-mixin: {
               // Apply a custom property inside a mixin
               background: var(--my-background);
@@ -315,13 +319,14 @@ The following issue was discovered after the release of 1.3.0:
 
     This issue will be fixed in the next release.
 
-    As a temporary workaround, you can add a ruleset like this to the start af
-    your element's `<style>` tag (before any other other styles).
+    As a temporary workaround, you can add the following ruleset at the
+    beginning of the element's styles (before all other styles).
 
         /* Workaround for issue #3461 */
         :host {
           --workaround: inherit;
           color: var(--workaround);
+          /* existing rules below */
         }
 
 
