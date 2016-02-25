@@ -37,14 +37,16 @@ automatically. There is no need to re-load the browser or the application.
 1.  Find the navigation menu. 
 
 {% highlight html %}
+{% raw %}
 ...
 <!-- Drawer Content -->
-<paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
-  <a data-route="home" href="/">
+<paper-menu attr-for-selected="data-route" selected="[[route]]">
+  <a data-route="home" href="{{baseUrl}}">
     <iron-icon icon="home"></iron-icon>
     <span>Home</span>
   </a>
 ...
+{% endraw %}
 {% endhighlight %}
 
 Each navigation menu item consists of an anchor element (`<a>`) with two 
@@ -56,33 +58,37 @@ children: `<iron-icon>` and `<span>`.
 1.  Add the following new navigation item to the bottom of the menu.
 
 {% highlight html %}
-<a data-route="books" href="/books">
+{% raw %}
+<a data-route="books" href="{{baseUrl}}books">
   <iron-icon icon="book"></iron-icon>
   <span>Books</span>
 </a>
+{% endraw %}
 {% endhighlight %}
 
 Your menu should now look like the following:
 
 {% highlight html %}
+{% raw %}
 ...
 <!-- Drawer Content -->
-<paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
-  <a data-route="home" href="/">
+<paper-menu attr-for-selected="data-route" selected="[[route]]">
+  <a data-route="home" href="{{baseUrl}}">
     <iron-icon icon="home"></iron-icon>
     <span>Home</span>
   </a>
   ...
-  <a data-route="contact" href="/contact">
+  <a data-route="contact" href="{{baseUrl}}contact">
     <iron-icon icon="mail"></iron-icon>
     <span>Contact</span>
   </a>
-  <a data-route="books" href="/books">
+  <a data-route="books" href="{{baseUrl}}books">
     <iron-icon icon="book"></iron-icon>
     <span>Books</span>
   </a>
 </paper-menu>
 ...
+{% endraw %}
 {% endhighlight %}
 
 If you view the app now, you should see your new item in the navigation
@@ -103,7 +109,7 @@ user to navigate to a new page. Now, you add the content for that new page.
       <paper-material elevation="1">
         <my-greeting></my-greeting>
 
-        <p class="paper-font-subhead">You now have:</p>
+        <p class="subhead">You now have:</p>
         <my-list></my-list>
         ...
       </paper-material>
@@ -111,9 +117,12 @@ user to navigate to a new page. Now, you add the content for that new page.
 
     <section data-route="users">
       <paper-material elevation="1">
-        <h2 class="paper-font-display2">Users</h2>
+        <h2 class="page-title">Users</h2>
         <p>This is the users section</p>
-        <a href="/users/Rob">Rob</a>
+        <a href$="{{baseUrl}}users/Addy">Addy</a><br>
+        <a href$="{{baseUrl}}users/Rob">Rob</a><br>
+        <a href$="{{baseUrl}}users/Chuck">Chuck</a><br>
+        <a href$="{{baseUrl}}users/Sam">Sam</a>
       </paper-material>
     </section>
     ...
@@ -152,7 +161,7 @@ Your code should now look like the following:
     ...
     <section data-route="contact">
       <paper-material elevation="1">
-        <h2 class="paper-font-display2">Contact</h2>
+        <h2 class="page-title">Contact</h2>
         <p>This is the contact section</p>
       </paper-material>
     </section>
@@ -191,20 +200,21 @@ Your script should now look like the following:
 
 {% highlight javascript %}
 ...
+
 page('/', function () {
   app.route = 'home';
 });
+
 ...
+
 page('/contact', function () {
   app.route = 'contact';
 });
+
 page('/books', function () {
   app.route = 'books';
 });
-// add #! before urls
-page({
-  hashbang: true
-});
+
 ...
 {% endhighlight %}
 
