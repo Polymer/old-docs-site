@@ -316,3 +316,40 @@ normalized event has the following properties:
     (equivalent to `event.path` under shadow DOM).
 
 
+Example:
+    <dom-module id="event-retargeting">
+      <template>
+        <button id="myButton">Click Me</button>
+      </template>
+    </dom-module>
+
+    <script>
+
+      Polymer({
+
+          is: 'event-retargeting',
+
+          listeners: {
+            'myButton.click': 'handleClick',
+          },
+
+          handleClick(e) {
+            console.info(e.target.id + ' was clicked.');
+          }
+
+        });
+
+    </script>
+
+    </dom-module>
+
+    <event-retargeting></event-retargeting>
+
+    <script>
+      document.querySelector('event-retargeting').addEventListener('click', function(){
+        var normalizedEventObject = Polymer.dom(event);
+        console.info('rootTarget is:', normalizedEventObject.rootTarget); // logs #myButton
+        console.info('localTarget is:', normalizedEventObject.localTarget); // logs an instance of event-targeting that was originally queried
+        console.info('path is:', normalizedEventObject.path); // logs [#myButton, document-fragment, event-retargeting, body, html, document, Window]
+      });
+    </script>
