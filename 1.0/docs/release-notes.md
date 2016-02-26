@@ -32,10 +32,10 @@ This release includes the following new features:
     functions for computed annotations. See
     [Support for dynamic functions in bindings](#v1-3-0-dynamic-fns) for details.
 
--   [#2399](https://github.com/Polymer/polymer/pulls/2399). Add support for
+-   [#2399](https://github.com/Polymer/polymer/issues/2399). Add support for
     custom properties in `@keyframes` rules.
 
--   [#2486](https://github.com/Polymer/polymer/pulls/2486). Allow newlines in
+-   [#2486](https://github.com/Polymer/polymer/pull/2486). Allow newlines in
     computed binding argument list. For example:
 
         <div hidden$="[[_someVeryLongFunctionName(
@@ -84,7 +84,7 @@ This release fixes the following issues:
     being styled red under shady DOM, because the style rule is rewritten as
     `styled-content *`.
 
--   [#2291](https://github.com/Polymer/polymer/pulls/2291). Make `isDebouncerActive`
+-   [#2291](https://github.com/Polymer/polymer/pull/2291). Make `isDebouncerActive`
     actually return a boolean.
 
 -   [#3063](https://github.com/Polymer/polymer/issues/3063). Templatizer: bug in
@@ -102,7 +102,7 @@ This release fixes the following issues:
 
         background-image: var(--foo-background-image, url(http://placehold.it/400x300));
 
--   [#3222](https://github.com/Polymer/polymer/pulls/3222). Fix for scoping when
+-   [#3222](https://github.com/Polymer/polymer/pull/3222). Fix for scoping when
     class is not specified on element.
 
 -   [#3288](https://github.com/Polymer/polymer/issues/3288). Fixed a case where
@@ -129,13 +129,13 @@ This release fixes the following issues:
 -   [#3446](https://github.com/Polymer/polymer/issues/3446). Elements without
     property effects do not receive configured properties.
 
--   [#3354](https://github.com/Polymer/polymer/pulls/3354). Fix ordering of
+-   [#3354](https://github.com/Polymer/polymer/pull/3354). Fix ordering of
     property effects.
 
--   [#3373](https://github.com/Polymer/polymer/pulls/3373). `dom-template`: Parent
+-   [#3373](https://github.com/Polymer/polymer/pull/3373). `dom-template`: Parent
     properties should not override argument-based properties.
 
--   [#3442](https://github.com/Polymer/polymer/pulls/3442). Restrict early
+-   [#3442](https://github.com/Polymer/polymer/pull/3442). Restrict early
     property set to properties that have accessors. This allows users to set
     properties in `created` which are listed in `properties` but which have no
     accessor.
