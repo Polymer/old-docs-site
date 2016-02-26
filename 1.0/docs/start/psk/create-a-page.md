@@ -102,6 +102,7 @@ user to navigate to a new page. Now, you add the content for that new page.
 1.  Open `app/index.html` in a text editor and find the main content. 
 
 {% highlight html %}
+{% raw %}
 <div class="content">
   <iron-pages attr-for-selected="data-route" selected="{{route}}">
 
@@ -126,6 +127,7 @@ user to navigate to a new page. Now, you add the content for that new page.
       </paper-material>
     </section>
     ...
+{% endraw %}
 {% endhighlight %}
 
 *   The PSK's design pattern for structuring pages is to make each page a 
@@ -186,9 +188,9 @@ In this last tutorial, you make a minor modification to the routing system
 so that when a user clicks on the new "Books" navigation menu item, they 
 get routed properly to your new page.
 
-1.  Open `app/elements/routing.html` in a text editor and add the 
-    following code near the bottom of the script, just above the 
-    page rule for `/`.
+1.  Open `app/elements/routing.html` in a text editor and add the following 
+    code near the bottom of the script, just below the page rule for 
+    `/contact`.
 
 {% highlight javascript %}
 page('/books', function () {
