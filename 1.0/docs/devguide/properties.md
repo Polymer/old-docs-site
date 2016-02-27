@@ -325,7 +325,7 @@ Example:
     });
 
 **Warning:** A single property observer shouldn't rely on any other properties,
-sub-properties, or paths because the observer can be called while these 
+sub-properties, or paths because the observer can be called while these
 dependencies are undefined. See [Always include dependencies
 as observer arguments](#dependencies) for details.
 {: .alert alert-warning }
@@ -628,8 +628,8 @@ are properly notified of the changes.
 
 ### Always include dependencies as observer arguments {#dependencies}
 
-Observers shouldn't rely on any properties, sub-properties, or paths other 
-than those listed as arguments to the observer. This is because the observer 
+Observers shouldn't rely on any properties, sub-properties, or paths other
+than those listed as arguments to the observer. This is because the observer
 can be called while the other dependencies are still undefined. For example:
 
     properties: {
@@ -644,15 +644,15 @@ can be called while the other dependencies are still undefined. For example:
     // WARNING: ANTI-PATTERN! DO NOT USE
     nameChanged: function(newFirstName, oldFirstName) {
       // this.lastName could be undefined!
-      console.log('new name:', newFirstName, this.lastName); 
+      console.log('new name:', newFirstName, this.lastName);
     }
- 
-Note that {{project.site_title}} doesn't guarantee that properties are 
-initialized in any particular order. 
 
-In general, if your observer relies on multiple dependencies, use a 
+Note that {{site.project_title}} doesn't guarantee that properties are
+initialized in any particular order.
+
+In general, if your observer relies on multiple dependencies, use a
 [multi-property observer](#multi-property-observers) and list every dependency
-as an argument to the observer. This ensures that all dependencies are 
+as an argument to the observer. This ensures that all dependencies are
 defined before the observer is called.
 
     properties: {
@@ -667,16 +667,16 @@ defined before the observer is called.
       'nameChanged(firstName, lastName)'
     ],
     nameChanged: function(firstName, lastName) {
-      console.log('new name:', firstName, lastName); 
+      console.log('new name:', firstName, lastName);
     }
 
 If you must use a single property and must rely on other properties (for
 example, if you need access to the old value of the observed property, which
-you won't be able to access with a multi-property observer), 
+you won't be able to access with a multi-property observer),
 take the following precautions:
 
-*   Check that all dependecies are defined 
-    (for example, `if this.lastName !== undefined`) before using them in your 
+*   Check that all dependecies are defined
+    (for example, `if this.lastName !== undefined`) before using them in your
     observer.
 *   Set default values on the dependencies.
 
@@ -687,21 +687,21 @@ is not called when `this.firstName` changes.
 
 ## Property change notification events (notify) {#notify}
 
-When a property is set to `notify: true`, an event is fired whenever the 
+When a property is set to `notify: true`, an event is fired whenever the
 property value changes. The event name is:
 
 <code><var>property-name</var>-changed</code>
 
-Where <code><var>property-name</var></code> is the dash-case version of 
-the property name. For example, a change to `this.firstName` fires 
-`first-name-changed`. 
+Where <code><var>property-name</var></code> is the dash-case version of
+the property name. For example, a change to `this.firstName` fires
+`first-name-changed`.
 
-These events are used by the two-way data binding system. External 
-scripts can also listen for events (such as `first-name-changed`) 
+These events are used by the two-way data binding system. External
+scripts can also listen for events (such as `first-name-changed`)
 directly using `addEventListener`.
 
-For more on property change notifications and data binding, see 
-[Property change notification and two-way 
+For more on property change notifications and data binding, see
+[Property change notification and two-way
 binding](data-binding.html#property-notification).
 
 ## Read-only properties {#read-only}

@@ -19,17 +19,14 @@ using the syntax <code><var>nodeId</var>.<var>eventName</var>.
 Example:
 
     <dom-module id="x-custom">
-
       <template>
         <div>I will respond</div>
         <div>to a tap on</div>
         <div>any of my children!</div>
-
         <div id="special">I am special!</div>
       </template>
 
       <script>
-
         Polymer({
 
           is: 'x-custom',
@@ -48,9 +45,7 @@ Example:
           }
 
         });
-
       </script>
-
     </dom-module>
 
 ## Annotated event listener setup {#annotated-listeners}
@@ -77,7 +72,7 @@ Example:
     </dom-module>
 
 **Tip: Use `on-tap` rather than `on-click` for an event that fires consistently
-across both touch (mobile) and click (desktop) devices**. See [gesture 
+across both touch (mobile) and click (desktop) devices**. See [gesture
 events](#gestures) for a complete list of reliable, cross-platform events.
 {: .alert .alert-info }
 
@@ -122,13 +117,11 @@ To fire a custom event from the host element use the `fire` method. You can also
 Example:
 
     <dom-module id="x-custom">
-
       <template>
         <button on-click="handleClick">Kick Me</button>
       </template>
 
       <script>
-
         Polymer({
 
           is: 'x-custom',
@@ -142,7 +135,6 @@ Example:
       </script>
 
     </dom-module>
-
     <x-custom></x-custom>
 
     <script>
@@ -198,10 +190,7 @@ and list of detail properties available on `event.detail` for each type:
 Example:
 
     <dom-module id="drag-me">
-
-
       <template>
-
         <style>
           #dragme {
             width: 500px;
@@ -211,11 +200,9 @@ Example:
         </style>
 
         <div id="dragme" on-track="handleTrack">{%raw%}{{message}}{%endraw%}</div>
-
       </template>
 
       <script>
-
         Polymer({
 
           is: 'drag-me',
@@ -236,9 +223,7 @@ Example:
           }
 
         });
-
       </script>
-
     </dom-module>
 
 
@@ -247,9 +232,7 @@ Example:
 Example with `listeners`:
 
     <dom-module id="drag-me">
-
       <template>
-
         <style>
           #dragme {
             width: 500px;
@@ -259,11 +242,9 @@ Example with `listeners`:
         </style>
 
         <div id="dragme">{%raw%}{{message}}{%endraw%}</div>
-
       </template>
 
       <script>
-
         Polymer({
 
           is: 'drag-me',
@@ -286,20 +267,21 @@ Example with `listeners`:
                 break;
             }
           }
-
         });
-
       </script>
-
     </dom-module>
 
 
 ## Event retargeting {#retargeting}
 
 Shadow DOM has a feature called "event retargeting" which changes an event's
-target as it bubbles up, such that target is always in the receiving element's
-light DOM. Shady DOM does not do event retargeting, so events may behave differently
-depending on which local DOM system is in use.
+target as it bubbles up, such that target is always in the same scope as the
+receiving element. (For example, for a listener in the main document, the
+target is an element in the main document, not in a shadow tree.)
+
+Shady DOM doesn't do event regargeting for events as they bubble, because the
+performance cost would be prohibitive. Instead, {{site.project_title}}
+provides a mechanism to simulate retargeted events when needed.
 
 Use `Polymer.dom(event)` to get a normalized event object that provides
 equivalent target data on both shady DOM and shadow DOM. Specifically, the
@@ -310,46 +292,61 @@ normalized event has the following properties:
     shady DOM).
 
 *   `localTarget`: Retargeted event target (equivalent to `event.target` under
-    shadow DOM)
+    shadow DOM). This node is always in the same scope as the node where the
+    listener was added.
 
 *   `path`: Array of nodes through which event will pass
     (equivalent to `event.path` under shadow DOM).
 
-
 Example:
+
+    <!-- event-retargeting.html -->
+     ...
     <dom-module id="event-retargeting">
       <template>
         <button id="myButton">Click Me</button>
       </template>
+
+      <script>
+        Polymer({
+
+            is: 'event-retargeting',
+
+            listeners: {
+              'click': 'handleClick',
+            },
+
+            handleClick(e) {
+              console.info(e.target.id + ' was clicked.');
+            }
+          });
+      </script>
     </dom-module>
 
-    <script>
 
-      Polymer({
-
-          is: 'event-retargeting',
-
-          listeners: {
-            'myButton.click': 'handleClick',
-          },
-
-          handleClick(e) {
-            console.info(e.target.id + ' was clicked.');
-          }
-
-        });
-
-    </script>
-
-    </dom-module>
-
+    <!-- index.html  -->
+      ...
     <event-retargeting></event-retargeting>
 
     <script>
-      document.querySelector('event-retargeting').addEventListener('click', function(){
-        var normalizedEventObject = Polymer.dom(event);
-        console.info('rootTarget is:', normalizedEventObject.rootTarget); // logs #myButton
-        console.info('localTarget is:', normalizedEventObject.localTarget); // logs an instance of event-targeting that was originally queried
-        console.info('path is:', normalizedEventObject.path); // logs [#myButton, document-fragment, event-retargeting, body, html, document, Window]
+      var el = document.querySelector('event-retargeting');
+      el.addEventListener('click', function(){
+        var normalizedEvent = Polymer.dom(event);
+        // logs #myButton
+        console.info('rootTarget is:', normalizedEvent.rootTarget);
+        // logs the instance of event-targeting that hosts #myButton
+        console.info('localTarget is:', normalizedEvent.localTarget);
+        // logs [#myButton, document-fragment, event-retargeting,
+        //       body, html, document, Window]
+        console.info('path is:', normalizedEvent.path);
       });
     </script>
+
+In this example, the original event is triggered on a `<button>` inside the `<event-retargeting>`
+element's local DOM tree. The listener is added on the `<event-retargeting>` element itself, which
+is in the main document. To hide the implementation of the element, the event should be retargeted
+so it appears to come from `<event-retargeting>` rather than from the `<button>` tag.
+
+The document fragment that appears in the event path is the root of the local DOM tree. In shady DOM
+this is an instance of `DocumentFragment`. In native shadow DOM, this would show up as an instance of
+`ShadowRoot` instead.
