@@ -279,8 +279,9 @@ target as it bubbles up, such that target is always in the same scope as the
 receiving element. (For example, for a listener in the main document, the
 target is an element in the main document, not in a shadow tree.)
 
-Shady DOM does not do event retargeting, so events may behave differently
-depending on which local DOM system is in use.
+Shady DOM doesn't do event regargeting for events as they bubble, because the
+performance cost would be prohibitive. Instead, {{site.project_title}}
+provides a mechanism to simulate retargeted events when needed.
 
 Use `Polymer.dom(event)` to get a normalized event object that provides
 equivalent target data on both shady DOM and shadow DOM. Specifically, the
@@ -297,7 +298,6 @@ normalized event has the following properties:
 *   `path`: Array of nodes through which event will pass
     (equivalent to `event.path` under shadow DOM).
 
-
 Example:
 
     <!-- event-retargeting.html -->
@@ -313,7 +313,7 @@ Example:
             is: 'event-retargeting',
 
             listeners: {
-              'myButton.click': 'handleClick',
+              'click': 'handleClick',
             },
 
             handleClick(e) {
@@ -329,8 +329,8 @@ Example:
     <event-retargeting></event-retargeting>
 
     <script>
-      document.querySelector('event-retargeting').addEventListener('click',
-          function(){
+      var el = document.querySelector('event-retargeting');
+      el.addEventListener('click', function(){
         var normalizedEvent = Polymer.dom(event);
         // logs #myButton
         console.info('rootTarget is:', normalizedEvent.rootTarget);
