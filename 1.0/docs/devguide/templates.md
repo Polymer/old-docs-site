@@ -300,8 +300,32 @@ rendering has a performance cost, but can be useful in a few scenarios:
 `render` **only** works with changes made with Polymer's
 [array mutation methods](properties.html#array-mutation).
 If you or a third-party library mutate the array without Polymer's methods,
-you need to call [`notifySplices`](#notifysplices) to ensure that any elements
+you need to call [`notifySplices`](properties.html#notifysplices) to ensure that any elements
 watching the array are properly notified.
+
+### Improve performance for large lists {#large-list-perf}
+
+By default, `dom-repeat` tries to render all of the list items at once. If 
+you try to use `dom-repeat` to render a very large list of items, the UI may 
+freeze while it's rendering the list. If you encounter this problem, enable 
+"chunked" rendering by setting 
+[`initialCount`](/{% polymer_version_dir %}/api/#dom-repeat:property-initialCount){:target="_blank"}. 
+In chunked mode, 
+`dom-repeat` renders `initialCount` items at first, then renders the rest of 
+the items incrementally one chunk per animation frame. This lets the UI thread 
+handle user input between chunks. You can keep track of how many items have 
+been rendered with the 
+[`renderedItemCount`](/{% polymer_version_dir %}/api/#dom-repeat:property-renderedItemCount){:target="_blank"} 
+read-only property.
+
+`dom-repeat` adjusts the number of items rendered in each chunk to try and 
+maintain a target framerate. You can further tune rendering by setting 
+[`targetFramerate`](/{% polymer_version_dir %}/api/#dom-repeat:property-targetFramerate){:target="_blank"}.
+
+You can also set a debounce time that must pass before a `filter` or `sort`
+function is re-run by setting the 
+[`delay`](/{% polymer_version_dir %}/api/#dom-repeat:property-delay){:target="_blank"}
+property.
 
 ## Array selector (array-selector) {#array-selector}
 
