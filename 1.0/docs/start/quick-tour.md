@@ -320,10 +320,26 @@ to the element's `owner` property, so it's updated as the user types.
   </div>
 </demo-tabs>
 
-**Note:** The `is="iron-input"` attribute indicates the input is a _type-extension_ custom 
-element; the element name is `iron-input`, and it _extends_ the native `<input>` element. 
+**Note:** The `is="iron-input"` attribute indicates the input is a 
+_type-extension_ custom element; the element name is `iron-input`, and it 
+_extends_ the native `<input>` element. 
 {: .alert .alert-info }
 
+In addition to the Polymer library, the Polymer project provides several 
+sets of pre-built custom elements for common use cases, like `iron-input`. To 
+run this sample locally, you'd need to install `iron-input` with 
+[Bower](getting-the-code.hAtml#project-setup) by running the following command
+on the command line:
+
+    bower install --save PolymerElements/iron-input
+
+<p>
+  <a href="https://elements.polymer-project.org/guides/using-elements">
+    <paper-button>
+      Learn more: Using Elements
+    </paper-button>
+  </a>
+</p>
 
 ## Next steps {#nextsteps}
 
