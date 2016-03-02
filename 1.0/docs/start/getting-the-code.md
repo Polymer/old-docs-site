@@ -53,26 +53,36 @@ This generates a basic `bower.json` file. Some of the questions, like
 
 The next step is to install {{site.project_title}}:
 
-    bower install --save Polymer/polymer#^1.2.0
-
-Depending on your shell, `Polymer/polymer#^1.2.0` may need to be escaped appropriately.
-If you get an error somewhere around the lines of 'match not found', try surrounding 
-it with single or double quotes.
+    bower install --save Polymer/polymer
 
 Bower adds a `bower_components/` folder in the root of your project and
 fills it with {{site.project_title}} and its dependencies.
 
-**Tip:** `--save` adds the item as a dependency in *your* app's bower.json:
-```
+The `--save` adds the item as a dependency in *your* app's bower.json:
+
+<pre>
 {
   "name": "my-project",
   "version": "0.0.0",
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.2.0"
+    "polymer": "Polymer/polymer#^1.<var>X.Y</var>"
   }
 }
-```
-{: .alert .alert-success }
+</pre>
+
+Where <code>1.<var>X.Y</var></code> is the current stable version of
+{{site.project_title}}. For example, if the current version is 1.3.1,
+the dependency line will show `#^1.3.1`, which means that your project
+requires a {{site.project_title}} version equal to or greater than 1.3.1,
+but less than 2.0.
+
+**Note:** Bower versions prior to 1.7.5 defaulted to a narrower version
+range, using the tilde operator. For example, `#~1.3.1`, which
+matches  any version equal to or greater than 1.3.1, but less than
+**1.4.0**. If you're using an older version of Bower, we recommend
+updating to the latest version and checking the version ranges in your
+`bower.json` files.
+{: .alert .alert-info }
 
 #### Updating packages {#updatebower}
 
@@ -82,6 +92,13 @@ in your app directory to update your copy:
     bower update
 
 This updates all packages in `bower_components/` to the latest stable version.
+
+If the packages don't update as expected, check the version ranges in your
+`bower.json` file as described in [Installing with Bower](#using-bower).
+If they're correct, try clearing Bower's cache and re-running the update:
+
+    bower cache clean
+    bower update
 
 ## Installing from ZIP files {#using-zip}
 
