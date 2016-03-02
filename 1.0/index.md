@@ -5,10 +5,10 @@ title: Welcome
 
 <section id="future" class="main-bg">
   <div class="panel left">
-    <img src="./images/polymer1.0-01.svg" alt="">
+    <img src="/images/logos/p-logo.svg">
     <summary>
-      <h1>Production ready</h1>
-      <p>Polymer 1.0 has been rebuilt from the ground up for speed and efficiency. The new, leaner core library makes it easier than ever to make fast, beautiful, and interoperable web components. If you haven't used Polymer before, it's time to try it out. If you haven't tried it recently, time to take another look.</p>
+      <h1>Components for the modern web</h1>
+      <p>Web Components usher in a new era of web development based on encapsulated and interoperable custom elements that extend HTML itself. Built atop these new standards, Polymer makes it easier and faster to create anything from a button to a complete application across desktop, mobile, and beyond.</p>
       <a href="docs/start/getting-the-code.html" tabindex="-1">
         <paper-button raised unresolved>
           <core-icon icon="file-download"></core-icon> Get {{site.project_title}}
@@ -23,43 +23,6 @@ title: Welcome
   </div>
 </section>
 
-<!-- <section id="release08" class="main-light-purple">
-  <div class="panel">
-    <summary>
-      <a href="/0.9/">
-        <h2 layout horizontal center>
-          Join us @ Polypalooza, Sept. ???
-        </h2>
-      </a>
-    </summary>
-  </div>
-</section> -->
-
-<!-- <section id="googleio" class="main-light-purple">
-  <div class="panel" layout horizontal>
-    <span class="iologo" layout vertical>
-      <img src="https://events.google.com/io2015/images/io15-color.png" alt="Polymer at Google I/O 2015">
-    </span>
-    <a href="https://www.youtube.com/embed/fD2As5RmM8Q" target="_blank" onclick="document.getElementById('iovideo').toggle();return false;" style="margin-left:25px;" layout vertical>
-      <h4>Watch Google I/O 2015</h4>
-      <h2>Polymer and modern web APIs: In production at Google scale</h2>
-    </a>
-  </div>
-</section> -->
-
-<section id="summit-banner" class="main-light-purple">
-  <div class="panel" layout horizontal center>
-    <span class="summitlogo" layout vertical>
-      <img src="/summit/images/badge_blue_small.png" alt="Polymer Summit 2015">
-    </span>
-    <a href="https://www.polymer-project.org/summit" target="_blank">
-      <h2>Watch Polymer Summit 2015</h2>
-      <h4>A full day of talks and code labs from the Polymer team</h4>
-    </a>
-  </div>
-</section>
-
-
 <!--
 <section id="featured">
   <div class="panel" layout horizontal>
@@ -73,73 +36,8 @@ title: Welcome
   </div>
 </section> -->
 
-<section id="catalog" class="main-purple">
-  <div class="panel">
-    <summary>
-      <h1>Element Catalog</h1>
-      <a href="https://elements.polymer-project.org" target="_blank" class="screenshot">
-        <img src="/images/catalog_fadeout.jpg" alt="Launch the element catalog" title="Launch the element catalog">
-      </a>
-      <div>
-        <p>
-        Custom elements, built by the Polymer team, ready to use in your applications.
-        </p>
-        <a href="https://elements.polymer-project.org" target="_blank" tabindex="-1">
-          <paper-button>
-            <core-icon icon="arrow-forward"></core-icon> Browse elements
-          </paper-button>
-        </a>
-      </div>
-    </summary>
-  </div>
-</section>
 
-<!-- <section id="production" class="main-purple">
-  <div class="panel" layout horizontal>
-    <div flex>
-      <h2>Lean, Mean, and Ready for Production</h2>
-      <p class="one-oh-summary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla facilis itaque, quo fuga veritatis odit hic magnam perspiciatis voluptatibus rem delectus omnis nisi inventore ea sapiente quibusdam a tenetur pariatur.</p>
-    </div>
-    <div flex>
-      <div class="one-oh">1.0</div>
-    </div>
-  </div>
-</section> -->
 
-<section id="features" class="main-bg">
-  <div class="panel">
-    <div class="feature">
-      <div class="badge">
-        <div class="badge-wrapper">
-          <core-icon icon="trending-up" style="color: #4CAF50;"></core-icon>
-        </div>
-      </div>
-      <h2>Built for Speed</h2>
-      <p>Polymer 1.0 replaces the shadow DOM polyfill with a lightweight shim, uses a new, faster data-binding system, and significantly reduces code size.</p>
-    </div>
-
-    <div class="feature">
-      <div class="badge">
-        <div class="badge-wrapper">
-          <core-icon icon="check-box" style="color: #00BCD4;"></core-icon>
-        </div>
-      </div>
-      <h2>For Modern Browsers</h2>
-      <p>Polymer is built from the ground up for modern browsers, using the latest web platform APIs. Polyfills provide support on evergreen browsers for APIs that aren't universal yet.</p>
-    </div>
-
-    <div class="feature">
-      <div class="badge">
-        <div class="badge-wrapper">
-          <core-icon icon="favorite" style="color: #E91E63;"></core-icon>
-        </div>
-      </div>
-      <h2>Using Web Components</h2>
-      <p>Polymer leverages <em>web components</em>, a new set of standards designed to provide reusable components for the web.</p>
-    </div>
-  </div>
-
-</section>
 
 <section id="examples">
   <div class="panel">
@@ -268,7 +166,7 @@ title: Welcome
           </paper-button>
         </a>
 
-        <a href="docs/index.html" tabindex="-1">
+        <a href="docs/start/what-is-polymer.html" tabindex="-1">
           <paper-button raised>
             <core-icon icon="info"></core-icon> Learn More
           </paper-button>
@@ -276,6 +174,61 @@ title: Welcome
       </div>
     </div>
 
+  </div>
+</section>
+
+<section id="features" class="main-bg">
+  <div class="panel">
+        <div class="feature">
+      <div class="badge">
+        <div class="badge-wrapper">
+          <core-icon icon="favorite" style="color: #E91E63;"></core-icon>
+        </div>
+      </div>
+      <h2>Using Web Components</h2>
+      <p>Polymer leverages <em>web components</em>, a new set of standards designed to provide reusable components for the web.</p>
+    </div>
+
+    <div class="feature">
+      <div class="badge">
+        <div class="badge-wrapper">
+          <core-icon icon="check-box" style="color: #00BCD4;"></core-icon>
+        </div>
+      </div>
+      <h2>For Modern Browsers</h2>
+      <p>Polymer is built for modern browsers, using the latest web platform APIs. Polyfills provide support on evergreen browsers for APIs that aren't universal yet.</p>
+    </div>
+
+    <div class="feature">
+      <div class="badge">
+        <div class="badge-wrapper">
+          <core-icon icon="trending-up" style="color: #4CAF50;"></core-icon>
+        </div>
+      </div>
+      <h2>Built for Speed</h2>
+      <p>Polymer 1.0 is built from the ground up with performance in mind.</p>
+    </div>
+  </div>
+</section>
+
+<section id="catalog" class="main-purple">
+  <div class="panel">
+    <summary>
+      <h1>Element Catalog</h1>
+      <a href="https://elements.polymer-project.org" target="_blank" class="screenshot">
+        <img src="/images/catalog_fadeout.jpg" alt="Launch the element catalog" title="Launch the element catalog">
+      </a>
+      <div>
+        <p>
+        Custom elements, built by the Polymer team, ready to use in your applications.
+        </p>
+        <a href="https://elements.polymer-project.org" target="_blank" tabindex="-1">
+          <paper-button>
+            <core-icon icon="arrow-forward"></core-icon> Browse elements
+          </paper-button>
+        </a>
+      </div>
+    </summary>
   </div>
 </section>
 
