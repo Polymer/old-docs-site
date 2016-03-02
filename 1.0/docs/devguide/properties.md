@@ -849,3 +849,21 @@ By default, values are serialized according to value's  _current_ type
 *   `Array` or `Object`. Serialized using `JSON.stringify`.
 
 To supply custom serialization for a custom element, override your element's `serialize` method.
+
+## Reserved property names {#reserved-names}
+
+Avoid the following names for properties:
+
+*   `on*`. In Polymer templates, attributes that start with `on-` are reserved
+    for [annotated event listeners](events.html#annotated-listeners). Therefore,
+    property names that start with `on` can cause problems if used 
+    declaratively.
+
+    For example, suppose that you attempted to create a declarative two-way
+    data-binding on a property named `onReply` like so:
+    `<x-el on-reply="{% raw %}{{message}}{% endraw %}">`. Polymer would 
+    remove the `on-reply` attribute from the template before stamping. After 
+    stamping, Polymer would attempt to set up an event listener on the 
+    element for a non-existent `reply` event, and it would attempt to set 
+    `{% raw %}{{message}}{% endraw %}` as the callback function. 
+
