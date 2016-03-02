@@ -15,6 +15,19 @@ subtitle: About this release
   }
 </style>
 
+## [Release 1.3.1](https://github.com/Polymer/polymer/tree/v1.3.1) (2016-03-02) {#v1-3-1}
+
+This release fixes the following issues:
+
+-   [#3461](https://github.com/Polymer/polymer/issues/3461). Using
+    `var()` in a css mixin or custom property definition
+    breaks the scoped style of the element. For a full description
+    of this issue, see [Known issues in release 1.3.0](#v1-3-0-known-issues).
+
+-   [#3484](https://github.com/Polymer/polymer/issues/3484). A `dom-bind` may
+    render before the entire document is loaded. This may result in a script
+    which expects to install API on a `dom-bind` running after it renders,
+    resulting in unexpected behavior.
 
 ## [Release 1.3.0](https://github.com/Polymer/polymer/tree/v1.3.0) (2016-02-22) {#v1-3-0}
 
@@ -295,7 +308,7 @@ this issue:
 If this solution isn't possible, you can also use a more specific selector in your
 document styles (for example, a class selector).
 
-### Known issues {#v1-3-0-known-issues}
+### Known issues in release 1.3.0 {#v1-3-0-known-issues}
 
 The following issue was discovered after the release of 1.3.0:
 
