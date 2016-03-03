@@ -267,7 +267,7 @@ custom properties.
     <x-foo class='zap'>I should be orange</x-foo>
 
 This fix changes how some styles are shimmed, and may change how some styles
-are displayed until shady DOM. In particular: rules defined in a `:host` selector
+are displayed under shady DOM. In particular: rules defined in a `:host` selector
 inside an element's local DOM _should_ be lower specificity than an type selector
 in the main document:
 
