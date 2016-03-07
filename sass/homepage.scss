@@ -383,8 +383,9 @@ site-banner .logo {
   margin-top: 30px;
 }
 
-.button-row paper-button {
+.button-row a {
   margin-right: 16px;
+  text-decoration: none;
 }
 
 @media only screen and (max-width: $break-medium) {

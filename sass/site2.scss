@@ -245,16 +245,19 @@ footer {
   position: relative;
   // z-index: 100;
   background-color: #fafafa;
-  padding: 100px 0;
-  padding-left: $additonalPadding + 40;
   // box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.0980392) 0px 1px 2px 0px inset;
 
   .links {
     margin-bottom: $content-padding;
+
+    a {
+      margin-right: 16px;
+      display: inline-block;
+      vertical-align: middle;
+    }
   }
 
   paper-button {
-    margin-right: 30px;
     //background: transparent !important;
     // opacity: 0.6;
     color: #666666;
@@ -417,11 +420,11 @@ footer {
 }
 
 .example-google-map iframe {
-  height: 300px; 
+  height: 300px;
 }
 
 .example-contact-card iframe {
-  height: 100px; 
+  height: 100px;
 }
 
 .example-friend-list iframe {
@@ -542,7 +545,7 @@ footer {
         -ms-flex-align: center;
             align-items: center;
   }
-  
+
   .example-wrapper,
   .example-code,
   .example-code .highlight,
@@ -578,7 +581,7 @@ footer {
 
   /* 2/3rds the width to match example-code */
   .example-caption {
-    width: 66.6% 
+    width: 66.6%
   }
 }
 
