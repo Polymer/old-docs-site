@@ -36,6 +36,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
 
 1.  Inititalize the Firebase application.
 
+        firebase login
         firebase init
 
     Firebase asks you which app you would like to use for hosting. If you just
