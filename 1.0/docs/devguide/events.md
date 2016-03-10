@@ -316,7 +316,7 @@ Example:
               'click': 'handleClick',
             },
 
-            handleClick(e) {
+            handleClick: function(e) {
               console.info(e.target.id + ' was clicked.');
             }
           });
