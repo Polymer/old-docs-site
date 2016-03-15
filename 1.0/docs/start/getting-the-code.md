@@ -128,7 +128,7 @@ components you installed from the ZIP file. Follow the instructions in
 ## Using the Polyfills
 
 When you install {{site.project_title}} (either with Bower or as a ZIP), you get the
-[Web Components polyfill library](/0.5/docs/start/platform.html).
+[Web Components polyfill library](http://webcomponents.org/polyfills/).
 For this version of {{site.project_title}}, you need the `webcomponents-lite` version of the
 library, which doesn't include the shadow DOM polyfill.
 
