@@ -9,14 +9,14 @@ title: Welcome
     <summary>
       <h1>Production ready</h1>
       <p>Polymer 1.0 has been rebuilt from the ground up for speed and efficiency. The new, leaner core library makes it easier than ever to make fast, beautiful, and interoperable web components. If you haven't used Polymer before, it's time to try it out. If you haven't tried it recently, time to take another look.</p>
-      <a href="docs/start/getting-the-code.html">
+      <a href="docs/start/getting-the-code.html" tabindex="-1">
         <paper-button raised unresolved>
-          <core-icon icon="archive"></core-icon> Get {{site.project_title}}
+          <core-icon icon="file-download"></core-icon> Get {{site.project_title}}
         </paper-button>
       </a>
-      <a href="https://github.com/polymer">
+      <a href="https://github.com/polymer" tabindex="-1">
         <paper-button class="github" unresolved>
-          <core-icon icon="social:post-github"></core-icon> View on GitHub
+          <core-icon src="/images/icons/github.png"></core-icon> View on GitHub
         </paper-button>
       </a>
     </summary>
@@ -35,7 +35,7 @@ title: Welcome
   </div>
 </section> -->
 
-<section id="googleio" class="main-light-purple">
+<!-- <section id="googleio" class="main-light-purple">
   <div class="panel" layout horizontal>
     <span class="iologo" layout vertical>
       <img src="https://events.google.com/io2015/images/io15-color.png" alt="Polymer at Google I/O 2015">
@@ -45,9 +45,22 @@ title: Welcome
       <h2>Polymer and modern web APIs: In production at Google scale</h2>
     </a>
   </div>
+</section> -->
+
+<section id="summit-banner" class="main-light-purple">
+  <div class="panel" layout horizontal center>
+    <span class="summitlogo" layout vertical>
+      <img src="/summit/images/badge_blue_small.png" alt="Polymer Summit 2015">
+    </span>
+    <a href="https://www.polymer-project.org/summit" target="_blank">
+      <h2>Watch Polymer Summit 2015</h2>
+      <h4>A full day of talks and code labs from the Polymer team</h4>
+    </a>
+  </div>
 </section>
 
-<!-- 
+
+<!--
 <section id="featured">
   <div class="panel" layout horizontal>
     <div flex>
@@ -64,14 +77,14 @@ title: Welcome
   <div class="panel">
     <summary>
       <h1>Element Catalog</h1>
-      <a href="https://elements.polymer-project.org" target="_blank">
-        <img src="/images/catalog_fadeout.png" alt="Launch the element catalog" title="Launch the element catalog">
+      <a href="https://elements.polymer-project.org" target="_blank" class="screenshot">
+        <img src="/images/catalog_fadeout.jpg" alt="Launch the element catalog" title="Launch the element catalog">
       </a>
       <div>
         <p>
         Custom elements, built by the Polymer team, ready to use in your applications.
         </p>
-        <a href="https://elements.polymer-project.org" target="_blank">
+        <a href="https://elements.polymer-project.org" target="_blank" tabindex="-1">
           <paper-button>
             <core-icon icon="arrow-forward"></core-icon> Browse elements
           </paper-button>
@@ -114,7 +127,7 @@ title: Welcome
       <h2>For Modern Browsers</h2>
       <p>Polymer is built from the ground up for modern browsers, using the latest web platform APIs. Polyfills provide support on evergreen browsers for APIs that aren't universal yet.</p>
     </div>
-    
+
     <div class="feature">
       <div class="badge">
         <div class="badge-wrapper">
@@ -148,7 +161,7 @@ title: Welcome
 {%endraw%}
         {% endhighlight %}
         </div>
-        
+
         <div class="example-result example-google-map">
           <iframe frameborder="0" src="samples/homepage/google-map/index.html" width="100%"></iframe>
         </div>
@@ -181,7 +194,7 @@ title: Welcome
 </dom-module>
 {%endraw%}
       {% endhighlight %}
-      
+
       {% highlight html %}
 {%raw%}
 <contact-card starred>
@@ -241,34 +254,30 @@ title: Welcome
       <div class="example-caption">
         <p>Build more sophisticated elements by composing simpler elements together. Elements can provide simple abstractions to powerful APIs. The <code>&lt;firebase-collection&gt;</code> used here pulls data from a Firebase database. </p>
       </div>
-      
+
       <div class="button-row">
-        <a href="docs/start/quick-tour.html">
+        <a href="docs/start/quick-tour.html" tabindex="-1">
           <paper-button raised>
             <core-icon icon="arrow-forward"></core-icon> Take a Tour
           </paper-button>
         </a>
 
-        <a href="docs/start/getting-the-code.html">
+        <a href="docs/start/getting-the-code.html" tabindex="-1">
           <paper-button raised>
             <core-icon icon="archive"></core-icon> Get The Code
           </paper-button>
         </a>
 
-        <a href="docs/index.html">
+        <a href="docs/index.html" tabindex="-1">
           <paper-button raised>
             <core-icon icon="info"></core-icon> Learn More
           </paper-button>
         </a>
       </div>
     </div>
-    
+
   </div>
 </section>
-
-<paper-dialog id="iovideo" transition="core-transition-center" backdrop layered="false">
-  <iframe src="https://www.youtube.com/embed/fD2As5RmM8Q" frameborder="0" allowfullscreen fit></iframe>
-</paper-dialog>
 
 {% comment %}
 <section id="everything-element" class="main-purple">
@@ -278,7 +287,7 @@ title: Welcome
       <p>From <code>&lt;a&gt;</code> to <code>&lt;select&gt;</code>, elements are the building blocks of HTML. But modern applications have outgrown these built-in elements, forcing app developers to rely on JavaScript frameworks to provide dynamic, custom behavior.  The resulting apps are frequently complex and monolithic; a component developed for one may not work in another.
       <br><br>
       {{site.project_title}} puts elements back at the center of web development. With {{site.project_title}}, you can craft your own HTML elements and compose them into complete, complex applications that are scalable and maintainable.</p>
-      <a href="docs/start/everything.html">
+      <a href="docs/start/everything.html" tabindex="-1">
         <paper-button>
           <core-icon icon="arrow-forward"></core-icon> Learn more
         </paper-button>

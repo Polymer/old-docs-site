@@ -58,26 +58,26 @@ For example:
 syntax. For more information, see [Binding to native element attributes](#native-binding). 
 {: .alert .alert-info }
 
+
 ### Binding to text content 
 
 To bind to a child element's `textContent`, you can simply include the
-annotation inside the child element. The binding annotation must currently span
-the **entire content** of the tag:
+annotation inside the child element. 
 
     {% raw %}
     <dom-module id="user-view">
 
         <template>   
-          First: <span>{{first}}</span><br>
-          Last: <span>{{last}}</span>
+          First: {{firstName}}<br>
+          Last: {{lastName}}
         </template>
 
         <script>
           Polymer({
             is: 'user-view',
             properties: {
-              first: String,
-              last: String
+              firstName: String,
+              lastName: String
             }
           });
         </script>
@@ -86,23 +86,25 @@ the **entire content** of the tag:
     {% endraw %}
 
 
-    <user-view first="Samuel" last="Adams"></user-view>
-
-String concatenation is **not** supported inside a tag, and the tag **can't 
-contain any whitespace**:
-
-    {% raw %}
-    <!-- Not currently supported! -->
-    <div>First: {{first}}</div>
-    <div>Last: {{last}}</div>
-
-    <!-- Not currently supported! -->
-    <div>
-      {{title}}
-    </div>
-    {% endraw %}
+    <user-view first-name="Samuel" last-name="Adams"></user-view>
 
 Binding to text content is always one-way, host-to-child.
+
+### Compound bindings {#compound-bindings}
+
+You can combine string literals and bindings in a single property binding or
+text content binding:
+
+    <img src$="https://www.example.com/profiles/{%raw%}{{userId}}{%endraw%}.jpg">
+
+    <span>Name: {%raw%}{{lastname}}, {{firstname}}{%endraw%}</span>
+
+Compound bindings are re-evaluated whenever the value of any of the individual
+bindings changes. Undefined values are interpolated as empty strings.
+
+You can use either one-way (`[[]]`) or automatic (`{%raw%}{{}}{%endraw%}`)
+binding annotations in a compound binding, but the bindings are **always
+one-way, host-to-target.**
 
 ### Binding to sub-properties
 
@@ -151,7 +153,7 @@ property being bound does not have the `notify` flag set, only one-way
 (downward) binding will occur.)
 
 3. The child property being bound to must **not** be configured with the `readOnly`
-flag set to true.  (If the child property is `notify: true` and `readOnly:true`,
+flag set to true.  (If the child property is `notify: true` and `readOnly: true`,
 and the host binding uses curly-brace syntax, the binding is
 one-way, **upward** (child-to-host).)
 
@@ -161,7 +163,7 @@ Example 1: Two-way binding
       Polymer({
         is: 'custom-element',
         properties: {
-          prop: {
+          someProp: {
             type: String,
             notify: true
           }
@@ -170,9 +172,9 @@ Example 1: Two-way binding
     </script>
     ...
 
-    <!-- changes to "value" propagate downward to "prop" on child -->
-    <!-- changes to "prop" propagate upward to "value" on host  -->
-    <custom-element prop="{%raw%}{{value}}{%endraw%}"></custom-element>
+    <!-- changes to "value" propagate downward to "someProp" on child -->
+    <!-- changes to "someProp" propagate upward to "value" on host  -->
+    <custom-element some-prop="{%raw%}{{value}}{%endraw%}"></custom-element>
 
 Example 2: One-way binding (downward)
 
@@ -180,7 +182,7 @@ Example 2: One-way binding (downward)
       Polymer({
         is: 'custom-element',
         properties: {
-          prop: {
+          someProp: {
             type: String,
             notify: true
           }
@@ -190,9 +192,9 @@ Example 2: One-way binding (downward)
 
     ...
 
-    <!-- changes to "value" propagate downward to "prop" on child -->
-    <!-- changes to "prop" are ignored by host due to square-bracket syntax -->
-    <custom-element prop="[[value]]"></custom-element>
+    <!-- changes to "value" propagate downward to "someProp" on child -->
+    <!-- changes to "someProp" are ignored by host due to square-bracket syntax -->
+    <custom-element some-prop="[[value]]"></custom-element>
 
 Example 3: One-way binding (downward)
 
@@ -201,16 +203,16 @@ Example 3: One-way binding (downward)
       Polymer({
         is: 'custom-element',
         properties: {
-          prop: String    // no notify:true!
+          someProp: String    // no notify:true!
         }
       });
 
     </script>
     ...
 
-    <!-- changes to "value" propagate downward to "prop" on child -->
-    <!-- changes to "prop" are not notified to host due to notify:falsey -->
-    <custom-element prop="{%raw%}{{value}}{%endraw%}"></custom-element>
+    <!-- changes to "value" propagate downward to "someProp" on child -->
+    <!-- changes to "someProp" are not notified to host due to notify:falsey -->
+    <custom-element some-prop="{%raw%}{{value}}{%endraw%}"></custom-element>
 
 Example 4: One-way binding (upward, child-to-host)
 
@@ -218,11 +220,11 @@ Example 4: One-way binding (upward, child-to-host)
       Polymer({
         is: 'custom-element',
         properties: {
-          prop: {
-              type: String,
-              notify: true,
-              readOnly: true
-            }
+          someProp: {
+            type: String,
+            notify: true,
+            readOnly: true
+          }
         }
       });
     </script>
@@ -230,8 +232,8 @@ Example 4: One-way binding (upward, child-to-host)
     ...
 
     <!-- changes to "value" are ignored by child due to readOnly:true -->
-    <!-- changes to "prop" propagate upward to "value" on host  -->
-    <custom-element prop="{%raw%}{{value}}{%endraw%}"></custom-element>
+    <!-- changes to "someProp" propagate upward to "value" on host  -->
+    <custom-element some-prop="{%raw%}{{value}}{%endraw%}"></custom-element>
 
 Example 5: Error / non-sensical state
 
@@ -239,19 +241,19 @@ Example 5: Error / non-sensical state
       Polymer({
         is: 'custom-element',
         properties: {
-          prop: {
-              type: String,
-              notify: true,
-              readOnly: true
-            }
+          someProp: {
+            type: String,
+            notify: true,
+            readOnly: true
+          }
         }
       });
     </script>
     ...
     <!-- changes to "value" are ignored by child due to readOnly:true -->
-    <!-- changes to "prop" are ignored by host due to square-bracket syntax -->
+    <!-- changes to "someProp" are ignored by host due to square-bracket syntax -->
     <!-- binding serves no purpose -->
-    <custom-element prop="[[value]]"></custom-element>
+    <custom-element some-prop="[[value]]"></custom-element>
 
 ### Change notification protocol
 
@@ -261,17 +263,18 @@ When you configure a declared property with the `notify` flag set to `true`,
 *   When the property changes, the element fires a non-bubbling DOM
     event to indicate those changes to interested hosts. 
 
-*   The event follows a naming convention of <code><var>property</var>-changed</code>, 
-    and contains a `value` property in the `event.detail` object indicating 
-    the property's new value.
+*   The event type follows a naming convention of <code><var>property</var>-changed</code>, 
+    where property's mixedCase words are written with dashes. E.g. a change to 
+    `this.firstName` will fire `first-name-changed`. Listeners will receive an event object 
+    whose `e.detail.value` attribute has the changing property's new value.
 
-When using a {{site.project_title}} element with other elements or frameworks, you can 
-manually attach an <code>on-<var>property</var>-changed</code> listener to an element to
-be notified of property changes, and take the necessary actions based on the new value. 
+You can manually attach a <code><var>property</var>-changed</code> 
+listener to an element to [notify external elements, frameworks,
+or libraries](/1.0/docs/devguide/properties.html#notify-external) of property 
+changes.
 
-This is essentially what {{site.project_title}} does when you create a two-way data
-binding.
-
+This is essentially what {{site.project_title}} does when you create a 
+two-way data binding.
 
 ### Two-way binding to native elements {#two-way-native}
 
@@ -323,8 +326,8 @@ Example:
       <user-element user="{%raw%}{{user}}{%endraw%}"></user-element>
     </template>
 
-The path syntax doesn't support array-style accessors (such as `users[0].name`). 
-However, you can include indexes directly in the path (`users.0.name`).
+The path syntax **doesn't** support array-style accessors (such as `users[0].name`). 
+You must use a computed binding as described in [Binding to array items](#array-binding).
 
 For a path binding to update, the path value must be updated in one of the 
 following ways: 
@@ -383,8 +386,8 @@ registered interest in that path so that side effects occur.
 
 This system "just works" to the extent that changes to object sub-properties
 occur as a result of being bound to a notifying custom element property that
-changed.  However, sometimes imperative code needs to change an object's sub-
-properties directly.  As we avoid more sophisticated observation mechanisms such
+changed.  However, sometimes imperative code needs to change an object's
+sub-properties directly.  As we avoid more sophisticated observation mechanisms such
 as `Object.observe` or dirty-checking in order to achieve the best startup and
 runtime performance cross-platform for the most common use cases, changing an
 object's sub-properties directly requires cooperation from the user.
@@ -447,6 +450,9 @@ The two exceptions are:
 
 *   Computed bindings, as described in 
     [Computed bindings](#annotated-computed), below.
+
+
+In addition, multiple binding annotations can be combined with string literals in a single [compound binding](#compound-bindings).
 
 ## Computed bindings {#annotated-computed}
 
@@ -564,9 +570,9 @@ Explicit bindings to array items by index isn't supported:
 You can use a computed binding to bind to a specific array item, or to a 
 subproperty of an array item, like `array[index].name`. 
 
-The following example shows to access a property from an array item using a computed binding.
+The following example shows how to access a property from an array item using a computed binding.
 The computing function needs to be called if the subproperty value changes, 
-_or_ if the array  itself is mutated, so the binding uses a wildcard path, `myArray.*`.
+_or_ if the array itself is mutated, so the binding uses a wildcard path, `myArray.*`.
 
 
     
@@ -580,7 +586,7 @@ _or_ if the array  itself is mutated, so the binding uses a wildcard path, `myAr
       <script>
         Polymer({
 
-          is: 'binding-test',
+          is: 'bind-array-element',
 
           properties: {
 
@@ -627,7 +633,7 @@ results in a call to:
 
 As opposed to:
 
-<var>element</var>.<var>property</var> = <var>value</var>;
+<code><var>element</var>.<var>property</var> = <var>value</var>;</code>
 
     <template>
       {% raw %}
@@ -692,5 +698,3 @@ Attribute binding to dynamic values (use `$=`):
     <!-- dataset -->
     <div data-bar$="{{baz}}"></div>
     {% endraw %}
-
-

@@ -7,12 +7,12 @@
     Code distributed by Google as part of the polymer project is also
     subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
-<link rel="import" href="../components/polymer/polymer.html">
-<link rel="import" href="../components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../components/paper-dropdown-menu/paper-dropdown-menu.html">
-<link rel="import" href="../components/paper-dropdown/paper-dropdown.html">
-<link rel="import" href="../components/core-menu/core-menu.html">
-<link rel="import" href="../components/paper-item/paper-item.html">
+<link rel="import" href="/0.5/components/polymer/polymer.html">
+<link rel="import" href="/0.5/components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="/0.5/components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="/0.5/components/paper-dropdown/paper-dropdown.html">
+<link rel="import" href="/0.5/components/core-menu/core-menu.html">
+<link rel="import" href="/0.5/components/paper-item/paper-item.html">
 
 <polymer-element name="app-bar" attributes="theme home badge">
   <template>
@@ -44,7 +44,7 @@
 
     <div id="search" show?="{{showingSearch}}" on-click="{{toggleSearch}}">
       <paper-icon-button icon="search"></paper-icon-button>
-      <input type="search" id="input" on-keyup="{{onKeyPress}}" autocomplete="off">
+      <input type="search" id="input" on-keyup="{{onKeyPress}}" on-blur="{{disableSearch}}" autocomplete="off">
     </div>
   </template>
   <script>
@@ -67,11 +67,15 @@
           this.$.input.focus();
         });
       },
+      disableSearch: function() {
+        this.classList.remove('search-on');
+        this.showingSearch = false;
+      },
       onKeyPress: function(e, detail, sender) {
         if (e.keyCode == 13) { // Enter
           if (sender.value) {
             recordSearch(sender.value);
-            var q = 'site:polymer-project.org+' + sender.value;
+            var q = 'site:polymer-project.org/1.0+' + sender.value;
             window.open('https://www.google.com/search?q=' + q);
           }
         }

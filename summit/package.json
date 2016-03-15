@@ -1,0 +1,16 @@
+{
+  "name": "summit",
+  "version": "1.0.0",
+  "description": "",
+  "devDependencies": {
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-imagemin": "^2.3.0",
+    "gulp-load-plugins": "^1.0.0-rc.1",
+    "gulp-minify-html": "^1.0.4",
+    "gulp-vulcanize": "^6.0.1",
+    "merge-stream": "^1.0.0"
+  }
+}

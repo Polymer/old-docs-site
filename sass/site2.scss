@@ -168,7 +168,8 @@ summary {
   font-size: $font-size-secondary;
   padding: 10px 15px;
 
-  b, strong {
+  /* Each alert box starts with a run-in head */
+  b:first-of-type, strong:first-of-type {
     margin-right: 5px;
   }
 

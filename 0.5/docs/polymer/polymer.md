@@ -905,7 +905,7 @@ All properties on {{site.project_title}} elements can be watched for changes by 
 
 In this example, there are two watched properties, `better` and `best`. The `betterChanged` and `bestChanged` function will be called whenever `better` or `best` are modified, respectively.
 
-#### Custom property observers &mdash; the `observe` object {#observeblock}
+#### Custom property observers—the `observe` object {#observeblock}
 
 Sometimes a [changed watcher](#change-watchers) is not enough. For more control over
 property observation, {{site.project_title}} provides the `observe` object.

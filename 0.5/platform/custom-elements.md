@@ -186,12 +186,12 @@ and hide the details of a complex API like `XMLHttpRequest`.
 ## Resources
 
 - [Custom Elements](http://www.html5rocks.com/en/tutorials/webcomponents/customelements/)
-  &mdash; An article by Eric Bidelman on HTML5 ROCKS.
+ —An article by Eric Bidelman on HTML5 ROCKS.
 - [Webcomponents.org](http://webcomponents.org/)
-  &mdash; A website dedicated to discussing Web Components, an emerging standard, which includes Custom Elements.
-- [W3C Specification](http://w3c.github.io/webcomponents/spec/custom/) &mdash; The Web Components specification.
-- [Custom Elements](http://customelements.io/) &mdash; A gallery of Web Components.
-- [GitHub repo](https://github.com/Polymer/webcomponentsjs) &mdash; The custom
+ —A website dedicated to discussing Web Components, an emerging standard, which includes Custom Elements.
+- [W3C Specification](http://w3c.github.io/webcomponents/spec/custom/)—The Web Components specification.
+- [Custom Elements](http://customelements.io/)—A gallery of Web Components.
+- [GitHub repo](https://github.com/Polymer/webcomponentsjs)—The custom
   elements repository.
 
 ## Next steps {#nextsteps}

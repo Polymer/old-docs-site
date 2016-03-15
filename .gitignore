@@ -11,3 +11,5 @@ _site
 *.vulcanized.js
 *.sublime-*
 _data/versions
+.bundle
+summit/dist

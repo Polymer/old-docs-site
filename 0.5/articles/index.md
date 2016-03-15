@@ -54,5 +54,5 @@ and <a href="https://plus.google.com/{{collaborator.gplus}}?rel=author" target="
 {% endfor %}
 
 <div style="margin-top:5em;">
-_Have an idea for an article? [Suggest it](https://github.com/Polymer/docs/issues/new)!_
+_Have an idea for an article? [Suggest it](https://github.com/Polymer/docs/issues/new?labels=article)!_
 </div>

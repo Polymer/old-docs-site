@@ -1,5 +1,5 @@
 application: polymer-project
-version: 2015-05-30
+version: 2016-03-02
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -18,6 +18,10 @@ handlers:
 - url: /latest.*
   script: main.app
   secure: always
+
+- url: /robots.txt
+  static_files: robots.txt
+  upload: robots.txt
 
 # These needs to be in this order and come for the short URL versions.
 # Map unversioned wc.js allowed because it will churn less.
@@ -112,6 +116,38 @@ handlers:
 - url: /docs/elements/(core|paper)-elements.html
   script: main.app
 
+# Special exception for the summit site so it doesn't require
+# a trailing slash
+- url: /summit
+  static_files: _site/summit/dist/index.html
+  upload: _site/summit/dist/index.html
+  secure: always
+
+- url: /summit/$
+  static_files: _site/summit/dist/index.html
+  upload: _site/summit/dist/index.html
+  secure: always
+
+- url: /summit/(schedule|speakers)
+  static_files: _site/summit/dist/index.html
+  upload: _site/summit/dist/index.html
+  secure: always
+
+- url: /summit/codelabs/$
+  static_files: _site/summit/dist/codelabs.html
+  upload: _site/summit/dist/codelabs.html
+  secure: always
+
+- url: /summit/codelabs$
+  static_files: _site/summit/dist/codelabs.html
+  upload: _site/summit/dist/codelabs.html
+  secure: always
+
+- url: /summit/(.*)
+  static_files: _site/summit/dist/\1
+  upload: _site/summit/dist/(.*)
+  secure: always
+
 # Map raw paths with trailing "/" to an index.html file.
 - url: /(.*)/$
   static_files: _site/\1/index.html
@@ -150,6 +186,9 @@ skip_files:
 - ^_(data|includes|layouts|plugins)/
 - ^sass$
 - ^scripts$
+
+# Summit source
+- ^summit\/app$
 
 - ^(\d.\d(.\d)?)$ # Exclude version dirs. They're in _site/.
 

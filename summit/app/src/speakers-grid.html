@@ -1,0 +1,201 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="cascaded-animation-behavior.html">
+<link rel="import" href="collapsible-card.html">
+<link rel="import" href="grid-view.html">
+
+<dom-module id="speakers-grid">
+
+  <style>
+
+    :host {
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    .photo-wrap {
+      position: relative;
+      padding-bottom: 75%; /* 4x3 */
+      background-color: #eaeaea;
+      overflow: hidden;
+    }
+
+    .photo {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+    }
+
+    .card {
+      background-color: #fff;
+      -webkit-transform: translateZ(0);
+      will-change: transform;
+    }
+
+    .card[narrow] {
+      box-shadow: none;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .content {
+      position: relative;
+      padding: 16px;
+    }
+
+    .name, .title {
+      line-height: 30px;
+    }
+
+    .name {
+      font-weight: 600;
+      color: #147BCC;
+    }
+
+    .title {
+      color: #4FB6F7;
+      font-style: italic;
+      opacity: 0.8;
+    }
+
+    [collapsible-content] {
+      padding: 16px 16px 72px;
+    }
+
+    .card[narrow] [collapsible-content] {
+      padding: 16px;
+    }
+
+    .bio {
+      font-size: 16px;
+    }
+
+    .bottom-tools {
+      position: absolute;
+      bottom: 16px;
+      margin-left: -8px;
+    }
+
+    .card[narrow] .bottom-tools {
+      position: static;
+      margin: 24px 0 24px -8px;
+    }
+
+    .bottom-tools > * {
+      padding: 8px;
+    }
+
+    .toggle-icon {
+      position: absolute;
+      right: 8px;
+      bottom: 4px;
+      --iron-icon-width: 40px;
+      --iron-icon-height: 40px;
+      padding: 8px;
+      color: #4FB6F7;
+      cursor: pointer;
+    }
+
+    .card:not([narrow]) .toggle-icon {
+      display: none;
+    }
+
+    .card[opened] .toggle-icon {
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+    }
+
+    [hidden] {
+      display: none;
+    }
+
+  </style>
+
+  <template>
+
+    <grid-view>
+      <template is="dom-repeat" items="[[speakers]]" on-dom-change="_updateCascadedNodes">
+
+        <collapsible-card class="card" cascaded opened="[[!narrowLayout]]" narrow$="{{narrowLayout}}">
+          <div class="photo-wrap">
+            <img class="photo" src="[[item.photo]]" aria-hidden="true">
+          </div>
+
+          <div class="content">
+            <div class="name">[[item.name]]</div>
+            <div class="title">[[item.title]]</div>
+            <iron-icon class="toggle-icon" icon="arrow-drop-down" collapsible-toggle></iron-icon>
+          </div>
+
+          <div collapsible-content>
+            <div class="bio">[[item.bio]]</div>
+            <div class="bottom-tools">
+              <a href="[[_gplusUrl(item.gplus)]]" target="_blank" hidden$="[[!item.gplus]]" aria-label="Follow on G Plus">
+                <iron-icon class="tool-icon" icon="summit:post-gplus"></iron-icon>
+              </a>
+              <a href="[[_twitterUrl(item.twitter)]]" target="_blank" hidden$="[[!item.twitter]]" aria-label="Follow on Twitter">
+                <iron-icon class="tool-icon" icon="summit:post-twitter"></iron-icon>
+              </a>
+            </div>
+          </div>
+
+        </collapsible-card>
+
+      </template>
+    </grid-view>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'speakers-grid',
+
+      behaviors: [
+        Polymer.CascadedAnimationBehavior,
+      ],
+
+      properties: {
+
+        speakers: {
+          type: Array
+        },
+
+        narrowLayout: {
+          type: Boolean,
+          value: false
+        }
+
+      },
+
+      _gplusUrl: function(name) {
+        return 'https://plus.google.com/' + name;
+      },
+
+      _twitterUrl: function(name) {
+        return 'https://twitter.com/' + name;
+      }
+
+    });
+
+  </script>
+
+</dom-module>

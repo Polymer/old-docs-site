@@ -24,7 +24,7 @@
     {{page.title}} -
   {% else %}
     Welcome - A new type of library for the web, built on top of Web Components
-  {% endif %} {{site.project_title}}
+    {% endif %} {{site.project_title}} {{version}}
 </title>
 <link rel="publisher" href="https://plus.google.com/107187849809354688692">
 <link rel="shortcut icon" href="/images/logos/p-logo-32.png">
@@ -42,9 +42,8 @@
   <link rel="stylesheet" href="{{item}}?{{site.time | date: '%Y%m%d'}}" shim-shadowdom>
 {% endfor %}
 
-<script src="{{version_prefix}}/components/webcomponentsjs/webcomponents.min.js?{{site.time | date: '%Y%m%d'}}"></script>
-<!-- TODO: remove when https://github.com/Polymer/polymer/issues/391 is fixed -->
-<link rel="import" href="{{version_prefix}}/components/polymer/polymer.html">
+<script src="/0.5/components/webcomponentsjs/webcomponents.min.js?{{site.time | date: '%Y%m%d'}}"></script>
+<link rel="import" href="/0.5/components/polymer/polymer.html">
 
 {% if page.layout == 'home' or page.layout == 'home_1_0' %}
   <link rel="import" href="{{version_prefix}}/elements/homepage_elements.vulcanized.html?{{site.time | date: '%Y%m%d'}}">

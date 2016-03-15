@@ -2,10 +2,9 @@
 #
 #
 #
-component_dirs="0.5 1.0 1.0/samples"
+component_dirs="0.5 1.0 summit"
 
 for dir in $component_dirs
-do 
+do
   ( cd $dir ; bower update )
 done
-

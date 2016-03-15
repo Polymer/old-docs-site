@@ -10,26 +10,23 @@ subtitle: Developer guide
 
 ## Event listener setup {#event-listeners}
 
-Add event listeners to the host element by providing a 
+Add event listeners to the host element by providing a
 `listeners` object that maps events to event handler function names.
 
-You can also add an event listener to any element in the `this.$` collection 
+You can also add an event listener to any element in the `this.$` collection
 using the syntax <code><var>nodeId</var>.<var>eventName</var>.
 
 Example:
 
     <dom-module id="x-custom">
-
       <template>
         <div>I will respond</div>
         <div>to a tap on</div>
         <div>any of my children!</div>
-        
         <div id="special">I am special!</div>
       </template>
 
       <script>
-
         Polymer({
 
           is: 'x-custom',
@@ -42,24 +39,18 @@ Example:
           regularTap: function(e) {
             alert("Thank you for tapping");
           },
-          
+
           specialTap: function(e) {
             alert("It was special tapping");
           }
 
         });
-
       </script>
-
     </dom-module>
-
-
-
-
 
 ## Annotated event listener setup {#annotated-listeners}
 
-To add event listeners to local-DOM children, use
+To add event listeners to local DOM children, use
 <code>on-<var>event</var></code>  annotations in your template. This often
 eliminates the need to give an element an `id` solely for  the purpose of
 binding an event listener.
@@ -67,19 +58,76 @@ binding an event listener.
 Example:
 
     <dom-module id="x-custom">
+      <template>
+        <button on-tap="handleTap">Kick Me</button>
+      </template>
+      <script>
+        Polymer({
+          is: 'x-custom',
+          handleTap: function() {
+            alert('Ow!');
+          }
+        });
+      </script>
+    </dom-module>
 
+**Tip: Use `on-tap` rather than `on-click` for an event that fires consistently
+across both touch (mobile) and click (desktop) devices**. See [gesture
+events](#gestures) for a complete list of reliable, cross-platform events.
+{: .alert .alert-info }
+
+Because the event name is specified using an HTML attribute, **the event name is always
+converted to lowercase**. This is because HTML attribute names are case
+insensitive. So specifying `on-myEvent` adds a listener for `myevent`. The event handler
+_name_ (for example, `handleClick`) **is** case sensitive.
+
+**Compatibility note:** The syntax differs from 0.5, which required curly brackets ({%raw%}{{}}{%endraw%})
+around the event handler name.
+
+**Lowercase event names.** When you use a declarative handler, the event name
+is converted to lowercase, because attributes are case-insensitive.
+So the attribute `on-core-signal-newData` sets up a listener for `core-signal-newdata`,
+_not_ `core-signal-newData`. To avoid confusion, always use lowercase event names.
+{: .alert .alert-info }
+
+## Imperatively add and remove listeners {#imperative-listeners}
+
+Use [automatic node finding](local-dom.html#node-finding) and the
+convenience methods
+[`listen`](/{% polymer_version_dir %}/api/#Polymer.Base:method-listen){:target="_blank"} and
+[`unlisten`](/{% polymer_version_dir %}/api/#Polymer.Base:method-unlisten){:target="_blank"} .
+
+    this.listen(this.$.myButton, 'tap', 'onTap');
+
+    this.unlisten(this.$.myButton, 'tap', 'onTap');
+
+The listener callbacks are invoked with `this` set to the element instance.
+
+If you add a listener imperatively, you need to remove it imperatively.
+This is commonly done in the `attached` and `detached`
+[callbacks](registering-elements.html#lifecycle-callbacks). If you use
+the [`listeners`](#event-listeners) object or [annotated event
+listeners](#annotated-listeners), {{site.project_title}} automatically adds
+and removes the event listeners.
+
+## Custom events {#custom-events}
+
+To fire a custom event from the host element use the `fire` method. You can also pass in data to event handlers as an argument to `fire`.
+
+Example:
+
+    <dom-module id="x-custom">
       <template>
         <button on-click="handleClick">Kick Me</button>
       </template>
 
       <script>
-
         Polymer({
 
           is: 'x-custom',
 
-          handleClick: function() {
-            alert('Ow!');
+          handleClick: function(e, detail) {
+            this.fire('kick', {kicked: true});
           }
 
         });
@@ -87,21 +135,13 @@ Example:
       </script>
 
     </dom-module>
+    <x-custom></x-custom>
 
-Because the event name is specified using an HTML attribute, **the event name is always
-converted to lowercase**. This is because HTML attribute names are case 
-insensitive. So specifying `on-myEvent` adds a listener for `myevent`. The event handler 
-_name_ (for example, `handleClick`) **is** case sensitive.
-
-**Compatibility note:** The syntax differs from 0.5, which required curly brackets ({%raw%}{{}}{%endraw%})
-around the event handler name.
-
-**Lowercase event names.** When you use a declarative handler, the event name 
-is convered to lowercase, because attributes are case-insensitive.
-So the attribute `on-core-signal-newData` sets up a listener for `core-signal-newdata`, 
-_not_ `core-signal-newData`. To avoid confusion, always use lowercase event names.
-{: .alert .alert-info } 
-
+    <script>
+        document.querySelector('x-custom').addEventListener('kick', function (e) {
+            console.log(e.detail.kicked); // true
+        })
+    </script>
 
 ## Gesture events {#gestures}
 
@@ -122,49 +162,47 @@ by default. Elements can override scroll direction with
 The following are the gesture event types supported, with a short description
 and list of detail properties available on `event.detail` for each type:
 
-* **down** - finger/button went down
-  * `x` - clientX coordinate for event
-  * `y` - clientY coordinate for event
-  * `sourceEvent` - the original DOM event that caused the `down` action
-* **up** - finger/button went up
-  * `x` - clientX coordinate for event
-  * `y` - clientY coordinate for event
-  * `sourceEvent` - the original DOM event that caused the `up` action
-* **tap** - down & up occurred
-  * `x` - clientX coordinate for event
-  * `y` - clientY coordinate for event
-  * `sourceEvent` - the original DOM event that caused the `tap` action
-* **track** - moving while finger/button is down
-  * `state` - a string indicating the tracking state:
-      * `start` - fired when tracking is first detected (finger/button down and moved past a pre-set distance threshold)
-      * `track` - fired while tracking
-      * `end` - fired when tracking ends
-  * `x` - clientX coordinate for event
-  * `y` - clientY coordinate for event
-  * `dx` - change in pixels horizontally since the first track event
-  * `dy` - change in pixels vertically since the first track event
-  * `ddx` - change in pixels horizontally since last track event
-  * `ddy` - change in pixels vertically since last track event
-  * `hover()` - a function that may be called to determine the element currently being hovered
+* **down**—finger/button went down
+  * `x`—clientX coordinate for event
+  * `y`—clientY coordinate for event
+  * `sourceEvent`—the original DOM event that caused the `down` action
+* **up**—finger/button went up
+  * `x`—clientX coordinate for event
+  * `y`—clientY coordinate for event
+  * `sourceEvent`—the original DOM event that caused the `up` action
+* **tap**—down & up occurred
+  * `x`—clientX coordinate for event
+  * `y`—clientY coordinate for event
+  * `sourceEvent`—the original DOM event that caused the `tap` action
+* **track**—moving while finger/button is down
+  * `state`—a string indicating the tracking state:
+      * `start`—fired when tracking is first detected (finger/button down and moved past a pre-set distance threshold)
+      * `track`—fired while tracking
+      * `end`—fired when tracking ends
+  * `x`—clientX coordinate for event
+  * `y`—clientY coordinate for event
+  * `dx`—change in pixels horizontally since the first track event
+  * `dy`—change in pixels vertically since the first track event
+  * `ddx`—change in pixels horizontally since last track event
+  * `ddy`—change in pixels vertically since last track event
+  * `hover()`—a function that may be called to determine the element currently being hovered
 
 Example:
 
     <dom-module id="drag-me">
-
-      <style>
-        #dragme {
-          width: 500px;
-          height: 500px;
-          background: gray;
-        }
-      </style>
-
       <template>
-        <div id="dragme" on-track="handleTrack">{{message}}</div>
+        <style>
+          #dragme {
+            width: 500px;
+            height: 500px;
+            background: gray;
+          }
+        </style>
+
+        <div id="dragme" on-track="handleTrack">{%raw%}{{message}}{%endraw%}</div>
       </template>
 
       <script>
-
         Polymer({
 
           is: 'drag-me',
@@ -185,9 +223,7 @@ Example:
           }
 
         });
-
       </script>
-
     </dom-module>
 
 
@@ -196,27 +232,25 @@ Example:
 Example with `listeners`:
 
     <dom-module id="drag-me">
-
-      <style>
-        #dragme {
-          width: 500px;
-          height: 500px;
-          background: gray;
-        }
-      </style>
-
       <template>
-        <div id="dragme">{{message}}</div>
+        <style>
+          #dragme {
+            width: 500px;
+            height: 500px;
+            background: gray;
+          }
+        </style>
+
+        <div id="dragme">{%raw%}{{message}}{%endraw%}</div>
       </template>
 
       <script>
-
         Polymer({
 
           is: 'drag-me',
 
           listeners: {
-            track: 'dragme.handleTrack'
+            'dragme.track': 'handleTrack'
           },
 
           handleTrack: function(e) {
@@ -233,34 +267,86 @@ Example with `listeners`:
                 break;
             }
           }
-
         });
-
       </script>
-
     </dom-module>
-
 
 
 ## Event retargeting {#retargeting}
 
 Shadow DOM has a feature called "event retargeting" which changes an event's
-target as it bubbles up, such that target is always in the receiving element's
-light DOM. Shady DOM does not do event retargeting, so events may behave differently
-depending on which local DOM system is in use.
+target as it bubbles up, such that target is always in the same scope as the
+receiving element. (For example, for a listener in the main document, the
+target is an element in the main document, not in a shadow tree.)
+
+Shady DOM doesn't do event regargeting for events as they bubble, because the
+performance cost would be prohibitive. Instead, {{site.project_title}}
+provides a mechanism to simulate retargeted events when needed.
 
 Use `Polymer.dom(event)` to get a normalized event object that provides
 equivalent target data on both shady DOM and shadow DOM. Specifically, the
 normalized event has the following properties:
 
 *   `rootTarget`: The original or root target before shadow retargeting
-    `(equivalent to `event.path[0]` under shadow DOM or `event.target` under
-    `shady DOM).
+    (equivalent to `event.path[0]` under shadow DOM or `event.target` under
+    shady DOM).
 
 *   `localTarget`: Retargeted event target (equivalent to `event.target` under
-    shadow DOM)
+    shadow DOM). This node is always in the same scope as the node where the
+    listener was added.
 
-*   `path`: Array of nodes through which event will pass 
+*   `path`: Array of nodes through which event will pass
     (equivalent to `event.path` under shadow DOM).
 
+Example:
 
+    <!-- event-retargeting.html -->
+     ...
+    <dom-module id="event-retargeting">
+      <template>
+        <button id="myButton">Click Me</button>
+      </template>
+
+      <script>
+        Polymer({
+
+            is: 'event-retargeting',
+
+            listeners: {
+              'click': 'handleClick',
+            },
+
+            handleClick(e) {
+              console.info(e.target.id + ' was clicked.');
+            }
+          });
+      </script>
+    </dom-module>
+
+
+    <!-- index.html  -->
+      ...
+    <event-retargeting></event-retargeting>
+
+    <script>
+      var el = document.querySelector('event-retargeting');
+      el.addEventListener('click', function(){
+        var normalizedEvent = Polymer.dom(event);
+        // logs #myButton
+        console.info('rootTarget is:', normalizedEvent.rootTarget);
+        // logs the instance of event-targeting that hosts #myButton
+        console.info('localTarget is:', normalizedEvent.localTarget);
+        // logs [#myButton, document-fragment, event-retargeting,
+        //       body, html, document, Window]
+        console.info('path is:', normalizedEvent.path);
+      });
+    </script>
+
+In this example, the original event is triggered on a `<button>` inside the `<event-retargeting>`
+element's local DOM tree. The listener is added on the `<event-retargeting>` element itself, which
+is in the main document. To hide the implementation of the element, the event should be retargeted
+so it appears to come from `<event-retargeting>` rather than from the `<button>` tag.
+
+The document fragment that appears in the event path is the root of the local DOM tree. In shady DOM
+this is an instance of `DocumentFragment`. In native shadow DOM, this would show up as an instance of
+`ShadowRoot` instead.

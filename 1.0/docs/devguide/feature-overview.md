@@ -8,24 +8,24 @@ subtitle: Developer guide
 
 
 The Polymer library provides a set of features for creating custom elements. These features are designed 
-to make it easier and faster to make custom elements that work like standard DOM elements. With a standard DOM element, you might expect:
+to make it easier and faster to make custom elements that work like standard DOM elements. Similar to standard DOM elements, Polymer elements can be:
 
-* You can create it using a constructor or `document.createElement`.
-* You can configure it using attributes or properties.
-* It may have some internal DOM that's created for each instance.
-* It responds to property and attribute changes (for example, by populating data into the DOM, or firing an event).
-* It has some default style and can be styled from the outside.
-* It may provide methods to allow you to manipulate its internal state.
+* Instantiated using a constructor or `document.createElement`.
+* Configured using attributes or properties.
+* Populated with internal DOM inside each instance.
+* Responsive to property and attribute changes (for example, by populating data into the DOM, or firing an event).
+* Styled with internal defaults or externally.
+* Responsive to methods that manipulate its internal state.
 
 A basic {{site.project_title}} element definition looks like this:
 
     <dom-module id="element-name">
 
-      <style>
-        /* CSS rules for your element */
-      </style>
-      
       <template>
+        <style>
+          /* CSS rules for your element */
+        </style>
+      
         <!-- local DOM for your element -->
 
         <div>{%raw%}{{greeting}}{%endraw%}</div> <!-- data bindings in local DOM -->

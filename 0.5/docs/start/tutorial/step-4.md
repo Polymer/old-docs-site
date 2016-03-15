@@ -251,7 +251,7 @@ Add an event handler for the `favorite-tap` event to `post-list.html`:
 
 Save `post-list.html` and refresh your page.
 
-That's it &mdash; you're done! With a bit of luck, your application looks like this:
+That's it—you're done! With a bit of luck, your application looks like this:
 
 <figure layout vertical center>
   <a href="https://polymer-tut.appspot.com/" class="unquote-link">

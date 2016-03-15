@@ -223,8 +223,10 @@ differently using CSS.
 Dialogs are hidden by default. Call the dialog's `toggle` method to show or
 hide it.
 
+<p>
 <a href="../../components/paper-elements/demo.html#paper-dialog">
 <core-icon icon="arrow-forward" size="16"></core-icon> More examples</a>
+</p>
 
 ### Snackbars & toasts
 
@@ -241,8 +243,10 @@ Like a dialog, a `<paper-toast>` is hidden by default. Call the element's
 `open` method to display it. The toast disappears after a timeout, or can be
 dismissed by swiping.
 
+<p>
 <a href="../../components/paper-elements/demo.html#paper-toast">
 <core-icon icon="arrow-forward" size="16"></core-icon> More examples</a>
+</p>
 
 ## Material effects
 
@@ -393,8 +397,8 @@ To change the z height dynamically, call the `setZ` method.
 
     this.$.my-shadow.setZ(5);
 
-The apparent height of the element (the z-height value) is absolute &mdash;
-that is, an  element with a z-height of 3 casts the same size shadow
+The apparent height of the element (the z-height value) is absolute—that 
+is, an  element with a z-height of 3 casts the same size shadow
 regardless of the z-heights of  the background elements. In addition, the
 z-height does not affect the stacking order of  elements. To change stacking
 order of sibling elements, use the `z-index` CSS property as  usual.
@@ -406,8 +410,10 @@ _parent element_, and supported changing the z-height by setting the
 `z` property directly.
 {: .alert .alert-info }
 
+<p>
 <a href="../../components/paper-elements/demo.html#paper-shadow">
 <core-icon icon="arrow-forward" size="16"></core-icon> More examples</a>
+</p>
 
 ## Transitions
 
@@ -434,7 +440,7 @@ design spec, including condensing and expanding the toolbar as the user
 scrolls and hiding or showing the toolbar.
 
 For resizing toolbars, `<core-scroll-header-panel>` lets you define how to
-transition the toolbar's contents between states &mdash; resizing text,
+transition the toolbar's contents between states—resizing text,
 showing or hiding /components, and cross-fading between backgrounds, for
 example.
 

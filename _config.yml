@@ -6,7 +6,8 @@ safe: false
 #permalink: /news/:year/:month/:day/:title.html
 
 exclude: ["node_modules", "scripts", "sass", "app.yaml", "README.md",
-          "CONTRIBUTING.md", "Gruntfile.js", "package.json", "config.rb"]
+          "CONTRIBUTING.md", "Gruntfile.js", "package.json", "config.rb",
+          "summit/app", "summit/node_modules", "summit/bower.json", "summit/gulpfile.js", "summit/package.json", "summit/README.md"]
 
 kramdown:
   toc_levels: 2..3
@@ -23,7 +24,7 @@ project_title: Polymer
 project_status: 'Dev preview'
 # TODO: add version global for new, 1.0 docs.
 latest_version: 0.5.6 # version global used in 0.5 docs.
-default_version: 1.0 # default homepage version the docs should serve 
+default_version: 1.0 # default homepage version the docs should serve
 legacy_version: 0.5 # version for legacy versionless URLs
 
 versions:

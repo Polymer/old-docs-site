@@ -1,0 +1,89 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/neon-animation/animations/cascaded-animation.html">
+<link rel="import" href="../bower_components/neon-animation/animations/transform-animation.html">
+<link rel="import" href="../bower_components/neon-animation/neon-animatable-behavior.html">
+<link rel="import" href="../bower_components/neon-animation/neon-animation-runner-behavior.html">
+
+<link rel="import" href="../bower_components/neon-animation/neon-animations.html">
+
+<script>
+
+  Polymer.CascadedAnimationBehaviorImpl = {
+
+    properties: {
+
+      selector: {
+        value: '[cascaded]'
+      },
+
+      showing: {
+        type: Boolean,
+        observer: '_showingChanged'
+      },
+
+      animationConfig: {
+        type: Object,
+        value: function() {
+          return {
+            'entry': [{
+              name: 'cascaded-animation',
+              animation: 'transform-animation',
+              transformFrom: 'translate3d(0,100%,0)',
+              transformTo: 'none',
+              timing: {
+                delay: 0
+              }
+            },{
+              name: 'cascaded-animation',
+              animation: 'fade-in-animation',
+              timing: {
+                delay: 0
+              }
+            }]
+          }
+        }
+      }
+
+    },
+
+    attached: function() {
+      this.style.opacity = 0;
+      this._updateCascadedNodes();
+    },
+
+    _showingChanged: function(showing) {
+      if (showing) {
+        this.async(function() {
+          this.style.opacity = 1;
+        }, 100);
+        this.playAnimation('entry');
+      } else {
+        this.style.opacity = 0;
+      }
+    },
+
+    _updateCascadedNodes: function() {
+      var nodes = Polymer.dom(this.root).querySelectorAll(this.selector);
+      var entry = this.animationConfig['entry'];
+      entry[0].nodes = entry[1].nodes = Array.prototype.slice.call(nodes);
+    }
+
+  }
+
+  Polymer.CascadedAnimationBehavior = [
+    Polymer.NeonAnimatableBehavior,
+    Polymer.NeonAnimationRunnerBehavior,
+    Polymer.CascadedAnimationBehaviorImpl
+  ];
+
+</script>

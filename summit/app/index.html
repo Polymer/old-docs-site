@@ -1,0 +1,338 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!doctype html>
+<html lang="en" itemscope itemtype="http://schema.org/Event">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Join us for an evening of code labs, followed by an all-day summit of Polymer tech talks and an after hours event.">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1">
+
+  <title>Polymer Summit 2015</title>
+
+  <link rel="shortcut icon" href="/summit/images/logo-32.png">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Polymer Summit 2015">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Polymer Summit 2015">
+
+  <meta itemprop="name" content="Polymer Summit 2015">
+  <meta itemprop="description" content="Join us for an evening of code labs, followed by an all-day summit of Polymer tech talks and an after hours event.">
+  <meta itemprop="startDate" content="2015-09-14T00:00:00Z">
+  <meta itemprop="endDate" content="2015-09-15T23:59:59Z">
+
+  <meta property="og:title" content="Polymer Summit 2015">
+  <meta property="og:site_name" content="Polymer Summit 2015">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="Join us for an evening of code labs, followed by an all-day summit of Polymer tech talks and an after hours event.">
+  <meta property="og:type" content="Event">
+
+  <link rel="stylesheet" href="/summit/styles/main.css">
+
+  <script src="/summit/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="/summit/src/elements.html">
+</head>
+<body unresolved>
+
+  <template is="dom-bind" id="app">
+
+    <x-drawer-layout id="drawerLayout" force-narrow right-drawer on-opened-changed="_handleDrawerOpen">
+
+      <div class="nav fit" drawer>
+        <iron-selector class="menu" selected="[[page]]" activate-event="click" attr-for-selected="name">
+          <a name="home" class="menu-item" href="/summit">HOME</a><br>
+          <a name="schedule" class="menu-item" href="/summit/schedule">SCHEDULE</a><br>
+          <a name="speakers" class="menu-item" href="/summit/speakers">SPEAKERS</a>
+          <a name="codelabs" class="menu-item" href="/summit/codelabs" target="_blank">CODELABS</a>
+        </iron-selector>
+      </div>
+
+      <x-header-layout class="header-layout" main page$="[[page]]">
+
+        <x-header class="main-header" waterfall fixed="[[!narrowLayout]]" threadhold="232">
+          <x-toolbar class="main-toolbar">
+            <a class="toolbar-badge badge-blue-small" href="/summit" aria-label="Home"></a>
+
+            <div class="flex horizontal center-center layout">
+              <iron-selector class="wide-only" selected="[[page]]" activate-event="click" attr-for-selected="name">
+                <a name="schedule" class="tab" href="/summit/schedule">SCHEDULE</a>
+                <a name="speakers" class="tab" href="/summit/speakers">SPEAKERS</a>
+                <a name="codelabs" class="tab" href="/summit/codelabs" target="_blank">CODELABS</a>
+              </iron-selector>
+            </div>
+
+            <div class="header-tools horizontal center layout">
+              <a href="https://plus.google.com/+PolymerProject" target="_blank" aria-label="Follow Polymer on G Plus">
+                <iron-icon class="header-social-icon" icon="summit:post-gplus"></iron-icon>
+              </a>
+              <a href="https://twitter.com/polymer" target="_blank" aria-label="Follow Polymer on Twitter">
+                <iron-icon class="header-social-icon" icon="summit:post-twitter"></iron-icon>
+              </a>
+              <iron-icon role="button" aria-label="Open menu" on-keyup="_toggleDrawer" class="menu-icon narrow-only" icon="menu" drawer-toggle tabindex="0"></iron-icon>
+            </div>
+          </x-toolbar>
+        </x-header>
+
+        <div class="speakers-banner blue-banner home-page-hidden responsive horizontal center-center layout">
+          <div class="horizontal center layout">
+            <div>18 Speakers</div><div class="dot-separator"></div><div>10 Code labs</div>
+          </div>
+          <div class="dot-separator wide-only"></div>
+          <div>Monday & Tuesday</div>
+        </div>
+
+        <iron-pages selected="{{page}}" attr-for-selected="name" selected-attribute="showing">
+
+          <section name="home">
+
+            <template is="dom-if" if="[[hasLivestream]]">
+              <header class="home-header-livestream">
+                <div class="livestream-container">
+                  <google-youtube class="livestream"
+                                  list-type="playlist"
+                                  list="PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J"
+                                  video-id="jVn8tlnwAEs"
+                                  fluid>
+                  </google-youtube>
+                </div>
+              </header>
+            </template>
+
+            <template is="dom-if" if="[[!hasLivestream]]">
+              <header class="home-header horizontal center-center layout">
+                <div class="badge-blue"></div>
+              </header>
+            </template>
+
+            <div class="date-loc-banner blue-banner responsive horizontal center-center layout">
+              <div class="location">Amsterdam, Netherlands</div>
+              <div class="dot-separator wide-only"></div>
+              <time>September 14-15, 2015</time>
+            </div>
+
+            <div class="wait-list-banner">
+              <div>
+                <span>The Summit is over, but not forgotten.</span>
+                <br>
+                <span>Missed something? You can always</span>
+                <a class="pink-arrow-btn" href="https://www.youtube.com/playlist?list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J">Watch the videos</a>
+              </div>
+              <div>
+                <span>Or </span>
+                  <a class="pink-arrow-btn" target="_blank" href="/summit/codelabs" data-outbound="code-labs">Try a codelab
+                  </a> from home.
+              </div>
+            </div>
+
+            <div>
+              <div class="welcome-msg">
+                <section class="bottom-spacer responsive horizontal layout">
+                  <time>September 14</time>
+                  <div class="flex-auto">Join us for an evening of code labs for hands-on learning. <strong>BYOL (Bring Your Own Laptop).</strong></div>
+                </section>
+                <section class="bottom-spacer responsive horizontal layout">
+                  <time>September 15</time>
+                  <div class="flex-auto">Come out for an all-day summit of Polymer tech talks and an after hours event.</div>
+                </section>
+                <section>
+                  You can pre-register on 14 September between 5pm-9pm. You can also register on the day of the event starting at 7:30am.
+                </section>
+              </div>
+            </div>
+
+            <a class="amsterdam-bg" aria-label="Event map" target="_blank"
+                href="https://www.google.com/maps/place/Muziekgebouw+aan+'t+IJ/@52.3783041,4.9131203,15z/data=!4m2!3m1!1s0x0:0x84b02f41a342e459"></a>
+
+            <div class="amsterdam-info responsive horizontal layout">
+              <div class="about-waterfront flex vertical center layout">
+                <section>
+                  <h3>Waterfront. Amsterdam.</h3>
+                  <p>Muziekgebouw aan ‘t IJ is a leading, open and welcoming stage which excels in concerts of contemporary music and related genres of classical, jazz, electronic pop and world music.</p>
+                </section>
+              </div>
+              <div class="getting-there flex vertical center layout">
+                <section>
+                  <h3>Getting There.</h3>
+                  <div class="direction">
+                    <a href="https://www.google.com/maps/place/Muziekgebouw+aan+'t+IJ/@52.3782504,4.9134354,17z/data=!4m7!1m4!3m3!1s0x47c609af7723b7bf:0x655d54a4fc5cc595!2sPiet+Heinkade+1,+1019+BR+Amsterdam,+Netherlands!3b1!3m1!1s0x0000000000000000:0x84b02f41a342e459">Muziekgebouw aan ‘t IJ</a><br>
+                    Piet Heinkade 1, 1019 BR Amsterdam, Netherlands (Near the Amsterdam Central train station)</div>
+                  <div>BY FOOT</div>
+                  <div class="direction">Approx 15 minutes from Central Station</div>
+                  <div>BY TRAM</div>
+                  <div class="direction">Line 26, ‘stop Muziegebouw / Bimhuis’</div>
+                  <div>BY CAR</div>
+                  <div class="direction">5 minutes from the A10 ring road motorway</div>
+                </section>
+              </div>
+            </div>
+
+            <div class="misc-banner">
+              <h3>SUMMIT EXTENDED</h3>
+              <div class="divider"></div>
+              <div class="desc">Be There From Anywhere</div>
+            </div>
+
+            <div class="horizontal center-center layout">
+              <paper-material class="misc-card responsive horizontal layout">
+                <section class="misc-card-content flex-auto">
+                  <h3>Can’t make it this year?</h3>
+                  <p>Streaming video, Polymer Code labs, and our social media community are a few alternatives for staying connected if you’re unable to attend.</p>
+                </section>
+                <div class="tools">
+                  <div class="bottom-spacer horizontal layout">
+                    <a class="extended-gplus-link flex" tabindex="-1" target="_blank" href="https://plus.google.com/+PolymerProject">
+                      <paper-button class="anchor-button blue" raised>
+                        <iron-icon class="extended-icon" icon="summit:post-gplus"></iron-icon>Google+
+                      </paper-button>
+                    </a>
+                    <a class="flex" tabindex="-1" target="_blank" href="https://twitter.com/polymer">
+                      <paper-button class="anchor-button blue" raised>
+                        <iron-icon class="extended-icon" icon="summit:post-twitter"></iron-icon>Twitter
+                      </paper-button>
+                    </a>
+                  </div>
+                  <a tabindex="-1" target="_blank" href="https://www.youtube.com/playlist?list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J" data-outbound="stream-video">
+                    <paper-button class="anchor-button red" raised>Watch the Polymer Summit Videos</paper-button>
+                  </a>
+                </div>
+              </paper-material>
+            </div>
+
+            <div class="misc-banner">
+              <h3>POLYMER CODE LABS</h3><div class="divider"></div>
+              <div class="desc">Learn and Build with the Polymer Team</div>
+            </div>
+
+            <div class="horizontal center-center layout">
+              <paper-material class="misc-card">
+                <div class="codelabs">
+                  <h3>Code labs are available throughout the Summit</h3>
+                  <p>Even if you're not in attendance, they're available online for you to work from the comfort of your own home or favorite coffee shop.</p>
+                </div>
+                <a tabindex="-1" target="_blank" href="/summit/codelabs" data-outbound="code-labs">
+                  <paper-button class="anchor-button blue" raised>Start a codelab!</paper-button>
+                </a>
+              </paper-material>
+            </div>
+
+          </section>
+
+          <schedule-grid name="schedule" schedule="{{schedule}}" narrow-layout="{{narrowLayout}}"></schedule-grid>
+
+          <speakers-grid name="speakers" speakers="{{speakers}}" narrow-layout="{{narrowLayout}}"></speakers-grid>
+
+        </iron-pages>
+
+        <div class="wait-list-banner home-page-hidden">
+          <div>
+            <span>The Summit is over, but not forgotten.</span>
+            <br>
+            <span>Missed something? You can always</span>
+            <a class="pink-arrow-btn" href="https://www.youtube.com/playlist?list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J">Watch the videos</a>
+          </div>
+          <div>
+            <span>Or </span>
+            <a class="pink-arrow-btn" target="_blank" href="/summit/codelabs" data-outbound="code-labs">Try a codelab
+            </a> from home.
+          </div>
+        </div>
+
+        <a class="amsterdam-bg home-page-hidden vertical center-center layout" target="_blank" aria-label="Event map" data-outbound="image-map"
+            href="https://www.google.com/maps/place/Muziekgebouw+aan+'t+IJ/@52.3783041,4.9131203,15z/data=!4m2!3m1!1s0x0:0x84b02f41a342e459">
+          <div class="amsterdam-scrim"></div>
+          <div class="badge-white"></div>
+        </a>
+
+        <div class="home-bottom-banner blue-banner home-page-only horizontal center-center layout">
+          <div class="badge-white"></div>
+        </div>
+
+        <footer>
+          <div class="footer-inner responsive horizontal center layout">
+            <a class="horizontal center layout" target="_blank" href="https://www.polymer-project.org">
+              <div class="logo"></div><div class="title">Polymer</div>
+            </a>
+            <div class="flex"></div>
+            <a target="_blank" href="http://polymer.github.io/LICENSE.txt" data-outbound="license-txt">&copy; 2015 Polymer Authors</a>
+            <div class="dot-separator wide-only"></div>
+            <a target="_blank" href="https://www.polymer-project.org" data-outbound="about-polymer">About Polymer</a>
+            <div class="dot-separator wide-only"></div>
+            <a target="_blank" href="/summit/code-of-conduct.html" data-outbound="code-of-conduct">Code of Conduct</a>
+          </div>
+        </footer>
+
+      </x-header-layout>
+
+    </x-drawer-layout>
+
+    <iron-media-query query="(max-width: 643px)" query-matches="{{narrowLayout}}"></iron-media-query>
+
+    <iron-ajax auto url="/summit/data/speakers.json" last-response="{{speakers}}"></iron-ajax>
+    <iron-ajax auto url="/summit/data/schedule.json" last-response="{{schedule}}"></iron-ajax>
+
+    <x-scrollpos-control selected="[[page]]"></x-scrollpos-control>
+
+  </template>
+
+  <script>
+    var app = document.querySelector('#app');
+
+    // Flip to true to make the livestream player go live
+    app.hasLivestream = true;
+
+    app._toggleDrawer = function(e) {
+      if (e.keyCode === 13) {
+        this.$.drawerLayout.toggleDrawer();
+      }
+    };
+
+    app._handleDrawerOpen = function(e, detail) {
+      if (detail && detail.value === true) {
+        document.querySelector('[drawer] a').focus();
+      }
+    };
+
+    app.pauseLivestream = function() {
+      var livestream = document.querySelector('.livestream');
+      // state -1 is unstarted
+      if (livestream.state === -1) {
+        return;
+      }
+      livestream.pause();
+    };
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-39334307-11', 'auto');
+    ga('send', 'pageview');
+
+    // Track outbound links
+    var anchors = Array.prototype.slice.call(
+      document.querySelectorAll('a[data-outbound]')
+    );
+    anchors.forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        var url = anchor.href;
+        var label = anchor.getAttribute('data-outbound');
+        label = label || '';
+        ga('send', 'event', 'outbound', 'click', label);
+      });
+    });
+  </script>
+
+</body>
+</html>

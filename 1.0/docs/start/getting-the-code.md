@@ -2,7 +2,8 @@
 layout: default
 type: start
 shortname: Start
-title: Get the code
+title: Get the Polymer library
+subtitle: Get started
 ---
 
 <style>
@@ -31,39 +32,6 @@ title: Get the code
 
 {% include toc.html %}
 
-## Installing {{site.project_title}} {#installing-polymer}
-
-If you're ready to start your own project, you can install the {{site.project_title}}
-library in one of several ways:
-
-*   [Bower](#using-bower) (recommended). Bower manages dependencies, so installing a component
-    also installs any missing dependencies. Bower also handles updating
-    installed components. For more information, see [Installing with Bower](#using-bower).
-
-*   [ZIP file](#using-zip). Includes all dependencies, so you can unzip it and start using it
-    immediately. The ZIP file requires no extra tools, but doesn't provide a
-    built-in method for updating dependencies. For more information, see
-    [Installing from ZIP files](#using-zip).
-
-*   [GitHub](#using-git). When you clone a component from GitHub, you need to manage all of the dependencies
-    yourself.
-
-If you don't want to start from scratch, there are also several starter projects available:
-
-*   [`<seed-element>`](#seed-element) is a complete template for creating a new, reusable element,
-    including docs and tests. 
-
-*   [Polymer Starter Kit](#psk) is a template for a Polymer application with tooling and offline
-    capabilities built-in.
-
-When you install {{site.project_title}} using Bower, you get the
-[Web Components polyfill library](/0.5/docs/start/platform.html). 
-For this version of {{site.project_title}}, you need the `webcomponents-lite` version of the 
-library, which doesn't include the shadow DOM polyfill.
-
-Using the polyfills ensures that you can use {{site.project_title}} with browsers that don't support
-the Web Components specifications natively.
-
 ## Installing with Bower {#using-bower}
 
 The recommended way to install **{{site.project_title}} {% polymer_version_dir %}**
@@ -85,22 +53,36 @@ This generates a basic `bower.json` file. Some of the questions, like
 
 The next step is to install {{site.project_title}}:
 
-    bower install --save Polymer/polymer#^1.0.0
+    bower install --save Polymer/polymer
 
 Bower adds a `bower_components/` folder in the root of your project and
 fills it with {{site.project_title}} and its dependencies.
 
-**Tip:** `--save` adds the item as a dependency in *your* app's bower.json:
-```
+The `--save` adds the item as a dependency in *your* app's bower.json:
+
+<pre>
 {
   "name": "my-project",
   "version": "0.0.0",
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.0.0"
+    "polymer": "Polymer/polymer#^1.<var>X.Y</var>"
   }
 }
-```
-{: .alert .alert-success }
+</pre>
+
+Where <code>1.<var>X.Y</var></code> is the current stable version of
+{{site.project_title}}. For example, if the current version is 1.3.1,
+the dependency line will show `#^1.3.1`, which means that your project
+requires a {{site.project_title}} version equal to or greater than 1.3.1,
+but less than 2.0.
+
+**Note:** Bower versions prior to 1.7.5 defaulted to a narrower version
+range, using the tilde operator. For example, `#~1.3.1`, which
+matches  any version equal to or greater than 1.3.1, but less than
+**1.4.0**. If you're using an older version of Bower, we recommend
+updating to the latest version and checking the version ranges in your
+`bower.json` files.
+{: .alert .alert-info }
 
 #### Updating packages {#updatebower}
 
@@ -111,17 +93,24 @@ in your app directory to update your copy:
 
 This updates all packages in `bower_components/` to the latest stable version.
 
+If the packages don't update as expected, check the version ranges in your
+`bower.json` file as described in [Installing with Bower](#using-bower).
+If they're correct, try clearing Bower's cache and re-running the update:
+
+    bower cache clean
+    bower update
+
 ## Installing from ZIP files {#using-zip}
 
 Click the button to download {{site.project_title}} {% polymer_version_dir %} as a ZIP file.
 
-<p><a href="http://zipper.bowerarchiver.appspot.com/archive?polymer=Polymer/polymer%231.0.0">
+<p><a href="http://zipper.bowerarchiver.appspot.com/archive?polymer=Polymer/polymer%23%5E1.2.0">
   <paper-button class="cta" raised><core-icon icon="file-download"></core-icon>Download ZIP</paper-button>
 </a></p>
 
 When you download {{site.project_title}} as a ZIP file, you get all of
 the dependencies bundled into a single archive. It's a great way to get
-started because you don't need to install any additional tools.
+started because you don't need to install any additional tools. **However, if you need to install additional elements, like the Material Design element set, you'll have to download them as ZIPs as well, or switch to Bower. For this reason we [recommend starting with Bower if possible](#using-bower).**
 
 Expand the ZIP file in your project directory to create a `bower_components` folder.
 
@@ -129,34 +118,50 @@ Expand the ZIP file in your project directory to create a `bower_components` fol
 
 Unlike Bower, the ZIP file doesn't provide a built-in method
 for updating dependencies. You can manually update components with a new ZIP
-file. 
+file.
 
-**Note:**  If you decide to install Bower later, you can use Bower to update the 
-components you installed from the ZIP file. Follow the instructions in 
+**Note:**  If you decide to install Bower later, you can use Bower to update the
+components you installed from the ZIP file. Follow the instructions in
 [Updating packages](#updatebower).
 {: .alert .alert-info }
 
-## Using git {#using-git}
+## Using the Polyfills
 
-Because there are a number of dependencies we suggest you install
-{{site.project_title}} with Bower instead of git. If you'd like to hack on
-the project or submit a pull request, you can [visit the GitHub repo](https://github.com/Polymer/polymer).
+When you install {{site.project_title}} (either with Bower or as a ZIP), you get the
+[Web Components polyfill library](/0.5/docs/start/platform.html).
+For this version of {{site.project_title}}, you need the `webcomponents-lite` version of the
+library, which doesn't include the shadow DOM polyfill.
+
+Using the polyfills ensures that you can use {{site.project_title}} with browsers that don't support
+the Web Components specifications natively.
 
 ## Element starter {#seed-element}
 
-If you want to publish an element for others to use, the 
-`<seed-element>` boilerplate is a good starting point. It comes with the tools
+If you want to publish an element for others to use, [the
+`<seed-element>` boilerplate](https://github.com/polymerelements/seed-element) is a good starting point. It comes with the tools
 you need for building, testing and documenting your element.
 
-[Create a reusable element](reusableelements.html) guides you through the 
+[Create a reusable element](reusableelements.html) guides you through the
 steps to create, test, document and publish your element.
 
 ## Polymer Starter Kit {#psk}
 
-A “batteries-included” application template, the 
+A “batteries-included” application template, the
 [Polymer Starter Kit](https://developers.google.com/web/tools/polymer-starter-kit/)
 includes a responsive application layout, tooling for testing and deployment, and
-even optional support for advanced features like offline access and push notifications.  
+even optional support for advanced features like offline access and push notifications.
+
+Check out the Polymer Starter Kit (PSK) tutorials to learn how to:
+
+*   [Install, build, and locally run](psk/set-up.html) the PSK.
+*   [Create a new page of content](psk/create-a-page.html).
+*   [Deploy the PSK](psk/deploy.html) to the web.
+
+## Contributing to the Project {#using-git}
+
+If you'd like to hack on
+the project or submit a pull request, you can [visit the GitHub repo](https://github.com/Polymer/polymer). Because there are a number of dependencies, if you're just trying to use Polymer in a project we suggest you [install
+{{site.project_title}} with Bower](#using-bower) instead of git.
 
 ## Next steps {#nextsteps}
 
