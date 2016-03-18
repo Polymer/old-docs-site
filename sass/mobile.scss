@@ -38,7 +38,7 @@ dropdown-panel {
   .bar {
     height: $siteBannerHeightMinMobile;
   }
-  
+
   #dropdown-toggle {
     height: 29px;
     width: 29px;
@@ -60,7 +60,7 @@ dropdown-panel {
       margin-right: auto !important;
       margin-left: 0px !important;
     }
-    
+
     summary {
       + summary {
         margin-right: auto !important;
@@ -85,10 +85,19 @@ dropdown-panel {
   }
 
   footer {
-    padding: $mobileContentPadding;
     .links {
       @include flex-direction(column);
       @include align-items(flex-start !important);
+
+      paper-button {
+        margin-bottom: 16px;
+      }
+    }
+  }
+
+  .button-row {
+    paper-button {
+      margin-bottom: 16px;
     }
   }
 
@@ -105,7 +114,7 @@ dropdown-panel {
     p {
       margin-bottom: 10px;
     }
-    .paper-button {
+    paper-button {
       margin: 0 0 40px;
     }
   }
@@ -128,7 +137,7 @@ dropdown-panel {
     margin-right: auto;
     margin-bottom: 30px;
   }
-  
+
   .panel {
     @include flex-direction(column);
     margin: 0 30px !important;
@@ -149,11 +158,6 @@ dropdown-panel {
       margin-left: 0px !important;
     }
   }
-
-  footer {
-    padding-left: $mobileContentPadding;
-  }
-
 }
 
 // Landscape Tablet + Small Desktop
@@ -164,7 +168,7 @@ dropdown-panel {
       @include flex-wrap(wrap);
       @include justify-content(flex-start);
 
-      .paper-button {
+      paper-button {
         margin-bottom: 16px;
       }
     }
