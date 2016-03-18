@@ -349,9 +349,10 @@ method on the element. To update all elements on the page, you can also call
 `Polymer.updateStyles`.
 
 You can  directly modify a {{site.project_title}} element's custom property by setting
-key-value pairs in [`customStyle`](/{% polymer_version_dir %}/api/#Polymer.Base:property-customStyle) on the
-element (analogous to setting `style`) and then calling `updateStyles`. Or you can pass
-a dictionary of property names and values as an argumen to `updateStyles`.
+key-value pairs in [`customStyle`](/{% polymer_version_dir %}/api/#Polymer.Base:property-customStyle){:target="api"}
+on the element (analogous to setting `style`) and then calling `updateStyles`.
+Or you can pass a dictionary of property names and values as an argument to
+`updateStyles`.
 
 To get the value of a custom property on an element, use
 [`getComputedStyleValue`](/{% polymer_version_dir %}/api/#Polymer.Base:method-getComputedStyleValue){:target="api"}.
