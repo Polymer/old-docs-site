@@ -57,7 +57,7 @@ The `properties` object supports the following keys for each property:
 <tr>
 <td><code>type</code></td>
 <td>
-Type: constructor (one of <code>Boolean</code>, <code>Date</code>, <code>Number</code>, <code>String</code>, <code>Array</code> or <code>Object</code>)<br>
+Type: constructor (one of <code>Boolean</code>, <code>Date</code>, <code>Number</code>, <code>String</code>, <code>Array</code>, <code>Object</code> or <code>Function</code>)<br>
 
 Attribute type, used for deserializing from an attribute. Unlike 0.5, the
 property's type is explicit, specified using the type's constructor. See
