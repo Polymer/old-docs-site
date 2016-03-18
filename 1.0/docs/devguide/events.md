@@ -271,6 +271,11 @@ Example with `listeners`:
       </script>
     </dom-module>
 
+## Property change events {#property-changes}
+
+You can configure an element to fire a non-bubbling DOM event when a specified
+property changes. See [Change notification 
+protocol](data-binding.html#change-notification-protocol) for more information.
 
 ## Event retargeting {#retargeting}
 
