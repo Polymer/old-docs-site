@@ -33,7 +33,7 @@ This release includes one new feature:
 
     Lazy registration is opt-in for now.
 
-    To enable lazy registration, add a `lazyRegistration` property with a value
+    To enable lazy registration, add a `lazyRegister` property with a value
     of `true` to the global settings object.
 
         <script src="components/webcomponentsjs/webcomponents-lite.js"></script>
@@ -42,11 +42,14 @@ This release includes one new feature:
         </script>
         <!-- import polymer.html or any elements that depend on Polymer -->
 
-    When you author an element, you can force it to do an complete the
-    registration work by calling `ensureRegisterFinished` on its prototype.
+    If you have specific element that relies on the default (immediate)
+    registration behavior, call `ensureRegisterFinished` on its prototype:
 
         var EagerElement = Polymer({ is: "eager-element"});
         EagerElement.prototype.ensureRegisterFinished();
+
+    This ensures that your element **doesn't** use lazy registration, even if
+    the global `lazyRegister` flag is set.
 
     **As of this release there is a known issue with the neon animation elements
     not working when lazy registration is enabled.**
