@@ -15,6 +15,54 @@ subtitle: About this release
   }
 </style>
 
+## [Release 1.4.0](https://github.com/Polymer/polymer/tree/v1.4.0) (2016-03-18) {#v1-4-0}
+
+This release includes one new feature:
+
+-   [#3508](https://github.com/Polymer/polymer/pull/3509). Support lazy
+    registration of elements. When enabled, this defers _most_ of the work
+    performed at registration time until the first instance of an element
+    is created. If your page includes definitions for many custom elements
+    that are not included in the initial page load, this can improve start-up
+    time by deferring actions like template parsing, style shimming, and data
+    system set up until the elements are used.
+
+    For example, if the only instance of an elements is inside a `dom-if`
+    template, the more expensive registration actions are deferred until the
+    `dom-if` instantiates its contents (when its condition changes to true).
+
+    Lazy registration is opt-in for now.
+
+    To enable lazy registration, add a `lazyRegistration` property with a value
+    of `true` to the global settings object.
+
+        <script src="components/webcomponentsjs/webcomponents-lite.js"></script>
+        <script>
+          window.Polymer = {lazyRegister: true};
+        </script>
+        <!-- import polymer.html or any elements that depend on Polymer -->
+
+    When you author an element, you can force it to do an complete the
+    registration work by calling `ensureRegisterFinished` on its prototype.
+
+        var EagerElement = Polymer({ is: "eager-element"});
+        EagerElement.prototype.ensureRegisterFinished();
+
+    **As of this release there is a known issue with the neon animation elements
+    not working when lazy registration is enabled.**
+
+This release includes one bugfix:
+
+-   [#3500](https://github.com/Polymer/polymer/issues/3500). Properties starting
+    with an uppercase letter, like `FPS`, no longer reflect to attributes.
+
+    Prior to v1.3.0, a property like `FPS` reflected incorrectly to the
+    attribute `fps`. With v1.3.0, `FPS` reflected to `-f-p-s`, which is treated
+    as invalid by `setAttribute`, causing some bindings to throw exceptions.
+    With this change, properties that start with an uppercase letter **do not
+    reflect**. If such a property is configured to reflect, Polymer prints a
+    warning to the console.
+
 ## [Release 1.3.1](https://github.com/Polymer/polymer/tree/v1.3.1) (2016-03-02) {#v1-3-1}
 
 This release fixes the following issues:
