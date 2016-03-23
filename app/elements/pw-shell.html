@@ -1,0 +1,270 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/helpers/helpers.html">
+<link rel="import" href="../bower_components/carbon-route/carbon-location.html">
+<link rel="import" href="../bower_components/carbon-route/carbon-route.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="icons.html">
+
+<dom-module id="pw-shell">
+  <style include="iron-flex iron-positioning"></style>
+  <style>
+
+    :host {
+      display: block;
+      margin-top: 64px;
+
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -webkit-user-select: none;
+
+      --app-header-z-index: calc(1 + var(--base-z-index, 100));
+      --app-drawer-z-index: calc(2 + var(--base-z-index, 100));
+    }
+
+    a {
+      color: #999;
+      text-decoration: none;
+    }
+
+    a.iron-selected {
+      color: #333;
+    }
+
+    .drawer {
+      display: none;
+      z-index: var(--app-drawer-z-index);
+    }
+
+    .drawer-contents {
+      height: 100%;
+      overflow-y: auto; 
+    }
+
+    .drawer-contents a,
+    .drawer-contents img {
+      display: block;
+      padding: 16px;
+    }
+
+    .drawer-contents a.iron-selected {
+      border-left: 4px solid #F22C5A;
+    }
+
+    .drawer-contents img {
+      height: 24px;
+    }
+
+    .drawer-toggle {
+      display: none;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      background-color: #FFF;
+      z-index: var(--app-header-z-index);
+    }
+
+    .header-toolbar {
+      padding: 0 8px;
+    }
+
+    .header-toolbar .logo-link {
+      padding: 16px 8px;
+      height: 32px;
+    }
+
+    .header-toolbar .logo-link img {
+      height: 32px;
+    }
+
+    .sections-tabs {
+      height: 64px;
+      padding: 0 8px; 
+    }
+
+    .sections-tabs a {
+      display: inline-block;
+      margin: 0 12px;
+      padding-top: 24px;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    .sections-tabs a.iron-selected {
+      border-bottom: 4px solid #F22C5A;
+    }
+
+    .search-box {
+      width: 100%;
+      height: 100%;
+      padding: 0 12px;
+      font-size: 16px;
+      border: none;
+      box-sizing: border-box;
+      -webkit-transform: translate3d(100%, 0, 0);
+      transform: translate3d(100%, 0, 0);
+      transition: -webkit-transform 0.2s;
+      transition: transform 0.2s;
+    }
+
+    .search-box:focus {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+
+    /* Mobile viewports */
+    @media (max-width: 767px) {
+      :host {
+        margin-top: 56px;
+      }
+
+      .drawer {
+        display: block;
+      }
+
+      .drawer-toggle {
+        display: block;
+      }
+
+      .header-toolbar .logo-link {
+        height: 24px;
+      }
+
+      .header-toolbar .logo-link img {
+        height: 24px;
+      }
+
+      .sections-tabs {
+        display: none;
+      }
+    }
+
+  </style>
+
+  <template>
+
+    <carbon-location route="{{_sectionRoute}}"></carbon-location>
+    <carbon-route route="{{_sectionRoute}}" pattern="/1.0/:section" data="{{_sectionData}}" tail="{{_subsectionRoute}}"></carbon-route>
+
+    <!--
+    TODO: This will make a XHR request even for the first load, which we don't need since
+    the light DOM will be pre-filled by the server-side templater (jinja)
+    -->
+    <iron-ajax url="[[_sectionRoute.path]]" handle-as="document" on-response="_handleResponse" auto></iron-ajax>
+
+    <app-drawer id="drawer" class="drawer" swipe-open>
+      <div class="drawer-contents">
+        <img src="../images/logos/p-logo.svg" alt="Polymer Logo">
+
+        <!--
+        TODO: Using iron-selector/carbon-route to highlight the current section may not work since
+        sections may not follow this directory structure (e.g. start -> /1.0/docs/start/, but
+        tools -> /1.0/tools/). The below links are hypothetical and will need to be changed.
+        -->
+        <iron-selector class="sections-list" attr-for-selected="name" activate-event="" selected="[[_sectionData.section]]" on-click="_closeDrawer">
+          <a href="/1.0/start/" name="start">Getting Started</a>
+          <a href="/1.0/devguide/" name="devguide">Developer Guide</a>
+          <a href="https://elements.polymer-project.org/" target="_blank" name="catalog">Element Catalog</a>
+          <a href="/1.0/tools/" name="tools">Tools</a>
+          <a href="/1.0/toolkits/" name="toolkits">Toolkits</a>
+          <a href="/1.0/articles/" name="articles">Articles</a>
+        </iron-selector>
+      </div>
+    </app-drawer>
+
+    <app-header class="header" reveals snaps shadow>
+      <div class="header-toolbar layout horizontal center">
+        <paper-icon-button class="drawer-toggle" icon="pw-icons:menu" on-click="_toggleDrawer"></paper-icon-button>
+
+        <a href="/1.0/" class="logo-link">
+          <img src="../images/logos/p-logo.svg" alt="Polymer Logo">
+        </a>
+
+        <div class="flex"></div>
+
+        <iron-selector class="sections-tabs" attr-for-selected="name" activate-event="" selected="[[_sectionData.section]]">
+          <a href="/1.0/start/" name="start">Getting Started</a>
+          <a href="/1.0/devguide/" name="devguide">Developer Guide</a>
+          <a href="https://elements.polymer-project.org/" target="_blank" name="catalog">Element Catalog</a>
+          <a href="/1.0/tools/" name="tools">Tools</a>
+          <a href="/1.0/toolkits/" name="toolkits">Toolkits</a>
+          <a href="/1.0/articles/" name="articles">Articles</a>
+        </iron-selector>
+
+        <paper-icon-button icon="pw-icons:search" on-click="_focusSearch" tabindex="-1"></paper-icon-button>
+      </div>
+
+      <input id="searchBox" type="search" class="search-box fit" placeholder="Search Polymer Site">
+    </app-header>
+
+    <content></content>
+
+    <footer>
+      <div class="layout horizontal">
+        <div class="flex">&copy; 2016 Polymer Authors.</div>
+        <a href="#" on-click="_smoothScrollToTop">Back to Top</a>
+      </div>
+    </footer>
+  </template>
+
+  <script>
+  Polymer({
+    is: 'pw-shell',
+
+    _toggleDrawer: function() {
+      this.$.drawer.toggle();
+    },
+
+    _closeDrawer: function() {
+      this.$.drawer.close();
+    },
+
+    _focusSearch: function() {
+      this.$.searchBox.focus();
+    },
+
+    _smoothScrollToTop: function() {
+      Polymer.AppLayout.scroll({ behavior: 'smooth' });
+    },
+
+    _handleResponse: function(event) {
+      var doc = event.detail.response;
+      document.title = doc.title;
+      Polymer.dom(this).innerHTML = doc.querySelector('pw-shell').innerHTML;
+      this.async(this._resetScrollPosition);
+    },
+
+    _resetScrollPosition: function() {
+      // TODO: Need to scroll to element for hash links within the same page
+      // (which don't cause a XHR).
+      var hash = window.location.hash;
+      if (hash) { 
+        var elem = document.querySelector(hash);
+        if (elem) {
+          elem.scrollIntoView();
+          return;
+        }
+      }
+
+      Polymer.AppLayout.scroll();
+    }
+  });
+  </script>
+</dom-module>

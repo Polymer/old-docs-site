@@ -11,6 +11,7 @@
   ],
   "devDependencies": {
     "iron-elements": "PolymerElements/iron-elements#^1.0.4",
-    "paper-elements": "PolymerElements/paper-elements#^1.0.5"
+    "paper-elements": "PolymerElements/paper-elements#^1.0.5",
+    "app-layout": "PolymerLabs/app-layout#^0.0.14"
   }
 }
