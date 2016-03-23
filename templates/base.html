@@ -18,7 +18,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <meta itemprop="image" content="https://www.polymer-project.org/images/logos/p-logo-32.png">
 <meta itemprop="description" content="Polymer is a library that uses the latest web technologies to let you create custom HTML elements. Build anything from a button to a complete application as an encapsulated, reusable component that works across desktop and mobile.">
 <link rel="manifest" href="manifest.json">
-{% block meta %}{% endblock %}
 
 <title>{% block title %}{% endblock %} - Polymer Project</title>
 
@@ -29,8 +28,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <!-- <link rel="shortcut icon" href="/static/img/chromium-128.png"> -->
 
 <link rel="stylesheet" href="/css/site.css">
-
-{% block css %}{% endblock %}
 
 <script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js" async></script>
 
@@ -45,11 +42,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="/css/syntax-color-styles.html">
 <style is="custom-style" include="syntax-color-styles"></style>
 
-{% block imports %}{% endblock %}
 </head>
 <body class="fullbleed">
 
-{% include "templates/header.html" %}
+<pw-shell>
 
 {% if edit_on_github_url %}
 <span class="edit-on-github">
@@ -62,9 +58,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   {% block content %}{% endblock %}
 </main>
 
-{% include "templates/footer.html" %}
+</pw-shell>
 
 <script src="/js/app.js"></script>
-{% block js %}{% endblock %}
 </body>
 </html>
