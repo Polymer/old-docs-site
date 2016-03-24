@@ -285,7 +285,7 @@ different name for the index property.
 
 ### Forcing synchronous renders {#synchronous-renders}
 
-Call [`render`](/{% polymer_version_dir %}/api/#dom-repeat:method-render){:target="_blank"}
+Call [`render`](/{% polymer_version_dir %}/api/#dom-repeat:method-render){:target="api"}
 to force a `dom-repeat` template to synchronously render any changes to its
 data. Normally changes are batched and rendered asynchronously. Synchronous
 rendering has a performance cost, but can be useful in a few scenarios:
@@ -305,26 +305,26 @@ watching the array are properly notified.
 
 ### Improve performance for large lists {#large-list-perf}
 
-By default, `dom-repeat` tries to render all of the list items at once. If 
-you try to use `dom-repeat` to render a very large list of items, the UI may 
-freeze while it's rendering the list. If you encounter this problem, enable 
-"chunked" rendering by setting 
-[`initialCount`](/{% polymer_version_dir %}/api/#dom-repeat:property-initialCount){:target="_blank"}. 
-In chunked mode, 
-`dom-repeat` renders `initialCount` items at first, then renders the rest of 
-the items incrementally one chunk per animation frame. This lets the UI thread 
-handle user input between chunks. You can keep track of how many items have 
-been rendered with the 
-[`renderedItemCount`](/{% polymer_version_dir %}/api/#dom-repeat:property-renderedItemCount){:target="_blank"} 
+By default, `dom-repeat` tries to render all of the list items at once. If
+you try to use `dom-repeat` to render a very large list of items, the UI may
+freeze while it's rendering the list. If you encounter this problem, enable
+"chunked" rendering by setting
+[`initialCount`](/{% polymer_version_dir %}/api/#dom-repeat:property-initialCount){:target="api"}.
+In chunked mode,
+`dom-repeat` renders `initialCount` items at first, then renders the rest of
+the items incrementally one chunk per animation frame. This lets the UI thread
+handle user input between chunks. You can keep track of how many items have
+been rendered with the
+[`renderedItemCount`](/{% polymer_version_dir %}/api/#dom-repeat:property-renderedItemCount){:target="api"}
 read-only property.
 
-`dom-repeat` adjusts the number of items rendered in each chunk to try and 
-maintain a target framerate. You can further tune rendering by setting 
-[`targetFramerate`](/{% polymer_version_dir %}/api/#dom-repeat:property-targetFramerate){:target="_blank"}.
+`dom-repeat` adjusts the number of items rendered in each chunk to try and
+maintain a target framerate. You can further tune rendering by setting
+[`targetFramerate`](/{% polymer_version_dir %}/api/#dom-repeat:property-targetFramerate){:target="api"}.
 
 You can also set a debounce time that must pass before a `filter` or `sort`
-function is re-run by setting the 
-[`delay`](/{% polymer_version_dir %}/api/#dom-repeat:property-delay){:target="_blank"}
+function is re-run by setting the
+[`delay`](/{% polymer_version_dir %}/api/#dom-repeat:property-delay){:target="api"}
 property.
 
 ## Array selector (array-selector) {#array-selector}
