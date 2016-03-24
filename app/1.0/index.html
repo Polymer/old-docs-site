@@ -6,14 +6,207 @@
 
 {#<p>{{{5+5}}}</p>#}
 
-<p>
-<template id="t" is="dom-bind">
- Dom bind stamped!
-</template>
-</p>
+<style is="custom-style">
+h2 {
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: 'Roboto Slab', sans-serif;
+}
+
+.header {
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(to bottom, #449ce2 0%, #48a7f2 10%,#48a7f2 90%,#449ce2 100%);
+}
+.hero {
+  background: #eceff1;
+  height: 350px;
+}
+.hero .spa {
+  height: 200px;
+  margin-right: 150px;
+}
+.hero .logo {
+  height: 140px;
+}
+
+.features {
+  background: #2a3238;
+  background: linear-gradient(to bottom, #1b2023 0%, #2a3238 5%,#2a3238 95%,#1b2023 100%);
+  padding: 50px 100px;
+}
+
+.feature {
+  margin-right: 40px;
+  max-width: 300px;
+}
+
+.feature h2 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #6d3945;
+}
+
+.feature p {
+  color: white;
+}
+
+.badge-wrapper {
+  width: 100%;
+  height: 200px;
+  border: 1px solid #4975bd;
+}
+
+.badge-wrapper iron-icon {
+  color: white;
+  --iron-icon-height: 80px;
+  --iron-icon-width: 80px;
+}
+
+.example-header {
+  color: black;
+}
+
+.examples {
+  padding: 50px 150px;
+}
+.example {
+  padding-bottom: 50px;
+  border-bottom: 1px solid #d81b60;
+  margin-bottom: 50px;
+}
+/*pre,code {
+  background: #f5f6f7;
+}*/
+.example-code {
+  width: 70%;
+  margin-right: 40px;
+}
+.example-code, .example-result iframe {
+  height: 250px;
+}
+pre {
+  margin: 0;
+  height: 100%;
+}
+
+</style>
+
+<div class="header"><h2>Web development the way it was meant to be.</h2></div>
+
+<section class="hero layout vertical center-center">
+  <div class="layout horizontal center-center">
+    <img src="/images/logos/hero-custom.png" alt="" class="spa">
+    <img src="/images/logos/p-logo.png" alt="" class="logo">
+  </div>
+</section>
+
+<section class="features layout horizontal center-center">
+  <div class="layout horizontal">
+    <div class="feature flex-1">
+      <div class="badge">
+        <div class="badge-wrapper layout vertical center-center">
+          <iron-icon icon="icons:code"></iron-icon>
+        </div>
+      </div>
+      <h2>Built for Speed</h2>
+      <p>Polymer 1.0 replaces the shadow DOM polyfill with a lightweight shim, uses a new, faster data-binding system, and significantly reduces code size.</p>
+    </div>
+
+    <div class="feature flex-1">
+      <div class="badge">
+        <div class="badge-wrapper layout vertical center-center">
+          <iron-icon icon="icons:check"></iron-icon>
+        </div>
+      </div>
+      <h2>For Modern Browsers</h2>
+      <p>Polymer is built from the ground up for modern browsers, using the latest web platform APIs. Polyfills provide support on evergreen browsers for APIs that aren't universal yet.</p>
+    </div>
+
+    <div class="feature flex-1">
+      <div class="badge">
+        <div class="badge-wrapper layout vertical center-center">
+          <iron-icon icon="icons:cached"></iron-icon>
+        </div>
+      </div>
+      <h2>Using Web Components</h2>
+      <p>Polymer leverages <em>web components</em>, a new set of standards designed to provide reusable components for the web.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="examples">
+  <div class="example">
+    <h2 class="example-header">Use elements from the catalog</h2>
+    <div class="example-wrapper layout horizontal">
+      <div class="example-code">
+        <pre><code class="lang-html">
+&lt;!-- Polyfill Web Components support for older browsers --&gt;
+&lt;script src=&quot;components/webcomponentsjs/webcomponents-lite.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Import element --&gt;
+&lt;link rel=&quot;import&quot; href=&quot;components/google-map/google-map.html&quot;&gt;
+
+&lt;!-- Use element --&gt;
+&lt;google-map latitude=&quot;37.790&quot; longitude=&quot;-122.390&quot;&gt;&lt;/google-map&gt;
+      </code></pre>
+      </div>
+      <div class="example-result">
+        <iframe frameborder="0" src="https://www.polymer-project.org/1.0/samples/homepage/google-map/index.html" width="100%"></iframe>
+        <div class="example-caption">
+            <p>An element built with Polymer looks and works just like any other HTML element. Simply find an element you’d like to use in your app, import it with an HTML import, and then add the tag to your page.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="example">
+      <h2 class="example-header">Create your own elements</h2>
+      <div class="example-wrapper layout horizontal">
+        <div class="example-code">
+          <pre><code class="lang-html">
+&lt;dom-module id=&quot;contact-card&quot;&gt;
+  &lt;link rel=&quot;import&quot; type=&quot;css&quot; href=&quot;contact-card.css&quot;&gt;
+  &lt;template&gt;
+    &lt;content&gt;&lt;/content&gt;
+    &lt;iron-icon icon=&quot;star&quot; hidden$=&quot;{{!starred}}&quot;&gt;&lt;/iron-icon&gt;
+  &lt;/template&gt;
+  &lt;script&gt;
+    Polymer({
+      is: 'contact-card',
+      properties: {
+        starred: Boolean
+      }
+    });
+  &lt;/script&gt;
+&lt;/dom-module&gt;
+  </code></pre>
+  <pre><code class="lang-html">
+&lt;contact-card starred&gt;
+  &lt;img src=&quot;profile.jpg&quot; alt=&quot;Eric's photo&quot;&gt;
+  &lt;span&gt;Eric Bidelman&lt;/span&gt;
+&lt;/contact-card&gt;
+          </code></pre>
+        </div>
+        <div class="example-result">
+          <div class="example-caption">
+            <p>The Polymer library makes it easy to create your own powerful elements. Give your element some markup and properties, and then use it on a site. Polymer provides useful features like templating and data binding to reduce the amount of boilerplate you need to write.</p>
+          </div>
+          <iframe frameborder="0" src="https://www.polymer-project.org/1.0/samples/homepage/contact-card/index.html" width="100%"></iframe>
+
+        </div>
+      </div>
+
+    </div>
+</section>
+
 <br>
 
-<p>Try:</p>
+<!-- <p>Try:</p>
 <ul>
 <li><a href="index.html">index.html redirects back here</a>
 <li><a href="page.html">page.html -> page</a>
@@ -21,6 +214,6 @@
 <li><a href="subfolder/">/subfolder/ servers its index file</a>
 <li><a href="/oldpage/">Redirect test 1</a>
 <li><a href="/some/page/that/is/old.html">Redirect test2</a>
-</ul>
+</ul> -->
 
 {% endblock %}

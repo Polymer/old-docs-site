@@ -12,9 +12,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 header, footer {
-  padding: 32px;
+  padding: 10px;
   color: white;
-  background-color: #eee;
+  background-color: white;
 
   a {
     color: currentcolor;
@@ -24,7 +24,7 @@ header, footer {
 
 header {
   .logo {
-    margin-right: 16px;
+    margin-right: 40px;
   }
 }
 
@@ -32,9 +32,9 @@ footer {
   background: #d81b60;
 }
 
-main {
-  padding: 32px;
-}
+// main {
+//   padding: 32px;
+// }
 
 a {
   color: #3367d6;

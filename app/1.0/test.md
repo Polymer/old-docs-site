@@ -6,6 +6,7 @@ title: Test markdown page
 
 ## Markdown page
 
+<div>
 ```html
 <dom-module id="dom-element">
   <template>
@@ -18,11 +19,12 @@ title: Test markdown page
   </script>
 </dom-module>
 ```
+</div>
 
 List:
 
 - one
-- two 
+- two
 - three
 
 ## Another header
