@@ -68,7 +68,8 @@ Here’s a simple UI with tabs and animated transitions:
 
 {%raw%}
 
-    <carbon-route pattern="/tabs/:tabName" data="{{data}}"></carbon-route>
+    <carbon-route route="{{route}}" pattern="/tabs/:tabName" data="{{data}}">
+    </carbon-route>
 
     <paper-tabs selected='{{data.tabName}}' attr-for-selected='key'>
       <paper-tab key='foo'>Foo</paper-tab>
