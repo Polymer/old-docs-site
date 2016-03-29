@@ -565,8 +565,8 @@ Keys provide stable references to array items, regardless of any splices
 If for some reason you need a reference to the index of an array item, you
 can retrieve it via the `Polymer.Collection` internal abstraction:
 
-   var collection = Polymer.Collection.get(changeRecord.base);
-   var index = changeRecord.base.indexOf(collection.getItem(key));
+    var collection = Polymer.Collection.get(changeRecord.base);
+    var index = changeRecord.base.indexOf(collection.getItem(key));
 
 ### Array mutation methods {#array-mutation}
 
