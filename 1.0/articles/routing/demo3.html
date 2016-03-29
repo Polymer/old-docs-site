@@ -1,3 +1,4 @@
+<script src="../../components/webcomponentsjs/webcomponents.js"></script>
 <link rel="import" href="../../components/polymer/polymer.html">
 <link rel="import" href="../../components/iron-demo-helpers/demo-snippet.html">
 <link rel="import" href="../../components/paper-input/paper-input.html">
@@ -12,7 +13,7 @@
 <link rel="import" href="../../components/carbon-route/carbon-route.html">
 <link rel="import" href="../../components/carbon-route/carbon-location.html">
 <link rel="import" href="../../components/iron-demo-helpers/demo-pages-shared-styles.html">
-<link rel="import" href="./url-bar.html">
+<link rel="import" href="../../components/iron-demo-helpers/url-bar.html">
 
 
 <style is="custom-style" include="demo-pages-shared-styles">
@@ -109,38 +110,40 @@
     </neon-animated-pages>
   </template>
   <script>
-    Polymer({
-      is: 'tabs-page',
-      properties: {
-        route: {
-          type: Object,
-          notify: true
-        }
-      },
-      observers: [
-        'pageChanged(data.tabName)'
-      ],
-      pageChanged: function() {
-        // We assign to selectedPage here rather than just binding
-        // the selected property of neon-animated-pages to selectedPage
-        // so that we can first figure out which animation to use in the
-        // transition.
-        var transitioningFrom = this.$.animatedPages.selected;
-        var transitioningTo = this.data.tabName;
-        var pagesInOrder = this.$.animatedPages.items.map(
-          function(x) {return x.getAttribute('name')});
-        if (pagesInOrder.indexOf(transitioningFrom) > pagesInOrder.indexOf(transitioningTo)) {
-          this.entryAnimation = 'slide-from-left-animation';
-          this.exitAnimation = 'slide-right-animation';
-        } else {
-          this.entryAnimation = 'slide-from-right-animation';
-          this.exitAnimation = 'slide-left-animation';
-        }
+    window.addEventListener('WebComponentsReady', function() {
+      Polymer({
+        is: 'tabs-page',
+        properties: {
+          route: {
+            type: Object,
+            notify: true
+          }
+        },
+        observers: [
+          'pageChanged(data.tabName)'
+        ],
+        pageChanged: function() {
+          // We assign to selectedPage here rather than just binding
+          // the selected property of neon-animated-pages to selectedPage
+          // so that we can first figure out which animation to use in the
+          // transition.
+          var transitioningFrom = this.$.animatedPages.selected;
+          var transitioningTo = this.data.tabName;
+          var pagesInOrder = this.$.animatedPages.items.map(
+            function(x) {return x.getAttribute('name')});
+          if (pagesInOrder.indexOf(transitioningFrom) > pagesInOrder.indexOf(transitioningTo)) {
+            this.entryAnimation = 'slide-from-left-animation';
+            this.exitAnimation = 'slide-right-animation';
+          } else {
+            this.entryAnimation = 'slide-from-right-animation';
+            this.exitAnimation = 'slide-left-animation';
+          }
 
-        this.selectedPage = this.data.tabName;
-        // slide-from-left-animation
-      }
-    })
+          this.selectedPage = this.data.tabName;
+          // slide-from-left-animation
+        }
+      });
+    });
   </script>
 </dom-module>
 
