@@ -7,57 +7,6 @@
 <link rel="stylesheet" href="/css/index.css">
 
 <style is="custom-style">
-  .columns {
-    @apply(--layout-horizontal);
-    @apply(--layout-justified);
-  }
-
-  .equal-spaced {
-    @apply(--layout);
-    @apply(--layout-justified);
-  }
-
-  .center {
-    @apply(--layout);
-    @apply(--layout-center-center)
-  }
-
-  .features .feature {
-    @apply(--layout-flex);
-  }
-
-  .wrap {
-    @apply(--layout-wrap);
-  }
-
-  .articles .left {
-    @apply(--layout-flex-3);
-  }
-
-  .articles .right {
-    @apply(--layout-flex-2);
-  }
-
-  /* Mobile viewports */
-  @media (max-width: 767px) {
-    .articles .left, .articles .right {
-      @apply(--layout-flex);
-    }
-
-    .features .panel, .columns {
-      @apply(--layout-vertical);
-    }
-  }
-
-  @media (max-width: 900px) {
-    .hero .content .columns {
-      @apply(--layout-vertical);
-    }
-    .hero h2 {
-      text-align: center;
-    }
-  }
-
   .badge iron-icon {
     color: white;
     --iron-icon-height: 80px;
@@ -65,29 +14,29 @@
   }
 </style>
 
-<section class="hero grey center">
+<section class="hero grey">
   <div class="columns">
-    <div class="logo-wrapper center left">
+    <div class="logo-wrapper centered left">
       <img src="/images/logos/p-logo.png" alt="">
     </div>
     <div class="content flex">
       <h2 class="underline">Web development the way it was meant to be.</h2>
       <div class="columns">
-        <p class="flex left">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
+        <p class="left flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
         <div class="getting-started-links layout vertical">
-          <div class="button">View tutorial</div>
-          <div class="button">Learn about web components</div>
-          <div class="button">Get the code</div>
+          <a href="" class="button">View tutorial</a>
+          <a href="" class="button">Learn about web components</a>
+          <a href="" class="button">Get the code</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="features center dark">
-  <div class="panel equal-spaced">
-    <div class="feature">
-      <div class="badge center">
+<section class="features dark">
+  <div class="columns">
+    <div class="feature flex">
+      <div class="badge centered">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="120" height="104" class="border" viewbox="0 0 120 103.92304845413263"><path d="M0 51.96152422706631L30 0L90 0L120 51.96152422706631L90 103.92304845413263L30 103.92304845413263Z"></path></svg>
         <iron-icon icon="icons:code"></iron-icon>
       </div>
@@ -95,8 +44,8 @@
       <p>Polymer 1.0 replaces the shadow DOM polyfill with a lightweight shim, uses a new, faster data-binding system, and significantly reduces code size.</p>
     </div>
 
-    <div class="feature">
-      <div class="badge center">
+    <div class="feature flex">
+      <div class="badge centered">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="120" height="104" class="border" viewbox="0 0 120 103.92304845413263"><path d="M0 51.96152422706631L30 0L90 0L120 51.96152422706631L90 103.92304845413263L30 103.92304845413263Z"></path></svg>
         <iron-icon icon="icons:check"></iron-icon>
       </div>
@@ -104,8 +53,8 @@
       <p>Polymer is built from the ground up for modern browsers, using the latest web platform APIs. Polyfills provide support on evergreen browsers for APIs that aren't universal yet.</p>
     </div>
 
-    <div class="feature">
-      <div class="badge center">
+    <div class="feature flex">
+      <div class="badge centered">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="120" height="104" class="border" viewbox="0 0 120 103.92304845413263"><path d="M0 51.96152422706631L30 0L90 0L120 51.96152422706631L90 103.92304845413263L30 103.92304845413263Z"></path></svg>
         <iron-icon icon="icons:cached"></iron-icon>
       </div>
@@ -222,9 +171,9 @@
     <div class="getting-started-wrapper columns">
       <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
       <div class="getting-started-links layout vertical">
-        <div class="button">Your first element</div>
-        <div class="button">Your first app</div>
-        <div class="button">Using the tools</div>
+        <a href="" class="button">Your first element</a>
+        <a href="" class="button">Your first app</a>
+        <a href="" class="button">Using the tools</a>
       </div>
     </div>
   </div>
@@ -235,13 +184,13 @@
     <div class="left flex">
       <h2 class="underline">Library</h2>
       <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
-      <div class="button">Browse library</div>
+      <a href="" class="button">Browse library</a>
     </div>
 
     <div class="flex">
       <h2 class="underline">Components</h2>
       <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
-      <div class="button">Browse components</div>
+      <a href="" class="button">Browse components</a>
     </div>
   </div>
 </section>
@@ -266,7 +215,7 @@
     </div>
     <h2>Browser Compatibility</h2>
     <div>Polymer 1.0 works in all latest version “evergreen” browsers (Chrome, Firefox, IE, Opera, and Safari).</div>
-    <div class="browsers wrap center equal-spaced">
+    <div class="browsers layout wrap justified spaced">
       <img src="/images/browsers/chrome_128x128.png" alt="">
       <img src="/images/browsers/firefox_128x128.png" alt="">
       <img src="/images/browsers/internet-explorer_128x128.png" alt="">
@@ -278,13 +227,13 @@
 
 <section class="articles light">
   <div class="columns">
-    <div class="left">
+    <div class="left flex-3">
       <h2 class="underline">Articles</h2>
       <p>Core concepts of build apps on top of Polymer and web components. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam.</p>
-      <div class="button">View all</div>
+      <a href="" class="button">View all</a>
     </div>
 
-    <div class="right">
+    <div class="right flex-2">
       <h2 class="recent underline">Recent posts</h2>
       <div class="post">
         <br>
@@ -304,7 +253,7 @@
 </section>
 
 <section class="links pink">
-  <div class="center equal-spaced wrap">
+  <div class="layout wrap centered">
     <a class="" href="http://plus.google.com/107187849809354688692/" title="Follow +polymer on Google+">+Polymer</a>
     <a class="" href="https://twitter.com/intent/follow?screen_name=polymer" title="Follow @polymer on Twitter">@Polymer</a>
     <a class="" href="https://github.com/polymer" title="Get the Polymer code on GitHub">/Polymer</a>
@@ -314,7 +263,7 @@
 </section>
 
 <section class="footer-links">
-  <div class="equal-spaced wrap">
+  <div class="layout horizontal justified wrap">
     <div class="flex">
       <div class="title">Getting Started</div>
       <a href="">Your First Element</a>
