@@ -85,6 +85,10 @@ dropdown-panel {
   }
 
   footer {
+    > div {
+      padding: $mobileContentPadding;
+    }
+
     .links {
       @include flex-direction(column);
       @include align-items(flex-start !important);
@@ -156,6 +160,12 @@ dropdown-panel {
     summary + summary {
       margin-right: auto !important;
       margin-left: 0px !important;
+    }
+  }
+
+  footer {
+    > div {
+      padding-left: $mobileContentPadding;
     }
   }
 }
