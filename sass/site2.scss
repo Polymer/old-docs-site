@@ -268,10 +268,6 @@ footer {
     color: #666666;
   }
 
-  > :first-child {
-    @extend .content-padding;
-  }
-
   #copyright {
     color: #757575;
     font-size: $font-size-secondary;
