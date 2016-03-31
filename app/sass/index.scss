@@ -76,14 +76,14 @@ $mobile-media-breakpoint: 767px;
     .badge {
       width: 100%;
       height: 200px;
-      position: relative;
       border: 1px solid #52585d;
       background-image: url("/images/logos/badge-background.png");
 
-      .border {
-        fill: #253238;
-        stroke: #656a6f;
-        stroke-width: 1;
+      .badge-border {
+        position: relative;
+        width: 120px;
+        height: 104px;
+        background-image: url("/images/logos/badge-border.svg");
       }
 
       iron-icon {
@@ -102,35 +102,33 @@ $mobile-media-breakpoint: 767px;
   }
 }
 
-.page-index-examples {
-  .example {
-    &:not(:last-child) {
-      border-bottom: 1px solid #d8u1b60;
-      padding-bottom: $medium-padding;
+.page-index-examples .example {
+  &:not(:last-child) {
+    border-bottom: 1px solid #f52757;
+    padding-bottom: $medium-padding;
+    margin-bottom: $medium-padding;
+  }
+
+  .example-code {
+    min-width: 60%;
+
+    @media (max-width: $mobile-media-breakpoint) {
+      width: 100%;
       margin-bottom: $medium-padding;
     }
+  }
 
-    .example-code {
-      min-width: 60%;
+  .example-google-map iframe {
+    height: 232px;
+  }
+  .example-contact-card iframe {
+    height: 72px;
+  }
+  .example-friend-list iframe {
+    height: 452px;
 
-      @media (max-width: $mobile-media-breakpoint) {
-        width: 100%;
-        margin-bottom: $medium-padding;
-      }
-    }
-
-    .example-google-map iframe {
+    @media (max-width: $mobile-media-breakpoint) {
       height: 232px;
-    }
-    .example-contact-card iframe {
-      height: 72px;
-    }
-    .example-friend-list iframe {
-      height: 452px;
-
-      @media (max-width: $mobile-media-breakpoint) {
-        height: 232px;
-      }
     }
   }
 }
@@ -198,8 +196,9 @@ $mobile-media-breakpoint: 767px;
 
     .post-title {
       font-family: $font-slab;
-      color: #7394e9;
       font-size: $font-size-medium;
+      color: #7394e9;
+      text-decoration: none;
     }
   }
 }
