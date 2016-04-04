@@ -20,145 +20,152 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="icons.html">
 
 <dom-module id="pw-shell">
-  <style include="iron-flex iron-positioning"></style>
-  <style>
-
-    :host {
-      display: block;
-      margin-top: 64px;
-
-      -moz-user-select: none;
-      -ms-user-select: none;
-      -webkit-user-select: none;
-
-      --app-header-z-index: calc(1 + var(--base-z-index, 100));
-      --app-drawer-z-index: calc(2 + var(--base-z-index, 100));
-    }
-
-    a {
-      color: #999;
-      text-decoration: none;
-    }
-
-    a.iron-selected {
-      color: #333;
-    }
-
-    .drawer {
-      display: none;
-      z-index: var(--app-drawer-z-index);
-    }
-
-    .drawer-contents {
-      height: 100%;
-      overflow-y: auto; 
-    }
-
-    .drawer-contents a,
-    .drawer-contents img {
-      display: block;
-      padding: 16px;
-    }
-
-    .drawer-contents a.iron-selected {
-      border-left: 4px solid #F22C5A;
-    }
-
-    .drawer-contents img {
-      height: 24px;
-    }
-
-    .drawer-toggle {
-      display: none;
-    }
-
-    .header {
-      position: fixed;
-      top: 0;
-      right: 0;
-      left: 0;
-      background-color: #FFF;
-      z-index: var(--app-header-z-index);
-    }
-
-    .header-toolbar {
-      padding: 0 8px;
-    }
-
-    .header-toolbar .logo-link {
-      padding: 16px 8px;
-      height: 32px;
-    }
-
-    .header-toolbar .logo-link img {
-      height: 32px;
-    }
-
-    .sections-tabs {
-      height: 64px;
-      padding: 0 8px; 
-    }
-
-    .sections-tabs a {
-      display: inline-block;
-      margin: 0 12px;
-      padding-top: 24px;
-      height: 100%;
-      box-sizing: border-box;
-    }
-
-    .sections-tabs a.iron-selected {
-      border-bottom: 4px solid #F22C5A;
-    }
-
-    .search-box {
-      width: 100%;
-      height: 100%;
-      padding: 0 12px;
-      font-size: 16px;
-      border: none;
-      box-sizing: border-box;
-      -webkit-transform: translate3d(100%, 0, 0);
-      transform: translate3d(100%, 0, 0);
-      transition: -webkit-transform 0.2s;
-      transition: transform 0.2s;
-    }
-
-    .search-box:focus {
-      -webkit-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
-    }
-
-    /* Mobile viewports */
-    @media (max-width: 767px) {
+  <template>
+    <style include="iron-flex iron-positioning">
       :host {
-        margin-top: 56px;
+        display: block;
+        margin-top: 64px;
+
+        --app-header-z-index: calc(1 + var(--base-z-index, 100));
+        --app-drawer-z-index: calc(2 + var(--base-z-index, 100));
+      }
+
+      a {
+        color: #999;
+        text-decoration: none;
+      }
+
+      a.iron-selected {
+        color: #333;
       }
 
       .drawer {
+        display: none;
+        z-index: var(--app-drawer-z-index);
+      }
+
+      .drawer-contents {
+        height: 100%;
+        overflow-y: auto;
+      }
+
+      .drawer-contents a,
+      .drawer-contents img {
         display: block;
+        padding: 16px;
+      }
+
+      .drawer-contents a.iron-selected {
+        border-left: 4px solid #F22C5A;
+      }
+
+      .drawer-contents img {
+        height: 24px;
       }
 
       .drawer-toggle {
-        display: block;
+        display: none;
+      }
+
+      .header {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        background-color: #FFF;
+        z-index: var(--app-header-z-index);
+      }
+
+      .header-toolbar {
+        padding: 0 8px;
       }
 
       .header-toolbar .logo-link {
+        padding-left: 20px;
         height: 24px;
       }
 
       .header-toolbar .logo-link img {
-        height: 24px;
+        height: 100%;
+        vertical-align: middle;
+      }
+
+      .header-toolbar .logo-link span {
+        font-size: 20px;
+        color: black;
+        padding-left: 5px;
+        vertical-align: middle;
       }
 
       .sections-tabs {
-        display: none;
+        height: 64px;
+        padding: 0 8px;
       }
-    }
 
-  </style>
+      .sections-tabs a {
+        display: inline-block;
+        margin: 0 8px;
+        padding-top: 24px;
+        height: 100%;
+        box-sizing: border-box;
+      }
 
-  <template>
+      .sections-tabs a.iron-selected {
+        border-bottom: 4px solid #F22C5A;
+      }
+
+      .search-box {
+        width: 100%;
+        height: 100%;
+        padding: 0 12px;
+        font-size: 16px;
+        border: none;
+        box-sizing: border-box;
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+        transition: -webkit-transform 0.2s;
+        transition: transform 0.2s;
+      }
+
+      .search-box:focus {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+
+      @media (max-width: 767px) {
+        :host {
+          margin-top: 56px;
+        }
+
+        .drawer {
+          display: block;
+        }
+
+        .drawer-toggle {
+          display: block;
+        }
+
+        .header-toolbar {
+          height: 56px;
+        }
+
+        .header-toolbar .logo-link {
+          height: 24px;
+        }
+
+        .header-toolbar .logo-link img {
+          height: 24px;
+        }
+
+        .header-toolbar .logo-link span {
+          font-size: 20px;
+        }
+
+        .sections-tabs {
+          display: none;
+        }
+      }
+    </style>
 
     <carbon-location route="{{_sectionRoute}}"></carbon-location>
     <carbon-route route="{{_sectionRoute}}" pattern="/1.0/:section" data="{{_sectionData}}" tail="{{_subsectionRoute}}"></carbon-route>
@@ -195,6 +202,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <a href="/1.0/" class="logo-link">
           <img src="../images/logos/p-logo.svg" alt="Polymer Logo">
+          <span>Polymer</span>
         </a>
 
         <div class="flex"></div>
@@ -216,12 +224,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <content></content>
 
-    <footer>
-      <div class="layout horizontal">
-        <div class="flex">&copy; 2016 Polymer Authors.</div>
-        <a href="#" on-click="_smoothScrollToTop">Back to Top</a>
-      </div>
-    </footer>
   </template>
 
   <script>
@@ -240,10 +242,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this.$.searchBox.focus();
     },
 
-    _smoothScrollToTop: function() {
-      Polymer.AppLayout.scroll({ behavior: 'smooth' });
-    },
-
     _handleResponse: function(event) {
       var doc = event.detail.response;
       document.title = doc.title;
@@ -255,7 +253,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // TODO: Need to scroll to element for hash links within the same page
       // (which don't cause a XHR).
       var hash = window.location.hash;
-      if (hash) { 
+      if (hash) {
         var elem = document.querySelector(hash);
         if (elem) {
           elem.scrollIntoView();

@@ -22,7 +22,7 @@ title: Test markdown page
 List:
 
 - one
-- two 
+- two
 - three
 
 ## Another header

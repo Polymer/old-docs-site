@@ -7,14 +7,28 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
+$font-slab: 'Roboto Slab', sans-serif;
+$font-size-small: 13px;
+$font-size-medium: 18px;
+
+$small-padding: 20px;
+$medium-padding: 40px;
+$large-padding: 100px;
+
+$mobile-media-breakpoint: 767px;
+
 * {
   box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+}
+
 header, footer {
-  padding: 32px;
+  padding: 10px;
   color: white;
-  background-color: #eee;
+  background-color: white;
 
   a {
     color: currentcolor;
@@ -24,7 +38,7 @@ header, footer {
 
 header {
   .logo {
-    margin-right: 16px;
+    margin-right: 40px;
   }
 }
 
@@ -32,15 +46,92 @@ footer {
   background: #d81b60;
 }
 
-main {
-  padding: 32px;
-}
 
 a {
   color: #3367d6;
 
   &:hover {
     text-decoration: underline;
+  }
+}
+
+section {
+  padding: $large-padding;
+  box-sizing: border-box;
+
+  @media (max-width: $mobile-media-breakpoint) {
+    padding: $medium-padding;
+  }
+  @media (max-width: 500px) {
+    padding-left: $small-padding;
+    padding-right: $small-padding;
+  }
+
+  &.light {
+    color: black;
+  }
+
+  &.dark {
+    background: #2a3238;
+    color: white;
+    background: linear-gradient(to bottom, #1b2023 0%, #2a3238 5%,#2a3238 95%,#1b2023 100%);
+  }
+
+  &.grey {
+    background: #eceff1;
+    color: black;
+  }
+
+  &.pink {
+    background: #e8345a;
+  }
+
+  & > * {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+}
+
+.section-columns {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+
+  @media (max-width: $mobile-media-breakpoint) {
+    display: block;
+    /* Switch to a vertical layout */
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .left {
+    margin-right: $medium-padding;
+
+    @media (max-width: $mobile-media-breakpoint) {
+      margin-right: 0px;
+      margin-bottom: $medium-padding;
+    }
+  }
+}
+
+
+h2 {
+  font-family: $font-slab;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+
+  @media (max-width: $mobile-media-breakpoint) {
+    font-size: $font-size-medium;
+  }
+
+  &.underline {
+    border-bottom: 1px solid #f52757;
   }
 }
 

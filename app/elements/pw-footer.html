@@ -1,0 +1,158 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/app-layout/helpers/helpers.html">
+
+<dom-module id="pw-footer">
+  <template>
+    <style include="iron-flex iron-alignment">
+      :host {
+        display: block;
+      }
+
+      a {
+        color: #999;
+        text-decoration: none;
+      }
+
+      section {
+        padding: 40px 20px;
+      }
+
+      footer .copyright {
+        background: black;
+        color: white;
+        border-top: 1px solid #3f464c;
+        padding: 20px;
+      }
+
+      .footer-media-links {
+        background: #e8345a;
+      }
+
+      .footer-media-links a {
+        background: #f1f2f2;
+        color: #9d9893;
+        display: inline-block;
+        padding: 3px 20px;
+        font-size: 13px;
+        font-weight: 500;
+        text-shadow: none;
+        text-decoration: none;
+        text-align: center;
+        min-width: 100px;
+      }
+
+      .footer-media-links  a:not(:last-child) {
+        margin-right: 40px;
+      }
+
+      .footer-links {
+        background: #2a3238;
+      }
+
+      .footer-links  div:not(:last-child) {
+        margin-right: 20px;
+      }
+
+      .footer-links  .title {
+        font-family: 'Roboto Slab', sans-serif;
+        color: white;
+        border-top: 1px solid #707375;
+        padding-top: 20px;
+        padding-bottom: 10px;
+        font-size: 13px;
+      }
+
+      .footer-links  a {
+        text-decoration: none;
+        color: #979797;
+        display: block;
+        font-size: 11px;
+        line-height: 20px;
+      }
+
+      @media (max-width: 767px) {
+        .footer-media-links a {
+          min-width: 0;
+          padding: 3px 10px;
+        }
+      }
+    </style>
+
+    <footer>
+      <section class="footer-media-links">
+        <div class="layout wrap horizontal center center-justified">
+          <a href="http://plus.google.com/107187849809354688692/" title="Follow +polymer on Google+">+Polymer</a>
+          <a href="https://twitter.com/intent/follow?screen_name=polymer" title="Follow @polymer on Twitter">@Polymer</a>
+          <a href="https://github.com/polymer" title="Get the Polymer code on GitHub">/Polymer</a>
+          <a href="https://polymer-slack.herokuapp.com/" title="Join the Polymer slack channel">Slack Channel</a>
+          <a href="https://stackoverflow.com/questions/tagged/polymer" title="StackOverflow questions tagged Polymer"href>Stack Overflow</a>
+        </div>
+      </section>
+
+      <section class="footer-links">
+        <div class="layout horizontal justified wrap">
+          <div class="flex">
+            <div class="title">Getting Started</div>
+            <a href="">Your First Element</a>
+            <a href="">Your First App</a>
+            <a href="">Using the tools</a>
+          </div>
+
+          <div class="flex">
+            <div class="title">Library</div>
+            <a href="">API Reference</a>
+            <a href="">Guides</a>
+          </div>
+
+          <div class="flex">
+            <div class="title">Components</div>
+            <a href="">Element Groups</a>
+            <a href="">Guides</a>
+          </div>
+
+          <div class="flex">
+            <div class="title">Tools</div>
+            <a href="">Develop</a>
+            <a href="">Build</a>
+            <a href="">Test</a>
+          </div>
+
+          <div class="flex">
+            <div class="title">Toolkits</div>
+            <a href="">Polymer Started Kit</a>
+            <a href="">Flipkart-in-a-Box</a>
+            <a href="">Future Toolkits</a>
+          </div>
+
+          <div class="flex">
+            <div class="title">Articles</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="copyright layout horizontal">
+        <div class="flex">&copy; 2016 Polymer Authors. Code Licensed under the BSD License. Documentation licensed under CC BY 3.0.</div>
+        <a href="#" on-click="_smoothScrollToTop">Back to Top</a>
+      </div>
+    </footer>
+  </template>
+
+  <script>
+  Polymer({
+    is: 'pw-footer',
+
+    _smoothScrollToTop: function() {
+      Polymer.AppLayout.scroll({ behavior: 'smooth' });
+    }
+  });
+  </script>
+</dom-module>

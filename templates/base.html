@@ -23,7 +23,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="publisher" href="https://plus.google.com/107187849809354688692">
 <link rel="shortcut icon" href="/images/logos/p-logo-32.png">
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500|Source+Code+Pro:400,500,700">
+<link rel="stylesheet" href`="//fonts.googleapis.com/css?family=Roboto:300,400,500|Source+Code+Pro:400,500,700|Roboto+Slab:400,700">
 
 <!-- <link rel="shortcut icon" href="/static/img/chromium-128.png"> -->
 
@@ -40,7 +40,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <!-- <style is="custom-style" include="site-styles"></style> -->
 
 <link rel="import" href="/css/syntax-color-styles.html">
-<style is="custom-style" include="syntax-color-styles"></style>
+<style is="custom-style" include="syntax-color-styles iron-flex iron-flex-alignment iron-flex-factors"></style>
 
 </head>
 <body class="fullbleed">
@@ -53,13 +53,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <a href="https://github.com/Polymer/docs/edit/master/{{{edit_on_github_url}}}">Edit on GitHub</a>
 </span>
 {% endif %}
-
 <main>
   {% block content %}{% endblock %}
 </main>
 
 </pw-shell>
-
+<pw-footer></pw-footer>
 <script src="/js/app.js"></script>
 </body>
 </html>
