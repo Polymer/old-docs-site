@@ -25,28 +25,6 @@ body {
   margin: 0;
 }
 
-header, footer {
-  padding: 10px;
-  color: white;
-  background-color: white;
-
-  a {
-    color: currentcolor;
-    text-decoration: none;
-  }
-}
-
-header {
-  .logo {
-    margin-right: 40px;
-  }
-}
-
-footer {
-  background: #d81b60;
-}
-
-
 a {
   color: #3367d6;
 
@@ -80,10 +58,17 @@ section {
   &.grey {
     background: #eceff1;
     color: black;
+    background: linear-gradient(to bottom, #e0e3e5 0%, #eceff1 5%,#eceff1 95%,#e0e3e5 100%);
   }
 
   &.pink {
     background: #e8345a;
+  }
+
+  &.blue {
+    background: #1e88e5;
+    color: white;
+    background: linear-gradient(to bottom, #1a79cc 0%, #1e88e5 5%,#1e88e5 95%,#1a79cc 100%);
   }
 
   & > * {
@@ -108,7 +93,9 @@ section {
     flex-direction: column;
   }
 
-  .left {
+  & > div:not(:last-child),
+  & > p:not(:last-child),
+  & > h2:not(:last-child) {
     margin-right: $medium-padding;
 
     @media (max-width: $mobile-media-breakpoint) {
@@ -117,7 +104,6 @@ section {
     }
   }
 }
-
 
 h2 {
   font-family: $font-slab;
@@ -135,6 +121,35 @@ h2 {
   }
 }
 
+.blue-button {
+  color: white;
+  background: #5287e2;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: $font-size-small;
+  padding: 3px $small-padding;
+  border-radius: 2px;
+  text-align: center;
+  display: inline-block;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &.vertical {
+    margin-bottom: $small-padding;
+    padding: 3px $medium-padding;
+    &:first-child {
+      margin-top: $small-padding;
+    }
+  }
+}
+
+.subsection:not(:last-of-type) {
+  border-bottom: 1px solid #f52757;
+  padding-bottom: $medium-padding;
+  margin-bottom: $medium-padding;
+}
 
 // TOC and deep links ----
 .permalink {

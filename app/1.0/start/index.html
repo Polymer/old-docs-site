@@ -1,0 +1,156 @@
+{% extends "templates/base.html" %}
+{% block title %}Getting Started{% endblock %}
+
+{% block content %}
+
+<style>
+  .blue h2 {
+    font-size: 30px;
+  }
+
+  .blue .blue-button {
+    color: #5287e2;
+    background: white;
+  }
+
+  pre {
+    background: white;
+  }
+
+  .blue {
+    padding: 40px;
+  }
+
+  .example-code {
+    min-width: 60%;
+  }
+
+  .iframe-wrapper {
+    position: relative;
+    height: auto;
+    overflow: hidden;
+    /**
+     * There's a "responsive iframe" hack that adds a bottom badding of 56.25%
+     * to get the right aspect ratio for the video. However, because of the
+     * flexbox, this would end up too tall and add extra black borders which we
+     * don't need; decreasing the padding fixes that.
+     */
+    padding-bottom: 33%;
+  }
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .example-code {
+      width: 100%;
+      margin-bottom: 40px;
+    }
+
+    .iframe-wrapper {
+      /* use the correct aspect ratio for the video */
+      padding-bottom: 56.25%;
+    }
+  }
+</style>
+
+<section class="blue">
+  <div class="section-columns">
+    <h2>Getting Started</h2>
+    <div class="flex">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis.
+  Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec,
+  tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum.</p>
+      <a href="" class="blue-button vertical">Get the code</a>
+    </div>
+  </div>
+</section>
+
+<section class="light">
+  <div class="section-columns">
+    <div>
+      <h2 class="underline">Elements</h2>
+      <p>Suspendisse et ex euismod, malesuada ex in, efficitur dui. Etiam cursus dui eget diam fermentum, sit amet sagittis tellus suscipit. Maecenas finibus ante nec risus dapibus luctus. Duis nec suscipit nisi</p>
+      <a href="" class="blue-button">Create your first element</a>
+    </div>
+
+    <div>
+      <h2 class="underline">Apps</h2>
+      <p>Suspendisse et ex euismod, malesuada ex in, efficitur dui. Etiam cursus dui eget diam fermentum, sit amet sagittis tellus suscipit. Maecenas finibus ante nec risus dapibus luctus. Duis nec suscipit nisi</p>
+      <a href="" class="blue-button">Create your first app</a>
+    </div>
+
+    <div>
+      <h2 class="underline">Tools</h2>
+      <p>Suspendisse et ex euismod, malesuada ex in, efficitur dui. Etiam cursus dui eget diam fermentum, sit amet sagittis tellus suscipit. Maecenas finibus ante nec risus dapibus luctus. Duis nec suscipit nisi</p>
+      <a href="" class="blue-button">Using the tools</a>
+    </div>
+  </div>
+</section>
+
+<section class="grey">
+  <div class="subsection">
+    <h2>Your First Element</h2>
+    <div class="section-columns">
+      <div class="example-code flex">
+        <pre><code class="lang-html">
+&lt;!-- Polyfill Web Components support for older browsers --&gt;
+&lt;script src=&quot;components/webcomponentsjs/webcomponents-lite.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Import element --&gt;
+&lt;link rel=&quot;import&quot; href=&quot;components/google-map/google-map.html&quot;&gt;
+
+&lt;!-- Use element --&gt;
+&lt;google-map latitude=&quot;37.790&quot; longitude=&quot;-122.390&quot;&gt;&lt;/google-map&gt;
+      </code></pre>
+      </div>
+      <div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur molestie lobortis ultricies. Aliquam id fermentum orci, in auctor felis. Nulla sed tempus arcu. Cras neque massa, vestibulum sagittis odio et, dictum imperdiet nunc. Aliquam accumsan mollis massa et viverra. Nam sed auctor libero</p>
+        <a href="" class="blue-button">Create your first element</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <h2>Your First App</h2>
+    <div class="section-columns">
+      <div class="example-code flex">
+        <pre><code class="lang-html">
+&lt;!-- Polyfill Web Components support for older browsers --&gt;
+&lt;script src=&quot;components/webcomponentsjs/webcomponents-lite.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Import element --&gt;
+&lt;link rel=&quot;import&quot; href=&quot;components/google-map/google-map.html&quot;&gt;
+
+&lt;!-- Use element --&gt;
+&lt;google-map latitude=&quot;37.790&quot; longitude=&quot;-122.390&quot;&gt;&lt;/google-map&gt;
+      </code></pre>
+      </div>
+      <div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur molestie lobortis ultricies. Aliquam id fermentum orci, in auctor felis. Nulla sed tempus arcu. Cras neque massa, vestibulum sagittis odio et, dictum imperdiet nunc. Aliquam accumsan mollis massa et viverra. Nam sed auctor libero</p>
+        <a href="" class="blue-button">Create your first app</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <h2>Using the tools</h2>
+    <div class="section-columns example-code">
+      <div class="example-code flex iframe-wrapper">
+        <iframe src="https://www.youtube.com/embed/594LXGtorYE?list=PLOU2XLYxmsII5c3Mgw6fNYCzaWrsM3sMN" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur molestie lobortis ultricies. Aliquam id fermentum orci, in auctor felis. Nulla sed tempus arcu. Cras neque massa, vestibulum sagittis odio et, dictum imperdiet nunc. Aliquam accumsan mollis massa et viverra. Nam sed auctor libero</p>
+        <a href="" class="blue-button">Learn more</a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+{% endblock %}

@@ -1,10 +1,9 @@
 {% extends "templates/base.html" %}
-
 {% block title %}Welcome{% endblock %}
 
 {% block content %}
 
-<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/page-index.css">
 
 <style is="custom-style">
   .badge iron-icon {
@@ -16,17 +15,17 @@
 
 <section class="page-index-hero grey">
   <div class="section-columns">
-    <div class="logo-wrapper layout vertical center center-justified left">
+    <div class="logo-wrapper layout vertical center center-justified">
       <img src="/images/logos/p-logo.png" alt="">
     </div>
     <div class="content flex">
       <h2 class="underline">Web development the way it was meant to be.</h2>
       <div class="section-columns">
-        <p class="left flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
+        <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
         <div class="getting-started-links layout vertical">
-          <a href="" class="page-index-button">View tutorial</a>
-          <a href="" class="page-index-button">Learn about web components</a>
-          <a href="" class="page-index-button">Get the code</a>
+          <a href="" class="blue-button vertical">View tutorial</a>
+          <a href="" class="blue-button vertical">Learn about web components</a>
+          <a href="" class="blue-button vertical">Get the code</a>
         </div>
       </div>
     </div>
@@ -68,10 +67,10 @@
 </section>
 
 <section class="page-index-examples light">
-  <div class="example">
+  <div class="subsection">
     <h2>Use elements from the catalog</h2>
-    <div class="example-wrapper section-columns">
-      <div class="example-code left flex">
+    <div class="section-columns">
+      <div class="example-code flex">
         <pre><code class="lang-html">
 &lt;!-- Polyfill Web Components support for older browsers --&gt;
 &lt;script src=&quot;components/webcomponentsjs/webcomponents-lite.min.js&quot;&gt;&lt;/script&gt;
@@ -83,17 +82,17 @@
 &lt;google-map latitude=&quot;37.790&quot; longitude=&quot;-122.390&quot;&gt;&lt;/google-map&gt;
       </code></pre>
       </div>
-      <div class="example-result example-google-map">
+      <div class="example-google-map">
         <iframe frameborder="0" src="https://www.polymer-project.org/1.0/samples/homepage/google-map/index.html" width="100%"></iframe>
         <p>An element built with Polymer looks and works just like any other HTML element. Simply find an element you’d like to use in your app, import it with an HTML import, and then add the tag to your page.</p>
       </div>
     </div>
   </div>
 
-  <div class="example">
+  <div class="subsection">
     <h2>Create your own elements</h2>
-    <div class="example-wrapper section-columns">
-      <div class="example-code left flex">
+    <div class="section-columns">
+      <div class="example-code flex">
         <pre><code class="lang-html">
 &lt;dom-module id=&quot;contact-card&quot;&gt;
   &lt;link rel=&quot;import&quot; type=&quot;css&quot; href=&quot;contact-card.css&quot;&gt;
@@ -120,17 +119,17 @@
         </code></pre>
       </div>
 
-      <div class="example-result example-contact-card">
+      <div class="example-contact-card">
         <iframe frameborder="0" src="https://www.polymer-project.org/1.0/samples/homepage/contact-card/index.html" width="100%"></iframe>
         <p>The Polymer library makes it easy to create your own powerful elements. Give your element some markup and properties, and then use it on a site. Polymer provides useful features like templating and data binding to reduce the amount of boilerplate you need to write.</p>
       </div>
     </div>
   </div>
 
-  <div class="example">
+  <div class="subsection">
     <h2>Power it all with real data</h2>
-    <div class="example-wrapper section-columns">
-      <div class="example-code left flex">
+    <div class="section-columns">
+      <div class="example-code flex">
         <pre><code class="lang-html">
 &lt;dom-module id=&quot;friend-list&quot;&gt;
   &lt;link rel=&quot;import&quot; type=&quot;css&quot; href=&quot;friend-list.css&quot;&gt;
@@ -158,7 +157,7 @@
         </code></pre>
       </div>
 
-      <div class="example-result example-friend-list">
+      <div class="example-friend-list">
         <iframe frameborder="0" src="https://www.polymer-project.org/1.0/samples/homepage/friend-list/index.html" width="100%"></iframe>
         <p>Build more sophisticated elements by composing simpler elements together. Elements can provide simple abstractions to powerful APIs. The
           <code class="lang-html">&lt;firebase-collection&gt;</code> used here pulls data from a Firebase database.</p>
@@ -174,9 +173,9 @@
     <div class="getting-started-wrapper section-columns">
       <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
       <div class="getting-started-links layout vertical">
-        <a href="" class="page-index-button">Your first element</a>
-        <a href="" class="page-index-button">Your first app</a>
-        <a href="" class="page-index-button">Using the tools</a>
+        <a href="" class="blue-button vertical">Your first element</a>
+        <a href="" class="blue-button vertical">Your first app</a>
+        <a href="" class="blue-button vertical">Using the tools</a>
       </div>
     </div>
   </div>
@@ -184,16 +183,16 @@
 
 <section class="library light">
   <div class="section-columns">
-    <div class="left flex">
+    <div class="flex">
       <h2 class="underline">Library</h2>
       <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
-      <a href="" class="page-index-button">Browse library</a>
+      <a href="" class="blue-button">Browse library</a>
     </div>
 
     <div class="flex">
       <h2 class="underline">Components</h2>
       <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
-      <a href="" class="page-index-button">Browse components</a>
+      <a href="" class="blue-button">Browse components</a>
     </div>
   </div>
 </section>
@@ -230,10 +229,10 @@
 
 <section class="page-index-articles light">
   <div class="section-columns">
-    <div class="left flex-3">
+    <div class="flex-3">
       <h2 class="underline">Articles</h2>
       <p>Core concepts of build apps on top of Polymer and web components. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam.</p>
-      <a href="" class="page-index-button">View all</a>
+      <a href="" class="blue-button">View all</a>
     </div>
 
     <div class="right flex-2">
