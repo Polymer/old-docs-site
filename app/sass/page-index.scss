@@ -8,22 +8,6 @@ $large-padding: 100px;
 
 $mobile-media-breakpoint: 767px;
 
-.page-index-button {
-  color: white;
-  background: #5287e2;
-  text-transform: uppercase;
-  text-decoration: none;
-  font-size: $font-size-small;
-  padding: 3px $small-padding;
-  border-radius: 2px;
-  text-align: center;
-  display: inline-block;
-}
-
-.page-index-button:hover {
-  text-decoration: none;
-}
-
 .page-index-hero {
   .logo-wrapper {
     padding: $medium-padding;
@@ -40,14 +24,6 @@ $mobile-media-breakpoint: 767px;
 
     @media (max-width: $mobile-media-breakpoint) {
       display: none !important;
-    }
-  }
-
-  .page-index-button {
-    margin-bottom: $small-padding;
-
-    &:first-child {
-      margin-top: $small-padding;
     }
   }
 
@@ -102,13 +78,7 @@ $mobile-media-breakpoint: 767px;
   }
 }
 
-.page-index-examples .example {
-  &:not(:last-child) {
-    border-bottom: 1px solid #f52757;
-    padding-bottom: $medium-padding;
-    margin-bottom: $medium-padding;
-  }
-
+.page-index-examples .subsection {
   .example-code {
     min-width: 60%;
 
@@ -136,14 +106,6 @@ $mobile-media-breakpoint: 767px;
 .page-index-getting-started {
   p {
     margin-right: $small-padding;
-  }
-
-  .page-index-button {
-    margin-bottom: $small-padding;
-    padding: 3px $large-padding;
-    &:first-child {
-      margin-top: $small-padding;
-    }
   }
 }
 
