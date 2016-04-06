@@ -173,7 +173,7 @@ Then the `observe` property should be configured as follows:
         filter="isEngineer" observe="type manager.type">
     {% endraw %}
 
-Changing a `manager.type` field should now cause the list to be re-sorted:
+Changing a `manager.type` field should now cause the list to be re-filtered:
 
     this.set('employees.0.manager.type', 'engineer');
 
