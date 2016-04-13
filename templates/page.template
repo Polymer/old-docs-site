@@ -1,7 +1,10 @@
-{% extends "templates/base.html" %}
+{% extends "templates/base-devguide.html" %}
 
 {% block title %}<%= title %>{% endblock %}
 
 {% block content %}
+
+<link rel="stylesheet" href="/css/page-docs.css">
+
 <%= content %>
 {% endblock %}

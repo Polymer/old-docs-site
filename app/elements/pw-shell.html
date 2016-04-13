@@ -24,6 +24,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
         margin-top: 64px;
+
+        --app-header-z-index: calc(1 + var(--base-z-index, 100));
+        --app-drawer-z-index: calc(2 + var(--base-z-index, 100));
       }
 
       a {
@@ -154,13 +157,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <input id="searchBox" type="search" class="search-box fit" placeholder="Search Polymer Site">
     </app-header>
 
-    <content></content>
-
+    <div>
+      <div hidden$="[[!drawer]]">drawer here!</div>
+      <content></content>
+    </div>
   </template>
 
   <script>
   Polymer({
     is: 'pw-shell',
+
+    properties:{
+      drawer: {
+        type: Boolean,
+        value: false
+      }
+    },
 
     _focusSearch: function() {
       this.$.searchBox.focus();
