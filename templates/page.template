@@ -1,7 +1,14 @@
-{% extends "templates/base.html" %}
+{% extends "templates/base-devguide.html" %}
+
+{% set markdown = 'true' %}
+{% set title = "<%= title %>" %}
+{% set link = "<%= link %>" %}
 
 {% block title %}<%= title %>{% endblock %}
 
 {% block content %}
+
+<link rel="stylesheet" href="/css/page-md.css">
+
 <%= content %>
 {% endblock %}

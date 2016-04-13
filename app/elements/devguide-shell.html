@@ -1,0 +1,129 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/paper-styles/typography.html">
+
+<dom-module id="devguide-shell">
+  <template>
+    <style include="iron-flex">
+      :host {
+        display: block;
+        position: relative;
+        background: #eceff1;
+      }
+
+      .nav {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        background: white;
+        box-shadow: 1px 0 6px -2px rgba(0, 0, 0, 0.4);
+        width: 265px;
+      }
+
+      .content {
+        padding-left: 265px;
+      }
+
+      header {
+        background: #1565c0;
+        color: white;
+        background: linear-gradient(to bottom, #1259aa 0%, #1565c0 5%,#1565c0 95%,#1259aa 100%);
+        padding: 30px;
+      }
+
+      header h2 {
+        font-family: 'Roboto Slab', sans-serif;
+        font-size: 32px;
+        font-weight: bold;
+      }
+
+      details {
+        float: right;
+      }
+
+      a {
+        @apply(--paper-font-common-base);
+        color: #999;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        display: block;
+        text-decoration: none;
+        padding: 10px 30px;
+      }
+
+      a.section {
+        padding: 14px 30px;
+        font-family: 'Roboto Slab', sans-serif;
+        border-bottom: 1px solid #f1f3f5;
+      }
+
+      a.section:last-of-type {
+        border-top: 1px solid #f1f3f5;
+      }
+
+      a.iron-selected {
+        color: black;
+      }
+    </style>
+
+    <iron-selector class="nav" attr-for-selected="name" selected="[[activePage]]">
+      <a class="section" href="/1.0/devguide/registering-elements" name="about">About This Release</a>
+      <a class="section" href="/1.0/devguide/" name="index">Get Started</a>
+      <a href="/1.0/devguide/feature-overview" name="feature-overview">Feature Overview</a>
+      <a href="/1.0/devguide/registering-elements" name="registering-elements">Registration and lifecycle</a>
+      <a href="/1.0/devguide/properties" name="properties">Declared Properties</a>
+      <a class="section" href="http://polymer.github.io/polymer/" target="_blank" name="api">API Reference</a>
+    </iron-selector>
+
+    <div class="content">
+      <header hidden$="[[!markdown]]">
+        <p>Developer Guide > {{pageTitle}}</p>
+        <h2>{{pageTitle}}</h2>
+      </header>
+      <content></content>
+    </div>
+
+  </template>
+
+  <script>
+  Polymer({
+    is: 'devguide-shell',
+
+    properties: {
+      /**
+       * True if the content displayed comes from a .md docs file.
+       */
+      markdown: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
+       * The full title of the page (i.e. "Registration and Lifecycle"),
+       * displayed in the header section.
+       */
+      pageTitle: {
+        type: String
+      },
+
+      /**
+       * The link name (i.e. registering-elements) of the page being displayed.
+       * Used do highlight the active page in the left navigation section.
+       */
+      activePage: {
+        type: String
+      }
+    }
+  });
+  </script>
+</dom-module>

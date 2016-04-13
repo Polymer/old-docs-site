@@ -117,6 +117,7 @@ gulp.task('md', 'Markdown -> HTML conversion. Syntax highlight and TOC generatio
       data.file = file;
       data.content = marked(file.content); // Markdown -> HTML.
       data.title = data.title || '';
+      data.link = data.link || '';
 
       data.content = toc.process(data.content, {
         header: '<h<%= level %><%= attrs %> id="<%= anchor %>" class="has-permalink"><%= header %></h<%= level %>>',
