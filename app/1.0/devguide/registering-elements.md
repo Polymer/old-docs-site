@@ -1,9 +1,9 @@
 ---
 title: Registration and lifecycle
+link: registering-elements
 ---
 
 <!-- toc -->
-
 
 ## Register a custom element
 
@@ -92,12 +92,13 @@ Polymer currently only supports extending native HTML elements (for example,
 be supported in a future release). These native element extensions are called
 _type extension custom elements_.
 
-**Note:** When using native shadow DOM, extension of native elements can have
+<div class="alert alert-error"><strong>Note:</strong>
+When using native shadow DOM, extension of native elements can have
 unexpected behavior and is sometimes not permitted. Test your element with
 native shadow DOM enabled to catch any problems during development.
 For information on enabling native shadow DOM, see
 [Global Polymer settings](https://www.polymer-project.org/1.0/docs/devguide/settings.html).
-{: .alert .alert-info }
+</div>
 
 To extend a native HTML element, set the `extends` property on your prototype to
 the tag name of the element to extend.
@@ -133,10 +134,11 @@ To use a type-extension element in markup, use the _native_ tag and add an
 
 ### Define an element in the main HTML document
 
-**Note:** You should only define elements from the main document when
+<div class="alert alert-error"><strong>Note:</strong>
+You should only define elements from the main document when
 experimenting. In production, elements should always be defined in
 separate files and imported into your main document.
-{: .alert .alert-info }
+</div>
 
 To define an element in your main HTML document, define the element
 from `HTMLImports.whenReady(callback)`. `callback` is invoked when
@@ -282,11 +284,12 @@ Example:
 The `ready` callback is called when a {{site.project_title}} element's
 local DOM has been initialized.
 
-**What is local DOM?** Local DOM is a subtree of elements created and
+<div class="alert alert-error"><strong>What is local DOM?</strong>
+Local DOM is a subtree of elements created and
 managed by your element. It's separate from the element's children,
 which are called _light DOM_ for clarity. For more information, see
 [Local DOM](local-dom.html).
-{: .alert .alert-info }
+</div>
 
 An element is _ready_ when:
 
@@ -306,9 +309,10 @@ local DOM when the element is constructed.
       this.$.header.textContent = 'Hello!';
     }
 
-**Note:** This example uses [Automatic node finding](local-dom.html#node-finding) to
+<div class="alert alert-error"><strong>Note:</strong>
+This example uses [Automatic node finding](local-dom.html#node-finding) to
 access a local DOM element.
-{: .alert .alert-info }
+</div>
 
 Within a given tree, `ready` is generally called in _document order_,
 but you should not rely on the ordering of initialization callbacks between
@@ -445,8 +449,9 @@ Results in:
 
     <x-custom string-attribute="Value" boolean-attribute tabindex="0"></x-custom>
 
-**Note:** The `class` attribute can't be configured using `hostAttributes`.
-{: .alert .alert-error }
+<div class="alert alert-error"><strong>Note:</strong>
+The `class` attribute can't be configured using `hostAttributes`.
+</div>
 
 ## Behaviors
 

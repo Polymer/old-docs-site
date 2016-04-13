@@ -24,12 +24,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         top: 0;
         bottom: 0;
         background: white;
-        box-shadow: 5px 0 6px -2px rgba(0, 0, 0, 0.4);
+        box-shadow: 1px 0 6px -2px rgba(0, 0, 0, 0.4);
         width: 265px;
       }
 
       .content {
         padding-left: 265px;
+      }
+
+      header {
+        background: #1565c0;
+        color: white;
+        background: linear-gradient(to bottom, #1259aa 0%, #1565c0 5%,#1565c0 95%,#1259aa 100%);
+        padding: 30px;
+      }
+
+      header h2 {
+        font-family: 'Roboto Slab', sans-serif;
+        font-size: 32px;
+        font-weight: bold;
+      }
+
+      details {
+        float: right;
       }
 
       a {
@@ -43,34 +60,59 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 10px 30px;
       }
 
-      .header {
+      a.section {
+        padding: 14px 30px;
+        font-family: 'Roboto Slab', sans-serif;
         border-bottom: 1px solid #f1f3f5;
       }
 
-      a.header {
-        padding: 14px 30px;
-        font-family: 'Roboto Slab', sans-serif;
+      a.section:last-of-type {
+        border-top: 1px solid #f1f3f5;
+      }
+
+      a.iron-selected {
+        color: black;
       }
     </style>
 
-    <div class="nav">
-      <a class="header" href="/1.0/devguide/registering-elements">About This Release</a>
-      <a class="header" href="/1.0/devguide/">Get Started</a>
-      <div class="header">
-        <a href="/1.0/devguide/registering-elements">Developer Guide</a>
-        <a href="/1.0/devguide/registering-elements">Feature Overview</a>
-        <a href="/1.0/devguide/registering-elements">Registration and lifecycle</a>
-      </div>
-      <a class="header" href="http://polymer.github.io/polymer/">API Reference</a>
-    </div>
+    <iron-selector class="nav" attr-for-selected="name" selected="[[activePage]]">
+      <a class="section" href="/1.0/devguide/registering-elements" name="about">About This Release</a>
+      <a class="section" href="/1.0/devguide/" name="index">Get Started</a>
+      <a href="/1.0/devguide/feature-overview" name="feature-overview">Feature Overview</a>
+      <a href="/1.0/devguide/registering-elements" name="registering-elements">Registration and lifecycle</a>
+      <a href="/1.0/devguide/properties" name="properties">Declared Properties</a>
+      <a class="section" href="http://polymer.github.io/polymer/" target="_blank" name="api">API Reference</a>
+    </iron-selector>
 
-    <div class="content"><content></content></div>
+    <div class="content">
+      <header hidden$="[[!markdown]]">
+        <p>Developer Guide > {{pageTitle}}</p>
+        <h2>{{pageTitle}}</h2>
+      </header>
+      <content></content>
+    </div>
 
   </template>
 
   <script>
   Polymer({
-    is: 'devguide-shell'
+    is: 'devguide-shell',
+
+    properties: {
+      markdown: {
+        type: Boolean,
+        value: false,
+        reflectToAttribute: true
+      },
+
+      pageTitle: {
+        type: String
+      },
+
+      activePage: {
+        type: String
+      }
+    }
   });
   </script>
 </dom-module>

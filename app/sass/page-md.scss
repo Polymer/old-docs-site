@@ -1,3 +1,48 @@
+$small-padding: 20px;
+$medium-padding: 40px;
+$large-padding: 100px;
+
+$mobile-media-breakpoint: 767px;
+$pink: #f52757;
+
 main {
   background: #eceff1;
+  padding: 40px;
+}
+
+pre {
+  background: white;
+}
+
+code {
+  color: #0D47A1;
+}
+
+h2 {
+  border-bottom: 1px solid $pink;
+}
+
+h3 {
+  font-family: 'Roboto Slab', sans-serif;
+  font-size: 24px;
+}
+
+a {
+  text-decoration: none;
+  color: #3367d6;
+}
+
+.alert {
+  border: 1px solid #eee;
+  padding: 20px;
+  margin: 30px;
+}
+
+.alert.alert-error {
+  border-color: $pink;
+  fill: $pink;
+}
+
+.alert strong {
+  color: $pink;
 }
