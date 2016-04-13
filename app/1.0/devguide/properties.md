@@ -81,7 +81,7 @@ Set to <code>true</code> to cause the corresponding attribute to be set on the h
 when the property value changes. If the property value is Boolean, the attribute
 is created as a standard HTML boolean attribute (set if true, not set if false).
 For other property types, the attribute value is a string representation of the
-property value. Equivalent to <code>reflect</code> in {{site.project_title}} 0.5.
+property value. Equivalent to <code>reflect</code> in Polymer 0.5.
 See <a href="#attribute-reflection">Reflecting properties to attributes</a> for
 more information.
 </td>
@@ -129,7 +129,7 @@ for more information.
 ## Property name to attribute name mapping
 
 For data binding, deserializing properties from attributes, and reflecting
-properties back to attributes, {{site.project_title}} maps attribute names to property
+properties back to attributes, Polymer maps attribute names to property
 names and the reverse.
 
 When mapping attribute names to property names:
@@ -253,7 +253,7 @@ Default values for properties may be specified in the `properties` object using
 the `value` field.  The value may either be a primitive value, or a function
 that returns a value.
 
-If you provide a function, {{site.project_title}} calls the function once
+If you provide a function, Polymer calls the function once
 _per element instance_.
 
 When initializing a property to an object or array value, use a function to
@@ -321,11 +321,12 @@ Example:
 
     });
 
-**Warning:** A single property observer shouldn't rely on any other properties,
+<div class="alert alert-warning"><strong>Warning:</strong>
+A single property observer shouldn't rely on any other properties,
 sub-properties, or paths because the observer can be called while these
 dependencies are undefined. See [Always include dependencies
 as observer arguments](#dependencies) for details.
-{: .alert alert-warning }
+</div>
 
 Property change observation is achieved in Polymer by installing setters on the
 custom element prototype for properties with registered interest (as opposed to
@@ -393,7 +394,7 @@ Example:
     <dom-module id="x-sub-property-observer">
       <template>
         <!-- Sub-property is updated via property binding. -->
-        <input value="{% raw %}{{user.name::input}}{% endraw %}">
+        <input value="{{user.name::input}}">
       </template>
       <script>
         Polymer({
@@ -519,9 +520,9 @@ Example:
 
     <dom-module id="x-deep-observer">
       <template>
-        <input value="{% raw %}{{user.name.first::input}}{% endraw %}"
+        <input value="{{user.name.first::input}}"
                placeholder="First Name">
-        <input value="{% raw %}{{user.name.last::input}}{% endraw %}"
+        <input value="{{user.name.last::input}}"
                placeholder="Last Name">
       </template>
       <script>
@@ -567,7 +568,7 @@ can retrieve it via the `Polymer.Collection` internal abstraction:
 
 ### Array mutation methods
 
-When modifying arrays, a set of array mutation methods are provided on {{site.project_title}}
+When modifying arrays, a set of array mutation methods are provided on Polymer
 element prototypes which mimic `Array.prototype` methods, with the exception that
 they take a `path` string as the first argument.  The `path` argument identifies
 an array on the element to mutate, with the following arguments matching those
@@ -591,7 +592,7 @@ Example:
 
     <dom-module id="custom-element">
       <template>
-        <template is="dom-repeat">{{users}}</template>
+        <template is="dom-repeat" items="[[users]]">{{item}}</template>
       </template>
 
       <script>
@@ -615,14 +616,14 @@ Example:
 #### Using native array mutation methods
 
 
-<!-- Whenever possible you should always use Polymer's
+Whenever possible you should always use Polymer's
 [array mutation methods](#array-mutation). However, this isn't always
 possible. For example, you may be using a third-party library
 that does not use Polymer's array mutation methods.
 In these scenarios you can call
-[`notifySplices`](/ polymer_version_dir/api/#Polymer.Base:method-notifySplices){:target="api"}
+<a href="/1.0/api/#Polymer.Base:method-notifySplices" target="api">`notifySplices`</a>
 after each mutation to ensure that any Polymer elements observing the array
-are properly notified of the changes. -->
+are properly notified of the changes.
 
 ### Always include dependencies as observer arguments
 
@@ -645,7 +646,7 @@ can be called while the other dependencies are still undefined. For example:
       console.log('new name:', newFirstName, this.lastName);
     }
 
-Note that {{site.project_title}} doesn't guarantee that properties are
+Note that Polymer doesn't guarantee that properties are
 initialized in any particular order.
 
 In general, if your observer relies on multiple dependencies, use a
@@ -764,7 +765,7 @@ computed property function returns a value that's exposed as a virtual property.
     <dom-module id="x-custom">
 
       <template>
-        My name is <span>{%raw%}{{fullName}}{%endraw%}</span>
+        My name is <span>{{fullName}}</span>
       </template>
 
       <script>

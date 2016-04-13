@@ -99,16 +99,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     is: 'devguide-shell',
 
     properties: {
+      /**
+       * True if the content displayed comes from a .md docs file.
+       */
       markdown: {
         type: Boolean,
-        value: false,
-        reflectToAttribute: true
+        value: false
       },
 
+      /**
+       * The full title of the page (i.e. "Registration and Lifecycle"),
+       * displayed in the header section.
+       */
       pageTitle: {
         type: String
       },
 
+      /**
+       * The link name (i.e. registering-elements) of the page being displayed.
+       * Used do highlight the active page in the left navigation section.
+       */
       activePage: {
         type: String
       }

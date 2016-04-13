@@ -36,13 +36,13 @@ a {
   border: 1px solid #eee;
   padding: 20px;
   margin: 30px;
-}
 
-.alert.alert-error {
-  border-color: $pink;
-  fill: $pink;
-}
+  &.alert-error, &.alert-warning {
+    border-color: $pink;
+    fill: $pink;
+  }
 
-.alert strong {
-  color: $pink;
+  strong {
+    color: $pink;
+  }
 }

@@ -157,22 +157,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <input id="searchBox" type="search" class="search-box fit" placeholder="Search Polymer Site">
     </app-header>
 
-    <div>
-      <div hidden$="[[!drawer]]">drawer here!</div>
-      <content></content>
-    </div>
+    <content></content>
   </template>
 
   <script>
   Polymer({
     is: 'pw-shell',
-
-    properties:{
-      drawer: {
-        type: Boolean,
-        value: false
-      }
-    },
 
     _focusSearch: function() {
       this.$.searchBox.focus();

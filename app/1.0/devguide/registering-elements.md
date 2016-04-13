@@ -38,8 +38,8 @@ The `Polymer` function registers the element with the browser and returns a
 constructor that can be used to create new instances of your element via code.
 
 The `Polymer` function sets up the prototype chain for your custom element,
-chaining it to the {{site.project_title}} `Base` prototype (which provides
-{{site.project_title}} value-added features), so you cannot set up your own
+chaining it to the Polymer `Base` prototype (which provides
+Polymer value-added features), so you cannot set up your own
 prototype chain. However, you can use [behaviors](#prototype-mixins) to
 share code between elements.
 
@@ -176,7 +176,7 @@ all imports in the document have finished loading.
 
 Polymer's Base prototype implements the standard Custom Element lifecycle
 callbacks to perform tasks necessary for Polymer's built-in features.
-{{site.project_title}} in turn calls shorter-named lifecycle methods on your
+Polymer in turn calls shorter-named lifecycle methods on your
 prototype.
 
 Polymer adds an extra callback, `ready`, which is invoked when Polymer has
@@ -216,7 +216,7 @@ finished creating and initializing the element's local DOM.
         event handling, such as <a href="events.html#annotated-listeners">annotated
         event listeners</a> or the
         <a href="events.html#event-listeners"><code>listeners</code> object</a>,
-        {{site.project_title}} automatically adds listeners on attach and removes
+        Polymer automatically adds listeners on attach and removes
         them on detach.)
       </p>
       <p>Use instead of <code>attachedCallback</code>.
@@ -237,7 +237,7 @@ finished creating and initializing the element's local DOM.
     <td><code>attributeChanged</code></td>
     <td>Called when one of the element's attributes is changed.
       <p>Use to handle attribute changes that <em>don't</em> correspond to
-        declared properties. (For declared properties, {{site.project_title}}
+        declared properties. (For declared properties, Polymer
         handles attribute changes automatically as described in
         <a href="properties.html#attribute-deserialization">attribute deserialization</a>.)
       </p>
@@ -281,7 +281,7 @@ Example:
 
 ### Ready callback and local DOM initialization
 
-The `ready` callback is called when a {{site.project_title}} element's
+The `ready` callback is called when a Polymer element's
 local DOM has been initialized.
 
 <div class="alert alert-error"><strong>What is local DOM?</strong>
@@ -405,7 +405,7 @@ from inside the `attached` callback:
 
 ### Registration callback
 
-{{site.project_title}} also provides two registration-time callbacks, `beforeRegister`
+Polymer also provides two registration-time callbacks, `beforeRegister`
 and `registered`.
 
 Use the `beforeRegister` callback to transform an element's prototype before

@@ -15,7 +15,7 @@ to make it easier and faster to make custom elements that work like standard DOM
 * Styled with internal defaults or externally.
 * Responsive to methods that manipulate its internal state.
 
-A basic {{site.project_title}} element definition looks like this:
+A basic Polymer element definition looks like this:
 
     <dom-module id="element-name">
 
@@ -26,7 +26,7 @@ A basic {{site.project_title}} element definition looks like this:
 
         <!-- local DOM for your element -->
 
-        <div>{%raw%}{{greeting}}{%endraw%}</div> <!-- data bindings in local DOM -->
+        <div>{{greeting}}</div> <!-- data bindings in local DOM -->
       </template>
 
       <script>
@@ -70,7 +70,7 @@ This guide divides the features into the following groups:
 *   [Data binding](data-binding.html). Property bindings. Binding to attributes.
 
 *   [Behaviors](behaviors.html). Behaviors are reusable modules of code that can be
-    mixed into {{site.project_title}} elements.
+    mixed into Polymer elements.
 
 *   [Utility functions](utility-functions.html). Helper methods for common tasks.
 
