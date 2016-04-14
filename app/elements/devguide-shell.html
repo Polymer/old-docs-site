@@ -8,9 +8,10 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
-<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/paper-styles/typography.html">
 <link rel="import" href="icons.html">
 
@@ -23,7 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background: #eceff1;
       }
 
-      .desktop-nav {
+      .nav {
         position: absolute;
         top: 0;
         bottom: 0;
@@ -32,8 +33,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: 265px;
       }
 
-      .content-container {
+      #menu {
         display: block;
+      }
+
+      .nav header {
+        display: none;
+      }
+
+      .content-container {
         position: relative;
         margin-left: 265px;
       }
@@ -49,6 +57,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-family: 'Roboto Slab', sans-serif;
         font-size: 32px;
         font-weight: bold;
+        border-bottom: none;
       }
 
       paper-icon-button, paper-icon-button[hidden] {
@@ -80,13 +89,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: black;
       }
 
-      #menu {
-        display: none;
-      }
-
       @media (max-width: 767px) {
-        .desktop-nav {
-          display: none;
+        #menu {
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 10;
+        }
+
+        .nav {
+          position: relative;
+          width: 100%;
+          /* Cover the whole screen, but leave enough space for the bottom footer. */
+          /* 64px is the size of the pw-shell app bar*/
+          height: calc(100vh - 65px);
+        }
+
+        .nav header {
+          box-sizing: border-box;
+          position: fixed;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 50px;
+          text-align: center;
+        }
+
+        .iron-collapse-opened header {
+          display: block;
         }
 
         .content-container {
@@ -94,7 +126,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         header {
-          padding: 5px 10px 0 30px;
+          padding: 8px 30px;
         }
 
         header p {
@@ -123,51 +155,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           right: 30px;
           color: white;
         }
-
-        #menu {
-          display: block;
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          z-index: 10;
-        }
-
-        .mobile-nav {
-          background: white;
-          /* Cover the whole screen, but leave enough space for the bottom footer. */
-          /* 64px is the size of the pw-shell app bar*/
-          height: calc(100vh - 65px);
-        }
-
-        .mobile-nav header {
-          box-sizing: border-box;
-          position: fixed;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          height: 50px;
-          text-align: center;
-        }
-
-        .iron-collapse-opened header {
-          display: block;
-        }
-
-        .iron-collapse-closed header {
-          display: none;
-        }
       }
     </style>
 
-    <iron-selector class="desktop-nav" attr-for-selected="name" selected="[[activePage]]">
-      <a class="section" href="/1.0/devguide/registering-elements" name="about">About This Release</a>
-      <a class="section" href="/1.0/devguide/" name="index">Get Started</a>
-      <a href="/1.0/devguide/feature-overview" name="feature-overview">Feature Overview</a>
-      <a href="/1.0/devguide/registering-elements" name="registering-elements">Registration and lifecycle</a>
-      <a href="/1.0/devguide/properties" name="properties">Declared Properties</a>
-      <a class="section" href="http://polymer.github.io/polymer/" target="_blank" name="api">API Reference</a>
-    </iron-selector>
+    <iron-media-query query="(max-width: 767px)" query-matches="{{_isMobileView}}"></iron-media-query>
+
+    <iron-collapse id="menu">
+      <!-- iron-collapse resizes to fit the content, so we need an extra div to size the content correctly. -->
+      <div class="nav">
+        <iron-selector attr-for-selected="name" selected="[[activePage]]">
+          <a class="section" href="/1.0/devguide/registering-elements" name="about">About This Release</a>
+          <a class="section" href="/1.0/devguide/" name="index">Get Started</a>
+          <a href="/1.0/devguide/feature-overview" name="feature-overview">Feature Overview</a>
+          <a href="/1.0/devguide/registering-elements" name="registering-elements">Registration and lifecycle</a>
+          <a href="/1.0/devguide/properties" name="properties">Declared Properties</a>
+          <a class="section" href="http://polymer.github.io/polymer/" target="_blank" name="api">API Reference</a>
+        </iron-selector>
+
+        <header>
+          <paper-icon-button icon="icons:expand-less" on-tap="_toggleMenu"></paper-icon-button>
+        </header>
+      </div>
+    </iron-collapse>
 
     <div class="content-container">
       <header hidden$="[[!markdown]]">
@@ -179,24 +188,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
       </header>
       <paper-icon-button hidden$="[[markdown]]" id="indexPageToggleButton" icon="icons:expand-more" on-tap="_toggleMenu"></paper-icon-button>
-
-      <iron-collapse id="menu">
-        <!-- iron-collapse resizes to fit the content, so we need an extra div to size the content correctly. -->
-        <div class="mobile-nav">
-          <iron-selector attr-for-selected="name" selected="[[activePage]]">
-            <a class="section" href="/1.0/devguide/registering-elements" name="about">About This Release</a>
-            <a class="section" href="/1.0/devguide/" name="index">Get Started</a>
-            <a href="/1.0/devguide/feature-overview" name="feature-overview">Feature Overview</a>
-            <a href="/1.0/devguide/registering-elements" name="registering-elements">Registration and lifecycle</a>
-            <a href="/1.0/devguide/properties" name="properties">Declared Properties</a>
-            <a class="section" href="http://polymer.github.io/polymer/" target="_blank" name="api">API Reference</a>
-          </iron-selector>
-
-          <header>
-            <paper-icon-button icon="icons:expand-less" on-tap="_toggleMenu"></paper-icon-button>
-          </header>
-        </div>
-      </iron-collapse>
 
       <div id="content">
         <content></content>
@@ -232,6 +223,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        */
       activePage: {
         type: String
+      },
+
+      /**
+       * True if this is a mobile view.
+       */
+      _isMobileView: {
+        observer: '_mobileViewChanged'
       }
     },
 
@@ -240,7 +238,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$.menu.addEventListener('transitionend', function() {
           // If we have opened the menu, hide the rest of the content. Doing
           // this before the animation finished would flash the footer.
-          if (this.$.menu.opened) {
+          if (this._isMobileView && this.$.menu.opened) {
             this.$.content.hidden = true;
           }
         }.bind(this));
@@ -255,6 +253,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       this.$.menu.toggle();
       this.$.toggleButton.icon = this.$.menu.opened ? 'icons:expand-less' : 'icons:expand-more';
+    },
+
+    _mobileViewChanged: function() {
+      this.$.content.hidden = false;
+
+      // Disable animations while we're doing the screen transition, since it looks weird.
+      this.$.menu.noAnimation = true;
+
+      if (this._isMobileView) {
+        this.$.menu.hide();
+        this.$.toggleButton.icon = 'icons:expand-more';
+
+        // We only need animations on mobile.
+        this.$.menu.noAnimation = false;
+      } else {
+        this.$.menu.show();
+        // Resize the menu correctly (in case this was a mobile -> desktop transition.
+        this.$.menu.updateSize(0, false);
+      }
     }
   });
   </script>
