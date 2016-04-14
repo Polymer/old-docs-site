@@ -7,8 +7,13 @@ $pink: #f52757;
 
 main {
   background: #eceff1;
-  padding: 40px;
+  padding: $medium-padding;
   max-width: 1000px;
+
+  @media (max-width: 500px) {
+    padding-left: $small-padding;
+    padding-right: $small-padding;
+  }
 }
 
 pre {
@@ -26,6 +31,10 @@ h2 {
 h3 {
   font-family: 'Roboto Slab', sans-serif;
   font-size: 24px;
+
+  @media (max-width: 500px) {
+    font-size: 18px;
+  }
 }
 
 a {
