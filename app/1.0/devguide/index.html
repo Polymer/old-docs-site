@@ -48,6 +48,14 @@
 
   #menuButton {
     display: none;
+    color: white;
+  }
+
+  #menuButton:hover, #menuButton:focus {
+    background-color: rgba(255, 255, 255, 0.4);
+    color: #1e88e5;
+    border-radius: 50%;
+    outline: none;
   }
 
   @media (max-width: 767px) {
@@ -74,7 +82,7 @@
     <div class="layout horizontal center">
       <h2>Getting Started</h2>
       <a href="#" id="menuButton" onclick="_toggleMenu(event)">
-        <paper-icon-button icon="icons:expand-more"></paper-icon-button>
+        <paper-icon-button tabindex="-1" icon="icons:expand-more" alt="expand navigation menu"></paper-icon-button>
       </a>
     </div>
 

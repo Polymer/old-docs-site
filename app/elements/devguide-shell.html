@@ -60,8 +60,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         border-bottom: none;
       }
 
-      paper-icon-button {
+      .toggle-button {
         display: none;
+      }
+
+      /* Because of https://bugs.chromium.org/p/chromium/issues/detail?id=501135,
+       * the `will-change: opacity` in most likely `app-header` is causing Chrome
+       * to set the opacities on the composed layers incorrectly, resulting in
+       * the paper-icon-button's paper-ripple to be basically invisible.
+       * Manually fix it for now, and see if a change in app-drawer can fix this. */
+      .toggle-button:hover, .toggle-button:focus {
+        background-color: rgba(255, 255, 255, 0.4);
+        color: #1565c0;
+        border-radius: 50%;
+        outline: none;
       }
 
       a {
@@ -91,7 +103,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       @media (max-width: 767px) {
         #menu {
-          display: block;
+          display: none;
           position: absolute;
           top: 0;
           left: 0;
@@ -138,11 +150,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           margin: 0;
         }
 
-        paper-icon-button {
+        .toggle-button {
           display: inline-block;
         }
 
-        #toggleButton {
+        .content-container .toggle-button {
           margin-left: auto;    /* Align to the right. */
         }
       }
@@ -162,7 +174,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a class="section" href="http://polymer.github.io/polymer/" target="_blank" name="api">API Reference</a>
         </iron-selector>
         <header>
-          <paper-icon-button icon="icons:expand-less" on-tap="_toggleMenu"></paper-icon-button>
+          <paper-icon-button class="toggle-button" icon="icons:expand-less" on-tap="_toggleMenu"
+              alt="collapse navigation menu">
+          </paper-icon-button>
         </header>
       </div>
     </iron-collapse>
@@ -173,7 +187,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <div class="layout horizontal center">
           <h2>{{pageTitle}}</h2>
-          <paper-icon-button id="toggleButton" icon="icons:expand-more" on-tap="_toggleMenu"></paper-icon-button>
+          <paper-icon-button class="toggle-button" icon="icons:expand-more" on-tap="_toggleMenu"
+              alt="expand navigation menu">
+          </paper-icon-button>
         </div>
       </header>
 
@@ -222,9 +238,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     attached: function() {
-      this.addEventListener('toggle-dev-menu', function() {
-        this._toggleMenu();
-      }.bind(this));
+      this.addEventListener('toggle-dev-menu', this._toggleMenu.bind(this));
 
       Polymer.RenderStatus.afterNextRender(this, function() {
         this.$.menu.addEventListener('transitionend', function() {
@@ -232,6 +246,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           // this before the animation finished would flash the footer.
           if (this._isMobileView && this.$.menu.opened) {
             this.$.content.hidden = true;
+            // TODO(notwaldorf): figure out how to focus the menu instead of the pw-shell here.
           }
         }.bind(this));
       });
@@ -243,8 +258,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (this.$.menu.opened) {
         this.$.content.hidden = false;
       }
+      // Hide the menu altogether when it's not opened, so that it's not
+      // part of the tab order.
+      this.$.menu.style.display = this.$.menu.opened ? 'none' : 'block';
       this.$.menu.toggle();
-      this.$.toggleButton.icon = this.$.menu.opened ? 'icons:expand-less' : 'icons:expand-more';
     },
 
     _mobileViewChanged: function() {
@@ -255,12 +272,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       if (this._isMobileView) {
         this.$.menu.hide();
-        this.$.toggleButton.icon = 'icons:expand-more';
+        this.$.menu.style.display = 'none';
 
         // We only need animations on mobile.
         this.$.menu.noAnimation = false;
       } else {
         this.$.menu.show();
+        this.$.menu.style.display = 'block';
         // Resize the menu correctly (in case this was a mobile -> desktop transition.
         this.$.menu.updateSize(0, false);
       }
