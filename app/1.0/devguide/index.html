@@ -73,7 +73,7 @@
   <div class="section-columns">
     <div class="layout horizontal center">
       <h2>Getting Started</h2>
-      <a href="" id="menuButton" onclick="_toggleMenu(event)">
+      <a href="#" id="menuButton" onclick="_toggleMenu(event)">
         <paper-icon-button icon="icons:expand-more"></paper-icon-button>
       </a>
     </div>
@@ -171,10 +171,8 @@
 
 <script>
   function _toggleMenu(event) {
-    var e = new CustomEvent('toggle-dev-menu', {
-      bubbles: true
-    });
-
+    e = document.createEvent('CustomEvent');
+    e.initCustomEvent('toggle-dev-menu', true, true, null);
     event.target.dispatchEvent(e);
   }
 </script>
