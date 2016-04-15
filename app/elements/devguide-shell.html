@@ -145,16 +145,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         #toggleButton {
           margin-left: auto;    /* Align to the right. */
         }
-        /**
-         * The index page doesn't have an h2 title that we can hang a menu button
-         * off of, but we know its contents so absolutely position one.
-         */
-        #indexPageToggleButton {
-          position: absolute;
-          top: 45px;
-          right: 30px;
-          color: white;
-        }
       }
     </style>
 
@@ -171,7 +161,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a href="/1.0/devguide/properties" name="properties">Declared Properties</a>
           <a class="section" href="http://polymer.github.io/polymer/" target="_blank" name="api">API Reference</a>
         </iron-selector>
-
         <header>
           <paper-icon-button icon="icons:expand-less" on-tap="_toggleMenu"></paper-icon-button>
         </header>
@@ -187,7 +176,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-icon-button id="toggleButton" icon="icons:expand-more" on-tap="_toggleMenu"></paper-icon-button>
         </div>
       </header>
-      <paper-icon-button hidden$="[[markdown]]" id="indexPageToggleButton" icon="icons:expand-more" on-tap="_toggleMenu"></paper-icon-button>
 
       <div id="content">
         <content></content>
@@ -234,6 +222,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     attached: function() {
+      this.addEventListener('toggle-dev-menu', function() {
+        this._toggleMenu();
+      }.bind(this));
+
       Polymer.RenderStatus.afterNextRender(this, function() {
         this.$.menu.addEventListener('transitionend', function() {
           // If we have opened the menu, hide the rest of the content. Doing

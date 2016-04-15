@@ -46,6 +46,10 @@
     height: 100%;
   }
 
+  #menuButton {
+    display: none;
+  }
+
   @media (max-width: 767px) {
     .example-code {
       width: 100%;
@@ -56,12 +60,24 @@
       /* use the correct aspect ratio for the video */
       padding-bottom: 56.25%;
     }
+
+    #menuButton {
+      color: white;
+      display: inline-block;
+      margin-left: auto;    /* Align to the right. */
+    }
   }
 </style>
 
 <section class="blue">
   <div class="section-columns">
-    <h2>Getting Started</h2>
+    <div class="layout horizontal center">
+      <h2>Getting Started</h2>
+      <a href="" id="menuButton" onclick="_toggleMenu(event)">
+        <paper-icon-button icon="icons:expand-more"></paper-icon-button>
+      </a>
+    </div>
+
     <div class="flex">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis.
   Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec,
@@ -152,5 +168,15 @@
   </div>
 
 </section>
+
+<script>
+  function _toggleMenu(event) {
+    var e = new CustomEvent('toggle-dev-menu', {
+      bubbles: true
+    });
+
+    event.target.dispatchEvent(e);
+  }
+</script>
 
 {% endblock %}
