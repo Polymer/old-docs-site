@@ -10,8 +10,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
-<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/paper-styles/typography.html">
 <link rel="import" href="icons.html">
 
@@ -62,13 +62,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       .toggle-button {
         display: none;
+        padding: 8px;
+        color: white;
       }
 
-      /* Because of https://bugs.chromium.org/p/chromium/issues/detail?id=501135,
-       * the `will-change: opacity` in most likely `app-header` is causing Chrome
-       * to set the opacities on the composed layers incorrectly, resulting in
-       * the paper-icon-button's paper-ripple to be basically invisible.
-       * Manually fix it for now, and see if a change in app-drawer can fix this. */
       .toggle-button:hover, .toggle-button:focus {
         background-color: rgba(255, 255, 255, 0.4);
         color: #1565c0;
@@ -174,9 +171,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a class="section" href="http://polymer.github.io/polymer/" target="_blank" name="api">API Reference</a>
         </iron-selector>
         <header>
-          <paper-icon-button class="toggle-button" icon="icons:expand-less" on-tap="_toggleMenu"
-              alt="collapse navigation menu">
-          </paper-icon-button>
+          <a href="#" class="toggle-button" on-click="_toggleMenu" aria-label="collapse navigation menu">
+            <iron-icon icon="icons:expand-less"></iron-icon>
+          </a>
         </header>
       </div>
     </iron-collapse>
@@ -187,9 +184,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <div class="layout horizontal center">
           <h2>{{pageTitle}}</h2>
-          <paper-icon-button class="toggle-button" icon="icons:expand-more" on-tap="_toggleMenu"
-              alt="expand navigation menu">
-          </paper-icon-button>
+          <a href="#" class="toggle-button" on-click="_toggleMenu" aria-label="expand navigation menu">
+            <iron-icon icon="icons:expand-more"></iron-icon>
+          </a>
         </div>
       </header>
 
@@ -241,14 +238,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this.addEventListener('toggle-dev-menu', this._toggleMenu.bind(this));
 
       Polymer.RenderStatus.afterNextRender(this, function() {
-        this.$.menu.addEventListener('transitionend', function() {
-          // If we have opened the menu, hide the rest of the content. Doing
-          // this before the animation finished would flash the footer.
-          if (this._isMobileView && this.$.menu.opened) {
-            this.$.content.hidden = true;
-            // TODO(notwaldorf): figure out how to focus the menu instead of the pw-shell here.
-          }
-        }.bind(this));
+        this.$.menu.addEventListener('transitionend', this._transitionend.bind(this));
       });
     },
 
@@ -257,10 +247,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // so that we don't flash the footer first.
       if (this.$.menu.opened) {
         this.$.content.hidden = false;
+      } else {
+        this.$.menu.style.display = 'block';
       }
-      // Hide the menu altogether when it's not opened, so that it's not
-      // part of the tab order.
-      this.$.menu.style.display = this.$.menu.opened ? 'none' : 'block';
       this.$.menu.toggle();
     },
 
@@ -281,6 +270,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$.menu.style.display = 'block';
         // Resize the menu correctly (in case this was a mobile -> desktop transition.
         this.$.menu.updateSize(0, false);
+      }
+    },
+
+    _transitionend: function() {
+      // If we have opened the menu, hide the rest of the content. Doing
+      // this before the animation finished would flash the footer.
+      if (this._isMobileView && this.$.menu.opened) {
+        this.$.content.hidden = true;
+        // Focus the first link in the iron-selector.
+        Polymer.dom(this.root).querySelector('a').focus();
+      } else if (!this.$.menu.opened) {
+        // Hide the menu altogether when it's not opened, so that it's not
+        // part of the tab order.
+        this.$.menu.style.display = 'none';
       }
     }
   });

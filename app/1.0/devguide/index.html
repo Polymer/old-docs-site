@@ -47,6 +47,7 @@
   }
 
   #menuButton {
+    padding: 8px;
     display: none;
     color: white;
   }
@@ -81,8 +82,8 @@
   <div class="section-columns">
     <div class="layout horizontal center">
       <h2>Getting Started</h2>
-      <a href="#" id="menuButton" onclick="_toggleMenu(event)">
-        <paper-icon-button tabindex="-1" icon="icons:expand-more" alt="expand navigation menu"></paper-icon-button>
+      <a href="#" id="menuButton" onclick="_toggleMenu(event)" aria-label="expand navigation menu">
+        <iron-icon icon="icons:expand-more"></iron-icon>
       </a>
     </div>
 
