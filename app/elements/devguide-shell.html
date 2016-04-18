@@ -8,8 +8,12 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="../bower_components/paper-styles/typography.html">
+<link rel="import" href="icons.html">
 
 <dom-module id="devguide-shell">
   <template>
@@ -29,8 +33,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: 265px;
       }
 
-      .content {
-        padding-left: 265px;
+      #menu {
+        display: block;
+      }
+
+      .nav header {
+        display: none;
+      }
+
+      .content-container {
+        position: relative;
+        margin-left: 265px;
       }
 
       header {
@@ -44,10 +57,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-family: 'Roboto Slab', sans-serif;
         font-size: 32px;
         font-weight: bold;
+        border-bottom: none;
       }
 
-      details {
-        float: right;
+      .toggle-button {
+        display: none;
+        padding: 8px;
+        color: white;
+      }
+
+      .toggle-button:hover, .toggle-button:focus {
+        background-color: rgba(255, 255, 255, 0.4);
+        color: #1565c0;
+        border-radius: 50%;
+        outline: none;
       }
 
       a {
@@ -74,23 +97,102 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       a.iron-selected {
         color: black;
       }
+
+      @media (max-width: 767px) {
+        #menu {
+          display: none;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 10;
+        }
+
+        .nav {
+          position: relative;
+          width: 100%;
+          /* Cover the whole screen, but leave enough space for the bottom footer. */
+          /* 64px is the size of the pw-shell app bar*/
+          height: calc(100vh - 65px);
+        }
+
+        .nav header {
+          box-sizing: border-box;
+          position: fixed;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 50px;
+          text-align: center;
+        }
+
+        .iron-collapse-opened header {
+          display: block;
+        }
+
+        .content-container {
+          margin-left: 0px;
+        }
+
+        header {
+          padding: 8px 30px;
+        }
+
+        header p {
+          display: none;
+        }
+
+        header h2 {
+          font-size: 18px;
+          margin: 0;
+        }
+
+        .toggle-button {
+          display: inline-block;
+        }
+
+        .content-container .toggle-button {
+          margin-left: auto;    /* Align to the right. */
+        }
+      }
     </style>
 
-    <iron-selector class="nav" attr-for-selected="name" selected="[[activePage]]">
-      <a class="section" href="/1.0/devguide/registering-elements" name="about">About This Release</a>
-      <a class="section" href="/1.0/devguide/" name="index">Get Started</a>
-      <a href="/1.0/devguide/feature-overview" name="feature-overview">Feature Overview</a>
-      <a href="/1.0/devguide/registering-elements" name="registering-elements">Registration and lifecycle</a>
-      <a href="/1.0/devguide/properties" name="properties">Declared Properties</a>
-      <a class="section" href="http://polymer.github.io/polymer/" target="_blank" name="api">API Reference</a>
-    </iron-selector>
+    <iron-media-query query="(max-width: 767px)" query-matches="{{_isMobileView}}"></iron-media-query>
 
-    <div class="content">
+    <iron-collapse id="menu">
+      <!-- iron-collapse resizes to fit the content, so we need an extra div to size the content correctly. -->
+      <div class="nav">
+        <iron-selector attr-for-selected="name" selected="[[activePage]]">
+          <a class="section" href="/1.0/devguide/registering-elements" name="about">About This Release</a>
+          <a class="section" href="/1.0/devguide/" name="index">Get Started</a>
+          <a href="/1.0/devguide/feature-overview" name="feature-overview">Feature Overview</a>
+          <a href="/1.0/devguide/registering-elements" name="registering-elements">Registration and lifecycle</a>
+          <a href="/1.0/devguide/properties" name="properties">Declared Properties</a>
+          <a class="section" href="http://polymer.github.io/polymer/" target="_blank" name="api">API Reference</a>
+        </iron-selector>
+        <header>
+          <a href="#" class="toggle-button" on-click="_toggleMenu" aria-label="collapse navigation menu">
+            <iron-icon icon="icons:expand-less"></iron-icon>
+          </a>
+        </header>
+      </div>
+    </iron-collapse>
+
+    <div class="content-container">
       <header hidden$="[[!markdown]]">
         <p>Developer Guide > {{pageTitle}}</p>
-        <h2>{{pageTitle}}</h2>
+
+        <div class="layout horizontal center">
+          <h2>{{pageTitle}}</h2>
+          <a href="#" class="toggle-button" on-click="_toggleMenu" aria-label="expand navigation menu">
+            <iron-icon icon="icons:expand-more"></iron-icon>
+          </a>
+        </div>
       </header>
-      <content></content>
+
+      <div id="content">
+        <content></content>
+      </div>
     </div>
 
   </template>
@@ -122,6 +224,66 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        */
       activePage: {
         type: String
+      },
+
+      /**
+       * True if this is a mobile view.
+       */
+      _isMobileView: {
+        observer: '_mobileViewChanged'
+      }
+    },
+
+    attached: function() {
+      this.addEventListener('toggle-dev-menu', this._toggleMenu.bind(this));
+
+      Polymer.RenderStatus.afterNextRender(this, function() {
+        this.$.menu.addEventListener('transitionend', this._transitionend.bind(this));
+      });
+    },
+
+    _toggleMenu: function() {
+      // If we are closing the menu, then pre-show the rest of the content
+      // so that we don't flash the footer first.
+      if (this.$.menu.opened) {
+        this.$.content.hidden = false;
+      } else {
+        this.$.menu.style.display = 'block';
+      }
+      this.$.menu.toggle();
+    },
+
+    _mobileViewChanged: function() {
+      this.$.content.hidden = false;
+
+      // Disable animations while we're doing the screen transition, since it looks weird.
+      this.$.menu.noAnimation = true;
+
+      if (this._isMobileView) {
+        this.$.menu.hide();
+        this.$.menu.style.display = 'none';
+
+        // We only need animations on mobile.
+        this.$.menu.noAnimation = false;
+      } else {
+        this.$.menu.show();
+        this.$.menu.style.display = 'block';
+        // Resize the menu correctly (in case this was a mobile -> desktop transition.
+        this.$.menu.updateSize(0, false);
+      }
+    },
+
+    _transitionend: function() {
+      // If we have opened the menu, hide the rest of the content. Doing
+      // this before the animation finished would flash the footer.
+      if (this._isMobileView && this.$.menu.opened) {
+        this.$.content.hidden = true;
+        // Focus the first link in the iron-selector.
+        Polymer.dom(this.root).querySelector('a').focus();
+      } else if (!this.$.menu.opened) {
+        // Hide the menu altogether when it's not opened, so that it's not
+        // part of the tab order.
+        this.$.menu.style.display = 'none';
       }
     }
   });
