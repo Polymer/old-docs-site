@@ -44,6 +44,8 @@
     "highlight.js": "^8.9.1",
     "jshint-stylish": "^2.0.1",
     "marked": "^0.3.5",
+    "markdown-it": "^6.0.1",
+    "markdown-it-attrs": "^0.1.8",
     "merge-stream": "^1.0.0",
     "run-sequence": "^1.1.4",
     "toc": "^0.4.0",
