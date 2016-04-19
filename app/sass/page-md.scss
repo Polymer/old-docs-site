@@ -6,9 +6,13 @@ $mobile-media-breakpoint: 767px;
 $pink: #f52757;
 
 main {
-  background: #eceff1;
+  background: #fafafa;
   padding: $medium-padding;
   max-width: 1000px;
+
+  font-size: 15px;
+  font-family: 'Roboto', 'Noto', sans-serif;
+  line-height: 24px;
 
   @media (max-width: 500px) {
     padding-left: $small-padding;

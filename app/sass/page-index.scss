@@ -9,6 +9,9 @@ $large-padding: 100px;
 $mobile-media-breakpoint: 767px;
 
 .page-index-hero {
+  background-image: url("/images/logos/index-hero.png");
+  background-size: contain;
+
   .logo-wrapper {
     padding: $medium-padding;
     border-radius: 50%;
@@ -146,10 +149,6 @@ $mobile-media-breakpoint: 767px;
 }
 
 .page-index-articles {
-  .recent {
-    font-weight: normal;
-  }
-
   .post {
     &:not(:last-child) {
       border-bottom: 1px solid #d81b60;

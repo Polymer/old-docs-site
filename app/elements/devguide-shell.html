@@ -29,12 +29,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         top: 0;
         bottom: 0;
         background: white;
-        box-shadow: 1px 0 6px -2px rgba(0, 0, 0, 0.4);
         width: 265px;
+        z-index: 2;
+        box-shadow: 1px 0 6px -2px rgba(0, 0, 0, 0.4);
       }
 
       #menu {
         display: block;
+
       }
 
       .nav header {
@@ -49,7 +51,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       header {
         background: #1565c0;
         color: white;
-        background: linear-gradient(to bottom, #1259aa 0%, #1565c0 5%,#1565c0 95%,#1259aa 100%);
         padding: 30px;
       }
 
@@ -82,6 +83,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
         text-decoration: none;
         padding: 10px 30px;
+        /* The active links will have a pink border. */
+        border-left: 4px solid transparent;
       }
 
       a.section {
@@ -96,6 +99,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       a.iron-selected {
         color: black;
+        border-left: 4px solid #F22C5A;
       }
 
       @media (max-width: 767px) {
