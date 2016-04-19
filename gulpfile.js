@@ -19,7 +19,13 @@ let argv = require('yargs').argv;
 let browserSync = require('browser-sync').create();
 let del = require('del');
 let fs = require('fs');
-let marked = require('marked');
+let markdownIt = require('markdown-it')({
+    html: true,
+    highlight: code => {
+      return require('highlight.js').highlightAuto(code).value;
+    }
+  });
+let markdownItAttrs = require('markdown-it-attrs');
 let merge = require('merge-stream');
 let path = require('path');
 let runSequence = require('run-sequence');
@@ -27,11 +33,7 @@ let toc = require('toc');
 
 let AUTOPREFIXER_BROWSERS = ['last 2 versions', 'ios 8', 'Safari 8'];
 
-marked.setOptions({
-  highlight: code => {
-    return require('highlight.js').highlightAuto(code).value;
-  }
-});
+markdownIt.use(markdownItAttrs);
 
 function minifyHtml() {
   return $.minifyHtml({quotes: true, empty: true, spare: true});
@@ -115,7 +117,7 @@ gulp.task('md', 'Markdown -> HTML conversion. Syntax highlight and TOC generatio
     .pipe(matter(function(file) { // pull out front matter data.
       let data = file.data;
       data.file = file;
-      data.content = marked(file.content); // Markdown -> HTML.
+      data.content = markdownIt.render(file.content); // Markdown -> HTML.
       data.title = data.title || '';
       data.link = data.link || '';
 
