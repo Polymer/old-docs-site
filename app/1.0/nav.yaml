@@ -1,0 +1,63 @@
+start:
+  - title: Get started
+  - path: /get/started
+
+devguide:
+  - title: Feature overview
+    path: /1.0/devguide/feature-overview
+  - header: Registration and lifecycle
+  - title: Element lifecycle concepts
+    path: /1.0/devguide/lifecycle-concepts
+    indent: True
+  - title: Register an element
+    path: /1.0/devguide/registering-elements
+    indent: True
+  - title: Declare properties
+    path: /1.0/devguide/properties
+    indent: True
+  - spacer: True
+  - title: Local DOM
+    path: /1.0/devguide/local-dom
+  - title: Styling
+    path: /1.0/devguide/styling
+  - title: Events
+    path: /1.0/devguide/events
+  - header: Data system
+  - title: Data system concepts
+    path: /1.0/devguide/data-system
+    indent: True
+  - title: Work with the model
+    path: /1.0/devguide/data-model
+    indent: True
+  - title: Observe property changes
+    path: /1.0/devguide/observers
+    indent: True
+  - title: Work with data bindings
+    path: /1.0/devguide/data-binding
+    indent: True
+  - spacer: true
+  - title: Behaviors
+    path: /1.0/devguide/behaviors
+  - title: Utility functions
+    path: /1.0/devguide/utility-functions
+  - title: Global settings
+    path: /1.0/devguide/settings
+  - title: Experimental features
+    path: /1.0/devguide/experimental
+  - header: Tools
+  - title: Overview
+    path: /1.0/tools/overview
+    indent: True
+  - title: Document your elements
+    path: /1.0/tools/documentation
+    indent: True
+  - title: Test your elements
+    path: /1.0/tools/tests
+    indent: True
+  - title: Optimize for production
+    path: /1.0/tools/optimize-for-production
+    indent: True
+
+tools:
+  - title: Using tools
+    path: /1.0/tools
