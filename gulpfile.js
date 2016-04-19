@@ -188,7 +188,8 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     .pipe(gulp.dest('dist'));
 
   let docs = gulp.src([
-      'app/**/*.html'
+      'app/**/*.html',
+      'app/**/nav.yaml'
      ], {base: 'app/'})
     .pipe(gulp.dest('dist'));
 

@@ -73,8 +73,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         outline: none;
       }
 
-      a {
+      /* can't apply a custom property to content */
+      iron-selector {
         @apply(--paper-font-common-base);
+      }
+
+      iron-selector ::content a {
         color: #999;
         font-size: 16px;
         font-weight: 400;
@@ -84,17 +88,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 10px 30px;
       }
 
-      a.section {
+      iron-selector ::content a.indent {
+        padding-left: 50px; 
+      }
+
+      iron-selector ::content .sidenav-header {
+        padding: 14px 30px;
+        font-family: 'Roboto Slab', sans-serif;
+      }
+       
+      iron-selector ::content .sidenav-spacer {
+        min-height: 20px;
+      }
+
+      iron-selector ::content a.section {
         padding: 14px 30px;
         font-family: 'Roboto Slab', sans-serif;
         border-bottom: 1px solid #f1f3f5;
       }
 
-      a.section:last-of-type {
+      iron-selector ::content a.section:last-of-type {
         border-top: 1px solid #f1f3f5;
       }
 
-      a.iron-selected {
+      iron-selector ::content a.iron-selected {
         color: black;
       }
 
@@ -163,12 +180,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <!-- iron-collapse resizes to fit the content, so we need an extra div to size the content correctly. -->
       <div class="nav">
         <iron-selector attr-for-selected="name" selected="[[activePage]]">
-          <a class="section" href="/1.0/devguide/registering-elements" name="about">About This Release</a>
-          <a class="section" href="/1.0/devguide/" name="index">Get Started</a>
-          <a href="/1.0/devguide/feature-overview" name="feature-overview">Feature Overview</a>
-          <a href="/1.0/devguide/registering-elements" name="registering-elements">Registration and lifecycle</a>
-          <a href="/1.0/devguide/properties" name="properties">Declared Properties</a>
-          <a class="section" href="http://polymer.github.io/polymer/" target="_blank" name="api">API Reference</a>
+          <content select=".sidenav-content"></content>
         </iron-selector>
         <header>
           <a href="#" class="toggle-button" on-click="_toggleMenu" aria-label="collapse navigation menu">

@@ -50,6 +50,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     {% else %}
     <devguide-shell active-page="index">
     {% endif %}
+      
+      {% if nav %}
+      {% for item in nav %}
+      {% if 'header' in item %}
+      <div class="sidenav-content sidenav-header">{{{item.header}}}</div>
+      {% elif 'spacer' in item %}
+      <div class="sidenav-content sidenav-spacer"></div>
+      {% else %}
+      <a class="sidenav-content {{{item.indent}}}" href="{{{item.path}}}">{{{item.title}}}</a>
+      {% endif %}
+      {% endfor %}
+      {% endif %}
+
       <main>
         {% block content %}{% endblock %}
       </main>

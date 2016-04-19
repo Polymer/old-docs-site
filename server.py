@@ -17,6 +17,8 @@ import os
 import jinja2
 import webapp2
 import yaml
+import re
+import json
 
 from google.appengine.api import memcache
 import http2push.http2push as http2push
@@ -33,6 +35,7 @@ env = jinja2.Environment(
 # })
 
 REDIRECTS_FILE = 'redirects.yaml'
+NAV_FILE = '%s/nav.yaml'
 IS_DEV = os.environ.get('SERVER_SOFTWARE', '').startswith('Dev')
 
 def render(out, template, data={}):
@@ -81,6 +84,33 @@ class Site(http2push.PushHandler):
 
     return False
 
+  def nav_for_section(self, version, section):
+    nav_file_for_version = NAV_FILE % version
+    nav = memcache.get(nav_file_for_version)
+    if nav is None or IS_DEV:
+      with open(nav_file_for_version, 'r') as f:
+        nav = yaml.load(f)
+      for one_section in nav:
+        base_path = '/%s/%s/' % ( version, section)
+        for link in nav[one_section]:
+          if 'path' in link:
+            # turn boolean flag into an additional CSS class.
+            if 'indent' in link and link['indent']:
+              link['indent'] = 'indent'
+            else: 
+              link['indent'] = ''
+            if not 'name' in link:
+              if link['path'].startswith(base_path):
+                link['name'] = link['path'].replace(base_path, '')
+              else:
+                link['name'] = 'index'
+      memcache.add(nav_file_for_version, nav)
+    if nav and section in nav:
+      return nav[section]
+    else:
+      return None
+
+
   @http2push.push()
   def get(self, path):
     if self.redirect_if_needed(self.request.path):
@@ -100,12 +130,21 @@ class Site(http2push.PushHandler):
       path = path[:-len('.html')]
       return self.redirect('/' + path, permanent=True)
 
+    match = re.match('([0-9]+\.[0-9]+)/([^/]+)', path)
+    if match:
+      version = match.group(1)
+      section = match.group(2)
+      nav = self.nav_for_section(version, section)
+    else:
+      nav = None
+
     # Add .html to construct template path.
     if not path.endswith('.html'):
       path += '.html'
 
     data = {
-      'edit_on_github_url': path.replace('.html', '.md')
+      'edit_on_github_url': path.replace('.html', '.md'),
+      'nav': nav
     }
 
     render(self.response, path, data)
