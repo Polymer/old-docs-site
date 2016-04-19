@@ -50,18 +50,18 @@ section {
     padding-right: $small-padding;
   }
 
+  &.gradient-dark, &.gradient-light {
+    background-size: contain;
+    background-repeat: repeat-x;
+    background-position: bottom;
+  }
+
   &.gradient-dark {
     background-image: url("/images/logos/section-gradient-dark.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: bottom;
   }
 
   &.gradient-light {
     background-image: url("/images/logos/section-gradient-light.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: bottom;
   }
 
   &.light {

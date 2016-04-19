@@ -21,7 +21,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
         position: relative;
-        background: #eceff1;
+        background: #fafafa;
       }
 
       .nav {
@@ -100,6 +100,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       a.iron-selected {
         color: black;
         border-left: 4px solid #F22C5A;
+      }
+
+      a.edit-on-github {
+        color: white;
+        padding: 0;
+        text-transform: uppercase;
+        font-size: 13px;
       }
 
       @media (max-width: 767px) {
@@ -184,7 +191,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="content-container">
       <header hidden$="[[!markdown]]">
-        <p>Developer Guide > {{pageTitle}}</p>
+        Developer Guide > {{pageTitle}}
 
         <div class="layout horizontal center">
           <h2>{{pageTitle}}</h2>
@@ -192,6 +199,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <iron-icon icon="icons:expand-more"></iron-icon>
           </a>
         </div>
+
+        <a class="edit-on-github" target="_blank"
+            href="https://github.com/Polymer/docs2/edit/master/app/1.0/devguide/{{activePage}}.md">Edit on GitHub</a>
       </header>
 
       <div id="content">

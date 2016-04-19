@@ -79,6 +79,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         line-height: 20px;
       }
 
+      .copyright img {
+        padding-left: 10px;
+        height: 20px;
+      }
+      
+      .copyright * {
+        vertical-align: middle;
+      }
+
       @media (max-width: 767px) {
         .footer-media-links a {
           min-width: 0;
@@ -141,7 +150,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <div class="copyright layout horizontal">
         <div class="flex">&copy; 2016 Polymer Authors. Code Licensed under the BSD License. Documentation licensed under CC BY 3.0.</div>
-        <a href="#" on-click="_smoothScrollToTop">Back to Top</a>
+        <a href="#" on-click="_smoothScrollToTop">
+          Back to Top <img src="../images/logos/p-logo-new.png" alt="Polymer Logo">
+          </a>
       </div>
     </footer>
   </template>
