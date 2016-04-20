@@ -650,6 +650,22 @@ can be called while the other dependencies are still undefined. For example:
 Note that {{site.project_title}} doesn't guarantee that properties are
 initialized in any particular order.
 
+Also keep in mind that the observer should never change the value it's observing.
+The following code will lead to an infinity loop:
+
+    properties: {
+      firstName: {
+        type: String,
+        observer: 'nameChanged'
+      }
+    },
+    // WARNING: ANTI-PATTERN! NEVER USE IT
+    nameChanged: function(newFirstName) {
+      // this.lastName could be undefined!
+      this.firstName = 'Sr. ' + newFirstName;
+      // will jump recursively to nameChanged
+    }
+
 In general, if your observer relies on multiple dependencies, use a
 [multi-property observer](#multi-property-observers) and list every dependency
 as an argument to the observer. This ensures that all dependencies are
