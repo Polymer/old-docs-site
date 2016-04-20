@@ -46,37 +46,21 @@ $mobile-media-breakpoint: 767px;
 
 .page-index-features {
   .feature {
-    margin: 0 $small-padding;
+    color: white;
 
-    p {
-      color: white;
-    }
-
-    .badge {
+    img {
       width: 100%;
-      height: 200px;
-      border: 1px solid #52585d;
-      background-image: url("/images/logos/badge-background.png");
-
-      .badge-border {
-        position: relative;
-        width: 120px;
-        height: 104px;
-        background-image: url("/images/logos/badge-border.svg");
-      }
-
-      iron-icon {
-        position: absolute;
-        /* The icon is 80x80px, and we want to center it */
-        top: calc(50% - 40px);
-        left: calc(50% - 40px);
-        z-index: 2;
-      }
+      display: block;
     }
 
     @media (max-width: $mobile-media-breakpoint) {
       margin: 0;
       margin-bottom: $medium-padding;
+      margin: auto;
+
+      img {
+        display: none;
+      }
     }
   }
 }
