@@ -22,5 +22,5 @@ echo "\nBuilding app version: $deployVersion\n"
 gulp
 
 echo "Deploying app version: $deployVersion"
-gcloud preview app deploy $APPDIR/../app.yaml \
-    --project polymer-project --version $deployVersion
+gcloud preview app deploy $APPDIR/../dist/app.yaml \
+    --project polymer-project --version $deployVersion --no-promote

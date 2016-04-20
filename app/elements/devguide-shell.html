@@ -273,14 +273,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       if (this._isMobileView) {
         this.$.menu.hide();
-        this.$.menu.style.display = 'none';
 
         // We only need animations on mobile.
         this.$.menu.noAnimation = false;
       } else {
         this.$.menu.show();
-        this.$.menu.style.display = 'block';
-        // Resize the menu correctly (in case this was a mobile -> desktop transition.
+
+        // Resize the menu correctly (in case this was a mobile -> desktop transition).
         this.$.menu.updateSize(0, false);
       }
     },
@@ -293,9 +292,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // Focus the first link in the iron-selector.
         Polymer.dom(this.root).querySelector('a').focus();
       } else if (!this.$.menu.opened) {
-        // Hide the menu altogether when it's not opened, so that it's not
-        // part of the tab order.
-        this.$.menu.style.display = 'none';
+        this.$.menu.style.display = '';
       }
     }
   });

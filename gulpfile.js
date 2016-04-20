@@ -21,8 +21,19 @@ let del = require('del');
 let fs = require('fs');
 let markdownIt = require('markdown-it')({
     html: true,
-    highlight: code => {
-      return require('highlight.js').highlightAuto(code).value;
+    highlight: (code, lang) => {
+      let highlightjs = require('highlight.js')
+      if (lang && highlightjs.getLanguage(lang)) {
+        try {
+          return highlightjs.highlight(lang, code).value;
+        } catch (__) { console.log(__) }
+      } else {
+        try {
+          return highlightjs.highlightAuto(code).value;
+        } catch (__) { console.log(__) }
+      }
+                 
+      return ''; // use external default escaping 
     }
   });
 let markdownItAttrs = require('markdown-it-attrs');
@@ -33,13 +44,7 @@ let toc = require('toc');
 
 let AUTOPREFIXER_BROWSERS = ['last 2 versions', 'ios 8', 'Safari 8'];
 
-markdownIt.use(markdownItAttrs)
-
-kramed.setOptions({
-  highlight: code => {
-    return require('highlight.js').highlightAuto(code).value;
-  }
-});
+markdownIt.use(markdownItAttrs);
 
 function minifyHtml() {
   return $.minifyHtml({quotes: true, empty: true, spare: true});
@@ -191,18 +196,19 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
   let app = gulp.src([
       '*',
       'app/manifest.json',
-      '!{README.md, package.json,gulpfile.js}',
+      '!{README.md,package.json,gulpfile.js,test_runner.py}',
     ], {nodir: true})
     .pipe(gulp.dest('dist'));
 
   let docs = gulp.src([
       'app/**/*.html',
       'app/**/nav.yaml'
+     '!app/{bower_components,elements}/**',
      ], {base: 'app/'})
     .pipe(gulp.dest('dist'));
 
   let gae = gulp.src([
-      '{templates,lib,tests}/**/*'
+      '{templates,lib}/**/*'
      ])
     .pipe(gulp.dest('dist'));
 
