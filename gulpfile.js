@@ -183,17 +183,18 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
   let app = gulp.src([
       '*',
       'app/manifest.json',
-      '!{README.md, package.json,gulpfile.js}',
+      '!{README.md,package.json,gulpfile.js,test_runner.py}',
     ], {nodir: true})
     .pipe(gulp.dest('dist'));
 
   let docs = gulp.src([
-      'app/**/*.html'
+      'app/**/*.html',
+     '!app/{bower_components,elements}/**',
      ], {base: 'app/'})
     .pipe(gulp.dest('dist'));
 
   let gae = gulp.src([
-      '{templates,lib,tests}/**/*'
+      '{templates,lib}/**/*'
      ])
     .pipe(gulp.dest('dist'));
 
