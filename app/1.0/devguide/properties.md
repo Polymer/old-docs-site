@@ -24,25 +24,27 @@ In addition, the `properties` object can be used to specify:
 
 Example:
 
-    Polymer({
+```
+Polymer({
 
-      is: 'x-custom',
+  is: 'x-custom',
 
-      properties: {
-        user: String,
-        isHappy: Boolean,
-        count: {
-          type: Number,
-          readOnly: true,
-          notify: true
-        }
-      },
+  properties: {
+    user: String,
+    isHappy: Boolean,
+    count: {
+      type: Number,
+      readOnly: true,
+      notify: true
+    }
+  },
 
-      ready: function() {
-        this.textContent = 'Hello World, I am a Custom Element!';
-      }
+  ready: function() {
+    this.textContent = 'Hello World, I am a Custom Element!';
+  }
 
-    });
+});
+```
 
 The `properties` object supports the following keys for each property:
 
@@ -144,13 +146,12 @@ When mapping attribute names to property names:
 The same mappings happen in reverse when converting property names to attribute
 names (for example, if a property is defined using `reflectToAttribute: true`.)
 
-<div class="alert alert-error"><strong>Compatibility note:</strong>
 **Compatibility note:** In 0.5, Polymer attempted to map attribute names to corresponding properties.
 For example, the attribute `foobar` would map to the property `fooBar` if it was
 defined on the element. This **does not happen in 1.0**—attribute to property
 mappings are set up on the element at registration time based on the rules
 described above.
-</div>
+{ .alert .alert-warning }
 
 ## Attribute deserialization
 
@@ -175,57 +176,60 @@ gets its default value.
 
 Example:
 
-    <script>
+```
+<script>
 
-      Polymer({
+  Polymer({
 
-        is: 'x-custom',
+    is: 'x-custom',
 
-        properties: {
-          user: String,
-          manager: {
-            type: Boolean,
-            notify: true
-          }
-        },
+    properties: {
+      user: String,
+      manager: {
+        type: Boolean,
+        notify: true
+      }
+    },
 
-        attached: function() {
-          // render
-          this.textContent = 'Hello World, my user is ' + (this.user || 'nobody') + '.\n' +
-            'This user is ' + (this.manager ? '' : 'not') + ' a manager.';
-        }
+    attached: function() {
+      // render
+      this.textContent = 'Hello World, my user is ' + (this.user || 'nobody') + '.\n' +
+        'This user is ' + (this.manager ? '' : 'not') + ' a manager.';
+    }
 
-      });
+  });
 
-    </script>
+</script>
 
-    <x-custom user="Scott" manager></x-custom>
-    <!--
-    <x-custom>'s text content becomes:
-    Hello World, my user is Scott.
-    This user is a manager.
-    -->
+<x-custom user="Scott" manager></x-custom>
+<!--
+<x-custom>'s text content becomes:
+Hello World, my user is Scott.
+This user is a manager.
+-->
+```
 
 In order to configure camel-case properties of elements using attributes, dash-
 case should be used in the attribute name.  Example:
 
-    <script>
+```
+<script>
 
-      Polymer({
+  Polymer({
 
-        is: 'x-custom',
+    is: 'x-custom',
 
-        properties: {
-          userName: String
-        }
+    properties: {
+      userName: String
+    }
 
-      });
+  });
 
-    </script>
+</script>
 
-    <x-custom user-name="Scott"></x-custom>
-    <!-- Sets <x-custom>.userName = 'Scott';  -->
-
+<x-custom user-name="Scott"></x-custom>
+<!-- Sets <x-custom>.userName = 'Scott';  -->
+```
 
 **Note:** Deserialization occurs both at create time, and at runtime (for
 example, when the attribute is changed using `setAttribute`).  However, it is
@@ -233,7 +237,7 @@ encouraged that attributes only be used for configuring properties in static
 markup, and instead that properties are set directly for changes at runtime.
 </div>
 
-### Configuring boolean properties
+<h3 id="-boolean-properties">Configuring boolean properties</h3>
 
 For a Boolean property to be configurable from markup, it must default to `false`. If it defaults to `true`, you cannot set it to `false` from markup, since the presence of the attribute, with or without a value, equates to `true`. This is the standard behavior for attributes in the web platform.
 
@@ -243,7 +247,9 @@ If this behavior doesn't fit your use case, you can use a string-valued or numbe
 
 For object and array properties you can pass an object or array in JSON format:
 
-    <my-element book='{ "title": "Persuasion", "author": "Austen" }'></my-element>
+```
+<my-element book='{ "title": "Persuasion", "author": "Austen" }'></my-element>
+```
 
 Note that JSON requires double quotes, as shown above.
 
@@ -262,27 +268,28 @@ an object or array shared across all instances of the element.
 
 Example:
 
-    Polymer({
+```
+Polymer({
 
-      is: 'x-custom',
+  is: 'x-custom',
 
-      properties: {
+  properties: {
 
-        mode: {
-          type: String,
-          value: 'auto'
-        },
+    mode: {
+      type: String,
+      value: 'auto'
+    },
 
-        data: {
-          type: Object,
-          notify: true,
-          value: function() { return {}; }
-        }
+    data: {
+      type: Object,
+      notify: true,
+      value: function() { return {}; }
+    }
 
-      }
+  }
 
-    });
-
+});
+```
 
 ## Property change observers
 
@@ -293,40 +300,42 @@ new and old values as arguments.
 
 Example:
 
-    Polymer({
+```
+Polymer({
 
-      is: 'x-custom',
+  is: 'x-custom',
 
-      properties: {
-        disabled: {
-          type: Boolean,
-          observer: '_disabledChanged'
-        },
-        highlight: {
-          observer: '_highlightChanged'
-        }
-      },
+  properties: {
+    disabled: {
+      type: Boolean,
+      observer: '_disabledChanged'
+    },
+    highlight: {
+      observer: '_highlightChanged'
+    }
+  },
 
-      _disabledChanged: function(newValue, oldValue) {
-        this.toggleClass('disabled', newValue);
-        this.highlight = true;
-      },
+  _disabledChanged: function(newValue, oldValue) {
+    this.toggleClass('disabled', newValue);
+    this.highlight = true;
+  },
 
-      _highlightChanged: function() {
-        this.classList.add('highlight');
-        this.async(function() {
-          this.classList.remove('highlight');
-        }, 300);
-      }
+  _highlightChanged: function() {
+    this.classList.add('highlight');
+    this.async(function() {
+      this.classList.remove('highlight');
+    }, 300);
+  }
 
-    });
+});
+```
 
-<div class="alert alert-warning"><strong>Warning:</strong>
+**Warning:**
 A single property observer shouldn't rely on any other properties,
 sub-properties, or paths because the observer can be called while these
 dependencies are undefined. See [Always include dependencies
 as observer arguments](#dependencies) for details.
-</div>
+{ .alert .alert-info }
 
 Property change observation is achieved in Polymer by installing setters on the
 custom element prototype for properties with registered interest (as opposed to
@@ -347,25 +356,27 @@ These observers differ from single-property observers in a few ways:
 
 Example:
 
-    Polymer({
+```
+Polymer({
 
-      is: 'x-custom',
+  is: 'x-custom',
 
-      properties: {
-        preload: Boolean,
-        src: String,
-        size: String
-      },
+  properties: {
+    preload: Boolean,
+    src: String,
+    size: String
+  },
 
-      observers: [
-        'updateImage(preload, src, size)'
-      ],
+  observers: [
+    'updateImage(preload, src, size)'
+  ],
 
-      updateImage: function(preload, src, size) {
-        // ... do work using dependent values
-      }
+  updateImage: function(preload, src, size) {
+    // ... do work using dependent values
+  }
 
-    });
+});
+```
 
 In addition to properties, observers can also observe [paths to sub-properties](#observing-path-changes),
 [paths with wildcards](#deep-observation), or [array changes](#array-observation).
@@ -391,36 +402,38 @@ sub-property must be updated in one of the following two ways:
 
 Example:
 
-    <dom-module id="x-sub-property-observer">
-      <template>
-        <!-- Sub-property is updated via property binding. -->
-        <input value="{{user.name::input}}">
-      </template>
-      <script>
-        Polymer({
-          is: 'x-sub-property-observer',
-          properties: {
-            user: {
-              type: Object,
-              value: function() {
-                return {};
-              }
-            }
-          },
-          // Each item of observers array is a method name followed by
-          // a comma-separated list of one or more paths.
-          observers: [
-            'userNameChanged(user.name)'
-          ],
-          // Each method referenced in observers must be defined in
-          // element prototype. The argument to the method is the new value
-          // of the sub-property.
-          userNameChanged: function(name) {
-            console.log('new name: ' + name);
-          },
-        });
-      </script>
-    </dom-module>
+```
+<dom-module id="x-sub-property-observer">
+  <template>
+    <!-- Sub-property is updated via property binding. -->
+    <input value="{{user.name::input}}">
+  </template>
+  <script>
+    Polymer({
+      is: 'x-sub-property-observer',
+      properties: {
+        user: {
+          type: Object,
+          value: function() {
+            return {};
+          }
+        }
+      },
+      // Each item of observers array is a method name followed by
+      // a comma-separated list of one or more paths.
+      observers: [
+        'userNameChanged(user.name)'
+      ],
+      // Each method referenced in observers must be defined in
+      // element prototype. The argument to the method is the new value
+      // of the sub-property.
+      userNameChanged: function(name) {
+        console.log('new name: ' + name);
+      },
+    });
+  </script>
+</dom-module>
+```
 
 ### Observe array mutations
 
@@ -433,18 +446,20 @@ In many cases, you'll want to observe both array mutations **and** changes to
 sub-properties of array items, in which case you should use a [deep
 sub-property observer](#deep-observation).
 
-<div class="alert alert-error"><strong>Never use the built-in JavaScript array methods to splice your arrays.</strong>
+**Never use the built-in JavaScript array methods to splice your arrays.**
 Always use Polymer's [array mutation methods](#array-mutation).
 These methods ensure that elements with registered interest in the array
 splices are properly notified.
-</div>
+{ .alert .alert-info }
 
 To create a splice observer, specify a path to an array followed by `.splices`
 in your `observers` array.
 
-    observers: [
-      'usersAddedOrRemoved(users.splices)'
-    ]
+``` js
+observers: [
+  'usersAddedOrRemoved(users.splices)'
+]
+```
 
 Your observer method should accept a single argument. When your observer method
 is called, it receives a change record of the mutations that
@@ -466,37 +481,39 @@ occurred on the array. Each change record provides the following properties:
 
 Example:
 
-    Polymer({
+```
+Polymer({
 
-      is: 'x-custom',
+  is: 'x-custom',
 
-      properties: {
-        users: {
-          type: Array,
-          value: function() {
-            return [];
-          }
-        }
-      },
-
-      observers: [
-        'usersAddedOrRemoved(users.splices)'
-      ],
-
-      usersAddedOrRemoved: function(changeRecord) {
-        changeRecord.indexSplices.forEach(function(s) {
-          s.removed.forEach(function(user) {
-            console.log(user.name + ' was removed');
-          });
-          console.log(s.addedCount + ' users were added');
-        }, this);
-      },
-
-      addUser: function() {
-        this.push('users', {name: "Jack Aubrey"});
+  properties: {
+    users: {
+      type: Array,
+      value: function() {
+        return [];
       }
+    }
+  },
 
-    });
+  observers: [
+    'usersAddedOrRemoved(users.splices)'
+  ],
+
+  usersAddedOrRemoved: function(changeRecord) {
+    changeRecord.indexSplices.forEach(function(s) {
+      s.removed.forEach(function(user) {
+        console.log(user.name + ' was removed');
+      });
+      console.log(s.addedCount + ' users were added');
+    }, this);
+  },
+
+  addUser: function() {
+    this.push('users', {name: "Jack Aubrey"});
+  }
+
+});
+```
 
 ### Deep sub-property observation
 
@@ -518,34 +535,36 @@ followed by `.splices`. And the change record includes the `indexSplices` and
 
 Example:
 
-    <dom-module id="x-deep-observer">
-      <template>
-        <input value="{{user.name.first::input}}"
-               placeholder="First Name">
-        <input value="{{user.name.last::input}}"
-               placeholder="Last Name">
-      </template>
-      <script>
-        Polymer({
-          is: 'x-deep-observer',
-          properties: {
-            user: {
-              type: Object,
-              value: function() {
-                return {'name':{}};
-              }
-            }
-          },
-          observers: [
-            'userNameChanged(user.name.*)'
-          ],
-          userNameChanged: function(changeRecord) {
-            console.log('path: ' + changeRecord.path);
-            console.log('value: ' + changeRecord.value);
-          },
-        });
-      </script>
-    </dom-module>
+```
+<dom-module id="x-deep-observer">
+  <template>
+    <input value="{{user.name.first::input}}"
+           placeholder="First Name">
+    <input value="{{user.name.last::input}}"
+           placeholder="Last Name">
+  </template>
+  <script>
+    Polymer({
+      is: 'x-deep-observer',
+      properties: {
+        user: {
+          type: Object,
+          value: function() {
+            return {'name':{}};
+          }
+        }
+      },
+      observers: [
+        'userNameChanged(user.name.*)'
+      ],
+      userNameChanged: function(changeRecord) {
+        console.log('path: ' + changeRecord.path);
+        console.log('value: ' + changeRecord.value);
+      },
+    });
+  </script>
+</dom-module>
+```
 
 #### Deep sub-property changes on array items
 
@@ -553,7 +572,9 @@ When a sub-property of an array is modified, `changeRecord.path` references
 the "key" of the array item that was modified, not the array index. For
 example:
 
-    console.log(changeRecord.path); // users.#0.name
+```
+console.log(changeRecord.path); // users.#0.name
+```
 
 `#0` signifies the key of this example array item. All keys are prefixed
 with a number sign (`#`) by convention to distinguish them from array indexes.
@@ -563,8 +584,10 @@ Keys provide stable references to array items, regardless of any splices
 If for some reason you need a reference to the index of an array item, you
 can retrieve it via the `Polymer.Collection` internal abstraction:
 
-    var collection = Polymer.Collection.get(changeRecord.base);
-    var index = changeRecord.base.indexOf(collection.getItem(key));
+```
+var collection = Polymer.Collection.get(changeRecord.base);
+var index = changeRecord.base.indexOf(collection.getItem(key));
+```
 
 ### Array mutation methods
 
@@ -590,28 +613,30 @@ Every Polymer element has the following array mutation methods available:
 
 Example:
 
-    <dom-module id="custom-element">
-      <template>
-        <template is="dom-repeat" items="[[users]]">{{item}}</template>
-      </template>
+```
+<dom-module id="custom-element">
+  <template>
+    <template is="dom-repeat" items="[[users]]">{{item}}</template>
+  </template>
 
-      <script>
-        Polymer({
+  <script>
+    Polymer({
 
-          is: 'custom-element',
+      is: 'custom-element',
 
-          addUser: function(user) {
-            this.push('users', user);
-          },
+      addUser: function(user) {
+        this.push('users', user);
+      },
 
-          removeUser: function(user) {
-            var index = this.users.indexOf(user);
-            this.splice('users', index, 1);
-          }
+      removeUser: function(user) {
+        var index = this.users.indexOf(user);
+        this.splice('users', index, 1);
+      }
 
-        });
-      </script>
-    </dom-module>
+    });
+  </script>
+</dom-module>
+```
 
 #### Using native array mutation methods
 
@@ -631,20 +656,22 @@ Observers shouldn't rely on any properties, sub-properties, or paths other
 than those listed as arguments to the observer. This is because the observer
 can be called while the other dependencies are still undefined. For example:
 
-    properties: {
-      firstName: {
-        type: String,
-        observer: 'nameChanged'
-      },
-      lastName: {
-        type: String
-      }
-    },
-    // WARNING: ANTI-PATTERN! DO NOT USE
-    nameChanged: function(newFirstName, oldFirstName) {
-      // this.lastName could be undefined!
-      console.log('new name:', newFirstName, this.lastName);
-    }
+```
+properties: {
+  firstName: {
+    type: String,
+    observer: 'nameChanged'
+  },
+  lastName: {
+    type: String
+  }
+},
+// WARNING: ANTI-PATTERN! DO NOT USE
+nameChanged: function(newFirstName, oldFirstName) {
+  // this.lastName could be undefined!
+  console.log('new name:', newFirstName, this.lastName);
+}
+```
 
 Note that Polymer doesn't guarantee that properties are
 initialized in any particular order.
@@ -654,20 +681,22 @@ In general, if your observer relies on multiple dependencies, use a
 as an argument to the observer. This ensures that all dependencies are
 defined before the observer is called.
 
-    properties: {
-      firstName: {
-        type: String
-      },
-      lastName: {
-        type: String
-      }
-    },
-    observers: [
-      'nameChanged(firstName, lastName)'
-    ],
-    nameChanged: function(firstName, lastName) {
-      console.log('new name:', firstName, lastName);
-    }
+```
+properties: {
+  firstName: {
+    type: String
+  },
+  lastName: {
+    type: String
+  }
+},
+observers: [
+  'nameChanged(firstName, lastName)'
+],
+nameChanged: function(firstName, lastName) {
+  console.log('new name:', firstName, lastName);
+}
+```
 
 If you must use a single property and must rely on other properties (for
 example, if you need access to the old value of the observed property, which
@@ -711,23 +740,25 @@ flag to `true` in the `properties` property definition.  In order for the
 element to actually change the value of the property, it must use a private
 generated setter of the convention <code>_set<var>Property</var>(value)</code>.
 
-    <script>
-      Polymer({
+```
+<script>
+  Polymer({
 
-        properties: {
-          response: {
-            type: Object,
-            readOnly: true,
-            notify: true
-          }
-        },
+    properties: {
+      response: {
+        type: Object,
+        readOnly: true,
+        notify: true
+      }
+    },
 
-        responseHandler: function(response) {
-          this._setResponse(response);
-        }
+    responseHandler: function(response) {
+      this._setResponse(response);
+    }
 
-      });
-    </script>
+  });
+</script>
+```
 
 For more on read-only properties and data binding, see
 [Property change notification and two-way binding](data-binding.html#property-notification).
@@ -740,10 +771,12 @@ properties.
 To define a computed property, add it to the `properties` object with a
 `computed` key mapping to a computing function:
 
-    fullName: {
-      type: String,
-      computed: 'computeFullName(first, last)'
-    }
+```
+fullName: {
+  type: String,
+  computed: 'computeFullName(first, last)'
+}
+```
 
 
 The function is provided as a string with dependent properties as arguments
@@ -755,47 +788,49 @@ are defined (`!== undefined`). So each dependent properties should have a
 default `value` defined in `properties` (or otherwise be initialized to a
 non-`undefined` value) to ensure the property is computed.
 
-<div class="alert alert-error"><strong>Note:</strong>
+**Note:**
 The definition of a computing function looks like the
 definition of a [multi-property observer](#multi-property-observers),
 and the two act almost identically. The only difference is that the
 computed property function returns a value that's exposed as a virtual property.
-</div>
+{ .alert .alert-info }
 
-    <dom-module id="x-custom">
+```
+<dom-module id="x-custom">
 
-      <template>
-        My name is <span>{{fullName}}</span>
-      </template>
+  <template>
+    My name is <span>{{fullName}}</span>
+  </template>
 
-      <script>
-        Polymer({
+  <script>
+    Polymer({
 
-          is: 'x-custom',
+      is: 'x-custom',
 
-          properties: {
+      properties: {
 
-            first: String,
+        first: String,
 
-            last: String,
+        last: String,
 
-            fullName: {
-              type: String,
-              // when `first` or `last` changes `computeFullName` is called once
-              // and the value it returns is stored as `fullName`
-              computed: 'computeFullName(first, last)'
-            }
+        fullName: {
+          type: String,
+          // when `first` or `last` changes `computeFullName` is called once
+          // and the value it returns is stored as `fullName`
+          computed: 'computeFullName(first, last)'
+        }
 
-          },
+      },
 
-          computeFullName: function(first, last) {
-            return first + ' ' + last;
-          }
+      computeFullName: function(first, last) {
+        return first + ' ' + last;
+      }
 
-        });
-      </script>
+    });
+  </script>
 
-    </dom-module>
+</dom-module>
+```
 
 
 
@@ -804,11 +839,11 @@ well as any of the arguments types supported by `observers`, including [paths](#
 [paths with wildcards](#deep-observation), and [paths to array splices](#array-observation).
 The arguments received by the computing function match those described in the sections referenced above.
 
-<div class="alert alert-error"><strong>Note:</strong>
+**Note:**
 If you only need a computed property for a data binding, you
 can use a computed binding instead. See
 [Computed bindings](data-binding.html#annotated-computed).
-</div>
+{ .alert .alert-info }
 
 ## Reflecting properties to attributes
 
@@ -817,23 +852,25 @@ a property value.  This may be achieved by setting `reflectToAttribute: true` on
 a property in the `properties` configuration object.  This will cause any change
 to the property to be serialized out to an attribute of the same name.
 
-    <script>
-      Polymer({
+```
+<script>
+  Polymer({
 
-        properties: {
-         response: {
-            type: Object,
-            reflectToAttribute: true
-         }
-        },
+    properties: {
+     response: {
+        type: Object,
+        reflectToAttribute: true
+     }
+    },
 
-        responseHandler: function(response) {
-          this.response = 'loaded';
-          // results in this.setAttribute('response', 'loaded');
-        }
+    responseHandler: function(response) {
+      this.response = 'loaded';
+      // results in this.setAttribute('response', 'loaded');
+    }
 
-      });
-    </script>
+  });
+</script>
+```
 
 ### Attribute serialization
 
