@@ -3,7 +3,6 @@ $medium-padding: 40px;
 $large-padding: 100px;
 
 $mobile-media-breakpoint: 767px;
-$pink: #f52757;
 
 main {
   background: #fafafa;
@@ -29,7 +28,7 @@ code {
 }
 
 h2 {
-  border-bottom: 1px solid $pink;
+  border-bottom: 1px solid #f52757;
 }
 
 h3 {
@@ -47,16 +46,42 @@ a {
 }
 
 .alert {
-  border: 1px solid #eee;
   padding: 20px;
   margin: 30px;
+  border-radius: 3px;
 
-  &.alert-error, &.alert-warning {
-    border-color: $pink;
-    fill: $pink;
+  &:before {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
   }
 
   strong {
-    color: $pink;
+    vertical-align: middle;  
   }
+
+  &.alert-success, &.alert-tip {
+    background-color: #c8e6c9;
+
+    &:before {
+      content: url(/images/alerts/tip.svg);
+    }
+  }
+
+  &.alert-info {
+    background-color: #b3e5fc;
+
+    &:before {
+      content: url(/images/alerts/info.svg);
+    }
+  }
+
+  &.alert-error, &.alert-warning {
+    background-color: #ffcdd2;
+
+    &:before {
+      content: url(/images/alerts/warning.svg);
+    }
+  }
+
 }
