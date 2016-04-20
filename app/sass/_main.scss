@@ -51,9 +51,10 @@ section {
   }
 
   &.gradient-dark, &.gradient-light {
-    background-size: contain;
     background-repeat: repeat-x;
     background-position: bottom;
+    /* Use smaller gradient triangles */
+    background-size: 20px;
   }
 
   &.gradient-dark {
@@ -62,6 +63,14 @@ section {
 
   &.gradient-light {
     background-image: url("/images/logos/section-gradient-light.png");
+  }
+
+  &.gradient-light-flipped {
+    background-image: url("/images/logos/section-gradient-light-flipped.png");
+    background-repeat: repeat-x;
+    background-position: top;
+    /* Use smaller gradient triangles */
+    background-size: 20px;
   }
 
   &.light {
