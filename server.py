@@ -144,7 +144,8 @@ class Site(http2push.PushHandler):
 
     data = {
       'edit_on_github_url': path.replace('.html', '.md'),
-      'nav': nav
+      'nav': nav,
+      'polymer_version_dir': version
     }
 
     render(self.response, path, data)
