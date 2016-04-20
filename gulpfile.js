@@ -21,8 +21,19 @@ let del = require('del');
 let fs = require('fs');
 let markdownIt = require('markdown-it')({
     html: true,
-    highlight: code => {
-      return require('highlight.js').highlightAuto(code).value;
+    highlight: (code, lang) => {
+      let highlightjs = require('highlight.js')
+      if (lang && highlightjs.getLanguage(lang)) {
+        try {
+          return highlightjs.highlight(lang, code).value;
+        } catch (__) { console.log(__) }
+      } else {
+        try {
+          return highlightjs.highlightAuto(code).value;
+        } catch (__) { console.log(__) }
+      }
+                 
+      return ''; // use external default escaping 
     }
   });
 let markdownItAttrs = require('markdown-it-attrs');
