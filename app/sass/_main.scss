@@ -23,6 +23,11 @@ $mobile-media-breakpoint: 767px;
 
 body {
   margin: 0;
+
+  font-size: 15px;
+  font-family: 'Roboto', 'Noto', sans-serif;
+  line-height: 24px;
+  font-weight: 400;
 }
 
 a {
@@ -45,30 +50,51 @@ section {
     padding-right: $small-padding;
   }
 
+  &.gradient-dark, &.gradient-light {
+    background-repeat: repeat-x;
+    background-position: bottom;
+    /* Use smaller gradient triangles */
+    background-size: 20px;
+  }
+
+  &.gradient-dark {
+    background-image: url("/images/textures/section-gradient-dark.png");
+  }
+
+  &.gradient-light {
+    background-image: url("/images/textures/section-gradient-light.png");
+  }
+
+  &.gradient-light-flipped {
+    background-image: url("/images/textures/section-gradient-light-flipped.png");
+    background-repeat: repeat-x;
+    background-position: top;
+    /* Use smaller gradient triangles */
+    background-size: 20px;
+  }
+
   &.light {
+    background-color: white;
     color: black;
   }
 
   &.dark {
-    background: #2a3238;
+    background-color: #2a3238;
     color: white;
-    background: linear-gradient(to bottom, #1b2023 0%, #2a3238 5%,#2a3238 95%,#1b2023 100%);
   }
 
   &.grey {
-    background: #eceff1;
+    background-color: #eceff1;
     color: black;
-    background: linear-gradient(to bottom, #e0e3e5 0%, #eceff1 5%,#eceff1 95%,#e0e3e5 100%);
   }
 
   &.pink {
-    background: #e8345a;
+    background-color: #e8345a;
   }
 
   &.blue {
-    background: #1e88e5;
+    background-color: #1e88e5;
     color: white;
-    background: linear-gradient(to bottom, #1a79cc 0%, #1e88e5 5%,#1e88e5 95%,#1a79cc 100%);
   }
 
   & > * {
@@ -107,7 +133,7 @@ section {
 
 h2 {
   font-family: $font-slab;
-  font-size: 22px;
+  font-size: 23px;
   font-weight: bold;
   margin: 0;
   padding: 0;
@@ -123,7 +149,7 @@ h2 {
 
 .blue-button {
   color: white;
-  background: #5287e2;
+  background: #1e88e5;
   text-transform: uppercase;
   text-decoration: none;
   font-size: $font-size-small;
@@ -132,8 +158,9 @@ h2 {
   text-align: center;
   display: inline-block;
 
-  &:hover {
+  &:hover, &:focus {
     text-decoration: none;
+    outline-color: #f52757;
   }
 
   &.vertical {
