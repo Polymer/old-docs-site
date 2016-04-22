@@ -130,13 +130,13 @@ class Site(http2push.PushHandler):
       path = path[:-len('.html')]
       return self.redirect('/' + path, permanent=True)
 
+    version = 'bad_version'
+    nav = None
     match = re.match('([0-9]+\.[0-9]+)/([^/]+)', path)
     if match:
       version = match.group(1)
       section = match.group(2)
       nav = self.nav_for_section(version, section)
-    else:
-      nav = None
 
     # Add .html to construct template path.
     if not path.endswith('.html'):
