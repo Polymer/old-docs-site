@@ -1,8 +1,32 @@
-start:
+---
+- section: Start
+  path: start
+  items:
   - title: Get started
-  - path: /get/started
+    path: /1.0/start
+  - title: What is Polymer?
+    path: /1.0/start/what-is-polymer
+  - header: Build your first element
+  - title: 1. Get set up
+    path: /1.0/start/first-element/intro
+    indent: true
+  - title: 2. Add local DOM
+    path: /1.0/start/first-element/step-2
+    indent: true
+  - title: 3. Data binding & properties
+    path: /1.0/start/first-element/step-3
+    indent: true
+  - title: 4. React to input
+    path: /1.0/start/first-element/step-4
+    indent: true
+  - title: 5. Theming with custom properties
+    path: /1.0/start/first-element/step-5
+    indent: true
+  - header: Build your first app
 
-devguide:
+- section: Polymer
+  path: devguide
+  items:
   - title: Feature overview
     path: /1.0/devguide/feature-overview
   - header: Registration and lifecycle
@@ -44,20 +68,21 @@ devguide:
     path: /1.0/devguide/settings
   - title: Experimental features
     path: /1.0/devguide/experimental
-  - header: Tools
-  - title: Overview
+
+- section: SPöRK
+  path: spork
+  items:
+  - title: Get started with SPöRK
+    path: /1.0/spork/getstarted
+
+- section: tools
+  path: tools
+  items:
+  - title: Tools overview
     path: /1.0/tools/overview
-    indent: True
   - title: Document your elements
     path: /1.0/tools/documentation
-    indent: True
   - title: Test your elements
     path: /1.0/tools/tests
-    indent: True
   - title: Optimize for production
     path: /1.0/tools/optimize-for-production
-    indent: True
-
-tools:
-  - title: Using tools
-    path: /1.0/tools

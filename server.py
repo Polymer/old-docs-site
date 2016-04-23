@@ -53,6 +53,26 @@ def read_redirects_file(filename):
     redirects = dict([(r.split()[0], r.split()[1]) for r in redirects])
   return redirects
 
+def read_nav_file(filename, version):
+  with open(filename, 'r') as f:
+    nav = yaml.load(f)
+  for one_section in nav:
+    base_path = '/%s/%s/' % ( version, one_section['path'])
+    for link in one_section['items']:
+      if 'path' in link:
+        # turn boolean flag into an additional CSS class.
+        if 'indent' in link and link['indent']:
+          link['indent'] = 'indent'
+        else:
+          link['indent'] = ''
+        if not 'name' in link:
+          if link['path'].startswith(base_path):
+            link['name'] = link['path'].replace(base_path, '')
+          else:
+            link['name'] = 'index'
+  return nav
+
+
 def handle_404(req, resp, e):
   resp.set_status(404)
   resp.write('Oops! No pages here.')
@@ -88,27 +108,13 @@ class Site(http2push.PushHandler):
     nav_file_for_version = NAV_FILE % version
     nav = memcache.get(nav_file_for_version)
     if nav is None or IS_DEV:
-      with open(nav_file_for_version, 'r') as f:
-        nav = yaml.load(f)
-      for one_section in nav:
-        base_path = '/%s/%s/' % ( version, section)
-        for link in nav[one_section]:
-          if 'path' in link:
-            # turn boolean flag into an additional CSS class.
-            if 'indent' in link and link['indent']:
-              link['indent'] = 'indent'
-            else: 
-              link['indent'] = ''
-            if not 'name' in link:
-              if link['path'].startswith(base_path):
-                link['name'] = link['path'].replace(base_path, '')
-              else:
-                link['name'] = 'index'
+      nav = read_nav_file(nav_file_for_version, version)
       memcache.add(nav_file_for_version, nav)
-    if nav and section in nav:
-      return nav[section]
-    else:
-      return None
+    if nav:
+      for one_section in nav:
+        if one_section['path'] == section:
+          return one_section['items']
+    return None
 
 
   @http2push.push()
