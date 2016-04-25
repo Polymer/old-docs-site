@@ -38,6 +38,11 @@ a {
   }
 }
 
+/* Don't overflow outside of the content area. */
+img {
+  max-width: 100%;
+}
+
 section {
   padding: $large-padding;
   box-sizing: border-box;
