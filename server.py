@@ -57,7 +57,7 @@ def read_nav_file(filename, version):
   with open(filename, 'r') as f:
     nav = yaml.load(f)
   for one_section in nav:
-    base_path = '/%s/%s/' % ( version, one_section['path'])
+    base_path = '/%s/%s/' % (version, one_section['path'])
     for link in one_section['items']:
       if 'path' in link:
         # turn boolean flag into an additional CSS class.
