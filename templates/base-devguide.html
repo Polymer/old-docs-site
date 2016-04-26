@@ -58,7 +58,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           {% elif 'spacer' in item %}
             <div class="sidenav-content sidenav-spacer"></div>
           {% else %}
-            <a class="sidenav-content {{{item.indent}}}" href="{{{item.path}}}">{{{item.title}}}</a>
+            <a class="sidenav-content {{{item.indent}}}" name="{{{item.name}}}" href="{{{item.path}}}">{{{item.title}}}</a>
           {% endif %}
         {% endfor %}
       {% endif %}
