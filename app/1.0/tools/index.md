@@ -1,5 +1,6 @@
 ---
 title: Tools
+link: index
 ---
 
 <!-- toc -->

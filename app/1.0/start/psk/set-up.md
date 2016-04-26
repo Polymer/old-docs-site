@@ -1,11 +1,11 @@
 ---
 title: Set up
-link: set-up
+link: psk/set-up
 ---
 
 <!-- toc -->
 
-The Polymer Starter Kit is a complete starting point for a Polymer 1.0 
+The Polymer Starter Kit is a complete starting point for a Polymer 1.0
 application. It includes:
 
 *   A [Material Design][md] layout.
@@ -13,16 +13,16 @@ application. It includes:
 *   Unit testing with [web-component-tester](https://github.com/Polymer/web-component-tester).
 *   An end-to-end toolchain for build and local development.
 
-Follow the instructions below to install, build, and run the 
+Follow the instructions below to install, build, and run the
 Polymer Starter Kit (PSK) locally in less than 15 minutes.
 
 ## Install the Polymer Starter Kit and dependencies
 
-1.  Install [Node.js](https://nodejs.org/) (`node`) version 0.12 or above. 
-    Node.js includes Node Package Manager (`npm`) by default. The PSK 
+1.  Install [Node.js](https://nodejs.org/) (`node`) version 0.12 or above.
+    Node.js includes Node Package Manager (`npm`) by default. The PSK
     uses `npm` to install and manage tooling.
 
-1.  Verify that you're running `node` version 0.12 or above and `npm` 
+1.  Verify that you're running `node` version 0.12 or above and `npm`
     version 2.11 or above.
 
         node -v
@@ -35,21 +35,21 @@ Polymer Starter Kit (PSK) locally in less than 15 minutes.
 
         npm install -g gulp bower
 
-    Note: the `-g` flag installs Gulp and Bower globally, so you may need to 
+    Note: the `-g` flag installs Gulp and Bower globally, so you may need to
     execute the script with `sudo` privileges. The reason they are installed
     globally is because some scripts in the PSK expect
-    `gulp` and `bower` to be available from the command line. 
+    `gulp` and `bower` to be available from the command line.
 
 1.  Download the [latest PSK release](https://github.com/PolymerElements/polymer-starter-kit/releases/latest).
-   
-    There are two versions of the PSK, a light version (e.g. 
+
+    There are two versions of the PSK, a light version (e.g.
     `polymer-starter-kit-light-x.x.x.zip`)
-    and a full version (e.g. `polymer-starter-kit-x.x.x.zip`). Download 
+    and a full version (e.g. `polymer-starter-kit-x.x.x.zip`). Download
     the full
     version.
 
-1.  Unzip the file to a suitable location. After unzipping the file 
-    you should have a directory called `polymer-starter-kit-x.x.x`. 
+1.  Unzip the file to a suitable location. After unzipping the file
+    you should have a directory called `polymer-starter-kit-x.x.x`.
     You can rename the directory to something more relevant to your project.
 
 1. `cd` into the base directory of your PSK project.
@@ -62,37 +62,37 @@ Polymer Starter Kit (PSK) locally in less than 15 minutes.
 
         bower install
 
-## Directory structure 
+## Directory structure
 
 The diagram below is a brief summary of the directories within the PSK.
 
     /
-    |---app/ 
-    |   |---elements/ 
-    |   |---images/ 
-    |   |---scripts/ 
+    |---app/
+    |   |---elements/
+    |   |---images/
+    |   |---scripts/
     |   |---styles/
-    |   |---test/ 
-    |---docs/ 
+    |   |---test/
+    |---docs/
     |---dist/
 
 *   `app/` is where you store all of your source code and do all of your
-    development. 
-*   `elements/` is where you keep your custom elements. 
+    development.
+*   `elements/` is where you keep your custom elements.
 *   `images/` is for static images.
-*   `scripts/` is the place for JS scripts. 
+*   `scripts/` is the place for JS scripts.
 *   `styles/` houses your app's [shared styles][shared styles] and CSS rules.
 *   `test/` is where you [define tests for your web
     components](https://github.com/Polymer/web-component-tester).
 *   `docs/` contains optional "recipes" (how-to guides) for adding features
-    to your application or for using optional tools or editors. 
+    to your application or for using optional tools or editors.
 *   `dist/` is the directory to deploy to production. When you run the
     build task, files are prepared for production (HTML imports are
     vulcanzied, scripts are minimized, and so on) and output to this directory.
 
 ## Initialize Git repository (optional)
 
-Your PSK installment does not contain any version control system. Follow the 
+Your PSK installment does not contain any version control system. Follow the
 instructions below if you want to manage your source code with Git.
 
 1.  `cd` into the base directory of your PSK project.
@@ -105,24 +105,24 @@ instructions below if you want to manage your source code with Git.
 
         git add . && git commit -m "Add Polymer Starter Kit."
 
-## Build and serve 
+## Build and serve
 
-The PSK is ready to be built and ran locally. 
+The PSK is ready to be built and ran locally.
 
 1. `cd` into the base directory of your PSK project.
 
 1.  Build the app.
 
-        gulp 
+        gulp
 
-1.  Serve the app locally. 
+1.  Serve the app locally.
 
         gulp serve
 
     The local development server automatically detects file modifications
     and re-builds the application. As long as you keep the `gulp serve`
     task running there is no need to re-build or re-serve the app while
-    you develop. 
+    you develop.
 
     The task above automatically opens up your default web browser and
     fetches the locally-hosted application (at `http://localhost:5000`).
@@ -131,8 +131,8 @@ The PSK is ready to be built and ran locally.
 
 ## Next steps
 
-Now that your PSK is up and running, learn how to [add a new page of 
-content](create-a-page.html), or how to [deploy the app to the 
+Now that your PSK is up and running, learn how to [add a new page of
+content](create-a-page.html), or how to [deploy the app to the
 web](deploy.html).
 
 [shared styles]: https://www.polymer-project.org/1.0/docs/devguide/styling.html#style-modules

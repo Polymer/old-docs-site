@@ -1,6 +1,6 @@
 ---
 title: "Step 2: Add Local DOM"
-link: step-2
+link: first-element/step-2
 ---
 
 Next, you'll create a simple element that displays an icon.
@@ -243,5 +243,5 @@ sure you're clicking on the demo folder or on demo/index.html.
 { .alert .alert-info }
 
 <a class="blue-button" href="intro">Previous step: Intro</a>
-<a class="blue-button" 
+<a class="blue-button"
     href="step-3">Next step: Use data binding and properties</a>
