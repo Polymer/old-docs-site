@@ -1,6 +1,6 @@
 ---
 title: "Step 5: Theming with custom CSS properties"
-link: step-5
+link: first-element/step-5
 ---
 
 You now have a button that's basically functional. But it's stuck using the
