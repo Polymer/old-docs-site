@@ -7,7 +7,6 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
-$font-slab: 'Roboto Slab', sans-serif;
 $font-size-small: 13px;
 $font-size-medium: 18px;
 
@@ -23,16 +22,17 @@ $mobile-media-breakpoint: 767px;
 
 body {
   margin: 0;
-
   font-size: 15px;
   font-family: 'Roboto', 'Noto', sans-serif;
   line-height: 24px;
-  font-weight: 400;
+  font-weight: 300;
 }
 
 a {
   color: #3367d6;
-
+  text-decoration: none;
+  font-weight: 400;
+  
   &:hover {
     text-decoration: underline;
   }
@@ -137,9 +137,9 @@ section {
 }
 
 h2 {
-  font-family: $font-slab;
-  font-size: 23px;
-  font-weight: bold;
+  font-size: 25px;
+  line-height: 38px;
+  font-weight: 400;
   margin: 0;
   padding: 0;
 
@@ -158,6 +158,7 @@ h2 {
   text-transform: uppercase;
   text-decoration: none;
   font-size: $font-size-small;
+  font-weight: 400;
   padding: 3px $small-padding;
   border-radius: 2px;
   text-align: center;

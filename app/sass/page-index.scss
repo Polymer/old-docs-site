@@ -1,4 +1,3 @@
-$font-slab: 'Roboto Slab', sans-serif;
 $font-size-small: 13px;
 $font-size-medium: 18px;
 
@@ -33,6 +32,13 @@ $mobile-media-breakpoint: 767px;
   .content {
     vertical-align: middle;
 
+    h2 {
+      font-weight: 300;
+      @media (max-width: $mobile-media-breakpoint) {
+        font-weight: 400;
+      }
+    }
+
     .section-columns {
       @media (max-width: 900px) {
         /* Switch to a vertical layout */
@@ -53,6 +59,10 @@ $mobile-media-breakpoint: 767px;
       display: block;
     }
 
+    h2 {
+      font-size: 20px;
+    }
+
     @media (max-width: $mobile-media-breakpoint) {
       margin: 0;
       margin-bottom: $medium-padding;
@@ -60,6 +70,10 @@ $mobile-media-breakpoint: 767px;
 
       img {
         display: none;
+      }
+
+      h2 {
+        font-size: 18px;
       }
     }
   }
@@ -140,7 +154,6 @@ $mobile-media-breakpoint: 767px;
     }
 
     .post-title {
-      font-family: $font-slab;
       font-size: $font-size-medium;
       color: #7394e9;
       text-decoration: none;
