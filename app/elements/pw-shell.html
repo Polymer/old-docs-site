@@ -19,7 +19,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
-
 <link rel="import" href="icons.html">
 
 <dom-module id="pw-shell">
@@ -146,7 +145,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <carbon-location route="{{_sectionRoute}}"></carbon-location>
-    <carbon-route route="{{_sectionRoute}}" pattern="/1.0/:section" data="{{_sectionData}}" tail="{{_subsectionRoute}}"></carbon-route>
+    <carbon-route route="{{_sectionRoute}}" pattern="/1.0/:section" data="{{_sectionData}}" tail="{{_subsectionRoute}}"  query-params="{{_searchParams}}"></carbon-route>
 
     <iron-ajax url="[[_sectionRoute.path]]" handle-as="document" on-response="_handleResponse" auto></iron-ajax>
 
@@ -228,6 +227,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     _focusSearch: function() {
       this.$.searchBox.focus();
+    },
+
+    _showResults: function(query) {
+      return (query && query.length);
     },
 
     _handleResponse: function(event) {
