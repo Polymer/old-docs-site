@@ -1,6 +1,6 @@
 ---
 title: Deploy
-link: deploy
+link: psk/deploy
 ---
 
 <!-- This page does not have a ToC because it currently only has one H2.
@@ -16,7 +16,7 @@ before attempting this tutorial.
 Firebase is a very simple and secure way to deploy a PSK site. You can sign
 up for a free account and deploy your application in less than 5 minutes.
 
-The instructions below are based on the [Firebase hosting quick start 
+The instructions below are based on the [Firebase hosting quick start
 guide](https://www.firebase.com/docs/hosting/quickstart.html).
 
 1.  [Sign up for a Firebase account](https://www.firebase.com/signup/).
@@ -37,14 +37,14 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
         firebase init
 
     Firebase asks you which app you would like to use for hosting. If you just
-    signed up, you should see one app with a randomly-generated name. You can 
-    use that one. Otherwise go to 
-    [https://www.firebase.com/account](https://www.firebase.com/account) to 
+    signed up, you should see one app with a randomly-generated name. You can
+    use that one. Otherwise go to
+    [https://www.firebase.com/account](https://www.firebase.com/account) to
     create a new app.
 
-1.  Firebase asks you the name of your app's public directory. Enter `dist`. 
-    This works because when you run `gulp` to build your application, PSK 
-    builds everything and places it all in `dist`. So `dist` contains 
+1.  Firebase asks you the name of your app's public directory. Enter `dist`.
+    This works because when you run `gulp` to build your application, PSK
+    builds everything and places it all in `dist`. So `dist` contains
     everything your application needs to run.
 
 1.  Deploy.

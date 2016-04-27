@@ -1,6 +1,6 @@
 ---
 title: Build your first Polymer element
-link: intro
+link: first-element/intro
 ---
 
 <!-- toc -->
@@ -9,7 +9,7 @@ In this tutorial, you’ll learn how to build elements using Polymer 1.0. You'll
 create a simple Polymer element, a toggle button. The finished button will look
 something like this:
 
-![Sample star-shaped toggle buttons, showing pressed and unpressed 
+![Sample star-shaped toggle buttons, showing pressed and unpressed
 state](/images/1.0/first-element/sample-toggles.png)
 
 You'll be able to use it with simple markup like this:

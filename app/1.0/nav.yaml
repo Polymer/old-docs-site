@@ -26,8 +26,8 @@
   - title: Get set up
     path: /1.0/start/psk/set-up
     indent: True
-  - title: Add a page
-    path: /1.0/start/psk/add-a-page
+  - title: Create a new page
+    path: /1.0/start/psk/create-a-page
     indent: True
   - title: Deploy
     path: /1.0/start/psk/deploy

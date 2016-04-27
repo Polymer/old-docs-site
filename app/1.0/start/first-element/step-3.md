@@ -1,6 +1,6 @@
 ---
 title: "Step 3: Use data binding and properties"
-link: step-3
+link: first-element/step-3
 ---
 
 Right now, the element doesn't do much. In this step, you'll give it a basic

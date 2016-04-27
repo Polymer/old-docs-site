@@ -1,9 +1,6 @@
 ---
-layout: default
-type: start
-shortname: Start
 title: "Step 4: React to input"
-subtitle: Build your first Polymer element
+link: first-element/step-4
 ---
 
 Of course, a button isn't a button if you can't click it. To toggle the button,
