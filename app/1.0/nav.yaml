@@ -48,7 +48,6 @@
   - title: Declare properties
     path: /1.0/devguide/properties
     indent: True
-  - spacer: True
   - header: Local DOM & styling
   - title: Local DOM
     path: /1.0/devguide/local-dom
@@ -88,6 +87,8 @@
 - section: SPöRK
   path: spork
   items:
+  - title: What is a SPöRK?
+    path: /1.0/spork/index
   - title: Röck and Röll mit SPöRK
     path: /1.0/spork/getstarted
 
@@ -95,7 +96,7 @@
   path: tools
   items:
   - title: Tools overview
-    path: /1.0/tools/overview
+    path: /1.0/tools/index
   - title: Document your elements
     path: /1.0/tools/documentation
   - title: Test your elements

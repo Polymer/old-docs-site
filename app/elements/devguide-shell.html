@@ -85,28 +85,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         line-height: 24px;
         display: block;
         text-decoration: none;
-        padding: 10px 30px;
+        padding: 5px 30px;
         /* The active links will have a pink border. */
         border-left: 4px solid transparent;
       }
 
-      iron-selector ::content a.indent {
-        padding-left: 50px;
-      }
-
       iron-selector ::content .sidenav-header {
-        padding: 14px 30px;
-        font-family: 'Roboto Slab', sans-serif;
+        padding: 20px 30px 0 30px;
+        margin-top: 15px;
+        text-transform: uppercase;
+        font-size: 13px;
+        font-weight: bold;
+        /* The active links will have a pink border. */
+        border-left: 4px solid transparent;
+        border-top: 1px solid #ddd;
       }
 
       iron-selector ::content .sidenav-spacer {
-        min-height: 20px;
-      }
-
-      iron-selector ::content a.section {
-        padding: 14px 30px;
-        font-family: 'Roboto Slab', sans-serif;
-        border-bottom: 1px solid #f1f3f5;
+        margin: 15px 0;
+        border-bottom: 1px solid #ddd;
       }
 
       iron-selector ::content a.section:last-of-type {
@@ -115,7 +112,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       iron-selector ::content a.iron-selected {
         color: black;
-        border-left: 4px solid #F22C5A;
+        border-left: 4px solid #f22c5a;
+        color: #f22c5a;
       }
 
       a.edit-on-github {
@@ -189,6 +187,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <iron-collapse id="menu">
       <!-- iron-collapse resizes to fit the content, so we need an extra div to size the content correctly. -->
       <div class="nav">
+        <br>
         <iron-selector attr-for-selected="name" selected="[[activePage]]" selected-item="{{activeItem}}">
           <content select=".sidenav-content"></content>
         </iron-selector>

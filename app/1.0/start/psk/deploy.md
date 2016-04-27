@@ -52,4 +52,3 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
         firebase deploy
 
     The URL to your live site is listed in the output.
-
