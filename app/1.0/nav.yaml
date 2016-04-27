@@ -3,7 +3,7 @@
   path: start
   items:
   - title: Get started
-    path: /1.0/index
+    path: /1.0/start/index
   - title: What is Polymer?
     path: /1.0/start/what-is-polymer
   - header: Build your first element
