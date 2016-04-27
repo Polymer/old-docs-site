@@ -149,7 +149,6 @@ class Site(http2push.PushHandler):
       path += '.html'
 
     data = {
-      'edit_on_github_url': path.replace('.html', '.md'),
       'nav': nav,
       'polymer_version_dir': version
     }
