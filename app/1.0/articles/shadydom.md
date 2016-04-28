@@ -2,10 +2,7 @@
 title: "What is shady DOM?"
 ---
 
-
-{% include authorship.html %}
-
-{% include toc.html %}
+<!-- toc -->
 
 ## Why a new kind of DOM?
 

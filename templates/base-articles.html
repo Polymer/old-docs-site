@@ -42,58 +42,106 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <style is="custom-style" include="syntax-color-styles iron-flex iron-flex-alignment iron-flex-factors"></style>
 
 <style>
-.article {
-  margin-bottom: 2em;
-}
+  .articles {
+    padding: 40px 0;
+  }
 
-.article .byline {
+  .article {
+    margin-bottom: 2em;
+  }
+
+  .article .byline {
     font-size: smaller;
     color: #757575;
-}
+  }
 
-.author {
+  .author {
     margin-bottom: 20px;
-}
+  }
 
-.article .byline.author img {
+  .byline.author img {
     vertical-align: middle;
     width: 25px;
     height: 25px;
-}
+  }
 
-.author img {
-    border-radius: 7px;
+  .author img {
+    border-radius: 50%;
     margin-right: 5px;
-    height: 40px;
-    width: 40px;
-}
+    height: 50px;
+    width: 50px;
+  }
 
-.author > p {
+  .author > p {
     display: inline-block;
     margin: 0;
-}
+  }
 
-.forversion {
+  .forversion {
     float: right;
     font-style: italic;
-}
+  }
 
-.container {
-  max-width: 800px;
-  padding: 40px;
-  margin: 0 auto;
-}
+  .centered {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  section.blue {
+    padding: 20px;
+  }
+
+  section.blue a {
+    color: white;
+  }
+
+  .article-body {
+    background-color: #fafafa;
+    padding: 40px 0;
+  }
+
+  /* Override style from page-md.css */
+  main {
+    padding: 0 !important;
+  }
 </style>
 </head>
 <body class="fullbleed">
   <pw-shell>
 
     {% if markdown %}
-    <main>
-      {% block content %}{% endblock %}
-    </main>
+    <section class="blue">
+      <div class="centered">
+        <h3>{{{active_article.title}}}</h3>
+        <p>{{{active_article.description}}}</p>
+
+        <div class="byline author">
+          <p>
+            <a href="https://plus.google.com/{{{active_article.author.gplus}}}" target="blank_">
+              <img src="{{{active_article.author.profile_pic}}}" alt="{{{active_article.author.full_name}}} profile pic" title="{{{active_article.author.full_name}}}">
+            </a>
+            <a href="{{{active_article.author.web}}}" target="blank_">{{{active_article.author.full_name}}}</a>
+          </p>
+          <p>. Published on <time pubdate="" datetime="{{{active_article.published}}}">{{{active_article.published}}}</time></p>
+        </div>
+      </div>
+    </section>
+
+    <div class="article-body">
+      <main class="centered">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+
     {% else %}
-    <div class="container">
+    <section class="blue">
+      <div class="centered">
+        <h3>Articles</h3>
+        <p>Core concepts of build apps on top of Polymer and web components</p>
+      </div>
+    </section>
+
+    <div class="centered articles">
     {% if articles %}
       {% for item in articles %}
       <div class="article">
@@ -108,14 +156,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </a>
             <a href="{{{item.author.web}}}" target="blank_">{{{item.author.full_name}}}</a>
           </p>
-          <p>,<time pubdate="" datetime="{{{item.published}}}">{{{item.published}}}</time></p>
+          <p>, <time pubdate="" datetime="{{{item.published}}}">{{{item.published}}}</time></p>
         </div>
-      <p>{{{item.description}}}</p>
+        <p>{{{item.description}}}</p>
       </div>
       {% endfor %}
     {% endif %}
 
-    <div>
+    <div class="idea">
       Have an idea for an article? <a href="https://github.com/Polymer/docs/issues/new?labels=article">Suggest it!</a>
     </div>
   </div>

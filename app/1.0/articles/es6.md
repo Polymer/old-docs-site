@@ -2,6 +2,8 @@
 title: "Building web components using ES6 classes"
 ---
 
+<!-- toc -->
+
 <style>
 paper-button.blue {
   background: #4285f4;
@@ -11,10 +13,6 @@ paper-button.blue:hover {
   background: #2a56c6;
 }
 </style>
-
-{% include authorship.html %}
-
-{% include toc.html %}
 
 ## Introduction
 

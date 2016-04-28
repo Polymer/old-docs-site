@@ -2,6 +2,8 @@
 title: "Encapsulated Routing with Elements"
 ---
 
+<!-- toc -->
+
 <style>
   iframe {
     border: 1px solid #D7D7D7;

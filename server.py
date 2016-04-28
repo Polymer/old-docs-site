@@ -148,7 +148,15 @@ class Site(http2push.PushHandler):
 
     if articles:
       return articles
-      
+
+    return None
+
+  def get_active_article_data(self, articles, path):
+    # Find the article that matches this path
+    fixed_path = '/' + path
+    for article in articles:
+      if article['path'] == fixed_path:
+        return article
     return None
 
   @http2push.push()
@@ -172,12 +180,13 @@ class Site(http2push.PushHandler):
 
     version = 'bad_version'
     nav = None
-    match = re.match('([0-9]+\.[0-9]+)/([^/]+)', path)
+    match = re.match('([0-9]+\.[0-9]+)/([^/]+)/([^/]+)', path)
     if match:
       version = match.group(1)
       section = match.group(2)
       nav = self.nav_for_section(version, section)
       articles = self.get_articles(version)
+      active_article = self.get_active_article_data(articles, path)
 
     # Add .html to construct template path.
     if not path.endswith('.html'):
@@ -187,6 +196,7 @@ class Site(http2push.PushHandler):
       'edit_on_github_url': path.replace('.html', '.md'),
       'nav': nav,
       'articles': articles,
+      'active_article': active_article,
       'polymer_version_dir': version
     }
 

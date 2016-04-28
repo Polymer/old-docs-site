@@ -185,7 +185,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <iron-media-query query="(max-width: 767px)" query-matches="{{_isMobileView}}"></iron-media-query>
     <iron-media-query query="(max-width: 1000px)" query-matches="{{_shouldCollapseToc}}"></iron-media-query>
 
-    <iron-collapse id="menu" hidden$="[[_hasActivePage]]">
+    <iron-collapse id="menu">
       <!-- iron-collapse resizes to fit the content, so we need an extra div to size the content correctly. -->
       <div class="nav">
         <br>
@@ -323,10 +323,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       } else if (!this.$.menu.opened) {
         this.$.menu.style.display = '';
       }
-    },
-
-    _hasActivePage: function() {
-      return this.activePage && this.activePage !== '';
     }
   });
   </script>
