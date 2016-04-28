@@ -1,0 +1,29 @@
+---
+- title: Encapsulated Routing with Elements
+  description: An overview to doing distributed routing in an application, as well as an introduction to <carbon-route> and <carbon-location>.
+  published: 2016-03-25
+  author: rictic
+  polymer_version: 1.4.0
+  path: /1.0/articles/routing
+  tags:
+  - routing
+  - urls
+- title: Building web components using ES6 classes
+  description: How to build vanilla custom elements and Polymer elements using ES2015 features.
+  published: 2015-09-24
+  author: ebidel
+  path: /1.0/articles/es6
+  polymer_version: 1.1.0
+  tags:
+  - es2015
+  - es6
+  - javascript
+- title: "What is shady DOM?"
+  description: Why do we need a new kind of DOM?
+  published: 2015-05-28
+  author: sjmiles
+  polymer_version: 1.0
+  path: /1.0/articles/shadydom
+  tags:
+  - shadowdom
+  - shadydom

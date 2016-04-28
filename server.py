@@ -36,6 +36,8 @@ env = jinja2.Environment(
 
 REDIRECTS_FILE = 'redirects.yaml'
 NAV_FILE = '%s/nav.yaml'
+ARTICLES_FILE = '%s/articles.yaml'
+AUTHORS_FILE = '%s/authors.yaml'
 IS_DEV = os.environ.get('SERVER_SOFTWARE', '').startswith('Dev')
 
 def render(out, template, data={}):
@@ -72,6 +74,19 @@ def read_nav_file(filename, version):
             link['name'] = 'index'
   return nav
 
+def read_articles_file(filename, authors):
+  with open(filename, 'r') as f:
+      articles = yaml.load(f)
+
+  # For each article, smoosh in the author details.
+  for article in articles:
+    article['author'] = authors[article['author']];
+  return articles
+
+def read_authors_file(filename):
+  with open(filename, 'r') as f:
+      authors = yaml.load(f)
+  return authors
 
 def handle_404(req, resp, e):
   resp.set_status(404)
@@ -116,6 +131,25 @@ class Site(http2push.PushHandler):
           return one_section['items']
     return None
 
+  def get_articles(self, version):
+    articles_file_for_version = ARTICLES_FILE % version
+    articles = memcache.get(articles_file_for_version)
+
+    authors_file_for_version = AUTHORS_FILE % version
+    authors = memcache.get(authors_file_for_version)
+
+    if authors is None:
+      authors = read_authors_file(authors_file_for_version)
+      memcache.add(authors_file_for_version, authors)
+
+    if articles is None:
+      articles = read_articles_file(articles_file_for_version, authors)
+      memcache.add(articles_file_for_version, articles)
+
+    if articles:
+      return articles
+      
+    return None
 
   @http2push.push()
   def get(self, path):
@@ -143,6 +177,7 @@ class Site(http2push.PushHandler):
       version = match.group(1)
       section = match.group(2)
       nav = self.nav_for_section(version, section)
+      articles = self.get_articles(version)
 
     # Add .html to construct template path.
     if not path.endswith('.html'):
@@ -151,6 +186,7 @@ class Site(http2push.PushHandler):
     data = {
       'edit_on_github_url': path.replace('.html', '.md'),
       'nav': nav,
+      'articles': articles,
       'polymer_version_dir': version
     }
 
