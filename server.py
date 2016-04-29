@@ -138,11 +138,11 @@ class Site(http2push.PushHandler):
     authors_file_for_version = AUTHORS_FILE % version
     authors = memcache.get(authors_file_for_version)
 
-    if authors is None:
+    if authors is None or IS_DEV:
       authors = read_authors_file(authors_file_for_version)
       memcache.add(authors_file_for_version, authors)
 
-    if articles is None:
+    if articles is None or IS_DEV:
       articles = read_articles_file(articles_file_for_version, authors)
       memcache.add(articles_file_for_version, articles)
 
@@ -180,13 +180,16 @@ class Site(http2push.PushHandler):
 
     version = 'bad_version'
     nav = None
-    match = re.match('([0-9]+\.[0-9]+)/([^/]+)/([^/]+)', path)
+    articles = None
+    active_article = None
+    match = re.match('([0-9]+\.[0-9]+)/([^/]+)', path)
     if match:
       version = match.group(1)
       section = match.group(2)
       nav = self.nav_for_section(version, section)
-      articles = self.get_articles(version)
-      active_article = self.get_active_article_data(articles, path)
+      if section == 'articles':
+        articles = self.get_articles(version)
+        active_article = self.get_active_article_data(articles, path)
 
     # Add .html to construct template path.
     if not path.endswith('.html'):
