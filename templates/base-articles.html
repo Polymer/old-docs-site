@@ -40,74 +40,75 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="/css/syntax-color-styles.html">
 <style is="custom-style" include="syntax-color-styles iron-flex iron-flex-alignment iron-flex-factors"></style>
-
-<style>
-  .articles {
-    padding: 40px 0;
-  }
-
-  .article {
-    margin-bottom: 2em;
-  }
-
-  .article .byline {
-    font-size: smaller;
-    color: #757575;
-  }
-
-  .author {
-    margin-bottom: 20px;
-  }
-
-  .byline.author img {
-    vertical-align: middle;
-    width: 25px;
-    height: 25px;
-  }
-
-  .author img {
-    border-radius: 50%;
-    margin-right: 5px;
-    height: 50px;
-    width: 50px;
-  }
-
-  .author > p {
-    display: inline-block;
-    margin: 0;
-  }
-
-  .forversion {
-    float: right;
-    font-style: italic;
-  }
-
-  .centered {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  section.blue {
-    padding: 20px;
-  }
-
-  section.blue a {
-    color: white;
-  }
-
-  .article-body {
-    background-color: #fafafa;
-    padding: 40px 0;
-  }
-
-  /* Override style from page-md.css */
-  main {
-    padding: 0 !important;
-  }
-</style>
 </head>
 <body class="fullbleed">
   <pw-shell>
+    <!-- Because we want the styles to be loaded when the pw-shell changes its
+      content, they need to be here, and not in the <head> -->
+    <style>
+      .articles {
+        padding: 40px 0;
+      }
+
+      .article {
+        margin-bottom: 2em;
+      }
+
+      .article .byline {
+        font-size: smaller;
+        color: #757575;
+      }
+
+      .author {
+        margin-bottom: 20px;
+      }
+
+      .byline.author img {
+        vertical-align: middle;
+        width: 25px;
+        height: 25px;
+      }
+
+      .author img {
+        border-radius: 50%;
+        margin-right: 5px;
+        height: 50px;
+        width: 50px;
+      }
+
+      .author > p {
+        display: inline-block;
+        margin: 0;
+      }
+
+      .forversion {
+        float: right;
+        font-style: italic;
+      }
+
+      .centered {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      section.blue {
+        padding: 20px;
+      }
+
+      section.blue a {
+        color: white;
+      }
+
+      .article-body {
+        background-color: #fafafa;
+        padding: 40px 0;
+      }
+
+      /* Override style from page-md.css */
+      main {
+        padding: 0 !important;
+      }
+    </style>
 
     {% if markdown %}
     <section class="blue">
@@ -136,8 +137,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     {% else %}
     <section class="blue">
       <div class="centered">
-        <h3>Articles</h3>
-        <p>Core concepts of build apps on top of Polymer and web components</p>
+        <h3>Blog</h3>
+        <p>The latest goings-on with the Polymer project and in the community. We'll update the blog to announce major releases and showcase cool stuff being built with Polymer.</p>
       </div>
     </section>
 
