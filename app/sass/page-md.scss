@@ -7,16 +7,76 @@ $mobile-media-breakpoint: 767px;
 main {
   background: #fafafa;
   padding: $medium-padding;
-  max-width: 850px;
+  max-width: 1200px;
 
   font-size: 16px;
   font-family: 'Roboto', 'Noto', sans-serif;
   line-height: 24px;
   font-weight: 300;
 
+  /* layout horizontal-reverse */
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+
   @media (max-width: 500px) {
     padding-left: $small-padding;
     padding-right: $small-padding;
+  }
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
+}
+
+article {
+  min-width: 0;    /* For some reason, this is non-0 */
+  max-width: 800px;
+}
+
+details {
+  box-sizing: border-box;
+  min-width: 250px;
+  max-width: 300px;
+  padding-left: 60px;
+
+  /* When in full-view mode, don't allow the TOC to be collapsed */
+  pointer-events: none;
+
+  summary::-webkit-details-marker {
+    display: none;
+    @media (max-width: 1000px) {
+      display: inline-block;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    font-size: 15px;
+    margin: 0;
+  }
+
+  ul[data-depth="1"], ul[data-depth="3"] {
+    padding: 0;
+    margin-top: 10px;
+
+    a {
+      color: black;
+    }
+  }
+
+  ul[data-depth="2"] {
+    padding: 0 15px;
+
+    a {
+    color: #999;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    padding: 0 0 20px 0;
+    max-width: 100%;
+    pointer-events: all;
   }
 }
 

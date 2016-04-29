@@ -32,8 +32,8 @@ let markdownIt = require('markdown-it')({
           return highlightjs.highlightAuto(code).value;
         } catch (__) { console.log(__) }
       }
-                 
-      return ''; // use external default escaping 
+
+      return ''; // use external default escaping
     }
   });
 let markdownItAttrs = require('markdown-it-attrs');
@@ -132,11 +132,23 @@ gulp.task('md', 'Markdown -> HTML conversion. Syntax highlight and TOC generatio
       data.title = data.title || '';
       data.link = data.link || '';
 
-      data.content = toc.process(data.content, {
-        header: '<h<%= level %><%= attrs %> id="<%= anchor %>" class="has-permalink"><%= header %></h<%= level %>>',
-        TOC: '<details id="toc"><summary>Table of contents</summary><%= toc %></details>',
-        tocMax: 3
-      });
+      // If there is a table of contents, toc-ify it. Otherwise, wrap the
+      // original markdown content anyway, so that we can style it.
+      if (data.content.match(/<!--\s*toc\s*-->/gi)) {
+        // Leave a trailing opening <article> in the TOC, so that we can wrap the original
+        // markdown content into a div, for styling
+        data.content = toc.process(data.content, {
+          header: '<h<%= level %><%= attrs %> id="<%= anchor %>" class="has-permalink"><%= header %></h<%= level %>>',
+          TOC: '<details id="toc"><summary>Table of contents</summary><%= toc %></details><article>',
+          openUL: '<ul data-depth="<%= depth %>">',
+          closeUL: '</ul>',
+          openLI: '<li data-level="H<%= level %>"><a href="#<%= anchor %>"><%= text %></a>',
+          closeLI: '</li>',
+          tocMax: 3
+        }) + '</article>';
+      } else {
+        data.content = '<article>' + data.content + '</article>';
+      }
 
       $.util.replaceExtension(file, '.html'); // file.md -> file.html
 

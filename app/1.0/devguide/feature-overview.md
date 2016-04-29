@@ -3,8 +3,6 @@ title: Feature Overview
 link: feature-overview
 ---
 
-<!-- toc -->
-
 The Polymer library provides a set of features for creating custom elements. These features are designed
 to make it easier and faster to make custom elements that work like standard DOM elements. Similar to standard DOM elements, Polymer elements can be:
 
