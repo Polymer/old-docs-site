@@ -9,6 +9,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/app-layout/helpers/helpers.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="icons.html">
 
 <dom-module id="pw-footer">
   <template>
@@ -39,11 +41,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       .footer-media-links {
         background: #e8345a;
+        padding: 20px;
       }
 
       .footer-media-links a {
-        background: #f1f2f2;
-        color: #9d9893;
+        color: black;
         display: inline-block;
         padding: 3px 20px;
         font-size: 13px;
@@ -54,26 +56,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         min-width: 100px;
       }
 
-      .footer-media-links  a:not(:last-child) {
-        margin-right: 40px;
+      .footer-media-links a span {
+        line-height: 24px;
+        margin-left: 5px;
       }
 
       .footer-links {
         background: #2a3238;
       }
 
-      .footer-links  div:not(:last-child) {
+      .footer-links div:not(:last-child) {
         margin-right: 20px;
       }
 
-      .footer-links  .title {
+      .footer-links .title {
         color: white;
         border-top: 1px solid #707375;
         padding-top: 10px;
         font-size: 13px;
       }
 
-      .footer-links  a {
+      .footer-links a {
         text-decoration: none;
         color: #979797;
         display: block;
@@ -92,8 +95,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       @media (max-width: 767px) {
         .footer-media-links a {
-          min-width: 0;
-          padding: 3px 10px;
+          min-width: 24px;
+        }
+
+        .footer-media-links a span{
+          display: none;
         }
       }
     </style>
@@ -101,11 +107,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <footer>
       <section class="footer-media-links">
         <div class="layout wrap horizontal center center-justified">
-          <a href="http://plus.google.com/107187849809354688692/" title="Follow +polymer on Google+">+Polymer</a>
-          <a href="https://twitter.com/intent/follow?screen_name=polymer" title="Follow @polymer on Twitter">@Polymer</a>
-          <a href="https://github.com/polymer" title="Get the Polymer code on GitHub">/Polymer</a>
-          <a href="https://polymer-slack.herokuapp.com/" title="Join the Polymer slack channel">Slack Channel</a>
-          <a href="https://stackoverflow.com/questions/tagged/polymer" title="StackOverflow questions tagged Polymer"href>Stack Overflow</a>
+          <a href="http://plus.google.com/107187849809354688692/" title="Follow +polymer on Google+">
+            <iron-icon icon="social-icons:gplus"></iron-icon>
+            <span>Polymer</span></a>
+          <a href="https://twitter.com/intent/follow?screen_name=polymer" title="Follow @polymer on Twitter">
+            <iron-icon icon="social-icons:twitter"></iron-icon>
+            <span>@Polymer</span>
+          </a>
+          <a href="https://github.com/polymer" title="Get the Polymer code on GitHub">
+            <iron-icon icon="social-icons:github"></iron-icon>
+            <span>/Polymer</span>
+          </a>
+          <a href="https://polymer-slack.herokuapp.com/" title="Join the Polymer slack channel">
+            <iron-icon icon="social-icons:slack"></iron-icon>
+            <span>Slack Channel</span>
+          </a>
+          <a href="https://stackoverflow.com/questions/tagged/polymer" title="StackOverflow questions tagged Polymer">
+            <iron-icon icon="social-icons:so"></iron-icon>
+            <span>Stack Overflow</span>
+          </a>
         </div>
       </section>
 
