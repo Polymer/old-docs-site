@@ -95,8 +95,10 @@
 - section: tools
   path: tools
   items:
-  - title: Tools overview
+  - title: Getting started
     path: /1.0/tools/index
+  - title: Tools overview
+    path: /1.0/tools/overview
   - title: Document your elements
     path: /1.0/tools/documentation
   - title: Test your elements
