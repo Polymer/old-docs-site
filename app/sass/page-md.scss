@@ -15,16 +15,9 @@ main {
   font-weight: 300;
 
   /* layout horizontal-reverse */
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
-  -ms-flex-direction: row-reverse;
-  -webkit-flex-direction: row-reverse;
   flex-direction: row-reverse;
-  -ms-flex-pack: end;
-  -webkit-justify-content: flex-end;
   justify-content: flex-end;
-
 
   @media (max-width: 500px) {
     padding-left: $small-padding;
@@ -32,8 +25,6 @@ main {
   }
 
   @media (max-width: 1000px) {
-    -ms-flex-direction: column;
-    -webkit-flex-direction: column;
     flex-direction: column;
   }
 }

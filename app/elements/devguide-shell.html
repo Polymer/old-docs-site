@@ -308,8 +308,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     _collapseTocChanged: function() {
       var toc = this.querySelector('details');
-      if (toc)
+      if (toc) {
         toc.open = !this._shouldCollapseToc;
+      }
     },
 
     _transitionend: function() {
