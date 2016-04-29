@@ -1,10 +1,26 @@
 ---
+- title: Community Highlights - GE Predix UI
+  description: GE's Predix UI provides Polymer-based components for building dashboards for the industrial Internet of Things.
+  published: 2016-03-10
+  author: polymer-team
+  path: /1.0/blog/2016-03-10-community-highlights-predix-ui
+  tags:
+  - blog
+  - featured
+- title: 2016 Roadmap
+  description: A spin through the Polymer project roadmap for the beginning of 2016.
+  published: 2016-02-16
+  author: polymer-team
+  path: /1.0/blog/2016-02-17-2016-roadmap
+  tags:
+  - blog
+  - announcements
 - title: Encapsulated Routing with Elements
   description: An overview to doing distributed routing in an application, as well as an introduction to <carbon-route> and <carbon-location>.
   published: 2016-03-25
   author: rictic
   polymer_version: 1.4.0
-  path: /1.0/articles/routing
+  path: /1.0/blog/routing
   tags:
   - routing
   - urls
@@ -12,7 +28,7 @@
   description: How to build vanilla custom elements and Polymer elements using ES2015 features.
   published: 2015-09-24
   author: ebidel
-  path: /1.0/articles/es6
+  path: /1.0/blog/es6
   polymer_version: 1.1.0
   tags:
   - es2015
@@ -23,7 +39,7 @@
   published: 2015-05-28
   author: sjmiles
   polymer_version: 1.0
-  path: /1.0/articles/shadydom
+  path: /1.0/blog/shadydom
   tags:
   - shadowdom
   - shadydom

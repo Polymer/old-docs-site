@@ -156,7 +156,7 @@ function convertMarkdownToHtml(file, templateName) {
 gulp.task('md', 'Markdown -> HTML conversion. Syntax highlight and TOC generation', function() {
   return gulp.src([
       'app/**/*.md',
-      '!app/1.0/articles/*.md',
+      '!app/1.0/blog/*.md',
       '!app/{bower_components,elements,images,js,sass}/**',
     ], {base: 'app/'})
     .pipe(matter(function(file) { // pull out front matter data.
@@ -168,7 +168,7 @@ gulp.task('md', 'Markdown -> HTML conversion. Syntax highlight and TOC generatio
 
 gulp.task('articlemd', 'Markdown -> HTML conversion. Syntax highlight and TOC generation', function() {
   return gulp.src([
-      'app/1.0/articles/*.md',
+      'app/1.0/blog/*.md',
     ], {base: 'app/'})
     .pipe(matter(function(file) { // pull out front matter data.
       return convertMarkdownToHtml(file, 'templates/article.template');
@@ -231,7 +231,7 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
   let docs = gulp.src([
       'app/**/*.html',
       'app/**/nav.yaml',
-      'app/**/articles.yaml',
+      'app/**/blog.yaml',
       'app/**/authors.yaml',
      '!app/{bower_components,elements}/**',
      ], {base: 'app/'})
@@ -255,7 +255,7 @@ gulp.task('watch', 'Watch files for changes', function() {
   gulp.watch('app/sass/**/*.scss', ['style', reload]);
   gulp.watch('app/elements/**/*', ['vulcanize', reload]);
   gulp.watch(['app/{js,elements}/**/*.js'], ['jshint', reload]);
-  gulp.watch('app/1.0/articles/*.md', ['articlemd', reload]);
+  gulp.watch('app/1.0/blog/*.md', ['articlemd', reload]);
   gulp.watch('app/**/*.md', ['md', reload]);
   gulp.watch(['templates/*.html', 'app/**/*.html'], ['copy', reload]);
   // Watch for changes to server itself.

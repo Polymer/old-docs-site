@@ -36,7 +36,7 @@ env = jinja2.Environment(
 
 REDIRECTS_FILE = 'redirects.yaml'
 NAV_FILE = '%s/nav.yaml'
-ARTICLES_FILE = '%s/articles.yaml'
+ARTICLES_FILE = '%s/blog.yaml'
 AUTHORS_FILE = '%s/authors.yaml'
 IS_DEV = os.environ.get('SERVER_SOFTWARE', '').startswith('Dev')
 
@@ -187,7 +187,7 @@ class Site(http2push.PushHandler):
       version = match.group(1)
       section = match.group(2)
       nav = self.nav_for_section(version, section)
-      if section == 'articles':
+      if section == 'blog':
         articles = self.get_articles(version)
         active_article = self.get_active_article_data(articles, path)
 

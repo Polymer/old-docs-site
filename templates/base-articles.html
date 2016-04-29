@@ -145,7 +145,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     {% if articles %}
       {% for item in articles %}
       <div class="article">
+        {% if item.polymer_version %}
         <p><span class="forversion">Polymer v{{{item.polymer_version}}}</span></p>
+        {% else %}
+        <p><span class="forversion">Blog post</span></p>
+        {% endif %}
         <h2>
           <a href="{{{item.path}}}.html">{{{item.title}}}</a>
         </h2>
