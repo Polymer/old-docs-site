@@ -40,9 +40,6 @@ details {
   max-width: 300px;
   padding-left: 60px;
 
-  /* When in full-view mode, don't allow the TOC to be collapsed */
-  pointer-events: none;
-
   summary::-webkit-details-marker {
     display: none;
     @media (max-width: 1000px) {
@@ -76,7 +73,6 @@ details {
   @media (max-width: 1000px) {
     padding: 0 0 20px 0;
     max-width: 100%;
-    pointer-events: all;
   }
 }
 
