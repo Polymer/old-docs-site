@@ -459,9 +459,12 @@ occurred on the array. Each change record provides the following property:
      -   `index`. Position where the splice started.
      -   `removed`. Array of `removed` items.
      -   `addedCount`. Number of new items inserted at `index`.
+     -   `object`: A reference to the array in question.
+     -   `type`: The string literal 'splice'.
+
 
 **Change record may be undefined.** The change record may be undefined the first time the 
-observer is invoked, so your code should guard against this.
+observer is invoked, so your code should guard against this, as shown in the example.
 {: .alert .alert-info }
 
 Example:
@@ -484,18 +487,22 @@ Example:
       ],
 
       usersAddedOrRemoved: function(changeRecord) {
-        changeRecord.indexSplices.forEach(function(s) {
-          s.removed.forEach(function(user) {
-            console.log(user.name + ' was removed');
-          });
-          console.log(s.addedCount + ' users were added');
-        }, this);
+        if (changeRecord) {
+          changeRecord.indexSplices.forEach(function(s) {
+            s.removed.forEach(function(user) {
+              console.log(user.name + ' was removed');
+            });
+            for (var i=0; i<s.addedCount; i++) {
+              var index = s.index + i;
+              var newUser = s.object[index];
+              console.log('User ' + newUser.name + ' added at index ' + index);
+            }
+          }, this);
+        }
       },
-
-      addUser: function() {
+      ready: function() {
         this.push('users', {name: "Jack Aubrey"});
-      }
-
+      },
     });
 
 #### Track key splices {#key-splices}
