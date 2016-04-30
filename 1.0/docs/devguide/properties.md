@@ -450,7 +450,7 @@ in your `observers` array.
 
 Your observer method should accept a single argument. When your observer method
 is called, it receives a change record of the mutations that
-occurred on the array. Each change record provides the following properties:
+occurred on the array. Each change record provides the following property:
 
 *   `indexSplices`. The set of changes that occurred to the array, in
      terms of array indexes. Each `indexSplices` record contains the following
@@ -460,11 +460,9 @@ occurred on the array. Each change record provides the following properties:
      -   `removed`. Array of `removed` items.
      -   `addedCount`. Number of new items inserted at `index`.
 
-*   `keySplices`. The set of changes that occurred to the array in terms
-    of array keys. Each `keySplices` record contains the following properties:
-
-    -   `added`. Array of added keys.
-    -   `removed`. Array of removed keys.
+**Change record may be undefined.** The change record may be undefined the first time the 
+observer is invoked, so your code should guard against this.
+{: .alert .alert-info }
 
 Example:
 
@@ -499,6 +497,30 @@ Example:
       }
 
     });
+
+#### Track key splices {#key-splices}
+
+In some situtations, you may need to know about the [immutable opaque keys]({#key-paths}) 
+that {{site.project_title}} uses to track array items. **This is a advanced use case,
+only required if you're implementing an element like the [template repeater](https://www.polymer-project.org/1.0/docs/devguide/templates.html#dom-repeat).**
+
+You can register interest in key additions and deletions by retrieving the array's 
+collection object:
+
+<code>Polymer.Collection.get(<var>array</var>);</code>
+    
+If you've registered interest, the change record includes an addition property:
+
+*   `keySplices`. The set of changes that occurred to the array in terms
+    of array keys. Each `keySplices` record contains the following properties:
+
+    -   `added`. Array of added keys.
+    -   `removed`. Array of removed keys.
+
+**Template repeaters and key splices.** The template repeater (`dom-repeat`) element 
+uses keys internally, so if an array is used by a `dom-repeat`,  observers 
+for that array receive the `keySplices` property.
+{: .alert .alert-info }
 
 ### Deep sub-property observation {#deep-observation}
 
@@ -549,7 +571,7 @@ Example:
       </script>
     </dom-module>
 
-#### Deep sub-property changes on array items
+#### Deep sub-property changes on array items {#key-paths}
 
 When a sub-property of an array is modified, `changeRecord.path` references
 the "key" of the array item that was modified, not the array index. For
@@ -562,11 +584,30 @@ with a number sign (`#`) by convention to distinguish them from array indexes.
 Keys provide stable references to array items, regardless of any splices
 (additions or removals) on the array.
 
-If for some reason you need a reference to the index of an array item, you
-can retrieve it via the `Polymer.Collection` internal abstraction:
+Use the `get` method to retrieve an item by path. 
 
-    var collection = Polymer.Collection.get(changeRecord.base);
-    var index = changeRecord.base.indexOf(collection.getItem(key));
+    var item = this.get('users.#0');
+
+If you need a reference to the index of an array item, you
+can retrieve it using `indexOf`:
+
+    var item = this.get('users.#0');
+    var index = this.users.indexOf(item);
+    
+The following example shows one way to use path manipulation and 
+`get` to retrieve an array item and its index from inside an observer:
+
+    // Log user name changes by index
+    usersChanged(cr) {
+      // handle paths like 'users.#4.name'
+      var nameSubpath = cr.path.indexOf('.name');
+      if (nameSubpath) {
+        var itempath = cr.path.substring(0, nameSubpath);
+        var item = this.get(itempath);
+        var index = cr.base.indexOf(item);
+        console.log('Item ' + index + ' changed, new name is: ' + item.name);
+      }
+    }
 
 ### Array mutation methods {#array-mutation}
 
