@@ -36,6 +36,8 @@ env = jinja2.Environment(
 
 REDIRECTS_FILE = 'redirects.yaml'
 NAV_FILE = '%s/nav.yaml'
+ARTICLES_FILE = '%s/blog.yaml'
+AUTHORS_FILE = '%s/authors.yaml'
 IS_DEV = os.environ.get('SERVER_SOFTWARE', '').startswith('Dev')
 
 def render(out, template, data={}):
@@ -72,6 +74,19 @@ def read_nav_file(filename, version):
             link['name'] = 'index'
   return nav
 
+def read_articles_file(filename, authors):
+  with open(filename, 'r') as f:
+    articles = yaml.load(f)
+
+  # For each article, smoosh in the author details.
+  for article in articles:
+    article['author'] = authors[article['author']];
+  return articles
+
+def read_authors_file(filename):
+  with open(filename, 'r') as f:
+    authors = yaml.load(f)
+  return authors
 
 def handle_404(req, resp, e):
   resp.set_status(404)
@@ -116,6 +131,30 @@ class Site(http2push.PushHandler):
           return one_section['items']
     return None
 
+  def get_articles(self, version):
+    articles_file_for_version = ARTICLES_FILE % version
+    articles = memcache.get(articles_file_for_version)
+
+    authors_file_for_version = AUTHORS_FILE % version
+    authors = memcache.get(authors_file_for_version)
+
+    if authors is None or IS_DEV:
+      authors = read_authors_file(authors_file_for_version)
+      memcache.add(authors_file_for_version, authors)
+
+    if articles is None or IS_DEV:
+      articles = read_articles_file(articles_file_for_version, authors)
+      memcache.add(articles_file_for_version, articles)
+
+    return articles
+    
+  def get_active_article_data(self, articles, path):
+    # Find the article that matches this path
+    fixed_path = '/' + path
+    for article in articles:
+      if article['path'] == fixed_path:
+        return article
+    return None
 
   @http2push.push()
   def get(self, path):
@@ -138,11 +177,16 @@ class Site(http2push.PushHandler):
 
     version = 'bad_version'
     nav = None
+    articles = None
+    active_article = None
     match = re.match('([0-9]+\.[0-9]+)/([^/]+)', path)
     if match:
       version = match.group(1)
       section = match.group(2)
       nav = self.nav_for_section(version, section)
+      if section == 'blog':
+        articles = self.get_articles(version)
+        active_article = self.get_active_article_data(articles, path)
 
     # Add .html to construct template path.
     if not path.endswith('.html'):
@@ -151,6 +195,8 @@ class Site(http2push.PushHandler):
     data = {
       'edit_on_github_url': path.replace('.html', '.md'),
       'nav': nav,
+      'articles': articles,
+      'active_article': active_article,
       'polymer_version_dir': version
     }
 

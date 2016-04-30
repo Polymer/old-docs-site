@@ -1,0 +1,181 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Organization">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<meta name="google-site-verification" content="k0e8DrbD40s54xHNBqwIsRrSSAkZoprwtEYDnNY06bU" />
+<meta name="google-site-verification" content="pnjjbQFvjPwaWhEXY6nSyaS9iyghmH-M_yLHBveDX2M">
+<meta itemprop="image" content="https://www.polymer-project.org/images/logos/p-logo-32.png">
+<meta itemprop="description" content="Polymer is a library that uses the latest web technologies to let you create custom HTML elements. Build anything from a button to a complete application as an encapsulated, reusable component that works across desktop and mobile.">
+<link rel="manifest" href="manifest.json">
+
+<title>{% block title %}{% endblock %} - Polymer Project</title>
+
+<link rel="publisher" href="https://plus.google.com/107187849809354688692">
+<link rel="shortcut icon" href="/images/logos/p-logo-32.png">
+<link rel="stylesheet" href`="//fonts.googleapis.com/css?family=Roboto:300,400,500|Source+Code+Pro:400,500,700|Roboto+Slab:400,700">
+<!-- <link rel="shortcut icon" href="/static/img/chromium-128.png"> -->
+
+<link rel="stylesheet" href="/css/site.css">
+
+<script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js" async></script>
+
+<script>
+  window.Polymer = window.Polymer || {dom: 'shadow', lazyRegister: true};
+</script>
+
+<link rel="import" href="/elements/elements.html">
+<!-- <link rel="import" href="/css/site-styles.html"> -->
+<!-- <style is="custom-style" include="site-styles"></style> -->
+
+<link rel="import" href="/css/syntax-color-styles.html">
+<style is="custom-style" include="syntax-color-styles iron-flex iron-flex-alignment iron-flex-factors"></style>
+</head>
+<body class="fullbleed">
+  <pw-shell>
+    <!-- Because we want the styles to be loaded when the pw-shell changes its
+      content, they need to be here, and not in the <head> -->
+    <style>
+      .articles {
+        padding: 40px 0;
+      }
+
+      .article {
+        margin-bottom: 2em;
+      }
+
+      .article .byline {
+        font-size: smaller;
+        color: #757575;
+      }
+
+      .author {
+        margin-bottom: 20px;
+      }
+
+      .byline.author img {
+        vertical-align: middle;
+        width: 25px;
+        height: 25px;
+      }
+
+      .author img {
+        border-radius: 50%;
+        margin-right: 5px;
+        height: 50px;
+        width: 50px;
+      }
+
+      .author > p {
+        display: inline-block;
+        margin: 0;
+      }
+
+      .forversion {
+        float: right;
+        font-style: italic;
+      }
+
+      .centered {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      section.blue {
+        padding: 20px;
+      }
+
+      section.blue a {
+        color: white;
+      }
+
+      .article-body {
+        background-color: #fafafa;
+        padding: 40px 0;
+      }
+
+      /* Override style from page-md.css */
+      main {
+        padding: 0 !important;
+      }
+    </style>
+
+    {% if markdown %}
+    <section class="blue">
+      <div class="centered">
+        <h3>{{{active_article.title}}}</h3>
+        <p>{{{active_article.description}}}</p>
+
+        <div class="byline author">
+          <p>
+            <a href="https://plus.google.com/{{{active_article.author.gplus}}}" target="blank_">
+              <img src="{{{active_article.author.profile_pic}}}" alt="{{{active_article.author.full_name}}} profile pic" title="{{{active_article.author.full_name}}}">
+            </a>
+            <a href="{{{active_article.author.web}}}" target="blank_">{{{active_article.author.full_name}}}</a>
+          </p>
+          <p>. Published on <time pubdate="" datetime="{{{active_article.published}}}">{{{active_article.published}}}</time></p>
+        </div>
+      </div>
+    </section>
+
+    <div class="article-body">
+      <main class="centered">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+
+    {% else %}
+    <section class="blue">
+      <div class="centered">
+        <h3>Blog</h3>
+        <p>The latest goings-on with the Polymer project and in the community. We'll update the blog to announce major releases and showcase cool stuff being built with Polymer.</p>
+      </div>
+    </section>
+
+    <div class="centered articles">
+    {% if articles %}
+      {% for item in articles %}
+      <div class="article">
+        {% if item.polymer_version %}
+        <p><span class="forversion">Polymer v{{{item.polymer_version}}}</span></p>
+        {% else %}
+        <p><span class="forversion">Blog post</span></p>
+        {% endif %}
+        <h2>
+          <a href="{{{item.path}}}.html">{{{item.title}}}</a>
+        </h2>
+        <div class="byline author">
+          <p>
+            <a href="https://plus.google.com/{{{item.author.gplus}}}" target="blank_">
+              <img src="{{{item.author.profile_pic}}}" alt="{{{item.author.full_name}}} profile pic" title="{{{item.author.full_name}}}">
+            </a>
+            <a href="{{{item.author.web}}}" target="blank_">{{{item.author.full_name}}}</a>
+          </p>
+          <p>, <time pubdate="" datetime="{{{item.published}}}">{{{item.published}}}</time></p>
+        </div>
+        <p>{{{item.description}}}</p>
+      </div>
+      {% endfor %}
+    {% endif %}
+
+    <div class="idea">
+      Have an idea for an article? <a href="https://github.com/Polymer/docs/issues/new?labels=article">Suggest it!</a>
+    </div>
+  </div>
+  {% endif %}
+
+  </pw-shell>
+  <pw-footer></pw-footer>
+  <script src="/js/app.js"></script>
+</body>
+</html>

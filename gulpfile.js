@@ -120,42 +120,58 @@ gulp.task('images', 'Optimize images', function() {
     .pipe(gulp.dest('dist/images'));
 });
 
-gulp.task('md', 'Markdown -> HTML conversion. Syntax highlight and TOC generation', function() {
+function convertMarkdownToHtml(file, templateName) {
+  let data = file.data;
+  data.file = file;
+  data.content = markdownIt.render(file.content); // Markdown -> HTML.
+  data.title = data.title || '';
+  data.link = data.link || '';
+
+  // If there is a table of contents, toc-ify it. Otherwise, wrap the
+  // original markdown content anyway, so that we can style it.
+  if (data.content.match(/<!--\s*toc\s*-->/gi)) {
+    // Leave a trailing opening <article> in the TOC, so that we can wrap the original
+    // markdown content into a div, for styling
+    data.content = toc.process(data.content, {
+      header: '<h<%= level %><%= attrs %> id="<%= anchor %>" class="has-permalink"><%= header %></h<%= level %>>',
+      TOC: '<details id="toc"><summary>Table of contents</summary><%= toc %></details><article>',
+      openUL: '<ul data-depth="<%= depth %>">',
+      closeUL: '</ul>',
+      openLI: '<li data-level="H<%= level %>"><a href="#<%= anchor %>"><%= text %></a>',
+      closeLI: '</li>',
+      tocMax: 3
+    }) + '</article>';
+  } else {
+    data.content = '<article>' + data.content + '</article>';
+  }
+
+  $.util.replaceExtension(file, '.html'); // file.md -> file.html
+
+  let tmpl = fs.readFileSync(templateName);
+  let renderTemplate = $.util.template(tmpl);
+
+  return renderTemplate(data);
+}
+
+gulp.task('md:docs', 'Docs markdown -> HTML conversion. Syntax highlight and TOC generation', function() {
   return gulp.src([
       'app/**/*.md',
+      '!app/1.0/blog/*.md',
       '!app/{bower_components,elements,images,js,sass}/**',
     ], {base: 'app/'})
     .pipe(matter(function(file) { // pull out front matter data.
-      let data = file.data;
-      data.file = file;
-      data.content = markdownIt.render(file.content); // Markdown -> HTML.
-      data.title = data.title || '';
-      data.link = data.link || '';
+      return convertMarkdownToHtml(file, 'templates/page.template');
+    }))
+    .pipe($.rename({extname: '.html'}))
+    .pipe(gulp.dest('dist'));
+});
 
-      // If there is a table of contents, toc-ify it. Otherwise, wrap the
-      // original markdown content anyway, so that we can style it.
-      if (data.content.match(/<!--\s*toc\s*-->/gi)) {
-        // Leave a trailing opening <article> in the TOC, so that we can wrap the original
-        // markdown content into a div, for styling
-        data.content = toc.process(data.content, {
-          header: '<h<%= level %><%= attrs %> id="<%= anchor %>" class="has-permalink"><%= header %></h<%= level %>>',
-          TOC: '<details id="toc"><summary>Table of contents</summary><%= toc %></details><article>',
-          openUL: '<ul data-depth="<%= depth %>">',
-          closeUL: '</ul>',
-          openLI: '<li data-level="H<%= level %>"><a href="#<%= anchor %>"><%= text %></a>',
-          closeLI: '</li>',
-          tocMax: 3
-        }) + '</article>';
-      } else {
-        data.content = '<article>' + data.content + '</article>';
-      }
-
-      $.util.replaceExtension(file, '.html'); // file.md -> file.html
-
-      let tmpl = fs.readFileSync('templates/page.template');
-      let renderTemplate = $.util.template(tmpl);
-
-      return renderTemplate(data);
+gulp.task('md:blog', 'Blog markdown -> HTML conversion. Syntax highlight and TOC generation', function() {
+  return gulp.src([
+      'app/1.0/blog/*.md',
+    ], {base: 'app/'})
+    .pipe(matter(function(file) { // pull out front matter data.
+      return convertMarkdownToHtml(file, 'templates/article.template');
     }))
     .pipe($.rename({extname: '.html'}))
     .pipe(gulp.dest('dist'));
@@ -215,6 +231,8 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
   let docs = gulp.src([
       'app/**/*.html',
       'app/**/nav.yaml',
+      'app/**/blog.yaml',
+      'app/**/authors.yaml',
      '!app/{bower_components,elements}/**',
      ], {base: 'app/'})
     .pipe(gulp.dest('dist'));
@@ -237,7 +255,8 @@ gulp.task('watch', 'Watch files for changes', function() {
   gulp.watch('app/sass/**/*.scss', ['style', reload]);
   gulp.watch('app/elements/**/*', ['vulcanize', reload]);
   gulp.watch(['app/{js,elements}/**/*.js'], ['jshint', reload]);
-  gulp.watch('app/**/*.md', ['md', reload]);
+  gulp.watch('app/1.0/blog/*.md', ['md:blog', reload]);
+  gulp.watch('app/**/*.md', ['md:docs', reload]);
   gulp.watch(['templates/*.html', 'app/**/*.html'], ['copy', reload]);
   // Watch for changes to server itself.
   gulp.watch('*.py', function(files) {
@@ -263,6 +282,6 @@ gulp.task('clean', 'Remove dist/ and other built files', function() {
 gulp.task('default', 'Build site', ['clean', 'jshint'], function(done) {
   runSequence(
     ['style', 'style:modules', 'images', 'vulcanize', 'js'],
-    'copy', 'md',
+    'copy', 'md:docs', 'md:blog',
     done);
 });
