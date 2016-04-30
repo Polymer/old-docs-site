@@ -76,7 +76,7 @@ def read_nav_file(filename, version):
 
 def read_articles_file(filename, authors):
   with open(filename, 'r') as f:
-      articles = yaml.load(f)
+    articles = yaml.load(f)
 
   # For each article, smoosh in the author details.
   for article in articles:
@@ -85,7 +85,7 @@ def read_articles_file(filename, authors):
 
 def read_authors_file(filename):
   with open(filename, 'r') as f:
-      authors = yaml.load(f)
+    authors = yaml.load(f)
   return authors
 
 def handle_404(req, resp, e):
@@ -146,11 +146,8 @@ class Site(http2push.PushHandler):
       articles = read_articles_file(articles_file_for_version, authors)
       memcache.add(articles_file_for_version, articles)
 
-    if articles:
-      return articles
-
-    return None
-
+    return articles
+    
   def get_active_article_data(self, articles, path):
     # Find the article that matches this path
     fixed_path = '/' + path
