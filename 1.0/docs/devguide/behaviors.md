@@ -25,6 +25,12 @@ To add a behavior to a {{site.project_title}} element definition, include it in 
       behaviors: [SuperBehavior]
     });
 
+Due to a current [bug](https://github.com/Polymer/polymer/issues/2451), if you are using Polymer with ES6/ES2015 classes, you must use a getter defined on the class:
+
+    get behaviors() {
+        return [SuperBehavior];
+    }
+
 For lifecycle events, the lifecycle callback is called for each
 behavior in the order given in the `behaviors` array, followed by the
 callback on the prototype.
