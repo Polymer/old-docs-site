@@ -46,8 +46,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- Because we want the styles to be loaded when the pw-shell changes its
       content, they need to be here, and not in the <head> -->
     <style>
-      .articles {
-        padding: 40px 0;
+      .centered {
+        padding: 40px 20px;
       }
 
       .article {
@@ -92,7 +92,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       section.blue {
-        padding: 20px;
+        padding: 20px 0;
       }
 
       section.blue a {
@@ -107,6 +107,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       /* Override style from page-md.css */
       main {
         padding: 0 !important;
+      }
+
+      article {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      @media (max-width: 767px) {
+        .centered {
+          padding: 20px;
+        }
       }
     </style>
 
