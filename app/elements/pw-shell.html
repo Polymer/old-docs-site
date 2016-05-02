@@ -14,8 +14,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/carbon-route/carbon-route.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+
 <link rel="import" href="icons.html">
 
 <dom-module id="pw-shell">
@@ -166,11 +168,41 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </app-header>
 
     <content></content>
+
+    <iron-media-query query="(max-width: 1000px)" query-matches="{{_shouldCollapseToc}}"></iron-media-query>
+
   </template>
 
   <script>
   Polymer({
     is: 'pw-shell',
+
+    properties: {
+      /**
+       * True if the window size is small enough that the TOC has floated
+       * to the top of the view, and should be collapsed.
+       */
+      _shouldCollapseToc: {
+        observer: '_collapseTocChanged'
+      }
+    },
+
+    attached: function() {
+      // carbon-route doesn't handle clicking on the TOC anchors.
+      window.addEventListener('hashchange', this._scrollToAnchor.bind(this));
+      window.addEventListener('location-changed', this._scrollToAnchor.bind(this));
+
+      // Keep track of the scrolling position so that we can fix the TOC (which is in our light dom)
+      document.addEventListener("scroll", function(e) {
+        if (!this._tocElement)
+          return;
+          
+        // FF uses document.documentElement.scrollTop not document.body.scrollTop.
+        this.toggleClass('fixed',
+            Math.max(document.body.scrollTop, document.documentElement.scrollTop) > 280,
+            this._tocElement);
+      }.bind(this));
+    },
 
     _focusSearch: function() {
       this.$.searchBox.focus();
@@ -181,6 +213,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       document.title = doc.title;
       Polymer.dom(this).innerHTML = doc.querySelector('pw-shell').innerHTML;
       this.async(this._resetScrollPosition);
+      this._tocElement = Polymer.dom(this).querySelector('details');
+      // If we're not in a small view, render the TOC as open.
+      if (this._tocElement) {
+        this._tocElement.open = !this._shouldCollapseToc;
+      }
     },
 
     _resetScrollPosition: function() {
@@ -196,6 +233,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       Polymer.AppLayout.scroll();
+    },
+
+    _scrollToAnchor: function() {
+      var hash = window.location.hash;
+      if (hash) {
+        var el = this.querySelector(hash);
+        if (el) {
+          el.scrollIntoView();
+        }
+      }
+    },
+
+    _collapseTocChanged: function() {
+      if (this._tocElement) {
+        this._tocElement.open = !this._shouldCollapseToc;
+      }
     }
   });
   </script>
