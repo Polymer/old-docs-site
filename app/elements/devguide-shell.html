@@ -189,7 +189,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <!-- iron-collapse resizes to fit the content, so we need an extra div to size the content correctly. -->
       <div class="nav">
         <br>
-        <iron-selector attr-for-selected="name" selected="[[activePage]]">
+        <iron-selector attr-for-selected="name" selected="[[activePage]]" selected-item="{{activeItem}}">
           <content select=".sidenav-content"></content>
         </iron-selector>
         <header>
@@ -212,7 +212,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
 
         <a class="edit-on-github" target="_blank"
-            href="https://github.com/Polymer/docs2/edit/master/app/1.0/devguide/{{activePage}}.md">Edit on GitHub
+            href="https://github.com/Polymer/docs2/edit/master/app{{_githubUrl(activeItem)}}">Edit on GitHub
         </a>
       </header>
 
@@ -242,6 +242,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        */
       pageTitle: {
         type: String
+      },
+
+      /**
+       * The anchor tag for the page being displayed. Used to calculate
+       * the edit-on-github URL.
+       */
+      activeItem: {
+        type: Object
       },
 
       /**
@@ -285,6 +293,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$.menu.style.display = 'block';
       }
       this.$.menu.toggle();
+    },
+
+    _githubUrl: function(item) {
+      if (item) {
+        return item.getAttribute('href') + '.md';
+      }
     },
 
     _mobileViewChanged: function() {
