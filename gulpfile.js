@@ -134,7 +134,7 @@ function convertMarkdownToHtml(file, templateName) {
     // markdown content into a div, for styling
     data.content = toc.process(data.content, {
       header: '<h<%= level %><%= attrs %> id="<%= anchor %>" class="has-permalink"><%= header %></h<%= level %>>',
-      TOC: '<details id="toc"><summary>Table of contents</summary><%= toc %></details><article>',
+      TOC: '<div class="details-wrapper"><details id="toc"><summary>Table of contents</summary><%= toc %></details></div><article>',
       openUL: '<ul data-depth="<%= depth %>">',
       closeUL: '</ul>',
       openLI: '<li data-level="H<%= level %>"><a href="#<%= anchor %>"><%= text %></a>',
