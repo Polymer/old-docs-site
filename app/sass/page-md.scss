@@ -84,7 +84,7 @@ details {
 
 details.fixed {
   position: fixed;
-  top: 0;
+  top: calc(64px + 16px);
 
   @media (max-width: 1000px) {
     position: relative;
