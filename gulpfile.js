@@ -254,7 +254,8 @@ gulp.task('watch', 'Watch files for changes', function() {
   createReloadServer();
   gulp.watch('app/sass/**/*.scss', ['style', reload]);
   gulp.watch('app/elements/**/*', ['vulcanize', reload]);
-  gulp.watch(['app/{js,elements}/**/*.js'], ['jshint', reload]);
+  gulp.watch('app/js/*.js', ['js', reload]);
+
   gulp.watch('app/1.0/blog/*.md', ['md:blog', reload]);
   gulp.watch('app/**/*.md', ['md:docs', reload]);
   gulp.watch(['templates/*.html', 'app/**/*.html'], ['copy', reload]);
