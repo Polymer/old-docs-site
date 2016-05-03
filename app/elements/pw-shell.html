@@ -8,6 +8,7 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../bower_components/app-layout/helpers/helpers.html">
 <link rel="import" href="../bower_components/carbon-route/carbon-location.html">
@@ -38,6 +39,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       a.iron-selected {
         color: #333;
+      }
+
+      .drawer {
+       display: none;
+       z-index: var(--app-drawer-z-index);
+      }
+
+      .drawer-contents {
+        height: 100%;
+        overflow-y: auto;
+      }
+
+      .drawer-contents img {
+        display: block;
+        padding: 16px;
+        height: 24px;
+      }
+
+      .drawer-contents a.iron-selected {
+        border-left: 4px solid #F22C5A;
+      }
+
+      .drawer-toggle {
+        display: none;
       }
 
       .header {
@@ -97,13 +122,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         box-sizing: border-box;
         -webkit-transform: translate3d(100%, 0, 0);
         transform: translate3d(100%, 0, 0);
-        transition: -webkit-transform 0.2s;
+        transition:webkit-transform 0.2s;
         transition: transform 0.2s;
       }
 
       .search-box:focus {
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
+      }
+
+      @media (max-width: 1467px) {
+        .drawer, .drawer-toggle {
+           display: block;
+         }
       }
 
       @media (max-width: 450px) {
@@ -145,6 +176,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <app-header class="header" reveals snaps shadow>
       <div class="header-toolbar layout horizontal center">
+        <paper-icon-button class="drawer-toggle" icon="pw-icons:menu" on-click="_toggleDrawer"></paper-icon-button>
+
         <a href="/1.0/" class="logo-link">
           <img src="../images/logos/p-logo-new.png" alt="Polymer Logo">
           <span>Polymer</span>
@@ -167,7 +200,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <input id="searchBox" type="search" class="search-box fit" placeholder="Search Polymer Site">
     </app-header>
 
-    <content></content>
+    <app-drawer id="drawer" class="drawer" swipe-open>
+      <div class="drawer-contents">
+        <img src="../images/logos/p-logo.svg" alt="Polymer Logo">
+        <iron-selector class="sections-list" attr-for-selected="name" selected="[[_subsectionRoute.prefix]][[_subsectionRoute.path]]" on-click="_closeDrawer">
+          <content select=".sidenav-content"></content>
+        </iron-selector>
+      </div>
+    </app-drawer>
+
+    <content select=":not(.nav)"></content>
 
     <iron-media-query query="(max-width: 1000px)" query-matches="{{_shouldCollapseToc}}"></iron-media-query>
 
@@ -196,12 +238,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       document.addEventListener("scroll", function(e) {
         if (!this._tocElement)
           return;
-          
+
         // FF uses document.documentElement.scrollTop not document.body.scrollTop.
         this.toggleClass('fixed',
             Math.max(document.body.scrollTop, document.documentElement.scrollTop) > 280,
             this._tocElement);
       }.bind(this));
+    },
+
+    _toggleDrawer: function() {
+      this.$.drawer.toggle();
+    },
+
+    _closeDrawer: function() {
+      this.$.drawer.close();
     },
 
     _focusSearch: function() {
