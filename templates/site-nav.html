@@ -1,0 +1,150 @@
+{% if full_nav %}
+  <style>
+    a.sidenav-content {
+      color: #999;
+      background: white;
+      border-bottom: 1px solid #eaedef;
+      padding: 4px 4px 4px 30px;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 40px;  /* To match the nested paper-icon-button height */
+      display: block;
+      text-decoration: none;
+
+      /* The active links will have a pink border. */
+      border-left: 4px solid transparent;
+
+      display: flex;
+      flex-direction: row;
+    }
+
+    a.sidenav-content > span {
+      flex: 1;
+      flex-basis: 0;
+    }
+
+    a.sidenav-content.iron-selected {
+      color: black;
+      border-left: 4px solid #f22c5a;
+      color: #f22c5a;
+    }
+
+    a.sidenav-content.level-1 {
+      font-family: 'Roboto Slab', 'Roboto', sans-serif;
+      font-weight: 400;
+    }
+
+    a.sidenav-content.level-2 {
+      color: black;
+    }
+
+    a.sidenav-content.level-2.indent {
+      padding-left: 60px;
+      color: black;
+    }
+
+    a.sidenav-content.inactive {
+      background: #f4f5f6;
+    }
+
+    a.sidenav-content.active {
+      color: black;
+      font-weight: 700;
+    }
+  </style>
+
+  {% for section in full_nav %}
+    <a class="sidenav-content level-1"
+       href="{{{section.path}}}"
+       name="{{{section.path}}}/">
+       <span>{{{section.section}}}</span>
+
+       {% if 'items' in section %}
+       <paper-icon-button icon="icons:expand-more"
+          onclick="_expandClicked(event)">
+       </paper-icon-button>
+       {% endif %}
+     </a>
+
+    {% if 'items' in section %}
+      <iron-collapse class="sidenav-content">
+        {% for item in section['items'] %}
+          {% if 'header' in item %}
+            <a class="sidenav-content sidenav-header level-2">
+               <span>{{{item.header}}}</span>
+               <paper-icon-button icon="icons:expand-more"
+                 onclick="_expandClicked(event)">
+               </paper-icon-button>
+            </a>
+            <iron-collapse>
+          {% elif 'endheader' in item %}
+            </iron-collapse>
+          {% elif 'title' in item %}
+            <a class="sidenav-content level-2 {{{item.indent}}}"
+               href="{{{item.path}}}"
+               name="{{{item.path}}}/">
+               <span>{{{item.title}}}</span>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </iron-collapse>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<script>
+function _expandClicked(event) {
+  var expandButton = Polymer.dom(event).localTarget;
+  var navLink = Polymer.dom(event).localTarget.parentNode;
+  var navCollapse = navLink.nextElementSibling;
+
+  // If this is a level-2 link, we need to close/open its parent level-1 too.
+  var topLevelLink = null;
+  var topLevelCollapse = null;
+
+  var allCollapsesClosed = false;
+  if (navLink.classList.contains('level-1')) {
+    allCollapsesClosed = navCollapse.opened;
+  }
+  if (navLink.classList.contains('level-2')) {
+    topLevelCollapse = navLink.parentNode;
+    topLevelLink =  topLevelCollapse.previousElementSibling;
+  }
+
+  // Close all other collapses, except for this one (which is dealt with later)
+  // and the parent collapse (if this is a level-2 links, since that needs
+  // to stay open)
+  var collapses = document.querySelectorAll('iron-collapse');
+  for (var i = 0; i < collapses.length; i++) {
+    if (navCollapse === collapses[i] || topLevelCollapse === collapses[i])
+      continue;
+    collapses[i].hide();
+  }
+
+  // Make all the other top level links (except for this one) inactive
+  // if we're opening a new collapse, or active otherwise.
+  var links = document.querySelectorAll('a.level-1');
+  for (var i = 0; i < links.length; i++) {
+    if (topLevelLink !== links[i]) {
+      Polymer.Base.toggleClass('active', false, links[i]);
+      Polymer.Base.toggleClass('inactive', !allCollapsesClosed, links[i]);
+    }
+  }
+
+  var links = document.querySelectorAll('a.level-2');
+  for (var i = 0; i < links.length; i++) {
+    if (topLevelLink !== links[i]) {
+      Polymer.Base.toggleClass('active', false, links[i]);
+    }
+  }
+
+  // Style the active selection.
+  expandButton.icon = navCollapse.opened ? 'expand-more' : 'expand-less';
+  Polymer.Base.toggleClass('active', true, navLink);
+  navCollapse.toggle();
+
+  // Don't actually click the link.
+  event.preventDefault();
+  event.stopImmediatePropagation();
+}
+</script>
