@@ -1,0 +1,22 @@
+<link rel="import"  href="https://polygit2.appspot.com/components/polymer/polymer.html">
+<!-- import the iron-input custom element -->
+<link rel="import" href="https://polygit2.appspot.com/components/iron-input/iron-input.html">
+
+<dom-module id="name-tag">
+
+  <template>
+    <!-- bind to the "owner" property -->
+    This is <b>{{owner}}</b>'s name-tag element.
+  </template>
+
+  <script>
+  Polymer({
+    is: "name-tag",
+    ready: function() {
+      // set this element's owner property
+      this.owner = "Daniel";
+    }
+  });
+  </script>
+
+</dom-module>

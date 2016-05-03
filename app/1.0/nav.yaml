@@ -6,6 +6,8 @@
     path: /1.0/start/index
   - title: What is Polymer?
     path: /1.0/start/what-is-polymer
+  - title: Quick tour of Polymer
+    path: /1.0/start/quick-tour
   - header: Build your first element
   - title: 1. Get set up
     path: /1.0/start/first-element/intro

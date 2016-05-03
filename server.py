@@ -23,16 +23,31 @@ import json
 from google.appengine.api import memcache
 import http2push.http2push as http2push
 
+jinja_loader = jinja2.FileSystemLoader(os.path.dirname(__file__))
+
+# include the _escaped_ contents of a file
+def include_file(name):
+  try:
+    return jinja2.Markup.escape(jinja_loader.get_source(env, name)[0])
+  except Exception as e:
+    logging.exception(e)
+
+# include the literal (unescaped) contents of a file
+def include_file_raw(name):
+  try:
+    return jinja2.Markup(jinja_loader.get_source(env, name)[0])
+  except Exception as e:
+    logging.exception(e)
+
 env = jinja2.Environment(
-  loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
+  loader=jinja_loader,
   extensions=['jinja2.ext.autoescape'],
   autoescape=True,
   trim_blocks=True,
   variable_start_string='{{{',
   variable_end_string='}}}')
-# env.filters.update({
-#   'is_list': lambda v: isinstance(v, list),
-# })
+env.globals['include_file'] = include_file
+env.globals['include_file_raw'] = include_file_raw
 
 REDIRECTS_FILE = 'redirects.yaml'
 NAV_FILE = '%s/nav.yaml'
@@ -147,7 +162,7 @@ class Site(http2push.PushHandler):
       memcache.add(articles_file_for_version, articles)
 
     return articles
-    
+
   def get_active_article_data(self, articles, path):
     # Find the article that matches this path
     fixed_path = '/' + path
