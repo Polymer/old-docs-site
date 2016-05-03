@@ -56,7 +56,7 @@
   {% for section in full_nav %}
     <a class="sidenav-content level-1"
        href="{{{section.path}}}"
-       name="{{{section.path}}}/">
+       name="{{{section.path}}}">
        <span>{{{section.section}}}</span>
 
        {% if 'items' in section %}
@@ -82,7 +82,7 @@
           {% elif 'title' in item %}
             <a class="sidenav-content level-2 {{{item.indent}}}"
                href="{{{item.path}}}"
-               name="{{{item.path}}}/">
+               name="{{{item.path}}}">
                <span>{{{item.title}}}</span>
             </a>
           {% endif %}

@@ -131,6 +131,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         transform: translate3d(0, 0, 0);
       }
 
+      iron-selector ::content a.iron-selected {
+        color: black;
+        border-left: 4px solid #f22c5a;
+        color: #f22c5a;
+      }
+
       @media (max-width: 1467px) {
         .drawer, .drawer-toggle {
            display: block;
@@ -203,9 +209,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <app-drawer id="drawer" class="drawer" swipe-open>
       <div class="drawer-contents">
         <img src="../images/logos/p-logo.svg" alt="Polymer Logo">
-        <iron-selector class="sections-list" attr-for-selected="name" selected="[[_subsectionRoute.prefix]][[_subsectionRoute.path]]" on-click="_closeDrawer">
+
           <content select=".sidenav-content"></content>
-        </iron-selector>
       </div>
     </app-drawer>
 
@@ -268,6 +273,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (this._tocElement) {
         this._tocElement.open = !this._shouldCollapseToc;
       }
+
+
+      console.log(this._subsectionRoute);
     },
 
     _resetScrollPosition: function() {
