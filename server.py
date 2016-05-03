@@ -75,18 +75,19 @@ def read_nav_file(filename, version):
     nav = yaml.load(f)
   for one_section in nav:
     base_path = '/%s/%s/' % (version, one_section['path'])
-    for link in one_section['items']:
-      if 'path' in link:
-        # turn boolean flag into an additional CSS class.
-        if 'indent' in link and link['indent']:
-          link['indent'] = 'indent'
-        else:
-          link['indent'] = ''
-        if not 'name' in link:
-          if link['path'].startswith(base_path):
-            link['name'] = link['path'].replace(base_path, '')
-          else:
-            link['name'] = 'index'
+    if 'items' in one_section:
+        for link in one_section['items']:
+          if 'path' in link:
+            # turn boolean flag into an additional CSS class.
+            if 'indent' in link and link['indent']:
+              link['indent'] = 'indent'
+            else:
+              link['indent'] = ''
+            if not 'name' in link:
+              if link['path'].startswith(base_path):
+                link['name'] = link['path'].replace(base_path, '')
+              else:
+                link['name'] = 'index'
   return nav
 
 def read_articles_file(filename, authors):
@@ -134,16 +135,21 @@ class Site(http2push.PushHandler):
 
     return False
 
-  def nav_for_section(self, version, section):
+  def get_site_nav(self, version):
     nav_file_for_version = NAV_FILE % version
     nav = memcache.get(nav_file_for_version)
     if nav is None or IS_DEV:
       nav = read_nav_file(nav_file_for_version, version)
       memcache.add(nav_file_for_version, nav)
+    return nav
+
+  def nav_for_section(self, version, section):
+    nav = self.get_site_nav(version)
     if nav:
       for one_section in nav:
         if one_section['path'] == section:
-          return one_section['items']
+          if 'items' in one_section:
+            return one_section['items']
     return None
 
   def get_articles(self, version):
@@ -195,13 +201,18 @@ class Site(http2push.PushHandler):
     articles = None
     active_article = None
     match = re.match('([0-9]+\.[0-9]+)/([^/]+)', path)
+
     if match:
       version = match.group(1)
       section = match.group(2)
+      full_nav = self.get_site_nav(version)
       nav = self.nav_for_section(version, section)
+      
       if section == 'blog':
         articles = self.get_articles(version)
         active_article = self.get_active_article_data(articles, path)
+    else:
+      full_nav = self.get_site_nav('1.0')
 
     # Add .html to construct template path.
     if not path.endswith('.html'):
@@ -209,6 +220,7 @@ class Site(http2push.PushHandler):
 
     data = {
       'nav': nav,
+      'full_nav': full_nav,
       'articles': articles,
       'active_article': active_article,
       'polymer_version_dir': version

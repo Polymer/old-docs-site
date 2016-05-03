@@ -1,6 +1,9 @@
 ---
+- section: Home
+  path: /1.0
+
 - section: Start
-  path: start
+  path: /1.0/start
   items:
   - title: Get started
     path: /1.0/start/index
@@ -24,6 +27,7 @@
   - title: 5. Theming with custom properties
     path: /1.0/start/first-element/step-5
     indent: True
+  - endheader: True
   - header: Build an app
   - title: Get set up
     path: /1.0/start/psk/set-up
@@ -34,9 +38,10 @@
   - title: Deploy
     path: /1.0/start/psk/deploy
     indent: True
+  - endheader: True
 
 - section: Polymer
-  path: devguide
+  path: /1.0/devguide
   items:
   - title: Feature overview
     path: /1.0/devguide/feature-overview
@@ -50,6 +55,7 @@
   - title: Declare properties
     path: /1.0/devguide/properties
     indent: True
+  - endheader: True
   - header: Local DOM & styling
   - title: Local DOM
     path: /1.0/devguide/local-dom
@@ -60,6 +66,7 @@
   - spacer: True
   - title: Events
     path: /1.0/devguide/events
+  - endheader: True
   - header: Data system
   - title: Data binding
     path: /1.0/devguide/data-binding
@@ -76,6 +83,7 @@
 #  - title: Work with data bindings
 #    path: /1.0/devguide/data-binding
 #    indent: True
+  - endheader: True
   - spacer: true
   - title: Behaviors
     path: /1.0/devguide/behaviors
@@ -87,15 +95,15 @@
     path: /1.0/devguide/experimental
 
 - section: SPöRK
-  path: spork
+  path: /1.0/spork
   items:
   - title: What is a SPöRK?
     path: /1.0/spork/index
   - title: Röck and Röll mit SPöRK
     path: /1.0/spork/getstarted
 
-- section: tools
-  path: tools
+- section: Tools
+  path: /1.0/tools
   items:
   - title: Getting started
     path: /1.0/tools/index
@@ -107,3 +115,9 @@
     path: /1.0/tools/tests
   - title: Optimize for production
     path: /1.0/tools/optimize-for-production
+
+- section: Elements
+  path: https://elements.polymer-project.org
+
+- section: Blog
+  path: /1.0/blog
