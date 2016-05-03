@@ -76,28 +76,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </style>
 
-    <div id="container">
-      <div class="tabstrip layout horizontal center">
-        <paper-tabs selected="{{_selected}}" class="flex">
-          <template is="dom-repeat" items="[[_panels]]">
-            <paper-tab>{{item.heading}}</paper-tab>
-          </template>
-        </paper-tabs>
-        <paper-button raised hidden>
-          <iron-icon icon="pw-icons:exit-to-app"></iron-icon>
-          Edit on Plunker
-        </paper-button>
-      </div>
+    <div class="tabstrip layout horizontal center">
+      <paper-tabs selected="{{_selected}}" class="flex">
+        <template is="dom-repeat" items="[[_panels]]">
+          <paper-tab>{{item.heading}}</paper-tab>
+        </template>
+      </paper-tabs>
+      <paper-button raised hidden>
+        <iron-icon icon="pw-icons:exit-to-app"></iron-icon>
+        Edit on Plunker
+      </paper-button>
+    </div>
 
-      <div class="wrapper layout horizontal">
-        <iron-pages id="contents" selected="[[_selected]]">
-          <content id="contentpanels" select="demo-tab"></content>
-        </iron-pages>
-      </div>
+    <div class="layout horizontal">
+      <iron-pages selected="[[_selected]]">
+        <content id="contentpanels" select="demo-tab"></content>
+      </iron-pages>
+    </div>
 
-      <div class="results">
-        <content select=".result"></content>
-      </div>
+    <div class="results">
+      <content select="iframe"></content>
     </div>
   </template>
 
