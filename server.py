@@ -23,24 +23,24 @@ import json
 from google.appengine.api import memcache
 import http2push.http2push as http2push
 
-jinjaLoader = jinja2.FileSystemLoader(os.path.dirname(__file__))
+jinja_loader = jinja2.FileSystemLoader(os.path.dirname(__file__))
 
 # include the _escaped_ contents of a file
 def include_file(name):
   try:
-    return jinja2.Markup.escape(jinjaLoader.get_source(env, name)[0])
+    return jinja2.Markup.escape(jinja_loader.get_source(env, name)[0])
   except Exception as e:
     logging.exception(e)
 
 # include the literal (unescaped) contents of a file
 def include_file_raw(name):
   try:
-    return jinja2.Markup(jinjaLoader.get_source(env, name)[0])
+    return jinja2.Markup(jinja_loader.get_source(env, name)[0])
   except Exception as e:
     logging.exception(e)
 
 env = jinja2.Environment(
-  loader=jinjaLoader,
+  loader=jinja_loader,
   extensions=['jinja2.ext.autoescape'],
   autoescape=True,
   trim_blocks=True,
