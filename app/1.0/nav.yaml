@@ -1,12 +1,14 @@
 ---
 - section: Home
+  shortpath: home
   path: /1.0/
 
 - section: Start
+  shortpath: start
   path: /1.0/start/
   items:
   - title: Get started
-    path: /1.0/start/index
+    path: /1.0/start/
   - title: What is Polymer?
     path: /1.0/start/what-is-polymer
   - title: Quick tour of Polymer
@@ -41,6 +43,7 @@
   - endheader: True
 
 - section: Polymer
+  shortpath: devguide
   path: /1.0/devguide/feature-overview
   items:
   - title: Feature overview
@@ -95,18 +98,20 @@
     path: /1.0/devguide/experimental
 
 - section: SPöRK
+  shortpath: spork
   path: /1.0/spork/
   items:
   - title: What is a SPöRK?
-    path: /1.0/spork/index
+    path: /1.0/spork/
   - title: Röck and Röll mit SPöRK
     path: /1.0/spork/getstarted
 
 - section: Tools
+  shortpath: tools
   path: /1.0/tools/
   items:
   - title: Getting started
-    path: /1.0/tools/index
+    path: /1.0/tools/
   - title: Tools overview
     path: /1.0/tools/overview
   - title: Document your elements
@@ -117,7 +122,9 @@
     path: /1.0/tools/optimize-for-production
 
 - section: Elements
+  shortpath: elements
   path: https://elements.polymer-project.org
 
 - section: Blog
+  shortpath: blog
   path: /1.0/blog/

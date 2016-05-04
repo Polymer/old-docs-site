@@ -137,17 +137,17 @@ class Site(http2push.PushHandler):
 
   def get_site_nav(self, version):
     nav_file_for_version = NAV_FILE % version
-    nav = memcache.get(nav_file_for_version)
-    if nav is None or IS_DEV:
-      nav = read_nav_file(nav_file_for_version, version)
-      memcache.add(nav_file_for_version, nav)
-    return nav
+    site_nav = memcache.get(nav_file_for_version)
+    if site_nav is None or IS_DEV:
+      site_nav = read_nav_file(nav_file_for_version, version)
+      memcache.add(nav_file_for_version, site_nav)
+    return site_nav
 
   def nav_for_section(self, version, section):
     nav = self.get_site_nav(version)
     if nav:
       for one_section in nav:
-        if one_section['path'] == section:
+        if one_section['shortpath'] == section:
           if 'items' in one_section:
             return one_section['items']
     return None
@@ -207,7 +207,7 @@ class Site(http2push.PushHandler):
       section = match.group(2)
       full_nav = self.get_site_nav(version)
       nav = self.nav_for_section(version, section)
-      
+
       if section == 'blog':
         articles = self.get_articles(version)
         active_article = self.get_active_article_data(articles, path)

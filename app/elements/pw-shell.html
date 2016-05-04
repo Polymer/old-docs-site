@@ -209,7 +209,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <app-drawer id="drawer" class="drawer" swipe-open>
       <div class="drawer-contents" on-click="_closeDrawer">
         <img src="../images/logos/p-logo.svg" alt="Polymer Logo">
-          <content select=".sidenav-content"></content>
+          <content select=".site-nav"></content>
       </div>
     </app-drawer>
 
@@ -277,7 +277,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // page for a section), and pick the deepest link to highlight.
       var matchingLinks = this.querySelectorAll('a[name="' + this._sectionRoute.path +'"]');
       var activeLink = matchingLinks[matchingLinks.length - 1];
-      
+
       this.toggleClass('iron-selected', true, activeLink);
       this.styleLinkPath(activeLink, true);
     },

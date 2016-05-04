@@ -1,6 +1,6 @@
 {% if full_nav %}
   <style>
-    a.sidenav-content {
+    a.site-nav {
       color: #999;
       background: white;
       border-bottom: 1px solid #eaedef;
@@ -18,45 +18,45 @@
       flex-direction: row;
     }
 
-    a.sidenav-content > span {
+    a.site-nav > span {
       flex: 1;
       flex-basis: 0;
     }
 
     /* The active page */
-    a.sidenav-content.iron-selected {
+    a.site-nav.iron-selected {
       color: black;
       border-left: 4px solid #f22c5a;
       color: #f22c5a;
     }
 
-    a.sidenav-content.level-1 {
+    a.site-nav.level-1 {
       font-family: 'Roboto Slab', 'Roboto', sans-serif;
       font-weight: 400;
     }
 
-    a.sidenav-content.level-2 {
+    a.site-nav.level-2 {
       color: black;
     }
 
     /* This is basically a level-3 link */
-    a.sidenav-content.level-2.indent {
+    a.site-nav.level-2.indent {
       padding-left: 40px;
       color: black;
     }
 
-    a.sidenav-content.greyed-out {
+    a.site-nav.greyed-out {
       background: #f4f5f6;
     }
 
-    a.sidenav-content.active {
+    a.site-nav.active {
       color: black;
       font-weight: 700;
     }
   </style>
 
   {% for section in full_nav %}
-    <a class="sidenav-content level-1"
+    <a class="site-nav level-1"
        href="{{{section.path}}}"
        name="{{{section.path}}}">
        <span>{{{section.section}}}</span>
@@ -69,10 +69,10 @@
      </a>
 
     {% if 'items' in section %}
-      <iron-collapse class="sidenav-content">
+      <iron-collapse class="site-nav">
         {% for item in section['items'] %}
           {% if 'header' in item %}
-            <a class="sidenav-content level-2">
+            <a class="site-nav level-2">
                <span>{{{item.header}}}</span>
                <paper-icon-button icon="icons:expand-more"
                  onclick="_expandClicked(event)">
@@ -82,7 +82,7 @@
           {% elif 'endheader' in item %}
             </iron-collapse>
           {% elif 'title' in item %}
-            <a class="sidenav-content level-2 {{{item.indent}}}"
+            <a class="site-nav level-2 {{{item.indent}}}"
                href="{{{item.path}}}"
                name="{{{item.path}}}">
                <span>{{{item.title}}}</span>
