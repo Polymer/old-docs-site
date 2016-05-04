@@ -1,5 +1,5 @@
 ---
-title:  "carbon-route Beta Release"
+title:  "<carbon-route> gets its beta release!"
 ---
 
 We're excited to announce the beta release of the [`carbon-route`](https://github.com/polymerelements/carbon-route) element—a composable, modular web component router! To dive into this new element and see what it can do, check out the [Encapsulated Routing with Elements](https://www.polymer-project.org/1.0/articles/routing.html) article on the Polymer site and take a look at its [documentation in the Polymer Elements catalog](https://elements.polymer-project.org/browse?package=carbon-elements).
