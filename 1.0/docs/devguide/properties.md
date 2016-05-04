@@ -516,7 +516,7 @@ collection object:
 
 <code>Polymer.Collection.get(<var>array</var>);</code>
     
-If you've registered interest, the change record includes an addition property:
+If you've registered interest, the change record includes an additional property:
 
 *   `keySplices`. The set of changes that occurred to the array in terms
     of array keys. Each `keySplices` record contains the following properties:
