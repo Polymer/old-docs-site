@@ -796,7 +796,7 @@ Example of using the layout classes in the main page:
       <!-- import module -->
       <link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout-classes.html">
       <!-- include the necessary style modules -->
-      <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+      <style is="custom-style" include="iron-flex iron-positioning"></style>
     </head>
     <body class="fullbleed layout horizontal center-center">
      ...
