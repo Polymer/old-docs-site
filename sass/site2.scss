@@ -247,6 +247,11 @@ footer {
   background-color: #fafafa;
   // box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.0980392) 0px 1px 2px 0px inset;
 
+  > div {
+    padding: 75px 16px;
+    padding-left: $additonalPadding + 40;
+  }
+
   .links {
     margin-bottom: $content-padding;
 
@@ -261,10 +266,6 @@ footer {
     //background: transparent !important;
     // opacity: 0.6;
     color: #666666;
-  }
-
-  > :first-child {
-    @extend .content-padding;
   }
 
   #copyright {
