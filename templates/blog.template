@@ -1,4 +1,4 @@
-{% extends "templates/base-articles.html" %}
+{% extends "templates/base-blog.html" %}
 
 {% set markdown = 'true' %}
 

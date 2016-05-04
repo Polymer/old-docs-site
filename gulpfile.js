@@ -171,7 +171,7 @@ gulp.task('md:blog', 'Blog markdown -> HTML conversion. Syntax highlight and TOC
       'app/1.0/blog/*.md',
     ], {base: 'app/'})
     .pipe(matter(function(file) { // pull out front matter data.
-      return convertMarkdownToHtml(file, 'templates/article.template');
+      return convertMarkdownToHtml(file, 'templates/blog.template');
     }))
     .pipe($.rename({extname: '.html'}))
     .pipe(gulp.dest('dist'));
