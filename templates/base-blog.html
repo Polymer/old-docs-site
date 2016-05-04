@@ -92,17 +92,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       .article-body main {
         background: white;
-        max-width: 1000px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      @media (max-width: 767px) {
+        section.blue h3 {
+          font-size: 18px;  /* Needed because the page.md style overiddes this */
+        }
       }
 
       @media (max-width: 1000px) {
         .article-body {
           padding: 0;
         }
-        .article-body main {
-          max-width: 100%;
-        }
-
         details {
           padding-left: 20px;
         }
