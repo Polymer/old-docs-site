@@ -207,9 +207,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </app-header>
 
     <app-drawer id="drawer" class="drawer" swipe-open>
-      <div class="drawer-contents">
+      <div class="drawer-contents" on-click="_closeDrawer">
         <img src="../images/logos/p-logo.svg" alt="Polymer Logo">
-
           <content select=".sidenav-content"></content>
       </div>
     </app-drawer>
@@ -274,8 +273,85 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this._tocElement.open = !this._shouldCollapseToc;
       }
 
+      // If there's two links matching this path (i.e. because there's no landing
+      // page for a section), and pick the deepest link to highlight.
+      var matchingLinks = this.querySelectorAll('a[name="' + this._sectionRoute.path +'"]');
+      var activeLink = matchingLinks[matchingLinks.length - 1];
+      
+      this.toggleClass('iron-selected', true, activeLink);
+      this.styleLinkPath(activeLink, true);
+    },
 
-      console.log(this._subsectionRoute);
+    styleLinkPath: function(link, opened) {
+      var classList = link.classList;
+
+      if (classList.contains('level-1')) {
+        this._styleLevel1Link(link, opened);
+      } else if (classList.contains('level-2') && classList.contains('indent')) {
+        this._styleLevel3Link(link);
+      } else if (classList.contains('level-2')) {
+        this._styleLevel2Link(link, opened);
+      }
+    },
+
+    _styleLevel1Link: function(link, opened) {
+      // Style the active selection.
+      Polymer.Base.toggleClass('active', opened, link);
+
+      var collapse = link.nextElementSibling;
+      this._showOrHideCollapse(link, opened);
+
+      // Style all the other greyed-out links.
+      links = this.querySelectorAll('a.level-1');
+      for (i = 0; i < links.length; i++) {
+        if (link !== links[i]) {
+          // Close all other collapses.
+          this._showOrHideCollapse(links[i], false);
+          Polymer.Base.toggleClass('active', false, links[i]);
+
+          // If the active collapse is opened, then grey-out the other links.
+          Polymer.Base.toggleClass('greyed-out', collapse.opened, links[i]);
+        }
+      }
+    },
+
+    _styleLevel2Link: function(link, opened) {
+      // Style the active selection.
+      Polymer.Base.toggleClass('active', opened, link);
+
+      // A level-2 link is inside a collapse, which comes after the level-1 link
+      // responsible for toggling that collapse. Style the parent level-1 link
+      // as well, so that the whole path of the tree is highlighted.
+      var parentLink = link.parentElement.previousElementSibling;
+      this._styleLevel1Link(parentLink, true);
+
+      // This link might have a collapse as well that we need to open.
+      this._showOrHideCollapse(link, opened);
+    },
+
+    _styleLevel3Link: function(link) {
+      // Style the active selection.
+      Polymer.Base.toggleClass('active', true, link);
+
+      // A level-3 link is inside a level-2 collapse, and after the level-2
+      // link responsible for opening it.
+      this._styleLevel2Link(link.parentElement.previousElementSibling, true);
+    },
+
+    _showOrHideCollapse: function(link, opened) {
+      var collapse = link.nextElementSibling;
+      var expandButton = link.querySelector('paper-icon-button');
+
+      if (!expandButton || !collapse)
+        return;
+
+      if (opened) {
+        expandButton.icon = 'expand-less';
+        collapse.show();
+      } else {
+        expandButton.icon = 'expand-more';
+        collapse.hide();
+      }
     },
 
     _resetScrollPosition: function() {

@@ -1,9 +1,9 @@
 ---
 - section: Home
-  path: /1.0
+  path: /1.0/
 
 - section: Start
-  path: /1.0/start
+  path: /1.0/start/
   items:
   - title: Get started
     path: /1.0/start/index
@@ -41,7 +41,7 @@
   - endheader: True
 
 - section: Polymer
-  path: /1.0/devguide
+  path: /1.0/devguide/feature-overview
   items:
   - title: Feature overview
     path: /1.0/devguide/feature-overview
@@ -95,7 +95,7 @@
     path: /1.0/devguide/experimental
 
 - section: SPöRK
-  path: /1.0/spork
+  path: /1.0/spork/
   items:
   - title: What is a SPöRK?
     path: /1.0/spork/index
@@ -103,7 +103,7 @@
     path: /1.0/spork/getstarted
 
 - section: Tools
-  path: /1.0/tools
+  path: /1.0/tools/
   items:
   - title: Getting started
     path: /1.0/tools/index
@@ -120,4 +120,4 @@
   path: https://elements.polymer-project.org
 
 - section: Blog
-  path: /1.0/blog
+  path: /1.0/blog/

@@ -23,6 +23,7 @@
       flex-basis: 0;
     }
 
+    /* The active page */
     a.sidenav-content.iron-selected {
       color: black;
       border-left: 4px solid #f22c5a;
@@ -38,12 +39,13 @@
       color: black;
     }
 
+    /* This is basically a level-3 link */
     a.sidenav-content.level-2.indent {
-      padding-left: 60px;
+      padding-left: 40px;
       color: black;
     }
 
-    a.sidenav-content.inactive {
+    a.sidenav-content.greyed-out {
       background: #f4f5f6;
     }
 
@@ -70,7 +72,7 @@
       <iron-collapse class="sidenav-content">
         {% for item in section['items'] %}
           {% if 'header' in item %}
-            <a class="sidenav-content sidenav-header level-2">
+            <a class="sidenav-content level-2">
                <span>{{{item.header}}}</span>
                <paper-icon-button icon="icons:expand-more"
                  onclick="_expandClicked(event)">
@@ -94,54 +96,10 @@
 
 <script>
 function _expandClicked(event) {
-  var expandButton = Polymer.dom(event).localTarget;
   var navLink = Polymer.dom(event).localTarget.parentNode;
   var navCollapse = navLink.nextElementSibling;
 
-  // If this is a level-2 link, we need to close/open its parent level-1 too.
-  var topLevelLink = null;
-  var topLevelCollapse = null;
-
-  var allCollapsesClosed = false;
-  if (navLink.classList.contains('level-1')) {
-    allCollapsesClosed = navCollapse.opened;
-  }
-  if (navLink.classList.contains('level-2')) {
-    topLevelCollapse = navLink.parentNode;
-    topLevelLink =  topLevelCollapse.previousElementSibling;
-  }
-
-  // Close all other collapses, except for this one (which is dealt with later)
-  // and the parent collapse (if this is a level-2 links, since that needs
-  // to stay open)
-  var collapses = document.querySelectorAll('iron-collapse');
-  for (var i = 0; i < collapses.length; i++) {
-    if (navCollapse === collapses[i] || topLevelCollapse === collapses[i])
-      continue;
-    collapses[i].hide();
-  }
-
-  // Make all the other top level links (except for this one) inactive
-  // if we're opening a new collapse, or active otherwise.
-  var links = document.querySelectorAll('a.level-1');
-  for (var i = 0; i < links.length; i++) {
-    if (topLevelLink !== links[i]) {
-      Polymer.Base.toggleClass('active', false, links[i]);
-      Polymer.Base.toggleClass('inactive', !allCollapsesClosed, links[i]);
-    }
-  }
-
-  var links = document.querySelectorAll('a.level-2');
-  for (var i = 0; i < links.length; i++) {
-    if (topLevelLink !== links[i]) {
-      Polymer.Base.toggleClass('active', false, links[i]);
-    }
-  }
-
-  // Style the active selection.
-  expandButton.icon = navCollapse.opened ? 'expand-more' : 'expand-less';
-  Polymer.Base.toggleClass('active', true, navLink);
-  navCollapse.toggle();
+  document.querySelector('pw-shell').styleLinkPath(navLink, !navCollapse.opened);
 
   // Don't actually click the link.
   event.preventDefault();
