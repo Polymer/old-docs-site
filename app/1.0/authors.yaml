@@ -46,8 +46,21 @@ rictic:
 
 polymer-team:
   full_name: Polymer Team
-  gplus: ++PolymerProject
+  gplus: +PolymerProject
   profile_pic: https://lh3.googleusercontent.com/--MS15MSdVsY/UwZQEpY-IoI/AAAAAAAAAHk/Do0aoiwLq-gXk_AIyu7-0MdPuJ5twzjBACL0B/s1182-no/p-logo-square.png
   web: https://www.polymer-project.org/
   twitter: polymer
   github: polymer
+
+taylor:
+  full_name: Taylor Savage
+  gplus: 102507331653262188696
+  profile_pic: https://lh3.googleusercontent.com/-3m6T7W06bm4/AAAAAAAAAAI/AAAAAAAAAW8/RulK3UZPplI/s120-c/photo.jpg
+  github: tjsavage
+  twitter: taylorthesavage
+
+fbeaufort:
+  full_name: François Beaufort
+  gplus: +FrancoisBeaufort
+  profile_pic: https://lh3.googleusercontent.com/-jHvqK47b3F4/AAAAAAAAAAI/AAAAAAAA-0w/fayGhfYcgrk/s120-c/photo.jpg
+  github: beaufortfrancois
