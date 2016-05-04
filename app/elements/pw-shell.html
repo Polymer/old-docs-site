@@ -122,7 +122,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         box-sizing: border-box;
         -webkit-transform: translate3d(100%, 0, 0);
         transform: translate3d(100%, 0, 0);
-        transition:webkit-transform 0.2s;
+        transition: -webkit-transform 0.2s;
         transition: transform 0.2s;
       }
 
@@ -131,42 +131,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         transform: translate3d(0, 0, 0);
       }
 
-      iron-selector ::content a.iron-selected {
-        color: black;
-        border-left: 4px solid #f22c5a;
-        color: #f22c5a;
-      }
-
-      @media (max-width: 1467px) {
+      @media (max-width: 767px) {
         .drawer, .drawer-toggle {
-           display: block;
-         }
-      }
-
-      @media (max-width: 450px) {
-        :host {
-          margin-top: 56px;
+          display: block;
         }
 
-        .header-toolbar .logo-link {
-          height: 24px;
-          padding-left: 10px;
-        }
-
-        .header-toolbar .logo-link img {
-          height: 24px;
-        }
-
-        .header-toolbar .logo-link span {
+        .sections-tabs > a {
           display: none;
-        }
-
-        .sections-tabs {
-          height: 56px;
-        }
-
-        .sections-tabs a {
-          padding-top: 20px;
         }
       }
     </style>
