@@ -57,10 +57,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         height: 24px;
       }
 
-      .drawer-contents a.iron-selected {
-        border-left: 4px solid #F22C5A;
-      }
-
       .drawer-toggle {
         display: none;
       }
@@ -184,7 +180,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
     </app-drawer>
 
-    <content select=":not(.nav)"></content>
+    <content></content>
 
     <iron-media-query query="(max-width: 1000px)" query-matches="{{_shouldCollapseToc}}"></iron-media-query>
 
