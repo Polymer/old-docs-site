@@ -128,7 +128,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         transition: transform 0.2s;
       }
 
-      .search-box:focus {
+      .search-box:focus, .search-box[open] {
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
       }
@@ -146,6 +146,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <carbon-location route="{{_sectionRoute}}"></carbon-location>
     <carbon-route route="{{_sectionRoute}}" pattern="/1.0/:section" data="{{_sectionData}}" tail="{{_subsectionRoute}}"  query-params="{{_searchParams}}"></carbon-route>
+    <carbon-route route="{{_sectionRoute}}" active="{{_searchActive}}" pattern="/search/" query-params="{{_searchParams}}"></carbon-route>
 
     <iron-ajax url="[[_sectionRoute.path]]" handle-as="document" on-response="_handleResponse" auto></iron-ajax>
 
@@ -229,8 +230,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this.$.searchBox.focus();
     },
 
-    _showResults: function(query) {
-      return (query && query.length);
+    // Show search results on enter
+    _doSearch: function() {
+      if (this._searchParams.q && !this._searchActive) {
+        this.set('_sectionRoute.path', '/search/');
+        this.async(this.$.searchBox.focus);
+      }
     },
 
     _handleResponse: function(event) {

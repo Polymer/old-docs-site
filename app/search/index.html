@@ -1,0 +1,15 @@
+{% extends "templates/base.html" %}
+{% block title %}Search{% endblock %}
+
+{% block content %}
+
+<!-- this page should never actually be seen.
+     it exists to trick the server into returning 
+     a page for /search/ -->
+<div class="container">
+  <div>
+    Use the search bar above to search the site.
+  </div>
+</div>
+
+{% endblock %}
