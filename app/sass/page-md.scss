@@ -74,6 +74,7 @@ article {
 }
 
 details {
+  will-change: transform;
   summary::-webkit-details-marker {
     display: none;
     @media (max-width: 1000px) {
