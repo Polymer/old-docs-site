@@ -35,14 +35,10 @@ argument an object that defines your element's prototype.
 
 <demo-tabs selected="0" src="samples/proto-element/manifest.json">
   <demo-tab heading="proto-element.html">
-<pre><code>
-{{{include_file('1.0/start/samples/proto-element/proto-element.html')}}}
-</code></pre>
+<pre><code>{{{include_file('1.0/start/samples/proto-element/proto-element.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>
-{{{include_file('1.0/start/samples/proto-element/index.html')}}}
-</code></pre>
+<pre><code>{{{include_file('1.0/start/samples/proto-element/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/proto-element/index.html" width="100%" height="40"></iframe>
@@ -68,14 +64,10 @@ Polymer calls this _local DOM_, and it provides an easy way to specify it:
 
 <demo-tabs selected="0" src="samples/dom-element/manifest.json">
   <demo-tab heading="dom-element.html">
-<pre><code>
-{{{include_file('1.0/start/samples/dom-element/dom-element.html')}}}
-</code></pre>
+<pre><code>{{{include_file('1.0/start/samples/dom-element/dom-element.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>
-{{{include_file('1.0/start/samples/dom-element/index.html')}}}
-</code></pre>
+<pre><code>{{{include_file('1.0/start/samples/dom-element/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/dom-element/index.html" width="100%" height="40"></iframe>
@@ -95,14 +87,10 @@ with a styled `<div>` tag.
 
 <demo-tabs selected="0" src="samples/picture-frame/manifest.json">
   <demo-tab heading="picture-frame.html">
-<pre><code>
-{{{include_file('1.0/start/samples/picture-frame/picture-frame.html')}}}
-</code></pre>
+<pre><code>{{{include_file('1.0/start/samples/picture-frame/picture-frame.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>
-{{{include_file('1.0/start/samples/picture-frame/index.html')}}}
-</code></pre>
+<pre><code>{{{include_file('1.0/start/samples/picture-frame/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/picture-frame/index.html" width="100%" height="60"></iframe>
@@ -126,14 +114,10 @@ The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced 
 
 <demo-tabs selected="0" src="samples/name-tag/manifest.json">
   <demo-tab heading="name-tag.html">
-<pre><code>
-{{{include_file('1.0/start/samples/name-tag/name-tag.html')}}}
-</code></pre>
+<pre><code>{{{include_file('1.0/start/samples/name-tag/name-tag.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>
-{{{include_file('1.0/start/samples/name-tag/index.html')}}}
-</code></pre>
+<pre><code>{{{include_file('1.0/start/samples/name-tag/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/name-tag/index.html" width="100%" height="40"></iframe>
@@ -153,14 +137,10 @@ and configure it in `index.html`.
 
 <demo-tabs selected="0" src="samples/configurable-name-tag/manifest.json">
   <demo-tab heading="configurable-name-tag.html">
-<pre><code>
-{{{include_file('1.0/start/samples/configurable-name-tag/configurable-name-tag.html')}}}
-</code></pre>
+<pre><code>{{{include_file('1.0/start/samples/configurable-name-tag/configurable-name-tag.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>
-{{{include_file('1.0/start/samples/configurable-name-tag/index.html')}}}
-</code></pre>
+<pre><code>{{{include_file('1.0/start/samples/configurable-name-tag/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/configurable-name-tag/index.html" width="100%" height="40"></iframe>
@@ -180,14 +160,10 @@ to the element's `owner` property, so it's updated as the user types.
 
 <demo-tabs selected="0" src="samples/editable-name-tag/manifest.json">
   <demo-tab heading="editable-name-tag.html">
-<pre><code>
-{{{include_file('1.0/start/samples/editable-name-tag/editable-name-tag.html')}}}
-</code></pre>
+<pre><code>{{{include_file('1.0/start/samples/editable-name-tag/editable-name-tag.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>
-{{{include_file('1.0/start/samples/editable-name-tag/index.html')}}}
-</code></pre>
+<pre><code>{{{include_file('1.0/start/samples/editable-name-tag/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/editable-name-tag/index.html" width="100%" height="100"></iframe>
