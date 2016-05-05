@@ -1,0 +1,108 @@
+{% if full_nav %}
+  <style>
+    a.site-nav {
+      color: #999;
+      background: white;
+      border-bottom: 1px solid #eaedef;
+      padding: 4px 4px 4px 30px;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 40px;  /* To match the nested paper-icon-button height */
+      display: block;
+      text-decoration: none;
+
+      /* The active links will have a pink border. */
+      border-left: 4px solid transparent;
+
+      display: flex;
+      flex-direction: row;
+    }
+
+    a.site-nav > span {
+      flex: 1;
+      flex-basis: 0;
+    }
+
+    /* The active page */
+    a.site-nav.iron-selected {
+      color: black;
+      border-left: 4px solid #f22c5a;
+      color: #f22c5a;
+    }
+
+    a.site-nav.level-1 {
+      font-family: 'Roboto Slab', 'Roboto', sans-serif;
+      font-weight: 400;
+    }
+
+    a.site-nav.level-2 {
+      color: black;
+    }
+
+    /* This is basically a level-3 link */
+    a.site-nav.level-2.indent {
+      padding-left: 40px;
+      color: black;
+    }
+
+    a.site-nav.greyed-out {
+      background: #f4f5f6;
+    }
+
+    a.site-nav.active {
+      color: black;
+      font-weight: 700;
+    }
+  </style>
+
+  {% for section in full_nav %}
+    <a class="site-nav level-1"
+       href="{{{section.path}}}"
+       name="{{{section.path}}}">
+       <span>{{{section.section}}}</span>
+
+       {% if 'items' in section %}
+       <paper-icon-button icon="icons:expand-more"
+          onclick="_expandClicked(event)">
+       </paper-icon-button>
+       {% endif %}
+     </a>
+
+    {% if 'items' in section %}
+      <iron-collapse class="site-nav">
+        {% for item in section['items'] %}
+          {% if 'header' in item %}
+            <a class="site-nav level-2">
+               <span>{{{item.header}}}</span>
+               <paper-icon-button icon="icons:expand-more"
+                 onclick="_expandClicked(event)">
+               </paper-icon-button>
+            </a>
+            <iron-collapse>
+          {% elif 'endheader' in item %}
+            </iron-collapse>
+          {% elif 'title' in item %}
+            <a class="site-nav level-2 {{{item.indent}}}"
+               href="{{{item.path}}}"
+               name="{{{item.path}}}">
+               <span>{{{item.title}}}</span>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </iron-collapse>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<script>
+function _expandClicked(event) {
+  var navLink = Polymer.dom(event).localTarget.parentNode;
+  var navCollapse = navLink.nextElementSibling;
+
+  document.querySelector('pw-shell').styleLinkPath(navLink, !navCollapse.opened);
+
+  // Don't actually click the link.
+  event.preventDefault();
+  event.stopImmediatePropagation();
+}
+</script>

@@ -41,10 +41,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="/css/syntax-color-styles.html">
 <style is="custom-style" include="syntax-color-styles iron-flex iron-flex-alignment iron-flex-factors"></style>
-
 </head>
 <body class="fullbleed">
   <pw-shell>
+    {% include 'templates/site-nav.html' %}
+
     <main>
       {% block content %}{% endblock %}
     </main>

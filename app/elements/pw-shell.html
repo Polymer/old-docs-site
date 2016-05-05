@@ -8,6 +8,7 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../bower_components/app-layout/helpers/helpers.html">
 <link rel="import" href="../bower_components/carbon-route/carbon-location.html">
@@ -38,6 +39,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       a.iron-selected {
         color: #333;
+      }
+
+      .drawer {
+       display: none;
+       z-index: var(--app-drawer-z-index);
+      }
+
+      .drawer-contents {
+        height: 100%;
+        overflow-y: auto;
+      }
+
+      .drawer-contents img {
+        display: block;
+        padding: 16px;
+        height: 24px;
+      }
+
+      .drawer-toggle {
+        display: none;
       }
 
       .header {
@@ -106,30 +127,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         transform: translate3d(0, 0, 0);
       }
 
-      @media (max-width: 450px) {
-        :host {
-          margin-top: 56px;
+      @media (max-width: 767px) {
+        .drawer, .drawer-toggle {
+          display: block;
         }
 
-        .header-toolbar .logo-link {
-          height: 24px;
-          padding-left: 10px;
-        }
-
-        .header-toolbar .logo-link img {
-          height: 24px;
-        }
-
-        .header-toolbar .logo-link span {
+        .sections-tabs > a {
           display: none;
-        }
-
-        .sections-tabs {
-          height: 56px;
-        }
-
-        .sections-tabs a {
-          padding-top: 20px;
         }
       }
     </style>
@@ -145,6 +149,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <app-header class="header" reveals snaps shadow>
       <div class="header-toolbar layout horizontal center">
+        <paper-icon-button class="drawer-toggle" icon="pw-icons:menu" on-click="_toggleDrawer"></paper-icon-button>
+
         <a href="/1.0/" class="logo-link">
           <img src="../images/logos/p-logo-new.png" alt="Polymer Logo">
           <span>Polymer</span>
@@ -166,6 +172,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <input id="searchBox" type="search" class="search-box fit" placeholder="Search Polymer Site">
     </app-header>
+
+    <app-drawer id="drawer" class="drawer" swipe-open>
+      <div class="drawer-contents" on-click="_closeDrawer">
+        <img src="../images/logos/p-logo.svg" alt="Polymer Logo">
+          <content select=".site-nav"></content>
+      </div>
+    </app-drawer>
 
     <content></content>
 
@@ -196,12 +209,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       document.addEventListener("scroll", function(e) {
         if (!this._tocElement)
           return;
-          
+
         // FF uses document.documentElement.scrollTop not document.body.scrollTop.
         this.toggleClass('fixed',
             Math.max(document.body.scrollTop, document.documentElement.scrollTop) > 280,
             this._tocElement);
       }.bind(this));
+    },
+
+    _toggleDrawer: function() {
+      this.$.drawer.toggle();
+    },
+
+    _closeDrawer: function() {
+      this.$.drawer.close();
     },
 
     _focusSearch: function() {
@@ -217,6 +238,86 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // If we're not in a small view, render the TOC as open.
       if (this._tocElement) {
         this._tocElement.open = !this._shouldCollapseToc;
+      }
+
+      // If there's two links matching this path (i.e. because there's no landing
+      // page for a section), and pick the deepest link to highlight.
+      var matchingLinks = this.querySelectorAll('a[name="' + this._sectionRoute.path +'"]');
+      var activeLink = matchingLinks[matchingLinks.length - 1];
+
+      this.toggleClass('iron-selected', true, activeLink);
+      this.styleLinkPath(activeLink, true);
+    },
+
+    styleLinkPath: function(link, opened) {
+      var classList = link.classList;
+
+      if (classList.contains('level-1')) {
+        this._styleLevel1Link(link, opened);
+      } else if (classList.contains('level-2') && classList.contains('indent')) {
+        this._styleLevel3Link(link);
+      } else if (classList.contains('level-2')) {
+        this._styleLevel2Link(link, opened);
+      }
+    },
+
+    _styleLevel1Link: function(link, opened) {
+      // Style the active selection.
+      Polymer.Base.toggleClass('active', opened, link);
+
+      var collapse = link.nextElementSibling;
+      this._showOrHideCollapse(link, opened);
+
+      // Style all the other greyed-out links.
+      links = this.querySelectorAll('a.level-1');
+      for (i = 0; i < links.length; i++) {
+        if (link !== links[i]) {
+          // Close all other collapses.
+          this._showOrHideCollapse(links[i], false);
+          Polymer.Base.toggleClass('active', false, links[i]);
+
+          // If the active collapse is opened, then grey-out the other links.
+          Polymer.Base.toggleClass('greyed-out', collapse.opened, links[i]);
+        }
+      }
+    },
+
+    _styleLevel2Link: function(link, opened) {
+      // Style the active selection.
+      Polymer.Base.toggleClass('active', opened, link);
+
+      // A level-2 link is inside a collapse, which comes after the level-1 link
+      // responsible for toggling that collapse. Style the parent level-1 link
+      // as well, so that the whole path of the tree is highlighted.
+      var parentLink = link.parentElement.previousElementSibling;
+      this._styleLevel1Link(parentLink, true);
+
+      // This link might have a collapse as well that we need to open.
+      this._showOrHideCollapse(link, opened);
+    },
+
+    _styleLevel3Link: function(link) {
+      // Style the active selection.
+      Polymer.Base.toggleClass('active', true, link);
+
+      // A level-3 link is inside a level-2 collapse, and after the level-2
+      // link responsible for opening it.
+      this._styleLevel2Link(link.parentElement.previousElementSibling, true);
+    },
+
+    _showOrHideCollapse: function(link, opened) {
+      var collapse = link.nextElementSibling;
+      var expandButton = link.querySelector('paper-icon-button');
+
+      if (!expandButton || !collapse)
+        return;
+
+      if (opened) {
+        expandButton.icon = 'expand-less';
+        collapse.show();
+      } else {
+        expandButton.icon = 'expand-more';
+        collapse.hide();
       }
     },
 
