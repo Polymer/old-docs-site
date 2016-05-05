@@ -10,8 +10,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
-<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="../bower_components/paper-styles/typography.html">
 <link rel="import" href="icons.html">
 
@@ -34,14 +32,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         box-shadow: 1px 0 6px -2px rgba(0, 0, 0, 0.4);
       }
 
-      #menu {
-        display: block;
-      }
-
-      .nav header {
-        display: none;
-      }
-
       .content-container {
         position: relative;
         margin-left: 265px;
@@ -57,19 +47,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-size: 32px;
         font-weight: 400;
         border-bottom: none;
-      }
-
-      .toggle-button {
-        display: none;
-        padding: 8px;
-        color: white;
-      }
-
-      .toggle-button:hover, .toggle-button:focus {
-        background-color: rgba(255, 255, 255, 0.4);
-        color: #1565c0;
-        border-radius: 50%;
-        outline: none;
       }
 
       /* can't apply a custom property to content */
@@ -124,35 +101,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       @media (max-width: 767px) {
-        #menu {
-          display: none;
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          z-index: 10;
-        }
-
         .nav {
-          position: relative;
-          width: 100%;
-          /* Cover the whole screen, but leave enough space for the bottom footer. */
-          /* 64px is the size of the pw-shell app bar*/
-          height: calc(100vh - 65px);
-        }
-
-        .nav header {
-          box-sizing: border-box;
-          position: fixed;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          height: 50px;
-          text-align: center;
-        }
-
-        .iron-collapse-opened header {
-          display: block;
+          display: none;
         }
 
         .content-container {
@@ -171,44 +121,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           font-size: 18px;
           margin: 0;
         }
-
-        .toggle-button {
-          display: inline-block;
-        }
-
-        .content-container .toggle-button {
-          margin-left: auto;    /* Align to the right. */
-        }
       }
     </style>
 
-    <iron-media-query query="(max-width: 767px)" query-matches="{{_isMobileView}}"></iron-media-query>
-
-    <iron-collapse id="menu">
-      <!-- iron-collapse resizes to fit the content, so we need an extra div to size the content correctly. -->
-      <div class="nav">
-        <br>
-        <iron-selector attr-for-selected="name" selected="[[activePage]]" selected-item="{{activeItem}}">
-          <content select=".sidenav-content"></content>
-        </iron-selector>
-        <header>
-          <a href="#" class="toggle-button" on-click="_toggleMenu" aria-label="collapse navigation menu">
-            <iron-icon icon="icons:expand-less"></iron-icon>
-          </a>
-        </header>
-      </div>
-    </iron-collapse>
+    <div class="nav">
+      <br>
+      <iron-selector attr-for-selected="name" selected="[[activePage]]" selected-item="{{activeItem}}">
+        <content select=".sidenav-content"></content>
+      </iron-selector>
+    </div>
 
     <div class="content-container">
       <header hidden$="[[!markdown]]">
         Developer Guide > {{pageTitle}}
 
-        <div class="layout horizontal center">
-          <h2>{{pageTitle}}</h2>
-          <a href="#" class="toggle-button" on-click="_toggleMenu" aria-label="expand navigation menu">
-            <iron-icon icon="icons:expand-more"></iron-icon>
-          </a>
-        </div>
+        <h2>{{pageTitle}}</h2>
 
         <a class="edit-on-github" target="_blank"
             href="https://github.com/Polymer/docs2/edit/master/app{{_githubUrl(activeItem)}}">Edit on GitHub
@@ -257,69 +184,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        */
       activePage: {
         type: String
-      },
-
-      /**
-       * True if this is a mobile view.
-       */
-      _isMobileView: {
-        observer: '_mobileViewChanged'
       }
-    },
-
-    attached: function() {
-      this.addEventListener('toggle-dev-menu', this._toggleMenu.bind(this));
-
-      Polymer.RenderStatus.afterNextRender(this, function() {
-        this.$.menu.addEventListener('transitionend', this._transitionend.bind(this));
-      });
-    },
-
-    _toggleMenu: function() {
-      // If we are closing the menu, then pre-show the rest of the content
-      // so that we don't flash the footer first.
-      if (this.$.menu.opened) {
-        this.$.content.hidden = false;
-      } else {
-        this.$.menu.style.display = 'block';
-      }
-      this.$.menu.toggle();
     },
 
     _githubUrl: function(item) {
       if (item) {
         return item.getAttribute('href') + '.md';
-      }
-    },
-
-    _mobileViewChanged: function() {
-      this.$.content.hidden = false;
-
-      // Disable animations while we're doing the screen transition, since it looks weird.
-      this.$.menu.noAnimation = true;
-
-      if (this._isMobileView) {
-        this.$.menu.hide();
-
-        // We only need animations on mobile.
-        this.$.menu.noAnimation = false;
-      } else {
-        this.$.menu.show();
-
-        // Resize the menu correctly (in case this was a mobile -> desktop transition).
-        this.$.menu.updateSize(0, false);
-      }
-    },
-
-    _transitionend: function() {
-      // If we have opened the menu, hide the rest of the content. Doing
-      // this before the animation finished would flash the footer.
-      if (this._isMobileView && this.$.menu.opened) {
-        this.$.content.hidden = true;
-        // Focus the first link in the iron-selector.
-        Polymer.dom(this.root).querySelector('a').focus();
-      } else if (!this.$.menu.opened) {
-        this.$.menu.style.display = '';
       }
     }
   });
