@@ -233,9 +233,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var doc = event.detail.response;
       document.title = doc.title;
       Polymer.dom(this).innerHTML = doc.querySelector('pw-shell').innerHTML;
-      this.async(this._resetScrollPosition);
-      this._tocElement = Polymer.dom(this).querySelector('details');
+
+      // Scroll to an anchor, if we have one.
+      if (window.location.hash) {
+        this._scrollToAnchor();
+      } else {
+        this.async(this._resetScrollPosition);
+      }
+
       // If we're not in a small view, render the TOC as open.
+      this._tocElement = Polymer.dom(this).querySelector('details');
       if (this._tocElement) {
         this._tocElement.open = !this._shouldCollapseToc;
       }
@@ -342,6 +349,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var el = this.querySelector(hash);
         if (el) {
           el.scrollIntoView();
+        } else {
+          var viewer = this.querySelector('iron-doc-viewer');
+          if (viewer)
+            viewer.scrollToAnchor(hash);
         }
       }
     },
