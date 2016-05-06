@@ -8,7 +8,6 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../bower_components/paper-styles/typography.html">
 <link rel="import" href="icons.html">
@@ -195,12 +194,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     attached: function() {
-      this.addEventListener('toggle-dev-menu', this._toggleMenu.bind(this));
-
-      Polymer.RenderStatus.afterNextRender(this, function() {
-        this.$.menu.addEventListener('transitionend', this._transitionend.bind(this));
-      });
-
       // Compute the active page from the parent pw-shell's carbon route.
       var pwShell = this.parentElement;
       if (pwShell) {
@@ -211,16 +204,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           path += 'index';
         }
         this.activePage = path;
-      }
-    },
-
-    _toggleMenu: function() {
-      // If we are closing the menu, then pre-show the rest of the content
-      // so that we don't flash the footer first.
-      if (this.$.menu.opened) {
-        this.$.content.hidden = false;
-      } else {
-        this.$.menu.style.display = 'block';
       }
     },
 
