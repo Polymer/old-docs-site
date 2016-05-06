@@ -21,7 +21,7 @@ To add a documentation page to an existing project that _didn't_ start from
 `seed-element`:
 
 1.  Add `iron-component-page` to your project as a development dependency:
-    
+
     ```
     bower install --save-dev PolymerElements/iron-component-page
     ```
@@ -256,7 +256,7 @@ MyBehaviors.HighlightStuff = { ... }
 ```
 
 When extending a behavior, you place the _new_ functionality
-in an implementation object as described in [Extending behaviors](https://www.polymer-project.org/1.0/docs/devguide/behaviors.html#extending).
+in an implementation object as described in [Extending behaviors](/1.0/docs/devguide/behaviors.html#extending).
 
 The implementation object **must** be named with the behavior name followed
 by `Impl`, and it must be annotated with `@polymerBehavior` _followed by
@@ -278,7 +278,7 @@ object. It must also be annotated with `@polymerBehavior`:
 /**
  * @polymerBehavior
  */
-MyBehaviors.SuperBehavior = 
+MyBehaviors.SuperBehavior =
     [MyBehaviors.BaseBehavior, MyBehaviors.SuperBehaviorImpl]
 ```
 

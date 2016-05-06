@@ -97,7 +97,7 @@ When using native shadow DOM, extension of native elements can have
 unexpected behavior and is sometimes not permitted. Test your element with
 native shadow DOM enabled to catch any problems during development.
 For information on enabling native shadow DOM, see
-[Global Polymer settings](https://www.polymer-project.org/1.0/docs/devguide/settings.html).
+[Global Polymer settings](settings.html).
 </div>
 
 To extend a native HTML element, set the `extends` property on your prototype to
@@ -410,7 +410,7 @@ and `registered`.
 
 Use the `beforeRegister` callback to transform an element's prototype before
 registration. This is useful when registering an element using an ES6 class,
-as described in the article, [Building web components using ES6 classes](../../articles/es6.html).
+as described in the article, [Building web components using ES6 classes](/1.0/blog/es6).
 
 You can implement the `registered` callback to perform one-time initialization
 when an element is registered. This is primarily useful when implementing
