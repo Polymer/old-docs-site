@@ -48,9 +48,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     {% include 'templates/site-nav.html' %}
 
     {% if markdown %}
-      <devguide-shell markdown page-title="{{{title}}}" active-page="{{{link}}}">
+      <devguide-shell markdown page-title="{{{title}}}">
     {% else %}
-      <devguide-shell active-page="index">
+      <devguide-shell>
     {% endif %}
 
       {% if nav %}
@@ -60,7 +60,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           {% elif 'spacer' in item %}
             <div class="sidenav-content sidenav-spacer"></div>
           {% else %}
-            <a class="sidenav-content {{{item.indent}}}" name="{{{item.name}}}" href="{{{item.path}}}">{{{item.title}}}</a>
+            <a class="sidenav-content {{{item.indent}}}" name="{{{item.path}}}" href="{{{item.path}}}">{{{item.title}}}</a>
           {% endif %}
         {% endfor %}
       {% endif %}

@@ -184,6 +184,43 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        */
       activePage: {
         type: String
+      },
+
+      /**
+       * True if this is a mobile view.
+       */
+      _isMobileView: {
+        observer: '_mobileViewChanged'
+      }
+    },
+
+    attached: function() {
+      this.addEventListener('toggle-dev-menu', this._toggleMenu.bind(this));
+
+      Polymer.RenderStatus.afterNextRender(this, function() {
+        this.$.menu.addEventListener('transitionend', this._transitionend.bind(this));
+      });
+
+      // Compute the active page from the parent pw-shell's carbon route.
+      var pwShell = this.parentElement;
+      if (pwShell) {
+        var path = pwShell._sectionRoute.path;
+        // If it ends in a /, then it's a top level path like /1.0/tools/,
+        // so add an index to it.
+        if (path.charAt(path.length - 1) === '/') {
+          path += 'index';
+        }
+        this.activePage = path;
+      }
+    },
+
+    _toggleMenu: function() {
+      // If we are closing the menu, then pre-show the rest of the content
+      // so that we don't flash the footer first.
+      if (this.$.menu.opened) {
+        this.$.content.hidden = false;
+      } else {
+        this.$.menu.style.display = 'block';
       }
     },
 
