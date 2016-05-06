@@ -48,34 +48,41 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- Because we want the styles to be loaded when the pw-shell changes its
       content, they need to be here, and not in the <head> -->
     <style>
-      .centered {
-        padding: 40px 20px;
+      section.blue h3 {
+        font-size: 34px;  /* Needed because the page.md style overiddes this */
+      }
+
+      h2.smaller {
+        font-size: 20px;
+      }
+
+      google-youtube {
+        margin-right: 40px;
+      }
+
+      @media (max-width: 767px) {
+        google-youtube {
+          margin-right: 0px;
+        }
       }
 
       .article {
-        margin-bottom: 2em;
+        margin-bottom: 40px;
       }
 
-      .article .byline {
-        font-size: smaller;
-        color: #757575;
-      }
-
-      .author {
-        margin-bottom: 20px;
-      }
-
-      .byline.author img {
-        vertical-align: middle;
-        width: 25px;
-        height: 25px;
+      .article-body {
+        font-size: 16px;
+        padding-top: 20px;
       }
 
       .author img {
+        font-size: smaller;
+        color: #757575;
         border-radius: 50%;
         margin-right: 5px;
-        height: 50px;
-        width: 50px;
+        vertical-align: middle;
+        width: 25px;
+        height: 25px;
       }
 
       .author > p {
@@ -83,50 +90,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin: 0;
       }
 
-      .forversion {
-        float: right;
-        font-style: italic;
-      }
-
-      .centered {
-        max-width: 800px;
+      .article-body main {
+        background: white;
+        max-width: 900px;
         margin: 0 auto;
       }
 
-      section.blue {
-        padding: 20px 0;
-      }
-
-      section.blue a {
-        color: white;
-      }
-
-      .article-body {
-        background-color: #fafafa;
-        padding: 40px 0;
-      }
-
-      /* Override style from page-md.css */
-      main {
-        padding: 0 !important;
-      }
-
-      .centered {
-        max-width: 1000px;
-      }
-
-      article {
-        padding-left: 20px;
-        padding-right: 20px;
-      }
-
       @media (max-width: 767px) {
-        .centered {
-          padding: 20px;
+        section.blue h3 {
+          font-size: 18px;  /* Needed because the page.md style overiddes this */
         }
       }
 
       @media (max-width: 1000px) {
+        .article-body {
+          padding: 0;
+        }
         details {
           padding-left: 20px;
         }
@@ -134,49 +113,69 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     {% if markdown %}
-    <section class="blue">
-      <div class="centered">
+    <!-- Single blog post page -->
+    <section class="short blue gradient-light">
+      <div>
         <h3>{{{active_article.title}}}</h3>
         <p>{{{active_article.description}}}</p>
 
-        <div class="byline author">
+        <div class="author">
           <p>
             <a href="https://plus.google.com/{{{active_article.author.gplus}}}" target="blank_">
               <img src="{{{active_article.author.profile_pic}}}" alt="{{{active_article.author.full_name}}} profile pic" title="{{{active_article.author.full_name}}}">
             </a>
             <a href="{{{active_article.author.web}}}" target="blank_">{{{active_article.author.full_name}}}</a>
           </p>
-          <p>. Published on <time pubdate="" datetime="{{{active_article.published}}}">{{{active_article.published}}}</time></p>
+          <p>, <time pubdate="" datetime="{{{active_article.published}}}">{{{active_article.published}}}</time></p>
         </div>
       </div>
     </section>
 
-    <div class="article-body">
-      <main class="centered">
+    <section class="light article-body">
+      <main>
         {% block content %}{% endblock %}
       </main>
-    </div>
+    </section>
 
     {% else %}
-    <section class="blue">
-      <div class="centered">
+    <!-- Blog landing page -->
+    <section class="blue short gradient-light">
+      <div>
         <h3>Blog</h3>
         <p>The latest goings-on with the Polymer project and in the community. We'll update the blog to announce major releases and showcase cool stuff being built with Polymer.</p>
       </div>
     </section>
 
-    <div class="centered articles">
-    {% if articles %}
-      {% for item in articles %}
+    <!-- First 3 articles are highlighted -->
+    <section class="light">
+      <div class="section-columns">
+        {% for item in articles[:3] %}
+        <div>
+          <h2 class="smaller underline">{{{item.title}}}</h2>
+          <p>{{{item.description}}}</p>
+          <a href="{{{item.path}}}.html" class="blue-button">Read more</a>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="grey">
+      <div>
+        <h2>Polycasts</h2>
+        <div class="section-columns example-code">
+          <google-youtube video-id="vyph_r8wUpc" autoplay="0" rel="0"></google-youtube>
+          <div>
+            <p>Ready to get your hands dirty and revolutionize the modern web? Join Rob Dodson from the Chrome Developer Relations team as he explores the ins and outs of Polymer, a new library that's pushing the boundaries of what's possible in the browser. Learn about the basic building blocks that make up a Polymer application, and see how to compose those elements into buttery smooth mobile experiences. The future of front end development is all here, on the Polycasts playlist!</p>
+            <a href="https://www.youtube.com/playlist?list=PLOU2XLYxmsII5c3Mgw6fNYCzaWrsM3sMN" class="blue-button">Watch more</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="short">
+      {% for item in articles[3:] %}
       <div class="article">
-        {% if item.polymer_version %}
-        <p><span class="forversion">Polymer v{{{item.polymer_version}}}</span></p>
-        {% else %}
-        <p><span class="forversion">Blog post</span></p>
-        {% endif %}
-        <h2>
-          <a href="{{{item.path}}}.html">{{{item.title}}}</a>
-        </h2>
+        <h2><a href="{{{item.path}}}.html">{{{item.title}}}</a></h2>
         <div class="byline author">
           <p>
             <a href="https://plus.google.com/{{{item.author.gplus}}}" target="blank_">
@@ -189,13 +188,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <p>{{{item.description}}}</p>
       </div>
       {% endfor %}
-    {% endif %}
 
-    <div class="idea">
-      Have an idea for an article? <a href="https://github.com/Polymer/docs/issues/new?labels=article">Suggest it!</a>
-    </div>
-  </div>
-  {% endif %}
+      <div>
+        <h2 class="underline"></h2>
+        <p> Have an idea for an article?
+        <a href="https://github.com/Polymer/docs/issues/new?labels=article">Suggest it!</a>
+        </p>
+      </div>
+    </section>
+
+    {% endif %}
 
   </pw-shell>
   <pw-footer></pw-footer>
