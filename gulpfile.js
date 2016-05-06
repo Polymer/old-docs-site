@@ -45,6 +45,9 @@ let toc = require('toc');
 let AUTOPREFIXER_BROWSERS = ['last 2 versions', 'ios 8', 'Safari 8'];
 
 markdownIt.use(markdownItAttrs);
+// keep markdownIt from escaping template markup.
+markdownIt.normalizeLink = function(link) { return link; }
+markdownIt.validateLink = function(link) { return true; }
 
 function minifyHtml() {
   return $.minifyHtml({quotes: true, empty: true, spare: true});
