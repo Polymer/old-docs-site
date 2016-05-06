@@ -87,7 +87,7 @@ Key information:
 lets you add a <em>scoped</em> DOM tree inside an element, with local styles and
 markup that are decoupled from the rest of the web page. Local DOM is based on
 the proposed Shadow DOM specification, and works with native shadow DOM where available.
-To learn more, see <a href="/1.0/docs/devguide/local-dom.html">Local
+To learn more, see <a href="/1.0/docs/devguide/local-dom">Local
 DOM</a> in the Polymer library docs.
 { .alert .alert-info }
 

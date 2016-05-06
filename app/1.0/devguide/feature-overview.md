@@ -50,32 +50,32 @@ A basic Polymer element definition looks like this:
 
 This guide divides the features into the following groups:
 
-*   [Registration and lifecycle](registering-elements.html). Registering an
+*   [Registration and lifecycle](registering-elements). Registering an
     element associates a class (prototype) with a custom element name. The
     element provides callbacks to manage its lifecycle. Use behaviors to
     share code.
 
-*   [Declared properties](properties.html). Declared properties can be
+*   [Declared properties](properties). Declared properties can be
     configured from markup using attributes. Declared properties can optionally
     support change observers, two-way data binding, and reflection to attributes.
     You can also declare computed properties and read-only properties.
 
-*   [Local DOM](local-dom.html). Local DOM is the DOM created and managed by the element.
+*   [Local DOM](local-dom). Local DOM is the DOM created and managed by the element.
 
-*   [Events](events.html). Attaching event listeners to the host object
+*   [Events](events). Attaching event listeners to the host object
     and local DOM children. Event retargeting.
 
-*   [Data binding](data-binding.html). Property bindings. Binding to attributes.
+*   [Data binding](data-binding). Property bindings. Binding to attributes.
 
-*   [Behaviors](behaviors.html). Behaviors are reusable modules of code that can be
+*   [Behaviors](behaviors). Behaviors are reusable modules of code that can be
     mixed into Polymer elements.
 
-*   [Utility functions](utility-functions.html). Helper methods for common tasks.
+*   [Utility functions](utility-functions). Helper methods for common tasks.
 
-*   [Experimental features and elements](experimental.html). Experimental template and styling features.
+*   [Experimental features and elements](experimental). Experimental template and styling features.
     Feature layering.
 
-If you're migrating an existing 0.5 element to the new APIs, see the [Migration guide](../migration.html)
+If you're migrating an existing 0.5 element to the new APIs, see the [Migration guide](/1.0/docs/migration)
 for advice.
 
-If you're upgrading from the 0.8 release, see the [Release notes](../release-notes.html).
+If you're upgrading from the 0.8 release, see the [Release notes](/1.0/docs/release-notes).

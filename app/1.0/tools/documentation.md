@@ -56,7 +56,7 @@ If you want to document multiple files:
 
 ## View element docs
 
-You can use [`polyserve`](overview.html#polyserve) to preview element docs while
+You can use [`polyserve`](overview#polyserve) to preview element docs while
 you're developing a component.
 
 To view the element docs:
@@ -75,7 +75,7 @@ element, even if you haven't written any doc comments yet.
 If you have multiple elements or behaviors, use the pulldown menu in the top-left
 corner to choose a documentation page.
 
-**Host your API docs.** See [Create a reusable element](../docs/start/reusableelements.html#publish)
+**Host your API docs.** See [Create a reusable element](/1.0/tools/reusableelements#publish)
 for information on publishing an element on GitHub, and hosting its API docs
 using GitHub pages.
 { .alert .alert-info }
@@ -256,7 +256,7 @@ MyBehaviors.HighlightStuff = { ... }
 ```
 
 When extending a behavior, you place the _new_ functionality
-in an implementation object as described in [Extending behaviors](/1.0/docs/devguide/behaviors.html#extending).
+in an implementation object as described in [Extending behaviors](/1.0/docs/devguide/behaviors#extending).
 
 The implementation object **must** be named with the behavior name followed
 by `Impl`, and it must be annotated with `@polymerBehavior` _followed by

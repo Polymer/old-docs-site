@@ -64,7 +64,7 @@ Under shady DOM, the `<content>` tag doesn't appear in the DOM tree. Styles are 
 This implies:
 
 *   You must have a selector to the left of the `::content` pseudo-element.
- 
+
     ```css
     :host ::content div
     ```
@@ -709,7 +709,7 @@ Polymer element, you may notice that styles on the element do not update
 properly.
 
 The correct way to add DOM nodes to a Polymer element's local DOM is via
-the Polymer [DOM API](local-dom.html#dom-api). This API lets you manipulate
+the Polymer [DOM API](local-dom#dom-api). This API lets you manipulate
 nodes in a way that respects the local DOM and ensures that styles are
 updated properly.
 

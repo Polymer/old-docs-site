@@ -46,30 +46,30 @@ The Polymer micro layer provides bare-minimum Custom Element sugaring.
 
 | Feature | Usage
 |---------|-------
-| [Custom element constructor](registering-elements.html#element-constructor) | Polymer.Class({ … });
-| [Custom element registration](registering-elements.html#register-element) | Polymer({ is: ‘...’,  … }};
-| [Custom constructor support](registering-elements.html#bespoke-constructor) | constructor: function() { … }
-| [Basic lifecycle callbacks](registering-elements.html#basic-callbacks) | created, attached, detached, attributeChanged
-| [Native HTML element extension](registering-elements.html#type-extension) | extends: ‘…’
-| [Declared properties](properties.html#property-config) | properties: { … }
-| [Attribute deserialization to property](properties.html#attribute-deserialization) | properties: { \<property>: \<Type> }
-| [Static attributes on host](registering-elements.html#host-attributes) | hostAttributes: { \<attribute>: \<value> }
-| [Behaviors](behaviors.html) | behaviors: [ … ]
+| [Custom element constructor](registering-elements#element-constructor) | Polymer.Class({ … });
+| [Custom element registration](registering-elements#register-element) | Polymer({ is: ‘...’,  … }};
+| [Custom constructor support](registering-elements#bespoke-constructor) | constructor: function() { … }
+| [Basic lifecycle callbacks](registering-elements#basic-callbacks) | created, attached, detached, attributeChanged
+| [Native HTML element extension](registering-elements#type-extension) | extends: ‘…’
+| [Declared properties](properties#property-config) | properties: { … }
+| [Attribute deserialization to property](properties#attribute-deserialization) | properties: { \<property>: \<Type> }
+| [Static attributes on host](registering-elements#host-attributes) | hostAttributes: { \<attribute>: \<value> }
+| [Behaviors](behaviors) | behaviors: [ … ]
 
 
 ### Polymer mini features {#polymer-mini}
 
 The Polymer mini layer provides features related to local DOM:
-Template contents cloned into the custom element's local DOM, DOM APIs and 
+Template contents cloned into the custom element's local DOM, DOM APIs and
 tree lifecycle.
 
 | Feature | Usage
 |---------|-------
-| [Template stamping into local DOM](local-dom.html#template-stamping) | \<dom-module>\<template>...\</template>\</dom-module>
-| [DOM distribution](local-dom.html#dom-distribution) | \<content>
-| [DOM API](local-dom.html#dom-api)  | Polymer.dom
-| [Configuring default values](properties.html#configure-values)  | properties: \<prop>: { value: \<primitive>\|\<function> }
-| [Bottom-up callback after configuration](registering-elements.html#ready-method) | ready: function() { … }
+| [Template stamping into local DOM](local-dom#template-stamping) | \<dom-module>\<template>...\</template>\</dom-module>
+| [DOM distribution](local-dom#dom-distribution) | \<content>
+| [DOM API](local-dom#dom-api)  | Polymer.dom
+| [Configuring default values](properties#configure-values)  | properties: \<prop>: { value: \<primitive>\|\<function> }
+| [Bottom-up callback after configuration](registering-elements#ready-method) | ready: function() { … }
 
 <a name="polymer-standard"></a>
 
@@ -79,19 +79,19 @@ The Polymer standard layer adds declarative data binding, events, property notif
 
 | Feature | Usage
 |---------|-------
-| [Automatic node finding](local-dom.html#node-finding) | this.$.\<id>
-| [Event listener setup](events.html#event-listeners)| listeners: { ‘\<node>.\<event>’: ‘function’, ... }
-| [Annotated event listener setup](events.html#annotated-listeners) | \<element on-[event]=”function”>
-| [Property change callbacks](properties.html#change-callbacks) | properties: \<prop>: { observer: ‘function’ }
-| [Annotated property binding](data-binding.html#property-binding) | \<element prop=”{{property\|path}}”>
-| [Property change notification](data-binding.html#property-notification) | properties: { \<prop>: { notify: true } }
-| [Binding to structured data](data-binding.html#path-binding) | \<element prop=”{{obj.sub.path}}”>
-| [Path change notification](data-binding.html#set-path) | set(\<path>, \<value>)
-| [Declarative attribute binding](data-binding.html#attribute-binding) | \<element attr$=”{{property\|path}}”>
-| [Reflecting properties to attributes](properties.html#attribute-reflection) | properties: { \<prop>: { reflectToAttribute: true } }
-| [Computed properties](properties.html#computed-properties) | computed: { \<property>: ‘computeFn(dep1, dep2)’ }
-| [Computed bindings](data-binding.html#annotated-computed) | \<span>{{computeFn(dep1, dep2)}}\</span>
-| [Read-only properties](properties.html#read-only) |  properties: { \<prop>: { readOnly: true } }
-| [Utility functions](utility-functions.html) | toggleClass, toggleAttribute, fire, async, …
-| [Scoped styling](styling.html) | \<style> in \<dom-module>, Shadow-DOM styling rules (:host, ...)
+| [Automatic node finding](local-dom#node-finding) | this.$.\<id>
+| [Event listener setup](events#event-listeners)| listeners: { ‘\<node>.\<event>’: ‘function’, ... }
+| [Annotated event listener setup](events#annotated-listeners) | \<element on-[event]=”function”>
+| [Property change callbacks](properties#change-callbacks) | properties: \<prop>: { observer: ‘function’ }
+| [Annotated property binding](data-binding#property-binding) | \<element prop=”{{property\|path}}”>
+| [Property change notification](data-binding#property-notification) | properties: { \<prop>: { notify: true } }
+| [Binding to structured data](data-binding#path-binding) | \<element prop=”{{obj.sub.path}}”>
+| [Path change notification](data-binding#set-path) | set(\<path>, \<value>)
+| [Declarative attribute binding](data-binding#attribute-binding) | \<element attr$=”{{property\|path}}”>
+| [Reflecting properties to attributes](properties#attribute-reflection) | properties: { \<prop>: { reflectToAttribute: true } }
+| [Computed properties](properties#computed-properties) | computed: { \<property>: ‘computeFn(dep1, dep2)’ }
+| [Computed bindings](data-binding#annotated-computed) | \<span>{{computeFn(dep1, dep2)}}\</span>
+| [Read-only properties](properties#read-only) |  properties: { \<prop>: { readOnly: true } }
+| [Utility functions](utility-functions) | toggleClass, toggleAttribute, fire, async, …
+| [Scoped styling](styling) | \<style> in \<dom-module>, Shadow-DOM styling rules (:host, ...)
 | [General polymer settings](#settings) | \<script> Polymer = { ... }; \</script>

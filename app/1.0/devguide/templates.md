@@ -23,7 +23,7 @@ It adds two properties to the binding scope for each instance:
 *   `index`. The index of `item` in the array. (The `index` value changes if
     the array is sorted or filtered)
 
-The template repeater is a [type-extension custom element](registering-elements.html#type-extension)
+The template repeater is a [type-extension custom element](registering-elements#type-extension)
 that extends the built-in `<template>` element, so it is written as `<template is="dom-repeat">`.
 
 Example:
@@ -55,7 +55,7 @@ Example:
   </script>
 
 </dom-module>
-```    
+```
 
 Notifications for changes to items sub-properties are forwarded to the template
 instances, which update via the normal [structured data notification system
@@ -63,10 +63,10 @@ instances, which update via the normal [structured data notification system
 
 Mutations to the `items` array itself (`push`, `pop`, `splice`, `shift`,
 `unshift`), should be performed using Polymer's
-[array mutation methods](properties.html#array-mutation).
+[array mutation methods](properties#array-mutation).
 These methods ensure that any elements observing the array are kept in sync.
 If you can't avoid using the native `Array.prototype` methods, make sure to
-call [`notifySplices`](properties.html#notifysplices) to ensure that any
+call [`notifySplices`](properties#notifysplices) to ensure that any
 elements watching `items` are properly updated.
 
 ### Handling events in `dom-repeat` templates {#handling-events}
@@ -80,7 +80,7 @@ the repeater adds a `model` property to each event sent to the listener. The `mo
 is the scope data used to generate the template instance, so the item
 data is `model.item`:
 
-```    
+```
 <dom-module id="simple-menu">
 
   <template>
@@ -111,7 +111,7 @@ data is `model.item`:
   </script>
 
 </dom-module>
-```    
+```
 
 The `model` is an instance of `Polymer.Base`, so `set`, `get` and the array
 manipulation methods are all available on the `model` object, and should be used
@@ -166,10 +166,10 @@ isEngineer: function(item) {
 
 Then the `observe` property should be configured as follows:
 
-```    
+```
 <template is="dom-repeat" items="{{employees}}"
     filter="isEngineer" observe="type manager.type">
-```    
+```
 
 Changing a `manager.type` field should now cause the list to be re-sorted:
 
@@ -271,7 +271,7 @@ To access properties from nested `dom-repeat` templates, use the `as` attribute 
 assign a different name for the item property. Use the `index-as` attribute to assign a
 different name for the index property.
 
-```    
+```
 <div> Employee list: </div>
 <template is="dom-repeat" items="{{employees}}" as="employee">
     <div>First name: <span>{{employee.first}}</span></div>
@@ -285,7 +285,7 @@ different name for the index property.
       </div>
     </template>
 </template>
-```    
+```
 
 ### Forcing synchronous renders {#synchronous-renders}
 
@@ -302,9 +302,9 @@ rendering has a performance cost, but can be useful in a few scenarios:
     *outside* the array (sort order or filter criteria, for example).
 
 `render` **only** works with changes made with Polymer's
-[array mutation methods](properties.html#array-mutation).
+[array mutation methods](properties#array-mutation).
 If you or a third-party library mutate the array without Polymer's methods,
-you need to call [`notifySplices`](properties.html#notifysplices) to ensure that any elements
+you need to call [`notifySplices`](properties#notifysplices) to ensure that any elements
 watching the array are properly notified.
 
 ### Improve performance for large lists {#large-list-perf}
@@ -346,7 +346,7 @@ item(s) are kept in sync with items in the `items` array.
 When `multi` is false, `selected` is a property representing the last selected
 item.  When `multi` is true, `selected` is an array of selected items.
 
-```    
+```
 <dom-module id="employee-list">
 
   <template>
@@ -386,7 +386,7 @@ item.  When `multi` is true, `selected` is an array of selected items.
   </script>
 
 </dom-module>
-```    
+```
 
 
 ## Conditional templates {#dom-if}
@@ -407,7 +407,7 @@ guidance on recommended usage of conditional templates.
 
 Example:
 
-```    
+```
 <dom-module id="user-page">
 
   <template>
@@ -432,7 +432,7 @@ Example:
   </script>
 
 </dom-module>
-```    
+```
 
 
 Since it is generally much faster to hide and show elements rather than
@@ -473,7 +473,7 @@ use the `dom-bind` element.  This template immediately stamps its contents
 into the main document. Data bindings in an auto-binding template use the template
 itself as the binding scope.
 
-```    
+```
 <!doctype html>
 <html>
 <head>
@@ -507,7 +507,7 @@ itself as the binding scope.
   });
 </script>
 </html>
-```    
+```
 
 All of the features in `dom-bind` are already available _inside_ a Polymer
 element. **Auto-binding templates should only be used _outside_ of a Polymer element.**

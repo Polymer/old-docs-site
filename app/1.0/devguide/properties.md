@@ -397,8 +397,8 @@ To observe changes in object sub-properties:
 In order for Polymer to properly detect the sub-property change, the
 sub-property must be updated in one of the following two ways:
 
-*   Via a [property binding](data-binding.html#property-binding).
-*   By calling [`set`](data-binding.html#set-path).
+*   Via a [property binding](data-binding#property-binding).
+*   By calling [`set`](data-binding#set-path).
 
 Example:
 
@@ -730,7 +730,7 @@ directly using `addEventListener`.
 
 For more on property change notifications and data binding, see
 [Property change notification and two-way
-binding](data-binding.html#property-notification).
+binding](data-binding#property-notification).
 
 ## Read-only properties
 
@@ -761,7 +761,7 @@ generated setter of the convention <code>_set<var>Property</var>(value)</code>.
 ```
 
 For more on read-only properties and data binding, see
-[Property change notification and two-way binding](data-binding.html#property-notification).
+[Property change notification and two-way binding](data-binding#property-notification).
 
 ## Computed properties
 
@@ -842,7 +842,7 @@ The arguments received by the computing function match those described in the se
 **Note:**
 If you only need a computed property for a data binding, you
 can use a computed binding instead. See
-[Computed bindings](data-binding.html#annotated-computed).
+[Computed bindings](data-binding#annotated-computed).
 { .alert .alert-info }
 
 ## Reflecting properties to attributes
@@ -875,7 +875,7 @@ to the property to be serialized out to an attribute of the same name.
 ### Attribute serialization
 
 When reflecting a property to an attribute or
-[binding a property to an attribute](data-binding.html#attribute-binding),
+[binding a property to an attribute](data-binding#attribute-binding),
 the property value is _serialized_ to the attribute.
 
 By default, values are serialized according to value's  _current_ type

@@ -97,7 +97,7 @@ When using native shadow DOM, extension of native elements can have
 unexpected behavior and is sometimes not permitted. Test your element with
 native shadow DOM enabled to catch any problems during development.
 For information on enabling native shadow DOM, see
-[Global Polymer settings](settings.html).
+[Global Polymer settings](settings).
 </div>
 
 To extend a native HTML element, set the `extends` property on your prototype to
@@ -202,7 +202,7 @@ finished creating and initializing the element's local DOM.
     <td>Called after property values are set and local DOM is initialized.
       <p>Use for one-time configuration of your component after local
         DOM is initialized. (For configuration based on property values, it
-        may be preferable to use an <a href="properties.html#multi-property-observers">observer</a>.)
+        may be preferable to use an <a href="properties#multi-property-observers">observer</a>.)
       </p>
     </td>
   </tr>
@@ -215,7 +215,7 @@ finished creating and initializing the element's local DOM.
         document-level event listeners. (If you use declarative
         event handling, such as <a href="events.html#annotated-listeners">annotated
         event listeners</a> or the
-        <a href="events.html#event-listeners"><code>listeners</code> object</a>,
+        <a href="events#event-listeners"><code>listeners</code> object</a>,
         Polymer automatically adds listeners on attach and removes
         them on detach.)
       </p>
@@ -239,7 +239,7 @@ finished creating and initializing the element's local DOM.
       <p>Use to handle attribute changes that <em>don't</em> correspond to
         declared properties. (For declared properties, Polymer
         handles attribute changes automatically as described in
-        <a href="properties.html#attribute-deserialization">attribute deserialization</a>.)
+        <a href="properties#attribute-deserialization">attribute deserialization</a>.)
       </p>
       <p>Use instead of <code>attributeChangedCallback</code>.
       </p>
@@ -288,7 +288,7 @@ local DOM has been initialized.
 Local DOM is a subtree of elements created and
 managed by your element. It's separate from the element's children,
 which are called _light DOM_ for clarity. For more information, see
-[Local DOM](local-dom.html).
+[Local DOM](local-dom).
 </div>
 
 An element is _ready_ when:
@@ -310,7 +310,7 @@ local DOM when the element is constructed.
     }
 
 <div class="alert alert-error"><strong>Note:</strong>
-This example uses [Automatic node finding](local-dom.html#node-finding) to
+This example uses [Automatic node finding](local-dom#node-finding) to
 access a local DOM element.
 </div>
 
@@ -363,7 +363,7 @@ To avoid timing issues, you can use the following strategies:
     adding and removing menu items with minimal overhead.
 
 *   To react when children are added and removed, use the
-    [`observeNodes` method](local-dom.html#observe-nodes).
+    [`observeNodes` method](local-dom#observe-nodes).
 
 #### Initialization timing for local DOM children
 
@@ -380,7 +380,7 @@ There are two caveats:
 
     If you need to know when a `dom-repeat` or `dom-if` creates or
     removes template instances, listen for its `dom-change` event.
-    See [`dom-change` event](templates.html#dom-change) for details.
+    See [`dom-change` event](templates#dom-change) for details.
 
 *   Polymer guarantees that local DOM children have their `ready` callback called
     before their parent's; however, it cannot guarantee the same thing for the
@@ -414,7 +414,7 @@ as described in the article, [Building web components using ES6 classes](/1.0/bl
 
 You can implement the `registered` callback to perform one-time initialization
 when an element is registered. This is primarily useful when implementing
-[behaviors](behaviors.html).
+[behaviors](behaviors).
 
 ## Static attributes on host
 
@@ -424,7 +424,7 @@ attribute names and values are the values to be assigned.  Values should
 typically be provided as strings, as HTML attributes can only be strings;
 however, the standard `serialize` method is used to convert values to strings,
 so `true` will serialize to an empty attribute, and `false` will result in no
-attribute set, and so forth (see [Attribute serialization](properties.html#attribute-serialization) for more
+attribute set, and so forth (see [Attribute serialization](properties#attribute-serialization) for more
 details).
 
 Example:
@@ -458,7 +458,7 @@ The `class` attribute can't be configured using `hostAttributes`.
 Elements can share code in the form of _behaviors_, which can define
 properties, lifecycle callbacks, event listeners, and other features.
 
-For more information, see [Behaviors](behaviors.html).
+For more information, see [Behaviors](behaviors).
 
 ## Class-style constructor
 

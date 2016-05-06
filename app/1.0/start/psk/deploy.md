@@ -8,7 +8,7 @@ link: psk/deploy
 
 This tutorial teaches you how to deploy your Polymer Starter Kit application.
 
-If you have not completed the [Set up tutorial](set-up.html), do so now
+If you have not completed the [Set up tutorial](set-up), do so now
 before attempting this tutorial.
 
 ## Deploy with Firebase (recommended)

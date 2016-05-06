@@ -12,7 +12,7 @@ This Polymer Starter Kit tutorial teaches you how to:
 *   Route traffic to your new page.
 
 This tutorial assumes you have already completed the
-[Set up tutorial](set-up.html).
+[Set up tutorial](set-up).
 
 ## Serve the app locally
 
