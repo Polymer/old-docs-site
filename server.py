@@ -209,7 +209,7 @@ class Site(http2push.PushHandler):
       full_nav = self.get_site_nav(version)
       nav = self.nav_for_section(version, section)
 
-      if section == 'blog':
+      if section == 'blog' or section == 'index.html':
         articles = self.get_articles(version)
         active_article = self.get_active_article_data(articles, path)
     else:
