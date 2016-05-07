@@ -1,9 +1,19 @@
+/**
+ * Run this script from inside the scripts/ directory because hydrolysis gets grumpy
+ * about relative paths and Mercury being in retrograde.
+ *
+ * Usage:
+ * cd scripts && node generate_api_docs.js
+ */
+
 var hyd = require('hydrolysis');
 var fs = require('fs');
 var exec = require('child_process').exec;
 var escape = require("html-escape");
 
 var apiDocsPath = '../app/1.0/devguide/api/';
+
+// TODO: Check out an actual release SHA to generate docs off of.g
 var releaseSha = 'master'; //'27d90bfaeb13f1d1a822f8a5e6e26a5403f5ed2c';
 
 /**
