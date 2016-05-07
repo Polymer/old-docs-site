@@ -200,7 +200,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var path = pwShell._sectionRoute.path;
         // If it ends in a /, then it's a top level path like /1.0/tools/,
         // so add an index to it.
-        if (path.charAt(path.length - 1) === '/') {
+        if (path[path.length - 1] === '/') {
           path += 'index';
         }
         this.activePage = path;

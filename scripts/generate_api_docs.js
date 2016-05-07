@@ -9,7 +9,7 @@
 var hyd = require('hydrolysis');
 var fs = require('fs');
 var exec = require('child_process').exec;
-var escape = require("html-escape");
+var escape = require('html-escape');
 
 var apiDocsPath = '../app/1.0/devguide/api/';
 
@@ -29,7 +29,7 @@ cleanUp(installPolymer);
 
 function cleanUp(callback) {
   var command = 'rm -rf ./temp';
-  console.log('Running ' + command + '...');
+  console.log(`Running ${command}...`);
 
   exec(command, callback);
 }
@@ -37,15 +37,15 @@ function cleanUp(callback) {
 function installPolymer() {
   console.log('Done.');
   var command = 'git clone https://github.com/Polymer/polymer.git temp';
-  console.log('Running ' + command + '...');
+  console.log(`Running ${command}...`);
 
   exec(command, runHydrolysis);
 }
 
 function generateDocs() {
   console.log('Done.');
-  var command = 'rm ' + apiDocsPath + '*.html';
-  console.log('Running ' + command + '...');
+  var command = `rm ${apiDocsPath}*.html`;
+  console.log(`Running ${command}...`);
   exec(command, runHydrolysis);
 }
 
@@ -63,17 +63,17 @@ function runHydrolysis() {
       for (var i = 0; i < sections.length; i++) {
         var sectionName = sections[i]['is'];
         var filename = apiDocsPath + sectionName + '.html';
-        console.log('Generating ' + filename);
+        console.log(`Generating ${filename}...`);
 
         var section = cleanUpSectionDocs(sections[i]);
         var json = escape(JSON.stringify(section));
 
         var fileContents =
-            '{% extends "templates/base-devguide.html" %}' +
-            '{% block title %} API Reference - ' + sectionName + '{% endblock %}' +
-            '{% block content %}' +
-            '<iron-doc-viewer>' + json + '</iron-doc-viewer>' +
-            '{% endblock %}';
+            `{% extends "templates/base-devguide.html" %}
+            {% block title %} API Reference - ${sectionName}{% endblock %}
+            {% block content %}
+            <iron-doc-viewer>${json}</iron-doc-viewer>
+            {% endblock %}`;
 
         fs.writeFileSync(filename, fileContents);
         console.log('Done.');
@@ -90,10 +90,10 @@ function runHydrolysis() {
 
 function cleanUpSectionDocs(section) {
   section.scriptElement = undefined;
-  section.behaviors && section.behaviors.forEach(function(behavior){
+  section.behaviors && section.behaviors.forEach(function(behavior) {
     behavior.javascriptNode = undefined;
   });
-  section.properties && section.properties.forEach(function(property){
+  section.properties && section.properties.forEach(function(property) {
     property.javascriptNode = undefined;
   });
   return section;
