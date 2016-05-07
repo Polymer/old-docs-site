@@ -160,9 +160,9 @@
     <div class="getting-started-wrapper section-columns">
       <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
       <div class="getting-started-links layout vertical">
-        <a href="" class="blue-button vertical">Your first element</a>
-        <a href="" class="blue-button vertical">Your first app</a>
-        <a href="" class="blue-button vertical">Using the tools</a>
+        <a href="/1.0/start/first-element/intro" class="blue-button vertical">Your first element</a>
+        <a href="/1.0/start/psk/set-up" class="blue-button vertical">Your first app</a>
+        <a href="/1.0/tools/" class="blue-button vertical">Using the tools</a>
       </div>
     </div>
   </div>
@@ -173,13 +173,13 @@
     <div class="flex">
       <h2 class="underline">Library</h2>
       <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
-      <a href="" class="blue-button">Browse library</a>
+      <a href="/1.0/devguide/feature-overview" class="blue-button">Browse library</a>
     </div>
 
     <div class="flex">
       <h2 class="underline">Components</h2>
       <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
-      <a href="" class="blue-button">Browse components</a>
+      <a href="https://elements.polymer-project.org/" class="blue-button">Browse components</a>
     </div>
   </div>
 </section>
@@ -219,24 +219,19 @@
     <div class="flex-3">
       <h2 class="underline">Articles</h2>
       <p>Core concepts of build apps on top of Polymer and web components. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam.</p>
-      <a href="" class="blue-button">View all</a>
+      <a href="/1.0/blog/" class="blue-button">View all</a>
     </div>
 
     <div class="right flex-2">
       <h2 class="underline">Recent posts</h2>
       <br>
+
+      {% for item in articles[:2] %}
       <div class="post">
-        <a href="" class="post-title">Building web components using ES6 classes</a>
-        <p>How to build vanilla custom elements and Polymer elements using ES2015 features.</p>
+        <a href="{{{item.path}}}" class="post-title">{{{item.title}}}</a>
+        <p>{{{item.description}}}</p>
       </div>
-      <div class="post">
-        <a href="" class="post-title">What is shady DOM?</a>
-        <p>Why do we need a new kind of DOM?</p>
-      </div>
-      <div class="post">
-        <a href="" class="post-title">Using Polymer in WebView</a>
-        <p>How to build a mobile Polymer app that runs in a WebView.</p>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
