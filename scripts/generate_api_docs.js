@@ -15,21 +15,21 @@ var releaseSha = 'master'; //'27d90bfaeb13f1d1a822f8a5e6e26a5403f5ed2c';
  * - generate the files in ../app/1.0/devguide/api/
  */
 
-deleteBowerTempDirectory(bowerInstallPolymer);
+cleanUp(installPolymer);
 
-function deleteBowerTempDirectory(callback) {
+function cleanUp(callback) {
   var command = 'rm -rf ./temp';
   console.log('Running ' + command + '...');
 
   exec(command, callback);
 }
 
-function bowerInstallPolymer() {
+function installPolymer() {
   console.log('Done.');
-  var command = 'bower cache clean --config.cwd=./temp && bower install polymer/polymer --config.cwd=./temp';
+  var command = 'git clone https://github.com/Polymer/polymer.git temp';
   console.log('Running ' + command + '...');
 
-  exec(command, generateDocs);
+  exec(command, runHydrolysis);
 }
 
 function generateDocs() {
@@ -42,9 +42,10 @@ function generateDocs() {
 function runHydrolysis() {
   console.log('Done.');
 
-  hyd.Analyzer.analyze('./temp/bower_components/polymer/polymer.html')
+  hyd.Analyzer.analyze('temp/polymer.html')
     .then(function(analyzer) {
       console.log('Analyzer done');
+
       // Polymer has both elements and behaviours, so get both.
       var sections = analyzer.elements;
       sections = sections.concat(analyzer.behaviors);
@@ -68,8 +69,7 @@ function runHydrolysis() {
         console.log('Done.');
       }
 
-      // Clean up
-      deleteBowerTempDirectory(function() {
+      cleanUp(function() {
         console.log('Done.');
         console.log('\nAPI docs completed with great success');
       });
