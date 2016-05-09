@@ -14,6 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/carbon-route/carbon-location.html">
 <link rel="import" href="../bower_components/carbon-route/carbon-route.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
@@ -210,8 +211,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           return;
 
         // FF uses document.documentElement.scrollTop not document.body.scrollTop.
+        console.log(document.body.scrollTop);
         this.toggleClass('fixed',
-            Math.max(document.body.scrollTop, document.documentElement.scrollTop) > 280,
+            Math.max(document.body.scrollTop, document.documentElement.scrollTop) > 200,
             this._tocElement);
       }.bind(this));
     },
@@ -248,11 +250,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       // If there's two links matching this path (i.e. because there's no landing
       // page for a section), and pick the deepest link to highlight.
-      var matchingLinks = this.querySelectorAll('a[name="' + this._sectionRoute.path +'"]');
+      var matchingLinks = this.querySelectorAll('a.site-nav[name="' + this._sectionRoute.path +'"]');
       var activeLink = matchingLinks[matchingLinks.length - 1];
 
-      this.toggleClass('iron-selected', true, activeLink);
-      this.styleLinkPath(activeLink, true);
+      if (activeLink) {
+        this.toggleClass('iron-selected', true, activeLink);
+        this.styleLinkPath(activeLink, true);
+      }
     },
 
     styleLinkPath: function(link, opened) {

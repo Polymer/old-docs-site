@@ -117,7 +117,7 @@ section {
     a {
       color: white;
     }
-    
+
     .blue-button {
       color: #1e88e5;
       background: white;
@@ -163,11 +163,11 @@ section {
 }
 
 h2 {
-  font-size: 25px;
+  font-family: 'Roboto Slab', 'Roboto', 'Noto', sans-serif;
+  font-size: 24px;
   line-height: 38px;
-  font-weight: 400;
-  margin: 0;
-  padding: 0;
+  font-weight: 700;
+  margin: 10px 0;
 
   @media (max-width: $mobile-media-breakpoint) {
     font-size: $font-size-medium;

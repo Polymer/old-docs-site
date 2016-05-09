@@ -36,6 +36,8 @@ main {
 article {
   min-width: 0;    /* For some reason, this is non-0 */
   max-width: 800px;
+  flex: 1;
+  flex-basis: 0;
 }
 
 .details-wrapper {
@@ -46,7 +48,7 @@ article {
 
   ul {
     list-style-type: none;
-    font-size: 15px;
+    font-size: 14px;
     margin: 0;
   }
 
@@ -56,14 +58,15 @@ article {
 
     a {
       color: black;
+      font-weight: 500;
     }
   }
 
   ul[data-depth="2"] {
-    padding: 0 15px;
-
+    font-weight: 300;
+    padding: 0 20px;
     a {
-    color: #999;
+      font-weight: 300;
     }
   }
 
@@ -75,6 +78,12 @@ article {
 
 details {
   will-change: transform;
+
+  summary {
+    font-size: 14px;
+    line-height: 0;
+  }
+  
   summary::-webkit-details-marker {
     display: none;
     @media (max-width: 1000px) {
@@ -110,10 +119,11 @@ h1 {
 
 h2 {
   border-bottom: 1px solid #f52757;
-  margin: 20px 0;  
+  margin: 20px 0;
 }
 
 h3 {
+  font-family: 'Roboto Slab', 'Roboto', 'Noto', sans-serif;
   font-size: 24px;
 
   @media (max-width: 500px) {

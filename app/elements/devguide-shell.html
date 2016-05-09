@@ -39,12 +39,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       header {
         background: #1565c0;
         color: white;
-        padding: 30px;
+        padding: 30px 40px;
       }
 
       header h2 {
+        font-family: 'Roboto Slab', 'Roboto', 'Noto', sans-serif;
         font-size: 32px;
-        font-weight: 400;
+        font-weight: 700;
         border-bottom: none;
       }
 
@@ -53,31 +54,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         @apply(--paper-font-common-base);
       }
 
-      iron-selector ::content a {
-        color: #999;
-        font-size: 16px;
-        font-weight: 400;
+      iron-selector ::content a,
+      iron-selector ::content .sidenav-header {
+        font-size: 15px;
         line-height: 24px;
         display: block;
-        text-decoration: none;
         padding: 5px 30px;
         /* The active links will have a pink border. */
         border-left: 4px solid transparent;
       }
 
+      iron-selector ::content a {
+        color: #999;
+        font-weight: 400;
+        text-decoration: none;
+      }
+
       iron-selector ::content .sidenav-header {
-        padding: 20px 30px 0 30px;
-        margin-top: 15px;
-        text-transform: uppercase;
-        font-size: 13px;
+        font-family: 'Roboto Slab', 'Roboto', 'Noto', sans-serif;
+        padding-top: 15px;
         font-weight: bold;
         /* The active links will have a pink border. */
         border-left: 4px solid transparent;
-        border-top: 1px solid #ddd;
       }
 
-      iron-selector ::content .sidenav-spacer {
-        margin: 15px 0;
+      iron-selector ::content .sidenav-endheader {
+        margin-top: 15px;
         border-bottom: 1px solid #ddd;
       }
 
@@ -109,7 +111,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         header {
-          padding: 8px 30px;
+          padding: 20px;
         }
 
         header p {
@@ -132,8 +134,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="content-container">
       <header hidden$="[[!markdown]]">
-        Developer Guide > {{pageTitle}}
-
         <h2>{{pageTitle}}</h2>
 
         <a class="edit-on-github" target="_blank"
