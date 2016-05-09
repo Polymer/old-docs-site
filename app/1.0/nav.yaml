@@ -133,7 +133,6 @@
     path: /1.0/docs/tools/reusable-elements
   - endheader: True
 
-
 - section: App Toolbox
   shortpath: toolbox
   path: /1.0/toolbox/
