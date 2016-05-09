@@ -26,7 +26,7 @@ It adds two properties to the binding scope for each instance:
 The template repeater is a [type-extension custom element](registering-elements.html#type-extension)
 that extends the built-in `<template>` element, so it is written as `<template is="dom-repeat">`.
 
-Example:
+Example: { .caption }
 
 ```
 <dom-module id="employee-list">
@@ -405,7 +405,7 @@ elements are destroyed and re-stamped each time.
 The following is a simple example to show how conditional templates work. Read below for
 guidance on recommended usage of conditional templates.
 
-Example:
+Example: { .caption }
 
 ```    
 <dom-module id="user-page">

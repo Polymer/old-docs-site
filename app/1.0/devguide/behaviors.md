@@ -40,7 +40,7 @@ To define a behavior, create a JavaScript object that you can reference from you
 The following example simply adds `HighlightBehavior` to the global scope:
 
 
-`highlight-behavior.html`:
+`highlight-behavior.html`: { .caption }
 
 ```
 <script>
@@ -75,7 +75,7 @@ The following example simply adds `HighlightBehavior` to the global scope:
 </script>
 ```
 
-`my-element.html`:
+`my-element.html`: { .caption }
 ```
 <link rel="import" href="highlight-behavior.html">
 

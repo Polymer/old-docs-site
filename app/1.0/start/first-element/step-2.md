@@ -31,7 +31,7 @@ up in the demo.
 Start by taking a look at the existing code:
 
 
-#### Starting code—HTML imports
+Starting code—HTML imports { .caption }
 
 ```html
 <link rel="import" href="../polymer/polymer.html">
@@ -51,9 +51,7 @@ on HTML5Rocks.com for an in-depth discussion of HTML Imports.
 
 Next is the definition of the element itself:
 
-#### Starting code—local DOM template
-
-
+Starting code—local DOM template { .caption }
 
 ```html
 <dom-module id="icon-toggle">
@@ -96,8 +94,7 @@ element. If the element has a `<dom-module>`, this script is usually placed
 <em>inside</em> the `<dom-module>` to keep everything together.
 
 
-#### Starting code—element registration
-
+Starting code—element registration { .caption }
 
 ```html
   <script>
@@ -124,8 +121,7 @@ useful to its local DOM template.
 
 Find the `<span>` below the  `local DOM goes here` comment:
 
-#### icon-toggle.html—before
-
+icon-toggle.html—before { .caption }
 
 ```html
     <!-- local DOM goes here -->
@@ -135,8 +131,7 @@ Find the `<span>` below the  `local DOM goes here` comment:
 
  Replace the `<span>` and its contents with the `<iron-icon>` tag below:
 
-#### icon-toggle.html—after
-
+icon-toggle.html—after { .caption }
 
 ```html
     <!-- local DOM goes here -->
@@ -156,8 +151,7 @@ There are a number of new CSS selectors to work with local DOM. The `icon-toggle
 
 To style the `<iron-icon>` element, add the following CSS inside the `<style>` tag after the existing content:
 
-#### icon-toggle.html
-
+icon-toggle.html { .caption }
 
 ```html
     <style>
@@ -189,8 +183,7 @@ Key information:
 
 Your custom element definition should now look like this:
 
-#### icon-toggle.html
-
+icon-toggle.html { .caption }
 
 ```html
 <link rel="import" href="../polymer/polymer.html">

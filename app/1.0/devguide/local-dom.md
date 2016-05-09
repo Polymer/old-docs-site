@@ -14,26 +14,26 @@ that support shadow DOM, shadow DOM may be used to create local DOM. On other
 supported browsers, Polymer provides local DOM via a custom
 implementation called _shady DOM_ which is inspired by shadow DOM.
 
-Shady DOM requires you to use the [Polymer DOM API](#dom-api) 
-when manipulating DOM from JavaScript. This interface covers most of the 
-common DOM methods and properties, and is compatible with both shady DOM and 
+Shady DOM requires you to use the [Polymer DOM API](#dom-api)
+when manipulating DOM from JavaScript. This interface covers most of the
+common DOM methods and properties, and is compatible with both shady DOM and
 native shadow DOM.
 
 
-**Note:** Currently Polymer uses shady DOM by default on all 
-browsers. To opt-in to using shadow DOM where available, see [Global 
+**Note:** Currently Polymer uses shady DOM by default on all
+browsers. To opt-in to using shadow DOM where available, see [Global
 settings](settings).
 {.alert .alert-info}
 
 
 ## Local DOM template {#template-stamping}
 
-To specify DOM to use for an element's local DOM, use the `<dom-module>` 
+To specify DOM to use for an element's local DOM, use the `<dom-module>`
 element. Give the `<dom-module>` an `id` attribute that matches its element's
-`is` property and put a `<template>` inside the `<dom-module>`. Polymer will 
+`is` property and put a `<template>` inside the `<dom-module>`. Polymer will
 automatically clone this template's contents into the element's local DOM.
 
-Example:
+Example: { .caption }
 
 ```html
 <dom-module id="x-foo">
@@ -49,10 +49,10 @@ Example:
 </dom-module>
 ```
 
-We say that an element definition has an imperative and declarative portion. 
-The imperative portion is the call to `Polymer({...})`, and the declarative 
-portion is the `<dom-module>` element. The imperative and declarative portions 
-of an element's definition may be placed in the same html file or in separate 
+We say that an element definition has an imperative and declarative portion.
+The imperative portion is the call to `Polymer({...})`, and the declarative
+portion is the `<dom-module>` element. The imperative and declarative portions
+of an element's definition may be placed in the same html file or in separate
 files.
 
 The `<script>` tag can be inside or outside of the `<dom-module>` element.
@@ -60,8 +60,8 @@ The `<script>` tag can be inside or outside of the `<dom-module>` element.
 The element’s template must be parsed before the call to Polymer.
 
 
-**Note:** Elements should generally be defined outside of the main document, 
-except for testing. For caveats about defining elements in the main document, 
+**Note:** Elements should generally be defined outside of the main document,
+except for testing. For caveats about defining elements in the main document,
 see [main document definitions][mdd].
 {.alert .alert-info}
 
@@ -70,9 +70,9 @@ see [main document definitions][mdd].
 
 ## Automatic node finding {#node-finding}
 
-Polymer automatically builds a map of statically created 
-instance nodes in  its local DOM, to provide convenient access to frequently 
-used nodes without the need to query for them manually. Any node specified in 
+Polymer automatically builds a map of statically created
+instance nodes in  its local DOM, to provide convenient access to frequently
+used nodes without the need to query for them manually. Any node specified in
 the element's template with an `id` is stored on the `this.$` hash by `id`.
 
 
@@ -82,7 +82,7 @@ the element's template with an `id` is stored on the `this.$` hash by `id`.
 (that is, the nodes defined in the element's outermost template).
 {.alert .alert-info}
 
-Example:
+Example: { .caption }
 
 ```html
 <dom-module id="x-custom">
@@ -108,12 +108,12 @@ Example:
 </dom-module>
 ```
 
-For locating dynamically-created nodes in your element's local DOM, use 
+For locating dynamically-created nodes in your element's local DOM, use
 the `$$` method:
 
 <code>this.$$(<var>selector</var>)</code>
 
-`$$` returns the first node in the local DOM that matches 
+`$$` returns the first node in the local DOM that matches
 <code><var>selector</var></code>.
 
 
@@ -125,7 +125,7 @@ point at which an element's light DOM is combined with its local DOM. The
 `<content>` element supports a `select` attribute which filters nodes via a
 simple selector.
 
-Example:
+Example: { .caption }
 
 ```html
 <template>
@@ -135,24 +135,24 @@ Example:
 </template>
 ```
 
-In shadow DOM, the browser maintains separate light DOM and shadow DOM trees, 
+In shadow DOM, the browser maintains separate light DOM and shadow DOM trees,
 and creates a merged view (the _composed tree_) for rendering purposes.
 
-In shady DOM, Polymer maintains its own light DOM and shady 
+In shady DOM, Polymer maintains its own light DOM and shady
 DOM trees. The document's DOM tree is effectively the composed tree.
 
 
 ## DOM API {#dom-api}
 
-Polymer provides a custom API for manipulating DOM such that local DOM and 
+Polymer provides a custom API for manipulating DOM such that local DOM and
 light DOM trees are properly maintained.
 
 
-**Note:** All DOM manipulation must use this API, as opposed to DOM API 
+**Note:** All DOM manipulation must use this API, as opposed to DOM API
 directly on nodes.
 {.alert .alert-error}
 
-These methods and properties have the same signatures as their standard DOM 
+These methods and properties have the same signatures as their standard DOM
 equivalents, with the following exceptions:
 
 *   **`Array` not `NodeList`**. Properties and methods that return a list
@@ -164,8 +164,8 @@ equivalents, with the following exceptions:
 
 *   **Async operations.** Insert, append, and remove operations are
     transacted lazily in certain cases for performance.  In order to
-    interrogate the DOM (for example, `offsetHeight`, `getComputedStyle`, 
-    etc.) immediately after one of these operations, call 
+    interrogate the DOM (for example, `offsetHeight`, `getComputedStyle`,
+    etc.) immediately after one of these operations, call
     `Polymer.dom.flush()` first.
 
 The following methods and properties are provided.
@@ -177,9 +177,9 @@ Adding and removing children:
 *   `Polymer.dom(parent).removeChild(node)`
 *   `Polymer.dom.flush()`
 
-Calling `append`/`insertBefore` adds the node to <var>parent</var>'s 
-_light DOM_.  In order to insert/append into the local DOM of a custom 
-element, use a node in the local DOM as a parent (or `this.root`, which is 
+Calling `append`/`insertBefore` adds the node to <var>parent</var>'s
+_light DOM_.  In order to insert/append into the local DOM of a custom
+element, use a node in the local DOM as a parent (or `this.root`, which is
 the root of the local DOM).
 
 Parent and child APIs:
@@ -227,7 +227,7 @@ distribution.
 ### Work with local DOM
 
 Every Polymer element has a `this.root` property which is the
-root of its local DOM tree. You can manipulate the tree using `Polymer.dom` 
+root of its local DOM tree. You can manipulate the tree using `Polymer.dom`
 methods:
 
 ```js
@@ -241,7 +241,7 @@ var beforeNode = Polymer.dom(this.root).childNodes[0];
 Polymer.dom(this.root).insertBefore(toLocal, beforeNode);
 ```
 
-You can use the [automatic node finding](#node-finding) feature to locate 
+You can use the [automatic node finding](#node-finding) feature to locate
 local DOM nodes:
 
 ```js
@@ -249,7 +249,7 @@ var item = document.createElement('li');
 Polymer.dom(this.$.list).appendChild(item);
 ```
 
-You can also locate nodes in the local DOM using `querySelector`, 
+You can also locate nodes in the local DOM using `querySelector`,
 `querySelectorAll`, or the `$$` utility method:
 
 ```js
@@ -266,12 +266,12 @@ When creating a custom element that can take light DOM children, you
 frequently need to interact with  your child nodes imperatively.
 
 An element can access its light DOM children using `Polymer.dom(this).children`
-and similar properties and methods. However, most of the time you want to be 
+and similar properties and methods. However, most of the time you want to be
 aware of how light DOM children are distributed to insertion points.
 
 If your element has local DOM and contains one or more insertion points
-(`<content>` tags), you can query the set of [_distributed child 
-nodes_](#distributed-children) that are being distributed to a given insertion 
+(`<content>` tags), you can query the set of [_distributed child
+nodes_](#distributed-children) that are being distributed to a given insertion
 point.
 
 In some cases, distributed nodes might not be what you want. For example:
@@ -282,9 +282,9 @@ In some cases, distributed nodes might not be what you want. For example:
 *   You want to see all of your child nodes, regardless of what insertion
     point they've been distributed to.
 
-In these cases, you simply want a list of the element's children. The 
-[_effective children_ APIs](#effective-children) are a useful way of accessing 
-light DOM children regardless of whether they're being distributed to 
+In these cases, you simply want a list of the element's children. The
+[_effective children_ APIs](#effective-children) are a useful way of accessing
+light DOM children regardless of whether they're being distributed to
 insertion points in your element.
 
 ```html
@@ -399,7 +399,7 @@ Use the DOM API's `observeNodes` method to track when children are added and
 removed from your element:
 
 ```js
-this._observer = 
+this._observer =
     Polymer.dom(this.$.contentNode).observeNodes(function(info) {
   this.processNewNodes(info.addedNodes);
   this.processRemovedNodes(info.removedNodes);
@@ -433,8 +433,8 @@ A few notes on `observeNodes`:
     this._observer = Polymer.dom(this.$.content).observeNodes(_childrenChanged);
     ```
 
-    The callback is invoked with `this.$.content` as the `this` value. If you 
-    want to use the custom element as the `this` value, you need to bind the 
+    The callback is invoked with `this.$.content` as the `this` value. If you
+    want to use the custom element as the `this` value, you need to bind the
     callback:
 
     ```js
@@ -462,26 +462,26 @@ A few notes on `observeNodes`:
 
 #### Why not just a mutation observer?
 
-If you're familiar with mutation observers, you may wonder why you can't just 
+If you're familiar with mutation observers, you may wonder why you can't just
 use a mutation observer to handle DOM changes.
 
-For the simple case, you can use a mutation observer to detect when children 
-are added or removed from your element. However, mutation observers have the 
-same limitation as the `children` list: they don't reflect local DOM 
-distributions. In the case of the `<popup-carousel>` example, adding a child 
-to `<popup-carousel>` wouldn't trigger a mutation observer on 
+For the simple case, you can use a mutation observer to detect when children
+are added or removed from your element. However, mutation observers have the
+same limitation as the `children` list: they don't reflect local DOM
+distributions. In the case of the `<popup-carousel>` example, adding a child
+to `<popup-carousel>` wouldn't trigger a mutation observer on
 `<simple-carousel>`.
 
-To detect those changes, `<simple-carousel>` would have to check its child 
-list for `<content>` nodes. If it's got a `<content>` node in its `children`, 
-it would need to add _another_ mutation observer on its shadow host (in this 
-case, `<popup-carousel>`). And so on. Suddenly, the `<simple-carousel>` isn't 
+To detect those changes, `<simple-carousel>` would have to check its child
+list for `<content>` nodes. If it's got a `<content>` node in its `children`,
+it would need to add _another_ mutation observer on its shadow host (in this
+case, `<popup-carousel>`). And so on. Suddenly, the `<simple-carousel>` isn't
 so simple anymore.
 
-The `observeNodes` method handles this complexity for you. It uses mutation 
-observers internally to track DOM changes, and handles the extra bookkeeping 
-required to track local DOM distributions. Unlike a mutation observer, the 
-`observeNodes` callback is only invoked when nodes are added or removed—it 
+The `observeNodes` method handles this complexity for you. It uses mutation
+observers internally to track DOM changes, and handles the extra bookkeeping
+required to track local DOM distributions. Unlike a mutation observer, the
+`observeNodes` callback is only invoked when nodes are added or removed—it
 doesn't handle attribute changes or character data changes.
 
 ### DOM API examples
@@ -523,7 +523,7 @@ Add the `strip-whitespace` boolean attribute to a template to remove
 any empty text nodes from the template's contents. This can result in a
 minor performance improvement.
 
-With empty text nodes: 
+With empty text nodes:
 
 ```html
 <dom-module id="has-whitespace">

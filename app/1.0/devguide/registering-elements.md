@@ -14,8 +14,9 @@ specifies the HTML tag name for your custom element.
 
 By specification, the custom element's name **must contain a dash (-)**.
 
-Example:
+Example: { .caption }
 
+```
     // register an element
     MyElement = Polymer({
 
@@ -33,6 +34,7 @@ Example:
 
     // ... or with the constructor:
     var el2 = new MyElement();
+```
 
 The `Polymer` function registers the element with the browser and returns a
 constructor that can be used to create new instances of your element via code.
@@ -55,8 +57,9 @@ The constructor returned from `Polymer` creates an instance using
 with `this` bound to the element instance. Any arguments passed to the actual
 constructor are passed on to the `factoryImpl` function.
 
-Example:
+Example: { .caption }
 
+```
     MyElement = Polymer({
 
       is: 'my-element',
@@ -73,7 +76,7 @@ Example:
     });
 
     var el = new MyElement(42, 'octopus');
-
+```
 
 Two notes about the custom constructor:
 
@@ -92,20 +95,21 @@ Polymer currently only supports extending native HTML elements (for example,
 be supported in a future release). These native element extensions are called
 _type extension custom elements_.
 
-<div class="alert alert-error"><strong>Note:</strong>
+**Note:**
 When using native shadow DOM, extension of native elements can have
 unexpected behavior and is sometimes not permitted. Test your element with
 native shadow DOM enabled to catch any problems during development.
 For information on enabling native shadow DOM, see
 [Global Polymer settings](https://www.polymer-project.org/1.0/docs/devguide/settings.html).
-</div>
+{.alert .alert-error}
 
 To extend a native HTML element, set the `extends` property on your prototype to
 the tag name of the element to extend.
 
 
-Example:
+Example: { .caption }
 
+```
     MyInput = Polymer({
 
       is: 'my-input',
@@ -123,27 +127,31 @@ Example:
 
     var el2 = document.createElement('input', 'my-input');
     console.log(el2 instanceof HTMLInputElement); // true
+```
 
 To use a type-extension element in markup, use the _native_ tag and add an
 `is` attribute that specifies the extension type name:
 
+```
     <input is="my-input">
+```
 
 <!-- legacy anchor -->
 <a id="basic-callbacks"></a>
 
 ### Define an element in the main HTML document
 
-<div class="alert alert-error"><strong>Note:</strong>
+**Note:**
 You should only define elements from the main document when
 experimenting. In production, elements should always be defined in
 separate files and imported into your main document.
-</div>
+{.alert .alert-error}
 
 To define an element in your main HTML document, define the element
 from `HTMLImports.whenReady(callback)`. `callback` is invoked when
 all imports in the document have finished loading.
 
+```
     <!DOCTYPE html>
     <html>
       <head>
@@ -171,6 +179,7 @@ all imports in the document have finished loading.
         <main-document-element></main-document-element>
       </body>
     </html>
+```
 
 ## Lifecycle callbacks
 
@@ -248,8 +257,9 @@ finished creating and initializing the element's local DOM.
 </table>
 
 
-Example:
+Example: { .caption }
 
+```
     MyElement = Polymer({
 
       is: 'my-element',
@@ -276,6 +286,7 @@ Example:
       }
 
     });
+```
 
 <!-- ToDo: the following section should probably be moved to the local DOM chapter. -->
 
@@ -284,12 +295,12 @@ Example:
 The `ready` callback is called when a Polymer element's
 local DOM has been initialized.
 
-<div class="alert alert-error"><strong>What is local DOM?</strong>
+**What is local DOM?**
 Local DOM is a subtree of elements created and
 managed by your element. It's separate from the element's children,
 which are called _light DOM_ for clarity. For more information, see
 [Local DOM](local-dom.html).
-</div>
+{.alert .alert-error}
 
 An element is _ready_ when:
 
@@ -304,15 +315,17 @@ An element is _ready_ when:
 Implement `ready` when it's necessary to manipulate an element's
 local DOM when the element is constructed.
 
+```
     ready: function() {
       // access a local DOM element by ID using this.$
       this.$.header.textContent = 'Hello!';
     }
+```
 
-<div class="alert alert-error"><strong>Note:</strong>
+**Note:**
 This example uses [Automatic node finding](local-dom.html#node-finding) to
 access a local DOM element.
-</div>
+{.alert .alert-error}
 
 Within a given tree, `ready` is generally called in _document order_,
 but you should not rely on the ordering of initialization callbacks between
@@ -343,10 +356,12 @@ so children are usually initialized after their parents.
 
 For example, consider this light DOM for an element `avatar-list`:
 
+```
     <avatar-list>
       <my-photo class="photo" src="one.jpg">First photo</my-photo>
       <my-photo class="photo" src="two.jpg">Second photo</my-photo>
     </avatar-list>
+```
 
 `<avatar-list>` is _likely_ to have its `ready` method called before the various
 `<my-photo>` elements do.
@@ -397,11 +412,13 @@ This means that siblings may become `ready` in any order.
 For accessing sibling elements when an element initializes, you can call `async`
 from inside the `attached` callback:
 
+```
     attached: function() {
       this.async(function() {
         // access sibling or parent elements here
       });
     }
+```
 
 ### Registration callback
 
@@ -427,8 +444,9 @@ so `true` will serialize to an empty attribute, and `false` will result in no
 attribute set, and so forth (see [Attribute serialization](properties.html#attribute-serialization) for more
 details).
 
-Example:
+Example:  { .caption }
 
+```
     <script>
 
       Polymer({
@@ -444,14 +462,17 @@ Example:
       });
 
     </script>
+```
 
 Results in:
 
+```
     <x-custom string-attribute="Value" boolean-attribute tabindex="0"></x-custom>
+```
 
-<div class="alert alert-error"><strong>Note:</strong>
+**Note:**
 The `class` attribute can't be configured using `hostAttributes`.
-</div>
+{.alert .alert-error}
 
 ## Behaviors
 
@@ -473,8 +494,9 @@ instances of your element via code.
 If you want to define and register the custom element in one step, use the
 [`Polymer` function](#register-element).
 
-Example:
+Example: { .caption }
 
+```
     var MyElement = Polymer.Class({
 
       is: 'my-element',
@@ -491,6 +513,7 @@ Example:
     // Equivalent:
     var el1 = new MyElement();
     var el2 = document.createElement('my-element');
+```
 
 `Polymer.Class` is designed to provide similar ergonomics to a speculative future
 where an ES6 class may be defined and provided to `document.registerElement`.
