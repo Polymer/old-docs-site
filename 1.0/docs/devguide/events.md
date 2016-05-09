@@ -335,7 +335,7 @@ Example:
 
     <script>
       var el = document.querySelector('event-retargeting');
-      el.addEventListener('click', function(){
+      el.addEventListener('click', function(event){
         var normalizedEvent = Polymer.dom(event);
         // logs #myButton
         console.info('rootTarget is:', normalizedEvent.rootTarget);
