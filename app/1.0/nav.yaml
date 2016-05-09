@@ -120,6 +120,8 @@
     path: /1.0/tools/tests
   - title: Optimize for production
     path: /1.0/tools/optimize-for-production
+  - title: Create a reusable element
+    path: /1.0/tools/reusable-elements
 
 - section: Elements
   shortpath: elements
