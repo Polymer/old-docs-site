@@ -22,7 +22,7 @@ In addition, the `properties` object can be used to specify:
 * Computed property. Dynamically calculates a value based on other properties.
 * Property reflection to attribute. Updates the corresponding attribute value when the property value changes.
 
-Example:
+Example: { .caption }
 
 ```
 Polymer({
@@ -174,7 +174,7 @@ if the attribute exists at all, the property is set to `true`, regardless
 of the attribute _value_. If the attribute is absent, the property
 gets its default value.
 
-Example:
+Example: { .caption }
 
 ```
 <script>
@@ -210,7 +210,9 @@ This user is a manager.
 ```
 
 In order to configure camel-case properties of elements using attributes, dash-
-case should be used in the attribute name.  Example:
+case should be used in the attribute name.  
+
+Example: { .caption }
 
 ```
 <script>
@@ -266,7 +268,7 @@ When initializing a property to an object or array value, use a function to
 ensure that each element gets its own copy of the value, rather than having
 an object or array shared across all instances of the element.
 
-Example:
+Example: { .caption }
 
 ```
 Polymer({
@@ -298,7 +300,7 @@ property in the `properties` object for the property that gives the name of a fu
 to call.  When the property changes, the change handler will be called with the
 new and old values as arguments.
 
-Example:
+Example: { .caption }
 
 ```
 Polymer({
@@ -354,7 +356,7 @@ These observers differ from single-property observers in a few ways:
 *   Observers do not receive `old` values as arguments, only new values.  Only single-property
     observers defined in the `properties` object receive both `old` and `new` values.
 
-Example:
+Example: { .caption }
 
 ```
 Polymer({
@@ -400,7 +402,7 @@ sub-property must be updated in one of the following two ways:
 *   Via a [property binding](data-binding.html#property-binding).
 *   By calling [`set`](data-binding.html#set-path).
 
-Example:
+Example: { .caption }
 
 ```
 <dom-module id="x-sub-property-observer">
@@ -479,7 +481,7 @@ occurred on the array. Each change record provides the following properties:
     -   `added`. Array of added keys.
     -   `removed`. Array of removed keys.
 
-Example:
+Example: { .caption }
 
 ```
 Polymer({
@@ -533,7 +535,7 @@ followed by `.splices`. And the change record includes the `indexSplices` and
 `keySplices` properties described in
 [Observe array mutations](#array-observation).
 
-Example:
+Example: { .caption }
 
 ```
 <dom-module id="x-deep-observer">
@@ -611,7 +613,7 @@ Every Polymer element has the following array mutation methods available:
 * `shift(path)`
 * `splice(path, index, removeCount, [item1, ..., itemN])`
 
-Example:
+Example: { .caption }
 
 ```
 <dom-module id="custom-element">
@@ -738,7 +740,7 @@ When a property only "produces" data and never consumes data, this can be made
 explicit to avoid accidental changes from the host by setting the `readOnly`
 flag to `true` in the `properties` property definition.  In order for the
 element to actually change the value of the property, it must use a private
-generated setter of the convention <code>_set<var>Property</var>(value)</code>.
+generated setter of the convention <code>\_set<var>Property</var>(value)</code>.
 
 ```
 <script>

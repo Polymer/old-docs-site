@@ -24,9 +24,7 @@ Where <code>--<em>my-custom-property</em></code> is a custom property name, alwa
 Edit your element's `<style>` tag and replace the existing `fill` and `stroke`
 values with custom properties:
 
-#### icon-toggle.html
-
-
+icon-toggle.html  { .caption }
 
 ```
   <style>
@@ -50,9 +48,7 @@ setting `color`, but now you have other options.
 Open up `icon-toggle-demo.html `and set the new properties. (If you downloaded
 the starting code, this file is in the `demo` folder.)
 
-#### icon-toggle-demo.html
-
-
+icon-toggle-demo.html { .caption }
 
 ```
     <style>
@@ -66,7 +62,6 @@ the starting code, this file is in the `demo` folder.)
 ```
 
 Run the demo again to get colorful.
-
 
 
 <img src="/images/1.0/first-element/toggles-styled.png" alt="Demo showing
@@ -109,7 +104,7 @@ adding the following code inside the `<head>` tag of your `index.html` file:
 Key information:
 
 *   The `:root` selector is a standard CSS selector that's equivalent to the
-    highest level element in the document, so it's _usually) equivalent to `html`.
+    highest level element in the document, so it's _usually_ equivalent to `html`.
     In the `custom-style` element, **you need to use `:root`, not `html` to specify
     document-wide defaults.**
 
