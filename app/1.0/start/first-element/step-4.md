@@ -7,7 +7,7 @@ Of course, a button isn't a button if you can't click it. To toggle the button,
 add an event listener. To add event listeners on the host element (in this
 case, `icon-toggle`), add a `listeners` object to the element prototype:
 
-#### icon-toggle.html
+icon-toggle.html { .caption }
 
 ```
   Polymer({

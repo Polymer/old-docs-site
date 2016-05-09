@@ -34,7 +34,7 @@ To follow this tutorial, you'll need:
 
 
 **Don't want to install anything?** To run through this tutorial online,
-open the [starter project on Plunker](https://plnkr.co/edit/QfsudzAPCbAu56Qpb7eB?p=preview){target="_blank"}
+open the [starter project on Plunker](https://plnkr.co/edit/QfsudzAPCbAu56Qpb7eB?p=preview){target="\_blank"}
 and click **Fork** to create your own working copy. Then skip straight to
 <a href="step-2">Step 2: Add local DOM.</a>
 { .alert .alert-info }
@@ -63,7 +63,7 @@ and click **Fork** to create your own working copy. Then skip straight to
     icon-toggle.html
     </pre>
 
-    The main file you'll work with is <code>icon-toggle.html</code>, which contains the definition for your custom element.
+    The main file you'll work with is `icon-toggle.html`, which contains the definition for your custom element.
 
 
 ### Install Node.js and Polyserve

@@ -21,7 +21,8 @@ $mobile-media-breakpoint: 767px;
     vertical-align: middle;
 
     img {
-      width: 145px;
+      width: 120px;
+      height: 84px;
     }
 
     @media (max-width: $mobile-media-breakpoint) {

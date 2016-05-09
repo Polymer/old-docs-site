@@ -8,7 +8,6 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../bower_components/paper-styles/typography.html">
 <link rel="import" href="icons.html">
@@ -184,6 +183,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        */
       activePage: {
         type: String
+      },
+
+      /**
+       * True if this is a mobile view.
+       */
+      _isMobileView: {
+        observer: '_mobileViewChanged'
+      }
+    },
+
+    attached: function() {
+      // Compute the active page from the parent pw-shell's carbon route.
+      var pwShell = this.parentElement;
+      if (pwShell) {
+        var path = pwShell._sectionRoute.path;
+        // If it ends in a /, then it's a top level path like /1.0/tools/,
+        // so add an index to it.
+        if (path[path.length - 1] === '/') {
+          path += 'index';
+        }
+        this.activePage = path;
       }
     },
 

@@ -45,6 +45,9 @@ let toc = require('toc');
 let AUTOPREFIXER_BROWSERS = ['last 2 versions', 'ios 8', 'Safari 8'];
 
 markdownIt.use(markdownItAttrs);
+// keep markdownIt from escaping template markup.
+markdownIt.normalizeLink = function(link) { return link; }
+markdownIt.validateLink = function(link) { return true; }
 
 function minifyHtml() {
   return $.minifyHtml({quotes: true, empty: true, spare: true});
@@ -171,7 +174,7 @@ gulp.task('md:blog', 'Blog markdown -> HTML conversion. Syntax highlight and TOC
       'app/1.0/blog/*.md',
     ], {base: 'app/'})
     .pipe(matter(function(file) { // pull out front matter data.
-      return convertMarkdownToHtml(file, 'templates/article.template');
+      return convertMarkdownToHtml(file, 'templates/blog.template');
     }))
     .pipe($.rename({extname: '.html'}))
     .pipe(gulp.dest('dist'));

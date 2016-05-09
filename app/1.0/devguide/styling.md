@@ -112,7 +112,7 @@ This implies:
     ```
 
 **Custom properties can't style distributed children.** The Polymer
-[custom properties]({#xscope-styling-details) shim doesn't support styling
+[custom properties](#xscope-styling-details) shim doesn't support styling
 distributed children.
 {.alert .alert-info}
 
@@ -169,7 +169,7 @@ of the toolbar may define this variable in a CSS rule anywhere up the tree, and
 the value of the property will inherit down to the toolbar where it is used if
 defined, similar to other standard inheriting CSS properties.
 
-Example:
+Example: { .caption }
 
 ```html
 <dom-module id="my-toolbar">
@@ -202,7 +202,7 @@ Example:
 </dom-module>
 ```
 
-Example usage of `my-toolbar`:
+Example usage of `my-toolbar`: { .caption }
 
 ```html
 <dom-module id="my-element">
@@ -271,18 +271,22 @@ proposal.
 
 Use `@apply` to apply a mixin:
 
-<pre>@apply(--<var>mixin-name</var>);</pre>
+```
+@apply(--<var>mixin-name</var>);
+```
 
 Defining a mixin is just like defining a custom property, but the
 value is an object that defines one or more rules:
 
-<pre><var>selector</var> {
-  --<var>mixin-name</var>: {
+```
+selector {
+  --mixin-name: {
     /* rules */
   };
-}</pre>
+}
+```
 
-Example:
+Example: { .caption }
 
 ```html
 <dom-module id="my-toolbar">
@@ -310,7 +314,7 @@ Example:
 </dom-module>
 ```
 
-Example usage of `my-toolbar`:
+Example usage of `my-toolbar`: { .caption }
 
 ```html
 <dom-module id="my-element">
@@ -372,7 +376,7 @@ To get the value of a custom property on an element, use
 [`getComputedStyleValue`](/1.0/api/#Polymer.Base:method-getComputedStyleValue){target="api"}.
 
 
-Example:
+Example: { .caption }
 
 ```html
 <dom-module id="x-custom">
@@ -428,7 +432,7 @@ styles.
 
 For example, given this markup inside an element:
 
-HTML:
+HTML: { .caption }
 
 ```html
 <div class="container">
@@ -436,7 +440,7 @@ HTML:
 </div>
 ```
 
-CSS:
+CSS: { .caption }
 
 ```css
 /* applies */
@@ -547,7 +551,7 @@ special features of Polymer's styling system:
     using these in new code.
 
 
-Example:
+Example: { .caption }
 
 ```html
 <!doctype html>
@@ -679,7 +683,7 @@ To include a remote stylesheet that applies to your Polymer element's local DOM,
 place a special HTML import `<link>` tag with `type="css"` in your `<dom-
 module>` that refers to the external stylesheet to load.
 
-Example:
+Example: { .caption }
 
 ```html
 <dom-module id="my-awesome-button">
@@ -746,4 +750,3 @@ method to apply proper CSS scoping to a node and all of its descendants.
 contains any Polymer elements with local DOM, `scopeSubtree` will
 cause the descendants' local DOM to be styled incorrectly.
 {.alert .alert-error}
-

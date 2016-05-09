@@ -1,9 +1,10 @@
-<script src="../../components/webcomponentsjs/webcomponents.js"></script>
-<link rel="import" href="../../components/polymer/polymer.html">
-<link rel="import" href="../../components/iron-demo-helpers/demo-snippet.html">
-<link rel="import" href="../../components/paper-input/paper-input.html">
-<link rel="import" href="../../components/carbon-route/carbon-route.html">
-<link rel="import" href="../../components/iron-demo-helpers/demo-pages-shared-styles.html">
+<base href="//polygit2.appspot.com/components/">
+<link rel="import" href="polymer/polymer.html">
+<script src="webcomponentsjs/webcomponents-lite.js"></script>
+<link rel="import" href="iron-demo-helpers/demo-snippet.html">
+<link rel="import" href="paper-input/paper-input.html">
+<link rel="import" href="carbon-route/carbon-route.html">
+<link rel="import" href="iron-demo-helpers/demo-pages-shared-styles.html">
 <style is="custom-style" include="demo-pages-shared-styles">
   demo-snippet {
     margin-bottom: 0;
@@ -48,4 +49,11 @@
   </template>
 </demo-snippet>
 
-<script src='resizer.js'></script>
+<script>
+  // Polygit rewrites the base, so we need to do some digging to get to the script.
+  var parts = window.location.pathname.split('/');
+  var url = parts.slice(0, parts.length-1).join('/') + '/resizer.js'
+  var script = document.createElement('script');
+  script.src = url;
+  document.body.appendChild(script);
+</script>

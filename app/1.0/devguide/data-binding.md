@@ -67,7 +67,6 @@ To bind to a child element's `textContent`, you can simply include the
 annotation inside the child element.
 
 ```
-
 <dom-module id="user-view">
 
     <template>
@@ -86,7 +85,6 @@ annotation inside the child element.
     </script>
 
 </dom-module>
-
 
 <user-view first-name="Samuel" last-name="Adams"></user-view>
 ```
@@ -163,7 +161,7 @@ flag set to true.  (If the child property is `notify: true` and `readOnly: true`
 and the host binding uses curly-brace syntax, the binding is
 one-way, **upward** (child-to-host).)
 
-Example 1: Two-way binding
+Example 1: Two-way binding { .caption }
 
 ```
 <script>
@@ -184,7 +182,7 @@ Example 1: Two-way binding
 <custom-element some-prop="{{value}}"></custom-element>
 ```
 
-Example 2: One-way binding (downward)
+Example 2: One-way binding (downward) { .caption }
 
 ```
 <script>
@@ -206,7 +204,7 @@ Example 2: One-way binding (downward)
 <custom-element some-prop="[[value]]"></custom-element>
 ```
 
-Example 3: One-way binding (downward)
+Example 3: One-way binding (downward) { .caption }
 
 ```
 <script>
@@ -226,7 +224,7 @@ Example 3: One-way binding (downward)
 <custom-element some-prop="{{value}}"></custom-element>
 ```
 
-Example 4: One-way binding (upward, child-to-host)
+Example 4: One-way binding (upward, child-to-host) { .caption }
 
 ```
 <script>
@@ -249,7 +247,7 @@ Example 4: One-way binding (upward, child-to-host)
 <custom-element some-prop="{{value}}"></custom-element>
 ```
 
-Example 5: Error / non-sensical state
+Example 5: Error / non-sensical state { .caption }
 
 ```
 <script>
@@ -304,7 +302,7 @@ custom change event name in the annotation using the following syntax:
 <code><var>target-prop</var>="{{<var>hostProp</var>::<var>target-change-event</var>}}"</code>
 
 
-Example:
+Example: { .caption }
 
 ```
 
@@ -337,7 +335,7 @@ ifying the event name is unnecessary, as the default convention will be
 You can bind sub-properties of the host by specifying a _path_ inside
 the binding annotation.
 
-Example:
+Example: { .caption }
 
 ```
 <template>
@@ -416,7 +414,7 @@ Specifically, Polymer provides two methods that allow such changes to be notifie
 to the system: `notifyPath(path, value)` and `set(path, value)`, where `path` is
 a **string** identifying the path (relative to the host element).
 
-Example:
+Example: { .caption }
 
 ```
 <dom-module id="custom-element">
@@ -491,7 +489,7 @@ as part of the element's API, or use it elsewhere in the element.
 **Note:** this is the only form of function allowed in binding annotations.
 { .alert .alert-info }
 
-Example:
+Example: { .caption }
 
 ```
 <dom-module id="x-custom">
@@ -555,7 +553,7 @@ quotes for string literals, or the reverse.
 _must_ be escaped using a backslash (`\`).
 { .alert .alert-info }
 
-Example:
+Example:  { .caption }
 
 ```
 <dom-module id="x-custom">

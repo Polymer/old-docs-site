@@ -13,9 +13,9 @@ Add event listeners to the host element by providing a
 You can also add an event listener to any element in the `this.$` collection
 using the syntax <code><var>nodeId</var>.<var>eventName</var></code>.
 
-Example:
+Example: { .caption }
 
-```html
+```
 <dom-module id="x-custom">
   <template>
     <div>I will respond</div>
@@ -54,7 +54,7 @@ To add event listeners to local DOM children, use
 eliminates the need to give an element an `id` solely for  the purpose of
 binding an event listener.
 
-Example:
+Example: { .caption }
 
 ```html
 <dom-module id="x-custom">
@@ -114,7 +114,7 @@ and removes the event listeners.
 
 To fire a custom event from the host element use the `fire` method. You can also pass in data to event handlers as an argument to `fire`.
 
-Example:
+Example: { .caption }
 
 ```html
 <dom-module id="x-custom">
@@ -189,7 +189,7 @@ and list of detail properties available on `event.detail` for each type:
   * `ddy`—change in pixels vertically since last track event
   * `hover()`—a function that may be called to determine the element currently being hovered
 
-Example:
+Example: { .caption }
 
 ```html
 <dom-module id="drag-me">
@@ -230,9 +230,7 @@ Example:
 </dom-module>
 ```
 
-
-
-Example with `listeners`:
+Example with `listeners`: { .caption }
 
 ```html
 <dom-module id="drag-me">
@@ -308,7 +306,7 @@ normalized event has the following properties:
 *   `path`: Array of nodes through which event will pass
     (equivalent to `event.path` under shadow DOM).
 
-Example:
+Example: { .caption }
 
 ```html
 <!-- event-retargeting.html -->

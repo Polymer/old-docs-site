@@ -1,22 +1,14 @@
 ---
-- title: Community Highlights - GE Predix UI
-  description: GE's Predix UI provides Polymer-based components for building dashboards for the industrial Internet of Things.
-  published: 2016-03-10
+- title: "<carbon-route> gets its beta release!"
+  path: /1.0/blog/2016-03-28-carbon-route-released
+  published: 2016-03-28
   author: polymer-team
-  path: /1.0/blog/2016-03-10-community-highlights-predix-ui
-  tags:
-  - blog
-  - featured
-- title: 2016 Roadmap
-  description: A spin through the Polymer project roadmap for the beginning of 2016.
-  published: 2016-02-16
-  author: polymer-team
-  path: /1.0/blog/2016-02-17-2016-roadmap
+  description: "The carbon-route element has made its beta debut - we'd love your feedback on this modular approach to routing."
   tags:
   - blog
   - announcements
-- title: Encapsulated Routing with Elements
-  description: An overview to doing distributed routing in an application, as well as an introduction to <carbon-route> and <carbon-location>.
+- title: "Encapsulated Routing with Elements"
+  description: "An overview to doing distributed routing in an application, as well as an introduction to <carbon-route> and <carbon-location>."
   published: 2016-03-25
   author: rictic
   polymer_version: 1.4.0
@@ -24,8 +16,56 @@
   tags:
   - routing
   - urls
-- title: Building web components using ES6 classes
-  description: How to build vanilla custom elements and Polymer elements using ES2015 features.
+- title: "Community Highlights - GE Predix UI"
+  description: "GE's Predix UI provides Polymer-based components for building dashboards for the industrial Internet of Things."
+  published: 2016-03-10
+  author: polymer-team
+  path: /1.0/blog/2016-03-10-community-highlights-predix-ui
+  tags:
+  - blog
+  - featured
+- title: 2016 Roadmap
+  description: "A spin through the Polymer project roadmap for the beginning of 2016."
+  published: 2016-02-16
+  author: polymer-team
+  path: /1.0/blog/2016-02-17-2016-roadmap
+  tags:
+  - blog
+  - announcements
+- title: "Deprecating /deep/"
+  path: /1.0/blog/2015-12-01-deprecating-deep
+  published: 2015-12-01
+  author: polymer-team
+  description: "We're updating elements to remove usage of /deep/ and ::shadow. This might cause some unexpected changes if you were relying on side-effects of these selectors."
+  tags:
+  - blog
+  - announcements
+- title: "Introducing Polymer 1.2.0"
+  path: /1.0/blog/2015-11-02-release-1.2.0
+  published: 2015-11-02
+  author: polymer-team
+  description: "Polymer 1.2 introduces some exciting, long-awaited new features: compound bindings and observing light DOM children."
+  tags:
+  - blog
+  - releases
+- title: "Introducing the Polymer Project Roadmap and Repo"
+  path: /1.0/blog/2015-10-16-polymer-roadmap-and-repo
+  published: 2015-10-16
+  author: taylor
+  description: "We're excited to open up the project's near-term roadmap. The roadmap is available in new repo - Polymer/project - to help enable project-level discussion and collaboration."
+  tags:
+  - blog
+  - announcements
+- title: "Polymer Summit Recap"
+  path: /1.0/blog/2015-09-20-polymer-summit-recap
+  published: 2015-09-29
+  author: taylor
+  description: "In case you missed any of the action at this year's Polymer Summit, we focused on three key themes: Develop, Design, and Deploy, giving concrete advice on how you can build your web app from start to finish. Here's a recap of all the highlights."
+  tags:
+  - blog
+  - announcements
+- title: "Building web components using ES6 classes"
+  description: "How to build vanilla custom elements and Polymer elements using ES2015 features."
   published: 2015-09-24
   author: ebidel
   path: /1.0/blog/es6
@@ -34,8 +74,41 @@
   - es2015
   - es6
   - javascript
+- title: "Discover and communicate with nearby Bluetooth devices"
+  path: /1.0/blog/2015-09-10-discover-and-communicate-with-nearby-bluetooth-devices
+  published: 2015-09-10
+  author: fbeaufort
+  categories: announcements
+  description: "Introducing a new set of Polymer elements that simplify discovering and communicating with nearby Bluetooth devices, powered behind the scenes by the experimental Web Bluetooth API."
+  tags:
+  - blog
+  - announcements
+- title: "Polymer Summit Schedule"
+  path: /1.0/blog/2015-08-20-polymer-summit-schedule
+  published: 2015-08-20
+  author: polymer-team
+  description: "The schedule for the first ever Polymer summit is now live!"
+  tags:
+  - blog
+  - announcements
+- title: "1.1 Release"
+  path: /1.0/blog/2015-08-13-1.1-release
+  published: 2015-08-13
+  author: polymer-team
+  description: "We've added our first, small minor release. This includes a new way of sharing styles between elements and the main document."
+  tags:
+  - blog
+  - announcements
+- title: "1.0"
+  path: /1.0/blog/2015-05-29-one-dot-oh
+  published: 2015-05-29
+  author: polymer-team
+  description: "Today we’re incredibly excited to announce the 1.0 release of the Polymer library."
+  tags:
+  - blog
+  - announcements
 - title: "What is shady DOM?"
-  description: Why do we need a new kind of DOM?
+  description: "Why do we need a new kind of DOM?"
   published: 2015-05-28
   author: sjmiles
   polymer_version: 1.0

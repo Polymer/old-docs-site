@@ -48,6 +48,32 @@
   items:
   - title: Feature overview
     path: /1.0/devguide/feature-overview
+  - header: API Reference
+  - title: Polymer.Base
+    path: /1.0/devguide/api/polymer.base
+    indent: True
+  - title: array-selector
+    path: /1.0/devguide/api/array-selector
+    indent: True
+  - title: custom-style
+    path: /1.0/devguide/api/custom-style
+    indent: True
+  - title: dom-bind
+    path: /1.0/devguide/api/dom-bind
+    indent: True
+  - title: dom-if
+    path: /1.0/devguide/api/dom-if
+    indent: True
+  - title: dom-repeat
+    path: /1.0/devguide/api/dom-repeat
+    indent: True
+  - title: dom-template
+    path: /1.0/devguide/api/dom-template
+    indent: True
+  - title: Polymer.Templatizer
+    path: /1.0/devguide/api/polymer.templatizer
+    indent: True
+  - endheader: True
   - header: Registration and lifecycle
 #  - title: Element lifecycle concepts
 #    path: /1.0/devguide/lifecycle-concepts
@@ -120,6 +146,8 @@
     path: /1.0/tools/tests
   - title: Optimize for production
     path: /1.0/tools/optimize-for-production
+  - title: Create a reusable element
+    path: /1.0/tools/reusable-elements
 
 - section: Elements
   shortpath: elements

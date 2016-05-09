@@ -1,244 +1,276 @@
-{% extends "templates/base.html" %}
-{% block title %}Welcome{% endblock %}
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Organization">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<meta name="google-site-verification" content="k0e8DrbD40s54xHNBqwIsRrSSAkZoprwtEYDnNY06bU" />
+<meta name="google-site-verification" content="pnjjbQFvjPwaWhEXY6nSyaS9iyghmH-M_yLHBveDX2M">
+<meta itemprop="image" content="https://www.polymer-project.org/images/logos/p-logo-32.png">
+<meta itemprop="description" content="Polymer is a library that uses the latest web technologies to let you create custom HTML elements. Build anything from a button to a complete application as an encapsulated, reusable component that works across desktop and mobile.">
+<link rel="manifest" href="manifest.json">
 
-{% block content %}
+<title>{% block title %}{% endblock %} - Polymer Project</title>
 
+<link rel="publisher" href="https://plus.google.com/107187849809354688692">
+<link rel="shortcut icon" href="/images/logos/p-logo-32.png">
+<link rel="stylesheet" href`="//fonts.googleapis.com/css?family=Roboto:300,400,500|Source+Code+Pro:400,500,700|Roboto+Slab:400,700">
+
+<!-- <link rel="shortcut icon" href="/static/img/chromium-128.png"> -->
+
+<link rel="stylesheet" href="/css/site.css">
 <link rel="stylesheet" href="/css/page-index.css">
+<script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js" async></script>
 
-<style is="custom-style">
-  .badge iron-icon {
-    color: white;
-    --iron-icon-height: 80px;
-    --iron-icon-width: 80px;
-  }
-</style>
+<script>
+  window.Polymer = window.Polymer || {dom: 'shadow', lazyRegister: true};
+</script>
 
-<section class="page-index-hero grey">
-  <div class="section-columns">
-    <div class="logo-wrapper layout vertical center center-justified">
-      <img src="/images/logos/p-logo-new.png" alt="">
-    </div>
-    <div class="content flex">
-      <h2 class="underline">Web development the way it was meant to be.</h2>
+<link rel="import" href="/elements/elements.html">
+<!-- <link rel="import" href="/css/site-styles.html"> -->
+<!-- <style is="custom-style" include="site-styles"></style> -->
+
+<link rel="import" href="/css/syntax-color-styles.html">
+<style is="custom-style" include="syntax-color-styles iron-flex iron-flex-alignment iron-flex-factors"></style>
+</head>
+<body class="fullbleed">
+  <pw-shell>
+    {% include 'templates/site-nav.html' %}
+
+    <section class="page-index-hero grey">
       <div class="section-columns">
-        <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
-        <div class="getting-started-links layout vertical">
-          <a href="" class="blue-button vertical">View tutorial</a>
-          <a href="" class="blue-button vertical">Learn about web components</a>
-          <a href="" class="blue-button vertical">Get the code</a>
+        <div class="logo-wrapper layout vertical center center-justified">
+          <img src="/images/logos/p-logo-new.png" alt="">
+        </div>
+        <div class="content flex">
+          <h2 class="underline">Web development the way it was meant to be.</h2>
+          <div class="section-columns">
+            <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
+            <div class="getting-started-links layout vertical">
+              <a href="" class="blue-button vertical">View tutorial</a>
+              <a href="" class="blue-button vertical">Learn about web components</a>
+              <a href="" class="blue-button vertical">Get the code</a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="page-index-features dark gradient-dark">
-  <div class="section-columns">
-    <div class="feature flex">
-      <img src="/images/page-index/feature-speed.png">
-      <h2 class="underline">Built for Speed</h2>
-      <p>Polymer 1.0 replaces the shadow DOM polyfill with a lightweight shim, uses a new, faster data-binding system, and significantly reduces code size.</p>
-    </div>
+    <section class="page-index-features dark gradient-dark">
+      <div class="section-columns">
+        <div class="feature flex">
+          <img src="/images/page-index/feature-speed.png">
+          <h2 class="underline">Built for Speed</h2>
+          <p>Polymer 1.0 replaces the shadow DOM polyfill with a lightweight shim, uses a new, faster data-binding system, and significantly reduces code size.</p>
+        </div>
 
-    <div class="feature flex">
-      <img src="/images/page-index/feature-modern.png">
-      <h2 class="underline">For Modern Browsers</h2>
-      <p>Polymer is built from the ground up for modern browsers, using the latest web platform APIs. Polyfills provide support on evergreen browsers for APIs that aren't universal yet.</p>
-    </div>
+        <div class="feature flex">
+          <img src="/images/page-index/feature-modern.png">
+          <h2 class="underline">For Modern Browsers</h2>
+          <p>Polymer is built from the ground up for modern browsers, using the latest web platform APIs. Polyfills provide support on evergreen browsers for APIs that aren't universal yet.</p>
+        </div>
 
-    <div class="feature flex">
-      <img src="/images/page-index/feature-components.png">
-      <h2 class="underline">Using Web Components</h2>
-      <p>Polymer leverages <em>web components</em>, a new set of standards designed to provide reusable components for the web.</p>
-    </div>
-  </div>
-</section>
-
-<section class="page-index-examples light">
-  <div class="subsection">
-    <h2>Use elements from the catalog</h2>
-    <div class="section-columns">
-      <div class="example-code flex">
-        <pre><code class="lang-html">
-&lt;!-- Polyfill Web Components support for older browsers --&gt;
-&lt;script src=&quot;components/webcomponentsjs/webcomponents-lite.min.js&quot;&gt;&lt;/script&gt;
-
-&lt;!-- Import element --&gt;
-&lt;link rel=&quot;import&quot; href=&quot;components/google-map/google-map.html&quot;&gt;
-
-&lt;!-- Use element --&gt;
-&lt;google-map latitude=&quot;37.790&quot; longitude=&quot;-122.390&quot;&gt;&lt;/google-map&gt;
-      </code></pre>
+        <div class="feature flex">
+          <img src="/images/page-index/feature-components.png">
+          <h2 class="underline">Using Web Components</h2>
+          <p>Polymer leverages <em>web components</em>, a new set of standards designed to provide reusable components for the web.</p>
+        </div>
       </div>
-      <div class="example-google-map">
-        <iframe frameborder="0" src="https://www.polymer-project.org/1.0/samples/homepage/google-map/index.html" width="100%"></iframe>
-        <p>An element built with Polymer looks and works just like any other HTML element. Simply find an element you’d like to use in your app, import it with an HTML import, and then add the tag to your page.</p>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <div class="subsection">
-    <h2>Create your own elements</h2>
-    <div class="section-columns">
-      <div class="example-code flex">
-        <pre><code class="lang-html">
-&lt;dom-module id=&quot;contact-card&quot;&gt;
-  &lt;link rel=&quot;import&quot; type=&quot;css&quot; href=&quot;contact-card.css&quot;&gt;
-  &lt;template&gt;
-    &lt;content&gt;&lt;/content&gt;
-    &lt;iron-icon icon=&quot;star&quot; hidden$=&quot;{{!starred}}&quot;&gt;&lt;/iron-icon&gt;
-  &lt;/template&gt;
-  &lt;script&gt;
-    Polymer({
-      is: 'contact-card',
-      properties: {
-        starred: Boolean
-      }
-    });
-  &lt;/script&gt;
-&lt;/dom-module&gt;
-        </code></pre>
-        <br>
-        <pre><code class="lang-html">
-&lt;contact-card starred&gt;
-  &lt;img src=&quot;profile.jpg&quot; alt=&quot;Eric's photo&quot;&gt;
-  &lt;span&gt;Eric Bidelman&lt;/span&gt;
-&lt;/contact-card&gt;
-        </code></pre>
+    <section class="page-index-examples light">
+      <div class="subsection">
+        <h2>Use elements from the catalog</h2>
+        <div class="section-columns">
+          <div class="example-code flex">
+            <pre><code class="lang-html">
+    &lt;!-- Polyfill Web Components support for older browsers --&gt;
+    &lt;script src=&quot;components/webcomponentsjs/webcomponents-lite.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- Import element --&gt;
+    &lt;link rel=&quot;import&quot; href=&quot;components/google-map/google-map.html&quot;&gt;
+
+    &lt;!-- Use element --&gt;
+    &lt;google-map latitude=&quot;37.790&quot; longitude=&quot;-122.390&quot;&gt;&lt;/google-map&gt;
+          </code></pre>
+          </div>
+          <div class="example-google-map">
+            <iframe frameborder="0" src="/1.0/homepage/google-map/index.html" width="100%"></iframe>
+            <p>An element built with Polymer looks and works just like any other HTML element. Simply find an element you’d like to use in your app, import it with an HTML import, and then add the tag to your page.</p>
+          </div>
+        </div>
       </div>
 
-      <div class="example-contact-card">
-        <iframe frameborder="0" src="https://www.polymer-project.org/1.0/samples/homepage/contact-card/index.html" width="100%"></iframe>
-        <p>The Polymer library makes it easy to create your own powerful elements. Give your element some markup and properties, and then use it on a site. Polymer provides useful features like templating and data binding to reduce the amount of boilerplate you need to write.</p>
+      <div class="subsection">
+        <h2>Create your own elements</h2>
+        <div class="section-columns">
+          <div class="example-code flex">
+            <pre><code class="lang-html">
+    &lt;dom-module id=&quot;contact-card&quot;&gt;
+      &lt;link rel=&quot;import&quot; type=&quot;css&quot; href=&quot;contact-card.css&quot;&gt;
+      &lt;template&gt;
+        &lt;content&gt;&lt;/content&gt;
+        &lt;iron-icon icon=&quot;star&quot; hidden$=&quot;{{!starred}}&quot;&gt;&lt;/iron-icon&gt;
+      &lt;/template&gt;
+      &lt;script&gt;
+        Polymer({
+          is: 'contact-card',
+          properties: {
+            starred: Boolean
+          }
+        });
+      &lt;/script&gt;
+    &lt;/dom-module&gt;
+            </code></pre>
+            <br>
+            <pre><code class="lang-html">
+    &lt;contact-card starred&gt;
+      &lt;img src=&quot;profile.jpg&quot; alt=&quot;Eric's photo&quot;&gt;
+      &lt;span&gt;Eric Bidelman&lt;/span&gt;
+    &lt;/contact-card&gt;
+            </code></pre>
+          </div>
+
+          <div class="example-contact-card">
+            <iframe frameborder="0" src="/1.0/homepage/contact-card/index.html" width="100%"></iframe>
+            <p>The Polymer library makes it easy to create your own powerful elements. Give your element some markup and properties, and then use it on a site. Polymer provides useful features like templating and data binding to reduce the amount of boilerplate you need to write.</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <div class="subsection">
-    <h2>Power it all with real data</h2>
-    <div class="section-columns">
-      <div class="example-code flex">
-        <pre><code class="lang-html">
-&lt;dom-module id=&quot;friend-list&quot;&gt;
-  &lt;link rel=&quot;import&quot; type=&quot;css&quot; href=&quot;friend-list.css&quot;&gt;
-  &lt;template&gt;
-    &lt;firebase-collection data=&quot;{{data}}&quot;
-                      location=&quot;https://users1.firebaseio.com/users&quot;&gt;
-    &lt;/firebase-collection&gt;
-    &lt;template is=&quot;dom-repeat&quot; items=&quot;{{data}}&quot;&gt;
-      &lt;contact-card starred=&quot;{{item.starred}}&quot;&gt;
-        &lt;img src=&quot;{{item.img}}&quot;&gt;
-        &lt;span&gt;{{item.name}}&lt;/span&gt;
-      &lt;/contact-card&gt;
-    &lt;/template&gt;
-  &lt;/template&gt;
-  &lt;script&gt;
-    Polymer({
-      is: 'friend-list'
-    });
-  &lt;/script&gt;
-&lt;/dom-module&gt;
-        </code></pre>
-        <br>
-        <pre><code class="lang-html">
-&lt;friend-list&gt;&lt;/friend-list&gt;
-        </code></pre>
+      <div class="subsection">
+        <h2>Power it all with real data</h2>
+        <div class="section-columns">
+          <div class="example-code flex">
+            <pre><code class="lang-html">
+    &lt;dom-module id="friend-list"&gt;
+      &lt;link rel="import" type="css" href="friend-list.css"&gt;
+      &lt;template&gt;
+        &lt;firebase-collection data="{{data}}"
+                          location="https://users1.firebaseio.com/users"&gt;
+        &lt;/firebase-collection&gt;
+        &lt;template is="dom-repeat" items="{{data}}"&gt;
+          &lt;contact-card starred="{{item.starred}}"&gt;
+            &lt;img src="{{item.img}}"&gt;
+            &lt;span&gt;{{item.name}}&lt;/span&gt;
+          &lt;/contact-card&gt;
+        &lt;/template&gt;
+      &lt;/template&gt;
+      &lt;script&gt;
+        Polymer({
+          is: 'friend-list'
+        });
+      &lt;/script&gt;
+    &lt;/dom-module&gt;
+            </code></pre>
+            <br>
+            <pre><code class="lang-html">
+    &lt;friend-list&gt;&lt;/friend-list&gt;
+            </code></pre>
+          </div>
+
+          <div class="example-friend-list">
+            <iframe frameborder="0" src="/1.0/homepage/friend-list/index.html" width="100%"></iframe>
+            <p>Build more sophisticated elements by composing simpler elements together. Elements can provide simple abstractions to powerful APIs. The
+              <code class="lang-html">&lt;firebase-collection&gt;</code> used here pulls data from a Firebase database.</p>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="example-friend-list">
-        <iframe frameborder="0" src="https://www.polymer-project.org/1.0/samples/homepage/friend-list/index.html" width="100%"></iframe>
-        <p>Build more sophisticated elements by composing simpler elements together. Elements can provide simple abstractions to powerful APIs. The
-          <code class="lang-html">&lt;firebase-collection&gt;</code> used here pulls data from a Firebase database.</p>
+    <section class="page-index-getting-started dark gradient-dark">
+      <div>
+        <h2 class="underline">Getting started</h2>
+        <div class="getting-started-wrapper section-columns">
+          <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
+          <div class="getting-started-links layout vertical">
+            <a href="/1.0/start/first-element/intro" class="blue-button vertical">Your first element</a>
+            <a href="/1.0/start/psk/set-up" class="blue-button vertical">Your first app</a>
+            <a href="/1.0/tools/" class="blue-button vertical">Using the tools</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="page-index-getting-started dark gradient-dark">
-  <div>
-    <h2 class="underline">Getting started</h2>
-    <div class="getting-started-wrapper section-columns">
-      <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
-      <div class="getting-started-links layout vertical">
-        <a href="" class="blue-button vertical">Your first element</a>
-        <a href="" class="blue-button vertical">Your first app</a>
-        <a href="" class="blue-button vertical">Using the tools</a>
+    <section class="library light">
+      <div class="section-columns">
+        <div class="flex">
+          <h2 class="underline">Library</h2>
+          <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
+          <a href="/1.0/devguide/feature-overview" class="blue-button">Browse library</a>
+        </div>
+
+        <div class="flex">
+          <h2 class="underline">Components</h2>
+          <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
+          <a href="https://elements.polymer-project.org/" class="blue-button">Browse components</a>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="library light">
-  <div class="section-columns">
-    <div class="flex">
-      <h2 class="underline">Library</h2>
-      <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
-      <a href="" class="blue-button">Browse library</a>
-    </div>
-
-    <div class="flex">
-      <h2 class="underline">Components</h2>
-      <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
-      <a href="" class="blue-button">Browse components</a>
-    </div>
-  </div>
-</section>
-
-<section class="page-index-who grey gradient-light">
-  <div>
-    <h2>Who's Using Polymer</h2>
-    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis.</div>
-    <div class="who-example-panel layout horizontal justified wrap">
-      <div class="who-example"></div>
-      <div class="who-example"></div>
-      <div class="who-example"></div>
-      <div class="who-example"></div>
-      <div class="who-example"></div>
-      <div class="who-example"></div>
-      <div class="who-example"></div>
-      <div class="who-example"></div>
-      <div class="who-example"></div>
-      <div class="who-example"></div>
-      <div class="who-example"></div>
-      <div class="who-example"></div>
-    </div>
-    <h2>Browser Compatibility</h2>
-    <div>Polymer 1.0 works in all latest version “evergreen” browsers (Chrome, Firefox, IE, Opera, and Safari).</div>
-    <div class="page-index-browsers layout wrap justified spaced">
-      <img src="/images/browsers/chrome_128x128.png" alt="">
-      <img src="/images/browsers/firefox_128x128.png" alt="">
-      <img src="/images/browsers/internet-explorer_128x128.png" alt="">
-      <img src="/images/browsers/edge_128x128.png" alt="">
-      <img src="/images/browsers/safari_128x128.png" alt="">
-    </div>
-  </div>
-</section>
-
-<section class="page-index-articles light">
-  <div class="section-columns">
-    <div class="flex-3">
-      <h2 class="underline">Articles</h2>
-      <p>Core concepts of build apps on top of Polymer and web components. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam.</p>
-      <a href="" class="blue-button">View all</a>
-    </div>
-
-    <div class="right flex-2">
-      <h2 class="underline">Recent posts</h2>
-      <br>
-      <div class="post">
-        <a href="" class="post-title">Building web components using ES6 classes</a>
-        <p>How to build vanilla custom elements and Polymer elements using ES2015 features.</p>
+    <section class="page-index-who grey gradient-light">
+      <div>
+        <h2>Who's Using Polymer</h2>
+        <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis.</div>
+        <div class="who-example-panel layout horizontal justified wrap">
+          <div class="who-example"></div>
+          <div class="who-example"></div>
+          <div class="who-example"></div>
+          <div class="who-example"></div>
+          <div class="who-example"></div>
+          <div class="who-example"></div>
+          <div class="who-example"></div>
+          <div class="who-example"></div>
+          <div class="who-example"></div>
+          <div class="who-example"></div>
+          <div class="who-example"></div>
+          <div class="who-example"></div>
+        </div>
+        <h2>Browser Compatibility</h2>
+        <div>Polymer 1.0 works in all latest version “evergreen” browsers (Chrome, Firefox, IE, Opera, and Safari).</div>
+        <div class="page-index-browsers layout wrap justified spaced">
+          <img src="/images/browsers/chrome_128x128.png" alt="">
+          <img src="/images/browsers/firefox_128x128.png" alt="">
+          <img src="/images/browsers/internet-explorer_128x128.png" alt="">
+          <img src="/images/browsers/edge_128x128.png" alt="">
+          <img src="/images/browsers/safari_128x128.png" alt="">
+        </div>
       </div>
-      <div class="post">
-        <a href="" class="post-title">What is shady DOM?</a>
-        <p>Why do we need a new kind of DOM?</p>
-      </div>
-      <div class="post">
-        <a href="" class="post-title">Using Polymer in WebView</a>
-        <p>How to build a mobile Polymer app that runs in a WebView.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-{% endblock %}
+    <section class="page-index-articles light">
+      <div class="section-columns">
+        <div class="flex-3">
+          <h2 class="underline">Articles</h2>
+          <p>Core concepts of build apps on top of Polymer and web components. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam.</p>
+          <a href="/1.0/blog/" class="blue-button">View all</a>
+        </div>
+
+        <div class="right flex-2">
+          <h2 class="underline">Recent posts</h2>
+          <br>
+
+          {% for item in articles[:2] %}
+          <div class="post">
+            <a href="{{{item.path}}}" class="post-title">{{{item.title}}}</a>
+            <p>{{{item.description}}}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+  </pw-shell>
+  <pw-footer></pw-footer>
+  <script src="/js/app.js"></script>
+</body>
+</html>

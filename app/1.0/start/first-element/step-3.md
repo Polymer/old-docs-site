@@ -9,9 +9,7 @@ from JavaScript, using a property.
 
 First, a bit of data binding. Find the `<iron-icon>` element and change the value of the `icon` attribute from `"polymer"` to  "`[[toggleIcon]]`".
 
-#### icon-toggle.html
-
-
+icon-toggle.html { .caption }
 
 ```html
 <!-- local DOM goes here -->
@@ -34,8 +32,7 @@ Plunker, all files are at the same level.)
 
 You'll see lines like this:
 
-#### icon-toggle-demo.html—existing demo code
-
+icon-toggle-demo.html—existing demo code { .caption }
 
 ```html
 <icon-toggle toggle-icon="star" pressed></icon-toggle>
@@ -56,9 +53,7 @@ Next, add a declaration for the `toggleIcon` property.
 
 Find the script tag and add the following `properties` object to the element's prototype:
 
-#### icon-toggle.html
-
-
+icon-toggle.html { .caption }
 
 ```html
 <script>
@@ -92,9 +87,7 @@ deserialization</a> in the Polymer docs.
 The `properties` object also supports several more features. Add the following lines to add
 support for the `pressed` property:
 
-#### icon-toggle.html
-
-
+icon-toggle.html { .caption }
 
 ```js
   Polymer({

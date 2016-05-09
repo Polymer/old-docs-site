@@ -42,6 +42,7 @@
     "gulp-util": "^3.0.7",
     "gulp-vulcanize": "^6.0.1",
     "highlight.js": "^8.9.1",
+    "html-escape": "^2.0.0",
     "jshint-stylish": "^2.0.1",
     "markdown-it": "^6.0.1",
     "markdown-it-attrs": "^0.1.8",

@@ -15,6 +15,7 @@ to make it easier and faster to make custom elements that work like standard DOM
 
 A basic Polymer element definition looks like this:
 
+```
     <dom-module id="element-name">
 
       <template>
@@ -45,7 +46,7 @@ A basic Polymer element definition looks like this:
       </script>
 
     </dom-module>
-
+```
 
 
 This guide divides the features into the following groups:
