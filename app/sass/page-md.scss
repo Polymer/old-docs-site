@@ -80,10 +80,12 @@ details {
   will-change: transform;
 
   summary {
+    font-family: 'Roboto Slab', 'Roboto', 'Noto', sans-serif;
+    font-weight: bold;
     font-size: 14px;
     line-height: 0;
   }
-  
+
   summary::-webkit-details-marker {
     display: none;
     @media (max-width: 1000px) {
