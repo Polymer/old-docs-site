@@ -112,7 +112,7 @@ This implies:
     ```
 
 **Custom properties can't style distributed children.** The Polymer
-[custom properties]({#xscope-styling-details) shim doesn't support styling
+[custom properties](#xscope-styling-details) shim doesn't support styling
 distributed children.
 {.alert .alert-info}
 
