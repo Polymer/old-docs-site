@@ -243,8 +243,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       // If we're not in a small view, render the TOC as open.
       this._tocElement = Polymer.dom(this).querySelector('details');
+
       if (this._tocElement) {
         this._tocElement.open = !this._shouldCollapseToc;
+        this.toggleClass('floating', !this._shouldCollapseToc, this._tocElement);
       }
 
       // If there's two links matching this path (i.e. because there's no landing
@@ -362,6 +364,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     _collapseTocChanged: function() {
       if (this._tocElement) {
         this._tocElement.open = !this._shouldCollapseToc;
+        this.toggleClass('floating', !this._shouldCollapseToc, this._tocElement);
       }
     }
   });

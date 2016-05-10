@@ -6,10 +6,7 @@ $mobile-media-breakpoint: 767px;
 
 main {
   background: #fafafa;
-  padding: $medium-padding;
-  padding-top: 10px;
-  /* Don't add any right padding, so that the TOC floats to the edge */
-  padding-right: 0;
+  padding: 10px $medium-padding;
   max-width: 1200px;
 
   font-size: 16px;
@@ -71,14 +68,28 @@ article {
   }
 
   @media (max-width: 1000px) {
-    padding: 0 0 20px 0;
+    padding: 0;
     max-width: 100%;
   }
 }
 
 details {
   will-change: transform;
-  padding: 20px 0 0 60px;
+  padding-top: 20px;
+
+  &.fixed {
+    position: fixed;
+    top: calc(64px + 16px);
+    padding-top: 0;
+
+    @media (max-width: 1000px) {
+      position: relative;
+    }
+  }
+
+  &.floating {
+    padding-left: 60px;
+  }
 
   summary {
     font-family: 'Roboto Slab', 'Roboto', 'Noto', sans-serif;
@@ -92,16 +103,6 @@ details {
     @media (max-width: 1000px) {
       display: inline-block;
     }
-  }
-}
-
-details.fixed {
-  position: fixed;
-  top: calc(64px + 16px);
-  padding-top: 0;
-
-  @media (max-width: 1000px) {
-    position: relative;
   }
 }
 
