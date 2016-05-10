@@ -57,10 +57,12 @@ section {
   }
 
   &.short {
-    padding: $medium-padding;
+    padding-top: $medium-padding;
+    padding-bottom: $medium-padding;
 
     @media (max-width: $mobile-media-breakpoint) {
-      padding: $small-padding;
+      padding-top: $small-padding;
+      padding-bottom: $small-padding;
     }
   }
 
