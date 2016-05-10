@@ -93,7 +93,7 @@ Source: [github.com/PolymerLabs/polyicon](https://github.com/PolymerLabs/polyico
 
 ### <b>&lt;seed-element></b>—boilerplate starter for creating a resuable element on Github {#seedelement}
 
-See [Create a reusable element](/1.0/tools/reusableelements).
+See [Create a reusable element](/1.0/docs/tools/reusableelements).
 
 Source: [github.com/polymerelements/seed-element](https://github.com/polymerelements/seed-element)
 
@@ -211,7 +211,7 @@ By default, any tests under `test/` will be run. You can override this by specif
 
 If you prefer not to use WCT's command line tool, you can also [run WCT tests directly in a browser](https://github.com/Polymer/web-component-tester#web-server) via a web server of your choosing.
 
-For details on using WCT, see [Test your elements](test).
+For details on using WCT, see [Test your elements](tests).
 
 Source: [github.com/Polymer/web-component-tester](https://github.com/Polymer/web-component-tester)
 

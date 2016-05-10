@@ -92,7 +92,7 @@ To run the element demo:
     component name listed in this element's `bower.json` file—rather than the actual directory name.)
 
 **Note:**
-If you're wondering what `polyserve` does, see [Testing elements with local bower dependencies](/1.0/tools/reusableelements#local-dependencies).
+If you're wondering what `polyserve` does, see [Testing elements with local bower dependencies](/1.0/docs/tools/reusableelements#local-dependencies).
 { .alert .alert-info }
 
 You'll see some text where the icon toggles should appear. It doesn't look

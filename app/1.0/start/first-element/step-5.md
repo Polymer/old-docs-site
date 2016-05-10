@@ -152,7 +152,7 @@ elements on the page:
 ```
 
 Ready to get started on your own element? See
-[Create a reusable element](/1.0/tools/reusableelements) for instructions on getting
+[Create a reusable element](/1.0/docs/tools/reusableelements) for instructions on getting
 started using the `<seed-element>` template for a reusable Polymer
 element.
 

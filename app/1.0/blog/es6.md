@@ -240,7 +240,7 @@ a convenient CLI and Gulp/Grunt/Browserify workflows.
 
 To support all browsers, follow these steps:
 
-1. [Vulcanize](/1.0/tools/optimize-for-production) your element(s) by inlining the script and CSS:
+1. [Vulcanize](/1.0/docs/tools/optimize-for-production) your element(s) by inlining the script and CSS:
 
         vulcanize element.html --inline-script --inline-css > element.v.html
 

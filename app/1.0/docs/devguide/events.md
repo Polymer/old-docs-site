@@ -93,8 +93,8 @@ _not_ `core-signal-newData`. To avoid confusion, always use lowercase event name
 
 Use [automatic node finding](local-dom#node-finding) and the
 convenience methods
-[`listen`](/1.0/api/#Polymer.Base:method-listen){target="api"} and
-[`unlisten`](/1.0/api/#Polymer.Base:method-unlisten){target="api"} .
+[`listen`](/1.0/docs/api/polymer.base#method-listen) and
+[`unlisten`](/1.0/docs/api/polymer.base#method-unlisten).
 
 ```js
 this.listen(this.$.myButton, 'tap', 'onTap');
