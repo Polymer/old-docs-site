@@ -135,6 +135,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="content-container">
       <header hidden$="[[!markdown]]">
+        <p>{{pageSubtitle}}</p>
         <h2>{{pageTitle}}</h2>
 
         <a class="edit-on-github" target="_blank"
@@ -167,6 +168,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        * displayed in the header section.
        */
       pageTitle: {
+        type: String
+      },
+
+      /**
+       * The subtitle of the page (i.e. "Registration and Lifecycle"),
+       * displayed in the header section.
+       */
+      pageSubtitle: {
         type: String
       },
 
@@ -212,6 +221,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (item) {
         return item.getAttribute('href') + '.md';
       }
+    },
+
+    _hasSubtitle: function(pageSubtitle) {
+      return pageSubtitle && pageSubtitle !== '';
     }
   });
   </script>

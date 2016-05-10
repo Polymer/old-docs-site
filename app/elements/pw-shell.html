@@ -211,7 +211,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           return;
 
         // FF uses document.documentElement.scrollTop not document.body.scrollTop.
-        console.log(document.body.scrollTop);
         this.toggleClass('fixed',
             Math.max(document.body.scrollTop, document.documentElement.scrollTop) > 200,
             this._tocElement);

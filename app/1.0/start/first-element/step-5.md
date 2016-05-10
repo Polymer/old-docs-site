@@ -1,6 +1,6 @@
 ---
 title: "Step 5: Theming with custom CSS properties"
-link: first-element/step-5
+subtitle: "Build your first Polymer element"
 ---
 
 You now have a button that's basically functional. But it's stuck using the

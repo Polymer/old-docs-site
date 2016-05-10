@@ -1,6 +1,6 @@
 ---
 title: Deploy
-link: psk/deploy
+subtitle: "Build your first Polymer application"
 ---
 
 <!-- This page does not have a ToC because it currently only has one H2.

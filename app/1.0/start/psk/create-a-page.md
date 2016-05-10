@@ -1,6 +1,6 @@
 ---
 title: Create a new page
-link: psk/create-a-page
+subtitle: "Build your first Polymer application"
 ---
 
 <!-- toc -->
