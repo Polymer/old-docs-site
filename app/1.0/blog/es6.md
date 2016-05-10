@@ -55,7 +55,7 @@ leaving it off the other examples on this page.
 
 Normally when creating a class, you define a `constructor` to do initialization work. However,
 in the world of custom elements this doesn't apply. Instead, you'll need to use
-the `createdCallback` [custom element lifecycle method](../docs/devguide/registering-elements.html#lifecycle-callbacks) for setup work. Use it to initialize properties, (optionally) create [Shadow DOM](http://www.html5rocks.com/tutorials/webcomponents/shadowdom/) for the element, set default attributes, etc.
+the `createdCallback` [custom element lifecycle method](/1.0/docs/devguide/registering-elements#lifecycle-callbacks) for setup work. Use it to initialize properties, (optionally) create [Shadow DOM](http://www.html5rocks.com/tutorials/webcomponents/shadowdom/) for the element, set default attributes, etc.
 
 The following example creates a class definition for our stocker ticker element:
 
@@ -160,8 +160,8 @@ several important differences:
 
 1. There's no need to use `extends HTMLElement`. Polymer extends the element for you.
 2. Use the `beforeRegister` method instead of `createdCallback`. This is a special method
-Polymer calls before creating your element and is where you should define your `is` property (element's name) and [`properties` object](../docs/devguide/properties.html).
-3. If you're using [behaviors](../docs/devguide/behaviors.html), define a getter that returns the array: `get behaviors() { return [MyBehavior]; }`
+Polymer calls before creating your element and is where you should define your `is` property (element's name) and [`properties` object](/1.0/docs/devguide/properties).
+3. If you're using [behaviors](/1.0/docs/devguide/behaviors), define a getter that returns the array: `get behaviors() { return [MyBehavior]; }`
 4. When registering an element, use the `Polymer()` constructor instead of `document.registerElement`.
 
 Here's our stock ticker:
@@ -240,7 +240,7 @@ a convenient CLI and Gulp/Grunt/Browserify workflows.
 
 To support all browsers, follow these steps:
 
-1. [Vulcanize](../../0.5/articles/concatenating-web-components.html) your element(s) by inlining the script and CSS:
+1. [Vulcanize](/1.0/docs/tools/optimize-for-production) your element(s) by inlining the script and CSS:
 
         vulcanize element.html --inline-script --inline-css > element.v.html
 

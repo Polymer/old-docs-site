@@ -132,8 +132,8 @@ The PSK is ready to be built and ran locally.
 ## Next steps
 
 Now that your PSK is up and running, learn how to [add a new page of
-content](create-a-page.html), or how to [deploy the app to the
-web](deploy.html).
+content](create-a-page), or how to [deploy the app to the
+web](deploy).
 
-[shared styles]: https://www.polymer-project.org/1.0/docs/devguide/styling.html#style-modules
+[shared styles]: /1.0/docs/devguide/styling.html#style-modules
 [md]: http://www.google.com/design/spec/material-design/introduction.html

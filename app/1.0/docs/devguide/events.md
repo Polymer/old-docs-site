@@ -1,6 +1,5 @@
 ---
 title: Events
-link: events
 ---
 
 <!-- toc -->
@@ -91,10 +90,10 @@ _not_ `core-signal-newData`. To avoid confusion, always use lowercase event name
 
 ## Imperatively add and remove listeners {#imperative-listeners}
 
-Use [automatic node finding](local-dom.html#node-finding) and the
+Use [automatic node finding](local-dom#node-finding) and the
 convenience methods
-[`listen`](/1.0/api/#Polymer.Base:method-listen){target="api"} and
-[`unlisten`](/1.0/api/#Polymer.Base:method-unlisten){target="api"} .
+[`listen`](/1.0/docs/api/polymer.base#method-listen) and
+[`unlisten`](/1.0/docs/api/polymer.base#method-unlisten).
 
 ```js
 this.listen(this.$.myButton, 'tap', 'onTap');
@@ -105,7 +104,7 @@ The listener callbacks are invoked with `this` set to the element instance.
 
 If you add a listener imperatively, you need to remove it imperatively.
 This is commonly done in the `attached` and `detached`
-[callbacks](registering-elements.html#lifecycle-callbacks). If you use
+[callbacks](registering-elements#lifecycle-callbacks). If you use
 the [`listeners`](#event-listeners) object or [annotated event
 listeners](#annotated-listeners), Polymer automatically adds
 and removes the event listeners.
@@ -278,7 +277,7 @@ Example with `listeners`: { .caption }
 
 You can configure an element to fire a non-bubbling DOM event when a specified
 property changes. See [Change notification
-protocol](data-binding.html#change-notification-protocol) for more information.
+protocol](data-binding#change-notification-protocol) for more information.
 
 ## Event retargeting {#retargeting}
 

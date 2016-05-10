@@ -1,6 +1,5 @@
 ---
 title: Quick tour of Polymer
-link: quick-tour
 ---
 
 <!-- toc -->
@@ -20,7 +19,7 @@ In this section you can take a quick tour of the Polymer library,
 without installing anything. Click the **Edit on Plunker** button to open any
 of the samples in an interactive sandbox.
 
-See the [Developer guide](../devguide/feature-overview.html) for
+See the [Developer guide](/1.0/docs/devguide/feature-overview) for
 detailed information on each of these features.
 
 ### Register an element {#register}
@@ -49,11 +48,11 @@ to add contents to the `<proto-element>` when it's initialized.
 When a custom element finishes its initialization, the `ready` lifecycle callback is called.
 The `ready` callback is a great place to do constructor-like initialization work.
 
-<p><a href="../devguide/registering-elements.html" class="blue-button">
+<p><a href="../devguide/registering-elements" class="blue-button">
   Learn more: element registration
 </a></p>
 
-<p><a href="../devguide/registering-elements.html#lifecycle-callbacks" class="blue-button">
+<p><a href="/1.0/docs/devguide/registering-elements#lifecycle-callbacks" class="blue-button">
   Learn more: lifecycle callbacks
 </a></p>
 
@@ -75,7 +74,7 @@ Polymer calls this _local DOM_, and it provides an easy way to specify it:
 
 Local DOM is encapsulated inside the element.
 
-<p><a href="../devguide/local-dom.html" class="blue-button">Learn more: local DOM</a></p>
+<p><a href="/1.0/docs/devguide/local-dom" class="blue-button">Learn more: local DOM</a></p>
 
 ### Compose with local DOM
 
@@ -100,7 +99,7 @@ with a styled `<div>` tag.
 So the `div` rule here only affects `<div>` tags inside `<picture-frame>`.
 {: .alert .alert-info }
 
-<p><a href="../devguide/local-dom.html#dom-distribution" class="blue-button">
+<p><a href="/1.0/docs/devguide/local-dom#dom-distribution" class="blue-button">
 Learn more: Composition & distribution</a></p>
 
 ### Use data binding
@@ -123,7 +122,7 @@ The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced 
   <iframe frameborder="0" src="samples/name-tag/index.html" width="100%" height="40"></iframe>
 </demo-tabs>
 
-<p><a href="../devguide/data-binding.html" class="blue-button">
+<p><a href="/1.0/docs/devguide/data-binding" class="blue-button">
 Learn more: data binding</a></p>
 
 ### Declare a property
@@ -146,7 +145,7 @@ and configure it in `index.html`.
   <iframe frameborder="0" src="samples/configurable-name-tag/index.html" width="100%" height="40"></iframe>
 </demo-tabs>
 
-<p><a href="../devguide/properties.html" class="blue-button">
+<p><a href="/1.0/docs/devguide/properties" class="blue-button">
 Learn more: declared properties</a></p>
 
 ### Bind to a property
@@ -175,11 +174,11 @@ element; the element name is `iron-input`, and it _extends_ the native `<input>`
 
 ## Next steps
 
-Now that you know how to create your own elements, [Get the code](getting-the-code.html)
+Now that you know how to create your own elements, [Get the code](getting-the-code)
 to create your first Polymer project, or dive deeper in the
-[Developer guide](../devguide/feature-overview.html).
+[Developer guide](/1.0/docs/devguide/feature-overview).
 Continue on to:
 
-<p><a href="getting-the-code.html" class="blue-button">Get the code</a></p>
+<p><a href="getting-the-code" class="blue-button">Get the code</a></p>
 
-<p><a href="../devguide/feature-overview.html" class="blue-button">Developer guide</a></p>
+<p><a href="/1.0/docs/devguide/feature-overview" class="blue-button">Developer guide</a></p>

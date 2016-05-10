@@ -1,6 +1,5 @@
 ---
 title: Data binding
-link: data-binding
 ---
 
 <!-- toc -->
@@ -13,7 +12,7 @@ A binding is created with a binding _annotation_ in the host element's local DOM
 ```
 <dom-module id="host-element">
     <template>
-      <child-element name="{{myName}}"></child-element>  
+      <child-element name="{{myName}}"></child-element>
     </template>
 </dom-module>
 ```
@@ -34,7 +33,7 @@ To bind to a child property, specify the attribute name that corresponds to the
 property, with an annotation as the attribute value:
 
 ```
-<child-element name="{{myName}}"></child-element>  
+<child-element name="{{myName}}"></child-element>
 ```
 
 This example binds the child element's `name` property to the host element's
@@ -46,7 +45,7 @@ elements. (There is a [special attribute binding syntax](#attribute-binding) for
 those cases where you want to bind to an attribute value.)
 
 Attribute names are mapped to property names as described in [Property name to
-attribute name mapping](properties.html#property-name-mapping). To
+attribute name mapping](properties#property-name-mapping). To
 bind to camel-case properties of elements, use dash-case in the attribute name.
 For example:
 
@@ -69,7 +68,7 @@ annotation inside the child element.
 ```
 <dom-module id="user-view">
 
-    <template>   
+    <template>
       First: {{firstName}}<br>
       Last: {{lastName}}
     </template>
@@ -284,7 +283,7 @@ When you configure a declared property with the `notify` flag set to `true`,
 
 You can manually attach a <code><var>property</var>-changed</code>
 listener to an element to [notify external elements, frameworks,
-or libraries](/1.0/docs/devguide/properties.html#notify-external) of property
+or libraries](properties#notify-external) of property
 changes.
 
 This is essentially what {{site.project_title}} does when you create a
@@ -357,7 +356,7 @@ following ways:
     provides the required notification to elements with registered interest.
 
 **Note:** These requirements are identical to the requirements for
-[sub-property change observers](properties.html#observing-path-changes), which use
+[sub-property change observers](properties#observing-path-changes), which use
 the same notification system.
 { .alert .alert-info }
 
@@ -392,12 +391,12 @@ similar strategy to the one described above for [2-way property binding
     event with a `detail.path` value indicating the path on the object that changed.
 
 2.  Elements that have registered interest in that object (either via binding or
-    change handler) may then take the appropriate action.  
+    change handler) may then take the appropriate action.
 
 3.  Finally, those elements will forward the notification on to any
     children they have bound the object to, and will also fire a new
     `<property>-changed` event where `property` is the root object, to notify any
-    hosts that may have bound root object down.  
+    hosts that may have bound root object down.
 
 This way, a notification reaches any part of the tree that has
 registered interest in that path so that side effects occur.
@@ -503,7 +502,7 @@ Example: { .caption }
       is: 'x-custom',
       properties: {
         first: String,
-        last: String       
+        last: String
       },
       computeFullName: function(first, last) {
         return first + ' ' + last;
@@ -524,9 +523,9 @@ Arguments to computing functions may be _dependent properties_, which include
 any of argument types supported by the `observers` object:
 
 *   simple properties on the current scope
-*   [paths to subproperties](properties.html#observing-path-changes)
-*   [paths with wildcards](properties.html#deep-observation)
-*   [paths to array splices](properties.html#array-observation)
+*   [paths to subproperties](properties#observing-path-changes)
+*   [paths with wildcards](properties#deep-observation)
+*   [paths to array splices](properties#array-observation)
 
 For each type of dependent property, the argument _received_ by the computing function is the
 same as that passed to an observer.
@@ -537,7 +536,7 @@ default `value` defined in `properties` (or otherwise be initialized to a
 non-`undefined` value) to ensure the function value is computed.
 
 A computed binding's dependent properties are interpreted relative to the current
-_binding scope_. For example, inside a [template repeater](templates.html#dom-repeat),
+_binding scope_. For example, inside a [template repeater](templates#dom-repeat),
 a dependent property could refer to the current `item`.
 
 For an example computed binding using a path with a wildcard, see [Binding to array items](#array-binding).
@@ -589,7 +588,7 @@ Finally, if a computed binding has no dependent properties, it is only evaluated
 
 Explicit bindings to array items by index isn't supported:
 
-```    
+```
 <!-- don't do this! -->
 <span>{{array[0]}}</span>
 <!-- or this! -->
@@ -604,7 +603,7 @@ The computing function needs to be called if the subproperty value changes,
 _or_ if the array itself is mutated, so the binding uses a wildcard path, `myArray.*`.
 
 
-```    
+```
 <dom-module id="bind-array-element">
 
   <template>
@@ -680,7 +679,7 @@ As opposed to:
 ```
 
 Attribute bindings are always one-way, host-to-child. Values are serialized according to
-the value's _current_ type, as described for [attribute serialization](properties.html#attribute-serialization).
+the value's _current_ type, as described for [attribute serialization](properties#attribute-serialization).
 
 Again, as values must be serialized to strings when binding to attributes, it is
 always more performant to use property binding for pure data propagation.

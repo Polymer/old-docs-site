@@ -1,13 +1,12 @@
 ---
 title: Utility functions
-link: utility-functions
 ---
 
 <!-- toc -->
 
 ## Utility Functions {#utility-functions}
 
-All Polymer elements inherit from `Polymer.Base`, which 
+All Polymer elements inherit from `Polymer.Base`, which
 provides a set of useful convenience functions for instances to use.
 
 *   `$$(selector)`. Returns the first node in this element's local DOM that matches
@@ -36,15 +35,15 @@ provides a set of useful convenience functions for instances to use.
     -   `cancelable`. Whether the event can be canceled with `preventDefault`. Defaults to `false`.
 
 *   `async(method, [wait])`. Calls `method` asynchronously. If no wait time is specified,
-    runs tasks with microtask timing (after the current method finishes, but before the 
+    runs tasks with microtask timing (after the current method finishes, but before the
     next event from the event queue is processed). Returns a handle that can be used to cancel
     the task.
 
 *   `cancelAsync(handle)`. Cancels the identified async task.
 
-*   `debounce(jobName, callback, [wait])`. Call `debounce` to collapse multiple 
-    requests for a named task into one invocation, which is made after the wait 
-    time has elapsed with no new request.  If no wait time is given, the callback 
+*   `debounce(jobName, callback, [wait])`. Call `debounce` to collapse multiple
+    requests for a named task into one invocation, which is made after the wait
+    time has elapsed with no new request.  If no wait time is given, the callback
     is called at microtask timing (guaranteed to be before paint).
 
 *   `cancelDebouncer(jobName)`. Cancels an active debouncer without calling the callback.
@@ -77,6 +76,6 @@ provides a set of useful convenience functions for instances to use.
     **Note:** To call `importHref` from outside a Polymer element, use `Polymer.Base.importHref`.
     { .alert .alert-info }
 
-*   `resolveUrl(url)`. Takes a URL relative to the `<dom-module>` of an imported Polymer 
+*   `resolveUrl(url)`. Takes a URL relative to the `<dom-module>` of an imported Polymer
     element, and returns a path relative to the current document. This method can be used, for example,
     to refer to an asset delivered alongside an HTML import.

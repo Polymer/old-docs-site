@@ -1,6 +1,5 @@
 ---
 title: Optimize for production
-link: optimize-for-production
 ---
 
 <!-- toc -->

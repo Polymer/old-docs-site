@@ -1,6 +1,5 @@
 ---
 title: Create a reusable element
-link: reusable-elements
 ---
 
 <!-- toc -->

@@ -42,112 +42,108 @@
     indent: True
   - endheader: True
 
-- section: Polymer
-  shortpath: devguide
-  path: /1.0/devguide/feature-overview
+- section: Docs
+  shortpath: docs
+  path: /1.0/docs/devguide/feature-overview
   items:
   - title: Feature overview
-    path: /1.0/devguide/feature-overview
-  - header: API Reference
-  - title: Polymer.Base
-    path: /1.0/devguide/api/polymer.base
-    indent: True
-  - title: array-selector
-    path: /1.0/devguide/api/array-selector
-    indent: True
-  - title: custom-style
-    path: /1.0/devguide/api/custom-style
-    indent: True
-  - title: dom-bind
-    path: /1.0/devguide/api/dom-bind
-    indent: True
-  - title: dom-if
-    path: /1.0/devguide/api/dom-if
-    indent: True
-  - title: dom-repeat
-    path: /1.0/devguide/api/dom-repeat
-    indent: True
-  - title: dom-template
-    path: /1.0/devguide/api/dom-template
-    indent: True
-  - title: Polymer.Templatizer
-    path: /1.0/devguide/api/polymer.templatizer
-    indent: True
-  - endheader: True
+    path: /1.0/docs/devguide/feature-overview
   - header: Registration and lifecycle
 #  - title: Element lifecycle concepts
-#    path: /1.0/devguide/lifecycle-concepts
+#    path: /1.0/docs/devguide/lifecycle-concepts
 #    indent: True
   - title: Register an element
-    path: /1.0/devguide/registering-elements
+    path: /1.0/docs/devguide/registering-elements
     indent: True
   - title: Declare properties
-    path: /1.0/devguide/properties
+    path: /1.0/docs/devguide/properties
     indent: True
   - endheader: True
   - header: Local DOM & styling
   - title: Local DOM
-    path: /1.0/devguide/local-dom
+    path: /1.0/docs/devguide/local-dom
     indent: True
   - title: Styling
-    path: /1.0/devguide/styling
+    path: /1.0/docs/devguide/styling
     indent: True
   - spacer: True
   - title: Events
-    path: /1.0/devguide/events
+    path: /1.0/docs/devguide/events
   - endheader: True
   - header: Data system
   - title: Data binding
-    path: /1.0/devguide/data-binding
+    path: /1.0/docs/devguide/data-binding
     indent: True
   - title: Helper elements
-    path: /1.0/devguide/templates
+    path: /1.0/docs/devguide/templates
     indent: True
 #  - title: Work with the model
-#    path: /1.0/devguide/data-model
+#    path: /1.0/docs/devguide/data-model
 #    indent: True
 #  - title: Observe property changes
-#    path: /1.0/devguide/observers
+#    path: /1.0/docs/devguide/observers
 #    indent: True
 #  - title: Work with data bindings
-#    path: /1.0/devguide/data-binding
+#    path: /1.0/docs/devguide/data-binding
 #    indent: True
   - endheader: True
   - spacer: true
   - title: Behaviors
-    path: /1.0/devguide/behaviors
+    path: /1.0/docs/devguide/behaviors
   - title: Utility functions
-    path: /1.0/devguide/utility-functions
+    path: /1.0/docs/devguide/utility-functions
   - title: Global settings
-    path: /1.0/devguide/settings
+    path: /1.0/docs/devguide/settings
   - title: Experimental features
-    path: /1.0/devguide/experimental
-
-- section: SPöRK
-  shortpath: spork
-  path: /1.0/spork/
-  items:
-  - title: What is a SPöRK?
-    path: /1.0/spork/index
-  - title: Röck and Röll mit SPöRK
-    path: /1.0/spork/getstarted
-
-- section: Tools
-  shortpath: tools
-  path: /1.0/tools/
-  items:
-  - title: Getting started
-    path: /1.0/tools/index
+    path: /1.0/docs/devguide/experimental
+  - header: API Reference
+  - title: Polymer.Base
+    path: /1.0/docs/api/polymer.base
+    indent: True
+  - title: array-selector
+    path: /1.0/docs/api/array-selector
+    indent: True
+  - title: custom-style
+    path: /1.0/docs/api/custom-style
+    indent: True
+  - title: dom-bind
+    path: /1.0/docs/api/dom-bind
+    indent: True
+  - title: dom-if
+    path: /1.0/docs/api/dom-if
+    indent: True
+  - title: dom-repeat
+    path: /1.0/docs/api/dom-repeat
+    indent: True
+  - title: dom-template
+    path: /1.0/docs/api/dom-template
+    indent: True
+  - title: Polymer.Templatizer
+    path: /1.0/docs/api/polymer.templatizer
+    indent: True
+  - endheader: True
+  - header: Tools
   - title: Tools overview
-    path: /1.0/tools/overview
+    path: /1.0/docs/tools/overview
   - title: Document your elements
-    path: /1.0/tools/documentation
+    path: /1.0/docs/tools/documentation
   - title: Test your elements
-    path: /1.0/tools/tests
+    path: /1.0/docs/tools/tests
   - title: Optimize for production
-    path: /1.0/tools/optimize-for-production
+    path: /1.0/docs/tools/optimize-for-production
   - title: Create a reusable element
-    path: /1.0/tools/reusable-elements
+    path: /1.0/docs/tools/reusable-elements
+  - endheader: True
+
+
+- section: App Toolbox
+  shortpath: toolbox
+  path: /1.0/toolbox/
+  items:
+  - title: What's in the box?
+    path: /1.0/toolbox/index
+  - title: Röck and Röll mit SPöRK
+    path: /1.0/toolbox/getstarted
 
 - section: Elements
   shortpath: elements

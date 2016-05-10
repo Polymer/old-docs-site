@@ -1,6 +1,5 @@
 ---
 title: Local DOM Basics and API
-link: local-dom
 ---
 
 <!-- toc -->

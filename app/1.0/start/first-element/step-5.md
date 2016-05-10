@@ -152,15 +152,15 @@ elements on the page:
 ```
 
 Ready to get started on your own element? See
-[Create a reusable element](../reusableelements.html) for instructions on getting
+[Create a reusable element](/1.0/docs/tools/reusableelements) for instructions on getting
 started using the `<seed-element>` template for a reusable Polymer
 element.
 
-You can also see the [Build an app](../psk/set-up.html)
+You can also see the [Build an app](/1.0/start/psk/set-up)
 tutorial to get started on an app using the Polymer Starter Kit.
 
 Or review the previous section:
 
-<a class="blue-button" href="step-4.html">
+<a class="blue-button" href="step-4">
   Previous Step: React to input
 </a>

@@ -1,6 +1,5 @@
 ---
 title: Tools
-link: overview
 ---
 
 <!-- toc -->
@@ -22,7 +21,7 @@ Usage (CLI):
     vulcanize --inline-scripts --inline-css --strip-comments \
         elements.html > elements.build.html
 
-Vulcanize can be used from the CLI or ran programmatically from Node, `gulp-vulcanize`, or `grunt-vulcanize`. Read more about vulcanize in "[Concatenating Web Components with Vulcanize](/articles/concatenating-web-components.html)".
+Vulcanize can be used from the CLI or ran programmatically from Node, `gulp-vulcanize`, or `grunt-vulcanize`. Read more about vulcanize in [Optimize for production](optimize-for-production).
 
 Source: [github.com/Polymer/vulcanize](https://github.com/Polymer/vulcanize)
 
@@ -93,13 +92,13 @@ Source: [github.com/PolymerLabs/polyicon](https://github.com/PolymerLabs/polyico
 
 ### <b>&lt;seed-element></b>—boilerplate starter for creating a resuable element on Github {#seedelement}
 
-See [Create a reusable element](/1.0/docs/start/reusableelements.html).
+See [Create a reusable element](/1.0/docs/tools/reusableelements).
 
 Source: [github.com/polymerelements/seed-element](https://github.com/polymerelements/seed-element)
 
 ### <b>Polymer Starter Kit</b>—starter project for building Polymer apps {#psk}
 
-The Polymer Starter Kit is a complete starting point for building Polymer-based applications See [Using Polymer Starter Kit](/1.0/docs/start/psk/set-up.html) for more information on getting started.
+The Polymer Starter Kit is a complete starting point for building Polymer-based applications See [Using Polymer Starter Kit](/1.0/start/psk/set-up) for more information on getting started.
 
 Source: [github.com/PolymerElements/polymer-starter-kit](https://github.com/PolymerElements/polymer-starter-kit)
 
@@ -126,7 +125,7 @@ Usage:
 
 ### <b>polyserve</b>—web server for developing elements {#polyserve}
 
-[polyserve](https://github.com/PolymerLabs/polyserve) is simple web server for serving `bower_components`, locally. It's useful when developing your own elements. 
+[polyserve](https://github.com/PolymerLabs/polyserve) is simple web server for serving `bower_components`, locally. It's useful when developing your own elements.
 
 polyserve serves the component from the current directory as `/components/{element-name}/`, where `element-name` is defined as the name in `bower.json`. All other dependencies are served from `./bower_components/`.
 
@@ -134,7 +133,7 @@ Install:
 
     npm install -g polyserve
 
-Usage: 
+Usage:
 
     cd my-element/
     polyserve -p 8080
@@ -162,7 +161,7 @@ Source: [github.com/PolymerLabs/polygit](https://github.com/PolymerLabs/polygit)
 
 ### <b>polystyle</b>—web service for creating style modules {#polystyle}
 
-[polystyle](https://poly-style.appspot.com/demo/) is a web service that can wrap an existing stylesheet on a remote server as Polymer [style module](https://www.polymer-project.org/1.0/docs/devguide/styling.html#style-modules). This is useful if you have a hosted third-party stylesheet that you want to use in an element or your application.
+[polystyle](https://poly-style.appspot.com/demo/) is a web service that can wrap an existing stylesheet on a remote server as Polymer [style module](/1.0/docs/devguide/styling#style-modules). This is useful if you have a hosted third-party stylesheet that you want to use in an element or your application.
 
 Usage:
 
@@ -189,14 +188,14 @@ Source: [github.com/PolymerLabs/polystyles](https://github.com/PolymerLabs/polys
 The Polymer team uses the `iron-component-page` element to create
 API docs for Polymer elements and behaviors.
 
-See [Document your elements](documentation.html) for details on
+See [Document your elements](documentation) for details on
 writing API docs and viewing them with `iron-component-page`.
 
 ## Testing / debugging {#testing}
 
 ### Web component tester—unit-testing tool for elements {#wct}
 
-[Web component tester](https://github.com/Polymer/web-component-tester) is a tool providing a browser-based testing environment for web components. Out of the box it includes support for Mocha, Chai, Async and Sinon. See [Test your elements](tests.html) for detailed usage.
+[Web component tester](https://github.com/Polymer/web-component-tester) is a tool providing a browser-based testing environment for web components. Out of the box it includes support for Mocha, Chai, Async and Sinon. See [Test your elements](tests) for detailed usage.
 
 Install:
 
@@ -211,6 +210,8 @@ By default, any tests under `test/` will be run. You can override this by specif
 
 If you prefer not to use WCT's command line tool, you can also [run WCT tests directly in a browser](https://github.com/Polymer/web-component-tester#web-server) via a web server of your choosing.
 
+For details on using WCT, see [Test your elements](tests).
+
 Source: [github.com/Polymer/web-component-tester](https://github.com/Polymer/web-component-tester)
 
 ### polydev Chrome extension {#polydev}
@@ -220,7 +221,7 @@ Source: [github.com/Polymer/web-component-tester](https://github.com/Polymer/web
 **Note**: It is highly recommended that the extension is installed in a separate Chrome profile. The extension needs permission to modify every page to install metrics gathering code.
 { .alert .alert-info }
 
-Install: 
+Install:
 
 1. Create a new Chrome profile
 - [Install](https://chrome.google.com/webstore/detail/polymer-devtools-extensio/mmpfaamodhhlbadloaibpocmcomledcg) the extension from the Chrome Webstore

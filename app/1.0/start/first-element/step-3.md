@@ -45,7 +45,7 @@ icon names you can try are `add`, `menu`, and `settings`.
 
 **Learn more: attribute and property names.** You'll note that the markup above
 uses `toggle-icon`, not `toggleIcon`. Polymer represents camelCase property names
-using dash-case attribute names. To learn more, see <a href="https://www.polymer-project.org/1.0/docs/devguide/properties.html#property-name-mapping">Property
+using dash-case attribute names. To learn more, see <a href="/1.0/docs/devguide/properties#property-name-mapping">Property
 name to attribute name mapping</a> in the Polymer library docs.
 { .alert .alert-info }
 
@@ -80,7 +80,7 @@ case, `String`).
 **Learn more: deserializing attributes.** The declared property type affects how Polymer converts, or <em>deserializes</em>
 the attribute value (always a string value) into a JavaScript property value.
 The default is `String`, so the declaration of `toggleIcon` is a formality here.
-To learn more, see <a href="https://www.polymer-project.org/1.0/docs/devguide/properties.html#attribute-deserialization">Attribute
+To learn more, see <a href="/1.0/docs/devguide/properties#attribute-deserialization">Attribute
 deserialization</a> in the Polymer docs.
 { .alert .alert-info }
 
@@ -109,12 +109,12 @@ Key information:
 
  *   For this more complicated property, you supply a configuration object with
 several fields.
-*   The `value` specifies the property's [default value](https://www.polymer-project.org/1.0/docs/devguide/properties.html#configure-values).
+*   The `value` specifies the property's [default value](/1.0/docs/devguide/properties#configure-values).
 *   The `notify` property tells Polymer to <em>dispatch property change events
     </em>when the property value changes. This lets the change be observed by
     other nodes.
 *   The `reflectToAttribute` property tells Polymer to
-    [update the corresponding attribute when the property changes](https://www.polymer-project.org/1.0/docs/devguide/properties.html#attribute-reflection).
+    [update the corresponding attribute when the property changes](/1.0/docs/devguide/properties#attribute-reflection).
     This lets you style the element using an attribute selector, like
     `icon-toggle[pressed]`.
 
@@ -125,7 +125,7 @@ state visible to the outside world. `reflectToAttribute` makes the
 state visible **in the DOM tree**, so that it's visible to CSS and the
 `querySelector` methods. `notify` **makes state changes observable outside the
 element**, either using JavaScript event handlers or Polymer
-<a href="https://www.polymer-project.org/1.0/docs/devguide/data-binding.html#property-notification">two-way data binding</a>.
+<a href="/1.0/docs/devguide/data-binding#property-notification">two-way data binding</a>.
 { .alert .alert-info }
 
 Now your element has `pressed` and `toggleIcon` properties working.

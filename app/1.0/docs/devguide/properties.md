@@ -1,6 +1,5 @@
 ---
 title: Declared Properties
-link: properties
 ---
 
 <!-- toc -->
@@ -210,7 +209,7 @@ This user is a manager.
 ```
 
 In order to configure camel-case properties of elements using attributes, dash-
-case should be used in the attribute name.  
+case should be used in the attribute name.
 
 Example: { .caption }
 
@@ -399,8 +398,8 @@ To observe changes in object sub-properties:
 In order for Polymer to properly detect the sub-property change, the
 sub-property must be updated in one of the following two ways:
 
-*   Via a [property binding](data-binding.html#property-binding).
-*   By calling [`set`](data-binding.html#set-path).
+*   Via a [property binding](data-binding#property-binding).
+*   By calling [`set`](data-binding#set-path).
 
 Example: { .caption }
 
@@ -648,7 +647,7 @@ Whenever possible you should always use Polymer's
 possible. For example, you may be using a third-party library
 that does not use Polymer's array mutation methods.
 In these scenarios you can call
-<a href="/1.0/api/#Polymer.Base:method-notifySplices" target="api">`notifySplices`</a>
+<a href="/1.0/docs/api/polymer.base#method-notifySplices">`notifySplices`</a>
 after each mutation to ensure that any Polymer elements observing the array
 are properly notified of the changes.
 
@@ -732,7 +731,7 @@ directly using `addEventListener`.
 
 For more on property change notifications and data binding, see
 [Property change notification and two-way
-binding](data-binding.html#property-notification).
+binding](data-binding#property-notification).
 
 ## Read-only properties
 
@@ -763,7 +762,7 @@ generated setter of the convention <code>\_set<var>Property</var>(value)</code>.
 ```
 
 For more on read-only properties and data binding, see
-[Property change notification and two-way binding](data-binding.html#property-notification).
+[Property change notification and two-way binding](data-binding#property-notification).
 
 ## Computed properties
 
@@ -844,7 +843,7 @@ The arguments received by the computing function match those described in the se
 **Note:**
 If you only need a computed property for a data binding, you
 can use a computed binding instead. See
-[Computed bindings](data-binding.html#annotated-computed).
+[Computed bindings](data-binding#annotated-computed).
 { .alert .alert-info }
 
 ## Reflecting properties to attributes
@@ -877,7 +876,7 @@ to the property to be serialized out to an attribute of the same name.
 ### Attribute serialization
 
 When reflecting a property to an attribute or
-[binding a property to an attribute](data-binding.html#attribute-binding),
+[binding a property to an attribute](data-binding#attribute-binding),
 the property value is _serialized_ to the attribute.
 
 By default, values are serialized according to value's  _current_ type
