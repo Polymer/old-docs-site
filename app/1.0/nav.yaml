@@ -42,8 +42,8 @@
     indent: True
   - endheader: True
 
-- section: Polymer
-  shortpath: devguide
+- section: Docs
+  shortpath: docs
   path: /1.0/docs/devguide/feature-overview
   items:
   - title: Feature overview
@@ -133,6 +133,7 @@
     path: /1.0/docs/tools/optimize-for-production
   - title: Create a reusable element
     path: /1.0/docs/tools/reusable-elements
+  - endheader: True
 
 
 - section: App Toolbox
