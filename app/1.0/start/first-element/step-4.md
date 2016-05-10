@@ -1,6 +1,6 @@
 ---
 title: "Step 4: React to input"
-link: first-element/step-4
+subtitle: "Build your first Polymer element"
 ---
 
 Of course, a button isn't a button if you can't click it. To toggle the button,

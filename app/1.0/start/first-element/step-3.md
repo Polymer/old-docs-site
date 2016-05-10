@@ -1,6 +1,6 @@
 ---
 title: "Step 3: Use data binding and properties"
-link: first-element/step-3
+subtitle: "Build your first Polymer element"
 ---
 
 Right now, the element doesn't do much. In this step, you'll give it a basic

@@ -14,6 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/carbon-route/carbon-location.html">
 <link rel="import" href="../bower_components/carbon-route/carbon-route.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
@@ -33,7 +34,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       a {
-        color: #999;
+        color: #6b6b6b;
         text-decoration: none;
       }
 
@@ -205,13 +206,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       window.addEventListener('location-changed', this._scrollToAnchor.bind(this));
 
       // Keep track of the scrolling position so that we can fix the TOC (which is in our light dom)
+      this._tocScrollOffset = this._getTocScrollOffset();
       document.addEventListener("scroll", function(e) {
         if (!this._tocElement)
           return;
 
         // FF uses document.documentElement.scrollTop not document.body.scrollTop.
         this.toggleClass('fixed',
-            Math.max(document.body.scrollTop, document.documentElement.scrollTop) > 280,
+            Math.max(document.body.scrollTop, document.documentElement.scrollTop) > this._tocScrollOffset,
             this._tocElement);
       }.bind(this));
     },
@@ -242,17 +244,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       // If we're not in a small view, render the TOC as open.
       this._tocElement = Polymer.dom(this).querySelector('details');
+
       if (this._tocElement) {
+        // This is a new page, so re-calculate the offset at which we're fixing the TOC. 
+        this._tocScrollOffset = this._getTocScrollOffset();
         this._tocElement.open = !this._shouldCollapseToc;
+        this.toggleClass('floating', !this._shouldCollapseToc, this._tocElement);
       }
 
       // If there's two links matching this path (i.e. because there's no landing
       // page for a section), and pick the deepest link to highlight.
-      var matchingLinks = this.querySelectorAll('a[name="' + this._sectionRoute.path +'"]');
+      var matchingLinks = this.querySelectorAll('a.site-nav[name="' + this._sectionRoute.path +'"]');
       var activeLink = matchingLinks[matchingLinks.length - 1];
 
-      this.toggleClass('iron-selected', true, activeLink);
-      this.styleLinkPath(activeLink, true);
+      if (activeLink) {
+        this.toggleClass('iron-selected', true, activeLink);
+        this.styleLinkPath(activeLink, true);
+      }
     },
 
     styleLinkPath: function(link, opened) {
@@ -359,6 +367,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     _collapseTocChanged: function() {
       if (this._tocElement) {
         this._tocElement.open = !this._shouldCollapseToc;
+        this.toggleClass('floating', !this._shouldCollapseToc, this._tocElement);
+      }
+    },
+
+    _getTocScrollOffset: function() {
+      // If there is a dev shell, it will have a header element for the
+      // docs header.
+      var shell = Polymer.dom(this).querySelector('devguide-shell');
+      if (shell) {
+        return shell.$.header.getBoundingClientRect().height;
+      }
+
+      // If there isn't, this could be the blog page, and we
+      // will should a header element distrubuted in the light dom.
+      var header = Polymer.dom(this).querySelector('#header');
+      if (header) {
+        return header.getBoundingClientRect().height;
       }
     }
   });

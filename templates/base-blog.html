@@ -48,6 +48,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- Because we want the styles to be loaded when the pw-shell changes its
       content, they need to be here, and not in the <head> -->
     <style>
+      section.blue > * {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
       section.blue h3 {
         font-size: 34px;  /* Needed because the page.md style overiddes this */
       }
@@ -73,6 +78,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .article-body {
         font-size: 16px;
         padding-top: 20px;
+        background: #fafafa;
       }
 
       .author img {
@@ -91,9 +97,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       .article-body main {
-        background: white;
-        max-width: 900px;
+        max-width: 1000px;
         margin: 0 auto;
+        padding: 10px;
       }
 
       @media (max-width: 767px) {
@@ -101,20 +107,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           font-size: 18px;  /* Needed because the page.md style overiddes this */
         }
       }
-
-      @media (max-width: 1000px) {
-        .article-body {
-          padding: 0;
-        }
-        details {
-          padding-left: 20px;
-        }
-      }
     </style>
 
     {% if markdown %}
     <!-- Single blog post page -->
-    <section class="short blue gradient-light">
+    <section class="short blue gradient-light" id="header">
       <div>
         <h3>{{{active_article.title}}}</h3>
         <p>{{{active_article.description}}}</p>
@@ -131,7 +128,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
     </section>
 
-    <section class="light article-body">
+    <section class="article-body">
       <main>
         {% block content %}{% endblock %}
       </main>

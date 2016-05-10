@@ -66,7 +66,6 @@
   - title: Styling
     path: /1.0/docs/devguide/styling
     indent: True
-  - spacer: True
   - title: Events
     path: /1.0/docs/devguide/events
   - endheader: True
@@ -87,7 +86,6 @@
 #    path: /1.0/docs/devguide/data-binding
 #    indent: True
   - endheader: True
-  - spacer: true
   - title: Behaviors
     path: /1.0/docs/devguide/behaviors
   - title: Utility functions
@@ -134,7 +132,6 @@
   - title: Create a reusable element
     path: /1.0/docs/tools/reusable-elements
   - endheader: True
-
 
 - section: App Toolbox
   shortpath: toolbox

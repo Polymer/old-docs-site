@@ -1,6 +1,6 @@
 ---
 title: Set up
-link: psk/set-up
+subtitle: "Build your first Polymer application"
 ---
 
 <!-- toc -->
