@@ -206,13 +206,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       window.addEventListener('location-changed', this._scrollToAnchor.bind(this));
 
       // Keep track of the scrolling position so that we can fix the TOC (which is in our light dom)
+      this._tocScrollOffset = this._getTocScrollOffset();
       document.addEventListener("scroll", function(e) {
         if (!this._tocElement)
           return;
 
         // FF uses document.documentElement.scrollTop not document.body.scrollTop.
         this.toggleClass('fixed',
-            Math.max(document.body.scrollTop, document.documentElement.scrollTop) > 130,
+            Math.max(document.body.scrollTop, document.documentElement.scrollTop) > this._tocScrollOffset,
             this._tocElement);
       }.bind(this));
     },
@@ -245,6 +246,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this._tocElement = Polymer.dom(this).querySelector('details');
 
       if (this._tocElement) {
+        // This is a new page, so re-calculate the offset at which we're fixing the TOC. 
+        this._tocScrollOffset = this._getTocScrollOffset();
         this._tocElement.open = !this._shouldCollapseToc;
         this.toggleClass('floating', !this._shouldCollapseToc, this._tocElement);
       }
@@ -365,6 +368,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (this._tocElement) {
         this._tocElement.open = !this._shouldCollapseToc;
         this.toggleClass('floating', !this._shouldCollapseToc, this._tocElement);
+      }
+    },
+
+    _getTocScrollOffset: function() {
+      // If there is a dev shell, it will have a header element for the
+      // docs header.
+      var shell = Polymer.dom(this).querySelector('devguide-shell');
+      if (shell) {
+        return shell.$.header.getBoundingClientRect().height;
+      }
+
+      // If there isn't, this could be the blog page, and we
+      // will should a header element distrubuted in the light dom.
+      var header = Polymer.dom(this).querySelector('#header');
+      if (header) {
+        return header.getBoundingClientRect().height;
       }
     }
   });

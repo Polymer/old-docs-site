@@ -79,7 +79,7 @@ details {
 
   &.fixed {
     position: fixed;
-    top: calc(64px + 16px);
+    top: calc(64px + 16px);  /* 64px is the size of the app-header, 16px is some padding. */
     padding-top: 0;
 
     @media (max-width: 1000px) {

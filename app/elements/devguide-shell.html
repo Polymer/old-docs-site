@@ -139,7 +139,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </div>
 
     <div class="content-container">
-      <header hidden$="[[!markdown]]">
+      <header hidden$="[[!markdown]]" id="header">
         <p>{{pageSubtitle}}</p>
         <h2>{{pageTitle}}</h2>
 
@@ -226,10 +226,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (item) {
         return item.getAttribute('href') + '.md';
       }
-    },
-
-    _hasSubtitle: function(pageSubtitle) {
-      return pageSubtitle && pageSubtitle !== '';
     }
   });
   </script>
