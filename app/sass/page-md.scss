@@ -7,6 +7,7 @@ $mobile-media-breakpoint: 767px;
 main {
   background: #fafafa;
   padding: $medium-padding;
+  padding-top: 10px;
   /* Don't add any right padding, so that the TOC floats to the edge */
   padding-right: 0;
   max-width: 1200px;
@@ -44,7 +45,6 @@ article {
   position: relative;
   box-sizing: border-box;
   width: 300px;
-  padding-left: 60px;
 
   ul {
     list-style-type: none;
@@ -78,6 +78,7 @@ article {
 
 details {
   will-change: transform;
+  padding: 20px 0 0 60px;
 
   summary {
     font-family: 'Roboto Slab', 'Roboto', 'Noto', sans-serif;
@@ -97,6 +98,7 @@ details {
 details.fixed {
   position: fixed;
   top: calc(64px + 16px);
+  padding-top: 0;
 
   @media (max-width: 1000px) {
     position: relative;
