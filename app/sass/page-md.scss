@@ -5,6 +5,7 @@ $large-padding: 100px;
 $mobile-media-breakpoint: 767px;
 
 main {
+  position: relative;
   background: #fafafa;
   padding: 10px $medium-padding;
   max-width: 1200px;
@@ -38,10 +39,18 @@ article {
   flex-basis: 0;
 }
 
+article.right-nav {
+  max-width: calc(100% - 300px);
+}
+
 .details-wrapper {
   position: relative;
   box-sizing: border-box;
   width: 300px;
+  padding-left: 30px;
+
+  overflow-x: hidden;
+  overflow-y: auto;
 
   ul {
     list-style-type: none;
@@ -77,20 +86,10 @@ details {
   will-change: transform;
   padding-top: 20px;
 
-  &.fixed {
-    position: fixed;
-    top: calc(64px + 16px);  /* 64px is the size of the app-header, 16px is some padding. */
-    padding-top: 0;
-
-    @media (max-width: 1000px) {
-      position: relative;
-    }
+  &.right-nav {
+    padding-left: 20px;
+    border-left: 2px solid #eceff1;
   }
-
-  &.floating {
-    padding-left: 60px;
-  }
-
   summary {
     font-family: 'Roboto Slab', 'Roboto', 'Noto', sans-serif;
     font-weight: bold;
