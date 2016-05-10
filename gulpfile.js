@@ -142,7 +142,13 @@ function convertMarkdownToHtml(file, templateName) {
       closeUL: '</ul>',
       openLI: '<li data-level="H<%= level %>"><a href="#<%= anchor %>"><%= text %></a>',
       closeLI: '</li>',
-      tocMax: 3
+      tocMax: 3,
+      anchor: function(header, attrs) { 
+        // if we have an ID attribute, use that, otherwise 
+        // use the default slug 
+        var id = attrs.match(/(?:^|\s+)id="([^"]*)"/)
+        return id ? id[1] : toc.anchor(header);
+      }
     }) + '</article>';
   } else {
     data.content = '<article>' + data.content + '</article>';
