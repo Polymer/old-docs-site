@@ -199,7 +199,7 @@ gulp.task('jshint', 'Lint JS', function() {
     .pipe($.jshint.extract()) // Extract JS from .html files
     .pipe($.jshint({esnext: true}))
     .pipe($.jshint.reporter('jshint-stylish'))
-    //.pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
+    .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
 gulp.task('js', 'Minify JS to dist/', ['jshint'], function() {
@@ -217,8 +217,8 @@ gulp.task('vulcanize', 'Vulcanize elements to dist/', function() {
       inlineScripts: true
     }))
     .pipe($.crisper()) // Separate HTML/JS into separate files.
-    // .pipe($.if('*.html', minifyHtml())) // Minify html output
-    // .pipe($.if('*.js', uglifyJS())) // Minify js output
+    .pipe($.if('*.html', minifyHtml())) // Minify html output
+    .pipe($.if('*.js', uglifyJS())) // Minify js output
     .pipe($.if('*.js', license()))
     .pipe(gulp.dest('dist/elements'));
 });
