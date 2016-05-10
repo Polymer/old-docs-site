@@ -1,6 +1,5 @@
 ---
 title: Data binding helper elements
-link: templates
 ---
 
 <!-- toc -->

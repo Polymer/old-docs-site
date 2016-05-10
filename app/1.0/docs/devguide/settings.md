@@ -1,6 +1,5 @@
 ---
 title: Global Polymer settings
-link: settings
 ---
 
 Document-level global Polymer settings can be set

@@ -1,6 +1,5 @@
 ---
 title: Document your elements
-link: documentation
 ---
 
 <!-- toc -->

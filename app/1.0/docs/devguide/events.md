@@ -1,6 +1,5 @@
 ---
 title: Events
-link: events
 ---
 
 <!-- toc -->

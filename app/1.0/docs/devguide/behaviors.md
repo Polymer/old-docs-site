@@ -1,6 +1,5 @@
 ---
 title: Behaviors
-link: behaviors
 ---
 
 <!-- toc -->

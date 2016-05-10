@@ -1,6 +1,5 @@
 ---
 title: Quick tour of Polymer
-link: quick-tour
 ---
 
 <!-- toc -->

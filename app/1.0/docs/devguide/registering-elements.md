@@ -1,6 +1,5 @@
 ---
 title: Registration and lifecycle
-link: registering-elements
 ---
 
 <!-- toc -->

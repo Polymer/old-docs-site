@@ -1,6 +1,5 @@
 ---
 title: Feature Overview
-link: feature-overview
 ---
 
 The Polymer library provides a set of features for creating custom elements. These features are designed

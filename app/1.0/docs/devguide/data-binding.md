@@ -1,6 +1,5 @@
 ---
 title: Data binding
-link: data-binding
 ---
 
 <!-- toc -->

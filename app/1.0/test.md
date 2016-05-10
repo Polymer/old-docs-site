@@ -1,6 +1,5 @@
 ---
 title: Styles sampler
-link: sampler
 ---
 
 <!-- toc -->

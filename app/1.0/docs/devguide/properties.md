@@ -1,6 +1,5 @@
 ---
 title: Declared Properties
-link: properties
 ---
 
 <!-- toc -->

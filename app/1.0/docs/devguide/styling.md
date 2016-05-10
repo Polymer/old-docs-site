@@ -1,6 +1,5 @@
 ---
 title: Styling local DOM
-link: styling
 ---
 
 <!-- toc -->
