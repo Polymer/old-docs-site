@@ -66,10 +66,19 @@ def render(out, template, data={}):
 def read_redirects_file(filename):
   with open(filename, 'r') as f:
     redirects = yaml.load(f)
+    literals = {}
+    wildcards = {}
     # Break lines into dict.
     # e.g. "/0.5/page.html /1.0/page" -> {"/0.5/page.html": "/1.0/page")
-    redirects = dict([(r.split()[0], r.split()[1]) for r in redirects])
-  return redirects
+    # If the redirect path ends with *, treat it as a wildcard.
+    # e.g. "/0.5/* /1.0/" redirects "/0.5/foo/bar" to "/1.0/foo/bar"
+    for r in redirects:
+      parts = r.split()
+      if parts[0].endswith('*'):
+        wildcards[parts[0][:-1]] = parts[1]
+      else:
+        literals[parts[0]] = parts[1]
+  return {'literal': literals, 'wildcard': wildcards}
 
 def read_nav_file(filename, version):
   with open(filename, 'r') as f:
@@ -130,9 +139,16 @@ class Site(http2push.PushHandler):
       redirects = read_redirects_file(REDIRECTS_FILE)
       memcache.add(REDIRECTS_FILE, redirects)
 
-    if path in redirects:
-      self.redirect(redirects.get(path), permanent=True)
+    literals = redirects.get('literal')
+    if path in literals:
+      self.redirect(literals.get(path), permanent=True)
       return True
+
+    wildcards = redirects.get('wildcard')
+    for prefix in wildcards:
+      if path.startswith(prefix):
+        self.redirect(path.replace(prefix, wildcards.get(prefix)), permanent=True)
+        return True
 
     return False
 

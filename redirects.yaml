@@ -1,6 +1,10 @@
 # Unconditionally redirects the first URL to the second.
+# Wildcards ending in *: redirects all paths matching the prefix,
+# replacing the prefix with the second path.
 
 - / /1.0/
+- /0.5/* https://docs-05-dot-polymer-project.appspot.com/0.5/
+- /1.0/articles/* /1.0/blog/
 
 # Moved guides
 - /1.0/docs/devguide/utility-functions.html /1.0/docs/devguide/instance-methods
