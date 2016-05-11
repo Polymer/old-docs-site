@@ -59,7 +59,7 @@
     path: /1.0/docs/devguide/properties
     indent: True
   - title: Instance methods
-    path: /1.0/docs/devguide/utility-functions
+    path: /1.0/docs/devguide/instance-methods
   - title: Behaviors
     path: /1.0/docs/devguide/behaviors
   - endheader: True
