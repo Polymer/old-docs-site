@@ -32,7 +32,7 @@ element. The custom element's name **must contain a dash (-)**.
 The Polymer function takes as an
 argument an object that defines your element's prototype.
 
-<demo-tabs selected="0" src="samples/proto-element/manifest.json">
+<demo-tabs selected="0" src="http://plnkr.co/edit/NQ4qGEoS24hia4numeLP?p=preview">
   <demo-tab heading="proto-element.html">
 <pre><code>{{{include_file('1.0/start/samples/proto-element/proto-element.html')}}}</code></pre>
   </demo-tab>
@@ -61,7 +61,7 @@ The `ready` callback is a great place to do constructor-like initialization work
 Many elements include some internal DOM nodes to implement the element's UI and behavior.
 Polymer calls this _local DOM_, and it provides an easy way to specify it:
 
-<demo-tabs selected="0" src="samples/dom-element/manifest.json">
+<demo-tabs selected="0" src="http://plnkr.co/edit/q3o7yWQq9cevrEy4fA9I?p=preview">
   <demo-tab heading="dom-element.html">
 <pre><code>{{{include_file('1.0/start/samples/dom-element/dom-element.html')}}}</code></pre>
   </demo-tab>
@@ -84,7 +84,7 @@ so they render as if they were inserted into the local DOM tree.
 This example creates a simple tag that decorates an image by wrapping it
 with a styled `<div>` tag.
 
-<demo-tabs selected="0" src="samples/picture-frame/manifest.json">
+<demo-tabs selected="0" src="http://plnkr.co/edit/LClm7BxEaq56395cgn64?p=preview">
   <demo-tab heading="picture-frame.html">
 <pre><code>{{{include_file('1.0/start/samples/picture-frame/picture-frame.html')}}}</code></pre>
   </demo-tab>
@@ -111,7 +111,7 @@ Data binding is a great way to quickly propagate changes in your element and red
 You can bind properties in your component using the "double-mustache" syntax (`{%raw%}{{}}{%endraw%}`).
 The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced between the brackets.
 
-<demo-tabs selected="0" src="samples/name-tag/manifest.json">
+<demo-tabs selected="0" src="http://plnkr.co/edit/IdMTRu1boSjWIA6q7Kj8?p=preview">
   <demo-tab heading="name-tag.html">
 <pre><code>{{{include_file('1.0/start/samples/name-tag/name-tag.html')}}}</code></pre>
   </demo-tab>
@@ -134,7 +134,7 @@ values, configuring properties from markup, observing property changes, and more
 In the following example, we add a declared `owner` property with a default value,
 and configure it in `index.html`.
 
-<demo-tabs selected="0" src="samples/configurable-name-tag/manifest.json">
+<demo-tabs selected="0" src="http://plnkr.co/edit/DhDSeqNrmLflcQ8UZI1R?p=preview">
   <demo-tab heading="configurable-name-tag.html">
 <pre><code>{{{include_file('1.0/start/samples/configurable-name-tag/configurable-name-tag.html')}}}</code></pre>
   </demo-tab>
@@ -157,7 +157,7 @@ can optionally support two-way binding.
 This example uses two-way binding: binding the value of a custom input element (`iron-input`)
 to the element's `owner` property, so it's updated as the user types.
 
-<demo-tabs selected="0" src="samples/editable-name-tag/manifest.json">
+<demo-tabs selected="0" src="http://plnkr.co/edit/OXaNcCl7qkeMwXEtiTxX?p=preview">
   <demo-tab heading="editable-name-tag.html">
 <pre><code>{{{include_file('1.0/start/samples/editable-name-tag/editable-name-tag.html')}}}</code></pre>
   </demo-tab>
