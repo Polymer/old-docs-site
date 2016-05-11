@@ -365,11 +365,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this._updateTocStyles();
 
         if (this._shouldCollapseToc) {
-          // Reset the TOC to be a relative element
+          // Reset the TOC to be a relatively positioned element.
           var wrapper = this._tocElement.parentElement;
-          wrapper.style.position = 'relative';
-          wrapper.style.top = '0';
-          wrapper.style.maxHeight = 'none';
+          this.toggleClass('relative', true, wrapper);
+          this.toggleClass('fixed', false, wrapper);
         }
       }
     },
@@ -421,22 +420,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _resizeToc: function(nav, scrollTop, topPadding, bottomPadding, footerOffset) {
-      // Default case, fixed position.
-      var top = topPadding;
-      var maxHeight = footerOffset - topPadding - bottomPadding;
-      var display = maxHeight > 0 ? '' : 'none';
-      var position = 'fixed';
-
       // If we haven't scrolled passed the target position, relatively position the TOC.
-      if (scrollTop < this._stickyTocPosition) {
-        position = 'relative';
-        top = 0;
-      }
+      var fixed = scrollTop >= this._stickyTocPosition;
+      this.toggleClass('relative', !fixed, nav);
+      this.toggleClass('fixed', fixed, nav);
 
-      nav.style.display = display;
-      nav.style.position = position;
-      nav.style.maxHeight = maxHeight + 'px';
-      nav.style.top = top + 'px';
+      if (fixed) {
+        var maxHeight = footerOffset - topPadding - bottomPadding;
+        nav.style.display = maxHeight > 0 ? '' : 'none';;
+        nav.style.maxHeight = maxHeight + 'px';
+        nav.style.top = topPadding + 'px';
+      }
     },
 
     _updateTocStyles: function() {

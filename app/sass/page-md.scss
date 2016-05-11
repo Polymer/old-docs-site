@@ -46,11 +46,22 @@ article.right-nav {
 .details-wrapper {
   position: relative;
   box-sizing: border-box;
-  width: 300px;
-  padding-left: 30px;
-
   overflow-x: hidden;
   overflow-y: auto;
+  padding-left: 30px;
+  width: 300px;
+
+  &.relative {
+    /* Important to override the inline styles applied if the TOC was
+     * previously in a fixed position */
+    position: relative !important;
+    top: 0 !important;
+    max-width: none !important;
+  }
+
+  &.fixed {
+    position: fixed;
+  }
 
   ul {
     list-style-type: none;
