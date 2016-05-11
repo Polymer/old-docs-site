@@ -2,6 +2,9 @@
 
 - / /1.0/
 
+# Moved guides
+- /1.0/docs/devguide/utility-functions.html /1.0/docs/devguide/instance-menthods
+
 # ------------------------------------------------------------------------------
 # Note: keep these for the tests!
 - /oldpage/ /

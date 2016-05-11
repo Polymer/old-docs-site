@@ -48,7 +48,7 @@
   items:
   - title: Feature overview
     path: /1.0/docs/devguide/feature-overview
-  - header: Registration and lifecycle
+  - header: Define elements
 #  - title: Element lifecycle concepts
 #    path: /1.0/docs/devguide/lifecycle-concepts
 #    indent: True
@@ -58,6 +58,10 @@
   - title: Declare properties
     path: /1.0/docs/devguide/properties
     indent: True
+  - title: Instance methods
+    path: /1.0/docs/devguide/utility-functions
+  - title: Behaviors
+    path: /1.0/docs/devguide/behaviors
   - endheader: True
   - header: Local DOM & styling
   - title: Local DOM
@@ -66,9 +70,12 @@
   - title: Styling
     path: /1.0/docs/devguide/styling
     indent: True
-  - spacer: True
-  - title: Events
+  - endheader: True
+  - header: Events
+  - title: Handle and fire events
     path: /1.0/docs/devguide/events
+  - title: Gesture events
+    path: /1.0/docs/devguide/gesture-events
   - endheader: True
   - header: Data system
   - title: Data binding
@@ -87,15 +94,26 @@
 #    path: /1.0/docs/devguide/data-binding
 #    indent: True
   - endheader: True
-  - spacer: true
-  - title: Behaviors
-    path: /1.0/docs/devguide/behaviors
-  - title: Utility functions
-    path: /1.0/docs/devguide/utility-functions
-  - title: Global settings
-    path: /1.0/docs/devguide/settings
-  - title: Experimental features
-    path: /1.0/docs/devguide/experimental
+  - header: Tools
+  - title: Tools overview
+    path: /1.0/docs/tools/overview
+  - title: Document your elements
+    path: /1.0/docs/tools/documentation
+  - title: Test your elements
+    path: /1.0/docs/tools/tests
+  - title: Optimize for production
+    path: /1.0/docs/tools/optimize-for-production
+  - title: Create a reusable element
+    path: /1.0/docs/tools/reusable-elements
+  - endheader: True
+  - header: What's new
+  - title: Release notes
+    path: /1.0/docs/release-notes
+  - title: 1.0 Migration guide
+    path: /1.0/docs/migration
+  - title: About Polymer 1.0
+    path: /1.0/docs/about_10
+  - endheader: True
   - header: API Reference
   - title: Polymer.Base
     path: /1.0/docs/api/polymer.base
@@ -121,20 +139,10 @@
   - title: Polymer.Templatizer
     path: /1.0/docs/api/polymer.templatizer
     indent: True
+  - title: Global settings
+    path: /1.0/docs/devguide/settings
+    indent: True
   - endheader: True
-  - header: Tools
-  - title: Tools overview
-    path: /1.0/docs/tools/overview
-  - title: Document your elements
-    path: /1.0/docs/tools/documentation
-  - title: Test your elements
-    path: /1.0/docs/tools/tests
-  - title: Optimize for production
-    path: /1.0/docs/tools/optimize-for-production
-  - title: Create a reusable element
-    path: /1.0/docs/tools/reusable-elements
-  - endheader: True
-
 
 - section: App Toolbox
   shortpath: toolbox
@@ -142,13 +150,22 @@
   items:
   - title: What's in the box?
     path: /1.0/toolbox/index
-  - title: Röck and Röll mit SPöRK
+  - title: Get started
     path: /1.0/toolbox/getstarted
+  - title: Routing
+    path: /1.0/toolbox/routing
+  - title: Service worker
+    path: /1.0/toolbox/service-worker
+  - title: Serve your app
+    path: /1.0/toolbox/server
+  - title: >
+      Case study: Shop
+    path: /1.0/toolbox/case-study
 
 - section: Elements
   shortpath: elements
   path: https://elements.polymer-project.org
 
-- section: Blog
+- section: News
   shortpath: blog
   path: /1.0/blog/
