@@ -21,7 +21,7 @@ In addition, the `properties` object can be used to specify:
 * Computed property. Dynamically calculates a value based on other properties.
 * Property reflection to attribute. Updates the corresponding attribute value when the property value changes.
 
-Example: { .caption }
+Example { .caption }
 
 ```
 Polymer({
@@ -127,7 +127,7 @@ for more information.
 </tr>
 </table>
 
-## Property name to attribute name mapping
+## Property name to attribute name mapping {#property-name-mapping}
 
 For data binding, deserializing properties from attributes, and reflecting
 properties back to attributes, Polymer maps attribute names to property
@@ -152,7 +152,7 @@ mappings are set up on the element at registration time based on the rules
 described above.
 { .alert .alert-warning }
 
-## Attribute deserialization
+## Attribute deserialization {#attribute-deserialization}
 
 If a property is configured in the `properties` object, an attribute on the
 instance matching the property name will be deserialized according to the type
@@ -238,7 +238,7 @@ encouraged that attributes only be used for configuring properties in static
 markup, and instead that properties are set directly for changes at runtime.
 </div>
 
-<h3 id="-boolean-properties">Configuring boolean properties</h3>
+### Configuring boolean properties
 
 For a Boolean property to be configurable from markup, it must default to `false`. If it defaults to `true`, you cannot set it to `false` from markup, since the presence of the attribute, with or without a value, equates to `true`. This is the standard behavior for attributes in the web platform.
 
@@ -254,7 +254,7 @@ For object and array properties you can pass an object or array in JSON format:
 
 Note that JSON requires double quotes, as shown above.
 
-## Configuring default property values
+## Configuring default property values {#configure-values}
 
 Default values for properties may be specified in the `properties` object using
 the `value` field.  The value may either be a primitive value, or a function
@@ -292,7 +292,7 @@ Polymer({
 });
 ```
 
-## Property change observers
+## Property change observers  {#change-callbacks}
 
 Custom element properties may be observed for changes by specifying `observer`
 property in the `properties` object for the property that gives the name of a function
@@ -336,13 +336,13 @@ A single property observer shouldn't rely on any other properties,
 sub-properties, or paths because the observer can be called while these
 dependencies are undefined. See [Always include dependencies
 as observer arguments](#dependencies) for details.
-{ .alert .alert-info }
+{ .alert .alert-warning }
 
 Property change observation is achieved in Polymer by installing setters on the
 custom element prototype for properties with registered interest (as opposed to
 observation via `Object.observe` or dirty checking, for example).
 
-### Observing changes to multiple properties
+### Observing changes to multiple properties {#multi-property-observers}
 
 To observe changes to a set of properties, use the `observers`
 array.
@@ -355,7 +355,7 @@ These observers differ from single-property observers in a few ways:
 *   Observers do not receive `old` values as arguments, only new values.  Only single-property
     observers defined in the `properties` object receive both `old` and `new` values.
 
-Example: { .caption }
+Example { .caption }
 
 ```
 Polymer({
@@ -382,7 +382,7 @@ Polymer({
 In addition to properties, observers can also observe [paths to sub-properties](#observing-path-changes),
 [paths with wildcards](#deep-observation), or [array changes](#array-observation).
 
-### Observing sub-property changes
+### Observing sub-property changes {#observing-path-changes}
 
 To observe changes in object sub-properties:
 
@@ -436,22 +436,23 @@ Example: { .caption }
 </dom-module>
 ```
 
-### Observe array mutations
+### Observe array mutations {#array-observation}
 
 Use an array mutation observer to call an observer function whenever an array
-item is added or deleted via `push`, `pop`, `shift`, `unshift`, or `splice`.
+item is added or deleted using Polymer's [array mutation methods](#array-mutation).
 Whenever the array is mutated, the observer receives a change record
 representing the mutation as a set of array splices.
 
-In many cases, you'll want to observe both array mutations **and** changes to
+In many cases, you'll want to observe both array mutations *and* changes to
 sub-properties of array items, in which case you should use a [deep
 sub-property observer](#deep-observation).
 
-**Never use the built-in JavaScript array methods to splice your arrays.**
-Always use Polymer's [array mutation methods](#array-mutation).
-These methods ensure that elements with registered interest in the array
-splices are properly notified.
-{ .alert .alert-info }
+**Avoid native JavaScript array mutation methods.**
+Use Polymer's [array mutation methods](#array-mutation) wherever possible to
+ensure that elements with registered interest in the array mutations are
+properly notified. If you can't avoid the native methods, you need to notify
+Polymer about array changes as described in [Using native array mutation methods](#notifysplices).
+{ .alert .alert-warning }
 
 To create a splice observer, specify a path to an array followed by `.splices`
 in your `observers` array.
@@ -464,7 +465,7 @@ observers: [
 
 Your observer method should accept a single argument. When your observer method
 is called, it receives a change record of the mutations that
-occurred on the array. Each change record provides the following properties:
+occurred on the array. Each change record provides the following property:
 
 *   `indexSplices`. The set of changes that occurred to the array, in
      terms of array indexes. Each `indexSplices` record contains the following
@@ -473,14 +474,16 @@ occurred on the array. Each change record provides the following properties:
      -   `index`. Position where the splice started.
      -   `removed`. Array of `removed` items.
      -   `addedCount`. Number of new items inserted at `index`.
+     -   `object`: A reference to the array in question.
+     -   `type`: The string literal 'splice'.
 
-*   `keySplices`. The set of changes that occurred to the array in terms
-    of array keys. Each `keySplices` record contains the following properties:
 
-    -   `added`. Array of added keys.
-    -   `removed`. Array of removed keys.
+**Change record may be undefined.** The change record may be undefined the first
+time the observer is invoked, so your code should guard against this, as shown
+in the example.
+{ .alert .alert-info }
 
-Example: { .caption }
+Example {.caption}
 
 ```
 Polymer({
@@ -501,22 +504,51 @@ Polymer({
   ],
 
   usersAddedOrRemoved: function(changeRecord) {
-    changeRecord.indexSplices.forEach(function(s) {
-      s.removed.forEach(function(user) {
-        console.log(user.name + ' was removed');
-      });
-      console.log(s.addedCount + ' users were added');
-    }, this);
+    if (changeRecord) {
+      changeRecord.indexSplices.forEach(function(s) {
+        s.removed.forEach(function(user) {
+          console.log(user.name + ' was removed');
+        });
+        for (var i=0; i<s.addedCount; i++) {
+          var index = s.index + i;
+          var newUser = s.object[index];
+          console.log('User ' + newUser.name + ' added at index ' + index);
+        }
+      }, this);
+    }
   },
-
-  addUser: function() {
+  ready: function() {
     this.push('users', {name: "Jack Aubrey"});
-  }
-
+  },
 });
 ```
 
-### Deep sub-property observation
+#### Track key splices {#key-splices}
+
+In some situtations, you may need to know about the [immutable opaque
+keys](#key-paths) that Polymer uses to track array items. **This is a advanced
+use case, only required if you're implementing an element like the [template
+repeater](https://www.polymer-project.org/1.0/docs/devguide/templates.html#dom-repeat).**
+
+You can register interest in key additions and deletions by retrieving the
+array's `Collection` object:
+
+<code>Polymer.Collection.get(<var>array</var>);</code>
+
+If you've registered interest, the change record includes an additional property:
+
+*   `keySplices`. The set of changes that occurred to the array in terms
+    of array keys. Each `keySplices` record contains the following properties:
+
+    -   `added`. Array of added keys.
+    -   `removed`. Array of removed keys.
+
+**Template repeaters and key splices.** The template repeater (`dom-repeat`)
+element uses keys internally, so if an array is used by a `dom-repeat`,
+observers for that array receive the `keySplices` property.
+{.alert .alert-info}
+
+### Deep sub-property observation {#deep-observation}
 
 To call an observer when any (deep) sub-property of an
 object or array changes, specify a path with a wildcard (`*`).
@@ -567,7 +599,7 @@ Example: { .caption }
 </dom-module>
 ```
 
-#### Deep sub-property changes on array items
+#### Deep sub-property changes on array items {#key-paths}
 
 When a sub-property of an array is modified, `changeRecord.path` references
 the "key" of the array item that was modified, not the array index. For
@@ -582,15 +614,39 @@ with a number sign (`#`) by convention to distinguish them from array indexes.
 Keys provide stable references to array items, regardless of any splices
 (additions or removals) on the array.
 
-If for some reason you need a reference to the index of an array item, you
-can retrieve it via the `Polymer.Collection` internal abstraction:
+Use the `get` method to retrieve an item by path.
 
 ```
-var collection = Polymer.Collection.get(changeRecord.base);
-var index = changeRecord.base.indexOf(collection.getItem(key));
+var item = this.get('users.#0');
 ```
 
-### Array mutation methods
+If you need a reference to the index of an array item, you
+can retrieve it using `indexOf`:
+
+```
+var item = this.get('users.#0');
+var index = this.users.indexOf(item);
+```
+
+The following example shows one way to use path manipulation and
+`get` to retrieve an array item and its index from inside an observer:
+
+```
+// Log user name changes by index
+usersChanged(cr) {
+  // handle paths like 'users.#4.name'
+  var nameSubpath = cr.path.indexOf('.name');
+  if (nameSubpath) {
+    var itempath = cr.path.substring(0, nameSubpath);
+    var item = this.get(itempath);
+    var index = cr.base.indexOf(item);
+    console.log('Item ' + index + ' changed, new name is: ' + item.name);
+  }
+}
+```
+
+
+### Array mutation methods {#array-mutation}
 
 When modifying arrays, a set of array mutation methods are provided on Polymer
 element prototypes which mimic `Array.prototype` methods, with the exception that
@@ -639,7 +695,7 @@ Example: { .caption }
 </dom-module>
 ```
 
-#### Using native array mutation methods
+#### Using native array mutation methods {#notifysplices}
 
 
 Whenever possible you should always use Polymer's
@@ -651,7 +707,7 @@ In these scenarios you can call
 after each mutation to ensure that any Polymer elements observing the array
 are properly notified of the changes.
 
-### Always include dependencies as observer arguments
+### Always include dependencies as observer arguments {#dependencies}
 
 Observers shouldn't rely on any properties, sub-properties, or paths other
 than those listed as arguments to the observer. This is because the observer
@@ -714,7 +770,7 @@ dependencies listed in its arguments changes. For example, if an observer
 relies on `this.firstName` but does not list it as an argument, the observer
 is not called when `this.firstName` changes.
 
-## Property change notification events (notify)
+## Property change notification events (notify) {#notify}
 
 When a property is set to `notify: true`, an event is fired whenever the
 property value changes. The event name is:
@@ -733,7 +789,7 @@ For more on property change notifications and data binding, see
 [Property change notification and two-way
 binding](data-binding#property-notification).
 
-## Read-only properties
+## Read-only properties {#read-only}
 
 When a property only "produces" data and never consumes data, this can be made
 explicit to avoid accidental changes from the host by setting the `readOnly`
@@ -764,7 +820,7 @@ generated setter of the convention <code>\_set<var>Property</var>(value)</code>.
 For more on read-only properties and data binding, see
 [Property change notification and two-way binding](data-binding#property-notification).
 
-## Computed properties
+## Computed properties {#computed-properties}
 
 Polymer supports virtual properties whose values are calculated from other
 properties.
@@ -846,7 +902,7 @@ can use a computed binding instead. See
 [Computed bindings](data-binding#annotated-computed).
 { .alert .alert-info }
 
-## Reflecting properties to attributes
+## Reflecting properties to attributes  {#attribute-reflection}
 
 In specific cases, it may be useful to keep an HTML attribute value in sync with
 a property value.  This may be achieved by setting `reflectToAttribute: true` on
@@ -873,7 +929,7 @@ to the property to be serialized out to an attribute of the same name.
 </script>
 ```
 
-### Attribute serialization
+### Attribute serialization {#attribute-serialization}
 
 When reflecting a property to an attribute or
 [binding a property to an attribute](data-binding#attribute-binding),
