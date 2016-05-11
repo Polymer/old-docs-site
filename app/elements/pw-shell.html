@@ -391,12 +391,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     _onScroll: function() {
       // We only need to do something if the toc is on the right.
-      if (!this._tocElement || this._tocElement.className.indexOf('right-nav') < 0)
+      if (!this._tocElement || !this._tocElement.classList.contains('right-nav')) {
         return;
+      }
 
       var article = Polymer.dom(this).querySelector('article');
-      if (!article)
+      if (!article) {
         return;
+      }
 
       var wrapper = this._tocElement.parentElement;
 
@@ -427,7 +429,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       if (fixed) {
         var maxHeight = footerOffset - topPadding - bottomPadding;
-        nav.style.display = maxHeight > 0 ? '' : 'none';;
+        nav.style.display = maxHeight > 0 ? '' : 'none';
         nav.style.maxHeight = maxHeight + 'px';
         nav.style.top = topPadding + 'px';
       }
