@@ -38,6 +38,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-decoration: none;
       }
 
+      /* To avoid flashing the content before it's being distributed,
+       * the nav links where initially display: none. */
+      a.site-nav, ::content a.site-nav {
+        display: flex;
+      }
+
       a.iron-selected {
         color: #333;
       }
@@ -246,7 +252,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this._tocElement = Polymer.dom(this).querySelector('details');
 
       if (this._tocElement) {
-        // This is a new page, so re-calculate the offset at which we're fixing the TOC. 
+        // This is a new page, so re-calculate the offset at which we're fixing the TOC.
         this._tocScrollOffset = this._getTocScrollOffset();
         this._tocElement.open = !this._shouldCollapseToc;
         this.toggleClass('floating', !this._shouldCollapseToc, this._tocElement);
