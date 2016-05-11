@@ -245,13 +245,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this._tocElement = Polymer.dom(this).querySelector('details');
 
       if (this._tocElement) {
-        // This is a new page, so re-calculate the offset at which we're fixing the TOC.
-        this._stickyTocPosition = this._getStickyTocPosition();
-        this._tocElement.open = !this._shouldCollapseToc;
-
-        // Apply styles.
-        this.toggleClass('right-nav', !this._shouldCollapseToc, this._tocElement);
-        this.toggleClass('right-nav', !this._shouldCollapseToc, Polymer.dom(this).querySelector('article'));
+        this._updateTocStyles();
       }
 
       // If there's two links matching this path (i.e. because there's no landing
@@ -368,8 +362,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     _collapseTocChanged: function() {
       if (this._tocElement) {
-        this._tocElement.open = !this._shouldCollapseToc;
-        this.toggleClass('right-nav', !this._shouldCollapseToc, this._tocElement);
+        this._updateTocStyles();
+
+        if (this._shouldCollapseToc) {
+          // Reset the TOC to be a relative element
+          var wrapper = this._tocElement.parentElement;
+          wrapper.style.position = 'relative';
+          wrapper.style.top = '0';
+          wrapper.style.maxHeight = 'none';
+        }
       }
     },
 
@@ -436,7 +437,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       nav.style.position = position;
       nav.style.maxHeight = maxHeight + 'px';
       nav.style.top = top + 'px';
-      nav.style.right = right;
+    },
+
+    _updateTocStyles: function() {
+      // This is a new page, so re-calculate the offset at which we're fixing the TOC.
+      this._stickyTocPosition = this._getStickyTocPosition();
+      this._tocElement.open = !this._shouldCollapseToc;
+
+      // Apply styles.
+      this.toggleClass('right-nav', !this._shouldCollapseToc, this._tocElement);
+      this.toggleClass('right-nav', !this._shouldCollapseToc, Polymer.dom(this).querySelector('article'));
     }
   });
   </script>
