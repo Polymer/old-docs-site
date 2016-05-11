@@ -143,7 +143,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <p>{{pageSubtitle}}</p>
         <h2>{{pageTitle}}</h2>
 
-        <a class="edit-on-github" target="_blank"
+        <a class="edit-on-github" target="_blank" hidden$="[[_shouldHideGithubLink(activeItem)]]"
             href="https://github.com/Polymer/docs2/edit/master/app{{_githubUrl(activeItem)}}">Edit on GitHub
         </a>
       </header>
@@ -225,6 +225,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     _githubUrl: function(item) {
       if (item) {
         return item.getAttribute('href') + '.md';
+      }
+    },
+
+    /* Enormous hack so that the api pages, which are markdown, don't show
+     * the "Edit on Github" link as they should .
+     */
+    _shouldHideGithubLink: function(item) {
+      if (item) {
+        return item.getAttribute('name').indexOf('/1.0/docs/api') >= 0;
       }
     }
   });
