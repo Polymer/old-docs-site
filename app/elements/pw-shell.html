@@ -38,6 +38,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-decoration: none;
       }
 
+      /* To avoid flashing the content before it's being distributed,
+       * the nav links where initially display: none. */
+      a.site-nav, ::content a.site-nav {
+        display: flex;
+      }
+
       a.iron-selected {
         color: #333;
       }
@@ -211,6 +217,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         if (!this._tocElement)
           return;
 
+        if (!this._tocScrollOffset)
+          this._tocScrollOffset = this._getTocScrollOffset();
+
         // FF uses document.documentElement.scrollTop not document.body.scrollTop.
         this.toggleClass('fixed',
             Math.max(document.body.scrollTop, document.documentElement.scrollTop) > this._tocScrollOffset,
@@ -234,6 +243,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var doc = event.detail.response;
       document.title = doc.title;
       Polymer.dom(this).innerHTML = doc.querySelector('pw-shell').innerHTML;
+      Polymer.dom.flush();  // Force upgrades.
 
       // Scroll to an anchor, if we have one.
       if (window.location.hash) {
@@ -246,15 +256,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this._tocElement = Polymer.dom(this).querySelector('details');
 
       if (this._tocElement) {
-        // This is a new page, so re-calculate the offset at which we're fixing the TOC. 
-        this._tocScrollOffset = this._getTocScrollOffset();
+        // This is a new page, so on the next scroll, re-calculate the offset
+        // at which we're fixing the TOC (so that the rest of the content has finished
+        // distributing for sure).
+        this._tocScrollOffset = null;
         this._tocElement.open = !this._shouldCollapseToc;
         this.toggleClass('floating', !this._shouldCollapseToc, this._tocElement);
       }
 
       // If there's two links matching this path (i.e. because there's no landing
       // page for a section), and pick the deepest link to highlight.
-      var matchingLinks = this.querySelectorAll('a.site-nav[name="' + this._sectionRoute.path +'"]');
+      var matchingLinks = Polymer.dom(this).querySelectorAll('a.site-nav[name="' + this._sectionRoute.path +'"]');
       var activeLink = matchingLinks[matchingLinks.length - 1];
 
       if (activeLink) {
@@ -277,33 +289,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     _styleLevel1Link: function(link, opened) {
       // Style the active selection.
-      Polymer.Base.toggleClass('active', opened, link);
+      this.toggleClass('active', opened, link);
 
-      var collapse = link.nextElementSibling;
+      var collapse = Polymer.dom(link).nextElementSibling;
       this._showOrHideCollapse(link, opened);
 
       // Style all the other greyed-out links.
-      links = this.querySelectorAll('a.level-1');
+      links = Polymer.dom(this).querySelectorAll('a.level-1');
       for (i = 0; i < links.length; i++) {
         if (link !== links[i]) {
           // Close all other collapses.
           this._showOrHideCollapse(links[i], false);
-          Polymer.Base.toggleClass('active', false, links[i]);
+          this.toggleClass('active', false, links[i]);
 
           // If the active collapse is opened, then grey-out the other links.
-          Polymer.Base.toggleClass('greyed-out', collapse.opened, links[i]);
+          this.toggleClass('greyed-out', collapse.opened, links[i]);
         }
       }
     },
 
     _styleLevel2Link: function(link, opened) {
       // Style the active selection.
-      Polymer.Base.toggleClass('active', opened, link);
+      this.toggleClass('active', opened, link);
 
       // A level-2 link is inside a collapse, which comes after the level-1 link
       // responsible for toggling that collapse. Style the parent level-1 link
       // as well, so that the whole path of the tree is highlighted.
-      var parentLink = link.parentElement.previousElementSibling;
+      var parentLink = Polymer.dom(link.parentElement).previousElementSibling;
       this._styleLevel1Link(parentLink, true);
 
       // This link might have a collapse as well that we need to open.
@@ -312,16 +324,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     _styleLevel3Link: function(link) {
       // Style the active selection.
-      Polymer.Base.toggleClass('active', true, link);
+      this.toggleClass('active', true, link);
 
       // A level-3 link is inside a level-2 collapse, and after the level-2
       // link responsible for opening it.
-      this._styleLevel2Link(link.parentElement.previousElementSibling, true);
+      this._styleLevel2Link(Polymer.dom(link.parentElement).previousElementSibling, true);
     },
 
     _showOrHideCollapse: function(link, opened) {
-      var collapse = link.nextElementSibling;
-      var expandButton = link.querySelector('paper-icon-button');
+      var collapse = Polymer.dom(link).nextElementSibling;
+      var expandButton = Polymer.dom(link).querySelector('paper-icon-button');
 
       if (!expandButton || !collapse)
         return;
@@ -375,8 +387,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // If there is a dev shell, it will have a header element for the
       // docs header.
       var shell = Polymer.dom(this).querySelector('devguide-shell');
-      if (shell) {
-        return shell.$.header.getBoundingClientRect().height;
+      if (shell && shell.header) {
+        return shell.header.getBoundingClientRect().height;
       }
 
       // If there isn't, this could be the blog page, and we

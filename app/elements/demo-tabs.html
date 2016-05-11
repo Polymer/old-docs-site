@@ -80,10 +80,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-tab>{{item.heading}}</paper-tab>
         </template>
       </paper-tabs>
-      <paper-button raised hidden>
-        <iron-icon icon="pw-icons:exit-to-app"></iron-icon>
-        Edit on Plunker
-      </paper-button>
+      <a href="[[src]]" target="_blank">
+        <paper-button raised hidden>
+          <iron-icon icon="pw-icons:exit-to-app"></iron-icon>
+          Edit on Plunker
+        </paper-button>
+      </a>
     </div>
 
     <div class="layout horizontal">
@@ -103,9 +105,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     properties: {
       /**
-       * If set, adds a `plunker-button` to let the
-       * user preview the demo on the Plunker service. The value of `src`
-       * should be a path that points to the `manifest.json` for the demo.
+       * URL of the Plunker demo
        */
       src: {
         type: String

@@ -13,9 +13,11 @@
 
       /* The active links will have a pink border. */
       border-left: 4px solid transparent;
-
-      display: flex;
       flex-direction: row;
+
+      /* To avoid flashing the content before it's being distributed,
+       * hide the links initially, and revert to display:flex in pw-shell. */
+      display: none;
     }
 
     a.site-nav > span {

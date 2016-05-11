@@ -1,8 +1,0 @@
-{
-  "name": "Compose with local DOM",
-  "description": "Use local DOM to control composition.",
-  "files": [
-    "index.html",
-    "picture.html"
-  ]
-}

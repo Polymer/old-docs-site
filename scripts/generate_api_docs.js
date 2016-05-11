@@ -11,7 +11,7 @@ var fs = require('fs');
 var exec = require('child_process').exec;
 var escape = require('html-escape');
 
-var apiDocsPath = '../app/1.0/devguide/api/';
+var apiDocsPath = '../app/1.0/docs/api/';
 
 // TODO: Check out an actual release SHA to generate docs off of.g
 var releaseSha = 'master'; //'27d90bfaeb13f1d1a822f8a5e6e26a5403f5ed2c';
@@ -39,7 +39,7 @@ function installPolymer() {
   var command = 'git clone https://github.com/Polymer/polymer.git temp';
   console.log(`Running ${command}...`);
 
-  exec(command, runHydrolysis);
+  exec(command, generateDocs);
 }
 
 function generateDocs() {
@@ -69,11 +69,13 @@ function runHydrolysis() {
         var json = escape(JSON.stringify(section));
 
         var fileContents =
-            `{% extends "templates/base-devguide.html" %}
-            {% block title %} API Reference - ${sectionName}{% endblock %}
-            {% block content %}
-            <iron-doc-viewer>${json}</iron-doc-viewer>
-            {% endblock %}`;
+`{% set markdown = "true" %}
+{% set title = "${sectionName}" %}
+{% extends "templates/base-devguide.html" %}
+{% block title %} API Reference - ${sectionName}{% endblock %}
+{% block content %}
+<iron-doc-viewer>${json}</iron-doc-viewer>
+{% endblock %}`;
 
         fs.writeFileSync(filename, fileContents);
         console.log('Done.');
