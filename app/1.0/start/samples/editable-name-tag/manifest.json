@@ -1,8 +1,0 @@
-{
-  "name": "Two-way binding",
-  "description": "Two-way binding to a custom input element.",
-  "files": [
-    "index.html",
-    "editable-name-tag.html"
-  ]
-}
