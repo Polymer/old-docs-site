@@ -96,7 +96,7 @@
     path: /1.0/docs/devguide/experimental
   - header: API Reference
   - title: Polymer.Base
-    path: /1.0/docs/api/polymer.base
+    path: /1.0/docs/api/Polymer.Base
     indent: True
   - title: array-selector
     path: /1.0/docs/api/array-selector
@@ -117,7 +117,7 @@
     path: /1.0/docs/api/dom-template
     indent: True
   - title: Polymer.Templatizer
-    path: /1.0/docs/api/polymer.templatizer
+    path: /1.0/docs/api/Polymer.Templatizer
     indent: True
   - endheader: True
   - header: Tools
