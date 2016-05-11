@@ -128,7 +128,7 @@ function convertMarkdownToHtml(file, templateName) {
   data.file = file;
   data.content = markdownIt.render(file.content); // Markdown -> HTML.
   data.title = data.title || '';
-  data.link = data.link || '';
+  data.subtitle = data.subtitle || '';
 
   // If there is a table of contents, toc-ify it. Otherwise, wrap the
   // original markdown content anyway, so that we can style it.

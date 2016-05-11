@@ -2,7 +2,7 @@
 
 {% set markdown = 'true' %}
 {% set title = "<%= title %>" %}
-{% set link = "<%= link %>" %}
+{% set subtitle = "<%= subtitle %>" %}
 
 {% block title %}<%= title %>{% endblock %}
 

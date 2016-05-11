@@ -33,13 +33,6 @@ $mobile-media-breakpoint: 767px;
   .content {
     vertical-align: middle;
 
-    h2 {
-      font-weight: 300;
-      @media (max-width: $mobile-media-breakpoint) {
-        font-weight: 400;
-      }
-    }
-
     .section-columns {
       @media (max-width: 900px) {
         /* Switch to a vertical layout */

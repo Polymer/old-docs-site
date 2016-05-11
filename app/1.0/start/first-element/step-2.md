@@ -1,6 +1,6 @@
 ---
 title: "Step 2: Add Local DOM"
-link: first-element/step-2
+subtitle: "Build your first Polymer element"
 ---
 
 Next, you'll create a simple element that displays an icon.

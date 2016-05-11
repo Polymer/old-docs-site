@@ -6,9 +6,7 @@ $mobile-media-breakpoint: 767px;
 
 main {
   background: #fafafa;
-  padding: $medium-padding;
-  /* Don't add any right padding, so that the TOC floats to the edge */
-  padding-right: 0;
+  padding: 10px $medium-padding;
   max-width: 1200px;
 
   font-size: 16px;
@@ -36,17 +34,18 @@ main {
 article {
   min-width: 0;    /* For some reason, this is non-0 */
   max-width: 800px;
+  flex: 1;
+  flex-basis: 0;
 }
 
 .details-wrapper {
   position: relative;
   box-sizing: border-box;
   width: 300px;
-  padding-left: 60px;
 
   ul {
     list-style-type: none;
-    font-size: 15px;
+    font-size: 14px;
     margin: 0;
   }
 
@@ -56,39 +55,54 @@ article {
 
     a {
       color: black;
+      font-weight: 500;
     }
   }
 
   ul[data-depth="2"] {
-    padding: 0 15px;
-
+    font-weight: 300;
+    padding: 0 20px;
     a {
-    color: #999;
+      font-weight: 300;
     }
   }
 
   @media (max-width: 1000px) {
-    padding: 0 0 20px 0;
+    padding: 0;
     max-width: 100%;
   }
 }
 
 details {
   will-change: transform;
+  padding-top: 20px;
+
+  &.fixed {
+    position: fixed;
+    top: calc(64px + 16px);  /* 64px is the size of the app-header, 16px is some padding. */
+    padding-top: 0;
+
+    @media (max-width: 1000px) {
+      position: relative;
+    }
+  }
+
+  &.floating {
+    padding-left: 60px;
+  }
+
+  summary {
+    font-family: 'Roboto Slab', 'Roboto', 'Noto', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 0;
+  }
+
   summary::-webkit-details-marker {
     display: none;
     @media (max-width: 1000px) {
       display: inline-block;
     }
-  }
-}
-
-details.fixed {
-  position: fixed;
-  top: calc(64px + 16px);
-
-  @media (max-width: 1000px) {
-    position: relative;
   }
 }
 
@@ -110,10 +124,11 @@ h1 {
 
 h2 {
   border-bottom: 1px solid #f52757;
-  margin: 20px 0;  
+  margin: 20px 0;
 }
 
 h3 {
+  font-family: 'Roboto Slab', 'Roboto', 'Noto', sans-serif;
   font-size: 24px;
 
   @media (max-width: 500px) {

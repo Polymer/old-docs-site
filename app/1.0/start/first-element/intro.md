@@ -1,6 +1,6 @@
 ---
-title: Build your first Polymer element
-link: first-element/intro
+title: "Step 1: Set up"
+subtitle: "Build your first Polymer element"
 ---
 
 <!-- toc -->
