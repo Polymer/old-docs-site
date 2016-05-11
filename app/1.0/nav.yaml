@@ -114,6 +114,12 @@
   - title: About Polymer 1.0
     path: /1.0/docs/about_10
   - endheader: True
+  - header: Resources
+  - title: Community
+    path: /1.0/docs/community
+  - title: Browser compatibility
+    path: /1.0/docs/browsers
+  - endheader: True
   - header: API Reference
   - title: Polymer.Base
     path: /1.0/docs/api/Polymer.Base
