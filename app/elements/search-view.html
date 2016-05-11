@@ -1,0 +1,59 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/search-results/search-results.html">
+
+<dom-module is="search-view">
+  <template>
+    <style>
+      :host {
+        display: block;
+        @apply(--layout-horizontal);
+        @apply(--layout-center-justified);
+      }
+      main {
+        max-width: 850px;
+      }
+      .button-container {
+        padding: 20px;
+        @apply(--layout-horizontal);
+        @apply(--layout-center-justified);
+      }
+      h3 {
+        text-align: center;
+      }
+      .search-term {
+        color: red;
+      }
+      /* override paper-button host styling because
+         @notwaldorf says hidden is a lie */
+      paper-button[hidden] {
+        display: none;
+      }
+    </style>
+    <main>
+      <h3 hidden$="{{!showQuery(query)}}">Results for <span class="search-term">{{query}}</span></h3>
+      <h3 hidden$="{{showQuery(query)}}">Use the search box above to search the site.</h3>
+
+      <search-results id="results" api-key="AIzaSyCMGfdDaSfjqv5zYoS0mTJnOT3e9MURWkU" search-engine-id="012790892085874323134:dqsp1svowso" query="{{query}}" more-results="{{moreToShow}}"></search-results>
+      <div class="button-container">
+         <paper-button raised on-click="showMore" hidden$="{{!moreToShow}}">Show more</paper-button>
+      </div>
+     </main>
+   </template>
+   <script>
+     Polymer({
+      is: 'search-view',
+      properties: {
+        query: String
+      },
+      showMore: function() {
+        this.$.results.loadMore();
+      },
+      showQuery: function(q) {
+        return !!q;
+      }
+     });
+  </script>
+</template>
+</dom-module>
