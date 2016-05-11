@@ -208,6 +208,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     },
 
+    /**
+     * Returns the header element, which is needed for calculating the TOC position.
+     */
+    get header () {
+      return this.$.header;
+    },
+
     attached: function() {
       // Compute the active page from the parent pw-shell's carbon route.
       var pwShell = this.parentElement;
