@@ -255,7 +255,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         // Paginated search.
         if (this._searchParams.start && this._searchParams.start !== 0) {
-          this.$.cseSearch.params['start'] = this._searchParams.start;
+          this.$.cseSearch.params.start = this._searchParams.start;
         }
 
         this.$.cseSearch.generateRequest();
