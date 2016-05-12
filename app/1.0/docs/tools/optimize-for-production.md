@@ -11,14 +11,12 @@ Reducing network requests is important for a performant app experience. In the P
 
 Follow the steps below to get set up, or watch the Polycast:
 
-<!--
-  <google-youtube
-    video-id="EUZWE8EZ0IU"
-    autoplay="0"
-    rel="0"
-    fluid>
-  </google-youtube>
--->
+<google-youtube
+  video-id="EUZWE8EZ0IU"
+  autoplay="0"
+  rel="0"
+  fluid>
+</google-youtube>
 
 ## Installation
 
@@ -202,14 +200,12 @@ This results in a `elements.vulcanized.html` that looks a little like this:
 
 To use Polymer in a CSP environment (such as a Chrome App or Extension), you can use the Crisper project. Crisper removes all scripts from the HTML Imports and places their contents into an external JavaScript file.
 
-<!--
-  <google-youtube
-    video-id="VrajHIZZbE4"
-    autoplay="0"
-    rel="0"
-    fluid>
-  </google-youtube>
--->
+<google-youtube
+  video-id="VrajHIZZbE4"
+  autoplay="0"
+  rel="0"
+  fluid>
+</google-youtube>
 
 Like Vulcanize, Crisper can be used either from the command line, or as a `gulp` plugin.
 
