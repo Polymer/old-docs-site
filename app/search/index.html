@@ -34,15 +34,58 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <!-- <style is="custom-style" include="site-styles"></style> -->
 <link rel="import" href="/css/syntax-color-styles.html">
 <style is="custom-style" include="syntax-color-styles iron-flex iron-flex-alignment iron-flex-factors"></style>
+
+<style>
+  .search-results {
+    min-height: 400px;
+  }
+
+  .search-query {
+    color: #1e87ea;
+  }
+
+  .search-query.small {
+    color: black;
+    font-weight: bold;
+  }
+
+  .search-result {
+    margin-bottom: 20px;
+  }
+</style>
 </head>
 <body class="fullbleed">
   <pw-shell>
     {% include 'templates/site-nav.html' %}
 
-    <div class="layout horizontal center-center" >
-      <div>
-        Use the search bar above to search the site.
-      </div>
+    <div class="search-results">
+      <section class="short layout vertical center-center">
+        <div class="no-search">
+          <h2>Search</h2>
+          <p>Use the search bar above to search the site.</p>
+        </div>
+        <div class="yes-results" hidden>
+          <h2>Search results for <span class="search-query">adsfasdf</span></h2>
+          <br>
+          <template is="dom-repeat">
+            <div class="search-result">
+              <a href="{{item.link}}">{{item.title}}</a>
+              <p class="snippet">{{item.snippet}}</p>
+            </div>
+          </template>
+        </div>
+
+        <div class="no-results" hidden>
+          <h2>Search results for <span class="search-query">adsfasdf</span></h2>
+          <p>Your search — <span class="search-query small">adsfasdf</span> — did not match any documents.</p>
+          <p>Suggestions:</p>
+          <ul>
+            <li>Make sure all words are spelled correctly.</li>
+            <li>Try different keywords.</li>
+            <li>Try more general keywords.</li>
+          </ul>
+        </div>
+      </section>
     </div>
 
   </pw-shell>

@@ -19,6 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+
 <link rel="import" href="icons.html">
 
 <dom-module id="pw-shell">
@@ -128,7 +129,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         transition: transform 0.2s;
       }
 
-      .search-box:focus, .search-box[open] {
+      .search-box:focus {
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
       }
@@ -149,6 +150,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <carbon-route route="{{_sectionRoute}}" active="{{_searchActive}}" pattern="/search/" query-params="{{_searchParams}}"></carbon-route>
 
     <iron-ajax url="[[_sectionRoute.path]]" handle-as="document" on-response="_handleResponse" auto></iron-ajax>
+    <iron-ajax id="cseSearch" url="https://www.googleapis.com/customsearch/v1" on-response="_handleSearchResponse"></iron-ajax>
 
     <app-header class="header" reveals snaps shadow>
       <div class="header-toolbar layout horizontal center">
@@ -184,6 +186,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <content select=".site-nav"></content>
       </div>
     </app-drawer>
+
+    <content select=".search-results"></content>
 
     <content></content>
 
@@ -230,11 +234,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this.$.searchBox.focus();
     },
 
-    // Show search results on enter
+    // Show search results on enter.
     _doSearch: function() {
-      if (this._searchParams.q && !this._searchActive) {
+      if (this._searchParams.q) {
         this.set('_sectionRoute.path', '/search/');
-        this.async(this.$.searchBox.focus);
+
+        this.$.cseSearch.params = {
+          q: this._searchParams.q,
+          key: 'AIzaSyCMGfdDaSfjqv5zYoS0mTJnOT3e9MURWkU',
+          cx: '012790892085874323134:dqsp1svowso'
+        };
+        this.$.cseSearch.generateRequest()
       }
     },
 
@@ -271,6 +281,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.toggleClass('iron-selected', true, activeLink);
         this.styleLinkPath(activeLink, true);
       }
+    },
+
+    _handleSearchResponse: function(event) {
+      var response = event.detail.response;
+      var resultsElement = Polymer.dom(this).querySelector('.search-results');
+      resultsElement.querySelector('div:not([hidden])').hidden = true;
+
+      var visibleSection;
+      if (!response || !response.items) {
+        visibleSection = resultsElement.querySelector('.no-results');
+      } else if (response.items) {
+        visibleSection = resultsElement.querySelector('.yes-results');
+        visibleSection.querySelector('template').items = response.items;
+      }
+
+      var queryElements = visibleSection.querySelectorAll('.search-query');
+      for (var i = 0; i < queryElements.length; i++) {
+        queryElements[i].textContent = this._searchParams.q;
+      }
+
+      visibleSection.hidden = false;
     },
 
     styleLinkPath: function(link, opened) {
