@@ -10,36 +10,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <!DOCTYPE html>
 <html itemscope itemtype="http://schema.org/Organization">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-<meta name="google-site-verification" content="k0e8DrbD40s54xHNBqwIsRrSSAkZoprwtEYDnNY06bU" />
-<meta name="google-site-verification" content="pnjjbQFvjPwaWhEXY6nSyaS9iyghmH-M_yLHBveDX2M">
-<meta itemprop="image" content="https://www.polymer-project.org/images/logos/p-logo-32.png">
-<meta itemprop="description" content="Polymer is a library that uses the latest web technologies to let you create custom HTML elements. Build anything from a button to a complete application as an encapsulated, reusable component that works across desktop and mobile.">
-<link rel="manifest" href="manifest.json">
-
 <title>{% block title %}{% endblock %} - Polymer Project</title>
-
-<link rel="publisher" href="https://plus.google.com/107187849809354688692">
-<link rel="shortcut icon" href="/images/logos/p-logo-32.png">
-<link rel="stylesheet" href`="//fonts.googleapis.com/css?family=Roboto:300,400,500|Source+Code+Pro:400,500,700|Roboto+Slab:400,700">
-<!-- <link rel="shortcut icon" href="/static/img/chromium-128.png"> -->
-
-<link rel="stylesheet" href="/css/site.css">
-
-<script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js" async></script>
-
-<script>
-  window.Polymer = window.Polymer || {dom: 'shadow', lazyRegister: true};
-</script>
-
-<link rel="import" href="/elements/elements.html">
-<!-- <link rel="import" href="/css/site-styles.html"> -->
-<!-- <style is="custom-style" include="site-styles"></style> -->
-
-<link rel="import" href="/css/syntax-color-styles.html">
-<style is="custom-style" include="syntax-color-styles iron-flex iron-flex-alignment iron-flex-factors"></style>
+{% include 'templates/head-meta.html' %}
 </head>
 <body class="fullbleed">
   <pw-shell>
