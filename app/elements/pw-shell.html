@@ -171,10 +171,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </iron-selector>
         </nav>
 
-        <paper-icon-button icon="pw-icons:search" on-click="_focusSearch" tabindex="-1"></paper-icon-button>
+        <paper-icon-button icon="pw-icons:search" on-click="_focusSearch" tabindex="-1" aria-label="Search Polymer site"></paper-icon-button>
       </div>
 
-      <input id="searchBox" type="search" class="search-box fit" placeholder="Search Polymer Site">
+      <label aria-hidden id="searchLabel" hidden>Search Polymer site</label>
+      <input id="searchBox" type="search" class="search-box fit" placeholder="Search Polymer site">
     </app-header>
 
     <app-drawer id="drawer" class="drawer" swipe-open>
