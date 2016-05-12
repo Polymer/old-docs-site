@@ -178,8 +178,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   Polymer({
     is: 'pw-footer',
 
-    _smoothScrollToTop: function() {
+    _smoothScrollToTop: function(event) {
+      event.preventDefault();
       Polymer.AppLayout.scroll({ behavior: 'smooth' });
+
+      // Kick focus back to the page
+      // User will start from the top of the document again
+      event.target.blur();
     }
   });
   </script>
