@@ -99,7 +99,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         vertical-align: middle;
       }
 
-      .sections-tabs {
+      nav {
         height: 64px;
         padding: 0 8px;
       }
@@ -161,13 +161,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <div class="flex"></div>
 
-        <iron-selector class="sections-tabs" attr-for-selected="name" activate-event="" selected="[[_sectionData.section]]">
-          <a href="/1.0/start/" name="start">Start</a>
-          <a href="/1.0/docs/devguide/feature-overview" name="docs">Polymer</a>
-          <a href="/1.0/toolbox/" name="toolbox">App Toolbox</a>
-          <a href="/1.0/blog/" name="blog">News</a>
-          <a href="https://elements.polymer-project.org/" target="_blank" name="catalog">Element Catalog</a>
-        </iron-selector>
+        <nav>
+          <iron-selector class="sections-tabs" attr-for-selected="name" activate-event="" selected="[[_sectionData.section]]">
+            <a href="/1.0/start/" name="start">Start</a>
+            <a href="/1.0/docs/devguide/feature-overview" name="docs">Polymer</a>
+            <a href="/1.0/toolbox/" name="toolbox">App Toolbox</a>
+            <a href="/1.0/blog/" name="blog">News</a>
+            <a href="https://elements.polymer-project.org/" target="_blank" name="catalog">Element Catalog</a>
+          </iron-selector>
+        </nav>
 
         <paper-icon-button icon="pw-icons:search" on-click="_focusSearch" tabindex="-1"></paper-icon-button>
       </div>
