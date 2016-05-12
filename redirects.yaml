@@ -3,11 +3,20 @@
 # replacing the prefix with the second path.
 
 - / /1.0/
+
+# bulk redirects
 - /0.5/* https://docs-05-dot-polymer-project.appspot.com/0.5/
 - /1.0/articles/* /1.0/blog/
+- /1.0/docs/start/* /1.0/start/
+- /1.0/tools/* /1.0/docs/tools/
 
-# Moved guides
+# Individual redirects take precedence over bulk redirects
 - /1.0/docs/devguide/utility-functions.html /1.0/docs/devguide/instance-methods
+# final name may change
+- /1.0/docs/start/reusableelements.html /1.0/docs/tools/reusable-elements
+# Old page with this URL was actually "about Polymer 1.0", not a real landing page
+- /1.0/docs/ /1.0/docs/about_10
+
 
 # ------------------------------------------------------------------------------
 # Note: keep these for the tests!
