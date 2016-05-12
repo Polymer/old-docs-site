@@ -265,9 +265,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.async(this._resetScrollPosition);
       }
 
+      // If we have any query parameters, that means we are displaying the
+      // search results page, and we should kick off a search, if we
+      // haven't already
+      if (this._sectionRoute.path === '/search/' && this._searchParams.q) {
+        this._doSearch();
+      }
+
       // If we're not in a small view, render the TOC as open.
       this._tocElement = Polymer.dom(this).querySelector('details');
-
       if (this._tocElement) {
         this._updateTocStyles();
       }
