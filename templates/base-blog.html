@@ -20,17 +20,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- Because we want the styles to be loaded when the pw-shell changes its
       content, they need to be here, and not in the <head> -->
     <style>
-      section.blue > * {
+      #header > * {
         max-width: 1000px;
         margin: 0 auto;
-      }
-
-      section.blue h3 {
-        font-size: 34px;  /* Needed because the page.md style overiddes this */
-      }
-
-      h2.smaller {
-        font-size: 20px;
       }
 
       google-youtube {
@@ -75,7 +67,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       @media (max-width: 767px) {
-        section.blue h3 {
+        section.blue h1 {
           font-size: 18px;  /* Needed because the page.md style overiddes this */
         }
       }
@@ -85,7 +77,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- Single blog post page -->
     <section class="short blue gradient-light" id="header">
       <div>
-        <h3>{{{active_article.title}}}</h3>
+        <h1>{{{active_article.title}}}</h1>
         <p>{{{active_article.description}}}</p>
 
         <div class="author">
@@ -110,7 +102,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- Blog landing page -->
     <section class="blue short gradient-light">
       <div>
-        <h3>News</h3>
+        <h1>News</h1>
         <p>The latest goings-on with the Polymer project and in the community. We'll update this page to announce major releases and showcase cool stuff being built with Polymer.</p>
       </div>
     </section>
@@ -120,7 +112,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="section-columns">
         {% for item in articles[:3] %}
         <div>
-          <h2 class="smaller underline">{{{item.title}}}</h2>
+          <h2 class="underline">{{{item.title}}}</h2>
           <p>{{{item.description}}}</p>
           <a href="{{{item.path}}}.html" class="blue-button">Read more</a>
         </div>

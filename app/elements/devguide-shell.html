@@ -43,10 +43,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 20px 40px;
       }
 
-      header h2 {
+      header h1 {
         font-family: 'Roboto Slab', 'Roboto', 'Noto', sans-serif;
         font-size: 32px;
-        font-weight: 700;
+        font-weight: 400;
         border-bottom: none;
         margin: 20px 0;
       }
@@ -141,7 +141,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="content-container">
       <header hidden$="[[!markdown]]" id="header">
         <p>{{pageSubtitle}}</p>
-        <h2>{{pageTitle}}</h2>
+        <h1>{{pageTitle}}</h1>
 
         <a class="edit-on-github" target="_blank" hidden$="[[_shouldHideGithubLink(activeItem)]]"
             href="https://github.com/Polymer/docs2/edit/master/app{{_githubUrl(activeItem)}}">Edit on GitHub
