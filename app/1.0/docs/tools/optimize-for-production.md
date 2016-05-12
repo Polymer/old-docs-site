@@ -4,6 +4,17 @@ title: Optimize for production
 
 <!-- toc -->
 
+[Polymer CLI](polmyer-cli) is the recommended starting point for building
+Polymer applications. If for some reason it does not meet your needs, you 
+can use the underlying libraries that power its build toolchain. See
+[Advanced tools](advanced#build) for a list of these tools. 
+
+This guide teaches you more about two of these underlying tools: Vulcanize 
+and Cripser. This doc is mainly of interest to people who are developing their 
+own customized build toolchains. 
+
+## Overview
+
 Reducing network requests is important for a performant app experience. In the Polymer world, [Vulcanize](https://github.com/Polymer/vulcanize) is the name given to a build tool that lets you **concatenate** a set of elements and their HTML imported dependencies into a single file. Vulcanize recursively pulls in all your imports, flattens their dependencies and spits out something that can **reduce the number of network requests** your app makes. Additionally, the Polymer build tools can also be used to transform your code to run in an environment that enforces [content security policy (CSP)](#content-security-policy), including Chrome Apps and Extensions.
 
 **Note:** for more great info on performance considerations worth keeping in mind when using HTML Imports, see [HTML Imports - #include for the web](http://www.html5rocks.com/en/tutorials/webcomponents/imports/#performance)

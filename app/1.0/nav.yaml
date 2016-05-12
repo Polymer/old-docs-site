@@ -97,14 +97,20 @@
   - header: Tools
   - title: Tools overview
     path: /1.0/docs/tools/overview
+  - title: Polymer CLI
+    path: /1.0/docs/tools/polymer-cli
   - title: Document your elements
     path: /1.0/docs/tools/documentation
   - title: Test your elements
     path: /1.0/docs/tools/tests
   - title: Optimize for production
     path: /1.0/docs/tools/optimize-for-production
-  - title: Create a reusable element
+  - title: Publish an element
     path: /1.0/docs/tools/reusable-elements
+  - title: Advanced tools
+    path: /1.0/docs/tools/advanced
+  - title: Services
+    path: /1.0/docs/tools/services
   - endheader: True
   - header: What's new
   - title: Release notes
