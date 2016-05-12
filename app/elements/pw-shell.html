@@ -147,7 +147,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <carbon-location route="{{_sectionRoute}}"></carbon-location>
     <carbon-route route="{{_sectionRoute}}" pattern="/1.0/:section" data="{{_sectionData}}" tail="{{_subsectionRoute}}"  query-params="{{_searchParams}}"></carbon-route>
-    <carbon-route route="{{_sectionRoute}}" active="{{_searchActive}}" pattern="/search/" query-params="{{_searchParams}}"></carbon-route>
+    <carbon-route route="{{_sectionRoute}}" pattern="/search/" query-params="{{_searchParams}}"></carbon-route>
 
     <iron-ajax url="[[_sectionRoute.path]]" handle-as="document" on-response="_handleResponse" auto></iron-ajax>
     <iron-ajax id="cseSearch" url="https://www.googleapis.com/customsearch/v1" on-response="_handleSearchResponse"></iron-ajax>
@@ -177,7 +177,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
 
       <label aria-hidden id="searchLabel" hidden>Search Polymer site</label>
-      <input id="searchBox" open$="{{_searchActive}}" on-change="_onSearchInputChange" type="search" class="search-box fit" placeholder="Search Polymer Site" aria-labelledby="searchLabel">
+      <input id="searchBox" on-change="_onSearchInputChange" type="search" class="search-box fit" placeholder="Search Polymer Site" aria-labelledby="searchLabel">
     </app-header>
 
     <app-drawer id="drawer" class="drawer" swipe-open>
@@ -329,7 +329,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // If this is a paginated response, go forth and conquer more results.
         var button;
         var queryPrefix = '?q=' + this._searchParams.q + '&start=';
-        debugger
         if (response.queries.nextPage) {
           button = section.querySelector('.next-results');
           button.hidden = false;
@@ -345,6 +344,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         } else {
           section.querySelector('.previous-results').hidden = true;
         }
+
+        // Show the total results.
+        var totalResults = response.queries.request[0].totalResults;
+        section.querySelector('.search-results-count').textContent = totalResults === "1" ?
+            totalResults + ' result' : totalResults + ' results';
       }
 
       // There's a bunch of places where we displayed what you searched for.
@@ -353,6 +357,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         queryElements[i].textContent = this._searchParams.q;
       }
 
+      // Flawless victory.
       section.hidden = false;
     },
 
