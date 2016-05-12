@@ -4,7 +4,7 @@ title: Registration and lifecycle
 
 <!-- toc -->
 
-## Register a custom element
+## Register a custom element {#register-element}
 
 
 To register a custom element, use the `Polymer` function, and pass in the
@@ -44,7 +44,7 @@ Polymer value-added features), so you cannot set up your own
 prototype chain. However, you can use [behaviors](#prototype-mixins) to
 share code between elements.
 
-### Define a custom constructor
+### Define a custom constructor {#custom-constructor}
 
 The `Polymer` method returns a basic constructor that can be used to
 instantiate the custom element. If you want to
@@ -87,7 +87,7 @@ Two notes about the custom constructor:
     created, default values set, and so on). See
     [Ready callback and element initialization](#ready-method) for more information.
 
-### Extend native HTML elements
+### Extend native HTML elements {#type-extension}
 
 Polymer currently only supports extending native HTML elements (for example,
 `input`, or `button`, as opposed to extending other custom elements, which will
@@ -138,7 +138,7 @@ To use a type-extension element in markup, use the _native_ tag and add an
 <!-- legacy anchor -->
 <a id="basic-callbacks"></a>
 
-### Define an element in the main HTML document
+### Define an element in the main HTML document {#main-document-definitions}
 
 **Note:**
 You should only define elements from the main document when
@@ -180,7 +180,7 @@ all imports in the document have finished loading.
     </html>
 ```
 
-## Lifecycle callbacks
+## Lifecycle callbacks {#lifecycle-callbacks}
 
 Polymer's Base prototype implements the standard Custom Element lifecycle
 callbacks to perform tasks necessary for Polymer's built-in features.
@@ -289,7 +289,7 @@ Example: { .caption }
 
 <!-- ToDo: the following section should probably be moved to the local DOM chapter. -->
 
-### Ready callback and local DOM initialization
+### Ready callback and local DOM initialization {#ready-method}
 
 The `ready` callback is called when a Polymer element's
 local DOM has been initialized.
@@ -330,7 +330,7 @@ Within a given tree, `ready` is generally called in _document order_,
 but you should not rely on the ordering of initialization callbacks between
 sibling elements, or between a host element and its **light DOM** children.
 
-### Initialization order and timing
+### Initialization order and timing {#initialization-order}
 
 The element's basic initialization order for a given element is:
 
@@ -419,7 +419,7 @@ from inside the `attached` callback:
     }
 ```
 
-### Registration callback
+### Registration callback {#registration-callback}
 
 Polymer also provides two registration-time callbacks, `beforeRegister`
 and `registered`.
@@ -432,7 +432,7 @@ You can implement the `registered` callback to perform one-time initialization
 when an element is registered. This is primarily useful when implementing
 [behaviors](behaviors).
 
-## Static attributes on host
+## Static attributes on host {#host-attributes}
 
 If a custom element needs HTML attributes set on it at create-time, the attributes may
 be declared in a `hostAttributes` property on the prototype, where keys are the
@@ -473,14 +473,14 @@ Results in:
 The `class` attribute can't be configured using `hostAttributes`.
 {.alert .alert-error}
 
-## Behaviors
+## Behaviors {#prototype-mixins}
 
 Elements can share code in the form of _behaviors_, which can define
 properties, lifecycle callbacks, event listeners, and other features.
 
 For more information, see [Behaviors](behaviors).
 
-## Class-style constructor
+## Class-style constructor {#element-constructor}
 
 If you want to set up your custom element's prototype chain but **not** register
 it immediately, you can use the  `Polymer.Class` function. `Polymer.Class` takes
