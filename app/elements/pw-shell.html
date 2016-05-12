@@ -148,10 +148,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <carbon-location route="{{_sectionRoute}}"></carbon-location>
     <carbon-route route="{{_sectionRoute}}" pattern="/1.0/:section" data="{{_sectionData}}" tail="{{_subsectionRoute}}"></carbon-route>
 
-    <!--
-    TODO: This will make a XHR request even for the first load, which we don't need since
-    the light DOM will be pre-filled by the server-side templater (jinja)
-    -->
     <iron-ajax url="[[_sectionRoute.path]]" handle-as="document" on-response="_handleResponse" auto></iron-ajax>
 
     <app-header class="header" reveals snaps shadow>
@@ -214,6 +210,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // Keep track of the scrolling position so that we can fix the TOC (which is in our light dom)
       this._stickyTocPosition = this._getStickyTocPosition();
       document.addEventListener('scroll', this._onScroll.bind(this));
+
+      // Save the initial URL so that we don't double-render the first load.
+      this._currentPageURL = this._sectionRoute.path;
     },
 
     _toggleDrawer: function() {
@@ -229,10 +228,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _handleResponse: function(event) {
-      var doc = event.detail.response;
-      document.title = doc.title;
-      Polymer.dom(this).innerHTML = doc.querySelector('pw-shell').innerHTML;
-      Polymer.dom.flush();  // Force upgrades.
+      // Don't re-load the same thing you're looking at.
+      if (this._currentPageURL !== this._sectionRoute.path) {
+        this._currentPageURL = this._sectionRoute.path;
+        var doc = event.detail.response;
+        document.title = doc.title;
+        Polymer.dom(this).innerHTML = doc.querySelector('pw-shell').innerHTML;
+        Polymer.dom.flush();  // Force upgrades.
+      }
 
       // Scroll to an anchor, if we have one.
       if (window.location.hash) {
@@ -332,8 +335,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _resetScrollPosition: function() {
-      // TODO: Need to scroll to element for hash links within the same page
-      // (which don't cause a XHR).
       var hash = window.location.hash;
       if (hash) {
         var elem = document.querySelector(hash);
