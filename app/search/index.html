@@ -52,6 +52,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   .search-result {
     margin-bottom: 20px;
   }
+
+  .results-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 </style>
 </head>
 <body class="fullbleed">
@@ -73,6 +79,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <p class="snippet">{{item.snippet}}</p>
             </div>
           </template>
+
+          <div class="results-button-container">
+            <a href="" class="previous-results blue-button">Previous page</a>
+            <a href="" class="next-results blue-button">Next page</a>
+          </div>
         </div>
 
         <div class="no-results" hidden>

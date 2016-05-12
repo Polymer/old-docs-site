@@ -177,7 +177,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
 
       <label aria-hidden id="searchLabel" hidden>Search Polymer site</label>
-      <input id="searchBox" type="search" class="search-box fit" placeholder="Search Polymer site" aria-labelledby="searchLabel">
+      <input id="searchBox" open$="{{_searchActive}}" on-change="_onSearchInputChange" type="search" class="search-box fit" placeholder="Search Polymer Site" aria-labelledby="searchLabel">
     </app-header>
 
     <app-drawer id="drawer" class="drawer" swipe-open>
@@ -206,6 +206,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        */
       _shouldCollapseToc: {
         observer: '_collapseTocChanged'
+      },
+
+      _searchParams: {
+        type: Object,
+        observer: '_searchParamsChanged'
       }
     },
 
@@ -234,7 +239,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this.$.searchBox.focus();
     },
 
-    // Show search results on enter.
+    _onSearchInputChange: function() {
+      this._searchParams = {'q':this.$.searchBox.value, 'start':null} ;
+    },
+
     _doSearch: function() {
       if (this._searchParams.q) {
         this.set('_sectionRoute.path', '/search/');
@@ -244,7 +252,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           key: 'AIzaSyCMGfdDaSfjqv5zYoS0mTJnOT3e9MURWkU',
           cx: '012790892085874323134:dqsp1svowso'
         };
-        this.$.cseSearch.generateRequest()
+
+        // Paginated search.
+        if (this._searchParams.start && this._searchParams.start !== 0) {
+          this.$.cseSearch.params['start'] = this._searchParams.start;
+        }
+
+        this.$.cseSearch.generateRequest();
+      }
+    },
+
+    _searchParamsChanged: function(newParams, oldParams) {
+      if (!!oldParams && oldParams.start !== newParams.start) {
+        this._doSearch();
       }
     },
 
@@ -291,23 +311,49 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     _handleSearchResponse: function(event) {
       var response = event.detail.response;
+
+      // Hide the existing section being displayed.
       var resultsElement = Polymer.dom(this).querySelector('.search-results');
       resultsElement.querySelector('div:not([hidden])').hidden = true;
 
-      var visibleSection;
+      var section;  // The results section that we're going to show.
+
       if (!response || !response.items) {
-        visibleSection = resultsElement.querySelector('.no-results');
+        section = resultsElement.querySelector('.no-results');
       } else if (response.items) {
-        visibleSection = resultsElement.querySelector('.yes-results');
-        visibleSection.querySelector('template').items = response.items;
+        section = resultsElement.querySelector('.yes-results');
+
+        // Populate the results in the dom-repeat.
+        section.querySelector('template').items = response.items;
+
+        // If this is a paginated response, go forth and conquer more results.
+        var button;
+        var queryPrefix = '?q=' + this._searchParams.q + '&start=';
+        debugger
+        if (response.queries.nextPage) {
+          button = section.querySelector('.next-results');
+          button.hidden = false;
+          button.href = queryPrefix + response.queries.nextPage[0].startIndex;
+        } else {
+          section.querySelector('.next-results').hidden = true;
+        }
+
+        if (response.queries.previousPage) {
+          button = section.querySelector('.previous-results');
+          button.hidden = false;
+          button.href = queryPrefix + response.queries.previousPage[0].startIndex;
+        } else {
+          section.querySelector('.previous-results').hidden = true;
+        }
       }
 
-      var queryElements = visibleSection.querySelectorAll('.search-query');
+      // There's a bunch of places where we displayed what you searched for.
+      var queryElements = section.querySelectorAll('.search-query');
       for (var i = 0; i < queryElements.length; i++) {
         queryElements[i].textContent = this._searchParams.q;
       }
 
-      visibleSection.hidden = false;
+      section.hidden = false;
     },
 
     styleLinkPath: function(link, opened) {
