@@ -22,7 +22,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         min-height: 400px;
       }
 
-      .nav {
+      nav {
         position: absolute;
         top: 0;
         bottom: 0;
@@ -30,6 +30,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: 265px;
         z-index: 2;
         box-shadow: 1px 0 6px -2px rgba(0, 0, 0, 0.4);
+        padding-top: 10px;
       }
 
       .content-container {
@@ -108,7 +109,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       @media (max-width: 767px) {
-        .nav {
+        nav {
           display: none;
         }
 
@@ -131,12 +132,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <div class="nav">
-      <br>
+    <nav>
       <iron-selector attr-for-selected="name" selected="[[activePage]]" selected-item="{{activeItem}}">
         <content select=".sidenav-content"></content>
       </iron-selector>
-    </div>
+    </nav>
 
     <div class="content-container">
       <header hidden$="[[!markdown]]" id="header">
