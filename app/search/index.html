@@ -58,6 +58,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     flex-direction: row;
     justify-content: space-between;
   }
+
+  .button-hidden {
+    pointer-events: none;
+    visibility: hidden;
+  }
 </style>
 </head>
 <body class="fullbleed">
@@ -71,8 +76,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <p>Use the search bar above to search the site.</p>
         </div>
         <div class="yes-results" hidden>
-          <h2>Search results for <span class="search-query"></span>
-              (<span class="search-results-count"></span>)</h2>
+          <h2>Search results for <span class="search-query"></span></h2>
           <br>
           <template is="dom-repeat">
             <div class="search-result">

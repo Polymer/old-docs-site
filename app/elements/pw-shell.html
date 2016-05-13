@@ -314,7 +314,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       // Hide the existing section being displayed.
       var resultsElement = Polymer.dom(this).querySelector('.search-results');
-      resultsElement.querySelector('div:not([hidden])').hidden = true;
+      resultsElement.querySelector('section > div:not([hidden])').hidden = true;
 
       var section;  // The results section that we're going to show.
 
@@ -326,29 +326,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // Populate the results in the dom-repeat.
         section.querySelector('template').items = response.items;
 
-        // If this is a paginated response, go forth and conquer more results.
-        var button;
         var queryPrefix = '?q=' + this._searchParams.q + '&start=';
+        var button = section.querySelector('.next-results');
         if (response.queries.nextPage) {
-          button = section.querySelector('.next-results');
-          button.hidden = false;
+          this.toggleClass('button-hidden', false, button);
           button.href = queryPrefix + response.queries.nextPage[0].startIndex;
         } else {
-          section.querySelector('.next-results').hidden = true;
+          this.toggleClass('button-hidden', true, button);
         }
 
+        button = section.querySelector('.previous-results');
         if (response.queries.previousPage) {
-          button = section.querySelector('.previous-results');
-          button.hidden = false;
+          this.toggleClass('button-hidden', false, button);
           button.href = queryPrefix + response.queries.previousPage[0].startIndex;
         } else {
-          section.querySelector('.previous-results').hidden = true;
+          this.toggleClass('button-hidden', true, button);
         }
-
-        // Show the total results.
-        var totalResults = response.queries.request[0].totalResults;
-        section.querySelector('.search-results-count').textContent = totalResults === "1" ?
-            totalResults + ' result' : totalResults + ' results';
       }
 
       // There's a bunch of places where we displayed what you searched for.
