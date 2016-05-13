@@ -155,6 +155,10 @@ p.caption {
   border-radius: 3px;
   font-size: 15px;
 
+  @media (max-width: $mobile-media-breakpoint) {
+    margin: 0px;
+  }
+
   &:before {
     display: inline-block;
     /* Hack to have the icon in a separate column than the text */
