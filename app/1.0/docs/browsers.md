@@ -1,6 +1,5 @@
 ---
-layout: default
-title: Browser Compatibility
+title: Browser compatibility
 ---
 
 Polymer 1.0+ works in the _latest two versions_ of all major browsers: Safari 8+, IE 11+, and the evergreen Chrome, Firefox, and Edge.
@@ -88,13 +87,13 @@ which is known to have performance overhead.
 
 #### Other features used by Polymer or the elements
 
-- IE 10 has flaky Mutation Observer support. Much of Polymer will still work, but you may run into some bugs here and there. "Official" support is for IE 11/Edge.
+- IE 10 has flaky Mutation Observer support, and is also largely [no longer supported by Microsoft](https://www.microsoft.com/en-us/WindowsForBusiness/End-of-IE-support). Much of Polymer will still work, but you may run into some bugs here and there. "Official" support is for IE 11/Edge.
 
 ## Progress of native browser support
 
 As of 2016-05, there has been broad cross-browser agreement around the v1 versions of the [Custom Elements](https://w3c.github.io/webcomponents/spec/custom/) and [Shadow DOM](https://w3c.github.io/webcomponents/spec/shadow/) API's, and many implementations are well underway in major browsers.
 
-Polymer currently relies on the v0 implementation of these API's, which is also supported by the web components polyfills. Polymer will begin transitioning to these v1 API's very soon. Components built with the current version of Polymer will still work even when browsers support v1 API's natively, but will require the v0 polyfills. Upgrading components built with Polymer from the v0 API's to v1 will be relatively straightforward, as Polymer already sugars over some of the more low-level, spec-specific details and will be able to handle the transition under the hood.
+Polymer currently relies on the v0 implementation of these API's, which is also supported by the web components polyfills. Polymer will begin transitioning to these v1 API's very soon. Components built with the current version of Polymer will still work even when browsers support v1 API's natively, but will require the v0 polyfills. Upgrading components built with Polymer from the v0 API's to v1 will be relatively straightforward, as Polymer already provides light abstractions over some of the more low-level, spec-specific details and will be able to handle the transition under the hood.
 
 **See** [Are We Componentized Yet?](http://jonrimmer.github.io/are-we-componentized-yet/)
 and [caniuse.com](http://caniuse.com/) for more information on native browser support for web components.
