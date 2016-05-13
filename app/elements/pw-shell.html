@@ -147,9 +147,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <carbon-location route="{{_sectionRoute}}"></carbon-location>
-    <carbon-route route="{{_sectionRoute}}" pattern="/1.0/:section" data="{{_sectionData}}" tail="{{_subsectionRoute}}"></carbon-route>
+    <carbon-route route="{{_sectionRoute}}" pattern="/1.0/:section" data="{{_sectionData}}" tail="{{_subsectionRoute}}"  query-params="{{_searchParams}}"></carbon-route>
+    <carbon-route route="{{_sectionRoute}}" pattern="/search/" query-params="{{_searchParams}}"></carbon-route>
 
     <iron-ajax url="[[_sectionRoute.path]]" handle-as="document" on-response="_handleResponse" auto></iron-ajax>
+    <iron-ajax id="cseSearch" url="https://www.googleapis.com/customsearch/v1" on-response="_handleSearchResponse"></iron-ajax>
 
     <app-header class="header" reveals snaps shadow>
       <div class="header-toolbar layout horizontal center">
@@ -176,7 +178,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
 
       <label aria-hidden id="searchLabel" hidden>Search Polymer site</label>
-      <input id="searchBox" type="search" class="search-box fit" placeholder="Search Polymer site" aria-labelledby="searchLabel">
+      <input id="searchBox" on-change="_onSearchInputChange" type="search" class="search-box fit" placeholder="Search Polymer Site" aria-labelledby="searchLabel">
     </app-header>
 
     <app-drawer id="drawer" class="drawer" swipe-open>
@@ -203,6 +205,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        */
       _shouldCollapseToc: {
         observer: '_collapseTocChanged'
+      },
+
+      _searchParams: {
+        type: Object,
+        observer: '_searchParamsChanged'
       }
     },
 
@@ -231,6 +238,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this.$.searchBox.focus();
     },
 
+    _onSearchInputChange: function() {
+      this._searchParams = {'q':this.$.searchBox.value, 'start':null} ;
+    },
+
+    _doSearch: function() {
+      if (this._searchParams.q) {
+        this.set('_sectionRoute.path', '/search/');
+
+        this.$.cseSearch.params = {
+          q: this._searchParams.q,
+          key: 'AIzaSyCMGfdDaSfjqv5zYoS0mTJnOT3e9MURWkU',
+          cx: '012790892085874323134:dqsp1svowso'
+        };
+
+        // Paginated search.
+        if (this._searchParams.start && this._searchParams.start !== 0) {
+          this.$.cseSearch.params.start = this._searchParams.start;
+        }
+
+        this.$.cseSearch.generateRequest();
+      }
+    },
+
+    _searchParamsChanged: function(newParams, oldParams) {
+      if (!!oldParams && oldParams.start !== newParams.start) {
+        this._doSearch();
+      }
+    },
+
     _handleResponse: function(event) {
       // Don't re-load the same thing you're looking at.
       if (this._currentPageURL !== this._sectionRoute.path) {
@@ -248,9 +284,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.async(this._resetScrollPosition);
       }
 
+      // If we have any query parameters, that means we are displaying the
+      // search results page, and we should kick off a search, if we
+      // haven't already
+      if (this._sectionRoute.path === '/search/' && this._searchParams.q) {
+        this._doSearch();
+      }
+
       // If we're not in a small view, render the TOC as open.
       this._tocElement = Polymer.dom(this).querySelector('details');
-
       if (this._tocElement) {
         this._updateTocStyles();
       }
@@ -264,6 +306,51 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.toggleClass('iron-selected', true, activeLink);
         this.styleLinkPath(activeLink, true);
       }
+    },
+
+    _handleSearchResponse: function(event) {
+      var response = event.detail.response;
+
+      // Hide the existing section being displayed.
+      var resultsElement = Polymer.dom(this).querySelector('.search-results');
+      resultsElement.querySelector('section > div:not([hidden])').hidden = true;
+
+      var section;  // The results section that we're going to show.
+
+      if (!response || !response.items) {
+        section = resultsElement.querySelector('.no-results');
+      } else if (response.items) {
+        section = resultsElement.querySelector('.yes-results');
+
+        // Populate the results in the dom-repeat.
+        section.querySelector('template').items = response.items;
+
+        var queryPrefix = '?q=' + this._searchParams.q + '&start=';
+        var button = section.querySelector('.next-results');
+        if (response.queries.nextPage) {
+          this.toggleClass('button-hidden', false, button);
+          button.href = queryPrefix + response.queries.nextPage[0].startIndex;
+        } else {
+          this.toggleClass('button-hidden', true, button);
+        }
+
+        button = section.querySelector('.previous-results');
+        if (response.queries.previousPage) {
+          this.toggleClass('button-hidden', false, button);
+          button.href = queryPrefix + response.queries.previousPage[0].startIndex;
+        } else {
+          this.toggleClass('button-hidden', true, button);
+        }
+      }
+
+      // There's a bunch of places where we displayed what you searched for.
+      var queryElements = section.querySelectorAll('.search-query');
+      for (var i = 0; i < queryElements.length; i++) {
+        queryElements[i].textContent = this._searchParams.q;
+      }
+
+      // Flawless victory.
+      section.hidden = false;
     },
 
     styleLinkPath: function(link, opened) {
