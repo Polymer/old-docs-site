@@ -252,5 +252,9 @@ details {
 
 iron-doc-viewer {
   padding: 20px 40px;
+
+  @media (max-width: $mobile-media-breakpoint) {
+    padding: 20px;
+  }
 }
 // -----
