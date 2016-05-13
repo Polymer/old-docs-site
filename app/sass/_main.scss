@@ -178,7 +178,7 @@ h1, h2 {
   margin: 10px 0;
 
   @media (max-width: $mobile-media-breakpoint) {
-    font-size: $font-size-medium;
+    font-size: 22px;
   }
 
   &.underline {
@@ -252,5 +252,9 @@ details {
 
 iron-doc-viewer {
   padding: 20px 40px;
+
+  @media (max-width: $mobile-media-breakpoint) {
+    padding: 20px;
+  }
 }
 // -----
