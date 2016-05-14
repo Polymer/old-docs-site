@@ -474,7 +474,7 @@ styling for custom elements, which is the primary goal of the shim.
            --custom-color: blue;
          }
          .child {
-           /* This will be always be red. */
+           /* This will always be red. */
            color: var(--custom-color);
          }
         </style>
