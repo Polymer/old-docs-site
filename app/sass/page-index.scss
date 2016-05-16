@@ -7,6 +7,14 @@ $large-padding: 100px;
 
 $mobile-media-breakpoint: 767px;
 
+$pink-a400: #f50057;
+$blue-600: #1e88e5;
+$blue-800: #1565c0;
+$blue-900: #0d47a1;
+$blue-grey-900: #263238;
+$blue-grey-50: #eceff1;
+$pale-grey: #fafafa;
+
 .page-index-hero {
   background-image: url("/images/page-index/hero.png");
   background-size: contain;
@@ -84,7 +92,7 @@ $mobile-media-breakpoint: 767px;
 
     /* Override the very opinionated and specific highlight.js style */
     pre {
-      background-color: #f5f6f7 !important;
+      background-color: $pale-grey !important;
       padding: 0 !important;
     }
   }
@@ -125,7 +133,7 @@ $mobile-media-breakpoint: 767px;
       width: 70px;
       height: 70px;
       margin: 0 35px 70px 35px;
-      background: #d7d8d8;
+      background: $blue-grey-50;
     }
   }
 }
@@ -149,13 +157,13 @@ $mobile-media-breakpoint: 767px;
 .page-index-articles {
   .post {
     &:not(:last-child) {
-      border-bottom: 1px solid #d81b60;
+      border-bottom: 1px solid $pink-a400;
       margin-bottom: $small-padding;
     }
 
     .post-title {
       font-size: $font-size-medium;
-      color: #7394e9;
+      color: $blue-600;
       text-decoration: none;
     }
   }
