@@ -2,8 +2,8 @@
 <link rel="import" href="../../components/polymer/polymer.html">
 <link rel="import" href="../../components/iron-demo-helpers/demo-snippet.html">
 <link rel="import" href="../../components/paper-input/paper-input.html">
-<link rel="import" href="../../components/carbon-route/carbon-route.html">
-<link rel="import" href="../../components/carbon-route/carbon-location.html">
+<link rel="import" href="../../components/app-route/app-route.html">
+<link rel="import" href="../../components/app-route/app-location.html">
 <link rel="import" href="../../components/iron-demo-helpers/demo-pages-shared-styles.html">
 <link rel="import" href="../../components/iron-demo-helpers/url-bar.html">
 
@@ -27,8 +27,8 @@
     <dom-module id="demo-2">
       <template>
 
-        <carbon-location route="{{route}}"></carbon-location>
-        <carbon-route route="{{route}}" pattern="{{pattern}}"  active="{{active}}"></carbon-route>
+        <app-location route="{{route}}"></app-location>
+        <app-route route="{{route}}" pattern="{{pattern}}"  active="{{active}}"></app-route>
 
         <div>Route is <span hidden$="{{active}}">not</span> active.</div>
         <paper-input label="Route path" value="{{route.path}}"></paper-input>

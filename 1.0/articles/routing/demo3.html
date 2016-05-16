@@ -10,8 +10,8 @@
 <link rel="import" href="../../components/neon-animation/animations/slide-from-right-animation.html">
 <link rel="import" href="../../components/neon-animation/animations/slide-left-animation.html">
 <link rel="import" href="../../components/neon-animation/animations/slide-right-animation.html">
-<link rel="import" href="../../components/carbon-route/carbon-route.html">
-<link rel="import" href="../../components/carbon-route/carbon-location.html">
+<link rel="import" href="../../components/app-route/app-route.html">
+<link rel="import" href="../../components/app-route/app-location.html">
 <link rel="import" href="../../components/iron-demo-helpers/demo-pages-shared-styles.html">
 <link rel="import" href="../../components/iron-demo-helpers/url-bar.html">
 
@@ -43,11 +43,11 @@
             height: 100px;
           }
         </style>
-        <carbon-location use-hash-as-path route="{{route}}"></carbon-location>
+        <app-location use-hash-as-path route="{{route}}"></app-location>
 
         <!-- Two routes, one for the home page, and one for the tabs page. -->
-        <carbon-route route="{{route}}" pattern="/tabs" tail="{{tabsRoute}}" active="{{tabsActive}}"></carbon-route>
-        <carbon-route route="{{route}}" pattern="/" active="{{homeActive}}"></carbon-route>
+        <app-route route="{{route}}" pattern="/tabs" tail="{{tabsRoute}}" active="{{tabsActive}}"></app-route>
+        <app-route route="{{route}}" pattern="/" active="{{homeActive}}"></app-route>
 
         <div hidden$="{{!homeActive}}">
           Main page!<br><br>
@@ -92,7 +92,7 @@
         height: 50px;
       }
     </style>
-    <carbon-route route="{{route}}" pattern="/:tabName" data="{{data}}"></carbon-route>
+    <app-route route="{{route}}" pattern="/:tabName" data="{{data}}"></app-route>
     <paper-tabs selected='{{data.tabName}}' attr-for-selected="name">
       <paper-tab name='foo'>Foo</paper-tab>
       <paper-tab name='bar'>Bar</paper-tab>

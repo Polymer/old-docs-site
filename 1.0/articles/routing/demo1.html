@@ -2,7 +2,7 @@
 <link rel="import" href="../../components/polymer/polymer.html">
 <link rel="import" href="../../components/iron-demo-helpers/demo-snippet.html">
 <link rel="import" href="../../components/paper-input/paper-input.html">
-<link rel="import" href="../../components/carbon-route/carbon-route.html">
+<link rel="import" href="../../components/app-route/app-route.html">
 <link rel="import" href="../../components/iron-demo-helpers/demo-pages-shared-styles.html">
 <style is="custom-style" include="demo-pages-shared-styles">
   demo-snippet {
@@ -16,8 +16,8 @@
     <dom-module id="demo-1">
       <template>
 
-        <carbon-route route="{{route}}" pattern="{{pattern}}" active="{{active}}">
-        </carbon-route>
+        <app-route route="{{route}}" pattern="{{pattern}}" active="{{active}}">
+        </app-route>
 
         <div>Route is <span hidden$="{{active}}">not</span> active.</div>
         <paper-input label="Route path" value="{{route.path}}"></paper-input>

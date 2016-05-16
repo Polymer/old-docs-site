@@ -32,7 +32,7 @@
     "paper-input": "PolymerElements/paper-input#^1.1.8",
     "paper-tabs": "PolymerElements/paper-tabs#^1.3.7",
     "neon-animation": "PolymerElements/neon-animation#^1.1.0",
-    "carbon-route": "PolymerElements/carbon-route#^0.8.0"
+    "app-route": "PolymerElements/app-route#^0.9.0"
   },
   "resolutions": {
     "webcomponentsjs": "^0.7.0",
