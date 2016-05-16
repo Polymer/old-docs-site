@@ -61,7 +61,7 @@ def render(out, template, data={}):
     t = env.get_template(template)
     out.write(t.render(data).encode('utf-8'))
   except jinja2.exceptions.TemplateNotFound as e:
-    handle_404(None, out, None)
+    handle_404(None, out, data, e)
 
 def read_redirects_file(filename):
   with open(filename, 'r') as f:
@@ -114,15 +114,14 @@ def read_authors_file(filename):
     authors = yaml.load(f)
   return authors
 
-def handle_404(req, resp, e):
+def handle_404(req, resp, data, e):
   resp.set_status(404)
-  resp.write('Oops! No pages here.')
+  render(resp, '/1.0/404.html', data)
 
-def handle_500(req, resp, e):
+def handle_500(req, resp, data, e):
   logging.exception(e)
   resp.set_status(500)
-  #render(resp, '500.html')
-  resp.write('Oops! There was an issue on our end.')
+  render(resp, '/1.0/500.html', data);
 
 
 # class VersionHandler(http2push.PushHandler):
