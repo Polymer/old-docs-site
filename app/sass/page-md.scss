@@ -61,6 +61,7 @@ article.right-nav {
 
   &.fixed {
     position: fixed;
+    right: $medium-padding;  /* The <main> right padding */
   }
 
   ul {
