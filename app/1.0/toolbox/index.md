@@ -11,7 +11,7 @@ with Polymer. App Toolbox features:
 -   Responsive design using the app layout components.
 -   Modular routing using the [`<app-route>`](https://elements.polymer-project.org/elements/app-route) elements.
 -   Localization with [`<app-localization-behavior>`](https://elements.polymer-project.org/elements/app-localization-behavior).
--   ???? with [`<app-storage>`](https://elements.polymer-project.org/elements/app-storage).
+-   Turnkey support for local storage with [`<app-storage>`](https://elements.polymer-project.org/elements/app-storage).
 -   Offline caching as a progressive enhancement, using service workers.
 -   A reference server implementation with support for HTTP2 and HTTP2 push.
 
@@ -22,4 +22,4 @@ To get a feel for these components in action, you can try out the Shop app. Shop
 <a href="https://polykart12.appspot.com/" class="blue-button">Launch Shop Demo
 </a>
 
-See [Case study: the Shop app](shop-case-study) to see how Shop uses App Toolbox.
+See [Case study: the Shop app](case-study) to see how Shop uses App Toolbox.
