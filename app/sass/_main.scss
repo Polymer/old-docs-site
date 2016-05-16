@@ -134,11 +134,6 @@ section {
     max-width: 900px;
     margin: 0 auto;
   }
-
-  h1 {
-    font-size: 32px;
-    font-weight: 400;
-  }
 }
 
 .section-columns {
@@ -159,8 +154,7 @@ section {
 
   & > div:not(:last-child),
   & > p:not(:last-child),
-  & > h2:not(:last-child),
-  & > h1:not(:last-child), {
+  & > h2:not(:last-child) {
     margin-right: $medium-padding;
 
     @media (max-width: $mobile-media-breakpoint) {
@@ -170,11 +164,11 @@ section {
   }
 }
 
-h1, h2 {
+h2 {
   font-family: 'Roboto Slab', 'Roboto', 'Noto', sans-serif;
   font-size: 24px;
-  line-height: 38px;
   font-weight: 700;
+  line-height: 38px;
   margin: 10px 0;
 
   @media (max-width: $mobile-media-breakpoint) {
@@ -183,6 +177,18 @@ h1, h2 {
 
   &.underline {
     border-bottom: 1px solid #f52757;
+  }
+}
+
+h1 {
+  font-family: 'Roboto Slab', 'Roboto', 'Noto', sans-serif;
+  line-height: 38px;
+  margin: 10px 0;
+  font-size: 32px;
+  font-weight: 400;
+
+  @media (max-width: $mobile-media-breakpoint) {
+    font-size: 22px;
   }
 }
 
