@@ -81,6 +81,12 @@ $mobile-media-breakpoint: 767px;
       width: 100%;
       margin-bottom: $medium-padding;
     }
+
+    /* Override the very opinionated and specific highlight.js style */
+    pre {
+      background-color: #f5f6f7 !important;
+      padding: 0 !important;
+    }
   }
 
   .example-google-map iframe {

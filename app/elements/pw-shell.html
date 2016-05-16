@@ -306,6 +306,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.toggleClass('iron-selected', true, activeLink);
         this.styleLinkPath(activeLink, true);
       }
+
+      // Highlight any code bits that need to be highlighted.
+      var codeBlocks = Polymer.dom(this).querySelectorAll('pre code');
+      for (var i = 0; i < codeBlocks.length; i++) {
+        hljs.highlightBlock(codeBlocks[i]);
+      }
     },
 
     _handleSearchResponse: function(event) {
