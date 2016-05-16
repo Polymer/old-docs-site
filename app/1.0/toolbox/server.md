@@ -2,7 +2,9 @@
 title: Serve your app
 ---
 
-You can  serve a App Toolbox app using any server technology you want, but App Toolbox includes a
+<!-- toc -->
+
+You can  serve an App Toolbox app using any server technology you want, but App Toolbox includes a
 _reference server_, a sample server implementation built on top of Google App Engine. The reference
 server takes advantage of HTTP/2 and HTTP/2 server push to deliver the resources the browser needs
 for a fast first paint while optimizing caching.
@@ -99,6 +101,10 @@ returns the appropriate version of the fragment (bundled or unbundled), dependin
 This means that the shell code can lazy-load `detail-view.html` _without having to know whether
 it is bundled or unbundled_. It relies on the server and browser to load the dependencies in the
 most efficient way.
+
+## Deploy with the reference server
+
+To deploy with the reference server, you'll need to install the
 
 ## Background: HTTP/2 and HTTP/2 server push
 
