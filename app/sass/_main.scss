@@ -16,6 +16,13 @@ $large-padding: 80px;
 
 $mobile-media-breakpoint: 767px;
 
+$pink-a400: #f50057;
+$blue-600: #1e88e5;
+$blue-800: #1565c0;
+$blue-900: #0d47a1;
+$blue-grey-900: #263238;
+$blue-grey-50: #eceff1;
+
 * {
   box-sizing: border-box;
 }
@@ -29,7 +36,7 @@ body {
 }
 
 a {
-  color: #3367d6;
+  color: $blue-600;
   text-decoration: none;
   font-weight: 400;
 
@@ -99,21 +106,21 @@ section {
   }
 
   &.dark {
-    background-color: #2a3238;
+    background-color: $blue-grey-900;
     color: white;
   }
 
   &.grey {
-    background-color: #eceff1;
+    background-color: $blue-grey-50;
     color: black;
   }
 
   &.pink {
-    background-color: #e8345a;
+    background-color: $pink-a400;
   }
 
   &.blue {
-    background-color: #1e88e5;
+    background-color: $blue-600;
     color: white;
 
     a {
@@ -121,7 +128,7 @@ section {
     }
 
     .blue-button {
-      color: #1e88e5;
+      color: $blue-600;
       background: white;
     }
 
@@ -176,7 +183,7 @@ h2 {
   }
 
   &.underline {
-    border-bottom: 1px solid #f52757;
+    border-bottom: 1px solid $pink-a400;
   }
 }
 
@@ -200,7 +207,7 @@ h3 {
 
 .blue-button {
   color: white;
-  background: #1e88e5;
+  background: $blue-600;
   text-transform: uppercase;
   text-decoration: none;
   font-size: $font-size-small;
@@ -212,7 +219,7 @@ h3 {
 
   &:hover, &:focus {
     text-decoration: none;
-    outline-color: #f52757;
+    outline-color: $pink-a400;
   }
 
   &.vertical {
@@ -225,7 +232,7 @@ h3 {
 }
 
 .subsection:not(:last-of-type) {
-  border-bottom: 1px solid #f52757;
+  border-bottom: 1px solid $pink-a400;
   padding-bottom: $medium-padding;
   margin-bottom: $medium-padding;
 }
