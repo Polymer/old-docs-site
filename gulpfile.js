@@ -143,9 +143,9 @@ function convertMarkdownToHtml(file, templateName) {
       openLI: '<li data-level="H<%= level %>"><a href="#<%= anchor %>"><%= text %></a>',
       closeLI: '</li>',
       tocMax: 3,
-      anchor: function(header, attrs) { 
-        // if we have an ID attribute, use that, otherwise 
-        // use the default slug 
+      anchor: function(header, attrs) {
+        // if we have an ID attribute, use that, otherwise
+        // use the default slug
         var id = attrs.match(/(?:^|\s+)id="([^"]*)"/)
         return id ? id[1] : toc.anchor(header);
       }
@@ -256,7 +256,12 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     ], {base: 'app/'})
     .pipe(gulp.dest('dist'));
 
-  return merge(app, docs, gae, bower);
+  let highlight = gulp.src([
+      'node_modules/highlight.js/lib/*'
+    ])
+    .pipe(gulp.dest('dist/bower_components/highlight'));
+
+  return merge(app, docs, gae, bower, highlight);
 });
 
 gulp.task('watch', 'Watch files for changes', function() {

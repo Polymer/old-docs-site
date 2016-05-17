@@ -1,0 +1,91 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Organization">
+<head>
+<title>{% block title %}{% endblock %} - Polymer Project</title>
+{% include 'templates/head-meta.html' %}
+</head>
+<body class="fullbleed" unresolved>
+  <pw-shell>
+    {% include 'templates/site-nav.html' %}
+
+    <!-- Because we want the styles to be loaded when the pw-shell changes its
+      content, they need to be here, and not in the <head> -->
+    <style>
+      .search-results {
+        min-height: 400px;
+      }
+
+      .search-query {
+        color: #1e87ea !important;
+      }
+
+      .search-query.small {
+        color: black;
+        font-weight: bold;
+      }
+
+      .search-result {
+        margin-bottom: 20px;
+      }
+
+      .results-button-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .button-hidden {
+        pointer-events: none;
+        visibility: hidden;
+      }
+    </style>
+
+    <div class="search-results">
+      <section class="short">
+        <div class="no-search">
+          <h2>Search</h2>
+          <p>Use the search bar above to search the site.</p>
+        </div>
+        <div class="yes-results" hidden>
+          <h2>Search results for <span class="search-query"></span></h2>
+          <br>
+          <template is="dom-repeat">
+            <div class="search-result">
+              <a href="{{item.link}}">{{item.title}}</a>
+              <p class="snippet">{{item.snippet}}</p>
+            </div>
+          </template>
+
+          <div class="results-button-container">
+            <a href="" class="previous-results blue-button">Previous page</a>
+            <a href="" class="next-results blue-button">Next page</a>
+          </div>
+        </div>
+
+        <div class="no-results" hidden>
+          <h2>Search results for <span class="search-query"></span></h2>
+          <p>Your search — <span class="search-query small"></span> — did not match any documents.</p>
+          <p>Suggestions:</p>
+          <ul>
+            <li>Make sure all words are spelled correctly.</li>
+            <li>Try different keywords.</li>
+            <li>Try more general keywords.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+  </pw-shell>
+  <pw-footer></pw-footer>
+  <script src="/js/app.js"></script>
+</body>
+</html>

@@ -19,8 +19,7 @@ You can use any one of these components separately, or use them together to buil
 
 To get a feel for these components in action, you can try out the Shop app. Shop is a full-featured e-commerce Progressive web app built using the Toolbox.
 
-<a href="https://polykart12.appspot.com/">
-  <paper-button raised>Launch Shop Demo</paper-button>
+<a href="https://polykart12.appspot.com/" class="blue-button">Launch Shop Demo
 </a>
 
 See [Case study: the Shop app](shop-case-study) to see how Shop uses App Toolbox.

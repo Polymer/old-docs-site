@@ -1,12 +1,21 @@
 pre, code {
-  font-family: 'Source Code Pro', 'Roboto Mono', 'Consolas', 'Menlo', monospace;
+  /* Override the very opinionated and specific highlight.js style */
+  font-family: 'Source Code Pro', 'Roboto Mono', 'Consolas', 'Menlo', monospace !important;
 }
+
 pre {
-  background: #f5f6f7;
-  padding: 16px;
-  margin: 0;
   overflow-x: auto;
   white-space: pre;
   word-wrap: normal;
-  line-height: 20px;
+  font-size: 15px;
+  line-height: 24px;
+  font-weight: 400;
+
+  /* Override the very opinionated and specific highlight.js style */
+  background: white !important;
+}
+
+code {
+  color: #0D47A1;  /* blue-900 */
+  font-weight: 400;
 }

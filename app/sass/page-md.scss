@@ -4,9 +4,17 @@ $large-padding: 100px;
 
 $mobile-media-breakpoint: 767px;
 
+$pink-a400: #f50057;
+$blue-600: #1e88e5;
+$blue-800: #1565c0;
+$blue-900: #0d47a1;
+$blue-grey-900: #263238;
+$blue-grey-50: #eceff1;
+$pale-grey: #fafafa;
+
 main {
   position: relative;
-  background: #fafafa;
+  background: $pale-grey;
   padding: 10px $medium-padding;
   max-width: 1200px;
 
@@ -20,15 +28,15 @@ main {
   flex-direction: row-reverse;
   justify-content: flex-end;
 
-  @media (max-width: 500px) {
-    padding-left: $small-padding;
-    padding-right: $small-padding;
-  }
-
   @media (max-width: 1000px) {
     flex-direction: column;
     /* At < 1000px, the TOC floats to the top, so we can add back the right-padding. */
     padding-right: $medium-padding;
+  }
+
+  @media (max-width: 500px) {
+    padding-left: $small-padding;
+    padding-right: $small-padding;
   }
 }
 
@@ -61,6 +69,7 @@ article.right-nav {
 
   &.fixed {
     position: fixed;
+    right: $medium-padding;  /* The <main> right padding */
   }
 
   ul {
@@ -99,7 +108,7 @@ details {
 
   &.right-nav {
     padding-left: 20px;
-    border-left: 2px solid #eceff1;
+    border-left: 2px solid $blue-grey-50;
   }
   summary {
     font-family: 'Roboto Slab', 'Roboto', 'Noto', sans-serif;
@@ -122,12 +131,19 @@ pre {
 }
 
 code {
-  color: #0D47A1;
+  color: $blue-900;
   font-weight: 400;
+  word-wrap: break-word;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 48px;
 }
 
 h2 {
-  border-bottom: 1px solid #f52757;
+  border-bottom: 1px solid $pink-a400;
   margin: 20px 0;
 }
 
@@ -154,6 +170,10 @@ p.caption {
   margin: 30px;
   border-radius: 3px;
   font-size: 15px;
+
+  @media (max-width: $mobile-media-breakpoint) {
+    margin: 0px;
+  }
 
   &:before {
     display: inline-block;
@@ -188,5 +208,9 @@ p.caption {
       content: url(/images/alerts/warning.svg);
     }
   }
+}
 
+code.hljs {
+  background: white;
+  font-weight: 400;
 }
