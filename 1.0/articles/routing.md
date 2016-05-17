@@ -60,6 +60,8 @@ In contrast, the app-route elements are a minimal, decoupled, and decentralized 
 
 You can then use the data binding system to integrate with other elements like `<neon-animated-pages>` for transitioning views, and `<iron-ajax>` for loading data. And because these concerns are decoupled from routing, it’s easy to use other implementations, like `<iron-pages>` if you don’t need animation, or `<firebase-element>` to load data from a realtime database .
 
+> Note: `<app-route>` and `<app-location>` were previously called `<carbon-route>` and `<carbon-location>`. They were renamed with with release 0.9.0.
+
 ## Example
 
 Ok, enough philosophy, let’s get into some examples.
