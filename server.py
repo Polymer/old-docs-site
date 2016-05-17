@@ -62,6 +62,8 @@ def render(out, template, data={}):
     out.write(t.render(data).encode('utf-8'))
   except jinja2.exceptions.TemplateNotFound as e:
     handle_404(None, out, data, e)
+  except Exception as e:
+    handle_500(None, out, data, e)
 
 def read_redirects_file(filename):
   with open(filename, 'r') as f:
