@@ -30,15 +30,12 @@ here is described in detail in the Polymer documentation.
 To follow this tutorial, you'll need:
 
 -   The starting code.
--   Node.js and Polyserve command-line tools to run the demo.
+-   The [Polymer CLI](/1.0/docs/tools/polymer-cli/) to run the demo.
 
 
 **Don't want to install anything?** To run through this tutorial online,
-open the [starter project on Plunker](https://plnkr.co/edit/QfsudzAPCbAu56Qpb7eB?p=preview){target="\_blank"}
-and click **Fork** to create your own working copy. Then skip straight to
-<a href="step-2">Step 2: Add local DOM.</a>
+follow the instruction in [Step 1: No install version](#noinstall).
 { .alert .alert-info }
-
 
 
 ### Download the starting code
@@ -66,37 +63,41 @@ and click **Fork** to create your own working copy. Then skip straight to
     The main file you'll work with is `icon-toggle.html`, which contains the definition for your custom element.
 
 
-### Install Node.js and Polyserve
+### Install Polymer CLI.
 
+Install the Polymer CLI to serve the demo locally.
 
-You need to install some command-line tools to run the demo locally.
+1.  Install the LTS version (4.x) of [Node.js](https://nodejs.org/en/download/).
+    The current version (6.x) should work, but is not officially supported. Versions
+    below LTS are not supported.
 
-1.  Download and install Node from [https://nodejs.org/](https://nodejs.org/).
-    Node includes the node package manager command, `npm`.
+2.  Install [git](https://git-scm.com/downloads).
 
-2.  Install `polyserve`:
+3.  Install the latest version of [Bower](http://bower.io/#install-bower).
 
-        npm install -g polyserve
+        npm install -g bower
 
+4.  Install Polymer CLI.
 
-## Run the demo
+        npm install -g polymer-cli
+
+### Run the demo
 
 To run the element demo:
 
-1.  Run `polyserve` from the repo directory:
+1.  Run `polymer serve` from the repo directory:
 
-        polyserve
+        polymer serve
 
 2.  Open `localhost:8080/components/icon-toggle/demo/` in your browser.
+
     (Note that the path uses `icon-toggle`—the
-    component name listed in this element's `bower.json` file—rather than the actual directory name.)
+    component name listed in this element's `bower.json` file—rather than the actual directory name.
+    If you're wondering why `polymer serve` does this, see [HTML imports and dependency
+    management](/1.0/docs/tools/polymer-cli#element-imports).)
 
-**Note:**
-If you're wondering what `polyserve` does, see [Testing elements with local bower dependencies](/1.0/docs/tools/reusableelements#local-dependencies).
-{ .alert .alert-info }
-
-You'll see some text where the icon toggles should appear. It doesn't look
-very interesting, but it shows that everything is working.
+    You'll see some text where the icon toggles should appear. It doesn't look
+    very interesting, but it shows that everything is working.
 
 
 <img src="/images/1.0/first-element/starting-state.png" alt="Initial state of the demo. The demo shows three icon-toggle elements, two labeled 'statically-configured icon toggles' and one labeled 'data-bound icon toggle'. Since the icon toggles are not implemented yet, they appear as placeholder text reading 'Not much here yet'." title="Initial demo">
@@ -104,5 +105,21 @@ very interesting, but it shows that everything is working.
 **If this text doesn't appear**, make sure you're looking at the the demo folder itself, or at `demo/index.html`,
 not at `toggle-icon.html` or `toggle-icon-demo.html`.
 { .alert .alert-info }
+
+If everything looks good, move on to [step 2](step-2).
+
+<a class="blue-button" href="step-2">Step 2: Add local DOM</a>
+
+
+
+## Step 1: No install version {#noinstall}
+
+To run through this tutorial online without installing anything:
+
+1.  Open the [starter project on Plunker](https://plnkr.co/edit/QfsudzAPCbAu56Qpb7eB?p=preview){target="\_blank"}.
+
+2. Click **Fork** to create your own working copy.
+
+Continue to [step 2](step-2).
 
 <a class="blue-button" href="step-2">Step 2: Add local DOM</a>

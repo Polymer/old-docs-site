@@ -86,7 +86,7 @@ adding the following code inside the `<head>` tag of your `index.html` file:
 
 ```
     <style is="custom-style">
-      /* Define a document-wide default value */
+      /* Define a document-wide default—will not override a :host rule in icon-toggle-demo */
       :root {
         --icon-toggle-outline-color: red;
       }
@@ -117,15 +117,29 @@ Key information:
     of the Polymer implementation of custom properties.
 
 Run the demo again, and you'll notice that the pressed buttons are now blue,
-but the main color and outline color haven't changed.
-
-The `:root` rule-set creates a document-wide default that's overridden by the
-corresponding rule inside the `icon-toggle-demo` element. Try removing the value
-defined in `icon-toggle-demo.html` and you should see this default value show up.
+but **the main color and outline color haven't changed.**
 
 The `--icon-toggle-color` property doesn't get set because it can't be applied
 to the `body` tag. Try moving this rule into the `icon-toggle-demo` block to see
 it applied.
+
+The `:root` rule-set creates a document-wide default value for `--icon-toggle-outline-color`.
+But this value is overridden by the corresponding rule inside the `icon-toggle-demo`
+element. To see this default value at work, comment out the corresponding rule in
+`icon-toggle-demo.html`:
+
+icon-toggle-demo.html { .caption }
+
+```
+    <style>
+      :host {
+        font-family: sans-serif;
+        --icon-toggle-color: lightgrey;
+        /* --icon-toggle-outline-color: black; */
+        --icon-toggle-pressed-color: red;
+      }
+    </style>
+```
 
 Finally, note that to match a selector in the `custom-style`, the element must
 be **in the document scope**—for example, in `index.html`, not inside another

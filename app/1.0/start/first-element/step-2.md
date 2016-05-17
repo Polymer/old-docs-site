@@ -215,12 +215,13 @@ icon-toggle.html { .caption }
 </dom-module>
 ```
 
-Run the demo. If you're using Polyserve, make sure Polyserve is running and
-reload the demo page.
+Reload the demo.
 
-If you're using Plunker, your changes should show up immediately.
-If they don't, you may need to click **Stop** followed by **Run** to
-refresh the preview.
+-   If you downloaded the starting code, make sure `polymer serve` is running and reload the demo
+    page.
+
+-   If you're using Plunker, your changes should show up immediately. If they don't, you may need
+    to click **Stop** followed by **Run** to refresh the preview.
 
 You should see the toggle buttons show up with the hard-coded icon.
 
