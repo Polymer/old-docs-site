@@ -3,7 +3,7 @@
 <script src="webcomponentsjs/webcomponents-lite.js"></script>
 <link rel="import" href="iron-demo-helpers/demo-snippet.html">
 <link rel="import" href="paper-input/paper-input.html">
-<link rel="import" href="carbon-route/carbon-route.html">
+<link rel="import" href="app-route/app-route.html">
 <link rel="import" href="iron-demo-helpers/demo-pages-shared-styles.html">
 <style is="custom-style" include="demo-pages-shared-styles">
   demo-snippet {
@@ -17,8 +17,8 @@
     <dom-module id="demo-1">
       <template>
 
-        <carbon-route route="{{route}}" pattern="{{pattern}}" active="{{active}}">
-        </carbon-route>
+        <app-route route="{{route}}" pattern="{{pattern}}" active="{{active}}">
+        </app-route>
 
         <div>Route is <span hidden$="{{active}}">not</span> active.</div>
         <paper-input label="Route path" value="{{route.path}}"></paper-input>

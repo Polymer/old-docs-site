@@ -1,14 +1,14 @@
 ---
-- title: "<carbon-route> gets its beta release!"
+- title: "<app-route> gets its beta release!"
   path: /1.0/blog/2016-03-28-carbon-route-released
   published: 2016-03-28
   author: polymer-team
-  description: "The carbon-route element has made its beta debut - we'd love your feedback on this modular approach to routing."
+  description: "The app-route element has made its beta debut - we'd love your feedback on this modular approach to routing."
   tags:
   - blog
   - announcements
 - title: "Encapsulated Routing with Elements"
-  description: "An overview to doing distributed routing in an application, as well as an introduction to <carbon-route> and <carbon-location>."
+  description: "An overview to doing distributed routing in an application, as well as an introduction to <app-route> and <app-location>."
   published: 2016-03-25
   author: rictic
   polymer_version: 1.4.0

@@ -24,15 +24,15 @@ element controls which view is currently visible.
 ## Routing
 
 Shop's client-side URL routing is based on the
-[`<carbon-route>`](https://elements.polymer-project.org/elements/carbon-route)
+[`<app-route>`](https://elements.polymer-project.org/elements/app-route)
 element, a modular routing element. The app element has a top-level
-`<carbon-route>` element that's bound to the page URL, and selects the top-level
+`<app-route>` element that's bound to the page URL, and selects the top-level
 view by setting the app element's `page` property.
 
 The top-level element delegates the remainder of the route to other instances of
-`<carbon-route>` that represent sub-routes. For example, when browsing a
-category, the top-level `<carbon-route>` selects the browse view, and the
-second-level `<carbon-route>` selects the category to show.
+`<app-route>` that represent sub-routes. For example, when browsing a
+category, the top-level `<app-route>` selects the browse view, and the
+second-level `<app-route>` selects the category to show.
 
 All navigation is accomplished with links (`<a>` tags) (which ensures that the
 app can be indexed by web crawlers). The routing elements handle the URL changes
@@ -44,7 +44,7 @@ the category "Shoes" to the browse view.
 More information:
 
 -   [Encapsulated routing with elements](/1.0/blog/routing.html)
--   [`<carbon-route>` API reference](https://elements.polymer-project.org/elements/carbon-route)
+-   [`<app-route>` API reference](https://elements.polymer-project.org/elements/app-route)
 
 ## Views
 
