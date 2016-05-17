@@ -15,8 +15,14 @@ Note that if you're on a browser that does not natively support the
 [message syntax](http://formatjs.io/guides/message-syntax/) as `format.js`, in its entirety; use the
 library docs as reference for the available message formats and options.
 
-Each element that contains localizable content should add `Polymer.AppLocalizeBehavior`.
+Each element that displays content to be localized should add `Polymer.AppLocalizeBehavior`.
 All of these elements share a common localization cache, so you only need to load translations once.
+
+## Install AppLocalizeBehavior
+
+Install the `app-localize-behavior` package with Bower:
+
+    bower install --save PolymerElements/app-localize-behavior
 
 
 ## Add localization to your app
