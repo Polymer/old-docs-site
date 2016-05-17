@@ -94,14 +94,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="section-columns">
           <div class="example-code flex">
             <pre><code class="lang-html">
-    &lt;!-- Polyfill Web Components support for older browsers --&gt;
-    &lt;script src=&quot;components/webcomponentsjs/webcomponents-lite.min.js&quot;&gt;&lt;/script&gt;
+  &lt;!-- Polyfill Web Components support for older browsers --&gt;
+  &lt;script src=&quot;components/webcomponentsjs/webcomponents-lite.min.js&quot;&gt;&lt;/script&gt;
 
-    &lt;!-- Import element --&gt;
-    &lt;link rel=&quot;import&quot; href=&quot;components/google-map/google-map.html&quot;&gt;
+  &lt;!-- Import element --&gt;
+  &lt;link rel=&quot;import&quot; href=&quot;components/google-map/google-map.html&quot;&gt;
 
-    &lt;!-- Use element --&gt;
-    &lt;google-map latitude=&quot;37.790&quot; longitude=&quot;-122.390&quot;&gt;&lt;/google-map&gt;
+  &lt;!-- Use element --&gt;
+  &lt;google-map latitude=&quot;37.790&quot; longitude=&quot;-122.390&quot;&gt;&lt;/google-map&gt;
           </code></pre>
           </div>
           <div class="example-google-map">
@@ -117,28 +117,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="section-columns">
           <div class="example-code flex">
             <pre><code class="lang-html">
-    &lt;dom-module id=&quot;contact-card&quot;&gt;
-      &lt;link rel=&quot;import&quot; type=&quot;css&quot; href=&quot;contact-card.css&quot;&gt;
-      &lt;template&gt;
-        &lt;content&gt;&lt;/content&gt;
-        &lt;iron-icon icon=&quot;star&quot; hidden$=&quot;{{!starred}}&quot;&gt;&lt;/iron-icon&gt;
-      &lt;/template&gt;
-      &lt;script&gt;
-        Polymer({
-          is: 'contact-card',
-          properties: {
-            starred: Boolean
-          }
-        });
-      &lt;/script&gt;
-    &lt;/dom-module&gt;
+  &lt;dom-module id=&quot;contact-card&quot;&gt;
+    &lt;style&gt;...&lt;/style&gt;
+    &lt;template&gt;
+      &lt;content&gt;&lt;/content&gt;
+      &lt;iron-icon icon=&quot;star&quot; hidden$=&quot;{{!starred}}&quot;&gt;&lt;/iron-icon&gt;
+    &lt;/template&gt;
+    &lt;script&gt;
+      Polymer({
+        is: 'contact-card',
+        properties: {
+          starred: Boolean
+        }
+      });
+    &lt;/script&gt;
+  &lt;/dom-module&gt;
             </code></pre>
             <br>
             <pre><code class="lang-html">
-    &lt;contact-card starred&gt;
-      &lt;img src=&quot;profile.jpg&quot; alt=&quot;Eric's photo&quot;&gt;
-      &lt;span&gt;Eric Bidelman&lt;/span&gt;
-    &lt;/contact-card&gt;
+  &lt;contact-card starred&gt;
+    &lt;img src=&quot;profile.jpg&quot; alt=&quot;Eric's photo&quot;&gt;
+    &lt;span&gt;Eric Bidelman&lt;/span&gt;
+  &lt;/contact-card&gt;
             </code></pre>
           </div>
 
@@ -155,26 +155,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="section-columns">
           <div class="example-code flex">
             <pre><code class="lang-html">
-    &lt;iron-pages role="main" selected="[[page]]" attr-for-selected="name" selected-attribute="visible"&gt;
-      &lt;!-- home view --&gt;
-      &lt;shop-home name="home" categories="[[categories]]"&gt;&lt;/shop-home&gt;
+  &lt;iron-pages role="main" selected="[[page]]" attr-for-selected="name" selected-attribute="visible"&gt;
+    &lt;!-- home view --&gt;
+    &lt;shop-home name="home" categories="[[categories]]"&gt;&lt;/shop-home&gt;
 
-      &lt;!-- list view of items in a category --&gt;
-      &lt;shop-list name="list" route="[[subroute]]" offline="[[offline]]"&gt;&lt;/shop-list&gt;
+    &lt;!-- list view of items in a category --&gt;
+    &lt;shop-list name="list" route="[[subroute]]" offline="[[offline]]"&gt;&lt;/shop-list&gt;
 
-      &lt;!-- detail view of one item --&gt;
-      &lt;shop-detail name="detail" route="[[subroute]]" offline="[[offline]]"&gt;&lt;/shop-detail&gt;
+    &lt;!-- detail view of one item --&gt;
+    &lt;shop-detail name="detail" route="[[subroute]]" offline="[[offline]]"&gt;&lt;/shop-detail&gt;
 
-      &lt;!-- cart view --&gt;
-      &lt;shop-cart name="cart" cart="[[cart]]" total="[[total]]"&gt;&lt;/shop-cart&gt;
+    &lt;!-- cart view --&gt;
+    &lt;shop-cart name="cart" cart="[[cart]]" total="[[total]]"&gt;&lt;/shop-cart&gt;
 
-      &lt;!-- checkout view --&gt;
-      &lt;shop-checkout
-          name="checkout"
-          cart="[[cart]]"
-          total="[[total]]"
-          route="{{subroute}}"&gt;&lt;/shop-checkout&gt;
-    &lt;/iron-pages&gt;
+    &lt;!-- checkout view --&gt;
+    &lt;shop-checkout
+        name="checkout"
+        cart="[[cart]]"
+        total="[[total]]"
+        route="{{subroute}}"&gt;&lt;/shop-checkout&gt;
+  &lt;/iron-pages&gt;
             </code></pre>
           </div>
 
