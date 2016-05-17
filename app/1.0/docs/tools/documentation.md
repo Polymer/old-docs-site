@@ -11,13 +11,15 @@ and renders the API documentation.
 
 ## Add a documentation page for an element repo
 
-The `seed-element` repo comes with built-in documentation using
+Polymer CLI's element project template comes with built-in documentation using
 [`iron-component-page`](https://github.com/PolymerElements/iron-component-page).
-If you started your element using the `seed-element` repo as a template, you
-should be ready to go.
+If you started your element with this template, you should be good to go. 
+See also: 
+
+*   [Create an element project](polymer-cli#element) 
 
 To add a documentation page to an existing project that _didn't_ start from
-`seed-element`:
+Polymer CLI:
 
 1.  Add `iron-component-page` to your project as a development dependency:
 
@@ -27,9 +29,10 @@ To add a documentation page to an existing project that _didn't_ start from
 
 2.  Create an `index.html` file in the top-level folder of the project.
 
-3.  Copy the contents of the `index.html` file from the `seed-element` repo:
+3.  Copy the contents of the `index.html` file from the following file and 
+    put them in your repo's `index.html`. 
 
-    [seed-element/index.html](https://raw.githubusercontent.com/PolymerElements/seed-element/master/index.html)
+    [Element documentation page template](https://raw.githubusercontent.com/yeoman/generator-polymer/master/el/templates/index.html)
 
 By default, `iron-component-page` assumes a single import, with a name matching
 the folder name (for example, `my-element/my-element.html`).
@@ -55,24 +58,24 @@ If you want to document multiple files:
 
 ## View element docs
 
-You can use [`polyserve`](overview#polyserve) to preview element docs while
-you're developing a component.
+You can use Polymer CLI's [`polymer serve`](polymer-cli#serve) command to 
+preview element docs while you're developing a component.
 
 To view the element docs:
 
-1.  Run `polyserve`:
-
-        polyserve
+1.  Run `polymer serve`. 
 
 2.  Open the element's top-level `index.html` in a browser:
 
-        localhost:8080/components/my-element/
+    <pre><code>localhost:8080/components/<var>my-el</var>/</code></pre>
+
+    Where <code><var>my-el</var></code> is the name of your element. 
 
 If everything is set  up right, you should see a documentation page for your
 element, even if you haven't written any doc comments yet.
 
-If you have multiple elements or behaviors, use the pulldown menu in the top-left
-corner to choose a documentation page.
+If you have multiple elements or behaviors, use the pulldown menu in the 
+top-left corner to choose a documentation page.
 
 **Host your API docs.** See [Create a reusable element](/1.0/docs/tools/reusableelements#publish)
 for information on publishing an element on GitHub, and hosting its API docs

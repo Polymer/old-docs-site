@@ -4,8 +4,17 @@ title: Test your elements
 
 <!-- toc -->
 
-Use Web Component Tester to unit test your Polymer elements. Web
-Component Tester is an end-to-end testing environment built by the Polymer
+This guide shows you the basics of using Polymer CLI to run unit tests, and
+how to accomplish various tasks and scenarios using the Web Component Tester
+library (the underlying library that powers Polymer CLI's testing tools). 
+
+## Overview
+
+Polymer CLI is an all-in-one command-line interface that covers the vast of
+Polymer development tasks, including unit testing. The underlying library
+that powers Polymer CLI's unit testing tools is called Web Component Tester.
+
+Web Component Tester is an end-to-end testing environment built by the Polymer
 team. It enables you to test your elements locally, against all of your
 installed browsers, or remotely, via Sauce Labs. It is built on top of
 popular third-party tools, including:
@@ -21,113 +30,75 @@ popular third-party tools, including:
     Tools](https://github.com/GoogleChrome/accessibility-developer-tools)
     for accessibility audits.
 
-This guide refers to Web Component Tester as `wct`, which is its command
-line interface.
+## Quick start {#quick-start}
 
-## Quick start
+For demonstration purposes, this guide shows you how to install Polymer CLI
+and initialize an element project. You'll then use this project to learn how
+to add and run unit tests. 
 
-This section shows you how to:
-
-*   Set up `wct`.
-*   Create a unit test for
-    [`<seed-element>`](https://github.com/PolymerElements/seed-element).
-*   Run the unit test.
-
-Note that `<seed-element>` and Polymer Starter Kit come complete with
-basic test suites, so if you're starting from one of those projects, you can
-skip to step 6 to run the tests.
-
-Follow the steps below to get set up, or watch the Polycast:
-
-<google-youtube video-id="YBNBr9ECXLo" autoplay="0"
-                rel="0" fluid></google-youtube>
-
-1.  Install Web Component Tester globally so that you can run it from
-    the command line.
-
-        npm install -g web-component-tester
-
-    On Mac OS X you need to [manually install][selenium] the latest SafariDriver
-    extension for Selenium [(`SafariDriver.safariextz`)][safaridriver]. See the
+1.  (OS X only) [Manually install][selenium] the latest SafariDriver
+    extension for Selenium [(`SafariDriver.safariextz`)][safaridriver] to ensure
+    that Web Component Tester can run properly. See the
     [Web Component Tester Polycast][workaround-example] for
-    a demonstration.
+    a demonstration. Note: the Polycast is somewhat outdated, but the section
+    that the URL links to is still relevant. 
 
-2.  `cd` to the base directory of the element.
+1.  Install Polymer CLI. Follow the directions in 
+    [Install Polymer CLI](polymer-cli#install) to get started. 
 
-3.  (Optional) Install and save `wct` locally as a bower component so that your
-    tests can always import the `wct` runtime.
+1.  [Create an element project](polymer-cli#element). This guide assumes that
+    your element project directory and your element are both named `my-el`. 
 
-        bower install --save Polymer/web-component-tester
+1.  `cd` to the base directory of your project. 
 
-    If you installed `wct` globally, it actually serves its own
-    copy of the `wct` runtime (`browser.js`) whenever it encounters any URL
-    that ends with `web-component-tester/browser.js`. Installing it locally
-    is just a precaution.
+1.  Run `ls`.
 
-4.  Create a directory for the tests.
+    You'll see that your element project contains a
+    directory called `test`. This is where all of your unit tests should be 
+    stored. 
 
-        mkdir test
+    When you run `polymer test`, Web Component Tester automatically 
+    searches for a `test` directory and runs any tests it finds in there. If
+    you use another directory name, you'll need to specify it when you run
+    `polymer test`. 
+    {.alert .alert-info}
+    
+1.  Open up `test/my-el_test.html` to see an example of a basic unit test. 
 
-    When you run `wct` with no arguments, it automatically searches for
-    a directory named `test` and runs any tests it finds in there. If you use
-    another name for your directory, you'll need to specify
-    the path to the directory when you run `wct` (`wct path/to/tests`).
+1.  Run the test.
 
-5.  Create a test.
+        polymer test
 
-    ```html
-    <!doctype html>
-    <html>
-      <head>
-        <meta charset="utf-8">
-        <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-        <script src="../bower_components/web-component-tester/browser.js"></script>
-        <!-- import the element to test -->
-        <link rel="import" href="../seed-element.html">
-      </head>
-      <body>
-        <!-- use the document as a place to set up your fixtures -->
-        <test-fixture id="seed-element-fixture">
-          <template>
-            <seed-element>
-              <h2>seed-element</h2>
-            </seed-element>
-          </template>
-        </test-fixture>
-        <script>
-          suite('<seed-element>', function() {
-            var myEl;
-            setup(function() {
-              myEl = fixture('seed-element-fixture');
-            });
-            test('defines the "author" property', function() {
-              assert.equal(myEl.author.name, 'Dimitri Glazkov');
-            });
-          });
-        </script>
-      </body>
-    </html>
-    ```
+    Web Component Tester automatically finds all of the browsers on your 
+    system and runs your tests against each one. If you wanted to run your
+    tests against a single browser, say Google Chrome, you could 
+    `polymer test -l chrome`.
+    {.alert .alert-info}
 
-6.  Go to the base directory of your element and run your tests.
+### Run tests interactively
 
-        wct
+You can also run your tests in the browser. This allows you to use the
+browser's DevTools to inspect or your debug your unit tests. 
 
-    ![output from successful wct unit test run](/images/1.0/wct-output.png)
+For example, using Polymer CLI and the example element project created
+in [Quick start](#quick-start) above, first you would start your server:
 
-    `wct` automatically finds all of the browsers on your system and runs
-    your tests against each one. You can use `wct -l chrome` to test Google
-    Chrome only.
+    polymer serve
 
-### Run tests interactively with Polyserve
+And then, to run the basic `my-el_test.html` unit test in the browser, you 
+would open a web browser and go to the following URL:
 
-You can also use [polyserve](https://github.com/PolymerLabs/polyserve)
-to run your test suite in the browser. This allows you to use browser
-features like dev tools and HTML inspection to debug your unit tests.
-You can then open the corresponding HTML page which contains the test
-suite in your browser and immediately view the successful and failing tests.
+    localhost:8080/components/my-el/test/my-el_test.html
 
-## Asynchronous tests {#async}
+## Creating tests
+
+Now that you've got the basics down of using Polymer CLI to run tests, it's 
+time to start creating them. 
+
+This section of the doc shows you how to accomplish various tasks or scenarios
+while implementing your unit tests. 
+
+### Asynchronous tests {#async}
 
 To create an asynchronous test, pass `done` as an argument to the test function
 and then call `done()` when the test is complete. The `done` argument is a
@@ -146,7 +117,7 @@ test('fires lasers', function(done) {
 });
 ```
 
-## Prevent shared state with test fixtures {#test-fixtures}
+### Prevent shared state with test fixtures {#test-fixtures}
 
 Test fixtures enable you to define a template of content and copy a clean,
 new instance of that content into each test suite. Use test fixtures to
@@ -180,7 +151,7 @@ To use a test fixture:
 </script>
 ```
 
-## Create stub methods
+### Create stub methods
 
 Stubs enable you to replace default implementations with custom methods. This
 is useful for catching side effects.
@@ -198,7 +169,7 @@ setup(function() {
 You don't have to use stubs directly on individual elements. You can override
 the implementation for all elements of a given type.
 
-## Create stub elements
+### Create stub elements
 
 Use [stub elements](http://stackoverflow.com/questions/463278/what-is-a-stub)
 to test elements in isolation. For example, if one of your tests
@@ -240,12 +211,12 @@ is replaced with the specified stub tag.
 Because the method is called within `setup()`, all of the changes are
 reverted at the end of each test.
 
-## AJAX
+### AJAX
 
 <google-youtube video-id="_9qARcdCAn4" autoplay="0"
                 rel="0" fluid></google-youtube>
 
-`wct` includes [Sinon](http://sinonjs.org/), which enables you to mock XHR
+Web Component Tester includes [Sinon](http://sinonjs.org/), which enables you to mock XHR
 requests and create fake servers.
 
 Below is an example of a simple XHR unit test suite for
@@ -306,10 +277,10 @@ Check out Sinon's documentation for more in-depth examples.
 assertion style.
 { .alert .alert-info }
 
-## Run a set of tests {#test-sets}
+### Run a set of tests {#test-sets}
 
 To run a set of tests, create an HTML file and call `loadSuites()`. When
-running `wct`, specify the path to the HTML file as the first argument
+running Web Component Tester, specify the path to the HTML file as the first argument
 (for example, `wct test/my-test-set.html`.
 
 ```
@@ -336,7 +307,7 @@ should be a relative URL to a test suite. You can configure your tests
 using query strings in the URLs. See [Test shadow DOM](#shadow-dom)
 for an example.
 
-## Test local DOM
+### Test local DOM
 
 Use Polymer's [DOM API](/1.0/docs/devguide/local-dom#dom-api) to access
 and modify local DOM children.
@@ -352,7 +323,7 @@ test('click sets isWaiting to true', function() {
 in the local DOM of `myEl`.
 { .alert .alert-info }
 
-### Test DOM mutations
+#### Test DOM mutations
 
 Always wrap your test in `flush` if your element template contains a [template
 repeater (`dom-repeat`)](/1.0/docs/devguide/templates#dom-repeat) or
@@ -386,11 +357,11 @@ suite('my-list tests', function() {
 )};
 ```
 
-### Test with native shadow DOM {#shadow-dom}
+#### Test with native shadow DOM {#shadow-dom}
 
 To test out how a test suite behaves when the browser runs native
 shadow DOM, create a [test set](#test-sets) and pass `dom=shadow` as
-a query string when `wct` loads your test suites.
+a query string when Web Component Tester loads your test suites.
 
 ```
 WCT.loadSuites([
@@ -402,7 +373,7 @@ WCT.loadSuites([
 This sample runs `basic-test.html` twice, once using shady DOM and once
 using native shadow DOM (if the browser supports it).
 
-## Automated testing in the cloud
+### Automated testing in the cloud
 
 It's important to get a good testing setup in place for your project as
 early as possible. Using services like Travis for continuous integration,
@@ -420,11 +391,8 @@ Polymer Summit 2015 video on testing:
 <google-youtube video-id="kX2INPJY4Y4" autoplay="0"
                 rel="0" fluid></google-youtube>
 
-Check out [`<seed-element>`][seed-element]
-for an example of a basic boilerplate element with support for `wct`.
-
 The [Web Component Tester README][wct-readme] has more in-depth information
-about `wct` usage.
+about Web Component Tester usage.
 
 [seed-element]: https://github.com/PolymerElements/seed-element
 [wct-readme]: https://github.com/Polymer/web-component-tester/blob/master/README.md
