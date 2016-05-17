@@ -97,6 +97,9 @@ $pale-grey: #fafafa;
     }
   }
 
+  iframe {
+    margin: 0.5em 0;
+  }
   .example-google-map iframe {
     height: 232px;
   }
@@ -112,7 +115,7 @@ $pale-grey: #fafafa;
   }
   .example-pwa img {
     display: block;
-    margin: 0 auto;
+    margin: 0.5em auto;
   }
 }
 
