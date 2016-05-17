@@ -1,3 +1,5 @@
+@import "syntax-style";
+
 pre, code {
   /* Override the very opinionated and specific highlight.js style */
   font-family: 'Source Code Pro', 'Roboto Mono', 'Consolas', 'Menlo', monospace !important;
