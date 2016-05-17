@@ -11,8 +11,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../bower_components/app-layout/helpers/helpers.html">
-<link rel="import" href="../bower_components/carbon-route/carbon-location.html">
-<link rel="import" href="../bower_components/carbon-route/carbon-route.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
@@ -146,9 +146,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <carbon-location route="{{_sectionRoute}}"></carbon-location>
-    <carbon-route route="{{_sectionRoute}}" pattern="/1.0/:section" data="{{_sectionData}}" tail="{{_subsectionRoute}}"  query-params="{{_searchParams}}"></carbon-route>
-    <carbon-route route="{{_sectionRoute}}" pattern="/search/" query-params="{{_searchParams}}"></carbon-route>
+    <app-location route="{{_sectionRoute}}"></app-location>
+    <app-route route="{{_sectionRoute}}" pattern="/1.0/:section" data="{{_sectionData}}" tail="{{_subsectionRoute}}"  query-params="{{_searchParams}}"></app-route>
+    <app-route route="{{_sectionRoute}}" pattern="/search/" query-params="{{_searchParams}}"></app-route>
 
     <iron-ajax url="[[_sectionRoute.path]]" handle-as="document" on-response="_handleResponse" auto></iron-ajax>
     <iron-ajax id="cseSearch" url="https://www.googleapis.com/customsearch/v1" on-response="_handleSearchResponse"></iron-ajax>
@@ -214,7 +214,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     attached: function() {
-      // carbon-route doesn't handle clicking on the TOC anchors.
+      // app-route doesn't handle clicking on the TOC anchors.
       window.addEventListener('hashchange', this._scrollToAnchor.bind(this));
       window.addEventListener('location-changed', this._scrollToAnchor.bind(this));
 

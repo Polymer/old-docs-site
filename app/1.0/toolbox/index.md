@@ -9,9 +9,9 @@ with Polymer. App Toolbox features:
 
 -   Component-based architecture using Polymer and web components.
 -   Responsive design using the app layout components.
--   Modular routing using the [`<carbon-route>`](https://elements.polymer-project.org/elements/carbon-route) elements.
--   Localization with [`<carbon-localization-behavior>`](https://elements.polymer-project.org/elements/carbon-localization-behavior).
--   ???? with [`<carbon-storage>`](https://elements.polymer-project.org/elements/carbon-storage).
+-   Modular routing using the [`<app-route>`](https://elements.polymer-project.org/elements/app-route) elements.
+-   Localization with [`<app-localization-behavior>`](https://elements.polymer-project.org/elements/app-localization-behavior).
+-   ???? with [`<app-storage>`](https://elements.polymer-project.org/elements/app-storage).
 -   Offline caching as a progressive enhancement, using service workers.
 -   A reference server implementation with support for HTTP2 and HTTP2 push.
 

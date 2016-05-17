@@ -1,6 +1,6 @@
 (function() {
   var interval = setInterval(function() {
-    if (!document.querySelector('carbon-route')) {
+    if (!document.querySelector('app-route')) {
       return;
     }
     clearInterval(interval);

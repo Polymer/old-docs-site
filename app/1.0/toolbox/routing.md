@@ -1,12 +1,12 @@
 ---
-title: Routing with <carbon-route>
+title: Routing with <app-route>
 ---
 
 <!-- toc -->
 
-For client-site routing, App Toolbox uses the `<carbon-route>` element to provide _modular routing_.  Modular routing means that instead of having a central repository for all your application's routes, individual components manage some portion of the route, and delegate the rest to other components.
+For client-site routing, App Toolbox uses the `<app-route>` element to provide _modular routing_.  Modular routing means that instead of having a central repository for all your application's routes, individual components manage some portion of the route, and delegate the rest to other components.
 
-**Why modular routing?** For background on `<carbon-route>` and modular routing, see [Encapsulated routing with elements](/1.0/articles/routing.html).
+**Why modular routing?** For background on `<app-route>` and modular routing, see [Encapsulated routing with elements](/1.0/articles/routing.html).
 {.alert .alert-info}
 
 For example, if you have an application with several main views:
@@ -19,20 +19,20 @@ For example, if you have an application with several main views:
 You might have a main application element and a separate view component for each tab. The application element manages the top-level route, selects one of the views to display, and _delegates_ the rest of the route to the active view. The app element's template might include markup like this:
 
 ```
-<!-- carbon-location binds to the app's URL -->
-<carbon-location route="{{route}}"></carbon-location>
+<!-- app-location binds to the app's URL -->
+<app-location route="{{route}}"></app-location>
 
-<!-- this carbon-route manages the top-level routes —>
-<carbon-route
+<!-- this app-route manages the top-level routes —>
+<app-route
     route="{{route}}"
     pattern="/:view"
     data="{{routeData}}"
-    tail="{{subroute}}"></carbon-route>
+    tail="{{subroute}}"></app-route>
 ```
 
-The `<carbon-location>` element is simply a proxy for `window.location` that provides two-way data binding. A single `<carbon-location>` element binds the top-level `<carbon-route>` element to the state of the URL bar.
+The `<app-location>` element is simply a proxy for `window.location` that provides two-way data binding. A single `<app-location>` element binds the top-level `<app-route>` element to the state of the URL bar.
 
-The `<carbon-route>` element matches the current `route` against a `pattern` (where `:view` represents a parameter). If the pattern matches, the route is _active_ and any URL parameters are added to the `data` object. In this case, the path `/profile/tina` matches the top-level route, setting `routeData.view` to `profile`. The remainder of the route (`/tina`) forms the `tail`.
+The `<app-route>` element matches the current `route` against a `pattern` (where `:view` represents a parameter). If the pattern matches, the route is _active_ and any URL parameters are added to the `data` object. In this case, the path `/profile/tina` matches the top-level route, setting `routeData.view` to `profile`. The remainder of the route (`/tina`) forms the `tail`.
 
 Based on the route, the app can use `<iron-pages>` to select a view to display:
 
@@ -45,13 +45,13 @@ Based on the route, the app can use `<iron-pages>` to select a view to display:
 </iron-pages>
 ```
 
-If the current URL is `/profile/tina`, the `<my-profile-view>` element is displayed, with _its_ route set to `/tina`. This view might embed its own `<carbon-route>` to process the route: for example, to load the user's data:
+If the current URL is `/profile/tina`, the `<my-profile-view>` element is displayed, with _its_ route set to `/tina`. This view might embed its own `<app-route>` to process the route: for example, to load the user's data:
 
 ```
-<carbon-route
+<app-route
     route="{{route}}"
     pattern="/:user_id"
-    data="{{routeData}}"></carbon-route>
+    data="{{routeData}}"></app-route>
 <iron-ajax url="{{_profileUrlForUser(routeData.user_id)}}
            on-response="handleResponse" auto>
 ```
@@ -61,9 +61,9 @@ If the current URL is `/profile/tina`, the `<my-profile-view>` element is displa
 
 ## Navigation
 
-When using `<carbon-route>`, there are two ways to change the current path.
+When using `<app-route>`, there are two ways to change the current path.
 
--   Links. When you click a link, `<carbon-location>` intercepts the navigation
+-   Links. When you click a link, `<app-location>` intercepts the navigation
     event and updates its `route` property. Using links for your primary
     navigation is a good idea because they help search indexers understand the
     structure of your application.
@@ -96,5 +96,5 @@ _viewChanged: function(view) {
 ## More resources
 
 -   [Encapsulated routing with elements](/1.0/blog/routing.html)
--   [`<carbon-route>`
-    API reference](https://elements.polymer-project.org/elements/carbon-route)
+-   [`<app-route>`
+    API reference](https://elements.polymer-project.org/elements/app-route)

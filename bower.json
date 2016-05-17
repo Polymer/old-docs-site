@@ -11,7 +11,7 @@
   ],
   "devDependencies": {
     "app-layout": "PolymerLabs/app-layout#^0.0.14",
-    "carbon-route": "PolymerElements/carbon-route#master",
+    "app-route": "PolymerElements/app-route#^0.9.0",
     "iron-elements": "PolymerElements/iron-elements#^1.0.4",
     "paper-elements": "PolymerElements/paper-elements#^1.0.5",
     "google-youtube": "GoogleWebComponents/google-youtube#^1.2.1",
