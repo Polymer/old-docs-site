@@ -11,7 +11,7 @@
   h1 {
     margin-right: 40px;
   }
-  
+
   .example-code {
     min-width: 60%;
   }
@@ -37,7 +37,7 @@
     height: 100%;
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 1000px) {
     .example-code {
       width: 100%;
       margin-bottom: 40px;
@@ -46,6 +46,24 @@
     .iframe-wrapper {
       /* use the correct aspect ratio for the video */
       padding-bottom: 56.25%;
+    }
+
+    /* The devguide has a left nav, which means we need to rejigger
+     * the media breakpoints to account for that. */
+    section {
+      padding: 40px;
+    }
+
+    .section-columns {
+      display: block;
+      flex-direction: column;
+    }
+
+    .section-columns > div:not(:last-child),
+    .section-columns > p:not(:last-child),
+    .section-columns > h2:not(:last-child) {
+      margin-right: 0px;
+      margin-bottom: 40px;
     }
   }
 </style>
