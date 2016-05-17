@@ -31,14 +31,17 @@
     indent: True
   - endheader: True
   - header: Build an app
-  - title: Get set up
-    path: /1.0/start/psk/set-up
+  - title: 1. Get set up
+    path: /1.0/start/toolbox/set-up
     indent: True
-  - title: Create a new page
-    path: /1.0/start/psk/create-a-page
+  - title: 2. Create a new page
+    path: /1.0/start/toolbox/create-a-page
     indent: True
-  - title: Deploy
-    path: /1.0/start/psk/deploy
+  - title: 3. Add some elements
+    path: /1.0/start/toolbox/add-elements
+    indent: True
+  - title: 4. Deploy
+    path: /1.0/start/toolbox/deploy
     indent: True
   - endheader: True
 
