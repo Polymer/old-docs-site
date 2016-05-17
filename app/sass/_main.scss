@@ -229,6 +229,10 @@ h3 {
       margin-top: $small-padding;
     }
   }
+
+  &.full-width {
+    width: 100%;
+  }
 }
 
 .subsection:not(:last-of-type) {

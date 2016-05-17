@@ -10,11 +10,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <!DOCTYPE html>
 <html itemscope itemtype="http://schema.org/Organization" lang="en">
 <head>
-<title>Welcome - Polymer Project</title>
+<title>{% block title %}{% endblock %} - Polymer Project</title>
 {% include 'templates/head-meta.html' %}
 <link rel="stylesheet" href="/css/page-index.css">
 </head>
-<body class="fullbleed" unresolved>
+<body class="fullbleed">
   <pw-shell>
     {% include 'templates/site-nav.html' %}
 
@@ -24,15 +24,44 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <img src="/images/logos/p-logo-new.png" alt="Polymer logo">
         </div>
         <div class="content flex">
-          <h2 class="underline">Web development the way it was meant to be.</h2>
+          <h2 class="underline">#UseThePlatform to build a better web</h2>
           <div class="section-columns">
-            <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
-            <div class="getting-started-links layout vertical">
-              <a href="" class="blue-button vertical">View tutorial</a>
-              <a href="" class="blue-button vertical">Learn about web components</a>
-              <a href="" class="blue-button vertical">Get the code</a>
+            <div>
+              <p>The Polymer Project helps you deliver amazing user experiences by unlocking the full potential of the web platform.</p>
+              <p>Use the <a href="/1.0/devguide/feature-overview">Polymer library</a> to make the most of Web Components, a powerful new platform feature for extending HTML and componentizing your apps.</p>
+              <p>Use the <a href="/1.0/toolbox">Polymer App Toolbox</a> to build cutting-edge Progressive Web Apps that load quickly, respond instantly and work from anywhere.</p>
+              <a href="/1.0/start/" class="blue-button vertical">Get Started</a>
             </div>
+            <!-- <div class="getting-started-links layout vertical"> -->
+            <!-- </div> -->
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="library light">
+      <div class="section-columns">
+        <div class="flex">
+          <h2 class="underline">Polymer library</h2>
+          <div class="flex">
+          <p>Polymer is a lightweight library that helps you take full advantage of Web Components. With Web Components, you can:</p>
+          <ul>
+            <li>Create reusable custom elements that interoperate seamlessly with the browser’s built-in elements</li>
+            <li>Break your app up into right-sized components, making your code cleaner and less expensive to maintain</li>
+          </ul>
+
+          <p>Polymer sprinkles a bit of sugar over the standard Web Components APIs, making it easier for you to get great results.</p>
+          </div>
+          <a href="/1.0/devguide/feature-overview" class="blue-button">About the Library</a>
+        </div>
+
+        <div class="flex">
+          <h2 class="underline">Polymer App Toolbox</h2>
+          <div class="flex">
+            <p>Polymer App Toolbox helps you build and deliver cutting-edge Progressive Web Apps with minimal overhead and payload, by leveraging powerful web platform features like Web Components, Service Worker and HTTP/2.</p>
+            <p>The Toolbox provides a component-based architecture, responsive layouts, a modular router, localization support, turnkey support for local storage and offline caching, and efficient delivery of unbundled app resources. Adopt these features individually, or use them together to build a full-featured PWA.</p>
+          </div>
+          <a href="/1.0/toolbox" class="blue-button">About the Toolbox</a>
         </div>
       </div>
     </section>
@@ -42,19 +71,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="feature flex">
           <img src="/images/page-index/feature-speed.png" alt="illustration of an abstract arrow">
           <h2 class="underline">Built for Speed</h2>
-          <p>Polymer 1.0 replaces the shadow DOM polyfill with a lightweight shim, uses a new, faster data-binding system, and significantly reduces code size.</p>
+          <p>Because they let the platform do the heavy lifting, elements built with the Polymer library and apps built with the App Toolbox are blazing fast.</p>
         </div>
 
         <div class="feature flex">
           <img src="/images/page-index/feature-modern.png" alt="illustration of a computer">
-          <h2 class="underline">For Modern Browsers</h2>
-          <p>Polymer is built from the ground up for modern browsers, using the latest web platform APIs. Polyfills provide support on evergreen browsers for APIs that aren't universal yet.</p>
+          <h2 class="underline">For Today and Beyond</h2>
+          <p>Polymer makes the most of the web platform by using the latest APIs. Polyfills provide support on evergreen browsers for APIs that aren't universal yet.</p>
         </div>
 
         <div class="feature flex">
           <img src="/images/page-index/feature-components.png" alt="illustration of bolts">
-          <h2 class="underline">Using Web Components</h2>
-          <p>Polymer leverages <em>web components</em>, a new set of standards designed to provide reusable components for the web.</p>
+          <h2 class="underline">Fully Interoperable</h2>
+          <p>Polymer-powered elements are based on standard Web Components APIs, so they work seamlessly with the browser's built-in elements and other Web Components.</p>
         </div>
       </div>
     </section>
@@ -78,6 +107,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="example-google-map">
             <iframe frameborder="0" src="/1.0/homepage/google-map/index.html" width="100%"></iframe>
             <p>An element built with Polymer looks and works just like any other HTML element. Simply find an element you’d like to use in your app, import it with an HTML import, and then add the tag to your page.</p>
+            <a href="https://elements.polymer-project.org/" class="blue-button vertical full-width">Browse elements</a>
           </div>
         </div>
       </div>
@@ -115,45 +145,44 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="example-contact-card">
             <iframe frameborder="0" src="/1.0/homepage/contact-card/index.html" width="100%"></iframe>
             <p>The Polymer library makes it easy to create your own powerful elements. Give your element some markup and properties, and then use it on a site. Polymer provides useful features like templating and data binding to reduce the amount of boilerplate you need to write.</p>
+            <a href="/1.0/start/first-element/intro" class="blue-button vertical full-width">Build an element</a>
           </div>
         </div>
       </div>
 
       <div class="subsection">
-        <h2>Power it all with real data</h2>
+        <h2>Build Progressive Web Apps</h2>
         <div class="section-columns">
           <div class="example-code flex">
             <pre><code class="lang-html">
-    &lt;dom-module id="friend-list"&gt;
-      &lt;link rel="import" type="css" href="friend-list.css"&gt;
-      &lt;template&gt;
-        &lt;firebase-collection data="{{data}}"
-                          location="https://users1.firebaseio.com/users"&gt;
-        &lt;/firebase-collection&gt;
-        &lt;template is="dom-repeat" items="{{data}}"&gt;
-          &lt;contact-card starred="{{item.starred}}"&gt;
-            &lt;img src="{{item.img}}"&gt;
-            &lt;span&gt;{{item.name}}&lt;/span&gt;
-          &lt;/contact-card&gt;
-        &lt;/template&gt;
-      &lt;/template&gt;
-      &lt;script&gt;
-        Polymer({
-          is: 'friend-list'
-        });
-      &lt;/script&gt;
-    &lt;/dom-module&gt;
-            </code></pre>
-            <br>
-            <pre><code class="lang-html">
-    &lt;friend-list&gt;&lt;/friend-list&gt;
+    &lt;iron-pages role="main" selected="[[page]]" attr-for-selected="name" selected-attribute="visible"&gt;
+      &lt;!-- home view --&gt;
+      &lt;shop-home name="home" categories="[[categories]]"&gt;&lt;/shop-home&gt;
+
+      &lt;!-- list view of items in a category --&gt;
+      &lt;shop-list name="list" route="[[subroute]]" offline="[[offline]]"&gt;&lt;/shop-list&gt;
+
+      &lt;!-- detail view of one item --&gt;
+      &lt;shop-detail name="detail" route="[[subroute]]" offline="[[offline]]"&gt;&lt;/shop-detail&gt;
+
+      &lt;!-- cart view --&gt;
+      &lt;shop-cart name="cart" cart="[[cart]]" total="[[total]]"&gt;&lt;/shop-cart&gt;
+
+      &lt;!-- checkout view --&gt;
+      &lt;shop-checkout
+          name="checkout"
+          cart="[[cart]]"
+          total="[[total]]"
+          route="{{subroute}}"&gt;&lt;/shop-checkout&gt;
+    &lt;/iron-pages&gt;
             </code></pre>
           </div>
 
-          <div class="example-friend-list">
-            <iframe frameborder="0" src="/1.0/homepage/friend-list/index.html" width="100%"></iframe>
-            <p>Build more sophisticated elements by composing simpler elements together. Elements can provide simple abstractions to powerful APIs. The
-              <code class="lang-html">&lt;firebase-collection&gt;</code> used here pulls data from a Firebase database.</p>
+          <div class="example-pwa">
+            <img src="http://placehold.it/375x667">
+            <p>Use the Polymer App Toolbox to build super-powered Progressive Web Apps. Try the Shop demo app to experience a Progressive Web App in action!</p>
+            <a href="https://shop.polymer-project.org/" class="blue-button vertical full-width">Try the demo</a>
+            <a href="/1.0/start/psk/set-up" class="blue-button vertical full-width">Build an app</a>
           </div>
         </div>
       </div>
@@ -161,30 +190,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <section class="page-index-getting-started dark gradient-dark">
       <div>
-        <h2 class="underline">Getting started</h2>
+        <h2 class="underline">Polymer Summit</h2>
         <div class="getting-started-wrapper section-columns">
-          <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
-          <div class="getting-started-links layout vertical">
-            <a href="/1.0/start/first-element/intro" class="blue-button vertical">Your first element</a>
-            <a href="/1.0/start/psk/set-up" class="blue-button vertical">Your first app</a>
-            <a href="/1.0/tools/" class="blue-button vertical">Using the tools</a>
+          <div class="flex">
+            <p>Join us in London for the second annual Polymer Summit, October X - Y, 2016. The summit will feature two days of talks and code labs presented by the Polymer team.</p>
+            <p>To whet your appetite, you can watch videos from the 2015 Summit held in Amsterdam.</p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="library light">
-      <div class="section-columns">
-        <div class="flex">
-          <h2 class="underline">Library</h2>
-          <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
-          <a href="/1.0/devguide/feature-overview" class="blue-button">Browse library</a>
-        </div>
-
-        <div class="flex">
-          <h2 class="underline">Components</h2>
-          <p class="flex">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce imperdiet gravida risus nec lobortis. Proin non orci cursus, interdum nisl nec, tincidunt quam. Nulla ipsum magna, porttitor eget elit nec, tempus aliquet sapien. Mauris tempus nisl quis elementum rutrum. Nulla rhoncus lorem est, id ultrices velit faucibus imperdiet.</p>
-          <a href="https://elements.polymer-project.org/" class="blue-button">Browse components</a>
+          <div class="getting-started-links layout vertical">
+            <a href="" class="blue-button vertical">Sign up for 2016 Summit</a>
+            <a href="https://www.youtube.com/playlist?list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J" class="blue-button vertical">Watch 2015 Summit</a>
+          </div>
         </div>
       </div>
     </section>
@@ -192,7 +207,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <section class="page-index-who grey gradient-light">
       <div>
         <h2>Browser Compatibility</h2>
-        <div>Polymer 1.0 <a href="/1.0/docs/browsers">works on all major browsers</a> (Chrome, Firefox, IE, Edge, Safari, and Opera).</div>
+        <div>The Polymer library and Polymer App Toolbox <a href="/1.0/docs/browsers">work in all major browsers</a> (Chrome, Firefox, IE, Edge, Safari, and Opera).</div>
         <div class="page-index-browsers layout wrap justified spaced">
           <img src="/images/browsers/chrome_128x128.png" alt="chrome logo">
           <img src="/images/browsers/firefox_128x128.png" alt="firefox logo">
