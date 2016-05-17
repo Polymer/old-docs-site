@@ -33,6 +33,16 @@ body {
   font-family: 'Roboto', 'Noto', sans-serif;
   line-height: 24px;
   font-weight: 300;
+
+  /* Set up so the footer always sticks to the bottom of the screen, regardless
+   * of the content size */
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+pw-shell {
+  flex: 1;
 }
 
 a {
