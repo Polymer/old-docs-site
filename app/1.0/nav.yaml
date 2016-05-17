@@ -45,7 +45,7 @@
     indent: True
   - endheader: True
 
-- section: Docs
+- section: Polymer
   shortpath: docs
   path: /1.0/docs/devguide/feature-overview
   items:
