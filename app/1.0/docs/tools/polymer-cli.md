@@ -9,25 +9,27 @@ Polymer CLI is still pre-release. Some options may be subject to change.
 
 ## Install {#install}
 
-Install the LTS version (4.x) of [Node.js](https://nodejs.org/en/download/).
-The current version (6.x) should work, but is not officially supported. Versions
-below LTS are not supported.
+1.  Install [Git](https://git-scm.com/downloads).
 
-Install the latest version of [Bower](http://bower.io/#install-bower).
+1.  Install the LTS version (4.x) of [Node.js](https://nodejs.org/en/download/).
+    The current version (6.x) should work, but is not officially supported.  
+    Versions below LTS are not supported.
 
-Install Polymer CLI.
+1.  Install the latest version of Bower.
 
-    npm install -g polymer-cli
+        npm install -g bower
 
-View commands:
+1.  Install Polymer CLI.
 
-    polymer help
+        npm install -g polymer-cli
+
+You're all set. Run `polymer help` to view a list of commands. 
 
 ## Overview {#overview}
 
-Polymer CLI is a command-line interface for building Polymer elements and applications. It includes a build pipeline, a boilerplate generator for creating elements and apps, a linter, a server, and a testing framework. 
+Polymer CLI is a command-line interface for Polymer projects. It includes a build pipeline, a boilerplate generator for creating elements and apps, a linter, a development server, and a test runner. 
 
-Polymer CLI works with two main types of projects: 
+Polymer CLI works with two types of projects: 
 
 * Elements projects. In an element project, you expose a single element or 
   group of related elements which you intend to use 
@@ -35,7 +37,7 @@ Polymer CLI works with two main types of projects:
   distribute on a registry like Bower or NPM. Elements are reusable and
   organized to be used alongside other elements, so components are referenced
   outside the project. 
-* App projects. In an app project, you build an application, composed
+* Application projects. In an app project, you build an application, composed
   of Polymer elements, which you intend to deploy as a website. Applications are 
   self-contained, organized with components inside the application. 
 
@@ -60,8 +62,6 @@ This section shows you how to start an element project.
 
         polymer init
 
-1.  Select `basic`.
-
 1.  Select `element`.
 
 1.  Enter a name for your element. 
@@ -71,7 +71,10 @@ This section shows you how to start an element project.
     element name to contain a dash. 
     {.alert .alert-info}
 
-At this point, Polymer CLI generates files and directories for your element.
+1.  Enter a description of the element. 
+
+At this point, Polymer CLI generates files and directories for your element,
+and installs your project's dependencies.
 
 ### Element project layout 
 
@@ -125,27 +128,42 @@ However, one problem with this approach, as stated earlier, is that this
 structure does not actually match the layout in your element project. Your
 element project is actually laid out like so:
 
-  bower_components/
-    polymer/
-      polymer.html
-  my-el.html
+    bower_components/
+      polymer/
+        polymer.html
+    my-el.html
 
 Polymer CLI handles this by remapping paths. When you run `polymer serve`, 
 all elements in `bower_components` are remapped to appear to be in sibling
-directories relative to `my-el`.  
+directories relative to `my-el`. The current element is served from the 
+made-up path of <code>/components/<var>bower name</var></code>, where 
+<code><var>bower name</var></code> is the `name` field from your element
+project's `bower.json` file. 
 
 ## Create an app project {#app}
 
 Polymer CLI currently supports three types of applications: 
 
 *   `basic`. The most basic starting point for a Polymer-based application. 
-*   `prpl-demo`. A minimal App Toolbox template with a drawer-based layout.
+*   `app-drawer-template`. A minimal App Toolbox template with a 
+    drawer-based layout.
     Learn more about App Toolbox at [What's in the box](1.0/toolbox/).
 *   `shop`. A full-featured e-commerce app, built on top of App Toolbox. 
     Learn more at [Case study: the Shop app](1.0/toolbox/case-study). 
 
 This chapter teaches you more about `basic` app projects. The other two types of
 apps are not covered in this doc. 
+
+### App project architecture {#app-architecture}
+
+Polymer CLI is designed for apps that follow the [app shell 
+architecture](https://developers.google.com/web/updates/2015/11/app-shell).
+
+There are fundamental concepts of the app shell architecture that you should understand before creating your app project with Polymer CLI: the entrypoint, 
+the shell, and fragments. See [App structure](/1.0/toolbox/server#app-structure) 
+from the App Toolbox docs for an in-depth overview of these concepts. 
+
+### Set up basic app project {#basic-app}
 
 Follow the steps below to get your `basic` app project set up. 
 
@@ -161,8 +179,6 @@ Follow the steps below to get your `basic` app project set up.
 
         polymer init
 
-1.  Select `basic`. 
-
 1.  Select `application`.
 
 1.  Enter a name for your app. Defaults to the name of the current directory. 
@@ -177,7 +193,10 @@ Follow the steps below to get your `basic` app project set up.
     your main element. 
     {.alert .alert-info}
 
-At this point, Polymer CLI generates files and directories for your app. 
+1.  Enter a description for your app. 
+
+At this point, Polymer CLI generates files and directories for your app,
+and installs your project's dependencies. 
 
 ### App project layout
 
@@ -282,7 +301,7 @@ If all of the elements you want to test are in the same directory, you can speci
 Generates a production-ready build of your app. This process includes minifying the HTML, CSS, and JS of the application dependencies, and generating a service worker to pre-cache dependencies. 
 
 Polymer CLI's build process is designed for apps that follow the [app shell architecture](https://developers.google.com/web/updates/2015/11/app-shell).
-The build command is typically ran with three options set: 
+The build command is typically run with the following options:
 
 *   `entrypoint`. The main HTML file that is imported for all routes. This file
     should import the app shell file specified in the `shell` option. It should
@@ -290,7 +309,8 @@ The build command is typically ran with three options set:
 *   `shell`. The app shell file containing common code for the app. 
 *   `fragment`. Any imports that are not synchronously loaded from the 
     app shell, such as async imports or any imports loaded on-demand (e.g. by
-    `importHref`). 
+    `importHref`). Can be a space-separated list of values, or the option
+    can be repeated. 
 *   `sw-precache-config`. The underlying library that Polymer CLI uses to
     generate service workers, `sw-precache`, accepts various configurtion
     options. You can specify a path to a `sw-precache` config file with
@@ -301,12 +321,13 @@ For example, in a newly created `basic` app project you would run the following 
 
     polymer build --entrypoint index.html
 
-Suppose you added an app shell and a view for your `basic` app project, 
-located at `src/app-shell/app-shell.html` and `src/view-one/view-one.html`,
-respectively. You'd specify them in your build with the following flags: 
+Suppose you added an app shell and two views for your `basic` app project, 
+located at `src/app-shell/app-shell.html` and `src/view-one/view-one.html`
+and `src/view-two/view-two.html`, respectively. You'd specify them in your 
+build with the following flags: 
 
     polymer build --entrypoint index.html --shell src/app-shell/app-shell.html /
-                  --fragment src/view-one/view-one.html
+    --fragment src/view-one/view-one.html src/view-two/view-two.html
 
 [op]: https://github.com/GoogleChrome/sw-precache#options-parameter
 
@@ -353,4 +374,18 @@ bower install --save PolymerElements/iron-ajax
 # removes dependency from bower_components/ and bower.json
 bower uninstall PolymerElements/iron-ajax
 ```
+
+## Global options {#global-options}
+
+You can see a list of global options by running `polymer help`. Most of them
+are self-explanatory. 
+
+The following commands are currently only supported for the `polymer build` 
+command, with planned support for other commands in the future.
+
+*   `entry`
+*   `shell`
+*   `fragment` 
+
+See [Build app](#build) for more information on how to use these options. 
 
