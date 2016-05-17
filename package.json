@@ -21,6 +21,7 @@
   "homepage": "https://www.polymer-project.org/1.0/",
   "devDependencies": {
     "browser-sync": "^2.9.12",
+    "css-slam": "^1.1.0",
     "del": "^2.0.2",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",

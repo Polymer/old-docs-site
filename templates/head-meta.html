@@ -5,18 +5,16 @@
 <meta name="google-site-verification" content="pnjjbQFvjPwaWhEXY6nSyaS9iyghmH-M_yLHBveDX2M">
 <meta itemprop="image" content="https://www.polymer-project.org/images/logos/p-logo-32.png">
 <meta itemprop="description" content="Polymer is a library that uses the latest web technologies to let you create custom HTML elements. Build anything from a button to a complete application as an encapsulated, reusable component that works across desktop and mobile.">
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="/manifest.json">
 
 <link rel="publisher" href="https://plus.google.com/107187849809354688692">
 <link rel="shortcut icon" href="/images/logos/p-logo-32.png">
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500|Source+Code+Pro:400,500,700|Roboto+Slab:400,700">
-<!-- <link rel="shortcut icon" href="/static/img/chromium-128.png"> -->
-
-<script src="/bower_components/highlight/highlight.js"></script>
-<link rel="stylesheet" href="/css/syntax-style.css">
 
 <link rel="stylesheet" href="/css/site.css">
 <script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js" async></script>
+<!-- Load hljs before pw-shell in elements.html tries to use it. -->
+<script src="/bower_components/highlight/highlight.js" async></script>
 
 <script>
   window.Polymer = window.Polymer || {dom: 'shadow', lazyRegister: true};
