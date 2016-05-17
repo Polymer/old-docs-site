@@ -171,6 +171,8 @@
     path: /1.0/toolbox/app-layout
   - title: Routing
     path: /1.0/toolbox/routing
+  - title: Localization
+    path: /1.0/toolbox/localize
   - title: Service worker
     path: /1.0/toolbox/service-worker
   - title: Serve your app
