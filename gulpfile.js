@@ -93,25 +93,23 @@ gulp.task('style', 'Compile sass, autoprefix, and minify CSS', function() {
     .pipe($.changed('dist/css'))
     .pipe($.sass(sassOpts))
     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
-    // .pipe(styleMod()) // Wrap CSS in Polymer style module
-    // .pipe(gulp.dest('app/css')) // Save unminimized css to dev directory.
     .pipe($.cssmin()) // Minify and add license
     .pipe(license())
     .pipe(gulp.dest('dist/css'))
 });
 
-gulp.task('style:modules', 'Wrap CSS in Polymer style modules', function() {
-  return gulp.src('node_modules/highlight.js/styles/github.css')
-    .pipe($.rename({basename: 'syntax-color'}))
-    .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
-    .pipe(styleMod({
-      //filename: 'syntax-color',
-      // moduleId: function(file) {
-      //   return 'syntax-color';//path.basename(file.path, path.extname(file.path)) + '-css';
-      // }
-    }))
-    .pipe(gulp.dest('dist/css'))
-});
+// gulp.task('style:modules', 'Wrap CSS in Polymer style modules', function() {
+//   return gulp.src('node_modules/highlight.js/styles/github.css')
+//     .pipe($.rename({basename: 'syntax-color'}))
+//     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
+//     .pipe(styleMod({
+//       //filename: 'syntax-color',
+//       // moduleId: function(file) {
+//       //   return 'syntax-color';//path.basename(file.path, path.extname(file.path)) + '-css';
+//       // }
+//     }))
+//     .pipe(gulp.dest('dist/css'))
+// });
 
 gulp.task('images', 'Optimize images', function() {
   return gulp.src('app/images/**/*')
@@ -298,7 +296,7 @@ gulp.task('clean', 'Remove dist/ and other built files', function() {
 // Default task. Build the dest dir.
 gulp.task('default', 'Build site', ['clean', 'jshint'], function(done) {
   runSequence(
-    ['style', 'style:modules', 'images', 'vulcanize', 'js'],
+    ['style', 'images', 'vulcanize', 'js'],
     'copy', 'md:docs', 'md:blog',
     done);
 });
