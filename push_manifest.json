@@ -9,6 +9,6 @@
     "type": "script"
   },
   "/css/site.css": {
-    "type": "stylesheet"
+    "type": "style"
   }
 }
