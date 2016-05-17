@@ -162,8 +162,8 @@
   items:
   - title: What's in the box?
     path: /1.0/toolbox/index
-  - title: Get started
-    path: /1.0/toolbox/getstarted
+  - title: Responsive app layout
+    path: /1.0/toolbox/app-layout
   - title: Routing
     path: /1.0/toolbox/routing
   - title: Service worker
