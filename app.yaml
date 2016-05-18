@@ -41,8 +41,36 @@ handlers:
   mime_type: application/manifest+json
   secure: always
 
+# Special exception for the summit site so it doesn't require
+# a trailing slash
 - url: /summit
-  static_dir: summit
+  static_files: summit/index.html
+  upload: summit/index.html
+  secure: always
+
+- url: /summit/$
+  static_files: summit/index.html
+  upload: summit/index.html
+  secure: always
+
+- url: /summit/(schedule|speakers)
+  static_files: summit/index.html
+  upload: summit/index.html
+  secure: always
+
+- url: /summit/codelabs/$
+  static_files: summit/codelabs.html
+  upload: summit/codelabs.html
+  secure: always
+
+- url: /summit/codelabs$
+  static_files: summit/codelabs.html
+  upload: summit/codelabs.html
+  secure: always
+
+- url: /summit/(.*)
+  static_files: summit/\1
+  upload: summit/(.*)
   secure: always
 
 - url: .*
