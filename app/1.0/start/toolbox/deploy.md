@@ -5,7 +5,7 @@ subtitle: "Build an app with App Toolbox"
 
 <!-- toc -->
 
-In this step, we'll deploy our application to the web.
+In this step, you'll deploy your application to the web.
 
 ## Build for deployment
 
@@ -14,16 +14,16 @@ application for deployment:
 
     polymer build
 
-This command will minify the HTML, JS, and CSS dependencies of your application,
-and will generate a service worker that will pre-cache all of the dependencies
-of your application so that it will work offline.
+This command  minifies the HTML, JS, and CSS dependencies of your application,
+and generates a service worker that precaches all of the dependencies
+of your application so that it can work offline.
 
 The built files are output to the following folders:
 
-* `build/unbundled` - contains granular resources suitable for serving via HTTP/2
-with Server Push
-* `build/bundled` - contains bundled (concatenated) resources suitable for serving
-from servers or to clients that do not support HTTP/2 Server Push
+* `build/unbundled`. Contains granular resources suitable for serving via HTTP/2
+with server push.
+* `build/bundled`. Contains bundled (concatenated) resources suitable for serving
+from servers or to clients that do not support HTTP/2 server push.
 
 ## Deploy to a server
 
@@ -33,11 +33,11 @@ This template utilizes the `<app-location>` element to enable URL-based routing,
 which requires that the server serve the `index.html` entry point for all
 routes.
 
-Below we will cover deploying this app to both
-[Google AppEngine](https://cloud.google.com/appengine) and [Firebase
+You can follow one of the sections below to deploy this app to either
+[Google AppEngine](https://cloud.google.com/appengine) or [Firebase
 Static Hosting](https://www.firebase.com/docs/hosting/), which are both free and
-secure approaches for deploying a Polymer app.  The approach will
-be similar for other hosting providers.
+secure approaches for deploying a Polymer app.  The approach
+is similar for other hosting providers.
 
 ### Deploy with AppEngine
 

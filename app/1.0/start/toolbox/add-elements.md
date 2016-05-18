@@ -5,13 +5,13 @@ subtitle: "Build an app with App Toolbox"
 
 <!-- toc -->
 
-Now that we've added a new view to our application, we can start building
+Now that you've added a new view to your application, you can start building
 out the details of that view.
 
-In the process, we'll likely want to turn
+In the process, you'll likely want to turn
 to some off-the-shelf components, for example from the
 [Polymer Element Catalog][catalog] or community catalogs like
-[customelements.io][ceio].  Let's see what that process looks like.
+[customelements.io][ceio].
 
 ## Ensure bower is installed
 
@@ -27,11 +27,11 @@ Ensure it is installed by running the following command:
 Once you've identified a component you'd like to install, you'll want to find
 the bower package name for the component.
 
-Let's add Polymer's `<paper-slider>` element to our app, which is listed in the
+In this step, you'll add Polymer's `<paper-slider>` element to our app, which is listed in the
 [Polymer Element Catalog here][paper-slider].  You'll find its bower install
 command on the left hand side of that screen.
 
-Run that from your project root directory:
+Run this command from your project root directory:
 
     bower install --save PolymerElements/paper-slider
 
@@ -53,7 +53,7 @@ Run that from your project root directory:
     <paper-slider min="-100" max="100" value="50"></paper-slider>
     ```
 
-    We can add it under the `<h1>` we added in the previous step.  Our new
+    You can add it under the `<h1>` you added in the previous step.  Your new
     template should look like this:
 
     ```
@@ -77,7 +77,7 @@ You should be able to see the `paper-slider` working in your new view now:
 
 ## Next steps
 
-Now that you've added a 3rd-party component to your page, lear how to
+Now that you've added a 3rd-party component to your page, learn how to
 [deploy the app to the web](deploy).
 
 [bower]: http://bower.io/

@@ -13,8 +13,8 @@ App Toolbox template in less than 15 minutes.
 
 ## Install the Polymer CLI
 
-1.  Install [Node.js](https://nodejs.org/) (`node`) version 0.12 or above.
-    Node.js includes Node Package Manager (`npm`) by default.
+1.  Install the LTS version (4.x) of Node.js. The current version (6.x) should work, but is not
+    officially supported. Versions below LTS are not supported.
 
 1.  Install the Polymer CLI
 
