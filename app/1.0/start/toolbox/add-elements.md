@@ -27,7 +27,7 @@ Ensure it is installed by running the following command:
 Once you've identified a component you'd like to install, you'll want to find
 the bower package name for the component.
 
-In this step, you'll add Polymer's `<paper-slider>` element to our app, which is listed in the
+In this step, you'll add Polymer's `<paper-slider>` element to your app, which is listed in the
 [Polymer Element Catalog here][paper-slider].  You'll find its bower install
 command on the left hand side of that screen.
 
@@ -35,7 +35,7 @@ Run this command from your project root directory:
 
     bower install --save PolymerElements/paper-slider
 
-## Add the element to our application
+## Add the element to your application
 
 1.  Open `src/my-new-view.html` in a text editor.
 

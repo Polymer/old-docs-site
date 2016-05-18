@@ -50,7 +50,7 @@ your new view.
 
     ```
 
-For now our element is very basic, and just has a `<h1>` that says "New View",
+For now your element is very basic, and just has a `<h1>` that says "New View",
 but we can return to it and make it more interesting later.
 
 ## Add the element to your app
@@ -91,7 +91,7 @@ but we can return to it and make it more interesting later.
     want to add an HTML Import to ensure the component definition has been
     loaded.  However, this app template is already set up to lazy-load top
     level views on-demand based on the route, so in this case you don't need
-    to add an import for our new `<my-new-view>` element.
+    to add an import for your new `<my-new-view>` element.
 
     The following code that came with the app template will ensure the
     definition for each page has been loaded when the route changes.  As
@@ -112,7 +112,7 @@ but we can return to it and make it more interesting later.
 ## Create a navigation menu item
 
 Last, we'll add a menu item in the left-hand drawer to allow navigating to
-our new page.
+your new page.
 
 1.  Keep `src/my-app.html` open in your editor.
 
