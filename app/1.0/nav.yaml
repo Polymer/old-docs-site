@@ -61,8 +61,10 @@
     indent: True
   - title: Instance methods
     path: /1.0/docs/devguide/instance-methods
+    indent: True
   - title: Behaviors
     path: /1.0/docs/devguide/behaviors
+    indent: True
   - endheader: True
   - header: Local DOM & styling
   - title: Local DOM
@@ -75,8 +77,10 @@
   - header: Events
   - title: Handle and fire events
     path: /1.0/docs/devguide/events
+    indent: True
   - title: Gesture events
     path: /1.0/docs/devguide/gesture-events
+    indent: True
   - endheader: True
   - header: Data system
   - title: Data binding
@@ -98,34 +102,47 @@
   - header: Tools
   - title: Tools overview
     path: /1.0/docs/tools/overview
+    indent: True
   - title: Polymer CLI
     path: /1.0/docs/tools/polymer-cli
+    indent: True
   - title: Document your elements
     path: /1.0/docs/tools/documentation
+    indent: True
   - title: Test your elements
     path: /1.0/docs/tools/tests
+    indent: True
   - title: Optimize for production
     path: /1.0/docs/tools/optimize-for-production
+    indent: True
   - title: Publish an element
     path: /1.0/docs/tools/reusable-elements
+    indent: True
   - title: Advanced tools
     path: /1.0/docs/tools/advanced
+    indent: True
   - title: Services
     path: /1.0/docs/tools/services
+    indent: True
   - endheader: True
   - header: What's new
   - title: Release notes
     path: /1.0/docs/release-notes
+    indent: True
   - title: 1.0 Migration guide
     path: /1.0/docs/migration
+    indent: True
   - title: About Polymer 1.0
     path: /1.0/docs/about_10
+    indent: True
   - endheader: True
   - header: Resources
   - title: Community
     path: /1.0/docs/community
+    indent: True
   - title: Browser compatibility
     path: /1.0/docs/browsers
+    indent: True
   - endheader: True
   - header: API Reference
   - title: Polymer.Base
@@ -166,22 +183,30 @@
   - header: Using the Toolbox
   - title: App templates
     path: /1.0/toolbox/templates
+    indent: True
   - title: Responsive app layout
     path: /1.0/toolbox/app-layout
+    indent: True
   - title: Routing
     path: /1.0/toolbox/routing
+    indent: True
   - title: Localization
     path: /1.0/toolbox/localize
+    indent: True
   - title: App storage
     path: /1.0/toolbox/app-storage
+    indent: True
   - title: Service worker
     path: /1.0/toolbox/service-worker
+    indent: True
   - title: Serve your app
     path: /1.0/toolbox/server
+    indent: True
   - endheader: true
   - header: Case study
   - title: "Shop"
     path: /1.0/toolbox/case-study
+    indent: True
   - endheader: true
 
 - section: Elements
