@@ -1,6 +1,6 @@
 ---
 title: Step 3. Add some elements
-subtitle: "Build your first Polymer application"
+subtitle: "Build an app with App Toolbox"
 ---
 
 <!-- toc -->

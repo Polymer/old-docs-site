@@ -1,6 +1,6 @@
 ---
 title: Step 1. Get set up
-subtitle: "Build your first Polymer application"
+subtitle: "Build an app with App Toolbox"
 ---
 
 <!-- toc -->

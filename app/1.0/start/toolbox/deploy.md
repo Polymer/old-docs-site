@@ -1,6 +1,6 @@
 ---
 title: Step 4. Deploy
-subtitle: "Build your first Polymer application"
+subtitle: "Build an app with App Toolbox"
 ---
 
 <!-- This page does not have a ToC because it currently only has one H2.
