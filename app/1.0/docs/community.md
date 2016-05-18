@@ -11,7 +11,7 @@ excellent to each other!
 
 ### Support
 
-* [StackOverflow](http://stackoverflow.com/tags/polymer) with the `polymer` tag is perfect for any
+* [StackOverflow](https://stackoverflow.com/tags/polymer) with the `polymer` tag is perfect for any
 kind of question around developing using the Polymer library.
 * [polymer-dev](https://groups.google.com/forum/?fromgroups=#!forum/polymer-dev) email list is
 great for long-form questions and discussion.
@@ -25,7 +25,7 @@ and the Polymer project.
 ### Polymer User Community
 
 * [Slack](https://polymer.slack.com/messages) is an active chatroom for quick questions,
-conversations, sharing and more. Sign up [here](polymer-slack.herokuapp.com) to join.
+conversations, sharing and more. Sign up [here](https://polymer-slack.herokuapp.com) to join.
 * [Google Plus Community](https://plus.sandbox.google.com/+PolymerProject/posts) is a great
 place to interact with other Polymer users.
 

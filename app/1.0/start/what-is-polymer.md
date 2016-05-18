@@ -71,10 +71,10 @@ Interested in using the Polymer library to build your own elements?
 
 Take a quick tour of the features:
 
-<a href="/1.0/start/quick-tour.html" class="blue-button">Quick Tour</a>
+<a href="/1.0/docs/devguide/quick-tour" class="blue-button">Quick Tour</a>
 
 Or jump straight to:
 
-<a href="/1.0/docs/devguide/feature-overview.html" class="blue-button">
+<a href="/1.0/docs/devguide/feature-overview" class="blue-button">
   Developer Guide
 </a>

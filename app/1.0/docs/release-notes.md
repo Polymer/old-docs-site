@@ -1256,7 +1256,7 @@ from the earlier documentation:
 *   `flushDebouncer`
 *   `isDebouncerActive`
 
-For details, see [Utility functions](devguide/utility-functions.html).
+For details, see [Instance methods](/1.0/docs/devguide/instance-methods).
 
 ### Bug fixes
 
