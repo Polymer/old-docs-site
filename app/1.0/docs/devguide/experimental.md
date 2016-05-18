@@ -91,6 +91,6 @@ The Polymer standard layer adds declarative data binding, events, property notif
 | [Computed properties](properties#computed-properties) | computed: { \<property>: ‘computeFn(dep1, dep2)’ }
 | [Computed bindings](data-binding#annotated-computed) | \<span>{{computeFn(dep1, dep2)}}\</span>
 | [Read-only properties](properties#read-only) |  properties: { \<prop>: { readOnly: true } }
-| [Utility functions](utility-functions) | toggleClass, toggleAttribute, fire, async, …
+| [Utility functions](instance-methods) | toggleClass, toggleAttribute, fire, async, …
 | [Scoped styling](styling) | \<style> in \<dom-module>, Shadow-DOM styling rules (:host, ...)
 | [General polymer settings](#settings) | \<script> Polymer = { ... }; \</script>

@@ -71,7 +71,7 @@ This guide divides the features into the following groups:
 *   [Behaviors](behaviors). Behaviors are reusable modules of code that can be
     mixed into Polymer elements.
 
-*   [Utility functions](utility-functions). Helper methods for common tasks.
+*   [Utility functions](instance-methods). Helper methods for common tasks.
 
 *   [Experimental features and elements](experimental). Experimental template and styling features.
     Feature layering.

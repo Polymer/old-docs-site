@@ -85,6 +85,6 @@ The diagram below is a brief summary of the directories within the template.
 Now that your App Toolbox template is up and running, learn how to [add a new
 page of content](create-a-page), or how to [deploy the app to the web](deploy).
 
-[toolbox]: /1.0/toolbox
+[toolbox]: /1.0/toolbox/
 [shared styles]: /1.0/docs/devguide/styling.html#style-modules
 [md]: http://www.google.com/design/spec/material-design/introduction.html

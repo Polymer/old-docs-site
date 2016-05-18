@@ -26,7 +26,7 @@ cat2.speak();
 ```
 
 
-## Built-in methods {#utility-functions}
+## Built-in methods {#instance-methods}
 
 All Polymer elements inherit from [`Polymer.Base`](/1.0/docs/api/polymer.base), which
 provides a set of useful convenience functions for instances to use.

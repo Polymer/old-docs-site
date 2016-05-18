@@ -2,7 +2,7 @@
 title: Advanced tools
 ---
 
-The [Polymer CLI](polmyer-cli) is the recommended starting point for tools
+The [Polymer CLI](polymer-cli) is the recommended starting point for tools
 related to developing Polymer elements. If for some reason it does not
 meet your needs, here is a list of the underlying tools that it is composed
 of. You can use a build tool like Gulp or Grunt in combination with these
@@ -72,8 +72,8 @@ Source: [github.com/Polymer/web-component-tester](https://github.com/Polymer/web
 
 ## Build and optimization
 
-This section lists commands used by the Polymer CLI command `polymer build`. 
-You can use them directly if you need to customize your build process. 
+This section lists commands used by the Polymer CLI command `polymer build`.
+You can use them directly if you need to customize your build process.
 
 ### <b>vulcanize</b>—optimize HTML Imports {#vulcanize}
 

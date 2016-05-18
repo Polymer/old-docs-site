@@ -4,14 +4,14 @@ title: Optimize for production
 
 <!-- toc -->
 
-[Polymer CLI](polmyer-cli) is the recommended starting point for building
-Polymer applications. If for some reason it does not meet your needs, you 
+[Polymer CLI](polymer-cli) is the recommended starting point for building
+Polymer applications. If for some reason it does not meet your needs, you
 can use the underlying libraries that power its build toolchain. See
-[Advanced tools](advanced#build) for a list of these tools. 
+[Advanced tools](advanced#build) for a list of these tools.
 
-This guide teaches you more about two of these underlying tools: Vulcanize 
-and Cripser. This doc is mainly of interest to people who are developing their 
-own customized build toolchains. 
+This guide teaches you more about two of these underlying tools: Vulcanize
+and Cripser. This doc is mainly of interest to people who are developing their
+own customized build toolchains.
 
 ## Overview
 

@@ -13,10 +13,10 @@ and renders the API documentation.
 
 Polymer CLI's element project template comes with built-in documentation using
 [`iron-component-page`](https://github.com/PolymerElements/iron-component-page).
-If you started your element with this template, you should be good to go. 
-See also: 
+If you started your element with this template, you should be good to go.
+See also:
 
-*   [Create an element project](polymer-cli#element) 
+*   [Create an element project](polymer-cli#element)
 
 To add a documentation page to an existing project that _didn't_ start from
 Polymer CLI:
@@ -29,8 +29,8 @@ Polymer CLI:
 
 2.  Create an `index.html` file in the top-level folder of the project.
 
-3.  Copy the contents of the `index.html` file from the following file and 
-    put them in your repo's `index.html`. 
+3.  Copy the contents of the `index.html` file from the following file and
+    put them in your repo's `index.html`.
 
     [Element documentation page template](https://raw.githubusercontent.com/yeoman/generator-polymer/master/el/templates/index.html)
 
@@ -58,26 +58,26 @@ If you want to document multiple files:
 
 ## View element docs
 
-You can use Polymer CLI's [`polymer serve`](polymer-cli#serve) command to 
+You can use Polymer CLI's [`polymer serve`](polymer-cli#serve) command to
 preview element docs while you're developing a component.
 
 To view the element docs:
 
-1.  Run `polymer serve`. 
+1.  Run `polymer serve`.
 
 2.  Open the element's top-level `index.html` in a browser:
 
     <pre><code>localhost:8080/components/<var>my-el</var>/</code></pre>
 
-    Where <code><var>my-el</var></code> is the name of your element. 
+    Where <code><var>my-el</var></code> is the name of your element.
 
 If everything is set  up right, you should see a documentation page for your
 element, even if you haven't written any doc comments yet.
 
-If you have multiple elements or behaviors, use the pulldown menu in the 
+If you have multiple elements or behaviors, use the pulldown menu in the
 top-left corner to choose a documentation page.
 
-**Host your API docs.** See [Create a reusable element](/1.0/docs/tools/reusableelements#publish)
+**Host your API docs.** See [Create a reusable element](/1.0/docs/tools/reusable-elements#publish)
 for information on publishing an element on GitHub, and hosting its API docs
 using GitHub pages.
 { .alert .alert-info }

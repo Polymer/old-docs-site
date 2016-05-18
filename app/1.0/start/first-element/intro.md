@@ -30,7 +30,7 @@ here is described in detail in the Polymer documentation.
 To follow this tutorial, you'll need:
 
 -   The starting code.
--   The [Polymer CLI](/1.0/docs/tools/polymer-cli/) to run the demo.
+-   The [Polymer CLI](/1.0/docs/tools/polymer-cli) to run the demo.
 
 
 **Don't want to install anything?** To run through this tutorial online,
