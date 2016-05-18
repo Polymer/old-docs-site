@@ -226,6 +226,7 @@ h3 {
 }
 
 .blue-button {
+  box-sizing: content-box;
   color: white;
   background: $blue-600;
   text-transform: uppercase;

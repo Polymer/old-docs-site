@@ -50,6 +50,13 @@ $pale-grey: #fafafa;
       }
     }
   }
+
+  .blue-button:first-of-type {
+    margin-right: 20px;
+    @media (max-width: 900px) {
+      margin-right: 0;
+    }
+  }
 }
 
 .page-index-features {
