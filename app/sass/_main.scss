@@ -41,11 +41,15 @@ body {
   flex-direction: column;
 }
 
+/* TODO(notwaldorf): These styles make the footer always stick to the bottom
+ * but they break everything in IE11. */
+/*
 pw-shell {
   display:flex;
   flex-direction: column;
   flex: 1;
 }
+*/
 
 devguide-shell {
   flex: 1;
