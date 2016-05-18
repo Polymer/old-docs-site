@@ -7,7 +7,7 @@ subtitle: "Build an app with App Toolbox"
 
 The `app-drawer-template` includes 3 placeholder pages you can use
 to start building out the views of your application. But at some point, you'll
-probably want to add more
+probably want to add more.
 
 This step takes you through the process of adding a new page or top-level view
 to your application.
