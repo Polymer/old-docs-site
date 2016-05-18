@@ -257,6 +257,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.$.cseSearch.params.start = this._searchParams.start;
         }
 
+        // analytics
+        if (window.recordSearch) {
+          window.recordSearch(this._searchParams.q);
+        }
+
         this.$.cseSearch.generateRequest();
       }
     },
@@ -275,6 +280,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         document.title = doc.title;
         Polymer.dom(this).innerHTML = doc.querySelector('pw-shell').innerHTML;
         Polymer.dom.flush();  // Force upgrades.
+        // analytics. don't double-report search
+        if (this._sectionRoute.path != '/search/' && window.recordPageview) {
+          window.recordPageview();
+        }
       }
 
       // Scroll to an anchor, if we have one.
