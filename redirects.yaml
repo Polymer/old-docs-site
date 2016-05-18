@@ -16,7 +16,12 @@
 - /1.0/docs/start/reusableelements.html /1.0/docs/tools/reusable-elements
 # Old page with this URL was actually "about Polymer 1.0", not a real landing page
 - /1.0/docs/ /1.0/docs/about_10
-
+# Moved quick tour from start to devguide
+- /1.0/docs/start/quick-tour /1.0/docs/devguide/quick-tour
+# Killed getting-the-code
+- /1.0/docs/start/getting-the-code.html /1.0/start/
+# Killed what-is-polymer
+- /1.0/start/what-is-polymer /1.0/docs/devguide/feature-overview
 
 # ------------------------------------------------------------------------------
 # Note: keep these for the tests!
