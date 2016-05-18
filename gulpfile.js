@@ -229,6 +229,21 @@ gulp.task('vulcanize', 'Vulcanize elements to dist/', function() {
     .pipe(gulp.dest('dist/elements'));
 });
 
+gulp.task('vulcanize-demos', 'vulcanize demos', function() {
+  return gulp.src('app/1.0/homepage/*/index.html', {base: 'app/1.0/homepage'})
+    .pipe($.vulcanize({
+      stripComments: true,
+      inlineCss: true,
+      inlineScripts: true
+    }))
+    .pipe($.crisper()) // Separate HTML/JS into separate files.
+    .pipe($.if('*.html', minifyHtml())) // Minify html output
+    .pipe($.if('*.html', cssslam.gulp())) // Minify css in HTML output
+    .pipe($.if('*.js', uglifyJS())) // Minify js output
+    .pipe($.if('*.js', license()))
+    .pipe(gulp.dest('dist/1.0/homepage'));
+});
+
 gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', function() {
   let app = gulp.src([
       '*',
@@ -242,7 +257,8 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
       'app/**/nav.yaml',
       'app/**/blog.yaml',
       'app/**/authors.yaml',
-     '!app/{bower_components,elements}/**',
+      '!app/{bower_components,elements}/**',
+      '!app/1.0/homepage/**',
      ], {base: 'app/'})
     .pipe(gulp.dest('dist'));
 
@@ -307,7 +323,7 @@ gulp.task('clean', 'Remove dist/ and other built files', function() {
 // Default task. Build the dest dir.
 gulp.task('default', 'Build site', ['clean', 'jshint'], function(done) {
   runSequence(
-    ['style', 'images', 'vulcanize', 'js'],
+    ['style', 'images', 'vulcanize', 'vulcanize-demos', 'js'],
     'copy', 'md:docs', 'md:blog',
     done);
 });
