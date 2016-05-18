@@ -1,0 +1,23 @@
+[
+  {
+    "name":"Opening Keynote",
+    "speaker":"Matthew McNulty & Taylor Savage",
+    "time":"Tuesday @ 9:00am",
+    "video": "https://www.youtube.com/watch?v=jVn8tlnwAEs&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J&index=1",
+    "desc":"A warm welcome to the first ever Polymer Summit. We'll talk briefly about how we're thinking about Polymer's past, present, and future, and get the show on the road."
+  },
+  {
+    "name":"Thinking in Polymer",
+    "speaker":"Kevin Schaaf",
+    "time":"Tuesday @ 9:30am",
+    "video": "https://www.youtube.com/watch?v=ZDjiUmx51y8&index=2&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
+    "desc":"Polymer embraces encapsulated Custom Elements as its main organizing unit.  This simple-sounding concept is actually an incredibly powerful tool that can revolutionize how you think about solving complex problems, collaborate within large teams, reduce technology lock-in, and of course, build amazing apps for the web.  Hear how we think about building apps using custom elements directly from one of the Polymer core team engineers, and how to best employ this simple concept for the most leverage in your own projects."
+  },
+  {
+    "name":"End to End with Polymer",
+    "speaker":"Rob Dodson",
+    "time":"Tuesday @ 10:00am",
+    "video": "https://www.youtube.com/watch?v=1f_Tj_JnStA&index=3&list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J",
+    "desc":"Developers are really excited by Polymer and Web Components, but they're not always sure how to connect the dots to get a full blown, production-ready app. Where should you store your data? How do you handle user authentication? What are the patterns that make up a good Polymer app? In this session I'll answer these questions, and guide you through the process of building an awesome webapp using Polymer Starter Kit and Firebase."
+  }
+]
