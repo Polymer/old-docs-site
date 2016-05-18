@@ -1,5 +1,6 @@
 ---
-title: What's in the box
+subtitle: What's in the box?
+title: Polymer App Toolbox
 ---
 
 Polymer App Toolbox is a collection of components, tools and templates for

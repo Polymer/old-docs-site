@@ -119,9 +119,13 @@ $pale-grey: #fafafa;
   }
 }
 
-.page-index-getting-started {
-  p {
-    margin-right: $small-padding;
+.page-index-summit {
+  img {
+    margin-top: $small-padding;
+  }
+
+  p:not(:first-of-type) {
+    margin-top: $medium-padding;
   }
 }
 
@@ -163,10 +167,14 @@ $pale-grey: #fafafa;
 
 .page-index-articles {
   .post {
-    &:not(:last-child) {
-      border-bottom: 1px solid $pink-a400;
-      margin-bottom: $small-padding;
+    @media (max-width: $mobile-media-breakpoint) {
+      &:not(:last-child) {
+        border-bottom: 1px solid $pink-a400;
+        margin-bottom: $small-padding;
+      }
     }
+
+    margin-top: $small-padding;
 
     .post-title {
       font-size: $font-size-medium;
