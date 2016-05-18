@@ -9,6 +9,7 @@
 - /1.0/articles/* /1.0/blog/
 - /1.0/docs/start/* /1.0/start/
 - /1.0/tools/* /1.0/docs/tools/
+- /1.0/start/samples/* /1.0/docs/devguide/samples/
 
 # Individual redirects take precedence over bulk redirects
 - /1.0/docs/devguide/utility-functions.html /1.0/docs/devguide/instance-methods
