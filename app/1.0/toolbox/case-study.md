@@ -221,9 +221,13 @@ Scrolling up the page at any point reveals the tabs.
 
 The tabs don't work as well on mobile devices, so Shop uses an `<app-drawer>` element as a navigation drawer, with a vertical menu.
 
-<div style="height:250px; text-align:center;">
-  <img style="height:100%;" src="/images/1.0/toolbox/shop-drawer.png" alt="screenshot of the drawer on mobile">
+<div class="image-container layout horizontal">
+  <div class="image-wrapper">
+    <img src="/images/1.0/toolbox/shop-home.png" alt="screenshot of the drawer closed on mobile">
+  </div>
+  <div class="image-wrapper">
+    <img src="/images/1.0/toolbox/shop-drawer.png" alt="screenshot of the drawer open on mobile">
+  </div>
 </div>
-
 
 The app layout element set also includes simple container elements for positioning headers and drawers: the `<app-header-layout>` and `<app-drawer-layout>` elements.
