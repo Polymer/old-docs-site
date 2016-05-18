@@ -165,6 +165,10 @@ p.caption {
   margin-bottom: 0;
 }
 
+a > code {
+  color: $blue-600 !important;
+}
+
 .alert {
   padding: 10px 10px 10px 44px;  /* 34px from the icon + 10px left padding */
   margin: 30px;
