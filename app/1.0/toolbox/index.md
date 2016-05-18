@@ -23,3 +23,9 @@ To get a feel for these components in action, you can try out the Shop app. Shop
 </a>
 
 See [Case study: the Shop app](case-study) to see how Shop uses App Toolbox.
+
+You can also walk through the "Build your first Polymer application"
+tutorial to get started building your own applications using the
+Polymer App Toolbox.
+
+<a href="../start/toolbox/set-up" class="blue-button">Start Tutorial</a>
