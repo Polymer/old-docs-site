@@ -41,6 +41,10 @@ handlers:
   mime_type: application/manifest+json
   secure: always
 
+- url: /summit
+  static_dir: summit
+  secure: always
+
 - url: .*
   script: server.app
   secure: always
