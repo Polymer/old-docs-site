@@ -6,7 +6,7 @@ subtitle: "Build an app with App Toolbox"
 <!-- toc -->
 
 The template we started with came with 3 placeholder pages you might use
-start building out the views of your application.  At some point you may
+to start building out the views of your application.  At some point you may
 wish to add additional pages, so let's walk through that process.
 
 ## Create an element for the new page
@@ -14,14 +14,14 @@ wish to add additional pages, so let's walk through that process.
 First you can create a new custom element that encapsulates the contents of
 your new view.
 
-1. Create a new file called `src/my-newview.html` and open it in an editor.
+1. Create a new file called `src/my-new-view.html` and open it in an editor.
 
 2. Add some scaffolding for a new custom element definition using Polymer:
 
     ```
     <link rel="import" href="../bower_components/polymer/polymer.html">
 
-    <dom-module id="my-newview">
+    <dom-module id="my-new-view">
 
       <!-- Defines the element's style and local DOM -->
       <template>
@@ -37,7 +37,7 @@ your new view.
       <!-- Creates the element's prototype and registers it -->
       <script>
         Polymer({
-          is: 'my-newview',
+          is: 'my-new-view',
           properties: {
             route: Object
           }
@@ -59,10 +59,10 @@ but we can return to it and make it more interesting later.
 
     ```
     ...
-      <iron-pages role="main" selected="[[page]]" attr-for-selected="name" selected-attribute="visible">
-        <my-view1 name="view1" route="[[subroute]]"></my-view1>
-        <my-view2 name="view2" route="[[subroute]]"></my-view2>
-        <my-view3 name="view3" route="[[subroute]]"></my-view3>
+      <iron-pages role="main" selected="[[page]]" attr-for-selected="name">
+        <my-view1 name="view1"></my-view1>
+        <my-view2 name="view2"></my-view2>
+        <my-view3 name="view3"></my-view3>
       </iron-pages>
     ...
     ```
@@ -73,18 +73,18 @@ but we can return to it and make it more interesting later.
 1.  Add your new page inside the iron-pages:
 
     ```
-        <my-newview name="newview" route="[[subroute]]"></my-newview>
+        <my-new-view name="new-view"></my-new-view>
     ```
 
     Your `<iron-pages>` should now look like this:
 
     ```
     ...
-      <iron-pages role="main" selected="[[page]]" attr-for-selected="name" selected-attribute="visible">
-        <my-view1 name="view1" route="[[subroute]]"></my-view1>
-        <my-view2 name="view2" route="[[subroute]]"></my-view2>
-        <my-view3 name="view3" route="[[subroute]]"></my-view3>
-        <my-newview name="newview" route="[[subroute]]"></my-newview>
+      <iron-pages role="main" selected="[[page]]" attr-for-selected="name">
+        <my-view1 name="view1"></my-view1>
+        <my-view2 name="view2"></my-view2>
+        <my-view3 name="view3"></my-view3>
+        <my-new-view name="new-view"></my-new-view>
       </iron-pages>
     ...
     ```
@@ -93,21 +93,19 @@ but we can return to it and make it more interesting later.
     want to add an HTML Import to ensure the component definition has been
     loaded.  However, this app template is already set up to lazy-load top
     level views on-demand based on the route, so in this case we won't
-    add an import for our new `<my-newview>` element.
+    add an import for our new `<my-new-view>` element.
 
     The following code that came with the app template will ensure the
     definition for each page has been loaded when the route changes.  As
-    you can see, we followed the simple `'my-' + page + '.html'` scheme
-    for loading the view (and you can adopt this simple scheme as you
-    like to handle more complex routing and lazy loading).
+    you can see, we followed a simple convention (`'my-' + page + '.html'`)
+    importing the definition for each route, and you can adapt this code as you
+    like to handle more complex routing and lazy loading.
 
     ```
       _pageChanged: function(page) {
-        if (page != null) {
-          // load page import on demand.
-          this.importHref(
-            this.resolveUrl('my-' + page + '.html'), null, null, true);
-        }
+        // load page import on demand.
+        this.importHref(
+          this.resolveUrl('my-' + page + '.html'), null, null, true);
       }
     ```
 
@@ -125,7 +123,7 @@ our new page.
     <!-- Drawer content -->
     <app-drawer>
       <app-toolbar>Menu</app-toolbar>
-      <iron-selector role="navigation" class="drawer-list" attr-for-selected="name" selected="[[page]]">
+      <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
         <a name="view1" href="/view1">View One</a>
         <a name="view2" href="/view2">View Two</a>
         <a name="view3" href="/view3">View Three</a>
@@ -139,7 +137,7 @@ our new page.
 1.  Add the following new navigation item to the bottom of the menu.
 
     ```
-        <a name="newview" href="/newview">New View</a>
+        <a name="new-view" href="/new-view">New View</a>
     ```
 
     Your menu should now look like the following:
@@ -149,31 +147,30 @@ our new page.
     <!-- Drawer content -->
     <app-drawer>
       <app-toolbar>Menu</app-toolbar>
-      <iron-selector role="navigation" class="drawer-list" attr-for-selected="name" selected="[[page]]">
+      <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
         <a name="view1" href="/view1">View One</a>
         <a name="view2" href="/view2">View Two</a>
         <a name="view3" href="/view3">View Three</a>
-        <a name="newview" href="/newview">New View</a>
+        <a name="new-view" href="/new-view">New View</a>
       </iron-selector>
     </app-drawer>
     ...
     ```
 
 Your new page is now ready! Open your web browser and view it at
-[http://localhost:8080/newview](http://localhost:8080/newview).
+[http://localhost:8080/new-view](http://localhost:8080/new-view).
 
 ![Example of new page](/images/1.0/toolbox/app-drawer-template-newview.png)
 
 ## Register the page for the build
 
-When we go to deploy our application to the web, we will use the Polymer CLI
-to prepare our files for deployment.  The Polymer CLI will need to know about any
-demand-loaded fragments of the application like the lazy-loaded view we just
-added.
+When we deploy our application to the web, we will use the Polymer CLI
+to prepare our files deployment.  Polymer CLI will need to know about any
+demand-loaded fragments like the lazy-loaded view we just added.
 
 1.  Open `polymer.json` in a text editor.
 
-1.  Add `src/my-newview.html` to the list of `fragments`.
+1.  Add `src/my-new-view.html` to the list of `fragments`.
 
     The new list should look like this:
 
@@ -183,16 +180,17 @@ added.
       "src/my-view1.html",
       "src/my-view2.html",
       "src/my-view3.html",
-      "src/my-newview.html"
+      "src/my-new-view.html"
     ]
     ...
     ```
 
-Note: You only need to add files you will async or lazy load into the
-`fragments` list.  Any files that are imported using sync `<link rel="import">`
-tags should *not* be added to `fragments`.
+Note: You only need to add files you will lazy load or import using the `async`
+attribute to the `fragments` list.  Any files that are imported using synchronous
+`<link rel="import">` tags should *not* be added to `fragments`.
 
 ## Next steps
 
 Now that you've added a new page to your application, learn how to [add 3rd-party
-elements to your view](add-elements), or how to [deploy the app to the web](deploy).
+elements to your application](add-elements), or how to
+[deploy the app to the web](deploy).
