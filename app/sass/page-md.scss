@@ -42,13 +42,16 @@ main {
 
 article {
   min-width: 0;    /* For some reason, this is non-0 */
+  /* TODO(notwaldorf): disable these styles for now, since they hit an IE11 flexbox bug */
+  /*
   max-width: 800px;
   flex: 1;
   flex-basis: 0;
+  */
 }
 
 article.right-nav {
-  max-width: calc(100% - 300px);
+  width: calc(100% - 300px);  /* 300px is the width of the TOC */
 }
 
 .details-wrapper {
@@ -108,7 +111,9 @@ details {
 
   &.right-nav {
     padding-left: 20px;
-    border-left: 2px solid $blue-grey-50;
+    /* TODO(notwaldorf): this doesn't work for browsers that don't implement
+     * details, so disable it until it looks the same everywhere */
+    /* border-left: 2px solid $blue-grey-50; */
   }
   summary {
     font-family: 'Roboto Slab', 'Roboto', 'Noto', sans-serif;
