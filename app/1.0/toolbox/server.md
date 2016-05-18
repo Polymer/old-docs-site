@@ -4,10 +4,18 @@ title: Serve your app
 
 <!-- toc -->
 
-You can  serve an App Toolbox app using any server technology you want, but App Toolbox includes a
-_reference server_, a sample server implementation built on top of Google App Engine. The reference
-server takes advantage of HTTP/2 and HTTP/2 server push to deliver the resources the browser needs
-for a fast first paint while optimizing caching.
+You can  serve an App Toolbox app using any server technology you want. The Polymer CLI build
+process supports fast-loading applications that can take advantage of the latest web technologies by
+producing two builds:
+
+-   An unbundled build designed for server/browser combinations that support HTTP/2 and
+    HTTP/2 server push to deliver the resources the browser needs for a fast first paint while
+    optimizing caching.
+
+-   A bundled build designed to minimize the number of round-trips required to get the application
+	running on server/browser combinations that don't support server push.
+
+Your server logic can deliver the appropriate build for each browser.
 
 ## PRPL strategy
 
@@ -68,9 +76,8 @@ The main considerations for the entrypoint are:
 -   Conditionally loads required polyfills.
 -   Uses absolute paths for all dependencies.
 
-When you generate a [[[fill in the blank]]] project using Polymer CLI, the new
-project contains an entrypoint in `index.html`. For most projects, you shouldn't
-need to update this file.
+When you generate an App Toolbox project using Polymer CLI, the new project contains an entrypoint
+`index.html`. For most projects, you shouldn't need to update this file.
 
 ### App shell
 
@@ -84,8 +91,30 @@ initiate a new request to the server, or simply load the resource from the cache
 
 The shell (including its static dependencies) should contain everything needed for first paint.
 
+## Build output
 
-### Serving bundled resources
+The Polymer CLI build process produces two builds:
+
+-   An unbundled build designed for server/browser combinations that support HTTP/2 and
+    HTTP/2 server push to deliver the resources the browser needs for a fast first paint while
+    optimizing caching.
+
+-   A bundled build designed to minimize the number of round-trips required to get the application
+	running on server/browser combinations that don't support server push.
+
+The `polymer build` command produces the two builds in parallel output folders:
+
+	build/
+	  unbundled/
+	    index.html
+	    ...
+	  bundled/
+	    index.html
+	    ...
+
+Your server logic should deliver the appropriate build for each browser.
+
+### Bundled build
 
 For browsers that don't handle HTTP2 Push, the build process produces a set of vulcanized bundles:
 one bundle for the shell, and one bundle for each fragment. The diagram below shows how a simple
@@ -97,14 +126,11 @@ Any dependency shared by two or more fragments is bundled in with the shell and 
 dependencies.
 
 Each fragment and its _unshared_ static dependencies are bundled into a single bundle. The server
-returns the appropriate version of the fragment (bundled or unbundled), depending on the browser.
+should return the appropriate version of the fragment (bundled or unbundled), depending on the browser.
 This means that the shell code can lazy-load `detail-view.html` _without having to know whether
 it is bundled or unbundled_. It relies on the server and browser to load the dependencies in the
 most efficient way.
 
-## Deploy with the reference server
-
-To deploy with the reference server, you'll need to install the
 
 ## Background: HTTP/2 and HTTP/2 server push
 
