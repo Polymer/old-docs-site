@@ -19,7 +19,7 @@ supply other essential functions, including overall layout and routing. The
 [`<iron-pages>`](https://elements.polymer-project.org/elements/iron-pages)
 element controls which view is currently visible.
 
-![](/images/1.0/toolbox/high-level-arch.png)
+![the high level architecture of the application, as described above](/images/1.0/toolbox/high-level-arch.png)
 
 ## Routing
 
