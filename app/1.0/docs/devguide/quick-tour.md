@@ -19,8 +19,7 @@ In this section you can take a quick tour of the Polymer library,
 without installing anything. Click the **Edit on Plunker** button to open any
 of the samples in an interactive sandbox.
 
-See the [Developer guide](/1.0/docs/devguide/feature-overview) for
-detailed information on each of these features.
+Tap the buttons following each feature to learn more.
 
 ### Register an element {#register}
 
@@ -34,10 +33,10 @@ argument an object that defines your element's prototype.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/NQ4qGEoS24hia4numeLP?p=preview">
   <demo-tab heading="proto-element.html">
-<pre><code>{{{include_file('1.0/start/samples/proto-element/proto-element.html')}}}</code></pre>
+<pre><code>{{{include_file('1.0/docs/devguide/samples/proto-element/proto-element.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>{{{include_file('1.0/start/samples/proto-element/index.html')}}}</code></pre>
+<pre><code>{{{include_file('1.0/docs/devguide/samples/proto-element/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/proto-element/index.html" width="100%" height="40"></iframe>
@@ -48,7 +47,7 @@ to add contents to the `<proto-element>` when it's initialized.
 When a custom element finishes its initialization, the `ready` lifecycle callback is called.
 The `ready` callback is a great place to do constructor-like initialization work.
 
-<p><a href="../devguide/registering-elements" class="blue-button">
+<p><a href="/1.0/docs/devguide/registering-elements" class="blue-button">
   Learn more: element registration
 </a></p>
 
@@ -63,10 +62,10 @@ Polymer calls this _local DOM_, and it provides an easy way to specify it:
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/q3o7yWQq9cevrEy4fA9I?p=preview">
   <demo-tab heading="dom-element.html">
-<pre><code>{{{include_file('1.0/start/samples/dom-element/dom-element.html')}}}</code></pre>
+<pre><code>{{{include_file('1.0/docs/devguide/samples/dom-element/dom-element.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>{{{include_file('1.0/start/samples/dom-element/index.html')}}}</code></pre>
+<pre><code>{{{include_file('1.0/docs/devguide/samples/dom-element/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/dom-element/index.html" width="100%" height="40"></iframe>
@@ -86,10 +85,10 @@ with a styled `<div>` tag.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/LClm7BxEaq56395cgn64?p=preview">
   <demo-tab heading="picture-frame.html">
-<pre><code>{{{include_file('1.0/start/samples/picture-frame/picture-frame.html')}}}</code></pre>
+<pre><code>{{{include_file('1.0/docs/devguide/samples/picture-frame/picture-frame.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>{{{include_file('1.0/start/samples/picture-frame/index.html')}}}</code></pre>
+<pre><code>{{{include_file('1.0/docs/devguide/samples/picture-frame/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/picture-frame/index.html" width="100%" height="60"></iframe>
@@ -113,10 +112,10 @@ The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced 
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/IdMTRu1boSjWIA6q7Kj8?p=preview">
   <demo-tab heading="name-tag.html">
-<pre><code>{{{include_file('1.0/start/samples/name-tag/name-tag.html')}}}</code></pre>
+<pre><code>{{{include_file('1.0/docs/devguide/samples/name-tag/name-tag.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>{{{include_file('1.0/start/samples/name-tag/index.html')}}}</code></pre>
+<pre><code>{{{include_file('1.0/docs/devguide/samples/name-tag/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/name-tag/index.html" width="100%" height="40"></iframe>
@@ -136,10 +135,10 @@ and configure it in `index.html`.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/DhDSeqNrmLflcQ8UZI1R?p=preview">
   <demo-tab heading="configurable-name-tag.html">
-<pre><code>{{{include_file('1.0/start/samples/configurable-name-tag/configurable-name-tag.html')}}}</code></pre>
+<pre><code>{{{include_file('1.0/docs/devguide/samples/configurable-name-tag/configurable-name-tag.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>{{{include_file('1.0/start/samples/configurable-name-tag/index.html')}}}</code></pre>
+<pre><code>{{{include_file('1.0/docs/devguide/samples/configurable-name-tag/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/configurable-name-tag/index.html" width="100%" height="40"></iframe>
@@ -159,10 +158,10 @@ to the element's `owner` property, so it's updated as the user types.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/OXaNcCl7qkeMwXEtiTxX?p=preview">
   <demo-tab heading="editable-name-tag.html">
-<pre><code>{{{include_file('1.0/start/samples/editable-name-tag/editable-name-tag.html')}}}</code></pre>
+<pre><code>{{{include_file('1.0/docs/devguide/samples/editable-name-tag/editable-name-tag.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>{{{include_file('1.0/start/samples/editable-name-tag/index.html')}}}</code></pre>
+<pre><code>{{{include_file('1.0/docs/devguide/samples/editable-name-tag/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/editable-name-tag/index.html" width="100%" height="100"></iframe>
@@ -174,11 +173,6 @@ element; the element name is `iron-input`, and it _extends_ the native `<input>`
 
 ## Next steps
 
-Now that you know how to create your own elements, [Get the code](getting-the-code)
-to create your first Polymer project, or dive deeper in the
-[Developer guide](/1.0/docs/devguide/feature-overview).
-Continue on to:
-
-<p><a href="getting-the-code" class="blue-button">Get the code</a></p>
-
-<p><a href="/1.0/docs/devguide/feature-overview" class="blue-button">Developer guide</a></p>
+Now that you understand these fundamental Polymer concepts, you can
+[build your first element](/1.0/start/first-element/intro) or explore
+the remainder of the Developer guide.
