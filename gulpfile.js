@@ -261,7 +261,18 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     ])
     .pipe(gulp.dest('dist/bower_components/highlight'));
 
-  return merge(app, docs, gae, bower, highlight);
+  let summit = gulp.src([
+      'app/summit/**/*',
+      'app/summit/*',
+    ], {base: 'app'})
+    .pipe(gulp.dest('dist'));
+
+  let bower_summit = gulp.src([
+      'app/bower_components/webcomponentsjs/webcomponents*.js'
+    ], {base: 'app/'})
+    .pipe(gulp.dest('dist/summit'));
+
+  return merge(app, docs, gae, bower, highlight, summit, bower_summit);
 });
 
 gulp.task('watch', 'Watch files for changes', function() {
