@@ -4,12 +4,24 @@ title: "Case study: the Shop app"
 
 <!-- toc -->
 
-The Shop app is made up of four main views: the home screen, the browse view,
+
+Shop is a full-featured e-commerce Progressive web app demo built using the
+Toolbox. You can try it out here:
+
+<a href="https://shop.polymer-project.org/" class="blue-button">Launch Shop demo
+</a>
+
+This case studies shows how Shop uses the App Toolbox to deliver a great
+user experience.
+
+## App structure
+
+The Shop app is made up of several main views: the home view, list view,
 detail view, and shopping cart view:
 
 <div class="image-container layout horizontal">
   <div class="image-wrapper">
-    <img src="/images/1.0/toolbox/shop-browse.png" alt="screenshot of the browse view">
+    <img src="/images/1.0/toolbox/shop-browse.png" alt="screenshot of the list view">
   </div>
   <div class="image-wrapper">
     <img src="/images/1.0/toolbox/shop-detail.png" alt="screenshot of the detail view">
@@ -57,24 +69,34 @@ More information:
 
 ## Views
 
-The main views of the element are controlled by an `<iron-pages>` element, which displays a single view at a time. When a view is active, it takes over the whole content area below the app header.
+The main views of the element are controlled by an `<iron-pages>` element, which
+displays a single view at a time. When a view is active, it takes over the whole
+content area below the app header.
 
-The [`<iron-pages>`](https://elements.polymer-project.org/elements/iron-pages) element is bound to the app element's `page` property, which is in turn set based on the current route. A simplified version of this code would look like this:
+The [`<iron-pages>`](https://elements.polymer-project.org/elements/iron-pages)
+element is bound to the app element's `page` property, which is in turn set
+based on the current route. The view switching code looks like this:
 
+`shop-app.html` { .caption }
 ```
-<iron-pages selected="[[page]]" attr-for-selected="name">
-  <!-- home view —>
-  <kart-home name="home" categories="[[categories]]"></kart-home>
-
+<iron-pages role="main" selected="[[page]]" attr-for-selected="name" selected-attribute="visible">
+  <!-- home view -->
+  <shop-home name="home" categories="[[categories]]"></shop-home>
   <!-- list view of items in a category -->
-  <kart-list name="list" category="[[category]]"></kart-list>
-    ...
+  <shop-list name="list" route="[[subroute]]" offline="[[offline]]"></shop-list>
+  <!-- detail view of one item -->
+  <shop-detail name="detail" route="[[subroute]]" offline="[[offline]]"></shop-detail>
+  <!-- cart view -->
+  <shop-cart name="cart" cart="[[cart]]" total="[[total]]"></shop-cart>
+  <!-- checkout view -->
+  <shop-checkout name="checkout" cart="[[cart]]" total="[[total]]" route="{{subroute}}"></shop-checkout>
+</iron-pages>
 ```
 
 When the `page` property is `list`, the list or browse view is active.
 
 The views are created lazily on demand by taking advantage of the custom
-element's _upgrade_ feature. The inactive view elements (such as `kart-list`
+element's _upgrade_ feature. The inactive view elements (such as `shop-list`
 above) exist in the DOM as instances of `HTMLElement`.
 
 When you change pages, the application loads the definition for the active view.
@@ -82,37 +104,42 @@ When the definition loads, the browser _upgrades_ the element to a fully-
 functional custom element.
 
 ```
-_pageChanged: function(newPage, oldPage) {
-  if (newPage != null) {
-    // load page data on demand.
-    Polymer.RenderStatus.afterNextRender(this, function() {
-      this.importHref(this.resolveUrl('kart-' + newPage + '.html'),
+_pageChanged: function(page, oldPage) {
+  if (page != null) {
+    // home route is eagerly loaded
+    if (page == 'home') {
+      this._pageLoaded(Boolean(oldPage));
+    // other routes are lazy loaded
+    } else {
+      this.importHref(
+        this.resolveUrl('shop-' + page + '.html'),
         function() {
-          this._ensureLazyLoaded();
-          // The size of the header depends on the page (e.g. on some pages the tabs
-          // do not appear), so reset the header's layout only when switching pages.
-          this.async(function() {
-            this.$.header.resetLayout();
-          }, 1);
-        }
-      );
-    });
+          this._pageLoaded(Boolean(oldPage));
+        }, null, true);
+    }
   }
 },
+
 ```
+
+In the logic above, the home view is built into the app shell, but the other
+views are demand-loaded fragments.
 
 Shop also uses [`dom-if`](/1.0/docs/api/dom-if) templates to lazily create views:
 
 ```
-<template is="dom-if" if="[[_shouldRenderTabs]]">
-  <paper-tabs role="navigation" selected="[[categoryName]]" attr-for-selected="name">
-    <template is="dom-repeat" items="[[categories]]" as="category" initial-count="4">
-      <paper-tab name="[[category.name]]" role="link" link>
-        <a href="/list/[[category.name]]" tabindex="-1">[[category.title]]</a>
-      </paper-tab>
-    </template>
-  </paper-tabs>
-</template>
+<div id="tabContainer" primary$="[[_shouldShowTabs]]" hidden$="[[!_shouldShowTabs]]">
+  <template is="dom-if" if="[[_shouldRenderTabs]]">
+    <shop-tabs
+        selected="[[categoryName]]"
+        attr-for-selected="name">
+      <template is="dom-repeat" items="[[categories]]" as="category" initial-count="4">
+        <shop-tab name="[[category.name]]">
+          <a href="/list/[[category.name]]">[[category.title]]</a>
+        </shop-tab>
+      </template>
+    </shop-tabs>
+  </template>
 ```
 
 When parsed, the template's content is inert, and not included in the main
@@ -230,4 +257,13 @@ The tabs don't work as well on mobile devices, so Shop uses an `<app-drawer>` el
   </div>
 </div>
 
-The app layout element set also includes simple container elements for positioning headers and drawers: the `<app-header-layout>` and `<app-drawer-layout>` elements.
+The app layout element set also includes simple container elements for
+positioning headers and drawers: the `<app-header-layout>` and
+`<app-drawer-layout>` elements.
+
+## More resources
+
+If you want to look at the Shop app in more detail, you can find the full source
+on GitHub:
+
+[https://github.com/Polymer/shop](https://github.com/Polymer/shop)

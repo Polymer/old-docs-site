@@ -19,7 +19,7 @@ Your server logic can deliver the appropriate build for each browser.
 
 ## PRPL strategy
 
-To optimize delivery, the reference server uses the [PRPL strategy](link-to-blog-yet-to-be), which
+To optimize delivery, the Toolbox uses the _PRPL strategy_, which
 stands for:
 
 *  Push critical resources for the initial route.
