@@ -165,6 +165,7 @@
   items:
   - title: What's in the box?
     path: /1.0/toolbox/index
+  - header: Using the Toolbox
   - title: App templates
     path: /1.0/toolbox/templates
   - title: Responsive app layout
@@ -179,9 +180,11 @@
     path: /1.0/toolbox/service-worker
   - title: Serve your app
     path: /1.0/toolbox/server
-  - title: >
-      Case study: Shop
+  - endheader: true
+  - header: Case study
+  - title: "Shop"
     path: /1.0/toolbox/case-study
+  - endheader: true
 
 - section: Elements
   shortpath: elements
