@@ -31,6 +31,35 @@ App Toolbox template in less than 15 minutes.
 
         polymer init app-drawer-template
 
+## Serve your project
+
+The App Toolbox templates do not require any build steps to get started
+developing.  You can serve the application using the Polymer CLI, and
+file changes you make will be immediately visible by refreshing
+your browser.
+
+    polymer serve --open
+
+The task above automatically opens up your default web browser and
+fetches the locally-hosted application (at `http://localhost:8080`).
+
+![App Toolbox Drawer Template](/images/1.0/toolbox/app-drawer-template.png)
+
+## Initialize Git repository (optional)
+
+Your app template does not contain any version control system. Follow the
+instructions below if you want to manage your source code with Git.
+
+1.  `cd` into the base directory of your project.
+
+1.  Initialize a Git repository.
+
+        git init
+
+1.  Add and commit all of the files.
+
+        git add . && git commit -m "Initial commit."
+
 ## Directory structure
 
 The diagram below is a brief summary of the directories within the template.
@@ -50,35 +79,6 @@ The diagram below is a brief summary of the directories within the template.
 *   `images/` is for static images
 *   `test/` is where you [define tests for your web
     components](https://github.com/Polymer/web-component-tester).
-
-## Initialize Git repository (optional)
-
-Your app template does not contain any version control system. Follow the
-instructions below if you want to manage your source code with Git.
-
-1.  `cd` into the base directory of your project.
-
-1.  Initialize a Git repository.
-
-        git init
-
-1.  Add and commit all of the files.
-
-        git add . && git commit -m "Initial commit."
-
-## Serve
-
-The App Toolbox templates do not require any build steps to get started
-developing.  You can serve the application using the Polymer CLI, and
-file changes you make will be immediately visible by refreshing
-yoru browser.
-
-    polymer serve -o
-
-The task above automatically opens up your default web browser and
-fetches the locally-hosted application (at `http://localhost:8080`).
-
-![App Toolbox Drawer Template](/images/1.0/toolbox/app-drawer-template.png)
 
 ## Next steps
 

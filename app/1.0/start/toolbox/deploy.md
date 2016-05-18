@@ -3,8 +3,7 @@ title: Step 4. Deploy
 subtitle: "Build an app with App Toolbox"
 ---
 
-<!-- This page does not have a ToC because it currently only has one H2.
-     Add a ToC if you add another H2. -->
+<!-- toc -->
 
 In this step, we'll deploy our application to the web.
 
@@ -19,17 +18,87 @@ This command will minify the HTML, JS, and CSS dependencies of your application,
 and will generate a service worker that will pre-cache all of the dependencies
 of your application so that it will work offline.
 
-The built files are output the the following folders:
+The built files are output to the following folders:
 
-* `build/bundled` - contains bundled (concatenated) resources suitable for serving
-from servers or to clients that do not support HTTP/2 Server Push
 * `build/unbundled` - contains granular resources suitable for serving via HTTP/2
 with Server Push
+* `build/bundled` - contains bundled (concatenated) resources suitable for serving
+from servers or to clients that do not support HTTP/2 Server Push
 
-## Deploy with Firebase (recommended)
+## Deploy to a server
 
-Firebase is a very simple and secure way to deploy a Polymer app site. You can sign
-up for a free account and deploy your application in less than 5 minutes.
+Polymer applications can be deployed to any web server.
+
+This template utilizes the `<app-location>` element to enable URL-based routing,
+which requires that the server serve the `index.html` entry point for all
+routes.
+
+Below we will cover deploying this app to both
+[Google AppEngine](https://cloud.google.com/appengine) and [Firebase
+Static Hosting](https://www.firebase.com/docs/hosting/), which are both free and
+secure approaches for deploying a Polymer app.  The approach will
+be similar for other hosting providers.
+
+### Deploy with AppEngine
+
+1.  Download the [Google App Engine SDK](https://cloud.google.com/appengine/downloads)
+and follow the instructions for your platform to install it.
+
+1.  [Sign up for an AppEngine account](https://cloud.google.com/appengine).
+
+1.  [Open the project dashboard](https://console.cloud.google.com/iam-admin/projects)
+and create a new project
+
+    * Click the Create Project button.
+    * Type a project name.
+    * Click the Create button.
+
+1.  `cd` into your project directory.
+
+1. Create an `app.yaml` file and instruct the server to serve up
+`index.html` for any URL's that don't otherwise end in a file extension.
+Replace `{project name}` with the name you chose in the previous step.
+
+    ```
+    application: {project name}
+    version: 1
+    runtime: python27
+    api_version: 1
+    threadsafe: yes
+
+    handlers:
+    - url: /bower_components
+      static_dir: build/bundled/bower_components
+      secure: always
+
+    - url: /images
+      static_dir: build/bundled/images
+      secure: always
+
+    - url: /src
+      static_dir: build/bundled/src
+      secure: always
+
+    - url: /service-worker.js
+      static_files: build/bundled/service-worker.js
+      upload: build/bundled/service-worker.js
+      secure: always
+
+    - url: /manifest.json
+      static_files: build/bundled/manifest.json
+      upload: build/bundled/manifest.json
+      secure: always
+
+    - url: /.*
+      static_files: build/bundled/index.html
+      upload: build/bundled/index.html
+      secure: always    ```
+
+1.  Deploy.
+
+        appcfg.py -A {project name} update app.yaml
+
+### Deploy with Firebase
 
 The instructions below are based on the [Firebase hosting quick start
 guide](https://www.firebase.com/docs/hosting/quickstart.html).

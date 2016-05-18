@@ -11,9 +11,9 @@ out the details of that view.
 In the process, we'll likely want to turn
 to some off-the-shelf components, for example from the
 [Polymer Element Catalog][catalog] or community catalogs like
-[customelements.io][ceio].  Let's see what that looks like.
+[customelements.io][ceio].  Let's see what that process looks like.
 
-## Ensure bower is installed.
+## Ensure bower is installed
 
 [Bower][bower] is a front-end package manager which is the most common
 tool used for fetching and managing web components.
@@ -37,7 +37,7 @@ Run that from your project root directory:
 
 ## Add the element to our application
 
-1.  Open `src/my-newview.html` in a text editor.
+1.  Open `src/my-new-view.html` in a text editor.
 
 1.  Import `paper-slider.html` as a dependency
 
@@ -71,7 +71,7 @@ Run that from your project root directory:
     ```
 
 You should be able to see the `paper-slider` working in your new view now:
-[http://localhost:8080/newview](http://localhost:8080/newview).
+[http://localhost:8080/new-view](http://localhost:8080/new-view).
 
 ![Example of page with slider](/images/1.0/toolbox/app-drawer-template-slider.png)
 
