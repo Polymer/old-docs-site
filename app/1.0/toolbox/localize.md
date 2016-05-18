@@ -1,5 +1,5 @@
 ---
-title: Localization with app-localize-behavior
+title: Localization
 ---
 
 <!-- toc -->
@@ -35,22 +35,27 @@ Sample application loading resources from an external file. { .caption.}
 ```
 <dom-module id="x-app">
    <template>
+    <!-- use the localize method to localize text -->
     <div>{{localize('hello', 'Batman')}}</div>
    </template>
    <script>
       Polymer({
         is: "x-app",
 
+        // include the behavior
         behaviors: [
           Polymer.AppLocalizeBehavior
         ],
 
+        // set the current language—shared across all elements in the app
+        // that use AppLocalizeBehavior
         properties: {
           language: {
             value: 'en'
           },
         }
 
+        // load localized messages
         attached: function() {
           this.loadResources(this.resolveUrl('locales.json'));
         },
@@ -59,7 +64,7 @@ Sample application loading resources from an external file. { .caption.}
 </dom-module>
 ```
 
-The main app or entrypoint is also responsible for loading the `Intl` polyfill
+The main app is also responsible for loading the `Intl` polyfill
 (not shown above).
 
 Each element that needs to localize messages should also add the `Polymer.AppLocalizationBehavior`
