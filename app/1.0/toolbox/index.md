@@ -9,13 +9,13 @@ building
 with Polymer. App Toolbox features:
 
 -   Component-based architecture using Polymer and web components.
--   Responsive design using the app layout components.
+-   Responsive design using the [app layout components](https://elements.polymer-project.org/elements/app-layout).
 -   Modular routing using the
     [`<app-route>`](https://elements.polymer-project.org/elements/app-route) elements.
 -   Localization with
-    [`<app-localization-behavior>`](https://elements.polymer-project.org/elements/app-localization-behavior).
+    [`<app-localize-behavior>`](https://elements.polymer-project.org/elements/app-localize-behavior).
 -   Turnkey support for local storage with
-    [app storage elements](app-storage).
+    [app storage elements](https://elements.polymer-project.org/elements/app-storage).
 -   Offline caching as a progressive enhancement, using service workers.
 -   Build tooling to support serving your app multiple ways: unbundled for
     delivery over HTTP/2 with server push, and bundled for delivery over HTTP/1.
