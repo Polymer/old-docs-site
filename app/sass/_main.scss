@@ -243,6 +243,11 @@ h3 {
   &.full-width {
     width: 100%;
   }
+
+  &.flat {
+    color: $blue-600;
+    background: transparent;
+  }
 }
 
 .subsection:not(:last-of-type) {
