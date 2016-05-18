@@ -9,10 +9,6 @@
   items:
   - title: Get started
     path: /1.0/start/index
-  - title: What is Polymer?
-    path: /1.0/start/what-is-polymer
-  - title: Quick tour of Polymer
-    path: /1.0/start/quick-tour
   - header: Build an element
   - title: 1. Get set up
     path: /1.0/start/first-element/intro
@@ -51,6 +47,8 @@
   items:
   - title: Feature overview
     path: /1.0/docs/devguide/feature-overview
+  - title: Quick tour
+    path: /1.0/docs/devguide/quick-tour
   - header: Define elements
 #  - title: Element lifecycle concepts
 #    path: /1.0/docs/devguide/lifecycle-concepts
