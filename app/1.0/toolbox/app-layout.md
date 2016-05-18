@@ -100,7 +100,7 @@ extra CSS, it can be fixed to the top of the page. The following [sample](http:/
   </body>
 ```
 
-![](/images/1.0/toolbox/simple-toolbar.png)
+![screenshot of a siple app-toolbar](/images/1.0/toolbox/simple-toolbar.png)
 
 The toolbar is a horizontal flexbox container, so you can use the usual flexbox rules to adjust the
 layout of its children. A child with the attribute `title` is automatically styled to flex, so it
@@ -115,7 +115,7 @@ title, they'll automatically be pushed to the sides of the toolbar:
   </app-toolbar>
 ```
 
-![](/images/1.0/toolbox/toolbar-with-buttons.png)
+![screenshot of a simple app-toolbar with a menu and search buttons](/images/1.0/toolbox/toolbar-with-buttons.png)
 
 
 ### Dynamic headers
@@ -144,14 +144,14 @@ When using a condensing header with multiple toolbars, you can choose two basic 
     staggered so they don't overlap. (In the Material Design guidelines, this pattern is called
     flexible space, and it's often combined with one or more scroll effects.)
 
-    ![](/images/1.0/toolbox/collapsing-headers-open.png)
-    ![](/images/1.0/toolbox/collapsing-headers-closed.png)
+    ![screenshot of an expanded, tall, app-toolbar with a menu and shop button, and titled My App](/images/1.0/toolbox/collapsing-headers-open.png)
+    ![screenshot of the same toolbar collapsed to a regular, smaller size, with the same title and buttons](/images/1.0/toolbox/collapsing-headers-closed.png)
 
 -   The top toolbars go offscreen while the bottom toolbar or toolbars stay on screen. (In the
     Material Design patterns, this bottom toolbar is usually a tab bar or search bar.)
 
-    ![](/images/1.0/toolbox/spork-tabs-tall.png)
-    ![](/images/1.0/toolbox/spork-tabs-condensed.png)
+    ![screenshot of an expanded, tall app-toolbar with a back and shop buttons, titled Spork. Below it are three tabs, labelled food, drink, life](/images/1.0/toolbox/spork-tabs-tall.png)
+    ![screenshot of the same app-toolbar, but with the title and the buttons gone, and only with the 2 tabs visible](/images/1.0/toolbox/spork-tabs-condensed.png)
 
 
 One toolbar in the set is identified as `primary`. When the page scrolls, any toolbars _above_ the
@@ -380,8 +380,8 @@ In many cases, you'll want to switch you navigation based on the screen size. On
 uses navigation tabs on desktop, which are replaced by a navigation drawer on mobile, as in the
 [Shop app](https://shop.polymer-project.org/).
 
-![](/images/1.0/toolbox/app-layout-responsive-nav-tabs.png)
-![](/images/1.0/toolbox/app-layout-responsive-nav-drawer.png)
+![screenshot of a nav menu with 5 tabs, displayed horizontally, labelled "item one" through "item four"](/images/1.0/toolbox/app-layout-responsive-nav-tabs.png)
+![screenshot of the same menu displayed vertically, after being open from a mobile drawer button ](/images/1.0/toolbox/app-layout-responsive-nav-drawer.png)
 
 You can achieve this with some app layout elements, using data binding to switch between the tab and
 drawer navigation.
