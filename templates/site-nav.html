@@ -76,11 +76,9 @@
       <iron-collapse class="site-nav">
         {% for item in section['items'] %}
           {% if 'header' in item %}
-            <a class="site-nav level-2">
+            <a class="site-nav level-2" onclick="_expandClicked(event)">
                <span>{{{item.header}}}</span>
-               <paper-icon-button icon="icons:expand-more"
-                 onclick="_expandClicked(event)">
-               </paper-icon-button>
+               <paper-icon-button icon="icons:expand-more"></paper-icon-button>
             </a>
             <iron-collapse>
           {% elif 'endheader' in item %}
