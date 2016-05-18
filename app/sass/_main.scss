@@ -42,6 +42,12 @@ body {
 }
 
 pw-shell {
+  display:flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+devguide-shell {
   flex: 1;
 }
 
