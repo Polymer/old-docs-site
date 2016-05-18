@@ -81,7 +81,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </template>
       </paper-tabs>
       <a href="[[src]]" target="_blank">
-        <paper-button raised hidden>
+        <paper-button raised hidden$="![[_hasPlunkrButton(src)]]">
           <iron-icon icon="pw-icons:exit-to-app"></iron-icon>
           Edit on Plunker
         </paper-button>
@@ -126,6 +126,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     _updatePanels: function() {
       this._panels = Polymer.dom(this.$.contentpanels).getDistributedNodes();
+    },
+
+    _hasPlunkrButton: function(src) {
+      return src && src !=== '';
     }
   });
   </script>
