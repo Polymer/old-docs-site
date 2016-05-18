@@ -18,7 +18,7 @@ the currently available templates.
     $ polymer init
 ```
 
-## List of templates
+## Templates
 
 ### Basic application template
 
