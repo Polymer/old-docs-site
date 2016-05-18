@@ -7,8 +7,10 @@ title: Case study: the Shop app
 The Shop app is made up of four main views: the home screen, the browse view,
 detail view, and shopping cart view.
 
-[[[Insert Screenshots Here]]]
-Detail, browse, and cart views
+![](/images/1.0/toolbox/shop-browse.png)
+![](/images/1.0/toolbox/shop-detail.png)
+![](/images/1.0/toolbox/shop-cart.png)
+Browse, detail, and cart views
 
 The app uses custom elements as its organizing principle: A top-level
 application element serves as the main controller for the app. App-specific
@@ -94,6 +96,7 @@ _pageChanged: function(newPage, oldPage) {
 
 Shop also uses [`dom-if`](/1.0/docs/api/dom-if) templates to lazily create views:
 
+```
 <template is="dom-if" if="[[_shouldRenderTabs]]">
   <paper-tabs role="navigation" selected="[[categoryName]]" attr-for-selected="name">
     <template is="dom-repeat" items="[[categories]]" as="category" initial-count="4">
@@ -103,9 +106,10 @@ Shop also uses [`dom-if`](/1.0/docs/api/dom-if) templates to lazily create views
     </template>
   </paper-tabs>
 </template>
+```
 
 When parsed, the template's content is inert, and not included in the main
-document. If the `_shouldRenderTabs` property is `true`,, the template's
+document. If the `_shouldRenderTabs` property is `true`, the template's
 contents are inserted into the DOM, the elements are initialized and their local
 DOM trees created. Since the tabs are only displayed on desktop, mobile users
 never pay the cost to create elements they're not using.
@@ -133,13 +137,17 @@ These custom properties are special CSS properties defined by the component
 author. The Shop app uses these three properties to define its theme colors.
 These values can be used inside other CSS rules using the `var()` function:
 
+```
   color: var(--app-accent-color);
+```
 
 Custom properties can also be used to set _other_ custom properties.
 
+```
   --paper-button-ink-color: var(--app-primary-color);
   --paper-icon-button-ink-color: var(--app-primary-color);
   --paper-spinner-color: var(--app-primary-color);
+```
 
 Here, the app's theme colors are passed down to several of the reusable elements
 from the paper elements set.
@@ -147,13 +155,14 @@ from the paper elements set.
 If you add more elements to the app, you can find the custom properties for
 those elements in the element API doc. (For example, in the example above,
 `--app-primary-color` is used to set the `<paper-button>` ink color, as
-documented in the [`<paper-button>` API docs](https://elements.polymer-
-project.org/elements/paper-button#styling).
+documented in the `<paper-button>`
+[API docs](https://elements.polymer-project.org/elements/paper-button#styling).
 
-For more on custom properties and mixins, see the [Polymer docs](#link). Polymer
+For more on custom properties and mixins, see the
+[Polymer docs](/1.0/docs/devguide/styling#xscope-styling-details). Polymer
 provides a _shim_ for custom properties, but there are a number of limitations
 to the shim, especially around dynamic changes to property values. If you want
-to do anything fancy with custom properties, read up on the [Shim
+to do anything fancy with custom properties, read up on the [shim
 limitations](/1.0/docs/devguide/styling#custom-properties-shim-limitations)
 and the [custom style API](/1.0/docs/devguide/styling.html#style-api).
 
@@ -172,10 +181,14 @@ directly from the cache. If the user is completely offline, the service worker
 can still load the app shell, and display cached data or an offline message, as
 appropriate.
 
-Shop uses the `sw-precache` library for offline support. This library takes a
-list of files to cache and generates a service worker at build time, so you
-don't need to write your own service worker code. Just create a list of the
-essential resources and add the precache script to your build process.
+Shop uses the `sw-precache` [library](https://github.com/GoogleChrome/sw-precache)
+for offline support. This library takes a list of files to cache and generates
+a service worker at build time, so you don't need to write your own service
+worker code. Just create a list of the essential resources and add the precache
+script to your build process. The [Polymer CLI](https://github.com/polymer/polymer-cli)
+supports [this use-case using sw-precache for generating a service
+worker](https://github.com/polymer/polymer-cli#app-shell-structure) to cache
+the dependencies for your application's "shell".
 
 ## Application layout using app-layout
 
@@ -190,10 +203,13 @@ On desktop, the browse view uses a second toolbar, with a set of navigation
 tabs.  As you scroll down the page, the header condenses and scrolls away.
 Scrolling up the page at any point reveals the tabs.
 
-&lt;&lt;&lt;screenshot of expanded and condensed app bar?>>>
+![](/images/1.0/toolbox/shop-toolbar-expanded.png)
+![](/images/1.0/toolbox/shop-toolbar-condensed.png)
+Shop toolbar expanded vs. condensed
 
 The tabs don't work as well on mobile devices, so Shop uses an `<app-drawer>` element as a navigation drawer, with a vertical menu.
 
-&lt;&lt;&lt;creenshot of drawer?>>>
+![](/images/1.0/toolbox/shop-drawer.png)
+Shop drawer on mobile
 
-The app layout element set also includes simple container elements for positioning headers nad drawers: the `<app-header-layout>` and `<app-drawer-layout>` elements.
+The app layout element set also includes simple container elements for positioning headers and drawers: the `<app-header-layout>` and `<app-drawer-layout>` elements.
