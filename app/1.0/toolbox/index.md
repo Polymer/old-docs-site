@@ -15,7 +15,7 @@ with Polymer. App Toolbox features:
 -   Localization with
     [`<app-localization-behavior>`](https://elements.polymer-project.org/elements/app-localization-behavior).
 -   Turnkey support for local storage with
-    [`<app-storage>`](https://elements.polymer-project.org/elements/app-storage).
+    [app storage elements](app-storage).
 -   Offline caching as a progressive enhancement, using service workers.
 -   Build tooling to support serving your app multiple ways: unbundled for
     delivery over HTTP/2 with server push, and bundled for delivery over HTTP/1.

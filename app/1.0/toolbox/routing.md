@@ -4,9 +4,11 @@ title: Routing with <app-route>
 
 <!-- toc -->
 
-For client-site routing, App Toolbox uses the `<app-route>` element to provide _modular routing_.
-Modular routing means that instead of having a central repository for all your application's routes,
-individual components manage some portion of the route, and delegate the rest to other components.
+For client-site routing, App Toolbox uses the
+[`<app-route>`](https://elements.polymer-project.org/elements/app-route) element to provide
+_modular routing_. Modular routing means that instead of having a central repository for all your
+application's routes, individual components manage some portion of the route, and delegate the rest
+to other components.
 
 **Why modular routing?** For background on `<app-route>` and modular routing, see
 [Encapsulated routing with elements](/1.0/articles/routing.html).

@@ -8,7 +8,7 @@ initial set includes ready-made elements for integrating with Firebase and Pouch
 ## Firebase integration
 
 The Firebase 3.0.0 SDK supports a new set of Firebase elements, built with app storage, called
-[PolymerFire](https://elements.polymer-project.org/elements/polymerfire). These elements make critical
+[PolymerFire](https://github.com/Firebase/PolymerFire). These elements make critical
 Firebase SDK integrations such as app initialization, user authentication, and database access
 declarative, and easier than ever before.
 
