@@ -73,6 +73,10 @@ handlers:
   upload: summit/(.*)
   secure: always
 
+- url: /1.0/homepage/
+  static_dir: 1.0/homepage
+  secure: always
+
 - url: .*
   script: server.app
   secure: always
