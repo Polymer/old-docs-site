@@ -1,16 +1,23 @@
 ---
-title: Case study: the Shop app
+title: "Case study: the Shop app"
 ---
 
 <!-- toc -->
 
 The Shop app is made up of four main views: the home screen, the browse view,
-detail view, and shopping cart view.
+detail view, and shopping cart view:
 
-![](/images/1.0/toolbox/shop-browse.png)
-![](/images/1.0/toolbox/shop-detail.png)
-![](/images/1.0/toolbox/shop-cart.png)
-Browse, detail, and cart views
+<div class="image-container layout horizontal">
+  <div class="image-wrapper">
+    <img src="/images/1.0/toolbox/shop-browse.png" alt="screenshot of the browse view">
+  </div>
+  <div class="image-wrapper">
+    <img src="/images/1.0/toolbox/shop-detail.png" alt="screenshot of the detail view">
+  </div>
+  <div class="image-wrapper">
+    <img src="/images/1.0/toolbox/shop-cart.png" alt="screenshot of the shopping cart view">
+  </div>
+</div>
 
 The app uses custom elements as its organizing principle: A top-level
 application element serves as the main controller for the app. App-specific
@@ -203,13 +210,20 @@ On desktop, the browse view uses a second toolbar, with a set of navigation
 tabs.  As you scroll down the page, the header condenses and scrolls away.
 Scrolling up the page at any point reveals the tabs.
 
-![](/images/1.0/toolbox/shop-toolbar-expanded.png)
-![](/images/1.0/toolbox/shop-toolbar-condensed.png)
-Shop toolbar expanded vs. condensed
+<div class="image-container layout horizontal">
+  <div class="image-wrapper">
+    <img src="/images/1.0/toolbox/shop-toolbar-expanded.png" alt="screenshot of the expanded toolbar">
+  </div>
+  <div class="image-wrapper">
+    <img src="/images/1.0/toolbox/shop-toolbar-condensed.png" alt="screenshot of the condensed toolbar">
+  </div>
+</div>
 
 The tabs don't work as well on mobile devices, so Shop uses an `<app-drawer>` element as a navigation drawer, with a vertical menu.
 
-![](/images/1.0/toolbox/shop-drawer.png)
-Shop drawer on mobile
+<div style="height:250px; text-align:center;">
+  <img style="height:100%;" src="/images/1.0/toolbox/shop-drawer.png" alt="screenshot of the drawer on mobile">
+</div>
+
 
 The app layout element set also includes simple container elements for positioning headers and drawers: the `<app-header-layout>` and `<app-drawer-layout>` elements.

@@ -214,3 +214,20 @@ code.hljs {
   background: white;
   font-weight: 400;
 }
+
+/* Helpers to automagically lay out in a row and resize images */
+.image-container {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+}
+
+.image-container .image-wrapper {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+}
