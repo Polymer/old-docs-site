@@ -97,8 +97,7 @@ version uses [Shady DOM](https://www.polymer-project.org/1.0/blog/shadydom.html)
 Although the full `webcomponents.js` polyfill works with Polymer 1.0+, we do not recommend using it.
 This version contains the full Shadow DOM polyfill, which is known to have performance overhead.
 
-**See** the webcomponents.js [compatibility matrix](https://github.com/WebComponents/webcomponentsjs
-#browser-support) for more details on support.
+**See** the webcomponents.js [compatibility matrix](https://github.com/WebComponents/webcomponentsjs#browser-support) for more details on support.
 {: .alert .alert-info }
 
 #### Other features used by Polymer or the elements
