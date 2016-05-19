@@ -35,7 +35,6 @@ title: "Encapsulated Routing with Elements"
   });
 </script>
 
-<!-- toc -->
 
 ## Introduction
 
