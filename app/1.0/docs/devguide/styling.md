@@ -1,4 +1,4 @@
----
+tempte---
 title: Styling local DOM
 ---
 
@@ -361,18 +361,18 @@ Example usage of `my-toolbar`: { .caption }
 Polymer's custom property shim evaluates and applies custom property values once
 at element creation time.  In order to have an element (and its subtree) re-
 evaluate custom property values due to dynamic changes such as application of
-CSS classes, etc., call the [`updateStyles`](/1.0/docs/api/polymer.base#method-updateStyles)
+CSS classes, etc., call the [`updateStyles`](/1.0/docs/api/Polymer.Base#method-updateStyles)
 method on the element. To update all elements on the page, you can also call
 `Polymer.updateStyles`.
 
 You can  directly modify a Polymer element's custom property by setting
-key-value pairs in [`customStyle`](/1.0/docs/api/polymer.base#property-customStyle)
+key-value pairs in [`customStyle`](/1.0/docs/api/Polymer.Base#property-customStyle)
 on the element (analogous to setting `style`) and then calling `updateStyles`.
 Or you can pass a dictionary of property names and values as an argument to
 `updateStyles`.
 
 To get the value of a custom property on an element, use
-[`getComputedStyleValue`](/1.0/docs/api/polymer.base#method-getComputedStyleValue).
+[`getComputedStyleValue`](/1.0/docs/api/Polymer.Base#method-getComputedStyleValue).
 
 
 Example: { .caption }
@@ -425,7 +425,7 @@ dynamism will continue to be explored.
 Only property definitions which match the element at *creation time* are applied.
 Any dynamic changes that update property values are not applied automatically. You
 can force styles to be re-evaluated by calling the
-[`updateStyles`](/1.0/docs/api/polymer.base#method-updateStyles) method on a
+[`updateStyles`](/1.0/docs/api/Polymer.Base#method-updateStyles) method on a
 Polymer element, or `Polymer.updateStyles` to update all element
 styles.
 
@@ -717,7 +717,7 @@ nodes in a way that respects the local DOM and ensures that styles are
 updated properly.
 
 When using third-party libraries that **do not use** the Polymer DOM
-API, use the [`scopeSubtree`](/1.0/docs/api/polymer.base#method-scopeSubtree)
+API, use the [`scopeSubtree`](/1.0/docs/api/Polymer.Base#method-scopeSubtree)
 method to apply proper CSS scoping to a node and all of its descendants.
 
 1.  Create a container node inside your element's local DOM, and have your

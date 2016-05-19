@@ -27,6 +27,10 @@
 - /1.0/docs/start/getting-the-code.html /1.0/start/
 # Killed what-is-polymer
 - /1.0/start/what-is-polymer.html /1.0/docs/devguide/feature-overview
+# old API docs entry point 
+- /1.0/api/ /1.0/docs/api/Polymer.Base
+# and just in case...
+- /1.0/docs/api/ /1.0/docs/api/Polymer.Base
 
 # ------------------------------------------------------------------------------
 # Note: keep these for the tests!
