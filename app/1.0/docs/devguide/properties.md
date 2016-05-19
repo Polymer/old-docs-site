@@ -703,7 +703,7 @@ Whenever possible you should always use Polymer's
 possible. For example, you may be using a third-party library
 that does not use Polymer's array mutation methods.
 In these scenarios you can call
-<a href="/1.0/docs/api/polymer.base#method-notifySplices">`notifySplices`</a>
+<a href="/1.0/docs/api/Polymer.Base#method-notifySplices">`notifySplices`</a>
 after each mutation to ensure that any Polymer elements observing the array
 are properly notified of the changes.
 

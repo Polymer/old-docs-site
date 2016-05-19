@@ -237,7 +237,7 @@ Polymer CLI automatically runs all of the tests that it finds in the `test` dire
 If you create your own tests, they should also go in the `test` directory.
 
 The underlying library that powers `polymer test` is called `web-component-tester` (`wct`). Learn more about creating unit tests with `wct`
-in [Test your elements](/1.0/tools/tests.html).
+in [Test your elements](/1.0/tools/tests).
 
 ### Run local web server {#serve}
 
