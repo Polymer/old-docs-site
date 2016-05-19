@@ -35,11 +35,10 @@ title: "Encapsulated Routing with Elements"
   });
 </script>
 
-{% include authorship.html %}
-
-{% include toc.html %}
+<!-- toc -->
 
 ## Introduction
+
 
 Polymer is designed with a set of principles in mind: **encapsulation**, **composition**, and **separation of concerns**. When we set out to tackle routing, we knew we wanted to do it in a way that adheres to these principles.
 
@@ -55,25 +54,25 @@ Ok, enough philosophy, let’s get into some examples.
 
 Here’s a simple UI with tabs and animated transitions:
 
-{%raw%}
+```
+<app-route route="{{route}}" pattern="/tabs/:tabName" data="{{data}}">
+</app-route>
 
-    <app-route route="{{route}}" pattern="/tabs/:tabName" data="{{data}}">
-    </app-route>
+<paper-tabs selected='{{data.tabName}}' attr-for-selected='key'>
+  <paper-tab key='foo'>Foo</paper-tab>
+  <paper-tab key='bar'>Bar</paper-tab>
+  <paper-tab key='baz'>Baz!</paper-tab>
+</paper-tabs>
 
-    <paper-tabs selected='{{data.tabName}}' attr-for-selected='key'>
-      <paper-tab key='foo'>Foo</paper-tab>
-      <paper-tab key='bar'>Bar</paper-tab>
-      <paper-tab key='baz'>Baz!</paper-tab>
-    </paper-tabs>
-
-    <neon-animated-pages selected='{{data.tabName}}'
-                         attr-for-selected='key'
-                         entry-animation='slide-from-left-animation'
-                         exit-animation='slide-right-animation'>
-      <neon-animatable key='foo'>Foo Page Here</neon-animatable>
-      <neon-animatable key='bar'>Bar Page Goes Here</neon-animatable>
-      <neon-animatable key='baz'>Baz Page, the Best One of the Three</neon-animatable>
-    </neon-animated-pages>
+<neon-animated-pages selected='{{data.tabName}}'
+                     attr-for-selected='key'
+                     entry-animation='slide-from-left-animation'
+                     exit-animation='slide-right-animation'>
+  <neon-animatable key='foo'>Foo Page Here</neon-animatable>
+  <neon-animatable key='bar'>Bar Page Goes Here</neon-animatable>
+  <neon-animatable key='baz'>Baz Page, the Best One of the Three</neon-animatable>
+</neon-animated-pages>
+```
 
 Here the `<app-route>` is data bound to both the tabs and the currently displayed page. So when the route changes, the selected tab and the currently displayed page automatically get updated too. And likewise, when the user selects a new tab, the route also updates in turn.
 
@@ -81,7 +80,6 @@ Note also, how little actual routing there is here. Almost all of the work is be
 
 You can see the core of the idea here, but we’ve jumped ahead a bit. I mean, where does the route in `route="{{route}}"` come from? What’s that `pattern` property doing, and how is it related to `data`?
 
-{%endraw%}
 
 ## &lt;app-route>
 
@@ -89,8 +87,8 @@ Let’s walk back a bit and consider the routing problem, one piece at a time, b
 
 `<app-route>` simply matches an input path against a specified pattern. Here's a simple demo of a standalone `<app-route>`. Instead of being hooked up to the page URL, it's hooked up to inputs, so you can change the path and pattern by hand.
 
-<iframe src="./routing/demo1.html" style="height: 775px;"></iframe>
-<a href="./routing/demo1.html" target="&#x5F;blank">Open demo in new window</a>
+<iframe src="./routing/demo1" style="height: 775px;"></iframe>
+<a href="//www.polymer-project.org/1.0/blog/routing/demo1" target="_blank">Open demo in new window</a>
 
 `<app-route>` deals with hierarchical, slash separated paths. You give it a pattern, and it tells you when the input matches.
 
@@ -102,8 +100,8 @@ We're still iterating on the syntax of `pattern`. The most surprising thing to n
 
 `<app-route>` doesn't know about the URL, it just knows about paths. While you’ll have many `<app-route>` elements in your app, there’s only one URL bar. The URL is global. So we’ve got an element whose single responsibility is connecting the URL to your app. We call this element `<app-location>`, and it exposes a `route` property suitable for binding into a `<app-route>`, like so:
 
-<iframe src="./routing/demo2.html" style="height: 713px;"></iframe>
-<a href="./routing/demo2.html" target="&#x5F;blank">Open demo in new window</a>
+<iframe src="./routing/demo2" style="height: 713px;"></iframe>
+<a href="//www.polymer-project.org/1.0/blog/routing/demo2" target="_blank">Open demo in new window</a>
 
 Notice however that if you open the demo in its own window and change the path,
 refreshing will give you a 404. That's because the server doesn't know what
@@ -125,8 +123,8 @@ Ok, so that’s how to get a `<app-route>` hooked up to the URL. However, the be
 
 `<app-route>` exposes a property named `tail` that can be passed in as the the `route` of another `<app-route>`. The `tail` represents the rest of the path that comes after the part that `pattern` matches. When the `tail` route changes, those changes propagate up, so the bidirectional data binding is still working its magic.
 
-<iframe src="./routing/demo3.html" style="height: 902px;"></iframe>
-<a href="./routing/demo3.html" target="&#x5F;blank">Open demo in new window</a>
+<iframe src="./routing/demo3" style="height: 902px;"></iframe>
+<a href="//www.polymer-project.org/1.0/blog/routing/demo3" target="_blank">Open demo in new window</a>
 
 
 ### Why chain routes?
