@@ -5,7 +5,11 @@
 - / /1.0/
 
 # bulk redirects
+# 0.5 to the legacy site
 - /0.5/* https://docs-05-dot-polymer-project.appspot.com/0.5/
+# yes, we really still get search results for these old URLs
+- /0.8/* /1.0/
+- /0.9/* /1.0/
 - /1.0/articles/* /1.0/blog/
 - /1.0/docs/start/* /1.0/start/
 - /1.0/tools/* /1.0/docs/tools/
@@ -18,11 +22,11 @@
 # Old page with this URL was actually "about Polymer 1.0", not a real landing page
 - /1.0/docs/ /1.0/docs/about_10
 # Moved quick tour from start to devguide
-- /1.0/docs/start/quick-tour /1.0/docs/devguide/quick-tour
+- /1.0/docs/start/quick-tour.html /1.0/docs/devguide/quick-tour
 # Killed getting-the-code
 - /1.0/docs/start/getting-the-code.html /1.0/start/
 # Killed what-is-polymer
-- /1.0/start/what-is-polymer /1.0/docs/devguide/feature-overview
+- /1.0/start/what-is-polymer.html /1.0/docs/devguide/feature-overview
 
 # ------------------------------------------------------------------------------
 # Note: keep these for the tests!
