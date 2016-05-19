@@ -1,4 +1,12 @@
 ---
+- title: "Polymer at Google I/O 2016"
+  path: /1.0/blog/2016-05-19-Polymer-IO-2016
+  published: 2016-05-19
+  author: polymer-team
+  description: "At Google I/O 2016, we launched the brand-new Polymer App Toolbox for building Progressive Web Apps."
+  tags:
+    - blog
+    - announcements
 - title: "<app-route> gets its beta release!"
   path: /1.0/blog/2016-03-28-carbon-route-released
   published: 2016-03-28
