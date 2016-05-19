@@ -17,9 +17,9 @@ producing two builds:
 
 Your server logic can deliver the appropriate build for each browser.
 
-## PRPL strategy
+## PRPL pattern
 
-To optimize delivery, the Toolbox uses the _PRPL strategy_, which
+To optimize delivery, the Toolbox uses the _PRPL pattern, which
 stands for:
 
 *  Push critical resources for the initial route.

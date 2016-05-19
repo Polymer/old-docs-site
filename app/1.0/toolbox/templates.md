@@ -36,7 +36,7 @@ and composes them in a common left-hand drawer arrangement with a toolbar.
 The template provides navigation between a series of views that load and
 are rendered in the main content area.
 
-The template is also set up to use the [PRPL Pattern](server) for efficient
+The template is also set up to use the [PRPL pattern](server) for efficient
 and progressive loading of the application, where views are loaded on-demand
 and will be pre-cached for offline and subsequent use.
 

@@ -2,6 +2,11 @@
 title: App storage
 ---
 
+<!-- toc -->
+
+**The app storage elements are prerelease.** APIs may be subject to change.
+{.alert .alert-info}
+
 The app storage family of elements gives you a new set of tools for managing data in your app. The
 initial set includes ready-made elements for integrating with Firebase and PouchDB.
 

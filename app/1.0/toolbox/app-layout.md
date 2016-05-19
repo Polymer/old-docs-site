@@ -4,6 +4,8 @@ title: Responsive app layout
 
 <!-- toc -->
 
+**The app layout elements are prerelease.** APIs may be subject to change.
+{.alert .alert-info}
 
 Every application needs some layout, and the app layout elements provide the tools to create
 responsive layouts easily.

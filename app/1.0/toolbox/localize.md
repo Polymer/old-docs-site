@@ -4,6 +4,9 @@ title: Localization
 
 <!-- toc -->
 
+**The localization behavior is prerelease.** APIs may be subject to change.
+{.alert .alert-info}
+
 [`Polymer.AppLocalizeBehavior`](https://elements.polymer-project.org/elements/app-localize-behavior)
 wraps the [format.js](http://formatjs.io/) library to help you internationalize your application.
 Note that if you're on a browser that does not natively support the
