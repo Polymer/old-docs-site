@@ -77,9 +77,9 @@ handlers:
   static_dir: 1.0/homepage
   secure: always
 
-- url: /1.0/docs/devguide/samples/
-  static_dir: 1.0/docs/devguide/samples/
-  secure: always
+#- url: /1.0/docs/devguide/samples/
+#  static_dir: 1.0/docs/devguide/samples/
+#  secure: always
 
 - url: .*
   script: server.app
