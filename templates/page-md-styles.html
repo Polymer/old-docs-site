@@ -39,38 +39,43 @@
 
   article {
     min-width: 0;  /* For some reason, this is non-0 */
-    /* TODO(notwaldorf): disable these styles for now, since they hit an IE11 flexbox bug */
-    /*
     max-width: 800px;
-    flex: 1;
-    flex-basis: 0;
-    */
   }
 
   article.right-nav {
+    padding-right: 20px;
     width: calc(100% - 300px);  /* 300px is the width of the TOC */
+    max-width: 100%;
   }
 
   .details-wrapper {
+    display: table;  /* So that the right border is as long as the TOC content. */
     position: relative;
     box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: auto;
-    padding-left: 30px;
+    padding-left: 20px;
+    margin-top: 20px;
     width: 300px;
   }
 
   .details-wrapper.relative {
     /* Important to override the inline styles applied if the TOC was
-    previously in a fixed position */
+    previously in a fixed position. */
     position: relative !important;
     top: 0 !important;
+    left: auto !important;
     max-width: none !important;
   }
 
   .details-wrapper.fixed {
+    display: block;
     position: fixed;
     right: 40px;  /* The <main> right padding */
+  }
+
+  .details-wrapper.right-nav {
+    border-left: 2px solid #eceff1;
   }
 
   .details-wrapper ul {
@@ -107,21 +112,13 @@
 
   details {
     will-change: transform;
-    padding-top: 20px;
-  }
-
-  details.right-nav {
-    padding-left: 20px;
-    /* TODO(notwaldorf): this doesn't work for browsers that don't implement
-       details, so disable it until it looks the same everywhere */
-    /* border-left: 2px solid $blue-grey-50; */
   }
 
   details summary {
     font-family: 'Roboto Slab', 'Roboto', 'Noto', sans-serif;
     font-weight: bold;
-    font-size: 14px;
-    line-height: 0;
+    font-size: 15px;
+    line-height: 24px;
   }
 
   details summary::-webkit-details-marker {
