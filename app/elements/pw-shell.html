@@ -512,7 +512,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     _onScroll: function() {
       // We only need to do something if the toc is on the right.
-      if (!this._tocElement || !this._tocElement.classList.contains('right-nav')) {
+      if (!this._tocElement) {
         return;
       }
 
@@ -522,6 +522,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       var wrapper = this._tocElement.parentElement;
+      if (!wrapper.classList.contains('right-nav')) {
+        return;
+      }
 
       // How much we have scrolled.
       var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -575,7 +578,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this._tocElement.open = !this._shouldCollapseToc;
 
       // Apply styles.
-      this.toggleClass('right-nav', !this._shouldCollapseToc, this._tocElement);
+      this.toggleClass('right-nav', !this._shouldCollapseToc, this._tocElement.parentElement);
       this.toggleClass('right-nav', !this._shouldCollapseToc, Polymer.dom(this).querySelector('article'));
     }
   });

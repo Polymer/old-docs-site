@@ -52,19 +52,22 @@ article {
 
 article.right-nav {
   width: calc(100% - 300px);  /* 300px is the width of the TOC */
+  padding-right: 20px;
 }
 
 .details-wrapper {
+  display: table;  /* So that the right border is as long as the TOC content. */
   position: relative;
   box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
-  padding-left: 30px;
+  padding-left: 20px;
+  margin-top: 20px;
   width: 300px;
 
   &.relative {
     /* Important to override the inline styles applied if the TOC was
-     * previously in a fixed position */
+     * previously in a fixed position. */
     position: relative !important;
     top: 0 !important;
     left: auto !important;
@@ -72,8 +75,13 @@ article.right-nav {
   }
 
   &.fixed {
+    display: block;
     position: fixed;
     right: $medium-padding;  /* The <main> right padding */
+  }
+
+  &.right-nav {
+    border-left: 2px solid $blue-grey-50;
   }
 
   ul {
@@ -108,19 +116,12 @@ article.right-nav {
 
 details {
   will-change: transform;
-  padding-top: 20px;
 
-  &.right-nav {
-    padding-left: 20px;
-    /* TODO(notwaldorf): this doesn't work for browsers that don't implement
-     * details, so disable it until it looks the same everywhere */
-    /* border-left: 2px solid $blue-grey-50; */
-  }
   summary {
     font-family: 'Roboto Slab', 'Roboto', 'Noto', sans-serif;
     font-weight: bold;
-    font-size: 14px;
-    line-height: 0;
+    font-size: 15px;
+    line-height: 24px;
   }
 
   summary::-webkit-details-marker {
