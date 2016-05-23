@@ -296,9 +296,14 @@ details {
 
 iron-doc-viewer {
   padding: 20px 40px;
+  max-width: 800px;
 
   @media (max-width: $mobile-media-breakpoint) {
     padding: 20px;
+  }
+
+  section {
+    padding: 0;
   }
 }
 // -----
