@@ -24,20 +24,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-decoration: none;
       }
 
-      section {
-        padding: 40px 20px;
-      }
-
-      footer .copyright {
-        background: black;
-        color: white;
-        padding: 10px;
-      }
-
-      footer .copyright div {
-        font-size: 11px;
-      }
-
       .footer-media-links {
         background: #e8345a;  /* a more sedated version of pink-a400 */
         padding: 20px;
@@ -53,6 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-decoration: none;
         text-align: center;
         min-width: 100px;
+        white-space: nowrap;
       }
 
       .footer-media-links a span {
@@ -62,10 +49,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       .footer-links {
         background: #263238;  /* blue-grey-900 */
+        padding: 30px 10px;
       }
 
-      .footer-links div:not(:last-child) {
-        margin-right: 20px;
+      .footer-links > * {
+        margin: 10px;
+      }
+
+      @media (max-width: 479px) {
+        .footer-links.layout.horizontal {
+          flex-direction: column;
+          padding: 20px 10px;
+        }
+
+        .footer-links > * {
+          flex: 0 0 auto;
+        }
       }
 
       .footer-links .title {
@@ -84,13 +83,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         line-height: 20px;
       }
 
-      .copyright img {
-        padding-left: 10px;
-        height: 20px;
+      .copyright {
+        background: black;
+        color: white;
+        padding: 10px;
       }
 
       .copyright * {
         vertical-align: middle;
+      }
+
+      .copyright .text {
+        font-size: 11px;
+      }
+
+      .copyright .back-to-top {
+        float: right;
+        margin-left: 10px;
+      }
+
+      .copyright .back-to-top img {
+        padding-left: 10px;
+        height: 20px;
+        vertical-align: middle;
+      }
+
+      .copyright::after {
+        display: block;
+        content: '';
+        clear: both;
       }
 
       @media (max-width: 767px) {
@@ -108,7 +129,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <footer>
       <section class="footer-media-links">
-        <div class="layout wrap horizontal center center-justified">
+        <div class="layout horizontal center center-justified">
           <a href="http://plus.google.com/107187849809354688692/" title="Follow +polymer on Google+" aria-label="Follow polymer on Google+">
             <iron-icon icon="social-icons:gplus"></iron-icon>
             <span>Polymer</span></a>
@@ -131,47 +152,44 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
       </section>
 
-      <section class="footer-links">
-        <div class="layout horizontal justified wrap">
-          <div class="flex">
-            <div class="title">Start</div>
-            <a href="/1.0/start/first-element/intro">Your first element</a>
-            <a href="/1.0/start/psk/set-up">Your first app</a>
-            <a href="/1.0/docs/tools/overview">Using the tools</a>
-          </div>
+      <section class="footer-links layout horizontal justified">
+        <div class="flex">
+          <div class="title">Start</div>
+          <a href="/1.0/start/first-element/intro">Your first element</a>
+          <a href="/1.0/start/psk/set-up">Your first app</a>
+          <a href="/1.0/docs/tools/overview">Using the tools</a>
+        </div>
 
-          <div class="flex">
-            <div class="title">Polymer</div>
-            <a href="/1.0/docs/api/Polymer.Base">API Reference</a>
-            <a href="/1.0/docs/devguide/feature-overview">Guides</a>
-          </div>
+        <div class="flex">
+          <div class="title">Polymer</div>
+          <a href="/1.0/docs/api/Polymer.Base">API Reference</a>
+          <a href="/1.0/docs/devguide/feature-overview">Guides</a>
+        </div>
 
-          <div class="flex">
-            <div class="title">App Toolbox</div>
-            <a href="/1.0/toolbox/index">Overview</a>
-            <a href="/1.0/toolbox/case-study">App Case Study</a>
-          </div>
+        <div class="flex">
+          <div class="title">App Toolbox</div>
+          <a href="/1.0/toolbox/index">Overview</a>
+          <a href="/1.0/toolbox/case-study">App Case Study</a>
+        </div>
 
-          <div class="flex">
-            <div class="title">News</div>
-            <a href="/1.0/blog/">Articles</a>
-            <a href="https://www.youtube.com/playlist?list=PLOU2XLYxmsII5c3Mgw6fNYCzaWrsM3sMN">Polycasts</a>
-          </div>
+        <div class="flex">
+          <div class="title">News</div>
+          <a href="/1.0/blog/">Articles</a>
+          <a href="https://www.youtube.com/playlist?list=PLOU2XLYxmsII5c3Mgw6fNYCzaWrsM3sMN">Polycasts</a>
+        </div>
 
-          <div class="flex">
-            <div class="title">Element Catalog</div>
-            <a href="https://elements.polymer-project.org/">Elements</a>
-            <a href="https://elements.polymer-project.org/guides/flex-layout">Guides</a>
-          </div>
-
+        <div class="flex">
+          <div class="title">Element Catalog</div>
+          <a href="https://elements.polymer-project.org/">Elements</a>
+          <a href="https://elements.polymer-project.org/guides/flex-layout">Guides</a>
         </div>
       </section>
 
-      <div class="copyright layout horizontal">
-        <div class="flex">&copy; 2016 Polymer Authors. Code Licensed under the BSD License. Documentation licensed under CC BY 3.0.</div>
-        <a href="#" on-click="_smoothScrollToTop">
-          Back to Top <img src="../images/logos/p-logo.png" alt="Polymer Logo">
+      <div class="copyright">
+        <a class="back-to-top" href="#" on-click="_smoothScrollToTop">
+          Back to Top<img src="../images/logos/p-logo.png" alt="Polymer Logo">
         </a>
+        <span class="text">&copy; 2016 Polymer Authors. Code Licensed under the BSD License. Documentation licensed under CC BY 3.0.</span>
       </div>
     </footer>
   </template>
