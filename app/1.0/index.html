@@ -16,7 +16,194 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <body class="fullbleed" unresolved>
   <pw-shell>
     {% include 'templates/site-nav.html' %}
-    <link rel="stylesheet" href="/css/page-index.css">
+    <style>
+      .page-index-hero {
+        background-image: url("/images/page-index/hero.png");
+        background-size: contain;
+      }
+
+      .page-index-hero .logo-wrapper {
+        padding: 40px;
+        border-radius: 50%;
+        background: white;
+        box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1);
+        height: 200px;
+        width: 200px;
+        vertical-align: middle;
+      }
+
+      .page-index-hero .logo-wrapper img {
+        width: 120px;
+        height: 84px;
+      }
+
+      @media (max-width: 767px) {
+        .page-index-hero .logo-wrapper {
+          display: none !important;
+        }
+      }
+
+      .page-index-hero .content {
+        vertical-align: middle;
+      }
+
+      @media (max-width: 900px) {
+        .page-index-hero .content .section-columns {
+          /* Switch to a vertical layout */
+          -ms-flex-direction: column;
+          -webkit-flex-direction: column;
+          flex-direction: column;
+        }
+      }
+
+      .page-index-hero .blue-button:first-of-type {
+        margin-right: 20px;
+      }
+
+      @media (max-width: 900px) {
+        .page-index-hero .blue-button:first-of-type {
+          margin-right: 0;
+        }
+      }
+
+      .page-index-features .feature {
+        color: white;
+      }
+
+      .page-index-features .feature img {
+        width: 100%;
+        display: block;
+      }
+
+      .page-index-features .feature h2 {
+        font-size: 20px;
+      }
+
+      @media (max-width: 767px) {
+        .page-index-features .feature {
+          margin: 0;
+          margin-bottom: 40px;
+          margin: auto;
+        }
+        .page-index-features .feature img {
+          display: none;
+        }
+        .page-index-features .feature h2 {
+          font-size: 18px;
+        }
+      }
+
+      .page-index-examples .subsection .example-code {
+        min-width: 60%;
+        /* Override the very opinionated and specific highlight.js style */
+      }
+
+      @media (max-width: 767px) {
+        .page-index-examples .subsection .example-code {
+          width: 100%;
+          margin-bottom: 40px;
+        }
+      }
+
+      .page-index-examples .subsection .example-code pre {
+        background-color: #fafafa !important;
+        padding: 0 !important;
+      }
+
+      .page-index-examples .subsection iframe {
+        margin: 0.5em 0;
+      }
+
+      .page-index-examples .subsection .example-google-map iframe {
+        height: 232px;
+      }
+
+      .page-index-examples .subsection .example-contact-card iframe {
+        height: 72px;
+      }
+
+      .page-index-examples .subsection .example-friend-list iframe {
+        height: 452px;
+      }
+
+      @media (max-width: 767px) {
+        .page-index-examples .subsection .example-friend-list iframe {
+          height: 232px;
+        }
+      }
+
+      .page-index-examples .subsection .example-pwa img {
+        display: block;
+        margin: 0.5em auto;
+      }
+
+      .page-index-summit img {
+        margin-top: 20px;
+      }
+
+      .page-index-summit p:not(:first-of-type) {
+        margin-top: 40px;
+      }
+
+      .page-index-who {
+        text-align: center;
+      }
+
+      .page-index-who .who-example-panel {
+        margin: 60px auto 0 auto;
+        max-width: calc(12 * 70px);
+      }
+
+      @media (max-width: 767px) {
+        .page-index-who .who-example-panel {
+          margin-top: 60px;
+        }
+      }
+
+      .page-index-who .who-example-panel .who-example {
+        width: 70px;
+        height: 70px;
+        margin: 0 35px 70px 35px;
+        background: #eceff1;
+      }
+
+      .page-index-browsers {
+        margin-top: 40px;
+      }
+
+      .page-index-browsers img {
+        width: 70px;
+        height: 70px;
+        margin: 20px;
+      }
+
+      @media (max-width: 767px) {
+        .page-index-browsers img {
+          width: 40px;
+          height: 40px;
+          margin: 10px;
+        }
+      }
+
+      .page-index-articles .post {
+        margin-top: 20px;
+      }
+
+      @media (max-width: 767px) {
+        .page-index-articles .post:not(:last-child) {
+          border-bottom: 1px solid #f50057;
+          margin-bottom: 20px;
+        }
+      }
+
+      .page-index-articles .post .post-title {
+        font-size: 18px;
+        color: #1e88e5;
+        text-decoration: none;
+      }
+    </style>
+
+
     <section class="page-index-hero grey">
       <div class="section-columns layout center">
         <div class="logo-wrapper layout vertical center center-justified">

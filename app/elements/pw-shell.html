@@ -276,11 +276,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // Don't re-load the same thing you're looking at.
       if (this._currentPageURL !== this._sectionRoute.path) {
         this._currentPageURL = this._sectionRoute.path;
+
         var doc = event.detail.response;
         document.title = doc.title;
-        Polymer.dom(this).innerHTML = doc.querySelector('pw-shell').innerHTML;
+
+        // Since the response is a document that's already parsed, don't
+        // just innerHTML it (which converts it to a string and then reparses it),
+        // and just use the nodes we need.
+        Polymer.dom(this).innerHTML = '';
+        var shell = doc.querySelector('pw-shell');
+
+        var fragment = document.createDocumentFragment();
+        while (shell.firstChild) {
+          fragment.appendChild(shell.firstChild);
+        }
+
+        Polymer.dom(this).appendChild(document.importNode(fragment, true));
         Polymer.dom.flush();  // Force upgrades.
-        // analytics. don't double-report search
+
+        // Analytics. Don't double-report search
         if (this._sectionRoute.path != '/search/' && window.recordPageview) {
           window.recordPageview();
         }
