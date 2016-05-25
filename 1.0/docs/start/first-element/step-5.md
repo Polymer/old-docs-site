@@ -146,7 +146,7 @@ element's local DOM. For example, these rules do **not** work inside the
 
     iron-icon {
       --iron-icon-width: 40px;
-      --iron-iron-height: 40px;
+      --iron-icon-height: 40px;
     }
 
 That's because the `iron-icon` elements on the page are inside another element's
@@ -156,7 +156,7 @@ elements on the page:
 
     :root {
       --iron-icon-width: 40px;
-      --iron-iron-height: 40px;
+      --iron-icon-height: 40px;
     }
 
 Ready to get started on your own element? See
