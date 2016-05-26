@@ -526,40 +526,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return;
       }
 
-      // How much we have scrolled.
       var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-
-      // The bottom of the toc.
-      var tocBottom = scrollTop + wrapper.offsetHeight;
-
-      // How much space we have available for the toc.
-      // where on the screen we started + how much the view is scrolled + the height.
-      var articleBottom = article.getBoundingClientRect().top + scrollTop + article.offsetHeight;
-
-      // If the remaining content is smaller than the window, then the footer is
-      // visible and its offset is the height of the remaining content. Otherwise
-      // it's below the fold, so use the window size instead.
-      var remainingContentSize = articleBottom - scrollTop;
-      var visibleFooterOffset = Math.min(remainingContentSize, window.innerHeight);
-
-      var rightOffset;
-      // Keep saving the left position while the TOC is still position:relative, so that
-      // when it does become position:fixed, it can be displayed in the same place.
-      if (wrapper.classList.contains('relative')) {
-        rightOffset = window.innerWidth - wrapper.getBoundingClientRect().right;
-      }
-
-      this._resizeToc(wrapper, scrollTop, 64, 20, visibleFooterOffset, rightOffset);
+      this._resizeToc(wrapper, article, scrollTop);
     },
 
-    _resizeToc: function(nav, scrollTop, topPadding, bottomPadding, footerOffset, rightOffset) {
+    _resizeToc: function(nav, article, scrollTop) {
+      // Keep saving the left position while the TOC is still position:relative, so that
+      // when it does become position:fixed, it can be displayed in the same place.
+      var rightOffset;
+      if (nav.classList.contains('relative')) {
+        rightOffset = document.body.clientWidth - nav.getBoundingClientRect().right;
+      }
+
       // If we haven't scrolled passed the target position, relatively position the TOC.
       var fixed = scrollTop >= this._stickyTocPosition;
       this.toggleClass('relative', !fixed, nav);
       this.toggleClass('fixed', fixed, nav);
 
       if (fixed) {
-        var maxHeight = footerOffset - topPadding - bottomPadding;
+        // How much space we have available for the toc.
+        // where on the screen we started + how much the view is scrolled + the height.
+        var articleBottom = article.getBoundingClientRect().top + scrollTop + article.offsetHeight;
+
+        // If the remaining content is smaller than the window, then the footer is
+        // visible and its offset is the height of the remaining content. Otherwise
+        // it's below the fold, so use the window size instead.
+        var remainingContentSize = articleBottom - scrollTop;
+        var visibleFooterOffset = Math.min(remainingContentSize, window.innerHeight);
+
+        var topPadding = 64;
+        var bottomPadding = 20;
+        var maxHeight = visibleFooterOffset - topPadding - bottomPadding;
         nav.style.display = maxHeight > 0 ? '' : 'none';
         nav.style.maxHeight = maxHeight + 'px';
         nav.style.top = topPadding + 'px';
