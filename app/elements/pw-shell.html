@@ -563,6 +563,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // This is a new page, so re-calculate the offset at which we're fixing the TOC.
       this._stickyTocPosition = this._getStickyTocPosition();
       this._tocElement.open = !this._shouldCollapseToc;
+
+      // Apply styles to all the divs that need to know there's a TOC
+      this.toggleClass('right-nav', !this._shouldCollapseToc, Polymer.dom(this).querySelector('.article-wrapper'));
+      this.toggleClass('right-nav', !this._shouldCollapseToc, Polymer.dom(this).querySelector('.header-wrapper'));
     }
   });
   </script>

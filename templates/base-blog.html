@@ -45,12 +45,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         height: 25px;
       }
 
-      @media (min-width: 1001px) {
-        .header-wrapper {
-          max-width: 800px;
-          box-sizing: content-box;
-          padding-right: 300px;
-        }
+      .header-wrapper {
+        max-width: 800px;
+      }
+
+      .header-wrapper.right-nav {
+        box-sizing: content-box;
+        padding-right: 300px;
       }
 
       .article-wrapper {
@@ -70,12 +71,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       section.blue h1 {
         font-size: 32px;  /* Needed because the page.md style overiddes this */
+        font-weight: 400;
       }
+
       @media (max-width: 767px) {
         section.blue h1 {
           font-size: 22px;  /* Needed because the page.md style overiddes this */
         }
       }
+
+      /* Match the main media-queries to the header, but don't worry about centering
+       * the content, since we do that separately.
+       */
+      .main-section {
+        background: #fafafa;
+      }
+
+      .main-section main {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
     </style>
 
     {% if markdown %}
@@ -99,10 +116,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
     </section>
 
-    <main>
-      {% block content %}{% endblock %}
-    </main>
-
+    <section class="short main-section">
+      <main>
+        {% block content %}{% endblock %}
+      </main>
+    </section>
     {% else %}
     <!-- Blog landing page -->
     <section class="blue short gradient-light">

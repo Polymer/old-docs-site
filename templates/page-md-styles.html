@@ -42,14 +42,12 @@
     padding-right: 20px;
   }
 
-  @media (min-width: 1001px) {
-    .article-wrapper {
-      width: calc(100% - 300px);  /* 300px is the width of the TOC */
-    }
+  .article-wrapper.right-nav {
+    width: calc(100% - 300px);  /* 300px is the width of the TOC */
   }
 
   .details-wrapper {
-    display: table;  /* So that the right border is as long as the TOC content. */
+    display: block;
     position: relative;
     box-sizing: border-box;
     overflow-x: hidden;
@@ -59,7 +57,6 @@
   }
 
   .details-wrapper.fixed {
-    display: block;
     position: fixed;
     right: 40px;  /* The <main> right padding */
   }
