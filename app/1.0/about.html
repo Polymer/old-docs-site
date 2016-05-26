@@ -22,13 +22,110 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <section class="blue short gradient-light">
       <div>
         <h1>About the Polymer Project</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       </div>
     </section>
 
-    <section>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sem est, lobortis vel nunc id, tempor finibus augue. Curabitur et lobortis ex. Phasellus non dolor at libero viverra eleifend eleifend bibendum nibh. Vivamus ex ante, feugiat eu neque ac, sollicitudin tempus ligula. Cras at ultrices ligula. Donec tincidunt, turpis vitae bibendum ultricies, lectus enim porttitor tellus, a egestas magna mi sed felis. In id mauris consequat, feugiat est sit amet, dictum nunc.
-      </p>
+    <section class="short">
+      <div>
+        <h2 class="underline">Who we are</h2>
+
+        <p>The Polymer Project is an open-source project led by a team of front-end developers working within the Chrome organization at Google.</p>
+
+        <h2 class="underline">Our mission</h2>
+
+        <p>Our mission is to <em>make life better for users and developers</em>, by helping developers <em>unlock the web platform’s full potential</em> and by spurring the web platform to <em>evolve and improve</em>.</p>
+
+        <p>In pursuit of this mission, we work on libraries, tools and patterns to help developers build modern <a href="https://developers.google.com/web/progressive-web-apps/">Progressive Web Apps</a>, taking full advantage of cutting-edge platform features like <a href="http://webcomponents.org/">Web Components</a>, <a href="http://www.html5rocks.com/en/tutorials/service-worker/introduction/">Service Workers</a> and <a href="https://http2.github.io/">HTTP/2</a>.</p>
+
+        <p>We also collaborate closely with our colleagues on the Chrome development team, identifying pain points, putting new platform features to the test and doing our part to ensure that front-end developers have a strong voice in the evolution of the platform.</p>
+
+        <p>Our motto, reflecting our unique mission, is <strong>#UseThePlatform</strong>. It’s worth explaining what that means to us.</p>
+
+        <h2 class="underline">Why #UseThePlatform?</h2>
+
+        <p><strong>tl;dr:</strong> We believe that embracing the modern web platform is the best way to give users and developers what they deserve.</p>
+
+        <p>Users deserve apps that launch quickly, respond instantly and can be accessed from anywhere – on devices of all types and sizes, under any network conditions.</p>
+
+        <p>Developers deserve a platform they can work with, not around – one that makes it easy to build, deliver and maintain these universally accessible, reliable, delightful, high-performing apps.</p>
+
+        <p>But we haven’t always gotten what we deserve from the web, especially when it comes to mobile.</p>
+
+        <ul>
+          <li><p>From a user point of view, too many mobile web apps launch slowly, perform poorly compared to native apps, and don’t work at all when network conditions are poor.</p></li>
+          <li><p>For app developers, the web platform has been frustratingly slow to evolve. For years, we’ve had to plug holes in the platform and build layers on top of it to meet basic needs like defining components and loading modules.</p></li>
+        </ul>
+
+        <h2 class="underline">Credit where credit is due</h2>
+
+        <p>The libraries, tools and frameworks we’ve built to fill the gaps in the web platform are a testament to the web’s fundamental extensibility and to the endlessly innovative spirit of the web community.</p>
+
+        <p>These innovations have been instrumental in the web’s transition from a content platform to a platform that supports powerful, feature-rich applications. There’s no doubt that the path forward will continue to be cleared and illuminated by our collective efforts in “user space.”</p>
+
+        <p>That said, there are real costs to doing too much outside and above the platform itself – costs that both developers and users pay.</p>
+
+        <h2 class="underline">Developer costs</h2>
+
+        <p>Developer costs come in the form of complexity and lock-in.</p>
+
+        <p>Over time, the stacks we’ve built on top of the platform have pushed web development further and further from the simplicity of view-source and shift-refresh, to a place where every project begins with an overwhelming sea of choices.</p>
+
+        <p>And when we rely on libraries and frameworks for even our most basic needs, we end up writing code that depends on opinionated abstractions rather than universal platform primitives. Because it’s expensive to migrate from one abstraction to another, these dependencies limit our future choices and make our code costlier to maintain.</p>
+
+        <h2 class="underline">User costs</h2>
+
+        <p>More importantly, users pay a performance penalty when the layers we build above the platform become too thick.</p>
+
+        <p>Every byte of code that we send over the wire consumes bandwidth that could be used for content and data, and every tick we spend executing JavaScript on the client reduces our apps’ responsiveness. This is especially true on the far reaches of the mobile web, where poor connections and underpowered devices are the norm.</p>
+
+        <p>Many of the development patterns that we use today originated in an era when we used the web mostly from the desktop. Now that the web is mobile-first, we need to reconsider those patterns. Giving our users the experience they deserve in the hyper-constrained mobile environment means aggressively minimizing bandwidth and execution cost, leaning heavily on the platform and saving our limited budget for things that only our applications can provide.</p>
+
+        <p>For example, the browser specializes in loading resources, parsing native web formats like HTML and CSS, and caching them for maximum efficiency. Similarly, the browser has highly optimized native code for instantiating elements, inserting them in the DOM, updating their properties and attributes, managing the flow of events between them, and eventually tearing them down.</p>
+
+        <p>When we write our own code to do these things, send that code over the network and execute it on the client, we are doing work we shouldn’t have to do; and in some cases, we are also negating current and future browser-side optimizations.</p>
+
+        <h2 class="underline">A platform-centric path forward</h2>
+
+        <p>Thanks to new web platform primitives, many of the needs we’ve addressed by building over and around the platform can now be met by the platform itself:</p>
+
+        <ul>
+          <li><p>Web Components let us extend the browser’s built-in component model – the DOM – rather than bring our own.</p></li>
+
+          <li><p>In combination with HTTP/2 and server push, standard module formats like <a href="http://webcomponents.org/articles/introduction-to-html-imports/">HTML Imports</a> and <a href="http://exploringjs.com/es6/ch_modules.html">ES6 Modules</a> let us declare fine-grained dependencies and efficiently deliver them to the client in optimally cacheable form, without relying on complicated packaging tools and loaders.</p></li>
+
+          <li><p>Service Workers let us build pure web apps that users can access even when their devices are offline or network conditions are poor, whereas previously we might have had to resort to manually installable native or “hybrid” apps.</p></li>
+        </ul>
+
+        <p>We believe that in the next era, the best-performing apps will be those that take full advantage of these modern web platform features and let the browser do the heavy lifting wherever it can. Similarly, the least costly, most future-proof apps will be those that build as much as possible on platform primitives, maximizing interoperability and minimizing switching costs.</p>
+
+        <h2 class="underline">Rethinking libraries and frameworks</h2>
+
+        <p>Using the platform doesn’t mean leaving libraries and frameworks behind; it just means making them lighter, and designing them to complement the strengths of the platform itself.</p>
+
+        <p>At their best, libraries and frameworks make our jobs easier. They provide off-the-shelf solutions for hard problems; broadly applicable abstractions that save us from reinventing the wheel; and useful patterns and constraints to help us structure our apps intelligently and avoid shooting ourselves in the foot.</p>
+
+        <p>The challenge is to achieve these benefits while minimizing the weight of our solutions and making the most of what the platform provides.</p>
+
+        <p>Within this problem space, as always, there’s plenty of room for innovation and opinion. For our part, we aim to treat the platform as the framework, adding value in the form of lightweight, optional “sugaring” of platform APIs; loosely coupled, interoperable modules; and effective patterns for composing components and applications from smaller building blocks.</p>
+
+        <h2 class="underline">Our role</h2>
+
+        <p>Returning to our mission, here’s how we see our role:</p>
+
+        <ul>
+          <li><p>Strongly advocate a platform-centric approach to building modern web apps</p></li>
+
+          <li><p>Build libraries and tools to support app developers in adopting a platform-centric approach</p></li>
+
+          <li><p>In doing so, explore and exemplify best practices for designing platform-centric libraries and tools</p></li>
+
+          <li><p>Based on our own experiences and those of the broader community, continue to influence the evolution of the platform from within the Chrome organization</p></li>
+        </ul>
+
+        <p>We believe the patterns, libraries and tools we work on are beneficial, and we're happy to see them widely adopted.</p>
+
+        <p>But our campaign to <strong>#UseThePlatform</strong> is ultimately not about driving people to use the stuff the Polymer Project builds. It’s about promoting the use of the web platform to deliver the best apps possible, and helping to ensure that web users and developers get everything they deserve from the platform in the future.</p>
+      </div>
     </section>
 
   </pw-shell>

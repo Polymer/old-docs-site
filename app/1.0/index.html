@@ -56,12 +56,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
 
-      .page-index-hero .blue-button:first-of-type {
+      .page-index-hero .blue-button:not(:last-of-type) {
         margin-right: 20px;
       }
 
       @media (max-width: 900px) {
-        .page-index-hero .blue-button:first-of-type {
+        .page-index-hero .blue-button:not(:last-of-type) {
           margin-right: 0;
         }
       }
@@ -222,6 +222,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="section-columns">
             <a href="/1.0/start/" class="blue-button flex">Get Started</a>
             <a href="https://shop.polymer-project.org/" target="_blank" class="blue-button flex">Try the Shop demo</a>
+            <a href="/1.0/about" class="blue-button flex">About the Project</a>
           </div>
         </div>
       </div>

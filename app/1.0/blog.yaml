@@ -1,4 +1,12 @@
 ---
+- title: "I/O 2016 Recap: #UseThePlatform"
+  path: /1.0/blog/2016-05-26-IO-2016-Recap
+  published: 2016-05-26
+  author: polymer-team
+  description: "A look back at Google I/O 2016, and some background on the Polymer Project's call to #UseThePlatform."
+  tags:
+    - blog
+    - announcements
 - title: "Polymer at Google I/O 2016"
   path: /1.0/blog/2016-05-19-Polymer-IO-2016
   published: 2016-05-19
