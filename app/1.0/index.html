@@ -56,12 +56,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
 
-      .page-index-hero .blue-button:first-of-type {
+      .page-index-hero .blue-button:not(:last-of-type) {
         margin-right: 20px;
       }
 
       @media (max-width: 900px) {
-        .page-index-hero .blue-button:first-of-type {
+        .page-index-hero .blue-button:not(:last-of-type) {
           margin-right: 0;
         }
       }
@@ -222,6 +222,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="section-columns">
             <a href="/1.0/start/" class="blue-button flex">Get Started</a>
             <a href="https://shop.polymer-project.org/" target="_blank" class="blue-button flex">Try the Shop demo</a>
+            <a href="/1.0/about" class="blue-button flex">About the Project</a>
           </div>
         </div>
       </div>
@@ -232,9 +233,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <h2 class="underline">Polymer at Google I/O 2016</h2>
         <div class="section-columns">
           <div>
-            <p>In case you missed Google I/O or just want to relive the best bits in streaming HD, we've collected all of the Polymer-related sessions in one place. Enjoy!</p>
-            <a href="https://www.youtube.com/playlist?list=PLNYkxOF6rcIDnSm7bZRJC36Ca1DYXSQ70" target="_blank" class="blue-button">Watch all</a>
-          </div>
+            <p>In case you missed Google I/O or just want to relive the best bits in streaming HD, we've written a recap of Polymer goings-on and collected all of the Polymer-related sessions in one place. Enjoy!</p>
+            <a href="https://www.youtube.com/playlist?list=PLNYkxOF6rcIDnSm7bZRJC36Ca1DYXSQ70" target="_blank" class="blue-button flex">Watch all</a>
+            <a href="/1.0/blog/2016-05-26-IO-2016-Recap.html" class="blue-button flex">I/O 2016 recap</a>
+        </div>
           <google-youtube class="flex" video-id="fFF2Yup2dMM" autoplay="0" rel="0"></google-youtube>
         </div>
       </div>
