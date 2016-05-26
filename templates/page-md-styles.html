@@ -42,8 +42,10 @@
     padding-right: 20px;
   }
 
-  .article-wrapper.right-nav {
-    width: calc(100% - 300px);  /* 300px is the width of the TOC */
+  @media (min-width: 1001px) {
+    .article-wrapper {
+      width: calc(100% - 300px);  /* 300px is the width of the TOC */
+    }
   }
 
   .details-wrapper {
@@ -99,9 +101,11 @@
     will-change: transform;
   }
 
-  .details-wrapper.right-nav details {
-    padding-left: 20px;
-    border-left: 2px solid #eceff1;
+  @media (min-width: 1001px) {
+    details {
+      padding-left: 20px;
+      border-left: 2px solid #eceff1;
+    }
   }
 
   details summary {
