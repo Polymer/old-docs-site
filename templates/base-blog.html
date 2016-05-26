@@ -85,7 +85,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        */
       .main-section {
         background: #fafafa;
-        padding-right: 40px;
+      }
+
+      @media (min-width: 1001px) {
+        .main-section {
+          padding-right: 40px;  /* So that the TOC doesn't jump */
+        }
       }
 
       .main-section main {

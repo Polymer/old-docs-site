@@ -488,7 +488,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         if (this._shouldCollapseToc) {
           var wrapper = this._tocElement.parentElement;
           this.toggleClass('fixed', false, wrapper);
-          this._resetNavToRelativePosition(wrapper);
+          this._resetWrapperToRelativePosition(wrapper);
         }
       }
     },
@@ -529,10 +529,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this._resizeToc(wrapper, article, scrollTop);
     },
 
-    _resizeToc: function(nav, article, scrollTop) {
+    _resizeToc: function(wrapper, article, scrollTop) {
       // If we haven't scrolled passed the target position, relatively position the TOC.
       var fixed = scrollTop >= this._stickyTocPosition;
-      this.toggleClass('fixed', fixed, nav);
+      this.toggleClass('fixed', fixed, wrapper);
 
       if (fixed) {
         // How much space we have available for the toc.
@@ -548,11 +548,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var topPadding = 64;
         var bottomPadding = 20;
         var maxHeight = visibleFooterOffset - topPadding - bottomPadding;
-        nav.style.display = maxHeight > 0 ? '' : 'none';
-        nav.style.maxHeight = maxHeight + 'px';
-        nav.style.top = topPadding + 'px';
+        wrapper.style.display = maxHeight > 0 ? '' : 'none';
+        wrapper.style.maxHeight = maxHeight + 'px';
+        wrapper.style.top = topPadding + 'px';
       } else {
-        this._resetNavToRelativePosition(nav);
+        this._resetWrapperToRelativePosition(wrapper);
       }
     },
 
@@ -566,10 +566,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this.toggleClass('right-nav', !this._shouldCollapseToc, Polymer.dom(this).querySelector('.header-wrapper'));
     },
 
-    _resetNavToRelativePosition: function(nav) {
-      nav.style.display = '';
-      nav.style.maxHeight = '';
-      nav.style.top = '0px';
+    _resetWrapperToRelativePosition: function(wrapper) {
+      wrapper.style.display = '';
+      wrapper.style.maxHeight = '';
+      wrapper.style.top = '0px';
     }
   });
   </script>
