@@ -542,17 +542,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var remainingContentSize = articleBottom - scrollTop;
       var visibleFooterOffset = Math.min(remainingContentSize, window.innerHeight);
 
-      var leftOffset;
+      var rightOffset;
       // Keep saving the left position while the TOC is still position:relative, so that
       // when it does become position:fixed, it can be displayed in the same place.
       if (wrapper.classList.contains('relative')) {
-        leftOffset = wrapper.getBoundingClientRect().left;
+        rightOffset = window.innerWidth - wrapper.getBoundingClientRect().right;
       }
 
-      this._resizeToc(wrapper, scrollTop, 64, 20, visibleFooterOffset, leftOffset);
+      this._resizeToc(wrapper, scrollTop, 64, 20, visibleFooterOffset, rightOffset);
     },
 
-    _resizeToc: function(nav, scrollTop, topPadding, bottomPadding, footerOffset, leftOffset) {
+    _resizeToc: function(nav, scrollTop, topPadding, bottomPadding, footerOffset, rightOffset) {
       // If we haven't scrolled passed the target position, relatively position the TOC.
       var fixed = scrollTop >= this._stickyTocPosition;
       this.toggleClass('relative', !fixed, nav);
@@ -564,11 +564,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         nav.style.maxHeight = maxHeight + 'px';
         nav.style.top = topPadding + 'px';
 
-        // LeftOffset will be null after the first time we transition from relative to
+        // rightOffset will be null after the first time we transition from relative to
         // fixed positioning.
-        if (leftOffset) {
-          nav.style.left = leftOffset + 'px';
+        if (rightOffset) {
+          nav.style.right = rightOffset + 'px';
         }
+      } else {
+        nav.style.right = 0;
       }
     },
 
