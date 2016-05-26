@@ -52,7 +52,6 @@
     box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: auto;
-    padding-left: 20px;
     margin-top: 20px;
     width: 300px;
   }
@@ -61,10 +60,6 @@
     display: block;
     position: fixed;
     right: 40px;  /* The <main> right padding */
-  }
-
-  .details-wrapper.right-nav {
-    border-left: 2px solid #eceff1;
   }
 
   .details-wrapper ul {
@@ -100,7 +95,13 @@
   }
 
   details {
+    display: block;
     will-change: transform;
+  }
+
+  .details-wrapper.right-nav details {
+    padding-left: 20px;
+    border-left: 2px solid #eceff1;
   }
 
   details summary {
