@@ -6,13 +6,13 @@
     "type": "image/png",
     "sizes": "32x32"
   }, {
-    "src": "/images/logos/p-logo-128.png",
+    "src": "/images/logos/p-logo-192.png",
     "type": "image/svg",
-    "sizes": "128x128"
+    "sizes": "192x192"
   }, {
-    "src": "/images/logos/p-logo-256.png",
+    "src": "/images/logos/p-logo-512.png",
     "type": "image/svg",
-    "sizes": "256x256"
+    "sizes": "512x512"
   }],
   "start_url": "/?utm_source=web_app_manifest",
   "display": "standalone",
