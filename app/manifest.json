@@ -16,6 +16,6 @@
   }],
   "start_url": "/?utm_source=web_app_manifest",
   "display": "standalone",
-  "background_color": "#3f51b5",
-  "theme_color": "#3f51b5"
+  "background_color": "#1e88e5",
+  "theme_color": "#1e88e5"
 }
