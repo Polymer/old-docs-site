@@ -2,15 +2,15 @@
   "name": "Polymer Project",
   "short_name": "Polymer",
   "icons": [{
-    "src": "images/logos/p-logo-32.png",
+    "src": "/images/logos/p-logo-32.png",
     "type": "image/png",
     "sizes": "32x32"
   }, {
-    "src": "images/logos/p-logo-128.png",
+    "src": "/images/logos/p-logo-128.png",
     "type": "image/svg",
     "sizes": "128x128"
   }, {
-    "src": "images/logos/p-logo-256.png",
+    "src": "/images/logos/p-logo-256.png",
     "type": "image/svg",
     "sizes": "256x256"
   }],
