@@ -486,10 +486,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this._updateTocStyles();
 
         if (this._shouldCollapseToc) {
-          // Reset the TOC to be a relatively positioned element.
           var wrapper = this._tocElement.parentElement;
-          this.toggleClass('relative', true, wrapper);
           this.toggleClass('fixed', false, wrapper);
+          this._resetNavToRelativePosition(wrapper);
         }
       }
     },
@@ -553,9 +552,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         nav.style.maxHeight = maxHeight + 'px';
         nav.style.top = topPadding + 'px';
       } else {
-        nav.style.display = '';
-        nav.style.maxHeight = '';
-        nav.style.top = '';
+        this._resetNavToRelativePosition(nav);
       }
     },
 
@@ -567,6 +564,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // Apply styles to all the divs that need to know there's a TOC
       this.toggleClass('right-nav', !this._shouldCollapseToc, Polymer.dom(this).querySelector('.article-wrapper'));
       this.toggleClass('right-nav', !this._shouldCollapseToc, Polymer.dom(this).querySelector('.header-wrapper'));
+    },
+
+    _resetNavToRelativePosition: function(nav) {
+      nav.style.display = '';
+      nav.style.maxHeight = '';
+      nav.style.top = '0px';
     }
   });
   </script>
