@@ -3,7 +3,6 @@
     position: relative;
     background: #fafafa;
     padding: 10px 40px;
-    max-width: 1200px;
     font-size: 16px;
     font-family: 'Roboto', 'Noto', sans-serif;
     line-height: 24px;
@@ -40,12 +39,11 @@
   article {
     min-width: 0;  /* For some reason, this is non-0 */
     max-width: 800px;
+    padding-right: 20px;
   }
 
-  article.right-nav {
-    padding-right: 20px;
+  .article-wrapper.right-nav {
     width: calc(100% - 300px);  /* 300px is the width of the TOC */
-    max-width: 100%;
   }
 
   .details-wrapper {
@@ -57,15 +55,6 @@
     padding-left: 20px;
     margin-top: 20px;
     width: 300px;
-  }
-
-  .details-wrapper.relative {
-    /* Important to override the inline styles applied if the TOC was
-    previously in a fixed position. */
-    position: relative !important;
-    top: 0 !important;
-    left: auto !important;
-    max-width: none !important;
   }
 
   .details-wrapper.fixed {

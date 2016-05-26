@@ -531,16 +531,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _resizeToc: function(nav, article, scrollTop) {
-      // Keep saving the left position while the TOC is still position:relative, so that
-      // when it does become position:fixed, it can be displayed in the same place.
-      var rightOffset;
-      if (nav.classList.contains('relative')) {
-        rightOffset = document.body.clientWidth - nav.getBoundingClientRect().right;
-      }
-
       // If we haven't scrolled passed the target position, relatively position the TOC.
       var fixed = scrollTop >= this._stickyTocPosition;
-      this.toggleClass('relative', !fixed, nav);
       this.toggleClass('fixed', fixed, nav);
 
       if (fixed) {
@@ -560,14 +552,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         nav.style.display = maxHeight > 0 ? '' : 'none';
         nav.style.maxHeight = maxHeight + 'px';
         nav.style.top = topPadding + 'px';
-
-        // rightOffset will be null after the first time we transition from relative to
-        // fixed positioning.
-        if (rightOffset) {
-          nav.style.right = rightOffset + 'px';
-        }
       } else {
-        nav.style.right = 0;
+        nav.style.display = '';
+        nav.style.maxHeight = '';
+        nav.style.top = '';
       }
     },
 
@@ -577,8 +565,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this._tocElement.open = !this._shouldCollapseToc;
 
       // Apply styles.
-      this.toggleClass('right-nav', !this._shouldCollapseToc, this._tocElement.parentElement);
-      this.toggleClass('right-nav', !this._shouldCollapseToc, Polymer.dom(this).querySelector('article'));
+      this.toggleClass('right-nav', !this._shouldCollapseToc, Polymer.dom(this).querySelector('.details-wrapper'));
+      this.toggleClass('right-nav', !this._shouldCollapseToc, Polymer.dom(this).querySelector('.article-wrapper'));
     }
   });
   </script>
