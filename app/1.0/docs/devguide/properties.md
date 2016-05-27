@@ -236,7 +236,6 @@ Example: { .caption }
 example, when the attribute is changed using `setAttribute`).  However, it is
 encouraged that attributes only be used for configuring properties in static
 markup, and instead that properties are set directly for changes at runtime.
-</div>
 
 ### Configuring boolean properties
 

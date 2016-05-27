@@ -486,10 +486,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this._updateTocStyles();
 
         if (this._shouldCollapseToc) {
-          // Reset the TOC to be a relatively positioned element.
           var wrapper = this._tocElement.parentElement;
-          this.toggleClass('relative', true, wrapper);
           this.toggleClass('fixed', false, wrapper);
+          this._resetWrapperToRelativePosition(wrapper);
         }
       }
     },
@@ -512,7 +511,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     _onScroll: function() {
       // We only need to do something if the toc is on the right.
-      if (!this._tocElement || !this._tocElement.classList.contains('right-nav')) {
+      if (!this._tocElement) {
         return;
       }
 
@@ -522,37 +521,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       var wrapper = this._tocElement.parentElement;
+      if (this._shouldCollapseToc) {
+        return;
+      }
 
-      // How much we have scrolled.
       var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-
-      // The bottom of the toc.
-      var tocBottom = scrollTop + wrapper.offsetHeight;
-
-      // How much space we have available for the toc.
-      // where on the screen we started + how much the view is scrolled + the height.
-      var articleBottom = article.getBoundingClientRect().top + scrollTop + article.offsetHeight;
-
-      // If the remaining content is smaller than the window, then the footer is
-      // visible and its offset is the height of the remaining content. Otherwise
-      // it's below the fold, so use the window size instead.
-      var remainingContentSize = articleBottom - scrollTop;
-      var visibleFooterOffset = Math.min(remainingContentSize, window.innerHeight);
-
-      this._resizeToc(wrapper, scrollTop, 64, 20, visibleFooterOffset);
+      this._resizeToc(wrapper, article, scrollTop);
     },
 
-    _resizeToc: function(nav, scrollTop, topPadding, bottomPadding, footerOffset) {
+    _resizeToc: function(wrapper, article, scrollTop) {
       // If we haven't scrolled passed the target position, relatively position the TOC.
       var fixed = scrollTop >= this._stickyTocPosition;
-      this.toggleClass('relative', !fixed, nav);
-      this.toggleClass('fixed', fixed, nav);
+      this.toggleClass('fixed', fixed, wrapper);
 
       if (fixed) {
-        var maxHeight = footerOffset - topPadding - bottomPadding;
-        nav.style.display = maxHeight > 0 ? '' : 'none';
-        nav.style.maxHeight = maxHeight + 'px';
-        nav.style.top = topPadding + 'px';
+        // How much space we have available for the toc.
+        // where on the screen we started + how much the view is scrolled + the height.
+        var articleBottom = article.getBoundingClientRect().top + scrollTop + article.offsetHeight;
+
+        // If the remaining content is smaller than the window, then the footer is
+        // visible and its offset is the height of the remaining content. Otherwise
+        // it's below the fold, so use the window size instead.
+        var remainingContentSize = articleBottom - scrollTop;
+        var visibleFooterOffset = Math.min(remainingContentSize, window.innerHeight);
+
+        var topPadding = 64;
+        var bottomPadding = 20;
+        var maxHeight = visibleFooterOffset - topPadding - bottomPadding;
+        wrapper.style.display = maxHeight > 0 ? '' : 'none';
+        wrapper.style.maxHeight = maxHeight + 'px';
+        wrapper.style.top = topPadding + 'px';
+      } else {
+        this._resetWrapperToRelativePosition(wrapper);
       }
     },
 
@@ -561,9 +561,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this._stickyTocPosition = this._getStickyTocPosition();
       this._tocElement.open = !this._shouldCollapseToc;
 
-      // Apply styles.
-      this.toggleClass('right-nav', !this._shouldCollapseToc, this._tocElement);
-      this.toggleClass('right-nav', !this._shouldCollapseToc, Polymer.dom(this).querySelector('article'));
+      // Apply styles to all the divs that need to know there's a TOC
+      this.toggleClass('right-nav', !this._shouldCollapseToc, Polymer.dom(this).querySelector('.article-wrapper'));
+      this.toggleClass('right-nav', !this._shouldCollapseToc, Polymer.dom(this).querySelector('.header-wrapper'));
+    },
+
+    _resetWrapperToRelativePosition: function(wrapper) {
+      wrapper.style.display = '';
+      wrapper.style.maxHeight = '';
+      wrapper.style.top = '0px';
     }
   });
   </script>

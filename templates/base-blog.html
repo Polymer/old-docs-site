@@ -20,11 +20,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- Because we want the styles to be loaded when the pw-shell changes its
       content, they need to be here, and not in the <head> -->
     <style>
-      #header > * {
-        max-width: 1000px;
-        margin: 0 auto;
-      }
-
       google-youtube {
         margin-right: 40px;
         min-width: 60%;
@@ -40,12 +35,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-bottom: 40px;
       }
 
-      .article-body {
-        font-size: 16px;
-        padding-top: 20px;
-        background: #fafafa;
-      }
-
       .author img {
         font-size: smaller;
         color: #757575;
@@ -56,15 +45,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         height: 30px;
       }
 
+      .header-wrapper {
+        max-width: 800px;
+      }
+
+      .header-wrapper.right-nav {
+        box-sizing: content-box;
+        padding-right: 300px;
+      }
+
+      .article-wrapper {
+        width: 100%;
+      }
+
+      article {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 1000px;
+      }
+
       .author > p {
         display: inline-block;
         margin: 0;
       }
 
-      .article-body main {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 10px;
+      section.blue h1 {
+        font-size: 32px;  /* Needed because the page.md style overiddes this */
+        font-weight: 400;
       }
 
       section.blue h1 {
@@ -76,33 +83,54 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           font-size: 22px;  /* Needed because the page.md style overiddes this */
         }
       }
+
+      /* Match the main media-queries to the header, but don't worry about centering
+       * the content, since we do that separately.
+       */
+      .main-section {
+        background: #fafafa;
+      }
+
+      @media (min-width: 1001px) {
+        .main-section {
+          padding-right: 40px;  /* So that the TOC doesn't jump */
+        }
+      }
+
+      .main-section main {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
     </style>
 
     {% if markdown %}
     <!-- Single blog post page -->
     <section class="short blue gradient-light" id="header">
-      <div>
-        <h1>{{{active_article.title}}}</h1>
-        <p>{{{active_article.description}}}</p>
+      <div class="header-wrapper">
+        <div>
+          <h1>{{{active_article.title}}}</h1>
+          <p>{{{active_article.description}}}</p>
 
-        <div class="author">
-          <p>
-            <a href="https://plus.google.com/{{{active_article.author.gplus}}}" target="blank_">
-              <img src="{{{active_article.author.profile_pic}}}" alt="{{{active_article.author.full_name}}} profile pic" title="{{{active_article.author.full_name}}}">
-            </a>
-            <a href="{{{active_article.author.web}}}" target="blank_">{{{active_article.author.full_name}}}</a>
-          </p>
-          <p>, <time pubdate="" datetime="{{{active_article.published}}}">{{{active_article.published}}}</time></p>
+          <div class="author">
+            <p>
+              <a href="https://plus.google.com/{{{active_article.author.gplus}}}" target="blank_">
+                <img src="{{{active_article.author.profile_pic}}}" alt="{{{active_article.author.full_name}}} profile pic" title="{{{active_article.author.full_name}}}">
+              </a>
+              <a href="{{{active_article.author.web}}}" target="blank_">{{{active_article.author.full_name}}}</a>
+            </p>
+            <p>, <time pubdate="" datetime="{{{active_article.published}}}">{{{active_article.published}}}</time></p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="article-body">
+    <section class="short main-section">
       <main>
         {% block content %}{% endblock %}
       </main>
     </section>
-
     {% else %}
     <!-- Blog landing page -->
     <section class="blue short gradient-light">
