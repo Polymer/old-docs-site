@@ -503,7 +503,7 @@ The custom properties shim doesn't support styling distributed elements.
 ## Custom element for document styling (custom-style) {#custom-style}
 
 
-{{site.project_title}} provides a `<style is="custom-style">` custom element
+{{site.project_title}} provides a `<style is="custom-style">` type extension custom element
 for defining styles **in the main document** that can take advantage of several
 special features of Polymer's styling system:
 
@@ -555,7 +555,7 @@ Example:
 All features of `custom-style` are available when defining styles as part of
 Polymer elements (for example, in `<style>` elements within a custom element's
 `<dom-module>`). The exception is the `:root` selector, which is only useful at
-the document level. **The `custom-style` extension should only be used for
+the document level. **The `custom-style` type extension custom element should only be used for
 defining document styles, outside of a custom element's local DOM.**
 
 ## Shared styles and external stylesheets {#style-modules}
