@@ -41,6 +41,11 @@ handlers:
   mime_type: application/manifest+json
   secure: always
 
+- url: /service-worker.js
+  static_files: service-worker.js
+  upload: service-worker.js
+  secure: always
+
 # Special exception for the summit site so it doesn't require
 # a trailing slash
 - url: /summit-2015

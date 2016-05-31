@@ -267,6 +267,7 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
   let app = gulp.src([
       '*',
       'app/manifest.json',
+      'app/service-worker.js',
       '!{README.md,package.json,gulpfile.js,test_runner.py}',
     ], {nodir: true})
     .pipe(gulp.dest('dist'));
@@ -287,7 +288,8 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     .pipe(gulp.dest('dist'));
 
   let bower = gulp.src([
-      'app/bower_components/webcomponentsjs/webcomponents*.js'
+      'app/bower_components/webcomponentsjs/webcomponents*.js',
+      'app/bower_components/sw-toolbox/*'
     ], {base: 'app/'})
     .pipe(gulp.dest('dist'));
 
