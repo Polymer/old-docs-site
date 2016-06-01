@@ -19,11 +19,6 @@
 
 <script>
   window.Polymer = window.Polymer || {dom: 'shadow', lazyRegister: true};
-  // Register service worker if supported.
-  if ('serviceWorker' in navigator) {
-    console.log('Registering service worker');
-    navigator.serviceWorker.register('/service-worker.js');
-  }
 </script>
 <!-- Node: the webcomponents polyfill is lazily loaded in app.js -->
 <link rel="import" href="/elements/pw-shell.html" async>

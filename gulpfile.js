@@ -16,6 +16,7 @@ let matter = require('gulp-gray-matter');
 let styleMod = require('gulp-style-modules');
 let cssslam = require('css-slam');
 let run = require('gulp-run');
+var swPrecache = require('sw-precache');
 
 let argv = require('yargs').argv;
 let browserSync = require('browser-sync').create();
@@ -83,6 +84,43 @@ function createReloadServer() {
     open: !!argv.open,
     proxy: 'localhost:8080' // proxy serving through app engine.
   });
+}
+
+function writeServiceWorkerFile() {
+  var path = require('path');
+  var rootDir = 'dist';
+
+  var config = {
+    cacheId: 'polymerproject',
+    staticFileGlobs: [
+      rootDir + '/images/logos/p-logo.png',
+      rootDir + '/images/logos/p-logo-32.png',  /* Be conservative with the images */
+      rootDir + '/elements/**',
+      rootDir + '/js/*.js',
+      rootDir + '/css/*.css',
+      // rootDir + '/1.0/index.html',
+      // rootDir + '/1.0/index.html',  /* Don't need to cache the 404 pages */
+      // rootDir + '/1.0/blog/**/*',
+      // rootDir + '/1.0/docs/**/*',
+      // rootDir + '/1.0/start/**/*',
+      // rootDir + '/1.0/toolbox/**/*',
+      rootDir + '/bower_components/**/webcomponents-lite.js',
+    ],
+    navigateFallback: '/1.0/index.html',
+    runtimeCaching: [{
+      urlPattern: /app\/\/1\.0\/blog\/*/,
+      handler: 'fastest',
+      options: {
+        cache: {
+          maxEntries: 10,
+          name: 'blog-cache'
+        }
+      }
+    }],
+    stripPrefix: rootDir + '/',
+    verbose: true  /* When debugging, you can enable this to true  */
+  };
+  swPrecache.write(path.join(rootDir, 'service-worker.js'), config);
 }
 
 gulp.task('style', 'Compile sass, autoprefix, and minify CSS', function() {
@@ -353,11 +391,16 @@ gulp.task('clean', 'Remove dist/ and other built files', function() {
   return del(['dist', 'app/css']);
 });
 
+gulp.task('generate-service-worker', function() {
+  writeServiceWorkerFile();
+});
+
+
 // Default task. Build the dest dir.
 gulp.task('default', 'Build site', ['clean', 'jshint'], function(done) {
   runSequence(
     'hack-bundles',
     ['style', 'images', 'vulcanize-demos', 'js'],
-    'copy', 'md:docs', 'md:blog',
+    'copy', 'md:docs', 'md:blog', 'generate-service-worker',
     done);
 });
