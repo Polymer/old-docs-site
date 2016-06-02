@@ -14,7 +14,7 @@ var escape = require('html-escape');
 var apiDocsPath = '../app/1.0/docs/api/';
 
 // TODO: Check out an actual release SHA to generate docs off of.g
-var releaseSha = 'master'; //'27d90bfaeb13f1d1a822f8a5e6e26a5403f5ed2c';
+var releaseSha = 'v1.5.0-dev'; //'27d90bfaeb13f1d1a822f8a5e6e26a5403f5ed2c';
 
 /**
  * Everything is chained, so running this will do the following:
