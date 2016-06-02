@@ -100,7 +100,7 @@ function writeServiceWorkerFile() {
       rootDir + '/js/*.js',
       rootDir + '/css/*.css',
       rootDir + '/1.0/index.html',
-      rootDir + '/bower_components/**/webcomponents-lite.js',
+      rootDir + '/bower_components/**/webcomponents-lite.min.js',
     ],
     navigateFallback: '/1.0/index.html',
     runtimeCaching: [{
@@ -339,7 +339,7 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
 
   let bower = gulp.src([
       'app/bower_components/webcomponentsjs/webcomponents*.js',
-      'app/bower_components/sw-toolbox/*'
+      'app/bower_components/sw-precache/*'
     ], {base: 'app/'})
     .pipe(gulp.dest('dist'));
 
