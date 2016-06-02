@@ -342,7 +342,8 @@ The following CSS adds a border shadow to the drawer and provides a colored scri
 
 ### Drawer layouts
 
-The [`<app-drawer-layout>`](#link) element creates a responsive layout with a single drawer. On
+The [`<app-drawer-layout>`](https://elements.polymer-project.org/elements/app-layout?active=app-drawer-layout)
+element creates a responsive layout with a single drawer. On
 wider screens, the drawer acts as a persistent sidebar by default; it's always displayed and swipe
 and fling gestures are disabled.
 
