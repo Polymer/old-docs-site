@@ -11,6 +11,45 @@ title: Release notes
   }
 </style>
 
+## [Release 1.5.0](https://github.com/Polymer/polymer/tree/v1.5.0) (2016-05-31) {#v1-5-0}
+
+This release includes one new feature:
+
+-  `Polymer.Gestures.resetMouseCanceller`: New API for resetting the "mouse canceller" that prevents
+    mouse event driven gestures when using a touch screen. This API is most likely to be useful for
+    testing.
+
+This release includes the following bug fixes:
+
+-   [#2350](https://github.com/Polymer/polymer/issues/2350),
+    [#2415](https://github.com/Polymer/polymer/issues/2415),
+    [#3179](https://github.com/Polymer/polymer/issues/3179),
+    [#3239](https://github.com/Polymer/polymer/issues/3239). Refactor how observers get their
+    arguments.
+
+-   [#3179](https://github.com/Polymer/polymer/issues/3179). Make notifyPath's value argument optional.
+
+-   [#3364](https://github.com/Polymer/polymer/issues/3364) When a `dom-bind`, `dom-if` or
+    `dom-repeat` is in the main document, binding a value to class attribute doesn't work correctly
+    in Shady DOM.
+
+-   [#3515](https://github.com/Polymer/polymer/issues/3515). Changes in dynamic computed functions
+    don't get triggered in `dom-if` templates.
+
+-   [#3525](https://github.com/Polymer/polymer/issues/3525): Make lazy registration compatible with
+    platforms (like IE10) on which a custom element's prototype must be simulated.
+
+-   [#3531](https://github.com/Polymer/polymer/issues/3531). Give the `detached` callback the same
+    "wait for first paint" semantics as the `attached` callback for consistency. Prior to this fix,
+    in some cases it was possible for `detached` to fire before `attached`.
+
+-   [#3546](https://github.com/Polymer/polymer/pull/3546) Compute and use correct annotation value
+    during config. This fix prevents some bindings (such as compound bindings and negated binding
+    values) from receiving the incorrect value during configuration.
+
+-   [#3661](https://github.com/Polymer/polymer/issues/3661) Re-use cached style element that needs
+    to be replaced in the document rather than creating a new one.
+
 ## [Release 1.4.0](https://github.com/Polymer/polymer/tree/v1.4.0) (2016-03-18) {#v1-4-0}
 
 This release includes one new feature:
