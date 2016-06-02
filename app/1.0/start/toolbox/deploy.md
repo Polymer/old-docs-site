@@ -92,7 +92,8 @@ Replace `{project name}` with the name you chose in the previous step.
     - url: /.*
       static_files: build/bundled/index.html
       upload: build/bundled/index.html
-      secure: always    ```
+      secure: always    
+    ```
 
 1.  Deploy.
 
