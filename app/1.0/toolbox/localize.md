@@ -39,7 +39,7 @@ Sample application loading resources from an external file. { .caption.}
 <dom-module id="x-app">
    <template>
     <!-- use the localize method to localize text -->
-    <div>{{localize('hello', 'Batman')}}</div>
+    <div>{{localize('hello', 'name', 'Batman')}}</div>
    </template>
    <script>
       Polymer({
@@ -72,6 +72,3 @@ The main app is also responsible for loading the `Intl` polyfill
 
 Each element that needs to localize messages should also add the `Polymer.AppLocalizationBehavior`
 and use the `localize` method to translate strings, as shown above.
-
-
-

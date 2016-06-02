@@ -39,10 +39,12 @@ so a service worker script is automatically generated when you build your app.
 
 However, to use the service worker, you need to add code to register it:
 
-    // Register service worker if supported.
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js');
-    }
+```js
+// Register service worker if supported.
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js');
+}
+```
 
 Registering a service worker doesn't speed up the first load of your site, so you can delay
 registering it until after your app has loaded.
@@ -71,7 +73,7 @@ parameters.
 The following config file sets up some common options, including falling back to the `/index.html`
 file when offline.
 
-```
+```js
 module.exports = {
   staticFileGlobs: [
     '/index.html',
@@ -94,10 +96,7 @@ The library supports a number of other features, including runtime caching of
 your app's dynamic content.
 
 For more information on the library, see [Service Worker Precache Getting
-Started](https://github.com/GoogleChrome/sw-
-precache/blob/master/GettingStarted.md).
+Started](https://github.com/GoogleChrome/sw-precache/blob/master/GettingStarted.md).
 
 For background on service workers, see [Introduction to Service
 Worker](https://developers.google.com/web/fundamentals/primers/service-worker/) on Web Fundamentals.
-
-
