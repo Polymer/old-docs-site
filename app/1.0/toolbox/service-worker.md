@@ -39,11 +39,11 @@ so a service worker script is automatically generated when you build your app.
 
 However, to use the service worker, you need to add code to register it:
 
-```
-    // Register service worker if supported.
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js');
-    }
+```js
+// Register service worker if supported.
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js');
+}
 ```
 
 Registering a service worker doesn't speed up the first load of your site, so you can delay
@@ -73,7 +73,7 @@ parameters.
 The following config file sets up some common options, including falling back to the `/index.html`
 file when offline.
 
-```
+```js
 module.exports = {
   staticFileGlobs: [
     '/index.html',
