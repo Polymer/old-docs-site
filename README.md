@@ -4,11 +4,19 @@ https://www.polymer-project.org/
 
 ### Install
 
-    git clone https://github.com/Polymer/docs2 --recursive
-    cd docs2
+    git clone https://github.com/Polymer/docs --recursive
+    cd docs
     npm install
 
 Note: `--recursive` will init and checkout submodules as well.
+
+If you have cloned and built an earlier version of the doc site (before June 2016), note
+that the site has changed and **the master branch shares no history with the old master 
+branch.** The easiest way to get up and running with the new site is to create a brand new
+repo as described above, to avoid introducing any artifacts from the old doc site. 
+
+You can find the old doc site (including Polymer 0.5 docs) in the
+[docs-05](https://github.com/Polymer/docs/tree/docs-05) branch.
 
 ### Running the site
 
