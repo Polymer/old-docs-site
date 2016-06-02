@@ -93,34 +93,36 @@ function writeServiceWorkerFile() {
   var config = {
     cacheId: 'polymerproject',
     staticFileGlobs: [
-      rootDir + '/images/logos/p-author-logo.png',
-      rootDir + '/images/logos/p-logo.png',
-      rootDir + '/images/logos/p-logo-32.png',  /* Be conservative with the images */
+      rootDir + '/1.0/index.html',
       rootDir + '/elements/**',
       rootDir + '/js/*.js',
       rootDir + '/css/*.css',
-      rootDir + '/1.0/index.html',
       rootDir + '/bower_components/**/webcomponents-lite.min.js',
     ],
     navigateFallback: '/1.0/index.html',
-    runtimeCaching: [{
-      urlPattern: /\/1\.0\/index\.html/,
+    runtimeCaching: [
+    {
+      urlPattern: /\/images\/*\//,
       handler: 'fastest',
     },
     {
-      urlPattern: /\/1\.0\/docs\/*/,
+      urlPattern: /\/1\.0\/docs\//,
       handler: 'fastest',
     },
     {
-      urlPattern: /\/1\.0\/start\/*/,
+      urlPattern: /\/1\.0\/start\//,
       handler: 'fastest',
     },
     {
-      urlPattern: /\/1\.0\/toolbox\/*/,
+      urlPattern: /\/1\.0\/toolbox\//,
       handler: 'fastest',
     },
     {
-      urlPattern: /\/1\.0\/blog\/*/,
+      urlPattern: /\/1\.0\/homepage\//,
+      handler: 'fastest',
+    },
+    {
+      urlPattern: /\/1\.0\/blog\//,
       handler: 'fastest',
       options: {
         cache: {
@@ -130,7 +132,7 @@ function writeServiceWorkerFile() {
       }
     }],
     stripPrefix: rootDir + '/',
-    verbose: true  /* When debugging, you can enable this to true  */
+    verbose: false  /* When debugging, you can enable this to true  */
   };
   swPrecache.write(path.join(rootDir, 'service-worker.js'), config);
 }
