@@ -93,22 +93,34 @@ function writeServiceWorkerFile() {
   var config = {
     cacheId: 'polymerproject',
     staticFileGlobs: [
+      rootDir + '/images/logos/p-author-logo.png',
       rootDir + '/images/logos/p-logo.png',
       rootDir + '/images/logos/p-logo-32.png',  /* Be conservative with the images */
       rootDir + '/elements/**',
       rootDir + '/js/*.js',
       rootDir + '/css/*.css',
-      // rootDir + '/1.0/index.html',
-      // rootDir + '/1.0/index.html',  /* Don't need to cache the 404 pages */
-      // rootDir + '/1.0/blog/**/*',
-      // rootDir + '/1.0/docs/**/*',
-      // rootDir + '/1.0/start/**/*',
-      // rootDir + '/1.0/toolbox/**/*',
+      rootDir + '/1.0/index.html',
       rootDir + '/bower_components/**/webcomponents-lite.js',
     ],
     navigateFallback: '/1.0/index.html',
     runtimeCaching: [{
-      urlPattern: /app\/\/1\.0\/blog\/*/,
+      urlPattern: /\/1\.0\/index\.html/,
+      handler: 'fastest',
+    },
+    {
+      urlPattern: /\/1\.0\/docs\/*/,
+      handler: 'fastest',
+    },
+    {
+      urlPattern: /\/1\.0\/start\/*/,
+      handler: 'fastest',
+    },
+    {
+      urlPattern: /\/1\.0\/toolbox\/*/,
+      handler: 'fastest',
+    },
+    {
+      urlPattern: /\/1\.0\/blog\/*/,
       handler: 'fastest',
       options: {
         cache: {
