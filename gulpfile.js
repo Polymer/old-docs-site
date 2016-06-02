@@ -94,6 +94,7 @@ function writeServiceWorkerFile() {
     cacheId: 'polymerproject',
     staticFileGlobs: [
       rootDir + '/1.0/index.html',
+      rootDir + '/1.0/about.html',
       rootDir + '/elements/**',
       rootDir + '/js/*.js',
       rootDir + '/css/*.css',
