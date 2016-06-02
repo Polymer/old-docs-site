@@ -744,7 +744,6 @@ The following code will lead to an infinity loop:
     },
     // WARNING: ANTI-PATTERN! DO NOT USE IT
     nameChanged: function(newFirstName) {
-      // this.lastName could be undefined!
       this.firstName = 'Sr. ' + newFirstName;
       // will jump recursively to nameChanged
     }
