@@ -102,7 +102,7 @@ while implementing your unit tests.
 
 To create an asynchronous test, pass `done` as an argument to the test function
 and then call `done()` when the test is complete. The `done` argument is a
-signal to Mocha that the test is asynchronous. When Mocha runs the test it
+signal to Mocha that the test is asynchronous. When Mocha runs the test,
 it waits until the test code invokes the `done()` callback. If the `done()`
 callback isn't invoked, the test eventually times out and Mocha reports the test
 as a failure.
@@ -179,7 +179,7 @@ other element that always returns consistent data.
 
 Use `replace()` to create stub elements.
 
-```
+```js
 setup(function() {
   replace('paper-button').with('fake-paper-button');
 });
@@ -288,7 +288,7 @@ running Web Component Tester, specify the path to the HTML file as the first arg
 <html>
   <head>
     <meta charset="utf-8">
-    <script src=”../bower_components/webcomponentsjs/web-components-lite.js”></script>
+    <script src=”../bower_components/webcomponentsjs/webcomponents-lite.js”></script>
     <script src=”../bower_components/web-component-tester/browser.js”></script>
   </head>
   <body>
@@ -312,7 +312,7 @@ for an example.
 Use Polymer's [DOM API](/1.0/docs/devguide/local-dom#dom-api) to access
 and modify local DOM children.
 
-```
+```js
 test('click sets isWaiting to true', function() {
   myEl.$$('button').click();
   assert(myEl.isWaiting, true);
@@ -363,7 +363,7 @@ To test out how a test suite behaves when the browser runs native
 shadow DOM, create a [test set](#test-sets) and pass `dom=shadow` as
 a query string when Web Component Tester loads your test suites.
 
-```
+```js
 WCT.loadSuites([
   'basic-test.html',
   'basic-test.html?dom=shadow'
