@@ -45,7 +45,7 @@ icon-toggle.html  { .caption }
 Because of the default values, you can still style the `<icon-toggle>` just by
 setting `color`, but now you have other options.
 
-Open up `icon-toggle-demo.html `and set the new properties. (If you downloaded
+Open up `icon-toggle-demo.html` and set the new properties. (If you downloaded
 the starting code, this file is in the `demo` folder.)
 
 icon-toggle-demo.html { .caption }
