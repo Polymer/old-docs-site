@@ -112,7 +112,7 @@ If everything looks good, move on to [step 2](step-2).
 
 
 
-## Step 1: No install version {#noinstall}
+## Step 2: No install version {#noinstall}
 
 To run through this tutorial online without installing anything:
 
