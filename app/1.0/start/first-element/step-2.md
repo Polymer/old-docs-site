@@ -147,7 +147,7 @@ an icon named "polymer".
 
 ### Style the local DOM
 
-There are a number of new CSS selectors to work with local DOM. The `icon-toggle.html `file already includes a `:host` selector, discussed earlier, to style the top-level `<icon-toggle>` element.
+There are a number of new CSS selectors to work with local DOM. The `icon-toggle.html ` file already includes a `:host` selector, discussed earlier, to style the top-level `<icon-toggle>` element.
 
 To style the `<iron-icon>` element, add the following CSS inside the `<style>` tag after the existing content:
 
