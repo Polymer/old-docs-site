@@ -94,37 +94,47 @@ function writeServiceWorkerFile() {
     cacheId: 'polymerproject',
     staticFileGlobs: [
       `${rootDir}/1.0/index.html`,
+      `${rootDir}/1.0/shell.html`,
       `${rootDir}/1.0/about.html`,
       `${rootDir}/elements/**`,
       `${rootDir}/js/*.js`,
       `${rootDir}/css/*.css`,
       `${rootDir}/bower_components/**/webcomponents-lite.min.js`,
     ],
-    navigateFallback: '/1.0/index.html',
+    dynamicUrlToDependencies: {
+      '/1.0/shell.html': [
+        path.join(rootDir, 'templates', 'base-devguide.html'),
+        path.join(rootDir, 'templates', 'head-meta.html'),
+        path.join(rootDir, 'templates', 'site-nav.html'),
+        path.join(rootDir, 'templates', 'base-blog.html'),
+        path.join(rootDir, 'templates', 'page-md-styles.html'),
+      ]
+    },
+    navigateFallback: '/1.0/shell.html',
     runtimeCaching: [
     {
       urlPattern: /\/images\/*\//,
-      handler: 'fastest',
+      handler: 'networkFirst',
     },
     {
       urlPattern: /\/1\.0\/docs\//,
-      handler: 'fastest',
+      handler: 'networkFirst',
     },
     {
       urlPattern: /\/1\.0\/start\//,
-      handler: 'fastest',
+      handler: 'networkFirst',
     },
     {
       urlPattern: /\/1\.0\/toolbox\//,
-      handler: 'fastest',
+      handler: 'networkFirst',
     },
     {
       urlPattern: /\/1\.0\/homepage\//,
-      handler: 'fastest',
+      handler: 'networkFirst',
     },
     {
       urlPattern: /\/1\.0\/blog\//,
-      handler: 'fastest',
+      handler: 'networkFirst',
       options: {
         cache: {
           maxEntries: 10,
