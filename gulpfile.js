@@ -114,27 +114,27 @@ function writeServiceWorkerFile() {
     runtimeCaching: [
     {
       urlPattern: /\/images\/*\//,
-      handler: 'networkFirst',
+      handler: 'fastest',
     },
     {
       urlPattern: /\/1\.0\/docs\//,
-      handler: 'networkFirst',
+      handler: 'fastest',
     },
     {
       urlPattern: /\/1\.0\/start\//,
-      handler: 'networkFirst',
+      handler: 'fastest',
     },
     {
       urlPattern: /\/1\.0\/toolbox\//,
-      handler: 'networkFirst',
+      handler: 'fastest',
     },
     {
       urlPattern: /\/1\.0\/homepage\//,
-      handler: 'networkFirst',
+      handler: 'fastest',
     },
     {
       urlPattern: /\/1\.0\/blog\//,
-      handler: 'networkFirst',
+      handler: 'fastest',
       options: {
         cache: {
           maxEntries: 10,
