@@ -80,8 +80,7 @@ In the immediate future we’ll be exploring improvements to the shady DOM syste
 
 The "theming problem"—you want to be able to easily style Polymer
 elements from the outside, but `::shadow` and `/deep/` proved to be a poor solution and are slated to be removed from the Shadow DOM spec. This release includes a robust [system for ergonomic cross-scope styling](/1.0/docs/devguide/styling#xscope-styling-details)
-inspired by and based on [CSS Custom Properties](http://dev.w3.org/csswg/css-
-variables/).
+inspired by and based on [CSS Custom Properties](http://dev.w3.org/csswg/css-variables/).
 
 We’ll continue to refine and improve the performance of this system. We’ll also be exploring new features around mixing in bags of properties to be redistributed to individual child elements, as well as passing arguments to mixins.
 
