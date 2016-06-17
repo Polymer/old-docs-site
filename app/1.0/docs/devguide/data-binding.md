@@ -271,7 +271,7 @@ Example 5: Error / non-sensical state { .caption }
 ### Change notification protocol
 
 When you configure a declared property with the `notify` flag set to `true`,
-{{site.project_title}} propagates data changes upward by firing events:
+Polymer propagates data changes upward by firing events:
 
 *   When the property changes, the element fires a non-bubbling DOM
     event to indicate those changes to interested hosts.
@@ -286,12 +286,12 @@ listener to an element to [notify external elements, frameworks,
 or libraries](properties#notify-external) of property
 changes.
 
-This is essentially what {{site.project_title}} does when you create a
+This is essentially what Polymer does when you create a
 two-way data binding.
 
 ### Two-way binding to native elements {#two-way-native}
 
-As mentioned above, {{site.project_title}} uses an event naming convention to achieve two-way
+As mentioned above, Polymer uses an event naming convention to achieve two-way
 binding.
 
 To two-way bind to native elements or non-Polymer elements that _don't_
@@ -315,9 +315,9 @@ Example: { .caption }
 <video url="..." current-time="{{hostTime::timeupdate}}">
 
 
-: When binding to standard notifying properties on {{site.project_title}} elements,
-ifying the event name is unnecessary, as the default convention will be
-.  The following constructions are equivalent:
+: When binding to standard notifying properties on Polymer elements,
+specifying the event name is unnecessary, as the default convention will be
+to listen for `property-changed` events.  The following constructions are equivalent:
 
 
 <!-- Listens for `value-changed` event -->
@@ -349,7 +349,7 @@ You must use a computed binding as described in [Binding to array items](#array-
 For a path binding to update, the path value must be updated in one of the
 following ways:
 
-*   Using a {{site.project_title}}
+*   Using a Polymer
     [property binding](#property-binding) to another element.
 
 *   Using the [`set`](#set-path) API, which
