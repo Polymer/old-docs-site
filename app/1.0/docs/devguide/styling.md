@@ -144,7 +144,10 @@ pseudo-element, which allowed writing rules that pierce through the Shadow DOM
 encapsulation boundary. However, these proved problematic and have been deprecated.
 {.alert .alert-info}
 
-### Custom CSS properties {#xscope-styling-details}
+<!-- retain legacy anchor -->
+<a id="xscope-styling-details"></a>
+
+### Custom CSS properties {#custom-css-properties}
 
 Polymer includes a shim for custom CSS properties inspired by (and compatible with)
 the future W3C [CSS Custom Properties for Cascading Variables](http://dev.w3.org/csswg/css-variables/)

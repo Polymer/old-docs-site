@@ -32,7 +32,7 @@ With the polyfills, Polymer works in these browsers:
   <td>✅</td>
 </tr>
 <tr>
-  <td class="feature-title"><a href="//www.polymer-project.org/platform/html-imports.html">HTML Imports</a></td>
+  <td class="feature-title"><a href="http://www.html5rocks.com/en/tutorials/webcomponents/imports/">HTML Imports</a></td>
   <td>✅</td>
   <td>✅</td>
   <td>✅</td>
@@ -41,7 +41,7 @@ With the polyfills, Polymer works in these browsers:
   <td>✅</td>
 </tr>
 <tr>
-  <td class="feature-title"><a href="//www.polymer-project.org/platform/custom-elements.html">Custom Elements</a></td>
+  <td class="feature-title"><a href="http://www.html5rocks.com/en/tutorials/webcomponents/customelements/">Custom Elements</a></td>
   <td>✅</td>
   <td>✅</td>
   <td>✅</td>
@@ -50,7 +50,7 @@ With the polyfills, Polymer works in these browsers:
   <td>✅</td>
 </tr>
 <tr>
-  <td class="feature-title"><a href="//www.polymer-project.org/platform/shadow-dom.html">Shadow DOM</a></td>
+  <td class="feature-title"><a href="http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/">Shadow DOM</a></td>
   <td>✅</td>
   <td>✅</td>
   <td>✅</td>

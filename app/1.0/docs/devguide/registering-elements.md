@@ -44,6 +44,9 @@ Polymer value-added features), so you cannot set up your own
 prototype chain. However, you can use [behaviors](#prototype-mixins) to
 share code between elements.
 
+<!-- legacy anchor -->
+<a id="bespoke-constructor"></a>
+
 ### Define a custom constructor {#custom-constructor}
 
 The `Polymer` method returns a basic constructor that can be used to

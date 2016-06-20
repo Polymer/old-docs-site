@@ -11,7 +11,7 @@ Polymer CLI is still pre-release. Some options may be subject to change.
 
 1.  Install [Git](https://git-scm.com/downloads).
 
-1.  Install the current LTS version (4.x) of 
+1.  Install the current LTS version (4.x) of
     [Node.js](https://nodejs.org/en/download/) or newer.
 
 1.  Install the latest version of Bower.
@@ -66,7 +66,7 @@ This section shows you how to start an element project.
 1.  Enter a name for your element.
 
     The [custom elements
-    specification](https://www.w3.org/TR/custom-elements/#concepts) requires the
+    specification](https://www.w3.org/TR/2016/WD-custom-elements-20160226/#concepts) requires the
     element name to contain a dash.
     {.alert .alert-info}
 

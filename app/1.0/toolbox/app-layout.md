@@ -40,7 +40,7 @@ templates for inspiration:
     layout with a simple header and a responsive drawer.
 -   [ZUPERKÜLBLOG](https://polymerelements.github.io/app-layout/templates/publishing/). A basic blog-style
     layout, similar to Getting Started, but with a fixed header.
--   [Shrine](https://polymerelements.github.io/app-layout/templates/shrine/#feature). An e-commerce-style
+-   [Shrine](https://polymerelements.github.io/app-layout/templates/shrine/). An e-commerce-style
     site that implements a number of patterns, including tab navigation that's replaced by a
     navigation drawer on narrow screens, and multiple toolbars that collapse to a single toolbar as
     you scroll down.
