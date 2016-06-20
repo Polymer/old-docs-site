@@ -50,7 +50,7 @@ The Polymer micro layer provides bare-minimum Custom Element sugaring.
 | [Custom constructor support](registering-elements#bespoke-constructor) | constructor: function() { … }
 | [Basic lifecycle callbacks](registering-elements#basic-callbacks) | created, attached, detached, attributeChanged
 | [Native HTML element extension](registering-elements#type-extension) | extends: ‘…’
-| [Declared properties](properties#property-config) | properties: { … }
+| [Declared properties](properties) | properties: { … }
 | [Attribute deserialization to property](properties#attribute-deserialization) | properties: { \<property>: \<Type> }
 | [Static attributes on host](registering-elements#host-attributes) | hostAttributes: { \<attribute>: \<value> }
 | [Behaviors](behaviors) | behaviors: [ … ]

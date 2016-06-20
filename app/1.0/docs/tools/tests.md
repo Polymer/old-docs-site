@@ -6,7 +6,7 @@ title: Test your elements
 
 This guide shows you the basics of using Polymer CLI to run unit tests, and
 how to accomplish various tasks and scenarios using the Web Component Tester
-library (the underlying library that powers Polymer CLI's testing tools). 
+library (the underlying library that powers Polymer CLI's testing tools).
 
 ## Overview
 
@@ -34,69 +34,69 @@ popular third-party tools, including:
 
 For demonstration purposes, this guide shows you how to install Polymer CLI
 and initialize an element project. You'll then use this project to learn how
-to add and run unit tests. 
+to add and run unit tests.
 
 1.  (OS X only) [Manually install][selenium] the latest SafariDriver
     extension for Selenium [(`SafariDriver.safariextz`)][safaridriver] to ensure
     that Web Component Tester can run properly. See the
     [Web Component Tester Polycast][workaround-example] for
     a demonstration. Note: the Polycast is somewhat outdated, but the section
-    that the URL links to is still relevant. 
+    that the URL links to is still relevant.
 
-1.  Install Polymer CLI. Follow the directions in 
-    [Install Polymer CLI](polymer-cli#install) to get started. 
+1.  Install Polymer CLI. Follow the directions in
+    [Install Polymer CLI](polymer-cli#install) to get started.
 
 1.  [Create an element project](polymer-cli#element). This guide assumes that
-    your element project directory and your element are both named `my-el`. 
+    your element project directory and your element are both named `my-el`.
 
-1.  `cd` to the base directory of your project. 
+1.  `cd` to the base directory of your project.
 
 1.  Run `ls`.
 
     You'll see that your element project contains a
-    directory called `test`. This is where all of your unit tests should be 
-    stored. 
+    directory called `test`. This is where all of your unit tests should be
+    stored.
 
-    When you run `polymer test`, Web Component Tester automatically 
+    When you run `polymer test`, Web Component Tester automatically
     searches for a `test` directory and runs any tests it finds in there. If
     you use another directory name, you'll need to specify it when you run
-    `polymer test`. 
+    `polymer test`.
     {.alert .alert-info}
-    
-1.  Open up `test/my-el_test.html` to see an example of a basic unit test. 
+
+1.  Open up `test/my-el_test.html` to see an example of a basic unit test.
 
 1.  Run the test.
 
         polymer test
 
-    Web Component Tester automatically finds all of the browsers on your 
+    Web Component Tester automatically finds all of the browsers on your
     system and runs your tests against each one. If you wanted to run your
-    tests against a single browser, say Google Chrome, you could 
+    tests against a single browser, say Google Chrome, you could
     `polymer test -l chrome`.
     {.alert .alert-info}
 
 ### Run tests interactively
 
 You can also run your tests in the browser. This allows you to use the
-browser's DevTools to inspect or your debug your unit tests. 
+browser's DevTools to inspect or your debug your unit tests.
 
 For example, using Polymer CLI and the example element project created
 in [Quick start](#quick-start) above, first you would start your server:
 
     polymer serve
 
-And then, to run the basic `my-el_test.html` unit test in the browser, you 
+And then, to run the basic `my-el_test.html` unit test in the browser, you
 would open a web browser and go to the following URL:
 
     localhost:8080/components/my-el/test/my-el_test.html
 
 ## Creating tests
 
-Now that you've got the basics down of using Polymer CLI to run tests, it's 
-time to start creating them. 
+Now that you've got the basics down of using Polymer CLI to run tests, it's
+time to start creating them.
 
 This section of the doc shows you how to accomplish various tasks or scenarios
-while implementing your unit tests. 
+while implementing your unit tests.
 
 ### Asynchronous tests {#async}
 

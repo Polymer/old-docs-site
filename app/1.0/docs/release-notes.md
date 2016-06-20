@@ -599,7 +599,7 @@ This release includes the following new features:
 
     This is equivalent to the native:
 
-    <code><var>propertyValue</var> = getComputedStyle(<var>element</var>).getPropertyValue(<var>property</var>);
+    <code><var>propertyValue</var> = getComputedStyle(<var>element</var>).getPropertyValue(<var>property</var>);</code>
 
 
 This release includes the following bug fixes and improvements:
@@ -876,7 +876,7 @@ As a result of these changes, several recommendations are changing:
 
 - Fixes #2039: Polymer.dom.flush now triggers Custom Elements polyfill mutations and includes an api (`Polymer.dom.addDebouncer(debouncer)`) for adding debouncers which should run at flush time. Template rendering debouncers are placed in the flush list. ([commit](https://github.com/Polymer/polymer/commit/89a767c))
 
-- [Fixes #2010](https://github.com/Polymer/polymer/issues/2010) and [#1818](https://github.com/Polymer/polymer/1818): Shady DOM mutations which trigger additional mutations are now successfully enqueued. ([commit](https://github.com/Polymer/polymer/commit/a26247b))
+- [Fixes #2010](https://github.com/Polymer/polymer/issues/2010) and [#1818](https://github.com/Polymer/polymer/issues/1818): Shady DOM mutations which trigger additional mutations are now successfully enqueued. ([commit](https://github.com/Polymer/polymer/commit/a26247b))
 
 - `debounce` returns debouncer. ([commit](https://github.com/Polymer/polymer/commit/fb52120))
 
@@ -1226,7 +1226,7 @@ this.push('users', { first: "Stephen", last: "Maturin" });
 
 ### Gesture support
 
-This release adds limited gesture support. For details, see [Gesture events](/1.0/docs/devguide/events#gestures).
+This release adds limited gesture support. For details, see [Gesture events](/1.0/docs/devguide/gesture-events).
 
 ### Content security policy (CSP) {#csp}
 
