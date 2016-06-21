@@ -914,7 +914,7 @@ object, you shouldn't need to update anything.
 Note that `trackstart` and `trackend` are  not fired as separate events, but as `track` events with
 `detail.state` set to `start` or `end`, respectively.
 
-For more details, see [Gesture events](/1.0/docs/devguide/events#gestures).
+For more details, see [Gesture events](/1.0/docs/devguide/gesture-events).
 
 ## Vulcanize {#vulcanize}
 
