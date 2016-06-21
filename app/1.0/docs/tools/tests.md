@@ -10,7 +10,7 @@ library (the underlying library that powers Polymer CLI's testing tools).
 
 ## Overview
 
-Polymer CLI is an all-in-one command-line interface that covers the vast of
+Polymer CLI is an all-in-one command-line interface that covers the vast majority of
 Polymer development tasks, including unit testing. The underlying library
 that powers Polymer CLI's unit testing tools is called Web Component Tester.
 
