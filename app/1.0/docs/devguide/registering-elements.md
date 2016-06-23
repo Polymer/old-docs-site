@@ -16,7 +16,7 @@ By specification, the custom element's name **must contain a dash (-)**.
 Example: { .caption }
 
 ```
-    // register an element
+    // register an elementh
     MyElement = Polymer({
 
       is: 'my-element',
@@ -457,7 +457,7 @@ Example:  { .caption }
 
         hostAttributes: {
           'string-attribute': 'Value',
-          'boolean-attribute': true
+          'boolean-attribute': true,
           tabindex: 0
         }
 
