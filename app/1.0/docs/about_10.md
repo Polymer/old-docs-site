@@ -62,7 +62,7 @@ The following is a high-level outline of our plans for the library post-1.0.
 
 #### Gestures
 
-Polymer 0.5 had a fairly robust gesture recognition system—1.0 includes [basic gestures](/1.0/docs/devguide/events#gestures) as part of the core library. More sophisticated gestures may be added in a future release as an optional components.
+Polymer 0.5 had a fairly robust gesture recognition system—1.0 includes [basic gestures](/1.0/docs/devguide/gesture-events) as part of the core library. More sophisticated gestures may be added in a future release as an optional components.
 
 #### Shady DOM Interoperability
 

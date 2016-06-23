@@ -282,9 +282,8 @@ Polymer propagates data changes upward by firing events:
     whose `e.detail.value` attribute has the changing property's new value.
 
 You can manually attach a <code><var>property</var>-changed</code>
-listener to an element to [notify external elements, frameworks,
-or libraries](properties#notify-external) of property
-changes.
+listener to an element to notify external elements, frameworks,
+or libraries of property changes.
 
 This is essentially what Polymer does when you create a
 two-way data binding.
