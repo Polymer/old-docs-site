@@ -10,7 +10,7 @@ out the details of that view.
 
 One of the appeals of the web component approach to web development 
 is the ecosystem. Rather than building everything in your app from scratch,
-you can find and use reusable elements that suit your needs. Two examples
+you can find and use off-the-shelf elements that suit your needs. Two examples
 of places you can find reusable components are the 
 [Polymer Element Catalog][catalog] (elements built by the Polymer team) and 
 [customelements.io][ceio] (elements built by the web components community). 
