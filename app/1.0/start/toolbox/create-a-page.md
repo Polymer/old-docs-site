@@ -69,7 +69,7 @@ but we can return to it and make it more interesting later.
     ```
 
     The `<iron-pages>` is bound to the `page` variable that changes with the
-    route, and selectes the active page while hiding the others.
+    route, and selects the active page while hiding the others.
 
 1.  Add your new page inside the iron-pages:
 
