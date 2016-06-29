@@ -158,7 +158,7 @@ target as it bubbles up, such that target is always in the same scope as the
 receiving element. (For example, for a listener in the main document, the
 target is an element in the main document, not in a shadow tree.)
 
-Shady DOM doesn't do event regargeting for events as they bubble, because the
+Shady DOM doesn't do event retargeting for events as they bubble, because the
 performance cost would be prohibitive. Instead, Polymer
 provides a mechanism to simulate retargeted events when needed.
 
