@@ -149,7 +149,7 @@ element's local DOM. For example, these rules do **not** work inside the
 ```
     iron-icon {
       --iron-icon-width: 40px;
-      --iron-iron-height: 40px;
+      --iron-icon-height: 40px;
     }
 ```
 
@@ -161,7 +161,7 @@ elements on the page:
 ```
     :root {
       --iron-icon-width: 40px;
-      --iron-iron-height: 40px;
+      --iron-icon-height: 40px;
     }
 ```
 
