@@ -11,6 +11,123 @@ title: Release notes
   }
 </style>
 
+## [Release 1.6.0](https://github.com/polymer/polymer/tree/v1.6.0) (2016-06-29) {#v-1-6-0}
+
+New features:
+
+-   Added support for native custom CSS properties.
+
+    To use, set `lazyRegister: true` and `useNativeCSSProperties: true` in Polymer
+    settings (e.g. `<script> Polymer = {lazyRegister: true,
+    useNativeCSSProperties: true};</script>` before importing `polymer.html`).
+
+    Enabling the feature only impacts browsers that support native custom CSS
+    properties (Chrome and Firefox; Safari 9+ supports custom properties, but is
+    buggy and thus opted out for now).  On these browsers, normal custom CSS
+    properties such as `--custom-property: value` will use native properties;
+    [custom CSS mixins](https://www.polymer-project.org/1.0/docs/devguide/styling#custom-css-mixins)
+    such as `--custom-mixin: { ... }` and their `@apply` points of usage will be
+    destructured into individual custom properties once at registration time such
+    that native properties are used for all custom properties.  This eliminates
+    all _instance time_ work related to the custom property shim, which should
+    provide substantial performance gains.
+
+    *Caveats:* When native custom properties are in use, Polymer's
+    `updateStyles(...)` API is supported with one exception: calling
+    `updateStyles` to change the value of custom CSS mixins is not supported.
+
+-   Integrated support for
+    [polymer-css-build](https://github.com/PolymerLabs/polymer-css-build).
+
+    The CSS build performs Shady DOM CSS selector shimming as well as
+    destructuring custom CSS mixins to individual properties, which can help
+    eliminate all runtime cost of Shady DOM style shimming, as well as all
+    runtime cost of custom property shimming (on browsers with native CSS
+    properties).  Achieving optimal results may require selectively serving
+    different built CSS depending on client capabilities.  See that repo for
+    details on how to run the build.
+
+-   Added support for defining CSS custom properties in `@media` queries
+
+    The following use of CSS custom properties inside `@media` rules is
+    now supported, allowing for dynamic change of custom property values
+    based on screen size, etc.:
+
+    ```html
+    <style>
+      @media (max-width: 400px) {
+        :host {
+          --gutter-width: 16px;
+        }
+      }
+    </style>
+    ```
+    For browsers that don't support custom properties, call
+    `Polymer.updateStyles()` to re-evaluate the media queries upon window
+    resize. The Polymer team chose not to include a window resize listener in
+    the Polymer core library because there are performance and responsiveness
+    tradeoffs depending on whether it should be called on every resize or
+    throttled somehow. Here's a basic example that ensures styles are updated on
+    window resize, throttled to one update per 100ms.
+
+    ```js
+    (function() {
+      var resizeDebouncer;
+      addEventListener('resize', function() {
+        resizeDebouncer = Polymer.Debounce(resizeDebouncer, Polymer.updateStyles, 100);
+      });
+    })();
+    ```
+
+Bug fixes:
+
+-   [#3705](https://github.com/Polymer/polymer/issues/3705).
+    Ensure that custom property shim correctly re-calculates custom property
+    style values when global `<style is="custom-style">` elements are loaded
+    asynchronously (e.g. via lazy-loading).
+
+-   [#3734](https://github.com/Polymer/polymer/issues/3734).
+    Ensure that lazy-loaded element definitions result in tree-order upgrades
+    when using `importHref()`. This should result in more deterministic behavior
+    when using lazy-load patterns.
+
+-   [#3722](https://github.com/Polymer/polymer/issues/3722).
+    Observers and computed functions now always receive the current value of a
+    property. This addresses errors caused by stale values that
+    occurred when a property value was changed synchronously in its own
+    observer.
+
+-   [#3749](https://github.com/Polymer/polymer/issues/3749). Fix selectors like
+    `:host(.foo)::after` in Shady DOM.
+
+-   [#3748](https://github.com/Polymer/polymer/pull/3748). Fix selectors like
+    `:host[inline]` in Shady DOM.
+
+-   [#3739](https://github.com/Polymer/polymer/issues/3739). Correctly shim
+    `:host(.element-name)` as `element-name.element-name`.
+
+-   [#3530](https://github.com/Polymer/polymer/issues/3530). Force element to
+    recalculate its style properties when it's reinserted into the DOM. This
+    fixes a confusing issue where calling `updateStyles()` before an element was
+    attached had no effect.
+
+-   [#3730](https://github.com/Polymer/polymer/issues/3730). Fix behavior of
+    `Polymer.dom(node).nextSibling`. In some situations, it was being set to the
+    `nextSibling` in the browser DOM, when it should have been `null`.
+
+-   [#3631](https://github.com/Polymer/polymer/pull/3631). Listening for
+    `foo.bar.*` was incorrectly triggering `foo.bars`.
+
+-   [#3555](https://github.com/Polymer/polymer/issues/3555).
+    Ensure selectors including `::content` without a prefix inside a complex
+    selector are shimmed correctly and do not leak to the global scope. For
+    example, `button, ::content button { ... }` was getting incorrectly shimmed
+    as `buttom.custom-element, button { ... }`.
+
+-   [#3567](https://github.com/Polymer/polymer/issues/3567). Ensure that
+    `preventDefault` works in tap handlers when the source is a touch.
+    Previously it was only working when the source was a click.
+
 ## [Release 1.5.0](https://github.com/Polymer/polymer/tree/v1.5.0) (2016-05-31) {#v1-5-0}
 
 This release includes one new feature:
@@ -599,7 +716,7 @@ This release includes the following new features:
 
     This is equivalent to the native:
 
-    <code><var>propertyValue</var> = getComputedStyle(<var>element</var>).getPropertyValue(<var>property</var>);
+    <code><var>propertyValue</var> = getComputedStyle(<var>element</var>).getPropertyValue(<var>property</var>);</code>
 
 
 This release includes the following bug fixes and improvements:
@@ -876,7 +993,7 @@ As a result of these changes, several recommendations are changing:
 
 - Fixes #2039: Polymer.dom.flush now triggers Custom Elements polyfill mutations and includes an api (`Polymer.dom.addDebouncer(debouncer)`) for adding debouncers which should run at flush time. Template rendering debouncers are placed in the flush list. ([commit](https://github.com/Polymer/polymer/commit/89a767c))
 
-- [Fixes #2010](https://github.com/Polymer/polymer/issues/2010) and [#1818](https://github.com/Polymer/polymer/1818): Shady DOM mutations which trigger additional mutations are now successfully enqueued. ([commit](https://github.com/Polymer/polymer/commit/a26247b))
+- [Fixes #2010](https://github.com/Polymer/polymer/issues/2010) and [#1818](https://github.com/Polymer/polymer/issues/1818): Shady DOM mutations which trigger additional mutations are now successfully enqueued. ([commit](https://github.com/Polymer/polymer/commit/a26247b))
 
 - `debounce` returns debouncer. ([commit](https://github.com/Polymer/polymer/commit/fb52120))
 
@@ -1226,7 +1343,7 @@ this.push('users', { first: "Stephen", last: "Maturin" });
 
 ### Gesture support
 
-This release adds limited gesture support. For details, see [Gesture events](/1.0/docs/devguide/events#gestures).
+This release adds limited gesture support. For details, see [Gesture events](/1.0/docs/devguide/gesture-events).
 
 ### Content security policy (CSP) {#csp}
 
