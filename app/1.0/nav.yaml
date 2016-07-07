@@ -83,6 +83,15 @@
     indent: True
   - endheader: True
   - header: Data system
+  - title: Data system concepts
+    path: /1.0/docs/devguide/data-system
+    indent: True
+  - title: Work with object and array data
+    path: /1.0/docs/devguide/model-data
+    indent: True
+  - title: Observers and computed properties
+    path: /1.0/docs/devguide/observers
+    indent: True
   - title: Data binding
     path: /1.0/docs/devguide/data-binding
     indent: True
