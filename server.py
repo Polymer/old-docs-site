@@ -50,8 +50,18 @@ env = jinja2.Environment(
 env.globals['include_file'] = include_file
 env.globals['include_file_raw'] = include_file_raw
 
+# memcache logic: maintain a separate cache for each explicit
+# app version, so staged versions of the docs can have new nav
+# structures, redirects without affecting other deployed docs.
+
+# CURRENT_VERSION_ID format is version.hash, where version is the
+# app version passed to the deploy script.
+if 'CURRENT_VERSION_ID' in os.environ:
+  MEMCACHE_PREFIX = os.environ.get('CURRENT_VERSION_ID').split('.')[0] + '/'
+else:
+  MEMCACHE_PREFIX = 'no_version/'
 REDIRECTS_FILE = 'redirects.yaml'
-NAV_FILE = '%s/nav.yaml'
+NAV_FILE =  '%s/nav.yaml'
 ARTICLES_FILE = '%s/blog.yaml'
 AUTHORS_FILE = '%s/authors.yaml'
 IS_DEV = os.environ.get('SERVER_SOFTWARE', '').startswith('Dev')
@@ -135,10 +145,11 @@ def handle_500(req, resp, data, e):
 class Site(http2push.PushHandler):
 
   def redirect_if_needed(self, path):
-    redirects = memcache.get(REDIRECTS_FILE)
+    redirect_cache = MEMCACHE_PREFIX + REDIRECTS_FILE
+    redirects = memcache.get(redirect_cache)
     if redirects is None or IS_DEV:
       redirects = read_redirects_file(REDIRECTS_FILE)
-      memcache.add(REDIRECTS_FILE, redirects)
+      memcache.add(redirect_cache, redirects)
 
     literals = redirects.get('literal')
     if path in literals:
@@ -155,10 +166,11 @@ class Site(http2push.PushHandler):
 
   def get_site_nav(self, version):
     nav_file_for_version = NAV_FILE % version
-    site_nav = memcache.get(nav_file_for_version)
+    nav_cache = MEMCACHE_PREFIX + nav_file_for_version
+    site_nav = memcache.get(nav_cache)
     if site_nav is None or IS_DEV:
       site_nav = read_nav_file(nav_file_for_version, version)
-      memcache.add(nav_file_for_version, site_nav)
+      memcache.add(nav_cache, site_nav)
     return site_nav
 
   def nav_for_section(self, version, section):
@@ -172,18 +184,20 @@ class Site(http2push.PushHandler):
 
   def get_articles(self, version):
     articles_file_for_version = ARTICLES_FILE % version
-    articles = memcache.get(articles_file_for_version)
+    articles_cache = MEMCACHE_PREFIX + articles_file_for_version
+    articles = memcache.get(articles_cache)
 
     authors_file_for_version = AUTHORS_FILE % version
-    authors = memcache.get(authors_file_for_version)
+    authors_cache = MEMCACHE_PREFIX + authors_file_for_version
+    authors = memcache.get(authors_cache)
 
     if authors is None or IS_DEV:
       authors = read_authors_file(authors_file_for_version)
-      memcache.add(authors_file_for_version, authors)
+      memcache.add(authors_cache, authors)
 
     if articles is None or IS_DEV:
       articles = read_articles_file(articles_file_for_version, authors)
-      memcache.add(articles_file_for_version, articles)
+      memcache.add(articles_cache, articles)
 
     return articles
 
