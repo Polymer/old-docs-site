@@ -51,7 +51,7 @@ This section shows you how to start an element project.
 1.  Create a directory for your element project. It's best practice for the name
     of your project directory to match the name of your element.
 
-    <pre><code>mkdir <var>my-el</var> && cd <var>my-el</var></code></pre>
+    <pre><code>mkdir <var>my-el</var> && cd <var>$_</var></code></pre>
 
     Where <code><var>my-el</var></code> is the name of the element you're
     creating.
