@@ -203,17 +203,17 @@ var item = this.get(['myArray', key]);
 ### Look up an array index with by key {#get-array-index}
 
 In some situations, such as inside an observer, you may have an array key or the array item itself,
-but not the index. Use the standard array `indexOf` method to determine the index.
+but not have its index. If you have the key or the full path to the item, use `get` to look up the item.
+Then use the standard array `indexOf` method to determine the index.
 
 ```
-// Delete an item, based on the item key
+// Delete an item, based on the item's key
 var item = this.get(['myArray', key]);
 var index = this.myArray.indexOf(item);
 if (index != -1) {
   this.splice('myArray', index, 1, )
 }
 ```
-
 
 ## Override dirty checking {#override-dirty-check}
 
