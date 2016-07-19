@@ -19,7 +19,7 @@ Service worker works well with an _app shell_ strategy, where the app's main UI
 views and logic (the app shell) are cached so that they can be served from the
 cache.
 
-App Toolbox ses the Service Worker Precache (`sw-precache`) module for offline
+App Toolbox uses the Service Worker Precache (`sw-precache`) module for offline
 support. This module takes a list of files to cache and generates a service
 worker at build time, so you don't need to write your own service worker code.
 
