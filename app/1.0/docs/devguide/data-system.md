@@ -326,16 +326,16 @@ Related tasks:
 Polymer implements the mediator pattern, where a host element manages data flow between itself and
 its local DOM nodes.
 
-When two elements are connected with a data binding, data changes can flow *downward*, that is, from
-host to target, *upward*, from target to host, or both ways.
+When two elements are connected with a data binding, data changes can flow **downward** — from
+host to target — **, upward** — from target to host — , or both.
 
-When two elements in the local DOM are bound to the same property, data appears to flow from one
-element to the other, but this flow is *mediated* by the host. A change made by one element
-propagates *up* to the host, then the host propagates the change *down* to the second element.
+When two elements in the local DOM are bound to the same property data appears to flow from one
+element to the other, but this flow is **mediated** by the host. A change made by one element
+propagates **up** to the host, then the host propagates the change **down** to the second element.
 
 ### Data flow is synchronous
 
-Data flow is **synchronous**. So when your code makes an [observable change](#observable-changes),
+Data flow is **synchronous**. When your code makes an [observable change](#observable-changes),
 all of the data flow and property effects from that change occur before the next line of your
 JavaScript is executed, unless an element explicitly defers action (for example, by calling an
 asynchronous method).
@@ -353,8 +353,8 @@ The two types of data binding annotations are:
 
 
 
-*   Automatic, which allows upward (target to host) and downwards (host to target) data flow.
-    Automatic bindings use curly brackets (`{{ }}`):
+*   **Automatic**, which allows upward (target to host) and downwards (host to target) data flow.
+    Automatic bindings use double curly brackets (`{{ }}`):
 
 
 ```
@@ -363,8 +363,8 @@ The two types of data binding annotations are:
 ```
 
 
-*   One-way, which only allows downwards data flow. Upward data flow is disabled. One-way bindings
-    use square brackets (`[[ ]]`).
+*   **One-way**, which only allows downwards data flow. Upward data flow is disabled. One-way bindings
+    use double square brackets (`[[ ]]`).
 
 
 ```
@@ -375,9 +375,9 @@ The two types of data binding annotations are:
 The following configuration flags affect data flow to and from target properties:
 
 
-*   `notify`. A notifying property *supports upward data flow*. By default, properties are
+*   `notify`. A notifying property **supports upward data flow**. By default, properties are
     non-notifying, and don't support upward data flow.
-*   `readOnly`. A read-only property *prevents downward data flow*. By default, properties are
+*   `readOnly`. A read-only property **prevents downward data flow**. By default, properties are
     read/write, and support downward data flow.
 
 Example property definitions
@@ -480,22 +480,22 @@ propagates data downward by setting the target element’s properties or invokin
 
 
 Polymer elements use events to propagate data upward. The target element fires a non-bubbling event
-when an observable change occurs. (Change events are described in more detail in [Change
-notification events](#link).)
+when an observable change occurs. Change events are described in more detail in [Change
+notification events](#link).
 
-For two-way bindings, the host element listens for these change events and propagates the
-changes—for example, setting a property and invoking any related property effects. The property
+For **two-way bindings**, the host element listens for these change events and propagates the
+changes — for example, setting a property and invoking any related property effects. The property
 effects may include:
 
 
-*   Updating data bindings, to propagate changes to sibling elements.
-*   Generating another change event, to propagate the change upward.
+*   Updating data bindings to propagate changes to sibling elements.
+*   Generating another change event to propagate the change upward.
 
 
 ![alt_text](/images/1.0/data-system/data-flow-up.png)
 
 
-For one-way binding annotations, the host doesn't create a change listener, so upward data changes
+For **one-way binding** annotations, the host doesn't create a change listener, so upward data changes
 aren't propagated.
 
 ### Data flow for objects and arrays
@@ -504,7 +504,7 @@ For object and array properties, data flow is a little more complicated. An obje
 referenced by multiple elements, and there's no way to prevent one element from mutating a shared
 array or changing a subproperty of an object.
 
-As a result, Polymer treats the contents of arrays and objects as always being *available* for two-
+As a result, Polymer treats the contents of arrays and objects as always being **available** for two-
 way binding. That is:
 
 
@@ -526,7 +526,7 @@ A change notification event is fired when one of the following
 
 *   An array mutation.
 
-The event type follows a naming convention of <code><var>property</var>-changed</code>, where
+Event types follow a naming convention of <code><var>property</var>-changed</code>, where
 <code><var>property</var></code> is the property name, in dash case (so changing `this.firstName`
 fires `first-name-changed`.
 
@@ -539,7 +539,7 @@ The contents of the event vary depending on the change.
 
 Native elements like `<input>` don't provide the change notification events that Polymer uses for
 upward data flow. To support two-way data binding of native input elements, Polymer lets you
-associate a _custom change notification event_ with a data binding. For example, when binding to a
+associate a **custom change notification event** with a data binding. For example, when binding to a
 text input, you could specify the `input` or `change` event:
 
 
@@ -550,7 +550,7 @@ text input, you could specify the `input` or `change` event:
 
 In this example, the `firstName` property is bound to the input's `value` property. Whenever the
 input element fires its `change` event, Polymer updates the `firstName` property to match the input
-value, and invokes any associated property effects. *The contents of the event aren't important.*
+value, and invokes any associated property effects. **The contents of the event aren't important.**
 
 This technique is especially useful for native input elements, but can be used to provide two-way
 binding for any non-Polymer component that exposes a property and fires an event when the property
@@ -562,8 +562,7 @@ Related tasks:
 
 ### Element initialization
 
-When an element initializes its local DOM, it configures the properties of its local DOM children
-initializes data bindings.
+When an element initializes its local DOM, it configures the properties of its local DOM children's data bindings.
 
 The host’s values take priority during initialization. For example, when a host property is bound to
 a target property, if both host and target elements specify default values, the parent's default
