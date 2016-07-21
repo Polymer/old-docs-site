@@ -17,9 +17,18 @@ New features:
 
 -   Added support for native custom CSS properties.
 
-    To use, set `lazyRegister: true` and `useNativeCSSProperties: true` in Polymer
-    settings (e.g. `<script> Polymer = {lazyRegister: true,
-    useNativeCSSProperties: true};</script>` before importing `polymer.html`).
+    To use, set `lazyRegister` and `useNativeCSSProperties` to true in Polymer
+    settings. For example, you could insert the following script block before importing
+    `polymer.html`:
+
+    ```
+    <script>
+      Polymer = {
+        lazyRegister: true,
+        useNativeCSSProperties: true
+      };
+    </script>
+    ```
 
     Enabling the feature only impacts browsers that support native custom CSS
     properties (Chrome and Firefox; Safari 9+ supports custom properties, but is
@@ -51,7 +60,7 @@ New features:
 
     The following use of CSS custom properties inside `@media` rules is
     now supported, allowing for dynamic change of custom property values
-    based on screen size, etc.:
+    based on media features, like screen size:
 
     ```html
     <style>
