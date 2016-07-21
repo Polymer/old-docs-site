@@ -4,39 +4,54 @@ title: Data binding
 
 <!-- toc -->
 
-Data binding binds a property or sub-property of a custom element (the _host element_) to
-a property or attribute of an element in its local DOM (the _child_ or _target element_).
+In its simplest form, data binding binds a property or sub-property of a custom element
+(the _host element_) to a property or attribute of an element in its local DOM (the _child_
+or _target element_).
 
-A binding is created with a binding _annotation_ in the host element's local DOM template:
+The *data binding* establishes a connection between [paths](data-system#data-paths) on the
+_host element_ and _target element_, allowing data changes to flow from one element to the other.
+
+You create data bindings by adding _annotations_ to an element's local DOM template.
 
 ```
 <dom-module id="host-element">
     <template>
-      <child-element name="{{myName}}"></child-element>
+      <target-element target-property="{{hostProperty}}"></target-element>
     </template>
 </dom-module>
 ```
 
-## Binding annotations {#property-binding}
+## Binding annotations {#binding-annotation}
 
-A binding annotation consists of a property name or subproperty name enclosed
-in curly brackets (`{{}}`) or square brackets (`[[]]`).
+Polymer provides two kinds of data binding delimiters:
 
-*  Square brackets (`[[]]`) create _one-way bindings_. Data flow is
-   downward, host-to-child, and the binding **never** modifies the host property.
+*   One-way bindings:  (<code>[[<var>binding</var>]]</code>). One-way bindings allow only
+    <strong>downward</strong> data flow.
 
-*  Curly brackets (`{{}}`) create _automatic bindings_. Data flow is
-   one-way or two-way, depending whether the target property is configured
-   for two-way binding.
+*   Two-way or "automatic" binding annotations (<code>{{<var>binding</var>}}</code>). Automatic
+    bindings allow <strong>upward and downward</strong> data flow.
 
-To bind to a child property, specify the attribute name that corresponds to the
-property, with an annotation as the attribute value:
+See [Data flow](data-system#data-flow) for information on two-way binding and upward data flow.
+
+The text inside the delimiters can be one of the following:
+
+*   A property or subproperty path (`users`, `address.street`).
+*   A computed binding (`_computeName(firstName, lastName, locale)`)
+*   Any of the above, preceded by the negation operator (`!`).
+
+The paths in a data binding annotation are relative to the current [data binding
+scope](data-system#data-binding-scopes).
+
+## Bind to a target property {#property-binding}
+
+To bind to a target property, specify the attribute name that corresponds to the
+property, with an [annotation](#binding-annotation) as the attribute value:
 
 ```
-<child-element name="{{myName}}"></child-element>
+<target-element name="{{myName}}"></child-element>
 ```
 
-This example binds the child element's `name` property to the host element's
+This example binds the target element's `name` property to the host element's
 `myName` property.
 
 While HTML attributes are used to specify bindings, values are
@@ -60,17 +75,16 @@ syntax. For more information, see [Binding to native element attributes](#native
 { .alert .alert-info }
 
 
-### Binding to text content
+### Bind to text content
 
-To bind to a child element's `textContent`, you can simply include the
-annotation inside the child element.
+To bind to a target element's `textContent`, you can simply include the
+annotation inside the target element.
 
 ```
 <dom-module id="user-view">
 
     <template>
-      First: {{firstName}}<br>
-      Last: {{lastName}}
+      <div>{{firstName}}</div>
     </template>
 
     <script>
@@ -88,208 +102,9 @@ annotation inside the child element.
 <user-view first-name="Samuel" last-name="Adams"></user-view>
 ```
 
-Binding to text content is always one-way, host-to-child.
+Binding to text content is always one-way, host-to-target.
 
-### Compound bindings {#compound-bindings}
-
-You can combine string literals and bindings in a single property binding or
-text content binding:
-
-```
-<img src$="https://www.example.com/profiles/{{userId}}.jpg">
-
-<span>Name: {{lastname}}, {{firstname}}</span>
-```
-
-Compound bindings are re-evaluated whenever the value of any of the individual
-bindings changes. Undefined values are interpolated as empty strings.
-
-You can use either one-way (`[[]]`) or automatic (`{{}}`)
-binding annotations in a compound binding, but the bindings are **always
-one-way, host-to-target.**
-
-### Binding to sub-properties
-
-Binding annotations can also include paths to sub-properties, as shown below:
-
-```
-<dom-module id="main-view">
-
-  <template>
-    <user-view first="{{user.first}}" last="{{user.last}}"></user-view>
-  </template>
-
-  <script>
-    Polymer({
-      is: 'main-view',
-      properties: {
-        user: Object
-      }
-    });
-  </script>
-
-</dom-module>
-```
-
-
-See [Binding to structured data](#path-binding) for details.
-
-### Property change notification and two-way binding {#property-notification}
-
-Polymer supports cooperative two-way binding between elements, allowing elements
-that "produce" data or propagate data changes upwards to
-hosts when desired.
-
-To avoid two-way binding, use "square-brace" syntax (`[[property]]`), which
-results in only one-way (downward, host-to-child) data-binding.
-
-To summarize, two-way data-binding is achieved when both the host and the child
-agree to participate, satisfying these three conditions:
-
-1. The host must use curly-brace `{{property}}` syntax. (Square-brace
-`[[property]]` syntax results in one-way downward binding, regardless of how the
-child property is configured.)
-
-2. The child property being bound to must be configured with the `notify` flag
-set to `true` (or otherwise send a `<property>-changed` custom event).  (If the
-property being bound does not have the `notify` flag set, only one-way
-(downward) binding will occur.)
-
-3. The child property being bound to must **not** be configured with the `readOnly`
-flag set to true.  (If the child property is `notify: true` and `readOnly: true`,
-and the host binding uses curly-brace syntax, the binding is
-one-way, **upward** (child-to-host).)
-
-Example 1: Two-way binding { .caption }
-
-```
-<script>
-  Polymer({
-    is: 'custom-element',
-    properties: {
-      someProp: {
-        type: String,
-        notify: true
-      }
-    }
-  });
-</script>
-...
-
-<!-- changes to "value" propagate downward to "someProp" on child -->
-<!-- changes to "someProp" propagate upward to "value" on host  -->
-<custom-element some-prop="{{value}}"></custom-element>
-```
-
-Example 2: One-way binding (downward) { .caption }
-
-```
-<script>
-  Polymer({
-    is: 'custom-element',
-    properties: {
-      someProp: {
-        type: String,
-        notify: true
-      }
-    }
-  });
-</script>
-
-...
-
-<!-- changes to "value" propagate downward to "someProp" on child -->
-<!-- changes to "someProp" are ignored by host due to square-bracket syntax -->
-<custom-element some-prop="[[value]]"></custom-element>
-```
-
-Example 3: One-way binding (downward) { .caption }
-
-```
-<script>
-
-  Polymer({
-    is: 'custom-element',
-    properties: {
-      someProp: String    // no notify:true!
-    }
-  });
-
-</script>
-...
-
-<!-- changes to "value" propagate downward to "someProp" on child -->
-<!-- changes to "someProp" are not notified to host due to notify:falsey -->
-<custom-element some-prop="{{value}}"></custom-element>
-```
-
-Example 4: One-way binding (upward, child-to-host) { .caption }
-
-```
-<script>
-  Polymer({
-    is: 'custom-element',
-    properties: {
-      someProp: {
-        type: String,
-        notify: true,
-        readOnly: true
-      }
-    }
-  });
-</script>
-
-...
-
-<!-- changes to "value" are ignored by child due to readOnly:true -->
-<!-- changes to "someProp" propagate upward to "value" on host  -->
-<custom-element some-prop="{{value}}"></custom-element>
-```
-
-Example 5: Error / non-sensical state { .caption }
-
-```
-<script>
-  Polymer({
-    is: 'custom-element',
-    properties: {
-      someProp: {
-        type: String,
-        notify: true,
-        readOnly: true
-      }
-    }
-  });
-</script>
-...
-<!-- changes to "value" are ignored by child due to readOnly:true -->
-<!-- changes to "someProp" are ignored by host due to square-bracket syntax -->
-<!-- binding serves no purpose -->
-<custom-element some-prop="[[value]]"></custom-element>
-```
-
-### Change notification protocol
-
-When you configure a declared property with the `notify` flag set to `true`,
-Polymer propagates data changes upward by firing events:
-
-*   When the property changes, the element fires a non-bubbling DOM
-    event to indicate those changes to interested hosts.
-
-*   The event type follows a naming convention of <code><var>property</var>-changed</code>,
-    where property's mixedCase words are written with dashes. E.g. a change to
-    `this.firstName` will fire `first-name-changed`. Listeners will receive an event object
-    whose `e.detail.value` attribute has the changing property's new value.
-
-You can manually attach a <code><var>property</var>-changed</code>
-listener to an element to [notify external elements, frameworks,
-or libraries](properties#notify-external) of property
-changes.
-
-This is essentially what Polymer does when you create a
-two-way data binding.
-
-### Two-way binding to native elements {#two-way-native}
+### Two-way binding to non-Polymer elements {#two-way-native}
 
 As mentioned above, Polymer uses an event naming convention to achieve two-way
 binding.
@@ -328,107 +143,40 @@ to listen for `property-changed` events.  The following constructions are equiva
 
 ```
 
+### Compound bindings {#compound-bindings}
 
-## Binding to structured data {#path-binding}
-
-You can bind sub-properties of the host by specifying a _path_ inside
-the binding annotation.
-
-Example: { .caption }
+You can combine string literals and bindings in a single property binding or
+text content binding. For example:
 
 ```
-<template>
-  <div>{{user.manager.name}}</div>
-  <user-element user="{{user}}"></user-element>
-</template>
+<img src$="https://www.example.com/profiles/{{userId}}.jpg">
+
+<span>Name: {{lastname}}, {{firstname}}</span>
 ```
 
-The path syntax **doesn't** support array-style accessors (such as `users[0].name`).
-You must use a computed binding as described in [Binding to array items](#array-binding).
+Compound bindings are re-evaluated whenever the value of any of the individual
+bindings changes. Undefined values are interpolated as empty strings.
 
-For a path binding to update, the path value must be updated in one of the
-following ways:
+You can use either one-way (`[[]]`) or automatic (`{{}}`)
+binding annotations in a compound binding, but the bindings are **always
+one-way, host-to-target.**
 
-*   Using a Polymer
-    [property binding](#property-binding) to another element.
+### Bind to a sub-property
 
-*   Using the [`set`](#set-path) API, which
-    provides the required notification to elements with registered interest.
-
-**Note:** These requirements are identical to the requirements for
-[sub-property change observers](properties#observing-path-changes), which use
-the same notification system.
-{ .alert .alert-info }
-
-Path bindings are distinct from property bindings in a subtle way:
-
-*   When a **property** value changes, the host element assigns the
-    new value to the bound property on the child element.
-
-*   When two elements are bound to the same path of a shared object and
-    the value at that path changes, the new value is immediately visible
-    to both elements, because both elements are accessing the same object.
-
-    In this case, the element that _changed_ the path must notify the system
-    so that other elements that have registered interest in the same path
-    may take side effects. Path bindings notify the system automatically.
-    Imperative code must call `set`.
-
-**Path bindings are two-way.** There is no concept of one-way bindings for
-paths, since the data does not propagate. That is, all bindings and
-change handlers for the same path will always be notified and update when the
-value of the path changes.
-{ .alert .alert-info }
-
-### Path change notification {#set-path}
-
-Two-way data-binding and observation of paths in Polymer is achieved using a
-similar strategy to the one described above for [2-way property binding
-](#property-notification):
-
-1.  When a sub-property of a property configured with
-    `type: Object` changes, an element fires a non-bubbling `<property>-changed` DOM
-    event with a `detail.path` value indicating the path on the object that changed.
-
-2.  Elements that have registered interest in that object (either via binding or
-    change handler) may then take the appropriate action.
-
-3.  Finally, those elements will forward the notification on to any
-    children they have bound the object to, and will also fire a new
-    `<property>-changed` event where `property` is the root object, to notify any
-    hosts that may have bound root object down.
-
-This way, a notification reaches any part of the tree that has
-registered interest in that path so that side effects occur.
-
-This system "just works" to the extent that changes to object sub-properties
-occur as a result of being bound to a notifying custom element property that
-changed.  However, sometimes imperative code needs to change an object's
-sub-properties directly.  As we avoid more sophisticated observation mechanisms such
-as `Object.observe` or dirty-checking in order to achieve the best startup and
-runtime performance cross-platform for the most common use cases, changing an
-object's sub-properties directly requires cooperation from the user.
-
-Specifically, Polymer provides two methods that allow such changes to be notified
-to the system: `notifyPath(path, value)` and `set(path, value)`, where `path` is
-a **string** identifying the path (relative to the host element).
-
-Example: { .caption }
+Binding annotations can also include paths to sub-properties, as shown below:
 
 ```
-<dom-module id="custom-element">
+<dom-module id="main-view">
 
   <template>
-    <div>{{user.manager.name}}</div>
+    <user-view first="{{user.first}}" last="{{user.last}}"></user-view>
   </template>
 
   <script>
     Polymer({
-      is: 'custom-element',
-      reassignManager: function(newManager) {
-        this.user.manager = newManager;
-        // Notification required for binding to update!
-        this.notifyPath('user.manager', this.user.manager);
+      is: 'main-view',
+      properties: {
+        user: Object
       }
     });
   </script>
@@ -437,21 +185,10 @@ Example: { .caption }
 ```
 
 
-Most of the time, `notifyPath` is called directly after an
-assignment, so a convenience function `set` is provided that performs both
-actions:
 
-```
-reassignManager: function(newManager) {
-  this.set('user.manager', newManager);
-}
-```
+See [Binding to structured data](#path-binding) for details.
 
-**Note:** Paths do not support array access notation (such as `users[2]`).
-String keys (such as `users[bob]`) can be replaced with dotted paths (`users.bob`).
-But direct bindings to array items by index (`{{array.0}}`) isn't supported.
-See [Binding to array items](#array-binding).
-{ .alert .alert-info }
+
 
 
 ## Expressions in binding annotations
@@ -584,7 +321,7 @@ Finally, if a computed binding has no dependent properties, it is only evaluated
 </dom-module>
 ```
 
-## Binding to array items {#array-binding}
+## Bind to array items {#array-binding}
 
 Explicit bindings to array items by index isn't supported:
 
@@ -733,3 +470,12 @@ Attribute binding to dynamic values (use `$=`):
 <div data-bar$="{{baz}}"></div>
 
 ```
+
+## Moved sections
+
+The following section have moved to [Data system concepts](data-system):
+
+<a href="#property-notification"></a>
+
+-   Property change notification and two-way binding—see [How data flow is
+    controlled](#data-flow-control).

@@ -22,81 +22,6 @@ a value.
 Unless otherwise specified, notes about observers apply to simple observers, complex observers, and
 computed properties.
 
-## Simple observers {#simple-observers}
-
-Simple observers are declared in the `properties` object, and always observe a single property. You
-shouldn't assume any particular initialization order for properties: if your observer depends on
-multiple properties being initialized, use a complex observer instead.
-
-Simple observers are fired the first time the property becomes defined (!= undefined), and on every
-change thereafter, *_even if the property becomes undefined._*
-
-Simple observers only fire when the property *itself* changes. They don't fire on subproperty
-changes, or array mutation. If you need these changes, use a complex observer with a [wildcard
-path](#wildcard-paths).
-
-The observer method receives the new and old values of the property as arguments.
-
-Related task:
-
-*   Observe a property
-
-## Complex observers {#complex-observers}
-
-Complex observers are declared in the `observers` array, and can monitor one or more paths. These
-paths are called the observer's *dependencies*.
-
-```
-observers: [
-  'userListChanged(users.*, filter)'
-]
-```
-
-Each dependency represents:
-
-*   A specific property (for example, `firstName`).
-
-*   A specific subproperty (for example, `address.street`).
-
-*   Mutations on a specific array (for example, `users.splices`).
-
-*   All subproperty changes and array mutations below a given path (for example, `users.*`).
-
-The observer method is called with one argument for each dependency. The argument type varies
-depending on the path being observed.
-
-
-*   For simple property or subproperty dependencies, the argument is the new value of the property
-    or subproperty.
-
-*   For array mutation or wildcard paths, the argument is a *change record* describing the change.
-
-Handling of undefined values **depends on the number of properties being observed:**
-
-
-
-*   The initial call to a complex observer is deferred until *all* of the dependencies are *defined*
-    (that is, they don't have the value `undefined`).
-
-*   **For a single property observer**, the rules are identical to a simple observer: the observer
-    is called *each time* an observable change is made to of the dependencies, **even if the new
-    value for the path is <code>undefined</code>.**
-
-
-*   <strong>A multi-property observer</strong> is called <em>each time</em> an observable change is
-    made to of the dependencies, <strong><em>unless</em> the new value for one of the paths is
-    <code>undefined</code>.</strong>
-
-Complex observers should only depend on their declared dependencies.
-
-Related task:
-
-
-
-*   Observe multiple properties or paths
-*   Observe array changes
-*   Observe all changes to a path
-
 ### Observers are synchronous
 
 Like all property effects, observers are synchronous. If the observer is likely to be invoked
@@ -109,25 +34,24 @@ However, if you handle a data change asynchronously, note that the change data m
 the time you handle it.
 
 
-## Computed properties
+## Simple observers {#simple-observers}
 
-Computed properties are virtual properties computed on the basis of one or more paths. The computing
-function for a computed property follows the same rules as a complex observer, except that it
-returns a value, which is used as the value of the computed property.
+Simple observers are declared in the `properties` object, and always observe a single property. You
+shouldn't assume any particular initialization order for properties: if your observer depends on
+multiple properties being initialized, use a complex observer instead.
 
-As with complex observers, the handling of `undefined` values **depends on the number of properties
-being observed**.
+Simple observers are fired the first time the property becomes defined (!= `undefined`), and on
+every change thereafter, *_even if the property becomes undefined._*
 
-Related task:
+Simple observers only fire when the property *itself* changes. They don't fire on subproperty
+changes, or array mutation. If you need these changes, use a complex observer with a [wildcard
+path](#wildcard-paths).
 
-*   Define a computed property
+The observer method receives the new and old values of the property as arguments.
 
-## Property change observers  {#change-callbacks}
+### Observe a property  {#change-callbacks}
 
-Custom element properties may be observed for changes by specifying `observer`
-property in the `properties` object for the property that gives the name of a function
-to call.  When the property changes, the change handler will be called with the
-new and old values as arguments.
+Define a simple observer by adding an `observer` key to the property's declaration. The
 
 Example: { .caption }
 
@@ -168,11 +92,64 @@ dependencies are undefined. See [Always include dependencies
 as observer arguments](#dependencies) for details.
 { .alert .alert-warning }
 
-Property change observation is achieved in Polymer by installing setters on the
-custom element prototype for properties with registered interest (as opposed to
-observation via `Object.observe` or dirty checking, for example).
+## Complex observers {#complex-observers}
 
-### Observing changes to multiple properties {#multi-property-observers}
+Complex observers are declared in the `observers` array, and can monitor one or more paths. These
+paths are called the observer's *dependencies*.
+
+```
+observers: [
+  'userListChanged(users.*, filter)'
+]
+```
+
+Each dependency represents:
+
+*   A specific property (for example, `firstName`).
+
+*   A specific subproperty (for example, `address.street`).
+
+*   Mutations on a specific array (for example, `users.splices`).
+
+*   All subproperty changes and array mutations below a given path (for example, `users.*`).
+
+The observer method is called with one argument for each dependency. The argument type varies
+depending on the path being observed.
+
+
+*   For simple property or subproperty dependencies, the argument is the new value of the property
+    or subproperty.
+
+*   For array mutation or wildcard paths, the argument is a *change record* describing the change.
+
+Handling of undefined values **depends on the number of properties being observed:**
+
+
+*   The initial call to a complex observer is deferred until *all* of the dependencies are *defined*
+    (that is, they don't have the value `undefined`).
+
+*   **For a single property observer**, the rules are identical to a simple observer: the observer
+    is called *each time* an observable change is made to of the dependencies, **even if the new
+    value for the path is <code>undefined</code>.**
+
+
+*   <strong>A multi-property observer</strong> is called <em>each time</em> an observable change is
+    made to of the dependencies, <strong><em>unless</em> the new value for one of the paths is
+    <code>undefined</code>.</strong>
+
+Complex observers should only depend on their declared dependencies.
+
+Related task:
+
+*   Observe multiple properties or paths
+*   Observe array changes
+*   Observe all changes to a path
+
+
+
+
+
+### Observe changes to multiple properties {#multi-property-observers}
 
 To observe changes to a set of properties, use the `observers`
 array.
@@ -212,7 +189,7 @@ Polymer({
 In addition to properties, observers can also observe [paths to sub-properties](#observing-path-changes),
 [paths with wildcards](#deep-observation), or [array changes](#array-observation).
 
-### Observing sub-property changes {#observing-path-changes}
+### Observe sub-property changes {#observing-path-changes}
 
 To observe changes in object sub-properties:
 
@@ -378,7 +355,7 @@ element uses keys internally, so if an array is used by a `dom-repeat`,
 observers for that array receive the `keySplices` property.
 {.alert .alert-info}
 
-### Deep sub-property observation {#deep-observation}
+### Observe all changes related to a path {#deep-observation}
 
 To call an observer when any (deep) sub-property of an
 object or array changes, specify a path with a wildcard (`*`).
@@ -538,3 +515,94 @@ Keep in mind, however, that the observer is only called when one of the
 dependencies listed in its arguments changes. For example, if an observer
 relies on `this.firstName` but does not list it as an argument, the observer
 is not called when `this.firstName` changes.
+
+## Computed properties {#computed-properties}
+
+Computed properties are virtual properties computed on the basis of one or more paths. The computing
+function for a computed property follows the same rules as a complex observer, except that it
+returns a value, which is used as the value of the computed property.
+
+As with complex observers, the handling of `undefined` values **depends on the number of properties
+being observed**. See the description of [Complex observers](#complex-observers) for details.
+
+### Define a computed property
+
+Polymer supports virtual properties whose values are calculated from other properties.
+
+To define a computed property, add it to the `properties` object with a
+`computed` key mapping to a computing function:
+
+```
+fullName: {
+  type: String,
+  computed: 'computeFullName(first, last)'
+}
+```
+
+
+The function is provided as a string with dependent properties as arguments in parenthesis. The
+function will be called once for any [observable change](data-system#observable-changes) to
+the dependent properties.
+
+As with complex observers, the handling of `undefined` values **depends on the number of properties
+being observed**.
+
+The computing function is not invoked until **all** dependent properties are defined
+(`!== undefined`). So each dependent properties should have a
+default `value` defined in `properties` (or otherwise be initialized to a
+non-`undefined` value) to ensure the property is computed.
+
+**Note:**
+The definition of a computing function looks like the
+definition of a [multi-property observer](#multi-property-observers),
+and the two act almost identically. The only difference is that the
+computed property function returns a value that's exposed as a virtual property.
+{ .alert .alert-info }
+
+```
+<dom-module id="x-custom">
+
+  <template>
+    My name is <span>{{fullName}}</span>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'x-custom',
+
+      properties: {
+
+        first: String,
+
+        last: String,
+
+        fullName: {
+          type: String,
+          // when `first` or `last` changes `computeFullName` is called once
+          // and the value it returns is stored as `fullName`
+          computed: 'computeFullName(first, last)'
+        }
+
+      },
+
+      computeFullName: function(first, last) {
+        return first + ' ' + last;
+      }
+
+    });
+  </script>
+
+</dom-module>
+```
+
+Arguments to computing functions may be simple properties on the element, as
+well as any of the arguments types supported by `observers`, including [paths](#observing-path-changes),
+[paths with wildcards](#deep-observation), and [paths to array splices](#array-observation).
+The arguments received by the computing function match those described in the sections referenced above.
+
+**Note:**
+If you only need a computed property for a data binding, you
+can use a computed binding instead. See
+[Computed bindings](data-binding#annotated-computed).
+{ .alert .alert-info }

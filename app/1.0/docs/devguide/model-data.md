@@ -4,19 +4,19 @@ title: Work with object and array data
 
 <!-- toc -->
 
-You can interact with an element's model data (properties and subproperties) using
-Polymer's data APIs, which let you manipulate data based on a path. Using this API
-ensures that your changes are _observable_ by the data system.
+The data system provides methods for making [observable changes](data-system#observable-changes) to
+an element's model data (properties and subproperties). Use these methods to make observable changes
+to arrays and object subproperties.
 
 Related concepts:
 
 -   [Data paths](data-system#paths).
--   [Observable changes](data-system#observable changes)
+-   [Observable changes](data-system#observable-changes).
 
 ## Specifying paths
 
-A path is a series of path segments. *In most cases*, each path segment is a property name. The data
-APIs accept two kinds of paths:
+A [data path](data-system#paths) is a series of path segments. *In most cases*, each path segment is
+a property name. The data APIs accept two kinds of paths:
 
 *   A string, with path segments separated by dots.
 
@@ -54,8 +54,8 @@ var item = this.get(['myArray', 11])
 
 ## Set a property or subproperty by path {#set-path}
 
-Use the [`set`](/1.0/docs/api/Polymer.Base#method-set) method to make an [observable change](data-system#observable-changes)
-to a subproperty.
+Use the [`set`](/1.0/docs/api/Polymer.Base#method-set) method to make an [observable
+change](data-system#observable-changes) to a subproperty.
 
 ```
 // clear an array
@@ -64,15 +64,25 @@ this.set('group.members', []);
 this.set('profile.name', 'Alex');
 ```
 
-Calling `set` has no effect if the value of the property or subproperty hasn't changed. In particular,
-calling `set` on an object property won't cause Polymer to pick up changes the object's subproperties,
-unless the object itself changes.
+Calling `set` has no effect if the value of the property or subproperty hasn't changed. In
+particular, calling `set` on an object property won't cause Polymer to pick up changes to the
+object's subproperties, unless the object itself changes. Likewise, calling `set` on an array
+property won't cause Polymer to pick up array mutations.
 
 ```
-// DOES NOT NOTFIY
+// DOES NOT WORK—use notifyPath instead
 this.profile.name = Alex;
 this.set('profile', this.profile);
+
+// DOES NOT WORK—use notifySplices instead
+this.users.push({name: 'Grace'});
+this.set('users', this.users);
 ```
+
+Related tasks:
+
+-   [Notify Polymer of a subproperty change](#notify-path).
+-   [Notify Polymer of array mutations](#notifysplices)
 
 ### Notify Polymer of a subproperty change {#notify-path}
 
@@ -97,15 +107,16 @@ If multiple subproperties have changed, or you don't know the exact changes, see
 Use Polymer's array mutation methods to make [observable changes](data-system#observable-changes)
 to arrays.
 
-If you manipulate an array using the native methods (like `Array.prototype.push`), you can use
-the `notifySplices` method.
+If you manipulate an array using the native methods (like `Array.prototype.push`), you can notify
+Polymer after the fact.
 
 Note that Polymer's array handling has the following constraints:
 
 -   **Array items must be unique**. The data system uses object identity to compare
     array items, so array items must be unique.
 -   **Primitive array items are not supported.** This is because primitives (like number, string
-    and boolean values) with the same value are represented by the same object. So the array:
+    and boolean values) with the same value are represented by the same object. Consider an array
+    of numbers:
 
     ```
     this.numbers = [1, 1, 2];
@@ -119,7 +130,6 @@ You can work around these constraints by wrapping primitives in objects to ensur
 ```
 this.numbers = [{ value: 1}, {value: 1}, {value: 3}];
 ```
-
 
 ### Mutate an array {#array-mutation}
 
@@ -137,11 +147,12 @@ or data bindings) are kept in sync.
 
 Every Polymer element has the following array mutation methods available:
 
-* `push(path, item1, [..., itemN])`
-* `pop(path)`
-* `unshift(path, item1, [..., itemN])`
-* `shift(path)`
-* `splice(path, index, removeCount, [item1, ..., itemN])`
+*   <code>push(<var>path</var>, <var>item1</var>, [..., <var>itemN</var>])</code>
+*   <code>pop(<var>path</var>)</code>
+*   <code>unshift(<var>path</var>, <var>item1</var>, [..., <var>itemN</var>])</code>
+*   <code>shift(<var>path</var>)</code>
+*   <code>splice(<var>path</var>, <var>index</var>, <var>removeCount</var>, [<var>item1</var>,
+    ..., <var>itemN</var>])</code>
 
 Example: { .caption }
 
@@ -200,11 +211,11 @@ by path](#get-value).
 var item = this.get(['myArray', key]);
 ```
 
-### Look up an array index with by key {#get-array-index}
+### Find the index for an array item {#get-array-index}
 
 In some situations, such as inside an observer, you may have an array key or the array item itself,
-but not have its index. If you have the key or the full path to the item, use `get` to look up the item.
-Then use the standard array `indexOf` method to determine the index.
+but not have its index. If you have the key or the full path to the item, use `get` to look up the
+item. Then use the standard array `indexOf` method to determine the index.
 
 ```
 // Delete an item, based on the item's key
@@ -249,5 +260,32 @@ var members = this.group.members;
 this.set('group.members', []);
 this.set('group.members', members);
 ```
+
+## Link two paths to the same object {#linkPaths}
+
+Use the [`linkPaths`](/1.0/docs/api/Polymer.Base#method-linkPaths) method to associate two paths.
+Use `linkPaths` when an element has two paths that refer to the same object, as described in
+[Two paths referencing the same object]({#two-paths).
+
+When two paths are *linked*, an [observable change](#observable-changes) to one path is observable
+on the other path, as well.
+
+```js
+linkPaths('selectedUser', 'users.1');
+```
+
+**Both paths must be relative to the same element.** To propagate changes _between_ elements, you
+must use a [data binding](data-binding).
+{.alert .alert-info}
+
+
+
+To remove a path linkage, call `unlinkPaths`, passing in the first path you passed to
+`linkPaths`:
+
+```js
+unlinkPaths('selectedUser');
+```
+
 
 

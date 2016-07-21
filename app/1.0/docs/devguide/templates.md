@@ -330,18 +330,18 @@ function is re-run by setting the
 [`delay`](/{{{polymer_version_dir}}}/docs/api/dom-repeat#property-delay)
 property.
 
-## Array selector (array-selector) {#array-selector}
+## Data bind an array selection (array-selector) {#array-selector}
 
 Keeping structured data in sync requires that Polymer understand the path
 associations of data being bound.  The `array-selector` element ensures path
-linkage when selecting specific items from an array. The array selector supports
-either single or multiple selection.
+linkage when selecting specific items from an array.
 
 The `items` property accepts an array of user data. Call `select(item)`
 and `deselect(item)` to update the `selected` property, which may be bound to
 other parts of the application. Any changes to sub-fields of the selected
 item(s) are kept in sync with items in the `items` array.
 
+The array selector supports either single or multiple selection.
 When `multi` is false, `selected` is a property representing the last selected
 item.  When `multi` is true, `selected` is an array of selected items.
 

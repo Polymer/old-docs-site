@@ -13,13 +13,17 @@ object allows a user to configure the property from markup (see
 
 In addition, the `properties` object can be used to specify:
 
-* Property type.
-* Default value.
-* Property change observer. Calls a method whenever the property value changes.
-* Read-only status. Prevents accidental changes to the property value.
-* Two-way data binding support. Fires an event whenever the property value changes.
-* Computed property. Dynamically calculates a value based on other properties.
-* Property reflection to attribute. Updates the corresponding attribute value when the property value changes.
+*   Property type.
+*   Default value.
+*   Property change observer. Calls a method whenever the property value changes.
+*   Read-only status. Prevents accidental changes to the property value.
+*   Two-way data binding support. Fires an event whenever the property value changes.
+*   Computed property. Dynamically calculates a value based on other properties.
+*   Property reflection to attribute. Updates the corresponding attribute value when the property
+    value changes.
+
+Many of these features are tightly integrated into the [data system](data-system), and are
+documented in the Data system section.
 
 Example { .caption }
 
@@ -110,7 +114,7 @@ for more information.
 
 The value is interpreted as a method name and argument list. The method is invoked
 to calculate the value whenever any of the argument values changes. Computed
-properties are always read-only. See <a href="#computed-properties">Computed properties</a>
+properties are always read-only. See <a href="observers#computed-properties">Computed properties</a>
 for more information.
 </td>
 </tr>
@@ -121,7 +125,7 @@ for more information.
 The value is interpreted as a method name to be invoked when the property value
 changes. Note that unlike in 0.5, <strong>property change handlers must be registered
 explicitly.</strong> The <code><var>propertyName</var>Changed</code> method will not be
-invoked automatically. See <a href="#change-callbacks">Property change callbacks (observers)</a>
+invoked automatically. See <a href="observers">Property change callbacks (observers)</a>
 for more information.
 </td>
 </tr>
@@ -307,9 +311,8 @@ These events are used by the two-way data binding system. External
 scripts can also listen for events (such as `first-name-changed`)
 directly using `addEventListener`.
 
-For more on property change notifications and data binding, see
-[Property change notification and two-way
-binding](data-binding#property-notification).
+For more on property change notifications and the data system, see
+[Data flow](data-system#data-flow).
 
 ## Read-only properties {#read-only}
 
@@ -340,96 +343,16 @@ generated setter of the convention <code>\_set<var>Property</var>(value)</code>.
 ```
 
 For more on read-only properties and data binding, see
-[Property change notification and two-way binding](data-binding#property-notification).
+[How data flow is controlled](data-system#data-flow-control).
 
-## Computed properties {#computed-properties}
-
-Polymer supports virtual properties whose values are calculated from other
-properties.
-
-To define a computed property, add it to the `properties` object with a
-`computed` key mapping to a computing function:
-
-```
-fullName: {
-  type: String,
-  computed: 'computeFullName(first, last)'
-}
-```
-
-
-The function is provided as a string with dependent properties as arguments
-in parenthesis. The function will be called once for any change to
-the dependent properties.
-
-The computing function is not invoked until **all** dependent properties
-are defined (`!== undefined`). So each dependent properties should have a
-default `value` defined in `properties` (or otherwise be initialized to a
-non-`undefined` value) to ensure the property is computed.
-
-**Note:**
-The definition of a computing function looks like the
-definition of a [multi-property observer](#multi-property-observers),
-and the two act almost identically. The only difference is that the
-computed property function returns a value that's exposed as a virtual property.
-{ .alert .alert-info }
-
-```
-<dom-module id="x-custom">
-
-  <template>
-    My name is <span>{{fullName}}</span>
-  </template>
-
-  <script>
-    Polymer({
-
-      is: 'x-custom',
-
-      properties: {
-
-        first: String,
-
-        last: String,
-
-        fullName: {
-          type: String,
-          // when `first` or `last` changes `computeFullName` is called once
-          // and the value it returns is stored as `fullName`
-          computed: 'computeFullName(first, last)'
-        }
-
-      },
-
-      computeFullName: function(first, last) {
-        return first + ' ' + last;
-      }
-
-    });
-  </script>
-
-</dom-module>
-```
-
-
-
-Arguments to computing functions may be simple properties on the element, as
-well as any of the arguments types supported by `observers`, including [paths](#observing-path-changes),
-[paths with wildcards](#deep-observation), and [paths to array splices](#array-observation).
-The arguments received by the computing function match those described in the sections referenced above.
-
-**Note:**
-If you only need a computed property for a data binding, you
-can use a computed binding instead. See
-[Computed bindings](data-binding#annotated-computed).
-{ .alert .alert-info }
 
 ## Reflecting properties to attributes  {#attribute-reflection}
 
 In specific cases, it may be useful to keep an HTML attribute value in sync with
 a property value.  This may be achieved by setting `reflectToAttribute: true` on
-a property in the `properties` configuration object.  This will cause any change
-to the property to be serialized out to an attribute of the same name.
+a property in the `properties` configuration object.  This will cause any
+[observable change](data-system#observable-changes) to the property to be serialized out to an
+attribute of the same name.
 
 ```
 <script>
@@ -466,3 +389,55 @@ By default, values are serialized according to value's  _current_ type
 *   `Array` or `Object`. Serialized using `JSON.stringify`.
 
 To supply custom serialization for a custom element, override your element's `serialize` method.
+
+## Moved sections
+
+The following section have moved to [Observers and computed properties](observers):
+
+<a href="#change-callbacks"></a>
+
+-   [Observe a property](observers#change-callbacks).
+
+    <a href="#multi-property-observers"></a>
+
+-   [Observe multiple properties or paths](observers#multi-property-observers).
+
+    <a href="#observing-path-changes"></a>
+
+-   [Observe changes to a subproperty](observers#observing-path-changes).
+
+    <a href="#array-observation"></a>
+
+-   [Observe array mutations](observers#array-observation).
+
+    <a href="#key-splices"></a>
+
+-   [Track key splices](observers#key-splices).
+
+    <a href="#deep-observation"></a>
+
+-   [Deep sub-property observation](observers#deep-observation).
+
+    <a href="#key-paths"></a>
+
+-   [Deep sub-property changes on array items](observers#key-paths).
+
+    <a href="#dependencies"></a>
+
+-   [Always include dependencies as observer arguments](observers#dependencies).
+
+    <a href="#computed-properties"></a>
+
+-   [Computed properties](observers#computed-properties)
+
+The following sections have moved to [Work with object and array data](model-data):
+
+<a href="#array-mutation"></a>
+
+-   [Mutate an array](model-data#array-mutation).
+
+    <a href="#notifysplices"></a>
+
+-   [Notify Polymer of array mutations](model-data#notifysplices).
+
+

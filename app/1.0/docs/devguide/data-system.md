@@ -4,6 +4,23 @@ title: Data system concepts
 
 <!-- toc -->
 
+<style>
+table.matrix {
+  margin: 18px 0px;
+}
+table.matrix tr:first-of-type {
+  border-top: none;
+}
+table.matrix tr:first-of-type td {
+  border-top: none;
+}
+table.matrix tr td:not(:first-of-type) {
+  border-left: 1px solid rgb(207, 216, 220);
+}
+table.matrix td {
+  padding 10px 16px;
+}
+</style>
 
 Polymer lets you observe changes to an element's properties and take various actions based on data
 changes. These actions, or *property effects*, include:
@@ -24,7 +41,7 @@ DOM.
 Consider a very simple element:
 
 
-```
+```html
 <dom-module id="name-card">
   <template>
     <div>{{name.first}} {{name.last}}</div>
@@ -45,7 +62,7 @@ The data system is based on *paths*, not objects, where a path represents a prop
 property:
 
 
-```
+```js
 {
   first: 'Lizzy',
   last: 'Bennet'
@@ -102,7 +119,7 @@ Changes that **imperatively mutate an object or array are *not* observable**. Th
 
 *   Setting a subproperty of an object:
 
-	```
+	```js
 	// unobservable subproperty change
 		this.address.street = 'Elm Street';
 	```
@@ -112,7 +129,7 @@ Changes that **imperatively mutate an object or array are *not* observable**. Th
 
 *   Mutating an array:
 
-    ```
+    ```js
 	  // unobservable change using native Array.push
     this.users.push({ name: 'Maturin});
     ```
@@ -121,7 +138,7 @@ Changes that **imperatively mutate an object or array are *not* observable**. Th
 
 Polymer provides methods for making observable changes to subproperties and arrays:
 
-```
+```js
 // mutate an object observably
 this.set('address.street', 'Half Moon Street');
 
@@ -133,7 +150,7 @@ In some cases, you can't use the Polymer methods to mutate objects and arrays (f
 you're using a third-party library). In this case, you can use  the `notifyPath` and `notifySplices`
 methods to *notify* the element about changes that have already taken place.
 
-```
+```js
 // Notify Polymer that the value has changed
 this.notifyPath('address.street');
 ```
@@ -150,7 +167,7 @@ In most cases, if one or more properties of an
 object have changed, or one or more items in an array have changed, you can force Polymer to skip the dirty check
 by setting the property to an empty object or array, then back to the original object or array.
 
-```
+```js
 var address = this.address;
 this.address = {};
 this.address = address;
@@ -276,14 +293,14 @@ Related tasks:
 *   [Look up an array item by key](model-data#get-array-item).
 *   [Look up an array index by key](model-data#get-array-index).
 
-### Data scopes
+### Data binding scope
 
 Paths are relative to the current data binding *scope*,
 
 The topmost scope for any element is the element's properties. Certain data binding helper elements
 (like [template repeaters](/1.0/docs/devguide/templates#dom-repeat)) introduce new, nested scopes.
 
-### Two paths referencing the same object
+### Two paths referencing the same object {#two-paths}
 
 Sometimes an element has two paths that point to the same object.
 
@@ -312,16 +329,16 @@ For other use cases, there's an imperative method,
 are *linked*, an [observable change](#observable-changes) to one path is observable on the other
 path, as well.
 
-Related tasks:
+
+Related task:
+
+*   [Link two paths to the same object](model-data#linkpaths)
+
+*   [Data bind an array selection](templates#array-selector)
 
 
 
-*   Link two paths
-*   Data bind an array selection
-
-
-
-## Data flow
+## Data flow {#data-flow}
 
 Polymer implements the mediator pattern, where a host element manages data flow between itself and
 its local DOM nodes.
@@ -340,7 +357,7 @@ all of the data flow and property effects from that change occur before the next
 JavaScript is executed, unless an element explicitly defers action (for example, by calling an
 asynchronous method).
 
-### How data flow is controlled
+### How data flow is controlled {#data-flow-control}
 
 The type of data flow supported by an individual binding depends on:
 
@@ -383,7 +400,7 @@ The following configuration flags affect data flow to and from target properties
 Example property definitions
 
 
-```
+```js
 properties: {
   // default prop, read/write, non-notifying.
   basicProp: {
@@ -405,17 +422,17 @@ This matrix shows what kind of data flow is supported by automatic bindings base
 configuration of the target property:
 
 
-<table>
+<table class="matrix">
   <tr>
    <td>
    </td>
-   <td>non-notifying (default)
+   <td>Non-notifying (default)
    </td>
-   <td>notifying
+   <td>Notifying
    </td>
   </tr>
   <tr>
-   <td>read/write (default)
+   <td>Read/write (default)
    </td>
    <td>One-way, downward
    </td>
@@ -423,7 +440,7 @@ configuration of the target property:
    </td>
   </tr>
   <tr>
-   <td>read-only
+   <td>Read-only
    </td>
    <td>No data flow
    </td>
@@ -437,17 +454,17 @@ By contrast, one-way bindings only allow one-way, downward data flow, so the `no
 affect the outcome:
 
 
-<table>
+<table class="matrix">
   <tr>
    <td>
    </td>
-   <td>non-notifying (default)
+   <td>Non-notifying (default)
    </td>
    <td>notifying
    </td>
   </tr>
   <tr>
-   <td>read/write (default)
+   <td>Read/write (default)
    </td>
    <td>One-way, downward
    </td>
@@ -455,7 +472,7 @@ affect the outcome:
    </td>
   </tr>
   <tr>
-   <td>read-only
+   <td>Read-only
    </td>
    <td>No data flow
    </td>
@@ -465,10 +482,126 @@ affect the outcome:
 </table>
 
 
-It's important to note that the property configuration **only affects the property itself, not
+ **Property configuration _only affects the property itself_, not
 subproperties**. In particular, binding a property that's an object or array creates shared data
 between the host and target element. There's no way to prevent either element from mutating a shared
 object or array.
+{.alert .alert-warning}
+
+### Data flow examples
+
+The following examples show the various data flow scenarios described above.
+
+
+Example 1: Two-way binding { .caption }
+
+```
+<script>
+  Polymer({
+    is: 'custom-element',
+    properties: {
+      someProp: {
+        type: String,
+        notify: true
+      }
+    }
+  });
+</script>
+...
+
+<!-- changes to "value" propagate downward to "someProp" on child -->
+<!-- changes to "someProp" propagate upward to "value" on host  -->
+<custom-element some-prop="{{value}}"></custom-element>
+```
+
+Example 2: One-way binding (downward) { .caption }
+
+```
+<script>
+  Polymer({
+    is: 'custom-element',
+    properties: {
+      someProp: {
+        type: String,
+        notify: true
+      }
+    }
+  });
+</script>
+
+...
+
+<!-- changes to "value" propagate downward to "someProp" on child -->
+<!-- changes to "someProp" are ignored by host due to square-bracket syntax -->
+<custom-element some-prop="[[value]]"></custom-element>
+```
+
+Example 3: One-way binding (downward) { .caption }
+
+```
+<script>
+
+  Polymer({
+    is: 'custom-element',
+    properties: {
+      someProp: String    // no notify:true!
+    }
+  });
+
+</script>
+...
+
+<!-- changes to "value" propagate downward to "someProp" on child -->
+<!-- changes to "someProp" are not notified to host due to notify:falsey -->
+<custom-element some-prop="{{value}}"></custom-element>
+```
+
+Example 4: One-way binding (upward, child-to-host) { .caption }
+
+```
+<script>
+  Polymer({
+    is: 'custom-element',
+    properties: {
+      someProp: {
+        type: String,
+        notify: true,
+        readOnly: true
+      }
+    }
+  });
+</script>
+
+...
+
+<!-- changes to "value" are ignored by child due to readOnly:true -->
+<!-- changes to "someProp" propagate upward to "value" on host  -->
+<custom-element some-prop="{{value}}"></custom-element>
+```
+
+Example 5: Error / non-sensical state { .caption }
+
+```
+<script>
+  Polymer({
+    is: 'custom-element',
+    properties: {
+      someProp: {
+        type: String,
+        notify: true,
+        readOnly: true
+      }
+    }
+  });
+</script>
+...
+<!-- changes to "value" are ignored by child due to readOnly:true -->
+<!-- changes to "someProp" are ignored by host due to square-bracket syntax -->
+<!-- binding serves no purpose -->
+<custom-element some-prop="[[value]]"></custom-element>
+```
+
+
 
 ### Upward and downward data flow
 
@@ -515,9 +648,10 @@ way binding. That is:
 Since one-way binding annotations don't create an event listener, they prevent these change
 notifications from being propagated to the host element.
 
+
 ### Change notification events {#change-events}
 
-A change notification event is fired when one of the following
+An element fires a change notification event when one of the following
 [observable changes](#observable-changes) occurs:
 
 *   A change to a notifying property.
@@ -526,9 +660,11 @@ A change notification event is fired when one of the following
 
 *   An array mutation.
 
-The event type follows a naming convention of <code><var>property</var>-changed</code>, where
-<code><var>property</var></code> is the property name, in dash case (so changing `this.firstName`
-fires `first-name-changed`.
+When one of these changes occurs, the element fires a _non-bubbling_ DOM event named
+<code><var>property</var>-changed</code>, where <code><var>property</var></code> is the property
+name, in dash case (so changing `this.firstName` fires `first-name-changed`).
+
+
 
 You can manually attach a <code><var>property</var>-changed</code> listener to an element to
 notify external elements, frameworks, or libraries of property changes.
@@ -586,13 +722,14 @@ property (or path). Property effects include:
 
 ## Data bindings
 
-A *data binding* establishes a path connection between a path on the host element and a property or
-attribute of a `target node` in the host's local DOM. You create data bindings by adding
-`annotations` to an element's local DOM template.
+A *data binding* establishes a connection between a [path](data-system#data-paths) on the host
+element and a property or attribute of a `target node` in the host's local DOM. You create data
+bindings by adding _annotations_ to an element's local DOM template.
 
-Annotations are attribute values set on a target element that include the data binding delimiters `{{ }}` or `[[ ]]`.
+Annotations are attribute values set on a target element that include the data binding delimiters
+`{{ }}` or `[[ ]]`.
 
-```
+```html
 target-property="{{hostProperty}}"
 target-property="[[hostProperty]]"
 ```
@@ -601,7 +738,7 @@ target-property="[[hostProperty]]"
 You can also use a data binding annotation in the body of an element, which is equivalent to binding
 to the element's `textContent` property.
 
-```
+```html
 <div>{{hostProperty}}</div>
 ```
 
@@ -609,7 +746,7 @@ to the element's `textContent` property.
 For example, given an element template:
 
 
-```
+```html
 <dom-module id="user-list">
  <template>
    …
@@ -633,10 +770,10 @@ When there's an [observable change](#observable-changes) to `selectedUser.addres
 
 Polymer provides two kinds of data binding delimiters:
 
-*  One-way bindings:  (<code>[[<em>binding</em>]]</code>). One-way bindings allow only
+*  One-way bindings:  (<code>[[<var>binding</var>]]</code>). One-way bindings allow only
    <strong>downward</strong> data flow.
 
-*   Two-way or "automatic" binding annotations (<code>{{<em>binding</em>}}</code>). Automatic
+*   Two-way or "automatic" binding annotations (<code>{{<var>binding</var>}}</code>). Automatic
     bindings allow <strong>upward and downward</strong> data flow.
 
 See [Data flow](#data-flow) for information on two-way binding and upward data flow.
@@ -655,7 +792,7 @@ A `compound binding` is a string containing one or more data binding annotations
 annotations are interpolated into the string.
 
 
-```
+```html
 <div>Hello, {{name}}.</div>
 ```
 
@@ -664,20 +801,23 @@ If an annotation evaluates to `undefined`, it is replaced by an empty string. Fo
 is `undefined`, the above example would evaluate as:
 
 
-```
+```html
 <div>Hello, .</div>
 ```
 
 
 ### Computed bindings
 
-A *computed binding* is similar to a computed property. It's declared inside a binding annotation.
+A *computed binding* is similar to a [computed property](observers#computed-properties). It's declared
+inside a binding annotation.
 
 
 ```
 <div>[[formatName(first, last, title)]]</div>
 ```
 
+The computed binding declaration includes a computing function name,
+followed by a list of dependencies, in parenthesis.
 
 An element can have multiple computed bindings in its template that refer to the same computing
 function.
@@ -742,7 +882,7 @@ quotes for string literals, or the reverse.
 
 Example:
 
-```
+```html
 <dom-module id="x-custom">
   <template>
     <span>{{translate('Hello\, nice to meet you', first, last)}}</span>
@@ -782,21 +922,21 @@ require using an attribute-based API.
 To bind to an attribute, use `$=` rather than `=`.  This results in a call to:
 
 
-```
+```js
 element.setAttribute(attr,value);
 ```
 
 As opposed to:
 
 
-```
+```js
 element.property = value;
 ```
 
 For example:
 
 
-```
+```html
 <template>
   <!-- Attribute binding -->
   <my-element selected$="{{value}}"></my-element>
@@ -858,7 +998,7 @@ There are various reasons that properties can't be bound:
 Attribute binding to dynamic values (use `$=`):
 
 
-```
+```html
 <!-- class -->
 <div class$="{{foo}}"></div>
 
