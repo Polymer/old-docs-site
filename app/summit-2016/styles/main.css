@@ -203,7 +203,7 @@ h3 {
     position: relative;
     padding: 16px;
     margin: 0 16px;
-    background-color: #E45484;
+    background-color: #c50646;
     font-size: 23px;
     line-height: 24px
 }
@@ -216,7 +216,7 @@ h3 {
     right: -14px;
     width: 0;
     height: 0;
-    border-color: transparent #E45484;
+    border-color: transparent #c50646;
     border-width: 14px 0 14px 14px;
     border-style: solid;
     -webkit-transform: scaleY(2);
@@ -228,7 +228,7 @@ h3 {
 .london-bg {
     position: relative;
     height: 600px;
-    background: url(../images/tobacco-docks.jpg) center 0 no-repeat;
+    background: url(../images/tobacco-dock-1.jpg) center 0 no-repeat;
     background-size: cover
 }
 .london-scrim {
