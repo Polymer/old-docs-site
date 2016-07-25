@@ -56,12 +56,12 @@ env.globals['include_file_raw'] = include_file_raw
 
 # CURRENT_VERSION_ID format is version.hash, where version is the
 # app version passed to the deploy script.
+MEMCACHE_PREFIX = 'no_version/'
 if 'CURRENT_VERSION_ID' in os.environ:
   MEMCACHE_PREFIX = os.environ.get('CURRENT_VERSION_ID').split('.')[0] + '/'
-else:
-  MEMCACHE_PREFIX = 'no_version/'
+
 REDIRECTS_FILE = 'redirects.yaml'
-NAV_FILE =  '%s/nav.yaml'
+NAV_FILE = '%s/nav.yaml'
 ARTICLES_FILE = '%s/blog.yaml'
 AUTHORS_FILE = '%s/authors.yaml'
 IS_DEV = os.environ.get('SERVER_SOFTWARE', '').startswith('Dev')
