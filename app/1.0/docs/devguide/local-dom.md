@@ -18,6 +18,25 @@ when manipulating DOM from JavaScript. This interface covers most of the
 common DOM methods and properties, and is compatible with both shady DOM and
 native shadow DOM.
 
+```html
+<dom-module>
+  <template>
+  
+    <!-- 
+      Local DOM. Possible implementations : 
+        - Shadow DOM (browser implementation)
+        - Shady DOM (Polymer implementation)
+    -->
+    
+    <content>
+      <!-- 
+        Light DOM
+      -->
+    </content>
+    
+  </template>
+</dom-module>
+```
 
 **Note:** Currently Polymer uses shady DOM by default on all
 browsers. To opt-in to using shadow DOM where available, see [Global
