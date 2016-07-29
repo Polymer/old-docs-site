@@ -98,7 +98,7 @@ This section summarizes some common instance methods. For a complete list of met
 
 ### Imports and URLs
 
-*   [`importHref(href, onload, onerror)`](/1.0/docs/api/Polymer.Base#method-importHref). Dynamically imports an HTML document.
+*   [`importHref(href, onload, onerror, optAsync)`](/1.0/docs/api/Polymer.Base#method-importHref). Dynamically imports an HTML document.
 
     ```
     this.importHref('path/to/page.html', function(e) {
