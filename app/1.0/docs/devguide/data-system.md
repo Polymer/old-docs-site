@@ -237,7 +237,7 @@ a wildcard path in a data binding.
 #### Array mutation paths
 
 When used as the last segment in a path, `splices` represents any array *mutations* to the
-identified array (i.e. additions or deletions). For example, if `users` is an array, the path
+identified array (that is, additions or deletions). For example, if `users` is an array, the path
 `users.splices` identifies any additions to, or deletions from, the array.
 
 A `.splices` path can be used in an observer, computed property or computed binding to identify
@@ -250,9 +250,9 @@ registered by a wildcard path (for example, you won't see changes to subproperti
 Polymer supports two ways of identifying an array item in a path: by index or by an opaque,
 immutable key.
 
-*   An index, for example, `"myArray.1"`, indicates the array item at position 1.
+*   An index, for example, `"myArray.1"` indicates the array item at position 1.
 
-*   An opaque key, prefixed with the pound sign (`#`), for example, `"myArray.#1"`, indicates the
+*   An opaque key, prefixed with the pound sign (`#`), for example, `"myArray.#1"` indicates the
     array item with the *key* "1".
 
 **Why use keys?** Polymer uses keys internally to provide a stable path to a specific array item,
@@ -268,7 +268,7 @@ because it requires extra work to retrieve the index. Polymer provides methods t
 original array item given the item's key.
 
 **In most cases, you don't need to deal with array keys directly**. Polymer provides helper
-elements, such as the [template repeater element](/1.0/docs/devguide/templates#dom-repeat), that
+elements, such as the [template repeater element](/1.0/docs/devguide/templates#dom-repeat) that
 abstract away many of the complexities of working with arrays.
 
 Related tasks:
