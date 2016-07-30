@@ -326,11 +326,11 @@ Related tasks:
 Polymer implements the mediator pattern, where a host element manages data flow between itself and
 its local DOM nodes.
 
-When two elements are connected with a data binding, data changes can flow **downward** — from
-host to target — **, upward** — from target to host — , or both.
+When two elements are connected with a data binding, data changes can flow _downward_, from
+host to target, _upward_, from target to host, or both ways.
 
 When two elements in the local DOM are bound to the same property data appears to flow from one
-element to the other, but this flow is **mediated** by the host. A change made by one element
+element to the other, but this flow is _mediated_ by the host. A change made by one element
 propagates **up** to the host, then the host propagates the change **down** to the second element.
 
 ### Data flow is synchronous
@@ -484,7 +484,7 @@ when an observable change occurs. Change events are described in more detail in 
 notification events](#link).
 
 For **two-way bindings**, the host element listens for these change events and propagates the
-changes — for example, setting a property and invoking any related property effects. The property
+changes—for example, setting a property and invoking any related property effects. The property
 effects may include:
 
 
@@ -526,9 +526,9 @@ A change notification event is fired when one of the following
 
 *   An array mutation.
 
-Event types follow a naming convention of <code><var>property</var>-changed</code>, where
-<code><var>property</var></code> is the property name, in dash case (so changing `this.firstName`
-fires `first-name-changed`.
+The event's type property indicates which property changed: it follows a naming convention of 
+<code><var>property</var>-changed</code>, where <code><var>property</var></code> is the property 
+name, in dash case (so changing `this.firstName` fires `first-name-changed`.
 
 You can manually attach a <code><var>property</var>-changed</code> listener to an element to
 notify external elements, frameworks, or libraries of property changes.
@@ -562,7 +562,8 @@ Related tasks:
 
 ### Element initialization
 
-When an element initializes its local DOM, it configures the properties of its local DOM children's data bindings.
+When an element initializes its local DOM, it configures the properties of its local DOM children and 
+initializes data bindings.
 
 The host’s values take priority during initialization. For example, when a host property is bound to
 a target property, if both host and target elements specify default values, the parent's default
