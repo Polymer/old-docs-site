@@ -40,7 +40,7 @@ icon-toggle-demo.html—existing demo code { .caption }
 
 These lines are _already in place_, you don't have to add them. These lines
 are part of the demo you see on screen. But if you'd like to experiment, try
-adding a new `<toggle-icon>` element to the `icon-toggle-demo.html` file. Some
+adding a new `<icon-toggle>` element to the `icon-toggle-demo.html` file. Some
 icon names you can try are `add`, `menu`, and `settings`.
 
 **Learn more: attribute and property names.** You'll note that the markup above

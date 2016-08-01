@@ -10,7 +10,7 @@ its _light DOM_ for clarity.
 
 Polymer supports multiple local DOM implementations. On browsers
 that support shadow DOM, shadow DOM may be used to create local DOM. On other
-supported browsers, Polymer provides local DOM via a custom
+browsers, Polymer provides local DOM via a custom
 implementation called _shady DOM_ which is inspired by shadow DOM.
 
 Shady DOM requires you to use the [Polymer DOM API](#dom-api)

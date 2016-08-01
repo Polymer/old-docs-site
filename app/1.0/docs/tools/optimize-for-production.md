@@ -110,7 +110,7 @@ To prevent certain imports from being inlined in your bundle, use the `excludes`
 
 ```
 gulp.task('vulcanize', function() {
-  return gulp.src(app/elements/elements.html')
+  return gulp.src('app/elements/elements.html')
     .pipe(vulcanize({
       excludes: ['elements/x-foo.html'],
       stripExcludes: ['elements/x-foo.html']

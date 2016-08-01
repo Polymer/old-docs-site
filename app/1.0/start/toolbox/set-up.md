@@ -8,7 +8,7 @@ subtitle: "Build an app with App Toolbox"
 The [Polymer App Toolbox][toolbox] is a collection of components, tools and
 templates for building Progressive Web Apps with Polymer.
 
-Follow the instructions below install, build, and deploy a project using an
+Follow the instructions below to install, build, and deploy a project using an
 App Toolbox template in less than 15 minutes.
 
 ## Install the Polymer CLI

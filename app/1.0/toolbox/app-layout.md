@@ -7,6 +7,13 @@ title: Responsive app layout
 **The app layout elements are prerelease.** APIs may be subject to change.
 {.alert .alert-info}
 
+**Breaking changes:** In 
+[version 0.10](https://github.com/PolymerElements/app-layout/releases/tag/v0.10.0) 
+of the app layout package the `title` attribute of `<app-toolbar>` was 
+changed to `main-title`, and the `primary` attribute of `<app-header>` was 
+changed to `sticky`.
+{.alert .alert-warning}
+
 Every application needs some layout, and the app layout elements provide the tools to create
 responsive layouts easily.
 
@@ -96,7 +103,7 @@ extra CSS, it can be fixed to the top of the page. The following [sample](http:/
   </head>
   <body>
     <app-toolbar>
-      <div title>Spork</div>
+      <div main-title>Spork</div>
     </app-toolbar>
     <sample-content size="10"></sample-content>
   </body>
@@ -105,14 +112,15 @@ extra CSS, it can be fixed to the top of the page. The following [sample](http:/
 ![screenshot of a siple app-toolbar](/images/1.0/toolbox/simple-toolbar.png)
 
 The toolbar is a horizontal flexbox container, so you can use the usual flexbox rules to adjust the
-layout of its children. A child with the attribute `title` is automatically styled to flex, so it
+layout of its children. A child with the attribute `main-title` is
+automatically styled to flex, so it
 takes up all the extra space in the container. If you add buttons or icons on either side of the
 title, they'll automatically be pushed to the sides of the toolbar:
 
 ```
   <app-toolbar>
     <paper-icon-button icon="menu"></paper-icon-button>
-    <div title>Spork</div>
+    <div main-title>Spork</div>
     <paper-icon-button icon="search"></paper-icon-button>
   </app-toolbar>
 ```
@@ -134,7 +142,7 @@ You can change the default behavior by adding attributes to the header:
     scrolling up, no matter how far down the page you are.
 - `condenses`. A _condensing header_ is taller than the usual header, and shrinks vertically as
     you scroll down. Condensing headers usually have multiple toolbars/tab bars with one (the
-    _primary_ element) that is always shown. This mode can be combined with either a fixed or
+    _sticky_ element) that is always shown. This mode can be combined with either a fixed or
     revealing header.
 
 
@@ -156,43 +164,43 @@ When using a condensing header with multiple toolbars, you can choose two basic 
     ![screenshot of the same app-toolbar, but with the title and the buttons gone, and only with the 2 tabs visible](/images/1.0/toolbox/spork-tabs-condensed.png)
 
 
-One toolbar in the set is identified as `primary`. When the page scrolls, any toolbars _above_ the
-primary toolbar scroll off screen. You can designate a primary toolbar by setting the `primary`
-attribute on it. If no toolbar has the `primary` attribute, the `<app-header>`'s first child is
-primary.
+One toolbar in the set is identified as `sticky`. When the page scrolls, any toolbars _above_ the
+sticky toolbar scroll off screen. You can designate a sticky toolbar by setting the `sticky`
+attribute on it. If no toolbar has the `sticky` attribute, the `<app-header>`'s first child is
+sticky.
 
 ```
   <app-header fixed condenses effects="waterfall">
     <app-toolbar>
       <paper-icon-button icon="menu"></paper-icon-button>
-      <div title></div>
+      <div main-title></div>
       <paper-icon-button icon="shopping-cart"></paper-icon-button>
     </app-toolbar>
     <app-toolbar></app-toolbar>
     <app-toolbar>
-      <div spacer title>My App</div>
+      <div spacer main-title>My App</div>
     </app-toolbar>
   </app-header>
 ```
 
-Here, the first toolbar (with the icon buttons) is primary. It stays on screen while other toolbars
+Here, the first toolbar (with the icon buttons) is sticky. It stays on screen while other toolbars
 slide up to stack on top of it. The `spacer` attribute on the title adds some left padding to the
 title so it doesn't overlap a menu button on the left side of the toolbar.
 
 The condensing header starts out its natural height (that is, the height of its contents, unless an
-explicit height is set on it in CSS). It condenses down until it reaches the height of its primary
+explicit height is set on it in CSS). It condenses down until it reaches the height of its sticky
 element.
 
-To retain just a tab bar, place the tab bar last, and mark it as primary.
+To retain just a tab bar, place the tab bar last, and mark it as sticky.
 
 ```
   <app-header id="header" effects="waterfall" fixed condenses>
     <app-toolbar>
       <paper-icon-button icon="arrow-back"></paper-icon-button>
-      <div title>Spork</div>
+      <div main-title>Spork</div>
       <paper-icon-button icon="shopping-cart"></paper-icon-button>
     </app-toolbar>
-    <paper-tabs selected="0" primary>
+    <paper-tabs selected="0" sticky>
       <paper-tab>Food</paper-tab>
       <paper-tab>Drink</paper-tab>
       <paper-tab>Life</paper-tab>
@@ -212,7 +220,7 @@ the user starts scrolling, so the content can scroll underneath it.
 ```
   <app-header fixed effects="waterfall">
     <app-toolbar>
-      <div title>App name</div>
+      <div main-title>App name</div>
     </app-toolbar>
   </app-header>
 ```
@@ -267,7 +275,7 @@ To use it, just place an `<app-header>` and some content inside an `<app-header-
   <app-header-layout>
     <app-header fixed condenses effects="waterfall">
       <app-toolbar>
-        <div title>App name</div>
+        <div main-title>App name</div>
       </app-toolbar>
     </app-header>
     <div>
@@ -366,7 +374,7 @@ with drawer and header.
       <app-header reveals effects="waterfall">
         <app-toolbar>
           <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
-          <div title>Title</div>
+          <div main-title>Title</div>
         </app-toolbar>
       </app-header>
 
