@@ -44,8 +44,8 @@ Simple observers are fired the first time the property becomes defined (!= `unde
 every change thereafter, *_even if the property becomes undefined._*
 
 Simple observers only fire when the property *itself* changes. They don't fire on subproperty
-changes, or array mutation. If you need these changes, use a complex observer with a [wildcard
-path](#wildcard-paths).
+changes, or array mutation. If you need these changes, use a complex observer with a wildcard path,
+as described in [Observe all changes related to a path](#deep-observation).
 
 The observer method receives the new and old values of the property as arguments.
 
@@ -251,8 +251,9 @@ Whenever the array is mutated, the observer receives a change record
 representing the mutation as a set of array splices.
 
 In many cases, you'll want to observe both array mutations *and* changes to
-sub-properties of array items, in which case you should use a [deep
-sub-property observer](#deep-observation).
+sub-properties of array items, in which case you should use a wildcard path,
+as described in [Observe all changes related to a path](#deep-observation).
+
 
 **Avoid native JavaScript array mutation methods.**
 Use Polymer's [array mutation methods](#array-mutation) wherever possible to

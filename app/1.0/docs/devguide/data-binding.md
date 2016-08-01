@@ -4,14 +4,12 @@ title: Data binding
 
 <!-- toc -->
 
-In its simplest form, data binding binds a property or sub-property of a custom element
+A _data binding_ connects data from a custom element
 (the _host element_) to a property or attribute of an element in its local DOM (the _child_
-or _target element_).
+or _target element_). The host element data can be a property or sub-property represented by a
+[data path](data-system#data-paths), or data generated based on one or more paths.
 
-The *data binding* establishes a connection between [paths](data-system#data-paths) on the
-_host element_ and _target element_, allowing data changes to flow from one element to the other.
-
-You create data bindings by adding _annotations_ to an element's local DOM template.
+You create data bindings by adding annotations to an element's local DOM template.
 
 ```
 <dom-module id="host-element">
@@ -21,34 +19,58 @@ You create data bindings by adding _annotations_ to an element's local DOM templ
 </dom-module>
 ```
 
-## Binding annotations {#binding-annotation}
+Updating data bindings is a [property effect](data-system#property-effects).
 
-Polymer provides two kinds of data binding delimiters:
+## Anatomy of a data binding
 
-*   One-way bindings:  (<code>[[<var>binding</var>]]</code>). One-way bindings allow only
-    <strong>downward</strong> data flow.
+A data binding appears in the local DOM template as an HTML attribute:
 
-*   Two-way or "automatic" binding annotations (<code>{{<var>binding</var>}}</code>). Automatic
-    bindings allow <strong>upward and downward</strong> data flow.
+<pre>
+<code><var>property-name</var>=<var>annotation-or-compound-binding</var></code>
+<code><var>attribute-name</var>$=<var>annotation-or-compound-binding</var></code>
+</pre>
 
-See [Data flow](data-system#data-flow) for information on two-way binding and upward data flow.
+The left-hand side of the binding identifies the target property or attribute.
 
-The text inside the delimiters can be one of the following:
+-   Property bindings are the default. The property name is given in attribute form (dash-case not
+    camelCase). For example:
 
-*   A property or subproperty path (`users`, `address.street`).
-*   A computed binding (`_computeName(firstName, lastName, locale)`)
-*   Any of the above, preceded by the negation operator (`!`).
+    ```
+    <my-element my-property="{{hostProperty}}">
+    ```
 
-The paths in a data binding annotation are relative to the current [data binding
-scope](data-system#data-binding-scopes).
+    This example binds the host property `hostProperty` to the target property, `myProperty` on
+    `<my-element>`.
+
+    For more information, see [Property  name to attribute name
+    mapping](#property-name-mapping).
+
+-   To bind to an attribute instead, use the attribute name followed by `$`:
+
+    ```
+    <a href$="{{myUrl}}">
+    ```
+
+    This example binds the host property `myUrl` to the anchor element's `href` **attribute**.
+
+The right-hand side of the binding consists of either a _binding annotation_ or a _compound binding_:
+
+<dl>
+  <dt>Binding annotation</dt>
+  <dd>Text surrounded by double curly bracket (`{{ }}`) or double square bracket (`[[]]`)
+      delimiters. Identifies the host data being bound. </dd>
+  <dt>Compound binding</dt>
+  <dd>A string literal containing one or more binding annotations.</dd>
+</dl>
 
 ## Bind to a target property {#property-binding}
 
 To bind to a target property, specify the attribute name that corresponds to the
-property, with an [annotation](#binding-annotation) as the attribute value:
+property, with an [annotation](#binding-annotation) or [compound binding](#compound-binding)
+as the attribute value:
 
 ```
-<target-element name="{{myName}}"></child-element>
+<target-element name="{{myName}}"></target-element>
 ```
 
 This example binds the target element's `name` property to the host element's
@@ -74,11 +96,15 @@ For example:
 syntax. For more information, see [Binding to native element attributes](#native-binding).
 { .alert .alert-info }
 
+If the property being bound is an object or an array, both elements get a reference to the **same
+object**. This means that either element can change the object and a true one-way binding is
+impossible. For more information, see [Data flow for objects and
+arrays](data-system#data-flow-objects-arrays).
 
 ### Bind to text content
 
 To bind to a target element's `textContent`, you can simply include the
-annotation inside the target element.
+annotation or compound binding inside the target element.
 
 ```
 <dom-module id="user-view">
@@ -104,64 +130,155 @@ annotation inside the target element.
 
 Binding to text content is always one-way, host-to-target.
 
-### Two-way binding to non-Polymer elements {#two-way-native}
+## Bind to a target attribute {#attribute-binding}
 
-As mentioned above, Polymer uses an event naming convention to achieve two-way
-binding.
+In the vast majority of cases, binding data to other elements should use property bindings, where
+changes are propagated by setting the new value to the JavaScript property on the element.
 
-To two-way bind to native elements or non-Polymer elements that _don't_
-follow this event naming convention, you can specify a
-custom change event name in the annotation using the following syntax:
+However, sometimes you need to set an attribute on an element, as opposed to a property.  For
+example, when attribute selectors are used for CSS or for interoperability with elements that
+require using an attribute-based API.
 
-<code><var>target-prop</var>="{{<var>hostProp</var>::<var>target-change-event</var>}}"</code>
-
-
-Example: { .caption }
+To bind to an attribute, use `$=` rather than `=`:
 
 ```
-
-<!-- Listens for `input` event and sets hostValue to <input>.value -->
-<input value="{{hostValue::input}}">
-
-<!-- Listens for `change` event and sets hostChecked to <input>.checked -->
-<input type="checkbox" checked="{{hostChecked::change}}">
-
-<!-- Listens for `timeupdate ` event and sets hostTime to <video>.currentTime -->
-<video url="..." current-time="{{hostTime::timeupdate}}">
-
-
-: When binding to standard notifying properties on Polymer elements,
-specifying the event name is unnecessary, as the default convention will be
-to listen for `property-changed` events.  The following constructions are equivalent:
-
-
-<!-- Listens for `value-changed` event -->
-<my-element value="{{hostValue::value-changed}}">
-
-<!-- Listens for `value-changed` event using Polymer convention by default -->
-<my-element value="{{hostValue}}">
-
+<div style$="color: {{myColor}};">
 ```
 
-### Compound bindings {#compound-bindings}
+Where the attribute value is either a [binding annotation](#binding-annotation) or a [compound
+binding](#compound-binding).
 
-You can combine string literals and bindings in a single property binding or
-text content binding. For example:
+Attribute binding results in a call to:
+
+
+```js
+element.setAttribute(attr,value);
+```
+
+As opposed to:
+
+
+```js
+element.property = value;
+```
+
+For example:
+
+
+```html
+<template>
+  <!-- Attribute binding -->
+  <my-element selected$="{{value}}"></my-element>
+  <!-- results in <my-element>.setAttribute('selected', this.value); -->
+
+  <!-- Property binding -->
+  <my-element selected="{{value}}"></my-element>
+  <!-- results in <my-element>.selected = this.value; -->
+</template>
+```
+
+
+Attribute bindings are always one-way, host-to-target. Values are serialized according to the
+value's _current_ type, as described for
+[attribute serialization](properties.html#attribute-serialization).
+
+Again, as values must be serialized to strings when binding to attributes, it is always more
+performant to use property binding for pure data propagation.
+
+### Native properties that don't support property binding {#native-binding}
+
+There are a handful of common native element properties that Polymer can't data-bind to directly,
+because the binding causes issues on one or more browsers.
+
+You need to use attribute bindings to affect the following properties:
+
+| Attribute | Property | Notes
+
+| `class` | `classList`, `className` | Maps to two properties with different formats.
+
+| `style` | `style` | By specification, `style` is considered a read-only reference to a `CSSStyleDeclaration` object.
+
+| `href` | `href` |
+
+| `for` | `htmlFor` |
+
+| `data-*` |  `dataset` | Custom data attributes (attribute names starting with `data-`) are stored on the `dataset` property.
+
+| `value` | `value` | Only for `<input type="number">`.
+
+**Note:** data binding to the `value` property doesn't work on IE for ***numeric input types***. For
+this specific case, you can use one-way attribute binding to set the `value` of a numeric input. Or
+use another element such as `iron-input` or `paper-input` that handles two-way binding correctly.
+{.alert .alert-info }
+
+This list includes the properties currently known to cause issues with property bindings. Other
+properties may also be affected.
+
+There are various reasons that properties can't be bound:
+
+*   Cross-browser isssues with the ability to place binding braces `{{...}}` in some of these
+    attribute values.
+
+*   Attributes that map to differently-named JavaScript properties (such as `class`).
+
+*   Properties with unique structures (such as `style`).
+
+Attribute binding to dynamic values (use `$=`):
+
+
+```html
+<!-- class -->
+<div class$="{{foo}}"></div>
+
+<!-- style -->
+<div style$="{{background}}"></div>
+
+<!-- href -->
+<a href$="{{url}}">
+
+<!-- label for -->
+<label for$="{{bar}}"></label>
+
+<!-- dataset -->
+<div data-bar$="{{baz}}"></div>
+```
+
+
+## Binding annotations {#binding-annotation}
+
+Polymer provides two kinds of data binding delimiters:
+
+*   One-way bindings:  (<code>[[<var>binding</var>]]</code>). One-way bindings allow only
+    <strong>downward</strong> data flow.
+
+*   Two-way or "automatic" binding annotations (<code>{{<var>binding</var>}}</code>). Automatic
+    bindings allow <strong>upward and downward</strong> data flow.
+
+See [Data flow](data-system#data-flow) for information on two-way binding and upward data flow.
+
+The text inside the delimiters can be one of the following:
+
+*   A property or subproperty path (`users`, `address.street`).
+*   A computed binding (`_computeName(firstName, lastName, locale)`).
+*   Any of the above, preceded by the negation operator (`!`).
+
+The paths in a data binding annotation are relative to the current [data binding
+scope](data-system#data-binding-scopes).
+
+### Bind to a host property {#host-property}
+
+The simplest form of binding annotation uses a host property:
 
 ```
-<img src$="https://www.example.com/profiles/{{userId}}.jpg">
-
-<span>Name: {{lastname}}, {{firstname}}</span>
+<simple-view name="{{myName}}"></simple-view>
 ```
 
-Compound bindings are re-evaluated whenever the value of any of the individual
-bindings changes. Undefined values are interpolated as empty strings.
+If the property being bound is an object or an array, both elements get a reference to the **same
+object**. This means that either element can change the object and a true one-way binding is
+impossible. For more information, see [Data flow for objects and
+arrays](data-system#data-flow-objects-arrays).
 
-You can use either one-way (`[[]]`) or automatic (`{{}}`)
-binding annotations in a compound binding, but the bindings are **always
-one-way, host-to-target.**
-
-### Bind to a sub-property
+### Bind to a host sub-property {#path-binding}
 
 Binding annotations can also include paths to sub-properties, as shown below:
 
@@ -184,46 +301,76 @@ Binding annotations can also include paths to sub-properties, as shown below:
 </dom-module>
 ```
 
+Subproperty changes are not automatically [observable](data-system#observable-changes).
+
+If the host element updates the subproperty it needs to use the `set` method, as described in
+[Set a property or subproperty by path](#set-path). Or the `notifyPath` method, as described in
+[Notify Polymer of a subproperty change](#notify-path).
 
 
-See [Binding to structured data](#path-binding) for details.
+```
+//  Change a subproperty observably
+this.set('name.last', 'Maturin');
+```
 
+If the binding is two-way and the target element updates the bound property, the change propagates
+upward automatically.
 
+If the subproperty being bound is an object or an array, both elements get a reference to the **same
+object**. This means that either element can change the object and a true one-way binding is
+impossible. For more information, see [Data flow for objects and
+arrays](data-system#data-flow-objects-arrays).
 
+### Logical not operator {#expressions-in-binding-annotations}
 
-## Expressions in binding annotations
+Binding annotations support a single logical not operator (`!`), as the first character inside
+the binding delimiters:
 
-Currently there's no general support for expressions in binding annotations.
-The two exceptions are:
+```
+<template>
+  <my-page show-login="{{!isLoggedIn}}"></my-page>
+</template>
+```
 
-*   Negation using `!`:
+In this example, `showLogin` is `false` if `isLoggedIn` has a truthy value.
 
-    Example:
+Only a single logical not operator is supported. You can't cast a value to boolean using `!!`. For
+more complicated transformations, use a [computed binding](#annotated-computed).
 
-    ```
-    <template>
-      <div hidden="{{!enabled}}"></div>
-    </template>
-    ```
+A binding with a logical not operator is **always one-way, host-to-target**.
 
-*   Computed bindings, as described in
-    [Computed bindings](#annotated-computed), below.
+### Computed bindings {#annotated-computed}
 
+A *computed binding* is similar to a [computed property](observers#computed-properties). It's
+declared inside a binding annotation.
 
-In addition, multiple binding annotations can be combined with string literals in a single [compound binding](#compound-bindings).
+```
+<div>[[_formatName(first, last, title)]]</div>
+```
 
-## Computed bindings {#annotated-computed}
+The computed binding declaration includes a computing function name, followed by a list of
+_dependencies_, in parenthesis.
 
-For more complicated bindings, you can use a computed binding.
-A computed binding is similar to a computed property: it includes a computing function
-and zero or more arguments. Arguments can be dependent properties or string
-or number literals.
+An element can have multiple computed bindings in its template that refer to the same computing
+function.
 
-A computed binding is useful if you don't need to expose a computed property
-as part of the element's API, or use it elsewhere in the element.
+In addition to the dependency types supported by computed properties and complex observers, the
+dependencies for a computed binding can include string or number literals.
 
-**Note:** this is the only form of function allowed in binding annotations.
-{ .alert .alert-info }
+A computed binding is useful if you don't need to expose a computed property as part of the
+element's API, or use it elsewhere in the element. Computed bindings are also useful for filtering
+or transforming values for display.
+
+Computed bindings differ from computed properties in the following ways:
+
+*   A computed binding's dependencies are interpreted relative to the current *binding scope*. For
+    example, inside a [template repeater](templates.html#dom-repeat), a dependent property could
+    refer to the current `item`.
+
+*   A computed binding's argument list can include literal arguments.
+
+*   A computed binding can have an *empty* argument list, in which case the computing function is
+    only called once.
 
 Example: { .caption }
 
@@ -231,7 +378,7 @@ Example: { .caption }
 <dom-module id="x-custom">
 
   <template>
-    My name is <span>{{computeFullName(first, last)}}</span>
+    My name is <span>{{_formatName(first, last)}}</span>
   </template>
 
   <script>
@@ -241,7 +388,7 @@ Example: { .caption }
         first: String,
         last: String
       },
-      computeFullName: function(first, last) {
+      _formatName: function(first, last) {
         return first + ' ' + last;
       }
       ...
@@ -252,46 +399,49 @@ Example: { .caption }
 ```
 
 In this case, the span's `textContent` property is bound to the return value
-of `computeFullName`, which is recalculated whenever `first` or `last` changes.
+of `_formatName`, which is recalculated whenever `first` or `last` changes.
 
-### Dependent properties in computed bindings {#dependent-properties}
+**Computed bindings are one way.** A computed binding is always one-way, host-to-target.
+{.alert .alert-info}
 
-Arguments to computing functions may be _dependent properties_, which include
-any of argument types supported by the `observers` object:
+#### Dependencies of computed bindings {#computed-binding-dependencies}
 
-*   simple properties on the current scope
-*   [paths to subproperties](properties#observing-path-changes)
-*   [paths with wildcards](properties#deep-observation)
-*   [paths to array splices](properties#array-observation)
+A computed binding's dependencies can include any of the dependency types supported by
+[complex observers](observers#complex-observers):
 
-For each type of dependent property, the argument _received_ by the computing function is the
-same as that passed to an observer.
+*   Simple properties on the current scope.
 
-The computing function **is not called until all dependent properties are defined
-(`!=undefined`)**. So each dependent properties should have a
-default `value` defined in `properties` (or otherwise be initialized to a
-non-`undefined` value) to ensure the function value is computed.
+*   Paths to subproperties.
 
-A computed binding's dependent properties are interpreted relative to the current
-_binding scope_. For example, inside a [template repeater](templates#dom-repeat),
-a dependent property could refer to the current `item`.
+*   Paths with wildcards.
 
-For an example computed binding using a path with a wildcard, see [Binding to array items](#array-binding).
+*   Paths to array splices.
 
-### Literal arguments to computed bindings {#literals}
+In addition, a computed binding can include literal arguments.
 
-Arguments to computed bindings may also be string or number literals.
-Strings may be  either single- or double-quoted. In an attribute or
-property binding, if you use double quotes for the attribute value, use single
-quotes for string literals, or the reverse.
+For each type of dependent property, the argument passed to the computing function is the same as
+that passed to an observer.
 
-**Commas in literal strings:** Any comma occurring in a string literal
-_must_ be escaped using a backslash (`\`).
-{ .alert .alert-info }
+As with observers and computed properties, the computing function **is not called until all
+dependent properties are defined (`!=undefined`)**.
 
-Example:  { .caption }
+For an example computed binding using a path with a wildcard, see [Binding to array
+items](#array-binding).
 
-```
+#### Literal arguments to computed bindings {#literals}
+
+Arguments to computed bindings may be string or number literals.
+
+Strings may be  either single- or double-quoted. In an attribute or property binding, if you use
+double quotes for the attribute value, use single quotes for string literals, or the reverse.
+
+**Commas in literal strings:** Any comma occurring in a string literal **must** be escaped using a
+backslash (`\`).
+{.alert .alert-info }
+
+Example:
+
+```html
 <dom-module id="x-custom">
   <template>
     <span>{{translate('Hello\, nice to meet you', first, last)}}</span>
@@ -321,16 +471,55 @@ Finally, if a computed binding has no dependent properties, it is only evaluated
 </dom-module>
 ```
 
-## Bind to array items {#array-binding}
+## Compound bindings {#compound-bindings}
 
-Explicit bindings to array items by index isn't supported:
+You can combine string literals and bindings in a single property binding or
+text content binding. For example:
 
 ```
-<!-- don't do this! -->
+<img src$="https://www.example.com/profiles/{{userId}}.jpg">
+
+<span>Name: {{lastname}}, {{firstname}}</span>
+```
+
+Compound bindings are re-evaluated whenever the value of any of the individual
+bindings changes. Undefined values are interpolated as empty strings.
+
+You can use either one-way (`[[]]`) or automatic (`{{}}`)
+binding annotations in a compound binding, but the bindings are **always
+one-way, host-to-target.**
+
+
+## Binding to arrays and array items {#array-binding}
+
+To keep annotation parsing simple, **Polymer doesn't provide a way to bind directly to an array
+item**.
+
+```
+<!-- Don't do this! -->
 <span>{{array[0]}}</span>
-<!-- or this! -->
+<!-- Or this! -->
 <span>{{array.0}}</span>
 ```
+
+
+There are several ways to interact with arrays in a data binding:
+
+*   The `dom-repeat` helper element lets you create a instance of a template for each item in an
+    array. Inside a `dom-repeat` instance, you can bind to the properties of the array item.
+
+*   The `array-selector` helper element lets you data bind to a selection from an array, where the
+    selection is either a single item or a subset of the original array.
+
+*   You can bind an individual array item using a computed binding.
+
+Related topics:
+
+*   [Template repeater](templates#dom-repeat)
+*   [Array selector](templates#array-selector)
+*   [Bind to an array item](#bind-array-item)
+
+### Bind to an array item {#bind-array-item}
 
 You can use a computed binding to bind to a specific array item, or to a
 subproperty of an array item, like `array[index].name`.
@@ -381,101 +570,67 @@ _or_ if the array itself is mutated, so the binding uses a wildcard path, `myArr
 </dom-module>
 ```
 
-## Annotated attribute binding {#attribute-binding}
+## Two-way bindings
 
-In the vast majority of cases, binding data to other elements should use
-property binding described above, where changes are propagated by setting the
-new value to the JavaScript property on the element.
+Two-way bindings can propagate data changes both downward (from host to target) and upward (from
+target to host). For changes to propagate upward, the you must use automatic data binding
+delimiters (`{{ }}`) and the target property must be set to `notify: true`. For more information,
+see [Data flow](data-system#data-flow).
 
-However, sometimes you need to set an attribute on
-an element, as opposed to a property.  These include when attribute selectors
-are used for CSS or for interoperability with elements that require using an
-attribute-based API.
+When you bind an array or object property, both elements have access to the shared array or object,
+and both can make changes to it. Use automatic binding delimiters to ensure that property effects
+propagate upward. For more information, see [Data flow for objects and
+arrays](#data-flow-objects-arrays).
 
-To bind to an attribute, use `$=` rather than `=`.  This
-results in a call to:
+### Two-way binding to a non-Polymer element {#two-way-native}
 
-<code><var>element</var>.setAttribute(<var>attr</var>, <var>value</var>);</code>
+As described in [Change notification events](#change-events), Polymer uses an event naming
+convention to achieve two-way binding.
 
-As opposed to:
+To two-way bind to native elements or non-Polymer elements that _don't_ follow this event naming
+convention, you can specify a custom change event name in the annotation using the following syntax:
 
-<code><var>element</var>.<var>property</var> = <var>value</var>;</code>
+<code><var>target-prop</var>="{{<var>hostProp</var>::<var>target-change-event</var>}}"</code>
 
-```
-<template>
 
-  <!-- Attribute binding -->
-  <my-element selected$="{{value}}"></my-element>
-  <!-- results in <my-element>.setAttribute('selected', this.value); -->
-
-  <!-- Property binding -->
-  <my-element selected="{{value}}"></my-element>
-  <!-- results in <my-element>.selected = this.value; -->
-
-</template>
-```
-
-Attribute bindings are always one-way, host-to-child. Values are serialized according to
-the value's _current_ type, as described for [attribute serialization](properties#attribute-serialization).
-
-Again, as values must be serialized to strings when binding to attributes, it is
-always more performant to use property binding for pure data propagation.
-
-### Binding to native element attributes {#native-binding}
-
-There are a handful of extremely common native element attributes which can also
-be modified as properties.  Due to cross-browser limitations with the ability to
-place binding braces `{{...}}` in some of these attribute values, as well as the
-fact that some of these attributes map to differently named JavaScript properties, it is
-recommended to always use attribute binding (using `$=`) when binding dynamic
-values to these specific attributes, rather than binding to their property
-names.
-
-Normal attribute assignment to static values:
+Example: { .caption }
 
 ```
-<!-- class -->
-<div class="foo"></div>
+<!-- Listens for `input` event and sets hostValue to <input>.value -->
+<input value="{{hostValue::input}}">
 
-<!-- style -->
-<div style="background: red;"></div>
+<!-- Listens for `change` event and sets hostChecked to <input>.checked -->
+<input type="checkbox" checked="{{hostChecked::change}}">
 
-<!-- href -->
-<a href="http://foo.com">
+<!-- Listens for `timeupdate ` event and sets hostTime to <video>.currentTime -->
+<video url="..." current-time="{{hostTime::timeupdate}}">
 
-<!-- label for -->
-<label for="bar"></label>
 
-<!-- dataset -->
-<div data-bar="baz"></div>
+: When binding to standard notifying properties on Polymer elements,
+specifying the event name is unnecessary, as the default convention will be
+to listen for `property-changed` events.  The following constructions are equivalent:
+
+
+<!-- Listens for `value-changed` event -->
+<my-element value="{{hostValue::value-changed}}">
+
+<!-- Listens for `value-changed` event using Polymer convention by default -->
+<my-element value="{{hostValue}}">
 ```
 
-Attribute binding to dynamic values (use `$=`):
 
-```
 
-<!-- class -->
-<div class$="{{foo}}"></div>
-
-<!-- style -->
-<div style$="{{background}}"></div>
-
-<!-- href -->
-<a href$="{{url}}">
-
-<!-- label for -->
-<label for$="{{bar}}"></label>
-
-<!-- dataset -->
-<div data-bar$="{{baz}}"></div>
-
-```
 
 ## Moved sections
 
 The following section have moved to [Data system concepts](data-system):
 
-<a href="#property-notification"></a>
+<a id="#property-notification"></a>
 
--   Property change notification and two-way binding—see [How data flow is
+-   Property change notification and two-way binding. See [How data flow is
     controlled](#data-flow-control).
+
+<a id="##path-binding"></a>
+
+-   Binding to structured data. See [Observable changes](data-system#observable-changes),
+    [Data paths](data-system#paths), and [Bind to a property or sub-property](#)
