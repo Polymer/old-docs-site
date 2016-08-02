@@ -43,34 +43,64 @@ handlers:
 
 # Special exception for the summit site so it doesn't require
 # a trailing slash
+- url: /summit-2015
+  static_files: summit-2015/index.html
+  upload: summit-2015/index.html
+  secure: always
+
+- url: /summit-2015/$
+  static_files: summit-2015/index.html
+  upload: summit-2015/index.html
+  secure: always
+
+- url: /summit-2015/(schedule|speakers)
+  static_files: summit-2015/index.html
+  upload: summit-2015/index.html
+  secure: always
+
+- url: /summit-2015/codelabs/$
+  static_files: summit-2015/codelabs.html
+  upload: summit-2015/codelabs.html
+  secure: always
+
+- url: /summit-2015/codelabs$
+  static_files: summit-2015/codelabs.html
+  upload: summit-2015/codelabs.html
+  secure: always
+
+- url: /summit-2015/(.*)
+  static_files: summit-2015/\1
+  upload: summit-2015/(.*)
+  secure: always
+
 - url: /summit
-  static_files: summit/index.html
-  upload: summit/index.html
+  static_files: summit-2016/index.html
+  upload: summit-2016/index.html
   secure: always
 
 - url: /summit/$
-  static_files: summit/index.html
-  upload: summit/index.html
+  static_files: summit-2016/index.html
+  upload: summit-2016/index.html
   secure: always
 
 - url: /summit/(schedule|speakers)
-  static_files: summit/index.html
-  upload: summit/index.html
+  static_files: summit-2016/index.html
+  upload: summit-2016/index.html
   secure: always
 
 - url: /summit/codelabs/$
-  static_files: summit/codelabs.html
-  upload: summit/codelabs.html
+  static_files: summit-2016/codelabs.html
+  upload: summit-2016/codelabs.html
   secure: always
 
 - url: /summit/codelabs$
-  static_files: summit/codelabs.html
-  upload: summit/codelabs.html
+  static_files: summit-2016/codelabs.html
+  upload: summit-2016/codelabs.html
   secure: always
 
 - url: /summit/(.*)
-  static_files: summit/\1
-  upload: summit/(.*)
+  static_files: summit-2016/\1
+  upload: summit-2016/(.*)
   secure: always
 
 - url: /1.0/homepage/

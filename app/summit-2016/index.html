@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en" itemscope="" itemtype="http://schema.org/Event">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Two days of sessions and codelabs on all things Polymer and Web Components - building great components and apps, scaling within an organization, and more.">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1">
+    <title>Polymer Summit 2016</title>
+    <link rel="shortcut icon" href="/summit/images/logo-32.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Polymer Summit 2016">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Polymer Summit 2016">
+    <meta itemprop="name" content="Polymer Summit 2016">
+    <meta itemprop="description" content="Two days of sessions and codelabs on all things Polymer and Web Components - building great components and apps, scaling within an organization, and more.">
+    <meta itemprop="startDate" content="2016-10-17T00:00:00Z">
+    <meta itemprop="endDate" content="2016-10-18T23:59:59Z">
+    <meta property="og:title" content="Polymer Summit 2016">
+    <meta property="og:site_name" content="Polymer Summit 2016">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Two days of sessions and codelabs on all things Polymer and Web Components - building great components and apps, scaling within an organization, and more.">
+    <meta property="og:type" content="Event">
+    <link rel="stylesheet" href="/summit/styles/main.css">
+    <script src="/summit/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="/summit/src/elements.html">
+</head>
+
+<body unresolved="">
+    <template is="dom-bind" id="app">
+        <x-drawer-layout id="drawerLayout" force-narrow="" right-drawer="" on-opened-changed="_handleDrawerOpen">
+            <x-header-layout class="header-layout" main="" page$="[[page]]">
+                <x-header class="main-header" waterfall="" fixed="[[!narrowLayout]]" threadhold="232">
+                    <x-toolbar class="main-toolbar">
+                        <div class="header-tools horizontal center layout">
+                            <a href="https://plus.google.com/+PolymerProject" target="_blank" aria-label="Follow Polymer on G Plus">
+                                <iron-icon class="header-social-icon" icon="summit:post-gplus"></iron-icon>
+                            </a>
+                            <a href="https://twitter.com/polymer" target="_blank" aria-label="Follow Polymer on Twitter">
+                                <iron-icon class="header-social-icon" icon="summit:post-twitter"></iron-icon>
+                            </a>
+                        </div>
+                    </x-toolbar>
+                </x-header>
+                <section name="home">
+                    <header class="home-header horizontal center-center layout">
+                        <div class="badge-blue"></div>
+                    </header>
+                    <div class="date-loc-banner blue-banner responsive horizontal center-center layout">
+                        <div class="location">London, England</div>
+                        <div class="dot-separator wide-only"></div>
+                        <time>October 17-18, 2016</time>
+                    </div>
+                    <div class="wait-list-banner">
+                        <div><span>Get ready for the Polymer Summit 2016.</span>
+                          <br><span>Registration opens August 15.</span>
+                            <br><span></span> <a class="pink-arrow-btn" href="https://g.co/polymersummitinfo">Sign up for notifications</a></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="welcome-msg">
+                            <section>Join us for two days of talks, codelabs, and classes from the Polymer team, Googlers, major companies using Polymer, and the broader Web Components community.</section>
+                        </div>
+                    </div>
+                    <a class="london-bg" aria-label="Event map" target="_blank" href="https://www.google.com/maps/place/Tobacco+Dock/@51.5079623,-0.0610297,17z/data=!3m1!4b1!4m13!1m7!3m6!1s0x48760331dd10ff3f:0x438a8f1c8d683e45!2sTobacco+Dock!3b1!8m2!3d51.507959!4d-0.058841!3m4!1s0x48760331dd10ff3f:0x438a8f1c8d683e45!8m2!3d51.507959!4d-0.058841"></a>
+                    <div class="london-info responsive horizontal layout">
+                        <div class="about-waterfront flex vertical center layout">
+                            <section>
+                                <h3>Tobacco Dock. London.</h3>
+                                <p>Located in the heart of London's enterprise zone and walking distance from the Tower of London, Tobacco Dock will be home to the second Polymer Summit. Built in the early 1800's and once home to a warehouse for imported Tobacco, the venue is now a thriving event space featuring striking timber beams, industrial ironwork, and brick courtyards.</p>
+                            </section>
+                        </div>
+                        <div class="getting-there flex vertical center layout">
+                            <section>
+                                <h3>Getting There.</h3>
+                                <div class="direction"><a href="https://www.google.com/maps/place/Tobacco+Dock/@51.5079623,-0.0610297,17z/data=!3m1!4b1!4m13!1m7!3m6!1s0x48760331dd10ff3f:0x438a8f1c8d683e45!2sTobacco+Dock!3b1!8m2!3d51.507959!4d-0.058841!3m4!1s0x48760331dd10ff3f:0x438a8f1c8d683e45!8m2!3d51.507959!4d-0.058841">Tobacco Dock</a>
+                                    <br>Tobacco Dock, The Dock. Tobacco Quay, Wapping Lane, London. E1W 2SF</div>
+                                <div>BY OVERGROUND</div>
+                                <div class="direction">Shadwell DLR & Overground, Wapping Overground</div>
+                                <div>BY TUBE</div>
+                                <div class="direction">Tower Hill Tube</div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="horizontal center-center layout">
+                        <paper-material class="misc-card responsive horizontal layout">
+                            <section class="misc-card-content flex-auto">
+                                <h3>Can’t make it this year?</h3>
+                                <p>Streaming video, Polymer Code labs, and our social media community are a few alternatives for staying connected if you’re unable to attend.</p>
+                            </section>
+                            <div class="tools">
+                                <div class="bottom-spacer horizontal layout">
+                                    <a class="extended-gplus-link flex" tabindex="-1" target="_blank" href="https://plus.google.com/+PolymerProject">
+                                        <paper-button class="anchor-button blue" raised="">
+                                            <iron-icon class="extended-icon" icon="summit:post-gplus"></iron-icon>Google+</paper-button>
+                                    </a>
+                                    <a class="flex" tabindex="-1" target="_blank" href="https://twitter.com/polymer">
+                                        <paper-button class="anchor-button blue" raised="">
+                                            <iron-icon class="extended-icon" icon="summit:post-twitter"></iron-icon>Twitter</paper-button>
+                                    </a>
+                                </div>
+                                <a tabindex="-1" target="_blank" href="https://www.youtube.com/playlist?list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J" data-outbound="stream-video">
+                                    <paper-button class="anchor-button red" raised="">Watch the Polymer Summit 2015 Videos</paper-button>
+                                </a>
+                            </div>
+                        </paper-material>
+                    </div>
+                </section>
+                <a class="london-bg home-page-hidden vertical center-center layout" target="_blank" aria-label="Event map" data-outbound="image-map" href="https://www.google.com/maps/place/Muziekgebouw+aan+'t+IJ/@52.3783041,4.9131203,15z/data=!4m2!3m1!1s0x0:0x84b02f41a342e459">
+                    <div class="london-scrim"></div>
+                    <div class="badge-white"></div>
+                </a>
+                <footer>
+                    <div class="footer-inner responsive horizontal center layout">
+                        <a class="horizontal center layout" target="_blank" href="https://www.polymer-project.org">
+                            <div class="logo"></div>
+                            <div class="title">Polymer</div>
+                        </a>
+                        <div class="flex"></div><a target="_blank" href="http://polymer.github.io/LICENSE.txt" data-outbound="license-txt">&copy; 2015 Polymer Authors</a>
+                        <div class="dot-separator wide-only"></div><a target="_blank" href="https://www.polymer-project.org" data-outbound="about-polymer">About Polymer</a>
+                        <div class="dot-separator wide-only"></div><a target="_blank" href="/summit/code-of-conduct.html" data-outbound="code-of-conduct">Code of Conduct</a></div>
+                </footer>
+            </x-header-layout>
+        </x-drawer-layout>
+        <iron-media-query query="(max-width: 643px)" query-matches="{{narrowLayout}}"></iron-media-query>
+        <x-scrollpos-control selected="[[page]]"></x-scrollpos-control>
+    </template>
+    <script>
+        var app = document.querySelector('#app');
+
+        // Flip to true to make the livestream player go live
+        app.hasLivestream = true;
+
+        app._toggleDrawer = function(e) {
+            if (e.keyCode === 13) {
+                this.$.drawerLayout.toggleDrawer();
+            }
+        };
+
+        app._handleDrawerOpen = function(e, detail) {
+            if (detail && detail.value === true) {
+                document.querySelector('[drawer] a').focus();
+            }
+        };
+
+        app.pauseLivestream = function() {
+            var livestream = document.querySelector('.livestream');
+            // state -1 is unstarted
+            if (livestream.state === -1) {
+                return;
+            }
+            livestream.pause();
+        };
+
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-39334307-11', 'auto');
+        ga('send', 'pageview');
+
+        // Track outbound links
+        var anchors = Array.prototype.slice.call(
+            document.querySelectorAll('a[data-outbound]')
+        );
+        anchors.forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                var url = anchor.href;
+                var label = anchor.getAttribute('data-outbound');
+                label = label || '';
+                ga('send', 'event', 'outbound', 'click', label);
+            });
+        });
+    </script>
+</body>
+
+</html>

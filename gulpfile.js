@@ -278,15 +278,16 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     .pipe(gulp.dest('dist/bower_components/highlight'));
 
   let summit = gulp.src([
-      'app/summit/**/*',
-      'app/summit/*',
+      'app/summit*/**/*',
+      'app/summit*/*',
     ], {base: 'app'})
     .pipe(gulp.dest('dist'));
 
   let bower_summit = gulp.src([
       'app/bower_components/webcomponentsjs/webcomponents*.js'
     ], {base: 'app/'})
-    .pipe(gulp.dest('dist/summit'));
+    .pipe(gulp.dest('dist/summit-2015'))
+    .pipe(gulp.dest('dist/summit-2016'));
 
   return merge(app, docs, gae, bower, highlight, summit, bower_summit);
 });
