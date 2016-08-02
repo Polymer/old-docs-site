@@ -304,8 +304,8 @@ Binding annotations can also include paths to sub-properties, as shown below:
 Subproperty changes are not automatically [observable](data-system#observable-changes).
 
 If the host element updates the subproperty it needs to use the `set` method, as described in
-[Set a property or subproperty by path](#set-path). Or the `notifyPath` method, as described in
-[Notify Polymer of a subproperty change](#notify-path).
+[Set a property or subproperty by path](model-data#set-path). Or the `notifyPath` method, as described in
+[Notify Polymer of a subproperty change](model#notify-path).
 
 
 ```
@@ -604,21 +604,19 @@ Example: { .caption }
 
 <!-- Listens for `timeupdate ` event and sets hostTime to <video>.currentTime -->
 <video url="..." current-time="{{hostTime::timeupdate}}">
+```
 
-
-: When binding to standard notifying properties on Polymer elements,
+When binding to standard notifying properties on Polymer elements,
 specifying the event name is unnecessary, as the default convention will be
 to listen for `property-changed` events.  The following constructions are equivalent:
 
-
+```
 <!-- Listens for `value-changed` event -->
 <my-element value="{{hostValue::value-changed}}">
 
 <!-- Listens for `value-changed` event using Polymer convention by default -->
 <my-element value="{{hostValue}}">
 ```
-
-
 
 
 ## Moved sections

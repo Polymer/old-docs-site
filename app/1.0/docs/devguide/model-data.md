@@ -228,15 +228,15 @@ if (index != -1) {
 
 ## Override dirty checking {#override-dirty-check}
 
-When processing an [observable change](data-system#observable-changes), Polymer performs dirty checking
-and doesn't produce any property effects if the value at the specified path hasn't changed.
+When processing an [observable change](data-system#observable-changes), Polymer performs dirty
+checking and doesn't produce any property effects if the value at the specified path hasn't changed.
 
-Sometimes, when you have a number of changes to an object or array, or you don't know the exact changes
-to the object or array, it's desirable to skip the dirty checking.
+Sometimes, when you have a number of changes to an object or array, or you don't know the exact
+changes to the object or array, it's desirable to skip the dirty checking.
 
 To force the data system to skip the dirty check, set a path to an empty object or array,
-then back to the original object or array. This makes the data system re-evaluate all property effects
-related to that path and its subpaths. If the property is a large array or a complicated object,
+then back to the original object or array. This makes the data system re-evaluate all property
+effects related to that path and its subpaths.
 
 ```
 // Force data system to pick up subproperty changes
@@ -261,14 +261,16 @@ this.set('group.members', []);
 this.set('group.members', members);
 ```
 
+If the property is a large array or a complicated object, this process may be expensive.
+
 ## Link two paths to the same object {#linkPaths}
 
 Use the [`linkPaths`](/1.0/docs/api/Polymer.Base#method-linkPaths) method to associate two paths.
 Use `linkPaths` when an element has two paths that refer to the same object, as described in
-[Two paths referencing the same object]({#two-paths).
+[Two paths referencing the same object](data-system#two-paths).
 
-When two paths are *linked*, an [observable change](#observable-changes) to one path is observable
-on the other path, as well.
+When two paths are *linked*, an [observable change](data-system#observable-changes) to one path is
+observable on the other path, as well.
 
 ```js
 linkPaths('selectedUser', 'users.1');

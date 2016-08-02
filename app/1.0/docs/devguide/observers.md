@@ -206,7 +206,7 @@ In order for Polymer to properly detect the sub-property change, the
 sub-property must be updated in one of the following two ways:
 
 *   Via a [property binding](data-binding#property-binding).
-*   By calling [`set`](data-binding#set-path).
+*   By calling [`set`](model-data#set-path).
 
 Example: { .caption }
 
@@ -246,7 +246,7 @@ Example: { .caption }
 ### Observe array mutations {#array-observation}
 
 Use an array mutation observer to call an observer function whenever an array
-item is added or deleted using Polymer's [array mutation methods](#array-mutation).
+item is added or deleted using Polymer's [array mutation methods](model-data#array-mutation).
 Whenever the array is mutated, the observer receives a change record
 representing the mutation as a set of array splices.
 
@@ -256,10 +256,11 @@ as described in [Observe all changes related to a path](#deep-observation).
 
 
 **Avoid native JavaScript array mutation methods.**
-Use Polymer's [array mutation methods](#array-mutation) wherever possible to
+Use Polymer's [array mutation methods](model-data#array-mutation) wherever possible to
 ensure that elements with registered interest in the array mutations are
 properly notified. If you can't avoid the native methods, you need to notify
-Polymer about array changes as described in [Using native array mutation methods](#notifysplices).
+Polymer about array changes as described in [Using native array mutation
+methods](model-data#notifysplices).
 { .alert .alert-warning }
 
 To create a splice observer, specify a path to an array followed by `.splices`
