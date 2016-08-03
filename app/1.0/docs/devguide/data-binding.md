@@ -25,40 +25,35 @@ Updating data bindings is a [property effect](data-system#property-effects).
 
 A data binding appears in the local DOM template as an HTML attribute:
 
-<pre>
-<code><var>property-name</var>=<var>annotation-or-compound-binding</var></code>
-<code><var>attribute-name</var>$=<var>annotation-or-compound-binding</var></code>
-</pre>
+<pre><code><var>property-name</var><b>=</b><var>annotation-or-compound-binding</var></code>
+<code><var>attribute-name</var><b>$=</b><var>annotation-or-compound-binding</var></code></pre>
 
 The left-hand side of the binding identifies the target property or attribute.
 
--   Property bindings are the default. The property name is given in attribute form (dash-case not
-    camelCase). For example:
+-   To bind to a property, use the property name in attribute form (dash-case not
+    camelCase), as described in [Property  name to attribute name
+    mapping](#property-name-mapping):
 
-    ```
+    ```html
     <my-element my-property="{{hostProperty}}">
     ```
 
-    This example binds the host property `hostProperty` to the target property, `myProperty` on
-    `<my-element>`.
-
-    For more information, see [Property  name to attribute name
-    mapping](#property-name-mapping).
+    This example binds to the target property, `myProperty` on `<my-element>`.
 
 -   To bind to an attribute instead, use the attribute name followed by `$`:
 
-    ```
-    <a href$="{{myUrl}}">
+    ```html
+    <a href$="{{hostProperty}}">
     ```
 
-    This example binds the host property `myUrl` to the anchor element's `href` **attribute**.
+    This example binds to the anchor element's `href` **attribute**.
 
 The right-hand side of the binding consists of either a _binding annotation_ or a _compound binding_:
 
 <dl>
   <dt>Binding annotation</dt>
-  <dd>Text surrounded by double curly bracket (`{{ }}`) or double square bracket (`[[]]`)
-      delimiters. Identifies the host data being bound. </dd>
+  <dd>Text surrounded by double curly bracket (<code>{{ }}</code>) or double square bracket
+      (<code>[[ ]]</code>) delimiters. Identifies the host data being bound. </dd>
   <dt>Compound binding</dt>
   <dd>A string literal containing one or more binding annotations.</dd>
 </dl>

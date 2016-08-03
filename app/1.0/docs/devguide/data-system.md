@@ -5,20 +5,14 @@ title: Data system concepts
 <!-- toc -->
 
 <style>
-table.matrix {
-  margin: 18px 0px;
+table.config-summary pre, table.config-summary code {
+  background: transparent !important;
+  margin: 0px;
+  padding: 0px;
 }
-table.matrix tr:first-of-type {
-  border-top: none;
-}
-table.matrix tr:first-of-type td {
-  border-top: none;
-}
-table.matrix tr td:not(:first-of-type) {
-  border-left: 1px solid rgb(207, 216, 220);
-}
-table.matrix td {
-  padding 10px 16px;
+table.config-summary td {
+  vertical-align: middle;
+  padding: 10px 10px 1 1;
 }
 </style>
 
@@ -50,7 +44,7 @@ Consider a very simple element:
 </dom-module>
 ```
 
-![alt_text](/images/1.0/data-system/data-binding-overview.svg)
+![alt_text](/images/1.0/data-system/data-binding-overview.png)
 
 This element's model consists of a single property, `name`, and its local DOM tree contains a single
 `<div>` element. Data bindings in the template link the `name` object to the text content of the
@@ -316,7 +310,7 @@ For example, an element has two properties, `users` (an array) and `selectedUser
 a user is selected, `selectedUser` refers one of the objects in the array.
 
 
-![alt_text](/images/1.0/data-system/data-binding-overview.png)
+![alt_text](/images/1.0/data-system/linked-paths.png)
 
 
 In this example, the element has several paths that refer to the second item in the array:
@@ -379,7 +373,6 @@ The two types of data binding annotations are:
 
     ```
     <my-input value="{{name}}"></my-input>
-
     ```
 
 *   **One-way**, which only allows downwards data flow. Upward data flow is disabled. One-way bindings
@@ -389,17 +382,14 @@ The two types of data binding annotations are:
     <name-tag name="[[name]]"></name-tag>
     ```
 
-
 The following configuration flags affect data flow to and from target properties:
-
 
 *   `notify`. A notifying property **supports upward data flow**. By default, properties are
     non-notifying, and don't support upward data flow.
 *   `readOnly`. A read-only property **prevents downward data flow**. By default, properties are
     read/write, and support downward data flow.
 
-Example property definitions
-
+Example property definitions {.caption}
 
 ```js
 properties: {
@@ -418,72 +408,55 @@ properties: {
 }
 ```
 
-
-This matrix shows what kind of data flow is supported by automatic bindings based on the
+This table shows what kind of data flow is supported by automatic bindings based on the
 configuration of the target property:
 
-
-<table>
+<table class="config-summary">
   <tr>
     <th>
-      <code>notify</code>
-    </th>
-    <th>
-      <code>read-only</code>
+      Configuration
     </th>
     <th>
       Result
     </th>
   </tr>
   <tr>
-    <td rowspan="2">
-      <code>false</code> (default)
-    </td>
-    <td>
-      <code>false</code> (default)
-    </td>
+    <td><pre><code>notify: false,
+readOnly: false</code></pre></td>
     <td>
       One-way, downward
     </td>
   </tr>
-  <tr>
-    <td>
-      <code>true</code>
-    </td>
+  <tr><td><pre><code>notify: false,
+readOnly: true</code></pre></td>
     <td>
       No data flow
     </td>
   </tr>
   <tr>
-    <td rowspan="2">
-      <code>true</code>
-    </td>
-    <td>
-      <code>false</code> (default)
-    </td>
+    <td><pre><code>notify: true,
+readOnly: false</code></pre></td>
     <td>
       Two-way
     </td>
   </tr>
   <tr>
-    <td>
-      <code>true</code>
-    </td>
+    <td><pre><code>notify: true,
+readOnly: true</code></pre></td>
     <td>
       One-way, upward
     </td>
   </tr>
 </table>
 
-
 By contrast, one-way bindings only allow one-way, downward data flow, so the `notify` flag doesn't
 affect the outcome:
 
 
-<table>
+<table class="config-summary">
   <tr>
     <th>
-      <code>readOnly</code>
+      Configuration
     </th>
     <th>
       Result
@@ -492,7 +465,7 @@ affect the outcome:
   <tr>
     </td>
     <td>
-      <code>false</code> (default)
+      <pre><code>readOnly: false</code></pre>
     </td>
     <td>
       One-way, downward
@@ -500,7 +473,7 @@ affect the outcome:
   </tr>
   <tr>
     <td>
-      <code>true</code>
+      <pre><code>readOnly: true</code></pre>
     </td>
     <td>
       No data flow
@@ -637,7 +610,7 @@ Since the host element manages data flow, it can directly interact with the targ
 propagates data downward by setting the target element’s properties or invoking its methods.
 
 
-![alt_text](/images/1.0/data-system/data-flow-down.svg)
+![alt_text](/images/1.0/data-system/data-flow-down.png)
 
 
 Polymer elements use events to propagate data upward. The target element fires a non-bubbling event
@@ -653,7 +626,7 @@ effects may include:
 *   Generating another change event to propagate the change upward.
 
 
-![alt_text](/images/1.0/data-system/data-flow-up.svg)
+![alt_text](/images/1.0/data-system/data-flow-up.png)
 
 
 For **one-way binding** annotations, the host doesn't create a change listener, so upward data changes
@@ -701,7 +674,7 @@ The contents of the event vary depending on the change.
 *   For a subproperty change, the _path_ to the subproperty is included in the `detail.path` field,
     and the new value is included in the `detail.value` field.
 *   For an array mutation, the `detail.path` field is an array mutation path, such as
-    "myArray.splices", and the
+    "myArray.splices", and the `detail.value`
 
 ### Custom change notification events
 
