@@ -11,6 +11,75 @@ title: Release notes
   }
 </style>
 
+## [Release 1.6.1](https://github.com/polymer/polymer/tree/v1.6.1) (2016-08-01) {#v-1-6-1}
+
+New features:
+
+-   [#3736](https://github.com/Polymer/polymer/issues/3736).
+    Even lazier `lazyRegister`. When `lazyRegister` is set to `max`, behaviors
+    are evaluated at the first element instance, which places a few new
+    restrictions on the behaviors. When lazyRegister is `max`, defer all
+    behavior work until first element creation. When set, a behavior cannot
+    setup an element's `is` or custom constructor via defining `factoryImpl`.
+    We do call beforeRegister on the prototype to preserve the ability to use
+    it in ES6. This orders the element prototype's `beforeRegister` before
+    behaviors' rather than after, as in the normal case.
+
+-   [#3786](https://github.com/Polymer/polymer/issues/3786).
+    Add `noUrlSettings` settings flag. When this settings option is set,
+    Polymer settings can only be sent from a script in the page. In other
+    words, URL query parameters such as `?dom=shadow` will be ignored.
+
+Bug fixes:
+
+-   [#2448](https://github.com/Polymer/polymer/issues/2448).
+    Rewrite links to be relative to source document rather than to where the
+    element is loaded.
+
+-   [#3818](https://github.com/Polymer/polymer/issues/3818).
+    Correctly handle values of `inherit` and `initial` in apply shim.
+
+-   [#3802](https://github.com/Polymer/polymer/issues/3802).
+    Ensure that apply shim produces correct properties in shared elements.
+
+-   [#3803](https://github.com/Polymer/polymer/issues/3803).
+    Handle values of `initial` and `inherit` correctly in the CSS custom
+    property shim.
+
+-   [#3801](https://github.com/Polymer/polymer/issues/3801).
+    Calculate custom properties in style host before element so that
+    scope's styles are ready to be inspected by the element for matching
+    rules.
+
+-   [#3800](https://github.com/Polymer/polymer/issues/3800).
+    When `nativeCSSCustomProperties` was true, `updateStyles` mistakenly
+    attempted to unapply all existing inline style properties and then set
+    the given properties. It has been fixed to only unapply properties that
+    were previously set via `updateStyles` (and then set the given
+    properties).
+
+-   [#3779](https://github.com/Polymer/polymer/issues/3779).
+    When an attribute and a property are present at upgrade time,
+    the property should win. 
+
+-   [#3677](https://github.com/Polymer/polymer/issues/3677).
+    Firing `value-changed` should not cause repeated value change on the
+    element itself.
+
+-   [#3784](https://github.com/Polymer/polymer/issues/3784).
+    Fire `tap` event on touchscreen tap followed by mouse click.
+
+-   [#3770](https://github.com/Polymer/polymer/issues/3770).
+    Fix rules inside media queries for IE 10 and 11.
+
+-   [#3190](https://github.com/Polymer/polymer/issues/3190).
+    Handle complex default values (such as gradient) correctly in custom
+    property shim.
+
+-   [#3645](https://github.com/Polymer/polymer/issues/3645).
+    Add missing `iron-component-page` dev dependency needed for viewing
+    the repo's docs.
+
 ## [Release 1.6.0](https://github.com/polymer/polymer/tree/v1.6.0) (2016-06-29) {#v-1-6-0}
 
 New features:
