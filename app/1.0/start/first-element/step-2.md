@@ -24,7 +24,7 @@ Open `icon-toggle.html `. This file contains the skeleton of a custom element.
 
 Unlike most HTML files, this file <em>won't display anything if you load it in a
 browser</em>—it just <em>defines</em> a new element. The demo imports
-`icon-toggle.html` so it can use the `<icon-toggle>`
+`iron-icon.html` so it can use the `<iron-icon>`
 element. As you add features to the element in the following steps, they'll show
 up in the demo.
 
