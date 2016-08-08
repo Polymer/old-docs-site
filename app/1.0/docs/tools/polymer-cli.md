@@ -271,6 +271,8 @@ Serve from hostname `test` (e.g. app project demo is available at
 
     polymer serve --hostname 'test'
 
+**Note:** Make sure your computer actually knows this hostname by putting it into your [`/etc/hosts` file](https://en.wikipedia.org/wiki/Hosts_(file)).
+
 Open up a page other than the default `index.html` in a specific browser
 (Apple Safari, in this case):
 
