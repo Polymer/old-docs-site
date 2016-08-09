@@ -269,7 +269,7 @@ Serve from port 3000:
 Serve from hostname `test` (e.g. app project demo is available at
 `http://test:8080`):
 
-    polymer serve --hostname 'test'
+    polymer serve --hostname test
 
 **Note:** Make sure your computer actually knows this hostname by putting it into your [`hosts` file](https://en.wikipedia.org/wiki/Hosts_(file)).
 
