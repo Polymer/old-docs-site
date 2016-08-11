@@ -144,11 +144,11 @@ when the route changes. Using observers, it's simple to react to changes to the 
 
 ```
 observers: [
-  '_routeChanged(route.*)'
+  '_routeChanged(route.*)',
   '_viewChanged(routeData.view)'
 ],
 _routeChanged: function(changeRecord) {
-  if (changeRecord.path == 'path' {
+  if (changeRecord.path === 'path') {
     console.log('Path changed!');
   }
 },
