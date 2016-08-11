@@ -732,6 +732,45 @@ nameChanged: function(newFirstName, oldFirstName) {
 Note that Polymer doesn't guarantee that properties are
 initialized in any particular order.
 
+Be very careful when changing the observed value to avoid an infinite loop.
+The following code will lead to an infinity loop:
+
+```
+    properties: {
+      firstName: {
+        type: String,
+        observer: 'nameChanged'
+      }
+    },
+    // WARNING: ANTI-PATTERN! DO NOT USE IT
+    nameChanged: function(newFirstName) {
+      this.firstName = 'Sr. ' + newFirstName;
+      // will jump recursively to nameChanged
+    }
+```
+
+Two examples of avoiding it would be
+
+*   Input validation (if it's not capitalized, capitalize it)—because it's
+    conditional, it doesn't loop infinitely.
+*   Explicitly suppressing the observer:
+
+```
+    properties: {
+      firstName: {
+        type: String,
+        observer: 'nameChanged'
+      }
+    },
+    nameChanged: function(newFirstName) {
+      if (! this.updatingName) {
+          this.updatingName = true;
+          this.firstName = 'Sr. ' + newFirstName;
+          this.updatingName = false;
+      }
+    }
+```
+
 In general, if your observer relies on multiple dependencies, use a
 [multi-property observer](#multi-property-observers) and list every dependency
 as an argument to the observer. This ensures that all dependencies are
