@@ -62,7 +62,7 @@ h3 {
     width: 40px;
     height: 40px;
     margin-right: 8px;
-    background: url(../images/logo-32.png) 50% no-repeat;
+    background: url(../images/polymer.svg) 50% no-repeat;
     background-size: contain
 }
 .main-header {
@@ -252,14 +252,15 @@ h3 {
 }
 .about-waterfront {
     padding: 48px 24px 24px 16px;
-    color: #147BCC
+    color: #3063b5
 }
+
 .about-waterfront h3 {
     color: #164C9C
 }
 .getting-there {
     padding: 48px 8px 24px 24px;
-    background-color: #164C9C;
+    background-color: #5e8bd4;
     color: #fff
 }
 .getting-there .direction {
@@ -272,7 +273,7 @@ h3 {
 .misc-banner {
     padding: 24px 16px;
     text-align: center;
-    background: url(../images/Angle_Pattern/DkBlue_Royal_Footer/Summit_AnglePattern_Sm.png) center center, url(../images/Angle_Pattern/DkBlue_Royal_Footer/Summit_AnglePattern_Md.png) center center, url(../images/Angle_Pattern/DkBlue_Royal_Footer/Summit_AnglePattern_Lg.png) center center #1F1F35;
+    background: url(../images/Angle_Pattern/DkBlue_Royal_Footer/Summit_AnglePattern_Sm.png) center center, url(../images/Angle_Pattern/DkBlue_Royal_Footer/Summit_AnglePattern_Md.png) center center, url(../images/Angle_Pattern/DkBlue_Royal_Footer/Summit_AnglePattern_Lg.png) center center #164C9C;
     background-size: 420px 210px, 600px 300px, 600px 600px
 }
 .misc-banner>h3 {
@@ -282,10 +283,10 @@ h3 {
     width: 200px;
     padding-top: 24px;
     margin: 0 auto 24px;
-    border-bottom: 2px solid #164C9C
+    border-bottom: 2px solid #fff
 }
 .misc-banner>.desc {
-    color: #164C9C;
+    color: #fff;
     text-align: center;
     font-size: 28px;
     line-height: 36px;
