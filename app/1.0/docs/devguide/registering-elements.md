@@ -311,7 +311,7 @@ An element is _ready_ when:
 
 *   Its local DOM template has been instantiated.
 
-*   All of the elements **inside the element's local DOM** are ready, and have had
+*   All of the registered elements **inside the element's local DOM** are ready, and have had
     their `ready` methods called.
 
 Implement `ready` when it's necessary to manipulate an element's
@@ -340,10 +340,16 @@ The element's basic initialization order for a given element is:
 -   `created` callback.
 -   Local DOM initialized (This means that **local DOM** children are created,
     their property values are set as specified in the template, and `ready`
-    has been called on them).
+    has been called on them, assuming they are registered).
 -   `ready` callback.
 -   [`factoryImpl` callback](#custom-constructor).
 -   `attached` callback.
+
+Local DOM children only have `ready` called if they are *registered* custom
+elements. If a local DOM child is registered later, its `created` and
+`ready` methods are called when that child upgrades, without delaying the
+host's remaining callbacks. Importing sources before they are used ensures
+that elements are created in order.
 
 Note that while the life cycle callbacks listed above will be called in the
 described order for any given element, the  **initialization timing between
