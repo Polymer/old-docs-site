@@ -94,26 +94,24 @@ function writeServiceWorkerFile() {
     cacheId: 'polymerproject',
     staticFileGlobs: [
       `${rootDir}/1.0/index.html`,
-      `${rootDir}/1.0/shell.html`,
+      `${rootDir}/1.0/shell`,
       `${rootDir}/1.0/about.html`,
       `${rootDir}/elements/**`,
       `${rootDir}/js/*.js`,
       `${rootDir}/css/*.css`,
       `${rootDir}/bower_components/**/webcomponents-lite.min.js`,
+      `${rootDir}/bower_components/highlight/highlight.js.js`,
     ],
     dynamicUrlToDependencies: {
       '/1.0/shell.html': [
-        path.join(rootDir, 'templates', 'base-devguide.html'),
         path.join(rootDir, 'templates', 'head-meta.html'),
         path.join(rootDir, 'templates', 'site-nav.html'),
-        path.join(rootDir, 'templates', 'base-blog.html'),
-        path.join(rootDir, 'templates', 'page-md-styles.html'),
       ]
     },
-    navigateFallback: '/1.0/shell.html',
+    navigateFallback: '/1.0/shell',
     runtimeCaching: [
     {
-      urlPattern: /\/images\/*\//,
+      urlPattern: /\/images\/*/,
       handler: 'fastest',
     },
     {
