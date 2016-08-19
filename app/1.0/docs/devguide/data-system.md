@@ -44,11 +44,14 @@ Consider a very simple element:
 </dom-module>
 ```
 
-![alt_text](/images/1.0/data-system/data-binding-overview.png)
+![A name-card element with a property, name. An arrow labeled 1 connects the name property to
+a JavaScript object. An arrow labeled 2 connects the element to a box labeled local DOM tree
+which contains a single element, div. An arrow labeled 3 connects the JavaScript object to the
+div element.](/images/1.0/data-system/data-binding-overview-new.png)
 
-This element's model consists of a single property, `name`, and its local DOM tree contains a single
-`<div>` element. Data bindings in the template link the `name` object to the text content of the
-`<div>`.
+1.  The `<name-card>` element has a `name` property that _refers_ to a JavaScript object.
+2.  The `<name-card>` element _hosts_ a local DOM tree, that contains a single `<div>` element.
+3.  Data bindings in the template link the JavaScript object to the `<div>` element.
 
 The data system is based on *paths*, not objects, where a path represents a property or subproperty
 *relative to an element*. For example, the `<name-card>` element has data bindings for the paths
@@ -63,10 +66,17 @@ property:
 }
 ```
 
-The path "`name`" refers to the element's `name` property (an object).The paths "`user.first`" and
-`"user.last"` refer to properties of that object.
+The path "`name`" refers to the element's `name` property (an object).The paths "`name.first`" and
+`"name.last"` refer to properties of that object.
 
-![alt_text](/images/1.0/data-system/paths-overview.png)
+![The name-card element from the previous figure. An arrow labeled 1 connects the name property
+to a JavaScript object that contains two properties, first: 'Lizzy' and last: 'Bennet'. Two arrows
+labeled 2 connect the paths name and name.first with the object itself and the subproperty,
+first, respectively.](/images/1.0/data-system/paths-overview-new.png)
+
+1.  The `name` property refers to the JavaScript object.
+2.  The path "name" refers to the object itself. The path "name.first" refers to its subproperty,
+    `first` (the string, `Lizzy`).
 
 Polymer doesn't automatically detect all data changes. Property effects occur when there is
 an [_observable change_](#observable-changes) to a property or subproperty.
@@ -184,28 +194,23 @@ Related tasks:
 ## Data paths {#paths}
 
 In the data system, a _path_ is a string that identifies a property or subproperty *relative to a
-scope*. In most cases, the scope is a host element. For example, consider the following diagram:
+scope*. In most cases, the scope is a host element. For example, consider the following
+relationships:
 
-![alt_text](/images/1.0/data-system/data-binding-paths.png)
+![Two elements, user-profile and address card. The user-profile element has a primaryAddress
+property. An arrow labeled 1 connects the property to a JavaScript object. The address-card
+element has an address property. An arrow labeled 2 connects the property to the same JavaScript
+object.](/images/1.0/data-system/data-binding-paths.png)
 
-The `<user-profile>` and `<address-card>` elements both hold references to the same object. The
-`<user-profile>` refers to the address object using the path `"primaryAddress"`. The
-`<address-card>` element uses the path `"address"` to refer to the same object.
+1.  The `<user-profile>` element has a property `primaryAddress` that refers to a JavaScript object.
+2.  The `<address-card>` element has a property `address` that refers to the same object.
 
-Importantly, **Polymer doesn't automatically know that these paths refer to the same object**. If
-`<address-card>` makes a change to the object, no property effects are invoked on `<user-profile>`.
+Importantly, **Polymer doesn't automatically know that these properties refer to the same object**.
+If `<address-card>` makes a change to the object, no property effects are invoked on `<user-profile>`.
 
 **For data changes to flow from one element to another, the elements must be connected with a data
 binding.**
 
-### Data binding scope {#data-binding-scope}
-
-Paths are relative to the current data binding *scope*.
-
-The topmost scope for any element is the element's properties. Certain data binding helper elements
-(like [template repeaters](/1.0/docs/devguide/templates#dom-repeat)) introduce new, nested scopes.
-
-For observers and computed properties, the scope is always the element's properties.
 
 ### Linking paths with data bindings
 
@@ -228,12 +233,24 @@ the two paths can be connected with a data binding:
 
 Now the paths are connected by data binding.
 
+![Two elements, user-profile and address-card, both referring to a shared JavaScript object. An arrow labeled 1 connects the primaryAddress property on the user-profile element to the object. An arrow labeled 2 connects the address property on the address-card element to the same object. An double-headed arrow labeled 3 connects the path primaryAddress on user-profile to the path address on address-card.](/images/1.0/data-system/data-bound-paths-new.png)
 
-![alt_text](/images/1.0/data-system/data-bound-paths.png)
-
+1.  The `<user-profile>` element has a property `primaryAddress` that refers to a JavaScript object.
+2.  The `<address-card>` element has a property `address` that refers to the same object.
+3.  The data binding connects the path `"primaryAddress"` on `<user-profile>` to the path `"address"`
+    on `<address-card>`
 
 If `<address-card>` makes an observable change to the object, property effects are invoked on
 `<user-profile>` as well.
+
+### Data binding scope {#data-binding-scope}
+
+Paths are relative to the current data binding *scope*.
+
+The topmost scope for any element is the element's properties. Certain data binding helper elements
+(like [template repeaters](/1.0/docs/devguide/templates#dom-repeat)) introduce new, nested scopes.
+
+For observers and computed properties, the scope is always the element's properties.
 
 ### Special paths
 
@@ -310,8 +327,10 @@ For example, an element has two properties, `users` (an array) and `selectedUser
 a user is selected, `selectedUser` refers one of the objects in the array.
 
 
-![alt_text](/images/1.0/data-system/linked-paths.png)
+![A user-list element and an array with four items labeled \[0\] through \[3\]. The user-list has two properties, users and selectedUser. The users property is connected to the array by an arrow labeled 1. The selectedUser property is connected to the array item, \[1\] by an arrow labeled 2.](/images/1.0/data-system/linked-paths-new.png)
 
+1.  The `users` property references the array itself.
+2.  The `selectedUser` property references an item in the array.
 
 In this example, the element has several paths that refer to the second item in the array:
 
@@ -610,8 +629,10 @@ Since the host element manages data flow, it can directly interact with the targ
 propagates data downward by setting the target element’s properties or invoking its methods.
 
 
-![alt_text](/images/1.0/data-system/data-flow-down.png)
+![An element, host-element connected to an element, target-element by an arrow labeled 1.](/images/1.0/data-system/data-flow-down-new.png)
 
+1.  When a property changes on the host element, it sets the corresponding property on the target
+    element, triggering the associated property effects.
 
 Polymer elements use events to propagate data upward. The target element fires a non-bubbling event
 when an observable change occurs. (Change events are described in more detail in [Change
@@ -626,8 +647,11 @@ effects may include:
 *   Generating another change event to propagate the change upward.
 
 
-![alt_text](/images/1.0/data-system/data-flow-up.png)
+![An element, target-element connected to an element, host-element by an arrow labeled 1. An arrow labeled 2 connects from the host element back to itself.](/images/1.0/data-system/data-flow-up-new.png)
 
+1.  A property change on the target element causes a property change event to fire.
+2.  The host element receives the event and sets the corresponding property, invoking the related
+    property effects.
 
 For **one-way binding** annotations, the host doesn't create a change listener, so upward data changes
 aren't propagated.

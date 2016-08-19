@@ -13,9 +13,9 @@ You create data bindings by adding annotations to an element's local DOM templat
 
 ```
 <dom-module id="host-element">
-    <template>
-      <target-element target-property="{{hostProperty}}"></target-element>
-    </template>
+  <template>
+    <target-element target-property="{{hostProperty}}"></target-element>
+  </template>
 </dom-module>
 ```
 
@@ -58,6 +58,16 @@ The right-hand side of the binding consists of either a _binding annotation_ or 
   <dd>A string literal containing one or more binding annotations.</dd>
 </dl>
 
+Whether data flow goes down from host to target, up from target to host, or both ways is controlled
+by the type of binding annotation and the configuration of the target property.
+
+-   Double-curly brackets (<code>{{ }}</code>) support both upward and downward data flow.
+
+-   Double square brackets (<code>[[ ]]</code>) are _one-way_, and support only only downward data
+    flow.
+
+For more on data flow, see [How data flow is controlled](data-system#data-flow-control).
+
 ## Bind to a target property {#property-binding}
 
 To bind to a target property, specify the attribute name that corresponds to the
@@ -69,32 +79,34 @@ as the attribute value:
 ```
 
 This example binds the target element's `name` property to the host element's
-`myName` property.
+`myName` property. Since this annotation uses the two-way or "automatic" delimiters (`{{ }}`),
+it creates a two-way binding if the `name` property is configured to support it.
 
-While HTML attributes are used to specify bindings, values are
-assigned directly to JavaScript properties, **not** to the HTML attributes of the
-elements. (There is a [special attribute binding syntax](#attribute-binding) for
-those cases where you want to bind to an attribute value.)
+To ensure a one-way binding, use double square brackets:
 
-Attribute names are mapped to property names as described in [Property name to
+```
+<target-element name="[[myName]]"></target-element>
+```
+
+Property names are specified in attribute format, as described in [Property name to
 attribute name mapping](properties#property-name-mapping). To
 bind to camel-case properties of elements, use dash-case in the attribute name.
 For example:
 
 ```
+<!-- Bind <user-view>.firstName to this.managerName; -->
 <user-view first-name="{{managerName}}"></user-view>
-<!-- Sets <user-view>.firstName = this.managerName; -->
 ```
-
-**Some attributes are special.** When binding to `style`, `href`, `class`, `for` or
-`data-*` attributes, it is recommend that you use [attribute binding](#attribute-binding)
-syntax. For more information, see [Binding to native element attributes](#native-binding).
-{ .alert .alert-info }
 
 If the property being bound is an object or an array, both elements get a reference to the **same
 object**. This means that either element can change the object and a true one-way binding is
 impossible. For more information, see [Data flow for objects and
 arrays](data-system#data-flow-objects-arrays).
+
+**Some attributes and properties are special.** When binding to `style`, `href`, `class`, `for` or
+`data-*` attributes, it is recommend that you use [attribute binding](#attribute-binding)
+syntax. For more information, see [Binding to native element attributes](#native-binding).
+{ .alert .alert-info }
 
 ### Bind to text content
 
@@ -103,38 +115,37 @@ annotation or compound binding inside the target element.
 
 ```
 <dom-module id="user-view">
+  <template>
+    <div>[[name]]</div>
+  </template>
 
-    <template>
-      <div>{{firstName}}</div>
-    </template>
-
-    <script>
-      Polymer({
-        is: 'user-view',
-        properties: {
-          firstName: String,
-          lastName: String
-        }
-      });
-    </script>
-
+  <script>
+    Polymer({
+      is: 'user-view',
+      properties: {
+        name: String
+      }
+    });
+  </script>
 </dom-module>
 
-<user-view first-name="Samuel" last-name="Adams"></user-view>
+<!-- usage -->
+<user-view name="Samuel"></user-view>
 ```
 
 Binding to text content is always one-way, host-to-target.
 
 ## Bind to a target attribute {#attribute-binding}
 
-In the vast majority of cases, binding data to other elements should use property bindings, where
-changes are propagated by setting the new value to the JavaScript property on the element.
+In the vast majority of cases, binding data to other elements should use [property
+bindings](#property-binding), where changes are propagated by setting the new value to the
+JavaScript property on the element.
 
 However, sometimes you need to set an attribute on an element, as opposed to a property.  For
-example, when attribute selectors are used for CSS or for interoperability with elements that
-require using an attribute-based API.
+example, when attribute selectors are used for CSS or for interoperability with attribute-based APIs,
+such as the Accessible Rich Internet Applications (ARIA) standard for accessibility information.
 
-To bind to an attribute, use `$=` rather than `=`:
+To bind to an attribute, add a dollar sign (`$`) after the attribute name:
 
 ```
 <div style$="color: {{myColor}};">
@@ -163,7 +174,7 @@ For example:
 ```html
 <template>
   <!-- Attribute binding -->
-  <my-element selected$="{{value}}"></my-element>
+  <my-element selected$="[[value]]"></my-element>
   <!-- results in <my-element>.setAttribute('selected', this.value); -->
 
   <!-- Property binding -->
@@ -223,31 +234,35 @@ Attribute binding to dynamic values (use `$=`):
 
 ```html
 <!-- class -->
-<div class$="{{foo}}"></div>
+<div class$="[[foo]]"></div>
 
 <!-- style -->
-<div style$="{{background}}"></div>
+<div style$="[[background]]"></div>
 
 <!-- href -->
-<a href$="{{url}}">
+<a href$="[[url]]">
 
 <!-- label for -->
-<label for$="{{bar}}"></label>
+<label for$="[[bar]]"></label>
 
 <!-- dataset -->
-<div data-bar$="{{baz}}"></div>
-```
+<div data-bar$="[[baz]]"></div>
 
+<!-- ARIA -->
+<button aria-label$="[[buttonLabel]]"></button>
+
+```
 
 ## Binding annotations {#binding-annotation}
 
 Polymer provides two kinds of data binding delimiters:
 
-*   One-way bindings:  (<code>[[<var>binding</var>]]</code>). One-way bindings allow only
-    <strong>downward</strong> data flow.
-
-*   Two-way or "automatic" binding annotations (<code>{{<var>binding</var>}}</code>). Automatic
-    bindings allow <strong>upward and downward</strong> data flow.
+<dl>
+  <dt>One-way delimiters: <code>[[<var>binding</var>]]</code></dt>
+  <dd>One-way bindings allow only <strong>downward</strong> data flow.</dd>
+  <dt>Two-way or "automatic" delimiters: <code>{{<var>binding</var>}}</code></dt>
+  <dd>Automatic bindings allow <strong>upward and downward</strong> data flow.</dd>
+</dl>
 
 See [Data flow](data-system#data-flow) for information on two-way binding and upward data flow.
 
@@ -323,7 +338,7 @@ the binding delimiters:
 
 ```
 <template>
-  <my-page show-login="{{!isLoggedIn}}"></my-page>
+  <my-page show-login="[[!isLoggedIn]]"></my-page>
 </template>
 ```
 
@@ -332,7 +347,9 @@ In this example, `showLogin` is `false` if `isLoggedIn` has a truthy value.
 Only a single logical not operator is supported. You can't cast a value to boolean using `!!`. For
 more complicated transformations, use a [computed binding](#annotated-computed).
 
+**Negated bindings are one-way**:
 A binding with a logical not operator is **always one-way, host-to-target**.
+{.alert .alert-info}
 
 ### Computed bindings {#annotated-computed}
 
@@ -373,7 +390,7 @@ Example: { .caption }
 <dom-module id="x-custom">
 
   <template>
-    My name is <span>{{_formatName(first, last)}}</span>
+    My name is <span>[[_formatName(first, last)]]</span>
   </template>
 
   <script>
@@ -396,7 +413,7 @@ Example: { .caption }
 In this case, the span's `textContent` property is bound to the return value
 of `_formatName`, which is recalculated whenever `first` or `last` changes.
 
-**Computed bindings are one way.** A computed binding is always one-way, host-to-target.
+**Computed bindings are one-way.** A computed binding is always one-way, host-to-target.
 {.alert .alert-info}
 
 #### Dependencies of computed bindings {#computed-binding-dependencies}
@@ -453,15 +470,15 @@ Finally, if a computed binding has no dependent properties, it is only evaluated
   </template>
 
   <script>
-   Polymer({
+    Polymer({
 
-     is: 'x-custom',
+      is: 'x-custom',
 
-     doThisOnce: function() {
-       return Math.random();
-     }
+      doThisOnce: function() {
+        return Math.random();
+      }
 
-   });
+    });
   </script>
 </dom-module>
 ```
@@ -472,17 +489,18 @@ You can combine string literals and bindings in a single property binding or
 text content binding. For example:
 
 ```
-<img src$="https://www.example.com/profiles/{{userId}}.jpg">
+<img src$="https://www.example.com/profiles/[[userId]].jpg">
 
-<span>Name: {{lastname}}, {{firstname}}</span>
+<span>Name: [[lastname]], [[firstname]]</span>
 ```
 
 Compound bindings are re-evaluated whenever the value of any of the individual
 bindings changes. Undefined values are interpolated as empty strings.
 
-You can use either one-way (`[[]]`) or automatic (`{{}}`)
+**Compound bindings are one-way**: You can use either one-way (`[[ ]]`) or automatic (`{{ }}`)
 binding annotations in a compound binding, but the bindings are **always
 one-way, host-to-target.**
+{.alert .alert-info}
 
 
 ## Binding to arrays and array items {#array-binding}
@@ -523,7 +541,6 @@ The following example shows how to access a property from an array item using a 
 The computing function needs to be called if the subproperty value changes,
 _or_ if the array itself is mutated, so the binding uses a wildcard path, `myArray.*`.
 
-
 ```
 <dom-module id="bind-array-element">
 
@@ -541,7 +558,7 @@ _or_ if the array itself is mutated, so the binding uses a wildcard path, `myArr
 
         myArray: {
           type: Array,
-          value: [{ name: 'Bob' }, { name: 'Doug' } ]
+          value: [{ name: 'Bob' }, { name: 'Doug' }]
         }
       },
 
@@ -621,7 +638,7 @@ The following section have moved to [Data system concepts](data-system):
 <a id="#property-notification"></a>
 
 -   Property change notification and two-way binding. See [How data flow is
-    controlled](#data-flow-control).
+    controlled](data-system#data-flow-control).
 
 <a id="##path-binding"></a>
 

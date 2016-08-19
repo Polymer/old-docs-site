@@ -65,10 +65,9 @@ flow upward.
 Mutations to the `items` array itself (`push`, `pop`, `splice`, `shift`,
 `unshift`), should be performed using Polymer's
 [array mutation methods](model-data#array-mutation).
-These methods ensure that any elements observing the array are kept in sync.
-If you can't avoid using the native `Array.prototype` methods, make sure to
-call [`notifySplices`](model-data#notifysplices) to ensure that any
-elements watching `items` are properly updated.
+These methods ensure that the changes are [observable](data-system#observable-changes) by
+the data system. For more information on working with arrays, see [Work with
+arrays](model-data#work-with-arrays).
 
 ### Handling events in `dom-repeat` templates {#handling-events}
 
@@ -145,7 +144,8 @@ function defined on the host element.
 By default, the `filter` and `sort` functions only run when one of the
 following occurs:
 
-*   The array itself is mutated (for example, by adding or removing items).
+*   An [observable change](data-system#observable-changes) is made to the array
+    (for example, by adding or removing items).
 *   The `filter` or `sort` function is changed.
 
 To re-run the `filter` or `sort` when an unrelated piece of data changes,
@@ -302,11 +302,20 @@ rendering has a performance cost, but can be useful in a few scenarios:
 *   To re-run the `sort` or `filter` functions when a piece of data changes
     *outside* the array (sort order or filter criteria, for example).
 
-`render` **only** works with changes made with Polymer's
-[array mutation methods](properties#array-mutation).
-If you or a third-party library mutate the array without Polymer's methods,
-you need to call [`notifySplices`](properties#notifysplices) to ensure that any elements
-watching the array are properly notified.
+`render` **only** picks up [observable changes](data-system#observable-changes)
+such as those made with Polymer's [array mutation methods](model-data#array-mutation).
+If you or a third-party library mutate the array **without** using Polymer's methods, you can do
+one of the following:
+
+*   If you know the _exact set of changes made to your array_, use
+    [`notifySplices`](model-data#notifysplices) to ensure that any elements watching the
+    array are properly notified.
+*   If you don't have an exact set of changes, you can [Override dirty
+    checking](model-data##override-dirty-check) to force the data system to reevaluate the entire
+    array.
+
+For more information on working with arrays and the Polymer data system, see [Work with
+arrays](model-data#work-with-arrays).
 
 ### Improve performance for large lists {#large-list-perf}
 
