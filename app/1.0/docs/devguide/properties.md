@@ -13,13 +13,17 @@ object allows a user to configure the property from markup (see
 
 In addition, the `properties` object can be used to specify:
 
-* Property type.
-* Default value.
-* Property change observer. Calls a method whenever the property value changes.
-* Read-only status. Prevents accidental changes to the property value.
-* Two-way data binding support. Fires an event whenever the property value changes.
-* Computed property. Dynamically calculates a value based on other properties.
-* Property reflection to attribute. Updates the corresponding attribute value when the property value changes.
+*   Property type.
+*   Default value.
+*   Property change observer. Calls a method whenever the property value changes.
+*   Read-only status. Prevents accidental changes to the property value.
+*   Two-way data binding support. Fires an event whenever the property value changes.
+*   Computed property. Dynamically calculates a value based on other properties.
+*   Property reflection to attribute. Updates the corresponding attribute value when the property
+    value changes.
+
+Many of these features are tightly integrated into the [data system](data-system), and are
+documented in the Data system section.
 
 Example { .caption }
 
@@ -110,7 +114,7 @@ for more information.
 
 The value is interpreted as a method name and argument list. The method is invoked
 to calculate the value whenever any of the argument values changes. Computed
-properties are always read-only. See <a href="#computed-properties">Computed properties</a>
+properties are always read-only. See <a href="observers#computed-properties">Computed properties</a>
 for more information.
 </td>
 </tr>
@@ -121,7 +125,7 @@ for more information.
 The value is interpreted as a method name to be invoked when the property value
 changes. Note that unlike in 0.5, <strong>property change handlers must be registered
 explicitly.</strong> The <code><var>propertyName</var>Changed</code> method will not be
-invoked automatically. See <a href="#change-callbacks">Property change callbacks (observers)</a>
+invoked automatically. See <a href="observers">Property change callbacks (observers)</a>
 for more information.
 </td>
 </tr>
@@ -291,483 +295,6 @@ Polymer({
 });
 ```
 
-## Property change observers  {#change-callbacks}
-
-Custom element properties may be observed for changes by specifying `observer`
-property in the `properties` object for the property that gives the name of a function
-to call.  When the property changes, the change handler will be called with the
-new and old values as arguments.
-
-Example: { .caption }
-
-```
-Polymer({
-
-  is: 'x-custom',
-
-  properties: {
-    disabled: {
-      type: Boolean,
-      observer: '_disabledChanged'
-    },
-    highlight: {
-      observer: '_highlightChanged'
-    }
-  },
-
-  _disabledChanged: function(newValue, oldValue) {
-    this.toggleClass('disabled', newValue);
-    this.highlight = true;
-  },
-
-  _highlightChanged: function() {
-    this.classList.add('highlight');
-    this.async(function() {
-      this.classList.remove('highlight');
-    }, 300);
-  }
-
-});
-```
-
-**Warning:**
-A single property observer shouldn't rely on any other properties,
-sub-properties, or paths because the observer can be called while these
-dependencies are undefined. See [Always include dependencies
-as observer arguments](#dependencies) for details.
-{ .alert .alert-warning }
-
-Property change observation is achieved in Polymer by installing setters on the
-custom element prototype for properties with registered interest (as opposed to
-observation via `Object.observe` or dirty checking, for example).
-
-### Observing changes to multiple properties {#multi-property-observers}
-
-To observe changes to a set of properties, use the `observers`
-array.
-
-These observers differ from single-property observers in a few ways:
-
-*   Observers are not invoked until all dependent properties are defined (`!== undefined`).
-    So each dependent properties should have a default `value` defined in `properties` (or otherwise
-    be initialized to a non-`undefined` value) to ensure the observer is called.
-*   Observers do not receive `old` values as arguments, only new values.  Only single-property
-    observers defined in the `properties` object receive both `old` and `new` values.
-
-Example { .caption }
-
-```
-Polymer({
-
-  is: 'x-custom',
-
-  properties: {
-    preload: Boolean,
-    src: String,
-    size: String
-  },
-
-  observers: [
-    'updateImage(preload, src, size)'
-  ],
-
-  updateImage: function(preload, src, size) {
-    // ... do work using dependent values
-  }
-
-});
-```
-
-In addition to properties, observers can also observe [paths to sub-properties](#observing-path-changes),
-[paths with wildcards](#deep-observation), or [array changes](#array-observation).
-
-### Observing sub-property changes {#observing-path-changes}
-
-To observe changes in object sub-properties:
-
-*   Define an `observers` array.
-*   Add an item to the `observers` array. The item must be a method name
-    followed by a comma-separated list of one or more paths. For example,
-    `onNameChange(dog.name)` for one path, or
-    `onNameChange(dog.name, cat.name)` for multiple paths. Each path is a
-    sub-property that you want to observe.
-*   Define the method in your element prototype. When the method is called,
-    the argument to the method is the new value of the sub-property.
-
-In order for Polymer to properly detect the sub-property change, the
-sub-property must be updated in one of the following two ways:
-
-*   Via a [property binding](data-binding#property-binding).
-*   By calling [`set`](data-binding#set-path).
-
-Example: { .caption }
-
-```
-<dom-module id="x-sub-property-observer">
-  <template>
-    <!-- Sub-property is updated via property binding. -->
-    <input value="{{user.name::input}}">
-  </template>
-  <script>
-    Polymer({
-      is: 'x-sub-property-observer',
-      properties: {
-        user: {
-          type: Object,
-          value: function() {
-            return {};
-          }
-        }
-      },
-      // Each item of observers array is a method name followed by
-      // a comma-separated list of one or more paths.
-      observers: [
-        'userNameChanged(user.name)'
-      ],
-      // Each method referenced in observers must be defined in
-      // element prototype. The argument to the method is the new value
-      // of the sub-property.
-      userNameChanged: function(name) {
-        console.log('new name: ' + name);
-      },
-    });
-  </script>
-</dom-module>
-```
-
-### Observe array mutations {#array-observation}
-
-Use an array mutation observer to call an observer function whenever an array
-item is added or deleted using Polymer's [array mutation methods](#array-mutation).
-Whenever the array is mutated, the observer receives a change record
-representing the mutation as a set of array splices.
-
-In many cases, you'll want to observe both array mutations *and* changes to
-sub-properties of array items, in which case you should use a [deep
-sub-property observer](#deep-observation).
-
-**Avoid native JavaScript array mutation methods.**
-Use Polymer's [array mutation methods](#array-mutation) wherever possible to
-ensure that elements with registered interest in the array mutations are
-properly notified. If you can't avoid the native methods, you need to notify
-Polymer about array changes as described in [Using native array mutation methods](#notifysplices).
-{ .alert .alert-warning }
-
-To create a splice observer, specify a path to an array followed by `.splices`
-in your `observers` array.
-
-``` js
-observers: [
-  'usersAddedOrRemoved(users.splices)'
-]
-```
-
-Your observer method should accept a single argument. When your observer method
-is called, it receives a change record of the mutations that
-occurred on the array. Each change record provides the following property:
-
-*   `indexSplices`. The set of changes that occurred to the array, in
-     terms of array indexes. Each `indexSplices` record contains the following
-     properties:
-
-     -   `index`. Position where the splice started.
-     -   `removed`. Array of `removed` items.
-     -   `addedCount`. Number of new items inserted at `index`.
-     -   `object`: A reference to the array in question.
-     -   `type`: The string literal 'splice'.
-
-
-**Change record may be undefined.** The change record may be undefined the first
-time the observer is invoked, so your code should guard against this, as shown
-in the example.
-{ .alert .alert-info }
-
-Example {.caption}
-
-```
-Polymer({
-
-  is: 'x-custom',
-
-  properties: {
-    users: {
-      type: Array,
-      value: function() {
-        return [];
-      }
-    }
-  },
-
-  observers: [
-    'usersAddedOrRemoved(users.splices)'
-  ],
-
-  usersAddedOrRemoved: function(changeRecord) {
-    if (changeRecord) {
-      changeRecord.indexSplices.forEach(function(s) {
-        s.removed.forEach(function(user) {
-          console.log(user.name + ' was removed');
-        });
-        for (var i=0; i<s.addedCount; i++) {
-          var index = s.index + i;
-          var newUser = s.object[index];
-          console.log('User ' + newUser.name + ' added at index ' + index);
-        }
-      }, this);
-    }
-  },
-  ready: function() {
-    this.push('users', {name: "Jack Aubrey"});
-  },
-});
-```
-
-#### Track key splices {#key-splices}
-
-In some situtations, you may need to know about the [immutable opaque
-keys](#key-paths) that Polymer uses to track array items. **This is a advanced
-use case, only required if you're implementing an element like the [template
-repeater](https://www.polymer-project.org/1.0/docs/devguide/templates.html#dom-repeat).**
-
-You can register interest in key additions and deletions by retrieving the
-array's `Collection` object:
-
-<code>Polymer.Collection.get(<var>array</var>);</code>
-
-If you've registered interest, the change record includes an additional property:
-
-*   `keySplices`. The set of changes that occurred to the array in terms
-    of array keys. Each `keySplices` record contains the following properties:
-
-    -   `added`. Array of added keys.
-    -   `removed`. Array of removed keys.
-
-**Template repeaters and key splices.** The template repeater (`dom-repeat`)
-element uses keys internally, so if an array is used by a `dom-repeat`,
-observers for that array receive the `keySplices` property.
-{.alert .alert-info}
-
-### Deep sub-property observation {#deep-observation}
-
-To call an observer when any (deep) sub-property of an
-object or array changes, specify a path with a wildcard (`*`).
-
-When you specify a path with a wildcard, the argument passed to your
-observer is a change record object with the following properties:
-
-*   `path`. Path to the property that changed. Use this to determine whether
-    a property changed, a sub-property changed, or an array was mutated.
-*   `value`. New value of the path that changed.
-*   `base`. The object matching the non-wildcard portion of the path.
-
-For array mutations, `path` is the path to the array that changed,
-followed by `.splices`. And the change record includes the `indexSplices` and
-`keySplices` properties described in
-[Observe array mutations](#array-observation).
-
-Example: { .caption }
-
-```
-<dom-module id="x-deep-observer">
-  <template>
-    <input value="{{user.name.first::input}}"
-           placeholder="First Name">
-    <input value="{{user.name.last::input}}"
-           placeholder="Last Name">
-  </template>
-  <script>
-    Polymer({
-      is: 'x-deep-observer',
-      properties: {
-        user: {
-          type: Object,
-          value: function() {
-            return {'name':{}};
-          }
-        }
-      },
-      observers: [
-        'userNameChanged(user.name.*)'
-      ],
-      userNameChanged: function(changeRecord) {
-        console.log('path: ' + changeRecord.path);
-        console.log('value: ' + changeRecord.value);
-      },
-    });
-  </script>
-</dom-module>
-```
-
-#### Deep sub-property changes on array items {#key-paths}
-
-When a sub-property of an array is modified, `changeRecord.path` references
-the "key" of the array item that was modified, not the array index. For
-example:
-
-```
-console.log(changeRecord.path); // users.#0.name
-```
-
-`#0` signifies the key of this example array item. All keys are prefixed
-with a number sign (`#`) by convention to distinguish them from array indexes.
-Keys provide stable references to array items, regardless of any splices
-(additions or removals) on the array.
-
-Use the `get` method to retrieve an item by path.
-
-```
-var item = this.get('users.#0');
-```
-
-If you need a reference to the index of an array item, you
-can retrieve it using `indexOf`:
-
-```
-var item = this.get('users.#0');
-var index = this.users.indexOf(item);
-```
-
-The following example shows one way to use path manipulation and
-`get` to retrieve an array item and its index from inside an observer:
-
-```
-// Log user name changes by index
-usersChanged(cr) {
-  // handle paths like 'users.#4.name'
-  var nameSubpath = cr.path.indexOf('.name');
-  if (nameSubpath) {
-    var itempath = cr.path.substring(0, nameSubpath);
-    var item = this.get(itempath);
-    var index = cr.base.indexOf(item);
-    console.log('Item ' + index + ' changed, new name is: ' + item.name);
-  }
-}
-```
-
-
-### Array mutation methods {#array-mutation}
-
-When modifying arrays, a set of array mutation methods are provided on Polymer
-element prototypes which mimic `Array.prototype` methods, with the exception that
-they take a `path` string as the first argument.  The `path` argument identifies
-an array on the element to mutate, with the following arguments matching those
-of the native `Array` methods.
-
-These methods perform the mutation action on
-the array, and then notify other elements that may be bound to the same
-array of the changes.  You must use these methods when mutating an array
-to ensure that any elements watching the array (via observers, computed properties,
-or data bindings) are kept in sync.
-
-Every Polymer element has the following array mutation methods available:
-
-* `push(path, item1, [..., itemN])`
-* `pop(path)`
-* `unshift(path, item1, [..., itemN])`
-* `shift(path)`
-* `splice(path, index, removeCount, [item1, ..., itemN])`
-
-Example: { .caption }
-
-```
-<dom-module id="custom-element">
-  <template>
-    <template is="dom-repeat" items="[[users]]">{{item}}</template>
-  </template>
-
-  <script>
-    Polymer({
-
-      is: 'custom-element',
-
-      addUser: function(user) {
-        this.push('users', user);
-      },
-
-      removeUser: function(user) {
-        var index = this.users.indexOf(user);
-        this.splice('users', index, 1);
-      }
-
-    });
-  </script>
-</dom-module>
-```
-
-#### Using native array mutation methods {#notifysplices}
-
-
-Whenever possible you should always use Polymer's
-[array mutation methods](#array-mutation). However, this isn't always
-possible. For example, you may be using a third-party library
-that does not use Polymer's array mutation methods.
-In these scenarios you can call
-<a href="/1.0/docs/api/Polymer.Base#method-notifySplices">`notifySplices`</a>
-after each mutation to ensure that any Polymer elements observing the array
-are properly notified of the changes.
-
-### Always include dependencies as observer arguments {#dependencies}
-
-Observers shouldn't rely on any properties, sub-properties, or paths other
-than those listed as arguments to the observer. This is because the observer
-can be called while the other dependencies are still undefined. For example:
-
-```
-properties: {
-  firstName: {
-    type: String,
-    observer: 'nameChanged'
-  },
-  lastName: {
-    type: String
-  }
-},
-// WARNING: ANTI-PATTERN! DO NOT USE
-nameChanged: function(newFirstName, oldFirstName) {
-  // this.lastName could be undefined!
-  console.log('new name:', newFirstName, this.lastName);
-}
-```
-
-Note that Polymer doesn't guarantee that properties are
-initialized in any particular order.
-
-In general, if your observer relies on multiple dependencies, use a
-[multi-property observer](#multi-property-observers) and list every dependency
-as an argument to the observer. This ensures that all dependencies are
-defined before the observer is called.
-
-```
-properties: {
-  firstName: {
-    type: String
-  },
-  lastName: {
-    type: String
-  }
-},
-observers: [
-  'nameChanged(firstName, lastName)'
-],
-nameChanged: function(firstName, lastName) {
-  console.log('new name:', firstName, lastName);
-}
-```
-
-If you must use a single property and must rely on other properties (for
-example, if you need access to the old value of the observed property, which
-you won't be able to access with a multi-property observer),
-take the following precautions:
-
-*   Check that all dependecies are defined
-    (for example, `if this.lastName !== undefined`) before using them in your
-    observer.
-*   Set default values on the dependencies.
-
-Keep in mind, however, that the observer is only called when one of the
-dependencies listed in its arguments changes. For example, if an observer
-relies on `this.firstName` but does not list it as an argument, the observer
-is not called when `this.firstName` changes.
 
 ## Property change notification events (notify) {#notify}
 
@@ -784,9 +311,8 @@ These events are used by the two-way data binding system. External
 scripts can also listen for events (such as `first-name-changed`)
 directly using `addEventListener`.
 
-For more on property change notifications and data binding, see
-[Property change notification and two-way
-binding](data-binding#property-notification).
+For more on property change notifications and the data system, see
+[Data flow](data-system#data-flow).
 
 ## Read-only properties {#read-only}
 
@@ -817,96 +343,16 @@ generated setter of the convention <code>\_set<var>Property</var>(value)</code>.
 ```
 
 For more on read-only properties and data binding, see
-[Property change notification and two-way binding](data-binding#property-notification).
+[How data flow is controlled](data-system#data-flow-control).
 
-## Computed properties {#computed-properties}
-
-Polymer supports virtual properties whose values are calculated from other
-properties.
-
-To define a computed property, add it to the `properties` object with a
-`computed` key mapping to a computing function:
-
-```
-fullName: {
-  type: String,
-  computed: 'computeFullName(first, last)'
-}
-```
-
-
-The function is provided as a string with dependent properties as arguments
-in parenthesis. The function will be called once for any change to
-the dependent properties.
-
-The computing function is not invoked until **all** dependent properties
-are defined (`!== undefined`). So each dependent properties should have a
-default `value` defined in `properties` (or otherwise be initialized to a
-non-`undefined` value) to ensure the property is computed.
-
-**Note:**
-The definition of a computing function looks like the
-definition of a [multi-property observer](#multi-property-observers),
-and the two act almost identically. The only difference is that the
-computed property function returns a value that's exposed as a virtual property.
-{ .alert .alert-info }
-
-```
-<dom-module id="x-custom">
-
-  <template>
-    My name is <span>{{fullName}}</span>
-  </template>
-
-  <script>
-    Polymer({
-
-      is: 'x-custom',
-
-      properties: {
-
-        first: String,
-
-        last: String,
-
-        fullName: {
-          type: String,
-          // when `first` or `last` changes `computeFullName` is called once
-          // and the value it returns is stored as `fullName`
-          computed: 'computeFullName(first, last)'
-        }
-
-      },
-
-      computeFullName: function(first, last) {
-        return first + ' ' + last;
-      }
-
-    });
-  </script>
-
-</dom-module>
-```
-
-
-
-Arguments to computing functions may be simple properties on the element, as
-well as any of the arguments types supported by `observers`, including [paths](#observing-path-changes),
-[paths with wildcards](#deep-observation), and [paths to array splices](#array-observation).
-The arguments received by the computing function match those described in the sections referenced above.
-
-**Note:**
-If you only need a computed property for a data binding, you
-can use a computed binding instead. See
-[Computed bindings](data-binding#annotated-computed).
-{ .alert .alert-info }
 
 ## Reflecting properties to attributes  {#attribute-reflection}
 
 In specific cases, it may be useful to keep an HTML attribute value in sync with
 a property value.  This may be achieved by setting `reflectToAttribute: true` on
-a property in the `properties` configuration object.  This will cause any change
-to the property to be serialized out to an attribute of the same name.
+a property in the `properties` configuration object.  This will cause any
+[observable change](data-system#observable-changes) to the property to be serialized out to an
+attribute of the same name.
 
 ```
 <script>
@@ -943,3 +389,55 @@ By default, values are serialized according to value's  _current_ type
 *   `Array` or `Object`. Serialized using `JSON.stringify`.
 
 To supply custom serialization for a custom element, override your element's `serialize` method.
+
+## Moved sections
+
+The following section have moved to [Observers and computed properties](observers):
+
+<a href="#change-callbacks"></a>
+
+-   [Observe a property](observers#change-callbacks).
+
+    <a href="#multi-property-observers"></a>
+
+-   [Observe multiple properties or paths](observers#multi-property-observers).
+
+    <a href="#observing-path-changes"></a>
+
+-   [Observe changes to a subproperty](observers#observing-path-changes).
+
+    <a href="#array-observation"></a>
+
+-   [Observe array mutations](observers#array-observation).
+
+    <a href="#key-splices"></a>
+
+-   [Track key splices](observers#key-splices).
+
+    <a href="#deep-observation"></a>
+
+-   [Deep sub-property observation](observers#deep-observation).
+
+    <a href="#key-paths"></a>
+
+-   [Deep sub-property changes on array items](observers#key-paths).
+
+    <a href="#dependencies"></a>
+
+-   [Always include dependencies as observer arguments](observers#dependencies).
+
+    <a href="#computed-properties"></a>
+
+-   [Computed properties](observers#computed-properties)
+
+The following sections have moved to [Work with object and array data](model-data):
+
+<a href="#array-mutation"></a>
+
+-   [Mutate an array](model-data#array-mutation).
+
+    <a href="#notifysplices"></a>
+
+-   [Notify Polymer of array mutations](model-data#notifysplices).
+
+
