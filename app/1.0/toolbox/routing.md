@@ -66,7 +66,7 @@ Based on the route, the app can use `<iron-pages>` to select a view to display:
 <iron-pages selected="[[routeData.view]]" attr-for-selected="name">
   <my-profile-view name="profile" route="{{subroute}}"></my-profile-view>
   <my-message-list-view name="messages" route="{{subroute}}"></my-message-list-view>
-  <my-detail-view name="messages" route="{{subroute}}"></my-detail-view>
+  <my-detail-view name="detail" route="{{subroute}}"></my-detail-view>
 </iron-pages>
 ```
 
@@ -86,7 +86,7 @@ to load the user's data:
 
 ## Route objects
 
-The `route` object contains two property:
+The `route` object contains two properties:
 
 -   `prefix`. The path matched by the previous `<app-route>` element. For the
     top-level `<app-route>` element, `prefix` is always the empty string.
@@ -144,11 +144,11 @@ when the route changes. Using observers, it's simple to react to changes to the 
 
 ```
 observers: [
-  '_routeChanged(route.*)'
+  '_routeChanged(route.*)',
   '_viewChanged(routeData.view)'
 ],
 _routeChanged: function(changeRecord) {
-  if (changeRecord.path == 'path' {
+  if (changeRecord.path === 'path') {
     console.log('Path changed!');
   }
 },

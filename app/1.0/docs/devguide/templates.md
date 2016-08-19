@@ -16,7 +16,8 @@ data binding use cases:
 
 The template repeater is a specialized template that binds to an array.
 It creates one instance of the template's contents for each item in the array.
-It adds two properties to the binding scope for each instance:
+For each instance, it creates a new [data binding scope](data-system#data-binding-scope)
+that includes the following properties:
 
 *   `item`. The array item used to create this instance.
 *   `index`. The index of `item` in the array. (The `index` value changes if
@@ -56,17 +57,17 @@ Example: { .caption }
 </dom-module>
 ```
 
-Notifications for changes to items sub-properties are forwarded to the template
-instances, which update via the normal [structured data notification system
-](#path-binding).
+Notifications for changes to item sub-properties are forwarded to the template
+instances, which update using the normal [change notification events](data-system#change-events).
+If the `items` array is bound using two-way binding delimiters, changes to individual items can also
+flow upward.
 
 Mutations to the `items` array itself (`push`, `pop`, `splice`, `shift`,
 `unshift`), should be performed using Polymer's
-[array mutation methods](properties#array-mutation).
-These methods ensure that any elements observing the array are kept in sync.
-If you can't avoid using the native `Array.prototype` methods, make sure to
-call [`notifySplices`](properties#notifysplices) to ensure that any
-elements watching `items` are properly updated.
+[array mutation methods](model-data#array-mutation).
+These methods ensure that the changes are [observable](data-system#observable-changes) by
+the data system. For more information on working with arrays, see [Work with
+arrays](model-data#work-with-arrays).
 
 ### Handling events in `dom-repeat` templates {#handling-events}
 
@@ -76,7 +77,7 @@ generated that item.
 
 When you add a declarative event handler **inside** the `<dom-repeat>` template,
 the repeater adds a `model` property to each event sent to the listener. The `model`
-is the scope data used to generate the template instance, so the item
+object contains the scope data used to generate the template instance, so the item
 data is `model.item`:
 
 ```
@@ -143,7 +144,8 @@ function defined on the host element.
 By default, the `filter` and `sort` functions only run when one of the
 following occurs:
 
-*   The array itself is mutated (for example, by adding or removing items).
+*   An [observable change](data-system#observable-changes) is made to the array
+    (for example, by adding or removing items).
 *   The `filter` or `sort` function is changed.
 
 To re-run the `filter` or `sort` when an unrelated piece of data changes,
@@ -220,7 +222,7 @@ sort function when one or more dependent properties changes.
             return [
               { firstname: "Jack", lastname: "Aubrey" },
               { firstname: "Anne", lastname: "Elliot" },
-              { firstname: "Stepehen", lastname: "Maturin" },
+              { firstname: "Stephen", lastname: "Maturin" },
               { firstname: "Emma", lastname: "Woodhouse" }
             ]
           }
@@ -300,11 +302,20 @@ rendering has a performance cost, but can be useful in a few scenarios:
 *   To re-run the `sort` or `filter` functions when a piece of data changes
     *outside* the array (sort order or filter criteria, for example).
 
-`render` **only** works with changes made with Polymer's
-[array mutation methods](properties#array-mutation).
-If you or a third-party library mutate the array without Polymer's methods,
-you need to call [`notifySplices`](properties#notifysplices) to ensure that any elements
-watching the array are properly notified.
+`render` **only** picks up [observable changes](data-system#observable-changes)
+such as those made with Polymer's [array mutation methods](model-data#array-mutation).
+If you or a third-party library mutate the array **without** using Polymer's methods, you can do
+one of the following:
+
+*   If you know the _exact set of changes made to your array_, use
+    [`notifySplices`](model-data#notifysplices) to ensure that any elements watching the
+    array are properly notified.
+*   If you don't have an exact set of changes, you can [Override dirty
+    checking](model-data##override-dirty-check) to force the data system to reevaluate the entire
+    array.
+
+For more information on working with arrays and the Polymer data system, see [Work with
+arrays](model-data#work-with-arrays).
 
 ### Improve performance for large lists {#large-list-perf}
 
@@ -330,18 +341,18 @@ function is re-run by setting the
 [`delay`](/{{{polymer_version_dir}}}/docs/api/dom-repeat#property-delay)
 property.
 
-## Array selector (array-selector) {#array-selector}
+## Data bind an array selection (array-selector) {#array-selector}
 
 Keeping structured data in sync requires that Polymer understand the path
 associations of data being bound.  The `array-selector` element ensures path
-linkage when selecting specific items from an array. The array selector supports
-either single or multiple selection.
+linkage when selecting specific items from an array.
 
 The `items` property accepts an array of user data. Call `select(item)`
 and `deselect(item)` to update the `selected` property, which may be bound to
 other parts of the application. Any changes to sub-fields of the selected
 item(s) are kept in sync with items in the `items` array.
 
+The array selector supports either single or multiple selection.
 When `multi` is false, `selected` is a property representing the last selected
 item.  When `multi` is true, `selected` is an array of selected items.
 
