@@ -38,6 +38,6 @@ Available settings:
 *   `lazyRegister`—options:
     * `true`, many registration-time activities are deferred until the first instance of an element
 	type is created. Defaults to `false`. (This default may change in the future.)
-    * `"max"`, Defers all behavior work until first element creation. When setting `lazyRegister` to `"max"`, a behavior cannot setup an element's `is` or custom constructor via defining `factoryImpl`. Polymer calls `beforeRegister` on the prototype to preserve the ability to use it in ES6. 
+    * `"max"`, Defers all behavior work until first element creation. When setting `lazyRegister` to `"max"`, cannot set an element's `is` property or create a custom constructor by defining the `factoryImpl` method. Polymer will call your element's `beforeRegister` to preserve the ability to define elements using ES6. The element's `beforeRegister` will be calld before behaviors'.
 *   `useNativeCSSProperties` - when `true`, Polymer uses native custom CSS properties if the browser supports them. Defaults to `false` because of Safari 9 support being buggy. See [1.6.0 release notes](https://www.polymer-project.org/1.0/docs/release-notes#v-1-6-0) for more information.
 *   `noUrlSettings`- when `true`, Polymer settings can only be sent from a script in the page. In other words, URL query parameters such as `?dom=shadow` will be ignored. Defaults to `false`.
