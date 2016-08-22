@@ -278,13 +278,12 @@ Use `@apply` to apply a mixin:
 Defining a mixin is just like defining a custom property, but the
 value is an object that defines one or more rules:
 
-```
-selector {
-  --mixin-name: {
+<pre><code class="language-css"><var>selector</var> {
+  --<var>mixin-name</var>: {
     /* rules */
   };
-}
-```
+}</code></pre>
+
 
 Example: { .caption }
 
