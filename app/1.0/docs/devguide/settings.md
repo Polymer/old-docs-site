@@ -35,5 +35,9 @@ Available settings:
     * `shady`. All local DOM is rendered using shady DOM, even where shadow DOM is supported (current default).
     * `shadow`. Local DOM is rendered using shadow DOM where supported (this will be the default in the future).
 
-*   `lazyRegister`—if true, many registration-time activities are deferred until the first instance of an element
-	type is created. Defaults to false. (This default may change in the future.)
+*   `lazyRegister`—options:
+    * `true`, many registration-time activities are deferred until the first instance of an element
+	type is created. Defaults to `false`. (This default may change in the future.)
+    * `"max"`, Defers all behavior work until first element creation. When setting `lazyRegister` to `"max"`, cannot set an element's `is` property or create a custom constructor by defining the `factoryImpl` method. Polymer will call your element's `beforeRegister` to preserve the ability to define elements using ES6. The element's `beforeRegister` will be called before the behavior's.
+*   `useNativeCSSProperties` - when `true`, Polymer uses native custom CSS properties if the browser supports them. Defaults to `false` because of Safari 9 support being buggy. See [1.6.0 release notes](https://www.polymer-project.org/1.0/docs/release-notes#v-1-6-0) for more information.
+*   `noUrlSettings`- when `true`, Polymer settings can only be sent from a script in the page. In other words, URL query parameters such as `?dom=shadow` will be ignored. Defaults to `false`.

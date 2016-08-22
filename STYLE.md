@@ -219,6 +219,6 @@ level for follow-on paragraphs and code blocks, which _do_ have to be indented.
 
 ## Text wrapping
 
-Please set your text editors to wrap text at 80 characters and trim trailing
+Please set your text editors to wrap text at 100 characters and trim trailing
 whitespace. This makes it easier to review pull requests on GitHub.
 
