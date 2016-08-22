@@ -20,18 +20,18 @@ the currently available templates.
 
 ## Templates
 
-### Basic application template
+### Application
 
-The  `application` template is the most basic starting point for any app
-built with Polymer.  It starts with a single bare-bones custom element that can
-serve as the root of your application, from which you can build in any
-direction with maximum flexibility.
+The  `application` template is the most basic starting point for any app built
+with Polymer. It starts with a single bare-bones custom element that can serve
+as the root of your application, from which you can build in any direction with
+maximum flexibility.
 
-### App drawer template
+### Starter Kit
 
-![](/images/1.0/toolbox/app-drawer-template-desktop.png)
+![](/images/1.0/toolbox/starter-kit-desktop.png)
 
-The `app-drawer-template` introduces the [`app-layout`](app-layout) elements,
+The `starter-kit` introduces the [`app-layout`](app-layout) elements,
 and composes them in a common left-hand drawer arrangement with a toolbar.
 The template provides navigation between a series of views that load and
 are rendered in the main content area.
@@ -45,7 +45,7 @@ and will be pre-cached for offline and subsequent use.
 ![](/images/1.0/toolbox/shop-template-desktop.png)
 
 The `shop` template is a full-fledged application that builds on the
-`app-drawer-template` and implements a series of elements that compose into
+`starter-kit` and implements a series of elements that compose into
 a complete e-commerce application.  It demonstrates a typical
 "home - list - detail" type of application flow, and can serve as inspiration
 or a starting point for a complete application.
