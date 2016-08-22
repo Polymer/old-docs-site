@@ -273,9 +273,7 @@ proposal.
 
 Use `@apply` to apply a mixin:
 
-```
-@apply(--<var>mixin-name</var>);
-```
+<pre><code class="language-js">@apply(--<var>mixin-name</var>);</code></pre>
 
 Defining a mixin is just like defining a custom property, but the
 value is an object that defines one or more rules:
