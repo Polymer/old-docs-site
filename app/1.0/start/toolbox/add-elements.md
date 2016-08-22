@@ -62,9 +62,11 @@ Run this command from your project root directory:
       <style>
         :host {
           display: block;
+
           padding: 16px;
         }
       </style>
+
       <h1>New view</h1>
       <paper-slider min="-100" max="100" value="50"></paper-slider>
     </template>
@@ -73,7 +75,7 @@ Run this command from your project root directory:
 You should be able to see the `paper-slider` working in your new view now:
 [http://localhost:8080/new-view](http://localhost:8080/new-view).
 
-![Example of page with slider](/images/1.0/toolbox/app-drawer-template-slider.png)
+![Example of page with slider](/images/1.0/toolbox/starter-kit-slider.png)
 
 ## Next steps
 
