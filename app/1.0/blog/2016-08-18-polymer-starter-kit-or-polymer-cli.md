@@ -10,11 +10,11 @@ which contains its own starter projects, it became unclear to developers which
 resource they should choose when creating a new project.
 
 To make it as easy as possible to get started building Polymer projects we’ve 
-turned Polymer Starter Kit into a template that can be used with Polymer CLI!
+turned Polymer Starter Kit into a template that you can use with Polymer CLI!
 
 ![An example page showing Polymer Starter Kit in the browser](images/starter-kit-preview.jpg)
 
-Update your version of polymer-cli:
+Update your version of Polymer CLI:
 
 ```
 npm install -g polymer-cli
@@ -24,14 +24,12 @@ Then run `polymer init` and you should see the `starter-kit` option.
 
 ![Console output showing the starter-kit options](cli-starter-kit.jpg)
 
-[Note: If you’ve previously used Polymer CLI you may notice the old 
+If you’ve previously used Polymer CLI you may notice the old 
 `app-drawer-template` is now gone. We’ve replaced it with starter-kit as the two 
-are functionally identical.]
-
-It was always our intention to greatly simplify Polymer Starter Kit as its 
-gulpfile and the number of features it was trying to support had become 
-unwieldy. Now there should be no question: **if you’re starting a new project, 
-use Polymer CLI**.
+are functionally identical. It was always our intention to greatly simplify 
+Polymer Starter Kit as its gulpfile and the number of features it was trying to 
+support had become unwieldy. Now there should be no question: **if you’re 
+starting a new project, use Polymer CLI**.
 
 ## The Starter Kit is missing a feature I want, how do I get it added to the project?
 
