@@ -26,9 +26,7 @@ Then run `polymer init` and you should see the `starter-kit` option.
 
 If you’ve previously used Polymer CLI you may notice the old 
 `app-drawer-template` is now gone. We’ve replaced it with starter-kit as the two 
-are functionally identical. It was always our intention to greatly simplify 
-Polymer Starter Kit as its gulpfile and the number of features it was trying to 
-support had become unwieldy. Now there should be no question: **if you’re 
+are functionally identical. Now there should be no question: **if you’re 
 starting a new project, use Polymer CLI**.
 
 ## The Starter Kit is missing a feature I want, how do I get it added to the project?
@@ -93,7 +91,7 @@ If you’d also like to maintain control of your gulp build process, then you’
 want to port your code over to the Custom Build template. This is the same as 
 above, with the additional step of copying over gulp tasks that you care about. 
 As mentioned previous, you can refer to the polymer-build README for 
-[examples of how to add your own gulp tasks](https://github.com/Polymer/polymer-build/pull/19/files#diff-04c6e90faac2675aa89e2176d2eec7d8R117).
+[examples of how to add your own gulp tasks](https://github.com/Polymer/polymer-build#extracting-inlined-cssjs).
 
 ## We’re just getting started
 
