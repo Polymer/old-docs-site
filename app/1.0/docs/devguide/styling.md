@@ -274,7 +274,7 @@ proposal.
 Use `@apply` to apply a mixin:
 
 ```
-@apply(--<var>mixin-name</var>);
+@apply(--mixin-name);
 ```
 
 Defining a mixin is just like defining a custom property, but the
