@@ -1,4 +1,12 @@
 ---
+- title: "Should I Use Polymer Starter Kit or Polymer CLI"
+  path: /1.0/blog/2016-08-18-polymer-starter-kit-or-polymer-cli
+  published: 2016-08-22
+  author: polymer-team
+  description: "A new, updated Polymer Starter Kit is now available through the Polymer CLI."
+  tags:
+    - blog
+    - announcements
 - title: "I/O 2016 Recap: #UseThePlatform"
   path: /1.0/blog/2016-05-26-IO-2016-Recap
   published: 2016-05-26
