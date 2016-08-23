@@ -6,7 +6,7 @@ title: Events
 
 ## Event listener setup {#event-listeners}
 
-Add event listeners to the host element by providing a
+Add event listens to the host element by providing a
 `listeners` object that maps events to event handler function names.
 
 You can also add an event listener to any element in the `this.$` collection
