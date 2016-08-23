@@ -99,7 +99,7 @@ In summary:
 An *observable change* is **a data change that Polymer can associate with a path**. Certain changes
 are automatically *observable*:
 
-*   Setting a *direct property *of the element.
+*   Setting a *direct property* of the element.
 
    `this.owner = 'Jane';`
 
