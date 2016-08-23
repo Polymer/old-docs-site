@@ -38,7 +38,7 @@ Consider a very simple element:
 ```html
 <dom-module id="name-card">
   <template>
-    <div>{{name.first}} {{name.last}}</div>
+    <div>[[name.first]] [[name.last]]</div>
   </template>
   <script>Polymer({ is: 'name-card' });</script>
 </dom-module>
