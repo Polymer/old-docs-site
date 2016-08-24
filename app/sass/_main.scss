@@ -184,6 +184,7 @@ section {
   & > p:not(:last-child),
   & > h2:not(:last-child) {
     margin-right: $medium-padding;
+    overflow: hidden;
 
     @media (max-width: $mobile-media-breakpoint) {
       margin-right: 0px;
@@ -205,6 +206,9 @@ h2 {
 
   &.underline {
     border-bottom: 1px solid $pink-a400;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 }
 
