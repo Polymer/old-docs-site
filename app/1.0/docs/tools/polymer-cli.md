@@ -266,7 +266,7 @@ Serve from port 3000:
 
     polymer serve --port 3000
 
-If you configured a custom hostname on your machine, polymer can serve it with the
+If you have configured a custom hostname on your machine, polymer can serve it with the
 `--hostname` argument (e.g. app project demo is available at `http://test:8080`):
 
     polymer serve --hostname test
