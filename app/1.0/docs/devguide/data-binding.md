@@ -633,7 +633,7 @@ to listen for `property-changed` events.  The following constructions are equiva
 
 ## Moved sections
 
-The following section have moved to [Data system concepts](data-system):
+The following sections have moved to [Data system concepts](data-system):
 
 <a id="#change-notification-protocol"></a>
 
