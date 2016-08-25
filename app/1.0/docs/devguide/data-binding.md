@@ -644,5 +644,5 @@ The following sections have moved to [Data system concepts](data-system):
 -   Property change notification and two-way binding. See [How data flow is
     controlled](data-system#data-flow-control).
 
--   Binding to structured data. See [Observable changes](data-system#observable-changes),
-    [Data paths](data-system#paths), and [Bind to a host sub-property](#path-binding).
+-   Binding to structured data. See [Observable changes](data-system#observable-changes) and
+    [Data paths](data-system#paths).
