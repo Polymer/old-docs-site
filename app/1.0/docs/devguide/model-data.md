@@ -263,7 +263,7 @@ this.set('group.members', members);
 
 If the property is a large array or a complicated object, this process may be expensive.
 
-## Link two paths to the same object {#linkPaths}
+## Link two paths to the same object {#linkpaths}
 
 Use the [`linkPaths`](/1.0/docs/api/Polymer.Base#method-linkPaths) method to associate two paths.
 Use `linkPaths` when an element has two paths that refer to the same object, as described in

@@ -148,8 +148,7 @@ Example: { .caption }
 ## Property change events {#property-changes}
 
 You can configure an element to fire a non-bubbling DOM event when a specified
-property changes. See [Change notification
-protocol](data-binding#change-notification-protocol) for more information.
+property changes. For more information, see [Change notification events](#change-events).
 
 ## Event retargeting {#retargeting}
 

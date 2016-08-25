@@ -81,14 +81,14 @@ The Polymer standard layer adds declarative data binding, events, property notif
 | [Automatic node finding](local-dom#node-finding) | this.$.\<id>
 | [Event listener setup](events#event-listeners)| listeners: { ‘\<node>.\<event>’: ‘function’, ... }
 | [Annotated event listener setup](events#annotated-listeners) | \<element on-[event]=”function”>
-| [Property change callbacks](properties#change-callbacks) | properties: \<prop>: { observer: ‘function’ }
+| [Property change callbacks](observers) | properties: \<prop>: { observer: ‘function’ }
 | [Annotated property binding](data-binding#property-binding) | \<element prop=”{{property\|path}}”>
-| [Property change notification](data-binding#property-notification) | properties: { \<prop>: { notify: true } }
+| [Property change notification](data-system#change-events) | properties: { \<prop>: { notify: true } }
 | [Binding to structured data](data-binding#path-binding) | \<element prop=”{{obj.sub.path}}”>
-| [Path change notification](data-binding#set-path) | set(\<path>, \<value>)
+| [Path change notification](model-data#set-path) | set(\<path>, \<value>)
 | [Declarative attribute binding](data-binding#attribute-binding) | \<element attr$=”{{property\|path}}”>
 | [Reflecting properties to attributes](properties#attribute-reflection) | properties: { \<prop>: { reflectToAttribute: true } }
-| [Computed properties](properties#computed-properties) | computed: { \<property>: ‘computeFn(dep1, dep2)’ }
+| [Computed properties](observers#computed-properties) | computed: { \<property>: ‘computeFn(dep1, dep2)’ }
 | [Computed bindings](data-binding#annotated-computed) | \<span>{{computeFn(dep1, dep2)}}\</span>
 | [Read-only properties](properties#read-only) |  properties: { \<prop>: { readOnly: true } }
 | [Utility functions](instance-methods) | toggleClass, toggleAttribute, fire, async, …

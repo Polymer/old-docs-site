@@ -311,7 +311,7 @@ one of the following:
     [`notifySplices`](model-data#notifysplices) to ensure that any elements watching the
     array are properly notified.
 *   If you don't have an exact set of changes, you can [Override dirty
-    checking](model-data##override-dirty-check) to force the data system to reevaluate the entire
+    checking](model-data#override-dirty-check) to force the data system to reevaluate the entire
     array.
 
 For more information on working with arrays and the Polymer data system, see [Work with

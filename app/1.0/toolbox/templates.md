@@ -29,7 +29,7 @@ maximum flexibility.
 
 ### Starter Kit
 
-![](/images/1.0/toolbox/starter-kit-desktop.png)
+![](/images/1.0/toolbox/starter-kit.png)
 
 The `starter-kit` introduces the [`app-layout`](app-layout) elements,
 and composes them in a common left-hand drawer arrangement with a toolbar.
