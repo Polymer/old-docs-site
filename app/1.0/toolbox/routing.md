@@ -131,7 +131,7 @@ When using `<app-route>`, there are two ways to change the current URL.
     two-way data binding or `this.set` to update the route. Both the `route`
     and `routeData` objects can be manipulated this way. For example:
 
-    `this.set('route.path', '/search/);`
+    `this.set('route.path', '/search/');`
 
     Or:
 
