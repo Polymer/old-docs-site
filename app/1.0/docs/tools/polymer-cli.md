@@ -266,10 +266,10 @@ Serve from port 3000:
 
     polymer serve --port 3000
 
-Serve from hostname `test` (e.g. app project demo is available at
-`http://test:8080`):
+If you have configured a custom hostname on your machine, Polymer CLI can serve it with the
+`--hostname` argument (for example, app project demo is available at `http://test:8080`):
 
-    polymer serve --hostname 'test'
+    polymer serve --hostname test
 
 Open up a page other than the default `index.html` in a specific browser
 (Apple Safari, in this case):
