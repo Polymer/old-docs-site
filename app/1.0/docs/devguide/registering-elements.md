@@ -213,7 +213,7 @@ finished creating and initializing the element's local DOM.
     <td>Called after property values are set and local DOM is initialized.
       <p>Use for one-time configuration of your component after local
         DOM is initialized. (For configuration based on property values, it
-        may be preferable to use an <a href="properties#multi-property-observers">observer</a>.)
+        may be preferable to use an <a href="observers">observer</a>.)
       </p>
     </td>
   </tr>

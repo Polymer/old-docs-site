@@ -11,7 +11,7 @@ A behavior is an object that looks similar to a typical
 Polymer prototype.  A behavior can define
 [lifecycle callbacks](registering-elements#basic-callbacks),
 [declared properties](properties), [default attributes](registering-elements#host-attributes),
-[`observers`](properties#observing-changes-to-multiple-properties), and [`listeners`](events#event-listeners).
+[observers](observers), and [event listeners](events#event-listeners).
 
 To add a behavior to a Polymer element definition, include it in a
 `behaviors` array on the prototype.

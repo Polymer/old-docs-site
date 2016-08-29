@@ -125,7 +125,7 @@ state visible to the outside world. `reflectToAttribute` makes the
 state visible **in the DOM tree**, so that it's visible to CSS and the
 `querySelector` methods. `notify` **makes state changes observable outside the
 element**, either using JavaScript event handlers or Polymer
-<a href="/1.0/docs/devguide/data-binding#property-notification">two-way data binding</a>.
+<a href="/1.0/docs/devguide/data-binding#two-way-bindings">two-way data binding</a>.
 { .alert .alert-info }
 
 Now your element has `pressed` and `toggleIcon` properties working.

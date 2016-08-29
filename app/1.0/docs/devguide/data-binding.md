@@ -7,7 +7,7 @@ title: Data binding
 A _data binding_ connects data from a custom element
 (the _host element_) to a property or attribute of an element in its local DOM (the _child_
 or _target element_). The host element data can be a property or sub-property represented by a
-[data path](data-system#data-paths), or data generated based on one or more paths.
+[data path](data-system#paths), or data generated based on one or more paths.
 
 You create data bindings by adding annotations to an element's local DOM template.
 
@@ -273,7 +273,7 @@ The text inside the delimiters can be one of the following:
 *   Any of the above, preceded by the negation operator (`!`).
 
 The paths in a data binding annotation are relative to the current [data binding
-scope](data-system#data-binding-scopes).
+scope](data-system#data-binding-scope).
 
 ### Bind to a host property {#host-property}
 
@@ -315,7 +315,7 @@ Subproperty changes are not automatically [observable](data-system#observable-ch
 
 If the host element updates the subproperty it needs to use the `set` method, as described in
 [Set a property or subproperty by path](model-data#set-path). Or the `notifyPath` method, as described in
-[Notify Polymer of a subproperty change](model#notify-path).
+[Notify Polymer of a subproperty change](model-data#notify-path).
 
 
 ```
@@ -633,14 +633,16 @@ to listen for `property-changed` events.  The following constructions are equiva
 
 ## Moved sections
 
-The following section have moved to [Data system concepts](data-system):
+The following sections have moved to [Data system concepts](data-system):
+
+<a id="#change-notification-protocol"></a>
+
+-   Change notification protocol. See [Change notification events](#change-events).
 
 <a id="#property-notification"></a>
 
 -   Property change notification and two-way binding. See [How data flow is
     controlled](data-system#data-flow-control).
 
-<a id="##path-binding"></a>
-
--   Binding to structured data. See [Observable changes](data-system#observable-changes),
-    [Data paths](data-system#paths), and [Bind to a property or sub-property](#)
+-   Binding to structured data. See [Observable changes](data-system#observable-changes) and
+    [Data paths](data-system#paths).

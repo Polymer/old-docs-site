@@ -200,7 +200,7 @@ relationships:
 ![Two elements, user-profile and address card. The user-profile element has a primaryAddress
 property. An arrow labeled 1 connects the property to a JavaScript object. The address-card
 element has an address property. An arrow labeled 2 connects the property to the same JavaScript
-object.](/images/1.0/data-system/data-binding-paths.png)
+object.](/images/1.0/data-system/data-binding-paths-new.png)
 
 1.  The `<user-profile>` element has a property `primaryAddress` that refers to a JavaScript object.
 2.  The `<address-card>` element has a property `address` that refers to the same object.

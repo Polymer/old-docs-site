@@ -656,7 +656,7 @@ After { .caption }
 ```
 
 
-For more information, see [Property change callbacks (observers)](/1.0/docs/devguide/properties#change-callbacks) in the Developer guide.
+For more information, see [Observers and computed properties](/1.0/docs/devguide/observers) in the Developer guide.
 
 ## Default attributes {#default-attributes}
 
@@ -1146,8 +1146,8 @@ binding are:
 *   Polymer doesn't use `Object.observe` to watch object changes,
     so in some cases your code needs to use explicit APIs for manipulating
     objects in order for bindings to update. For more information, see
-    [Binding to structured data](/1.0/docs/devguide/data-binding#path-binding), and
-    [Array mutation methods](/1.0/docs/devguide/properties#array-mutation).
+    [Observable changes](/1.0/docs/devguide/data-system#observable-changes), and
+    [Work with object and array data](/1.0/docs/devguide/model-data) in the Developer Guide.
 
 As of release 1.2.0, Polymer includes support for compound bindings,
 which combine binding annotations and literal strings:

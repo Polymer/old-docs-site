@@ -48,7 +48,7 @@ toggle between its pressed and unpressed states.
 **Learn more: data binding.** To see how the demo works, open `icon-toggle-demo.html`
 and take a look around (if you downloaded the code, you'll find this file in the `demo` folder.)
 Yes, the demo for this element is _also_ an element. The
-element uses <a href="/1.0/docs/devguide/data-binding#property-notification">two-way
+element uses <a href="/1.0/docs/devguide/data-binding#two-way-bindings">two-way
 data binding</a> and a <a href="/1.0/docs/devguide/data-binding#annotated-computed">computed
 binding</a> to change the string displayed when you toggle the button.
 { .alert .alert-info }
