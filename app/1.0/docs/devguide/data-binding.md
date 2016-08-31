@@ -63,7 +63,7 @@ by the type of binding annotation and the configuration of the target property.
 
 -   Double-curly brackets (<code>{{ }}</code>) support both upward and downward data flow.
 
--   Double square brackets (<code>[[ ]]</code>) are _one-way_, and support only only downward data
+-   Double square brackets (<code>[[ ]]</code>) are _one-way_, and support only downward data
     flow.
 
 For more on data flow, see [How data flow is controlled](data-system#data-flow-control).
