@@ -107,14 +107,13 @@ Example: { .caption }
 </dom-module>
 ```
 
-For locating dynamically-created nodes in your element's local DOM, use
-the `$$` method:
+For locating dynamically-created nodes in your element's local DOM, 
+the `$$` method provides a shorthand for `Polymer.dom(this.root).querySelector()`:
 
 <code>this.$$(<var>selector</var>)</code>
 
 `$$` returns the first node in the local DOM that matches
 <code><var>selector</var></code>.
-
 
 ## DOM distribution {#dom-distribution}
 
