@@ -49,13 +49,13 @@ h3 {
 }
 .badge-white {
     position: relative;
-    background: url(../images/badge_white.png) center center no-repeat;
+    background: url(../images/polymer.svg) center center no-repeat;
     background-size: contain
 }
 .badge-blue-small {
     width: 100px;
     height: 60px;
-    background: url(../images/badge_blue_small.png) center center no-repeat;
+    background: url(../images/polymer.svg) center center no-repeat;
     background-size: contain
 }
 .logo {
@@ -454,11 +454,11 @@ schedule-grid, speakers-grid {
         background-size: contain
     }
     .badge-white {
-        background: url(../images/badge_white@2x.png) center center no-repeat;
+        background: url(../images/polymer.svg) center center no-repeat;
         background-size: contain
     }
     .badge-blue-small {
-        background: url(../images/badge_blue_small@2x.png) center center no-repeat;
+        background: url(../images/polymer.svg) center center no-repeat;
         background-size: contain
     }
     .blue-banner {
