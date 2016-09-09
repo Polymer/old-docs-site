@@ -1,4 +1,12 @@
 ---
+- title: "Polymer 2.0 Preview"
+  path: /1.0/blog/2016-09-09-polymer-2.0
+  published: 2016-09-09
+  author: polymer-team
+  description: "Check out the preview branch of the forthcoming Polymer 2.0 release."
+  tags:
+     - blog
+     - announcements
 - title: "Should I Use Polymer Starter Kit or Polymer CLI"
   path: /1.0/blog/2016-08-18-polymer-starter-kit-or-polymer-cli
   published: 2016-08-22

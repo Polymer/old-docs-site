@@ -103,6 +103,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 0;
       }
 
+      .section-columns-column {
+        overflow: hidden;
+      }
+
     </style>
 
     {% if markdown %}
@@ -143,8 +147,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- First 3 articles are highlighted -->
     <section class="light">
       <div class="section-columns">
-        {% for item in articles[:3] %}
-        <div>
+        {% for item in articles[:2] %}
+        <div class="section-columns-column">
           <h2 class="underline" title="{{{item.title}}}">{{{item.title}}}</h2>
           <p>{{{item.description}}}</p>
           <a href="{{{item.path}}}.html" class="blue-button">Read more</a>
@@ -172,7 +176,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </section>
 
     <section class="short">
-      {% for item in articles[3:] %}
+      {% for item in articles[2:] %}
       <div class="article">
         <h2><a href="{{{item.path}}}.html">{{{item.title}}}</a></h2>
         <div class="byline author">
