@@ -29,6 +29,11 @@
         "desc": "Closure Compiler underpins most of Google's frontends - providing typechecking, minification and transpilation - but can be tricky to be used with Polymer. Learn about how to use the compiler in SIMPLE or ADVANCED mode to be more productive and write better Polymer code."
       },
       {
+        "name": "Practical Performance",
+        "speaker": "Sam Saccone",
+        "desc": "A look into how to identify why a site is slow with Dev Tools, and techniques based around the PRPL pattern to make things fast again."
+      },
+      {
         "name": "Sign-in and Payments without Forms",
         "speaker": "Eiji Kitamura",
         "desc": "This talk gives you ideas on how you can bring sign-in and checkout process to the next level using Credential Management API and Payment Request API."
@@ -37,6 +42,11 @@
         "name": "Hacking Without Being a Hack",
         "speaker": "Elliot Marquez",
         "desc": "Almost everyone has had a moment when they have been asked to build something quickly at 3pm on a Friday. Come explore how Polymer can transform a hackathon project to a respectable app."
+      },
+      {
+        "name": "PWA's: Heavy Duty meets High Performance",
+        "speaker": "Chris Joel",
+        "desc": "You've done it. You've survived long enough as a web developer to witness the dawn of progressive web apps. Web apps now share the home screen with native apps, and have many of the same capabilities. But, with great power comes great user expectations. How do you achieve the delightful 60FPS view transitions on that native app your user just installed? How do you manage the burden of heavy image assets when every byte counts? How do you avoid jank when your app needs to do _real_ work? The Web Platform and Polymer Elements are here to help. In this session, we'll cover accessible strategies for delightful UX by leveraging the powerful primitives of the web. You will learn from real-world examples of heavy duty web app workloads. You will discover how to build and analyze these features to achieve a satisfying, high performance UX. And most importantly: you will learn how to make these features progressive, so that users across all browsers and devices can benefit from your work."
       },
       {
         "name": "An app in 3 days or: how I learned to stop worrying and love the Polymer toolbox",
