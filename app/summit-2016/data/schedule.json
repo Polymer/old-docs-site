@@ -9,6 +9,16 @@
         "desc":"Welcome to the second Polymer Summit!"
       },
       {
+        "name": "The Way of the Web - ING",
+        "speaker": "Ben Issa",
+        "desc": "An end-to-end view on how ING builds beautiful experiences for its customers using Web Components."
+      },
+      {
+        "name": "Polymer 2.0: Under the Hood",
+        "speaker": "Rob Dodson",
+        "desc": "It's not always clear to developers the boundaries between native Web Components and Polymer. What does the library add? What's already built into the platform? This talk aims to demystify Polymer by peeling back the cover to explain how the internals work and show how they complement existing APIs. We'll cover the basics of building vanilla Web Components using the new v1 specs, and demonstrate new features in Polymer 2.0 that make the whole process more efficient."
+      },
+      {
         "name": "Polymer 2.0 in 2.0 seconds: Upgrading Projects Large and Small",
         "speaker": "Peter Burns",
         "desc": "Do you dread upgrading your giant world-spanning tree of Polymer elements? Or maybe you've got a handful of small but widely used elements that you'd like to upgrade without leaving your users in the lurch or maintaining two branches? No worries, we've got your back!"
@@ -17,6 +27,11 @@
         "name": "Polymer Butter and Firebase Jelly",
         "speaker": "Michael Bleigh",
         "desc": "Polymer helps you use the platform to build performant, responsive, delightful web apps. Firebase helps you do it without having to run your own backend infrastructure! Polymer and Firebase have joined forces to put Progressive Web Apps within the reach of mere mortal developers. In this session, you'll learn how to leverage PolymerFire (the official Polymer bindings for Firebase) to handle authentication, data (both online and off), and more in your Polymer application. You'll also learn how you can use Firebase Hosting to deliver your app lightning-fast using the PRPL pattern. Get the tools you need to go from zero to PWA in record time."
+      },
+      {
+        "name": "Data Flow in Polymer Elements and Apps",
+        "speaker": "Gray Norton",
+        "desc": "Polymer’s data system provides a robust, highly performant set of features – including observers, computed properties and bindings – for managing the flow of data within and between elements. These features are easy to use, making it almost trivial to build simple controls. They’re also useful for composing more complex elements (fancier controls, views or entire applications), but data flow gets trickier as complexity increases and the best solution is not always obvious. In this session, we’ll explore patterns for managing data flow in your Polymer elements and apps and discuss relevant changes in Polymer 2.0."
       },
       {
         "name": "Discipline = Freedom: Practical Performance Patterns for Polymer",
@@ -85,7 +100,7 @@
         "desc": "Since Polymer Summit 2015 the Net-a-porter tech team set about building on top of their work with web components and start building applications. This talk will cover that journey, including how they build, test and monitor their latest product listing page."
       },
       {
-        "name": "Winning the Gold with Web Components",
+        "name": "Winning the Gold with Web Components - Gannett",
         "speaker": "Jesiah McCann & Josh Trout",
         "desc": "How USA TODAY utilized Polymer to power its Olympics coverage."
       },
