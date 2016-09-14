@@ -6,7 +6,7 @@
       {
         "name":"Opening Keynote",
         "speaker":"Taylor Savage",
-        "desc":"Welcome to the second Polymer Summit!"
+        "desc":"Welcome to the second Polymer Summit! We'll kick off with a whirlwind tour of what's new in the world of Web Components and the Polymer Project."
       },
       {
         "name": "The Way of the Web - ING",
@@ -41,7 +41,7 @@
       {
         "name": "Discipline = Freedom: Practical Performance Patterns for Polymer",
         "speaker": "Steve Orvell",
-        "desc": "The web platform is powerful and performant, and custom elements in a profound new platform primitive. Polymer is a library that helps developers realize the potential of the platform to please and delight users. From paradigms to pointers we’ll review a plethora of concepts and examples to make sure you’re prepared to write applications that are truly paragons of performance."
+        "desc": "The web platform is powerful and performant, and custom elements are a profound new platform primitive. Polymer is a library that helps developers realize the potential of the platform to please and delight users. From paradigms to pointers we’ll review a plethora of concepts and examples to make sure you’re prepared to write applications that are truly paragons of performance."
       },
       {
         "name": "Polymer & the Closure Compiler",
@@ -56,12 +56,12 @@
       {
         "name": "Sign-in and Payments without Forms",
         "speaker": "Eiji Kitamura",
-        "desc": "This talk gives you ideas on how you can bring sign-in and checkout process to the next level using Credential Management API and Payment Request API."
+        "desc": "This talk gives you ideas on how you can bring sign-in and checkout process to the next level in your Polymer PWA using Credential Management API and Payment Request API."
       },
       {
         "name": "Hacking Without Being a Hack",
         "speaker": "Elliot Marquez",
-        "desc": "Almost everyone has had a moment when they have been asked to build something quickly at 3pm on a Friday. Come explore how Polymer can transform a hackathon project to a respectable app."
+        "desc": "Almost everyone has had a moment when they have been asked to build something quickly at 3pm on a Friday. Come explore how Polymer can transform a hackathon project or last-minute demo into a respectable app."
       },
       {
         "name": "Interacting with the Physical Web",
@@ -92,12 +92,12 @@
       {
         "name": "What's New in Polymer Tools",
         "speaker": "Justin Fagnani",
-        "desc": "An end-to-end overview of the tooling landscape for web components."
+        "desc": "An end-to-end overview of the tooling landscape for web components and the Polymer Project. From the Polymer CLI, to package managers, to static analyzers, to linters, to deployment tools, we'll take a look at the current state of tooling and show off new features that are in progress and on the horizon."
       },
       {
         "name": "Polymer in Practice @ Comcast",
         "speaker": "Chris Lorenzo & John Riviello",
-        "desc": "Comcast is an early adopter of Polymer, having been building production web applications since version 0.3. Now millions of Comcast customers are using websites and web applications that are built with Polymer. This session will walk through our transformation from early skepticism about a new technology choice to widespread enthusiasm for Polymerthroughout the largest cable TV & Internet provider in the United States. You’ll learn about how easy it is to onboard a team to Polymer, tips for sharing components with other websites & across teams, and best practices Comcast has established for efficient development & deployment of web components."
+        "desc": "Comcast is an early adopter of Polymer, having been building production web applications since version 0.3. Now millions of Comcast customers are using websites and web applications that are built with Polymer. This session will walk through our transformation from early skepticism about a new technology choice to widespread enthusiasm for Polymer throughout the largest cable TV & Internet provider in the United States. You’ll learn about how easy it is to onboard a team to Polymer, tips for sharing components with other websites & across teams, and best practices Comcast has established for efficient development & deployment of web components."
       },
       {
         "name": "Why the web makes sense for business apps - Vaadin",
@@ -110,7 +110,7 @@
         "desc": "Since Polymer Summit 2015 the Net-a-porter tech team set about building on top of their work with web components and start building applications. This talk will cover that journey, including how they build, test and monitor their latest product listing page."
       },
       {
-        "name": "Polymer @ Google - Developing Within Our X Billion LoC Monorepo",
+        "name": "Polymer @ Google - Developing Within Our 2 Billion LoC Monorepo",
         "speaker": "Andy Bonventre",
         "desc": "Polymer is developed out in the open on GitHub, but Google’s developers use a very specialized set of tools within our massive build environment. Ever wonder how everything fits together? This talk will cover the history of Polymer inside Google, including how we do things differently than most Polymer devs, what works well, and what doesn’t."
       },
@@ -128,6 +128,10 @@
         "name": "Adapting to the Mobile Web F̶u̶t̶u̶r̶e̶ Present",
         "speaker": "Alex Russell",
         "desc": "Mobile isn't everything, but it's not far off. The mobile web of today includes devices out at the edge of the web’s considerable reach, with unexpectedly harsh limits on available CPU imposed by batteries and thermal throttling. Our assumptions about what we can “afford” are off. Not by a little; by a lot. Modern apps often include an order of magnitude too much script...and your Macbook Pro doesn’t make this obvious, and your framework might have hidden costs. Frameworks and apps need to adapt. Learn how to diagnose bloat for yourself, techniques for attacking it, and how to keep your app under a reasonable performance budget from start to finish."
+      },
+      {
+        "name": "Polymer Panel",
+        "desc": "A roundtable Q&A with core Polymer team members on the past, present, and future of the Polymer Project."
       },
       {
         "name": "Closing Remarks",
