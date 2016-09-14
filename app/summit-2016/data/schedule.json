@@ -34,6 +34,11 @@
         "desc": "Polymer’s data system provides a robust, highly performant set of features – including observers, computed properties and bindings – for managing the flow of data within and between elements. These features are easy to use, making it almost trivial to build simple controls. They’re also useful for composing more complex elements (fancier controls, views or entire applications), but data flow gets trickier as complexity increases and the best solution is not always obvious. In this session, we’ll explore patterns for managing data flow in your Polymer elements and apps and discuss relevant changes in Polymer 2.0."
       },
       {
+        "name": "Making Chromestatus.com a Lightning-Fast PWA",
+        "speaker": "Eric Bidelman",
+        "desc": "How do you build a production app using web components? How do you make it fast? Chromestatus.com was launched in 2013 as part of the Blink fork and quickly became an everyday tool used by Chrome engineers, browser vendors, and web developers around the world. As the 1st production app built with Polymer, it has evolved quite a bit over the years. In this talk, you'll learn what it takes to build a lightning fast PWA using web components. Topics include incorporating Polymer elements, lazy loading patterns, utilizing http/2 push/preload, and more."
+      },
+      {
         "name": "Discipline = Freedom: Practical Performance Patterns for Polymer",
         "speaker": "Steve Orvell",
         "desc": "The web platform is powerful and performant, and custom elements in a profound new platform primitive. Polymer is a library that helps developers realize the potential of the platform to please and delight users. From paradigms to pointers we’ll review a plethora of concepts and examples to make sure you’re prepared to write applications that are truly paragons of performance."
@@ -57,6 +62,11 @@
         "name": "Hacking Without Being a Hack",
         "speaker": "Elliot Marquez",
         "desc": "Almost everyone has had a moment when they have been asked to build something quickly at 3pm on a Friday. Come explore how Polymer can transform a hackathon project to a respectable app."
+      },
+      {
+        "name": "Interacting with the Physical Web",
+        "speaker": "Scott Jenson",
+        "desc": "The Physical Web is an ultra simple way to find and interact with devices around you, all without ever having to install an app. This talk will introduce you to the Physical Web and also show you how easy it is to add interactivity to devices. We'll show a demo of a device that initially shows nothing more than a simple web page, but by adding a single Polymer component lets you connect and interact with that device through WebBluetooth."
       },
       {
         "name": "PWA's: Heavy Duty meets High Performance",
@@ -100,6 +110,11 @@
         "desc": "Since Polymer Summit 2015 the Net-a-porter tech team set about building on top of their work with web components and start building applications. This talk will cover that journey, including how they build, test and monitor their latest product listing page."
       },
       {
+        "name": "Polymer @ Google - Developing Within Our X Billion LoC Monorepo",
+        "speaker": "Andy Bonventre",
+        "desc": "Polymer is developed out in the open on GitHub, but Google’s developers use a very specialized set of tools within our massive build environment. Ever wonder how everything fits together? This talk will cover the history of Polymer inside Google, including how we do things differently than most Polymer devs, what works well, and what doesn’t."
+      },
+      {
         "name": "Winning the Gold with Web Components - Gannett",
         "speaker": "Jesiah McCann & Josh Trout",
         "desc": "How USA TODAY utilized Polymer to power its Olympics coverage."
@@ -108,6 +123,16 @@
         "name": "Production-Ready Polymer Elements - A How-To-Guide",
         "speaker": "Daniel Freedman",
         "desc": "The Polymer team is responsible for over one hundred elements that are used in vast assortment of combinations, browsers, and applications. Come learn how we make our elements production ready, and how to use the same tools and techniques for your own elements. We'll explore topics such as Code Linting with eslint, In-Browser testing with web-component-tester, Fixture testing with the <test-fixture> element, Accessibility Testing with accessibility-developer-tools, web-component-tester, and VoiceOver, and finally Continuous Integration Testing with Travis-CI and Sauce Labs."
+      },
+      {
+        "name": "Adapting to the Mobile Web F̶u̶t̶u̶r̶e̶ Present",
+        "speaker": "Alex Russell",
+        "desc": "Mobile isn't everything, but it's not far off. The mobile web of today includes devices out at the edge of the web’s considerable reach, with unexpectedly harsh limits on available CPU imposed by batteries and thermal throttling. Our assumptions about what we can “afford” are off. Not by a little; by a lot. Modern apps often include an order of magnitude too much script...and your Macbook Pro doesn’t make this obvious, and your framework might have hidden costs. Frameworks and apps need to adapt. Learn how to diagnose bloat for yourself, techniques for attacking it, and how to keep your app under a reasonable performance budget from start to finish."
+      },
+      {
+        "name": "Closing Remarks",
+        "speaker": "Matt McNulty",
+        "desc": "A look ahead at the future of the Polymer Project and web components."
       }
     ]
   }
