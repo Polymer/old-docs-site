@@ -6,17 +6,17 @@
       {
         "name":"Opening Keynote",
         "speaker":"Taylor Savage",
-        "desc":"Welcome to the second Polymer Summit! We'll kick off with a whirlwind tour of what's new in the world of Web Components and the Polymer Project."
+        "desc":"Welcome to the second Polymer Summit! We'll kick off with a whirlwind tour of what's new in the world of web components and the Polymer Project."
       },
       {
-        "name": "The Way of the Web - ING",
+        "name": "The Way of the Web @ ING",
         "speaker": "Ben Issa",
-        "desc": "An end-to-end view on how ING builds beautiful experiences for its customers using Web Components."
+        "desc": "An end-to-end view on how ING builds beautiful experiences for its customers using web components."
       },
       {
         "name": "Polymer 2.0: Under the Hood",
         "speaker": "Rob Dodson",
-        "desc": "It's not always clear to developers the boundaries between native Web Components and Polymer. What does the library add? What's already built into the platform? This talk aims to demystify Polymer by peeling back the cover to explain how the internals work and show how they complement existing APIs. We'll cover the basics of building vanilla Web Components using the new v1 specs, and demonstrate new features in Polymer 2.0 that make the whole process more efficient."
+        "desc": "It's not always clear to developers the boundaries between native web components and Polymer. What does the library add? What's already built into the platform? This talk aims to demystify Polymer by peeling back the cover to explain how the internals work and show how they complement existing APIs. We'll cover the basics of building vanilla web components using the new v1 specs, and demonstrate new features in Polymer 2.0 that make the whole process more efficient."
       },
       {
         "name": "Polymer 2.0 in 2.0 seconds: Upgrading Projects Large and Small",
@@ -76,7 +76,7 @@
       {
         "name": "An app in 3 days or: how I learned to stop worrying and love the Polymer toolbox",
         "speaker": "Monica Dinculescu",
-        "desc": "Think of your favorite app. It's probably meowni.ca/emojillate (who can blame you), but if it isn't (and we need to talk) it probably has one, if not all, of these things: a database; a potential for disaster, with many users looking at and clicking on the same data; offline support, a responsive layout while preferably being faster than the average bear. Recreating this experience from scratch might sound like a terrifying experience, but I'm going to show you how the polymer toolbox and a few other already-built elements can help you go from zero to hero and build a PWA in no time."
+        "desc": "Think of your favorite app. It's probably meowni.ca/emojillate (who can blame you), but if it isn't (and we need to talk) it probably has one, if not all, of these things: a database; a potential for disaster, with many users looking at and clicking on the same data; offline support, and a responsive layout. While preferably being faster than the average bear. Recreating this from scratch might sound like a terrifying experience, but I'm going to show you how the polymer toolbox and a few other already-built elements can help you go from zero to hero and build a PWA in no time."
       }
     ]
   },
@@ -102,10 +102,10 @@
       {
         "name": "Why the web makes sense for business apps - Vaadin",
         "speaker": "Marcus Hellberg & Jouni Koivuviita",
-        "desc": "Web Components and Progressive Web App technologies offer a solution to fragmented development and runtime environments by allowing you to reuse code between both frameworks and platforms. Vaadin works simplifies the development of business apps by providing UI components and tools that are focused on helping business app developers. In this talk, you will learn how Polymer components can be used in Angular 2 and how we are making web components customizable, so you can easily adapt them to the look and feel of your company and platform. "
+        "desc": "Web components and Progressive Web App technologies offer a solution to fragmented development and runtime environments by allowing you to reuse code between both frameworks and platforms. Vaadin works simplifies the development of business apps by providing UI components and tools that are focused on helping business app developers. In this talk, you will learn how Polymer components can be used in Angular 2 and how we are making web components customizable, so you can easily adapt them to the look and feel of your company and platform. "
       },
       {
-        "name": "From Components to Applications - Net-a-Porter",
+        "name": "From Components to Applications @ Net-a-Porter",
         "speaker": "Robin Glen",
         "desc": "Since Polymer Summit 2015 the Net-a-porter tech team set about building on top of their work with web components and start building applications. This talk will cover that journey, including how they build, test and monitor their latest product listing page."
       },
