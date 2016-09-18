@@ -633,7 +633,9 @@ To use a style module in an element:
     <!-- include the style module by name -->
     <style include="shared-styles"></style>
     <style>:host { display: block; }</style>
-    Hi
+    <div class="red">
+      Hi
+    </div>
   </template>
   <script>Polymer({is: 'x-foo'});</script>
 </dom-module>
