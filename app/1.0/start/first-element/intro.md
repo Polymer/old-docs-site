@@ -85,11 +85,17 @@ Install the Polymer CLI to serve the demo locally.
 
 To run the element demo:
 
-1.  Run `polymer serve` from the repo directory:
+1.  Run `bower install` from the repo directory:
+
+        bower install
+        
+    This will download some dependencies and you need to run this just at the first start.    
+
+2.  Run `polymer serve` from the repo directory:
 
         polymer serve
 
-2.  Open `localhost:8080/components/icon-toggle/demo/` in your browser.
+3.  Open `localhost:8080/components/icon-toggle/demo/` in your browser.
 
     (Note that the path uses `icon-toggle`—the
     component name listed in this element's `bower.json` file—rather than the actual directory name.
