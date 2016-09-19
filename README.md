@@ -32,7 +32,7 @@ The site will be served from http://localhost:8080.
 
 #### Making changes / watching files / live reload
 
-If you're marking changes use the `watch` task. Optionally add `--reload` to live
+If you're making changes use the `watch` task. Optionally add `--reload` to live
 reload the tab when changes are saved.
 
     gulp watch --reload
