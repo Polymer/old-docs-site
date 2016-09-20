@@ -585,7 +585,7 @@ _or_ if the array itself is mutated, so the binding uses a wildcard path, `myArr
 ## Two-way bindings
 
 Two-way bindings can propagate data changes both downward (from host to target) and upward (from
-target to host). For changes to propagate upward, the you must use automatic data binding
+target to host). For changes to propagate upward, you must use automatic data binding
 delimiters (`{{ }}`) and the target property must be set to `notify: true`. For more information,
 see [Data flow](data-system#data-flow).
 
