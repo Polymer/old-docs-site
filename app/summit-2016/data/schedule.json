@@ -1,6 +1,6 @@
 [
   {
-    "date":"October 17th",
+    "date":"October 17th, 10am-6pm",
     "day":"Monday",
     "sessions":[
       {
@@ -12,6 +12,11 @@
         "name": "The Way of the Web @ ING",
         "speaker": "Ben Issa",
         "desc": "An end-to-end view on how ING builds beautiful experiences for its customers using web components."
+      },
+      {
+        "name": "A Polymer Experience",
+        "speaker": "Wendy Ginsberg",
+        "desc": "A sneak preview of a unique experience we've been working on, built with Polymer."
       },
       {
         "name": "Polymer 2.0: Under the Hood",
@@ -65,7 +70,7 @@
       },
       {
         "name": "Hacking Without Being a Hack",
-        "speaker": "Elliot Marquez",
+        "speaker": "Elliott Marquez",
         "desc": "Almost everyone has had a moment when they have been asked to build something quickly at 3pm on a Friday. Come explore how Polymer can transform a hackathon project or last-minute demo into a respectable app."
       },
       {
@@ -86,7 +91,7 @@
     ]
   },
   {
-    "date":"October 18th",
+    "date":"October 18th, 10am-6pm",
     "day":"Tuesday",
     "sessions":[
       {
