@@ -33,8 +33,8 @@
           <div class="nav fit" drawer="">
               <iron-selector class="menu" selected="[[page]]" activate-event="click" attr-for-selected="name">
                 <a name="home" class="menu-item" href="/summit">HOME</a>
-                <br>
-                <a name="schedule" class="menu-item" href="/summit/schedule">SCHEDULE</a>
+                <br><a name="schedule" class="menu-item" href="/summit/schedule">SCHEDULE</a>
+                <br><a name="speakers" class="menu-item" href="/summit/speakers">SPEAKERS</a>
               </iron-selector>
           </div>
             <x-header-layout class="header-layout" main="" page$="[[page]]">
@@ -45,6 +45,7 @@
                             <iron-selector class="wide-only" selected="[[page]]" activate-event="click" attr-for-selected="name">
                               <a name="home" class="tab" href="/summit">HOME</a>
                               <a name="schedule" class="tab" href="/summit/schedule">SCHEDULE</a>
+                              <a name="speakers" class="tab" href="/summit/speakers">SPEAKERS</a>
                             </iron-selector>
                         </div>
                         <div class="header-tools horizontal center layout">
@@ -161,6 +162,7 @@
                       </div>
                   </section>
                   <schedule-grid name="schedule" schedule="{{schedule}}" narrow-layout="{{narrowLayout}}"></schedule-grid>
+                  <speakers-grid name="speakers" speakers="{{speakers}}" narrow-layout="{{narrowLayout}}"></speakers-grid>
                 </iron-pages>
                 <a class="london-bg home-page-hidden vertical center-center layout" target="_blank" aria-label="Event map" data-outbound="image-map" href="https://www.google.com/maps/place/Muziekgebouw+aan+'t+IJ/@52.3783041,4.9131203,15z/data=!4m2!3m1!1s0x0:0x84b02f41a342e459">
                     <div class="london-scrim"></div>
@@ -178,6 +180,7 @@
             </x-header-layout>
         </x-drawer-layout>
         <iron-media-query query="(max-width: 643px)" query-matches="{{narrowLayout}}"></iron-media-query>
+        <iron-ajax auto="" url="/summit/data/speakers.json" last-response="{{speakers}}"></iron-ajax>
         <iron-ajax auto="" url="/summit/data/schedule.json" last-response="{{schedule}}"></iron-ajax>
         <x-scrollpos-control selected="[[page]]"></x-scrollpos-control>
     </template>
