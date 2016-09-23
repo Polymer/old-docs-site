@@ -55,7 +55,7 @@
       },
       {
         "name": "Polymer @ Google - Developing Within Our 2 Billion LoC Monorepo",
-        "speaker": "Andy Bonventre",
+        "speaker": "Andrew Bonventre",
         "desc": "Polymer is developed out in the open on GitHub, but Google’s developers use a very specialized set of tools within our massive build environment. Ever wonder how everything fits together? This talk will cover the history of Polymer inside Google, including how we do things differently than most Polymer devs, what works well, and what doesn’t."
       },
       {
