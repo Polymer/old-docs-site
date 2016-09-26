@@ -129,7 +129,7 @@ Handling of undefined values **depends on the number of properties being observe
     (that is, they don't have the value `undefined`).
 
 *   **For a single property observer**, the rules are identical to a simple observer: the observer
-    is called *each time* an observable change is made to of the dependencies, **even if the new
+    is called *each time* an observable change is made to one of the dependencies, **even if the new
     value for the path is <code>undefined</code>.**
 
 
