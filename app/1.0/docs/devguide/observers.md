@@ -134,7 +134,7 @@ Handling of undefined values **depends on the number of properties being observe
 
 
 *   <strong>A multi-property observer</strong> is called <em>each time</em> an observable change is
-    made to of the dependencies, <strong><em>unless</em> the new value for one of the paths is
+    made to one of the dependencies, <strong><em>unless</em> the new value for one of the paths is
     <code>undefined</code>.</strong>
 
 Complex observers should only depend on their declared dependencies.
