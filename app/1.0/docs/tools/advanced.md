@@ -78,6 +78,6 @@ You can use `polymer-build` from the command line if you need to customize your 
 
 <a href="https://github.com/Polymer/polymer-build/blog/master/README.md" target="_blank">See the polymer-build README for instructions</a>.
 
-Source: [github.com/PolymerLabs/polybuild](https://github.com/PolymerLabs/polybuild)
+Source: [github.com/Polymer/polymer-build](https://github.com/Polymer/polymer-build)
 
 
