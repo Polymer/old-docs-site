@@ -16,36 +16,10 @@
     min-width: 60%;
   }
 
-  .iframe-wrapper {
-    position: relative;
-    height: auto;
-    overflow: hidden;
-    /**
-     * There's a "responsive iframe" hack that adds a bottom badding of 56.25%
-     * to get the right aspect ratio for the video. However, because of the
-     * flexbox, this would end up too tall and add extra black borders which we
-     * don't need; decreasing the padding fixes that.
-     */
-    padding-bottom: 33%;
-  }
-
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
   @media (max-width: 1000px) {
     .example-code {
       width: 100%;
       margin-bottom: 40px;
-    }
-
-    .iframe-wrapper {
-      /* use the correct aspect ratio for the video */
-      padding-bottom: 56.25%;
     }
 
     /* The devguide has a left nav, which means we need to rejigger
