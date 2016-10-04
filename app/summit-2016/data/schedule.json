@@ -32,6 +32,12 @@
         "desc": "Coffee, tea, and a light snack."
       },
       {
+        "name": "Codelab: Building a PWA from Scratch",
+        "time": "Tuesday 11:00am in Room EM 1",
+        "speaker": "Emmanuel Garcia",
+        "desc": "In this codelab, you’ll build a Progressive Web App in Polymer that will let users watch videos from the Chrome developer channel. You will learn how to set up the pages, layout, routes, and an infinite list."
+      },
+      {
         "name": "Polymer 2.0: Under the Hood",
         "time": "Monday ~11:30am",
         "speaker": "Rob Dodson",
@@ -87,6 +93,12 @@
         "name": "Break",
         "time": "Monday ~3:30pm",
         "desc": "Tea and cookies"
+      },
+      {
+        "name": "Codelab: Building an Image Carousel Element with Polymer 2.0",
+        "time": "Monday 3:30pm in Room EM1",
+        "speaker": "Keanu Lee",
+        "desc": "In this codelab, you’ll learn how to build a simple image carousel element with Polymer 2.0. You’ll learn how to use ES2015 syntax to write a Polymer element, changes in Custom Elements V1 and Shadow DOM V1, and considerations to make when designing your element’s API."
       },
       {
         "name": "Practical Performance",
@@ -153,6 +165,18 @@
         "desc": "Coffee, tea, and a light snack."
       },
       {
+        "name": "Codelab: Polymer Firebase PWA",
+        "time": "Tuesday 11:00am in Room EM1",
+        "speaker": "Chris Joel",
+        "desc": "In this codelab, you'll learn how to make a progressive web app using Firebase and Polymer Web Components. You'll connect pre-made view components to Firebase data components to build an app that features user authentication, a database backend, offline data availability and the ability to be installed to the home screen of an Android device."
+      },
+      {
+        "name": "Codelab: Building a PWA from Scratch",
+        "time": "Tuesday 11:00am in Room EM 1",
+        "speaker": "Emmanuel Garcia",
+        "desc": "In this codelab, you’ll build a Progressive Web App in Polymer that will let users watch videos from the Chrome developer channel. You will learn how to set up the pages, layout, routes, and an infinite list."
+      },
+      {
         "name": "Polymer in Practice @ Comcast",
         "time": "Tuesday 11:30am",
         "speaker": "Chris Lorenzo & John Riviello",
@@ -196,6 +220,12 @@
         "name": "Break",
         "time": "Tuesday 4:00pm",
         "desc": "Tea and cookies."
+      },
+      {
+        "name": "Codelab: Building Custom Overlays",
+        "time": "Tuesday 3:30pm in Room EM1",
+        "speaker": "Valdrin Koshi",
+        "desc": "This codelab shows the common challenges in building an overlay system that is accessible and correctly renders on the top layer’s stacking context."
       },
       {
         "name": "Adapting to the Mobile Web F̶u̶t̶u̶r̶e̶ Present",
