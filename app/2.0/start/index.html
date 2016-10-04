@@ -1,0 +1,123 @@
+{% extends "templates/base-devguide.html" %}
+{% block title %}Getting Started{% endblock %}
+
+{% block content %}
+
+<style>
+  pre {
+    background: white;
+  }
+
+  h1 {
+    margin-right: 40px;
+  }
+
+  .example-code {
+    min-width: 60%;
+  }
+
+  @media (max-width: 1000px) {
+    .example-code {
+      width: 100%;
+      margin-bottom: 40px;
+    }
+
+    /* The devguide has a left nav, which means we need to rejigger
+     * the media breakpoints to account for that. */
+    section {
+      padding: 40px;
+    }
+
+    .section-columns {
+      display: block;
+      flex-direction: column;
+    }
+
+    .section-columns > div:not(:last-child),
+    .section-columns > p:not(:last-child),
+    .section-columns > h2:not(:last-child) {
+      margin-right: 0px;
+      margin-bottom: 40px;
+    }
+  }
+</style>
+
+<section class="blue short gradient-light">
+  <div class="section-columns layout start">
+    <h1>Get Started</h1>
+    <div class="flex">
+      <p>Ready to dive in? You're moments away from building your first element or your first app.</p>
+    </div>
+  </div>
+</section>
+
+<section class="light">
+  <div class="section-columns">
+    <div class="flex">
+      <h2 class="underline">Use Elements</h2>
+      <p>Get started using Web Components in your apps.</p>
+      <p>Browse the Polymer Element Catalog for interoperable elements that can be used on any site.</p>
+      <a href="https://elements.polymer-project.org/" target="_blank" class="blue-button vertical full-width">Browse elements</a>
+      <a href="https://elements.polymer-project.org/guides/using-elements" target="_blank" class="blue-button vertical full-width flat">Learn more</a>
+    </div>
+
+    <div class="flex">
+      <h2 class="underline">Build Elements</h2>
+      <p>Ready to create your own elements? The Polymer library has you covered.</p>
+      <p>With custom elements, you can extend HTML semantics, brand and polish your UI, or embed rich functionality in your site.</p>
+      <a href="/1.0/start/first-element/intro" class="blue-button vertical full-width">Build an element</a>
+      <a href="/1.0/docs/devguide/feature-overview" class="blue-button vertical full-width flat">Learn more</a>
+      <!-- <a href="/1.0/tools/" class="blue-button">Using the tools</a> -->
+    </div>
+
+    <div class="flex">
+      <h2 class="underline">Build Apps</h2>
+      <p>Build Progressive Web Apps from the ground up with Web Components.</p>
+      <p>Use the pieces of the Polymer App Toolbox to deliver fast, responsive apps that work from anywhere.</p>
+      <a href="/1.0/start/toolbox/set-up" class="blue-button vertical full-width">Build an app</a>
+      <a href="/1.0/toolbox/" class="blue-button vertical full-width flat">Learn more</a>
+    </div>
+  </div>
+</section>
+
+<section class="grey gradient-light-flipped">
+
+  <div class="subsection">
+    <h2>Watch the Polycasts</h2>
+    <div class="section-columns example-code">
+      <div class="example-code flex">
+        <google-youtube video-id="videoseries"
+          list-type="playlist"
+          list="PLNYkxOF6rcIDdS7HWIC_BYRunV6MHs5xo"
+          autoplay="0"
+          rel="0">
+          </google-youtube>
+      </div>
+      <div>
+        <p>Join Rob Dodson from the Chrome Developer Relations team for Polycasts, a comprehensive set of videos exploring the ins and outs of Polymer. Start a new Polymer project from scratch, add functionality to your elements, or get a crash course on understanding data binding. Create accessible components, and localize them for your target audience.</p>
+        <a href="https://www.youtube.com/playlist?list=PLOU2XLYxmsII5c3Mgw6fNYCzaWrsM3sMN" class="blue-button">Watch more</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <h2>Get the tools</h2>
+    <div class="section-columns">
+      <div class="example-code flex">
+        <pre><code class="hljs">
+npm install -g polymer-cli
+mkdir my-app
+cd my-app
+polymer init
+      </code></pre>
+      </div>
+      <div>
+        <p>Polymer CLI is a command-line interface for building elements with Polymer and applications with the Polymer App Toolbox. It streamlines your workflow, making it easy to manage projects ranging from simple components to complex web apps.</p>
+        <a href="/1.0/docs/tools/polymer-cli" class="blue-button">Install the CLI</a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+{% endblock %}
