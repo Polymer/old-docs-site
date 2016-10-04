@@ -1,0 +1,441 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Organization" lang="en">
+<head>
+<title>Welcome - Polymer Project</title>
+{% include 'templates/head-meta.html' %}
+</head>
+<body class="fullbleed" unresolved>
+  <pw-shell>
+    {% include 'templates/site-nav.html' %}
+    <style>
+      .page-index-hero {
+        background-image: url("/images/page-index/hero.png");
+        background-size: contain;
+      }
+
+      .page-index-hero .logo-wrapper {
+        padding: 40px;
+        border-radius: 50%;
+        background: white;
+        box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1);
+        height: 200px;
+        width: 200px;
+        vertical-align: middle;
+      }
+
+      .page-index-hero .logo-wrapper img {
+        width: 120px;
+        height: 84px;
+      }
+
+      @media (max-width: 767px) {
+        .page-index-hero .logo-wrapper {
+          display: none !important;
+        }
+      }
+
+      .page-index-hero .content {
+        vertical-align: middle;
+      }
+
+      @media (max-width: 900px) {
+        .page-index-hero .content .section-columns {
+          /* Switch to a vertical layout */
+          -ms-flex-direction: column;
+          -webkit-flex-direction: column;
+          flex-direction: column;
+        }
+      }
+
+      .page-index-hero .blue-button:not(:last-of-type) {
+        margin-right: 20px;
+      }
+
+      @media (max-width: 900px) {
+        .page-index-hero .blue-button:not(:last-of-type) {
+          margin-right: 0;
+        }
+      }
+
+      .page-index-features .feature {
+        color: white;
+      }
+
+      .page-index-features .feature img {
+        width: 100%;
+        display: block;
+      }
+
+      .page-index-features .feature h2 {
+        font-size: 20px;
+      }
+
+      @media (max-width: 767px) {
+        .page-index-features .feature {
+          margin: 0;
+          margin-bottom: 40px;
+          margin: auto;
+        }
+        .page-index-features .feature img {
+          display: none;
+        }
+        .page-index-features .feature h2 {
+          font-size: 18px;
+        }
+      }
+
+      .page-index-examples .subsection .example-code {
+        min-width: 60%;
+        /* Override the very opinionated and specific highlight.js style */
+      }
+
+      @media (max-width: 767px) {
+        .page-index-examples .subsection .example-code {
+          width: 100%;
+          margin-bottom: 40px;
+        }
+      }
+
+      .page-index-examples .subsection .example-code pre {
+        background-color: #fafafa !important;
+        padding: 0 !important;
+      }
+
+      .page-index-examples .subsection iframe {
+        margin: 0.5em 0;
+      }
+
+      .page-index-examples .subsection .example-google-map iframe {
+        height: 232px;
+      }
+
+      .page-index-examples .subsection .example-contact-card iframe {
+        height: 72px;
+      }
+
+      .page-index-examples .subsection .example-friend-list iframe {
+        height: 452px;
+      }
+
+      @media (max-width: 767px) {
+        .page-index-examples .subsection .example-friend-list iframe {
+          height: 232px;
+        }
+      }
+
+      .page-index-examples .subsection .example-pwa img {
+        display: block;
+        margin: 0.5em auto;
+      }
+
+      .page-index-summit img {
+        margin-top: 20px;
+      }
+
+      .page-index-summit p:not(:first-of-type) {
+        margin-top: 40px;
+      }
+
+      .page-index-who {
+        text-align: center;
+      }
+
+      .page-index-who .who-example-panel {
+        margin: 60px auto 0 auto;
+        max-width: calc(12 * 70px);
+      }
+
+      @media (max-width: 767px) {
+        .page-index-who .who-example-panel {
+          margin-top: 60px;
+        }
+      }
+
+      .page-index-who .who-example-panel .who-example {
+        width: 70px;
+        height: 70px;
+        margin: 0 35px 70px 35px;
+        background: #eceff1;
+      }
+
+      .page-index-browsers {
+        margin-top: 40px;
+      }
+
+      .page-index-browsers img {
+        width: 70px;
+        height: 70px;
+        margin: 20px;
+      }
+
+      @media (max-width: 767px) {
+        .page-index-browsers img {
+          width: 40px;
+          height: 40px;
+          margin: 10px;
+        }
+      }
+
+      .page-index-articles .post {
+        margin-top: 20px;
+      }
+
+      @media (max-width: 767px) {
+        .page-index-articles .post:not(:last-child) {
+          border-bottom: 1px solid #f50057;
+          margin-bottom: 20px;
+        }
+      }
+
+      .page-index-articles .post .post-title {
+        font-size: 18px;
+        color: #1e88e5;
+        text-decoration: none;
+      }
+
+      google-youtube {
+        min-width: 40%;
+      }
+    </style>
+
+    <section class="page-index-hero grey">
+      <div class="section-columns layout center">
+        <div class="logo-wrapper layout vertical center center-justified">
+          <img src="/images/logos/p-logo.png" alt="Polymer logo">
+        </div>
+        <div class="content flex">
+          <h2 class="underline">#UseThePlatform to build a better web</h2>
+          <div class="flex">
+            <p>The Polymer Project helps you deliver amazing user experiences by unlocking the full potential of the web platform.</p>
+            <p>Use the <a href="/1.0/docs/devguide/feature-overview">Polymer library</a> to make the most of Web Components, a powerful new platform feature for extending HTML and componentizing your apps.</p>
+            <p>Use the <a href="/1.0/toolbox/">Polymer App Toolbox</a> to build cutting-edge Progressive Web Apps that load quickly, respond instantly and work from anywhere.</p>
+          </div>
+          <div class="section-columns">
+            <a href="/1.0/start/" class="blue-button flex">Get Started</a>
+            <a href="https://shop.polymer-project.org/" target="_blank" class="blue-button flex">Try the Shop demo</a>
+            <a href="/1.0/about" class="blue-button flex">About the Project</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-index-summit dark gradient-dark">
+      <div>
+        <h2 class="underline">Polymer Summit 2016</h2>
+        <div class="section-columns">
+          <div>
+            <img src="/images/1.0/summit-2016-flag.png">
+          </div>
+          <div>
+            <p>Registration is open for the second Polymer Summit, October 17 - 18, 2016 in London. The summit will feature two days of talks, guided codelabs, and breakout sessions presented by the Polymer team, Google engineers, and engineers at other companies using Polymer in production.</p>
+            <a href="https://events.withgoogle.com/polymer-summit-2016/registrations/new/" target="_blank" class="blue-button">Register</a>
+            <a href="/summit/" target="_blank" class="blue-button">Go To Summit Site</a>
+            <p>To whet your appetite, watch videos from last year's Summit in Amsterdam.</p>
+            <a href="https://www.youtube.com/playlist?list=PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J" class="blue-button">Watch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="library light">
+      <div class="section-columns">
+        <div class="flex">
+          <h2 class="underline">Polymer library</h2>
+          <div class="flex">
+          <p>Polymer is a lightweight library that helps you take full advantage of Web Components.</p>
+          <p>With Web Components, you can create reusable custom elements that interoperate seamlessly with the browser’s built-in elements, or break your app up into right-sized components, making your code cleaner and less expensive to maintain.</p>
+          <p>Polymer sprinkles a bit of sugar over the standard Web Components APIs, making it easier for you to get great results.</p>
+          </div>
+          <a href="/1.0/docs/devguide/feature-overview" class="blue-button">About the Library</a>
+        </div>
+
+        <div class="flex">
+          <h2 class="underline">Polymer App Toolbox</h2>
+          <div class="flex">
+            <p>Polymer App Toolbox helps you build and deliver cutting-edge Progressive Web Apps with minimal overhead and payload, by leveraging powerful web platform features like Web Components, Service Worker and HTTP/2.</p>
+            <p>The Toolbox provides a component-based architecture, responsive layouts, a modular router, localization support, turnkey support for local storage and offline caching, and efficient delivery of unbundled app resources. Adopt these features individually, or use them together to build a full-featured Progressive Web App.</p>
+          </div>
+          <a href="/1.0/toolbox/" class="blue-button">About the Toolbox</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-index-features dark gradient-dark">
+      <div class="section-columns">
+        <div class="feature flex">
+          <img src="/images/page-index/feature-speed.png" alt="illustration of an abstract arrow">
+          <h2 class="underline">Built for speed</h2>
+          <p>Because they let the platform do the heavy lifting, elements built with the Polymer library and apps built with the App Toolbox are blazing fast.</p>
+        </div>
+
+        <div class="feature flex">
+          <img src="/images/page-index/feature-modern.png" alt="illustration of a computer">
+          <h2 class="underline">For today and beyond</h2>
+          <p>Polymer makes the most of the web platform by using the latest APIs. Polyfills provide support on evergreen browsers for APIs that aren't universal yet.</p>
+        </div>
+
+        <div class="feature flex">
+          <img src="/images/page-index/feature-components.png" alt="illustration of bolts">
+          <h2 class="underline">Fully interoperable</h2>
+          <p>Polymer-powered elements are based on standard Web Components APIs, so they work seamlessly with the browser's built-in elements and other Web Components.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-index-examples light">
+      <div class="subsection">
+        <h2>Use elements from the catalog</h2>
+        <div class="section-columns">
+          <div class="example-code flex">
+            <pre><code class="lang-html">
+  &lt;!-- Polyfill Web Components support for older browsers --&gt;
+  &lt;script src=&quot;components/webcomponentsjs/webcomponents-lite.min.js&quot;&gt;&lt;/script&gt;
+
+  &lt;!-- Import element --&gt;
+  &lt;link rel=&quot;import&quot; href=&quot;components/google-map/google-map.html&quot;&gt;
+
+  &lt;!-- Use element --&gt;
+  &lt;google-map latitude=&quot;37.790&quot; longitude=&quot;-122.390&quot;&gt;&lt;/google-map&gt;
+          </code></pre>
+          </div>
+          <div class="example-google-map">
+            <iframe frameborder="0" src="/1.0/homepage/google-map/index.html" width="100%"></iframe>
+            <p>An element built with Polymer looks and works just like any other HTML element. Simply find an element you’d like to use in your app, import it with an HTML import, and then add the tag to your page.</p>
+            <a href="https://elements.polymer-project.org/" target="_blank" class="blue-button vertical full-width">Browse elements</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h2>Create your own elements</h2>
+        <div class="section-columns">
+          <div class="example-code flex">
+            <pre><code class="lang-html">
+  &lt;dom-module id=&quot;contact-card&quot;&gt;
+    &lt;style&gt;...&lt;/style&gt;
+    &lt;template&gt;
+      &lt;content&gt;&lt;/content&gt;
+      &lt;iron-icon icon=&quot;star&quot; hidden$=&quot;{{!starred}}&quot;&gt;&lt;/iron-icon&gt;
+    &lt;/template&gt;
+    &lt;script&gt;
+      Polymer({
+        is: 'contact-card',
+        properties: {
+          starred: Boolean
+        }
+      });
+    &lt;/script&gt;
+  &lt;/dom-module&gt;
+            </code></pre>
+            <br>
+            <pre><code class="lang-html">
+  &lt;contact-card starred&gt;
+    &lt;img src=&quot;profile.jpg&quot; alt=&quot;Eric's photo&quot;&gt;
+    &lt;span&gt;Eric Bidelman&lt;/span&gt;
+  &lt;/contact-card&gt;
+            </code></pre>
+          </div>
+
+          <div class="example-contact-card">
+            <iframe frameborder="0" src="/1.0/homepage/contact-card/index.html" width="100%"></iframe>
+            <p>The Polymer library makes it easy to create your own powerful elements. Give your element some markup and properties, and then use it on a site. Polymer provides useful features like templating and data binding to reduce the amount of boilerplate you need to write.</p>
+            <a href="/1.0/start/first-element/intro" class="blue-button vertical full-width">Build an element</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h2>Build Progressive Web Apps</h2>
+        <div class="section-columns">
+          <div class="example-code flex">
+            <pre><code class="lang-html">
+  &lt;iron-pages role="main" selected="[[page]]" attr-for-selected="name" selected-attribute="visible"&gt;
+    &lt;!-- home view --&gt;
+    &lt;shop-home name="home" categories="[[categories]]"&gt;&lt;/shop-home&gt;
+
+    &lt;!-- list view of items in a category --&gt;
+    &lt;shop-list name="list" route="[[subroute]]" offline="[[offline]]"&gt;&lt;/shop-list&gt;
+
+    &lt;!-- detail view of one item --&gt;
+    &lt;shop-detail name="detail" route="[[subroute]]" offline="[[offline]]"&gt;&lt;/shop-detail&gt;
+
+    &lt;!-- cart view --&gt;
+    &lt;shop-cart name="cart" cart="[[cart]]" total="[[total]]"&gt;&lt;/shop-cart&gt;
+
+    &lt;!-- checkout view --&gt;
+    &lt;shop-checkout
+        name="checkout"
+        cart="[[cart]]"
+        total="[[total]]"
+        route="{{subroute}}"&gt;&lt;/shop-checkout&gt;
+  &lt;/iron-pages&gt;
+            </code></pre>
+          </div>
+
+          <div class="example-pwa">
+            <img src="/images/1.0/nexus-5x-shop.png">
+            <p>Use the Polymer App Toolbox to build super-powered Progressive Web Apps. Try the Shop demo app to experience a Progressive Web App in action.</p>
+            <a href="https://shop.polymer-project.org/" target="_blank" class="blue-button vertical full-width">Try the demo</a>
+            <a href="/1.0/start/toolbox/set-up" class="blue-button vertical full-width">Build an app</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-index-who grey gradient-light">
+      <div>
+        <h2>Browser Compatibility</h2>
+        <div>The Polymer library and Polymer App Toolbox <a href="/1.0/docs/browsers">work in all major browsers</a> (Chrome, Firefox, IE, Edge, Safari, and Opera).</div>
+        <div class="page-index-browsers layout wrap justified spaced">
+          <img src="/images/browsers/chrome_128x128.png" alt="chrome logo">
+          <img src="/images/browsers/firefox_128x128.png" alt="firefox logo">
+          <img src="/images/browsers/internet-explorer_128x128.png" alt="internet explorer logo">
+          <img src="/images/browsers/edge_128x128.png" alt="edge logo">
+          <img src="/images/browsers/safari_128x128.png" alt="safari logo">
+          <img src="/images/browsers/opera_128x128.png" alt="opera logo">
+        </div>
+      </div>
+    </section>
+
+    <section class="page-index-articles light">
+      <div>
+        <h2 class="underline">Latest news</h2>
+        <div class="section-columns">
+          {% for item in articles[:3] %}
+          <div class="post">
+            <a href="{{{item.path}}}" class="post-title">{{{item.title}}}</a>
+            <p>{{{item.description}}}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="grey gradient-light">
+      <div>
+        <h2 class="underline">Polymer at Google I/O 2016</h2>
+        <div class="section-columns">
+          <div>
+            <p>In case you missed Google I/O or just want to relive the best bits in streaming HD, we've written a recap of Polymer goings-on and collected all of the Polymer-related sessions in one place. Enjoy!</p>
+            <a href="https://www.youtube.com/playlist?list=PLNYkxOF6rcIDnSm7bZRJC36Ca1DYXSQ70" target="_blank" class="blue-button flex">Watch all</a>
+            <a href="/1.0/blog/2016-05-26-IO-2016-Recap.html" class="blue-button flex">I/O 2016 recap</a>
+        </div>
+          <google-youtube class="flex" video-id="fFF2Yup2dMM" autoplay="0" rel="0"></google-youtube>
+        </div>
+      </div>
+    </section>
+
+  </pw-shell>
+  <pw-footer></pw-footer>
+  <script src="/js/app.js"></script>
+</body>
+</html>
