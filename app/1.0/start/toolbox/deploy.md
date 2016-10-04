@@ -5,12 +5,12 @@ subtitle: "Build an app with App Toolbox"
 
 <!-- toc -->
 
-This tutorial teaches you how to build your website so that it's optimized
-to be as fast as possible, and then deploy your app to a secure web site.
+In this step, you'll deploy your application to the web.
 
 ## Build for deployment
 
-Run the following to prepare your application for deployment.
+Run the following Polymer CLI command to perform a number of steps to prepare your
+application for deployment:
 
     polymer build
 
@@ -18,51 +18,46 @@ This command  minifies the HTML, JS, and CSS dependencies of your application,
 and generates a service worker that precaches all of the dependencies
 of your application so that it can work offline.
 
-The build command creates two optimized versions of your app:
+The built files are output to the following folders:
 
-* `build/unbundled`. Contains granular resources suitable for serving via 
-   HTTP/2 with server push.
-* `build/bundled`. Contains bundled (concatenated) resources suitable for 
-   serving from servers or to clients that do not support HTTP/2 server push.
+* `build/unbundled`. Contains granular resources suitable for serving via HTTP/2
+with server push.
+* `build/bundled`. Contains bundled (concatenated) resources suitable for serving
+from servers or to clients that do not support HTTP/2 server push.
 
 ## Deploy to a server
 
 Polymer applications can be deployed to any web server.
-Whatever hosting option you choose, keep in mind that **Progressive Web Apps
-must be served over secure (HTTPS) connections**. 
 
-The app template you're using uses the `<app-location>` element to enable 
-URL-based routing, which requires that the server serve the `index.html` entry 
-point for all routes.
+This template utilizes the `<app-location>` element to enable URL-based routing,
+which requires that the server serve the `index.html` entry point for all
+routes.
 
 You can follow one of the sections below to deploy this app to either
-[Google App Engine](https://cloud.google.com/appengine) or [Firebase
+[Google AppEngine](https://cloud.google.com/appengine) or [Firebase
 Static Hosting](https://www.firebase.com/docs/hosting/), which are both free and
 secure approaches for deploying a Polymer app.  The approach
 is similar for other hosting providers.
 
 ### Deploy with AppEngine
 
-1.  Download and install the [Google App Engine 
-    SDK](https://cloud.google.com/appengine/downloads). This tutorial is going
-    to use the Python SDK for example, but you can use any of the other ones.
+1.  Download the [Google App Engine SDK](https://cloud.google.com/appengine/downloads)
+and follow the instructions for your platform to install it.
 
-1.  Open up the Google App Engine Launcher (`GoogleAppEngineLauncher`) 
-    at least once and give the launcher permission to create symlinks. 
+1.  [Sign up for an AppEngine account](https://cloud.google.com/appengine).
 
-1.  [Sign up for a Google App Engine 
-    account](https://cloud.google.com/appengine).
+1.  [Open the project dashboard](https://console.cloud.google.com/iam-admin/projects)
+and create a new project
 
-1.  Open the [project 
-    dashboard](https://console.cloud.google.com/iam-admin/projects).
-
-1.  Create a new project.
+    * Click the Create Project button.
+    * Type a project name.
+    * Click the Create button.
 
 1.  `cd` into your project directory.
 
-1.  Create an `app.yaml` file with the following contents. Replace
-    `{project name}` with the project name that you just created in the 
-    Google App Engine dashboard. 
+1. Create an `app.yaml` file and instruct the server to serve up
+`index.html` for any URL's that don't otherwise end in a file extension.
+Replace `{project name}` with the name you chose in the previous step.
 
     ```
     application: {project name}
@@ -100,52 +95,47 @@ is similar for other hosting providers.
       secure: always    
     ```
 
-1.  Run the following command to deploy. Replace `{project name}` with your
-    Google App Engine project name.
+1.  Deploy.
 
         appcfg.py -A {project name} update app.yaml
-
-    If you didn't open up Google App Engine Launcher and give it permission to
-    create symlinks, the `appcfg.py` command probably won't be available on 
-    your command line. 
-    {.alert .alert-warning}
 
 ### Deploy with Firebase
 
 The instructions below are based on the [Firebase hosting quick start
 guide](https://www.firebase.com/docs/hosting/quickstart.html).
 
-1.  [Sign up for a Firebase account](https://firebase.google.com/).
-
-1.  Go to the [Firebase console](https://console.firebase.google.com) 
-    and create a new project. 
+1.  [Sign up for a Firebase account](https://www.firebase.com/signup/).
 
 1.  Install the Firebase command line tools.
 
         npm install -g firebase-tools
 
-1.  `cd` into the root directory of your project. 
+    The `-g` flag instructs `npm` to install the package globally so that you
+    can use the `firebase` command from any directory. You may need
+    to install the package with `sudo` privileges.
 
-1.  Log in to your account. 
+1.  `cd` into your project directory.
+
+1.  Inititalize the Firebase application.
 
         firebase login
-
-1.  Initialize your Firebase project. 
-
         firebase init
 
-    Firebase CLI asks you various questions:
+    Firebase asks you which app you would like to use for hosting. If you just
+    signed up, you should see one app with a randomly-generated name. You can
+    use that one. Otherwise go to
+    [https://www.firebase.com/account](https://www.firebase.com/account) to
+    create a new app.
 
-    *   Press the `Space` key to disable the `Database: Deploy Firebase
-        Realtime Database Rules` option. Keep the `Hosting` option enabled. 
-        Press the `Enter` key to confirm. 
-    *   Use `build/bundled` for your public directory. 
-    *   For `Configure as a single-page app` type `y`. 
-    *   Associate your app with the Firebase project that you just created. 
+1.  Firebase asks you the name of your app's public directory. Enter
+    `build/bundled`.  This works because when you run `polymer build` to
+    build your application, Polymer CLI places your bundled application
+    appropriate for serving on Firebase into the `build/bundled` folder.
 
-1.  Edit your firebase configuration to add support for URL routing. Edit
-    the following section of your `firebase.json` file to match the code 
-    below.
+1.  Edit your firebase configuration to add support for URL routing.  Add
+    the following section to your `firebase.json` file, which will instruct
+    Firebase to serve up `index.html` for any URL's that don't otherwise
+    end in a file extension.
 
     ```
     "rewrites": [ {
@@ -154,13 +144,8 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
     } ]
     ```
 
-    This instructs Firebase to serve up `index.html` for any URLs that don't
-    otherwise end in a file extension.
-    {.alert .alert-info}
-
 1.  Deploy.
 
         firebase deploy
 
-    The URL to your live site is listed in the output. You can also open
-    the site in your default browser by running `firebase open hosting:site`.
+    The URL to your live site is listed in the output.
