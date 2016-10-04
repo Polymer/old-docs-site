@@ -281,7 +281,6 @@ As you've seen, defining custom elements and/or Polymer elements using classes i
 ### Additional resources
 
 - [Using ES6 with Polymer](https://www.youtube.com/watch?v=bX3_tN23M_Y) video from Polymer Summit 2015
-- [Polymer Starter Kit](https://github.com/PolymerElements/polymer-starter-kit/blob/master/docs/add-es2015-support-babel.md) support/recipe
 - [BabelJS](https://babeljs.io/)—transpiler for ES6 -> ES5
 - [ES6 In Depth articles](https://hacks.mozilla.org/category/es6-in-depth/) on Mozilla Hacks
 - [Custom Elements 101](http://www.html5rocks.com/en/tutorials/webcomponents/customelements/) on html5rocks

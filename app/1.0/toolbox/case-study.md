@@ -5,13 +5,13 @@ title: "Case study: the Shop app"
 <!-- toc -->
 
 
-Shop is a full-featured e-commerce Progressive web app demo built using the
+Shop is a full-featured e-commerce Progressive Web App demo built using the
 Toolbox. You can try it out here:
 
 <a href="https://shop.polymer-project.org/" class="blue-button">Launch Shop demo
 </a>
 
-This case studies shows how Shop uses the App Toolbox to deliver a great
+This case study shows how Shop uses the App Toolbox to deliver a great
 user experience.
 
 ## App structure

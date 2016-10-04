@@ -387,7 +387,7 @@ with drawer and header.
 
 ## Responsive navigation pattern
 
-In many cases, you'll want to switch you navigation based on the screen size. One common pattern
+In many cases, you'll want to switch your navigation based on the screen size. One common pattern
 uses navigation tabs on desktop, which are replaced by a navigation drawer on mobile, as in the
 [Shop app](https://shop.polymer-project.org/).
 
