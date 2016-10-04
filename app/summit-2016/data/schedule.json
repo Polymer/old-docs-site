@@ -72,7 +72,7 @@
         "desc": "How do you build a production app using web components? How do you make it fast? Chromestatus.com was launched in 2013 as part of the Blink fork and quickly became an everyday tool used by Chrome engineers, browser vendors, and web developers around the world. As the 1st production app built with Polymer, it has evolved quite a bit over the years. In this talk, you'll learn what it takes to build a lightning fast PWA using web components. Topics include incorporating Polymer elements, lazy loading patterns, utilizing http/2 push/preload, and more."
       },
       {
-        "name": "Discipline = Freedom: Practical Performance Patterns for Polymer",
+        "name": "Do Less & Be Lazy",
         "time": "Monday ~2:30pm",
         "speaker": "Steve Orvell",
         "desc": "The web platform is powerful and performant, and custom elements are a profound new platform primitive. Polymer is a library that helps developers realize the potential of the platform to please and delight users. From paradigms to pointers we’ll review a plethora of concepts and examples to make sure you’re prepared to write applications that are truly paragons of performance."
