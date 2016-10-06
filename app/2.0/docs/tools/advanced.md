@@ -74,8 +74,10 @@ Source: [github.com/Polymer/web-component-tester](https://github.com/Polymer/web
 
 ## Build and optimization {#build}
 
-You can use `polymer-build` from the command line if you need to customize your build process.
+The Polymer CLI command `polymer build` uses the `polymer-build` library to build your project.
 
-<a href="https://github.com/Polymer/polymer-build/blog/master/README.md" target="_blank">See the polymer-build README for instructions</a>.
+`polymer-build` is a Node library for automating Polymer build tasks. You can use it to create a custom Polymer build process using Gulp or another Node-based build system.
+
+<a href="https://github.com/Polymer/polymer-build/blob/master/README.md" target="_blank">See the polymer-build README for instructions</a>.
 
 Source: [github.com/Polymer/polymer-build](https://github.com/Polymer/polymer-build)
