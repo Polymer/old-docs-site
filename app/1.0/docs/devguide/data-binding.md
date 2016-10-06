@@ -198,18 +198,13 @@ because the binding causes issues on one or more browsers.
 
 You need to use attribute bindings to affect the following properties:
 
-| Attribute | Property | Notes
-
+| Attribute | Property | Notes |
+| --------- | -------- | ----- |
 | `class` | `classList`, `className` | Maps to two properties with different formats.
-
 | `style` | `style` | By specification, `style` is considered a read-only reference to a `CSSStyleDeclaration` object.
-
 | `href` | `href` |
-
 | `for` | `htmlFor` |
-
 | `data-*` |  `dataset` | Custom data attributes (attribute names starting with `data-`) are stored on the `dataset` property.
-
 | `value` | `value` | Only for `<input type="number">`.
 
 **Note:** data binding to the `value` property doesn't work on IE for ***numeric input types***. For

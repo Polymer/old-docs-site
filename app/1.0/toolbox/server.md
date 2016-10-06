@@ -19,7 +19,7 @@ Your server logic can deliver the appropriate build for each browser.
 
 ## PRPL pattern
 
-To optimize delivery, the Toolbox uses the _PRPL pattern, which
+To optimize delivery, the Toolbox uses the _PRPL pattern_, which
 stands for:
 
 *  Push critical resources for the initial route.
