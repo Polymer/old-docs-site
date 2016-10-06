@@ -85,12 +85,6 @@
         "desc": "Closure Compiler underpins most of Google's frontends - providing typechecking, minification and transpilation - but can be tricky to be used with Polymer. Learn about how to use the compiler in SIMPLE or ADVANCED mode to be more productive and write better Polymer code."
       },
       {
-        "name": "Polymer @ Google - Developing Within Our 2 Billion LoC Monorepo",
-        "time": "Monday ~3:00pm",
-        "speaker": "Andrew Bonventre",
-        "desc": "Polymer is developed out in the open on GitHub, but Google’s developers use a very specialized set of tools within our massive build environment. Ever wonder how everything fits together? This talk will cover the history of Polymer inside Google, including how we do things differently than most Polymer devs, what works well, and what doesn’t."
-      },
-      {
         "name": "Break & Ask Polymer Lounge",
         "time": "Monday ~3:30pm",
         "desc": "Tea and cookies. Do you have questions you want to ask the speakers from the previous sessions? Join the speakers in the Ask Polymer Lounge for face to face Q&A time!"
