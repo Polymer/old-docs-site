@@ -56,7 +56,7 @@ topics.
 
 1. Initialize your project.
 
-        polymer init app-drawer-template
+        polymer init starter-kit
 
 ## Serve your project
 
