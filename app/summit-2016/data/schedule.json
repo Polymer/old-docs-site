@@ -27,9 +27,9 @@
         "desc": "A sneak preview of a unique experience we've been working on, built with Polymer."
       },
       {
-        "name": "Morning Break",
+        "name": "Morning Break &  Ask Polymer Lounge",
         "time": "Monday ~11am",
-        "desc": "Coffee, tea, and a light snack."
+        "desc": "Coffee, tea, and a light snack. Do you have questions you want to ask the speakers from the previous sessions? Join the speakers in the Ask Polymer Lounge for face to face Q&A time!"
       },
       {
         "name": "Codelab: Building a PWA from Scratch",
@@ -62,8 +62,9 @@
         "desc": "Polymer’s data system provides a robust, highly performant set of features – including observers, computed properties and bindings – for managing the flow of data within and between elements. These features are easy to use, making it almost trivial to build simple controls. They’re also useful for composing more complex elements (fancier controls, views or entire applications), but data flow gets trickier as complexity increases and the best solution is not always obvious. In this session, we’ll explore patterns for managing data flow in your Polymer elements and apps and discuss relevant changes in Polymer 2.0."
       },
       {
-        "name": "Lunch",
-        "time": "Monday 1:00pm"
+        "name": "Lunch & Ask Polymer Lounge",
+        "time": "Monday 1:00pm",
+        "desc": "Do you have questions you want to ask the speakers from the previous sessions? Join the speakers in the Ask Polymer Lounge for face to face Q&A time!"
       },
       {
         "name": "Making Chromestatus.com a Lightning-Fast PWA",
@@ -90,9 +91,9 @@
         "desc": "Polymer is developed out in the open on GitHub, but Google’s developers use a very specialized set of tools within our massive build environment. Ever wonder how everything fits together? This talk will cover the history of Polymer inside Google, including how we do things differently than most Polymer devs, what works well, and what doesn’t."
       },
       {
-        "name": "Break",
+        "name": "Break & Ask Polymer Lounge",
         "time": "Monday ~3:30pm",
-        "desc": "Tea and cookies"
+        "desc": "Tea and cookies. Do you have questions you want to ask the speakers from the previous sessions? Join the speakers in the Ask Polymer Lounge for face to face Q&A time!"
       },
       {
         "name": "Codelab: Building an Image Carousel Element with Polymer 2.0",
@@ -137,6 +138,11 @@
         "desc": "Think of your favorite app. It's probably meowni.ca/emojillate (who can blame you), but if it isn't (and we need to talk) it probably has one, if not all, of these things: a database; a potential for disaster, with many users looking at and clicking on the same data; offline support, and a responsive layout. While preferably being faster than the average bear. Recreating this from scratch might sound like a terrifying experience, but I'm going to show you how the polymer toolbox and a few other already-built elements can help you go from zero to hero and build a PWA in no time."
       },
       {
+        "name": "Ask Polymer Lounge",
+        "time": "Monday 6:00pm",
+        "desc": "Do you have questions you want to ask the speakers from the previous sessions? Join the speakers in the Ask Polymer Lounge for face to face Q&A time!"
+      },
+      {
         "name": "After Party",
         "time": "Monday 6:00pm-10:00pm",
         "desc": "Hang out with the Polymer team and enjoy music, buffet dinner, and drinks (non-alcoholic cocktail, specialty cocktail, beer, wine, and more)."
@@ -160,9 +166,9 @@
         "desc": "An end-to-end overview of the tooling landscape for web components and the Polymer Project. From the Polymer CLI, to package managers, to static analyzers, to linters, to deployment tools, we'll take a look at the current state of tooling and show off new features that are in progress and on the horizon."
       },
       {
-        "name": "Break",
+        "name": "Break & Ask Polymer Lounge",
         "time": "Tuesday 11:00am",
-        "desc": "Coffee, tea, and a light snack."
+        "desc": "Coffee, tea, and a light snack. Do you have questions you want to ask the speakers from the previous sessions? Join the speakers in the Ask Polymer Lounge for face to face Q&A time!"
       },
       {
         "name": "Codelab: Polymer Firebase PWA",
@@ -189,8 +195,9 @@
         "desc": "Since Polymer Summit 2015 the Net-a-porter tech team set about building on top of their work with web components and start building applications. This talk will cover that journey, including how they build, test and monitor their latest product listing page."
       },
       {
-        "name": "Lunch",
-        "time": "Tuesday 1:00pm"
+        "name": "Lunch & Ask Polymer Lounge",
+        "time": "Tuesday 1:00pm",
+        "desc": "Do you have questions you want to ask the speakers from the previous sessions? Join the speakers in the Ask Polymer Lounge for face to face Q&A time!"
       },
       {
         "name": "Winning the Gold with Web Components - Gannett",
@@ -211,9 +218,9 @@
         "desc": "Paul and Surma will live-code a UI element from scratch, using ES2015, Custom Elements and Shadow DOM. Yeah, because live-coding never goes wrong. And to make matters worse, you can bombard them with questions live, too."
       },
       {
-        "name": "Break",
+        "name": "Break & Ask Polymer Lounge",
         "time": "Tuesday 4:00pm",
-        "desc": "Tea and cookies."
+        "desc": "Tea and cookies. Do you have questions you want to ask the speakers from the previous sessions? Join the speakers in the Ask Polymer Lounge for face to face Q&A time!"
       },
       {
         "name": "Codelab: Building Custom Overlays",
@@ -237,6 +244,11 @@
         "time": "Tuesday ~5:45pm",
         "speaker": "Matt McNulty",
         "desc": "A look ahead at the future of the Polymer Project and web components."
+      },
+      {
+        "name": "Ask Polymer Lounge",
+        "time": "Tuesday 6:00pm",
+        "desc": "Do you have questions you want to ask the speakers from the previous sessions? Join the speakers in the Ask Polymer Lounge for face to face Q&A time!"
       }
     ]
   }
