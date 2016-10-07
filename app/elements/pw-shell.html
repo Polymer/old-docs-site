@@ -147,7 +147,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <app-location route="{{_sectionRoute}}"></app-location>
-    <app-route route="{{_sectionRoute}}" pattern="/1.0/:section" data="{{_sectionData}}" tail="{{_subsectionRoute}}"></app-route>
+    <app-route route="{{_sectionRoute}}" pattern="/:version/:section" data="{{_sectionData}}" tail="{{_subsectionRoute}}"></app-route>
     <app-route route="{{_sectionRoute}}" pattern="/search/" query-params="{{_searchParams}}"></app-route>
 
     <iron-ajax url="[[_sectionRoute.path]]" handle-as="document" on-response="_handleResponse" auto></iron-ajax>
@@ -165,11 +165,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="flex"></div>
 
         <nav>
-          <iron-selector class="sections-tabs" attr-for-selected="name" activate-event="" selected="[[_sectionData.section]]">
-            <a href="/1.0/start/" name="start">Start</a>
-            <a href="/1.0/docs/devguide/feature-overview" name="docs">Polymer</a>
-            <a href="/1.0/toolbox/" name="toolbox">App Toolbox</a>
-            <a href="/1.0/blog/" name="blog">News</a>
+          <iron-selector class="sections-tabs" attr-for-selected="name" activate-event="" selected="[[_selectedSection(_sectionData.*)]]">
+            <a href="/1.0/start/" name="1.0/start">Start</a>
+            <a href="/1.0/docs/devguide/feature-overview" name="1.0/docs">Polymer</a>
+            <a href="/2.0/docs/devguide/feature-overview" name="2.0/docs">2.0 Preview</a>
+            <a href="/1.0/toolbox/" name="1.0/toolbox">App Toolbox</a>
+            <a href="/1.0/blog/" name="1.0/blog">News</a>
             <a href="https://elements.polymer-project.org/" target="_blank" name="catalog">Element Catalog</a>
           </iron-selector>
         </nav>
@@ -285,6 +286,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (!!oldParams && oldParams.start !== newParams.start) {
         this._doSearch();
       }
+    },
+
+    _selectedSection: function(sectionCR) {
+      var data = sectionCR.base;
+      return data.version+'/'+data.section;
     },
 
     _handleResponse: function(event) {

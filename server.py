@@ -174,10 +174,11 @@ class Site(http2push.PushHandler):
     return site_nav
 
   def nav_for_section(self, version, section):
-    nav = self.get_site_nav(version)
+    nav = self.get_site_nav(1.0)
+    versioned_section = '%s/%s' % (version, section)
     if nav:
       for one_section in nav:
-        if one_section['shortpath'] == section:
+        if one_section['shortpath'] == section or one_section['shortpath'] == versioned_section:
           if 'items' in one_section:
             return one_section['items']
     return None
@@ -237,11 +238,14 @@ class Site(http2push.PushHandler):
     if match:
       version = match.group(1)
       section = match.group(2)
-      full_nav = self.get_site_nav(version)
+      # Hack to support /2.0 tab 
+      # full_nav = self.get_site_nav(version)
+      # nav = self.nav_for_section(version, section)
+      full_nav = self.get_site_nav('1.0')
       nav = self.nav_for_section(version, section)
 
       if section == 'blog' or section == 'index.html':
-        articles = self.get_articles(version)
+        articles = self.get_articles('1.0')
         active_article = self.get_active_article_data(articles, path)
     else:
       full_nav = self.get_site_nav('1.0')
