@@ -1,4 +1,12 @@
 ---
+- title: "Please Welcome Polymer 1.7"
+  path: /1.0/blog/2016-10-03-1.7-release
+  published: 2016-10-06
+  author: polymer-team
+  description: "Polymer 1.7 provides forward compatibility features, plus a few bug fixes."
+  tags:
+     - blog
+     - announcements
 - title: "Polymer 2.0 Preview"
   path: /1.0/blog/2016-09-09-polymer-2.0
   published: 2016-09-09
