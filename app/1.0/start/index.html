@@ -16,36 +16,10 @@
     min-width: 60%;
   }
 
-  .iframe-wrapper {
-    position: relative;
-    height: auto;
-    overflow: hidden;
-    /**
-     * There's a "responsive iframe" hack that adds a bottom badding of 56.25%
-     * to get the right aspect ratio for the video. However, because of the
-     * flexbox, this would end up too tall and add extra black borders which we
-     * don't need; decreasing the padding fixes that.
-     */
-    padding-bottom: 33%;
-  }
-
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
   @media (max-width: 1000px) {
     .example-code {
       width: 100%;
       margin-bottom: 40px;
-    }
-
-    .iframe-wrapper {
-      /* use the correct aspect ratio for the video */
-      padding-bottom: 56.25%;
     }
 
     /* The devguide has a left nav, which means we need to rejigger
@@ -73,8 +47,6 @@
     <h1>Get Started</h1>
     <div class="flex">
       <p>Ready to dive in? You're moments away from building your first element or your first app.</p>
-      <p>From here, you can also learn more about Polymer and the App Toolbox, watch some Polycasts, and set yourself up with the Polymer CLI.</p>
-      <!-- <a href="" class="blue-button vertical">Get the code</a> -->
     </div>
   </div>
 </section>
@@ -83,18 +55,16 @@
   <div class="section-columns">
     <div class="flex">
       <h2 class="underline">Use Elements</h2>
-      <p>The easiest way to dip your toe in the Web Components pool is to grab some elements and try them out.</p>
-      <p>The Polymer Element Catalog houses several collections of Web Components that you can use in your apps.</p>
-      <p>The elements in the catalog have been built with Polymer, but – since Web Components are inherently interoperable – can be used on any site.</p>
+      <p>Get started using Web Components in your apps.</p>
+      <p>Browse the Polymer Element Catalog for interoperable elements that can be used on any site.</p>
       <a href="https://elements.polymer-project.org/" target="_blank" class="blue-button vertical full-width">Browse elements</a>
       <a href="https://elements.polymer-project.org/guides/using-elements" target="_blank" class="blue-button vertical full-width flat">Learn more</a>
     </div>
 
     <div class="flex">
       <h2 class="underline">Build Elements</h2>
-      <p>If you're ready to create your own elements, the Polymer library has you covered.</p>
-      <p>Custom elements are ideal for extending HTML semantics, branding and polishing your UI, or embedding rich functionality in your site.</p>
-      <p>Build elements for your own use, to share with your organization or to save the world, one widget at a time.</p>
+      <p>Ready to create your own elements? The Polymer library has you covered.</p>
+      <p>With custom elements, you can extend HTML semantics, brand and polish your UI, or embed rich functionality in your site.</p>
       <a href="/1.0/start/first-element/intro" class="blue-button vertical full-width">Build an element</a>
       <a href="/1.0/docs/devguide/feature-overview" class="blue-button vertical full-width flat">Learn more</a>
       <!-- <a href="/1.0/tools/" class="blue-button">Using the tools</a> -->
@@ -102,9 +72,8 @@
 
     <div class="flex">
       <h2 class="underline">Build Apps</h2>
-      <p>You can also use Web Components to build apps from the ground up.</p>
-      <p>The Polymer App Toolbox helps you build Progressive Web Apps using Web Components and a set of complementary new web platform features.</p>
-      <p>Use the pieces of the Toolbox individually, or use them together to deliver truly modern apps that launch quickly, respond instantly and work from anywhere.</p>
+      <p>Build Progressive Web Apps from the ground up with Web Components.</p>
+      <p>Use the pieces of the Polymer App Toolbox to deliver fast, responsive apps that work from anywhere.</p>
       <a href="/1.0/start/toolbox/set-up" class="blue-button vertical full-width">Build an app</a>
       <a href="/1.0/toolbox/" class="blue-button vertical full-width flat">Learn more</a>
     </div>
@@ -125,7 +94,7 @@
           </google-youtube>
       </div>
       <div>
-        <p>Ready to get your hands dirty and revolutionize the modern web? Join Rob Dodson from the Chrome Developer Relations team as he explores the ins and outs of Polymer, a new library that's pushing the boundaries of what's possible in the browser. Learn about the basic building blocks that make up a Polymer application, and see how to compose those elements into buttery smooth mobile experiences. The future of front end development is all here, on the Polycasts playlist!</p>
+        <p>Join Rob Dodson from the Chrome Developer Relations team for Polycasts, a comprehensive set of videos exploring the ins and outs of Polymer. Start a new Polymer project from scratch, add functionality to your elements, or get a crash course on understanding data binding. Create accessible components, and localize them for your target audience.</p>
         <a href="https://www.youtube.com/playlist?list=PLOU2XLYxmsII5c3Mgw6fNYCzaWrsM3sMN" class="blue-button">Watch more</a>
       </div>
     </div>

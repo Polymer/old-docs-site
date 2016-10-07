@@ -324,7 +324,7 @@ Related tasks:
 Sometimes an element has two paths that point to the same object.
 
 For example, an element has two properties, `users` (an array) and `selectedUser` (an object). When
-a user is selected, `selectedUser` refers one of the objects in the array.
+a user is selected, `selectedUser` refers to one of the objects in the array.
 
 
 ![A user-list element and an array with four items labeled \[0\] through \[3\]. The user-list has two properties, users and selectedUser. The users property is connected to the array by an arrow labeled 1. The selectedUser property is connected to the array item, \[1\] by an arrow labeled 2.](/images/1.0/data-system/linked-paths-new.png)
