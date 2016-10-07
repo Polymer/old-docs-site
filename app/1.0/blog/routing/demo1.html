@@ -37,9 +37,13 @@
                 // Route objects are composed of the `path` that we want to
                 // match on, the `prefix`, which is everything that has already
                 // been matched by someone else before it got to us, and
-                // a queryParams object, which represents the ?key=value part
+                // an __queryParams object, which represents the ?key=value part
                 // of the URL.
-                return {path: '/store/garden', prefix: '', queryParams: {}}
+                // __queryParams is preceded by underscores because unless you're
+                // doing the power-user thing of generating your own route objects,
+                // you want to access query params directly from the <app-route>
+                // element.
+                return {path: '/store/garden', prefix: '', __queryParams: {}}
               }
             }
           }
