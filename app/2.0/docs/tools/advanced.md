@@ -74,79 +74,10 @@ Source: [github.com/Polymer/web-component-tester](https://github.com/Polymer/web
 
 ## Build and optimization {#build}
 
-This section lists commands used by the Polymer CLI command `polymer build`.
-You can use them directly if you need to customize your build process.
+The Polymer CLI command `polymer build` uses the `polymer-build` library to build your project.
 
-### <b>vulcanize</b>—optimize HTML Imports {#vulcanize}
+`polymer-build` is a Node library for automating Polymer build tasks. You can use it to create a custom Polymer build process using Gulp or another Node-based build system.
 
-[vulcanize](https://github.com/polymer/vulcanize) is a tool for crushing an HTML Import file and its dependent HTML Imports into one file. Think of it as a build step for web components. Vulcanize reduces the number of requests made by your application by concatenating imports into a single file.
+<a href="https://github.com/Polymer/polymer-build/blob/master/README.md" target="_blank">See the polymer-build README for instructions</a>.
 
-Install:
-
-    npm install -g vulcanize
-
-Usage (CLI):
-
-    vulcanize --inline-scripts --inline-css --strip-comments \
-        elements.html > elements.build.html
-
-Vulcanize can be used from the CLI or ran programmatically from Node, `gulp-vulcanize`, or `grunt-vulcanize`. Read more about vulcanize in [Optimize for production](optimize-for-production).
-
-Source: [github.com/Polymer/vulcanize](https://github.com/Polymer/vulcanize)
-
-Related tools
-
-- [gulp-vulcanize](https://www.npmjs.com/package/gulp-vulcanize)
-- [grunt-vulcanize](https://www.npmjs.com/package/grunt-vulcanize)
-- [broccoli-vulcanize](https://www.npmjs.com/package/broccoli-vulcanize)
-
-### <b>crisper</b>—extract inline script from an HTML Import {#crisper}
-
-[crisper](https://github.com/PolymerLabs/crisper) is a tool for extracting inline scripts from an HTML file and splitting them into a separate file. This is useful for cases where you need CSP compliance.
-
-Install:
-
-    npm install -g crisper
-
-Usage:
-
-    crisper --html build.html --js build.js index.html
-
-Source: [github.com/PolymerLabs/crisper](https://github.com/PolymerLabs/crisper)
-
-Related tools
-
-- [gulp-crisper](https://www.npmjs.com/package/gulp-crisper)
-- [grunt-crisper](https://www.npmjs.com/package/grunt-crisper)
-
-### <b>polyclean</b>—minify JS/CSS/HTML {#polyclean}
-
-[polyclean](https://github.com/PolymerLabs/polyclean) provides basic Gulp plugins for minifying and cleaning JS, CSS, and HTML.
-
-Install:
-
-    npm install -g polyclean
-
-Usage:
-
-    vulcanize --inline-css --inline-scripts index.html | polyclean
-
-Source: [github.com/PolymerLabs/polyclean](https://github.com/PolymerLabs/polyclean)
-
-### <b>polybuild</b>—all-in-one build tool for optimizing apps {#polybuild}
-
-*Equivalent to Polymer CLI command `polymer build`.*
-
-[polybuild](https://github.com/PolymerLabs/polybuild) is an all-in-one build tool that combines vulcanize, crisper, and polyclean. Although less flexible than using the tools individually, polybuild is an easy solution if you want quick defaults.
-
-Install:
-
-    npm install -g polybuild
-
-Usage:
-
-    polybuild index.html --maximum-crush
-
-Source: [github.com/PolymerLabs/polybuild](https://github.com/PolymerLabs/polybuild)
-
-
+Source: [github.com/Polymer/polymer-build](https://github.com/Polymer/polymer-build)
