@@ -33,16 +33,22 @@ actually add support for shadow DOM v1, it just lets you use a forward-compatibl
 To update an element:
 
 *   Each `<content>` insertion point must be changed to `<slot>`.
+
 *   Insertion points that selected content using <code>&lt;content select="<var>selector</var>"&gt;</code>
     must be changed to named slots: <code>&lt;slot name="<var>slot_name</var>"&gt;</code>. Note that
     in shadow DOM v1, distributed content can _only_ be selected by slot name, not by tag name,
     attributes or CSS classes.
+
 *   Users of your element must use the matching new <code>slot="<var>slot_name</var>"</code>
     attribute to distribute content into a named slot.
+
 *   Any `::content` CSS selectors must be replaced with <code>::slotted(<var>selector</var>)</code>,
     where <var>selector</var> is [compound selector](https://drafts.csswg.org/selectors-4/#compound)
     that identifies a **top-level distributed child**. That is, `::slotted(.foo)` is equivalent to
-    `::content > .foo`.
+    `::content > .foo`. 
+
+    In shadow DOM v1, you cannot select a descendant of a top-level distributed child. For example,
+    `::slotted(*) .child` does not work. No descendant selectors can follow the `::slotted()` selector.
 
 In Polymer 1.7, elements written with slots are re-written at runtime into the
 equivalent `<content>` elements and style rules, to work with shadow DOM v0.
@@ -107,6 +113,44 @@ Anywhere you're using `x-forward-compat`, you'd have to change to the new slot s
 
 For more details about transitioning to `<slot>`, see the
 [2.0-preview README](https://github.com/Polymer/polymer/blob/2.0-preview/README.md#distribution).
+
+#### Limitations of slot emulation
+
+The runtime transformation does not produce a perfect 
+representation of the v1 slot algorithm. In particular, multiple levels 
+of shadow trees with named slots are problematic. For example,
+the following templates do not work correctly under 1.7 (although 
+they're valid under shadow DOM v1):
+
+```html
+<dom-module id="x-child">
+  <template>
+    <slot name="child-slot"></slot>
+  </template>
+</dom-module>
+
+<dom-module id="x-parent">
+  <template>
+    <x-child>
+      <slot name="parent-slot" slot="child-slot"></slot>
+    </x-child>
+  </template>
+</dom-module>
+```
+
+To make this work with 1.7, the same slot name must be used 
+at each level. For example, the parent could change to use
+the name `child-slot`.
+
+```html
+<dom-module id="x-parent">
+  <template>
+    <x-child>
+      <slot name="child-slot" slot="child-slot"></slot>
+    </x-child>
+  </template>
+</dom-module>
+```
 
 ### Alternatives for `:root` selector
 
