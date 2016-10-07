@@ -236,7 +236,7 @@ Polymer.dom(this.root).appendChild(toLocal);
 // Insert to the local DOM
 var toInsert = document.createElement('div');
 var beforeNode = Polymer.dom(this.root).childNodes[0];
-Polymer.dom(this.root).insertBefore(toLocal, beforeNode);
+Polymer.dom(this.root).insertBefore(toInsert, beforeNode);
 ```
 
 You can use the [automatic node finding](#node-finding) feature to locate
