@@ -98,7 +98,7 @@
       {
         "name": "Practical Performance",
         "time": "Monday 4:00pm",
-        "speaker": "Sam Saccone",
+        "speaker": "Sam Saccone & Paul Irish",
         "desc": "A look into how to identify why a site is slow with Dev Tools, and techniques based around the PRPL pattern to make things fast again."
       },
       {
