@@ -6,6 +6,13 @@
     "photo": "/summit/images/Speakers/monica_dinculescu.jpg",
     "bio": "Monica emojineers on the Polymer Elements team, making pretty and accessible widgets for everyone to use. Before this, she worked on Chrome for two years, so she's pretty sure she has at least once broken the Internet for you. She will eat all of the pizza, if there is any."
 }, {
+    "name": "Paul Irish",
+    "title": "PM, Tooling & Performance",
+    "twitter": "",
+    "gplus": "",
+    "photo": "/summit/images/Speakers/paul_irish.jpg",
+    "bio": "Paul Irish is a front-end developer who loves the web. He works on Google Chrome, its performance and DevTools."
+}, {
     "name": "Alex Russell",
     "title": "Software Engineer",
     "twitter": "slightlylate",
@@ -208,13 +215,6 @@
     "gplus": "https://plus.google.com/+DanielFreedman",
     "photo": "/summit/images/Speakers/daniel_freedman.jpg",
     "bio": "Daniel is a software engineer on the Polymer team. He currently works on the Polymer library, and has previously worked on tools such as vulcanize, web-component-tester, and Polymer's gesture library. Daniel is interested in simple to use tools and libraries that make the users' development easier."
-}, {
-    "name": "Paul Irish",
-    "title": "PM, Tooling & Performance",
-    "twitter": "",
-    "gplus": "",
-    "photo": "/summit/images/Speakers/paul_irish.jpg",
-    "bio": " "
 }, {
     "name": "Frederick Schott",
     "title": "Software Engineer",
