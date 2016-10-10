@@ -102,10 +102,10 @@
         "desc": "A look into how to identify why a site is slow with Dev Tools, and techniques based around the PRPL pattern to make things fast again."
       },
       {
-        "name": "Sign-in and Payments without Forms",
+        "name": "Production-Ready Polymer Elements - A How-To-Guide",
         "time": "Monday ~4:20pm",
-        "speaker": "Eiji Kitamura",
-        "desc": "This talk gives you ideas on how you can bring sign-in and checkout process to the next level in your Polymer PWA using Credential Management API and Payment Request API."
+        "speaker": "Daniel Freedman",
+        "desc": "The Polymer team is responsible for over one hundred elements that are used in vast assortment of combinations, browsers, and applications. Come learn how we make our elements production ready, and how to use the same tools and techniques for your own elements. We'll explore topics such as Code Linting with eslint, In-Browser testing with web-component-tester, Fixture testing with the <test-fixture> element, Accessibility Testing with accessibility-developer-tools, web-component-tester, and VoiceOver, and finally Continuous Integration Testing with Travis-CI and Sauce Labs."
       },
       {
         "name": "Interacting with the Physical Web",
@@ -147,6 +147,11 @@
     "date":"October 18th, 10am-6pm",
     "day":"Tuesday",
     "sessions":[
+      {
+        "name": "Registration/Breakfast",
+        "time": "Tuesday 8-10am",
+        "desc": "If you didn’t get your badge on Day 1, you can still get your badge and goodies. Breakfast will also be served."
+      },
       {
         "name":"Opening Remarks",
         "time": "Tuesday 10:00am",
@@ -200,48 +205,48 @@
         "desc": "How USA TODAY utilized Polymer to power its Olympics coverage."
       },
       {
-        "name": "Production-Ready Polymer Elements - A How-To-Guide",
+        "name": "Sign-in and Payments without Forms",
         "time": "Tuesday ~2:30pm",
-        "speaker": "Daniel Freedman",
-        "desc": "The Polymer team is responsible for over one hundred elements that are used in vast assortment of combinations, browsers, and applications. Come learn how we make our elements production ready, and how to use the same tools and techniques for your own elements. We'll explore topics such as Code Linting with eslint, In-Browser testing with web-component-tester, Fixture testing with the <test-fixture> element, Accessibility Testing with accessibility-developer-tools, web-component-tester, and VoiceOver, and finally Continuous Integration Testing with Travis-CI and Sauce Labs."
+        "speaker": "Eiji Kitamura",
+        "desc": "This talk gives you ideas on how you can bring sign-in and checkout process to the next level in your Polymer PWA using Credential Management API and Payment Request API."
       },
       {
         "name": "We'll Do It Live!",
-        "time": "Tuesday ~3:00pm",
+        "time": "Tuesday ~2:45pm",
         "speaker": "Paul Lewis and Surma",
         "desc": "Paul and Surma will live-code a UI element from scratch, using ES2015, Custom Elements and Shadow DOM. Yeah, because live-coding never goes wrong. And to make matters worse, you can bombard them with questions live, too."
       },
       {
         "name": "Break & Ask Polymer Lounge",
-        "time": "Tuesday 4:00pm",
+        "time": "Tuesday 3:45pm",
         "desc": "Tea and cookies. Do you have questions you want to ask the speakers from the previous sessions? Join the speakers in the Ask Polymer Lounge for face to face Q&A time!"
       },
       {
         "name": "Codelab: Building Custom Overlays",
-        "time": "Tuesday 4:00pm in Room EM1",
+        "time": "Tuesday 3:45pm in Room EM1",
         "speaker": "Valdrin Koshi",
         "desc": "This codelab shows the common challenges in building an overlay system that is accessible and correctly renders on the top layer’s stacking context."
       },
       {
         "name": "Adapting to the Mobile Web F̶u̶t̶u̶r̶e̶ Present",
-        "time": "Tuesday 4:30pm",
+        "time": "Tuesday 4:15pm",
         "speaker": "Alex Russell",
         "desc": "Mobile isn't everything, but it's not far off. The mobile web of today includes devices out at the edge of the web’s considerable reach, with unexpectedly harsh limits on available CPU imposed by batteries and thermal throttling. Our assumptions about what we can “afford” are off. Not by a little; by a lot. Modern apps often include an order of magnitude too much script...and your Macbook Pro doesn’t make this obvious, and your framework might have hidden costs. Frameworks and apps need to adapt. Learn how to diagnose bloat for yourself, techniques for attacking it, and how to keep your app under a reasonable performance budget from start to finish."
       },
       {
         "name": "Polymer Panel",
-        "time": "Tuesday ~5:00pm",
+        "time": "Tuesday ~4:45pm",
         "desc": "A roundtable Q&A with core Polymer team members on the past, present, and future of the Polymer Project."
       },
       {
         "name": "Closing Remarks",
-        "time": "Tuesday ~5:45pm",
+        "time": "Tuesday ~5:15pm",
         "speaker": "Matt McNulty",
         "desc": "A look ahead at the future of the Polymer Project and web components."
       },
       {
         "name": "Ask Polymer Lounge",
-        "time": "Tuesday 6:00pm",
+        "time": "Tuesday 5:30pm",
         "desc": "Do you have questions you want to ask the speakers from the previous sessions? Join the speakers in the Ask Polymer Lounge for face to face Q&A time!"
       }
     ]
