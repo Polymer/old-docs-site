@@ -14,7 +14,7 @@ tools to create your own workflow.
 
 ### <b>polyserve</b>—web server for developing elements {#polyserve}
 
-*Equivalent to Polymer CLI command `polymer serve`.*
+*`polyserve` powers the Polymer CLI command `polymer serve`.*
 
 [polyserve](https://github.com/PolymerLabs/polyserve) is simple web server for serving `bower_components`, locally. It's useful when developing your own elements.
 
@@ -33,7 +33,7 @@ Source: [github.com/PolymerLabs/polyserve](https://github.com/PolymerLabs/polyse
 
 ### <b>polylint</b>—lint projects for errors and common mistakes {#polylint}
 
-*Equivalent to Polymer CLI command `polymer lint`.*
+*`polylint` powers the Polymer CLI command `polymer lint`.*
 
 [polylint](https://github.com/PolymerLabs/polylint) is a linting tool to detect
 common mistakes and errors in your projects.
@@ -51,7 +51,7 @@ Usage:
 
 ### Web component tester—unit-testing tool for elements {#wct}
 
-*Equivalent to Polymer CLI command `polymer test`.*
+*`web-component-tester` powers the Polymer CLI command `polymer test`.*
 
 [Web component tester](https://github.com/Polymer/web-component-tester) is a tool providing a browser-based testing environment for web components. Out of the box it includes support for Mocha, Chai, Async and Sinon. See [Test your elements](tests) for detailed usage.
 
@@ -70,14 +70,20 @@ If you prefer not to use WCT's command line tool, you can also [run WCT tests di
 
 For details on using WCT, see [Test your elements](tests).
 
-Source: [github.com/Polymer/web-component-tester](https://github.com/Polymer/web-component-tester)
+**Source:** [github.com/Polymer/web-component-tester](https://github.com/Polymer/web-component-tester)
 
 ## Build and optimization {#build}
 
-The Polymer CLI command `polymer build` uses the `polymer-build` library to build your project.
+*`polymer-build` powers the Polymer CLI command `polymer build`.*
 
-`polymer-build` is a Node library for automating Polymer build tasks. You can use it to create a custom Polymer build process using Gulp or another Node-based build system.
+[`polymer-build`](https://github.com/Polymer/polymer-build) is a Node library for automating Polymer build tasks. You can use it to create a custom Polymer build process using Gulp or another Node-based build system.
 
-<a href="https://github.com/Polymer/polymer-build/blob/master/README.md" target="_blank">See the polymer-build README for instructions</a>.
+Install: 
+    
+    npm install --save-dev polymer-build
+    
+Usage: 
 
-Source: [github.com/Polymer/polymer-build](https://github.com/Polymer/polymer-build)
+[See the polymer-build README for detailed usage instructions](https://github.com/Polymer/polymer-build/blob/master/README.md).
+
+**Source:** [github.com/Polymer/polymer-build](https://github.com/Polymer/polymer-build)
