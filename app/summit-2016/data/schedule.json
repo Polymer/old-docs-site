@@ -188,10 +188,10 @@
         "desc": "Web components and Progressive Web App technologies offer a solution to fragmented development and runtime environments by allowing you to reuse code between both frameworks and platforms. Vaadin works simplifies the development of business apps by providing UI components and tools that are focused on helping business app developers. In this talk, you will learn how Polymer components can be used in Angular 2 and how we are making web components customizable, so you can easily adapt them to the look and feel of your company and platform. "
       },
       {
-        "name": "From Components to Applications @ Net-a-Porter",
+        "name": "From Components to Applications @ NET-A-PORTER",
         "time": "Tuesday ~12:30pm",
         "speaker": "Robin Glen",
-        "desc": "Since Polymer Summit 2015 the Net-a-porter tech team set about building on top of their work with web components and start building applications. This talk will cover that journey, including how they build, test and monitor their latest product listing page."
+        "desc": "Since Polymer Summit 2015 the NET-A-PORTER tech team set about building on top of their work with web components and start building applications. This talk will cover that journey, including how they build, test and monitor their latest product listing page."
       },
       {
         "name": "Lunch & Ask Polymer Lounge",
