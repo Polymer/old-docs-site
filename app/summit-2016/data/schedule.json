@@ -67,7 +67,7 @@
         "desc": "Do you have questions you want to ask the speakers from the previous sessions? Join the speakers in the Ask Polymer Lounge for face to face Q&A time!"
       },
       {
-        "name": "Making Chromestatus.com a Lightning-Fast PWA",
+        "name": "Evolving chromestatus.com into a Lightning-Fast PWA",
         "time": "Monday 2:00pm",
         "speaker": "Eric Bidelman",
         "desc": "How do you build a production app using web components? How do you make it fast? Chromestatus.com was launched in 2013 as part of the Blink fork and quickly became an everyday tool used by Chrome engineers, browser vendors, and web developers around the world. As the 1st production app built with Polymer, it has evolved quite a bit over the years. In this talk, you'll learn what it takes to build a lightning fast PWA using web components. Topics include incorporating Polymer elements, lazy loading patterns, utilizing http/2 push/preload, and more."
