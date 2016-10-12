@@ -18,5 +18,8 @@
     "prism-element": "PolymerElements/prism-element#^1.0.0",
     "google-map": "GoogleWebComponents/google-map#^1.1.10",
     "firebase-element": "PolymerElements/firebase-element#^1.0.12"
+  },
+  "dependencies": {
+    "polymon-egg": "git@github.com:polymerelements/polymon-egg.git"
   }
 }
