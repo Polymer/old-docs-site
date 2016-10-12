@@ -49,7 +49,7 @@ Usage:
 
 **Source:** [github.com/PolymerLabs/polylint](https://github.com/PolymerLabs/polylint)
 
-### Web component tester—unit-testing tool for elements {#wct}
+### <b>web-component-tester</b>—unit-testing tool for elements {#wct}
 
 *`web-component-tester` powers the Polymer CLI command `polymer test`.*
 
@@ -72,7 +72,9 @@ For details on using WCT, see [Test your elements](tests).
 
 **Source:** [github.com/Polymer/web-component-tester](https://github.com/Polymer/web-component-tester)
 
-## Build and optimization {#build}
+## Build and optimization 
+
+### <b>polymer-build</b>—automates Polymer build tasks {#build}
 
 *`polymer-build` powers the Polymer CLI command `polymer build`.*
 
