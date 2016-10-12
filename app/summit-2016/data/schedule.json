@@ -2,11 +2,12 @@
   {
     "date":"October 17th, 10am-6pm",
     "day":"Monday",
+    "mc": "MC: Matt McNulty",
     "sessions":[
       {
         "name": "Registration",
         "time": "Monday 8-10am",
-        "desc": "Pick up your badge, goodies, and enjoy breakfast. You must a government-issued photo ID to receive a badge and check in to the event."
+        "desc": "Pick up your badge, goodies, and enjoy breakfast. You must have a government-issued photo ID to receive a badge and check in to the event."
       },
       {
         "name":"Opening Keynote",
@@ -146,11 +147,12 @@
   {
     "date":"October 18th, 10am-6pm",
     "day":"Tuesday",
+    "mc": "MC: Monica Dinculescu",
     "sessions":[
       {
         "name": "Registration/Breakfast",
         "time": "Tuesday 8-10am",
-        "desc": "If you didn’t get your badge on Day 1, you can still get your badge and goodies. Breakfast will also be served. You must a government-issued photo ID to receive a badge and check in to the event."
+        "desc": "If you didn’t get your badge on Day 1, you can still get your badge and goodies. Breakfast will also be served. You must have a government-issued photo ID to receive a badge and check in to the event."
       },
       {
         "name":"Opening Remarks",

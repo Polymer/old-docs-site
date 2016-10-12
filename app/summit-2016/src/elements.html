@@ -16666,6 +16666,11 @@ module.exports = Array.isArray || function (arr) {
       background-color: #4FB6F7;
     }
 
+    .date-card .mc {
+      font-size: 18px;
+      font-style: italic;
+    }
+
     .card {
       padding-top: 16px;
       background-color: #fff;
@@ -16763,6 +16768,7 @@ module.exports = Array.isArray || function (arr) {
         <div class="date-card" cascaded="">
           <div><span>[[item.day]]</span><span>,</span></div>
           <div>[[item.date]]</div>
+          <div class="mc">[[item.mc]]</div>
         </div>
 
         <template is="dom-repeat" items="[[item.sessions]]" on-dom-change="_updateCascadedNodes">
