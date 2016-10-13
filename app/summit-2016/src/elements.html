@@ -13735,6 +13735,592 @@ module.exports = Array.isArray || function (arr) {
   </template>
 
 </dom-module>
+<dom-module id="polymon-carousel">
+  <template>
+    <style>
+
+      @keyframes orbit {
+        0% {
+          transform: translateZ(-100px) rotateY(-10deg);
+        }
+
+        30% {
+          transform: translateZ(-100px) rotateY(10deg);
+        }
+
+        33.33% {
+          transform: translateZ(-100px) rotateY(110deg);
+        }
+
+        63.33% {
+          transform: translateZ(-100px) rotateY(130deg);
+        }
+
+        66.66% {
+          transform: translateZ(-100px) rotateY(230deg);
+        }
+
+        96.66% {
+          transform: translateZ(-100px) rotateY(250deg);
+        }
+
+        100% {
+          transform: translateZ(-100px) rotateY(350deg);
+        }
+      }
+
+
+      @keyframes rotate1 {
+        0% {
+          transform:
+              translate3d(-64px, 0px, 100px)
+              rotateY(10deg);
+        }
+
+        30% {
+          transform:
+              translate3d(-64px, 0px, 100px)
+              rotateY(-10deg);
+        }
+
+        33.33% {
+          transform:
+              translate3d(-64px, 0px, 100px)
+              rotateY(-110deg);
+        }
+
+        63.33% {
+          transform:
+              translate3d(-64px, 0px, 100px)
+              rotateY(-130deg);
+        }
+
+        66.66% {
+          transform:
+              translate3d(-64px, 0px, 100px)
+              rotateY(-230deg);
+        }
+
+        96.66% {
+          transform:
+              translate3d(-64px, 0px, 100px)
+              rotateY(-250deg);
+        }
+
+        100% {
+          transform:
+              translate3d(-64px, 0px, 100px)
+              rotateY(-350deg);
+        }
+      }
+
+      @keyframes rotate2 {
+        0% {
+          transform:
+              translate3d(-149.76px, 0px, -49.99999999999998px)
+              rotateY(10deg);
+        }
+
+        30% {
+          transform:
+              translate3d(-149.76px, 0px, -49.99999999999998px)
+              rotateY(-10deg);
+        }
+
+        33.33% {
+          transform:
+              translate3d(-149.76px, 0px, -49.99999999999998px)
+              rotateY(-110deg);
+        }
+
+        63.33% {
+          transform:
+              translate3d(-149.76px, 0px, -49.99999999999998px)
+              rotateY(-130deg);
+        }
+
+        66.66% {
+          transform:
+              translate3d(-149.76px, 0px, -49.99999999999998px)
+              rotateY(-230deg);
+        }
+
+        96.66% {
+          transform:
+              translate3d(-149.76px, 0px, -49.99999999999998px)
+              rotateY(-250deg);
+        }
+
+        100% {
+          transform:
+              translate3d(-149.76px, 0px, -49.99999999999998px)
+              rotateY(-350deg);
+        }
+      }
+
+      @keyframes rotate3 {
+        0% {
+          transform:
+              translate3d(21.76px, 0px, -49.99999999999998px)
+              rotateY(10deg);
+        }
+
+        30% {
+          transform:
+              translate3d(21.76px, 0px, -49.99999999999998px)
+              rotateY(-10deg);
+        }
+
+        33.33% {
+          transform:
+              translate3d(21.76px, 0px, -49.99999999999998px)
+              rotateY(-110deg);
+        }
+
+        63.33% {
+          transform:
+              translate3d(21.76px, 0px, -49.99999999999998px)
+              rotateY(-130deg);
+        }
+
+        66.66% {
+          transform:
+              translate3d(21.76px, 0px, -49.99999999999998px)
+              rotateY(-230deg);
+        }
+
+        96.66% {
+          transform:
+              translate3d(21.76px, 0px, -49.99999999999998px)
+              rotateY(-250deg);
+        }
+
+        100% {
+          transform:
+              translate3d(21.76px, 0px, -49.99999999999998px)
+              rotateY(-350deg);
+        }
+      }
+
+      :host {
+        position: relative;
+        margin: auto;
+        width: 100%;
+        max-width: 400px;
+        perspective: 150px;
+        perspective-origin: center 80px;
+        transform-style: preserve-3d;
+        transform: scale(1.6) translateY(-65px) rotateX(10deg)
+        --polymon-portrait-background: transparent;
+      }
+
+      @media (max-height: 640px) {
+        :host {
+          transform: scale(1.15) translateY(-85px) rotateX(10deg);
+        }
+      }
+
+      #container.animated {
+        opacity: 1;
+        animation-name: orbit;
+      }
+
+      #container.animated #one {
+        animation-name: rotate1;
+      }
+
+      #container.animated #two {
+        animation-name: rotate2;
+      }
+
+      #container.animated #three {
+        animation-name: rotate3;
+      }
+
+
+      #container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 50%;
+        transform-origin: 0 0;
+        transform-style: preserve-3d;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-duration: 10s;
+        opacity: 0;
+      }
+
+      polymon-portrait {
+        position: absolute;
+        margin: 0;
+        transform-origin: center;
+        transform-style: preserve-3d;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-duration: 10s;
+      }
+
+    </style>
+    <div id="container">
+      <polymon-portrait
+          id="one"
+          polymon='{ "spriteIndex": 24 }'
+          size="128"
+          caught>
+      </polymon-portrait>
+      <polymon-portrait
+          id="two"
+          polymon='{ "spriteIndex": 9 }'
+          size="128"
+          caught>
+      </polymon-portrait>
+      <polymon-portrait
+          id="three"
+          polymon='{ "spriteIndex": 11 }'
+          size="128"
+          caught>
+      </polymon-portrait>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'polymon-carousel',
+
+      properties: {
+        active: {
+          type: Boolean,
+          value: false,
+          observer: '__activeChanged'
+        }
+      },
+
+      __activeChanged: function(active) {
+        if (active) {
+          this.cancelAsync(this.__cancelAnimationAsync);
+          Polymer.dom(this.$.container).classList.add('animated');
+        } else {
+          this.__cancelAnimationAsync = this.async(function() {
+            Polymer.dom(this.$.container).classList.remove('animated');
+          }, 500);
+        }
+      }
+    });
+  </script>
+</dom-module>
+
+<dom-module id="polymon-egg">
+  <template>
+    <style>
+      :host {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+
+        opacity: 0;
+        transition: opacity 0.3s;
+        overflow: hidden;
+        z-index: 10000;
+
+        background-color: rgba(255, 255, 255, 0.65);
+        text-align: center;
+      }
+
+      #container {
+        @apply --layout-fit;
+        box-sizing: border-box;
+        padding-top: 10%;
+        transform: translateY(50px);
+        transition: transform 0.5s cubic-bezier(.7,-0.29,.28,1.27)
+      }
+
+      h1 {
+        font-family: 'Bungee Inline', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        color: #3ebbf0;
+        text-shadow: 0px 1px 0px #09537E;
+      }
+
+      :host(.active) {
+        opacity: 1;
+      }
+
+      :host(.active) #container {
+        transform: translateY(0);
+      }
+
+      div {
+        height: 128px;
+        overflow: visible;
+      }
+    </style>
+    <div id="container">
+      <polymon-logo></polymon-logo>
+      <div>
+        <polymon-carousel active="[[active]]"></polymon-carousel>
+      </div>
+      <h1>Capture the moment!</h1>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'polymon-egg',
+
+      behaviors: [{
+		  properties: {
+		    user: {
+		      type: Object
+		    },
+
+		    route: {
+		      type: Object,
+		      notify: true
+		    },
+
+		    active: {
+		      type: Boolean,
+		      value: false
+		    }
+		  },
+
+		  observers: ['invalidateClassname(isAttached, active)'],
+
+		  created: function() {
+		    this.__rafs = {};
+		  },
+
+		  deraf: function(name, fn) {
+		    if (this.__rafs[name]) {
+		      return;
+		    }
+
+		    this.__rafs[name] = requestAnimationFrame(function() {
+		      this.__rafs[name] = null;
+		      fn();
+		    }.bind(this));
+		  },
+
+		  invalidateClassname: function() {
+		    if (!this.__resolved) {
+		      this.removeAttribute('unresolved');
+		      this.__resolved = true;
+		    }
+
+		    if (this.active && this.isAttached && this._readied) {
+		      this.deraf('invalidate-classname', function() {
+		        this.classList.add('active', this.is);
+		      }.bind(this));
+		    } else {
+		      this.classList.remove('active');
+		    }
+		  },
+
+		  or: function() {
+		    for (var i = 0; i < arguments.length; ++i) {
+		      if (arguments[i]) {
+		        return true;
+		      }
+		    }
+
+		    return false;
+		  }
+		}],
+
+      properties: {
+        code: {
+          type: Array,
+          value: function() {
+            return [
+              'up',
+              'up',
+              'down',
+              'down',
+              'left',
+              'right',
+              'left',
+              'right',
+              'b',
+              'a'
+            ];
+          }
+        },
+
+        nextCodeIndex: {
+          type: Number,
+          value: 0
+        }
+      },
+
+      attached: function() {
+        document.body.addEventListener('keydown', this.__onBodyKeydown.bind(this));
+      },
+
+      get expectedKey() {
+        return this.code[this.nextCodeIndex];
+      },
+
+      get codeComplete() {
+        return this.nextCodeIndex === this.code.length;
+      },
+
+      __onBodyKeydown: function(event) {
+        if (this.active) {
+          return;
+        }
+
+        var matches = Polymer.IronA11yKeysBehavior.keyboardEventMatchesKeys;
+
+        if (matches(event, this.expectedKey)) {
+          this.nextCodeIndex++;
+        } else {
+          this.nextCodeIndex = 0;
+        }
+
+        if (this.codeComplete) {
+          this.active = true;
+          this.async(function() {
+            this.active = false;
+          }, 10000);
+        } else {
+          if (this.__resetAsync) {
+            this.cancelAsync(this.__resetAsync);
+          }
+
+          this.__resetAsync = this.async(function() {
+            this.nextCodeIndex = 0;
+          }, 1000);
+        }
+      }
+    });
+  </script>
+
+</dom-module>
+<dom-module id="polymon-logo">
+  <template>
+    <style>
+      :host {
+        position: relative;
+        padding: 30px 0;
+      }
+
+      #image {
+        background-size: 200%;
+        background-image: url('images/polymon_sprite_sheet.svg');
+        background-position: 0 -37%;
+        width: 90%;
+        max-width: 640px;
+        margin: auto;
+      }
+
+      #image:after {
+        content: '';
+        display: block;
+        padding-top: 40%;
+      }
+    </style>
+    <div id="image"></div>
+  </template>
+  <script>
+    Polymer({
+      is: 'polymon-logo'
+    });
+  </script>
+</dom-module>
+<dom-module id="polymon-portrait">
+  <template>
+    <style>
+      :host {
+        display: block;
+        border-radius: 32px;
+        margin: 4px;
+
+        background-color: var(--polymon-portrait-background, #ccc);
+      }
+
+      #image {
+        width: 100%;
+        height: 100%;
+        background-image: url(images/polymon_sprite_sheet.svg);
+        background-repeat: no-repeat;
+        transform-origin: 0 0;
+      }
+    </style>
+    <div id="image">
+      <content></content>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'polymon-portrait',
+
+      properties: {
+        polymon: {
+          type: Object,
+          observer: '__applyPolymonImage'
+        },
+
+        caught: {
+          type: Boolean,
+          value: false,
+          observer: '__caughtChanged'
+        },
+
+        size: {
+          type: Number,
+          value: 64
+        }
+      },
+
+      observers: [
+        '__applyPolymonImage(polymon, caught, size)'
+      ],
+
+      __applyPolymonImage: function(polymon) {
+        this.debounce('apply-polymon-image', () => {
+          let polymon = this.polymon;
+          let index = polymon && polymon.spriteIndex;
+          let size = this.size;
+
+          if (index == null) {
+            index = -1;
+          }
+
+          this.style.width = `${size}px`;
+          this.style.height = `${size}px`;
+          this.style.borderRadius = `${size / 2}px`;
+
+          if (this.caught) {
+            this.$.image.style.backgroundSize = '100%';
+            this.$.image.style.backgroundPosition = 'top left';
+            let path = this.resolveUrl(`images/polymon_monster_${index}.png`);
+            this.$.image.style.backgroundImage = `url(${path})`;
+          } else {
+            let top = Math.floor(index / 20) * -size;
+            let left = (index % 20) * -size;
+
+            this.$.image.style.backgroundSize = `${size * 20}px ${size * 20}px`;
+            this.$.image.style.backgroundPosition = `${left}px ${top}px`;
+            this.$.image.style.backgroundImage = '';
+          }
+        });
+      },
+
+      __caughtChanged: function() {
+        if (this.caught) {
+          this.classList.add('caught');
+        } else {
+          this.classList.remove('caught');
+        }
+      }
+    });
+
+  </script>
+</dom-module>
+
 
 <script>
 
@@ -17007,6 +17593,30 @@ module.exports = Array.isArray || function (arr) {
     });
 
   </script>
-
 </dom-module>
+	<style>
+		@font-face {
+		  font-family: 'Bungee';
+		  font-style: normal;
+		  font-weight: 400;
+		  src: local('Bungee'),
+		       local('Bungee-Regular'),
+		       url('./Bungee/Bungee-Regular.woff2') format('woff2'),
+		       url('./Bungee/Bungee-Regular.woff') format('woff'),
+		       url('./Bungee/Bungee-Regular.ttf')  format('truetype');
+		  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+		}
+
+		@font-face {
+		  font-family: 'Bungee Inline';
+		  font-style: normal;
+		  font-weight: 400;
+		  src: local('Bungee Inline'),
+		       local('BungeeInline-Regular'),
+		       url('./Bungee_Inline/BungeeInline-Regular.woff2') format('woff2'),
+		       url('./Bungee_Inline/BungeeInline-Regular.woff') format('woff'),
+		       url('./Bungee_Inline/BungeeInline-Regular.ttf')  format('truetype');
+		  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+		}
+	</style>
 </div></body></html>
