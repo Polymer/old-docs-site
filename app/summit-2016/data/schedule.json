@@ -121,7 +121,7 @@
         "desc": "Almost everyone has had a moment when they have been asked to build something quickly at 3pm on a Friday. Come explore how Polymer can transform a hackathon project or last-minute demo into a respectable app."
       },
       {
-        "name": "PWA's: Heavy Duty meets High Performance",
+        "name": "Monster Apps",
         "time": "Monday ~5:05pm",
         "speaker": "Chris Joel",
         "desc": "You've done it. You've survived long enough as a web developer to witness the dawn of progressive web apps. Web apps now share the home screen with native apps, and have many of the same capabilities. But, with great power comes great user expectations. How do you achieve the delightful 60FPS view transitions on that native app your user just installed? How do you manage the burden of heavy image assets when every byte counts? How do you avoid jank when your app needs to do _real_ work? The Web Platform and Polymer Elements are here to help. In this session, we'll cover accessible strategies for delightful UX by leveraging the powerful primitives of the web. You will learn from real-world examples of heavy duty web app workloads. You will discover how to build and analyze these features to achieve a satisfying, high performance UX. And most importantly: you will learn how to make these features progressive, so that users across all browsers and devices can benefit from your work."
