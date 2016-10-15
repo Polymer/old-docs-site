@@ -2,7 +2,7 @@
     "name": "Monica Dinculescu",
     "title": "Software Engineer",
     "twitter": "notwaldorf",
-    "gplus": "https://plus.google.com/+MonicaDinculescu514",
+    "gplus": "+MonicaDinculescu514",
     "photo": "/summit/images/Speakers/monica_dinculescu.jpg",
     "bio": "Monica emojineers on the Polymer Elements team, making pretty and accessible widgets for everyone to use. Before this, she worked on Chrome for two years, so she's pretty sure she has at least once broken the Internet for you. She will eat all of the pizza, if there is any."
 }, {
@@ -16,7 +16,7 @@
     "name": "Alex Russell",
     "title": "Software Engineer",
     "twitter": "slightlylate",
-    "gplus": "https://plus.google.com/+AlexRussell",
+    "gplus": "+AlexRussell",
     "photo": "/summit/images/Speakers/alex_russell.jpg",
     "bio": "Alex Russell is a Software Engineer on Chrome team where he designs new features for the Web Platform and leads Chrome’s Standards work. His recent projects include Web Components, ES6 features (Classes and Promises), and Service Workers. Previously he helped build Chrome Frame and led the Dojo Toolkit project. Alex plays for Team Web."
 }, {
@@ -30,7 +30,7 @@
     "name": "Rob Dodson",
     "title": "Developer Advocate",
     "twitter": "rob_dodson",
-    "gplus": "https://plus.google.com/+RobDodson",
+    "gplus": "+RobDodson",
     "photo": "/summit/images/Speakers/rob_dodson.jpg",
     "bio": "Rob Dodson is a developer advocate at Google where he focuses on Web Components and Accessibility. His mission is to fight for a better web and to help developers build great experiences. You can catch him every other week on his YouTube series 'Polycasts' and 'A11ycasts', or on his blog at robdodson.me."
 }, {
@@ -58,7 +58,7 @@
     "name": "Wendy Ginsberg",
     "title": "Associate Product Manager",
     "twitter": "wmginsberg",
-    "gplus": "https://plus.google.com/103070138385502314647",
+    "gplus": "103070138385502314647",
     "photo": "/summit/images/Speakers/wendy_ginsberg.jpg",
     "bio": "Wendy is a Product Manager on the Polymer team based in San Francisco. She spent the past year working on the Google Store, and is currently working with Google's Project Reconnect to help build online communities for youth refugee homes in Germany. Prior to Google, Wendy studied Computer Science at Brown University, where she focused on Data Science and developing introductory courses."
 },  {
@@ -72,7 +72,7 @@
     "name": "Chris Lorenzo",
     "title": "Senior Principal Engineer",
     "twitter": "chiefcll",
-    "gplus": "https://plus.google.com/100860601130618125503",
+    "gplus": "100860601130618125503",
     "photo": "/summit/images/Speakers/chris_lorenzo.jpg",
     "bio": "I've worked at Comcast for 9 years currently as a Senior Principal Engineer. I enjoy building/motivating teams and ramping up new projects. Besides coding in Javascript, I love spending time with my family or helping out in the community. I'm also heavily involved with local colleges and schools to mentor the next generation."
 }, {
@@ -86,7 +86,7 @@
     "name": "Scott Jenson",
     "title": "Physical Web Lead",
     "twitter": "scottjenson",
-    "gplus": "https://plus.google.com/+ScottJenson",
+    "gplus": "+ScottJenson",
     "photo": "/summit/images/Speakers/scott_jenson.jpg",
     "bio": "Scott is leading the Physical Web project in Chrome. Before that he was the first UX designer on Google Mobile maps and managed the Mobile UX team for many years. Previously he worked at Apple on the Newton and System 7 projects, was the design director at Symbian, and was a creative director at frog design in San Francisco."
 }, {
@@ -114,28 +114,28 @@
     "name": "Jouni Koivuviita",
     "title": "Product Manager",
     "twitter": "jouni",
-    "gplus": "https://plus.google.com/112101959764396561724",
+    "gplus": "112101959764396561724",
     "photo": "/summit/images/Speakers/jouni_koivuviita.jpg",
     "bio": "Product Manager/Designer for Vaadin Core Elements, working on the best web components in the world for mobile and desktop. Over 10 years experience from designing UI components for business oriented web applications."
 }, {
     "name": "Eiji Kitamura",
     "title": "Developer Advocate",
     "twitter": "agektmr",
-    "gplus": "https://plus.google.com/+agektmr",
+    "gplus": "+agektmr",
     "photo": "/summit/images/Speakers/eiji_kitamura.jpg",
     "bio": "Eiji is a Developer Advocate based in Tokyo working on the web front-end. Eiji is currently focusing on making identity and payment experience better on the mobile web."
 }, {
     "name": "Marcus Hellberg",
     "title": "Developer Advocate",
     "twitter": "marcushellberg",
-    "gplus": "https://plus.google.com/108697142705730415864",
+    "gplus": "108697142705730415864",
     "photo": "/summit/images/Speakers/marcus_hellberg.jpg",
     "bio": "Marcus has been working with web technology for the last 15 years on everything ranging from front end development to backend architectures. Currently Marcus works as a developer advocate at Vaadin, helping the web development community learn about new technologies through blogging, workshops, talks and demo apps."
 }, {
     "name": "Elliott Marquez",
     "title": "Software Engineer",
     "twitter": "Elliott_Marquez",
-    "gplus": "https://plus.google.com/+ElliottMarquez",
+    "gplus": "+ElliottMarquez",
     "photo": "/summit/images/Speakers/elliott_marquez.jpg",
     "bio": "I am a Software Engineer on the Polymer team, and I focus on creating and maintaining our wonderful set of elements. Before Google, I was a student at MIT where I interned at Google Play, Bing, and I did research for the W3C, the MIT Media Lab, and CSAIL. I like video games, musicals, and teaching STEM to kids!"
 },  {
@@ -149,14 +149,14 @@
     "name": "Justin Fagnani",
     "title": "Software Engineer",
     "twitter": "justinfagnani",
-    "gplus": "https://plus.google.com/+JustinFagnani",
+    "gplus": "+JustinFagnani",
     "photo": "/summit/images/Speakers/justin_fagnani.jpg",
     "bio": "Justin is TL of the Polymer Tools team. He's focused on building a new set of tools that work with the platform and bring the best developer experience and make it easy to create optimal web applications. He's been working in developer tools at Google for over 7 years."
 }, {
     "name": "John Riviello",
     "title": "Distinguished Engineer",
     "twitter": "JohnRiv",
-    "gplus": "https://plus.google.com/+JohnRiviello",
+    "gplus": "+JohnRiviello",
     "photo": "/summit/images/Speakers/john_riviello.jpg",
     "bio": "John Riviello is a Distinguished Engineer and Lead Front-end Developer at Comcast where he works on the XFINITY customer websites and web applications. He is also the author of the Lynda.com course 'CSS to Sass: Converting an Existing Site.' In his free time, he prefers surfing waves over surfing the internet."
 }, {
@@ -170,21 +170,21 @@
     "name": "Josh Trout",
     "title": "Principal Developer",
     "twitter": "filet0fish",
-    "gplus": "https://plus.google.com/u/0/+JoshTrout",
+    "gplus": "u/0/+JoshTrout",
     "photo": "/summit/images/Speakers/josh_trout.jpg",
     "bio": "Josh has been working at Gannett for over 3 years and is a principal developer on the web team. He is currently architecting the next generation framework for Gannett's 100+ newspaper sites."
 }, {
     "name": "Peter Burns",
     "title": "Software Engineer",
     "twitter": "rictic",
-    "gplus": "https://plus.google.com/+PeterBurnsrictic",
+    "gplus": "+PeterBurnsrictic",
     "photo": "/summit/images/Speakers/peter_burns.jpg",
     "bio": "Peter is the author of iron-location, app-route, and a contributor to iron-ajax. He led the effort to convert all of Google's internal Polymer code to 1.0 where he authored the polyup tool. Now he works on our tools team, where he's working on a next generation static analysis framework for the web."
 }, {
     "name": "Sam Saccone",
     "title": "Software Engineer",
     "twitter": "samccone",
-    "gplus": "https://plus.google.com/115381962400320349035",
+    "gplus": "115381962400320349035",
     "photo": "/summit/images/Speakers/sam_saccone.jpg",
     "bio": "Sam Saccone is a software engineer on the android build infra team and web performance obsessor."
 }, {
@@ -212,7 +212,7 @@
     "name": "Daniel Freedman",
     "title": "Software Engineer",
     "twitter": "danfreedman",
-    "gplus": "https://plus.google.com/+DanielFreedman",
+    "gplus": "+DanielFreedman",
     "photo": "/summit/images/Speakers/daniel_freedman.jpg",
     "bio": "Daniel is a software engineer on the Polymer team. He currently works on the Polymer library, and has previously worked on tools such as vulcanize, web-component-tester, and Polymer's gesture library. Daniel is interested in simple to use tools and libraries that make the users' development easier."
 }, {
