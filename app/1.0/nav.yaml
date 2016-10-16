@@ -185,16 +185,16 @@
 
 - section: 2.0 Preview
   shortpath: 2.0/docs
-  path: /2.0/docs/devguide/about-2.0
+  path: /2.0/docs/about_20
   items:
   - title: About Polymer 2.0
-    path: /2.0/docs/devguide/about-2.0
+    path: /2.0/docs/about_20
   - title: Upgrade guide
-    path: /2.0/docs/devguide/upgrade
-  - title: Custom element concepts
-    path: /2.0/docs/devguide/custom-elements
-  - title: Shadow DOM concepts
-    path: /2.0/docs/devguide/shadow-dom
+    path: /2.0/docs/upgrade
+#  - title: Custom element concepts
+#    path: /2.0/docs/devguide/custom-elements
+#  - title: Shadow DOM concepts
+#    path: /2.0/docs/devguide/shadow-dom
 
 - section: App Toolbox
   shortpath: toolbox
