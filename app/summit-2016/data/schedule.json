@@ -2,11 +2,12 @@
   {
     "date":"October 17th, 10am-6pm",
     "day":"Monday",
+    "mc": "MC: Matt McNulty",
     "sessions":[
       {
         "name": "Registration",
         "time": "Monday 8-10am",
-        "desc": "Pick up your badge, goodies, and enjoy breakfast."
+        "desc": "Pick up your badge, goodies, and enjoy breakfast. You must have a government-issued photo ID to receive a badge and check in to the event."
       },
       {
         "name":"Opening Keynote",
@@ -67,7 +68,7 @@
         "desc": "Do you have questions you want to ask the speakers from the previous sessions? Join the speakers in the Ask Polymer Lounge for face to face Q&A time!"
       },
       {
-        "name": "Making Chromestatus.com a Lightning-Fast PWA",
+        "name": "Evolving chromestatus.com into a Lightning-Fast PWA",
         "time": "Monday 2:00pm",
         "speaker": "Eric Bidelman",
         "desc": "How do you build a production app using web components? How do you make it fast? Chromestatus.com was launched in 2013 as part of the Blink fork and quickly became an everyday tool used by Chrome engineers, browser vendors, and web developers around the world. As the 1st production app built with Polymer, it has evolved quite a bit over the years. In this talk, you'll learn what it takes to build a lightning fast PWA using web components. Topics include incorporating Polymer elements, lazy loading patterns, utilizing http/2 push/preload, and more."
@@ -85,55 +86,55 @@
         "desc": "Closure Compiler underpins most of Google's frontends - providing typechecking, minification and transpilation - but can be tricky to be used with Polymer. Learn about how to use the compiler in SIMPLE or ADVANCED mode to be more productive and write better Polymer code."
       },
       {
+        "name": "Production-Ready Polymer Elements - A How-To-Guide",
+        "time": "Monday ~3:00pm",
+        "speaker": "Daniel Freedman",
+        "desc": "The Polymer team is responsible for over one hundred elements that are used in vast assortment of combinations, browsers, and applications. Come learn how we make our elements production ready, and how to use the same tools and techniques for your own elements. We'll explore topics such as Code Linting with eslint, In-Browser testing with web-component-tester, Fixture testing with the <test-fixture> element, Accessibility Testing with accessibility-developer-tools, web-component-tester, and VoiceOver, and finally Continuous Integration Testing with Travis-CI and Sauce Labs."
+      },
+      {
         "name": "Break & Ask Polymer Lounge",
-        "time": "Monday ~3:30pm",
+        "time": "Monday ~3:15pm",
         "desc": "Tea and cookies. Do you have questions you want to ask the speakers from the previous sessions? Join the speakers in the Ask Polymer Lounge for face to face Q&A time!"
       },
       {
         "name": "Codelab: Building an Image Carousel Element with Polymer 2.0",
-        "time": "Monday 3:30pm in Room EM1",
+        "time": "Monday 3:15pm in Room EM1",
         "speaker": "Keanu Lee",
         "desc": "In this codelab, you’ll learn how to build a simple image carousel element with Polymer 2.0. You’ll learn how to use ES2015 syntax to write a Polymer element, changes in Custom Elements V1 and Shadow DOM V1, and considerations to make when designing your element’s API."
       },
       {
         "name": "Practical Performance",
         "time": "Monday 4:00pm",
-        "speaker": "Sam Saccone",
+        "speaker": "Sam Saccone & Paul Irish",
         "desc": "A look into how to identify why a site is slow with Dev Tools, and techniques based around the PRPL pattern to make things fast again."
       },
       {
-        "name": "Sign-in and Payments without Forms",
-        "time": "Monday ~4:20pm",
-        "speaker": "Eiji Kitamura",
-        "desc": "This talk gives you ideas on how you can bring sign-in and checkout process to the next level in your Polymer PWA using Credential Management API and Payment Request API."
-      },
-      {
         "name": "Interacting with the Physical Web",
-        "time": "Monday ~4:35pm",
+        "time": "Monday ~4:20pm",
         "speaker": "Scott Jenson",
         "desc": "The Physical Web is an ultra simple way to find and interact with devices around you, all without ever having to install an app. This talk will introduce you to the Physical Web and also show you how easy it is to add interactivity to devices. We'll show a demo of a device that initially shows nothing more than a simple web page, but by adding a single Polymer component lets you connect and interact with that device through WebBluetooth."
       },
       {
         "name": "Hacking Without Being a Hack",
-        "time": "Monday ~4:55pm",
+        "time": "Monday ~4:40pm",
         "speaker": "Elliott Marquez",
         "desc": "Almost everyone has had a moment when they have been asked to build something quickly at 3pm on a Friday. Come explore how Polymer can transform a hackathon project or last-minute demo into a respectable app."
       },
       {
-        "name": "PWA's: Heavy Duty meets High Performance",
-        "time": "Monday ~5:05pm",
+        "name": "Monster Apps",
+        "time": "Monday ~4:50pm",
         "speaker": "Chris Joel",
         "desc": "You've done it. You've survived long enough as a web developer to witness the dawn of progressive web apps. Web apps now share the home screen with native apps, and have many of the same capabilities. But, with great power comes great user expectations. How do you achieve the delightful 60FPS view transitions on that native app your user just installed? How do you manage the burden of heavy image assets when every byte counts? How do you avoid jank when your app needs to do _real_ work? The Web Platform and Polymer Elements are here to help. In this session, we'll cover accessible strategies for delightful UX by leveraging the powerful primitives of the web. You will learn from real-world examples of heavy duty web app workloads. You will discover how to build and analyze these features to achieve a satisfying, high performance UX. And most importantly: you will learn how to make these features progressive, so that users across all browsers and devices can benefit from your work."
       },
       {
         "name": "An app in 3 days or: how I learned to stop worrying and love the Polymer toolbox",
-        "time": "Monday 5:30pm",
+        "time": "Monday 5:15pm",
         "speaker": "Monica Dinculescu",
         "desc": "Think of your favorite app. It's probably meowni.ca/emojillate (who can blame you), but if it isn't (and we need to talk) it probably has one, if not all, of these things: a database; a potential for disaster, with many users looking at and clicking on the same data; offline support, and a responsive layout. While preferably being faster than the average bear. Recreating this from scratch might sound like a terrifying experience, but I'm going to show you how the polymer toolbox and a few other already-built elements can help you go from zero to hero and build a PWA in no time."
       },
       {
         "name": "Ask Polymer Lounge",
-        "time": "Monday 6:00pm",
+        "time": "Monday 5:45pm",
         "desc": "Do you have questions you want to ask the speakers from the previous sessions? Join the speakers in the Ask Polymer Lounge for face to face Q&A time!"
       },
       {
@@ -146,7 +147,13 @@
   {
     "date":"October 18th, 10am-6pm",
     "day":"Tuesday",
+    "mc": "MC: Meownica",
     "sessions":[
+      {
+        "name": "Registration/Breakfast",
+        "time": "Tuesday 8-10am",
+        "desc": "If you didn’t get your badge on Day 1, you can still get your badge and goodies. Breakfast will also be served. You must have a government-issued photo ID to receive a badge and check in to the event."
+      },
       {
         "name":"Opening Remarks",
         "time": "Tuesday 10:00am",
@@ -183,10 +190,10 @@
         "desc": "Web components and Progressive Web App technologies offer a solution to fragmented development and runtime environments by allowing you to reuse code between both frameworks and platforms. Vaadin works simplifies the development of business apps by providing UI components and tools that are focused on helping business app developers. In this talk, you will learn how Polymer components can be used in Angular 2 and how we are making web components customizable, so you can easily adapt them to the look and feel of your company and platform. "
       },
       {
-        "name": "From Components to Applications @ Net-a-Porter",
+        "name": "From Components to Applications @ NET-A-PORTER",
         "time": "Tuesday ~12:30pm",
         "speaker": "Robin Glen",
-        "desc": "Since Polymer Summit 2015 the Net-a-porter tech team set about building on top of their work with web components and start building applications. This talk will cover that journey, including how they build, test and monitor their latest product listing page."
+        "desc": "Since Polymer Summit 2015 the NET-A-PORTER tech team set about building on top of their work with web components and start building applications. This talk will cover that journey, including how they build, test and monitor their latest product listing page."
       },
       {
         "name": "Lunch & Ask Polymer Lounge",
@@ -200,48 +207,48 @@
         "desc": "How USA TODAY utilized Polymer to power its Olympics coverage."
       },
       {
-        "name": "Production-Ready Polymer Elements - A How-To-Guide",
+        "name": "Sign-in and Payments without Forms",
         "time": "Tuesday ~2:30pm",
-        "speaker": "Daniel Freedman",
-        "desc": "The Polymer team is responsible for over one hundred elements that are used in vast assortment of combinations, browsers, and applications. Come learn how we make our elements production ready, and how to use the same tools and techniques for your own elements. We'll explore topics such as Code Linting with eslint, In-Browser testing with web-component-tester, Fixture testing with the <test-fixture> element, Accessibility Testing with accessibility-developer-tools, web-component-tester, and VoiceOver, and finally Continuous Integration Testing with Travis-CI and Sauce Labs."
+        "speaker": "Eiji Kitamura",
+        "desc": "This talk gives you ideas on how you can bring sign-in and checkout process to the next level in your Polymer PWA using Credential Management API and Payment Request API."
       },
       {
         "name": "We'll Do It Live!",
-        "time": "Tuesday ~3:00pm",
+        "time": "Tuesday ~2:45pm",
         "speaker": "Paul Lewis and Surma",
         "desc": "Paul and Surma will live-code a UI element from scratch, using ES2015, Custom Elements and Shadow DOM. Yeah, because live-coding never goes wrong. And to make matters worse, you can bombard them with questions live, too."
       },
       {
         "name": "Break & Ask Polymer Lounge",
-        "time": "Tuesday 4:00pm",
+        "time": "Tuesday 3:45pm",
         "desc": "Tea and cookies. Do you have questions you want to ask the speakers from the previous sessions? Join the speakers in the Ask Polymer Lounge for face to face Q&A time!"
       },
       {
         "name": "Codelab: Building Custom Overlays",
-        "time": "Tuesday 4:00pm in Room EM1",
+        "time": "Tuesday 3:45pm in Room EM1",
         "speaker": "Valdrin Koshi",
         "desc": "This codelab shows the common challenges in building an overlay system that is accessible and correctly renders on the top layer’s stacking context."
       },
       {
         "name": "Adapting to the Mobile Web F̶u̶t̶u̶r̶e̶ Present",
-        "time": "Tuesday 4:30pm",
+        "time": "Tuesday 4:15pm",
         "speaker": "Alex Russell",
         "desc": "Mobile isn't everything, but it's not far off. The mobile web of today includes devices out at the edge of the web’s considerable reach, with unexpectedly harsh limits on available CPU imposed by batteries and thermal throttling. Our assumptions about what we can “afford” are off. Not by a little; by a lot. Modern apps often include an order of magnitude too much script...and your Macbook Pro doesn’t make this obvious, and your framework might have hidden costs. Frameworks and apps need to adapt. Learn how to diagnose bloat for yourself, techniques for attacking it, and how to keep your app under a reasonable performance budget from start to finish."
       },
       {
         "name": "Polymer Panel",
-        "time": "Tuesday ~5:00pm",
+        "time": "Tuesday ~4:45pm",
         "desc": "A roundtable Q&A with core Polymer team members on the past, present, and future of the Polymer Project."
       },
       {
         "name": "Closing Remarks",
-        "time": "Tuesday ~5:45pm",
+        "time": "Tuesday ~5:15pm",
         "speaker": "Matt McNulty",
         "desc": "A look ahead at the future of the Polymer Project and web components."
       },
       {
         "name": "Ask Polymer Lounge",
-        "time": "Tuesday 6:00pm",
+        "time": "Tuesday 5:30pm",
         "desc": "Do you have questions you want to ask the speakers from the previous sessions? Join the speakers in the Ask Polymer Lounge for face to face Q&A time!"
       }
     ]
