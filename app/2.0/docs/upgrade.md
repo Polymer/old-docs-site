@@ -142,7 +142,7 @@ After {.caption}
   </template>
 </dom-module>
 
-…
+ ...
 <!-- usage -->
 <my-el>
   <span slot="title">Mr. Darcy</span>
@@ -219,11 +219,9 @@ to place **both** `<content>` and `<slot>` elements in the template.
 
 Multilevel distribution works differently in shadow DOM v1. In v0, content was redistributed at each level. For example, an element with `class="title"` can be distributed through several insertion points and eventually selected by a `<content select=".title">`.
 
-Document content:
-
+Document content {.caption}
 
 ```
-
 <!-- v0 redistribution example -->
 <parent-el>
   <span class="title">My Title</span>
@@ -231,7 +229,7 @@ Document content:
 ```
 
 
-Shadow DOM of <`parent-el>`:
+Shadow DOM of <`parent-el>` {.caption}
 
 
 ```
@@ -241,7 +239,7 @@ Shadow DOM of <`parent-el>`:
 ```
 
 
-Shadow DOM of `<child-el>`:
+Shadow DOM of `<child-el>` {.caption}
 
 
 ```
@@ -263,7 +261,7 @@ By contrast, in v1, a host's light DOM nodes are only *assigned* to slots in the
 ```
 
 
-Shadow DOM of <`parent-el>`:
+Shadow DOM of <`parent-el>` {.caption}
 
 
 ```
@@ -275,7 +273,7 @@ Shadow DOM of <`parent-el>`:
 ```
 
 
-Shadow DOM of `<child-el>`:
+Shadow DOM of `<child-el>` {.caption}
 
 
 ```
@@ -297,7 +295,7 @@ Using the v0 approach does not work in v1:
 ```
 
 
-Shadow DOM of <`parent-el>`:
+Shadow DOM of <`parent-el>` {.caption}
 
 
 ```
@@ -308,7 +306,7 @@ Shadow DOM of <`parent-el>`:
 ```
 
 
-Shadow DOM of `<child-el>`:
+Shadow DOM of `<child-el>` {.caption}
 
 
 ```
@@ -380,9 +378,6 @@ is equivalent to:
   </div>
 </slotted-el>
 ```
-
-
-
 
 In shadow DOM v1, **you cannot select a descendant of a top-level distributed child**. For example, you can't select the span in the previous example like this:
 
@@ -644,7 +639,7 @@ Polymer 2.0 elements target the custom elements v1 API.
 
 Polymer 2.0 introduces several changes to the contracts of the various lifecycle callbacks. Some of these are required by the custom elements v1 specification, while others are designed to improve performance.
 
-The  table in [Lifecycle changes](about_20#lifecycle-changes) summarizes the changes.
+For more information on the lifecycle callbacks, see [Lifecycle changes](about_20#lifecycle-changes).
 
 #### Creation time (created/constructor) {#creation-time-created-constructor}
 
@@ -670,6 +665,7 @@ Before {.caption}
 attached: function() {
   // measure something
 }
+```
 
 After {.caption}
 
@@ -736,10 +732,8 @@ If you have any template extension elements—dom-bind, dom-if, and dom-repeat�
 
 Before {.caption}
 
-<template is="dom-bind">
-
-
 ```
+<template is="dom-bind">
   <ul>
   <template is="dom-repeat" items="{{people}}">
     <li>{{item.name}}
@@ -784,7 +778,7 @@ For the time being, Polymer automatically wraps template extensions used in Poly
 
 ## Data system {#data-system}
 
-Polymer 2.0 includes several important changes to the data system, detailed in Data system improvements[[[LINK]]].
+Polymer 2.0 includes several important changes to the data system, detailed in [Data system improvements](about_20#data-system).
 
 ### Remove key paths and Polymer.Collection {#remove-key-paths-and-polymer-collection}
 
@@ -859,6 +853,31 @@ In order for a property to be deserialized from its attribute, it must be declar
 
 Binding a default value of `false` using an *attribute binding* to a boolean property will not override a default `true` property of the target, due to the semantics of boolean attributes.  In general, property binding should always be used when possible, and will avoid such situations.
 
+## Removed APIs {#removed-apis}
+
+The following APIs have been removed.
+
+*   `Polymer.instanceof` and `Polymer.isInstance`: no longer needed, use `instanceof` and `instanceof Polymer.Element`  instead.
+
+
+*   `element.getPropertyInfo`: This API returned unexpected information some of the time and was rarely used.
+
+
+*   `element.getNativePrototype`: Removed because it is no longer needed for internal code and was unused by users.
+
+
+*   `element.beforeRegister`: This was originally added for metadata compatibility with ES6 classes. We now prefer users create ES6 classes by extending `Polymer.Element`, specifying metadata in the static `config` property.
+
+    For legacy elements, dynamic effects may now be added using the `registered` lifecycle method.
+
+*   `element.attributeFollows`: Removed due to disuse.
+
+*   `element.classFollows`: Removed due to disuse.
+
+*   `listeners` Removed ability to use `id.event` to add listeners to elements in shadow DOM. Use declarative template event handlers instead.
+
+*    Methods starting with `_` are not guaranteed to exist (most have been removed).
+
 ## Upgrading to class-based elements {#upgrading-to-class-based-elements}
 
 To define a class-based element, create a class that extends `Polymer.Element` (a subclass of `HTMLElement`), which provides most of the same features of Polymer 1.0 based on static configuration data supplied on the class definition.
@@ -866,7 +885,7 @@ To define a class-based element, create a class that extends `Polymer.Element` (
 The basic syntax looks like this:
 
 
-```
+```html
 <!-- Load the Polymer.Element base class -->
 <link rel="import" href="bower_components/polymer/polymer-element.html">
 
@@ -897,7 +916,7 @@ customElements.define(MyElement.is, MyElement);
 You can leverage native subclassing support provided by ES6 to extend and customize existing elements defined using ES6 syntax:
 
 
-```
+```html
 // Subclass existing element
 class MyElementSubclass extends MyElement {
   static get is() { return 'my-element-subclass'; }
@@ -926,22 +945,19 @@ Below are the general steps for defining a custom element using this new syntax:
 
 
 
-*   * Implement "behaviors" as [mixins that return class expressions](http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/)
+*   Implement "behaviors" as [mixins that return class expressions](http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/).
+
 *   Property metadata (`properties` object) and complex observers (`observers` array) should be put on the class as a static in a property called `config`.
 
-
-
 *   Element's `is` property should be defined as a static on the class.
-
-
 
 *   The `listeners` and `hostAttributes` have been removed from element metadata; listeners and default attributes can be installed as and when needed. For convenience _`ensureAttribute` is available to set default attributes.
 
 
-```
-// set tab-index if it's not already set
-_ensureAttribute('tab-index', 0);
-```
+    ```
+    // set tab-index if it's not already set
+    _ensureAttribute('tab-index', 0);
+    ```
 
 
 Note that `Polymer.Element` provides a cleaner base class without much of the sugared utility API that present on legacy elements, such as `fire`, `transform`, and so on. With web platform surface area becoming far more stable across browsers, we intend to add fewer utility methods and embrace the raw platform API more.  So when using  `Polymer.Element`, instead of using the legacy `this.fire('some-event')` API, use the equivalent platform APIs:
@@ -960,38 +976,4 @@ class MyLegacyElement extends Polymer.LegacyElement { ... }
 ```
 
 
-### Removed APIs {#removed-apis}
 
-
-
-*   `Polymer.instanceof` and `Polymer.isInstance`: no longer needed, use `instanceof` and `instanceof Polymer.Element`  instead.
-
-
-
-*   `element.getPropertyInfo`: This API returned unexpected information some of the time and was rarely used.
-
-
-
-*   `element.getNativePrototype`: Removed because it is no longer needed for internal code and was unused by users.
-
-
-
-*   `element.beforeRegister`: This was originally added for metadata compatibility with ES6 classes. We now prefer users create ES6 classes by extending `Polymer.Element`, specifying metadata in the static `config` property.
-
-For legacy elements, dynamic effects may now be added using the `registered` lifecycle method.
-
-
-
-*   `element.attributeFollows`: Removed due to disuse.
-
-
-
-*   `element.classFollows`: Removed due to disuse.
-
-
-
-*   `listeners` Removed ability to use `id.event` to add listeners to elements in shadow DOM. Use declarative template event handlers instead.
-
-
-
-*   Methods starting with `_` are not guaranteed to exist (most have been removed).

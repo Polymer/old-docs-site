@@ -2,7 +2,7 @@
 title: About Polymer 2.0
 ---
 
-# About Polymer 2.0
+<!-- toc -->
 
 Polymer 2.0 is designed to support the new custom elements v1 and shadow DOM v1 specifications being implemented by most major browser vendors, while providing a smooth migration path for Polymer 1.x users.
 
@@ -21,7 +21,7 @@ Some tests currently fail on non-Chrome browsers; these will be addressed soon, 
 
 Polymer 2.0 introduces a number of breaking changes—many of which are required by new custom elements v1 and shadow DOM v1 specifications. Expect to see more changes as this new version nears release.
 
-The following sections describes the major changes in Polymer 2.0. For details on upgrading elements to Polymer 2.0, see  Polymer 2.0 upgrade guide[[[LINK]]].
+The following sections describes the major changes in Polymer 2.0. For details on upgrading elements to Polymer 2.0, see the [upgrade guide](upgrade).
 
 ## Custom elements v1
 
@@ -182,12 +182,11 @@ The shady DOM shim that was part of Polymer 1.x has been factored out of Polymer
 For hybrid elements, Polymer 2.0 includes a version the `Polymer.dom` API that forwards directly to the native API. For 2.0-only elements, `Polymer.dom` can be eliminated in favor of the native DOM APIs.
 
 **Read more on Web Fundamentals**. For an overview of shadow DOM, see [Shadow DOM v1: self-contained web components](https://developers.google.com/web/fundamentals/primers/shadowdom/?hl=en) on Web Fundamentals.
-
 {.alert .alert-info}
 
 For a brief but comprehensive set of examples illustrating the shadow DOM v1 spec changes, see [What's New in Shadow DOM v1 (by examples)](http://hayato.io/2016/shadowdomv1/) by Hayato Ito.
 
-## Data system improvements
+## Data system improvements {#data-system}
 
 Polymer 2.0 introduces a number of improvements in the data system:
 
