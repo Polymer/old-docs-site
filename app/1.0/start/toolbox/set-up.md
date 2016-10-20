@@ -11,14 +11,15 @@ templates for building Progressive Web Apps with Polymer.
 Follow the instructions below install, build, and deploy a project using an
 App Toolbox template in less than 15 minutes.
 
-## Install the Polymer CLI
+## Install the necessary tools
 
 1.  Install the LTS version (4.x) of Node.js. The current version (6.x) should work, but is not
     officially supported. Versions below LTS are not supported.
 
-1.  Install the Polymer CLI
+1.  Install the Polymer CLI and Bower
 
         npm install -g polymer-cli
+        npm install -g bower
 
 ## Initialize your project from a template
 
