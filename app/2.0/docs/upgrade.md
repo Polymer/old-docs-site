@@ -19,19 +19,9 @@ When porting a large project, you can update to Polymer 1.7 and upgrade elements
 
 The Polymer team plans to release a Polymer Upgrade tool to automatically perform a number of the changes required to upgrade 1.x elements to either hybrid or class-based style. The remaining changes require either manual code changes, testing, or both to ensure that your element operates the same in 2.0 as it did in 1.x.
 
+See [Install Polymer 2.0](about_20#installing) for installation instructions.
+
 This upgrade guide is a work in progress. Please [report issues on GitHub](https://github.com/Polymer/docs/issues/new).
-
-## Installing {#installing}
-
-You can install the Polymer 2.0 preview branch using bower:
-
-
-```
-bower install --save Polymer/polymer#2.0-preview
-```
-
-
-Note that this is not a release and may be subject to breakage.
 
 ## Shadow DOM changes {#shadow-dom-changes}
 
