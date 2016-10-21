@@ -432,6 +432,54 @@ References:
 
 Polymer 2.0 and 2.0 class-style elements are written in ES6, and can be run without transpilation in current Chrome, Safari 10, Safari Technology Preview, Firefox, and Edge.  Transpilation is required to run in IE11 and Safari 9.  We will be releasing tooling for development and production time to support this need in the future.
 
-## Polymer element availability
+## Polymer element availability {#elements}
 
 The team is in the process of updating the Polymer elements to use the new "hybrid" format compatible with both Polymer 1.7 and 2.0. Many elements repos have `2.0-preview` branches in varying degrees of stability. Use at your own risk.
+
+### Behaviors
+
+Legacy elements (and hybrid elements) use Polymer 1.x style behaviors. Class-style elements use class-expression mixins instead of Polymer 1.x behaviors.
+
+If you depend on any behaviors supplied by the Polymer team, note that these behaviors are currently
+only usable with legacy and hybrid elements. If you have dependencies on any of the Polymer
+behaviors, you should keep using the legacy (or hybrid) element format for now.
+
+## Install Polymer 2.0 {#installing}
+
+You can install the Polymer `2.0-preview` branch using bower:
+
+```
+bower install --save Polymer/polymer#2.0-preview
+```
+
+You can also use bower to install any of the available hybrid elements:
+
+```
+bower install --save PolymerElements/paper-button#2.0-preview
+```
+
+Note that all of the `2.0-preview` branches are active development branches and may break at any
+time.
+
+### Upgrade an existing project {#upgrading}
+
+When upgrading an existing project you may  want to read through
+the rest of this doc and the [upgrade guide](upgrade) before starting.
+
+If your project uses Polymer elements or behaviors, see [Polymer element availability](#elements).
+
+1.  Create a copy of your project or create a new branch to work in.
+
+1.  Find any Polymer packages in `bower.json` and replace the existing version
+    with  `2.0-preview` branch:
+
+    `polymer": "Polymer/polymer#2.0-preview"`
+
+1.  Run bower install.
+
+    `bower install`
+
+1.  See the [upgrade guide](upgrade) for information on getting your code working with 2.0.
+
+
+
