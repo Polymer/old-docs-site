@@ -661,22 +661,28 @@ After {.caption}
 
 ```
 attached: function() {
-  Polymer.RenderStatus.afterNextRender(function() {
+  // 1st argument to afterNextRender is used as the "this"
+  // value when the callback is invoked.
+  Polymer.RenderStatus.afterNextRender(this, function() {
      // measure something
-  }.bind(this))
+  });
 }
 ```
-
-Deferring work until after the constructor completes using `setTimeout` or `requestAnimationFrame`.
 
 
 #### Ready time {#ready-time}
 
-The `ready` callback, for one-time initialization, signals the creation of the element's shadow DOM. In the case of class-based elements, you need to call `super.ready()` before accessing the shadow tree.
+The `ready` callback, for one-time initialization, signals the creation of the element's shadow DOM.
+In the case of class-based elements, you need to call `super.ready()` before accessing the shadow
+tree.
 
-The major difference between 1.x and 2.0 has to do with the timing of initial light DOM distribution. In the v1 shady DOM polyfill, initial distribution of children into `<slot>` is asynchronous (microtask) to creating the `shadowRoot`, meaning distribution occurs after observers are run and `ready`  is called. In the Polymer 1.0 shim, initial distribution occurred before `ready`.
+The major difference between 1.x and 2.0 has to do with the timing of initial light DOM distribution.
+In the v1 shady DOM polyfill, initial distribution of children into `<slot>` is asynchronous
+(microtask) to creating the `shadowRoot`, meaning distribution occurs after observers are run and
+`ready`  is called. In the Polymer 1.0 shim, initial distribution occurred before `ready`.
 
-To check the initial distribution, use `setTimeout` or `requestAnimationFrame` from `ready`. The callback should fire after initial distribution is complete.
+To check the initial distribution, use `setTimeout` or `requestAnimationFrame` from `ready`. The
+callback should fire after initial distribution is complete.
 
 
 ```
@@ -688,7 +694,8 @@ ready: function() {
 ```
 
 
-You can use a `slotchange` event listener to react to runtime changes to distribution, but the event listener doesn't fire for the *initial* distribution.
+You can use a `slotchange` event listener to react to runtime changes to distribution, but the event
+listener doesn't fire for the *initial* distribution.
 
 
 ```
@@ -700,11 +707,14 @@ ready: function() {
 ```
 
 
- In order to force distribution synchronously, call `ShadyDOM.flush()`. This can be useful for unit tests.
+ In order to force distribution synchronously, call `ShadyDOM.flush()`. This can be useful for unit
+ tests.
+
 
 ### Remove type-extension elements {#remove-type-extension-elements}
 
-Polymer doesn't support type-extension elements (such as `<input is="iron-input">`). For a discussion of this change, see [Type-extension elements](about_20#type-extension)
+Polymer doesn't support type-extension elements (such as `<input is="iron-input">`). For a discussion
+of this change, see [Type-extension elements](about_20#type-extension)
 
 
 
