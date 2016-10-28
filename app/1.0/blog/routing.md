@@ -91,7 +91,7 @@ Let’s walk back a bit and consider the routing problem, one piece at a time, b
 
 `<app-route>` deals with hierarchical, slash separated paths. You give it a pattern, and it tells you when the input matches.
 
-If the pattern contains any variables, like `/:tabName` then the <app-route> extracts that portion of the matched URL and exposes it via the `data` object. It also exposes the rest of the path that it didn’t match, but we’ll get to that later.
+If the pattern contains any variables, like `/:tabName` then the `<app-route>` extracts that portion of the matched URL and exposes it via the `data` object. It also exposes the rest of the path that it didn’t match, but we’ll get to that later.
 
 We're still iterating on the syntax of `pattern`. The most surprising thing to notice is that `/foo` will match `/foo`, `/foo/`, and `/foo/bar/baz`. The pattern `/foo/` with a trailing slash however will only match `/foo/`.
 
