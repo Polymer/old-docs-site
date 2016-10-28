@@ -102,8 +102,8 @@ Before {.caption}
     </h2>
     <div>
       <content></content>
-        </div>
-    </template>
+    </div>
+  </template>
 </dom-module>
 
   ...
@@ -127,7 +127,7 @@ After {.caption}
       <slot name="title"></slot>
     </h2>
     <div>
-      <content></content>
+      <slot></slot>
     </div>
   </template>
 </dom-module>
