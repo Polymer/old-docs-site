@@ -473,7 +473,7 @@ If your project uses Polymer elements or behaviors, see [Polymer element availab
 1.  Find any Polymer packages in `bower.json` and replace the existing version
     with  `2.0-preview` branch:
 
-    `polymer": "Polymer/polymer#2.0-preview"`
+    `"polymer": "Polymer/polymer#2.0-preview"`
 
 1.  Run bower install.
 
