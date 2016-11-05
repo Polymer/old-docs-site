@@ -126,7 +126,7 @@ Learn more: data binding</a></p>
 
 ### Declare a property
 
-Properties are an important part of an element's public API. Polymer
+Properties are an important part of an element's public API. Polymer's
 _declared properties_ support a number of common patterns for properties—setting default
 values, configuring properties from markup, observing property changes, and more.
 
