@@ -150,6 +150,7 @@ Every Polymer element has the following array mutation methods available:
 *   <code>push(<var>path</var>, <var>item1</var>, [..., <var>itemN</var>])</code>
 *   <code>pop(<var>path</var>)</code>
 *   <code>unshift(<var>path</var>, <var>item1</var>, [..., <var>itemN</var>])</code>
+*   <code>set(<var>path</var>,<var>item</var>)</code>
 *   <code>shift(<var>path</var>)</code>
 *   <code>splice(<var>path</var>, <var>index</var>, <var>removeCount</var>, [<var>item1</var>,
     ..., <var>itemN</var>])</code>
