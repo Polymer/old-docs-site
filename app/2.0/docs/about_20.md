@@ -237,8 +237,8 @@ Because `property` still points to the same object, the dirty check fails, and s
 
 
 ```
-This.property.stringProperty = 'new value!';
-This.property.counter++;
+this.property.stringProperty = 'new value!';
+this.property.counter++;
 this.notifyPath('property');
 ```
 
