@@ -71,7 +71,7 @@ For more on data flow, see [How data flow is controlled](data-system#data-flow-c
 ## Bind to a target property {#property-binding}
 
 To bind to a target property, specify the attribute name that corresponds to the
-property, with an [annotation](#binding-annotation) or [compound binding](#compound-binding)
+property, with an [annotation](#binding-annotation) or [compound binding](#compound-bindings)
 as the attribute value:
 
 ```
@@ -152,7 +152,7 @@ To bind to an attribute, add a dollar sign (`$`) after the attribute name:
 ```
 
 Where the attribute value is either a [binding annotation](#binding-annotation) or a [compound
-binding](#compound-binding).
+binding](#compound-bindings).
 
 Attribute binding results in a call to:
 
