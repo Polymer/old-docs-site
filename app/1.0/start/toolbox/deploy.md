@@ -139,7 +139,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
 
     ```
     "rewrites": [ {
-      "source": "**/!{*.*}",
+      "source": "**",
       "destination": "/index.html"
     } ]
     ```
