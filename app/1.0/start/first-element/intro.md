@@ -37,32 +37,6 @@ To follow this tutorial, you'll need:
 follow the instruction in [Step 1: No install version](#noinstall).
 { .alert .alert-info }
 
-
-### Download the starting code
-
-1.  Click the button to download the starting code as a ZIP file.
-
-    <a class="blue-button" href="https://github.com/googlecodelabs/polymer-first-elements/releases/download/v1.0/polymer-first-elements.zip">
-      Download ZIP
-    </a>
-
-2.  Expand the archive to create your project folder.
-
-    Your project folder should look something like
-    this:
-
-    <pre>
-    README.md
-    bower.json
-    bower_components/
-    demo/
-    icon-toggle-finished/
-    icon-toggle.html
-    </pre>
-
-    The main file you'll work with is `icon-toggle.html`, which contains the definition for your custom element.
-
-
 ### Install Polymer CLI.
 
 Install the Polymer CLI to serve the demo locally.
@@ -80,6 +54,35 @@ Install the Polymer CLI to serve the demo locally.
 4.  Install Polymer CLI.
 
         npm install -g polymer-cli
+
+### Download the starting code
+
+1. Clone this repo
+
+    <pre>
+    git clone https://github.com/googlecodelabs/polymer-first-elements.git
+    </pre>
+
+2. Change directory to your local repo and install dependencies with Bower
+
+    <pre>
+    cd polymer-first-elements
+    bower install
+    </pre>
+
+    Your project folder should look something like
+    this:
+
+    <pre>
+    README.md
+    bower.json
+    bower_components/
+    demo/
+    icon-toggle-finished/
+    icon-toggle.html
+    </pre>
+
+    The main file you'll work with is `icon-toggle.html`, which contains the definition for your custom element.
 
 ### Run the demo
 
