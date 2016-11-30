@@ -131,10 +131,16 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
     the following section to your `firebase.json` file.
 
     ```
-    "rewrites": [ {
-      "source": "**/!{*.*}",
-      "destination": "/index.html"
-    } ]
+    "rewrites": [
+      {
+        "source": "!/__/**",
+        "destination": "/index.html"
+      },
+      {
+        "source": "**/!(*.js|*.html|*.css|*.json|*.svg|*.png|*.jpg|*.jpeg)",
+        "destination": "/index.html"
+      }
+    ]
     ```
 
     This instructs Firebase to serve up `index.html` for any URLs that don't
