@@ -102,7 +102,7 @@ In Polymer 1.x, attributes were deserialized for both explicitly declared proper
   <tr>
    <td><code>ready</code> (Polymer specific)
    </td>
-   <td>Polymer longer guarantees that the initial light DOM distribution is complete before ready is called.
+   <td>Polymer no longer guarantees that the initial light DOM distribution is complete before ready is called.
    </td>
   </tr>
 </table>
