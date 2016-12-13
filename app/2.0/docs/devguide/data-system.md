@@ -54,7 +54,7 @@ div element.](/images/1.0/data-system/data-binding-overview-new.png)
 3.  Data bindings in the template link the JavaScript object to the `<div>` element.
 
 The data system is based on *paths*, not objects, where a path represents a property or subproperty
-*relative to an element*. For example, the `<name-card>` element has data bindings for the paths
+*relative to the host element*. For example, the `<name-card>` element has data bindings for the paths
 `"name.first"` and `"name.last"`. If a `<name-card>` has the following object for its `name`
 property:
 

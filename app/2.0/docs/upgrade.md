@@ -576,12 +576,16 @@ Polymer 2.0 continues to use a shim to provide limited support for CSS custom pr
 
 The following changes have been made in the shim that Polymer 2.0 uses:
 
-
-
 *   The shim always uses native CSS custom properties on browsers that support them. This was optional in 1.x, and it introduces some limitations on the use of mixins.
 *   The `customStyle` instance property has been removed. Use `updateStyles` instead.
 *   Change any code that imperatively creates `custom-style` elements.
 *   Invalid custom properties syntax is no longer supported. These changes are described in [Shadow DOM styles](#shadow-dom-styles).
+
+### Include the polyfills
+
+Because the CSS custom property shim has been moved out of the Polymer.library, you **must include
+the polyfills in order to use custom property mixins.** Currently, only the full polyfill set
+ (`webcomponents-lite.js`) is tested and supported.
 
 ### Native custom properties {#native-custom-properties}
 
