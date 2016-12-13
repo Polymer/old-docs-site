@@ -1,4 +1,28 @@
 ---
+- title: "Polymer Summit Livestream 2016"
+  path: /1.0/blog/2016-10-17-tune-into-livestream
+  published: 2016-10-17
+  author: polymer-team
+  description: "Tune into the Polymer Summit 2016 livestream."
+  tags:
+     - blog
+     - announcements
+- title: "Get Ready for the Polymer Summit 2016"
+  path: /1.0/blog/2016-10-10-get-ready-for-summit
+  published: 2016-10-10
+  author: polymer-team
+  description: "We're ready for Polymer Summit 2016, are you? Here are the latest event details."
+  tags:
+     - blog
+     - announcements
+- title: "Please Welcome Polymer 1.7"
+  path: /1.0/blog/2016-10-03-1.7-release
+  published: 2016-10-06
+  author: polymer-team
+  description: "Polymer 1.7 provides forward compatibility features, plus a few bug fixes."
+  tags:
+     - blog
+     - announcements
 - title: "Polymer 2.0 Preview"
   path: /1.0/blog/2016-09-09-polymer-2.0
   published: 2016-09-09
