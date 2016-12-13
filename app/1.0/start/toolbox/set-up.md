@@ -16,7 +16,7 @@ App Toolbox template in less than 15 minutes.
 1.  Install the LTS version (4.x) of Node.js. The current version (6.x) should work, but is not
     officially supported. Versions below LTS are not supported.
 
-1. If you don't have them installed, install bower and gulp
+1. If you don't have bower installed, install it
 
         npm install -g bower
 
