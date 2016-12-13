@@ -70,5 +70,5 @@ Sample application loading resources from an external file. { .caption.}
 The main app is also responsible for loading the `Intl` polyfill
 (not shown above).
 
-Each element that needs to localize messages should also add the `Polymer.AppLocalizationBehavior`
+Each element that needs to localize messages should also add the `Polymer.AppLocalizeBehavior`
 and use the `localize` method to translate strings, as shown above.
