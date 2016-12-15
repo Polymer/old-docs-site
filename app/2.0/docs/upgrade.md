@@ -484,7 +484,7 @@ Before {.caption}
 
 
 ```html
-<style is="custom-style>
+<style is="custom-style">
   :root {
     --my-theme-color: #9C27B0;
   }
@@ -497,7 +497,7 @@ Before {.caption}
 
 ```html
 <custom-style>
-  <style is="custom-style>
+  <style is="custom-style">
     html {
       --my-theme-color: #9C27B0;
     }
