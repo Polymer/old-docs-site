@@ -21,7 +21,7 @@ Declared properties can specify:
 Many of these features are tightly integrated into the [data system](data-system), and are
 documented in the data system section.
 
-In addition, declared properties can be configured property from markup using a static attribute
+In addition, a declared property can be configured from markup using an attribute
 (see [attribute deserialization](#attribute-deserialization) for details).
 
 **In most cases, a property that's part of your element's public API should be declared in the

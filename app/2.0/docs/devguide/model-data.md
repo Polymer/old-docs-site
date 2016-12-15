@@ -161,25 +161,11 @@ Example { .caption }
 </dom-module>
 ```
 
-### Notify Polymer of array mutations {#notifysplices}
+Sometimes it's not convenient to use the Polymer [array mutation methods](#array-mutation),
+or you don't know the exact changes that occurred (for example, if you manipulate
+the array using a third-party library).
 
-
-When it's not convenient to use the Polymer [array mutation methods](#array-mutation).
-However, this isn't always possible. For example, you may be using a third-party library
-that does not use Polymer's array mutation methods. In these scenarios you can call
-<a href="/1.0/docs/api/Polymer.Base#method-notifySplices">`notifySplices`</a>
-after each mutation to ensure that any Polymer elements observing the array
-are properly notified of the changes.
-
-The `notifySplices` method requires the array mutations to be *normalized* into a series of `splice`
-operations. For example, calling `shift` on an array removes the first element of the array, so is
-equivalent to calling `splice(0, 1)`.
-
-Splices should be applied in index order, so that the element can update its internal representation
-of the array.
-
-If you don't know the exact changes that occurred (for example, if you manipulate
-the array using a third-party library), you can force the data system to refresh the
+In this case, you can force the data system to refresh the
 entire array:
 
 ```
@@ -188,29 +174,6 @@ this.notifyPath('myArray');
 
 For more  information, see [Batch changes to an object or array](#batch-changes).
 
-### Look up an array item by key {#get-array-item}
-
-To retrieve an array item by key, you can simply use the `get` method described in [Get a value
-by path](#get-value).
-
-```js
-var item = this.get(['myArray', key]);
-```
-
-### Find the index for an array item {#get-array-index}
-
-In some situations, such as inside an observer, you may have an array key or the array item itself,
-but not have its index. If you have the key or the full path to the item, use `get` to look up the
-item. Then use the standard array `indexOf` method to determine the index.
-
-```js
-// Delete an item, based on the item's key
-var item = this.get(['myArray', key]);
-var index = this.myArray.indexOf(item);
-if (index != -1) {
-  this.splice('myArray', index, 1, )
-}
-```
 
 ## Batch changes to an object or array {#batch-changes}
 
