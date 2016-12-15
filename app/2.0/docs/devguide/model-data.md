@@ -57,24 +57,20 @@ var item = this.get(['myArray', 11])
 Use the [`set`](/1.0/docs/api/Polymer.Base#method-set) method to make an [observable
 change](data-system#observable-changes) to a subproperty.
 
-```
+```js
 // clear an array
 this.set('group.members', []);
 // set a subproperty
 this.set('profile.name', 'Alex');
 ```
 
-Calling `set` has no effect if the value of the property or subproperty hasn't changed. In
-particular, calling `set` on an object property won't cause Polymer to pick up changes to the
-object's subproperties, unless the object itself changes. Likewise, calling `set` on an array
-property won't cause Polymer to pick up array mutations.
+When  you call `set` on an object or array, Polymer re-evaluates the entire object graph starting at
+that object or array.
 
-```
-// DOES NOT WORK—use notifyPath instead
+```js
 this.profile.name = Alex;
 this.set('profile', this.profile);
 
-// DOES NOT WORK—use notifySplices instead
 this.users.push({name: 'Grace'});
 this.set('users', this.users);
 ```
@@ -94,13 +90,18 @@ this.profile.name = Alex;
 this.notifyPath('profile.name');
 ```
 
-When calling `notifyPath`, you need to use the **exact path** that changed. For example, calling
-`this.notifyPath('profile')` doesn't pick up a change to `profile.name` because the `profile` object
-itself hasn't changed.
+When you call `notifyPath` on an object or array, Polymer re-evaluates the entire object graph
+starting at that object or array. For example, calling `this.notifyPath('profile')` picks up a
+change to `profile.name` even if the `profile` object itself hasn't changed.
 
-If multiple subproperties have changed, or you don't know the exact changes, see
-[Override dirty checking](#override-dirty-check).
+If multiple subproperties have changed, or you don't know the exact changes, you can notify
+on the parent path to force Polymer to re-evaluate an entire object or array.
 
+```
+this.notifyPath('profile');
+```
+
+For more information, see [Batch changes to an object or array](#batch-changes).
 
 ## Work with arrays {#work-with-arrays}
 
@@ -109,27 +110,6 @@ to arrays.
 
 If you manipulate an array using the native methods (like `Array.prototype.push`), you can notify
 Polymer after the fact.
-
-Note that Polymer's array handling has the following constraints:
-
--   **Array items must be unique**. The data system uses object identity to compare
-    array items, so array items must be unique.
--   **Primitive array items are not supported.** This is because primitives (like number, string
-    and boolean values) with the same value are represented by the same object. Consider an array
-    of numbers:
-
-    ```
-    this.numbers = [1, 1, 2];
-    ```
-
-    The data system can't handle changes to this array property, because the first two items aren't
-    unique.
-
-You can work around these constraints by wrapping primitives in objects to ensure uniqueness:
-
-```
-this.numbers = [{ value: 1}, {value: 1}, {value: 3}];
-```
 
 ### Mutate an array {#array-mutation}
 
@@ -154,9 +134,9 @@ Every Polymer element has the following array mutation methods available:
 *   <code>splice(<var>path</var>, <var>index</var>, <var>removeCount</var>, [<var>item1</var>,
     ..., <var>itemN</var>])</code>
 
-Example: { .caption }
+Example { .caption }
 
-```
+```html
 <dom-module id="custom-element">
   <template>
     <template is="dom-repeat" items="[[users]]">{{item}}</template>
@@ -181,87 +161,59 @@ Example: { .caption }
 </dom-module>
 ```
 
-### Notify Polymer of array mutations {#notifysplices}
+Sometimes it's not convenient to use the Polymer [array mutation methods](#array-mutation),
+or you don't know the exact changes that occurred (for example, if you manipulate
+the array using a third-party library).
 
-
-Whenever possible you should always use Polymer's [array mutation methods](#array-mutation).
-However, this isn't always possible. For example, you may be using a third-party library
-that does not use Polymer's array mutation methods. In these scenarios you can call
-<a href="/1.0/docs/api/Polymer.Base#method-notifySplices">`notifySplices`</a>
-after each mutation to ensure that any Polymer elements observing the array
-are properly notified of the changes.
-
-The `notifySplices` method requires the array mutations to be *normalized* into a series of `splice`
-operations. For example, calling `shift` on an array removes the first element of the array, so is
-equivalent to calling `splice(0, 1)`.
-
-Splices should be applied in index order, so that the element can update its internal representation
-of the array.
-
-If you don't know the exact changes that occurred (for example, if you manipulate
-the array using a third-party library), you can force the data system to refresh the
-entire array—see [Override dirty checking](#override-dirty-check).
-
-### Look up an array item by key {#get-array-item}
-
-To retrieve an array item by key, you can simply use the `get` method described in [Get a value
-by path](#get-value).
+In this case, you can force the data system to refresh the
+entire array:
 
 ```
-var item = this.get(['myArray', key]);
+this.notifyPath('myArray');
 ```
 
-### Find the index for an array item {#get-array-index}
+For more  information, see [Batch changes to an object or array](#batch-changes).
 
-In some situations, such as inside an observer, you may have an array key or the array item itself,
-but not have its index. If you have the key or the full path to the item, use `get` to look up the
-item. Then use the standard array `indexOf` method to determine the index.
 
-```
-// Delete an item, based on the item's key
-var item = this.get(['myArray', key]);
-var index = this.myArray.indexOf(item);
-if (index != -1) {
-  this.splice('myArray', index, 1, )
-}
-```
+## Batch changes to an object or array {#batch-changes}
 
-## Override dirty checking {#override-dirty-check}
+After making a set of unobservable changes to an object or array, you can signal Polymer to
+reevaluate the entire object or array by calling `notifyPath`.
 
-When processing an [observable change](data-system#observable-changes), Polymer performs dirty
-checking and doesn't produce any property effects if the value at the specified path hasn't changed.
+This can be more performant than making individual observable changes, because the related property
+effects are only evaluated once. For example, when making multiple changes to an object:
 
-Sometimes, when you have a number of changes to an object or array, or you don't know the exact
-changes to the object or array, it's desirable to skip the dirty checking.
-
-To force the data system to skip the dirty check, set a path to an empty object or array,
-then back to the original object or array. This makes the data system re-evaluate all property
-effects related to that path and its subpaths.
-
-```
+```js
+// Mutate object
+this.address.street = 'Half Moon Street';
+this.address.number = '123';
+this.address.name = 'Smith';
 // Force data system to pick up subproperty changes
-var address = this.address;
-this.address = {};
-this.address = address;
+this.notifyPath('address');
 ```
 
-```
+Similarly, when you make multiple changes to an array:
+
+```js
+// Mutate array
+this.myArray.push(newItem1, newItem2);
+this.myArray.splice(1, 2, newItem3, newItem4);
 // Force data system to pick up array mutations
-var array = this.myArray;
-this.myArray = [];
-this.myArray = array;
-```
-
-This pattern also works with `set`:
-
-```
-// Force data system to reevaluate a subproperty
-var members = this.group.members;
-this.set('group.members', []);
-this.set('group.members', members);
+this.notifyPath('myArray');
 ```
 
 If the property is a large array or a complicated object, this process may be expensive.
+
+## Batch multiple property changes {#set-property}
+
+Use `setProperties` to make a batch change to a set of properties. This ensures the property changes
+run as a coherent set.
+
+```js
+this.setProperties({
+
+})
+```
 
 ## Link two paths to the same object {#linkpaths}
 
