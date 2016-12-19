@@ -292,7 +292,6 @@ There are several other benefits to this change:
 *   Arrays of primitive values are supported.
 *   Array items don't need to be unique.
 *   Simple observers on an array property are notified when the array is mutated observably. (Before, they were notified only when the array itself changed.)
-*
 
 Array splice notifications are only generated if you use the Polymer array mutation APIs. No splice notifications are generated when you set the top-level property.
 
