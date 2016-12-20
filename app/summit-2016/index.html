@@ -43,6 +43,7 @@
                 <a name="home" class="menu-item" href="/summit">HOME</a>
                 <br><a name="schedule" class="menu-item" href="/summit/schedule">SCHEDULE</a>
                 <br><a name="speakers" class="menu-item" href="/summit/speakers">SPEAKERS</a>
+                <a name="codelabs" class="menu-item" href="/summit/codelabs" target="_blank">CODELABS</a>
               </iron-selector>
           </div>
             <x-header-layout class="header-layout" main="" page$="[[page]]">
@@ -54,6 +55,7 @@
                               <a name="home" class="tab" href="/summit">HOME</a>
                               <a name="schedule" class="tab" href="/summit/schedule">SCHEDULE</a>
                               <a name="speakers" class="tab" href="/summit/speakers">SPEAKERS</a>
+                              <a name="codelabs" class="tab" href="/summit/codelabs" target="_blank">CODELABS</a>
                             </iron-selector>
                         </div>
                         <div class="header-tools horizontal center layout">
@@ -72,7 +74,7 @@
                       <template is="dom-if" if="[[hasLivestream]]">
                           <header class="home-header-livestream">
                               <div class="livestream-container">
-                                  <google-youtube class="livestream" list-type="playlist" list="PLNYkxOF6rcICdISJclfQhj2S8QZGjXV8J" video-id="[[livestreamVideoId]]" fluid=""></google-youtube>
+                                  <google-youtube class="livestream" list-type="playlist" list="PLNYkxOF6rcICc687SxHQRuo9TVNOJelSZ" video-id="[[livestreamVideoId]]" fluid=""></google-youtube>
                               </div>
                           </header>
                       </template>
@@ -88,10 +90,9 @@
                       </div>
                       <div class="wait-list-banner">
                           <div>
-                            <span>Polymer Summit 2016 registration is open - but we're all out of space!</span>
-                              <br><span></span> <a class="pink-arrow-btn" href="https://events.withgoogle.com/polymer-summit-2016/registrations/new/">Join the waitlist</a>
-                              <br><br><span>Can't make it to the Summit? Stay up to date with the livestream.</span>
-                              <br><span></span> <a class="pink-arrow-btn" href="https://services.google.com/fb/forms/pol2016/">Stay in the loop</a>
+                            <span>Polymer Summit 2016 is all over! But you can still </span>
+                              <br><span></span> <a class="pink-arrow-btn" href="https://www.youtube.com/playlist?list=PLNYkxOF6rcICc687SxHQRuo9TVNOJelSZ">Watch the videos</a>
+                              or  <a class="pink-arrow-btn" href="/summit/codelabs" target="_blank">Try a codelab</a> at home.
                           </div>
                       </div>
                       <div>
@@ -122,11 +123,28 @@
                                   <div>BY CAR</div>
                                   <div class="direction">There will be <a href="https://tfl.gov.uk/status-updates/major-works-and-events/tower-bridge-closure">extensive road work on Tower Bridge</a> during the event, which may affect your journey to Tobacco Dock.
                                     <br>Limited parking will be available opposite Tobacco Dock, which we recommend <a href="https://www.parkjockey.com/search/Tobacco%20Dock/Dock%2C%20Tobacco%20Quay%2C%2C%20Wapping%20Ln%2C%20London%20E1W%202SF%2C%20United%20Kingdom/51.507959/-0.058841/201605251400/201605251700">booking in advance.</a></div>
+
+                                  <div>BY SHUTTLE</div>
+                                  <div class="direction">
+                                  Monday October 17
+                                  <br>Departs from Guoman Tower Hotel to Tobacco Dock:
+                                  7:45, 8:15
+                                  <br>Departs from Tobacco Dock to Guoman Tower Hotel:
+                                  21:00, 21:30, 22:00
+                                  </div>
+                                  <div class="direction">
+                                  Tuesday, 18 October
+                                  <br>Departs from Guoman Tower Hotel to Tobacco Dock:
+                                  7:45, 8:15
+                                  <br>Departs from Tobacco Dock to Guoman Tower Hotel:
+                                  18:15, 18:45
+                                  </div>
                                   <div>NEARBY HOTELS</div>
-                                  <div class="direction"><a href="http://www.guoman.com/en/hotels/united_kingdom/london/the_tower/index.html">Guoman Tower Hotel</a> - 15 min walk <br /><span style="font-style: italic;">Shuttles provided from The Tower Hotel to the event.</span></div>
-                                  <div class="direction"><a href="https://www.travelodge.co.uk/hotels/355/London-Central-Aldgate-East-hotel">Travelodge London Central Aldgate East</a> - 15 minute walk</a></div>
-                                  <div class="direction"><a href="http://www.hilondoncommercialroadhotel.co.uk/">Holiday Inn London - Commercial Road</a> - 12 minute walk</div>
-                                  <div class="direction"><a href="https://www.grangehotels.com/hotels-london/grange-tower-bridge/about-this-hotel/">Grange Tower Bridge</a> - 16 minute walk</div>
+                                  <div class="direction"><a href="http://www.guoman.com/en/hotels/united_kingdom/london/the_tower/index.html">Guoman Tower Hotel</a>—15 min walk.
+ <br /><span style="font-style: italic;">Shuttles provided from The Tower Hotel to the event.</span></div>
+                                  <div class="direction"><a href="https://www.travelodge.co.uk/hotels/355/London-Central-Aldgate-East-hotel">Travelodge London Central Aldgate East</a>—15 minute walk</a></div>
+                                  <div class="direction"><a href="http://www.hilondoncommercialroadhotel.co.uk/">Holiday Inn London - Commercial Road</a>—12 minute walk</div>
+                                  <div class="direction"><a href="https://www.grangehotels.com/hotels-london/grange-tower-bridge/about-this-hotel/">Grange Tower Bridge</a>—16 minute walk</div>
                               </section>
                           </div>
                       </div>
@@ -211,12 +229,13 @@
         var app = document.querySelector('#app');
 
         // Flip to true to make the livestream player go live
-        app.hasLivestream = false;
+        app.hasLivestream = true;
 
         // Add the ID of the livestream video here
         // Day1 video ID: "_YFnfYJaqlA"
         // Day2 video ID: "zxcfPACo4-g"
-        app.livestreamVideoId = "_YFnfYJaqlA";
+        // Day 1 keynote: "VBbejeKHrjg"
+        app.livestreamVideoId = "VBbejeKHrjg";
 
         app._toggleDrawer = function(e) {
             if (e.keyCode === 13) {

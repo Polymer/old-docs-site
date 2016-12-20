@@ -1,0 +1,28 @@
+<link rel="import"  href="https://polygit.org/polymer+:2.0-preview/webcomponentsjs+:v1/shadydom+webcomponents+:master/shadycss+webcomponents+:master/custom-elements+webcomponents+:master/components/polymer/polymer.html">
+
+<dom-module id="picture-frame">
+
+  <template>
+    <!-- scoped CSS for this element -->
+    <style>
+      div {
+        display: inline-block;
+        background-color: #ccc;
+        border-radius: 8px;
+        padding: 4px;
+      }
+    </style>
+    <div>
+      <!-- any children are rendered here -->
+      <slot></slot>
+    </div>
+  </template>
+
+  <script>
+    class PictureFrame extends Polymer.Element {
+      static get is() { return "picture-frame"; }
+    }
+    customElements.define(PictureFrame.is, PictureFrame);
+  </script>
+
+</dom-module>
