@@ -1,4 +1,12 @@
 ---
+- title: "2.0 is on the way!"
+  path: /1.0/blog/2016-12-21-polymer-2.0-update
+  published: 2016-10-17
+  author: polymer-team
+  description: "An update on Polymer 2.0 progress."
+  tags:
+     - blog
+     - announcements
 - title: "Polymer Summit Livestream 2016"
   path: /1.0/blog/2016-10-17-tune-into-livestream
   published: 2016-10-17
