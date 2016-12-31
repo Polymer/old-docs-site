@@ -704,9 +704,14 @@ listener doesn't fire for the *initial* distribution.
 
 ```
 ready: function() {
+  // super.ready(); // if in a 2.0 only system
   var this._boundHandler = this._processLightChildren.bind(this);
-  setTimeout(this._processLightChildren);
+  setTimeout(this._boundHandler);
   this.$.slot.addEventListener('slotchange', this._processLightChildren);
+}
+
+_processLightChildren: function() {
+  console.log(this.$.slotmobileimage.assignedNodes());
 }
 ```
 
