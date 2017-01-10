@@ -3,7 +3,7 @@ title:  "webcomponents.org"
 
 ---
 
-In the last few years, the Web Components community has grown immensely. The [Polymer Slack channel](http://bit.ly/polymerslack) has over 6,000 members, and there are thousands of Web Component repositories on Bower. And with the new “v1” version of the Web Component specs, Web Components are now gaining broad cross-browser support. 
+In the last few years, the Web Components community has grown immensely. The [Polymer Slack channel](http://bit.ly/polymerslack) has over 6,000 members, and there are thousands of Web Component repositories on Bower. And with the new “v1” versions of the [Shadow DOM](https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom) and [Custom Elements](https://developers.google.com/web/fundamentals/getting-started/primers/customelements) specs, Web Components are now gaining broad cross-browser support.
 
 The [webcomponents.org](https://www.webcomponents.org) site has been an excellent home for the Web Components world for a number of years, with articles on how to get started with Web Components as well as content and updates from the broader community. We’re extremely excited for today’s major update to the site, with all the great content you know and love as well as a built-in catalog for high-quality, community-built web components.
 
@@ -20,6 +20,6 @@ The catalog is full of features that let you explore the world of custom element
 
 All of the elements and element product lines currently built and maintained by the Polymer Project are [published on the new catalog](https://www.webcomponents.org/author/PolymerElements). We’re now considering the previous catalog site - [elements.polymer-project.org/](https://elements.polymer-project.org/) - deprecated in favor of webcomponents.org, and plan to eventually redirect all URL’s from elements.polymer-project.org to the new catalog.
 
-The new catalog and site is a constant work in progress, so please feel free to file issues, ideas, or PR’s to the [repository](https://github.com/webcomponents/beta).
+The new catalog and site is a constant work in progress and community-driven, so please feel free to file issues, ideas, or PR’s to the [repository](https://github.com/webcomponents/beta).
 
 Happy componentizing!
