@@ -1,4 +1,20 @@
 ---
+- title: "webcomponents.org"
+  path: /1.0/blog/2017-01-09-webcomponents-org
+  published: 2017-01-09
+  author: polymer-team
+  description: "The new webcomponents.org is now live, with updates and elements from the Web Components community."
+  tag:
+    - blog
+    - announcements
+- title: "2.0 is on the way!"
+  path: /1.0/blog/2016-12-21-polymer-2.0-update
+  published: 2016-12-21
+  author: polymer-team
+  description: "An update on Polymer 2.0 progress."
+  tags:
+     - blog
+     - announcements
 - title: "Polymer Summit Livestream 2016"
   path: /1.0/blog/2016-10-17-tune-into-livestream
   published: 2016-10-17

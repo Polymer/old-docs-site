@@ -4,14 +4,10 @@ title: Declared Properties
 
 <!-- toc -->
 
-You can declare properties on your custom element by adding them to
-the `properties` object on your prototype. Adding a property to the `properties`
-object allows a user to configure the property from markup (see
-[attribute deserialization](#attribute-deserialization) for details).
-**Any property that's part of your element's public API should be declared in the
-`properties` object.**
+You can declare properties on an element to add a default value and enable various features in the
+data system.
 
-In addition, the `properties` object can be used to specify:
+Declared properties can specify:
 
 *   Property type.
 *   Default value.
@@ -23,30 +19,46 @@ In addition, the `properties` object can be used to specify:
     value changes.
 
 Many of these features are tightly integrated into the [data system](data-system), and are
-documented in the Data system section.
+documented in the data system section.
+
+In addition, a declared property can be configured from markup using an attribute
+(see [attribute deserialization](#attribute-deserialization) for details).
+
+**In most cases, a property that's part of your element's public API should be declared in the
+`properties` object.**
+
+
+To declare properties, add a static `config` getter to the element's class. The getter returns an
+object with a nested `properties` object that includes the property declarations.
 
 Example { .caption }
 
-```
-Polymer({
+```js
+class XCustom extends Polymer.Element {
 
-  is: 'x-custom',
+  static get is() {return 'x-custom'; }
 
-  properties: {
-    user: String,
-    isHappy: Boolean,
-    count: {
-      type: Number,
-      readOnly: true,
-      notify: true
+  static get config() {
+    return {
+      properties: {
+        user: String,
+        isHappy: Boolean,
+        count: {
+          type: Number,
+          readOnly: true,
+          notify: true
+        }
+      }
     }
-  },
+  }
 
-  ready: function() {
+  ready() {
     this.textContent = 'Hello World, I am a Custom Element!';
   }
 
-});
+}
+
+customElements.define(XCustom.is, XCustom);
 ```
 
 The `properties` object supports the following keys for each property:
@@ -179,29 +191,32 @@ gets its default value.
 
 Example: { .caption }
 
-```
+```html
 <script>
+  class XCustom extends Polymer.Element {
 
-  Polymer({
+    static get is() {return 'x-custom'; }
 
-    is: 'x-custom',
-
-    properties: {
-      user: String,
-      manager: {
-        type: Boolean,
-        notify: true
+    static get config() {
+      return {
+        properties: {
+          user: String,
+          manager: {
+            type: Boolean,
+            notify: true
+          }
+        }
       }
-    },
+    }
 
     attached: function() {
       // render
       this.textContent = 'Hello World, my user is ' + (this.user || 'nobody') + '.\n' +
         'This user is ' + (this.manager ? '' : 'not') + ' a manager.';
     }
+  }
 
-  });
-
+  customElements.define(XCustom.is, XCustom);
 </script>
 
 <x-custom user="Scott" manager></x-custom>
@@ -212,24 +227,28 @@ This user is a manager.
 -->
 ```
 
-In order to configure camel-case properties of elements using attributes, dash-
+To configure camel-case properties of elements using attributes, dash-
 case should be used in the attribute name.
 
 Example: { .caption }
 
-```
+```html
 <script>
 
-  Polymer({
+  class XCustom extends Polymer.Element {
 
-    is: 'x-custom',
+    static get is() {return 'x-custom'; }
 
-    properties: {
-      userName: String
+    static get config() {
+      return {
+        properties: {
+          userName: String
+        }
+      }
     }
+  }
 
-  });
-
+  customElements.define(XCustom.is, XCustom);
 </script>
 
 <x-custom user-name="Scott"></x-custom>
@@ -240,12 +259,16 @@ Example: { .caption }
 example, when the attribute is changed using `setAttribute`).  However, it is
 encouraged that attributes only be used for configuring properties in static
 markup, and instead that properties are set directly for changes at runtime.
+{.alert .alert-info}
 
 ### Configuring boolean properties
 
-For a Boolean property to be configurable from markup, it must default to `false`. If it defaults to `true`, you cannot set it to `false` from markup, since the presence of the attribute, with or without a value, equates to `true`. This is the standard behavior for attributes in the web platform.
+For a Boolean property to be configurable from markup, it must default to `false`. If it defaults
+to `true`, you cannot set it to `false` from markup, since the presence of the attribute, with or
+without a value, equates to `true`. This is the standard behavior for attributes in the web platform.
 
-If this behavior doesn't fit your use case, you can use a string-valued or number-valued attribute instead.
+If this behavior doesn't fit your use case, you can use a string-valued or number-valued attribute
+instead.
 
 ### Configuring object and array properties
 
@@ -272,27 +295,28 @@ an object or array shared across all instances of the element.
 
 Example: { .caption }
 
-```
-Polymer({
+```js
+class XCustom extends Polymer.Element {
 
-  is: 'x-custom',
+  static get is() {return 'x-custom'; }
 
-  properties: {
+  static get config() {
+    return {
+      properties: {
+        mode: {
+          type: String,
+          value: 'auto'
+        },
 
-    mode: {
-      type: String,
-      value: 'auto'
-    },
-
-    data: {
-      type: Object,
-      notify: true,
-      value: function() { return {}; }
+        data: {
+          type: Object,
+          notify: true,
+          value: function() { return {}; }
+        }
+      }
     }
-
   }
-
-});
+}
 ```
 
 
@@ -323,23 +347,27 @@ element to actually change the value of the property, it must use a private
 generated setter of the convention <code>\_set<var>Property</var>(value)</code>.
 
 ```
-<script>
-  Polymer({
+class XCustom extends Polymer.Element {
 
-    properties: {
-      response: {
-        type: Object,
-        readOnly: true,
-        notify: true
+  static get is() {return 'x-custom'; }
+
+  static get config() {
+    return {
+      properties: {
+        response: {
+          type: Object,
+          readOnly: true,
+          notify: true
+        }
       }
-    },
-
-    responseHandler: function(response) {
-      this._setResponse(response);
     }
+  }
 
-  });
-</script>
+  responseHandler(response) {
+    // set read-only property
+    this._setResponse(response);
+  }
+}
 ```
 
 For more on read-only properties and data binding, see
@@ -354,24 +382,27 @@ a property in the `properties` configuration object.  This will cause any
 [observable change](data-system#observable-changes) to the property to be serialized out to an
 attribute of the same name.
 
-```
-<script>
-  Polymer({
+```js
+class XCustom extends Polymer.Element {
 
-    properties: {
-     response: {
-        type: Object,
-        reflectToAttribute: true
-     }
-    },
+  static get is() {return 'x-custom'; }
 
-    responseHandler: function(response) {
-      this.response = 'loaded';
-      // results in this.setAttribute('response', 'loaded');
+  static get config() {
+    return {
+      properties: {
+        loaded: {
+          type: Boolean,
+          reflectToAttribute: true
+        }
+      }
     }
+  }
 
-  });
-</script>
+  _onLoad() {
+    this.loaded = true;
+    // results in this.setAttribute('loaded', true);
+  }
+}
 ```
 
 ### Attribute serialization {#attribute-serialization}
@@ -380,8 +411,8 @@ When reflecting a property to an attribute or
 [binding a property to an attribute](data-binding#attribute-binding),
 the property value is _serialized_ to the attribute.
 
-By default, values are serialized according to value's  _current_ type
-(regardless of the property's `type` value):
+By default, values are serialized according to value's  **current type**,
+_regardless of the property's `type` value_:
 
 *   `String`. No serialization required.
 *   `Date` or `Number`. Serialized using  `toString`.
@@ -390,54 +421,19 @@ By default, values are serialized according to value's  _current_ type
 
 To supply custom serialization for a custom element, override your element's `serialize` method.
 
-## Moved sections
 
-The following section have moved to [Observers and computed properties](observers):
+## Implicitly declared properties
 
-<a href="#change-callbacks"></a>
+A property is declared _implicitly_ if you add it to a data binding or add it as a dependency of an
+observer, computed property, or computed binding.
 
--   [Observe a property](observers#change-callbacks).
+Polymer automatically creates setters for these implicitly declared properties. However, implicitly
+declared properties can't be configured from markup.
 
-    <a href="#multi-property-observers"></a>
+## Private and protected properties
 
--   [Observe multiple properties or paths](observers#multi-property-observers).
-
-    <a href="#observing-path-changes"></a>
-
--   [Observe changes to a subproperty](observers#observing-path-changes).
-
-    <a href="#array-observation"></a>
-
--   [Observe array mutations](observers#array-observation).
-
-    <a href="#key-splices"></a>
-
--   [Track key splices](observers#key-splices).
-
-    <a href="#deep-observation"></a>
-
--   [Deep sub-property observation](observers#deep-observation).
-
-    <a href="#key-paths"></a>
-
--   [Deep sub-property changes on array items](observers#key-paths).
-
-    <a href="#dependencies"></a>
-
--   [Always include dependencies as observer arguments](observers#dependencies).
-
-    <a href="#computed-properties"></a>
-
--   [Computed properties](observers#computed-properties)
-
-The following sections have moved to [Work with object and array data](model-data):
-
-<a href="#array-mutation"></a>
-
--   [Mutate an array](model-data#array-mutation).
-
-    <a href="#notifysplices"></a>
-
--   [Notify Polymer of array mutations](model-data#notifysplices).
-
+JavaScript doesn't have any true protection for properties. By convention, Polymer elements usually
+use a single underscore (`_protectedProp`) to indicate a protected property or method (intended to
+be used or overridden by subclasses, but not for public use), and a double underscore
+(`__privateProp`) for members that are private to the class.
 
