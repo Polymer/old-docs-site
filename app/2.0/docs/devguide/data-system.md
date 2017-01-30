@@ -516,112 +516,200 @@ The following examples show the various data flow scenarios described above.
 
 Example 1: Two-way binding { .caption }
 
-```
+```html
 <script>
-  Polymer({
-    is: 'custom-element',
-    properties: {
-      someProp: {
-        type: String,
-        notify: true
+  class XTarget extends Polymer.Element {
+
+    static get is() {return 'x-target';}
+
+    static get config() {
+      return {
+        properties: {
+          someProp: {
+            type: String,
+            notify: true
+          }
+        }
       }
     }
-  });
+
+  }
+
+  customElements.define(XTarget.is, XTarget);
 </script>
 ...
 
-<!-- changes to "value" propagate downward to "someProp" on child -->
-<!-- changes to "someProp" propagate upward to "value" on host  -->
-<custom-element some-prop="{{value}}"></custom-element>
+<dom-module id="x-host">
+  <template>
+    <!-- changes to "value" propagate downward to "someProp" on target -->
+    <!-- changes to "someProp" propagate upward to "value" on host  -->
+    <x-target some-prop="{{value}}"></custom-element>
+  </template>
+  <script>
+    class XHost extends Polymer.Element {
+
+      static get is() {return 'x-host';}
+
+    }
+
+    customElements.define(XHost.is, XHost);
+  </script>
 ```
 
 Example 2: One-way binding (downward) { .caption }
 
+Changing the binding to a one-way binding `[[ ]]` produces a one-way binding. This example uses the
+same `x-target` element as example 1.
+
 ```
-<script>
-  Polymer({
-    is: 'custom-element',
-    properties: {
-      someProp: {
-        type: String,
-        notify: true
-      }
+<dom-module id="x-host">
+  <template>
+    <!-- changes to "value" propagate downward to "someProp" on target -->
+    <!-- changes to "someProp" don't propagate upward because of the one-way binding -->
+    <x-target some-prop="[[value]]"></custom-element>
+  </template>
+  <script>
+    class XHost extends Polymer.Element {
+
+      static get is() {return 'x-host';}
+
     }
-  });
-</script>
 
-...
-
-<!-- changes to "value" propagate downward to "someProp" on child -->
-<!-- changes to "someProp" are ignored by host due to square-bracket syntax -->
-<custom-element some-prop="[[value]]"></custom-element>
+    customElements.define(XHost.is, XHost);
+  </script>
 ```
 
 Example 3: One-way binding (downward) { .caption }
 
-```
+Similarly, using the two-way binding delimiters but omitting the `notify: true` on `someProp` yields
+a one-way, downward binding.
+
+```html
 <script>
+  class XTarget extends Polymer.Element {
 
-  Polymer({
-    is: 'custom-element',
-    properties: {
-      someProp: String    // no notify:true!
+    static get is() {return 'x-target';}
+
+    static get config() {
+      return {
+        properties: {
+          someProp: {
+            type: String // no notify: true
+          }
+        }
+      }
     }
-  });
 
+  }
+
+  customElements.define(XTarget.is, XTarget);
 </script>
 ...
 
-<!-- changes to "value" propagate downward to "someProp" on child -->
-<!-- changes to "someProp" are not notified to host due to notify:falsey -->
-<custom-element some-prop="{{value}}"></custom-element>
+<dom-module id="x-host">
+  <template>
+    <!-- changes to "value" propagate downward to "someProp" on target -->
+    <!-- changes to "someProp" are not notified to host due to notify:falsey -->
+    <x-target some-prop="{{value}}"></custom-element>
+  </template>
+  <script>
+    class XHost extends Polymer.Element {
+
+      static get is() {return 'x-host';}
+
+    }
+
+    customElements.define(XHost.is, XHost);
+  </script>
 ```
 
 Example 4: One-way binding (upward, child-to-host) { .caption }
 
-```
+
+```html
 <script>
-  Polymer({
-    is: 'custom-element',
-    properties: {
-      someProp: {
-        type: String,
-        notify: true,
-        readOnly: true
+  class XTarget extends Polymer.Element {
+
+    static get is() {return 'x-target';}
+
+    static get config() {
+      return {
+        properties: {
+          someProp: {
+            type: String,
+            notify: true,
+            readOnly: true
+          }
+        }
       }
     }
-  });
-</script>
 
+  }
+
+  customElements.define(XTarget.is, XTarget);
+</script>
 ...
 
-<!-- changes to "value" are ignored by child due to readOnly:true -->
-<!-- changes to "someProp" propagate upward to "value" on host  -->
-<custom-element some-prop="{{value}}"></custom-element>
+<dom-module id="x-host">
+  <template>
+<!-- changes to "value" are ignored by child because "someProp" is read-only -->
+<!-- changes to "someProp" propagate upward to "value" on host -->
+    <x-target some-prop="{{value}}"></custom-element>
+  </template>
+  <script>
+    class XHost extends Polymer.Element {
+
+      static get is() {return 'x-host';}
+
+    }
+
+    customElements.define(XHost.is, XHost);
+  </script>
 ```
 
-Example 5: Error / non-sensical state { .caption }
+Example 5: No data flow / nonsensical state { .caption }
 
-```
+
+```html
 <script>
-  Polymer({
-    is: 'custom-element',
-    properties: {
-      someProp: {
-        type: String,
-        notify: true,
-        readOnly: true
+  class XTarget extends Polymer.Element {
+
+    static get is() {return 'x-target';}
+
+    static get config() {
+      return {
+        properties: {
+          someProp: {
+            type: String,
+            notify: true,
+            readOnly: true
+          }
+        }
       }
     }
-  });
+
+  }
+
+  customElements.define(XTarget.is, XTarget);
 </script>
 ...
-<!-- changes to "value" are ignored by child due to readOnly:true -->
-<!-- changes to "someProp" are ignored by host due to square-bracket syntax -->
-<!-- binding serves no purpose -->
-<custom-element some-prop="[[value]]"></custom-element>
-```
 
+<dom-module id="x-host">
+  <template>
+    <!-- changes to "value" are ignored by child because "someProp" is read-only -->
+    <!-- changes to "someProp" don't propagate upward because of the one-way binding -->
+    <x-target some-prop="[[value]]"></custom-element>
+  </template>
+  <script>
+    class XHost extends Polymer.Element {
+
+      static get is() {return 'x-host';}
+
+    }
+
+    customElements.define(XHost.is, XHost);
+  </script>
+```
 
 
 ### Upward and downward data flow

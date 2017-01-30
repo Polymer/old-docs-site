@@ -13,6 +13,11 @@ data binding use cases:
 -   Conditional template (`dom-if`). Stamps its contents if a given condition is true.
 -   Auto-binding template (`dom-bind`). Allows data binding outside of a Polymer element.
 
+**2.0 tip.** The data binding helper elements are bundled in to the backward-compatible,
+`polymer.html` import. If you aren't using the legacy import, you'll need to import the
+helper elements you're using.
+{.alert .alert-info}
+
 ## Template repeater (dom-repeat) {#dom-repeat}
 
 The template repeater is a specialized template that binds to an array.
@@ -46,28 +51,35 @@ There are two ways to use a template repeater:
         var repeater = document.querySelector('dom-repeat');
         repeater.items = someArray;
 
-A Polymer-managed template includes a Polymer element's template, a `dom-bind`, `dom-if`, or
-`dom-repeat` template, or a template managed by the `Templatizer` class.
+A Polymer-managed template includes a Polymer element's template, or the template belonging
+to a `dom-bind`, `dom-if`, or `dom-repeat` template, or a template managed by the `Templatize`
+library.
 
 In most cases, you'll use the first (shorthand) form for `dom-repeat`.
 
+The template repeater is included in the legacy (`polymer.html`) import for backwards compatibility.
+If you're not importing `polymer.html`, import `dom-repeat.html` as shown in the code below.
+
 Example: { .caption }
 
-```
+```html
+<link rel="import" href="components/polymer/polymer-element.html">
+<! -- import template repeater -->
+<link rel="import" href="components/polymer/src/templatizer/dom-repeat.html">
+
 <dom-module id="x-custom">
   <template>
 
     <div> Employee list: </div>
     <template is="dom-repeat" items="{{employees}}">
-        <div># <span>{{index}}</span></div>
-        <div>First name: <span>{{item.first}}</span></div>
-        <div>Last name: <span>{{item.last}}</span></div>
+        <div># [[index]]</div>
+        <div>First name: [[item.first]]</span></div>
+        <div>Last name: [[item.last]]</span></div>
     </template>
 
   </template>
 
   <script>
-
     class XCustom extends Polymer.Element {
 
       static get is() { return 'x-custom'; }
@@ -100,9 +112,8 @@ instances, which update using the normal [change notification events](data-syste
 If the `items` array is bound using two-way binding delimiters, changes to individual items can also
 flow upward.
 
-
 For the template repeater to reflect changes, you need to update the `items` array
-observably.
+observably. For example:
 
 ```js
 // Use Polymer array mutation methods:
@@ -131,13 +142,9 @@ object contains the scope data used to generate the template instance, so the it
 data is `model.item`:
 
 ```html
-  <link rel="import" href="polymer/polymer-element.html">
-  <link rel="import" href="polymer/src/templatizer/dom-repeat.html">
+<link rel="import" href="polymer/polymer-element.html">
+<link rel="import" href="polymer/src/templatizer/dom-repeat.html">
 
-
-</head>
-
-<x-custom></x-custom>
 <dom-module id="x-custom">
 
   <template>
@@ -279,7 +286,7 @@ dynamically change the sort or filter based on another unrelated value. In
 this case, you can use a computed binding to _return_ a dynamic filter or
 sort function when one or more dependent properties changes.
 
-```
+```html
 <dom-module id="x-custom">
 
   <template>
@@ -350,7 +357,7 @@ item is an O(n) operation. Doing so  in a filter function could have
 If you need to look up the array index and are willing to pay the performance penalty,
 you can use code like the following:
 
-```
+```js
 filter: function(item) {
   var index = this.items.indexOf(item);
   ...
@@ -376,7 +383,7 @@ To access properties from nested `dom-repeat` templates, use the `as` attribute 
 assign a different name for the item property. Use the `index-as` attribute to assign a
 different name for the index property.
 
-```
+```html
 <div> Employee list: </div>
 <template is="dom-repeat" items="{{employees}}" as="employee">
     <div>First name: <span>{{employee.first}}</span></div>
@@ -460,7 +467,16 @@ The array selector supports either single or multiple selection.
 When `multi` is false, `selected` is a property representing the last selected
 item.  When `multi` is true, `selected` is an array of selected items.
 
-```
+The array selector is included in the legacy (`polymer.html`) import for backwards compatibility.
+If you're not importing `polymer.html`, import `array-selector.html` as shown in the code below.
+
+```html
+<link rel="import" href="components/polymer/polymer-element.html">
+<! -- import template repeater -->
+<link rel="import" href="components/polymer/src/templatizer/dom-repeat.html">
+<!-- import array selector -->
+<link rel="import" href="components/polymer/src/templatizer/array-selector.html">
+
 <dom-module id="x-custom">
 
   <template>
@@ -516,7 +532,6 @@ item.  When `multi` is true, `selected` is an array of selected items.
 </dom-module>
 ```
 
-
 ## Conditional templates (dom-if) {#dom-if}
 
 Elements can be conditionally stamped based on a boolean property by wrapping
@@ -545,7 +560,7 @@ There are two ways to use a conditional template:
           <template>
             ...
           </template>
-        </dom-repeat>
+        </dom-if>
 
     In this form, you typically set the `items` property imperatively:
 
@@ -557,12 +572,20 @@ A Polymer-managed template includes a Polymer element's template, a `dom-bind`, 
 
 In most cases, you'll use the first (shorthand) form for `dom-if`.
 
+The conditional template is included in the legacy (`polymer.html`) import for backwards
+compatibility.  If you're not importing `polymer.html`, import `array-selector.html` as shown in
+the code below.
+
 The following is a simple example to show how conditional templates work. Read below for
 guidance on recommended usage of conditional templates.
 
 Example: { .caption }
 
 ```
+<link rel="import" href="components/polymer/polymer-element.html">
+<! -- import conditional template -->
+<link rel="import" href="components/polymer/src/templatizer/dom-if.html">
+
 <dom-module id="x-custom">
 
   <template>
@@ -625,9 +648,9 @@ template (or inside a `dom-repeat` or `dom-if` template),
 but not for elements placed in the main document.
 
 To use Polymer bindings **without** defining a new custom element,
-use the `dom-bind` element.  This template immediately stamps its contents
-into the main document. Data bindings in an auto-binding template use the template
-itself as the binding scope.
+use the `<dom-bind>` element.  This template immediately stamps the contents of
+its child templateinto the main document. Data bindings in an auto-binding template use
+the `<dom-bind>` element itself as the binding scope.
 
 ```
 <!doctype html>
@@ -635,33 +658,38 @@ itself as the binding scope.
 <head>
   <meta charset="utf-8">
   <script src="components/webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="components/polymer/polymer.html">
-  <link rel="import" href="components/iron-ajax/iron-ajax.html">
+  <link rel="import" href="polymer/src/templatizer/dom-bind.html">
+  <link rel="import" href="polymer/src/templatizer/dom-repeat.html">
 
 </head>
 <body>
-
   <!-- Wrap elements with auto-binding template to -->
   <!-- allow use of Polymer bindings in main document -->
-  <template id="t" is="dom-bind">
+  <dom-bind>
+    <template>
 
-    <iron-ajax url="http://..." last-response="{{data}}" auto></iron-ajax>
+      <template is="dom-repeat" items="{{data}}">
+        <div>{{item.name}}: {{item.price}}</div>
+      </template>
 
-    <template is="dom-repeat" items="{{data}}">
-        <div><span>{{item.first}}</span> <span>{{item.last}}</span></div>
     </template>
+  </dom-bind>
+  <script>
+    var autobind = document.querySelector('dom-bind');
 
-  </template>
+    // The dom-change event signifies when the template has stamped its DOM.
+    autobind.addEventListener('dom-change', function() {
+      console.log('template is ready.')
+    });
 
+    // set data property on dom-bind
+    autobind.data = [
+      { name: 'book', price: '$5.00'},
+      { name: 'pencil', price: '$1.00'},
+      { name: 'flux capacitor', price: '$8,000,000.00'}
+    ];
+  </script>
 </body>
-<script>
-  var t = document.querySelector('#t');
-
-  // The dom-change event signifies when the template has stamped its DOM.
-  t.addEventListener('dom-change', function() {
-    // auto-binding template is ready.
-  });
-</script>
 </html>
 ```
 

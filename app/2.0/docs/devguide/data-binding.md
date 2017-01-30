@@ -120,12 +120,18 @@ annotation or compound binding inside the target element.
   </template>
 
   <script>
-    Polymer({
-      is: 'user-view',
-      properties: {
-        name: String
+    class UserView extends Polymer.Element {
+      static get is() {return 'user-view'}
+      static get config() {
+        return {
+          properties: {
+            name: String
+          }
+        }
       }
-    });
+    }
+
+    customElements.define(UserView.is, UserView);
   </script>
 </dom-module>
 
@@ -300,12 +306,18 @@ Binding annotations can also include paths to sub-properties, as shown below:
   </template>
 
   <script>
-    Polymer({
-      is: 'main-view',
-      properties: {
-        user: Object
+    class MainView extends Polymer.Element {
+      static get is() {return 'main-view'}
+      static get config() {
+        return {
+          properties: {
+            user: Object
+          }
+        }
       }
-    });
+    }
+
+    customElements.define(MainView.is, MainView);
   </script>
 
 </dom-module>
@@ -314,8 +326,8 @@ Binding annotations can also include paths to sub-properties, as shown below:
 Subproperty changes are not automatically [observable](data-system#observable-changes).
 
 If the host element updates the subproperty it needs to use the `set` method, as described in
-[Set a property or subproperty by path](model-data#set-path). Or the `notifyPath` method, as described in
-[Notify Polymer of a subproperty change](model-data#notify-path).
+[Set a property or subproperty by path](model-data#set-path). Or the `notifyPath` method, as
+described in [Notify Polymer of a subproperty change](model-data#notify-path).
 
 
 ```
@@ -394,17 +406,23 @@ Example: { .caption }
   </template>
 
   <script>
-    Polymer({
-      is: 'x-custom',
-      properties: {
-        first: String,
-        last: String
-      },
-      _formatName: function(first, last) {
-        return first + ' ' + last;
+    class XCustom extends Polymer.Element {
+      static get is() {return 'x-custom'}
+      static get config() {
+        return {
+          properties: {
+            first: String,
+            last: String
+          }
+        }
       }
-      ...
-    });
+      _formatName(first, last) {
+        return `${last}, ${first}`
+      }
+
+    }
+
+    customElements.define(XCustom.is, XCustom);
   </script>
 
 </dom-module>
@@ -470,15 +488,17 @@ Finally, if a computed binding has no dependent properties, it is only evaluated
   </template>
 
   <script>
-    Polymer({
+    class XCustom extends Polymer.Element {
 
-      is: 'x-custom',
+      static get is() {return 'x-custom'}
 
       doThisOnce: function() {
         return Math.random();
       }
 
-    });
+    }
+
+    customElements.define(XCustom.is, XCustom);
   </script>
 </dom-module>
 ```
@@ -542,7 +562,7 @@ The computing function needs to be called if the subproperty value changes,
 _or_ if the array itself is mutated, so the binding uses a wildcard path, `myArray.*`.
 
 ```
-<dom-module id="bind-array-element">
+<dom-module id="x-custom">
 
   <template>
     <div>[[arrayItem(myArray.*, 0, 'name')]]</div>
@@ -550,33 +570,38 @@ _or_ if the array itself is mutated, so the binding uses a wildcard path, `myArr
   </template>
 
   <script>
-    Polymer({
 
-      is: 'bind-array-element',
+    class XCustom extends Polymer.Element {
 
-      properties: {
+      static get is() {return 'x-custom'}
 
-        myArray: {
-          type: Array,
-          value: [{ name: 'Bob' }, { name: 'Doug' }]
+      static get config() {
+        properties: {
+          myArray: {
+            type: Array,
+            value: [{ name: 'Bob' }, { name: 'Doug' }]
+          }
         }
-      },
+      }
 
       // first argument is the change record for the array change,
       // change.base is the array specified in the binding
-      arrayItem: function(change, index, path) {
+      arrayItem(change, index, path) {
         // this.get(path, root) returns a value for a path
         // relative to a root object.
         return this.get(path, change.base[index]);
       },
 
-      ready: function() {
+      ready() {
+        super.ready();
         // mutate the array
         this.unshift('myArray', { name: 'Susan' });
         // change a subproperty
         this.set('myArray.1.name', 'Rupert');
       }
-    });
+    }
+
+    customElements.define(XCustom.is, XCustom);
   </script>
 
 </dom-module>
