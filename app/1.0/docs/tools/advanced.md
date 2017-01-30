@@ -133,20 +133,23 @@ Usage:
 
 Source: [github.com/PolymerLabs/polyclean](https://github.com/PolymerLabs/polyclean)
 
-### <b>polybuild</b>—all-in-one build tool for optimizing apps {#polybuild}
+### <b>polymer-build</b> — Provides granular control of building and optimizing applications {#polymer-build}
 
 *Equivalent to Polymer CLI command `polymer build`.*
 
-[polybuild](https://github.com/PolymerLabs/polybuild) is an all-in-one build tool that combines vulcanize, crisper, and polyclean. Although less flexible than using the tools individually, polybuild is an easy solution if you want quick defaults.
+[polymer-build](https://github.com/Polymer/polymer-build) is a tool for creating custom build pipelines for your application. It is what powers the `build` command in the CLI, but using it directly gives you more control over what you need in your build. You can include custom optimizations, compilations, bundling, and more. See the [polymer-build README](https://github.com/Polymer/polymer-build) for more information on how to use.
 
 Install:
 
-    npm install -g polybuild
+    npm install polymer-build
 
 Usage:
 
-    polybuild index.html --maximum-crush
+    // Create a build pipeline to bundle our application before writing to the 'build/' dir
+    mergeStream(project.sources(), project.dependencies())
+      .pipe(project.bundler)
+      .pipe(gulp.dest('build/'));
 
-Source: [github.com/PolymerLabs/polybuild](https://github.com/PolymerLabs/polybuild)
+Source: [github.com/Polymer/polymer-build](https://github.com/Polymer/polymer-build)
 
 
