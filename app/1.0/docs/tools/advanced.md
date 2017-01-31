@@ -133,11 +133,11 @@ Usage:
 
 Source: [github.com/PolymerLabs/polyclean](https://github.com/PolymerLabs/polyclean)
 
-### <b>polymer-build</b> — Provides granular control of building and optimizing applications {#polymer-build}
+### <b>polymer-build</b>-Provides granular control of building and optimizing applications {#polymer-build}
 
 *Equivalent to Polymer CLI command `polymer build`.*
 
-[polymer-build](https://github.com/Polymer/polymer-build) is a tool for creating custom builds for your application. It is the smae library that powers the `build` command in the CLI, but using it directly gives you more control over what your build does and hooking into that process. You can include custom optimizations, compilations, bundling, events, and more. See the [polymer-build README](https://github.com/Polymer/polymer-build) for more information on how to use.
+[polymer-build](https://github.com/Polymer/polymer-build) is a tool for creating custom builds for your application. It is the same library that powers the `build` command in the CLI, but using it directly gives you more control over that process. You can include custom optimizations, compilations, bundling, events, and more. See the [polymer-build README](https://github.com/Polymer/polymer-build) for more information on how to use.
 
 Install:
 
