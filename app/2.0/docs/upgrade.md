@@ -692,11 +692,11 @@ callback should fire after initial distribution is complete.
 ```
 ready: function() {
   setTimeout(function() {
-    this.$.slot.assignedNodes({flatten: true});
+    var distributedNodes = this.$.slot.assignedNodes({flatten: true});
+    console.log(distributedNodes);
   }.bind(this), 0);
 }
 ```
-
 
 You can use a `slotchange` event listener to react to runtime changes to distribution, but the event
 listener doesn't fire for the *initial* distribution.
@@ -705,9 +705,9 @@ listener doesn't fire for the *initial* distribution.
 ```
 ready: function() {
   // super.ready(); // for 2.0 class-based elements only
-  var this._boundHandler = this._processLightChildren.bind(this);
+  this._boundHandler = this._processLightChildren.bind(this);
   setTimeout(this._boundHandler);
-  this.$.slot.addEventListener('slotchange', this._processLightChildren);
+  this.$.slot.addEventListener('slotchange', this._boundHandler);
 }
 
 _processLightChildren: function() {
