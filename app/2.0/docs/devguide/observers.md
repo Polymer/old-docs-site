@@ -561,7 +561,7 @@ computed property function returns a value that's exposed as a virtual property.
   </template>
 
   <script>
-      class XCustom extends Polymer.Element {
+    class XCustom extends Polymer.Element {
 
       static get is() { return 'x-custom'; }
 
