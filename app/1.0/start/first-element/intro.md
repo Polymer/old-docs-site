@@ -69,7 +69,7 @@ Install the Polymer CLI to serve the demo locally.
 
 1.  Install the LTS version (4.x) of [Node.js](https://nodejs.org/en/download/).
     The current version (6.x) should work, but is not officially supported. Versions
-    below LTS are not supported.
+    below LTS are not supported. For Windows use the Installer rather than the Executable as the former includes npm.
 
 2.  Install [git](https://git-scm.com/downloads).
 
