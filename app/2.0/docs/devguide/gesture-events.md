@@ -10,11 +10,50 @@ touch-specific event counterparts. This provides better interoperability with bo
 mouse devices.  For example, `tap` should be used instead of
 `click` for the most reliable cross-platform results.
 
+## Gestures and scroll direction
+
 Listening for certain gestures controls the scrolling direction for touch input.
 For example, nodes with a listener for the `track` event will prevent scrolling
 by default. Elements can override scroll direction with
 `this.setScrollDirection(direction, node)`, where `direction` is one of `'x'`,
 `'y'`, `'none'`, or `'all'`, and `node` defaults to `this`.
+
+## Using gesture events
+
+Gesture events are supported by default when using hybrid elements. For class-style elements based
+on `Polymer.Element`, you need to explicitly add gesture support by importing and using the
+`Polymer.GestureEventListeners` mixin.
+
+```html
+<link rel="import" href="polymer/src/events/gesture-event-listeners.html">
+
+<script>
+    class TestEvent extends Polymer.GestureEventListeners(Polymer.Element) {
+      ...
+</script>
+```
+
+Gesture events require some extra setup, so you can't simply add a listener
+using the generic `addEventListener` method. To listen for a gesture event:
+
+*   Use an [annotated event listener](events#annotated-listeners) for one of the gesture events.
+
+    ```html
+    <div on-tap="tapHandler">Tap here!</div>
+    ```
+
+    Polymer automatically does the extra bookkeeping for gesture events when you use annotated
+    event listeners.
+
+*   Use the `_addEventListenerToNode`/`_removeEventListenerFromNode` instance methods.
+
+    ```js
+    this._addEventListenerToNode(this, 'tap', e => {this.tapHandler(e)});
+    ```
+
+    You can use the `_addEventListenerToNode` function to add a listener to the host element.
+
+### Gesture event types
 
 The following are the gesture event types supported, with a short description
 and list of detail properties available on `event.detail` for each type:
@@ -44,9 +83,14 @@ and list of detail properties available on `event.detail` for each type:
   * `ddy`—change in pixels vertically since last track event
   * `hover()`—a function that may be called to determine the element currently being hovered
 
-Example { .caption }
+### Examples
+
+Example declarative event listener { .caption }
 
 ```html
+<link rel="import" href="polymer/polymer-element.html">
+<link rel="import" href="polymer/src/events/gesture-event-listeners.html">
+
 <dom-module id="drag-me">
   <template>
     <style>
@@ -57,15 +101,15 @@ Example { .caption }
       }
     </style>
 
-    <div id="dragme" on-track="handleTrack">{{message}}</div>
+    <div id="dragme" on-track="handleTrack">[[message]]</div>
   </template>
 
   <script>
-    Polymer({
+    class DragMe extends Polymer.GestureEventListeners(Polymer.Element) {
 
-      is: 'drag-me',
+      static get is() {return 'drag-me'}
 
-      handleTrack: function(e) {
+      handleTrack(e) {
         switch(e.detail.state) {
           case 'start':
             this.message = 'Tracking started!';
@@ -80,51 +124,55 @@ Example { .caption }
         }
       }
 
-    });
+    }
+    customElements.define(DragMe.is, DragMe);
   </script>
 </dom-module>
 ```
 
-Example with `listeners` { .caption }
+Example imperative event listener { .caption }
+
+This example uses `_addEventListenerToNode` to add a listener to the host element, which can't be
+done with annotated event listeners. If the listener is attached to the host element or a shadow DOM
+child, you can usually add the event listener once and not worry about removing it.
+
+If you are adding an event listener to a dynamically-added child, you may need to remove the event
+listener with `_removeEventListenerFromNode` when you remove the child, to allow the child element
+to be garbage collected.
 
 ```html
-<dom-module id="drag-me">
+<link rel="import" href="polymer/polymer-element.html">
+<link rel="import" href="polymer/src/events/gesture-event-listeners.html">
+<dom-module id="tap-me">
   <template>
     <style>
-      #dragme {
-        width: 500px;
-        height: 500px;
-        background: gray;
+      :host {
+        width: 200px;
+        height: 200px;
+        border: 1px solid blue;
       }
     </style>
-
-    <div id="dragme">{{message}}</div>
+    <div>Tap me!</div>
+    <div>I've been tapped [[count]] times.</div>
   </template>
 
   <script>
-    Polymer({
+    class TapMe extends Polymer.GestureEventListeners(Polymer.Element) {
 
-      is: 'drag-me',
+      static get is() {return 'tap-me'}
 
-      listeners: {
-        'dragme.track': 'handleTrack'
-      },
-
-      handleTrack: function(e) {
-        switch(e.detail.state) {
-          case 'start':
-            this.message = 'Tracking started!';
-            break;
-          case 'track':
-            this.message = 'Tracking in progress... ' +
-              e.detail.x + ', ' + e.detail.y;
-            break;
-          case 'end':
-            this.message = 'Tracking ended!';
-            break;
-        }
+      handleTap(e) {
+        this.count++;
       }
-    });
+
+      ready() {
+        super.ready();
+        this.count = 0;
+        this._addEventListenerToNode(this, 'tap', e=>{this.handleTap(e)});
+      }
+
+    }
+    customElements.define(TapMe.is, TapMe);
   </script>
 </dom-module>
 ```
