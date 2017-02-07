@@ -4,16 +4,6 @@ title: Responsive app layout
 
 <!-- toc -->
 
-**The app layout elements are prerelease.** APIs may be subject to change.
-{.alert .alert-info}
-
-**Breaking changes:** In 
-[version 0.10](https://github.com/PolymerElements/app-layout/releases/tag/v0.10.0) 
-of the app layout package the `title` attribute of `<app-toolbar>` was 
-changed to `main-title`, and the `primary` attribute of `<app-header>` was 
-changed to `sticky`.
-{.alert .alert-warning}
-
 Every application needs some layout, and the app layout elements provide the tools to create
 responsive layouts easily.
 
@@ -87,19 +77,21 @@ extra CSS, it can be fixed to the top of the page. The following [sample](http:/
     <!-- sample-content included for demo purposes only -->
     <link rel="import" href="app-layout/demo/sample-content.html">
 
-    <style is="custom-style">
-      body {
-        /* No margin on body so toolbar can span the screen */
-        margin: 0;
-      }
-      app-toolbar {
-        /* Toolbar is the main header, so give it some color */
-        background-color: #1E88E5;
-        font-family: 'Roboto', Helvetica, sans-serif;
-        color: white;
-        --app-toolbar-font-size: 24px;
-      }
-    </style>
+    <custom-style>
+      <style is="custom-style">
+        body {
+          /* No margin on body so toolbar can span the screen */
+          margin: 0;
+        }
+        app-toolbar {
+          /* Toolbar is the main header, so give it some color */
+          background-color: #1E88E5;
+          font-family: 'Roboto', Helvetica, sans-serif;
+          color: white;
+          --app-toolbar-font-size: 24px;
+        }
+      </style>
+    </custom-style>
   </head>
   <body>
     <app-toolbar>
@@ -109,7 +101,7 @@ extra CSS, it can be fixed to the top of the page. The following [sample](http:/
   </body>
 ```
 
-![screenshot of a siple app-toolbar](/images/1.0/toolbox/simple-toolbar.png)
+![screenshot of a simple app-toolbar](/images/1.0/toolbox/simple-toolbar.png)
 
 The toolbar is a horizontal flexbox container, so you can use the usual flexbox rules to adjust the
 layout of its children. A child with the attribute `main-title` is
@@ -248,8 +240,11 @@ document scroller, if you switch between pages of content, your app needs to man
 position on each page.
 
 If you're using something like `<iron-pages>` to switch views, you can use
-[`<app-scrollpos-control>`](https://elements.polymer-project.org/elements/app-layout?active=app-scrollpos-control)
+[`<app-scroll-position>`](https://elements.polymer-project.org/elements/app-layout?active=app-scroll-position)
 to track scroll position for each of the views. See the API docs for sample usage.
+
+`<app-scroll-position>` was renamed from `<app-scrollpos-control>`.
+{.alert .alert-info}
 
 You can use an element scroller by specifying a `scrollTarget` property on `<app-header>`:
 
@@ -273,7 +268,7 @@ To use it, just place an `<app-header>` and some content inside an `<app-header-
 
 ```
   <app-header-layout>
-    <app-header fixed condenses effects="waterfall">
+    <app-header fixed condenses effects="waterfall" slot="header">
       <app-toolbar>
         <div main-title>App name</div>
       </app-toolbar>
@@ -283,6 +278,9 @@ To use it, just place an `<app-header>` and some content inside an `<app-header-
     </div>
   </app-header-layout>
 ```
+
+Specifying `slot="header"` is required with App Layout 2.0.
+{.alert .alert-info}
 
 By default the layout uses document scrolling. If you don't want to to scroll the whole page, the
 layout can define its own scrolling region, as shown in the [API
@@ -359,13 +357,18 @@ To add a drawer toggle button, place an element with the `drawer-toggle` attribu
 descendants of an `<app-drawer-layout>`. Usually the drawer toggle button is placed inside one of
 the app's toolbars.
 
+In App Layout 2.0, the `drawer-toggle` element is no longer automatically hidden when the drawer is persistent.
+To hide `drawer-toggle`, you can style based on when the `narrow` attribute is present on `app-drawer-layout`
+(e.g. `app-drawer-layout:not([narrow]) [drawer-toggle] { display: none; }`)
+{.alert .alert-info}
+
 An `<app-header-layout>` can be nested inside an `<app-drawer-layout>` to create a responsive layout
 with drawer and header.
 
 ```
   <app-drawer-layout>
 
-    <app-drawer>
+    <app-drawer slot="drawer">
       <app-toolbar>Getting Started</app-toolbar>
     </app-drawer>
 
@@ -384,6 +387,9 @@ with drawer and header.
 
   </app-drawer-layout>
 ```
+
+Specifying `slot="drawer"` is required with App Layout 2.0.
+{.alert .alert-info}
 
 ## Responsive navigation pattern
 
@@ -405,7 +411,7 @@ shows a simple version of this transition.
        in persistent mode -->
   <app-drawer-layout force-narrow>
 
-    <app-drawer id="drawer">
+    <app-drawer id="drawer" slot="drawer">
 
       <!-- an empty toolbar in the drawer looks like a
            continuation of the main toolbar. It's optional. -->
@@ -421,7 +427,7 @@ shows a simple version of this transition.
     </app-drawer>
 
     <app-header-layout>
-      <app-header class="main-header">
+      <app-header class="main-header" slot="header">
 
         <app-toolbar>
           <!-- drawer toggle button -->

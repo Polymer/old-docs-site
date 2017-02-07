@@ -95,6 +95,7 @@ To update an element:
 
 *   Each `<content>` insertion point must be changed to `<slot>`.
 
+
 *   Insertion points that selected content using <code>&lt;content select="<var>selector</var>"&gt;</code>
     must be changed to named slots: <code>&lt;slot name="<var>slot_name</var>"&gt;</code>. Note that
     in shadow DOM v1, distributed content can _only_ be selected by slot name, not by tag name,

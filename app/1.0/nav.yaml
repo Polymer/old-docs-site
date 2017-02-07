@@ -195,6 +195,147 @@
 #    path: /2.0/docs/devguide/custom-elements
 #  - title: Shadow DOM concepts
 #    path: /2.0/docs/devguide/shadow-dom
+  - header: Overview
+  - title: Feature overview
+    path: /2.0/docs/devguide/feature-overview
+    indent: True
+  - title: Quick tour
+    path: /2.0/docs/devguide/quick-tour
+    indent: True
+  - endheader: True   
+  - header: Define elements
+#  - title: Element lifecycle concepts
+#    path: /1.0/docs/devguide/lifecycle-concepts
+#    indent: True
+  - title: Register an element
+    path: /2.0/docs/devguide/registering-elements
+    indent: True
+  - title: Declare properties
+    path: /2.0/docs/devguide/properties
+    indent: True
+  - title: Instance methods
+    path: /2.0/docs/devguide/instance-methods
+    indent: True
+  - title: Behaviors
+    path: /2.0/docs/devguide/behaviors
+    indent: True
+  - endheader: True
+  - header: Local DOM & styling
+  - title: Local DOM
+    path: /1.0/docs/devguide/local-dom
+    indent: True
+  - title: Styling
+    path: /1.0/docs/devguide/styling
+    indent: True
+  - endheader: True
+  - header: Events
+  - title: Handle and fire events
+    path: /1.0/docs/devguide/events
+    indent: True
+  - title: Gesture events
+    path: /1.0/docs/devguide/gesture-events
+    indent: True
+  - endheader: True
+  - header: Data system
+  - title: Data system concepts
+    path: /1.0/docs/devguide/data-system
+    indent: True
+  - title: Work with object and array data
+    path: /1.0/docs/devguide/model-data
+    indent: True
+  - title: Observers and computed properties
+    path: /1.0/docs/devguide/observers
+    indent: True
+  - title: Data binding
+    path: /1.0/docs/devguide/data-binding
+    indent: True
+  - title: Helper elements
+    path: /1.0/docs/devguide/templates
+    indent: True
+#  - title: Work with the model
+#    path: /1.0/docs/devguide/data-model
+#    indent: True
+#  - title: Observe property changes
+#    path: /1.0/docs/devguide/observers
+#    indent: True
+#  - title: Work with data bindings
+#    path: /1.0/docs/devguide/data-binding
+#    indent: True
+  - endheader: True
+  - header: Tools
+  - title: Tools overview
+    path: /1.0/docs/tools/overview
+    indent: True
+  - title: Polymer CLI
+    path: /1.0/docs/tools/polymer-cli
+    indent: True
+  - title: Document your elements
+    path: /1.0/docs/tools/documentation
+    indent: True
+  - title: Test your elements
+    path: /1.0/docs/tools/tests
+    indent: True
+  - title: Optimize for production
+    path: /1.0/docs/tools/optimize-for-production
+    indent: True
+  - title: Publish an element
+    path: /1.0/docs/tools/reusable-elements
+    indent: True
+  - title: Advanced tools
+    path: /1.0/docs/tools/advanced
+    indent: True
+  - title: Services
+    path: /1.0/docs/tools/services
+    indent: True
+  - endheader: True
+  - header: What's new
+  - title: Release notes
+    path: /1.0/docs/release-notes
+    indent: True
+  - title: 1.0 Migration guide
+    path: /1.0/docs/migration
+    indent: True
+  - title: About Polymer 1.0
+    path: /1.0/docs/about_10
+    indent: True
+  - endheader: True
+  - header: Resources
+  - title: Community
+    path: /1.0/docs/community
+    indent: True
+  - title: Browser compatibility
+    path: /1.0/docs/browsers
+    indent: True
+  - endheader: True
+  - header: API Reference
+  - title: Polymer.Base
+    path: /1.0/docs/api/Polymer.Base
+    indent: True
+  - title: array-selector
+    path: /1.0/docs/api/array-selector
+    indent: True
+  - title: custom-style
+    path: /1.0/docs/api/custom-style
+    indent: True
+  - title: dom-bind
+    path: /1.0/docs/api/dom-bind
+    indent: True
+  - title: dom-if
+    path: /1.0/docs/api/dom-if
+    indent: True
+  - title: dom-repeat
+    path: /1.0/docs/api/dom-repeat
+    indent: True
+  - title: dom-template
+    path: /1.0/docs/api/dom-template
+    indent: True
+  - title: Polymer.Templatizer
+    path: /1.0/docs/api/Polymer.Templatizer
+    indent: True
+  - title: Global settings
+    path: /1.0/docs/devguide/settings
+    indent: True
+  - endheader: True
 
 - section: App Toolbox
   shortpath: toolbox
