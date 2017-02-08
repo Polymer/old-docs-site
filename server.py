@@ -241,7 +241,7 @@ class Site(http2push.PushHandler):
       # Hack to support /2.0 tab
       # full_nav = self.get_site_nav(version)
       # nav = self.nav_for_section(version, section)
-      full_nav = self.get_site_nav('1.0')
+      full_nav = self.get_site_nav(version)
       nav = self.nav_for_section(version, section)
 
       if section == 'blog' or section == 'index.html':
