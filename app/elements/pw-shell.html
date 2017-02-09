@@ -58,7 +58,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       .drawer-contents img {
-        display: block;
         margin: 16px 30px;
         height: 24px;
       }
@@ -133,6 +132,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         transform: translate3d(0, 0, 0);
       }
 
+      .version-selector {
+        display: inline-block;
+        margin: 16px 4px;
+        height: 24px;
+        vertical-align: top;
+      }
+
+      .version-selector select {
+        margin-left: 10px;
+      }
+
       @media (max-width: 767px) {
         .drawer, .drawer-toggle {
           display: block;
@@ -182,6 +192,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <app-drawer id="drawer" class="drawer" swipe-open unresolved>
       <div class="drawer-contents" on-click="_closeDrawer">
         <img src="../images/logos/p-logo.png" alt="Polymer Logo">
+        <div class="version-selector">
+          <b>Version</b><select id="versionSelect">
+            <option>1.0</option>
+            <option>2.0</option>
+          </select>
+        </div>
         <content select=".site-nav"></content>
       </div>
     </app-drawer>
@@ -250,9 +266,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       // Save the initial URL so that we don't double-render the first load.
       this._currentPageURL = this._sectionRoute.path;
+
+      // Don't close the drawer when you click on the version selector.
+      this.$.versionSelect.addEventListener('click', function(event) {
+        event.stopImmediatePropagation();
+      });
+
+      // Update the version when the version selector is used.
+      this.$.versionSelect.addEventListener('change', function(event) {
+        window.location = event.target.value == '2.0' ? '/2.0/start/' : '/1.0/start/';
+      }.bind(this));
     },
 
     _toggleDrawer: function() {
+      // Figure out which version we're displaying, 1.0 or 2.0
+      this.$.versionSelect.selectedIndex =
+          window.location.pathname.indexOf('/1.0/') !== -1 ? 0 : 1;
       this.$.drawer.toggle();
     },
 
