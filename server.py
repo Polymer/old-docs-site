@@ -183,6 +183,24 @@ class Site(http2push.PushHandler):
             return one_section['items']
     return None
 
+  def versions_for_section(self, section):
+    nav_1 = self.get_site_nav('1.0')
+    nav_2 = self.get_site_nav('2.0')
+
+    versioned_section_1 = '%s/%s' % ('1.0', section)
+    versioned_section_2 = '%s/%s' % ('2.0', section)
+
+    versions = ['','']
+    if nav_1:
+      for one_section in nav_1:
+        if one_section['shortpath'] == section or one_section['shortpath'] == versioned_section_1:
+          versions[0] = one_section['path'];
+    if nav_2:
+      for one_section in nav_2:
+        if one_section['shortpath'] == section or one_section['shortpath'] == versioned_section_2:
+          versions[1] = one_section['path'];
+    return versions
+
   def get_articles(self):
     articles_cache = MEMCACHE_PREFIX + ARTICLES_FILE
     articles = memcache.get(articles_cache)
@@ -232,6 +250,7 @@ class Site(http2push.PushHandler):
     articles = None
     active_article = None
     full_nav = None
+    versions = ['','']
     match = re.match('([0-9]+\.[0-9]+)/([^/]+)', path)
 
     if match:
@@ -239,6 +258,9 @@ class Site(http2push.PushHandler):
       section = match.group(2)
       full_nav = self.get_site_nav(version)
       nav = self.nav_for_section(version, section)
+      print '--getting versions for section ', section
+      versions = self.versions_for_section(section)
+      print '--got versions ', versions
     else:
       if path.startswith('blog') or path == 'index.html':
         articles = self.get_articles()
@@ -253,7 +275,8 @@ class Site(http2push.PushHandler):
       'full_nav': full_nav,
       'articles': articles,
       'active_article': active_article,
-      'polymer_version_dir': version
+      'polymer_version_dir': version,
+      'versions': versions
     }
 
     render(self.response, path, data)

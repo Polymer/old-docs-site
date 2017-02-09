@@ -107,6 +107,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-decoration: none;
       }
 
+      .version-selector select {
+        margin-left: 10px;
+      }
+
       @media (max-width: 500px) {
         header {
           padding: 20px;
@@ -135,7 +139,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <nav>
       <div class="version-selector">
-      <b>Version</b>&nbsp;&nbsp;&nbsp;<select>
+      <b>Version</b><select id="versionSelect">
         <option>1.0</option>
         <option>2.0</option>
       </select>
@@ -207,6 +211,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         type: String
       },
 
+      versionOne: {
+        type: String
+      },
+
+      versionTwo: {
+        type: String
+      },
+
       /**
        * True if this is a mobile view.
        */
@@ -227,6 +239,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var pwShell = this.parentElement;
       if (pwShell) {
         var path = pwShell._sectionRoute.path;
+
         // If it ends in a /, then it's a top level path like /1.0/tools/,
         // so add an index to it.
         if (path[path.length - 1] === '/') {
@@ -234,6 +247,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         this.activePage = path;
       }
+
+      // Figure out which version we're displaying, 1.0 or 2.0
+      this.$.versionSelect.selectedIndex =
+          window.location.pathname.indexOf('/1.0/') !== -1 ? 0 : 1;
+
+      // Update the version when the version selector is used.
+      this.$.versionSelect.addEventListener('change', function(event) {
+        window.location = event.target.value == '2.0' ? this.versionTwo : this.versionOne;
+      }.bind(this));
     },
 
     _githubUrl: function(item) {

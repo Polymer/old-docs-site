@@ -16,11 +16,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <body class="fullbleed" unresolved>
   <pw-shell>
     {% include 'templates/site-nav.html' %}
-
     {% if markdown %}
-      <devguide-shell markdown page-title="{{{title}}}" page-subtitle="{{{subtitle}}}">
+      <devguide-shell markdown page-title="{{{title}}}" page-subtitle="{{{subtitle}}}"
+          version-one="{{{versions[0]}}}" version-two="{{{versions[1]}}}">
     {% else %}
-      <devguide-shell>
+      <devguide-shell version-one="{{{versions[0]}}}" version-two="{{{versions[1]}}}">
     {% endif %}
 
       {% if nav %}
