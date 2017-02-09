@@ -52,7 +52,7 @@ For more information on encapsulated routing, see [Encapsulated routing with
 elements](https://www.polymer-project.org/1.0/blog/routing).
 
 For more information on the `<app-route>` Polymer element used in these implementations, see the 
-[`<app-route>` API reference](https://elements.polymer-project.org/elements/app-route).
+[`<app-route>` API reference](https://www.webcomponents.org/element/PolymerElements/app-route).
 
 There are two main views in the News app. The `<news-list>` element displays a list of articles for 
 the selected category - for example, Top Stories. The `<news-article>` element displays article 
@@ -71,7 +71,7 @@ error via the `<news-network-warning>` element:
 If the user is offline but category data is cached and ServiceWorker is installed,
 the cached content is displayed.
 
--   [`<app-route>` API reference](https://elements.polymer-project.org/elements/app-route)
+-   [`<app-route>` API reference](https://www.webcomponents.org/element/PolymerElements/app-route)
 
 ## Routing and data binding in the News app
 
