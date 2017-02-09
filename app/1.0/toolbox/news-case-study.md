@@ -21,7 +21,7 @@ element, `<news-app>`, contains the main framework for News. Here's the basic st
 
 <div class="image-container layout horizontal">
   <div class="image-wrapper">
-    <img src="app structure.jpg" alt="app structure" width="600px">
+    <img src="app-structure.jpg" alt="app structure" width="600px">
   </div>
 </div>
 
@@ -211,7 +211,7 @@ These relationships are shown here:
 
 <div class="image-container layout horizontal">
   <div class="image-wrapper">
-    <img src="data binding.jpg" alt="data binding relationships" width="700px">
+    <img src="data-binding.jpg" alt="data binding relationships" width="700px">
   </div>
 </div>
 
@@ -220,7 +220,7 @@ visits `/list/top_stories`:
 
 <div class="image-container layout horizontal">
   <div class="image-wrapper">
-    <img src="sequence diagram.jpg" alt="sequence diagram of data flow" width="700px">
+    <img src="sequence-diagram.jpg" alt="sequence diagram of data flow" width="700px">
   </div>
 </div>
 
