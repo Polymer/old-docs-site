@@ -1,8 +1,4 @@
 ---
-- section: Home
-  shortpath: home
-  path: /2.0/
-
 - section: Start
   shortpath: start
   path: /2.0/start/
