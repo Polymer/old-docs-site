@@ -2,7 +2,8 @@
 # Wildcards ending in *: redirects all paths matching the prefix,
 # replacing the prefix with the second path.
 
-- / /2.0/
+- /1.0/ /
+- /1.0/blog/* /blog/
 
 # bulk redirects
 # 0.5 to the legacy site

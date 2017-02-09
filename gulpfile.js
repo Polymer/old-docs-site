@@ -167,7 +167,7 @@ function convertMarkdownToHtml(file, templateName) {
 gulp.task('md:docs', 'Docs markdown -> HTML conversion. Syntax highlight and TOC generation', function() {
   return gulp.src([
       'app/**/*.md',
-      '!app/1.0/blog/*.md',
+      '!app/blog/*.md',
       '!app/{bower_components,elements,images,js,sass}/**',
     ], {base: 'app/'})
     .pipe(matter(function(file) { // pull out front matter data.
@@ -179,7 +179,7 @@ gulp.task('md:docs', 'Docs markdown -> HTML conversion. Syntax highlight and TOC
 
 gulp.task('md:blog', 'Blog markdown -> HTML conversion. Syntax highlight and TOC generation', function() {
   return gulp.src([
-      'app/1.0/blog/*.md',
+      'app/blog/*.md',
     ], {base: 'app/'})
     .pipe(matter(function(file) { // pull out front matter data.
       return convertMarkdownToHtml(file, 'templates/blog.template');
@@ -325,7 +325,7 @@ gulp.task('watch', 'Watch files for changes', function() {
   gulp.watch('app/elements/**/*', ['build-bundles', 'minify-bundles', 'hack-bundles', reload]);
   gulp.watch('app/js/*.js', ['js', reload]);
 
-  gulp.watch('app/1.0/blog/*.md', ['md:blog', reload]);
+  gulp.watch('app/blog/*.md', ['md:blog', reload]);
   gulp.watch('app/**/*.md', ['md:docs', reload]);
   gulp.watch(['templates/*.html', 'app/**/*.html'], ['copy', reload]);
   // Watch for changes to server itself.
