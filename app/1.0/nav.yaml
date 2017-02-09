@@ -1,7 +1,7 @@
 ---
 - section: Home
   shortpath: home
-  path: /2.0/
+  path: /1.0/
 
 - section: Start
   shortpath: start
@@ -42,7 +42,7 @@
   - endheader: True
 
 - section: Polymer
-  shortpath: docs
+  shortpath: 1.0/docs
   path: /1.0/docs/devguide/feature-overview
   items:
   - title: Feature overview
@@ -171,6 +171,19 @@
     indent: True
   - endheader: True
 
+- section: 2.0 Preview
+  shortpath: 2.0/docs
+  path: /2.0/docs/about_20
+  items:
+  - title: About Polymer 2.0
+    path: /2.0/docs/about_20
+  - title: Upgrade guide
+    path: /2.0/docs/upgrade
+#  - title: Custom element concepts
+#    path: /2.0/docs/devguide/custom-elements
+#  - title: Shadow DOM concepts
+#    path: /2.0/docs/devguide/shadow-dom
+
 - section: App Toolbox
   shortpath: toolbox
   path: /2.0/toolbox/
@@ -211,4 +224,4 @@
 
 - section: News
   shortpath: blog
-  path: /2.0/blog/
+  path: /1.0/blog/
