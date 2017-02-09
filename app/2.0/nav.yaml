@@ -45,10 +45,18 @@
   shortpath: docs
   path: /2.0/docs/devguide/feature-overview
   items:
+  - title: About Polymer 2.0
+    path: /2.0/docs/about_20
+  - title: Upgrade guide
+    path: /2.0/docs/upgrade
+  - header: Overview
   - title: Feature overview
     path: /2.0/docs/devguide/feature-overview
+    indent: True
   - title: Quick tour
     path: /2.0/docs/devguide/quick-tour
+    indent: True
+  - endheader: True
   - header: Custom elements
   - title: Custom element concepts
     path: /2.0/docs/devguide/custom-elements
@@ -59,19 +67,19 @@
   - title: Declare properties
     path: /2.0/docs/devguide/properties
     indent: True
-  - title: Instance methods
-    path: /2.0/docs/devguide/instance-methods
-    indent: True
   - endheader: True
-  - header: Shadow DOM
+  - header: Shadow DOM & styling
   - title: Shadow DOM concepts
     path: /2.0/docs/devguide/shadow-dom
     indent: True
   - title: DOM templating
     path: /2.0/docs/devguide/dom-template
     indent: True
-  - title: Styling
+  - title: Style shadow DOM
     path: /2.0/docs/devguide/styling
+    indent: True
+  - title: Custom CSS properties
+    path: /2.0/docs/devguide/custom-properties
     indent: True
   - endheader: True
   - header: Events
@@ -98,15 +106,6 @@
   - title: Helper elements
     path: /2.0/docs/devguide/templates
     indent: True
-#  - title: Work with the model
-#    path: /2.0/docs/devguide/data-model
-#    indent: True
-#  - title: Observe property changes
-#    path: /2.0/docs/devguide/observers
-#    indent: True
-#  - title: Work with data bindings
-#    path: /2.0/docs/devguide/data-binding
-#    indent: True
   - endheader: True
   - header: Tools
   - title: Tools overview
@@ -218,10 +217,6 @@
     indent: True
   - endheader: true
 
-- section: Elements
-  shortpath: elements
-  path: https://elements.polymer-project.org
-
-- section: News
+- section: Blog
   shortpath: blog
-  path: /1.0/blog/
+  path: /2.0/blog/
