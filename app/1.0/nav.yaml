@@ -1,7 +1,7 @@
 ---
 - section: Home
   shortpath: home
-  path: /1.0/
+  path: /
 
 - section: Start
   shortpath: start
@@ -42,7 +42,7 @@
   - endheader: True
 
 - section: Polymer
-  shortpath: 1.0/docs
+  shortpath: docs
   path: /1.0/docs/devguide/feature-overview
   items:
   - title: Feature overview
@@ -222,6 +222,10 @@
     indent: True
   - endheader: true
 
-- section: News
+- section: Blog
   shortpath: blog
-  path: /1.0/blog/
+  path: /blog
+
+- section: Community
+  shortpath: community
+  path: /about
