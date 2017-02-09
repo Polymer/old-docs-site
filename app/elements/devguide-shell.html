@@ -59,7 +59,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       iron-selector ::content a,
-      iron-selector ::content .sidenav-header {
+      iron-selector ::content .sidenav-header,
+      nav .version-selector {
         font-size: 15px;
         line-height: 24px;
         display: block;
@@ -133,6 +134,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <nav>
+      <div class="version-selector">
+      <b>Version</b>&nbsp;&nbsp;&nbsp;<select>
+        <option>1.0</option>
+        <option>2.0</option>
+      </select>
+    </div>
       <iron-selector attr-for-selected="name" selected="[[activePage]]" selected-item="{{activeItem}}">
         <content select=".sidenav-content"></content>
       </iron-selector>

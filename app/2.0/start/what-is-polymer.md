@@ -1,5 +1,5 @@
 ---
-title: What is Polymer?
+title: What is Polymer 2.0?
 ---
 
 The Polymer library is designed to make it easier and faster
