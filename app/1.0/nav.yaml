@@ -1,7 +1,7 @@
 ---
 - section: Home
   shortpath: home
-  path: /1.0/
+  path: /2.0/
 
 - section: Start
   shortpath: start
@@ -42,7 +42,7 @@
   - endheader: True
 
 - section: Polymer
-  shortpath: 1.0/docs
+  shortpath: docs
   path: /1.0/docs/devguide/feature-overview
   items:
   - title: Feature overview
@@ -50,9 +50,6 @@
   - title: Quick tour
     path: /1.0/docs/devguide/quick-tour
   - header: Define elements
-#  - title: Element lifecycle concepts
-#    path: /1.0/docs/devguide/lifecycle-concepts
-#    indent: True
   - title: Register an element
     path: /1.0/docs/devguide/registering-elements
     indent: True
@@ -98,15 +95,6 @@
   - title: Helper elements
     path: /1.0/docs/devguide/templates
     indent: True
-#  - title: Work with the model
-#    path: /1.0/docs/devguide/data-model
-#    indent: True
-#  - title: Observe property changes
-#    path: /1.0/docs/devguide/observers
-#    indent: True
-#  - title: Work with data bindings
-#    path: /1.0/docs/devguide/data-binding
-#    indent: True
   - endheader: True
   - header: Tools
   - title: Tools overview
@@ -183,58 +171,41 @@
     indent: True
   - endheader: True
 
-- section: 2.0 Preview
-  shortpath: 2.0/docs
-  path: /2.0/docs/about_20
-  items:
-  - title: About Polymer 2.0
-    path: /2.0/docs/about_20
-  - title: Upgrade guide
-    path: /2.0/docs/upgrade
-#  - title: Custom element concepts
-#    path: /2.0/docs/devguide/custom-elements
-#  - title: Shadow DOM concepts
-#    path: /2.0/docs/devguide/shadow-dom
-
 - section: App Toolbox
   shortpath: toolbox
-  path: /1.0/toolbox/
+  path: /2.0/toolbox/
   items:
   - title: What's in the box?
-    path: /1.0/toolbox/index
+    path: /2.0/toolbox/index
   - header: Using the Toolbox
   - title: App templates
-    path: /1.0/toolbox/templates
+    path: /2.0/toolbox/templates
     indent: True
   - title: Responsive app layout
-    path: /1.0/toolbox/app-layout
+    path: /2.0/toolbox/app-layout
     indent: True
   - title: Routing
-    path: /1.0/toolbox/routing
+    path: /2.0/toolbox/routing
     indent: True
   - title: Localization
-    path: /1.0/toolbox/localize
+    path: /2.0/toolbox/localize
     indent: True
   - title: App storage
-    path: /1.0/toolbox/app-storage
+    path: /2.0/toolbox/app-storage
     indent: True
   - title: Service worker
-    path: /1.0/toolbox/service-worker
+    path: /2.0/toolbox/service-worker
     indent: True
   - title: Serve your app
-    path: /1.0/toolbox/server
+    path: /2.0/toolbox/server
     indent: True
   - endheader: true
   - header: Case study
   - title: "Shop"
-    path: /1.0/toolbox/case-study
+    path: /2.0/toolbox/case-study
     indent: True
   - endheader: true
 
-- section: Elements
-  shortpath: elements
-  path: https://elements.polymer-project.org
-
 - section: News
   shortpath: blog
-  path: /1.0/blog/
+  path: /2.0/blog/
