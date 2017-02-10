@@ -21,7 +21,7 @@ element, `<news-app>`, contains the main framework for News. Here's the basic st
 
 <div class="image-container layout horizontal">
   <div class="image-wrapper">
-    <img src="app-structure.jpg" alt="app structure" width="600px">
+    <img src="/images/1.0/toolbox/app-structure.png" alt="app structure" width="600px">
   </div>
 </div>
 
@@ -35,10 +35,10 @@ subfolders.
 
 <div class="image-container layout horizontal">
   <div class="image-wrapper">
-    <img src="news-list.jpg" alt="screenshot of the list view" width="300px">
+    <img src="/images/1.0/toolbox/news-list.png" alt="screenshot of the list view" width="300px">
   </div>
   <div class="image-wrapper">
-    <img src="news-article.jpg" alt="screenshot of the article view" width="300px">
+    <img src="/images/1.0/toolbox/news-article.png" alt="screenshot of the article view" width="300px">
   </div>
 </div>
 
@@ -211,7 +211,7 @@ These relationships are shown here:
 
 <div class="image-container layout horizontal">
   <div class="image-wrapper">
-    <img src="data-binding.jpg" alt="data binding relationships" width="700px">
+    <img src="/images/1.0/toolbox/data-binding.png" alt="data binding relationships" width="700px">
   </div>
 </div>
 
@@ -220,7 +220,7 @@ visits `/list/top_stories`:
 
 <div class="image-container layout horizontal">
   <div class="image-wrapper">
-    <img src="sequence-diagram.jpg" alt="sequence diagram of data flow" width="700px">
+    <img src="/images/1.0/toolbox/sequence-diagram.png" alt="sequence diagram of data flow" width="700px">
   </div>
 </div>
 
