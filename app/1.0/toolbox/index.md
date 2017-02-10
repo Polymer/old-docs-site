@@ -29,6 +29,8 @@ To get a feel for these components in action, you can try out the
 [Shop demo](https://shop.polymer-project.org/). Shop is a full-featured e-commerce Progressive web
 app demo built using the Toolbox. Read about how it's built in [Case study: the Shop app](case-study).
 
+The [News app demo](https://news.polymer-project.org) showcases a progressive web app implementation of a News site. Read about the implementation of the News app in [Case study: the News app](news-case-study).
+
 To get started with the App Toolbox, visit [Build an app with App Toolbox](/1.0/start/toolbox/set-up).
 
 Or read on to find out about [Responsive app layout](app-layout).
