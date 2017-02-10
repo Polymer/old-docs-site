@@ -106,7 +106,7 @@ Note this feature is implemented as an attribute API only.  There is no correspo
 </template>
 ```
 
-### Template strip-whitespace is recursive
+### Template `strip-whitespace` is recursive
 
 The `strip-whitespace` attribute is now recursive to descendant templates, stripping whitespace from
 nested `<template is="dom-repeat">` and `<template is="dom-if>` elements.
