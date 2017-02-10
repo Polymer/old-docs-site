@@ -11,6 +11,108 @@ title: Release notes
   }
 </style>
 
+## [Release 1.8.0](https://github.com/polymer/polymer/tree/v1.8.0) (2017-02-06) {#v-1-8-0}
+
+This release adds several small performance-related features.
+
+### Suppress notification events
+
+This release includes two new global settings to suppress unnecessary notifications. These settings
+must be enabled before loading the Polymer import (`polymer.html`) as described in
+[Global settings](devguide/settings).
+
+*   Suppress template notifications.
+
+    Usage:
+
+    ```js
+    Polymer = { suppressTemplateNotifications: true }
+    ```
+
+    When true, suppresses `dom-change` and `rendered-item-count` events from `dom-if`, `dom-repeat`,
+    and `dom-bind` elements. Users can opt back into `dom-change` events by setting the
+    `notify-dom-change` attribute (`notifyDomChange: true` property) on individual `dom-if` and
+    `dom-repeat` instances.
+
+    ```html
+    <template is="dom-repeat" notify-dom-change>
+      ...
+    </template>
+    ```
+
+*   Suppress binding notifications.
+
+    Usage:
+
+    ```js
+    Polymer = { suppressBindingNotifications: true }
+    ```
+
+    Disables notify effects when propagating data _downward_ via bindings. Generally these are not
+    useful unless you are explicitly adding a binding and a change event listener on the same
+    element:
+
+    ```html
+    <my-el foo="{{foo}} on-foo-changed="handleFoo"></my-el>
+    ```
+
+    With this binding, when the host changes the value of `foo`, its `handleFoo` method is invoked
+    to handle the change event. This pattern is generally unnecessary since the host element doing
+    the binding can use a `foo` observer.
+
+    With `suppressBindingNotifications: true`, the event isn't fired  when the host changes the
+    value (but is still fired if `my-el` changes its `foo` value internally.)
+
+    We attempted to make this the default some time back but needed to revert it when we found via
+    [issue #3077](https://github.com/Polymer/polymer/issues/3077) that users were indeed doing this
+    in corner-case scenarios.  Users that avoid these patterns can enjoy the potentially significant
+    benefit of suppressing unnecessary events during downward data flow by opting into this flag.
+
+### `disable-upgrade` attribute
+
+This release adds a `disable-upgrade` attribute API for all Polymer elements when global opt-in
+setting `disableUpgradeEnabled` is true.  This is a lightweight feature useful for performance
+tuning an application, giving fine-grained control over individual element instantiation cost.
+
+When an element is marked with the `disable-upgrade` attribute, its `createdCallback` returns
+early without performing any of the normal Polymer element initialization steps (for example,
+stamping template, setting default properties, running observers, and so on).  The element behaves
+like an element that has not had its definition loaded, **except** that it has the correct prototype
+(as such, methods should not be called on the element until its `disable-upgrade` attribute
+has been removed).
+
+Removing the `disable-upgrade` attribute causes the element to boot up, initialize its properties,
+stamp its template, and so on.
+
+Note this feature is implemented as an attribute API only.  There is no corresponding
+`disableUpgrade` property.  As such, any bindings should be via attribute bindings. For example:
+
+```html
+<script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+<script>
+  Polymer = { disableUpgradeEnabled: true };
+</script>
+<link rel="import" href="/bower_components/polymer/polymer.html">
+
+  ...
+
+<template is="dom-bind">
+
+  ...
+
+  <!-- upgrade my-element when loggedIn == true -->
+  <my-element disable-upgrade$="{{!loggedIn}}"></my-element>
+
+</template>
+```
+
+### Template strip-whitespace is recursive
+
+The `strip-whitespace` attribute is now recursive to descendant templates, stripping whitespace from
+nested `<template is="dom-repeat">` and `<template is="dom-if>` elements.
+
+For information on the `strip-whitespace` attribute, see
+[Remove empty text nodes](devguide/local-dom#strip-whitespace).
 
 ## [Release 1.7.1](https://github.com/polymer/polymer/tree/v1.7.1) (2016-12-14) {#v-1-7-1}
 
