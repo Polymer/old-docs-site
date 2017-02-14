@@ -294,6 +294,8 @@ with [AMP (Accelerated Mobile Pages)](https://www.ampproject.org/) documents. In
 News, the HTML content files (for example, `/data/articles/it-takes-teacher.html`) are replaced by
 AMP documents which can be loaded as standalone pages.
 
+<a href="https://polymer-news-amp.appspot.com/" target="_blank" class="docs-button">Launch News-AMP demo</a>
+
 The AMP project supports adding an AMP document to a shadow root on your page. Here’s an example:
 
 [https://github.com/ampproject/amphtml/blob/master/examples/pwa/pwa.js](https://github.com/amp
