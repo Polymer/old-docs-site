@@ -156,7 +156,7 @@ last slot in 2.0.
 
 ### Bug fixes
 
--   [#3964]https://github.com/Polymer/polymer/pull/3964) Fixed IE memory leaks in the `fire` and
+-   [#3964](https://github.com/Polymer/polymer/pull/3964) Fixed IE memory leaks in the `fire` and
     `importHref` methods.
 
 -   [#4096](https://github.com/Polymer/polymer/issues/4096). `dom-repeat` and `dom-if` occasionally
