@@ -315,7 +315,7 @@ An element is _ready_ when:
     their `ready` methods called.
 
 Implement `ready` when it's necessary to manipulate an element's
-local DOM when the element is constructed.
+local DOM during element construction.
 
 ```
     ready: function() {
