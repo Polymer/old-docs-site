@@ -7,7 +7,7 @@ title: "Case study: the News app"
 News is a full-featured Progressive Web App (PWA) demo built using the Toolbox. You can try it out
 here:
 
-<a href="https://news.polymer-project.org/" class="docs-button">Launch News demo</a>
+<a href="https://news.polymer-project.org/" class="blue-button">Launch News demo</a>
 
 This case study shows how News uses the principles of Progressive Web App (PWA) design to deliver a
 great
@@ -224,36 +224,6 @@ visits `/list/top_stories`:
   </div>
 </div>
 
-## SEO and social sharing
-
-A small piece of server code in the News app checks the requesting user agent whenever the user
-navigates to a URL in your app. If the user agent is a browser, the application returns index.html
-and the app's routing logic is executed to display the requested content.
-
-However, some user agents (such as certain indexers and social sharing sites) don't run JavaScript.
-If the user agent is a well-known member of this category, the News app returns a static HTML page
-so that the page can be parsed and indexed or displayed correctly in a social site.
-
-`main.py`
-{.caption}
-```python
-class ArticlePage(webapp2.RequestHandler):
-  def get(self, **kwargs):
-    bots = '|'.join([
-        'Googlebot',
-        'bingbot',
-        'msnbot',
-        'facebookexternalhit',
-        'Facebot',
-        'Twitterbot',
-        'Google-Structured-Data-Testing-Tool'
-      ])
-    if re.search(bots, self.request.headers.get('User-Agent'), re.I):
-      self.response.out.write(open('data/articles/' + kwargs['article_id'] + '.html').read())
-    else:
-      self.response.out.write(open('index.html').read())
-```
-
 ## Resource URLs
 
 Resource URLs, like `/bower_components/`, `/data/` and `/src/` are served as static files. These
@@ -294,7 +264,7 @@ with [AMP (Accelerated Mobile Pages)](https://www.ampproject.org/) documents. In
 News, the HTML content files (for example, `/data/articles/it-takes-teacher.html`) are replaced by
 AMP documents which can be loaded as standalone pages.
 
-<a href="https://polymer-news-amp.appspot.com/" target="_blank" class="docs-button">Launch News-AMP demo</a>
+<a href="https://polymer-news-amp.appspot.com/" target="_blank" class="blue-button">Launch News-AMP demo</a>
 
 The AMP project supports adding an AMP document to a shadow root on your page. Here’s an example:
 
