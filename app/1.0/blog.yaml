@@ -1,15 +1,15 @@
 ---
 - title: "Polymer News Progressive Web App"
-  path: /1.0/blog/2017-02-06-news-pwa
-  published: 2017-02-06
+  path: /1.0/blog/2017-02-13-news-pwa
+  published: 2017-02-13
   author: polymer-team
   description: "The new Polymer News demo progressive web app helps you start building a cutting-edge PWA using Polymer."
   tag:
     - blog
     - announcements
 - title: "webcomponents.org"
-  path: /1.0/blog/2017-01-10-webcomponents-org
-  published: 2017-01-10
+  path: /1.0/blog/2017-01-09-webcomponents-org
+  published: 2017-01-09
   author: polymer-team
   description: "The new webcomponents.org is now live, with updates and elements from the Web Components community."
   tag:
