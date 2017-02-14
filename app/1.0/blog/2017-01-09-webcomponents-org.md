@@ -20,6 +20,6 @@ The catalog is full of features that let you explore the world of custom element
 
 All of the elements and element product lines currently built and maintained by the Polymer Project are [published on the new catalog](https://www.webcomponents.org/author/PolymerElements). We’re now considering the previous catalog site - [elements.polymer-project.org/](https://elements.polymer-project.org/) - deprecated in favor of webcomponents.org, and plan to eventually redirect all URL’s from elements.polymer-project.org to the new catalog.
 
-The new catalog and site is a constant work in progress and community-driven, so please feel free to file issues, ideas, or PR’s to the [repository](https://github.com/webcomponents/beta).
+The new catalog and site is a constant work in progress and community-driven, so please feel free to file issues, ideas, or PR’s to the [repository](https://github.com/webcomponents/webcomponents.org).
 
 Happy componentizing!
