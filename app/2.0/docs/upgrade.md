@@ -522,7 +522,7 @@ Before {.caption}
 
 ### Polymer DOM APIs {#polymer-dom-apis}
 
-Hybrid and legacy elements can continue to use existing DOM APIs, but may require some changes. Class-based elements should use native DOM APIs.
+Hybrid and legacy elements can continue to use existing Polymer DOM APIs, but may require some changes. Class-based elements should use native DOM APIs.
 
 #### Hybrid elements: update Polymer.dom usage {#hybrid-elements-update-polymer-dom-usage}
 
@@ -953,7 +953,6 @@ Below are the general steps for defining a custom element using this new syntax:
 *   You can extend from `Polymer.LegacyElement` instead, to get all of the Polymer 1.0 element API, but since most of this API was rarely used, this should not often be needed.
 
 
-
 *   Implement "behaviors" as [mixins that return class expressions](http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/).
 
 *   Property metadata (`properties` object) and complex observers (`observers` array) should be put on the class as a static in a property called `config`.
@@ -984,5 +983,74 @@ If you want to upgrade to a class-based element but depend on some of the remove
 class MyLegacyElement extends Polymer.LegacyElement { ... }
 ```
 
+### Class mixins and behaviors
 
+A class mixin is essentially a factory function that takes a class as an argument and returns a new
+class, with new features "mixed in."
 
+```js
+let MyMixin = (base) => class extends base {
+  // Configuration just like an element class
+  static get config() {
+    return {
+      properties {
+        myProp: {
+          type: Number,
+          value: 0
+        }
+      }
+    }
+  }
+
+  // Define a method to mix in.
+  incrementMyProp() {
+    this.myProp++;
+  }
+}
+```
+
+If you're more familiar with JavaScript 5 syntax, you can define a mixin using a regular
+function expression:
+
+```
+var MyMixin = function(base) {
+  return class extends base {
+    // same stuff in here
+  }
+}
+```
+
+Mixins are applied when you create an element class:
+
+```js
+class MyElement extends MyMixin(Polymer.Element) {
+  static get is() { return 'my-element' }
+}
+```
+
+The `MyMixin(Polymer.Element)` returns a new class, which extends `Polymer.Element` and adds the
+features from `MyMixin`. So `MyElement`'s inheritance is:
+
+`MyElement > MyMixin(Polymer.Element) > Polymer.Element > HTMLElement`
+
+The resulting element class, `MyElement` has the `myProp` property and `incrementMyProp`
+method from the mixin.
+
+#### Using hybrid behaviors with class-style elements
+
+In some cases, the features you want to use may be available as hybrid behaviors, but not as
+class mixins.
+
+You can add hybrid behaviors to your class-style element using the `Polymer.mixinBehavior` function:
+
+```
+class XClass extends Polymer.mixinBehaviors([MyBehavior, MyBehavior2], Polymer.Element) {
+  static get is() { return 'x-class'}
+
+  ...
+}
+customElements.define(XClass.is, XClass);
+```
+
+The `mixinBehavior` function also mixes in the Legacy APIs, the same as if you extended
+`Polymer.LegacyElement`. These APIs are required since since hybrid behaviors depend on them.
