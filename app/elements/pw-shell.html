@@ -289,16 +289,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       // Save which version of docs we're looking at, since we need to
       // maintain this state across the app.
-      if (this._currentPageURL.indexOf('/1.0/') !== -1) {
-        this._activeDocsVersion = '1.0';
-      } else {
-        this._activeDocsVersion = '2.0';
-      }
-
-      // Don't close the drawer when you click on the version selector.
-      // this.$.paperDropdown.addEventListener('tap', function(event) {
-      //   event.stopImmediatePropagation();
-      // });
+      this.updateDocsVersion();
 
       // Update the version when the version selector is used.
       this.$.versionSelect.addEventListener('iron-select', function(event) {
@@ -308,6 +299,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this._activeDocsVersion = newSelection;
         window.location = '/' + this._activeDocsVersion + '/start/';
       }.bind(this));
+    },
+
+    // Save the docs version based on the current URL.
+    updateDocsVersion: function() {
+      if (this._currentPageURL.indexOf('/1.0/') !== -1) {
+        this._activeDocsVersion = '1.0';
+      } else {
+        this._activeDocsVersion = '2.0';
+      }
     },
 
     _toggleDrawer: function() {

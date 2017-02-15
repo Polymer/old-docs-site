@@ -124,6 +124,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-decoration: none;
       }
 
+      .version-alert {
+        background-color: #FBE9E7;
+        margin: 0;
+        padding: 10px 40px;
+      }
+
+      .version-alert img {
+        vertical-align: middle;
+      }
+
       @media (max-width: 500px) {
         header {
           padding: 20px;
@@ -168,7 +178,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="content-container">
       <header hidden$="[[!markdown]]" id="header" class$="[[_computeHeaderClass(activeDocsVersion)]]">
-        <p hidden$="[[_computeIsV2(activeDocsVersion)]]">Note: This page is for Polymer 1.x, and is deprecated. Please see the updated 2.0 pages instead.</p>
         <p>{{pageSubtitle}}</p>
         <h1>{{pageTitle}}</h1>
 
@@ -176,6 +185,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             href="https://github.com/Polymer/docs/edit/master/app{{_githubUrl(activeItem)}}">Edit on GitHub
         </a>
       </header>
+      <p hidden$="[[_computeIsV2(activeDocsVersion)]]" class="version-alert"><img src="/images/alerts/warning.svg">You're viewing an older version of Polymer.
+        Please see <a href="{{v2PageLink}}">Polymer 2.0</a> for the latest.</a></p>
 
       <div id="content">
         <content></content>
@@ -271,7 +282,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.activePage = path;
       }
 
-      // Figure out which version we're displaying, 1.0 or 2.0.
+      // Figure out which version we're displaying, 1.0 or 2.0. You can't rely on
+      // the parent's version, because if we clicked on the "see 2.0" <a> link inside
+      // this page, then the pw-shell would not have refreshed, so it doesn't
+      // know the version has changed.
+      pwShell.updateDocsVersion();
       this._setActiveDocsVersion(pwShell._activeDocsVersion);
       this.$.versionSelect.selected = this.activeDocsVersion == '1.0' ? 0 : 1;
 
