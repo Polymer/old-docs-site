@@ -66,14 +66,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       iron-selector ::content a,
-      iron-selector ::content .sidenav-header,
-      nav .version-selector {
+      iron-selector ::content .sidenav-header {
         font-size: 15px;
         line-height: 24px;
         display: block;
         padding: 5px 30px;
         /* The active links will have a pink border. */
         border-left: 4px solid transparent;
+      }
+
+      .version-selector {
+        padding: 10px 34px;
+        margin-bottom: 10px;
+      }
+
+      .version-selector paper-dropdown-menu-light {
+        width: 60px;
+        margin-left: 20px;
+        vertical-align: middle;
       }
 
       iron-selector ::content a {
@@ -114,10 +124,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-decoration: none;
       }
 
-      .version-selector select {
-        margin-left: 10px;
-      }
-
       @media (max-width: 500px) {
         header {
           padding: 20px;
@@ -146,11 +152,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <nav>
       <div class="version-selector">
-        <b>Version</b><select id="versionSelect">
-          <option>1.0</option>
-          <option>2.0</option>
-        </select>
+        <b>Version</b>
+        <paper-dropdown-menu-light no-label-float>
+          <paper-listbox class="dropdown-content" id="versionSelect">
+            <paper-item>1.0</paper-item>
+            <paper-item>2.0</paper-item>
+          </paper-listbox>
+        </paper-dropdown-menu-light>
       </div>
+
       <iron-selector attr-for-selected="name" selected="[[activePage]]" selected-item="{{activeItem}}">
         <content select=".sidenav-content"></content>
       </iron-selector>
@@ -219,11 +229,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         type: String
       },
 
-      versionOne: {
+      v1PageLink: {
         type: String
       },
 
-      versionTwo: {
+      v2PageLink: {
         type: String
       },
 
@@ -263,13 +273,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       // Figure out which version we're displaying, 1.0 or 2.0.
       this._setActiveDocsVersion(pwShell._activeDocsVersion);
-      this.$.versionSelect.selectedIndex = this.activeDocsVersion == '1.0' ? 0 : 1;
+      this.$.versionSelect.selected = this.activeDocsVersion == '1.0' ? 0 : 1;
 
       // Update the version when the version selector is used.
-      this.$.versionSelect.addEventListener('change', function(event) {
-        window.location = this.activeDocsVersion == '1.0' ? this.versionTwo : this.versionOne;
-        // This will refresh the page and make the pw-shell reset itself, so we
-        // don't need to save this version anywhere.
+      this.$.versionSelect.addEventListener('iron-select', function(event) {
+        var newSelection = event.detail.item.textContent;
+        if (newSelection === this.activeDocsVersion)
+          return;
+
+        pwShell._activeDocsVersion = newSelection;
+        this._setActiveDocsVersion(pwShell._activeDocsVersion);
+        window.location = newSelection == '2.0' ? this.v2PageLink : this.v1PageLink;
       }.bind(this));
     },
 

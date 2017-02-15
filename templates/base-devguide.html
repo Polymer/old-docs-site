@@ -18,9 +18,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     {% include 'templates/site-nav.html' %}
     {% if markdown %}
       <devguide-shell markdown page-title="{{{title}}}" page-subtitle="{{{subtitle}}}"
-          version-one="{{{versions[0]}}}" version-two="{{{versions[1]}}}">
+          v1-page-link="{{{versions[0]}}}" v2-page-link="{{{versions[1]}}}">
     {% else %}
-      <devguide-shell version-one="{{{versions[0]}}}" version-two="{{{versions[1]}}}">
+      <devguide-shell v1-page-link="{{{versions[0]}}}" v2-page-link="{{{versions[1]}}}">
     {% endif %}
 
       {% if nav %}

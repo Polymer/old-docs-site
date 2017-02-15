@@ -139,8 +139,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         vertical-align: top;
       }
 
-      .version-selector select {
-        margin-left: 10px;
+      .version-selector paper-dropdown-menu-light {
+        width: 60px;
+        margin-left: 20px;
+        vertical-align: middle;
       }
 
       @media (max-width: 767px) {
@@ -198,11 +200,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <app-drawer id="drawer" class="drawer" swipe-open unresolved>
       <div class="drawer-contents" on-click="_closeDrawer">
         <img src="../images/logos/p-logo.png" alt="Polymer Logo">
+
         <div class="version-selector">
-          <b>Version</b><select id="versionSelect">
-            <option>1.0</option>
-            <option>2.0</option>
-          </select>
+          <b>Version</b>
+          <paper-dropdown-menu-light no-label-float id="paperDropdown">
+            <paper-listbox class="dropdown-content" id="versionSelect">
+              <paper-item>1.0</paper-item>
+              <paper-item>2.0</paper-item>
+            </paper-listbox>
+          </paper-dropdown-menu-light>
         </div>
         <content select=".site-nav"></content>
       </div>
@@ -290,25 +296,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       // Don't close the drawer when you click on the version selector.
-      this.$.versionSelect.addEventListener('click', function(event) {
-        event.stopImmediatePropagation();
-      });
+      // this.$.paperDropdown.addEventListener('tap', function(event) {
+      //   event.stopImmediatePropagation();
+      // });
 
       // Update the version when the version selector is used.
-      this.$.versionSelect.addEventListener('change', function(event) {
-        this._activeDocsVersion = this._activeDocsVersion == '1.0' ? '2.0' : '1.0';
-        window.location = '/' + this._activeDocsVersion +'/start/';
+      this.$.versionSelect.addEventListener('iron-select', function(event) {
+        var newSelection = event.detail.item.textContent;
+        if (newSelection === this._activeDocsVersion)
+          return;
+        this._activeDocsVersion = newSelection;
+        window.location = '/' + this._activeDocsVersion + '/start/';
       }.bind(this));
     },
 
     _toggleDrawer: function() {
       // Sync the version selector with the active docs version.
-      this.$.versionSelect.selectedIndex =
-          this._activeDocsVersion == '1.0' ? 0 : 1;
+      this.$.versionSelect.selected = this._activeDocsVersion == '1.0' ? 0 : 1;
       this.$.drawer.toggle();
     },
 
-    _closeDrawer: function() {
+    _closeDrawer: function(event) {
+      // If this event comes from the paper dropdown menu, then it just means
+      // we're opening the version selector, so we shouldn't close the drawer.
+      if (Polymer.dom(event).localTarget.id === 'paperDropdown')
+        return;
       this.$.drawer.close();
     },
 
