@@ -204,6 +204,9 @@
   - title: "Shop"
     path: /2.0/toolbox/case-study
     indent: True
+  - title: "News"
+    path: /1.0/toolbox/news-case-study
+    indent: True
   - endheader: true
 
 - section: News

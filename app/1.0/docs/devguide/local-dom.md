@@ -107,7 +107,7 @@ Example: { .caption }
 </dom-module>
 ```
 
-For locating dynamically-created nodes in your element's local DOM, 
+For locating dynamically-created nodes in your element's local DOM,
 the `$$` method provides a shorthand for `Polymer.dom(this.root).querySelector()`:
 
 <code>this.$$(<var>selector</var>)</code>
@@ -525,7 +525,10 @@ With empty text nodes:
 
 ```html
 <dom-module id="has-whitespace">
-  <template> <div>A</div> <div>B</div> </template>
+  <template>
+    <div>A</div>
+    <div>B</div>
+  </template>
   <script>
     Polymer({
       is: 'has-whitespace',
@@ -555,3 +558,6 @@ Without empty text nodes:
   </script>
 </dom-module>
 ```
+
+Starting in release 1.8.0, `strip-whitespace` is recursive, affecting any nested `dom-if` and
+`dom-repeat` instances inside the  template.
