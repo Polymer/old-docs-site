@@ -281,6 +281,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // Save the initial URL so that we don't double-render the first load.
       this._currentPageURL = this._sectionRoute.path;
 
+      // Save which version of docs we're looking at, since we need to
+      // maintain this state across the app.
       if (this._currentPageURL.indexOf('/1.0/') !== -1) {
         this._activeDocsVersion = '1.0';
       } else {
@@ -300,7 +302,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _toggleDrawer: function() {
-      // Figure out which version we're displaying, 1.0 or 2.0
+      // Sync the version selector with the active docs version.
       this.$.versionSelect.selectedIndex =
           this._activeDocsVersion == '1.0' ? 0 : 1;
       this.$.drawer.toggle();

@@ -37,9 +37,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       header {
-        background: #1565c0;  /* blue-800 */
         color: white;
         padding: 20px 40px;
+      }
+
+      header.v2 {
+        background: #1565c0;  /* blue-800 */
+      }
+
+      header.v1 {
+        background: #37474F;  /* blue-grey-800 */
       }
 
       header h1 {
@@ -150,7 +157,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </nav>
 
     <div class="content-container">
-      <header hidden$="[[!markdown]]" id="header">
+      <header hidden$="[[!markdown]]" id="header" class$="[[_computeHeaderClass(activeDocsVersion)]]">
+        <p hidden$="[[_computeIsV2(activeDocsVersion)]]">Note: This page is for Polymer 1.x, and is deprecated. Please see the updated 2.0 pages instead.</p>
         <p>{{pageSubtitle}}</p>
         <h1>{{pageTitle}}</h1>
 
@@ -224,6 +232,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        */
       _isMobileView: {
         observer: '_mobileViewChanged'
+      },
+
+      activeDocsVersion: {
+        type: String,
+        readOnly: true
       }
     },
 
@@ -248,13 +261,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.activePage = path;
       }
 
-      // Figure out which version we're displaying, 1.0 or 2.0
-      this.$.versionSelect.selectedIndex =
-          window.location.pathname.indexOf('/1.0/') !== -1 ? 0 : 1;
+      // Figure out which version we're displaying, 1.0 or 2.0.
+      this._setActiveDocsVersion(pwShell._activeDocsVersion);
+      this.$.versionSelect.selectedIndex = this.activeDocsVersion == '1.0' ? 0 : 1;
 
       // Update the version when the version selector is used.
       this.$.versionSelect.addEventListener('change', function(event) {
-        window.location = event.target.value == '2.0' ? this.versionTwo : this.versionOne;
+        window.location = this.activeDocsVersion == '1.0' ? this.versionTwo : this.versionOne;
+        // This will refresh the page and make the pw-shell reset itself, so we
+        // don't need to save this version anywhere.
       }.bind(this));
     },
 
@@ -271,6 +286,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (item) {
         return item.getAttribute('name').indexOf('/1.0/docs/api') >= 0;
       }
+    },
+
+    _computeHeaderClass: function(version) {
+      return version == '1.0' ? 'v1' : 'v2';
+    },
+
+    _computeIsV2: function(version) {
+      return version == '2.0';
     }
   });
   </script>
