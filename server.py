@@ -258,9 +258,7 @@ class Site(http2push.PushHandler):
       section = match.group(2)
       full_nav = self.get_site_nav(version)
       nav = self.nav_for_section(version, section)
-      print '--getting versions for section ', section
       versions = self.versions_for_section(section)
-      print '--got versions ', versions
     else:
       if path.startswith('blog') or path == 'index.html':
         articles = self.get_articles()
