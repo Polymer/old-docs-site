@@ -5,169 +5,180 @@
 
 - section: Start
   shortpath: start
-  path: /1.0/start/
+  path: /2.0/start/
   items:
   - title: Get started
-    path: /1.0/start/index
+    path: /2.0/start/index
   - header: Build an element
   - title: 1. Get set up
-    path: /1.0/start/first-element/intro
+    path: /2.0/start/first-element/intro
     indent: True
   - title: 2. Add local DOM
-    path: /1.0/start/first-element/step-2
+    path: /2.0/start/first-element/step-2
     indent: True
   - title: 3. Data binding & properties
-    path: /1.0/start/first-element/step-3
+    path: /2.0/start/first-element/step-3
     indent: True
   - title: 4. React to input
-    path: /1.0/start/first-element/step-4
+    path: /2.0/start/first-element/step-4
     indent: True
   - title: 5. Theming with custom properties
-    path: /1.0/start/first-element/step-5
+    path: /2.0/start/first-element/step-5
     indent: True
   - endheader: True
   - header: Build an app
   - title: 1. Get set up
-    path: /1.0/start/toolbox/set-up
+    path: /2.0/start/toolbox/set-up
     indent: True
   - title: 2. Create a new page
-    path: /1.0/start/toolbox/create-a-page
+    path: /2.0/start/toolbox/create-a-page
     indent: True
   - title: 3. Add some elements
-    path: /1.0/start/toolbox/add-elements
+    path: /2.0/start/toolbox/add-elements
     indent: True
   - title: 4. Deploy
-    path: /1.0/start/toolbox/deploy
+    path: /2.0/start/toolbox/deploy
     indent: True
   - endheader: True
 
 - section: Polymer
   shortpath: docs
-  path: /1.0/docs/devguide/feature-overview
+  path: /2.0/docs/devguide/feature-overview
   items:
+  - title: About Polymer 2.0
+    path: /2.0/docs/about_20
+  - title: Upgrade guide
+    path: /2.0/docs/upgrade
+  - header: Overview
   - title: Feature overview
-    path: /1.0/docs/devguide/feature-overview
+    path: /2.0/docs/devguide/feature-overview
+    indent: True
   - title: Quick tour
-    path: /1.0/docs/devguide/quick-tour
-  - header: Define elements
-  - title: Register an element
-    path: /1.0/docs/devguide/registering-elements
-    indent: True
-  - title: Declare properties
-    path: /1.0/docs/devguide/properties
-    indent: True
-  - title: Instance methods
-    path: /1.0/docs/devguide/instance-methods
-    indent: True
-  - title: Behaviors
-    path: /1.0/docs/devguide/behaviors
+    path: /2.0/docs/devguide/quick-tour
     indent: True
   - endheader: True
-  - header: Local DOM & styling
-  - title: Local DOM
-    path: /1.0/docs/devguide/local-dom
+  - header: Custom elements
+  - title: Custom element concepts
+    path: /2.0/docs/devguide/custom-elements
     indent: True
-  - title: Styling
-    path: /1.0/docs/devguide/styling
+  - title: Define an element
+    path: /2.0/docs/devguide/registering-elements
+    indent: True
+  - title: Declare properties
+    path: /2.0/docs/devguide/properties
+    indent: True
+  - endheader: True
+  - header: Shadow DOM & styling
+  - title: Shadow DOM concepts
+    path: /2.0/docs/devguide/shadow-dom
+    indent: True
+  - title: DOM templating
+    path: /2.0/docs/devguide/dom-template
+    indent: True
+  - title: Style shadow DOM
+    path: /2.0/docs/devguide/styling
+    indent: True
+  - title: Custom CSS properties
+    path: /2.0/docs/devguide/custom-properties
     indent: True
   - endheader: True
   - header: Events
   - title: Handle and fire events
-    path: /1.0/docs/devguide/events
+    path: /2.0/docs/devguide/events
     indent: True
   - title: Gesture events
-    path: /1.0/docs/devguide/gesture-events
+    path: /2.0/docs/devguide/gesture-events
     indent: True
   - endheader: True
   - header: Data system
   - title: Data system concepts
-    path: /1.0/docs/devguide/data-system
+    path: /2.0/docs/devguide/data-system
     indent: True
   - title: Work with object and array data
-    path: /1.0/docs/devguide/model-data
+    path: /2.0/docs/devguide/model-data
     indent: True
   - title: Observers and computed properties
-    path: /1.0/docs/devguide/observers
+    path: /2.0/docs/devguide/observers
     indent: True
   - title: Data binding
-    path: /1.0/docs/devguide/data-binding
+    path: /2.0/docs/devguide/data-binding
     indent: True
   - title: Helper elements
-    path: /1.0/docs/devguide/templates
+    path: /2.0/docs/devguide/templates
     indent: True
   - endheader: True
   - header: Tools
   - title: Tools overview
-    path: /1.0/docs/tools/overview
+    path: /2.0/docs/tools/overview
     indent: True
   - title: Polymer CLI
-    path: /1.0/docs/tools/polymer-cli
+    path: /2.0/docs/tools/polymer-cli
     indent: True
   - title: Document your elements
-    path: /1.0/docs/tools/documentation
+    path: /2.0/docs/tools/documentation
     indent: True
   - title: Test your elements
-    path: /1.0/docs/tools/tests
+    path: /2.0/docs/tools/tests
     indent: True
   - title: Optimize for production
-    path: /1.0/docs/tools/optimize-for-production
+    path: /2.0/docs/tools/optimize-for-production
     indent: True
   - title: Publish an element
-    path: /1.0/docs/tools/reusable-elements
+    path: /2.0/docs/tools/reusable-elements
     indent: True
   - title: Advanced tools
-    path: /1.0/docs/tools/advanced
+    path: /2.0/docs/tools/advanced
     indent: True
   - title: Services
-    path: /1.0/docs/tools/services
+    path: /2.0/docs/tools/services
     indent: True
   - endheader: True
   - header: What's new
   - title: Release notes
-    path: /1.0/docs/release-notes
+    path: /2.0/docs/release-notes
     indent: True
   - title: 1.0 Migration guide
-    path: /1.0/docs/migration
+    path: /2.0/docs/migration
     indent: True
   - title: About Polymer 1.0
-    path: /1.0/docs/about_10
+    path: /2.0/docs/about_10
     indent: True
   - endheader: True
   - header: Resources
   - title: Community
-    path: /1.0/docs/community
+    path: /2.0/docs/community
     indent: True
   - title: Browser compatibility
-    path: /1.0/docs/browsers
+    path: /2.0/docs/browsers
     indent: True
   - endheader: True
   - header: API Reference
   - title: Polymer.Base
-    path: /1.0/docs/api/Polymer.Base
+    path: /2.0/docs/api/Polymer.Base
     indent: True
   - title: array-selector
-    path: /1.0/docs/api/array-selector
+    path: /2.0/docs/api/array-selector
     indent: True
   - title: custom-style
-    path: /1.0/docs/api/custom-style
+    path: /2.0/docs/api/custom-style
     indent: True
   - title: dom-bind
-    path: /1.0/docs/api/dom-bind
+    path: /2.0/docs/api/dom-bind
     indent: True
   - title: dom-if
-    path: /1.0/docs/api/dom-if
+    path: /2.0/docs/api/dom-if
     indent: True
   - title: dom-repeat
-    path: /1.0/docs/api/dom-repeat
+    path: /2.0/docs/api/dom-repeat
     indent: True
   - title: dom-template
-    path: /1.0/docs/api/dom-template
+    path: /2.0/docs/api/dom-template
     indent: True
   - title: Polymer.Templatizer
-    path: /1.0/docs/api/Polymer.Templatizer
+    path: /2.0/docs/api/Polymer.Templatizer
     indent: True
   - title: Global settings
-    path: /1.0/docs/devguide/settings
+    path: /2.0/docs/devguide/settings
     indent: True
   - endheader: True
 
@@ -204,11 +215,8 @@
   - title: "Shop"
     path: /2.0/toolbox/case-study
     indent: True
-  - title: "News"
-    path: /1.0/toolbox/news-case-study
-    indent: True
   - endheader: true
 
-- section: News
+- section: Blog
   shortpath: blog
   path: /2.0/blog/

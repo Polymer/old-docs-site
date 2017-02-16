@@ -174,7 +174,7 @@ class Site(http2push.PushHandler):
     return site_nav
 
   def nav_for_section(self, version, section):
-    nav = self.get_site_nav(1.0)
+    nav = self.get_site_nav(version)
     versioned_section = '%s/%s' % (version, section)
     if nav:
       for one_section in nav:
@@ -238,7 +238,7 @@ class Site(http2push.PushHandler):
     if match:
       version = match.group(1)
       section = match.group(2)
-      # Hack to support /2.0 tab 
+      # Hack to support /2.0 tab
       # full_nav = self.get_site_nav(version)
       # nav = self.nav_for_section(version, section)
       full_nav = self.get_site_nav('1.0')

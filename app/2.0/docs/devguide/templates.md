@@ -7,10 +7,11 @@ title: Data binding helper elements
 Polymer provides a set of custom elements to help with common
 data binding use cases:
 
--   Template repeater. Creates an instance of the template's contents for each item in an array.
+-   Template repeater (`dom-repeat`). Creates an instance of the template's contents for each item
+    in an array.
 -   Array selector. Manages selection state for an array of structured data.
--   Conditional template. Stamps its contents if a given condition is true.
--   Auto-binding template. Allows data binding outside of a Polymer element.
+-   Conditional template (`dom-if`). Stamps its contents if a given condition is true.
+-   Auto-binding template (`dom-bind`). Allows data binding outside of a Polymer element.
 
 ## Template repeater (dom-repeat) {#dom-repeat}
 
@@ -23,13 +24,37 @@ that includes the following properties:
 *   `index`. The index of `item` in the array. (The `index` value changes if
     the array is sorted or filtered)
 
-The template repeater is a [type-extension custom element](registering-elements#type-extension)
-that extends the built-in `<template>` element, so it is written as `<template is="dom-repeat">`.
+There are two ways to use a template repeater:
+
+*   **Inside a Polymer element or another Polymer-managed template.** Use the shorthand form
+    `<template is="dom-repeat>`.
+
+        <template is="dom-repeat" items="{{items}}">
+          ...
+        </template>
+
+*   **Outside of a Polymer-managed template.** Use the `<dom-repeat>` wrapper element:
+
+        <dom-repeat>
+          <template>
+            ...
+          </template>
+        </dom-repeat>
+
+    In this form, you typically set the `items` property imperatively:
+
+        var repeater = document.querySelector('dom-repeat');
+        repeater.items = someArray;
+
+A Polymer-managed template includes a Polymer element's template, a `dom-bind`, `dom-if`, or
+`dom-repeat` template, or a template managed by the `Templatizer` class.
+
+In most cases, you'll use the first (shorthand) form for `dom-repeat`.
 
 Example: { .caption }
 
 ```
-<dom-module id="employee-list">
+<dom-module id="x-custom">
   <template>
 
     <div> Employee list: </div>
@@ -42,16 +67,29 @@ Example: { .caption }
   </template>
 
   <script>
-    Polymer({
-      is: 'employee-list',
-      ready: function() {
-        this.employees = [
-            {first: 'Bob', last: 'Smith'},
-            {first: 'Sally', last: 'Johnson'},
-            ...
-        ];
+
+    class XCustom extends Polymer.Element {
+
+      static get is() { return 'x-custom'; }
+
+      static get config() {
+        return {
+          properties: {
+            employees: {
+              type: Array,
+              value() {
+                return [
+                  {first: 'Bob', last: 'Smith'},
+                  {first: 'Sally', last: 'Johnson'},
+                ];
+              }
+            }
+          }
+        }
       }
-    });
+    }
+
+    customElements.define(XCustom.is, XCustom);
   </script>
 
 </dom-module>
@@ -62,12 +100,24 @@ instances, which update using the normal [change notification events](data-syste
 If the `items` array is bound using two-way binding delimiters, changes to individual items can also
 flow upward.
 
-Mutations to the `items` array itself (`push`, `pop`, `splice`, `shift`,
-`unshift`), should be performed using Polymer's
-[array mutation methods](model-data#array-mutation).
-These methods ensure that the changes are [observable](data-system#observable-changes) by
-the data system. For more information on working with arrays, see [Work with
-arrays](model-data#work-with-arrays).
+
+For the template repeater to reflect changes, you need to update the `items` array
+observably.
+
+```js
+// Use Polymer array mutation methods:
+this.push('employees', {first: 'Diana', last: 'Villiers'});
+
+// Use Polymer set method:
+this.set('employees.2.last', 'Maturin');
+
+// Use native methods followed by notifyPath
+this.employees.push({first: 'Barret', last: 'Bonden'});
+this.notifyPath('employees');
+```
+
+For more information, see [Mutating objects and arrays observably](data-system#make-observable-changes).
+
 
 ### Handling events in `dom-repeat` templates {#handling-events}
 
@@ -80,8 +130,15 @@ the repeater adds a `model` property to each event sent to the listener. The `mo
 object contains the scope data used to generate the template instance, so the item
 data is `model.item`:
 
-```
-<dom-module id="simple-menu">
+```html
+  <link rel="import" href="polymer/polymer-element.html">
+  <link rel="import" href="polymer/src/templatizer/dom-repeat.html">
+
+
+</head>
+
+<x-custom></x-custom>
+<dom-module id="x-custom">
 
   <template>
     <template is="dom-repeat" id="menu" items="{{menuItems}}">
@@ -94,33 +151,69 @@ data is `model.item`:
   </template>
 
   <script>
-    Polymer({
-      is: 'simple-menu',
-      ready: function() {
-        this.menuItems = [
-            { name: "Pizza", ordered: 0 },
-            { name: "Pasta", ordered: 0 },
-            { name: "Toast", ordered: 0 }
-        ];
-      },
-      order: function(e) {
-        var model = e.model;
-        model.set('item.ordered', model.item.ordered+1);
+    class XCustom extends Polymer.Element {
+
+      static get is() { return 'x-custom'; }
+
+      static get config() {
+        return {
+          properties: {
+            menuItems: {
+              type: Array,
+              value() {
+                return [
+                  {name: 'Pizza', ordered: 0},
+                  {name: 'Pasta', ordered: 0},
+                  {name: 'Toast', ordered: 0}
+                ];
+              }
+            }
+          }
+        }
       }
-    });
+
+      order(e) {
+        e.model.set('item.ordered', e.model.item.ordered+1);
+      }
+    }
+
+    customElements.define(XCustom.is, XCustom);
   </script>
 
 </dom-module>
 ```
 
-The `model` is an instance of `Polymer.Base`, so `set`, `get` and the array
-manipulation methods are all available on the `model` object, and should be used
-to manipulate the model.
+The `model` is an instance of `TemplateInstance`, which provides the Polymer
+data APIs: `get`, `set`, `setProperties`, `notifyPath` and the array manipulation methods.
+You can use these to manipulate the model, using paths _relative to template instance._
 
-**Note:** The `model` property is **not** added for event listeners registered
+For example, in the code above, if the user clicks the button next to **Pizza**, the handler
+runs this code:
+
+```js
+e.model.set('item.ordered', e.model.item.ordered+1);
+```
+
+This increments the order count for the item (in this case, Pizza).
+
+**Only bound data is available on the model object.** Only the properties that are actually data
+bound inside the `dom-repeat` are added to the model object. So in some cases, if you need to
+access a property from an event handler, it might be necessary to bind it to a property in the
+template. For example, if your handler needs to access a `productId` property, simply bind it to
+a property where it doesn't affect the display:
+
+```html
+  <template is="dom-repeat" items="{{products}}" as="product">
+    <div product-id="[[product.productId]]">[[product.name]]</div>
+  </template>
+```
+
+#### Handling events outside the `dom-repeat` template.
+
+The `model` property is **not** added for event listeners registered
 imperatively (using `addEventListener`), or listeners added to one of the
-`<dom-repeat>` template's parent nodes. In these cases, you can use
-the `<dom-repeat>` `modelForElement` method to retrieve the
+`dom-repeat` template's parent nodes. In these cases, you can use
+the `dom-repeat` `modelForElement` method to retrieve the
 model data that generated a given element. (There are also corresponding
 `itemForElement` and `indexForElement` methods.)
 { .alert .alert-info }
@@ -187,10 +280,12 @@ this case, you can use a computed binding to _return_ a dynamic filter or
 sort function when one or more dependent properties changes.
 
 ```
-<dom-module id="employee-search">
+<dom-module id="x-custom">
 
   <template>
     <input value="{{searchString::input}}">
+
+    <!-- computeFilter returns a new filter function whenever searchString changes -->
     <template is="dom-repeat" items="{{employees}}" as="employee"
         filter="{{computeFilter(searchString)}}">
         <div>{{employee.lastname}}, {{employee.firstname}}</div>
@@ -198,9 +293,29 @@ sort function when one or more dependent properties changes.
   </template>
 
   <script>
-    Polymer({
-      is: "employee-search",
-      computeFilter: function(string) {
+    class XCustom extends Polymer.Element {
+
+      static get is() { return 'x-custom'; }
+
+      static get config() {
+        return {
+          properties: {
+            employees: {
+              type: Array,
+              value() {
+                return [
+                  { firstname: "Jack", lastname: "Aubrey" },
+                  { firstname: "Anne", lastname: "Elliot" },
+                  { firstname: "Stephen", lastname: "Maturin" },
+                  { firstname: "Emma", lastname: "Woodhouse" }
+                ]
+              }
+            }
+          }
+        }
+      }
+
+      computeFilter(string) {
         if (!string) {
           // set filter to null to disable filtering
           return null;
@@ -214,21 +329,10 @@ sort function when one or more dependent properties changes.
                 last.indexOf(string) != -1);
           };
         }
-      },
-      properties: {
-        employees: {
-          type: Array,
-          value: function() {
-            return [
-              { firstname: "Jack", lastname: "Aubrey" },
-              { firstname: "Anne", lastname: "Elliot" },
-              { firstname: "Stephen", lastname: "Maturin" },
-              { firstname: "Emma", lastname: "Woodhouse" }
-            ]
-          }
-        }
       }
-    });
+    }
+
+    customElements.define(XCustom.is, XCustom);
   </script>
 </dom-module>
 ```
@@ -357,7 +461,7 @@ When `multi` is false, `selected` is a property representing the last selected
 item.  When `multi` is true, `selected` is an array of selected items.
 
 ```
-<dom-module id="employee-list">
+<dom-module id="x-custom">
 
   <template>
 
@@ -379,27 +483,41 @@ item.  When `multi` is true, `selected` is an array of selected items.
   </template>
 
   <script>
-    Polymer({
-      is: 'employee-list',
-      ready: function() {
-        this.employees = [
-            {first: 'Bob', last: 'Smith'},
-            {first: 'Sally', last: 'Johnson'},
-            ...
-        ];
-      },
-      toggleSelection: function(e) {
+    class XCustom extends Polymer.Element {
+
+      static get is() { return 'x-custom'; }
+
+      static get config() {
+        return {
+          properties: {
+            employees: {
+              type: Array,
+              value() {
+                return [
+                  {first: 'Bob', last: 'Smith'},
+                  {first: 'Sally', last: 'Johnson'},
+                  // ...
+                ];
+              }
+            }
+          }
+        }
+      }
+
+      toggleSelection(e) {
         var item = this.$.employeeList.itemForElement(e.target);
         this.$.selector.select(item);
       }
-    });
+    }
+
+    customElements.define(XCustom.is, XCustom);
   </script>
 
 </dom-module>
 ```
 
 
-## Conditional templates {#dom-if}
+## Conditional templates (dom-if) {#dom-if}
 
 Elements can be conditionally stamped based on a boolean property by wrapping
 them in a custom `HTMLTemplateElement` type extension called `dom-if`.  The
@@ -412,71 +530,99 @@ property become truthy again.  To disable this behavior, set the
 `restamp` property to `true`. This results in slower `if` switching behavior as the
 elements are destroyed and re-stamped each time.
 
+There are two ways to use a conditional template:
+
+*   **Inside a Polymer element or another Polymer-managed template.** Use the shorthand form
+    `<template is="dom-repeat>`.
+
+        <template is="dom-if" if="{{condition}}">
+          ...
+        </template>
+
+*   **Outside of a Polymer-managed template.** Use the `<dom-if>` wrapper element:
+
+        <dom-if>
+          <template>
+            ...
+          </template>
+        </dom-repeat>
+
+    In this form, you typically set the `items` property imperatively:
+
+        var conditional = document.querySelector('dom-if');
+        conditional.if = true;
+
+A Polymer-managed template includes a Polymer element's template, a `dom-bind`, `dom-if`, or
+`dom-repeat` template, or a template managed by the `Templatizer` class.
+
+In most cases, you'll use the first (shorthand) form for `dom-if`.
+
 The following is a simple example to show how conditional templates work. Read below for
 guidance on recommended usage of conditional templates.
 
 Example: { .caption }
 
 ```
-<dom-module id="user-page">
+<dom-module id="x-custom">
 
   <template>
 
-    All users will see this:
-    <div>{{user.name}}</div>
+    <!-- All users will see this -->
+    <my-user-profile user="{{user}}"></my-user-profile>
+
 
     <template is="dom-if" if="{{user.isAdmin}}">
-      Only admins will see this.
-      <div>{{user.secretAdminStuff}}</div>
+      <!-- Only admins will see this. -->
+      <my-admin-panel user="{{user}}"></my-admin-panel>
     </template>
 
   </template>
 
   <script>
-    Polymer({
-      is: 'user-page',
-      properties: {
-        user: Object
+    class XCustom extends Polymer.Element {
+
+      static get is() { return 'x-custom'; }
+
+      static get config() {
+        return {
+          properties: {
+            user: Object
+          }
+        }
       }
-    });
+
+    }
+
+    customElements.define(XCustom.is, XCustom);
   </script>
 
 </dom-module>
 ```
 
+Conditional templates introduce some overhead, so they shouldn't be used for small UI elements
+that could be easily shown and hidden using CSS.
 
-Since it is generally much faster to hide and show elements rather than
-destroy and recreate them, conditional templates are only useful to save initial
-creation cost when the elements being stamped are relatively heavyweight and the
-conditional may rarely (or never) be true in given usages.  Otherwise, liberal
-use of conditional templates can actually *add* significant runtime performance
-overhead.
+Instead, use conditional templates to improve loading time or reduce your page's memory footprint.
+For example:
 
-Consider an app with 4 screens, plus an optional admin screen.  If most users
-will use all 4 screens during normal use of the app, it is generally better to
-incur the cost of stamping those elements once at startup (where some app
-initialization time is expected) and simply hide/show the screens as the user
-navigates through the app, rather than destroy and re-create all the elements of
-each screen as the user navigates.  Using a conditional template here may be a
-poor choice, since although it may save time at startup by stamping only the
-first screen, that saved time gets shifted to runtime latency for each user
-interaction, since the time to show the second screen will be *slower* as it
-must create the second screen from scratch rather than simply showing that
-screen.  Hiding/showing elements is as simple as attribute-binding to the
-`hidden` attribute (e.g. `<div hidden$="{{!shouldShow}}">`), and does not
-require conditional templating at all.
+-   Lazy-loading sections of your page. If some elements of your page aren't required on first
+    paint, you can use a `dom-if` to hide them until their definitions have loaded. This use
+    of conditional templates is described in [Case study: the Shop app](https://www.polymer-project.org/1.0/toolbox/case-study#views).
 
-However, using a conditional template may be appropriate in the case of an admin
-screen that's only shown to admin users of an app.  Since most users
-aren't admins, there may be performance benefits to not burdening most of
-the users with the cost of stamping the elements for the admin page, especially
-if it is relatively heavyweight.
+-   Reducing the memory footprint of a large or complex site. For a single-page application
+    with multiple complex views, it may be beneficial to put each view inside a `dom-if`
+    with the `restamp` property set. This improves memory use at the cost of some latency
+    each time the user switches view (to recreate the DOM for that section).
 
-## Auto-binding templates {#dom-bind}
+There's no one-size-fits-all guidance for when to use a conditional template. Profiling your site
+should help you understand where conditional templates are helpful.
+
+## Auto-binding templates (dom-bind) {#dom-bind}
 
 Polymer data binding is only available in templates that are managed
-by Polymer. So data binding works inside an element's local DOM
-template, but not for elements placed in the main document.
+by Polymer. So data binding works inside an element's DOM
+template (or inside a `dom-repeat` or `dom-if` template),
+but not for elements placed in the main document.
 
 To use Polymer bindings **without** defining a new custom element,
 use the `dom-bind` element.  This template immediately stamps its contents
