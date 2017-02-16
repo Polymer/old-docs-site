@@ -185,7 +185,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             href="https://github.com/Polymer/docs/edit/master/app{{_githubUrl(activeItem)}}">Edit on GitHub
         </a>
       </header>
-      <p hidden$="[[_computeIsV2(activeDocsVersion)]]" class="version-alert"><img src="/images/alerts/warning.svg">You're viewing an older version of Polymer.
+      <p hidden$="[[!_shouldShowDocsWarningWarning(markdown,activeDocsVersion)]]" class="version-alert"><img src="/images/alerts/warning.svg">You're viewing an older version of Polymer.
         Please see <a href="{{v2PageLink}}">Polymer 2.0</a> for the latest.</a></p>
 
       <div id="content">
@@ -321,8 +321,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       return version == '1.0' ? 'v1' : 'v2';
     },
 
-    _computeIsV2: function(version) {
-      return version == '2.0';
+    _shouldShowDocsWarningWarning: function(markdown, version) {
+      return markdown && version == '1.0';
     }
   });
   </script>
