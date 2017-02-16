@@ -100,8 +100,7 @@ gulp.task('style', 'Compile sass, autoprefix, and minify CSS', function() {
 });
 
 gulp.task('polymer-build', 'Make bundles go', function() {
-  return run('polymer build').exec()
-    .pipe(gulp.dest('output'));
+  return run('polymer build').exec();
 });
 
 // gulp.task('style:modules', 'Wrap CSS in Polymer style modules', function() {
