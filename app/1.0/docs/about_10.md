@@ -183,18 +183,6 @@ understand the question or suggestion.
 
 Continue on to the Polymer docs:
 
-<div layout horizontal wrap>
-<p><a href="/1.0/docs/devguide/quick-tour">
-  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Quick tour of Polymer</paper-button>
-</a></p>
-
-<p><a href="/1.0/docs/devguide/feature-overview">
-  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Developer guide</paper-button>
-</a></p>
-
-<p><a href="migration">
-  <paper-button raised><core-icon icon="arrow-forward"></core-icon>Migration guide</paper-button>
-</a></p>
-<div>
-
-
+<a href="/1.0/docs/devguide/quick-tour" class="blue-button vertical">Quick tour of Polymer</a><br>
+<a href="/1.0/docs/devguide/feature-overview" class="blue-button vertical">Developer guide</a><br>
+<a href="/1.0/docs/migration" class="blue-button vertical">Migration guide</a>
