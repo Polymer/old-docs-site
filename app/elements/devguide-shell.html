@@ -287,7 +287,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // this page, then the pw-shell would not have refreshed, so it doesn't
       // know the version has changed.
       pwShell.updateDocsVersion();
-      this._setActiveDocsVersion(pwShell._activeDocsVersion);
+      this._setActiveDocsVersion(pwShell.activeDocsVersion);
       this.$.versionSelect.selected = this.activeDocsVersion == '1.0' ? 0 : 1;
 
       // Update the version when the version selector is used.
@@ -296,8 +296,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         if (newSelection === this.activeDocsVersion)
           return;
 
-        pwShell._activeDocsVersion = newSelection;
-        this._setActiveDocsVersion(pwShell._activeDocsVersion);
+        pwShell.activeDocsVersion = newSelection;
+        this._setActiveDocsVersion(pwShell.activeDocsVersion);
         window.location = newSelection == '2.0' ? this.v2PageLink : this.v1PageLink;
       }.bind(this));
     },

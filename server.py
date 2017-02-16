@@ -96,6 +96,7 @@ def read_nav_file(filename, version):
   with open(filename, 'r') as f:
     nav = yaml.load(f)
   for one_section in nav:
+    one_section['version'] = version
     base_path = '/%s/%s/' % (version, one_section['shortpath'])
     if 'items' in one_section:
         for link in one_section['items']:
@@ -259,23 +260,26 @@ class Site(http2push.PushHandler):
       full_nav = self.get_site_nav(version)
       nav = self.nav_for_section(version, section)
       versions = self.versions_for_section(section)
+
+      data = {
+        'nav': nav,
+        'full_nav': full_nav,
+        'versions': versions
+      }
     else:
       if path.startswith('blog') or path == 'index.html':
         articles = self.get_articles()
         active_article = self.get_active_article_data(articles, path)
 
+      data = {
+        'full_nav': self.get_site_nav('1.0') + self.get_site_nav('2.0'),
+        'articles': articles,
+        'active_article': active_article
+      }
+
     # Add .html to construct template path.
     if not path.endswith('.html'):
       path += '.html'
-
-    data = {
-      'nav': nav,
-      'full_nav': full_nav,
-      'articles': articles,
-      'active_article': active_article,
-      'polymer_version_dir': version,
-      'versions': versions
-    }
 
     render(self.response, path, data)
 

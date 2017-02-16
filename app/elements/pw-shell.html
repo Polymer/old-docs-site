@@ -177,13 +177,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <nav>
           <iron-selector class="sections-tabs" attr-for-selected="name" activate-event="" selected="[[_selectedSection(_sectionData.*)]]">
             <!-- 1.0 pages -->
-            <a href="/1.0/start/" name="1.0/start" hidden="[[_shouldShowV2(_activeDocsVersion)]]">Start</a>
-            <a href="/1.0/docs/devguide/feature-overview" name="1.0/docs" hidden="[[_shouldShowV2(_activeDocsVersion)]]">Polymer</a>
-            <a href="/1.0/toolbox/" name="1.0/toolbox" hidden="[[_shouldShowV2(_activeDocsVersion)]]">App Toolbox</a>
+            <a href="/1.0/start/" name="1.0/start" hidden="[[_shouldShowV2(activeDocsVersion)]]">Start</a>
+            <a href="/1.0/docs/devguide/feature-overview" name="1.0/docs" hidden="[[_shouldShowV2(activeDocsVersion)]]">Polymer</a>
+            <a href="/1.0/toolbox/" name="1.0/toolbox" hidden="[[_shouldShowV2(activeDocsVersion)]]">App Toolbox</a>
             <!-- 2.0 pages -->
-            <a href="/2.0/start/" name="2.0/start" hidden="[[!_shouldShowV2(_activeDocsVersion)]]">Start</a>
-            <a href="/2.0/docs/about_20" name="2.0/docs" hidden="[[!_shouldShowV2(_activeDocsVersion)]]">Polymer</a>
-            <a href="/2.0/toolbox/" name="2.0/toolbox" hidden="[[!_shouldShowV2(_activeDocsVersion)]]">App Toolbox</a>
+            <a href="/2.0/start/" name="2.0/start" hidden="[[!_shouldShowV2(activeDocsVersion)]]">Start</a>
+            <a href="/2.0/docs/about_20" name="2.0/docs" hidden="[[!_shouldShowV2(activeDocsVersion)]]">Polymer</a>
+            <a href="/2.0/toolbox/" name="2.0/toolbox" hidden="[[!_shouldShowV2(activeDocsVersion)]]">App Toolbox</a>
             <!-- Unversioned, happy pages -->
             <a href="/blog/" name="blog">Blog</a>
             <a href="/community" name="community">Community</a>
@@ -257,7 +257,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        * Which version (1.0 or 2.0) of the docs we are using, so that the
        * main nav and side nav can be kept in sync across page navigations.
        */
-      _activeDocsVersion: {
+      activeDocsVersion: {
         type: String
       }
     },
@@ -294,25 +294,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // Update the version when the version selector is used.
       this.$.versionSelect.addEventListener('iron-select', function(event) {
         var newSelection = event.detail.item.textContent;
-        if (newSelection === this._activeDocsVersion)
+        if (newSelection === this.activeDocsVersion)
           return;
-        this._activeDocsVersion = newSelection;
-        window.location = '/' + this._activeDocsVersion + '/start/';
+        this.activeDocsVersion = newSelection;
+        window.location = '/' + this.activeDocsVersion + '/start/';
       }.bind(this));
     },
 
     // Save the docs version based on the current URL.
     updateDocsVersion: function() {
       if (this._currentPageURL.indexOf('/1.0/') !== -1) {
-        this._activeDocsVersion = '1.0';
+        this.activeDocsVersion = '1.0';
       } else {
-        this._activeDocsVersion = '2.0';
+        this.activeDocsVersion = '2.0';
       }
     },
 
     _toggleDrawer: function() {
       // Sync the version selector with the active docs version.
-      this.$.versionSelect.selected = this._activeDocsVersion == '1.0' ? 0 : 1;
+      this.$.versionSelect.selected = this.activeDocsVersion == '1.0' ? 0 : 1;
+
+      var links = this.querySelectorAll('a[data-version]');
+      // Get all the top level nav links. If they're not for this version, hide them.
+      // We live in this fresh hell because the backend server doesn't know what
+      // the client docs version is, so for unversioned pages (like the
+      // landing page, blog and community) it needs to send _all_ the links.
+      // In the case of versioned pages, they won't have a data-version attribute
+      // so this will not be run.
+      for (var i = 0; i < links.length; i++) {
+        links[i].hidden = links[i].dataset.version !== this.activeDocsVersion;
+      }
+
       this.$.drawer.toggle();
     },
 
