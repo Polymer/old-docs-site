@@ -25,10 +25,12 @@ In the context of Polymer apps, a dependency is a resource (a file or set of fil
 
 In the context of the Polymer data system, a dependency is a piece of data that an observer, computed property or computed binding depends on.
 
-## dependency variant
-Polymer dependencies vary based on the version of Polymer in which you are implementing your application or element. In the context of Polymer tools, a variant is a version of your app that is built using a specific version of Polymer. 
+## dependency variants
+Polymer dependencies vary based on the version of Polymer in which you are implementing your element. In the context of Polymer tools, a variant is a version of your element that is built using a specific version of Polymer. 
 
-If you run `polymer install --variants`, the `polymer install` tool creates separate builds for your app or element using the versions of Polymer you specify. You can use the [Polymer development server](#polyserve) to test these variants. 
+Variants are useful for testing elements against different versions of Polymer, where [`bower.json`](#bower-json) would normally only let you install and test against one version
+
+If you run `polymer install --variants`, the `polymer install` tool creates separate builds for your element using the versions of Polymer you specify. You can use the [Polymer development server](#polyserve) to test these variants. 
 
 ## dynamic dependency
 A dynamic dependency is a dependency that is imported at runtime, using a mechanism such as `importHref`. Compare [static dependency](#static-dependency).
@@ -38,18 +40,15 @@ A dynamic dependency is a dependency that is imported at runtime, using a mechan
 Eager loading refers to the process of loading dependencies statically, rather than on demand. Compare [lazy loading](#lazy-loading).
 
 ## entry point
-The HTML actually loaded by the browser to start the application. Usually `index.html`. In an application built with the [app shell](#app-shell) architecture, the entrypoint is loaded for many different URLs.
+The HTML actually loaded by the browser to start the application. Usually `index.html`. In an application built with an [app shell](#app-shell) architecture, the entrypoint is loaded for many different URLs.
 
 # F
 ## fragment
-A lazily-loaded HTML file. Fragments are used to define bundles and are often associated with routes or non-critical resources.
+Fragments are used to define bundles and are often associated with routes or non-critical resources. A fragment is a lazily-loaded HTML file. 
 
 # G
 ## git
 A distributed version control system. bower depends on git to install components from their GitHub repositories.
-
-## grunt
-A JavaScript task automation tool that can be used to set up a custom build process using the [`polymer-build` library](#polymer-build).
 
 ## gulp
 A streamed JavaScript task runner that can be used to set up a custom build process using the [`polymer-build` library](#polymer-build).
@@ -65,11 +64,11 @@ Lazy loading takes advantage of routing to load elements only when they are requ
 For an example implementation of lazily-loaded elements, see the [Shop app](https://github.com/Polymer/shop). In the Shop app, views are elements which are instantiated only when they are routed to. 
 
 ## linter
-A linter is a piece of software that analyzes code for suspicious-looking constructions that can potentially cause errors; for example, division by zero or data that will go out of bounds. The Polymer tools include [`polylint`](#polylint), which does this for Polymer apps and elements.
+A linter is a piece of software that analyzes code for suspicious-looking constructions that can potentially cause errors; for example, for example, registering an element without specifying its tag name, or using invalid data-binding syntax. The Polymer tools include [`polymer-linter`](#polymer-linter), which does this for Polymer apps and elements.
 
 # M
 ## monolithic
-A monolithic app is one that has been implemented without a modular design pattern. 
+A monolithic app is one that loads all of its code statically and does not use an app shell architecture or dynamic code loading.
 
 # N
 ## Node.js
@@ -82,48 +81,50 @@ Package management system for [Node.js](#node-js).
 ## package.json
 A metadata file used by [npm](#npm) to manage project dependencies.
 
-## polymer-build
-`polymer-build` is a library for building Polymer projects. `polymer-build` allows you to completely customize your build and combine additional streams and build tasks in any order.
-
 ## polyclean
 A set of basic gulp plugins for cleaning HTML. Includes code to remove comments and whitespace.
 
-## polylint
-[Linter](#linter) invoked by `polymer lint` command. Lints a Polymer project.
+## Polymer CLI
+A command line tool for Polymer projects. The Polymer CLI has a number of tools for working with Polymer and Web Components. For more information, see the [Polymer CLI documentation](polymer-cli).
 
-## polymer build
+### `polymer build`
 This command builds your project with a preconfigured build pipeline. It calls `polymer-build` with options configured for a build suitable for an [app shell](#app-shell) app.
 
 To customize your build pipeline, you can use `polymer-build` itself in conjunction with other build tools.
 
-## polymer init
+### `polymer init`
 Initializes a Polymer project. Contains a set of starter templates for elements and apps. 
 
-## polymer install
-Install tool for Polymer apps. Installs [bower](#bower) dependencies, equivalent to running `bower install`. With the option `--variants`, also installs any [dependency variants](#dependency-variants) specified in the `variants` property of [`bower.json`](#bower-json).
+### `polymer install`
+Install command for Polymer apps. Installs [bower](#bower) dependencies, equivalent to running `bower install`. With the option `--variants`, also installs any [dependency variants](#dependency-variants) specified in the `variants` property of [`bower.json`](#bower-json).
 
-## polymer lint
-Invokes [`polylint`](#polylint) to [lint](#linter) a polymer project.
+### `polymer lint`
+Invokes [`polymer-linter`](#polymer-linter) to [lint](#linter) a polymer project.
 
-## polymer serve
+### `polymer serve`
 This command starts [`polyserve`](#polyserve), a simple development server for Web Components.
 
-## polymer test
+### `polymer test`
 Runs tests for your Polymer app with [`web-component-tester`](#web-component-tester).
+
+## polymer-build
+`polymer-build` is a library for building Polymer projects. `polymer-build` allows you to completely customize your build and combine additional streams and build tasks in any order. 
+
+Compare the `polymer build` command, which calls `polymer-build` with preconfigured options. 
+
+## polymer-bundler
+Polymer build tool that follows HTML Imports and `<script>` tags to concatenate resources into a single page for production. Can improve performance by reducing network trips.
+
+## polymer-linter
+[Linter](#linter) invoked by `polymer lint` command. Lints a Polymer project.
 
 ## polymer-analyzer
 A static analysis framework for web applications. 
 
-## polymer-cli
-A command line tool for Polymer projects. `polymer-cli` has a number of tools for working with Polymer and Web Components.
-
-## polymer-linter
-`polymer-linter` is in development. It will be a tool for [linting](#linter) Polymer applications, and will replace [`polylint`](#polylint). For a working linter, use `polylint`.
-
 ## `polymer.json`
 `polymer.json` is the Polymer build configuration file. It lets you configure your app’s entrypoint and app shell files, instead of passing these as parameters to polymer build.
 
-Polymer.json also lets you specify the locations of source files, HTML fragments and additional dependencies.
+`polymer.json` also lets you specify the locations of source files, HTML fragments and additional dependencies, and configure the [Polymer linter](#polymer-linter).
 
 ## `polyserve`
 `polyserve` is a locally-installable web server for developing [bower](#bower) components. 
@@ -142,10 +143,7 @@ When a service worker is installed, apps may be able to be used offline in a mea
 In the [app-shell](#app-shell) design pattern, the shell is the main code that boots the app and loads necessary resources. The shell usually includes the common UI for the app, and the [router](#routing), which loads resources needed for the current route.
 
 ## static dependency
-A [dependency](#dependency) that is required by a given file, and whose import is hard-coded using `<link rel=”import”>` or `<script src=”...”>`. This dependency will always be loaded when the given file is loaded.
-	
-## `tattoo`
-`tattoo` is a command line interface tool that provides web component authors a convenient way to automate the testing of sets of web components and apps. Using `tattoo`, a web component author can run the tests of other web components that depend on theirs before releasing a new version. 
+A [dependency](#dependency) that is required by a given file, and whose import is hard-coded using syntax like `<link rel="import">` or `<script src="...">`. This dependency will always be loaded when the given file is loaded.
 
 ## transitive dependencies
 The entire graph of [dependencies](#dependency) for a given file. A file’s transitive dependencies are all of that file’s dependencies, plus their dependencies, and so on. 
@@ -155,7 +153,7 @@ The entire graph of [dependencies](#dependency) for a given file. A file’s tra
 See [dependency variant](#dependency-variant).
 
 ## vulcanize
-Polymer build tool that follows HTML Imports and `<script>` tags to concatenate resources into a single page for production. Can improve performance by reducing network trips.
+This tool has been re-named [polymer-bundler](#polymer-bundler).
 
 # W
 ## web-component-tester

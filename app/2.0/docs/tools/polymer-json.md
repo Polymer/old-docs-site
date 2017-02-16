@@ -44,7 +44,7 @@ Here’s an example polymer.json file from the [Shop app](https://github.com/Pol
     "src/shop-checkout.html",
     "src/lazy-resources.html"
   ],
-  "sourceGlobs": [
+  "sources": [
    "src/**/*",
    "data/**/*",
    "images/**/*",
@@ -53,7 +53,10 @@ Here’s an example polymer.json file from the [Shop app](https://github.com/Pol
   "extraDependencies": [
     "manifest.json",
     "bower_components/webcomponentsjs/webcomponents-lite.min.js"
-  ]
+  ],
+  "lint": {
+    "rules": ["polymer-2-hybrid"]
+  }
 }
 ```
 
@@ -87,8 +90,8 @@ Type: `String`
 
 The app shell. Contains the main code that boots the app and loads necessary resources. The shell usually includes the common UI for the app, and the router, which loads resources needed for the current route.
 
-### sourceGlobs
-Optional, Defaults to `[“src/**/*”]`
+### sources
+Optional, Defaults to `["src/**/*"]`
 Type: `Array` of `String`
 
 An optional array of globs matching your application source files. If left out, defaults to all files in your project `src/` directory. You’ll need to set this if you store your source files in other locations.
@@ -112,10 +115,10 @@ In the Shop app, source files are stored in `/src`, `/data` and `/images`:
   |-test
 ```
 
-The `sourceGlobs` property is set as follows:
+The `sources` property is set as follows:
 
 ```json
-"sourceGlobs": [
+"sources": [
    "src/**/*",
    "data/**/*",
    "images/**/*",
@@ -157,13 +160,13 @@ And here is a configuration to generate two optimized builds: One bundled and on
 
 ```json
 "builds": [{
-    “name”: “bundled”,
+    "name": "bundled",
     "bundle": true,
     "js": {"minify": true},
     "css": {"minify": true},
     "html": {"minify": true}
   },{
-    “name”: “unbundled”,
+    "name": "unbundled",
     "js": {"minify": true},
     "css": {"minify": true},
     "html": {"minify": true}
