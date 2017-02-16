@@ -1,0 +1,12 @@
+{
+  "entrypoint": "app/1.0/index.html",
+  "shell": "app/elements/pw-shell.html",
+  "fragments": [
+    "app/elements/demo-tabs.html",
+    "app/elements/devguide-shell.html",
+    "app/elements/pw-shell.html",
+    "app/elements/pw-footer.html",
+    "app/elements/icons.html",
+    "app/elements/google-youtube.html"
+  ]
+}

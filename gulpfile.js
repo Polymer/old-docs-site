@@ -15,6 +15,7 @@ let $ = require('gulp-load-plugins')();
 let matter = require('gulp-gray-matter');
 let styleMod = require('gulp-style-modules');
 let cssslam = require('css-slam');
+let run = require('gulp-run');
 
 let argv = require('yargs').argv;
 let browserSync = require('browser-sync').create();
@@ -96,6 +97,11 @@ gulp.task('style', 'Compile sass, autoprefix, and minify CSS', function() {
     .pipe($.cssmin()) // Minify and add license
     .pipe(license())
     .pipe(gulp.dest('dist/css'))
+});
+
+gulp.task('polymer-build', 'Make bundles go', function() {
+  return run('polymer build').exec()
+    .pipe(gulp.dest('output'));
 });
 
 // gulp.task('style:modules', 'Wrap CSS in Polymer style modules', function() {
@@ -268,7 +274,7 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     .pipe(gulp.dest('dist'));
 
   let bower = gulp.src([
-      'app/bower_components/webcomponentsjs/webcomponents*.js'
+      'app/bower_components/webcomponentsjs/webcomponents*.js',
     ], {base: 'app/'})
     .pipe(gulp.dest('dist'));
 
@@ -276,6 +282,12 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
       'node_modules/highlight.js/lib/*'
     ])
     .pipe(gulp.dest('dist/bower_components/highlight'));
+
+  // Copy the bundles that polymer build produced
+  let bundles = gulp.src([
+      'build/bundled/app/elements/*'
+    ])
+    .pipe(gulp.dest('dist/elements'));
 
   let summit = gulp.src([
       'app/summit*/**/*',
@@ -324,6 +336,7 @@ gulp.task('clean', 'Remove dist/ and other built files', function() {
 // Default task. Build the dest dir.
 gulp.task('default', 'Build site', ['clean', 'jshint'], function(done) {
   runSequence(
+    'polymer-build',
     ['style', 'images', 'vulcanize', 'vulcanize-demos', 'js'],
     'copy', 'md:docs', 'md:blog',
     done);
