@@ -21,7 +21,7 @@ crisper extracts inline scripts from an HTML file. This is useful if you need to
 
 # D
 ## dependency
-In the context of Polymer apps, a dependency is a resource (a file or set of files) required by your application, such as HTML files or JavaScript libraries. Dependencies should be declared in [`polymer.json`](#polymer-json) to ensure they are included in your build. See also: [dynamic dependency](#dynamic-dependency), [static dependency](#static-dependency), [transitive dependency](#transitive-dependency).
+In the context of Polymer apps, a dependency is a resource (a file or set of files) required by your application, such as HTML files or JavaScript libraries. See also: [dynamic dependency](#dynamic-dependency), [static dependency](#static-dependency), [transitive dependency](#transitive-dependency).
 
 In the context of the Polymer data system, a dependency is a piece of data that an observer, computed property or computed binding depends on.
 
