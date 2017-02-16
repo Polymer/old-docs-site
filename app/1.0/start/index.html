@@ -2,7 +2,6 @@
 {% block title %}Getting Started{% endblock %}
 
 {% block content %}
-
 <style>
   pre {
     background: white;
@@ -119,5 +118,9 @@ polymer init
   </div>
 
 </section>
+
+<script>
+Polymer.Base.importHref(Polymer.Base.resolveUrl('/elements/google-youtube.html'));
+</script>
 
 {% endblock %}
