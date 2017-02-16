@@ -176,17 +176,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <nav>
           <iron-selector class="sections-tabs" attr-for-selected="name" activate-event="" selected="[[_selectedSection(_sectionData.*)]]">
-            <!-- 1.0 pages -->
+
             <a href="/1.0/start/" name="1.0/start" hidden="[[_shouldShowV2(activeDocsVersion)]]">Start</a>
             <a href="/1.0/docs/devguide/feature-overview" name="1.0/docs" hidden="[[_shouldShowV2(activeDocsVersion)]]">Polymer</a>
             <a href="/1.0/toolbox/" name="1.0/toolbox" hidden="[[_shouldShowV2(activeDocsVersion)]]">App Toolbox</a>
-            <!-- 2.0 pages -->
+
             <a href="/2.0/start/" name="2.0/start" hidden="[[!_shouldShowV2(activeDocsVersion)]]">Start</a>
             <a href="/2.0/docs/about_20" name="2.0/docs" hidden="[[!_shouldShowV2(activeDocsVersion)]]">Polymer</a>
             <a href="/2.0/toolbox/" name="2.0/toolbox" hidden="[[!_shouldShowV2(activeDocsVersion)]]">App Toolbox</a>
-            <!-- Unversioned, happy pages -->
-            <a href="/blog/" name="blog">Blog</a>
-            <a href="/community" name="community">Community</a>
+
+            <a href="/blog/" name="blog/">Blog</a>
+            <a href="/community/" name="community/">Community</a>
           </iron-selector>
         </nav>
 
