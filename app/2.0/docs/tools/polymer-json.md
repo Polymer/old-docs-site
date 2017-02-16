@@ -119,11 +119,11 @@ The `sources` property is set as follows:
 
 ```json
 "sources": [
-   "src/**/*",
-   "data/**/*",
-   "images/**/*",
-   "bower.json"
-  ],
+  "data/**/*",
+  "images/**/*",
+  "src/**/*",
+  "bower.json"
+],
 ```
 
 ### builds
