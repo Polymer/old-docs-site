@@ -22,13 +22,4 @@
 </script>
 
 <link rel="import" href="/elements/pw-shell.html">
-<link rel="import" href="/elements/devguide-shell.html">
 <style is="custom-style" include="iron-flex iron-flex-alignment iron-flex-factors"></style>
-
-<script>
-  // Lazy load the footer and the icons since they're not critical and you're
-  // probably not looking at the bottom of the page on first paint. Also
-  // FREAM (First-paint Rules Everything Around Me)
-  Polymer.Base.importHref(Polymer.Base.resolveUrl('elements/pw-footer.html'));
-  Polymer.Base.importHref(Polymer.Base.resolveUrl('elements/icons.html'));
-</script>

@@ -4,10 +4,6 @@ title: Quick tour of Polymer
 
 <!-- toc -->
 
-<script>
-Polymer.Base.importHref(Polymer.Base.resolveUrl('/elements/demo-tabs.html'));
-</script>
-
 Polymer makes it simple to create web components, declaratively.
 
 Custom elements can leverage Polymer's special features to reduce boilerplate
@@ -179,3 +175,7 @@ data binding and input validation.
 Now that you understand these fundamental Polymer concepts, you can
 [build your first element](/2.0/start/first-element/intro) or explore
 the remainder of the Developer guide.
+
+<script>
+Polymer.Base.importHref(Polymer.Base.resolveUrl('/elements/demo-tabs.html'));
+</script>
