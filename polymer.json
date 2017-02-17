@@ -7,6 +7,7 @@
     "app/elements/pw-shell.html",
     "app/elements/pw-footer.html",
     "app/elements/icons.html",
-    "app/elements/google-youtube.html"
+    "app/elements/google-youtube.html",
+    "app/elements/iron-doc-viewer.html"
   ]
 }
