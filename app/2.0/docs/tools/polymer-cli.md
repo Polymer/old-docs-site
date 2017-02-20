@@ -11,8 +11,8 @@ Polymer CLI is still pre-release. Some options may be subject to change.
 
 1.  Install [Git](https://git-scm.com/downloads).
 
-1.  Install the current LTS version (4.x) of
-    [Node.js](https://nodejs.org/en/download/) or newer.
+1.  Install an [active LTS version of Node.js](https://github.com/nodejs/LTS) (4.x or 6.x). The current version (7.x) should work, but is not
+    officially supported.
 
 1.  Install the latest version of Bower.
 

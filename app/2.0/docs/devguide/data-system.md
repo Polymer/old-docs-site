@@ -40,7 +40,13 @@ Consider a very simple element:
   <template>
     <div>[[name.first]] [[name.last]]</div>
   </template>
-  <script>Polymer({ is: 'name-card' });</script>
+  <script>
+    class NameCard extends Polymer.Element {
+
+      static get is() {return 'name-card';}
+    }
+    customElements.define(NameCard.is, NameCard);
+</script>
 </dom-module>
 ```
 
@@ -163,6 +169,7 @@ method to *notify* the element about changes that have **already taken place.**
 // Notify Polymer that the value has changed
 this.notifyPath('address.street');
 ```
+
 You can also use `notifyPath` to notify the element of a whole batch of changes at once. For
 example, you can make several changes to an array, then call `notifyPath` on the array:
 
@@ -175,8 +182,6 @@ this.notifyPath('users');
 
 When you call `notifyPath` the element applies the appropriate property effects,
 as if the changes had just taken place.
-
-
 
 Related tasks:
 
@@ -314,6 +319,7 @@ registered by a wildcard path (for example, you won't see changes to subproperti
 
 Polymer identifies array items by index, for example, `"myArray.1" .
 
+>>>>>>> ccf3fa4600ee23079c34f798e1a2a0811a7b9562
 
 ### Two paths referencing the same object {#two-paths}
 
@@ -695,6 +701,12 @@ The contents of the event vary depending on the change.
 *   For an array mutation, the `detail.path` field is an array mutation path, such as
     "myArray.splices", and the `detail.value`
 
+**Don't stop propagation on change notification events.** To avoid creating and discarding
+event objects, Polymer uses cached event objects for change notifications. Calling `stopPropagation`
+on a change notification event **prevents all future events for that property.** Change notification
+events don't bubble, so there should be no reason to stop propagation.
+{.alert .alert-warning}
+
 ### Custom change notification events
 
 Native elements like `<input>` don't provide the change notification events that Polymer uses for
@@ -735,20 +747,20 @@ Property effects are actions triggered by [observable changes](#observable-chang
 property (or path). Property effects include:
 
 *   Recomputing computed properties.
-*   Firing change notification events.
 *   Updating data bindings.
 *   Reflecting a property value to an attribute on the host element.
 *   Invoking observers.
+*   Firing change notification events.
 
-These property effects are run in a well-defined order. You can remember the order as compute,
-notify, propagate, observe:
+These property effects run in a well-defined order:
 
-*   Compute properties.
-*   Notify changes upward.
-*   Propagate changes downward to data bindings.
-*   Run observers.
+1.  Computed properties.
+2.  Data bindings.
+3.  Reflected values.
+4.  Observers.
+5.  Change notification events.
 
-This order ensures that computed properties are recomputed before changes are propagated upward or
+This order ensures that computed properties are recomputed before changes are propagated
 downward, and that changes are propagated to the local DOM children before observers run.
 
 ### Data bindings

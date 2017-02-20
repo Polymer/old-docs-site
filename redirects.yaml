@@ -2,7 +2,7 @@
 # Wildcards ending in *: redirects all paths matching the prefix,
 # replacing the prefix with the second path.
 
-- / /1.0/
+- / /2.0/
 
 # bulk redirects
 # 0.5 to the legacy site
@@ -10,11 +10,16 @@
 # yes, we really still get search results for these old URLs
 - /0.8/* /1.0/
 - /0.9/* /1.0/
-- /1.0/articles/* /1.0/blog/
+- /1.0/articles/* /2.0/blog/
 - /1.0/docs/start/* /1.0/start/
 - /1.0/tools/* /1.0/docs/tools/
 - /1.0/start/samples/* /1.0/docs/devguide/samples/
 - /1.0/start/psk/* /1.0/start/toolbox/
+
+# 2.0 update
+
+- /1.0/blog/* /2.0/blog/
+- /1.0/toolkit/* /2.0/toolkit/
 
 # Individual redirects take precedence over bulk redirects
 - /1.0/docs/devguide/utility-functions.html /1.0/docs/devguide/instance-methods

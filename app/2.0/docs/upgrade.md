@@ -972,7 +972,7 @@ Note that `Polymer.Element` provides a cleaner base class without much of the su
 
 
 ```
-this.dispatchEvent(new CustomEvent('some-event'), {bubbles: true});
+this.dispatchEvent(new CustomEvent('some-event', { bubbles: true }));
 ```
 
 

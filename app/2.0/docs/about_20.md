@@ -202,7 +202,7 @@ Polymer 2.0 introduces a number of improvements in the data system:
 
 *   Batched data changes, which can improve performance as well as correctness.
 
-
+*   Change in property effect order.
 
 *   Undefined dependency checks for observers, computed bindings and computed properties have been removed. These are all called once at initialization time.
 
@@ -338,6 +338,17 @@ this.b = 20;
 this.setProperties({a: 10, b: 20});
 ```
 
+### Property effect order
+
+In 2.0, observers fire before property-change notifications. The effect order in 2.0 is:
+
+- Recompute computed properties.
+- Propagate values to data bindings.
+- Reflect properties to attributes.
+- Run observers.
+- Fire property-change notifications.
+
+In 1.x, observers fire last, after property-change notifications.
 
 ### Observer changes
 
@@ -348,7 +359,6 @@ Specifically:
 
 
 *   Multi-property observers and computed properties run once at initialization if **any** dependencies are defined.
-
 
 
 *   Computed bindings run once unconditionally at initialization, regardless of whether any dependencies are defined.

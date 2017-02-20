@@ -22,6 +22,20 @@ a value.
 Unless otherwise specified, notes about observers apply to simple observers, complex observers, and
 computed properties.
 
+### Observers and element initialization
+
+The first call to an observer is deferred until the following criteria are met:
+
+*   The element is fully configured (default values have been assigned and data bindings
+    propagated).
+*   **At least one** of the dependencies is *defined* (that is, they don't have the value
+    `undefined`).
+
+After the inital call, **each observable change** to a dependency generates a call to the
+observer, **even if the new value for the dependency is <code>undefined</code>.**
+
+The allows the element to avoid running observers in the default case.
+
 ### Observers are synchronous
 
 Like all property effects, observers are synchronous. If the observer is likely to be invoked
@@ -29,6 +43,8 @@ frequently, consider deferring time-consuming work, like inserting or removing D
 can use the [`async`](/1.0/docs/api/Polymer.Base#method-async) method to defer work, or use the
 [`debounce`](/1.0/docs/api/Polymer.Base#method-debounce) method to ensure that a task is only run
 once during a given time period.
+
+<!-- XXX Replacements for debounce? -->
 
 However, if you handle a data change asynchronously, note that the change data may be out of date by
 the time you handle it.
@@ -47,43 +63,44 @@ Simple observers only fire when the property *itself* changes. They don't fire o
 changes, or array mutation. If you need these changes, use a complex observer with a wildcard path,
 as described in [Observe all changes related to a path](#deep-observation).
 
+You specify an observer method by name. The host element must have a method with that name.
+
 The observer method receives the new and old values of the property as arguments.
 
 ### Observe a property  {#change-callbacks}
 
-Define a simple observer by adding an `observer` key to the property's declaration. The
-
+Define a simple observer by adding an `observer` key to the property's declaration, identifying
+the observer method by name.
 Example: { .caption }
 
-```
-Polymer({
 
-  is: 'x-custom',
+```js
+class XCustom extends Polymer.Element {
 
-  properties: {
-    disabled: {
-      type: Boolean,
-      observer: '_disabledChanged'
-    },
-    highlight: {
-      observer: '_highlightChanged'
+  static get is() {return 'x-custom'; }
+
+  static get config() {
+    return {
+      properties: {
+        active: {
+          type: Boolean,
+          // Observer method identified by name
+          observer: '_activeChanged'
+        }
+      }
     }
-  },
-
-  _disabledChanged: function(newValue, oldValue) {
-    this.toggleClass('disabled', newValue);
-    this.highlight = true;
-  },
-
-  _highlightChanged: function() {
-    this.classList.add('highlight');
-    this.async(function() {
-      this.classList.remove('highlight');
-    }, 300);
   }
 
-});
+  // Observer method defined as a class method
+  _activeChanged(newValue, oldValue) {
+    this.toggleClass('highlight', newValue);
+  }
+}
 ```
+
+The observer method is usually defined on the class itself, although an observer method can also be
+defined by a superclass, subclass, or a class mixin, as long as the named method exists on the
+element.
 
 **Warning:**
 A single property observer shouldn't rely on any other properties,
@@ -94,13 +111,20 @@ as observer arguments](#dependencies) for details.
 
 ## Complex observers {#complex-observers}
 
-Complex observers are declared in the `observers` array, and can monitor one or more paths. These
+Complex observers are declared in the `observers` array in the `config` object.
+Complex observers can monitor one or more paths. These
 paths are called the observer's *dependencies*.
 
 ```
-observers: [
-  'userListChanged(users.*, filter)'
-]
+static get config() {
+  return {
+    observers: [
+      // Observer method name, followed by a list of dependencies, in parenthesis
+      'userListChanged(users.*, filter)'
+    ]
+  }
+}
+
 ```
 
 Each dependency represents:
@@ -116,26 +140,14 @@ Each dependency represents:
 The observer method is called with one argument for each dependency. The argument type varies
 depending on the path being observed.
 
-
 *   For simple property or subproperty dependencies, the argument is the new value of the property
     or subproperty.
 
-*   For array mutation or wildcard paths, the argument is a *change record* describing the change.
+*   For array mutations the argument is a *change record* describing the change.
 
-Handling of undefined values **depends on the number of properties being observed:**
+*   For wildcard paths,
 
-
-*   The initial call to a complex observer is deferred until *all* of the dependencies are *defined*
-    (that is, they don't have the value `undefined`).
-
-*   **For a single property observer**, the rules are identical to a simple observer: the observer
-    is called *each time* an observable change is made to of the dependencies, **even if the new
-    value for the path is <code>undefined</code>.**
-
-
-*   <strong>A multi-property observer</strong> is called <em>each time</em> an observable change is
-    made to of the dependencies, <strong><em>unless</em> the new value for one of the paths is
-    <code>undefined</code>.</strong>
+Note that any of the arguments can be `undefined` when the observer is called.
 
 Complex observers should only depend on their declared dependencies.
 
@@ -147,8 +159,6 @@ Related task:
 
 
 
-
-
 ### Observe changes to multiple properties {#multi-property-observers}
 
 To observe changes to a set of properties, use the `observers`
@@ -156,7 +166,7 @@ array.
 
 These observers differ from single-property observers in a few ways:
 
-*   Observers are not invoked until all dependent properties are defined (`!== undefined`).
+*   Observers are invoked once at Multi-property observers and computed properties run once at initialization if **any** dependencies are defined.
     So each dependent properties should have a default `value` defined in `properties` (or otherwise
     be initialized to a non-`undefined` value) to ensure the observer is called.
 *   Observers do not receive `old` values as arguments, only new values.  Only single-property
@@ -164,26 +174,35 @@ These observers differ from single-property observers in a few ways:
 
 Example { .caption }
 
-```
-Polymer({
 
-  is: 'x-custom',
+```js
+class XCustom extends Polymer.Element {
 
-  properties: {
-    preload: Boolean,
-    src: String,
-    size: String
-  },
+  static get is() {return 'x-custom'; }
 
-  observers: [
-    'updateImage(preload, src, size)'
-  ],
+  static get config() {
+    return {
+      properties: {
+        preload: Boolean,
+        src: String,
+        size: String
+      },
 
-  updateImage: function(preload, src, size) {
-    // ... do work using dependent values
+      // Each item of observers array is a method name followed by
+      // a comma-separated list of one or more dependencies.
+      observers: [
+        'updateImage(preload, src, size)'
+      ]
+    }
   }
 
-});
+  // Each method referenced in observers must be defined in
+  // element prototype. The arguments to the method are new value
+  // of each dependency, and may be undefined.
+  updateImage(preload, src, size) {
+    // ... do work using dependent values
+  }
+}
 ```
 
 In addition to properties, observers can also observe [paths to sub-properties](#observing-path-changes),
@@ -211,34 +230,45 @@ sub-property must be updated in one of the following two ways:
 Example: { .caption }
 
 ```
-<dom-module id="x-sub-property-observer">
+<dom-module id="x-custom">
   <template>
     <!-- Sub-property is updated via property binding. -->
     <input value="{{user.name::input}}">
   </template>
   <script>
-    Polymer({
-      is: 'x-sub-property-observer',
-      properties: {
-        user: {
-          type: Object,
-          value: function() {
-            return {};
-          }
+    class XCustom extends Polymer.Element {
+
+      static get is() {return 'x-custom'; }
+
+      static get config() {
+        return {
+          properties: {
+            user: {
+              type: Object,
+              value: function() {
+                return {};
+              }
+            }
+          },
+          // Observe the name sub-property on the user object
+          observers: [
+            'userNameChanged(user.name)'
+          ]
         }
-      },
-      // Each item of observers array is a method name followed by
-      // a comma-separated list of one or more paths.
-      observers: [
-        'userNameChanged(user.name)'
-      ],
-      // Each method referenced in observers must be defined in
-      // element prototype. The argument to the method is the new value
-      // of the sub-property.
+      }
+
+      // For a property or sub-property dependency, the corresponding
+      // argument is the new value of the property or sub-property
       userNameChanged: function(name) {
-        console.log('new name: ' + name);
-      },
-    });
+        if (user.name) {
+          console.log('new name: ' + name);
+        } else {
+          console.log('user name is undefined');
+        }
+
+      }
+    }
+    customElements.define(XCustom.is, XCustom);
   </script>
 </dom-module>
 ```
@@ -250,12 +280,14 @@ item is added or deleted using Polymer's [array mutation methods](model-data#arr
 Whenever the array is mutated, the observer receives a change record
 representing the mutation as a set of array splices.
 
+Polymer only calls the array mutation observer when the array items change, **not**
+for changes to the top-level array
+
 In many cases, you'll want to observe both array mutations *and* changes to
 sub-properties of array items, in which case you should use a wildcard path,
 as described in [Observe all changes related to a path](#deep-observation).
 
-
-**Avoid native JavaScript array mutation methods.**
+**Observable array mutation.**
 Use Polymer's [array mutation methods](model-data#array-mutation) wherever possible to
 ensure that elements with registered interest in the array mutations are
 properly notified. If you can't avoid the native methods, you need to notify
@@ -295,24 +327,30 @@ in the example.
 Example {.caption}
 
 ```
-Polymer({
+class XCustom extends Polymer.Element {
 
-  is: 'x-custom',
+  static get is() {return 'x-custom'; }
 
-  properties: {
-    users: {
-      type: Array,
-      value: function() {
-        return [];
-      }
+  static get config() {
+    return {
+      properties: {
+        users: {
+          type: Array,
+          value: function() {
+            return [];
+          }
+        }
+      },
+
+      // Observe changes to the users array
+      observers: [
+        'usersAddedOrRemoved(users.splices)'
+      ],
     }
-  },
+  }
 
-  observers: [
-    'usersAddedOrRemoved(users.splices)'
-  ],
-
-  usersAddedOrRemoved: function(changeRecord) {
+  // For an array mutation dependency, the corresponding argument is a change record
+  usersAddedOrRemoved(changeRecord) {
     if (changeRecord) {
       changeRecord.indexSplices.forEach(function(s) {
         s.removed.forEach(function(user) {
@@ -325,37 +363,16 @@ Polymer({
         }
       }, this);
     }
-  },
-  ready: function() {
+  }
+
+  ready() {
+    super.ready();
     this.push('users', {name: "Jack Aubrey"});
-  },
-});
+  }
+}
+
+customElements.define(XCustom.is, XCustom);
 ```
-
-#### Track key splices {#key-splices}
-
-In some situtations, you may need to know about the [immutable opaque
-keys](#key-paths) that Polymer uses to track array items. **This is a advanced
-use case, only required if you're implementing an element like the [template
-repeater](https://www.polymer-project.org/1.0/docs/devguide/templates.html#dom-repeat).**
-
-You can register interest in key additions and deletions by retrieving the
-array's `Collection` object:
-
-<code>Polymer.Collection.get(<var>array</var>);</code>
-
-If you've registered interest, the change record includes an additional property:
-
-*   `keySplices`. The set of changes that occurred to the array in terms
-    of array keys. Each `keySplices` record contains the following properties:
-
-    -   `added`. Array of added keys.
-    -   `removed`. Array of removed keys.
-
-**Template repeaters and key splices.** The template repeater (`dom-repeat`)
-element uses keys internally, so if an array is used by a `dom-repeat`,
-observers for that array receive the `keySplices` property.
-{.alert .alert-info}
 
 ### Observe all changes related to a path {#deep-observation}
 
@@ -371,14 +388,13 @@ observer is a change record object with the following properties:
 *   `base`. The object matching the non-wildcard portion of the path.
 
 For array mutations, `path` is the path to the array that changed,
-followed by `.splices`. And the change record includes the `indexSplices` and
-`keySplices` properties described in
-[Observe array mutations](#array-observation).
+followed by `.splices`. And the `value` field includes the `indexSplices`
+property described in [Observe array mutations](#array-observation).
 
 Example: { .caption }
 
 ```
-<dom-module id="x-deep-observer">
+<dom-module id="x-custom">
   <template>
     <input value="{{user.name.first::input}}"
            placeholder="First Name">
@@ -386,95 +402,68 @@ Example: { .caption }
            placeholder="Last Name">
   </template>
   <script>
-    Polymer({
-      is: 'x-deep-observer',
-      properties: {
-        user: {
-          type: Object,
-          value: function() {
-            return {'name':{}};
-          }
+    class XCustom extends Polymer.Element {
+
+      static get is() { return 'x-custom'; }
+
+      static get config() {
+        return {
+          properties: {
+            user: {
+              type: Object,
+              value: function() {
+                return {'name':{}};
+              }
+            }
+          },
+          observers: [
+            'userNameChanged(user.name.*)'
+          ]
         }
-      },
-      observers: [
-        'userNameChanged(user.name.*)'
-      ],
-      userNameChanged: function(changeRecord) {
+      }
+
+      userNameChanged(changeRecord) {
         console.log('path: ' + changeRecord.path);
         console.log('value: ' + changeRecord.value);
-      },
-    });
+      }
+    }
+
+    customElements.define(XCustom.is, XCustom);
   </script>
 </dom-module>
 ```
 
-#### Deep sub-property changes on array items {#key-paths}
 
-When a sub-property of an array is modified, `changeRecord.path` references
-the "key" of the array item that was modified, not the array index. For
-example:
-
-```
-console.log(changeRecord.path); // users.#0.name
-```
-
-`#0` signifies the key of this example array item. All keys are prefixed
-with a number sign (`#`) by convention to distinguish them from array indexes.
-Keys provide stable references to array items, regardless of any splices
-(additions or removals) on the array.
-
-Use the `get` method to retrieve an item by path.
-
-```
-var item = this.get('users.#0');
-```
-
-If you need a reference to the index of an array item, you
-can retrieve it using `indexOf`:
-
-```
-var item = this.get('users.#0');
-var index = this.users.indexOf(item);
-```
-
-The following example shows one way to use path manipulation and
-`get` to retrieve an array item and its index from inside an observer:
-
-```
-// Log user name changes by index
-usersChanged(cr) {
-  // handle paths like 'users.#4.name'
-  var nameSubpath = cr.path.indexOf('.name');
-  if (nameSubpath) {
-    var itempath = cr.path.substring(0, nameSubpath);
-    var item = this.get(itempath);
-    var index = cr.base.indexOf(item);
-    console.log('Item ' + index + ' changed, new name is: ' + item.name);
-  }
-}
-```
-
-
-### Always include dependencies as observer arguments {#dependencies}
+### Identify all dependencies {#dependencies}
 
 Observers shouldn't rely on any properties, sub-properties, or paths other
-than those listed as arguments to the observer. This is because the observer
-can be called while the other dependencies are still undefined. For example:
+than those listed as dependencies of the observer. This creates "hidden" dependencies,
+which can result in unexpected behavior:
+
+-   The observer can be called before the hidden dependency is configured.
+-   The observer isn't called when the hidden dependency changes.
+
+For example:
 
 ```
-properties: {
-  firstName: {
-    type: String,
-    observer: 'nameChanged'
-  },
-  lastName: {
-    type: String
+static get config() {
+  return {
+    properties: {
+      firstName: {
+        type: String,
+        observer: 'nameChanged'
+      },
+      lastName: {
+        type: String
+      }
+    }
   }
 },
 // WARNING: ANTI-PATTERN! DO NOT USE
-nameChanged: function(newFirstName, oldFirstName) {
-  // this.lastName could be undefined!
-  console.log('new name:', newFirstName, this.lastName);
+nameChanged(newFirstName, oldFirstName) {
+  // Not invoked when this.lastName changes
+  var fullName = newFirstName + ' ' + this.lastName;
+  // ...
 }
 ```
 
@@ -484,26 +473,30 @@ initialized in any particular order.
 In general, if your observer relies on multiple dependencies, use a
 [multi-property observer](#multi-property-observers) and list every dependency
 as an argument to the observer. This ensures that all dependencies are
-defined before the observer is called.
+configured before the observer is called.
 
 ```
-properties: {
-  firstName: {
-    type: String
-  },
-  lastName: {
-    type: String
+static get config() {
+  return {
+    properties: {
+      firstName: {
+        type: String
+      },
+      lastName: {
+        type: String
+      }
+    },
+    observers: [
+      'nameChanged(firstName, lastName)'
+    ]
   }
 },
-observers: [
-  'nameChanged(firstName, lastName)'
-],
 nameChanged: function(firstName, lastName) {
   console.log('new name:', firstName, lastName);
 }
 ```
 
-If you must use a single property and must rely on other properties (for
+If you must use a single property observer and must rely on other properties (for
 example, if you need access to the old value of the observed property, which
 you won't be able to access with a multi-property observer),
 take the following precautions:
@@ -511,11 +504,10 @@ take the following precautions:
 *   Check that all dependecies are defined
     (for example, `if this.lastName !== undefined`) before using them in your
     observer.
-*   Set default values on the dependencies.
 
 Keep in mind, however, that the observer is only called when one of the
 dependencies listed in its arguments changes. For example, if an observer
-relies on `this.firstName` but does not list it as an argument, the observer
+relies on `this.firstName` but does not list it as a dependency, the observer
 is not called when `this.firstName` changes.
 
 ## Computed properties {#computed-properties}
@@ -569,30 +561,33 @@ computed property function returns a value that's exposed as a virtual property.
   </template>
 
   <script>
-    Polymer({
+      class XCustom extends Polymer.Element {
 
-      is: 'x-custom',
+      static get is() { return 'x-custom'; }
 
-      properties: {
+      static get config() {
+        return {
+          properties: {
+            first: String,
 
-        first: String,
+            last: String,
 
-        last: String,
-
-        fullName: {
-          type: String,
-          // when `first` or `last` changes `computeFullName` is called once
-          // and the value it returns is stored as `fullName`
-          computed: 'computeFullName(first, last)'
+            fullName: {
+              type: String,
+              // when `first` or `last` changes `computeFullName` is called once
+              // and the value it returns is stored as `fullName`
+              computed: 'computeFullName(first, last)'
+            }
+          }
         }
-
-      },
-
-      computeFullName: function(first, last) {
-        return first + ' ' + last;
       }
 
-    });
+      computeFullName(first, last) {
+        return first + ' ' + last;
+      }
+    }
+
+    customElements.define(XCustom.is, XCustom);
   </script>
 
 </dom-module>
