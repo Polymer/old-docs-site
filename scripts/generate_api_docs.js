@@ -75,7 +75,13 @@ function runHydrolysis() {
 {% block title %} API Reference - ${sectionName}{% endblock %}
 {% block content %}
 <script>
-  Polymer.Base.importHref(Polymer.Base.resolveUrl('/elements/iron-doc-viewer.html'));
+  if (!window.__importedIronDocViewer) {
+    var l = document.createElement('link');
+    l.rel = 'import';
+    l.href = '/elements/iron-doc-viewer.html';
+    document.head.appendChild(l);
+    window.__importedIronDocViewer = true;
+  }
 </script>
 <iron-doc-viewer>${json}</iron-doc-viewer>
 {% endblock %}`;
