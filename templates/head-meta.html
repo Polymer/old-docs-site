@@ -16,13 +16,10 @@
 
 <!-- Load hljs before pw-shell in elements.html tries to use it. -->
 <script src="/bower_components/highlight/highlight.js" async></script>
-<script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js" async></script>
 
 <script>
   window.Polymer = window.Polymer || {dom: 'shadow', lazyRegister: true};
 </script>
-
-<link rel="import" href="/elements/pw-shell.html">
-<script src="/elements/pw-shell.js"></script>
-
+<!-- Node: the webcomponents polyfill is lazily loaded in app.js -->
+<link rel="import" href="/elements/pw-shell.html" async>
 <style is="custom-style" include="iron-flex iron-flex-alignment iron-flex-factors"></style>

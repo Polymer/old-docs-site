@@ -228,7 +228,7 @@ gulp.task('build-bundles', 'Build element bundles', function() {
 // See https://github.com/Polymer/polymer-build/issues/110.
 gulp.task('minify-bundles', 'Minify element bundles',  ['build-bundles'], function() {
   return gulp.src('build/default/app/elements/*')
-    .pipe($.crisper()) // split inline JS & CSS out into individual .js & .css files
+    .pipe($.crisper({scriptInHead: false})) // split inline JS & CSS out into individual .js & .css files
     .pipe($.if('*.html', minifyHtml())) // Minify html output
     .pipe($.if('*.html', cssslam.gulp())) // Minify css in HTML output
     .pipe($.if('*.js', uglifyJS())) // Minify js output
@@ -238,11 +238,13 @@ gulp.task('minify-bundles', 'Minify element bundles',  ['build-bundles'], functi
 
 // Another giant hack: crisper splits the js away into a separate file,
 // which is bad for pw-shell because it delays first paint (the js doesn't
-// start downloading until the html finishes) so uhhhhh remove the js import
-// and do it manually.
+// start downloading until the html finishes) so we're going to do what
+// the bundler should have done in the first place, and insert the js
+// contents inline.
 gulp.task('hack-bundles', 'Hack the pw-shell import', ['build-bundles', 'minify-bundles'], function() {
   return gulp.src('./build/minified/pw-shell.html')
-    .pipe(replace('<script src="pw-shell.js" defer=""></script>', ''))
+    .pipe(replace('<script src="pw-shell.js"></script>',
+                  '<script>' + fs.readFileSync('./build/minified/pw-shell.js', 'utf8') + '</script>'))
     .pipe(gulp.dest('./build/minified'));
 });
 
