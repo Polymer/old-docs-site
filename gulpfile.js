@@ -21,6 +21,8 @@ let argv = require('yargs').argv;
 let browserSync = require('browser-sync').create();
 let del = require('del');
 let fs = require('fs');
+var replace = require('gulp-replace');
+
 let markdownIt = require('markdown-it')({
     html: true,
     highlight: (code, lang) => {
@@ -218,17 +220,30 @@ gulp.task('build-bundles', 'Build element bundles', function() {
   return run('polymer build').exec();
 });
 
+// Dear reader, know this: I am sorry for what you're about to read, but
+// the bleeding edge is bloody and first paint is kind of a Big Deal™.
+
 // TODO: This is a giant hack because a bug in `polymer build` means it
 // does not minify bundles. This shouldn't be needed at all once that is fixed.
 // See https://github.com/Polymer/polymer-build/issues/110.
-gulp.task('minify-bundles', 'Minify element bundles', function() {
+gulp.task('minify-bundles', 'Minify element bundles',  ['build-bundles'], function() {
   return gulp.src('build/default/app/elements/*')
-    .pipe($.crisper()) // Separate HTML/JS into separate files.
+    .pipe($.crisper()) // split inline JS & CSS out into individual .js & .css files
     .pipe($.if('*.html', minifyHtml())) // Minify html output
     .pipe($.if('*.html', cssslam.gulp())) // Minify css in HTML output
     .pipe($.if('*.js', uglifyJS())) // Minify js output
     .pipe($.if('*.js', license()))
-    .pipe(gulp.dest('build/vulcanized'));
+    .pipe(gulp.dest('build/minified'));
+});
+
+// Another giant hack: crisper splits the js away into a separate file,
+// which is bad for pw-shell because it delays first paint (the js doesn't
+// start downloading until the html finishes) so uhhhhh remove the js import
+// and do it manually.
+gulp.task('hack-bundles', 'Hack the pw-shell import', ['build-bundles', 'minify-bundles'], function() {
+  return gulp.src('./build/minified/pw-shell.html')
+    .pipe(replace('<script src="pw-shell.js" defer=""></script>', ''))
+    .pipe(gulp.dest('./build/minified'));
 });
 
 gulp.task('vulcanize-demos', 'vulcanize demos', function() {
@@ -283,7 +298,7 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
   // TODO: Change this to 'build/default/app/elements/*' when `polymer build` is
   // fixed and it minifies bundles. See https://github.com/Polymer/polymer-build/issues/110.
   let bundles = gulp.src([
-      'build/vulcanized/*'
+      'build/minified/*'
     ])
     .pipe(gulp.dest('dist/elements'));
 
@@ -305,7 +320,7 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
 gulp.task('watch', 'Watch files for changes', function() {
   createReloadServer();
   gulp.watch('app/sass/**/*.scss', ['style', reload]);
-  gulp.watch('app/elements/**/*', ['polymer-build', reload]);
+  gulp.watch('app/elements/**/*', ['build-bundles', 'minify-bundles', 'hack-bundles', reload]);
   gulp.watch('app/js/*.js', ['js', reload]);
 
   gulp.watch('app/1.0/blog/*.md', ['md:blog', reload]);
@@ -336,6 +351,7 @@ gulp.task('default', 'Build site', ['clean', 'jshint'], function(done) {
   runSequence(
     'build-bundles',
     'minify-bundles',
+    'hack-bundles',
     ['style', 'images', 'vulcanize-demos', 'js'],
     'copy', 'md:docs', 'md:blog',
     done);

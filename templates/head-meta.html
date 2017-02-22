@@ -13,13 +13,28 @@
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500|Source+Code+Pro:400,500,700|Roboto+Slab:400,700">
 
 <link rel="stylesheet" href="/css/site.css">
-<script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js" async></script>
+
 <!-- Load hljs before pw-shell in elements.html tries to use it. -->
 <script src="/bower_components/highlight/highlight.js" async></script>
 
 <script>
   window.Polymer = window.Polymer || {dom: 'shadow', lazyRegister: true};
+
+  (function() {
+    if ('registerElement' in document
+        && 'import' in document.createElement('link')
+        && 'content' in document.createElement('template')) {
+      // platform is good!
+    } else {
+      // polyfill the platform!
+      var e = document.createElement('script');
+      e.src = '/bower_components/webcomponentsjs/webcomponents-lite.min.js';
+      document.body.appendChild(e);
+    }
+  })();
 </script>
 
 <link rel="import" href="/elements/pw-shell.html">
+<script src="/elements/pw-shell.js"></script>
+
 <style is="custom-style" include="iron-flex iron-flex-alignment iron-flex-factors"></style>

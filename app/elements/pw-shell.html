@@ -233,7 +233,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // probably not looking at the bottom of the page on first paint. Also
       // FREAM (First-paint Rules Everything Around Me)
       Polymer.RenderStatus.afterNextRender(this, function() {
-        console.log('**** lazy loading');
         this.importHref(this.resolveUrl('/elements/icons.html'));
         this.importHref(this.resolveUrl('/elements/devguide-shell.html'));
         this.importHref(this.resolveUrl('/elements/pw-footer.html'));
