@@ -16,22 +16,10 @@
 
 <!-- Load hljs before pw-shell in elements.html tries to use it. -->
 <script src="/bower_components/highlight/highlight.js" async></script>
+<script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js" async></script>
 
 <script>
   window.Polymer = window.Polymer || {dom: 'shadow', lazyRegister: true};
-
-  (function() {
-    if ('registerElement' in document
-        && 'import' in document.createElement('link')
-        && 'content' in document.createElement('template')) {
-      // platform is good!
-    } else {
-      // polyfill the platform!
-      var e = document.createElement('script');
-      e.src = '/bower_components/webcomponentsjs/webcomponents-lite.min.js';
-      document.body.appendChild(e);
-    }
-  })();
 </script>
 
 <link rel="import" href="/elements/pw-shell.html">
