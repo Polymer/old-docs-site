@@ -2,13 +2,13 @@
 title: Build hybrid elements
 ---
 
-Hybrid elements are Polymer elements designed to run under both Polymer 1 and Polymer 2. Polymer
+Hybrid elements are Polymer elements designed to run under both Polymer 1.x and Polymer 2.x. Polymer
 2 provides a backwards-compatible API for hybrid elements.
 
 Implementing a hybrid element requires some extra work, including maintaining multiple sets of
 bower dependencies, testing on both Polymer 1 and Polyemr 2. Build hybrid elements if you're
-creating a set of reusable elements and need to support customers using both Polymer 1 and Polymer
-2. You may also find hybrid elements useful if you're trying to port a large application.
+creating a set of reusable elements and need to support customers using both Polymer 1.x and Polymer
+2.x. You may also find hybrid elements useful if you're trying to port a large application.
 
 Polymer CLI supports installing and testing with multiple versions of your bower dependencies, so
 you can test your hybrid elements against multiple versions of Polymer. For an overview, see
@@ -73,7 +73,7 @@ so you cannot set up your own prototype chain.
 -   In 2.0, Polymer uses your prototype to create a new class that extends
     `Polymer.LegacyElement`.
 
-You can use Polymer 1 style [behaviors](#behaviors) to share code between elements.
+You can use Polymer 1.x style [behaviors](#behaviors) to share code between elements.
 
 ## Lifecycle callbacks {#lifecycle-callbacks}
 
@@ -352,14 +352,13 @@ In some cases, you may need to run different code depending on which version of 
 One easy way to test the version is to test for the existence of the `Polymer.Element` constructor,
 which is only used in Polymer 2.
 
-```
+```js
 if (Polymer.Element) {
   // version 2 code
 } else {
   // version 1 code
 }
-
-
+```
 
 ## Manage dependencies for hybrid elements {#dependency-variants}
 
@@ -369,10 +368,9 @@ in the standard `dependencies` and `devDependencies` sections. The default depen
 use version ranges that include all versions supported by the component (typically, 1.7.1 or higher
 for Polymer itself).
 
-Other sets are listed in a special
-`variants`section. For example:
+Other sets are listed in a special `variants` section. For example:
 
-```
+```js
   "dependencies": {
     "polymer": "Polymer/polymer#>=1.7.1 <3.0.0"
   },
