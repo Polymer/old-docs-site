@@ -335,7 +335,7 @@ gulp.task('clean', 'Remove dist/ and other built files', function() {
 gulp.task('default', 'Build site', ['clean', 'jshint'], function(done) {
   runSequence(
     'build-bundles',
-    'vulcanize-bundles',
+    'minify-bundles',
     ['style', 'images', 'vulcanize-demos', 'js'],
     'copy', 'md:docs', 'md:blog',
     done);
