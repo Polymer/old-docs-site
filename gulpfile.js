@@ -99,10 +99,6 @@ gulp.task('style', 'Compile sass, autoprefix, and minify CSS', function() {
     .pipe(gulp.dest('dist/css'))
 });
 
-gulp.task('polymer-build', 'Make bundles go', function() {
-  return run('polymer build').exec();
-});
-
 // gulp.task('style:modules', 'Wrap CSS in Polymer style modules', function() {
 //   return gulp.src('node_modules/highlight.js/styles/github.css')
 //     .pipe($.rename({basename: 'syntax-color'}))
@@ -218,20 +214,21 @@ gulp.task('js', 'Minify JS to dist/', ['jshint'], function() {
     .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('vulcanize', 'Vulcanize elements to dist/', function() {
-  return gulp.src('app/elements/elements.html')
-    // .pipe($.changed('dist/elements'))
-    .pipe($.vulcanize({
-      stripComments: true,
-      inlineCss: true,
-      inlineScripts: true
-    }))
+gulp.task('build-bundles', 'Build element bundles', function() {
+  return run('polymer build').exec();
+});
+
+// TODO: This is a giant hack because a bug in `polymer build` means it
+// does not minify bundles. This shouldn't be needed at all once that is fixed.
+// See https://github.com/Polymer/polymer-build/issues/110.
+gulp.task('minify-bundles', 'Minify element bundles', function() {
+  return gulp.src('build/default/app/elements/*')
     .pipe($.crisper()) // Separate HTML/JS into separate files.
     .pipe($.if('*.html', minifyHtml())) // Minify html output
     .pipe($.if('*.html', cssslam.gulp())) // Minify css in HTML output
     .pipe($.if('*.js', uglifyJS())) // Minify js output
     .pipe($.if('*.js', license()))
-    .pipe(gulp.dest('dist/elements'));
+    .pipe(gulp.dest('build/vulcanized'));
 });
 
 gulp.task('vulcanize-demos', 'vulcanize demos', function() {
@@ -282,9 +279,11 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     ])
     .pipe(gulp.dest('dist/bower_components/highlight'));
 
-  // Copy the bundles that polymer build produced
+  // Copy the bundles that polymer build produced.
+  // TODO: Change this to 'build/default/app/elements/*' when `polymer build` is
+  // fixed and it minifies bundles. See https://github.com/Polymer/polymer-build/issues/110.
   let bundles = gulp.src([
-      'build/bundled/app/elements/*'
+      'build/vulcanized/*'
     ])
     .pipe(gulp.dest('dist/elements'));
 
@@ -300,13 +299,13 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     .pipe(gulp.dest('dist/summit-2015'))
     .pipe(gulp.dest('dist/summit-2016'));
 
-  return merge(app, docs, gae, bower, highlight, summit, bower_summit);
+  return merge(app, docs, gae, bower, highlight, bundles, summit, bower_summit);
 });
 
 gulp.task('watch', 'Watch files for changes', function() {
   createReloadServer();
   gulp.watch('app/sass/**/*.scss', ['style', reload]);
-  gulp.watch('app/elements/**/*', ['vulcanize', reload]);
+  gulp.watch('app/elements/**/*', ['polymer-build', reload]);
   gulp.watch('app/js/*.js', ['js', reload]);
 
   gulp.watch('app/1.0/blog/*.md', ['md:blog', reload]);
@@ -335,8 +334,9 @@ gulp.task('clean', 'Remove dist/ and other built files', function() {
 // Default task. Build the dest dir.
 gulp.task('default', 'Build site', ['clean', 'jshint'], function(done) {
   runSequence(
-    'polymer-build',
-    ['style', 'images', 'vulcanize', 'vulcanize-demos', 'js'],
+    'build-bundles',
+    'vulcanize-bundles',
+    ['style', 'images', 'vulcanize-demos', 'js'],
     'copy', 'md:docs', 'md:blog',
     done);
 });

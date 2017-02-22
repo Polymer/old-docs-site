@@ -9,5 +9,11 @@
     "app/elements/demo-tabs.html",
     "app/elements/google-youtube.html",
     "app/elements/iron-doc-viewer.html"
-  ]
+  ],
+  "builds": [{
+    "bundle": true,
+    "js": {"minify": true},
+    "css": {"minify": true},
+    "html": {"minify": true}
+  }]
 }
