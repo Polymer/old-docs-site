@@ -45,17 +45,17 @@
   shortpath: docs
   path: /2.0/docs/devguide/feature-overview
   items:
+  - title: Feature overview
+    path: /2.0/docs/devguide/feature-overview
+  - title: Quick tour
+    path: /2.0/docs/devguide/quick-tour
+  - header: Polymer 2.0
   - title: About Polymer 2.0
     path: /2.0/docs/about_20
   - title: Upgrade guide
     path: /2.0/docs/upgrade
-  - header: Overview
-  - title: Feature overview
-    path: /2.0/docs/devguide/feature-overview
-    indent: True
-  - title: Quick tour
-    path: /2.0/docs/devguide/quick-tour
-    indent: True
+  - title: Hybrid elements
+    path: /2.0/docs/devguide/hybrid-elements
   - endheader: True
   - header: Custom elements
   - title: Custom element concepts
