@@ -121,12 +121,12 @@ You can configure how the CLI builds your application via the `builds` property.
 * `insertPrefetchLinks`: If `true`, insert prefetch link elements into your fragments so that all dependencies are prefetched immediately.
 * `bundle`: If `true`, bundle your application.
 * `html`:
-** `minify`: If `true`, minify all HTML.
+  * `minify`: If `true`, minify all HTML.
 * `css`:
-** `minify`: If `true`, minify all CSS.
+  * `minify`: If `true`, minify all CSS.
 * `js`:
-** `minify`: If `true`, minify all JS.
-** `compile`: If `true`, use babel to compile all ES6 JS down to ES5.
+  * `minify`: If `true`, minify all JS.
+  * `compile`: If `true`, use babel to compile all ES6 JS down to ES5.
 
 As an example, here is the configuration for a bundled, minified application build:
 
