@@ -9,18 +9,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
-<link rel="import" href="../bower_components/app-layout/helpers/helpers.html">
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
-<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
-<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
-<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
 <dom-module id="pw-shell">
   <template>
@@ -233,6 +227,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // probably not looking at the bottom of the page on first paint. Also
       // FREAM (First-paint Rules Everything Around Me)
       Polymer.RenderStatus.afterNextRender(this, function() {
+        this.importHref(this.resolveUrl('/elements/pw-shell-lazy-elements.html'));
         this.importHref(this.resolveUrl('/elements/icons.html'));
         this.importHref(this.resolveUrl('/elements/devguide-shell.html'));
         this.importHref(this.resolveUrl('/elements/pw-footer.html'));
