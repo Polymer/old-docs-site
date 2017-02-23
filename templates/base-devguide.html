@@ -12,15 +12,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <head>
 <title>{% block title %}{% endblock %} - Polymer Project</title>
 {% include 'templates/head-meta.html' %}
+<style>
+   /* Styling while the resources are loading. */
+  devguide-shell[unresolved] .sidenav-content {
+    opacity: 0;
+  }
+  devguide-shell[unresolved] main {
+    opacity: 0;
+  }
+</style>
 </head>
 <body class="fullbleed" unresolved>
   <pw-shell>
     {% include 'templates/site-nav.html' %}
     {% if markdown %}
-      <devguide-shell markdown page-title="{{{title}}}" page-subtitle="{{{subtitle}}}"
+      <devguide-shell unresolved markdown page-title="{{{title}}}" page-subtitle="{{{subtitle}}}"
           v1-page-link="{{{versions[0]}}}" v2-page-link="{{{versions[1]}}}">
     {% else %}
-      <devguide-shell v1-page-link="{{{versions[0]}}}" v2-page-link="{{{versions[1]}}}">
+      <devguide-shell unresolved v1-page-link="{{{versions[0]}}}" v2-page-link="{{{versions[1]}}}">
     {% endif %}
 
       {% if nav %}

@@ -42,7 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: #333;
       }
 
-      app-drawer[unresolved] {
+      app-drawer {
         display: none !important;
       }
 
@@ -197,7 +197,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <input id="searchBox" on-change="_onSearchInputChange" type="search" class="search-box fit" placeholder="Search Polymer Site" aria-labelledby="searchLabel">
     </app-header>
 
-    <app-drawer id="drawer" class="drawer" swipe-open unresolved>
+    <app-drawer id="drawer" class="drawer" swipe-open>
       <div class="drawer-contents" on-click="_closeDrawer">
         <img src="../images/logos/p-logo.png" alt="Polymer Logo">
 
@@ -267,11 +267,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // probably not looking at the bottom of the page on first paint. Also
       // FREAM (First-paint Rules Everything Around Me)
       Polymer.RenderStatus.afterNextRender(this, function() {
-        this.importHref(this.resolveUrl('/elements/pw-shell-lazy-elements.html'), function() {
-          this.$.drawer.removeAttribute('unresolved');
-        });
+        this.importHref(this.resolveUrl('/elements/pw-shell-lazy-elements.html'));
         this.importHref(this.resolveUrl('/elements/icons.html'));
-        this.importHref(this.resolveUrl('/elements/devguide-shell.html'));
+        this.importHref(this.resolveUrl('/elements/devguide-shell.html'), function() {
+          var shell = Polymer.dom(this).querySelector('devguide-shell');
+          shell.removeAttribute('unresolved');
+        });
         this.importHref(this.resolveUrl('/elements/pw-footer.html'));
         this.importHref(this.resolveUrl('/elements/google-youtube.html'));
       });
@@ -400,6 +401,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         Polymer.dom(this).appendChild(document.importNode(fragment, true));
         Polymer.dom.flush();  // Force upgrades.
+
+        // Since the devguide-shell import is loaded, we can remove its
+        // unresolved attribute from the template
+        var devshell = Polymer.dom(this).querySelector('devguide-shell');
+        devshell.removeAttribute('unresolved');
 
         // Analytics. Don't double-report search
         if (this._sectionRoute.path != '/search/' && window.recordPageview) {
