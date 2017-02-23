@@ -6,9 +6,9 @@ title: "`polymer.json` specification"
 
 # About `polymer.json`
 
-Creating a `polymer.json` in your project directory allows you to store information about your project structure and desired build configuration(s). It is used by the [Polymer CLI](sdffsdkjhk) as a way to understand the structure of your application.
+Creating a `polymer.json` in your project directory allows you to store information about your project structure and desired build configuration(s). It is used by the [Polymer CLI](polymer-cli) as a way to understand the structure of your application.
 
-To make sure your application builds correctly, create a `polymer.json` file at the top level of your project:
+To make sure your application builds correctly, create a `polymer.json` file at the top level of your project. Here's an example from the [Shop app](https://github.com/Polymer/shop):
 
 ```
 -shop
@@ -66,7 +66,7 @@ Here’s an example polymer.json file from the [Shop app](https://github.com/Pol
 Optional, Defaults to `index.html`
 Type: `String`
 
-The main entrypoint to your app for all routes, often `index.html`. This file should import the app shell file specified in the shell property. It should be as small as possible since it’s loaded and cached for all routes.
+The main entrypoint to your app for all routes, often `index.html`. This file should import the app shell file specified in the shell property. It should be as small as possible since it’s served for all routes. All paths in the entrypoint should be absolute, because this file is served from many different URLs.
 
 ### fragments
 Optional
@@ -82,7 +82,7 @@ In a Polymer app, the files listed in the `fragments` property usually contain o
 Optional
 Type: `Array` of `String`
 
-Dependencies that the analyzer component of the Polymer build toolchain can’t discover, and that do not need to be bundled.
+Dependencies that the analyzer component of the Polymer build toolchain can’t discover, possibly because they're not statically imported, and that do not need to be bundled.
 
 ### shell
 *Required* 
@@ -96,24 +96,7 @@ Type: `Array` of `String`
 
 An optional array of globs matching your application source files. If left out, defaults to all files in your project `src/` directory. You’ll need to set this if you store your source files in other locations.
 
-In the Shop app, source files are stored in `/src`, `/data` and `/images`:
-
-```
--shop
-  |-README.md
-  |-app.yaml
-  |-bower.json
-  |-build
-  |-data
-  |-images
-  |-index.html
-  |-manifest.json
-  |-polymer.json
-  |-service-worker.js
-  |-src
-  |-sw-precache-config.js
-  |-test
-```
+In the Shop app, source files are stored in `/src`, `/data` and `/images`. [See above for the Shop file structure](#about).
 
 The `sources` property is set as follows:
 
