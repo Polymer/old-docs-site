@@ -8,19 +8,13 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
-<link rel="import" href="../bower_components/app-layout/helpers/helpers.html">
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
-<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
-<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
-<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
-
-<link rel="import" href="icons.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 
 <dom-module id="pw-shell">
   <template>
@@ -46,6 +40,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       a.iron-selected {
         color: #333;
+      }
+
+      app-drawer[unresolved] {
+        display: none !important;
       }
 
       .drawer {
@@ -181,7 +179,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <input id="searchBox" on-change="_onSearchInputChange" type="search" class="search-box fit" placeholder="Search Polymer Site" aria-labelledby="searchLabel">
     </app-header>
 
-    <app-drawer id="drawer" class="drawer" swipe-open>
+    <app-drawer id="drawer" class="drawer" swipe-open unresolved>
       <div class="drawer-contents" on-click="_closeDrawer">
         <img src="../images/logos/p-logo.png" alt="Polymer Logo">
         <content select=".site-nav"></content>
@@ -229,6 +227,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     attached: function() {
+      // Lazy load the footer and the icons since they're not critical and you're
+      // probably not looking at the bottom of the page on first paint. Also
+      // FREAM (First-paint Rules Everything Around Me)
+      Polymer.RenderStatus.afterNextRender(this, function() {
+        this.importHref(this.resolveUrl('/elements/pw-shell-lazy-elements.html'), function() {
+          this.$.drawer.removeAttribute('unresolved');
+        });
+        this.importHref(this.resolveUrl('/elements/icons.html'));
+        this.importHref(this.resolveUrl('/elements/devguide-shell.html'));
+        this.importHref(this.resolveUrl('/elements/pw-footer.html'));
+        this.importHref(this.resolveUrl('/elements/google-youtube.html'));
+      });
+
       // app-route doesn't handle clicking on the TOC anchors.
       window.addEventListener('hashchange', this._scrollToAnchor.bind(this));
       window.addEventListener('location-changed', this._scrollToAnchor.bind(this));
@@ -462,7 +473,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var collapse = Polymer.dom(link).nextElementSibling;
       var expandButton = Polymer.dom(link).querySelector('paper-icon-button');
 
-      if (!expandButton || !collapse)
+      // Wait until the element has been distributed and upgraded
+      if (!expandButton || !collapse || !collapse.hide || !collapse.show)
         return;
 
       if (opened) {

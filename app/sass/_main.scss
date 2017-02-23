@@ -39,6 +39,13 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+
+  transition: opacity ease-in 0.2s;
+}
+
+ /* Styling while the resources are loading */
+body[unresolved] {
+  opacity: 0;
 }
 
 /* TODO(notwaldorf): These styles make the footer always stick to the bottom
