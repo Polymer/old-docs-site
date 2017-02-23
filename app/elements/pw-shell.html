@@ -42,6 +42,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: #333;
       }
 
+      app-drawer[unresolved] {
+        display: none !important;
+      }
+
       .drawer {
        display: none;
        z-index: var(--app-drawer-z-index);
@@ -175,7 +179,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <input id="searchBox" on-change="_onSearchInputChange" type="search" class="search-box fit" placeholder="Search Polymer Site" aria-labelledby="searchLabel">
     </app-header>
 
-    <app-drawer id="drawer" class="drawer" swipe-open>
+    <app-drawer id="drawer" class="drawer" swipe-open unresolved>
       <div class="drawer-contents" on-click="_closeDrawer">
         <img src="../images/logos/p-logo.png" alt="Polymer Logo">
         <content select=".site-nav"></content>
@@ -227,7 +231,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // probably not looking at the bottom of the page on first paint. Also
       // FREAM (First-paint Rules Everything Around Me)
       Polymer.RenderStatus.afterNextRender(this, function() {
-        this.importHref(this.resolveUrl('/elements/pw-shell-lazy-elements.html'));
+        this.importHref(this.resolveUrl('/elements/pw-shell-lazy-elements.html'), function() {
+          this.$.drawer.removeAttribute('unresolved');
+        });
         this.importHref(this.resolveUrl('/elements/icons.html'));
         this.importHref(this.resolveUrl('/elements/devguide-shell.html'));
         this.importHref(this.resolveUrl('/elements/pw-footer.html'));
@@ -467,7 +473,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var collapse = Polymer.dom(link).nextElementSibling;
       var expandButton = Polymer.dom(link).querySelector('paper-icon-button');
 
-      if (!expandButton || !collapse)
+      // Wait until the element has been distributed and upgraded
+      if (!expandButton || !collapse || !collapse.hide || !collapse.show)
         return;
 
       if (opened) {
