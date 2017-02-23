@@ -287,7 +287,7 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     .pipe(gulp.dest('dist'));
 
   let bower = gulp.src([
-      'app/bower_components/webcomponentsjs/webcomponents*.js',
+      'app/bower_components/webcomponentsjs/webcomponents*.js'
     ], {base: 'app/'})
     .pipe(gulp.dest('dist'));
 
