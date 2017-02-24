@@ -4,8 +4,6 @@ title: "`polymer.json` specification"
 
 <!-- toc -->
 
-# About `polymer.json`
-
 Creating a `polymer.json` in your project directory allows you to store information about your 
 project structure and desired build configuration(s). It is used by the [Polymer CLI](polymer-cli) 
 as a way to understand the structure of your application.
@@ -30,7 +28,7 @@ your project. Here's an example from the [Shop app](https://github.com/Polymer/s
   |-test
 ```
 
-#Example `polymer.json` file
+## Example `polymer.json` file
 
 Here’s an example polymer.json file from the [Shop app](https://github.com/Polymer/shop):
 
@@ -66,7 +64,7 @@ Here’s an example polymer.json file from the [Shop app](https://github.com/Pol
 ## Properties
 
 ### entrypoint
-Optional, Defaults to `index.html`
+Optional, Defaults to `index.html`<br>
 Type: `String`
 
 The main entrypoint to your app for all routes, often `index.html`. This file should import the app 
@@ -75,7 +73,7 @@ all routes. All paths in the entrypoint should be absolute, because this file is
 different URLs.
 
 ### fragments
-Optional
+Optional<br>
 Type: `Array` of `String`
 
 This property supports dynamic dependencies. It is an array of any HTML filenames that are not 
@@ -89,14 +87,14 @@ definitions that may or may not be required during the user’s interaction with
 thus be lazily loaded.
 
 ### extraDependencies
-Optional
+Optional<br>
 Type: `Array` of `String`
 
 Dependencies that the analyzer component of the Polymer build toolchain can’t discover, possibly 
 because they're not statically imported, and that do not need to be bundled.
 
 ### shell
-*Required* 
+*Required*<br> 
 Type: `String`
 
 The app shell. Contains the main code that boots the app and loads necessary resources. The shell 
@@ -104,7 +102,7 @@ usually includes the common UI for the app, and the router, which loads resource
 current route.
 
 ### sources
-Optional, Defaults to `["src/**/*"]`
+Optional, Defaults to `["src/**/*"]`<br>
 Type: `Array` of `String`
 
 An optional array of globs matching your application source files. If left out, defaults to all 
@@ -126,7 +124,7 @@ The `sources` property is set as follows:
 ```
 
 ### builds
-Optional
+Optional<br>
 Type: `Array` of `Build Configuration` objects
 
 You can configure how the CLI builds your application via the `builds` property. This is equivalent 
