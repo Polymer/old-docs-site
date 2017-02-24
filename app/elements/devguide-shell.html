@@ -307,7 +307,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (newSelection === this.activeDocsVersion)
         return;
 
-      console.log('wtf redirect');
       var path = newSelection == '2.0' ? this.v2PageLink : this.v1PageLink;
       window.history.pushState({}, '', window.location.origin + path);
       this.fire('location-changed', {}, {node: window});
