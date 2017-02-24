@@ -111,6 +111,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         border-bottom: 4px solid #f50057;  /* pink-a400 */
       }
 
+      :host([active-docs-version="1.0"]) .sections-tabs a[data-version="2.0"] {
+        display: none !important;
+      }
+
+      :host([active-docs-version="2.0"]) .sections-tabs a[data-version="1.0"] {
+        display: none !important;
+      }
+
       .search-box {
         width: 100%;
         height: 100%;
@@ -174,13 +182,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <nav>
           <iron-selector class="sections-tabs" attr-for-selected="name" activate-event="" selected="[[_selectedSection(_sectionData.*)]]">
 
-            <a href="/1.0/start/" name="1.0/start" hidden="[[_shouldShowV2(activeDocsVersion)]]">Start</a>
-            <a href="/1.0/docs/devguide/feature-overview" name="1.0/docs" hidden="[[_shouldShowV2(activeDocsVersion)]]">Polymer</a>
-            <a href="/1.0/toolbox/" name="1.0/toolbox" hidden="[[_shouldShowV2(activeDocsVersion)]]">App Toolbox</a>
+            <a href="/1.0/start/" name="1.0/start" data-version="1.0">Start</a>
+            <a href="/1.0/docs/devguide/feature-overview" name="1.0/docs" data-version="1.0">Polymer</a>
+            <a href="/1.0/toolbox/" name="1.0/toolbox" data-version="1.0">App Toolbox</a>
 
-            <a href="/2.0/start/" name="2.0/start" hidden="[[!_shouldShowV2(activeDocsVersion)]]">Start</a>
-            <a href="/2.0/docs/about_20" name="2.0/docs" hidden="[[!_shouldShowV2(activeDocsVersion)]]">Polymer</a>
-            <a href="/2.0/toolbox/" name="2.0/toolbox" hidden="[[!_shouldShowV2(activeDocsVersion)]]">App Toolbox</a>
+            <a href="/2.0/start/" name="2.0/start" data-version="2.0">Start</a>
+            <a href="/2.0/docs/about_20" name="2.0/docs" data-version="2.0">Polymer</a>
+            <a href="/2.0/toolbox/" name="2.0/toolbox" data-version="2.0">App Toolbox</a>
 
             <a href="/blog/" name="blog/">Blog</a>
             <a href="/community/" name="community/">Community</a>
@@ -670,10 +678,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       wrapper.style.display = '';
       wrapper.style.maxHeight = '';
       wrapper.style.top = '0px';
-    },
-
-    _shouldShowV2: function(version) {
-      return version === '2.0';
     }
   });
   </script>
