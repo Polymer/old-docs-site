@@ -1,5 +1,5 @@
 {
-  "entrypoint": "app/1.0/index.html",
+  "entrypoint": "app/index.html",
   "shell": "app/elements/pw-shell.html",
   "fragments": [
     "app/elements/pw-shell.html",

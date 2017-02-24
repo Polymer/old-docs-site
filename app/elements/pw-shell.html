@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
@@ -42,10 +43,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: #333;
       }
 
-      app-drawer[unresolved] {
-        display: none !important;
-      }
-
       .drawer {
        display: none;
        z-index: var(--app-drawer-z-index);
@@ -58,7 +55,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       .drawer-contents img {
-        display: block;
         margin: 16px 30px;
         height: 24px;
       }
@@ -115,6 +111,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         border-bottom: 4px solid #f50057;  /* pink-a400 */
       }
 
+      :host([active-docs-version="1.0"]) .sections-tabs a[data-version="2.0"] {
+        display: none !important;
+      }
+
+      :host([active-docs-version="2.0"]) .sections-tabs a[data-version="1.0"] {
+        display: none !important;
+      }
+
       .search-box {
         width: 100%;
         height: 100%;
@@ -131,6 +135,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .search-box:focus {
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
+      }
+
+      .version-selector {
+        display: inline-block;
+        margin: 16px 4px;
+        height: 24px;
+        vertical-align: top;
+      }
+
+      .version-selector paper-dropdown-menu-light {
+        width: 60px;
+        margin-left: 20px;
+        vertical-align: middle;
       }
 
       @media (max-width: 767px) {
@@ -155,7 +172,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="header-toolbar layout horizontal center">
         <paper-icon-button class="drawer-toggle" icon="pw-icons:menu" on-click="_toggleDrawer"></paper-icon-button>
 
-        <a href="/1.0/" class="logo-link">
+        <a href="/" class="logo-link">
           <img src="../images/logos/p-logo.png" alt="Polymer Logo">
           <span>Polymer Project</span>
         </a>
@@ -164,11 +181,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <nav>
           <iron-selector class="sections-tabs" attr-for-selected="name" activate-event="" selected="[[_selectedSection(_sectionData.*)]]">
-            <a href="/2.0/start/" name="1.0/start">Start</a>
-            <a href="/2.0/docs/devguide/feature-overview" name="2.0/docs">Polymer</a>
-            <a href="/2.0/toolbox/" name="1.0/toolbox">App Toolbox</a>
-            <a href="/2.0/blog/" name="1.0/blog">News</a>
-            <a href="https://elements.polymer-project.org/" target="_blank" name="catalog">Element Catalog</a>
+
+            <a href="/1.0/start/" name="1.0/start" data-version="1.0">Start</a>
+            <a href="/1.0/docs/devguide/feature-overview" name="1.0/docs" data-version="1.0">Polymer</a>
+            <a href="/1.0/toolbox/" name="1.0/toolbox" data-version="1.0">App Toolbox</a>
+
+            <a href="/2.0/start/" name="2.0/start" data-version="2.0">Start</a>
+            <a href="/2.0/docs/about_20" name="2.0/docs" data-version="2.0">Polymer</a>
+            <a href="/2.0/toolbox/" name="2.0/toolbox" data-version="2.0">App Toolbox</a>
+
+            <a href="/blog/" name="blog/">Blog</a>
+            <a href="/community/" name="community/">Community</a>
           </iron-selector>
         </nav>
 
@@ -179,9 +202,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <input id="searchBox" on-change="_onSearchInputChange" type="search" class="search-box fit" placeholder="Search Polymer Site" aria-labelledby="searchLabel">
     </app-header>
 
-    <app-drawer id="drawer" class="drawer" swipe-open unresolved>
+    <app-drawer id="drawer" class="drawer" swipe-open>
       <div class="drawer-contents" on-click="_closeDrawer">
         <img src="../images/logos/p-logo.png" alt="Polymer Logo">
+
+        <div class="version-selector">
+          <b>Version</b>
+          <paper-dropdown-menu-light no-label-float id="paperDropdown">
+            <paper-listbox class="dropdown-content" selected="[[activeDocsVersion]]" attr-for-selected="name" on-iron-select="_listboxVersionChanged">
+              <paper-item name="1.0">1.0</paper-item>
+              <paper-item name="2.0">2.0</paper-item>
+            </paper-listbox>
+          </paper-dropdown-menu-light>
+        </div>
         <content select=".site-nav"></content>
       </div>
     </app-drawer>
@@ -223,6 +256,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _searchParams: {
         type: Object,
         observer: '_searchParamsChanged'
+      },
+
+      /**
+       * Which version (1.0 or 2.0) of the docs we are using, so that the
+       * main nav and side nav can be kept in sync across page navigations.
+       */
+      activeDocsVersion: {
+        type: String,
+        value: '2.0',
+        reflectToAttribute: true
       }
     },
 
@@ -231,11 +274,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // probably not looking at the bottom of the page on first paint. Also
       // FREAM (First-paint Rules Everything Around Me)
       Polymer.RenderStatus.afterNextRender(this, function() {
-        this.importHref(this.resolveUrl('/elements/pw-shell-lazy-elements.html'), function() {
-          this.$.drawer.removeAttribute('unresolved');
-        });
+        this.importHref(this.resolveUrl('/elements/pw-shell-lazy-elements.html'));
         this.importHref(this.resolveUrl('/elements/icons.html'));
-        this.importHref(this.resolveUrl('/elements/devguide-shell.html'));
+        this.importHref(this.resolveUrl('/elements/devguide-shell.html'), function() {
+          var shell = Polymer.dom(this).querySelector('devguide-shell');
+          if (shell)
+            shell.removeAttribute('unresolved');
+        });
         this.importHref(this.resolveUrl('/elements/pw-footer.html'));
         this.importHref(this.resolveUrl('/elements/google-youtube.html'));
       });
@@ -250,13 +295,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       // Save the initial URL so that we don't double-render the first load.
       this._currentPageURL = this._sectionRoute.path;
+
+      // Save which version of docs we're looking at, since we need to
+      // maintain this state across the app. Note that not all sections are versioned.
+      if (this._sectionData.version === '1.0' || this._sectionData.version === '2.0')
+        this.activeDocsVersion = this._sectionData.version;
+    },
+
+    _listboxVersionChanged: function(event) {
+      var newSelection = event.detail.item.textContent;
+      if (newSelection === this.activeDocsVersion)
+        return;
+      this.activeDocsVersion = newSelection;
+      this.set('_sectionRoute.path', '/' + this.activeDocsVersion + '/start/');
     },
 
     _toggleDrawer: function() {
       this.$.drawer.toggle();
     },
 
-    _closeDrawer: function() {
+    _closeDrawer: function(event) {
+      // If this event comes from the paper dropdown menu, then it just means
+      // we're opening the version selector, so we shouldn't close the drawer.
+      if (Polymer.dom(event).localTarget.id === 'paperDropdown')
+        return;
       this.$.drawer.close();
     },
 
@@ -306,6 +368,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     _handleResponse: function(event) {
       // Don't re-load the same thing you're looking at.
       if (this._currentPageURL !== this._sectionRoute.path) {
+        // Not all sections have a version, so only update the docs version if
+        // there's actually a change.
+        // Also I don't understand, but 'blog' comes with a version of "blog" so...
+        var version = this._sectionData.version;
+        if (version === '1.0' || version === '2.0') {
+          this.activeDocsVersion = version;
+        }
+
         this._currentPageURL = this._sectionRoute.path;
 
         var doc = event.detail.response;
@@ -324,6 +394,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         Polymer.dom(this).appendChild(document.importNode(fragment, true));
         Polymer.dom.flush();  // Force upgrades.
+
+        // Since the devguide-shell import is loaded, we can remove its
+        // unresolved attribute from the template
+        var devshell = Polymer.dom(this).querySelector('devguide-shell');
+        if (devshell)
+          devshell.removeAttribute('unresolved');
 
         // Analytics. Don't double-report search
         if (this._sectionRoute.path != '/search/' && window.recordPageview) {

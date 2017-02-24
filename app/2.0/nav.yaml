@@ -1,7 +1,7 @@
 ---
 - section: Home
   shortpath: home
-  path: /2.0/
+  path: /
 
 - section: Start
   shortpath: start
@@ -219,4 +219,8 @@
 
 - section: Blog
   shortpath: blog
-  path: /2.0/blog/
+  path: /blog/
+
+- section: Community
+  shortpath: community
+  path: /community/
