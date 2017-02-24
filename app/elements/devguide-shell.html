@@ -269,6 +269,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     attached: function() {
+      Polymer.RenderStatus.afterNextRender(this, function() {
+        // Somebody might look at the API docs. Be ready.
+        this.importHref(this.resolveUrl('/elements/iron-doc-viewer.html'));
+      });
+
       // Compute the active page from the parent pw-shell's app route.
       var pwShell = this.parentElement;
       if (pwShell) {
