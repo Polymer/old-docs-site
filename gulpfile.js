@@ -322,7 +322,10 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
 gulp.task('watch', 'Watch files for changes', function() {
   createReloadServer();
   gulp.watch('app/sass/**/*.scss', ['style', reload]);
-  gulp.watch('app/elements/**/*', ['hack-bundles', reload]);
+  gulp.watch('app/elements/**/*', function() {
+    runSequence('hack-bundles', 'copy');
+    reload();
+  });
   gulp.watch('app/js/*.js', ['js', reload]);
 
   gulp.watch('app/blog/*.md', ['md:blog', reload]);
