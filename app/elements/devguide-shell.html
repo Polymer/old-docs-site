@@ -164,9 +164,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="version-selector">
         <b>Version</b>
         <paper-dropdown-menu-light no-label-float>
-          <paper-listbox class="dropdown-content" id="versionSelect" on-iron-select="_listboxVersionChanged">
-            <paper-item>1.0</paper-item>
-            <paper-item>2.0</paper-item>
+          <paper-listbox class="dropdown-content" selected="[[activeDocsVersion]]" attr-for-selected="name" on-iron-select="_listboxVersionChanged">
+            <paper-item name="1.0">1.0</paper-item>
+            <paper-item name="2.0">2.0</paper-item>
           </paper-listbox>
         </paper-dropdown-menu-light>
       </div>
@@ -283,7 +283,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
 
       // Compute the active page from the parent pw-shell's app route.
-      var pwShell = this.parentElement;
+      var pwShell = Polymer.dom(this).parentNode;
       if (pwShell) {
         var path = pwShell._sectionRoute.path;
 
@@ -298,7 +298,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // Figure out which version we're displaying, 1.0 or 2.0, and pw-shell
       // is the source of truth (the URL isn't).
       this.activeDocsVersion = pwShell.activeDocsVersion;
-      this.$.versionSelect.selected = this.activeDocsVersion == '1.0' ? 0 : 1;
     },
 
     // Update the version when the version selector is used.

@@ -201,9 +201,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="version-selector">
           <b>Version</b>
           <paper-dropdown-menu-light no-label-float id="paperDropdown">
-            <paper-listbox class="dropdown-content" id="versionSelect" on-iron-select="_listboxVersionChanged">
-              <paper-item>1.0</paper-item>
-              <paper-item>2.0</paper-item>
+            <paper-listbox class="dropdown-content" selected="[[activeDocsVersion]]" attr-for-selected="name" on-iron-select="_listboxVersionChanged">
+              <paper-item name="1.0">1.0</paper-item>
+              <paper-item name="2.0">2.0</paper-item>
             </paper-listbox>
           </paper-dropdown-menu-light>
         </div>
@@ -256,7 +256,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        */
       activeDocsVersion: {
         type: String,
-        value: '2.0'
+        value: '2.0',
+        reflectToAttribute: true
       }
     },
 
@@ -302,20 +303,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _toggleDrawer: function() {
-      // Sync the version selector with the active docs version.
-      this.$.versionSelect.selected = this.activeDocsVersion == '1.0' ? 0 : 1;
-
-      var links = this.querySelectorAll('a[data-version]');
-      // Get all the top level nav links. If they're not for this version, hide them.
-      // We live in this fresh hell because the backend server doesn't know what
-      // the client docs version is, so for unversioned pages (like the
-      // landing page, blog and community) it needs to send _all_ the links.
-      // In the case of versioned pages, they won't have a data-version attribute
-      // so this will not be run.
-      for (var i = 0; i < links.length; i++) {
-        links[i].hidden = links[i].dataset.version !== this.activeDocsVersion;
-      }
-
       this.$.drawer.toggle();
     },
 
