@@ -289,7 +289,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       // Save which version of docs we're looking at, since we need to
       // maintain this state across the app. Note that not all sections are versioned.
-      if (this._sectionData.version)
+      if (this._sectionData.version === '1.0' || this._sectionData.version === '2.0')
         this.activeDocsVersion = this._sectionData.version;
     },
 
@@ -304,7 +304,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     _toggleDrawer: function() {
       // Sync the version selector with the active docs version.
       this.$.versionSelect.selected = this.activeDocsVersion == '1.0' ? 0 : 1;
-      
+
       var links = this.querySelectorAll('a[data-version]');
       // Get all the top level nav links. If they're not for this version, hide them.
       // We live in this fresh hell because the backend server doesn't know what
@@ -375,8 +375,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (this._currentPageURL !== this._sectionRoute.path) {
         // Not all sections have a version, so only update the docs version if
         // there's actually a change.
-        if (this._sectionData.version) {
-          this.activeDocsVersion = this._sectionData.version;
+        // Also I don't understand, but 'blog' comes with a version of "blog" so...
+        var version = this._sectionData.version;
+        if (version === '1.0' || version === '2.0') {
+          console.log('we have a version', version);
+          this.activeDocsVersion = version;
         }
 
         this._currentPageURL = this._sectionRoute.path;
