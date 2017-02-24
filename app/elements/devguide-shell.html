@@ -164,7 +164,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="version-selector">
         <b>Version</b>
         <paper-dropdown-menu-light no-label-float>
-          <paper-listbox class="dropdown-content" id="versionSelect">
+          <paper-listbox class="dropdown-content" id="versionSelect" on-iron-select="_listboxVersionChanged">
             <paper-item>1.0</paper-item>
             <paper-item>2.0</paper-item>
           </paper-listbox>
@@ -240,11 +240,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         type: String
       },
 
+      /**
+       * The starting link for a 1.0 section (for the start/docs/toolbox sections)
+       */
       v1PageLink: {
         type: String
       },
 
+      /**
+       * The starting link for a 2.0 section (for the start/docs/toolbox sections)
+       */
       v2PageLink: {
+        type: String
+      },
+
+      /**
+       * The version of the docs we're looking at. Should be 1.0 or 2.0
+       */
+      activeDocsVersion: {
         type: String
       },
 
@@ -254,11 +267,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _isMobileView: {
         observer: '_mobileViewChanged'
       },
-
-      activeDocsVersion: {
-        type: String,
-        readOnly: true
-      }
     },
 
     /**
@@ -287,24 +295,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.activePage = path;
       }
 
-      // Figure out which version we're displaying, 1.0 or 2.0. You can't rely on
-      // the parent's version, because if we clicked on the "see 2.0" <a> link inside
-      // this page, then the pw-shell would not have refreshed, so it doesn't
-      // know the version has changed.
-      pwShell.updateDocsVersion();
-      this._setActiveDocsVersion(pwShell.activeDocsVersion);
+      // Figure out which version we're displaying, 1.0 or 2.0, and pw-shell
+      // is the source of truth (the URL isn't).
+      this.activeDocsVersion = pwShell.activeDocsVersion;
       this.$.versionSelect.selected = this.activeDocsVersion == '1.0' ? 0 : 1;
+    },
 
-      // Update the version when the version selector is used.
-      this.$.versionSelect.addEventListener('iron-select', function(event) {
-        var newSelection = event.detail.item.textContent;
-        if (newSelection === this.activeDocsVersion)
-          return;
+    // Update the version when the version selector is used.
+    _listboxVersionChanged: function(event) {
+      var newSelection = event.detail.item.textContent;
+      if (newSelection === this.activeDocsVersion)
+        return;
 
-        pwShell.activeDocsVersion = newSelection;
-        this._setActiveDocsVersion(pwShell.activeDocsVersion);
-        window.location = newSelection == '2.0' ? this.v2PageLink : this.v1PageLink;
-      }.bind(this));
+      console.log('wtf redirect');
+      var path = newSelection == '2.0' ? this.v2PageLink : this.v1PageLink;
+      window.history.pushState({}, '', window.location.origin + path);
+      this.fire('location-changed', {}, {node: window});
     },
 
     _githubUrl: function(item) {

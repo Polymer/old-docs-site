@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
@@ -40,10 +41,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       a.iron-selected {
         color: #333;
-      }
-
-      app-drawer {
-        display: none !important;
       }
 
       .drawer {
@@ -204,7 +201,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="version-selector">
           <b>Version</b>
           <paper-dropdown-menu-light no-label-float id="paperDropdown">
-            <paper-listbox class="dropdown-content" id="versionSelect">
+            <paper-listbox class="dropdown-content" id="versionSelect" on-iron-select="_listboxVersionChanged">
               <paper-item>1.0</paper-item>
               <paper-item>2.0</paper-item>
             </paper-listbox>
@@ -258,7 +255,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        * main nav and side nav can be kept in sync across page navigations.
        */
       activeDocsVersion: {
-        type: String
+        type: String,
+        value: '2.0'
       }
     },
 
@@ -271,7 +269,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.importHref(this.resolveUrl('/elements/icons.html'));
         this.importHref(this.resolveUrl('/elements/devguide-shell.html'), function() {
           var shell = Polymer.dom(this).querySelector('devguide-shell');
-          shell.removeAttribute('unresolved');
+          if (shell)
+            shell.removeAttribute('unresolved');
         });
         this.importHref(this.resolveUrl('/elements/pw-footer.html'));
         this.importHref(this.resolveUrl('/elements/google-youtube.html'));
@@ -289,32 +288,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this._currentPageURL = this._sectionRoute.path;
 
       // Save which version of docs we're looking at, since we need to
-      // maintain this state across the app.
-      this.updateDocsVersion();
-
-      // Update the version when the version selector is used.
-      this.$.versionSelect.addEventListener('iron-select', function(event) {
-        var newSelection = event.detail.item.textContent;
-        if (newSelection === this.activeDocsVersion)
-          return;
-        this.activeDocsVersion = newSelection;
-        window.location = '/' + this.activeDocsVersion + '/start/';
-      }.bind(this));
+      // maintain this state across the app. Note that not all sections are versioned.
+      if (this._sectionData.version)
+        this.activeDocsVersion = this._sectionData.version;
     },
 
-    // Save the docs version based on the current URL.
-    updateDocsVersion: function() {
-      if (this._currentPageURL.indexOf('/1.0/') !== -1) {
-        this.activeDocsVersion = '1.0';
-      } else {
-        this.activeDocsVersion = '2.0';
-      }
+    _listboxVersionChanged: function(event) {
+      var newSelection = event.detail.item.textContent;
+      if (newSelection === this.activeDocsVersion)
+        return;
+      this.activeDocsVersion = newSelection;
+      this.set('_sectionRoute.path', '/' + this.activeDocsVersion + '/start/');
     },
 
     _toggleDrawer: function() {
       // Sync the version selector with the active docs version.
       this.$.versionSelect.selected = this.activeDocsVersion == '1.0' ? 0 : 1;
-
+      
       var links = this.querySelectorAll('a[data-version]');
       // Get all the top level nav links. If they're not for this version, hide them.
       // We live in this fresh hell because the backend server doesn't know what
@@ -383,6 +373,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     _handleResponse: function(event) {
       // Don't re-load the same thing you're looking at.
       if (this._currentPageURL !== this._sectionRoute.path) {
+        // Not all sections have a version, so only update the docs version if
+        // there's actually a change.
+        if (this._sectionData.version) {
+          this.activeDocsVersion = this._sectionData.version;
+        }
+
         this._currentPageURL = this._sectionRoute.path;
 
         var doc = event.detail.response;
@@ -405,7 +401,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // Since the devguide-shell import is loaded, we can remove its
         // unresolved attribute from the template
         var devshell = Polymer.dom(this).querySelector('devguide-shell');
-        devshell.removeAttribute('unresolved');
+        if (devshell)
+          devshell.removeAttribute('unresolved');
 
         // Analytics. Don't double-report search
         if (this._sectionRoute.path != '/search/' && window.recordPageview) {
