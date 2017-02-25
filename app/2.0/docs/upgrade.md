@@ -964,8 +964,8 @@ Below are the general steps for defining a custom element using this new syntax:
 
 
     ```
-    // set tab-index if it's not already set
-    _ensureAttribute('tab-index', 0);
+    // set tabindex if it's not already set
+    _ensureAttribute('tabindex', 0);
     ```
 
 
