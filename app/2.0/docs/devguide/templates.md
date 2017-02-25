@@ -84,21 +84,20 @@ Example: { .caption }
 
       static get is() { return 'x-custom'; }
 
-      static get config() {
+      static get properties() {
         return {
-          properties: {
-            employees: {
-              type: Array,
-              value() {
-                return [
-                  {first: 'Bob', last: 'Smith'},
-                  {first: 'Sally', last: 'Johnson'},
-                ];
-              }
+          employees: {
+            type: Array,
+            value() {
+              return [
+                {first: 'Bob', last: 'Smith'},
+                {first: 'Sally', last: 'Johnson'},
+              ];
             }
           }
         }
       }
+
     }
 
     customElements.define(XCustom.is, XCustom);
@@ -162,18 +161,16 @@ data is `model.item`:
 
       static get is() { return 'x-custom'; }
 
-      static get config() {
+      static get properties() {
         return {
-          properties: {
-            menuItems: {
-              type: Array,
-              value() {
-                return [
-                  {name: 'Pizza', ordered: 0},
-                  {name: 'Pasta', ordered: 0},
-                  {name: 'Toast', ordered: 0}
-                ];
-              }
+          menuItems: {
+            type: Array,
+            value() {
+              return [
+                {name: 'Pizza', ordered: 0},
+                {name: 'Pasta', ordered: 0},
+                {name: 'Toast', ordered: 0}
+              ];
             }
           }
         }
@@ -304,19 +301,17 @@ sort function when one or more dependent properties changes.
 
       static get is() { return 'x-custom'; }
 
-      static get config() {
+      static get properties() {
         return {
-          properties: {
-            employees: {
-              type: Array,
-              value() {
-                return [
-                  { firstname: "Jack", lastname: "Aubrey" },
-                  { firstname: "Anne", lastname: "Elliot" },
-                  { firstname: "Stephen", lastname: "Maturin" },
-                  { firstname: "Emma", lastname: "Woodhouse" }
-                ]
-              }
+          employees: {
+            type: Array,
+            value() {
+              return [
+                { firstname: "Jack", lastname: "Aubrey" },
+                { firstname: "Anne", lastname: "Elliot" },
+                { firstname: "Stephen", lastname: "Maturin" },
+                { firstname: "Emma", lastname: "Woodhouse" }
+              ]
             }
           }
         }
@@ -503,18 +498,16 @@ If you're not importing `polymer.html`, import `array-selector.html` as shown in
 
       static get is() { return 'x-custom'; }
 
-      static get config() {
+      static get properties() {
         return {
-          properties: {
-            employees: {
-              type: Array,
-              value() {
-                return [
-                  {first: 'Bob', last: 'Smith'},
-                  {first: 'Sally', last: 'Johnson'},
-                  // ...
-                ];
-              }
+          employees: {
+            type: Array,
+            value() {
+              return [
+                {first: 'Bob', last: 'Smith'},
+                {first: 'Sally', last: 'Johnson'},
+                // ...
+              ];
             }
           }
         }
@@ -606,11 +599,9 @@ Example: { .caption }
 
       static get is() { return 'x-custom'; }
 
-      static get config() {
+      static get properties() {
         return {
-          properties: {
-            user: Object
-          }
+          user: Object
         }
       }
 

@@ -122,11 +122,9 @@ annotation or compound binding inside the target element.
   <script>
     class UserView extends Polymer.Element {
       static get is() {return 'user-view'}
-      static get config() {
+      static get properties() {
         return {
-          properties: {
-            name: String
-          }
+          name: String
         }
       }
     }
@@ -308,11 +306,9 @@ Binding annotations can also include paths to sub-properties, as shown below:
   <script>
     class MainView extends Polymer.Element {
       static get is() {return 'main-view'}
-      static get config() {
+      static get properties() {
         return {
-          properties: {
-            user: Object
-          }
+          user: Object
         }
       }
     }
@@ -408,12 +404,10 @@ Example: { .caption }
   <script>
     class XCustom extends Polymer.Element {
       static get is() {return 'x-custom'}
-      static get config() {
+      static get properties() {
         return {
-          properties: {
-            first: String,
-            last: String
-          }
+          first: String,
+          last: String
         }
       }
       _formatName(first, last) {
@@ -575,8 +569,8 @@ _or_ if the array itself is mutated, so the binding uses a wildcard path, `myArr
 
       static get is() {return 'x-custom'}
 
-      static get config() {
-        properties: {
+      static get properties() {
+        return {
           myArray: {
             type: Array,
             value: [{ name: 'Bob' }, { name: 'Doug' }]

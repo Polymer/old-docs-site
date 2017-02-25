@@ -522,13 +522,11 @@ Example 1: Two-way binding { .caption }
 
     static get is() {return 'x-target';}
 
-    static get config() {
+    static get properties() {
       return {
-        properties: {
-          someProp: {
-            type: String,
-            notify: true
-          }
+        someProp: {
+          type: String,
+          notify: true
         }
       }
     }
@@ -590,12 +588,10 @@ a one-way, downward binding.
 
     static get is() {return 'x-target';}
 
-    static get config() {
+    static get properties() {
       return {
-        properties: {
-          someProp: {
-            type: String // no notify: true
-          }
+        someProp: {
+          type: String // no notify: true
         }
       }
     }
@@ -632,14 +628,12 @@ Example 4: One-way binding (upward, child-to-host) { .caption }
 
     static get is() {return 'x-target';}
 
-    static get config() {
+    static get properties() {
       return {
-        properties: {
-          someProp: {
-            type: String,
-            notify: true,
-            readOnly: true
-          }
+        someProp: {
+          type: String,
+          notify: true,
+          readOnly: true
         }
       }
     }
@@ -676,14 +670,12 @@ Example 5: No data flow / nonsensical state { .caption }
 
     static get is() {return 'x-target';}
 
-    static get config() {
+    static get properties() {
       return {
-        properties: {
-          someProp: {
-            type: String,
-            notify: true,
-            readOnly: true
-          }
+        someProp: {
+          type: String,
+          notify: true,
+          readOnly: true
         }
       }
     }

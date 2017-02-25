@@ -28,8 +28,8 @@ In addition, a declared property can be configured from markup using an attribut
 `properties` object.**
 
 
-To declare properties, add a static `config` getter to the element's class. The getter returns an
-object with a nested `properties` object that includes the property declarations.
+To declare properties, add a static `properties` getter to the element's class. The getter should
+return  an object containing property declarations.
 
 Example { .caption }
 
@@ -38,16 +38,14 @@ class XCustom extends Polymer.Element {
 
   static get is() {return 'x-custom'; }
 
-  static get config() {
+  static get properties() {
     return {
-      properties: {
-        user: String,
-        isHappy: Boolean,
-        count: {
-          type: Number,
-          readOnly: true,
-          notify: true
-        }
+      user: String,
+      isHappy: Boolean,
+      count: {
+        type: Number,
+        readOnly: true,
+        notify: true
       }
     }
   }
@@ -197,14 +195,12 @@ Example: { .caption }
 
     static get is() {return 'x-custom'; }
 
-    static get config() {
+    static get properties() {
       return {
-        properties: {
-          user: String,
-          manager: {
-            type: Boolean,
-            notify: true
-          }
+        user: String,
+        manager: {
+          type: Boolean,
+          notify: true
         }
       }
     }
@@ -239,11 +235,9 @@ Example: { .caption }
 
     static get is() {return 'x-custom'; }
 
-    static get config() {
+    static get properties() {
       return {
-        properties: {
-          userName: String
-        }
+        userName: String
       }
     }
   }
@@ -300,19 +294,17 @@ class XCustom extends Polymer.Element {
 
   static get is() {return 'x-custom'; }
 
-  static get config() {
+  static get properties() {
     return {
-      properties: {
-        mode: {
-          type: String,
-          value: 'auto'
-        },
+      mode: {
+        type: String,
+        value: 'auto'
+      },
 
-        data: {
-          type: Object,
-          notify: true,
-          value: function() { return {}; }
-        }
+      data: {
+        type: Object,
+        notify: true,
+        value: function() { return {}; }
       }
     }
   }
@@ -351,14 +343,12 @@ class XCustom extends Polymer.Element {
 
   static get is() {return 'x-custom'; }
 
-  static get config() {
+  static get properties() {
     return {
-      properties: {
-        response: {
-          type: Object,
-          readOnly: true,
-          notify: true
-        }
+      response: {
+        type: Object,
+        readOnly: true,
+        notify: true
       }
     }
   }
@@ -387,13 +377,11 @@ class XCustom extends Polymer.Element {
 
   static get is() {return 'x-custom'; }
 
-  static get config() {
+  static get properties() {
     return {
-      properties: {
-        loaded: {
-          type: Boolean,
-          reflectToAttribute: true
-        }
+      loaded: {
+        type: Boolean,
+        reflectToAttribute: true
       }
     }
   }
