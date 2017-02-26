@@ -138,7 +138,7 @@ Example { .caption }
 
 ```html
 <link rel="import" href="components/polymer/polymer-element.html">
-<link rel="import" href="components/polymer/src/templatizer/dom-repeat.html">
+<link rel="import" href="components/polymer/src/elements/dom-repeat.html">
 
 <dom-module id="x-custom">
   <template>

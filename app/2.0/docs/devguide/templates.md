@@ -65,7 +65,7 @@ Example: { .caption }
 ```html
 <link rel="import" href="components/polymer/polymer-element.html">
 <! -- import template repeater -->
-<link rel="import" href="components/polymer/src/templatizer/dom-repeat.html">
+<link rel="import" href="components/polymer/src/elements/dom-repeat.html">
 
 <dom-module id="x-custom">
   <template>
@@ -142,7 +142,7 @@ data is `model.item`:
 
 ```html
 <link rel="import" href="polymer/polymer-element.html">
-<link rel="import" href="polymer/src/templatizer/dom-repeat.html">
+<link rel="import" href="polymer/src/elements/dom-repeat.html">
 
 <dom-module id="x-custom">
 
@@ -468,9 +468,9 @@ If you're not importing `polymer.html`, import `array-selector.html` as shown in
 ```html
 <link rel="import" href="components/polymer/polymer-element.html">
 <! -- import template repeater -->
-<link rel="import" href="components/polymer/src/templatizer/dom-repeat.html">
+<link rel="import" href="components/polymer/src/elements/dom-repeat.html">
 <!-- import array selector -->
-<link rel="import" href="components/polymer/src/templatizer/array-selector.html">
+<link rel="import" href="components/polymer/src/elements/array-selector.html">
 
 <dom-module id="x-custom">
 
@@ -577,7 +577,7 @@ Example: { .caption }
 ```
 <link rel="import" href="components/polymer/polymer-element.html">
 <! -- import conditional template -->
-<link rel="import" href="components/polymer/src/templatizer/dom-if.html">
+<link rel="import" href="components/polymer/src/elements/dom-if.html">
 
 <dom-module id="x-custom">
 
@@ -649,8 +649,8 @@ the `<dom-bind>` element itself as the binding scope.
 <head>
   <meta charset="utf-8">
   <script src="components/webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="polymer/src/templatizer/dom-bind.html">
-  <link rel="import" href="polymer/src/templatizer/dom-repeat.html">
+  <link rel="import" href="polymer/src/elements/dom-bind.html">
+  <link rel="import" href="polymer/src/elements/dom-repeat.html">
 
 </head>
 <body>
