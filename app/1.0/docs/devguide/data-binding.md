@@ -71,7 +71,7 @@ For more on data flow, see [How data flow is controlled](data-system#data-flow-c
 ## Bind to a target property {#property-binding}
 
 To bind to a target property, specify the attribute name that corresponds to the
-property, with an [annotation](#binding-annotation) or [compound binding](#compound-binding)
+property, with an [annotation](#binding-annotation) or [compound binding](#compound-bindings)
 as the attribute value:
 
 ```
@@ -152,7 +152,7 @@ To bind to an attribute, add a dollar sign (`$`) after the attribute name:
 ```
 
 Where the attribute value is either a [binding annotation](#binding-annotation) or a [compound
-binding](#compound-binding).
+binding](#compound-bindings).
 
 Attribute binding results in a call to:
 
@@ -591,7 +591,7 @@ arrays](#data-flow-objects-arrays).
 
 ### Two-way binding to a non-Polymer element {#two-way-native}
 
-As described in [Change notification events](#change-events), Polymer uses an event naming
+As described in [Change notification events](data-system#change-events), Polymer uses an event naming
 convention to achieve two-way binding.
 
 To two-way bind to native elements or non-Polymer elements that _don't_ follow this event naming
@@ -632,7 +632,7 @@ The following sections have moved to [Data system concepts](data-system):
 
 <a id="#change-notification-protocol"></a>
 
--   Change notification protocol. See [Change notification events](#change-events).
+-   Change notification protocol. See [Change notification events](data-system#change-events).
 
 <a id="#property-notification"></a>
 

@@ -185,12 +185,24 @@
 
 - section: 2.0 Preview
   shortpath: 2.0/docs
-  path: /2.0/docs/devguide/feature-overview
+  path: /2.0/docs/about_20
   items:
+  - title: About Polymer 2.0
+    path: /2.0/docs/about_20
+  - title: Upgrade guide
+    path: /2.0/docs/upgrade
+#  - title: Custom element concepts
+#    path: /2.0/docs/devguide/custom-elements
+#  - title: Shadow DOM concepts
+#    path: /2.0/docs/devguide/shadow-dom
+  - header: Overview
   - title: Feature overview
     path: /2.0/docs/devguide/feature-overview
+    indent: True
   - title: Quick tour
     path: /2.0/docs/devguide/quick-tour
+    indent: True
+  - endheader: True   
   - header: Define elements
 #  - title: Element lifecycle concepts
 #    path: /1.0/docs/devguide/lifecycle-concepts

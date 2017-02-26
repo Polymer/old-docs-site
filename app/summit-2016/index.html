@@ -15,16 +15,24 @@
     <meta name="apple-mobile-web-app-title" content="Polymer Summit 2016">
     <meta itemprop="name" content="Polymer Summit 2016">
     <meta itemprop="description" content="Two days of sessions and codelabs on all things Polymer and Web Components - building great components and apps, scaling within an organization, and more.">
+    <meta itemprop="image" content="https://www.polymer-project.org/summit/images/badge-2016.png">
     <meta itemprop="startDate" content="2016-10-17T00:00:00Z">
     <meta itemprop="endDate" content="2016-10-18T23:59:59Z">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@Polymer">
+    <meta name="twitter:title" content="Polymer Summit 2016">
+    <meta name="twitter:description" content="Two days of sessions and codelabs on all things Polymer and Web Components - building great components and apps, scaling within an organization, and more.">
+    <meta name="twitter:image" content="https://www.polymer-project.org/summit/images/badge-2016-banner.png">
+    <meta name="twitter:image:alt" content="Polymer Summit 2016 logo">
     <meta property="og:title" content="Polymer Summit 2016">
     <meta property="og:site_name" content="Polymer Summit 2016">
     <meta property="og:type" content="website">
     <meta property="og:description" content="Two days of sessions and codelabs on all things Polymer and Web Components - building great components and apps, scaling within an organization, and more.">
-    <meta property="og:type" content="Event">
+    <meta property="og:image" content="https://www.polymer-project.org/summit/images/badge-2016-banner.png">
     <link rel="stylesheet" href="/summit/styles/main.css">
     <script src="/summit/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
     <link rel="import" href="/summit/src/elements.html">
+<!--     <link rel="import" href="/summit/app/bower_components/polymon-egg/polymon-egg.html"> -->
 </head>
 
 <body unresolved="">
@@ -33,8 +41,9 @@
           <div class="nav fit" drawer="">
               <iron-selector class="menu" selected="[[page]]" activate-event="click" attr-for-selected="name">
                 <a name="home" class="menu-item" href="/summit">HOME</a>
-                <br>
-                <a name="schedule" class="menu-item" href="/summit/schedule">SCHEDULE</a>
+                <br><a name="schedule" class="menu-item" href="/summit/schedule">SCHEDULE</a>
+                <br><a name="speakers" class="menu-item" href="/summit/speakers">SPEAKERS</a>
+                <a name="codelabs" class="menu-item" href="/summit/codelabs" target="_blank">CODELABS</a>
               </iron-selector>
           </div>
             <x-header-layout class="header-layout" main="" page$="[[page]]">
@@ -45,6 +54,8 @@
                             <iron-selector class="wide-only" selected="[[page]]" activate-event="click" attr-for-selected="name">
                               <a name="home" class="tab" href="/summit">HOME</a>
                               <a name="schedule" class="tab" href="/summit/schedule">SCHEDULE</a>
+                              <a name="speakers" class="tab" href="/summit/speakers">SPEAKERS</a>
+                              <a name="codelabs" class="tab" href="/summit/codelabs" target="_blank">CODELABS</a>
                             </iron-selector>
                         </div>
                         <div class="header-tools horizontal center layout">
@@ -60,9 +71,18 @@
                 </x-header>
                 <iron-pages selected="{{page}}" attr-for-selected="name" selected-attribute="showing">
                   <section name="home">
-                      <header class="home-header horizontal center-center layout">
-                          <div class="badge-blue"></div>
-                      </header>
+                      <template is="dom-if" if="[[hasLivestream]]">
+                          <header class="home-header-livestream">
+                              <div class="livestream-container">
+                                  <google-youtube class="livestream" list-type="playlist" list="PLNYkxOF6rcICc687SxHQRuo9TVNOJelSZ" video-id="[[livestreamVideoId]]" fluid=""></google-youtube>
+                              </div>
+                          </header>
+                      </template>
+                      <template is="dom-if" if="[[!hasLivestream]]">
+                        <header class="home-header horizontal center-center layout">
+                            <div class="badge-blue"></div>
+                        </header>
+                      </template>
                       <div class="date-loc-banner blue-banner responsive horizontal center-center layout">
                           <div class="location">London, England</div>
                           <div class="dot-separator wide-only"></div>
@@ -70,10 +90,9 @@
                       </div>
                       <div class="wait-list-banner">
                           <div>
-                            <span>Polymer Summit 2016 registration is open - but we're all out of space!</span>
-                              <br><span></span> <a class="pink-arrow-btn" href="https://events.withgoogle.com/polymer-summit-2016/registrations/new/">Join the waitlist</a>
-                              <br><br><span>Can't make it to the Summit? Stay up to date with the livestream.</span>
-                              <br><span></span> <a class="pink-arrow-btn" href="https://services.google.com/fb/forms/pol2016/">Stay in the loop</a>
+                            <span>Polymer Summit 2016 is all over! But you can still </span>
+                              <br><span></span> <a class="pink-arrow-btn" href="https://www.youtube.com/playlist?list=PLNYkxOF6rcICc687SxHQRuo9TVNOJelSZ">Watch the videos</a>
+                              or  <a class="pink-arrow-btn" href="/summit/codelabs" target="_blank">Try a codelab</a> at home.
                           </div>
                       </div>
                       <div>
@@ -86,7 +105,9 @@
                           <div class="about-waterfront flex vertical center layout">
                               <section>
                                   <h3>Tobacco Dock. London.</h3>
-                                  <p>Located in the heart of London's enterprise zone and walking distance from the Tower of London, Tobacco Dock will be home to the second Polymer Summit. Built in the early 1800's and once home to a warehouse for imported tobacco, the venue is now a thriving event space featuring striking timber beams, industrial ironwork, and brick courtyards.</p>
+                                  <polymon-egg></polymon-egg>
+                                  <p>Located in the heart of London's enterprise zone and walking distance from the Tower of London, Tobacco Dock will be home to the second Polymer Summit.</p>
+                                  <p> Built in the early 1800's and once home to a warehouse for imported tobacco, the venue is now a thriving event space featuring striking timber beams, industrial ironwork, and brick courtyards.</p>
                               </section>
                           </div>
                           <div class="getting-there flex vertical center layout">
@@ -96,17 +117,34 @@
                                       <br>Tobacco Dock, The Dock. Tobacco Quay, Wapping Lane, London. E1W 2SF</div>
                                   <div>BY OVERGROUND</div>
                                   <div class="direction">Shadwell DLR & Overground, Wapping Overground
-                                    <br>Staff will be at the station to guide you to the event.</div>
+                                    <br><span style="font-style: italic;">Staff will be at the station to guide you to the event.</span></div>
                                   <div>BY TUBE</div>
                                   <div class="direction">Tower Hill Tube</div>
                                   <div>BY CAR</div>
-                                  <div class="direction">There will be <a href="https://tfl.gov.uk/status-updates/major-works-and-events/tower-bridge-closure">essential structural maintenance occurring on the Tower Bridge</a> during the event, which may affect your journey to and from Tobacco Dock.
+                                  <div class="direction">There will be <a href="https://tfl.gov.uk/status-updates/major-works-and-events/tower-bridge-closure">extensive road work on Tower Bridge</a> during the event, which may affect your journey to Tobacco Dock.
                                     <br>Limited parking will be available opposite Tobacco Dock, which we recommend <a href="https://www.parkjockey.com/search/Tobacco%20Dock/Dock%2C%20Tobacco%20Quay%2C%2C%20Wapping%20Ln%2C%20London%20E1W%202SF%2C%20United%20Kingdom/51.507959/-0.058841/201605251400/201605251700">booking in advance.</a></div>
+
+                                  <div>BY SHUTTLE</div>
+                                  <div class="direction">
+                                  Monday October 17
+                                  <br>Departs from Guoman Tower Hotel to Tobacco Dock:
+                                  7:45, 8:15
+                                  <br>Departs from Tobacco Dock to Guoman Tower Hotel:
+                                  21:00, 21:30, 22:00
+                                  </div>
+                                  <div class="direction">
+                                  Tuesday, 18 October
+                                  <br>Departs from Guoman Tower Hotel to Tobacco Dock:
+                                  7:45, 8:15
+                                  <br>Departs from Tobacco Dock to Guoman Tower Hotel:
+                                  18:15, 18:45
+                                  </div>
                                   <div>NEARBY HOTELS</div>
-                                  <div class="direction"><a href="http://www.guoman.com/en/hotels/united_kingdom/london/the_tower/index.html">Guoman Tower Hotel</a> - 15 min walk <br /><span style="font-style: italic;">Shuttles provided from The Tower Hotel to the event.</span></div>
-                                  <div class="direction"><a href="https://www.travelodge.co.uk/hotels/355/London-Central-Aldgate-East-hotel">Travelodge London Central Aldgate East</a> - 15 minute walk</a></div>
-                                  <div class="direction"><a href="http://www.hilondoncommercialroadhotel.co.uk/">Holiday Inn London - Commercial Road</a> - 12 minute walk</div>
-                                  <div class="direction"><a href="https://www.grangehotels.com/hotels-london/grange-tower-bridge/about-this-hotel/">Grange Tower Bridge</a> - 16 minute walk</div>
+                                  <div class="direction"><a href="http://www.guoman.com/en/hotels/united_kingdom/london/the_tower/index.html">Guoman Tower Hotel</a>—15 min walk.
+ <br /><span style="font-style: italic;">Shuttles provided from The Tower Hotel to the event.</span></div>
+                                  <div class="direction"><a href="https://www.travelodge.co.uk/hotels/355/London-Central-Aldgate-East-hotel">Travelodge London Central Aldgate East</a>—15 minute walk</a></div>
+                                  <div class="direction"><a href="http://www.hilondoncommercialroadhotel.co.uk/">Holiday Inn London - Commercial Road</a>—12 minute walk</div>
+                                  <div class="direction"><a href="https://www.grangehotels.com/hotels-london/grange-tower-bridge/about-this-hotel/">Grange Tower Bridge</a>—16 minute walk</div>
                               </section>
                           </div>
                       </div>
@@ -119,15 +157,15 @@
                                   <h4>After Hours</h4>
                                   <p>Attendees are invited to an after party on Monday, October 17th from 6-10pm.</p>
                                   <h4>Child Care</h4>
-                                  <p>We're pleased to offer child care for Polymer Summit 2016 attendees. Please indicate your interest on the registration form or email us at <a href="mailto:polymer-dev-summit@googlegroups.com">polymer-dev-summit@googlegroups.com</a>.</p>
+                                  <p>We will offer child care reimbursement to attendees during Polymer Summit. Children aged 3 months to 10 years are eligible. Please note that we have limited availability and may not be able to accommodate all requests.</p>
                               </section>
                           </div>
                           <div class="getting-there flex vertical center layout">
                               <section>
                                   <h4>Prayer Room & Mother's Room</h4>
-                                  <p>We will have a prayer room and mother’s room on site at the event. </p>
+                                  <p>There will be a mother’s and prayer room open on Monday, 17 October from 8:00-22:00 and Tuesday, 18 October from 8:00-18:00. Sign up sheets will be available in front of the room and usage is first come, first served. Please see the registration desk for more information.</p>
                                   <h4>Accessibility Accommodations</h4>
-                                  <p>If you have any accessibility accommodation needs, please email us at polymer-dev-summit@googlegroups.com or let the staff know when you check in. We will provide live captioning services in the general sessions.</p>
+                                  <p>If you have any accessibility accommodation needs, please email polymer-dev-summit@googlegroups.com or let the staff know when you check in. We will provide live captioning services in the general sessions.</p>
                               </section>
                           </div>
                       </div>
@@ -165,6 +203,7 @@
                       </div>
                   </section>
                   <schedule-grid name="schedule" schedule="{{schedule}}" narrow-layout="{{narrowLayout}}"></schedule-grid>
+                  <speakers-grid name="speakers" speakers="{{speakers}}" narrow-layout="{{narrowLayout}}"></speakers-grid>
                 </iron-pages>
                 <a class="london-bg home-page-hidden vertical center-center layout" target="_blank" aria-label="Event map" data-outbound="image-map" href="https://www.google.com/maps/place/Muziekgebouw+aan+'t+IJ/@52.3783041,4.9131203,15z/data=!4m2!3m1!1s0x0:0x84b02f41a342e459">
                     <div class="london-scrim"></div>
@@ -182,6 +221,7 @@
             </x-header-layout>
         </x-drawer-layout>
         <iron-media-query query="(max-width: 643px)" query-matches="{{narrowLayout}}"></iron-media-query>
+        <iron-ajax auto="" url="/summit/data/speakers.json" last-response="{{speakers}}"></iron-ajax>
         <iron-ajax auto="" url="/summit/data/schedule.json" last-response="{{schedule}}"></iron-ajax>
         <x-scrollpos-control selected="[[page]]"></x-scrollpos-control>
     </template>
@@ -190,6 +230,12 @@
 
         // Flip to true to make the livestream player go live
         app.hasLivestream = true;
+
+        // Add the ID of the livestream video here
+        // Day1 video ID: "_YFnfYJaqlA"
+        // Day2 video ID: "zxcfPACo4-g"
+        // Day 1 keynote: "VBbejeKHrjg"
+        app.livestreamVideoId = "VBbejeKHrjg";
 
         app._toggleDrawer = function(e) {
             if (e.keyCode === 13) {

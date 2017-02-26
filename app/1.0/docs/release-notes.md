@@ -12,6 +12,67 @@ title: Release notes
 </style>
 
 
+## [Release 1.7.1](https://github.com/polymer/polymer/tree/v1.7.1) (2016-12-14) {#v-1-7-1}
+
+This release includes a set of bug fixes, including an update to the `<slot>` support originally
+included in release 1.7.0.
+
+### Distribute text nodes to the default slot
+
+This release fixes an issue ([#4109](https://github.com/Polymer/polymer/issues/4109)) that
+prevented text nodes from being distributed to the default `<slot>`.
+
+For native shadow DOM v1, a default slot doesn't match children with an explicit slot name
+(that  is, a <code>slot="<var>slot_name</var>"</code> attribute). In release 1.7.0, Polymer
+attempted to emulate this feature by transforming a default slot into the following `<content>`
+element:
+
+  <content select=":not([slot])"></content>
+
+Unfortunately, the `:not()` selector only matches elements, not text nodes, so text nodes were not
+distributed to the default slot. For example, given a custom element with a text node as a child:
+
+  <my-element>Some text</my-element>
+
+The string "Some text" would not distribute to a default slot inside `<my-element>`.
+
+Now, a default `<slot>` element is translated to a default `<content>` element, which accepts all
+distributed children that haven't matched a previous `<content>` element. This means that for
+hybrid elements, **all named slots must come _before_ any unnamed slots in the DOM.**
+
+For example, given this set of slots:
+
+```html
+<slot name="header"></slot>
+<slot></slot>
+<slot name="footer"></slot>
+```
+
+Content with `slot="footer"` is distributed to the _default_ slot in 1.7.1, but distributed to the
+last slot in 2.0.
+
+
+### Bug fixes
+
+-   [#3964]https://github.com/Polymer/polymer/pull/3964) Fixed IE memory leaks in the `fire` and
+    `importHref` methods.
+
+-   [#4096](https://github.com/Polymer/polymer/issues/4096). `dom-repeat` and `dom-if` occasionally
+    log errors.
+
+-   [#4123](https://github.com/Polymer/polymer/issues/4123). Fix memory leak when using `importHref`.
+
+-   [#4125](https://github.com/Polymer/polymer/issues/4125). CSS custom properties cannot be queried
+    in elements that do not apply properties. This problem manifested when an element did not apply
+    any custom property values in its local DOM, but tried to retrieve a custom property value
+    imperatively with `getComputedStyleValue`.
+
+-   [#4128](https://github.com/Polymer/polymer/issues/4128). On touch devices, when a `<button>` is
+    covered by a Polymer element that uses gestures (for example, one with a `down` listener) and
+    the Polymer element is moved, the `<button>` does not receive mouse events for 2.5s.
+
+
+
 ## [Release 1.7.0](https://github.com/polymer/polymer/tree/v1.7.0) (2016-09-29) {#v-1-7-0}
 
 This release includes forward compatibility features that let you build elements that run under
@@ -33,16 +94,23 @@ actually add support for shadow DOM v1, it just lets you use a forward-compatibl
 To update an element:
 
 *   Each `<content>` insertion point must be changed to `<slot>`.
+
+
 *   Insertion points that selected content using <code>&lt;content select="<var>selector</var>"&gt;</code>
     must be changed to named slots: <code>&lt;slot name="<var>slot_name</var>"&gt;</code>. Note that
     in shadow DOM v1, distributed content can _only_ be selected by slot name, not by tag name,
     attributes or CSS classes.
+
 *   Users of your element must use the matching new <code>slot="<var>slot_name</var>"</code>
     attribute to distribute content into a named slot.
+
 *   Any `::content` CSS selectors must be replaced with <code>::slotted(<var>selector</var>)</code>,
     where <var>selector</var> is [compound selector](https://drafts.csswg.org/selectors-4/#compound)
     that identifies a **top-level distributed child**. That is, `::slotted(.foo)` is equivalent to
     `::content > .foo`.
+
+    In shadow DOM v1, you cannot select a descendant of a top-level distributed child. For example,
+    `::slotted(*) .child` does not work. No descendant selectors can follow the `::slotted()` selector.
 
 In Polymer 1.7, elements written with slots are re-written at runtime into the
 equivalent `<content>` elements and style rules, to work with shadow DOM v0.
@@ -108,13 +176,51 @@ Anywhere you're using `x-forward-compat`, you'd have to change to the new slot s
 For more details about transitioning to `<slot>`, see the
 [2.0-preview README](https://github.com/Polymer/polymer/blob/2.0-preview/README.md#distribution).
 
+#### Limitations of slot emulation
+
+The runtime transformation does not produce a perfect
+representation of the v1 slot algorithm. In particular, multiple levels
+of shadow trees with named slots are problematic. For example,
+the following templates do not work correctly under 1.7 (although
+they're valid under shadow DOM v1):
+
+```html
+<dom-module id="x-child">
+  <template>
+    <slot name="child-slot"></slot>
+  </template>
+</dom-module>
+
+<dom-module id="x-parent">
+  <template>
+    <x-child>
+      <slot name="parent-slot" slot="child-slot"></slot>
+    </x-child>
+  </template>
+</dom-module>
+```
+
+To make this work with 1.7, the same slot name must be used
+at each level. For example, the parent could change to use
+the name `child-slot`.
+
+```html
+<dom-module id="x-parent">
+  <template>
+    <x-child>
+      <slot name="child-slot" slot="child-slot"></slot>
+    </x-child>
+  </template>
+</dom-module>
+```
+
 ### Alternatives for `:root` selector
 
 Another Polymer 2.x change is removing the `:root` selector and replacing it with `html` in `<style is="custom-style">`, and `:host > *` in element styles.
 
 This release allows for using both `html` and `:root` in `<style is="custom-style">`, and using both `:root` and `:host > *` in element styles
 
-Bug fixes:
+### Bug fixes
 
 [#3676](https://github.com/Polymer/polymer/issues/3676). The `preserve-content` attribute does not protect style tags nested in templates.
 

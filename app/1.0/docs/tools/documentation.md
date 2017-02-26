@@ -39,7 +39,7 @@ the folder name (for example, `my-element/my-element.html`).
 
 If you want to document multiple files:
 
-1.  Create a single file that imports all of files that you want to document:
+1.  Create a single file that imports all of the files that you want to document:
 
     ```
     <!-- all-imports.html -->
