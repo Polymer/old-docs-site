@@ -2,16 +2,20 @@
 title: Shadow DOM concepts
 ---
 
-Shadow DOM is a new DOM feature that helps you build components. You can think of shadow DOM as a **scoped subtree** inside your element.
+Shadow DOM is a new DOM feature that helps you build components. You can think of shadow DOM as a
+**scoped subtree** inside your element.
 
-**Read more on Web Fundamentals**. This document gives an overview of shadow DOM as it relates to Polymer. For a more comprehensive overview of Shadow DOM, see [Shadow DOM v1: self-contained web components](https://developers.google.com/web/fundamentals/primers/shadowdom/?hl=en) on Web Fundamentals.
-
+**Read more on Web Fundamentals**. This document gives an overview of shadow DOM as it relates to
+Polymer. For a more comprehensive overview of Shadow DOM, see
+[Shadow DOM v1: self-contained web components](https://developers.google.com/web/fundamentals/primers/shadowdom/?hl=en)
+on Web Fundamentals.
 {.alert .alert-info}
 
-Consider an header component that includes a page title and a  menu button: The DOM tree for this element might look like this:
+Consider an header component that includes a page title and a  menu button: The DOM tree for this
+element might look like this:
 
 
-```
+```html
 <my-header>
   <header>
     <h1>
@@ -19,7 +23,8 @@ Consider an header component that includes a page title and a  menu button: The 
 ```
 
 
-Shadow DOM lets you place the children in a scoped subtree, so document-level CSS can't restyle the button by accident, for example. This subtree is called a shadow tree.
+Shadow DOM lets you place the children in a scoped subtree, so document-level CSS can't restyle the
+button by accident, for example. This subtree is called a shadow tree.
 
 
 ```
@@ -31,26 +36,30 @@ Shadow DOM lets you place the children in a scoped subtree, so document-level CS
 ```
 
 
-The *shadow root* is the top of the shadow tree. The element that the tree is attached to (`<my-header>`) is called the *shadow host*.  The host has a property called `shadowRoot` that refers to the shadow root. The shadow root has a `host` property that identifies its host element.
+The *shadow root* is the top of the shadow tree. The element that the tree is attached to
+(`<my-header>`) is called the *shadow host*.  The host has a property called `shadowRoot` that
+refers to the shadow root. The shadow root has a `host` property that identifies its host element.
 
-The shadow tree is separate from the element's `children`. You can think of this shadow tree as part of the component's **implementation**, which outside elements don't need to know about. The element's children are part of its public interface.
+The shadow tree is separate from the element's `children`. You can think of this shadow tree as part
+of the component's **implementation**, which outside elements don't need to know about. The
+element's children are part of its public interface.
 
 You can add a shadow tree to an element imperatively by calling `attachShadow`:
 
 
-```
+```js
 var div = document.createElement('div');
 var shadowRoot = div.attachShadow({mode: 'open'});
 shadowRoot.innerHTML = '<h1>Hello Shadow DOM</h1>';
 ```
 
 
-// div.shadowRoot =
+Polymer provides a declarative mechanism for adding a shadow tree using a [DOM template](dom-template).
+When you provide a DOM template for an element, Polymer attaches a shadow root for each instance of
+the element and copies the template contents into the shadow tree.
 
-Polymer provides a declarative mechanism for adding a shadow tree using [DOM templating](#link), When you provide a DOM template for an element, Polymer attaches a shadow root for each instance of the element and copies the template contents into the shadow tree.
 
-
-```
+```html
 <dom-module id="my-header">
   <template>
     <style>...</style>
@@ -63,18 +72,21 @@ Polymer provides a declarative mechanism for adding a shadow tree using [DOM tem
 ```
 
 
-Note that the template includes a `<style>` element. CSS placed in the shadow tree is scoped to the shadow tree, and won't leak out to other parts of your DOM.
+Note that the template includes a `<style>` element. CSS placed in the shadow tree is scoped to the
+shadow tree, and won't leak out to other parts of your DOM.
 
 ## Shadow DOM and composition
 
-By default, if an element has shadow DOM, **the shadow tree is rendered instead of the element's children.** To allow children to render, you can add a `<slot>` element to your shadow tree. Think of the <slot> aa a placeholder showing where child nodes will render. Consider the following shadow tree for `<my-header>`:
+By default, if an element has shadow DOM, **the shadow tree is rendered instead of the element's
+children.** To allow children to render, you can add a `<slot>` element to your shadow tree. Think
+of the <slot> aa a placeholder showing where child nodes will render. Consider the following shadow tree for `<my-header>`:
 
 
-```
-    <header>
-      <h1><slot></slot></h1>
-      <button>Menu</button>
-    </header>
+```html
+<header>
+  <h1><slot></slot></h1>
+  <button>Menu</button>
+</header>
 ```
 
 
@@ -82,7 +94,7 @@ The user can add children like this:
 
 
 ```
-    <my-header>Shadow DOM</my-header>
+<my-header>Shadow DOM</my-header>
 ```
 
 
@@ -90,23 +102,26 @@ The header renders as if the <slot> element was replaced by the children:
 
 
 ```
-    <my-header>
-      <header>
-        <h1>Shadow DOM</h1>
-        <button>Menu</button>
-      </header>
-    </my-header>
+<my-header>
+  <header>
+    <h1>Shadow DOM</h1>
+    <button>Menu</button>
+  </header>
+</my-header>
 ```
 
 
-The element's actual descendant tree is sometime called its light DOM, in contrast to its shadow DOM tree.
+The element's actual descendant tree is sometime called its light DOM, in contrast to its shadow DOM
+tree.
 
-The process of turning the light DOM and shadow DOM trees into a single tree for rendering is called *flattening* the tree. While the `<slot>` elements don't *render*, they are included in the flattened tree, so they can take part in event bubbling, for example.
+The process of turning the light DOM and shadow DOM trees into a single tree for rendering is called
+*flattening* the tree. While the `<slot>` elements don't *render*, they are included in the
+flattened tree, so they can take part in event bubbling, for example.
 
-You can determine where a child should be distributed into the flattened tree using *named slots*.
+You can control where a child should be distributed into the flattened tree using *named slots*.
 
 
-```
+```html
 <h2><slot name="title"></slot></h2>
 <div><slot></slot></div>
 ```
@@ -115,17 +130,19 @@ You can determine where a child should be distributed into the flattened tree us
 .A named slot only accepts top-level children that have a matching `slot` attribute:
 
 
-```
+```html
 <span slot="title">A heading</span>
 ```
 
 
-A slot with no `name` attribute acts as the default slot for any children that don't have a `slot` attribute. If a child's `slot` attribute doesn't match any named slot element in the shadow tree, that child doesn't appear at all.
+A slot with no `name` attribute acts as the default slot for any children that don't have a `slot`
+attribute. If a child's `slot` attribute doesn't match any named slot element in the shadow tree,
+that child doesn't appear at all.
 
 For example, consider an `example-card` element with the following shadow tree:
 
 
-```
+```html
 <h2><slot name="title"></slot></h2>
 <div><slot></slot></div>
 ```
@@ -134,7 +151,7 @@ For example, consider an `example-card` element with the following shadow tree:
 If the example card is used like this:
 
 
-```
+```html
 <example-card>
   <span slot="title">Card Title</span>
   <div>
@@ -145,7 +162,9 @@ If the example card is used like this:
 ```
 
 
-The first span is assigned into the `title` slot. The div, which has no `slot` attribute, is assigned to the default slot. The final span, which has a slot name that doesn't appear in the shadow tree, doesn't show up in the flattened tree, and doesn't render.
+The first span is assigned into the `title` slot. The div, which has no `slot` attribute, is
+assigned to the default slot. The final span, which has a slot name that doesn't appear in the
+shadow tree, doesn't show up in the flattened tree, and doesn't render.
 
 Note that only top-level children can match a slot. Consider the following example:
 
@@ -164,11 +183,14 @@ Note that only top-level children can match a slot. Consider the following examp
 
 
 
-The `<example-card>` has two top-level children, both `<div>` elements. Both are assigned to the default slot. The `slot` attribute on the span has no effect on the distribution, because the span isn't a top-level child.
+The `<example-card>` has two top-level children, both `<div>` elements. Both are assigned to the
+default slot. The `slot` attribute on the span has no effect on the distribution, because the span
+isn't a top-level child.
 
 ### Fallback content
 
-A slot can contain *fallback content* that's displayed when no nodes are assigned to the slot. For example:
+A slot can contain *fallback content* that's displayed when no nodes are assigned to the slot. For
+example:
 
 
 ```
@@ -184,7 +206,8 @@ A slot can contain *fallback content* that's displayed when no nodes are assigne
 
 The user can supply their own icon for the <fancy-note> element like this:
 
-<!-- shows note with warning icon —>
+```html
+<!-- shows note with warning icon -->
 
 <fancy-note>
 
@@ -193,16 +216,19 @@ The user can supply their own icon for the <fancy-note> element like this:
   Do not operate heavy equipment while coding.
 
 </fancy-note>
+```
 
 If the user omits the icon, the fallback content supplies a default icon:
 
-<!-- shows note with default icon —>
+```html
+<!-- shows note with default icon -->
 
 <fancy-note>
 
   Please code responsibly.
 
-### </fancy-note>
+</fancy-note>
+```
 
 ### Multi-level distribution
 
@@ -222,14 +248,13 @@ A slot element may also be assigned to a slot. For example, consider two levels 
     <div>
       <!-- child-element renders its light DOM children inside this div -->
       <slot id="child-slot">
-
 ```
 
 
 Given markup like this:
 
 
-```
+```html
 <parent-element>
   <span>I'm light DOM</span>
 </parent-element>
@@ -249,12 +274,15 @@ The flattened tree looks like this:
 ```
 
 
-The ordering may be a little confusing at first. At each level, the light DOM children are *assigned* to a slot in the host's shadow DOM. The span "I'm in light DOM" is *assigned* to to the slot `#parent-slot` in `<parent-element>`'s shadow DOM. The `#parent-slot` is then *assigned* to `#child-slot` in `<child-element>`'s shadow DOM.
+The ordering may be a little confusing at first. At each level, the light DOM children are
+*assigned* to a slot in the host's shadow DOM. The span "I'm in light DOM" is *assigned* to to the
+slot `#parent-slot` in `<parent-element>`'s shadow DOM. The `#parent-slot` is then *assigned* to
+`#child-slot` in `<child-element>`'s shadow DOM.
 
 The slot elements don't render, so the rendered tree is much simpler:
 
 
-```
+```html
 <parent-element>
   <child-element>
     <div>
@@ -262,7 +290,10 @@ The slot elements don't render, so the rendered tree is much simpler:
 ```
 
 
-In spec language, a slot's *distributed nodes* are the assigned nodes, with any slots replaced by their assigned nodes or fallback content. So in the example above, `#child-slot` has one distributed node, the span. You can think of the distributed nodes as the *list of nodes that take the place of the slot in the rendered tree*.
+In spec language, a slot's *distributed nodes* are the assigned nodes, with any slots replaced by
+their assigned nodes or fallback content. So in the example above, `#child-slot` has one
+distributed node, the span. You can think of the distributed nodes as the *list of nodes that take
+the place of the slot in the rendered tree*.
 
 ### Slot APIs
 
@@ -270,8 +301,10 @@ Shadow DOM provides a few new APIs for working with checking distribution:
 
 
 
-*   `HTMLElement.assignedSlot` property gives the assigned slot for an element, or `null` if the element isn't assigned to a slot.
-*   `HTMLSlotElement.assignedNodes` method returns the list of nodes associated with a given slot. When called with the `{flatten: true}` option, returns the *distributed nodes* for a slot.
+*   `HTMLElement.assignedSlot` property gives the assigned slot for an element, or `null` if the
+    element isn't assigned to a slot.
+*   `HTMLSlotElement.assignedNodes` method returns the list of nodes associated with a given slot.
+    When called with the `{flatten: true}` option, returns the *distributed nodes* for a slot.
 *   HTMLSlotElement.slotchange event is fired when a slot's distributed nodes change.
 
 For more details, see [Working with slots in JS](https://developers.google.com/web/fundamentals/primers/shadowdom/?hl=en#workwithslots) on Web Fundamentals.
@@ -280,7 +313,8 @@ For more details, see [Working with slots in JS](https://developers.google.com/w
 
 To preserve the encapsulation of the shadow tree, some events are stopped at the shadow DOM boundary.
 
-Other bubbling events are *retargeted* as they bubble up the tree. Retargeting adjusts the event's target so that  it represents an element in the same scope as the listening element.
+Other bubbling events are *retargeted* as they bubble up the tree. Retargeting adjusts the event's
+target so that  it represents an element in the same scope as the listening element.
 
 For example, given a tree like this:
 
@@ -302,16 +336,22 @@ If the user clicks on the image element the click event bubbles up the tree:
 
 
 *   A listener on the image element itself receives the `<img>` as the target.
-*   A listener on the `<fancy-button>` receives the `<fancy-button>` as the target, because the original target is inside its shadow root.
-*   A listener on the `<div>` in `<example-card>`'s shadow DOM also receives `<fancy-button>` as the target, since they are in the same shadow DOM tree.
+*   A listener on the `<fancy-button>` receives the `<fancy-button>` as the target, because the
+    original target is inside its shadow root.
+*   A listener on the `<div>` in `<example-card>`'s shadow DOM also receives `<fancy-button>` as the
+    target, since they are in the same shadow DOM tree.
 *   A listener on the `<example-card>` receives the <example-card> itself as the target.
 
-For more information on events in shadow trees, see [The Shadow DOM event model](https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom#events) in the Web Fundamentals article on shadow DOM.
+For more information on events in shadow trees, see [The Shadow DOM event model](https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom#events)
+in the Web Fundamentals article on shadow DOM.
 
 ## Shadow DOM styling
 
-Styles inside a shadow tree are *scoped* to the shadow tree, and don't affect elements outside the shadow tree. Styles outside the shadow tree also don't match selectors inside the shadow tree. However, inheritable style properties like `color` still inherit down from host to shadow tree.
+Styles inside a shadow tree are *scoped* to the shadow tree, and don't affect elements outside the
+shadow tree. Styles outside the shadow tree also don't match selectors inside the shadow tree.
+However, inheritable style properties like `color` still inherit down from host to shadow tree.
 
+```
 <style>
 
   body { color: white; }
@@ -321,22 +361,22 @@ Styles inside a shadow tree are *scoped* to the shadow tree, and don't affect el
 </style>
 
 <styled-element>
-
-
-```
   #shadow-root
     <style>
       div { background-color: blue; }
     </style>
     <div class="test">Test</div>
-
-Test
 ```
 
 
-In this example, the `<div>` has a blue background, even though the `div` selector is less specific than the `.test` selector in the main document. That's because the main document selector doesn't match the `<div>` in the shadow DOM at all. On the other hand, the white text color set on the document body inherits down to `<styled-element>` and into its shadow root.
+In this example, the `<div>` has a blue background, even though the `div` selector is less specific
+than the `.test` selector in the main document. That's because the main document selector doesn't
+match the `<div>` in the shadow DOM at all. On the other hand, the white text color set on the
+document body inherits down to `<styled-element>` and into its shadow root.
 
-There is one case where a style rule inside a shadow tree matches an element outside the shadow tree. You can define styles for the *host element*, using the `:host` pseudoclass or the `:host()` functional pseudoclass.
+There is one case where a style rule inside a shadow tree matches an element outside the shadow tree.
+You can define styles for the *host element*, using the `:host` pseudoclass or the `:host()`
+functional pseudoclass.
 
 
 ```
@@ -355,7 +395,9 @@ There is one case where a style rule inside a shadow tree matches an element out
 ```
 
 
-You can also style light DOM children that are assigned to slots using the `::slotted()` pseudoelement. For example, `::slotted(img)` selects any image tags that are assigned to slots in the shadow tree.
+You can also style light DOM children that are assigned to slots using the `::slotted()` p
+seudoelement. For example, `::slotted(img)` selects any image tags that are assigned to slots in the
+shadow tree.
 
 
 ```
@@ -372,11 +414,16 @@ For more information, see [Styling](https://developers.google.com/web/fundamenta
 
 ## Theming and custom properties
 
-You can't directly style anything in a shadow tree using a CSS rule **outside** of the shadow tree. The exception is CSS properties (such as color and font) that inherit down the tree. A shadow tree inherits CSS properties from its host.
+You can't directly style anything in a shadow tree using a CSS rule **outside** of the shadow tree.
+The exception is CSS properties (such as color and font) that inherit down the tree. A shadow tree
+inherits CSS properties from its host.
 
-To let users customize your element, you can expose specific styling properties using CSS custom properties and custom property mixins. Custom properties provide a way to add a styling API to your element.
+To let users customize your element, you can expose specific styling properties using CSS custom
+properties and custom property mixins. Custom properties provide a way to add a styling API to your
+element.
 
-**Polyfill limitations.** When using polyfilled versions of custom properties and mixins, there are a number of limitations you should be aware of. For details, see [the Shady CSS README file](https://github.com/webcomponents/shadycss/blob/master/README.md#limitations).
+**Polyfill limitations.** When using polyfilled versions of custom properties and mixins, there are
+a number of limitations you should be aware of. For details, see [the Shady CSS README file](https://github.com/webcomponents/shadycss/blob/master/README.md#limitations).
 
 You can think of a custom property as a variable that can be substituted in to your CSS rules:
 
@@ -388,7 +435,8 @@ You can think of a custom property as a variable that can be substituted in to y
 ```
 
 
-This sets the host's background color to the value of the `--my-theme-color` custom property. Anyone using your element can set the property at a higher level:
+This sets the host's background color to the value of the `--my-theme-color` custom property. Anyone
+using your element can set the property at a higher level:
 
 
 ```
@@ -398,7 +446,8 @@ html {
 ```
 
 
-Custom properties inherit down the tree, so a value set at the document level is accessible from inside a shadow tree.
+Custom properties inherit down the tree, so a value set at the document level is accessible from
+inside a shadow tree.
 
 The substitution can include default values to use if no property is set:
 
@@ -420,7 +469,8 @@ background-color: var(--my-theme-color, var(--another-theme-color, blue));
 
 ### Custom property mixins
 
-Custom property *mixins* are a feature built on top of the custom property specification. Basically, the mixin is a custom property that takes an object value:
+Custom property *mixins* are a feature built on top of the custom property specification. Basically,
+the mixin is a custom property that takes an object value:
 
 
 ```
@@ -443,13 +493,20 @@ A component can import or *mix in* the entire set of rules using the `@apply` ru
 ```
 
 
-The `@apply` rule has the same effect as adding the contents of `--my-custom-mixin` inline in the ruleset where `@apply` is used.
+The `@apply` rule has the same effect as adding the contents of `--my-custom-mixin` inline in the
+ruleset where `@apply` is used.
 
 ## Shadow DOM polyfills
 
-Because shadow DOM is not available on all platforms, Polymer takes advantage of the shady DOM and shady CSS polyfills if they're installed. These polyfills are included in the `webcomponents-lite.js` polyfill bundle.
+Because shadow DOM is not available on all platforms, Polymer takes advantage of the shady DOM and
+shady CSS polyfills if they're installed. These polyfills are included in the `webcomponents-lite.js`
+polyfill bundle.
 
-These polyfills provide reasonable emulation of native shadow DOM while maintaining good performance. However, there are some shadow DOM features that can't be polyfilled completely. If you're supporting browsers that don't include native shadow DOM, you need to be aware of these limitations. It's also helpful to understand some details of the shady DOM polyfill when debugging applications under shady DOM.
+These polyfills provide reasonable emulation of native shadow DOM while maintaining good performance.
+However, there are some shadow DOM features that can't be polyfilled completely. If you're
+supporting browsers that don't include native shadow DOM, you need to be aware of these limitations.
+It's also helpful to understand some details of the shady DOM polyfill when debugging applications
+under shady DOM.
 
 ### How the polyfills work
 
@@ -457,8 +514,11 @@ The polyfills use a combination of techniques to emulate shadow DOM:
 
 
 
-*   Shady DOM. Maintains the logical divisions of shadow tree and descendant tree internally, so children added to the light DOM or shadow DOM render correctly. Patches DOM APIs on affected elements in order to emulate the native shadow DOM APIs.
-*   Shady CSS. Provides style encapsulation by adding classes to shadow DOM children and rewriting style rules so that they apply to the correct scope.
+*   Shady DOM. Maintains the logical divisions of shadow tree and descendant tree internally, so
+    children added to the light DOM or shadow DOM render correctly. Patches DOM APIs on affected
+    elements in order to emulate the native shadow DOM APIs.
+*   Shady CSS. Provides style encapsulation by adding classes to shadow DOM children and rewriting
+    style rules so that they apply to the correct scope.
 
 The following sections discuss each polyfill in more depth.
 
@@ -466,24 +526,39 @@ The following sections discuss each polyfill in more depth.
 
 A browser without native shadow DOM only renders the document and its tree of descendants.
 
-To emulate shadow DOM's rendering of the flattened tree, the shady DOM polyfill has to maintain virtual `children` and `shadowRoot` properties with separate logical trees. Each host element's actual `children`—the descendant tree visible to the browser—is a pre-flattened tree of shadow and light DOM children. The tree you'll see using developer tools looks like the rendered tree, not the logical tree.
+To emulate shadow DOM's rendering of the flattened tree, the shady DOM polyfill has to maintain
+virtual `children` and `shadowRoot` properties with separate logical trees. Each host element's
+actual `children`—the descendant tree visible to the browser—is a pre-flattened tree of shadow and
+light DOM children. The tree you'll see using developer tools looks like the rendered tree, not the
+logical tree.
 
-Under the polyfill, the slot elements don't appear in the browser's view of the tree. So unlike native shadow DOM, slots don't take part in event bubbling.
+Under the polyfill, the slot elements don't appear in the browser's view of the tree. So unlike
+native shadow DOM, slots don't take part in event bubbling.
 
-The polyfill patches existing DOM APIs on nodes that are affected by shadow DOM—that is, nodes that are in a shadow tree, nodes that hose a shadow tree, or nodes that are light DOM children of shadow hosts. For example, when you call `appendChild` on a node with a shadow root, the polyfill adds the child to a *virtual* tree of light DOM children, calculates where the child should appear in the *rendered* tree, and then adds it to the actual descendant tree in the correct place.
+The polyfill patches existing DOM APIs on nodes that are affected by shadow DOM—that is, nodes
+are in a shadow tree, nodes that hose a shadow tree, or nodes that are light DOM children of shadow
+hosts. For example, when you call `appendChild` on a node with a shadow root, the polyfill adds the
+child to a *virtual* tree of light DOM children, calculates where the child should appear in the
+*rendered* tree, and then adds it to the actual descendant tree in the correct place.
 
 For more information, see the [Shady DOM polyfill README](https://github.com/webcomponents/shadydom/blob/master/README.md).
 
 #### Shady CSS polyfill
 
-The Shady CSS polyfill emulates shadow DOM style encapsulation, and also provides emulation for CSS custom properties and custom property mixins.
+The Shady CSS polyfill emulates shadow DOM style encapsulation, and also provides emulation for CSS
+custom properties and custom property mixins.
 
-To emulate encapsulation, the shady CSS polyfill adds classes to elements inside a shady DOM tree. It also rewrites style rules defined inside an element's template so that they're confined to the element.
+To emulate encapsulation, the shady CSS polyfill adds classes to elements inside a shady DOM tree.
+It also rewrites style rules defined inside an element's template so that they're confined to the
+element.
 
-Shady CSS does not rewrite style rules in document-level stylesheets. This means that document-level styles can leak into shadow trees. However, it provides a custom element, `<custom-style>` for writing polyfilled styles outside of an element. This includes support for custom CSS properties and rewriting rules so they don't leak into shadow trees.
+Shady CSS does not rewrite style rules in document-level stylesheets. This means that document-level
+styles can leak into shadow trees. However, it provides a custom element, `<custom-style>` for
+writing polyfilled styles outside of an element. This includes support for custom CSS properties and
+rewriting rules so they don't leak into shadow trees.
 
 
-```
+```html
 <custom-style>
   <style>
     /* Set CSS custom properties */
