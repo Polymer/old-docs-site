@@ -2,9 +2,8 @@
 title: Gesture events
 ---
 
-Polymer fires custom "gesture" events for certain user
-interactions automatically when a declarative listener is added for the event
-type.  These events fire consistently on both touch and mouse environments,
+Polymer provides optional support for custom "gesture" events for certain user
+interactions. These events fire consistently on both touch and mouse environments,
 so we recommend using these events instead of their mouse- or
 touch-specific event counterparts. This provides better interoperability with both touch and
 mouse devices.  For example, `tap` should be used instead of
@@ -25,7 +24,7 @@ on `Polymer.Element`, you need to explicitly add gesture support by importing an
 `Polymer.GestureEventListeners` mixin.
 
 ```html
-<link rel="import" href="polymer/src/events/gesture-event-listeners.html">
+<link rel="import" href="polymer/src/mixins/gesture-event-listeners.html">
 
 <script>
     class TestEvent extends Polymer.GestureEventListeners(Polymer.Element) {
@@ -89,7 +88,7 @@ Example declarative event listener { .caption }
 
 ```html
 <link rel="import" href="polymer/polymer-element.html">
-<link rel="import" href="polymer/src/events/gesture-event-listeners.html">
+<link rel="import" href="polymer/src/mixins/gesture-event-listeners.html">
 
 <dom-module id="drag-me">
   <template>
@@ -142,7 +141,7 @@ to be garbage collected.
 
 ```html
 <link rel="import" href="polymer/polymer-element.html">
-<link rel="import" href="polymer/src/events/gesture-event-listeners.html">
+<link rel="import" href="polymer/src/mixins/gesture-event-listeners.html">
 <dom-module id="tap-me">
   <template>
     <style>
