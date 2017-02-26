@@ -179,6 +179,19 @@ Polymer 2.0 supports shadow DOM v1. For Polymer users, the main differences in v
 
 The shady DOM shim that was part of Polymer 1.x has been factored out of Polymer and added to the `webcomponents-lite.js` polyfill bundle, along with the related shim for CSS Custom Properties. This new version of shady DOM  no longer exposes an alternative (`Polymer.dom`) API but instead patches the native DOM API, so 2.0 users can use the native DOM APIS directly.
 
+`:host-context()` pseudo-selectors have been removed. These were primarily used with text directionality and should be replaced with the new `:dir(rtl)` <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:dir" target="_blank">selector</a>, which will be polyfilled in the styling shim soon. For example:
+
+```
+:host-context([dir=rtl]) 
+```
+
+Becomes:
+
+
+```
+:dir(rtl)
+```
+
 For hybrid elements, Polymer 2.0 includes a version the `Polymer.dom` API that forwards directly to the native API. For 2.0-only elements, `Polymer.dom` can be eliminated in favor of the native DOM APIs.
 
 **Read more on Web Fundamentals**. For an overview of shadow DOM, see [Shadow DOM v1: self-contained web components](https://developers.google.com/web/fundamentals/primers/shadowdom/?hl=en) on Web Fundamentals.
