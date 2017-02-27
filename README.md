@@ -26,7 +26,7 @@ The first time you run the site, run `gulp` to build the site in its entirety:
 
 Then start the App Engine dev server on `dist/app.yaml`:
 
-    dev_appserver.py dist/
+    dev_appserver.py .
 
 The site will be served from http://localhost:8080.
 
