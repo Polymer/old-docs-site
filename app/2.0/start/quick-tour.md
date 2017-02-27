@@ -32,10 +32,10 @@ contain a dash (-)**.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/0YfRfNXvPCEe4bu8dtSI?p=preview">
   <demo-tab heading="proto-element.html">
-<pre><code>{{{include_file('2.0/docs/devguide/samples/custom-element/custom-element.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/custom-element/custom-element.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>{{{include_file('2.0/docs/devguide/samples/custom-element/index.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/custom-element/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/custom-element/index.html" width="100%" height="40"></iframe>
@@ -61,10 +61,10 @@ You can use Polymer's DOM templating to create a shadow DOM tree for your elemen
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/qwNuu5ujuKuhMUHJUHAP?p=preview">
   <demo-tab heading="dom-element.html">
-<pre><code>{{{include_file('1.0/docs/devguide/samples/dom-element/dom-element.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/dom-element/dom-element.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>{{{include_file('1.0/docs/devguide/samples/dom-element/index.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/dom-element/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/dom-element/index.html" width="100%" height="40"></iframe>
@@ -84,10 +84,10 @@ with a styled `<div>` tag.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/pnoCAMEuAyd2e8MkxGhC?p=preview">
   <demo-tab heading="picture-frame.html">
-<pre><code>{{{include_file('2.0/docs/devguide/samples/picture-frame/picture-frame.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/picture-frame/picture-frame.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>{{{include_file('2.0/docs/devguide/samples/picture-frame/index.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/picture-frame/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/picture-frame/index.html" width="100%" height="60"></iframe>
@@ -111,10 +111,10 @@ The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced 
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/IdMTRu1boSjWIA6q7Kj8?p=preview">
   <demo-tab heading="name-tag.html">
-<pre><code>{{{include_file('2.0/docs/devguide/samples/name-tag/name-tag.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/name-tag/name-tag.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>{{{include_file('2.0/docs/devguide/samples/name-tag/index.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/name-tag/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/name-tag/index.html" width="100%" height="40"></iframe>
@@ -134,10 +134,10 @@ It also shows configuring the owner property from markup in `index.html`.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/DhDSeqNrmLflcQ8UZI1R?p=preview">
   <demo-tab heading="configurable-name-tag.html">
-<pre><code>{{{include_file('2.0/docs/devguide/samples/configurable-name-tag/configurable-name-tag.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/configurable-name-tag/configurable-name-tag.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>{{{include_file('2.0/docs/devguide/samples/configurable-name-tag/index.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/configurable-name-tag/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/configurable-name-tag/index.html" width="100%" height="40"></iframe>
@@ -157,10 +157,10 @@ to the element's `owner` property, so it's updated as the user types.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/cSDfLSaJtHHuoFwUqgEf?p=preview">
   <demo-tab heading="editable-name-tag.html">
-<pre><code>{{{include_file('2.0/docs/devguide/samples/editable-name-tag/editable-name-tag.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/editable-name-tag/editable-name-tag.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>{{{include_file('2.0/docs/devguide/samples/editable-name-tag/index.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/editable-name-tag/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/editable-name-tag/index.html" width="100%" height="100"></iframe>
