@@ -311,48 +311,50 @@ Note that the font family is inherited, but the text color is not. This is becau
 Polymer's custom property shim evaluates and applies custom property values once
 at element creation time.  In order to have an element (and its subtree) re-
 evaluate custom property values due to dynamic changes such as application of
-CSS classes, etc., call the [`updateStyles`](/1.0/docs/api/Polymer.Base#method-updateStyles)
+CSS classes, etc., call the [`updateStyles`](/2.0/docs/api/Polymer.Base#method-updateStyles)
 method on the element. To update all elements on the page, you can also call
 `Polymer.updateStyles`.
 
-You can  directly modify a Polymer element's custom property by setting
-key-value pairs in [`customStyle`](/1.0/docs/api/Polymer.Base#property-customStyle)
-on the element (analogous to setting `style`) and then calling `updateStyles`.
-Or you can pass a dictionary of property names and values as an argument to
-`updateStyles`.
+You can directly modify a Polymer element's custom property by calling `updateStyles`:
+
+```html
+this.updateStyles({
+  '--some-custom-style': 'green',
+  '--another-custom-style': 'blue'
+});
+```
 
 To get the value of a custom property on an element, use
-[`getComputedStyleValue`](/1.0/docs/api/Polymer.Base#method-getComputedStyleValue).
+[`getComputedStyleValue`](/2.0/docs/api/Polymer.Base#method-getComputedStyleValue).
 
 
 Example: { .caption }
 
 ```html
 <dom-module id="x-custom">
-
   <template>
-
     <style>
       :host {
         --my-toolbar-color: red;
       }
     </style>
-
     <my-toolbar>My awesome app</my-toolbar>
     <button on-tap="changeTheme">Change theme</button>
-
   </template>
-
   <script>
-    Polymer({
-      is: 'x-custom',
-      changeTheme: function() {
-        this.customStyle['--my-toolbar-color'] = 'blue';
-        this.updateStyles();
+    class XCustom extends Polymer.Element {
+      static get is() {
+        return "x-custom";
       }
-    });
+      static get changeTheme() {
+        return function() {
+        this.updateStyles({
+          '--my-toolbar-color': 'blue',
+        });
+      }
+    }
+    customElements.define(XCustom.is, XCustom);
   </script>
-
 </dom-module>
 ```
 
@@ -436,9 +438,7 @@ styling for custom elements, which is the primary goal of the shim.
 
 ```html
 <dom-module id="my-element">
-
   <template>
-
     <style>
      :host {
        --custom-color: red;
@@ -454,17 +454,18 @@ styling for custom elements, which is the primary goal of the shim.
        color: var(--custom-color);
      }
     </style>
-
     <div class="container">
       <div class="child">I will be red</div>
     </div>
-
   </template>
-
   <script>
-    Polymer({ is: 'my-element'});
+    class MyElement extends Polymer.Element {
+      static get is() {
+        return "my-element";
+      }
+    }
+    customElements.define(MyElement.is, MyElement);
   </script>
-
 </dom-module>
 ```
 
