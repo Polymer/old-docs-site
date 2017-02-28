@@ -118,7 +118,7 @@ When used in an HTML document, your element will still inherit any styling infor
 ```
 
 `index.html` { .caption}
-```
+```html
 <link rel="import" href="x-foo.html">
 <!-- Document-level stylesheet -->
 <style>
@@ -551,7 +551,7 @@ Here's an example:
 ```
 
 `x-foo.html` { .caption}
-```
+```html
 <!-- Import the styles from the style module my-colors -->
 <link rel="import" href="my-colors.html">
 <dom-module id="x-foo">
