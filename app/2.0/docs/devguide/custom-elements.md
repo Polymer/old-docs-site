@@ -256,13 +256,11 @@ In addition to `HTMLElement`, a custom element can extend another custom element
 class ExtendedElement extends MyElement {
   static get is() { return 'extended-element'; }
 
-  static get config {
+  static get properties() {
     return {
-      properties: {
-        thingCount: {
-          value: 0,
-          observer: '_thingCountChanged'
-        }
+      thingCount: {
+        value: 0,
+        observer: '_thingCountChanged'
       }
     }
   }
@@ -284,27 +282,35 @@ customized built-in elements, so Polymer does not support them at this time.
 
 ## Sharing code with class expression mixins
 
-ES6 classes allow single inheritance, which can make it challenging to share code between different elements. Class expression mixins let you share code between elements.
+ES6 classes allow single inheritance, which can make it challenging to share code between different
+elements. Class expression mixins let you share code between elements.
 
-A class expression mixin is basically a function that operates as a *class factory*. You pass in a superclass, and the function generates a new class which extends the superclass with the mixin's methods.
+A class expression mixin is basically a function that operates as a *class factory*. You pass in a
+superclass, and the function generates a new class which extends the superclass with the mixin's
+methods.
 
 
 ```
 MyMixin = function(superClass) {
+
   return class extends superClass {
-    static get config() {
+    static get properties() {
       return {
-        properties: {
-          bar: {
-            type: String,
-            value: 5
-          }
-        },
-        observers: [ '_barChanged(bar)' ]
+        bar: {
+          type: Object
+        }
       }
+    static get observers() {
+      return [ '_barChanged(bar.*)' ]
     }
-    ready() { this.addEventListener('keypress', (e)=>this.handlePress(e))
+
+    constructor() {
+      super();
+      this.addEventListener('keypress', e => this.handlePress(e));
+    }
+
     _barChanged(bar) { ... }
+
     handlePress(e) { console.log('key pressed: ' + e.charCode) }
   }
 }

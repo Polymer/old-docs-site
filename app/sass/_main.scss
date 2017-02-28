@@ -39,17 +39,24 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+
+  transition: opacity ease-in 0.2s;
 }
 
-/* TODO(notwaldorf): These styles make the footer always stick to the bottom
- * but they break everything in IE11. */
-/*
-pw-shell {
-  display:flex;
-  flex-direction: column;
-  flex: 1;
+/* Styling while the resources are loading */
+body[unresolved] {
+  opacity: 0;
 }
-*/
+
+/* For nonversioned pages, the server needs to send both v1 and v2 links for
+ * the mobile drawer, since it doesn't know what version was previously
+ * selected, but the client should hide the irrelevant links. */
+pw-shell[active-docs-version="1.0"] a[data-version="2.0"] {
+  display: none;
+}
+pw-shell[active-docs-version="2.0"] a[data-version="1.0"] {
+  display: none;
+}
 
 devguide-shell {
   /* header height + footer height = 354px */

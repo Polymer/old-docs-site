@@ -1,7 +1,7 @@
 ---
 - section: Home
   shortpath: home
-  path: /2.0/
+  path: /
 
 - section: Start
   shortpath: start
@@ -9,23 +9,10 @@
   items:
   - title: Get started
     path: /2.0/start/index
-  - header: Build an element
-  - title: 1. Get set up
-    path: /2.0/start/first-element/intro
-    indent: True
-  - title: 2. Add local DOM
-    path: /2.0/start/first-element/step-2
-    indent: True
-  - title: 3. Data binding & properties
-    path: /2.0/start/first-element/step-3
-    indent: True
-  - title: 4. React to input
-    path: /2.0/start/first-element/step-4
-    indent: True
-  - title: 5. Theming with custom properties
-    path: /2.0/start/first-element/step-5
-    indent: True
-  - endheader: True
+
+  - title: Quick tour of Polymer
+    path: /2.0/start/quick-tour
+
   - header: Build an app
   - title: 1. Get set up
     path: /2.0/start/toolbox/set-up
@@ -45,16 +32,17 @@
   shortpath: docs
   path: /2.0/docs/devguide/feature-overview
   items:
-  - title: About Polymer 2.0
-    path: /2.0/docs/about_20
-  - title: Upgrade guide
-    path: /2.0/docs/upgrade
-  - header: Overview
   - title: Feature overview
     path: /2.0/docs/devguide/feature-overview
+  - header: What's new
+  - title: About Polymer 2.0
+    path: /2.0/docs/about_20
     indent: True
-  - title: Quick tour
-    path: /2.0/docs/devguide/quick-tour
+  - title: Upgrade guide
+    path: /2.0/docs/upgrade
+    indent: True
+  - title: Release notes
+    path: /2.0/docs/release-notes
     indent: True
   - endheader: True
   - header: Custom elements
@@ -114,34 +102,26 @@
   - title: Polymer CLI
     path: /2.0/docs/tools/polymer-cli
     indent: True
-  - title: Document your elements
-    path: /2.0/docs/tools/documentation
-    indent: True
+#  - title: Document your elements
+#    path: /2.0/docs/tools/documentation
+#    indent: True
   - title: Test your elements
     path: /2.0/docs/tools/tests
     indent: True
   - title: Optimize for production
     path: /2.0/docs/tools/optimize-for-production
     indent: True
-  - title: Publish an element
-    path: /2.0/docs/tools/reusable-elements
-    indent: True
+#  - title: Publish an element
+#    path: /2.0/docs/tools/reusable-elements
+#    indent: True
   - title: Advanced tools
     path: /2.0/docs/tools/advanced
     indent: True
   - title: Services
     path: /2.0/docs/tools/services
     indent: True
-  - endheader: True
-  - header: What's new
-  - title: Release notes
-    path: /2.0/docs/release-notes
-    indent: True
-  - title: 1.0 Migration guide
-    path: /2.0/docs/migration
-    indent: True
-  - title: About Polymer 1.0
-    path: /2.0/docs/about_10
+  - title: polymer.json specification
+    path: /2.0/docs/tools/polymer-json
     indent: True
   - endheader: True
   - header: Resources
@@ -150,6 +130,9 @@
     indent: True
   - title: Browser compatibility
     path: /2.0/docs/browsers
+    indent: True
+  - title: Glossary
+    path: /2.0/docs/glossary
     indent: True
   - endheader: True
   - header: API Reference
@@ -219,4 +202,8 @@
 
 - section: Blog
   shortpath: blog
-  path: /2.0/blog/
+  path: /blog/
+
+- section: Community
+  shortpath: community
+  path: /community/

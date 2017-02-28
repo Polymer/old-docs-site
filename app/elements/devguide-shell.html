@@ -7,10 +7,7 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
-<link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../bower_components/paper-styles/typography.html">
-<link rel="import" href="icons.html">
 
 <dom-module id="devguide-shell">
   <template>
@@ -40,9 +37,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       header {
-        background: #1565c0;  /* blue-800 */
         color: white;
         padding: 20px 40px;
+      }
+
+      header.v2 {
+        background: #1565c0;  /* blue-800 */
+      }
+
+      header.v1 {
+        background: #37474F;  /* blue-grey-800 */
       }
 
       header h1 {
@@ -69,6 +73,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 5px 30px;
         /* The active links will have a pink border. */
         border-left: 4px solid transparent;
+      }
+
+      .version-selector {
+        padding: 10px 34px;
+        margin-bottom: 10px;
+      }
+
+      .version-selector paper-dropdown-menu-light {
+        width: 60px;
+        margin-left: 20px;
+        vertical-align: middle;
       }
 
       iron-selector ::content a {
@@ -109,6 +124,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-decoration: none;
       }
 
+      .version-alert {
+        background-color: #FBE9E7;
+        margin: 0;
+        padding: 10px 40px;
+      }
+
+      .version-alert img {
+        vertical-align: middle;
+      }
+
       @media (max-width: 500px) {
         header {
           padding: 20px;
@@ -136,13 +161,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <nav>
+      <div class="version-selector">
+        <b>Version</b>
+        <paper-dropdown-menu-light no-label-float>
+          <paper-listbox class="dropdown-content" selected="[[activeDocsVersion]]" attr-for-selected="name" on-iron-select="_listboxVersionChanged">
+            <paper-item name="1.0">1.0</paper-item>
+            <paper-item name="2.0">2.0</paper-item>
+          </paper-listbox>
+        </paper-dropdown-menu-light>
+      </div>
+
       <iron-selector attr-for-selected="name" selected="[[activePage]]" selected-item="{{activeItem}}">
         <content select=".sidenav-content"></content>
       </iron-selector>
     </nav>
 
     <div class="content-container">
-      <header hidden$="[[!markdown]]" id="header">
+      <header hidden$="[[!markdown]]" id="header" class$="[[_computeHeaderClass(activeDocsVersion)]]">
         <p>{{pageSubtitle}}</p>
         <h1>{{pageTitle}}</h1>
 
@@ -150,6 +185,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             href="https://github.com/Polymer/docs/edit/master/app{{_githubUrl(activeItem)}}">Edit on GitHub
         </a>
       </header>
+      <p hidden$="[[!_shouldShowDocsWarningWarning(markdown,activeDocsVersion)]]" class="version-alert"><img src="/images/alerts/warning.svg">You're viewing an older version of Polymer.
+        Please see <a href="{{v2PageLink}}">Polymer 2.0</a> for the latest.</a></p>
 
       <div id="content">
         <content></content>
@@ -204,11 +241,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       /**
+       * The starting link for a 1.0 section (for the start/docs/toolbox sections)
+       */
+      v1PageLink: {
+        type: String
+      },
+
+      /**
+       * The starting link for a 2.0 section (for the start/docs/toolbox sections)
+       */
+      v2PageLink: {
+        type: String
+      },
+
+      /**
+       * The version of the docs we're looking at. Should be 1.0 or 2.0
+       */
+      activeDocsVersion: {
+        type: String
+      },
+
+      /**
        * True if this is a mobile view.
        */
       _isMobileView: {
         observer: '_mobileViewChanged'
-      }
+      },
     },
 
     /**
@@ -219,10 +277,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     attached: function() {
+      Polymer.RenderStatus.afterNextRender(this, function() {
+        // Somebody might look at the API docs. Be ready.
+        this.importHref(this.resolveUrl('/elements/iron-doc-viewer.html'));
+      });
+
       // Compute the active page from the parent pw-shell's app route.
-      var pwShell = this.parentElement;
+      var pwShell = Polymer.dom(this).parentNode;
       if (pwShell) {
         var path = pwShell._sectionRoute.path;
+
         // If it ends in a /, then it's a top level path like /1.0/tools/,
         // so add an index to it.
         if (path[path.length - 1] === '/') {
@@ -230,6 +294,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         this.activePage = path;
       }
+
+      // Figure out which version we're displaying, 1.0 or 2.0, and pw-shell
+      // is the source of truth (the URL isn't).
+      this.activeDocsVersion = pwShell.activeDocsVersion;
+    },
+
+    // Update the version when the version selector is used.
+    _listboxVersionChanged: function(event) {
+      var newSelection = event.detail.item.textContent;
+      if (newSelection === this.activeDocsVersion)
+        return;
+
+      var path = newSelection == '2.0' ? this.v2PageLink : this.v1PageLink;
+      window.history.pushState({}, '', window.location.origin + path);
+      this.fire('location-changed', {}, {node: window});
     },
 
     _githubUrl: function(item) {
@@ -245,6 +324,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (item) {
         return item.getAttribute('name').indexOf('/1.0/docs/api') >= 0;
       }
+    },
+
+    _computeHeaderClass: function(version) {
+      return version == '1.0' ? 'v1' : 'v2';
+    },
+
+    _shouldShowDocsWarningWarning: function(markdown, version) {
+      return markdown && version == '1.0';
     }
   });
   </script>
