@@ -55,7 +55,7 @@ following structure:
 
 The diagram below shows the components of a simple app:
 
-![diagram of an app that has two views, which have both individual and shared dependencies](/images/1.0/toolbox/app-build-components.png)
+![diagram of an app that has two views, which have both individual and shared dependencies](/images/toolbox/app-build-components.png)
 
 In this diagram, the solid lines represent _static dependencies_, external resources identified
 in the files using `<link>` and `<script>` tags. Dotted lines represent _dynamic_ or _demand-loaded
@@ -142,7 +142,7 @@ For browsers that don't handle HTTP2 Push, the build process produces a set of v
 one bundle for the shell, and one bundle for each fragment. The diagram below shows how a simple
 app would be bundled:
 
-![diagram of the same app as before, where there are 3 bundled dependencies](/images/1.0/toolbox/app-build-bundles.png)
+![diagram of the same app as before, where there are 3 bundled dependencies](/images/toolbox/app-build-bundles.png)
 
 Any dependency shared by two or more fragments is bundled in with the shell and its static
 dependencies.

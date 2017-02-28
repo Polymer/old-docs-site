@@ -173,39 +173,39 @@
 
 - section: App Toolbox
   shortpath: toolbox
-  path: /1.0/toolbox/
+  path: /toolbox/
   items:
   - title: What's in the box?
-    path: /1.0/toolbox/index
+    path: /toolbox/index
   - header: Using the Toolbox
   - title: App templates
-    path: /1.0/toolbox/templates
+    path: /toolbox/templates
     indent: True
   - title: Responsive app layout
-    path: /1.0/toolbox/app-layout
+    path: /toolbox/app-layout
     indent: True
   - title: Routing
-    path: /1.0/toolbox/routing
+    path: /toolbox/routing
     indent: True
   - title: Localization
-    path: /1.0/toolbox/localize
+    path: /toolbox/localize
     indent: True
   - title: App storage
-    path: /1.0/toolbox/app-storage
+    path: /toolbox/app-storage
     indent: True
   - title: Service worker
-    path: /1.0/toolbox/service-worker
+    path: /toolbox/service-worker
     indent: True
   - title: Serve your app
-    path: /1.0/toolbox/server
+    path: /toolbox/server
     indent: True
   - endheader: true
   - header: Case study
   - title: "Shop"
-    path: /1.0/toolbox/case-study
+    path: /toolbox/case-study
     indent: True
   - title: "News"
-    path: /1.0/toolbox/news-case-study
+    path: /toolbox/news-case-study
     indent: True
   - endheader: true
 

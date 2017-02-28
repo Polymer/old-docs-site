@@ -29,7 +29,7 @@ maximum flexibility.
 
 ### Starter Kit
 
-![](/images/1.0/toolbox/starter-kit.png)
+![](/images/toolbox/starter-kit.png)
 
 The `starter-kit` introduces the [`app-layout`](app-layout) elements,
 and composes them in a common left-hand drawer arrangement with a toolbar.
@@ -42,7 +42,7 @@ and will be pre-cached for offline and subsequent use.
 
 ### Shop demo application
 
-![](/images/1.0/toolbox/shop-template-desktop.png)
+![](/images/toolbox/shop-template-desktop.png)
 
 The `shop` template is a full-fledged application that builds on the
 `starter-kit` and implements a series of elements that compose into
@@ -54,7 +54,7 @@ See the [Shop case study](case-study) for more information.
 
 ### News demo application
 
-![](/images/1.0/toolbox/news-template-desktop.png)
+![](/images/toolbox/news-template-desktop.png)
 
 The `news` template is a full-fledged application that builds on the
 `starter-kit` and implements a series of elements that compose into

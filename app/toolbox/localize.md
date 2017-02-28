@@ -49,7 +49,8 @@ Sample application (Polymer 2.x) {.caption}
     <div>{{localize('hello', 'name', 'Batman')}}</div>
   </template>
   <script>
-    class XApp extends Polymer.mixinBehaviors([Polymer.AppLocalizeBehavior], Polymer.Element) {
+    class XApp extends Polymer.mixinBehaviors([Polymer.AppLocalizeBehavior], 
+                                              Polymer.Element) {
       static get is() { return 'x-app'}
 
       static get config() {

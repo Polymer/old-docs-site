@@ -47,7 +47,7 @@ your browser.
 The task above automatically opens up your default web browser and
 fetches the locally-hosted application (at `http://localhost:8080`).
 
-![App Toolbox: Starter Kit Template](/images/1.0/toolbox/starter-kit.png)
+![App Toolbox: Starter Kit Template](/images/toolbox/starter-kit.png)
 
 ## Initialize Git repository (optional)
 
