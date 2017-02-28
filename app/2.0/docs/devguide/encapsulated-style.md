@@ -10,31 +10,42 @@ Polymer supports DOM templating and the shadow DOM API. When you provide a DOM t
 	
 Here's an example:
 
-[See it on Plunker](https://plnkr.co/edit/77gdIKnO8Pd0J2qiaM6f?p=preview)
+[See it on Plunker](http://plnkr.co/edit/TOgaxeSzuQsWFSIpzN7S?p=preview)
 
 `custom-element.html` { .caption }
 ```html
+<!-- Import polymer-element -->
+<link rel="import" href="https://polygit.org/polymer+:2.0-preview/webcomponentsjs+:v1/shadydom+webcomponents+:master/shadycss+webcomponents+:master/custom-elements+webcomponents+:master/components/polymer/polymer-element.html">
+
 <!-- Create a template for the custom element -->
-<dom-module id="custom-element">
+<dom-module id='custom-element'>
   <template>
     <h1>Heading!</h1>
     <p>We are elements in custom-element's local DOM.</p>
   </template>
-</dom-module>
-<!-- Register the element -->
-<script>
+  
+  <!-- Register the element -->
+  <script>
   class CustomElement extends Polymer.Element {
     static get is() {
       return "custom-element";
     }
   }
   customElements.define(CustomElement.is, CustomElement);
-</script>
+  </script>
+</dom-module>
 ```
 
 `index.html` { .caption }
+```html
+<!-- Load the polyfills -->
+<script src="https://polygit.org/polymer+:2.0-preview/webcomponentsjs+:v1/shadydom+webcomponents+:master/shadycss+webcomponents+:master/custom-elements+webcomponents+:master/components/webcomponentsjs/webcomponents-loader.js"></script>
+
+<!-- Load the custom element -->
+<link rel="import" href="custom-element.html">
 <!-- Drop the custom element on the page -->
 <custom-element></custom-element>
+```
 
 The HTML elements in your template become children in your custom element's shadow DOM. Shadow DOM provides a mechanism for encapsulation, meaning that elements inside the shadow DOM don't match selectors outside the shadow DOM. 
 
@@ -62,15 +73,8 @@ Here's an example:
     <p>I'm a shadow DOM child element of x-foo.</p>
     <p class="myclass">So am I.</p>
   </template>
+  ...
 </dom-module>
-<script>
-  class XFoo extends Polymer.Element {
-    static get is() {
-      return "x-foo";
-    }
-  }
-  customElements.define(XFoo.is, XFoo);
-</script>
 ```
 
 `index.html` { .caption }
@@ -107,14 +111,6 @@ When used in an HTML document, your element will still inherit any styling infor
     </div>
   </template>
 </dom-module>
-<script>
-  class XFoo extends Polymer.Element {
-    static get is() {
-      return "x-foo";
-    }
-  }
-  customElements.define(XFoo.is, XFoo);
-</script>
 ```
 
 `index.html` { .caption}
@@ -141,13 +137,6 @@ Styles declared inside shadow DOM will override styles declared outside of it:
 
 `x-foo.html` { .caption}
 ```html
-<!-- Document-level stylesheet -->
-<style>
-  p { 
-    font-family: sans-serif;
-    color:blue;
-  }
-</style>
 <dom-module id='x-foo'>
   <template>
     <!-- Encapsulated, element-level stylesheet -->
@@ -203,14 +192,6 @@ Inheritable properties of the host element will inherit down the shadow tree, wh
     <span>We're all green...</span>
   </template>
 </dom-module>
-<script>
-  class XFoo extends Polymer.Element {
-    static get is() {
-      return "x-foo";
-    }
-  }
-  customElements.define(XFoo.is, XFoo);
-</script> 
 ```
 
 `index.html` { .caption}
@@ -253,14 +234,6 @@ You can use CSS selectors to determine when and how to style the host. In this c
     <p>Hi, from x-foo!</p>
   </template>
 </dom-module>
-<script>
-  class XFoo extends Polymer.Element {
-    static get is() {
-      return "x-foo";
-    }
-  }
-  customElements.define(XFoo.is, XFoo);
-</script>
 ```
 
 `index.html` { .caption}
@@ -275,17 +248,24 @@ Descendant selectors after `:host` match elements in the shadow tree. In this ex
 
 [See it on Plunker](http://plnkr.co/edit/MRN9blKg6A3w8G0RkyJD?p=preview)
 
+`x-foo.html` { .caption}
 ```html
 <dom-module id="x-foo">
-	<template>
-		<style>
-		:host(.warning) p {
-			color:red;
-		}
-		</style>
+  <template>
+    <style>
+      :host(.warning) p {
+        color:red;
+      }
+    </style>
     <p>Make this text red if x-foo has class "warning", and black otherwise.</p>
-	</template>
+  </template>
 </dom-module>
+```
+
+`index.html` { .caption}
+```html
+<link rel="import" href="x-foo.html">
+
 <x-foo class="warning"></x-foo>
 <x-foo></x-foo>
 ```
@@ -337,29 +317,22 @@ To style slotted content, use the `::slotted()` syntax.
 `x-foo.html` { .caption}
 ```html
 <dom-module id="x-foo">
-    <template>
-      <style>
-        ::slotted(*) {
-          font-family: sans-serif;
+  <template>
+    <style>
+      ::slotted(*) {
+        font-family: sans-serif;
           color:green;
-        }
-      </style>
-        <h1>
-            <div><slot name='heading1'></slot></div>
-        </h1>
-        <p>
-            <slot name='para'></slot>
-        </p>
-    </template>
+      }
+    </style>
+    <h1>
+      <div><slot name='heading1'></slot></div>
+    </h1>
+    <p>
+      <slot name='para'></slot>
+    </p>
+  </template>
+  ...
 </dom-module>
-<script>
-  class XFoo extends Polymer.Element {
-    static get is() {
-      return "x-foo";
-    }
-  }
-  customElements.define(XFoo.is, XFoo);
-</script>
 ```
 
 `index.html` { .caption}
@@ -392,19 +365,14 @@ You can select by element type:
     <slot name='heading1'></slot>
     <slot name='para'></slot>
   </template>
+  ...
 </dom-module>
-<script>
-  class XFoo extends Polymer.Element {
-    static get is() {
-      return "x-foo";
-    }
-  }
-  customElements.define(XFoo.is, XFoo);
-</script>
 ```
 
 `index.html` { .caption}
 ```html
+<link rel="import" href="x-foo.html">
+
 <x-foo>
   <h1 slot="heading1">Heading 1. I'm green.</h1>
   <p slot="para">Paragraph text. I'm blue.</p>
@@ -418,28 +386,21 @@ You can select by class:
 `x-foo.html` { .caption}
 ```html
 <dom-module id="x-foo">
-    <template>
-      <style>
-        ::slotted(.green) {
-          color:green;
-        }
-      </style>
-        <p>
-            <slot name='para1'></slot>
-        </p>
-        <p>
-            <slot name='para2'></slot>
-        </p>
-    </template>
+  <template>
+    <style>
+      ::slotted(.green) {
+        color:green;
+      }
+    </style>
+    <p>
+      <slot name='para1'></slot>
+    </p>
+    <p>
+      <slot name='para2'></slot>
+    </p>
+  </template>
+  ...
 </dom-module>
-<script>
-  class XFoo extends Polymer.Element {
-    static get is() {
-      return "x-foo";
-    }
-  }
-  customElements.define(XFoo.is, XFoo);
-</script>
 ```
 
 `index.html`
@@ -474,15 +435,8 @@ And you can select by slot name:
       <slot name='para2'></slot>
     </p>
   </template>
+  ...
 </dom-module>
-<script>
-  class XFoo extends Polymer.Element {
-    static get is() {
-      return "x-foo";
-    }
-  }
-  customElements.define(XFoo.is, XFoo);
-</script>
 ```
 
 `index.html` { .caption}
@@ -564,15 +518,8 @@ Here's an example:
     <p class="green">I wanna be green</p>
     <p class="blue">I wanna be blue</p>
   </template>
+  ...
 </dom-module>
-<script>
-  class XFoo extends Polymer.Element {
-    static get is() {
-      return "x-foo";
-    }
-  }
-  customElements.define(XFoo.is, XFoo);
-</script>
 ```
 
 `index.html` { .caption}
@@ -607,24 +554,32 @@ For example:
 
 [See it on Plunker](http://plnkr.co/edit/7AvgX9jQApbJoWHbdPkI?p=preview)
 
+`style.css` { .caption}
+```css
+.red { color: red; }
+.green { color: green; }
+.blue { color: blue; }
+```
+
+`x-foo.html` { .caption}
 ```html
-<dom-module id="my-awesome-button">
-  <!-- special import with type=css used to load remote CSS
-       Note: this style of importing CSS is deprecated -->
-  <link rel="import" type="css" href="my-awesome-button.css">
+<!-- Include the styles, and use them in x-foo. -->
+<dom-module id="x-foo">
+  <link rel="import" type="css" href="style.css">
   <template>
-    ...
+    <p class="red">I wanna be red</p>
+    <p class="green">I wanna be green</p>
+    <p class="blue">I wanna be blue</p>
   </template>
+  ...
 </dom-module>
-<my-awesome-button></my-awesome-button>
-<script>
-    class MyAwesomeButton extends Polymer.Element {
-      static get is() {
-        return "my-awesome-button";
-      }
-    }
-    customElements.define(MyAwesomeButton.is, MyAwesomeButton);
-</script>
+```
+
+`index.html` { .caption}
+```html
+<link rel="import" href="x-foo.html">
+
+<x-foo></x-foo>
 ```
 
 ## Use `custom-style` in document-level styles
@@ -655,15 +610,8 @@ In the first code sample, the style for the `p` element “leaks” into Paragra
       I am black; otherwise, I'm red.
     </p>
   </template>
+  ...
 </dom-module>
-<script>
-  class XFoo extends Polymer.Element {
-    static get is() {
-      return "x-foo";
-    }
-  }
-  customElements.define(XFoo.is, XFoo);
-</script>
 ```
 
 `index.html` { .caption}
@@ -680,21 +628,30 @@ In the first code sample, the style for the `p` element “leaks” into Paragra
 ```
 
 [See it on Plunker](http://plnkr.co/edit/yiD9XWPHaMjHaGGwu4V9?p=preview)
+
+`x-foo.html` { .caption}
 ```html
-  <custom-style>
+<dom-module id="x-foo">
+  <template>
+    <p>Paragraph B: I am in the local DOM of x-foo. I am black on all browsers.</p>
+  </template>
+  ...
+</dom-module>
+```
+
+`index.html` { .caption}
+```html
+<link rel="import" href="x-foo.html">
+
+<custom-style>
   <style>
       p {
         color: red;
       }
     </style>
-  </custom-style>
-  <p>Paragraph A: I am in the main DOM. I am red.</p>
-  <dom-module id="x-foo">
-    <template>
-      <p>Paragraph B: I am in the local DOM of x-foo. I am black on all browsers.</p>
-    </template>
-  </dom-module>
-  <x-foo></x-foo>   
+</custom-style>
+<p>Paragraph A: I am in the main DOM. I am red.</p>
+<x-foo></x-foo>
 ```
   
 ### Syntax and compatibility
