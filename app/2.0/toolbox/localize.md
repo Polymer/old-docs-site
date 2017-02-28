@@ -26,10 +26,6 @@ For class-style elements, use the `mixinBehaviors` method.
 
 ## Install AppLocalizeBehavior
 
-Install the `app-localize-behavior` package with Bower:
-
-    bower install --save PolymerElements/app-localize-behavior
-
 For 2.0 Release Candidate, use the `2.0-preview` branch:
 
     bower install --save PolymerElements/app-localize-behavior#2.0-preview
@@ -40,7 +36,7 @@ For 2.0 Release Candidate, use the `2.0-preview` branch:
 The main application is usually responsible for loading the localized messages and setting the
 current language.
 
-Sample application (Polymer 2) {.caption}
+Sample application (class style elements) {.caption}
 
 ```html
 <dom-module id="x-app">
@@ -83,7 +79,7 @@ Sample application (Polymer 2) {.caption}
 
 More typically, the app loads resources from an external file, as shown in the next example.
 
-Sample application (Polymer 1.x or hybrid) {.caption}
+Sample application (hybrid elements) {.caption}
 
 ```html
 <dom-module id="x-app">
@@ -121,5 +117,5 @@ Sample application (Polymer 1.x or hybrid) {.caption}
 The main app is also responsible for loading the `Intl` polyfill
 (not shown above).
 
-Each element that needs to localize messages should also add the `Polymer.AppLocalizationBehavior`
+Each element that needs to localize messages should also add the `Polymer.AppLocalizeBehavior`
 and use the `localize` method to translate strings, as shown above.

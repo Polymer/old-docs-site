@@ -50,6 +50,19 @@ a complete e-commerce application.  It demonstrates a typical
 "home - list - detail" type of application flow, and can serve as inspiration
 or a starting point for a complete application.
 
+### News demo application
+
+![](/images/1.0/toolbox/news-template-desktop.png)
+
+The `news` template is a full-fledged application that builds on the
+`starter-kit` and implements a series of elements that compose into
+a complete news progressive web app.  It demonstrates loading news
+items, and can serve as inspiration or a starting point for a complete application.
+
+For implementation details, see the [News case study](news-case-study). For information on using
+or customizing the news template, see the
+[News documentation site](https://news-docs.polymer-project.org).
+
 ## Where to go from here
 
 The templates are starting points, and you are free to add web components

@@ -146,19 +146,22 @@ When using `<app-route>`, there are two ways to change the current URL.
 Previous sections showed data binding to routes and route data, but sometimes you need to run code
 when the route changes. Using observers, it's simple to react to changes to the route or data:
 
-Route observer example (Polymer 1.x) {.caption}
+Route observer example {.caption}
 
 ```
-observers: [
-  '_routeChanged(route.*)',
-  '_viewChanged(routeData.view)'
-],
-_routeChanged: function(changeRecord) {
+static get observers() {
+  return [
+    '_routeChanged(route.*)',
+    '_viewChanged(routeData.view)'
+  ]
+}
+
+_routeChanged(changeRecord) {
   if (changeRecord.path === 'path') {
     console.log('Path changed!');
   }
-},
-_viewChanged: function(view) {
+}
+_viewChanged(view) {
   // load data for view
 }
 ```
