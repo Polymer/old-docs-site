@@ -414,7 +414,7 @@ You can select by class:
 [See it on Plunker](http://plnkr.co/edit/Ep8AVOHgiwQjtv8x5kwd?p=preview)
 
 `x-foo.html` { .caption}
-```
+```html
 <dom-module id="x-foo">
     <template>
       <style>
