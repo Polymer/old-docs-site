@@ -18,7 +18,7 @@ As a developer, you can use these properties to style `<paper-checkbox>` element
 
 When you create your own custom elements, you can use custom properties to build an interface for the users of your element so they can style it.
 
-### Using a custom properties API to style an element
+### Use a custom properties API to style an element
 
 To use the interface of custom properties provided by an element author, look at the element's API documentation.
 
@@ -69,7 +69,7 @@ We can use variables to configure the custom CSS properties in `<paper-checkbox>
 </style>
 ```
 
-## Creating custom properties
+## Create custom properties
 
 Rather than exposing the details of an element's internal implementation for
 theming, an element author defines one or more custom CSS
@@ -167,7 +167,7 @@ Thus, custom CSS properties are a powerful way for element authors to
 expose a theming API to their users in a way that naturally fits right alongside
 normal CSS styling. 
 
-### Custom CSS mixins
+### Use custom CSS mixins
 
 It may be tedious (or impossible) for an element author to predict every
 CSS property that may be important for theming, let alone expose every
@@ -262,7 +262,7 @@ Example usage of `my-toolbar`: { .caption }
 </dom-module>
 ```
 
-## Inheritance
+## Use CSS inheritance
 
 If an element doesn't override styling information, that element inherits styles from its parent:
 
@@ -284,7 +284,7 @@ If an element doesn't override styling information, that element inherits styles
 </body>
 ```
 
-## Global styles
+## Create global styles
 
 Create global styles by styling the the html element of your document:
 
@@ -305,3 +305,176 @@ Create global styles by styling the the html element of your document:
 ```
 
 Note that the font family is inherited, but the text color is not. This is because `<paper-checkbox>` overrides the text color.
+
+### Custom property API for Polymer elements {#style-api}
+
+Polymer's custom property shim evaluates and applies custom property values once
+at element creation time.  In order to have an element (and its subtree) re-
+evaluate custom property values due to dynamic changes such as application of
+CSS classes, etc., call the [`updateStyles`](/1.0/docs/api/Polymer.Base#method-updateStyles)
+method on the element. To update all elements on the page, you can also call
+`Polymer.updateStyles`.
+
+You can  directly modify a Polymer element's custom property by setting
+key-value pairs in [`customStyle`](/1.0/docs/api/Polymer.Base#property-customStyle)
+on the element (analogous to setting `style`) and then calling `updateStyles`.
+Or you can pass a dictionary of property names and values as an argument to
+`updateStyles`.
+
+To get the value of a custom property on an element, use
+[`getComputedStyleValue`](/1.0/docs/api/Polymer.Base#method-getComputedStyleValue).
+
+
+Example: { .caption }
+
+```html
+<dom-module id="x-custom">
+
+  <template>
+
+    <style>
+      :host {
+        --my-toolbar-color: red;
+      }
+    </style>
+
+    <my-toolbar>My awesome app</my-toolbar>
+    <button on-tap="changeTheme">Change theme</button>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'x-custom',
+      changeTheme: function() {
+        this.customStyle['--my-toolbar-color'] = 'blue';
+        this.updateStyles();
+      }
+    });
+  </script>
+
+</dom-module>
+```
+
+### Custom properties shim limitations
+
+Cross-platform support for custom properties is provided in Polymer by a
+JavaScript library that **approximates** the capabilities of the CSS Variables
+specification  *for the specific use case of theming custom elements*, while
+also extending it to add the capability to mixin property sets to rules as
+described above. For performance reasons, Polymer **does
+not attempt to replicate all aspects of native custom properties.**
+The shim trades off aspects of the full dynamism possible in CSS in the
+interests of practicality and performance.
+
+Below are current limitations of the shim. Improvements to performance and
+dynamism will continue to be explored.
+
+#### Dynamism limitations
+
+Only property definitions which match the element at *creation time* are applied.
+Any dynamic changes that update property values are not applied automatically. You
+can force styles to be re-evaluated by calling the
+[`updateStyles`](/1.0/docs/api/Polymer.Base#method-updateStyles) method on a
+Polymer element, or `Polymer.updateStyles` to update all element
+styles.
+
+For example, given this markup inside an element:
+
+HTML: { .caption }
+
+```html
+<div class="container">
+  <x-foo class="a"></x-foo>
+</div>
+```
+
+CSS: { .caption }
+
+```css
+/* applies */
+x-foo.a {
+  --foo: brown;
+}
+/* does not apply */
+x-foo.b {
+  --foo: orange;
+}
+/* does not apply to x-foo */
+.container {
+  --nog: blue;
+}
+```
+
+After adding class `b` to `x-foo` above, the host element must call `this.updateStyles`
+to apply the new styling. This re-calculates and applies styles down the tree from this point.
+
+Dynamic effects **are** reflected at the point of a property's application.
+
+For the following example, adding/removing the `highlighted` class on the `#title` element will
+have the desired effect, since the dynamism is related to *application* of a custom property.
+
+```css
+#title {
+  background-color: var(--title-background-normal);
+}
+
+#title.highlighted {
+  background-color: var(--title-background-highlighted);
+}
+```
+
+#### Inheritance limitations
+
+Unlike normal CSS inheritance which flows from parent to child, custom
+properties in Polymer's shim can only change when inherited by a custom element
+from rules that set properties in scope(s) above it, or in a `:host` rule for
+that scope.  **Within a given element's local DOM scope, a custom property can
+only have a single value.**  Calculating property changes within a scope would be
+prohibitively expensive for the shim and is not required to achieve cross-scope
+styling for custom elements, which is the primary goal of the shim.
+
+```html
+<dom-module id="my-element">
+
+  <template>
+
+    <style>
+     :host {
+       --custom-color: red;
+     }
+     .container {
+       /* Setting the custom property here will not change */
+       /* the value of the property for other elements in  */
+       /* this scope.                                      */
+       --custom-color: blue;
+     }
+     .child {
+       /* This will be always be red. */
+       color: var(--custom-color);
+     }
+    </style>
+
+    <div class="container">
+      <div class="child">I will be red</div>
+    </div>
+
+  </template>
+
+  <script>
+    Polymer({ is: 'my-element'});
+  </script>
+
+</dom-module>
+```
+
+#### Styling distributed elements not supported
+
+The custom properties shim doesn't support styling distributed elements.
+
+```css
+/* Not supported */
+:host ::content div {
+  --custom-color: red;
+}
+```
