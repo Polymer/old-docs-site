@@ -142,12 +142,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <section class="blue short gradient-light">
       <div>
         <h1>News</h1>
-        <p>The latest goings-on with the Polymer project and in the community. We'll update this page to announce major releases and showcase cool stuff being built with Polymer.</p>
+        <p>The latest goings-on with the Polymer project and in the community.
+          We'll update this page to announce major releases and showcase cool stuff
+          being built with Polymer. Have an idea for an article?
+          <a href="https://github.com/Polymer/docs/issues/new?labels=article">Suggest it!</a>
+        </p>
       </div>
     </section>
 
     <!-- First 3 articles are highlighted -->
-    <section class="light">
+    <section class="grey short">
       <div class="section-columns">
         {% for item in articles[:2] %}
         <div class="section-columns-column">
@@ -156,24 +160,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a href="{{{item.path}}}.html" class="blue-button">Read more</a>
         </div>
         {% endfor %}
-      </div>
-    </section>
-
-    <section class="grey">
-      <div>
-        <h2>Polycasts</h2>
-        <div class="section-columns example-code">
-          <google-youtube video-id="videoseries"
-          list-type="playlist"
-          list="PLNYkxOF6rcIDdS7HWIC_BYRunV6MHs5xo"
-          autoplay="0"
-          rel="0">
-          </google-youtube>
-          <div>
-            <p>Ready to get your hands dirty and revolutionize the modern web? Join Rob Dodson from the Chrome Developer Relations team as he explores the ins and outs of Polymer, a new library that's pushing the boundaries of what's possible in the browser. Learn about the basic building blocks that make up a Polymer application, and see how to compose those elements into buttery smooth mobile experiences. The future of front end development is all here, on the Polycasts playlist!</p>
-            <a href="https://www.youtube.com/playlist?list=PLNYkxOF6rcIDdS7HWIC_BYRunV6MHs5xo" class="blue-button">Watch more</a>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -193,13 +179,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <p>{{{item.description}}}</p>
       </div>
       {% endfor %}
-
-      <div>
-        <h2 class="underline"></h2>
-        <p> Have an idea for an article?
-        <a href="https://github.com/Polymer/docs/issues/new?labels=article">Suggest it!</a>
-        </p>
-      </div>
     </section>
 
     {% endif %}
