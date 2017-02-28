@@ -174,6 +174,7 @@ Styles declared inside shadow DOM will override styles declared outside of it:
 </style>
 <p>I'm blue.</p>
 <p><x-foo></x-foo></p>
+```
 
 ### Style the host element
 
@@ -263,7 +264,7 @@ You can use CSS selectors to determine when and how to style the host. In this c
 ```
 
 `index.html` { .caption}
-```
+```html
 <link rel="import" href="x-foo.html">
 
 <x-foo class="blue"></x-foo>
@@ -400,6 +401,7 @@ You can select by element type:
   }
   customElements.define(XFoo.is, XFoo);
 </script>
+```
 
 `index.html` { .caption}
 ```html
@@ -623,6 +625,7 @@ For example:
     }
     customElements.define(MyAwesomeButton.is, MyAwesomeButton);
 </script>
+```
 
 ## Use `custom-style` in document-level styles
 	
@@ -707,7 +710,7 @@ Polymer 2.x { .caption}
     }
   </style>
 </custom-style>
-````
+```
 
 Hybrid (compatible with 1.x and 2.x) { .caption}
 ```html
@@ -718,7 +721,7 @@ Hybrid (compatible with 1.x and 2.x) { .caption}
     }	
   </style>
 </custom-style>
-``````
+```
 
 Polymer 1.x { .caption}
 ```html
