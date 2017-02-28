@@ -167,7 +167,7 @@ just need to add a menu item in the left-hand drawer so that users can navigate 
 Your new page is now ready! Open your web browser and view it at
 [http://localhost:8080/new-view](http://localhost:8080/new-view).
 
-![Example of new page](/images/1.0/toolbox/starter-kit-newview.png)
+![Example of new page](/images/toolbox/starter-kit-newview.png)
 
 ## Register the page for the build
 

@@ -5,13 +5,13 @@ title: "Case study: the Shop app"
 <!-- toc -->
 
 
-Shop is a full-featured e-commerce Progressive web app demo built using the
+Shop is a full-featured e-commerce progressive web app demo built using the
 Toolbox. You can try it out here:
 
 <a href="https://shop.polymer-project.org/" class="blue-button">Launch Shop demo
 </a>
 
-This case studies shows how Shop uses the App Toolbox to deliver a great
+This case study shows how Shop uses the App Toolbox to deliver a great
 user experience.
 
 ## App structure
@@ -21,13 +21,13 @@ detail view, and shopping cart view:
 
 <div class="image-container layout horizontal">
   <div class="image-wrapper">
-    <img src="/images/1.0/toolbox/shop-browse.png" alt="screenshot of the list view">
+    <img src="/images/toolbox/shop-browse.png" alt="screenshot of the list view">
   </div>
   <div class="image-wrapper">
-    <img src="/images/1.0/toolbox/shop-detail.png" alt="screenshot of the detail view">
+    <img src="/images/toolbox/shop-detail.png" alt="screenshot of the detail view">
   </div>
   <div class="image-wrapper">
-    <img src="/images/1.0/toolbox/shop-cart.png" alt="screenshot of the shopping cart view">
+    <img src="/images/toolbox/shop-cart.png" alt="screenshot of the shopping cart view">
   </div>
 </div>
 
@@ -40,7 +40,7 @@ supply other essential functions, including overall layout and routing. The
 [`<iron-pages>`](https://elements.polymer-project.org/elements/iron-pages)
 element controls which view is currently visible.
 
-![the high level architecture of the application, as described above](/images/1.0/toolbox/high-level-arch.png)
+![the high level architecture of the application, as described above](/images/toolbox/high-level-arch.png)
 
 ## Routing
 
@@ -239,10 +239,10 @@ Scrolling up the page at any point reveals the tabs.
 
 <div class="image-container layout horizontal">
   <div class="image-wrapper">
-    <img src="/images/1.0/toolbox/shop-toolbar-expanded.png" alt="screenshot of the expanded toolbar">
+    <img src="/images/toolbox/shop-toolbar-expanded.png" alt="screenshot of the expanded toolbar">
   </div>
   <div class="image-wrapper">
-    <img src="/images/1.0/toolbox/shop-toolbar-condensed.png" alt="screenshot of the condensed toolbar">
+    <img src="/images/toolbox/shop-toolbar-condensed.png" alt="screenshot of the condensed toolbar">
   </div>
 </div>
 
@@ -250,10 +250,10 @@ The tabs don't work as well on mobile devices, so Shop uses an `<app-drawer>` el
 
 <div class="image-container layout horizontal">
   <div class="image-wrapper">
-    <img src="/images/1.0/toolbox/shop-home.png" alt="screenshot of the drawer closed on mobile">
+    <img src="/images/toolbox/shop-home.png" alt="screenshot of the drawer closed on mobile">
   </div>
   <div class="image-wrapper">
-    <img src="/images/1.0/toolbox/shop-drawer.png" alt="screenshot of the drawer open on mobile">
+    <img src="/images/toolbox/shop-drawer.png" alt="screenshot of the drawer open on mobile">
   </div>
 </div>
 

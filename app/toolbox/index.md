@@ -25,11 +25,21 @@ Progressive web app. Most importantly, each component is _additive_. For a simpl
 need app-layout. As it gets more complicated, you can add routing, offline caching, and a
 high-performance server as required.
 
-To get a feel for these components in action, you can try out the
-[Shop demo](https://shop.polymer-project.org/). Shop is a full-featured e-commerce Progressive web
-app demo built using the Toolbox. Read about how it's built in [Case study: the Shop app](case-study).
+**Hybrid comptabile.** The Toolbox elements and behaviors are available as hybrid versions, 
+which can be used with both Polymer 1.x and Polymer 2.x. Use the `2.0-preview` branches of 
+the elements when working with 2.0 Release Candidate.
+{.alert .alert-info}
 
-The [News app demo](https://news.polymer-project.org) showcases a progressive web app implementation of a News site. Read about the implementation of the News app in [Case study: the News app](news-case-study).
+To get a feel for these components in action, you can try out one of the two demo apps:
+
+-   [Shop](https://shop.polymer-project.org/). Shop is a full-featured e-commerce progressive
+    web app demo built using the Toolbox. Read about how it's built in
+    [Case study: the Shop app](case-study).
+
+-   [News](https://news.polymer-project.org/). News is a full-featured progressive
+    web app demo like Shop, but focusing on publishing. Read about how it's built in
+    [Case study: the News app](news-case-study).
+
 
 To get started with the App Toolbox, visit [Build an app with App Toolbox](/1.0/start/toolbox/set-up).
 

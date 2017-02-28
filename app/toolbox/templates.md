@@ -29,7 +29,7 @@ maximum flexibility.
 
 ### Starter Kit
 
-![](/images/1.0/toolbox/starter-kit.png)
+![](/images/toolbox/starter-kit.png)
 
 The `starter-kit` introduces the [`app-layout`](app-layout) elements,
 and composes them in a common left-hand drawer arrangement with a toolbar.
@@ -42,7 +42,7 @@ and will be pre-cached for offline and subsequent use.
 
 ### Shop demo application
 
-![](/images/1.0/toolbox/shop-template-desktop.png)
+![](/images/toolbox/shop-template-desktop.png)
 
 The `shop` template is a full-fledged application that builds on the
 `starter-kit` and implements a series of elements that compose into
@@ -50,12 +50,28 @@ a complete e-commerce application.  It demonstrates a typical
 "home - list - detail" type of application flow, and can serve as inspiration
 or a starting point for a complete application.
 
+See the [Shop case study](case-study) for more information.
+
+### News demo application
+
+![](/images/toolbox/news-template-desktop.png)
+
+The `news` template is a full-fledged application that builds on the
+`starter-kit` and implements a series of elements that compose into
+a complete news progressive web app.  It demonstrates loading news
+items, and can serve as inspiration or a starting point for a complete application.
+
+For implementation details, see the [News case study](news-case-study). For information on using
+or customizing the news template, see the
+[News documentation site](https://news-docs.polymer-project.org).
+
+
 ## Where to go from here
 
 The templates are starting points, and you are free to add web components
 discussed in the rest of the Polymer App Toolbox documentation according
 to the needs of your application, as well as from other sources such as the
-[Polymer Element Catalog](https://elements.polymer-project.org/).
+[WebComponents.org](https://www.webcomponents.org/).
 
 See the section on [Building your first Polymer application](../start/toolbox/set-up)
 for a tutorial on getting started with one of the App Toolbox templates.

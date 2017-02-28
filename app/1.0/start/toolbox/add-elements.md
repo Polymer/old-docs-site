@@ -75,7 +75,7 @@ Run this command from your project root directory:
 You should be able to see the `paper-slider` working in your new view now:
 [http://localhost:8080/new-view](http://localhost:8080/new-view).
 
-![Example of page with slider](/images/1.0/toolbox/starter-kit-slider.png)
+![Example of page with slider](/images/toolbox/starter-kit-slider.png)
 
 ## Next steps
 

@@ -55,7 +55,7 @@ following structure:
 
 The diagram below shows the components of a simple app:
 
-![diagram of an app that has two views, which have both individual and shared dependencies](/images/1.0/toolbox/app-build-components.png)
+![diagram of an app that has two views, which have both individual and shared dependencies](/images/toolbox/app-build-components.png)
 
 In this diagram, the solid lines represent _static dependencies_, external resources identified
 in the files using `<link>` and `<script>` tags. Dotted lines represent _dynamic_ or _demand-loaded
@@ -87,7 +87,29 @@ The app should call `importHref` to lazy-load fragments as they're required. For
 user changes to a new route, it imports the fragment(s) associated with that route. This may
 initiate a new request to the server, or simply load the resource from the cache.
 
-    importHref('list-view.html');
+importHref example (Polymer 2.x) {.caption}
+
+```js
+// get a URL relative to this element
+let resolvedUrl = this.resolveUrl('list-view.html');
+
+// import the file
+Polymer.importHref(
+    resolvedUrl,
+    null,  /* callback for successful load -- usually not needed */
+    this._importFailedCallback.bind(this), /* for example, display 404 page */
+    true); /* make import async */
+```
+
+importHref example (Polymer 1.x or hybrid) {.caption}
+
+```js
+var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
+this.importHref(resolvedPageUrl,
+    null,
+    this._importFailedCallback,
+    true);
+```
 
 The shell (including its static dependencies) should contain everything needed for first paint.
 
@@ -120,7 +142,7 @@ For browsers that don't handle HTTP2 Push, the build process produces a set of v
 one bundle for the shell, and one bundle for each fragment. The diagram below shows how a simple
 app would be bundled:
 
-![diagram of the same app as before, where there are 3 bundled dependencies](/images/1.0/toolbox/app-build-bundles.png)
+![diagram of the same app as before, where there are 3 bundled dependencies](/images/toolbox/app-build-bundles.png)
 
 Any dependency shared by two or more fragments is bundled in with the shell and its static
 dependencies.

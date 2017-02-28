@@ -4,12 +4,12 @@ title: "Case study: the News app"
 
 <!-- toc -->
 
-News is a full-featured Progressive Web App (PWA) demo built using the Toolbox. You can try it out
+News is a full-featured progressive web app (PWA) demo built using the Toolbox. You can try it out
 here:
 
 <a href="https://news.polymer-project.org/" class="blue-button">Launch News demo</a>
 
-This case study shows how News uses the principles of Progressive Web App (PWA) design to deliver a
+This case study shows how News uses the principles of progressive web app design to deliver a
 great
 user experience.
 
@@ -21,7 +21,7 @@ element, `<news-app>`, contains the main framework for News. Here's the basic st
 
 <div class="image-container layout horizontal">
   <div class="image-wrapper">
-    <img src="/images/1.0/toolbox/app-structure.png" alt="app structure" width="600px">
+    <img src="/images/toolbox/app-structure.png" alt="app structure" width="600px">
   </div>
 </div>
 
@@ -35,10 +35,10 @@ subfolders.
 
 <div class="image-container layout horizontal">
   <div class="image-wrapper">
-    <img src="/images/1.0/toolbox/news-list.png" alt="screenshot of the list view" width="300px">
+    <img src="/images/toolbox/news-list.png" alt="screenshot of the list view" width="300px">
   </div>
   <div class="image-wrapper">
-    <img src="/images/1.0/toolbox/news-article.png" alt="screenshot of the article view" width="300px">
+    <img src="/images/toolbox/news-article.png" alt="screenshot of the article view" width="300px">
   </div>
 </div>
 
@@ -211,7 +211,7 @@ These relationships are shown here:
 
 <div class="image-container layout horizontal">
   <div class="image-wrapper">
-    <img src="/images/1.0/toolbox/data-binding.png" alt="data binding relationships" width="700px">
+    <img src="/images/toolbox/data-binding.png" alt="data binding relationships" width="700px">
   </div>
 </div>
 
@@ -220,7 +220,7 @@ visits `/list/top_stories`:
 
 <div class="image-container layout horizontal">
   <div class="image-wrapper">
-    <img src="/images/1.0/toolbox/sequence-diagram.png" alt="sequence diagram of data flow" width="700px">
+    <img src="/images/toolbox/sequence-diagram.png" alt="sequence diagram of data flow" width="700px">
   </div>
 </div>
 
