@@ -23,6 +23,10 @@ Install the `app-route` package with Bower:
 
     bower install --save PolymerElements/app-route
 
+For 2.0 Release Candidate, use the `2.0-preview` branch:
+
+    bower install --save PolymerElements/app-route#2.0-preview
+
 ## Add routing
 
 Your first task is to decide how your app's routes map to elements. For example, if you have an
@@ -141,6 +145,8 @@ When using `<app-route>`, there are two ways to change the current URL.
 
 Previous sections showed data binding to routes and route data, but sometimes you need to run code
 when the route changes. Using observers, it's simple to react to changes to the route or data:
+
+Route observer example (Polymer 1.x) {.caption}
 
 ```
 observers: [

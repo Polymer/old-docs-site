@@ -4,12 +4,12 @@ title: "Case study: the News app"
 
 <!-- toc -->
 
-News is a full-featured Progressive Web App (PWA) demo built using the Toolbox. You can try it out
+News is a full-featured progressive web app (PWA) demo built using the Toolbox. You can try it out
 here:
 
 <a href="https://news.polymer-project.org/" class="blue-button">Launch News demo</a>
 
-This case study shows how News uses the principles of Progressive Web App (PWA) design to deliver a
+This case study shows how News uses the principles of progressive web app design to deliver a
 great
 user experience.
 

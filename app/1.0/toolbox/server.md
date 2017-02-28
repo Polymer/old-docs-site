@@ -87,7 +87,29 @@ The app should call `importHref` to lazy-load fragments as they're required. For
 user changes to a new route, it imports the fragment(s) associated with that route. This may
 initiate a new request to the server, or simply load the resource from the cache.
 
-    importHref('list-view.html');
+importHref example (Polymer 2.x) {.caption}
+
+```js
+// get a URL relative to this element
+let resolvedUrl = this.resolveUrl('list-view.html');
+
+// import the file
+Polymer.importHref(
+    resolvedUrl,
+    null,  /* callback for successful load -- usually not needed */
+    this._importFailedCallback.bind(this), /* for example, display 404 page */
+    true); /* make import async */
+```
+
+importHref example (Polymer 1.x or hybrid) {.caption}
+
+```js
+var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
+this.importHref(resolvedPageUrl,
+    null,
+    this._importFailedCallback,
+    true);
+```
 
 The shell (including its static dependencies) should contain everything needed for first paint.
 

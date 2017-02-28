@@ -21,11 +21,18 @@ library docs as reference for the available message formats and options.
 Each element that displays content to be localized should add `Polymer.AppLocalizeBehavior`.
 All of these elements share a common localization cache, so you only need to load translations once.
 
+`AppLocalizeBehavior` can be used directly in Polymer 1.x elements and Polymer 2.x hybrid elements.
+For class-style elements, use the `mixinBehaviors` method.
+
 ## Install AppLocalizeBehavior
 
 Install the `app-localize-behavior` package with Bower:
 
     bower install --save PolymerElements/app-localize-behavior
+
+For 2.0 Release Candidate, use the `2.0-preview` branch:
+
+    bower install --save PolymerElements/app-localize-behavior#2.0-preview
 
 
 ## Add localization to your app
@@ -33,9 +40,52 @@ Install the `app-localize-behavior` package with Bower:
 The main application is usually responsible for loading the localized messages and setting the
 current language.
 
-Sample application loading resources from an external file. { .caption.}
+Sample application (Polymer 2.x) {.caption}
 
+```html
+<dom-module id="x-app">
+  <template>
+    <!-- use the localize method to localize text -->
+    <div>{{localize('hello', 'name', 'Batman')}}</div>
+  </template>
+  <script>
+    class XApp extends Polymer.mixinBehaviors([Polymer.AppLocalizeBehavior], Polymer.Element) {
+      static get is() { return 'x-app'}
+
+      static get config() {
+        return {
+          properties: {
+
+            // set the current language—shared across all elements in the app
+            // that use AppLocalizeBehavior
+            language: {
+              value: 'en'
+            },
+
+            // Initialize locale data
+            resources: {
+              value() {
+                return {
+                  'en': { 'hello': 'My name is {name}.' },
+                  'fr': { 'hello': 'Je m\'apelle {name}.' }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    customElements.define(XApp.is, XApp);
+  </script>
+</dom-module>
 ```
+
+More typically, the app loads resources from an external file, as shown in the next example.
+
+Sample application (Polymer 1.x or hybrid) {.caption}
+
+```html
 <dom-module id="x-app">
    <template>
     <!-- use the localize method to localize text -->
@@ -66,6 +116,7 @@ Sample application loading resources from an external file. { .caption.}
    </script>
 </dom-module>
 ```
+
 
 The main app is also responsible for loading the `Intl` polyfill
 (not shown above).
