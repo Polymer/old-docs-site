@@ -2,6 +2,8 @@
 title: Shadow DOM concepts
 ---
 
+<!-- toc -->
+
 Shadow DOM is a new DOM feature that helps you build components. You can think of shadow DOM as a
 **scoped subtree** inside your element.
 
