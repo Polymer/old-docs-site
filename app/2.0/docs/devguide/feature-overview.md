@@ -3,8 +3,9 @@ subtitle: Feature Overview
 title: Polymer library
 ---
 
-The Polymer library provides a set of features for creating custom elements. These features are designed
-to make it easier and faster to make custom elements that work like standard DOM elements. Similar to standard DOM elements, Polymer elements can be:
+The Polymer library provides a set of features for creating custom elements. These features are
+designed to make it easier and faster to make custom elements that work like standard DOM elements.
+Similar to standard DOM elements, Polymer elements can be:
 
 * Instantiated using a constructor or `document.createElement`.
 * Configured using attributes or properties.
@@ -17,32 +18,42 @@ A basic Polymer element definition looks like this:
 
 ```
     <dom-module id="element-name">
-
+      <!-- Optional shadow DOM template -->
       <template>
         <style>
           /* CSS rules for your element */
         </style>
 
-        <!-- local DOM for your element -->
+        <!-- shadow DOM for your element -->
 
         <div>{{greeting}}</div> <!-- data bindings in local DOM -->
       </template>
 
       <script>
-        // element registration
-        Polymer({
-          is: "element-name",
+        // Define the element's API using an ES2015 class
+        class XCustom extends Polymer.Element {
 
-          // add properties and methods on the element's prototype
+          static get is() { return 'x-custom'; }
 
-          properties: {
-            // declare properties for the element's public API
-            greeting: {
-              type: String,
-              value: "Hello!"
+          // Declare properties for the element's public API
+          static get properties() {
+            return {
+              greeting: {
+                type: String,
+                value: "Hello!"
+              }
             }
           }
-        });
+
+          // Add methods to the element's public API
+          greetMe() {
+            console.log(this.greeting);
+          }
+
+        }
+
+        // Register the x-custom element with the browser
+        customElements.define(XCustom.is, XCustom);
       </script>
 
     </dom-module>
@@ -51,32 +62,24 @@ A basic Polymer element definition looks like this:
 
 This guide divides the features into the following groups:
 
-*   [Registration and lifecycle](registering-elements). Registering an
-    element associates a class (prototype) with a custom element name. The
-    element provides callbacks to manage its lifecycle. Use behaviors to
-    share code.
+*   [Custom elements](custom-elements). Registering an
+    element associates a class with a custom element name. The
+    element provides callbacks to manage its lifecycle. Polymer also lets you declare properties,
+    to integrate your element's property API with the Polymer data system.
 
-*   [Declared properties](properties). Declared properties can be
-    configured from markup using attributes. Declared properties can optionally
-    support change observers, two-way data binding, and reflection to attributes.
-    You can also declare computed properties and read-only properties.
+*   [Shadow DOM](shadow-dom). Shadow DOM provides a local, encapsulated DOM tree for your element.
+    Polymer can automatically create and populate a shadow tree for your element from a DOM 
+    template.
 
-*   [Local DOM](local-dom). Local DOM is the DOM created and managed by the element.
+*   [Events](events). Polymer provides a declarative syntax for attaching event listeners to
+    shadow DOM children. It also provides an optional library for handling gesture events.
 
-*   [Events](events). Attaching event listeners to the host object
-    and local DOM children. Event retargeting.
+*   [Data system](data-system). The Polymer data system provides data binding to properties and
+    attributes; property observers; and computed properties.
 
-*   [Data binding](data-binding). Property bindings. Binding to attributes.
 
-*   [Behaviors](behaviors). Behaviors are reusable modules of code that can be
-    mixed into Polymer elements.
+If you're upgrading an existing 1.x element to the new APIs, see the
+[Upgrade guide](/2.0/docs/upgrade) for advice.
 
-*   [Utility functions](instance-methods). Helper methods for common tasks.
-
-*   [Experimental features and elements](experimental). Experimental template and styling features.
-    Feature layering.
-
-If you're migrating an existing 0.5 element to the new APIs, see the [Migration guide](/1.0/docs/migration)
-for advice.
-
-If you're upgrading from the 0.8 release, see the [Release notes](/1.0/docs/release-notes).
+If you're looking for the latest changes in this release, see the
+[Release notes](/2.0/docs/release-notes).
