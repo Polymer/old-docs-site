@@ -170,6 +170,21 @@ to the element's `owner` property, so it's updated as the user types.
 data binding and input validation.
 {: .alert .alert-info }
 
+### Use the template repeater
+
+The template repeater (`dom-repeat`) is a specialized template that binds to an array. It creates one instance of the template's contents for each item in the array.
+
+<demo-tabs selected="0" src="http://plnkr.co/edit/fF7dWqgtI3WCsFZnG97j?p=preview">
+  <demo-tab heading="employee-list.html">
+<pre><code>{{{include_file('2.0/start/samples/employee-list/employee-list.html')}}}</code></pre>
+  </demo-tab>
+  <demo-tab heading="index.html">
+<pre><code>{{{include_file('2.0/start/samples/employee-list/index.html')}}}</code></pre>
+  </demo-tab>
+
+  <iframe frameborder="0" src="samples/employee-list/index.html" width="100%" height="100"></iframe>
+</demo-tabs>
+
 ## Next steps
 
 Now that you understand these fundamental Polymer concepts, you can
