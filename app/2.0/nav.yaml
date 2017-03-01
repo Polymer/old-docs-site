@@ -181,7 +181,7 @@
   shortpath: community
   path: /community/
 
-- section: Api docs
+- section: API Reference
   shortpath: api
   path: /2.0/api/
   items:

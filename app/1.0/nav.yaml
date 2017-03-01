@@ -190,7 +190,7 @@
   shortpath: community
   path: /community/
 
-- section: Api docs
+- section: API Reference
   shortpath: api
   path: /1.0/api/
   items:

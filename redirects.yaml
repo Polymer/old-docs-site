@@ -38,6 +38,7 @@
 - /1.0/docs/api/ /1.0/docs/api/Polymer.Base
 # newer but now old API docs entry point
 - /1.0/docs/api/* /1.0/api/
+- /2.0/api/ /2.0/api/Polymer.Base
 
 # There are some links out there on the web to the old vulcanize article.
 - /articles/concatenating-web-components.html /1.0/docs/tools/optimize-for-production
