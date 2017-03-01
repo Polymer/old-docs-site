@@ -127,14 +127,14 @@
     indent: True
   - endheader: True
   - header: Resources
-  - title: Community
-    path: /2.0/docs/community
-    indent: True
   - title: Browser compatibility
     path: /2.0/docs/browsers
     indent: True
   - title: Glossary
     path: /2.0/docs/glossary
+    indent: True
+  - title: Global settings
+    path: /2.0/docs/devguide/settings
     indent: True
   - endheader: True
 
@@ -208,7 +208,4 @@
     indent: True
   - title: Polymer.Templatizer
     path: /2.0/api/Polymer.Templatizer
-    indent: True
-  - title: Global settings
-    path: /2.0/docs/devguide/settings
     indent: True
