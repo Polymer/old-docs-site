@@ -5,9 +5,11 @@
 <dom-module id="employee-list">
   <template>
     <div> Employee list: </div>
+    <p></p>
     <template is="dom-repeat" items="{{employees}}">
         <div>First name: <span>{{item.first}}</span></div>
         <div>Last name: <span>{{item.last}}</span></div>
+        <p></p>
     </template>
   </template>
   <script>

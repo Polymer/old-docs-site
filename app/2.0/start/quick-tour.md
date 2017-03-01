@@ -12,7 +12,7 @@ and make it even easier to build complex, interactive elements:
 - Registering elements
 - Lifecycle callbacks
 - Property observation
-- Local DOM template
+- Shadow DOM template
 - Data binding
 
 In this section you can take a quick tour of the Polymer library,
@@ -30,7 +30,7 @@ an element name with a class, so you can add properties and methods to your cust
 element. The custom element's name **must start with an ASCII letter and
 contain a dash (-)**.
 
-<demo-tabs selected="0" src="http://plnkr.co/edit/0YfRfNXvPCEe4bu8dtSI?p=preview">
+<demo-tabs selected="0" src="http://plnkr.co/edit/NBuzodQJsOHov5mqtw39?p=preview">
   <demo-tab heading="proto-element.html">
 <pre><code>{{{include_file('2.0/start/samples/custom-element/custom-element.html')}}}</code></pre>
   </demo-tab>
@@ -70,7 +70,7 @@ You can use Polymer's DOM templating to create a shadow DOM tree for your elemen
   <iframe frameborder="0" src="samples/dom-element/index.html" width="100%" height="40"></iframe>
 </demo-tabs>
 
-Local DOM is encapsulated inside the element.
+Shadow DOM is encapsulated inside the element.
 
 <p><a href="/1.0/docs/devguide/dom-template" class="blue-button">Learn more: DOM templating</a></p>
 
@@ -93,7 +93,7 @@ with a styled `<div>` tag.
   <iframe frameborder="0" src="samples/picture-frame/index.html" width="100%" height="60"></iframe>
 </demo-tabs>
 
-**Note:** The CSS styles defined inside the `<dom-module>` are _scoped_ to the element's local DOM.
+**Note:** The CSS styles defined inside the `<dom-module>` are _scoped_ to the element's shadow DOM.
 So the `div` rule here only affects `<div>` tags inside `<picture-frame>`.
 {: .alert .alert-info }
 
@@ -102,8 +102,8 @@ Learn more: Composition & distribution</a></p>
 
 ### Use data binding
 
-Of course, it's not enough to have static local DOM. You usually want to have your element update
-its local DOM dynamically.
+Of course, it's not enough to have static shadow DOM. You usually want to have your element update
+its shadow DOM dynamically.
 
 Data binding is a great way to quickly propagate changes in your element and reduce boilerplate code.
 You can bind properties in your component using the "double-mustache" syntax (`{%raw%}{{}}{%endraw%}`).
@@ -187,9 +187,7 @@ The template repeater (`dom-repeat`) is a specialized template that binds to an 
 
 ## Next steps
 
-Now that you understand these fundamental Polymer concepts, you can
-[build your first element](/2.0/start/first-element/intro) or explore
-the remainder of the Developer guide.
+Now that you understand these fundamental Polymer concepts, you can [build an app with App Toolbox](/2.0/start/toolbox/set-up) or see a [feature overview of the Polymer library](/2.0/docs/devguide/feature-overview).
 
 <script>
 Polymer.Base.importHref(Polymer.Base.resolveUrl('/elements/demo-tabs.html'));
