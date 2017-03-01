@@ -59,7 +59,7 @@ You can use the `ready` callback for one-time initialization work after the elem
 Many elements include some internal DOM nodes to implement the element's UI and behavior.
 You can use Polymer's DOM templating to create a shadow DOM tree for your element.
 
-<demo-tabs selected="0" src="http://plnkr.co/edit/qwNuu5ujuKuhMUHJUHAP?p=preview">
+<demo-tabs selected="0" src="http://plnkr.co/edit/86FGCArnjfcNo6W4xjKp?p=preview">
   <demo-tab heading="dom-element.html">
 <pre><code>{{{include_file('2.0/start/samples/dom-element/dom-element.html')}}}</code></pre>
   </demo-tab>
@@ -109,7 +109,7 @@ Data binding is a great way to quickly propagate changes in your element and red
 You can bind properties in your component using the "double-mustache" syntax (`{%raw%}{{}}{%endraw%}`).
 The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced between the brackets.
 
-<demo-tabs selected="0" src="http://plnkr.co/edit/IdMTRu1boSjWIA6q7Kj8?p=preview">
+<demo-tabs selected="0" src="http://plnkr.co/edit/llxoF8FSWibWceOG9U8Q?p=preview">
   <demo-tab heading="name-tag.html">
 <pre><code>{{{include_file('2.0/start/samples/name-tag/name-tag.html')}}}</code></pre>
   </demo-tab>
@@ -120,7 +120,7 @@ The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced 
   <iframe frameborder="0" src="samples/name-tag/index.html" width="100%" height="40"></iframe>
 </demo-tabs>
 
-<p><a href="/1.0/docs/devguide/data-binding" class="blue-button">
+<p><a href="/2.0/docs/devguide/data-binding" class="blue-button">
 Learn more: data binding</a></p>
 
 ### Declare a property
@@ -132,7 +132,7 @@ values, configuring properties from markup, observing property changes, and more
 The following example declares the `owner` property from the last example.
 It also shows configuring the owner property from markup in `index.html`.
 
-<demo-tabs selected="0" src="http://plnkr.co/edit/DhDSeqNrmLflcQ8UZI1R?p=preview">
+<demo-tabs selected="0" src="http://plnkr.co/edit/AQn8VGT4fut4Z5ciglOK?p=preview">
   <demo-tab heading="configurable-name-tag.html">
 <pre><code>{{{include_file('2.0/start/samples/configurable-name-tag/configurable-name-tag.html')}}}</code></pre>
   </demo-tab>
