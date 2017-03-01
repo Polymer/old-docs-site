@@ -2,7 +2,7 @@
 title:  "Discover and communicate with nearby Bluetooth devices"
 ---
 
-We're particularly glad to share with you today the [platinum bluetooth elements](https://elements.polymer-project.org/elements/platinum-bluetooth?active=platinum-bluetooth-device), a
+We're particularly glad to share with you today the [platinum bluetooth elements](https://www.webcomponents.org/element/PolymerElements/platinum-bluetooth/platinum-bluetooth-device), a
 brand new set of [Polymer platinum
 elements](https://elements.polymer-project.org/browse?package=platinum-elements)
 to discover and communicate with nearby Bluetooth devices. These new components
@@ -18,12 +18,12 @@ connect to nearby Bluetooth devices and read/write Bluetooth characteristics.
 ## Demo
 
 The [official
-demo](https://elements.polymer-project.org/elements/platinum-bluetooth?view=demo:demo/)
+demo](https://www.webcomponents.org/element/PolymerElements/platinum-bluetooth/demo/demo/)
 featuring [platinum bluetooth
 elements](https://elements.polymer-project.org/elements/platinum-bluetooth)
 will give you an idea of what you can do with it:
 
-<a href="https://elements.polymer-project.org/elements/platinum-bluetooth?view=demo:demo/">
+<a href="https://www.webcomponents.org/element/PolymerElements/platinum-bluetooth/demo/demo/">
   <img src="/images/releases/platinum-bluetooth-demo.png" style="width: auto; margin-left: auto; margin-right: auto; height: 450px" alt="platinum bluetooth demo screenshot">
 </a>
 
@@ -38,7 +38,7 @@ you don't control the server, check out our new
 element.
 
 The new
-[`<platinum-bluetooth-device>`](https://elements.polymer-project.org/elements/platinum-bluetooth?active=platinum-bluetooth-device)
+[`<platinum-bluetooth-device>`](https://www.webcomponents.org/element/PolymerElements/platinum-bluetooth/platinum-bluetooth-device)
 element allows you to easily [discover nearby bluetooth
 devices](https://developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web#scan-for-bluetooth-devices).
 For instance, here's how to request a nearby bluetooth device advertising
@@ -65,7 +65,7 @@ button.addEventListener('click', function() {
 ## Read a Bluetooth Characteristic
 
 What we really want to do now is read a Bluetooth Characteristic. This
-can be simply achieved with a child element [`<platinum-bluetooth-characteristic>`](https://elements.polymer-project.org/elements/platinum-bluetooth?active=platinum-bluetooth-characteristic).
+can be simply achieved with a child element [`<platinum-bluetooth-characteristic>`](https://www.webcomponents.org/element/PolymerElements/platinum-bluetooth/platinum-bluetooth-characteristic).
 
 Once again, here's how to read battery level from a nearby bluetooth
 device advertising Battery service:

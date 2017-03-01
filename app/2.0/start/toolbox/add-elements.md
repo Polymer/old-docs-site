@@ -76,5 +76,5 @@ Now that you've added a 3rd-party component to your page, learn how to
 
 [bower]: http://bower.io/
 [catalog]: https://elements.polymer-project.org/
-[paper-checkbox]: https://elements.polymer-project.org/elements/paper-checkbox
+[paper-checkbox]: https://www.webcomponents.org/element/PolymerElements/paper-checkbox
 [ceio]: https://customelements.io/

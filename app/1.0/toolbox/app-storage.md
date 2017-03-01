@@ -19,7 +19,7 @@ declarative, and easier than ever before.
 
 ### Offline data mirroring
 
-The [`<app-indexeddb-mirror>`](https://elements.polymer-project.org/elements/app-storage?active=app-indexeddb-mirror)
+The [`<app-indexeddb-mirror>`](https://www.webcomponents.org/element/PolymerElements/app-storage/app-indexeddb-mirror)
 element provides a read-only mirror of a database like Firebase. This ensures that
 users will have access to their personal data even when there is no network available.
 
