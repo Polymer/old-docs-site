@@ -68,7 +68,8 @@ This guide divides the features into the following groups:
     to integrate your element's property API with the Polymer data system.
 
 *   [Shadow DOM](shadow-dom). Shadow DOM provides a local, encapsulated DOM tree for your element.
-    Polymer can automatically create a populate a shadow tree for your element from a DOM template.
+    Polymer can automatically create and populate a shadow tree for your element from a DOM 
+    template.
 
 *   [Events](events). Polymer provides a declarative syntax for attaching event listeners to
     shadow DOM children. It also provides an optional library for handling gesture events.
