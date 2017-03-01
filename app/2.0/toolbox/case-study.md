@@ -37,7 +37,7 @@ elements build views, such as the browse and detail views. The stores for user
 and product data are also implemented as elements. These elements are in turn
 composed of reusable elements, like buttons and tabs. Reusable elements also
 supply other essential functions, including overall layout and routing. The
-[`<iron-pages>`](https://elements.polymer-project.org/elements/iron-pages)
+[`<iron-pages>`](https://www.webcomponents.org/element/PolymerElements/iron-pages)
 element controls which view is currently visible.
 
 ![the high level architecture of the application, as described above](/images/1.0/toolbox/high-level-arch.png)
@@ -45,7 +45,7 @@ element controls which view is currently visible.
 ## Routing
 
 Shop's client-side URL routing is based on the
-[`<app-route>`](https://elements.polymer-project.org/elements/app-route)
+[`<app-route>`](https://www.webcomponents.org/element/PolymerElements/app-route)
 element, a modular routing element. The app element has a top-level
 `<app-route>` element that's bound to the page URL, and selects the top-level
 view by setting the app element's `page` property.
@@ -65,7 +65,7 @@ the category "Shoes" to the browse view.
 More information:
 
 -   [Encapsulated routing with elements](/1.0/blog/routing)
--   [`<app-route>` API reference](https://elements.polymer-project.org/elements/app-route)
+-   [`<app-route>` API reference](https://www.webcomponents.org/element/PolymerElements/app-route)
 
 ## Views
 
@@ -73,7 +73,7 @@ The main views of the element are controlled by an `<iron-pages>` element, which
 displays a single view at a time. When a view is active, it takes over the whole
 content area below the app header.
 
-The [`<iron-pages>`](https://elements.polymer-project.org/elements/iron-pages)
+The [`<iron-pages>`](https://www.webcomponents.org/element/PolymerElements/iron-pages)
 element is bound to the app element's `page` property, which is in turn set
 based on the current route. The view switching code looks like this:
 
@@ -190,7 +190,7 @@ If you add more elements to the app, you can find the custom properties for
 those elements in the element API doc. (For example, in the example above,
 `--app-primary-color` is used to set the `<paper-button>` ink color, as
 documented in the `<paper-button>`
-[API docs](https://elements.polymer-project.org/elements/paper-button#styling).
+[API docs](https://www.webcomponents.org/element/PolymerElements/paper-button#styling).
 
 For more on custom properties and mixins, see the
 [Polymer docs](/1.0/docs/devguide/styling#xscope-styling-details). Polymer

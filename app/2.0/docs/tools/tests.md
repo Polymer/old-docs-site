@@ -220,7 +220,7 @@ Web Component Tester includes [Sinon](http://sinonjs.org/), which enables you to
 requests and create fake servers.
 
 Below is an example of a simple XHR unit test suite for
-[`<iron-ajax>`](https://elements.polymer-project.org/elements/iron-ajax).
+[`<iron-ajax>`](https://www.webcomponents.org/element/PolymerElements/iron-ajax).
 Check out Sinon's documentation for more in-depth examples.
 
 ```
