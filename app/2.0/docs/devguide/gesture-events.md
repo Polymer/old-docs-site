@@ -2,20 +2,14 @@
 title: Gesture events
 ---
 
+<!-- toc -->
+
 Polymer provides optional support for custom "gesture" events for certain user
 interactions. These events fire consistently on both touch and mouse environments,
 so we recommend using these events instead of their mouse- or
 touch-specific event counterparts. This provides better interoperability with both touch and
 mouse devices.  For example, `tap` should be used instead of
 `click` for the most reliable cross-platform results.
-
-## Gestures and scroll direction
-
-Listening for certain gestures controls the scrolling direction for touch input.
-For example, nodes with a listener for the `track` event will prevent scrolling
-by default. Elements can override scroll direction with
-`this.setScrollDirection(direction, node)`, where `direction` is one of `'x'`,
-`'y'`, `'none'`, or `'all'`, and `node` defaults to `this`.
 
 ## Using gesture events
 
@@ -44,13 +38,13 @@ using the generic `addEventListener` method. To listen for a gesture event:
     Polymer automatically does the extra bookkeeping for gesture events when you use annotated
     event listeners.
 
-*   Use the `_addEventListenerToNode`/`_removeEventListenerFromNode` instance methods.
+*   Use the `Polymer.Gestures.addListener`/`Polymer.Gestures.removeListener` methods.
 
     ```js
-    this._addEventListenerToNode(this, 'tap', e => {this.tapHandler(e)});
+    Polymer.Gestures.addListener(this, 'tap', e => this.tapHandler(e));
     ```
 
-    You can use the `_addEventListenerToNode` function to add a listener to the host element.
+    You can use the `Polymer.Gestures.addListener` function to add a listener to the host element.
 
 ### Gesture event types
 
@@ -131,12 +125,12 @@ Example declarative event listener { .caption }
 
 Example imperative event listener { .caption }
 
-This example uses `_addEventListenerToNode` to add a listener to the host element, which can't be
+This example uses `Polymer.Gestures.addListener` to add a listener to the host element, which can't be
 done with annotated event listeners. If the listener is attached to the host element or a shadow DOM
 child, you can usually add the event listener once and not worry about removing it.
 
 If you are adding an event listener to a dynamically-added child, you may need to remove the event
-listener with `_removeEventListenerFromNode` when you remove the child, to allow the child element
+listener with `Polymer.Gestures.addListener` when you remove the child, to allow the child element
 to be garbage collected.
 
 ```html
@@ -160,18 +154,28 @@ to be garbage collected.
 
       static get is() {return 'tap-me'}
 
+      constructor() {
+        super();
+        this.count = 0;
+        Polymer.Gestures.addListener(this, 'tap', e => this.handleTap(e));
+      }
+
       handleTap(e) {
         this.count++;
       }
-
-      ready() {
-        super.ready();
-        this.count = 0;
-        this._addEventListenerToNode(this, 'tap', e=>{this.handleTap(e)});
-      }
-
     }
+
     customElements.define(TapMe.is, TapMe);
   </script>
 </dom-module>
 ```
+
+## Gestures and scroll direction
+
+Listening for certain gestures controls the scrolling direction for touch input.
+For example, nodes with a listener for the `track` event will prevent scrolling
+by default. Elements can override scroll direction with
+`this.setScrollDirection(direction, node)`, where `direction` is one of `'x'`,
+`'y'`, `'none'`, or `'all'`, and `node` defaults to `this`.
+
+

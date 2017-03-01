@@ -59,7 +59,7 @@ methods to add and remove event listeners imperatively.
 ```js
 ready() {
   super.ready();
-  this.addEventListener('click', e => {this._myClickListener(e)});
+  this.addEventListener('click', e => this._myClickListener(e));
 }
 ```
 
@@ -70,7 +70,7 @@ be  useful if you need to remove the listener.
 ```js
 constructor() {
   super();
-  this._boundListener = this.myLocationListener.bind(this);
+  this._boundListener = this._myLocationListener.bind(this);
 }
 
 connectedCallback() {
