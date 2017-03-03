@@ -20,7 +20,7 @@ This means we will support from two to three semver major versions of Node.js, d
 
 We support both the [NPM](http://www.npmjs.com) and [Yarn](http://yarnpkg.com) package managers.
 
-We recommend Yarn because of its deterministic results, locking support and reduced duplication of dependencies. Yarn should be drop-in compatible with npm, as it [uses the same package.json format as npm and can install the same packages from the npm registry](https://yarnpkg.com/lang/en/docs/migrating-from-npm/). 
+Yarn should be drop-in compatible with npm, as it [uses the same package.json format as npm and can install the same packages from the npm registry](https://yarnpkg.com/lang/en/docs/migrating-from-npm/). 
 
 We support npm v3 and newer. If you don't have v3 or newer installed, you can upgrade npm by running `npm i -g npm`.
 
