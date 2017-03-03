@@ -299,8 +299,7 @@ the place of the slot in the rendered tree*.
 
 ### Slot APIs
 
-Shadow DOM provides a few new APIs for working with checking distribution:
-
+Shadow DOM provides a few new APIs for checking distribution:
 
 
 *   `HTMLElement.assignedSlot` property gives the assigned slot for an element, or `null` if the
@@ -310,6 +309,50 @@ Shadow DOM provides a few new APIs for working with checking distribution:
 *   HTMLSlotElement.slotchange event is fired when a slot's distributed nodes change.
 
 For more details, see [Working with slots in JS](https://developers.google.com/web/fundamentals/primers/shadowdom/?hl=en#workwithslots) on Web Fundamentals.
+
+
+### Observe added and removed children {#observe-nodes}
+
+The `Polymer.FlattenedNodesObserver` class provides utilities to track an element's _flattened tree_.
+That is, a list of the node's child nodes, with any `<slot>` elements replaced by their distributed
+nodes.
+
+`Polymer.FlattenedNodesObserver.getFlattenedNodes(node)` returns a list of flattened nodes for
+the specified node.
+
+Use the `Polymer.FlattenedNodesObserver` class to track when the flattened node list changes.
+
+```js
+this._observer = new Polymer.FlattenedNodesObserver(this.$.slot, (info) => {
+  this._processNewNodes(info.addedNodes);
+  this._processRemovedNodes(info.removedNodes);
+});
+```
+
+You pass the `FlattenedNodesObserver` a callback to be invoked when nodes are added or
+removed. The callback takes a single Object argument, with `addedNodes` and
+`removedNodes` arrays.
+
+The method returns a handle that can be used to stop observation:
+
+```js
+this._observer.disconnect();
+```
+
+A few notes on `FlattenedNodesObserver`:
+
+
+*   The callback argument lists added and removed nodes, not just elements.
+    If you're only interested in elements, you can filter the node list:
+
+    ```js
+    info.addedNodes.filter(function(node) {
+      return (node.nodeType === Node.ELEMENT_NODE)
+    });
+    ```
+
+*   The observer handle also provides a `flush` method, that can be used for unit testing.
+
 
 ## Event retargeting
 
@@ -497,6 +540,7 @@ A component can import or *mix in* the entire set of rules using the `@apply` ru
 
 The `@apply` rule has the same effect as adding the contents of `--my-custom-mixin` inline in the
 ruleset where `@apply` is used.
+
 
 ## Shadow DOM polyfills
 

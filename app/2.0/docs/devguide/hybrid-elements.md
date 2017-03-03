@@ -160,10 +160,10 @@ You need to move any DOM work out the `created` callback:
 The `ready` callback, for one-time initialization, is called after the  element's shadow DOM has
 been created.
 
-The major difference between 1.x and 2.0 has to do with the timing of initial light DOM distribution.
+The major difference between 1.x and 2.x has to do with the timing of initial light DOM distribution.
 In the v1 shady DOM polyfill, initial distribution of children into `<slot>` is asynchronous
 (microtask) to creating the `shadowRoot`, meaning distribution occurs after observers are run and
-`ready`  is called. In the Polymer 1.0 shim, initial distribution occurs before `ready`.
+`ready`  is called. In the Polymer 1.x shim, initial distribution occurs before `ready`.
 
 To check the initial distribution, use `setTimeout` or `requestAnimationFrame` from `ready`. The
 callback should fire after initial distribution is complete.
@@ -189,35 +189,41 @@ ready: function() {
 ```
 
 For more details on `observeNodes`, see
-[Observe added and removed children](/1.0/docs/devguide/local-dom#observe-nodes) in the Polymer 1
+[Observe added and removed children](/1.0/docs/devguide/shadow-dom#observe-nodes) in the Polymer 1
 documentation.
 
-In order to force distribution synchronously, call `ShadyDOM.flush()`. This can be useful for unit
-tests.
+In order to force distribution synchronously, call `Polymer.dom.flush`. This can be useful for
+unit tests.
+
+In 2.x, `Polymer.dom.flush` does not flush the `observeNodes` callbacks. To force the `observeNodes`
+callbacks to be invoked, call the `flush` method on the observer object returned from `observeNodes`.
 
 ### Attach time (attached/connectedCallback) {#attach-time-attached-connectedcallback}
 
-If you have any code that relies on the element being rendered when the `attached` callback runs
-(for example, measuring the element or its children), it must wait until the element has rendered.
+If you have any code that relies on the element being laid out when the `attached` callback runs
+(for example, measuring the element or its children), it must wait until layout is complete.
 
-In 1.x, the `attached` callback is deferred until the element has been rendered
+In 1.x, the `attached` callback is deferred until layout is complete.
 
-Use the `Polymer.RenderStatus.afterNextRender` function to register a one-time callback after the
-next render.
+Use the `Polymer.RenderStatus.beforeNextRender` function to register a one-time callback after
+layout is complete, but before paint.
 
 ```
 attached: function() {
   // 1st argument to afterNextRender is used as the "this"
   // value when the callback is invoked.
-  Polymer.RenderStatus.afterNextRender(this, function() {
+  Polymer.RenderStatus.beforeNextRender(this, function() {
      // measure something
   });
 }
 ```
 
+For work that can be deferred until after first paint (such as adding event listeners), you can use
+`Polymer.RenderStatus.afterNextRender`, which takes the same arguments as `beforeNextRender`.
+
 ### Hybrid behaviors {#hybrid-behaviors}
 
-Like Polymer 1.x elements, hybrid elements can share code using_behaviors_, which can define
+Like Polymer 1.x elements, hybrid elements can share code using _behaviors_, which can define
 properties, lifecycle callbacks, event listeners, and other features. To work with hybrid elements,
 hybrid behaviors must follow the same constraints as hybrid elements.
 
@@ -316,6 +322,7 @@ Anywhere you're using `x-forward-compat`, you need to use the new slot syntax:
   <h2 slot="named">I'm the named content</h2>
   <span>This content goes to the default slot.</span>
 </x-forward-compat>
+```
 
 #### Default slot behavior
 
@@ -336,7 +343,7 @@ For example, given this set of slots:
 ```
 
 Content with `slot="footer"` is distributed to the _default_ slot in 1.x, but distributed to the
-last slot in 2.0.
+last slot in 2.x.
 
 ### DOM APIs
 
@@ -345,6 +352,45 @@ When working with the DOM imperatively, use the Polymer 1.x APIs, such as `Polym
 
 Note that the initial distribution of light DOM children into slots may be delayed under the
 polyfill, as described in the [discussion of the `ready` callback](#ready-time).
+
+Also note that `Polymer.dom.flush` does not flush `observeNodes` callbacks in 2.0. This is most
+likely to affect unit tests using `Polymer.dom.flush` to ensure that shadow DOM children have been
+distributed.
+
+This change is because `observeNodes` uses the native `slotchange` event where possible and there
+is no mechanism to force the event to fire. Instead, there is a `flush` method on the observer
+object.
+
+x-sample.html {.caption}
+
+```
+attached: function() {
+  this._observer = Polymer.dom(this).observeNodes(this._onNodesChange);
+},
+_onNodesChange: function() {
+  this.count = Polymer.dom(this).children.length;
+}
+```
+
+Test code, before {.caption}
+
+```
+Polymer.dom(myElement).appendChild(document.createElement('div'));
+Polymer.dom.flush();
+// test some condition that should be true after the observeNodes callback fires
+assert.equal(myElement.count, 1, 'child count should be 1');
+```
+
+Test code, after {.caption}
+
+```
+Polymer.dom(myElement).appendChild(document.createElement('div'));
+myElement._observer.flush ? overlay._observer.flush() : Polymer.dom.flush();
+// test some condition that should be true after the observeNodes callback fires
+assert.equal(myElement.count, 1, 'child count should be 1');
+
+```
+
 
 ## Version-specific code {#version-specific-code}
 

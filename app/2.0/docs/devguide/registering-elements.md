@@ -44,6 +44,31 @@ var el2 = new MyElement();
 
 As shown above, the element's class can define callbacks for the custom element reactions as described in [Custom element lifecycle](custom-elements#element-lifecycle).
 
+## Extending an existing element {#extend-element}
+
+You can leverage native subclassing support provided by ES6 to extend and customize existing
+elements defined using ES6 syntax:
+
+```js
+// Subclass existing element
+class MyElementSubclass extends MyElement {
+  static get is() { return 'my-element-subclass'; }
+  static get properties() { ... }
+  constructor() {
+    super();
+    ...
+  }
+  ...
+}
+
+// Register custom element definition using standard platform API
+customElements.define(MyElementSubclass.is, MyElementSubclass);
+```
+
+If you don't provide a template for your subclass, it inherits the superclass's template by default.
+To override this behavior, or modify the superclass template, override the subclass's `template`
+getter.
+
 ## Imports and APIs
 
 There are three main HTML imports for defining Polymer elements:
@@ -63,6 +88,8 @@ class as the base for 2.x class-style elements. You must still import any helper
 use individually.
 
 Use the `polymer.html` import for defining hybrid elements that can run under both 1.x and 2.x.
+
+
 
 ## Using hybrid behaviors with class-style elements
 
@@ -122,8 +149,6 @@ all imports in the document have finished loading.
   </body>
 </html>
 ```
-
-
 
 ## Define a legacy element {#legacy-element}
 
