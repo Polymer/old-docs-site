@@ -311,22 +311,12 @@ Note that the font family is inherited, but the text color is not. This is becau
 Polymer's custom property shim evaluates and applies custom property values once
 at element creation time.  In order to have an element (and its subtree) re-
 evaluate custom property values due to dynamic changes such as application of
-CSS classes, etc., call the [`updateStyles`](/2.0/docs/api/elements/Polymer.Element#method-updateStyles)
-method on the element. To update all elements on the page, you can also call
+CSS classes, call the [`updateStyles`](/2.0/docs/api/elements/Polymer.Element#method-updateStyles)
+method on the element. To update _all_ elements on the page, you can also call
 `Polymer.updateStyles`.
 
-You can directly modify a Polymer element's custom property by calling `updateStyles`:
-
-```html
-this.updateStyles({
-  '--some-custom-style': 'green',
-  '--another-custom-style': 'blue'
-});
-```
-
-To get the value of a custom property on an element, use
-[`getComputedStyleValue`](/2.0/docs/api/mixins/Polymer.LegacyElementMixin#method-getComputedStyleValue).
-
+`updateStyles` can take a object with property/value pairs to update the current values of
+custom properties.
 
 Example: { .caption }
 
@@ -357,6 +347,29 @@ Example: { .caption }
   </script>
 </dom-module>
 ```
+
+```html
+this.updateStyles({
+  '--some-custom-style': 'green',
+  '--another-custom-style': 'blue'
+});
+```
+
+Occasionally an element needs to get the value of a custom property at runtime. This is handled
+slightly differently depending on whether the shady CSS polyfill is loaded:
+
+```js
+if (ShadyCSS) {
+  style = ShadyCSS.getComputedStyleValue('--something');
+} else {
+  style = getComputedStyle(this, '--something');
+}
+```
+
+Elements using the legacy API can use the
+[`getComputedStyleValue`](/2.0/docs/api/mixins/Polymer.LegacyElementMixin#method-getComputedStyleValue)
+instance method instead of testing for `ShadyCSS`.
+
 
 ### Custom properties shim limitations
 
