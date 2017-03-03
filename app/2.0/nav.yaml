@@ -76,10 +76,10 @@
     path: /2.0/docs/devguide/dom-template
     indent: True
   - title: Style shadow DOM
-    path: /2.0/docs/devguide/styling
+    path: /2.0/docs/devguide/style-shadow-dom
     indent: True
   - title: Custom CSS properties
-    path: /2.0/docs/devguide/custom-properties
+    path: /2.0/docs/devguide/custom-css-properties
     indent: True
   - endheader: True
   - header: Events
