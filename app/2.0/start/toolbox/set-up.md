@@ -22,9 +22,13 @@ Polymer CLI is an all-in-one command line tool for Polymer projects. In this tut
 
             git --version
 
-    *   Node.js (LTS version or higher)
+    *   Node.js (LTS version 6.x)
 
             node -v
+
+    *   npm v3 or higher
+
+            npm -v
 
     *   Bower
 
@@ -35,7 +39,7 @@ Polymer CLI is an all-in-one command line tool for Polymer projects. In this tut
     If you're missing any of these dependencies, follow the instructions in
     the following section from the Polymer CLI guide to learn how to install
     each one: [Install section from Polymer
-    CLI guide](/{{{polymer_version_dir}}}/docs/tools/polymer-cli#install).
+    CLI guide](/1.0/docs/tools/polymer-cli#install).
 
 1.  Install the Polymer CLI.
 
@@ -72,21 +76,23 @@ The diagram below is a brief summary of the files and directories within
 the project.
 
 ```
-bower.json  # bower configuration
-bower_components/  # app dependencies
+bower.json             # bower configuration
+bower_components/      # app dependencies
 images/
-index.html  # main entry point into your app
-manifest.json  # app manifest configuration
-polymer.json  # Polymer CLI configuration
-service-worker.js  # auto-generated service worker
-src/  # app-specific elements
-  my-app.html  # top-level element
-  my-icons.html  # app icons
-  my-view1.html  # sample views or "pages"
+index.html             # main entry point into your app
+manifest.json          # app manifest configuration
+polymer.json           # Polymer CLI configuration
+service-worker.js      # auto-generated service worker
+src/                   # app-specific elements
+  my-app.html            # top-level element
+  my-icons.html          # app icons
+  my-view1.html          # sample views or "pages"
   my-view2.hmtl
   my-view3.html
+  my-view404.html        # sample 404 page
+  shared-styles.html     # sample shared styles
 sw-precache-config.js  # service worker pre-cache configuration
-test/  # unit tests
+test/                  # unit tests
 ```
 
 ## Next steps
@@ -98,4 +104,5 @@ a page to your app.
     href="create-a-page">Next step: Create a page</a>
 
 [toolbox]: /2.0/toolbox/
+[shared styles]: /1.0/docs/devguide/styling.html#style-modules
 [md]: http://www.google.com/design/spec/material-design/introduction.html
