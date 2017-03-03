@@ -10,13 +10,16 @@ an incremental path for updating Polymer 1.x elements to 2.0.
 
 Polymer 2.0 supports several types of elements:
 
-
-*   2.0 class-based elements use the ES6 class-based syntax supported by the custom elements v1
+*   2.x class-based elements use the ES6 class-based syntax supported by the custom elements v1
     specification. Recommended for new development in Polymer 2.0.
-*   2.0 legacy elements use the `Polymer` factory method, and have most of the 1.0 API available to
-    them.
-*   2.0 hybrid elements are elements defined using the legacy `Polymer` factory method, with extra
-    code for backwards compatibility with 1.x. They can run on Polymer 1.7+ as well as Polymer 2.0.
+*   2.x legacy elements use the `Polymer` factory method, and have most of the 1.0 APIs available to
+    them, as well as any new 2.x APIs.
+*   2.x hybrid elements are elements defined using the legacy `Polymer` factory method, with extra
+    code for backwards compatibility with 1.x. They can run on Polymer 1.7+ as well as Polymer 2.x.
+    As much as possible, hybrid elements should stick to the common subset of APIs supported by 1.x
+    and 2.x. In some cases, they may need to conditionalize code to run in 1.x or 2.x.
+    Maintaining hybrid elements is more complicated than maintaining class-based or legacy elements,
+    since they need to be tested on both 1.x and 2.x.
 
 When porting a large project, you can update to Polymer 1.7 and upgrade elements to 2.0 hybrid style
 one at a time. After all of the elements have been upgraded, you can test your project against
@@ -25,32 +28,112 @@ Polymer 2.0.
 The Polymer team plans to release a Polymer Upgrade tool to automatically perform a number of the
 changes required to upgrade 1.x elements to either hybrid or class-based style. The remaining
 changes require either manual code changes, testing, or both to ensure that your element operates
-the same in 2.0 as it did in 1.x.
+the same in 2.0 as it did in 1.x. **The upgrade tool is not available at this time.**
+
 
 See [Install Polymer 2.0](about_20#installing) for installation instructions.
 
 This upgrade guide is a work in progress. Please
 [report issues on GitHub](https://github.com/Polymer/docs/issues/new).
 
-## Shadow DOM changes {#shadow-dom-changes}
+## Upgrade strategy
+
+When upgrading an element or app, there are several possible scenarios:
+
+-   Upgrading an individual element.
+-   Upgrading a small application.
+-   Upgrading a large application that uses many custom, reusable elements.
+
+When upgrading individual elements, you can choose to upgrade to either hybrid mode (if supporting
+both 1.x and 2.x simultaneously is important), or to upgrade directly to legacy mode or class-based
+mode. For simple elements, just updating the DOM template and styling may be enough to get the
+element running in 2.x legacy mode.
+
+For a small application, converting your own elements to hybrid mode is probably not useful.
+The simplest incremental approach is to convert each element's DOM template first and get it running
+in legacy mode. Then you can port elements to class-based mode as desired.
+
+For large applications, where you have written many of your own reusable elements, you may want to
+upgrade elements individually to hybrid mode.
+
+### Before you begin
+
+Before you start the upgrade, there's a couple of things you need to do.
+
+*   Update the Polymer CLI.
+*   Create a new branch or workspace.
+*   Update bower dependencies.
+
+Update the Polymer CLI to the `next` version:
+
+```
+npm update polymer-cli@next
+```
+
+#### Create a new branch or workarea
+
+This should go without saying, but you'll want to work in a new branch or workarea so you don't
+break the existing, 1.x version of your element or app.
+
+#### Update bower dependencies
+
+Update the Polymer version in `bower.json` to the latest RC version.
+
+| Component | Version |
+| Polymer   | `2.0.0-rc1` |
+| webcomponentsjs | `v1` |
+| web-component-tester | `6.0.0-prerelease.5` |
+| Polymer elements | `2.0-preview` |
+
+Example dependencies {.caption}
+
+```
+  "dependencies": {
+    "app-layout": "PolymerElements/app-layout#2.0-preview",
+    "app-route": "PolymerElements/app-route#2.0-preview",
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#2.0-preview",
+    "iron-icon": "PolymerElements/iron-icon#2.0-preview",
+    "iron-iconset-svg": "PolymerElements/iron-iconset-svg#2.0-preview",
+    "iron-localstorage": "PolymerElements/iron-localstorage#2.0-preview",
+    "iron-media-query": "PolymerElements/iron-media-query#2.0-preview",
+    "iron-pages": "PolymerElements/iron-pages#2.0-preview",
+    "iron-selector": "PolymerElements/iron-selector#2.0-preview",
+    "paper-icon-button": "PolymerElements/paper-icon-button#2.0-preview",
+    "polymer": "Polymer/polymer#2.0.0-rc1",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#v1"
+  },
+  "devDependencies": {
+    "web-component-tester": "6.0.0-prerelease.5"
+  },
+```
+
+Run `bower install` to install the new dependencies.
+
+If you are upgrading the element to hybrid mode, you can add extra sets of bower dependencies so you
+can test against multiple versions of Polymer easily. For details, see
+[Manage dependencies for hybrid elements](#dependency-variants).
+
+### Upgrade an element
+
+When upgrading an individual element, start by updating the DOM template and styling.
+
+
+
+## Shadow DOM template and styling {#shadow-dom-changes}
 
 Polymer 2.0 elements create shadow DOM v1 shadow trees.  As such, user code related to scoped
 styling, distribution, and events must be adapted to the native v1 API.
 
 
+*   ***All elements*** need to update their shadow DOM template and styling as described in
+    [DOM template](#dom-template) and [Shadow DOM styles](#shadow-dom-styles).
 
-*   **All elements** need to update their shadow DOM template and styling as described in
-   [DOM template](#dom-template) and [Shadow DOM styles](#shadow-dom-styles).
-*   **Hybrid elements** should continue to use the Polymer.dom APIs, but may require some changes.
-*   **Class-based elements** don't need to use the Polymer.dom APIs for manipulating DOM or
-    referring to events.
 
 ### DOM Template {#dom-template}
 
-**All elements** need to update their shadow DOM template and styling as described in this section.
+**All elements** need to update their shadow DOM templates and styling as described in this section.
 
 Quick summary:
-
 
 *   Remove deprecated patterns in the DOM module (`<dom-module>` using `is` or `name`; styles
     outside of the template).
@@ -82,7 +165,6 @@ Before {.caption}
 </dom-module>
 ```
 
-
 After {.caption}
 
 
@@ -96,7 +178,6 @@ After {.caption}
   </template>
 </dom-module>
 ```
-
 
 #### Replace content elements {#replace-content-elements}
 
@@ -153,7 +234,6 @@ After {.caption}
   <span>Fun at parties.</span>
 </my-el>
 ```
-
 
 Note that if you're using `<content select="...">` anywhere in your code, ***this means a change to
 your element's contract***, and everyone using your element will need to update to use slot names.
@@ -220,7 +300,6 @@ other words, **a node with a slot attribute is never distributed to the default 
 </template>
 ```
 
-
 If you have complex distributions, and you're trying to upgrade to hybrid elements, you may need
 to place **both** `<content>` and `<slot>` elements in the template.
 
@@ -239,9 +318,7 @@ Document content {.caption}
 </parent-el>
 ```
 
-
 Shadow DOM of <`parent-el>` {.caption}
-
 
 ```
 <child-el>
@@ -249,9 +326,7 @@ Shadow DOM of <`parent-el>` {.caption}
 </child-el>
 ```
 
-
 Shadow DOM of `<child-el>` {.caption}
-
 
 ```
 <h2>
@@ -273,9 +348,7 @@ content to a named slot, it must use a slot with a `slot` attribute.
 </parent-el>
 ```
 
-
 Shadow DOM of <`parent-el>` {.caption}
-
 
 ```
 <child-el>
@@ -285,9 +358,7 @@ Shadow DOM of <`parent-el>` {.caption}
 </child-el>
 ```
 
-
 Shadow DOM of `<child-el>` {.caption}
-
 
 ```
 <h2>
@@ -296,9 +367,7 @@ Shadow DOM of `<child-el>` {.caption}
 <h2>
 ```
 
-
 Using the v0 approach does not work in v1:
-
 
 ```
 <!-- v1 redistribution example -->
@@ -307,9 +376,7 @@ Using the v0 approach does not work in v1:
 </parent-el>
 ```
 
-
 Shadow DOM of <`parent-el>` {.caption}
-
 
 ```
 <child-el>
@@ -317,7 +384,6 @@ Shadow DOM of <`parent-el>` {.caption}
   <slot></slot>
 </child-el>
 ```
-
 
 Shadow DOM of `<child-el>` {.caption}
 
@@ -335,7 +401,6 @@ Shadow DOM of `<child-el>` {.caption}
 Update styles in your shadow DOM to match v1 specifications:
 
 
-
 *   Replace `::content` selectors with `::slotted()` selectors.
 *   Remove `/deep/` and `::shadow` selectors, if you're still using them.
 *   Remove `:root` selectors.
@@ -344,10 +409,10 @@ Update styles in your shadow DOM to match v1 specifications:
 
 #### Replace content selectors
 
-Replace any `::content` CSS selectors with <code>::slotted(<em>selector</em>)</code> where
-<code><em>selector</em></code> is a
-[compound selector](https://drafts.csswg.org/selectors-4/#compound) that identifies a
-<strong>top-level distributed child</strong>.
+Replace any `::content` CSS selectors with <code>::slotted(<em>selector</em>)</code>  where
+<code><em>selector</em></code> is [compound selector](https://drafts.csswg.org/selectors-4/#compound)
+that identifies a <strong>top-level distributed child</strong>.
+
 
 That is:
 
@@ -412,17 +477,16 @@ If you still have any `/deep/` or `::shadow` selectors in your project, it's tim
 They don't work at all in shadow DOM v1.
 
 There's no direct substitute for shadow-piercing selectors.To let users customize your element,
-custom CSS properties and mixins are probably the best option.
+custom CSS properties are probably the best option.
+
 
 #### Replace root selectors {#replace-root-selectors}
 
 If you're using the `:root` selector inside an element's template, replace it with:
 
-
 ```css
 :host > * { ... }
 ```
-
 
 (If you're using `:root` selection inside a `custom-style`, replace it with the `html` selector.)
 
@@ -465,7 +529,6 @@ After {.caption}
 </style>
 ```
 
-
 #### Update custom property syntax {#update-custom-property-syntax}
 
 When applying custom properties, Polymer 1.x accepted this incorrect syntax for specifying a default
@@ -473,11 +536,9 @@ value to a `var()` function:
 
 Before {.caption}
 
-
 ```css
 color: var(--special-color,--default-color);
 ```
-
 
 By specification, the default (or fallback) is a CSS value, not a custom property name. To use a
 custom property as a default, add a nested `var()` function.
@@ -513,19 +574,19 @@ After {.caption}
 While custom elements v1 supports customized built-in elements, Polymer 2.0 does not currently use
 them. Instead, it introduces a new `<custom-style>` element that wraps a `<style>` element.
 
-
 *   **Hybrid projects.** Wrap your existing `<style is="custom-style">` elements with
     `<custom-style>` elements.
 *   **2.0-only projects.** Replace your existing  `<style is="custom-style">` elements with
     `<custom-style>` elements.
 *   **All projects.** Replace any `:root` selectors with `html`, and update custom property syntax
-    as described in [Replace root selectors](#replace-root-selectors) and
-    [Update custom property syntax](#update-custom-property-syntax).
+    as described in [Update custom property syntax](#update-custom-property-syntax).
+
 
 Before {.caption}
 
 ```html
 <style is="custom-style">
+  /* In a 1.x custom-style, :root can be used to set global defaults */
   :root {
     --my-theme-color: #9C27B0;
   }
@@ -533,12 +594,13 @@ Before {.caption}
 ```
 
 
-**After (hybrid element):**
+**After (hybrid code):**
 
 
 ```html
 <custom-style>
   <style is="custom-style">
+    /* In a 2.x custom-style use the html selector to set global defaults */
     html {
       --my-theme-color: #9C27B0;
     }
@@ -546,9 +608,7 @@ Before {.caption}
 </custom-style>
 ```
 
-
-**After (class-based element):**
-
+**After (2.x-only code):**
 
 ```html
 <custom-style>
@@ -560,11 +620,16 @@ Before {.caption}
 </custom-style>
 ```
 
+## DOM APIs {#polymer-dom-apis}
 
-### Polymer DOM APIs {#polymer-dom-apis}
+Hybrid and legacy elements can continue to use existing Polymer DOM APIs, but may require some
+changes. Class-based elements should use native DOM APIs.
 
-Hybrid and legacy elements can continue to use existing DOM APIs, but may require some changes.
-Class-based elements should use native DOM APIs.
+
+*   ***Hybrid elements*** should continue to use the Polymer DOM APIs, but may require some changes.
+*   ***Legacy elements*** can use the Polymer DOM APIs or the native DOM APIs.
+*   ***Class-based elements*** should use native DOM APIs.
+
 
 #### Hybrid elements: update Polymer.dom usage {#hybrid-elements-update-polymer-dom-usage}
 
@@ -572,6 +637,10 @@ Hybrid elements need to keep using the `Polymer.dom` API. However, note that in 
 methods and properties that return a `NodeList,` **<code>Polymer.dom</code> APIs also return
 <code>NodeList</code>, not <code>Array</code>.</strong> If you're using any native
 <code>Array</code> methods  on the returned object, you need to update your code.
+
+Legacy elements may continue using Polymer DOM APIs or move to native methods as described in
+[Use native DOM methods](#class-based-and-legacy-elements-use-native-dom-methods)
+
 
 Before {.caption}
 
@@ -584,9 +653,7 @@ _findTextNodes: function() {
 }
 ```
 
-
 After {.caption}
-
 
 ```js
 _findTextNodes: function() {
@@ -596,7 +663,6 @@ _findTextNodes: function() {
       function(n) { return n.nodeType = Node.TEXT_NODE });
 }
 ```
-
 
 #### Class-based and legacy elements: use native DOM methods {#class-based-and-legacy-elements-use-native-dom-methods}
 
@@ -619,36 +685,102 @@ Note that the new ES6 base class, `Polymer.Element`, lacks many of the DOM helpe
 use of native properties and methods where possible. See [Slot APIs](#slot-apis) for information on
 some of the new shadow DOM-related APIs.
 
-## CSS Custom Property Shim {#css-custom-property-shim}
+The `Polymer.FlattenedNodesObserver` class can be used to replace the 1.x `observeNodes` method.
+
+1.x {.caption}
+
+```js
+this._observer = Polymer.dom(this).observeNodes(this._nodesChanged);
+```
+
+2.x {.caption}
+
+```
+this._observer = new Polymer.FlattenedNodesObserver(this._nodesChanged);
+```
+
+In addition, `Polymer.FlattenedNodesObserver.getFlattenedNodes(node)` can be used to replace the
+`getEffectiveChildNodes` method.
+
+
+## CSS custom property shim {#css-custom-property-shim}
 
 Polymer 2.0 continues to use a shim to provide limited support for CSS custom properties on browsers
 that do not yet natively support custom properties. This lets an element expose a custom styling API.
 The shim is now included as part of the shady CSS polyfill, not in the Polymer library itself.
 
-The following changes have been made in the shim that Polymer 2.0 uses:
+Support for custom CSS mixins has been moved to a second, optional shim.
+
+The following changes have been made in the shims that Polymer 2.0 uses:
 
 *   The shim always uses native CSS custom properties on browsers that support them. This was
     optional in 1.x, and it introduces some limitations on the use of mixins.
+*   The CSS mixin shim has been separated into an optional shim.
 *   The `customStyle` instance property has been removed. Use `updateStyles` instead.
-*   Change any code that imperatively creates `custom-style` elements.
 *   Invalid custom properties syntax is no longer supported. These changes are described in
     [Shadow DOM styles](#shadow-dom-styles).
 
-### Include the polyfills
+### Class-based elements: import the CSS mixin shim
 
-Because the CSS custom property shim has been moved out of the Polymer.library, you **must include
-the polyfills in order to use custom property mixins.** Currently, only the full polyfill set
- (`webcomponents-lite.js`) is tested and supported.
+CSS custom properties are becoming widely supported, CSS mixins remain a proposal. So support for
+CSS mixins has been moved to a separate shim that is optional for 2.0 class-style elements. For
+backwards compatibility, the `polymer.html` import includes the CSS mixin shim. Class-style elements
+must explicitly import the mixin shim.
 
-### Native custom properties {#native-custom-properties}
-
-The shim now always uses native CSS Custom Properties by default on browsers that implement them
-(this was opt-in in Polymer 1.x).  The shim performs a one-time transformation of stylesheets
-containing CSS custom property mixins. Where possible, mixins are transformed into individual native
-CSS properties for better performance.
+The shim performs a one-time transformation of stylesheets  containing CSS custom property mixins.
+Where possible, mixins are transformed into individual  native CSS properties for better performance.
 
 This introduces some limitations to be aware of, which are documented in the
 [shady CSS polyfill README](https://github.com/webcomponents/shadycss#custom-properties-and-apply).
+
+The following examples show how to load the CSS mixin shim.
+
+Example: importing CSS mixin shim to top-level file {.caption}
+
+```
+<!-- load polyfills -->
+<script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+<!-- import CSS mixin shim -->
+<link rel="import" href="/bower_components/shadycss/apply-shim.html">
+<!-- import custom-style -->
+<link rel="import" href="/bower_components/polymer/lib/elements/custom-style.html">
+
+<custom-style>
+  <style>
+    html {
+      --my-mixin: {
+        color: blue;
+      }
+    }
+  </style>
+</custom-style>
+```
+
+Example: importing CSS mixin shim to an element {.caption}
+
+```
+<!-- import CSS mixin shim -->
+<link rel="import" href="../shadycss/apply-shim.html">
+<!-- import Polymer.Element -->
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module is="x-custom">
+  <template>
+    <style>
+      :host {
+        @apply --my-mixin;
+      }
+    </style>
+  </template>
+  <script>
+    class XCustom extends Polymer.Element {
+      static get is() {return 'x-custom'}
+    }
+
+    customElements.define(XCustom.is, XCustom);
+  </script>
+</dom-module>
+```
 
 ### Use updateStyles instead of customStyle {#use-updatestyles-instead-of-customstyle}
 
@@ -658,11 +790,11 @@ This use of `updateStyles` was already supported in 1.x. The `customStyle` objec
 Before {.caption}
 
 
+
 ```js
 this.customStyle['--my-dynamic-property'] = 'red';
 this.updateStyles();
 ```
-
 
 After {.caption}
 
@@ -671,16 +803,10 @@ After {.caption}
 this.updateStyles({'--my-dynamic-property': 'red'});
 ```
 
-
-### Dynamic custom-style elements {#dynamic-custom-style-elements}
-
-For performance reasons, the custom properties shim no longer supports creating `custom-style`
-elements dynamically. Any code you have that relies on this needs to be reworked to use other
-mechanisms (such as `updateStyles`).
-
 ## Custom elements APIs {#custom-elements-apis}
 
 Polymer 2.0 elements target the custom elements v1 API.
+
 
 *   **All elements.** The contracts have changed for several of the lifecycle callbacks. Check and
     test your code to make sure this doesn't cause problems with your elements.
@@ -785,9 +911,7 @@ _processLightChildren: function() {
 Polymer doesn't support type-extension elements (such as `<input is="iron-input">`). For a discussion
 of this change, see [Type-extension elements](about_20#type-extension)
 
-
-
-*   **All projects.** Refactor any type-extension elements into wrapper elements.
+*   **All projects.** Refactor your own type-extension elements.
 *   **All projects.** Replace any top-level template extension elements with the 2.0 wrapper
     equivalents.
 
@@ -798,8 +922,9 @@ an element that extends an `<a>` element, an element that takes an `<a>` element
 
 #### Convert template extension elements at the document level {#convert-template-extension-elements-at-the-document-level}
 
-If you have any template extension elements—dom-bind, dom-if, and dom-repeat—*in the main document*,
-convert them to the wrapped form.
+
+If you have any template extension elements—`dom-bind`, `dom-if`, or `dom-repeat`—*in the main
+document*, convert them to the wrapped form.
 
 Before {.caption}
 
@@ -825,7 +950,7 @@ After {.caption}
 
 ```
 <dom-bind>
-  <!-- Hybrid elements must keep the is="dom-bind" for backwards
+  <!-- Hybrid code must keep the is="dom-bind" for backwards
        compatibility. For 2.0-only projects, use a plain template. -->
   <template is="dom-bind">
     <ul>
@@ -844,12 +969,13 @@ domBind.people = [
 </script>
 ```
 
-Don't wrap template extension elements nested inside a Polymer element template or inside another
-`dom-bind`, `dom-if`, or `dom-repeat` template. Polymer automatically converts these for se
+Polymer automatically wraps template extensions used in Polymer element templates during template
+processing. This means you can and should continue using `<template is="">` in templates nested
+inside a Polymer element template. As shown above, nested templates inside a top-level `dom-bind`,
+`dom-if`, or `dom-repeat` are also automatically wrapped.
 
 
-As shown above, nested
-templates inside a top-level `dom-bind`, `dom-if`, or `dom-repeat` are also automatically processed.
+**Templates used in the main document must be manually wrapped.**
 
 ## Data system {#data-system}
 
@@ -896,7 +1022,6 @@ _observeStuff: function(a, b) {
 }
 ```
 
-
 After {.caption}
 
 
@@ -919,15 +1044,14 @@ _observeStuff: function(a, b, c) {
 A few more changes that you may need to take into account.
 
 Only properties listed explicitly in `properties` can be configured from an attribute. You need to
-explicitly declare your property:
+explicitly declare your property if both of the following are true:
 
 *   You have a property that's declared *implicitly* (used in a binding or observer, but not in the
     `properties` object).
 *   You rely on configuring that property from an attribute (not a data binding).
 
 Because several aspects of timing change in 2.0, you'll need to test your code to ensure that it
-doesn't rely on any 1.0 timing. In particular:
-
+doesn't rely on any 1.x timing. In particular:
 
 *   Element initialization (including template stamping and data system initialization) is deferred
     until the the element is connected to the main document. (This is a result of the custom element
@@ -937,8 +1061,9 @@ In order for a property to be deserialized from its attribute, it must be declar
 `properties` metadata object
 
 Binding a default value of `false` using an *attribute binding* to a boolean property will not
-override a default `true` property of the target, due to the semantics of boolean attributes.  In
-general, property binding should always be used when possible, and will avoid such situations.
+override a default `true` property of the target, due to the semantics of boolean attributes.
+In general, property binding should always be used when possible, and will avoid such situations.
+
 
 ## Removed APIs {#removed-apis}
 
@@ -947,15 +1072,19 @@ The following APIs have been removed.
 *   `Polymer.instanceof` and `Polymer.isInstance`: no longer needed, use `instanceof` and
     `instanceof Polymer.Element`  instead.
 
+
 *   `element.getPropertyInfo`: This API returned unexpected information some of the time and was
     rarely used.
 
 *   `element.getNativePrototype`: Removed because it is no longer needed for internal code and was
     unused by users.
 
+*   `element.getNativePrototype`: Removed because it is no longer needed for internal code and was
+    unused by users.
+
 *   `element.beforeRegister`: This was originally added for metadata compatibility with ES6 classes.
     We now prefer users create ES6 classes by extending `Polymer.Element`, specifying metadata in
-    the static `config` property.
+    the static `properties` and `observers` properties.
 
     For legacy elements, dynamic effects may now be added using the `registered` lifecycle method.
 
@@ -971,11 +1100,10 @@ The following APIs have been removed.
 ## Upgrading to class-based elements {#upgrading-to-class-based-elements}
 
 To define a class-based element, create a class that extends `Polymer.Element` (a subclass of
-`HTMLElement`), which provides most of the same features of Polymer 1.0 based on static
+`HTMLElement`), which provides most of the same features of Polymer 1.x based on static
 configuration data supplied on the class definition.
 
 The basic syntax looks like this:
-
 
 ```html
 <!-- Load the Polymer.Element base class -->
@@ -987,15 +1115,21 @@ class MyElement extends Polymer.Element {
 
   static get is() { return 'my-element'; }
 
-  // 1.x properties object replaced with properties getter
   static get properties() {
-   return { /* properties meta data */ }
+    return {
+      /* properties meta data object just like 1.x */
+      myProp: {
+        type: Object,
+        notifies: true
+      }
+    }
   }
 
-  // 1.x observers array replaced with observers getter
   static get observers() {
-    return [ /* complex observers */ ]
-  }
+    return [
+      /* observer array just like 1.x */
+      '_myPropChanged(myProp.*)'
+    ]
 
   constructor() {
     super();
@@ -1003,6 +1137,9 @@ class MyElement extends Polymer.Element {
   }
   connectedCallback() {
     super.connectedCallback();
+    ...
+  }
+  myPropChanged(changeRecord) {
     ...
   }
   ...
@@ -1013,27 +1150,7 @@ customElements.define(MyElement.is, MyElement);
 </script>
 ```
 
-You can leverage native subclassing support provided by ES6 to extend and customize existing
-elements defined using ES6 syntax:
 
-```html
-// Subclass existing element
-class MyElementSubclass extends MyElement {
-
-  static get is() { return 'my-element-subclass'; }
-
-  static get properties() { ... }
-
-  constructor() {
-    super();
-    ...
-  }
-  ...
-}
-
-// Register custom element definition using standard platform API
-customElements.define(MyElementSubclass.is, MyElementSubclass);
-```
 
 Below are the general steps for defining a custom element using this new syntax:
 
@@ -1044,15 +1161,21 @@ Below are the general steps for defining a custom element using this new syntax:
 *   Implement "behaviors" as [mixins that return class expressions](http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/). Or use the the `mixinBehaviors` method to mix hybrid
     behaviors into your element.
 
-*   Property metadata (`properties` object) and complex observers (`observers` array) should be put
-    on the class as a static in a property called `config`.
+*   Extend from `Polymer.Element`. This class provides the minimal surface area to integrate with
+    2.x DOM templating and data binding system. It provides the standard custom element lifecycle
+    with the addition of ready.
 
-*   Element's `is` property should be defined as a static getter on the class.
+*   You can extend from `Polymer.LegacyElement` instead, to get all of the Polymer 1.0 element API, but since most of this API was rarely used, this should not often be needed.
+
+*   Implement "behaviors" as [mixins that return class expressions](http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/).
+
+*   Property metadata (`properties` object) and complex observers (`observers` array) should be put on the class as a static in a property called `config`.
+
+*   Element's `is` property should be defined as a static on the class.
 
 *   The `listeners` and `hostAttributes` have been removed from element metadata; listeners and
     default attributes can be installed as and when needed. For convenience _`ensureAttribute` is
     available to set default attributes.
-
 
     ```js
     // set tabindex if it's not already set
@@ -1071,14 +1194,87 @@ the raw platform API more.  So when using  `Polymer.Element`, instead of using t
 this.dispatchEvent(new CustomEvent('some-event', { bubbles: true }));
 ```
 
+(The `CustomEvent` constructor is not supported on IE, but the webcomponents polyfills include a
+small polyfill for it so you can use the same syntax everywhere.)
 
 If you want to upgrade to a class-based element but depend on some of the removed APIs, you can
 add most of the legacy APIs by using the `LegacyElementMixin`.
-
 
 ```js
 class MyLegacyElement extends Polymer.LegacyElementMixin(Polymer.Element) { ... }
 ```
 
+### Class mixins and behaviors
 
+A class mixin is essentially a factory function that takes a class as an argument and returns a new
+class, with new features "mixed in."
 
+```js
+let MyMixin = (base) => class extends base {
+
+  // Configuration just like an element class
+  static get properties() {
+    return {
+      myProp: {
+        type: Number,
+        value: 0
+      }
+    }
+  }
+
+  // Define a method to mix in.
+  incrementMyProp() {
+    this.myProp++;
+  }
+}
+```
+
+Calling `MyMixin(Polymer.Element)` returns a new, anonymous class that extends `Polymer.Element`
+and includes the `properties` getter and the `incrementMyProp` method from `myMixin`.
+
+If you're more familiar with JavaScript 5 syntax, you can define a mixin using a regular
+function expression:
+
+```
+var MyMixin = function(base) {
+  return class extends base {
+    // same stuff in here
+  }
+}
+```
+
+Apply mixins when you create an element class:
+
+```js
+class MyElement extends MyMixin(Polymer.Element) {
+  static get is() { return 'my-element' }
+}
+
+```
+
+The `MyMixin(Polymer.Element)` returns a new class, which extends `Polymer.Element` and adds the
+features from `MyMixin`. So `MyElement`'s inheritance is:
+
+`MyElement > MyMixin(Polymer.Element) > Polymer.Element > HTMLElement`
+
+The resulting element class, `MyElement` has the `myProp` property and `incrementMyProp`
+method from the mixin.
+
+#### Using hybrid behaviors with class-style elements
+
+In some cases, the features you want to use may be available as hybrid behaviors, but not as
+class mixins.
+
+You can add hybrid behaviors to your class-style element using the `Polymer.mixinBehavior` function:
+
+```
+class XClass extends Polymer.mixinBehaviors([MyBehavior, MyBehavior2], Polymer.Element) {
+  static get is() { return 'x-class'}
+
+  ...
+}
+customElements.define(XClass.is, XClass);
+```
+
+The `mixinBehavior` function also mixes in the Legacy APIs, the same as if you extended
+`Polymer.LegacyElement`. These APIs are required since since hybrid behaviors depend on them.

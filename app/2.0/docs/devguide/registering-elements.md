@@ -28,7 +28,7 @@ class MyElement extends Polymer.Element {
 
   ready() {
     super.ready();
-    this.textContent = 'I'm a custom element!';
+    this.textContent = 'I\'m a custom element!';
   }
 }
 
@@ -43,6 +43,69 @@ var el2 = new MyElement();
 ```
 
 As shown above, the element's class can define callbacks for the custom element reactions as described in [Custom element lifecycle](custom-elements#element-lifecycle).
+
+## Extending an existing element {#extend-element}
+
+You can leverage native subclassing support provided by ES6 to extend and customize existing
+elements defined using ES6 syntax:
+
+```js
+// Subclass existing element
+class MyElementSubclass extends MyElement {
+  static get is() { return 'my-element-subclass'; }
+  static get properties() { ... }
+  constructor() {
+    super();
+    ...
+  }
+  ...
+}
+
+// Register custom element definition using standard platform API
+customElements.define(MyElementSubclass.is, MyElementSubclass);
+```
+
+If you don't provide a template for your subclass, it inherits the superclass's template by default.
+To override this behavior, or modify the superclass template, override the subclass's `template`
+getter.
+
+## Imports and APIs
+
+There are three main HTML imports for defining Polymer elements:
+
+| Import | Description |
+| `polymer-element.html` | Defines the `Polymer.Element` base class.  |
+| `legacy-element.html` | Defines the `Polymer.LegacyElement` base class, which extends `Polymer.Element` and adds 1.x compatible legacy API. Also defines the legacy `Polymer()` factory method for creating hybrid elements, (Includes `polymer-element.html`.)|
+| `polymer.html` | Includes the Polymer base classes plus the
+helper elements (`custom-style`, `dom-bind`, `dom-if`, and `dom-repeat`) that were included in the
+1.x `polymer.html` bundle. (Includes `legacy-element.html`.) |
+
+For the smallest footprint, use the `polymer-element.html` import and import any required helper
+elements separately.
+
+If you need some of the backwards-compabile APIs from 1.x, you can use the `Polymer.LegacyElement`
+class as the base for 2.x class-style elements. You must still import any helper elements you
+use individually.
+
+Use the `polymer.html` import for defining hybrid elements that can run under both 1.x and 2.x.
+
+
+
+## Using hybrid behaviors with class-style elements
+
+You can add hybrid behaviors to your class-style element using the `Polymer.mixinBehavior` function:
+
+```
+class XClass extends Polymer.mixinBehaviors([MyBehavior, MyBehavior2], Polymer.Element) {
+  static get is() { return 'x-class'}
+
+  ...
+}
+customElements.define(XClass.is, XClass);
+```
+
+The `mixinBehavior` function also mixes in the Legacy APIs, the same as if you extended
+`Polymer.LegacyElement`. These APIs are required since since hybrid behaviors depend on them.
 
 ## Define an element in the main HTML document {#main-document-definitions}
 

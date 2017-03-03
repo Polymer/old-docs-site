@@ -125,9 +125,6 @@
     indent: True
   - endheader: True
   - header: Resources
-  - title: Community
-    path: /2.0/docs/community
-    indent: True
   - title: Browser compatibility
     path: /2.0/docs/browsers
     indent: True
