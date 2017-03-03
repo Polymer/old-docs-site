@@ -195,7 +195,7 @@ Related topics:
 *   [DOM templating](dom-template)
 *   [Data system concepts](data-system)
 *   [Observers and computed properties](observers)
-*   [Observe added and removed children](#observe-nodes)
+*   [Observe added and removed children](shadow-dom#observe-nodes)
 
 ## Element upgrades
 
