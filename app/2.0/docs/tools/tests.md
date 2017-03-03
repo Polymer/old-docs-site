@@ -309,7 +309,7 @@ for an example.
 
 ### Test local DOM
 
-Use Polymer's [DOM API](/1.0/docs/devguide/local-dom#dom-api) to access
+Use Polymer's [DOM API](/{{{polymer_version_dir}}}/docs/devguide/local-dom#dom-api) to access
 and modify local DOM children.
 
 ```js
@@ -326,8 +326,8 @@ in the local DOM of `myEl`.
 #### Test DOM mutations
 
 Always wrap your test in `flush` if your element template contains a [template
-repeater (`dom-repeat`)](/1.0/docs/devguide/templates#dom-repeat) or
-[conditional template (`dom-if`)](/1.0/docs/devguide/templates#dom-if),
+repeater (`dom-repeat`)](/{{{polymer_version_dir}}}/docs/devguide/templates#dom-repeat) or
+[conditional template (`dom-if`)](/{{{polymer_version_dir}}}/docs/devguide/templates#dom-if),
 or if your test involves a local DOM mutation. Polymer lazily performs these
 operations in some cases for performance. `flush` ensures that asynchronous
 changes have taken place. The test function should take one argument, `done`,

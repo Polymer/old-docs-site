@@ -275,7 +275,7 @@ If `<address-card>` makes an observable change to the object, property effects a
 Paths are relative to the current data binding *scope*.
 
 The topmost scope for any element is the element's properties. Certain data binding helper elements
-(like [template repeaters](/1.0/docs/devguide/templates#dom-repeat)) introduce new, nested scopes.
+(like [template repeaters](/{{{polymer_version_dir}}}/docs/devguide/templates#dom-repeat)) introduce new, nested scopes.
 
 For observers and computed properties, the scope is always the element's properties.
 
@@ -347,7 +347,7 @@ maintains path linkages between an array and a selected item from that array. (`
 also works when selecting multiple items from an array.)
 
 For other use cases, there's an imperative method,
-[`linkPaths`](/1.0/docs/api/Polymer.Base#method-linkPaths) to associate two paths. When two paths
+[`linkPaths`](/{{{polymer_version_dir}}}/docs/api/Polymer.Base#method-linkPaths) to associate two paths. When two paths
 are *linked*, an [observable change](#observable-changes) to one path is observable on the other
 path, as well.
 

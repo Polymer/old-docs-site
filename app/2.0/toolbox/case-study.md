@@ -125,7 +125,7 @@ _pageChanged: function(page, oldPage) {
 In the logic above, the home view is built into the app shell, but the other
 views are demand-loaded fragments.
 
-Shop also uses [`dom-if`](/1.0/docs/api/dom-if) templates to lazily create views:
+Shop also uses [`dom-if`](/{{{polymer_version_dir}}}/docs/api/elements/dom-if) templates to lazily create views:
 
 ```
 <div id="tabContainer" primary$="[[_shouldShowTabs]]" hidden$="[[!_shouldShowTabs]]">
@@ -151,8 +151,8 @@ never pay the cost to create elements they're not using.
 ## Theming
 
 Shop uses
-[CSS custom properties](/1.0/docs/devguide/styling#custom-css-properties) and
-[mixins](/1.0/docs/devguide/styling#custom-css-mixins) for theming both its
+[CSS custom properties](/{{{polymer_version_dir}}}/docs/devguide/custom-css-properties) and
+[mixins](/{{{polymer_version_dir}}}/docs/devguide/custom-css-properties#use-custom-css-mixins) for theming both its
 application-specific elements and the reusable elements it includes.
 
 Shop defines a few, top-level custom properties to set basic theme colors, which
@@ -193,12 +193,12 @@ documented in the `<paper-button>`
 [API docs](https://www.webcomponents.org/element/PolymerElements/paper-button#styling).
 
 For more on custom properties and mixins, see the
-[Polymer docs](/1.0/docs/devguide/styling#xscope-styling-details). Polymer
+[Polymer docs](/{{{polymer_version_dir}}}/docs/devguide/custom-css-properties). Polymer
 provides a _shim_ for custom properties, but there are a number of limitations
 to the shim, especially around dynamic changes to property values. If you want
 to do anything fancy with custom properties, read up on the [shim
-limitations](/1.0/docs/devguide/styling#custom-properties-shim-limitations)
-and the [custom style API](/1.0/docs/devguide/styling.html#style-api).
+limitations](/{{{polymer_version_dir}}}/docs/devguide/custom-css-properties#custom-properties-shim-limitations)
+and the [custom style API](/{{{polymer_version_dir}}}/docs/devguide/custom-css-properties#style-api).
 
 ## Offline caching
 

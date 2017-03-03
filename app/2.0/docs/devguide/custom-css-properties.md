@@ -12,7 +12,7 @@ CSS variables can be used outside the context of custom elements, simply as a wa
 
 This makes editing your CSS much easier and less prone to author error.
 
-For example, the [`<paper-checkbox>` element](https://www.webcomponents.org/element/PolymerElements/paper-checkbox) provides custom properties for styling the colors, spacing and size of the checkbox and its label. 
+For example, the [`<paper-checkbox>` element](https://www.webcomponents.org/element/PolymerElements/paper-checkbox) provides custom properties for styling the colors, spacing and size of the checkbox and its label.
 
 As a developer, you can use these properties to style `<paper-checkbox>` elements in your applications.
 
@@ -165,7 +165,7 @@ color: var(--my-color, var(--my-default-color))
 
 Thus, custom CSS properties are a powerful way for element authors to
 expose a theming API to their users in a way that naturally fits right alongside
-normal CSS styling. 
+normal CSS styling.
 
 ### Use custom CSS mixins
 
@@ -250,7 +250,7 @@ Example usage of `my-toolbar`: { .caption }
     <my-toolbar title="This one is green."></my-toolbar>
     <my-toolbar title="This one is green too."></my-toolbar>
     <my-toolbar class="warning" title="This one is red."></my-toolbar>
-  </template>	
+  </template>
   <script>
     class MyElement extends Polymer.Element {
       static get is() {
@@ -258,7 +258,7 @@ Example usage of `my-toolbar`: { .caption }
       }
     }
     customElements.define(MyElement.is, MyElement);
-  </script>		
+  </script>
 </dom-module>
 ```
 
@@ -311,7 +311,7 @@ Note that the font family is inherited, but the text color is not. This is becau
 Polymer's custom property shim evaluates and applies custom property values once
 at element creation time.  In order to have an element (and its subtree) re-
 evaluate custom property values due to dynamic changes such as application of
-CSS classes, etc., call the [`updateStyles`](/2.0/docs/api/Polymer.Base#method-updateStyles)
+CSS classes, etc., call the [`updateStyles`](/2.0/docs/api/elements/Polymer.Element#method-updateStyles)
 method on the element. To update all elements on the page, you can also call
 `Polymer.updateStyles`.
 
@@ -325,7 +325,7 @@ this.updateStyles({
 ```
 
 To get the value of a custom property on an element, use
-[`getComputedStyleValue`](/2.0/docs/api/Polymer.Base#method-getComputedStyleValue).
+[`getComputedStyleValue`](/2.0/docs/api/mixins/Polymer.LegacyElementMixin#method-getComputedStyleValue).
 
 
 Example: { .caption }
@@ -377,7 +377,7 @@ dynamism will continue to be explored.
 Only property definitions which match the element at *creation time* are applied.
 Any dynamic changes that update property values are not applied automatically. You
 can force styles to be re-evaluated by calling the
-[`updateStyles`](/1.0/docs/api/Polymer.Base#method-updateStyles) method on a
+[`updateStyles`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-updateStyles) method on a
 Polymer element, or `Polymer.updateStyles` to update all element
 styles.
 
