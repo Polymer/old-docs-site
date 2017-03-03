@@ -264,5 +264,5 @@ finished creating and initializing the element's DOM.
 Legacy elements can share code in the form of _behaviors_, which can define
 properties, lifecycle callbacks, event listeners, and other features.
 
-For more information, see [Behaviors](/1.0/docs/devguide/behaviors) in the Polymer 1.0 docs.
+For more information, see [Behaviors](/1.0/docs/devguide/behaviors) in the Polymer 1.x docs.
 

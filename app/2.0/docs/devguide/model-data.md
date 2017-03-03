@@ -41,7 +41,7 @@ There are a few special types of path segments.
 
 ## Get a value by path {#get-value}
 
-Use the [`get`](/1.0/docs/api/Polymer.Base#method-get) method to retrieve a value based on
+Use the [`get`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-get) method to retrieve a value based on
 its path.
 
 ```
@@ -54,7 +54,7 @@ var item = this.get(['myArray', 11])
 
 ## Set a property or subproperty by path {#set-path}
 
-Use the [`set`](/1.0/docs/api/Polymer.Base#method-set) method to make an [observable
+Use the [`set`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-set) method to make an [observable
 change](data-system#observable-changes) to a subproperty.
 
 ```js
@@ -224,7 +224,7 @@ this.setProperties({
 
 ## Link two paths to the same object {#linkpaths}
 
-Use the [`linkPaths`](/1.0/docs/api/Polymer.Base#method-linkPaths) method to associate two paths.
+Use the [`linkPaths`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-linkPaths) method to associate two paths.
 Use `linkPaths` when an element has two paths that refer to the same object, as described in
 [Two paths referencing the same object](data-system#two-paths).
 

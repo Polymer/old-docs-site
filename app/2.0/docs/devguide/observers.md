@@ -1,4 +1,4 @@
----
+sa---
 title: Observers and computed properties
 ---
 
@@ -40,11 +40,9 @@ The allows the element to avoid running observers in the default case.
 
 Like all property effects, observers are synchronous. If the observer is likely to be invoked
 frequently, consider deferring time-consuming work, like inserting or removing DOM. For example, you
-can use the [`async`](/1.0/docs/api/Polymer.Base#method-async) method to defer work, or use the
-[`debounce`](/1.0/docs/api/Polymer.Base#method-debounce) method to ensure that a task is only run
-once during a given time period.
-
-<!-- XXX Replacements for debounce? -->
+can use the [`Polymer.Async`](/{{{polymer_version_dir}}}/docs/api/namespaces/Polymer.Async) module to defer work, or use
+the [`Polymer.Debouncer`](/{{{polymer_version_dir}}}/docs/api/namespaces/Polymer.Debouncer) module to ensure that a task
+is only run once during a given time period.
 
 However, if you handle a data change asynchronously, note that the change data may be out of date by
 the time you handle it.
