@@ -44,9 +44,6 @@ var shadowRoot = div.attachShadow({mode: 'open'});
 shadowRoot.innerHTML = '<h1>Hello Shadow DOM</h1>';
 ```
 
-
-// div.shadowRoot =
-
 Polymer provides a declarative mechanism for adding a shadow tree using [DOM templating](#link), When you provide a DOM template for an element, Polymer attaches a shadow root for each instance of the element and copies the template contents into the shadow tree.
 
 
@@ -184,7 +181,8 @@ A slot can contain *fallback content* that's displayed when no nodes are assigne
 
 The user can supply their own icon for the <fancy-note> element like this:
 
-<!-- shows note with warning icon —>
+```
+<!-- shows note with warning icon —->
 
 <fancy-note>
 
@@ -193,21 +191,23 @@ The user can supply their own icon for the <fancy-note> element like this:
   Do not operate heavy equipment while coding.
 
 </fancy-note>
+```
 
 If the user omits the icon, the fallback content supplies a default icon:
 
-<!-- shows note with default icon —>
+```
+<!-- shows note with default icon -—>
 
 <fancy-note>
 
   Please code responsibly.
 
-### </fancy-note>
+</fancy-note>
+```
 
 ### Multi-level distribution
 
 A slot element may also be assigned to a slot. For example, consider two levels of shadow trees.
-
 
 ```
 <parent-element>
@@ -325,6 +325,7 @@ For more information on events in shadow trees, see [The Shadow DOM event model]
 
 Styles inside a shadow tree are *scoped* to the shadow tree, and don't affect elements outside the shadow tree. Styles outside the shadow tree also don't match selectors inside the shadow tree. However, inheritable style properties like `color` still inherit down from host to shadow tree.
 
+```
 <style>
 
   body { color: white; }
@@ -332,9 +333,9 @@ Styles inside a shadow tree are *scoped* to the shadow tree, and don't affect el
   .test { background-color: red; }
 
 </style>
+```
 
 <styled-element>
-
 
 ```
   #shadow-root
