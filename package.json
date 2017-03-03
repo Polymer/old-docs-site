@@ -37,6 +37,8 @@
     "gulp-load-plugins": "^1.1.0",
     "gulp-minify-html": "^1.0.4",
     "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-run": "^1.7.1",
     "gulp-sass": "^2.1.0",
     "gulp-style-modules": "^0.1.0",
     "gulp-uglify": "^1.4.2",
@@ -48,6 +50,7 @@
     "markdown-it": "^6.0.1",
     "markdown-it-attrs": "^0.1.8",
     "merge-stream": "^1.0.0",
+    "polymer-cli": "0.18.0-pre.10",
     "run-sequence": "^1.1.4",
     "toc": "PolymerLabs/node-toc",
     "yargs": "^3.29.0"

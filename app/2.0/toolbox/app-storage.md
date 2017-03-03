@@ -19,7 +19,7 @@ declarative, and easier than ever before.
 
 ### Offline data mirroring
 
-The [`<app-indexeddb-mirror>`](https://elements.polymer-project.org/elements/app-storage?active=app-indexeddb-mirror)
+The [`<app-indexeddb-mirror>`](https://www.webcomponents.org/element/PolymerElements/app-storage/app-indexeddb-mirror)
 element provides a read-only mirror of a database like Firebase. This ensures that
 users will have access to their personal data even when there is no network available.
 
@@ -30,7 +30,7 @@ storage layers—don’t handle very well, like when a user starts the app while
 
 ## PouchDB Elements
 
-The Polymer [`app-pouchdb`](https://elements.polymer-project.org/elements/app-pouchdb) component
+The Polymer [`app-pouchdb`](https://www.webcomponents.org/element/PolymerElements/app-pouchdb) component
 contains elements for PouchDB document access, database querying, synchronization across local and
 remote databases and even user authentication with a remote CouchDB instance. Since PouchDB can
 automatically synchronize data with a local IndexedDB database, it has

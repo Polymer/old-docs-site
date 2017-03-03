@@ -1,0 +1,15 @@
+<link rel="import" href="https://polygit.org/polymer+:2.0-preview/webcomponentsjs+:v1/shadydom+webcomponents+:master/shadycss+webcomponents+:master/custom-elements+webcomponents+:master/components/polymer/polymer-element.html">
+<dom-module id="dom-element">
+
+  <template>
+    <p>I'm a DOM element. This is my local DOM!</p>
+  </template>
+
+  <script>
+    class DomElement extends Polymer.Element {
+      static get is() { return "dom-element"; }
+    }
+    customElements.define(DomElement.is, DomElement);
+  </script>
+
+</dom-module>

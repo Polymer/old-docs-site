@@ -15,11 +15,14 @@ let $ = require('gulp-load-plugins')();
 let matter = require('gulp-gray-matter');
 let styleMod = require('gulp-style-modules');
 let cssslam = require('css-slam');
+let run = require('gulp-run');
 
 let argv = require('yargs').argv;
 let browserSync = require('browser-sync').create();
 let del = require('del');
 let fs = require('fs');
+var replace = require('gulp-replace');
+
 let markdownIt = require('markdown-it')({
     html: true,
     highlight: (code, lang) => {
@@ -164,7 +167,7 @@ function convertMarkdownToHtml(file, templateName) {
 gulp.task('md:docs', 'Docs markdown -> HTML conversion. Syntax highlight and TOC generation', function() {
   return gulp.src([
       'app/**/*.md',
-      '!app/1.0/blog/*.md',
+      '!app/blog/*.md',
       '!app/{bower_components,elements,images,js,sass}/**',
     ], {base: 'app/'})
     .pipe(matter(function(file) { // pull out front matter data.
@@ -176,7 +179,7 @@ gulp.task('md:docs', 'Docs markdown -> HTML conversion. Syntax highlight and TOC
 
 gulp.task('md:blog', 'Blog markdown -> HTML conversion. Syntax highlight and TOC generation', function() {
   return gulp.src([
-      'app/1.0/blog/*.md',
+      'app/blog/*.md',
     ], {base: 'app/'})
     .pipe(matter(function(file) { // pull out front matter data.
       return convertMarkdownToHtml(file, 'templates/blog.template');
@@ -213,20 +216,36 @@ gulp.task('js', 'Minify JS to dist/', ['jshint'], function() {
     .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('vulcanize', 'Vulcanize elements to dist/', function() {
-  return gulp.src('app/elements/elements.html')
-    // .pipe($.changed('dist/elements'))
-    .pipe($.vulcanize({
-      stripComments: true,
-      inlineCss: true,
-      inlineScripts: true
-    }))
-    .pipe($.crisper()) // Separate HTML/JS into separate files.
+gulp.task('build-bundles', 'Build element bundles', function() {
+  return run('polymer build').exec();
+});
+
+// Dear reader, know this: I am sorry for what you're about to read, but
+// the bleeding edge is bloody and first paint is kind of a Big Deal™.
+
+// TODO: This is a giant hack because a bug in `polymer build` means it
+// does not minify bundles. This shouldn't be needed at all once that is fixed.
+// See https://github.com/Polymer/polymer-build/issues/110.
+gulp.task('minify-bundles', 'Minify element bundles',  ['build-bundles'], function() {
+  return gulp.src('build/default/app/elements/*')
+    .pipe($.crisper({scriptInHead: false})) // split inline JS & CSS out into individual .js & .css files
     .pipe($.if('*.html', minifyHtml())) // Minify html output
     .pipe($.if('*.html', cssslam.gulp())) // Minify css in HTML output
     .pipe($.if('*.js', uglifyJS())) // Minify js output
     .pipe($.if('*.js', license()))
-    .pipe(gulp.dest('dist/elements'));
+    .pipe(gulp.dest('build/minified'));
+});
+
+// Another giant hack: crisper splits the js away into a separate file,
+// which is bad for pw-shell because it delays first paint (the js doesn't
+// start downloading until the html finishes) so we're going to do what
+// the bundler should have done in the first place, and insert the js
+// contents inline.
+gulp.task('hack-bundles', 'Hack the pw-shell import', ['build-bundles', 'minify-bundles'], function() {
+  return gulp.src('./build/minified/pw-shell.html')
+    .pipe(replace('<script src="pw-shell.js"></script>',
+                  '<script>' + fs.readFileSync('./build/minified/pw-shell.js', 'utf8') + '</script>'))
+    .pipe(gulp.dest('./build/minified'));
 });
 
 gulp.task('vulcanize-demos', 'vulcanize demos', function() {
@@ -277,6 +296,14 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     ])
     .pipe(gulp.dest('dist/bower_components/highlight'));
 
+  // Copy the bundles that polymer build produced.
+  // TODO: Change this to 'build/default/app/elements/*' when `polymer build` is
+  // fixed and it minifies bundles. See https://github.com/Polymer/polymer-build/issues/110.
+  let bundles = gulp.src([
+      'build/minified/*'
+    ])
+    .pipe(gulp.dest('dist/elements'));
+
   let summit = gulp.src([
       'app/summit*/**/*',
       'app/summit*/*',
@@ -289,16 +316,19 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     .pipe(gulp.dest('dist/summit-2015'))
     .pipe(gulp.dest('dist/summit-2016'));
 
-  return merge(app, docs, gae, bower, highlight, summit, bower_summit);
+  return merge(app, docs, gae, bower, highlight, bundles, summit, bower_summit);
 });
 
 gulp.task('watch', 'Watch files for changes', function() {
   createReloadServer();
   gulp.watch('app/sass/**/*.scss', ['style', reload]);
-  gulp.watch('app/elements/**/*', ['vulcanize', reload]);
+  gulp.watch('app/elements/**/*', function() {
+    runSequence('hack-bundles', 'copy');
+    reload();
+  });
   gulp.watch('app/js/*.js', ['js', reload]);
 
-  gulp.watch('app/1.0/blog/*.md', ['md:blog', reload]);
+  gulp.watch('app/blog/*.md', ['md:blog', reload]);
   gulp.watch('app/**/*.md', ['md:docs', reload]);
   gulp.watch(['templates/*.html', 'app/**/*.html'], ['copy', reload]);
   // Watch for changes to server itself.
@@ -324,7 +354,8 @@ gulp.task('clean', 'Remove dist/ and other built files', function() {
 // Default task. Build the dest dir.
 gulp.task('default', 'Build site', ['clean', 'jshint'], function(done) {
   runSequence(
-    ['style', 'images', 'vulcanize', 'vulcanize-demos', 'js'],
+    'hack-bundles',
+    ['style', 'images', 'vulcanize-demos', 'js'],
     'copy', 'md:docs', 'md:blog',
     done);
 });

@@ -62,7 +62,8 @@
   {% for section in full_nav %}
     <a class="site-nav level-1"
        href="{{{section.path}}}"
-       name="{{{section.path}}}">
+       name="{{{section.path}}}"
+       data-version="{{{section.version}}}">
        <span>{{{section.section}}}</span>
 
        {% if 'items' in section %}

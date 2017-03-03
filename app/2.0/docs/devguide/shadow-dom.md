@@ -364,7 +364,7 @@ target so that  it represents an element in the same scope as the listening elem
 For example, given a tree like this:
 
 
-```
+```html
 <example-card>
   #shadow-root
     <div>
@@ -373,11 +373,7 @@ For example, given a tree like this:
           <img>
 ```
 
-
-
-
 If the user clicks on the image element the click event bubbles up the tree:
-
 
 
 *   A listener on the image element itself receives the `<img>` as the target.
@@ -387,8 +383,24 @@ If the user clicks on the image element the click event bubbles up the tree:
     target, since they are in the same shadow DOM tree.
 *   A listener on the `<example-card>` receives the <example-card> itself as the target.
 
-For more information on events in shadow trees, see [The Shadow DOM event model](https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom#events)
-in the Web Fundamentals article on shadow DOM.
+The event provides a `composedPath` method that returns an array of nodes that the event will pass
+through. In this case, the array would include:
+
+*   The `<img>` element itself.
+*   The shadow root of `<fancy-button>`.
+*   The `<div>` element.
+*   The shadow root of `<example-card>`.
+*   Any ancestors of `<example-card>` (for example, `<body>`, `<html>`, `document` and `Window`).
+
+By default, custom events **don't** propagate though shadow DOM boundaries. To allow a custom event
+to travel through a shadow DOM boundary and be retargeted, you need to create it with the `composed`
+flag set to `true`:
+
+```js
+var event = new CustomEvent('my-event', {bubbles: true, composed: true});
+```
+
+For more information on events in shadow trees, see [The Shadow DOM event model](https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom#events) in the Web Fundamentals article on shadow DOM.
 
 ## Shadow DOM styling
 

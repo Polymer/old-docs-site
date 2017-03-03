@@ -726,7 +726,7 @@ For a complete guide, see the
 in the Element catalog.
 
 For examples of the layout properties in use, see the
-[`iron-flex-layout` demo](https://elements.polymer-project.org/elements/iron-flex-layout?view=demo:demo/index.html).
+[`iron-flex-layout` demo](https://www.webcomponents.org/element/PolymerElements/iron-flex-layout/demo/demo/index.html).
 
 
 ### Use layout mixins

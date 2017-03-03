@@ -62,7 +62,7 @@ Polymer isn't either of those things. Polymer is built on top of the web compone
 ## Get some elements
 
 The Polymer team has written collections of elements that you can use
-in your apps. You can find them on the [Element catalog](https://elements.polymer-project.org/).
+in your apps. You can find them on [webcomponents.org](https://www.webcomponents.org).
 
 
 ## Write your own

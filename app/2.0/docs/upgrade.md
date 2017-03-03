@@ -10,8 +10,6 @@ an incremental path for updating Polymer 1.x elements to 2.0.
 
 Polymer 2.0 supports several types of elements:
 
-
-
 *   2.x class-based elements use the ES6 class-based syntax supported by the custom elements v1
     specification. Recommended for new development in Polymer 2.0.
 *   2.x legacy elements use the `Polymer` factory method, and have most of the 1.0 APIs available to
@@ -32,9 +30,11 @@ changes required to upgrade 1.x elements to either hybrid or class-based style. 
 changes require either manual code changes, testing, or both to ensure that your element operates
 the same in 2.0 as it did in 1.x. **The upgrade tool is not available at this time.**
 
+
 See [Install Polymer 2.0](about_20#installing) for installation instructions.
 
-This upgrade guide is a work in progress. Please [report issues on GitHub](https://github.com/Polymer/docs/issues/new).
+This upgrade guide is a work in progress. Please
+[report issues on GitHub](https://github.com/Polymer/docs/issues/new).
 
 ## Upgrade strategy
 
@@ -128,9 +128,10 @@ styling, distribution, and events must be adapted to the native v1 API.
 *   ***All elements*** need to update their shadow DOM template and styling as described in
     [DOM template](#dom-template) and [Shadow DOM styles](#shadow-dom-styles).
 
+
 ### DOM Template {#dom-template}
 
-***All elements*** need to update their shadow DOM template and styling as described in this section.
+**All elements** need to update their shadow DOM templates and styling as described in this section.
 
 Quick summary:
 
@@ -152,7 +153,8 @@ template was deprecated in Polymer 1.x and is no longer supported.
 
 Before {.caption}
 
-```
+
+```html
 <dom-module name="blue-element">
   <template>
     <div>I am blue!</div>
@@ -165,7 +167,8 @@ Before {.caption}
 
 After {.caption}
 
-```
+
+```html
 <dom-module id="blue-element">
   <template>
     <style>
@@ -332,6 +335,7 @@ Shadow DOM of `<child-el>` {.caption}
 <h2>
 ```
 
+
 By contrast, in v1, a host's light DOM nodes are only *assigned* to slots in the host's shadow DOM,
 based on the `slot` attributes on those light DOM nodes. For a parent element to redistribute
 content to a named slot, it must use a slot with a `slot` attribute.
@@ -409,22 +413,25 @@ Replace any `::content` CSS selectors with <code>::slotted(<em>selector</em>)</c
 <code><em>selector</em></code> is [compound selector](https://drafts.csswg.org/selectors-4/#compound)
 that identifies a <strong>top-level distributed child</strong>.
 
+
 That is:
 
-`::slotted(.foo)`
+```css
+::slotted(.foo)
+```
 
 is equivalent to:
 
 
-```
+```css
 ::content > .foo
 ```
 
 
-**For example**:
+Example of ::slotted {.caption}
 
 
-```
+```html
 <dom-module id="slotted-el">
   <template>
     <style>
@@ -472,6 +479,7 @@ They don't work at all in shadow DOM v1.
 There's no direct substitute for shadow-piercing selectors.To let users customize your element,
 custom CSS properties are probably the best option.
 
+
 #### Replace root selectors {#replace-root-selectors}
 
 If you're using the `:root` selector inside an element's template, replace it with:
@@ -485,15 +493,17 @@ If you're using the `:root` selector inside an element's template, replace it wi
 In 1.x, you can use either of these selectors to override custom properties set at a higher level.
 For example, the following rule in the main document:
 
+
 ```css
 style-me {
   --my-theme-color: blue;
 }
 ```
 
+
 Overrides a `:host` rule in `style-me`'s shadow root, because they match the same element, but the
-main document styles comes earlier in the cascade order. `:host > *` applies a ruleset to *all of the
-top-level children in the host's shadow tree*, which doesn't conflict with the rule in the main
+main document styles comes earlier in the cascade order. `:host > *` applies a ruleset to all of the
+top-level children in the host's shadow tree, which doesn't conflict with the rule in the main
 document.
 
 Before {.caption}
@@ -539,6 +549,7 @@ After {.caption}
 color: var(--special-color, var(--default-color));
 ```
 
+
 In addition, you must update the syntax of any `@apply` rules to match the proposal, which doesn't
 use parentheses.
 
@@ -563,7 +574,6 @@ After {.caption}
 While custom elements v1 supports customized built-in elements, Polymer 2.0 does not currently use
 them. Instead, it introduces a new `<custom-style>` element that wraps a `<style>` element.
 
-
 *   **Hybrid projects.** Wrap your existing `<style is="custom-style">` elements with
     `<custom-style>` elements.
 *   **2.0-only projects.** Replace your existing  `<style is="custom-style">` elements with
@@ -571,8 +581,8 @@ them. Instead, it introduces a new `<custom-style>` element that wraps a `<style
 *   **All projects.** Replace any `:root` selectors with `html`, and update custom property syntax
     as described in [Update custom property syntax](#update-custom-property-syntax).
 
-Before {.caption}
 
+Before {.caption}
 
 ```html
 <style is="custom-style">
@@ -615,9 +625,11 @@ Before {.caption}
 Hybrid and legacy elements can continue to use existing Polymer DOM APIs, but may require some
 changes. Class-based elements should use native DOM APIs.
 
+
 *   ***Hybrid elements*** should continue to use the Polymer DOM APIs, but may require some changes.
 *   ***Legacy elements*** can use the Polymer DOM APIs or the native DOM APIs.
 *   ***Class-based elements*** should use native DOM APIs.
+
 
 #### Hybrid elements: update Polymer.dom usage {#hybrid-elements-update-polymer-dom-usage}
 
@@ -628,6 +640,7 @@ methods and properties that return a `NodeList,` **<code>Polymer.dom</code> APIs
 
 Legacy elements may continue using Polymer DOM APIs or move to native methods as described in
 [Use native DOM methods](#class-based-and-legacy-elements-use-native-dom-methods)
+
 
 Before {.caption}
 
@@ -655,6 +668,7 @@ _findTextNodes: function() {
 
 **If you are targeting 2.0 only**, use the native DOM APIs instead of the Polymer.dom APIs.
 
+
 *   For standard DOM operations, simply remove the `Polymer.dom()` wrapper.
 *   Use `this.shadowRoot` in place of `Polymer.dom(this.root)`.
 *   For events, use the standard v1 event API:
@@ -668,7 +682,8 @@ necessary to be mostly equivalent to native shadow DOM.
 
 Note that the new ES6 base class, `Polymer.Element`, lacks many of the DOM helpers, such as
 `getContentChildren` and `getEffectiveChildren`, defined on `Polymer.Base`. Polymer encourages the
-use of native properties and methods where possible.
+use of native properties and methods where possible. See [Slot APIs](#slot-apis) for information on
+some of the new shadow DOM-related APIs.
 
 The `Polymer.FlattenedNodesObserver` class can be used to replace the 1.x `observeNodes` method.
 
@@ -683,6 +698,10 @@ this._observer = Polymer.dom(this).observeNodes(this._nodesChanged);
 ```
 this._observer = new Polymer.FlattenedNodesObserver(this._nodesChanged);
 ```
+
+In addition, `Polymer.FlattenedNodesObserver.getFlattenedNodes(node)` can be used to replace the
+`getEffectiveChildNodes` method.
+
 
 ## CSS custom property shim {#css-custom-property-shim}
 
@@ -770,14 +789,17 @@ This use of `updateStyles` was already supported in 1.x. The `customStyle` objec
 
 Before {.caption}
 
-```
+
+
+```js
 this.customStyle['--my-dynamic-property'] = 'red';
 this.updateStyles();
 ```
 
 After {.caption}
 
-```
+
+```js
 this.updateStyles({'--my-dynamic-property': 'red'});
 ```
 
@@ -788,7 +810,6 @@ Polymer 2.0 elements target the custom elements v1 API.
 
 *   **All elements.** The contracts have changed for several of the lifecycle callbacks. Check and
     test your code to make sure this doesn't cause problems with your elements.
-
 *   **All elements.** Refactor type-extension elements as wrapper elements. Wrap existing
     type-extension elements.
 
@@ -828,7 +849,7 @@ attached: function() {
 
 After {.caption}
 
-```
+```js
 attached: function() {
   // 1st argument to afterNextRender is used as the "this"
   // value when the callback is invoked.
@@ -901,8 +922,9 @@ an element that extends an `<a>` element, an element that takes an `<a>` element
 
 #### Convert template extension elements at the document level {#convert-template-extension-elements-at-the-document-level}
 
-If you have any template extension elements—dom-bind, dom-if, or dom-repeat—*in the main document*,
-convert them to the wrapped form.
+
+If you have any template extension elements—`dom-bind`, `dom-if`, or `dom-repeat`—*in the main
+document*, convert them to the wrapped form.
 
 Before {.caption}
 
@@ -965,6 +987,7 @@ Polymer 2.0 includes several important changes to the data system, detailed in
 Code that interacts with key paths, or uses `Polymer.Collection` directly won't run in hybrid mode.
 If upgrading to hybrid mode, you can conditionalize 1.0 code:
 
+
 ```
 if (Polymer.Element) {
   // 2.0 code
@@ -972,6 +995,7 @@ if (Polymer.Element) {
   // 1.0 code
 }
 ```
+
 
 If upgrading to legacy or class-based elements, you can eliminate this code. Array change
 notifications for specific items use index paths. Changing the entire array results in a change
@@ -988,7 +1012,8 @@ If your observer relies on hidden dependencies being initialized, you may need t
 
 Before {.caption}
 
-```
+
+```js
 observers: [ '_observeStuff(a, b)' ],
 _observeStuff: function(a, b) {
   // this.c == hidden dependency!
@@ -999,7 +1024,8 @@ _observeStuff: function(a, b) {
 
 After {.caption}
 
-```
+
+```js
 observers: [ '_observeStuff(a, b, c)' ],
 _observeStuff: function(a, b, c) {
   // check for undefined
@@ -1018,14 +1044,14 @@ _observeStuff: function(a, b, c) {
 A few more changes that you may need to take into account.
 
 Only properties listed explicitly in `properties` can be configured from an attribute. You need to
-explicitly declare your property if:
+explicitly declare your property if both of the following are true:
 
-*   You have a property that's declared *implicitly* (used in a binding or observer, but not in
-    the `properties` object).
+*   You have a property that's declared *implicitly* (used in a binding or observer, but not in the
+    `properties` object).
 *   You rely on configuring that property from an attribute (not a data binding).
 
 Because several aspects of timing change in 2.0, you'll need to test your code to ensure that it
-doesn't rely on any 1.0 timing. In particular:
+doesn't rely on any 1.x timing. In particular:
 
 *   Element initialization (including template stamping and data system initialization) is deferred
     until the the element is connected to the main document. (This is a result of the custom element
@@ -1038,6 +1064,7 @@ Binding a default value of `false` using an *attribute binding* to a boolean pro
 override a default `true` property of the target, due to the semantics of boolean attributes.
 In general, property binding should always be used when possible, and will avoid such situations.
 
+
 ## Removed APIs {#removed-apis}
 
 The following APIs have been removed.
@@ -1049,10 +1076,11 @@ The following APIs have been removed.
 *   `element.getPropertyInfo`: This API returned unexpected information some of the time and was
     rarely used.
 
-
 *   `element.getNativePrototype`: Removed because it is no longer needed for internal code and was
     unused by users.
 
+*   `element.getNativePrototype`: Removed because it is no longer needed for internal code and was
+    unused by users.
 
 *   `element.beforeRegister`: This was originally added for metadata compatibility with ES6 classes.
     We now prefer users create ES6 classes by extending `Polymer.Element`, specifying metadata in
@@ -1084,7 +1112,9 @@ The basic syntax looks like this:
 <script>
 // Extend Polymer.Element base class
 class MyElement extends Polymer.Element {
+
   static get is() { return 'my-element'; }
+
   static get properties() {
     return {
       /* properties meta data object just like 1.x */
@@ -1094,12 +1124,13 @@ class MyElement extends Polymer.Element {
       }
     }
   }
+
   static get observers() {
     return [
       /* observer array just like 1.x */
       '_myPropChanged(myProp.*)'
     ]
-  }
+
   constructor() {
     super();
     ...
@@ -1123,14 +1154,18 @@ customElements.define(MyElement.is, MyElement);
 
 Below are the general steps for defining a custom element using this new syntax:
 
+*   Extend from `Polymer.Element`. This class provides the minimal surface area to integrate with
+    2.0 DOM templating and data binding system. It provides the standard custom element lifecycle
+    callbacks, plus the Polymer-specific `ready` callback.
 
+*   Implement "behaviors" as [mixins that return class expressions](http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/). Or use the the `mixinBehaviors` method to mix hybrid
+    behaviors into your element.
 
 *   Extend from `Polymer.Element`. This class provides the minimal surface area to integrate with
     2.x DOM templating and data binding system. It provides the standard custom element lifecycle
     with the addition of ready.
 
 *   You can extend from `Polymer.LegacyElement` instead, to get all of the Polymer 1.0 element API, but since most of this API was rarely used, this should not often be needed.
-
 
 *   Implement "behaviors" as [mixins that return class expressions](http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/).
 
@@ -1142,9 +1177,9 @@ Below are the general steps for defining a custom element using this new syntax:
     default attributes can be installed as and when needed. For convenience _`ensureAttribute` is
     available to set default attributes.
 
-    ```
-    // set tab-index if it's not already set
-    _ensureAttribute('tab-index', 0);
+    ```js
+    // set tabindex if it's not already set
+    _ensureAttribute('tabindex', 0);
     ```
 
 
@@ -1154,12 +1189,20 @@ area becoming far more stable across browsers, we intend to add fewer utility me
 the raw platform API more.  So when using  `Polymer.Element`, instead of using the legacy
 `this.fire('some-event')` API, use the equivalent platform APIs:
 
-```
+
+```js
 this.dispatchEvent(new CustomEvent('some-event', { bubbles: true }));
 ```
 
 (The `CustomEvent` constructor is not supported on IE, but the webcomponents polyfills include a
 small polyfill for it so you can use the same syntax everywhere.)
+
+If you want to upgrade to a class-based element but depend on some of the removed APIs, you can
+add most of the legacy APIs by using the `LegacyElementMixin`.
+
+```js
+class MyLegacyElement extends Polymer.LegacyElementMixin(Polymer.Element) { ... }
+```
 
 ### Class mixins and behaviors
 
@@ -1206,6 +1249,7 @@ Apply mixins when you create an element class:
 class MyElement extends MyMixin(Polymer.Element) {
   static get is() { return 'my-element' }
 }
+
 ```
 
 The `MyMixin(Polymer.Element)` returns a new class, which extends `Polymer.Element` and adds the

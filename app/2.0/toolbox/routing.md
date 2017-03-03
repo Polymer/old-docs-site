@@ -8,7 +8,7 @@ title: Routing with <app-route>
 {.alert .alert-info}
 
 For client-site routing, App Toolbox uses the
-[`<app-route>`](https://elements.polymer-project.org/elements/app-route) element to provide
+[`<app-route>`](https://www.webcomponents.org/element/PolymerElements/app-route) element to provide
 _modular routing_. Modular routing means that instead of having a central repository for all your
 application's routes, individual components manage some portion of the route, and delegate the rest
 to other components.
@@ -22,6 +22,10 @@ to other components.
 Install the `app-route` package with Bower:
 
     bower install --save PolymerElements/app-route
+
+For 2.0 Release Candidate, use the `2.0-preview` branch:
+
+    bower install --save PolymerElements/app-route#2.0-preview
 
 ## Add routing
 
@@ -142,17 +146,22 @@ When using `<app-route>`, there are two ways to change the current URL.
 Previous sections showed data binding to routes and route data, but sometimes you need to run code
 when the route changes. Using observers, it's simple to react to changes to the route or data:
 
+Route observer example {.caption}
+
 ```
-observers: [
-  '_routeChanged(route.*)',
-  '_viewChanged(routeData.view)'
-],
-_routeChanged: function(changeRecord) {
+static get observers() {
+  return [
+    '_routeChanged(route.*)',
+    '_viewChanged(routeData.view)'
+  ]
+}
+
+_routeChanged(changeRecord) {
   if (changeRecord.path === 'path') {
     console.log('Path changed!');
   }
-},
-_viewChanged: function(view) {
+}
+_viewChanged(view) {
   // load data for view
 }
 ```
@@ -161,4 +170,4 @@ _viewChanged: function(view) {
 
 -   [Encapsulated routing with elements](/1.0/blog/routing)
 -   [`<app-route>`
-    API reference](https://elements.polymer-project.org/elements/app-route)
+    API reference](https://www.webcomponents.org/element/PolymerElements/app-route)

@@ -79,14 +79,12 @@ class XCustom extends Polymer.Element {
 
   static get is() {return 'x-custom'; }
 
-  static get config() {
+  static get properties() {
     return {
-      properties: {
-        active: {
-          type: Boolean,
-          // Observer method identified by name
-          observer: '_activeChanged'
-        }
+      active: {
+        type: Boolean,
+        // Observer method identified by name
+        observer: '_activeChanged'
       }
     }
   }
@@ -116,13 +114,11 @@ Complex observers can monitor one or more paths. These
 paths are called the observer's *dependencies*.
 
 ```
-static get config() {
-  return {
-    observers: [
-      // Observer method name, followed by a list of dependencies, in parenthesis
-      'userListChanged(users.*, filter)'
-    ]
-  }
+static get observers() {
+  return [
+    // Observer method name, followed by a list of dependencies, in parenthesis
+    'userListChanged(users.*, filter)'
+  ]
 }
 
 ```
@@ -180,20 +176,20 @@ class XCustom extends Polymer.Element {
 
   static get is() {return 'x-custom'; }
 
-  static get config() {
+  static get properties() {
     return {
-      properties: {
         preload: Boolean,
         src: String,
         size: String
-      },
-
-      // Each item of observers array is a method name followed by
-      // a comma-separated list of one or more dependencies.
-      observers: [
-        'updateImage(preload, src, size)'
-      ]
     }
+  }
+
+  // Each item of observers array is a method name followed by
+  // a comma-separated list of one or more dependencies.
+  static get observers() {
+    return [
+        'updateImage(preload, src, size)'
+    ]
   }
 
   // Each method referenced in observers must be defined in
@@ -229,7 +225,7 @@ sub-property must be updated in one of the following two ways:
 
 Example: { .caption }
 
-```
+```html
 <dom-module id="x-custom">
   <template>
     <!-- Sub-property is updated via property binding. -->
@@ -240,21 +236,22 @@ Example: { .caption }
 
       static get is() {return 'x-custom'; }
 
-      static get config() {
+      static get properties() {
         return {
-          properties: {
-            user: {
-              type: Object,
-              value: function() {
-                return {};
-              }
+          user: {
+            type: Object,
+            value: function() {
+              return {};
             }
-          },
-          // Observe the name sub-property on the user object
-          observers: [
-            'userNameChanged(user.name)'
-          ]
+          }
         }
+      }
+
+      // Observe the name sub-property on the user object
+      static get observers() {
+        return [
+            'userNameChanged(user.name)'
+        ]
       }
 
       // For a property or sub-property dependency, the corresponding
@@ -299,9 +296,11 @@ To create a splice observer, specify a path to an array followed by `.splices`
 in your `observers` array.
 
 ``` js
-observers: [
-  'usersAddedOrRemoved(users.splices)'
-]
+static get observers() {
+  return [
+    'usersAddedOrRemoved(users.splices)'
+  ]
+}
 ```
 
 Your observer method should accept a single argument. When your observer method
@@ -326,28 +325,29 @@ in the example.
 
 Example {.caption}
 
-```
+```js
 class XCustom extends Polymer.Element {
 
   static get is() {return 'x-custom'; }
 
-  static get config() {
+  static get properties() {
     return {
-      properties: {
-        users: {
-          type: Array,
-          value: function() {
-            return [];
-          }
+      users: {
+        type: Array,
+        value: function() {
+          return [];
         }
-      },
-
-      // Observe changes to the users array
-      observers: [
-        'usersAddedOrRemoved(users.splices)'
-      ],
+      }
     }
   }
+
+  // Observe changes to the users array
+  static get observers() {
+    return [
+      'usersAddedOrRemoved(users.splices)'
+    ]
+  }
+
 
   // For an array mutation dependency, the corresponding argument is a change record
   usersAddedOrRemoved(changeRecord) {
@@ -393,7 +393,7 @@ property described in [Observe array mutations](#array-observation).
 
 Example: { .caption }
 
-```
+```html
 <dom-module id="x-custom">
   <template>
     <input value="{{user.name.first::input}}"
@@ -406,20 +406,21 @@ Example: { .caption }
 
       static get is() { return 'x-custom'; }
 
-      static get config() {
+      static get properties() {
         return {
-          properties: {
-            user: {
-              type: Object,
-              value: function() {
-                return {'name':{}};
-              }
+          user: {
+            type: Object,
+            value: function() {
+              return {'name':{}};
             }
-          },
-          observers: [
-            'userNameChanged(user.name.*)'
-          ]
+          }
         }
+      }
+
+      static get observers() {
+        return [
+            'userNameChanged(user.name.*)'
+        ]
       }
 
       userNameChanged(changeRecord) {
@@ -445,20 +446,19 @@ which can result in unexpected behavior:
 
 For example:
 
-```
-static get config() {
+```js
+static get properties() {
   return {
-    properties: {
-      firstName: {
-        type: String,
-        observer: 'nameChanged'
-      },
-      lastName: {
-        type: String
-      }
+    firstName: {
+      type: String,
+      observer: 'nameChanged'
+    },
+    lastName: {
+      type: String
     }
   }
-},
+}
+
 // WARNING: ANTI-PATTERN! DO NOT USE
 nameChanged(newFirstName, oldFirstName) {
   // Not invoked when this.lastName changes
@@ -475,22 +475,24 @@ In general, if your observer relies on multiple dependencies, use a
 as an argument to the observer. This ensures that all dependencies are
 configured before the observer is called.
 
-```
-static get config() {
+```js
+static get properties() {
   return {
-    properties: {
-      firstName: {
-        type: String
-      },
-      lastName: {
-        type: String
-      }
+    firstName: {
+      type: String
     },
-    observers: [
-      'nameChanged(firstName, lastName)'
-    ]
+    lastName: {
+      type: String
+    }
   }
-},
+}
+
+static get observers() {
+  return [
+    'nameChanged(firstName, lastName)'
+  ]
+}
+
 nameChanged: function(firstName, lastName) {
   console.log('new name:', firstName, lastName);
 }
@@ -561,23 +563,21 @@ computed property function returns a value that's exposed as a virtual property.
   </template>
 
   <script>
-      class XCustom extends Polymer.Element {
+    class XCustom extends Polymer.Element {
 
       static get is() { return 'x-custom'; }
 
-      static get config() {
+      static get properties() {
         return {
-          properties: {
-            first: String,
+          first: String,
 
-            last: String,
+          last: String,
 
-            fullName: {
-              type: String,
-              // when `first` or `last` changes `computeFullName` is called once
-              // and the value it returns is stored as `fullName`
-              computed: 'computeFullName(first, last)'
-            }
+          fullName: {
+            type: String,
+            // when `first` or `last` changes `computeFullName` is called once
+            // and the value it returns is stored as `fullName`
+            computed: 'computeFullName(first, last)'
           }
         }
       }

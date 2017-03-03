@@ -10,13 +10,16 @@ implemented by most major browser vendors, while providing a smooth migration pa
 
 Polymer 2.0 also makes improvements in several areas:
 
+
 *   **Improved interoperability.** By removing the need to use Polymer.dom for DOM manipulation,
     Polymer 2.0 makes it easier to use Polymer components with other libraries and frameworks. In
     addition, the shady DOM code has been separated out into a reusable polyfill, instead of being
     integrated into Polymer.
+
 *   **Data system improvements.** Polymer 2.0 includes targeted improvements to the data system.
     These changes make it  easier to reason about and debug the propagation of data through and
     between elements.
+
 *   **More standard.** Polymer 2.0 uses standard ES6 classes and the standard custom elements v1
     methods for defining elements, instead of a Polymer factory method. You can mix in features
     using standard JavaScript (class expression mixins) instead of `Polymer` behaviors. (The
@@ -64,7 +67,7 @@ For general information on the custom elements v1 specification, see [Custom ele
 ### Lifecycle changes {#lifecycle-changes}
 
 When creating class-based elements, use the new native lifecycle methods (called "custom element
-reactions"). When creating legacy elements using the Polymer factory method, use the legacy Polymer
+reactions"). When creating legacy elements using the `Polymer` factory method, use the legacy Polymer
 callback names.
 
 
@@ -90,7 +93,8 @@ The legacy <code>created</code> callback is no longer called before default valu
 <code>created</code> from within <code>value</code> functions that define property defaults.
 <p>
 However, you can now set <strong>any</strong> property defaults within the <code>created</code>
-callback (in 1.0 this was forbidden for observed properties) in lieu of using the <code>value</code>
+
+callback (in 1.0 this was forbidden for observed properties) instead of using the <code>value</code>
 function in <code>properties</code>.
    </td>
   </tr>
@@ -134,7 +138,8 @@ declared.
   <tr>
    <td><code>ready</code> (Polymer specific)
    </td>
-   <td>Polymer no longer guarantees that the initial light DOM distribution is complete before ready is called.
+   <td>Polymer no longer guarantees that the initial light DOM distribution is complete before ready
+   is called.
    </td>
   </tr>
 </table>
@@ -162,7 +167,6 @@ Could become:
   <a>...</a>
 </my-anchor>
 ```
-
 
 Users will need to change existing type-extension elements where necessary.
 
@@ -232,7 +236,6 @@ For a brief but comprehensive set of examples illustrating the shadow DOM v1 spe
 
 Polymer 2.0 introduces a number of improvements in the data system:
 
-
 *   Simpler array handling. Eliminates the `Polymer.Collection` abstraction and key-based paths for
     array items.
 
@@ -285,7 +288,7 @@ this.property.subproperty = 'new value!';
 this.notifyPath('property.subproperty');
 ```
 
-In general, the dirty-checking mechanism is more performant. It should work for apps where one of
+In general, the dirty-checking mechanism is more performant. It works for apps where one of
 the following is true:
 
 *   You use immutable data.
@@ -298,7 +301,7 @@ before invoking property effects:
 
 `this.property.arrayProperty.push({ name: 'Alice' });`
 
-```
+```js
 this.property.stringProperty = 'new value!';
 this.property.counter++;
 this.notifyPath('property');
@@ -312,16 +315,19 @@ this.set('property', this.property);
 this.property = this.property;
 ```
 
+Using `set` to change a specific subproperty can often be the most efficient way to make changes.
+However, with this change users of Polymer elements shouldn't need to use this API, making it more
+compatible with alternate data-binding and state management libraries.
 
 Using `set` to change a specific subproperty can often be the most efficient way to make changes.
-However, elements that use `MutableData` Polymer elements shouldn't need to use this API, making it
+However, elements that use `MutableData` shouldn't need to use this API, making it
 more  compatible with alternate data-binding and state management libraries.
 
 Note that when you re-set a property at the top-level, all property effects for that property and
 its subproperties, array items, and so-on are re-run. Observers with wildcard paths (like `prop.*`)
 are only notified with the top-level change:
 
-```
+```js
 // 'property.*' observers fire with the path 'property'
 this.property.deep.path = 'another new value';
 this.notifyPath('property');
@@ -329,7 +335,8 @@ this.notifyPath('property');
 
 Using `set` to set specific paths generates granular notifications:
 
-```
+
+```js
 // 'property.*' observers fire with the path 'property.deep.path'
 this.set('property.deep.path', 'new value');
 ```
@@ -345,6 +352,7 @@ There are several other benefits to this change:
 
 *   Arrays of primitive values are supported.
 *   Array items don't need to be unique.
+
 
 Since key paths have been eliminated, array splice notifications only include the `indexSplices`
 property, not `keySplices`.
@@ -363,9 +371,8 @@ coherent changes:
 this.setProperties({ item: 'Orange', count: 12 });
 ```
 
-
-Single property accessors still propagate data synchronously. For example, given an observer that o
-bserves two properties, `a` and `b`:
+Single property accessors still propagate data synchronously. For example, given an observer that
+observes two properties, `a` and `b`:
 
 
 ```
@@ -381,11 +388,11 @@ this.setProperties({a: 10, b: 20});
 
 In 2.0, observers fire before property-change notifications. The effect order in 2.0 is:
 
-- Recompute computed properties.
-- Propagate values to data bindings.
-- Reflect properties to attributes.
-- Run observers.
-- Fire property-change notifications.
+*   Recompute computed properties.
+*   Propagate values to data bindings.
+*   Reflect properties to attributes.
+*   Run observers.
+*   Fire property-change notifications.
 
 In 1.x, observers fire last, after property-change notifications.
 
@@ -401,18 +408,20 @@ Specifically:
 *   The observer or computing functions may now receive `undefined` as an argument value, and
     needs to handle it correctly.
 
+
 ### Miscellaneous data system changes
 
 *   Setting/changing any function used in a computed binding causes the binding to re-compute its
     value using the new function and current property values. For example, given the binding:
 
-    `some-property="{{_computeValue(a, b)}}"`
+    ```js
+    some-property="{{_computeValue(a, b)}}"
+    ```
 
-    Changing the `_computeValue` function causes the binding to be re-evaluated, even if `a` and `b`
+    Changing the `_computeValue` _function_ causes the binding to be re-evaluated, even if `a` and `b`
     remain the same:
 
-
-    ```
+    ```js
       this._computeValue = function(a, b) { ... }
     ```
 
@@ -422,16 +431,16 @@ Specifically:
 
 *   In order for a property to be deserialized from its attribute, it must be declared in the
     <code>properties</code> metadata object. In Polymer 1.x, deserialization is also done for
-    properties that are <em>implicitly</em> declared (for example, by being included in a binding
-    or as an observer dependency).
+    properties that are <em>implicitly</em> declared (for example, by being included in a binding or
+    as an observer dependency).
 
 ## Polymer 1 compatibility layer
 
-Polymer 2.0 retains the existing `polymer/polymer.html` import that current Polymer 1.x users can
+Polymer 2.0 retains the existing `polymer/polymer.html` import that current Polymer 1.0 users can
 continue to import. This import includes the legacy Polymer function for defining elements, and
 strives to provide a very minimally-breaking change for code written to the Polymer 1.0 API.
 
-For the most part, existing users upgrading to Polymer 2.x will only need to adapt existing code to
+For the most part, existing users upgrading to Polymer 2.0 will only need to adapt existing code to
 be compliant with the shadow DOM v1 API  related to content distribution and styling, as well as
 minor breaking changes introduced due to changes in the custom elements v1 API.
 
@@ -465,14 +474,12 @@ for custom elements and shadow DOM. You can test Polymer 2.0 by using the `v1` b
 
 There are two main ways to load the polyfills:
 
-*   `webcomponents-lite.js` includes all polyfills necessary to run on any of the supported
+*   `webcomponents-lite.js` includes all of the polyfills necessary to run on any of the supported
     browsers.
 *   `webcomponents-loader.js` performs a runtime feature-detection and loads just the required
     polyfills.
 
-
 References:
-
 *   [v1 branch of webcomponents/webcomponentsjs](https://github.com/webcomponents/webcomponentsjs/tree/v1)
 
 ## ES6 transpilation
@@ -481,10 +488,12 @@ Polymer 2.0 and 2.0 class-style elements are written in ES6, and can be run with
 current Chrome, Safari 10, Safari Technology Preview, Firefox, and Edge.  Transpilation is required
 to run in IE11 and Safari 9.
 
-The Polymer CLI and `polymer-build` library support transpiling ES6 to ES5 at build time. In addition,
-the `polymer serve` and `polymer test` commands transpile as runtime when required by the browser.
+The Polymer CLI and `polymer-build` library support transpiling ES6 to ES5 at build time. In
+addition, the `polymer serve` and `polymer test` commands transpile as runtime when required by the
+ browser.
 
 ## Polymer element availability {#elements}
+
 
 The team is in the process of updating the Polymer elements to use the new "hybrid" format compatible
 with both Polymer 1.7 and 2.0. Many elements repos have `2.0-preview` branches in varying degrees of
@@ -492,10 +501,10 @@ stability.
 
 ## Install Polymer 2.0 {#installing}
 
-You can install the Polymer `2.0-preview` branch using bower:
+You can install the Polymer `2.0.0-rc1` branch using bower:
 
 ```
-bower install --save Polymer/polymer#2.0-preview
+bower install --save Polymer/polymer#2.0.0-rc1
 ```
 
 You can also use bower to install any of the available hybrid elements:
@@ -516,8 +525,13 @@ If your project uses Polymer elements or behaviors, see [Polymer element availab
 
 1.  Create a copy of your project or create a new branch to work in.
 
-1.  Find any Polymer packages in `bower.json` and replace the existing version
-    with  `2.0-preview` branch:
+1.  Find the Polymer packages in `bower.json` and replace the existing version
+    with  `2.0.0.rc1`:
+
+    `"polymer": "Polymer/polymer#2.0-rc1"`
+
+1.  Find any existing Polymer elements in `bower.json` and replace the existing version
+    with the `2.0-preview` branch:
 
     `"polymer": "Polymer/polymer#2.0-preview"`
 

@@ -7,10 +7,10 @@ title: Responsive app layout
 **The app layout elements are prerelease.** APIs may be subject to change.
 {.alert .alert-info}
 
-**Breaking changes:** In 
-[version 0.10](https://github.com/PolymerElements/app-layout/releases/tag/v0.10.0) 
-of the app layout package the `title` attribute of `<app-toolbar>` was 
-changed to `main-title`, and the `primary` attribute of `<app-header>` was 
+**Breaking changes:** In
+[version 0.10](https://github.com/PolymerElements/app-layout/releases/tag/v0.10.0)
+of the app layout package the `title` attribute of `<app-toolbar>` was
+changed to `main-title`, and the `primary` attribute of `<app-header>` was
 changed to `sticky`.
 {.alert .alert-warning}
 
@@ -232,9 +232,9 @@ To try out the various header options including all of the scroll effects, try t
 </a>
 
 For a list of available scroll effects, see [the `<app-header>`
-reference](https://elements.polymer-project.org/elements/app-layout?active=app-header). For
+reference](https://www.webcomponents.org/element/PolymerElements/app-layout/app-header). For
 instructions on creating your own scroll effects, see the [`AppScrollEffectsBehavior`
-reference](https://elements.polymer-project.org/elements/app-layout?active=Polymer.AppScrollEffectsBehavior).
+reference](https://www.webcomponents.org/element/PolymerElements/app-layout/Polymer.AppScrollEffectsBehavior).
 
 For more background, see [Scrolling
 techniques](https://www.google.com/design/spec/patterns/scrolling-techniques.html#) in the material
@@ -248,7 +248,7 @@ document scroller, if you switch between pages of content, your app needs to man
 position on each page.
 
 If you're using something like `<iron-pages>` to switch views, you can use
-[`<app-scrollpos-control>`](https://elements.polymer-project.org/elements/app-layout?active=app-scrollpos-control)
+[`<app-scrollpos-control>`](https://www.webcomponents.org/element/PolymerElements/app-layout/app-scrollpos-control)
 to track scroll position for each of the views. See the API docs for sample usage.
 
 You can use an element scroller by specifying a `scrollTarget` property on `<app-header>`:
@@ -265,7 +265,7 @@ This can be useful if you want to use header scroll effects in a side panel, suc
 
 ### Header layout
 
-The [`<app-header-layout>`](https://elements.polymer-project.org/elements/app-layout?active=app-header-layout)
+The [`<app-header-layout>`](https://www.webcomponents.org/element/PolymerElements/app-layout/app-header-layout)
 element is a simple way to put together a layout with an `<app-header>`. It supplies the necessary
 padding around the content so the content isn't hidden by the header.
 
@@ -286,11 +286,11 @@ To use it, just place an `<app-header>` and some content inside an `<app-header-
 
 By default the layout uses document scrolling. If you don't want to to scroll the whole page, the
 layout can define its own scrolling region, as shown in the [API
-docs](https://elements.polymer-project.org/elements/app-layout?active=app-header-layout).
+docs](https://www.webcomponents.org/element/PolymerElements/app-layout/app-header-layout).
 
 ## Drawers
 
-The [`<app-drawer>`](https://elements.polymer-project.org/elements/app-layout?active=app-drawer)
+The [`<app-drawer>`](https://www.webcomponents.org/element/PolymerElements/app-layout/app-drawer)
 element is a drawer that can be positioned on the left or right side of the screen.
 
 ```
@@ -306,17 +306,17 @@ element is a drawer that can be positioned on the left or right side of the scre
 There are a few ways to open and close the drawer:
 
 -   Swipe an open drawer closed. Set
-    [`swipeOpen`](https://elements.polymer-project.org/elements/app-layout?active=app-drawer#property-swipeOpen)
+    [`swipeOpen`](https://www.webcomponents.org/element/PolymerElements/app-layout/app-drawer#property-swipeOpen)
     to `true` to detect swipe gestures at the edge of the screen to open the drawer.
 
 -   Drag the drawer more than halfway closed (or open) and it continues on its own. A fast swipe (flick or fling gesture) has the same effect, even if it goes less than halfway.
 
 -   Open and close the drawer programmatically by calling
-    [`open`](https://elements.polymer-project.org/elements/app-layout?active=app-drawer#method-open),
-    [`close`](https://elements.polymer-project.org/elements/app-layout?active=app-drawer#method-close),
-    or [`toggle`](https://elements.polymer-project.org/elements/app-layout?active=app-drawer#method-toggle).
+    [`open`](https://www.webcomponents.org/element/PolymerElements/app-layout/app-drawer#method-open),
+    [`close`](https://www.webcomponents.org/element/PolymerElements/app-layout/app-drawer#method-close),
+    or [`toggle`](https://www.webcomponents.org/element/PolymerElements/app-layout/app-drawer#method-toggle).
     Or bind to the
-    [`opened`](https://elements.polymer-project.org/elements/app-layout?active=app-drawer#property-opened) property.
+    [`opened`](https://www.webcomponents.org/element/PolymerElements/app-layout/app-drawer#property-opened) property.
 
 -   A drawer can act as a persistent sidebar by setting the `persistent` property, which disables
     the swipe/fling gestures.
@@ -350,7 +350,7 @@ The following CSS adds a border shadow to the drawer and provides a colored scri
 
 ### Drawer layouts
 
-The [`<app-drawer-layout>`](https://elements.polymer-project.org/elements/app-layout?active=app-drawer-layout)
+The [`<app-drawer-layout>`](https://www.webcomponents.org/element/PolymerElements/app-layout/app-drawer-layout)
 element creates a responsive layout with a single drawer. On
 wider screens, the drawer acts as a persistent sidebar by default; it's always displayed and swipe
 and fling gestures are disabled.

@@ -1,0 +1,37 @@
+<link rel="import"  href="https://polygit.org/polymer+:2.0-preview/iron-input+polymerelements+:2.0-preview/webcomponentsjs+:v1/shadydom+webcomponents+:master/shadycss+webcomponents+:master/custom-elements+webcomponents+:master/components/polymer/polymer.html">
+<!-- import the iron-input element -->
+<link rel="import"  href="https://polygit.org/polymer+:2.0-preview/iron-input+polymerelements+:2.0-preview/webcomponentsjs+:v1/shadydom+webcomponents+:master/shadycss+webcomponents+:master/custom-elements+webcomponents+:master/components/iron-input/iron-input.html">
+
+<dom-module id="editable-name-tag">
+
+  <template>
+    <!-- bind to the "owner" property -->
+    <p>This is <b>[[owner]]</b>'s name-tag element.</p>
+    
+    <!-- iron-input exposes a two-way bindable input value -->
+    <iron-input bind-value="{{owner}}">
+      <input is="iron-input" placeholder="Your name here...">
+    </iron-input>
+  </template>
+
+  <script>
+    class EditableNameTag extends Polymer.Element {
+      static get is() { return "editable-name-tag"; }
+      
+      // configure the owner property
+      static get config() {
+        return {
+          properties: {
+            owner: {
+              type: String,
+              value: 'Daniel'
+            }
+          }
+        }
+      }
+      
+    }
+    customElements.define(EditableNameTag.is, EditableNameTag);
+  </script>
+
+</dom-module>

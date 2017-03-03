@@ -62,8 +62,8 @@ if 'CURRENT_VERSION_ID' in os.environ:
 
 REDIRECTS_FILE = 'redirects.yaml'
 NAV_FILE = '%s/nav.yaml'
-ARTICLES_FILE = '%s/blog.yaml'
-AUTHORS_FILE = '%s/authors.yaml'
+ARTICLES_FILE = 'blog.yaml'
+AUTHORS_FILE = 'authors.yaml'
 IS_DEV = os.environ.get('SERVER_SOFTWARE', '').startswith('Dev')
 
 def render(out, template, data={}):
@@ -96,6 +96,7 @@ def read_nav_file(filename, version):
   with open(filename, 'r') as f:
     nav = yaml.load(f)
   for one_section in nav:
+    one_section['version'] = version
     base_path = '/%s/%s/' % (version, one_section['shortpath'])
     if 'items' in one_section:
         for link in one_section['items']:
@@ -128,12 +129,12 @@ def read_authors_file(filename):
 
 def handle_404(req, resp, data, e):
   resp.set_status(404)
-  render(resp, '/1.0/404.html', data)
+  render(resp, '/404.html', data)
 
 def handle_500(req, resp, data, e):
   logging.exception(e)
   resp.set_status(500)
-  render(resp, '/1.0/500.html', data);
+  render(resp, '/500.html', data);
 
 
 # class VersionHandler(http2push.PushHandler):
@@ -183,21 +184,37 @@ class Site(http2push.PushHandler):
             return one_section['items']
     return None
 
-  def get_articles(self, version):
-    articles_file_for_version = ARTICLES_FILE % version
-    articles_cache = MEMCACHE_PREFIX + articles_file_for_version
+  def versions_for_section(self, section):
+    nav_1 = self.get_site_nav('1.0')
+    nav_2 = self.get_site_nav('2.0')
+
+    versioned_section_1 = '%s/%s' % ('1.0', section)
+    versioned_section_2 = '%s/%s' % ('2.0', section)
+
+    versions = ['','']
+    if nav_1:
+      for one_section in nav_1:
+        if one_section['shortpath'] == section or one_section['shortpath'] == versioned_section_1:
+          versions[0] = one_section['path'];
+    if nav_2:
+      for one_section in nav_2:
+        if one_section['shortpath'] == section or one_section['shortpath'] == versioned_section_2:
+          versions[1] = one_section['path'];
+    return versions
+
+  def get_articles(self):
+    articles_cache = MEMCACHE_PREFIX + ARTICLES_FILE
     articles = memcache.get(articles_cache)
 
-    authors_file_for_version = AUTHORS_FILE % version
-    authors_cache = MEMCACHE_PREFIX + authors_file_for_version
+    authors_cache = MEMCACHE_PREFIX + AUTHORS_FILE
     authors = memcache.get(authors_cache)
 
     if authors is None or IS_DEV:
-      authors = read_authors_file(authors_file_for_version)
+      authors = read_authors_file(AUTHORS_FILE)
       memcache.add(authors_cache, authors)
 
     if articles is None or IS_DEV:
-      articles = read_articles_file(articles_file_for_version, authors)
+      articles = read_articles_file(ARTICLES_FILE, authors)
       memcache.add(articles_cache, articles)
 
     return articles
@@ -233,34 +250,36 @@ class Site(http2push.PushHandler):
     nav = None
     articles = None
     active_article = None
+    full_nav = None
+    versions = ['','']
     match = re.match('([0-9]+\.[0-9]+)/([^/]+)', path)
 
     if match:
       version = match.group(1)
       section = match.group(2)
-      # Hack to support /2.0 tab
-      # full_nav = self.get_site_nav(version)
-      # nav = self.nav_for_section(version, section)
-      full_nav = self.get_site_nav('1.0')
+      full_nav = self.get_site_nav(version)
       nav = self.nav_for_section(version, section)
+      versions = self.versions_for_section(section)
 
-      if section == 'blog' or section == 'index.html':
-        articles = self.get_articles('1.0')
-        active_article = self.get_active_article_data(articles, path)
+      data = {
+        'nav': nav,
+        'full_nav': full_nav,
+        'versions': versions
+      }
     else:
-      full_nav = self.get_site_nav('1.0')
+      if path.startswith('blog') or path == 'index.html':
+        articles = self.get_articles()
+        active_article = self.get_active_article_data(articles, path)
+
+      data = {
+        'full_nav': self.get_site_nav('1.0') + self.get_site_nav('2.0'),
+        'articles': articles,
+        'active_article': active_article
+      }
 
     # Add .html to construct template path.
     if not path.endswith('.html'):
       path += '.html'
-
-    data = {
-      'nav': nav,
-      'full_nav': full_nav,
-      'articles': articles,
-      'active_article': active_article,
-      'polymer_version_dir': version
-    }
 
     render(self.response, path, data)
 

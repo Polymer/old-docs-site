@@ -109,21 +109,21 @@ Use Polymer's array mutation methods to make [observable changes](data-system#ob
 to arrays.
 
 If you manipulate an array using the native methods (like `Array.prototype.push`), you can notify
-Polymer after the fact.
+Polymer after the fact, as described in [Batch changes to an object or array](#batch-changes).
 
 ### Mutate an array {#array-mutation}
 
-When modifying arrays, a set of array mutation methods are provided on Polymer
-element prototypes which mimic `Array.prototype` methods, with the exception that
+When modifying arrays, Polymer provides a set of array mutation methods that mimic
+`Array.prototype` methods, with the exception that
 they take a `path` string as the first argument.  The `path` argument identifies
 an array on the element to mutate, with the following arguments matching those
 of the native `Array` methods.
 
-These methods perform the mutation action on
-the array, and then notify other elements that may be bound to the same
-array of the changes.  You must use these methods when mutating an array
+These methods perform the mutation action on the array, and then notify other elements that may be
+bound to the same array of the changes. You can use these methods when mutating an array
 to ensure that any elements watching the array (via observers, computed properties,
-or data bindings) are kept in sync.
+or data bindings) are kept in sync. (Alternately, you can mutate the array using native methods,
+then notify Polymer as described in [Batch changes to an object or array](#batch-changes).)
 
 Every Polymer element has the following array mutation methods available:
 
@@ -137,26 +137,30 @@ Every Polymer element has the following array mutation methods available:
 Example { .caption }
 
 ```html
-<dom-module id="custom-element">
+<link rel="import" href="components/polymer/polymer-element.html">
+<link rel="import" href="components/polymer/src/elements/dom-repeat.html">
+
+<dom-module id="x-custom">
   <template>
     <template is="dom-repeat" items="[[users]]">{{item}}</template>
   </template>
 
   <script>
-    Polymer({
+    class XCustom extends Polymer.Element {
 
-      is: 'custom-element',
+      static get is() {return 'custom-element'}
 
-      addUser: function(user) {
+      addUser(user) {
         this.push('users', user);
-      },
+      }
 
-      removeUser: function(user) {
+      removeUser(user) {
         var index = this.users.indexOf(user);
         this.splice('users', index, 1);
       }
 
-    });
+    }
+    customElements.define(XCustom.is, XCustom);
   </script>
 </dom-module>
 ```
@@ -211,9 +215,12 @@ run as a coherent set.
 
 ```js
 this.setProperties({
-
-})
+  date: 'Jan 17, 2017',
+  verified: true
+});
 ```
+
+
 
 ## Link two paths to the same object {#linkpaths}
 

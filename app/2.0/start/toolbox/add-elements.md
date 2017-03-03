@@ -9,9 +9,7 @@ Now that you've added a new view to your application, you can start building
 out the details of that view.
 
 In the process, you'll likely want to turn
-to some off-the-shelf components, for example from the
-[Polymer Element Catalog][catalog] or community catalogs like
-[customelements.io][ceio].
+to some off-the-shelf components, for example from [webcomponents.org][webcomponents.org].
 
 
 ## Install an off-the-shelf component
@@ -19,9 +17,8 @@ to some off-the-shelf components, for example from the
 Once you've identified a component you'd like to install, you'll want to find
 the bower package name for the component.
 
-In this step, you'll add Polymer's `<paper-checkbox>` element to your app, which is listed in the
-[Polymer Element Catalog here][paper-checkbox].  You'll find its bower install
-command on the left hand side of that screen.
+In this step, you'll add Polymer's `<paper-checkbox>` element to your app, which is listed on
+[webcomponents.org][paper-checkbox].  You can use Bower to install it.
 
 Run this command from your project root directory:
 
@@ -75,6 +72,5 @@ Now that you've added a 3rd-party component to your page, learn how to
 [deploy the app to the web](deploy).
 
 [bower]: http://bower.io/
-[catalog]: https://elements.polymer-project.org/
-[paper-checkbox]: https://elements.polymer-project.org/elements/paper-checkbox
-[ceio]: https://customelements.io/
+[webcomponents.org]: https://www.webcomponents.org
+[paper-checkbox]: https://www.webcomponents.org/element/PolymerElements/paper-checkbox

@@ -1,0 +1,22 @@
+<link rel="import"  href="https://polygit.org/polymer+:2.0-preview/webcomponentsjs+:v1/shadydom+webcomponents+:master/shadycss+webcomponents+:master/custom-elements+webcomponents+:master/components/polymer/polymer.html">
+
+<dom-module id="configurable-name-tag">
+
+  <template>
+    <!-- bind to the "owner" property -->
+    This is <b>[[owner]]</b>'s name-tag element.
+  </template>
+
+  <script>
+    class ConfigurableNameTag extends Polymer.Element {
+      static get is() { return "configurable-name-tag"; }
+      // configure owner property
+      constructor() {
+        super();
+        this.owner = "Daniel";
+      }
+    }
+    customElements.define(ConfigurableNameTag.is, ConfigurableNameTag);
+  </script>
+
+</dom-module>

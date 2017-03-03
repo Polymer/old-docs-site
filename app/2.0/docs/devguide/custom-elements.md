@@ -255,13 +255,11 @@ In addition to `HTMLElement`, a custom element can extend another custom element
 class ExtendedElement extends MyElement {
   static get is() { return 'extended-element'; }
 
-  static get config {
+  static get properties() {
     return {
-      properties: {
-        thingCount: {
-          value: 0,
-          observer: '_thingCountChanged'
-        }
+      thingCount: {
+        value: 0,
+        observer: '_thingCountChanged'
       }
     }
   }
@@ -287,30 +285,30 @@ ES6 classes allow single inheritance, which can make it challenging to share cod
 elements. Class expression mixins let you share code between elements.
 
 A class expression mixin is basically a function that operates as a *class factory*. You pass in a
-superclass, and the function generates a new class which extends the superclass with the
-mixin's methods.
+superclass, and the function generates a new class which extends the superclass with the mixin's
+methods.
 
 
-```
+```js
 MyMixin = function(superClass) {
+
   return class extends superClass {
 
     constructor() {
       super()
-      this.addEventListener('keypress', (e) => this.handlePress(e));
+      this.addEventListener('keypress', e => this.handlePress(e));
     }
 
     static get properties() {
       return {
         bar: {
-          type: String,
-          value: 5
+          type: Object
         }
       }
     }
 
     static get observers() {
-      return ['_barChanged(bar)']
+      return [ '_barChanged(bar.*)' ]
     }
 
     _barChanged(bar) { ... }
@@ -325,7 +323,7 @@ The mixin can define properties, observers, and methods just like a regular elem
 
 Add a mixin to your element like this:
 
-```
+```js
 class MyElement extends MyMixin(Polymer.Element) {
   static get is() { return 'my-element' }
 }
@@ -340,7 +338,7 @@ MyElement <= MyMixin(Polymer.Element) <= Polymer.Element
 
 You can apply multiple mixins in sequence:
 
-```
+```js
 class AnotherElement extends AnotherMixin(MyMixin(Polymer.Element)) { … }
 ```
 
