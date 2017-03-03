@@ -44,11 +44,8 @@ When we end support for an environment we will do so with a major version change
 
 Unsupported environments will not necessarily stop working right away, but we will eventually use features that are only supported in newer environments.
 
-# // TODOs
+# Next steps
 
 * Add Node v7 to our Travis and Appveyor testing matrix
-
-* Add Appveyor testing to polymer-build, polymer-analyzer, polymer-bundler, polyserve and web-component-tester
-
+* Add Appveyor testing to `polymer-build`, `polymer-analyzer`, `polymer-bundler`, `polyserve` and `web-component-tester`
 * Add macOS environments to Travis
-
