@@ -2,6 +2,8 @@
 title: Custom element concepts
 ---
 
+<!-- toc -->
+
 Custom elements provide a component model for the web. The custom elements specification provides:
 
 *   A mechanism for associating  a class with a custom element name.
