@@ -12,7 +12,7 @@ and make it even easier to build complex, interactive elements:
 - Registering elements
 - Lifecycle callbacks
 - Property observation
-- Local DOM template
+- Shadow DOM template
 - Data binding
 
 In this section you can take a quick tour of the Polymer library,
@@ -30,12 +30,12 @@ an element name with a class, so you can add properties and methods to your cust
 element. The custom element's name **must start with an ASCII letter and
 contain a dash (-)**.
 
-<demo-tabs selected="0" src="http://plnkr.co/edit/0YfRfNXvPCEe4bu8dtSI?p=preview">
+<demo-tabs selected="0" src="http://plnkr.co/edit/NBuzodQJsOHov5mqtw39?p=preview">
   <demo-tab heading="proto-element.html">
-<pre><code>{{{include_file('2.0/docs/devguide/samples/custom-element/custom-element.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/custom-element/custom-element.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>{{{include_file('2.0/docs/devguide/samples/custom-element/index.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/custom-element/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/custom-element/index.html" width="100%" height="40"></iframe>
@@ -59,18 +59,18 @@ You can use the `ready` callback for one-time initialization work after the elem
 Many elements include some internal DOM nodes to implement the element's UI and behavior.
 You can use Polymer's DOM templating to create a shadow DOM tree for your element.
 
-<demo-tabs selected="0" src="http://plnkr.co/edit/qwNuu5ujuKuhMUHJUHAP?p=preview">
+<demo-tabs selected="0" src="http://plnkr.co/edit/86FGCArnjfcNo6W4xjKp?p=preview">
   <demo-tab heading="dom-element.html">
-<pre><code>{{{include_file('1.0/docs/devguide/samples/dom-element/dom-element.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/dom-element/dom-element.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>{{{include_file('1.0/docs/devguide/samples/dom-element/index.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/dom-element/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/dom-element/index.html" width="100%" height="40"></iframe>
 </demo-tabs>
 
-Local DOM is encapsulated inside the element.
+Shadow DOM is encapsulated inside the element.
 
 <p><a href="/1.0/docs/devguide/dom-template" class="blue-button">Learn more: DOM templating</a></p>
 
@@ -84,16 +84,16 @@ with a styled `<div>` tag.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/pnoCAMEuAyd2e8MkxGhC?p=preview">
   <demo-tab heading="picture-frame.html">
-<pre><code>{{{include_file('2.0/docs/devguide/samples/picture-frame/picture-frame.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/picture-frame/picture-frame.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>{{{include_file('2.0/docs/devguide/samples/picture-frame/index.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/picture-frame/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/picture-frame/index.html" width="100%" height="60"></iframe>
 </demo-tabs>
 
-**Note:** The CSS styles defined inside the `<dom-module>` are _scoped_ to the element's local DOM.
+**Note:** The CSS styles defined inside the `<dom-module>` are _scoped_ to the element's shadow DOM.
 So the `div` rule here only affects `<div>` tags inside `<picture-frame>`.
 {: .alert .alert-info }
 
@@ -102,25 +102,25 @@ Learn more: Composition & distribution</a></p>
 
 ### Use data binding
 
-Of course, it's not enough to have static local DOM. You usually want to have your element update
-its local DOM dynamically.
+Of course, it's not enough to have static shadow DOM. You usually want to have your element update
+its shadow DOM dynamically.
 
 Data binding is a great way to quickly propagate changes in your element and reduce boilerplate code.
 You can bind properties in your component using the "double-mustache" syntax (`{%raw%}{{}}{%endraw%}`).
 The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced between the brackets.
 
-<demo-tabs selected="0" src="http://plnkr.co/edit/IdMTRu1boSjWIA6q7Kj8?p=preview">
+<demo-tabs selected="0" src="http://plnkr.co/edit/llxoF8FSWibWceOG9U8Q?p=preview">
   <demo-tab heading="name-tag.html">
-<pre><code>{{{include_file('2.0/docs/devguide/samples/name-tag/name-tag.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/name-tag/name-tag.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>{{{include_file('2.0/docs/devguide/samples/name-tag/index.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/name-tag/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/name-tag/index.html" width="100%" height="40"></iframe>
 </demo-tabs>
 
-<p><a href="/1.0/docs/devguide/data-binding" class="blue-button">
+<p><a href="/2.0/docs/devguide/data-binding" class="blue-button">
 Learn more: data binding</a></p>
 
 ### Declare a property
@@ -132,12 +132,12 @@ values, configuring properties from markup, observing property changes, and more
 The following example declares the `owner` property from the last example.
 It also shows configuring the owner property from markup in `index.html`.
 
-<demo-tabs selected="0" src="http://plnkr.co/edit/DhDSeqNrmLflcQ8UZI1R?p=preview">
+<demo-tabs selected="0" src="http://plnkr.co/edit/AQn8VGT4fut4Z5ciglOK?p=preview">
   <demo-tab heading="configurable-name-tag.html">
-<pre><code>{{{include_file('2.0/docs/devguide/samples/configurable-name-tag/configurable-name-tag.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/configurable-name-tag/configurable-name-tag.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>{{{include_file('2.0/docs/devguide/samples/configurable-name-tag/index.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/configurable-name-tag/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/configurable-name-tag/index.html" width="100%" height="40"></iframe>
@@ -157,10 +157,10 @@ to the element's `owner` property, so it's updated as the user types.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/cSDfLSaJtHHuoFwUqgEf?p=preview">
   <demo-tab heading="editable-name-tag.html">
-<pre><code>{{{include_file('2.0/docs/devguide/samples/editable-name-tag/editable-name-tag.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/editable-name-tag/editable-name-tag.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
-<pre><code>{{{include_file('2.0/docs/devguide/samples/editable-name-tag/index.html')}}}</code></pre>
+<pre><code>{{{include_file('2.0/start/samples/editable-name-tag/index.html')}}}</code></pre>
   </demo-tab>
 
   <iframe frameborder="0" src="samples/editable-name-tag/index.html" width="100%" height="100"></iframe>
@@ -170,11 +170,24 @@ to the element's `owner` property, so it's updated as the user types.
 data binding and input validation.
 {: .alert .alert-info }
 
+### Use the template repeater
+
+The template repeater (`dom-repeat`) is a specialized template that binds to an array. It creates one instance of the template's contents for each item in the array.
+
+<demo-tabs selected="0" src="http://plnkr.co/edit/fF7dWqgtI3WCsFZnG97j?p=preview">
+  <demo-tab heading="employee-list.html">
+<pre><code>{{{include_file('2.0/start/samples/employee-list/employee-list.html')}}}</code></pre>
+  </demo-tab>
+  <demo-tab heading="index.html">
+<pre><code>{{{include_file('2.0/start/samples/employee-list/index.html')}}}</code></pre>
+  </demo-tab>
+
+  <iframe frameborder="0" src="samples/employee-list/index.html" width="100%" height="100"></iframe>
+</demo-tabs>
+
 ## Next steps
 
-Now that you understand these fundamental Polymer concepts, you can
-[build your first element](/2.0/start/first-element/intro) or explore
-the remainder of the Developer guide.
+Now that you understand these fundamental Polymer concepts, you can [build an app with App Toolbox](/2.0/start/toolbox/set-up) or see a [feature overview of the Polymer library](/2.0/docs/devguide/feature-overview).
 
 <script>
 Polymer.Base.importHref(Polymer.Base.resolveUrl('/elements/demo-tabs.html'));
