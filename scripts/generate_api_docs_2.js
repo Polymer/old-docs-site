@@ -3,13 +3,13 @@
  * about relative paths and Mercury being in retrograde.
  *
  * Usage:
- * cd scripts && node generate_api_docs.js
+ * cd scripts && node generate_api_docs_2.js
  */
 
 const {Analyzer} = require('polymer-analyzer');
 const {FSUrlLoader} = require('polymer-analyzer/lib/url-loader/fs-url-loader');
 const {PackageUrlResolver} = require('polymer-analyzer/lib/url-loader/package-url-resolver');
-const {generateElementMetadata} = require('polymer-analyzer/lib/generate-elements');
+const {generateAnalysisMetadata} = require('polymer-analyzer/lib/generate-analysis');
 
 const clone = require('clone');
 const fs = require('fs');
@@ -21,7 +21,7 @@ const apiDocsPath = '../app/2.0/docs/api/';
 const rootNamespace = 'Polymer';
 
 // TODO: Check out an actual release SHA to generate docs off of.g
-const releaseSha = 'da3fd0fbde869738ea167a8d6d095a716ea029a5';
+const releaseSha = 'd198581c9c7730b21f31fd3c4ca37b13218c4963';
 
 process.on('unhandledRejection', (reason, p) => {
   console.log('Unhandled Rejection at: Promise ', p, ' reason: ', reason);
@@ -84,110 +84,93 @@ function runAnalyzer() {
   analyzer.analyzePackage()
     .then((_package) => {
       console.log('Analyzer done');
-      const metadata = generateElementMetadata(_package, '', isNotTest);
+      const metadata = generateAnalysisMetadata(_package, '', isNotTest);
       const json = JSON.stringify(metadata, null, 2);
-      fs.writeFileSync('elements.json', json);
+      fs.writeFileSync('analysis.json', json);
 
-      const namespaceSummaries = new Map();
+      function generateNamespace(namespace) {
+        console.log(`generating namespace ${namespace && namespace.name}`);
 
-      // Build mapping of namespaces
-      if (metadata.namespaces) {
-        // Create summaries objects
-        for (const namespace of metadata.namespaces) {
-          namespaceSummaries.set(namespace.name, {
-            namespaces: [],
-            elements: [],
-            mixins: [],
-          });
+        const overview = {
+          name: namespace.name,
+          description: namespace.description,
+          summary: namespace.summary,
+          namespaces: [],
+          elements: [],
+          mixins: [],
+          behaviors: [],
+          functions: namespace.functions, // already summarized
+        };
+
+        console.log(`Processing ${namespace.elements && namespace.elements.length} elements`);
+        if (namespace.elements) {
+          for (const element of namespace.elements) {
+            console.log(`adding ${getElementName(element)} to ${namespace.name}`);
+            const summary = {
+              classname: element.classname,
+              tagname: element.tagname,
+              summary: element.summary,
+            };
+            overview.elements.push(summary);
+            const fileContents = elementPage(element);
+            const filename = path.join(apiDocsPath, getElementUrl(element) + '.html');
+            console.log('Writing', filename);
+            fs.writeFileSync(filename, fileContents);
+          }
         }
-        // Add nested namespaces to parents
-        for (const namespace of metadata.namespaces) {
-          if (namespace.name === rootNamespace) {
-            continue;
+
+        console.log(`Processing ${namespace.mixins && namespace.mixins.length} mixins`);
+        if (namespace.mixins) {
+          for (const mixin of namespace.mixins) {
+            console.log(`adding ${mixin.name} to ${namespace.name}`);
+            const summary = {
+              name: mixin.name,
+              summary: mixin.summary,
+            };
+            overview.mixins.push(summary);
+
+            const fileContents = mixinPage(mixin);
+            const filename = path.join(apiDocsPath, getMixinUrl(mixin) + '.html');
+            console.log('Writing', filename);
+            fs.writeFileSync(filename, fileContents);
           }
-          const parentName = getNamespaceName(namespace.name);
-          const parent = namespaceSummaries.get(parentName);
-          if (parent) {
-            parent.namespaces.push({
-              name: namespace.name,
-              summary: namespace.summary,
-            });
+        }
+
+        // TODO(justinfagnani): behaviors
+
+        console.log(`Processing ${namespace.namespaces && namespace.namespaces.length} namespaces`);
+        if (namespace.namespaces) {
+          for (const nestedNamespace of namespace.namespaces) {
+            console.log(`adding ${nestedNamespace.name} to ${namespace.name}`);
+            const summary = {
+              name: nestedNamespace.name,
+              summary: nestedNamespace.summary,
+            };
+            overview.namespaces.push(summary);
+            generateNamespace(nestedNamespace);
           }
+        }
+
+        if (namespace.name) {
+          const fileContents = namespacePage(overview);
+          let filename;
+          if (namespace.name === 'Polymer') {
+            filename = 'index.html';
+          } else {
+            filename = getNamespaceUrl(namespace) + '.html';
+          }
+          const filepath = path.join(apiDocsPath, filename);
+          console.log('Writing', filepath);
+          fs.writeFileSync(filepath, fileContents);
         }
       }
 
-      console.log(`Processing ${metadata.elements && metadata.elements.length} elements`);
-      if (metadata.elements) {
-        fs.mkdirSync(path.join(apiDocsPath, 'elements'));
-        for (const element of metadata.elements) {
-          // Add a summary to the namespace
-          const namespaceName = getNamespaceName(element.classname);
-          console.log(`adding ${getElementName(element)} to ${namespaceName}`);
-          if (namespaceName) {
-            const summaries = namespaceSummaries.get(namespaceName);
-            if (summaries) {
-              const summary = {
-                classname: element.classname,
-                tagname: element.tagname,
-                summary: element.summary,
-              };
-              console.log('adding element summary to ', namespaceName, summary);
-              summaries.elements.push(summary);
-            }
-          }
+      fs.mkdirSync(path.join(apiDocsPath, 'elements'));
+      fs.mkdirSync(path.join(apiDocsPath, 'mixins'));
+      fs.mkdirSync(path.join(apiDocsPath, 'namespaces'));
 
-          const fileContents = elementPage(element);
-          const filename = path.join(apiDocsPath, getElementUrl(element) + '.html');
-          console.log('Writing', filename);
-          fs.writeFileSync(filename, fileContents);
-        }
-      }
-
-      console.log(`Processing ${metadata.mixins && metadata.mixins.length} mixins`);
-      if (metadata.mixins) {
-        fs.mkdirSync(path.join(apiDocsPath, 'mixins'));
-        for (const mixin of metadata.mixins) {
-          // Add a summary to the namespace
-          const namespaceName = getNamespaceName(mixin.name);
-          if (namespaceName) {
-            const summaries = namespaceSummaries.get(namespaceName);
-            if (summaries) {
-              const summary = {
-                name: mixin.name,
-                summary: mixin.summary,
-              };
-              summaries.mixins.push(summary);
-            }
-          }
-
-          const fileContents = mixinPage(mixin);
-          const filename = path.join(apiDocsPath, getMixinUrl(mixin) + '.html');
-          console.log('Writing', filename);
-          fs.writeFileSync(filename, fileContents);
-        }
-      }
-
-      console.log(`Processing ${metadata.namespaces && metadata.namespaces.length} namespaces`);
-      if (metadata.namespaces) {
-        fs.mkdirSync(path.join(apiDocsPath, 'namespaces'));
-        for (const namespace of metadata.namespaces) {
-          // Clone the namespace so we can replace members with summaries
-          const namespaceClone = clone(namespace);
-          const summaries = namespaceSummaries.get(namespace.name);
-          namespaceClone.elements = Array.from(summaries.elements);
-          // console.log('namespace elements', namespace.name, summaries.elements);
-          console.log('namespace sub-namespaces', namespace.name, summaries.namespaces);
-          namespaceClone.mixins = Array.from(summaries.mixins);
-          namespaceClone.namespaces = Array.from(summaries.namespaces);
-
-          const fileContents = namespacePage(namespaceClone);
-          const filename = (namespace.name === rootNamespace)
-            ? 'index.html'
-            : `namespaces/${namespace.name}.html`;
-          console.log('Writing', filename);
-          fs.writeFileSync(path.join(apiDocsPath, filename), fileContents);
-        }
-      }
+      // We know we just have 1 namespace: Polymer
+      generateNamespace(metadata.namespaces[0]);
 
 //       cleanUp(function() {
 //         console.log('Done.');
@@ -259,9 +242,13 @@ function getElementName(element) {
 }
 
 function getElementUrl(element) {
-  return element.tagname ? `/elements/${element.tagname}` : `/elements/${element.classname}`;
+  return `/elements/${element.classname || element.tagname}`;
 }
 
 function getMixinUrl(mixin) {
   return `/mixins/${mixin.name}`;
+}
+
+function getNamespaceUrl(namespace) {
+  return `/namespaces/${namespace.name}`;
 }
