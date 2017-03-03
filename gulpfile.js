@@ -231,7 +231,7 @@ gulp.task('minify-bundles', 'Minify element bundles',  ['build-bundles'], functi
     .pipe($.crisper({scriptInHead: false})) // split inline JS & CSS out into individual .js & .css files
     .pipe($.if('*.html', minifyHtml())) // Minify html output
     .pipe($.if('*.html', cssslam.gulp())) // Minify css in HTML output
-    .pipe($.if('*.js', uglifyJS())) // Minify js output
+    // .pipe($.if('*.js', uglifyJS())) // Minify js output
     .pipe($.if('*.js', license()))
     .pipe(gulp.dest('build/minified'));
 });

@@ -125,32 +125,8 @@
     indent: True
   - endheader: True
   - header: API Reference
-  - title: Polymer.Base
-    path: /2.0/docs/api/Polymer.Base
-    indent: True
-  - title: array-selector
-    path: /2.0/docs/api/array-selector
-    indent: True
-  - title: custom-style
-    path: /2.0/docs/api/custom-style
-    indent: True
-  - title: dom-bind
-    path: /2.0/docs/api/dom-bind
-    indent: True
-  - title: dom-if
-    path: /2.0/docs/api/dom-if
-    indent: True
-  - title: dom-repeat
-    path: /2.0/docs/api/dom-repeat
-    indent: True
-  - title: dom-template
-    path: /2.0/docs/api/dom-template
-    indent: True
-  - title: Polymer.Templatizer
-    path: /2.0/docs/api/Polymer.Templatizer
-    indent: True
-  - title: Global settings
-    path: /2.0/docs/devguide/settings
+  - title: API Reference
+    path: /2.0/docs/api/
     indent: True
   - endheader: True
 

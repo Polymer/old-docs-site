@@ -54,5 +54,8 @@
     "run-sequence": "^1.1.4",
     "toc": "PolymerLabs/node-toc",
     "yargs": "^3.29.0"
+  },
+  "dependencies": {
+    "clone": "^2.1.0"
   }
 }
