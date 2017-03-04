@@ -188,7 +188,3 @@ The template repeater (`dom-repeat`) is a specialized template that binds to an 
 ## Next steps
 
 Now that you understand these fundamental Polymer concepts, you can [build an app with App Toolbox](/2.0/start/toolbox/set-up) or see a [feature overview of the Polymer library](/2.0/docs/devguide/feature-overview).
-
-<script>
-Polymer.Base.importHref(Polymer.Base.resolveUrl('/elements/demo-tabs.html'));
-</script>

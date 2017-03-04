@@ -176,7 +176,3 @@ element; the element name is `iron-input`, and it _extends_ the native `<input>`
 Now that you understand these fundamental Polymer concepts, you can
 [build your first element](/1.0/start/first-element/intro) or explore
 the remainder of the Developer guide.
-
-<script>
-Polymer.Base.importHref(Polymer.Base.resolveUrl('/elements/demo-tabs.html'));
-</script>
