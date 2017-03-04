@@ -104,5 +104,4 @@ a page to your app.
     href="create-a-page">Next step: Create a page</a>
 
 [toolbox]: /2.0/toolbox/
-[shared styles]: /1.0/docs/devguide/styling.html#style-modules
 [md]: http://www.google.com/design/spec/material-design/introduction.html
