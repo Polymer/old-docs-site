@@ -7,7 +7,7 @@ title: Style an element's shadow DOM
 ## Style your elements
 
 Polymer supports DOM templating and the shadow DOM API. When you provide a DOM template for your cusotm element, Polymer then copies in the contents of the template you provided for your element.
-	
+
 Here's an example:
 
 [See it on Plunker](http://plnkr.co/edit/TOgaxeSzuQsWFSIpzN7S?p=preview)
@@ -23,7 +23,7 @@ Here's an example:
     <h1>Heading!</h1>
     <p>We are elements in custom-element's local DOM.</p>
   </template>
-  
+
   <!-- Register the element -->
   <script>
   class CustomElement extends Polymer.Element {
@@ -47,7 +47,7 @@ Here's an example:
 <custom-element></custom-element>
 ```
 
-The HTML elements in your template become children in your custom element's shadow DOM. Shadow DOM provides a mechanism for encapsulation, meaning that elements inside the shadow DOM don't match selectors outside the shadow DOM. 
+The HTML elements in your template become children in your custom element's shadow DOM. Shadow DOM provides a mechanism for encapsulation, meaning that elements inside the shadow DOM don't match selectors outside the shadow DOM.
 
 Likewise, styling rules in side the shadow DOM can't "leak" out to affect elements outside the shadow DOM.
 
@@ -156,7 +156,7 @@ Styles declared inside shadow DOM will override styles declared outside of it:
 <link rel="import" href="x-foo.html"
 <!-- Document-level stylesheet -->
 <style>
-  p { 
+  p {
     font-family: sans-serif;
     color:blue;
   }
@@ -185,7 +185,7 @@ Inheritable properties of the host element will inherit down the shadow tree, wh
         color:green;
         display: block;
         border: 1px solid;
-      }	
+      }
     </style>
     <p>I'm green.</p>
     <div>I'm green too.</div>
@@ -210,7 +210,7 @@ x-foo {
 }
 ```
 
-#### Use CSS selectors to style the host element 
+#### Use CSS selectors to style the host element
 
 You can use CSS selectors to determine when and how to style the host. In this code sample:
 
@@ -341,7 +341,7 @@ To style slotted content, use the `::slotted()` syntax.
 <x-foo>
   <div slot="heading1">Heading 1. I'm green.</div>
   <div slot="para">Paragraph text. I'm green too.</div>
-</x-foo>   
+</x-foo>
 ```
 
 [See it on Plunkr](http://plnkr.co/edit/suVhRDAB5Rq7Q7T6zbMI?p=preview)
@@ -357,11 +357,11 @@ You can select by element type:
       font-family: sans-serif;
       color:green;
     }
-    ::slotted(p) { 
+    ::slotted(p) {
       font-family: sans-serif;
       color:blue;
     }
-    </style>    
+    </style>
     <slot name='heading1'></slot>
     <slot name='para'></slot>
   </template>
@@ -376,7 +376,7 @@ You can select by element type:
 <x-foo>
   <h1 slot="heading1">Heading 1. I'm green.</h1>
   <p slot="para">Paragraph text. I'm blue.</p>
-</x-foo> 
+</x-foo>
 ```
 
 You can select by class:
@@ -404,7 +404,7 @@ You can select by class:
 ```
 
 `index.html`
-```html 
+```html
 <link rel="import" href="x-foo.html">
 
 <x-foo>
@@ -412,7 +412,7 @@ You can select by class:
   <div slot="para1">I'm not green.</div>
   <div slot="para2" class="green">I'm green too.</div>
   <div slot="para2">I'm not green.</div>
-</x-foo> 
+</x-foo>
 ```
 
 And you can select by slot name:
@@ -446,7 +446,7 @@ And you can select by slot name:
 <x-foo>
   <div slot="para1">I'm green!</div>
   <div slot="para2">I'm not green.</div>
-</x-foo> 
+</x-foo>
 ```
 
 ## Share styles between elements
@@ -526,7 +526,7 @@ Here's an example:
 ```html
 <link rel="import" href="x-foo.html">
 
-<x-foo></x-foo> 
+<x-foo></x-foo>
 ```
 
 
@@ -582,15 +582,17 @@ For example:
 <x-foo></x-foo>
 ```
 
-## Use `custom-style` in document-level styles
-	
+## Use `custom-style` in document-level styles {#custom-style}
+}
+
 Browsers that implement the current Shadow DOM v1 specifications will automatically encapsulate styles, scoping them to the elements in which they were defined.
 
 Some browsers have not implemented the Shadow DOM v1 specifications. To make sure your apps and elements display correctly in these browsers, you'll need to use `custom-style` to ensure that styling information doesn't "leak" into the local DOM of your elements.
 
 `custom-style` enables a set of polyfills that ensure that styles in your apps and elements behave as you would expect from the Shadow DOM v1 specifications, even in browsers that don't implement these specifications.
 
-To ensure that your styles behave according to the Shadow DOM v1 specifications in all browsers, use `custom-style` when you define *document-level* styles.
+To ensure that your styles behave according to the Shadow DOM v1 specifications in all browsers, use `custom-style` when you define *document-level* styles. `custom-style` is not included with `Polymer.Element` and must be imported separately.
+`custom-style` is included with the legacy `polymer.html` import.
 
 *Note: You should only use `custom-style` to define styles for the main document. To define styles for an element's local DOM, just use a `<style>` block.*
 
@@ -605,8 +607,8 @@ In the first code sample, the style for the `p` element “leaks” into Paragra
 <dom-module id="x-foo">
   <template>
     <p>
-      Paragraph B: I am in the shadow DOM of x-foo. 
-      If your browser implements the Shadow DOM v1 specs, 
+      Paragraph B: I am in the shadow DOM of x-foo.
+      If your browser implements the Shadow DOM v1 specs,
       I am black; otherwise, I'm red.
     </p>
   </template>
@@ -623,8 +625,8 @@ In the first code sample, the style for the `p` element “leaks” into Paragra
     }
   </style>
 <p>Paragraph A: I am in the main document. I am red.</p>
-  
-<x-foo></x-foo>	
+
+<x-foo></x-foo>
 ```
 
 [See it on Plunker](http://plnkr.co/edit/yiD9XWPHaMjHaGGwu4V9?p=preview)
@@ -641,6 +643,8 @@ In the first code sample, the style for the `p` element “leaks” into Paragra
 
 `index.html` { .caption}
 ```html
+<!-- import custom-style -->
+<link rel="import" href="/bower_components/polymer/lib/elements/custom-style.html">
 <link rel="import" href="x-foo.html">
 
 <custom-style>
@@ -653,7 +657,7 @@ In the first code sample, the style for the `p` element “leaks” into Paragra
 <p>Paragraph A: I am in the main DOM. I am red.</p>
 <x-foo></x-foo>
 ```
-  
+
 ### Syntax and compatibility
 
 The syntax of `custom-style` has changed. In Polymer 2.x, `<custom-style>` is a wrapper element. You can use a hybrid syntax to ensure compatibility between Polymer 1.x and other versions.
@@ -675,7 +679,7 @@ Hybrid (compatible with 1.x and 2.x) { .caption}
   <style is="custom-style">
     p {
 		...
-    }	
+    }
   </style>
 </custom-style>
 ```

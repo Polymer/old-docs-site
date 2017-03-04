@@ -41,6 +41,9 @@
   - title: Upgrade guide
     path: /2.0/docs/upgrade
     indent: True
+  - title: Hybrid elements
+    path: /2.0/docs/devguide/hybrid-elements
+    indent: True
   - title: Release notes
     path: /2.0/docs/release-notes
     indent: True

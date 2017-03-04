@@ -315,7 +315,12 @@ For more details, see [Working with slots in JS](https://developers.google.com/w
 
 The `Polymer.FlattenedNodesObserver` class provides utilities to track an element's _flattened tree_.
 That is, a list of the node's child nodes, with any `<slot>` elements replaced by their distributed
-nodes.
+nodes. `FlattenedNodesObserver` is an optional utility that can be loaded from
+`lib/utils/flattened-nodes-observer.html`.
+
+```html
+<link rel="import" href="/bower_components/polymer/lib/utils/flattened-nodes-observer.html">
+```
 
 `Polymer.FlattenedNodesObserver.getFlattenedNodes(node)` returns a list of flattened nodes for
 the specified node.
