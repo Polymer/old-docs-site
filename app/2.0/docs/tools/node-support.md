@@ -30,9 +30,7 @@ We support Windows 10, Linux and macOS (née OS X).
 
 ## What does "support" mean? How do we guarantee it?
 
-"Support" for an environment means we test in it, and will fix any issues specific to it.
-
-We ensure support for environments via continuous integration.
+"Support" for an environment means we test in it, and will fix any issues specific to it. We ensure support for environments via continuous integration.
 
 We run tests for our tools libraries on Travis CI, which covers Ubuntu Linux and Node.js v6. We also run the Polymer CLI tests, which cover most of the libraries, on Appveyor, which covers Windows 10.
 
@@ -43,9 +41,3 @@ We will be increasing coverage of libraries on Appveyor Windows environments and
 When we end support for an environment we will do so with a major version change so that legacy environments can depend on the old version. We will update CI configurations to stop testing on unsupported environments.
 
 Unsupported environments will not necessarily stop working right away, but we will eventually use features that are only supported in newer environments.
-
-# Next steps
-
-* Add Node v7 to our Travis and Appveyor testing matrix
-* Add Appveyor testing to `polymer-build`, `polymer-analyzer`, `polymer-bundler`, `polyserve` and `web-component-tester`
-* Add macOS environments to Travis
