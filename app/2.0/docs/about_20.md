@@ -469,7 +469,7 @@ When released, Polymer 2.0 should support the same set of browsers as Polymer 1.
 Safari (9+), Chrome, Opera and Firefox.
 
 Polymer 2.0 has been developed alongside and tested with a new suite of v1-spec compatible polyfills
-for custom elements and shadow DOM. You can test Polymer 2.0 by using the `v1` branch of
+for custom elements and shadow DOM. You can test Polymer 2.0 by using the `1.0.0-rc.4` version of
 `webcomponentsjs`, which is included as a bower dependency to Polymer 2.x.
 
 There are two main ways to load the polyfills:
@@ -480,31 +480,48 @@ There are two main ways to load the polyfills:
     polyfills.
 
 References:
-*   [v1 branch of webcomponents/webcomponentsjs](https://github.com/webcomponents/webcomponentsjs/tree/v1)
+*   [webcomponentsjs on GitHub](https://github.com/webcomponents/webcomponentsjs)
 
-## ES6 transpilation
+## EcmaScript 2015 (a.k.a. ES6)
 
-Polymer 2.0 and 2.0 class-style elements are written in ES6, and can be run without transpilation in
-current Chrome, Safari 10, Safari Technology Preview, Firefox, and Edge.  Transpilation is required
-to run in IE11 and Safari 9.
+Polymer 2.x and 2.x class-style elements are written using the next generation of the
+JavaScript standard, EcmaScript 2015 (more commonly known as ES6). This is required by the new
+custom element specification. If you're not familiar with ES6, it would be helpful to familiarize
+yourself with the basics of ES6 as used by Polymer. In particular, the following features are
+used widely in the code examples:
+
+
+* [ES6 classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
+* [Shorthand property and method names](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015)
+* [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+* [Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
+
+There are a number of learning resources available on the web, including:
+
+* [You Don't Know JS: ES6 and Beyond](https://github.com/getify/You-Dont-Know-JS/blob/master/es6%20&%20beyond/README.md#you-dont-know-js-es6--beyond)
+
+ES6 can be run without compilation in current Chrome, Safari 10, Safari Technology Preview, Firefox,
+and Edge.  Compilation is required to run Polymer 2.x in IE11 and Safari 9.
 
 The Polymer CLI and `polymer-build` library support transpiling ES6 to ES5 at build time. In
 addition, the `polymer serve` and `polymer test` commands transpile as runtime when required by the
- browser.
+browser.
+
+For more information, see [Browser compatibility](browsers#es6).
 
 ## Polymer element availability {#elements}
 
 
 The team is in the process of updating the Polymer elements to use the new "hybrid" format compatible
-with both Polymer 1.7 and 2.0. Many elements repos have `2.0-preview` branches in varying degrees of
+with both Polymer 1.7+ and 2.x. Many elements repos have `2.0-preview` branches in varying degrees of
 stability.
 
 ## Install Polymer 2.0 {#installing}
 
-You can install the Polymer `2.0.0-rc1` branch using bower:
+You can install the Polymer `2.0.0-rc.2` branch using bower:
 
 ```
-bower install --save Polymer/polymer#2.0.0-rc1
+bower install --save Polymer/polymer#2.0.0-rc.2
 ```
 
 You can also use bower to install any of the available hybrid elements:
