@@ -18,12 +18,12 @@ This command  minifies the HTML, JS, and CSS dependencies of your application,
 and generates a service worker that precaches all of the dependencies
 of your application so that it can work offline.
 
-The built files are output to the following folders:
+The built files are output to the `build/default` folder. The default build contains an unbundled
+build with granular resources suitable for serving via HTTP/2 with server push. 
 
-* `build/unbundled`. Contains granular resources suitable for serving via HTTP/2
-with server push.
-* `build/bundled`. Contains bundled (concatenated) resources suitable for serving
-from servers or to clients that do not support HTTP/2 server push.
+For more information on build options, see the [documentation for the `polymer build` command](/2.0/docs/tools/polymer-cli#build).
+This includes documentation on generating bundled (concatenated) resources suitable for
+serving from servers or to clients that do not support HTTP/2 server push.
 
 ## Deploy to a server
 

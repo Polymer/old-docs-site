@@ -5,7 +5,7 @@ subtitle: "Build an app with App Toolbox"
 
 <!-- toc -->
 
-The `starter-kit` includes 3 placeholder pages you can use to start building out
+The `starter-kit` includes placeholder pages you can use to start building out
 the views of your application. But at some point, you'll probably want to add more.
 
 This step takes you through the process of adding a new page or top-level view to your application.
@@ -111,10 +111,14 @@ you need to add it to your app's HTML.
     Existing template code—you do not need to add this { .caption }
 
     ```
-    _pageChanged(page) {
+      _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails
         var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
-        this.importHref(resolvedPageUrl, null, this._showPage404, true);
+        Polymer.importHref(
+            resolvedPageUrl,
+            null,
+            this._showPage404.bind(this),
+            true);
       }
     ```
 
@@ -128,15 +132,15 @@ just need to add a menu item in the left-hand drawer so that users can navigate 
 1.  Find the navigation menu inside the `<app-drawer>` element.
 
     ```
-    <!-- Drawer content -->
-    <app-drawer slot="drawer">
-      <app-toolbar>Menu</app-toolbar>
-      <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-        <a name="view1" href="/view1">View One</a>
-        <a name="view2" href="/view2">View Two</a>
-        <a name="view3" href="/view3">View Three</a>
-      </iron-selector>
-    </app-drawer>
+      <!-- Drawer content -->
+      <app-drawer id="drawer" slot="drawer">
+        <app-toolbar>Menu</app-toolbar>
+        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+          <a name="view1" href="/view1">View One</a>
+          <a name="view2" href="/view2">View Two</a>
+          <a name="view3" href="/view3">View Three</a>
+        </iron-selector>
+      </app-drawer>
     ```
 
     Each navigation menu item consists of an anchor element (`<a>`) styled with CSS.
@@ -151,16 +155,16 @@ just need to add a menu item in the left-hand drawer so that users can navigate 
 
     ```
     ...
-    <!-- Drawer content -->
-    <app-drawer slot="drawer">
-      <app-toolbar>Menu</app-toolbar>
-      <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-        <a name="view1" href="/view1">View One</a>
-        <a name="view2" href="/view2">View Two</a>
-        <a name="view3" href="/view3">View Three</a>
-        <a name="new-view" href="/new-view">New View</a>
-      </iron-selector>
-    </app-drawer>
+      <!-- Drawer content -->
+      <app-drawer id="drawer" slot="drawer">
+        <app-toolbar>Menu</app-toolbar>
+        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+          <a name="view1" href="/view1">View One</a>
+          <a name="view2" href="/view2">View Two</a>
+          <a name="view3" href="/view3">View Three</a>
+		  <a name="new-view" href="/new-view">New View</a>
+        </iron-selector>
+      </app-drawer>
     ...
     ```
 
