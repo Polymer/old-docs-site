@@ -54,8 +54,8 @@ var item = this.get(['myArray', 11])
 
 ## Set a property or subproperty by path {#set-path}
 
-Use the [`set`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-set) method to make an [observable
-change](data-system#observable-changes) to a subproperty.
+Use the [`set`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-set) method to
+make an [observable change](data-system#observable-changes) to a subproperty.
 
 ```js
 // clear an array
@@ -64,20 +64,38 @@ this.set('group.members', []);
 this.set('profile.name', 'Alex');
 ```
 
-When  you call `set` on an object or array, Polymer re-evaluates the entire object graph starting at
-that object or array.
+Calling `set` has no effect if the value of the property or subproperty doesn't change. In
+particular, calling `set` on an object property won't cause Polymer to pick up changes to the
+object's subproperties, unless the object itself changes. Likewise, calling `set` on an array
+property won't cause Polymer to pick up array mutations that have already been made:
 
-```js
+```
+// DOES NOT WORK
 this.profile.name = Alex;
 this.set('profile', this.profile);
 
+// DOES NOT WORK
 this.users.push({name: 'Grace'});
 this.set('users', this.users);
 ```
 
+In both cases an object to itself doesn't have any effect—the object hasn't changed. Instead,
+you can use [`notifyPath`](#notifyPath) to inform Polymer of a subproperty change that's already
+happened. For an array, you can either use Polymer's array mutation methods as described in
+[Mutate an array](#array-mutation), or notify Polymer after the fact as described in
+Notify Polymer of array mutations](#notifysplices).
+
+**MutableData** For elements that include the `Polymer.MutableData` mixin, calling `set` on an
+object or array causes Polymer to re-evaluates the entire object graph starting at
+that object or array, even if the object or array itself hasn't changed. For details, see
+[Using the MutableData mixin](data-system#mutable-data).
+{.alert .alert-info}
+
+
 Related tasks:
 
--   [Notify Polymer of a subproperty change](#notify-path).
+-   [Notify Polymer of a subproperty change](#notify-path)
+-   [Mutate an array](#array-mutation)
 -   [Notify Polymer of array mutations](#notifysplices)
 
 ### Notify Polymer of a subproperty change {#notify-path}
@@ -90,18 +108,15 @@ this.profile.name = Alex;
 this.notifyPath('profile.name');
 ```
 
-When you call `notifyPath` on an object or array, Polymer re-evaluates the entire object graph
-starting at that object or array. For example, calling `this.notifyPath('profile')` picks up a
-change to `profile.name` even if the `profile` object itself hasn't changed.
+When calling `notifyPath`, you need to use the **exact path** that changed. For example, calling
+`this.notifyPath('profile')` doesn't pick up a change to `profile.name` because the `profile` object
+itself hasn't changed.
 
-If multiple subproperties have changed, or you don't know the exact changes, you can notify
-on the parent path to force Polymer to re-evaluate an entire object or array.
-
-```
-this.notifyPath('profile');
-```
-
-For more information, see [Batch changes to an object or array](#batch-changes).
+**MutableData** For elements that include the `Polymer.MutableData` mixin, calling `notifyPath` on an
+object or array causes Polymer to re-evaluates the entire object graph starting at
+that object or array, even if the object or array itself hasn't changed. For details, see
+[Using the MutableData mixin](data-system#mutable-data).
+{.alert .alert-info}
 
 ## Work with arrays {#work-with-arrays}
 
@@ -122,8 +137,7 @@ of the native `Array` methods.
 These methods perform the mutation action on the array, and then notify other elements that may be
 bound to the same array of the changes. You can use these methods when mutating an array
 to ensure that any elements watching the array (via observers, computed properties,
-or data bindings) are kept in sync. (Alternately, you can mutate the array using native methods,
-then notify Polymer as described in [Batch changes to an object or array](#batch-changes).)
+or data bindings) are kept in sync.
 
 Every Polymer element has the following array mutation methods available:
 
@@ -133,6 +147,7 @@ Every Polymer element has the following array mutation methods available:
 *   <code>shift(<var>path</var>)</code>
 *   <code>splice(<var>path</var>, <var>index</var>, <var>removeCount</var>, [<var>item1</var>,
     ..., <var>itemN</var>])</code>
+
 
 Example { .caption }
 
@@ -165,48 +180,44 @@ Example { .caption }
 </dom-module>
 ```
 
-Sometimes it's not convenient to use the Polymer [array mutation methods](#array-mutation),
-or you don't know the exact changes that occurred (for example, if you manipulate
-the array using a third-party library).
-
-In this case, you can force the data system to refresh the
-entire array:
-
-```
-this.notifyPath('myArray');
-```
-
-For more  information, see [Batch changes to an object or array](#batch-changes).
-
-
-## Batch changes to an object or array {#batch-changes}
-
-After making a set of unobservable changes to an object or array, you can signal Polymer to
-reevaluate the entire object or array by calling `notifyPath`.
-
-This can be more performant than making individual observable changes, because the related property
-effects are only evaluated once. For example, when making multiple changes to an object:
+The `set` method can also be used to manipulate arrays by using an array path. For example, to
+to replace the array item at index 3:
 
 ```js
-// Mutate object
-this.address.street = 'Half Moon Street';
-this.address.number = '123';
-this.address.name = 'Smith';
-// Force data system to pick up subproperty changes
-this.notifyPath('address');
+this.set('users.3', {name: 'Churchill'});
 ```
 
-Similarly, when you make multiple changes to an array:
+Sometimes it's not convenient to use the Polymer array mutation methods. In this event, you have
+a few choices:
 
-```js
-// Mutate array
-this.myArray.push(newItem1, newItem2);
-this.myArray.splice(1, 2, newItem3, newItem4);
-// Force data system to pick up array mutations
-this.notifyPath('myArray');
-```
+*   Use the [`notifySplices`](#notifysplices) method to notify Polymer after the fact.
 
-If the property is a large array or a complicated object, this process may be expensive.
+*   Use the `MutableData` mixin. For elements that include the `Polymer.MutableData` mixin, calling
+    `set` or `notifyPath` on an object or array causes Polymer to re-evaluate the entire object
+    graph starting at that object or array, even if the object or array itself hasn't changed. For
+    details, see [Using the MutableData mixin](data-system#mutable-data).
+
+### Notify Polymer of array mutations {#notifysplices}
+
+Whenever possible you should always use Polymer's [array mutation methods](#array-mutation).
+However, this isn't always possible. For example, you may be using a third-party library
+that does not use Polymer's array mutation methods. In these scenarios you can call
+<a href="/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-notifySplices">`notifySplices`</a>
+after the mutations to ensure that any Polymer elements observing the array
+are properly notified of the changes.
+
+The `notifySplices` method requires the array mutations to be *normalized* into a series of `splice`
+operations. For example, calling `shift` on an array removes the first element of the array, so is
+equivalent to calling `splice(0, 1)`.
+
+Splices should be applied in index order, so that the element can update its internal representation
+of the array.
+
+If you can't know the exact changes that occurred, you can use the `MutableData` mixin. For elements
+that include the `Polymer.MutableData` mixin, calling `set` or `notifyPath` on an object or array
+causes Polymer to re-evaluate the entire object graph starting at that object or array, even if the
+object or array itself hasn't changed. For details, see [Using the MutableData mixin](data-system#mutable-data).
+
 
 ## Batch multiple property changes {#set-property}
 
@@ -221,12 +232,11 @@ this.setProperties({
 ```
 
 
-
 ## Link two paths to the same object {#linkpaths}
 
-Use the [`linkPaths`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-linkPaths) method to associate two paths.
-Use `linkPaths` when an element has two paths that refer to the same object, as described in
-[Two paths referencing the same object](data-system#two-paths).
+Use the [`linkPaths`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-linkPaths)
+method to associate two paths. Use `linkPaths` when an element has two paths that refer to the same
+object, as described in [Two paths referencing the same object](data-system#two-paths).
 
 When two paths are *linked*, an [observable change](data-system#observable-changes) to one path is
 observable on the other path, as well.

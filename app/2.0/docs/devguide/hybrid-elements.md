@@ -1,12 +1,12 @@
 ---
-title: Build hybrid elements
+title: Hybrid elements
 ---
 
 Hybrid elements are Polymer elements designed to run under both Polymer 1.x and Polymer 2.x. Polymer
 2 provides a backwards-compatible API for hybrid elements.
 
 Implementing a hybrid element requires some extra work, including maintaining multiple sets of
-bower dependencies, testing on both Polymer 1 and Polyemr 2. Build hybrid elements if you're
+bower dependencies, testing on both Polymer 1 and Polymer 2. Build hybrid elements if you're
 creating a set of reusable elements and need to support customers using both Polymer 1.x and Polymer
 2.x. You may also find hybrid elements useful if you're trying to port a large application.
 
@@ -14,221 +14,25 @@ Polymer CLI supports installing and testing with multiple versions of your bower
 you can test your hybrid elements against multiple versions of Polymer. For an overview, see
 [Manage dependencies for hybrid elements](#dependency-variants).
 
-## Register a hybrid element
+## Hybrid element overview
 
-Hybrid elements use a Polymer 1.x-compatible API. Use the `Polymer` function to define a hybrid
-element.
+A hybrid element is defined using a 2.x-style DOM template and a 1.x-style `Polymer()` function
 
-The function takes as its argument the  prototype for the new element. The prototype
-must have an `is` property that specifies the HTML tag name for your custom element.
-
-By specification, the custom element's name **must start with an ASCII letter and contain a dash (-)**.
-
-Example: { .caption }
-
-```html
-<!-- import the legacy base class and backwards-compatible API -->
-<link rel="import" href="/bower_components/polymer/polymer.html">
-
-<script>
-    // register an element
-    MyElement = Polymer({
-
-      is: 'my-element',
-
-      // Define properties
-      properties: {
-        data: Object
-      },
-
-      // Define complex observers
-      observers: [
-        '_dataChanged(data.*)'
-      ],
-
-      _dataChanged(changeRecord {
-        // ...
-      },
-
-      // See below for lifecycle callbacks
-      ready: function() {
-        this.textContent = 'My element!';
-      }
-
-    });
-</script>
-```
-
-As shown above, hybrid elements place the `properties` object and `observers` array directly on the
-prototype, not in a `config` object like a class-style element.
-
-The `Polymer` function registers the element with the browser and returns a
-constructor that can be used to create new instances of your element via code.
 
 The `Polymer` function sets up the prototype chain for your custom element,
 so you cannot set up your own prototype chain.
 
 -   In 1.x, your prototype is chained to the Polymer `Base` prototype (which
     provides Polymer value-added features).
+
 -   In 2.0, Polymer uses your prototype to create a new class that extends
     `Polymer.LegacyElement`.
 
-You can use Polymer 1.x style [behaviors](#behaviors) to share code between elements.
+Hybrid elements must use a compatible subset of the 1.x API. (Version-specific API calls can be
+conditionalized.)
 
-## Lifecycle callbacks {#lifecycle-callbacks}
-
-Hybrid element provide the same lifecycle callbacks used in Polymer 1. Note that there
-are limitations to what you can do in certain callbacks, and some timing differences
-running under 2.0 versus 1.x.
-
-<table>
-  <tr>
-    <th>Legacy callback</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td><code>created</code></td>
-    <td>Called when the element has been created, but before property values are
-       set and shadow DOM is initialized.
-      <p>Use for one-time set-up before property values are set.
-      </p>
-      <p>Equivalent to the native constructor.
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td><code>ready</code></td>
-    <td>Called after property values are set and local DOM is initialized.
-      <p>Use for one-time configuration of your component after local
-        DOM is initialized. (For configuration based on property values, it
-        may be preferable to use an <a href="observers">observer</a>.)
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td><code>attached</code></td>
-    <td>Called after the element is attached to the document. Can be called multiple
-        times during the lifetime of an element. The first `attached`  callback
-        is guaranteed not to fire until after `ready`.
-      <p>Uses include adding document-level event listeners. (For listeners local to the element,
-      you can use declarative
-        event handling, such as <a href="events.html#annotated-listeners">annotated
-        event listeners</a> or the
-        <a href="events#event-listeners"><code>listeners</code> object</a>.)</p>
-     <p>Equivalent to native <code>connectedCallback</code>.</p>
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td><code>detached</code></td>
-    <td>Called after the element is detached from the document. Can be called
-        multiple times during the lifetime of an element.
-      <p>Uses include removing event listeners added in <code>attached</code>.
-      </p>
-      <p>Equivalent to native <code>disconnectedCallback</code>.</p>
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td><code>attributeChanged</code></td>
-    <td>Called when one of the element's attributes is changed.
-      <p>Use to handle attribute changes that <em>don't</em> correspond to
-        declared properties. (For declared properties, Polymer
-        handles attribute changes automatically as described in
-        <a href="properties#attribute-deserialization">attribute deserialization</a>.)
-      </p>
-      <p>Equivalent to the native <code>attributeChangedCallback</code>.
-      </p>
-    </td>
-  </tr>
-</table>
-
-The following sections describe the callbacks and implementation differences in more detail.
-
-### Creation time (created) {#creation-time-created}
-
-The custom elements v1 specification forbids reading attributes, and accessing child or parent
-information from the DOM API from the constructor. Likewise, attributes and children cannot be added.
-You need to move any DOM work out the `created` callback:
-
-*   Defer work until after `created` completes using `setTimeout` or `requestAnimationFrame`.
-*   Move work to a different callback,such as `attached` or `ready`.
-*   Use an observer, event listener, or mutation observer to react to runtime changes.
-
-### Ready time {#ready-time}
-
-The `ready` callback, for one-time initialization, is called after the  element's shadow DOM has
-been created.
-
-The major difference between 1.x and 2.x has to do with the timing of initial light DOM distribution.
-In the v1 shady DOM polyfill, initial distribution of children into `<slot>` is asynchronous
-(microtask) to creating the `shadowRoot`, meaning distribution occurs after observers are run and
-`ready`  is called. In the Polymer 1.x shim, initial distribution occurs before `ready`.
-
-To check the initial distribution, use `setTimeout` or `requestAnimationFrame` from `ready`. The
-callback should fire after initial distribution is complete.
-
-```js
-ready: function() {
-  setTimeout(function() {
-    var distributedNodes = this.getContentChildNodes();
-    console.log(distributedNodes);
-  }.bind(this), 0);
-}
-```
-
-You can use `observeNodes` method to react to runtime changes to distribution.
-
-```js
-ready: function() {
-  this._observer = Polymer.dom(this.$.contentNode).observeNodes(function(info) {
-      this.processNewNodes(info.addedNodes);
-      this.processRemovedNodes(info.removedNodes);
-  });
-}
-```
-
-For more details on `observeNodes`, see
-[Observe added and removed children](/1.0/docs/devguide/shadow-dom#observe-nodes) in the Polymer 1
-documentation.
-
-In order to force distribution synchronously, call `Polymer.dom.flush`. This can be useful for
-unit tests.
-
-In 2.x, `Polymer.dom.flush` does not flush the `observeNodes` callbacks. To force the `observeNodes`
-callbacks to be invoked, call the `flush` method on the observer object returned from `observeNodes`.
-
-### Attach time (attached/connectedCallback) {#attach-time-attached-connectedcallback}
-
-If you have any code that relies on the element being laid out when the `attached` callback runs
-(for example, measuring the element or its children), it must wait until layout is complete.
-
-In 1.x, the `attached` callback is deferred until layout is complete.
-
-Use the `Polymer.RenderStatus.beforeNextRender` function to register a one-time callback after
-layout is complete, but before paint.
-
-```
-attached: function() {
-  // 1st argument to afterNextRender is used as the "this"
-  // value when the callback is invoked.
-  Polymer.RenderStatus.beforeNextRender(this, function() {
-     // measure something
-  });
-}
-```
-
-For work that can be deferred until after first paint (such as adding event listeners), you can use
-`Polymer.RenderStatus.afterNextRender`, which takes the same arguments as `beforeNextRender`.
-
-### Hybrid behaviors {#hybrid-behaviors}
-
-Like Polymer 1.x elements, hybrid elements can share code using _behaviors_, which can define
-properties, lifecycle callbacks, event listeners, and other features. To work with hybrid elements,
-hybrid behaviors must follow the same constraints as hybrid elements.
-
-For more information on behaviors, see [Behaviors](/1.0/docs/devguide/behaviors) in the Polymer 1.x
-docs.
+You can use Polymer 1.x style [behaviors](#behaviors) to share code between elements, as long
+as they follow the same API restrictions as hybrid elements.
 
 ## Working with DOM
 

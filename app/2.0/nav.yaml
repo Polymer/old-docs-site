@@ -41,6 +41,9 @@
   - title: Upgrade guide
     path: /2.0/docs/upgrade
     indent: True
+  - title: Hybrid elements
+    path: /2.0/docs/devguide/hybrid-elements
+    indent: True
   - title: Release notes
     path: /2.0/docs/release-notes
     indent: True
@@ -102,9 +105,9 @@
   - title: Polymer CLI
     path: /2.0/docs/tools/polymer-cli
     indent: True
-#  - title: Document your elements
-#    path: /2.0/docs/tools/documentation
-#    indent: True
+  - title: Document your elements
+    path: /2.0/docs/tools/documentation
+    indent: True
   - title: Test your elements
     path: /2.0/docs/tools/tests
     indent: True

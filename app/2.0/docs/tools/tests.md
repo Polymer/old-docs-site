@@ -8,6 +8,11 @@ This guide shows you the basics of using Polymer CLI to run unit tests, and
 how to accomplish various tasks and scenarios using the Web Component Tester
 library (the underlying library that powers Polymer CLI's testing tools).
 
+**Not updated for 2.x.** This material has not been updated for Polymer 2.x.
+While much of the basic material remains the same, these samples have not been
+tested or updated for 2.x.
+{.alert .alert-warning}
+
 ## Overview
 
 Polymer CLI is an all-in-one command-line interface that covers the vast majority of

@@ -162,26 +162,43 @@ this.push('users', { name: 'Maturin'});
 ```
 
 In some cases, you can't use the Polymer methods to mutate objects and arrays (for example, if
-you're using a third-party library). In this case, you can use  the `notifyPath`
-method to *notify* the element about changes that have **already taken place.**
+you're using a third-party library). In this case, you can use  the
+[`notifyPath`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-notifyPath) and
+[`notifySplices`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-notifySplices)
+methods to *notify* the element about changes that have **already taken place.**
+
 
 ```js
 // Notify Polymer that the value has changed
 this.notifyPath('address.street');
 ```
 
-You can also use `notifyPath` to notify the element of a whole batch of changes at once. For
-example, you can make several changes to an array, then call `notifyPath` on the array:
+When you call `notifyPath` or `notifySplices`, the element applies the appropriate property effects,
+as if the changes had just taken place.
+
+When calling `set` or `notifyPath`, you need to use the **exact path** that changed. For example,
+calling `this.notifyPath('address')` doesn't pick up a change to `address.street` if the `address`
+object itself remains unchanged. This is because Polymer performs dirty checking for objects
+and arrays using object equality. It doesn't produce any property effects if the value at the
+specified path hasn't changed.
+
+In most cases, if one or more properties of an
+object have changed, or one or more items in an array have changed, you can force Polymer to skip
+the dirty check by cloning the object or array.
 
 ```js
-this.users.push({name: 'Woodhouse'});
-this.users.push({name: 'Darcy'});
-this.users.push({name: 'Bennet'});
-this.notifyPath('users');
+// Shallow clone array
+this.addresses.push(address1);
+this.addresses.push(address2)
+this.addresses = this.addresses.slice();
 ```
 
-When you call `notifyPath` the element applies the appropriate property effects,
-as if the changes had just taken place.
+If you have a data structure with multiple levels of objects and arrays, you may need to perform a
+deep copy to pick up changes.
+
+If your application requires it, you can eliminate dirty-checking of objects and arrays on a
+per-element basis using the `Polymer.MutableData` mixin. This mixin may trades some performance
+for increased ease of use. For details, see [Using the MutableData mixin](#mutable-data).
 
 Related tasks:
 
@@ -291,7 +308,8 @@ There are a few special types of path segments.
     array mutations.
 *   The string `splices` can be used as the last segment in a path (like `foo.splices`) to represent
     all array mutations to a given array.
-*   Array item paths (like `foo.11`) represent an item in an array.
+*   Array item paths (like `foo.11`) represent an item in an array, where the numeric path segment
+    represents an array index.
 
 
 
@@ -315,11 +333,6 @@ A `.splices` path can be used in an observer, computed property or computed bind
 registered by a wildcard path (for example, you won't see changes to subproperties of objects
 *inside* the array). **In most cases, it's more useful to use a wildcard observer for arrays.**
 
-#### Paths to array items
-
-Polymer identifies array items by index, for example, `"myArray.1" .
-
->>>>>>> ccf3fa4600ee23079c34f798e1a2a0811a7b9562
 
 ### Two paths referencing the same object {#two-paths}
 
@@ -347,9 +360,9 @@ maintains path linkages between an array and a selected item from that array. (`
 also works when selecting multiple items from an array.)
 
 For other use cases, there's an imperative method,
-[`linkPaths`](/{{{polymer_version_dir}}}/docs/api/Polymer.Base#method-linkPaths) to associate two paths. When two paths
-are *linked*, an [observable change](#observable-changes) to one path is observable on the other
-path, as well.
+[`linkPaths`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-linkPaths) to
+associate two paths. When two paths are *linked*, an [observable change](#observable-changes) to one
+path is observable on the other path, as well.
 
 
 Related task:
@@ -880,7 +893,116 @@ The text inside the delimiters can be one of the following:
 For more information, see [Data binding](data-binding).
 
 
+## Using the MutableData mixin {#mutable-data}
+
+Polymer 1.x uses a dirty-checking mechanism to prevent the data system from doing extra work.
+Polymer 2.x retains this mechanism by default, but lets elements opt out of dirty checking objects
+and arrays.
+
+With the default dirty-checking mechanism, the following code doesn't generate any property effects:
+
+```js
+this.property.subproperty = 'new value!';
+this.notifyPath('property');
+```
+
+This strict dirty checking for objects and arrays is based in object equality. Because `property`
+still points to the same object, the dirty check fails, and sub-property changes don't get
+propagated. Instead, you need to use the Polymer `set` or array mutation methods, or call
+`notifyPath` on the exact path that changed:
+
+```js
+this.set('property.subproperty', 'new value!');
+// OR
+this.property.subproperty = 'new value!';
+this.notifyPath('property.subproperty');
+```
+
+In general, the dirty-checking mechanism is more performant. It works well for apps where one of
+the following is true:
+
+*   You use immutable data.
+*   You always use the Polymer data mutation methods to make granular changes.
+
+However, for apps that don't use immutable data and can't use the Polymer data methods, Polymer 2.0
+provides the [`Polymer.MutableData`](/{{{polymer_version_dir}}}/docs/api/mixins/Polymer.MutableData)
+mixin.
+
+```js
+class MyMutableElement extends Polymer.MutableData(Polymer.Element) { ... }
+```
+
+The `MutableData` mixin eliminates the dirty check for that element, so the code above would work
+as intended.
+
+```js
+this.property.subproperty = 'new value!';
+this.notifyPath('property');
+```
+
+This mutable data mode also lets you batch several changes before invoking property effects:
 
 
+```js
+this.property.arrayProperty.push({ name: 'Alice' });
+this.property.stringProperty = 'new value!';
+this.property.counter++;
+this.notifyPath('property');
+```
+
+You can also use set or simply set a top-level property to invoke effects:
+
+```js
+this.set('property', this.property);
+// or
+this.property = this.property;
+```
+
+Using `set` to change a specific subproperty can often be the most efficient way to make changes.
+However, elements that use `MutableData` shouldn't need to use this API, making it
+more  compatible with alternate data-binding and state management libraries.
+
+Note that when you re-set a property at the top-level, all property effects for that property and
+its subproperties, array items, and so-on are re-run. In addition, observers with wildcard paths
+(like `prop.*`) are only notified with the top-level change:
+
+```js
+// With MutableData mixin
+// 'property.*' observers fire with the path 'property'
+this.property.deep.path = 'another new value';
+this.notifyPath('property');
+```
+
+Using `set` to set specific paths generates granular notifications:
+
+
+```js
+// 'property.*' observers fire with the path 'property.deep.path'
+this.set('property.deep.path', 'new value');
+```
+
+If an element's properties only take primitive values, like strings, numbers or booleans, you don't
+need to use `MutableData`. These values are always dirty-checked and `MutableData` would provide
+no benefit. This is true for most simple UI elements. `MutableData` is likely to be useful for
+complex reusable elements (like`dom-repeat` or `iron-list`), or for application-specific elements
+that hold complex state information.
+
+Note that the `MutableData` mixin does not affect the element's shadow DOM children. Any element
+that doesn't use the `Polymer.MutableData` mixin, uses the default dirty-checking policy.
+
+### Optional mutable data for reusable elements
+
+If you're building a reusable element that takes structured data, you can use the
+[`Polymer.OptionalMutableData`](/{{{polymer_version_dir}}}/docs/api/mixins/Polymer.OptionalMutableData)
+mixin. This mixin lets the element user select `MutableData` mode by setting the `mutableData`
+property on the element. For example, the `dom-repeat` element uses this mixin, so you can enable
+mutable data mode for a `dom-repeat` in your template:
+
+```html
+<!-- standard dom-repeat with MutableData behavior -->
+<template is="dom-repeat" items="{{items}}" mutable-data>
+  <div>{{item.name}}</div>
+</template>
+```
 
 

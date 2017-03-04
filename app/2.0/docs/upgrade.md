@@ -80,8 +80,8 @@ break the existing, 1.x version of your element or app.
 Update the Polymer version in `bower.json` to the latest RC version.
 
 | Component | Version |
-| Polymer   | `2.0.0-rc1` |
-| webcomponentsjs | `v1` |
+| Polymer   | `2.0.0-rc.1` |
+| webcomponentsjs | `1.0.0-rc.4` |
 | web-component-tester | `6.0.0-prerelease.5` |
 | Polymer elements | `2.0-preview` |
 
@@ -99,8 +99,8 @@ Example dependencies {.caption}
     "iron-pages": "PolymerElements/iron-pages#2.0-preview",
     "iron-selector": "PolymerElements/iron-selector#2.0-preview",
     "paper-icon-button": "PolymerElements/paper-icon-button#2.0-preview",
-    "polymer": "Polymer/polymer#2.0.0-rc1",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#v1"
+    "polymer": "Polymer/polymer#2.0.0-rc.1",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#1.0.0-rc.4"
   },
   "devDependencies": {
     "web-component-tester": "6.0.0-prerelease.5"
@@ -111,13 +111,12 @@ Run `bower install` to install the new dependencies.
 
 If you are upgrading the element to hybrid mode, you can add extra sets of bower dependencies so you
 can test against multiple versions of Polymer easily. For details, see
-[Manage dependencies for hybrid elements](#dependency-variants).
+[Manage dependencies for hybrid elements](hybrid-elements#dependency-variants).
 
 ### Upgrade an element
 
-When upgrading an individual element, start by updating the DOM template and styling.
-
-
+When upgrading an individual element, start by updating the DOM template and styling. For simple
+elements, this may be the only change you need to make to run in hybrid or legacy mode.
 
 ## Shadow DOM template and styling {#shadow-dom-changes}
 
@@ -140,6 +139,7 @@ Quick summary:
 *   Update your element's DOM template to use the new `<slot>` element instead of `<content>`.
 *   Update styles to use the `::slotted()` selector  in place of ::content.
 *   Remove any `/deep/` and `::shadow` CSS rules.
+*   Update any URLs inside the template.
 
 These changes are detailed in the following sections.
 
@@ -395,6 +395,37 @@ Shadow DOM of `<child-el>` {.caption}
 <h2>
 ```
 
+#### All elements: Update URLs in templates {#urls-in-templates}
+
+In Polymer 1.x, URLs in attributes and styles inside element templates were re-written to be
+relative to the HTML import that defined the element. Based on user feedback, we are changing this
+behavior.
+
+Two new properties are being added to `Polymer.Element`: `importPath` and `rootPath`. The
+`importPath` property is a static getter on the element class that defaults to the element
+HTML import document URL and is overridable. It may be useful to override `importPath` when an
+element `template` is not retrieved from a `dom-module` or the element is not defined using an
+HTML import. The `rootPath` property is set to the value of `Polymer.rootPath` which is globally
+settable and defaults to the main document URL. It may be useful to set `Polymer.rootPath` to
+provide a stable application mount path when using client side routing. URL's in styles are
+re-written to be relative to the `importPath` property. Inside element templates, URLs in
+element attributes are *no longer* re-written. Instead, they should be bound using `importPath` or
+ `rootPath` where appropriate. For example:
+
+A Polymer 1.x template that included:
+
+```html
+<img src="foo.jpg">
+```
+
+In Polymer 2.x should be:
+
+```html
+<img src$="[[importPath]]foo.jpg">
+```
+
+The `importPath` and `rootPath` properties are being ported back to Polymer 1.x, so they can be used
+by hybrid elements.
 
 ### Shadow DOM styles {#shadow-dom-styles}
 
@@ -625,6 +656,7 @@ Before {.caption}
 Hybrid and legacy elements can continue to use existing Polymer DOM APIs, but may require some
 changes. Class-based elements should use native DOM APIs.
 
+If your element doesn't do any imperative DOM manipulation, you can skip this section.
 
 *   ***Hybrid elements*** should continue to use the Polymer DOM APIs, but may require some changes.
 *   ***Legacy elements*** can use the Polymer DOM APIs or the native DOM APIs.
@@ -702,6 +734,12 @@ this._observer = new Polymer.FlattenedNodesObserver(this._nodesChanged);
 In addition, `Polymer.FlattenedNodesObserver.getFlattenedNodes(node)` can be used to replace the
 `getEffectiveChildNodes` method.
 
+`Polymer.FlattenedNodesObserver` is an optional module. If you're loading the `polymer-element.html`
+import, you need to import `FlattenedNodesObserver` separately.
+
+```html
+<link rel="import" href="/bower_components/polymer/lib/utils/flattened-nodes-observer.html">
+```
 
 ## CSS custom property shim {#css-custom-property-shim}
 
@@ -715,7 +753,7 @@ The following changes have been made in the shims that Polymer 2.0 uses:
 
 *   The shim always uses native CSS custom properties on browsers that support them. This was
     optional in 1.x, and it introduces some limitations on the use of mixins.
-*   The CSS mixin shim has been separated into an optional shim.
+*   CSS mixin support has been separated into an optional shim.
 *   The `customStyle` instance property has been removed. Use `updateStyles` instead.
 *   Invalid custom properties syntax is no longer supported. These changes are described in
     [Shadow DOM styles](#shadow-dom-styles).
@@ -831,35 +869,6 @@ You need to move any DOM work out the constructor:
 *   Move work to a different callback,such as `attached`/`connectedCallback` or `ready`.
 *   Use an observer, `slotchange` event listener, or mutation observer to react to runtime changes.
 
-#### Attach time (attached/connectedCallback) {#attach-time-attached-connectedcallback}
-
-If you have any code that relies on the element being rendered when the `attached` callback runs
-(for example, measuring the element or its children), it must wait until the element has rendered.
-
-Use the `Polymer.RenderStatus.afterNextRender` function to register a one-time callback after the
-next render.
-
-Before {.caption}
-
-```js
-attached: function() {
-  // measure something
-}
-```
-
-After {.caption}
-
-```js
-attached: function() {
-  // 1st argument to afterNextRender is used as the "this"
-  // value when the callback is invoked.
-  Polymer.RenderStatus.afterNextRender(this, function() {
-     // measure something
-  });
-}
-```
-
-
 #### Ready time {#ready-time}
 
 The `ready` callback, for one-time initialization, signals the creation of the element's shadow DOM.
@@ -874,9 +883,11 @@ In the v1 shady DOM polyfill, initial distribution of children into `<slot>` is 
 To check the initial distribution, use `setTimeout` or `requestAnimationFrame` from `ready`. The
 callback should fire after initial distribution is complete.
 
+Class-based element: check distributed nodes {.caption}
 
-```
-ready: function() {
+```js
+ready() {
+  super.ready();
   setTimeout(function() {
     var distributedNodes = this.$.slot.assignedNodes({flatten: true});
     console.log(distributedNodes);
@@ -887,10 +898,11 @@ ready: function() {
 You can use a `slotchange` event listener to react to runtime changes to distribution, but the event
 listener doesn't fire for the *initial* distribution.
 
+Class-based element: slotchange listener {.caption}
 
 ```
-ready: function() {
-  // super.ready(); // for 2.0 class-based elements only
+ready() {
+  super.ready(); // for 2.0 class-based elements only
   this._boundHandler = this._processLightChildren.bind(this);
   setTimeout(this._boundHandler);
   this.$.slot.addEventListener('slotchange', this._boundHandler);
@@ -901,10 +913,85 @@ _processLightChildren: function() {
 }
 ```
 
+In order to force distribution synchronously, call `ShadyDOM.flush()`. This can be useful for unit
+tests.
 
- In order to force distribution synchronously, call `ShadyDOM.flush()`. This can be useful for unit
- tests.
+The hybrid or legacy equivalents of the above samples would use the 1.x APIs, like
+`getContentChildNodes` or `observeNodes`.
 
+Hybrid element: get distributed nodes {.caption}
+
+ ```js
+ready: function() {
+  setTimeout(function() {
+    var distributedNodes = this.getContentChildNodes();
+    console.log(distributedNodes);
+  }.bind(this), 0);
+}
+```
+
+You can use `observeNodes` method to react to runtime changes to distribution.
+
+Hybrid element: observeNodes {.caption}
+
+```js
+ready: function() {
+  this._observer = Polymer.dom(this.$.contentNode).observeNodes(function(info) {
+      this.processNewNodes(info.addedNodes);
+      this.processRemovedNodes(info.removedNodes);
+  });
+}
+```
+
+For more details on `observeNodes`, see
+[Observe added and removed children](/1.0/docs/devguide/shadow-dom#observe-nodes) in the Polymer 1
+documentation.
+
+In order to force distribution synchronously, call `Polymer.dom.flush`. This can be useful for
+unit tests.
+
+In 2.x, `Polymer.dom.flush` does not flush the `observeNodes` callbacks. To force the `observeNodes`
+callbacks to be invoked, call the `flush` method on the observer object returned from `observeNodes`.
+
+
+ #### Attach time (attached/connectedCallback) {#attach-time-attached-connectedcallback}
+
+If you have any code that relies on the element being layed out when the `attached` callback runs
+(for example, measuring the element or its children), it must wait until the layout is complete.
+
+Use the `Polymer.RenderStatus.beforeNextRender` function to register a one-time callback after
+layout is complete, but before the page is rendered (or "painted").
+
+Before {.caption}
+
+```js
+attached: function() {
+  // measure something
+}
+```
+
+After {.caption}
+
+```js
+attached: function() {
+  // 1st argument to beforeNextRender is used as the "this"
+  // value when the callback is invoked.
+  Polymer.RenderStatus.beforeNextRender(this, function() {
+     // measure something
+  });
+}
+```
+
+For work that can be deferred until after first paint (such as adding event listeners), you can use
+`Polymer.RenderStatus.afterNextRender`, which takes the same arguments as `beforeNextRender`.
+
+These examples show the hybrid callbacks, but the `Polymer.RenderStatus` API can be used in
+class-based elements as well. If you're loading the `polymer-element.html`
+import, you need to import `FlattenedNodesObserver` separately.
+
+```html
+<link rel="import" href="/bower_components/polymer/lib/utils/flattened-nodes-observer.html">
+```
 
 ### Remove type-extension elements {#remove-type-extension-elements}
 
@@ -976,6 +1063,7 @@ inside a Polymer element template. As shown above, nested templates inside a top
 
 
 **Templates used in the main document must be manually wrapped.**
+
 
 ## Data system {#data-system}
 
@@ -1130,15 +1218,18 @@ class MyElement extends Polymer.Element {
       /* observer array just like 1.x */
       '_myPropChanged(myProp.*)'
     ]
+  }
 
   constructor() {
     super();
     ...
   }
+
   connectedCallback() {
     super.connectedCallback();
     ...
   }
+
   myPropChanged(changeRecord) {
     ...
   }
@@ -1158,18 +1249,8 @@ Below are the general steps for defining a custom element using this new syntax:
     2.0 DOM templating and data binding system. It provides the standard custom element lifecycle
     callbacks, plus the Polymer-specific `ready` callback.
 
-*   Implement "behaviors" as [mixins that return class expressions](http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/). Or use the the `mixinBehaviors` method to mix hybrid
-    behaviors into your element.
-
-*   Extend from `Polymer.Element`. This class provides the minimal surface area to integrate with
-    2.x DOM templating and data binding system. It provides the standard custom element lifecycle
-    with the addition of ready.
-
-*   You can extend from `Polymer.LegacyElement` instead, to get all of the Polymer 1.0 element API, but since most of this API was rarely used, this should not often be needed.
-
-*   Implement "behaviors" as [mixins that return class expressions](http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/).
-
-*   Property metadata (`properties` object) and complex observers (`observers` array) should be put on the class as a static in a property called `config`.
+*   Implement "behaviors" as [mixins that return class expressions](#mixins). Or use the the
+    `mixinBehaviors` method to mix hybrid behaviors into your element.
 
 *   Element's `is` property should be defined as a static on the class.
 
@@ -1197,6 +1278,10 @@ this.dispatchEvent(new CustomEvent('some-event', { bubbles: true }));
 (The `CustomEvent` constructor is not supported on IE, but the webcomponents polyfills include a
 small polyfill for it so you can use the same syntax everywhere.)
 
+In addition, many features are still included in the library, but as optional modules or mixins
+rather than being bundled in with `Polymer.Element`. For details, see
+[Import optional features](#optional-features)
+
 If you want to upgrade to a class-based element but depend on some of the removed APIs, you can
 add most of the legacy APIs by using the `LegacyElementMixin`.
 
@@ -1204,44 +1289,11 @@ add most of the legacy APIs by using the `LegacyElementMixin`.
 class MyLegacyElement extends Polymer.LegacyElementMixin(Polymer.Element) { ... }
 ```
 
-### Class mixins and behaviors
+### Class mixins and behaviors {#mixins}
 
-A class mixin is essentially a factory function that takes a class as an argument and returns a new
-class, with new features "mixed in."
-
-```js
-let MyMixin = (base) => class extends base {
-
-  // Configuration just like an element class
-  static get properties() {
-    return {
-      myProp: {
-        type: Number,
-        value: 0
-      }
-    }
-  }
-
-  // Define a method to mix in.
-  incrementMyProp() {
-    this.myProp++;
-  }
-}
-```
-
-Calling `MyMixin(Polymer.Element)` returns a new, anonymous class that extends `Polymer.Element`
-and includes the `properties` getter and the `incrementMyProp` method from `myMixin`.
-
-If you're more familiar with JavaScript 5 syntax, you can define a mixin using a regular
-function expression:
-
-```
-var MyMixin = function(base) {
-  return class extends base {
-    // same stuff in here
-  }
-}
-```
+A class expression mixin is essentially a factory function that takes a class as an argument and
+returns a new class, with new features "mixed in." Polymer 2.x provides a number of features as
+optional mixins instead of building them into the base class.
 
 Apply mixins when you create an element class:
 
@@ -1249,16 +1301,16 @@ Apply mixins when you create an element class:
 class MyElement extends MyMixin(Polymer.Element) {
   static get is() { return 'my-element' }
 }
-
 ```
 
 The `MyMixin(Polymer.Element)` returns a new class, which extends `Polymer.Element` and adds the
 features from `MyMixin`. So `MyElement`'s inheritance is:
 
-`MyElement > MyMixin(Polymer.Element) > Polymer.Element > HTMLElement`
+`MyElement => MyMixin(Polymer.Element) => Polymer.Element`
 
-The resulting element class, `MyElement` has the `myProp` property and `incrementMyProp`
-method from the mixin.
+For information on writing your own class expression mixins, see
+[Sharing code with class expression mixins](#mixins)
+
 
 #### Using hybrid behaviors with class-style elements
 
@@ -1278,3 +1330,29 @@ customElements.define(XClass.is, XClass);
 
 The `mixinBehavior` function also mixes in the Legacy APIs, the same as if you extended
 `Polymer.LegacyElement`. These APIs are required since since hybrid behaviors depend on them.
+
+### Import optional features {#optional-features}
+
+A number of features have been omitted from the base `Polymer.Element` class and packaged as
+separate, optional imports. These include:
+
+-   [Gesture support](gesture-events).
+-   [`<array-selector>` element](templates#array-selector)
+-   [`<custom-style>` element](style-shadow-dom#custom-style)
+-   [`<dom-bind>` element](templates#dom-bind)
+-   [`<dom-if>` element](templates#dom-if)
+-   [`<dom-repeat>` element](templates#dom-repeat)
+-   [`Polymer.RenderStatus`](/{{{polymer_version_dir}}}/docs/api/namespaces/Polymer.RenderStatus)
+    module.
+
+Element imports are found in the Polymer folder under `/lib/elements`, mixins under `/lib/mixins`,
+and utility modules under `/lib/utils`. For example, to load the `Polymer.RenderStatus` module,
+use an import like this:
+
+```html
+<link rel="import" href="/bower_components/polymer/lib/utils/render-status.html">
+```
+
+
+
+

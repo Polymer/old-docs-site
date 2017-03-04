@@ -410,15 +410,45 @@ rendering has a performance cost, but can be useful in a few scenarios:
 
 `render` **only** picks up [observable changes](data-system#observable-changes)
 such as those made with Polymer's [array mutation methods](model-data#array-mutation).
+
+To force the template to pick up unobservable changes, see
+[Forcing the template to update](#update-data).
+
+### Forcing the template to update {#update-data}
+
 If you or a third-party library mutate the array **without** using Polymer's methods, you can do
 one of the following:
 
 *   If you know the _exact set of changes made to your array_, use
     [`notifySplices`](model-data#notifysplices) to ensure that any elements watching the
     array are properly notified.
-*   If you don't have an exact set of changes, you can [Override dirty
-    checking](model-data#override-dirty-check) to force the data system to reevaluate the entire
-    array.
+
+*   Clone the array.
+
+    ```js
+    // Set items to a shallow clone of itself
+    this.items = this.items.slice();
+    ```
+
+    For complex data structures, a deep clone may be required.
+
+*   If you don't have an exact set of changes, you can set the
+    [`mutableData`](/{{{polymer_version_dir}}}/docs/api/elements/dom-repeat#property-mutableData)
+    property on the `dom-repeat` to disable dirty checking on the array.
+
+      ```html
+      <template is="dom-repeat" items={{items}} mutable-data> ... </template>
+      ```
+
+      With `mutableData` set, calling `notifyPath` on the array causes the entire array to be
+      re-evaluated.
+
+      ```js
+      //
+      this.notifyPath('items');
+      ```
+
+    For details, see [Using the MutableData mixin](data-system#mutable-data).
 
 For more information on working with arrays and the Polymer data system, see [Work with
 arrays](model-data#work-with-arrays).
@@ -686,6 +716,11 @@ the `<dom-bind>` element itself as the binding scope.
 
 All of the features in `dom-bind` are already available _inside_ a Polymer
 element. **Auto-binding templates should only be used _outside_ of a Polymer element.**
+
+**Forcing synchronous renders.** Like `dom-repeat`, `dom-bind` provides a `render` method and a
+`mutableData` property, as described in [Forcing synchronous renders](#synchronous-renders)
+and [Forcing the template to update](#update-data).
+{.alert .alert-info}
 
 ## dom-change event {#dom-change}
 
