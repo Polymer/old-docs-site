@@ -122,6 +122,9 @@
     indent: True
   - title: polymer.json specification
     path: /2.0/docs/tools/polymer-json
+    indent: True  
+  - title: Node support
+    path: /2.0/docs/tools/node-support
     indent: True
   - endheader: True
   - header: Resources
