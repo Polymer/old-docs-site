@@ -38,8 +38,8 @@ Polymer CLI is an all-in-one command line tool for Polymer projects. In this tut
     of each of these dependencies.
     If you're missing any of these dependencies, follow the instructions in
     the following section from the Polymer CLI guide to learn how to install
-    each one: [Install section from Polymer
-    CLI guide]({{{polymer_version_dir}}}/docs/tools/polymer-cli#install).
+    each one:
+    [Install section from Polymer CLI guide](/2.0/docs/tools/polymer-cli#install).
 
 1.  Install the Polymer CLI.
 
