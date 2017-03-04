@@ -264,7 +264,10 @@ class Site(http2push.PushHandler):
       data = {
         'nav': nav,
         'full_nav': full_nav,
-        'versions': versions
+        'versions': versions,
+        # we use this as a macro in cross-references.
+        # please don't take it away.
+        'polymer_version_dir': version
       }
     else:
       if path.startswith('blog') or path == 'index.html':
