@@ -32,18 +32,16 @@
         display: none;
       }
     </style>
-    <slot></slot>
+    <content></content>
 
     <iron-icon icon="star" hidden$="{{!starred}}"></iron-icon>
   </template>
   <script>
-    class ContactCard extends Polymer.Element {
-      static get is() { return "contact-card"; }
-      constructor() {
-        super();
-        this.starred = "True";
+    Polymer({
+      is: 'contact-card',
+      properties: {
+        starred: Boolean
       }
-    }
-    customElements.define(ContactCard.is, ContactCard);
+    });
   </script>
 </dom-module>
