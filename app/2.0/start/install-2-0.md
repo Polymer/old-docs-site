@@ -18,9 +18,12 @@ You can install Polymer via the Polymer CLI, or via Bower.
 
     The output of this command should be `0.18.0-prerelease.11`.
 
-3. Create a test folder for Polymer 2.x, and switch to it.
-
-    `mkdir polymer-20-test && cd polymer-20-test`
+3. Create a test folder for Polymer 2.0, and switch to it.
+    
+    ```bash
+    mkdir polymer-20-test
+    cd polymer-20-test
+    ```
 
 4. Initialize your project.
 
