@@ -9,24 +9,10 @@
   items:
   - title: Get started
     path: /2.0/start/index
-
   - title: Quick tour of Polymer
     path: /2.0/start/quick-tour
-
-  - header: Build an app
-  - title: 1. Get set up
-    path: /2.0/start/toolbox/set-up
-    indent: True
-  - title: 2. Create a new page
-    path: /2.0/start/toolbox/create-a-page
-    indent: True
-  - title: 3. Add some elements
-    path: /2.0/start/toolbox/add-elements
-    indent: True
-  - title: 4. Deploy
-    path: /2.0/start/toolbox/deploy
-    indent: True
-  - endheader: True
+  - title: Install the Release Candidate
+    path: /2.0/start/install-2-0
 
 - section: Polymer
   shortpath: docs
@@ -125,7 +111,7 @@
     indent: True
   - title: polymer.json specification
     path: /2.0/docs/tools/polymer-json
-    indent: True  
+    indent: True
   - title: Node support
     path: /2.0/docs/tools/node-support
     indent: True
