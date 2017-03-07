@@ -318,7 +318,7 @@ Document content {.caption}
 </parent-el>
 ```
 
-Shadow DOM of <`parent-el>` {.caption}
+Shadow DOM of `<parent-el>` {.caption}
 
 ```
 <child-el>
