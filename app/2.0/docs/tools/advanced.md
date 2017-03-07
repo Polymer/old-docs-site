@@ -22,7 +22,7 @@ polyserve serves the component from the current directory as `/components/{eleme
 
 Install:
 
-    npm install -g polyserve
+    npm install -g polyserve@next
 
 Usage:
 
@@ -57,7 +57,7 @@ Usage:
 
 Install:
 
-    npm install -g web-component-tester
+    npm install -g web-component-tester@next
 
 Usage:
 
@@ -82,7 +82,7 @@ For details on using WCT, see [Test your elements](tests).
 
 Install: 
     
-    npm install --save-dev polymer-build
+    npm install --save-dev polymer-build@next
     
 Usage: 
 

@@ -338,16 +338,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   &lt;dom-module id=&quot;contact-card&quot;&gt;
     &lt;style&gt;...&lt;/style&gt;
     &lt;template&gt;
-      &lt;content&gt;&lt;/content&gt;
+      &lt;slot&gt;&lt;/slot&gt;
       &lt;iron-icon icon=&quot;star&quot; hidden$=&quot;{{!starred}}&quot;&gt;&lt;/iron-icon&gt;
     &lt;/template&gt;
     &lt;script&gt;
-      Polymer({
-        is: 'contact-card',
-        properties: {
-          starred: Boolean
+      class ContactCard extends Polymer.Element {
+        static get is() { return "contact-card"; }
+        constructor() {
+          super();
+          this.starred = "True";
         }
-      });
+      }
+      customElements.define(ContactCard.is, ContactCard);
     &lt;/script&gt;
   &lt;/dom-module&gt;
             </code></pre>

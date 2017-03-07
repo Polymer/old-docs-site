@@ -41,11 +41,11 @@ To get a feel for these components in action, you can try out one of the two dem
     [Case study: the News app](news-case-study).
 
 
-To get started with the App Toolbox, visit [Build an app with App Toolbox](/1.0/start/toolbox/set-up).
+To get started with the App Toolbox, visit [Build an app with App Toolbox](/2.0/start/toolbox/set-up).
 
 Or read on to find out about [Responsive app layout](app-layout).
 
-<a href="/1.0/start/toolbox/set-up" class="blue-button">Build an app
+<a href="/2.0/start/toolbox/set-up" class="blue-button">Build an app
 </a>
 
 <a href="app-layout" class="blue-button">Responsive app layout

@@ -15,13 +15,17 @@ Polymer CLI is still pre-release. Some options may be subject to change.
 current version (7.x) should work, but is not
     officially supported.
 
+1.  Update npm.
+
+        npm install npm@latest -g
+
 1.  Install the latest version of Bower.
 
         npm install -g bower
 
 1.  Install Polymer CLI.
 
-        npm install -g polymer-cli
+        npm install -g polymer-cli@next
 
 You're all set. Run `polymer help` to view a list of commands.
 

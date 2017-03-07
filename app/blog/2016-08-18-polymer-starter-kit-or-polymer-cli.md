@@ -17,7 +17,7 @@ turned Polymer Starter Kit into a template that you can use with Polymer CLI!
 Update your version of Polymer CLI:
 
 ```
-npm install -g polymer-cli
+npm install -g polymer-cli@next
 ```
 
 Then run `polymer init` and you should see the `starter-kit` option.
