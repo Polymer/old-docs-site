@@ -6,10 +6,8 @@
  * cd scripts && node generate_api_docs_2.js
  */
 
-const {Analyzer} = require('polymer-analyzer');
-const {FSUrlLoader} = require('polymer-analyzer/lib/url-loader/fs-url-loader');
-const {PackageUrlResolver} = require('polymer-analyzer/lib/url-loader/package-url-resolver');
-const {generateAnalysisMetadata} = require('polymer-analyzer/lib/generate-analysis');
+const {Analyzer, FSUrlLoader, PackageUrlResolver} = require('polymer-analyzer');
+const {generateAnalysis} = require('polymer-analyzer/lib/generate-analysis');
 
 const clone = require('clone');
 const fs = require('fs');
@@ -21,7 +19,7 @@ const apiDocsPath = '../app/2.0/docs/api/';
 const rootNamespace = 'Polymer';
 
 // TODO: Check out an actual release SHA to generate docs off of.g
-const releaseSha = 'd198581c9c7730b21f31fd3c4ca37b13218c4963';
+const releaseSha = 'master';
 
 process.on('unhandledRejection', (reason, p) => {
   console.log('Unhandled Rejection at: Promise ', p, ' reason: ', reason);
@@ -84,7 +82,7 @@ function runAnalyzer() {
   analyzer.analyzePackage()
     .then((_package) => {
       console.log('Analyzer done');
-      const metadata = generateAnalysisMetadata(_package, '', isNotTest);
+      const metadata = generateAnalysis(_package, '', isNotTest);
       const json = JSON.stringify(metadata, null, 2);
       fs.writeFileSync('analysis.json', json);
 
