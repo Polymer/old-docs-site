@@ -79,7 +79,7 @@ connectedCallback() {
 }
 
 disconnectedCallback() {
-  super.disconnetedCallback();
+  super.disconnectedCallback();
   window.removeEventListener('hashchange', this._boundListener);
 }
 ```
