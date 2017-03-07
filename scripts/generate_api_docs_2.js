@@ -34,10 +34,10 @@ process.on('unhandledRejection', (reason, p) => {
  * - generate the files in ../app/1.0/devguide/api/
  */
 
-// cleanUp(installPolymer);
+cleanUp(installPolymer);
 // installPolymer();
 // checkoutRef();
-generateDocs();
+// generateDocs();
 
 function cleanUp(callback) {
   const command = 'rm -rf ./temp';
