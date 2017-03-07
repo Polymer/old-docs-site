@@ -1,4 +1,12 @@
 ---
+- title: "Polymer 2.0.0-rc1 has landed!"
+  path: /blog/2017-03-06-2-0-rc1
+  published: 2017-03-06
+  author: danfreedman
+  description: "The Polymer 2.0 Release Candidate is available and ready for use."
+  tag:
+    - blog
+    - announcements
 - title: "Polymer News Progressive Web App"
   path: /blog/2017-02-13-news-pwa
   published: 2017-02-13
