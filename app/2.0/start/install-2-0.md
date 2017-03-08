@@ -20,7 +20,7 @@ You can install Polymer via the Polymer CLI, or via Bower.
     polymer --version
     ```
 
-    The output of this command should be at least `0.18.0-pre.12`.
+    The output of this command should be at least `0.18.0-pre.13`.
 
 3. Create a test folder for Polymer 2.0, and switch to it.
 
@@ -57,7 +57,7 @@ You can install Polymer via the Polymer CLI, or via Bower.
     polymer --version
     ```
 
-    The output of this command should be at least `0.18.0-pre.12`.
+    The output of this command should be at least `0.18.0-pre.13`.
 
 3. Install Polymer from bower
 
