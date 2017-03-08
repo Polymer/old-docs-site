@@ -132,7 +132,7 @@ values, configuring properties from markup, observing property changes, and more
 The following example declares the `owner` property from the last example.
 It also shows configuring the owner property from markup in `index.html`.
 
-<demo-tabs selected="0" src="http://plnkr.co/edit/AQn8VGT4fut4Z5ciglOK?p=preview">
+<demo-tabs selected="0" src="http://plnkr.co/edit/huYt0l?p=preview">
   <demo-tab heading="configurable-name-tag.html">
 <pre><code>{{{include_file('2.0/start/samples/configurable-name-tag/configurable-name-tag.html')}}}</code></pre>
   </demo-tab>
