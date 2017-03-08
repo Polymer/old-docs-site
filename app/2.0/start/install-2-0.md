@@ -101,9 +101,9 @@ Because Polymer 2.0 uses ES6 and HTML Custom Elements, it is always best to serv
 
 |   | Easiest for cross-browser support  | Most optimal for WC v1 performance**  |
 |---|-------|------|
-| Server | Any server works, including static ones | Differential serving* required |
-| Deployed Code | ES5 transpiled | ES6|
-| Polyfill Loader | webcomponents-es5-loader.js | webcomponents-loader.js|
+| **Server** | Any server works, including static ones | Differential serving* required |
+| **Deployed Code** | ES5 transpiled | ES6|
+| **Polyfill Loader** | webcomponents-es5-loader.js | webcomponents-loader.js|
 
 \* Differential serving means you must serve both ES5 and ES6, depending on client capabilities. `polymer serve` does this.
 
