@@ -295,8 +295,7 @@ the following is true:
 *   You always use the Polymer data mutation methods to make granular changes.
 
 However, for apps that don't use immutable data and can't use the Polymer data methods, Polymer 2.0
-provides an optional `MutableData` mixin. The `MutableData` mixin eliminates the dirty check is
-eliminated, so the code above would work as intended. This also lets you batch several changes
+provides an optional `MutableData` mixin. The `MutableData` mixin eliminates the dirty check, so the code above would work as intended. This also lets you batch several changes
 before invoking property effects:
 
 `this.property.arrayProperty.push({ name: 'Alice' });`
@@ -314,10 +313,6 @@ this.set('property', this.property);
 // or
 this.property = this.property;
 ```
-
-Using `set` to change a specific subproperty can often be the most efficient way to make changes.
-However, with this change users of Polymer elements shouldn't need to use this API, making it more
-compatible with alternate data-binding and state management libraries.
 
 Using `set` to change a specific subproperty can often be the most efficient way to make changes.
 However, elements that use `MutableData` shouldn't need to use this API, making it
@@ -543,9 +538,9 @@ If your project uses Polymer elements or behaviors, see [Polymer element availab
 1.  Create a copy of your project or create a new branch to work in.
 
 1.  Find the Polymer packages in `bower.json` and replace the existing version
-    with  `2.0.0.rc1`:
+    with  `2.0.0.rc2`:
 
-    `"polymer": "Polymer/polymer#2.0-rc1"`
+    `"polymer": "Polymer/polymer#2.0-rc2"`
 
 1.  Find any existing Polymer elements in `bower.json` and replace the existing version
     with the `2.0-preview` branch:
