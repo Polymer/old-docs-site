@@ -25,13 +25,6 @@ Polymer 2.0 also makes improvements in several areas:
     using standard JavaScript (class expression mixins) instead of `Polymer` behaviors. (The
     `Polymer` factory method is still supported using a compatibility layer.)
 
-**Unreleased preview code.** Currently, Polymer 2.0 is available as a branch of the Polymer library
-repo on GitHub. **This is an active development branch, and should not be used in production.** By
-all means, use the `2.0-preview` branch to experiment, to provide feedback, and to familiarize
-yourself with the latest versions of the custom elements and shadow DOM specifications. Just don't
-build production code on it quite yet. Please.
-{.alert .alert-warning}
-
 Some tests currently fail on non-Chrome browsers; these will be addressed soon, but in the short
 term Chrome Canary is your best bet.
 
@@ -173,7 +166,7 @@ Users will need to change existing type-extension elements where necessary.
 All template type extensions provided by Polymer (i.e. `dom-if` and `dom-repeat`) now have a corresponding standard custom element
 that includes a `<template>` in its light DOM. For example:
 
-If in 1.x, code reads: 
+If in 1.x, code reads:
 
 ```
 <template is="dom-bind">...</template>
@@ -469,15 +462,15 @@ Polymer 2.0 has been developed alongside and tested with a new suite of v1-spec 
 for custom elements and shadow DOM. You can test Polymer 2.0 by using the `1.0.0-rc.4` version of
 `webcomponentsjs`, which is included as a bower dependency to Polymer 2.x.
 
-There are two main ways to load the polyfills:
+There are several ways to load the polyfills:
 
 *   `webcomponents-lite.js` includes all of the polyfills necessary to run on any of the supported
     browsers.
 *   `webcomponents-loader.js` performs a runtime feature-detection and loads just the required
     polyfills.
 
-References:
-*   [webcomponentsjs on GitHub](https://github.com/webcomponents/webcomponentsjs)
+Read more about the different ways and their tradeoffs:
+*   [webcomponentsjs on GitHub](https://github.com/webcomponents/webcomponentsjs/blob/master/README.md)
 
 ## EcmaScript 2015 (a.k.a. ES6)
 
@@ -527,8 +520,7 @@ You can also use bower to install any of the available hybrid elements:
 bower install --save PolymerElements/paper-button#2.0-preview
 ```
 
-Note that all of the `2.0-preview` branches are active development branches and may break at any
-time.
+Note that some of the `2.0-preview` branches are subject to change due to bug fixes.
 
 ### Upgrade an existing project {#upgrading}
 
@@ -542,18 +534,15 @@ If your project uses Polymer elements or behaviors, see [Polymer element availab
 1.  Find the Polymer packages in `bower.json` and replace the existing version
     with  `2.0.0.rc2`:
 
-    `"polymer": "Polymer/polymer#2.0-rc2"`
+    `"polymer": "Polymer/polymer#^2.0.0-rc2"`
 
 1.  Find any existing Polymer elements in `bower.json` and replace the existing version
     with the `2.0-preview` branch:
 
-    `"polymer": "Polymer/polymer#2.0-preview"`
+    `"paper-button": "PolymerElements/paper-button#2.0-preview"`
 
 1.  Run bower install.
 
     `bower install`
 
 1.  See the [upgrade guide](upgrade) for information on getting your code working with 2.0.
-
-
-
