@@ -170,7 +170,7 @@ to the element's `owner` property, so it's updated as the user types.
 data binding and input validation.
 {: .alert .alert-info }
 
-### Use the template repeater
+### Using `<dom-repeat>` for template repeating
 
 The template repeater (`dom-repeat`) is a specialized template that binds to an array. It creates one instance of the template's contents for each item in the array.
 
