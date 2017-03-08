@@ -448,19 +448,13 @@ leaves out a number of methods and properties. The removed APIs fall into severa
 A comprehensive list of missing or moved APIs will be available after the API for  `Polymer.Element`
 is finalized.
 
-## Not yet implemented
-
-*   Most of `Polymer.dom` is emulated, but some APIs may be missing. Please file issues to determine
-    if the missing behavior is an intended breaking change.
-
 ## Browser support and polyfills
 
 When released, Polymer 2.0 should support the same set of browsers as Polymer 1.x—IE 11, Edge,
 Safari (9+), Chrome, Opera and Firefox.
 
 Polymer 2.0 has been developed alongside and tested with a new suite of v1-spec compatible polyfills
-for custom elements and shadow DOM. You can test Polymer 2.0 by using the `1.0.0-rc.4` version of
-`webcomponentsjs`, which is included as a bower dependency to Polymer 2.x.
+for custom elements and shadow DOM. You can test Polymer 2.0 by using a `webcomponentsjs` version greater or equal to `1.0.0-rc.5` , which is included as a bower dependency to Polymer 2.x.
 
 There are several ways to load the polyfills:
 
