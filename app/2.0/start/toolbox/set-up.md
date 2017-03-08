@@ -54,7 +54,7 @@ Polymer CLI is an all-in-one command line tool for Polymer projects. In this tut
 
 1. Initialize your project with an app template.
 
-        polymer init starter-kit
+        polymer init polymer-2-starter-kit
 
 ## Serve your project
 
