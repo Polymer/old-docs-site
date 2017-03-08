@@ -344,9 +344,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     &lt;script&gt;
       class ContactCard extends Polymer.Element {
         static get is() { return "contact-card"; }
-        constructor() {
-          super();
-          this.starred = "True";
+        static get properties() {
+          return {
+            starred: { type: Boolean, value: true }
+          }
         }
       }
       customElements.define(ContactCard.is, ContactCard);
