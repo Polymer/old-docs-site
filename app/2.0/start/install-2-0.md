@@ -81,8 +81,21 @@ You can install Polymer via the Polymer CLI, or via Bower.
 
 ### Building for deployment
 
-The `polymer build` tool is the easiest way to build for deployment. There are some [issues](https://github.com/Polymer/polymer-build/issues/150)
-to resolve before this is an entirely smooth end-to-end experience. Until then, we strongly recommend using `polymer serve` to test your application. It uses "differential serving" to serve the correct versions of your files to each browser.
+The [`polymer build` command](/2.0/docs/tools/polymer-cli#build) is the easiest way to build your project for deployment. It can minify, compile and bundle your code dependending on command line flags, or options specified in a `polymer.json` file.
+
+To create a universal build that works on all browsers, use the `--js-compile` flag:
+
+```bash
+polymer build --js-compile
+```
+
+This will build your project to `build/default`. Serve that directory with `polymer serve`:
+
+```bash
+polymer serve build/default
+```
+
+If you want to create multiple builds, optimized for each browser, we reccomend [using `polymer.json` to configure them](/2.0/docs/tools/polymer-json).
 
 Because Polymer 2.0 uses ES6 and HTML Custom Elements, it is always best to serve ES6 to browsers with full ES6 support (currently Chrome, Firefox and Safari Tech Preview), and compiled ES5 only to older browsers that don't support ES6. If you’re unsure what the best strategy is for your project, here’s a quick overview:
 
