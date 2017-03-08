@@ -74,11 +74,10 @@ getter.
 There are three main HTML imports for defining Polymer elements:
 
 | Import | Description |
+|---|-------|
 | `polymer-element.html` | Defines the `Polymer.Element` base class.  |
 | `legacy-element.html` | Defines the `Polymer.LegacyElement` base class, which extends `Polymer.Element` and adds 1.x compatible legacy API. Also defines the legacy `Polymer()` factory method for creating hybrid elements, (Includes `polymer-element.html`.)|
-| `polymer.html` | Includes the Polymer base classes plus the
-helper elements (`custom-style`, `dom-bind`, `dom-if`, and `dom-repeat`) that were included in the
-1.x `polymer.html` bundle. (Includes `legacy-element.html`.) |
+| `polymer.html` | Includes the Polymer base classes plus the helper elements (`custom-style`, `dom-bind`, `dom-if`, and `dom-repeat`) that were included in the 1.x `polymer.html` bundle. (Includes `legacy-element.html`.) |
 
 For the smallest footprint, use the `polymer-element.html` import and import any required helper
 elements separately.
@@ -265,4 +264,3 @@ Legacy elements can share code in the form of _behaviors_, which can define
 properties, lifecycle callbacks, event listeners, and other features.
 
 For more information, see [Behaviors](/1.0/docs/devguide/behaviors) in the Polymer 1.x docs.
-
