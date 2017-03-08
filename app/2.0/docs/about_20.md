@@ -170,14 +170,16 @@ Could become:
 
 Users will need to change existing type-extension elements where necessary.
 
-All template type extensions provided by Polymer have now have corresponding standard custom elements
-that take a `<template>` in their light DOM. For example:
+All template type extensions provided by Polymer (i.e. `dom-if` and `dom-repeat`) now have a corresponding standard custom element
+that includes a `<template>` in its light DOM. For example:
+
+If in 1.x, code reads: 
 
 ```
 <template is="dom-bind">...</template>
 ```
 
-Becomes:
+In 2.x, it becomes:
 
 ```
 <dom-bind>
@@ -185,11 +187,11 @@ Becomes:
 </dom-bind>
 ```
 
-Polymer automatically wraps template extensions used in Polymer element templates during template
+Polymer automatically wraps template type extensions used in Polymer element templates (i.e. inside a `dom-module`) during template
 processing. This means you can and should continue using `<template is="">` in templates nested
-inside a Polymer element, or another Polymer template (such as `dom-bind`).
+inside a Polymer element, or another Polymer template, such as `dom-bind`.
 
-**Templates used in the main document must be manually wrapped.**
+**Templates used in the main document, such as `index.html` must be manually wrapped.**
 
 The `custom-style` element has also been changed to a standard custom element that must wrap a
 `<style>` element. For example:
@@ -210,7 +212,7 @@ Becomes:
 References:
 
 *   [Creating a customized built-in element](https://html.spec.whatwg.org/#custom-elements-customized-builtin-example) in the WHATWG HTML specification.
-*   [Apple's position on customized built-in elements](https://github.com/w3c/webcomponents/issues/509#issuecomment-233419167)).
+*   [Apple's position on customized built-in elements](https://github.com/w3c/webcomponents/issues/509#issuecomment-233419167).
 
 ## Shadow DOM v1
 
