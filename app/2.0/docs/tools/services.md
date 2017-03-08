@@ -16,7 +16,7 @@ Usage:
 ```
 <head>
   <base href="https://polygit.org/components/"> <!-- saves typing! -->
-  <script src="webcomponentsjs/webcomponents-lite.min.js"></script>
+  <script src="webcomponentsjs/webcomponents-lite.js"></script>
   <link rel="import" href="paper-button/paper-button.html">
   <link rel="import" href="iron-selector/iron-selector.html">
 </head>

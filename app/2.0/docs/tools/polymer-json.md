@@ -55,7 +55,7 @@ Here’s an example `polymer.json` file from the [Shop app](https://github.com/P
   ],
   "extraDependencies": [
     "manifest.json",
-    "bower_components/webcomponentsjs/webcomponents-lite.min.js"
+    "bower_components/webcomponentsjs/webcomponents-lite.js"
   ],
   "lint": {
     "rules": ["polymer-2-hybrid"]
