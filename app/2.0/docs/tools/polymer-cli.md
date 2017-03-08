@@ -11,7 +11,7 @@ Polymer CLI is still pre-release. Some options may be subject to change.
 
 1.  Install [Git](https://git-scm.com/downloads).
 
-1.  Install an [active LTS version of Node.js](https://github.com/nodejs/LTS) (4.x or 6.x). The 
+1.  Install an [active LTS version of Node.js](https://github.com/nodejs/LTS) (4.x or 6.x). The
 current version (7.x) should work, but is not
     officially supported.
 
@@ -31,8 +31,8 @@ You're all set. Run `polymer help` to view a list of commands.
 
 ## Overview {#overview}
 
-Polymer CLI is a command-line interface for Polymer projects. It includes a build pipeline, a 
-boilerplate generator for creating elements and apps, a linter, a development server, and a test 
+Polymer CLI is a command-line interface for Polymer projects. It includes a build pipeline, a
+boilerplate generator for creating elements and apps, a linter, a development server, and a test
 runner.
 
 Polymer CLI works with two types of projects:
@@ -105,7 +105,7 @@ When importing Polymer elements via HTML imports, always use the relative URL
 
 Details:
 
-Suppose that you ran Polymer CLI to generate an element project. Your element is named `my-el`. You 
+Suppose that you ran Polymer CLI to generate an element project. Your element is named `my-el`. You
 look inside `my-el.html` and see that Polymer has been
 imported like so:
 
@@ -163,7 +163,7 @@ other templates.
 Polymer CLI is designed for apps that follow the [app shell
 architecture](https://developers.google.com/web/updates/2015/11/app-shell).
 
-There are fundamental concepts of the app shell architecture that you should understand before 
+There are fundamental concepts of the app shell architecture that you should understand before
 creating your app project with Polymer CLI: the entrypoint,
 the shell, and fragments. See [App structure](/1.0/toolbox/server#app-structure)
 from the App Toolbox docs for an in-depth overview of these concepts.
@@ -213,13 +213,13 @@ After the initialization process Polymer CLI generates the following files and d
 *   `index.html`. Entrypoint page of the app.
 *   `src/`<code><var>my-app</var></code>/<code><var>my-app</var></code>`.html`.
     Source code for main element.
-*    `test/`<code><var>my-app</var></code>/<code><var>my-app</var></code>`_test.html`. Tests for 
+*    `test/`<code><var>my-app</var></code>/<code><var>my-app</var></code>`_test.html`. Tests for
 main element.
 
 #### Add elements
 
 You may want to compose your main element out of smaller, application-specific
-elements. These app-specific elements should be defined in the `src` directory, at the same level 
+elements. These app-specific elements should be defined in the `src` directory, at the same level
 as <code><var>my-app</var></code>.
 
     app/
@@ -227,12 +227,12 @@ as <code><var>my-app</var></code>.
         my-app/
         my-el/
 
-Currently there is no Polymer CLI command to generate application-specific elements. You should do 
+Currently there is no Polymer CLI command to generate application-specific elements. You should do
 it by hand and should not create an [element project](#element) within your app project.
 
 ## Commands {#commands}
 
-This section explains various useful Polymer CLI commands that you'll want to incorporate into your 
+This section explains various useful Polymer CLI commands that you'll want to incorporate into your
 development workflow while you build your element or app project.
 
 The commands are intended for both element and app projects unless otherwise
@@ -245,19 +245,19 @@ noted.
 
 ### `polymer test` {#tests}
 
-Runs tests. 
+Runs tests.
 
-If you want to run tests on your element or app project, `cd` to the base directory of your project 
+If you want to run tests on your element or app project, `cd` to the base directory of your project
 and run:
 
     polymer test
 
-Polymer CLI automatically runs all of the tests that it finds in the `test` directory. You'll see 
+Polymer CLI automatically runs all of the tests that it finds in the `test` directory. You'll see
 the results of the tests in your CLI.
 
 If you create your own tests, they should also go in the `test` directory.
 
-The underlying library that powers `polymer test` is called `web-component-tester` (`wct`). Learn 
+The underlying library that powers `polymer test` is called `web-component-tester` (`wct`). Learn
 more about creating unit tests with `wct`
 in [Test your elements](/1.0/tools/tests).
 
@@ -315,31 +315,31 @@ App project example (linting multiple elements):
 
     polymer lint --root src/ --input my-app/my-app.html my-el/my-el.html
 
-If all of the elements you want to test are in the same directory, you can specify the `--root` 
+If all of the elements you want to test are in the same directory, you can specify the `--root`
 flag to make all of the `--input` files relative to that directory.
 
 ### `polymer build` {#build}
 
 *This command is for app projects only.*
 
-Generates a production-ready build of your app. This process includes minifying the HTML, CSS, and 
+Generates a production-ready build of your app. This process includes minifying the HTML, CSS, and
 JS of the application dependencies, and generating a service worker to pre-cache dependencies.
 
-Polymer CLI's build process is designed for apps that follow the [app shell 
-architecture](https://developers.google.com/web/updates/2015/11/app-shell). To make sure your app 
+Polymer CLI's build process is designed for apps that follow the [app shell
+architecture](https://developers.google.com/web/updates/2015/11/app-shell). To make sure your app
 builds properly, create a `polymer.json` file at the top-level of your project and store your
-build configurations there. 
+build configurations there.
 
 [See the polymer.json specification for more information](polymer-json).
 
-You can also pass equivalent values via the following command-line flags. This can be useful for 
-building simple projects on your machine but you will need to include the flag every time you run 
-the command. For most projects a `polymer.json` configuration file will be easier to work with and 
+You can also pass equivalent values via the following command-line flags. This can be useful for
+building simple projects on your machine but you will need to include the flag every time you run
+the command. For most projects a `polymer.json` configuration file will be easier to work with and
 share across your team.
 
 * [`--add-service-worker`](#service-workers)
 * [`--bundle`](#bundles)
-* [`--css-minify](#css-minify)
+* [`--css-minify`](#css-minify)
 * [`--entry`](#entrypoint)
 * [`--html-minify`](#html-minify)
 * [`--insert-prefetch-links`](#prefetch)
@@ -352,23 +352,23 @@ share across your team.
 
 Generate a service worker for your application to cache all files and assets on the client.
 
-Polymer CLI will generate a service worker for your build using the 
-[sw-precache](https://github.com/GoogleChrome/sw-precache) library. To customize your service 
-worker, create a `sw-precache-config.js` file in your project directory that exports your 
-configuration. See the [sw-precache README](https://github.com/GoogleChrome/sw-precache) for a list 
+Polymer CLI will generate a service worker for your build using the
+[sw-precache](https://github.com/GoogleChrome/sw-precache) library. To customize your service
+worker, create a `sw-precache-config.js` file in your project directory that exports your
+configuration. See the [sw-precache README](https://github.com/GoogleChrome/sw-precache) for a list
 of all supported options.
 
-Note that the sw-precache library uses a cache-first strategy for maximum speed and makes some 
-other assumptions about how your service worker should behave. Read the 
-["Considerations"](https://github.com/GoogleChrome/sw-precache#considerations) section of the 
+Note that the sw-precache library uses a cache-first strategy for maximum speed and makes some
+other assumptions about how your service worker should behave. Read the
+["Considerations"](https://github.com/GoogleChrome/sw-precache#considerations) section of the
 sw-precache README to make sure that this is suitable for your application.
 
 #### `--bundle` {#bundles}
 
 By default, fragments are unbundled. This is optimal for HTTP/2-compatible servers and clients.
 
-If the `--bundle` flag is supplied, all fragments are bundled together to reduce the number of file 
-requests. This is optimal for sending to clients or serving from servers that are not HTTP/2 
+If the `--bundle` flag is supplied, all fragments are bundled together to reduce the number of file
+requests. This is optimal for sending to clients or serving from servers that are not HTTP/2
 compatible.
 
 #### `--css-minify` {#css-minify}
@@ -377,8 +377,8 @@ Minify inlined and external CSS.
 
 #### `--entry` {#entrypoint}
 
-A filename. This is the main entrypoint into your application for all routes. Often times this is 
-your `index.html` file. This file should import the app shell file specified in the 
+A filename. This is the main entrypoint into your application for all routes. Often times this is
+your `index.html` file. This file should import the app shell file specified in the
 [`shell`](#shell) option. It should be minimal since it's loaded and cached for each route.
 
 #### `--html-minify` {#html-minify}
@@ -386,8 +386,8 @@ your `index.html` file. This file should import the app shell file specified in 
 Minify HTMl by removing comments and whitespace.
 
 #### `--insert-prefetch-links` {#prefetch}
-Insert prefetch link elements into your fragments so that all dependencies are prefetched 
-immediately. Add dependency prefetching by inserting `<link rel="prefetch">` tags into entrypoint 
+Insert prefetch link elements into your fragments so that all dependencies are prefetched
+immediately. Add dependency prefetching by inserting `<link rel="prefetch">` tags into entrypoint
 and `<link rel="import">` tags into fragments and shell for all dependencies.
 
 #### `--js-compile` {#js-compile}
@@ -404,16 +404,16 @@ The app shell file containing common code for the app.
 
 #### `--fragment` {#fragment}
 
-This flag supports dynamic dependencies. It is an array of any HTML filenames that are not 
+This flag supports dynamic dependencies. It is an array of any HTML filenames that are not
 statically linked from the app shell (that is, imports loaded on demand by `importHref`).
 
-If a fragment has static dependencies, provided the fragment is defined in this property, the 
+If a fragment has static dependencies, provided the fragment is defined in this property, the
 Polymer build analyzer will find them. You only need to list the file imported by importHref.
 
 In a Polymer app, the files listed in the fragments flag usually contain one or more element
 definitions that may or may not be required during the user’s interaction with the app, and can
 thus be lazily loaded.
- 
+
 #### Examples {#examples}
 
 Create a bundled, minified application build:
@@ -428,7 +428,7 @@ Create an unbundled, minified application build:
 
 Polymer CLI uses [Bower](http://bower.io) for dependency management.
 
-Dependencies are stored in the `bower_components` directory. You should never manually alter the 
+Dependencies are stored in the `bower_components` directory. You should never manually alter the
 contents of this directory.
 
 Use the Bower CLI to manage dependencies.
@@ -449,9 +449,8 @@ are self-explanatory.
 The following commands are currently only supported for the `polymer build`
 command, with planned support for other commands in the future.
 
-*   `entry`	
+*   `entry`
 *   `shell`
 *   `fragment`
 
 See [Build app](#build) for more information on how to use these options.
-
