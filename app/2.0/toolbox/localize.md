@@ -48,27 +48,24 @@ Sample application (class style elements) {.caption}
     class XApp extends Polymer.mixinBehaviors([Polymer.AppLocalizeBehavior], Polymer.Element) {
       static get is() { return 'x-app'}
 
-      static get config() {
+      static get properties() {
         return {
-          properties: {
+          // set the current language—shared across all elements in the app
+          // that use AppLocalizeBehavior
+          language: {
+            value: 'en'
+          },
 
-            // set the current language—shared across all elements in the app
-            // that use AppLocalizeBehavior
-            language: {
-              value: 'en'
-            },
-
-            // Initialize locale data
-            resources: {
-              value() {
-                return {
-                  'en': { 'hello': 'My name is {name}.' },
-                  'fr': { 'hello': 'Je m\'apelle {name}.' }
-                }
+          // Initialize locale data
+          resources: {
+            value() {
+              return {
+                'en': { 'hello': 'My name is {name}.' },
+                'fr': { 'hello': 'Je m\'apelle {name}.' }
               }
             }
           }
-        }
+        };
       }
     }
 
