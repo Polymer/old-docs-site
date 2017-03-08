@@ -19,15 +19,13 @@
       static get is() { return "editable-name-tag"; }
       
       // configure the owner property
-      static get config() {
+      static get properties() {
         return {
-          properties: {
-            owner: {
-              type: String,
-              value: 'Daniel'
-            }
+          owner: {
+            type: String,
+            value: 'Daniel'
           }
-        }
+        };
       }
       
     }
