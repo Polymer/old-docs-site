@@ -526,9 +526,9 @@ If your project uses Polymer elements or behaviors, see [Polymer element availab
 1.  Create a copy of your project or create a new branch to work in.
 
 1.  Find the Polymer packages in `bower.json` and replace the existing version
-    with  `2.0.0.rc2`:
+    with  `2.0.0.rc.2`:
 
-    `"polymer": "Polymer/polymer#^2.0.0-rc2"`
+    `"polymer": "Polymer/polymer#^2.0.0-rc.2"`
 
 1.  Find any existing Polymer elements in `bower.json` and replace the existing version
     with the `2.0-preview` branch:
