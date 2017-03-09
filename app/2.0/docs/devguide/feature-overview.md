@@ -17,7 +17,7 @@ Similar to standard DOM elements, Polymer elements can be:
 A basic Polymer element definition looks like this:
 
 ```
-    <dom-module id="element-name">
+    <dom-module id="x-custom">
       <!-- Optional shadow DOM template -->
       <template>
         <style>
