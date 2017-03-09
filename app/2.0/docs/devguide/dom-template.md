@@ -67,6 +67,7 @@ Example: { .caption }
     class MyElement extends Polymer.Element {
       static get is() { return  'x-custom' }
       ready() {
+        super.ready();
         this.$.name.textContent = this.tagName;
       }
     }
