@@ -745,8 +745,8 @@ For examples of the layout properties in use, see the
     your element's CSS.
 
     ```
-    @apply(--layout-horizontal);
-    @apply(--layout-wrap);
+    @apply --layout-horizontal;
+    @apply --layout-wrap;
     ```
 
     See the [`iron-flex-layout` guide](https://elements.polymer-project.org/guides/flex-layout)
@@ -789,13 +789,13 @@ After { .caption }
     <style>
       :host {
         /* layout properties for the host element */
-        @apply(--layout-vertical);
+        @apply --layout-vertical;
       }
 
       .header {
         /* layout properties for a local DOM element */
-        @apply(--layout-horizontal);
-        @apply(--layout-center);
+        @apply --layout-horizontal;
+        @apply --layout-center;
       }
     </style>
 

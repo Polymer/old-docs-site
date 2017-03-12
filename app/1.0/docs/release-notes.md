@@ -1677,7 +1677,7 @@ This release includes several enhancements and changes to custom property suppor
 
 *   <span class="breaking">breaking change:</span> Style mixins are applied with `@apply` instead of `mixin`.
 
-        @apply(--my-style-mixin)
+        @apply --my-style-mixin
 
 *   The `var` function allows you to supply a default value, which is used if the custom
     property is not defined:
@@ -1691,7 +1691,7 @@ This release includes several enhancements and changes to custom property suppor
     ``` css
     --foo: {
       color: var(--my-color);
-      @apply(--my-theme);
+      @apply --my-theme;
     };
     ```
 

@@ -273,7 +273,7 @@ proposal.
 
 Use `@apply` to apply a mixin:
 
-<pre><code class="language-js">@apply(--<var>mixin-name</var>);</code></pre>
+<pre><code class="language-css">@apply --<var>mixin-name</var>;</code></pre>
 
 Defining a mixin is just like defining a custom property, but the
 value is an object that defines one or more rules:
@@ -297,10 +297,10 @@ Example: { .caption }
         padding: 4px;
         background-color: gray;
         /* apply a mixin */
-        @apply(--my-toolbar-theme);
+        @apply --my-toolbar-theme;
       }
       .title {
-        @apply(--my-toolbar-title-theme);
+        @apply --my-toolbar-title-theme;
       }
     </style>
 
