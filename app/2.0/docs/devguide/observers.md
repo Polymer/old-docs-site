@@ -1,4 +1,4 @@
-sa---
+---
 title: Observers and computed properties
 ---
 
