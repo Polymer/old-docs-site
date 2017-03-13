@@ -31,7 +31,7 @@ element. The custom element's name **must start with an ASCII letter and
 contain a dash (-)**.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/PaCt2M?p=preview">
-  <demo-tab heading="proto-element.html">
+  <demo-tab heading="custom-element.html">
 <pre><code>{{{include_file('2.0/start/samples/custom-element/custom-element.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
