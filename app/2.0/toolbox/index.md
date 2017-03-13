@@ -25,7 +25,7 @@ Progressive web app. Most importantly, each component is _additive_. For a simpl
 need app-layout. As it gets more complicated, you can add routing, offline caching, and a
 high-performance server as required.
 
-**Hybrid comptabile.** The Toolbox elements and behaviors are available as hybrid versions, which
+**Hybrid compatible.** The Toolbox elements and behaviors are available as hybrid versions, which
 can be used with both Polymer 1 and Polymer 2. Use the `2.0-preview` branch of the elements when
 working with 2.0 Release Candidate.
 {.alert .alert-info}
