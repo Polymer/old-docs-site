@@ -230,7 +230,7 @@ Elements have a *custom element state* that takes one of the following values:
 *   "uncustomized". The element does not have a valid custom element name. It is either a built-in
     element (`<p>`, `<input>`) or an unknown element that cannot become a custom element
     (`<nonsense>`)
-*   "undefined". The element is has a valid custom element name (such as "my-element"), but has not
+*   "undefined". The element has a valid custom element name (such as "my-element"), but has not
     been defined.
 *   "custom". The element has a valid custom element name and has been defined and upgraded.
 *   "failed". An attempt to upgrade the element failed (for example, because the class was invalid).
