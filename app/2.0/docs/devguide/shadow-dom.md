@@ -13,7 +13,7 @@ Polymer. For a more comprehensive overview of Shadow DOM, see
 on Web Fundamentals.
 {.alert .alert-info}
 
-Consider an header component that includes a page title and a  menu button: The DOM tree for this
+Consider a header component that includes a page title and a  menu button: The DOM tree for this
 element might look like this:
 
 
