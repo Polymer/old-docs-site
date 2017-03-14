@@ -356,6 +356,12 @@ Example usage of `my-toolbar`: { .caption }
 </dom-module>
 ```
 
+**Older @apply syntax.** The `@apply` syntax was originally implemented in Polymer using
+parenthesis: <code>@apply(<var>--mixin-name</var>)</code>. Polymer 1.6.0 and later accepts `@apply`
+without parenthesis, matching the proposal. You can continue using the older syntax in Polymer 1.x,
+but starting in Polymer 2.0, only the newer syntax (without parenthesis) is accepted.
+{.alert .alert-info}
+
 ### Custom property API for Polymer elements {#style-api}
 
 Polymer's custom property shim evaluates and applies custom property values once
