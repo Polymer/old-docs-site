@@ -374,7 +374,7 @@ with drawer and header.
 
     <app-header-layout>
 
-      <app-header reveals effects="waterfall">
+      <app-header reveals effects="waterfall" slot="header">
         <app-toolbar>
           <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
           <div main-title>Title</div>
