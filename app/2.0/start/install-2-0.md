@@ -66,7 +66,7 @@ You can install Polymer via the Polymer CLI, or via Bower.
     ```
 
 4. Create a test `index.html` file, and add the following in the `<head>` tag:
-  - `<script src="/bower_components/webcomponentsjs-loader.js"></script>` to
+  - `<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>` to
   load the polyfills
   - `<link rel="import" href="/bower_components/polymer/polymer.html">` to
   import Polymer
