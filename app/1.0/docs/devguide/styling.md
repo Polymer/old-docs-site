@@ -273,7 +273,7 @@ proposal.
 
 Use `@apply` to apply a mixin:
 
-<pre><code class="language-js">@apply(--<var>mixin-name</var>);</code></pre>
+<pre><code class="language-css">@apply --<var>mixin-name</var>;</code></pre>
 
 Defining a mixin is just like defining a custom property, but the
 value is an object that defines one or more rules:
@@ -297,10 +297,10 @@ Example: { .caption }
         padding: 4px;
         background-color: gray;
         /* apply a mixin */
-        @apply(--my-toolbar-theme);
+        @apply --my-toolbar-theme;
       }
       .title {
-        @apply(--my-toolbar-title-theme);
+        @apply --my-toolbar-title-theme;
       }
     </style>
 
@@ -355,6 +355,12 @@ Example usage of `my-toolbar`: { .caption }
 
 </dom-module>
 ```
+
+**Older @apply syntax.** The `@apply` syntax was originally implemented in Polymer using
+parenthesis: <code>@apply(<var>--mixin-name</var>)</code>. Polymer 1.6.0 and later accepts `@apply`
+without parenthesis, matching the proposal. You can continue using the older syntax in Polymer 1.x,
+but starting in Polymer 2.0, only the newer syntax (without parenthesis) is accepted.
+{.alert .alert-info}
 
 ### Custom property API for Polymer elements {#style-api}
 

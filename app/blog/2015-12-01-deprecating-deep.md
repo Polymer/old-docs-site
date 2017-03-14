@@ -32,10 +32,10 @@ Our recommendation for now is to start using the mixin versions in your app as w
     <dom-module id=”my-element”>
       <template>
         <style>
-           .content {
-             @apply(--layout-horizontal)
-            }
-         </style>
+          .content {
+            @apply --layout-horizontal;
+          }
+        </style>
 
         <paper-toolbar>
           <div>My App</div>
@@ -55,10 +55,10 @@ Of course, you can also apply the custom layout properties defined in `iron-flex
 
     <style is="custom-style">
       .flex-horizontal {
-        @apply(--layout-horizontal);
+        @apply --layout-horizontal;
       }
       .flexchild {
-        @apply(--layout-flex);
+        @apply --layout-flex;
       }
     </style>
 
