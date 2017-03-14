@@ -803,7 +803,7 @@ Example: importing CSS mixin shim to an element {.caption}
 <!-- import Polymer.Element -->
 <link rel="import" href="../polymer/polymer-element.html">
 
-<dom-module is="x-custom">
+<dom-module id="x-custom">
   <template>
     <style>
       :host {
