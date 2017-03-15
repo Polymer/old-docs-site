@@ -83,13 +83,11 @@ if (console) {
 // Show a toast with a service-worker-related update.
 window.showToast = function(message) {
   var toast = document.getElementById('sw-toast');
-
   if (!toast) {
     toast = document.createElement('paper-toast');
     toast.id = 'sw-toast';
     document.body.appendChild(toast);
   }
-
   toast.textContent = message;
   toast.show();
 };

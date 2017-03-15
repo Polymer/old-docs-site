@@ -107,6 +107,7 @@ function writeServiceWorkerFile() {
   let config = {
     cacheId: 'polymerproject',
     staticFileGlobs: [
+      `${rootDir}/images/logos/p-logo.png`,
       `${rootDir}/elements/**`,
       `${rootDir}/js/*.js`,
       `${rootDir}/css/*.css`,
@@ -115,29 +116,40 @@ function writeServiceWorkerFile() {
     ],
     dynamicUrlToDependencies: dynamicUrlToDependencies,
     navigateFallback: '/shell',
+    navigateFallbackWhitelist: [/^(?!.*homepage)/],
     runtimeCaching: [
     {
-      urlPattern: /\/images\/*/,
+      urlPattern: new RegExp('/images/'),
+      handler: 'fastest',
+      options: {
+        cache: {
+          maxEntries: 10,
+          name: 'image-cache'
+        }
+      }
+    },
+    {
+      urlPattern: new RegExp('/docs/'),
       handler: 'fastest',
     },
     {
-      urlPattern: /\/1\.0\/docs\//,
+      urlPattern: new RegExp('/start/'),
       handler: 'fastest',
     },
     {
-      urlPattern: /\/1\.0\/start\//,
+      urlPattern: new RegExp('/toolbox/'),
       handler: 'fastest',
     },
     {
-      urlPattern: /\/1\.0\/toolbox\//,
+      urlPattern: new RegExp('/homepage/'),
       handler: 'fastest',
     },
     {
-      urlPattern: /\/1\.0\/homepage\//,
+      urlPattern: new RegExp('/community/'),
       handler: 'fastest',
     },
     {
-      urlPattern: /\/1\.0\/blog\//,
+      urlPattern: new RegExp('/blog/'),
       handler: 'fastest',
       options: {
         cache: {
@@ -355,8 +367,7 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     .pipe(gulp.dest('dist'));
 
   let bower = gulp.src([
-      'app/bower_components/webcomponentsjs/webcomponents*.js',
-      'app/bower_components/sw-precache/*'
+      'app/bower_components/webcomponentsjs/webcomponents*.js'
     ], {base: 'app/'})
     .pipe(gulp.dest('dist'));
 
