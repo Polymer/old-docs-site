@@ -97,7 +97,7 @@ with a styled `<div>` tag.
 So the `div` rule here only affects `<div>` tags inside `<picture-frame>`.
 {: .alert .alert-info }
 
-<p><a href="/2.0/docs/devguide/local-dom#dom-distribution" class="blue-button">
+<p><a href="/2.0/docs/devguide/shadow-dom#shadow-dom-and-composition" class="blue-button">
 Learn more: Composition & distribution</a></p>
 
 ### Use data binding
@@ -184,6 +184,10 @@ The template repeater (`dom-repeat`) is a specialized template that binds to an 
 
   <iframe frameborder="0" src="samples/employee-list/index.html" width="100%" height="100"></iframe>
 </demo-tabs>
+
+
+<p><a href="/2.0/docs/devguide/templates" class="blue-button">
+Learn more: Template repeater</a></p>
 
 ## Next steps
 
