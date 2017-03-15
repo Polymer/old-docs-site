@@ -22,7 +22,7 @@ When you create your own custom elements, you can use custom properties to build
 
 To use the interface of custom properties provided by an element author, look at the element's API documentation.
 
-For a good example, visit the [`<paper-checkbox>` API documentation](https://beta.webcomponents.org/element/PolymerElements/paper-checkbox/paper-checkbox)
+For a good example, visit the [`<paper-checkbox>` API documentation](https://www.webcomponents.org/element/PolymerElements/paper-checkbox/paper-checkbox)
 
 This code sample inserts a `<paper-checkbox>` element with its default styling:
 

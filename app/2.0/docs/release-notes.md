@@ -35,7 +35,7 @@ The following notable changes have been made since the 2.0 Preview announcement.
 -   1.x-style dirty checking has been reinstated for better performance. An optional mixin is
     available for elements to skip dirty checking of objects and arrays, which may be more easy to
     integrate with some state management systems. For details, see
-    [Using the MutableData mixin](data-system#mutable-data) in Data system concepts.
+    [Using the MutableData mixin](devguide/data-system#mutable-data) in Data system concepts.
 
 -   Support for dynamically-created `custom-style` elements has been added.
 
@@ -45,6 +45,6 @@ The following notable changes have been made since the 2.0 Preview announcement.
 
 -   New properties `rootPath` and `basePath` were added to `Polymer.Element` to allow authors
     to configure how URLs are rewritten inside templates. For details, see the
-    [Update URLs in templates](#urls-in-templates) in the Upgrade guide.
+    [Update URLs in templates](./upgrade#urls-in-templates) in the Upgrade guide.
 
 
