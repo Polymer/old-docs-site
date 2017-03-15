@@ -90,25 +90,31 @@ function writeServiceWorkerFile() {
   let path = require('path');
   let rootDir = 'dist';
 
+  let dynamicUrlToDependencies = {};
+  let partialTemplateFiles = ['head-meta.html', 'site-nav.html']
+    .map(file => path.join(rootDir, 'templates', file));
+
+  ['about', 'index', 'shell'].forEach(htmlFile => {
+    let dynamicUrl = '/' + htmlFile;
+    let dependencies = partialTemplateFiles.concat(`${rootDir}/${htmlFile}.html`);
+    dynamicUrlToDependencies[dynamicUrl] = dependencies;
+    // Treat / like /index
+    if (htmlFile === 'index') {
+      dynamicUrlToDependencies['/'] = dependencies;
+    }
+  });
+
   let config = {
     cacheId: 'polymerproject',
     staticFileGlobs: [
-      `${rootDir}/1.0/index.html`,
-      `${rootDir}/1.0/shell`,
-      `${rootDir}/1.0/about.html`,
       `${rootDir}/elements/**`,
       `${rootDir}/js/*.js`,
       `${rootDir}/css/*.css`,
       `${rootDir}/bower_components/**/webcomponents-lite.min.js`,
-      `${rootDir}/bower_components/highlight/highlight.js.js`,
+      `${rootDir}/bower_components/highlight/highlight.js`,
     ],
-    dynamicUrlToDependencies: {
-      '/1.0/shell.html': [
-        path.join(rootDir, 'templates', 'head-meta.html'),
-        path.join(rootDir, 'templates', 'site-nav.html'),
-      ]
-    },
-    navigateFallback: '/1.0/shell',
+    dynamicUrlToDependencies: dynamicUrlToDependencies,
+    navigateFallback: '/shell',
     runtimeCaching: [
     {
       urlPattern: /\/images\/*/,
