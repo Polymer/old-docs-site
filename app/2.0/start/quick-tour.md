@@ -59,7 +59,7 @@ You can use the `ready` callback for one-time initialization work after the elem
 Many elements include some internal DOM nodes to implement the element's UI and behavior.
 You can use Polymer's DOM templating to create a shadow DOM tree for your element.
 
-<demo-tabs selected="0" src="http://plnkr.co/edit/fTMpq3?p=preview">
+<demo-tabs selected="0" src="http://plnkr.co/edit/bVyU2T?p=preview">
   <demo-tab heading="dom-element.html">
 <pre><code>{{{include_file('2.0/start/samples/dom-element/dom-element.html')}}}</code></pre>
   </demo-tab>
