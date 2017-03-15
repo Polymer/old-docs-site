@@ -81,7 +81,7 @@ shadow tree, and won't leak out to other parts of your DOM.
 
 By default, if an element has shadow DOM, **the shadow tree is rendered instead of the element's
 children.** To allow children to render, you can add a `<slot>` element to your shadow tree. Think
-of the <slot> aa a placeholder showing where child nodes will render. Consider the following shadow tree for `<my-header>`:
+of the `<slot>` a placeholder showing where child nodes will render. Consider the following shadow tree for `<my-header>`:
 
 
 ```html
@@ -129,7 +129,7 @@ You can control where a child should be distributed into the flattened tree usin
 ```
 
 
-.A named slot only accepts top-level children that have a matching `slot` attribute:
+A named slot only accepts top-level children that have a matching `slot` attribute:
 
 
 ```html
@@ -457,8 +457,8 @@ functional pseudoclass.
 ```
 
 
-You can also style light DOM children that are assigned to slots using the `::slotted()` p
-seudoelement. For example, `::slotted(img)` selects any image tags that are assigned to slots in the
+You can also style light DOM children that are assigned to slots using the `::slotted()` 
+pseudoelement. For example, `::slotted(img)` selects any image tags that are assigned to slots in the
 shadow tree.
 
 
@@ -466,7 +466,7 @@ shadow tree.
   #shadow-root
     <style>
       :slotted(img) {
-        Border-radius: 100%;
+        border-radius: 100%;
       }
     </style>
 ```

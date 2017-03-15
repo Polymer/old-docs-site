@@ -66,11 +66,11 @@ features to your element, extend Polymer's base element class, `Polymer.Element`
 <link rel="import" href="/bower_components/polymer/polymer_element.html">
 
 <script>
-class MyPolymerElement extends Polymer.Element {
-  static get is() { return 'my-polymer-element'; }
-}
+  class MyPolymerElement extends Polymer.Element {
+    static get is() { return 'my-polymer-element'; }
+  }
 
-window.customElements.define(MyPolymerElement.is, MyPolymerElement);
+  window.customElements.define(MyPolymerElement.is, MyPolymerElement);
 </script>
 ```
 
@@ -207,10 +207,10 @@ For example, consider the following code:
 ```
 <my-element></my-element>
 <script>
-class MyElement extends HTMLElement { ... };
+  class MyElement extends HTMLElement { ... };
 
-// ...some time much later...
-window.customElements.define('my-element', MyElement);
+  // ...some time much later...
+  window.customElements.define('my-element', MyElement);
 </script>
 ```
 
