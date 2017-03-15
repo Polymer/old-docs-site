@@ -112,7 +112,7 @@ Run `bower install` to install the new dependencies.
 
 If you are upgrading the element to hybrid mode, you can add extra sets of bower dependencies so you
 can test against multiple versions of Polymer easily. For details, see
-[Manage dependencies for hybrid elements](hybrid-elements#dependency-variants).
+[Manage dependencies for hybrid elements](devguide/hybrid-elements#dependency-variants).
 
 ### Upgrade an element
 
@@ -945,7 +945,7 @@ ready: function() {
 ```
 
 For more details on `observeNodes`, see
-[Observe added and removed children](/1.0/docs/devguide/shadow-dom#observe-nodes) in the Polymer 1
+[Observe added and removed children](../../1.0/docs/devguide/local-dom#observe-nodes) in the Polymer 1
 documentation.
 
 In order to force distribution synchronously, call `Polymer.dom.flush`. This can be useful for
@@ -1337,12 +1337,12 @@ The `mixinBehavior` function also mixes in the Legacy APIs, the same as if you e
 A number of features have been omitted from the base `Polymer.Element` class and packaged as
 separate, optional imports. These include:
 
--   [Gesture support](gesture-events).
--   [`<array-selector>` element](templates#array-selector)
--   [`<custom-style>` element](style-shadow-dom#custom-style)
--   [`<dom-bind>` element](templates#dom-bind)
--   [`<dom-if>` element](templates#dom-if)
--   [`<dom-repeat>` element](templates#dom-repeat)
+-   [Gesture support](devguide/gesture-events).
+-   [`<array-selector>` element](devguide/templates#array-selector)
+-   [`<custom-style>` element](devguide/style-shadow-dom#custom-style)
+-   [`<dom-bind>` element](devguide/templates#dom-bind)
+-   [`<dom-if>` element](devguide/templates#dom-if)
+-   [`<dom-repeat>` element](devguide/templates#dom-repeat)
 -   [`Polymer.RenderStatus`](/{{{polymer_version_dir}}}/docs/api/namespaces/Polymer.RenderStatus)
     module.
 
