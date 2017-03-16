@@ -6,7 +6,7 @@ title: Style an element's shadow DOM
 
 ## Style your elements
 
-Polymer supports DOM templating and the shadow DOM API. When you provide a DOM template for your cusotm element, Polymer then copies in the contents of the template you provided for your element.
+Polymer supports DOM templating and the shadow DOM API. When you provide a DOM template for your custom element, Polymer then copies in the contents of the template you provided for your element.
 
 Here's an example:
 
@@ -153,7 +153,7 @@ Styles declared inside shadow DOM will override styles declared outside of it:
 
 `index.html` { .caption}
 ```html
-<link rel="import" href="x-foo.html"
+<link rel="import" href="x-foo.html">
 <!-- Document-level stylesheet -->
 <style>
   p {
