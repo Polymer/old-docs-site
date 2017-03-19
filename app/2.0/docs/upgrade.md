@@ -1168,9 +1168,6 @@ The following APIs have been removed.
 *   `element.getNativePrototype`: Removed because it is no longer needed for internal code and was
     unused by users.
 
-*   `element.getNativePrototype`: Removed because it is no longer needed for internal code and was
-    unused by users.
-
 *   `element.beforeRegister`: This was originally added for metadata compatibility with ES6 classes.
     We now prefer users create ES6 classes by extending `Polymer.Element`, specifying metadata in
     the static `properties` and `observers` properties.
