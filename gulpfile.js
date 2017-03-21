@@ -116,7 +116,7 @@ function writeServiceWorkerFile() {
     ],
     dynamicUrlToDependencies: dynamicUrlToDependencies,
     navigateFallback: '/shell',
-    navigateFallbackWhitelist: [/^(?!.*homepage)/],
+    navigateFallbackWhitelist: [/^(?!.*samples)/],
     runtimeCaching: [
     {
       urlPattern: new RegExp('/images/'),
@@ -141,7 +141,7 @@ function writeServiceWorkerFile() {
       handler: 'fastest',
     },
     {
-      urlPattern: new RegExp('/homepage/'),
+      urlPattern: new RegExp('/samples/'),
       handler: 'fastest',
     },
     {
@@ -328,7 +328,7 @@ gulp.task('hack-bundles', 'Hack the pw-shell import', ['build-bundles', 'minify-
 });
 
 gulp.task('vulcanize-demos', 'vulcanize demos', function() {
-  return gulp.src('app/1.0/homepage/*/index.html', {base: 'app/1.0/homepage'})
+  return gulp.src('app/1.0/samples/homepage/*/index.html', {base: 'app/1.0/samples/homepage'})
     .pipe($.vulcanize({
       stripComments: true,
       inlineCss: true,
@@ -339,7 +339,7 @@ gulp.task('vulcanize-demos', 'vulcanize demos', function() {
     .pipe($.if('*.html', cssslam.gulp())) // Minify css in HTML output
     .pipe($.if('*.js', uglifyJS())) // Minify js output
     .pipe($.if('*.js', license()))
-    .pipe(gulp.dest('dist/1.0/homepage'));
+    .pipe(gulp.dest('dist/1.0/samples/homepage'));
 });
 
 gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', function() {
@@ -357,7 +357,7 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
       'app/**/blog.yaml',
       'app/**/authors.yaml',
       '!app/{bower_components,elements}/**',
-      '!app/1.0/homepage/**',
+      '!app/1.0/samples/homepage/**',
      ], {base: 'app/'})
     .pipe(gulp.dest('dist'));
 
