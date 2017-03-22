@@ -378,6 +378,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (this._isInitialNavigation && !hasServiceWorker) {
         this._isInitialNavigation = false;
       } else {
+        // This branch happens for page to page transitions *or*
+        // first page loads from the service worker.
+
         // Not all sections have a version, so only update the docs version if
         // there's actually a change.
         // Also I don't understand, but 'blog' comes with a version of "blog" so...
@@ -403,10 +406,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         Polymer.dom(this).appendChild(document.importNode(fragment, true));
         Polymer.dom.flush();  // Force upgrades.
 
-        // Since the devguide-shell import is loaded, we can remove its
-        // unresolved attribute from the template
+        // *If* the devguide-shell import is loaded, we can remove its
+        // unresolved attribute from the template. If it hasn't i.e we're serving
+        // this from the SW but the HTML import hasn't finished yet, then
+        // remove the attribute in the importHref callback, or else you get FOUC)
         var devshell = Polymer.dom(this).querySelector('devguide-shell');
-        if (devshell)
+        if (devshell && devshell.hasAttribute('unresolved') && devshell.header)
           devshell.removeAttribute('unresolved');
 
         // Analytics. Don't double-report search

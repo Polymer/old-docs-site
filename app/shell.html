@@ -12,11 +12,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <head>
 <title>{% block title %}{% endblock %} - Polymer Project</title>
 {% include 'templates/head-meta.html' %}
+<style>
+   /* Styling while the resources are loading. */
+  devguide-shell[unresolved] .sidenav-content {
+    opacity: 0;
+  }
+  devguide-shell[unresolved] main {
+    opacity: 0;
+  }
+</style>
 </head>
 <body class="fullbleed" unresolved>
+  {% include 'templates/noscript.html' %}
   <pw-shell>
     {% include 'templates/site-nav.html' %}
-    <devguide-shell></devguide-shell>
+    <devguide-shell unresolved></devguide-shell>
   </pw-shell>
   <pw-footer></pw-footer>
   <script src="/js/app.js"></script>
