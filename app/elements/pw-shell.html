@@ -375,7 +375,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // need to XHR the contents since the server already gave us the right thing.
       // However, if the Service Worker is serving the app-shell, we do.
       var hasServiceWorker = navigator.serviceWorker && navigator.serviceWorker.controller;
-      if (this._isInitialNavigation && !hasServiceWorker) {
+
+      // Bonus problem: if you try to refresh the navigate fallback, you end
+      // up loading it twice (once as the page, and once from the SW).
+      // Don't do that.
+      var isNavigateFallback = this._isInitialNavigation && this._sectionRoute.path === '/';
+
+      if (isNavigateFallback || (this._isInitialNavigation && !hasServiceWorker)) {
         this._isInitialNavigation = false;
       } else {
         // This branch happens for page to page transitions *or*
