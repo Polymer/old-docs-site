@@ -371,22 +371,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _handleResponse: function(event) {
-      // When doing an initial page load (i.e. not a transition), we don't
-      // need to XHR the contents since the server already gave us the right thing.
-      // However, if the Service Worker is serving the app-shell, we do.
+      // We only want to switch out the app-shell content if:
+      // - we are not refreshing the navigate fallback page (the server is already
+      // serving the correct page, and we don't need to load it twice)
+      // - this is a page to page transition (i.e. not an initial navigation) or
+      // - this is an initial navigation _and_ it was served by a Service Worker,
+      // since that is going to just give us the shell.html and we need to
+      // actually swap its content out.
       var hasServiceWorker = navigator.serviceWorker && navigator.serviceWorker.controller;
-
-      // Bonus problem: if you try to refresh the navigate fallback, you end
-      // up loading it twice (once as the page, and once from the SW).
-      // Don't do that.
       var isNavigateFallback = this._isInitialNavigation && this._sectionRoute.path === '/';
+      var shouldSwapContent = !this._isInitialNavigation || hasServiceWorker;
 
-      if (isNavigateFallback || (this._isInitialNavigation && !hasServiceWorker)) {
+      // We did a navigation! Great!
+      if (this._isInitialNavigation)
         this._isInitialNavigation = false;
-      } else {
-        // This branch happens for page to page transitions *or*
-        // first page loads from the service worker.
 
+      if (!isNavigateFallback && shouldSwapContent) {
         // Not all sections have a version, so only update the docs version if
         // there's actually a change.
         // Also I don't understand, but 'blog' comes with a version of "blog" so...
