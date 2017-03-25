@@ -583,7 +583,6 @@ For example:
 ```
 
 ## Use `custom-style` in document-level styles {#custom-style}
-}
 
 Browsers that implement the current Shadow DOM v1 specifications will automatically encapsulate styles, scoping them to the elements in which they were defined.
 

@@ -641,7 +641,7 @@ For further reading:
 
 
 
-*   [Shadow DOM v1: self-contained web components](https://developers.google.com/web/fundamentals/primers/shadowdom/?hl=en)` on Web Fundamentals.`
+*   [Shadow DOM v1: self-contained web components](https://developers.google.com/web/fundamentals/primers/shadowdom/?hl=en) `on Web Fundamentals.`
 *   [Custom properties specification](https://www.w3.org/TR/css-variables-1/)).
 *   [Custom property mixins proposal](https://tabatkins.github.io/specs/css-apply-rule/).
 *   [Shady DOM polyfill README](https://github.com/webcomponents/shadydom/blob/master/README.md).
