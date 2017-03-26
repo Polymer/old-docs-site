@@ -468,7 +468,7 @@ Example of ::slotted {.caption}
   <template>
     <style>
       #container ::slotted(*) {
-        color: #blue;
+        color: blue;
       }
       #container ::slotted(.warning) {
         color: red;
