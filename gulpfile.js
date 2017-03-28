@@ -87,36 +87,46 @@ function createReloadServer() {
 }
 
 function writeServiceWorkerFile() {
+  /**
+   * NOTE(keanulee): This function is run in the context of the generated SW where variables
+   * like `toolbox` and `caches` are defined. It is referenced as a handler by the runtime
+   * caching config below which embeds the value of fastestWithFallback.toString() in the
+   * generated SW.
+   *
+   * This handler is similar to the "fastest" or "stale-while-revalidate" strategy, except
+   * that a fallback page is served on cache and network miss.
+   */
+  function fastestWithFallback(request, values, options) {
+    return toolbox.fastest(request, values, options).catch(function() {
+      // Only serve fallback content on navigate requests (not XHRs) for non-sample content.
+      if ((request.mode === 'navigate') && !request.url.match('samples')) {
+        return caches.open(cacheName).then(function(cache) {
+          return cache.match(urlsToCacheKeys.get(new URL('/offline', self.location).toString()));
+        });
+      }
+    });
+  }
+
   let path = require('path');
   let rootDir = 'dist';
-
-  let dynamicUrlToDependencies = {};
   let partialTemplateFiles = ['head-meta.html', 'site-nav.html']
     .map(file => path.join(rootDir, 'templates', file));
-
-  ['about', 'index', 'shell'].forEach(htmlFile => {
-    let dynamicUrl = '/' + htmlFile;
-    let dependencies = partialTemplateFiles.concat(`${rootDir}/${htmlFile}.html`);
-    dynamicUrlToDependencies[dynamicUrl] = dependencies;
-    // Treat / like /index
-    if (htmlFile === 'index') {
-      dynamicUrlToDependencies['/'] = dependencies;
-    }
-  });
 
   let config = {
     cacheId: 'polymerproject',
     staticFileGlobs: [
       `${rootDir}/images/logos/p-logo.png`,
+      `${rootDir}/images/logos/polymerosaurus.png`,
       `${rootDir}/elements/**`,
       `${rootDir}/js/*.js`,
       `${rootDir}/css/*.css`,
       `${rootDir}/bower_components/**/webcomponents-lite.min.js`,
       `${rootDir}/bower_components/highlight/highlight.js`,
     ],
-    dynamicUrlToDependencies: dynamicUrlToDependencies,
-    navigateFallback: '/shell',
-    navigateFallbackWhitelist: [/^(?!.*samples)/],
+    dynamicUrlToDependencies: {
+      '/': partialTemplateFiles.concat(`${rootDir}/index.html`),
+      '/offline': partialTemplateFiles.concat(`${rootDir}/offline.html`),
+    },
     runtimeCaching: [
     {
       urlPattern: new RegExp('/images/'),
@@ -130,27 +140,27 @@ function writeServiceWorkerFile() {
     },
     {
       urlPattern: new RegExp('/docs/'),
-      handler: 'fastest',
+      handler: fastestWithFallback,
     },
     {
       urlPattern: new RegExp('/start/'),
-      handler: 'fastest',
+      handler: fastestWithFallback,
     },
     {
       urlPattern: new RegExp('/toolbox/'),
-      handler: 'fastest',
+      handler: fastestWithFallback,
     },
     {
       urlPattern: new RegExp('/samples/'),
-      handler: 'fastest',
+      handler: fastestWithFallback,
     },
     {
       urlPattern: new RegExp('/community/'),
-      handler: 'fastest',
+      handler: fastestWithFallback,
     },
     {
       urlPattern: new RegExp('/blog/'),
-      handler: 'fastest',
+      handler: fastestWithFallback,
       options: {
         cache: {
           maxEntries: 10,

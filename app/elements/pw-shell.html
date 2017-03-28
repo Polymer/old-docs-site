@@ -367,26 +367,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _handleError: function(event) {
+      if (this._isInitialNavigation) {
+        this._isInitialNavigation = false;
+      }
+
       window.showToast('This page was not cached for offline use :(');
     },
 
     _handleResponse: function(event) {
-      // We only want to switch out the app-shell content if:
-      // - we are not refreshing the navigate fallback page (the server is already
-      // serving the correct page, and we don't need to load it twice)
-      // - this is a page to page transition (i.e. not an initial navigation) or
-      // - this is an initial navigation _and_ it was served by a Service Worker,
-      // since that is going to just give us the shell.html and we need to
-      // actually swap its content out.
-      var hasServiceWorker = navigator.serviceWorker && navigator.serviceWorker.controller;
-      var isNavigateFallback = this._isInitialNavigation && this._sectionRoute.path === '/';
-      var shouldSwapContent = !this._isInitialNavigation || hasServiceWorker;
-
-      // We did a navigation! Great!
-      if (this._isInitialNavigation)
+      // Don't reload the current page on initial navigation, since the server is
+      // already serving the correct page.
+      if (this._isInitialNavigation) {
         this._isInitialNavigation = false;
-
-      if (!isNavigateFallback && shouldSwapContent) {
+      } else {
         // Not all sections have a version, so only update the docs version if
         // there's actually a change.
         // Also I don't understand, but 'blog' comes with a version of "blog" so...
