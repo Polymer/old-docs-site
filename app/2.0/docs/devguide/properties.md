@@ -51,6 +51,7 @@ class XCustom extends Polymer.Element {
   }
 
   ready() {
+    super.ready();
     this.textContent = 'Hello World, I am a Custom Element!';
   }
 
