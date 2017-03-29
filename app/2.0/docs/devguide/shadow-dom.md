@@ -81,7 +81,8 @@ shadow tree, and won't leak out to other parts of your DOM.
 
 By default, if an element has shadow DOM, **the shadow tree is rendered instead of the element's
 children.** To allow children to render, you can add a `<slot>` element to your shadow tree. Think
-of the `<slot>` a placeholder showing where child nodes will render. Consider the following shadow tree for `<my-header>`:
+of the `<slot>` as a placeholder showing where child nodes will render. Consider the following
+shadow tree for `<my-header>`:
 
 
 ```html
@@ -95,15 +96,15 @@ of the `<slot>` a placeholder showing where child nodes will render. Consider th
 The user can add children like this:
 
 
-```
+```html
 <my-header>Shadow DOM</my-header>
 ```
 
 
-The header renders as if the <slot> element was replaced by the children:
+The header renders as if the `<slot>` element was replaced by the children:
 
 
-```
+```html
 <my-header>
   <header>
     <h1>Shadow DOM</h1>
@@ -171,7 +172,7 @@ shadow tree, doesn't show up in the flattened tree, and doesn't render.
 Note that only top-level children can match a slot. Consider the following example:
 
 
-```
+```html
 <example-card>
   <div>
    <span slot="title">Am I a title?</span>
@@ -457,7 +458,7 @@ functional pseudoclass.
 ```
 
 
-You can also style light DOM children that are assigned to slots using the `::slotted()` 
+You can also style light DOM children that are assigned to slots using the `::slotted()`
 pseudoelement. For example, `::slotted(img)` selects any image tags that are assigned to slots in the
 shadow tree.
 
@@ -641,7 +642,7 @@ For further reading:
 
 
 
-*   [Shadow DOM v1: self-contained web components](https://developers.google.com/web/fundamentals/primers/shadowdom/?hl=en)` on Web Fundamentals.`
+*   [Shadow DOM v1: self-contained web components](https://developers.google.com/web/fundamentals/primers/shadowdom/?hl=en) on Web Fundamentals.
 *   [Custom properties specification](https://www.w3.org/TR/css-variables-1/)).
 *   [Custom property mixins proposal](https://tabatkins.github.io/specs/css-apply-rule/).
 *   [Shady DOM polyfill README](https://github.com/webcomponents/shadydom/blob/master/README.md).

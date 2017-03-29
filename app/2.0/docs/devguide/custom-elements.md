@@ -33,19 +33,19 @@ window.customElements.define('my-element', MyElement);
 You can use a custom element just like you'd use a standard element:
 
 
-```
+```html
 <my-element></my-element>
 ```
 
 Or:
 
-```
+```js
 var myEl = document.createElement('my-element');
 ```
 
 Or:
 
-```
+```js
 var myEl = new MyElement();
 ```
 
@@ -62,7 +62,7 @@ section in the HTML specification.
 Polymer provides a set of features on top of the basic custom element specification. To add these
 features to your element, extend Polymer's base element class, `Polymer.Element`:
 
-```
+```html
 <link rel="import" href="/bower_components/polymer/polymer_element.html">
 
 <script>
@@ -132,7 +132,7 @@ to run user code is response to certain lifecycle changes.
 For each reaction, the first line of your implementation must be a call to the superclass
 constructor or reaction. For the constructor, this is simply the `super()` call.
 
-```
+```js
 constructor() {
   super();
   // …
@@ -142,7 +142,7 @@ constructor() {
 For other reactions, call the superclass method. This is required so Polymer can hook into the
 element's lifecycle.
 
-```
+```js
 connectedCallback() {
   super.connectedCallback();
   // …
@@ -166,7 +166,7 @@ Whenever possible, defer work until the `connectedCallback` or later instead of 
 The custom elements specification doesn't provide a one-time initialization callback. Polymer
 provides a `ready` callback, invoked the first time the element is added to the DOM.
 
-```
+```js
 ready() {
   super.ready();
   // When possible, use afterNextRender to defer non-critical
@@ -204,7 +204,7 @@ element causes any existing instances of that element to be *upgraded* to the cu
 
 For example, consider the following code:
 
-```
+```html
 <my-element></my-element>
 <script>
   class MyElement extends HTMLElement { ... };
@@ -230,7 +230,7 @@ Elements have a *custom element state* that takes one of the following values:
 *   "uncustomized". The element does not have a valid custom element name. It is either a built-in
     element (`<p>`, `<input>`) or an unknown element that cannot become a custom element
     (`<nonsense>`)
-*   "undefined". The element is has a valid custom element name (such as "my-element"), but has not
+*   "undefined". The element has a valid custom element name (such as "my-element"), but has not
     been defined.
 *   "custom". The element has a valid custom element name and has been defined and upgraded.
 *   "failed". An attempt to upgrade the element failed (for example, because the class was invalid).
