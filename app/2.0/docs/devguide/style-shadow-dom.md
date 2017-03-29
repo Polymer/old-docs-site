@@ -26,12 +26,12 @@ Here's an example:
 
   <!-- Register the element -->
   <script>
-  class CustomElement extends Polymer.Element {
-    static get is() {
-      return "custom-element";
+    class CustomElement extends Polymer.Element {
+      static get is() {
+        return "custom-element";
+      }
     }
-  }
-  customElements.define(CustomElement.is, CustomElement);
+    customElements.define(CustomElement.is, CustomElement);
   </script>
 </dom-module>
 ```
@@ -64,10 +64,10 @@ Here's an example:
     <!-- Encapsulated, element-level stylesheet -->
     <style>
       p {
-        color:green;
+        color: green;
       }
       .myclass {
-        color:red;
+        color: red;
       }
     </style>
     <p>I'm a shadow DOM child element of x-foo.</p>
@@ -83,7 +83,7 @@ Here's an example:
 <!-- Document-level stylesheet -->
 <style>
   .myclass {
-    color:blue;
+    color: blue;
   }
 </style>
 <x-foo></x-foo>
@@ -118,10 +118,10 @@ When used in an HTML document, your element will still inherit any styling infor
 <link rel="import" href="x-foo.html">
 <!-- Document-level stylesheet -->
 <style>
-p {
-	font-family: sans-serif;
-	color:blue;
-}
+  p {
+    font-family: sans-serif;
+    color: blue;
+  }
 </style>
 
 <!-- This paragraph uses document-level styles: -->
@@ -143,7 +143,7 @@ Styles declared inside shadow DOM will override styles declared outside of it:
     <style>
       p {
         font-family: sans-serif;
-        color:green;
+        color: green;
       }
     </style>
     <p>I'm green.</p>
@@ -153,12 +153,12 @@ Styles declared inside shadow DOM will override styles declared outside of it:
 
 `index.html` { .caption}
 ```html
-<link rel="import" href="x-foo.html"
+<link rel="import" href="x-foo.html">
 <!-- Document-level stylesheet -->
 <style>
   p {
     font-family: sans-serif;
-    color:blue;
+    color: blue;
   }
 </style>
 <p>I'm blue.</p>
@@ -182,7 +182,7 @@ Inheritable properties of the host element will inherit down the shadow tree, wh
     <style>
       :host {
         font-family: sans-serif;
-        color:green;
+        color: green;
         display: block;
         border: 1px solid;
       }
@@ -204,7 +204,7 @@ You can also style the host element from outside - for example, using a type sel
 
 [See it on Plunker](http://plnkr.co/edit/AHXFX0zeQTbO2rGELTbS?p=preview)
 
-```html
+```css
 x-foo {
 	background-color: blue;
 }
@@ -254,7 +254,7 @@ Descendant selectors after `:host` match elements in the shadow tree. In this ex
   <template>
     <style>
       :host(.warning) p {
-        color:red;
+        color: red;
       }
     </style>
     <p>Make this text red if x-foo has class "warning", and black otherwise.</p>
@@ -284,7 +284,7 @@ You can create slots in an element's template that are populated at runtime usin
   <template>
     <style>
       :host(.warning) p {
-       color:red;
+        color: red;
       }
     </style>
     <p>Make this text red if x-foo has class "warning", and black otherwise.</p>
@@ -321,7 +321,7 @@ To style slotted content, use the `::slotted()` syntax.
     <style>
       ::slotted(*) {
         font-family: sans-serif;
-          color:green;
+        color: green;
       }
     </style>
     <h1>
@@ -354,13 +354,13 @@ You can select by element type:
   <template>
     <style>
       ::slotted(h1) {
-      font-family: sans-serif;
-      color:green;
-    }
-    ::slotted(p) {
-      font-family: sans-serif;
-      color:blue;
-    }
+        font-family: sans-serif;
+        color: green;
+      }
+      ::slotted(p) {
+        font-family: sans-serif;
+        color: blue;
+      }
     </style>
     <slot name='heading1'></slot>
     <slot name='para'></slot>
@@ -389,7 +389,7 @@ You can select by class:
   <template>
     <style>
       ::slotted(.green) {
-        color:green;
+        color: green;
       }
     </style>
     <p>
@@ -425,7 +425,7 @@ And you can select by slot name:
   <template>
     <style>
       slot[name='para1']::slotted(*) {
-        color:green;
+        color: green;
       }
     </style>
     <p>
@@ -583,7 +583,6 @@ For example:
 ```
 
 ## Use `custom-style` in document-level styles {#custom-style}
-}
 
 Browsers that implement the current Shadow DOM v1 specifications will automatically encapsulate styles, scoping them to the elements in which they were defined.
 
@@ -620,10 +619,10 @@ In the first code sample, the style for the `p` element “leaks” into Paragra
 ```html
 <link rel="import" href="x-foo.html">
 <style>
-    p {
-      color: red;
-    }
-  </style>
+  p {
+    color: red;
+  }
+</style>
 <p>Paragraph A: I am in the main document. I am red.</p>
 
 <x-foo></x-foo>
@@ -649,10 +648,10 @@ In the first code sample, the style for the `p` element “leaks” into Paragra
 
 <custom-style>
   <style>
-      p {
-        color: red;
-      }
-    </style>
+    p {
+      color: red;
+    }
+  </style>
 </custom-style>
 <p>Paragraph A: I am in the main DOM. I am red.</p>
 <x-foo></x-foo>
