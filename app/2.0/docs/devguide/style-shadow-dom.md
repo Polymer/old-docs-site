@@ -387,9 +387,12 @@ You can select by class:
 ```html
 <dom-module id="x-foo">
   <template>
-    <style>
-      ::slotted(.green) {
-        color: green;
+    <style> 
+      <!-- To work within the Shady CSS scoping shim limitations,
+           and to ensure consistent cross-browser behavior,
+	   add a selector to the left of the ::slotted(.classname) notation. --> 
+      p ::slotted(.green) {
+        color:green;
       }
     </style>
     <p>
@@ -402,6 +405,33 @@ You can select by class:
   ...
 </dom-module>
 ```
+<!-- import polymer-element -->
+<link rel="import" href="https://polygit.org/polymer+:2.0-preview/webcomponentsjs+:v1/shadydom+webcomponents+:master/shadycss+webcomponents+:master/custom-elements+webcomponents+:master/components/polymer/polymer-element.html">
+
+<dom-module id="x-foo">
+  <template>
+    <style>
+      p ::slotted(.green) {
+        color:green;
+      }
+    </style>
+    <p>
+      <slot name='para1'></slot>
+    </p>
+    <p>
+      <slot name='para2'></slot>
+    </p>
+  </template>
+  <script>
+    class XFoo extends Polymer.Element {
+      static get is() {
+        return "x-foo";
+      }
+    }
+    customElements.define(XFoo.is, XFoo);
+  </script>
+</dom-module>
+
 
 `index.html`
 ```html
