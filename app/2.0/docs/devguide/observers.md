@@ -44,7 +44,7 @@ can use the [`Polymer.Async`](/{{{polymer_version_dir}}}/docs/api/namespaces/Pol
 the [`Polymer.Debouncer`](/{{{polymer_version_dir}}}/docs/api/namespaces/Polymer.Debouncer) module to ensure that a task
 is only run once during a given time period.
 
-However, if you handle a data change asynchronously, note that the change data may be out of date by
+However, if you handle a data change asynchronously, note that the changed data may be out of date by
 the time you handle it.
 
 
