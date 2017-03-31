@@ -79,12 +79,32 @@ break the existing, 1.x version of your element or app.
 
 Update the Polymer version in `bower.json` to the latest RC version.
 
-| Component | Version |
-|-----------|---------|
-| Polymer   | `2.0.0-rc.1` |
-| webcomponentsjs | `1.0.0-rc.4` |
-| web-component-tester | `6.0.0-prerelease.5` |
-| Polymer elements | `2.0-preview` |
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Polymer</td>
+<td><code>2.0.0-rc.1</code></td>
+</tr>
+<tr>
+<td>webcomponentsjs</td>
+<td><code>1.0.0-rc.4</code></td>
+</tr>
+<tr>
+<td>web-component-tester</td>
+<td><code>6.0.0-prerelease.5</code></td>
+</tr>
+<tr>
+<td>Polymer elements</td>
+<td><code>2.0-preview</code></td>
+</tr>
+</tbody>
+</table>
 
 Example dependencies {.caption}
 
