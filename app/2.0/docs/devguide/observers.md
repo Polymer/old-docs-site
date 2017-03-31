@@ -34,7 +34,7 @@ The first call to an observer is deferred until the following criteria are met:
 After the inital call, **each observable change** to a dependency generates a call to the
 observer, **even if the new value for the dependency is <code>undefined</code>.**
 
-The allows the element to avoid running observers in the default case.
+This allows the element to avoid running observers in the default case.
 
 ### Observers are synchronous
 
