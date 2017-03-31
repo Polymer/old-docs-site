@@ -59,10 +59,10 @@ You can install Polymer via the Polymer CLI, or via Bower.
 
     The output of this command should be at least `0.18.0-pre.13`.
 
-3. Install Polymer from bower
+3. Install the latest Polymer 2.0 RC release from bower
 
     ```bash
-    bower install Polymer/polymer#2.0.0-rc.2
+    bower install Polymer/polymer#^2.0.0-rc.3
     ```
 
 4. Create a test `index.html` file, and add the following in the `<head>` tag:

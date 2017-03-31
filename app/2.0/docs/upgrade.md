@@ -77,14 +77,17 @@ break the existing, 1.x version of your element or app.
 
 #### Update bower dependencies
 
-Update the Polymer version in `bower.json` to the latest RC version.
+Update the Polymer version in `bower.json` to the latest RC versions.
 
 | Component | Version |
 |-----------|---------|
-| Polymer   | `2.0.0-rc.1` |
-| webcomponentsjs | `1.0.0-rc.4` |
-| web-component-tester | `6.0.0-prerelease.5` |
+| Polymer   | `^2.0.0-rc.3` |
+| webcomponentsjs | `^1.0.0-rc.5` |
+| web-component-tester | `^6.0.0-prerelease.5` |
 | Polymer elements | `2.0-preview` |
+
+Note that Polymer, webcomponentsjs, and web-component-tester
+You can use the `
 
 Example dependencies {.caption}
 
