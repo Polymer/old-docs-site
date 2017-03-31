@@ -1,5 +1,5 @@
 ---
-title: Declared Properties
+title: Declare Properties
 ---
 
 <!-- toc -->

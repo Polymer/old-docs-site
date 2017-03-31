@@ -987,22 +987,46 @@ no benefit. This is true for most simple UI elements. `MutableData` is likely to
 complex reusable elements (like `dom-repeat` or `iron-list`), or for application-specific elements
 that hold complex state information.
 
-Note that the `MutableData` mixin does not affect the element's shadow DOM children. Any element
-that doesn't use the `Polymer.MutableData` mixin, uses the default dirty-checking policy.
+Note that the `MutableData` mixin does not affect the element's shadow DOM children. **Any element
+that doesn't use the `Polymer.MutableData` mixin uses the default dirty-checking policy.**
 
-### Optional mutable data for reusable elements
-
-If you're building a reusable element that takes structured data, you can use the
-[`Polymer.OptionalMutableData`](/{{{polymer_version_dir}}}/docs/api/mixins/Polymer.OptionalMutableData)
-mixin. This mixin lets the element user select `MutableData` mode by setting the `mutableData`
-property on the element. For example, the `dom-repeat` element uses this mixin, so you can enable
-mutable data mode for a `dom-repeat` in your template:
+If you're using the `dom-repeat` element, you can enable mutable data mode by setting its
+`mutableData` property:
 
 ```html
-<!-- standard dom-repeat with MutableData behavior -->
+<!-- standard dom-repeat in MutableData mode -->
 <template is="dom-repeat" items="{{items}}" mutable-data>
   <div>{{item.name}}</div>
 </template>
 ```
+
+
+### Optional mutable data for reusable elements {#optional-mutable-data}
+
+If you're building a reusable element that takes structured data, you can use the
+[`Polymer.OptionalMutableData`](/{{{polymer_version_dir}}}/docs/api/mixins/Polymer.OptionalMutableData)
+mixin. This mixin lets the element user select `MutableData` mode by setting the `mutableData`
+property on the element.
+
+```js
+class MyStructuredDataElement extends Polymer.OptionalMutableData(Polymer.Element) {
+  static get is() { return 'my-structured-data-element' }
+}
+```
+
+The user can then use your element with either standard data flow, or the mutable data mode.
+
+```html
+<!-- custom element using standard data flow -->
+<my-structured-data-element data="{{someData}}">
+</my-structured-data-element>
+
+<!-- custom element using MutableData mode  -->
+<my-structured-data-element data="{{someData" mutable-data>
+</my-structured-data element>
+```
+
+
+The `dom-repeat` element is an example of an element built with this mixin.
 
 

@@ -107,7 +107,7 @@ as observer arguments](#dependencies) for details.
 
 ## Complex observers {#complex-observers}
 
-Complex observers are declared in the `observers` array in the `config` object.
+Complex observers are declared in the `observers` array.
 Complex observers can monitor one or more paths. These
 paths are called the observer's *dependencies*.
 
@@ -139,7 +139,8 @@ depending on the path being observed.
 
 *   For array mutations the argument is a *change record* describing the change.
 
-*   For wildcard paths,
+*   For wildcard paths, the argument is a change record describing the change, including the
+    exact path that changed.
 
 Note that any of the arguments can be `undefined` when the observer is called.
 
