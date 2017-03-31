@@ -69,8 +69,9 @@ Notes:
 #### What polyfills should I use?
 
 Polymer 2.x has been developed alongside and tested with a new suite of v1-spec compatible polyfills
-for custom elements and shadow DOM. You can test Polymer 2.0 by using the `1.0.0-rc.4` version of
-`webcomponentsjs`, which is included as a bower dependency to Polymer 2.x.
+for custom elements and shadow DOM. You can test Polymer 2.0 by using the latest 1.0 version of
+`webcomponentsjs`, which is included as a bower dependency to Polymer 2.x. (`webcomponentsjs`
+ versions prior to 1.0 support the older, v0 specifications for custom elements and shadow DOM.)
 
 There are two main ways to load the polyfills:
 

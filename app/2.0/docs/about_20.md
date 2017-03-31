@@ -454,7 +454,8 @@ When released, Polymer 2.0 should support the same set of browsers as Polymer 1.
 Safari (9+), Chrome, Opera and Firefox.
 
 Polymer 2.0 has been developed alongside and tested with a new suite of v1-spec compatible polyfills
-for custom elements and shadow DOM. You can test Polymer 2.0 by using a `webcomponentsjs` version greater or equal to `1.0.0-rc.5` , which is included as a bower dependency to Polymer 2.x.
+for custom elements and shadow DOM. You can test Polymer 2.0 by using a `webcomponentsjs` version
+greater or equal to `1.0.0-rc.7` , which is included as a bower dependency to Polymer 2.x.
 
 There are several ways to load the polyfills:
 
@@ -502,10 +503,10 @@ stability.
 
 ## Install Polymer 2.0 {#installing}
 
-You can install the Polymer `2.0.0-rc.2` branch using bower:
+You can install the latest Polymer 2.0 RC release using bower:
 
 ```
-bower install --save Polymer/polymer#2.0.0-rc.2
+bower install --save Polymer/polymer#^2.0.0-rc.3
 ```
 
 You can also use bower to install any of the available hybrid elements:
@@ -526,9 +527,9 @@ If your project uses Polymer elements or behaviors, see [Polymer element availab
 1.  Create a copy of your project or create a new branch to work in.
 
 1.  Find the Polymer packages in `bower.json` and replace the existing version
-    with  `2.0.0.rc.2`:
+    with  `^2.0.0.rc.3`:
 
-    `"polymer": "Polymer/polymer#^2.0.0-rc.2"`
+    `"polymer": "Polymer/polymer#^2.0.0-rc.3"`
 
 1.  Find any existing Polymer elements in `bower.json` and replace the existing version
     with the `2.0-preview` branch:
