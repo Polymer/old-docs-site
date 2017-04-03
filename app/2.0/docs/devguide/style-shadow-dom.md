@@ -547,8 +547,8 @@ stylesheet text such that it may be properly shimmed and/or injected as an
 inline style.
 
 To include a remote stylesheet that applies to your Polymer element's local DOM,
-place a special HTML import `<link>` tag with `type="css"` in your `<dom-
-module>` that refers to the external stylesheet to load.
+place a special HTML import `<link>` tag with `type="css"` in your `<dom-module>`
+that refers to the external stylesheet to load.
 
 For example:
 
