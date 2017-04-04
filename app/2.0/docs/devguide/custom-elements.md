@@ -87,7 +87,7 @@ Polymer adds a set of features to the basic custom element:
 ## Custom element lifecycle {#element-lifecycle}
 
 The custom element spec provides a set of callbacks called "custom element reactions" that allow you
-to run user code is response to certain lifecycle changes.
+to run user code in response to certain lifecycle changes.
 
 <table>
   <tr>
