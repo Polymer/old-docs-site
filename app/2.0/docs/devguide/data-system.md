@@ -142,7 +142,7 @@ Changes that **imperatively mutate an object or array are *not* observable**. Th
 
     ```js
     // unobservable change using native Array.push
-    this.users.push({ name: 'Maturin});
+    this.users.push({ name: 'Maturin'});
     ```
 
     Mutating the array doesn't invoke the setter on `users`, so it isn't automatically observable.
