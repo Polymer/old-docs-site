@@ -205,7 +205,7 @@ To retain just a tab bar, place the tab bar last, and mark it as sticky.
 Most of the scroll effects are used with _condensing headers_. These effects change the header's
 appearance as it condenses.
 
-One exception is the waterfall effect, which is requires a fixed header, but can be used with or
+One exception is the waterfall effect, which requires a fixed header, but can be used with or
 without the `condenses` attribute. It makes the header appear to lift up above the the content when
 the user starts scrolling, so the content can scroll underneath it.
 
@@ -239,7 +239,7 @@ means the browser can hide the URL bar as you scroll down the page. However, sin
 document scroller, if you switch between pages of content, your app needs to manage the scroll
 position on each page.
 
-**Mangage multiple scrolling views.**
+**Manage multiple scrolling views.**
 If you're using something like `<iron-pages>` to switch views, you can use
 [`<app-scroll-position>`](https://www.webcomponents.org/element/PolymerElements/app-layout/app-scroll-position)
 to track scroll position for each of the views. See the API docs for sample usage.
