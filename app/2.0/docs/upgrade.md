@@ -15,13 +15,13 @@ Polymer 2.0 supports several types of elements:
 *   2.x legacy elements use the `Polymer` factory method, and have most of the 1.0 APIs available to
     them, as well as any new 2.x APIs.
 *   2.x hybrid elements are elements defined using the legacy `Polymer` factory method, with extra
-    code for backwards compatibility with 1.x. They can run on Polymer 1.7+ as well as Polymer 2.x.
+    code for backwards compatibility with 1.x. They can run on Polymer 1.8+ as well as Polymer 2.x.
     As much as possible, hybrid elements should stick to the common subset of APIs supported by 1.x
     and 2.x. In some cases, they may need to conditionalize code to run in 1.x or 2.x.
     Maintaining hybrid elements is more complicated than maintaining class-based or legacy elements,
     since they need to be tested on both 1.x and 2.x.
 
-When porting a large project, you can update to Polymer 1.7 and upgrade elements to 2.0 hybrid style
+When porting a large project, you can update to Polymer 1.8 and upgrade elements to 2.0 hybrid style
 one at a time. After all of the elements have been upgraded, you can test your project against
 Polymer 2.0.
 
@@ -88,6 +88,8 @@ Update the Polymer version in `bower.json` to the latest RC versions.
 
 Note that Polymer, webcomponentsjs, and web-component-tester
 You can use the `
+
+^^ This needs cleanup (?) 
 
 Example dependencies {.caption}
 
@@ -248,6 +250,7 @@ content implicitly, based on a tag name or an arbitrary selector like `:not(.hea
 
 Can't be upgraded automatically {.caption}
 
+^^ Do you still want to mention "upgraded automatically" in the absense of an automatic upgrader?
 
 ```html
 <!-- element template -->
@@ -512,7 +515,7 @@ If you still have any `/deep/` or `::shadow` selectors in your project, it's tim
 They don't work at all in shadow DOM v1.
 
 There's no direct substitute for shadow-piercing selectors.To let users customize your element,
-custom CSS properties are probably the best option.
+[custom CSS properties](../devguide/custom-css-properties) are probably the best option.
 
 
 #### Replace root selectors {#replace-root-selectors}
@@ -748,8 +751,9 @@ import, you need to import `FlattenedNodesObserver` separately.
 ## CSS custom property shim {#css-custom-property-shim}
 
 Polymer 2.0 continues to use a shim to provide limited support for CSS custom properties on browsers
-that do not yet natively support custom properties. This lets an element expose a custom styling API.
-The shim is now included as part of the shady CSS polyfill, not in the Polymer library itself.
+that do not yet natively support custom properties (currently only Microsoft Edge and IE). This lets
+an element expose a custom styling API. The shim is now included as part of the shady CSS polyfill,
+not in the Polymer library itself.
 
 Support for custom CSS mixins has been moved to a second, optional shim.
 
