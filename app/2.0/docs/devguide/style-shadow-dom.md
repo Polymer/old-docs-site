@@ -274,19 +274,21 @@ Styling with the `:host` selector is one of two instances where rules inside a s
 
 ### Style slotted content (distributed children)
 
-You can create slots in an element's template that are populated at runtime using this syntax:
+You can create **slots** in an element's template that are populated at runtime. For more information on slots, see the documentation on [/2.0/docs/devguide/shadow-dom#shadow-dom-and-composition](shadow DOM and composition). 
+
+The basic syntax for incorporating slotted content looks like this:
 
 [See it on Plunker](http://plnkr.co/edit/bNvOvQqCEmC4DaoeNtwZ?p=preview)
 
 `x-foo.html` { .caption}
 ```html
 <dom-module id="x-foo">
-	<template>
+  <template>
     <h1>
       <slot name="title"></slot>
     </h1>
-	</template>
-	...
+  </template>
+  ...
 </dom-module>
 ```
 
