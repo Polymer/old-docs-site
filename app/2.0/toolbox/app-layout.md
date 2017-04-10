@@ -205,7 +205,7 @@ To retain just a tab bar, place the tab bar last, and mark it as sticky.
 Most of the scroll effects are used with _condensing headers_. These effects change the header's
 appearance as it condenses.
 
-One exception is the waterfall effect, which is requires a fixed header, but can be used with or
+One exception is the waterfall effect, which requires a fixed header, but can be used with or
 without the `condenses` attribute. It makes the header appear to lift up above the the content when
 the user starts scrolling, so the content can scroll underneath it.
 
@@ -239,7 +239,7 @@ means the browser can hide the URL bar as you scroll down the page. However, sin
 document scroller, if you switch between pages of content, your app needs to manage the scroll
 position on each page.
 
-**Mangage multiple scrolling views.**
+**Manage multiple scrolling views.**
 If you're using something like `<iron-pages>` to switch views, you can use
 [`<app-scroll-position>`](https://www.webcomponents.org/element/PolymerElements/app-layout/app-scroll-position)
 to track scroll position for each of the views. See the API docs for sample usage.
@@ -393,7 +393,7 @@ Specifying `slot="drawer"` is required with App Layout 2.0.
 
 ## Responsive navigation pattern
 
-In many cases, you'll want to switch you navigation based on the screen size. One common pattern
+In many cases, you'll want to switch your navigation based on the screen size. One common pattern
 uses navigation tabs on desktop, which are replaced by a navigation drawer on mobile, as in the
 [Shop app](https://shop.polymer-project.org/).
 
