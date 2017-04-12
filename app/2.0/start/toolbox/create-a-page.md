@@ -21,7 +21,7 @@ your new view.
 
     ```html
     <!-- Load the Polymer.Element base class -->
-    <link rel="import" href="bower_components/polymer/polymer-element.html">
+    <link rel="import" href="../bower_components/polymer/polymer-element.html">
 
     <dom-module id="my-new-view">
       <!-- Defines the element's style and local DOM -->
