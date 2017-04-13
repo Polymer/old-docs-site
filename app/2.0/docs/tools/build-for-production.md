@@ -16,18 +16,32 @@ Some application developers will need to deliver JavaScript separately from HTML
 
 ### What build tools are available?
 
-* If your application is written entirely in Polymer and does not use any other tools or frameworks, you can simply use the Polymer CLI to build your application. You can configure your build, or create multiple builds, by writing a [`polymer.json`](https://www.polymer-project.org/2.0/docs/tools/polymer-json) configuration file.
-* If you need a custom build process, for example, to integrate another tool into your build chain, you can use the `polymer-build` library. 
+* If your application is written entirely in Polymer and does not use any other tools or frameworks, you can simply use the Polymer CLI to build your application:
+
+  ```
+  `polymer build`
+  ```
+
+  You can configure your build, or create multiple builds, by writing a [`polymer.json`](https://www.polymer-project.org/2.0/docs/tools/polymer-json) configuration file.
+  
+* If you need a custom build process, for example, to integrate another tool into your build chain, you can [use the `polymer-build` library](#use-polymer-build) to do so. 
 
 ## Understanding the transforms
 
 The Polymer CLI and `polymer-build` library support the following transforms:
 
-* Splitting inline JavaScript and CSS from HTML files
+* [Splitting inline JavaScript and CSS from HTML files](#splitting)
+* [Minifying HTML, JavaScript and CSS](#minifying)
+* [Compiling ES6 to ES5](#compiling)
+* [Bundling resources to reduce the total number of HTTP requests made by the user's browser](#bundling)
+
+### Splitting inline JavaScript and CSS from HTML files {#splitting}
   
   To deploy in an environment that uses CSP (Content Security Policy), some app developers will need to split inline JavaScript from HTML.
   
-  **TODO: what is the Polymer build tool that does this, and how does it do it?** 
+  **TODO: what is the Polymer build tool or option that does this, how does it do it, how do we switch it on and off?** 
+  
+  For example, consider an HTML file with inline scripts:
   
   `foo.html` {.caption}
   ````html
@@ -39,6 +53,8 @@ The Polymer CLI and `polymer-build` library support the following transforms:
     </script> 
   </body>
   ````
+  
+  This file would be split as follows: 
   
   `foo.html` {.caption}
   ````html
@@ -55,29 +71,54 @@ The Polymer CLI and `polymer-build` library support the following transforms:
     </script>
   ````
   
-* Minifying HTML, JavaScript and CSS
-  
-  The Polymer build tools **which ones?** minify HTML, JavaScript and CSS by:
-  
-  * Stripping whitespace
-  * Stripping comments
-  * ...? 
+### Minifying HTML, JavaScript and CSS {#minifying}
 
-* Compiling ES6 to ES5
+  The Polymer build tools provide options to minify HTML, JavaScript and CSS by stripping whitespace and comments.
+  
+  Minify inlined and external JavaScript: {.caption}
+  
+  ```bash
+  polymer build --js-minify
+  ```
+  
+  Minify inlined and external CSS: {.caption}
+  
+  ```bash
+  polymer build --css-minify
+  ```
+  
+  Minify HTML: {.caption}
+  
+  ```bash
+  polymer build --html-minify
+  ```
 
+### Compiling ES6 to ES5 {#compiling}
+    
   Polymer 2.x and its native elements are wirtten using ES6, allowing class definitions, inheritance and modular code. Support for ES6 is required in order for a browser to implement the [custom elements](https://developers.google.com/web/fundamentals/getting-started/primers/customelements) specification.
   
-  As of writing, ES6 code can be run without compilation in the latest versions of Chrome, Safari 10, Safari Technology Preview, Firefox, and Edge. Internet Explorer, See [this browser compatibility table](http://caniuse.com/#search=es6) for more up-to-date information.
-
-  The Polymer CLI and polymer-build library support compiling ES6 to ES5 at build time. 
-
-  For best performance, you should serve ES6 code to browsers that support it, and only serve ES5 code to browsers that don't support ES6.
-
-  However, If you need to statically host your code and serve a single version to all browsers, you should compile all code to ES5. In this case, you can include a shim - a lightweight polyfill that lets compiled ES5 work on browsers that support native custom elements.
+  Because Polymer 2.0 uses ES6 and HTML Custom Elements, it is always best to serve ES6 to browsers with full ES6 support (currently Chrome, Firefox and Safari Tech Preview), and compiled ES5 only to older browsers that don't support ES6.   See [this browser compatibility table](http://caniuse.com/#search=es6) for more up-to-date information on browser support for ES6.
   
-  **TODO: Can we link to this shim? Is it in here? [https://github.com/es-shims](https://github.com/es-shims)**
+  If you need to statically host your code and serve a single version to all browsers, however, you should compile all code to ES5. In this case, you can include a shim - a lightweight polyfill that lets compiled ES5 work on browsers that support native custom elements.
   
-* Bundling resources together to reduce the total number of HTTP requests to download the app/page.
+  ```bash
+  polymer build --js-compile 
+  ```
+  This flag adds the webcomponents-es5-loader.js adapter for running ES5 code on browsers that support ES6.
+  
+  If you’re unsure what the best strategy is for your project, here’s a quick overview:
+
+  |   | Easiest for cross-browser support  | Most optimal for WC v1 performance**  |
+  |---|-------|------|
+  | **Server** | Any server works, including static ones | Differential serving* required |
+  | **Deployed Code** | ES5 transpiled | ES6|
+  | **Polyfill Loader** | webcomponents-es5-loader.js | webcomponents-loader.js|
+
+  \* Differential serving means you must serve both ES5 and ES6, depending on client capabilities. `polymer serve` does this.
+
+  \*\* According to the native [Custom Elements V1](https://html.spec.whatwg.org/multipage/scripting.html#custom-element-conformance) spec, elements must be defined using ES6 classes. ES5-defined elements will error in the presence of native Custom Elements V1 implementations (Chrome and Safari Tech Preview). Because of this, the best approach is to differentially serve ES6 to browsers that support it (almost all of them), and ES5 to those that do not.
+
+### Bundling resources to reduce the total number of HTTP requests made by the user's browser {#bundling}
   
   Web pages that use multiple HTML Imports, external scripts, and stylesheets to load dependencies may end up making lots of network round-trips. In many cases, this can lead to long initial load times and unnecessary bandwidth usage. The Polymer build tools can follow HTML Imports and external script and stylesheet references, inlining these external assets into "bundles" to be used in production.
 
@@ -89,13 +130,15 @@ Your build choices will reflect the environments you will be deploying to.
 
 * Static hosting services like [GitHub Pages](https://pages.github.com/) and [Firebase Hosting](https://firebase.google.com/docs/hosting/) don't support serving different files to different user agents. If you're hosting your application on one of these services, you'll need to serve a single build.
   
-  If you're serving a single build to all browsers _and_ you need to support browsers that don't support ES6, such as IE11 and Safari 9, then this build needs to be compiled to ES5.
+  If you're serving a single build to all browsers _and_ you need to support browsers that don't support ES6, such as IE11 and Safari 9, then this build needs to be compiled to ES5:
   
-* If you need to serving multiple builds, your web server must perform user-agent detection and serve different content to different browsers. The Polymer CLI and `polymer build` tools both permit you to configure multiple build outputs.
+  `polymer build --js-compile`
+  
+* If you need to serve multiple builds, your web server must perform user-agent detection and serve different content to different browsers. The Polymer CLI and the `polymer-build` library both permit you to configure multiple build outputs.
 
 ### To bundle or not to bundle?
 
-The decision of whether to build bundled or unbundled resources depends on the behaviour and capabilities of both server and browser. 
+The decision of whether to produce a build/s with bundled or unbundled resources depends on the behaviour and capabilities of both server and browser. 
 
 With HTTP/2 push, support for the PRPL pattern is possible:
 
@@ -104,10 +147,14 @@ With HTTP/2 push, support for the PRPL pattern is possible:
 * Pre-cache remaining routes.
 * Lazy-load and create remaining routes on demand.
 
-This pattern requires an unbundled build.
+This pattern requires an unbundled build (the default build type).
 
-Because not all browsers support HTTP/2 push, you will also need to create an unbundled build.
+Because not all browsers support HTTP/2 push, you will also need to create a bundled build:
 
+   ```bash
+   polymer build --bundle
+   ```
+   
 ### Polyfills?
 
 **TODO: Elaborate on why/how this is part of the build process**
@@ -117,6 +164,8 @@ Because not all browsers support HTTP/2 push, you will also need to create an un
 * Add them differentially?
 
 ## Building with the CLI
+
+Run `polymer help build` to see the command line options for 
 
 You can define your build options by editing the `builds` object in your project's `polymer.json` configuration file. For detailed information on `polymer.json`, see the [`polymer.json` specification](https://www.polymer-project.org/2.0/docs/tools/polymer-json).
 
@@ -145,7 +194,7 @@ To build this configuration:
 
 Your build is output to the `build/default` folder.
 
-### Example 2: Output both bundled and unbundled builds
+### Example 2: Multiple builds, both bundled and unbundled
 
 This example gives two builds - bundled and unbundled.
 
@@ -179,7 +228,7 @@ To build this configuration:
 
 Your builds are output to two separate folders, corresponding to their names: `build/bundled` and `build/unbundled`. 
 
-## Building with polymer-build
+## Building with polymer-build {#use-polymer-build}
 
 Consider using polymer-build instead of the CLI if you:
 
