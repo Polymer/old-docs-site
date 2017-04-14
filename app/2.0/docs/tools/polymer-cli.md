@@ -303,20 +303,43 @@ Open up a page other than the default `index.html` in a specific browser
 
 ### `polymer lint` {#lint}
 
-Lints element(s)..
+Analyze your project for syntax errors, missing imports, bad databinding expressions and more. `polymer lint` helps with identifying issues across your HTML, JS, and CSS based on an in-depth analysis of web components in source code. It does not reinvent the wheel though, it focuses on issues specific to web components and Polymer, so it is a good adjunct to other tools like [`eslint`](http://eslint.org/) and [`htmlhint`](http://htmlhint.com/).
 
-Check elements in your element project or app project for syntax errors, anti-patterns and more.
+Use it like so:
 
-Element project example:
+    polymer lint --rules=polymer-2
 
-    polymer lint --input my-el.html
+This will lint all of the code in your project with the `polymer-2` ruleset, which is appropriate for projects using Polymer 2.0. If your code is hybrid and should with with either Polymer 1.0 or 2.0 then `polymer-2-hybrid` is a better choice, as it will warn you about use of features that do not exist in Polymer 2.0.
 
-App project example (linting multiple elements):
+You can pass flags to the linter like `--rules` but even better is to put the configuration in `polymer.json` so that all you need to do is run `polymer lint`. Putting your configuration in `polymer.json` also means that other tools, like IDE plugins can use the same lint configuration.
 
-    polymer lint --root src/ --input my-app/my-app.html my-el/my-el.html
+Here's what that looks like:
 
-If all of the elements you want to test are in the same directory, you can specify the `--root`
-flag to make all of the `--input` files relative to that directory.
+```json
+{
+  "lint": {
+      "rules": ["polymer-2"],
+      "ignoreWarnings": []
+  }
+}
+```
+
+- `rules`: An array of lint rules and rule collections to run on your project. For most projects, one of  `polymer-2`, `polymer-2-hybrid`, or `polymer-1` is all that's needed here.
+- `ignoreWarnings`: An array of warning codes to ignore.
+
+#### Warning Codes:
+
+The output of `polymer lint` looks like this:
+
+```
+            <iron-collapse>
+            ~~~~~~~~~~~~~~~
+
+index.html(83,12) warning [undefined-elements] - The element iron-collapse is not defined
+```
+
+This means that on line 83 of `index.html` there's an `<iron-collapse>` tag, but the linter can't find the definition of the `iron-collapse` custom element. This probably means that there's a missing HTML import in `index.html`. To ignore this warning, add `undefined-elements` to the `ignoreWarnings` array in `polymer.json`.
+
 
 ### `polymer build` {#build}
 
