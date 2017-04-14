@@ -307,9 +307,9 @@ Analyze your project for syntax errors, missing imports, bad databinding express
 
 Use it like so:
 
-    polymer lint --rules=polymer-1
+    polymer lint --rules=polymer-2
 
-This will lint all of the code in your project with the `polymer-1` ruleset, which is appropriate for projects using Polymer 1.0. If you're upgrading to Polymer 2.0, then the `polymer-2-hybrid` or `polymer-2` are a better choice, as they'll warn you about use of deprecated Polymer 1.0 features.
+This will lint all of the code in your project with the `polymer-2` ruleset, which is appropriate for projects using Polymer 2.0. If your code is hybrid and should with with either Polymer 1.0 or 2.0 then `polymer-2-hybrid` is a better choice, as it will warn you about use of features that do not exist in Polymer 2.0.
 
 You can pass flags to the linter like `--rules` but even better is to put the configuration in `polymer.json` so that all you need to do is run `polymer lint`. Putting your configuration in `polymer.json` also means that other tools, like IDE plugins can use the same lint configuration.
 
@@ -318,13 +318,13 @@ Here's what that looks like:
 ```json
 {
   "lint": {
-      "rules": ["polymer-1"],
+      "rules": ["polymer-2"],
       "ignoreWarnings": []
   }
 }
 ```
 
-- `rules`: An array of lint rules and rule collections to run on your project. For most projects, one of `polymer-1`, `polymer-2-hybrid`, or `polymer-2` is all that's needed here.
+- `rules`: An array of lint rules and rule collections to run on your project. For most projects, one of  `polymer-2`, `polymer-2-hybrid`, or `polymer-1` is all that's needed here.
 - `ignoreWarnings`: An array of warning codes to ignore.
 
 #### Warning Codes:
