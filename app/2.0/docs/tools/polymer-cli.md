@@ -303,7 +303,7 @@ Open up a page other than the default `index.html` in a specific browser
 
 ### `polymer lint` {#lint}
 
-Analyze your project for syntax errors, missing imports, bad databinding expressions and more.
+Analyze your project for syntax errors, missing imports, bad databinding expressions and more. `polymer lint` helps with identifying issues across your HTML, JS, and CSS based on an in-depth analysis of web components in source code. It does not reinvent the wheel though, it focuses on issues specific to web components and Polymer, so it is a good adjunct to other tools like [`eslint`](http://eslint.org/) and [`htmlhint`](http://htmlhint.com/).
 
 Use it like so:
 
@@ -338,7 +338,7 @@ The output of `polymer lint` looks like this:
 index.html(83,12) warning [undefined-elements] - The element iron-collapse is not defined
 ```
 
-This means that on line 83 of `index.html` there's an `<iron-collapse>` tag, but the linter can't find the definition of the `iron-collapse` custom element. This probably means that there's a missing HTML import in `index.html`, but if we wanted to ignore this warning, we'd add `"undefined-elements"` to the `"ignoreWarnings"` array in `polymer.json`.
+This means that on line 83 of `index.html` there's an `<iron-collapse>` tag, but the linter can't find the definition of the `iron-collapse` custom element. This probably means that there's a missing HTML import in `index.html`. To ignore this warning, add `undefined-elements` to the `ignoreWarnings` array in `polymer.json`.
 
 
 ### `polymer build` {#build}
