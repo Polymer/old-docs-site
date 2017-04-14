@@ -82,7 +82,7 @@ Update the Polymer version in `bower.json` to the latest RC versions.
 | Component | Version |
 |-----------|---------|
 | Polymer   | `^2.0.0-rc.3` |
-| webcomponentsjs | `^1.0.0-rc.5` |
+| webcomponentsjs | `^1.0.0-rc.7` |
 | web-component-tester | `^6.0.0-prerelease.5` |
 | Polymer elements | `2.0-preview` |
 
@@ -103,8 +103,8 @@ Example dependencies {.caption}
     "iron-pages": "PolymerElements/iron-pages#2.0-preview",
     "iron-selector": "PolymerElements/iron-selector#2.0-preview",
     "paper-icon-button": "PolymerElements/paper-icon-button#2.0-preview",
-    "polymer": "Polymer/polymer#2.0.0-rc.1",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#1.0.0-rc.4"
+    "polymer": "Polymer/polymer#^2.0.0-rc.3",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0-rc.7"
   },
   "devDependencies": {
     "web-component-tester": "6.0.0-prerelease.5"
