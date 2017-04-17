@@ -136,6 +136,7 @@ for every run:
 * `name`: An optional name for your build. If multiple builds are defined, the `name` property is
 required.
 * `addServiceWorker`: If `true`, generate a service worker for your application.
+* `addPushManifest`: If `true`, generate an [HTTP/2 Push Manifest](https://github.com/GoogleChrome/http2-push-manifest) for your application.
 * `swPrecacheConfig`: An optional configuration file for the generated service worker.
 * `insertPrefetchLinks`: If `true`, insert prefetch link elements into your fragments so that all
 dependencies are prefetched immediately.
