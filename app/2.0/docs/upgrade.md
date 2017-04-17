@@ -83,13 +83,13 @@ Update the Polymer version in `bower.json` to the latest RC versions.
 |-----------|---------|
 | Polymer   | `^2.0.0-rc.3` |
 | webcomponentsjs | `^1.0.0-rc.7` |
-| web-component-tester | `^6.0.0-prerelease.5` |
+| web-component-tester | `^6.0.0-prerelease.6` |
 | Polymer elements | `2.0-preview` |
 
-Note that Polymer, webcomponentsjs, and web-component-tester
-You can use the `
-
-^^ This needs cleanup (?) 
+Note that Polymer, webcomponentsjs, and web-component-tester have prerelease tags. You can use
+a range like `^2.0.0-rc.3` to get all future prerelease tags. To use prerelease elements,
+you need to refer to the `2.0-preview` branch. To get  updates to elements, you may need to remove
+your `bower_components` folder and reinstall all components.
 
 Example dependencies {.caption}
 
@@ -109,7 +109,7 @@ Example dependencies {.caption}
     "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0-rc.7"
   },
   "devDependencies": {
-    "web-component-tester": "6.0.0-prerelease.5"
+    "web-component-tester": "6.0.0-prerelease.6"
   },
 ```
 
@@ -248,9 +248,7 @@ your element's contract***, and everyone using your element will need to update 
 content implicitly, based on a tag name or an arbitrary selector like `:not(.header)`.
 {.alert .alert-info}
 
-Can't be upgraded automatically {.caption}
-
-^^ Do you still want to mention "upgraded automatically" in the absense of an automatic upgrader?
+Can't be upgraded directly {.caption}
 
 ```html
 <!-- element template -->
@@ -1281,11 +1279,12 @@ this.dispatchEvent(new CustomEvent('some-event', { bubbles: true }));
 ```
 
 (The `CustomEvent` constructor is not supported on IE, but the webcomponents polyfills include a
-small polyfill for it so you can use the same syntax everywhere.)
+small polyfill for it so you can use the same syntax everywhere.) For more on using custom events,
+see [Fire custom events](events#custom-events).
 
 In addition, many features are still included in the library, but as optional modules or mixins
 rather than being bundled in with `Polymer.Element`. For details, see
-[Import optional features](#optional-features)
+[Import optional features](#optional-features).
 
 If you want to upgrade to a class-based element but depend on some of the removed APIs, you can
 add most of the legacy APIs by using the `LegacyElementMixin`.
@@ -1324,7 +1323,7 @@ class mixins.
 
 You can add hybrid behaviors to your class-style element using the `Polymer.mixinBehavior` function:
 
-```
+```js
 class XClass extends Polymer.mixinBehaviors([MyBehavior, MyBehavior2], Polymer.Element) {
   static get is() { return 'x-class'}
 

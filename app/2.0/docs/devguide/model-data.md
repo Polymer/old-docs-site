@@ -221,7 +221,8 @@ object or array itself hasn't changed. For details, see [Using the MutableData m
 
 ## Batch multiple property changes {#set-property}
 
-Use `setProperties` to make a batch change to a set of properties. This ensures the property changes
+Use [`setProperties`](/{{{polymer_version_dir}}}/docs/api/mixins/Polymer.PropertyEffects#method-setProperties)
+method to make a batch change to a set of properties. This ensures the property changes
 run as a coherent set.
 
 ```js
@@ -231,6 +232,15 @@ this.setProperties({
 });
 ```
 
+`setProperties` supports an optional `setReadOnly` flag as the second parameter. If you need to set
+read-only properties as part of a batch change, pass true for the second parameter:
+
+```js
+this.setProperties({
+  date: 'Jan 17, 2017',
+  verified: true
+}, true);
+```
 
 ## Link two paths to the same object {#linkpaths}
 
