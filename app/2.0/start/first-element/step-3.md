@@ -24,11 +24,7 @@ yet.
   * The `icon="[[toggleIcon]]" `assignment is a <em>data binding</em>. It links your element's `toggleIcon` <em>property</em> with the `<iron-icon>`'s `icon` property.
 
 You could now use your element and set the `toggleIcon` property in markup or
-using JavaScript. If you're doing this tutorial in Plunker, you should see the
-icons change as soon as you add the `toggleIcon` binding. If you're curious about
-where the new icons come from, take a look at `icon-toggle-demo.html`. (If you
-downloaded the starting code, this file is in the `demo` folder. If you're using
-Plunker, all files are at the same level.)
+using JavaScript. If you're curious about where the new icons come from, take a look at `icon-toggle-demo.html` in the `demo` folder.
 
 You'll see lines like this:
 
@@ -45,42 +41,42 @@ icon names you can try are `add`, `menu`, and `settings`.
 
 **Learn more: attribute and property names.** You'll note that the markup above
 uses `toggle-icon`, not `toggleIcon`. Polymer represents camelCase property names
-using dash-case attribute names. To learn more, see <a href="/1.0/docs/devguide/properties#property-name-mapping">Property
+using dash-case attribute names. To learn more, see <a href="/2.0/docs/devguide/properties#property-name-mapping">Property
 name to attribute name mapping</a> in the Polymer library docs.
 { .alert .alert-info }
 
 Next, add a declaration for the `toggleIcon` property.
 
-Find the script tag and add the following `properties` object to the element's prototype:
+Find the script tag and add the following properties to the element's class definition:
 
 icon-toggle.html { .caption }
 
 ```html
 <script>
-  Polymer({
-    /* this is the element's prototype */
-    is: 'icon-toggle',
-    properties: {
-      toggleIcon: String
+  class IconToggle extends Polymer.GestureEventListeners(Polymer.Element) {
+    static get is() { return 'icon-toggle' }
+    static get properties() {
+      return {
+        toggleIcon: {
+          type: String
+        },
+      }
     }
-  });
+  customElements.define(IconToggle.is, IconToggle);
 </script>
-</dom-module>
 ```
 
 Key information:
 
-  * Declaring a property in the `properties` object is a good idea if the property is going to be part of your element's
+  * Declaring a property is a good idea if the property is going to be part of your element's
 public API.
   * A simple property declaration like this one just includes the type (in this
 case, `String`).
 
-
-
 **Learn more: deserializing attributes.** The declared property type affects how Polymer converts, or <em>deserializes</em>
 the attribute value (always a string value) into a JavaScript property value.
 The default is `String`, so the declaration of `toggleIcon` is a formality here.
-To learn more, see <a href="/1.0/docs/devguide/properties#attribute-deserialization">Attribute
+To learn more, see <a href="/2.0/docs/devguide/properties#attribute-deserialization">Attribute
 deserialization</a> in the Polymer docs.
 { .alert .alert-info }
 
@@ -89,32 +85,37 @@ support for the `pressed` property:
 
 icon-toggle.html { .caption }
 
-```js
-  Polymer({
-    /* this is the element's prototype */
-    is: 'icon-toggle',
-    properties: {
-      toggleIcon: String,
-      pressed: {
-        type: Boolean,
-        value: false,
-        notify: true,
-        reflectToAttribute: true
+```html
+<script>
+  class IconToggle extends Polymer.GestureEventListeners(Polymer.Element) {
+    static get is() { return 'icon-toggle' }
+    static get properties() {
+      return {
+        pressed: {
+          type: Boolean,
+          notify: true,
+          reflectToAttribute: true,
+          value: false
+        },
+        toggleIcon: {
+          type: String
+        },
       }
     }
-  });
+  customElements.define(IconToggle.is, IconToggle);
+</script>
 ```
 
 Key information:
 
  *   For this more complicated property, you supply a configuration object with
 several fields.
-*   The `value` specifies the property's [default value](/1.0/docs/devguide/properties#configure-values).
+*   The `value` specifies the property's [default value](/2.0/docs/devguide/properties#configure-values).
 *   The `notify` property tells Polymer to <em>dispatch property change events
     </em>when the property value changes. This lets the change be observed by
     other nodes.
 *   The `reflectToAttribute` property tells Polymer to
-    [update the corresponding attribute when the property changes](/1.0/docs/devguide/properties#attribute-reflection).
+    [update the corresponding attribute when the property changes](/2.0/docs/devguide/properties#attribute-reflection).
     This lets you style the element using an attribute selector, like
     `icon-toggle[pressed]`.
 
@@ -125,7 +126,7 @@ state visible to the outside world. `reflectToAttribute` makes the
 state visible **in the DOM tree**, so that it's visible to CSS and the
 `querySelector` methods. `notify` **makes state changes observable outside the
 element**, either using JavaScript event handlers or Polymer
-<a href="/1.0/docs/devguide/data-binding#two-way-bindings">two-way data binding</a>.
+<a href="/2.0/docs/devguide/data-binding#two-way-bindings">two-way data binding</a>.
 { .alert .alert-info }
 
 Now your element has `pressed` and `toggleIcon` properties working.
@@ -133,7 +134,7 @@ Now your element has `pressed` and `toggleIcon` properties working.
 Reload the demo, and you should see star and heart icons instead of the
 hard-coded icon from the previous step:
 
-<img src="/images/1.0/first-element/static-toggles.png" alt="Demo showing icon toggles with star and heart icons">
+<img src="/images/2.0/first-element/static-toggles.png" alt="Demo showing icon toggles with star and heart icons">
 
 <a class="blue-button" href="step-2">Previous step: Add local DOM</a>
 <a class="blue-button" href="step-4">Next step: React to input</a>
