@@ -21,7 +21,7 @@ To start a project from scratch, you can [install Polymer with Bower](#use-bower
 2. Install the Polymer CLI
 
     ```bash
-    npm install -g polymer-cli@next
+    npm install -g polymer-cli
     ```
 
 3. Verify your Polymer version.
@@ -30,7 +30,7 @@ To start a project from scratch, you can [install Polymer with Bower](#use-bower
     polymer --version
     ```
 
-    The output of this command should be at least `0.18.0-pre.13`.
+    The output of this command should be at least `0.18.0`.
 
 4. Create a test folder for Polymer 2.0, and switch to it.
 
@@ -64,16 +64,16 @@ To start a project from scratch, you can [install Polymer with Bower](#use-bower
 2. Install the Polymer CLI
 
     ```bash
-    npm install -g polymer-cli@next
+    npm install -g polymer-cli
     ```
 
-3. Verify your Polymer version.
+3. Verify your Polymer CLI version.
 
     ```bash
     polymer --version
     ```
 
-    The output of this command should be at least `0.18.0-pre.13`.
+    The output of this command should be at least `0.18.0`.
 
 4. Install the latest Polymer 2.0 RC release from bower
 
