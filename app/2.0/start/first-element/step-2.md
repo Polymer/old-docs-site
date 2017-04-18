@@ -8,15 +8,12 @@ Next, you'll create a simple element that displays an icon.
 In this step, you'll learn about:
 
 *   Creating a custom element using Polymer.
-*   Working with local DOM.
+*   Working with shadow DOM.
 
-_Local DOM_ is the set of DOM elements managed by your element. You'll learn more
+_Shadow DOM_ is the set of DOM elements managed by your element. You'll learn more
 about it in this section.
 
-**Local DOM? Shadow DOM?** If you're familiar with _shadow DOM_, a new proposed
-web standard, local DOM is just a generic term for the same concept. Polymer's
-local DOM works with or without native shadow DOM support.
-{ .alert .alert-info }
+Read more about shadow DOM concepts in our developer documentation: [Shadow DOM concepts](https://www.polymer-project.org/2.0/docs/devguide/shadow-dom)
 
 ## Edit icon-toggle.html
 
@@ -34,7 +31,7 @@ Start by taking a look at the existing code:
 Starting code—HTML imports { .caption }
 
 ```html
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 ```
 
@@ -57,12 +54,12 @@ Starting code—local DOM template { .caption }
 <dom-module id="icon-toggle">
   <template>
     <style>
-      /* local styles go here */
+      /* shadow DOM styles go here */
       :host {
         display: inline-block;
       }
     </style>
-    <!-- local DOM goes here -->
+    <!-- shadow DOM goes here -->
     <span>Not much here yet.</span>
   </template>
 ```
@@ -81,12 +78,12 @@ Key information:
     defining (in this case, the `<icon-toggle>`). This is the element
     that contains or <em>hosts </em>the local DOM tree.
 
-**Learn more: local DOM.** Local DOM
+**Learn more: Shadow DOM.** Shadow DOM
 lets you add a <em>scoped</em> DOM tree inside an element, with local styles and
-markup that are decoupled from the rest of the web page. Local DOM is based on
-the proposed Shadow DOM specification, and works with native shadow DOM where available.
-To learn more, see <a href="/1.0/docs/devguide/local-dom">Local
-DOM</a> in the Polymer library docs.
+markup that are decoupled from the rest of the web page. Shadow DOM is based on
+the Shadow DOM specification, and works with native shadow DOM where available.
+To learn more, see <a href="/2.0/docs/devguide/shadow-dom">Shadow 
+DOM Concepts</a> in the Polymer library docs.
 { .alert .alert-info }
 
 At the end of the element definition is some JavaScript that registers the
@@ -97,22 +94,37 @@ element. If the element has a `<dom-module>`, this script is usually placed
 Starting code—element registration { .caption }
 
 ```html
-  <script>
-    Polymer({
-      /* this is the element's prototype */
-      is: 'icon-toggle'
-    });
-  </script>
-</dom-module>
+<script>
+  class IconToggle extends Polymer.Element {
+    static get is() {
+      return "icon-toggle";
+    }
+  }
+  customElements.define(IconToggle.is, IconToggle);
+</script>
 ```
-
 
 Key information:
 
-  * The `Polymer` call <em>registers</em> the element so it's recognized by the browser.
-  * The argument to the Polymer call is the new element's prototype. You'll do more
-with this in a later step.
-  * The `is` property on the prototype is the new element's name. It has to <em>match</em> the `id` on the `<dom-module>` that contains the element's template.
+  * Polymer uses ES6 class syntax. With this code, you extend the base Polymer.Element class to create your own:
+
+    ```
+    class IconToggle extends Polymer.Element {...}
+    ```
+
+  * You then give your new element a name, so that the browser can recognize it when you use it in tags. This name must match the `id` given in your element's template definition (`<dom-module id="icon-toggle">`).
+    
+    ```
+    static get is() {
+      return "icon-toggle";
+    }
+    ```
+
+   * At the end of the script, this line calls the "define" method from the Custom Elements API to register your element: 
+
+    ```
+    customElements.define(IconToggle.is, IconToggle);
+    ```
 
 ### Create the local DOM structure
 
@@ -124,7 +136,7 @@ Find the `<span>` below the  `local DOM goes here` comment:
 icon-toggle.html—before { .caption }
 
 ```html
-    <!-- local DOM goes here -->
+    <!-- shadow DOM goes here -->
     <span>Not much here yet.</span>
   </template>
 ```
@@ -134,7 +146,7 @@ icon-toggle.html—before { .caption }
 icon-toggle.html—after { .caption }
 
 ```html
-    <!-- local DOM goes here -->
+    <!-- shadow DOM goes here -->
     <iron-icon icon="polymer">
     </iron-icon>
   </template>
@@ -147,7 +159,7 @@ an icon named "polymer".
 
 ### Style the local DOM
 
-There are a number of new CSS selectors to work with local DOM. The `icon-toggle.html ` file already includes a `:host` selector, discussed earlier, to style the top-level `<icon-toggle>` element.
+There are a number of new CSS selectors to work with shadow DOM. The `icon-toggle.html ` file already includes a `:host` selector, discussed earlier, to style the top-level `<icon-toggle>` element.
 
 To style the `<iron-icon>` element, add the following CSS inside the `<style>` tag after the existing content:
 
@@ -155,7 +167,7 @@ icon-toggle.html { .caption }
 
 ```html
     <style>
-      /* local styles go here */
+      /* shadow DOM styles go here */
       :host {
         display: inline-block;
       }
@@ -186,12 +198,12 @@ Your custom element definition should now look like this:
 icon-toggle.html { .caption }
 
 ```html
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 <dom-module id="icon-toggle">
   <template>
     <style>
-      /* local DOM styles go here */
+      /* shadow DOM styles go here */
       :host {
         display: inline-block;
       }
@@ -203,34 +215,28 @@ icon-toggle.html { .caption }
         fill: currentcolor;
       }
     </style>
-    <!-- local DOM goes here -->
+    <!-- shadow DOM goes here -->
     <iron-icon icon="polymer">
     </iron-icon>
   </template>
   <script>
-  Polymer({
-    is: 'icon-toggle',
-  });
+    class IconToggle extends Polymer.Element {
+      static get is() {
+        return "icon-toggle";
+      }
+    }
+    customElements.define(IconToggle.is, IconToggle);
   </script>
 </dom-module>
 ```
 
-Reload the demo.
+Make sure `polymer serve` is running and reload the demo page. You should see the toggle buttons show up with the hard-coded icon.
 
--   If you downloaded the starting code, make sure `polymer serve` is running and reload the demo
-    page.
-
--   If you're using Plunker, your changes should show up immediately. If they don't, you may need
-    to click **Stop** followed by **Run** to refresh the preview.
-
-You should see the toggle buttons show up with the hard-coded icon.
-
-<img src="/images/1.0/first-element/hardcoded-toggles.png" alt="Demo showing icon toggles displaying Polymer icon">
+<img src="/images/2.0/first-element/hardcoded-toggles.png" alt="Demo showing icon toggles displaying Polymer icon">
 
 You'll notice that one toggle is styled as pressed, because the `pressed`
 attribute is set in the demo. But click all you want, the button won't toggle
 yet; there's no code to change the `pressed` property.
-
 
 **If you don't see the new toggles,** double-check your file against the code above. If you see a blank page, make
 sure you're clicking on the demo folder or on demo/index.html.
