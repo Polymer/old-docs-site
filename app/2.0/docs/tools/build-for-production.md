@@ -37,39 +37,11 @@ The Polymer CLI and `polymer-build` library support the following transforms:
 
 ### Splitting inline JavaScript and CSS from HTML files {#splitting}
   
-  To deploy in an environment that uses CSP (Content Security Policy), some app developers will need to split inline JavaScript from HTML.
-  
-  **TODO: what is the Polymer build tool or option that does this, how does it do it, how do we switch it on and off?** 
-  
-  For example, consider an HTML file with inline scripts:
-  
-  `foo.html` {.caption}
-  ````html
-  <body>
-    <h1></h1>
-    <p>Lorem ipsum dolor sit amet.</p>
-    <script>
-      ...
-    </script> 
-  </body>
-  ````
-  
-  This file would be split as follows: 
-  
-  `foo.html` {.caption}
-  ````html
-  <body>
-    <h1></h1>
-    <p>Lorem ipsum dolor sit amet.</p>
-  </body>
-  ````
-  
-  `foo.js` {.caption}
-  ````javascript
-    <script>
-      ...
-    </script>
-  ````
+  By default, the Polymer CLI build process uses a built in feature of `polymer-build` to split inline JavaScript and CSS from HTML files. The build process automatically splits these streams in order to process them appropriately - for example, for minification, compilation or both.
+
+  By default, the Polymer build tools rejoin JavaScript and HTML after processing.
+
+  To split your code from HTML in order to deploy into an environment that requires this, you can use [Crisper](https://github.com/PolymerLabs/crisper).
   
 ### Minifying HTML, JavaScript and CSS {#minifying}
 
@@ -228,18 +200,12 @@ To build this configuration:
 
 Your builds are output to two separate folders, corresponding to their names: `build/bundled` and `build/unbundled`. 
 
-## Building with polymer-build {#use-polymer-build}
+## Building with `polymer-build` {#use-polymer-build}
 
-Consider using polymer-build instead of the CLI if you:
+Consider using `polymer-build` instead of the CLI if you:
 
 * Want to customize your build(s) without using the Polymer CLI
 * Need to run your source code through custom optimizers/processors before, after, or during your build
 * Need to hook additional work into any part of the build process
-
-```bash
-insert simple example here
-````
-
-**TODO: What would be a common use case for including another tool in an app developer's build process?**
 
 For detailed information on `polymer-build`, see the [`polymer-build` README](https://github.com/Polymer/polymer-build).
