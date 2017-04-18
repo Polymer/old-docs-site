@@ -26,7 +26,8 @@ so you cannot set up your own prototype chain.
     provides Polymer value-added features).
 
 -   In 2.0, Polymer uses your prototype to create a new class that extends
-    `Polymer.LegacyElement`.
+    `Polymer.Element`. The class also  mixes in the `Polymer.LegacyElementMixin`, which adds
+    backward-compatbile APIs that are not included in `Polymer.Element.
 
 Hybrid elements must use a compatible subset of the 1.x API. (Version-specific API calls can be
 conditionalized.)
@@ -189,7 +190,7 @@ Test code, after {.caption}
 
 ```
 Polymer.dom(myElement).appendChild(document.createElement('div'));
-myElement._observer.flush ? overlay._observer.flush() : Polymer.dom.flush();
+myElement._observer.flush ? myElement._observer.flush() : Polymer.dom.flush();
 // test some condition that should be true after the observeNodes callback fires
 assert.equal(myElement.count, 1, 'child count should be 1');
 
