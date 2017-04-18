@@ -307,14 +307,14 @@ To style slotted content, use the `::slotted()` syntax.
 
 `::slotted(*)` selects all slotted content:
 
-[See it on Plunker](http://plnkr.co/edit/uA4bHmAFWgFjOSghEFeT?p=preview)
+[See it on Plunker](http://plnkr.co/edit/pb0D6r15jvvxYVWsZ95U?p=preview)
 
 `x-foo.html` { .caption}
 ```html
 <dom-module id="x-foo">
   <template>
     <style>
-      p, h1 ::slotted(*) {
+      p ::slotted(*), h1 ::slotted(*) {
         font-family: sans-serif;
         color:green;
       }
