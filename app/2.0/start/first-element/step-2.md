@@ -99,6 +99,9 @@ Starting code—element registration { .caption }
     static get is() {
       return "icon-toggle";
     }
+    constructor() {
+      super();
+    }
   }
   customElements.define(IconToggle.is, IconToggle);
 </script>
@@ -120,8 +123,18 @@ Key information:
     }
     ```
 
-   * At the end of the script, this line calls the "define" method from the Custom Elements API to register your element: 
-
+  * The element has a constructor:
+    
+    ```
+    constructor() {
+      super();
+    }
+    ```
+    
+    At the moment, this constructor does nothing. It is included here as a placeholder since we'll use it later.
+	
+  * At the end of the script, this line calls the "define" method from the Custom Elements API to register your element: 
+    
     ```
     customElements.define(IconToggle.is, IconToggle);
     ```
@@ -161,9 +174,20 @@ an icon named "polymer".
 
 There are a number of new CSS selectors to work with shadow DOM. The `icon-toggle.html ` file already includes a `:host` selector, discussed earlier, to style the top-level `<icon-toggle>` element.
 
-To style the `<iron-icon>` element, add the following CSS inside the `<style>` tag after the existing content:
+To style the `<iron-icon>` element, add CSS rules inside the `<style>` tag after the existing content.
 
-icon-toggle.html { .caption }
+icon-toggle.html: Before { .caption }
+
+```html
+    <style>
+      /* shadow DOM styles go here */
+      :host {
+        display: inline-block;
+      }
+    </style>
+```
+
+icon-toggle.html: After { .caption }
 
 ```html
     <style>
@@ -216,13 +240,15 @@ icon-toggle.html { .caption }
       }
     </style>
     <!-- shadow DOM goes here -->
-    <iron-icon icon="polymer">
-    </iron-icon>
+    <iron-icon icon="polymer"></iron-icon>
   </template>
   <script>
     class IconToggle extends Polymer.Element {
       static get is() {
-        return "icon-toggle";
+      return "icon-toggle";
+      }
+      constructor() {
+        super();
       }
     }
     customElements.define(IconToggle.is, IconToggle);
