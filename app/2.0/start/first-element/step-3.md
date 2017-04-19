@@ -19,16 +19,16 @@ icon-toggle.html { .caption }
 
 Key information:
 
-  * `toggleIcon` is a <em>property</em> you'll define on the toggle button element. It doesn't have a default value
-yet.
+  * `toggleIcon` is a <em>property</em> you'll define on the toggle button element. It doesn't have a default value yet.
+    
   * The `icon="[[toggleIcon]]" `assignment is a <em>data binding</em>. It links your element's `toggleIcon` <em>property</em> with the `<iron-icon>`'s `icon` property.
 
 You could now use your element and set the `toggleIcon` property in markup or
-using JavaScript. If you're curious about where the new icons come from, take a look at `icon-toggle-demo.html` in the `demo` folder.
+using JavaScript. If you're curious about where the new icons come from, take a look at `demo-element.html` in the `demo` folder.
 
 You'll see lines like this:
 
-icon-toggle-demo.html—existing demo code { .caption }
+demo-element.html—existing demo code { .caption }
 
 ```html
 <icon-toggle toggle-icon="star" pressed></icon-toggle>
@@ -49,12 +49,29 @@ Next, add a declaration for the `toggleIcon` property.
 
 Find the script tag and add the following properties to the element's class definition:
 
-icon-toggle.html { .caption }
+icon-toggle.html: Before { .caption }
 
 ```html
 <script>
-  class IconToggle extends Polymer.GestureEventListeners(Polymer.Element) {
-    static get is() { return 'icon-toggle' }
+  class IconToggle extends Polymer.Element {
+    static get is() {
+    return "icon-toggle";
+    }
+    constructor() {
+      super();
+    }
+  }
+  customElements.define(IconToggle.is, IconToggle);
+</script>
+```
+icon-toggle.html: After { .caption }
+
+```html
+<script>
+  class IconToggle extends Polymer.Element {
+    static get is() {
+    return "icon-toggle";
+    }
     static get properties() {
       return {
         toggleIcon: {
@@ -62,16 +79,19 @@ icon-toggle.html { .caption }
         },
       }
     }
+    constructor() {
+      super();
+    }
+  }
   customElements.define(IconToggle.is, IconToggle);
 </script>
 ```
 
 Key information:
 
-  * Declaring a property is a good idea if the property is going to be part of your element's
-public API.
+  * Declaring a property is a good idea if the property is going to be part of your element's public API.
   * A simple property declaration like this one just includes the type (in this
-case, `String`).
+    case, `String`).
 
 **Learn more: deserializing attributes.** The declared property type affects how Polymer converts, or <em>deserializes</em>
 the attribute value (always a string value) into a JavaScript property value.
@@ -83,12 +103,36 @@ deserialization</a> in the Polymer docs.
 The `properties` object also supports several more features. Add the following lines to add
 support for the `pressed` property:
 
-icon-toggle.html { .caption }
+icon-toggle.html: Before { .caption }
+```html
+<script>
+  class IconToggle extends Polymer.Element {
+    static get is() {
+    return "icon-toggle";
+    }
+    static get properties() {
+      return {
+        toggleIcon: {
+          type: String
+        },
+      }
+    }
+    constructor() {
+      super();
+    }
+  }
+  customElements.define(IconToggle.is, IconToggle);
+</script>
+```
+
+icon-toggle.html: After { .caption }
 
 ```html
 <script>
-  class IconToggle extends Polymer.GestureEventListeners(Polymer.Element) {
-    static get is() { return 'icon-toggle' }
+  class IconToggle extends Polymer.Element {
+    static get is() {
+    return "icon-toggle";
+    }
     static get properties() {
       return {
         pressed: {
@@ -102,6 +146,10 @@ icon-toggle.html { .caption }
         },
       }
     }
+    constructor() {
+      super();
+    }
+  }
   customElements.define(IconToggle.is, IconToggle);
 </script>
 ```
@@ -118,7 +166,6 @@ several fields.
     [update the corresponding attribute when the property changes](/2.0/docs/devguide/properties#attribute-reflection).
     This lets you style the element using an attribute selector, like
     `icon-toggle[pressed]`.
-
 
 **Learn more: `notify` and `reflectToAttribute`.** The `notify` and
 `reflectToAttribute` properties may _sound_ similar: they both make the element's
