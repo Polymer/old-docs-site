@@ -91,10 +91,10 @@ to run user code in response to certain lifecycle changes.
 
 <table>
   <tr>
-   <td>Reaction
-   </td>
-   <td>Called
-   </td>
+   <th>Reaction
+   </th>
+   <th>Description
+   </th>
   </tr>
   <tr>
    <td>constructor
