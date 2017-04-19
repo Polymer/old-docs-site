@@ -124,6 +124,8 @@ Example: { .caption }
     })
 </script>
 ```
+The `CustomEvent` constructor is not supported on IE, but the webcomponents polyfills include a
+small polyfill for it so you can use the same syntax everywhere.
 
 By default, custom events stop at shadow DOM boundaries. To make a custom event pass through
 shadow DOM boundaries, set the `composed` flag to true when you create the event:
@@ -131,6 +133,11 @@ shadow DOM boundaries, set the `composed` flag to true when you create the event
 ```js
 var event = new CustomEvent('my-event', {bubbles: true, composed: true});
 ```
+
+**Backwards compatibility.** The `fire` instance method in the legacy API sets both `bubbles` and `composed` to true by default.
+To get the same behavior, you need to specify both options when you create a custom event, as shown
+above.
+{.alert .alert-info}
 
 ## Handle retargeted events {#retargeting}
 

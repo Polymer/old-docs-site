@@ -1263,28 +1263,118 @@ Below are the general steps for defining a custom element using this new syntax:
 
     ```js
     // set tabindex if it's not already set
-    _ensureAttribute('tabindex', 0);
+    this._ensureAttribute('tabindex', 0);
     ```
 
+    Note that attributes can't be manipulated in the constructor.
 
-Note that `Polymer.Element` provides a cleaner base class without much of the sugared utility API
+### Common utility APIs
+
+`Polymer.Element` provides a cleaner base class without much of the sugared utility API
 that present on legacy elements, such as `fire`, `transform`, and so on. With web platform surface
 area becoming far more stable across browsers, we intend to add fewer utility methods and embrace
-the raw platform API more.  So when using  `Polymer.Element`, instead of using the legacy
-`this.fire('some-event')` API, use the equivalent platform APIs:
-
-
-```js
-this.dispatchEvent(new CustomEvent('some-event', { bubbles: true }));
-```
-
-(The `CustomEvent` constructor is not supported on IE, but the webcomponents polyfills include a
-small polyfill for it so you can use the same syntax everywhere.) For more on using custom events,
-see [Fire custom events](events#custom-events).
+the raw platform API more.  This section describes replacements for some of the more common APIs.
 
 In addition, many features are still included in the library, but as optional modules or mixins
 rather than being bundled in with `Polymer.Element`. For details, see
 [Import optional features](#optional-features).
+
+
+
+#### async
+
+In many cases you can use the native platform features (such as `setTimeout` or
+`requestAnimationFrame` instead of the `async` call. Polymer 2.x also provides an optional
+[`Polymer.Async`](/{{{polymer_version_dir}}}/docs/api/namespaces/Polymer.Async) module that provides
+a set of Async APIs with a common interface. This is particularly useful for microtask timing, which
+is harder to time consistently across browsers.
+
+
+Before using `Polymer.Async`, you must import it:
+
+```
+<!-- import async module -->
+<link rel="import" href="/bower_components/polymer/lib/utils/async.html">
+```
+
+With one arguments, the legacy `async` method produced microtask timing:
+
+```
+this.async(someMethod);
+```
+
+The equivalent method with `Polymer.Async` looks like this:
+
+```
+// in JS, execute someMethod with microtask timing
+Polymer.Async.microtask.run(() => this.someMethod());
+```
+
+If using `async` with a timeout:
+
+```
+this.async(someMethod, 500);
+```
+
+The native `setTimeout` works fine:
+
+```js
+setTimeout(() => this.someMethod(), 500);
+```
+
+#### debounce
+
+The legacy `debounce` method isn't available on `Polymer.Element`. In many cases, you can trivially
+implement a debounced method that does what you want.
+
+You can also use the `Polymer.Debouncer` class.
+
+
+```html
+<!-- import debounce module -->
+<link rel="import" href="/bower_components/polymer/lib/utils/debounce.html">
+```
+
+```js
+this._debouncer = Polymer.Debouncer.debounce(this._debouncer,
+    Polymer.Async.timeOut.after(250),
+    () => { this.doSomething() });
+```
+
+#### fire
+
+Instead of using the legacy
+`this.fire('some-event')` API, use the equivalent platform APIs:
+
+
+```js
+this.dispatchEvent(new CustomEvent('some-event', { bubbles: true, composed: true }));
+```
+
+The `fire` method sets the `bubbles` and `composed` properties by default. For more on using custom
+events, see [Fire custom events](events#custom-events).
+
+(The `CustomEvent` constructor is not supported on IE, but the webcomponents polyfills include a
+small polyfill for it so you can use the same syntax everywhere.)
+
+#### importHref
+
+The `importHref` instance method is replaced by the static `Polymer.importHref` function. The only
+difference from the instance method is that the load and error callbacks don't have the `this`
+value bound to the element. You can work around this by using arrow functions:
+
+```js
+Polymer.importHref(this.resolveUrl('some-other-file.html'),
+    () => this.onLoad(loadEvent),
+    () => this.onError(errorEvent),
+    true /* true for async */);
+```
+
+#### $$
+
+The `$$` method isn't available. Use `this.shadowRoot.querySelector` instead.
+
+#### Using the legacy APIs
 
 If you want to upgrade to a class-based element but depend on some of the removed APIs, you can
 add most of the legacy APIs by using the `LegacyElementMixin`.
