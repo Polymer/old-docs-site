@@ -55,7 +55,6 @@ icon-toggle.html { .caption }
     toggle() {
       this.pressed = !this.pressed;
     }
-  }
 ```  
 
 Your code should now look something like this:
