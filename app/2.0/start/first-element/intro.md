@@ -29,8 +29,8 @@ here is described in detail in the Polymer documentation.
 
 To follow this tutorial, you’ll need:
 
--   Git.
--   The starting code (available on GitHub; downloadable with Git).
+-   [git](https://git-scm.com/downloads).
+-   The starting code, [available on GitHub](https://github.com/PolymerLabs/polymer-2-first-element.git).
 -   The [Polymer CLI](/2.0/docs/tools/polymer-cli) to run the demo.
 
 ### Fork the starting code repo
@@ -68,13 +68,11 @@ Install the Polymer CLI to serve the demo locally.
 
     Downloads and installation instructions are available on the [Node.js website](https://nodejs.org/en/download/).
 
-2.  Install [git](https://git-scm.com/downloads).
-
-3.  Install the latest version of [Bower](http://bower.io/#install-bower).
+2.  Install the latest version of [Bower](http://bower.io/#install-bower).
 
         npm install -g bower
 
-4.  Install Polymer CLI.
+3.  Install Polymer CLI.
 
         npm install -g polymer-cli
 
