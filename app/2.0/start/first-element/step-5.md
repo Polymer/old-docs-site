@@ -7,7 +7,7 @@ You now have a button that's basically functional. But it's stuck using the
 existing text color for both pressed and unpressed states. What if you want to
 get a little flashier?
 
-Local DOM helps prevent users from styling your element's internals by accident.
+Shadow DOM helps prevent users from styling your element's internals by accident.
 To allow users to style your component, you can use _custom CSS properties_. Polymer
 provides a custom CSS property implementation inspired by the
 [CSS Custom Properties for Cascading Variables](http://www.w3.org/TR/css-variables/) specification.
@@ -20,10 +20,28 @@ Where <code>--<em>my-custom-property</em></code> is a custom property name, alwa
 
 ## Add new custom property values
 
-Edit your element's `<style>` tag and replace the existing `fill` and `stroke`
+Edit your element's `<style>` tag and replace the `fill` and `stroke`
 values with custom properties:
 
-icon-toggle.html  { .caption }
+icon-toggle.html: Before  { .caption }
+
+```
+  <style>
+    /* local styles go here */
+    :host {
+      display: inline-block;
+    }
+    iron-icon {
+      fill: rgba(0,0,0,0);
+      stroke: currentcolor;
+    }
+    :host([pressed]) iron-icon {
+      fill: currentcolor;
+    }
+  </style>
+```
+
+icon-toggle.html: After  { .caption }
 
 ```
   <style>
@@ -44,10 +62,19 @@ icon-toggle.html  { .caption }
 Because of the default values, you can still style the `<icon-toggle>` just by
 setting `color`, but now you have other options.
 
-Open up `demo-element.html` and set the new properties. (If you downloaded
-the starting code, this file is in the `demo` folder.)
+From the `demo` folder, open up `demo-element.html` and set the new properties.
 
-demo-element.html { .caption }
+demo-element.html: Before { .caption }
+
+```
+    <style>
+      :host {
+        font-family: sans-serif;
+      }
+    </style>
+```
+
+demo-element.html: After { .caption }
 
 ```
     <style>
@@ -64,14 +91,13 @@ Run the demo again to get colorful.
 
 
 <img src="/images/2.0/first-element/toggles-styled.png" alt="Demo showing
-icon toggles with star and heart icons. The heart icon is pressed and the text
-above it reads, 'You really like me!'">
+icon toggles with star and heart icons. Pressed icons are red.">
 
 That's it — your element is finished. You've created an element that has a basic
 UI, API, and custom styling properties.
 
 If you have any trouble getting the element working, check out the
-[finished version](https://github.com/googlecodelabs/polymer-first-elements/blob/master/icon-toggle-finished/icon-toggle.html).
+[finished version](https://github.com/PolymerLabs/polymer-2-first-element/tree/master/icon-toggle-finished).
 
 If you'd like to learn a little more about custom properties, read on.
 
@@ -104,8 +130,8 @@ adding the following code inside the `<head>` tag of your `index.html` file:
 
 Key information:
 
-*   The `icon-toggle-demo` selector matches the `icon-toggle-demo` element, and
-    has a **higher specificity** than the `html` rule inside `icon-toggle-demo`,
+*   The `demo-element` selector matches the `demo-element` element, and
+    has a **higher specificity** than the `html` rule inside `demo-element`,
     so it overrides the values there.
 
 *   Custom properties can **only** be defined in rule-sets that match the `html`
@@ -116,15 +142,15 @@ Run the demo again, and you'll notice that the pressed buttons are now blue,
 but **the main color and outline color haven't changed.**
 
 The `--icon-toggle-color` property doesn't get set because it can't be applied
-to the `body` tag. Try moving this rule into the `icon-toggle-demo` block to see
+to the `body` tag. Try moving this rule into the `demo-element` block to see
 it applied.
 
 The `html` rule-set creates a document-wide default value for `--icon-toggle-outline-color`.
-But this value is overridden by the corresponding rule inside the `icon-toggle-demo`
+But this value is overridden by the corresponding rule inside the `demo-element`
 element. To see this default value at work, comment out the corresponding rule in
-`icon-toggle-demo.html`:
+`demo-element.html`:
 
-icon-toggle-demo.html { .caption }
+demo-element.html { .caption }
 
 ```
     <style>
@@ -139,7 +165,7 @@ icon-toggle-demo.html { .caption }
 
 Finally, note that to match a selector in the `custom-style`, the element must
 be **in the document scope**—for example, in `index.html`, not inside another
-element's local DOM. For example, these rules do **not** work inside the
+element's shadow DOM. For example, these rules do **not** work inside the
 `custom-style`:
 
 ```
@@ -150,7 +176,7 @@ element's local DOM. For example, these rules do **not** work inside the
 ```
 
 That's because the `iron-icon` elements on the page are inside another element's
-local DOM. However, since custom properties inherit down the tree, you can set
+shadow DOM. However, since custom properties inherit down the tree, you can set
 these properties at the document level to set the size for all `iron-icon`
 elements on the page:
 
