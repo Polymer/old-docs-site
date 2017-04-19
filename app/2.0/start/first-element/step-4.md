@@ -27,19 +27,27 @@ Use the mixin in the class declaration:
 ```
 
 To toggle the button, add an event listener. To add event listeners on the host element (in this
-case, `icon-toggle`), create a constructor for the element, with a listener.
+case, `icon-toggle`), place the listener in the constructor after its existing content:
 
-icon-toggle.html { .caption }
+icon-toggle.html: Before { .caption }
 
 ```html
 constructor() {
   super();
-    this.addEventListener('tap', 'toggle');
-    Polymer.Gestures.addListener(this, 'tap', () => this.toggle());
-  }
+}
 ```
 
-Add a method to toggle the `pressed` property when the button is pressed:
+  icon-toggle.html: After { .caption }
+
+```html
+constructor() {
+  super();
+  this.addEventListener('tap', 'toggle');
+  Polymer.Gestures.addListener(this, 'tap', () => this.toggle());
+}
+```
+
+Add a method to toggle the `pressed` property when the button is pressed. Place it inside the class definition for IconToggle, after the constructor.
 
 icon-toggle.html { .caption }
 
@@ -57,7 +65,9 @@ icon-toggle.html { .caption }
 ```html
 <script>
   class IconToggle extends Polymer.GestureEventListeners(Polymer.Element) {
-    static get is() { return 'icon-toggle' }
+    static get is() {
+    return "icon-toggle";
+    }
     static get properties() {
       return {
         pressed: {
@@ -76,7 +86,6 @@ icon-toggle.html { .caption }
       this.addEventListener('tap', 'toggle');
       Polymer.Gestures.addListener(this, 'tap', () => this.toggle());
     }
-
     toggle() {
       this.pressed = !this.pressed;
     }
@@ -101,7 +110,7 @@ Key information:
 Save the `icon-toggle.html` file and look at the demo again. You should be able to press the button and see it
 toggle between its pressed and unpressed states.
 
-<img src="/images/2.0/first-element/databound-toggles.png" alt="Demo showing icon toggles with star and heart icons. The icons have a black border, and the pressed icons are colored red.">
+<img src="/images/2.0/first-element/databound-toggles.png" alt="Demo showing icon toggles with star and heart icons.">
 
 **Learn more: data binding.** To see how the demo works, open `icon-toggle-demo.html`
 and take a look around (if you downloaded the code, you'll find this file in the `demo` folder.)
