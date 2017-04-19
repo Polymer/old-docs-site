@@ -47,7 +47,7 @@ your new view.
     </dom-module>
     ```
 
-For now your element is very basic, and just has a `<h1>` that says "New View",
+For now your element is very basic, and just has a `<h1>` that says "New view",
 but we can return to it and make it more interesting later.
 
 ## Add the element to your app
