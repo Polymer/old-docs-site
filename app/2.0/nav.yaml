@@ -13,6 +13,20 @@
     path: /2.0/start/quick-tour
   - title: Install the Release Candidate
     path: /2.0/start/install-2-0
+  - header: Build an app
+  - title: 1. Get set up
+    path: /2.0/start/toolbox/set-up
+    indent: True
+  - title: 2. Create a new page
+    path: /2.0/start/toolbox/create-a-page
+    indent: True
+  - title: 3. Add some elements
+    path: /2.0/start/toolbox/add-elements
+    indent: True
+  - title: 4. Deploy
+    path: /2.0/start/toolbox/deploy
+    indent: True
+  - endheader: True
 
 - section: Polymer
   shortpath: docs
