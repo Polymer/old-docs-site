@@ -458,9 +458,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       } else if (response.items) {
         section = resultsElement.querySelector('.yes-results');
 
+        // Clean up the version bit for easier using.
+        for (var item = 0; item < response.items.length; item++) {
+          response.items[item].version = response.items[item].labels[0].displayName;
+        }
+
         // Populate the results in the dom-repeat.
         section.querySelector('template').items = response.items;
-
         var queryPrefix = '?q=' + this._searchParams.q + '&start=';
         var button = section.querySelector('.next-results');
         if (response.queries.nextPage) {
