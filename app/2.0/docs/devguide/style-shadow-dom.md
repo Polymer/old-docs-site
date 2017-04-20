@@ -274,7 +274,7 @@ Styling with the `:host` selector is one of two instances where rules inside a s
 
 ### Style slotted content (distributed children)
 
-You can create **slots** in an element's template that are populated at runtime. For more information on slots, see the documentation on [/2.0/docs/devguide/shadow-dom#shadow-dom-and-composition](shadow DOM and composition). 
+You can create **slots** in an element's template that are populated at runtime. For more information on slots, see the documentation on [shadow DOM and composition](/2.0/docs/devguide/shadow-dom#shadow-dom-and-composition).
 
 The basic syntax for incorporating slotted content looks like this:
 
@@ -301,7 +301,7 @@ The basic syntax for incorporating slotted content looks like this:
 </x-foo>
 ```
 
-To style slotted content, use the `::slotted()` syntax. 
+To style slotted content, use the `::slotted()` syntax.
 
 **Note:** To work within the Shady CSS scoping shim limitations, and to ensure consistent cross-browser behavior, add a selector to the left of the `::slotted(.classname)` notation (for example, `p ::slotted(.classname)`.
 
@@ -382,7 +382,7 @@ You can select by class:
 ```html
 <dom-module id="x-foo">
   <template>
-    <style> 
+    <style>
       p ::slotted(.green) {
         color:green;
       }
