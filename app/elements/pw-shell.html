@@ -362,6 +362,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _computeSection: function(path) {
+      // This attempts to match the prefix of the current path with the name attribute on one of
+      // the links in .sections-tabs (e.g. '1.0/start', '2.0/toolbox', 'blog', 'community', etc.).
       var match = /^\/([12]\.0\/[^\/]+|blog|community)\//.exec(path);
       return match ? match[1] : null;
     },
