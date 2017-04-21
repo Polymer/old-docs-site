@@ -582,7 +582,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         if (el) {
           el.scrollIntoView();
         } else {
-          var viewer = Polymer.dom(this).querySelector('iron-doc-viewer');
+          var viewer = Polymer.dom(this).querySelector(
+            'iron-doc-element, iron-doc-mixin, iron-doc-namespace');
           if (viewer)
             viewer.scrollToAnchor(hash);
         }
