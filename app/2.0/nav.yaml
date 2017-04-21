@@ -114,6 +114,9 @@
   - title: Optimize for production
     path: /2.0/docs/tools/optimize-for-production
     indent: True
+  - title: Deploy your app
+    path: /2.0/docs/tools/deploy
+    indent: True
 #  - title: Publish an element
 #    path: /2.0/docs/tools/reusable-elements
 #    indent: True

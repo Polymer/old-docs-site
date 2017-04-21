@@ -1,5 +1,5 @@
 ---
-title: Serve your app
+title: Deploy your app
 ---
 
 <!-- toc -->
@@ -9,7 +9,11 @@ process supports fast-loading applications that can take advantage of the latest
 
 The default output of the `polymer build` command is an unbundled build designed for server/browser combinations that support HTTP/2 and HTTP/2 server push to deliver the resources the browser needs for a fast first paint while optimizing caching.
 
-You can bundle the output with the `--bundled` flag: `polymer build --bundle`. This will output a bundled build designed to minimize the number of round-trips required to get the application running on server/browser combinations that don't support server push.
+You can bundle the output with the `--bundled` flag: 
+
+    polymer build --bundle
+
+This will output a bundled build designed to minimize the number of round-trips required to get the application running on server/browser combinations that don't support server push.
 
 You can generate multiple builds by configuring these options in your [polymer.json file](polymer-json). 
 If you have multiple builds, your server logic must deliver the appropriate build for each browser.
