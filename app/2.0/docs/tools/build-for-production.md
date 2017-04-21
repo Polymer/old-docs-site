@@ -130,14 +130,6 @@ Because not all browsers support HTTP/2 push, you will also need to create a bun
    ```bash
    polymer build --bundle
    ```
-   
-### Polyfills?
-
-**TODO: Elaborate on why/how this is part of the build process**
-
-* Use webcomponents-loader.js? 
-* Full polyfill? 
-* Add them differentially?
 
 ## Building with the CLI
 

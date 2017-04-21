@@ -97,8 +97,8 @@
   - title: Test your elements
     path: /2.0/docs/tools/tests
     indent: True
-  - title: Optimize for production
-    path: /2.0/docs/tools/optimize-for-production
+  - title: Build for production
+    path: /2.0/docs/tools/build-for-production
     indent: True
 #  - title: Publish an element
 #    path: /2.0/docs/tools/reusable-elements
