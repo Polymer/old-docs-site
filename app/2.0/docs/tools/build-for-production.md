@@ -47,10 +47,11 @@ To split your code from HTML in order to deploy into an environment that require
 
 The Polymer build tools provide options to minify HTML, JavaScript and CSS by stripping whitespace and comments. You can use these on the command line, or configure them in `polymer.json`. See the [polymer.json specification](polymer-json) for more details.
 
-|**Function**|**CLI flag**|**Entry in polymer.json** |
-| Minify inlined and external JavaScript | `--js-minify` | `"js": {"minify": true}` |
-| Minify inlined and external CSS | `--css-minify` | `"css": {"minify": true}` |
-| Minify HTML | `--html-minify` | `"html": {"minify": true}` |
+**Function**|**CLI flag**|**Entry in polymer.json**
+--- | --- | ---
+Minify inlined and external JavaScript | `--js-minify` | `"js": {"minify": true}` 
+Minify inlined and external CSS | `--css-minify` | `"css": {"minify": true}` 
+Minify HTML | `--html-minify` | `"html": {"minify": true}` 
 
 Example: Build a project. Use CLI options to minify JavaScript, CSS and HTML {.caption}
 
