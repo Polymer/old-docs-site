@@ -90,14 +90,14 @@ function writeServiceWorkerFile() {
   /**
    * NOTE(keanulee): This function is run in the context of the generated SW where variables
    * like `toolbox` and `caches` are defined. It is referenced as a handler by the runtime
-   * caching config below which embeds the value of fastestWithFallback.toString() in the
+   * caching config below which embeds the value of networkFirstWithFallback.toString() in the
    * generated SW.
    *
-   * This handler is similar to the "fastest" or "stale-while-revalidate" strategy, except
-   * that a fallback page is served on cache and network miss.
+   * This handler is similar to the "network-first" strategy, except that a fallback page is
+   * served on cache and network miss.
    */
-  function fastestWithFallback(request, values, options) {
-    return toolbox.fastest(request, values, options).catch(function() {
+  function networkFirstWithFallback(request, values, options) {
+    return toolbox.networkFirst(request, values, options).catch(function() {
       // Only serve fallback content on navigate requests (not XHRs) for non-sample content.
       if ((request.mode === 'navigate') && !request.url.match('samples')) {
         return caches.open(cacheName).then(function(cache) {
@@ -141,27 +141,27 @@ function writeServiceWorkerFile() {
     },
     {
       urlPattern: new RegExp('/docs/'),
-      handler: fastestWithFallback,
+      handler: networkFirstWithFallback,
     },
     {
       urlPattern: new RegExp('/start/'),
-      handler: fastestWithFallback,
+      handler: networkFirstWithFallback,
     },
     {
       urlPattern: new RegExp('/toolbox/'),
-      handler: fastestWithFallback,
+      handler: networkFirstWithFallback,
     },
     {
       urlPattern: new RegExp('/samples/'),
-      handler: fastestWithFallback,
+      handler: networkFirstWithFallback,
     },
     {
       urlPattern: new RegExp('/community/'),
-      handler: fastestWithFallback,
+      handler: networkFirstWithFallback,
     },
     {
       urlPattern: new RegExp('/blog/'),
-      handler: fastestWithFallback,
+      handler: networkFirstWithFallback,
       options: {
         cache: {
           maxEntries: 10,
