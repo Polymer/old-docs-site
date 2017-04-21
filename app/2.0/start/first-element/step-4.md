@@ -5,9 +5,11 @@ subtitle: "Build your first Polymer element"
 
 Of course, a button isn't a button if you can't click it. 
 
-To toggle the button, we will add an event listener. To make event listener methods available, we will include the methods we need by importing and using the `Polymer.GestureEventListeners` mixin. 
+To toggle the button, we will add an event listener. To ensure that gesture events work the same way across different browsers, we'll use the `GestureEventListeners` mixin. This mixin provides a tap event that works like the standard click event on desktop browsers, and like a native tap event on mobile browsers.
 
-Import the mixin by adding it to the HTML Imports in `icon-toggle.html`:
+A mixin is a class that defines a set of related functions and is never instantiated. When you use a mixin class, you inherit only its behaviours. For more information, see Justin Fagnani's blog post: ["Real" Mixins with JavaScript Classes](http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/).
+
+Import the `Polymer.GestureEventListeners` mixin by adding it to the HTML Imports in `icon-toggle.html`:
  
  icon-toggle.html { .caption }
  
