@@ -67,14 +67,12 @@ features to your element, extend Polymer's base element class, `Polymer.Element`
 
 <script>
   class MyPolymerElement extends Polymer.Element {
-    static get is() { return 'my-polymer-element'; }
+    ...
   }
 
-  window.customElements.define(MyPolymerElement.is, MyPolymerElement);
+  customElements.define('my-polymer-element', MyPolymerElement);
 </script>
 ```
-
-Polymer also requires the class to provide an `is` getter that returns the element name.
 
 Polymer adds a set of features to the basic custom element:
 
@@ -210,7 +208,7 @@ For example, consider the following code:
   class MyElement extends HTMLElement { ... };
 
   // ...some time much later...
-  window.customElements.define('my-element', MyElement);
+  customElements.define('my-element', MyElement);
 </script>
 ```
 
@@ -270,7 +268,7 @@ class ExtendedElement extends MyElement {
   }
 };
 
-window.customElements.define(ExtendedElement.is, ExtendedElement);
+customElements.define(ExtendedElement.is, ExtendedElement);
 ```
 
 **Polymer does not currently support extending built-in elements.** The custom elements spec
