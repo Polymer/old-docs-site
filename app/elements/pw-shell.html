@@ -355,7 +355,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _searchParamsChanged: function(newParams, oldParams) {
-      if (!!oldParams && oldParams.start !== newParams.start) {
+      // Either the whole query may have changed (because we added or changed
+      // the +more: search parameter, or the start page has changed in the
+      // same query)
+      if (!!oldParams && (newParams !== oldParams || oldParams.start !== newParams.start)) {
         this._doSearch();
       }
     },
