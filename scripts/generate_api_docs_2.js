@@ -1,5 +1,5 @@
 /**
- * Run from `npm run generate-api-docs-2`
+ * Run from `npm run generate-api-docs`
  */
 
 const {Analyzer, FSUrlLoader, PackageUrlResolver} = require('polymer-analyzer');
