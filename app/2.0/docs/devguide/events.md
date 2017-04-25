@@ -90,7 +90,7 @@ like a window or document level event listener, may prevent the element from bei
 collected. Remove the event listener in `disconnectedCallback` to prevent memory leaks.
 
 
-## Custom events {#custom-events}
+## Fire custom events {#custom-events}
 
 To fire a custom event from the host element use the standard `CustomEvent` constructor and
 the `dispatchEvent` method.
@@ -124,6 +124,8 @@ Example: { .caption }
     })
 </script>
 ```
+The `CustomEvent` constructor is not supported on IE, but the webcomponents polyfills include a
+small polyfill for it so you can use the same syntax everywhere.
 
 By default, custom events stop at shadow DOM boundaries. To make a custom event pass through
 shadow DOM boundaries, set the `composed` flag to true when you create the event:
@@ -132,7 +134,12 @@ shadow DOM boundaries, set the `composed` flag to true when you create the event
 var event = new CustomEvent('my-event', {bubbles: true, composed: true});
 ```
 
-## Handling retargeted events {#retargeting}
+**Backwards compatibility.** The `fire` instance method in the legacy API sets both `bubbles` and `composed` to true by default.
+To get the same behavior, you need to specify both options when you create a custom event, as shown
+above.
+{.alert .alert-info}
+
+## Handle retargeted events {#retargeting}
 
 Shadow DOM has a feature called "event retargeting" which changes an event's
 target as it bubbles up, such that target is always in the same scope as the
@@ -198,6 +205,7 @@ The shadow root may show up in the console as `document-fragment`. In shady DOM 
 of `DocumentFragment`. In native shadow DOM, this would show up as an instance of `ShadowRoot`
 (a DOM interface that extends `DocumentFragment`).
 
+For more information, see [Event retargeting](shadow-dom#event-retargeting) in Shadow DOM concepts.
 
 ## Property change events {#property-changes}
 
