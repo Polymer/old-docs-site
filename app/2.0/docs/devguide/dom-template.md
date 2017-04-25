@@ -93,7 +93,7 @@ template element. If you're going to modify the superclass template, there are a
 important rules:
 
 -   Don't modify the superclass template in place; make a copy before modifying.
--   If you're doing anything expensive, like copying or modifying an exisitng the template,
+-   If you're doing anything expensive, like copying or modifying an existing template,
     you should memoize the modified template so you don't have to regenerate it when the
     getter is called.
 
@@ -120,7 +120,7 @@ The following example shows a simple modification of a parent template:
 })();
 ```
 
-The following example shows a more complicated could wrap a superclass template with a child
+The following example shows how an element could wrap a superclass template with its own
 template.
 
 ```html
