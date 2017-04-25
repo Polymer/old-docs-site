@@ -445,6 +445,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _handleSearchResponse: function(event) {
+      var i;  // the linter which may not be named has issues.
       var response = event.detail.response;
 
       // Hide the existing section being displayed.
@@ -460,12 +461,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         // Clean up the version bit for easier using.
         for (var item = 0; item < response.items.length; item++) {
-          response.items[item].version = response.items[item].labels[0].displayName;
+          response.items[item].label = response.items[item].labels[0].displayName;
         }
 
         // Populate the results in the dom-repeat.
         section.querySelector('template').items = response.items;
-        var queryPrefix = '?q=' + this._searchParams.q + '&start=';
+
+        // Restricted search buttons. Ugh, so. we use the (undocumented) +more:version
+        // search parameter, which means we need to uhhh remove the +more
+        // keyword by hand if it already exists.
+        var matches = this._searchParams.q.match(/(.*) more:(1\.0|2\.0|Blog)/);
+        var searchParams;
+        var activeLabel;
+        if (matches && matches.length > 2) {
+          searchParams = matches[1];
+          activeLabel = matches[2]
+        }
+
+        var queryPrefix = '?q=' + (searchParams ? searchParams : this._searchParams.q);
+
+        var labels = resultsElement.querySelectorAll('a.search-filter');
+        for (i = 0; i < labels.length; i++) {
+          if (labels[i].dataset.label === 'all') {
+            labels[i].href = queryPrefix;
+            this.toggleClass('active', !activeLabel,  labels[i]);
+          } else {
+            labels[i].href = queryPrefix + '+more:' + labels[i].dataset.label;
+            this.toggleClass('active', labels[i].dataset.label === activeLabel, labels[i]);
+          }
+        }
+
+        // Previous and Next buttons.
+        queryPrefix += '&start=';
+
         var button = section.querySelector('.next-results');
         if (response.queries.nextPage) {
           this.toggleClass('button-hidden', false, button);
@@ -485,7 +513,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       // There's a bunch of places where we displayed what you searched for.
       var queryElements = section.querySelectorAll('.search-query');
-      for (var i = 0; i < queryElements.length; i++) {
+      for (i = 0; i < queryElements.length; i++) {
         queryElements[i].textContent = this._searchParams.q;
       }
 
