@@ -63,7 +63,7 @@ Polymer provides a set of features on top of the basic custom element specificat
 features to your element, extend Polymer's base element class, `Polymer.Element`:
 
 ```html
-<link rel="import" href="/bower_components/polymer/polymer_element.html">
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
 
 <script>
   class MyPolymerElement extends Polymer.Element {
