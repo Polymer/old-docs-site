@@ -34,6 +34,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       .article {
         margin-bottom: 40px;
+        border-left: 3px solid #1E88E6;
+        padding-left: 30px;
+      }
+
+      h2 {
+        font-family: Helvetica, Arial, sans-serif;
+        margin: 0;
+      }
+
+      .article h2 a {
+        color: black;
       }
 
       .author img {
@@ -65,6 +76,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         max-width: 1000px;
       }
 
+      .byline {
+        color: #757575;
+      }
+
       .author > p {
         display: inline-block;
         margin: 0;
@@ -88,10 +103,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       /* Match the main media-queries to the header, but don't worry about centering
        * the content, since we do that separately.
        */
-      .main-section {
-        background: #fafafa;
-      }
-
       @media (min-width: 1001px) {
         .main-section {
           padding-right: 40px;  /* So that the TOC doesn't jump */
@@ -169,13 +180,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="article">
         <h2><a href="{{{item.path}}}.html">{{{item.title}}}</a></h2>
         <div class="byline author">
-          <p>
-            <a href="https://plus.google.com/{{{item.author.gplus}}}" target="blank_">
-              <img src="{{{item.author.profile_pic}}}" alt="{{{item.author.full_name}}} profile pic" title="{{{item.author.full_name}}}">
-            </a>
-            <a href="{{{item.author.web}}}" target="blank_">{{{item.author.full_name}}}</a>
-          </p>
-          <p>, <time pubdate="" datetime="{{{item.published}}}">{{{item.published}}}</time></p>
+          <time pubdate="" datetime="{{{item.published}}}">{{{item.published}}}</time>
         </div>
         <p>{{{item.description}}}</p>
       </div>

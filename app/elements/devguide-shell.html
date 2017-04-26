@@ -15,17 +15,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
         position: relative;
-        background: #fafafa;  /* pale-grey */
+        background: white;
       }
 
       nav {
         position: absolute;
         top: 0;
         bottom: 0;
-        background: white;
+        background: #f4f5f6;
         width: 265px;
         z-index: 2;
-        box-shadow: 1px 0 6px -2px rgba(0, 0, 0, 0.4);
+        /*box-shadow: 1px 0 6px -2px rgba(0, 0, 0, 0.4);*/
         padding-top: 10px;
         overflow-x: hidden;
         overflow-y: auto;
@@ -42,7 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       header.v2 {
-        background: #1565c0;  /* blue-800 */
+        background: #1E88E5;  /* blue-600 */
       }
 
       header.v1 {
@@ -59,7 +59,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       header p {
         margin: 0;
+        font-weight: bold;
       }
+      
       /* can't apply a custom property to content */
       iron-selector {
         @apply --paper-font-common-base;
@@ -93,7 +95,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       iron-selector ::content .sidenav-header {
-        font-family: 'Roboto Slab', 'Roboto', 'Noto', sans-serif;
         padding-top: 15px;
         font-weight: bold;
         /* The active links will have a pink border. */
@@ -102,12 +103,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       iron-selector ::content .sidenav-header:first-of-type {
         margin-top: 15px;
-        border-top: 1px solid #eceff1;
+        border-top: 1px solid #E0E0E0;
       }
 
       iron-selector ::content .sidenav-endheader {
         margin-top: 15px;
-        border-bottom: 1px solid #eceff1;
+        border-bottom: 1px solid #E0E0E0;
       }
 
       iron-selector ::content a.iron-selected {
