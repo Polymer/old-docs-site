@@ -456,6 +456,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       resultsElement.querySelector('section > div:not([hidden])').hidden = true;
 
       var section;  // The results section that we're going to show.
+      var searchParams = this._searchParams.q;
 
       if (!response || !response.items) {
         section = resultsElement.querySelector('.no-results');
@@ -473,15 +474,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // Restricted search buttons. Ugh, so. we use the (undocumented) +more:version
         // search parameter, which means we need to uhhh remove the +more
         // keyword by hand if it already exists.
-        var matches = this._searchParams.q.match(/(.*) more:(1\.0|2\.0|Blog)/);
-        var searchParams;
+        var matches = searchParams.match(/(.*) more:(1\.0|2\.0|Blog)/);
         var activeLabel;
         if (matches && matches.length > 2) {
           searchParams = matches[1];
           activeLabel = matches[2];
         }
-
-        var queryPrefix = '?q=' + (searchParams ? searchParams : this._searchParams.q);
+        var queryPrefix = '?q=' + searchParams;
 
         var labels = resultsElement.querySelectorAll('a.search-filter');
         for (i = 0; i < labels.length; i++) {
@@ -517,7 +516,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // There's a bunch of places where we displayed what you searched for.
       var queryElements = section.querySelectorAll('.search-query');
       for (i = 0; i < queryElements.length; i++) {
-        queryElements[i].textContent = this._searchParams.q;
+        queryElements[i].textContent = searchParams;
       }
 
       // Flawless victory.
