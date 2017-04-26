@@ -170,10 +170,15 @@ define a `template` getter that returns a falsy value.
 
 ### URLs in templates {#urls-in-templates}
 
-A relative URL in a template may be relative to an application or to a specific component. For
-example, if a component includes images alongside an HTML import that defines an element, the image
-URL needs to be resolved relative to the import. However, an application-specific element may need
-to include links to URLs relative to the main document.
+A relative URL in a template may need to be relative to an application or to a specific component.
+For example, if a component includes images alongside an HTML import that defines an element, the
+image URL needs to be resolved relative to the import. However, an application-specific element may
+need to include links to URLs relative to the main document.
+
+By default, Polymer **does not modify URLs in templates**, so all relative URLs are treated as
+relative to  the main document URL. This is because when the template content is cloned and added
+to the main document, the browser evaluates the URLs  relative to the document (not to the original
+location of the template).
 
 To ensure URLs resolve properly, Polymer provides two properties that can be used in data bindings:
 
@@ -248,15 +253,24 @@ use the standard DOM `querySelector`  method.
 
 
 Add the `strip-whitespace` boolean attribute to a template to remove
-any empty text nodes from the template's contents. This can result in a
+any **empty** text nodes from the template's contents. This can result in a
 minor performance improvement.
+
+**What's an empty node?** `strip-whitespace` removes only text nodes that occur between
+elements in the template and are _empty_ (that is, they only contain whitespace characters).
+These nodes are created when two elements in the template are separated by whitespace (such as
+spaces or line breaks). It doesn't remove any whitespace from inside elements.
+{.alert .alert-info}
 
 With empty text nodes:
 
 
 ```html
 <dom-module id="has-whitespace">
-  <template> <div>A</div> <div>B</div> </template>
+  <template>
+    <div>Some Text</div>
+    <div>More Text</div>
+  </template>
   <script>
     class HasWhitespace extends Polymer.Element {
       static get is() { return  'has-whitespace' }
@@ -270,6 +284,14 @@ With empty text nodes:
 </dom-module>
 ```
 
+There are five nodes in this element's shadow tree because of the whitespace surrounding the `<div>`
+elements. The five child nodes are:
+
+  text node
+  `<div>Some Text</div>`
+  text node
+  `<div>More Text</div>`
+  text node
 
 Without empty text nodes:
 
@@ -292,6 +314,12 @@ Without empty text nodes:
   </script>
 </dom-module>
 ```
+
+Here, the shadow tree contains only the two `<div>` nodes:
+
+`<div>Some Text</div><div>More Text</div>`
+
+Note that the whitespace _inside_ the `<div>` elements isn't affected.
 
 ## Preserve template contents
 
@@ -377,7 +405,8 @@ _attachDom(dom) {
 ```
 
 When you stamp the DOM template to light DOM like this, data bindings and declarative event listeners
-work as usual, but you cannot use shadow DOM features, like `<slot>` and style encapsulation. A
-template stamped into light DOM shouldn't contain any `<style>` tags. Styles can be applied by an
+work as usual, but you cannot use shadow DOM features, like `<slot>` and style encapsulation.
+
+A template stamped into light DOM shouldn't contain any `<style>` tags. Styles can be applied by an
 enclosing host element, or at the document level if the element isn't used inside another element's
 shadow DOM.
