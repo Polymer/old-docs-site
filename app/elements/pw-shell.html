@@ -458,6 +458,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var section;  // The results section that we're going to show.
       var searchParams = this._searchParams.q;
 
+      // Ugh, so. we use the (undocumented) +more:version
+      // search parameter, which means we need to uhhh remove the +more
+      // keyword by hand if it already exists.
+      var matches = searchParams.match(/(.*) more:(1\.0|2\.0|Blog)/);
+      var activeLabel;
+      if (matches && matches.length > 2) {
+        searchParams = matches[1];
+        activeLabel = matches[2];
+      }
+
+      // Restricted search buttons.
+      var queryPrefix = '?q=' + searchParams;
+      var labels = resultsElement.querySelectorAll('a.search-filter');
+      for (i = 0; i < labels.length; i++) {
+        if (labels[i].dataset.label === 'all') {
+          labels[i].href = queryPrefix;
+          this.toggleClass('active', !activeLabel,  labels[i]);
+        } else {
+          labels[i].href = queryPrefix + '+more:' + labels[i].dataset.label;
+          this.toggleClass('active', labels[i].dataset.label === activeLabel, labels[i]);
+        }
+      }
+
       if (!response || !response.items) {
         section = resultsElement.querySelector('.no-results');
       } else if (response.items) {
@@ -470,28 +493,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         // Populate the results in the dom-repeat.
         section.querySelector('template').items = response.items;
-
-        // Restricted search buttons. Ugh, so. we use the (undocumented) +more:version
-        // search parameter, which means we need to uhhh remove the +more
-        // keyword by hand if it already exists.
-        var matches = searchParams.match(/(.*) more:(1\.0|2\.0|Blog)/);
-        var activeLabel;
-        if (matches && matches.length > 2) {
-          searchParams = matches[1];
-          activeLabel = matches[2];
-        }
-        var queryPrefix = '?q=' + searchParams;
-
-        var labels = resultsElement.querySelectorAll('a.search-filter');
-        for (i = 0; i < labels.length; i++) {
-          if (labels[i].dataset.label === 'all') {
-            labels[i].href = queryPrefix;
-            this.toggleClass('active', !activeLabel,  labels[i]);
-          } else {
-            labels[i].href = queryPrefix + '+more:' + labels[i].dataset.label;
-            this.toggleClass('active', labels[i].dataset.label === activeLabel, labels[i]);
-          }
-        }
 
         // Previous and Next buttons.
         queryPrefix += '&start=';

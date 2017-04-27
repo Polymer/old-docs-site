@@ -90,6 +90,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <h2>Search</h2>
           <p>Use the search bar above to search the site.</p>
         </div>
+
         <div class="yes-results" hidden>
           <h2>Search results for <span class="search-query"></span></h2>
           <div>
@@ -100,6 +101,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <a class="search-filter" data-label="all">All</a>
           </div>
           <br><br>
+
           <template is="dom-repeat">
             <div class="search-result">
               <span class="search-label" data-label$="{{item.label}}">{{item.label}}</span>
@@ -116,6 +118,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <div class="no-results" hidden>
           <h2>Search results for <span class="search-query"></span></h2>
+          <div>
+            Filter by:
+            <a class="search-filter" data-label="1.0">1.0</a>|
+            <a class="search-filter" data-label="2.0">2.0</a>|
+            <a class="search-filter" data-label="Blog">Blog</a>|
+            <a class="search-filter" data-label="all">All</a>
+          </div>
+          <br>
           <p>Your search — <span class="search-query small"></span> — did not match any documents.</p>
           <p>Suggestions:</p>
           <ul>
