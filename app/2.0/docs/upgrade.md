@@ -109,7 +109,7 @@ Example dependencies {.caption}
     "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0-rc.7"
   },
   "devDependencies": {
-    "web-component-tester": "6.0.0-prerelease.6"
+    "web-component-tester": "^6.0.0-prerelease.6"
   },
 ```
 
