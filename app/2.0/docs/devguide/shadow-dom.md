@@ -282,6 +282,9 @@ The ordering may be a little confusing at first. At each level, the light DOM ch
 slot `#parent-slot` in `<parent-element>`'s shadow DOM. The `#parent-slot` is then *assigned* to
 `#child-slot` in `<child-element>`'s shadow DOM.
 
+Note: these examples use `id` on slots for illustration purposes only.  This is not the same as
+the `name` attribute.  These slots are unnamed and are therefore default slots.
+
 The slot elements don't render, so the rendered tree is much simpler:
 
 
