@@ -97,7 +97,7 @@ important rules:
     you should memoize the modified template so you don't have to regenerate it when the
     getter is called.
 
-The following example shows a simple modification of a parent template:
+The following example shows a simple modification based on a parent template:
 
 ```js
 (function() {
@@ -106,8 +106,8 @@ The following example shows a simple modification of a parent template:
   class MyExtension extends MySuperClass {
     static get template() {
       if (!memoizedTemplate) {
-        // retrieve superclass template
-        memoizedTemplate = MySuperClass.template;
+        // create a clone of superclass template (`true` = "deep" clone)
+        memoizedTemplate = MySuperClass.template.cloneNode(true);
         // add a node to the template.
         let div = document.createElement('div');
         div.textContent = 'Hello from an extended template.'
@@ -299,8 +299,8 @@ Without empty text nodes:
 ```html
 <dom-module id="no-whitespace">
   <template strip-whitespace>
-    <div>A</div>
-    <div>B</div>
+    <div>Some Text</div>
+    <div>More Text</div>
   </template>
   <script>
     class NoWhitespace extends Polymer.Element {
