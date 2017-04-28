@@ -4,9 +4,6 @@ title: Routing with <app-route>
 
 <!-- toc -->
 
-**The routing elements are prerelease.** APIs may be subject to change.
-{.alert .alert-info}
-
 For client-side routing, App Toolbox uses the
 [`<app-route>`](https://www.webcomponents.org/element/PolymerElements/app-route) element to provide
 _modular routing_. Modular routing means that instead of having a central repository for all your

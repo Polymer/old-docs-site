@@ -43,7 +43,7 @@ Polymer CLI is an all-in-one command line tool for Polymer projects. In this tut
 
 1.  Install the Polymer CLI.
 
-        npm install -g polymer-cli@next
+        npm install -g polymer-cli
 
 ## Initialize your project from a template
 
