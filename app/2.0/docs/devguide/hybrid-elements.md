@@ -6,7 +6,7 @@ Hybrid elements are Polymer elements designed to run under both Polymer 1.x and 
 2 provides a backwards-compatible API for hybrid elements.
 
 Implementing a hybrid element requires some extra work, including maintaining multiple sets of
-bower dependencies, testing on both Polymer 1 and Polymer 2. Build hybrid elements if you're
+bower dependencies and testing on both Polymer 1 and Polymer 2. Build hybrid elements if you're
 creating a set of reusable elements and need to support customers using both Polymer 1.x and Polymer
 2.x. You may also find hybrid elements useful if you're trying to port a large application.
 
@@ -16,8 +16,7 @@ you can test your hybrid elements against multiple versions of Polymer. For an o
 
 ## Hybrid element overview
 
-A hybrid element is defined using a 2.x-style DOM template and a 1.x-style `Polymer()` function
-
+A hybrid element is defined using a 2.x-style DOM template and a 1.x-style `Polymer()` function call.
 
 The `Polymer` function sets up the prototype chain for your custom element,
 so you cannot set up your own prototype chain.
@@ -25,8 +24,8 @@ so you cannot set up your own prototype chain.
 -   In 1.x, your prototype is chained to the Polymer `Base` prototype (which
     provides Polymer value-added features).
 
--   In 2.0, Polymer uses your prototype to create a new class that extends
-    `Polymer.Element`. The class also  mixes in the `Polymer.LegacyElementMixin`, which adds
+-   In 2.x, Polymer uses your prototype to create a new class that extends
+    `Polymer.Element`. The class also mixes in the `Polymer.LegacyElementMixin`, which adds
     backward-compatbile APIs that are not included in `Polymer.Element.
 
 Hybrid elements must use a compatible subset of the 1.x API. (Version-specific API calls can be
@@ -38,16 +37,16 @@ as they follow the same API restrictions as hybrid elements.
 ## Working with DOM
 
 Hybrid elements need to run under Polymer 2.0—which uses the newer shadow DOM v1 specification, and
-and Polymer 1.x, which uses the earlier shadow DOM v0 specification.
+Polymer 1.x, which uses the earlier shadow DOM v0 specification.
 
 *   When writing the DOM template for a hybrid element, use the shadow DOM v1 style `<slot>` element
-    and `::slotted` selector.
+    and `::slotted()` selector.
 
 *   When manipulating DOM elements at runtime, use the `Polymer.dom` APIs for backward compatibility.
 
 ### DOM template and styling
 
-Hybrid elements must use the shadow DOM v1 style `<slot>` element, and `::slotted()` CSS selector
+Hybrid elements must use the shadow DOM v1 style `<slot>` element and `::slotted()` CSS selector
 in place of the `<content>` element and `::content` selector from shadow DOM v0.
 
 Note that `<slot>` is more restrictive than the v0 `<content>` mechanism:
@@ -158,7 +157,7 @@ When working with the DOM imperatively, use the Polymer 1.x APIs, such as `Polym
 Note that the initial distribution of light DOM children into slots may be delayed under the
 polyfill, as described in the [discussion of the `ready` callback](#ready-time).
 
-Also note that `Polymer.dom.flush` does not flush `observeNodes` callbacks in 2.0. This is most
+Also note that `Polymer.dom.flush` does not flush `observeNodes` callbacks in 2.x. This is most
 likely to affect unit tests using `Polymer.dom.flush` to ensure that shadow DOM children have been
 distributed.
 
