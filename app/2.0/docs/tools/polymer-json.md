@@ -129,9 +129,7 @@ The `sources` property is set as follows:
 Optional<br>
 Type: `Array` of `Build Configuration` objects
 
-You can configure how the CLI builds your application via the `builds` property. This is equivalent
-to passing different CLI flags to the build command, but storing them here will configure the build
-for every run:
+You can configure how the CLI [builds your application for production](optimize-for-production) via the `builds` property. This is equivalent to passing different CLI flags to the build command, but storing them here will configure the build for every run:
 
 * `name`: An optional name for your build. If multiple builds are defined, the `name` property is
 required.
