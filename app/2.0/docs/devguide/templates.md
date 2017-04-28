@@ -32,7 +32,7 @@ that includes the following properties:
 There are two ways to use a template repeater:
 
 *   **Inside a Polymer element or another Polymer-managed template.** Use the shorthand form
-    `<template is="dom-repeat>`.
+    `<template is="dom-repeat">`.
 
         <template is="dom-repeat" items="{{items}}">
           ...
@@ -571,7 +571,7 @@ elements are destroyed and re-stamped each time.
 There are two ways to use a conditional template:
 
 *   **Inside a Polymer element or another Polymer-managed template.** Use the shorthand form
-    `<template is="dom-repeat>`.
+    `<template is="dom-repeat">`.
 
         <template is="dom-if" if="{{condition}}">
           ...
