@@ -14,6 +14,8 @@ $ yarn add global polymer-cli
 $ npm install -g polymer-cli
 ```
 
+Also make sure that your version of Node.js is supported by the Polymer CLI. Run `node --version` to check the version of Node.js that you have installed and see our official [node version support policy](node-support) for more details.
+
 ## Overview {#overview}
 
 The Polymer CLI is our official command-line tool for Polymer projects and Web Components. Its features include:
