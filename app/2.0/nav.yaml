@@ -106,7 +106,7 @@
   - title: Advanced tools
     path: /2.0/docs/tools/advanced
     indent: True
-  - title: Services
+  - title: Web services
     path: /2.0/docs/tools/services
     indent: True
   - title: polymer.json specification

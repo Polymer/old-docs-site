@@ -4,16 +4,9 @@ title: Polymer CLI
 
 <!-- toc -->
 
-Polymer CLI is still pre-release. Some options may be subject to change.
-{.alert .alert-warning}
-
 ## Install {#install}
 
-1.  Install [Git](https://git-scm.com/downloads).
-
-1.  Install an [active LTS version of Node.js](https://github.com/nodejs/LTS) (4.x or 6.x). The
-current version (7.x) should work, but is not
-    officially supported.
+1.  Make sure you have installed a verson of Node.js supported by Polymer. Run `node --version` to to check the version of Node.js that you have installed and see our [official node version support policy](node-support) for more details.
 
 1.  Update npm.
 
