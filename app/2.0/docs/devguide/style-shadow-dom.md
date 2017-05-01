@@ -274,54 +274,49 @@ Styling with the `:host` selector is one of two instances where rules inside a s
 
 ### Style slotted content (distributed children)
 
-You can create slots in an element's template that are populated at runtime using this syntax:
+You can create **slots** in an element's template that are populated at runtime. For more information on slots, see the documentation on [shadow DOM and composition](/2.0/docs/devguide/shadow-dom#shadow-dom-and-composition).
 
-[See it on Plunker](http://plnkr.co/edit/MRN9blKg6A3w8G0RkyJD?p=preview)
+The basic syntax for incorporating slotted content looks like this:
+
+[See it on Plunker](http://plnkr.co/edit/bNvOvQqCEmC4DaoeNtwZ?p=preview)
 
 `x-foo.html` { .caption}
 ```html
 <dom-module id="x-foo">
   <template>
-    <style>
-      :host(.warning) p {
-        color: red;
-      }
-    </style>
-    <p>Make this text red if x-foo has class "warning", and black otherwise.</p>
+    <h1>
+      <slot name="title"></slot>
+    </h1>
   </template>
+  ...
 </dom-module>
-<script>
-  class XFoo extends Polymer.Element {
-    static get is() {
-      return "x-foo";
-    }
-  }
-  customElements.define(XFoo.is, XFoo);
-</script>
 ```
 
 `index.html` { .caption}
 ```html
 <link rel="import" href="x-foo.html">
 
-<x-foo class="warning"></x-foo>
-<x-foo></x-foo>
+<x-foo>
+  <span slot="title">I'm a heading!</span>
+</x-foo>
 ```
 
 To style slotted content, use the `::slotted()` syntax.
 
+**Note:** To work within the Shady CSS scoping shim limitations, and to ensure consistent cross-browser behavior, add a selector to the left of the `::slotted(.classname)` notation (for example, `p ::slotted(.classname)`.
+
 `::slotted(*)` selects all slotted content:
 
-[See it on Plunker](http://plnkr.co/edit/cGrbntuantGtqj7Poqft?p=preview)
+[See it on Plunker](http://plnkr.co/edit/pb0D6r15jvvxYVWsZ95U?p=preview)
 
 `x-foo.html` { .caption}
 ```html
 <dom-module id="x-foo">
   <template>
     <style>
-      ::slotted(*) {
+      p ::slotted(*), h1 ::slotted(*) {
         font-family: sans-serif;
-        color: green;
+        color:green;
       }
     </style>
     <h1>
@@ -331,7 +326,7 @@ To style slotted content, use the `::slotted()` syntax.
       <slot name='para'></slot>
     </p>
   </template>
-  ...
+	...
 </dom-module>
 ```
 
@@ -344,7 +339,7 @@ To style slotted content, use the `::slotted()` syntax.
 </x-foo>
 ```
 
-[See it on Plunkr](http://plnkr.co/edit/suVhRDAB5Rq7Q7T6zbMI?p=preview)
+[See it on Plunkr](http://plnkr.co/edit/Xb4j1r4wEgGuyUM9huFV?p=preview)
 
 You can select by element type:
 
@@ -353,17 +348,17 @@ You can select by element type:
 <dom-module id="x-foo">
   <template>
     <style>
-      ::slotted(h1) {
+      h1 ::slotted(h1) {
         font-family: sans-serif;
         color: green;
       }
-      ::slotted(p) {
+      p ::slotted(p) {
         font-family: sans-serif;
         color: blue;
       }
     </style>
-    <slot name='heading1'></slot>
-    <slot name='para'></slot>
+    <h1><slot name='heading1'></slot></h1>
+    <p><slot name='para'></slot></p>
   </template>
   ...
 </dom-module>
@@ -388,8 +383,8 @@ You can select by class:
 <dom-module id="x-foo">
   <template>
     <style>
-      ::slotted(.green) {
-        color: green;
+      p ::slotted(.green) {
+        color:green;
       }
     </style>
     <p>
@@ -417,15 +412,15 @@ You can select by class:
 
 And you can select by slot name:
 
-[See it on Plunker](http://plnkr.co/edit/FnFLnownBJc0Ur8vC6dd?p=preview)
+[See it on Plunker](http://plnkr.co/edit/PzypR0973pxg3fquWhco?p=preview)
 
 `x-foo.html` { .caption}
 ```html
 <dom-module id="x-foo">
   <template>
     <style>
-      slot[name='para1']::slotted(*) {
-        color: green;
+      p ::slotted([slot=para1]) {
+        color:green;
       }
     </style>
     <p>
@@ -444,7 +439,7 @@ And you can select by slot name:
 <link rel="import" href="x-foo.html">
 
 <x-foo>
-  <div slot="para1">I'm green!</div>
+  <div slot="para1">I'm green.</div>
   <div slot="para2">I'm not green.</div>
 </x-foo>
 ```
