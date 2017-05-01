@@ -8,9 +8,9 @@ title: Define an element
 ## Define a custom element {#register-element}
 
 
-To define a custom element, create a class that extends Polymer.Element, and pass the class to the customElements.define method. The class must have a static `is` getter that returns the HTML tag name for your custom element.
+To define a custom element, create a class that extends `Polymer.Element` and pass the class to the `customElements.define` method. The class must have a static `is` getter that returns the HTML tag name for your custom element.
 
-By specification, the custom element's name **must start with a lower-case ASCII letter, and must contain a dash (-)**.
+By specification, the custom element's name **must start with a lower-case ASCII letter and must contain a dash (-)**.
 
 Example: { .caption }
 
@@ -76,7 +76,7 @@ There are three main HTML imports for defining Polymer elements:
 | Import | Description |
 |---|-------|
 | `polymer-element.html` | Defines the `Polymer.Element` base class.  |
-| `legacy-element.html` | Defines the `Polymer.LegacyElement` base class, which extends `Polymer.Element` and adds 1.x compatible legacy API. Also defines the legacy `Polymer()` factory method for creating hybrid elements, (Includes `polymer-element.html`.)|
+| `legacy-element.html` | Defines the `Polymer.LegacyElement` base class, which extends `Polymer.Element` and adds 1.x compatible legacy API. Also defines the legacy `Polymer()` factory method for creating hybrid elements. (Includes `polymer-element.html`.)|
 | `polymer.html` | Includes the Polymer base classes plus the helper elements (`custom-style`, `dom-bind`, `dom-if`, and `dom-repeat`) that were included in the 1.x `polymer.html` bundle. (Includes `legacy-element.html`.) |
 
 For the smallest footprint, use the `polymer-element.html` import and import any required helper
@@ -223,13 +223,12 @@ finished creating and initializing the element's DOM.
   <tr>
     <td><code>attached</code></td>
     <td>Called after the element is attached to the document. Can be called multiple
-        times during the lifetime of an element. The first `attached`  callback
-        is guaranteed not to fire until after `ready`.
+        times during the lifetime of an element. The first <code>attached</code> callback
+        is guaranteed not to fire until after <code>ready</code>.
       <p>Uses include adding document-level event listeners. (For listeners local to the element, you can use declarative
         event handling, such as <a href="events.html#annotated-listeners">annotated
         event listeners</a> or the
-        <a href="events#event-listeners"><code>listeners</code> object</a>,
-        Polymer automatically adds listeners.)</p>
+        <a href="events#event-listeners"><code>listeners</code> object</a>.)</p>
      <p>Equivalent to native <code>connectedCallback</code>.</p>
       </p>
     </td>
