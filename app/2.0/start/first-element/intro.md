@@ -33,9 +33,9 @@ To follow this tutorial, you’ll need:
 -   The starting code, [available on GitHub](https://github.com/PolymerLabs/polymer-2-first-element.git).
 -   The [Polymer CLI](/2.0/docs/tools/polymer-cli) to run the demo.
 
-### Fork the starting code repo
+### Download the starting code
 
-1.  Fork the repo by running this command:
+1.  Download the starting code by running this command:
 
     ```bash
     git clone https://github.com/PolymerLabs/polymer-2-first-element.git
@@ -60,7 +60,7 @@ To follow this tutorial, you’ll need:
 
     The main file you’ll work with is `icon-toggle.html`, which contains the definition for your custom element.
 
-### Install Polymer CLI.
+### Install Polymer CLI
 
 Install the Polymer CLI to serve the demo locally.
 
@@ -76,9 +76,9 @@ Install the Polymer CLI to serve the demo locally.
 
         npm install -g polymer-cli
 
-### Install and run the demo.
+### Install dependencies and run the demo
 
-To install and run the element demo:
+To install the element's dependencies and run the demo:
 
 1.  Run `bower install` from the repo directory:
 
@@ -97,11 +97,13 @@ To install and run the element demo:
     icon-toggle.html
     </pre>
 
-2.  Run the Polymer development server from the repo directory:
+2.  Run the Polymer development server from the project directory:
 
         polymer serve
 
-3.  Open `localhost:8080/components/icon-toggle/demo/` in your browser.
+3.  `polymer serve` gives you two URLs to choose from - one for an application, another for reusable components. Open the URL for **reusable components**. 
+
+    <img src="/images/2.0/first-element/polymer-serve-urls.png" alt="Output from the polymer serve command, showing URLs" title="Local server URLs">
 
     (Note that the path uses `icon-toggle`—the
     component name listed in this element’s `bower.json` file—rather than the actual directory name.
@@ -111,11 +113,11 @@ To install and run the element demo:
     You’ll see some text where the icon toggles should appear. It doesn’t look
     very interesting, but it shows that everything is working.
 
-<img src="/images/2.0/first-element/starting-state.png" alt="Initial state of the demo. The demo shows three icon-toggle elements, two labeled 'statically-configured icon toggles' and one labeled 'data-bound icon toggle'. Since the icon toggles are not implemented yet, they appear as placeholder text reading 'Not much here yet'." title="Initial demo">
-
 **If this text doesn’t appear**, make sure you’re looking at the the demo folder itself, or at `demo/index.html`,
-not at `toggle-icon.html` or `toggle-icon-demo.html`.
+not at `toggle-icon.html` or `demo-element.html`.
 { .alert .alert-info }
+
+<img src="/images/2.0/first-element/starting-state.png" alt="Initial state of the demo. The demo shows three icon-toggle elements, two labeled 'statically-configured icon toggles' and one labeled 'data-bound icon toggle'. Since the icon toggles are not implemented yet, they appear as placeholder text reading 'Not much here yet'." title="Initial demo">
 
 If everything looks good, move on to [step 2](step-2).
 

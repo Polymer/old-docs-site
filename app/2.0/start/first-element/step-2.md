@@ -37,7 +37,7 @@ Starting code—HTML imports { .caption }
 
 Key information:
 
-*   The `link rel="import"` element is an <em>HTML import</em>, a new
+*   The `link rel="import"` element is an <em>HTML import</em>, a
     way of including resources in an HTML file.
 *   These lines import the Polymer library and another custom element called
     `iron-icon` that you'll use later in this step.

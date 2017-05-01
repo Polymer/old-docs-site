@@ -112,12 +112,12 @@ adding the following code inside the `<head>` tag of your `index.html` file:
 ```
 <custom-style>
   <style>
-    /* Define a document-wide default—will not override a :host rule in icon-toggle-demo */
+    /* Define a document-wide default—will not override a :host rule in  */
     html {
       --icon-toggle-outline-color: red;
     }
-    /* Override the value specified in icon-toggle-demo */
-    icon-toggle-demo {
+    /* Override the value specified in demo-element */
+    demo-element {
       --icon-toggle-pressed-color: blue;
     }
     /* This rule does not work! */

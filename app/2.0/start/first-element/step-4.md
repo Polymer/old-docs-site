@@ -113,7 +113,7 @@ toggle between its pressed and unpressed states.
 
 <img src="/images/2.0/first-element/databound-toggles.png" alt="Demo showing icon toggles with star and heart icons.">
 
-**Learn more: data binding.** To see how the demo works, open `icon-toggle-demo.html`
+**Learn more: data binding.** To see how the demo works, open `demo-element.html`
 and take a look around (if you downloaded the code, you'll find this file in the `demo` folder.)
 Yes, the demo for this element is _also_ an element. The
 element uses <a href="/2.0/docs/devguide/data-binding#two-way-bindings">two-way
