@@ -18,8 +18,6 @@ Example: { .caption }
 // define the element's class element
 class MyElement extends Polymer.Element {
 
-  static get is() { return 'my-element'; }
-
   // Element class can define custom element reactions
   connectedCallback() {
     super.connectedCallback();
@@ -33,7 +31,7 @@ class MyElement extends Polymer.Element {
 }
 
 // Associate the new class with an element name
-window.customElements.define(MyElement.is, MyElement);
+customElements.define('my-element', MyElement);
 
 // create an instance with createElement:
 var el1 = document.createElement('my-element');
@@ -96,11 +94,10 @@ You can add hybrid behaviors to your class-style element using the `Polymer.mixi
 
 ```
 class XClass extends Polymer.mixinBehaviors([MyBehavior, MyBehavior2], Polymer.Element) {
-  static get is() { return 'x-class'}
 
   ...
 }
-customElements.define(XClass.is, XClass);
+customElements.define('x-class', XClass);
 ```
 
 The `mixinBehavior` function also mixes in the Legacy APIs, the same as if you extended
