@@ -72,7 +72,7 @@ Polymer CLI documentation](/{{{polymer_version_dir}}}/docs/tools/polymer-cli).
 To install Polymer CLI:
 
    ```bash
-   npm install -g polymer-cli@next
+   npm install -g polymer-cli
    ```
 
 ### Install dependencies and run the demo
