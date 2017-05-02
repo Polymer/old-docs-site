@@ -1,5 +1,5 @@
 ---
-title: About Polymer 2.0
+title: What's new in 2.0
 ---
 
 <!-- toc -->
