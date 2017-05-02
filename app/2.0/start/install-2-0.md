@@ -17,8 +17,8 @@ The Polymer CLI requires Node.js, npm and Bower. For full installation instructi
 1. Install the Polymer CLI.
 
     ```bash
-	npm install -g polymer-cli
-	```
+    npm install -g polymer-cli
+    ```
 
 2. Verify your Polymer version.
 
