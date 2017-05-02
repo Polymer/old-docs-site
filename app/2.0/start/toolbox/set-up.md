@@ -18,7 +18,7 @@ Polymer CLI to initialize, serve, and build your project. You can also use it fo
 testing, but this tutorial won't cover those topics.
 
 Polymer CLI requires Node.js, npm and Bower. For full installation instructions, see [the 
-Polymer CLI documentation](../docs/tools/polymer-cli.md).
+Polymer CLI documentation](/{{{polymer_version_dir}}}/docs/tools/polymer-cli).
 
 To install Polymer CLI:
 
