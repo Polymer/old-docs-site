@@ -71,16 +71,26 @@ Example: A build object in `polymer.json` that minifies JavaScript, CSS and HTML
 
 ### Compiling ES6 to ES5 {#compiling}
 
-Polymer 2.x and its native elements are wirtten using ES6, allowing class definitions, inheritance and modular code. Support for ES6 is required in order for a browser to implement the [custom elements](https://developers.google.com/web/fundamentals/getting-started/primers/customelements) specification.
+Polymer 2.x and its native elements are written using ES6, allowing class definitions, inheritance and modular code. Support for ES6 is required in order for a browser to implement the [custom elements](https://developers.google.com/web/fundamentals/getting-started/primers/customelements) specification.
 
-Because Polymer 2.0 uses ES6 and HTML Custom Elements, it is always best to serve ES6 to browsers with full ES6 support (currently Chrome, Firefox and Safari Tech Preview), and compiled ES5 only to older browsers that don't support ES6.   See [this browser compatibility table](http://caniuse.com/#search=es6) for more up-to-date information on browser support for ES6.
+Because Polymer 2.0 uses ES6 and HTML Custom Elements, it is always best to serve ES6 to browsers with full ES6 support.
+
+These browsers fully support ES6:
+
+* Chrome or Chromium version 49 or later.
+* Opera 36 or later.
+* Safari or Mobile Safari 10 or later.
+* Edge 15.15063 or later.
+* Firefox 51 or later.
+
+You should serve compiled ES5 only to older browsers that don't support ES6.
 
 If you need to statically host your code and serve a single version to all browsers, however, you should compile all code to ES5. In this case, you can include a shim - a lightweight polyfill that lets compiled ES5 work on browsers that support native custom elements.
   
 ```bash
 polymer build --js-compile 
 ```
-This flag adds the webcomponents-es5-loader.js adapter for running ES5 code on browsers that support ES6.
+This flag adds the `custom-elements-es5-adapter.js` adapter for running ES5 code on browsers that support ES6.
 
 If you’re unsure what the best strategy is for your project, here’s a quick overview:
 
@@ -88,11 +98,13 @@ If you’re unsure what the best strategy is for your project, here’s a quick 
 |---|-------|------|
 | **Server** | Any server works, including static ones | Differential serving required |
 | **Deployed Code** | ES5 transpiled | ES6|
-| **Polyfill Loader** | webcomponents-es5-loader.js | webcomponents-loader.js|
+| **Polyfill Loader** | custom-elements-es5-adapter.js | webcomponents-loader.js|
 
 Differential serving means you must serve both ES5 and ES6, depending on client capabilities. `polymer serve` does this.
 
 According to the native [Custom Elements V1](https://html.spec.whatwg.org/multipage/scripting.html#custom-element-conformance) spec, elements must be defined using ES6 classes. ES5-defined elements will error in the presence of native Custom Elements V1 implementations (Chrome and Safari Tech Preview). Because of this, the best approach is to differentially serve ES6 to browsers that support it (almost all of them), and ES5 to those that do not.
+
+For more information, see the [Polymer 2.0 browser compatibility documentation](/{{{polymer_version_dir}}}/docs/browsers.md)
 
 ### Bundling resources to reduce the total number of HTTP requests made by the user's browser {#bundling}
   
