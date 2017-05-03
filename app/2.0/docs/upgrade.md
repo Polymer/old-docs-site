@@ -15,13 +15,13 @@ Polymer 2.0 supports several types of elements:
 *   2.x legacy elements use the `Polymer` factory method, and have most of the 1.0 APIs available to
     them, as well as any new 2.x APIs.
 *   2.x hybrid elements are elements defined using the legacy `Polymer` factory method, with extra
-    code for backwards compatibility with 1.x. They can run on Polymer 1.7+ as well as Polymer 2.x.
+    code for backwards compatibility with 1.x. They can run on Polymer 1.8+ as well as Polymer 2.x.
     As much as possible, hybrid elements should stick to the common subset of APIs supported by 1.x
     and 2.x. In some cases, they may need to conditionalize code to run in 1.x or 2.x.
     Maintaining hybrid elements is more complicated than maintaining class-based or legacy elements,
     since they need to be tested on both 1.x and 2.x.
 
-When porting a large project, you can update to Polymer 1.7 and upgrade elements to 2.0 hybrid style
+When porting a large project, you can update to Polymer 1.8 and upgrade elements to 2.0 hybrid style
 one at a time. After all of the elements have been upgraded, you can test your project against
 Polymer 2.0.
 
@@ -77,13 +77,19 @@ break the existing, 1.x version of your element or app.
 
 #### Update bower dependencies
 
-Update the Polymer version in `bower.json` to the latest RC version.
+Update the Polymer version in `bower.json` to the latest RC versions.
 
 | Component | Version |
-| Polymer   | `2.0.0-rc.1` |
-| webcomponentsjs | `1.0.0-rc.4` |
-| web-component-tester | `6.0.0-prerelease.5` |
+|-----------|---------|
+| Polymer   | `^2.0.0-rc.3` |
+| webcomponentsjs | `^1.0.0-rc.7` |
+| web-component-tester | `^6.0.0-prerelease.6` |
 | Polymer elements | `2.0-preview` |
+
+Note that Polymer, webcomponentsjs, and web-component-tester have prerelease tags. You can use
+a range like `^2.0.0-rc.3` to get all future prerelease tags. To use prerelease elements,
+you need to refer to the `2.0-preview` branch. To get  updates to elements, you may need to remove
+your `bower_components` folder and reinstall all components.
 
 Example dependencies {.caption}
 
@@ -99,11 +105,11 @@ Example dependencies {.caption}
     "iron-pages": "PolymerElements/iron-pages#2.0-preview",
     "iron-selector": "PolymerElements/iron-selector#2.0-preview",
     "paper-icon-button": "PolymerElements/paper-icon-button#2.0-preview",
-    "polymer": "Polymer/polymer#2.0.0-rc.1",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#1.0.0-rc.4"
+    "polymer": "Polymer/polymer#^2.0.0-rc.3",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0-rc.7"
   },
   "devDependencies": {
-    "web-component-tester": "6.0.0-prerelease.5"
+    "web-component-tester": "^6.0.0-prerelease.6"
   },
 ```
 
@@ -111,7 +117,7 @@ Run `bower install` to install the new dependencies.
 
 If you are upgrading the element to hybrid mode, you can add extra sets of bower dependencies so you
 can test against multiple versions of Polymer easily. For details, see
-[Manage dependencies for hybrid elements](hybrid-elements#dependency-variants).
+[Manage dependencies for hybrid elements](devguide/hybrid-elements#dependency-variants).
 
 ### Upgrade an element
 
@@ -242,8 +248,7 @@ your element's contract***, and everyone using your element will need to update 
 content implicitly, based on a tag name or an arbitrary selector like `:not(.header)`.
 {.alert .alert-info}
 
-Can't be upgraded automatically {.caption}
-
+Can't be upgraded directly {.caption}
 
 ```html
 <!-- element template -->
@@ -318,7 +323,7 @@ Document content {.caption}
 </parent-el>
 ```
 
-Shadow DOM of <`parent-el>` {.caption}
+Shadow DOM of `<parent-el>` {.caption}
 
 ```
 <child-el>
@@ -467,7 +472,7 @@ Example of ::slotted {.caption}
   <template>
     <style>
       #container ::slotted(*) {
-        color: #blue;
+        color: blue;
       }
       #container ::slotted(.warning) {
         color: red;
@@ -508,7 +513,7 @@ If you still have any `/deep/` or `::shadow` selectors in your project, it's tim
 They don't work at all in shadow DOM v1.
 
 There's no direct substitute for shadow-piercing selectors.To let users customize your element,
-custom CSS properties are probably the best option.
+[custom CSS properties](../devguide/custom-css-properties) are probably the best option.
 
 
 #### Replace root selectors {#replace-root-selectors}
@@ -744,8 +749,9 @@ import, you need to import `FlattenedNodesObserver` separately.
 ## CSS custom property shim {#css-custom-property-shim}
 
 Polymer 2.0 continues to use a shim to provide limited support for CSS custom properties on browsers
-that do not yet natively support custom properties. This lets an element expose a custom styling API.
-The shim is now included as part of the shady CSS polyfill, not in the Polymer library itself.
+that do not yet natively support custom properties (currently only Microsoft Edge and IE). This lets
+an element expose a custom styling API. The shim is now included as part of the shady CSS polyfill,
+not in the Polymer library itself.
 
 Support for custom CSS mixins has been moved to a second, optional shim.
 
@@ -802,7 +808,7 @@ Example: importing CSS mixin shim to an element {.caption}
 <!-- import Polymer.Element -->
 <link rel="import" href="../polymer/polymer-element.html">
 
-<dom-module is="x-custom">
+<dom-module id="x-custom">
   <template>
     <style>
       :host {
@@ -944,7 +950,7 @@ ready: function() {
 ```
 
 For more details on `observeNodes`, see
-[Observe added and removed children](/1.0/docs/devguide/shadow-dom#observe-nodes) in the Polymer 1
+[Observe added and removed children](../../1.0/docs/devguide/local-dom#observe-nodes) in the Polymer 1
 documentation.
 
 In order to force distribution synchronously, call `Polymer.dom.flush`. This can be useful for
@@ -1167,9 +1173,6 @@ The following APIs have been removed.
 *   `element.getNativePrototype`: Removed because it is no longer needed for internal code and was
     unused by users.
 
-*   `element.getNativePrototype`: Removed because it is no longer needed for internal code and was
-    unused by users.
-
 *   `element.beforeRegister`: This was originally added for metadata compatibility with ES6 classes.
     We now prefer users create ES6 classes by extending `Polymer.Element`, specifying metadata in
     the static `properties` and `observers` properties.
@@ -1230,7 +1233,7 @@ class MyElement extends Polymer.Element {
     ...
   }
 
-  myPropChanged(changeRecord) {
+  _myPropChanged(changeRecord) {
     ...
   }
   ...
@@ -1260,27 +1263,118 @@ Below are the general steps for defining a custom element using this new syntax:
 
     ```js
     // set tabindex if it's not already set
-    _ensureAttribute('tabindex', 0);
+    this._ensureAttribute('tabindex', 0);
     ```
 
+    Note that attributes can't be manipulated in the constructor.
 
-Note that `Polymer.Element` provides a cleaner base class without much of the sugared utility API
+### Common utility APIs
+
+`Polymer.Element` provides a cleaner base class without much of the sugared utility API
 that present on legacy elements, such as `fire`, `transform`, and so on. With web platform surface
 area becoming far more stable across browsers, we intend to add fewer utility methods and embrace
-the raw platform API more.  So when using  `Polymer.Element`, instead of using the legacy
+the raw platform API more.  This section describes replacements for some of the more common APIs.
+
+In addition, many features are still included in the library, but as optional modules or mixins
+rather than being bundled in with `Polymer.Element`. For details, see
+[Import optional features](#optional-features).
+
+
+
+#### async
+
+In many cases you can use the native platform features (such as `setTimeout` or
+`requestAnimationFrame` instead of the `async` call. Polymer 2.x also provides an optional
+[`Polymer.Async`](/{{{polymer_version_dir}}}/docs/api/namespaces/Polymer.Async) module that provides
+a set of Async APIs with a common interface. This is particularly useful for microtask timing, which
+is harder to time consistently across browsers.
+
+
+Before using `Polymer.Async`, you must import it:
+
+```
+<!-- import async module -->
+<link rel="import" href="/bower_components/polymer/lib/utils/async.html">
+```
+
+With one arguments, the legacy `async` method produced microtask timing:
+
+```
+this.async(someMethod);
+```
+
+The equivalent method with `Polymer.Async` looks like this:
+
+```
+// in JS, execute someMethod with microtask timing
+Polymer.Async.microtask.run(() => this.someMethod());
+```
+
+If using `async` with a timeout:
+
+```
+this.async(someMethod, 500);
+```
+
+The native `setTimeout` works fine:
+
+```js
+setTimeout(() => this.someMethod(), 500);
+```
+
+#### debounce
+
+The legacy `debounce` method isn't available on `Polymer.Element`. In many cases, you can trivially
+implement a debounced method that does what you want.
+
+You can also use the `Polymer.Debouncer` class.
+
+
+```html
+<!-- import debounce module -->
+<link rel="import" href="/bower_components/polymer/lib/utils/debounce.html">
+```
+
+```js
+this._debouncer = Polymer.Debouncer.debounce(this._debouncer,
+    Polymer.Async.timeOut.after(250),
+    () => { this.doSomething() });
+```
+
+#### fire
+
+Instead of using the legacy
 `this.fire('some-event')` API, use the equivalent platform APIs:
 
 
 ```js
-this.dispatchEvent(new CustomEvent('some-event', { bubbles: true }));
+this.dispatchEvent(new CustomEvent('some-event', { bubbles: true, composed: true }));
 ```
+
+The `fire` method sets the `bubbles` and `composed` properties by default. For more on using custom
+events, see [Fire custom events](events#custom-events).
 
 (The `CustomEvent` constructor is not supported on IE, but the webcomponents polyfills include a
 small polyfill for it so you can use the same syntax everywhere.)
 
-In addition, many features are still included in the library, but as optional modules or mixins
-rather than being bundled in with `Polymer.Element`. For details, see
-[Import optional features](#optional-features)
+#### importHref
+
+The `importHref` instance method is replaced by the static `Polymer.importHref` function. The only
+difference from the instance method is that the load and error callbacks don't have the `this`
+value bound to the element. You can work around this by using arrow functions:
+
+```js
+Polymer.importHref(this.resolveUrl('some-other-file.html'),
+    () => this.onLoad(loadEvent),
+    () => this.onError(errorEvent),
+    true /* true for async */);
+```
+
+#### $$
+
+The `$$` method isn't available. Use `this.shadowRoot.querySelector` instead.
+
+#### Using the legacy APIs
 
 If you want to upgrade to a class-based element but depend on some of the removed APIs, you can
 add most of the legacy APIs by using the `LegacyElementMixin`.
@@ -1319,7 +1413,7 @@ class mixins.
 
 You can add hybrid behaviors to your class-style element using the `Polymer.mixinBehavior` function:
 
-```
+```js
 class XClass extends Polymer.mixinBehaviors([MyBehavior, MyBehavior2], Polymer.Element) {
   static get is() { return 'x-class'}
 
@@ -1336,12 +1430,12 @@ The `mixinBehavior` function also mixes in the Legacy APIs, the same as if you e
 A number of features have been omitted from the base `Polymer.Element` class and packaged as
 separate, optional imports. These include:
 
--   [Gesture support](gesture-events).
--   [`<array-selector>` element](templates#array-selector)
--   [`<custom-style>` element](style-shadow-dom#custom-style)
--   [`<dom-bind>` element](templates#dom-bind)
--   [`<dom-if>` element](templates#dom-if)
--   [`<dom-repeat>` element](templates#dom-repeat)
+-   [Gesture support](devguide/gesture-events).
+-   [`<array-selector>` element](devguide/templates#array-selector)
+-   [`<custom-style>` element](devguide/style-shadow-dom#custom-style)
+-   [`<dom-bind>` element](devguide/templates#dom-bind)
+-   [`<dom-if>` element](devguide/templates#dom-if)
+-   [`<dom-repeat>` element](devguide/templates#dom-repeat)
 -   [`Polymer.RenderStatus`](/{{{polymer_version_dir}}}/docs/api/namespaces/Polymer.RenderStatus)
     module.
 

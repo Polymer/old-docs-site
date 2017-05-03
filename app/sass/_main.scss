@@ -64,7 +64,7 @@ devguide-shell {
 a {
   color: $blue-600;
   text-decoration: none;
-  font-weight: 400;
+  font-weight: 500;
 
   &:hover {
     text-decoration: underline;
@@ -201,7 +201,7 @@ section {
 h2 {
   font-family: 'Roboto Slab', 'Roboto', 'Noto', sans-serif;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 300;
   line-height: 38px;
   margin: 10px 0;
 
@@ -306,7 +306,7 @@ details {
 iron-doc-viewer, iron-doc-element, iron-doc-mixin, iron-doc-namespace {
   padding: 20px 40px;
   max-width: 800px;
-  
+
   @media (max-width: $mobile-media-breakpoint) {
     padding: 20px;
   }

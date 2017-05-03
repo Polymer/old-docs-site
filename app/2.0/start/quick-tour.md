@@ -31,7 +31,7 @@ element. The custom element's name **must start with an ASCII letter and
 contain a dash (-)**.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/PaCt2M?p=preview">
-  <demo-tab heading="proto-element.html">
+  <demo-tab heading="custom-element.html">
 <pre><code>{{{include_file('2.0/start/samples/custom-element/custom-element.html')}}}</code></pre>
   </demo-tab>
   <demo-tab heading="index.html">
@@ -59,7 +59,7 @@ You can use the `ready` callback for one-time initialization work after the elem
 Many elements include some internal DOM nodes to implement the element's UI and behavior.
 You can use Polymer's DOM templating to create a shadow DOM tree for your element.
 
-<demo-tabs selected="0" src="http://plnkr.co/edit/fTMpq3?p=preview">
+<demo-tabs selected="0" src="http://plnkr.co/edit/bVyU2T?p=preview">
   <demo-tab heading="dom-element.html">
 <pre><code>{{{include_file('2.0/start/samples/dom-element/dom-element.html')}}}</code></pre>
   </demo-tab>
@@ -97,7 +97,7 @@ with a styled `<div>` tag.
 So the `div` rule here only affects `<div>` tags inside `<picture-frame>`.
 {: .alert .alert-info }
 
-<p><a href="/2.0/docs/devguide/local-dom#dom-distribution" class="blue-button">
+<p><a href="/2.0/docs/devguide/shadow-dom#shadow-dom-and-composition" class="blue-button">
 Learn more: Composition & distribution</a></p>
 
 ### Use data binding
@@ -184,6 +184,10 @@ The template repeater (`dom-repeat`) is a specialized template that binds to an 
 
   <iframe frameborder="0" src="samples/employee-list/index.html" width="100%" height="100"></iframe>
 </demo-tabs>
+
+
+<p><a href="/2.0/docs/devguide/templates" class="blue-button">
+Learn more: Template repeater</a></p>
 
 ## Next steps
 

@@ -115,7 +115,7 @@ are automatically *observable*:
 
 *   Setting a subproperty of the element using a two-way data binding.
 
-    ```
+    ```html
     <local-dom-child name="{{hostProperty.subProperty}}"></local-dom-child>
     ```
 
@@ -142,7 +142,7 @@ Changes that **imperatively mutate an object or array are *not* observable**. Th
 
     ```js
     // unobservable change using native Array.push
-    this.users.push({ name: 'Maturin});
+    this.users.push({ name: 'Maturin'});
     ```
 
     Mutating the array doesn't invoke the setter on `users`, so it isn't automatically observable.
@@ -219,14 +219,14 @@ changes:
 
 *   You can atomically set multiple properties using the `setProperties` method.
 
-```
+```js
 this.setProperties({item: 'Orange', count: 12 });
 ```
 
 Single property accessors still propagate data synchronously. For example, given an observer that
 observes two properties, `a` and `b`:
 
-```
+```js
 // observer fires twice
 this.a = 10;
 this.b = 20;
@@ -264,7 +264,7 @@ in the previous section. If `<address-card>` is in the local DOM of the `<user-p
 the two paths can be connected with a data binding:
 
 
-```
+```html
 <dom-module id="user-profile">
   <template>
     …
@@ -404,14 +404,14 @@ The two types of data binding annotations are:
 *   **Automatic**, which allows upward (target to host) and downwards (host to target) data flow.
     Automatic bindings use double curly brackets (`{{ }}`):
 
-    ```
+    ```html
     <my-input value="{{name}}"></my-input>
     ```
 
 *   **One-way**, which only allows downwards data flow. Upward data flow is disabled. One-way bindings
     use double square brackets (`[[ ]]`).
 
-    ```
+    ```html
     <name-tag name="[[name]]"></name-tag>
     ```
 
@@ -572,7 +572,7 @@ Example 2: One-way binding (downward) { .caption }
 Changing the binding to a one-way binding `[[ ]]` produces a one-way binding. This example uses the
 same `x-target` element as example 1.
 
-```
+```html
 <dom-module id="x-host">
   <template>
     <!-- changes to "value" propagate downward to "someProp" on target -->
@@ -808,7 +808,7 @@ associate a **custom change notification event** with a data binding. For exampl
 text input, you could specify the `input` or `change` event:
 
 
-```
+```html
 <input value="{{firstName::change}}">
 ```
 
@@ -984,25 +984,49 @@ this.set('property.deep.path', 'new value');
 If an element's properties only take primitive values, like strings, numbers or booleans, you don't
 need to use `MutableData`. These values are always dirty-checked and `MutableData` would provide
 no benefit. This is true for most simple UI elements. `MutableData` is likely to be useful for
-complex reusable elements (like`dom-repeat` or `iron-list`), or for application-specific elements
+complex reusable elements (like `dom-repeat` or `iron-list`), or for application-specific elements
 that hold complex state information.
 
-Note that the `MutableData` mixin does not affect the element's shadow DOM children. Any element
-that doesn't use the `Polymer.MutableData` mixin, uses the default dirty-checking policy.
+Note that the `MutableData` mixin does not affect the element's shadow DOM children. **Any element
+that doesn't use the `Polymer.MutableData` mixin uses the default dirty-checking policy.**
 
-### Optional mutable data for reusable elements
-
-If you're building a reusable element that takes structured data, you can use the
-[`Polymer.OptionalMutableData`](/{{{polymer_version_dir}}}/docs/api/mixins/Polymer.OptionalMutableData)
-mixin. This mixin lets the element user select `MutableData` mode by setting the `mutableData`
-property on the element. For example, the `dom-repeat` element uses this mixin, so you can enable
-mutable data mode for a `dom-repeat` in your template:
+If you're using the `dom-repeat` element, you can enable mutable data mode by setting its
+`mutableData` property:
 
 ```html
-<!-- standard dom-repeat with MutableData behavior -->
+<!-- standard dom-repeat in MutableData mode -->
 <template is="dom-repeat" items="{{items}}" mutable-data>
   <div>{{item.name}}</div>
 </template>
 ```
+
+
+### Optional mutable data for reusable elements {#optional-mutable-data}
+
+If you're building a reusable element that takes structured data, you can use the
+[`Polymer.OptionalMutableData`](/{{{polymer_version_dir}}}/docs/api/mixins/Polymer.OptionalMutableData)
+mixin. This mixin lets the element user select `MutableData` mode by setting the `mutableData`
+property on the element.
+
+```js
+class MyStructuredDataElement extends Polymer.OptionalMutableData(Polymer.Element) {
+  static get is() { return 'my-structured-data-element' }
+}
+```
+
+The user can then use your element with either standard data flow, or the mutable data mode.
+
+```html
+<!-- custom element using standard data flow -->
+<my-structured-data-element data="{{someData}}">
+</my-structured-data-element>
+
+<!-- custom element using MutableData mode  -->
+<my-structured-data-element data="{{someData" mutable-data>
+</my-structured-data element>
+```
+
+
+The `dom-repeat` element is an example of an element built with this mixin.
 
 

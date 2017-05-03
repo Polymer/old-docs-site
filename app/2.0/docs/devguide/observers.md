@@ -1,4 +1,4 @@
-sa---
+---
 title: Observers and computed properties
 ---
 
@@ -34,7 +34,7 @@ The first call to an observer is deferred until the following criteria are met:
 After the inital call, **each observable change** to a dependency generates a call to the
 observer, **even if the new value for the dependency is <code>undefined</code>.**
 
-The allows the element to avoid running observers in the default case.
+This allows the element to avoid running observers in the default case.
 
 ### Observers are synchronous
 
@@ -44,8 +44,8 @@ can use the [`Polymer.Async`](/{{{polymer_version_dir}}}/docs/api/namespaces/Pol
 the [`Polymer.Debouncer`](/{{{polymer_version_dir}}}/docs/api/namespaces/Polymer.Debouncer) module to ensure that a task
 is only run once during a given time period.
 
-However, if you handle a data change asynchronously, note that the change data may be out of date by
-the time you handle it.
+However, if you handle a data change asynchronously, note that the parameters passed to the observer
+may not match the element's current property values.
 
 
 ## Simple observers {#simple-observers}
@@ -107,7 +107,7 @@ as observer arguments](#dependencies) for details.
 
 ## Complex observers {#complex-observers}
 
-Complex observers are declared in the `observers` array in the `config` object.
+Complex observers are declared in the `observers` array.
 Complex observers can monitor one or more paths. These
 paths are called the observer's *dependencies*.
 
@@ -139,7 +139,8 @@ depending on the path being observed.
 
 *   For array mutations the argument is a *change record* describing the change.
 
-*   For wildcard paths,
+*   For wildcard paths, the argument is a change record describing the change, including the
+    exact path that changed.
 
 Note that any of the arguments can be `undefined` when the observer is called.
 
@@ -255,7 +256,7 @@ Example: { .caption }
       // For a property or sub-property dependency, the corresponding
       // argument is the new value of the property or sub-property
       userNameChanged: function(name) {
-        if (user.name) {
+        if (name) {
           console.log('new name: ' + name);
         } else {
           console.log('user name is undefined');

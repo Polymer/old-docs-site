@@ -14,6 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 {% include 'templates/head-meta.html' %}
 </head>
 <body class="fullbleed" unresolved>
+  {% include 'templates/noscript.html' %}
   <pw-shell>
     {% include 'templates/site-nav.html' %}
     <style>
@@ -270,7 +271,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <p>With Web Components, you can create reusable custom elements that interoperate seamlessly with the browser’s built-in elements, or break your app up into right-sized components, making your code cleaner and less expensive to maintain.</p>
           <p>Polymer sprinkles a bit of sugar over the standard Web Components APIs, making it easier for you to get great results.</p>
           </div>
-          <a href="/1.0/docs/devguide/feature-overview" class="blue-button">About the Library</a>
+          <a href="/2.0/docs/devguide/feature-overview" class="blue-button">About the Library</a>
         </div>
 
         <div class="flex">
@@ -279,7 +280,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <p>Polymer App Toolbox helps you build and deliver cutting-edge Progressive Web Apps with minimal overhead and payload, by leveraging powerful web platform features like Web Components, Service Worker and HTTP/2.</p>
             <p>The Toolbox provides a component-based architecture, responsive layouts, a modular router, localization support, turnkey support for local storage and offline caching, and efficient delivery of unbundled app resources. Adopt these features individually, or use them together to build a full-featured Progressive Web App.</p>
           </div>
-          <a href="/1.0/toolbox/" class="blue-button">About the Toolbox</a>
+          <a href="/2.0/toolbox/" class="blue-button">About the Toolbox</a>
         </div>
       </div>
     </section>
@@ -336,8 +337,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="example-code flex">
             <pre><code class="lang-html">
   &lt;dom-module id=&quot;contact-card&quot;&gt;
-    &lt;style&gt;...&lt;/style&gt;
     &lt;template&gt;
+      &lt;style&gt;...&lt;/style&gt;
       &lt;slot&gt;&lt;/slot&gt;
       &lt;iron-icon icon=&quot;star&quot; hidden$=&quot;{{!starred}}&quot;&gt;&lt;/iron-icon&gt;
     &lt;/template&gt;
@@ -441,7 +442,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <section class="grey gradient-light page-index-logos">
       <div>
         <h2>Browser Compatibility</h2>
-        <div>The Polymer library and Polymer App Toolbox <a href="/1.0/docs/browsers">work in all major browsers</a> (Chrome, Firefox, IE, Edge, Safari, and Opera).</div>
+        <div>The Polymer library and Polymer App Toolbox <a href="/2.0/docs/browsers">work in all major browsers</a> (Chrome, Firefox, IE, Edge, Safari, and Opera).</div>
         <div class="page-index-browsers layout wrap justified spaced">
           <img src="/images/browsers/chrome_128x128.png" alt="chrome logo">
           <img src="/images/browsers/firefox_128x128.png" alt="firefox logo">

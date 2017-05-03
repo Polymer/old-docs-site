@@ -125,7 +125,7 @@ _pageChanged: function(page, oldPage) {
 In the logic above, the home view is built into the app shell, but the other
 views are demand-loaded fragments.
 
-Shop also uses [`dom-if`](/{{{polymer_version_dir}}}/docs/api/elements/dom-if) templates to lazily create views:
+Shop also uses [`dom-if`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.DomIf) templates to lazily create views:
 
 ```
 <div id="tabContainer" primary$="[[_shouldShowTabs]]" hidden$="[[!_shouldShowTabs]]">

@@ -63,24 +63,28 @@ developing.  You can serve the application using the Polymer CLI, and
 file changes you make will be immediately visible by refreshing
 your browser.
 
-    polymer serve --open
+    polymer serve
 
-The task above automatically opens up your default web browser and
-fetches the locally-hosted application (at `http://localhost:8080`).
+In the output from the `polymer serve` command, you'll see the URL of your locally-hosted application:
 
-![App Toolbox: Starter Kit Template](/images/1.0/toolbox/starter-kit.png)
+![Output from the polymer serve command](/images/2.0/toolbox/polymer-serve-output.png)
+
+Open this URL in your browser:
+
+![App Toolbox: Starter Kit Template](/images/2.0/toolbox/starter-kit-template.png)
 
 ## Project structure
 
 The diagram below is a brief summary of the files and directories within
 the project.
 
-```
+```text
 bower.json             # bower configuration
 bower_components/      # app dependencies
 images/
 index.html             # main entry point into your app
 manifest.json          # app manifest configuration
+package.json           # npm metadata file
 polymer.json           # Polymer CLI configuration
 service-worker.js      # auto-generated service worker
 src/                   # app-specific elements

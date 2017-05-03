@@ -32,7 +32,7 @@ that includes the following properties:
 There are two ways to use a template repeater:
 
 *   **Inside a Polymer element or another Polymer-managed template.** Use the shorthand form
-    `<template is="dom-repeat>`.
+    `<template is="dom-repeat">`.
 
         <template is="dom-repeat" items="{{items}}">
           ...
@@ -65,7 +65,7 @@ Example: { .caption }
 ```html
 <link rel="import" href="components/polymer/polymer-element.html">
 <! -- import template repeater -->
-<link rel="import" href="components/polymer/src/elements/dom-repeat.html">
+<link rel="import" href="components/polymer/lib/elements/dom-repeat.html">
 
 <dom-module id="x-custom">
   <template>
@@ -396,7 +396,7 @@ different name for the index property.
 
 ### Forcing synchronous renders {#synchronous-renders}
 
-Call [`render`](/{{{polymer_version_dir}}}/docs/api/elements/dom-repeat#method-render)
+Call [`render`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.DomRepeat#method-render)
 to force a `dom-repeat` template to synchronously render any changes to its
 data. Normally changes are batched and rendered asynchronously. Synchronous
 rendering has a performance cost, but can be useful in a few scenarios:
@@ -433,7 +433,7 @@ one of the following:
     For complex data structures, a deep clone may be required.
 
 *   If you don't have an exact set of changes, you can set the
-    [`mutableData`](/{{{polymer_version_dir}}}/docs/api/elements/dom-repeat#property-mutableData)
+    [`mutableData`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.DomRepeat#property-mutableData)
     property on the `dom-repeat` to disable dirty checking on the array.
 
       ```html
@@ -459,22 +459,22 @@ By default, `dom-repeat` tries to render all of the list items at once. If
 you try to use `dom-repeat` to render a very large list of items, the UI may
 freeze while it's rendering the list. If you encounter this problem, enable
 "chunked" rendering by setting
-[`initialCount`](/{{{polymer_version_dir}}}/docs/api/elements/dom-repeat#property-initialCount).
+[`initialCount`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.DomRepeat#property-initialCount).
 In chunked mode,
 `dom-repeat` renders `initialCount` items at first, then renders the rest of
 the items incrementally one chunk per animation frame. This lets the UI thread
 handle user input between chunks. You can keep track of how many items have
 been rendered with the
-[`renderedItemCount`](/{{{polymer_version_dir}}}/docs/api/elements/dom-repeat#property-renderedItemCount)
+[`renderedItemCount`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.DomRepeat#property-renderedItemCount)
 read-only property.
 
 `dom-repeat` adjusts the number of items rendered in each chunk to try and
 maintain a target framerate. You can further tune rendering by setting
-[`targetFramerate`](/{{{polymer_version_dir}}}/docs/api/elements/dom-repeat#property-targetFramerate).
+[`targetFramerate`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.DomRepeat#property-targetFramerate).
 
 You can also set a debounce time that must pass before a `filter` or `sort`
 function is re-run by setting the
-[`delay`](/{{{polymer_version_dir}}}/docs/api/elements/dom-repeat#property-delay)
+[`delay`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.DomRepeat#property-delay)
 property.
 
 ## Data bind an array selection (array-selector) {#array-selector}
@@ -498,9 +498,9 @@ If you're not importing `polymer.html`, import `array-selector.html` as shown in
 ```html
 <link rel="import" href="components/polymer/polymer-element.html">
 <! -- import template repeater -->
-<link rel="import" href="components/polymer/src/elements/dom-repeat.html">
+<link rel="import" href="components/polymer/lib/elements/dom-repeat.html">
 <!-- import array selector -->
-<link rel="import" href="components/polymer/src/elements/array-selector.html">
+<link rel="import" href="components/polymer/lib/elements/array-selector.html">
 
 <dom-module id="x-custom">
 
@@ -571,7 +571,7 @@ elements are destroyed and re-stamped each time.
 There are two ways to use a conditional template:
 
 *   **Inside a Polymer element or another Polymer-managed template.** Use the shorthand form
-    `<template is="dom-repeat>`.
+    `<template is="dom-repeat">`.
 
         <template is="dom-if" if="{{condition}}">
           ...
@@ -607,7 +607,7 @@ Example: { .caption }
 ```
 <link rel="import" href="components/polymer/polymer-element.html">
 <! -- import conditional template -->
-<link rel="import" href="components/polymer/src/elements/dom-if.html">
+<link rel="import" href="components/polymer/lib/elements/dom-if.html">
 
 <dom-module id="x-custom">
 
@@ -679,8 +679,8 @@ the `<dom-bind>` element itself as the binding scope.
 <head>
   <meta charset="utf-8">
   <script src="components/webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="polymer/src/elements/dom-bind.html">
-  <link rel="import" href="polymer/src/elements/dom-repeat.html">
+  <link rel="import" href="polymer/lib/elements/dom-bind.html">
+  <link rel="import" href="polymer/lib/elements/dom-repeat.html">
 
 </head>
 <body>

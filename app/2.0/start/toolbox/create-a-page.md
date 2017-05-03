@@ -19,8 +19,9 @@ your new view.
 
 2.  Add some scaffolding for a new custom element definition using Polymer:
 
-    ```
-    <link rel="import" href="../bower_components/polymer/polymer.html">
+    ```html
+    <!-- Load the Polymer.Element base class -->
+    <link rel="import" href="../bower_components/polymer/polymer-element.html">
 
     <dom-module id="my-new-view">
       <!-- Defines the element's style and local DOM -->
@@ -35,18 +36,18 @@ your new view.
 
         <h1>New view</h1>
       </template>
-      <!-- Creates the element's prototype and registers it -->
       <script>
+        // Your new element extends the Polymer.Element base class
         class MyNewView extends Polymer.Element {
           static get is() { return 'my-new-view'; }
         }
+        //Now, register your new custom element so the browser can use it
         customElements.define(MyNewView.is, MyNewView);
       </script>
     </dom-module>
-
     ```
 
-For now your element is very basic, and just has a `<h1>` that says "New View",
+For now your element is very basic, and just has a `<h1>` that says "New view",
 but we can return to it and make it more interesting later.
 
 ## Add the element to your app
@@ -168,10 +169,11 @@ just need to add a menu item in the left-hand drawer so that users can navigate 
     ...
     ```
 
-Your new page is now ready! Open your web browser and view it at
-[http://localhost:8080/new-view](http://localhost:8080/new-view).
+Your new page is now ready! Serve your app with `polymer serve`, then open the resulting URL in your browser.
 
-![Example of new page](/images/1.0/toolbox/starter-kit-newview.png)
+![Output from polymer serve command](/images/2.0/toolbox/polymer-serve-output.png)
+
+![Example new page](/images/2.0/toolbox/new-view.png)
 
 ## Register the page for the build
 

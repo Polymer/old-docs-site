@@ -33,19 +33,19 @@ window.customElements.define('my-element', MyElement);
 You can use a custom element just like you'd use a standard element:
 
 
-```
+```html
 <my-element></my-element>
 ```
 
 Or:
 
-```
+```js
 var myEl = document.createElement('my-element');
 ```
 
 Or:
 
-```
+```js
 var myEl = new MyElement();
 ```
 
@@ -53,7 +53,7 @@ The element's class defines its behavior and public API. The class must extend `
 of its subclasses (for example, another custom element).
 
 **Custom element names.** By specification, the custom element's name **must start with a lower-case
-ASCII letter, and must contain a dash (-)**. There's also a short list of prohibited element names
+ASCII letter and must contain a dash (-)**. There's also a short list of prohibited element names
 that match existing names. For details, see the [Custom elements core
 concepts](https://html.spec.whatwg.org/multipage/scripting.html#custom-elements-core-concepts)
 section in the HTML specification.
@@ -62,19 +62,17 @@ section in the HTML specification.
 Polymer provides a set of features on top of the basic custom element specification. To add these
 features to your element, extend Polymer's base element class, `Polymer.Element`:
 
-```
-<link rel="import" href="/bower_components/polymer/polymer_element.html">
+```html
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
 
 <script>
-class MyPolymerElement extends Polymer.Element {
-  static get is() { return 'my-polymer-element'; }
-}
+  class MyPolymerElement extends Polymer.Element {
+    ...
+  }
 
-window.customElements.define(MyPolymerElement.is, MyPolymerElement);
+  customElements.define('my-polymer-element', MyPolymerElement);
 </script>
 ```
-
-Polymer also requires the class to provide an `is` getter that returns the element name.
 
 Polymer adds a set of features to the basic custom element:
 
@@ -87,14 +85,14 @@ Polymer adds a set of features to the basic custom element:
 ## Custom element lifecycle {#element-lifecycle}
 
 The custom element spec provides a set of callbacks called "custom element reactions" that allow you
-to run user code is response to certain lifecycle changes.
+to run user code in response to certain lifecycle changes.
 
 <table>
   <tr>
-   <td>Reaction
-   </td>
-   <td>Called
-   </td>
+   <th>Reaction
+   </th>
+   <th>Description
+   </th>
   </tr>
   <tr>
    <td>constructor
@@ -132,7 +130,7 @@ to run user code is response to certain lifecycle changes.
 For each reaction, the first line of your implementation must be a call to the superclass
 constructor or reaction. For the constructor, this is simply the `super()` call.
 
-```
+```js
 constructor() {
   super();
   // …
@@ -142,7 +140,7 @@ constructor() {
 For other reactions, call the superclass method. This is required so Polymer can hook into the
 element's lifecycle.
 
-```
+```js
 connectedCallback() {
   super.connectedCallback();
   // …
@@ -166,7 +164,7 @@ Whenever possible, defer work until the `connectedCallback` or later instead of 
 The custom elements specification doesn't provide a one-time initialization callback. Polymer
 provides a `ready` callback, invoked the first time the element is added to the DOM.
 
-```
+```js
 ready() {
   super.ready();
   // When possible, use afterNextRender to defer non-critical
@@ -187,7 +185,7 @@ property values have been set. However, light DOM elements may not have been dis
 
 Don't use `ready` to initialize an element based on dynamic values, like property values or an
 element's light DOM children. Instead, use [observers](observers) to react to property changes, and
-`observeNodes` or the `slotChanged` event to react to children being added and removed from the
+`observeNodes` or the `slotchange` event to react to children being added and removed from the
 element.
 
 Related topics:
@@ -204,13 +202,13 @@ element causes any existing instances of that element to be *upgraded* to the cu
 
 For example, consider the following code:
 
-```
+```html
 <my-element></my-element>
 <script>
-class MyElement extends HTMLElement { ... };
+  class MyElement extends HTMLElement { ... };
 
-// ...some time much later...
-window.customElements.define('my-element', MyElement);
+  // ...some time much later...
+  customElements.define('my-element', MyElement);
 </script>
 ```
 
@@ -230,7 +228,7 @@ Elements have a *custom element state* that takes one of the following values:
 *   "uncustomized". The element does not have a valid custom element name. It is either a built-in
     element (`<p>`, `<input>`) or an unknown element that cannot become a custom element
     (`<nonsense>`)
-*   "undefined". The element is has a valid custom element name (such as "my-element"), but has not
+*   "undefined". The element has a valid custom element name (such as "my-element"), but has not
     been defined.
 *   "custom". The element has a valid custom element name and has been defined and upgraded.
 *   "failed". An attempt to upgrade the element failed (for example, because the class was invalid).
@@ -270,7 +268,7 @@ class ExtendedElement extends MyElement {
   }
 };
 
-window.customElements.define(ExtendedElement.is, ExtendedElement);
+customElements.define(ExtendedElement.is, ExtendedElement);
 ```
 
 **Polymer does not currently support extending built-in elements.** The custom elements spec
@@ -293,11 +291,9 @@ methods.
 
 ```js
 MyMixin = function(superClass) {
-
   return class extends superClass {
-
     constructor() {
-      super()
+      super();
       this.addEventListener('keypress', e => this.handlePress(e));
     }
 
@@ -306,16 +302,16 @@ MyMixin = function(superClass) {
         bar: {
           type: Object
         }
-      }
+      };
     }
 
     static get observers() {
-      return [ '_barChanged(bar.*)' ]
+      return [ '_barChanged(bar.*)' ];
     }
 
     _barChanged(bar) { ... }
 
-    handlePress(e) { console.log('key pressed: ' + e.charCode) }
+    handlePress(e) { console.log('key pressed: ' + e.charCode); }
   }
 }
 ```
@@ -332,7 +328,6 @@ class MyElement extends MyMixin(Polymer.Element) {
 ```
 
 This creates a new class defined by the `MyMixin` factory, so the inheritance hierarchy is:
-
 
 ```
 MyElement <= MyMixin(Polymer.Element) <= Polymer.Element

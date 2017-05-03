@@ -184,7 +184,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <a href="/1.0/toolbox/" name="1.0/toolbox" data-version="1.0">App Toolbox</a>
 
             <a href="/2.0/start/" name="2.0/start" data-version="2.0">Start</a>
-            <a href="/2.0/docs/about_20" name="2.0/docs" data-version="2.0">Polymer</a>
+            <a href="/2.0/docs/devguide/feature-overview" name="2.0/docs" data-version="2.0">Polymer</a>
             <a href="/2.0/toolbox/" name="2.0/toolbox" data-version="2.0">App Toolbox</a>
 
             <a href="/blog/" name="blog">Blog</a>
@@ -328,13 +328,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _onSearchInputChange: function() {
+      this.path = '/search/';
       this._searchParams = {'q':this.$.searchBox.value, 'start':null} ;
     },
 
     _doSearch: function() {
       if (this._searchParams.q) {
-        this.path = '/search/';
-
         this.$.cseSearch.params = {
           q: this._searchParams.q,
           key: 'AIzaSyCMGfdDaSfjqv5zYoS0mTJnOT3e9MURWkU',
@@ -356,7 +355,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _searchParamsChanged: function(newParams, oldParams) {
-      if (!!oldParams && oldParams.start !== newParams.start) {
+      // Either the whole query may have changed (because we added or changed
+      // the +more: search parameter, or the start page has changed in the
+      // same query)
+      if (!!oldParams && (newParams !== oldParams || oldParams.start !== newParams.start)) {
         this._doSearch();
       }
     },
@@ -448,6 +450,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _handleSearchResponse: function(event) {
+      var i;  // the linter which may not be named has issues.
       var response = event.detail.response;
 
       // Hide the existing section being displayed.
@@ -455,16 +458,47 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       resultsElement.querySelector('section > div:not([hidden])').hidden = true;
 
       var section;  // The results section that we're going to show.
+      var searchParams = this._searchParams.q;
+
+      // Ugh, so. we use the (undocumented) +more:version
+      // search parameter, which means we need to uhhh remove the +more
+      // keyword by hand if it already exists.
+      var matches = searchParams.match(/(.*) more:(1\.0|2\.0|Blog)/);
+      var activeLabel;
+      if (matches && matches.length > 2) {
+        searchParams = matches[1];
+        activeLabel = matches[2];
+      }
+
+      // Restricted search buttons.
+      var queryPrefix = '?q=' + searchParams;
+      var labels = resultsElement.querySelectorAll('a.search-filter');
+      for (i = 0; i < labels.length; i++) {
+        if (labels[i].dataset.label === 'all') {
+          labels[i].href = queryPrefix;
+          this.toggleClass('active', !activeLabel,  labels[i]);
+        } else {
+          labels[i].href = queryPrefix + '+more:' + labels[i].dataset.label;
+          this.toggleClass('active', labels[i].dataset.label === activeLabel, labels[i]);
+        }
+      }
 
       if (!response || !response.items) {
         section = resultsElement.querySelector('.no-results');
       } else if (response.items) {
         section = resultsElement.querySelector('.yes-results');
 
+        // Clean up the version bit for easier using.
+        for (var item = 0; item < response.items.length; item++) {
+          response.items[item].label = response.items[item].labels[0].displayName;
+        }
+
         // Populate the results in the dom-repeat.
         section.querySelector('template').items = response.items;
 
-        var queryPrefix = '?q=' + this._searchParams.q + '&start=';
+        // Previous and Next buttons.
+        queryPrefix += '&start=';
+
         var button = section.querySelector('.next-results');
         if (response.queries.nextPage) {
           this.toggleClass('button-hidden', false, button);
@@ -484,8 +518,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       // There's a bunch of places where we displayed what you searched for.
       var queryElements = section.querySelectorAll('.search-query');
-      for (var i = 0; i < queryElements.length; i++) {
-        queryElements[i].textContent = this._searchParams.q;
+      for (i = 0; i < queryElements.length; i++) {
+        queryElements[i].textContent = searchParams;
       }
 
       // Flawless victory.
@@ -585,7 +619,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         if (el) {
           el.scrollIntoView();
         } else {
-          var viewer = Polymer.dom(this).querySelector('iron-doc-viewer');
+          var viewer = Polymer.dom(this).querySelector(
+            'iron-doc-element, iron-doc-mixin, iron-doc-namespace');
           if (viewer)
             viewer.scrollToAnchor(hash);
         }

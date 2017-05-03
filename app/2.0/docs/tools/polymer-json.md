@@ -136,6 +136,7 @@ for every run:
 * `name`: An optional name for your build. If multiple builds are defined, the `name` property is
 required.
 * `addServiceWorker`: If `true`, generate a service worker for your application.
+* `addPushManifest`: If `true`, generate an [HTTP/2 Push Manifest](https://github.com/GoogleChrome/http2-push-manifest) for your application.
 * `swPrecacheConfig`: An optional configuration file for the generated service worker.
 * `insertPrefetchLinks`: If `true`, insert prefetch link elements into your fragments so that all
 dependencies are prefetched immediately.
@@ -174,4 +175,21 @@ And here is a configuration to generate two optimized builds: One bundled and on
     "css": {"minify": true},
     "html": {"minify": true}
   }]
+```
+
+### lint
+Optional<br>
+
+You can use this to configure how polymer-lint will lint your project both on the command line and in IDE plugins.
+
+* `rules`: An array of lint rules and rule collections to run on your project. For most projects, one of  `polymer-2`, `polymer-2-hybrid`, or `polymer-1` is all that's needed here. Run `polymer help lint` for the full list of options.
+* `ignoreWarnings`: An array of warning codes to ignore.
+
+For example:
+
+```json
+  "lint": {
+    "rules": ["polymer-2"],
+    "ignoreWarnings": []
+  }
 ```

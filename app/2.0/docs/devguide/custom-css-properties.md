@@ -22,7 +22,7 @@ When you create your own custom elements, you can use custom properties to build
 
 To use the interface of custom properties provided by an element author, look at the element's API documentation.
 
-For a good example, visit the [`<paper-checkbox>` API documentation](https://beta.webcomponents.org/element/PolymerElements/paper-checkbox/paper-checkbox)
+For a good example, visit the [`<paper-checkbox>` API documentation](https://www.webcomponents.org/element/PolymerElements/paper-checkbox/paper-checkbox)
 
 This code sample inserts a `<paper-checkbox>` element with its default styling:
 
@@ -189,7 +189,7 @@ to be mixed in.
 
 Use `@apply` to apply a mixin:
 
-<pre><code class="language-js">@apply(--<var>mixin-name</var>);</code></pre>
+<pre><code class="language-css">@apply --<var>mixin-name</var>;</code></pre>
 
 Defining a mixin is just like defining a custom property, but the
 value is an object that defines one or more rules:
@@ -210,10 +210,10 @@ Example: { .caption }
         padding: 4px;
         background-color: gray;
         /* apply a mixin */
-        @apply(--my-toolbar-theme);
+        @apply --my-toolbar-theme;
       }
       .title {
-        @apply(--my-toolbar-title-theme);
+        @apply --my-toolbar-title-theme;
       }
     </style>
     <span class="title">{{title}}</span>
@@ -267,7 +267,7 @@ Example usage of `my-toolbar`: { .caption }
 If an element doesn't override styling information, that element inherits styles from its parent:
 
 ```html
-<link rel="import" href="components/polymer/custom-style.html">
+<link rel="import" href="components/polymer/lib/elements/custom-style.html">
 <custom-style>
   <style is="custom-style">
     p {
@@ -289,7 +289,7 @@ If an element doesn't override styling information, that element inherits styles
 Create global styles by styling the the html element of your document:
 
 ```html
-<link rel="import" href="components/polymer/custom-style.html">
+<link rel="import" href="components/polymer/lib/elements/custom-style.html">
 <custom-style>
   <style is="custom-style">
     html {
