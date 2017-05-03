@@ -327,13 +327,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _onSearchInputChange: function() {
+      this.set('_sectionRoute.path', '/search/');
       this._searchParams = {'q':this.$.searchBox.value, 'start':null} ;
     },
 
     _doSearch: function() {
       if (this._searchParams.q) {
-        this.set('_sectionRoute.path', '/search/');
-
         this.$.cseSearch.params = {
           q: this._searchParams.q,
           key: 'AIzaSyCMGfdDaSfjqv5zYoS0mTJnOT3e9MURWkU',
