@@ -176,3 +176,20 @@ And here is a configuration to generate two optimized builds: One bundled and on
     "html": {"minify": true}
   }]
 ```
+
+### lint
+Optional<br>
+
+You can use this to configure how polymer-lint will lint your project both on the command line and in IDE plugins.
+
+* `rules`: An array of lint rules and rule collections to run on your project. For most projects, one of  `polymer-2`, `polymer-2-hybrid`, or `polymer-1` is all that's needed here. Run `polymer help lint` for the full list of options.
+* `ignoreWarnings`: An array of warning codes to ignore.
+
+For example:
+
+```json
+  "lint": {
+    "rules": ["polymer-2"],
+    "ignoreWarnings": []
+  }
+```

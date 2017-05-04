@@ -38,6 +38,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-bottom: 20px;
       }
 
+      .search-label {
+        color: white;
+        padding: 5px 10px;
+        text-align: center;
+        font-weight: bold;
+        border-radius: 3px;
+      }
+
+      a.search-filter {
+        padding: 0 10px;
+        display: inline-block;
+        cursor: pointer;
+      }
+
+      a.search-filter.active {
+        color: #f50057;
+      }
+
+      .search-label[data-label="1.0"] {
+        background-color: #37474f;
+      }
+
+      .search-label[data-label="2.0"] {
+        background-color: #1565c0;
+      }
+
+      .search-label[data-label="Blog"] {
+        background-color: #e8345a;
+      }
+
+      .search-label[data-label="all"] {
+        color: black;
+      }
+
       .results-button-container {
         display: flex;
         flex-direction: row;
@@ -56,11 +90,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <h2>Search</h2>
           <p>Use the search bar above to search the site.</p>
         </div>
+
         <div class="yes-results" hidden>
           <h2>Search results for <span class="search-query"></span></h2>
-          <br>
+          <div>
+            Filter by:
+            <a class="search-filter" data-label="1.0">1.0</a>|
+            <a class="search-filter" data-label="2.0">2.0</a>|
+            <a class="search-filter" data-label="Blog">Blog</a>|
+            <a class="search-filter" data-label="all">All</a>
+          </div>
+          <br><br>
+
           <template is="dom-repeat">
             <div class="search-result">
+              <span class="search-label" data-label$="{{item.label}}">{{item.label}}</span>
               <a href="{{item.link}}">{{item.title}}</a>
               <p class="snippet">{{item.snippet}}</p>
             </div>
@@ -74,6 +118,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <div class="no-results" hidden>
           <h2>Search results for <span class="search-query"></span></h2>
+          <div>
+            Filter by:
+            <a class="search-filter" data-label="1.0">1.0</a>|
+            <a class="search-filter" data-label="2.0">2.0</a>|
+            <a class="search-filter" data-label="Blog">Blog</a>|
+            <a class="search-filter" data-label="all">All</a>
+          </div>
+          <br>
           <p>Your search — <span class="search-query small"></span> — did not match any documents.</p>
           <p>Suggestions:</p>
           <ul>

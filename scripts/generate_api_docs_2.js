@@ -1,9 +1,5 @@
 /**
- * Run this script from inside the scripts/ directory because hydrolysis gets grumpy
- * about relative paths and Mercury being in retrograde.
- *
- * Usage:
- * cd scripts && node generate_api_docs_2.js
+ * Run from `npm run generate-api-docs`
  */
 
 const {Analyzer, FSUrlLoader, PackageUrlResolver} = require('polymer-analyzer');
@@ -18,21 +14,12 @@ const path = require('path');
 const apiDocsPath = '../app/2.0/docs/api/';
 const rootNamespace = 'Polymer';
 
-// TODO: Check out an actual release SHA to generate docs off of.g
+// TODO: Check out an actual release SHA to generate docs off of.
 const releaseSha = 'master';
 
 process.on('unhandledRejection', (reason, p) => {
   console.log('Unhandled Rejection at: Promise ', p, ' reason: ', reason);
 });
-
-/**
- * Everything is chained, so running this will do the following:
- * - delete ./temp
- * - install polymer in ./temp
- * - delete all the html files in ../app/1.0/devguide/api/
- * - run hydrolysis on polymer
- * - generate the files in ../app/1.0/devguide/api/
- */
 
 cleanUp(installPolymer);
 // installPolymer();
@@ -170,10 +157,10 @@ function runAnalyzer() {
       // We know we just have 1 namespace: Polymer
       generateNamespace(metadata.namespaces[0]);
 
-//       cleanUp(function() {
-//         console.log('Done.');
-//         console.log('\nAPI docs completed with great success');
-      // });
+      cleanUp(function() {
+        console.log('Done.');
+        console.log('\nAPI docs completed with great success');
+      });
     }, (e) => {
       console.error('Error running analyzePackage()', e);
     });

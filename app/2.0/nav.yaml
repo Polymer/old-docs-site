@@ -30,6 +30,18 @@
     indent: True
   - title: 5. Theming with custom properties
     path: /2.0/start/first-element/step-5
+  - header: Build an app
+  - title: 1. Get set up
+    path: /2.0/start/toolbox/set-up
+    indent: True
+  - title: 2. Create a new page
+    path: /2.0/start/toolbox/create-a-page
+    indent: True
+  - title: 3. Add some elements
+    path: /2.0/start/toolbox/add-elements
+    indent: True
+  - title: 4. Deploy
+    path: /2.0/start/toolbox/deploy
     indent: True
   - endheader: True
 
@@ -39,8 +51,8 @@
   items:
   - title: Feature overview
     path: /2.0/docs/devguide/feature-overview
-  - header: What's new
-  - title: About Polymer 2.0
+  - header: About this release
+  - title: What's new in 2.0
     path: /2.0/docs/about_20
     indent: True
   - title: Upgrade guide
@@ -103,6 +115,17 @@
     path: /2.0/docs/devguide/templates
     indent: True
   - endheader: True
+  - header: Browser support
+  - title: Overview
+    path: /2.0/docs/browsers
+    indent: True
+  - title: Polyfills TBD
+    path: /2.0/docs/polyfills
+    indent: True
+  - title: ES6 TBD
+    path: /2.0/docs/es6
+    indent: True
+  - endheader: True
   - header: Tools
   - title: Tools overview
     path: /2.0/docs/tools/overview
@@ -122,9 +145,6 @@
 #  - title: Publish an element
 #    path: /2.0/docs/tools/reusable-elements
 #    indent: True
-  - title: Advanced tools
-    path: /2.0/docs/tools/advanced
-    indent: True
   - title: Services
     path: /2.0/docs/tools/services
     indent: True
@@ -136,9 +156,6 @@
     indent: True
   - endheader: True
   - header: Resources
-  - title: Browser compatibility
-    path: /2.0/docs/browsers
-    indent: True
   - title: Glossary
     path: /2.0/docs/glossary
     indent: True
@@ -183,7 +200,7 @@
     path: /2.0/toolbox/case-study
     indent: True
   - title: "News"
-    path: /1.0/toolbox/news-case-study
+    path: /2.0/toolbox/news-case-study
     indent: True
   - endheader: true
 

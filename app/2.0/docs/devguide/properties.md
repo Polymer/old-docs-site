@@ -36,8 +36,6 @@ Example { .caption }
 ```js
 class XCustom extends Polymer.Element {
 
-  static get is() {return 'x-custom'; }
-
   static get properties() {
     return {
       user: String,
@@ -51,7 +49,7 @@ class XCustom extends Polymer.Element {
   }
 }
 
-customElements.define(XCustom.is, XCustom);
+customElements.define('x-custom', XCustom);
 ```
 
 The `properties` object supports the following keys for each property:
@@ -188,8 +186,6 @@ Example: { .caption }
 <script>
   class XCustom extends Polymer.Element {
 
-    static get is() {return 'x-custom'; }
-
     static get properties() {
       return {
         user: String,
@@ -207,7 +203,7 @@ Example: { .caption }
     }
   }
 
-  customElements.define(XCustom.is, XCustom);
+  customElements.define('x-custom', XCustom);
 </script>
 
 <x-custom user="Scott" manager></x-custom>
@@ -228,8 +224,6 @@ Example: { .caption }
 
   class XCustom extends Polymer.Element {
 
-    static get is() {return 'x-custom'; }
-
     static get properties() {
       return {
         userName: String
@@ -237,7 +231,7 @@ Example: { .caption }
     }
   }
 
-  customElements.define(XCustom.is, XCustom);
+  customElements.define('x-custom', XCustom);
 </script>
 
 <x-custom user-name="Scott"></x-custom>
@@ -287,8 +281,6 @@ Example: { .caption }
 ```js
 class XCustom extends Polymer.Element {
 
-  static get is() {return 'x-custom'; }
-
   static get properties() {
     return {
       mode: {
@@ -336,8 +328,6 @@ generated setter of the convention <code>\_set<var>Property</var>(value)</code>.
 ```
 class XCustom extends Polymer.Element {
 
-  static get is() {return 'x-custom'; }
-
   static get properties() {
     return {
       response: {
@@ -369,8 +359,6 @@ attribute of the same name.
 
 ```js
 class XCustom extends Polymer.Element {
-
-  static get is() {return 'x-custom'; }
 
   static get properties() {
     return {

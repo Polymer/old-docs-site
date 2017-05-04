@@ -10,7 +10,7 @@ Similar to standard DOM elements, Polymer elements can be:
 * Instantiated using a constructor or `document.createElement`.
 * Configured using attributes or properties.
 * Populated with internal DOM inside each instance.
-* Responsive to property and attribute changes (for example, by populating data into the DOM, or firing an event).
+* Responsive to property and attribute changes.
 * Styled with internal defaults or externally.
 * Responsive to methods that manipulate its internal state.
 
@@ -68,7 +68,7 @@ This guide divides the features into the following groups:
     to integrate your element's property API with the Polymer data system.
 
 *   [Shadow DOM](shadow-dom). Shadow DOM provides a local, encapsulated DOM tree for your element.
-    Polymer can automatically create and populate a shadow tree for your element from a DOM 
+    Polymer can automatically create and populate a shadow tree for your element from a DOM
     template.
 
 *   [Events](events). Polymer provides a declarative syntax for attaching event listeners to
