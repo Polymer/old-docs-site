@@ -12,6 +12,12 @@ title: Polymer CLI
 
         npm install npm@latest -g
 
+1.  Ensure that Git is installed. 
+
+        git --version
+    
+    If it isn't, you can find it on the [Git downloads page](https://git-scm.com/downloads).
+
 1.  Install the latest version of Bower.
 
         npm install -g bower
