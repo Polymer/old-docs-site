@@ -13,6 +13,23 @@
     path: /2.0/start/quick-tour
   - title: Install the Release Candidate
     path: /2.0/start/install-2-0
+  - title: Get started
+    path: /2.0/start/index
+  - header: Build an element
+  - title: 1. Get set up
+    path: /2.0/start/first-element/intro
+    indent: True
+  - title: 2. Add local DOM
+    path: /2.0/start/first-element/step-2
+    indent: True
+  - title: 3. Data binding & properties
+    path: /2.0/start/first-element/step-3
+    indent: True
+  - title: 4. React to input
+    path: /2.0/start/first-element/step-4
+    indent: True
+  - title: 5. Theming with custom properties
+    path: /2.0/start/first-element/step-5
   - header: Build an app
   - title: 1. Get set up
     path: /2.0/start/toolbox/set-up
