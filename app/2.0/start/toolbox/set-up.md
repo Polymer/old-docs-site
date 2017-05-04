@@ -17,7 +17,7 @@ Polymer CLI is an all-in-one command line tool for Polymer projects. In this tut
 Polymer CLI to initialize, serve, and build your project. You can also use it for linting and 
 testing, but this tutorial won't cover those topics.
 
-Polymer CLI requires Node.js, npm and Bower. For full installation instructions, see [the 
+Polymer CLI requires Node.js, npm, Git and Bower. For full installation instructions, see [the 
 Polymer CLI documentation](/{{{polymer_version_dir}}}/docs/tools/polymer-cli).
 
 To install Polymer CLI:
