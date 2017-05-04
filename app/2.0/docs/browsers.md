@@ -16,6 +16,78 @@ broad web components support, Polymer uses the [polyfills](https://github.com/we
 [webcomponents.org](http://webcomponents.org). They're lightweight, work well, and provide the
 feature support Polymer requires.
 
+With the polyfills, Polymer works in these browsers:
+
+<style>
+td:not(.feature-title),th {
+  text-align: center;
+}
+td.native {
+  background-color: green;
+  color: white;
+}
+td.partial {
+  background-color: #2dd42d;
+  color: white;
+}
+td.polyfill {
+  background-color: darkorange;
+  color: black;
+}
+</style>
+
+<table>
+<thead>
+  <tr><th></th><th>Chrome</th><th>Firefox</th><th>IE&nbsp;11+/<br>Edge</th><th>Safari 9+</th><th>Chrome
+ <br>(Android)</th><th>Safari<br>(iOS&nbsp;9+)</th></tr>
+</thead>
+<tr>
+  <td class="feature-title"><a href="http://www.html5rocks.com/en/tutorials/webcomponents/template/">Template</a></td>
+  <td class="native">Native</td>
+  <td class="native">Native</td>
+  <td class="partial">Partial</td>
+  <td class="native">Native</td>
+  <td class="native">Native</td>
+  <td class="native">Native</td>
+</tr>
+<tr>
+  <td class="feature-title"><a href="http://www.html5rocks.com/en/tutorials/webcomponents/imports/">HTML Imports</a></td>
+  <td class="native">Native</td>
+  <td class="polyfill">Polyfill</td>
+  <td class="polyfill">Polyfill</td>
+  <td class="polyfill">Polyfill</td>
+  <td class="native">Native</td>
+  <td class="polyfill">Polyfill</td>
+</tr>
+<tr>
+  <td class="feature-title"><a href="http://www.html5rocks.com/en/tutorials/webcomponents/customelements/">Custom Elements</a></td>
+  <td class="native">Native</td>
+  <td class="polyfill">Polyfill</td>
+  <td class="polyfill">Polyfill</td>
+  <td class="partial">Partial</td>
+  <td class="native">Native</td>
+  <td class="partial">Partial</td>
+</tr>
+<tr>
+  <td class="feature-title"><a href="http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/">Shadow DOM</a></td>
+  <td class="native">Native</td>
+  <td class="polyfill">Polyfill</td>
+  <td class="polyfill">Polyfill</td>
+  <td class="partial">Partial</td>
+  <td class="native">Native</td>
+  <td class="partial">Partial</td>
+</tr>
+</table>
+
+Notes:
+
+-   Templates are supported in Edge, but not IE.
+-   Safari supports custom elements starting in 10.3.
+-   Safari supports shadow DOM starting in 10.2, but as of 10.3 there are still some known issues.
+-   Older versions of the Android Browser may run into some issues - please file an
+    [issue](https://github.com/polymer/polymer/issues) if you run into a problem on this browser.
+    Chrome for Android is supported.
+
 See the documentation on [polyfills](polyfills) for more information.
 
 ## ES6
