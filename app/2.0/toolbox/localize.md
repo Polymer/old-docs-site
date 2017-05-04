@@ -4,7 +4,7 @@ title: Localization
 
 <!-- toc -->
 
-**The localization behavior is prerelease.** APIs may be subject to change.
+**The localization behavior is prerelease.** APIs may be subject to change. <--- Still prerelease???
 {.alert .alert-info}
 
 [`Polymer.AppLocalizeBehavior`](https://www.webcomponents.org/element/PolymerElements/app-localize-behavior)

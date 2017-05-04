@@ -78,6 +78,7 @@ extra CSS, it can be fixed to the top of the page. The following [sample](http:/
     <link rel="import" href="app-layout/demo/sample-content.html">
 
     <custom-style>
+      <!-- style is="custom-style" is not a thing in 2.0, right? -->
       <style is="custom-style">
         body {
           /* No margin on body so toolbar can span the screen */
@@ -238,13 +239,6 @@ The `<app-header>` element uses the document scroller used by default. On mobile
 means the browser can hide the URL bar as you scroll down the page. However, since there's only one
 document scroller, if you switch between pages of content, your app needs to manage the scroll
 position on each page.
-
-**Manage multiple scrolling views.**
-If you're using something like `<iron-pages>` to switch views, you can use
-[`<app-scroll-position>`](https://www.webcomponents.org/element/PolymerElements/app-layout/app-scroll-position)
-to track scroll position for each of the views. See the API docs for sample usage.
-`<app-scroll-position>` was renamed in release 2.0 (replacing `<app-scrollpos-control>`).
-{.alert .alert-info}
 
 You can use an element scroller by specifying a `scrollTarget` property on `<app-header>`:
 
