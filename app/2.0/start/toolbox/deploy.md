@@ -195,3 +195,10 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
     The URL to your live site is listed in the output. You can also open
     the site in your default browser by running `firebase open hosting:site`.
 
+#### Optional: Edit your Firebase configuration to enable server push
+
+The App Toolbox uses the [PRPL pattern](/{{{polymer_version_dir}}}/toolbox/server#prpl-pattern) to take advantage of server push functionality, which Firebase now supports.
+
+Server push is a feature enabled by HTTP/2 - a revision of the HTTP protocol that enhances Web performance. Server push allows a web server to detect that a client will require resources, and pre-emptively send those resources. See the [Web Fundamentals article on HTTP/2](https://developers.google.com/web/fundamentals/performance/http2/) for more information.
+
+You can enable server push in your Firebase project with another edit to your firebase.json file. See [the Firebase blog post on HTTP/2 and server push](https://firebase.googleblog.com/2016/09/http2-comes-to-firebase-hosting.html) for instructions.
