@@ -114,8 +114,11 @@
   - title: Optimize for production
     path: /2.0/docs/tools/optimize-for-production
     indent: True
-  - title: Deploy your app
-    path: /2.0/docs/tools/deploy
+  - title: Serve your app
+    path: /2.0/toolbox/serve
+    indent: True
+  - title: The PRPL pattern
+    path: /2.0/toolbox/prpl
     indent: True
 #  - title: Publish an element
 #    path: /2.0/docs/tools/reusable-elements
