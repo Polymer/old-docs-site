@@ -720,7 +720,7 @@ If your element doesn't do any imperative DOM manipulation, you can skip this se
 
 **Hybrid elements** need to keep using the `Polymer.dom` API. However, note that in 2.0, for native
 methods and properties that return a `NodeList,` **<code>Polymer.dom</code> APIs also return
-<code>NodeList</code>, not <code>Array</code>.</strong> If you're using any native
+<code>NodeList</code>, not <code>Array</code>.** If you're using any native
 <code>Array</code> methods  on the returned object, you need to update your code.
 
 **Legacy elements** may continue using Polymer DOM APIs or move to native methods as described in
@@ -781,7 +781,7 @@ this._observer = Polymer.dom(this).observeNodes(this._nodesChanged);
 
 2.x {.caption}
 
-```
+```js
 this._observer = new Polymer.FlattenedNodesObserver(this._nodesChanged);
 ```
 
