@@ -238,10 +238,19 @@ development workflow while you build your element or app project.
 The commands are intended for both element and app projects unless otherwise
 noted.
 
+* [`polymer install`](#install)
 * [`polymer test`](#tests)
 * [`polymer serve`](#serve)
 * [`polymer lint`](#lint)
 * [`polymer build` (for app projects only)](#build)
+
+### `polymer install` {#install}
+
+Installs Bower dependencies. Running `polymer install` is equivalent to running `bower install`. 
+
+The `--variants` flag allows you to install dependency variants. See the documentation on [managing dependencies for hybrid elements](/{{{polymer_version_dir}}}/docs/devguide/hybrid-elements#dependency-variants) for more information.
+
+The `--offline` flag tells the install command not to hit the network to retrieve components. If components are not cached, the install will fail.
 
 ### `polymer test` {#tests}
 
