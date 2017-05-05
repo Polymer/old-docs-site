@@ -169,9 +169,7 @@ just need to add a menu item in the left-hand drawer so that users can navigate 
     ...
     ```
 
-Your new page is now ready! Serve your app with `polymer serve`, then open the resulting URL in your browser.
-
-![Output from polymer serve command](/images/2.0/toolbox/polymer-serve-output.png)
+Your new page is now ready! Serve your app with `polymer serve --open`.
 
 ![Example new page](/images/2.0/toolbox/new-view.png)
 

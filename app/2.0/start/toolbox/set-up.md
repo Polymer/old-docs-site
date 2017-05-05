@@ -44,16 +44,9 @@ developing.  You can serve the application using the Polymer CLI, and
 file changes you make will be immediately visible by refreshing
 your browser.
 
-    polymer serve
+To serve your project:
 
-In the output from the `polymer serve` command, you'll see the URL of your locally-hosted 
-application:
-
-![Output from the polymer serve command](/images/2.0/toolbox/polymer-serve-output.png)
-
-Open this URL in your browser:
-
-![App Toolbox: Starter Kit Template](/images/2.0/toolbox/starter-kit-template.png)
+    polymer serve --open
 
 ## Project structure
 
