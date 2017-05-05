@@ -1,5 +1,5 @@
 ---
-title: Services
+title: Web services
 ---
 
 <!-- toc -->

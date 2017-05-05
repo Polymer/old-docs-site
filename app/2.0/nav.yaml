@@ -145,7 +145,7 @@
 #  - title: Publish an element
 #    path: /2.0/docs/tools/reusable-elements
 #    indent: True
-  - title: Services
+  - title: Web services
     path: /2.0/docs/tools/services
     indent: True
   - title: polymer.json specification
