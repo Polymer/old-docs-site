@@ -30,6 +30,8 @@
     indent: True
   - title: 5. Theming with custom properties
     path: /2.0/start/first-element/step-5
+    indent: True
+  - endheader: True
   - header: Build an app
   - title: 1. Get set up
     path: /2.0/start/toolbox/set-up
