@@ -164,6 +164,9 @@
   - title: API Reference
     path: /2.0/docs/api/
     indent: True
+  - title: Global settings
+    path: /2.0/docs/devguide/settings
+    indent: True
   - endheader: True
 
 - section: App Toolbox

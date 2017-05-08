@@ -13,11 +13,19 @@ There are two main ways to load the polyfills:
 
 *   `webcomponents-lite.js` includes all of the polyfills necessary to run on any of the supported
     browsers.
-*   `webcomponents-loader.js` performs a runtime feature-detection and loads just the required
+*   `webcomponents-loader.js` performs runtime feature-detection and loads just the required
     polyfills.
+
+In both cases, the polyfills should be loaded just once. The polyfills are generally loaded from the
+application entrypoint (`index.html` or similar).
 
 References:
 *   [webcomponentsjs on GitHub](https://github.com/webcomponents/webcomponentsjs)
+
+## Polyfill settings {#settings}
+
+
+
 
 ## Progress of native browser support
 
