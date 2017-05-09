@@ -24,6 +24,87 @@ References:
 
 ## Polyfill settings {#settings}
 
+For testing purposes, you can force the polyfills on for browsers that have native support. You can
+force a given polyfill by adding a JavaScript snippet before you import the polyfills:
+
+```html
+<script>
+  // Force all polyfills on
+  window.customElements && window.customElements.forcePolyfill = true;
+  ShadyDOM = { force: true };
+  ShadyCSS = { shimcssproperties: true};
+</script>
+<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+```
+
+The `webcomponents-lite.js` also supports forcing the polyfills on by adding query parameters to
+the app's URL:
+
+`https://www.example.com/my-application/view1?wc-ce&wc-shadydom&wc-shimcssproperties`
+
+The following table lists the JavaScript snippets and query parameters for each polyfill.
+<table>
+<thead>
+<tr>
+  <td>
+    Polyfill
+  </td>
+  <td>
+    Description
+  </td>
+</tr>
+</thead>
+<tbody>
+ <tr>
+    <td>
+      Custom properties
+    </td>
+    <td>
+JavaScript:
+
+```js
+window.customElements && window.customElements.forcePolyfill = true;
+```
+
+Query parameter:
+
+`wc-ce`
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Shadow DOM
+    </td>
+    <td>
+JavaScript:
+
+```js
+ShadyDOM = { force: true }
+```
+
+Query parameter:
+
+`wc-shadydom`
+    </td>
+  </tr>
+    <tr>
+    <td>
+      CSS custom properties
+    </td>
+    <td>
+JavaScript:
+
+```js
+ShadyCSS = { shimcssproperties: true}
+```
+
+Query parameter:
+
+`wc-shimcssproperties`
+    </td>
+  </tr>
+</tbody>
+</table>
 
 
 

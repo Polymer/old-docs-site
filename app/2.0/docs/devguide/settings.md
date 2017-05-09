@@ -46,31 +46,31 @@ Available settings:
       Sets a global `rootPath` property that can be used in templates to generate URLs that
       are relative to the application root.
     </td>
+  </tr>
+  <tr>
     <td>
       <code>sanitizeDOMValue</code>
     </td>
-    </tr>
-    <tr>
     <td>
       A global callback used to sanitize any value before inserting it into the DOM.
       The callback signature is:
 
-      ```js
-      Polymer = {
-        sanitizeDOMValue: function(value, name, type, node) { ... }
-      }
-      ```
+```js
+Polymer = {
+  sanitizeDOMValue: function(value, name, type, node) { ... }
+}
+```
 
-    Where:
+Where:
 
-    -   `value` is the value to sanitize.
-    -   `name` is the name of an attribute or property (for example, `href`).
-    -   `type` indicates where the value is being inserted: one of `property`, `attribute`, or `text`.
-    -   `node` is the node where the value is being inserted.
+-   `value` is the value to sanitize.
+-   `name` is the name of an attribute or property (for example, `href`).
+-   `type` indicates where the value is being inserted: one of `property`, `attribute`, or `text`.
+-   `node` is the node where the value is being inserted.
     </td>
   </tr>
 </tbody>
 </table>
 
-There are also a number of polyfill-specific settings. See [Polyfills](polyfills#settings) for
+There are also a number of polyfill-specific settings. See [Polyfills](../polyfills#settings) for
 details.
