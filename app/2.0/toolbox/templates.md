@@ -22,7 +22,7 @@ the currently available templates.
 
 ### Application
 
-The  `application` template is the most basic starting point for any app built
+The  `polymer-2-application` template is the most basic starting point for any app built
 with Polymer. It starts with a single bare-bones custom element that can serve
 as the root of your application, from which you can build in any direction with
 maximum flexibility.
