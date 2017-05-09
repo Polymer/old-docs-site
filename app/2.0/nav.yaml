@@ -121,10 +121,10 @@
   - title: Overview
     path: /2.0/docs/browsers
     indent: True
-  - title: Polyfills TBD
+  - title: Polyfills
     path: /2.0/docs/polyfills
     indent: True
-  - title: ES6 TBD
+  - title: ES6
     path: /2.0/docs/es6
     indent: True
   - endheader: True
