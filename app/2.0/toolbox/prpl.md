@@ -2,7 +2,7 @@
 title: PRPL Pattern
 ---
 
-## PRPL pattern
+<!-- toc -->
 
 To optimize delivery, the Toolbox uses the _PRPL pattern_, which
 stands for:
