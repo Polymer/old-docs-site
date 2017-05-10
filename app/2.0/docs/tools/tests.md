@@ -8,7 +8,7 @@ This guide shows you the basics of using Polymer CLI to run unit tests, and
 how to accomplish various tasks and scenarios using the Web Component Tester
 library (the underlying library that powers Polymer CLI's testing tools).
 
-**Update your tools for 2.0.** Fpr testing with 2.0, make sure you have the latest
+**Update your tools for 2.0.** For testing with 2.0, make sure you have the latest
 version of the Polymer CLI.
 {.alert .alert-info}
 
