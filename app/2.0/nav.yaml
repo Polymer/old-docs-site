@@ -196,8 +196,13 @@
   - title: Service worker
     path: /2.0/toolbox/service-worker
     indent: True
+  - endheader: true
+  - header: Deploy
+  - title: Optimize for production
+    path: /2.0/toolbox/optimize-for-production
+    indent: True
   - title: Serve your app
-    path: /2.0/toolbox/server
+    path: /2.0/toolbox/serve
     indent: True
   - endheader: true
   - header: Case study
