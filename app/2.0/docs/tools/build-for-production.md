@@ -30,18 +30,9 @@ Some application developers will need to deliver JavaScript separately from HTML
 
 The Polymer CLI and `polymer-build` library support the following transforms:
 
-* [Splitting inline JavaScript and CSS from HTML files](#splitting)
 * [Minifying HTML, JavaScript and CSS](#minifying)
 * [Compiling ES6 to ES5](#compiling)
 * [Bundling resources to reduce the total number of HTTP requests made by the user's browser](#bundling)
-
-### Splitting inline JavaScript and CSS from HTML files {#splitting}
-  
-By default, the Polymer CLI build process uses a built in feature of `polymer-build` to split inline JavaScript and CSS from HTML files. The build process automatically splits these streams in order to process them appropriately - for example, for minification, compilation or both.
-
-By default, the Polymer build tools rejoin JavaScript and HTML after processing.
-
-To split your code from HTML in order to deploy into an environment that requires this, you can use [Crisper](https://github.com/PolymerLabs/crisper).
   
 ### Minifying HTML, JavaScript and CSS {#minifying}
 
@@ -85,20 +76,25 @@ These browsers fully support ES6:
 
 You should serve compiled ES5 only to older browsers that don't support ES6.
 
-If you need to statically host your code and serve a single version to all browsers, however, you should compile all code to ES5. In this case, you can include a shim - a lightweight polyfill that lets compiled ES5 work on browsers that support native custom elements.
+If you need to statically host your code and serve a single version to all browsers, however, you should compile all code to ES5. In this case, you can include a shim—a lightweight polyfill that lets compiled ES5 work on browsers that support native custom elements.
   
-```bash
-polymer build --js-compile 
+The `--js-compile` flag adds the `custom-elements-es5-adapter.js` adapter for running ES5 code on browsers that support ES6.
+
+Equivalently, configure a build option in `polymer.json` as follows:
+
 ```
-This flag adds the `custom-elements-es5-adapter.js` adapter for running ES5 code on browsers that support ES6.
+"builds": [{
+  "js": {"compile": true}
+}]
+```
 
 If you’re unsure what the best strategy is for your project, here’s a quick overview:
 
-|   | Easiest for cross-browser support  | Most optimal for WC v1 performance  |
+|   | Easiest for cross-browser support  | Best performance  |
 |---|-------|------|
-| **Server** | Any server works, including static ones | Differential serving required |
-| **Deployed Code** | ES5 transpiled | ES6|
-| **Polyfill Loader** | custom-elements-es5-adapter.js | webcomponents-loader.js|
+| **Server** | Any server works, including static ones | Dynamic serving required |
+| **Deployed Code** | Single build, ES5 transpiled | Two builds, ES5 and ES6 |
+| **Polyfills** | custom-elements-es5-adapter.js + webcomponents-loader.js | webcomponents-loader.js|
 
 Differential serving means you must serve both ES5 and ES6, depending on client capabilities. `polymer serve` does this.
 
