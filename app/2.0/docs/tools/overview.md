@@ -2,16 +2,10 @@
 title: Tools overview
 ---
 
-The Polymer Project offers a range of tools for developing, building, and 
-optimizing Polymer elements and apps. 
+The Polymer Project offers a range of tools to help developers write web components.
 
-You can use Polymer CLI for the vast majority of your Polymer development tasks. 
-Read [Polymer CLI](polymer-cli) to get started. 
+The [Polymer CLI](polymer-cli) is our reccomended "swiss army knife" for Polymer tooling. It supports a collection of commands for common scenarios like serving, testing, and initializing new projects from templates.
 
-For use cases Polymer CLI doesn't handle, you can customize your toolchain. 
-Check out [Advanced tools](advanced) for a description of the underlying tools 
-that Polymer CLI is composed of, and then use a build tool like Grunt or 
-Gulp to automate your workflow. 
+For advanced tooling configurations that the CLI may not handle, check out our [Advanced tools](advanced) section. The Polymer CLI is composed of lower-level tooling that you are welcome to use directly. For example, the [`polymer-build`](https://github.com/Polymer/polymer-build) library helps you create your own build process out of pluggable streams.
 
-In addition, the [Services](services) doc lists some web services that you may find useful when developing with Polymer (such as the Polygit development CDN for rapidly prototyping elements). 
-
+In addition, the [Web services](services) page lists helpful services to speed up the development process.
