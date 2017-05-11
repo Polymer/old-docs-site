@@ -17,7 +17,7 @@ library:
       rootPath: '/your/application/root'
     };
   </script>
-  <!-- import a component that relies on Polymer -->
+  <!-- a component that relies on Polymer -->
   <link rel="import" href="elements/my-app.html">
   </head>
   <body>

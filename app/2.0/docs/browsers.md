@@ -38,7 +38,7 @@ td.polyfill {
 
 <table>
 <thead>
-  <tr><th></th><th>Chrome</th><th>Firefox</th><th>IE&nbsp;11+/<br>Edge</th><th>Safari 9+</th><th>Chrome
+  <tr><th></th><th>Chrome</th><th>Firefox</th><th>IE&nbsp;11+/<br>Edge</th><th>Opera</th><th>Safari 9+</th><th>Chrome
  <br>(Android)</th><th>Safari<br>(iOS&nbsp;9+)</th></tr>
 </thead>
 <tr>
@@ -49,12 +49,14 @@ td.polyfill {
   <td class="native">Native</td>
   <td class="native">Native</td>
   <td class="native">Native</td>
+  <td class="native">Native</td>
 </tr>
 <tr>
   <td class="feature-title"><a href="http://www.html5rocks.com/en/tutorials/webcomponents/imports/">HTML Imports</a></td>
   <td class="native">Native</td>
   <td class="polyfill">Polyfill</td>
   <td class="polyfill">Polyfill</td>
+  <td class="native">Native</td>
   <td class="polyfill">Polyfill</td>
   <td class="native">Native</td>
   <td class="polyfill">Polyfill</td>
@@ -64,6 +66,7 @@ td.polyfill {
   <td class="native">Native</td>
   <td class="polyfill">Polyfill</td>
   <td class="polyfill">Polyfill</td>
+  <td class="native">Native</td>
   <td class="partial">Partial</td>
   <td class="native">Native</td>
   <td class="partial">Partial</td>
@@ -73,6 +76,7 @@ td.polyfill {
   <td class="native">Native</td>
   <td class="polyfill">Polyfill</td>
   <td class="polyfill">Polyfill</td>
+  <td class="native">Native</td>
   <td class="partial">Partial</td>
   <td class="native">Native</td>
   <td class="partial">Partial</td>

@@ -15,7 +15,8 @@ ES6 features required by Polymer:
 
 For other browsers, you should compile your application to ES5.
 
-Information on multiple builds and differential serving is available in the [documentation on building for production](/{{{polymer_version_dir}}}/docs/tools/build-for-production).
+Information on multiple builds and differential serving is available in the
+[documentation on building for production](/{{{polymer_version_dir}}}/docs/tools/build-for-production).
 
 ## Compiling ES6 to ES5 {#compile}
 
@@ -27,12 +28,22 @@ The Polymer CLI and `polymer-build` library support compiling ES6 to ES5 at buil
 addition, the `polymer serve` and `polymer test` commands compile at runtime when required by the
 browser.
 
+**Device emulation may cause errors**. When using DevTools device emulation in Chrome,
+`polymer serve` will serve compiled code when emulating iOS devices, and uncompiled code when
+emulating Android devices. When switching between devices, the browser may end up with both
+compiled and uncompiled code in its cache, resulting in errors. To avoid this problem, run
+`polymer serve` with the `--compile never` option when testing with device emulation.
+{.alert .alert info}
+
 For best performance, you should serve ES6 code to browsers that support it, and only serve ES5
 code to browsers that don't support ES6.
 
 If you need to statically host your code and serve a single version to all browsers, compile
-**all** code to ES5, and include the native shim, a lightweight polyfill that lets compiled ES5
-work on browsers that support native custom elements.
+to ES5.
+
+When you use the Polymer CLI to compile your app, the CLI automatically compiles the correct files
+and injects `custom-elements-es5-adapter.js`, a  lightweight polyfill that lets compiled ES5 work
+on browsers that support native custom elements.
 
 If you're putting together a custom build:
 
@@ -40,12 +51,9 @@ If you're putting together a custom build:
     `babel-preset-es2015` with the `modules` option set to false.)
 -   You must compile all your elements, the Polymer library, and any third-party elements you're
     using, but _not_ the polyfills.
--   Include the `custom-elements-es5-adapter.js` script from `webcomponentsjs` in your `index.html`
-    (or wherever you import the webcomponents polyfill).
-
-### Other features used by Polymer or the elements
-
-IE 10 has flaky Mutation Observer support, and is also largely [no longer supported by
-Microsoft](https://www.microsoft.com/en-us/WindowsForBusiness/End-of-IE-support). Much of Polymer
-will still work, but you may run into some bugs here and there. Official support is for IE
-11/Edge.
+-   If you're serving compiled code to browsers that support native custom elements, inject the
+    `custom-elements-es5-adapter.js` script at build time. The `polymer-build` library provides a
+    [addCustomElementsEs5Adapter method](https://github.com/Polymer/polymer-build#custom-elements-es5-adapter)
+    to inject the script. If that method doesn't work with your build system, see the
+    [webcomponentsjs README](https://github.com/webcomponents/webcomponentsjs#custom-elements-es5-adapterjs)
+    for details on using the script.
