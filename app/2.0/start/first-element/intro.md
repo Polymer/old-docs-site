@@ -57,6 +57,7 @@ GitHub](https://github.com/PolymerLabs/polymer-2-first-element.git).
     demo/
     icon-toggle-finished/
     icon-toggle.html
+    index.html
     </pre>
 
     The main file you’ll work with is `icon-toggle.html`, which contains the definition for your 
@@ -66,7 +67,7 @@ custom element.
 
 Install the Polymer CLI to serve the demo locally. 
 
-Polymer CLI requires Node.js, npm and Bower. For full installation instructions, see [the 
+Polymer CLI requires Node.js, npm, git and Bower. For full installation instructions, see [the 
 Polymer CLI documentation](/{{{polymer_version_dir}}}/docs/tools/polymer-cli).
 
 To install Polymer CLI:
@@ -95,30 +96,17 @@ components.
     demo/
     icon-toggle-finished/
     icon-toggle.html
+    index.html
     </pre>
 
 2.  Run the Polymer development server from the project directory:
 
-        polymer serve
-
-3.  `polymer serve` gives you two URLs to choose from - one for an application, another for 
-reusable components. Open the URL for **reusable components**. 
-
-    <img src="/images/2.0/first-element/polymer-serve-urls.png" alt="Output from the polymer serve 
-command, showing URLs" title="Local server URLs">
-
-    (Note that the path uses `icon-toggle`—the
-    component name listed in this element’s `bower.json` file—rather than the actual directory name.
-    If you’re wondering why `polymer serve` does this, see [HTML imports and dependency
-    management](/2.0/docs/tools/polymer-cli#element-project-layout).)
+        polymer serve --open
 
     You’ll see some text where the icon toggles should appear. It doesn’t look
     very interesting, but it shows that everything is working.
-
-**If this text doesn’t appear**, make sure you’re looking at the the demo folder itself, or at 
-`demo/index.html`,
-not at `toggle-icon.html` or `demo-element.html`.
-{ .alert .alert-info }
+ 
+    (Note that the URL includes `icon-toggle`—the component name listed in this element’s `bower.json` file—rather than the actual directory name. If you’re wondering why `polymer serve` does this, see [HTML imports and dependency management](/2.0/docs/tools/polymer-cli#element-project-layout).)
 
 <img src="/images/2.0/first-element/starting-state.png" alt="Initial state of the demo. The demo 
 shows three icon-toggle elements, two labeled 'statically-configured icon toggles' and one labeled 
