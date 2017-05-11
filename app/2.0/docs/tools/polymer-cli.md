@@ -67,7 +67,7 @@ This section shows you how to start an element project.
 
         polymer init
 
-1.  Select `element`.
+1.  Select `polymer-2-element`.
 
 1.  Enter a name for your element.
 
@@ -183,7 +183,7 @@ Follow the steps below to get your `basic` app project set up.
 
         polymer init
 
-1.  Select `application`.
+1.  Select `polymer-2-application`.
 
 1.  Enter a name for your app. Defaults to the name of the current directory.
 
