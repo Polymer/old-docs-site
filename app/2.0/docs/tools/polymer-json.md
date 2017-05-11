@@ -135,6 +135,7 @@ for every run:
 
 * `name`: An optional name for your build. If multiple builds are defined, the `name` property is
 required.
+* `preset`: An optional preset name that your build configuration can inherit from. See below for more information.
 * `addServiceWorker`: If `true`, generate a service worker for your application.
 * `addPushManifest`: If `true`, generate an [HTTP/2 Push Manifest](https://github.com/GoogleChrome/http2-push-manifest) for your application.
 * `swPrecacheConfig`: An optional configuration file for the generated service worker.
@@ -176,6 +177,44 @@ And here is a configuration to generate two optimized builds: One bundled and on
     "html": {"minify": true}
   }]
 ```
+
+**Build presets** provide an easy way to create common build configurations. When you provide a valid preset for your build, it will inherit its configuration from that preset. We currently support 3 different presets:
+
+- **es5-bundled:**
+  - name: `es5-bundled`
+  - js: `{minify: true, compile: true}`
+  - css: `{minify: true}`
+  - html: `{minify: true}`
+  - bundle: `true`
+  - addServiceWorker: `true`
+  - addPushManifest: `true`
+  - insertPrefetchLinks: `true`
+- **es6-bundled:**
+  - js: `{minify: true, compile: false}`
+  - css: `{minify: true}`
+  - html: `{minify: true}`
+  - bundle: `true`
+  - addServiceWorker: `true`
+  - addPushManifest: `true`
+  - insertPrefetchLinks: `true`
+- **es6-unbundled:**
+  - js: `{minify: true, compile: false}`
+  - css: `{minify: true}`
+  - html: `{minify: true}`
+  - bundle: `false`
+  - addServiceWorker: `true`
+  - addPushManifest: `true`
+  - insertPrefetchLinks: `true`
+
+Any additional options that you provide will override the given preset. In the example below, a single "es5-bundled" build will be created with all the es5-bundled preset options except "addServiceWorker", which was overriden and set to false:
+
+```json
+"builds": [{
+  "preset": "es5-bundled",
+  "addServiceWorker": false
+}]
+```
+
 
 ### lint
 Optional<br>
