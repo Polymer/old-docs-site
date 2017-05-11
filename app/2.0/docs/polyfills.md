@@ -12,9 +12,12 @@ for custom elements and shadow DOM. You can test Polymer 2.x by using the latest
 There are two main ways to load the polyfills:
 
 *   `webcomponents-lite.js` includes all of the polyfills necessary to run on any of the supported
-    browsers.
-*   `webcomponents-loader.js` performs runtime feature-detection and loads just the required
-    polyfills.
+    browsers. Because all browsers receive all polyfills, this results in extra bytes being sent
+    to browsers that support one or more feature.
+
+*   `webcomponents-loader.js` performs client-side feature-detection and loads just the required
+    polyfills. This requires an extra round-trip to the server, but saves bandwidth for browsers
+    that support one or more features.
 
 In both cases, the polyfills should be loaded just once. The polyfills are generally loaded from the
 application entrypoint (`index.html` or similar).
@@ -34,8 +37,8 @@ References:
 
 ## Polyfill settings {#settings}
 
-By default, the polyfills are disabled on browsers that natively support
-a feature. For testing purposes, you can force the polyfills on for browsers that have native
+By default, the individual polyfill for a given feature is disabled on browsers that natively support
+that feature. For testing purposes, you can force the polyfills on for browsers that have native
 support. You can force the polyfills on by adding a JavaScript snippet before you
 import the polyfills:
 
