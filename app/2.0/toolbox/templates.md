@@ -22,7 +22,7 @@ the currently available templates.
 
 ### Application
 
-The  `application` template is the most basic starting point for any app built
+The  `polymer-2-application` template is the most basic starting point for any app built
 with Polymer. It starts with a single bare-bones custom element that can serve
 as the root of your application, from which you can build in any direction with
 maximum flexibility.
@@ -31,7 +31,7 @@ maximum flexibility.
 
 ![](/images/1.0/toolbox/starter-kit.png)
 
-The `starter-kit` introduces the [`app-layout`](app-layout) elements,
+The `polymer-2-starter-kit` introduces the [`app-layout`](app-layout) elements,
 and composes them in a common left-hand drawer arrangement with a toolbar.
 The template provides navigation between a series of views that load and
 are rendered in the main content area.
@@ -51,20 +51,6 @@ a complete e-commerce application.  It demonstrates a typical
 or a starting point for a complete application.
 
 See the [Shop case study](case-study) for more information.
-
-### News demo application
-
-![](/images/1.0/toolbox/news-template-desktop.png)
-
-The `news` template is a full-fledged application that builds on the
-`starter-kit` and implements a series of elements that compose into
-a complete news progressive web app.  It demonstrates loading news
-items, and can serve as inspiration or a starting point for a complete application.
-
-For implementation details, see the [News case study](news-case-study). For information on using
-or customizing the news template, see the
-[News documentation site](https://news-docs.polymer-project.org).
-
 
 ## Where to go from here
 

@@ -121,10 +121,10 @@
   - title: Overview
     path: /2.0/docs/browsers
     indent: True
-  - title: Polyfills TBD
+  - title: Polyfills
     path: /2.0/docs/polyfills
     indent: True
-  - title: ES6 TBD
+  - title: ES6
     path: /2.0/docs/es6
     indent: True
   - endheader: True
@@ -141,10 +141,13 @@
   - title: Test your elements
     path: /2.0/docs/tools/tests
     indent: True
+  - title: Build for production
+    path: /2.0/docs/tools/build-for-production
+    indent: True
 #  - title: Publish an element
 #    path: /2.0/docs/tools/reusable-elements
 #    indent: True
-  - title: Services
+  - title: Web services
     path: /2.0/docs/tools/services
     indent: True
   - title: polymer.json specification
@@ -162,6 +165,9 @@
   - header: API Reference
   - title: API Reference
     path: /2.0/docs/api/
+    indent: True
+  - title: Global settings
+    path: /2.0/docs/devguide/settings
     indent: True
   - endheader: True
 
