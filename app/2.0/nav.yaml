@@ -117,9 +117,6 @@
 #  - title: Publish an element
 #    path: /2.0/docs/tools/reusable-elements
 #    indent: True
-  - title: Advanced tools
-    path: /2.0/docs/tools/advanced
-    indent: True
   - title: Web services
     path: /2.0/docs/tools/services
     indent: True
