@@ -145,7 +145,7 @@ deferred until the first instance of the element is created.
 ### Type-extension elements {#type-extension}
 
 Polymer 2.0 doesn't support type-extension elements (for example, `<input is="iron-input">`).
-Type-extension support is still included in the custom elements v1 spec (as "customized build-in
+Type-extension support is still included in the custom elements v1 spec (as "customized built-in
 elements"), and scheduled for implementation in Chrome. However, since Apple has said it will not
 implement `is`, we will not be encouraging its use to avoid indefinite reliance on the custom
 elements polyfill. Instead, a wrapper custom element can surround a native element. For example:
