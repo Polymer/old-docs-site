@@ -199,7 +199,7 @@ example:
 ```
 <fancy-note>
   #shadow-root
-    <slot id="icon">
+    <slot name="icon">
       <img src="note.png">
     </slot>
     <slot></slot>
@@ -244,13 +244,13 @@ A slot element may also be assigned to a slot. For example, consider two levels 
     <child-element>
       <!-- parent-element renders its light DOM children inside
            child-element -->
-      <slot id="parent-slot">
+      <slot name="parent-slot">
 
 <child-element>
   #shadow-root
     <div>
       <!-- child-element renders its light DOM children inside this div -->
-      <slot id="child-slot">
+      <slot name="child-slot">
 ```
 
 
@@ -271,8 +271,8 @@ The flattened tree looks like this:
 <parent-element>
   <child-element>
     <div>
-      <slot id="child-slot">
-        <slot id="parent-slot>
+      <slot name="child-slot">
+        <slot name="parent-slot>
           <span>I'm in light DOM</span>
 ```
 
