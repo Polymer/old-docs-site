@@ -541,3 +541,91 @@ If your project uses Polymer elements or behaviors, see [Polymer element availab
     `bower install`
 
 1.  See the [upgrade guide](upgrade) for information on getting your code working with 2.0.
+
+## Elements that support Polymer 2 {#elements-2}
+
+These elements have been updated to support Polymer 2.0, or require no updates. Click an element name to go to its `2.0-preview` branch on GitHub:
+
+<ul>
+<li><a href="https://github.com/PolymerElements/app-layout/tree/2.0-preview">app-layout</a></li>
+<li><a href="https://github.com/PolymerElements/app-localize-behavior/tree/2.0-preview">app-localize-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/app-pouchdb/tree/2.0-preview">app-pouchdb</a></li>
+<li><a href="https://github.com/PolymerElements/app-route/tree/2.0-preview">app-route</a></li>
+<li><a href="https://github.com/PolymerElements/app-storage/tree/2.0-preview">app-storage</a></li>
+<li><a href="https://github.com/PolymerElements/gold-zip-input/tree/2.0-preview">gold-zip-input</a></li>
+<li><a href="https://github.com/PolymerElements/iron-a11y-announcer/tree/2.0-preview">iron-a11y-announcer</a></li>
+<li><a href="https://github.com/PolymerElements/iron-a11y-keys-behavior/tree/2.0-preview">iron-a11y-keys-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-ajax/tree/2.0-preview">iron-ajax</a></li>
+<li><a href="https://github.com/PolymerElements/iron-autogrow-textarea/tree/2.0-preview">iron-autogrow-textarea</a></li>
+<li><a href="https://github.com/PolymerElements/iron-behaviors/tree/2.0-preview">iron-behaviors</a></li>
+<li><a href="https://github.com/PolymerElements/iron-checked-element-behavior/tree/2.0-preview">iron-checked-element-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-collapse/tree/2.0-preview">iron-collapse</a></li>
+<li><a href="https://github.com/PolymerElements/iron-component-page/tree/2.0-preview">iron-component-page</a></li>
+<li><a href="https://github.com/PolymerElements/iron-demo-helpers/tree/2.0-preview">iron-demo-helpers</a></li>
+<li><a href="https://github.com/PolymerElements/iron-doc-viewer/tree/2.0-preview">iron-doc-viewer</a></li>
+<li><a href="https://github.com/PolymerElements/iron-dropdown/tree/2.0-preview">iron-dropdown</a></li>
+<li><a href="https://github.com/PolymerElements/iron-fit-behavior/tree/2.0-preview">iron-fit-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-flex-layout/tree/2.0-preview">iron-flex-layout</a></li>
+<li><a href="https://github.com/PolymerElements/iron-icon/tree/2.0-preview">iron-icon</a></li>
+<li><a href="https://github.com/PolymerElements/iron-icons/tree/2.0-preview">iron-icons</a></li>
+<li><a href="https://github.com/PolymerElements/iron-iconset/tree/2.0-preview">iron-iconset</a></li>
+<li><a href="https://github.com/PolymerElements/iron-iconset-svg/tree/2.0-preview">iron-iconset-svg</a></li>
+<li><a href="https://github.com/PolymerElements/iron-image/tree/2.0-preview">iron-image</a></li>
+<li><a href="https://github.com/PolymerElements/iron-input/tree/2.0-preview">iron-input</a></li>
+<li><a href="https://github.com/PolymerElements/iron-jsonp-library/tree/2.0-preview">iron-jsonp-library</a></li>
+<li><a href="https://github.com/PolymerElements/iron-label/tree/2.0-preview">iron-label</a></li>
+<li><a href="https://github.com/PolymerElements/iron-list/tree/2.0-preview">iron-list</a></li>
+<li><a href="https://github.com/PolymerElements/iron-localstorage/tree/2.0-preview">iron-localstorage</a></li>
+<li><a href="https://github.com/PolymerElements/iron-location/tree/2.0-preview">iron-location</a></li>
+<li><a href="https://github.com/PolymerElements/iron-media-query/tree/2.0-preview">iron-media-query</a></li>
+<li><a href="https://github.com/PolymerElements/iron-menu-behavior/tree/2.0-preview">iron-menu-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-meta/tree/2.0-preview">iron-meta</a></li>
+<li><a href="https://github.com/PolymerElements/iron-overlay-behavior/tree/2.0-preview">iron-overlay-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-pages/tree/2.0-preview">iron-pages</a></li>
+<li><a href="https://github.com/PolymerElements/iron-range-behavior/tree/2.0-preview">iron-range-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-resizable-behavior/tree/2.0-preview">iron-resizable-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-scroll-target-behavior/tree/2.0-preview">iron-scroll-target-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-scroll-threshold/tree/2.0-preview">iron-scroll-threshold</a></li>
+<li><a href="https://github.com/PolymerElements/iron-selector/tree/2.0-preview">iron-selector</a></li>
+<li><a href="https://github.com/PolymerElements/iron-test-helpers/tree/2.0-preview">iron-test-helpers</a></li>
+<li><a href="https://github.com/PolymerElements/iron-validatable-behavior/tree/2.0-preview">iron-validatable-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-validator-behavior/tree/2.0-preview">iron-validator-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/marked-element/tree/2.0-preview">marked-element</a></li>
+<li><a href="https://github.com/PolymerElements/neon-animation/tree/2.0-preview">neon-animation</a></li>
+<li><a href="https://github.com/PolymerElements/paper-badge/tree/2.0-preview">paper-badge</a></li>
+<li><a href="https://github.com/PolymerElements/paper-behaviors/tree/2.0-preview">paper-behaviors</a></li>
+<li><a href="https://github.com/PolymerElements/paper-button/tree/2.0-preview">paper-button</a></li>
+<li><a href="https://github.com/PolymerElements/paper-card/tree/2.0-preview">paper-card</a></li>
+<li><a href="https://github.com/PolymerElements/paper-checkbox/tree/2.0-preview">paper-checkbox</a></li>
+<li><a href="https://github.com/PolymerElements/paper-dialog/tree/2.0-preview">paper-dialog</a></li>
+<li><a href="https://github.com/PolymerElements/paper-dialog-behavior/tree/2.0-preview">paper-dialog-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/paper-dialog-scrollable/tree/2.0-preview">paper-dialog-scrollable</a></li>
+<li><a href="https://github.com/PolymerElements/paper-drawer-panel/tree/2.0-preview">paper-drawer-panel</a></li>
+<li><a href="https://github.com/PolymerElements/paper-dropdown-menu/tree/2.0-preview">paper-dropdown-menu</a></li>
+<li><a href="https://github.com/PolymerElements/paper-fab/tree/2.0-preview">paper-fab</a></li>
+<li><a href="https://github.com/PolymerElements/paper-header-panel/tree/2.0-preview">paper-header-panel</a></li>
+<li><a href="https://github.com/PolymerElements/paper-icon-button/tree/2.0-preview">paper-icon-button</a></li>
+<li><a href="https://github.com/PolymerElements/paper-input/tree/2.0-preview">paper-input</a></li>
+<li><a href="https://github.com/PolymerElements/paper-item/tree/2.0-preview">paper-item</a></li>
+<li><a href="https://github.com/PolymerElements/paper-listbox/tree/2.0-preview">paper-listbox</a></li>
+<li><a href="https://github.com/PolymerElements/paper-material/tree/2.0-preview">paper-material</a></li>
+<li><a href="https://github.com/PolymerElements/paper-menu-button/tree/2.0-preview">paper-menu-button</a></li>
+<li><a href="https://github.com/PolymerElements/paper-progress/tree/2.0-preview">paper-progress</a></li>
+<li><a href="https://github.com/PolymerElements/paper-radio-button/tree/2.0-preview">paper-radio-button</a></li>
+<li><a href="https://github.com/PolymerElements/paper-radio-group/tree/2.0-preview">paper-radio-group</a></li>
+<li><a href="https://github.com/PolymerElements/paper-ripple/tree/2.0-preview">paper-ripple</a></li>
+<li><a href="https://github.com/PolymerElements/paper-scroll-header-panel/tree/2.0-preview">paper-scroll-header-panel</a></li>
+<li><a href="https://github.com/PolymerElements/paper-slider/tree/2.0-preview">paper-slider</a></li>
+<li><a href="https://github.com/PolymerElements/paper-spinner/tree/2.0-preview">paper-spinner</a></li>
+<li><a href="https://github.com/PolymerElements/paper-styles/tree/2.0-preview">paper-styles</a></li>
+<li><a href="https://github.com/PolymerElements/paper-swatch-picker/tree/2.0-preview">paper-swatch-picker</a></li>
+<li><a href="https://github.com/PolymerElements/paper-tabs/tree/2.0-preview">paper-tabs</a></li>
+<li><a href="https://github.com/PolymerElements/paper-toast/tree/2.0-preview">paper-toast</a></li>
+<li><a href="https://github.com/PolymerElements/paper-toggle-button/tree/2.0-preview">paper-toggle-button</a></li>
+<li><a href="https://github.com/PolymerElements/paper-toolbar/tree/2.0-preview">paper-toolbar</a></li>
+<li><a href="https://github.com/PolymerElements/paper-tooltip/tree/2.0-preview">paper-tooltip</a></li>
+<li><a href="https://github.com/PolymerElements/platinum-sw/tree/2.0-preview">platinum-sw</a></li>
+<li><a href="https://github.com/PolymerElements/polymerfire/tree/2.0-preview">polymerfire</a></li>
+<li><a href="https://github.com/PolymerLabs/note-app-elements/tree/2.0-preview">polymerlabs/note-app-elements</a></li>
+<li><a href="https://github.com/PolymerElements/prism-element/tree/2.0-preview">prism-element</a></li>
+</ul>
