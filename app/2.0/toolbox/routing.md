@@ -4,9 +4,6 @@ title: Routing with <app-route>
 
 <!-- toc -->
 
-**The routing elements are prerelease.** APIs may be subject to change.
-{.alert .alert-info}
-
 For client-side routing, App Toolbox uses the
 [`<app-route>`](https://www.webcomponents.org/element/PolymerElements/app-route) element to provide
 _modular routing_. Modular routing means that instead of having a central repository for all your
@@ -22,10 +19,6 @@ to other components.
 Install the `app-route` package with Bower:
 
     bower install --save PolymerElements/app-route
-
-For 2.0 Release Candidate, use the `2.0-preview` branch:
-
-    bower install --save PolymerElements/app-route#2.0-preview
 
 ## Add routing
 
