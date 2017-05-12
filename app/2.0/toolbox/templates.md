@@ -44,9 +44,9 @@ and will be pre-cached for offline and subsequent use.
 
 ![](/images/1.0/toolbox/shop-template-desktop.png)
 
-The `shop` template is a full-fledged application that builds on the
-`starter-kit` and implements a series of elements that compose into
-a complete e-commerce application.  It demonstrates a typical
+The `shop` template is a full-fledged application built with Polymer 1.0 that
+builds on the `starter-kit` and implements a series of elements that compose 
+into a complete e-commerce application.  It demonstrates a typical
 "home - list - detail" type of application flow, and can serve as inspiration
 or a starting point for a complete application.
 
