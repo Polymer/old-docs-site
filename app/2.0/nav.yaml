@@ -204,6 +204,9 @@
   - title: Serve your app
     path: /2.0/toolbox/serve
     indent: True
+  - title: The PRPL pattern
+    path: /2.0/toolbox/prpl
+    indent: True
   - endheader: true
   - header: Case study
   - title: "Shop"
