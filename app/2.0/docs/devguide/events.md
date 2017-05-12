@@ -146,7 +146,7 @@ target as it bubbles up, such that target is always in the same scope as the
 receiving element. (For example, for a listener in the main document, the
 target is an element in the main document, not in a shadow tree.)
 
-The event's `composedPath()` method returns an aray of nodes through which the event will pass.
+The event's `composedPath()` method returns an array of nodes through which the event will pass.
 So `event.composedPath()[0]` represents the original target for the event (unless that target is
 hidden in a closed shadow root).
 
