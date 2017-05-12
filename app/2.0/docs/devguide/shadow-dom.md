@@ -470,7 +470,7 @@ shadow tree.
 ```
   #shadow-root
     <style>
-      :slotted(img) {
+      ::slotted(img) {
         border-radius: 100%;
       }
     </style>
