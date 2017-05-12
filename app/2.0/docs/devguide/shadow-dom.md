@@ -278,7 +278,7 @@ The flattened tree looks like this:
 
 
 The ordering may be a little confusing at first. At each level, the light DOM children are
-*assigned* to a slot in the host's shadow DOM. The span "I'm in light DOM" is *assigned* to to the
+*assigned* to a slot in the host's shadow DOM. The span "I'm in light DOM" is *assigned* to the
 slot `#parent-slot` in `<parent-element>`'s shadow DOM. The `#parent-slot` is then *assigned* to
 `#child-slot` in `<child-element>`'s shadow DOM.
 
