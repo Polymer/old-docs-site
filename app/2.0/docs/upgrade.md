@@ -67,7 +67,7 @@ Before you start the upgrade, there's a couple of things you need to do.
 Update the Polymer CLI to the `next` version:
 
 ```
-npm update polymer-cli@next
+npm update polymer-cli
 ```
 
 #### Create a new branch or workarea
@@ -89,15 +89,16 @@ Follow these steps to update your bower dependencies:
 
     | Component | Version |
     |-----------|---------|
-    | Polymer   | `^2.0.0-rc.3` |
-    | webcomponentsjs | `^1.0.0-rc.7` |
-    | web-component-tester | `^6.0.0-prerelease.6` |
+    | Polymer   | `^2.0.0` |
+    | webcomponentsjs | `^1.0.0` |
+    | web-component-tester | `^6.0.0` |
     | Polymer elements | `2.0-preview` |
 
-    Note that Polymer, webcomponentsjs, and web-component-tester have prerelease tags. You can use
-    a range like `^2.0.0-rc.3` to get all future prerelease tags. To use prerelease elements,
-    you need to refer to the `2.0-preview` branch. To get  updates to elements, you may need to remove
-    your `bower_components` folder and reinstall all components.
+    Note that to retrieve a Polymer 2.0-compatible version of many Polymer elements,
+    you will need to use their `2.0-preview` branch. A list of 2.0-compatible Polymer
+    elements can be found on the [About Polymer 2.0](/{{{polymer_version_dir}}}/docs/about_20#elements-2) page.
+    To get updates to elements, you may need to remove your `bower_components` folder
+    and reinstall all components.
 
     Example dependencies {.caption}
 
@@ -113,11 +114,11 @@ Follow these steps to update your bower dependencies:
         "iron-pages": "PolymerElements/iron-pages#2.0-preview",
         "iron-selector": "PolymerElements/iron-selector#2.0-preview",
         "paper-icon-button": "PolymerElements/paper-icon-button#2.0-preview",
-        "polymer": "Polymer/polymer#^2.0.0-rc.3",
-        "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0-rc.7"
+        "polymer": "Polymer/polymer#^2.0.0",
+        "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
       },
       "devDependencies": {
-        "web-component-tester": "^6.0.0-prerelease.6"
+        "web-component-tester": "^6.0.0"
       },
     ```
 
