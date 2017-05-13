@@ -63,10 +63,10 @@ The Polymer CLI requires Node.js, npm, Git and Bower. For full installation inst
     npm install -g polymer-cli
     ```
 
-3. Install the latest Polymer 2.0 RC release from bower
+3. Install the latest Polymer 2.0 release from bower
 
     ```bash
-    bower install Polymer/polymer#^2.0.0-rc.3
+    bower install Polymer/polymer#^2.0.0
     ```
 
 4. Create a test `index.html` file, and add the following in the `<head>` tag:
