@@ -64,7 +64,7 @@ the category "Shoes" to the browse view.
 
 More information:
 
--   [Encapsulated routing with elements](/1.0/blog/routing)
+-   [Encapsulated routing with elements](/blog/routing)
 -   [`<app-route>` API reference](https://www.webcomponents.org/element/PolymerElements/app-route)
 
 ## Views
