@@ -4,9 +4,6 @@ title: Localization
 
 <!-- toc -->
 
-**The localization behavior is prerelease.** APIs may be subject to change.
-{.alert .alert-info}
-
 [`Polymer.AppLocalizeBehavior`](https://www.webcomponents.org/element/PolymerElements/app-localize-behavior)
 wraps the [format.js](http://formatjs.io/) library to help you internationalize your application.
 Note that if you're on a browser that does not natively support the
@@ -26,10 +23,7 @@ For class-style elements, use the `mixinBehaviors` method.
 
 ## Install AppLocalizeBehavior
 
-For 2.0 Release Candidate, use the `2.0-preview` branch:
-
-    bower install --save PolymerElements/app-localize-behavior#2.0-preview
-
+    bower install --save PolymerElements/app-localize-behavior
 
 ## Add localization to your app
 
