@@ -43,7 +43,7 @@ Available settings:
       <code>rootPath</code>
     </td>
     <td>
-      Sets a global `rootPath` property that can be used in templates to generate URLs that
+      Sets a global <code>rootPath</code> property that can be used in templates to generate URLs that
       are relative to the application root.
     </td>
   </tr>

@@ -85,7 +85,7 @@ Follow these steps to update your bower dependencies:
     rm -rf bower_components
     ```
 
-2.  Update the Polymer version in `bower.json` to the latest RC versions.
+2.  Update the Polymer version in `bower.json` to the latest versions.
 
     | Component | Version |
     |-----------|---------|
@@ -94,7 +94,7 @@ Follow these steps to update your bower dependencies:
     | web-component-tester | `^6.0.0` |
     | Polymer elements | `^2.0.0` |
 
-    A list of 2.0-compatible Polymer elements can be found on the [About Polymer 2.0](/{{{polymer_version_dir}}}/docs/about_20#elements-2) page.
+    A list of 2.0-compatible Polymer elements can be found on the [About Polymer 2.0](/{{{polymer_version_dir}}}/docs/about_20#elements) page.
 
     If you previously installed one of the 2.0 release candidates, you should
     remove your `bower_components` folder and reinstall all components.
@@ -127,7 +127,7 @@ Follow these steps to update your bower dependencies:
     bower install
     ```
 
-If you are upgrading the element to hybrid mode, you can add extra sets of bower dependencies 
+If you are upgrading the element to hybrid mode, you can add extra sets of bower dependencies
 so you can test against multiple versions of Polymer easily. For details, see
 [Manage dependencies for hybrid elements](devguide/hybrid-elements#dependency-variants).
 
@@ -1184,6 +1184,11 @@ _observeStuff: function(a, b, c) {
   }
 }
 ```
+
+### Custom property serialization and deserialization
+
+If your element overrides the `serialize` or `deserialize` methods, these override points have been
+renamed to `_serializeValue` and `_deserializeValue`, respectively.
 
 ### Data system miscellany {#data-system-miscellany}
 

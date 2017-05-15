@@ -10,7 +10,7 @@ If you're familiar with Polymer and just want to get started with the new releas
 * [Learn how to build your first Polymer app](/{{{polymer_version_dir}}}/start/toolbox/set-up)
 * [Learn how to build your first element with the Polymer library](/{{{polymer_version_dir}}}/start/first-element/intro)
 
-Polymer is distributed via the [Bower package manager](https://bower.io/). 
+Polymer is distributed via the [Bower package manager](https://bower.io/).
 
 To create an application template and install Polymer automatically, you can [use the Polymer CLI](#use-cli).
 

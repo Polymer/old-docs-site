@@ -61,9 +61,14 @@ The `properties` object supports the following keys for each property:
 <tr>
 <td><code>type</code></td>
 <td>
-Type: constructor (one of <code>Boolean</code>, <code>Date</code>, <code>Number</code>, <code>String</code>, <code>Array</code> or <code>Object</code>)<br>
+Type: constructor <br>
 
-Attribute type, used for deserializing from an attribute. Unlike 0.5, the
+Attribute type, used for deserializing from an attribute. Polymer supports deserializing the
+following types: <code>Boolean</code>, <code>Date</code>, <code>Number</code>, <code>String</code>,
+<code>Array</code> and <code>Object</code>. You can add support for other types by overriding the
+element's `_deserializeValue` method.
+
+Unlike 0.5, the
 property's type is explicit, specified using the type's constructor. See
 <a href="#attribute-deserialization">attribute deserialization</a> for more information.
 
@@ -171,9 +176,6 @@ directly as the value of the property in the `properties` object; otherwise it
 should be provided as the value to the `type` key in the `properties`
 configuration object.
 
-The type system includes support for Boolean and Number values, Object and Array values
-expressed as JSON, or Date objects expressed as any Date-parsable string
-representation.
 
 Boolean properties are set based on the _presence_ of the attribute:
 if the attribute exists at all, the property is set to `true`, regardless
@@ -262,6 +264,23 @@ For object and array properties you can pass an object or array in JSON format:
 ```
 
 Note that JSON requires double quotes, as shown above.
+
+### Custom deserializers
+
+The type system includes build-in support for Boolean and Number values, Object and Array values
+expressed as JSON, or Date objects expressed as any Date-parsable string
+representation. To support other types, you can override the element's `_deserializeValue` method.
+
+
+```js
+_deserializeValue(value, type) {
+  if (type == MyCustomType) {
+    return stringToMyCustomType(value);
+  } else {
+    return super._deserializeValue(value, type);
+  }
+}
+```
 
 ## Configuring default property values {#configure-values}
 
@@ -390,8 +409,17 @@ _regardless of the property's `type` value_:
 *   `Boolean`. Results in a non-valued attribute to be either set (`true`) or removed (`false`).
 *   `Array` or `Object`. Serialized using `JSON.stringify`.
 
-To supply custom serialization for a custom element, override your element's `serialize` method.
+To add custom serialization for other data types, override your element's `_serializeValue`
+method.
 
+```js
+_serializeValue(value) {
+  if (value instanceof MyCustomType) {
+    return value.toString();
+  }
+  return super._serializeValue(value);
+}
+```
 
 ## Implicitly declared properties
 
