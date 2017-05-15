@@ -16,7 +16,7 @@ ES6 features required by Polymer:
 For other browsers, you should compile your application to ES5.
 
 Information on multiple builds and differential serving is available in the
-[documentation on building for production](/{{{polymer_version_dir}}}/docs/tools/build-for-production).
+[documentation on building for production](/{{{polymer_version_dir}}}/toolbox/build-for-production).
 
 ## Compiling ES6 to ES5 {#compile}
 

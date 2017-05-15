@@ -141,9 +141,6 @@
   - title: Test your elements
     path: /2.0/docs/tools/tests
     indent: True
-  - title: Build for production
-    path: /2.0/docs/tools/build-for-production
-    indent: True
 #  - title: Publish an element
 #    path: /2.0/docs/tools/reusable-elements
 #    indent: True
@@ -198,8 +195,8 @@
     indent: True
   - endheader: true
   - header: Deploy
-  - title: Optimize for production
-    path: /2.0/toolbox/optimize-for-production
+  - title: Build for production
+    path: /2.0/toolbox/build-for-production
     indent: True
   - title: Serve your app
     path: /2.0/toolbox/serve
