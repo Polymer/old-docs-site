@@ -1186,6 +1186,11 @@ _observeStuff: function(a, b, c) {
 }
 ```
 
+### Custom property serialization and deserialization
+
+If your element overrides the `serialize` or `deserialize` methods, these override points have been
+renamed to `_serializeValue` and `_deserializeValue`, respectively.
+
 ### Data system miscellany {#data-system-miscellany}
 
 A few more changes that you may need to take into account.

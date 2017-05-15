@@ -53,6 +53,9 @@ version of the spec used in Polymer 1.x. In particular:
 *   In addition, although they are supported in the specification, Polymer 2.0 does not currently
     support type-extension elements (`is=`).
 
+*   Because of complications related to the new specification, the `disable-upgrade` feature is not
+    supported in 2.x. It may be added later as a mixin or add-on.
+
 The following sections describe these changes in more detail.
 
 For general information on the custom elements v1 specification, see [Custom elements v1: reusable web components](https://developers.google.com/web/fundamentals/primers/customelements/?hl=en) on Web Fundamentals.
