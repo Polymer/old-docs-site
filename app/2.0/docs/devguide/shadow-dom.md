@@ -199,7 +199,7 @@ example:
 ```
 <fancy-note>
   #shadow-root
-    <slot id="icon">
+    <slot name="icon">
       <img src="note.png">
     </slot>
     <slot></slot>
