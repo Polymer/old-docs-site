@@ -135,7 +135,7 @@
   - endheader: True
   - header: Resources
   - title: Community
-    path: /1.0/docs/community
+    path: /community/
     indent: True
   - title: Browser compatibility
     path: /1.0/docs/browsers

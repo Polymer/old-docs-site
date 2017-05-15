@@ -562,8 +562,7 @@ If you still have any `/deep/` or `::shadow` selectors in your project, it's tim
 They don't work at all in shadow DOM v1.
 
 There's no direct substitute for shadow-piercing selectors.To let users customize your element,
-[custom CSS properties](../devguide/custom-css-properties) are probably the best option.
-
+[custom CSS properties](/{{{polymer_version_dir}}}/docs/devguide/custom-css-properties) are probably the best option.
 
 #### Replace root selectors {#replace-root-selectors}
 
@@ -1407,7 +1406,7 @@ this.dispatchEvent(new CustomEvent('some-event', { bubbles: true, composed: true
 ```
 
 The `fire` method sets the `bubbles` and `composed` properties by default. For more on using custom
-events, see [Fire custom events](events#custom-events).
+events, see [Fire custom events](/{{{polymer_version_dir}}}/docs/devguide/events#custom-events).
 
 (The `CustomEvent` constructor is not supported on IE, but the webcomponents polyfills include a
 small polyfill for it so you can use the same syntax everywhere.)

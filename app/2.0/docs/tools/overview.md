@@ -2,10 +2,14 @@
 title: Tools overview
 ---
 
-The Polymer Project offers a range of tools to help developers write web components.
+The Polymer Project offers a range of tools to help developers write web components:
 
-The [Polymer CLI](polymer-cli) is our reccomended "swiss army knife" for Polymer tooling. It supports a collection of commands for common scenarios like serving, testing, and initializing new projects from templates.
+* The [Polymer CLI](polymer-cli) is our reccomended "swiss army knife" for Polymer tooling. It supports a collection of commands for common scenarios like serving, testing, and initializing new projects from templates.
 
-For advanced tooling configurations that the CLI may not handle, check out our [Advanced tools](advanced) section. The Polymer CLI is composed of lower-level tooling that you are welcome to use directly. For example, the [`polymer-build`](https://github.com/Polymer/polymer-build) library helps you create your own build process out of pluggable streams.
+* The [polymer.json specification](polymer-json) describes how to configure your Polymer project and its builds. 
 
-In addition, the [Web services](services) page lists helpful services to speed up the development process.
+* [Web Component Tester](tests) is an end-to-end testing environment built by the Polymer team.  
+
+* The [Web services](services) page lists helpful services to speed up the development process.
+
+For information on the build and deployment processes for Polymer applications, see the [Polymer App Toolbox section](/{{{polymer_version_dir}}}/toolbox/).
