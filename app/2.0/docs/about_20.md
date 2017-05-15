@@ -86,7 +86,6 @@ The legacy <code>created</code> callback is no longer called before default valu
 <code>created</code> from within <code>value</code> functions that define property defaults.
 <p>
 However, you can now set <strong>any</strong> property defaults within the <code>created</code>
-
 callback (in 1.0 this was forbidden for observed properties) instead of using the <code>value</code>
 function in <code>properties</code>.
    </td>
@@ -388,15 +387,19 @@ In 1.x, observers fire last, after property-change notifications.
 
 ### Observer changes
 
-In 2.0, the checks preventing observers from firing with undefined dependencies are removed.
+In 2.x, the checks preventing observers from firing with undefined dependencies are removed.
 
 Specifically:
 
 *   Multi-property observers, computed properties, and computed bindings run once at initialization
-    if **any** dependencies are defined.
+    if **any** dependencies are defined, and for each change thereafter.
 
 *   The observer or computing functions may now receive `undefined` as an argument value, and
     needs to handle it correctly.
+
+2.x also adds the ability to define observers and computed properties dynamically, on a per-instance
+basis. For details, see
+[Add observers and computed properties dynamically](devguide/observers#dynamic-observers).
 
 
 ### Miscellaneous data system changes
