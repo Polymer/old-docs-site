@@ -48,7 +48,7 @@ on browsers that support native custom elements.
 If you're putting together a custom build:
 
 -   Polymer requires all ES6 features except modules. (If you're using Babel, you can use
-    `babel-preset-es2015` with the `modules` option set to false.)
+    [`babel-preset-env`](https://github.com/babel/babel-preset-env) with the `modules` option set to false.)
 -   You must compile all your elements, the Polymer library, and any third-party elements you're
     using, but _not_ the polyfills.
 -   If you're serving compiled code to browsers that support native custom elements, inject the
