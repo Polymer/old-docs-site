@@ -379,6 +379,9 @@ share across your team.
 * [`--shell`](#shell)
 * [`--fragment`](#fragment)
 
+A set of presets have been provided to cover common configurations - see the section below 
+on [build presets](#presets).
+
 #### `--add-service-worker` {#service-workers}
 
 Generate a service worker for your application to cache all files and assets on the client.
@@ -445,15 +448,32 @@ In a Polymer app, the files listed in the fragments flag usually contain one or 
 definitions that may or may not be required during the user’s interaction with the app, and can
 thus be lazily loaded.
 
+#### Build presets {#presets}
+
+```bash
+polymer build --preset preset-name
+```
+
+**Build presets** provide an easy way to create common build configurations. When you provide a valid preset for your build, it will use the flags in that preset. We currently support 3 different presets:
+
+- **es5-bundled:**
+  --js-minify --js-compile --css-minify --bundled --add-service-worker --add-push-manifest --insert-prefetch-links
+
+- **es6-bundled:**
+  --js-minify --css-minify --html-minify --bundled --add-service-worker --add-push-manifest --insert-prefetch-links
+  
+- **es6-unbundled:**
+  --js-minify --css-minify --html-minify --add-service-worker --add-push-manifest --insert-prefetch-links
+
 #### Examples {#examples}
 
-Create a bundled, minified application build:
+Create a bundled build for browsers that support ES5:
 
-`polymer build --bundle --js-minify --css-minify --html-minify`
+`polymer build --preset es5-bundled`
 
-Create an unbundled, minified application build:
+Create an unbundled build for browsers that support ES6:
 
-`polymer build --js-minify --css-minify --html-minify`
+`polymer build --preset es6-unbundled`
 
 ## Manage dependencies {#dependencies}
 

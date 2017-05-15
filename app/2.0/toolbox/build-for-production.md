@@ -145,7 +145,7 @@ Run `polymer help build` to see the command line options for the `polymer build`
 
 You can define your build options by editing the `builds` object in your project's `polymer.json` configuration file. For detailed information on `polymer.json`, see the [`polymer.json` specification](polymer-json).
 
-### Example 1: A single, compiled, bundled build
+### A single, compiled, bundled build
 
 This example gives a single build. ES6 is compiled to ES5; JavaScript, CSS and HTML are minified; and resources are bundled.
 
@@ -170,7 +170,7 @@ To build this configuration:
 
 Your build is output to the `build/default` folder.
 
-### Example 2: Multiple builds, both bundled and unbundled
+### Multiple builds, both bundled and unbundled
 
 This example gives two builds - bundled and unbundled.
 
@@ -203,6 +203,47 @@ To build this configuration:
 3. cd to your project's main folder, and type `polymer build`.
 
 Your builds are output to two separate folders, corresponding to their names: `build/bundled` and `build/unbundled`. 
+
+### Build presets
+
+**Build presets** provide an easy way to define common build configurations in your [polymer.json file](polymer-json). You can use a preset as-is, or define a build configuration that inherits from a preset. 
+
+We currently support three build presets:
+
+- **es5-bundled:**
+  - name: `es5-bundled`
+  - js: `{minify: true, compile: true}`
+  - css: `{minify: true}`
+  - html: `{minify: true}`
+  - bundle: `true`
+  - addServiceWorker: `true`
+  - addPushManifest: `true`
+  - insertPrefetchLinks: `true`
+- **es6-bundled:**
+  - js: `{minify: true, compile: false}`
+  - css: `{minify: true}`
+  - html: `{minify: true}`
+  - bundle: `true`
+  - addServiceWorker: `true`
+  - addPushManifest: `true`
+  - insertPrefetchLinks: `true`
+- **es6-unbundled:**
+  - js: `{minify: true, compile: false}`
+  - css: `{minify: true}`
+  - html: `{minify: true}`
+  - bundle: `false`
+  - addServiceWorker: `true`
+  - addPushManifest: `true`
+  - insertPrefetchLinks: `true`
+
+Any additional options that you provide will override the given preset. In the example below, a single "es5-bundled" build will be created with all the es5-bundled preset options except "addServiceWorker", which was overriden and set to false:
+
+```json
+"builds": [{
+  "preset": "es5-bundled",
+  "addServiceWorker": false
+}]
+```
 
 ## Building with `polymer-build` {#use-polymer-build}
 
