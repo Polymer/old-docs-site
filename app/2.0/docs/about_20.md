@@ -461,7 +461,7 @@ Safari (9+), Chrome, Opera and Firefox.
 
 Polymer 2.0 has been developed alongside and tested with a new suite of v1-spec compatible polyfills
 for custom elements and shadow DOM. You can test Polymer 2.0 by using a `webcomponentsjs` version
-greater or equal to `1.0.0-rc.7` , which is included as a bower dependency to Polymer 2.x.
+greater or equal to `1.0.0` , which is included as a bower dependency to Polymer 2.x.
 
 There are several ways to load the polyfills:
 
@@ -500,57 +500,31 @@ browser.
 
 For more information, see [Browser compatibility](browsers#es6).
 
-## Polymer element availability {#elements}
-
-
-The team is in the process of updating the Polymer elements to use the new "hybrid" format compatible
-with both Polymer 1.7+ and 2.x. Many elements repos have `2.0-preview` branches in varying degrees of
-stability.
-
 ## Install Polymer 2.0 {#installing}
 
-You can install the latest Polymer 2.0 RC release using bower:
+You can install the latest Polymer 2.x release using bower:
 
 ```
-bower install --save Polymer/polymer#^2.0.0-rc.3
+bower install --save Polymer/polymer#^2.0.0
 ```
 
 You can also use bower to install any of the available hybrid elements:
 
 ```
-bower install --save PolymerElements/paper-button#2.0-preview
+bower install --save PolymerElements/paper-button#^2.0-0
 ```
-
-Note that some of the `2.0-preview` branches are subject to change due to bug fixes.
 
 ### Upgrade an existing project {#upgrading}
 
-When upgrading an existing project you may  want to read through
-the rest of this doc and the [upgrade guide](upgrade) before starting.
+See the [upgrade guide](upgrade) for information on getting your code working with 2.0.
 
-If your project uses Polymer elements or behaviors, see [Polymer element availability](#elements).
+## Polymer element availability {#elements}
 
-1.  Create a copy of your project or create a new branch to work in.
 
-1.  Find the Polymer packages in `bower.json` and replace the existing version
-    with  `^2.0.0.rc.3`:
+The team is in the process of updating the Polymer elements to use the new "hybrid" format compatible
+with both Polymer 1.7+ and 2.x.
 
-    `"polymer": "Polymer/polymer#^2.0.0-rc.3"`
-
-1.  Find any existing Polymer elements in `bower.json` and replace the existing version
-    with the `2.0-preview` branch:
-
-    `"paper-button": "PolymerElements/paper-button#2.0-preview"`
-
-1.  Run bower install.
-
-    `bower install`
-
-1.  See the [upgrade guide](upgrade) for information on getting your code working with 2.0.
-
-## Elements that support Polymer 2 {#elements-2}
-
-These elements have been updated to support Polymer 2.0, or require no updates:
+The following elements have been updated to support Polymer 2.0, or require no updates:
 
 <ul>
 <li><a href="https://github.com/PolymerElements/app-layout">app-layout</a></li>

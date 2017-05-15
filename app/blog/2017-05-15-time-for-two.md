@@ -35,3 +35,6 @@ With the 2.0 library advancements, lots of convenient ES6 features are now avail
 All of this news comes at a very exciting time—I/O is in just 2 days! We'll have 3 talks deep-diving on various areas of the Polymer Project. We will give an overview of all of the Polymer Project's latest and greatest advancements, including some new announcements at our [Polymer Keynote on Day 1](https://events.google.com/io/schedule/?section=may-17&sid=7b0b4c44-8121-4d87-9149-2fe61ff77e9d). Justin Fagnani-Bell, Tech Lead on the Tools team will speak about [developer tooling for web components](https://events.google.com/io/schedule/?section=may-18&sid=5869a78a-fb7f-4e98-8951-ea6f7ebb3649), and Monica Dinculescu will be sharing tips, tricks, and best practices for [building web components with Polymer 2.0](https://events.google.com/io/schedule/?section=may-18&sid=861c6857-57e9-4a25-9800-0a788f99193a).
 
 We're also working on a fresh fleet of codelabs, a large presence at the I/O Web Sandbox, and an even more exciting Polymon-related surprise. We're looking forward to sharing it all with you either over the livestream or in person. Please come by or shoot us a tweet to share your thoughts and say hello!
+
+<a class="blue-button" href="/2.0/docs/about_20">What's new in 2.0</a>
+<a class="blue-button" href="/2.0/docs/upgrade">Upgrade to 2.0</a>
