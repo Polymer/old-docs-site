@@ -12,9 +12,18 @@ pre {
   font-size: 15px;
   line-height: 24px;
   font-weight: 400;
+
+  /* We load iron-doc-viewer which loads prism-highlighter, which has a
+   * style for this that doesn't make sense, and we need to override. */
+  background: #f4f5f6 !important;
+  padding: .5em;
 }
 
 code {
   color: #0D47A1;  /* blue-900 */
   font-weight: 400;
+
+  /* We load iron-doc-viewer which loads prism-highlighter, which has a
+  * style for this that doesn't make sense, and we need to override. */
+  background: #f4f5f6 !important;
 }
