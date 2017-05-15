@@ -547,3 +547,91 @@ If your project uses Polymer elements or behaviors, see [Polymer element availab
     `bower install`
 
 1.  See the [upgrade guide](upgrade) for information on getting your code working with 2.0.
+
+## Elements that support Polymer 2 {#elements-2}
+
+These elements have been updated to support Polymer 2.0, or require no updates:
+
+<ul>
+<li><a href="https://github.com/PolymerElements/app-layout">app-layout</a></li>
+<li><a href="https://github.com/PolymerElements/app-localize-behavior">app-localize-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/app-pouchdb">app-pouchdb</a></li>
+<li><a href="https://github.com/PolymerElements/app-route">app-route</a></li>
+<li><a href="https://github.com/PolymerElements/app-storage">app-storage</a></li>
+<li><a href="https://github.com/PolymerElements/gold-zip-input">gold-zip-input</a></li>
+<li><a href="https://github.com/PolymerElements/iron-a11y-announcer">iron-a11y-announcer</a></li>
+<li><a href="https://github.com/PolymerElements/iron-a11y-keys-behavior">iron-a11y-keys-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-ajax">iron-ajax</a></li>
+<li><a href="https://github.com/PolymerElements/iron-autogrow-textarea">iron-autogrow-textarea</a></li>
+<li><a href="https://github.com/PolymerElements/iron-behaviors">iron-behaviors</a></li>
+<li><a href="https://github.com/PolymerElements/iron-checked-element-behavior">iron-checked-element-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-collapse">iron-collapse</a></li>
+<li><a href="https://github.com/PolymerElements/iron-component-page">iron-component-page</a></li>
+<li><a href="https://github.com/PolymerElements/iron-demo-helpers">iron-demo-helpers</a></li>
+<li><a href="https://github.com/PolymerElements/iron-doc-viewer">iron-doc-viewer</a></li>
+<li><a href="https://github.com/PolymerElements/iron-dropdown">iron-dropdown</a></li>
+<li><a href="https://github.com/PolymerElements/iron-fit-behavior">iron-fit-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-flex-layout">iron-flex-layout</a></li>
+<li><a href="https://github.com/PolymerElements/iron-icon">iron-icon</a></li>
+<li><a href="https://github.com/PolymerElements/iron-icons">iron-icons</a></li>
+<li><a href="https://github.com/PolymerElements/iron-iconset">iron-iconset</a></li>
+<li><a href="https://github.com/PolymerElements/iron-iconset-svg">iron-iconset-svg</a></li>
+<li><a href="https://github.com/PolymerElements/iron-image">iron-image</a></li>
+<li><a href="https://github.com/PolymerElements/iron-input">iron-input</a></li>
+<li><a href="https://github.com/PolymerElements/iron-jsonp-library">iron-jsonp-library</a></li>
+<li><a href="https://github.com/PolymerElements/iron-label">iron-label</a></li>
+<li><a href="https://github.com/PolymerElements/iron-list">iron-list</a></li>
+<li><a href="https://github.com/PolymerElements/iron-localstorage">iron-localstorage</a></li>
+<li><a href="https://github.com/PolymerElements/iron-location">iron-location</a></li>
+<li><a href="https://github.com/PolymerElements/iron-media-query">iron-media-query</a></li>
+<li><a href="https://github.com/PolymerElements/iron-menu-behavior">iron-menu-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-meta">iron-meta</a></li>
+<li><a href="https://github.com/PolymerElements/iron-overlay-behavior">iron-overlay-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-pages">iron-pages</a></li>
+<li><a href="https://github.com/PolymerElements/iron-range-behavior">iron-range-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-resizable-behavior">iron-resizable-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-scroll-target-behavior">iron-scroll-target-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-scroll-threshold">iron-scroll-threshold</a></li>
+<li><a href="https://github.com/PolymerElements/iron-selector">iron-selector</a></li>
+<li><a href="https://github.com/PolymerElements/iron-test-helpers">iron-test-helpers</a></li>
+<li><a href="https://github.com/PolymerElements/iron-validatable-behavior">iron-validatable-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-validator-behavior">iron-validator-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/marked-element">marked-element</a></li>
+<li><a href="https://github.com/PolymerElements/neon-animation">neon-animation</a></li>
+<li><a href="https://github.com/PolymerElements/paper-badge">paper-badge</a></li>
+<li><a href="https://github.com/PolymerElements/paper-behaviors">paper-behaviors</a></li>
+<li><a href="https://github.com/PolymerElements/paper-button">paper-button</a></li>
+<li><a href="https://github.com/PolymerElements/paper-card">paper-card</a></li>
+<li><a href="https://github.com/PolymerElements/paper-checkbox">paper-checkbox</a></li>
+<li><a href="https://github.com/PolymerElements/paper-dialog">paper-dialog</a></li>
+<li><a href="https://github.com/PolymerElements/paper-dialog-behavior">paper-dialog-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/paper-dialog-scrollable">paper-dialog-scrollable</a></li>
+<li><a href="https://github.com/PolymerElements/paper-drawer-panel">paper-drawer-panel</a></li>
+<li><a href="https://github.com/PolymerElements/paper-dropdown-menu">paper-dropdown-menu</a></li>
+<li><a href="https://github.com/PolymerElements/paper-fab">paper-fab</a></li>
+<li><a href="https://github.com/PolymerElements/paper-header-panel">paper-header-panel</a></li>
+<li><a href="https://github.com/PolymerElements/paper-icon-button">paper-icon-button</a></li>
+<li><a href="https://github.com/PolymerElements/paper-input">paper-input</a></li>
+<li><a href="https://github.com/PolymerElements/paper-item">paper-item</a></li>
+<li><a href="https://github.com/PolymerElements/paper-listbox">paper-listbox</a></li>
+<li><a href="https://github.com/PolymerElements/paper-material">paper-material</a></li>
+<li><a href="https://github.com/PolymerElements/paper-menu-button">paper-menu-button</a></li>
+<li><a href="https://github.com/PolymerElements/paper-progress">paper-progress</a></li>
+<li><a href="https://github.com/PolymerElements/paper-radio-button">paper-radio-button</a></li>
+<li><a href="https://github.com/PolymerElements/paper-radio-group">paper-radio-group</a></li>
+<li><a href="https://github.com/PolymerElements/paper-ripple">paper-ripple</a></li>
+<li><a href="https://github.com/PolymerElements/paper-scroll-header-panel">paper-scroll-header-panel</a></li>
+<li><a href="https://github.com/PolymerElements/paper-slider">paper-slider</a></li>
+<li><a href="https://github.com/PolymerElements/paper-spinner">paper-spinner</a></li>
+<li><a href="https://github.com/PolymerElements/paper-styles">paper-styles</a></li>
+<li><a href="https://github.com/PolymerElements/paper-swatch-picker">paper-swatch-picker</a></li>
+<li><a href="https://github.com/PolymerElements/paper-tabs">paper-tabs</a></li>
+<li><a href="https://github.com/PolymerElements/paper-toast">paper-toast</a></li>
+<li><a href="https://github.com/PolymerElements/paper-toggle-button">paper-toggle-button</a></li>
+<li><a href="https://github.com/PolymerElements/paper-toolbar">paper-toolbar</a></li>
+<li><a href="https://github.com/PolymerElements/paper-tooltip">paper-tooltip</a></li>
+<li><a href="https://github.com/PolymerElements/platinum-sw">platinum-sw</a></li>
+<li><a href="https://github.com/PolymerElements/polymerfire">polymerfire</a></li>
+<li><a href="https://github.com/PolymerLabs/note-app-elements">polymerlabs/note-app-elements</a></li>
+<li><a href="https://github.com/PolymerElements/prism-element">prism-element</a></li>
+</ul>

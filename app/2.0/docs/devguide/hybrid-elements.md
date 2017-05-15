@@ -217,26 +217,25 @@ if (Polymer.Element) {
 For testing Polymer elements, Polymer CLI supports installing multiple versions of bower
 dependencies. These versions are called _variants_. The components' default dependencies are listed
 in the standard `dependencies` and `devDependencies` sections. The default dependencies should
-use version ranges that include all versions supported by the component (typically, 1.7.1 or higher
+use version ranges that include all versions supported by the component (typically, 1.9.1 or higher
 for Polymer itself).
 
 Other sets are listed in a special `variants` section. For example:
 
 ```js
   "dependencies": {
-    "polymer": "Polymer/polymer#>=1.7.1 <3.0.0"
+    "polymer": "Polymer/polymer#^1.9.1 || ^2.0.0"
   },
   "devDependencies": {
-    "iron-component-page": "PolymerElements/iron-component-page#>=1.0.0 <3.0.0",
-    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#>=1.0.0 <3.0.0",
-    "test-fixture": "PolymerElements/test-fixture#>=1.0.0 <3.0.0",
+    "iron-component-page": "PolymerElements/iron-component-page#^2.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
+    "test-fixture": "PolymerElements/test-fixture#^2.0.0",
     "web-component-tester": "^6.0.0",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#>=0.7.0 <2.0.0"
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0 || ^1.0.0"
   },
   "variants": {
     "1.x": {
       "dependencies": {
-        "iron-resizable-behavior": "PolymerElements/iron-resizable-behavior#^1.0.0",
         "polymer": "Polymer/polymer#^1.0.0"
       },
       "devDependencies": {
@@ -251,12 +250,16 @@ Other sets are listed in a special `variants` section. For example:
   },
 ```
 
-In the example above, the default dependencies match either 1.x or 2.x, while the 1.x variant
-matches 1.x.
+In the example above, the default dependencies work with either Polymer 1.x or 2.x, while the
+1.x variant works with 1.x.
 
 Run the following command to install both sets of dependencies:
 
 `polymer install --variants`
+
+To run on both 1.x and 2.x, hybrid elements should only depend on other hybrid elements.
+For elements built by the Polymer team, such as the iron-, paper- or app- elements, this
+means you will need a version number of 2.0.0 or higher.
 
 Other CLI commands like `polymer serve` and `polymer test` can run against the default dependencies,
 as well as any variants. For example, `polymer serve` serves both versions at the same time, from
