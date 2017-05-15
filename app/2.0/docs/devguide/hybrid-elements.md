@@ -250,8 +250,8 @@ Other sets are listed in a special `variants` section. For example:
   },
 ```
 
-In the example above, the default dependencies match 2.x, while the 1.x variant
-matches 1.x.
+In the example above, the default dependencies work with either Polymer 1.x or 2.x, while the
+1.x variant works with 1.x.
 
 Run the following command to install both sets of dependencies:
 
