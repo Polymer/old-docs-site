@@ -244,13 +244,13 @@ A slot element may also be assigned to a slot. For example, consider two levels 
     <child-element>
       <!-- parent-element renders its light DOM children inside
            child-element -->
-      <slot name="parent-slot">
+      <slot id="parent-slot">
 
 <child-element>
   #shadow-root
     <div>
       <!-- child-element renders its light DOM children inside this div -->
-      <slot name="child-slot">
+      <slot id="child-slot">
 ```
 
 
@@ -271,8 +271,8 @@ The flattened tree looks like this:
 <parent-element>
   <child-element>
     <div>
-      <slot name="child-slot">
-        <slot name="parent-slot>
+      <slot id="child-slot">
+        <slot id="parent-slot>
           <span>I'm in light DOM</span>
 ```
 
