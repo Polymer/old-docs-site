@@ -4,7 +4,13 @@ title: Install Polymer 2.x
 
 <!-- toc -->
 
-Polymer is distributed via the [Bower package manager](https://bower.io/).
+If you're familiar with Polymer and just want to get started with the new release, you're in the right place! If you'd like an introduction to the Polymer project and web components:
+
+* [Take a quick tour of Polymer](/{{{polymer_version_dir}}}/start/quick-tour)
+* [Learn how to build your first Polymer app](/{{{polymer_version_dir}}}/start/toolbox/set-up)
+* [Learn how to build your first element with the Polymer library](/{{{polymer_version_dir}}}/start/first-element/intro)
+
+Polymer is distributed via the [Bower package manager](https://bower.io/). 
 
 To create an application template and install Polymer automatically, you can [use the Polymer CLI](#use-cli).
 
@@ -19,14 +25,6 @@ The Polymer CLI requires Node.js, npm, Git and Bower. For full installation inst
     ```bash
     npm install -g polymer-cli
     ```
-
-2. Verify your Polymer version.
-
-    ```bash
-    polymer --version
-    ```
-
-    The output of this command should be at least `0.18.0`.
 
 3. Create a test folder for Polymer 2.0, and switch to it.
 
@@ -65,29 +63,21 @@ The Polymer CLI requires Node.js, npm, Git and Bower. For full installation inst
     npm install -g polymer-cli
     ```
 
-3. Verify your Polymer CLI version.
+3. Install the latest Polymer 2.0 release from bower
 
     ```bash
-    polymer --version
+    bower install Polymer/polymer#^2.0.0
     ```
 
-    The output of this command should be at least `0.18.0`.
-
-4. Install the latest Polymer 2.0 RC release from bower
-
-    ```bash
-    bower install Polymer/polymer#^2.0.0-rc.3
-    ```
-
-5. Create a test `index.html` file, and add the following in the `<head>` tag:
+4. Create a test `index.html` file, and add the following in the `<head>` tag:
   - `<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>` to
   load the polyfills
   - `<link rel="import" href="/bower_components/polymer/polymer.html">` to
   import Polymer
 
-6. Import and use whichever elements you’d like.
+5. Import and use whichever elements you’d like.
 
-7. Serve your project.
+6. Serve your project.
 
     ```bash
     polymer serve
