@@ -92,7 +92,7 @@ Follow these steps to update your bower dependencies:
     | Polymer   | `^2.0.0` |
     | webcomponentsjs | `^1.0.0` |
     | web-component-tester | `^6.0.0` |
-    | Polymer elements | `2.0.0` |
+    | Polymer elements | `^2.0.0` |
 
     A list of 2.0-compatible Polymer elements can be found on the [About Polymer 2.0](/{{{polymer_version_dir}}}/docs/about_20#elements-2) page.
     To get updates to elements, you may need to remove your `bower_components` folder
@@ -103,16 +103,16 @@ Follow these steps to update your bower dependencies:
 
     ```
       "dependencies": {
-        "app-layout": "PolymerElements/app-layout#2.0.0",
-        "app-route": "PolymerElements/app-route#2.0.0",
-        "iron-flex-layout": "PolymerElements/iron-flex-layout#2.0.0",
-        "iron-icon": "PolymerElements/iron-icon#2.0.0",
-        "iron-iconset-svg": "PolymerElements/iron-iconset-svg#2.0.0",
-        "iron-localstorage": "PolymerElements/iron-localstorage#2.0.0",
-        "iron-media-query": "PolymerElements/iron-media-query#2.0.0",
-        "iron-pages": "PolymerElements/iron-pages#2.0.0",
-        "iron-selector": "PolymerElements/iron-selector#2.0.0",
-        "paper-icon-button": "PolymerElements/paper-icon-button#2.0.0",
+        "app-layout": "PolymerElements/app-layout#^2.0.0",
+        "app-route": "PolymerElements/app-route#^2.0.0",
+        "iron-flex-layout": "PolymerElements/iron-flex-layout#^2.0.0",
+        "iron-icon": "PolymerElements/iron-icon#^2.0.0",
+        "iron-iconset-svg": "PolymerElements/iron-iconset-svg#^2.0.0",
+        "iron-localstorage": "PolymerElements/iron-localstorage#^2.0.0",
+        "iron-media-query": "PolymerElements/iron-media-query#^2.0.0",
+        "iron-pages": "PolymerElements/iron-pages#^2.0.0",
+        "iron-selector": "PolymerElements/iron-selector#^2.0.0",
+        "paper-icon-button": "PolymerElements/paper-icon-button#^2.0.0",
         "polymer": "Polymer/polymer#^2.0.0",
         "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
       },
