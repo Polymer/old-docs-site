@@ -95,9 +95,9 @@ Follow these steps to update your bower dependencies:
     | Polymer elements | `^2.0.0` |
 
     A list of 2.0-compatible Polymer elements can be found on the [About Polymer 2.0](/{{{polymer_version_dir}}}/docs/about_20#elements-2) page.
-    To get updates to elements, you may need to remove your `bower_components` folder
-    and reinstall all components. If you previously installed one of the 2.0 release
-    candidates, you should definitely do so.
+
+    If you previously installed one of the 2.0 release candidates, you should
+    remove your `bower_components` folder and reinstall all components.
 
     Example dependencies {.caption}
 
