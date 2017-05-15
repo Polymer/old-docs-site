@@ -129,7 +129,7 @@ The `sources` property is set as follows:
 Optional<br>
 Type: `Array` of `Build Configuration` objects
 
-You can configure how the CLI [builds your application for production]({{{polymer_version_dir}}}/toolbox/build-for-production) via
+You can configure how the CLI [builds your application for production](/{{{polymer_version_dir}}}/toolbox/build-for-production) via
 the `builds` property. This is equivalent to passing different CLI flags to the build command, but
 storing them here will configure the build
 for every run:

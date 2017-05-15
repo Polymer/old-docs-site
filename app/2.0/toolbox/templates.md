@@ -10,7 +10,7 @@ that incorporate the elements and patterns discussed here using the Polymer CLI.
 ## Initialize project from template
 
 To initialize a project from a template, ensure you have the
-[Polymer CLI](../tools/polymer-cli) installed, `cd` into an empty project folder,
+[Polymer CLI](/{{{polymer_version_dir}}}/docs/tools/polymer-cli) installed, `cd` into an empty project folder,
 and simply run the following command, which will prompt you to select from
 the currently available templates.
 

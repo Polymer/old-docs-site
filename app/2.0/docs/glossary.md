@@ -127,7 +127,7 @@ A metadata file used by [npm](#npm) to manage project dependencies.
 
 ### Polymer CLI
 A command line tool for Polymer projects. The Polymer CLI has a number of tools for working with 
-Polymer and Web Components. For more information, see the [Polymer CLI documentation](polymer-cli).
+Polymer and Web Components. For more information, see the [Polymer CLI documentation](/{{{polymer_version_dir}}}/docs/tools/polymer-cli).
 
 #### `polymer build`
 This command builds your project with a preconfigured build pipeline. It calls `polymer-build` with 
