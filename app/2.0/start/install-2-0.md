@@ -18,7 +18,7 @@ To start a project from scratch, you can [install Polymer with Bower](#use-bower
 
 ### Use the Polymer CLI to create an application template and install Polymer {#use-cli}
 
-The Polymer CLI requires Node.js, npm, Git and Bower. For full installation instructions, see [the Polymer CLI documentation](../docs/tools/polymer-cli.md).
+The Polymer CLI requires Node.js, npm, Git and Bower. For full installation instructions, see [the Polymer CLI documentation](../docs/tools/polymer-cli).
 
 1. Install the Polymer CLI.
 
@@ -57,7 +57,7 @@ The Polymer CLI requires Node.js, npm, Git and Bower. For full installation inst
 
 2. Install the Polymer CLI
 
-    The Polymer CLI requires Node.js and npm as well as Bower. For full installation instructions, see [the Polymer CLI documentation](tools/polymer-cli).
+    The Polymer CLI requires Node.js and npm as well as Bower. For full installation instructions, see [the Polymer CLI documentation](../docs/tools/polymer-cli).
 
     ```bash
     npm install -g polymer-cli
