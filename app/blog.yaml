@@ -1,4 +1,12 @@
 ---
+- title: "It's time for 2.0!"
+  path: /blog/2017-05-15-time-for-two
+  published: 2017-05-15
+  author: wmginsberg
+  description: "The Polymer 2.0 library is built for performant interoperable web component development."
+  tag:
+    - blog
+    - announcements
 - title: "Welcome 2.0 Release Candidate!"
   path: /blog/2017-03-08-2-0-rc
   published: 2017-03-08

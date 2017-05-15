@@ -10,7 +10,7 @@ If you're familiar with Polymer and just want to get started with the new releas
 * [Learn how to build your first Polymer app](/{{{polymer_version_dir}}}/start/toolbox/set-up)
 * [Learn how to build your first element with the Polymer library](/{{{polymer_version_dir}}}/start/first-element/intro)
 
-Polymer is distributed via the [Bower package manager](https://bower.io/). 
+Polymer is distributed via the [Bower package manager](https://bower.io/).
 
 To create an application template and install Polymer automatically, you can [use the Polymer CLI](#use-cli).
 
@@ -18,7 +18,7 @@ To start a project from scratch, you can [install Polymer with Bower](#use-bower
 
 ### Use the Polymer CLI to create an application template and install Polymer {#use-cli}
 
-The Polymer CLI requires Node.js, npm, Git and Bower. For full installation instructions, see [the Polymer CLI documentation](../docs/tools/polymer-cli.md).
+The Polymer CLI requires Node.js, npm, Git and Bower. For full installation instructions, see [the Polymer CLI documentation](../docs/tools/polymer-cli).
 
 1. Install the Polymer CLI.
 
@@ -57,7 +57,7 @@ The Polymer CLI requires Node.js, npm, Git and Bower. For full installation inst
 
 2. Install the Polymer CLI
 
-    The Polymer CLI requires Node.js and npm as well as Bower. For full installation instructions, see [the Polymer CLI documentation](tools/polymer-cli).
+    The Polymer CLI requires Node.js and npm as well as Bower. For full installation instructions, see [the Polymer CLI documentation](../docs/tools/polymer-cli).
 
     ```bash
     npm install -g polymer-cli
