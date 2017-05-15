@@ -11,7 +11,7 @@ application's routes, individual components manage some portion of the route, an
 to other components.
 
 **Why modular routing?** For background on `<app-route>` and modular routing, see
-[Encapsulated routing with elements](/1.0/articles/routing).
+[Encapsulated routing with elements](/blog/routing).
 {.alert .alert-info}
 
 ## Install app-route
@@ -161,6 +161,6 @@ _viewChanged(view) {
 
 ## More resources
 
--   [Encapsulated routing with elements](/1.0/blog/routing)
+-   [Encapsulated routing with elements](/blog/routing)
 -   [`<app-route>`
     API reference](https://www.webcomponents.org/element/PolymerElements/app-route)

@@ -4,11 +4,11 @@ title: Install Polymer 2.x
 
 <!-- toc -->
 
-Polymer is distributed via the [Bower package manager](https://bower.io/). 
+Polymer is distributed via the [Bower package manager](https://bower.io/).
 
 To create an application template and install Polymer automatically, you can [use the Polymer CLI](#use-cli).
 
-To start a project from scratch, you can [install Polymer with Bower](#use-bower). 
+To start a project from scratch, you can [install Polymer with Bower](#use-bower).
 
 ### Use the Polymer CLI to create an application template and install Polymer {#use-cli}
 
@@ -93,5 +93,5 @@ The Polymer CLI requires Node.js, npm, Git and Bower. For full installation inst
     polymer serve
     ```
 
-For information on building your project for production, see the documentation on [building Polymer applications for production](../docs/tools/build-for-production.md).
+For information on building your project for production, see the documentation on [building Polymer applications for production](../toolbox/build-for-production).
 

@@ -651,7 +651,7 @@ For example:
 
 -   Lazy-loading sections of your page. If some elements of your page aren't required on first
     paint, you can use a `dom-if` to hide them until their definitions have loaded. This use
-    of conditional templates is described in [Case study: the Shop app](https://www.polymer-project.org/1.0/toolbox/case-study#views).
+    of conditional templates is described in [Case study: the Shop app](case-study#views).
 
 -   Reducing the memory footprint of a large or complex site. For a single-page application
     with multiple complex views, it may be beneficial to put each view inside a `dom-if`

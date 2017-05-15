@@ -40,6 +40,11 @@
 - /articles/concatenating-web-components.html /1.0/docs/tools/optimize-for-production
 - /0.5/articles/concatenating-web-components.html /1.0/docs/tools/optimize-for-production
 
+# 2.0 content shuffle
+- /2.0/docs/tools/optimize-for-production /2.0/toolbox/build-for-production
+- /2.0/toolbox/server /2.0/toolbox/prpl
+
+
 # ------------------------------------------------------------------------------
 # Note: keep these for the tests!
 - /oldpage/ /

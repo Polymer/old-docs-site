@@ -12,10 +12,10 @@ title: Polymer CLI
 
         npm install npm@latest -g
 
-1.  Ensure that Git is installed. 
+1.  Ensure that Git is installed.
 
         git --version
-    
+
     If it isn't, you can find it on the [Git downloads page](https://git-scm.com/downloads).
 
 1.  Install the latest version of Bower.
@@ -164,7 +164,7 @@ architecture](https://developers.google.com/web/updates/2015/11/app-shell).
 
 There are fundamental concepts of the app shell architecture that you should understand before
 creating your app project with Polymer CLI: the entrypoint,
-the shell, and fragments. See [App structure](/1.0/toolbox/server#app-structure)
+the shell, and fragments. See [App structure](../../toolbox/prpl#app-structure)
 from the App Toolbox docs for an in-depth overview of these concepts.
 
 ### Set up basic app project {#basic-app}
@@ -245,7 +245,7 @@ noted.
 
 ### `polymer install` {#install}
 
-Installs Bower dependencies. Running `polymer install` is equivalent to running `bower install`. 
+Installs Bower dependencies. Running `polymer install` is equivalent to running `bower install`.
 
 The `--variants` flag allows you to install dependency variants. See the documentation on [managing dependencies for hybrid elements](/{{{polymer_version_dir}}}/docs/devguide/hybrid-elements#dependency-variants) for more information.
 
@@ -267,7 +267,7 @@ If you create your own tests, they should also go in the `test` directory.
 
 The underlying library that powers `polymer test` is called `web-component-tester` (`wct`). Learn
 more about creating unit tests with `wct`
-in [Test your elements](/1.0/tools/tests).
+in [Test your elements](tests).
 
 ### `polymer serve` {#serve}
 
@@ -317,7 +317,7 @@ Use it like so:
 
     polymer lint --rules=polymer-2
 
-This will lint all of the code in your project with the `polymer-2` ruleset, which is appropriate for projects using Polymer 2.0. If your code is hybrid and should with with either Polymer 1.0 or 2.0 then `polymer-2-hybrid` is a better choice, as it will warn you about use of features that do not exist in Polymer 2.0.
+This will lint all of the code in your project with the `polymer-2` ruleset, which is appropriate for projects using Polymer 2.0. If your code is hybrid and should with with either Polymer 1.x or 2.x then `polymer-2-hybrid` is a better choice, as it will warn you about use of features that do not exist in Polymer 2.x.
 
 You can pass flags to the linter like `--rules` but even better is to put the configuration in `polymer.json` so that all you need to do is run `polymer lint`. Putting your configuration in `polymer.json` also means that other tools, like IDE plugins can use the same lint configuration.
 
