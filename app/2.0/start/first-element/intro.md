@@ -33,7 +33,6 @@ To follow this tutorial, you’ll need:
 -   The starting code, [available on 
 GitHub](https://github.com/PolymerLabs/polymer-2-first-element.git).
 -   The [Polymer CLI](/2.0/docs/tools/polymer-cli) to run the demo.
--   [Bower](https://bower.io/).
 
 ### Download the starting code
 
