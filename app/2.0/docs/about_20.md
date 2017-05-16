@@ -511,7 +511,7 @@ bower install --save Polymer/polymer#^2.0.0
 You can also use bower to install any of the available hybrid elements:
 
 ```
-bower install --save PolymerElements/paper-button#^2.0-0
+bower install --save PolymerElements/paper-button#^2.0.0
 ```
 
 ### Upgrade an existing project {#upgrading}
