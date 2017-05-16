@@ -13,8 +13,6 @@
     path: /2.0/start/quick-tour
   - title: Install Polymer 2.x
     path: /2.0/start/install-2-0
-  - title: Get started
-    path: /2.0/start/index
   - header: Build an element
   - title: 1. Get set up
     path: /2.0/start/first-element/intro
