@@ -24,7 +24,7 @@ title: Polymer CLI
 
 1.  Install Polymer CLI.
 
-        npm install -g polymer-cli@next
+        npm install -g polymer-cli
 
 You're all set. Run `polymer help` to view a list of commands.
 
