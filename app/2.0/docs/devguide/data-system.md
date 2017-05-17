@@ -34,7 +34,6 @@ DOM.
 
 Consider a very simple element:
 
-
 ```html
 <dom-module id="name-card">
   <template>
@@ -42,11 +41,14 @@ Consider a very simple element:
   </template>
   <script>
     class NameCard extends Polymer.Element {
-
-      static get is() {return 'name-card';}
+      static get is() { return "name-card"; }
+      constructor() {
+        super();
+        this.name = {first: 'Kai', last: 'Li'};
+      }
     }
     customElements.define(NameCard.is, NameCard);
-</script>
+  </script>
 </dom-module>
 ```
 
