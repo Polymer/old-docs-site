@@ -13,8 +13,8 @@ Polymer 2.0 also makes improvements in several areas:
 
 *   **Improved interoperability.** By removing the need to use Polymer.dom for DOM manipulation,
     Polymer 2.0 makes it easier to use Polymer components with other libraries and frameworks. In
-    addition, the shady DOM code has been separated out into a reusable polyfill, instead of being
-    integrated into Polymer.
+    addition, the [shady DOM](https://github.com/webcomponents/shadydom) code has been separated 
+    out into a reusable polyfill, instead of being integrated into Polymer.
 
 *   **Data system improvements.** Polymer 2.0 includes targeted improvements to the data system.
     These changes make it  easier to reason about and debug the propagation of data through and
