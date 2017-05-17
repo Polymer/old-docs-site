@@ -1,4 +1,4 @@
-{% if full_nav %}
+{% if site_nav %}
   <style>
     a.site-nav {
       color: #6b6b6b;
@@ -59,7 +59,7 @@
     }
   </style>
 
-  {% for section in full_nav %}
+  {% for section in site_nav %}
     <a class="site-nav level-1"
        href="{{{section.path}}}"
        name="{{{section.path}}}"

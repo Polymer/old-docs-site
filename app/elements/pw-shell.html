@@ -111,12 +111,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         border-bottom: 4px solid #f50057;  /* pink-a400 */
       }
 
-      :host([active-docs-version="1.0"]) .sections-tabs a[data-version="2.0"] {
-        display: none !important;
-      }
-
+      :host([active-docs-version="1.0"]) .sections-tabs a[data-version="2.0"],
       :host([active-docs-version="2.0"]) .sections-tabs a[data-version="1.0"] {
-        display: none !important;
+        display: none;
       }
 
       .search-box {
@@ -161,11 +158,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <app-location route="{{_sectionRoute}}"></app-location>
-    <app-route route="{{_sectionRoute}}" pattern="/:version/:section" data="{{_sectionData}}" tail="{{_subsectionRoute}}"></app-route>
-    <app-route route="{{_sectionRoute}}" pattern="/search/" query-params="{{_searchParams}}"></app-route>
+    <app-location route="{{_route}}" path="{{path}}"></app-location>
+    <app-route route="[[_route]]" pattern="/:version/:section" data="{{_routeData}}"></app-route>
+    <app-route route="{{_route}}" pattern="/search/" query-params="{{_searchParams}}"></app-route>
 
-    <iron-ajax url="[[_sectionRoute.path]]" handle-as="document" on-response="_handleResponse" auto></iron-ajax>
+    <iron-ajax url="[[path]]" handle-as="document" on-response="_handleResponse" auto></iron-ajax>
     <iron-ajax id="cseSearch" url="https://www.googleapis.com/customsearch/v1" on-response="_handleSearchResponse"></iron-ajax>
 
     <app-header class="header" reveals snaps shadow>
@@ -180,7 +177,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="flex"></div>
 
         <nav>
-          <iron-selector class="sections-tabs" attr-for-selected="name" activate-event="" selected="[[_selectedSection(_sectionData.*)]]">
+          <iron-selector class="sections-tabs" attr-for-selected="name" activate-event="" selected="[[_computeSection(path)]]">
 
             <a href="/1.0/start/" name="1.0/start" data-version="1.0">Start</a>
             <a href="/1.0/docs/devguide/feature-overview" name="1.0/docs" data-version="1.0">Polymer</a>
@@ -190,8 +187,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <a href="/2.0/docs/devguide/feature-overview" name="2.0/docs" data-version="2.0">Polymer</a>
             <a href="/2.0/toolbox/" name="2.0/toolbox" data-version="2.0">App Toolbox</a>
 
-            <a href="/blog/" name="blog/">Blog</a>
-            <a href="/community/" name="community/">Community</a>
+            <a href="/blog/" name="blog">Blog</a>
+            <a href="/community/" name="community">Community</a>
           </iron-selector>
         </nav>
 
@@ -266,6 +263,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         type: String,
         value: '2.0',
         reflectToAttribute: true
+      },
+
+      path: {
+        type: String
       }
     },
 
@@ -294,12 +295,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       document.addEventListener('scroll', this._onScroll.bind(this));
 
       // Save the initial URL so that we don't double-render the first load.
-      this._currentPageURL = this._sectionRoute.path;
+      this._currentPageURL = this.path;
 
       // Save which version of docs we're looking at, since we need to
       // maintain this state across the app. Note that not all sections are versioned.
-      if (this._sectionData.version === '1.0' || this._sectionData.version === '2.0')
-        this.activeDocsVersion = this._sectionData.version;
+      if (this._routeData.version === '1.0' || this._routeData.version === '2.0')
+        this.activeDocsVersion = this._routeData.version;
     },
 
     _listboxVersionChanged: function(event) {
@@ -307,7 +308,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (newSelection === this.activeDocsVersion)
         return;
       this.activeDocsVersion = newSelection;
-      this.set('_sectionRoute.path', '/' + this.activeDocsVersion + '/start/');
+      this.path = '/' + this.activeDocsVersion + '/start/';
     },
 
     _toggleDrawer: function() {
@@ -327,7 +328,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _onSearchInputChange: function() {
-      this.set('_sectionRoute.path', '/search/');
+      this.path = '/search/';
       this._searchParams = {'q':this.$.searchBox.value, 'start':null} ;
     },
 
@@ -362,23 +363,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     },
 
-    _selectedSection: function(sectionCR) {
-      var data = sectionCR.base;
-      return data.version+'/'+data.section;
+    _computeSection: function(path) {
+      // This attempts to match the prefix of the current path with the name attribute on one of
+      // the links in .sections-tabs (e.g. '1.0/start', '2.0/toolbox', 'blog', 'community', etc.).
+      var match = /^\/([12]\.0\/[^\/]+|blog|community)\//.exec(path);
+      return match ? match[1] : null;
     },
 
     _handleResponse: function(event) {
       // Don't re-load the same thing you're looking at.
-      if (this._currentPageURL !== this._sectionRoute.path) {
+      if (this._currentPageURL !== this.path) {
         // Not all sections have a version, so only update the docs version if
         // there's actually a change.
         // Also I don't understand, but 'blog' comes with a version of "blog" so...
-        var version = this._sectionData.version;
+        var version = this._routeData.version;
         if (version === '1.0' || version === '2.0') {
           this.activeDocsVersion = version;
         }
 
-        this._currentPageURL = this._sectionRoute.path;
+        this._currentPageURL = this.path;
 
         var doc = event.detail.response;
         document.title = doc.title;
@@ -404,7 +407,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           devshell.removeAttribute('unresolved');
 
         // Analytics. Don't double-report search
-        if (this._sectionRoute.path != '/search/' && window.recordPageview) {
+        if (this.path != '/search/' && window.recordPageview) {
           window.recordPageview();
         }
       }
@@ -419,7 +422,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // If we have any query parameters, that means we are displaying the
       // search results page, and we should kick off a search, if we
       // haven't already
-      if (this._sectionRoute.path === '/search/' && this._searchParams.q) {
+      if (this.path === '/search/' && this._searchParams.q) {
         this._doSearch();
       }
 
@@ -431,7 +434,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       // If there's two links matching this path (i.e. because there's no landing
       // page for a section), and pick the deepest link to highlight.
-      var matchingLinks = Polymer.dom(this).querySelectorAll('a.site-nav[name="' + this._sectionRoute.path +'"]');
+      var matchingLinks = Polymer.dom(this).querySelectorAll('a.site-nav[name="' + this.path +'"]');
       var activeLink = matchingLinks[matchingLinks.length - 1];
 
       if (activeLink) {
