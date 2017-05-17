@@ -144,7 +144,7 @@ Key information:
 Now that you're familiar with the basic layout of the element, add something
 useful to its local DOM template.
 
-Find the `<span>` below the  `local DOM goes here` comment:
+Find the `<span>` below the  `shadow DOM goes here` comment:
 
 icon-toggle.html—before { .caption }
 
