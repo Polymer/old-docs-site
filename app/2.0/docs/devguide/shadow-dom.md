@@ -81,7 +81,8 @@ shadow tree, and won't leak out to other parts of your DOM.
 
 By default, if an element has shadow DOM, **the shadow tree is rendered instead of the element's
 children.** To allow children to render, you can add a `<slot>` element to your shadow tree. Think
-of the <slot> aa a placeholder showing where child nodes will render. Consider the following shadow tree for `<my-header>`:
+of the `<slot>` as a placeholder showing where child nodes will render. Consider the following
+shadow tree for `<my-header>`:
 
 
 ```html
@@ -95,15 +96,15 @@ of the <slot> aa a placeholder showing where child nodes will render. Consider t
 The user can add children like this:
 
 
-```
+```html
 <my-header>Shadow DOM</my-header>
 ```
 
 
-The header renders as if the <slot> element was replaced by the children:
+The header renders as if the `<slot>` element was replaced by the children:
 
 
-```
+```html
 <my-header>
   <header>
     <h1>Shadow DOM</h1>
@@ -129,7 +130,7 @@ You can control where a child should be distributed into the flattened tree usin
 ```
 
 
-.A named slot only accepts top-level children that have a matching `slot` attribute:
+A named slot only accepts top-level children that have a matching `slot` attribute:
 
 
 ```html
@@ -171,7 +172,7 @@ shadow tree, doesn't show up in the flattened tree, and doesn't render.
 Note that only top-level children can match a slot. Consider the following example:
 
 
-```
+```html
 <example-card>
   <div>
    <span slot="title">Am I a title?</span>
@@ -198,7 +199,7 @@ example:
 ```
 <fancy-note>
   #shadow-root
-    <slot id="icon">
+    <slot name="icon">
       <img src="note.png">
     </slot>
     <slot></slot>
@@ -277,9 +278,13 @@ The flattened tree looks like this:
 
 
 The ordering may be a little confusing at first. At each level, the light DOM children are
-*assigned* to a slot in the host's shadow DOM. The span "I'm in light DOM" is *assigned* to to the
+*assigned* to a slot in the host's shadow DOM. The span "I'm in light DOM" is *assigned* to the
 slot `#parent-slot` in `<parent-element>`'s shadow DOM. The `#parent-slot` is then *assigned* to
 `#child-slot` in `<child-element>`'s shadow DOM.
+
+**Note:** This example uses `id` on slots for illustration purposes only.  This is not the same as
+the `name` attribute.  These slots are unnamed and are therefore default slots.
+{.alert .alert-info}
 
 The slot elements don't render, so the rendered tree is much simpler:
 
@@ -457,16 +462,16 @@ functional pseudoclass.
 ```
 
 
-You can also style light DOM children that are assigned to slots using the `::slotted()` p
-seudoelement. For example, `::slotted(img)` selects any image tags that are assigned to slots in the
+You can also style light DOM children that are assigned to slots using the `::slotted()`
+pseudoelement. For example, `::slotted(img)` selects any image tags that are assigned to slots in the
 shadow tree.
 
 
 ```
   #shadow-root
     <style>
-      :slotted(img) {
-        Border-radius: 100%;
+      ::slotted(img) {
+        border-radius: 100%;
       }
     </style>
 ```
@@ -641,8 +646,8 @@ For further reading:
 
 
 
-*   [Shadow DOM v1: self-contained web components](https://developers.google.com/web/fundamentals/primers/shadowdom/?hl=en)` on Web Fundamentals.`
-*   [Custom properties specification](https://www.w3.org/TR/css-variables-1/)).
+*   [Shadow DOM v1: self-contained web components](https://developers.google.com/web/fundamentals/primers/shadowdom/?hl=en) on Web Fundamentals.
+*   [Custom properties specification](https://www.w3.org/TR/css-variables-1/).
 *   [Custom property mixins proposal](https://tabatkins.github.io/specs/css-apply-rule/).
 *   [Shady DOM polyfill README](https://github.com/webcomponents/shadydom/blob/master/README.md).
 *   [Shady CSS polyfill README](https://github.com/webcomponents/shadycss/blob/master/README.md).

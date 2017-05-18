@@ -52,51 +52,72 @@ and create a new project
     * Click the Create Project button.
     * Type a project name.
     * Click the Create button.
+    
+    The App Engine gives you a project ID based on the name of your project.
+    Make note of this ID.
 
-1.  `cd` into your project directory.
+1.  `cd` into the main folder for your app (e.g. `my-app/`).
 
-1. Create an `app.yaml` file with the following contents.
-Replace `{project name}` with the name you chose in the previous step.
+1. Create an `app.yaml` file with the following contents:
 
     ```
-    application: {project name}
-    version: 1
     runtime: python27
     api_version: 1
     threadsafe: yes
 
     handlers:
     - url: /bower_components
-      static_dir: build/bundled/bower_components
+      static_dir: build/default/bower_components
       secure: always
 
     - url: /images
-      static_dir: build/bundled/images
+      static_dir: build/default/images
       secure: always
 
     - url: /src
-      static_dir: build/bundled/src
-      secure: always
-
-    - url: /service-worker.js
-      static_files: build/bundled/service-worker.js
-      upload: build/bundled/service-worker.js
+      static_dir: build/default/src
       secure: always
 
     - url: /manifest.json
-      static_files: build/bundled/manifest.json
-      upload: build/bundled/manifest.json
+      static_files: build/default/manifest.json
+      upload: build/default/manifest.json
       secure: always
 
     - url: /.*
-      static_files: build/bundled/index.html
-      upload: build/bundled/index.html
+      static_files: build/default/index.html
+      upload: build/default/index.html
       secure: always
     ```
 
-1.  Deploy.
+1.  Set your project id to the ID given to your app by the App Engine. For example:
+    ````
+    gcloud config set project my-app-164409
+    ````
 
-        appcfg.py -A {project name} update app.yaml
+1. Create your app.
+    ````
+    gcloud app create
+    ````
+	
+    You will need to select a region for your app to be deployed in. This can't be changed.
+
+1. Deploy your app.
+
+    ````
+    gcloud app deploy
+    ````
+
+1. Your app will be available online at its designated URL. For example:
+
+    ````
+    https://my-app-164409.appspot.com/new-view
+    ````
+
+    Open your app URL in your browser by typing this command:
+
+    ````
+    gcloud app browse
+    ````
 
 ### Deploy with Firebase
 
@@ -104,6 +125,10 @@ The instructions below are based on the [Firebase hosting quick start
 guide](https://www.firebase.com/docs/hosting/quickstart.html).
 
 1.  [Sign up for a Firebase account](https://www.firebase.com/signup/).
+
+1.  Go to [https://www.firebase.com/account](https://www.firebase.com/account) to create a new app. Make note of the project ID associated with your app.
+
+    ![Welcome to Firebase showing Project ID](/images/2.0/toolbox/welcome-firebase.png)
 
 1.  Install the Firebase command line tools.
 
@@ -116,19 +141,13 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
         firebase login
         firebase init
 
-    Firebase asks you which app you would like to use for hosting. If you just
-    signed up, you should see one app with a randomly-generated name. You can
-    use that one. Otherwise go to
-    [https://www.firebase.com/account](https://www.firebase.com/account) to
-    create a new app.
+1.  Firebase asks you for a project to associate with your app. Select the one you created earlier.
 
 1.  Firebase asks you the name of your app's public directory. Enter
-    `build/bundled`.  This works because when you run `polymer build` to
-    build your application, Polymer CLI places your bundled application
-    appropriate for serving on Firebase into the `build/bundled` folder.
+    `build/default`.
 
 1.  Edit your firebase configuration to add support for URL routing.  Add
-    the following section to your `firebase.json` file.
+    the following to the `hosting` object in your `firebase.json` file.
 
     ```
     "rewrites": [
@@ -143,10 +162,33 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
     ]
     ```
 
+    For example, your `firebase.json` file may look like this afterwards:
+	
+    ```
+    {
+      "database": {
+        "rules": "database.rules.json"
+      },
+      "hosting": {
+        "public": "build/default",
+        "rewrites": [
+          {
+            "source": "!/__/**",
+            "destination": "/index.html"
+          },
+          {
+            "source": "**/!(*.js|*.html|*.css|*.json|*.svg|*.png|*.jpg|*.jpeg)",
+            "destination": "/index.html"
+          }
+        ]
+      }
+    }
+    ```	
+
     This instructs Firebase to serve up `index.html` for any URLs that don't
     otherwise end in a file extension.
 
-1.  Deploy.
+1.  Deploy your project.
 
         firebase deploy
 

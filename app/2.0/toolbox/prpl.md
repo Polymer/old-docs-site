@@ -1,23 +1,8 @@
 ---
-title: Serve your app
+title: PRPL Pattern
 ---
 
 <!-- toc -->
-
-You can  serve an App Toolbox app using any server technology you want. The Polymer CLI build
-process supports fast-loading applications that can take advantage of the latest web technologies by
-producing two builds:
-
--   An unbundled build designed for server/browser combinations that support HTTP/2 and
-    HTTP/2 server push to deliver the resources the browser needs for a fast first paint while
-    optimizing caching.
-
--   A bundled build designed to minimize the number of round-trips required to get the application
-	running on server/browser combinations that don't support server push.
-
-Your server logic can deliver the appropriate build for each browser.
-
-## PRPL pattern
 
 To optimize delivery, the Toolbox uses the _PRPL pattern_, which
 stands for:
@@ -55,7 +40,7 @@ following structure:
 
 The diagram below shows the components of a simple app:
 
-![diagram of an app that has two views, which have both individual and shared dependencies](/images/1.0/toolbox/app-build-components.png)
+![diagram of an app that has two views, which have both individual and shared dependencies](/images/2.0/toolbox/app-build-components.png)
 
 In this diagram, the solid lines represent _static dependencies_, external resources identified
 in the files using `<link>` and `<script>` tags. Dotted lines represent _dynamic_ or _demand-loaded
@@ -115,34 +100,19 @@ The shell (including its static dependencies) should contain everything needed f
 
 ## Build output
 
-The Polymer CLI build process produces two builds:
+By default, the Polymer CLI build process produces an unbundled build designed for server/browser combinations that support HTTP/2 and HTTP/2 server push to deliver the resources the browser needs for a fast first paint while optimizing caching.
 
--   An unbundled build designed for server/browser combinations that support HTTP/2 and
-    HTTP/2 server push to deliver the resources the browser needs for a fast first paint while
-    optimizing caching.
+To generate a bundled build, designed to minimize the number of round-trips required to get the application running on server/browser combinations that don't support server push, you will need to pass a command line option or configure your [polymer.json file](polymer-json) appropriately.
 
--   A bundled build designed to minimize the number of round-trips required to get the application
-	running on server/browser combinations that don't support server push.
-
-The `polymer build` command produces the two builds in parallel output folders:
-
-	build/
-	  unbundled/
-	    index.html
-	    ...
-	  bundled/
-	    index.html
-	    ...
-
-Your server logic should deliver the appropriate build for each browser.
+If you have multiple builds, your server logic must deliver the appropriate build for each browser.
 
 ### Bundled build
 
-For browsers that don't handle HTTP2 Push, the build process produces a set of vulcanized bundles:
+For browsers that don't handle HTTP2 Push, the `--bundle` flag outputs a set of bundles:
 one bundle for the shell, and one bundle for each fragment. The diagram below shows how a simple
 app would be bundled:
 
-![diagram of the same app as before, where there are 3 bundled dependencies](/images/1.0/toolbox/app-build-bundles.png)
+![diagram of the same app as before, where there are 3 bundled dependencies](/images/2.0/toolbox/app-build-bundles.png)
 
 Any dependency shared by two or more fragments is bundled in with the shell and its static
 dependencies.

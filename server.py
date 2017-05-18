@@ -119,7 +119,7 @@ def read_articles_file(filename, authors):
 
   # For each article, smoosh in the author details.
   for article in articles:
-    article['author'] = authors[article['author']];
+    article['author'] = authors[article['author']]
   return articles
 
 def read_authors_file(filename):
@@ -134,7 +134,7 @@ def handle_404(req, resp, data, e):
 def handle_500(req, resp, data, e):
   logging.exception(e)
   resp.set_status(500)
-  render(resp, '/500.html', data);
+  render(resp, '/500.html', data)
 
 
 # class VersionHandler(http2push.PushHandler):
@@ -174,33 +174,30 @@ class Site(http2push.PushHandler):
       memcache.add(nav_cache, site_nav)
     return site_nav
 
-  def nav_for_section(self, version, section):
-    nav = self.get_site_nav(version)
-    versioned_section = '%s/%s' % (version, section)
-    if nav:
-      for one_section in nav:
-        if one_section['shortpath'] == section or one_section['shortpath'] == versioned_section:
-          if 'items' in one_section:
-            return one_section['items']
+  def get_section_nav(self, version, shortpath):
+    site_nav = self.get_site_nav(version)
+    if site_nav:
+      for section in site_nav:
+        if section['shortpath'] == shortpath:
+          if 'items' in section:
+            return section['items']
     return None
 
-  def versions_for_section(self, section):
-    nav_1 = self.get_site_nav('1.0')
-    nav_2 = self.get_site_nav('2.0')
-
-    versioned_section_1 = '%s/%s' % ('1.0', section)
-    versioned_section_2 = '%s/%s' % ('2.0', section)
-
-    versions = ['','']
-    if nav_1:
-      for one_section in nav_1:
-        if one_section['shortpath'] == section or one_section['shortpath'] == versioned_section_1:
-          versions[0] = one_section['path'];
-    if nav_2:
-      for one_section in nav_2:
-        if one_section['shortpath'] == section or one_section['shortpath'] == versioned_section_2:
-          versions[1] = one_section['path'];
-    return versions
+  def get_versioned_paths(self, shortpath):
+    site_nav_1 = self.get_site_nav('1.0')
+    site_nav_2 = self.get_site_nav('2.0')
+    versioned_paths = ['','']
+    if site_nav_1:
+      for section in site_nav_1:
+        if section['shortpath'] == shortpath:
+          versioned_paths[0] = section['path']
+          break
+    if site_nav_2:
+      for section in site_nav_2:
+        if section['shortpath'] == shortpath:
+          versioned_paths[1] = section['path']
+          break
+    return versioned_paths
 
   def get_articles(self):
     articles_cache = MEMCACHE_PREFIX + ARTICLES_FILE
@@ -219,7 +216,7 @@ class Site(http2push.PushHandler):
 
     return articles
 
-  def get_active_article_data(self, articles, path):
+  def get_active_article(self, articles, path):
     # Find the article that matches this path
     fixed_path = '/' + path
     for article in articles:
@@ -246,36 +243,30 @@ class Site(http2push.PushHandler):
       path = path[:-len('.html')]
       return self.redirect('/' + path, permanent=True)
 
-    version = 'bad_version'
-    nav = None
-    articles = None
-    active_article = None
-    full_nav = None
-    versions = ['','']
     match = re.match('([0-9]+\.[0-9]+)/([^/]+)', path)
 
     if match:
       version = match.group(1)
-      section = match.group(2)
-      full_nav = self.get_site_nav(version)
-      nav = self.nav_for_section(version, section)
-      versions = self.versions_for_section(section)
+      shortpath = match.group(2)
 
       data = {
-        'nav': nav,
-        'full_nav': full_nav,
-        'versions': versions,
+        'site_nav': self.get_site_nav(version),
+        'section_nav': self.get_section_nav(version, shortpath),
+        'versioned_paths': self.get_versioned_paths(shortpath),
         # we use this as a macro in cross-references.
         # please don't take it away.
         'polymer_version_dir': version
       }
     else:
+      articles = None
+      active_article = None
+
       if path.startswith('blog') or path == 'index.html':
         articles = self.get_articles()
-        active_article = self.get_active_article_data(articles, path)
+        active_article = self.get_active_article(articles, path)
 
       data = {
-        'full_nav': self.get_site_nav('1.0') + self.get_site_nav('2.0'),
+        'site_nav': self.get_site_nav('1.0') + self.get_site_nav('2.0'),
         'articles': articles,
         'active_article': active_article
       }

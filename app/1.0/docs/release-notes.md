@@ -11,6 +11,48 @@ title: Release notes
   }
 </style>
 
+## [Release 1.9.1](https://github.com/polymer/polymer/tree/v1.9.1) (2017-04-17) {#v-1-9-1}
+
+This release fixes two issues related to 2.0 hybrid element support.
+
+-   Fix use of `this.resolveUrl()` function in the `properties` block. This fixes a regression
+    introduced in 1.9.0.
+
+-   Fix hybrid use of `dom-if`, `dom-bind`, and `dom-repeat` with 2.x wrapper elements to stamp content above the wrapper
+
+    Example {.caption}
+
+    ```html
+    <!-- content should be stamped here -->
+    <dom-bind>
+      <template is="dom-bind">
+        <!-- content -->
+      </template>
+    </dom-bind>
+    ```
+
+
+## [Release 1.9.0](https://github.com/polymer/polymer/tree/v1.9.0) (2017-04-13) {#v-1-9-0}
+
+
+This release adds two new properties to all Polymer elements for forward-compatibility with 2.0
+(for use in "2.0 hybrid" elements): `importPath` and `rootPath`.
+
+-   The `importPath` property defaults to the element's HTMLImport document URL path.
+
+-   The `rootPath` property defaults to the main document URL's path but may be globally overridden
+    using `Polymer = { rootPath: '...' }` prior to loading `polymer.html`.
+
+Inside element templates, users can now use property binding (e.g. `src$="[[importPath]]foo.jpg"` or
+`src$="[[rootPath]]foo.png"`) to explicitly declare what the URL is relative to, rather than relying
+on Polymer 1.x's automatic URL rewriting, which has been removed in 2.x.
+
+It may be useful to override `rootPath` to provide a stable application mount path when using client
+side routing so that an element template can refer to "application absolute" paths.
+
+For more information, see [URLs in templates](/2.0/docs/devguide/dom-template#urls-in-templates) in
+the 2.0 docs.
+
 ## [Release 1.8.0](https://github.com/polymer/polymer/tree/v1.8.0) (2017-02-06) {#v-1-8-0}
 
 This release adds several small performance-related features.

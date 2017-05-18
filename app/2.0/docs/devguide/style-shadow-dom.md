@@ -6,7 +6,7 @@ title: Style an element's shadow DOM
 
 ## Style your elements
 
-Polymer supports DOM templating and the shadow DOM API. When you provide a DOM template for your cusotm element, Polymer then copies in the contents of the template you provided for your element.
+Polymer supports DOM templating and the shadow DOM API. When you provide a DOM template for your custom element, Polymer then copies in the contents of the template you provided for your element.
 
 Here's an example:
 
@@ -26,12 +26,12 @@ Here's an example:
 
   <!-- Register the element -->
   <script>
-  class CustomElement extends Polymer.Element {
-    static get is() {
-      return "custom-element";
+    class CustomElement extends Polymer.Element {
+      static get is() {
+        return "custom-element";
+      }
     }
-  }
-  customElements.define(CustomElement.is, CustomElement);
+    customElements.define(CustomElement.is, CustomElement);
   </script>
 </dom-module>
 ```
@@ -64,10 +64,10 @@ Here's an example:
     <!-- Encapsulated, element-level stylesheet -->
     <style>
       p {
-        color:green;
+        color: green;
       }
       .myclass {
-        color:red;
+        color: red;
       }
     </style>
     <p>I'm a shadow DOM child element of x-foo.</p>
@@ -83,7 +83,7 @@ Here's an example:
 <!-- Document-level stylesheet -->
 <style>
   .myclass {
-    color:blue;
+    color: blue;
   }
 </style>
 <x-foo></x-foo>
@@ -118,10 +118,10 @@ When used in an HTML document, your element will still inherit any styling infor
 <link rel="import" href="x-foo.html">
 <!-- Document-level stylesheet -->
 <style>
-p {
-	font-family: sans-serif;
-	color:blue;
-}
+  p {
+    font-family: sans-serif;
+    color: blue;
+  }
 </style>
 
 <!-- This paragraph uses document-level styles: -->
@@ -143,7 +143,7 @@ Styles declared inside shadow DOM will override styles declared outside of it:
     <style>
       p {
         font-family: sans-serif;
-        color:green;
+        color: green;
       }
     </style>
     <p>I'm green.</p>
@@ -153,12 +153,12 @@ Styles declared inside shadow DOM will override styles declared outside of it:
 
 `index.html` { .caption}
 ```html
-<link rel="import" href="x-foo.html"
+<link rel="import" href="x-foo.html">
 <!-- Document-level stylesheet -->
 <style>
   p {
     font-family: sans-serif;
-    color:blue;
+    color: blue;
   }
 </style>
 <p>I'm blue.</p>
@@ -182,7 +182,7 @@ Inheritable properties of the host element will inherit down the shadow tree, wh
     <style>
       :host {
         font-family: sans-serif;
-        color:green;
+        color: green;
         display: block;
         border: 1px solid;
       }
@@ -204,7 +204,7 @@ You can also style the host element from outside - for example, using a type sel
 
 [See it on Plunker](http://plnkr.co/edit/AHXFX0zeQTbO2rGELTbS?p=preview)
 
-```html
+```css
 x-foo {
 	background-color: blue;
 }
@@ -254,7 +254,7 @@ Descendant selectors after `:host` match elements in the shadow tree. In this ex
   <template>
     <style>
       :host(.warning) p {
-        color:red;
+        color: red;
       }
     </style>
     <p>Make this text red if x-foo has class "warning", and black otherwise.</p>
@@ -274,54 +274,49 @@ Styling with the `:host` selector is one of two instances where rules inside a s
 
 ### Style slotted content (distributed children)
 
-You can create slots in an element's template that are populated at runtime using this syntax:
+You can create **slots** in an element's template that are populated at runtime. For more information on slots, see the documentation on [shadow DOM and composition](/2.0/docs/devguide/shadow-dom#shadow-dom-and-composition).
 
-[See it on Plunker](http://plnkr.co/edit/MRN9blKg6A3w8G0RkyJD?p=preview)
+The basic syntax for incorporating slotted content looks like this:
+
+[See it on Plunker](http://plnkr.co/edit/bNvOvQqCEmC4DaoeNtwZ?p=preview)
 
 `x-foo.html` { .caption}
 ```html
 <dom-module id="x-foo">
   <template>
-    <style>
-      :host(.warning) p {
-       color:red;
-      }
-    </style>
-    <p>Make this text red if x-foo has class "warning", and black otherwise.</p>
+    <h1>
+      <slot name="title"></slot>
+    </h1>
   </template>
+  ...
 </dom-module>
-<script>
-  class XFoo extends Polymer.Element {
-    static get is() {
-      return "x-foo";
-    }
-  }
-  customElements.define(XFoo.is, XFoo);
-</script>
 ```
 
 `index.html` { .caption}
 ```html
 <link rel="import" href="x-foo.html">
 
-<x-foo class="warning"></x-foo>
-<x-foo></x-foo>
+<x-foo>
+  <span slot="title">I'm a heading!</span>
+</x-foo>
 ```
 
 To style slotted content, use the `::slotted()` syntax.
 
+**Note:** To work within the Shady CSS scoping shim limitations, and to ensure consistent cross-browser behavior, add a selector to the left of the `::slotted(.classname)` notation (for example, `p ::slotted(.classname)`.
+
 `::slotted(*)` selects all slotted content:
 
-[See it on Plunker](http://plnkr.co/edit/cGrbntuantGtqj7Poqft?p=preview)
+[See it on Plunker](http://plnkr.co/edit/pb0D6r15jvvxYVWsZ95U?p=preview)
 
 `x-foo.html` { .caption}
 ```html
 <dom-module id="x-foo">
   <template>
     <style>
-      ::slotted(*) {
+      p ::slotted(*), h1 ::slotted(*) {
         font-family: sans-serif;
-          color:green;
+        color:green;
       }
     </style>
     <h1>
@@ -331,7 +326,7 @@ To style slotted content, use the `::slotted()` syntax.
       <slot name='para'></slot>
     </p>
   </template>
-  ...
+	...
 </dom-module>
 ```
 
@@ -344,7 +339,7 @@ To style slotted content, use the `::slotted()` syntax.
 </x-foo>
 ```
 
-[See it on Plunkr](http://plnkr.co/edit/suVhRDAB5Rq7Q7T6zbMI?p=preview)
+[See it on Plunkr](http://plnkr.co/edit/Xb4j1r4wEgGuyUM9huFV?p=preview)
 
 You can select by element type:
 
@@ -353,17 +348,17 @@ You can select by element type:
 <dom-module id="x-foo">
   <template>
     <style>
-      ::slotted(h1) {
-      font-family: sans-serif;
-      color:green;
-    }
-    ::slotted(p) {
-      font-family: sans-serif;
-      color:blue;
-    }
+      h1 ::slotted(h1) {
+        font-family: sans-serif;
+        color: green;
+      }
+      p ::slotted(p) {
+        font-family: sans-serif;
+        color: blue;
+      }
     </style>
-    <slot name='heading1'></slot>
-    <slot name='para'></slot>
+    <h1><slot name='heading1'></slot></h1>
+    <p><slot name='para'></slot></p>
   </template>
   ...
 </dom-module>
@@ -388,7 +383,7 @@ You can select by class:
 <dom-module id="x-foo">
   <template>
     <style>
-      ::slotted(.green) {
+      p ::slotted(.green) {
         color:green;
       }
     </style>
@@ -417,14 +412,14 @@ You can select by class:
 
 And you can select by slot name:
 
-[See it on Plunker](http://plnkr.co/edit/FnFLnownBJc0Ur8vC6dd?p=preview)
+[See it on Plunker](http://plnkr.co/edit/PzypR0973pxg3fquWhco?p=preview)
 
 `x-foo.html` { .caption}
 ```html
 <dom-module id="x-foo">
   <template>
     <style>
-      slot[name='para1']::slotted(*) {
+      p ::slotted([slot=para1]) {
         color:green;
       }
     </style>
@@ -444,7 +439,7 @@ And you can select by slot name:
 <link rel="import" href="x-foo.html">
 
 <x-foo>
-  <div slot="para1">I'm green!</div>
+  <div slot="para1">I'm green.</div>
   <div slot="para2">I'm not green.</div>
 </x-foo>
 ```
@@ -547,8 +542,8 @@ stylesheet text such that it may be properly shimmed and/or injected as an
 inline style.
 
 To include a remote stylesheet that applies to your Polymer element's local DOM,
-place a special HTML import `<link>` tag with `type="css"` in your `<dom-
-module>` that refers to the external stylesheet to load.
+place a special HTML import `<link>` tag with `type="css"` in your 
+`<dom-module>` that refers to the external stylesheet to load.
 
 For example:
 
@@ -583,7 +578,6 @@ For example:
 ```
 
 ## Use `custom-style` in document-level styles {#custom-style}
-}
 
 Browsers that implement the current Shadow DOM v1 specifications will automatically encapsulate styles, scoping them to the elements in which they were defined.
 
@@ -620,10 +614,10 @@ In the first code sample, the style for the `p` element “leaks” into Paragra
 ```html
 <link rel="import" href="x-foo.html">
 <style>
-    p {
-      color: red;
-    }
-  </style>
+  p {
+    color: red;
+  }
+</style>
 <p>Paragraph A: I am in the main document. I am red.</p>
 
 <x-foo></x-foo>
@@ -649,10 +643,10 @@ In the first code sample, the style for the `p` element “leaks” into Paragra
 
 <custom-style>
   <style>
-      p {
-        color: red;
-      }
-    </style>
+    p {
+      color: red;
+    }
+  </style>
 </custom-style>
 <p>Paragraph A: I am in the main DOM. I am red.</p>
 <x-foo></x-foo>

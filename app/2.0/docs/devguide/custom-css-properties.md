@@ -267,7 +267,7 @@ Example usage of `my-toolbar`: { .caption }
 If an element doesn't override styling information, that element inherits styles from its parent:
 
 ```html
-<link rel="import" href="components/polymer/custom-style.html">
+<link rel="import" href="components/polymer/lib/elements/custom-style.html">
 <custom-style>
   <style is="custom-style">
     p {
@@ -289,7 +289,7 @@ If an element doesn't override styling information, that element inherits styles
 Create global styles by styling the the html element of your document:
 
 ```html
-<link rel="import" href="components/polymer/custom-style.html">
+<link rel="import" href="components/polymer/lib/elements/custom-style.html">
 <custom-style>
   <style is="custom-style">
     html {

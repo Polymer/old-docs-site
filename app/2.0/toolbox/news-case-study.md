@@ -46,10 +46,10 @@ subfolders.
 
 Views in the News app use the same implementation as the Shop app. [See the Shop app case study for
 more information on views and
-routing](https://www.polymer-project.org/1.0/toolbox/case-study#views).
+routing](case-study#views).
 
 For more information on encapsulated routing, see [Encapsulated routing with
-elements](https://www.polymer-project.org/1.0/blog/routing).
+elements](/blog/routing).
 
 For more information on the `<app-route>` Polymer element used in these implementations, see the
 [`<app-route>` API reference](https://www.webcomponents.org/element/PolymerElements/app-route).
@@ -268,8 +268,7 @@ AMP documents which can be loaded as standalone pages.
 
 The AMP project supports adding an AMP document to a shadow root on your page. Here’s an example:
 
-[https://github.com/ampproject/amphtml/blob/master/examples/pwa/pwa.js](https://github.com/amp
-project/amphtml/blob/master/examples/pwa/pwa.js)
+[https://github.com/ampproject/amphtml/blob/master/examples/pwa/pwa.js](https://github.com/ampproject/amphtml/blob/master/examples/pwa/pwa.js)
 
 To support this in the AMP version of the News app, we created [the `<amp-viewer>`
 element](https://github.com/PolymerLabs/amp-viewer/). The `<amp-viewer>` element works similarly to

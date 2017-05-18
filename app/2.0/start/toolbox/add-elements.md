@@ -62,7 +62,6 @@ Run this command from your project root directory:
     ```
 
 You should be able to see the `paper-checkbox` working in your new view now:
-[http://localhost:8080/new-view](http://localhost:8080/new-view).
 
 ![Example of page with checkbox](/images/2.0/toolbox/starter-kit-checkbox.png)
 

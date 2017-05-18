@@ -4,20 +4,19 @@ title: Polymer CLI
 
 <!-- toc -->
 
-Polymer CLI is still pre-release. Some options may be subject to change.
-{.alert .alert-warning}
-
 ## Install {#install}
 
-1.  Install [Git](https://git-scm.com/downloads).
-
-1.  Install an [active LTS version of Node.js](https://github.com/nodejs/LTS) (4.x or 6.x). The
-current version (7.x) should work, but is not
-    officially supported.
+1.  Make sure you have installed a verson of Node.js supported by Polymer. Run `node --version` to to check the version of Node.js that you have installed and see our [official node version support policy](node-support) for more details.
 
 1.  Update npm.
 
         npm install npm@latest -g
+
+1.  Ensure that Git is installed.
+
+        git --version
+
+    If it isn't, you can find it on the [Git downloads page](https://git-scm.com/downloads).
 
 1.  Install the latest version of Bower.
 
@@ -25,7 +24,7 @@ current version (7.x) should work, but is not
 
 1.  Install Polymer CLI.
 
-        npm install -g polymer-cli@next
+        npm install -g polymer-cli
 
 You're all set. Run `polymer help` to view a list of commands.
 
@@ -68,7 +67,7 @@ This section shows you how to start an element project.
 
         polymer init
 
-1.  Select `element`.
+1.  Select `polymer-2-element`.
 
 1.  Enter a name for your element.
 
@@ -165,7 +164,7 @@ architecture](https://developers.google.com/web/updates/2015/11/app-shell).
 
 There are fundamental concepts of the app shell architecture that you should understand before
 creating your app project with Polymer CLI: the entrypoint,
-the shell, and fragments. See [App structure](/1.0/toolbox/server#app-structure)
+the shell, and fragments. See [App structure](../../toolbox/prpl#app-structure)
 from the App Toolbox docs for an in-depth overview of these concepts.
 
 ### Set up basic app project {#basic-app}
@@ -184,7 +183,7 @@ Follow the steps below to get your `basic` app project set up.
 
         polymer init
 
-1.  Select `application`.
+1.  Select `polymer-2-application`.
 
 1.  Enter a name for your app. Defaults to the name of the current directory.
 
@@ -238,10 +237,19 @@ development workflow while you build your element or app project.
 The commands are intended for both element and app projects unless otherwise
 noted.
 
+* [`polymer install`](#install)
 * [`polymer test`](#tests)
 * [`polymer serve`](#serve)
 * [`polymer lint`](#lint)
 * [`polymer build` (for app projects only)](#build)
+
+### `polymer install` {#install}
+
+Installs Bower dependencies. Running `polymer install` is equivalent to running `bower install`.
+
+The `--variants` flag allows you to install dependency variants. See the documentation on [managing dependencies for hybrid elements](/{{{polymer_version_dir}}}/docs/devguide/hybrid-elements#dependency-variants) for more information.
+
+The `--offline` flag tells the install command not to hit the network to retrieve components. If components are not cached, the install will fail.
 
 ### `polymer test` {#tests}
 
@@ -259,7 +267,7 @@ If you create your own tests, they should also go in the `test` directory.
 
 The underlying library that powers `polymer test` is called `web-component-tester` (`wct`). Learn
 more about creating unit tests with `wct`
-in [Test your elements](/1.0/tools/tests).
+in [Test your elements](tests).
 
 ### `polymer serve` {#serve}
 
@@ -303,20 +311,43 @@ Open up a page other than the default `index.html` in a specific browser
 
 ### `polymer lint` {#lint}
 
-Lints element(s)..
+Analyze your project for syntax errors, missing imports, bad databinding expressions and more. `polymer lint` helps with identifying issues across your HTML, JS, and CSS based on an in-depth analysis of web components in source code. It does not reinvent the wheel though, it focuses on issues specific to web components and Polymer, so it is a good adjunct to other tools like [`eslint`](http://eslint.org/) and [`htmlhint`](http://htmlhint.com/).
 
-Check elements in your element project or app project for syntax errors, anti-patterns and more.
+Use it like so:
 
-Element project example:
+    polymer lint --rules=polymer-2
 
-    polymer lint --input my-el.html
+This will lint all of the code in your project with the `polymer-2` ruleset, which is appropriate for projects using Polymer 2.0. If your code is hybrid and should with with either Polymer 1.x or 2.x then `polymer-2-hybrid` is a better choice, as it will warn you about use of features that do not exist in Polymer 2.x.
 
-App project example (linting multiple elements):
+You can pass flags to the linter like `--rules` but even better is to put the configuration in `polymer.json` so that all you need to do is run `polymer lint`. Putting your configuration in `polymer.json` also means that other tools, like IDE plugins can use the same lint configuration.
 
-    polymer lint --root src/ --input my-app/my-app.html my-el/my-el.html
+Here's what that looks like:
 
-If all of the elements you want to test are in the same directory, you can specify the `--root`
-flag to make all of the `--input` files relative to that directory.
+```json
+{
+  "lint": {
+      "rules": ["polymer-2"],
+      "ignoreWarnings": []
+  }
+}
+```
+
+- `rules`: An array of lint rules and rule collections to run on your project. For most projects, one of  `polymer-2`, `polymer-2-hybrid`, or `polymer-1` is all that's needed here.
+- `ignoreWarnings`: An array of warning codes to ignore.
+
+#### Warning Codes:
+
+The output of `polymer lint` looks like this:
+
+```
+            <iron-collapse>
+            ~~~~~~~~~~~~~~~
+
+index.html(83,12) warning [undefined-elements] - The element iron-collapse is not defined
+```
+
+This means that on line 83 of `index.html` there's an `<iron-collapse>` tag, but the linter can't find the definition of the `iron-collapse` custom element. This probably means that there's a missing HTML import in `index.html`. To ignore this warning, add `undefined-elements` to the `ignoreWarnings` array in `polymer.json`.
+
 
 ### `polymer build` {#build}
 
@@ -347,6 +378,9 @@ share across your team.
 * [`--js-minify`](#js-minify)
 * [`--shell`](#shell)
 * [`--fragment`](#fragment)
+
+A set of presets have been provided to cover common configurations - see the section below 
+on [build presets](#presets).
 
 #### `--add-service-worker` {#service-workers}
 
@@ -414,15 +448,32 @@ In a Polymer app, the files listed in the fragments flag usually contain one or 
 definitions that may or may not be required during the user’s interaction with the app, and can
 thus be lazily loaded.
 
+#### Build presets {#presets}
+
+```bash
+polymer build --preset preset-name
+```
+
+**Build presets** provide an easy way to create common build configurations. When you provide a valid preset for your build, it will use the flags in that preset. We currently support 3 different presets:
+
+- **es5-bundled:**
+  --js-minify --js-compile --css-minify --bundled --add-service-worker --add-push-manifest --insert-prefetch-links
+
+- **es6-bundled:**
+  --js-minify --css-minify --html-minify --bundled --add-service-worker --add-push-manifest --insert-prefetch-links
+  
+- **es6-unbundled:**
+  --js-minify --css-minify --html-minify --add-service-worker --add-push-manifest --insert-prefetch-links
+
 #### Examples {#examples}
 
-Create a bundled, minified application build:
+Create a bundled build for browsers that support ES5:
 
-`polymer build --bundle --js-minify --css-minify --html-minify`
+`polymer build --preset es5-bundled`
 
-Create an unbundled, minified application build:
+Create an unbundled build for browsers that support ES6:
 
-`polymer build --js-minify --css-minify --html-minify`
+`polymer build --preset es6-unbundled`
 
 ## Manage dependencies {#dependencies}
 

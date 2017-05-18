@@ -129,13 +129,16 @@ The `sources` property is set as follows:
 Optional<br>
 Type: `Array` of `Build Configuration` objects
 
-You can configure how the CLI builds your application via the `builds` property. This is equivalent
-to passing different CLI flags to the build command, but storing them here will configure the build
+You can configure how the CLI [builds your application for production](/{{{polymer_version_dir}}}/toolbox/build-for-production) via
+the `builds` property. This is equivalent to passing different CLI flags to the build command, but
+storing them here will configure the build
 for every run:
 
 * `name`: An optional name for your build. If multiple builds are defined, the `name` property is
 required.
+* `preset`: An optional preset name that your build configuration can inherit from. See below for more information.
 * `addServiceWorker`: If `true`, generate a service worker for your application.
+* `addPushManifest`: If `true`, generate an [HTTP/2 Push Manifest](https://github.com/GoogleChrome/http2-push-manifest) for your application.
 * `swPrecacheConfig`: An optional configuration file for the generated service worker.
 * `insertPrefetchLinks`: If `true`, insert prefetch link elements into your fragments so that all
 dependencies are prefetched immediately.
@@ -174,4 +177,59 @@ And here is a configuration to generate two optimized builds: One bundled and on
     "css": {"minify": true},
     "html": {"minify": true}
   }]
+```
+
+**Build presets** provide an easy way to create common build configurations. When you provide a valid preset for your build, it will inherit its configuration from that preset. We currently support 3 different presets:
+
+- **es5-bundled:**
+  - name: `es5-bundled`
+  - js: `{minify: true, compile: true}`
+  - css: `{minify: true}`
+  - html: `{minify: true}`
+  - bundle: `true`
+  - addServiceWorker: `true`
+  - addPushManifest: `true`
+  - insertPrefetchLinks: `true`
+- **es6-bundled:**
+  - js: `{minify: true, compile: false}`
+  - css: `{minify: true}`
+  - html: `{minify: true}`
+  - bundle: `true`
+  - addServiceWorker: `true`
+  - addPushManifest: `true`
+  - insertPrefetchLinks: `true`
+- **es6-unbundled:**
+  - js: `{minify: true, compile: false}`
+  - css: `{minify: true}`
+  - html: `{minify: true}`
+  - bundle: `false`
+  - addServiceWorker: `true`
+  - addPushManifest: `true`
+  - insertPrefetchLinks: `true`
+
+Any additional options that you provide will override the given preset. In the example below, a single "es5-bundled" build will be created with all the es5-bundled preset options except "addServiceWorker", which was overriden and set to false:
+
+```json
+"builds": [{
+  "preset": "es5-bundled",
+  "addServiceWorker": false
+}]
+```
+
+
+### lint
+Optional<br>
+
+You can use this to configure how polymer-lint will lint your project both on the command line and in IDE plugins.
+
+* `rules`: An array of lint rules and rule collections to run on your project. For most projects, one of  `polymer-2`, `polymer-2-hybrid`, or `polymer-1` is all that's needed here. Run `polymer help lint` for the full list of options.
+* `ignoreWarnings`: An array of warning codes to ignore.
+
+For example:
+
+```json
+  "lint": {
+    "rules": ["polymer-2"],
+    "ignoreWarnings": []
+  }
 ```
