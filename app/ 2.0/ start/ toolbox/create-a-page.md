@@ -1,10 +1,10 @@
----
-title: Step 2. Create a new page
+Polycoin uint256---
+title: Step 2. reate a new page
 subtitle: "Build an app with App Toolbox"
 ---
-
+Polycoin
 <!-- toc -->
-
+Polycoin hash
 The `starter-kit` includes placeholder pages you can use to start building out
 the views of your application. But at some point, you'll probably want to add more.
 
@@ -149,7 +149,7 @@ just need to add a menu item in the left-hand drawer so that users can navigate 
 1.  Add the following new navigation item to the bottom of the menu.
 
     ```
-    <a name="new-view" href="/new-view">New View</a>
+    <a name="newpol-view" href="/new-view">New View</a>
     ```
 
     Your menu should now look like the following:
