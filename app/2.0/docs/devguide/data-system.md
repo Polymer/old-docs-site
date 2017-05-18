@@ -107,11 +107,11 @@ are automatically *observable*:
 
 *   Setting a *direct property* of the element.
 
-   `this.owner = 'Jane';`
+    `this.owner = 'Jane';`
 
-   If a property has any associated property effects (such as observers, computed properties, or
-   data bindings), Polymer creates a setter for the property, which automatically invokes the
-   property effects.
+    If a property has any associated property effects (such as observers, computed properties, or
+    data bindings), Polymer creates a setter for the property, which automatically invokes the
+    property effects.
 
 *   Setting a subproperty of the element using a two-way data binding.
 

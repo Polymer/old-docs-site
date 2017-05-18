@@ -53,7 +53,7 @@ The element's class defines its behavior and public API. The class must extend `
 of its subclasses (for example, another custom element).
 
 **Custom element names.** By specification, the custom element's name **must start with a lower-case
-ASCII letter, and must contain a dash (-)**. There's also a short list of prohibited element names
+ASCII letter and must contain a dash (-)**. There's also a short list of prohibited element names
 that match existing names. For details, see the [Custom elements core
 concepts](https://html.spec.whatwg.org/multipage/scripting.html#custom-elements-core-concepts)
 section in the HTML specification.
@@ -63,18 +63,16 @@ Polymer provides a set of features on top of the basic custom element specificat
 features to your element, extend Polymer's base element class, `Polymer.Element`:
 
 ```html
-<link rel="import" href="/bower_components/polymer/polymer_element.html">
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
 
 <script>
   class MyPolymerElement extends Polymer.Element {
-    static get is() { return 'my-polymer-element'; }
+    ...
   }
 
-  window.customElements.define(MyPolymerElement.is, MyPolymerElement);
+  customElements.define('my-polymer-element', MyPolymerElement);
 </script>
 ```
-
-Polymer also requires the class to provide an `is` getter that returns the element name.
 
 Polymer adds a set of features to the basic custom element:
 
@@ -187,7 +185,7 @@ property values have been set. However, light DOM elements may not have been dis
 
 Don't use `ready` to initialize an element based on dynamic values, like property values or an
 element's light DOM children. Instead, use [observers](observers) to react to property changes, and
-`observeNodes` or the `slotChanged` event to react to children being added and removed from the
+`observeNodes` or the `slotchange` event to react to children being added and removed from the
 element.
 
 Related topics:
@@ -210,7 +208,7 @@ For example, consider the following code:
   class MyElement extends HTMLElement { ... };
 
   // ...some time much later...
-  window.customElements.define('my-element', MyElement);
+  customElements.define('my-element', MyElement);
 </script>
 ```
 
@@ -270,7 +268,7 @@ class ExtendedElement extends MyElement {
   }
 };
 
-window.customElements.define(ExtendedElement.is, ExtendedElement);
+customElements.define(ExtendedElement.is, ExtendedElement);
 ```
 
 **Polymer does not currently support extending built-in elements.** The custom elements spec
@@ -293,11 +291,9 @@ methods.
 
 ```js
 MyMixin = function(superClass) {
-
   return class extends superClass {
-
     constructor() {
-      super()
+      super();
       this.addEventListener('keypress', e => this.handlePress(e));
     }
 
@@ -306,16 +302,16 @@ MyMixin = function(superClass) {
         bar: {
           type: Object
         }
-      }
+      };
     }
 
     static get observers() {
-      return [ '_barChanged(bar.*)' ]
+      return [ '_barChanged(bar.*)' ];
     }
 
     _barChanged(bar) { ... }
 
-    handlePress(e) { console.log('key pressed: ' + e.charCode) }
+    handlePress(e) { console.log('key pressed: ' + e.charCode); }
   }
 }
 ```
@@ -332,7 +328,6 @@ class MyElement extends MyMixin(Polymer.Element) {
 ```
 
 This creates a new class defined by the `MyMixin` factory, so the inheritance hierarchy is:
-
 
 ```
 MyElement <= MyMixin(Polymer.Element) <= Polymer.Element

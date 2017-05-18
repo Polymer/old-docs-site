@@ -11,39 +11,20 @@ templates for building Progressive Web Apps with Polymer.
 Follow the instructions below to install, build, and deploy a project using an
 App Toolbox template in less than 15 minutes.
 
-## Install the Polymer CLI
+## Install Polymer CLI
 
-Polymer CLI is an all-in-one command line tool for Polymer projects. In this tutorial you use Polymer CLI to initialize, serve, and build your project. You can also use it for linting and testing, but this tutorial won't cover those topics.
+Polymer CLI is an all-in-one command line tool for Polymer projects. In this tutorial you use 
+Polymer CLI to initialize, serve, and build your project. You can also use it for linting and 
+testing, but this tutorial won't cover those topics.
 
-1.  Check that you have already installed all of Polymer CLI's dependencies
-    by running the following commands.
+Polymer CLI requires Node.js, npm, Git and Bower. For full installation instructions, see [the 
+Polymer CLI documentation](/{{{polymer_version_dir}}}/docs/tools/polymer-cli).
 
-    *   Git
+To install Polymer CLI:
 
-            git --version
-
-    *   Node.js (LTS version 6.x)
-
-            node -v
-
-    *   npm v3 or higher
-
-            npm -v
-
-    *   Bower
-
-            bower -v
-
-    You should see the typical output indicating what version you're running
-    of each of these dependencies.
-    If you're missing any of these dependencies, follow the instructions in
-    the following section from the Polymer CLI guide to learn how to install
-    each one:
-    [Install section from Polymer CLI guide](/2.0/docs/tools/polymer-cli#install).
-
-1.  Install the Polymer CLI.
-
-        npm install -g polymer-cli@next
+   ```bash
+   npm install -g polymer-cli
+   ```
 
 ## Initialize your project from a template
 
@@ -63,15 +44,9 @@ developing.  You can serve the application using the Polymer CLI, and
 file changes you make will be immediately visible by refreshing
 your browser.
 
-    polymer serve
+To serve your project:
 
-In the output from the `polymer serve` command, you'll see the URL of your locally-hosted application:
-
-![Output from the polymer serve command](/images/2.0/toolbox/polymer-serve-output.png)
-
-Open this URL in your browser:
-
-![App Toolbox: Starter Kit Template](/images/2.0/toolbox/starter-kit-template.png)
+    polymer serve --open
 
 ## Project structure
 

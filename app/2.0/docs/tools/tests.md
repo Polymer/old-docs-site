@@ -8,10 +8,9 @@ This guide shows you the basics of using Polymer CLI to run unit tests, and
 how to accomplish various tasks and scenarios using the Web Component Tester
 library (the underlying library that powers Polymer CLI's testing tools).
 
-**Not updated for 2.x.** This material has not been updated for Polymer 2.x.
-While much of the basic material remains the same, these samples have not been
-tested or updated for 2.x.
-{.alert .alert-warning}
+**Update your tools for 2.0.** For testing with 2.0, make sure you have the latest
+version of the Polymer CLI.
+{.alert .alert-info}
 
 ## Overview
 
@@ -41,12 +40,6 @@ For demonstration purposes, this guide shows you how to install Polymer CLI
 and initialize an element project. You'll then use this project to learn how
 to add and run unit tests.
 
-1.  (OS X only) [Manually install][selenium] the latest SafariDriver
-    extension for Selenium [(`SafariDriver.safariextz`)][safaridriver] to ensure
-    that Web Component Tester can run properly. See the
-    [Web Component Tester Polycast][workaround-example] for
-    a demonstration. Note: the Polycast is somewhat outdated, but the section
-    that the URL links to is still relevant.
 
 1.  Install Polymer CLI. Follow the directions in
     [Install Polymer CLI](polymer-cli#install) to get started.
@@ -75,10 +68,13 @@ to add and run unit tests.
         polymer test
 
     Web Component Tester automatically finds all of the browsers on your
-    system and runs your tests against each one. If you wanted to run your
-    tests against a single browser, say Google Chrome, you could
-    `polymer test -l chrome`.
-    {.alert .alert-info}
+    system and runs your tests against each one. To run your
+    tests against a single browser, use the `-l` (or `--local`)
+    argument:
+
+        polymer test -l chrome
+
+If you receive errors about testing on Safari, see [Set up testing on Safari](#safari).
 
 ### Run tests interactively
 
@@ -112,13 +108,23 @@ it waits until the test code invokes the `done()` callback. If the `done()`
 callback isn't invoked, the test eventually times out and Mocha reports the test
 as a failure.
 
+my-el.html {.caption}
+
 ```js
-test('fires lasers', function(done) {
-  myEl.addEventListener('seed-element-lasers', function(event) {
-    assert.equal(event.detail.sound, 'Pew pew!');
+fireEvent() {
+  this.dispatchEvent(new CustomEvent('test-event', {detail: 'tested!'}));
+}
+```
+
+my-el_test.html {.caption}
+
+```js
+test('fires an event', function(done) {
+  myEl.addEventListener('test-event', function(event) {
+    assert.equal(event.detail, 'tested!');
     done();
   });
-  myEl.fireLasers();
+  myEl.fireEvent();
 });
 ```
 
@@ -135,22 +141,21 @@ To use a test fixture:
 *   Instantiate a new instance of the fixture in your `setup()` method.
 
 ```html
-<test-fixture id="seed-element-fixture">
+<test-fixture id="my-el-fixture">
   <template>
-    <seed-element>
-      <h2>seed-element</h2>
-    </seed-element>
+    <my-el prop1="test value">
+    </my-el>
   </template>
 </test-fixture>
 
 <script>
-  suite('<seed-element>', function() {
+  suite('<my-el>', function() {
     var myEl;
     setup(function() {
-      myEl = fixture('seed-element-fixture');
+      myEl = fixture('my-el-fixture');
     });
-    test('defines the "author" property', function() {
-      assert.equal(myEl.author.name, 'Dimitri Glazkov');
+    test('sets the "prop1" property from markup', function() {
+      assert.equal(myEl.prop1, 'test value');
     });
   });
 </script>
@@ -312,10 +317,10 @@ should be a relative URL to a test suite. You can configure your tests
 using query strings in the URLs. See [Test shadow DOM](#shadow-dom)
 for an example.
 
-### Test local DOM
+### Hybrid elements: test local DOM
 
-Use Polymer's [DOM API](/{{{polymer_version_dir}}}/docs/devguide/local-dom#dom-api) to access
-and modify local DOM children.
+For hybrid elements, use Polymer's [DOM API](/{{{polymer_version_dir}}}/docs/devguide/local-dom#dom-api)
+to access and modify local DOM children.
 
 ```js
 test('click sets isWaiting to true', function() {
@@ -333,7 +338,7 @@ in the local DOM of `myEl`.
 Always wrap your test in `flush` if your element template contains a [template
 repeater (`dom-repeat`)](/{{{polymer_version_dir}}}/docs/devguide/templates#dom-repeat) or
 [conditional template (`dom-if`)](/{{{polymer_version_dir}}}/docs/devguide/templates#dom-if),
-or if your test involves a local DOM mutation. Polymer lazily performs these
+or if your test involves shadow DOM mutation. The teshady DOM polyfill lazily performs these
 operations in some cases for performance. `flush` ensures that asynchronous
 changes have taken place. The test function should take one argument, `done`,
 to indicate that it is [asynchronous](#async), and it should call
@@ -354,7 +359,7 @@ suite('my-list tests', function() {
     // Data bindings will stamp out new DOM asynchronously
     // so wait to check for updates
     flush(function() {
-      listItems = Polymer.dom(list.root).querySelectorAll('li');
+      listItems = list.shadowRoot.querySelectorAll('li');
       assert.equal(list.items.length, listItems.length);
       done();
     });
@@ -362,21 +367,21 @@ suite('my-list tests', function() {
 )};
 ```
 
-#### Test with native shadow DOM {#shadow-dom}
+#### Test with polyfills {#shady-dom}
 
-To test out how a test suite behaves when the browser runs native
-shadow DOM, create a [test set](#test-sets) and pass `dom=shadow` as
+To test out how a test suite behaves when the browser runs the polyfill,
+create a [test set](#test-sets) and pass options in your
 a query string when Web Component Tester loads your test suites.
 
 ```js
 WCT.loadSuites([
   'basic-test.html',
-  'basic-test.html?dom=shadow'
+  'basic-test.html?wc-ce&wc-shadydom&wc-shimcssproperties'
 ]);
 ```
 
-This sample runs `basic-test.html` twice, once using shady DOM and once
-using native shadow DOM (if the browser supports it).
+This sample runs `basic-test.html` twice, once using native APIs (where the browser supports them),
+and once using using all of the polyfills.
 
 ### Automated testing in the cloud
 
@@ -389,6 +394,42 @@ devices. For guidance on setting up these tools check out the Polycast below.
 <google-youtube video-id="afy_EEq_4Go" autoplay="0"
                 rel="0" fluid></google-youtube>
 
+## Set up testing on Safari {#safari}
+
+Safari 10 has built-in support for testing, but it must be manually enabled. Safari 9 may require
+a you to install a browser extension.
+
+To enable testing on Safari 10:
+
+1.  If you don't see the **Develop** menu in the Safari menu bar, enable it:
+
+    1.  Select **Safari > Preferences**, then click the **Advanced** tab.
+    2.  Check the **Show Develop menu** checkbox.
+
+2.  Select **Develop > Allow Remote Automation** in the menu bar.
+
+3.  You may need to authorize `safaridriver` to launch the `webdriverd` service which hosts the
+    local web server. To do this, start `safaridriver` once manually:
+
+        /usr/bin/safaridriver
+
+    Complete the authentication prompt.
+
+More information:
+[WebDriver support in Safari 10](https://webkit.org/blog/6900/webdriver-support-in-safari-10/)
+
+To enable testing on Safari 9:
+
+1.  Download the legacy SafariDriver extension for Selenium [(`SafariDriver.safariextz`)][safaridriver].
+2.  Double-click the extension to install it in Safari.
+3.  Exit Safari.
+
+
+More information:
+
+-   [Selenium SafariDriver page][selenium]. Note
+    that the link for the SafariDriver on this page is unhelpful.
+
 ## Learn more
 
 Polymer Summit 2015 video on testing:
@@ -399,7 +440,6 @@ Polymer Summit 2015 video on testing:
 The [Web Component Tester README][wct-readme] has more in-depth information
 about Web Component Tester usage.
 
-[seed-element]: https://github.com/PolymerElements/seed-element
 [wct-readme]: https://github.com/Polymer/web-component-tester/blob/master/README.md
 [selenium]: https://github.com/SeleniumHQ/selenium/wiki/SafariDriver#getting-started
 [safaridriver]: http://selenium-release.storage.googleapis.com/2.48/SafariDriver.safariextz

@@ -32,7 +32,7 @@ that includes the following properties:
 There are two ways to use a template repeater:
 
 *   **Inside a Polymer element or another Polymer-managed template.** Use the shorthand form
-    `<template is="dom-repeat>`.
+    `<template is="dom-repeat">`.
 
         <template is="dom-repeat" items="{{items}}">
           ...
@@ -571,7 +571,7 @@ elements are destroyed and re-stamped each time.
 There are two ways to use a conditional template:
 
 *   **Inside a Polymer element or another Polymer-managed template.** Use the shorthand form
-    `<template is="dom-repeat>`.
+    `<template is="dom-repeat">`.
 
         <template is="dom-if" if="{{condition}}">
           ...
@@ -651,7 +651,7 @@ For example:
 
 -   Lazy-loading sections of your page. If some elements of your page aren't required on first
     paint, you can use a `dom-if` to hide them until their definitions have loaded. This use
-    of conditional templates is described in [Case study: the Shop app](https://www.polymer-project.org/1.0/toolbox/case-study#views).
+    of conditional templates is described in [Case study: the Shop app](/{{{polymer_version_dir}}}/toolbox/case-study#views).
 
 -   Reducing the memory footprint of a large or complex site. For a single-page application
     with multiple complex views, it may be beneficial to put each view inside a `dom-if`

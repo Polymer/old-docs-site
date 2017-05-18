@@ -78,7 +78,7 @@ extra CSS, it can be fixed to the top of the page. The following [sample](http:/
     <link rel="import" href="app-layout/demo/sample-content.html">
 
     <custom-style>
-      <style is="custom-style">
+      <style>
         body {
           /* No margin on body so toolbar can span the screen */
           margin: 0;

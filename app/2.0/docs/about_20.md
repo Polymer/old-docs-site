@@ -1,5 +1,5 @@
 ---
-title: About Polymer 2.0
+title: What's new in 2.0
 ---
 
 <!-- toc -->
@@ -13,8 +13,8 @@ Polymer 2.0 also makes improvements in several areas:
 
 *   **Improved interoperability.** By removing the need to use Polymer.dom for DOM manipulation,
     Polymer 2.0 makes it easier to use Polymer components with other libraries and frameworks. In
-    addition, the shady DOM code has been separated out into a reusable polyfill, instead of being
-    integrated into Polymer.
+    addition, the [shady DOM](https://github.com/webcomponents/shadydom) code has been separated 
+    out into a reusable polyfill, instead of being integrated into Polymer.
 
 *   **Data system improvements.** Polymer 2.0 includes targeted improvements to the data system.
     These changes make it  easier to reason about and debug the propagation of data through and
@@ -53,6 +53,9 @@ version of the spec used in Polymer 1.x. In particular:
 *   In addition, although they are supported in the specification, Polymer 2.0 does not currently
     support type-extension elements (`is=`).
 
+*   Because of complications related to the new specification, the `disable-upgrade` feature is not
+    supported in 2.x. It may be added later as a mixin or add-on.
+
 The following sections describe these changes in more detail.
 
 For general information on the custom elements v1 specification, see [Custom elements v1: reusable web components](https://developers.google.com/web/fundamentals/primers/customelements/?hl=en) on Web Fundamentals.
@@ -86,7 +89,6 @@ The legacy <code>created</code> callback is no longer called before default valu
 <code>created</code> from within <code>value</code> functions that define property defaults.
 <p>
 However, you can now set <strong>any</strong> property defaults within the <code>created</code>
-
 callback (in 1.0 this was forbidden for observed properties) instead of using the <code>value</code>
 function in <code>properties</code>.
    </td>
@@ -145,7 +147,7 @@ deferred until the first instance of the element is created.
 ### Type-extension elements {#type-extension}
 
 Polymer 2.0 doesn't support type-extension elements (for example, `<input is="iron-input">`).
-Type-extension support is still included in the custom elements v1 spec (as "customized build-in
+Type-extension support is still included in the custom elements v1 spec (as "customized built-in
 elements"), and scheduled for implementation in Chrome. However, since Apple has said it will not
 implement `is`, we will not be encouraging its use to avoid indefinite reliance on the custom
 elements polyfill. Instead, a wrapper custom element can surround a native element. For example:
@@ -388,15 +390,19 @@ In 1.x, observers fire last, after property-change notifications.
 
 ### Observer changes
 
-In 2.0, the checks preventing observers from firing with undefined dependencies are removed.
+In 2.x, the checks preventing observers from firing with undefined dependencies are removed.
 
 Specifically:
 
 *   Multi-property observers, computed properties, and computed bindings run once at initialization
-    if **any** dependencies are defined.
+    if **any** dependencies are defined, and for each change thereafter.
 
 *   The observer or computing functions may now receive `undefined` as an argument value, and
     needs to handle it correctly.
+
+2.x also adds the ability to define observers and computed properties dynamically, on a per-instance
+basis. For details, see
+[Add observers and computed properties dynamically](devguide/observers#dynamic-observers).
 
 
 ### Miscellaneous data system changes
@@ -455,7 +461,7 @@ Safari (9+), Chrome, Opera and Firefox.
 
 Polymer 2.0 has been developed alongside and tested with a new suite of v1-spec compatible polyfills
 for custom elements and shadow DOM. You can test Polymer 2.0 by using a `webcomponentsjs` version
-greater or equal to `1.0.0-rc.7` , which is included as a bower dependency to Polymer 2.x.
+greater or equal to `1.0.0` , which is included as a bower dependency to Polymer 2.x.
 
 There are several ways to load the polyfills:
 
@@ -494,50 +500,112 @@ browser.
 
 For more information, see [Browser compatibility](browsers#es6).
 
-## Polymer element availability {#elements}
-
-
-The team is in the process of updating the Polymer elements to use the new "hybrid" format compatible
-with both Polymer 1.7+ and 2.x. Many elements repos have `2.0-preview` branches in varying degrees of
-stability.
-
 ## Install Polymer 2.0 {#installing}
 
-You can install the latest Polymer 2.0 RC release using bower:
+You can install the latest Polymer 2.x release using bower:
 
 ```
-bower install --save Polymer/polymer#^2.0.0-rc.3
+bower install --save Polymer/polymer#^2.0.0
 ```
 
 You can also use bower to install any of the available hybrid elements:
 
 ```
-bower install --save PolymerElements/paper-button#2.0-preview
+bower install --save PolymerElements/paper-button#^2.0.0
 ```
-
-Note that some of the `2.0-preview` branches are subject to change due to bug fixes.
 
 ### Upgrade an existing project {#upgrading}
 
-When upgrading an existing project you may  want to read through
-the rest of this doc and the [upgrade guide](upgrade) before starting.
+See the [upgrade guide](upgrade) for information on getting your code working with 2.0.
 
-If your project uses Polymer elements or behaviors, see [Polymer element availability](#elements).
+## Polymer element availability {#elements}
 
-1.  Create a copy of your project or create a new branch to work in.
 
-1.  Find the Polymer packages in `bower.json` and replace the existing version
-    with  `^2.0.0.rc.3`:
+The team is in the process of updating the Polymer elements to use the new "hybrid" format compatible
+with both Polymer 1.7+ and 2.x.
 
-    `"polymer": "Polymer/polymer#^2.0.0-rc.3"`
+The following elements have been updated to support Polymer 2.0, or require no updates:
 
-1.  Find any existing Polymer elements in `bower.json` and replace the existing version
-    with the `2.0-preview` branch:
-
-    `"paper-button": "PolymerElements/paper-button#2.0-preview"`
-
-1.  Run bower install.
-
-    `bower install`
-
-1.  See the [upgrade guide](upgrade) for information on getting your code working with 2.0.
+<ul>
+<li><a href="https://github.com/PolymerElements/app-layout">app-layout</a></li>
+<li><a href="https://github.com/PolymerElements/app-localize-behavior">app-localize-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/app-pouchdb">app-pouchdb</a></li>
+<li><a href="https://github.com/PolymerElements/app-route">app-route</a></li>
+<li><a href="https://github.com/PolymerElements/app-storage">app-storage</a></li>
+<li><a href="https://github.com/PolymerElements/gold-zip-input">gold-zip-input</a></li>
+<li><a href="https://github.com/PolymerElements/iron-a11y-announcer">iron-a11y-announcer</a></li>
+<li><a href="https://github.com/PolymerElements/iron-a11y-keys-behavior">iron-a11y-keys-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-ajax">iron-ajax</a></li>
+<li><a href="https://github.com/PolymerElements/iron-autogrow-textarea">iron-autogrow-textarea</a></li>
+<li><a href="https://github.com/PolymerElements/iron-behaviors">iron-behaviors</a></li>
+<li><a href="https://github.com/PolymerElements/iron-checked-element-behavior">iron-checked-element-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-collapse">iron-collapse</a></li>
+<li><a href="https://github.com/PolymerElements/iron-component-page">iron-component-page</a></li>
+<li><a href="https://github.com/PolymerElements/iron-demo-helpers">iron-demo-helpers</a></li>
+<li><a href="https://github.com/PolymerElements/iron-doc-viewer">iron-doc-viewer</a></li>
+<li><a href="https://github.com/PolymerElements/iron-dropdown">iron-dropdown</a></li>
+<li><a href="https://github.com/PolymerElements/iron-fit-behavior">iron-fit-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-flex-layout">iron-flex-layout</a></li>
+<li><a href="https://github.com/PolymerElements/iron-icon">iron-icon</a></li>
+<li><a href="https://github.com/PolymerElements/iron-icons">iron-icons</a></li>
+<li><a href="https://github.com/PolymerElements/iron-iconset">iron-iconset</a></li>
+<li><a href="https://github.com/PolymerElements/iron-iconset-svg">iron-iconset-svg</a></li>
+<li><a href="https://github.com/PolymerElements/iron-image">iron-image</a></li>
+<li><a href="https://github.com/PolymerElements/iron-input">iron-input</a></li>
+<li><a href="https://github.com/PolymerElements/iron-jsonp-library">iron-jsonp-library</a></li>
+<li><a href="https://github.com/PolymerElements/iron-label">iron-label</a></li>
+<li><a href="https://github.com/PolymerElements/iron-list">iron-list</a></li>
+<li><a href="https://github.com/PolymerElements/iron-localstorage">iron-localstorage</a></li>
+<li><a href="https://github.com/PolymerElements/iron-location">iron-location</a></li>
+<li><a href="https://github.com/PolymerElements/iron-media-query">iron-media-query</a></li>
+<li><a href="https://github.com/PolymerElements/iron-menu-behavior">iron-menu-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-meta">iron-meta</a></li>
+<li><a href="https://github.com/PolymerElements/iron-overlay-behavior">iron-overlay-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-pages">iron-pages</a></li>
+<li><a href="https://github.com/PolymerElements/iron-range-behavior">iron-range-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-resizable-behavior">iron-resizable-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-scroll-target-behavior">iron-scroll-target-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-scroll-threshold">iron-scroll-threshold</a></li>
+<li><a href="https://github.com/PolymerElements/iron-selector">iron-selector</a></li>
+<li><a href="https://github.com/PolymerElements/iron-test-helpers">iron-test-helpers</a></li>
+<li><a href="https://github.com/PolymerElements/iron-validatable-behavior">iron-validatable-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/iron-validator-behavior">iron-validator-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/marked-element">marked-element</a></li>
+<li><a href="https://github.com/PolymerElements/neon-animation">neon-animation</a></li>
+<li><a href="https://github.com/PolymerElements/paper-badge">paper-badge</a></li>
+<li><a href="https://github.com/PolymerElements/paper-behaviors">paper-behaviors</a></li>
+<li><a href="https://github.com/PolymerElements/paper-button">paper-button</a></li>
+<li><a href="https://github.com/PolymerElements/paper-card">paper-card</a></li>
+<li><a href="https://github.com/PolymerElements/paper-checkbox">paper-checkbox</a></li>
+<li><a href="https://github.com/PolymerElements/paper-dialog">paper-dialog</a></li>
+<li><a href="https://github.com/PolymerElements/paper-dialog-behavior">paper-dialog-behavior</a></li>
+<li><a href="https://github.com/PolymerElements/paper-dialog-scrollable">paper-dialog-scrollable</a></li>
+<li><a href="https://github.com/PolymerElements/paper-drawer-panel">paper-drawer-panel</a></li>
+<li><a href="https://github.com/PolymerElements/paper-dropdown-menu">paper-dropdown-menu</a></li>
+<li><a href="https://github.com/PolymerElements/paper-fab">paper-fab</a></li>
+<li><a href="https://github.com/PolymerElements/paper-header-panel">paper-header-panel</a></li>
+<li><a href="https://github.com/PolymerElements/paper-icon-button">paper-icon-button</a></li>
+<li><a href="https://github.com/PolymerElements/paper-input">paper-input</a></li>
+<li><a href="https://github.com/PolymerElements/paper-item">paper-item</a></li>
+<li><a href="https://github.com/PolymerElements/paper-listbox">paper-listbox</a></li>
+<li><a href="https://github.com/PolymerElements/paper-material">paper-material</a></li>
+<li><a href="https://github.com/PolymerElements/paper-menu-button">paper-menu-button</a></li>
+<li><a href="https://github.com/PolymerElements/paper-progress">paper-progress</a></li>
+<li><a href="https://github.com/PolymerElements/paper-radio-button">paper-radio-button</a></li>
+<li><a href="https://github.com/PolymerElements/paper-radio-group">paper-radio-group</a></li>
+<li><a href="https://github.com/PolymerElements/paper-ripple">paper-ripple</a></li>
+<li><a href="https://github.com/PolymerElements/paper-scroll-header-panel">paper-scroll-header-panel</a></li>
+<li><a href="https://github.com/PolymerElements/paper-slider">paper-slider</a></li>
+<li><a href="https://github.com/PolymerElements/paper-spinner">paper-spinner</a></li>
+<li><a href="https://github.com/PolymerElements/paper-styles">paper-styles</a></li>
+<li><a href="https://github.com/PolymerElements/paper-swatch-picker">paper-swatch-picker</a></li>
+<li><a href="https://github.com/PolymerElements/paper-tabs">paper-tabs</a></li>
+<li><a href="https://github.com/PolymerElements/paper-toast">paper-toast</a></li>
+<li><a href="https://github.com/PolymerElements/paper-toggle-button">paper-toggle-button</a></li>
+<li><a href="https://github.com/PolymerElements/paper-toolbar">paper-toolbar</a></li>
+<li><a href="https://github.com/PolymerElements/paper-tooltip">paper-tooltip</a></li>
+<li><a href="https://github.com/PolymerElements/platinum-sw">platinum-sw</a></li>
+<li><a href="https://github.com/PolymerElements/polymerfire">polymerfire</a></li>
+<li><a href="https://github.com/PolymerLabs/note-app-elements">polymerlabs/note-app-elements</a></li>
+<li><a href="https://github.com/PolymerElements/prism-element">prism-element</a></li>
+</ul>

@@ -2,11 +2,13 @@
 title: Hybrid elements
 ---
 
+<!-- toc -->
+
 Hybrid elements are Polymer elements designed to run under both Polymer 1.x and Polymer 2.x. Polymer
 2 provides a backwards-compatible API for hybrid elements.
 
 Implementing a hybrid element requires some extra work, including maintaining multiple sets of
-bower dependencies, testing on both Polymer 1 and Polymer 2. Build hybrid elements if you're
+bower dependencies and testing on both Polymer 1 and Polymer 2. Build hybrid elements if you're
 creating a set of reusable elements and need to support customers using both Polymer 1.x and Polymer
 2.x. You may also find hybrid elements useful if you're trying to port a large application.
 
@@ -16,8 +18,7 @@ you can test your hybrid elements against multiple versions of Polymer. For an o
 
 ## Hybrid element overview
 
-A hybrid element is defined using a 2.x-style DOM template and a 1.x-style `Polymer()` function
-
+A hybrid element is defined using a 2.x-style DOM template and a 1.x-style `Polymer()` function call.
 
 The `Polymer` function sets up the prototype chain for your custom element,
 so you cannot set up your own prototype chain.
@@ -25,8 +26,8 @@ so you cannot set up your own prototype chain.
 -   In 1.x, your prototype is chained to the Polymer `Base` prototype (which
     provides Polymer value-added features).
 
--   In 2.0, Polymer uses your prototype to create a new class that extends
-    `Polymer.Element`. The class also  mixes in the `Polymer.LegacyElementMixin`, which adds
+-   In 2.x, Polymer uses your prototype to create a new class that extends
+    `Polymer.Element`. The class also mixes in the `Polymer.LegacyElementMixin`, which adds
     backward-compatbile APIs that are not included in `Polymer.Element.
 
 Hybrid elements must use a compatible subset of the 1.x API. (Version-specific API calls can be
@@ -38,16 +39,16 @@ as they follow the same API restrictions as hybrid elements.
 ## Working with DOM
 
 Hybrid elements need to run under Polymer 2.0—which uses the newer shadow DOM v1 specification, and
-and Polymer 1.x, which uses the earlier shadow DOM v0 specification.
+Polymer 1.x, which uses the earlier shadow DOM v0 specification.
 
 *   When writing the DOM template for a hybrid element, use the shadow DOM v1 style `<slot>` element
-    and `::slotted` selector.
+    and `::slotted()` selector.
 
 *   When manipulating DOM elements at runtime, use the `Polymer.dom` APIs for backward compatibility.
 
 ### DOM template and styling
 
-Hybrid elements must use the shadow DOM v1 style `<slot>` element, and `::slotted()` CSS selector
+Hybrid elements must use the shadow DOM v1 style `<slot>` element and `::slotted()` CSS selector
 in place of the `<content>` element and `::content` selector from shadow DOM v0.
 
 Note that `<slot>` is more restrictive than the v0 `<content>` mechanism:
@@ -158,7 +159,7 @@ When working with the DOM imperatively, use the Polymer 1.x APIs, such as `Polym
 Note that the initial distribution of light DOM children into slots may be delayed under the
 polyfill, as described in the [discussion of the `ready` callback](#ready-time).
 
-Also note that `Polymer.dom.flush` does not flush `observeNodes` callbacks in 2.0. This is most
+Also note that `Polymer.dom.flush` does not flush `observeNodes` callbacks in 2.x. This is most
 likely to affect unit tests using `Polymer.dom.flush` to ensure that shadow DOM children have been
 distributed.
 
@@ -216,26 +217,25 @@ if (Polymer.Element) {
 For testing Polymer elements, Polymer CLI supports installing multiple versions of bower
 dependencies. These versions are called _variants_. The components' default dependencies are listed
 in the standard `dependencies` and `devDependencies` sections. The default dependencies should
-use version ranges that include all versions supported by the component (typically, 1.7.1 or higher
+use version ranges that include all versions supported by the component (typically, 1.9.1 or higher
 for Polymer itself).
 
 Other sets are listed in a special `variants` section. For example:
 
 ```js
   "dependencies": {
-    "polymer": "Polymer/polymer#>=1.7.1 <3.0.0"
+    "polymer": "Polymer/polymer#^1.9.1 || ^2.0.0"
   },
   "devDependencies": {
-    "iron-component-page": "PolymerElements/iron-component-page#>=1.0.0 <3.0.0",
-    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#>=1.0.0 <3.0.0",
-    "test-fixture": "PolymerElements/test-fixture#>=1.0.0 <3.0.0",
+    "iron-component-page": "PolymerElements/iron-component-page#^2.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
+    "test-fixture": "PolymerElements/test-fixture#^2.0.0",
     "web-component-tester": "^6.0.0",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#>=0.7.0 <2.0.0"
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0 || ^1.0.0"
   },
   "variants": {
     "1.x": {
       "dependencies": {
-        "iron-resizable-behavior": "PolymerElements/iron-resizable-behavior#^1.0.0",
         "polymer": "Polymer/polymer#^1.0.0"
       },
       "devDependencies": {
@@ -250,12 +250,16 @@ Other sets are listed in a special `variants` section. For example:
   },
 ```
 
-In the example above, the default dependencies match either 1.x or 2.x, while the 1.x variant
-matches 1.x.
+In the example above, the default dependencies work with either Polymer 1.x or 2.x, while the
+1.x variant works with 1.x.
 
 Run the following command to install both sets of dependencies:
 
 `polymer install --variants`
+
+To run on both 1.x and 2.x, hybrid elements should only depend on other hybrid elements.
+For elements built by the Polymer team, such as the iron-, paper- or app- elements, this
+means you will need a version number of 2.0.0 or higher.
 
 Other CLI commands like `polymer serve` and `polymer test` can run against the default dependencies,
 as well as any variants. For example, `polymer serve` serves both versions at the same time, from
