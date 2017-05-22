@@ -6,7 +6,12 @@ title: Polymer CLI
 
 ## Install {#install}
 
-1.  Make sure you have installed a verson of Node.js supported by Polymer. Run `node --version` to to check the version of Node.js that you have installed and see our [official node version support policy](node-support) for more details.
+1.  Make sure you have installed a verson of Node.js supported by Polymer. To check the version
+    of Node.js that you have installed, run:
+    
+        node --version
+    
+    See our [official node version support policy](node-support) for more details.
 
 1.  Update npm.
 
@@ -25,6 +30,11 @@ title: Polymer CLI
 1.  Install Polymer CLI.
 
         npm install -g polymer-cli
+
+    In the output from this command, you may see an npm warning about Bower being deprecated. You 
+    can safely ignore this warning. Bower is maintained, and Polymer will continue to use it. See 
+    [Bower.io](https://bower.io/blog/) for more information.
+    {.alert .alert-info}
 
 You're all set. Run `polymer help` to view a list of commands.
 
@@ -247,9 +257,13 @@ noted.
 
 Installs Bower dependencies. Running `polymer install` is equivalent to running `bower install`.
 
-The `--variants` flag allows you to install dependency variants. See the documentation on [managing dependencies for hybrid elements](/{{{polymer_version_dir}}}/docs/devguide/hybrid-elements#dependency-variants) for more information.
+The `--variants` flag allows you to install dependency variants. See the documentation on [managing 
+dependencies for hybrid 
+elements](/{{{polymer_version_dir}}}/docs/devguide/hybrid-elements#dependency-variants) for more 
+information.
 
-The `--offline` flag tells the install command not to hit the network to retrieve components. If components are not cached, the install will fail.
+The `--offline` flag tells the install command not to hit the network to retrieve components. If 
+components are not cached, the install will fail.
 
 ### `polymer test` {#tests}
 
@@ -311,15 +325,24 @@ Open up a page other than the default `index.html` in a specific browser
 
 ### `polymer lint` {#lint}
 
-Analyze your project for syntax errors, missing imports, bad databinding expressions and more. `polymer lint` helps with identifying issues across your HTML, JS, and CSS based on an in-depth analysis of web components in source code. It does not reinvent the wheel though, it focuses on issues specific to web components and Polymer, so it is a good adjunct to other tools like [`eslint`](http://eslint.org/) and [`htmlhint`](http://htmlhint.com/).
+Analyze your project for syntax errors, missing imports, bad databinding expressions and more. 
+`polymer lint` helps with identifying issues across your HTML, JS, and CSS based on an in-depth 
+analysis of web components in source code. It does not reinvent the wheel though, it focuses on 
+issues specific to web components and Polymer, so it is a good adjunct to other tools like 
+[`eslint`](http://eslint.org/) and [`htmlhint`](http://htmlhint.com/).
 
 Use it like so:
 
     polymer lint --rules=polymer-2
 
-This will lint all of the code in your project with the `polymer-2` ruleset, which is appropriate for projects using Polymer 2.0. If your code is hybrid and should with with either Polymer 1.x or 2.x then `polymer-2-hybrid` is a better choice, as it will warn you about use of features that do not exist in Polymer 2.x.
+This will lint all of the code in your project with the `polymer-2` ruleset, which is appropriate 
+for projects using Polymer 2.0. If your code is hybrid and should with with either Polymer 1.x or 
+2.x then `polymer-2-hybrid` is a better choice, as it will warn you about use of features that do 
+not exist in Polymer 2.x.
 
-You can pass flags to the linter like `--rules` but even better is to put the configuration in `polymer.json` so that all you need to do is run `polymer lint`. Putting your configuration in `polymer.json` also means that other tools, like IDE plugins can use the same lint configuration.
+You can pass flags to the linter like `--rules` but even better is to put the configuration in 
+`polymer.json` so that all you need to do is run `polymer lint`. Putting your configuration in 
+`polymer.json` also means that other tools, like IDE plugins can use the same lint configuration.
 
 Here's what that looks like:
 
@@ -332,7 +355,8 @@ Here's what that looks like:
 }
 ```
 
-- `rules`: An array of lint rules and rule collections to run on your project. For most projects, one of  `polymer-2`, `polymer-2-hybrid`, or `polymer-1` is all that's needed here.
+- `rules`: An array of lint rules and rule collections to run on your project. For most projects, 
+one of  `polymer-2`, `polymer-2-hybrid`, or `polymer-1` is all that's needed here.
 - `ignoreWarnings`: An array of warning codes to ignore.
 
 #### Warning Codes:
@@ -346,7 +370,10 @@ The output of `polymer lint` looks like this:
 index.html(83,12) warning [undefined-elements] - The element iron-collapse is not defined
 ```
 
-This means that on line 83 of `index.html` there's an `<iron-collapse>` tag, but the linter can't find the definition of the `iron-collapse` custom element. This probably means that there's a missing HTML import in `index.html`. To ignore this warning, add `undefined-elements` to the `ignoreWarnings` array in `polymer.json`.
+This means that on line 83 of `index.html` there's an `<iron-collapse>` tag, but the linter can't 
+find the definition of the `iron-collapse` custom element. This probably means that there's a 
+missing HTML import in `index.html`. To ignore this warning, add `undefined-elements` to the 
+`ignoreWarnings` array in `polymer.json`.
 
 
 ### `polymer build` {#build}
@@ -454,16 +481,21 @@ thus be lazily loaded.
 polymer build --preset preset-name
 ```
 
-**Build presets** provide an easy way to create common build configurations. When you provide a valid preset for your build, it will use the flags in that preset. We currently support 3 different presets:
+**Build presets** provide an easy way to create common build configurations. When you provide a 
+valid preset for your build, it will use the flags in that preset. We currently support 3 different 
+presets:
 
 - **es5-bundled:**
-  --js-minify --js-compile --css-minify --bundled --add-service-worker --add-push-manifest --insert-prefetch-links
+  --js-minify --js-compile --css-minify --bundled --add-service-worker --add-push-manifest 
+--insert-prefetch-links
 
 - **es6-bundled:**
-  --js-minify --css-minify --html-minify --bundled --add-service-worker --add-push-manifest --insert-prefetch-links
+  --js-minify --css-minify --html-minify --bundled --add-service-worker --add-push-manifest 
+--insert-prefetch-links
   
 - **es6-unbundled:**
-  --js-minify --css-minify --html-minify --add-service-worker --add-push-manifest --insert-prefetch-links
+  --js-minify --css-minify --html-minify --add-service-worker --add-push-manifest 
+--insert-prefetch-links
 
 #### Examples {#examples}
 
