@@ -554,7 +554,7 @@ Example 1: Two-way binding { .caption }
   <template>
     <!-- changes to "value" propagate downward to "someProp" on target -->
     <!-- changes to "someProp" propagate upward to "value" on host  -->
-    <x-target some-prop="{{value}}"></custom-element>
+    <x-target some-prop="{{value}}"></x-target>
   </template>
   <script>
     class XHost extends Polymer.Element {
@@ -577,7 +577,7 @@ same `x-target` element as example 1.
   <template>
     <!-- changes to "value" propagate downward to "someProp" on target -->
     <!-- changes to "someProp" don't propagate upward because of the one-way binding -->
-    <x-target some-prop="[[value]]"></custom-element>
+    <x-target some-prop="[[value]]"></x-target>
   </template>
   <script>
     class XHost extends Polymer.Element {
@@ -619,7 +619,7 @@ a one-way, downward binding.
   <template>
     <!-- changes to "value" propagate downward to "someProp" on target -->
     <!-- changes to "someProp" are not notified to host due to notify:falsey -->
-    <x-target some-prop="{{value}}"></custom-element>
+    <x-target some-prop="{{value}}"></x-target>
   </template>
   <script>
     class XHost extends Polymer.Element {
@@ -661,7 +661,7 @@ Example 4: One-way binding (upward, child-to-host) { .caption }
   <template>
 <!-- changes to "value" are ignored by child because "someProp" is read-only -->
 <!-- changes to "someProp" propagate upward to "value" on host -->
-    <x-target some-prop="{{value}}"></custom-element>
+    <x-target some-prop="{{value}}"></x-target>
   </template>
   <script>
     class XHost extends Polymer.Element {
@@ -703,7 +703,7 @@ Example 5: No data flow / nonsensical state { .caption }
   <template>
     <!-- changes to "value" are ignored by child because "someProp" is read-only -->
     <!-- changes to "someProp" don't propagate upward because of the one-way binding -->
-    <x-target some-prop="[[value]]"></custom-element>
+    <x-target some-prop="[[value]]"></x-target>
   </template>
   <script>
     class XHost extends Polymer.Element {
@@ -1023,7 +1023,7 @@ The user can then use your element with either standard data flow, or the mutabl
 
 <!-- custom element using MutableData mode  -->
 <my-structured-data-element data="{{someData" mutable-data>
-</my-structured-data element>
+</my-structured-data-element>
 ```
 
 
