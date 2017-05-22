@@ -4,6 +4,17 @@ https://www.polymer-project.org/
 
 ### Install
 
+The documentation site runs in Google App Engine, using the App Engine Python standard environment. Before you start
+you'll need the following prerequisites:
+
+-   Python 2.7
+-   [Google Cloud SDK](https://cloud.google.com/sdk/)
+-   App Engine Python standard environment. Ensure this is installed by running the following command:
+ 
+        gcloud components install app-engine-python
+
+Set up your repo:
+
     git clone https://github.com/Polymer/docs --recursive
     cd docs
     npm install
