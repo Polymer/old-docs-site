@@ -40,13 +40,13 @@ You can use a custom element just like you'd use a standard element:
 Or:
 
 ```js
-var myEl = document.createElement('my-element');
+const myEl = document.createElement('my-element');
 ```
 
 Or:
 
 ```js
-var myEl = new MyElement();
+const myEl = new MyElement();
 ```
 
 The element's class defines its behavior and public API. The class must extend `HTMLElement` or one

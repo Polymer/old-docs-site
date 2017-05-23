@@ -296,7 +296,7 @@ After: explicit selection {.caption}
     ...
     <div class="header">
       <!-- Shadow DOM v1 version uses explicit slot name -->
-      <slot name="header"></content>
+      <slot name="header"></slot>
     </div>
     <div class="body">
       <slot></slot>

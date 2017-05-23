@@ -41,11 +41,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 20px 40px;
       }
 
-      header.v2 {
+      :host(:not([data-markdown])) header {
+        display: none;
+      }
+
+      :host([data-version="2.0"]) header {
         background: #1E88E5;  /* blue-600 */
       }
 
-      header.v1 {
+      :host([data-version="1.0"]) header {
         background: #37474F;  /* blue-grey-800 */
       }
 
@@ -125,6 +129,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-decoration: none;
       }
 
+      :host([data-version="2.0"]) .version-alert,
+      :host(:not([data-markdown])) .version-alert {
+        display: none;
+      }
+
       .version-alert {
         background-color: #FBE9E7;
         margin: 0;
@@ -178,7 +187,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </nav>
 
     <div class="content-container">
-      <header hidden$="[[!markdown]]" id="header" class$="[[_computeHeaderClass(activeDocsVersion)]]">
+      <header id="header">
         <p>{{pageSubtitle}}</p>
         <h1>{{pageTitle}}</h1>
 
@@ -186,8 +195,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             href="https://github.com/Polymer/docs/edit/master/app{{_githubUrl(activeItem)}}">Edit on GitHub
         </a>
       </header>
-      <p hidden$="[[!_shouldShowDocsWarningWarning(markdown,activeDocsVersion)]]" class="version-alert"><img src="/images/alerts/warning.svg">You're viewing an older version of Polymer.
-        Please see <a href="{{v2PageLink}}">Polymer 2.0</a> for the latest.</a></p>
+
+      <p class="version-alert">
+        <img src="/images/alerts/warning.svg">
+        You're viewing an older version of Polymer.
+        Please see <a href="{{v2PageLink}}">Polymer 2.0</a> for the latest.
+      </p>
 
       <div id="content">
         <content></content>
@@ -201,14 +214,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     is: 'devguide-shell',
 
     properties: {
-      /**
-       * True if the content displayed comes from a .md docs file.
-       */
-      markdown: {
-        type: Boolean,
-        value: false
-      },
-
       /**
        * The full title of the page (i.e. "Registration and Lifecycle"),
        * displayed in the header section.
@@ -287,7 +292,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // Compute the active page from the parent pw-shell's app route.
       var pwShell = Polymer.dom(this).parentNode;
       if (pwShell) {
-        var path = pwShell._sectionRoute.path;
+        var path = pwShell.path;
 
         // If it ends in a /, then it's a top level path like /1.0/tools/,
         // so add an index to it.
@@ -326,14 +331,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (item) {
         return item.getAttribute('name').indexOf('/1.0/docs/api') >= 0;
       }
-    },
-
-    _computeHeaderClass: function(version) {
-      return version == '1.0' ? 'v1' : 'v2';
-    },
-
-    _shouldShowDocsWarningWarning: function(markdown, version) {
-      return markdown && version == '1.0';
     }
   });
   </script>
