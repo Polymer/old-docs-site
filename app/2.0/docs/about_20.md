@@ -534,6 +534,7 @@ The following elements have been updated to support Polymer 2.0, or require no u
 <li><a href="https://github.com/PolymerElements/app-storage">app-storage</a></li>
 <li><a href="https://github.com/PolymerElements/gold-zip-input">gold-zip-input</a></li>
 <li><a href="https://github.com/PolymerElements/iron-a11y-announcer">iron-a11y-announcer</a></li>
+<li><a href="https://github.com/PolymerElements/iron-a11y-keys">iron-a11y-keys</a></li>
 <li><a href="https://github.com/PolymerElements/iron-a11y-keys-behavior">iron-a11y-keys-behavior</a></li>
 <li><a href="https://github.com/PolymerElements/iron-ajax">iron-ajax</a></li>
 <li><a href="https://github.com/PolymerElements/iron-autogrow-textarea">iron-autogrow-textarea</a></li>
@@ -546,6 +547,7 @@ The following elements have been updated to support Polymer 2.0, or require no u
 <li><a href="https://github.com/PolymerElements/iron-dropdown">iron-dropdown</a></li>
 <li><a href="https://github.com/PolymerElements/iron-fit-behavior">iron-fit-behavior</a></li>
 <li><a href="https://github.com/PolymerElements/iron-flex-layout">iron-flex-layout</a></li>
+<li><a href="https://github.com/PolymerElements/iron-form-element-behavior">iron-form-element-behavior</a></li>
 <li><a href="https://github.com/PolymerElements/iron-icon">iron-icon</a></li>
 <li><a href="https://github.com/PolymerElements/iron-icons">iron-icons</a></li>
 <li><a href="https://github.com/PolymerElements/iron-iconset">iron-iconset</a></li>
