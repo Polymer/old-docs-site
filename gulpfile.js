@@ -23,6 +23,8 @@ let del = require('del');
 let fs = require('fs');
 var replace = require('gulp-replace');
 
+let gulp_highlight = require('gulp-highlight')
+let highlightjs = require('highlight.js')
 let markdownIt = require('markdown-it')({
     html: true,
     highlight: (code, lang) => {
@@ -188,13 +190,20 @@ gulp.task('md:blog', 'Blog markdown -> HTML conversion. Syntax highlight and TOC
     .pipe(gulp.dest('dist'));
 });
 
-// // Minify html
-// gulp.task('html', function() {
-//   gulp.src('app/index.html')
-//     //.pipe($.changed('dist/index.html'))
-//     .pipe(minifyHtml())
-//     .pipe(gulp.dest('dist'));
-// });
+// Process html
+gulp.task('html', 'Process plain HTML files—syntax highlight and minify', function() {
+  return gulp.src([
+      'app/**/*.html',
+      '!app/{bower_components,elements}/**',
+      '!app/{1.0,2.0}/{homepage,samples}/**',
+      '!app/1.0/docs/devguide/samples/**',
+      '!app/2.0/start/samples/**'
+    ], {base: 'app'})
+    //.pipe($.changed('dist/index.html'))
+    .pipe(gulp_highlight())
+   // .pipe(minifyHtml())
+    .pipe(gulp.dest('dist'));
+});
 
 gulp.task('jshint', 'Lint JS', function() {
   return gulp.src([
@@ -263,6 +272,21 @@ gulp.task('vulcanize-demos', 'vulcanize demos', function() {
     .pipe(gulp.dest('dist/1.0/homepage'));
 });
 
+gulp.task('vulcanize-demos', 'vulcanize demos', function() {
+  return gulp.src('app/1.0/homepage/*/index.html', {base: 'app/1.0/homepage'})
+    .pipe($.vulcanize({
+      stripComments: true,
+      inlineCss: true,
+      inlineScripts: true
+    }))
+    .pipe($.crisper()) // Separate HTML/JS into separate files.
+    .pipe($.if('*.html', minifyHtml())) // Minify html output
+    .pipe($.if('*.html', cssslam.gulp())) // Minify css in HTML output
+    .pipe($.if('*.js', uglifyJS())) // Minify js output
+    .pipe($.if('*.js', license()))
+    .pipe(gulp.dest('dist/1.0/homepage'));
+});
+
 gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', function() {
   let app = gulp.src([
       '*',
@@ -272,7 +296,9 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     .pipe(gulp.dest('dist'));
 
   let docs = gulp.src([
-      'app/**/*.html',
+      // ToDo: bundle the samples?
+      'app/1.0/docs/devguide/samples/**/*.html',
+      'app/2.0/start/samples/**/*.html',
       'app/**/nav.yaml',
       'app/**/blog.yaml',
       'app/**/authors.yaml',
@@ -330,7 +356,8 @@ gulp.task('watch', 'Watch files for changes', function() {
 
   gulp.watch('app/blog/*.md', ['md:blog', reload]);
   gulp.watch('app/**/*.md', ['md:docs', reload]);
-  gulp.watch(['templates/*.html', 'app/**/*.html'], ['copy', reload]);
+  gulp.watch(['templates/*.html', 'app/**/*.html'], ['copy', 'html', reload]);
+
   // Watch for changes to server itself.
   gulp.watch('*.py', function(files) {
     gulp.src('*.py').pipe(gulp.dest('dist'));
@@ -356,6 +383,6 @@ gulp.task('default', 'Build site', ['clean', 'jshint'], function(done) {
   runSequence(
     'hack-bundles',
     ['style', 'images', 'vulcanize-demos', 'js'],
-    'copy', 'md:docs', 'md:blog',
+    'copy', 'html', 'md:docs', 'md:blog',
     done);
 });
