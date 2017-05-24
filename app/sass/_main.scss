@@ -51,9 +51,7 @@ body[unresolved] {
 /* For nonversioned pages, the server needs to send both v1 and v2 links for
  * the mobile drawer, since it doesn't know what version was previously
  * selected, but the client should hide the irrelevant links. */
-pw-shell[active-docs-version="1.0"] a[data-version="2.0"] {
-  display: none;
-}
+pw-shell[active-docs-version="1.0"] a[data-version="2.0"],
 pw-shell[active-docs-version="2.0"] a[data-version="1.0"] {
   display: none;
 }

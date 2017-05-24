@@ -6,9 +6,12 @@ title: Polymer CLI
 
 ## Install {#install}
 
-1.  Make sure you have installed a verson of Node.js supported by Polymer. Run `node --version` to 
-to check the version of Node.js that you have installed and see our [official node version support 
-policy](node-support) for more details.
+1.  Make sure you have installed a verson of Node.js supported by Polymer. To check the version
+    of Node.js that you have installed, run:
+    
+        node --version
+    
+    See our [official node version support policy](node-support) for more details.
 
 1.  Update npm.
 
@@ -26,7 +29,11 @@ policy](node-support) for more details.
 
 1.  Install Polymer CLI.
 
-        npm install -g polymer-cli@next
+        npm install -g polymer-cli
+
+    In the output from this command, you may see an npm warning about Bower being deprecated. You 
+    can safely ignore this warning. See [Bower.io](https://bower.io/blog/) for more information.
+    {.alert .alert-info}
 
 You're all set. Run `polymer help` to view a list of commands.
 

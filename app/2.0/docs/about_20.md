@@ -13,8 +13,8 @@ Polymer 2.0 also makes improvements in several areas:
 
 *   **Improved interoperability.** By removing the need to use Polymer.dom for DOM manipulation,
     Polymer 2.0 makes it easier to use Polymer components with other libraries and frameworks. In
-    addition, the shady DOM code has been separated out into a reusable polyfill, instead of being
-    integrated into Polymer.
+    addition, the [shady DOM](https://github.com/webcomponents/shadydom) code has been separated 
+    out into a reusable polyfill, instead of being integrated into Polymer.
 
 *   **Data system improvements.** Polymer 2.0 includes targeted improvements to the data system.
     These changes make it  easier to reason about and debug the propagation of data through and
@@ -511,7 +511,7 @@ bower install --save Polymer/polymer#^2.0.0
 You can also use bower to install any of the available hybrid elements:
 
 ```
-bower install --save PolymerElements/paper-button#^2.0-0
+bower install --save PolymerElements/paper-button#^2.0.0
 ```
 
 ### Upgrade an existing project {#upgrading}
@@ -534,6 +534,7 @@ The following elements have been updated to support Polymer 2.0, or require no u
 <li><a href="https://github.com/PolymerElements/app-storage">app-storage</a></li>
 <li><a href="https://github.com/PolymerElements/gold-zip-input">gold-zip-input</a></li>
 <li><a href="https://github.com/PolymerElements/iron-a11y-announcer">iron-a11y-announcer</a></li>
+<li><a href="https://github.com/PolymerElements/iron-a11y-keys">iron-a11y-keys</a></li>
 <li><a href="https://github.com/PolymerElements/iron-a11y-keys-behavior">iron-a11y-keys-behavior</a></li>
 <li><a href="https://github.com/PolymerElements/iron-ajax">iron-ajax</a></li>
 <li><a href="https://github.com/PolymerElements/iron-autogrow-textarea">iron-autogrow-textarea</a></li>
@@ -546,6 +547,7 @@ The following elements have been updated to support Polymer 2.0, or require no u
 <li><a href="https://github.com/PolymerElements/iron-dropdown">iron-dropdown</a></li>
 <li><a href="https://github.com/PolymerElements/iron-fit-behavior">iron-fit-behavior</a></li>
 <li><a href="https://github.com/PolymerElements/iron-flex-layout">iron-flex-layout</a></li>
+<li><a href="https://github.com/PolymerElements/iron-form-element-behavior">iron-form-element-behavior</a></li>
 <li><a href="https://github.com/PolymerElements/iron-icon">iron-icon</a></li>
 <li><a href="https://github.com/PolymerElements/iron-icons">iron-icons</a></li>
 <li><a href="https://github.com/PolymerElements/iron-iconset">iron-iconset</a></li>

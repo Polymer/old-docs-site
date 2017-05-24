@@ -5,7 +5,7 @@ title: Observers and computed properties
 <!-- toc -->
 
 
-Observers are methods invoked when [observable changes](#observable-changes) occur to the element's
+Observers are methods invoked when [observable changes](data-system#observable-changes) occur to the element's
 data. There are two basic types of observers:
 
 
@@ -166,8 +166,8 @@ array.
 These observers differ from single-property observers in a few ways:
 
 *   Multi-property observers and computed properties run once at initialization if **any**
-    dependencies are defined. After that, the observers run whenever there is an observable change
-    to any dependency.
+    dependencies are defined. After that, the observers run whenever there is an
+    [observable change](data-system#observable-changes) to any dependency.
 
 *   Observers do not receive `old` values as arguments, only new values.  Only single-property
     observers defined in the `properties` object receive both `old` and `new` values.
@@ -523,8 +523,8 @@ function for a computed property follows the same rules as a complex observer, e
 returns a value, which is used as the value of the computed property.
 
 As with complex observers, the computing function is run once at initialization if **any**
-dependencies are defined. After that, the function runs whenever there is an observable change
-to any dependency.
+dependencies are defined. After that, the function runs whenever there is an
+[observable changes](data-system#observable-changes) to any dependency.
 
 ### Define a computed property
 
@@ -541,17 +541,12 @@ fullName: {
 ```
 
 
-The function is provided as a string with dependent properties as arguments in parenthesis. The
-function will be called once for any [observable change](data-system#observable-changes) to
-the dependent properties.
+The function is provided as a string with dependencies as arguments in parenthesis.
 
-As with complex observers, the handling of `undefined` values **depends on the number of properties
-being observed**.
+As with complex observers, the computing function is not invoked until at least one dependency is
+defined (`!== undefined`). Subsequently, the function is called once for any
+[observable change](data-system#observable-changes) to its dependencies.
 
-The computing function is not invoked until **all** dependent properties are defined
-(`!== undefined`). So each dependent properties should have a
-default `value` defined in `properties` (or otherwise be initialized to a
-non-`undefined` value) to ensure the property is computed.
 
 **Note:**
 The definition of a computing function looks like the

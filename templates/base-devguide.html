@@ -27,14 +27,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <pw-shell>
     {% include 'templates/site-nav.html' %}
     {% if markdown %}
-      <devguide-shell unresolved markdown page-title="{{{title}}}" page-subtitle="{{{subtitle}}}"
-          v1-page-link="{{{versions[0]}}}" v2-page-link="{{{versions[1]}}}">
+      <devguide-shell unresolved data-markdown data-version="{{{polymer_version_dir}}}"
+          page-title="{{{title}}}" page-subtitle="{{{subtitle}}}"
+          v1-page-link="{{{versioned_paths[0]}}}" v2-page-link="{{{versioned_paths[1]}}}">
     {% else %}
-      <devguide-shell unresolved v1-page-link="{{{versions[0]}}}" v2-page-link="{{{versions[1]}}}">
+      <devguide-shell unresolved data-version="{{{polymer_version_dir}}}"
+          v1-page-link="{{{versioned_paths[0]}}}" v2-page-link="{{{versioned_paths[1]}}}">
     {% endif %}
 
-      {% if nav %}
-        {% for item in nav %}
+      {% if section_nav %}
+        {% for item in section_nav %}
           {% if 'header' in item %}
             <div class="sidenav-content sidenav-header">{{{item.header}}}</div>
           {% elif 'endheader' in item %}
