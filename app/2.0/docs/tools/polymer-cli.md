@@ -4,17 +4,6 @@ title: Polymer CLI
 
 <!-- toc -->
 
-On this page:
-
-* [Install the Polymer CLI](#install)
-* [Overview of the Polymer CLI](#overview)
-
-More documentation:
-
-* [List of Polymer CLI commands and how to use them](polymer-cli-commands)
-* [Create an element project with the Polymer CLI](create-element-polymer-cli)
-* [Create an application project with the Polymer CLI](create-app-polymer-cli)
-
 ## Install {#install}
 
 1.  Make sure you have installed a verson of Node.js supported by Polymer. Run `node --version` to 
@@ -53,7 +42,18 @@ Polymer CLI works with two types of projects:
   elements which you intend to use in other element or app projects, or distribute on a registry 
   like Bower or NPM. Elements are reusable and organized to be used alongside other elements, so 
   components are referenced outside the project.
+  
+  See the guide to [creating an element project with the Polymer CLI](create-element-polymer-cli)
+  for more information.
 
 * Application projects. In an app project, you build an application, composed of Polymer elements, 
   which you intend to deploy as a website. Applications are self-contained, organized with 
   components inside the application.
+  
+  See the guide to [creating an application project with the Polymer CLI](create-app-polymer-cli)
+  for more information.
+
+## Commands
+
+See the documentation on [Polymer CLI commands](polymer-cli-commands) for a list of commands and
+how to use them.

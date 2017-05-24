@@ -14,8 +14,8 @@ This section shows you how to start an element project.
     Where <code><var>my-el</var></code> is the name of the element you're
     creating.
 
-1.  Initialize your element. Polymer CLI asks you a few
-    questions as it sets up your element project.
+1.  Initialize your element. Polymer CLI asks you a few questions as it sets up your element
+    project.
 
         polymer init
 
@@ -67,7 +67,7 @@ This command removes the dependency from `bower_components` and `bower.json`:
 
 ### Import dependencies as relative URLs
 
-When importing dependencies inside your element, you should always use a relative URL  *as if the 
+When importing dependencies inside your element, you should always use a relative URL *as if the 
 dependency is a sibling of your project.*
 
 ```
@@ -76,21 +76,16 @@ dependency is a sibling of your project.*
 <link rel="import" href="../paper-elements/paper-button.html">
 ```
 
-Using relative URLs may feel weird, but remember that dependencies are siblings of each other. So 
-write your paths as if the element is already being served as a dependency, and during development 
-the CLI will properly serve your project as a sibling of your dependencies.
-
 #### Why use relative URLs?
 
-Suppose that you ran Polymer CLI to generate an element project. Your element is named `my-el`. You 
-look inside `my-el.html` and see that Polymer has been imported like so:
+Suppose that you ran Polymer CLI to generate an element project. Your element is named `my-el`. 
+You look inside `my-el.html` and see that Polymer has been imported like so:
 
     <link rel="import" href="../polymer/polymer.html">
 
 This path doesn't make sense. Relative to `my-el.html`, Polymer is actually located at 
 `bower_components/polymer/polymer.html`. Whereas the HTML import above is referencing a location 
-*outside* of your element
-project. What's going on?
+*outside* of your element project. What's going on?
 
 Bower installs dependencies in a flat dependency tree, like so:
 
@@ -103,8 +98,8 @@ Bower installs dependencies in a flat dependency tree, like so:
         other-el.html
 
 This works well on the application-level. All elements are siblings, so they can all reliably 
-import each other using relative paths like `../polymer/polymer.html`. This is why Polymer CLI uses 
-relative paths when initializing your element project.
+import each other using relative paths like `../polymer/polymer.html`. This is why Polymer CLI 
+uses relative paths when initializing your element project.
 
 However, one problem with this approach is that this structure does not actually match the layout 
 in your element project. Your element project is actually laid out like so:
