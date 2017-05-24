@@ -210,6 +210,6 @@ For more information, see [Event retargeting](shadow-dom#event-retargeting) in S
 ## Property change events {#property-changes}
 
 You can configure an element to fire a non-bubbling DOM event when a specified
-property changes. For more information, see [Change notification events](#change-events).
+property changes. For more information, see [Change notification events](data-system#change-events).
 
 
