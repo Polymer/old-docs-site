@@ -607,7 +607,7 @@ The following elements have been updated to support Polymer 2.0, or require no u
 <li><a href="https://github.com/PolymerElements/paper-toolbar">paper-toolbar</a></li>
 <li><a href="https://github.com/PolymerElements/paper-tooltip">paper-tooltip</a></li>
 <li><a href="https://github.com/PolymerElements/platinum-sw">platinum-sw</a></li>
-<li><a href="https://github.com/PolymerElements/polymerfire">polymerfire</a></li>
+<li><a href="https://github.com/firebase/polymerfire">polymerfire</a></li>
 <li><a href="https://github.com/PolymerLabs/note-app-elements">polymerlabs/note-app-elements</a></li>
 <li><a href="https://github.com/PolymerElements/prism-element">prism-element</a></li>
 </ul>
