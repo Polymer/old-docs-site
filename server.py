@@ -133,7 +133,6 @@ def read_articles_file(articlefile, authorfile):
       article['author'] = authors[article['author']];
     else:
       logging.warning('Missing author info for %s.' % article['title'])
-    article['author'] = authors[article['author']]
   return articles
 
 def handle_404(req, resp, data, e):
