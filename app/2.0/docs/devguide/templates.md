@@ -596,7 +596,7 @@ A Polymer-managed template includes a Polymer element's template, a `dom-bind`, 
 In most cases, you'll use the first (shorthand) form for `dom-if`.
 
 The conditional template is included in the legacy (`polymer.html`) import for backwards
-compatibility.  If you're not importing `polymer.html`, import `array-selector.html` as shown in
+compatibility.  If you're not importing `polymer.html`, import `dom-if.html` as shown in
 the code below.
 
 The following is a simple example to show how conditional templates work. Read below for
