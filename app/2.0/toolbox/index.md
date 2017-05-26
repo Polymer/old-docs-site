@@ -26,8 +26,8 @@ need app-layout. As it gets more complicated, you can add routing, offline cachi
 high-performance server as required.
 
 **Hybrid compatible.** The Toolbox elements and behaviors are available as hybrid versions, which
-can be used with both Polymer 1 and Polymer 2. Use the `2.0-preview` branch of the elements when
-working with 2.0 Release Candidate.
+can be used with both Polymer 1 and Polymer 2. Use the `2.0` branch of the elements when
+working with 2.0 Release.
 {.alert .alert-info}
 
 To get a feel for these components in action, you can try out one of the two demo apps:
