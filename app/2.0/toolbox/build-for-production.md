@@ -206,7 +206,7 @@ Your builds are output to two separate folders, corresponding to their names: `b
 
 ### Build presets
 
-**Build presets** provide an easy way to define common build configurations in your [polymer.json file](polymer-json). You can use a preset as-is, or define a build configuration that inherits from a preset. 
+**Build presets** provide an easy way to define common build configurations in your [polymer.json file](/{{{polymer_version_dir}}}/docs/tools/polymer-json). You can use a preset as-is, or define a build configuration that inherits from a preset. 
 
 We currently support three build presets:
 
