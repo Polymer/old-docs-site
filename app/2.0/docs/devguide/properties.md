@@ -198,11 +198,11 @@ Example: { .caption }
       }
     }
 
-    attached: function() {
-      // render
-      this.textContent = 'Hello World, my user is ' + (this.user || 'nobody') + '.\n' +
-        'This user is ' + (this.manager ? '' : 'not') + ' a manager.';
-    }
+    connectedCallback() {
+        // render
+        this.textContent = `Hello World, my user is ${this.user || 'nobody'}\n` +
+            `This user is ${this.manager ? '' : 'not'} a manager.`;
+      }
   }
 
   customElements.define('x-custom', XCustom);
