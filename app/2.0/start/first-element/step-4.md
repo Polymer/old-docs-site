@@ -16,7 +16,7 @@ Import the `Polymer.GestureEventListeners` mixin by adding it to the HTML Import
 ```html
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../polymer/lib/mixins/gesture-event-listeners.html">
-<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
 ```
 
 Use the mixin in the class declaration: 

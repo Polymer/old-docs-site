@@ -32,7 +32,7 @@ Starting code—HTML imports { .caption }
 
 ```html
 <link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
 ```
 
 Key information:
@@ -223,7 +223,7 @@ icon-toggle.html { .caption }
 
 ```html
 <link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
 <dom-module id="icon-toggle">
   <template>
     <style>
