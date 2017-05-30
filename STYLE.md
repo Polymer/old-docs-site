@@ -98,13 +98,19 @@ When linking to a section, add an ID on the heading to produce a stable URL
 instead of relying on an auto-generated fragment based on the current link text.
 
     ## Data binding {#data-binding}
+    
+Avoid adding extra emphasis to heading text (bold, code font, and so on):
+
+-   Good: `## Using the MutableData mixin`
+-   Avoid ```## Using the `MutableData` mixin```
+
 
 ## Formatting
 
 We write docs in Markdown. We use the `markdown-it` processor with the
 `markdown-it-attrs` plugin.
 
-Use backticks or `<code>` for inline code.
+Use backticks or `<code>` for inline code. Don't use code font in headings.
 
 ### Formatting API names
 
@@ -115,6 +121,7 @@ For methods, omit the parenthesis unless you're specifying arguments.
 
 -   Good: Call `render` to force a synchronous refresh.
 -   Avoid: Call `render()` to force a synchronous refresh.
+
 
 ### Formatting element names
 
