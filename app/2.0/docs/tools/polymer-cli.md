@@ -6,7 +6,7 @@ title: Polymer CLI
 
 ## Install {#install}
 
-1.  Make sure you have installed a verson of Node.js supported by Polymer. To check the version
+1.  Make sure you have installed a version of Node.js supported by Polymer. To check the version
     of Node.js that you have installed, run:
     
         node --version
@@ -336,7 +336,7 @@ Use it like so:
     polymer lint --rules=polymer-2
 
 This will lint all of the code in your project with the `polymer-2` ruleset, which is appropriate 
-for projects using Polymer 2.0. If your code is hybrid and should with with either Polymer 1.x or 
+for projects using Polymer 2.0. If your code is hybrid and should work with either Polymer 1.x or 
 2.x then `polymer-2-hybrid` is a better choice, as it will warn you about use of features that do 
 not exist in Polymer 2.x.
 
