@@ -4,7 +4,7 @@ title: Tools overview
 
 The Polymer Project offers a range of tools to help developers write web components:
 
-* The [Polymer CLI](polymer-cli) is our reccomended "swiss army knife" for Polymer tooling. It supports a collection of commands for common scenarios like serving, testing, and initializing new projects from templates.
+* The [Polymer CLI](polymer-cli) is our recommended "swiss army knife" for Polymer tooling. It supports a collection of commands for common scenarios like serving, testing, and initializing new projects from templates.
 
 * The [polymer.json specification](polymer-json) describes how to configure your Polymer project and its builds. 
 
