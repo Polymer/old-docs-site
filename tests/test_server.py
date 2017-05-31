@@ -93,9 +93,47 @@ class HandlerTest(unittest.TestCase):
 
   def __validateNavItem(self, item, indent, file):
     for field in ['title', 'path']:
-      self.assertTrue(field in item, 'Section missing required field "%s". [%s]' % (field, file))
+      self.assertTrue(field in item, 'Item missing required field "%s". [%s]' % (field, file))
     if indent:
       self.assertTrue('indent' in item and item['indent'], 'Item in subsection missing indent: "%s". [%s]' % (item['title'], file))
+
+# Validates a top-level section of the nav file (i.e., "Start" "Polymer" "Tools")
+# Section consists of an (optional) set of initial docs (no "indent") and
+# Zero or more "subsections" which start with "header" and end with "endheader"
+# Items in "subsections" must have "indent=True". The following shows the
+# structure of the nav file:
+#
+# # Section starts here
+# - section: Start
+#   shortpath: start
+#   path: /2.0/start/
+#   items:
+#
+#   # Initial docs, outside a subsection
+#   - title: Get started
+#     path: /2.0/start/index
+#
+#   - title: Quick tour of Polymer
+#     path: /2.0/start/quick-tour
+#
+#   # Start of a subsection
+#   - header: Build an element
+#
+#   # Item in subsection
+#   - title: 1. Get set up
+#     path: /2.0/start/first-element/intro
+#     indent: True                            # "Indent" required on each of these items.
+#     ...
+#
+#   # End subsection
+#   - endheader: True
+#
+#   # Any "orphan" items between these subsections should throw an error
+#
+#   # Start another subsection
+#   - header: Build an app
+#   - title: 1. Get set up
+#     ...
 
   def __validateNavSection(self, section, file):
     for field in ['section', 'path', 'shortpath']:
@@ -122,9 +160,19 @@ class HandlerTest(unittest.TestCase):
       for section in nav:
         self.__validateNavSection(section, nav_file_for_version)
 
+  # Tests whether articles and authors files have the correct required fields
+  # Articles: title, path, published, author, description
+  # Authors: full_name, profile_pic
+  # In addition to the required fields, authors can have the following optional fields:
+  # gplus, web, twitter, github
+  # Including any other optional field is an error.
+  # Note: does not test the entire authors file, only the merge articles + author data.
+  # If an author doesn't match any articles, their data isn't tested.
+
   def testArticlesFiles(self):
       articles = server.read_articles_file(server.ARTICLES_FILE, server.AUTHORS_FILE)
       for (index, article) in enumerate(articles):
+        # required article fields
         for field in ['title', 'path', 'published', 'author', 'description']:
           self.assertTrue(field in article, 'Article #%s missing required field "%s".' % (index, field))
           if field in article and type(article[field]) == str:
@@ -135,6 +183,8 @@ class HandlerTest(unittest.TestCase):
           self.assertTrue(type(article['published']) == datetime.date, 'Article %s "published" is not a date type.' % index)
         if 'author' in article:
           author = article['author']
+          print yaml.dump(author.keys())
+          # required fields
           for field in ['full_name', 'profile_pic']:
             if (field in author):
               self.assertFalse(author[field].strip() == "", 'Article #%s: author field "%s" is empty.' % (index, field))
