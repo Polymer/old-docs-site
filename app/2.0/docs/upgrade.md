@@ -64,7 +64,7 @@ Before you start the upgrade, there's a couple of things you need to do.
 *   Create a new branch or workspace.
 *   Update bower dependencies.
 
-Update the Polymer CLI to the `next` version:
+Update the Polymer CLI:
 
 ```
 npm update polymer-cli
