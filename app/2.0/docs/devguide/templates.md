@@ -142,7 +142,7 @@ data is `model.item`:
 
 ```html
 <link rel="import" href="polymer/polymer-element.html">
-<link rel="import" href="polymer/src/elements/dom-repeat.html">
+<link rel="import" href="polymer/lib/elements/dom-repeat.html">
 
 <dom-module id="x-custom">
 
