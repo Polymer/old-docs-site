@@ -267,7 +267,7 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
   let app = gulp.src([
       '*',
       'app/manifest.json',
-      '!{README.md,package.json,gulpfile.js,test_runner.py}',
+      '!{README.md,package.json,gulpfile.js}',
     ], {nodir: true})
     .pipe(gulp.dest('dist'));
 
@@ -336,8 +336,8 @@ gulp.task('watch', 'Watch files for changes', function() {
     gulp.src('*.py').pipe(gulp.dest('dist'));
     reload();
   });
-  gulp.watch('*.{yaml,yml}', function(files) {
-    gulp.src('*.{yml,yaml}').pipe(gulp.dest('dist'));
+  gulp.watch('app/**/*.{yaml,yml}', function(files) {
+    gulp.src('app/**/*.{yml,yaml}').pipe(gulp.dest('dist'));
     reload();
   });
 }, {
