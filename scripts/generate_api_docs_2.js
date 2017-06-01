@@ -2,8 +2,7 @@
  * Run from `npm run generate-api-docs`
  */
 
-const {Analyzer, FSUrlLoader, PackageUrlResolver} = require('polymer-analyzer');
-const {generateAnalysis} = require('polymer-analyzer/lib/generate-analysis');
+const {Analyzer, FSUrlLoader, PackageUrlResolver, generateAnalysis} = require('polymer-analyzer');
 
 const clone = require('clone');
 const fs = require('fs');
@@ -92,7 +91,7 @@ function runAnalyzer() {
           for (const element of namespace.elements) {
             console.log(`adding ${getElementName(element)} to ${namespace.name}`);
             const summary = {
-              classname: element.classname,
+              name: element.name,
               tagname: element.tagname,
               summary: element.summary,
             };
@@ -217,17 +216,17 @@ function getElementName(element) {
   let name = '';
   if (element.tagname) {
     name += `<${element.tagname}>`;
-    if (element.classname) {
-      name += ` (${element.classname})`;
+    if (element.name) {
+      name += ` (${element.name})`;
     }
-  } else if (element.classname) {
-    name += element.classname;
+  } else if (element.name) {
+    name += element.name;
   }
   return name;
 }
 
 function getElementUrl(element) {
-  return `/elements/${element.classname || element.tagname}`;
+  return `/elements/${element.name || element.tagname}`;
 }
 
 function getMixinUrl(mixin) {
