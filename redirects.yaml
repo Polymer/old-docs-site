@@ -34,12 +34,22 @@
 # Killed what-is-polymer
 - /1.0/start/what-is-polymer.html /1.0/docs/devguide/feature-overview
 # old API docs entry point
-- /1.0/api/ /1.0/docs/api/Polymer.Base
+- /1.0/api/ /1.0/docs/api/classes/Polymer.Base
 # and just in case...
-- /1.0/docs/api/ /1.0/docs/api/Polymer.Base
+- /1.0/docs/api/ /1.0/docs/api/classes/Polymer.Base
 # There are some links out there on the web to the old vulcanize article.
 - /articles/concatenating-web-components.html /1.0/docs/tools/optimize-for-production
 - /0.5/articles/concatenating-web-components.html /1.0/docs/tools/optimize-for-production
+# 1.0 docs from Analyzer are now organized like 2.0 docs
+- /1.0/docs/api/Polymer.Base /1.0/docs/api/classes/Polymer.Base
+- /1.0/docs/api/Polymer.Templatizer /1.0/docs/api/behaviors/Polymer.Templatizer
+- /1.0/docs/api/array-selector /1.0/docs/api/elements/array-selector
+- /1.0/docs/api/custom-style /1.0/docs/api/elements/custom-style
+- /1.0/docs/api/dom-bind /1.0/docs/api/elements/dom-bind
+- /1.0/docs/api/dom-if /1.0/docs/api/elements/dom-if
+- /1.0/docs/api/dom-repeat /1.0/docs/api/elements/dom-repeat
+- /1.0/docs/api/dom-template /1.0/docs/api/elements/dom-template
+
 
 # 2.0 content shuffle
 - /2.0/docs/tools/optimize-for-production /2.0/toolbox/build-for-production
