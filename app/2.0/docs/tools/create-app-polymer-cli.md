@@ -11,6 +11,10 @@ application. Other templates introduce more complex layout and application patte
 This chapter teaches you more about the `polymer-2-application` template.  
 See [Polymer App Toolbox templates](../../toolbox/templates) for more details on other templates.
 
+For a more full-featured progressive web app template, you can use the starter kit template 
+(`polymer-2-starter-kit`). See [/{{{polymer_version_dir}}}/start/toolbox/set-up](the Polymer Starter Kit tutorial)
+for setup instructions.
+
 ## App project architecture {#app-architecture}
 
 The `polymer-2-application` template follows the [app shell 
@@ -73,13 +77,32 @@ You may want to compose your main element out of smaller elements specific to yo
 application-specific elements should be defined in the `src` directory, at the same level as 
 <code><var>my-app</var></code>.
 
+<code>
     app/
       src/
-        my-app/
-        my-el/
+        <var>my-app</var>/
+          <var>my-app</var>.html
+        <var>my-el</var>/
+          <var>my-el</var>.html
+</code>
 
-Currently there is no Polymer CLI command to generate application-specific elements. You should do 
-it by hand and should not create an [element project](#element) within your app project.
+To add another element to the project:
+
+1. Create a new folder under src.
+   
+<code>
+   mkdir src/<var>my-el</var>
+</code>
+   
+2. Create an HTML import for the new element. You can use the existing app element as a starting point.
+   
+3. To use the new element, you'll need to import it into your application element (for example, <code><var>my-app</var>.html</code>) with an "import" link:
+   
+<code>
+   <link rel="import" href="/src/<var>my-el</var>/<var>my-el</var>.html">
+</code>
+   
+   Don't use `polymer init` to create an element project inside your app project.
 
 ## Manage dependencies in an application project {#dependencies}
 

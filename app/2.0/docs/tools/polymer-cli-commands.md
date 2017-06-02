@@ -10,48 +10,47 @@ development workflow while you build your element or app project.
 The commands are intended for both element and app projects unless otherwise
 noted.
 
-* [`polymer build` (for app projects only)](#build)
-* [`polymer init`](#init)
-* [`polymer install`](#install)
-* [`polymer lint`](#lint)
-* [`polymer serve`](#serve)
-* [`polymer test`](#tests)
+* [polymer build (for app projects only)](#build)
+* [polymer init](#init)
+* [polymer install](#install)
+* [polymer lint](#lint)
+* [polymer serve](#serve)
+* [polymer test](#tests)
 * [Global options for Polymer CLI commands](#global)
 
-## `polymer build` {#build}
+## polymer build {#build}
 
 *This command is for app projects only.*
 
 Generates a production-ready build of your app. This process includes minifying the HTML, CSS, and
 JS of the application dependencies, and generating a service worker to pre-cache dependencies.
 
-Polymer CLI's build process is designed for apps that follow the [app shell
-architecture](https://developers.google.com/web/updates/2015/11/app-shell). To make sure your app
-builds properly, create a `polymer.json` file at the top-level of your project and store your
-build configurations there.
+Polymer CLI's build process is designed for apps that follow the [PRPL pattern](/{{{polymer_version_dir}}}/toolbox/prpl). 
 
-[See the polymer.json specification for more information](polymer-json).
+To make sure your app builds properly, create a `polymer.json` file 
+at the top-level of your project and store your build configurations there. [See the polymer.json
+specification for more information](polymer-json).
 
 You can also pass equivalent values via the following command-line flags. This can be useful for
 building simple projects on your machine but you will need to include the flag every time you run
 the command. For most projects a `polymer.json` configuration file will be easier to work with and
 share across your team.
 
-* [`--add-service-worker`](#service-workers)
-* [`--bundle`](#bundles)
-* [`--css-minify`](#css-minify)
-* [`--entry`](#entrypoint)
-* [`--html-minify`](#html-minify)
-* [`--insert-prefetch-links`](#prefetch)
-* [`--js-compile`](#js-compile)
-* [`--js-minify`](#js-minify)
-* [`--shell`](#shell)
-* [`--fragment`](#fragment)
+* [--add-service-worker](#service-workers)
+* [--bundle](#bundles)
+* [--css-minify](#css-minify)
+* [--entry](#entrypoint)
+* [--html-minify](#html-minify)
+* [--insert-prefetch-links](#prefetch)
+* [--js-compile](#js-compile)
+* [--js-minify](#js-minify)
+* [--shell](#shell)
+* [--fragment](#fragment)
 
 A set of presets have been provided to cover common configurations - see the section below 
 on [build presets](#presets).
 
-### `--add-service-worker` {#service-workers}
+### --add-service-worker {#service-workers}
 
 Generate a service worker for your application to cache all files and assets on the client.
 
@@ -66,7 +65,7 @@ other assumptions about how your service worker should behave. Read the
 ["Considerations"](https://github.com/GoogleChrome/sw-precache#considerations) section of the
 sw-precache README to make sure that this is suitable for your application.
 
-### `--bundle` {#bundles}
+### --bundle {#bundles}
 
 By default, fragments are unbundled. This is optimal for HTTP/2-compatible servers and clients.
 
@@ -74,38 +73,38 @@ If the `--bundle` flag is supplied, all fragments are bundled together to reduce
 requests. This is optimal for sending to clients or serving from servers that are not HTTP/2
 compatible.
 
-### `--css-minify` {#css-minify}
+### --css-minify {#css-minify}
 
 Minify inlined and external CSS.
 
-### `--entry` {#entrypoint}
+### --entry {#entrypoint}
 
 A filename. This is the main entrypoint into your application for all routes. Often times this is
 your `index.html` file. This file should import the app shell file specified in the
 [`shell`](#shell) option. It should be minimal since it's loaded and cached for each route.
 
-### `--html-minify` {#html-minify}
+### --html-minify {#html-minify}
 
 Minify HTMl by removing comments and whitespace.
 
-### `--insert-prefetch-links` {#prefetch}
+### --insert-prefetch-links {#prefetch}
 Insert prefetch link elements into your fragments so that all dependencies are prefetched
 immediately. Add dependency prefetching by inserting `<link rel="prefetch">` tags into entrypoint
 and `<link rel="import">` tags into fragments and shell for all dependencies.
 
-### `--js-compile` {#js-compile}
+### --js-compile {#js-compile}
 
 Use babel to compile all ES6 JS down to ES5 for older browsers.
 
-### `--js-minify` {#js-minify}
+### --js-minify {#js-minify}
 
 Minify inlined and external JavaScript.
 
-### `--shell` {#shell}
+### --shell {#shell}
 
 The app shell file containing common code for the app.
 
-### `--fragment` {#fragment}
+### --fragment {#fragment}
 
 This flag supports dynamic dependencies. It is an array of any HTML filenames that are not
 statically linked from the app shell (that is, imports loaded on demand by `importHref`).
@@ -144,7 +143,7 @@ Create an unbundled build for browsers that support ES6:
 
 `polymer build --preset es6-unbundled`
 
-## `polymer init` {#init}
+## polymer init {#init}
 
 Initializes a Polymer project from one of several templates. Pre-bundled templates range from just bare-bones to fully featured applications like the [Polymer Shop app](/{{{polymer_version_dir}}}/toolbox/case-study).
 
@@ -158,7 +157,7 @@ See also:
 * [Create an application project with the Polymer CLI](create-app-polymer-cli)
 * [Case study of the Polymer Shop app](/{{{polymer_version_dir}}}/toolbox/case-study)
 
-## `polymer install` {#install}
+## polymer install {#install}
 
 Installs Bower dependencies. Running `polymer install` is equivalent to running `bower install`.
 
@@ -166,7 +165,7 @@ The `--variants` flag allows you to install dependency variants. See the documen
 
 The `--offline` flag tells the install command not to hit the network to retrieve components. If components are not cached, the install will fail.
 
-## `polymer lint` {#lint}
+## polymer lint {#lint}
 
 Analyze your project for syntax errors, missing imports, bad databinding expressions and more. `polymer lint` helps with identifying issues across your HTML, JS, and CSS based on an in-depth analysis of web components in source code. It does not reinvent the wheel though, it focuses on issues specific to web components and Polymer, so it is a good adjunct to other tools like [`eslint`](http://eslint.org/) and [`htmlhint`](http://htmlhint.com/).
 
@@ -205,7 +204,7 @@ index.html(83,12) warning [undefined-elements] - The element iron-collapse is no
 
 This means that on line 83 of `index.html` there's an `<iron-collapse>` tag, but the linter can't find the definition of the `iron-collapse` custom element. This probably means that there's a missing HTML import in `index.html`. To ignore this warning, add `undefined-elements` to the `ignoreWarnings` array in `polymer.json`.
 
-## `polymer serve` {#serve}
+## polymer serve {#serve}
 
 Runs a local web server.
 
@@ -245,7 +244,7 @@ Open up a page other than the default `index.html` in a specific browser
 
     polymer serve --open app.html --browser Safari
 
-## `polymer test` {#tests}
+## polymer test {#tests}
 
 Runs tests.
 

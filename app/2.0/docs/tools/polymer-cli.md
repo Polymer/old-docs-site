@@ -4,14 +4,18 @@ title: Polymer CLI
 
 <!-- toc -->
 
-## Install {#install}
+Polymer CLI is the official command line tool for Polymer projects and Web Components. It includes 
+a build pipeline, a boilerplate generator for creating elements and apps, a linter, a development
+server, and a test runner.
+
+## Install Polymer CLI {#install}
 
 1.  Make sure you have installed a verson of Node.js supported by Polymer. To check the version
     of Node.js that you have installed, run:
     
         node --version
     
-    See our [official node version support policy](node-support) for more details.
+    See the [official node version support policy](node-support) for more details.
 
 1.  Update npm.
 
@@ -37,11 +41,7 @@ title: Polymer CLI
 
 You're all set. Run `polymer help` to view a list of commands.
 
-## Overview {#overview}
-
-Polymer CLI is our official command line tool for Polymer projects and Web Components. It includes 
-a build pipeline, a boilerplate generator for creating elements and apps, a linter, a development
-server, and a test runner.
+## CLI project types {#project-types}
 
 Polymer CLI works with two types of projects:
 

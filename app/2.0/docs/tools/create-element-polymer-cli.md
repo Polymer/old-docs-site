@@ -6,8 +6,8 @@ title: Create an element project with the Polymer CLI
 
 This section shows you how to start an element project.
 
-1.  Create a directory for your element project. It's best practice for the name
-    of your project directory to match the name of your element.
+1.  Create a directory for your element project. For projects with a single element,
+    it's common to name the project directory to match the element name.
 
     <pre><code>mkdir <var>my-el</var> && cd <var>my-el</var></code></pre>
 
@@ -56,12 +56,12 @@ contents of this directory.
 
 Use the Bower CLI to manage dependencies.
 
-This command downloads a dependency to `bower_components/` (the `--save` flag saves the new 
+To download a dependency to `bower_components/` (the `--save` flag saves the new 
 dependency to `bower.json`):
 
     bower install --save PolymerElements/iron-ajax
 
-This command removes the dependency from `bower_components` and `bower.json`:
+To remove the dependency from `bower_components` and `bower.json`:
 
     bower uninstall PolymerElements/iron-ajax
 
