@@ -571,7 +571,7 @@ elements are destroyed and re-stamped each time.
 There are two ways to use a conditional template:
 
 *   **Inside a Polymer element or another Polymer-managed template.** Use the shorthand form
-    `<template is="dom-repeat">`.
+    `<template is="dom-if">`.
 
         <template is="dom-if" if="{{condition}}">
           ...
@@ -585,7 +585,7 @@ There are two ways to use a conditional template:
           </template>
         </dom-if>
 
-    In this form, you typically set the `items` property imperatively:
+    In this form, you typically set the `if` property imperatively:
 
         var conditional = document.querySelector('dom-if');
         conditional.if = true;
