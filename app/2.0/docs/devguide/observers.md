@@ -33,7 +33,7 @@ The first call to an observer is deferred until the following criteria are met:
 *   **At least one** of the dependencies is *defined* (that is, they don't have the value
     `undefined`).
 
-After the inital call, **each observable change** to a dependency generates a call to the
+After the initial call, **each observable change** to a dependency generates a call to the
 observer, **even if the new value for the dependency is <code>undefined</code>.**
 
 

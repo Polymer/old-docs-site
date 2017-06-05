@@ -75,26 +75,36 @@ def render(out, template, data={}):
   except Exception as e:
     handle_500(None, out, data, e)
 
+def load_yaml_config(filename):
+  try:
+    with open(filename) as f:
+      config = yaml.load(f)
+      if config is None:
+        logging.warning("No config data in %s." % filename)
+      return config
+  except IOError:
+    logging.error("Error: Couldn't load file %s." % filename, exc_info=True)
+  except yaml.YAMLError, exc:
+    logging.error("Error: parsing %s." % filename, exc_info=True)
+
 def read_redirects_file(filename):
-  with open(filename, 'r') as f:
-    redirects = yaml.load(f)
-    literals = {}
-    wildcards = {}
-    # Break lines into dict.
-    # e.g. "/0.5/page.html /1.0/page" -> {"/0.5/page.html": "/1.0/page")
-    # If the redirect path ends with *, treat it as a wildcard.
-    # e.g. "/0.5/* /1.0/" redirects "/0.5/foo/bar" to "/1.0/foo/bar"
-    for r in redirects:
-      parts = r.split()
-      if parts[0].endswith('*'):
-        wildcards[parts[0][:-1]] = parts[1]
-      else:
-        literals[parts[0]] = parts[1]
+  redirects = load_yaml_config(filename)
+  literals = {}
+  wildcards = {}
+  # Break lines into dict.
+  # e.g. "/0.5/page.html /1.0/page" -> {"/0.5/page.html": "/1.0/page")
+  # If the redirect path ends with *, treat it as a wildcard.
+  # e.g. "/0.5/* /1.0/" redirects "/0.5/foo/bar" to "/1.0/foo/bar"
+  for r in redirects:
+    parts = r.split()
+    if parts[0].endswith('*'):
+      wildcards[parts[0][:-1]] = parts[1]
+    else:
+      literals[parts[0]] = parts[1]
   return {'literal': literals, 'wildcard': wildcards}
 
 def read_nav_file(filename, version):
-  with open(filename, 'r') as f:
-    nav = yaml.load(f)
+  nav = load_yaml_config(filename)
   for one_section in nav:
     one_section['version'] = version
     base_path = '/%s/%s/' % (version, one_section['shortpath'])
@@ -113,19 +123,17 @@ def read_nav_file(filename, version):
                 link['name'] = 'index'
   return nav
 
-def read_articles_file(filename, authors):
-  with open(filename, 'r') as f:
-    articles = yaml.load(f)
+def read_articles_file(articlefile, authorfile):
+  articles = load_yaml_config(articlefile)
+  authors = load_yaml_config(authorfile)
 
   # For each article, smoosh in the author details.
   for article in articles:
-    article['author'] = authors[article['author']]
+    if 'author' in article and article['author'] in authors:
+      article['author'] = authors[article['author']];
+    else:
+      logging.warning('Missing author info for %s.' % article['title'])
   return articles
-
-def read_authors_file(filename):
-  with open(filename, 'r') as f:
-    authors = yaml.load(f)
-  return authors
 
 def handle_404(req, resp, data, e):
   resp.set_status(404)
@@ -203,15 +211,8 @@ class Site(http2push.PushHandler):
     articles_cache = MEMCACHE_PREFIX + ARTICLES_FILE
     articles = memcache.get(articles_cache)
 
-    authors_cache = MEMCACHE_PREFIX + AUTHORS_FILE
-    authors = memcache.get(authors_cache)
-
-    if authors is None or IS_DEV:
-      authors = read_authors_file(AUTHORS_FILE)
-      memcache.add(authors_cache, authors)
-
     if articles is None or IS_DEV:
-      articles = read_articles_file(ARTICLES_FILE, authors)
+      articles = read_articles_file(ARTICLES_FILE, AUTHORS_FILE)
       memcache.add(articles_cache, articles)
 
     return articles

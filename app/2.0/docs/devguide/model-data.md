@@ -83,7 +83,7 @@ In both cases an object to itself doesn't have any effect—the object hasn't ch
 you can use [`notifyPath`](#notifyPath) to inform Polymer of a subproperty change that's already
 happened. For an array, you can either use Polymer's array mutation methods as described in
 [Mutate an array](#array-mutation), or notify Polymer after the fact as described in
-Notify Polymer of array mutations](#notifysplices).
+[Notify Polymer of array mutations](#notifysplices).
 
 **MutableData** For elements that include the `Polymer.MutableData` mixin, calling `set` on an
 object or array causes Polymer to re-evaluates the entire object graph starting at

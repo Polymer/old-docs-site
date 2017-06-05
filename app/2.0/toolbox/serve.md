@@ -4,7 +4,7 @@ title: Serve your app
 
 <!-- toc -->
 
-You can serve an App Toolbox app using any server technology you want. The [Polymer CLI](polymer-cli) build
+You can serve an App Toolbox app using any server technology you want. The [Polymer CLI](/{{{polymer_version_dir}}}/docs/tools/polymer-cli) build
 process supports fast-loading applications that can take advantage of the latest web technologies.
 
 The default output of the `polymer build` command is an unbundled build designed for server/browser combinations that support HTTP/2 and HTTP/2 server push to deliver the resources the browser needs for a fast first paint while optimizing caching.

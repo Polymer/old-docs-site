@@ -207,7 +207,7 @@ And here is a configuration to generate two optimized builds: One bundled and on
   - addPushManifest: `true`
   - insertPrefetchLinks: `true`
 
-Any additional options that you provide will override the given preset. In the example below, a single "es5-bundled" build will be created with all the es5-bundled preset options except "addServiceWorker", which was overriden and set to false:
+Any additional options that you provide will override the given preset. In the example below, a single "es5-bundled" build will be created with all the es5-bundled preset options except "addServiceWorker", which was overridden and set to false:
 
 ```json
 "builds": [{

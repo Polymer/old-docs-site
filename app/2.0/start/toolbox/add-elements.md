@@ -30,7 +30,7 @@ Run this command from your project root directory:
 
 1.  Import `paper-checkbox.html` as a dependency.
 
-    Add this import beneath the existing import for `polymer.html`:
+    Add this import beneath the existing import for `polymer-element.html`:
 
     ```
     <link rel="import" href="../bower_components/paper-checkbox/paper-checkbox.html">
