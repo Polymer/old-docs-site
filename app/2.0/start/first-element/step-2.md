@@ -62,6 +62,7 @@ Starting code—local DOM template { .caption }
     <!-- shadow DOM goes here -->
     <span>Not much here yet.</span>
   </template>
+</dom-module>
 ```
 
 Key information:
@@ -91,7 +92,7 @@ element. If the element has a `<dom-module>`, this script is usually placed
 <em>inside</em> the `<dom-module>` to keep everything together.
 
 
-Starting code—element registration { .caption }
+Starting `code—element` registration { .caption }
 
 ```html
 <script>
