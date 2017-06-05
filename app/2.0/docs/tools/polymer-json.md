@@ -224,12 +224,14 @@ You can use this to configure how polymer-lint will lint your project both on th
 
 * `rules`: An array of lint rules and rule collections to run on your project. For most projects, one of  `polymer-2`, `polymer-2-hybrid`, or `polymer-1` is all that's needed here. Run `polymer help lint` for the full list of options.
 * `ignoreWarnings`: An array of warning codes to ignore.
+* `minSeverity`: A string describing which lint warnings to output and cause the command to fail. One of `error`, `warning`, or `info`.
 
 For example:
 
 ```json
   "lint": {
     "rules": ["polymer-2"],
-    "ignoreWarnings": []
+    "ignoreWarnings": [],
+    "minSeverity": "warning"
   }
 ```
