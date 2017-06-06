@@ -3,23 +3,23 @@ title: "Step 4: React to input"
 subtitle: "Build your first Polymer element"
 ---
 
-Of course, a button isn't a button if you can't click it. 
+Of course, a button isn't a button if you can't click it.
 
 To toggle the button, we will add an event listener. To ensure that gesture events work the same way across different browsers, we'll use the `GestureEventListeners` mixin. This mixin provides a tap event that works like the standard click event on desktop browsers, and like a native tap event on mobile browsers.
 
-A mixin is a class that defines a set of related functions and is never instantiated. When you use a mixin class, you inherit only its behaviours. For more information, see Justin Fagnani's blog post: ["Real" Mixins with JavaScript Classes](http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/).
+A mixin is a class that defines a set of related functions and is never instantiated. When you use a mixin class, you inherit only its behaviors. For more information, see Justin Fagnani's blog post: ["Real" Mixins with JavaScript Classes](http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/).
 
 Import the `Polymer.GestureEventListeners` mixin by adding it to the HTML Imports in `icon-toggle.html`:
- 
+
  icon-toggle.html { .caption }
- 
+
 ```html
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../polymer/lib/mixins/gesture-event-listeners.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 ```
 
-Use the mixin in the class declaration: 
+Use the mixin in the class declaration:
 
 ```html
 <script>
@@ -44,12 +44,15 @@ constructor() {
 ```html
 constructor() {
   super();
-  this.addEventListener('tap', 'toggle');
   Polymer.Gestures.addListener(this, 'tap', () => this.toggle());
 }
 ```
 
-Add a method to toggle the `pressed` property when the button is pressed. Place it inside the class definition for IconToggle, after the constructor.
+When working with gesture events, you use the `Polymer.Gestures.addListener` method in place of the
+standard `addEventListener` method.
+
+Add a method to toggle the `pressed` property when the button is pressed. Place it inside the class
+definition for `IconToggle`, after the constructor.
 
 icon-toggle.html { .caption }
 
@@ -57,7 +60,7 @@ icon-toggle.html { .caption }
     toggle() {
       this.pressed = !this.pressed;
     }
-```  
+```
 
 Your code should now look something like this:
 
