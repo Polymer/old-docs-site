@@ -1,4 +1,20 @@
 ---
+- title: "Polymer at I/O ‘17, ICYMI"
+  path: /blog/2017-05-26-polymer-at-io-17
+  published: 2017-05-26
+  author: emarquez
+  description: "Everything you need to know about the Polymer Project from Google I/O 2017, in case you missed it."
+  tag:
+  - blog
+  - announcements
+- title: "Polymer Summit 2017: Wonderful Copenhagen"
+  path: /blog/2017-05-17-summit-2017
+  published: 2017-05-17
+  author: polymer-team
+  description: "Join us for the third annual Polymer Summit, August 22–23, 2017 in Copenhagen, Denmark."
+  tag:
+    - blog
+    - announcements
 - title: "It's time for 2.0!"
   path: /blog/2017-05-15-time-for-two
   published: 2017-05-15

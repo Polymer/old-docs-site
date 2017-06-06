@@ -10,11 +10,11 @@ const {exec} = require('child_process');
 const escape = require('html-escape');
 const path = require('path');
 
-const apiDocsPath = '../app/2.0/docs/api/';
+const apiDocsPath = '../app/1.0/docs/api/';
 const rootNamespace = 'Polymer';
 
 // TODO: Check out an actual release SHA to generate docs off of.
-const releaseSha = 'master';
+const releaseSha = '1.x';
 
 process.on('unhandledRejection', (reason, p) => {
   console.log('Unhandled Rejection at: Promise ', p, ' reason: ', reason);
@@ -81,6 +81,7 @@ function runAnalyzer() {
           summary: namespace.summary,
           namespaces: [],
           elements: [],
+          classes: [],
           mixins: [],
           behaviors: [],
           functions: namespace.functions, // already summarized
@@ -103,6 +104,25 @@ function runAnalyzer() {
           }
         }
 
+        console.log(`Processing ${namespace.classes && namespace.classes.length} classes`);
+        if (namespace.classes) {
+          for (const klass of namespace.classes) {
+            if (!klass.name) {
+              continue;
+            }
+            console.log(`adding ${klass.name} to ${namespace.name}`);
+            const summary = {
+              name: klass.name,
+              summary: klass.summary,
+            };
+            overview.classes.push(summary);
+            const fileContents = classPage(klass);
+            const filename = path.join(apiDocsPath, getClassUrl(klass) + '.html');
+            console.log('Writing', filename);
+            fs.writeFileSync(filename, fileContents);
+          }
+        }
+
         console.log(`Processing ${namespace.mixins && namespace.mixins.length} mixins`);
         if (namespace.mixins) {
           for (const mixin of namespace.mixins) {
@@ -120,7 +140,21 @@ function runAnalyzer() {
           }
         }
 
-        // TODO(justinfagnani): behaviors
+        const behaviors = ((namespace.metadata || {}).polymer || {}).behaviors || [];
+        console.log(`Processing ${behaviors.length} behaviors`);
+        for (const behavior of behaviors) {
+          console.log(`adding ${behavior.name} to ${namespace.name}`);
+          const summary = {
+            name: behavior.name,
+            summary: behavior.summary,
+          };
+          overview.behaviors.push(summary);
+
+          const fileContents = behaviorPage(behavior);
+          const filename = path.join(apiDocsPath, getBehaviorUrl(behavior) + '.html');
+          console.log('Writing', filename);
+          fs.writeFileSync(filename, fileContents);
+        }
 
         console.log(`Processing ${namespace.namespaces && namespace.namespaces.length} namespaces`);
         if (namespace.namespaces) {
@@ -135,26 +169,26 @@ function runAnalyzer() {
           }
         }
 
-        if (namespace.name) {
-          const fileContents = namespacePage(overview);
-          let filename;
-          if (namespace.name === 'Polymer') {
-            filename = 'index.html';
-          } else {
-            filename = getNamespaceUrl(namespace) + '.html';
-          }
-          const filepath = path.join(apiDocsPath, filename);
-          console.log('Writing', filepath);
-          fs.writeFileSync(filepath, fileContents);
+        const fileContents = namespacePage(overview);
+        let filename;
+        if (namespace.name === 'Polymer' || !namespace.name) {
+          filename = 'index.html';
+        } else {
+          filename = getNamespaceUrl(namespace) + '.html';
         }
+        const filepath = path.join(apiDocsPath, filename);
+        console.log('Writing', filepath);
+        fs.writeFileSync(filepath, fileContents);
       }
 
       fs.mkdirSync(path.join(apiDocsPath, 'elements'));
+      fs.mkdirSync(path.join(apiDocsPath, 'classes'));
       fs.mkdirSync(path.join(apiDocsPath, 'mixins'));
+      fs.mkdirSync(path.join(apiDocsPath, 'behaviors'));
       fs.mkdirSync(path.join(apiDocsPath, 'namespaces'));
 
       // We know we just have 1 namespace: Polymer
-      generateNamespace(metadata.namespaces[0]);
+      generateNamespace(metadata);
 
       cleanUp(function() {
         console.log('Done.');
@@ -173,7 +207,19 @@ function elementPage(element) {
 {% extends "templates/base-devguide.html" %}
 {% block title %} API Reference - ${name}{% endblock %}
 {% block content %}
-<iron-doc-element base-href="/2.0/docs/api" descriptor="${jsonString}"></iron-doc-element>
+<iron-doc-element base-href="/1.0/docs/api" descriptor="${jsonString}"></iron-doc-element>
+{% endblock %}`;
+}
+
+function classPage(klass) {
+  const name = klass.name;
+  const jsonString = escape(JSON.stringify(klass));
+  return `{% set markdown = "true" %}
+{% set title = "${name}" %}
+{% extends "templates/base-devguide.html" %}
+{% block title %} API Reference - ${name}{% endblock %}
+{% block content %}
+<iron-doc-class base-href="/1.0/docs/api" descriptor="${jsonString}"></iron-doc-class>
 {% endblock %}`;
 }
 
@@ -185,7 +231,19 @@ function mixinPage(mixin) {
 {% extends "templates/base-devguide.html" %}
 {% block title %} API Reference - ${name}{% endblock %}
 {% block content %}
-<iron-doc-mixin base-href="/2.0/docs/api" descriptor="${jsonString}"></iron-doc-mixin>
+<iron-doc-mixin base-href="/1.0/docs/api" descriptor="${jsonString}"></iron-doc-mixin>
+{% endblock %}`;
+}
+
+function behaviorPage(behavior) {
+  const name = behavior.name;
+  const jsonString = escape(JSON.stringify(behavior));
+  return `{% set markdown = "true" %}
+{% set title = "${name}" %}
+{% extends "templates/base-devguide.html" %}
+{% block title %} API Reference - ${name}{% endblock %}
+{% block content %}
+<iron-doc-mixin base-href="/1.0/docs/api" descriptor="${jsonString}"></iron-doc-mixin>
 {% endblock %}`;
 }
 
@@ -197,7 +255,7 @@ function namespacePage(namespace) {
 {% extends "templates/base-devguide.html" %}
 {% block title %} API Reference - ${name}{% endblock %}
 {% block content %}
-<iron-doc-namespace base-href="/2.0/docs/api" descriptor="${jsonString}"></iron-doc-namespace>
+<iron-doc-namespace base-href="/1.0/docs/api" descriptor="${jsonString}"></iron-doc-namespace>
 {% endblock %}`;
 }
 
@@ -229,8 +287,16 @@ function getElementUrl(element) {
   return `/elements/${element.name || element.tagname}`;
 }
 
+function getClassUrl(klass) {
+  return `/classes/${klass.name}`;
+}
+
 function getMixinUrl(mixin) {
   return `/mixins/${mixin.name}`;
+}
+
+function getBehaviorUrl(behavior) {
+  return `/behaviors/${behavior.name}`;
 }
 
 function getNamespaceUrl(namespace) {
