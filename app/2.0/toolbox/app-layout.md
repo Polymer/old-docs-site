@@ -229,7 +229,7 @@ instructions on creating your own scroll effects, see the [`AppScrollEffectsBeha
 reference](https://www.webcomponents.org/element/PolymerElements/app-layout/Polymer.AppScrollEffectsBehavior).
 
 For more background, see [Scrolling
-techniques](https://www.google.com/design/spec/patterns/scrolling-techniques.html#) in the material
+techniques](https://material.io/guidelines/patterns/scrolling-techniques.html) in the material
 design specification for an overview of the different scroll effects.
 
 ### Document scroller and element scrollers

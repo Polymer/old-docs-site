@@ -13,15 +13,15 @@ See the [documentation on the PRPL pattern](prpl) for more information.
 
 For server and browser combinations that don't support server push, you can generate a bundled build designed to minimize the number of round-trips required to get the application running.
 
-Create a bundled build with the `--bundled` flag: 
+Create a bundled build with the `--bundled` flag:
 
     polymer build --bundle
 
 ## Dynamic serving
 
-If you need to perform dynamic serving (serving different content to users with different browsers), multiple builds are an option. You can generate multiple builds by configuring them in your [polymer.json file](polymer-json). 
+If you need to perform dynamic serving (serving different content to users with different browsers), multiple builds are an option. You can generate multiple builds by configuring them in your [polymer.json file](/{{{polymer_version_dir}}}/docs/tools/polymer-json).
 
-If you have multiple builds, your server logic must deliver the appropriate build for each browser, usually by examining the user-agent string sent by the browser. 
+If you have multiple builds, your server logic must deliver the appropriate build for each browser, usually by examining the user-agent string sent by the browser.
 
 You may need to perform dynamic serving if:
 
