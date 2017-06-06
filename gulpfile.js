@@ -134,7 +134,7 @@ function writeServiceWorkerFile() {
       handler: 'fastest',
       options: {
         cache: {
-          maxEntries: 20,
+          maxEntries: 50,
           name: 'image-cache'
         }
       }
