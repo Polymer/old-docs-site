@@ -224,19 +224,19 @@ Other sets are listed in a special `variants` section. For example:
 
 ```js
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.9.1 || ^2.0.0"
+    "polymer": "Polymer/polymer#1.9 - 2"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^2.0.0",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
     "test-fixture": "PolymerElements/test-fixture#^2.0.0",
     "web-component-tester": "^6.0.0",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0 || ^1.0.0"
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
   },
   "variants": {
     "1.x": {
       "dependencies": {
-        "polymer": "Polymer/polymer#^1.0.0"
+        "polymer": "Polymer/polymer#^1.9"
       },
       "devDependencies": {
         "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
@@ -245,9 +245,15 @@ Other sets are listed in a special `variants` section. For example:
         "test-fixture": "PolymerElements/test-fixture#^1.0.0",
         "web-component-tester": "^4.0.0",
         "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+      },
+      "resolutions": {
+        "webcomponentsjs": "^0.7"
       }
     }
   },
+  "resolutions": {
+    "webcomponentsjs": "^1.0.0"
+  }
 ```
 
 In the example above, the default dependencies work with either Polymer 1.x or 2.x, while the
