@@ -168,7 +168,7 @@ icon-toggle.html—after { .caption }
 Key information:
 
   * The `<iron-icon>` element is a custom element that renders an icon. Here it's hard-coded to use
-an icon named "polymer".
+an icon named "polymer". Find out more about `<iron-icon>` on [WebComponents.org](https://www.webcomponents.org/element/PolymerElements/iron-icon/elements/iron-icon).
 
 ### Style the local DOM
 
