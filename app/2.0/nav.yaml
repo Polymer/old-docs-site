@@ -133,13 +133,13 @@
   - title: Polymer CLI
     path: /2.0/docs/tools/polymer-cli
     indent: True
-  - title: Polymer CLI commands
+  - title: CLI commands
     path: /2.0/docs/tools/polymer-cli-commands
     indent: True
-  - title: Create an element with Polymer CLI
+  - title: Create an element project
     path: /2.0/docs/tools/create-element-polymer-cli
     indent: True
-  - title: Create an application with Polymer CLI
+  - title: Create an application project
     path: /2.0/docs/tools/create-app-polymer-cli
     indent: True
   - title: Document your elements

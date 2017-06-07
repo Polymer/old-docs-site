@@ -12,22 +12,12 @@ This chapter teaches you more about the `polymer-2-application` template.
 See [Polymer App Toolbox templates](../../toolbox/templates) for more details on other templates.
 
 For a more full-featured progressive web app template, you can use the starter kit template 
-(`polymer-2-starter-kit`). See [/{{{polymer_version_dir}}}/start/toolbox/set-up](the Polymer Starter Kit tutorial)
+(`polymer-2-starter-kit`). See [the Polymer Starter Kit tutorial](/{{{polymer_version_dir}}}/start/toolbox/set-up)
 for setup instructions.
-
-## App project architecture {#app-architecture}
-
-The `polymer-2-application` template follows the [app shell 
-architecture](https://developers.google.com/web/updates/2015/11/app-shell) pattern.
-
-There are fundamental concepts of the app shell architecture that you should understand before 
-creating your app project with Polymer CLI: the entrypoint, the shell, and fragments. See [App 
-structure](../../toolbox/prpl#app-structure) from the App Toolbox docs for an in-depth overview of 
-these concepts.
 
 ## Set up basic app project {#basic-app}
 
-Follow the steps below to get your `basic` app project set up.
+Follow the steps below to get your basic app project set up.
 
 1.  Create a directory for your app project.
 
@@ -66,9 +56,9 @@ After creating your app, Polymer CLI generates the following files and directori
 *   `bower.json`. Configuration file for Bower.
 *   `bower_components/`. Project dependencies. See [Manage dependencies](#dependencies).
 *   `index.html`. Entrypoint page of the app.
-*   `src/`<code><var>my-app</var></code>/<code><var>my-app</var></code>`.html`.
+*   `src/`<code><var>my-app</var>/<var>my-app</var></code>`.html`.
     Source code for main element.
-*   `test/`<code><var>my-app</var></code>/<code><var>my-app</var></code>`_test.html`. Tests 
+*   `test/`<code><var>my-app</var>/<var>my-app</var></code>`_test.html`. Tests 
     for main element.
 
 ### Add elements
@@ -77,30 +67,24 @@ You may want to compose your main element out of smaller elements specific to yo
 application-specific elements should be defined in the `src` directory, at the same level as 
 <code><var>my-app</var></code>.
 
-<code>
-    app/
-      src/
-        <var>my-app</var>/
-          <var>my-app</var>.html
-        <var>my-el</var>/
-          <var>my-el</var>.html
-</code>
+<pre><code>app/
+  src/
+    <var>my-app</var>/
+      <var>my-app</var>.html
+    <var>my-el</var>/
+      <var>my-el</var>.html</code></pre>
 
 To add another element to the project:
 
-1. Create a new folder under src.
+1. Create a new folder under `src`.
    
-<code>
-   mkdir src/<var>my-el</var>
-</code>
+    <pre><code>mkdir src/<var>my-el</var></code></pre>
    
 2. Create an HTML import for the new element. You can use the existing app element as a starting point.
    
 3. To use the new element, you'll need to import it into your application element (for example, <code><var>my-app</var>.html</code>) with an "import" link:
    
-<code>
-   <link rel="import" href="/src/<var>my-el</var>/<var>my-el</var>.html">
-</code>
+    <pre><code>&lt;link rel="import" href="/src/<var>my-el</var>/<var>my-el</var>.html"&gt;</code></pre>
    
    Don't use `polymer init` to create an element project inside your app project.
 
