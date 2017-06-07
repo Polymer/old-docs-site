@@ -59,7 +59,11 @@ Here’s an example `polymer.json` file from the [Shop app](https://github.com/P
   ],
   "lint": {
     "rules": ["polymer-2-hybrid"]
-  }
+  },
+  "builds": [
+    { "preset": "es5-bundled" },
+    { "preset": "es6-unbundled" }
+  ]
 }
 ```
 
