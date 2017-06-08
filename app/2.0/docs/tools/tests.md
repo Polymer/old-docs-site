@@ -319,7 +319,7 @@ for an example.
 
 ### Hybrid elements: test local DOM
 
-For hybrid elements, use Polymer's [DOM API](/{{{polymer_version_dir}}}/docs/devguide/local-dom#dom-api)
+For hybrid elements, use Polymer's [DOM API](/1.0/docs/devguide/local-dom#dom-api)
 to access and modify local DOM children.
 
 ```js

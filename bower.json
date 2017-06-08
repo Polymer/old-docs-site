@@ -21,6 +21,9 @@
     "firebase-element": "PolymerElements/firebase-element#^1.0.12"
   },
   "resolutions": {
-    "iron-doc-viewer": "2.0-analyzer"
+    "iron-location": "1 - 2",
+    "app-route": "1 - 2",
+    "iron-doc-viewer": "2.0-analyzer",
+    "webcomponentsjs": "0.7"
   }
 }

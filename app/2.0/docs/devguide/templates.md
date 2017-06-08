@@ -142,7 +142,7 @@ data is `model.item`:
 
 ```html
 <link rel="import" href="polymer/polymer-element.html">
-<link rel="import" href="polymer/src/elements/dom-repeat.html">
+<link rel="import" href="polymer/lib/elements/dom-repeat.html">
 
 <dom-module id="x-custom">
 
@@ -571,7 +571,7 @@ elements are destroyed and re-stamped each time.
 There are two ways to use a conditional template:
 
 *   **Inside a Polymer element or another Polymer-managed template.** Use the shorthand form
-    `<template is="dom-repeat">`.
+    `<template is="dom-if">`.
 
         <template is="dom-if" if="{{condition}}">
           ...
@@ -585,7 +585,7 @@ There are two ways to use a conditional template:
           </template>
         </dom-if>
 
-    In this form, you typically set the `items` property imperatively:
+    In this form, you typically set the `if` property imperatively:
 
         var conditional = document.querySelector('dom-if');
         conditional.if = true;
@@ -596,7 +596,7 @@ A Polymer-managed template includes a Polymer element's template, a `dom-bind`, 
 In most cases, you'll use the first (shorthand) form for `dom-if`.
 
 The conditional template is included in the legacy (`polymer.html`) import for backwards
-compatibility.  If you're not importing `polymer.html`, import `array-selector.html` as shown in
+compatibility.  If you're not importing `polymer.html`, import `dom-if.html` as shown in
 the code below.
 
 The following is a simple example to show how conditional templates work. Read below for

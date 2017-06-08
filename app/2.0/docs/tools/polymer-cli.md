@@ -35,8 +35,9 @@ server, and a test runner.
 
         npm install -g polymer-cli
 
-    In the output from this command, you may see an npm warning about Bower being deprecated. You 
-    can safely ignore this warning. See [Bower.io](https://bower.io/blog/) for more information.
+    **Bower deprecation warning:** In the output from this command, you may see an npm warning
+    about Bower being deprecated. You can safely ignore this warning. See [Bower.io](https://bower.io/blog/)
+    for more information.
     {.alert .alert-info}
 
 You're all set. Run `polymer help` to view a list of commands.

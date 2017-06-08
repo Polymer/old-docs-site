@@ -64,7 +64,7 @@ Before you start the upgrade, there's a couple of things you need to do.
 *   Create a new branch or workspace.
 *   Update bower dependencies.
 
-Update the Polymer CLI to the `next` version:
+Update the Polymer CLI:
 
 ```
 npm update polymer-cli
@@ -767,7 +767,7 @@ necessary to be mostly equivalent to native shadow DOM.
 
 Note that the new ES6 base class, `Polymer.Element`, lacks many of the DOM helpers, such as
 `getContentChildren` and `getEffectiveChildren`, defined on `Polymer.Base`. Polymer encourages the
-use of native properties and methods where possible. See [Slot APIs](#slot-apis) for information on
+use of native properties and methods where possible. See [Slot APIs](devguide/shadow-dom#slot-apis) for information on
 some of the new shadow DOM-related APIs.
 
 The `Polymer.FlattenedNodesObserver` class can be used to replace the 1.x `observeNodes` method.

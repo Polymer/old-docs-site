@@ -9,8 +9,9 @@
   "scripts": {
     "postinstall": "bower install; gulp",
     "deploy": "scripts/deploy.sh",
-    "test": "python dist/test_runner.py ~/google-cloud-sdk tests/",
-    "generate-api-docs": "cd scripts && node generate_api_docs_2.js"
+    "test": "(cd dist; python test_runner.py ${CLOUD_SDK-~/google-cloud-sdk} ../tests/)",
+    "generate-api-docs": "cd scripts && node generate_api_docs_2.js",
+    "generate-api-docs-1": "cd scripts && node generate_api_docs_1.js"
   },
   "repository": {
     "type": "git",
@@ -52,8 +53,8 @@
     "markdown-it": "^6.0.1",
     "markdown-it-attrs": "^0.1.8",
     "merge-stream": "^1.0.0",
-    "polymer-analyzer": "^2.0.0-alpha.38",
-    "polymer-cli": "0.18.0-pre.10",
+    "polymer-analyzer": "^2.0.0",
+    "polymer-cli": "^1.0.0",
     "run-sequence": "^1.1.4",
     "toc": "PolymerLabs/node-toc",
     "yargs": "^3.29.0"

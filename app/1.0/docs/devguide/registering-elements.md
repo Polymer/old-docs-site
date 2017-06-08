@@ -406,7 +406,8 @@ There are two caveats:
     See [`dom-change` event](templates#dom-change) for details.
 
 *   Polymer guarantees that local DOM children have their `ready` callback called
-    before their parent's; however, it cannot guarantee the same thing for the
+    before their parent's `ready` callback; however, it cannot guarantee that 
+    local DOM children have their `attached` callback called before their parent's
     `attached` callback. This is one fundamental difference between native
     behavior and  polyfill behavior.
 
