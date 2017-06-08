@@ -96,13 +96,3 @@ dependencies.
 
     <!-- from a 'src/some-application.html' file in your application -->
     <link rel="import" href="../bower_components/polymer/polymer.html">
-
-Only one file should use absolute URLs for imports: your "entrypoint" (default: "index.html"). 
-The reason is that in an app-shell application, your entrypoint is served for any URL so that your 
-application loads on any URL. Because it can be served from anywhere, relative URLs are impossible. 
-Use absolute URLs in the entrypoint instead.
-
-    <!-- from a top-level application "entrypoint" -->
-    <link rel="import" href="/bower_components/polymer/polymer.html">
-    <link rel="import" href="/src/some-application.html">
-

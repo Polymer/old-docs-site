@@ -10,7 +10,7 @@ server, and a test runner.
 
 ## Install Polymer CLI {#install}
 
-1.  Make sure you have installed a verson of Node.js supported by Polymer. To check the version
+1.  Make sure you have installed a version of Node.js supported by Polymer. To check the version
     of Node.js that you have installed, run:
     
         node --version
