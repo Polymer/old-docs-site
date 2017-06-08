@@ -4,7 +4,7 @@
   "fragments": [
     "app/elements/pw-shell.html",
     "app/elements/pw-shell-lazy-elements.html",
-    "app/elements/devguide-shell.html",
+    "app/elements/pw-version-selector.html",
     "app/elements/pw-footer.html",
     "app/elements/icons.html",
     "app/elements/demo-tabs.html",

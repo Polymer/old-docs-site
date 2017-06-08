@@ -1,64 +1,80 @@
+<style>
+  pw-version-selector.site-nav {
+    display: inline-block;
+    margin: 16px 4px;
+    height: 24px;
+    vertical-align: top;
+  }
+
+  a.site-nav {
+    color: #6b6b6b;
+    background: white;
+    border-bottom: 1px solid #eaedef;
+    padding: 4px 4px 4px 30px;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 40px;  /* To match the nested paper-icon-button height */
+    display: block;
+    text-decoration: none;
+
+    /* The active links will have a pink border. */
+    border-left: 4px solid transparent;
+    flex-direction: row;
+
+    /* To avoid flashing the content before it's being distributed,
+     * hide the links initially, and revert to display:flex in pw-shell. */
+    display: none;
+  }
+
+  a.site-nav > span {
+    flex: 1;
+    flex-basis: 0;
+  }
+
+  /* The active page */
+  a.site-nav.iron-selected {
+    color: black;
+    border-left: 4px solid #f22c5a;
+    color: #f22c5a;
+  }
+
+  a.site-nav.level-1 {
+    font-family: 'Roboto Slab', 'Roboto', sans-serif;
+    font-weight: 400;
+  }
+
+  a.site-nav.level-2 {
+    color: black;
+  }
+
+  /* This is basically a level-3 link */
+  a.site-nav.level-2.indent {
+    padding-left: 40px;
+    color: black;
+  }
+
+  a.site-nav.greyed-out {
+    background: #f4f5f6;
+    color: #707070;
+    font-weight: 400;
+  }
+
+  a.site-nav.active {
+    color: black;
+    font-weight: 700;
+  }
+</style>
+
+{% if versioned_paths %}
+<pw-version-selector class="site-nav"
+    active-docs-version="{{{polymer_version_dir}}}"
+    v1-page-link="{{{versioned_paths[0]}}}"
+    v2-page-link="{{{versioned_paths[1]}}}"></pw-version-selector>
+{% else %}
+<pw-version-selector class="site-nav"></pw-version-selector>
+{% endif %}
+
 {% if site_nav %}
-  <style>
-    a.site-nav {
-      color: #6b6b6b;
-      background: white;
-      border-bottom: 1px solid #eaedef;
-      padding: 4px 4px 4px 30px;
-      font-weight: 300;
-      font-size: 15px;
-      line-height: 40px;  /* To match the nested paper-icon-button height */
-      display: block;
-      text-decoration: none;
-
-      /* The active links will have a pink border. */
-      border-left: 4px solid transparent;
-      flex-direction: row;
-
-      /* To avoid flashing the content before it's being distributed,
-       * hide the links initially, and revert to display:flex in pw-shell. */
-      display: none;
-    }
-
-    a.site-nav > span {
-      flex: 1;
-      flex-basis: 0;
-    }
-
-    /* The active page */
-    a.site-nav.iron-selected {
-      color: black;
-      border-left: 4px solid #f22c5a;
-      color: #f22c5a;
-    }
-
-    a.site-nav.level-1 {
-      font-family: 'Roboto Slab', 'Roboto', sans-serif;
-      font-weight: 400;
-    }
-
-    a.site-nav.level-2 {
-      color: black;
-    }
-
-    /* This is basically a level-3 link */
-    a.site-nav.level-2.indent {
-      padding-left: 40px;
-      color: black;
-    }
-
-    a.site-nav.greyed-out {
-      background: #f4f5f6;
-      color: #707070;
-      font-weight: 400;
-    }
-
-    a.site-nav.active {
-      color: black;
-      font-weight: 700;
-    }
-  </style>
-
   {% for section in site_nav %}
     <a class="site-nav level-1"
        href="{{{section.path}}}"
