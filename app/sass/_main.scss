@@ -40,12 +40,17 @@ body {
   min-height: 100vh;
   flex-direction: column;
 
-  // transition: opacity ease-in 0.2s;
+  transition: opacity ease-in 0.2s;
 }
 
 /* Styling while the resources are loading */
 body[unresolved] {
-  // opacity: 0;
+  opacity: 0;
+}
+
+pw-shell {
+  display: block;
+  margin-top: 64px;
 }
 
 /* For nonversioned pages, the server needs to send both v1 and v2 links for
@@ -54,11 +59,6 @@ body[unresolved] {
 pw-shell[active-docs-version="1.0"] a[data-version="2.0"],
 pw-shell[active-docs-version="2.0"] a[data-version="1.0"] {
   display: none;
-}
-
-.devguide-main {
-  /* header height + footer height = 354px */
-  min-height: calc(100vh - 354px);
 }
 
 a {

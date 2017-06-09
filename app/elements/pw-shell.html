@@ -21,9 +21,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style include="iron-flex iron-positioning">
       :host {
-        display: block;
-        margin-top: 64px;
-
         --app-header-z-index: 101;
         --app-drawer-z-index: 102;
       }
@@ -35,8 +32,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       /* To avoid flashing the content before it's being distributed,
        * the nav links where initially display: none. */
-      a.site-nav, ::content a.site-nav {
-        display: flex;
+      .drawer-contents ::content .site-nav {
+        display: block;
       }
 
       a.iron-selected {
@@ -52,11 +49,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         height: 100%;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
-      }
-
-      .drawer-contents img {
-        margin: 16px 30px;
-        height: 24px;
       }
 
       .drawer-toggle {
@@ -188,7 +180,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <app-drawer id="drawer" class="drawer" swipe-open>
       <div class="drawer-contents">
-        <img src="../images/logos/p-logo.png" alt="Polymer Logo">
         <content select=".site-nav"></content>
       </div>
     </app-drawer>
@@ -385,11 +376,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       // If there's two links matching this path (i.e. because there's no landing
       // page for a section), and pick the deepest link to highlight.
-      var matchingLinks = Polymer.dom(this).querySelectorAll('a.site-nav[name="' + this.path +'"]');
+      var matchingLinks = Polymer.dom(this).querySelectorAll('.site-nav a[name="' + this.path +'"]');
       var activeLink = matchingLinks[matchingLinks.length - 1];
 
       if (activeLink) {
-        this.toggleClass('iron-selected', true, activeLink);
+        this.toggleClass('selected', true, activeLink);
         this.styleLinkPath(activeLink, true);
       }
 
