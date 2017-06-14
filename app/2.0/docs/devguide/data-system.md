@@ -1024,7 +1024,7 @@ The user can then use your element with either standard data flow, or the mutabl
 </my-structured-data-element>
 
 <!-- custom element using MutableData mode  -->
-<my-structured-data-element data="{{someData" mutable-data>
+<my-structured-data-element data="{{someData}}" mutable-data>
 </my-structured-data-element>
 ```
 
