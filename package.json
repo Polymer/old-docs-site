@@ -60,6 +60,7 @@
     "yargs": "^3.29.0"
   },
   "dependencies": {
-    "clone": "^2.1.0"
+    "clone": "^2.1.0",
+    "gulp-highlight": "^2.1.0"
   }
 }
