@@ -16,6 +16,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
 
 <dom-module id="pw-shell">
   <template>
@@ -162,7 +163,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <app-route route="[[_route]]" pattern="/:version/:section" data="{{_routeData}}"></app-route>
     <app-route route="{{_route}}" pattern="/search/" query-params="{{_searchParams}}"></app-route>
 
-    <iron-ajax url="[[path]]" handle-as="document" on-response="_handleResponse" auto></iron-ajax>
+    <iron-ajax url="[[path]]" handle-as="document" on-response="_handleResponse" on-error="_handleError" auto></iron-ajax>
     <iron-ajax id="cseSearch" url="https://www.googleapis.com/customsearch/v1" on-response="_handleSearchResponse"></iron-ajax>
 
     <app-header class="header" reveals snaps shadow>
@@ -294,8 +295,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this._stickyTocPosition = this._getStickyTocPosition();
       document.addEventListener('scroll', this._onScroll.bind(this));
 
-      // Save the initial URL so that we don't double-render the first load.
-      this._currentPageURL = this.path;
+      // Save the fact that this is a first load, so that we don't double render it.
+      this._isInitialNavigation = true;
 
       // Save which version of docs we're looking at, since we need to
       // maintain this state across the app. Note that not all sections are versioned.
@@ -370,9 +371,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       return match ? match[1] : null;
     },
 
+    _handleError: function(event) {
+      if (this._isInitialNavigation) {
+        this._isInitialNavigation = false;
+      }
+
+      window.showToast('This page was not cached for offline use :(');
+    },
+
     _handleResponse: function(event) {
-      // Don't re-load the same thing you're looking at.
-      if (this._currentPageURL !== this.path) {
+      // Don't reload the current page on initial navigation, since the server is
+      // already serving the correct page.
+      if (this._isInitialNavigation) {
+        this._isInitialNavigation = false;
+      } else {
         // Not all sections have a version, so only update the docs version if
         // there's actually a change.
         // Also I don't understand, but 'blog' comes with a version of "blog" so...
@@ -380,8 +392,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         if (version === '1.0' || version === '2.0') {
           this.activeDocsVersion = version;
         }
-
-        this._currentPageURL = this.path;
 
         var doc = event.detail.response;
         document.title = doc.title;
@@ -400,10 +410,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         Polymer.dom(this).appendChild(document.importNode(fragment, true));
         Polymer.dom.flush();  // Force upgrades.
 
-        // Since the devguide-shell import is loaded, we can remove its
-        // unresolved attribute from the template
+        // *If* the devguide-shell import is loaded, we can remove its
+        // unresolved attribute from the template. If it hasn't i.e we're serving
+        // this from the SW but the HTML import hasn't finished yet, then
+        // remove the attribute in the importHref callback, or else you get FOUC)
         var devshell = Polymer.dom(this).querySelector('devguide-shell');
-        if (devshell)
+        if (devshell && devshell.hasAttribute('unresolved') && devshell.header)
           devshell.removeAttribute('unresolved');
 
         // Analytics. Don't double-report search
