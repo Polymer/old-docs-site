@@ -10,7 +10,7 @@ As a general rule, the Polymer documentation tries to follow the
 
 This document:
 
--  Summarizes a some common points of developer documentation style, which 
+-  Summarizes some common points of developer documentation style, which 
    can also be found in the GDDSG.
 
 -  Records Polymer-specific additions and exceptions to the GDDSG.
