@@ -4,11 +4,13 @@ python:
 install:
   - npm install
   - pip install WebTest
+  - gem install awesome_bot
 before_script:
   - wget https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.28.zip -nv
   - unzip -q google_appengine_1.9.28.zip
 script:
   - python dist/test_runner.py ~/google_appengine tests/
+  - awesome_bot app/2.0/docs/devguide/*.md --allow-dupe --allow-redirect --white-list example.com --skip-save-results
 
 # SEe http://docs.travis-ci.com/user/deployment/google-app-engine/
 #deploy:
