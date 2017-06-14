@@ -198,7 +198,9 @@ Example: { .caption }
       }
     }
 
-    attached: function() {
+    connectedCallback() {
+      super.connectedCallback();
+      
       // render
       this.textContent = 'Hello World, my user is ' + (this.user || 'nobody') + '.\n' +
         'This user is ' + (this.manager ? '' : 'not') + ' a manager.';
