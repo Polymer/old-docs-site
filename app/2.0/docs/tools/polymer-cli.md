@@ -486,11 +486,11 @@ valid preset for your build, it will use the flags in that preset. We currently 
 presets:
 
 - **es5-bundled:**
-  --js-minify --js-compile --css-minify --bundle --add-service-worker --add-push-manifest 
+  --js-minify --js-compile --css-minify --bundled --add-service-worker --add-push-manifest 
 --insert-prefetch-links
 
 - **es6-bundled:**
-  --js-minify --css-minify --html-minify --bundle --add-service-worker --add-push-manifest 
+  --js-minify --css-minify --html-minify --bundled --add-service-worker --add-push-manifest 
 --insert-prefetch-links
   
 - **es6-unbundled:**
