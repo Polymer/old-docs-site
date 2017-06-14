@@ -163,7 +163,7 @@ just need to add a menu item in the left-hand drawer so that users can navigate 
           <a name="view1" href="/view1">View One</a>
           <a name="view2" href="/view2">View Two</a>
           <a name="view3" href="/view3">View Three</a>
-		  <a name="new-view" href="/new-view">New View</a>
+          <a name="new-view" href="/new-view">New View</a>
         </iron-selector>
       </app-drawer>
     ...
