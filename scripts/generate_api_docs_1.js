@@ -243,7 +243,7 @@ function behaviorPage(behavior) {
 {% extends "templates/base-devguide.html" %}
 {% block title %} API Reference - ${name}{% endblock %}
 {% block content %}
-<iron-doc-mixin base-href="/1.0/docs/api" descriptor="${jsonString}"></iron-doc-mixin>
+<iron-doc-behavior base-href="/1.0/docs/api" descriptor="${jsonString}"></iron-doc-behavior>
 {% endblock %}`;
 }
 

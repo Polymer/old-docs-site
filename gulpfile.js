@@ -16,6 +16,7 @@ let matter = require('gulp-gray-matter');
 let styleMod = require('gulp-style-modules');
 let cssslam = require('css-slam');
 let run = require('gulp-run');
+var swPrecache = require('sw-precache');
 
 let argv = require('yargs').argv;
 let browserSync = require('browser-sync').create();
@@ -83,6 +84,95 @@ function createReloadServer() {
     open: !!argv.open,
     proxy: 'localhost:8080' // proxy serving through app engine.
   });
+}
+
+function writeServiceWorkerFile() {
+  /**
+   * NOTE(keanulee): This function is run in the context of the generated SW where variables
+   * like `toolbox` and `caches` are defined. It is referenced as a handler by the runtime
+   * caching config below which embeds the value of networkFirstWithFallback.toString() in the
+   * generated SW.
+   *
+   * This handler is similar to the "network-first" strategy, except that a fallback page is
+   * served on cache and network miss.
+   */
+  function networkFirstWithFallback(request, values, options) {
+    return toolbox.networkFirst(request, values, options).catch(function() {
+      // Only serve fallback content on navigate requests (not XHRs) for non-sample content.
+      if ((request.mode === 'navigate') && !request.url.match('samples')) {
+        return caches.open(cacheName).then(function(cache) {
+          return cache.match(urlsToCacheKeys.get(new URL('/offline', self.location).toString()));
+        });
+      }
+    });
+  }
+
+  let path = require('path');
+  let rootDir = 'dist';
+  let partialTemplateFiles = ['head-meta.html', 'noscript.html', 'site-nav.html']
+    .map(file => path.join(rootDir, 'templates', file));
+
+  let config = {
+    cacheId: 'polymerproject',
+    staticFileGlobs: [
+      `${rootDir}/images/logos/p-logo.png`,
+      `${rootDir}/images/logos/polymerosaurus.png`,
+      `${rootDir}/elements/**`,
+      `${rootDir}/js/*.js`,
+      `${rootDir}/css/*.css`,
+      `${rootDir}/bower_components/**/webcomponents-lite.min.js`,
+      `${rootDir}/bower_components/highlight/highlight.js`,
+    ],
+    dynamicUrlToDependencies: {
+      '/': partialTemplateFiles.concat(`${rootDir}/index.html`),
+      '/about': partialTemplateFiles.concat(`${rootDir}/about.html`),
+      '/offline': partialTemplateFiles.concat(`${rootDir}/offline.html`),
+    },
+    runtimeCaching: [
+    {
+      urlPattern: new RegExp('/images/'),
+      handler: 'fastest',
+      options: {
+        cache: {
+          maxEntries: 50,
+          name: 'image-cache'
+        }
+      }
+    },
+    {
+      urlPattern: new RegExp('/docs/'),
+      handler: networkFirstWithFallback,
+    },
+    {
+      urlPattern: new RegExp('/start/'),
+      handler: networkFirstWithFallback,
+    },
+    {
+      urlPattern: new RegExp('/toolbox/'),
+      handler: networkFirstWithFallback,
+    },
+    {
+      urlPattern: new RegExp('/samples/'),
+      handler: networkFirstWithFallback,
+    },
+    {
+      urlPattern: new RegExp('/community/'),
+      handler: networkFirstWithFallback,
+    },
+    {
+      urlPattern: new RegExp('/blog/'),
+      handler: networkFirstWithFallback,
+      options: {
+        cache: {
+          maxEntries: 10,
+          name: 'blog-cache'
+        }
+      }
+    }],
+    stripPrefix: rootDir + '/',
+    verbose: false  /* When debugging, you can enable this to true  */
+  };
+  return swPrecache.write(path.join(rootDir, 'service-worker.js'), config);
 }
 
 gulp.task('style', 'Compile sass, autoprefix, and minify CSS', function() {
@@ -221,7 +311,7 @@ gulp.task('build-bundles', 'Build element bundles', function() {
 });
 
 gulp.task('vulcanize-demos', 'vulcanize demos', function() {
-  return gulp.src('app/1.0/homepage/*/index.html', {base: 'app/1.0/homepage'})
+  return gulp.src('app/1.0/samples/homepage/*/index.html', {base: 'app/1.0/samples/homepage'})
     .pipe($.vulcanize({
       stripComments: true,
       inlineCss: true,
@@ -232,13 +322,14 @@ gulp.task('vulcanize-demos', 'vulcanize demos', function() {
     .pipe($.if('*.html', cssslam.gulp())) // Minify css in HTML output
     .pipe($.if('*.js', uglifyJS())) // Minify js output
     .pipe($.if('*.js', license()))
-    .pipe(gulp.dest('dist/1.0/homepage'));
+    .pipe(gulp.dest('dist/1.0/samples/homepage'));
 });
 
 gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', function() {
   let app = gulp.src([
       '*',
       'app/manifest.json',
+      'app/service-worker.js',
       '!{README.md,package.json,gulpfile.js}',
     ], {nodir: true})
     .pipe(gulp.dest('dist'));
@@ -249,7 +340,7 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
       'app/**/blog.yaml',
       'app/**/authors.yaml',
       '!app/{bower_components,elements}/**',
-      '!app/1.0/homepage/**',
+      '!app/1.0/samples/homepage/**',
      ], {base: 'app/'})
     .pipe(gulp.dest('dist'));
 
@@ -321,11 +412,13 @@ gulp.task('clean', 'Remove dist/ and other built files', function() {
   return del(['dist', 'app/css']);
 });
 
+gulp.task('generate-service-worker', writeServiceWorkerFile);
+
 // Default task. Build the dest dir.
 gulp.task('default', 'Build site', ['clean', 'jshint'], function(done) {
   runSequence(
     'build-bundles',
     ['style', 'images', 'vulcanize-demos', 'js'],
-    'copy', 'md:docs', 'md:blog',
+    'copy', 'md:docs', 'md:blog', 'generate-service-worker',
     done);
 });

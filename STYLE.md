@@ -1,10 +1,23 @@
 
 # Polymer documentation style guide
 
-This extremely brief style guide records some style decisions
-we've made in the course of developing these docs.
+This style guide records some style decisions
+we've made in the course of developing the Polymer documentation.
 
-There are counterexamples for each of these rules in the existing docs.
+As a general rule, the Polymer documentation tries to follow the 
+[Google Developer Documentation Style Guide](https://developers.google.com/style/)
+(GDDSG).
+
+This document:
+
+-  Summarizes some common points of developer documentation style, which 
+   can also be found in the GDDSG.
+
+-  Records Polymer-specific additions and exceptions to the GDDSG.
+
+-  Provides formatting tips specific to the Polymer documentation site.
+
+There are counterexamples for each of these style guidelines in the existing docs.
 We aim to follow them as much as possible for new docs, and update old docs
 as we revise them.
 
