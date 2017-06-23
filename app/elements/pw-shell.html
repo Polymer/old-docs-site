@@ -239,6 +239,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     },
 
+    created: function() {
+      // Save the fact that this is a first load, so that we don't double render it
+      this._isInitialNavigation = true;
+    },
+
     attached: function() {
       // Lazy load the footer and the icons since they're not critical and you're
       // probably not looking at the bottom of the page on first paint. Also
@@ -254,9 +259,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // Keep track of the scrolling position so that we can fix the TOC (which is in our light dom)
       this._stickyTocPosition = this._getStickyTocPosition();
       document.addEventListener('scroll', this._onScroll.bind(this));
-
-      // Save the fact that this is a first load, so that we don't double render it.
-      this._isInitialNavigation = true;
 
       // Save which version of docs we're looking at, since we need to
       // maintain this state across the app. Note that not all sections are versioned.
