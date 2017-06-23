@@ -244,13 +244,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // probably not looking at the bottom of the page on first paint. Also
       // FREAM (First-paint Rules Everything Around Me)
       Polymer.RenderStatus.afterNextRender(this, function() {
-        this.importHref(this.resolveUrl('/elements/pw-shell-lazy-elements.html'));
-        this.importHref(this.resolveUrl('/elements/icons.html'));
-        this.importHref(this.resolveUrl('/elements/pw-footer.html'));
-        this.importHref(this.resolveUrl('/elements/google-youtube.html'));
-        this.importHref(this.resolveUrl('/elements/pw-version-selector.html'));
-        this.importHref(this.resolveUrl('/elements/iron-doc-viewer.html'));   
-        this.importHref(this.resolveUrl('/elements/demo-tabs.html'));
+        this.importHref(this.resolveUrl('/elements/lazy-elements.html'));
       });
 
       // app-route doesn't handle clicking on the TOC anchors.
@@ -394,12 +388,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (activeLink) {
         this.toggleClass('selected', true, activeLink);
         this.styleLinkPath(activeLink, true);
-      }
-
-      // Highlight any code bits that need to be highlighted.
-      var codeBlocks = Polymer.dom(this).querySelectorAll('pre code');
-      for (var i = 0; i < codeBlocks.length; i++) {
-        hljs.highlightBlock(codeBlocks[i]);
       }
     },
 
