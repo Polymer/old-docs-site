@@ -92,11 +92,10 @@ window.showToast = function(message) {
   toast.show();
 };
 
-// Register service worker if supported.
+// Register service worker, if supported, after the load event (to deprioritize it after lazy imports).
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/service-worker.js'
-    ).then(function(registration) {
+    navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
       registration.onupdatefound = function() {
         // The updatefound event implies that registration.installing is set; see
         // https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-container-updatefound-event
