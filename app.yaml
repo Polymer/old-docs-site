@@ -45,6 +45,7 @@ handlers:
   static_files: service-worker.js
   upload: service-worker.js
   secure: always
+  expiration: "1s" # "0s" doesn't work
 
 # Special exception for the summit site so it doesn't require
 # a trailing slash
