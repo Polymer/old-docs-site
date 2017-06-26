@@ -66,7 +66,7 @@ src/                   # app-specific elements
   my-app.html            # top-level element
   my-icons.html          # app icons
   my-view1.html          # sample views or "pages"
-  my-view2.hmtl
+  my-view2.html
   my-view3.html
   my-view404.html        # sample 404 page
   shared-styles.html     # sample shared styles
