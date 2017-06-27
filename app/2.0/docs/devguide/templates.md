@@ -669,7 +669,7 @@ template (or inside a `dom-repeat` or `dom-if` template),
 but not for elements placed in the main document.
 
 To use Polymer bindings **without** defining a new custom element,
-use the `<dom-bind>` element.  This template immediately stamps the contents of
+use the `<dom-bind>` element.  This template _immediately and synchronously_ stamps the contents of
 its child templateinto the main document. Data bindings in an auto-binding template use
 the `<dom-bind>` element itself as the binding scope.
 
@@ -689,6 +689,7 @@ the `<dom-bind>` element itself as the binding scope.
   <dom-bind>
     <template>
 
+      <!-- Note the data property which gets sets below -->
       <template is="dom-repeat" items="{{data}}">
         <div>{{item.name}}: {{item.price}}</div>
       </template>
@@ -697,11 +698,6 @@ the `<dom-bind>` element itself as the binding scope.
   </dom-bind>
   <script>
     var autobind = document.querySelector('dom-bind');
-
-    // The dom-change event signifies when the template has stamped its DOM.
-    autobind.addEventListener('dom-change', function() {
-      console.log('template is ready.')
-    });
 
     // set data property on dom-bind
     autobind.data = [
@@ -716,6 +712,11 @@ the `<dom-bind>` element itself as the binding scope.
 
 All of the features in `dom-bind` are already available _inside_ a Polymer
 element. **Auto-binding templates should only be used _outside_ of a Polymer element.**
+
+_Note: In Polymer 1.0, `dom-bind` rendered asynchronously and fired a `dom-change`
+event to signify readiness. In Polymer 2.0, `dom-bind` renders synchronously. It
+will still fire a `dom-change` event but if your event handler is bound
+after the element declaration you'll miss it._
 
 **Forcing synchronous renders.** Like `dom-repeat`, `dom-bind` provides a `render` method and a
 `mutableData` property, as described in [Forcing synchronous renders](#synchronous-renders)
