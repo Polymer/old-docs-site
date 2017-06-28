@@ -190,7 +190,7 @@ And here is a configuration to generate two optimized builds: One bundled and on
   }]
 ```
 
-Here is a configuration to generate a bundled, minified application build with the following build options:
+Here is a configuration to generate a bundled, minified application build with the following bundling options:
 
 * Specified paths are excluded from inlining
 * Comments are stripped
