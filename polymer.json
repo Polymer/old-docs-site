@@ -2,14 +2,7 @@
   "entrypoint": "app/index.html",
   "shell": "app/elements/pw-shell.html",
   "fragments": [
-    "app/elements/pw-shell.html",
-    "app/elements/pw-shell-lazy-elements.html",
-    "app/elements/devguide-shell.html",
-    "app/elements/pw-footer.html",
-    "app/elements/icons.html",
-    "app/elements/demo-tabs.html",
-    "app/elements/google-youtube.html",
-    "app/elements/iron-doc-viewer.html"
+    "app/elements/lazy-elements.html"
   ],
   "builds": [{
     "bundle": true,

@@ -12,46 +12,63 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <head>
 <title>{% block title %}{% endblock %} - Polymer Project</title>
 {% include 'templates/head-meta.html' %}
-<style>
-   /* Styling while the resources are loading. */
-  devguide-shell[unresolved] .sidenav-content {
-    opacity: 0;
-  }
-  devguide-shell[unresolved] main {
-    opacity: 0;
-  }
-</style>
 </head>
 <body class="fullbleed" unresolved>
   {% include 'templates/noscript.html' %}
   <pw-shell>
     {% include 'templates/site-nav.html' %}
-    {% if markdown %}
-      <devguide-shell unresolved data-markdown data-version="{{{polymer_version_dir}}}"
-          page-title="{{{title}}}" page-subtitle="{{{subtitle}}}"
-          v1-page-link="{{{versioned_paths[0]}}}" v2-page-link="{{{versioned_paths[1]}}}">
-    {% else %}
-      <devguide-shell unresolved data-version="{{{polymer_version_dir}}}"
-          v1-page-link="{{{versioned_paths[0]}}}" v2-page-link="{{{versioned_paths[1]}}}">
-    {% endif %}
+    <div class="devguide-main">
+      <nav>
+        <pw-version-selector active-docs-version="{{{polymer_version_dir}}}"
+            v1-page-link="{{{versioned_paths[0]}}}"
+            v2-page-link="{{{versioned_paths[1]}}}"></pw-version-selector>
 
-      {% if section_nav %}
-        {% for item in section_nav %}
-          {% if 'header' in item %}
-            <div class="sidenav-content sidenav-header">{{{item.header}}}</div>
-          {% elif 'endheader' in item %}
-            <div class="sidenav-content sidenav-endheader"></div>
-          {% else %}
-            <a class="sidenav-content {{{item.indent}}}" name="{{{item.path}}}" href="{{{item.path}}}">{{{item.title}}}</a>
+        {% if section_nav %}
+          <div class="sidenav">
+            {% for item in section_nav %}
+              {% if 'header' in item %}
+                <div class="sidenav-content sidenav-header">{{{item.header}}}</div>
+              {% elif 'endheader' in item %}
+                <div class="sidenav-content sidenav-endheader"></div>
+              {% else %}
+                <a class="sidenav-content {{{item.indent}}} {{{ 'iron-selected' if path == item.path }}}"
+                    name="{{{item.path}}}" href="{{{item.path}}}">
+                  {{{item.title}}}
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </nav>
+
+      <div class="content-container">
+        {% if markdown %}
+          <header id="header" data-version="{{{polymer_version_dir}}}">
+            <p>{{{subtitle}}}</p>
+            <h1>{{{title}}}</h1>
+
+            {% if edit_on_github %}
+              <a class="edit-on-github" target="_blank"
+                  href="https://github.com/Polymer/docs/edit/master/app{{{path}}}.md">
+                Edit on GitHub
+              </a>
+            {% endif %}
+          </header>
+
+          {% if polymer_version_dir != '2.0' %}
+            <p class="version-alert">
+              <img src="/images/alerts/warning.svg">
+              You're viewing an older version of Polymer.
+              Please see <a href="{{{versioned_paths[1]}}}">Polymer 2.0</a> for the latest.
+            </p>
           {% endif %}
-        {% endfor %}
-      {% endif %}
+        {% endif %}
 
-      <main>
-        {% block content %}{% endblock %}
-      </main>
-    </devguide-shell>
-
+        <main>
+          {% block content %}{% endblock %}
+        </main>
+      </div>
+    </div>
   </pw-shell>
   <pw-footer></pw-footer>
   <script src="/js/app.js"></script>

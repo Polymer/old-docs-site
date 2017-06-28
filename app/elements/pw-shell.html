@@ -22,9 +22,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style include="iron-flex iron-positioning">
       :host {
-        display: block;
-        margin-top: 64px;
-
         --app-header-z-index: 101;
         --app-drawer-z-index: 102;
       }
@@ -36,8 +33,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       /* To avoid flashing the content before it's being distributed,
        * the nav links where initially display: none. */
-      a.site-nav, ::content a.site-nav {
-        display: flex;
+      .drawer-contents ::content .site-nav {
+        display: block;
       }
 
       a.iron-selected {
@@ -53,11 +50,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         height: 100%;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
-      }
-
-      .drawer-contents img {
-        margin: 16px 30px;
-        height: 24px;
       }
 
       .drawer-toggle {
@@ -135,19 +127,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         transform: translate3d(0, 0, 0);
       }
 
-      .version-selector {
-        display: inline-block;
-        margin: 16px 4px;
-        height: 24px;
-        vertical-align: top;
-      }
-
-      .version-selector paper-dropdown-menu-light {
-        width: 60px;
-        margin-left: 20px;
-        vertical-align: middle;
-      }
-
       @media (max-width: 767px) {
         .drawer, .drawer-toggle {
           display: block;
@@ -201,18 +180,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </app-header>
 
     <app-drawer id="drawer" class="drawer" swipe-open>
-      <div class="drawer-contents" on-click="_closeDrawer">
-        <img src="../images/logos/p-logo.png" alt="Polymer Logo">
-
-        <div class="version-selector">
-          <b>Version</b>
-          <paper-dropdown-menu-light no-label-float id="paperDropdown">
-            <paper-listbox class="dropdown-content" selected="[[activeDocsVersion]]" attr-for-selected="name" on-iron-select="_listboxVersionChanged">
-              <paper-item name="1.0">1.0</paper-item>
-              <paper-item name="2.0">2.0</paper-item>
-            </paper-listbox>
-          </paper-dropdown-menu-light>
-        </div>
+      <div class="drawer-contents">
         <content select=".site-nav"></content>
       </div>
     </app-drawer>
@@ -271,32 +239,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     },
 
+    created: function() {
+      // Save the fact that this is a first load, so that we don't double render it
+      this._isInitialNavigation = true;
+    },
+
     attached: function() {
       // Lazy load the footer and the icons since they're not critical and you're
       // probably not looking at the bottom of the page on first paint. Also
       // FREAM (First-paint Rules Everything Around Me)
       Polymer.RenderStatus.afterNextRender(this, function() {
-        this.importHref(this.resolveUrl('/elements/pw-shell-lazy-elements.html'));
-        this.importHref(this.resolveUrl('/elements/icons.html'));
-        this.importHref(this.resolveUrl('/elements/devguide-shell.html'), function() {
-          var shell = Polymer.dom(this).querySelector('devguide-shell');
-          if (shell)
-            shell.removeAttribute('unresolved');
-        });
-        this.importHref(this.resolveUrl('/elements/pw-footer.html'));
-        this.importHref(this.resolveUrl('/elements/google-youtube.html'));
+        this.importHref(this.resolveUrl('/elements/lazy-elements.html'));
       });
 
       // app-route doesn't handle clicking on the TOC anchors.
-      window.addEventListener('hashchange', this._scrollToAnchor.bind(this));
-      window.addEventListener('location-changed', this._scrollToAnchor.bind(this));
+      window.addEventListener('hashchange', this._locationChanged.bind(this));
+      window.addEventListener('location-changed', this._locationChanged.bind(this));
 
       // Keep track of the scrolling position so that we can fix the TOC (which is in our light dom)
       this._stickyTocPosition = this._getStickyTocPosition();
       document.addEventListener('scroll', this._onScroll.bind(this));
-
-      // Save the fact that this is a first load, so that we don't double render it.
-      this._isInitialNavigation = true;
 
       // Save which version of docs we're looking at, since we need to
       // maintain this state across the app. Note that not all sections are versioned.
@@ -304,24 +266,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.activeDocsVersion = this._routeData.version;
     },
 
-    _listboxVersionChanged: function(event) {
-      var newSelection = event.detail.item.textContent;
-      if (newSelection === this.activeDocsVersion)
-        return;
-      this.activeDocsVersion = newSelection;
-      this.path = '/' + this.activeDocsVersion + '/start/';
-    },
-
     _toggleDrawer: function() {
       this.$.drawer.toggle();
-    },
-
-    _closeDrawer: function(event) {
-      // If this event comes from the paper dropdown menu, then it just means
-      // we're opening the version selector, so we shouldn't close the drawer.
-      if (Polymer.dom(event).localTarget.id === 'paperDropdown')
-        return;
-      this.$.drawer.close();
     },
 
     _focusSearch: function() {
@@ -410,14 +356,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         Polymer.dom(this).appendChild(document.importNode(fragment, true));
         Polymer.dom.flush();  // Force upgrades.
 
-        // *If* the devguide-shell import is loaded, we can remove its
-        // unresolved attribute from the template. If it hasn't i.e we're serving
-        // this from the SW but the HTML import hasn't finished yet, then
-        // remove the attribute in the importHref callback, or else you get FOUC)
-        var devshell = Polymer.dom(this).querySelector('devguide-shell');
-        if (devshell && devshell.hasAttribute('unresolved') && devshell.header)
-          devshell.removeAttribute('unresolved');
-
         // Analytics. Don't double-report search
         if (this.path != '/search/' && window.recordPageview) {
           window.recordPageview();
@@ -426,7 +364,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       // Scroll to an anchor, if we have one.
       if (window.location.hash) {
-        this._scrollToAnchor();
+        this._locationChanged();
       } else {
         this.async(this._resetScrollPosition);
       }
@@ -446,18 +384,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       // If there's two links matching this path (i.e. because there's no landing
       // page for a section), and pick the deepest link to highlight.
-      var matchingLinks = Polymer.dom(this).querySelectorAll('a.site-nav[name="' + this.path +'"]');
+      var matchingLinks = Polymer.dom(this).querySelectorAll('.site-nav a[name="' + this.path +'"]');
       var activeLink = matchingLinks[matchingLinks.length - 1];
 
       if (activeLink) {
-        this.toggleClass('iron-selected', true, activeLink);
+        this.toggleClass('selected', true, activeLink);
         this.styleLinkPath(activeLink, true);
-      }
-
-      // Highlight any code bits that need to be highlighted.
-      var codeBlocks = Polymer.dom(this).querySelectorAll('pre code');
-      for (var i = 0; i < codeBlocks.length; i++) {
-        hljs.highlightBlock(codeBlocks[i]);
       }
     },
 
@@ -624,7 +556,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       Polymer.AppLayout.scroll();
     },
 
-    _scrollToAnchor: function() {
+    _locationChanged: function() {
+      this.$.drawer.close();
+
       var hash = window.location.hash;
       if (hash) {
         var el = Polymer.dom(this).querySelector(hash);
@@ -652,15 +586,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _getStickyTocPosition: function() {
-      // If there is a dev shell, it will have a header element for the
-      // docs header.
-      var shell = Polymer.dom(this).querySelector('devguide-shell');
-      if (shell && shell.header) {
-        return shell.header.getBoundingClientRect().height;
-      }
-
-      // If there isn't, this could be the blog page, and we
-      // will should a header element distrubuted in the light dom.
+      // The header element is in the light dom.
       var header = Polymer.dom(this).querySelector('#header');
       if (header) {
         return header.getBoundingClientRect().height;
