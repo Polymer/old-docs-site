@@ -8,8 +8,7 @@ Polymer provides optional support for custom "gesture" events for certain user
 interactions. These events fire consistently on both touch and mouse environments,
 so we recommend using these events instead of their mouse- or
 touch-specific event counterparts. This provides better interoperability with both touch and
-mouse devices.  For example, `tap` should be used instead of
-`click` for the most reliable cross-platform results.
+mouse devices.
 
 ## Using gesture events
 
