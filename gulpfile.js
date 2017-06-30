@@ -109,7 +109,7 @@ function writeServiceWorkerFile() {
 
   let path = require('path');
   let rootDir = 'dist';
-  let partialTemplateFiles = ['head-meta.html', 'noscript.html', 'site-nav.html']
+  let partialTemplateFiles = ['head-meta.html', 'site-nav.html']
     .map(file => path.join(rootDir, 'templates', file));
 
   let config = {
