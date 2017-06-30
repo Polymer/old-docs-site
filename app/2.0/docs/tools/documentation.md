@@ -6,8 +6,10 @@ title: Document your elements
 
 You can provide API docs for Polymer custom elements by writing
 documentation comments in your source files. Using the `iron-component-pages` element,
-you can create a simple documentation page for your elements that parses these comments
-and renders the API documentation.
+you can create a simple documentation page for your elements that displays your comments
+rendered as API documentation.
+
+If you're publishing your element at [WebComponents.org](https://webcomponents.org), your documentation will be automatically generated. WebComponents.org uses the same underlying elements as `iron-component-pages` to render and display documentation. 
 
 ## Create a documentation page for your project {#create-page}
 
@@ -193,7 +195,6 @@ For example:
  *
  * @polymerBehavior
  */
-
 MyBehaviors.HighlightStuff = { ... }
 ```
 
