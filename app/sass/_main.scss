@@ -43,11 +43,6 @@ body {
   transition: opacity ease-in 0.2s;
 }
 
-/* Styling while the resources are loading */
-body[unresolved] {
-  opacity: 0;
-}
-
 pw-shell {
   display: block;
   margin-top: 64px;

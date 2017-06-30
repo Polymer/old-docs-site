@@ -70,6 +70,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 0 8px;
       }
 
+      .header-toolbar paper-icon-button {
+        width: 40px;
+      }
+
       .header-toolbar .logo-link {
         padding-left: 20px;
         height: 24px;
@@ -118,13 +122,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         box-sizing: border-box;
         -webkit-transform: translate3d(100%, 0, 0);
         transform: translate3d(100%, 0, 0);
-        transition: -webkit-transform 0.2s;
-        transition: transform 0.2s;
       }
 
       .search-box:focus {
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
+        transition: -webkit-transform 0.2s;
+        transition: transform 0.2s;
       }
 
       @media (max-width: 767px) {
