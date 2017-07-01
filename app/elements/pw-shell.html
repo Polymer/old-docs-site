@@ -238,11 +238,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     },
 
-    created: function() {
-      // Save the fact that this is a first load, so that we don't double render it
-      this._isInitialNavigation = true;
-    },
-
     attached: function() {
       // Lazy load the footer and the icons since they're not critical and you're
       // probably not looking at the bottom of the page on first paint. Also
@@ -317,8 +312,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _handleError: function(event) {
-      if (this._isInitialNavigation) {
-        this._isInitialNavigation = false;
+      if (this.hasAttribute('server-rendered')) {
+        this.removeAttribute('server-rendered');
       }
 
       window.showToast('This page was not cached for offline use :(');
@@ -327,8 +322,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     _handleResponse: function(event) {
       // Don't reload the current page on initial navigation, since the server is
       // already serving the correct page.
-      if (this._isInitialNavigation) {
-        this._isInitialNavigation = false;
+      if (this.hasAttribute('server-rendered')) {
+        this.removeAttribute('server-rendered');
       } else {
         // Not all sections have a version, so only update the docs version if
         // there's actually a change.
