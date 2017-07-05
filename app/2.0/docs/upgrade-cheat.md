@@ -1,5 +1,9 @@
 # Polymer 2.0 API Upgrade CheatSheet
 
+This is a quick-and-dirty guide to updating your code to use the Polymer 2.0 library. Note that this does not cover hybrid elements.
+
+See the [Polymer 2.0 Upgrade Guide](upgrade) for more information.
+
 **Before**
 ```js
 Polymer.dom(this.root)
