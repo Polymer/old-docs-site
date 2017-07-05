@@ -146,7 +146,7 @@ required.
 * `swPrecacheConfig`: An optional configuration file for the generated service worker.
 * `insertPrefetchLinks`: If `true`, insert prefetch link elements into your fragments so that all
 dependencies are prefetched immediately.
-* `bundle`: May be boolean, or an object bag of settings matching specified [`polymer-bundler`](https://github.com/Polymer/polymer-bundler) constructor options.
+* `bundle`: May be boolean, or an object bag of settings matching specified [`polymer-bundler`](https://github.com/Polymer/polymer-bundler) constructor options. This functionality emulates the behavior of the Polymer 1.x build tools.
   * If `true`, bundle your application.
   * If an object is provided with further configuration, the options are:
     * `excludes`: Optional, `String[]`. Excludes the listed paths of files or folders from inlining.
