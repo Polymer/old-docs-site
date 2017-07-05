@@ -181,7 +181,7 @@ This configuration generates a bundled, minified application build with the foll
 
 ```json
 "build": [{
-  name: "bundled-custom",
+  "name": "bundled-custom",
   "bundle": {
     "excludes": ["/path/to/stuff/", "/path/to/more/stuff.html"],
     "stripComments": "true",
