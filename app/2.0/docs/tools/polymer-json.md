@@ -199,7 +199,7 @@ Here is a configuration to generate a bundled, minified application build with t
 
 ```json
 "build": [{
-  name: "bundled-custom",
+  "name": "bundled-custom",
   "bundle": {
     "excludes": ["/path/to/stuff/", "/path/to/more/stuff.html"],
     "stripComments": "true",
