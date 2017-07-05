@@ -12,7 +12,9 @@ you'll need the following prerequisites:
 -   App Engine Python standard environment. Ensure this is installed by running the following command:
 
         gcloud components install app-engine-python
-        OR if you installed via apt
+        
+    Or, if you installed via apt:
+    
         sudo apt-get install google-cloud-sdk-app-engine-python
 
 Set up your repo:
