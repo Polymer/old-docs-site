@@ -58,6 +58,9 @@
   - title: Upgrade guide
     path: /2.0/docs/upgrade
     indent: True
+  - title: Upgrade cheat sheet
+    path: /2.0/docs/upgrade-cheat
+    indent: True
   - title: Hybrid elements
     path: /2.0/docs/devguide/hybrid-elements
     indent: True
