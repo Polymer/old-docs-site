@@ -9,20 +9,14 @@ In this step, you'll deploy your application to the web.
 
 ## Build for deployment
 
-Run the following Polymer CLI command to prepare your
-application for deployment:
+Run the following Polymer CLI command to prepare your application for deployment:
 
     polymer build
 
-This command  minifies the HTML, JS, and CSS dependencies of your application,
-and generates a service worker that precaches all of the dependencies
-of your application so that it can work offline.
-
-The built files are output to the `build/default` folder. The default build contains an unbundled
-build with granular resources suitable for serving via HTTP/2 with server push. 
+The built files are output to the `build/default` folder.
 
 For more information on build options, see the [documentation for the `polymer build` command](/2.0/docs/tools/polymer-cli#build).
-This includes documentation on generating bundled (concatenated) resources suitable for
+This includes documentation on minifying source files and generating bundled (concatenated) resources suitable for
 serving from servers or to clients that do not support HTTP/2 server push.
 
 ## Deploy to a server
