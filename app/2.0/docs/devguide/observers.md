@@ -691,7 +691,7 @@ For example:
 this._createMethodObserver('_observeSeveralProperties(prop1,prop2,prop3)', true);
 ```
 
-The optional third argument determines whether the method itself (in this case, `observeSeveralProperties`)
+The optional third argument determines whether the method itself (in this case, `_observeSeveralProperties`)
 should be treated as a dependency.
 
 
