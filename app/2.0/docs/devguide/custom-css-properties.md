@@ -360,7 +360,7 @@ slightly differently depending on whether the shady CSS polyfill is loaded:
 
 ```js
 if (ShadyCSS) {
-  style = ShadyCSS.getComputedStyleValue('--something');
+  style = ShadyCSS.getComputedStyleValue(this, '--something');
 } else {
   style = getComputedStyle(this, '--something');
 }

@@ -1,0 +1,79 @@
+/*
+Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/
+
+.site-nav {
+  /* To avoid flashing site-nav content before it's being distributed,
+   * hide site-nav content initially, and revert to display:flex in pw-shell. */
+  display: none;
+}
+
+.site-nav > img {
+  margin: 16px 30px;
+  height: 24px;
+}
+
+.site-nav > pw-version-selector {
+  display: inline-block;
+  margin: 10px 0;
+  vertical-align: top;
+}
+
+.site-nav a {
+  color: #6b6b6b;
+  background: white;
+  border-bottom: 1px solid #eaedef;
+  padding: 4px 4px 4px 30px;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 40px;  /* To match the nested paper-icon-button height */
+  display: flex;
+  text-decoration: none;
+
+  /* The active links will have a pink border. */
+  border-left: 4px solid transparent;
+  flex-direction: row;
+}
+
+.site-nav a > span {
+  flex: 1;
+  flex-basis: 0;
+}
+
+/* The active page */
+.site-nav a.selected {
+  color: black;
+  border-left: 4px solid #f22c5a;
+  color: #f22c5a;
+}
+
+.site-nav a.level-1 {
+  font-family: 'Roboto Slab', 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+.site-nav a.level-2 {
+  color: black;
+}
+
+/* This is basically a level-3 link */
+.site-nav a.level-2.indent {
+  padding-left: 40px;
+  color: black;
+}
+
+.site-nav a.greyed-out {
+  background: #f4f5f6;
+  color: #707070;
+  font-weight: 400;
+}
+
+.site-nav a.active {
+  color: black;
+  font-weight: 700;
+}

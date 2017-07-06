@@ -230,19 +230,18 @@ class Site(http2push.PushHandler):
     if self.redirect_if_needed(self.request.path):
       return
 
+    template_path = path
     # Root / serves index.html.
     # Folders server the index file (e.g. /docs/index.html -> /docs/).
     if not path or path.endswith('/'):
-      path += 'index.html'
+      template_path += 'index.html'
     # Remove index.html from URL.
     elif path.endswith('index'):
-      path = path[:path.rfind('/') + 1]
       # TODO: preserve URL parameters and hash.
-      return self.redirect('/' + path, permanent=True)
+      return self.redirect('/' + path[:path.rfind('/') + 1], permanent=True)
     # Make URLs pretty (e.g. /page.html -> /page)
     elif path.endswith('.html'):
-      path = path[:-len('.html')]
-      return self.redirect('/' + path, permanent=True)
+      return self.redirect('/' + path[:-len('.html')], permanent=True)
 
     match = re.match('([0-9]+\.[0-9]+)/([^/]+)', path)
 
@@ -253,6 +252,9 @@ class Site(http2push.PushHandler):
       data = {
         'site_nav': self.get_site_nav(version),
         'section_nav': self.get_section_nav(version, shortpath),
+        'path': '/' + path,
+        # 1.0 and 2.0 API docs are not editable in GH.
+        'edit_on_github': path.find('.0/docs/api/') == -1,
         'versioned_paths': self.get_versioned_paths(shortpath),
         # we use this as a macro in cross-references.
         # please don't take it away.
@@ -262,9 +264,9 @@ class Site(http2push.PushHandler):
       articles = None
       active_article = None
 
-      if path.startswith('blog') or path == 'index.html':
+      if template_path.startswith('blog') or template_path == 'index.html':
         articles = self.get_articles()
-        active_article = self.get_active_article(articles, path)
+        active_article = self.get_active_article(articles, template_path)
 
       data = {
         'site_nav': self.get_site_nav('1.0') + self.get_site_nav('2.0'),
@@ -273,10 +275,10 @@ class Site(http2push.PushHandler):
       }
 
     # Add .html to construct template path.
-    if not path.endswith('.html'):
-      path += '.html'
+    if not template_path.endswith('.html'):
+      template_path += '.html'
 
-    render(self.response, path, data)
+    render(self.response, template_path, data)
 
 routes = [
   # ('/(\d\.\d)/$', VersionHandler),

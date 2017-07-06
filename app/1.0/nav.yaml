@@ -8,7 +8,7 @@
   path: /1.0/start/
   items:
   - title: Get started
-    path: /1.0/start/index
+    path: /1.0/start/
   - header: Build an element
   - title: 1. Get set up
     path: /1.0/start/first-element/intro
@@ -176,7 +176,7 @@
   path: /1.0/toolbox/
   items:
   - title: What's in the box?
-    path: /1.0/toolbox/index
+    path: /1.0/toolbox/
   - header: Using the Toolbox
   - title: App templates
     path: /1.0/toolbox/templates

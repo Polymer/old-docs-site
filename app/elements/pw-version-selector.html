@@ -1,0 +1,84 @@
+<!--
+@license
+Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu-light.html">
+
+<dom-module id="pw-version-selector">
+  <template>
+    <style>
+      paper-dropdown-menu-light {
+        width: 60px;
+        margin-left: 20px;
+        vertical-align: middle;
+      }
+    </style>
+
+    <b>Version</b>
+    <paper-dropdown-menu-light no-label-float>
+      <paper-listbox class="dropdown-content" selected="[[activeDocsVersion]]" attr-for-selected="name" on-iron-select="_listboxVersionChanged">
+        <paper-item name="1.0">1.0</paper-item>
+        <paper-item name="2.0">2.0</paper-item>
+      </paper-listbox>
+    </paper-dropdown-menu-light>
+
+  </template>
+
+  <script>
+  Polymer({
+    is: 'pw-version-selector',
+
+    properties: {
+      /**
+       * The version of the docs we're looking at. Should be 1.0 or 2.0
+       */
+      activeDocsVersion: {
+        type: String
+      },
+
+      /**
+       * The starting link for a 1.0 section (for the start/docs/toolbox sections)
+       */
+      v1PageLink: {
+        type: String
+      },
+
+      /**
+       * The starting link for a 2.0 section (for the start/docs/toolbox sections)
+       */
+      v2PageLink: {
+        type: String
+      },
+    },
+
+    attached: function() {
+      if (!this.activeDocsVersion) {
+        // Figure out which version we're displaying, 1.0 or 2.0, and pw-shell
+        // is the source of truth (the URL isn't).
+        var pwShell = document.querySelector('pw-shell');
+        this.activeDocsVersion = pwShell ? pwShell.activeDocsVersion : '2.0';
+      }
+    },
+
+    // Update the version when the version selector is used.
+    _listboxVersionChanged: function(event) {
+      var newSelection = event.detail.item.textContent;
+      if (newSelection === this.activeDocsVersion)
+        return;
+
+      var path = newSelection == '2.0' ? this.v2PageLink : this.v1PageLink;
+      // Don't bother updating activeDocsVersion, since this element will be destroyed once navigation completes.
+      // this.activeDocsVersion = newSelection;
+      if (!path) path = '/' + newSelection + '/start/';
+
+      window.history.pushState({}, '', window.location.origin + path);
+      this.fire('location-changed', {}, {node: window});
+    }
+  });
+  </script>
+</dom-module>

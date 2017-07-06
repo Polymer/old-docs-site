@@ -92,40 +92,41 @@ window.showToast = function(message) {
   toast.show();
 };
 
-// Register service worker if supported.
+// Register service worker, if supported, after the load event (to deprioritize it after lazy imports).
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js'
-  ).then(function(registration) {
-    registration.onupdatefound = function() {
-      // The updatefound event implies that registration.installing is set; see
-      // https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-container-updatefound-event
-      const installingWorker = registration.installing;
-      installingWorker.onstatechange = function() {
-        switch (installingWorker.state) {
-          case 'installed':
-            if (!navigator.serviceWorker.controller) {
-              window.showToast('Service Worker installed! Pages you view are cached for offline use.');
-            }
-            break;
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+      registration.onupdatefound = function() {
+        // The updatefound event implies that registration.installing is set; see
+        // https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-container-updatefound-event
+        const installingWorker = registration.installing;
+        installingWorker.onstatechange = function() {
+          switch (installingWorker.state) {
+            case 'installed':
+              if (!navigator.serviceWorker.controller) {
+                window.showToast('Service Worker installed! Pages you view are cached for offline use.');
+              }
+              break;
 
-          case 'redundant':
-            throw Error('The installing service worker became redundant.');
+            case 'redundant':
+              throw Error('The installing service worker became redundant.');
+          }
+        };
+      };
+    }).catch(function(e) {
+      console.error('Service worker registration failed:', e);
+    });
+
+    // Check to see if the service worker controlling the page at initial load
+    // has become redundant, since this implies there's a new service worker with fresh content.
+    if (navigator.serviceWorker.controller) {
+      navigator.serviceWorker.controller.onstatechange = function(event) {
+        if (event.target.state === 'redundant') {
+          window.showToast('Site updated. Refresh this page to see the latest content.');
         }
       };
-    };
-  }).catch(function(e) {
-    console.error('Service worker registration failed:', e);
-  });
-}
-
-// Check to see if the service worker controlling the page at initial load
-// has become redundant, since this implies there's a new service worker with fresh content.
-if (navigator.serviceWorker && navigator.serviceWorker.controller) {
-  navigator.serviceWorker.controller.onstatechange = function(event) {
-    if (event.target.state === 'redundant') {
-      window.showToast('Site updated. Refresh this page to see the latest content.');
     }
-  };
+  });
 }
 
 })(window);

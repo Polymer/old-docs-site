@@ -121,7 +121,6 @@ function writeServiceWorkerFile() {
       `${rootDir}/js/*.js`,
       `${rootDir}/css/*.css`,
       `${rootDir}/bower_components/**/webcomponents-lite.min.js`,
-      `${rootDir}/bower_components/highlight/highlight.js`,
     ],
     dynamicUrlToDependencies: {
       '/': partialTemplateFiles.concat(`${rootDir}/index.html`),
@@ -354,11 +353,6 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     ], {base: 'app/'})
     .pipe(gulp.dest('dist'));
 
-  let highlight = gulp.src([
-      'node_modules/highlight.js/lib/*'
-    ])
-    .pipe(gulp.dest('dist/bower_components/highlight'));
-
   // Copy the bundles that polymer build produced.
   let bundles = gulp.src([
       'build/default/app/elements/*'
@@ -377,7 +371,7 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     .pipe(gulp.dest('dist/summit-2015'))
     .pipe(gulp.dest('dist/summit-2016'));
 
-  return merge(app, docs, gae, bower, highlight, bundles, summit, bower_summit);
+  return merge(app, docs, gae, bower, bundles, summit, bower_summit);
 });
 
 gulp.task('watch', 'Watch files for changes', function() {
