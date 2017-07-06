@@ -492,7 +492,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.toggleClass('active', false, links[i]);
 
           // If the active collapse is opened, then grey-out the other links.
-          this.toggleClass('greyed-out', collapse.opened, links[i]);
+          this.toggleClass('greyed-out', collapse && collapse.opened, links[i]);
         }
       }
     },
