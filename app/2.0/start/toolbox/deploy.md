@@ -9,15 +9,43 @@ In this step, you'll deploy your application to the web.
 
 ## Build for deployment
 
-Run the following Polymer CLI command to prepare your application for deployment:
+Type `polymer build` to build your Polymer application for production. 
 
-    polymer build
+You can serve different builds of your app to browsers with different capabilities. The Polymer Starter Kit is configured to create three builds:
 
-The built files are output to the `build/default` folder.
+* A bundled, minified build with a service worker, compiled to ES5 for compatibility with older browsers.
+* A bundled, minified build with a service worker. ES6 code is served as-is. This build is for browsers that can handle ES6 code.
+* An unbundled, minified build with a service worker. ES6 code is served as-is. This build is for browsers that support HTTP/2 push.
 
-For more information on build options, see the [documentation for the `polymer build` command](/2.0/docs/tools/polymer-cli#build).
-This includes documentation on minifying source files and generating bundled (concatenated) resources suitable for
-serving from servers or to clients that do not support HTTP/2 server push.
+These builds are configured in the `builds` object in `polymer.json`, a configuration file in the root project directory. 
+
+{.caption `polymer.json`}
+```
+...
+"builds": [
+  {
+    "preset": "es5-bundled"
+  },
+  {
+    "preset": "es6-bundled"
+  },
+  {
+    "preset": "es6-unbundled"
+  }
+]
+...
+```
+
+The builds will be output to a subdirectory under the `build/` directory as follows:
+
+```
+build/
+  es5-bundled/
+  es6-bundled/
+  es6-unbundled/
+```
+
+To configure a custom build, you can use command line options, or edit `polymer.json`. Run `polymer help build` for the full list of available options and optimizations. Also, see the documentation on the [polymer.json specification](https://www.polymer-project.org/2.0/docs/tools/polymer-json) and [building your Polymer application for production](https://www.polymer-project.org/2.0/toolbox/build-for-production).
 
 ## Deploy to a server
 
@@ -52,7 +80,7 @@ and create a new project
 
 1.  `cd` into the main folder for your app (e.g. `my-app/`).
 
-1. Create an `app.yaml` file with the following contents:
+1. Create an `app.yaml` file with the following contents (replace `build-folder-name` with the name of your build folder):
 
     ```
     runtime: python27
@@ -61,25 +89,25 @@ and create a new project
 
     handlers:
     - url: /bower_components
-      static_dir: build/default/bower_components
+      static_dir: build/build-folder-name/bower_components
       secure: always
 
     - url: /images
-      static_dir: build/default/images
+      static_dir: build/build-folder-name/images
       secure: always
 
     - url: /src
-      static_dir: build/default/src
+      static_dir: build/build-folder-name/src
       secure: always
 
     - url: /manifest.json
-      static_files: build/default/manifest.json
-      upload: build/default/manifest.json
+      static_files: build/build-folder-name/manifest.json
+      upload: build/build-folder-name/manifest.json
       secure: always
 
     - url: /.*
-      static_files: build/default/index.html
-      upload: build/default/index.html
+      static_files: build/build-folder-name/index.html
+      upload: build/build-folder-name/index.html
       secure: always
     ```
 
@@ -138,7 +166,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
 1.  Firebase asks you for a project to associate with your app. Select the one you created earlier.
 
 1.  Firebase asks you the name of your app's public directory. Enter
-    `build/default`.
+    `build/build-folder-name`. Replace build-folder-name with the name of your build folder.
 
 1.  Edit your firebase configuration to add support for URL routing.  Add
     the following to the `hosting` object in your `firebase.json` file.
@@ -164,7 +192,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
         "rules": "database.rules.json"
       },
       "hosting": {
-        "public": "build/default",
+        "public": "build/es6-bundled",
         "rewrites": [
           {
             "source": "!/__/**",
