@@ -81,6 +81,7 @@ function runAnalyzer() {
           summary: namespace.summary,
           namespaces: [],
           elements: [],
+          classes: [],
           mixins: [],
           behaviors: [],
           functions: namespace.functions, // already summarized
@@ -98,6 +99,25 @@ function runAnalyzer() {
             overview.elements.push(summary);
             const fileContents = elementPage(element);
             const filename = path.join(apiDocsPath, getElementUrl(element) + '.html');
+            console.log('Writing', filename);
+            fs.writeFileSync(filename, fileContents);
+          }
+        }
+
+        console.log(`Processing ${namespace.classes && namespace.classes.length} classes`);
+        if (namespace.classes) {
+          for (const klass of namespace.classes) {
+            if (!klass.name) {
+              continue;
+            }
+            console.log(`adding ${klass.name} to ${namespace.name}`);
+            const summary = {
+              name: klass.name,
+              summary: klass.summary,
+            };
+            overview.classes.push(summary);
+            const fileContents = classPage(klass);
+            const filename = path.join(apiDocsPath, getClassUrl(klass) + '.html');
             console.log('Writing', filename);
             fs.writeFileSync(filename, fileContents);
           }
@@ -150,6 +170,7 @@ function runAnalyzer() {
       }
 
       fs.mkdirSync(path.join(apiDocsPath, 'elements'));
+      fs.mkdirSync(path.join(apiDocsPath, 'classes'));
       fs.mkdirSync(path.join(apiDocsPath, 'mixins'));
       fs.mkdirSync(path.join(apiDocsPath, 'namespaces'));
 
@@ -174,6 +195,18 @@ function elementPage(element) {
 {% block title %} API Reference - ${name}{% endblock %}
 {% block content %}
 <iron-doc-element base-href="/2.0/docs/api" descriptor="${jsonString}"></iron-doc-element>
+{% endblock %}`;
+}
+
+function classPage(klass) {
+  const name = klass.name;
+  const jsonString = escape(JSON.stringify(klass));
+  return `{% set markdown = "true" %}
+{% set title = "${name}" %}
+{% extends "templates/base-devguide.html" %}
+{% block title %} API Reference - ${name}{% endblock %}
+{% block content %}
+<iron-doc-class base-href="/2.0/docs/api" descriptor="${jsonString}"></iron-doc-class>
 {% endblock %}`;
 }
 
@@ -227,6 +260,10 @@ function getElementName(element) {
 
 function getElementUrl(element) {
   return `/elements/${element.name || element.tagname}`;
+}
+
+function getClassUrl(klass) {
+  return `/classes/${klass.name}`;
 }
 
 function getMixinUrl(mixin) {
