@@ -30,7 +30,8 @@
     "paper-tabs": "PolymerElements/paper-tabs#2",
     "paper-toast": "PolymerElements/paper-toast#2",
     "google-youtube": "GoogleWebComponents/google-youtube#^1.2.1",
-    "google-map": "GoogleWebComponents/google-map#^1.1.10"
+    "google-map": "GoogleWebComponents/google-map#^1.1.10",
+    "web-animations-js": "web-animations/web-animations-js#^2.2.5"
   },
   "resolutions": {
     "iron-selector": "2",
