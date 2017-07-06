@@ -94,13 +94,18 @@ This tool has been replaced by [Polymer Analyzer](#polymer-analyzer). It is a st
 framework for Web Components. 
 
 ## L
+### lazy-imports
+Lazy Imports are a declarative way to describe the resources that you will import lazily, and
+a method for loading them. Because this kind of lazy import is declarative, we are able to
+give you accurate lint warnings and sharded bundling without any configuration needed.
+
 ### lazy loading
 Lazy loading takes advantage of routing to load elements only when they are required for render. 
 Used correctly, lazy loading can improve performance.
 
-For an example implementation of lazily-loaded elements, see the [Shop 
-app](https://github.com/Polymer/shop). In the Shop app, views are elements which are instantiated 
-only when they are routed to. 
+For an example implementation of lazily-loaded elements, see the [Polymer Starter
+Kit](https://github.com/PolymerElements/polymer-starter-kit). In the starter kit,
+views are elements which are instantiated only when they are routed to. 
 
 ### linter
 A linter is a piece of software that analyzes code for suspicious-looking constructions that can 

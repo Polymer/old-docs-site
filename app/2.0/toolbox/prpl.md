@@ -68,32 +68,45 @@ When you generate an App Toolbox project using Polymer CLI, the new project cont
 
 The shell is responsible for routing and usually includes the main navigation UI for the app.
 
-The app should call `importHref` to lazy-load fragments as they're required. For example, when the
-user changes to a new route, it imports the fragment(s) associated with that route. This may
-initiate a new request to the server, or simply load the resource from the cache.
+The app should lazy load code at runtime as required to get a large performance
+boost. For example, when the user changes to a new route, it imports the
+fragment(s) associated with that route. This may initiate a new request to the
+server, or simply load the resource from the cache.
 
-importHref example (class-style element) {.caption}
+importLazyGroup example (class-style element) {.caption}
 
-```js
-// get a URL relative to this element
-let resolvedUrl = this.resolveUrl('list-view.html');
-
-// import the file
-Polymer.importHref(
-    resolvedUrl,
-    null,  /* callback for successful load -- usually not needed */
-    this._importFailedCallback.bind(this), /* for example, display 404 page */
-    true); /* make import async */
+```html
+<link rel="import" href="../lazy-imports/lazy-import-mixin.html">
 ```
 
-importHref example (hybrid element) {.caption}
+```js
+class MyApp extends Polymer.LazyImportsMixin(Polymer.Element) {
+
+    // ...
+
+    _pageChanged(page) {
+        // Import the assets with the associated group
+        this.importLazyGroup(page)
+            .catch(this._importFailedCallback.bind(this)); // Handle error, ie. Display 404 page
+    }
+```
+
+importLazyGroup example (hybrid element) {.caption}
+
+```html
+<link rel="import" href="../lazy-imports/lazy-import-behavior.html">
+```
 
 ```js
-var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
-this.importHref(resolvedPageUrl,
-    null,
-    this._importFailedCallback,
-    true);
+behaviors: [Polymer.LazyImportsBehavior],
+
+// ...
+
+_pageChanged: function(page) {
+    // Import the assets with the associated group
+    this.importLazyGroup(page)
+            .catch(this._importFailedCallback.bind(this)); // Handle error, ie. Display 404 page
+}
 ```
 
 The shell (including its static dependencies) should contain everything needed for first paint.
