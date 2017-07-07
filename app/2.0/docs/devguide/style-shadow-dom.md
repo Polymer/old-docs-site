@@ -339,7 +339,7 @@ To style slotted content, use the `::slotted()` syntax.
 </x-foo>
 ```
 
-[See it on Plunkr](http://plnkr.co/edit/Xb4j1r4wEgGuyUM9huFV?p=preview)
+[See it on Plunker](http://plnkr.co/edit/Xb4j1r4wEgGuyUM9huFV?p=preview)
 
 You can select by element type:
 

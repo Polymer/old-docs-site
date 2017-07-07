@@ -73,8 +73,8 @@ Example: { .caption }
     <div> Employee list: </div>
     <template is="dom-repeat" items="{{employees}}">
         <div># [[index]]</div>
-        <div>First name: [[item.first]]</span></div>
-        <div>Last name: [[item.last]]</span></div>
+        <div>First name: <span>[[item.first]]</span></div>
+        <div>Last name: <span>[[item.last]]</span></div>
     </template>
 
   </template>
@@ -269,7 +269,7 @@ Then the `observe` property should be configured as follows:
     filter="isEngineer" observe="type manager.type">
 ```
 
-Changing a `manager.type` field should now cause the list to be re-sorted:
+Changing a `manager.type` field should now cause the list to be re-filtered:
 
 ```
 this.set('employees.0.manager.type', 'engineer');

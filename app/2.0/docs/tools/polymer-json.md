@@ -146,7 +146,14 @@ required.
 * `swPrecacheConfig`: An optional configuration file for the generated service worker.
 * `insertPrefetchLinks`: If `true`, insert prefetch link elements into your fragments so that all
 dependencies are prefetched immediately.
-* `bundle`: If `true`, bundle your application.
+* `bundle`: May be boolean, or an object bag of settings matching specified [`polymer-bundler`](https://github.com/Polymer/polymer-bundler) constructor options. This functionality emulates the behavior of the Polymer 1.x build tools.
+  * If `true`, bundle your application.
+  * If an object is provided with further configuration, the options are:
+    * `excludes`: Optional, `String[]`. Excludes the listed paths of files or folders from inlining.
+    * `inlineCss`: Optional, `Boolean`. Specifies whether to inline external CSS file contents into `<style>` tags.
+    * `inlineScripts`: Optional, `Boolean`. Specifies whether to inline external JavaScript file contents into `<script>` tags.
+    * `rewriteUrlsInTemplates`: Optional, `Boolean`. Specifies whether to rewrite element attributes inside of templates when inlining HTML.
+    * `sourcemaps`: Optional, `Boolean`. Specifies whether to create identity source maps for inline scripts.
 * `html`:
   * `minify`: If `true`, minify all HTML.
 * `css`:
@@ -181,6 +188,28 @@ And here is a configuration to generate two optimized builds: One bundled and on
     "css": {"minify": true},
     "html": {"minify": true}
   }]
+```
+
+Here is a configuration to generate a bundled, minified application build with the following bundling options:
+
+* Specified paths are excluded from inlining
+* Comments are stripped
+* External CSS is not inlined
+* Identity source maps for inline scripts are created
+
+```json
+"build": [{
+  "name": "bundled-custom",
+  "bundle": {
+    "excludes": ["/path/to/stuff/", "/path/to/more/stuff.html"],
+    "stripComments": "true",
+    "inlineCss": "false",
+    "sourcemaps": "true"
+  },
+  "js": {"minify": true},
+  "css": {"minify": true},
+  "html": {"minify": true}
+}]
 ```
 
 **Build presets** provide an easy way to create common build configurations. When you provide a valid preset for your build, it will inherit its configuration from that preset. We currently support 3 different presets:
