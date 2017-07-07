@@ -63,5 +63,5 @@ Polymer CLI works with two types of projects:
 
 ## Commands
 
-See the documentation on [Polymer CLI commands](polymer-cli-commands) for a list of commands and
-how to use them.
+有關命令列表，請參閱[Polymer CLI命令] （polymer-cli-commands）上的文檔d
+如何使用它們
