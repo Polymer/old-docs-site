@@ -1,4 +1,13 @@
 ---
+- title: "An Update on Neon Animation"
+  path: /blog/2017-07-12-an-update-on-neon-animation
+  published: 2017-07-12
+  author: emarquez
+  description: "What is the status of neon-animation going forward, and what does it mean to you?"
+  tags:
+    - blog
+    - animation
+    - polymer 2
 - title: "Polymer at I/O ‘17, ICYMI"
   path: /blog/2017-05-26-polymer-at-io-17
   published: 2017-05-26
