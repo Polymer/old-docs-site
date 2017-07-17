@@ -93,6 +93,15 @@ The largest limitation of CSS Transitions is that they make it difficult to coor
 
 Here's a trusty [MDN link](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions) on how to use them.
 
+## Conclusion
+To Sum up:
+
+* If you're using another element from the PolymerElements org that depends on `neon-animation`, like `iron-dropdown` or `paper-menu-button`, you don't have to do anything. We'll replace these animations.
+* If you're creating a new element from scratch, we recommend using CSS keyframe animations, CSS transitions, or the Web Animations API.
+* If you're using `neon-animation` directly, you should start planning to eventually move off it, and use one of the platform's animation APIs instead.
+
+Still not sure what these APIs look like? We'll share some examples in a future blog post.
+
 ## Recommended Reading
 * [CSS Versus JavaScript Animations](https://developers.google.com/web/fundamentals/design-and-ui/animations/css-vs-javascript)
 * [Animations and Performance](https://developers.google.com/web/fundamentals/design-and-ui/animations/animations-and-performance)
