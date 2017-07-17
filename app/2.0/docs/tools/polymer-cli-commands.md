@@ -39,7 +39,7 @@ share across your team.
 * [--add-service-worker](#service-workers)
 * [--bundle](#bundles)
 * [--css-minify](#css-minify)
-* [--entry](#entrypoint)
+* [--entrypoint](#entrypoint)
 * [--html-minify](#html-minify)
 * [--insert-prefetch-links](#prefetch)
 * [--js-compile](#js-compile)
@@ -77,7 +77,7 @@ compatible.
 
 Minify inlined and external CSS.
 
-### --entry {#entrypoint}
+### --entrypoint {#entrypoint}
 
 A filename. This is the main entrypoint into your application for all routes. Often times this is
 your `index.html` file. This file should import the app shell file specified in the
