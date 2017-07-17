@@ -17,9 +17,9 @@ You can serve different builds of your app to browsers with different capabiliti
 * A bundled, minified build with a service worker. ES6 code is served as-is. This build is for browsers that can handle ES6 code.
 * An unbundled, minified build with a service worker. ES6 code is served as-is. This build is for browsers that support HTTP/2 push.
 
-These builds are configured in the `builds` object in `polymer.json`, a configuration file in the root project directory. 
+These builds are configured in the `builds` object in `polymer.json`, a configuration file in the root project folder. 
 
-{.caption `polymer.json`}
+polymer.json { .caption}
 ```
 ...
 "builds": [
@@ -36,9 +36,9 @@ These builds are configured in the `builds` object in `polymer.json`, a configur
 ...
 ```
 
-The builds will be output to a subdirectory under the `build/` directory as follows:
+The builds will be output to subfolders under the `build/` folder as follows:
 
-```
+``` html
 build/
   es5-bundled/
   es6-bundled/
@@ -51,7 +51,7 @@ To configure a custom build, you can use command line options, or edit `polymer.
 
 Polymer applications can be deployed to any web server.
 
-This template utilizes the `<app-location>` element to enable URL-based routing,
+This template uses the `<app-location>` element to enable URL-based routing,
 which requires that the server serve the `index.html` entry point for all
 routes.
 
@@ -69,7 +69,7 @@ and follow the instructions for your platform to install it. This tutorial uses 
 1.  [Sign up for an AppEngine account](https://cloud.google.com/appengine).
 
 1.  [Open the project dashboard](https://console.cloud.google.com/iam-admin/projects)
-and create a new project
+and create a new project.
 
     * Click the Create Project button.
     * Type a project name.
@@ -80,36 +80,38 @@ and create a new project
 
 1.  `cd` into the main folder for your app (e.g. `my-app/`).
 
-1. Create an `app.yaml` file with the following contents (replace `build-folder-name` with the name of your build folder):
+1. Create an `app.yaml` file with the following contents (replace <code><var>build-folder-name</var></code> with the name of your build folder):
 
-    ```
+<pre>
+  <code>
     runtime: python27
     api_version: 1
     threadsafe: yes
 
     handlers:
     - url: /bower_components
-      static_dir: build/build-folder-name/bower_components
+      static_dir: build/<var>build-folder-name</var>/bower_components
       secure: always
 
     - url: /images
-      static_dir: build/build-folder-name/images
+      static_dir: build/<var>build-folder-name</var>/images
       secure: always
 
     - url: /src
-      static_dir: build/build-folder-name/src
+      static_dir: build/<var>build-folder-name</var>/src
       secure: always
 
     - url: /manifest.json
-      static_files: build/build-folder-name/manifest.json
-      upload: build/build-folder-name/manifest.json
+      static_files: build/<var>build-folder-name</var>/manifest.json
+      upload: build/<var>build-folder-name</var>/manifest.json
       secure: always
 
     - url: /.*
-      static_files: build/build-folder-name/index.html
-      upload: build/build-folder-name/index.html
+      static_files: build/<var>build-folder-name</var>/index.html
+      upload: build/<var>build-folder-name</var>/index.html
       secure: always
-    ```
+  </code>
+</pre>
 
 1.  Set your project id to the ID given to your app by the App Engine. For example:
     ````
@@ -131,7 +133,7 @@ and create a new project
 
 1. Your app will be available online at its designated URL. For example:
 
-    ````
+    ``` html
     https://my-app-164409.appspot.com/new-view
     ````
 
@@ -156,7 +158,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
 
         npm install -g firebase-tools
 
-1.  `cd` into your project directory.
+1.  `cd` into your project folder.
 
 1.  Inititalize the Firebase application.
 
@@ -165,8 +167,8 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
 
 1.  Firebase asks you for a project to associate with your app. Select the one you created earlier.
 
-1.  Firebase asks you the name of your app's public directory. Enter
-    `build/build-folder-name`. Replace build-folder-name with the name of your build folder.
+1.  Firebase asks you the name of your app's public folder. Enter
+    <code>build/<var>build-folder-name</var></code>.
 
 1.  Edit your firebase configuration to add support for URL routing.  Add
     the following to the `hosting` object in your `firebase.json` file.
@@ -192,7 +194,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
         "rules": "database.rules.json"
       },
       "hosting": {
-        "public": "build/es6-bundled",
+        "public": "build/es5-bundled",
         "rewrites": [
           {
             "source": "!/__/**",
