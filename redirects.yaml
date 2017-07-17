@@ -61,3 +61,9 @@
 # Note: keep these for the tests!
 - /oldpage/ /
 - /some/page/that/is/old.html /1.0/
+
+
+
+# Polymer Summit site
+- /summit https://summit.polymer-project.org/
+- /summit/ https://summit.polymer-project.org/

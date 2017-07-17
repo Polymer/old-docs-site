@@ -79,32 +79,32 @@ handlers:
   upload: summit-2015/(.*)
   secure: always
 
-- url: /summit
+- url: /summit-2016
   static_files: summit-2016/index.html
   upload: summit-2016/index.html
   secure: always
 
-- url: /summit/$
+- url: /summit-2016/$
   static_files: summit-2016/index.html
   upload: summit-2016/index.html
   secure: always
 
-- url: /summit/(schedule|speakers)
+- url: /summit-2016/(schedule|speakers)
   static_files: summit-2016/index.html
   upload: summit-2016/index.html
   secure: always
 
-- url: /summit/codelabs/$
+- url: /summit-2016/codelabs/$
   static_files: summit-2016/codelabs.html
   upload: summit-2016/codelabs.html
   secure: always
 
-- url: /summit/codelabs$
+- url: /summit-2016/codelabs$
   static_files: summit-2016/codelabs.html
   upload: summit-2016/codelabs.html
   secure: always
 
-- url: /summit/(.*)
+- url: /summit-2016/(.*)
   static_files: summit-2016/\1
   upload: summit-2016/(.*)
   secure: always
