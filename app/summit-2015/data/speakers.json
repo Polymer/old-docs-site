@@ -4,7 +4,7 @@
     "title":"Emojineer",
     "gplus":"+MonicaDinculescu514",
     "twitter":"notwaldorf",
-    "photo":"/summit/images/Speakers/monica_dinculescu.jpg",
+    "photo":"/summit-2015/images/Speakers/monica_dinculescu.jpg",
     "bio":"Monica works on the Polymer Elements team, making pretty and accessible widgets for everyone to use. Before this, she worked on Chrome for two years, so she’s pretty sure she has at least once broken the Internet for you."
   },
   {
@@ -12,7 +12,7 @@
     "title":"Staff Developer Programs Engineer",
     "gplus":"+AddyOsmani",
     "twitter":"addyosmani",
-    "photo":"/summit/images/Speakers/addy_osmani.jpg",
+    "photo":"/summit-2015/images/Speakers/addy_osmani.jpg",
     "bio":"Addy is an engineer working with the Chrome team on Polymer & front-end tooling. He's the creator of projects like Yeoman, TodoMVC, PSI and Material Design Lite. Addy's written books including 'Learning JavaScript Design Patterns' and is passionate about improving the getting started experience for all front-enders."
   },
   {
@@ -20,7 +20,7 @@
     "title":"PM, Tooling & Performance",
     "gplus":"+PaulIrish",
     "twitter":"paul_irish",
-    "photo":"/summit/images/Speakers/paul_irish.jpg",
+    "photo":"/summit-2015/images/Speakers/paul_irish.jpg",
     "bio":"Paul Irish is a front-end developer who loves the web. He works on Google Chrome, its performance and DevTools."
   },
   {
@@ -28,7 +28,7 @@
     "title":"Software Engineer",
     "gplus":"115463869828970270624",
     "twitter":"sundress",
-    "photo":"/summit/images/Speakers/alice_boxhall.jpg",
+    "photo":"/summit-2015/images/Speakers/alice_boxhall.jpg",
     "bio":"Alice Boxhall is a software engineer working on accessibility features for Chrome, and the creator of the Accessibility Developer Tools extension and library."
   },
   {
@@ -36,7 +36,7 @@
     "title":"Program Manager",
     "gplus":"+LauraPalmaro1",
     "twitter":"lpalmaro",
-    "photo":"/summit/images/Speakers/laura_palmaro.jpg",
+    "photo":"/summit-2015/images/Speakers/laura_palmaro.jpg",
     "bio":"Laura Palmaro is the Accessibility Program Manager for the Chrome and Chrome OS teams at Google. She collaborates with the engineers, designers, and product managers to make Chrome accessible and usable across platforms, for people of all abilities."
   },
   {
@@ -44,7 +44,7 @@
     "title":"Senior Staff Developer Programs Engineer",
     "gplus":"+EricBidelman",
     "twitter":"ebidel",
-    "photo":"/summit/images/Speakers/eric_bidelman.jpg",
+    "photo":"/summit-2015/images/Speakers/eric_bidelman.jpg",
     "bio":"Eric is a Senior Staff Developer Programs Engineer at Google working with the Chrome team on Polymer and web components. He's the author of “Using the HTML5 Filesystem API” and has led frontend projects like Google's Santa tracker, the 2015 Google I/O web app, chromestatus.com, and html5rocks.com. Prior to Google, Eric worked as a software engineer at the University of Michigan where he designed rich web applications and APIs for the university’s 19 libraries."
   },
   {
@@ -52,7 +52,7 @@
     "title":"Senior Developer Advocate",
     "gplus":"+RobDodson",
     "twitter":"rob_dodson",
-    "photo":"/summit/images/Speakers/rob_dodson.jpg",
+    "photo":"/summit-2015/images/Speakers/rob_dodson.jpg",
     "bio":"Rob Dodson is a developer advocate at Google where he focuses on Polymer and Web Components. In previous roles he’s helped craft design systems for massive enterprise companies, user interfaces for console titles, and even built the occasional enchanted princess game. These days his mission is to fight for a better web and to help developers build great experiences."
   },
   {
@@ -60,7 +60,7 @@
     "title":"Developer Programs Engineer",
     "gplus":"+MatScales1",
     "twitter":"wibblymat",
-    "photo":"/summit/images/Speakers/mat_scales.jpg",
+    "photo":"/summit-2015/images/Speakers/mat_scales.jpg",
     "bio":"Mat is part of the Google Chrome developer relations team, helping developers to make sense of the ever changing Web Platform. Currently interested in new native-like features, Mat spends his time writing samples and libraries so that everyone else can get on with making their web app."
   },
   {
@@ -68,7 +68,7 @@
     "title":"Software Engineer",
     "gplus":"+MatthewMcNulty415",
     "twitter":"mattsmcnulty",
-    "photo":"/summit/images/Speakers/matthew_mcnulty.jpg",
+    "photo":"/summit-2015/images/Speakers/matthew_mcnulty.jpg",
     "bio":"Matthew leads the Polymer team at Google Chrome. Prior to joining Google, he was responsible for the Enyo framework, Ares development environment, and SDK at webOS."
   },
   {
@@ -76,7 +76,7 @@
     "title":"Associate Product Manager",
     "gplus":"+TaylorSavageGoogle",
     "twitter":"TaylorTheSavage",
-    "photo":"/summit/images/Speakers/taylor_savage.jpg",
+    "photo":"/summit-2015/images/Speakers/taylor_savage.jpg",
     "bio":"Taylor is the Product Manager for the Polymer team, and a PM on the Open Web Platform team in Chrome. Prior to joining the Polymer team, Taylor worked on creating new front-end features on the Google Search page. He earned his bachelors degree in Computer Science from Stanford University."
   },
   {
@@ -84,7 +84,7 @@
     "title":"Software Engineer",
     "gplus":"105746371863006377367",
     "twitter":"kevinpschaaf",
-    "photo":"/summit/images/Speakers/kevin_schaaf.jpg",
+    "photo":"/summit-2015/images/Speakers/kevin_schaaf.jpg",
     "bio":"Kevin is a software engineer focusing on core features of the Polymer library.  Kevin got his start in web development at a Tokyo startup back in the Netscape/IE5 days, and then took a long hiatus from the web while working in embedded electronics.  Kevin returned back to the web in full force several years ago after joining Palm to work on the webOS developer platform and later leading the development of LG’s smart TV UI framework before joining the Polymer team at Google."
   },
   {
@@ -92,7 +92,7 @@
     "title":"Software Engineer",
     "gplus":"106928866209435759555",
     "twitter":"morethanreal",
-    "photo":"/summit/images/Speakers/yvonne_yip.jpg",
+    "photo":"/summit-2015/images/Speakers/yvonne_yip.jpg",
     "bio":"Yvonne Yip is a Software Engineer at Google. She works on Polymer elements and delights in bringing Material Design to the web."
   },
   {
@@ -100,7 +100,7 @@
     "title":"Software Engineer",
     "gplus":"+DanielFreedman",
     "twitter":"danfreedman",
-    "photo":"/summit/images/Speakers/dan_freedman.jpeg",
+    "photo":"/summit-2015/images/Speakers/dan_freedman.jpeg",
     "bio":"Daniel Freedman is a Software Engineer on the Polymer team. He is the creator of Polymer's gesture library, Vulcanize, and a bunch of other tools that help Polymer elements get to production."
   },
   {
@@ -108,7 +108,7 @@
     "title":"Software Engineer",
     "gplus":"+ChrisJoel",
     "twitter":"robodynamo",
-    "photo":"/summit/images/Speakers/chris_joel.png",
+    "photo":"/summit-2015/images/Speakers/chris_joel.png",
     "bio":"Chris Joel is a software engineer working on Polymer Elements and Designer. His passion is building rich, connected and responsive interfaces and applications for the web."
   },
   {
@@ -116,7 +116,7 @@
     "title":"UI Designer",
     "gplus":"+YuinChien",
     "twitter":"yuinchien",
-    "photo":"/summit/images/Speakers/yuin_chien.png",
+    "photo":"/summit-2015/images/Speakers/yuin_chien.png",
     "bio":"Yuin Chien is a designer/prototyper, her work involves Google Design tooling and pushing the definition of Material Design beyond mobile."
   },
   {
@@ -124,7 +124,7 @@
     "title":"Graphic Designer",
     "gplus":"+ZacharyGibson",
     "twitter":"zachgibson",
-    "photo":"/summit/images/Speakers/zachary_gibson.png",
+    "photo":"/summit-2015/images/Speakers/zachary_gibson.png",
     "bio":"Zachary Gibson has been a lead designer throughout the process of defining Google's Material Design UX and Visual Design guidelines. He is also a design advocate, and has worked with hundreds of digital product design teams to share best practices and processes. "
   },
   {
@@ -132,7 +132,7 @@
     "title":"Software Engineer",
     "gplus":"+PeterBurns-(rictic)",
     "twitter":"rictic",
-    "photo":"/summit/images/Speakers/peter_burns.jpg",
+    "photo":"/summit-2015/images/Speakers/peter_burns.jpg",
     "bio":"Peter Burns is a Software Engineer on the Polymer team. He joined the Polymer team after using it on other projects at Google and is now working on upgrading all of Google's code to Polymer 1.0."
   },
   {
@@ -140,7 +140,7 @@
     "title":"Developer Programs Engineer",
     "gplus":"+AlexanderSurma",
     "twitter":"surmair",
-    "photo":"/summit/images/Speakers/surma.jpg",
+    "photo":"/summit-2015/images/Speakers/surma.jpg",
     "bio":"Surma is an engineer working with the Chrome team. He likes to cut himself on the bleeding edge, goes full-stack every once in a while and prefers good code over functional one."
   }
 ]

@@ -3,223 +3,223 @@
     "title": "Software Engineer",
     "twitter": "notwaldorf",
     "gplus": "+MonicaDinculescu514",
-    "photo": "/summit/images/Speakers/monica_dinculescu.jpg",
+    "photo": "/summit-2016/images/Speakers/monica_dinculescu.jpg",
     "bio": "Monica emojineers on the Polymer Elements team, making pretty and accessible widgets for everyone to use. Before this, she worked on Chrome for two years, so she's pretty sure she has at least once broken the Internet for you. She will eat all of the pizza, if there is any."
 }, {
     "name": "Paul Irish",
     "title": "PM, Tooling & Performance",
     "twitter": "",
     "gplus": "",
-    "photo": "/summit/images/Speakers/paul_irish.jpg",
+    "photo": "/summit-2016/images/Speakers/paul_irish.jpg",
     "bio": "Paul Irish is a front-end developer who loves the web. He works on Google Chrome, its performance and DevTools."
 }, {
     "name": "Alex Russell",
     "title": "Software Engineer",
     "twitter": "slightlylate",
     "gplus": "+AlexRussell",
-    "photo": "/summit/images/Speakers/alex_russell.jpg",
+    "photo": "/summit-2016/images/Speakers/alex_russell.jpg",
     "bio": "Alex Russell is a Software Engineer on Chrome team where he designs new features for the Web Platform and leads Chrome’s Standards work. His recent projects include Web Components, ES6 features (Classes and Promises), and Service Workers. Previously he helped build Chrome Frame and led the Dojo Toolkit project. Alex plays for Team Web."
 }, {
     "name": "Eric Bidelman",
     "title": "Senior Staff Developer Programs Engineer",
     "twitter": "",
     "gplus": "",
-    "photo": "/summit/images/Speakers/eric_bidelman.jpg",
+    "photo": "/summit-2016/images/Speakers/eric_bidelman.jpg",
     "bio": "Eric is a long time member of the Web DevRel team, based out of Mountain View, CA. Lately, he's been perfecting his digital jedi skills by working closely with the Chrome and Polymer teams. He's the author of “Using the HTML5 Filesystem API” and has led frontend projects like the Google I/O web app, Google's Santa tracker, chromestatus.com, and html5rocks.com. Prior to Google, Eric worked as a software engineer at the University of Michigan where he designed web applications and APIs for the university’s 19 libraries."
 }, {
     "name": "Rob Dodson",
     "title": "Developer Advocate",
     "twitter": "rob_dodson",
     "gplus": "+RobDodson",
-    "photo": "/summit/images/Speakers/rob_dodson.jpg",
+    "photo": "/summit-2016/images/Speakers/rob_dodson.jpg",
     "bio": "Rob Dodson is a developer advocate at Google where he focuses on Web Components and Accessibility. His mission is to fight for a better web and to help developers build great experiences. You can catch him every other week on his YouTube series 'Polycasts' and 'A11ycasts', or on his blog at robdodson.me."
 }, {
     "name": "Taylor Savage",
     "title": "Product Manager",
     "twitter": "TaylorTheSavage",
     "gplus": "",
-    "photo": "/summit/images/Speakers/taylor_savage.jpg",
+    "photo": "/summit-2016/images/Speakers/taylor_savage.jpg",
     "bio": "Taylor is a Product Manager on the Google Web Platform Team, focused on Polymer and Progressive Web Apps. Prior to Polymer, Taylor worked launching new features on Google Search. He enjoys cooking, eating, and tinkering with Raspberry Pi's."
 }, {
     "name": "Dion Almaer",
     "title": "Engineering Director",
     "twitter": "dalmaer",
     "gplus": "",
-    "photo": "/summit/images/Speakers/dion_almaer.jpg",
+    "photo": "/summit-2016/images/Speakers/dion_almaer.jpg",
     "bio": "I love helping developers be successful as that results in happy users. The enjoy watching the constantly evolving experiment that is the Web, and long to see it grow and prosper."
 },  {
     "name": "Matt McNulty",
     "title": "Director, Web Platform Client",
     "twitter": "mattsmcnulty",
     "gplus": "",
-    "photo": "/summit/images/Speakers/matt_mcnulty.jpg",
+    "photo": "/summit-2016/images/Speakers/matt_mcnulty.jpg",
     "bio": "Matthew is the Engineering Director and founder of the Polymer team at Google Chrome. Prior to that, he was a core member of the webOS team at Palm, focused on the UI, core apps, and the SDK and Developer Platform organizations."
 }, {
     "name": "Wendy Ginsberg",
     "title": "Associate Product Manager",
     "twitter": "wmginsberg",
     "gplus": "103070138385502314647",
-    "photo": "/summit/images/Speakers/wendy_ginsberg.jpg",
+    "photo": "/summit-2016/images/Speakers/wendy_ginsberg.jpg",
     "bio": "Wendy is a Product Manager on the Polymer team based in San Francisco. She spent the past year working on the Google Store, and is currently working with Google's Project Reconnect to help build online communities for youth refugee homes in Germany. Prior to Google, Wendy studied Computer Science at Brown University, where she focused on Data Science and developing introductory courses."
 },  {
     "name": "Ben Issa",
     "title": "Chief Architect",
     "twitter": "",
     "gplus": "",
-    "photo": "/summit/images/Speakers/ben_issa.jpg",
+    "photo": "/summit-2016/images/Speakers/ben_issa.jpg",
     "bio": "Ben Issa is the Chief Architect for Challenger and Growth Countries at ING, globally. Ben has led countless initiatives to reduce cost and increase speed. From the instant provisioning of end to end banking systems and data with zero cost to the automation of infrastructure to achieve the highest levels of availability and disaster recovery. He is currently modernising and globalising systems at ING and has been a pioneer in the web components space since 2014.  He is obsessed with speed, irrationality and the unseen."
 }, {
     "name": "Chris Lorenzo",
     "title": "Senior Principal Engineer",
     "twitter": "chiefcll",
     "gplus": "100860601130618125503",
-    "photo": "/summit/images/Speakers/chris_lorenzo.jpg",
+    "photo": "/summit-2016/images/Speakers/chris_lorenzo.jpg",
     "bio": "I've worked at Comcast for 9 years currently as a Senior Principal Engineer. I enjoy building/motivating teams and ramping up new projects. Besides coding in Javascript, I love spending time with my family or helping out in the community. I'm also heavily involved with local colleges and schools to mentor the next generation."
 }, {
     "name": "Chris Joel",
     "title": "Software Engineer",
     "twitter": "0xcda7a",
     "gplus": "",
-    "photo": "/summit/images/Speakers/chris_joel.jpg",
+    "photo": "/summit-2016/images/Speakers/chris_joel.jpg",
     "bio": "Chris is a software engineer specializing in UI and the web platform. He likes to imagine crazy, occasionally-useful ways to use web components. Ask him about his favorite giant robots!"
 }, {
     "name": "Scott Jenson",
     "title": "Physical Web Lead",
     "twitter": "scottjenson",
     "gplus": "+ScottJenson",
-    "photo": "/summit/images/Speakers/scott_jenson.jpg",
+    "photo": "/summit-2016/images/Speakers/scott_jenson.jpg",
     "bio": "Scott is leading the Physical Web project in Chrome. Before that he was the first UX designer on Google Mobile maps and managed the Mobile UX team for many years. Previously he worked at Apple on the Newton and System 7 projects, was the design director at Symbian, and was a creative director at frog design in San Francisco."
 }, {
     "name": "Robin Glen",
     "title": "Senior Developer",
     "twitter": "arielwithlegs",
     "gplus": "",
-    "photo": "/summit/images/Speakers/robin_glen.jpg",
+    "photo": "/summit-2016/images/Speakers/robin_glen.jpg",
     "bio": "Senior developer at NET-A-PORTER, interested in performance, monitoring, testing and the browser platform."
 }, {
     "name": "Paul Lewis",
     "title": "Developer Advocate",
     "twitter": "aerotwist",
     "gplus": "",
-    "photo": "/summit/images/Speakers/paul_lewis.jpg",
+    "photo": "/summit-2016/images/Speakers/paul_lewis.jpg",
     "bio": "Paul works on the Web Developer Relations team at Google. He works on performance, user interfaces and is a big fan of showbiz code."
 }, {
     "name": "Jesiah McCann",
     "title": "Web Development Manager",
     "twitter": "jesiahM",
     "gplus": "",
-    "photo": "/summit/images/Speakers/jesiah_mccann.jpg",
+    "photo": "/summit-2016/images/Speakers/jesiah_mccann.jpg",
     "bio": "Jesiah manages development of core web products @ Gannett / USA TODAY. He has been with Gannett for 5 years, and is currently leading the development of their emerging web platform. Jesiah is a blacksmith in his spare time, and has a slight obsession with all things coffee."
 }, {
     "name": "Jouni Koivuviita",
     "title": "Product Manager",
     "twitter": "jouni",
     "gplus": "112101959764396561724",
-    "photo": "/summit/images/Speakers/jouni_koivuviita.jpg",
+    "photo": "/summit-2016/images/Speakers/jouni_koivuviita.jpg",
     "bio": "Product Manager/Designer for Vaadin Core Elements, working on the best web components in the world for mobile and desktop. Over 10 years experience from designing UI components for business oriented web applications."
 }, {
     "name": "Eiji Kitamura",
     "title": "Developer Advocate",
     "twitter": "agektmr",
     "gplus": "+agektmr",
-    "photo": "/summit/images/Speakers/eiji_kitamura.jpg",
+    "photo": "/summit-2016/images/Speakers/eiji_kitamura.jpg",
     "bio": "Eiji is a Developer Advocate based in Tokyo working on the web front-end. Eiji is currently focusing on making identity and payment experience better on the mobile web."
 }, {
     "name": "Marcus Hellberg",
     "title": "Developer Advocate",
     "twitter": "marcushellberg",
     "gplus": "108697142705730415864",
-    "photo": "/summit/images/Speakers/marcus_hellberg.jpg",
+    "photo": "/summit-2016/images/Speakers/marcus_hellberg.jpg",
     "bio": "Marcus has been working with web technology for the last 15 years on everything ranging from front end development to backend architectures. Currently Marcus works as a developer advocate at Vaadin, helping the web development community learn about new technologies through blogging, workshops, talks and demo apps."
 }, {
     "name": "Elliott Marquez",
     "title": "Software Engineer",
     "twitter": "Elliott_Marquez",
     "gplus": "+ElliottMarquez",
-    "photo": "/summit/images/Speakers/elliott_marquez.jpg",
+    "photo": "/summit-2016/images/Speakers/elliott_marquez.jpg",
     "bio": "I am a Software Engineer on the Polymer team, and I focus on creating and maintaining our wonderful set of elements. Before Google, I was a student at MIT where I interned at Google Play, Bing, and I did research for the W3C, the MIT Media Lab, and CSAIL. I like video games, musicals, and teaching STEM to kids!"
 },  {
     "name": "Gray Norton",
     "title": "Technical Lead/Manager",
     "twitter": "graynorton",
     "gplus": "",
-    "photo": "/summit/images/Speakers/gray_norton.jpg",
+    "photo": "/summit-2016/images/Speakers/gray_norton.jpg",
     "bio": "Gray is a passionate Web advocate and a Technical Lead / Manager on the Polymer team. Prior to joining Google he led the Enyo framework team at webOS, helping developers build apps for several generations of phones, tablets, TVs and watches. In past lives, he has worked on software tools for creating chatbots, 3D games and pretty pictures. When not at work, Gray enjoys spending time with his family and occasionally singing."
 }, {
     "name": "Justin Fagnani",
     "title": "Software Engineer",
     "twitter": "justinfagnani",
     "gplus": "+JustinFagnani",
-    "photo": "/summit/images/Speakers/justin_fagnani.jpg",
+    "photo": "/summit-2016/images/Speakers/justin_fagnani.jpg",
     "bio": "Justin is TL of the Polymer Tools team. He's focused on building a new set of tools that work with the platform and bring the best developer experience and make it easy to create optimal web applications. He's been working in developer tools at Google for over 7 years."
 }, {
     "name": "John Riviello",
     "title": "Distinguished Engineer",
     "twitter": "JohnRiv",
     "gplus": "+JohnRiviello",
-    "photo": "/summit/images/Speakers/john_riviello.jpg",
+    "photo": "/summit-2016/images/Speakers/john_riviello.jpg",
     "bio": "John Riviello is a Distinguished Engineer and Lead Front-end Developer at Comcast where he works on the XFINITY customer websites and web applications. He is also the author of the Lynda.com course 'CSS to Sass: Converting an Existing Site.' In his free time, he prefers surfing waves over surfing the internet."
 }, {
     "name": "Michael Bleigh",
     "title": "Software Engineer",
     "twitter": "mbleigh",
     "gplus": "",
-    "photo": "/summit/images/Speakers/michael_bleigh.jpg",
+    "photo": "/summit-2016/images/Speakers/michael_bleigh.jpg",
     "bio": "Michael is an engineer on the Firebase team at Google and is the Tech Lead for Firebase Hosting and the Firebase CLI. A long-time Polymer fan, Michael is the lead maintainer of the PolymerFire library. Before joining Google, Michael cofounded front-end hosting platform Divshot."
 }, {
     "name": "Josh Trout",
     "title": "Principal Developer",
     "twitter": "filet0fish",
     "gplus": "u/0/+JoshTrout",
-    "photo": "/summit/images/Speakers/josh_trout.jpg",
+    "photo": "/summit-2016/images/Speakers/josh_trout.jpg",
     "bio": "Josh has been working at Gannett for over 3 years and is a principal developer on the web team. He is currently architecting the next generation framework for Gannett's 100+ newspaper sites."
 }, {
     "name": "Peter Burns",
     "title": "Software Engineer",
     "twitter": "rictic",
     "gplus": "+PeterBurnsrictic",
-    "photo": "/summit/images/Speakers/peter_burns.jpg",
+    "photo": "/summit-2016/images/Speakers/peter_burns.jpg",
     "bio": "Peter is the author of iron-location, app-route, and a contributor to iron-ajax. He led the effort to convert all of Google's internal Polymer code to 1.0 where he authored the polyup tool. Now he works on our tools team, where he's working on a next generation static analysis framework for the web."
 }, {
     "name": "Sam Saccone",
     "title": "Software Engineer",
     "twitter": "samccone",
     "gplus": "115381962400320349035",
-    "photo": "/summit/images/Speakers/sam_saccone.jpg",
+    "photo": "/summit-2016/images/Speakers/sam_saccone.jpg",
     "bio": "Sam Saccone is a software engineer on the android build infra team and web performance obsessor."
 }, {
     "name": "Sam Thorogood",
     "title": "Software Engineer",
     "twitter": "samthor",
     "gplus": "http://google.com/+SamThorogood",
-    "photo": "/summit/images/Speakers/sam_thorogood.jpg",
+    "photo": "/summit-2016/images/Speakers/sam_thorogood.jpg",
     "bio": "Sam is a Developer Programs Engineer at Google, where he makes the web better through standards. Every year, he TLs Santa Tracker 🎅🎁🎄 (built with Polymer), bringing joy and cheer to children and adults all over the world. He enjoys travel and board games."
 }, {
     "name": "Steve Orvell",
     "title": "Software Engineer",
     "twitter": "",
     "gplus": "",
-    "photo": "/summit/images/Speakers/steve_orvell.jpg",
+    "photo": "/summit-2016/images/Speakers/steve_orvell.jpg",
     "bio": "Steve is an engineer working on the core library of the Polymer project. He works on the foundation code, DOM scoping, and the data system. He's been on the project since the beginning about 4 years ago and has participated in the spec process for Custom Elements and Shadow DOM. Before Polymer, Steve worked on WebOS at HP and Palm. In addition to coding, Steve enjoys running, biking, and traveling."
 }, {
     "name": "Surma Surma",
     "title": "Developer Programs Engineer",
     "twitter": "DasSurma",
     "gplus": "",
-    "photo": "/summit/images/Speakers/surma.jpg",
+    "photo": "/summit-2016/images/Speakers/surma.jpg",
     "bio": "Surma is an engineer working with the Chrome team. He likes to cut himself on the bleeding edge, goes full-stack every once in a while and prefers good code over functional one."
 },  {
     "name": "Daniel Freedman",
     "title": "Software Engineer",
     "twitter": "danfreedman",
     "gplus": "+DanielFreedman",
-    "photo": "/summit/images/Speakers/daniel_freedman.jpg",
+    "photo": "/summit-2016/images/Speakers/daniel_freedman.jpg",
     "bio": "Daniel is a software engineer on the Polymer team. He currently works on the Polymer library, and has previously worked on tools such as vulcanize, web-component-tester, and Polymer's gesture library. Daniel is interested in simple to use tools and libraries that make the users' development easier."
 }, {
     "name": "Frederick Schott",
     "title": "Software Engineer",
     "twitter": "",
     "gplus": "",
-    "photo": "/summit/images/Speakers/fred_schott.jpg",
+    "photo": "/summit-2016/images/Speakers/fred_schott.jpg",
     "bio": " "
 }]
