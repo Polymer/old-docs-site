@@ -25,7 +25,7 @@ icon-toggle.html: Before { .caption }
 <script>
   class IconToggle extends Polymer.Element {
     static get is() {
-    return "icon-toggle";
+      return "icon-toggle";
     }
     constructor() {
       super();
