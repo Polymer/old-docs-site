@@ -38,12 +38,10 @@ polymer.json { .caption}
 
 The builds will be output to subfolders under the `build/` folder as follows:
 
-``` html
-build/
-  es5-bundled/
-  es6-bundled/
-  es6-unbundled/
-```
+    build/
+      es5-bundled/
+      es6-bundled/
+      es6-unbundled/
 
 To configure a custom build, you can use command line options, or edit `polymer.json`. Run `polymer help build` for the full list of available options and optimizations. Also, see the documentation on the [polymer.json specification](https://www.polymer-project.org/2.0/docs/tools/polymer-json) and [building your Polymer application for production](https://www.polymer-project.org/2.0/toolbox/build-for-production).
 
@@ -80,68 +78,58 @@ and create a new project.
 
 1.  `cd` into the main folder for your app (e.g. `my-app/`).
 
-1. Create an `app.yaml` file with the following contents (replace <code><var>build-folder-name</var></code> with the name of your build folder):
+1. Create an `app.yaml` file with the following contents:
 
-<pre>
-  <code>
+    ```
     runtime: python27
     api_version: 1
     threadsafe: yes
 
     handlers:
     - url: /bower_components
-      static_dir: build/<var>build-folder-name</var>/bower_components
+      static_dir: build/es5-bundled/bower_components
       secure: always
 
     - url: /images
-      static_dir: build/<var>build-folder-name</var>/images
+      static_dir: build/es5-bundled/images
       secure: always
 
     - url: /src
-      static_dir: build/<var>build-folder-name</var>/src
+      static_dir: build/es5-bundled/src
       secure: always
 
     - url: /manifest.json
-      static_files: build/<var>build-folder-name</var>/manifest.json
-      upload: build/<var>build-folder-name</var>/manifest.json
+      static_files: build/es5-bundled/manifest.json
+      upload: build/es5-bundled/manifest.json
       secure: always
 
     - url: /.*
-      static_files: build/<var>build-folder-name</var>/index.html
-      upload: build/<var>build-folder-name</var>/index.html
+      static_files: build/es5-bundled/index.html
+      upload: build/es5-bundled/index.html
       secure: always
-  </code>
-</pre>
+    ```
 
-1.  Set your project id to the ID given to your app by the App Engine. For example:
-    ````
-    gcloud config set project my-app-164409
-    ````
+1. Set your project id to the ID given to your app by the App Engine. For example:
+   
+       gcloud config set project my-app-164409
 
-1. Create your app.
-    ````
-    gcloud app create
-    ````
-	
-    You will need to select a region for your app to be deployed in. This can't be changed.
+1. Create your app:
+   
+       gcloud app create
+     
+   You will need to select a region for your app to be deployed in. This can't be changed.
 
-1. Deploy your app.
-
-    ````
-    gcloud app deploy
-    ````
+1. Deploy your app:
+   
+       gcloud app deploy
 
 1. Your app will be available online at its designated URL. For example:
-
-    ``` html
-    https://my-app-164409.appspot.com/new-view
-    ````
-
-    Open your app URL in your browser by typing this command:
-
-    ````
-    gcloud app browse
-    ````
+   
+       https://my-app-164409.appspot.com/new-view
+   
+   Open your app URL in your browser by typing this command:
+   
+       gcloud app browse
 
 ### Deploy with Firebase
 
@@ -167,8 +155,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
 
 1.  Firebase asks you for a project to associate with your app. Select the one you created earlier.
 
-1.  Firebase asks you the name of your app's public folder. Enter
-    <code>build/<var>build-folder-name</var></code>.
+1.  Firebase asks you the name of your app's public folder. Enter `build/es5-bundled`.
 
 1.  Edit your firebase configuration to add support for URL routing.  Add
     the following to the `hosting` object in your `firebase.json` file.
@@ -212,10 +199,10 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
     This instructs Firebase to serve up `index.html` for any URLs that don't
     otherwise end in a file extension.
 
-1.  Deploy your project.
-
-        firebase deploy
-
-    The URL to your live site is listed in the output. You can also open
-    the site in your default browser by running `firebase open hosting:site`.
+1. Deploy your project.
+   
+       firebase deploy
+   
+   The URL to your live site is listed in the output. You can also open
+   the site in your default browser by running `firebase open hosting:site`.
 
