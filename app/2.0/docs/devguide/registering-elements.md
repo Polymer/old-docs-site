@@ -17,7 +17,7 @@ Example: { .caption }
 ```
 // define the element's class element
 class MyElement extends Polymer.Element {
-
+  static get is() { return 'my-element'; }
   // Element class can define custom element reactions
   connectedCallback() {
     super.connectedCallback();
