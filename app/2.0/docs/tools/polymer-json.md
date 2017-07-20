@@ -230,11 +230,8 @@ And here is a configuration to generate two optimized builds: One bundled and on
 The following configuration generates a bundled, minified application build with bundling options:
 
 *   Specified paths are excluded from inlining.
-
 *   Comments are stripped.
-
 *   External CSS is not inlined.
-
 *   Identity source maps for inline scripts are created.
 
 ```json
