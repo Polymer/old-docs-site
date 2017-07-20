@@ -1,0 +1,80 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="codemirror-import.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="my-editor">
+  <link rel="stylesheet" href="../bower_components/codemirror/lib/codemirror.css">  
+  
+  <template>
+    
+    <style>
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+
+       :host > * {
+        width: 100%;
+      }       
+
+
+    </style>
+      <iframe id="frame" src="[[href]]"></iframe>
+      
+      
+      <div id="container" class="code-mirror-container">
+        <textarea id="textarea" value="[[value]]"></textarea>
+      </div>
+
+  </template>
+
+  <script>
+    Polymer( {
+      is: 'my-editor',
+
+      properties: {
+          href: String,
+          // optional initial code
+          value: {
+            type: String,
+            observer: '_valueChanged',
+            notify: true
+          }
+      },
+
+      attached: function() { 
+           
+        this._codeMirror = CodeMirror.fromTextArea(this.$.textarea, {
+          mode: 'text/html'
+        });
+        this._codeMirror.on('changes', this._onChanges.bind(this));
+
+      },
+
+      updateDemo: function() {
+        this.$.frame.contentWindow.postMessage(this._codeMirror.getValue(), "*");
+      },
+
+      _onChanges: function() {
+        this.debounce('updateDemo', this.updateDemo, 400);
+      },
+
+      _valueChanged: function(value) {
+        this._codeMirror.setValue(value);
+      },
+
+    });
+
+
+  </script>
+</dom-module>
