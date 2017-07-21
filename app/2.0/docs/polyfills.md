@@ -45,7 +45,7 @@ import the polyfills:
 ```html
 <script>
   // Force all polyfills on
-  window.customElements && window.customElements.forcePolyfill = true;
+  if (window.customElements) window.customElements.forcePolyfill = true;
   ShadyDOM = { force: true };
   ShadyCSS = { shimcssproperties: true};
 </script>
