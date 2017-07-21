@@ -78,30 +78,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
     </style>
-     <my-editor href="http://127.0.0.1:8081"></my-editor>  
-    <!-- <div class="tabstrip layout horizontal center">
-      <paper-tabs selected="{{_selected}}" class="flex">
-        <template is="dom-repeat" items="[[_panels]]">
-          <paper-tab>{{item.heading}}</paper-tab>
-        </template>
-      </paper-tabs>
-      <a href="[[src]]" target="_blank" hidden$="[[_hidePlunkrButton(src)]]">
-        <paper-button raised>
-          <iron-icon icon="pw-icons:exit-to-app"></iron-icon>
-          Edit on Plunker
-        </paper-button>
-      </a>
-    </div>
-
-    <div class="layout horizontal">
-      <iron-pages selected="[[_selected]]">
-        <content id="contentpanels" select="demo-tab"></content>
-      </iron-pages>
-    </div>
-
-    <div class="results">
-      <content select="iframe"></content>
-    </div> -->
+     <my-editor href="http://127.0.0.1:8081" html-content="[[htmlContent]]"></my-editor>  
   </template>
 
   <script>
@@ -111,6 +88,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           src: {
             type: String
           }
+        },
+
+        attached: function() {
+          this.htmlContent = '<link rel="import" href="../../bower_components/paper-button/paper-button.html">';
         }
     });
     // Define the class for a new element called custom-element

@@ -10,6 +10,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="codemirror-import.html">
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-spinner/paper-spinner.html">
+<!-- TODO: investigate why Firefox can't find style unless it's linked here  -->
 <link rel="stylesheet" href="../bower_components/codemirror/lib/codemirror.css"> 
 
 <dom-module id="my-editor">
@@ -27,9 +29,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }       
 
 
-    </style>
+</style>
+      <template is="dom-if" if="[[!_frameReady]]">
+        <paper-spinner></paper-spinner>
+      </template>
       <iframe id="frame" src="[[href]]"></iframe>
-      
       
       <div id="container" class="code-mirror-container">
         <textarea id="textarea" value="[[value]]"></textarea>
@@ -43,18 +47,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       properties: {
           href: String,
-          // optional initial code
+          // initial code, some of which is server-computed
+          htmlContent: {
+            type: String,
+            observer: '_htmlContentChanged',
+            notify: true
+          },
           value: {
             type: String,
-            observer: '_valueChanged',
-            notify: true
+            observer: '_valueChanged'
           },
           dependencies: {
             type: Object
           }
       },
 
-      created: function() {
+      created: function() {        
         window.addEventListener('message', this._onMessage.bind(this));
       },
 
@@ -67,6 +75,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _valueChanged: function(value) {
+        if (!this._codeMirror) 
+          return;
         this._codeMirror.setValue(this.value);
       },
 
@@ -76,25 +86,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           return;
         }
 
+        this._frameReady = true;
         this._codeMirror = CodeMirror.fromTextArea(this.$.textarea, {
           mode: 'text/html'
         });
         this._codeMirror.on('changes', this._onChanges.bind(this));
-        this._initValue();
+        this._htmlContentChanged();
       },
 
-      _initValue: function() {
-        this.dependencies = [{repo: '../../bower_components/paper-button/paper-button'}];
-
-        if (!this.dependencies)
-          return;
-
+      _htmlContentChanged: function() {
         var endScript = 'script>';
         var source = [
-          '<!-- START-HIDDEN-SECTION: Add imports and styling here. -->',
+          '<!-- polyfill for browsers that do not support webcomponents -->',
           '<script src="../../bower_components/webcomponentsjs/webcomponents-loader.js"><' + '/'.toString() + endScript,
-          '<link rel="import" href="' + this.dependencies[0].repo + '.html">',
-          '<paper-button>foo</paper-button>'
+          '',
+          this.htmlContent
         ].join('\n');
         this.value = source;
       }
