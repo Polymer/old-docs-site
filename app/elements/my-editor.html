@@ -12,8 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
 <dom-module id="my-editor">
-  <link rel="stylesheet" href="../bower_components/codemirror/lib/codemirror.css">  
-  
+  <link rel="stylesheet" href="../bower_components/codemirror/lib/codemirror.css">   
   <template>
     
     <style>
@@ -49,20 +48,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             type: String,
             observer: '_valueChanged',
             notify: true
+          },
+          dependencies: {
+            type: Object
           }
       },
 
-      attached: function() { 
-           
-        this._codeMirror = CodeMirror.fromTextArea(this.$.textarea, {
-          mode: 'text/html'
-        });
-        this._codeMirror.on('changes', this._onChanges.bind(this));
-
+      created: function() {
+        window.addEventListener('message', this._onMessage.bind(this));
       },
 
       updateDemo: function() {
-        this.$.frame.contentWindow.postMessage(this._codeMirror.getValue(), "*");
+        this.$.frame.contentWindow.postMessage(this._codeMirror.getValue(), this.href);
       },
 
       _onChanges: function() {
@@ -70,8 +67,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _valueChanged: function(value) {
-        this._codeMirror.setValue(value);
+        this._codeMirror.setValue(this.value);
       },
+
+      // receive message from frame when its poly-editor is attached, then initialize mirror
+      _onMessage: function(e) {
+        if (e.origin !== this.href) {
+          return;
+        }
+
+        this._codeMirror = CodeMirror.fromTextArea(this.$.textarea, {
+          mode: 'text/html'
+        });
+        this._codeMirror.on('changes', this._onChanges.bind(this));
+        this._initValue();
+      },
+
+      _initValue: function() {
+        this.dependencies = [{repo: '../../bower_components/paper-button/paper-button'}];
+
+        if (!this.dependencies)
+          return;
+
+        var endScript = 'script>';
+        var source = [
+          '<!-- START-HIDDEN-SECTION: Add imports and styling here. -->',
+          '<script src="../../bower_components/webcomponentsjs/webcomponents-loader.js"><' + '/'.toString() + endScript,
+          '<link rel="import" href="' + this.dependencies[0].repo + '.html">',
+          '<paper-button>foo</paper-button>'
+        ].join('\n');
+        this.value = source;
+      }
 
     });
 

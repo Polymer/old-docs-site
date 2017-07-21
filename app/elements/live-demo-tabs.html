@@ -78,7 +78,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
     </style>
-     <my-editor href="http://127.0.0.1:8081" value="{{value}}"></my-editor>  
+     <my-editor href="http://127.0.0.1:8081"></my-editor>  
     <!-- <div class="tabstrip layout horizontal center">
       <paper-tabs selected="{{_selected}}" class="flex">
         <template is="dom-repeat" items="[[_panels]]">
@@ -111,11 +111,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           src: {
             type: String
           }
-        },
-
-      attached: function() {
-        this.value = '<!-- TODO: write code -->'; 
-      }
+        }
     });
     // Define the class for a new element called custom-element
     // class LiveDemoTabs extends Polymer.Element {
