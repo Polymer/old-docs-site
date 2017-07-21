@@ -524,6 +524,9 @@ item**.
 <span>{{array.0}}</span>
 ```
 
+**Array binding does not track array mutations.** 
+An array mutation that reorders an array (for example, using the [splice method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)) will not be reflected in static bindings.
+{ .alert .alert-info }
 
 There are several ways to interact with arrays in a data binding:
 
