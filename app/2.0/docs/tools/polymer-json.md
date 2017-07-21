@@ -169,15 +169,15 @@ for every run:
     *   `stripComments`: Remove all comments except those tagged `@license`, or starting with
         `<!--!` or `<!--#`.
 
-*   `html`:
+*   `html`: An object containing a configuration option for HTML:
     
     *   `minify`: If `true`, minify all HTML.
 
-*   `css`:
+*   `css`: An object containing a configuration option for CSS:
 
     *   `minify`: If `true`, minify all CSS.
 
-*   `js`:
+*   `js`: An object containing configuration options for Javascript:
 
     *   `minify`: If `true`, minify all JS.
 
@@ -292,9 +292,9 @@ Any additional options that you provide will override the given preset. In the e
 }]
 ```
 
-
 ### lint
 Optional<br>
+Type: `Object`
 
 You can use this to configure how polymer-lint will lint your project both on the command line and in IDE plugins.
 
