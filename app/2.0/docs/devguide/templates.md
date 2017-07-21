@@ -437,7 +437,7 @@ one of the following:
     property on the `dom-repeat` to disable dirty checking on the array.
 
       ```html
-      <template is="dom-repeat" items={{items}} mutable-data> ... </template>
+      <template is="dom-repeat" items="{{items}}" mutable-data> ... </template>
       ```
 
       With `mutableData` set, calling `notifyPath` on the array causes the entire array to be
