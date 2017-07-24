@@ -75,7 +75,7 @@ This guide divides the features into the following groups:
     shadow DOM children. It also provides an optional library for handling gesture events.
 
 *   [Data system](data-system). The Polymer data system provides data binding to properties and
-    attributes; property observers; and computed properties.
+    attributes; property observers; and computed properties.
 
 
 If you're upgrading an existing 1.x element to the new APIs, see the
