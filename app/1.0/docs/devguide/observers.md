@@ -335,7 +335,7 @@ Polymer({
 #### Track key splices {#key-splices}
 
 In some situtations, you may need to know about the [immutable opaque
-keys](#key-paths) that Polymer uses to track array items. **This is a advanced
+keys](#key-paths) that Polymer uses to track array items. **This is an advanced
 use case, only required if you're implementing an element like the [template
 repeater](https://www.polymer-project.org/1.0/docs/devguide/templates.html#dom-repeat).**
 
