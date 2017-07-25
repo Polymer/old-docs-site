@@ -191,6 +191,9 @@
   - title: Routing
     path: /2.0/toolbox/routing
     indent: True
+  - title: Lazy Imports
+    path: /2.0/toolbox/lazy-imports
+    indent: True
   - title: Localization
     path: /2.0/toolbox/localize
     indent: True
