@@ -38,7 +38,6 @@ Example: { .caption }
 </dom-module>
 ```
 
-
 **Tip: Use `on-tap` rather than `on-click` for an event that fires consistently across both touch
 (mobile) and click (desktop) devices**. The `tap` event is part of an optional set of gesture
 events. See [Gesture events](gesture-events) for information on enabling gesture event support
@@ -50,6 +49,10 @@ converted to lowercase**. This is because HTML attribute names are case
 insensitive. So specifying `on-myEvent` adds a listener for `myevent`. The event _handler_
 name (for example, `handleClick`) **is** case sensitive. **To avoid confusion, always use
 lowercase event names.**
+
+If you use [annotated event listeners](#annotated-listeners), Polymer automatically
+adds and removes the event listeners for you as the element gets connected or disconnected
+from the DOM.
 
 ## Add and remove listeners imperatively {#imperative-listeners}
 
@@ -88,7 +91,6 @@ An element adding an event listener to itself or one of its shadow DOM children 
 the element from being garbage collected. However, an event listener attached to an outside element,
 like a window or document level event listener, may prevent the element from being garbage
 collected. Remove the event listener in `disconnectedCallback` to prevent memory leaks.
-
 
 ## Fire custom events {#custom-events}
 
