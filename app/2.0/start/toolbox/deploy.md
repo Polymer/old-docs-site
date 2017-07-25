@@ -17,7 +17,9 @@ You can serve different builds of your app to browsers with different capabiliti
 * A bundled, minified build with a service worker. ES6 code is served as-is. This build is for browsers that can handle ES6 code.
 * An unbundled, minified build with a service worker. ES6 code is served as-is. This build is for browsers that support HTTP/2 push.
 
-These builds are configured in the `builds` object in `polymer.json`, a configuration file in the root project folder. 
+In this step, you'll deploy the bundled, compiled build (`es5-bundled`) for maximum compatibility. Serving the other builds requires a more complex serving setup.
+
+Builds are configured in the `builds` object in `polymer.json`, a configuration file in the root project folder:
 
 polymer.json { .caption}
 ```
@@ -155,7 +157,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
 
 1.  Firebase asks you for a project to associate with your app. Select the one you created earlier.
 
-1.  Firebase asks you the name of your app's public folder. Enter `build/es5-bundled`.
+1.  Firebase asks you the name of your app's public folder. Enter `build/es5-bundled/`.
 
 1.  Edit your firebase configuration to add support for URL routing.  Add
     the following to the `hosting` object in your `firebase.json` file.
@@ -181,7 +183,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
         "rules": "database.rules.json"
       },
       "hosting": {
-        "public": "build/es5-bundled",
+        "public": "build/es5-bundled/",
         "rewrites": [
           {
             "source": "!/__/**",
