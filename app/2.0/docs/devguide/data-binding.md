@@ -519,9 +519,9 @@ item**.
 
 ```
 <!-- Don't do this! This format doesn't work -->
-<span>[[array[0]]]</span>
+<span>{{array[0]}}</span>
 <!-- Don't do this! Data may display, but won't be updated correctly -->
- <span>[[array.0]]</span>
+ <span>{{array.0}}</span>
 ```
 
 There are several ways to interact with arrays in a data binding:
