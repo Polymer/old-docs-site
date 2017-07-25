@@ -127,7 +127,7 @@ views are demand-loaded fragments.
 
 Shop also uses [`dom-if`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.DomIf) templates to lazily create views:
 
-```javascript
+```html
 <!-- Lazy-create the tabs for larger screen sizes. -->
 <div id="tabContainer" sticky$="[[_shouldShowTabs]]" hidden$="[[!_shouldShowTabs]]">
   <dom-if if="[[_shouldRenderTabs]]">
