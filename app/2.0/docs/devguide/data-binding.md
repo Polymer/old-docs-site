@@ -518,12 +518,11 @@ To keep annotation parsing simple, **Polymer doesn't provide a way to bind direc
 item**.
 
 ```
-<!-- Don't do this! -->
+<!-- Don't do this! This format doesn't work -->
 <span>{{array[0]}}</span>
-<!-- Or this! -->
-<span>{{array.0}}</span>
+<!-- Don't do this! Data may display, but won't be updated correctly -->
+ <span>{{array.0}}</span>
 ```
-
 
 There are several ways to interact with arrays in a data binding:
 
