@@ -81,7 +81,9 @@ we recommend you review the [Bash on ubuntu on Windows documentation](https://ms
 
 ### Enable Bash on Windows 10 {#enable-bash}
 
-1.  Make sure you have an x64 installation of Window 10 with OS Build > 14393.
+1.  Check your OS build by selecting **Start** > **System** > **OS Build**. 
+    
+    Make sure you have an x64 installation of Windows 10 with OS build > 14393.
     
 1.  Open **Settings** > **Update and Security** > **For developers** and select **Developer Mode**.
 
@@ -112,7 +114,7 @@ with nvm](https://github.com/creationix/nvm).
 
 1.  Type the following command to use an install script:
     
-        curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+        curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 
 2.  Restart your terminal by closing and re-opening your Bash prompt.
 
