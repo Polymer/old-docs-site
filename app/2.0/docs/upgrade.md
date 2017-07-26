@@ -794,12 +794,23 @@ let effectiveChildren =
   Polymer.FlattenedNodesObserver.getFlattenedNodes(this).filter(n.nodeType === Node.ELEMENT_NODE)
 ```
 
+To replace the `getContentChildren` method, write platform code to perform this functionality (get the `assignedNodes`, and filter down to just the elements, ignoring comments and text nodes):
+
+```js
+this.shadowRoot
+  .querySelector('slot')
+  .assignedNodes({flatten:true})
+  .filter(n.nodeType === Node.ELEMENT_NODE)
+```
+
 `Polymer.FlattenedNodesObserver` is an optional module. If you're loading the `polymer-element.html`
 import, you need to import `FlattenedNodesObserver` separately.
 
 ```html
 <link rel="import" href="/bower_components/polymer/lib/utils/flattened-nodes-observer.html">
 ```
+
+
 
 ## CSS custom property shim {#css-custom-property-shim}
 
