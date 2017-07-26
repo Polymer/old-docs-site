@@ -13,9 +13,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <title>Search - Polymer Project</title>
 {% include 'templates/head-meta.html' %}
 </head>
-<body class="fullbleed" unresolved>
-  {% include 'templates/noscript.html' %}
-  <pw-shell>
+<body>
+  <pw-shell server-rendered>
     {% include 'templates/site-nav.html' %}
 
     <!-- Because we want the styles to be loaded when the pw-shell changes its
