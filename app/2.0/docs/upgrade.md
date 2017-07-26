@@ -787,6 +787,13 @@ this._observer = new Polymer.FlattenedNodesObserver(this._nodesChanged);
 In addition, `Polymer.FlattenedNodesObserver.getFlattenedNodes(node)` can be used to replace the
 `getEffectiveChildNodes` method.
 
+To replace the `getEffectiveChildren` method, use the `getFlattenedNodes` helper method, and filter down to just the elements (ignore comments and text nodes):
+
+```js
+let effectiveChildren = 
+  Polymer.FlattenedNodesObserver.getFlattenedNodes(this).filter(n.nodeType === Node.ELEMENT_NODE)
+```
+
 `Polymer.FlattenedNodesObserver` is an optional module. If you're loading the `polymer-element.html`
 import, you need to import `FlattenedNodesObserver` separately.
 
