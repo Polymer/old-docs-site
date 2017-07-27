@@ -903,8 +903,6 @@ This use of `updateStyles` was already supported in 1.x. The `customStyle` objec
 
 Before {.caption}
 
-
-
 ```js
 this.customStyle['--my-dynamic-property'] = 'red';
 this.updateStyles();
@@ -915,6 +913,24 @@ After {.caption}
 
 ```js
 this.updateStyles({'--my-dynamic-property': 'red'});
+```
+
+To handle cases in which `getComputedStyleValue` was previously used, use the custom ShadyCSS API when the polyfill is loaded:
+
+Before {.caption}
+
+```
+this.getComputedStyleValue()
+```
+
+After {.caption}
+
+```
+if (window.ShadyCSS) {
+  style = ShadyCSS.getComputedStyleValue(el, '--something');
+} else {
+  style = getComputedStyle(el).getPropertyValue('--something');
+}
 ```
 
 ## Custom elements APIs {#custom-elements-apis}
