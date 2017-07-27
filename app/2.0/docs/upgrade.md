@@ -787,14 +787,14 @@ To replace the `getEffectiveChildren` method, use the `getFlattenedNodes` helper
 1.x {.caption}
 
 ```js
-this.getEffectiveChildren
+var effectiveChildren = this.getEffectiveChildren();
 ```
 
 2.x {.caption}
 
 ```js
 let effectiveChildren = 
-  Polymer.FlattenedNodesObserver.getFlattenedNodes(this).filter(n.nodeType === Node.ELEMENT_NODE)
+  Polymer.FlattenedNodesObserver.getFlattenedNodes(this).filter(n => n.nodeType === Node.ELEMENT_NODE)
 ```
 
 To replace the `getContentChildren` method, write platform code to perform this functionality (get the `assignedNodes`, and filter down to just the elements, ignoring comments and text nodes):
@@ -802,16 +802,18 @@ To replace the `getContentChildren` method, write platform code to perform this 
 1.x {.caption}
 
 ```
-this.getContentChildren
+this.getContentChildren();
 ```
 
 2.x {.caption}
 
 ```js
 this.shadowRoot
+  // If you have more than one slot, you can use a 
+  // different selector to identify the slot you're interested in.
   .querySelector('slot')
   .assignedNodes({flatten:true})
-  .filter(n.nodeType === Node.ELEMENT_NODE)
+  .filter(n => n.nodeType === Node.ELEMENT_NODE)
 ```
 
 `Polymer.FlattenedNodesObserver` is an optional module. If you're loading the `polymer-element.html`
@@ -931,7 +933,7 @@ To handle cases in which `getComputedStyleValue` was previously used, use the cu
 Before {.caption}
 
 ```
-this.getComputedStyleValue()
+style = this.getComputedStyleValue('--something');
 ```
 
 After {.caption}
