@@ -633,25 +633,20 @@ After {.caption}
 color: var(--special-color, var(--default-color));
 ```
 
-
 In addition, you must update the syntax of any `@apply` rules to match the proposal, which doesn't
 use parentheses.
 
 Before {.caption}
 
-
 ```css
 @apply(--my-mixin);
 ```
 
-
 After {.caption}
-
 
 ```css
 @apply --my-mixin;
 ```
-
 
 #### Wrap custom-style elements {#wrap-custom-style-elements}
 
@@ -789,12 +784,28 @@ In addition, `Polymer.FlattenedNodesObserver.getFlattenedNodes(node)` can be use
 
 To replace the `getEffectiveChildren` method, use the `getFlattenedNodes` helper method, and filter down to just the elements (ignore comments and text nodes):
 
+1.x {.caption}
+
+```js
+this.getEffectiveChildren
+```
+
+2.x {.caption}
+
 ```js
 let effectiveChildren = 
   Polymer.FlattenedNodesObserver.getFlattenedNodes(this).filter(n.nodeType === Node.ELEMENT_NODE)
 ```
 
 To replace the `getContentChildren` method, write platform code to perform this functionality (get the `assignedNodes`, and filter down to just the elements, ignoring comments and text nodes):
+
+1.x {.caption}
+
+```
+this.getContentChildren
+```
+
+2.x {.caption}
 
 ```js
 this.shadowRoot
