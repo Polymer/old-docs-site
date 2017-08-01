@@ -24,10 +24,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 10px;
       }
 
-       :host > * {
+      :host > * {
         width: 100%;
       }       
-
 
 </style>
       <template is="dom-if" if="[[!_frameReady]]">
@@ -36,7 +35,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <iframe id="frame" src="[[href]]"></iframe>
       
       <div id="container" class="code-mirror-container">
-        <textarea id="textarea" value="[[value]]"></textarea>
+        <textarea id="textarea" value="[[displayContent]]"></textarea>
       </div>
 
   </template>
@@ -46,64 +45,109 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'my-editor',
 
       properties: {
-          href: String,
-          // initial code, some of which is server-computed
-          htmlContent: {
-            type: String,
-            observer: '_htmlContentChanged',
-            notify: true
-          },
-          value: {
-            type: String,
-            observer: '_valueChanged'
-          },
-          dependencies: {
-            type: Object
-          }
+        href: String,
+        validator: String,
+        _demoHeight: {
+          type: Number,
+          observer: '_demoHeightChanged'
+        },
+        currHeading: {
+          type: String,
+          observer: '_currHeadingChanged'
+        },
+        htmlContent: {
+          type: Object
+          // observer: '_htmlContentChanged'
+        }
       },
 
-      created: function() {        
+      observers: [
+        '_htmlContentChanged(htmlContent.*, htmlContent)'
+      ],
+
+      created: function() {
+        this.currCode = {};
+      },
+
+      ready: function() {   
         window.addEventListener('message', this._onMessage.bind(this));
+        // this.addEventListener('html-content-changed', this._onHtmlContentChanged.bind(this));
       },
 
-      updateDemo: function() {
-        this.$.frame.contentWindow.postMessage(this._codeMirror.getValue(), this.href);
-      },
-
-      _onChanges: function() {
-        this.debounce('updateDemo', this.updateDemo, 400);
-      },
-
-      _valueChanged: function(value) {
-        if (!this._codeMirror) 
+      validate: function() {
+        if (!this.validator || !this.htmlContent)
           return;
-        this._codeMirror.setValue(this.value);
+
+        this._sendMessage({validator: this.validator, codeObj: this.currCode});
       },
 
-      // receive message from frame when its poly-editor is attached, then initialize mirror
+      // handle incoming messages from child iframe
       _onMessage: function(e) {
         if (e.origin !== this.href) {
           return;
         }
 
-        this._frameReady = true;
+        if (e.data.height) {
+          this._demoHeight = Math.max(e.data.height, 200);
+        } else if (e.data.valid !== undefined) {
+          this.valid = e.data.valid;
+        } else { // frame ready, init code mirror
+          this._frameReady = e.data.ready;
+          this._initCodeMirror(); 
+        }
+      },
+
+      _sendMessage: function(content) {
+        this.$.frame.contentWindow.postMessage(content, this.href);
+      },
+
+      _initCodeMirror: function() {
+        if (!this._frameReady) // something went wrong (TODO: notify)
+          return;
         this._codeMirror = CodeMirror.fromTextArea(this.$.textarea, {
           mode: 'text/html'
         });
         this._codeMirror.on('changes', this._onChanges.bind(this));
-        this._htmlContentChanged();
+        this._currHeadingChanged();
       },
 
-      _htmlContentChanged: function() {
-        var endScript = 'script>';
-        var source = [
-          '<!-- polyfill for browsers that do not support webcomponents -->',
-          '<script src="../../bower_components/webcomponentsjs/webcomponents-loader.js"><' + '/'.toString() + endScript,
-          '',
-          this.htmlContent
-        ].join('\n');
-        this.value = source;
+      updateDemo: function() {
+        this._sendMessage({codeObj: this.currCode});
+      },
+
+      _onChanges: function() {
+        this.currCode[this.currHeading] = this._codeMirror.getValue();
+        this.debounce('updateDemo', this.updateDemo, 400);
+      },
+
+      // listener for html-content-changed; fired when initial content from live-demo-tabs changes
+      // this is here because a wildcard observer on htmlContent and currHeading wasn't getting called when expected
+      // _onHtmlContentChanged: function(event) {
+      //   if (!event.detail) 
+      //     return;
+
+      //   this.currCode = event.detail.htmlContent;
+      //   this._currHeadingChanged();
+      // },
+      _htmlContentChanged: function(a, b) {
+        console.log('_htmlcontentchanged', a, b);
+      },
+
+      _currHeadingChanged: function() {
+        if (!this.currCode || !this.htmlContent || !this._codeMirror)
+          return;
+        this.displayContent = this.currCode[this.currHeading];
+        if (this.displayContent)
+          this._codeMirror.setValue(this.displayContent);
+      },
+
+      _demoHeightChanged: function() {
+        if (!this.$.frame)
+          return;
+
+        this.$.frame.style.height = this._demoHeight.toString() + 'px';
       }
+
 
     });
 

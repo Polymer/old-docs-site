@@ -7,29 +7,64 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
-<link rel="import" href="../bower_components/polymer/polymer.html">
-<!-- <link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
-<link rel="import" href="../bower_components/paper-tabs/paper-tab.html">
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<!-- <link rel="import" href="../bower_components/paper-tabs/paper-tab.html"> -->
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../bower_components/iron-pages/iron-pages.html"> -->
- <link rel="import" href="my-editor.html"> 
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="my-editor.html">
+<link rel="import" href="test-tab.html">
 
 <!-- Note: this is lazy loaded by quick-tour.md -->
-<!-- <dom-module id='demo-tab'>
+<dom-module id='live-demo-tab'>
   <template>
-    <content></content>
+    <slot id="slot" name="template-content"></slot>
   </template>
   <script>
     Polymer({
-      is: 'demo-tab',
+      is: 'live-demo-tab',
       properties: {
         heading: {
           type: String
         }
+      },
+      attached: function() {
+        // var self = this;
+        this._htmlContentObserver = new MutationObserver(function(mutations) {
+          this._demoChanged(mutations);
+        }.bind(this));
+        
+        this._templateObserver = Polymer.dom(this.$.slot).observeNodes(function(mutations) {
+            let slot = this.$.slot; 
+            let nodes  = slot.getAssignedNodes ? slot.getAssignedNodes({flatten: true}) : slot.getDistributedNodes();
+            this.template = nodes.length ? nodes[0] : null;
+            this._htmlContentObserver.observe(this.template.content, {attributes: true, childList: true, characterData: true});
+          }.bind(this));
+        
+      },
+
+      detached: function() {
+        this._htmlContentObserver.disconnect();
+        this._templateObserver.unobserveNodes();
+      },
+
+      _demoChanged: function(mutations) {
+        // var event = new CustomEvent('content-changed', {detail: {content: this.template.innerHTML, heading: this.heading}});
+        console.log('_demochanged', {content: this.template.innerHTML, heading: this.heading});
+        this.fire('content-changed', {content: this.template.innerHTML, heading: this.heading});
       }
-    });
+  });    
+
   </script>
-</dom-module> -->
+</dom-module> 
 
 <dom-module id='live-demo-tabs'>
   <template>
@@ -56,16 +91,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         height: 100%;
       }
 
-      .results {
-        box-sizing: border-box;
-        background: white;
-        width: 100%;
-        padding: 20px;
-        margin: 0;
-        background-color: #fafafa;
-        border-top: 1px solid #e0e0e0;
-      }
-
       paper-button {
         color: white;
         background: #1e88e5;  /* blue-600 */
@@ -78,65 +103,101 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
     </style>
-     <my-editor href="http://127.0.0.1:8081" html-content="[[htmlContent]]"></my-editor>  
+    
+    <div class="tabstrip layout horizontal center">
+      <paper-tabs selected="{{selected}}" class="flex">
+        <template is="dom-repeat" items="[[_panels]]">
+          <test-tab>{{item.heading}}</test-tab>
+        </template>
+      </paper-tabs>
+    </div>
+
+    <div class="layout horizontal">
+      <iron-pages selected="[[selected]]">
+        <content id="contentpanels" select="live-demo-tab"></content>
+      </iron-pages>
+    </div>
+
+    <my-editor id="editor" href="http://127.0.0.1:8081" html-content="[[htmlContent]]" curr-heading="[[currHeading]]" validator="[[validator]]"></my-editor>  
+    
+
   </template>
 
   <script>
-    Polymer({
-        is: 'live-demo-tabs',
-        properties: {
-          src: {
-            type: String
-          }
-        },
+  Polymer({
+    is: 'live-demo-tabs',
 
-        attached: function() {
-          this.htmlContent = '<link rel="import" href="../../bower_components/paper-button/paper-button.html">';
-        }
-    });
-    // Define the class for a new element called custom-element
-    // class LiveDemoTabs extends Polymer.Element {
-    //   static get is() { return "live-demo-tabs"; }
+    properties: {
+      /**
+       * URL of the Plunker demo
+       */
+      src: {
+        type: String
+      },
+      selected: {
+        type: Number,
+        observer: '_selectedChanged'
+      }
+    },
 
-    //   constructor() {
-    //     super();
-    //     console.log('hello live demo');
-    //   }
-    // }
-    // // Register the new element with the browser
-    // customElements.define(LiveDemoTabs.is, LiveDemoTabs);
+    listeners: {
+      'content-changed': '_onContentChanged'
+    },
+
+    ready: function() {
+      this.htmlContent = {};
+    },
+
+    attached: function() {
+      this._observer =
+          Polymer.dom(this.$.contentpanels).observeNodes(function(mutations) {
+            this._updatePanels();
+          }.bind(this));
+
+    },
+
+    detached: function() {
+      Polymer.dom(this.$.contentpanels).unobserveNodes(this._observer);
+    },
+
+    _updatePanels: function() {
+      this._panels = Polymer.dom(this.$.contentpanels).getDistributedNodes();
+      this.selected = 0;
+    },
+
+    _onContentChanged: function(event) {
+      console.log('_oncontentchanged', event.detail);
+      if (!event.detail)
+        return;
+      // this.set('htmlContent.' + event.detail.heading, event.detail.content);
+      this.htmlContent[event.detail.heading] = event.detail.content;
+      
+      this.notifyPath('htmlContent', this.htmlContent);
+
+      // TODO: figure out wildcard issue in my-editor and remove this extra step
+      // var htmlContentEvent = new CustomEvent('html-content-changed', {detail: {htmlContent: this.htmlContent}});
+      // this.$.editor.dispatchEvent(htmlContentEvent);
+    },
+    
+    _selectedChanged: function() {
+      if (!this._panels || !this._panels[this.selected]) {
+        this.currHeading = 'index.html';
+      } else {
+        this.currHeading = this._panels[this.selected].heading;
+      }
+    }
+
+    // // note: this was here to start testing validator functionality
+        // ready: function() {
+        //   this.$.validate.addEventListener('click', this._validate.bind(this));
+        // },
+
+        
+
+        // _validate: function() {
+        //   this.$.editor.validate();
+        // }
+  });
   </script>
-<!-- //   Polymer({
-//     is: 'live-demo-tabs',
-
-//     properties: {
-//       /**
-//        * URL of the Plunker demo
-//        */
-//       src: {
-//         type: String
-//       }
-//     },
-
-//     attached: function() {
-//       this._observer =
-//           Polymer.dom(this.$.contentpanels).observeNodes(function(mutations) {
-//             this._updatePanels();
-//           }.bind(this));
-//       this._selected = 0;
-//     },
-
-//     detached: function() {
-//       Polymer.dom(this.$.contentpanels).unobserveNodes(this._observer);
-//     },
-
-//     _updatePanels: function() {
-//       this._panels = Polymer.dom(this.$.contentpanels).getDistributedNodes();
-//     },
-
-//     _hidePlunkrButton: function(src) {
-//       return (!src || src === '');
-//     }
-//   });
-  </script> -->
 </dom-module>
+

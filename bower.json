@@ -25,5 +25,8 @@
     "app-route": "1 - 2",
     "iron-doc-viewer": "^3.0.0",
     "webcomponentsjs": "0.7"
+  },
+  "dependencies": {
+    "codemirror-textarea": "../codemirror-textarea/"
   }
 }
