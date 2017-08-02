@@ -17,54 +17,8 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
-<!-- <link rel="import" href="../bower_components/paper-tabs/paper-tab.html"> -->
-<link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
-<link rel="import" href="my-editor.html">
-<link rel="import" href="test-tab.html">
-
-<!-- Note: this is lazy loaded by quick-tour.md -->
-<dom-module id='live-demo-tab'>
-  <template>
-    <slot id="slot" name="template-content"></slot>
-  </template>
-  <script>
-    Polymer({
-      is: 'live-demo-tab',
-      properties: {
-        heading: {
-          type: String
-        }
-      },
-      attached: function() {
-        // var self = this;
-        this._htmlContentObserver = new MutationObserver(function(mutations) {
-          this._demoChanged(mutations);
-        }.bind(this));
-        
-        this._templateObserver = Polymer.dom(this.$.slot).observeNodes(function(mutations) {
-            let slot = this.$.slot; 
-            let nodes  = slot.getAssignedNodes ? slot.getAssignedNodes({flatten: true}) : slot.getDistributedNodes();
-            this.template = nodes.length ? nodes[0] : null;
-            this._htmlContentObserver.observe(this.template.content, {attributes: true, childList: true, characterData: true});
-          }.bind(this));
-        
-      },
-
-      detached: function() {
-        this._htmlContentObserver.disconnect();
-        this._templateObserver.unobserveNodes();
-      },
-
-      _demoChanged: function(mutations) {
-        // var event = new CustomEvent('content-changed', {detail: {content: this.template.innerHTML, heading: this.heading}});
-        console.log('_demochanged', {content: this.template.innerHTML, heading: this.heading});
-        this.fire('content-changed', {content: this.template.innerHTML, heading: this.heading});
-      }
-  });    
-
-  </script>
-</dom-module> 
+<link rel="import" href="../bower_components/codemirror-textarea/codemirror-textarea.html">
+<link rel="import" href="live-demo-tab.html">
 
 <dom-module id='live-demo-tabs'>
   <template>
@@ -103,23 +57,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
     </style>
-    
+
     <div class="tabstrip layout horizontal center">
-      <paper-tabs selected="{{selected}}" class="flex">
-        <template is="dom-repeat" items="[[_panels]]">
-          <test-tab>{{item.heading}}</test-tab>
-        </template>
+      <paper-tabs selected="{{selected}}" class="flex" selectable="live-demo-tab">
+        <slot></slot>
       </paper-tabs>
     </div>
 
-    <div class="layout horizontal">
-      <iron-pages selected="[[selected]]">
-        <content id="contentpanels" select="live-demo-tab"></content>
-      </iron-pages>
-    </div>
-
-    <my-editor id="editor" href="http://127.0.0.1:8081" html-content="[[htmlContent]]" curr-heading="[[currHeading]]" validator="[[validator]]"></my-editor>  
-    
+    <codemirror-textarea html-content="{{htmlContent}}"></codemirror-textarea>
 
   </template>
 
@@ -128,75 +73,51 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     is: 'live-demo-tabs',
 
     properties: {
-      /**
-       * URL of the Plunker demo
-       */
-      src: {
-        type: String
-      },
       selected: {
         type: Number,
         observer: '_selectedChanged'
+      },
+      htmlContent: {
+        type: String,
+        observer: '_htmlContentChanged'
       }
     },
 
     listeners: {
-      'content-changed': '_onContentChanged'
+      'html-content-changed': '_onHtmlContentChanged',
+      'mirror-changed': '_onMirrorChanged'
     },
 
     ready: function() {
-      this.htmlContent = {};
-    },
-
-    attached: function() {
-      this._observer =
-          Polymer.dom(this.$.contentpanels).observeNodes(function(mutations) {
-            this._updatePanels();
-          }.bind(this));
-
-    },
-
-    detached: function() {
-      Polymer.dom(this.$.contentpanels).unobserveNodes(this._observer);
-    },
-
-    _updatePanels: function() {
-      this._panels = Polymer.dom(this.$.contentpanels).getDistributedNodes();
+      this._htmlContents = {};
       this.selected = 0;
     },
 
-    _onContentChanged: function(event) {
-      console.log('_oncontentchanged', event.detail);
-      if (!event.detail)
-        return;
-      // this.set('htmlContent.' + event.detail.heading, event.detail.content);
-      this.htmlContent[event.detail.heading] = event.detail.content;
-      
-      this.notifyPath('htmlContent', this.htmlContent);
-
-      // TODO: figure out wildcard issue in my-editor and remove this extra step
-      // var htmlContentEvent = new CustomEvent('html-content-changed', {detail: {htmlContent: this.htmlContent}});
-      // this.$.editor.dispatchEvent(htmlContentEvent);
+    _htmlContentChanged: function() {
+      this._htmlContents[this.selected] = this.htmlContent;
     },
-    
+
+    _onMirrorChanged: function(event) {
+      this.htmlContent = event.detail.htmlContent;
+      var childTabs = Polymer.dom(this).querySelectorAll('live-demo-tab');
+      childTabs[this.selected].fire('html-contents-changed', {htmlContent: this.htmlContent});
+    },
+
+    _onHtmlContentChanged: function(event) {
+      this._htmlContents[event.detail.tabId] = event.detail.content;
+      this._selectedChanged();
+    },
+
     _selectedChanged: function() {
-      if (!this._panels || !this._panels[this.selected]) {
-        this.currHeading = 'index.html';
-      } else {
-        this.currHeading = this._panels[this.selected].heading;
-      }
+      if (!this._htmlContents)
+        return;
+      this.htmlContent = this._htmlContents[this.selected];
+    },
+
+    _postMessage: function() {
+      console.log('a message', this.htmlContent);
     }
 
-    // // note: this was here to start testing validator functionality
-        // ready: function() {
-        //   this.$.validate.addEventListener('click', this._validate.bind(this));
-        // },
-
-        
-
-        // _validate: function() {
-        //   this.$.editor.validate();
-        // }
   });
   </script>
 </dom-module>

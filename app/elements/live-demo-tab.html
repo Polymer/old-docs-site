@@ -1,0 +1,188 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-behaviors/iron-button-state.html">
+<link rel="import" href="../bower_components/iron-behaviors/iron-control-state.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/paper-behaviors/paper-ripple-behavior.html">
+
+<dom-module id="live-demo-tab">
+  <template>
+    <style>
+      :host {
+        @apply(--layout-inline);
+        @apply(--layout-center);
+        @apply(--layout-center-justified);
+        @apply(--layout-flex-auto);
+
+        position: relative;
+        padding: 0 12px;
+        overflow: hidden;
+        cursor: pointer;
+        vertical-align: middle;
+
+        @apply(--paper-font-common-base);
+        @apply(--paper-tab);
+      }
+
+      :host(:focus) {
+        outline: none;
+      }
+
+      :host([link]) {
+        padding: 0;
+      }
+
+      .tab-content {
+        height: 100%;
+        transform: translateZ(0);
+          -webkit-transform: translateZ(0);
+        transition: opacity 0.1s cubic-bezier(0.4, 0.0, 1, 1);
+        @apply(--layout-horizontal);
+        @apply(--layout-center-center);
+        @apply(--layout-flex-auto);
+        @apply(--paper-tab-content);
+      }
+
+      :host(:not(.iron-selected)) > .tab-content {
+        opacity: 0.8;
+
+        @apply(--paper-tab-content-unselected);
+      }
+
+      :host(:focus) .tab-content {
+        opacity: 1;
+        font-weight: 700;
+      }
+
+      paper-ripple {
+        color: var(--paper-tab-ink, --paper-yellow-a100);
+      }
+
+      .tab-content > ::content > a {
+        @apply(--layout-flex-auto);
+
+        height: 100%;
+      }
+    </style>
+
+    <div class="tab-content">
+      <slot id="heading" name="heading"></slot>
+    </div>
+    <slot id="slot" name="html-content"></slot>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'live-demo-tab',
+
+      behaviors: [
+        Polymer.IronControlState,
+        Polymer.IronButtonState,
+        Polymer.PaperRippleBehavior
+      ],
+
+      properties: {
+
+        /**
+         * If true, the tab will forward keyboard clicks (enter/space) to
+         * the first anchor element found in its descendants
+         */
+        link: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true
+        },
+
+        htmlContent: {
+          type: String,
+          observer: '_htmlContentChanged'
+        }
+
+      },
+
+      hostAttributes: {
+        role: 'tab'
+      },
+
+      listeners: {
+        down: '_updateNoink',
+        tap: '_onTap',
+        'html-contents-changed': '_onHtmlContentsChanged'
+      },
+
+      attached: function() {
+        this._updateNoink();
+        this._htmlContentObserver = new MutationObserver(function(mutations) {
+          this._onSlotChange(mutations);
+        }.bind(this));
+        
+        this._templateObserver = Polymer.dom(this.$.slot).observeNodes(function(mutations) {
+            let slot = this.$.slot; 
+            let nodes  = slot.getAssignedNodes ? slot.getAssignedNodes({flatten: true}) : slot.getDistributedNodes();
+            this.template = nodes.length ? nodes[0] : null;
+            this._htmlContentObserver.observe(this.template.content, {attributes: true, childList: true, characterData: true});
+          }.bind(this));
+      },
+
+      detached: function() {
+        this._htmlContentObserver.disconnect();
+        this._templateObserver.unobserveNodes();
+      },
+
+      _onSlotChange: function() {
+        this._fromSlot = true;
+        this.htmlContent = this.template.innerHTML;
+      },
+
+      _onHtmlContentsChanged: function(event) {
+        this.htmlContent = event.detail.htmlContent;
+      },
+
+      _htmlContentChanged: function() {   
+        if (this._fromSlot) {
+          this.template.innerHTML = this.htmlContent;
+        }
+        this._fromSlot = false;
+        this.fire('html-content-changed', {content: this.htmlContent, tabId: this.id});
+      },
+
+      get _parentNoink () {
+        var parent = Polymer.dom(this).parentNode;
+        return !!parent && !!parent.noink;
+      },
+
+      _updateNoink: function() {
+        this.noink = !!this.noink || !!this._parentNoink;
+      },
+
+      _onTap: function(event) {
+        if (this.link) {
+          var anchor = this.queryEffectiveChildren('a');
+
+          if (!anchor) {
+            return;
+          }
+
+          // Don't get stuck in a loop delegating
+          // the listener from the child anchor
+          if (event.target === anchor) {
+            return;
+          }
+
+          anchor.click();
+        }
+      }
+
+    });
+  </script>
+</dom-module>
+

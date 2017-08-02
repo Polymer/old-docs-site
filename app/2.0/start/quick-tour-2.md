@@ -30,18 +30,19 @@ an element name with a class, so you can add properties and methods to your cust
 element. The custom element's name **must start with an ASCII letter and
 contain a dash (-)**.
 
-<live-demo-tabs selected="1">
-  <live-demo-tab heading="custom-element.html">
-    <template slot="template-content">
-      {{{include_file_raw('2.0/start/samples/custom-element/custom-element.html')}}}
-    </template>
+<live-demo-tabs selected="0">
+  <live-demo-tab id="0">
+    <div slot="heading">
+      custom-element.html
+    </div>
+    <template slot="html-content">{{{include_file_raw('2.0/start/samples/custom-element/custom-element.html')}}}</template>
   </live-demo-tab>
-  <live-demo-tab heading="index.html">
-    <template slot="template-content">
-      {{{include_file_raw('2.0/start/samples/custom-element/index.html')}}}
-    </template>
+  <live-demo-tab id="1">
+    <div slot="heading">
+      index.html
+    </div>
+    <template slot="html-content">{{{include_file_raw('2.0/start/samples/custom-element/index.html')}}}</template>
   </live-demo-tab>
-
 </live-demo-tabs>
 
 This sample uses a lifecycle callback
