@@ -30,7 +30,7 @@ an element name with a class, so you can add properties and methods to your cust
 element. The custom element's name **must start with an ASCII letter and
 contain a dash (-)**.
 
-<live-demo-tabs selected="0">
+<live-demo-tabs selected="0" height="40">
   <live-demo-tab id="0">
     <div slot="heading">
       custom-element.html
@@ -63,7 +63,7 @@ You can use the `ready` callback for one-time initialization work after the elem
 Many elements include some internal DOM nodes to implement the element's UI and behavior.
 You can use Polymer's DOM templating to create a shadow DOM tree for your element.
 
-<live-demo-tabs selected="0" src="http://plnkr.co/edit/DaiLYY?p=preview">
+<live-demo-tabs selected="0"  height="40">
   <live-demo-tab heading="dom-element.html" id="0">
     <div slot="heading">
       dom-element.html
@@ -90,7 +90,7 @@ so they render as if they were inserted into the shadow DOM tree.
 This example creates a simple tag that decorates an image by wrapping it
 with a styled `<div>` tag.
 
-<live-demo-tabs selected="0" src="http://plnkr.co/edit/BzgJBN?p=preview">
+<live-demo-tabs selected="0" height="60">
   <live-demo-tab heading="picture-frame.html" id="0">
     <div slot="heading">
       picture-frame.html
@@ -121,7 +121,7 @@ Data binding is a great way to quickly propagate changes in your element and red
 You can bind properties in your component using the "double-mustache" syntax (`{%raw%}{{}}{%endraw%}`).
 The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced between the brackets.
 
-<live-demo-tabs selected="0" src="http://plnkr.co/edit/8mZK8S?p=preview">
+<live-demo-tabs selected="0" height="40">
   <live-demo-tab heading="name-tag.html" id="0">
     <div slot="heading">
       name-tag.html
@@ -148,7 +148,7 @@ values, configuring properties from markup, observing property changes, and more
 The following example declares the `owner` property from the last example.
 It also shows configuring the owner property from markup in `index.html`.
 
-<live-demo-tabs selected="0" src="http://plnkr.co/edit/ROIvZg?p=preview">
+<live-demo-tabs selected="0" height="40">
   <live-demo-tab heading="configurable-name-tag.html" id="0">
     <div slot="heading">
       configurable-name-tag.html
@@ -175,7 +175,7 @@ can optionally support two-way binding, using curly braces (`property-name="{{bi
 This example uses two-way binding: binding the value of a custom input element (`iron-input`)
 to the element's `owner` property, so it's updated as the user types.
 
-<live-demo-tabs selected="0" src="http://plnkr.co/edit/VYR8my?p=preview">
+<live-demo-tabs selected="0" height="100">
   <live-demo-tab heading="editable-name-tag.html" id="0">
     <div slot="heading">
       editable-name-tag.html
@@ -198,7 +198,7 @@ data binding and input validation.
 
 The template repeater (`dom-repeat`) is a specialized template that binds to an array. It creates one instance of the template's contents for each item in the array.
 
-<live-demo-tabs selected="0" src="http://plnkr.co/edit/FdgkAtcLFHX5TpTsYtZn?p=preview">
+<live-demo-tabs selected="0">
   <live-demo-tab heading="employee-list.html" id="0">
     <div slot="heading">
       employee-list.html

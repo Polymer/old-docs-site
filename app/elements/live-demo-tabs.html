@@ -81,7 +81,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
      <codemirror-textarea mirror-content="{{mirrorContent}}"></codemirror-textarea> 
      <div class="results">
-       <iframe id="frame" src="[[src]]" scrolling="no"></iframe>
+       <iframe id="frame" src="[[src]]" scrolling="no" frameborder="0" height="[[height]]"></iframe>
      </div>
 
   </template>
@@ -98,6 +98,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       htmlContent: {
         type: String,
         observer: '_htmlContentChanged'
+      },
+      height: {
+        type: Number
       }
     },
 
@@ -109,7 +112,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     ready: function() {
       this._htmlContents = {};
       this.selected = 0;
-      this._demoHeight = 100;
+      this._demoHeight = this.height;
       this.src = 'http://127.0.0.1:8081';
       window.addEventListener('message', this._onMessage.bind(this));
     },
@@ -163,12 +166,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     _initIframeContent: function() {
       if (!this._frameReady) {
         this._frameReady = true;
+        this.$.frame.style.height = this._demoHeight;
         this._htmlContentChanged();
       }
     },
 
     _updateFrameHeight: function(measuredHeight) {
-      if (!this._frameReady)
+      if (!this._frameReady || this.height)
         return;
       
       let oldHeight = this._demoHeight;
