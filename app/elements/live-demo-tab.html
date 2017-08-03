@@ -137,7 +137,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             let slot = this.$.slot; 
             let nodes  = slot.getAssignedNodes ? slot.getAssignedNodes({flatten: true}) : slot.getDistributedNodes();
             this.template = nodes.length ? nodes[0] : null;
-            this._htmlContentObserver.observe(this.template.content, {attributes: true, childList: true, characterData: true});
+            this._htmlContentObserver.observe(this.template.content, {attributes: true, childList: true, characterData: true, subtree: true});
           }.bind(this));
       },
 
@@ -147,9 +147,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _onSlotChange: function() {
+        console.log(this.template.innerHTML);
         if (!this.template)
           return;
         this._fromSlot = true;
+        
         this.htmlContent = this.template.innerHTML;
       },
 
