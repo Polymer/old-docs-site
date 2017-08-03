@@ -154,15 +154,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _onHtmlContentsChanged: function(event) {
+        this._fromTabs = true;
         this.htmlContent = event.detail.htmlContent;
       },
 
       _htmlContentChanged: function() {   
         if (!this._fromSlot) {
-          this.template.innerHTML = this.htmlContent;
-        }
-        this._fromSlot = false;
-        this.fire('html-content-changed', {content: this.htmlContent, tabId: this.id});
+          this.template.innerHTML = this.htmlContent;         
+        } 
+        if (!this._fromTabs)
+          this.fire('html-content-changed', {content: this.htmlContent, tabId: this.id});
+        this._fromTabs = false;
+        this._fromSlot = false;       
       },
 
       get _parentNoink () {

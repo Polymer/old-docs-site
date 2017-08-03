@@ -56,6 +56,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-decoration: none;
       }
 
+      iframe {
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .results {
+        box-sizing: border-box;
+        background: white;
+        width: 100%;
+        padding: 20px;
+        margin: 0;
+        background-color: #fafafa;
+        border-top: 1px solid #e0e0e0;
+      }
+
     </style>
 
     <div class="tabstrip layout horizontal center">
@@ -64,7 +79,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </paper-tabs>
     </div>
 
-     <codemirror-textarea html-content="{{htmlContent}}"></codemirror-textarea> 
+     <codemirror-textarea mirror-content="{{mirrorContent}}"></codemirror-textarea> 
+     <div class="results">
+       <iframe id="frame" src="[[src]]" scrolling="no"></iframe>
+     </div>
 
   </template>
 
@@ -91,13 +109,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     ready: function() {
       this._htmlContents = {};
       this.selected = 0;
+      this._demoHeight = 100;
+      this.src = 'http://127.0.0.1:8081';
+      window.addEventListener('message', this._onMessage.bind(this));
     },
 
     _htmlContentChanged: function() {
       this._htmlContents[this.selected] = this.htmlContent;
+      this._postMessage({codeObj: this._htmlContents});
     },
 
     _onMirrorChanged: function(event) {
+      this._fromEditor = true;
       this.htmlContent = event.detail.htmlContent;
       var childTabs = Polymer.dom(this).querySelectorAll('live-demo-tab');
       childTabs[this.selected].fire('html-contents-changed', {htmlContent: this.htmlContent});
@@ -105,17 +128,55 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     _onHtmlContentChanged: function(event) {
       this._htmlContents[event.detail.tabId] = event.detail.content;
-      this._selectedChanged();
+      this.htmlContent = this._htmlContents[this.selected];
+      this._updateMirror();
     },
 
     _selectedChanged: function() {
       if (!this._htmlContents)
         return;
       this.htmlContent = this._htmlContents[this.selected];
+      this._fromEditor = false;
+      this._updateMirror();
     },
 
-    _postMessage: function() {
-      console.log('a message', this.htmlContent);
+    _postMessage: function(content) {  
+      if (!this._frameReady)
+        return;
+      this.debounce('postMessage', _ => { this.$.frame.contentWindow.postMessage(content, this.src); }, 400);
+    },
+
+    _onMessage: function(event) {
+      if (event.data.ready) {
+        this._initIframeContent();
+      } else if (event.data.height) {
+        this._updateFrameHeight(event.data.height);
+      }
+    },
+
+    _updateMirror: function() {
+      if (!this._fromEditor) 
+        this.mirrorContent = this.htmlContent;
+      this._fromEditor = false;
+    },
+
+    _initIframeContent: function() {
+      if (!this._frameReady) {
+        this._frameReady = true;
+        this._htmlContentChanged();
+      }
+    },
+
+    _updateFrameHeight: function(measuredHeight) {
+      if (!this._frameReady)
+        return;
+      
+      let oldHeight = this._demoHeight;
+      let newHeight = Math.max(oldHeight, measuredHeight);
+      if (newHeight !== oldHeight) {
+        this._demoHeight = newHeight;
+        this.$.frame.style.height = this._demoHeight.toString() + 'px';
+      }
     }
 
   });
