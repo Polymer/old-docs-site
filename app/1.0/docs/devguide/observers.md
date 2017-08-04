@@ -518,6 +518,49 @@ dependencies listed in its arguments changes. For example, if an observer
 relies on `this.firstName` but does not list it as an argument, the observer
 is not called when `this.firstName` changes.
 
+### Avoid infinite loops when modifying the observed value in an observer
+
+If you change an observed value, be very careful to avoid an infinite loop.
+
+The following code will lead to an infinite loop:
+
+```
+properties: {
+  firstName: {
+    type: String,
+    observer: 'nameChanged'
+  }
+},
+// WARNING: ANTI-PATTERN! DO NOT USE
+nameChanged: function(newFirstName) {
+  this.firstName = 'Sr. ' + newFirstName;
+  // will jump recursively to nameChanged
+}
+```
+
+Two examples of techniques that avoid infinite loops are:
+
+*   Input validation (if it's not capitalized, capitalize it)—because it's
+    conditional, it doesn't loop infinitely.
+
+*   Explicitly suppressing the observer:
+
+    ```
+    properties: {
+      firstName: {
+        type: String,
+        observer: 'nameChanged'
+      }
+    },
+    nameChanged: function(newFirstName) {
+      if (! this.updatingName) {
+        this.updatingName = true;
+        this.firstName = 'Sr. ' + newFirstName;
+        this.updatingName = false;
+      }
+    }
+    ```
+
 ## Computed properties {#computed-properties}
 
 Computed properties are virtual properties computed on the basis of one or more paths. The computing
