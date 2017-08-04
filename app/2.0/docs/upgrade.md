@@ -633,25 +633,20 @@ After {.caption}
 color: var(--special-color, var(--default-color));
 ```
 
-
 In addition, you must update the syntax of any `@apply` rules to match the proposal, which doesn't
 use parentheses.
 
 Before {.caption}
 
-
 ```css
 @apply(--my-mixin);
 ```
 
-
 After {.caption}
-
 
 ```css
 @apply --my-mixin;
 ```
-
 
 #### Wrap custom-style elements {#wrap-custom-style-elements}
 
@@ -787,12 +782,48 @@ this._observer = new Polymer.FlattenedNodesObserver(this._nodesChanged);
 In addition, `Polymer.FlattenedNodesObserver.getFlattenedNodes(node)` can be used to replace the
 `getEffectiveChildNodes` method.
 
+To replace the `getEffectiveChildren` method, use the `getFlattenedNodes` helper method, and filter down to just the elements (ignore comments and text nodes):
+
+1.x {.caption}
+
+```js
+var effectiveChildren = this.getEffectiveChildren();
+```
+
+2.x {.caption}
+
+```js
+let effectiveChildren = 
+  Polymer.FlattenedNodesObserver.getFlattenedNodes(this).filter(n => n.nodeType === Node.ELEMENT_NODE)
+```
+
+To replace the `getContentChildren` method, write platform code to perform this functionality (get the `assignedNodes`, and filter down to just the elements, ignoring comments and text nodes):
+
+1.x {.caption}
+
+```
+this.getContentChildren();
+```
+
+2.x {.caption}
+
+```js
+this.shadowRoot
+  // If you have more than one slot, you can use a 
+  // different selector to identify the slot you're interested in.
+  .querySelector('slot')
+  .assignedNodes({flatten:true})
+  .filter(n => n.nodeType === Node.ELEMENT_NODE)
+```
+
 `Polymer.FlattenedNodesObserver` is an optional module. If you're loading the `polymer-element.html`
 import, you need to import `FlattenedNodesObserver` separately.
 
 ```html
 <link rel="import" href="/bower_components/polymer/lib/utils/flattened-nodes-observer.html">
 ```
+
+
 
 ## CSS custom property shim {#css-custom-property-shim}
 
@@ -885,8 +916,6 @@ This use of `updateStyles` was already supported in 1.x. The `customStyle` objec
 
 Before {.caption}
 
-
-
 ```js
 this.customStyle['--my-dynamic-property'] = 'red';
 this.updateStyles();
@@ -897,6 +926,24 @@ After {.caption}
 
 ```js
 this.updateStyles({'--my-dynamic-property': 'red'});
+```
+
+To handle cases in which `getComputedStyleValue` was previously used, use the custom ShadyCSS API when the polyfill is loaded:
+
+Before {.caption}
+
+```
+style = this.getComputedStyleValue('--something');
+```
+
+After {.caption}
+
+```
+if (window.ShadyCSS) {
+  style = ShadyCSS.getComputedStyleValue(el, '--something');
+} else {
+  style = getComputedStyle(el).getPropertyValue('--something');
+}
 ```
 
 ## Custom elements APIs {#custom-elements-apis}
