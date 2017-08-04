@@ -59,7 +59,7 @@ you need to add it to your app's HTML.
 
 1.  Find the set of existing pages inside the `<iron-pages>`:
 
-    ```
+    ```html
     <iron-pages
         selected="[[page]]"
         attr-for-selected="name"
@@ -77,13 +77,13 @@ you need to add it to your app's HTML.
 
 1.  Add your new page inside the iron-pages:
 
-    ```
+    ```html
     <my-new-view name="new-view"></my-new-view>
     ```
 
     Your `<iron-pages>` should now look like this:
 
-    ```
+    ```html
     <iron-pages
         selected="[[page]]"
         attr-for-selected="name"
@@ -97,29 +97,61 @@ you need to add it to your app's HTML.
     </iron-pages>
     ```
 
-    Note: Normally when adding a new custom element for the first time, you'd
+1.  Find the set of existing page lazy-imports at the start of the
+    `<dom-module>`:
+
+    ```html
+    <dom-module id="my-app">
+      <link rel="lazy-import" group="view1" href="my-view1.html">
+      <link rel="lazy-import" group="view2" href="my-view2.html">
+      <link rel="lazy-import" group="view3" href="my-view3.html">
+      <link rel="lazy-import" group="view404" href="my-view404.html">
+
+      <template>
+        <!-- ... -->
+    ```
+
+1.  Typically when adding a new custom element for the first time, you'd
     want to add an HTML import to ensure the component definition has been
-    loaded.  However, this app template is already set up to lazy-load top
-    level views on-demand based on the route, so in this case you don't need
-    to add an import for your new `<my-new-view>` element.
+    loaded.  However, this app template is already set up to lazy-load views
+    on-demand based on the route, so in this case you need to add a
+    `lazy-import` for your new `<my-new-view>` element.
+
+    Add a `<link>` tag after the `<dom-module>` and before the `<template>`
+    with a `rel="lazy-import"` attribute, a `group` attribute matching the
+    `name` given previously, and a `href` with the path to the view.
+
+    ```html
+    <link rel="lazy-import" group="new-view" href="my-new-view.html">
+    ```
+
+    The start of your `<dom-module>` should now look like this:
+
+    ```html
+    <dom-module id="my-app">
+      <link rel="lazy-import" group="view1" href="my-view1.html">
+      <link rel="lazy-import" group="view2" href="my-view2.html">
+      <link rel="lazy-import" group="view3" href="my-view3.html">
+      <link rel="lazy-import" group="view404" href="my-view404.html">
+      <link rel="lazy-import" group="new-view" href="my-new-view.html">
+
+      <template>
+        <!-- ... -->
+    ```
 
     The following code that came with the app template will ensure the
     definition for each page has been loaded when the route changes.  As
-    you can see, the app follows a simple convention (`'my-' + page + '.html'`)
-    when importing the definition for each route,. You can adapt this code as you
+    you can see, the app uses the `name` attribute to import the lazy-import(s)
+    with the same `group` attribute. You can adapt this code as you
     like to handle more complex routing and lazy loading.
 
     Existing template code—you do not need to add this { .caption }
 
-    ```
+    ```js
       _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails
-        var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
-        Polymer.importHref(
-            resolvedPageUrl,
-            null,
-            this._showPage404.bind(this),
-            true);
+        this.importLazyGroup(page)
+          .catch(this._showPage404.bind(this));
       }
     ```
 
@@ -132,7 +164,7 @@ just need to add a menu item in the left-hand drawer so that users can navigate 
 
 1.  Find the navigation menu inside the `<app-drawer>` element.
 
-    ```
+    ```html
       <!-- Drawer content -->
       <app-drawer id="drawer" slot="drawer">
         <app-toolbar>Menu</app-toolbar>
@@ -148,13 +180,13 @@ just need to add a menu item in the left-hand drawer so that users can navigate 
 
 1.  Add the following new navigation item to the bottom of the menu.
 
-    ```
+    ```html
     <a name="new-view" href="/new-view">New View</a>
     ```
 
     Your menu should now look like the following:
 
-    ```
+    ```html
     ...
       <!-- Drawer content -->
       <app-drawer id="drawer" slot="drawer">
@@ -185,7 +217,7 @@ demand-loaded fragments like the lazy-loaded view you just added.
 
     The new list should look like this:
 
-    ```
+    ```json
     "fragments": [
       "src/my-view1.html",
       "src/my-view2.html",
