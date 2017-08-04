@@ -123,7 +123,7 @@ function writeServiceWorkerFile() {
       `${rootDir}/bower_components/**/webcomponents-lite.min.js`,
     ],
     dynamicUrlToDependencies: {
-      '/': partialTemplateFiles.concat(`${rootDir}/index.html`),
+      '/': partialTemplateFiles.concat([`${rootDir}/index.html`, `${rootDir}/blog.yaml`, `${rootDir}/authors.yaml`]),
       '/about': partialTemplateFiles.concat(`${rootDir}/about.html`),
       '/app-shell.html': partialTemplateFiles.concat(`${rootDir}/app-shell.html`),
     },
