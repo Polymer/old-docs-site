@@ -13,21 +13,19 @@ App Toolbox template in less than 15 minutes.
 
 ## Install Polymer CLI
 
-Polymer CLI is an all-in-one command line tool for Polymer projects. In this tutorial you use 
-Polymer CLI to initialize, serve, and build your project. You can also use it for linting and 
+Polymer CLI is an all-in-one command line tool for Polymer projects. In this tutorial you use
+Polymer CLI to initialize, serve, and build your project. You can also use it for linting and
 testing, but this tutorial won't cover those topics.
 
-Polymer CLI requires Node.js, npm, Git and Bower. For full installation instructions, see [the 
+Polymer CLI requires Node.js, npm, Git and Bower. For full installation instructions, see [the
 Polymer CLI documentation](/{{{polymer_version_dir}}}/docs/tools/polymer-cli).
 
 To install Polymer CLI:
 
-   ```bash
    npm install -g polymer-cli
-   ```
+
 
 ## Initialize your project from a template
-
 1. Create a new project folder to start from.
 
         mkdir my-app
@@ -35,7 +33,11 @@ To install Polymer CLI:
 
 1. Initialize your project with an app template.
 
-        polymer init polymer-2-starter-kit
+        polymer init
+
+    Press the down arrow until `polymer-2-starter-kit` is highlighted and press the enter / return
+    key to select.
+
 
 ## Serve your project
 

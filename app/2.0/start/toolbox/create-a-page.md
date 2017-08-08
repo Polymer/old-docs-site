@@ -106,7 +106,7 @@ you need to add it to your app's HTML.
     The following code that came with the app template will ensure the
     definition for each page has been loaded when the route changes.  As
     you can see, the app follows a simple convention (`'my-' + page + '.html'`)
-    when importing the definition for each route,. You can adapt this code as you
+    when importing the definition for each route. You can adapt this code as you
     like to handle more complex routing and lazy loading.
 
     Existing template code—you do not need to add this { .caption }
