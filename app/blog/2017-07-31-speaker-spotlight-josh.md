@@ -1,5 +1,5 @@
 ---
-title: Polymer Summit 2017 Speaker Spotlight: Josh Trout, Gannett
+title: "Polymer Summit 2017 Speaker Spotlight: Josh Trout, Gannett"
 ---
 
 Josh is a principal developer on the web team at Gannett. We chatted with Josh about Polymer, the Web, and building apps for the future.
