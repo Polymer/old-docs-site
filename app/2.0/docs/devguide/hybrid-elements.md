@@ -274,3 +274,13 @@ variants.
 
 When a user installs a hybrid element, **only the default dependencies are considered**. The variants
 are used purely for local development and testing.
+
+## Polymer 1.x projects using hybrid components
+
+If your Polymer 1.x project uses hybrid components, you will need to add a resolution for the webcomponents polyfills. Otherwise, Bower is unable to resolve the conflict between the dev dependency on webcomponents v1 and the app dependency on webcomponents 0.7.
+
+```js
+"resolutions": {
+  "webcomponentsjs": "^0.7"
+}
+```
