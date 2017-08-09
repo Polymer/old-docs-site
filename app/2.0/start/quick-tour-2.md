@@ -1,5 +1,5 @@
 ---
-title: Quick(er) tour of Polymer
+title: Try Polymer
 ---
 
 <!-- toc -->
@@ -31,13 +31,13 @@ element. The custom element's name **must start with an ASCII letter and
 contain a dash (-)**.
 
 <live-demo-tabs selected="0" height="40">
-  <live-demo-tab id="0">
+  <live-demo-tab tab-name="custom-element.html">
     <div slot="heading">
       custom-element.html
     </div>
     <template slot="html-content">{{{include_file_raw('2.0/start/samples/custom-element/custom-element.html')}}}</template>
   </live-demo-tab>
-  <live-demo-tab id="1">
+  <live-demo-tab tab-name="index.html">
     <div slot="heading">
       index.html
     </div>
@@ -64,13 +64,13 @@ Many elements include some internal DOM nodes to implement the element's UI and 
 You can use Polymer's DOM templating to create a shadow DOM tree for your element.
 
 <live-demo-tabs selected="0"  height="40">
-  <live-demo-tab heading="dom-element.html" id="0">
+  <live-demo-tab heading="dom-element.html" tab-name="dom-element.html">
     <div slot="heading">
       dom-element.html
     </div>
     <template slot="html-content">{{{include_file_raw('2.0/start/samples/dom-element/dom-element.html')}}}</template>
   </live-demo-tab>
-  <live-demo-tab heading="index.html" id="1">
+  <live-demo-tab heading="index.html" tab-name="index.html">
     <div slot="heading">
       index.html
     </div>
@@ -91,13 +91,13 @@ This example creates a simple tag that decorates an image by wrapping it
 with a styled `<div>` tag.
 
 <live-demo-tabs selected="0" height="60">
-  <live-demo-tab heading="picture-frame.html" id="0">
+  <live-demo-tab heading="picture-frame.html" tab-name="picture-frame.html">
     <div slot="heading">
       picture-frame.html
     </div>
     <template slot="html-content">{{{include_file_raw('2.0/start/samples/picture-frame/picture-frame.html')}}}</template>
   </live-demo-tab>
-  <live-demo-tab heading="index.html" id="1">
+  <live-demo-tab heading="index.html" tab-name="index.html">
     <div slot="heading">
       index.html
     </div>
@@ -122,13 +122,13 @@ You can bind properties in your component using the "double-mustache" syntax (`{
 The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced between the brackets.
 
 <live-demo-tabs selected="0" height="40">
-  <live-demo-tab heading="name-tag.html" id="0">
+  <live-demo-tab heading="name-tag.html" tab-name="name-tag.html">
     <div slot="heading">
       name-tag.html
     </div>
     <template slot="html-content">{{{include_file_raw('2.0/start/samples/name-tag/name-tag.html')}}}</template>
   </live-demo-tab>
-  <live-demo-tab heading="index.html" id="1">
+  <live-demo-tab heading="index.html" tab-name="index.html">
     <div slot="heading">
       index.html
     </div>
@@ -149,13 +149,13 @@ The following example declares the `owner` property from the last example.
 It also shows configuring the owner property from markup in `index.html`.
 
 <live-demo-tabs selected="0" height="40">
-  <live-demo-tab heading="configurable-name-tag.html" id="0">
+  <live-demo-tab heading="configurable-name-tag.html" tab-name="configurable-name-tag.html">
     <div slot="heading">
       configurable-name-tag.html
     </div>
     <template slot="html-content">{{{include_file_raw('2.0/start/samples/configurable-name-tag/configurable-name-tag.html')}}}</template>
   </live-demo-tab>
-  <live-demo-tab heading="index.html" id="1">
+  <live-demo-tab heading="index.html" tab-name="index.html">
     <div slot="heading">
       index.html
     </div>
@@ -176,13 +176,13 @@ This example uses two-way binding: binding the value of a custom input element (
 to the element's `owner` property, so it's updated as the user types.
 
 <live-demo-tabs selected="0" height="100">
-  <live-demo-tab heading="editable-name-tag.html" id="0">
+  <live-demo-tab heading="editable-name-tag.html" tab-name="editable-name-tag.html">
     <div slot="heading">
       editable-name-tag.html
     </div>
     <template slot="html-content">{{{include_file_raw('2.0/start/samples/editable-name-tag/editable-name-tag.html')}}}</template>
   </live-demo-tab>
-  <live-demo-tab heading="index.html" id="1">
+  <live-demo-tab heading="index.html" tab-name="index.html">
     <div slot="heading">
       index.html
     </div>
@@ -199,13 +199,13 @@ data binding and input validation.
 The template repeater (`dom-repeat`) is a specialized template that binds to an array. It creates one instance of the template's contents for each item in the array.
 
 <live-demo-tabs selected="0">
-  <live-demo-tab heading="employee-list.html" id="0">
+  <live-demo-tab heading="employee-list.html" tab-name="employee-list.html">
     <div slot="heading">
       employee-list.html
     </div>
     <template slot="html-content">{{{include_file_raw('2.0/start/samples/employee-list/employee-list.html')}}}</template>
   </live-demo-tab>
-  <live-demo-tab heading="index.html" id="1">
+  <live-demo-tab heading="index.html" tab-name="index.html">
     <div slot="heading">
       index.html
     </div>
