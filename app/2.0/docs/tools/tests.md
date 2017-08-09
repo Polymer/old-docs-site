@@ -79,7 +79,7 @@ If you receive errors about testing on Safari, see [Set up testing on Safari](#s
 ### Run tests interactively
 
 You can also run your tests in the browser. This allows you to use the
-browser's DevTools to inspect or your debug your unit tests.
+browser's DevTools to inspect or debug your unit tests.
 
 For example, using Polymer CLI and the example element project created
 in [Quick start](#quick-start) above, first you would start your server:

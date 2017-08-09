@@ -22,7 +22,7 @@ In this step, you'll add Polymer's `<paper-checkbox>` element to your app, which
 
 Run this command from your project root directory:
 
-    bower install --save PolymerElements/paper-checkbox#2.0-preview
+    bower install --save PolymerElements/paper-checkbox
 
 ## Add the element to your application
 

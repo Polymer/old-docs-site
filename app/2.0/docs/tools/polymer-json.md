@@ -162,8 +162,20 @@ for every run:
 
     *   `inlineScripts`: Inline external Javascript file contents into `<script>` tags.
     
-    *   `rewriteUrlsInTemplates`: Rewrite element attributes inside templates when inlining html.
-
+    *   `rewriteUrlsInTemplates`: Rewrite URLs in element attributes and style tags inside templates 
+         when inlining html. 
+         
+         Defaults to `false` for Polymer 2.x; for Polymer 1.x, or where the Polymer CLI can't identify the 
+         version you're using, `rewriteUrlsInTemplates` defaults to `true`. 
+         
+         **URLs in element attributes and style tags inside templates are no longer re-written in Polymer 2.x**
+         In Polymer 1.x, URLs in attributes and styles inside element templates were re-written 
+         to be relative to the HTML import that defined the element. In Polymer 2.x, they should
+         instead be bound using `importPath` or `rootPath` where appropriate. See the documentation on 
+         [URLs in DOM templates](https://www.polymer-project.org/2.0/docs/devguide/dom-template#urls-in-templates)
+         and the [Polymer 2.0 upgrade guide](https://www.polymer-project.org/2.0/docs/upgrade#urls-in-templates) for more information.
+         {.alert .alert-info}
+    
     *   `sourcemaps`: Create identity source maps for inline scripts.
 
     *   `stripComments`: Remove all comments except those tagged `@license`, or starting with

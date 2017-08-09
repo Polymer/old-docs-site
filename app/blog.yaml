@@ -6,6 +6,13 @@
   description: "Chad Killingsworth on componentized web app development, and the importance of powerful theming."
   tag:
     - blog
+- title: "Polymer Summit Speaker Spotlight: Josh Trout from Gannett"
+  path: /blog/2017-07-31-speaker-spotlight-josh
+  published: 2017-07-31
+  author: katejeffreys
+  description: "Josh Trout from Gannett on Polymer, the Web, and building apps for the future"
+  tag:
+    - blog
 - title: "An Update on Neon Animation"
   path: /blog/2017-07-12-an-update-on-neon-animation
   published: 2017-07-12
