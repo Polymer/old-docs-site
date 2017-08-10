@@ -70,16 +70,13 @@ Being able to make visual changes to the app without having to be deeply involve
 
 2. I love traveling, so I'm always looking forward to seeing a new place. But I'm also very excited to spend in-person time with the Google developers I collaborate with so frequently.
 
-
 -----
 
 This year's summit takes place August 22–23 at [Lokomotivværkstedet](http://www.lvcph.dk/index-eng.html) in beautiful downtown [Copenhagen, Denmark](https://goo.gl/maps/pgFPsEkRRcS2).
 
 Like previous years, we'll have talks and codelabs from the Polymer team, plus food, fun, and plenty of space for informal conversations.
 
-For the first time this year, we'll be asking for talks from community members, so we can hear from you, too.
-
-To be notified when registration opens, sign up with your email address at [g.co/polymersummit2017](http://g.co/polymersummit2017). As always, tickets are  free.
+Tickets are free! [Register on the Polymer Summit 2017 website](https://summit.polymer-project.org/).
 
 If you can't make it to Copenhagen, don't worry. The talks will be livestreamed and recorded for later, and the codelabs will be available online so you can try them out from anywhere.
 
