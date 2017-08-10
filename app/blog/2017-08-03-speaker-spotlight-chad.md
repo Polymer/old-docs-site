@@ -12,13 +12,13 @@ My company has mobile banking apps which are fully themed for each financial ins
 
 **What was it about Polymer that made it seem like a good fit?**
 
-We were interested in writing a code base which could be maintained for 10+ years - and that's very challenging when you look at the average lifespan of a modern JS framework.
+We were interested in writing a code base which could be maintained for 10+ years--and that's very challenging when you look at the average lifespan of a modern JS framework.
 
-We chose Polymer for the UI layer because of how close it was to the actual platform apis and the convergence we saw among browser manufacturers towards those apis.
+We chose Polymer for the UI layer because of how close it was to the actual platform APIs and the convergence we saw among browser manufacturers towards those APIs.
 
 **How important to your clients is changing and developing the theming and branding of a site? Are you able to do this quickly?**
 
-Extremely quickly - and it's very important.
+Extremely quickly--and it's very important.
 
 The theming is all tightly coupled to the same theming variables that our mobile clients already used. 
 
@@ -28,15 +28,15 @@ The ability to not only get rid of, but realizing you don't need a CSS preproces
 
 Being able to write self contained UI elements and interactions completely changes how you view development. You begin breaking your app up into distinct blocks and suddenly wonder why you ever wrote applications any other way.
 
-However having HTML, CSS and JS mixed in the same file is extremely challenging for most build tools. Especially if your project doesn't fit the exact model of the polymer build tools.
+However having HTML, CSS and JS mixed in the same file is extremely challenging for most build tools. Especially if your project doesn't fit the exact model of the Polymer build tools.
 
 So my team has spent a large amount of time bridging the gap between Polymer and the rest of the JS ecosystem.
 
 **Could you mention a couple of things that were rewarding and other things that were more challenging about the process of building from scratch with Polymer?**
 
-On the UI components Polymer is highly maintainable because the styles that affect the dom are maintained right next to the actual logic and HTML.
+On the UI components Polymer is highly maintainable because the styles that affect the DOM are maintained right next to the actual logic and HTML.
 
-The goal is to have small modular change outs. The migration path from Polymer 1 to Polymer 2 has been ideal because we can run the old style syntax alongside the new without having to have a huge rollout.
+The goal is to have small modular change-outs. The migration path from Polymer 1 to Polymer 2 has been ideal because we can run the old style syntax alongside the new without having to have a huge rollout.
 
 For frameworks that embed HTML into their JS, it's always a concern that to make HTML or style changes requires a full JavaScript engineer. That's not been true of Polymer at all.
 
@@ -44,11 +44,11 @@ One of the biggest challenges was automated browser testing. When we started, al
 
 **Have you found that your development workflows or organizational mindset had to change dramatically with a new way of thinking about development?**
 
-We have definitely had to figure out how much logic should be embedded into any one component vs using some kind of outside library. We've gone back and forth on where we think that line is for maintainability. Limiting the length of the javascript in any one component is pretty key.
+We have definitely had to figure out how much logic should be embedded into any one component vs using some kind of outside library. We've gone back and forth on where we think that line is for maintainability. Limiting the length of the JavaScript in any one component is pretty key.
 
 **What excites you most about Progressive Web Apps?**
 
-As I watch the trend of users to install and utilize fewer apps, having a web-based app that provides all of the same functionality as a native app is exciting. For us having mature native apps, it's been fun to develop a web-based version that will soon have feature parity - including with features that were once not even possible for a browser such as push notifications.
+As I watch the trend of users to install and utilize fewer apps, having a web-based app that provides all of the same functionality as a native app is exciting. For us having mature native apps, it's been fun to develop a web-based version that will soon have feature parity--including with features that were once not even possible for a browser such as push notifications.
 
 **How would you make the Web better?**
 
@@ -64,9 +64,9 @@ But I love the speed at which a new participant into that community can actively
 
 Being able to make visual changes to the app without having to be deeply involved in the JavaScript is one of the greatest benefits of Polymer. Because you are working with HTML and CSS directly and changes are isolated to that component alone, it's easy for someone who specializes in HTML/CSS to make visual corrections or changes without having to really know the framework internals or interfere with the business logic.
 
-**Just two more questions for you - 1. What is your favourite food and 2. What are you looking forward to in your visit to Copenhagen?**
+**Just two more questions for you: 1. What is your favourite food and 2. What are you looking forward to in your visit to Copenhagen?**
 
-1. I'm not much of a favorites type of person - I get bored with the same thing over and over. Anything quality I enjoy.
+1. I'm not much of a favorites type of person--I get bored with the same thing over and over. Anything quality I enjoy.
 
 2. I love traveling, so I'm always looking forward to seeing a new place. But I'm also very excited to spend in-person time with the Google developers I collaborate with so frequently.
 
