@@ -4,7 +4,6 @@ title: "Case study: the Shop app"
 
 <!-- toc -->
 
-
 Shop is a full-featured e-commerce Progressive web app demo built using the
 Toolbox. You can try it out here:
 
@@ -79,7 +78,7 @@ based on the current route. The view switching code looks like this:
 
 `shop-app.html` { .caption }
 ```
-<iron-pages role="main" selected="[[page]]" attr-for-selected="name" selected-attribute="visible">
+<iron-pages role="main" selected="[[page]]" attr-for-selected="name" selected-attribute="visible" fallback-selection="404">
   <!-- home view -->
   <shop-home name="home" categories="[[categories]]"></shop-home>
   <!-- list view of items in a category -->
@@ -90,6 +89,7 @@ based on the current route. The view switching code looks like this:
   <shop-cart name="cart" cart="[[cart]]" total="[[total]]"></shop-cart>
   <!-- checkout view -->
   <shop-checkout name="checkout" cart="[[cart]]" total="[[total]]" route="{{subroute}}"></shop-checkout>
+  <shop-404-warning name="404"></shop-404-warning>
 </iron-pages>
 ```
 
@@ -103,23 +103,23 @@ When you change pages, the application loads the definition for the active view.
 When the definition loads, the browser _upgrades_ the element to a fully-
 functional custom element.
 
-```
-_pageChanged: function(page, oldPage) {
+```javascript
+_pageChanged(page, oldPage) {
   if (page != null) {
     // home route is eagerly loaded
     if (page == 'home') {
       this._pageLoaded(Boolean(oldPage));
     // other routes are lazy loaded
     } else {
-      this.importHref(
+      // When a load failed, it triggered a 404 which means we need to
+      // eagerly load the 404 page definition
+      let cb = this._pageLoaded.bind(this, Boolean(oldPage));
+      Polymer.importHref(
         this.resolveUrl('shop-' + page + '.html'),
-        function() {
-          this._pageLoaded(Boolean(oldPage));
-        }, null, true);
+        cb, cb, true);
     }
   }
-},
-
+}
 ```
 
 In the logic above, the home view is built into the app shell, but the other
@@ -127,19 +127,25 @@ views are demand-loaded fragments.
 
 Shop also uses [`dom-if`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.DomIf) templates to lazily create views:
 
-```
-<div id="tabContainer" primary$="[[_shouldShowTabs]]" hidden$="[[!_shouldShowTabs]]">
-  <template is="dom-if" if="[[_shouldRenderTabs]]">
-    <shop-tabs
-        selected="[[categoryName]]"
-        attr-for-selected="name">
-      <template is="dom-repeat" items="[[categories]]" as="category" initial-count="4">
-        <shop-tab name="[[category.name]]">
-          <a href="/list/[[category.name]]">[[category.title]]</a>
-        </shop-tab>
-      </template>
-    </shop-tabs>
-  </template>
+```html
+<!-- Lazy-create the tabs for larger screen sizes. -->
+<div id="tabContainer" sticky$="[[_shouldShowTabs]]" hidden$="[[!_shouldShowTabs]]">
+  <dom-if if="[[_shouldRenderTabs]]">
+    <template>
+      <shop-tabs
+          selected="[[categoryName]]"
+          attr-for-selected="name">
+        <dom-repeat items="[[categories]]" as="category" initial-count="4">
+          <template>
+          <shop-tab name="[[category.name]]">
+            <a href="/list/[[category.name]]">[[category.title]]</a>
+          </shop-tab>
+          </template>
+        </dom-repeat>
+      </shop-tabs>
+    </template>
+  </dom-if>
+</div>
 ```
 
 When parsed, the template's content is inert, and not included in the main
@@ -160,11 +166,11 @@ are passed down to other elements.
 
 ```
 :host {
-  --app-primary-color: #0b374b;
-  --app-secondary-color: #fee0e0;
-  --app-accent-color: #202020;
-    ...
-}
+  ...
+  --app-primary-color: #202020;
+  --app-secondary-color: #757575;
+  --app-accent-color: #172C50;
+  ...
 ```
 
 These custom properties are special CSS properties defined by the component

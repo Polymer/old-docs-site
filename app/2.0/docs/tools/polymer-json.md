@@ -138,29 +138,75 @@ the `builds` property. This is equivalent to passing different CLI flags to the 
 storing them here will configure the build
 for every run:
 
-* `name`: An optional name for your build. If multiple builds are defined, the `name` property is
-required.
-* `preset`: An optional preset name that your build configuration can inherit from. See below for more information.
-* `addServiceWorker`: If `true`, generate a service worker for your application.
-* `addPushManifest`: If `true`, generate an [HTTP/2 Push Manifest](https://github.com/GoogleChrome/http2-push-manifest) for your application.
-* `swPrecacheConfig`: An optional configuration file for the generated service worker.
-* `insertPrefetchLinks`: If `true`, insert prefetch link elements into your fragments so that all
-dependencies are prefetched immediately.
-* `bundle`: May be boolean, or an object bag of settings matching specified [`polymer-bundler`](https://github.com/Polymer/polymer-bundler) constructor options. This functionality emulates the behavior of the Polymer 1.x build tools.
-  * If `true`, bundle your application.
-  * If an object is provided with further configuration, the options are:
-    * `excludes`: Optional, `String[]`. Excludes the listed paths of files or folders from inlining.
-    * `inlineCss`: Optional, `Boolean`. Specifies whether to inline external CSS file contents into `<style>` tags.
-    * `inlineScripts`: Optional, `Boolean`. Specifies whether to inline external JavaScript file contents into `<script>` tags.
-    * `rewriteUrlsInTemplates`: Optional, `Boolean`. Specifies whether to rewrite element attributes inside of templates when inlining HTML.
-    * `sourcemaps`: Optional, `Boolean`. Specifies whether to create identity source maps for inline scripts.
-* `html`:
-  * `minify`: If `true`, minify all HTML.
-* `css`:
-  * `minify`: If `true`, minify all CSS.
-* `js`:
-  * `minify`: If `true`, minify all JS.
-  * `compile`: If `true`, use babel to compile all ES6 JS down to ES5.
+*   `name`: An optional name for your build. If multiple builds are defined, the `name` property 
+    is required.
+
+*   `preset`: An optional preset name that your build configuration can inherit from. 
+    See below for more information.
+
+*   `addServiceWorker`: If `true`, generate a service worker for your application.
+
+*   `addPushManifest`: If `true`, generate an [HTTP/2 Push Manifest](https://github.com/GoogleChrome/http2-push-manifest) for your application.
+
+*   `swPrecacheConfig`: An optional configuration file for the generated service worker.
+
+*   `insertPrefetchLinks`: If `true`, insert prefetch link elements into your fragments so that 
+    all dependencies are prefetched immediately.
+
+*   `bundle`: You may provide a boolean (`true` to bundle your application; default is `false`), 
+    or an object containing bundling configuration options.
+    
+    *   `excludes`: A list of paths of files and/or folders that should not be inlined. 
+      
+    *   `inlineCss`: Inline external CSS file contents into `<style>` tags.
+
+    *   `inlineScripts`: Inline external Javascript file contents into `<script>` tags.
+    
+    *   `rewriteUrlsInTemplates`: Rewrite URLs in element attributes and style tags inside templates 
+         when inlining html. 
+         
+         Defaults to `false` for Polymer 2.x; for Polymer 1.x, or where the Polymer CLI can't identify the 
+         version you're using, `rewriteUrlsInTemplates` defaults to `true`. 
+         
+         **URLs in element attributes and style tags inside templates are no longer re-written in Polymer 2.x**
+         In Polymer 1.x, URLs in attributes and styles inside element templates were re-written 
+         to be relative to the HTML import that defined the element. In Polymer 2.x, they should
+         instead be bound using `importPath` or `rootPath` where appropriate. See the documentation on 
+         [URLs in DOM templates](https://www.polymer-project.org/2.0/docs/devguide/dom-template#urls-in-templates)
+         and the [Polymer 2.0 upgrade guide](https://www.polymer-project.org/2.0/docs/upgrade#urls-in-templates) for more information.
+         {.alert .alert-info}
+    
+    *   `sourcemaps`: Create identity source maps for inline scripts.
+
+    *   `stripComments`: Remove all comments except those tagged `@license`, or starting with
+        `<!--!` or `<!--#`.
+
+*   `html`: An object containing a configuration option for HTML:
+    
+    *   `minify`: If `true`, minify all HTML.
+
+*   `css`: An object containing a configuration option for CSS:
+
+    *   `minify`: If `true`, minify all CSS.
+
+*   `js`: An object containing configuration options for Javascript:
+
+    *   `minify`: If `true`, minify all JS.
+
+    *   `compile`: If `true`, use babel to compile all ES6 JS down to ES5.
+
+*   `browserCapabilities`: Capabilities required for a browser to consume this build. 
+    Values are `es2015`, `push` and `serviceworker`. For more information, see the 
+    [prpl-server-node README](https://github.com/Polymer/prpl-server-node#capabilities).
+
+*   `basePath`: Update the entrypoint's `<base>` tag to support serving this build from a
+    non-root path, such as when performing differential serving based on user agent. Requires
+    that a `<base>` tag already exists.
+
+    If `true`, use the build `name`. If a `string`, use that value. Leading and trailing 
+    slashes are optional.
+
+    Note that `basePath` must be set to `true` if using [prpl-server](https://github.com/Polymer/prpl-server-node).
 
 As an example, here is the configuration for a bundled, minified application build:
 
@@ -190,12 +236,12 @@ And here is a configuration to generate two optimized builds: One bundled and on
   }]
 ```
 
-Here is a configuration to generate a bundled, minified application build with the following bundling options:
+The following configuration generates a bundled, minified application build with bundling options:
 
-* Specified paths are excluded from inlining
-* Comments are stripped
-* External CSS is not inlined
-* Identity source maps for inline scripts are created
+*   Specified paths are excluded from inlining.
+*   Comments are stripped.
+*   External CSS is not inlined.
+*   Identity source maps for inline scripts are created.
 
 ```json
 "build": [{
@@ -212,7 +258,9 @@ Here is a configuration to generate a bundled, minified application build with t
 }]
 ```
 
-**Build presets** provide an easy way to create common build configurations. When you provide a valid preset for your build, it will inherit its configuration from that preset. We currently support 3 different presets:
+**Build presets** provide an easy way to create common build configurations. When you provide a 
+valid preset for your build, it will inherit its configuration from that preset. We currently 
+support 3 different presets:
 
 - **es5-bundled:**
   - name: `es5-bundled`
@@ -224,6 +272,8 @@ Here is a configuration to generate a bundled, minified application build with t
   - addPushManifest: `true`
   - insertPrefetchLinks: `true`
 - **es6-bundled:**
+  - name: `'es6-bundled'`
+  - browserCapabilities: `['es2015']`
   - js: `{minify: true, compile: false}`
   - css: `{minify: true}`
   - html: `{minify: true}`
@@ -231,7 +281,9 @@ Here is a configuration to generate a bundled, minified application build with t
   - addServiceWorker: `true`
   - addPushManifest: `true`
   - insertPrefetchLinks: `true`
-- **es6-unbundled:**
+- **es6-unbundled:**  
+  - name: `'es6-unbundled'`
+  - browserCapabilities: `['es2015', 'push']`
   - js: `{minify: true, compile: false}`
   - css: `{minify: true}`
   - html: `{minify: true}`
@@ -249,9 +301,9 @@ Any additional options that you provide will override the given preset. In the e
 }]
 ```
 
-
 ### lint
 Optional<br>
+Type: `Object`
 
 You can use this to configure how polymer-lint will lint your project both on the command line and in IDE plugins.
 

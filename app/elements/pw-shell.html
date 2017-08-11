@@ -13,11 +13,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
+<!-- promise polyfill required by iron-ajax 2.0 -->
+<link rel="import" href="../bower_components/promise-polyfill/promise-polyfill-lite.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../bower_components/iron-doc-viewer/default-theme.html">
 <link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
-<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
 
 <dom-module id="pw-shell">
   <template>
@@ -71,6 +71,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 0 8px;
       }
 
+      .header-toolbar paper-icon-button {
+        width: 40px;
+      }
+
       .header-toolbar .logo-link {
         padding-left: 20px;
         height: 24px;
@@ -119,13 +123,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         box-sizing: border-box;
         -webkit-transform: translate3d(100%, 0, 0);
         transform: translate3d(100%, 0, 0);
-        transition: -webkit-transform 0.2s;
-        transition: transform 0.2s;
       }
 
       .search-box:focus {
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
+        transition: -webkit-transform 0.2s;
+        transition: transform 0.2s;
       }
 
       @media (max-width: 767px) {
@@ -199,11 +203,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </script>
     <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
     </script>
-    <noscript>
-      <div style="display:inline;">
-      <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/935743779/?value=0&amp;guid=ON&amp;script=0"/>
-      </div>
-    </noscript>
 
   </template>
 
@@ -238,11 +237,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       path: {
         type: String
       }
-    },
-
-    created: function() {
-      // Save the fact that this is a first load, so that we don't double render it
-      this._isInitialNavigation = true;
     },
 
     attached: function() {
@@ -319,8 +313,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _handleError: function(event) {
-      if (this._isInitialNavigation) {
-        this._isInitialNavigation = false;
+      if (this.hasAttribute('server-rendered')) {
+        this.removeAttribute('server-rendered');
       }
 
       window.showToast('This page was not cached for offline use :(');
@@ -329,8 +323,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     _handleResponse: function(event) {
       // Don't reload the current page on initial navigation, since the server is
       // already serving the correct page.
-      if (this._isInitialNavigation) {
-        this._isInitialNavigation = false;
+      if (this.hasAttribute('server-rendered')) {
+        this.removeAttribute('server-rendered');
       } else {
         // Not all sections have a version, so only update the docs version if
         // there's actually a change.
@@ -499,7 +493,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.toggleClass('active', false, links[i]);
 
           // If the active collapse is opened, then grey-out the other links.
-          this.toggleClass('greyed-out', collapse.opened, links[i]);
+          this.toggleClass('greyed-out', collapse && collapse.opened, links[i]);
         }
       }
     },

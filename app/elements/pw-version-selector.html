@@ -7,6 +7,7 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
+<script src="../bower_components/web-animations-js/web-animations-next-lite.min.js"></script>
 <link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu-light.html">
 
 <dom-module id="pw-version-selector">
@@ -21,7 +22,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <b>Version</b>
     <paper-dropdown-menu-light no-label-float>
-      <paper-listbox class="dropdown-content" selected="[[activeDocsVersion]]" attr-for-selected="name" on-iron-select="_listboxVersionChanged">
+      <paper-listbox slot="dropdown-content" selected="[[activeDocsVersion]]" attr-for-selected="name" on-iron-select="_listboxVersionChanged">
         <paper-item name="1.0">1.0</paper-item>
         <paper-item name="2.0">2.0</paper-item>
       </paper-listbox>

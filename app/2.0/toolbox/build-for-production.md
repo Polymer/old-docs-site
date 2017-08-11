@@ -184,9 +184,9 @@ This configuration generates a bundled, minified application build with the foll
   "name": "bundled-custom",
   "bundle": {
     "excludes": ["/path/to/stuff/", "/path/to/more/stuff.html"],
-    "stripComments": "true",
-    "inlineCss": "false",
-    "sourcemaps": "true"
+    "stripComments": true,
+    "inlineCss": false,
+    "sourcemaps": true
   },
   "js": {"minify": true},
   "css": {"minify": true},

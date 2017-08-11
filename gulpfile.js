@@ -90,26 +90,26 @@ function writeServiceWorkerFile() {
   /**
    * NOTE(keanulee): This function is run in the context of the generated SW where variables
    * like `toolbox` and `caches` are defined. It is referenced as a handler by the runtime
-   * caching config below which embeds the value of networkFirstWithFallback.toString() in the
+   * caching config below which embeds the value of pwShellSWHandler.toString() in the
    * generated SW.
    *
-   * This handler is similar to the "network-first" strategy, except that a fallback page is
-   * served on cache and network miss.
+   * This handler will return the cached app shell for all navigate requests and network-first
+   * for all other requests.
    */
-  function networkFirstWithFallback(request, values, options) {
-    return toolbox.networkFirst(request, values, options).catch(function() {
-      // Only serve fallback content on navigate requests (not XHRs) for non-sample content.
-      if ((request.mode === 'navigate') && !request.url.match('samples')) {
-        return caches.open(cacheName).then(function(cache) {
-          return cache.match(urlsToCacheKeys.get(new URL('/offline', self.location).toString()));
-        });
-      }
-    });
+  function pwShellSWHandler(request, values, options) {
+    // Only serve the app shell for navigate requests (not XHRs) of non-sample content.
+    if ((request.mode === 'navigate') && !request.url.match('samples')) {
+      return caches.open(cacheName).then(function(cache) {
+        return cache.match(urlsToCacheKeys.get(new URL('/app-shell.html', self.location).toString()));
+      });
+    } else {
+      return toolbox.networkFirst(request, values, options);
+    }
   }
 
   let path = require('path');
   let rootDir = 'dist';
-  let partialTemplateFiles = ['head-meta.html', 'noscript.html', 'site-nav.html']
+  let partialTemplateFiles = ['head-meta.html', 'site-nav.html']
     .map(file => path.join(rootDir, 'templates', file));
 
   let config = {
@@ -123,9 +123,9 @@ function writeServiceWorkerFile() {
       `${rootDir}/bower_components/**/webcomponents-lite.min.js`,
     ],
     dynamicUrlToDependencies: {
-      '/': partialTemplateFiles.concat(`${rootDir}/index.html`),
+      '/': partialTemplateFiles.concat([`${rootDir}/index.html`, `${rootDir}/blog.yaml`, `${rootDir}/authors.yaml`]),
       '/about': partialTemplateFiles.concat(`${rootDir}/about.html`),
-      '/offline': partialTemplateFiles.concat(`${rootDir}/offline.html`),
+      '/app-shell.html': partialTemplateFiles.concat(`${rootDir}/app-shell.html`),
     },
     runtimeCaching: [
     {
@@ -140,27 +140,27 @@ function writeServiceWorkerFile() {
     },
     {
       urlPattern: new RegExp('/docs/'),
-      handler: networkFirstWithFallback,
+      handler: pwShellSWHandler,
     },
     {
       urlPattern: new RegExp('/start/'),
-      handler: networkFirstWithFallback,
+      handler: pwShellSWHandler,
     },
     {
       urlPattern: new RegExp('/toolbox/'),
-      handler: networkFirstWithFallback,
+      handler: pwShellSWHandler,
     },
     {
       urlPattern: new RegExp('/samples/'),
-      handler: networkFirstWithFallback,
+      handler: pwShellSWHandler,
     },
     {
       urlPattern: new RegExp('/community/'),
-      handler: networkFirstWithFallback,
+      handler: pwShellSWHandler,
     },
     {
       urlPattern: new RegExp('/blog/'),
-      handler: networkFirstWithFallback,
+      handler: pwShellSWHandler,
       options: {
         cache: {
           maxEntries: 10,

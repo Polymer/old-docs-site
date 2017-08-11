@@ -12,12 +12,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <head>
 <title>{% block title %}{% endblock %} - Polymer Project</title>
 {% include 'templates/head-meta.html' %}
-<style is="custom-style" include="iron-doc-default-theme"></style>
 </head>
-<body class="fullbleed" unresolved>
-  {% include 'templates/noscript.html' %}
-  <pw-shell>
+<body>
+  <pw-shell server-rendered>
     {% include 'templates/site-nav.html' %}
+
     <div class="devguide-main">
       <nav>
         <pw-version-selector active-docs-version="{{{polymer_version_dir}}}"

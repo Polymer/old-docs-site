@@ -9,27 +9,49 @@ In this step, you'll deploy your application to the web.
 
 ## Build for deployment
 
-Run the following Polymer CLI command to prepare your
-application for deployment:
+Type `polymer build` to build your Polymer application for production. 
 
-    polymer build
+You can serve different builds of your app to browsers with different capabilities. The Polymer Starter Kit is configured to create three builds:
 
-This command  minifies the HTML, JS, and CSS dependencies of your application,
-and generates a service worker that precaches all of the dependencies
-of your application so that it can work offline.
+* A bundled, minified build with a service worker, compiled to ES5 for compatibility with older browsers.
+* A bundled, minified build with a service worker. ES6 code is served as-is. This build is for browsers that can handle ES6 code.
+* An unbundled, minified build with a service worker. ES6 code is served as-is. This build is for browsers that support HTTP/2 push.
 
-The built files are output to the `build/default` folder. The default build contains an unbundled
-build with granular resources suitable for serving via HTTP/2 with server push. 
+In this step, you'll deploy the bundled, compiled build (`es5-bundled`) for maximum compatibility. Serving the other builds requires a more complex serving setup.
 
-For more information on build options, see the [documentation for the `polymer build` command](/2.0/docs/tools/polymer-cli#build).
-This includes documentation on generating bundled (concatenated) resources suitable for
-serving from servers or to clients that do not support HTTP/2 server push.
+Builds are configured in the `builds` object in `polymer.json`, a configuration file in the root project folder:
+
+polymer.json { .caption}
+```
+...
+"builds": [
+  {
+    "preset": "es5-bundled"
+  },
+  {
+    "preset": "es6-bundled"
+  },
+  {
+    "preset": "es6-unbundled"
+  }
+]
+...
+```
+
+The builds will be output to subfolders under the `build/` folder as follows:
+
+    build/
+      es5-bundled/
+      es6-bundled/
+      es6-unbundled/
+
+To configure a custom build, you can use command line options, or edit `polymer.json`. Run `polymer help build` for the full list of available options and optimizations. Also, see the documentation on the [polymer.json specification](https://www.polymer-project.org/2.0/docs/tools/polymer-json) and [building your Polymer application for production](https://www.polymer-project.org/2.0/toolbox/build-for-production).
 
 ## Deploy to a server
 
 Polymer applications can be deployed to any web server.
 
-This template utilizes the `<app-location>` element to enable URL-based routing,
+This template uses the `<app-location>` element to enable URL-based routing,
 which requires that the server serve the `index.html` entry point for all
 routes.
 
@@ -47,7 +69,7 @@ and follow the instructions for your platform to install it. This tutorial uses 
 1.  [Sign up for an AppEngine account](https://cloud.google.com/appengine).
 
 1.  [Open the project dashboard](https://console.cloud.google.com/iam-admin/projects)
-and create a new project
+and create a new project.
 
     * Click the Create Project button.
     * Type a project name.
@@ -67,57 +89,49 @@ and create a new project
 
     handlers:
     - url: /bower_components
-      static_dir: build/default/bower_components
+      static_dir: build/es5-bundled/bower_components
       secure: always
 
     - url: /images
-      static_dir: build/default/images
+      static_dir: build/es5-bundled/images
       secure: always
 
     - url: /src
-      static_dir: build/default/src
+      static_dir: build/es5-bundled/src
       secure: always
 
     - url: /manifest.json
-      static_files: build/default/manifest.json
-      upload: build/default/manifest.json
+      static_files: build/es5-bundled/manifest.json
+      upload: build/es5-bundled/manifest.json
       secure: always
 
     - url: /.*
-      static_files: build/default/index.html
-      upload: build/default/index.html
+      static_files: build/es5-bundled/index.html
+      upload: build/es5-bundled/index.html
       secure: always
     ```
 
-1.  Set your project id to the ID given to your app by the App Engine. For example:
-    ````
-    gcloud config set project my-app-164409
-    ````
+1. Set your project id to the ID given to your app by the App Engine. For example:
+   
+       gcloud config set project my-app-164409
 
-1. Create your app.
-    ````
-    gcloud app create
-    ````
-	
-    You will need to select a region for your app to be deployed in. This can't be changed.
+1. Create your app:
+   
+       gcloud app create
+     
+   You will need to select a region for your app to be deployed in. This can't be changed.
 
-1. Deploy your app.
-
-    ````
-    gcloud app deploy
-    ````
+1. Deploy your app:
+   
+       gcloud app deploy
 
 1. Your app will be available online at its designated URL. For example:
-
-    ````
-    https://my-app-164409.appspot.com/new-view
-    ````
-
-    Open your app URL in your browser by typing this command:
-
-    ````
-    gcloud app browse
-    ````
+   
+       https://my-app-164409.appspot.com/new-view
+   
+   Open your app URL in your browser by typing this command:
+   
+       gcloud app browse
 
 ### Deploy with Firebase
 
@@ -134,7 +148,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
 
         npm install -g firebase-tools
 
-1.  `cd` into your project directory.
+1.  `cd` into your project folder.
 
 1.  Inititalize the Firebase application.
 
@@ -143,8 +157,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
 
 1.  Firebase asks you for a project to associate with your app. Select the one you created earlier.
 
-1.  Firebase asks you the name of your app's public directory. Enter
-    `build/default`.
+1.  Firebase asks you the name of your app's public folder. Enter `build/es5-bundled/`.
 
 1.  Edit your firebase configuration to add support for URL routing.  Add
     the following to the `hosting` object in your `firebase.json` file.
@@ -170,7 +183,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
         "rules": "database.rules.json"
       },
       "hosting": {
-        "public": "build/default",
+        "public": "build/es5-bundled/",
         "rewrites": [
           {
             "source": "!/__/**",
@@ -188,10 +201,10 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
     This instructs Firebase to serve up `index.html` for any URLs that don't
     otherwise end in a file extension.
 
-1.  Deploy your project.
-
-        firebase deploy
-
-    The URL to your live site is listed in the output. You can also open
-    the site in your default browser by running `firebase open hosting:site`.
+1. Deploy your project.
+   
+       firebase deploy
+   
+   The URL to your live site is listed in the output. You can also open
+   the site in your default browser by running `firebase open hosting:site`.
 
