@@ -49,6 +49,10 @@ function downloadStarter() {
   ga('send', 'event', 'button', 'download');
 }
 
+function recordPlunker(demo) {
+  ga('send', 'event', 'plunker', demo);
+}
+
 function recordSearch(term) {
   ga('send', 'event', 'search', term);
 }
@@ -62,6 +66,7 @@ function recordPageview(opt_url) {
 exports.recordPageview = recordPageview;
 exports.recordSearch = recordSearch;
 exports.downloadStarter = downloadStarter;
+exports.recordPlunker = recordPlunker;
 
 // Analytics -----
 /* jshint ignore:start */
