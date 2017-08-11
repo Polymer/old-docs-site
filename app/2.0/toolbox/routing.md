@@ -76,7 +76,7 @@ to load the user's data:
     route="{{route}}"
     pattern="/:user_id"
     data="{{routeData}}"></app-route>
-<iron-ajax url="{{_profileUrlForUser(routeData.user_id)}}
+<iron-ajax url="{{_profileUrlForUser(routeData.user_id)}}"
            on-response="handleResponse" auto>
 ```
 
