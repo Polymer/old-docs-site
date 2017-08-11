@@ -34,18 +34,4 @@ I wouldn’t say that I have a favourite food. The variety makes it interesting.
 
 I’ve just been to Copenhagen a couple of weeks ago, so I haven’t planned much sightseeing this time around. What I’m really looking forward to is meeting the Polymer community. It’s exciting to meet so many people who share a passion for the web.
 
------
-
-This year's summit takes place August 22–23 at [Lokomotivværkstedet](http://www.lvcph.dk/index-eng.html) in beautiful downtown [Copenhagen, Denmark](https://goo.gl/maps/pgFPsEkRRcS2).
-
-Like previous years, we'll have talks and codelabs from the Polymer team, plus food, fun, and plenty of space for informal conversations.
-
-For the first time this year, we'll be asking for talks from community members, so we can hear from you, too.
-
-To be notified when registration opens, sign up with your email address at [g.co/polymersummit2017](http://g.co/polymersummit2017). As always, tickets are  free.
-
-If you can't make it to Copenhagen, don't worry. The talks will be livestreamed and recorded for later, and the codelabs will be available online so you can try them out from anywhere.
-
-Follow us on Twitter [@polymer](https://twitter.com/polymer) for regular updates.
-
 
