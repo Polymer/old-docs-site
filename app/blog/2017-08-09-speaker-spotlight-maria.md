@@ -1,5 +1,5 @@
 ---
-title: "Polymer Summit 2017 Speaker Spotlight: Maria Hussman, PhD Student"
+title: "Polymer Summit 2017 Speaker Spotlight: Maria Husmann, PhD Student"
 ---
 
 Maria is a PHD student at ETH Zurich. Her research focuses on cross-device applications and human-computer interaction. Maria shares her thoughts on the benefits of the Web as an open platform, and the greater user experience offered by Progressive Web Apps.
