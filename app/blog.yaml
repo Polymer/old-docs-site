@@ -1,4 +1,18 @@
 ---
+- title: "Polymer Summit Speaker Spotlight: Maria Hussman, ETH Zurich"
+  path: /blog/2017-08-09-speaker-spotlight-maria
+  published: 2017-08-09
+  author: katejeffreys
+  description: "Maria Hussman on the benefits of the Web as an open platform, and the greater user experience offered by Progressive Web Apps."
+  tag:
+    - blog
+- title: "Polymer Summit Speaker Spotlight: Chad Killingsworth, Jack Henry & Associates"
+  path: /blog/2017-08-03-speaker-spotlight-chad
+  published: 2017-08-03
+  author: katejeffreys
+  description: "Chad Killingsworth on componentized web app development, and the importance of powerful theming."
+  tag:
+    - blog
 - title: "Polymer Summit Speaker Spotlight: Josh Trout from Gannett"
   path: /blog/2017-07-31-speaker-spotlight-josh
   published: 2017-07-31
