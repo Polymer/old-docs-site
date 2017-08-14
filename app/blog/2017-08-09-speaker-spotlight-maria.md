@@ -10,7 +10,7 @@ What I really like is how fast you can be at building a web app if you have the 
 
 Another example would be my personal website (which is currently not online). For that one, I used the paper elements. They really helped. I’m not a designer, yet I managed to create a decent looking website.
 
-My absolute favourite would be XD-Bike, though, which I will also present at the summit. It was not built by three students that I supervised. They also use the paper elements and ended up with a really nice web app that helps mountain bikers plan their next trip.
+My absolute favourite would be XD-Bike, though, which I will also present at the summit. It was built by three students that I supervised. They also use the paper elements and ended up with a really nice web app that helps mountain bikers plan their next trip.
 
 **When and how did you first start using Polymer?**
 
