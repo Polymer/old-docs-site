@@ -18,7 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style>
       :host {
-        @apply(--layout-inline);
+        @apply --layout-inline;
         @apply(--layout-center);
         @apply(--layout-center-justified);
         @apply(--layout-flex-auto);
@@ -64,7 +64,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       paper-ripple {
-        color: var(--paper-tab-ink, --paper-yellow-a100);
+        color: var(--paper-tab-ink, var(--paper-yellow-a100));
       }
 
       .tab-content > ::content > a {
@@ -109,6 +109,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         heading: {
           type: String
+        },
+
+        tabName: {
+          type: String
         }
 
       },
@@ -129,26 +133,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       attached: function() {
         this._updateNoink();
-        this._htmlContentObserver = new MutationObserver(function(mutations) {
-          this._onSlotChange(mutations);
-        }.bind(this));
-        
+        this._htmlContentObserver = new MutationObserver(this._onSlotChange.bind(this));        
         this._templateObserver = Polymer.dom(this.$.slot).observeNodes(function(mutations) {
-            let slot = this.$.slot; 
-            let nodes  = slot.getAssignedNodes ? slot.getAssignedNodes({flatten: true}) : slot.getDistributedNodes();
-            this.template = nodes.length ? nodes[0] : null;
-            this._htmlContentObserver.observe(this.template.content, {attributes: true, childList: true, characterData: true, subtree: true});
+          let slot = Polymer.dom(this.$.slot); 
+          let nodes  = slot.assignedNodes ? slot.assignedNodes({flatten: true}) : slot.getDistributedNodes();
+          this.template = nodes.length ? nodes[0] : null;
+          if (this.template && this.template.content)
+            this._htmlContentObserver.observe(this.template.content, {attributes: true, childList: true, subtree: true});
           }.bind(this));
       },
 
       detached: function() {
         this._htmlContentObserver.disconnect();
-        this._templateObserver.unobserveNodes();
+        Polymer.dom(this.$.slot).unobserveNodes(this._templateObserver);
       },
 
-      _onSlotChange: function() {
-        console.log(this.template.innerHTML);
-        if (!this.template)
+      _onSlotChange: function() { 
+        if (!this.template) 
           return;
         this._fromSlot = true;
         
@@ -165,7 +166,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.template.innerHTML = this.htmlContent;         
         } 
         if (!this._fromTabs)
-          this.fire('html-content-changed', {content: this.htmlContent, tabId: this.id});
+          this.fire('html-content-changed', {content: this.htmlContent, tabName: this.tabName});
         this._fromTabs = false;
         this._fromSlot = false;       
       },

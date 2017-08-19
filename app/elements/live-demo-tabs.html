@@ -81,7 +81,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
      <codemirror-textarea mirror-content="{{mirrorContent}}"></codemirror-textarea> 
      <div class="results">
-       <iframe id="frame" src="[[src]]" scrolling="no" frameborder="0" height="[[height]]"></iframe>
+       <iframe id="frame" src="[[src]]" scrolling="no" frameborder="0" height$="[[height]]"></iframe>
      </div>
 
   </template>
@@ -101,6 +101,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
       height: {
         type: Number
+      },
+      src: {
+        type: String
       }
     },
 
@@ -113,32 +116,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       this._htmlContents = {};
       this.selected = 0;
       this._demoHeight = this.height;
-      this.src = 'http://127.0.0.1:8081';
       window.addEventListener('message', this._onMessage.bind(this));
+      this.$.frame.onload = this._onLoad.bind(this);
+    },
+
+    _onLoad: function() {
+      this._initIframeContent();
     },
 
     _htmlContentChanged: function() {
-      this._htmlContents[this.selected] = this.htmlContent;
+      this._htmlContents[this._getSelectedTabName()] = this.htmlContent;
       this._postMessage({codeObj: this._htmlContents});
     },
 
     _onMirrorChanged: function(event) {
       this._fromEditor = true;
       this.htmlContent = event.detail.htmlContent;
-      var childTabs = Polymer.dom(this).querySelectorAll('live-demo-tab');
-      childTabs[this.selected].fire('html-contents-changed', {htmlContent: this.htmlContent});
+      let selectedTab = this._getSelectedTab();
+      selectedTab.fire('html-contents-changed', {htmlContent: this.htmlContent});
     },
 
     _onHtmlContentChanged: function(event) {
-      this._htmlContents[event.detail.tabId] = event.detail.content;
-      this.htmlContent = this._htmlContents[this.selected];
+      this._htmlContents[event.detail.tabName] = event.detail.content;
+      this.htmlContent = this._htmlContents[this._getSelectedTabName()];
       this._updateMirror();
     },
 
     _selectedChanged: function() {
       if (!this._htmlContents)
         return;
-      this.htmlContent = this._htmlContents[this.selected];
+      this.htmlContent = this._htmlContents[this._getSelectedTabName()];
       this._fromEditor = false;
       this._updateMirror();
     },
@@ -152,7 +159,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     _onMessage: function(event) {
       if (event.data.ready) {
         this._initIframeContent();
-      } else if (event.data.height) {
+      } else {
         this._updateFrameHeight(event.data.height);
       }
     },
@@ -164,11 +171,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _initIframeContent: function() {
-      if (!this._frameReady) {
-        this._frameReady = true;
-        this.$.frame.style.height = this._demoHeight;
-        this._htmlContentChanged();
-      }
+      this._frameReady = true;
+      this.$.frame.style.height = this._demoHeight;
+      this._htmlContentChanged();
     },
 
     _updateFrameHeight: function(measuredHeight) {
@@ -181,6 +186,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this._demoHeight = newHeight;
         this.$.frame.style.height = this._demoHeight.toString() + 'px';
       }
+    },
+
+    _getSelectedTab: function() {
+      var childTabs = Polymer.dom(this).querySelectorAll('live-demo-tab');
+      return childTabs[this.selected];
+    },
+
+    _getSelectedTabName: function() {
+      return this._getSelectedTab().tabName;
     }
 
   });
