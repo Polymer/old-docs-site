@@ -13,9 +13,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <title>500 - Polymer Project</title>
 {% include 'templates/head-meta.html' %}
 </head>
-<body class="fullbleed" unresolved>
-  {% include 'templates/noscript.html' %}
-  <pw-shell>
+<body>
+  <pw-shell server-rendered>
+    {% include 'templates/site-nav.html' %}
+
     <style>
       .page-error {
         align-items: center;
@@ -49,8 +50,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
     </style>
-    {% include 'templates/site-nav.html' %}
-
     <section class="light gradient-light">
       <div class="page-error section-columns">
         <div class="image-container">

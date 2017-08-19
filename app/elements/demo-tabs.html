@@ -84,7 +84,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </template>
       </paper-tabs>
       <a href="[[src]]" target="_blank" hidden$="[[_hidePlunkrButton(src)]]">
-        <paper-button raised>
+        <paper-button on-click="_plunkerLaunched" raised>
           <iron-icon icon="pw-icons:exit-to-app"></iron-icon>
           Edit on Plunker
         </paper-button>
@@ -112,6 +112,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        */
       src: {
         type: String
+      },
+      /**
+       * Name of the demo, for analytics
+       */
+      name: {
+        type: String
       }
     },
 
@@ -133,6 +139,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     _hidePlunkrButton: function(src) {
       return (!src || src === '');
+    },
+
+    // Call out to a global method defined by app.js
+    _plunkerLaunched: function() {
+      if (window.recordPlunker) {
+        window.recordPlunker(this.name);
+      }
     }
   });
   </script>

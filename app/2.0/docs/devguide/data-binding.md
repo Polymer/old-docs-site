@@ -61,9 +61,9 @@ The right-hand side of the binding consists of either a _binding annotation_ or 
 Whether data flow goes down from host to target, up from target to host, or both ways is controlled
 by the type of binding annotation and the configuration of the target property.
 
--   Double-curly brackets (<code>{{ }}</code>) support both upward and downward data flow.
+-   Double-curly brackets (`{{ }}`) support both upward and downward data flow.
 
--   Double square brackets (<code>[[ ]]</code>) are _one-way_, and support only downward data
+-   Double square brackets (`[[ ]]`) are _one-way_, and support only downward data
     flow.
 
 For more on data flow, see [How data flow is controlled](data-system#data-flow-control).
@@ -518,12 +518,11 @@ To keep annotation parsing simple, **Polymer doesn't provide a way to bind direc
 item**.
 
 ```
-<!-- Don't do this! -->
+<!-- Don't do this! This format doesn't work -->
 <span>{{array[0]}}</span>
-<!-- Or this! -->
-<span>{{array.0}}</span>
+<!-- Don't do this! Data may display, but won't be updated correctly -->
+ <span>{{array.0}}</span>
 ```
-
 
 There are several ways to interact with arrays in a data binding:
 

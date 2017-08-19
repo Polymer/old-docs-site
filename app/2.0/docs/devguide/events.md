@@ -38,13 +38,6 @@ Example: { .caption }
 </dom-module>
 ```
 
-
-**Tip: Use `on-tap` rather than `on-click` for an event that fires consistently across both touch
-(mobile) and click (desktop) devices**. The `tap` event is part of an optional set of gesture
-events. See [Gesture events](gesture-events) for information on enabling gesture event support
-for your element.
-{.alert .alert-info}
-
 Because the event name is specified using an HTML attribute, **the event name is always
 converted to lowercase**. This is because HTML attribute names are case
 insensitive. So specifying `on-myEvent` adds a listener for `myevent`. The event _handler_
