@@ -1413,7 +1413,7 @@ The equivalent method with `Polymer.Async` looks like this:
 
 ```
 // in JS, execute someMethod with microtask timing
-Polymer.Async.microtask.run(() => this.someMethod());
+Polymer.Async.microTask.run(() => this.someMethod());
 ```
 
 If using `async` with a timeout:
