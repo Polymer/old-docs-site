@@ -281,11 +281,11 @@ customized built-in elements, so Polymer does not support them at this time.
 
 When you extend custom elements, Polymer treats the `properties` object and
 `observers` array specially: when instantiating an element, Polymer walks the prototype chain and
-flattens these objects. So a subclasses' properties and observers are added to those defined by the
-superclass.
+flattens these objects. So the properties and observers of a subclass are added to those defined
+by the superclass.
 
 A subclass can also inherit a template from its superclass. For details, see
-[Inherited templates](dom-teplate#inherited-templates).
+[Inherited templates](dom-template#inherited-templates).
 
 ## Sharing code with class expression mixins {#mixins}
 
@@ -437,7 +437,7 @@ the base class's prototype chain. If it has, the mixin simply returns the base c
 above, if you used `dedupingMixinB` instead of  `mixinB` in both places, the mixin would only be
 applied once.
 
-The following example shows one way you might create a namespaced, deduping mixin,
+The following example shows one way you might create a namespaced, deduping mixin:
 
 ```js
 // Create my namespace, if it doesn't exist
