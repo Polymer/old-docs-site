@@ -35,13 +35,6 @@
     "web-animations-js": "web-animations/web-animations-js#^2.2.5"
   },
   "resolutions": {
-    "iron-location": "1 - 2",
-    "app-route": "1 - 2",
-    "iron-doc-viewer": "^3.0.0",
-    "webcomponentsjs": "0.7"
-  },
-  "dependencies": {
-    "codemirror-textarea": "../codemirror-textarea/"
     "iron-selector": "2",
     "webcomponentsjs": "^0.7.24"
   }
