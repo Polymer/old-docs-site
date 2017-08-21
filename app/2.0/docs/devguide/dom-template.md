@@ -82,7 +82,7 @@ customElements.define('my-element', MyElement);
 When using a string template, the element doesn't need to provide an `is` getter (however, the tag
 name still needs to  be  passed as the first argument to `customElements.define`).
 
-### Inherited templates
+### Inherited templates {#inherited-templates}
 
 An element that extends another Polymer element can inherit its template. If the element doesn't
 provide its own DOM template (using either a `<dom-module>` or a string template), Polymer uses the

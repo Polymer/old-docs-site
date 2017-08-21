@@ -770,13 +770,13 @@ The `Polymer.FlattenedNodesObserver` class can be used to replace the 1.x `obser
 1.x {.caption}
 
 ```js
-this._observer = Polymer.dom(this).observeNodes(this._nodesChanged);
+this._observer = Polymer.dom(nodeToObserve).observeNodes(this._nodesChanged);
 ```
 
 2.x {.caption}
 
 ```js
-this._observer = new Polymer.FlattenedNodesObserver(this._nodesChanged);
+this._observer = new Polymer.FlattenedNodesObserver(nodeToObserve, this._nodesChanged);
 ```
 
 In addition, `Polymer.FlattenedNodesObserver.getFlattenedNodes(node)` can be used to replace the
@@ -793,7 +793,7 @@ var effectiveChildren = this.getEffectiveChildren();
 2.x {.caption}
 
 ```js
-let effectiveChildren = 
+let effectiveChildren =
   Polymer.FlattenedNodesObserver.getFlattenedNodes(this).filter(n => n.nodeType === Node.ELEMENT_NODE)
 ```
 
@@ -809,7 +809,7 @@ this.getContentChildren();
 
 ```js
 this.shadowRoot
-  // If you have more than one slot, you can use a 
+  // If you have more than one slot, you can use a
   // different selector to identify the slot you're interested in.
   .querySelector('slot')
   .assignedNodes({flatten:true})
