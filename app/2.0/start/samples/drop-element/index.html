@@ -1,0 +1,34 @@
+<link rel="import" href="/bower_components/paper-button/paper-button.html">
+<link rel="import" href="/bower_components/paper-styles/color.html">
+
+<style is="custom-style">
+  paper-button.pink {
+    color: var(--paper-pink-a200);
+    --paper-button-ink-color: pink;
+  }
+  paper-button.pink:hover {
+    background-color: lightpink;
+  }
+  paper-button.indigo {
+    background-color: indigo;
+    color: white;
+  }
+  paper-button.indigo:hover {
+    background-color: lightsteelblue;
+  }
+  paper-button.green {
+    background-color: green;
+    color: white;
+  }
+  paper-button.green[active] {
+    background-color: red;
+  }
+  paper-button.disabled {
+    color: white;
+  }
+</style>
+
+<paper-button class="pink">link</paper-button>
+<paper-button raised class="indigo">raised</paper-button>
+<paper-button toggles raised class="green">toggles</paper-button>
+<paper-button disabled class="disabled">disabled</paper-button>
