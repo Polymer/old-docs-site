@@ -1,4 +1,9 @@
 ---
+- title: "Polymer 3.0 preview: npm and ES6 Modules"
+  path: /blog/2017-08-22-npm-modules
+  published: 2017-08-22
+  author: justinfagnani
+  description: "Today at the 2017 Polymer Summit in Copenhagen, we announced one of the biggest changes to our developer workflow in the project's history."
 - title: "Polymer Summit Speaker Spotlight: Kunal Kundaje, Netflix"
   path: /blog/2017-08-16-speaker-spotlight-kunal
   published: 2017-08-16
