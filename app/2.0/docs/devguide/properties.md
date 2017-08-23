@@ -269,7 +269,7 @@ Note that JSON requires double quotes, as shown above.
 
 ### Custom deserializers
 
-The type system includes build-in support for Boolean and Number values, Object and Array values
+The type system includes built-in support for Boolean and Number values, Object and Array values
 expressed as JSON, or Date objects expressed as any Date-parsable string
 representation. To support other types, you can override the element's `_deserializeValue` method.
 
