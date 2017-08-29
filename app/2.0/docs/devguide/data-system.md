@@ -199,7 +199,7 @@ If you have a data structure with multiple levels of objects and arrays, you may
 deep copy to pick up changes.
 
 If your application requires it, you can eliminate dirty-checking of objects and arrays on a
-per-element basis using the `Polymer.MutableData` mixin. This mixin may trades some performance
+per-element basis using the `Polymer.MutableData` mixin. This mixin may trade some performance
 for increased ease of use. For details, see [Using the MutableData mixin](#mutable-data).
 
 Related tasks:
