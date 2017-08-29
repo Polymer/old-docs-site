@@ -38,7 +38,7 @@ an element name with a class, so you can add properties and methods to your cust
 element. The custom element's name **must start with an ASCII letter and
 contain a dash (-)**.
 
-<demo-tabs selected="0" name="qt-1-register" src="http://plnkr.co/edit/ScvcB4?p=preview">
+<demo-tabs selected="0" name="qt-1-register" src="http://plnkr.co/edit/Q4E8zO?p=preview">
   <demo-tab heading="custom-element.html">
 <pre><code>{{{include_file('2.0/start/samples/custom-element/custom-element.html')}}}</code></pre>
   </demo-tab>
