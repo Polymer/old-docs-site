@@ -1,21 +1,29 @@
 ---
-title: Quick tour of Polymer
+title: Try Polymer
 ---
 
 <!-- toc -->
 
 Polymer makes it simple to create web components, declaratively.
 
-Custom elements can leverage Polymer's special features to reduce boilerplate
-and make it even easier to build complex, interactive elements:
+New web developers can simply add custom HTML elements on a web page with markdown. It’s just like using the HTML tags you’re already familiar with:
 
-- Registering elements
-- Lifecycle callbacks
-- Property observation
-- Shadow DOM template
-- Data binding
+<pre><code>&lt;h1&gt;A heading!&lt;/h1&gt;</code></pre>
 
-In this section you can take a quick tour of the Polymer library,
+<pre><code>&lt;fancy-thing&gt;A fancy thing!&lt;/fancy-thing&gt;</code></pre>
+
+
+Experienced web developers can use Polymer's special features to reduce boilerplate
+and make it even easier to build complex, interactive elements. In this tour, you'll
+learn how to:
+
+- Register elements
+- Use lifecycle callbacks
+- Observe properties
+- Create shadow DOM with templates
+- Use data binding
+
+In this section you can tour the Polymer library,
 without installing anything. Click the **Edit on Plunker** button to open any
 of the samples in an interactive sandbox.
 
@@ -40,6 +48,11 @@ contain a dash (-)**.
 
   <iframe frameborder="0" src="samples/custom-element/index.html" width="100%" height="40"></iframe>
 </demo-tabs>
+
+* Try modifying the contents of `this.textContent`. 
+* If you’re familiar with your browser’s developer tools, try printing the
+  custom element’s `tagName` property to the console. 
+  Hint: add `console.log(this.tagName);` to the constructor method!
 
 This sample uses a lifecycle callback
 to add contents to the `<custom-element>` when it's initialized.
@@ -93,6 +106,9 @@ with a styled `<div>` tag.
   <iframe frameborder="0" src="samples/picture-frame/index.html" width="100%" height="60"></iframe>
 </demo-tabs>
 
+* Try adding divs in index.html to observe how they are unaffected by the styles applied to the divs in picture-frame’s shadow DOM.
+* Try adding other HTML elements to the DOM template to see how they are positioned relative to the distributed child nodes.
+
 **Note:** The CSS styles defined inside the `<dom-module>` are _scoped_ to the element's shadow DOM.
 So the `div` rule here only affects `<div>` tags inside `<picture-frame>`.
 {: .alert .alert-info }
@@ -120,6 +136,11 @@ The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced 
   <iframe frameborder="0" src="samples/name-tag/index.html" width="100%" height="40"></iframe>
 </demo-tabs>
 
+* Try editing the value of the `owner` property.
+* Try adding another property and binding it in your component. 
+  Hint: Add `this.propertyName = "Property contents";` to the constructor
+  and add {{propertyName}} to the element’s shadow DOM.  
+
 <p><a href="/2.0/docs/devguide/data-binding" class="blue-button">
 Learn more: data binding</a></p>
 
@@ -142,6 +163,8 @@ It also shows configuring the owner property from markup in `index.html`.
 
   <iframe frameborder="0" src="samples/configurable-name-tag/index.html" width="100%" height="40"></iframe>
 </demo-tabs>
+
+* Try editing the initial value of `owner` in index.html. Observe how this sets the property directly from your HTML.
 
 <p><a href="/2.0/docs/devguide/properties" class="blue-button">
 Learn more: declared properties</a></p>
@@ -166,6 +189,8 @@ to the element's `owner` property, so it's updated as the user types.
   <iframe frameborder="0" src="samples/editable-name-tag/index.html" width="100%" height="100"></iframe>
 </demo-tabs>
 
+* Edit the placeholder text to see two-way data binding at work.
+
 **Note:** The `<iron-input>` element wraps a native `<input>` element and provides two-way
 data binding and input validation.
 {: .alert .alert-info }
@@ -184,6 +209,13 @@ The template repeater (`dom-repeat`) is a specialized template that binds to an 
 
   <iframe frameborder="0" src="samples/employee-list/index.html" width="100%" height="100"></iframe>
 </demo-tabs>
+
+* Change the first and last names inside this.employees
+* Add another employee by inserting this text into the array definition after Tony Morelli:<br/>
+  ```
+   ,
+     {first: 'Shawna', last: 'Williams'} 
+  ```
 
 <p><a href="/2.0/docs/devguide/templates" class="blue-button">
 Learn more: Template repeater</a></p>
