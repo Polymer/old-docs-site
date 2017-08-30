@@ -14,7 +14,7 @@ For what we’re doing, we needed to give our consumers a clean editing UI that 
 
 **What was positive about the development process with Polymer?**
 
-I think the biggest part has been the community, but also certainly the developer experience of creating elements. 
+I think the biggest part has been the community, but also certainly the developer experience of creating elements.
 
 We started with Polymer back in 2015, so it was still pretty early days. But having the Polymer community to help, and the current library of elements which we could build off was a huge help in kickstarting the process.
 
@@ -28,7 +28,7 @@ Also, I’d say Polymer gives a really nice and easy way to take your component 
 
 The thing that still got me hooked initially, and still gets me so excited with Web Components: I can search for a component, import it, and no matter what system I’m using, I have UI and logic and it’s given to me via HTML. It is guaranteed to work with whatever tools or environment I already have set up.
 
-With the frontend aspect of our service--the components, the javascript libraries--we want input and collaboration. We want feedback on these, and we want to (eventually) have people building their own elements. We try to keep this process as open as possible so that people can create their own components that can talk to our service, if they want. Then encouraging them to share it on places like WebComponents.org so that others can use it. 
+With the frontend aspect of our service--the components, the javascript libraries--we want input and collaboration. We want feedback on these, and we want to (eventually) have people building their own elements. We try to keep this process as open as possible so that people can create their own components that can talk to our service, if they want. Then encouraging them to share it on places like WebComponents.org so that others can use it.
 
 We can keep trying to make elements that will fit everyone’s needs, but a much better system is laying the foundations on on a technology like Web Components, and giving others the tools to help build out these elements themselves, where ours don’t fit their specific needs.
 
@@ -42,11 +42,11 @@ The bigger thing for me though is that discoverability and accessibility as ment
 
 **How would you make the Web better?**
 
-Oof, tough question. 
+Oof, tough question.
 
 Given it is so big, I might go at it from a pretty specific angle.
 
-I’m very interested in and invested in Web Components. As a developer, I’m also interested in developer experience. 
+I’m very interested in and invested in Web Components. As a developer, I’m also interested in developer experience.
 
 What I would love to see is improving the developer experience around Web Components. For me there are a couple of drawbacks that need to be addressed at the spec level, and they’re in the works I think. But I want to see Web Components reach a level of developer experience that means users of any framework feel much more comfortable in utilizing them. More to the point though, this would hopefully lead to more developers using Web Components as a way to package up whatever functionality they’re developing. If we can do this, I think we’ll then see more people who are just starting out on the Web being able to utilize so much more functionality just in HTML by using these components others have developed, without necessarily having to have learnt a specific framework.
 
@@ -60,13 +60,18 @@ I’m also obviously super excited to meet and chat with some very interesting p
 
 -----
 
-This year's summit takes place August 22–23 at [Lokomotivværkstedet](http://www.lvcph.dk/index-eng.html) in beautiful downtown [Copenhagen, Denmark](https://goo.gl/maps/pgFPsEkRRcS2).
+Watch Bede's Polymer Summit talk here:
 
-Like previous years, we'll have talks and codelabs from the Polymer team, plus food, fun, and plenty of space for informal conversations.
+<google-youtube video-id="c-WDHG6rrdU"
+          list-type="playlist"
+          list="PLNYkxOF6rcIDP0PqVaJxqNWwIgvoEPzJi"
+          autoplay="0"
+          rel="0">
+          </google-youtube>
 
-Tickets are free! [Register on the Polymer Summit 2017 website](https://summit.polymer-project.org/).
+This year's summit took place August 22–23 in beautiful downtown [Copenhagen, Denmark](https://goo.gl/maps/pgFPsEkRRcS2).
 
-If you can't make it to Copenhagen, don't worry. The talks will be livestreamed and recorded for later, and the codelabs will be available online so you can try them out from anywhere.
+If you missed it, you can catch up on all the talks on [the Polymer Summit 2017 website](https://summit.polymer-project.org/).
 
 Follow us on Twitter [@polymer](https://twitter.com/polymer) for regular updates.
 
