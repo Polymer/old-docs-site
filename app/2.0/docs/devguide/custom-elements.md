@@ -246,7 +246,7 @@ my-element:not(:defined) {
 }
 ```
 
-## Extending other elements
+## Extending other elements {#extending-elements}
 
 In addition to `HTMLElement`, a custom element can extend another custom element:
 
@@ -279,15 +279,74 @@ elements like `<button>` and `<input>`). However, not all browser makers have ag
 customized built-in elements, so Polymer does not support them at this time.
 {.alert .alert-info}
 
+When you extend custom elements, Polymer treats the `properties` object and
+`observers` array specially: when instantiating an element, Polymer walks the prototype chain and
+flattens these objects. So the properties and observers of a subclass are added to those defined
+by the superclass.
+
+A subclass can also inherit a template from its superclass. For details, see
+[Inherited templates](dom-template#inherited-templates).
+
 ## Sharing code with class expression mixins {#mixins}
 
-ES6 classes allow single inheritance, which can make it challenging to share code between different
-elements. Class expression mixins let you share code between elements.
+ES6 classes allow single inheritance, which can make it challenging to share code between unrelated
+elements. Class expression mixins let you share code between elements without adding a common
+superclass.
 
 A class expression mixin is basically a function that operates as a *class factory*. You pass in a
-superclass, and the function generates a new class which extends the superclass with the mixin's
+superclass, and the function generates a new class that extends the superclass with the mixin's
 methods.
 
+```js
+const fancyDogClass = FancyMixin(dogClass);
+const fancyCatClass = FancyMixin(catClass);
+```
+
+### Using mixins
+
+Add a mixin to your element like this:
+
+```js
+class MyElement extends MyMixin(Polymer.Element) {
+  static get is() { return 'my-element' }
+}
+```
+
+If that isn't clear, it may help to see it in two steps:
+
+```js
+// Create new base class that adds MyMixin's methods to Polymer.Element
+const polymerElementPlusMixin = MyMixin(Polymer.Element);
+
+// Extend the new base class
+class MyElement extends polymerElementPlusMixin {
+  static get is() { return 'my-element' }
+}
+```
+
+So the inheritance hierarchy is:
+
+```js
+MyElement <= polymerElementPlusMixin <= Polymer.Element
+```
+
+You can apply mixins to any element class, not just `Polymer.Element`:
+
+```js
+class MyExtendedElement extends SomeMixin(MyElement) {
+  ...
+}
+```
+
+You can also apply multiple mixins in sequence:
+
+```js
+class AnotherElement extends AnotherMixin(MyMixin(Polymer.Element)) { … }
+```
+
+### Defining mixins
+
+A mixin is simply a function that takes a class and returns a subclass:
 
 ```js
 MyMixin = function(superClass) {
@@ -316,29 +375,84 @@ MyMixin = function(superClass) {
 }
 ```
 
-
-The mixin can define properties, observers, and methods just like a regular element class.
-
-Add a mixin to your element like this:
+Or using an ES6 arrow function:
 
 ```js
-class MyElement extends MyMixin(Polymer.Element) {
-  static get is() { return 'my-element' }
+MyMixin = (superClass) => class extends superClass {
+  ...
 }
 ```
 
-This creates a new class defined by the `MyMixin` factory, so the inheritance hierarchy is:
-
-```
-MyElement <= MyMixin(Polymer.Element) <= Polymer.Element
-```
-
-You can apply multiple mixins in sequence:
+The mixin class can define properties, observers, and methods just like a regular element class. In
+addition, a mixin can incorporate other mixins:
 
 ```js
-class AnotherElement extends AnotherMixin(MyMixin(Polymer.Element)) { … }
+MyCompositeMixin = (base) => class extends MyMixin2(MyMixin1(base)) {
+  ...
+}
 ```
 
+Because mixins are simply adding classes to the inheritance chain, all of the usual rules of
+inheritance apply. For example, mixin classes can define constructors, can call superclass methods
+with `super`, and so on.
+
+**Document your mixins.** The Polymer build and lint tools require some extra documentation tags
+to property analyze mixins and elements that use them. Without the documentation tags, the tools
+will log warnings. For details on documenting mixins, see [Class mixins](../tools/documentation#class-mixins)
+in Document your elements.
+{.alert .alert-info}
+
+
+### Packaging mixins for sharing
+
+When creating a mixin that you intend to share with other groups or publish, a couple of additional
+steps are recommended:
+
+-   Use the [`Polymer.dedupingMixin`](/{{{polymer_version_dir}}}/docs/api/#function-Polymer.dedupingMixin)
+    function to produce a mixin that can only be applied once.
+
+-   Create a unique namespace for your mixins, to avoid colliding with other mixins or classes that
+    might have similar names.
+
+The `dedupingMixin` function is useful because a mixin that's used by other mixins may accidentally
+be applied more than once. For example if `MixinA` includes `MixinB` and `MixinC`, and you create an element
+that uses `MixinA` but also uses `MixinB` directly:
+
+```js
+class MyElement extends MixinB(MixinA(Polymer.Element)) { ... }
+```
+
+At this point, your element contains two copies of `MixinB` in its  prototype chain. `dedupingMixin`
+takes a mixin function as an argument, and returns a new, deduplicating mixin function:
+
+```js
+dedupingMixinB = Polymer.dedupingMixin(mixinB);
+```
+
+The deduping mixin has two advantages: first, whenever you use the mixin, it memoizes the generated
+class, so any subsequent uses on the same base class return the same class object—a minor optimization.
+
+More importantly, the deduping mixin checks whether this mixin has already been applied anywhere in
+the base class's prototype chain. If it has, the mixin simply returns the base class. In the example
+above, if you used `dedupingMixinB` instead of  `mixinB` in both places, the mixin would only be
+applied once.
+
+The following example shows one way you might create a namespaced, deduping mixin:
+
+```js
+// Create my namespace, if it doesn't exist
+if (!window.MyNamespace) {
+  window.MyNamespace = {};
+}
+
+MyNamespace.MyMixin = Polymer.dedupingMixin((base) =>
+
+  // the mixin class
+  class extends base {
+    ...
+  }
+);
+```
 
 ## Resources
 

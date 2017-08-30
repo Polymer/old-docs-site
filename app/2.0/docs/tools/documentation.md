@@ -9,11 +9,11 @@ documentation comments in your source files. Using the `iron-component-pages` el
 you can create a simple documentation page for your elements that displays your comments
 rendered as API documentation.
 
-If you're publishing your element at [WebComponents.org](https://webcomponents.org), your documentation will be automatically generated. WebComponents.org uses the same underlying elements as `iron-component-pages` to render and display documentation. 
+If you're publishing your element at [WebComponents.org](https://webcomponents.org), your documentation will be automatically generated. WebComponents.org uses the same underlying elements as `iron-component-pages` to render and display documentation.
 
 ## Create a documentation page for your project {#create-page}
 
-To create a documentation page for your project: 
+To create a documentation page for your project:
 
 1. [Install the Polymer CLI](polymer-cli). The Polymer CLI gives you a command-line interface to Polymer Analyzer (among other things).
 
@@ -74,12 +74,12 @@ Add API docs to your elements by adding inline JavaScript comments.
   markdown.
 </p>
 
-Denote your element summary by inserting a **JavaScript comment** directly preceding your class definition. 
+Denote your element summary by inserting a **JavaScript comment** directly preceding your class definition.
 You can use Markdown headings to break up long element summaries.
 
   ```
     /**
-     * # This is an h1 heading 
+     * # This is an h1 heading
      * `<awesome-sauce>` injects a healthy dose of awesome into your page.
      * ## This is an h2 heading
      * In typical use, just slap some `<awesome-sauce>` at the top of your body:
@@ -89,13 +89,15 @@ You can use Markdown headings to break up long element summaries.
      * @customElement
      * @polymer
      * @demo https://path/to/awesomeness/demo/
-     * 
+     *
      */
-    class AwesomeSauce extends Polymer.Element { 
-      ... 
+    class AwesomeSauce extends Polymer.Element {
+      ...
     }
   ```
-  
+
+Polymer custom elements should include the `@customElement` and `@polymer` tags.
+
 The first tag encountered in the comment block marks the end of the element
 summary. **Any line starting with an at-sign (@) is interpreted as a tag.** Any
 remaining non-tag comments in the comment block are ignored.
@@ -135,7 +137,7 @@ _message: String,
 ```
 
 ### Methods {#methods}
- 
+
 Follow the [property guidelines](#properties). Additionally, make sure
 the types for all params and return values are documented.
 { .tldr }
@@ -174,6 +176,69 @@ For example:
  * @param {number} newAwesome New level of awesomeness.
  */
 ```
+
+### Class mixins {#class-mixins}
+
+<p class="tldr">Like an element, but add <code>@mixinFunction</code> and possibly @mixinClass.</p>
+
+Include a mixin summary immediately before the mixin function declaration.
+The summary is like an element summary, but must include the `@polymer` and `@mixinFunction` tags.
+
+Document any properties, methods or events inside the mixin just like you would for an element.
+
+For more information on mixins, see [Sharing code with class expression mixins](custom-elements#mixins)
+in Custom element concepts.
+
+```js
+/*
+ * This mixin lets you travel faster than light speed, almost.
+ * @polymer
+ * @mixinFunction
+ *
+MyNamespace.WarpSpeedMixin = (superclass) => class extends superclass {
+  ...
+}
+```
+
+If your mixin function doesn't immediately return the class, as above, you may need to
+add the `@mixinClass` tag immediately before the class declaration. For example:
+
+```js
+/*
+ * This mixin does something really complicated.
+ * @polymer
+ * @mixinFunction
+ *
+MyNamespace.ReallyComplicatedMixin = Polymer.dedupingMixin((superclass) =>
+
+   // do some other stuff before creating the class...
+   ...
+
+  /*
+   * @polymer
+   * @mixinClass
+   */
+  class mixin extends superclass {
+    ...
+  }
+
+  // finally, return the mixin class
+  return mixin;
+);
+```
+
+An element that applies a mixin should add the `@appliesMixin` tag:
+
+```js
+/*
+ * An element with a mixin
+ * @polymer
+ * @customElement
+ * @appliesMixin MyNamespace.WarpSpeedMixin
+class MyMixedUpElement extends MyNamespace.WarpSpeedMixin(Polymer.Element) { ... }
+```
+
+If a mixin applies one or more mixins, it should also include the `@appliesMixin` tag.
 
 ### Behaviors {#behaviors}
 
@@ -234,10 +299,10 @@ Currently there is no tag for custom CSS properties and mixins. Document
 properties and mixins in a table in the main element description:
 
     ### Styling
-    
+
     `<paper-button>` provides the following custom properties and mixins
     for styling:
-    
+
     Custom property | Description | Default
     ----------------|-------------|----------
     `--paper-button-ink-color` | Background color of the ripple | Based on the button's color
@@ -254,9 +319,9 @@ Adhere to [Closure-compatible type expressions](https://developers.google.com/cl
 `<iron-component-page>` supports the following JSDoc tags:
 
 * `@appliesMixin`
-* `@customElement` 
+* `@customElement`
 * `@demo`
-* `@event` 
+* `@event`
 * `@mixinClass`
 * `@mixinFunction`
 * `@polymer`

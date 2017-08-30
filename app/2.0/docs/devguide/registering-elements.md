@@ -8,9 +8,11 @@ title: Define an element
 ## Define a custom element {#register-element}
 
 
-To define a custom element, create a class that extends `Polymer.Element` and pass the class to the `customElements.define` method. The class must have a static `is` getter that returns the HTML tag name for your custom element.
+To define a custom element, create a class that extends `Polymer.Element` and pass the class to the
+`customElements.define` method.
 
-By specification, the custom element's name **must start with a lower-case ASCII letter and must contain a dash (-)**.
+By specification, the custom element's name **must start with a lower-case ASCII letter and must
+contain a dash (-)**.
 
 Example: { .caption }
 
@@ -40,7 +42,8 @@ var el1 = document.createElement('my-element');
 var el2 = new MyElement();
 ```
 
-As shown above, the element's class can define callbacks for the custom element reactions as described in [Custom element lifecycle](custom-elements#element-lifecycle).
+As shown above, the element's class can define callbacks for the custom element reactions as
+described in [Custom element lifecycle](custom-elements#element-lifecycle).
 
 ## Extending an existing element {#extend-element}
 
@@ -63,9 +66,38 @@ class MyElementSubclass extends MyElement {
 customElements.define(MyElementSubclass.is, MyElementSubclass);
 ```
 
+For more information on extending elements, see [Extending other elements](custom-elements#extending-elements)
+in Custom element concepts.
+
 If you don't provide a template for your subclass, it inherits the superclass's template by default.
 To override this behavior, or modify the superclass template, override the subclass's `template`
 getter.
+
+## Using mixins
+
+You can share code using _mixins_. You use a mixin to add new features on top of a base class:
+
+```js
+class MyElementWithMixin extends MyMixin(Polymer.Element) {
+
+}
+```
+
+This pattern may be easier to understand if you think of it as two steps:
+
+```js
+// Create a new base class that adds MyMixin's features to Polymer.Element
+const BaseClassWithMixin = MyMixin(Polymer.Element);
+
+// Extend the new base class
+class MyElementWithMixin extends BaseClassWithMixin { ... }
+```
+
+Because mixins are simply adding classes to the inheritance chain, all of the usual rules of
+inheritance apply.
+
+For information on defining mixins, see [Sharing code with class expression mixins](custom-elements#mixins)
+in Custom element concepts.
 
 ## Imports and APIs
 
@@ -74,8 +106,8 @@ There are three main HTML imports for defining Polymer elements:
 | Import | Description |
 |---|-------|
 | `polymer-element.html` | Defines the `Polymer.Element` base class.  |
-| `legacy-element.html` | Defines the `Polymer.LegacyElement` base class, which extends `Polymer.Element` and adds 1.x compatible legacy API. Also defines the legacy `Polymer()` factory method for creating hybrid elements. (Includes `polymer-element.html`.)|
-| `polymer.html` | Includes the Polymer base classes plus the helper elements (`custom-style`, `dom-bind`, `dom-if`, and `dom-repeat`) that were included in the 1.x `polymer.html` bundle. (Includes `legacy-element.html`.) |
+| `legacy-element.html` | Defines the `Polymer.LegacyElementMixin` base class, which can be used to add 1.x compatible legacy API to `Polymer.Element`. Also defines the legacy `Polymer()` factory method for creating hybrid elements. (Includes `polymer-element.html`.)|
+| `polymer.html` | Includes the previous imports plus the helper elements (`custom-style`, `dom-bind`, `dom-if`, and `dom-repeat`) that were included in the 1.x `polymer.html` bundle. |
 
 For the smallest footprint, use the `polymer-element.html` import and import any required helper
 elements separately.
