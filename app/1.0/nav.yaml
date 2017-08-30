@@ -47,7 +47,7 @@
   items:
   - title: Feature overview
     path: /1.0/docs/devguide/feature-overview
-  - title: Quick tour
+  - title: Try Polymer
     path: /1.0/docs/devguide/quick-tour
   - header: Define elements
   - title: Register an element

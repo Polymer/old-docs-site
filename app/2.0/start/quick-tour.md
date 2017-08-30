@@ -49,6 +49,7 @@ contain a dash (-)**.
   <iframe frameborder="0" src="samples/custom-element/index.html" width="100%" height="40"></iframe>
 </demo-tabs>
 
+Try it out in **Plunker**:
 * Try modifying the contents of `this.textContent`. 
 * If you’re familiar with your browser’s developer tools, try printing the
   custom element’s `tagName` property to the console. 
@@ -83,6 +84,9 @@ You can use Polymer's DOM templating to create a shadow DOM tree for your elemen
   <iframe frameborder="0" src="samples/dom-element/index.html" width="100%" height="40"></iframe>
 </demo-tabs>
 
+Try it out in **Plunker**:
+* Try adding some other html elements inside the <template></template> block. For example, add `<h1>A heading!</h1>` or `<a href=”stuff.html”>A link!</a>`
+
 Shadow DOM is encapsulated inside the element.
 
 <p><a href="/{{{polymer_version_dir}}}/docs/devguide/dom-template" class="blue-button">Learn more: DOM templating</a></p>
@@ -106,7 +110,8 @@ with a styled `<div>` tag.
   <iframe frameborder="0" src="samples/picture-frame/index.html" width="100%" height="60"></iframe>
 </demo-tabs>
 
-* Try adding divs in index.html to observe how they are unaffected by the styles applied to the divs in picture-frame’s shadow DOM.
+Try it out in **Plunker**:
+* Try adding a `<div>` to `index.html`; is it affected by the styles in `<picture-frame>`'s shadow DOM?
 * Try adding other HTML elements to the DOM template to see how they are positioned relative to the distributed child nodes.
 
 **Note:** The CSS styles defined inside the `<dom-module>` are _scoped_ to the element's shadow DOM.
@@ -136,6 +141,7 @@ The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced 
   <iframe frameborder="0" src="samples/name-tag/index.html" width="100%" height="40"></iframe>
 </demo-tabs>
 
+Try it out in **Plunker**:
 * Try editing the value of the `owner` property.
 * Try adding another property and binding it in your component. 
   Hint: Add `this.propertyName = "Property contents";` to the constructor
@@ -164,6 +170,7 @@ It also shows configuring the owner property from markup in `index.html`.
   <iframe frameborder="0" src="samples/configurable-name-tag/index.html" width="100%" height="40"></iframe>
 </demo-tabs>
 
+Try it out in **Plunker**:
 * Try editing the initial value of `owner` in index.html. Observe how this sets the property directly from your HTML.
 
 <p><a href="/2.0/docs/devguide/properties" class="blue-button">
@@ -189,6 +196,7 @@ to the element's `owner` property, so it's updated as the user types.
   <iframe frameborder="0" src="samples/editable-name-tag/index.html" width="100%" height="100"></iframe>
 </demo-tabs>
 
+Try it out in **Plunker**:
 * Edit the placeholder text to see two-way data binding at work.
 
 **Note:** The `<iron-input>` element wraps a native `<input>` element and provides two-way
@@ -210,6 +218,7 @@ The template repeater (`dom-repeat`) is a specialized template that binds to an 
   <iframe frameborder="0" src="samples/employee-list/index.html" width="100%" height="100"></iframe>
 </demo-tabs>
 
+Try it out in **Plunker**:
 * Change the first and last names inside this.employees
 * Add another employee by inserting this text into the array definition after Tony Morelli:<br/>
   ```
