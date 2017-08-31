@@ -877,7 +877,7 @@ Example: importing CSS mixin shim to top-level file {.caption}
     html {
       --my-mixin: {
         color: blue;
-      }
+      };
     }
   </style>
 </custom-style>
