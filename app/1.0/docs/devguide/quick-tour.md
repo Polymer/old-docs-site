@@ -1,5 +1,5 @@
 ---
-title: Quick tour of Polymer
+title: Try Polymer
 ---
 
 <!-- toc -->

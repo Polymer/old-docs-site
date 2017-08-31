@@ -183,6 +183,6 @@ understand the question or suggestion.
 
 Continue on to the Polymer docs:
 
-<a href="/1.0/docs/devguide/quick-tour" class="blue-button vertical">Quick tour of Polymer</a><br>
+<a href="/1.0/docs/devguide/quick-tour" class="blue-button vertical">Try Polymer</a><br>
 <a href="/1.0/docs/devguide/feature-overview" class="blue-button vertical">Developer guide</a><br>
 <a href="/1.0/docs/migration" class="blue-button vertical">Migration guide</a>

@@ -22,7 +22,7 @@ Polymer CLI documentation](/{{{polymer_version_dir}}}/docs/tools/polymer-cli).
 
 To install Polymer CLI:
 
-   npm install -g polymer-cli
+    npm install -g polymer-cli
 
 
 ## Initialize your project from a template
