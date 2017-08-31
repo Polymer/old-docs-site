@@ -374,9 +374,11 @@ For more on read-only properties and data binding, see
 
 In specific cases, it may be useful to keep an HTML attribute value in sync with
 a property value.  This may be achieved by setting `reflectToAttribute: true` on
-a property in the `properties` configuration object.  This will cause any
-[observable change](data-system#observable-changes) to the property to be serialized out to an
-attribute of the same name.
+a property in the `properties` configuration object. This causes any observable
+change to the property to trigger an update to the corresponding attribute
+(as described in <a href="#property-name-mapping">Property name to attribute name mapping</a>).
+Since attributes only take string values, the property value is serialized
+to a string, as described in <a href="#attribute-serialization">Attribute serialization</a>.
 
 ```js
 class XCustom extends Polymer.Element {
