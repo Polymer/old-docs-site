@@ -60,8 +60,8 @@ To start a new Polymer 3.0 preview project:
 
 ### Alternate yarn setups
 
-If you have other npm dependencies, installing all dependencies flat
-may cause issues. In that case, you have several options:
+If you have other npm dependencies, such as servers, dev tools, or compilers, installing all
+dependencies flat may cause version conflicts. In that case, you have several options:
 
 -   Explicitly install web components with `--flat`.
 
@@ -76,7 +76,6 @@ may cause issues. In that case, you have several options:
 
     This has the advantage of keeping all dependencies in a single `node_modules` folder, but means
     that you need to remember the `--flat` flag every time you add a component.
-
 
 -   Use separate directories.
 
