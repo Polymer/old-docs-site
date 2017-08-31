@@ -376,7 +376,7 @@ In specific cases, it may be useful to keep an HTML attribute value in sync with
 a property value.  This may be achieved by setting `reflectToAttribute: true` on
 a property in the `properties` configuration object.  This will cause any
 [observable change](data-system#observable-changes) to the property to be serialized out to an
-attribute of the same name.
+attribute according to the reverse mapping as described in <a href="#property-name-mapping">Property name to attribute name mapping</a>.
 
 ```js
 class XCustom extends Polymer.Element {
