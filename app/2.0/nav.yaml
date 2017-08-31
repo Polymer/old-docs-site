@@ -9,7 +9,7 @@
   items:
   - title: Get started
     path: /2.0/start/
-  - title: Quick tour of Polymer
+  - title: Try Polymer
     path: /2.0/start/quick-tour
   - title: Install Polymer 2.x
     path: /2.0/start/install-2-0

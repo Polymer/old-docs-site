@@ -71,7 +71,7 @@ Interested in using the Polymer library to build your own elements?
 
 Take a quick tour of the features:
 
-<a href="/1.0/docs/devguide/quick-tour" class="blue-button">Quick Tour</a>
+<a href="/1.0/docs/devguide/quick-tour" class="blue-button">Try Polymer</a>
 
 Or jump straight to:
 
