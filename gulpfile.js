@@ -120,7 +120,7 @@ function writeServiceWorkerFile() {
       `${rootDir}/elements/**`,
       `${rootDir}/js/*.js`,
       `${rootDir}/css/*.css`,
-      `${rootDir}/bower_components/**/webcomponents-lite.min.js`,
+      `${rootDir}/bower_components/**/webcomponents-lite.js`,
     ],
     dynamicUrlToDependencies: {
       '/': partialTemplateFiles.concat([`${rootDir}/index.html`, `${rootDir}/blog.yaml`, `${rootDir}/authors.yaml`]),
@@ -319,7 +319,8 @@ gulp.task('vulcanize-demos', 'vulcanize demos', function() {
     .pipe($.crisper()) // Separate HTML/JS into separate files.
     .pipe($.if('*.html', minifyHtml())) // Minify html output
     .pipe($.if('*.html', cssslam.gulp())) // Minify css in HTML output
-    .pipe($.if('*.js', uglifyJS())) // Minify js output
+    // TODO(keanulee): Use something that supports ES2015.
+    // .pipe($.if('*.js', uglifyJS())) // Minify js output
     .pipe($.if('*.js', license()))
     .pipe(gulp.dest('dist/1.0/samples/homepage'));
 });

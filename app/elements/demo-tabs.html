@@ -15,7 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <!-- Note: this is lazy loaded by quick-tour.md -->
 <dom-module id='demo-tab'>
   <template>
-    <content></content>
+    <slot></slot>
   </template>
   <script>
     Polymer({
@@ -93,12 +93,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="layout horizontal">
       <iron-pages selected="[[_selected]]">
-        <content id="contentpanels" select="demo-tab"></content>
+        <slot id="contentpanels" name="demo-tab"></slot>
       </iron-pages>
     </div>
 
     <div class="results">
-      <content select="iframe"></content>
+      <slot select="iframe"></slot>
     </div>
   </template>
 

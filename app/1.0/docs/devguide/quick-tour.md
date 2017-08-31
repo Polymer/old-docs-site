@@ -32,10 +32,10 @@ The Polymer function takes as an
 argument an object that defines your element's prototype.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/TbK3gUohLircKlIJByqc?p=preview">
-  <demo-tab heading="proto-element.html">
+  <demo-tab slot="demo-tab" heading="proto-element.html">
 <pre><code>{{{include_file('1.0/docs/devguide/samples/proto-element/proto-element.html')}}}</code></pre>
   </demo-tab>
-  <demo-tab heading="index.html">
+  <demo-tab slot="demo-tab" heading="index.html">
 <pre><code>{{{include_file('1.0/docs/devguide/samples/proto-element/index.html')}}}</code></pre>
   </demo-tab>
 
@@ -61,10 +61,10 @@ Many elements include some internal DOM nodes to implement the element's UI and 
 Polymer calls this _local DOM_, and it provides an easy way to specify it:
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/RhZMWIWf6hbFUXxRSQkz?p=preview">
-  <demo-tab heading="dom-element.html">
+  <demo-tab slot="demo-tab" heading="dom-element.html">
 <pre><code>{{{include_file('1.0/docs/devguide/samples/dom-element/dom-element.html')}}}</code></pre>
   </demo-tab>
-  <demo-tab heading="index.html">
+  <demo-tab slot="demo-tab" heading="index.html">
 <pre><code>{{{include_file('1.0/docs/devguide/samples/dom-element/index.html')}}}</code></pre>
   </demo-tab>
 
@@ -84,10 +84,10 @@ This example creates a simple tag that decorates an image by wrapping it
 with a styled `<div>` tag.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/qEMZleDbvKrNcpPXSviW?p=preview">
-  <demo-tab heading="picture-frame.html">
+  <demo-tab slot="demo-tab" heading="picture-frame.html">
 <pre><code>{{{include_file('1.0/docs/devguide/samples/picture-frame/picture-frame.html')}}}</code></pre>
   </demo-tab>
-  <demo-tab heading="index.html">
+  <demo-tab slot="demo-tab" heading="index.html">
 <pre><code>{{{include_file('1.0/docs/devguide/samples/picture-frame/index.html')}}}</code></pre>
   </demo-tab>
 
@@ -111,10 +111,10 @@ You can bind properties in your component using the "double-mustache" syntax (`{
 The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced between the brackets.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/LUm1XjpxlMIQFqGy04NS?p=preview">
-  <demo-tab heading="name-tag.html">
+  <demo-tab slot="demo-tab" heading="name-tag.html">
 <pre><code>{{{include_file('1.0/docs/devguide/samples/name-tag/name-tag.html')}}}</code></pre>
   </demo-tab>
-  <demo-tab heading="index.html">
+  <demo-tab slot="demo-tab" heading="index.html">
 <pre><code>{{{include_file('1.0/docs/devguide/samples/name-tag/index.html')}}}</code></pre>
   </demo-tab>
 
@@ -134,10 +134,10 @@ In the following example, we add a declared `owner` property with a default valu
 and configure it in `index.html`.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/HjgVnjpxMTvZJfhwpRPE?p=preview">
-  <demo-tab heading="configurable-name-tag.html">
+  <demo-tab slot="demo-tab" heading="configurable-name-tag.html">
 <pre><code>{{{include_file('1.0/docs/devguide/samples/configurable-name-tag/configurable-name-tag.html')}}}</code></pre>
   </demo-tab>
-  <demo-tab heading="index.html">
+  <demo-tab slot="demo-tab" heading="index.html">
 <pre><code>{{{include_file('1.0/docs/devguide/samples/configurable-name-tag/index.html')}}}</code></pre>
   </demo-tab>
 
@@ -157,10 +157,10 @@ This example uses two-way binding: binding the value of a custom input element (
 to the element's `owner` property, so it's updated as the user types.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/DIA7weGNRf9Ejxp6xyh1?p=preview">
-  <demo-tab heading="editable-name-tag.html">
+  <demo-tab slot="demo-tab" heading="editable-name-tag.html">
 <pre><code>{{{include_file('1.0/docs/devguide/samples/editable-name-tag/editable-name-tag.html')}}}</code></pre>
   </demo-tab>
-  <demo-tab heading="index.html">
+  <demo-tab slot="demo-tab" heading="index.html">
 <pre><code>{{{include_file('1.0/docs/devguide/samples/editable-name-tag/index.html')}}}</code></pre>
   </demo-tab>
 

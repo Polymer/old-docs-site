@@ -10,7 +10,7 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#1",
+    "polymer": "Polymer/polymer#2",
     "app-layout": "PolymerElements/app-layout#2",
     "app-route": "PolymerElements/app-route#2",
     "iron-ajax": "PolymerElements/iron-ajax#2",
@@ -29,13 +29,12 @@
     "paper-listbox": "PolymerElements/paper-listbox#2",
     "paper-tabs": "PolymerElements/paper-tabs#2",
     "paper-toast": "PolymerElements/paper-toast#2",
-    "promise-polyfill": "polymerlabs/promise-polyfill#^1.0.0",
-    "google-youtube": "GoogleWebComponents/google-youtube#^1.2.1",
-    "google-map": "GoogleWebComponents/google-map#^1.1.10",
+    "promise-polyfill": "polymerlabs/promise-polyfill#2",
+    "google-youtube": "GoogleWebComponents/google-youtube#2.0-preview",
+    "google-map": "GoogleWebComponents/google-map#2",
     "web-animations-js": "web-animations/web-animations-js#^2.2.5"
   },
   "resolutions": {
-    "iron-selector": "2",
-    "webcomponentsjs": "^0.7.24"
+    "google-apis": "2"
   }
 }
