@@ -109,10 +109,6 @@ handlers:
   upload: summit-2016/(.*)
   secure: always
 
-- url: /1.0/samples/homepage/
-  static_dir: 1.0/samples/homepage
-  secure: always
-
 #- url: /1.0/docs/devguide/samples/
 #  static_dir: 1.0/docs/devguide/samples/
 #  secure: always
