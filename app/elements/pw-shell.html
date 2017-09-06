@@ -340,15 +340,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // Since the response is a document that's already parsed, don't
         // just innerHTML it (which converts it to a string and then reparses it),
         // and just use the nodes we need.
-        Polymer.dom(this).innerHTML = '';
-        var shell = doc.querySelector('pw-shell');
-
+        var docShell = doc.querySelector('pw-shell');
         var fragment = document.createDocumentFragment();
-        while (shell.firstChild) {
-          fragment.appendChild(shell.firstChild);
+        while (docShell.firstChild) {
+          fragment.appendChild(docShell.firstChild);
         }
 
-        Polymer.dom(this).appendChild(document.importNode(fragment, true));
+        // Replace shell contents.
+        var shell = Polymer.dom(this);
+        while (shell.firstChild) {
+          shell.removeChild(shell.firstChild);
+        }
+        shell.appendChild(document.importNode(fragment, true /* deep */));
         Polymer.dom.flush();  // Force upgrades.
 
         // Analytics. Don't double-report search
