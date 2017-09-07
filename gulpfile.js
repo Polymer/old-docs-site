@@ -383,13 +383,7 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     ], {base: 'app'})
     .pipe(gulp.dest('dist'));
 
-  let bower_summit = gulp.src([
-      'app/bower_components/webcomponentsjs/webcomponents*.js'
-    ], {base: 'app/'})
-    .pipe(gulp.dest('dist/summit-2015'))
-    .pipe(gulp.dest('dist/summit-2016'));
-
-  return merge(app, docs, gae, bower, bundles, summit, bower_summit);
+  return merge(app, docs, gae, bower, bundles, summit);
 });
 
 gulp.task('watch', 'Watch files for changes', function() {
