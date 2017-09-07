@@ -128,7 +128,8 @@ function writeServiceWorkerFile() {
       `${rootDir}/elements/**`,
       `${rootDir}/js/*.js`,
       `${rootDir}/css/*.css`,
-      `${rootDir}/bower_components/**/webcomponents-lite.js`,
+      `${rootDir}/bower_components/webcomponentsjs/custom-elements-es5-adapter.js`,
+      `${rootDir}/bower_components/webcomponentsjs/webcomponents-loader.js`,
     ],
     dynamicUrlToDependencies: {
       '/': partialTemplateFiles.concat([`${rootDir}/index.html`, `${rootDir}/blog.yaml`, `${rootDir}/authors.yaml`]),
@@ -143,6 +144,15 @@ function writeServiceWorkerFile() {
         cache: {
           maxEntries: 50,
           name: 'image-cache'
+        }
+      }
+    },
+    {
+      urlPattern: new RegExp('/bower_components/webcomponentsjs/.*.js'),
+      handler: 'fastest',
+      options: {
+        cache: {
+          name: 'webcomponentsjs-polyfills-cache'
         }
       }
     },
@@ -346,7 +356,6 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
   let app = gulp.src([
       '*',
       'app/manifest.json',
-      'app/service-worker.js',
       '!{README.md,package.json,gulpfile.js}',
     ], {nodir: true})
     .pipe(gulp.dest('dist'));
