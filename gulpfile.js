@@ -46,7 +46,6 @@ let merge = require('merge-stream');
 let path = require('path');
 let runSequence = require('run-sequence');
 let toc = require('toc');
-let polymerBuild = require('polymer-build');
 
 let AUTOPREFIXER_BROWSERS = ['last 2 versions', 'ios 8', 'Safari 8'];
 
@@ -57,13 +56,6 @@ markdownIt.validateLink = function(link) { return true; }
 
 function minifyHtml() {
   return $.minifyHtml({quotes: true, empty: true, spare: true});
-}
-
-function babelJs() {
-  return $.babel({
-    presets: [['es2015', {modules: false}]],
-    plugins: ['external-helpers']
-  });
 }
 
 function uglifyJS() {
@@ -324,32 +316,10 @@ gulp.task('js', 'Minify JS to dist/', ['jshint'], function() {
 });
 
 gulp.task('build-bundles', 'Build element bundles', function() {
-  return run('polymer build').exec();
-});
-
-gulp.task('build-demos', 'build demos', function() {
-  function buildDemo(demoRootDir) {
-    const htmlSplitter = new polymerBuild.HtmlSplitter();
-    const polymerProject = new polymerBuild.PolymerProject({
-      entrypoint: `app/${demoRootDir}index.html`
-    });
-    return merge(polymerProject.sources(), polymerProject.dependencies())
-      .pipe(htmlSplitter.split())
-      .pipe($.if('*.html', minifyHtml())) // Minify html output
-      .pipe($.if('*.html', cssslam.gulp())) // Minify css in HTML output
-      .pipe($.if('*.js', babelJs())) // Transpile js output
-      .pipe($.if('*.js', uglifyJS())) // Minify js output
-      .pipe(htmlSplitter.rejoin())
-      .pipe(polymerProject.addBabelHelpersInEntrypoint())
-      .pipe(polymerProject.addCustomElementsEs5Adapter())
-      .pipe(polymerProject.bundler())
-      .pipe($.rename({dirname: ''}))
-      .pipe(gulp.dest(`dist/${demoRootDir}`));
-  }
-
   return merge(
-    buildDemo('2.0/samples/homepage/contact-card/'),
-    buildDemo('2.0/samples/homepage/google-map/'))
+    run('polymer build').exec(),
+    run('polymer build', { cwd: 'app/2.0/samples/homepage/contact-card'}).exec(),
+    run('polymer build', { cwd: 'app/2.0/samples/homepage/google-map'}).exec())
 });
 
 gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', function() {
@@ -385,6 +355,14 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
       'build/default/app/elements/*'
     ])
     .pipe(gulp.dest('dist/elements'));
+  let demo1 = gulp.src([
+      'app/2.0/samples/homepage/contact-card/build/default/**/*'
+    ])
+    .pipe(gulp.dest('dist/2.0/samples/homepage/contact-card'));
+  let demo2 = gulp.src([
+      'app/2.0/samples/homepage/google-map/build/default/**/*'
+    ])
+    .pipe(gulp.dest('dist/2.0/samples/homepage/google-map'));
 
   let summit = gulp.src([
       'app/summit*/**/*',
@@ -392,7 +370,7 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     ], {base: 'app'})
     .pipe(gulp.dest('dist'));
 
-  return merge(app, docs, gae, bower, bundles, summit);
+  return merge(app, docs, gae, bower, bundles, demo1, demo2, summit);
 });
 
 gulp.task('watch', 'Watch files for changes', function() {
@@ -433,7 +411,7 @@ gulp.task('generate-service-worker', writeServiceWorkerFile);
 gulp.task('default', 'Build site', ['clean', 'jshint'], function(done) {
   runSequence(
     'build-bundles',
-    ['copy', 'md:docs', 'md:blog', 'style', 'images', 'js', 'build-demos'],
+    ['copy', 'md:docs', 'md:blog', 'style', 'images', 'js'],
     'generate-service-worker',
     done);
 });
