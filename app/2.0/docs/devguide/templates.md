@@ -257,7 +257,7 @@ of `items` change, set the `observe` property to a space-separated list of
 For example, for a `dom-repeat` with a filter of the following:
 
 ```
-isEngineer: function(item) {
+isEngineer(item) {
     return item.type == 'engineer' || item.manager.type == 'engineer';
 }
 ```
