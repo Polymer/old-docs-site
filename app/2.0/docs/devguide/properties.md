@@ -344,7 +344,9 @@ When a property only "produces" data and never consumes data, this can be made
 explicit to avoid accidental changes from the host by setting the `readOnly`
 flag to `true` in the `properties` property definition.  In order for the
 element to actually change the value of the property, it must use a private
-generated setter of the convention <code>\_set<var>Property</var>(value)</code>.
+generated setter of the convention <code>\_set<var>Property</var>(value)</code>
+where <code><var>Property</var></code> is the property name, with the first character converted to uppercase (if alphabetic). For example, the setter for `oneProperty` is `setOneProperty`, and the setter
+for _privateProperty is `set_privateProperty`.
 
 ```
 class XCustom extends Polymer.Element {
