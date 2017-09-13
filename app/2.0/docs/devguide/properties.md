@@ -345,8 +345,8 @@ explicit to avoid accidental changes from the host by setting the `readOnly`
 flag to `true` in the `properties` property definition.  In order for the
 element to actually change the value of the property, it must use a private
 generated setter of the convention <code>\_set<var>Property</var>(value)</code>
-where <code><var>Property</var></code> is transformed as
-<code>name[0].toUpperCase() + name.substring(1)</code> from the original property name.
+where <code><var>Property</var></code> is the property name, with the first character converted to uppercase (if alphabetic). For example, the setter for `oneProperty` is `setOneProperty`, and the setter
+for _privateProperty is `set_privateProperty`.
 
 ```
 class XCustom extends Polymer.Element {
