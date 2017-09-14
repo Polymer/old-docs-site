@@ -87,7 +87,6 @@ icon-toggle.html { .caption }
     }
     constructor() {
       super();
-      this.addEventListener('tap', 'toggle');
       Polymer.Gestures.addListener(this, 'tap', () => this.toggle());
     }
     toggle() {
