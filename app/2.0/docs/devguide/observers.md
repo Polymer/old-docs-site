@@ -676,7 +676,7 @@ For example:
 
 ```js
 this._observedPropertyChanged = (newVal) => { console.log('observedProperty changed to ' + newVal); };
-this._createPropertyObserver('observedProperty', '_observedPropertyChanged', true);```
+this._createPropertyObserver('observedProperty', '_observedPropertyChanged', true);
 ```
 
 The optional third argument determines whether the method itself (in this case, `_observedPropertyChanged`)
