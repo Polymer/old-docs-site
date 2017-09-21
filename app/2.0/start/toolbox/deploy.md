@@ -186,10 +186,6 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
         "public": "build/es5-bundled/",
         "rewrites": [
           {
-            "source": "!/__/**",
-            "destination": "/index.html"
-          },
-          {
             "source": "**/!(*.js|*.html|*.css|*.json|*.svg|*.png|*.jpg|*.jpeg)",
             "destination": "/index.html"
           }
