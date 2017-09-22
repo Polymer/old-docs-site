@@ -105,6 +105,11 @@ and create a new project.
       upload: build/es5-bundled/manifest.json
       secure: always
 
+    - url: /service-worker.js
+      static_files: build/es5-bundled/service-worker.js
+      upload: build/es5-bundled/service-worker.js
+      secure: always
+
     - url: /.*
       static_files: build/es5-bundled/index.html
       upload: build/es5-bundled/index.html
