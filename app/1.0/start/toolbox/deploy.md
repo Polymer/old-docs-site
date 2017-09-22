@@ -138,7 +138,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
     ```
     {
       "hosting": {
-        "public": "build/es5-bundled/",
+        "public": "build/bundled/",
         "rewrites": [
           {
             "source": "**/!(*.*)",
