@@ -4,7 +4,7 @@ title: Publish your elements
 
 <!-- toc -->
 
-You can publish your elements on WebComponents.org to make them available on the Internet; or you can host them privately.
+You can publish your elements on [WebComponents.org](https://webcomponents.org) to make them available on the Internet; or you can host them privately.
 
 ## Publish your elements publicly on WebComponents.org
 
