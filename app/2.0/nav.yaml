@@ -148,6 +148,9 @@
   - title: Test your elements
     path: /2.0/docs/tools/tests
     indent: True
+  - title: Browser automation
+    path: /2.0/docs/tools/browser-automation
+    indent: True
 #  - title: Publish an element
 #    path: /2.0/docs/tools/reusable-elements
 #    indent: True
