@@ -105,6 +105,11 @@ and create a new project.
       upload: build/es5-bundled/manifest.json
       secure: always
 
+    - url: /service-worker.js
+      static_files: build/es5-bundled/service-worker.js
+      upload: build/es5-bundled/service-worker.js
+      secure: always
+
     - url: /.*
       static_files: build/es5-bundled/index.html
       upload: build/es5-bundled/index.html
@@ -159,38 +164,16 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
 
 1.  Firebase asks you the name of your app's public folder. Enter `build/es5-bundled/`.
 
-1.  Edit your firebase configuration to add support for URL routing.  Add
-    the following to the `hosting` object in your `firebase.json` file.
-
-    ```
-    "rewrites": [
-      {
-        "source": "!/__/**",
-        "destination": "/index.html"
-      },
-      {
-        "source": "**/!(*.js|*.html|*.css|*.json|*.svg|*.png|*.jpg|*.jpeg)",
-        "destination": "/index.html"
-      }
-    ]
-    ```
-
-    For example, your `firebase.json` file may look like this afterwards:
+1.  Edit your firebase configuration to add support for URL routing. The final
+    `firebase.json` file should look something like this:
 	
     ```
     {
-      "database": {
-        "rules": "database.rules.json"
-      },
       "hosting": {
         "public": "build/es5-bundled/",
         "rewrites": [
           {
-            "source": "!/__/**",
-            "destination": "/index.html"
-          },
-          {
-            "source": "**/!(*.js|*.html|*.css|*.json|*.svg|*.png|*.jpg|*.jpeg)",
+            "source": "**/!(*.*)",
             "destination": "/index.html"
           }
         ]
