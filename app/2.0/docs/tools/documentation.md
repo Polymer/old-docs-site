@@ -322,8 +322,10 @@ Adhere to [Closure-compatible type expressions](https://developers.google.com/cl
 * `@customElement`
 * `@demo`
 * `@event`
+* `@memberof`
 * `@mixinClass`
 * `@mixinFunction`
+* `@namespace`
 * `@polymer`
 * `@polymerBehavior`
 * `@type`
