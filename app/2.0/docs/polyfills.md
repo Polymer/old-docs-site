@@ -73,7 +73,7 @@ The following table lists the JavaScript snippets and query parameters for each 
 <tbody>
  <tr>
     <td>
-      Custom properties
+      Custom Elements
     </td>
     <td>
 JavaScript:
