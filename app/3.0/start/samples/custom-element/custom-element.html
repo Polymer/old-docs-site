@@ -1,0 +1,14 @@
+<link rel="import"  href="https://polygit.org/components/polymer/polymer-element.html">
+
+<script>
+  // Define the class for a new element called custom-element
+  class CustomElement extends Polymer.Element {
+    static get is() { return "custom-element"; }
+    constructor() {
+        super();
+        this.textContent = "I'm a custom-element.";
+      }
+  }
+  // Register the new element with the browser
+  customElements.define(CustomElement.is, CustomElement);
+</script>

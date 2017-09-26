@@ -1,0 +1,35 @@
+## Observers and computed properties
+### Simple observers
+### Complex observers
+### Observers are synchronous
+### Computed properties
+#
+<a id="change-callbacks></a>
+<a id="multi-property-observers></a>
+
+## Moved sections
+
+
+The following topics have been moved to 
+[Observers and computed properties](observers):
+
+-   [Observe a property](observers#change-callbacks).
+
+-   [Observe multiple properties or paths](observers#multi-property-observers).
+
+-   [Observe changes to a subproperty](observers#observing-path-changes).
+
+-   [Observe array mutations](observers#array-observation).
+
+-   [Track key splices](#key-splices).
+
+-   [Deep sub-property observation](#deep-observation).
+
+-   [Deep sub-property changes on array items](#key-paths).
+
+-   [Always include dependencies as observer arguments](#dependencies).
+
+-   [Computed properties](#computed-properties)
+
+The following topics have been moved to 
+[Work with object and array data]().
