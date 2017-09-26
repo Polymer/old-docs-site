@@ -12,7 +12,7 @@ The easiest way to make your reusable elements available is to [publish your ele
 
 Before you publish on WebComponents.org, create a GitHub repository for your element. Make sure your repository has the following:
 
-* An [open source license](https://opensource.org/licenses/alphabetical). TODO how does the user communicate their license? Do they need a license file? Is this automated? Etc
+* An [open source license](https://opensource.org/licenses/alphabetical). Refer to the instructions inside the your chosen open source license for advice on how to apply the license to your code. Usually, this involves adding a license comment to the top of your source files. You can also put a copy of the license in a LICENSE.txt or LICENSE.md file in your GitHub repository.
 
 * A tagged release. [See the GitHub documentation for advice on how to create a taggged release](https://help.github.com/articles/creating-releases/).
 
