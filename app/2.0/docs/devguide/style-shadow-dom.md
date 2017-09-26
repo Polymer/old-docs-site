@@ -167,7 +167,6 @@ Styles declared inside shadow DOM will override styles declared outside of it:
 
 ### Style the host element
 
-
 The element to which shadow DOM is attached is known as the host. To style the host, use the `:host` selector.
 
 Inheritable properties of the host element will inherit down the shadow tree, where they apply to the shadow children.
@@ -442,6 +441,52 @@ And you can select by slot name:
   <div slot="para1">I'm green.</div>
   <div slot="para2">I'm not green.</div>
 </x-foo>
+```
+
+### Style undefined elements
+
+To avoid FOUC (flash of unstyled content), you might want to style custom elements before they are defined (that is, before the browser has attached their class definition to their markup tag). If you don't, the browser may not apply any styles to the element at first paint.
+
+In CSS you can use the `:defined` pseudo-class selector to target elements that are defined. In this case, styling elements that are not defined uses a simple inversion (`:not(:defined)`):
+
+```css
+my-element:not(:defined) {
+  background-color: blue;
+}
+```
+
+However, the Custom Elements polyfill does not support the `:defined` pseudo-class selector. 
+
+For a polyfill-friendly workaround, add an `unresolved` attribute to the element in markup. For example:
+
+```html
+<my-element unresolved></my-element>
+```
+
+Then style the unresolved element. For example:
+
+```html
+<style>
+  my-element[unresolved] {
+    height: 45px;
+    text-align: center;
+    ...
+  }
+</style>
+```
+
+Finally, remove the `unresolved` attribute in the element's `ready` callback:
+
+```js
+class myElement extends Polymer.Element(){
+  ...
+  ready(){
+    super.ready();
+    this.removeAttribute('unresolved');
+    ...
+  }
+  ...
+}
 ```
 
 ## Share styles between elements
