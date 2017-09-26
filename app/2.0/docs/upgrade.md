@@ -1509,7 +1509,7 @@ features from `MyMixin`. So `MyElement`'s inheritance is:
 `MyElement => MyMixin(Polymer.Element) => Polymer.Element`
 
 For information on writing your own class expression mixins, see
-[Sharing code with class expression mixins](#mixins)
+[Sharing code with class expression mixins](devguide/custom-elements#mixins)
 
 
 #### Using hybrid behaviors with class-style elements
