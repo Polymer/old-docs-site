@@ -90,4 +90,4 @@ Sin embargo, necesitamos algunas cosas más antes de lanzar Polymer 3.0, tales c
 
 ## ¿Qué viene a continuación?
 
-Esperamos que la versión preview de Polymer 3.0 los emocione tanto como a nosotros, y queremos escuchar tus comentarios sobre ella a través del [Slack de Polymer](https://polymer-slack.herokuapp.com/) o en las redes sociales. [Hands on with the Polymer 3.0 preview](https://www.polymer-project.org/blog/2017-08-23-hands-on-30-preview.html) 
+Esperamos que la versión preview de Polymer 3.0 los emocione tanto como a nosotros, y queremos escuchar tus comentarios sobre ella a través del [Slack de Polymer](https://polymer-slack.herokuapp.com/) o en las redes sociales. Para obtener más información, por favor visite [Hands on with the Polymer 3.0 preview](https://www.polymer-project.org/blog/2017-08-23-hands-on-30-preview.html) 
