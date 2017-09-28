@@ -561,3 +561,41 @@ Without empty text nodes:
 
 Starting in release 1.8.0, `strip-whitespace` is recursive, affecting any nested `dom-if` and
 `dom-repeat` instances inside the  template.
+
+## Preserve template contents
+
+Polymer performs one-time processing on your DOM template, such as parsing and removing binding
+annotations and caching  and removing nested template contents for better performance. This processing
+removes the template's original contents (the `content` property will be undefined). If you want
+to access the contents of a nested template, you can add the `preserve-content` attribute to the
+template.
+
+Preserving the contents of a nested template means it **won't have any Polymer features like
+data bindings or declarative event listeners.** Only use this when you want to manipulate the
+template yourself, and you don't want Polymer to touch it.
+
+This is a fairly rare use case.
+
+```html
+<dom-module id="custom-template">
+  <template>
+    <template id="special-template" preserve-content>
+      <div>I am very special.</div>
+    </template>
+  </template>
+  <script>
+    Polymer({
+      is: 'custom-template',
+      ready: function() {
+        // retrieve the nested template
+        var template = Polymer.dom(this.root).querySelector('#special-template');
+
+        // insert some copies of the template, with no data binding
+        for (var i=0; i<10; i++) {
+          Polymer.dom(this.root).appendChild(document.importNode(template.content, true));
+        }
+      }
+    });
+  </script>
+</dom-module>
+```
