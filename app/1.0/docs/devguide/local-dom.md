@@ -564,11 +564,15 @@ Starting in release 1.8.0, `strip-whitespace` is recursive, affecting any nested
 
 ## Preserve template contents
 
-Polymer performs one-time processing on your DOM template, such as parsing and removing binding
-annotations and caching  and removing nested template contents for better performance. This processing
-removes the template's original contents (the `content` property will be undefined). If you want
-to access the contents of a nested template, you can add the `preserve-content` attribute to the
-template.
+Polymer performs one-time processing on your DOM template. For example:
+
+-   Parsing and removing binding annotations.
+-   Parsing and removing markup for declarative event listeners.
+-   Caching and removing the contents of nested templates for better performance. 
+
+This processing removes the template's original contents (the `content` property will be 
+undefined). If you want to access the contents of a nested template, you can add the 
+`preserve-content` attribute to the template.
 
 Preserving the contents of a nested template means it **won't have any Polymer features like
 data bindings or declarative event listeners.** Only use this when you want to manipulate the
