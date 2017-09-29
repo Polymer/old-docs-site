@@ -33,11 +33,9 @@
     "promise-polyfill": "polymerlabs/promise-polyfill#2",
     "google-youtube": "GoogleWebComponents/google-youtube#2",
     "google-map": "GoogleWebComponents/google-map#2",
-    "web-animations-js": "web-animations/web-animations-js#^2.2.5",
-    "webcomponentsjs": "master"
+    "web-animations-js": "web-animations/web-animations-js#^2.2.5"
   },
   "resolutions": {
-    "iron-location": "fix-ie-capture",
-    "webcomponentsjs": "master"
+    "iron-location": "fix-ie-capture"
   }
 }
