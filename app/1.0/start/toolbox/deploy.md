@@ -132,23 +132,25 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
     build your application, Polymer CLI places your bundled application
     appropriate for serving on Firebase into the `build/bundled` folder.
 
-1.  Edit your firebase configuration to add support for URL routing.  Add
-    the following section to your `firebase.json` file, which will instruct
-    Firebase to serve up `index.html` for any URL's that don't otherwise
-    end in a file extension.
-
+1.  Edit your firebase configuration to add support for URL routing. The final
+    `firebase.json` file should look something like this:
+	
     ```
-    "rewrites": [
-      {
-        "source": "!/__/**",
-        "destination": "/index.html"
-      },
-      {
-        "source": "**/!(*.js|*.html|*.css|*.json|*.svg|*.png|*.jpg|*.jpeg)",
-        "destination": "/index.html"
+    {
+      "hosting": {
+        "public": "build/bundled/",
+        "rewrites": [
+          {
+            "source": "**/!(*.*)",
+            "destination": "/index.html"
+          }
+        ]
       }
-    ]
-    ```
+    }
+    ```	
+
+    This instructs Firebase to serve up `index.html` for any URLs that don't
+    otherwise end in a file extension.
 
 1.  Deploy.
 
