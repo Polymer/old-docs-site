@@ -796,7 +796,7 @@ The contents of the event vary depending on the change.
 *   For an array mutation, the `detail.path` field is an array mutation path, such as
     "myArray.splices", and the `detail.value` field is a change record, like the one described in the documentation on [array observation](/{{{polymer_version_dir}}}/docs/devguide/observers#array-observation).
 
-    When you mutate an array, a `.length` change event containing the updated length of the array is always generated, in addition to any other change events (such as `.splices`).
+    When you mutate an array, Polymer also generates a change event for the array's `length` property (for example, `detail.path` is "`myArray.length`" and `detail.value` is the new length of the array).
 
 **Don't stop propagation on change notification events.** To avoid creating and discarding
 event objects, Polymer uses cached event objects for change notifications. Calling `stopPropagation`
