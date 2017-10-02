@@ -216,7 +216,12 @@ At test runtime, the content template would be stamped out as:
 ```
 
 The attributes and content of the element are preserved, but the tag
-is replaced with the specified stub tag.
+is replaced with the specified stub tag. 
+
+**Avoid dependencies on element name where possible.** Using a stub element will break any test or element code
+that relies on knowing the element name. (For example, `querySelector('paper-button')` won't return a
+`fake-paper-button` element. It's safer to rely on the element's ID.
+{.alert .alert-info}
 
 Because the method is called within `setup()`, all of the changes are
 reverted at the end of each test.
