@@ -246,6 +246,9 @@ my-element:not(:defined) {
 }
 ```
 
+**`:defined` is not supported by the Custom Elements polyfill.** See the [documentation on styling](style-shadow-dom#style-undefined-elements) for a workaround.
+{.alert .alert-warning}
+
 ## Extending other elements {#extending-elements}
 
 In addition to `HTMLElement`, a custom element can extend another custom element:
