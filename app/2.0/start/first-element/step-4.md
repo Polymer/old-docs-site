@@ -22,7 +22,7 @@ Now, create the `toggle` method to toggle the `pressed` property when the button
 
 icon-toggle.html { .caption }
 
-```html
+```js
 toggle() {
   this.pressed = !this.pressed;
 }
