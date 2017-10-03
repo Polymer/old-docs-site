@@ -447,15 +447,7 @@ And you can select by slot name:
 
 To avoid FOUC (flash of unstyled content), you might want to style custom elements before they are defined (that is, before the browser has attached their class definition to their markup tag). If you don't, the browser may not apply any styles to the element at first paint.
 
-In CSS you can use the `:defined` pseudo-class selector to target elements that are defined. In this case, styling elements that are not defined uses a simple inversion (`:not(:defined)`):
-
-```css
-my-element:not(:defined) {
-  background-color: blue;
-}
-```
-
-However, the Custom Elements polyfill does not support the `:defined` pseudo-class selector. 
+There is a specification for a `:defined` pseudo-class selector to target elements that have been defined, but the custom elements polyfill doesn't support this selector.
 
 For a polyfill-friendly workaround, add an `unresolved` attribute to the element in markup. For example:
 
