@@ -19,7 +19,6 @@
     "iron-flex-layout": "PolymerElements/iron-flex-layout#2",
     "iron-icons": "PolymerElements/iron-icons#2",
     "iron-iconset-svg": "PolymerElements/iron-iconset-svg#2",
-    "iron-location": "PolymerElements/iron-location#fix-ie-capture",
     "iron-media-query": "PolymerElements/iron-media-query#2",
     "iron-pages": "PolymerElements/iron-pages#2",
     "iron-selector": "PolymerElements/iron-selector#2",
@@ -34,8 +33,5 @@
     "google-youtube": "GoogleWebComponents/google-youtube#2",
     "google-map": "GoogleWebComponents/google-map#2",
     "web-animations-js": "web-animations/web-animations-js#^2.2.5"
-  },
-  "resolutions": {
-    "iron-location": "fix-ie-capture"
   }
 }
