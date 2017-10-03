@@ -445,7 +445,7 @@ And you can select by slot name:
 
 ### Style undefined elements
 
-To avoid FOUC (flash of unstyled content), you might want to style custom elements before they are defined (that is, before the browser has attached their class definition to their markup tag). If you don't, the browser may not apply any styles to the element at first paint.
+To avoid FOUC (flash of unstyled content), you might want to style custom elements before they are defined (that is, before the browser has attached their class definition to their markup tag). If you don't, the browser may not apply any styles to the element at first paint. Typically, you'll want to add styling for a few top-level elements so your application's layout displays while the element definitions are being loaded.
 
 There is a specification for a `:defined` pseudo-class selector to target elements that have been defined, but the custom elements polyfill doesn't support this selector.
 
