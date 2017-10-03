@@ -698,7 +698,9 @@ The contents of the event vary depending on the change.
 *   For a subproperty change, the _path_ to the subproperty is included in the `detail.path` field,
     and the new value is included in the `detail.value` field.
 *   For an array mutation, the `detail.path` field is an array mutation path, such as
-    "myArray.splices", and the `detail.value`
+    "myArray.splices", and the `detail.value` field is a change record, like the one described in the documentation on [array observation](/{{{polymer_version_dir}}}/docs/devguide/observers#array-observation).
+
+    When you mutate an array, Polymer also generates a change event for the array's `length` property (for example, `detail.path` is "`myArray.length`" and `detail.value` is the new length of the array).
 
 ### Custom change notification events
 
