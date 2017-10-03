@@ -6,7 +6,8 @@ title: Style an element's shadow DOM
 
 ## Style your elements
 
-Polymer supports DOM templating and the shadow DOM API. When you provide a DOM template for your custom element, Polymer then copies in the contents of the template you provided for your element.
+Polymer supports DOM templating and the shadow DOM API. When you provide a DOM template for your 
+custom element, Polymer then copies in the contents of the template you provided for your element.
 
 Here's an example:
 
@@ -15,7 +16,10 @@ Here's an example:
 `custom-element.html` { .caption }
 ```html
 <!-- Import polymer-element -->
-<link rel="import" href="https://polygit.org/polymer+:2.0-preview/webcomponentsjs+:v1/shadydom+webcomponents+:master/shadycss+webcomponents+:master/custom-elements+webcomponents+:master/components/polymer/polymer-element.html">
+<link rel="import" 
+href="https://polygit.org/polymer+:2.0-preview/webcomponentsjs+:v1/shadydom+webcomponents+:master/sh
+adycss+webcomponents+:master/custom-elements+webcomponents+:master/components/polymer/polymer-elemen
+t.html">
 
 <!-- Create a template for the custom element -->
 <dom-module id='custom-element'>
@@ -39,7 +43,10 @@ Here's an example:
 `index.html` { .caption }
 ```html
 <!-- Load the polyfills -->
-<script src="https://polygit.org/polymer+:2.0-preview/webcomponentsjs+:v1/shadydom+webcomponents+:master/shadycss+webcomponents+:master/custom-elements+webcomponents+:master/components/webcomponentsjs/webcomponents-loader.js"></script>
+<script 
+src="https://polygit.org/polymer+:2.0-preview/webcomponentsjs+:v1/shadydom+webcomponents+:master/sha
+dycss+webcomponents+:master/custom-elements+webcomponents+:master/components/webcomponentsjs/webcomp
+onents-loader.js"></script>
 
 <!-- Load the custom element -->
 <link rel="import" href="custom-element.html">
@@ -47,11 +54,16 @@ Here's an example:
 <custom-element></custom-element>
 ```
 
-The HTML elements in your template become children in your custom element's shadow DOM. Shadow DOM provides a mechanism for encapsulation, meaning that elements inside the shadow DOM don't match selectors outside the shadow DOM.
+The HTML elements in your template become children in your custom element's shadow DOM. Shadow DOM 
+provides a mechanism for encapsulation, meaning that elements inside the shadow DOM don't match 
+selectors outside the shadow DOM.
 
-Likewise, styling rules in side the shadow DOM can't "leak" out to affect elements outside the shadow DOM.
+Likewise, styling rules in side the shadow DOM can't "leak" out to affect elements outside the 
+shadow DOM.
 
-Shadow DOM permits encapsulation of styling rules for custom elements. You can freely define styling information for your elements, such as fonts, text colors, and classes, without fear of the styles applying outside the scope of your element.
+Shadow DOM permits encapsulation of styling rules for custom elements. You can freely define 
+styling information for your elements, such as fonts, text colors, and classes, without fear of the 
+styles applying outside the scope of your element.
 
 Here's an example:
 
@@ -88,16 +100,20 @@ Here's an example:
 </style>
 <x-foo></x-foo>
 <!-- The following paragraph uses the document-level stylesheet. -->
-<p class="myclass">I have nothing to do with x-foo. Because of encapsulation, x-foo's styles won't leak to me.</p>
+<p class="myclass">I have nothing to do with x-foo. Because of encapsulation, x-foo's styles won't 
+leak to me.</p>
 ```
 
-For a detailed explanation of shadow DOM as it applies to Polymer, see [Shadow DOM concepts](shadow-dom).
+For a detailed explanation of shadow DOM as it applies to Polymer, see [Shadow DOM 
+concepts](shadow-dom).
 
-For an exploration of the shadow DOM v1 API, see [Shadow DOM v1: Self-Contained Web Components](https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom).
+For an exploration of the shadow DOM v1 API, see [Shadow DOM v1: Self-Contained Web 
+Components](https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom).
 
 ### Use inheritance from document-level styles
 
-When used in an HTML document, your element will still inherit any styling information that applies to its parent element:
+When used in an HTML document, your element will still inherit any styling information that applies 
+to its parent element:
 
 [See it on Plunker](http://plnkr.co/edit/7ugStflqbexg2dNqmtDQ?p=preview)
 
@@ -167,9 +183,11 @@ Styles declared inside shadow DOM will override styles declared outside of it:
 
 ### Style the host element
 
-The element to which shadow DOM is attached is known as the host. To style the host, use the `:host` selector.
+The element to which shadow DOM is attached is known as the host. To style the host, use the 
+`:host` selector.
 
-Inheritable properties of the host element will inherit down the shadow tree, where they apply to the shadow children.
+Inheritable properties of the host element will inherit down the shadow tree, where they apply to 
+the shadow children.
 
 [See it on Plunker](http://plnkr.co/edit/7771DvsQ3iPWnn2gEIf8?p=preview)
 
@@ -243,7 +261,8 @@ You can use CSS selectors to determine when and how to style the host. In this c
 <x-foo class="red"></x-foo>
 ```
 
-Descendant selectors after `:host` match elements in the shadow tree. In this example, the CSS selector applies to any `p` element in the shadow tree if the host has class "warning":
+Descendant selectors after `:host` match elements in the shadow tree. In this example, the CSS 
+selector applies to any `p` element in the shadow tree if the host has class "warning":
 
 [See it on Plunker](http://plnkr.co/edit/MRN9blKg6A3w8G0RkyJD?p=preview)
 
@@ -269,11 +288,18 @@ Descendant selectors after `:host` match elements in the shadow tree. In this ex
 <x-foo></x-foo>
 ```
 
-Styling with the `:host` selector is one of two instances where rules inside a shadow tree can affect an element outside a shadow tree. The second instance uses the `::slotted()` syntax to apply styling rules to distributed children. See [*Composition and slots* in Eric Bidelman's article on shadow DOM](https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom#composition_slot) for more information.
+Styling with the `:host` selector is one of two instances where rules inside a shadow tree can 
+affect an element outside a shadow tree. The second instance uses the `::slotted()` syntax to apply 
+styling rules to distributed children. See [*Composition and slots* in Eric Bidelman's article on 
+shadow 
+DOM](https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom#composition_sl
+ot) for more information.
 
 ### Style slotted content (distributed children)
 
-You can create **slots** in an element's template that are populated at runtime. For more information on slots, see the documentation on [shadow DOM and composition](/2.0/docs/devguide/shadow-dom#shadow-dom-and-composition).
+You can create **slots** in an element's template that are populated at runtime. For more 
+information on slots, see the documentation on [shadow DOM and 
+composition](/2.0/docs/devguide/shadow-dom#shadow-dom-and-composition).
 
 The basic syntax for incorporating slotted content looks like this:
 
@@ -302,7 +328,9 @@ The basic syntax for incorporating slotted content looks like this:
 
 To style slotted content, use the `::slotted()` syntax.
 
-**Note:** To work within the Shady CSS scoping shim limitations, and to ensure consistent cross-browser behavior, add a selector to the left of the `::slotted(.classname)` notation (for example, `p ::slotted(.classname)`.
+**Note:** To work within the Shady CSS scoping shim limitations, and to ensure consistent 
+cross-browser behavior, add a selector to the left of the `::slotted(.classname)` notation (for 
+example, `p ::slotted(.classname)`.
 
 `::slotted(*)` selects all slotted content:
 
@@ -445,11 +473,17 @@ And you can select by slot name:
 
 ### Style undefined elements
 
-To avoid FOUC (flash of unstyled content), you might want to style custom elements before they are defined (that is, before the browser has attached their class definition to their markup tag). If you don't, the browser may not apply any styles to the element at first paint. Typically, you'll want to add styling for a few top-level elements so your application's layout displays while the element definitions are being loaded.
+To avoid FOUC (flash of unstyled content), you might want to style custom elements before they are 
+defined (that is, before the browser has attached their class definition to their markup tag). If 
+you don't, the browser may not apply any styles to the element at first paint. Typically, you'll 
+want to add styling for a few top-level elements so your application's layout displays while the 
+element definitions are being loaded.
 
-There is a specification for a `:defined` pseudo-class selector to target elements that have been defined, but the custom elements polyfill doesn't support this selector.
+There is a specification for a `:defined` pseudo-class selector to target elements that have been 
+defined, but the custom elements polyfill doesn't support this selector.
 
-For a polyfill-friendly workaround, add an `unresolved` attribute to the element in markup. For example:
+For a polyfill-friendly workaround, add an `unresolved` attribute to the element in markup. For 
+example:
 
 ```html
 <my-element unresolved></my-element>
@@ -485,9 +519,11 @@ class myElement extends Polymer.Element(){
 
 ### Use style modules {#style-modules}
 
-The preferred way to share styles is with *style modules*. You can package up styles in a style module, and share them between elements.
+The preferred way to share styles is with *style modules*. You can package up styles in a style 
+module, and share them between elements.
 
-To create a style module, wrap your style block in `<dom-module>` and `<template>` elements, like this:
+To create a style module, wrap your style block in `<dom-module>` and `<template>` elements, like 
+this:
 
 ```html
 <dom-module id="my-style-module">
@@ -499,7 +535,8 @@ To create a style module, wrap your style block in `<dom-module>` and `<template
 </dom-module>
 ```
 
-When you create the element that will use the styles, include the style module in the opening tag of the style block:
+When you create the element that will use the styles, include the style module in the opening tag 
+of the style block:
 
 ```html
 <dom-module id="new-element">
@@ -512,7 +549,8 @@ When you create the element that will use the styles, include the style module i
 </dom-module>
 ```
 
-You'll most likely want to package the style module in its own html file. In that case, the element that uses the styles will need to import that file.
+You'll most likely want to package the style module in its own html file. In that case, the element 
+that uses the styles will need to import that file.
 
 Here's an example:
 
@@ -616,20 +654,30 @@ For example:
 
 ## Use `custom-style` in document-level styles {#custom-style}
 
-Browsers that implement the current Shadow DOM v1 specifications will automatically encapsulate styles, scoping them to the elements in which they were defined.
+Browsers that implement the current Shadow DOM v1 specifications will automatically encapsulate 
+styles, scoping them to the elements in which they were defined.
 
-Some browsers have not implemented the Shadow DOM v1 specifications. To make sure your apps and elements display correctly in these browsers, you'll need to use `custom-style` to ensure that styling information doesn't "leak" into the local DOM of your elements.
+Some browsers have not implemented the Shadow DOM v1 specifications. To make sure your apps and 
+elements display correctly in these browsers, you'll need to use `custom-style` to ensure that 
+styling information doesn't "leak" into the local DOM of your elements.
 
-`custom-style` enables a set of polyfills that ensure that styles in your apps and elements behave as you would expect from the Shadow DOM v1 specifications, even in browsers that don't implement these specifications.
+`custom-style` enables a set of polyfills that ensure that styles in your apps and elements behave 
+as you would expect from the Shadow DOM v1 specifications, even in browsers that don't implement 
+these specifications.
 
-To ensure that your styles behave according to the Shadow DOM v1 specifications in all browsers, use `custom-style` when you define *document-level* styles. `custom-style` is not included with `Polymer.Element` and must be imported separately.
+To ensure that your styles behave according to the Shadow DOM v1 specifications in all browsers, 
+use `custom-style` when you define *document-level* styles. `custom-style` is not included with 
+`Polymer.Element` and must be imported separately.
 `custom-style` is included with the legacy `polymer.html` import.
 
-*Note: You should only use `custom-style` to define styles for the main document. To define styles for an element's local DOM, just use a `<style>` block.*
+*Note: You should only use `custom-style` to define styles for the main document. To define styles 
+for an element's local DOM, just use a `<style>` block.*
 
 ### Examples
 
-In the first code sample, the style for the `p` element “leaks” into Paragraph B in browsers that haven’t implemented the Shadow DOM v1 specs. In the second code sample, the developer has used `custom-style` to wrap the style block, preventing this leak.
+In the first code sample, the style for the `p` element “leaks” into Paragraph B in browsers that 
+haven’t implemented the Shadow DOM v1 specs. In the second code sample, the developer has used 
+`custom-style` to wrap the style block, preventing this leak.
 
 [See it on Plunker](http://plnkr.co/edit/0o1zuMHgmt4novf2DS8z?p=preview)
 
@@ -691,7 +739,8 @@ In the first code sample, the style for the `p` element “leaks” into Paragra
 
 ### Syntax and compatibility
 
-The syntax of `custom-style` has changed. In Polymer 2.x, `<custom-style>` is a wrapper element. You can use a hybrid syntax to ensure compatibility between Polymer 1.x and other versions.
+The syntax of `custom-style` has changed. In Polymer 2.x, `<custom-style>` is a wrapper element. 
+You can use a hybrid syntax to ensure compatibility between Polymer 1.x and other versions.
 
 Polymer 2.x { .caption}
 ```html
