@@ -29,7 +29,6 @@
     "paper-listbox": "PolymerElements/paper-listbox#2",
     "paper-tabs": "PolymerElements/paper-tabs#2",
     "paper-toast": "PolymerElements/paper-toast#2",
-    "promise-polyfill": "polymerlabs/promise-polyfill#2",
     "google-youtube": "GoogleWebComponents/google-youtube#2",
     "google-map": "GoogleWebComponents/google-map#2",
     "web-animations-js": "web-animations/web-animations-js#^2.2.5"
