@@ -100,7 +100,18 @@ function writeServiceWorkerFile() {
     // Only serve the app shell for navigate requests (not XHRs) of non-sample content.
     if ((request.mode === 'navigate') && !request.url.match('samples')) {
       return caches.open(cacheName).then(function(cache) {
-        return cache.match(urlsToCacheKeys.get(new URL('/app-shell.html', self.location).toString()));
+        const url = new URL('/app-shell.html', self.location).toString();
+        return cache.match(urlsToCacheKeys.get(url)).then(function(response) {
+          if (response) {
+            return response;
+          }
+          throw Error('/app-shell.html missing from cache.');
+        });
+      }).catch(function(e) {
+        // Fall back to fetching the actual content if /app-shell.html is missing.
+        // The SW should precache it the next time it initializes.
+        console.warn('/app-shell.html missing from cache: %O', e);
+        return toolbox.networkFirst(request, values, options);
       });
     } else {
       return toolbox.networkFirst(request, values, options);
