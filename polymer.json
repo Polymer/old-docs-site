@@ -6,8 +6,15 @@
   ],
   "builds": [{
     "bundle": true,
-    "js": {"minify": true},
-    "css": {"minify": true},
-    "html": {"minify": true}
+    "js": {
+      "minify": true,
+      "compile": true
+    },
+    "css": {
+      "minify": true
+    },
+    "html": {
+      "minify": true
+    }
   }]
 }

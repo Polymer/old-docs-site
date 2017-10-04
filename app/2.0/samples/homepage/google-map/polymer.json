@@ -1,0 +1,19 @@
+{
+  "entrypoint": "index.html",
+  "shell": "bower_components/google-map/google-map.html",
+  "builds": [
+    {
+      "js": {
+        "minify": true,
+        "compile": true
+      },
+      "css": {
+        "minify": true
+      },
+      "html": {
+        "minify": true
+      },
+      "bundle": true
+    }
+  ]
+}

@@ -18,6 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
 
 <dom-module id="pw-shell">
   <template>
@@ -34,8 +35,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       /* To avoid flashing the content before it's being distributed,
        * the nav links where initially display: none. */
-      .drawer-contents ::content .site-nav {
-        display: block;
+      .drawer-contents ::slotted(.site-nav) {
+        display: block !important;
       }
 
       a.iron-selected {
@@ -155,7 +156,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <paper-icon-button class="drawer-toggle" icon="pw-icons:menu" on-click="_toggleDrawer"></paper-icon-button>
 
         <a href="/" class="logo-link">
-          <img src="../images/logos/p-logo.png" alt="Polymer Logo">
+          <img src="/images/logos/p-logo.png" alt="Polymer Logo">
           <span>Polymer Project</span>
         </a>
 
@@ -186,11 +187,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <app-drawer id="drawer" class="drawer" swipe-open>
       <div class="drawer-contents">
-        <content select=".site-nav"></content>
+        <slot name="site-nav"></slot>
       </div>
     </app-drawer>
 
-    <content></content>
+    <slot></slot>
 
     <iron-media-query query="(max-width: 1000px)" query-matches="{{_shouldCollapseToc}}"></iron-media-query>
 
@@ -340,15 +341,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // Since the response is a document that's already parsed, don't
         // just innerHTML it (which converts it to a string and then reparses it),
         // and just use the nodes we need.
-        Polymer.dom(this).innerHTML = '';
-        var shell = doc.querySelector('pw-shell');
-
+        var docShell = doc.querySelector('pw-shell');
         var fragment = document.createDocumentFragment();
-        while (shell.firstChild) {
-          fragment.appendChild(shell.firstChild);
+        while (docShell.firstChild) {
+          fragment.appendChild(docShell.firstChild);
         }
 
-        Polymer.dom(this).appendChild(document.importNode(fragment, true));
+        // Replace shell contents.
+        var shell = Polymer.dom(this);
+        while (shell.firstChild) {
+          shell.removeChild(shell.firstChild);
+        }
+        shell.appendChild(document.importNode(fragment, true /* deep */));
         Polymer.dom.flush();  // Force upgrades.
 
         // Analytics. Don't double-report search

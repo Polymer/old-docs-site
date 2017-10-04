@@ -131,7 +131,8 @@ function writeServiceWorkerFile() {
       `${rootDir}/elements/**`,
       `${rootDir}/js/*.js`,
       `${rootDir}/css/*.css`,
-      `${rootDir}/bower_components/**/webcomponents-lite.min.js`,
+      `${rootDir}/bower_components/webcomponentsjs/custom-elements-es5-adapter.js`,
+      `${rootDir}/bower_components/webcomponentsjs/webcomponents-loader.js`,
     ],
     dynamicUrlToDependencies: {
       '/': partialTemplateFiles.concat([`${rootDir}/index.html`, `${rootDir}/blog.yaml`, `${rootDir}/authors.yaml`]),
@@ -146,6 +147,15 @@ function writeServiceWorkerFile() {
         cache: {
           maxEntries: 50,
           name: 'image-cache'
+        }
+      }
+    },
+    {
+      urlPattern: new RegExp('/bower_components/webcomponentsjs/.*.js'),
+      handler: 'fastest',
+      options: {
+        cache: {
+          name: 'webcomponentsjs-polyfills-cache'
         }
       }
     },
@@ -317,29 +327,16 @@ gulp.task('js', 'Minify JS to dist/', ['jshint'], function() {
 });
 
 gulp.task('build-bundles', 'Build element bundles', function() {
-  return run('polymer build').exec();
-});
-
-gulp.task('vulcanize-demos', 'vulcanize demos', function() {
-  return gulp.src('app/1.0/samples/homepage/*/index.html', {base: 'app/1.0/samples/homepage'})
-    .pipe($.vulcanize({
-      stripComments: true,
-      inlineCss: true,
-      inlineScripts: true
-    }))
-    .pipe($.crisper()) // Separate HTML/JS into separate files.
-    .pipe($.if('*.html', minifyHtml())) // Minify html output
-    .pipe($.if('*.html', cssslam.gulp())) // Minify css in HTML output
-    .pipe($.if('*.js', uglifyJS())) // Minify js output
-    .pipe($.if('*.js', license()))
-    .pipe(gulp.dest('dist/1.0/samples/homepage'));
+  return merge(
+    run('polymer build').exec(),
+    run('polymer build', { cwd: 'app/2.0/samples/homepage/contact-card'}).exec(),
+    run('polymer build', { cwd: 'app/2.0/samples/homepage/google-map'}).exec())
 });
 
 gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', function() {
   let app = gulp.src([
       '*',
       'app/manifest.json',
-      'app/service-worker.js',
       '!{README.md,package.json,gulpfile.js}',
     ], {nodir: true})
     .pipe(gulp.dest('dist'));
@@ -350,7 +347,7 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
       'app/**/blog.yaml',
       'app/**/authors.yaml',
       '!app/{bower_components,elements}/**',
-      '!app/1.0/samples/homepage/**',
+      '!app/2.0/samples/homepage/**',
      ], {base: 'app/'})
     .pipe(gulp.dest('dist'));
 
@@ -360,7 +357,7 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     .pipe(gulp.dest('dist'));
 
   let bower = gulp.src([
-      'app/bower_components/webcomponentsjs/webcomponents*.js'
+      'app/bower_components/webcomponentsjs/*'
     ], {base: 'app/'})
     .pipe(gulp.dest('dist'));
 
@@ -369,6 +366,14 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
       'build/default/app/elements/*'
     ])
     .pipe(gulp.dest('dist/elements'));
+  let demo1 = gulp.src([
+      'app/2.0/samples/homepage/contact-card/build/default/**/*'
+    ])
+    .pipe(gulp.dest('dist/2.0/samples/homepage/contact-card'));
+  let demo2 = gulp.src([
+      'app/2.0/samples/homepage/google-map/build/default/**/*'
+    ])
+    .pipe(gulp.dest('dist/2.0/samples/homepage/google-map'));
 
   let summit = gulp.src([
       'app/summit*/**/*',
@@ -376,13 +381,7 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     ], {base: 'app'})
     .pipe(gulp.dest('dist'));
 
-  let bower_summit = gulp.src([
-      'app/bower_components/webcomponentsjs/webcomponents*.js'
-    ], {base: 'app/'})
-    .pipe(gulp.dest('dist/summit-2015'))
-    .pipe(gulp.dest('dist/summit-2016'));
-
-  return merge(app, docs, gae, bower, bundles, summit, bower_summit);
+  return merge(app, docs, gae, bower, bundles, demo1, demo2, summit);
 });
 
 gulp.task('watch', 'Watch files for changes', function() {
@@ -423,7 +422,7 @@ gulp.task('generate-service-worker', writeServiceWorkerFile);
 gulp.task('default', 'Build site', ['clean', 'jshint'], function(done) {
   runSequence(
     'build-bundles',
-    ['style', 'images', 'vulcanize-demos', 'js'],
-    'copy', 'md:docs', 'md:blog', 'generate-service-worker',
+    ['copy', 'md:docs', 'md:blog', 'style', 'images', 'js'],
+    'generate-service-worker',
     done);
 });
