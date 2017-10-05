@@ -5,7 +5,15 @@ title: Gesture events
 <!-- toc -->
 
 Polymer provides optional support for custom "gesture" events for certain user
-interactions. 
+interactions. the up, down, and track events fire consistently on both touch and mouse 
+environments so we recommend using these events instead of their mouse- or		
+touch-specific event counterparts. This provides better interoperability with 
+both touch and mouse devices.	
+
+**In general, use the standard `click` event instead of `tap` in mobile browsers.** The `tap`
+event is included in the gesture event mixin for backwards compatibility, but it's no longer
+required in modern mobile browsers.
+{.alert .alert-info}
 
 ## Using gesture events
 
@@ -71,11 +79,6 @@ and list of detail properties available on `event.detail` for each type:
   * `ddx`—change in pixels horizontally since last track event
   * `ddy`—change in pixels vertically since last track event
   * `hover()`—a function that may be called to determine the element currently being hovered
-
-**In general, use the standard `click` event instead of `tap` in mobile browsers.** The `tap`
-event is included in the gesture event mixin for backwards compatibility, but it's no longer
-required in modern mobile browsers.
-{.alert .alert-info}
 
 ### Examples
 
