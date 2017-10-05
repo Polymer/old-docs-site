@@ -6,7 +6,7 @@ title: Gesture events
 
 Polymer provides optional support for custom "gesture" events for certain user
 interactions. the up, down, and track events fire consistently on both touch and mouse 
-environments so we recommend using these events instead of their mouse- or		
+environments, so we recommend using these events instead of their mouse- or		
 touch-specific event counterparts. This provides better interoperability with 
 both touch and mouse devices.	
 
