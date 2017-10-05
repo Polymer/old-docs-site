@@ -101,13 +101,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </div>
           <br><br>
 
-          <template is="dom-repeat">
-            <div class="search-result">
-              <span class="search-label" data-label$="{{item.label}}">{{item.label}}</span>
-              <a href="{{item.link}}">{{item.title}}</a>
-              <p class="snippet">{{item.snippet}}</p>
-            </div>
-          </template>
+          <dom-repeat id="searchResults">
+            <template>
+              <div class="search-result">
+                <span class="search-label" data-label$="{{item.label}}">{{item.label}}</span>
+                <a href="{{item.link}}">{{item.title}}</a>
+                <p class="snippet">{{item.snippet}}</p>
+              </div>
+            </template>
+          </dom-repeat>
 
           <div class="results-button-container">
             <a href="" class="previous-results blue-button">Previous page</a>
