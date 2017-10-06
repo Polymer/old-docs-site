@@ -333,7 +333,8 @@ the property name. For example, a change to `this.firstName` fires
 
 These events are used by the two-way data binding system. External
 scripts can also listen for events (such as `first-name-changed`)
-directly using `addEventListener`.
+directly using `addEventListener`. Property change events don't bubble, so
+the event listener must be added directly to the element generating the event. 
 
 For more on property change notifications and the data system, see
 [Data flow](data-system#data-flow).
