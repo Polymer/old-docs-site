@@ -79,9 +79,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="tabstrip layout horizontal center">
       <paper-tabs selected="{{_selected}}" class="flex">
-        <template is="dom-repeat" items="[[_panels]]">
-          <paper-tab>{{item.heading}}</paper-tab>
-        </template>
+        <dom-repeat items="[[_panels]]">
+          <template>
+            <paper-tab>{{item.heading}}</paper-tab>
+          </template>
+        </dom-repeat>
       </paper-tabs>
       <a href="[[src]]" target="_blank" hidden$="[[_hidePlunkrButton(src)]]">
         <paper-button on-click="_plunkerLaunched" raised>
