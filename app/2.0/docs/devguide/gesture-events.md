@@ -5,10 +5,15 @@ title: Gesture events
 <!-- toc -->
 
 Polymer provides optional support for custom "gesture" events for certain user
-interactions. These events fire consistently on both touch and mouse environments,
-so we recommend using these events instead of their mouse- or
-touch-specific event counterparts. This provides better interoperability with both touch and
-mouse devices.
+interactions. the up, down, and track events fire consistently on both touch and mouse 
+environments, so we recommend using these events instead of their mouse- or		
+touch-specific event counterparts. This provides better interoperability with 
+both touch and mouse devices.	
+
+**In general, use the standard `click` event instead of `tap` in mobile browsers.** The `tap`
+event is included in the gesture event mixin for backwards compatibility, but it's no longer
+required in modern mobile browsers.
+{.alert .alert-info}
 
 ## Using gesture events
 
@@ -29,20 +34,20 @@ Gesture events require some extra setup, so you can't simply add a listener
 using the generic `addEventListener` method. To listen for a gesture event:
 
 *   Use an [annotated event listener](events#annotated-listeners) for one of the gesture events.
-
+       
     ```html
-    <div on-tap="tapHandler">Tap here!</div>
+    <div id="dragme" on-track="handleTrack">Drag me!</div>
     ```
-
+    
     Polymer automatically does the extra bookkeeping for gesture events when you use annotated
     event listeners.
-
+    
 *   Use the `Polymer.Gestures.addListener`/`Polymer.Gestures.removeListener` methods.
-
+    
     ```js
-    Polymer.Gestures.addListener(this, 'tap', e => this.tapHandler(e));
+    Polymer.Gestures.addListener(this, 'track', e => this.trackHandler(e));
     ```
-
+    
     You can use the `Polymer.Gestures.addListener` function to add a listener to the host element.
 
 ### Gesture event types
@@ -133,40 +138,54 @@ listener with `Polymer.Gestures.addListener` when you remove the child, to allow
 to be garbage collected.
 
 ```html
-<link rel="import" href="polymer/polymer-element.html">
-<link rel="import" href="polymer/lib/mixins/gesture-event-listeners.html">
-<dom-module id="tap-me">
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/polymer/lib/mixins/gesture-event-listeners.html">
+
+<dom-module id="drag-me-app">
   <template>
     <style>
       :host {
-        width: 200px;
-        height: 200px;
         border: 1px solid blue;
+        background: gray;
       }
     </style>
-    <div>Tap me!</div>
-    <div>I've been tapped [[count]] times.</div>
+    [[message]]
   </template>
 
   <script>
-    class TapMe extends Polymer.GestureEventListeners(Polymer.Element) {
-
-      static get is() {return 'tap-me'}
-
+    class DragMeApp extends Polymer.GestureEventListeners(Polymer.Element) {
+      static get is() { return 'drag-me-app'; }
+      static get properties() {
+        return {
+          message: {
+            type: String,
+            value: "Select my text. I will track you."
+          }
+        };
+      }
       constructor() {
         super();
-        this.count = 0;
-        Polymer.Gestures.addListener(this, 'tap', e => this.handleTap(e));
+        Polymer.Gestures.addListener(this, 'track', e => this.handleTrack(e));
       }
-
-      handleTap(e) {
-        this.count++;
+      handleTrack(e) {
+        switch(e.detail.state) {
+          case 'start':
+            this.message = 'Tracking started!';
+            break;
+          case 'track':
+            this.message = 'Tracking in progress... ' +
+              e.detail.x + ', ' + e.detail.y;
+            break;
+          case 'end':
+            this.message = 'Tracking ended!';
+            break;
+        }
       }
     }
-
-    customElements.define(TapMe.is, TapMe);
+    customElements.define(DragMeApp.is, DragMeApp);
   </script>
 </dom-module>
+
 ```
 
 ## Gestures and scroll direction
