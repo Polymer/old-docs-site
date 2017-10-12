@@ -1,0 +1,67 @@
+<!--
+@license
+Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<dom-module id="pw-search-results">
+  <template>
+    <style>
+      .search-result {
+        margin-bottom: 20px;
+      }
+
+      .search-label {
+        color: white;
+        padding: 5px 10px;
+        text-align: center;
+        font-weight: bold;
+        border-radius: 3px;
+      }
+
+      .search-label[data-label="1.0"] {
+        background-color: #37474f;
+      }
+
+      .search-label[data-label="2.0"] {
+        background-color: #1565c0;
+      }
+
+      .search-label[data-label="Blog"] {
+        background-color: #e8345a;
+      }
+
+      .search-label[data-label="all"] {
+        color: black;
+      }
+    </style>
+
+    <dom-repeat items="[[items]]">
+      <template>
+        <div class="search-result">
+          <span class="search-label" data-label$="[[item.label]]">[[item.label]]</span>
+          <a href="[[item.link]]">[[item.title]]</a>
+          <p class="snippet">[[item.snippet]]</p>
+        </div>
+      </template>
+    </dom-repeat>
+  </template>
+
+  <script>
+  Polymer({
+    is: 'pw-search-results',
+
+    properties: {
+      /**
+       * Search result items.
+       */
+      items: {
+        type: Object
+      }
+    }
+  });
+  </script>
+</dom-module>
