@@ -77,7 +77,7 @@ the element that the event listener is attached to, in this case, the custom ele
 The recommended way for setting up a listener on a child element of the custom element is to
 use an [annotated event listener](events#annotated-listeners) inside the template.
 
-If you need to imperatively set up the listner, it is important to bind the `this` value
+If you need to imperatively set up the listener, it is important to bind the `this` value
 using `.bind()` or using an arrow function.
 
 ```js
