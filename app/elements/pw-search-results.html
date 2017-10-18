@@ -10,6 +10,62 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="pw-search-results">
   <template>
     <style>
+      :host {
+        display: block;
+      }
+
+      .yes-query {
+        display: none;
+      }
+
+      [query] .no-query {
+        display: none;
+      }
+
+      [query] .yes-query {
+        display: block;
+      }
+
+      .no-results {
+        display: none;
+      }
+
+      [no-results] .no-results {
+        display: block;
+      }
+
+      .search-query {
+        color: #1e87ea !important;
+      }
+
+      .search-query.small {
+        color: black;
+        font-weight: bold;
+      }
+
+      a {
+        color: #1e88e5;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      a.search-filter {
+        padding: 0 10px;
+        display: inline-block;
+        cursor: pointer;
+      }
+
+      [active-label="1.0"] a.search-filter[data-label="1.0"],
+      [active-label="2.0"] a.search-filter[data-label="2.0"],
+      [active-label="Blog"] a.search-filter[data-label="Blog"],
+      [active-label="all"] a.search-filter[data-label="all"] {
+        color: #f50057;
+      }
+
       .search-result {
         margin-bottom: 20px;
       }
@@ -37,17 +93,81 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .search-label[data-label="all"] {
         color: black;
       }
+
+      .pagination {
+        display: flex;
+      }
+
+      .pagination .flex {
+        flex: 1;
+      }
+
+      .pagination a {
+        color: #fff;
+        background: #1e88e5;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: 13px;
+        padding: 3px 20px;
+        margin-bottom: 5px;
+        border-radius: 2px;
+        text-align: center;
+        display: inline-block;
+        font-weight: 400;
+      }
+
+      .pagination a:not([href]) {
+        display: none;
+      }
     </style>
 
-    <dom-repeat items="[[items]]">
-      <template>
-        <div class="search-result">
-          <span class="search-label" data-label$="[[item.label]]">[[item.label]]</span>
-          <a href="[[item.link]]">[[item.title]]</a>
-          <p class="snippet">[[item.snippet]]</p>
+    <iron-ajax id="cseSearch" url="https://www.googleapis.com/customsearch/v1" last-response="{{response}}"></iron-ajax>
+
+    <div query$="[[query]]" no-results$=[[!response.items]]>
+      <div class="no-query">
+        <h2>Search</h2>
+        <p>Use the search bar above to search the site.</p>
+      </div>
+
+      <div class="yes-query">
+        <h2>Search results for <span class="search-query">[[query]]</span></h2>
+        <div active-label$="[[activeLabel]]">
+          Filter by:
+          <a href$="[[_getFilterHref(query, '1.0')]]" class="search-filter" data-label="1.0">1.0</a>|
+          <a href$="[[_getFilterHref(query, '2.0')]]" class="search-filter" data-label="2.0">2.0</a>|
+          <a href$="[[_getFilterHref(query, 'Blog')]]" class="search-filter" data-label="Blog">Blog</a>|
+          <a href$="[[_getFilterHref(query, '')]]" class="search-filter" data-label="all">All</a>
         </div>
-      </template>
-    </dom-repeat>
+        <br>
+
+        <div class="no-results">
+          <p>Your search — <span class="search-query small">[[query]]</span> — did not match any documents.</p>
+          <p>Suggestions:</p>
+          <ul>
+            <li>Make sure all words are spelled correctly.</li>
+            <li>Try different keywords.</li>
+            <li>Try more general keywords.</li>
+          </ul>
+        </div>
+        <br>
+
+        <dom-repeat items="[[response.items]]">
+          <template>
+            <div class="search-result">
+              <span class="search-label" data-label$="[[_getLabel(item)]]">[[_getLabel(item)]]</span>
+              <a href="[[item.link]]">[[item.title]]</a>
+              <p class="snippet">[[item.snippet]]</p>
+            </div>
+          </template>
+        </dom-repeat>
+
+        <div class="pagination">
+          <a href$="[[_getPageHref(response.queries.previousPage)]]" class="blue-button">Previous page</a>
+          <div class="flex"></div>
+          <a href$="[[_getPageHref(response.queries.nextPage)]]" class="blue-button">Next page</a>
+        </div>
+      </div>
+    </div>
   </template>
 
   <script>
@@ -56,11 +176,73 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     properties: {
       /**
-       * Search result items.
+       * Query params from app-location - set by pw-shell.
        */
-      items: {
+      searchParams: {
+        type: Object,
+        observer: '_searchParamsChanged'
+      },
+
+      query: {
+        type: String
+      },
+
+      activeLabel: {
+        type: String
+      },
+
+      response: {
         type: Object
       }
+    },
+
+    _searchParamsChanged: function(newParams, oldParams) {
+      // Either the whole query may have changed (because we added or changed
+      // the +more: search parameter, or the start page has changed in the
+      // same query)
+      var oldQ = oldParams ? oldParams.q : null;
+      var oldStart = oldParams ? oldParams.start : null;
+      if (newParams && newParams.q &&
+          (newParams.q !== oldQ || newParams.start !== oldStart)) {
+        var matches = newParams.q.match(/(.*) more:(1\.0|2\.0|Blog)/);
+        if (matches && matches.length > 2) {
+          this.query = matches[1];
+          this.activeLabel = matches[2];
+        } else {
+          this.query = newParams.q;
+          this.activeLabel = 'all';
+        }
+
+        this.$.cseSearch.params = {
+          q: newParams.q,
+          key: 'AIzaSyCMGfdDaSfjqv5zYoS0mTJnOT3e9MURWkU',
+          cx: '012790892085874323134:dqsp1svowso'
+        };
+
+        // Paginated search.
+        if (newParams.start && newParams.start !== 0) {
+          this.$.cseSearch.params.start = newParams.start;
+        }
+
+        // analytics
+        if (window.recordSearch) {
+          window.recordSearch(newParams.q);
+        }
+
+        this.$.cseSearch.generateRequest();
+      }
+    },
+
+    _getLabel: function(item) {
+      return item.labels[0].displayName;
+    },
+
+    _getFilterHref: function(q, label) {
+      return '?q=' + q + (label ? ' more:' + label : '');
+    },
+
+    _getPageHref: function(page) {
+      return page ? '?q=' + page[0].searchTerms + '&start=' + page[0].startIndex : null;
     }
   });
   </script>
