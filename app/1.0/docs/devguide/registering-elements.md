@@ -138,6 +138,11 @@ To use a type-extension element in markup, use the _native_ tag and add an
     <input is="my-input">
 ```
 
+**createElement signature.** By specification, the `createElement` method's second argument should be a 
+an object. The usage in the code sample above is specific to Polymer 1.x and works in Chrome, or when using
+the custom elements v0 polyfill.
+{.alert .alert-info} 
+
 <!-- legacy anchor -->
 <a id="basic-callbacks"></a>
 
