@@ -7,8 +7,42 @@ by creating a `Polymer` object on window before importing the Polymer
 library, or by calling a setter.
 
 
+You should call the setters before defining your first Polymer element. For example, 
+you could do this from an entrypoint file, or from your main application element import 
+(assuming that you have an main application element that's always loaded first.)
 
+Calling a setter from an entrypoint:
+
+```html
+<html>
+  <head>
+  <meta charset="utf-8">
+  <script src="components/webcomponentsjs/webcomponents-loader.js"></script>
+  <!-- import just the settings module, or polymer-element.html or polymer.html -->
+  <link rel="import" href="components/polymer/lib/util/settings.html">
+  <script>
+    Polymer.setPassiveTouchGestures(true);
+  </script>
+  <link rel="import" href="src/my-app.html">
+  ...
 ```
+
+Calling setter from the main application import:
+
+```html
+<link rel="import" href="components/polymer/polymer-element.html">
+
+<script>
+  Polymer.setPassiveTouchGestures(true);
+
+  class MyApp extends Polymer.Element {
+    ...
+</script>
+```
+
+Defining a Polymer object:
+
+```html
 <html>
   <head>
   <meta charset="utf-8">
