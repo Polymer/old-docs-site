@@ -49,16 +49,51 @@ lowercase event names.**
 You can use the standard `addEventListener` and `removeEventListener`
 methods to add and remove event listeners imperatively.
 
+### Listener on the custom element
+
+Listeners on a custom element can be set up in `ready()` using `this.addEventListener()`.
+The listener will be set up the first time the custom element is attached to the DOM.
+
 ```js
 ready() {
   super.ready();
-  this.addEventListener('click', e => this._myClickListener(e));
+  this.addEventListener('click', this._onClick);
+}
+
+_onClick(event) {
+  this._makeCoffee();
+}
+
+_makeCoffee () {}
+```
+
+**The `this` inside the event handler** By default, an event handler is called with the
+`this` value set to the event's _current target_. The current target is always equal to
+the element that the event listener is attached to, in this case, the custom element itself.
+{.alert .alert-info}
+
+### Listener on child elements
+
+The recommended way for setting up a listener on a child element of the custom element is to
+use an [annotated event listener](events#annotated-listeners) inside the template.
+
+If you need to imperatively set up the listener, it is important to bind the `this` value
+using `.bind()` or using an arrow function.
+
+```js
+ready() {
+  super.ready();
+  const childElement = ...
+  childElement.addEventListener('click', this._onClick.bind(this));
+  childElement.addEventListener('hover', event => this._onHover(event));
 }
 ```
 
-The previous example uses an arrow function to ensure the listener is called with the element as the
-`this` value. You can also use `bind` to create a bound instance of the listener function. This can
-be  useful if you need to remove the listener.
+### Listener on outside elements
+
+If you want to listen for events on something other than the custom element or its descendants
+(e.g. `window`), you need to use `connectedCallback()` and `disconnectedCallback()` to
+add and remove the event listener appropriately:
 
 ```js
 constructor() {
@@ -77,11 +112,12 @@ disconnectedCallback() {
 }
 ```
 
-An element adding an event listener to itself or one of its shadow DOM children shouldn't prevent
-the element from being garbage collected. However, an event listener attached to an outside element,
-like a window or document level event listener, may prevent the element from being garbage
-collected. Remove the event listener in `disconnectedCallback` to prevent memory leaks.
-
+**The danger of memory leaks** It is important to remove the event listener in `disconnectedCallback()`
+to prevent memory leaks. In the case where an element only adds an event listener to itself or to
+its shadow DOM children, the garbage collector is still able to collect the memory. However, an event
+listener attached to an outside element, like a window or document level event listener, may prevent the
+element from being garbage collected. 
+{.alert .alert-info}
 
 ## Fire custom events {#custom-events}
 
