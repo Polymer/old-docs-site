@@ -12,29 +12,6 @@ title: "Encapsulated Routing with Elements"
   }
 </style>
 
-<script>
-  // We need to run this before we add any iframes to the document.
-  window.addEventListener('message', function(ev) {
-    var message = null;
-    try{message = JSON.parse(ev.data);} catch(x) {}
-    if (!message || message.kind !== 'iframeHeight') {
-      return;
-    }
-    var iframes = document.querySelectorAll('iframe');
-    var iframe = null;
-    for (var i = 0; i < iframes.length; i++) {
-      if (iframes[i].contentWindow === ev.source) {
-        iframe = iframes[i];
-        break;
-      }
-    }
-    if (!iframe) {
-      return;
-    }
-    iframe.style.height = message.height + 'px';
-  });
-</script>
-
 
 ## Introduction
 
@@ -86,8 +63,8 @@ Let’s walk back a bit and consider the routing problem, one piece at a time, b
 
 `<app-route>` simply matches an input path against a specified pattern. Here's a simple demo of a standalone `<app-route>`. Instead of being hooked up to the page URL, it's hooked up to inputs, so you can change the path and pattern by hand.
 
-<iframe src="./routing/demo1" style="height: 775px;"></iframe>
-<a href="//www.polymer-project.org/1.0/blog/routing/demo1" target="_blank">Open demo in new window</a>
+<iframe src="/2.0/samples/routing/demo1" style="height: 840px;"></iframe>
+<a href="/2.0/samples/routing/demo1" target="_blank">Open demo in new window</a>
 
 `<app-route>` deals with hierarchical, slash separated paths. You give it a pattern, and it tells you when the input matches.
 
@@ -99,8 +76,8 @@ We're still iterating on the syntax of `pattern`. The most surprising thing to n
 
 `<app-route>` doesn't know about the URL, it just knows about paths. While you’ll have many `<app-route>` elements in your app, there’s only one URL bar. The URL is global. So we’ve got an element whose single responsibility is connecting the URL to your app. We call this element `<app-location>`, and it exposes a `route` property suitable for binding into a `<app-route>`, like so:
 
-<iframe src="./routing/demo2" style="height: 713px;"></iframe>
-<a href="//www.polymer-project.org/1.0/blog/routing/demo2" target="_blank">Open demo in new window</a>
+<iframe src="/2.0/samples/routing/demo2" style="height: 745px;"></iframe>
+<a href="/2.0/samples/routing/demo2" target="_blank">Open demo in new window</a>
 
 Notice however that if you open the demo in its own window and change the path,
 refreshing will give you a 404. That's because the server doesn't know what
@@ -122,8 +99,8 @@ Ok, so that’s how to get a `<app-route>` hooked up to the URL. However, the be
 
 `<app-route>` exposes a property named `tail` that can be passed in as the the `route` of another `<app-route>`. The `tail` represents the rest of the path that comes after the part that `pattern` matches. When the `tail` route changes, those changes propagate up, so the bidirectional data binding is still working its magic.
 
-<iframe src="./routing/demo3" style="height: 902px;"></iframe>
-<a href="//www.polymer-project.org/1.0/blog/routing/demo3" target="_blank">Open demo in new window</a>
+<iframe src="/2.0/samples/routing/demo3#/" style="height: 955px;"></iframe>
+<a href="/2.0/samples/routing/demo3#/" target="_blank">Open demo in new window</a>
 
 
 ### Why chain routes?
