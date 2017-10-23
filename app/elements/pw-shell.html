@@ -143,12 +143,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <app-location route="{{_route}}" path="{{path}}"></app-location>
+    <app-location route="{{_route}}" path="{{path}}" query-params="{{_searchParams}}"></app-location>
     <app-route route="[[_route]]" pattern="/:version/:section" data="{{_routeData}}"></app-route>
-    <app-route route="{{_route}}" pattern="/search/" query-params="{{_searchParams}}"></app-route>
 
     <iron-ajax url="[[path]]" handle-as="document" on-response="_handleResponse" on-error="_handleError" auto></iron-ajax>
-    <iron-ajax id="cseSearch" url="https://www.googleapis.com/customsearch/v1" on-response="_handleSearchResponse"></iron-ajax>
 
     <app-header class="header" reveals snaps shadow>
       <div class="header-toolbar layout horizontal center">
@@ -206,6 +204,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
+  Polymer.setPassiveTouchGestures(true);
+
   Polymer({
     is: 'pw-shell',
 
@@ -269,39 +269,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _onSearchInputChange: function() {
-      this.path = '/search/';
-      this._searchParams = {'q':this.$.searchBox.value, 'start':null} ;
+      var url = window.location.origin + '/search/?q=' + this.$.searchBox.value;
+      window.history.pushState({}, '', url);
+      this.fire('location-changed', {}, {node: window});
     },
 
     _doSearch: function() {
-      if (this._searchParams.q) {
-        this.$.cseSearch.params = {
-          q: this._searchParams.q,
-          key: 'AIzaSyCMGfdDaSfjqv5zYoS0mTJnOT3e9MURWkU',
-          cx: '012790892085874323134:dqsp1svowso'
-        };
-
-        // Paginated search.
-        if (this._searchParams.start && this._searchParams.start !== 0) {
-          this.$.cseSearch.params.start = this._searchParams.start;
-        }
-
-        // analytics
-        if (window.recordSearch) {
-          window.recordSearch(this._searchParams.q);
-        }
-
-        this.$.cseSearch.generateRequest();
+      var searchResults = this.querySelector('pw-search-results');
+      if (searchResults) {
+        searchResults.searchParams = this._searchParams;
       }
     },
 
-    _searchParamsChanged: function(newParams, oldParams) {
-      // Either the whole query may have changed (because we added or changed
-      // the +more: search parameter, or the start page has changed in the
-      // same query)
-      if (!!oldParams && (newParams !== oldParams || oldParams.start !== newParams.start)) {
-        this._doSearch();
-      }
+    _searchParamsChanged: function() {
+      this._doSearch();
     },
 
     _computeSection: function(path) {
@@ -369,7 +350,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       // If we have any query parameters, that means we are displaying the
       // search results page, and we should kick off a search, if we
       // haven't already
-      if (this.path === '/search/' && this._searchParams.q) {
+      if (this.path === '/search/') {
         this._doSearch();
       }
 
@@ -388,83 +369,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.toggleClass('selected', true, activeLink);
         this.styleLinkPath(activeLink, true);
       }
-    },
-
-    _handleSearchResponse: function(event) {
-      var i;  // the linter which may not be named has issues.
-      var response = event.detail.response;
-
-      // Hide the existing section being displayed.
-      var resultsElement = Polymer.dom(this).querySelector('.search-results');
-      resultsElement.querySelector('section > div:not([hidden])').hidden = true;
-
-      var section;  // The results section that we're going to show.
-      var searchParams = this._searchParams.q;
-
-      // Ugh, so. we use the (undocumented) +more:version
-      // search parameter, which means we need to uhhh remove the +more
-      // keyword by hand if it already exists.
-      var matches = searchParams.match(/(.*) more:(1\.0|2\.0|Blog)/);
-      var activeLabel;
-      if (matches && matches.length > 2) {
-        searchParams = matches[1];
-        activeLabel = matches[2];
-      }
-
-      // Restricted search buttons.
-      var queryPrefix = '?q=' + searchParams;
-      var labels = resultsElement.querySelectorAll('a.search-filter');
-      for (i = 0; i < labels.length; i++) {
-        if (labels[i].dataset.label === 'all') {
-          labels[i].href = queryPrefix;
-          this.toggleClass('active', !activeLabel,  labels[i]);
-        } else {
-          labels[i].href = queryPrefix + '+more:' + labels[i].dataset.label;
-          this.toggleClass('active', labels[i].dataset.label === activeLabel, labels[i]);
-        }
-      }
-
-      if (!response || !response.items) {
-        section = resultsElement.querySelector('.no-results');
-      } else if (response.items) {
-        section = resultsElement.querySelector('.yes-results');
-
-        // Clean up the version bit for easier using.
-        for (var item = 0; item < response.items.length; item++) {
-          response.items[item].label = response.items[item].labels[0].displayName;
-        }
-
-        // Populate the results in the dom-repeat.
-        section.querySelector('#searchResults').items = response.items;
-
-        // Previous and Next buttons.
-        queryPrefix += '&start=';
-
-        var button = section.querySelector('.next-results');
-        if (response.queries.nextPage) {
-          this.toggleClass('button-hidden', false, button);
-          button.href = queryPrefix + response.queries.nextPage[0].startIndex;
-        } else {
-          this.toggleClass('button-hidden', true, button);
-        }
-
-        button = section.querySelector('.previous-results');
-        if (response.queries.previousPage) {
-          this.toggleClass('button-hidden', false, button);
-          button.href = queryPrefix + response.queries.previousPage[0].startIndex;
-        } else {
-          this.toggleClass('button-hidden', true, button);
-        }
-      }
-
-      // There's a bunch of places where we displayed what you searched for.
-      var queryElements = section.querySelectorAll('.search-query');
-      for (i = 0; i < queryElements.length; i++) {
-        queryElements[i].textContent = searchParams;
-      }
-
-      // Flawless victory.
-      section.hidden = false;
     },
 
     styleLinkPath: function(link, opened) {

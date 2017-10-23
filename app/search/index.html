@@ -17,91 +17,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <pw-shell server-rendered>
     {% include 'templates/site-nav.html' %}
 
-    <!-- Because we want the styles to be loaded when the pw-shell changes its
-      content, they need to be here, and not in the <head> -->
-    <style>
-      .search-results {
-        min-height: 400px;
-      }
-
-      .search-query {
-        color: #1e87ea !important;
-      }
-
-      .search-query.small {
-        color: black;
-        font-weight: bold;
-      }
-
-      a.search-filter {
-        padding: 0 10px;
-        display: inline-block;
-        cursor: pointer;
-      }
-
-      a.search-filter.active {
-        color: #f50057;
-      }
-
-      .results-button-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-
-      .button-hidden {
-        pointer-events: none;
-        visibility: hidden;
-      }
-    </style>
-
-    <div class="search-results">
-      <section class="short">
-        <div class="no-search">
-          <h2>Search</h2>
-          <p>Use the search bar above to search the site.</p>
-        </div>
-
-        <div class="yes-results" hidden>
-          <h2>Search results for <span class="search-query"></span></h2>
-          <div>
-            Filter by:
-            <a class="search-filter" data-label="1.0">1.0</a>|
-            <a class="search-filter" data-label="2.0">2.0</a>|
-            <a class="search-filter" data-label="Blog">Blog</a>|
-            <a class="search-filter" data-label="all">All</a>
-          </div>
-          <br><br>
-
-          <pw-search-results id="searchResults"></pw-search-results>
-
-          <div class="results-button-container">
-            <a href="" class="previous-results blue-button">Previous page</a>
-            <a href="" class="next-results blue-button">Next page</a>
-          </div>
-        </div>
-
-        <div class="no-results" hidden>
-          <h2>Search results for <span class="search-query"></span></h2>
-          <div>
-            Filter by:
-            <a class="search-filter" data-label="1.0">1.0</a>|
-            <a class="search-filter" data-label="2.0">2.0</a>|
-            <a class="search-filter" data-label="Blog">Blog</a>|
-            <a class="search-filter" data-label="all">All</a>
-          </div>
-          <br>
-          <p>Your search — <span class="search-query small"></span> — did not match any documents.</p>
-          <p>Suggestions:</p>
-          <ul>
-            <li>Make sure all words are spelled correctly.</li>
-            <li>Try different keywords.</li>
-            <li>Try more general keywords.</li>
-          </ul>
-        </div>
-      </section>
-    </div>
-
+    <section class="short">
+      <pw-search-results></pw-search-results>
+    </section>
   </pw-shell>
   <pw-footer></pw-footer>
   <script src="/js/app.js"></script>

@@ -33,19 +33,15 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   line-height: 24px;
   font-weight: 300;
-
-  /* Set up so the footer always sticks to the bottom of the screen, regardless
-   * of the content size */
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-
-  transition: opacity ease-in 0.2s;
 }
 
 pw-shell {
   display: block;
   margin-top: 64px;
+
+  /* Set up so the footer is always at the bottom of the screen, regardless
+   * of the content size */
+  min-height: 100vh;
 }
 
 /* For nonversioned pages, the server needs to send both v1 and v2 links for
