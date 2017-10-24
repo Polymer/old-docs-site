@@ -11,6 +11,65 @@ title: Release notes
   }
 </style>
 
+
+## [Release 1.11.0](https://github.com/polymer/polymer/tree/v1.11.0) (2017-09-19) {#v-1-11-0}
+
+This release includes the following new features:
+
+-   `:dir()` CSS selector is now supported.
+
+    The `:dir()` selector allows for writing text-orientation specific styling. [More information on MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/:dir).
+
+    Use of `:dir()` requires the application to set the `dir` attribute on `<html>`. All 
+    elements will use the same direction (that is, setting the `dir` attribute on the element
+    itself or on one of the element's ancestors has no effect).
+
+-   custom styles with complex selectors (`html *`, `html:not([foo]) .bar`) are now supported 
+    correctly. 
+
+## [Release 1.10.1](https://github.com/polymer/polymer/tree/v1.10.1) (2017-09-19) {#v-1-10-1}
+
+This release includes the following features and fixes:
+
+-   Work around [Chrome deprecation](https://crbug.com/523952) of styling main document from HTML  
+    Imports (backport from 2.1.1).
+
+-   Work around a [slightly broken CSS Custom Properties implementation](https://github.com/webcomponents/shadycss/issues/111) 
+    in Edge 15  (backport from webcomponents/shadycss).
+
+## [Release 1.10.0](https://github.com/polymer/polymer/tree/v1.10.0) (2017-09-19) {#v-1-10-0}
+
+
+This release adds support for a new `passiveTouchGestures` setting. This can be set by defining a 
+`Polymer` object before loading `polymer.html`, as described in [Global settings](devguide/settings).
+
+```html
+<script>
+window.Polymer = {passiveTouchGestures: true}
+</script>
+```
+
+Using passive listeners may improve scrolling performance, at the cost of being unable to control scrolling by calling `preventDefault` on a gesture event.
+
+Instead, elements must use `Polymer.Gestures.setTouchAction(node, 'direction')`.
+
+This setting is false by default and meant as an opt-in.
+ 
+## [Release 1.9.3](https://github.com/polymer/polymer/tree/v1.9.3) (2017-07-20) {#v-1-9-3}
+
+This release adds support for Polymer 2 hybrid styles with `:host, html` selector.
+This is the best replacement for `:root` selector in style modules.
+
+
+## [Release 1.9.2](https://github.com/polymer/polymer/tree/v1.9.2) (2017-06-15) {#v-1-9-2}
+
+This release fixes the following issue:
+
+-   [#4550](https://github.com/Polymer/polymer/issues/4550). For elements using `disable-upgrade`, 
+    the `detached` callback should now only be called after the element has upgraded.
+
+
+
 ## [Release 1.9.1](https://github.com/polymer/polymer/tree/v1.9.1) (2017-04-17) {#v-1-9-1}
 
 This release fixes two issues related to 2.0 hybrid element support.

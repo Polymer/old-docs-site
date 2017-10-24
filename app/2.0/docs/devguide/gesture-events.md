@@ -188,12 +188,53 @@ to be garbage collected.
 
 ```
 
-## Gestures and scroll direction
+## Native browser gesture handling {#gestures-and-scroll-direction}
 
-Listening for certain gestures controls the scrolling direction for touch input.
-For example, nodes with a listener for the `track` event will prevent scrolling
-by default. Elements can override scroll direction with
-`this.setScrollDirection(direction, node)`, where `direction` is one of `'x'`,
-`'y'`, `'none'`, or `'all'`, and `node` defaults to `this`.
+Browsers implement native handling for certain gestures, such as touch-based scrolling, or letting the user zoom content with a pinch gesture.
+
+Listening for gesture events disables native browser gesture handling by default. For example, nodes with a listener for the `track` event prevent the browser from handling scrolling and pinch-zoom gestures. 
+
+If you want use Polymer gesture events _and_ native gesture handling, you can use the `Polymer.Gestures.setTouchAction` function to specify which events the browser should handle natively. For example, if you want the browser to handle vertical scrolling, but have your element handle left-right swiping actions, you could do something like this:
+
+```js
+constructor() {
+  super();
+  Polymer.Gestures.addListener(this, 'track', this.handleTrack);
+  // Let browser handle vertical scrolling and zoom
+  Polymer.Gestures.setTouchAction(this, 'pan-y pinch-zoom');
+}
+```
+
+The first argument to `setTouchAction` is the node that the listener is attached to. The second argument is a valid value for the `touch-action` CSS property.
+
+For a complete list of `touch-action` keywords, see [`touch-action` on MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action).
+
+You can call `setTouchAction` any time **after adding the event listener**. The change won't affect any gestures that 
+are currently in progress when `setTouchAction` is called. 
+
+When native gesture handling is enabled, Polymer gesture events may be fired, depending on 
+the behavior of the browser. When gesture events are fired, the listeners are called before the native browser handling. You can prevent the native browser handling by calling `preventDefault` on the event.
+
+```js
+handleTrack(e) {
+  // do something
+  ...
+  // suppress native scrolling
+  e.preventDefault();
+}
+```
+
+To ensure that gesture event listeners **don't** interfere with scroll performance, you can force all gesture event listeners to be _passive_, as described in the next section.
+
+### Use passive gesture listeners
+
+Applications can call `Polymer.setPassiveTouchGestures(true)` to force all event listeners for gestures to be _passive_. Passive event listeners can't call `preventDefault` to prevent the default browser handling, so the browser can handle the native gesture without waiting for the  event listener to return.
+
+You must call `setPassiveTouchGestures` before adding any gesture event listeners—for example,
+by setting it in the application entrypoint, or in the `constructor` of your main application element (assuming that's always the first element to load).
+
+Using passive touch gestures may improve scrolling performance, but will cause problems if any of the elements in your application depend on being able to call `preventDefault` on a gesture.
+
+
 
 

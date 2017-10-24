@@ -1,4 +1,9 @@
 ---
+- title:  "Shadow DOM v0 and HTML imports are changing"
+  path: /blog/2017-10-18-upcoming-changes
+  published: 2017-10-18
+  author: arthurevans
+  description: "Upcoming changes to Chrome could break some Polymer 1.x and 2.x websites. Make sure your sites are up to date."
 - title: "Preview de Polymer 3.0: npm y Módulos de ES6"
   path: /blog/2017-09-28-polymer-3-spanish
   published: 2017-09-28

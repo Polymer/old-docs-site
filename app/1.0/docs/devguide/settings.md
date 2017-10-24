@@ -127,6 +127,19 @@ bindings. For example:</p>
   </tr>
   <tr>
     <td>
+      <code>passiveTouchGestures</code>
+    </td>
+    <td>
+      <p>
+        When <code>true</code>, Polymer gestures event listeners are all added as passive listeners,
+        and can't call <code>preventDefault</code> to prevent the native browser handling. May 
+        improve scroll performance. Defaults to <code>false</code>.
+      <p>
+        See <a href="gesture-events">Gesture events</a> for more information.
+    </td>
+  </tr>
+  <tr>
+    <td>
       <code>suppressBindingNotifications</code>
     </td>
     <td>

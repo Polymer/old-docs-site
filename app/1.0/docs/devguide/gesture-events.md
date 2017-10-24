@@ -7,14 +7,16 @@ interactions automatically when a declarative listener is added for the event
 type.  These events fire consistently on both touch and mouse environments,
 so we recommend using these events instead of their mouse- or
 touch-specific event counterparts. This provides better interoperability with both touch and
-mouse devices.  For example, `tap` should be used instead of
-`click` for the most reliable cross-platform results.
+mouse devices.
 
 Listening for certain gestures controls the scrolling direction for touch input.
 For example, nodes with a listener for the `track` event will prevent scrolling
 by default. Elements can override scroll direction with
 `this.setScrollDirection(direction, node)`, where `direction` is one of `'x'`,
 `'y'`, `'none'`, or `'all'`, and `node` defaults to `this`.
+
+You can force all gesture event listeners to be _passive_ by setting the 
+global `passiveTouchGestures` flag, as described in [Global settings](settings).
 
 The following are the gesture event types supported, with a short description
 and list of detail properties available on `event.detail` for each type:
