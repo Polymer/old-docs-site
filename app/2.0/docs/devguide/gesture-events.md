@@ -194,7 +194,7 @@ Browsers implement native handling for certain gestures, such as touch-based scr
 
 Listening for gesture events disables native browser gesture handling by default. For example, nodes with a listener for the `track` event prevent the browser from handling scrolling and pinch-zoom gestures. 
 
-If you want get Polymer gesture events _and_ native gesture handling, you can use the `Polymer.Gestures.setTouchAction` function to specify which events the browser should handle natively. For example, if you want the browser to handle vertical scrolling, but have your element handle left-right swiping actions, you could do something like this:
+If you want use Polymer gesture events _and_ native gesture handling, you can use the `Polymer.Gestures.setTouchAction` function to specify which events the browser should handle natively. For example, if you want the browser to handle vertical scrolling, but have your element handle left-right swiping actions, you could do something like this:
 
 ```js
 constructor() {
@@ -209,7 +209,8 @@ The first argument to `setTouchAction` is the node that the listener is attached
 
 For a complete list of `touch-action` keywords, see [`touch-action` on MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action).
 
-You must call `setTouchAction` *immediately after adding the event listener.*
+You can call `setTouchAction` any time **after adding the event listener**. The change won't affect any gestures that 
+are currently in progress when `setTouchAction` is called. 
 
 When native gesture handling is enabled, Polymer gesture events may be fired, depending on 
 the behavior of the browser. When gesture events are fired, the listeners are called before the native browser handling. You can prevent the native browser handling by calling `preventDefault` on the event.

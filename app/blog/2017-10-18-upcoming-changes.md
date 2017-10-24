@@ -1,22 +1,20 @@
 ---
-title:  "Changes to shadow DOM v0 and HTML imports"
+title:  "Shadow DOM v0 and HTML imports are changing"
 ---
 
 
 In the near future, Chrome is rolling out two changes that may affect existing Polymer 1.x and 2.x websites:
 
 
-*   Shadow-piercing selectors (`/deep/` and `::shadow`). Chrome 63 will disable the shadow-piercing selectors in style sheets. This change only affects sites using Polymer 1.x that are using native shadow DOM.
+*   Shadow-piercing selectors  will be disabled. Chrome 63 will disable the shadow-piercing selectors (/deep/ and ::shadow) in style sheets. This change only affects sites using Polymer 1.x that are using native shadow DOM.
 
-*   HTML imports styling the main document. Chrome 65 will make a change to the behavior of HTML imports. Currently, styles from an HTML import are automatically applied to the main document. This behavior is going away in Chrome 65. This change affects sites using either Polymer 1.x or Polymer 2.x. 
+*   HTML imports will no longer automatically style the main document. Chrome 65 will make a change to the behavior of HTML imports. Currently, styles from an HTML import are automatically applied to the main document. This behavior is going away in Chrome 65. This change affects sites using either Polymer 1.x or Polymer 2.x. 
 
 The following sections describe these changes in more detail.
 
 ## Shadow-piercing selectors
 
 From Chrome 63 on, the `/deep/` combinator and `::shadow` pseudo class selector won't pierce shadow roots when used in style sheets:
-
-
 
 *   The `/deep/` combinator acts like the descendant combinator (in other words `html /deep/ div` is treated the same as `html div`). This prevents some global style sheets from breaking entirely.
 *   The `::shadow` pseudo class selector doesn't match any elements.
@@ -42,7 +40,7 @@ There are two possible ways to fix this issue:
 
 The best fix is to eliminate any remaining use of `/deep/` and `::shadow` in your sites. The `::shadow` pseudo class has been fairly lightly used, but `/deep/` was used in the past for theming.
 
-For example, there was a previous version of the iron-flex-layout import that used `/deep/`. Search for the following string:
+For example, there was a previous version of the `iron-flex-layout` import that used `/deep/`. Search for the following string:
 
 
 ```
@@ -95,7 +93,7 @@ If you're not sure whether you're using native shadow DOM, check for a settings 
 ```
 
 
-The settings script is usually in your entrypoint, since it needs to run before you load Polymer or any polymer element definitions.
+The settings script is usually in your entrypoint, since it needs to run before you load Polymer or any Polymer element definitions.
 
 If you have a script block like this, you can comment out the `dom: 'shadow'` line, or remove the script entirely (if that's the only setting you currently use). 
 
@@ -130,7 +128,7 @@ If you are using any HTML imports like this, you'll see a deprecation warning in
 
 The good news is we already have a fix for this in the latest versions of Polymer 1.x and 2.x. The bad news is that we can't make the warning go away. (We're looking into a workaround to suppress this warning, which could be shipped in a subsequent version of Polymer.)
 
-With the fix, the custom-style element moves its styles into the main document. Unfortunately, the custom style element can't do that until after the browser has parsed the HTML import and printed the warning. So you'll continue to see the warning after upgrading.
+With the fix, the `custom-style` element moves its styles into the main document. Unfortunately, the custom style element can't do that until after the browser has parsed the HTML import and printed the warning. So you'll continue to see the warning after upgrading.
 
 What you should do in the next month or two:
 
@@ -138,7 +136,7 @@ What you should do in the next month or two:
 
 *   Ensure that you're running the latest 1.x or 2.x release (1.10.1 or newer for 1.x; 2.1.1 or newer for 2.x).
 
-*   If you have any HTML imports that contain ordinary style tags—not wrapped in a `custom-style` element or inside a template—use a custom-style element instead, to ensure the styles are moved into the main document.
+*   If you have any HTML imports that contain ordinary style tags—not wrapped in a `custom-style` element or inside a template—use a `custom-style` element instead, to ensure the styles are moved into the main document.
 
     You can also add code to move these styles yourself. The deprecation message includes a link to a github repo with more information and code samples: [TakayoshiKochi/deprecate-style-in-html-imports](https://github.com/TakayoshiKochi/deprecate-style-in-html-imports).
 

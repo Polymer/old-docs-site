@@ -22,7 +22,7 @@ This release includes the following new features:
 
     Use of `:dir()` requires the application to set the `dir` attribute on `<html>`. All 
     elements will use the same direction (that is, setting the `dir` attribute on the element
-    itself or on one of the element's ancestors has no effect.)
+    itself or on one of the element's ancestors has no effect).
 
 -   custom styles with complex selectors (`html *`, `html:not([foo]) .bar`) are now supported 
     correctly. 
