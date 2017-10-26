@@ -21,6 +21,8 @@ readonly APPDIR=$(dirname $BASH_SOURCE)
 echo "\nBuilding app version: $deployVersion\n"
 gulp
 
+node ./scripts/override_localization_docs.js
+
 echo "Deploying app version: $deployVersion"
 gcloud app deploy $APPDIR/../dist/app.yaml \
-    --project polymer-project --version $deployVersion --no-promote
+    --project polymer-japan --version $deployVersion --no-promote
