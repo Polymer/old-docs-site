@@ -1,8 +1,8 @@
 const gulp = require('gulp');
 
-const local = 'ja'
+const locale = require('../package.json').locale
 
 gulp.src([
-  `dist/_locales/${local}/**/*.html`
-], {base: `dist/_locales/${local}`})
+  `dist/_locales/${locale}/**/*.html`
+], {base: `dist/_locales/${locale}`})
 .pipe(gulp.dest('dist'));

@@ -1,6 +1,7 @@
 {
   "name": "PolymerDocs",
   "version": "1.0.0",
+  "locale": "ja",
   "private": true,
   "description": "Polymer documentation site",
   "engines": {
