@@ -1,3 +1,26 @@
+## 日本語ドキュメント
+
+このリポジトリは [Polymer/docs](https://github.com/Polymer/docs) を Fork しています。
+
+### 翻訳ファイルの作成
+
+`app` ディレクトリと同じファイルパスで`app/_locales/ja` の中に Markdown を作成することで翻訳ができます。
+
+e.g.
+
+| 対象 | ファイルパス |
+|------------|---------------------------------|
+| オリジナル | app/2.0/docs/es6.md |
+| 日本語 | app/_locales/ja/2.0/docs/es6.md |
+
+### 翻訳支援( 未対応 )
+
+[GitLocalize](https://gitlocalize.com) による翻訳に対応する予定ですが、現在は[問題があり](https://github.com/Polymer-Japan/docs/issues/3)利用できません。
+
+問題が解決されたら GitLocalize で翻訳をすることができます。
+
+---
+
 ## Polymer documentation site
 
 https://www.polymer-project.org/
