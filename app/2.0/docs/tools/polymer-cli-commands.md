@@ -267,9 +267,15 @@ Never compile ES6 to ES5:
 
     polymer serve --compile never
 
-Automatically compile to ES5 for browsers that don't fully support ES6:
+(**Default**) Automatically compile to ES5 for browsers that don't fully support ES6:
 
     polymer serve --compile auto
+    
+Automatic compilation can cause problems when running in device emulation mode on Chrome.
+If the browser sends another browser's `user-agent` string, the server may switch between 
+compiled and uncompiled responses, leaving the browser with an inconsistent set of resources
+in its cache. This issue may also occur in other browsers with device emulation capabilities. 
+Use `--compile always` or `--compile never` to avoid this problem.
     
 Run `polymer help serve` for the full list of available options.
 
