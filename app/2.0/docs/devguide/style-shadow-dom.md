@@ -515,14 +515,55 @@ class myElement extends Polymer.Element(){
 }
 ```
 
-### Style directional text using the :dir() selector
+### Style directional text with the :dir() selector
 
 The `:dir()` CSS selector allows for styling text specific to its orientation 
-(right-to-left or left-to-right). See the [documentation on MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/:dir) for more information on the :dir() 
+(right-to-left or left-to-right). See the [documentation on MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/:dir) for more information on the `:dir()`
 selector.
 
+The `Polymer.DirMixin` provides limited support for the `:dir()` selector. Use of `:dir()` requires the
+application to set the `dir` attribute on `<html>`. All elements will use the same direction.
+
+Individual elements can opt-out of the global direction by setting the `dir` attribute
+in HTML or at `ready()`, but the text direction of these elements must from then on be handled 
+manually.
+
+```
+<!-- the following element won't change to follow the dir setting on the document -->
+<my-element dir="rtl"></my-element>
+```
+
+Setting `dir` on an ancestor (other than `html`) has no effect.
+
 For elements that extend `Polymer.Element`, add the `Polymer.DirMixin` mixin to use
-`:dir()` styling.
+`:dir()` styling. Elements that use the legacy `Polymer({})` call automatically include the 
+`Polymer.DirMixin` mixin.
+
+Here's an example use of the `:dir()` selector: 
+
+`using-dir-selector.html` { .caption}
+```html
+<link rel="import"  href="../polymer/polymer-element.html">
+<link rel="import"  href="../polymer/lib/mixins/dir-mixin.html">
+...
+<template>
+  <style>
+    :host {
+      display: block;
+      color: blue;
+    }
+    :host(:dir(rtl)) {
+      color: green;
+    }
+  </style>
+  ...
+</template>
+...
+class UsingDirSelector extends Polymer.DirMixin(Polymer.Element) {
+  static get is() { return 'using-dir-selector' }
+  ...
+}
+```
 
 `index.html` { .caption}
 ```html
@@ -538,40 +579,7 @@ For elements that extend `Polymer.Element`, add the `Polymer.DirMixin` mixin to 
 </html>
 ```
 
-`using-dir-selector.html` { .caption}
-```html
-<link rel="import"  href="../polymer/polymer-element.html">
-<link rel="import"  href="../polymer/lib/mixins/dir-mixin.html">
-...
-<template>
-  <style>
-    :host {
-      display: block;
-      color: blue;
-    }
-    :dir() {
-      color: green;
-    }
-  </style>
-  ...
-</template>
-...
-class MyElement extends Polymer.DirMixin(Polymer.Element) {
-  static get is() { return 'my-element' }
-  ...
-}
-```
-
-[See an example use of the `:dir()` selector on Plunker](http://plnkr.co/edit/8TSf5YnlYiqN7CBvJDTu?p=preview).
-
-Elements that use the legacy `Polymer({})` call automatically include the `Polymer.DirMixin` mixin.
-
-Use of `:dir()` requires the application to set the dir attribute on `<html>`. All elements 
-will use the same direction.
-
-Individual elements can opt-out of the global direction by setting the `dir` attribute
-in HTML or at `ready()`, but these elements must from then on be handled manually.
-Setting `dir` on an ancestor (other than `html`) has no effect.
+[See an example use of the `:dir()` selector on Plunker](http://plnkr.co/edit/eXrI8fRQWTZ05JcUYU7H?p=preview).
 
 ## Share styles between elements
 
