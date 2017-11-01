@@ -52,7 +52,7 @@ Polymer CLIを使用してApp Toolboxプロジェクトを生成すると、新�
 
 アプリケーションは、フラグメントが必要とされるまで読み込まれるのを遅延するために、`importHref`を呼び出す必要があります。例えば、ユーザーが新しいルートに変更すると、そのルートに関連付けられたフラグメントがインポートされます。これにより、サーバーへの新たなリクエストが送られるか、あるいは、キャッシュからリソースがロードされるだけかもしれません。
 
-importHrefの例(クラススタイル要素) {.caption}
+importHrefの例(クラススタイルエレメント) {.caption}
 
 ```js
 // get a URL relative to this element
@@ -66,7 +66,7 @@ Polymer.importHref(
     true); /* make import async */
 ```
 
-importHrefの例(ハイブリッド要素) {.caption}
+importHrefの例(ハイブリッドエレメント) {.caption}
 
 ```js
 var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
@@ -80,9 +80,10 @@ this.importHref(resolvedPageUrl,
 
 ## ビルドの出力
 
-By default, the Polymer CLI build process produces an unbundled build designed for server/browser combinations that support HTTP/2 and HTTP/2 server push to deliver the resources the browser needs for a fast first paint while optimizing caching.
+デフォルトでは、Polymer CLIのビルドプロセスは、HTTP/2およびHTTP/2のサーバープッシュをサポートするサーバー/ブラウザーの組み合わせ向けに設計されたunbundledビルドを生成し、キャッシングを最適化しながら初回の高速な描画に必要なリソースを提供します。
 
-To generate a bundled build, designed to minimize the number of round-trips required to get the application running on server/browser combinations that don't support server push, you will need to pass a command line option or configure your [polymer.json file](polymer-json) appropriately.
+サーバープッシュをサポートしていないサーバー/ブラウザーの組み合わせでアプリケーションの実行必要な通信の往復回数を最小限に抑えるように設計されたbundledビルドを生成するには、コマンドラインのオプションを渡すか、[polymer.json file](polymer-json)を適切に設定します。
+
 
 複数のビルドを生成した場合、サーバーロジックでブラウザごとに適切なビルドを供給する必要があります。
 

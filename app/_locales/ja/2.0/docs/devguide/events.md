@@ -4,13 +4,13 @@ title: Handle and fire events
 
 <!-- toc -->
 
-要素はイベントを使用して状態の変化をDOMツリーを通じて親要素に伝達します。Polymer要素は、標準のDOM  APIを使ってイベントの生成、ディスパッチ、監視(listen)を行うことができます。
+エレメントはイベントを使用して状態の変化をDOMツリーを通じて親エレメントに伝達します。Polymer Elementは、標準のDOM  APIを使ってイベントの生成、ディスパッチ、リッスンを行うことができます。
 
-Polymerには*アノテーション付イベントリスナー*も用意されています。このリスナーを使用すると、要素のDOMテンプレートの一部としてイベントリスナーを宣言的に記述できます。
+Polymerには*アノテーション付イベントリスナー*も用意されています。このリスナーを使用すると、エレメントのDOMテンプレートの一部としてイベントリスナーを宣言的に記述できます。
 
 ## アノテーション付イベントリスナーを追加 {#annotated-listeners}
 
-ローカルDOMの子にイベントリスナーを追加するには、テンプレート内で<code>on-<var>event</var></code> アノテーションを使用します。これにより、イベントリスナーをバインドするためだけに要素に`id`を付与するといった処理が不要になります。
+ローカルDOMの子にイベントリスナーを追加するには、テンプレート内で<code>on-<var>event</var></code> アノテーションを使用します。これにより、イベントリスナーをバインドするためだけにエレメントに`id`を付与するといった処理が不要になります。
 
 例： { .caption }
 
@@ -39,16 +39,54 @@ Polymerには*アノテーション付イベントリスナー*も用意され�
 
 標準の`addEventListener`及び`removeEventListener`メソッドを使用して、イベントリスナーを命令的に追加または削除することができます。
 
-```js
+### Custom Elementにおけるリスナー
+
+Custom Elementにおけるリスナーは、`ready()`において`this.addEventListener()`を使って設定します。リスナーは、Custom ElementがDOMに最初にアタッチされるときに設定されます。
+
+
+```
 ready() {
   super.ready();
-  this.addEventListener('click', e => this._myClickListener(e));
+  this.addEventListener('click', this._onClick);
+}
+
+_onClick(event) {
+  this._makeCoffee();
+}
+
+_makeCoffee () {}
+```
+
+
+**イベントハンドラ内の`this`について** デフォルトでは、イベントハンドラーが呼び出されると、`this`値が現在のイベントターゲットに設定されます。現在のターゲットは、常にイベントリスナーがアタッチされているエレメント（この場合はCustom Element自体）と同じになります。
+{.alert .alert-info}
+
+
+
+
+### 子エレメントにおけるリスナー
+
+Custom Elementの子エレメントにリスナーを設定する際は、テンプレート内で[アノテーション付きのイベントリスナー]()を使う方法が推奨されます。
+
+命令的にリスナーを設定する必要がある場合に重要なことは、 `.bind（）`を使用して`this`値をバインドするか、アロー関数を使用することです。
+
+
+```
+ready() {
+  super.ready();
+  const childElement = ...
+  childElement.addEventListener('click', this._onClick.bind(this));
+  childElement.addEventListener('hover', event => this._onHover(event));
 }
 ```
 
-上の例では、(ES6から導入された)アロー関数を使用して、カスタム要素を`this`の値としてリスナーが呼び出されるようにしています。また`bind`を使って、リスナー関数がバインドされたインスタンスを作成することもできます。この方法は、リスナーを削除する必要がある場合に役立ちます。
+### エレメント外部におけるリスナー
 
-```js
+Custom Elementの外部やその子孫以外（例えば、`window`）のイベントをリッスンする場合、イベントリスナーを追加したり削除したりするには、`connectedCallback()`と `disconnectedCallback()`をうまく利用する必要があります。：
+
+上の例では、(ES6から導入された)アロー関数を使用して、Custom Elementを`this`の値としてリスナーが呼び出されるようにしています。また`bind`を使って、リスナー関数がバインドされたインスタンスを作成することもできます。この方法は、リスナーを削除する必要がある場合に役立ちます。
+
+```
 constructor() {
   super();
   this._boundListener = this._myLocationListener.bind(this);
@@ -65,12 +103,14 @@ disconnectedCallback() {
 }
 ```
 
-自身またはShadow DOMの子のどこかにイベントリスナーを追加した要素は、その要素がガベージコレクトされるのを禁止すべきではありません。しかしながら、ウィンドウまたはドキュメントレベルのような外部の要素に追加されたイベントリスナーによって、要素がガベージコレクションされないことがあります。メモリリークを防止するため`disconnectedCallback`コールバック内でイベントリスナーを削除するようにしてください。s.
+
+**メモリリークの危険** 自身またはShadow DOMの子のどこかにイベントリスナーを追加したエレメントは、そのエレメントがガベージコレクトされるのを禁止すべきではありません。しかしながら、ウィンドウまたはドキュメントレベルのような外部のエレメントに追加されたイベントリスナーによって、エレメントがガベージコレクションされないことがあります。メモリリークを防止するため`disconnectedCallback`コールバック内でイベントリスナーを削除するようにしてください。
+{.alert .alert-info}
 
 
 ## カスタムイベントの発火 {#custom-events}
 
-ホスト要素からカスタムイベント(独自に作成したイベント)を発火するには、標準の`CustomEvent`コンストラクタと`dispatchEvent`メソッドを使用します。
+ホストエレメントからカスタムイベント(独自に作成したイベント)を発火するには、標準の`CustomEvent`コンストラクタと`dispatchEvent`メソッドを使用します。
 
 例：{ .caption }
 
@@ -101,8 +141,10 @@ disconnectedCallback() {
     })
 </script>
 ```
-The `CustomEvent` constructor is not supported on IE, but the webcomponents polyfills include a
-small polyfill for it so you can use the same syntax everywhere.
+
+
+`CustomEvent`コンストラクタはIEではサポートされていませんが、webcomponents polyfillには
+これをサポートするための小さなポリフィルが含まれており、どこでも同じ構文を使って記述することができます。
 
 デフォルトでは、カスタムイベントはShadow DOMの境界で停止します。カスタムイベントがShadow DOMの境界を越えて伝播するようにするには、イベントを作成する際に`composed`フラグをtrueに設定します。：
 
@@ -110,14 +152,13 @@ small polyfill for it so you can use the same syntax everywhere.
 var event = new CustomEvent('my-event', {bubbles: true, composed: true});
 ```
 
-**Backwards compatibility.** The `fire` instance method in the legacy API sets both `bubbles` and `composed` to true by default.
-To get the same behavior, you need to specify both options when you create a custom event, as shown
-above.
+**後方互換性** レガシーAPIの`fire`インスタンスメソッドでは、デフォルトで`bubbles`と`compos`の両方をtrueが設定されました。最新のAPIで同じように動作させるためには、カスタムイベントを作成する際、上記のようにに両方のオプションを指定する必要があります。
 {.alert .alert-info}
+
 
 ## リターゲティングされたイベントの処理 {#retargeting}
 
-Shadow DOMには、イベントがバブルアップする際に、ターゲットを変更する「イベントリターゲッティング(event retargetting)」という機能があり、そのターゲットは常にイベントを受け取る要素と同じスコープになります。（例えば、メインドキュメントのリスナーの場合、ターゲットはShadow Tree内ではなくメインドキュメント内の要素になります。）
+Shadow DOMには、イベントがバブルアップする際に、ターゲットを変更する「イベントリターゲッティング(event retargetting)」という機能があり、そのターゲットは常にイベントを受け取るエレメントと同じスコープになります。（例えば、メインドキュメントのリスナーの場合、ターゲットはShadow Tree内ではなくメインドキュメント内のエレメントになります。）
 
 イベントの`composedPath()`メソッドは、イベントが通過するノードを配列で返します。そのため`event.composedPath()[0]`は、イベントの原初のターゲットを表します（ただし、ターゲットが閉じられたShadow Root内に隠れていない場合に限ります）。
 
@@ -167,12 +208,12 @@ Shadow DOMには、イベントがバブルアップする際に、ターゲッ�
 </script>
 ```
 
-この例では、原初のイベントが`<event-retargeting>`要素のローカルDOMツリー内の`<button>`でトリガーされています。リスナーは、メインドキュメント上の`<event-retargeting>`要素に対して設定されています。イベントはリターゲティングされるので、要素の実装を隠してしまえばクリックイベントは`<button>`要素からというよりむしろ`<event-retargeting>`要素から生じているようにみえます。
+この例では、原初のイベントが`<event-retargeting>`エレメントのローカルDOMツリー内の`<button>`でトリガーされています。リスナーは、メインドキュメント上の`<event-retargeting>`エレメントに対して設定されています。イベントはリターゲティングされるので、エレメントの実装を隠してしまえばクリックイベントは`<button>`エレメントからというよりむしろ`<event-retargeting>`エレメントから生じているようにみえます。
 
 Shadow Rootは`document-fragment`としてコンソールに表示されるかもしれません。Shady DOMでは、`DocumentFragment`のインスタンスになるためです。ネイティブのShadow DOMでは、`ShadowRoot`(`DocumentFragment`を拡張するDOMインターフェース)のインスタンスとして表示されます。
 
-For more information, see [Event retargeting](shadow-dom#event-retargeting) in Shadow DOM concepts.
+詳細は、Shadow DOMのコンセプトの[Event retargeting](shadow-dom#event-retargeting)を参照して下さい.
 
 ## プロパティ変更イベント {#property-changes}
 
-特定のプロパティ値が変更された際に、ノンバブリングなDOMイベントを発生する要素を構築することもできます。詳細については、[変更通知イベント](data-system#change-events)を参照してください。
+特定のプロパティ値が変更された際に、ノンバブリングなDOMイベントを発生するエレメントを構築することもできます。詳細については、[変更通知イベント](data-system#change-events)を参照してください。

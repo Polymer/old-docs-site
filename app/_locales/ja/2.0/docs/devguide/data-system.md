@@ -16,7 +16,7 @@ table.config-summary td {
 }
 </style>
 
-Polymerでは、要素のプロパティの変更を監視(observe)し、データ変更に基づき様々なアクションを実行することができます。これらのアクションや、*プロパティエフェクト*(property effects)には、次のものがあります。
+Polymerでは、エレメントのプロパティの変更を監視(observe)し、データ変更に基づき様々なアクションを実行することができます。これらのアクションや、*プロパティエフェクト*(property effects)には、次のものがあります。
 
 *   オブザーバー(observers)：データの変更時に呼び出されるコールバック
 
@@ -24,9 +24,9 @@ Polymerでは、要素のプロパティの変更を監視(observe)し、デー�
 
 *   データバインディング(data binding)：データが変更されたとき、DOMノードのプロパティまたは属性、テキストコンテンツをアップデートするアノテーション。
 
-各Polymer要素は、独自のデータモデルとローカルDOM要素を管理します。要素のモデルとは、要素のプロパティです。データバインディングは、要素のモデルをローカルDOM内の要素とリンクします。
+各Polymer Elementは、独自のデータモデルとローカルDOMエレメントを管理します。エレメントのモデルとは、エレメントのプロパティです。データバインディングは、エレメントのモデルをローカルDOM内のエレメントとリンクします。
 
-非常にシンプルな要素について考えてみましょう。：
+非常にシンプルなエレメントについて考えてみましょう。：
 
 ```html
 <dom-module id="name-card">
@@ -51,11 +51,11 @@ a JavaScript object. An arrow labeled 2 connects the element to a box labeled lo
 which contains a single element, div. An arrow labeled 3 connects the JavaScript object to the
 div element.](/images/1.0/data-system/data-binding-overview-new.png)
 
-1. `<name-card>`要素は、JavaScriptオブジェクトを参照する`name`プロパティを持っている。
-2. `<name-card>`要素は、`<div>`を一つだけ持ったローカルDOMのホストになる。
-3. テンプレート内のデータバインディングは、Javascriptオブジェクトを`<div>`要素にリンクする。 
+1. `<name-card>`エレメントは、JavaScriptオブジェクトを参照する`name`プロパティを持っている。
+2. `<name-card>`エレメントは、`<div>`を一つだけ持ったローカルDOMのホストになる。
+3. テンプレート内のデータバインディングは、Javascriptオブジェクトを`<div>`エレメントにリンクする。 
 
-データシステムは、オブジェクトではなくパスに基づいており、パスはホスト要素に関連するプロパティやサブプロパティを表します。例えば、`<name-card>`要素は、パス`name.first`とパス`name.last`に対するデータバインディングを持っています。仮に、`<name-card>`要素が`name`プロパティとして次のオブジェクトを持っている場合：
+データシステムは、オブジェクトではなくパスに基づいており、パスはホストエレメントに関連するプロパティやサブプロパティを表します。例えば、`<name-card>`エレメントは、パス`name.first`とパス`name.last`に対するデータバインディングを持っています。仮に、`<name-card>`エレメントが`name`プロパティとして次のオブジェクトを持っている場合：
 
 
 ```js
@@ -65,7 +65,7 @@ div element.](/images/1.0/data-system/data-binding-overview-new.png)
 }
 ```
 
-パス`name`は要素の`name`プロパティ(オブジェクト)を参照します。パス`name.first`とパス`name.last`はオブジェクトのプロパティを参照します。
+パス`name`はエレメントの`name`プロパティ(オブジェクト)を参照します。パス`name.first`とパス`name.last`はオブジェクトのプロパティを参照します。
 
 ![The name-card element from the previous figure. An arrow labeled 1 connects the name property
 to a JavaScript object that contains two properties, first: 'Lizzy' and last: 'Bennet'. Two arrows
@@ -77,20 +77,20 @@ first, respectively.](/images/1.0/data-system/paths-overview-new.png)
 
 Polymerは自動ですべてのデータ変更を検出するわけではありません。*プロパティエフェクト*は、プロパティまたはサブプロパティへ[監視可能(obsevable)な変更](#observable-changes)があった場合に生じます。
 
-**なぜパスを使うのでしょうか？**パスや*監視可能(obsevable)な変更*は、初めは少し奇妙にみえるかもしれません。しかし、これらによって、非常にハイパフォーマンスなデータバインディングシステムが実現されています。*監視可能な変更*が発生した場合、PolymerはDOM内で、その変更によって影響を受ける箇所にだけ変更を加えることができます。
+**なぜパスを使うのでしょうか？**パスや*監視可能(obsevable)な変更*は、初めは少し奇妙にみえるかもしれません。しかし、これらによって、非常にハイパフォーマンスなデータバインディングシステムが実現されています。*監視可能(observable)な変更*が発生した場合、PolymerはDOM内で、その変更によって影響を受ける箇所にだけ変更を加えることができます。
 { .alert .alert-info }
 
 要約：
 
-*   単一のJavaScriptオブジェクトや配列は複数の要素から参照するこができますが、パスは**常に特定の要素に関連づけられます**。
+*   単一のJavaScriptオブジェクトや配列は複数のエレメントから参照するこができますが、パスは**常に特定のエレメントに関連づけられます**。
 *   あるパスに対して**監視可能(observable)な変更**があると、バインドされた値の更新やオブザーバーの呼び出しといった**プロパティエフェクト**を発生させます。
-*   データバインディングは、異なる要素上のパス間にコネクションを確立します。
+*   データバインディングは、異なるエレメント上のパス間にコネクションを確立します。
 
 ## 監視可能(observable)な変更 {#observable-changes}
 
-*監視可能な変更*とは、**Polymerがパスに関連付けることができるデータの変更**です。以下のような変更については自動的に監視することができます。：
+*監視可能(observable)な変更*とは、**Polymerがパスに関連付けることができるデータの変更**です。以下のような変更については自動的に監視することができます。：
 
-*   要素のプロパティに直接設定する。
+*   エレメントのプロパティに直接設定する。
 
     ~~~javascript
     this.owner = 'Jane';
@@ -98,13 +98,13 @@ Polymerは自動ですべてのデータ変更を検出するわけではあり�
 
     もし、あるプロパティに関連した*プロパティエフェクト*が発生した場合（オブザーバー、算出プロパティやデータバインディングなど）、Polymerはプロパティエフェクトを自動的に発生させるプロパティに対してsetterメソッドを作成します。
 
-*   双方向データバインディングを使用して要素のサブプロパティを設定する。
+*   双方向データバインディングを使用してエレメントのサブプロパティを設定する。
 
     ~~~html
     <local-dom-child name="{{hostProperty.subProperty}}"></local-dom-child>
     ~~~
 
-    データバインディングシステムによってもたらされた変更は、自動的に伝播されます。この例で言えば、`<local-dom-child>`要素が自身の`name`プロパティに変更を加えると、パス`hostProperty.subProperty`に変更が行われたように、その変更をホストに向けて上に伝播します。
+    データバインディングシステムによってもたらされた変更は、自動的に伝播されます。この例で言えば、`<local-dom-child>`エレメントが自身の`name`プロパティに変更を加えると、パス`hostProperty.subProperty`に変更が行われたように、その変更をホストに向けて上に伝播します。
 
 
 ### 監視不能(unobservable)な変更
@@ -131,7 +131,7 @@ Polymerは自動ですべてのデータ変更を検出するわけではあり�
 
 どちらの場合も、変更を監視できるようにするには、Polymerの用意したメソッドを利用する必要があります。
 
-### オブジェクトと配列の変更を監視可能に {#make-observable-changes}
+### オブジェクトと配列の変更を監視可能(observable)に {#make-observable-changes}
 
 Polymerは、サブプロパティや配列を監視できるようにするメソッドを用意しています。：
 
@@ -143,14 +143,14 @@ this.set('address.street', 'Half Moon Street');
 this.push('users', { name: 'Maturin'});
 ```
 
-特定のケースにおいては、Polymerのメソッドを利用してオブジェクトや配列を変更することができません。(サードパーティのライブラリを使用している場合など)。この場合には、[`notifyPath`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-notifyPath)メソッドや[`notifySplices`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-notifySplices)メソッドを使用することで、**すでに発生した**変更を要素に通知できます。
+特定のケースにおいては、Polymerのメソッドを利用してオブジェクトや配列を変更することができません。(サードパーティのライブラリを使用している場合など)。この場合には、[`notifyPath`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-notifyPath)メソッドや[`notifySplices`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-notifySplices)メソッドを使用することで、**すでに発生した**変更をエレメントに通知できます。
 
 ```js
 // Notify Polymer that the value has changed
 this.notifyPath('address.street');
 ```
 
-`notifyPath`メソッドや`notifySplices`メソッドを呼び出すと、あたかも変更が発生したかのように、要素は適切な*プロパティエフェクト*を作用させます。
+`notifyPath`メソッドや`notifySplices`メソッドを呼び出すと、あたかも変更が発生したかのように、エレメントは適切な*プロパティエフェクト*を作用させます。
 
 `set`や`notifyPath`を呼び出す際は、変更された**正確なパス**を使用する必要があります。例えば、`address`オブジェクト自体は変更されていないのに、`this.notifyPath('address')`の呼び出しを行なった場合、`address.street`の変更は検出されません。これは、Polymerがオブジェクトの等価性からオブジェクトと配列に*ダーティチェック*を行うためです。指定されたパスの値が変更されていなければ、プロパティエフェクトは一切生じることがありません。
 
@@ -165,7 +165,7 @@ this.addresses = this.addresses.slice();
 
 多層的な(multiple levels)データ構造を持ったオブジェクトや配列の場合には、その変更内容を検出するために深いコピー(deep copy)を実行する必要があるかもしれません。
 
-アプリケーションでそのような必要性が生じた場合は、`Polymer.MutableData`ミックスインを使用することで、要素ごとにオブジェクトや配列のダーティチェックを回避できます。このミックスインは、利便性向上ためにいくらかパフォーマンスを犠牲にすることがあるかもしれません。詳細については、[MutableDataミックスインの利用](#mutable-data)を参照してください。
+アプリケーションでそのような必要性が生じた場合は、`Polymer.MutableData`ミックスインを使用することで、エレメントごとにオブジェクトや配列のダーティチェックを回避できます。このミックスインは、利便性向上ためにいくらかパフォーマンスを犠牲にすることがあるかもしれません。詳細については、[MutableDataミックスインの利用](#mutable-data)を参照してください。
 
 
 関連タスク：
@@ -176,9 +176,9 @@ this.addresses = this.addresses.slice();
 
 ### バッチ処理によるプロパティの変更
 
-バインディングシステム内におけるデータの伝播はバッチで処理されます、そうすることで複雑なオブザーバーや算出関数による変更は一度にまとまて実行されます。*まとまった変更*を生成する方法はいくつか存在します。：
+バインディングシステム内におけるデータの伝播はバッチで処理されます、そうすることでコンプレックスオブザーバーや算出関数による変更は一度にまとまて実行されます。*まとまった変更*を生成する方法はいくつか存在します。：
 
-*   要素が自身のプロパティを初期化する際は、*まとまった変更*を自動的に生成します。
+*   エレメントが自身のプロパティを初期化する際は、*まとまった変更*を自動的に生成します。
 
 *   オブジェクトまたは配列を設定する際は、*まとまった変更*を自動的に生成します。
 
@@ -201,23 +201,23 @@ this.setProperties({a: 10, b: 20});
 
 ## データパス {#paths}
 
-データシステムにおいて、*パス*はスコープ内のプロパティまたはサブプロパティを識別するための文字列です。多くの場合、スコープはホスト要素です。例えば、次のような関係を考えてみましょう。：
+データシステムにおいて、*パス*はスコープ内のプロパティまたはサブプロパティを識別するための文字列です。多くの場合、スコープはホストエレメントです。例えば、次のような関係を考えてみましょう。：
 
 ![Two elements, user-profile and address card. The user-profile element has a primaryAddress
 property. An arrow labeled 1 connects the property to a JavaScript object. The address-card
 element has an address property. An arrow labeled 2 connects the property to the same JavaScript
 object.](/images/1.0/data-system/data-binding-paths-new.png)
 
-1. `<user-profile>`要素は、Javascriptのオブジェクトを参照する`primaryAddress`プロパティを持っています。
-2. `<address-card>`要素は、同じオブジェクトを参照する`address`プロパティを持っています
+1. `<user-profile>`エレメントは、Javascriptのオブジェクトを参照する`primaryAddress`プロパティを持っています。
+2. `<address-card>`エレメントは、同じオブジェクトを参照する`address`プロパティを持っています
 
 重要なことですが、**Polymerは、これらのプロパティが同じオブジェクトを参照していることを自動的に認識するわけではありません。**`<address-card>`がオブジェクトへの変更を行っても、`<user-profile>`上でプロパティエフェクトは生じるわけではありません。
 
-**ある要素から別の要素へデータの変更が流れるようにするには、要素はデータバインディングによってコネクトされている必要があります。**
+**あるエレメントから別のエレメントへデータの変更が流れるようにするには、エレメントはデータバインディングによってコネクトされている必要があります。**
 
 ### データバインディングによるパスのリンク
 
-データバインディングは、異なる要素のパス間にリンクを作成することができます。実は、**データバインディングは、異なる要素のパスにリンクを設定する唯一の手段です。**例えば、前のセクションの`<user-profile>`の例で考えてみましょう。`<address-card>`が`<user-profile>`要素のローカルDOM内に存在する場合、二つのパスはデータバインディングを使ってコネクトすることができます。：
+データバインディングは、異なるエレメントのパス間にリンクを作成することができます。実は、**データバインディングは、異なるエレメントのパスにリンクを設定する唯一の手段です。**例えば、前のセクションの`<user-profile>`の例で考えてみましょう。`<address-card>`が`<user-profile>`エレメントのローカルDOM内に存在する場合、二つのパスはデータバインディングを使ってコネクトすることができます。：
 
 
 ```html
@@ -235,19 +235,19 @@ object.](/images/1.0/data-system/data-binding-paths-new.png)
 
 ![Two elements, user-profile and address-card, both referring to a shared JavaScript object. An arrow labeled 1 connects the primaryAddress property on the user-profile element to the object. An arrow labeled 2 connects the address property on the address-card element to the same object. An double-headed arrow labeled 3 connects the path primaryAddress on user-profile to the path address on address-card.](/images/1.0/data-system/data-bound-paths-new.png)
 
-1. `<user-profile>`要素は、Javascriptのオブジェクトを参照する`primaryAddress`プロパティを持っています。
-2. `<address-card>`要素は、同じオブジェクトを参照する`address`プロパティを持っています。
+1. `<user-profile>`エレメントは、Javascriptのオブジェクトを参照する`primaryAddress`プロパティを持っています。
+2. `<address-card>`エレメントは、同じオブジェクトを参照する`address`プロパティを持っています。
 3. データバインディングは`<user-profile>`のパス`primaryAddress`と`<address-card>`のパス`address`をリンクさせます。
 
-もし`<address-card>`がオジェクトに対して*監視可能な変更*を加えた場合、`<user-profile>`上でも同様に*プロパティエフェクト*が発生します。
+もし`<address-card>`がオジェクトに対して*監視可能(observable)な変更*を加えた場合、`<user-profile>`上でも同様に*プロパティエフェクト*が発生します。
 
 ### データバインディングのスコープ {#data-binding-scope}
 
 パスは、現在のデータバインディングのスコープに関連づいています。
 
-どの要素にとっても最上位のスコープは要素のプロパティです。いつくかのデータバインディングのヘルパー要素([テンプレートリピーター](/{{{polymer_version_dir}}}/docs/devguide/templates#dom-repeat))のような)では、新たに入れ子のスコープを導入します。
+どのエレメントにとっても最上位のスコープはエレメントのプロパティです。いつくかのデータバインディングのヘルパーエレメント([テンプレートリピーター](/{{{polymer_version_dir}}}/docs/devguide/templates#dom-repeat))のような)では、新たに入れ子のスコープを導入します。
 
-オブザーバーと算出プロパティの場合、スコープは常に要素のプロパティになります。
+オブザーバーと算出プロパティの場合、スコープは常にエレメントのプロパティになります。
 
 ### 特別なパス
 
@@ -269,15 +269,12 @@ object.](/images/1.0/data-system/data-binding-paths-new.png)
 
 #### 配列変更パス
 
-When used as the last segment in a path, `splices` represents any array *mutations* to the
-identified array (additions or deletions). For example, if `users` is an array, the path
-`users.splices` identifies any additions to or deletions from the array.
+パスの最後のセグメントとして`splices`が使用されると、`splices`は配列への特定の*変更*（追加または削除）を表します。例えば、`users`が配列の場合、パス
+`users.splices`は、配列への追加または削除を識別します。
 
-A `.splices` path can be used in an observer, computed property or computed binding to identify
-*interest* in array mutations. Observing a `.splices` path gives you a  **subset** of the changes
-registered by a wildcard path (for example, you won't see changes to subproperties of objects
-*inside* the array). **In most cases, it's more useful to use a wildcard observer for arrays.**
-
+パス`.splices`は、オブザーバー、算出プロパティ、または算出バインディングで
+配列の変更を*認識*するに利用できます。 パス`.splices`を監視(observe)すると、ワイルドカードパスによって登録された変更の**サブセット**が得られます。
+（例えば、配列内に存在するオブジェクトのサブプロパティの変更には関心がないかもしれません。） **多くの場合、配列にはワイルドカードを使ったオブザーバーを利用する方が便利です。**
 
 パスの最後のセグメントとして`splices`を使用した場合には、指定された配列に対するすべての変更(追加や削除)を表します。例えば、`users`という配列があった場合、パス`users.splices`は配列に行われたどんな追加や削除も認識します。
 
@@ -285,9 +282,9 @@ registered by a wildcard path (for example, you won't see changes to subproperti
 
 ### 同一オブジェクトを参照する二つのパス {#two-paths}
 
-時々、一つの要素に同じオブジェクトを指し示す、二つのパスが存在することがあります。
+時々、一つのエレメントに同じオブジェクトを指し示す、二つのパスが存在することがあります。
 
-例えば、要素に配列`users`やオブジェクト`selectedUser`を参照する二つのプロパティがあったとします。あるユーザーが選択されると`selectedUser`は配列内の一つのオブジェクトを参照します。
+例えば、エレメントに配列`users`やオブジェクト`selectedUser`を参照する二つのプロパティがあったとします。あるユーザーが選択されると`selectedUser`は配列内の一つのオブジェクトを参照します。
 
 
 ![A user-list element and an array with four items labeled \[0\] through \[3\]. The user-list has two properties, users and selectedUser. The users property is connected to the array by an arrow labeled 1. The selectedUser property is connected to the array item, \[1\] by an arrow labeled 2.](/images/1.0/data-system/linked-paths-new.png)
@@ -295,17 +292,17 @@ registered by a wildcard path (for example, you won't see changes to subproperti
 1. プロパティ`users`は配列そのものを参照します。
 2. プロパティ`selectedUser`は配列内のアイテムを参照します。
 
-この例では、要素には、配列内の二番目のアイテムを参照する以下の二つのパスが存在します。
+この例では、エレメントには、配列内の二番目のアイテムを参照する以下の二つのパスが存在します。
 
 *   `selectedUser`
 *   `users.1`（`1`は配列`users`内のアイテムのインデックスです）
 
 デフォルトでは、Polymerには(`users.1`のような)配列のパスを`selectedUser`に関連付ける方法がありません。
 
-このようなケースに最適な手段として、Polymerは、データバインディングのヘルパー要素`<array-selector>`を用意しており、配列とその配列から選択されたアイテムの間でパスの結合を保持します。(`<array-selector>`は、配列から複数のアイテムを選択する場合にも動作します)。
+このようなケースに最適な手段として、Polymerは、データバインディングのヘルパーエレメント`<array-selector>`を用意しており、配列とその配列から選択されたアイテムの間でパスの結合を保持します。(`<array-selector>`は、配列から複数のアイテムを選択する場合にも動作します)。
 
 
-他のユースケースのために、二つのパスを関連付けるための命令的なメソッドとして[linkPaths](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-linkPaths)があります。二つのパスがリンクされている場合、一方のパスに[監視可能な変更](#observable-changes)を加えると、もう一方のパスでも同様にその変更を監視できます。
+他のユースケースのために、二つのパスを関連付けるための命令的なメソッドとして[linkPaths](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-linkPaths)があります。二つのパスがリンクされている場合、一方のパスに[監視可能(observable)な変更](#observable-changes)を加えると、もう一方のパスでも同様にその変更を監視できます。
 
 関連タスク：
 
@@ -314,15 +311,15 @@ registered by a wildcard path (for example, you won't see changes to subproperti
 
 ## データフロー {#data-flow}
 
-Polymerは*Mediatorパターン*を実装しており、ホスト要素は、要素自身とそのローカルDOMのノード間のデータフローを管理します。
+Polymerは*Mediatorパターン*を実装しており、ホストエレメントは、エレメント自身とそのローカルDOMのノード間のデータフローを管理します。
 
-二つの要素がデータバインディングでコネクトされると、データの変更は、ホストからターゲットへ下に向けて(downward)、またターゲットからホストへ上に向けて、あるいはその両方に向けて流すことができます。
+二つのエレメントがデータバインディングでコネクトされると、データの変更は、ホストからターゲットへ下に向けて(downward)、またターゲットからホストへ上に向けて、あるいはその両方に向けて流すことができます。
 
-ローカルDOM内の二つの要素が同一のプロパティにバインドされている場合、データはある要素から別の要素に流れるように思われますが、この流れはホストによって仲介(mediate)されたものです。一つの要素で生じた変更がホストへ**上に**伝播すると、ホストはその変更を他方の要素へ**下に**伝播させます。
+ローカルDOM内の二つのエレメントが同一のプロパティにバインドされている場合、データはあるエレメントから別のエレメントに流れるように思われますが、この流れはホストによって仲介(mediate)されたものです。一つのエレメントで生じた変更がホストへ**上に**伝播すると、ホストはその変更を他方のエレメントへ**下に**伝播させます。
 
 ### データフローは同期的
 
-データフローは**同期的**です。あなたの記述したコードが[監視可能な変更](#observable-changes)を発生させると、その変更による全てのデータフローとプロパティエフェクトは、要素がアクションを明示的に遅延させない限り(例えば、非同期メソッドを呼び出すことによって)、次の行のJavaScriptが実行される前に発生します。
+データフローは**同期的**です。あなたの記述したコードが[監視可能(observable)な変更](#observable-changes)を発生させると、その変更による全てのデータフローとプロパティエフェクトは、エレメントがアクションを明示的に遅延させない限り(例えば、非同期メソッドを呼び出すことによって)、次の行のJavaScriptが実行される前に発生します。
 
 ### データフローの制御の仕組み {#data-flow-control}
 
@@ -441,7 +438,7 @@ readOnly: true</code></pre></td>
 </table>
 
 
-**プロパティの設定(readOnlyやnotify)は、プロパティそのものに影響するだけで、サブプロパティには及びません。**特に、値にオブジェクトや配列を持つプロパティをバインディングした場合、ホストとターゲット要素の間で共有データが生成されますが、プロパティの設定による制御ができないので、どちらの要素でも共有されたオブジェクトや配列の変更を防ぐ方法はありません。詳細については、[オブジェクト及び配列のデータフロー](#data-flow-objects-arrays)を参照してください。
+**プロパティの設定(readOnlyやnotify)は、プロパティそのものに影響するだけで、サブプロパティには及びません。**特に、値にオブジェクトや配列を持つプロパティをバインディングした場合、ホストとターゲットエレメントの間で共有データが生成されますが、プロパティの設定による制御ができないので、どちらのエレメントでも共有されたオブジェクトや配列の変更を防ぐ方法はありません。詳細については、[オブジェクト及び配列のデータフロー](#data-flow-objects-arrays)を参照してください。
 {.alert .alert-warning}
 
 ### データフローの例
@@ -490,7 +487,7 @@ readOnly: true</code></pre></td>
 
 例2：一方向バインディング(下向き) { .caption }
 
-バインディングを一方向のバインディング(`[[ ]]`)に変更すると、*一方向バインディング*が生成されます。この例では、例1と同じ`x-target`要素を使用しています。
+バインディングを一方向のバインディング(`[[ ]]`)に変更すると、*一方向バインディング*が生成されます。この例では、例1と同じ`x-target`エレメントを使用しています。
 
 ```html
 <dom-module id="x-host">
@@ -637,42 +634,42 @@ Example 例4：一方向バインディング(上向き、子からホストへ)
 
 ### 上向きおよび下向きデータフロー
 
-ホスト要素はデータフローを管理しているので、ターゲット要素と直接的にやりとりすることができます。ホストは、ターゲット要素のプロパティを設定したり、メソッドを呼び出すことで下に向けてデータを伝播します。
+ホストエレメントはデータフローを管理しているので、ターゲットエレメントと直接的にやりとりすることができます。ホストは、ターゲットエレメントのプロパティを設定したり、メソッドを呼び出すことで下に向けてデータを伝播します。
 
 
 ![An element, host-element connected to an element, target-element by an arrow labeled 1.](/images/1.0/data-system/data-flow-down-new.png)
 
-1. ホスト要素でプロパティが変更されると、ターゲット要素の対応するプロパティが設定され、関連するプロパティエフェクトが発生します。
+1. ホストエレメントでプロパティが変更されると、ターゲットエレメントの対応するプロパティが設定され、関連するプロパティエフェクトが発生します。
 
-Polymer要素は、イベントを使用してデータを上に向けて伝播させます。ターゲット要素は、*監視可能な変更*が発生するとノンバブリングイベントを発火します。(変更イベントに関する詳細は、[変更通知イベント](#change-events)で説明しています)。
+Polymer Elementは、イベントを使用してデータを上に向けて伝播させます。ターゲットエレメントは、*監視可能(observable)な変更*が発生するとノンバブリングイベントを発火します。(変更イベントに関する詳細は、[変更通知イベント](#change-events)で説明しています)。
 
-**双方向バインディング**の場合、ホスト要素は、これらの変更イベントを監視(listen)し、その変更を伝播させます。これら変更は、プロパティを設定したり、関連する*プロパティエフェクト*が作用することで生じます。プロパティエフェクトには以下のようなものが含まれるかもしれません。
+**双方向バインディング**の場合、ホストエレメントは、これらの変更イベントをリッスンし、その変更を伝播させます。これら変更は、プロパティを設定したり、関連する*プロパティエフェクト*が作用することで生じます。プロパティエフェクトには以下のようなものが含まれるかもしれません。
 
-*   兄弟要素(sibling elements)へ変更を伝播させるためにデータバインディングをアップデートする。
+*   兄弟エレメント(sibling elements)へ変更を伝播させるためにデータバインディングをアップデートする。
 *   変更を上に向けて伝播させるため、別の変更イベントを生成する。
 
 
 ![An element, target-element connected to an element, host-element by an arrow labeled 1. An arrow labeled 2 connects from the host element back to itself.](/images/1.0/data-system/data-flow-up-new.png)
 
-1. ターゲット要素におけるプロパティの変更によって、プロパティ変更イベントが発生します。
-2. ホスト要素はイベントを受け取ると対応するプロパティを設定し、関連するプロパティエフェクトを発生させます。
+1. ターゲットエレメントにおけるプロパティの変更によって、プロパティ変更イベントが発生します。
+2. ホストエレメントはイベントを受け取ると対応するプロパティを設定し、関連するプロパティエフェクトを発生させます。
 
 **一方向バインディング**アノテーションを使うと、ホストは変更リスナーを生成しませんので、データ変更が上に向かって伝播することはありません。
 
 ### オブジェクトと配列のデータフロー  {#data-flow-objects-arrays}
 
-プロパティがオブジェクトや配列の場合、データフローは少々複雑になります。オブジェクトや配列は複数の要素から参照することができ、また、ある要素が共有された配列を変更したり、オブジェクトのサブプロパティを変更したりするのを防ぐ術はありません。
+プロパティがオブジェクトや配列の場合、データフローは少々複雑になります。オブジェクトや配列は複数のエレメントから参照することができ、また、あるエレメントが共有された配列を変更したり、オブジェクトのサブプロパティを変更したりするのを防ぐ術はありません。
 
 そのため、Polymerは配列やオブジェクトの内容を、常に双方向バインディング**可能なもの**として扱います。言い換えると：
 
 *   ターゲットプロパティが読み取り専用(`readOnly:true`)に設定されていても、データの更新はいつも下に向かって流れます。
 *   ターゲットプロパティが通知可能(`notify:ture`)に設定されていなくても、上向きのデータフローの変更イベントは常に発生します。
 
-一方向バインディングアノテーションはイベントリスナーを生成しないため、これらの変更通知がホスト要素に伝播されないようにします。
+一方向バインディングアノテーションはイベントリスナーを生成しないため、これらの変更通知がホストエレメントに伝播されないようにします。
 
 ### 変更通知イベント {#change-events}
 
-要素は、以下のいずれかの[監視可能な変更](#observable-changes)が発生した時点で*変更通知イベント*を発生させます。：
+エレメントは、以下のいずれかの[監視可能(observable)な変更](#observable-changes)が発生した時点で*変更通知イベント*を発生させます。：
 
 *   通知設定されたプロパティへの変更
 *   サブプロパティの変更
@@ -681,44 +678,44 @@ Polymer要素は、イベントを使用してデータを上に向けて伝播�
 
 イベントの`type`プロパティは、どのプロパティが変更されたか示しています。：<code><var>property</var>-changed</code>という命名規則従い、<code><var>property</var></code>の部分はダッシュケース(dash-case)に変換したプロパティ名になります。(つまり、`this.firstName`が変更されると`first-name-changed`が発火します)。
 
-<code><var>property</var>-changed</code>リスナーを要素に手動で設定して、外部の要素、フレームワーク、またはライブラリにプロパティの変更を通知することができます。
+<code><var>property</var>-changed</code>リスナーをエレメントに手動で設定して、外部のエレメント、フレームワーク、またはライブラリにプロパティの変更を通知することができます。
 
 イベントの内容は、変更によって異なります。
 
 *   プロパティの変更の場合、`detail.value`フィールドにプロパティの新しい値が含まれます。
 *   サブプロパティの変更の場合、サブプロパティへのパスが`detail.path`フィールドに含まれます、そして新しい値が`detail.value`フィールドに含まれます。
-*   配列の変更の場合、`detail.path`フィールドは`myArray.splices`のように配列の変更パスになります。そして`detail.value`フィールドが変更レコードになります。変更レコードについては、ドキュメントの[配列オブザーバー](/{{{polymer_version_dir}}}/docs/devguide/observers#array-observation)で解説されています。
+*   配列の変更の場合、`detail.path`フィールドは`myArray.splices`のように配列の変更パスになります。そして`detail.value`フィールドがチェンジレコードになります。チェンジレコードについては、ドキュメントの[配列オブザーバー](/{{{polymer_version_dir}}}/docs/devguide/observers#array-observation)で解説されています。
 
 **注意**：**変更通知イベントの伝播は停止しないでください。**イベントオブジェクトの生成と廃棄を避けるため、Polymerは変更通知にキャッシュされたイベントオブジェクトを使用します。変更通知イベントで`stopPropagation`を呼び出ことで、**そのプロパティにおけるすべてのイベントを将来に渡って防止します。**変更通知イベントはバブリングしないので、伝播を停止する必要はありません。
 {.alert .alert-warning}
 ### カスタム変更通知イベント
 
-`<input>`のようなネイティブ要素は、Polymerが上向きのデータフローに利用する変更通知イベントを用意していません。ネイティブの`input`要素で双方向データバインディングをサポートするために、Polymerでは**カスタム変更通知イベント**をデータバインディングと関連付けることができるようになっています。例えば、テキスト入力にバインドすると、その`input`または`change`イベントを指定することができるようになります。：
+`<input>`のようなネイティブエレメントは、Polymerが上向きのデータフローに利用する変更通知イベントを用意していません。ネイティブの`input`エレメントで双方向データバインディングをサポートするために、Polymerでは**カスタム変更通知イベント**をデータバインディングと関連付けることができるようになっています。例えば、テキスト入力にバインドすると、その`input`または`change`イベントを指定することができるようになります。：
 
 
 ```html
 <input value="{{firstName::change}}">
 ```
 
-この例では、`firstName`プロパティが`input`要素の`value`プロパティにバインドされています。`input`要素が`change`イベントを発生させるたびに、Polymerは`firstName`プロパティが`input`の`value`と一致させるように更新し、また関連するプロパティエフェクトがあればすべて発生させます。**イベントの内容は重要ではありません。**
+この例では、`firstName`プロパティが`input`エレメントの`value`プロパティにバインドされています。`input`エレメントが`change`イベントを発生させるたびに、Polymerは`firstName`プロパティが`input`の`value`と一致させるように更新し、また関連するプロパティエフェクトがあればすべて発生させます。**イベントの内容は重要ではありません。**
 
-この手法は、特にネイティブの`input`要素にとって便利ですが、Polymerを使って作成されていないコンポーネント(プロパティを公開しており、その変更時にイベントを発生させる)に双方向バインディングを提供する手段としても使うことができます。
+この手法は、特にネイティブの`input`エレメントにとって便利ですが、Polymerを使って作成されていないコンポーネント(プロパティを公開しており、その変更時にイベントを発生させる)に双方向バインディングを提供する手段としても使うことができます。
 
 関連タスク：
 
-*   [Polymer要素でない要素への双方向バインディング](data-binding#two-way-native)
+*   [Polymer Elementでないエレメントへの双方向バインディング](data-binding#two-way-native)
 
-### 要素の初期化
+### エレメントの初期化
 
-要素がローカルDOMを初期化する際は、要素はローカルDOMの子のプロパティを設定し、データバインディングの初期化も行います。
+エレメントがローカルDOMを初期化する際は、エレメントはローカルDOMの子のプロパティを設定し、データバインディングの初期化も行います。
 
-初期化処理の中では、ホストの値が優先されます。例えば、ホストプロパティがターゲットプロパティにバインドされている場合、host要素とtarget要素の両方でデフォルト値を指定すると、親のデフォルト値が使用されます。
+初期化処理の中では、ホストの値が優先されます。例えば、ホストプロパティがターゲットプロパティにバインドされている場合、hostエレメントとtargetエレメントの両方でデフォルト値を指定すると、親のデフォルト値が使用されます。
 
 ## プロパティエフェクト(property effects) {#property-effects}
 
 *   算出プロパティの再計算
 *   データバインディングの更新
-*   プロパティ値をホスト要素の属性に反映
+*   プロパティ値をホストエレメントの属性に反映
 *   オブザーバーの呼び出し
 *   変更通知イベントの発火
 
@@ -734,9 +731,9 @@ Polymer要素は、イベントを使用してデータを上に向けて伝播�
 
 ### データバインディング
 
-*データバインディング*は、ホスト要素のデータとホストのローカルDOM内の`target`ノードのプロパティや属性の間にコネクションを確立します。要素のローカルDOMのテンプレートにアノテーションを追加することでデータバインディングを生成します。
+*データバインディング*は、ホストエレメントのデータとホストのローカルDOM内の`target`ノードのプロパティや属性の間にコネクションを確立します。エレメントのローカルDOMのテンプレートにアノテーションを追加することでデータバインディングを生成します。
 
-*アノテーション*とは、ターゲット要素でデータバインディング用デリミタ`{{ }}`又は`[[ ]]`を使用した属性値です。
+*アノテーション*とは、ターゲットエレメントでデータバインディング用デリミタ`{{ }}`又は`[[ ]]`を使用した属性値です。
 
 双方向プロパティバインディング：
 
@@ -750,7 +747,7 @@ Polymer要素は、イベントを使用してデータを上に向けて伝播�
 
 <code><var>target-attribute</var>$="[[<var>hostProperty</var>]]"</code>
 
-また、要素の本体にデータバインディングアノテーションを使用することもできます。これは、要素の`textContent`プロパティに対してバインディングを行なったのと同じことです。
+また、エレメントの本体にデータバインディングアノテーションを使用することもできます。これは、エレメントの`textContent`プロパティに対してバインディングを行なったのと同じことです。
 
 ```html
 <div>{{hostProperty}}</div>
@@ -767,7 +764,7 @@ Polymer要素は、イベントを使用してデータを上に向けて伝播�
 
 ## UMutableDataミックスインの使用 {#mutable-data}
 
-Polymer 1.xでは、*ダーティチェック*(dirty check)メカニズムを使用して、データシステムが余計な作業をするのを防いでいました。Polymer 2.xでもデフォルトでこのメカニズムを維持していますが、要素においてオブジェクトや配列に対する*ダーティチェック*をオプトアウト(利用者が機能の使用を制限)できるようになっています。
+Polymer 1.xでは、*ダーティチェック*(dirty check)メカニズムを使用して、データシステムが余計な作業をするのを防いでいました。Polymer 2.xでもデフォルトでこのメカニズムを維持していますが、エレメントにおいてオブジェクトや配列に対する*ダーティチェック*をオプトアウト(利用者が機能の使用を制限)できるようになっています。
 
 デフォルトの*ダーティチェック*メカニズムによって、次のコードでは*プロパティエフェクト*を生成させません。：
 
@@ -796,7 +793,7 @@ this.notifyPath('property.subproperty');
 class MyMutableElement extends Polymer.MutableData(Polymer.Element) { ... }
 ```
 
-`MutableData`ミックスインは要素のダーティチェックを省略するので、上記コードは意図した通りに動作するでしょう。
+`MutableData`ミックスインはエレメントのダーティチェックを省略するので、上記コードは意図した通りに動作するでしょう。
 
 ```js
 this.property.subproperty = 'new value!';
@@ -821,7 +818,7 @@ this.set('property', this.property);
 this.property = this.property;
 ```
 
-特定のサブプロパティを変更するのに`set`メソッドを利用するのが、多くのケースで最も効率的な手段となります。しかし、`MutableData`を使用する要素ではこのAPIを使用する必要はなく、データバインディングや状態管理を行う代替ライブラリを利用することで互換性をさらに高めることができます。
+特定のサブプロパティを変更するのに`set`メソッドを利用するのが、多くのケースで最も効率的な手段となります。しかし、`MutableData`を使用するエレメントではこのAPIを使用する必要はなく、データバインディングや状態管理を行う代替ライブラリを利用することで互換性をさらに高めることができます。
 
 トップレベルでプロパティを再設定すると、そのプロパティ、サブプロパティ、配列のアイテムなどに対する*プロパティエフェクト*が全て再実行されてしまうので注意が必要です。さらに、ワイルドカードパス(`prop.*`のような)を指定したオブザーバーには、トップレベルでの変更だけが通知されます。：
 
@@ -840,11 +837,11 @@ this.notifyPath('property');
 this.set('property.deep.path', 'new value');
 ```
 
-要素のプロパティが文字列、数値、ブール値などのプリミティブな値しか取らない場合には、`MutableData`を使用する必要はありません。これらの値は常にダーティチェックされており`MutableData`にはメリットがありません。これは多くのシンプルなUI要素について言えることです。`MutableData`は複雑で再利用可能な要素(`dom-repeat`または`iron-list`のような)や、複雑な状態の情報を持つアプリケーション固有の要素に対しては役立つでしょう。
+エレメントのプロパティが文字列、数値、ブール値などのプリミティブな値しか取らない場合には、`MutableData`を使用する必要はありません。これらの値は常にダーティチェックされており`MutableData`にはメリットがありません。これは多くのシンプルなUIエレメントについて言えることです。`MutableData`は複雑で再利用可能なエレメント(`dom-repeat`または`iron-list`のような)や、複雑な状態の情報を持つアプリケーション固有のエレメントに対しては役立つでしょう。
 
-`MutableData`ミックスインは、要素のShadow DOMの子には影響を与えないことに注意してください。`Polymer.MutableData`**ミックスインを使用しないすべての要素は、すべてデフォルトのダーティチェックポリシーに従います。**
+`MutableData`ミックスインは、エレメントのShadow DOMの子には影響を与えないことに注意してください。`Polymer.MutableData`**ミックスインを使用しないすべてのエレメントは、すべてデフォルトのダーティチェックポリシーに従います。**
 
-`dom-repeat`要素を使用している場合は、`mutableData`プロパティを設定することで*可変データモード*を有効にすることができます：
+`dom-repeat`エレメントを使用している場合は、`mutableData`プロパティを設定することで*可変データモード*を有効にすることができます：
 
 ```html
 <!-- standard dom-repeat in MutableData mode -->
@@ -854,9 +851,9 @@ this.set('property.deep.path', 'new value');
 ```
 
 
-### 再利用可能な要素のオプションとしての可変(mutable)データ {#optional-mutable-data}
+### 再利用可能なエレメントのオプションとしての可変(mutable)データ {#optional-mutable-data}
 
-構造化されたデータを取り込む再利用可能な要素を構築する場合は、[`Polymer.OptionalMutableData`](/{{{polymer_version_dir}}}/docs/api/mixins/Polymer.OptionalMutableData)ミックスインが使用できます。このミックスインを使用すると、要素上に`mutableData`プロパティを設定することで、`MutableData`モードを選択できます。
+構造化されたデータを取り込む再利用可能なエレメントを構築する場合は、[`Polymer.OptionalMutableData`](/{{{polymer_version_dir}}}/docs/api/mixins/Polymer.OptionalMutableData)ミックスインが使用できます。このミックスインを使用すると、エレメント上に`mutableData`プロパティを設定することで、`MutableData`モードを選択できます。
 
 ```js
 class MyStructuredDataElement extends Polymer.OptionalMutableData(Polymer.Element) {
@@ -864,7 +861,7 @@ class MyStructuredDataElement extends Polymer.OptionalMutableData(Polymer.Elemen
 }
 ```
 
-これにより、要素の利用者は、標準のデータフローまたは可変データモードのいずれかで要素を利用することができます。
+これにより、エレメントの利用者は、標準のデータフローまたは可変データモードのいずれかでエレメントを利用することができます。
 
 ```html
 <!-- custom element using standard data flow -->
@@ -876,6 +873,6 @@ class MyStructuredDataElement extends Polymer.OptionalMutableData(Polymer.Elemen
 </my-structured-data-element>
 ```
 
-`dom-repeat`要素は、このミックスインを利用して構成された要素の例です。
+`dom-repeat`エレメントは、このミックスインを利用して構成されたエレメントの例です。
 
 

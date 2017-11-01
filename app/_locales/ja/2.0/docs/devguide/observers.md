@@ -5,26 +5,27 @@ title: オブザーバーと算出プロパティ
 <!-- toc -->
 
 
-オブザーバーは、要素のデータに[監視可能な変更](data-system#observable-changes)が発生したときに呼び出されるメソッドです。オブザーバーには二つの基本的なタイプがあります。：
+オブザーバーは、エレメントのデータに[監視可能(observable)な変更](data-system#observable-changes)が発生したときに呼び出されるメソッドです。オブザーバーには二つの基本的なタイプがあります。：
 
-*   単純なオブザーバー(Simple observers)は単一のプロパティを監視します。
-*   複雑なオブザーバー(Complex observers)は、一つ以上のプロパティ*またはパス*を監視できます。
+*   シンプルオブザーバー(Simple observers)は単一のプロパティを監視します。
+*   コンプレックスオブザーバー(Complex observers)は、一つ以上のプロパティ*またはパス*を監視できます。
 
-これらの二種類のオブザーバーを宣言するために異なる構文を使用しますが、たいていの場合、同じように動作します。Each observer has one or more _dependencies_. The observer method runs when an
-observable change is made to a dependency.
+これらの二種類のオブザーバーを宣言するために異なる構文を使用しますが、たいていの場合、同じように動作します。
 
-算出プロパティ(Computed properties)は、要素を構成する一つ以上のデータに基づく仮想的なプロパティです。算出プロパティは算出関数(computing function)によって生成されます。算出関数は本質的には、値を返す複雑なオブザーバーといえます。
+各オブザーバーは、一つ以上の_依存部_を持ちます。依存部に監視可能な(observable)な変更が生じるとオブザーバーのメソッドは実行されます。
 
-特別に指示しない限り、オブザーバーに関する注意点は、単純なオブザーバー、複雑なオブザーバー、や算出プロパティにも適用されます。
+算出プロパティ(Computed properties)は、エレメントを構成する一つ以上のデータに基づく仮想的なプロパティです。算出プロパティは算出関数(computing function)によって生成されます。算出関数は本質的には、値を返すコンプレックスオブザーバーといえます。
 
-### オブザーバーと要素の初期化
+特別に指示しない限り、オブザーバーに関する注意点は、シンプルオブザーバー、コンプレックスオブザーバー、や算出プロパティにも適用されます。
+
+### オブザーバーとエレメントの初期化
 
 オブザーバーの最初の呼び出しは、次の条件が満たされるまで遅延されます。：
 
-*   要素が完全に構築されている（デフォルト値が割り当てられ、データバインディングは伝播されます）
+*   エレメントが完全に構築されている（デフォルト値が割り当てられ、データバインディングは伝播されます）
 *   **少なくとも**一つは依存部が定義されている(つまり、`undefined`という値がない)
 
-最初の呼び出しの後は、**たとえ依存部の新しい値が**<code>undefined</code>**であっても**、依存対象への**監視可能な変更はそれぞれ**オブザーバーの呼び出しを発生させます。
+最初の呼び出しの後は、**たとえ依存部の新しい値が**<code>undefined</code>**であっても**、依存対象への**監視可能(observable)な変更はそれぞれ**オブザーバーの呼び出しを発生させます。
 
 これにより、デフォルトの状態でオブザーバーが実行されるのを避けることができます。
 
@@ -36,21 +37,21 @@ observable change is made to a dependency.
 ただし、データの変更を非同期に処理する場合は、変更データが処理されるまで古いデータが存在する可能性があるので注意してください。
 
 
-## 単純なオブザーバー(Simple observers) {#simple-observers}
+## シンプルオブザーバー(Simple observers) {#simple-observers}
 
-単純なオブザーバは`properties`オブジェクト内で宣言され、常に単一のプロパティを監視します。プロパティの初期化の順番について仮定を置いてはいけません。：オブザーバーが初期化された複数のプロパティに依存している場合は、代わりに複雑なオブザーバーを使用します。
+単純なオブザーバは`properties`オブジェクト内で宣言され、常に単一のプロパティを監視します。プロパティの初期化の順番について仮定を置いてはいけません。：オブザーバーが初期化された複数のプロパティに依存している場合は、代わりにコンプレックスオブザーバーを使用します。
 
-単純なオブザーバーは、プロパティが初めて定義されたとき(`!=undefined`)に起動し、*_その後に未定義(undefined)になったとしても_*、すべての変更に対して動作します。
+シンプルオブザーバーは、プロパティが初めて定義されたとき(`!=undefined`)に起動し、*_その後に未定義(undefined)になったとしても_*、すべての変更に対して動作します。
 
-単純なオブザーバーは、プロパティそのものが変更された場合に限り起動します。サブプロパティの変更や配列の変更では起動しません。これら変更が必要な場合は、[パスに関連するすべての変更を監視](#deep-observation)で説明の通り、ワイルドカードパス(\*)を指定した*複雑なオブザーバー*を利用します。
+シンプルオブザーバーは、プロパティそのものが変更された場合に限り起動します。サブプロパティの変更や配列の変更では起動しません。これら変更が必要な場合は、[パスに関連するすべての変更を監視](#deep-observation)で説明の通り、ワイルドカードパス(\*)を指定した*コンプレックスオブザーバー*を利用します。
 
-オブザーバーメソッドは名前で指定します。ホスト要素には、必ず同名のメソッドが必要です。
+オブザーバーメソッドは名前で指定します。ホストエレメントには、必ず同名のメソッドが必要です。
 
 オブザーバーメソッドは引数として、プロパティの新しい値と古い値を受け取ります。
 
 ### プロパティを監視  {#change-callbacks}
 
-単純なオブザーバーを定義するにはプロパティの宣言に`observer`キーを追加し、名前によってオブザーバーメソッドを識別します。e.
+シンプルオブザーバーを定義するにはプロパティの宣言に`observer`キーを追加し、名前によってオブザーバーメソッドを識別します。e.
 例： { .caption }
 
 
@@ -76,14 +77,14 @@ class XCustom extends Polymer.Element {
 }
 ```
 
-オブザーバーメソッドは通常クラス内で定義されますが、オブザーバーメソッドは、要素上に同名のメソッドが存在するならば、スーパークラス、サブクラス、ミックスインクラスで定義することもできます。
+オブザーバーメソッドは通常クラス内で定義されますが、オブザーバーメソッドは、エレメント上に同名のメソッドが存在するならば、スーパークラス、サブクラス、ミックスインクラスで定義することもできます。
 
 **警告**：単一のプロパティに対するオブザーバーは、他のプロパティ、サブプロパティ、またはパスに依存するべきではありません。なぜなら、これらの依存関係が未定義にも関わらずオブザーバーが呼び出される可能性があるからです。詳細は、[すべての依存部の特定](#dependencies)を参照してください。
 { .alert .alert-warning }
 
-## 複雑なオブザーバー {#complex-observers}
+## コンプレックスオブザーバー {#complex-observers}
 
-複雑なオブザーバーは配列`observers`の内で宣言されています。複雑なオブザーバーは、一つ以上のパスを監視することができます。これらのパスは**オブザーバーの依存部**と呼ばれます。
+コンプレックスオブザーバーは配列`observers`の内で宣言されています。コンプレックスオブザーバーは、一つ以上のパスを監視することができます。これらのパスは**オブザーバーの依存部**と呼ばれます。
 
 ```
 static get observers() {
@@ -115,7 +116,7 @@ static get observers() {
 
 オブザーバーが呼び出された時、引数のいずれかが`undefined`かもしれないので注意してください。
 
-複雑なオブザーバーは、宣言的に記述した部分だけに依存するようにすべきです。
+コンプレックスオブザーバーは、宣言的に記述した部分だけに依存するようにすべきです。
 
 関連タスク：
 
@@ -129,7 +130,7 @@ static get observers() {
 
 これらのオブザーバーは、シングルプロパティオブザーバーといくつかの点で異なります。：
 
-*   **一つでも**依存部が定義されていれば、マルチプロパティオブザーバーや算出プロパティが初期化されるとすぐに実行され、`observers`は一度呼び出されます。その後、それら依存部のどれかに監視可能な変更があればオブザーバーが実行されます。
+*   **一つでも**依存部が定義されていれば、マルチプロパティオブザーバーや算出プロパティが初期化されるとすぐに実行され、`observers`は一度呼び出されます。その後、それら依存部のどれかに監視可能(observable)な変更があればオブザーバーが実行されます。
 
 *   オブザーバーは`old`値を引数として受け取らず、新しい値だけを受け取ります。`properties`オブジェクトでシングルプロパティオブザーバーが定義されている場合に限り、`old`と`new`の両方の値を引数に受け取ります。
 
@@ -174,7 +175,7 @@ class XCustom extends Polymer.Element {
 
 *   配列`observers`を定義します。
 *    配列`observers`にアイテムを追加します。アイテムはメソッド名に続けて、一つ以上のパスのリストをカンマ区切りで渡す必要があります。例えば、単一のパスであれば、`onNameChange(dog.name)`、複数のパスの場合は、`onNameChange(dog.name, cat.name)`のようになりますです。各パスが監視したいサブプロパティとなります。
-*   要素のプロトタイプ(訳補：クラス)内でメソッドを定義します。メソッドが呼び出されると、メソッドの引数がサブプロパティの新しい値になります。
+*   エレメントのプロトタイプ(訳補：クラス)内でメソッドを定義します。メソッドが呼び出されると、メソッドの引数がサブプロパティの新しい値になります。
 
 Polymerがサブプロパティの変更を適切に検出できるよう、サブプロパティは次の二つのいずれかの方法でアップデートする必要があります。：
 
@@ -230,13 +231,13 @@ Polymerがサブプロパティの変更を適切に検出できるよう、サ�
 
 ### 配列の変更を監視 {#array-observation}
 
-Use an array mutation observer to call an 配列の変更に対してオブザーバーを設定すると、Polymerの[配列変更メソッド](model-data#array-mutation)を使用して、配列のアイテムが追加または削除される度に、オブザーバー関数が呼び出されます。配列が変更されるたびに、オブザーバーは配列のsplicesのセットとして、変更内容を表す*変更レコード*を受け取ります。
+Use an array mutation observer to call an 配列の変更に対してオブザーバーを設定すると、Polymerの[配列変更メソッド](model-data#array-mutation)を使用して、配列のアイテムが追加または削除される度に、オブザーバー関数が呼び出されます。配列が変更されるたびに、オブザーバーは配列のsplicesのセットとして、変更内容を表す*チェンジレコード*を受け取ります。
 
 Polymerは、配列のアイテムが変更されたときだけ配列変更のオブザーバーを呼び出し、トップレベルの(top-level)配列への変更に対しては**呼び出されません**。
 
 多くの場面で、配列の変更*と*配列のアイテムのサブプロパティへの変更の両方を監視したいかもしれません。この場合には、[パスに関連するすべての変更を監視](#deep-observatio)で説明されているように、ワイルドカードパスを使用する必要があります。
 
-> **監視可能な配列の変更**：可能であれば常にPolymerの[配列の変更メソッド](model-data#array-mutation)を使用するようにしてください。これによって、配列に加えられた変更の中から、事前に登録された関心のある要素に関するものを適切に通知します。ネイティブのメソッドを利用せざるを得ない場合、[ネイティブの配列の変更メソッドを使用](model-data#notifysplices)で説明されているように、Polymerに配列変更を通知する必要があります。
+> **監視可能(observable)な配列の変更**：可能であれば常にPolymerの[配列の変更メソッド](model-data#array-mutation)を使用するようにしてください。これによって、配列に加えられた変更の中から、事前に登録された関心のあるエレメントに関するものを適切に通知します。ネイティブのメソッドを利用せざるを得ない場合、[ネイティブの配列の変更メソッドを使用](model-data#notifysplices)で説明されているように、Polymerに配列変更を通知する必要があります。
 
 spliceへのオブザーバーを作成するには、配列`observers`内でパスを指定する際、配列に続けて`.splices`を指定してください。
 
@@ -248,7 +249,7 @@ static get observers() {
 }
 ```
 
-オブザーバーメソッドは引数を一つ受け取る必要があります。オブザーバーメソッドが呼び出されると、配列上で発生した変更に関して*変更レコード*を受け取ります。各*変更レコード*は、次のプロパティを提供します。：
+オブザーバーメソッドは引数を一つ受け取る必要があります。オブザーバーメソッドが呼び出されると、配列上で発生した変更に関して*チェンジレコード*を受け取ります。各*チェンジレコード*は、次のプロパティを提供します。：
 
 *   `indexSplices`：配列で発生したインデックス単位の変更。各`indexSplices`レコードには、次のプロパティが含まれます。
        -   `index`：spliceの開始位置
@@ -258,7 +259,7 @@ static get observers() {
        -   `type`：文字列リテラル`splice`
 
 
-***変更レコード*は未定義の可能性があります**。初めてオブザーバーが呼び出された時点で、*変更レコード*は未定義の可能性があるため、この例に示した方法で対処する必要があります。
+***チェンジレコード*は未定義の可能性があります**。初めてオブザーバーが呼び出された時点で、*チェンジレコード*は未定義の可能性があるため、この例に示した方法で対処する必要があります。
 { .alert .alert-info }
 
 例 {.caption}
@@ -316,7 +317,7 @@ customElements.define(XCustom.is, XCustom);
 
 オブジェクトや配列の(深い)サブプロパティが変更された際にオブザーバーを呼び出すには、ワイルドカード(`*`)を用いてパスを指定します。
 
-ワイルドカードを使用してパスを指定した場合、オブザーバーに引数として渡される*変更レコード*オブジェクトには以下のようなプロパティが存在します。：
+ワイルドカードを使用してパスを指定した場合、オブザーバーに引数として渡される*チェンジレコード*オブジェクトには以下のようなプロパティが存在します。：
 *   `path`：変更されたプロパティへのパス。変更されたのがプロパティか、サブプロパティか、配列か判別するのに利用されます。
 *   `value`：変更されたパスの新しい値
 *   `base`：パスのワイルドカード以外の部分にマッチするオブジェクト
@@ -434,10 +435,10 @@ nameChanged: function(firstName, lastName) {
 
 ## 算出プロパティ(Computed properties) {#computed-properties}
 
-算出プロパティは、一つ以上のパスに基づき算出される仮想的なプロパティです。算出プロパティの算出関数(computing function)は、算出プロパティの値に使用された値を返す点を除けば、複雑なオブザーバー(complex observer)と同じルールに従います。
+算出プロパティは、一つ以上のパスに基づき算出される仮想的なプロパティです。算出プロパティの算出関数(computing function)は、算出プロパティの値に使用された値を返す点を除けば、コンプレックスオブザーバー(complex observer)と同じルールに従います。
 
 
-複雑なオブザーバーのように、`undefined`値の取り扱いは**監視されているプロパティの数に依存します**。詳細については、[複雑なオブザーバー](data-system#observable-changes)の説明を参照してください。
+コンプレックスオブザーバーのように、`undefined`値の取り扱いは**監視されているプロパティの数に依存します**。詳細については、[コンプレックスオブザーバー](data-system#observable-changes)の説明を参照してください。
 
 ### 算出プロパティの定義
 
@@ -455,7 +456,7 @@ fullName: {
 
 この関数には、引数のカッコ内で依存関係にあるプロパティが文字列として渡されます。
 
-複雑なオブザーバーと同様に、算出関数は、依存関係にある**すべての**プロパティが定義される(`!== undefined`)まで呼び出されることはありません。 その後、この関数は、依存関係にあるプロパティに対して[監視可能な変更](data-system#observable-changes)があると一度呼び出されます。
+コンプレックスオブザーバーと同様に、算出関数は、依存関係にある**すべての**プロパティが定義される(`!== undefined`)まで呼び出されることはありません。 その後、この関数は、依存関係にあるプロパティに対して[監視可能(observable)な変更](data-system#observable-changes)があると一度呼び出されます。
 
 
 **注意**： 算出関数の定義は、[マルチプロパティオブザーバー](#multi-property-observers)の定義に似ており、二つはほぼ同じように動作します。唯一の違いは、算出プロパティの関数が仮想的なプロパティとして公開される値を返す点です。
@@ -499,16 +500,14 @@ fullName: {
 </dom-module>
 ```
 
-算出関数の引数は、要素上のシンプルなプロパティかもしれませんが、`observers`でサポートされる引数のタイプと同じならどんなものであっても構いません。これには、[パス](#observing-path-changes)、[ワイルドカードを含むパス](#deep-observation)、[配列スプライスへのパス](#array-observation)が含まれます。算出関数が受け取った引数は、上記のセクションで説明したものと一致します。
+算出関数の引数は、エレメント上のシンプルなプロパティかもしれませんが、`observers`でサポートされる引数のタイプと同じならどんなものであっても構いません。これには、[パス](#observing-path-changes)、[ワイルドカードを含むパス](#deep-observation)、[配列スプライスへのパス](#array-observation)が含まれます。算出関数が受け取った引数は、上記のセクションで説明したものと一致します。
 
 **注意**：データバインディングのためにだけに算出プロパティが必要な場合、代わりに算出バインディングを利用できます。詳細は、[算出バインディング](data-binding#annotated-computed)を参照してください 。
 { .alert .alert-info }
 
-## Dynamic observer methods {#dynamic-observer-methods}
+## 動的な(dymanib)オブザーバーメソッド {#dynamic-observer-methods}
 
-If the observer method is declared in the `properties` object, the method is considered _dynamic_:
-the method itself may change during runtime. A dynamic method is considered an extra dependency of
-the observer, so the observer re-runs if the method itself changes. For example:
+オブザーバーメソッドが`properties`オブジェクト内で宣言された場合、そのメソッドは動的とみなされます。つまりメソッドが実行時に変更されるかもしれないということです。動的なメソッドはオブザーバーにとって特別な依存部と考えられ、メソッド自体が変更された場合にはオブザーバーは再実行されます。例えば：
 
 ```js
 class NameCard extends Polymer.Element {
@@ -548,8 +547,7 @@ class NameCard extends Polymer.Element {
 customElements.define('name-card', NameCard);
 ```
 
-Setting a new value for `formatter` causes the `formattedName` property to update, even if the `name`
-property doesn't change:
+`formatter`に新しい値を設定すると、`name`が変更されなかったとしても、`formattedName`プロパティが更新されます。：
 
 ```js
 nameCard.name = { title: 'Admiral', first: 'Grace', last: 'Hopper'}
@@ -560,49 +558,48 @@ nameCard.formatter = function(title, first, last) {
 console.log(nameCard.formattedName); // Hopper, Grace
 ```
 
-Since a dynamic observer property counts as a dependency, if the method is defined, the
-observer runs at initialization, even if none of the other dependencies are defined.
+動的オブザーバーのプロパティは依存部としてカウントされるため、メソッドが定義されている場合には、
+たとえ他の依存部が一切定義されていなくても、オブザーバーは初期化時に実行されます。
 
-## Add observers and computed properties dynamically {#dynamic-observers}
+## 動的にオブザーバーや算出プロパティを追加する {#dynamic-observers}
 
-In some cases, you may want to add an observer or computed property dynamically. A set of instance
-methods allow you to add a simple observer, complex observer, or computed property to the current
-element _instance_.
+場合によっては、オブザーバーや算出プロパティを動的に追加することもできます。インスタンス
+メソッドを利用することで、シンプルオブザーバー、コンプレックスオブザーバー、または算出プロパティを現在のエレメントの_インスタンス_に追加することもできます。
 
-### Add a simple observer dynamically
 
-You can create a simple observer dynamically using the `_createPropertyObserver` instance method.
-For example:
+### シンプルオブザーバーを動的に追加する
+
+インスタンスメソッド`_createPropertyObserver`を利用すればシンプルオブザーバーを動的に生成することができます。
+例えば：
 
 ```js
 this._observedPropertyChanged = (newVal) => { console.log('observedProperty changed to ' + newVal); };
 this._createPropertyObserver('observedProperty', '_observedPropertyChanged', true);
 ```
 
-The optional third argument determines whether the method itself (in this case, `_observedPropertyChanged`)
-should be treated as a dependency.
+オプションの第3引数を指定することで、メソッド自体を依存部として扱うようにできます。（この例では`_observedPropertyChanged`）
 
-### Add a complex observer dynamically
+### コンプレックスブザーバーを動的に追加する
 
-You can create a computed property dynamically using the `_createMethodObserver` instance method.
-For example:
+インスタンスメソッド`_createMethodObserver`を利用すればコンプレックスオブザーバーを動的に生成することができます。
+例えば：
+
 
 ```js
 this._createMethodObserver('_observeSeveralProperties(prop1,prop2,prop3)', true);
 ```
 
-The optional third argument determines whether the method itself (in this case, `_observeSeveralProperties`)
-should be treated as a dependency.
+
+オプションの第3引数を指定することで、メソッド自体を依存部として扱うようにできます。（この例では`_observeSeveralProperties`）
 
 
-### Add a computed property dynamically
+### 算出プロパティを動的に追加する
 
-You can create a computed property dynamically using the `_createComputedProperty` instance method.
-For example:
+インスタンスメソッド`_createComputedProperty`を利用すれば算出プロパティを動的に生成することができます。
 
 ```js
 this._createComputedProperty('newProperty', '_computeNewProperty(prop1,prop2)', true);
 ```
 
-The optional third argument determines whether the method itself (in this case, `_computeNewProperty`)
-should be treated as a dependency.
+
+オプションの第3引数を指定することで、メソッド自体を依存部として扱うようにできます。（この例では`_computeNewProperty`）

@@ -4,12 +4,12 @@ title: Responsive app layout
 
 <!-- toc -->
 
-どんなアプリケーションにもレイアウトが必要です。`app-layout`要素は、レスポンシブなレイアウトを簡単に作成するツールを提供します。
+どんなアプリケーションにもレイアウトが必要です。`app-layout`エレメントは、レスポンシブなレイアウトを簡単に作成するツールを提供します。
 
-前世代のMaterial Designベースのレイアウト要素（`paper-header-panel`や`paper-drawer-panel`など）を使って開発していた場合、`app-layout`要素はかなり手軽に感じるはずです。これらの要素は次のように設計されています。：
+前世代のMaterial Designベースのレイアウトエレメント（`paper-header-panel`や`paper-drawer-panel`など）を使って開発していた場合、`app-layout`エレメントはかなり手軽に感じるはずです。これらのエレメントは次のように設計されています。：
 
 - より柔軟で簡易な構築ー幅広いレイアウトパターンをサポートしています。
-- より自由にーこれらの要素が特定のルック・アンド・フィールを強制することはありません。（ただし、Materila DesignのエフェクトやUIパターンは必要に応じてサポートします）。
+- より自由にーこれらのエレメントが特定のルック・アンド・フィールを強制することはありません。（ただし、Materila DesignのエフェクトやUIパターンは必要に応じてサポートします）。
 - 拡張可能ースクロールエフェクト用に簡易にプラグインできるシステムを新たに採用しました。
 
 ## デザインのレイアウト
@@ -32,11 +32,11 @@ title: Responsive app layout
 
 ## ツールバーとヘッダー
 
-ほとんどすべてのアプリには、上部にヘッダーやツールバーがあります。ヘッダーはコンテンツとともにスクロールしたり、画面の上部に固定したり、あるいはユーザーのスクロールに応じて動的な振る舞いを実装することもできます。必要な要素は、期待するものによって異なります。：
+ほとんどすべてのアプリには、上部にヘッダーやツールバーがあります。ヘッダーはコンテンツとともにスクロールしたり、画面の上部に固定したり、あるいはユーザーのスクロールに応じて動的な振る舞いを実装することもできます。必要なエレメントは、期待するものによって異なります。：
 
--   コンテンツとともにスクロールする単純なヘッダーが必要な場合、`<app-toolbar>`要素をそのまま利用できます。`<app-toolbar>`は、コントロールとラベル用のシンプルな水平のコンテナです。複数行のコントロールが必要な場合には、複数のツールバーを使用するだけです。
+-   コンテンツとともにスクロールする単純なヘッダーが必要な場合、`<app-toolbar>`エレメントをそのまま利用できます。`<app-toolbar>`は、コントロールとラベル用のシンプルな水平のコンテナです。複数行のコントロールが必要な場合には、複数のツールバーを使用するだけです。
 
--   スクロールエフェクト（ユーザーがスクロールするとサイズを変化するようなヘッダー）が必要な場合、`<app-header>`要素が必要です。`<app-header>`は一つ以上のツールバーを保持でき、スクロールエフェクトを管理します。
+-   スクロールエフェクト（ユーザーがスクロールするとサイズを変化するようなヘッダー）が必要な場合、`<app-header>`エレメントが必要です。`<app-header>`は一つ以上のツールバーを保持でき、スクロールエフェクトを管理します。
 
 ### シンプルなツールバー
 
@@ -95,13 +95,13 @@ title: Responsive app layout
 
 ### ダイナミックヘッダー
 
-`<app-header>`要素は、スクロールエフェクトに対応するコンテナです。アプリのヘッダーにはあらゆる種類の要素を配置することができますが、最も一般的な子はツールバーとタブバーでしょう。複数行をコントロールする場合は複数のツールバーを使用します。
+`<app-header>`エレメントは、スクロールエフェクトに対応するコンテナです。アプリのヘッダーにはあらゆる種類のエレメントを配置することができますが、最も一般的な子はツールバーとタブバーでしょう。複数行をコントロールする場合は複数のツールバーを使用します。
 
 デフォルトでは、シンプルなツールバーとちょうど同じようにページを下にスクロールするとヘッダーも画面外へスクロールされます。ヘッダーに以下の属性を追加することで、デフォルトの動作を変更できます。：
 
 - `fixed`：固定(fixed)ヘッダーとして画面の上部に配置されたままになります。
 - `reveals`：リビーリング(revealing)ヘッダーは、ページをどんなに下までスクロールしていたとしても、上に向かってスクロールを開始するとすぐにヘッダーが表示されます。
-- `condenses`：コンデンシング(condensing)ヘッダーは通常のヘッダーより高さがありますが、スクロールすると縦に縮みます。コンデンシングヘッダーはたいてい複数のツールバー/タブバーを持ち、どれかひとつ(sticky要素)が常時表示されることになります。このモードは、固定ヘッダーやリビーリングヘッダーと組み合わせることもできます。
+- `condenses`：コンデンシング(condensing)ヘッダーは通常のヘッダーより高さがありますが、スクロールすると縦に縮みます。コンデンシングヘッダーはたいてい複数のツールバー/タブバーを持ち、どれかひとつ(stickyエレメント)が常時表示されることになります。このモードは、固定ヘッダーやリビーリングヘッダーと組み合わせることもできます。
 
 
 ### コンデンシングヘッダー
@@ -139,7 +139,7 @@ title: Responsive app layout
 
 ここでは、最初のツールバー（アイコンボタン付き）がstickyです。他のツールバーが上にずり上がっても画面に残り、重なったツールバーの最上部に表示されます。タイトルの`spacer`属性によって、タイトルの左に`padding`が追加され、ツールバーの左側にあるメニューボタンに重なり合うことはありません。
 
-コンデンシングヘッダの初期の高さは自然に決まります。（つまり、CSSで明示的に高さが設定されていない限り、その内容の高さになります）。そしてsticky要素の高さを下限として縮められていきます。
+コンデンシングヘッダの初期の高さは自然に決まります。（つまり、CSSで明示的に高さが設定されていない限り、その内容の高さになります）。そしてstickyエレメントの高さを下限として縮められていきます。
 
 タブバーだけを残したい場合には、タブバーを最後に置き、`sticky`としてマークします。
 
@@ -183,14 +183,14 @@ title: Responsive app layout
 
 さらなる背景を知りたい場合、様々なスクロールエフェクトの違いについて解説したMaterial Desing仕様の[スクロールテクニック](https://www.google.com/design/spec/patterns/scrolling-techniques.html)を参照してください。
 
-### ドキュメントスクローラーと要素スクローラー
+### ドキュメントスクローラーとエレメントスクローラー
 
-`<app-header>`要素は、デフォルトでドキュメントスクローラーを使用します。モバイルブラウザでは、ブラウザがページを下にスクロールする際URLバーを非表示にすることができます。しかし、ドキュメントスクローラーは一つしかないので、コンテンツページを切り替える場合は、アプリは各ページのスクロール位置を管理する必要があります。
+`<app-header>`エレメントは、デフォルトでドキュメントスクローラーを使用します。モバイルブラウザでは、ブラウザがページを下にスクロールする際URLバーを非表示にすることができます。しかし、ドキュメントスクローラーは一つしかないので、コンテンツページを切り替える場合は、アプリは各ページのスクロール位置を管理する必要があります。
 
 **複数のスクロール付きビューを管理する。**`<iron-pages>`のような手段を使ってビューを切り替える場合、[`<app-scroll-position>`](https://www.webcomponents.org/element/PolymerElements/app-layout/app-scroll-position)を利用して各ビューのスクロール位置を記録できます。利用例については、APIドキュメントを参照してください。なお、2.0のリリースに伴い`<app-scrollpos-control>`が`<app-scroll-position>`に改名されています。
 {.alert .alert-info}
 
-`<app-header>`に`scrollTarget`プロパティを指定することで、**要素の**スクローラーを使用することができます：
+`<app-header>`に`scrollTarget`プロパティを指定することで、**エレメントの**スクローラーを使用することができます：
 
 ```
   <div id="scrollingRegion" style="overflow-y: auto;">
@@ -203,7 +203,7 @@ title: Responsive app layout
 
 ### ヘッダーレイアウト
 
-[`<app-header-layout>`](https://www.webcomponents.org/element/PolymerElements/app-layout/app-header-layout)要素は、`<app-header>`ベースのレイアウトをまとめ上げる簡単な方法です。この要素は、コンテンツの周りに必要なパディングを確保してくれるので、コンテンツがヘッダーによって隠れてしまうといったことがなくなります。
+[`<app-header-layout>`](https://www.webcomponents.org/element/PolymerElements/app-layout/app-header-layout)エレメントは、`<app-header>`ベースのレイアウトをまとめ上げる簡単な方法です。このエレメントは、コンテンツの周りに必要なパディングを確保してくれるので、コンテンツがヘッダーによって隠れてしまうといったことがなくなります。
 
 使用するには、`<app-header>`といくつかのコンテンツを`<app-header-layout>`の中に置きます。.
 
@@ -227,7 +227,7 @@ Polymer 2.0のApp Layoutでは、`slot="header"`を指定する必要があり�
 
 ## ドロワー
 
-[`<app-drawer>`](https://www.webcomponents.org/element/PolymerElements/app-layout/app-drawer)要素は、画面の左右に配置可能なドロワーです。
+[`<app-drawer>`](https://www.webcomponents.org/element/PolymerElements/app-layout/app-drawer)エレメントは、画面の左右に配置可能なドロワーです。
 
 ```
 <app-drawer>
@@ -270,11 +270,11 @@ Polymer 2.0のApp Layoutでは、`slot="header"`を指定する必要があり�
 
 ### ドロワーのレイアウト
 
-[`<app-drawer-layout>`](https://www.webcomponents.org/element/PolymerElements/app-layout/app-drawer-layout)要素は、一つのドロワーを使用してレスポンシブなレイアウトを作成します。より広い画面では、ドロワーはデフォルトで固定サイドバーとして機能します。サイドバーは常に表示され、スワイプとフリングジェスチャーは無効になります。
+[`<app-drawer-layout>`](https://www.webcomponents.org/element/PolymerElements/app-layout/app-drawer-layout)エレメントは、一つのドロワーを使用してレスポンシブなレイアウトを作成します。より広い画面では、ドロワーはデフォルトで固定サイドバーとして機能します。サイドバーは常に表示され、スワイプとフリングジェスチャーは無効になります。
 
-ドロワーにトグルボタンを追加するには、`<app-drawer-layout>`の子孫の一つとして`drawer-toggle`属性を持つ要素を配置します。通常、ドロワーのトグルボタンは、アプリケーションの特定のツールバーの内側に配置します。lbars.
+ドロワーにトグルボタンを追加するには、`<app-drawer-layout>`の子孫の一つとして`drawer-toggle`属性を持つエレメントを配置します。通常、ドロワーのトグルボタンは、アプリケーションの特定のツールバーの内側に配置します。lbars.
 
-Polymer 2.0のApp Layoutでは、ドロワーが固定された(persistent)場合であっても、`drawer-toggle`要素が自動的に非表示にならなくなりました。`drawer-toggle`を非表示にしたい場合、`app-drawer-layout`の`narrow`属性の有無に基づいてスタイルを適用できます。(例：`app-drawer-layout：not（[narrow])``[drawer-toggle] {display：none;}`)
+Polymer 2.0のApp Layoutでは、ドロワーが固定された(persistent)場合であっても、`drawer-toggle`エレメントが自動的に非表示にならなくなりました。`drawer-toggle`を非表示にしたい場合、`app-drawer-layout`の`narrow`属性の有無に基づいてスタイルを適用できます。(例：`app-drawer-layout：not（[narrow])``[drawer-toggle] {display：none;}`)
 {.alert .alert-info}
 
 `<app-header-layout>`を`<app-drawer-layout>`内にネストすることで、ドロワーとヘッダーを含むレスポンシブなレイアウトを作成できます。
@@ -312,7 +312,7 @@ App Layout 2.0では、`slot="drawer"`を指定する必要があります。
 ![screenshot of a nav menu with 5 tabs, displayed horizontally, labelled "item one" through "item four"](/images/1.0/toolbox/app-layout-responsive-nav-tabs.png)
 ![screenshot of the same menu displayed vertically, after being open from a mobile drawer button ](/images/1.0/toolbox/app-layout-responsive-nav-drawer.png)
 
-このパターンは、いくつかの`app-layout`要素を使うことで実現できます。タブとドロワーのナビゲーションの切り替えはデータバインディングを利用します。
+このパターンは、いくつかの`app-layout`エレメントを使うことで実現できます。タブとドロワーのナビゲーションの切り替えはデータバインディングを利用します。
 
 [変形するナビゲーションのデモ](https://polymerelements.github.io/app-layout/patterns/transform-navigation/)では、このこのような変形の簡単なバージョンが紹介されています。
 
@@ -365,4 +365,4 @@ App Layout 2.0では、`slot="drawer"`を指定する必要があります。
 
 <a href="https://github.com/polymerelements/app-layout/blob/master/patterns/transform-navigation/x-app.html" class="blue-button">View full source</a>
 
-[Shopアプリ](https://shop.polymer-project.org/)では、このパターンのやや洗練されたバージョンを使用しています。条件付きテンプレート(dom-if)を使用することで、ナビゲーション要素が必要とされるまで生成しないようにしています。つまり、モバイル環境で実行しているときにはタブを生成しなくて済みます。
+[Shopアプリ](https://shop.polymer-project.org/)では、このパターンのやや洗練されたバージョンを使用しています。条件付きテンプレート(dom-if)を使用することで、ナビゲーションエレメントが必要とされるまで生成しないようにしています。つまり、モバイル環境で実行しているときにはタブを生成しなくて済みます。
