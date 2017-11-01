@@ -8,9 +8,9 @@ title: ローカリゼーション
 
 `Polymer.AppLocalizeBehavior`は、`format.js`とまったく同じ[メッセージ構文](http://formatjs.io/guides/message-syntax/)をサポートしています。利用可能なメッセージ形式とオプションのリファレンスはformat.jsライブラリのドキュメントを参照してください。
 
-コンテンツをローカライズして表示する要素には、それぞれ`Polymer.AppLocalizeBehavior`を追加する必要があります。これらの要素はすべて共通のローカリゼーションキャッシュを共有しており、翻訳は一度読む込むだけで済みます。
+コンテンツをローカライズして表示するエレメントには、それぞれ`Polymer.AppLocalizeBehavior`を追加する必要があります。これらのエレメントはすべて共通のローカリゼーションキャッシュを共有しており、翻訳は一度読む込むだけで済みます。
 
-Polymer 1.x要素とPolymer 2.xのハイブリッド要素では、`AppLocalizeBehavior`を直接使用できます。クラススタイルの要素の場合は、`mixinBehaviors`メソッドを使用します。.
+Polymer 1.xエレメントとPolymer 2.xのハイブリッドエレメントでは、`AppLocalizeBehavior`を直接使用できます。クラススタイルのエレメントの場合は、`mixinBehaviors`メソッドを使用します。.
 
 ## AppLocalizeBehaviorをインストール
 
@@ -20,7 +20,7 @@ Polymer 1.x要素とPolymer 2.xのハイブリッド要素では、`AppLocalizeB
 
 通常、メインアプリケーションが、ローカライズされたメッセージのロードと言語環境の設定を担います。
 
-サンプルアプリケーション(クラススタイル要素) {.caption}
+サンプルアプリケーション(クラススタイルエレメント) {.caption}
 
 ```html
 <dom-module id="x-app">
@@ -60,7 +60,7 @@ Polymer 1.x要素とPolymer 2.xのハイブリッド要素では、`AppLocalizeB
 
 一般的には、次の例に示すように、アプリケーションは外部ファイルからリソースをロードします。
 
-サンプルアプリケーション(ハイブリッド要素) {.caption}
+サンプルアプリケーション(ハイブリッドエレメント) {.caption}
 
 ```html
 <dom-module id="x-app">
@@ -97,4 +97,4 @@ Polymer 1.x要素とPolymer 2.xのハイブリッド要素では、`AppLocalizeB
 
 メインアプリケーションは、ポリフィル`Intl`の読み込みも担います。(上記には示されていません)
 
-メッセージをローカライズする必要がある要素には、それぞれ`Polymer.AppLocalizeBehavior`を追加し、上記のように`localize`メソッドを使用して文字列を変換する必要があります。
+メッセージをローカライズする必要があるエレメントには、それぞれ`Polymer.AppLocalizeBehavior`を追加し、上記のように`localize`メソッドを使用して文字列を変換する必要があります。

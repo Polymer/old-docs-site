@@ -1,16 +1,16 @@
 ---
-title: 要素の定義
+title: エレメントの定義
 ---
 
 <!-- toc -->
 
 
-## カスタム要素の定義{#register-element}
+## Custom Elementの定義{#register-element}
 
 
-カスタム要素を定義するには、`Polymer.Element`の拡張クラスを作成し、そのクラスを`customElements.define`メソッドに渡します。
+Custom Elementを定義するには、`Polymer.Element`の拡張クラスを作成し、そのクラスを`customElements.define`メソッドに渡します。
 
-仕様では、カスタム要素名は、**小文字のASCII文字で始まり、ダッシュ(-)を含まなければなりません。**
+仕様では、Custom Element名は、**小文字のASCII文字で始まり、ダッシュ(-)を含まなければなりません。**
 
 例: { .caption }
 
@@ -40,11 +40,11 @@ var el1 = document.createElement('my-element');
 var el2 = new MyElement();
 ```
 
-上記の通り、[カスタム要素のライフサイクル](custom-elements#element-lifecycle)で説明したように要素のクラスにはカスタム要素のリアクションとしてコールバックを定義することができる。
+上記の通り、[Custom Elementのライフサイクル](custom-elements#element-lifecycle)で説明したようにエレメントのクラスにはCustom Elementのリアクションとしてコールバックを定義することができる。
 
-## 既存の要素を拡張 {#extend-element}
+## 既存のエレメントを拡張 {#extend-element}
 
-ES6ではネイティブに提供されるサブクラス化の仕組みを活用することで、ES6の構文を使って定義済みの既存の要素を拡張したりカスタマイズしたりすることができます。：
+ES6ではネイティブに提供されるサブクラス化の仕組みを活用することで、ES6の構文を使って定義済みの既存のエレメントを拡張したりカスタマイズしたりすることができます。：
 
 ```js
 // Subclass existing element
@@ -62,14 +62,13 @@ class MyElementSubclass extends MyElement {
 customElements.define(MyElementSubclass.is, MyElementSubclass);
 ```
 
-For more information on extending elements, see [Extending other elements](custom-elements#extending-elements)
-in Custom element concepts.
+エレメントの拡張についての詳細は、Custom Elementのコンセプトのセクションの[他のエレメントの拡張](custom-elements#extending-elements)を参照してください。
 
 サブクラスにテンプレートを指定しない場合、デフォルトでスーパークラスのテンプレートが継承されます。この動作をオーバーライドしたり、スーパークラスのテンプレートを変更したりするには、サブクラスの`template`のgetterメソッドをオーバーライドします。
 
-## Using mixins
+## ミックスインの使用
 
-You can share code using _mixins_. You use a mixin to add new features on top of a base class:
+_ミックスイン_ によってコードをエレメント間で共有することができます。ミックスインを使って、トップの基底クラスに新たな機能を追加してみます。：
 
 ```js
 class MyElementWithMixin extends MyMixin(Polymer.Element) {
@@ -78,6 +77,7 @@ class MyElementWithMixin extends MyMixin(Polymer.Element) {
 ```
 
 This pattern may be easier to understand if you think of it as two steps:
+この例に関しては、2つのステップに分けて考えると理解しやすいでしょう。：
 
 ```js
 // Create a new base class that adds MyMixin's features to Polymer.Element
@@ -93,27 +93,30 @@ inheritance apply.
 For information on defining mixins, see [Sharing code with class expression mixins](custom-elements#mixins)
 in Custom element concepts.
 
+ミックスインは単に継承チェーンにクラスを追加するだけなので、継承の一般的なルールがそのまま適用されます。
+
+ミックスインの定義に関する詳細は、Custom Elementのコンセプトの[Sharing code with class expression mixins](custom-elements#mixins)を参照してください。
+
 ## HTML ImportsとAPI
 
-There are three main HTML imports for defining Polymer elements:
-Polymer要素を定義するのに三つの主要なHTML Importsがあります。：
+Polymer Elementを定義するのに三つの主要なHTML Importsがあります。：
 
 
 | インポート | 説明 |
 |---|-------|
-|`polymer-element.html`|`Polymer.Element`クラスをベースに要素を定義します。|
-|`legacy-element.html`|`Polymer.Element`を拡張し、Poymer 1.xと互換性のある`Polymer.LegacyElement`APIが付加された`Polymer.LegacyElement`クラスをベースに要素を定義します。また、レガシーなファクトリメソッド`Polymer()`を利用して、1.xと2.xのハイブリッド要素を定義することもできます(`polymer-element.html`を含んでいます）。|
-|`polymer.html`|Polymerの基底クラスに、1.xでpolymer.htmlのバンドルに含まれていたヘルパー要素（`custom-style`、`dom-bind`、`dom-if`、`dom-repeat`など)を加えてインクルードします（`legacy-element.html`を含んでいます）。|
+|`polymer-element.html`|`Polymer.Element`クラスをベースにエレメントを定義します。|
+|`legacy-element.html`|`Polymer.Element`を拡張し、Poymer 1.xと互換性のある`Polymer.LegacyElement`APIが付加された`Polymer.LegacyElement`クラスをベースにエレメントを定義します。また、レガシーなファクトリメソッド`Polymer()`を利用して、1.xと2.xのハイブリッドエレメントを定義することもできます(`polymer-element.html`を含んでいます）。|
+|`polymer.html`|Polymerの基底クラスに、1.xでpolymer.htmlのバンドルに含まれていたヘルパーエレメント（`custom-style`、`dom-bind`、`dom-if`、`dom-repeat`など)を加えてインクルードします（`legacy-element.html`を含んでいます）。|
 
-リソースを最小限にしたい場合には、`polymer-element.html`をインポートし、必要なヘルパー要素を個別にインポートして下さい。
+リソースを最小限にしたい場合には、`polymer-element.html`をインポートし、必要なヘルパーエレメントを個別にインポートして下さい。
 
-1.xの後方互換APIが必要な場合には、2.xのクラススタイルの要素を作成する際の基底クラスとして`Polymer.LegacyElement`を使用できます。また利用するヘルパー要素は個別にインポートする必要があります。
+1.xの後方互換APIが必要な場合には、2.xのクラススタイルのエレメントを作成する際の基底クラスとして`Polymer.LegacyElement`を使用できます。また利用するヘルパーエレメントは個別にインポートする必要があります。
 
-1.xと2.xの両方で実行できるハイブリッド要素を定義するには、`polymer.html`をインポートして使用します。
+1.xと2.xの両方で実行できるハイブリッドエレメントを定義するには、`polymer.html`をインポートして使用します。
 
-##クラススタイルの要素でハイブリッドな動作を使用
+##クラススタイルのエレメントでハイブリッドな動作を使用
 
-`Polymer.mixinBehavior`関数を使用して、クラススタイルの要素にハイブリッドな動作(behavior)を追加することができます。：
+`Polymer.mixinBehavior`関数を使用して、クラススタイルのエレメントにハイブリッドな動作(behavior)を追加することができます。：
 
 ```
 class XClass extends Polymer.mixinBehaviors([MyBehavior, MyBehavior2], Polymer.Element) {
@@ -125,11 +128,11 @@ customElements.define('x-class', XClass);
 
 この`mixinBehavior`関数は、1.xのレガシーAPIもミックスインするので、`Polymer.LegacyElement`を拡張したのとほとんど同じことです。これらのレガシーAPIが必要とされるのは、ハイブリッドな動作がそれらに依存しているためです。
 
-## メインのHTMLドキュメントで要素を定義 {#main-document-definitions}
+## メインのHTMLドキュメントでエレメントを定義 {#main-document-definitions}
 
-試験的な実装においては、メインドキュメントから要素を定義するだけで済むかもしれません。本番環境では、常に要素は分割したファイルに定義した上で、メインドキュメントにインポートする必要があります。
+試験的な実装においては、メインドキュメントからエレメントを定義するだけで済むかもしれません。本番環境では、常にエレメントは分割したファイルに定義した上で、メインドキュメントにインポートする必要があります。
 
-メインのHTMLドキュメントで要素を定義するには、要素は`HTMLImports.whenReady(callback)`で定義します。`callback`はドキュメント内の全てのインポートの読み込み(loading)が完了した時点で呼び出されます。
+メインのHTMLドキュメントでエレメントを定義するには、エレメントは`HTMLImports.whenReady(callback)`で定義します。`callback`はドキュメント内の全てのインポートの読み込み(loading)が完了した時点で呼び出されます。
 
 ```
 <!DOCTYPE html>
@@ -164,11 +167,11 @@ customElements.define('x-class', XClass);
 </html>
 ```
 
-## レガシー要素を定義する {#legacy-element}
+## レガシーエレメントを定義する {#legacy-element}
 
-レガシーな要素は、要素の登録に`Polymer`関数が使用できます。関数は新しい要素のプロトタイプを引数に取ります。プロトタイプには、カスタム要素のHTMLタグ名を指定する`is`プロパティが必要です。
+レガシーなエレメントは、エレメントの登録に`Polymer`関数が使用できます。関数は新しいエレメントのプロトタイプを引数に取ります。プロトタイプには、Custom ElementのHTMLタグ名を指定する`is`プロパティが必要です。
 
-仕様では、カスタム要素の名前は**ASCII文字で始まり、ダッシュ(-)を含む必要があります。**
+仕様では、Custom Elementの名前は**ASCII文字で始まり、ダッシュ(-)を含む必要があります。**
 
 例: { .caption }
 
@@ -192,15 +195,15 @@ customElements.define('x-class', XClass);
     var el2 = new MyElement();
 ```
 
-`Polymer`関数は、要素をブラウザに登録し、コードから要素の新たな要素のインスタンスを生成するコンストラクタを返します。
+`Polymer`関数は、エレメントをブラウザに登録し、コードからエレメントの新たなエレメントのインスタンスを生成するコンストラクタを返します。
 
-`Polymer`関数はカスタム要素のプロトタイプチェーンを構築し、それをPolymerの`Base`プロトタイプ（Polymerの付加的な機能を提供）につなぎます。そのため開発者が独自のプロトタイプチェーンを構築することはできません。しかし、[behaviors](#prototype-mixins)プロパティを使用することで要素間でコードを共有することはできます。
+`Polymer`関数はCustom Elementのプロトタイプチェーンを構築し、それをPolymerの`Base`プロトタイプ（Polymerの付加的な機能を提供）につなぎます。そのため開発者が独自のプロトタイプチェーンを構築することはできません。しかし、[behaviors](#prototype-mixins)プロパティを使用することでエレメント間でコードを共有することはできます。
 
 ## ライフサイクルコールバック {#lifecycle-callbacks}
 
-`Polymer.Element`クラスは、Polymerのビルトイン機能で必須のタスクを実行するため、標準のカスタム要素のライフサイクルコールバックを実装しています。
+`Polymer.Element`クラスは、Polymerのビルトイン機能で必須のタスクを実行するため、標準のCustom Elementのライフサイクルコールバックを実装しています。
 
-Polymerは、要素のDOMの生成と初期化が完了した時点で呼び出されれる`ready`という特別なコールバックも用意しています。
+Polymerは、エレメントのDOMの生成と初期化が完了した時点で呼び出されれる`ready`という特別なコールバックも用意しています。
 
 <table>
   <tr>
@@ -210,7 +213,7 @@ Polymerは、要素のDOMの生成と初期化が完了した時点で呼び出�
   <tr>
     <td><code>created</code></td>
     <td>
-      要素の作成後、プロパティ値の設定やローカルDOMの初期化前に呼び出されます。
+      エレメントの作成後、プロパティ値の設定やローカルDOMの初期化前に呼び出されます。
       <p>プロパティ値が設定される前のワンタイム設定に利用されます。
       </p>
       <p>ネイティブの<code>constructor</code>に相当します。
@@ -228,9 +231,9 @@ Polymerは、要素のDOMの生成と初期化が完了した時点で呼び出�
   <tr>
     <td><code>attached</code></td>
     <td>
-      要素がドキュメントに追加(attached)された後に呼び出されます。要素の存続期間中であれば複数回呼び出すことができます。初回の<code>attached</code>コールバックは<code>ready</code>コールバックが実行されるまで呼び出されないことが保証されています。
+      エレメントがドキュメントに追加(attached)された後に呼び出されます。エレメントの存続期間中であれば複数回呼び出すことができます。初回の<code>attached</code>コールバックは<code>ready</code>コールバックが実行されるまで呼び出されないことが保証されています。
       <p>
-        ドキュメントレベル(document-level)のイベントリスナーを追加するのにも利用されます。（ローカルな要素に対してイベントリスナーを設定するには、<a href="events.html#annotated-listeners">アノテーション付イベントリスナー</a>や<a href="events#event-listeners">リスナーオブジェクト</a>のような宣言的なイベント処理を利用でき、Polymerはリスナーを自動的に追加します）。
+        ドキュメントレベル(document-level)のイベントリスナーを追加するのにも利用されます。（ローカルなエレメントに対してイベントリスナーを設定するには、<a href="events.html#annotated-listeners">アノテーション付イベントリスナー</a>や<a href="events#event-listeners">リスナーオブジェクト</a>のような宣言的なイベント処理を利用でき、Polymerはリスナーを自動的に追加します）。
       </p>
      <p>ネイティブの<code>connectedCallback</code>に相当します。</p>
     </td>
@@ -238,7 +241,7 @@ Polymerは、要素のDOMの生成と初期化が完了した時点で呼び出�
   <tr>
     <td><code>detached</code></td>
     <td>
-      要素がドキュメントから切り離された(detached)された後に呼び出されます。要素の存続期間中であれば複数回呼び出すことができます。
+      エレメントがドキュメントから切り離された(detached)された後に呼び出されます。エレメントの存続期間中であれば複数回呼び出すことができます。
       <p>
         <code>attached</code>コールバックで追加されたイベントリスナーの削除にも利用されます。
       </p>
@@ -248,7 +251,7 @@ Polymerは、要素のDOMの生成と初期化が完了した時点で呼び出�
   </tr>
   <tr>
     <td><code>attributeChanged</code></td>
-    <td>要素の属性の一つが変更されたときに呼び出されます。
+    <td>エレメントの属性の一つが変更されたときに呼び出されます。
       <p>
         対応するプロパティが宣言<em>されていない</em>属性の変更を扱う場合に利用できます。（対応するプロパティが宣言されている場合は、<a href="properties#attribute-deserialization">属性デシリアライゼーション</a>で説明しているように、Polymerが自動的に属性の変更を処理します）。
       </p>
@@ -260,6 +263,6 @@ Polymerは、要素のDOMの生成と初期化が完了した時点で呼び出�
 
 ### レガシーなbehaviors {#prototype-mixins}
 
-レガシーな要素においては_behaviors_フォームを利用することで要素間でコードを共有することができます。behaviorにはプロパティ、ライフサイクルコールバック、イベントリスナーやその他の機能を定義することができます。
+レガシーなエレメントにおいては_behaviors_フォームを利用することでエレメント間でコードを共有することができます。behaviorにはプロパティ、ライフサイクルコールバック、イベントリスナーやその他の機能を定義することができます。
 
 より詳細なガイドは、Polymer 1.xのドキュメントの[Behaviors](/1.0/docs/devguide/behaviors)のセクションを参照してください。

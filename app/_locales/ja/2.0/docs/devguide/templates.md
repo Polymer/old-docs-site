@@ -1,17 +1,17 @@
 ---
-title: ヘルパー要素によるデータバインディング
+title: ヘルパーエレメントによるデータバインディング
 ---
 
 <!-- toc -->
 
-Polymerは、一般的なデータバインディングのユースケースに備えて各種カスタム要素を提供しています。：
+Polymerは、一般的なデータバインディングのユースケースに備えて各種Custom Elementsを提供しています。：
 
 -   テンプレートリピーター(`dom-repeat`)：配列アイテムごとに、テンプレートのコンテンツでインスタンスを生成します。
 -   配列セレクタ：構造化されたデータの配列において選択状態を管理します。
 -   条件付きテンプレート(`dom-if`)：指定された条件が`true`なら、そのコンテンツをスタンプします。
--   自動バインディングテンプレート(`dom-bind`)：Polymer要素外部でデータバインディングが利用できます。
+-   自動バインディングテンプレート(`dom-bind`)：Polymer Element外部でデータバインディングが利用できます。
 
-**2.0向けのヒント**：データバインディングのヘルパー要素は、下位バージョンと互換性のある`polymer.html`をインポートする際にバンドルされています。レガシーなインポートを利用しない場合、あなたが使用したヘルパー要素を個別にインポートする必要があります。
+**2.0向けのヒント**：データバインディングのヘルパーエレメントは、下位バージョンと互換性のある`polymer.html`をインポートする際にバンドルされています。レガシーなインポートを利用しない場合、あなたが使用したヘルパーエレメントを個別にインポートする必要があります。
 {.alert .alert-info}
 
 ## テンプレートリピーター(dom-repeat) {#dom-repeat}
@@ -23,7 +23,7 @@ Polymerは、一般的なデータバインディングのユースケースに�
 
 テンプレートリピーターを利用するには二つの方法があります。：
 
-*   **Polymer要素内またはPolymerが管理する他のテンプレートの内では**、`<template is="dom-repeat>`という省略記法を使用してください。 
+*   **Polymer Element内またはPolymerが管理する他のテンプレートの内では**、`<template is="dom-repeat>`という省略記法を使用してください。 
 
     ~~~html
     <template is="dom-repeat" items="{{items}}">
@@ -31,7 +31,7 @@ Polymerは、一般的なデータバインディングのユースケースに�
     </template>
     ~~~
 
-*   **Polymerが管理するテンプレートの外側では**、ラッパー要素`<dom-repeat>`を使用します。
+*   **Polymerが管理するテンプレートの外側では**、ラッパーエレメント`<dom-repeat>`を使用します。
 
     ~~~html
     <dom-repeat>
@@ -49,7 +49,7 @@ Polymerは、一般的なデータバインディングのユースケースに�
     ~~~
 
 
-Polymerが管理するテンプレートには、Polymer要素のテンプレートや、`dom-bind`、`dom-if`、`dom-repeat`に属するテンプレート、あるいは`Templatizer`によって管理されるテンプレートが含まれます。
+Polymerが管理するテンプレートには、Polymer Elementのテンプレートや、`dom-bind`、`dom-if`、`dom-repeat`に属するテンプレート、あるいは`Templatizer`によって管理されるテンプレートが含まれます。
 
 ほとんどのケースにおいて、`dom-repeat`には、一番目(省略形)のフォームを使用することになるでしょう。
 
@@ -57,19 +57,18 @@ Polymerが管理するテンプレートには、Polymer要素のテンプレー
 
 
 例：{ .caption }em used to create this instance.
-*   `index`. The index of `item` in the array. (The `index` value changes if
-    the array is sorted or filtered)
+*   `index`：配列内の`item`のインデックス（配列がソートまたはフィルタリングされた場合、`index`の値は変更されます）
 
 There are two ways to use a template repeater:
 
-*   **Inside a Polymer element or another Polymer-managed template.** Use the shorthand form
+*   **Polymerエレメントやその他のPolymerの管理するテンプレート内部の場合** 省略形で記述してください。
     `<template is="dom-repeat">`.
 
         <template is="dom-repeat" items="{{items}}">
           ...
         </template>
 
-*   **Outside of a Polymer-managed template.** Use the `<dom-repeat>` wrapper element:
+*   **Polymerの管理するテンプレートの外部の場合** ラッパーエレメントに`<dom-repeat>`を使用してください:
 
         <dom-repeat>
           <template>
@@ -77,21 +76,19 @@ There are two ways to use a template repeater:
           </template>
         </dom-repeat>
 
-    In this form, you typically set the `items` property imperatively:
+    この形式においては通常、命令的に`items`プロパティを設定します。:
 
         var repeater = document.querySelector('dom-repeat');
         repeater.items = someArray;
 
-A Polymer-managed template includes a Polymer element's template, or the template belonging
-to a `dom-bind`, `dom-if`, or `dom-repeat` template, or a template managed by the `Templatize`
-library.
+Polymerによって管理されるテンプレートには、Polymerエレメントのテンプレートの他に、`dom-bind`、`dom-if`、`dom-repeat`といった派生的なテンプレートや`Templatize`ライブラリによって管理されるテンプレートが含まれます。
 
-In most cases, you'll use the first (shorthand) form for `dom-repeat`.
+ほとんどのケースにおいて、`dom-repeat`には最初の(省略形の)形式を使います。
 
-The template repeater is included in the legacy (`polymer.html`) import for backwards compatibility.
-If you're not importing `polymer.html`, import `dom-repeat.html` as shown in the code below.
+テンプレートリピーターは、下位互換性のためにレガシー(`polymer.html`)インポートに含まれています。
+`polymer.html`をインポートしない場合は、下のコードに示すように`dom-repeat.html`を個別にインポートしてください。
 
-Example: { .caption }
+例: { .caption }
 
 ```html
 <link rel="import" href="components/polymer/polymer-element.html">
@@ -153,12 +150,12 @@ this.employees.push({first: 'Barret', last: 'Bonden'});
 this.notifyPath('employees');
 ```
 
-詳細については、[オブジェクトと配列を監視可能に変更する](data-system#make-observable-changesy)を参照してください。
+詳細については、[オブジェクトと配列を監視可能(observable)に変更する](data-system#make-observable-changesy)を参照してください。
 
 
 ### `dom-repeat`テンプレート内のイベントの処理 {#handling-events}
 
-`dom-repeat`テンプレートのインスタンスから生成されたイベントを処理する際、イベントが発生した要素と、アイテムを生成したモデルデータをマッピングしたいことが頻繁にあるかもしれません。
+`dom-repeat`テンプレートのインスタンスから生成されたイベントを処理する際、イベントが発生したエレメントと、アイテムを生成したモデルデータをマッピングしたいことが頻繁にあるかもしれません。
 
 `<dom-repeat>`テンプレートの**内部に**宣言型イベントハンドラを追加すると、リピーターはリスナーに送られてきた各イベントに`model`プロパティを付加します。`model`オブジェクトには、テンプレートのインスタンスを生成するのに使用したスコープデータが含まれており、アイテムのデータは`model.item`になります。
 
@@ -217,7 +214,7 @@ this.notifyPath('employees');
 e.model.set('item.ordered', e.model.item.ordered+1);
 ```
 
-This increments the order count for the item (in これによって、`item`の(この場合はピザの)注文数を増やします。
+これによって、`item`の(この場合はピザの)注文数を増やします。
 
 **`model`オブジェクトでは、バインドされたデータのみ利用可能です。**`dom-repeat`内部で、実際にバインドされたプロパティだけが`model`オブジェクトに追加されます。そのため場合によっては、イベントハンドラからプロパティへアクセスが必要な場合、テンプレート内のプロパティにバインドする必要があるかもしれません。例えば、ハンドラが`productId`プロパティにアクセスする必要がある場合、単にそのプロパティを表示に影響を与えないプロパティにバインドします。
 
@@ -229,7 +226,7 @@ This increments the order count for the item (in これによって、`item`の(
 
 #### `dom-repeat`テンプレートの外側におけるイベント処理
 
-(`addEventListener`を使って)命令的に登録されたリスナーや、特定の`dom-repeat`テンプレートの親ノードに設定されたリスナーに対して、`model`プロパティが付加されることはありません。これらのケースでは、指定された要素から生成されたモデルデータを検索するために`dom-repeat`の`modelForElement`メソッドを利用できます。(また`itemForElement`や`indexForElement`に相当するメソッドも存在します。)
+(`addEventListener`を使って)命令的に登録されたリスナーや、特定の`dom-repeat`テンプレートの親ノードに設定されたリスナーに対して、`model`プロパティが付加されることはありません。これらのケースでは、指定されたエレメントから生成されたモデルデータを検索するために`dom-repeat`の`modelForElement`メソッドを利用できます。(また`itemForElement`や`indexForElement`に相当するメソッドも存在します。)
 { .alert .alert-info }
 
 
@@ -240,14 +237,14 @@ This increments the order count for the item (in これによって、`item`の(
 *   `filter`：単一の引数(アイテム)をとる`filter`コールバック関数を指定します。関数からの返り値が`true`ならアイテムを表示して、`false`なら省略します。これは標準の`Array`の[filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)APIに**似ていますが**、コールバックは引数に一つの配列アイテムしか取らない点に注意してください。パフォーマンス上の理由から、引数`index`は含まれません。詳細については、[配列インデックスのフィルタリング](#filtering-and-sorting-lists)を参照してください。
 *   `sort`：標準の`Array`の[sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)APIに準じて比較関数を指定します。
 
-いずれの場合もその値は、関数オブジェクトでも、ホスト要素上で定義された関数を指示する文字列でも構いません。
+いずれの場合もその値は、関数オブジェクトでも、ホストエレメント上で定義された関数を指示する文字列でも構いません。
 
 デフォルトでは、`filter`及び`sort`関数は、次のいずれかが発生した時だけ実行されます。
 
-*   配列に[監視可能な変化](data-system#observable-changes)が生じた。(例えば、アイテムの追加または削除によって)
+*   配列に[監視可能(observable)な変化](data-system#observable-changes)が生じた。(例えば、アイテムの追加または削除によって)
 *   `filter`または`sort`関数が変更された。.
 
-関連のないデータの一部が変更された時に、`filter`や`sort`を再実行するには[render](#synchronous-renders)を呼び出してください。例えば、要素に`sort`関数の動作を変更する`sortOrder`プロパティがある場合、`sortOrder`に変更があったときに`render`を呼び出すことができます。
+関連のないデータの一部が変更された時に、`filter`や`sort`を再実行するには[render](#synchronous-renders)を呼び出してください。例えば、エレメントに`sort`関数の動作を変更する`sortOrder`プロパティがある場合、`sortOrder`に変更があったときに`render`を呼び出すことができます。
 
 `items`の特定のサブフィールドに変更があった時に、`filter`または`sort`関数を再実行するには、サブフィールド`item`のスペース区切りのリストに`observe`プロパティを設定します。そうすることで、再度フィルタリングやそーとが行われるでしょう。
 
@@ -383,7 +380,7 @@ filter: function(item) {
 *   特定のアイテムへスクロールする前に、アイテムのリストがレンダリングされていることを保証する。
 *   データの一部が配列の*外部で*変更されたとき(例えば、ソート順序やフィルタ条件など)、`sort`や`filter`関数を再実行する。
 
-`render`は、Polymerの[配列の変更メソッド](model-data#array-mutation)によって発生するような[監視可能な変化](data-system#observable-changes)**だけ**検出します。
+`render`は、Polymerの[配列の変更メソッド](model-data#array-mutation)によって発生するような[監視可能(observable)な変化](data-system#observable-changes)**だけ**検出します。
 
 テンプレートが*監視不能な変更*を検出するようにするには、[テンプレートを強制的に更新する](#forcing-the-template-to-update)を参照してください 。
 
@@ -391,7 +388,7 @@ filter: function(item) {
 
 開発者やサードパーティーライブラリが、Polymerのメソッドを**使用せず**配列を変更する場合、次のいずれかを実行できます。：
 
-*   配列の変更箇所を正確に把握している場合は、[notifySplices](model-data#notifysplices)を使用することで、配列を監視するすべての要素に適切に通知されるようにします。
+*   配列の変更箇所を正確に把握している場合は、[notifySplices](model-data#notifysplices)を使用することで、配列を監視するすべてのエレメントに適切に通知されるようにします。
 
 *   配列のクローンを作成します。
 
@@ -429,7 +426,7 @@ filter: function(item) {
 
 ## 配列の選択のデータバインド(array-selector) {#array-selector}
 
-構造化されたデータを同期するには、バインドされたデータのパスの関係をPolymerが把握していなければいけません。`array-selector`要素は、配列内から特定のアイテムが選択された際にパスの結合を保証してくれます。
+構造化されたデータを同期するには、バインドされたデータのパスの関係をPolymerが把握していなければいけません。`array-selector`エレメントは、配列内から特定のアイテムが選択された際にパスの結合を保証してくれます。
 
 `items`プロパティは、ユーザーデータの配列をアプリケーションの他の部分に結合されているかもしれない`selected`プロパティを更新するために`select(item)`や`deselect(item)`を呼び出します。`selected`のアイテム(群)のサブフィールドへの変更は、配列`items`内のアイテムと同期的に保たれます。
 
@@ -499,20 +496,20 @@ filter: function(item) {
 
 ## 条件付きテンプレート(dom-if) {#dom-if}
 
-要素は、ブーリアンプロパティに基づいて条件付きでスタンプすることができます。これを実現するには、`dom-if`と呼ばれる独自の`HTMLTemplateElement`型の拡張を使って要素をラップします。`dom-if`テンプレートは、その`if`プロパティが`true`になった時だけそのコンテンツをDOM内にスタンプします。
+エレメントは、ブーリアンプロパティに基づいて条件付きでスタンプすることができます。これを実現するには、`dom-if`と呼ばれる独自の`HTMLTemplateElement`型の拡張を使ってエレメントをラップします。`dom-if`テンプレートは、その`if`プロパティが`true`になった時だけそのコンテンツをDOM内にスタンプします。
 
-`if`プロパティが再度`false`になった場合、デフォルトでは、スタンプされたすべての要素は非表示になります(ただし、DOMツリーには残ります)。この仕組みによって、`if`プロパティが再び`true`になった際、より高速なパフォーマンスを実現します。この動作を無効にするには、`restamp`プロパティを`true`に設定します。この場合には、要素は毎回破棄され再スタンプされるので、`if`による切り替え動作は遅くなります。
+`if`プロパティが再度`false`になった場合、デフォルトでは、スタンプされたすべてのエレメントは非表示になります(ただし、DOMツリーには残ります)。この仕組みによって、`if`プロパティが再び`true`になった際、より高速なパフォーマンスを実現します。この動作を無効にするには、`restamp`プロパティを`true`に設定します。この場合には、エレメントは毎回破棄され再スタンプされるので、`if`による切り替え動作は遅くなります。
 
 条件付きテンプレートを使用する方法は二つあります。：
 
-*   **Polymer要素または他のPolymerの管理するテンプレート内では、**省略記法`<template is="dom-repeat">`を使用してください。
+*   **Polymer Elementまたは他のPolymerの管理するテンプレート内では、**省略記法`<template is="dom-repeat">`を使用してください。
 
     ~~~html
     <template is="dom-if" if="{{condition}}">
       ...
     </template>
     ~~~
-*   **Polymerの管理するテンプレートの外側では**、ラッパー要素`<dom-if>`を使用します。
+*   **Polymerの管理するテンプレートの外側では**、ラッパーエレメント`<dom-if>`を使用します。
 
     ~~~html
     <dom-if>
@@ -530,7 +527,7 @@ filter: function(item) {
     ~~~
 
 
-Polymerが管理するテンプレートには、Polymer要素のテンプレートや、`dom-bind`、`dom-if`、`dom-repeat`に属するテンプレート、あるいは`Templatizer`によって管理されるテンプレートが含まれます。
+Polymerが管理するテンプレートには、Polymer Elementのテンプレートや、`dom-bind`、`dom-if`、`dom-repeat`に属するテンプレート、あるいは`Templatizer`によって管理されるテンプレートが含まれます。
 
 ほとんどのケースにおいて、`dom-repeat`には、一番目(省略形)のフォームを使用することになるでしょう。
 
@@ -579,11 +576,11 @@ Polymerが管理するテンプレートには、Polymer要素のテンプレー
 </dom-module>
 ```
 
-Conditional templates introduce some overhead, 条件付きテンプレートを使用すると多少のオーバーヘッドが発生するため、CSSを使用することで容易に表示/非表示にできるような小さなUI要素には使用すべきでありません。
+条件付きテンプレートを使用すると多少のオーバーヘッドが発生するため、CSSを使用することで容易に表示/非表示にできるような小さなUIエレメントには使用すべきでありません。
 
 代わりに、読み込み時間を改善させたり、ページのメモリ容量を減らすために条件付きテンプレートを使って下さい。例えば：
 
--   ページ中のセクションをレイジーロードする。最初の描画時に必要のないページ中の一部要素は、`dom-if`を使用してその定義が読み込みを終えるまで非表示にすることができます。この条件付きテンプレートの利用法に関しては、[ケーススタディ：ショップアプリ](/{{{polymer_version_dir}}}/toolbox/case-study#views)で説明しています。
+-   ページ中のセクションをレイジーロードする。最初の描画時に必要のないページ中の一部エレメントは、`dom-if`を使用してその定義が読み込みを終えるまで非表示にすることができます。この条件付きテンプレートの利用法に関しては、[ケーススタディ：ショップアプリ](/{{{polymer_version_dir}}}/toolbox/case-study#views)で説明しています。
 
 -   大規模サイトや複雑なサイトにおいてメモリの使用量を削減します。複雑なビューを複数持つシングルページアプリケーション(SPA)では、`restamp`プロパティが設定された`dom-if`の中に各ビューを置くのは有効かもしれません。これにより、ユーザーが表示を切り替える(その箇所のDOMを再生成する)たびに、ある程度のレイテンシは犠牲になりますが、メモリの利用効率が改善されます。
 
@@ -591,9 +588,9 @@ Conditional templates introduce some overhead, 条件付きテンプレートを
 
 ## 自動バインディングテンプレート(dom-bind) {#dom-bind}
 
-Polymer data binding is only available in Polymerのデータバインディングは、Polymerによって管理されるテンプレート内だけで使用できます。したがって、データバインディングは、要素のDOMテンプレート内(あるいは`dom-repeat`や`dom-if`テンプレート内)では動作しますが、メインドキュメントに配置された要素では機能しません。
+Polymer data binding is only available in Polymerのデータバインディングは、Polymerによって管理されるテンプレート内だけで使用できます。したがって、データバインディングは、エレメントのDOMテンプレート内(あるいは`dom-repeat`や`dom-if`テンプレート内)では動作しますが、メインドキュメントに配置されたエレメントでは機能しません。
 
-新たにカスタム要素を定義**することなく**Polymerのバインディングを利用するには、`<dom-bind>`要素を使用します。このテンプレートは、その子のテンプレート情報の内容をメインドキュメントに即座にスタンプします。自動バインディングテンプレートによるデータバインディングは、バインディングスコープとして`<dom-bind>`要素そのものを利用します。
+新たにCustom Elementを定義**することなく**Polymerのバインディングを利用するには、`<dom-bind>`エレメントを使用します。このテンプレートは、その子のテンプレート情報の内容をメインドキュメントに即座にスタンプします。自動バインディングテンプレートによるデータバインディングは、バインディングスコープとして`<dom-bind>`エレメントそのものを利用します。
 
 ```html
 <!doctype html>
@@ -633,18 +630,17 @@ Polymer data binding is only available in Polymerのデータバインディン�
 ```
 
 
-`dom-bind`の全ての機能は、Polymer要素の中であればすでに使用できます。**自動バインディングテンプレートは、Polymer要素の_外部_のみで利用すべきです。**
+`dom-bind`の全ての機能は、Polymer Elementの中であればすでに使用できます。**自動バインディングテンプレートは、Polymer Elementの_外部_のみで利用すべきです。**
 
-_Note: In Polymer 1.0, `dom-bind` rendered asynchronously and fired a `dom-change`
-event to signify readiness. In Polymer 2.0, `dom-bind` renders synchronously. It
-will still fire a `dom-change` event but if your event handler is bound
-after the element declaration you'll miss it._
+
+_注：Polymer 1.0では、 `dom-bind`が非同期にレンダリングされ、準備段階であることを示するために`dom-change`イベントが発生しました。Polymer 2.0では、`dom-bind`は同期的にレンダリングされます。`dom-change`イベントも発生しますが、エレメントが宣言された後でイベントハンドラがバインドされている場合、それを逃すおそれがあります。_
+
 
 **同期的レンダリングの強制**：`dom-repeat`と同様、`dom-bind`は、`render`メソッドと`mutableData`プロパティを提供しています。([同期レンダリングを強制](#synchronous-renders)と[テンプレートを更新](#update-data)で説明した通りです。）
 {.alert .alert-info}
 
 ## dom-changeイベント {#dom-change}
 
-あるテンプレートのヘルパー要素がDOMツリーを更新すると、`dom-change`イベントが発生します。
+あるテンプレートのヘルパーエレメントがDOMツリーを更新すると、`dom-change`イベントが発生します。
 
 多くのケースでは、生成したノードと直接やりとりするのではなく、モデルデータの変更によって生成したDOMとやりとりするべきです。ノードに直接アクセスする必要がある場合には、`dom-change`イベントを使用することができます。.

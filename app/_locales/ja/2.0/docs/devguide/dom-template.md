@@ -4,9 +4,9 @@ title: DOMテンプレート
 
 <!-- toc -->
 
-多くの要素は、その機能の実装にDOM要素のサブツリーを利用しています。DOMテンプレートを利用することで、要素にDOMのサブツリーを簡単に作成することができます。
+多くのエレメントは、その機能の実装にDOMエレメントのサブツリーを利用しています。DOMテンプレートを利用することで、エレメントにDOMのサブツリーを簡単に作成することができます。
 
-デフォルトでは、要素にDOMテンプレートを追加すると、Polymerは要素にShadow Rootを作成し、テンプレートをShadow Tree内部に複製(clone)します。
+デフォルトでは、エレメントにDOMテンプレートを追加すると、PolymerはエレメントにShadow Rootを作成し、テンプレートをShadow Tree内部に複製(clone)します。
 
 また、DOMテンプレートによってデータバインディングと宣言型イベントハンドラが利用できるようになります。
 
@@ -28,13 +28,13 @@ element.
 ### Specify a template using dom-module
 
 To specify an element's DOM template using a `<dom-module>`:
-`<dom-module>`を使って要素のDOMテンプレートを記述するには：
+`<dom-module>`を使ってエレメントのDOMテンプレートを記述するには：
 
-1.  要素の名前と同名の`id`属性を持つ`<dom-module>`要素を作成します。
-2.  `<dom-module>`の内部に`<template>`要素を作成します。
+1.  エレメントの名前と同名の`id`属性を持つ`<dom-module>`エレメントを作成します。
+2.  `<dom-module>`の内部に`<template>`エレメントを作成します。
 3.  Give the element a static `is` getter that matches the element's name. Polymer uses this to retrieve the `<dom-module>` for the element.
 
-Polymerは、このテンプレートの内容を要素のShadow DOM内部に複製(clone)します。
+Polymerは、このテンプレートの内容をエレメントのShadow DOM内部に複製(clone)します。
 
 例: { .caption }
 
@@ -53,9 +53,9 @@ Polymerは、このテンプレートの内容を要素のShadow DOM内部に複
 </dom-module>
 ```
 
-この例では、DOMテンプレートとその要素を定義するJavaScriptが同じファイルにあります。これらを別々のファイルに分割して配置することもできますが、DOMテンプレートの解析は要素が定義される前に行われる必要があります。
+この例では、DOMテンプレートとそのエレメントを定義するJavaScriptが同じファイルにあります。これらを別々のファイルに分割して配置することもできますが、DOMテンプレートの解析はエレメントが定義される前に行われる必要があります。
 
-**注意**：テスト環境を除き、要素はメインドキュメントの外で定義すべきです。メインドキュメント内における要素の定義に関する注意事項は、[main document definitions](registering-elements#main-document-definitions)を参照してください。
+**注意**：テスト環境を除き、エレメントはメインドキュメントの外で定義すべきです。メインドキュメント内におけるエレメントの定義に関する注意事項は、[main document definitions](registering-elements#main-document-definitions)を参照してください。
 {.alert .alert-info}
 
 ### Specify a string template
@@ -205,13 +205,13 @@ by hybrid elements.
 
 ## 静的ノードマップ {#node-finding}
 
-Polymerは、要素がDOMテンプレートを初期化する際に、ノードIDの静的マップを作成し、頻繁に使用されるノードに手軽にアクセスできるようにします。手動でクエリを記述する必要はありません。要素のテンプレートに`id`付きで記述されたノードはそれぞれ、`id`によってハッシュ化され`this.$`として格納されます。
+Polymerは、エレメントがDOMテンプレートを初期化する際に、ノードIDの静的マップを作成し、頻繁に使用されるノードに手軽にアクセスできるようにします。手動でクエリを記述する必要はありません。エレメントのテンプレートに`id`付きで記述されたノードはそれぞれ、`id`によってハッシュ化され`this.$`として格納されます。
 
 
 The `this.$` hash is created when the shadow DOM is initialized. In the `ready` callback, you must
 call `super.ready()` before accessing `this.$`.
 
-**注意：**データバインディングを使用して動的に作成されたノード(`dom-repeat`テンプレートや`dom-if`テンプレートによるものが含まれます)は、ハッシュ`this.$`には追加されません。ハッシュには、静的に作成されたローカルDOMノード(つまり要素の最も外側のテンプレートに定義されたノード)だけが含まれます。
+**注意：**データバインディングを使用して動的に作成されたノード(`dom-repeat`テンプレートや`dom-if`テンプレートによるものが含まれます)は、ハッシュ`this.$`には追加されません。ハッシュには、静的に作成されたローカルDOMノード(つまりエレメントの最も外側のテンプレートに定義されたノード)だけが含まれます。
 {.alert .alert-info}
 
 例: { .caption }
@@ -236,7 +236,7 @@ call `super.ready()` before accessing `this.$`.
 </dom-module>
 ```
 
-要素のShadow DOM内に動的に生成されたノードを配置する場合、標準DOMの`querySelector`メソッドを利用してください。
+エレメントのShadow DOM内に動的に生成されたノードを配置する場合、標準DOMの`querySelector`メソッドを利用してください。
 
 <code>this.shadowRoot.querySelector(<var>selector</var>)</code>
 
