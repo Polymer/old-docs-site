@@ -12,27 +12,22 @@ title: DOMテンプレート
 
 ## DOMテンプレートの概要
 
-Polymer provides three basic ways to specify a DOM template:
+DOMテンプレートを記述するのにPolymerは三つの基本的な方法を提供しています：
 
--   `<dom-module>` element. This allows you to specify the template entirely in markup,
-    which is most efficient for an element defined in an HTML import.
--   Provide a string template. This works well for elements defined entirely in JavaScript
-    (for example, in an ES6 module).
--   Retrieve or generate your own template element. This allows you to define how the template is
-    retrieved or constructed, and can be used to modify a superclass template.
+-   `<dom-module>`エレメント。これにより、テンプレートをマークアップで完全に記述することができます。
+    これはHTML importで定義されたエレメントにとって最も効率的な方法です。
+-   文字列のテンプレートを提供しています。これは、JavaScriptによって全体を定義されたエレメント（たとえば、ES6モジュールなど）においてうまく機能します。
+-   独自のテンプレートエレメントを取得または生成する。この方法によれば、テンプレートの取得及び構築方法を定義することができます。また、スーパークラスのテンプレートを変更するのに利用できます。
 
-Polymer provides a default `template` getter that retrieves a template from the element's
-`<dom-module>`. You can override this getter to provide a string template or a generated template
-element.
+Polymerは、エレメントの`<dom-module>`からテンプレートを取得するデフォルトの`template`のgetterメソッドを用意しています。このgetterメソッドをオーバーライドすることで、文字列テンプレートや生成したテンプレートエレメントを提供することができます。
 
-### Specify a template using dom-module
+### dom-moduleを使ってテンプレートを記述
 
-To specify an element's DOM template using a `<dom-module>`:
 `<dom-module>`を使ってエレメントのDOMテンプレートを記述するには：
 
 1.  エレメントの名前と同名の`id`属性を持つ`<dom-module>`エレメントを作成します。
 2.  `<dom-module>`の内部に`<template>`エレメントを作成します。
-3.  Give the element a static `is` getter that matches the element's name. Polymer uses this to retrieve the `<dom-module>` for the element.
+3.  エレメントの名前と一致する静的な`is`ゲッターをエレメントに与えます。Polymerはこれを利用してエレメントから`<dom-module>`を取得します。
 
 Polymerは、このテンプレートの内容をエレメントのShadow DOM内部に複製(clone)します。
 
@@ -58,12 +53,11 @@ Polymerは、このテンプレートの内容をエレメントのShadow DOM内
 **注意**：テスト環境を除き、エレメントはメインドキュメントの外で定義すべきです。メインドキュメント内におけるエレメントの定義に関する注意事項は、[main document definitions](registering-elements#main-document-definitions)を参照してください。
 {.alert .alert-info}
 
-### Specify a string template
+### 文字列テンプレートを記述
 
-As an alternative to specifying the element's template in markup, you can specify a string template
-by creating a static `template` getter that returns a string.
+エレメントのテンプレートをマークアップで記述する代わりに、文字列を返す静的な`template`ゲッターを作成することで文字列テンプレートを指定することもできます。
 
-This getter is called _once_, when the first instance of the element is upgraded.
+このgetterメソッドは、エレメントのインスタンスが最初にアップグレードされたときに_一度だけ_呼ばれます。
 
 ```js
 class MyElement extends Polymer.Element {
@@ -77,25 +71,20 @@ class MyElement extends Polymer.Element {
 customElements.define('my-element', MyElement);
 ```
 
-When using a string template, the element doesn't need to provide an `is` getter (however, the tag
-name still needs to  be  passed as the first argument to `customElements.define`).
+文字列テンプレートを使用する場合、エレメントは `is`getterメソッドを用意する必要はありません（ただし、`customElements.define`の最初の引数としてタグを名渡す必要はあります）。
 
-### Inherited templates {#inherited-templates}
+### 継承されたテンプレート {#inherited-templates}
 
-An element that extends another Polymer element can inherit its template. If the element doesn't
-provide its own DOM template (using either a `<dom-module>` or a string template), Polymer uses the
-same template as the superclass, if any.
+別のPolymerエレメントを拡張したエレメントは、そのテンプレートを継承することもできます。（ `<dom-module>`または文字列テンプレートのいずれかを使用して）エレメントに独自のDOMテンプレートを用意していない場合、存在する場合にはPolymerはスーパークラスと同じテンプレートを利用します。
 
-You can also modify a superclass template by defining a `template` getter that returns a modified
-template element. If you're going to modify the superclass template, there are a couple of
-important rules:
+変更後のテンプレートエレメントを返す`template`のgetterメソッドを定義することでスーパークラスのテンプレートを変更することもできます。
+スーパークラスのテンプレートを変更する場合には、いくつか重要なルールがあります。：
 
--   Don't modify the superclass template in place; make a copy before modifying.
--   If you're doing anything expensive, like copying or modifying an existing template,
-    you should memoize the modified template so you don't have to regenerate it when the
-    getter is called.
+-   スーパークラスのテンプレートを直接変更しないでください。変更する前にコピーを作成してください。
+-   既存のテンプレートのコピーや修正など、何か高負荷な作業を行っている場合、変更したテンプレートをメモ化(memoize)してください。
+    そうすることで、getterメソッドが呼び出された時にテンプレートを再生成する必要はなくなります。
 
-The following example shows a simple modification based on a parent template:
+次の例は、親のテンプレートを基にしたシンプルな変更を示しています。：
 
 ```js
 (function() {
@@ -118,8 +107,7 @@ The following example shows a simple modification based on a parent template:
 })();
 ```
 
-The following example shows how an element could wrap a superclass template with its own
-template.
+次の例は、エレメントが自身のテンプレートでスーパークラスのテンプレートをラップする方法を示しています。
 
 ```html
 <dom-module id="my-ext">
@@ -158,37 +146,29 @@ template.
 </dom-module>
 ```
 
-### Elements with no shadow DOM
+### Shadow DOMを持たないエレメント
 
-To create an element with no shadow DOM, don't specify a DOM template (either using a `<dom-module>`
-or by overriding the `template` getter), then no shadow root is created for the element.
+Shadow DOMを持たないエレメントを作成するには、（ `<dom-module>`
+や`template`のgetterメソッドのオーバーライドを使って）DOMテンプレートを記述しないようにします。そうすることでShadow Rootを持たないエレメントが作成されます。
 
-If the element is extending another element that has a DOM template and you don't want a DOM template,
-define a `template` getter that returns a falsy value.
+エレメントがDOMテンプレートを持つ別のエレメントを拡張していて、DOMテンプレートを必要としない場合には、false値を返す`template`のgetterメソッドを定義します。
 
-### URLs in templates {#urls-in-templates}
+### テンプレート内のURL {#urls-in-templates}
 
-A relative URL in a template may need to be relative to an application or to a specific component.
-For example, if a component includes images alongside an HTML import that defines an element, the
-image URL needs to be resolved relative to the import. However, an application-specific element may
-need to include links to URLs relative to the main document.
+テンプレート内の相対URLは、アプリケーションや特定のコンポーネントに関連づける必要があります。例えば、コンポーネントに、エレメントを定義するHTMLのインポートと画像が両方含まれている場合、イメージのURLはインポートに関連付けて解決させる必要があります。しかしながら、アプリケーション固有のエレメントでは、メイン文書を基準にしたURLをリンクに設定する必要があります。
 
-By default, Polymer **does not modify URLs in templates**, so all relative URLs are treated as
-relative to  the main document URL. This is because when the template content is cloned and added
-to the main document, the browser evaluates the URLs  relative to the document (not to the original
-location of the template).
+デフォルトでは、Polymerは**テンプレート内のURLを変更しません**。そのためすべての相対URLはメイン文書のURLが基準になります。これは、テンプレートのコンテンツが複製(clone)されメイン文書に追加された際、ブラウザがURLをドキュメントに関連付けて評価するためです。（テンプレートの元の文書に対してではありません）
 
 To ensure URLs resolve properly, Polymer provides two properties that can be used in data bindings:
+URLが正しく解決されるように、Polymerはデータバインディングで利用可能な2つのプロパティを提供します。：
 
-| Property | Description |
+| プロパティ | 説明 |
 | -------- | ----------- |
-| `importPath` | A static getter on the element class that defaults to the element HTML import document URL and is overridable. It may be useful to override `importPath` when an element's template is not retrieved from a `<dom-module>` or the element is not defined using an HTML import. |
-| `rootPath` | An instance property set to the value of `Polymer.rootPath` which is globally settable and defaults to the main document URL. It may be useful to set `Polymer.rootPath` to provide a stable application mount path when using client side routing. |
+| `importPath` | エレメントクラスの静的なgetterメソッドであり、エレメントのHTMLインポートのデフォルトのURLとなりオーバーライドが可能です。エレメントのテンプレートが`<dom-module>`に見当たらない場合や、HTMLインポートを使ってエレメントが定義されていない場合には、`importPath`をオーバーライドすると便利です。 |
+| `rootPath` | インスタンスのプロパティは`Polymer.rootPath`の値に設定されています。これはグローバルに設定可能で、デフォルトではメイン文書のURLになります。 クライアントサイドのルーティングを利用する際に、`Polymer.rootPath`を設定して安定したアプリケーションのマウントパスを提供するのに役立つかもしれません。|
 
 
-Relative URLs in styles are automatically re-written to be relative to the `importPath` property.
-Any URLs outside of a `<style>` element should be bound using `importPath` or
-`rootPath` where appropriate. For example:
+スタイル内の相対URLは自動的に`importPath`プロパティに関連付けて書き換えられます。`<style>`エレメントの外のURLは`importPath`または`rootPath`の適切な方にバインドされます。例えば：
 
 ```html
 <img src$="[[importPath]]checked.jpg">
@@ -198,18 +178,14 @@ Any URLs outside of a `<style>` element should be bound using `importPath` or
 <a href$="[[rootPath]]users/profile">View profile</a>
 ```
 
-The `importPath` and `rootPath` properties are also supported in Polymer 1.9+, so they can be used
-by hybrid elements.
-
+`importPath`と`rootPath`プロパティは、Polymer 1.9以降サポートされているので、ハイブリッドエレメントで利用可能です。
 
 
 ## 静的ノードマップ {#node-finding}
 
 Polymerは、エレメントがDOMテンプレートを初期化する際に、ノードIDの静的マップを作成し、頻繁に使用されるノードに手軽にアクセスできるようにします。手動でクエリを記述する必要はありません。エレメントのテンプレートに`id`付きで記述されたノードはそれぞれ、`id`によってハッシュ化され`this.$`として格納されます。
 
-
-The `this.$` hash is created when the shadow DOM is initialized. In the `ready` callback, you must
-call `super.ready()` before accessing `this.$`.
+ハッシュ`this.$`はShadow DOMが初期化された際に生成されます。`ready`コールバック内で`this.$`にアクセスするには事前に`super.ready()`を呼び出す必要があります。
 
 **注意：**データバインディングを使用して動的に作成されたノード(`dom-repeat`テンプレートや`dom-if`テンプレートによるものが含まれます)は、ハッシュ`this.$`には追加されません。ハッシュには、静的に作成されたローカルDOMノード(つまりエレメントの最も外側のテンプレートに定義されたノード)だけが含まれます。
 {.alert .alert-info}
@@ -241,22 +217,15 @@ call `super.ready()` before accessing `this.$`.
 <code>this.shadowRoot.querySelector(<var>selector</var>)</code>
 
 
+## 空のテキストノードを削除 {#strip-whitespace}
 
-## Remove empty text nodes {#strip-whitespace}
 
+ブール属性`strip-whitespace`を追加することでテンプレートのコンテンツから**空の**のテキストノードを全て削除できます。これにより、僅かばかりパフォーマンスの向上がのぞめます。
 
-Add the `strip-whitespace` boolean attribute to a template to remove
-any **empty** text nodes from the template's contents. This can result in a
-minor performance improvement.
-
-**What's an empty node?** `strip-whitespace` removes only text nodes that occur between
-elements in the template and are _empty_ (that is, they only contain whitespace characters).
-These nodes are created when two elements in the template are separated by whitespace (such as
-spaces or line breaks). It doesn't remove any whitespace from inside elements.
+**空ノードとは何か？** `strip-whitespace`は、テンプレート内のエレメント間に現れる_空の_テキストノードだけを削除します（つまり、ホワイトスペース文字だけが対象になります）。これらのノードは、テンプレート内の2つのエレメントがホワイトスペース(スペースまたは改行)で区切られた際に生成されます。内部のエレメントからホワイトスペースは削除されません。
 {.alert .alert-info}
 
-With empty text nodes:
-
+空のテキストノードが存在するケース：
 
 ```html
 <dom-module id="has-whitespace">
@@ -277,16 +246,14 @@ With empty text nodes:
 </dom-module>
 ```
 
-There are five nodes in this element's shadow tree because of the whitespace surrounding the `<div>`
-elements. The five child nodes are:
-
+このエレメントのShdow Treeには5つのノードが存在します。なぜなら、`<div>`エレメントがホワイトスペースに囲まれているからです。5つの子ノードは次の通りです。；
   text node
   `<div>Some Text</div>`
   text node
   `<div>More Text</div>`
   text node
 
-Without empty text nodes:
+空のテキストノードが存在しないケース：
 
 
 ```html
@@ -308,29 +275,27 @@ Without empty text nodes:
 </dom-module>
 ```
 
-Here, the shadow tree contains only the two `<div>` nodes:
+ここでは、Shadow Treeには2つの `<div>`ノードだけが含まれています。：
 
 `<div>Some Text</div><div>More Text</div>`
 
 Note that the whitespace _inside_ the `<div>` elements isn't affected.
+`<div>`エレメント_内部_のホワイトスペースは影響を受けないことに注意してください。
 
-## Preserve template contents
+## テンプレートのコンテンツを保持(preserve)
 
-Polymer performs one-time processing on your DOM template. For example:
+PolymerはDOMテンプレートに対して一度だけ処理を実行します。例えば：
 
--   Parsing and removing binding annotations.
--   Parsing and removing markup for declarative event listeners.
--   Caching and removing the contents of nested templates for better performance. 
+-   バインディングアノテーションをパースし削除する
+-   マークアップで宣言的に記述したイベントリスナーをパースし削除する
+-   パフォーマンス向上のために、ネスとされたテンプレートのコンテンツをキャッシュし削除する
 
-This processing removes the template's original contents (the `content` property will be undefined). If you want
-to access the contents of a nested template, you can add the `preserve-content` attribute to the
-template.
+これはかなりまれな使用例です。
 
-Preserving the contents of a nested template means it **won't have any Polymer features like
-data bindings or declarative event listeners.** Only use this when you want to manipulate the
-template yourself, and you don't want Polymer to touch it.
+この処理によって、テンプレートの元のコンテンツは削除されます（ `content`プロパティは未定義になります）。ネストされたテンプレートの内容にアクセスしたい場合は、テンプレートに`preserve-content`属性を追加できます。
 
-This is a fairly rare use case.
+ネストされたテンプレートの内容を保持するということは、デ**ータバインディングや宣言的イベントリスナーといったPolymerの機能は提供されないということです。**あなた自身でテンプレートをコントロールし、Polymerに扱わせたくない場合にだけ利用してください。
+
 
 ```html
 <dom-module id="custom-template">
@@ -361,17 +326,14 @@ This is a fairly rare use case.
 </dom-module>
 ```
 
-## Customize DOM initialization
+## DOMの初期化のカスタマイズ
 
-There are several points where you can customize how Polymer initializes your element's DOM. You
-can customize how the shadow root is created by creating it yourself. And you can override the
-`_attachDom` method to change how the the DOM tree is added to your element: for example, to
-stamp into light DOM instead of shadow DOM.
+PolymerがエレメントのDOMをどのように初期化するかカスタマイズする方法がいくつかあります。Shadow Rootを独自に作成することでShadow Rootの生成方法をカスタマイズできます。`_attachDom`メソッドをオーバーライドしてDOMツリーがエレメントにどのように追加されるかを変更できます。例えば、Shadow DOMの代わりにLight DOM内にスタンプします。
 
-### Create your own shadow root
+### 独自のShadow Rootを作成する
 
-In some cases, you may want to create your own shadow root. You can do this by creating a shadow root
-before calling `super.ready()`—or before the `ready` callback, such as in the constructor.
+
+場合によっては、独自のShdow Rootを生成したいかもしれません。これを行うには、`constructor`内のように、`super.ready()`または`ready()`コールバックを呼び出す前にShadow Rootを作成します。
 
 ```js
 constructor() {
@@ -380,7 +342,7 @@ constructor() {
 }
 ```
 
-You can also override the `_attachDom` method:
+`_attachDom`をオーバーライドすることもできます。：
 
 ```js
 _attachDom(dom) {
@@ -389,11 +351,9 @@ _attachDom(dom) {
 }
 ```
 
-### Stamp templates in light DOM
+### Light DOM内にテンプレートをスタンプする
 
-You can customize how the DOM is stamped by overriding the `_attachDom` method. The method takes a
-single argument, a `DocumentFragment` containing the DOM to be stamped. If you want to stamp the
-template into light DOM, simply add an override like this:
+`_attachDom`メソッドをオーバーライドすることでDOMをスタンプする方法をカスタマイズできます。このメソッドは、スタンプされるDOMを含む `DocumentFragment`だけ引数として受け取ります。Light DOM内にスタンプしたい場合は、次のようにシンプルにオーバーライドを追加します。：
 
 ```js
 _attachDom(dom) {
@@ -401,9 +361,6 @@ _attachDom(dom) {
 }
 ```
 
-When you stamp the DOM template to light DOM like this, data bindings and declarative event listeners
-work as usual, but you cannot use shadow DOM features, like `<slot>` and style encapsulation.
+このようにDOMテンプレートをLight DOMにスタンプした場合、データバインディングや宣言的イベントリスナーは通常どおり動作しますが、`<slot>`やスタイルのカプセル化のようなShadow DOMの機能を使うことはできません。
 
-A template stamped into light DOM shouldn't contain any `<style>` tags. Styles can be applied by an
-enclosing host element, or at the document level if the element isn't used inside another element's
-shadow DOM.
+Light DOMにスタンプされたテンプレートに、`<style>`タグを含めてはいけません。スタイルは、囲まれたホストエレメントから適用することができます。また、エレメントが他のエレメントのShadow DOM内部で利用されていない場合にはドキュメントレベルでスタイリングします。
