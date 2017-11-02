@@ -117,55 +117,46 @@ gulp.task('generate-service-worker', function() {
       '/app-shell.html': partialTemplateFiles.concat(`${rootDir}/app-shell.html`),
     },
     runtimeCaching: [
-    {
-      urlPattern: new RegExp('/images/'),
-      handler: 'fastest',
-      options: {
-        cache: {
-          maxEntries: 50,
-          name: 'image-cache'
+      {
+        urlPattern: new RegExp('/images/'),
+        handler: 'fastest',
+        options: {
+          cache: {
+            maxEntries: 50,
+            name: 'image-cache'
+          }
+        }
+      },
+      {
+        urlPattern: new RegExp('/bower_components/webcomponentsjs/.*.js'),
+        handler: 'fastest',
+        options: {
+          cache: {
+            name: 'webcomponentsjs-polyfills-cache'
+          }
+        }
+      },
+      {
+        urlPattern: new RegExp('/(docs|start|toolbox|community|blog)/'),
+        handler: pwShellSWHandler,
+        options: {
+          cache: {
+            maxEntries: 100,
+            name: 'docs-cache'
+          }
+        }
+      },
+      {
+        urlPattern: new RegExp('/samples/'),
+        handler: 'fastest',
+        options: {
+          cache: {
+            maxEntries: 20,
+            name: 'samples-cache'
+          }
         }
       }
-    },
-    {
-      urlPattern: new RegExp('/bower_components/webcomponentsjs/.*.js'),
-      handler: 'fastest',
-      options: {
-        cache: {
-          name: 'webcomponentsjs-polyfills-cache'
-        }
-      }
-    },
-    {
-      urlPattern: new RegExp('/docs/'),
-      handler: pwShellSWHandler,
-    },
-    {
-      urlPattern: new RegExp('/start/'),
-      handler: pwShellSWHandler,
-    },
-    {
-      urlPattern: new RegExp('/toolbox/'),
-      handler: pwShellSWHandler,
-    },
-    {
-      urlPattern: new RegExp('/samples/'),
-      handler: pwShellSWHandler,
-    },
-    {
-      urlPattern: new RegExp('/community/'),
-      handler: pwShellSWHandler,
-    },
-    {
-      urlPattern: new RegExp('/blog/'),
-      handler: pwShellSWHandler,
-      options: {
-        cache: {
-          maxEntries: 10,
-          name: 'blog-cache'
-        }
-      }
-    }],
+    ],
     stripPrefix: rootDir + '/',
     verbose: false  /* When debugging, you can enable this to true  */
   };
