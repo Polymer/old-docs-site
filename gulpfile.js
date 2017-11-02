@@ -48,17 +48,6 @@ markdownIt.use(markdownItAttrs);
 markdownIt.normalizeLink = function(link) { return link; }
 markdownIt.validateLink = function(link) { return true; }
 
-function uglifyJS() {
-  return $.uglify({preserveComments: 'some'});
-}
-
-function license() {
-  return $.license('BSD2', {
-    organization: 'The Polymer Project Authors. All rights reserved.',
-    tiny: true
-  });
-}
-
 // reload is a noop unless '--reload' cmd line arg is specified.
 const reload = argv.reload ? browserSync.reload : function() {
   return new require('stream').PassThrough({objectMode: true});
@@ -175,7 +164,10 @@ gulp.task('style', 'Compile sass, autoprefix, and minify CSS', function() {
     .pipe($.sass(sassOpts))
     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
     .pipe($.cssmin()) // Minify and add license
-    .pipe(license())
+    .pipe($.license('BSD2', {
+      organization: 'The Polymer Project Authors. All rights reserved.',
+      tiny: true
+    }))
     .pipe(gulp.dest('dist/css'))
 });
 
@@ -269,7 +261,7 @@ gulp.task('jshint', 'Lint JS', function() {
 
 gulp.task('js', 'Minify JS to dist/', ['jshint'], function() {
   return gulp.src(['app/js/**/*.js'])
-    .pipe(uglifyJS()) // Minify js output
+    .pipe($.uglify({preserveComments: 'some'})) // Minify js output
     .pipe(gulp.dest('dist/js'));
 });
 
