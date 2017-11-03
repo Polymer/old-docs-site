@@ -252,7 +252,7 @@ Polymer 2.0 introduces a number of improvements in the data system:
 *   Only properties listed explicitly in `properties` can be configured from an attribute.
 
 *   Element initialization (including template stamping and data system initialization) is deferred
-    until the the element is connected to the main document. (This is a result of the custom element
+    until the element is connected to the main document. (This is a result of the custom element
     v1 changes.)
 
 *   Several miscellaneous smaller changes.
