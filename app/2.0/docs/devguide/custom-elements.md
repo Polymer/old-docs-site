@@ -12,55 +12,14 @@ Custom elements provide a component model for the web. The custom elements speci
 *   A callback invoked whenever one of a specified set of attributes changes on the instance.
 
 Put together, these features let you build an element with its own public API that reacts to state
-changes.
+changes. Polymer provides a set of features on top of the basic custom element specification. 
 
 This document provides an overview of custom elements as they relate to Polymer. For a more detailed
 overview of custom elements, see: [Custom Elements v1: Reusable Web
-Components](https://developers.google.com/web/fundamentals/getting-started/primers/customelements)
+Components](https://developers.google.com/web/fundamentals/web-components/customelements)
 on Web Fundamentals.
 
-To define a custom element, you create an ES6 class and associate it with the custom element name.
-
-```
-// Create a class that extends HTMLElement (directly or indirectly)
-class MyElement extends HTMLElement { … };
-
-// Associate the new class with an element name
-window.customElements.define('my-element', MyElement);
-```
-
-
-You can use a custom element just like you'd use a standard element:
-
-
-```html
-<my-element></my-element>
-```
-
-Or:
-
-```js
-const myEl = document.createElement('my-element');
-```
-
-Or:
-
-```js
-const myEl = new MyElement();
-```
-
-The element's class defines its behavior and public API. The class must extend `HTMLElement` or one
-of its subclasses (for example, another custom element).
-
-**Custom element names.** By specification, the custom element's name **must start with a lower-case
-ASCII letter and must contain a dash (-)**. There's also a short list of prohibited element names
-that match existing names. For details, see the [Custom elements core
-concepts](https://html.spec.whatwg.org/multipage/scripting.html#custom-elements-core-concepts)
-section in the HTML specification.
-{.alert .alert-info}
-
-Polymer provides a set of features on top of the basic custom element specification. To add these
-features to your element, extend Polymer's base element class, `Polymer.Element`:
+To define a custom element, you create an ES6 class and associate it with the custom element name. For the full set of Polymer features, extend the `Polymer.Element` class:
 
 ```html
 <link rel="import" href="/bower_components/polymer/polymer-element.html">
@@ -74,12 +33,23 @@ features to your element, extend Polymer's base element class, `Polymer.Element`
 </script>
 ```
 
+You can use a custom element just like you'd use a standard element.
+
+The element's class defines its behavior and public API. 
+
+**Custom element names.** By specification, the custom element's name **must start with a lower-case
+ASCII letter and must contain a dash (-)**. There's also a short list of prohibited element names
+that match existing names. For details, see the [Custom elements core
+concepts](https://html.spec.whatwg.org/multipage/scripting.html#custom-elements-core-concepts)
+section in the HTML specification.
+{.alert .alert-info}
+
 Polymer adds a set of features to the basic custom element:
 
 *   Instance methods to handle common tasks.
 *   Automation for handling properties and attributes, such as setting a property based on the
     corresponding attribute.
-*   Creating shadow DOM trees for element instances based on a supplied `<template>`.
+*   Creating shadow DOM trees for element instances based on a supplied template.
 *   A data system that supports data binding, property change observers, and computed properties.
 
 ## Custom element lifecycle {#element-lifecycle}
@@ -159,7 +129,7 @@ For a complete list of limitations, see [Requirements for custom element constru
 
 Whenever possible, defer work until the `connectedCallback` or later instead of performing it in the constructor.
 
-### One-time initialization
+### Polymer element initialization
 
 The custom elements specification doesn't provide a one-time initialization callback. Polymer
 provides a `ready` callback, invoked the first time the element is added to the DOM.
@@ -167,17 +137,20 @@ provides a `ready` callback, invoked the first time the element is added to the 
 ```js
 ready() {
   super.ready();
-  // When possible, use afterNextRender to defer non-critical
-  // work until after first paint.
-  Polymer.RenderStatus.afterNextRender(this, function() {
-    ...
-  });
-}
-```
+  // do something that requires access to the shadow tree
+  ... 
 
+}
+``` 
 
 The `Polymer.Element` class initializes your element's template and data system during the `ready`
-callback, so if you override ready, you must call `super.ready()` at some point.
+callback, so if you override `ready`, you must call `super.ready()` at some point.
+
+Polymer does several things at `ready` time:
+
+-   Sets default property values.
+-   Allows observers and computed properties to run (as soon as their dependencies are defined).
+-   Creates and attaches the element's shadow DOM tree. 
 
 When the superclass `ready` method returns, the element's template has been instantiated and initial
 property values have been set. However, light DOM elements may not have been distributed when
@@ -194,6 +167,30 @@ Related topics:
 *   [Data system concepts](data-system)
 *   [Observers and computed properties](observers)
 *   [Observe added and removed children](shadow-dom#observe-nodes)
+
+### Defer non-critical work
+
+When possible, defer work until after first paint. [`Polymer.RenderStatus`](/{{{polymer_version_dir}}}/docs/api/namespaces/Polymer.RenderStatus) provides a utility for this purpose. `Polymer.RenderStatus` is included by default for hybrid elements. For class-style elements using the `polymer-element.html` import, you need to import `Polymer.RenderStatus` separately.
+
+```js
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+<link rel="import" href="/bower_components/polymer/lib/utils/render-status.html">
+
+class DeferElement extends Polymer.Element {
+  ...
+  constructor() {
+    super();
+    // When possible, use afterNextRender to defer non-critical
+    // work until after first paint.
+    Polymer.RenderStatus.afterNextRender(this, function() {
+      this.addEventListener('click', this._handleClick);
+    });
+  }
+}
+``` 
+
+In most cases, you can call `afterNextRender` from either the `constructor` or the `ready` 
+callback with similar results. 
 
 ## Element upgrades
 
@@ -456,6 +453,7 @@ MyNamespace.MyMixin = Polymer.dedupingMixin((base) =>
   }
 );
 ```
+
 
 ## Resources
 
