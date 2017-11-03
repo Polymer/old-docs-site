@@ -19,7 +19,7 @@ For a suggested way to run the Polymer CLI on Windows 10, see the instructions b
     of Node.js that you have installed, run:
     
         node --version
-    
+    //
     See the [official node version support policy](node-support) for more details.
 
 1.  Update npm.
