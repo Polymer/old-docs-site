@@ -8,9 +8,13 @@ Polymer makes it simple to create web components, declaratively.
 
 New web developers can simply add custom HTML elements on a web page with markdown. It’s just like using the HTML tags you’re already familiar with:
 
-<pre><code>&lt;h1&gt;A heading!&lt;/h1&gt;</code></pre>
+```html
+<h1>A heading!</h1>
+```
 
-<pre><code>&lt;fancy-thing&gt;A fancy thing!&lt;/fancy-thing&gt;</code></pre>
+```html
+<fancy-thing>A fancy thing!</fancy-thing>
+```
 
 
 Experienced web developers can use Polymer's special features to reduce boilerplate
@@ -40,10 +44,18 @@ contain a dash (-)**.
 
 <demo-tabs selected="0" name="qt-1-register" src="http://plnkr.co/edit/Q4E8zO?p=preview">
   <demo-tab slot="demo-tab" heading="custom-element.html">
-<pre><code>{{{include_file('2.0/start/samples/custom-element/custom-element.html')}}}</code></pre>
+
+```html
+<!-- include_file 2.0/start/samples/custom-element/custom-element.html -->
+```
+
   </demo-tab>
   <demo-tab slot="demo-tab" heading="index.html">
-<pre><code>{{{include_file('2.0/start/samples/custom-element/index.html')}}}</code></pre>
+
+```html
+<!-- include_file 2.0/start/samples/custom-element/index.html -->
+```
+
   </demo-tab>
 
   <iframe frameborder="0" src="samples/custom-element/index.html" width="100%" height="40"></iframe>
@@ -75,10 +87,18 @@ You can use Polymer's DOM templating to create a shadow DOM tree for your elemen
 
 <demo-tabs selected="0" name="qt-2-shadow-dom" src="http://plnkr.co/edit/buPxSJ?p=preview">
   <demo-tab slot="demo-tab" heading="dom-element.html">
-<pre><code>{{{include_file('2.0/start/samples/dom-element/dom-element.html')}}}</code></pre>
+
+```html
+<!-- include_file 2.0/start/samples/dom-element/dom-element.html -->
+```
+
   </demo-tab>
   <demo-tab slot="demo-tab" heading="index.html">
-<pre><code>{{{include_file('2.0/start/samples/dom-element/index.html')}}}</code></pre>
+
+```html
+<!-- include_file 2.0/start/samples/dom-element/index.html -->
+```
+
   </demo-tab>
 
   <iframe frameborder="0" src="samples/dom-element/index.html" width="100%" height="40"></iframe>
@@ -101,10 +121,18 @@ with a styled `<div>` tag.
 
 <demo-tabs selected="0" name="qt-3-compose" src="http://plnkr.co/edit/KvBnmE?p=preview">
   <demo-tab slot="demo-tab" heading="picture-frame.html">
-<pre><code>{{{include_file('2.0/start/samples/picture-frame/picture-frame.html')}}}</code></pre>
+
+```html
+<!-- include_file 2.0/start/samples/picture-frame/picture-frame.html -->
+```
+
   </demo-tab>
   <demo-tab slot="demo-tab" heading="index.html">
-<pre><code>{{{include_file('2.0/start/samples/picture-frame/index.html')}}}</code></pre>
+
+```html
+<!-- include_file 2.0/start/samples/picture-frame/index.html -->
+```
+
   </demo-tab>
 
   <iframe frameborder="0" src="samples/picture-frame/index.html" width="100%" height="60"></iframe>
@@ -132,10 +160,18 @@ The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced 
 
 <demo-tabs selected="0" name="qt-4-data-binding" src="http://plnkr.co/edit/8mZK8S?p=preview">
   <demo-tab slot="demo-tab" heading="name-tag.html">
-<pre><code>{{{include_file('2.0/start/samples/name-tag/name-tag.html')}}}</code></pre>
+
+```html
+<!-- include_file 2.0/start/samples/name-tag/name-tag.html -->
+```
+
   </demo-tab>
   <demo-tab slot="demo-tab" heading="index.html">
-<pre><code>{{{include_file('2.0/start/samples/name-tag/index.html')}}}</code></pre>
+
+```html
+<!-- include_file 2.0/start/samples/name-tag/index.html -->
+```
+
   </demo-tab>
 
   <iframe frameborder="0" src="samples/name-tag/index.html" width="100%" height="40"></iframe>
@@ -161,10 +197,18 @@ It also shows configuring the owner property from markup in `index.html`.
 
 <demo-tabs selected="0" name="qt-5-declare-property" src="http://plnkr.co/edit/3Nz8GL?p=preview">
   <demo-tab slot="demo-tab" heading="configurable-name-tag.html">
-<pre><code>{{{include_file('2.0/start/samples/configurable-name-tag/configurable-name-tag.html')}}}</code></pre>
+
+```html
+<!-- include_file 2.0/start/samples/configurable-name-tag/configurable-name-tag.html -->
+```
+
   </demo-tab>
   <demo-tab slot="demo-tab" heading="index.html">
-<pre><code>{{{include_file('2.0/start/samples/configurable-name-tag/index.html')}}}</code></pre>
+
+```html
+<!-- include_file 2.0/start/samples/configurable-name-tag/index.html -->
+```
+
   </demo-tab>
 
   <iframe frameborder="0" src="samples/configurable-name-tag/index.html" width="100%" height="40"></iframe>
@@ -187,10 +231,18 @@ to the element's `owner` property, so it's updated as the user types.
 
 <demo-tabs selected="0" name="qt-6-bind-property" src="http://plnkr.co/edit/03HGzn98uIN5I1WgkDwu?p=preview">
   <demo-tab slot="demo-tab" heading="editable-name-tag.html">
-<pre><code>{{{include_file('2.0/start/samples/editable-name-tag/editable-name-tag.html')}}}</code></pre>
+
+```html
+<!-- include_file 2.0/start/samples/editable-name-tag/editable-name-tag.html -->
+```
+
   </demo-tab>
   <demo-tab slot="demo-tab" heading="index.html">
-<pre><code>{{{include_file('2.0/start/samples/editable-name-tag/index.html')}}}</code></pre>
+
+```html
+<!-- include_file 2.0/start/samples/editable-name-tag/index.html -->
+```
+
   </demo-tab>
 
   <iframe frameborder="0" src="samples/editable-name-tag/index.html" width="100%" height="100"></iframe>
@@ -209,10 +261,18 @@ The template repeater (`dom-repeat`) is a specialized template that binds to an 
 
 <demo-tabs selected="0" name="qt-7-dom-repeat" src="http://plnkr.co/edit/FdgkAtcLFHX5TpTsYtZn?p=preview">
   <demo-tab slot="demo-tab" heading="employee-list.html">
-<pre><code>{{{include_file('2.0/start/samples/employee-list/employee-list.html')}}}</code></pre>
+
+```html
+<!-- include_file 2.0/start/samples/employee-list/employee-list.html -->
+```
+
   </demo-tab>
   <demo-tab slot="demo-tab" heading="index.html">
-<pre><code>{{{include_file('2.0/start/samples/employee-list/index.html')}}}</code></pre>
+
+```html
+<!-- include_file 2.0/start/samples/employee-list/index.html -->
+```
+
   </demo-tab>
 
   <iframe frameborder="0" src="samples/employee-list/index.html" width="100%" height="100"></iframe>
@@ -221,7 +281,7 @@ The template repeater (`dom-repeat`) is a specialized template that binds to an 
 Try it out in **Plunker**:
 * Change the first and last names inside this.employees
 * Add another employee by inserting the following text into the array definition after Tony Morelli:<br/>
-  ```
+  ```js
    ,
      {first: 'Shawna', last: 'Williams'} 
   ```

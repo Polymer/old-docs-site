@@ -18,17 +18,17 @@ const argv = require('yargs').argv;
 const browserSync = require('browser-sync').create();
 const del = require('del');
 const fs = require('fs');
+const hljs = require('highlight.js');
 const markdownIt = require('markdown-it')({
     html: true,
     highlight: (code, lang) => {
-      const highlightjs = require('highlight.js')
-      if (lang && highlightjs.getLanguage(lang)) {
+      if (lang && hljs.getLanguage(lang)) {
         try {
-          return highlightjs.highlight(lang, code).value;
+          return hljs.highlight(lang, code).value;
         } catch (__) { console.log(__) }
       } else {
         try {
-          return highlightjs.highlightAuto(code).value;
+          return hljs.highlightAuto(code).value;
         } catch (__) { console.log(__) }
       }
 
@@ -185,16 +185,22 @@ gulp.task('images', 'Optimize images', function() {
 function convertMarkdownToHtml(file, templateName) {
   const data = file.data;
   data.file = file;
-  data.content = markdownIt.render(file.content); // Markdown -> HTML.
   data.title = data.title || '';
   data.subtitle = data.subtitle || '';
 
+  let content = file.content;
+  // Inline code snippets before running through markdown for syntax highlighting.
+  content = content.replace(/<!--\s*include_file\s*([^\s]*)\s*-->/g,
+    (match, src) => fs.readFileSync(`app/${src}`));
+  // Markdown -> HTML.
+  content = markdownIt.render(content);
+
   // If there is a table of contents, toc-ify it. Otherwise, wrap the
   // original markdown content anyway, so that we can style it.
-  if (data.content.match(/<!--\s*toc\s*-->/gi)) {
+  if (content.match(/<!--\s*toc\s*-->/gi)) {
     // Leave a trailing opening <div class="article-wrapper"><article> in the TOC, so that we can wrap the original
     // markdown content into a div, for styling
-    data.content = toc.process(data.content, {
+    data.content = toc.process(content, {
       header: '<h<%= level %><%= attrs %> id="<%= anchor %>" class="has-permalink"><%= header %></h<%= level %>>',
       TOC: '<div class="details-wrapper"><details id="toc"><summary>Contents</summary><%= toc %></details></div><div class="article-wrapper"><article>',
       openUL: '<ul data-depth="<%= depth %>">',
@@ -210,7 +216,7 @@ function convertMarkdownToHtml(file, templateName) {
       }
     }) + '</article></div>';
   } else {
-    data.content = '<div class="article-wrapper"><article>' + data.content + '</article></div>';
+    data.content = '<div class="article-wrapper"><article>' + content + '</article></div>';
   }
 
   $.util.replaceExtension(file, '.html'); // file.md -> file.html
@@ -227,7 +233,7 @@ gulp.task('md:docs', 'Docs markdown -> HTML conversion. Syntax highlight and TOC
       '!app/blog/*.md',
       '!app/{bower_components,elements,images,js,sass}/**',
     ], {base: 'app/'})
-    .pipe($.grayMatter(function(file) { // pull out front $.grayMatter data.
+    .pipe($.grayMatter(function(file) { // pull out front matter data.
       return convertMarkdownToHtml(file, 'templates/page.template');
     }))
     .pipe($.rename({extname: '.html'}))
@@ -280,17 +286,23 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     ], {nodir: true})
     .pipe(gulp.dest('dist'));
 
+  // HTML pages (such as index.html) use gulp-highlight instead of the markdown
+  // code highlighter. It's slower than the markdown one since it has to parse
+  // the page to look for code snippets, so it's only used for non-markdown pages.
   const docs = gulp.src([
       'app/**/*.html',
-      'app/**/nav.yaml',
-      'app/**/blog.yaml',
-      'app/**/authors.yaml',
       '!app/{bower_components,elements}/**',
       '!app/2.0/samples/homepage/**',
      ], {base: 'app/'})
+    .pipe($.highlight({
+      selector: 'pre code'
+    }))
     .pipe(gulp.dest('dist'));
 
   const gae = gulp.src([
+    'app/**/nav.yaml',
+    'app/**/blog.yaml',
+    'app/**/authors.yaml',
       '{templates,lib}/**/*'
      ])
     .pipe(gulp.dest('dist'));
