@@ -657,9 +657,18 @@ them. Instead, it introduces a new `<custom-style>` element that wraps a `<style
     `<custom-style>` elements.
 *   **2.0-only projects.** Replace your existing  `<style is="custom-style">` elements with
     `<custom-style>` elements.
-*   **All projects.** Replace any `:root` selectors with `html`, and update custom property syntax
+*   **All projects.** Ensure the `<custom-style>` element is placed in the document's body,
+    or as the last element in the `<head>`.
+*   **All projects.** Replace any `:root` selectors with `html`, and update custom property syntax
     as described in [Update custom property syntax](#update-custom-property-syntax).
 
+**Custom-style placement**. The `<custom-style>` element should be placed in the document's
+`<body>`, or just before the closing tag for the `<head>` element. Why? Only certain elements 
+can appear inisde a document's `<head>`  element. `<style>` elements are allowed, but custom 
+elements like `<custom-style>` are not. If the browser encounters a `<custom-style>` tag inside 
+`<head>`, it will close the `<head>` element and move the `<custom-style>` and any following 
+tags to the body.
+{.alert .alert-info}
 
 Before {.caption}
 
