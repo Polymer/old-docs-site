@@ -182,49 +182,49 @@ gulp.task('images', 'Optimize images', function() {
     .pipe(gulp.dest('dist/images'));
 });
 
-function convertMarkdownToHtml(file, templateName) {
-  const data = file.data;
-  data.file = file;
-  data.title = data.title || '';
-  data.subtitle = data.subtitle || '';
-
-  let content = file.content;
-  // Inline code snippets before running through markdown for syntax highlighting.
-  content = content.replace(/<!--\s*include_file\s*([^\s]*)\s*-->/g,
-    (match, src) => fs.readFileSync(`app/${src}`));
-  // Markdown -> HTML.
-  content = markdownIt.render(content);
-
-  // If there is a table of contents, toc-ify it. Otherwise, wrap the
-  // original markdown content anyway, so that we can style it.
-  if (content.match(/<!--\s*toc\s*-->/gi)) {
-    // Leave a trailing opening <div class="article-wrapper"><article> in the TOC, so that we can wrap the original
-    // markdown content into a div, for styling
-    data.content = toc.process(content, {
-      header: '<h<%= level %><%= attrs %> id="<%= anchor %>" class="has-permalink"><%= header %></h<%= level %>>',
-      TOC: '<div class="details-wrapper"><details id="toc"><summary>Contents</summary><%= toc %></details></div><div class="article-wrapper"><article>',
-      openUL: '<ul data-depth="<%= depth %>">',
-      closeUL: '</ul>',
-      openLI: '<li data-level="H<%= level %>"><a href="#<%= anchor %>"><%= text %></a>',
-      closeLI: '</li>',
-      tocMax: 3,
-      anchor: function(header, attrs) {
-        // if we have an ID attribute, use that, otherwise
-        // use the default slug
-        var id = attrs.match(/(?:^|\s+)id="([^"]*)"/)
-        return id ? id[1] : toc.anchor(header);
-      }
-    }) + '</article></div>';
-  } else {
-    data.content = '<div class="article-wrapper"><article>' + content + '</article></div>';
-  }
-
-  $.util.replaceExtension(file, '.html'); // file.md -> file.html
-
-  const tmpl = fs.readFileSync(templateName);
-  const renderTemplate = $.util.template(tmpl);
-
-  return renderTemplate(data);
+function convertMarkdownToHtml(templateName) {
+  return $.grayMatter(function(file) { // pull out front matter data.
+    const data = file.data;
+    data.file = file;
+    data.title = data.title || '';
+    data.subtitle = data.subtitle || '';
+  
+    let content = file.content;
+    // Inline code snippets before running through markdown for syntax highlighting.
+    content = content.replace(/<!--\s*include_file\s*([^\s]*)\s*-->/g,
+      (match, src) => fs.readFileSync(`app/${src}`));
+    // Markdown -> HTML.
+    content = markdownIt.render(content);
+  
+    // If there is a table of contents, toc-ify it. Otherwise, wrap the
+    // original markdown content anyway, so that we can style it.
+    if (content.match(/<!--\s*toc\s*-->/gi)) {
+      // Leave a trailing opening <div class="article-wrapper"><article> in the TOC, so that we can wrap the original
+      // markdown content into a div, for styling
+      data.content = toc.process(content, {
+        header: '<h<%= level %><%= attrs %> id="<%= anchor %>" class="has-permalink"><%= header %></h<%= level %>>',
+        TOC: '<div class="details-wrapper"><details id="toc"><summary>Contents</summary><%= toc %></details></div><div class="article-wrapper"><article>',
+        openUL: '<ul data-depth="<%= depth %>">',
+        closeUL: '</ul>',
+        openLI: '<li data-level="H<%= level %>"><a href="#<%= anchor %>"><%= text %></a>',
+        closeLI: '</li>',
+        tocMax: 3,
+        anchor: function(header, attrs) {
+          // if we have an ID attribute, use that, otherwise
+          // use the default slug
+          var id = attrs.match(/(?:^|\s+)id="([^"]*)"/)
+          return id ? id[1] : toc.anchor(header);
+        }
+      }) + '</article></div>';
+    } else {
+      data.content = '<div class="article-wrapper"><article>' + content + '</article></div>';
+    }
+  
+    const tmpl = fs.readFileSync(templateName);
+    const renderTemplate = $.util.template(tmpl);
+  
+    return renderTemplate(data);  
+  });
 }
 
 gulp.task('md:docs', 'Docs markdown -> HTML conversion. Syntax highlight and TOC generation', function() {
@@ -233,9 +233,7 @@ gulp.task('md:docs', 'Docs markdown -> HTML conversion. Syntax highlight and TOC
       '!app/blog/*.md',
       '!app/{bower_components,elements,images,js,sass}/**',
     ], {base: 'app/'})
-    .pipe($.grayMatter(function(file) { // pull out front matter data.
-      return convertMarkdownToHtml(file, 'templates/page.template');
-    }))
+    .pipe(convertMarkdownToHtml('templates/page.template'))
     .pipe($.rename({extname: '.html'}))
     .pipe(gulp.dest('dist'));
 });
@@ -244,9 +242,7 @@ gulp.task('md:blog', 'Blog markdown -> HTML conversion. Syntax highlight and TOC
   return gulp.src([
       'app/blog/*.md',
     ], {base: 'app/'})
-    .pipe($.grayMatter(function(file) { // pull out front matter data.
-      return convertMarkdownToHtml(file, 'templates/blog.template');
-    }))
+    .pipe(convertMarkdownToHtml('templates/blog.template'))
     .pipe($.rename({extname: '.html'}))
     .pipe(gulp.dest('dist'));
 });
