@@ -525,7 +525,7 @@ The `Polymer.DirMixin` provides limited support for the `:dir()` selector. Use o
 application to set the `dir` attribute on `<html>`. All elements will use the same direction.
 
 Individual elements can opt-out of the global direction by setting the `dir` attribute
-in HTML or at `ready()`, but the text direction of these elements must from then on be handled 
+in HTML or in the `ready` callback, but the text direction of these elements must from then on be handled 
 manually.
 
 ```
