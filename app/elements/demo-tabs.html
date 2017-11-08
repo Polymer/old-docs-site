@@ -10,24 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="../bower_components/paper-tabs/paper-tab.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
-
-<!-- Note: this is lazy loaded by quick-tour.md -->
-<dom-module id='demo-tab'>
-  <template>
-    <slot></slot>
-  </template>
-  <script>
-    Polymer({
-      is: 'demo-tab',
-      properties: {
-        heading: {
-          type: String
-        }
-      }
-    });
-  </script>
-</dom-module>
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 
 <dom-module id='demo-tabs'>
   <template>
@@ -41,26 +24,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       paper-tabs {
         color: black;
-        --paper-tabs-selection-bar-color: black;
-      }
-
-      paper-tab {
         font-size: 16px;
+        --paper-tabs-selection-bar-color: black;
+        --paper-tab-ink: #1e88e5;
       }
 
-      iron-pages {
-        background: white;
+      iron-selector {
         width: 100%;
-        height: 100%;
+      }
+
+      iron-selector ::slotted(*) {
+        display: none;
+      }
+
+      iron-selector ::slotted(.iron-selected) {
+        display: block;
+        margin: 0;
       }
 
       .results {
-        box-sizing: border-box;
-        background: white;
-        width: 100%;
         padding: 20px;
-        margin: 0;
-        background-color: #fafafa;
+        background: #fafafa;
         border-top: 1px solid #e0e0e0;
       }
 
@@ -74,16 +58,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .tabstrip a {
         text-decoration: none;
       }
-
     </style>
 
     <div class="tabstrip layout horizontal center">
       <paper-tabs selected="{{_selected}}" class="flex">
-        <dom-repeat items="[[_panels]]">
-          <template>
-            <paper-tab>{{item.heading}}</paper-tab>
-          </template>
-        </dom-repeat>
+        <slot name="tabs"></slot>
       </paper-tabs>
       <a href="[[src]]" target="_blank" hidden$="[[_hidePlunkrButton(src)]]">
         <paper-button on-click="_plunkerLaunched" raised>
@@ -93,14 +72,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </a>
     </div>
 
-    <div class="layout horizontal">
-      <iron-pages selected="[[_selected]]">
-        <slot id="contentpanels" name="demo-tab"></slot>
-      </iron-pages>
-    </div>
+    <iron-selector selected="[[_selected]]">
+      <slot></slot>
+    </iron-selector>
 
     <div class="results">
-      <slot></slot>
+      <slot name="results"></slot>
     </div>
   </template>
 
@@ -124,19 +101,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     attached: function() {
-      this._observer =
-          Polymer.dom(this.$.contentpanels).observeNodes(function(mutations) {
-            this._updatePanels();
-          }.bind(this));
       this._selected = 0;
-    },
-
-    detached: function() {
-      Polymer.dom(this.$.contentpanels).unobserveNodes(this._observer);
-    },
-
-    _updatePanels: function() {
-      this._panels = Polymer.dom(this.$.contentpanels).getDistributedNodes();
     },
 
     _hidePlunkrButton: function(src) {
