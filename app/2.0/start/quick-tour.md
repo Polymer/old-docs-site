@@ -222,7 +222,6 @@ Try it out in **Plunker**:
 * Change the first and last names inside this.employees
 * Add another employee by inserting the following text into the array definition after Tony Morelli:<br/>
   ```
-   ,
      {first: 'Shawna', last: 'Williams'} 
   ```
 
