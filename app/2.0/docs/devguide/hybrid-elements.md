@@ -229,7 +229,7 @@ Other sets are listed in a special `variants` section. For example:
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^2.0.0",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
-    "test-fixture": "PolymerElements/test-fixture#^2.0.0",
+    "test-fixture": "PolymerElements/test-fixture#^3.0.0",
     "web-component-tester": "^6.0.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
   },
