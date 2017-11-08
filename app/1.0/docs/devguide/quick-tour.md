@@ -32,14 +32,23 @@ The Polymer function takes as an
 argument an object that defines your element's prototype.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/TbK3gUohLircKlIJByqc?p=preview">
-  <demo-tab slot="demo-tab" heading="proto-element.html">
-<pre><code>{{{include_file('1.0/docs/devguide/samples/proto-element/proto-element.html')}}}</code></pre>
-  </demo-tab>
-  <demo-tab slot="demo-tab" heading="index.html">
-<pre><code>{{{include_file('1.0/docs/devguide/samples/proto-element/index.html')}}}</code></pre>
-  </demo-tab>
+  <paper-tab slot="tabs">proto-element.html</paper-tab>
+  <div>
 
-  <iframe frameborder="0" src="samples/proto-element/index.html" width="100%" height="40"></iframe>
+```html
+<!-- include_file 1.0/docs/devguide/samples/proto-element/proto-element.html -->
+```
+
+  </div>
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 1.0/docs/devguide/samples/proto-element/index.html -->
+```
+
+  </div>
+  <iframe slot="results" frameborder="0" src="samples/proto-element/index.html" width="100%" height="40"></iframe>
 </demo-tabs>
 
 This sample uses a lifecycle callback
@@ -61,14 +70,23 @@ Many elements include some internal DOM nodes to implement the element's UI and 
 Polymer calls this _local DOM_, and it provides an easy way to specify it:
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/RhZMWIWf6hbFUXxRSQkz?p=preview">
-  <demo-tab slot="demo-tab" heading="dom-element.html">
-<pre><code>{{{include_file('1.0/docs/devguide/samples/dom-element/dom-element.html')}}}</code></pre>
-  </demo-tab>
-  <demo-tab slot="demo-tab" heading="index.html">
-<pre><code>{{{include_file('1.0/docs/devguide/samples/dom-element/index.html')}}}</code></pre>
-  </demo-tab>
+  <paper-tab slot="tabs">dom-element.html</paper-tab>
+  <div>
 
-  <iframe frameborder="0" src="samples/dom-element/index.html" width="100%" height="40"></iframe>
+```html
+<!-- include_file 1.0/docs/devguide/samples/dom-element/dom-element.html -->
+```
+
+  </div>
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 1.0/docs/devguide/samples/dom-element/index.html -->
+```
+
+  </div>
+  <iframe slot="results" frameborder="0" src="samples/dom-element/index.html" width="100%" height="40"></iframe>
 </demo-tabs>
 
 Local DOM is encapsulated inside the element.
@@ -84,14 +102,23 @@ This example creates a simple tag that decorates an image by wrapping it
 with a styled `<div>` tag.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/qEMZleDbvKrNcpPXSviW?p=preview">
-  <demo-tab slot="demo-tab" heading="picture-frame.html">
-<pre><code>{{{include_file('1.0/docs/devguide/samples/picture-frame/picture-frame.html')}}}</code></pre>
-  </demo-tab>
-  <demo-tab slot="demo-tab" heading="index.html">
-<pre><code>{{{include_file('1.0/docs/devguide/samples/picture-frame/index.html')}}}</code></pre>
-  </demo-tab>
+  <paper-tab slot="tabs">picture-frame.html</paper-tab>
+  <div>
 
-  <iframe frameborder="0" src="samples/picture-frame/index.html" width="100%" height="60"></iframe>
+```html
+<!-- include_file 1.0/docs/devguide/samples/picture-frame/picture-frame.html -->
+```
+
+  </div>
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 1.0/docs/devguide/samples/picture-frame/index.html -->
+```
+
+  </div>
+  <iframe slot="results" frameborder="0" src="samples/picture-frame/index.html" width="100%" height="60"></iframe>
 </demo-tabs>
 
 **Note:** The CSS styles defined inside the `<dom-module>` are _scoped_ to the element's local DOM.
@@ -111,14 +138,23 @@ You can bind properties in your component using the "double-mustache" syntax (`{
 The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced between the brackets.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/LUm1XjpxlMIQFqGy04NS?p=preview">
-  <demo-tab slot="demo-tab" heading="name-tag.html">
-<pre><code>{{{include_file('1.0/docs/devguide/samples/name-tag/name-tag.html')}}}</code></pre>
-  </demo-tab>
-  <demo-tab slot="demo-tab" heading="index.html">
-<pre><code>{{{include_file('1.0/docs/devguide/samples/name-tag/index.html')}}}</code></pre>
-  </demo-tab>
+  <paper-tab slot="tabs">name-tag.html</paper-tab>
+  <div>
 
-  <iframe frameborder="0" src="samples/name-tag/index.html" width="100%" height="40"></iframe>
+```html
+<!-- include_file 1.0/docs/devguide/samples/name-tag/name-tag.html -->
+```
+
+  </div>
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 1.0/docs/devguide/samples/name-tag/index.html -->
+```
+
+  </div>
+  <iframe slot="results" frameborder="0" src="samples/name-tag/index.html" width="100%" height="40"></iframe>
 </demo-tabs>
 
 <p><a href="/1.0/docs/devguide/data-binding" class="blue-button">
@@ -134,14 +170,23 @@ In the following example, we add a declared `owner` property with a default valu
 and configure it in `index.html`.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/HjgVnjpxMTvZJfhwpRPE?p=preview">
-  <demo-tab slot="demo-tab" heading="configurable-name-tag.html">
-<pre><code>{{{include_file('1.0/docs/devguide/samples/configurable-name-tag/configurable-name-tag.html')}}}</code></pre>
-  </demo-tab>
-  <demo-tab slot="demo-tab" heading="index.html">
-<pre><code>{{{include_file('1.0/docs/devguide/samples/configurable-name-tag/index.html')}}}</code></pre>
-  </demo-tab>
+  <paper-tab slot="tabs">configurable-name-tag.html</paper-tab>
+  <div>
 
-  <iframe frameborder="0" src="samples/configurable-name-tag/index.html" width="100%" height="40"></iframe>
+```html
+<!-- include_file 1.0/docs/devguide/samples/configurable-name-tag/configurable-name-tag.html -->
+```
+
+  </div>
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 1.0/docs/devguide/samples/configurable-name-tag/index.html -->
+```
+
+  </div>
+  <iframe slot="results" frameborder="0" src="samples/configurable-name-tag/index.html" width="100%" height="40"></iframe>
 </demo-tabs>
 
 <p><a href="/1.0/docs/devguide/properties" class="blue-button">
@@ -157,14 +202,23 @@ This example uses two-way binding: binding the value of a custom input element (
 to the element's `owner` property, so it's updated as the user types.
 
 <demo-tabs selected="0" src="http://plnkr.co/edit/DIA7weGNRf9Ejxp6xyh1?p=preview">
-  <demo-tab slot="demo-tab" heading="editable-name-tag.html">
-<pre><code>{{{include_file('1.0/docs/devguide/samples/editable-name-tag/editable-name-tag.html')}}}</code></pre>
-  </demo-tab>
-  <demo-tab slot="demo-tab" heading="index.html">
-<pre><code>{{{include_file('1.0/docs/devguide/samples/editable-name-tag/index.html')}}}</code></pre>
-  </demo-tab>
+  <paper-tab slot="tabs">editable-name-tag.html</paper-tab>
+  <div>
 
-  <iframe frameborder="0" src="samples/editable-name-tag/index.html" width="100%" height="100"></iframe>
+```html
+<!-- include_file 1.0/docs/devguide/samples/editable-name-tag/editable-name-tag.html -->
+```
+
+  </div>
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 1.0/docs/devguide/samples/editable-name-tag/index.html -->
+```
+
+  </div>
+  <iframe slot="results" frameborder="0" src="samples/editable-name-tag/index.html" width="100%" height="100"></iframe>
 </demo-tabs>
 
 **Note:** The `is="iron-input"` attribute indicates the input is a _type-extension_ custom
