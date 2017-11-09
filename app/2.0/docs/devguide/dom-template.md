@@ -94,30 +94,20 @@ important rules:
 
 -   Don't modify the superclass template in place; make a copy before modifying.
 -   If you're doing anything expensive, like copying or modifying an existing template,
-    you should memoize the modified template so you don't have to regenerate it each time the
+    you should memoize the modified template so you don't have to regenerate it when the
     getter is called.
--   Consider that the superclass template getter could return either a string _or a `<template>` element.
 
 The following example shows a simple modification based on a parent template:
 
 ```js
-(function() { 
+(function() {
   let memoizedTemplate;
 
-  class SimpleExtension extends MySuperClass {
+  class MyExtension extends MySuperClass {
     static get template() {
       if (!memoizedTemplate) {
-        // get the superclass template, which could be 
-        // either a string or a template element
-        const superTemplate = MySuperClass.template;
-        if (typeof superTemplate == 'string') {
-          // create a new template element
-          memoizedTemplate = document.createElement('template);
-          memoizedTemplate.innerHTML = superTemplate;
-        } else {
-        // create a clone of superclass template (true = "deep" clone)
-          memoizedTemplate = superTemplate.cloneNode(true);
-        }
+        // create a clone of superclass template (`true` = "deep" clone)
+        memoizedTemplate = MySuperClass.template.cloneNode(true);
         // add a node to the template.
         let div = document.createElement('div');
         div.textContent = 'Hello from an extended template.'
@@ -126,7 +116,7 @@ The following example shows a simple modification based on a parent template:
       return memoizedTemplate;
     }
   }
-  customElements.define('simple-extension', SimpleExtension);
+
 })();
 ```
 
@@ -137,9 +127,7 @@ template.
 <dom-module id="my-ext">
     <template>
       <h2>Extended template</h2>
-      <div id="container">
-        <!-- superclass template will go here -->
-      </div>
+      <!-- superclass template will go here -->
       <div id="footer">
         Extended template footer.
       </div>
@@ -151,25 +139,17 @@ template.
       class MyExtension extends MySuperClass {
 
         static get is() { return 'my-ext'}
-
         static get template() {
           if (!memoizedTemplate) {
             // Retrieve this element's dom-module template
             memoizedTemplate = Polymer.DomModule.import(this.is, 'template');
-            // Find the place to insert superclass template.
-            const container = memoizedTemplate.content.querySelector('#container');
 
-            const superTemplate = MySuperClass.template;
-            if (typeof superTemplate == 'string') {
-              // We have a string full of markup, insert using innerHTML
-              container.innerHTML = superTemplate;
-            } else {
-              // We have a template element
-              // Clone the contents of the superclass template
-              const superTemplateContents = document.importNode(MySuperClass.template.content, true);
-              // Insert the superclass contents
-              container.appendChild(superTemplateContents);
-            }
+            // Clone the contents of the superclass template
+            let superTemplateContents = document.importNode(MySuperClass.template.content, true);
+
+            // Insert the superclass contents
+            let footer = memoizedTemplate.content.querySelector('#footer');
+            memoizedTemplate.content.insertBefore(superTemplateContents, footer);
           }
           return memoizedTemplate;
         }
