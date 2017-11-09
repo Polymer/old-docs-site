@@ -148,9 +148,9 @@ callback, so if you override `ready`, you must call `super.ready()` at some poin
 
 Polymer does several things at `ready` time:
 
--   Sets default property values.
--   Allows observers and computed properties to run (as soon as their dependencies are defined).
 -   Creates and attaches the element's shadow DOM tree. 
+-   Initializes the data system, propagating intial values to data bindings.
+-   Allows observers and computed properties to run (as soon as any of their dependencies are defined).
 
 When the superclass `ready` method returns, the element's template has been instantiated and initial
 property values have been set. However, light DOM elements may not have been distributed when
