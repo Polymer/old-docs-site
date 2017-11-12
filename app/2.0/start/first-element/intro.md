@@ -63,6 +63,13 @@ GitHub](https://github.com/PolymerLabs/polymer-2-first-element.git).
     The main file you’ll work with is `icon-toggle.html`, which contains the definition for your 
 custom element.
 
+3. Install dependencies:
+
+   ```bash
+   bower intall
+   ```
+   
+
 ### Install Polymer CLI
 
 Install the Polymer CLI to serve the demo locally. 
