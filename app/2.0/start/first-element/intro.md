@@ -80,9 +80,9 @@ To install Polymer CLI:
 
 To install the element's dependencies and run the demo:
 
-1.  Run `bower install` from the repo directory:
+1.  Run `polymer install` from the repo directory:
 
-        bower install
+        polymer install
 
     This installs the components and dependencies required to use the Polymer library and other web 
 components. 
