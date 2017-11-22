@@ -287,17 +287,19 @@ _deserializeValue(value, type) {
 ## Configuring default property values {#configure-values}
 
 Default values for properties may be specified in the `properties` object using
-the `value` field.  The value may either be a primitive value, or a function
+the `value` field, **or** set imperatively in the element's `constructor`. 
+
+The value in the `properties` object may either be a primitive value, or a function
 that returns a value.
 
 If you provide a function, Polymer calls the function once
 _per element instance_.
 
-When initializing a property to an object or array value, use a function to
-ensure that each element gets its own copy of the value, rather than having
-an object or array shared across all instances of the element.
+When initializing a property to an object or array value, either initialize the property
+in the constructor, or use a function to ensure that each element gets its own copy of 
+the value, rather than having an object or array shared across all instances of the element.
 
-Example: { .caption }
+Default in properties object { .caption }
 
 ```js
 class XCustom extends Polymer.Element {
@@ -319,6 +321,25 @@ class XCustom extends Polymer.Element {
 }
 ```
 
+Default in constructor {.caption}
+```js
+constructor() {
+  super();  
+  this.mode = 'auto';
+  this.data = {};
+}
+
+static get properties() {
+  return {
+    mode: String,
+
+    data: {
+      type: Object,
+      notify: true
+    }
+  }
+}
+```
 
 ## Property change notification events (notify) {#notify}
 
@@ -333,7 +354,8 @@ the property name. For example, a change to `this.firstName` fires
 
 These events are used by the two-way data binding system. External
 scripts can also listen for events (such as `first-name-changed`)
-directly using `addEventListener`.
+directly using `addEventListener`. Property change events don't bubble, so
+the event listener must be added directly to the element generating the event. 
 
 For more on property change notifications and the data system, see
 [Data flow](data-system#data-flow).

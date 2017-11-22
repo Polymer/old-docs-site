@@ -230,19 +230,54 @@ App project demo:
 
 This section shows examples of using various `polymer serve` options.
 
+#### --port
+
 Serve from port 3000:
 
     polymer serve --port 3000
+
+#### --hostname 
 
 If you have configured a custom hostname on your machine, Polymer CLI can serve it with the
 `--hostname` argument (for example, app project demo is available at `http://test:8080`):
 
     polymer serve --hostname test
 
+#### --open
+
 Open up a page other than the default `index.html` in a specific browser
 (Apple Safari, in this case):
 
     polymer serve --open app.html --browser Safari
+
+#### --compile
+
+By default, the server will automatically use Babel to transpile any ES6 code down to ES5 for
+browsers that don't have native support for important ES6 features like classes. This behavior
+can be explicitly turned on or off for all browsers via the `--compile` option.
+
+Valid values are "auto", "always" and "never". "auto" compiles JavaScript to ES5 for browsers 
+that don't fully support ES6.   
+
+Always compile ES6 to ES5:
+
+    polymer serve --compile always
+    
+Never compile ES6 to ES5:
+
+    polymer serve --compile never
+
+(**Default**) Automatically compile to ES5 for browsers that don't fully support ES6:
+
+    polymer serve --compile auto
+    
+Automatic compilation can cause problems when running in device emulation mode on Chrome.
+If the browser sends another browser's `user-agent` string, the server may switch between 
+compiled and uncompiled responses, leaving the browser with an inconsistent set of resources
+in its cache. This issue may also occur in other browsers with device emulation capabilities. 
+Use `--compile always` or `--compile never` to avoid this problem.
+    
+Run `polymer help serve` for the full list of available options.
 
 ## polymer test {#tests}
 

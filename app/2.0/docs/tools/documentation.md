@@ -308,6 +308,47 @@ properties and mixins in a table in the main element description:
     `--paper-button-ink-color` | Background color of the ripple | Based on the button's color
     `--paper-button` | Mixin applied to the button | `{}`
 
+### Namespaces and members of a namespace
+
+If you declare a namespace, annotate it with the `@namespace` tag. For example:
+
+```js
+<!-- zombie-base.html -->
+<script>
+  // A bunch of elements, for zombies, by zombies.
+  // @namespace ZombieElements
+  window.ZombieElements = ZombieElements || {};
+
+  // @memberof ZombieElements
+  // @polymer 
+  // @mixinFunction
+  ZombieElements.ZombieMixin = (base) => class extends base {
+    // braaains
+  }
+  // etc
+</script>
+```
+
+Annotate classes, functions and values assigned to a a namespace with the `@memberof` tag:
+
+```js
+<!--conehead-zombie.html -->
+<link rel="import" href="zombie-base.html">
+<script>
+  // A zombie with a cone on his head. Festive!
+  // @polymer
+  // @customElement
+  // @memberof ZombieElements
+  // @appliesMixin ZombieElements.ZombieMixin
+  class ConeheadZombie extends ZombieMixin(Polymer.Element) {
+    static get headProtection() {
+      return 'cone';
+    }
+  }
+  customElements.define('conehead-zombie', ConeheadZombie);
+  ZombieElements.ConeheadZombie = ConeheadZombie;
+</script>
+```
 
 ### Type Annotation {#type-annotation}
 
@@ -322,8 +363,10 @@ Adhere to [Closure-compatible type expressions](https://developers.google.com/cl
 * `@customElement`
 * `@demo`
 * `@event`
+* `@memberof`
 * `@mixinClass`
 * `@mixinFunction`
+* `@namespace`
 * `@polymer`
 * `@polymerBehavior`
 * `@type`

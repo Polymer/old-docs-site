@@ -8,9 +8,13 @@ Polymer makes it simple to create web components, declaratively.
 
 New web developers can simply add custom HTML elements on a web page with markdown. It’s just like using the HTML tags you’re already familiar with:
 
-<pre><code>&lt;h1&gt;A heading!&lt;/h1&gt;</code></pre>
+```html
+<h1>A heading!</h1>
+```
 
-<pre><code>&lt;fancy-thing&gt;A fancy thing!&lt;/fancy-thing&gt;</code></pre>
+```html
+<fancy-thing>A fancy thing!</fancy-thing>
+```
 
 
 Experienced web developers can use Polymer's special features to reduce boilerplate
@@ -39,14 +43,23 @@ element. The custom element's name **must start with an ASCII letter and
 contain a dash (-)**.
 
 <demo-tabs selected="0" name="qt-1-register" src="http://plnkr.co/edit/Q4E8zO?p=preview">
-  <demo-tab heading="custom-element.html">
-<pre><code>{{{include_file('2.0/start/samples/custom-element/custom-element.html')}}}</code></pre>
-  </demo-tab>
-  <demo-tab heading="index.html">
-<pre><code>{{{include_file('2.0/start/samples/custom-element/index.html')}}}</code></pre>
-  </demo-tab>
+  <paper-tab slot="tabs">custom-element.html</paper-tab>
+  <div>
 
-  <iframe frameborder="0" src="samples/custom-element/index.html" width="100%" height="40"></iframe>
+```html
+<!-- include_file 2.0/start/samples/custom-element/custom-element.html -->
+```
+
+  </div>
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 2.0/start/samples/custom-element/index.html -->
+```
+
+  </div>
+  <iframe slot="results" frameborder="0" src="samples/custom-element/index.html" width="100%" height="40"></iframe>
 </demo-tabs>
 
 Try it out in **Plunker**:
@@ -74,14 +87,23 @@ Many elements include some internal DOM nodes to implement the element's UI and 
 You can use Polymer's DOM templating to create a shadow DOM tree for your element.
 
 <demo-tabs selected="0" name="qt-2-shadow-dom" src="http://plnkr.co/edit/buPxSJ?p=preview">
-  <demo-tab heading="dom-element.html">
-<pre><code>{{{include_file('2.0/start/samples/dom-element/dom-element.html')}}}</code></pre>
-  </demo-tab>
-  <demo-tab heading="index.html">
-<pre><code>{{{include_file('2.0/start/samples/dom-element/index.html')}}}</code></pre>
-  </demo-tab>
+  <paper-tab slot="tabs">dom-element.html</paper-tab>
+  <div>
 
-  <iframe frameborder="0" src="samples/dom-element/index.html" width="100%" height="40"></iframe>
+```html
+<!-- include_file 2.0/start/samples/dom-element/dom-element.html -->
+```
+
+  </div>
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 2.0/start/samples/dom-element/index.html -->
+```
+
+  </div>
+  <iframe slot="results" frameborder="0" src="samples/dom-element/index.html" width="100%" height="40"></iframe>
 </demo-tabs>
 
 Try it out in **Plunker**:
@@ -100,14 +122,23 @@ This example creates a simple tag that decorates an image by wrapping it
 with a styled `<div>` tag.
 
 <demo-tabs selected="0" name="qt-3-compose" src="http://plnkr.co/edit/KvBnmE?p=preview">
-  <demo-tab heading="picture-frame.html">
-<pre><code>{{{include_file('2.0/start/samples/picture-frame/picture-frame.html')}}}</code></pre>
-  </demo-tab>
-  <demo-tab heading="index.html">
-<pre><code>{{{include_file('2.0/start/samples/picture-frame/index.html')}}}</code></pre>
-  </demo-tab>
+  <paper-tab slot="tabs">picture-frame.html</paper-tab>
+  <div>
 
-  <iframe frameborder="0" src="samples/picture-frame/index.html" width="100%" height="60"></iframe>
+```html
+<!-- include_file 2.0/start/samples/picture-frame/picture-frame.html -->
+```
+
+  </div>
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 2.0/start/samples/picture-frame/index.html -->
+```
+
+  </div>
+  <iframe slot="results" frameborder="0" src="samples/picture-frame/index.html" width="100%" height="60"></iframe>
 </demo-tabs>
 
 Try it out in **Plunker**:
@@ -131,14 +162,23 @@ You can bind properties in your component using the "double-mustache" syntax (`{
 The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced between the brackets.
 
 <demo-tabs selected="0" name="qt-4-data-binding" src="http://plnkr.co/edit/8mZK8S?p=preview">
-  <demo-tab heading="name-tag.html">
-<pre><code>{{{include_file('2.0/start/samples/name-tag/name-tag.html')}}}</code></pre>
-  </demo-tab>
-  <demo-tab heading="index.html">
-<pre><code>{{{include_file('2.0/start/samples/name-tag/index.html')}}}</code></pre>
-  </demo-tab>
+  <paper-tab slot="tabs">name-tag.html</paper-tab>
+  <div>
 
-  <iframe frameborder="0" src="samples/name-tag/index.html" width="100%" height="40"></iframe>
+```html
+<!-- include_file 2.0/start/samples/name-tag/name-tag.html -->
+```
+
+  </div>
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 2.0/start/samples/name-tag/index.html -->
+```
+
+  </div>
+  <iframe slot="results" frameborder="0" src="samples/name-tag/index.html" width="100%" height="40"></iframe>
 </demo-tabs>
 
 Try it out in **Plunker**:
@@ -160,14 +200,23 @@ The following example declares the `owner` property from the last example.
 It also shows configuring the owner property from markup in `index.html`.
 
 <demo-tabs selected="0" name="qt-5-declare-property" src="http://plnkr.co/edit/3Nz8GL?p=preview">
-  <demo-tab heading="configurable-name-tag.html">
-<pre><code>{{{include_file('2.0/start/samples/configurable-name-tag/configurable-name-tag.html')}}}</code></pre>
-  </demo-tab>
-  <demo-tab heading="index.html">
-<pre><code>{{{include_file('2.0/start/samples/configurable-name-tag/index.html')}}}</code></pre>
-  </demo-tab>
+  <paper-tab slot="tabs">configurable-name-tag.html</paper-tab>
+  <div>
 
-  <iframe frameborder="0" src="samples/configurable-name-tag/index.html" width="100%" height="40"></iframe>
+```html
+<!-- include_file 2.0/start/samples/configurable-name-tag/configurable-name-tag.html -->
+```
+
+  </div>
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 2.0/start/samples/configurable-name-tag/index.html -->
+```
+
+  </div>
+  <iframe slot="results" frameborder="0" src="samples/configurable-name-tag/index.html" width="100%" height="40"></iframe>
 </demo-tabs>
 
 Try it out in **Plunker**:
@@ -186,14 +235,23 @@ This example uses two-way binding: binding the value of a custom input element (
 to the element's `owner` property, so it's updated as the user types.
 
 <demo-tabs selected="0" name="qt-6-bind-property" src="http://plnkr.co/edit/03HGzn98uIN5I1WgkDwu?p=preview">
-  <demo-tab heading="editable-name-tag.html">
-<pre><code>{{{include_file('2.0/start/samples/editable-name-tag/editable-name-tag.html')}}}</code></pre>
-  </demo-tab>
-  <demo-tab heading="index.html">
-<pre><code>{{{include_file('2.0/start/samples/editable-name-tag/index.html')}}}</code></pre>
-  </demo-tab>
+  <paper-tab slot="tabs">editable-name-tag.html</paper-tab>
+  <div>
 
-  <iframe frameborder="0" src="samples/editable-name-tag/index.html" width="100%" height="100"></iframe>
+```html
+<!-- include_file 2.0/start/samples/editable-name-tag/editable-name-tag.html -->
+```
+
+  </div>
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 2.0/start/samples/editable-name-tag/index.html -->
+```
+
+  </div>
+  <iframe slot="results" frameborder="0" src="samples/editable-name-tag/index.html" width="100%" height="100"></iframe>
 </demo-tabs>
 
 Try it out in **Plunker**:
@@ -208,20 +266,29 @@ data binding and input validation.
 The template repeater (`dom-repeat`) is a specialized template that binds to an array. It creates one instance of the template's contents for each item in the array.
 
 <demo-tabs selected="0" name="qt-7-dom-repeat" src="http://plnkr.co/edit/FdgkAtcLFHX5TpTsYtZn?p=preview">
-  <demo-tab heading="employee-list.html">
-<pre><code>{{{include_file('2.0/start/samples/employee-list/employee-list.html')}}}</code></pre>
-  </demo-tab>
-  <demo-tab heading="index.html">
-<pre><code>{{{include_file('2.0/start/samples/employee-list/index.html')}}}</code></pre>
-  </demo-tab>
+  <paper-tab slot="tabs">employee-list.html</paper-tab>
+  <div>
 
-  <iframe frameborder="0" src="samples/employee-list/index.html" width="100%" height="100"></iframe>
+```html
+<!-- include_file 2.0/start/samples/employee-list/employee-list.html -->
+```
+
+  </div>
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 2.0/start/samples/employee-list/index.html -->
+```
+
+  </div>
+  <iframe slot="results" frameborder="0" src="samples/employee-list/index.html" width="100%" height="100"></iframe>
 </demo-tabs>
 
 Try it out in **Plunker**:
 * Change the first and last names inside this.employees
 * Add another employee by inserting the following text into the array definition after Tony Morelli:<br/>
-  ```
+  ```js
    ,
      {first: 'Shawna', last: 'Williams'} 
   ```

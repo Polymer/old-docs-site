@@ -253,10 +253,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <img src="/images/page-index/copenhagen.jpg">
           </div>
           <div>
-            <p>Join us in Copenhagen for the <strong>third annual Polymer Summit</strong>, August 22–23, 2017. The summit will feature talks from the Polymer team and community, codelabs, and of course great food and fun! Registration is open!</p>
-            <a href="https://summit.polymer-project.org/" target="_blank" class="blue-button">Visit the Site</a>
-            <p>Can't wait? Watch videos from last year's Summit in London.</p>
-            <a href="https://www.youtube.com/playlist?list=PLNYkxOF6rcICc687SxHQRuo9TVNOJelSZ" class="blue-button">Watch</a>
+            <p>Missed Polymer Summit 2017? You can still watch the talks from Polymer team and community, or try out the codelabs at home.</p>
+            <a href="https://summit.polymer-project.org/" target="_blank" class="blue-button">Watch the videos</a>
+            <a href="https://codelabs.developers.google.com/polymer-summit-2017" class="blue-button">Try out the codelabs</a>
           </div>
         </div>
       </div>
@@ -332,19 +331,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <h2>Use elements from the catalog</h2>
         <div class="section-columns">
           <div class="example-code flex">
-            <pre><code class="lang-html">
-  &lt;!-- Polyfill Web Components support for older browsers --&gt;
-  &lt;script src=&quot;components/webcomponentsjs/webcomponents-lite.min.js&quot;&gt;&lt;/script&gt;
+            <pre><code class="html">
+  <!-- Polyfill Web Components support for older browsers -->
+  <script src="components/webcomponentsjs/webcomponents-lite.min.js"></script>
 
-  &lt;!-- Import element --&gt;
-  &lt;link rel=&quot;import&quot; href=&quot;components/google-map/google-map.html&quot;&gt;
+  <!-- Import element -->
+  <link rel="import" href="components/google-map/google-map.html">
 
-  &lt;!-- Use element --&gt;
-  &lt;google-map latitude=&quot;37.790&quot; longitude=&quot;-122.390&quot;&gt;&lt;/google-map&gt;
+  <!-- Use element -->
+  <google-map latitude="37.790" longitude="-122.390"></google-map>
           </code></pre>
           </div>
           <div class="example-google-map">
-            <iframe frameborder="0" src="/1.0/samples/homepage/google-map/index.html" width="100%"></iframe>
+            <iframe frameborder="0" src="/2.0/samples/homepage/google-map/index.html" width="100%"></iframe>
             <p>An element built with Polymer looks and works just like any other HTML element. Simply find an element you’d like to use in your app, import it with an HTML import, and then add the tag to your page.</p>
             <a href="https://www.webcomponents.org/" target="_blank" class="blue-button vertical full-width">Browse elements</a>
           </div>
@@ -355,37 +354,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <h2>Create your own elements</h2>
         <div class="section-columns">
           <div class="example-code flex">
-            <pre><code class="lang-html">
-  &lt;dom-module id=&quot;contact-card&quot;&gt;
-    &lt;template&gt;
-      &lt;style&gt;...&lt;/style&gt;
-      &lt;slot&gt;&lt;/slot&gt;
-      &lt;iron-icon icon=&quot;star&quot; hidden$=&quot;{{!starred}}&quot;&gt;&lt;/iron-icon&gt;
-    &lt;/template&gt;
-    &lt;script&gt;
+            <pre><code class="html">
+  <dom-module id="contact-card">
+    <template>
+      <style>/* ... */</style>
+      <slot></slot>
+      <iron-icon icon="star" hidden$="{{!starred}}"></iron-icon>
+    </template>
+    <script>
       class ContactCard extends Polymer.Element {
         static get is() { return "contact-card"; }
         static get properties() {
           return {
-            starred: { type: Boolean, value: true }
+            starred: { type: Boolean, value: false }
           }
         }
       }
       customElements.define(ContactCard.is, ContactCard);
-    &lt;/script&gt;
-  &lt;/dom-module&gt;
+    </script>
+  </dom-module>
             </code></pre>
             <br>
-            <pre><code class="lang-html">
-  &lt;contact-card starred&gt;
-    &lt;img src=&quot;profile.jpg&quot; alt=&quot;Eric's photo&quot;&gt;
-    &lt;span&gt;Eric Bidelman&lt;/span&gt;
-  &lt;/contact-card&gt;
+            <pre><code class="html">
+  <contact-card starred>
+    <img src="profile.jpg" alt="Eric's photo">
+    <span>Eric Bidelman</span>
+  </contact-card>
             </code></pre>
           </div>
 
           <div class="example-contact-card">
-            <iframe frameborder="0" src="/1.0/samples/homepage/contact-card/index.html" width="100%"></iframe>
+            <iframe frameborder="0" src="/2.0/samples/homepage/contact-card/index.html" width="100%"></iframe>
             <p>The Polymer library makes it easy to create your own powerful elements. Give your element some markup and properties, and then use it on a site. Polymer provides useful features like templating and data binding to reduce the amount of boilerplate you need to write.</p>
             <a href="/2.0/start/first-element/intro" class="blue-button vertical full-width">Build an element</a>
           </div>
@@ -396,27 +395,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <h2>Build Progressive Web Apps</h2>
         <div class="section-columns">
           <div class="example-code flex">
-            <pre><code class="lang-html">
-  &lt;iron-pages role="main" selected="[[page]]" attr-for-selected="name" selected-attribute="visible"&gt;
-    &lt;!-- home view --&gt;
-    &lt;shop-home name="home" categories="[[categories]]"&gt;&lt;/shop-home&gt;
+            <pre><code class="html">
+  <iron-pages role="main" selected="[[page]]" attr-for-selected="name" selected-attribute="visible">
+    <!-- home view -->
+    <shop-home name="home" categories="[[categories]]"></shop-home>
 
-    &lt;!-- list view of items in a category --&gt;
-    &lt;shop-list name="list" route="[[subroute]]" offline="[[offline]]"&gt;&lt;/shop-list&gt;
+    <!-- list view of items in a category -->
+    <shop-list name="list" route="[[subroute]]" offline="[[offline]]"></shop-list>
 
-    &lt;!-- detail view of one item --&gt;
-    &lt;shop-detail name="detail" route="[[subroute]]" offline="[[offline]]"&gt;&lt;/shop-detail&gt;
+    <!-- detail view of one item -->
+    <shop-detail name="detail" route="[[subroute]]" offline="[[offline]]"></shop-detail>
 
-    &lt;!-- cart view --&gt;
-    &lt;shop-cart name="cart" cart="[[cart]]" total="[[total]]"&gt;&lt;/shop-cart&gt;
+    <!-- cart view -->
+    <shop-cart name="cart" cart="[[cart]]" total="[[total]]"></shop-cart>
 
-    &lt;!-- checkout view --&gt;
-    &lt;shop-checkout
+    <!-- checkout view -->
+    <shop-checkout
         name="checkout"
         cart="[[cart]]"
         total="[[total]]"
-        route="{{subroute}}"&gt;&lt;/shop-checkout&gt;
-  &lt;/iron-pages&gt;
+        route="{{subroute}}"></shop-checkout>
+  </iron-pages>
             </code></pre>
           </div>
 

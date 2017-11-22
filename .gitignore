@@ -7,5 +7,5 @@ dist
 build
 
 # Dev directories
-bower_components
-node_modules
+/app/bower_components
+/node_modules
