@@ -3,6 +3,8 @@ title: "Step 3: Use data binding and properties"
 subtitle: "Build your first Polymer element"
 ---
 
+<!-- toc -->
+
 Right now, the element doesn't do much. In this step, you'll give it a basic
 API, allowing you to configure the icon from markup, using an attribute, or
 from JavaScript, using a property.
