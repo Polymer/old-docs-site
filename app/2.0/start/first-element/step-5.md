@@ -3,6 +3,8 @@ title: "Step 5: Theming with custom CSS properties"
 subtitle: "Build your first Polymer element"
 ---
 
+<!-- toc -->
+
 You now have a button that's basically functional. But it's stuck using the
 existing text color for both pressed and unpressed states. What if you want to
 get a little flashier?
