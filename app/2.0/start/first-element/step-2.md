@@ -3,6 +3,8 @@ title: "Step 2: Add Local DOM"
 subtitle: "Build your first Polymer element"
 ---
 
+<!-- toc -->
+
 Next, you'll create a simple element that displays an icon.
 
 In this step, you'll learn about:
