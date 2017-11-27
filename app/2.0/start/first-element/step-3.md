@@ -9,6 +9,8 @@ Right now, the element doesn't do much. In this step, you'll give it a basic
 API, allowing you to configure the icon from markup, using an attribute, or
 from JavaScript, using a property.
 
+## Declare a property
+
 First, a bit of data binding. We'll create a `toggleIcon` property that you can use in HTML markup, like this: 
 
 ```html
@@ -71,6 +73,8 @@ The default is `String`, so the declaration of `toggleIcon` is a formality here.
 To learn more, see <a href="/2.0/docs/devguide/properties#attribute-deserialization">Attribute
 deserialization</a> in the Polymer docs.
 { .alert .alert-info }
+
+## Configure the property from markup 
 
 Now find the `<iron-icon>` element and change the value of the `icon` attribute from `"polymer"` to  "`[[toggleIcon]]`".
 
