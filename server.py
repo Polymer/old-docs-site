@@ -49,6 +49,9 @@ ARTICLES_FILE = 'blog.yaml'
 AUTHORS_FILE = 'authors.yaml'
 IS_DEV = os.environ.get('SERVER_SOFTWARE', '').startswith('Dev')
 
+# base path for edit-on-github links
+BASE_EDIT_PATH = "https://github.com/Polymer/docs/edit/master/app/%s.md"
+
 def render(out, template, data={}):
   try:
     t = env.get_template(template)
@@ -214,10 +217,13 @@ class Site(http2push.PushHandler):
       return
 
     template_path = path
+    # edit_on_github_path is different for index files.
+    edit_on_github_path = path
     # Root / serves index.html.
     # Folders server the index file (e.g. /docs/index.html -> /docs/).
     if not path or path.endswith('/'):
       template_path += 'index.html'
+      edit_on_github_path += 'index'
     # Remove index.html from URL.
     elif path.endswith('index'):
       # TODO: preserve URL parameters and hash.
@@ -238,6 +244,7 @@ class Site(http2push.PushHandler):
         'path': '/' + path,
         # 1.0 and 2.0 API docs are not editable in GH.
         'edit_on_github': path.find('.0/docs/api/') == -1,
+        'edit_on_github_path': BASE_EDIT_PATH % edit_on_github_path,
         'versioned_paths': self.get_versioned_paths(shortpath),
         # we use this as a macro in cross-references.
         # please don't take it away.
