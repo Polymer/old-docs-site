@@ -33,6 +33,12 @@ of the samples in an interactive sandbox.
 
 Tap the buttons following each feature to learn more.
 
+**The Plunker samples won't work in Internet Explorer 11.** These code samples need to be transpiled 
+from ES6 to ES5 to work in Internet Explorer; at the moment we don't have a way to do this. The 
+samples will work in browsers that support ES6 - for example, the latest versions of Chrome, 
+Edge, Firefox and Safari.
+{: .alert .alert-info }
+
 ### Register an element {#register}
 
 To register a new element, create an ES6 class that extends
