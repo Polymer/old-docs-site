@@ -3,6 +3,8 @@ title: "Step 4: React to input"
 subtitle: "Build your first Polymer element"
 ---
 
+<!-- toc -->
+
 Of course, a button isn't a button if you can't click it.
 
 To toggle the button, add an event listener. Polymer lets us add event listeners with simple <code>on-<var>event</var></code> annotations in an element's template. Modify your code to use the Polymer `on-click` annotation to listen for the button's `click` event: 
