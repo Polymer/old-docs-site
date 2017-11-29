@@ -14,7 +14,7 @@ Luckily, Node has developed a clear release and long term support plan which we 
 
 We support all "Current" and "Active LTS" releases of Node.js according to the [Node.js Long Term Support Release Schedule](https://github.com/nodejs/LTS#lts-schedule), but **not** "Maintenance" releases.
 
-This means we will support from two to three semver major versions of Node.js, depending on where we are in the Node LTS schedule. Currently we support 6.x and 7.x.
+This means we will support from two to three semver major versions of Node.js, depending on where we are in the Node LTS schedule. Currently we support 6.x, 8.x, and 9.x.
 
 ## What package managers and which versions do we support?
 
