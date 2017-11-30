@@ -6,7 +6,8 @@ title: Try Polymer
 
 Polymer makes it simple to create web components, declaratively.
 
-New web developers can simply add custom HTML elements on a web page with markdown. It’s just like using the HTML tags you’re already familiar with:
+New web developers can simply add custom HTML elements on a web page with markdown.
+It’s just like using the HTML tags you’re already familiar with:
 
 ```html
 <h1>A heading!</h1>
@@ -33,10 +34,11 @@ of the samples in an interactive sandbox.
 
 Tap the buttons following each feature to learn more.
 
-**The Plunker samples won't work in Internet Explorer 11.** These code samples need to be transpiled 
-from ES6 to ES5 to work in Internet Explorer; at the moment we don't have a way to do this. The 
-samples will work in browsers that support ES6 - for example, the latest versions of Chrome, 
-Edge, Firefox and Safari.
+**The Plunker samples won't work in Internet Explorer 11.** These code samples need to
+be transpiled from ES6 to ES5 to work in Internet Explorer. This is usually done as a 
+build step. At the moment, we don't have a way to transpile the interactive samples on 
+Plunker. The samples will work in browsers that support ES6 - for example, the latest
+versions of Chrome, Edge, Firefox and Safari.
 {: .alert .alert-info }
 
 ### Register an element {#register}
