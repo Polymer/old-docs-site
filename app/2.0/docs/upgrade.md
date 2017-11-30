@@ -1261,7 +1261,7 @@ Because several aspects of timing change in 2.0, you'll need to test your code t
 doesn't rely on any 1.x timing. In particular:
 
 *   Element initialization (including template stamping and data system initialization) is deferred
-    until the the element is connected to the main document. (This is a result of the custom element
+    until the element is connected to the main document. (This is a result of the custom element
     v1 changes.)
 
 In order for a property to be deserialized from its attribute, it must be declared in the
@@ -1367,7 +1367,7 @@ Below are the general steps for defining a custom element using this new syntax:
     2.0 DOM templating and data binding system. It provides the standard custom element lifecycle
     callbacks, plus the Polymer-specific `ready` callback.
 
-*   Implement "behaviors" as [mixins that return class expressions](#mixins). Or use the the
+*   Implement "behaviors" as [mixins that return class expressions](#mixins). Or use the
     `mixinBehaviors` method to mix hybrid behaviors into your element.
 
 *   Element's `is` property should be defined as a static on the class.
