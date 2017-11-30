@@ -391,7 +391,7 @@ If the user clicks on the image element the click event bubbles up the tree:
     original target is inside its shadow root.
 *   A listener on the `<div>` in `<example-card>`'s shadow DOM also receives `<fancy-button>` as the
     target, since they are in the same shadow DOM tree.
-*   A listener on the `<example-card>` receives the <example-card> itself as the target.
+*   A listener on the `<example-card>` receives the `<example-card>` itself as the target.
 
 The event provides a `composedPath` method that returns an array of nodes that the event will pass
 through. In this case, the array would include:

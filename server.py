@@ -25,21 +25,6 @@ import http2push.http2push as http2push
 
 
 jinja_loader = jinja2.FileSystemLoader(os.path.dirname(__file__))
-
-# include the _escaped_ contents of a file
-def include_file(name):
-  try:
-    return jinja2.Markup.escape(jinja_loader.get_source(env, name)[0])
-  except Exception as e:
-    logging.exception(e)
-
-# include the literal (unescaped) contents of a file
-def include_file_raw(name):
-  try:
-    return jinja2.Markup(jinja_loader.get_source(env, name)[0])
-  except Exception as e:
-    logging.exception(e)
-
 env = jinja2.Environment(
   loader=jinja_loader,
   extensions=['jinja2.ext.autoescape'],
@@ -47,8 +32,6 @@ env = jinja2.Environment(
   trim_blocks=True,
   variable_start_string='{{{',
   variable_end_string='}}}')
-env.globals['include_file'] = include_file
-env.globals['include_file_raw'] = include_file_raw
 
 # memcache logic: maintain a separate cache for each explicit
 # app version, so staged versions of the docs can have new nav

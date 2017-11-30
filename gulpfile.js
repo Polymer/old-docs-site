@@ -9,84 +9,51 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 'use strict';
 
-// let gulp = require('gulp');
-let gulp = require('gulp-help')(require('gulp'));
-let $ = require('gulp-load-plugins')();
-let matter = require('gulp-gray-matter');
-let styleMod = require('gulp-style-modules');
-let cssslam = require('css-slam');
-let run = require('gulp-run');
-var swPrecache = require('sw-precache');
-
-let argv = require('yargs').argv;
-let browserSync = require('browser-sync').create();
-let del = require('del');
-let fs = require('fs');
-var replace = require('gulp-replace');
-
-let markdownIt = require('markdown-it')({
+// const gulp = require('gulp');
+const gulp = require('gulp-help')(require('gulp'));
+const $ = require('gulp-load-plugins')();
+const cssslam = require('css-slam');
+const swPrecache = require('sw-precache');
+const argv = require('yargs').argv;
+const browserSync = require('browser-sync').create();
+const del = require('del');
+const fs = require('fs');
+const hljs = require('highlight.js');
+const markdownIt = require('markdown-it')({
     html: true,
     highlight: (code, lang) => {
-      let highlightjs = require('highlight.js')
-      if (lang && highlightjs.getLanguage(lang)) {
+      if (lang && hljs.getLanguage(lang)) {
         try {
-          return highlightjs.highlight(lang, code).value;
+          return hljs.highlight(lang, code).value;
         } catch (__) { console.log(__) }
       } else {
         try {
-          return highlightjs.highlightAuto(code).value;
+          return hljs.highlightAuto(code).value;
         } catch (__) { console.log(__) }
       }
 
       return ''; // use external default escaping
     }
   });
-let markdownItAttrs = require('markdown-it-attrs');
-let merge = require('merge-stream');
-let path = require('path');
-let runSequence = require('run-sequence');
-let toc = require('toc');
+const markdownItAttrs = require('markdown-it-attrs');
+const merge = require('merge-stream');
+const path = require('path');
+const runSequence = require('run-sequence');
+const toc = require('toc');
 
-let AUTOPREFIXER_BROWSERS = ['last 2 versions', 'ios 8', 'Safari 8'];
+const AUTOPREFIXER_BROWSERS = ['last 2 versions', 'ios 8', 'Safari 8'];
 
 markdownIt.use(markdownItAttrs);
 // keep markdownIt from escaping template markup.
 markdownIt.normalizeLink = function(link) { return link; }
 markdownIt.validateLink = function(link) { return true; }
 
-function minifyHtml() {
-  return $.minifyHtml({quotes: true, empty: true, spare: true});
-}
-
-function uglifyJS() {
-  return $.uglify({preserveComments: 'some'});
-}
-
-function license() {
-  return $.license('BSD2', {
-    organization: 'The Polymer Project Authors. All rights reserved.',
-    tiny: true
-  });
-}
-
 // reload is a noop unless '--reload' cmd line arg is specified.
-let reload = function() {
+const reload = argv.reload ? browserSync.reload : function() {
   return new require('stream').PassThrough({objectMode: true});
 }
 
-if (argv.reload) {
-  reload = browserSync.reload;
-}
-
-function createReloadServer() {
-  browserSync.init({
-    notify: true,
-    open: !!argv.open,
-    proxy: 'localhost:8080' // proxy serving through app engine.
-  });
-}
-
-function writeServiceWorkerFile() {
+gulp.task('generate-service-worker', function() {
   /**
    * NOTE(keanulee): This function is run in the context of the generated SW where variables
    * like `toolbox` and `caches` are defined. It is referenced as a handler by the runtime
@@ -100,19 +67,29 @@ function writeServiceWorkerFile() {
     // Only serve the app shell for navigate requests (not XHRs) of non-sample content.
     if ((request.mode === 'navigate') && !request.url.match('samples')) {
       return caches.open(cacheName).then(function(cache) {
-        return cache.match(urlsToCacheKeys.get(new URL('/app-shell.html', self.location).toString()));
+        const url = new URL('/app-shell.html', self.location).toString();
+        return cache.match(urlsToCacheKeys.get(url)).then(function(response) {
+          if (response) {
+            return response;
+          }
+          throw Error('/app-shell.html missing from cache.');
+        });
+      }).catch(function(e) {
+        // Fall back to fetching the actual content if /app-shell.html is missing.
+        // The SW should precache it the next time it initializes.
+        console.warn('/app-shell.html missing from cache: %O', e);
+        return toolbox.networkFirst(request, values, options);
       });
     } else {
       return toolbox.networkFirst(request, values, options);
     }
   }
 
-  let path = require('path');
-  let rootDir = 'dist';
-  let partialTemplateFiles = ['head-meta.html', 'site-nav.html']
+  const rootDir = 'dist';
+  const partialTemplateFiles = ['head-meta.html', 'site-nav.html']
     .map(file => path.join(rootDir, 'templates', file));
 
-  let config = {
+  const config = {
     cacheId: 'polymerproject',
     staticFileGlobs: [
       `${rootDir}/images/logos/p-logo.png`,
@@ -120,7 +97,8 @@ function writeServiceWorkerFile() {
       `${rootDir}/elements/**`,
       `${rootDir}/js/*.js`,
       `${rootDir}/css/*.css`,
-      `${rootDir}/bower_components/**/webcomponents-lite.min.js`,
+      `${rootDir}/bower_components/webcomponentsjs/custom-elements-es5-adapter.js`,
+      `${rootDir}/bower_components/webcomponentsjs/webcomponents-loader.js`,
     ],
     dynamicUrlToDependencies: {
       '/': partialTemplateFiles.concat([`${rootDir}/index.html`, `${rootDir}/blog.yaml`, `${rootDir}/authors.yaml`]),
@@ -128,54 +106,54 @@ function writeServiceWorkerFile() {
       '/app-shell.html': partialTemplateFiles.concat(`${rootDir}/app-shell.html`),
     },
     runtimeCaching: [
-    {
-      urlPattern: new RegExp('/images/'),
-      handler: 'fastest',
-      options: {
-        cache: {
-          maxEntries: 50,
-          name: 'image-cache'
+      {
+        urlPattern: new RegExp('/images/'),
+        handler: 'fastest',
+        options: {
+          cache: {
+            maxEntries: 50,
+            name: 'image-cache'
+          }
+        }
+      },
+      {
+        urlPattern: new RegExp('/bower_components/webcomponentsjs/.*.js'),
+        handler: 'fastest',
+        options: {
+          cache: {
+            name: 'webcomponentsjs-polyfills-cache'
+          }
+        }
+      },
+      {
+        urlPattern: new RegExp('/(docs|start|toolbox|community|blog)/'),
+        handler: pwShellSWHandler,
+        options: {
+          cache: {
+            maxEntries: 100,
+            name: 'docs-cache'
+          }
+        }
+      },
+      {
+        urlPattern: new RegExp('/samples/'),
+        handler: 'fastest',
+        options: {
+          cache: {
+            maxEntries: 20,
+            name: 'samples-cache'
+          }
         }
       }
-    },
-    {
-      urlPattern: new RegExp('/docs/'),
-      handler: pwShellSWHandler,
-    },
-    {
-      urlPattern: new RegExp('/start/'),
-      handler: pwShellSWHandler,
-    },
-    {
-      urlPattern: new RegExp('/toolbox/'),
-      handler: pwShellSWHandler,
-    },
-    {
-      urlPattern: new RegExp('/samples/'),
-      handler: pwShellSWHandler,
-    },
-    {
-      urlPattern: new RegExp('/community/'),
-      handler: pwShellSWHandler,
-    },
-    {
-      urlPattern: new RegExp('/blog/'),
-      handler: pwShellSWHandler,
-      options: {
-        cache: {
-          maxEntries: 10,
-          name: 'blog-cache'
-        }
-      }
-    }],
+    ],
     stripPrefix: rootDir + '/',
     verbose: false  /* When debugging, you can enable this to true  */
   };
   return swPrecache.write(path.join(rootDir, 'service-worker.js'), config);
-}
+});
 
 gulp.task('style', 'Compile sass, autoprefix, and minify CSS', function() {
-  let sassOpts = {
+  const sassOpts = {
     precision: 10,
     outputStyle: 'expanded',
     onError: console.error.bind(console, 'Sass error:')
@@ -186,22 +164,12 @@ gulp.task('style', 'Compile sass, autoprefix, and minify CSS', function() {
     .pipe($.sass(sassOpts))
     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
     .pipe($.cssmin()) // Minify and add license
-    .pipe(license())
+    .pipe($.license('BSD2', {
+      organization: 'The Polymer Project Authors. All rights reserved.',
+      tiny: true
+    }))
     .pipe(gulp.dest('dist/css'))
 });
-
-// gulp.task('style:modules', 'Wrap CSS in Polymer style modules', function() {
-//   return gulp.src('node_modules/highlight.js/styles/github.css')
-//     .pipe($.rename({basename: 'syntax-color'}))
-//     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
-//     .pipe(styleMod({
-//       //filename: 'syntax-color',
-//       // moduleId: function(file) {
-//       //   return 'syntax-color';//path.basename(file.path, path.extname(file.path)) + '-css';
-//       // }
-//     }))
-//     .pipe(gulp.dest('dist/css'))
-// });
 
 gulp.task('images', 'Optimize images', function() {
   return gulp.src('app/images/**/*')
@@ -214,43 +182,49 @@ gulp.task('images', 'Optimize images', function() {
     .pipe(gulp.dest('dist/images'));
 });
 
-function convertMarkdownToHtml(file, templateName) {
-  let data = file.data;
-  data.file = file;
-  data.content = markdownIt.render(file.content); // Markdown -> HTML.
-  data.title = data.title || '';
-  data.subtitle = data.subtitle || '';
-
-  // If there is a table of contents, toc-ify it. Otherwise, wrap the
-  // original markdown content anyway, so that we can style it.
-  if (data.content.match(/<!--\s*toc\s*-->/gi)) {
-    // Leave a trailing opening <div class="article-wrapper"><article> in the TOC, so that we can wrap the original
-    // markdown content into a div, for styling
-    data.content = toc.process(data.content, {
-      header: '<h<%= level %><%= attrs %> id="<%= anchor %>" class="has-permalink"><%= header %></h<%= level %>>',
-      TOC: '<div class="details-wrapper"><details id="toc"><summary>Contents</summary><%= toc %></details></div><div class="article-wrapper"><article>',
-      openUL: '<ul data-depth="<%= depth %>">',
-      closeUL: '</ul>',
-      openLI: '<li data-level="H<%= level %>"><a href="#<%= anchor %>"><%= text %></a>',
-      closeLI: '</li>',
-      tocMax: 3,
-      anchor: function(header, attrs) {
-        // if we have an ID attribute, use that, otherwise
-        // use the default slug
-        var id = attrs.match(/(?:^|\s+)id="([^"]*)"/)
-        return id ? id[1] : toc.anchor(header);
-      }
-    }) + '</article></div>';
-  } else {
-    data.content = '<div class="article-wrapper"><article>' + data.content + '</article></div>';
-  }
-
-  $.util.replaceExtension(file, '.html'); // file.md -> file.html
-
-  let tmpl = fs.readFileSync(templateName);
-  let renderTemplate = $.util.template(tmpl);
-
-  return renderTemplate(data);
+function convertMarkdownToHtml(templateName) {
+  return $.grayMatter(function(file) { // pull out front matter data.
+    const data = file.data;
+    data.file = file;
+    data.title = data.title || '';
+    data.subtitle = data.subtitle || '';
+  
+    let content = file.content;
+    // Inline code snippets before running through markdown for syntax highlighting.
+    content = content.replace(/<!--\s*include_file\s*([^\s]*)\s*-->/g,
+      (match, src) => fs.readFileSync(`app/${src}`));
+    // Markdown -> HTML.
+    content = markdownIt.render(content);
+  
+    // If there is a table of contents, toc-ify it. Otherwise, wrap the
+    // original markdown content anyway, so that we can style it.
+    if (content.match(/<!--\s*toc\s*-->/gi)) {
+      // Leave a trailing opening <div class="article-wrapper"><article> in the TOC, so that we can wrap the original
+      // markdown content into a div, for styling
+      data.content = toc.process(content, {
+        header: '<h<%= level %><%= attrs %> id="<%= anchor %>" class="has-permalink"><%= header %></h<%= level %>>',
+        TOC: '<div class="details-wrapper"><details id="toc"><summary>Contents</summary><%= toc %></details></div><div class="article-wrapper"><article>',
+        openUL: '<ul data-depth="<%= depth %>">',
+        closeUL: '</ul>',
+        openLI: '<li data-level="H<%= level %>"><a href="#<%= anchor %>"><%= text %></a>',
+        closeLI: '</li>',
+        tocMax: 3,
+        anchor: function(header, attrs) {
+          // if we have an ID attribute, use that, otherwise
+          // use the default slug
+          var id = attrs.match(/(?:^|\s+)id="([^"]*)"/)
+          return id ? id[1] : toc.anchor(header);
+        }
+      }) + '</article></div>';
+    } else {
+      data.content = '<div class="article-wrapper"><article>' + content + '</article></div>';
+    }
+  
+    const tmpl = fs.readFileSync(templateName);
+    const renderTemplate = $.util.template(tmpl);
+  
+    return renderTemplate(data);  
+  });
 }
 
 gulp.task('md:docs', 'Docs markdown -> HTML conversion. Syntax highlight and TOC generation', function() {
@@ -259,9 +233,7 @@ gulp.task('md:docs', 'Docs markdown -> HTML conversion. Syntax highlight and TOC
       '!app/blog/*.md',
       '!app/{bower_components,elements,images,js,sass}/**',
     ], {base: 'app/'})
-    .pipe(matter(function(file) { // pull out front matter data.
-      return convertMarkdownToHtml(file, 'templates/page.template');
-    }))
+    .pipe(convertMarkdownToHtml('templates/page.template'))
     .pipe($.rename({extname: '.html'}))
     .pipe(gulp.dest('dist'));
 });
@@ -270,20 +242,10 @@ gulp.task('md:blog', 'Blog markdown -> HTML conversion. Syntax highlight and TOC
   return gulp.src([
       'app/blog/*.md',
     ], {base: 'app/'})
-    .pipe(matter(function(file) { // pull out front matter data.
-      return convertMarkdownToHtml(file, 'templates/blog.template');
-    }))
+    .pipe(convertMarkdownToHtml('templates/blog.template'))
     .pipe($.rename({extname: '.html'}))
     .pipe(gulp.dest('dist'));
 });
-
-// // Minify html
-// gulp.task('html', function() {
-//   gulp.src('app/index.html')
-//     //.pipe($.changed('dist/index.html'))
-//     .pipe(minifyHtml())
-//     .pipe(gulp.dest('dist'));
-// });
 
 gulp.task('jshint', 'Lint JS', function() {
   return gulp.src([
@@ -301,81 +263,80 @@ gulp.task('jshint', 'Lint JS', function() {
 
 gulp.task('js', 'Minify JS to dist/', ['jshint'], function() {
   return gulp.src(['app/js/**/*.js'])
-    .pipe(uglifyJS()) // Minify js output
+    .pipe($.uglify({preserveComments: 'some'})) // Minify js output
     .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('build-bundles', 'Build element bundles', function() {
-  return run('polymer build').exec();
-});
-
-gulp.task('vulcanize-demos', 'vulcanize demos', function() {
-  return gulp.src('app/1.0/samples/homepage/*/index.html', {base: 'app/1.0/samples/homepage'})
-    .pipe($.vulcanize({
-      stripComments: true,
-      inlineCss: true,
-      inlineScripts: true
-    }))
-    .pipe($.crisper()) // Separate HTML/JS into separate files.
-    .pipe($.if('*.html', minifyHtml())) // Minify html output
-    .pipe($.if('*.html', cssslam.gulp())) // Minify css in HTML output
-    .pipe($.if('*.js', uglifyJS())) // Minify js output
-    .pipe($.if('*.js', license()))
-    .pipe(gulp.dest('dist/1.0/samples/homepage'));
+  return merge(
+    $.run('polymer build').exec(),
+    $.run('polymer build', {cwd: 'app/2.0/samples/homepage/contact-card'}).exec(),
+    $.run('polymer build', {cwd: 'app/2.0/samples/homepage/google-map'}).exec())
 });
 
 gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', function() {
-  let app = gulp.src([
+  const app = gulp.src([
       '*',
       'app/manifest.json',
-      'app/service-worker.js',
       '!{README.md,package.json,gulpfile.js}',
     ], {nodir: true})
     .pipe(gulp.dest('dist'));
 
-  let docs = gulp.src([
+  // HTML pages (such as index.html) use gulp-highlight instead of the markdown
+  // code highlighter. It's slower than the markdown one since it has to parse
+  // the page to look for code snippets, so it's only used for non-markdown pages.
+  const docs = gulp.src([
       'app/**/*.html',
-      'app/**/nav.yaml',
-      'app/**/blog.yaml',
-      'app/**/authors.yaml',
       '!app/{bower_components,elements}/**',
-      '!app/1.0/samples/homepage/**',
+      '!app/2.0/samples/homepage/**',
      ], {base: 'app/'})
+    .pipe($.highlight({
+      selector: 'pre code'
+    }))
     .pipe(gulp.dest('dist'));
 
-  let gae = gulp.src([
+  const gae = gulp.src([
+    'app/**/nav.yaml',
+    'app/**/blog.yaml',
+    'app/**/authors.yaml',
       '{templates,lib}/**/*'
      ])
     .pipe(gulp.dest('dist'));
 
-  let bower = gulp.src([
-      'app/bower_components/webcomponentsjs/webcomponents*.js'
+  const bower = gulp.src([
+      'app/bower_components/webcomponentsjs/*'
     ], {base: 'app/'})
     .pipe(gulp.dest('dist'));
 
   // Copy the bundles that polymer build produced.
-  let bundles = gulp.src([
+  const bundles = gulp.src([
       'build/default/app/elements/*'
     ])
     .pipe(gulp.dest('dist/elements'));
+  const demo1 = gulp.src([
+      'app/2.0/samples/homepage/contact-card/build/default/**/*'
+    ])
+    .pipe(gulp.dest('dist/2.0/samples/homepage/contact-card'));
+  const demo2 = gulp.src([
+      'app/2.0/samples/homepage/google-map/build/default/**/*'
+    ])
+    .pipe(gulp.dest('dist/2.0/samples/homepage/google-map'));
 
-  let summit = gulp.src([
+  const summit = gulp.src([
       'app/summit*/**/*',
       'app/summit*/*',
     ], {base: 'app'})
     .pipe(gulp.dest('dist'));
 
-  let bower_summit = gulp.src([
-      'app/bower_components/webcomponentsjs/webcomponents*.js'
-    ], {base: 'app/'})
-    .pipe(gulp.dest('dist/summit-2015'))
-    .pipe(gulp.dest('dist/summit-2016'));
-
-  return merge(app, docs, gae, bower, bundles, summit, bower_summit);
+  return merge(app, docs, gae, bower, bundles, demo1, demo2, summit);
 });
 
 gulp.task('watch', 'Watch files for changes', function() {
-  createReloadServer();
+  browserSync.init({
+    notify: true,
+    open: !!argv.open,
+    proxy: 'localhost:8080' // proxy serving through app engine.
+  });
   gulp.watch('app/sass/**/*.scss', ['style', reload]);
   gulp.watch('app/elements/**/*', function() {
     runSequence('build-bundles', 'copy');
@@ -406,13 +367,11 @@ gulp.task('clean', 'Remove dist/ and other built files', function() {
   return del(['dist', 'app/css']);
 });
 
-gulp.task('generate-service-worker', writeServiceWorkerFile);
-
 // Default task. Build the dest dir.
 gulp.task('default', 'Build site', ['clean', 'jshint'], function(done) {
   runSequence(
     'build-bundles',
-    ['style', 'images', 'vulcanize-demos', 'js'],
-    'copy', 'md:docs', 'md:blog', 'generate-service-worker',
+    ['copy', 'md:docs', 'md:blog', 'style', 'images', 'js'],
+    'generate-service-worker',
     done);
 });

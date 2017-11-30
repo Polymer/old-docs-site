@@ -1,0 +1,63 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <base href="https://polygit.org/app-route+polymerelements+*/components/">
+  
+  <script src="webcomponentsjs/webcomponents-lite.js"></script>
+  
+  <link rel="import" href="iron-demo-helpers/demo-snippet.html">
+  <link rel="import" href="paper-input/paper-input.html">
+  <link rel="import" href="app-route/app-route.html">
+  <link rel="import" href="app-route/app-location.html">
+  <link rel="import" href="iron-demo-helpers/demo-pages-shared-styles.html">
+  <link rel="import" href="iron-demo-helpers/url-bar.html">
+
+  <style is="custom-style" include="demo-pages-shared-styles">
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    demo-snippet {
+      margin: 15px;
+    }
+  </style>
+
+</head>
+<body>
+  
+  <url-bar></url-bar>
+
+  <demo-snippet>
+    <template>
+      <demo-2></demo-2>
+      <dom-module id="demo-2">
+        <template>
+
+          <app-location route="{{route}}"></app-location>
+          <app-route route="{{route}}" pattern="{{pattern}}"  active="{{active}}"></app-route>
+
+          <div>Route is <span hidden$="{{active}}">not</span> active.</div>
+          <paper-input label="Route path" value="{{route.path}}"></paper-input>
+          <paper-input label="Pattern to match" value="{{pattern}}"></paper-input>
+
+        </template>
+        <script>
+          Polymer({
+            is: 'demo-2',
+            properties: {
+              pattern: {
+                value: function() {
+                  var pathname = window.location.pathname;
+                  return pathname.substring(0, pathname.lastIndexOf('/'));
+                },
+              },
+            }
+          });
+        </script>
+      </dom-module>
+    </template>
+  </demo-snippet>
+    
+</body>
+</html>

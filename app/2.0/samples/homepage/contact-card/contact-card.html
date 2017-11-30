@@ -1,6 +1,6 @@
-<link rel="import" href="../../../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="bower_components/iron-icons/iron-icons.html">
 
 <dom-module id="contact-card">
   <template>
@@ -13,26 +13,26 @@
             -ms-flex-align: center;
                 align-items: center;
       }
-      :host ::content > img {
+      :host ::slotted(img) {
         width: 50px;
         height: 50px;
         border-radius: 50%;
       }
-      :host ::content > span {
+      :host ::slotted(span) {
         font-family: Roboto, 'Helvetica Neue', Helvetica, sans-serif;
         margin: 16px;
         -webkit-flex-grow: 1;
             -ms-flex-positive: 1;
                 flex-grow: 1;
       }
-      :host ::content > iron-icon {
+      :host ::slotted(iron-icon) {
         color: #9E9E9E;
       }
       [hidden] {
         display: none;
       }
     </style>
-    <content></content>
+    <slot></slot>
 
     <iron-icon icon="star" hidden$="{{!starred}}"></iron-icon>
   </template>
