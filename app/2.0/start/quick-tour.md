@@ -287,11 +287,12 @@ The template repeater (`dom-repeat`) is a specialized template that binds to an 
 
 Try it out in **Plunker**:
 * Change the first and last names inside this.employees
-* Add another employee by inserting the following text into the array definition after Tony Morelli:<br/>
+* Add another employee by inserting the following item into the array definition:<br/>
   ```js
-   ,
      {first: 'Shawna', last: 'Williams'} 
   ```
+  
+Don't forget to make sure your commas are correct!
 
 <p><a href="/2.0/docs/devguide/templates" class="blue-button">
 Learn more: Template repeater</a></p>
