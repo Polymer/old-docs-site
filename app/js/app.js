@@ -11,40 +11,6 @@
 (function(exports) {
 'use strict';
 
-// // Add permalinks to heading elements.
-// function addPermalinkHeadings(opt_inDoc) {
-//   var doc = opt_inDoc || document;
-
-//   var permalinkEl = doc.querySelector('.show-permalinks');
-//   if (permalinkEl) {
-//     ['h2','h3','h4'].forEach(function(h, i) {
-//       Array.prototype.forEach.call(
-//           permalinkEl.querySelectorAll(h), addPermalink);
-//     });
-//   }
-// }
-
-// function prettyPrintPage(opt_inDoc) {
-//   var doc = opt_inDoc || document;
-//   Array.prototype.forEach.call(doc.querySelectorAll('pre'), function(pre, i) {
-//     pre.classList.add('prettyprint');
-//   });
-
-//   exports.prettyPrint && prettyPrint();
-// }
-
-// Lazily load the webcomponents polyfill
-if ('registerElement' in document &&
-    'import' in document.createElement('link') &&
-    'content' in document.createElement('template')) {
-  // platform is good!
-} else {
-  // polyfill the platform!
-  var e = document.createElement('script');
-  e.src = '/bower_components/webcomponentsjs/webcomponents-lite.min.js';
-  document.body.appendChild(e);
-}
-
 function downloadStarter() {
   ga('send', 'event', 'button', 'download');
 }
