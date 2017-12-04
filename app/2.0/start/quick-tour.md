@@ -6,7 +6,7 @@ title: Try Polymer
 
 Polymer makes it simple to create web components, declaratively.
 
-New web developers can simply add custom HTML elements on a web page with markdown.
+New web developers can simply add custom HTML elements on a web page with markup.
 It’s just like using the HTML tags you’re already familiar with:
 
 ```html
