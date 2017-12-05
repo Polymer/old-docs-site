@@ -123,8 +123,8 @@ that object or array, even if the object or array itself hasn't changed. For det
 Use Polymer's array mutation methods to make [observable changes](data-system#observable-changes)
 to arrays.
 
-If you manipulate an array using the native methods (like `Array.prototype.push`), you can notify
-Polymer after the fact, as described in [Batch changes to an object or array](#batch-changes).
+If you manipulate an array using the native methods (like `Array.prototype.push`), you can notify 
+Polymer after the fact as described in [Notify Polymer of array mutations](#notifysplices).
 
 ### Mutate an array {#array-mutation}
 
