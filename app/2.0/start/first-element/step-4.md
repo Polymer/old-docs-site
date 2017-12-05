@@ -3,6 +3,10 @@ title: "Step 4: React to input"
 subtitle: "Build your first Polymer element"
 ---
 
+<!-- toc -->
+
+## Add an event listener
+
 Of course, a button isn't a button if you can't click it.
 
 To toggle the button, add an event listener. Polymer lets us add event listeners with simple <code>on-<var>event</var></code> annotations in an element's template. Modify your code to use the Polymer `on-click` annotation to listen for the button's `click` event: 
@@ -17,6 +21,8 @@ icon-toggle.html { .caption }
 {.alert .alert-info}
 
 The code above calls a method called `toggle` when the button is pressed.  
+
+## Write a method to call when the event occurs
 
 Now, create the `toggle` method to toggle the `pressed` property when the button is pressed. Place the `toggle` method inside the class definition for `IconToggle`, after the constructor.
 
