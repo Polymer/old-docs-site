@@ -1,5 +1,5 @@
 ---
-title: "Step 2: Add Local DOM"
+title: "Step 2: Add Shadow DOM"
 subtitle: "Build your first Polymer element"
 ---
 
@@ -50,7 +50,7 @@ on HTML5Rocks.com for an in-depth discussion of HTML Imports.
 
 Next is the definition of the element itself:
 
-Starting code—local DOM template { .caption }
+Starting code—shadow DOM template { .caption }
 
 ```html
 <dom-module id="icon-toggle">
@@ -68,17 +68,17 @@ Starting code—local DOM template { .caption }
 
 Key information:
 
-*   The `<dom-module>` tag wraps an element's local DOM definition.
+*   The `<dom-module>` tag wraps an element's shadow DOM definition.
     In this case, the `id` attribute shows that this module includes the
-    local DOM for an element called `icon-toggle`.
-*   The `<template>` actually defines the element's local DOM structure and
+    shadow DOM for an element called `icon-toggle`.
+*   The `<template>` actually defines the element's shadow DOM structure and
     styling. This is where you'll add markup for your custom element.
 *   The `<style>` element inside the `<template>` lets you
-    define styles that are <em>scoped</em>  to the local DOM, so they don't
+    define styles that are <em>scoped</em>  to the shadow DOM, so they don't
     affect the rest of the document.
 *   The `:host` pseudo-class matches the custom element you're
     defining (in this case, the `<icon-toggle>`). This is the element
-    that contains or <em>hosts </em>the local DOM tree.
+    that contains or <em>hosts </em>the shadow DOM tree.
 
 **Learn more: Shadow DOM.** Shadow DOM
 lets you add a <em>scoped</em> DOM tree inside an element, with local styles and
@@ -141,10 +141,10 @@ Key information:
     customElements.define(IconToggle.is, IconToggle);
     ```
 
-### Create the local DOM structure
+### Create the shadow DOM structure
 
 Now that you're familiar with the basic layout of the element, add something
-useful to its local DOM template.
+useful to its shadow DOM template.
 
 Find the `<span>` below the  `shadow DOM goes here` comment:
 
@@ -172,7 +172,7 @@ Key information:
   * The `<iron-icon>` element is a custom element that renders an icon. Here it's hard-coded to use
 an icon named "polymer".
 
-### Style the local DOM
+### Style the shadow DOM
 
 There are a number of new CSS selectors to work with shadow DOM. The `icon-toggle.html ` file already includes a `:host` selector, discussed earlier, to style the top-level `<icon-toggle>` element.
 
