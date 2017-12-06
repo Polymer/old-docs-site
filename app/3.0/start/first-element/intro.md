@@ -5,12 +5,12 @@ subtitle: "Build your first Polymer element"
 
 <!-- toc -->
 
-In this tutorial, you’ll learn how to build elements using Polymer 2.0. You’ll
-create a simple Polymer element, a toggle button. The finished button will look
+In this tutorial, you’ll learn how to build elements using Polymer 3.0. You’ll
+create a simple Polymer element-a toggle button. The finished button will look
 something like this:
 
 ![Sample star-shaped toggle buttons, showing pressed and unpressed
-state](/images/2.0/first-element/sample-toggles.png)
+state](/images/3.0/first-element/sample-toggles.png)
 
 You’ll be able to use it with simple markup like this:
 
@@ -24,28 +24,27 @@ Polymer.
 Don’t worry if you don’t understand everything. Each of the concepts presented
 here is described in detail in the Polymer documentation.
 
-
 ## Step 1: Get set up
 
 To follow this tutorial, you’ll need:
 
 -   [git](https://git-scm.com/downloads).
 -   The starting code, [available on 
-GitHub](https://github.com/PolymerLabs/polymer-2-first-element.git).
--   The [Polymer CLI](/2.0/docs/tools/polymer-cli) to run the demo.
+GitHub](https://github.com/PolymerLabs/polymer-3-first-element.git).
+-   The [Polymer CLI](/3.0/docs/tools/polymer-cli) to run the demo.
 
 ### Download the starting code
 
-1.  Download the starting code by running this command:
+1.  Download the starting code by running the following command:
 
     ```bash
-    git clone https://github.com/PolymerLabs/polymer-2-first-element.git
+    git clone https://github.com/PolymerLabs/polymer-3-first-element.git
     ```
  
 2.  Open the project folder:  
 
     ```bash
-    cd polymer-2-first-element
+    cd polymer-3-first-element
     ```
 
     Your project folder should look something like
@@ -53,22 +52,22 @@ GitHub](https://github.com/PolymerLabs/polymer-2-first-element.git).
 
     <pre>
     README.md
-    bower.json
-    demo/
-    icon-toggle-finished/
-    icon-toggle.html
+    demo
+    icon-toggle-finished
+    icon-toggle.js
     index.html
+    package.json
+    yarn.lock
     </pre>
 
-    The main file you’ll work with is `icon-toggle.html`, which contains the definition for your 
-custom element.
+    The main file you’ll work with is `icon-toggle.js`, which contains the definition for your custom element.
 
 ### Install Polymer CLI
 
 Install the Polymer CLI to serve the demo locally. 
 
-Polymer CLI requires Node.js, npm, git and Bower. For full installation instructions, see [the 
-Polymer CLI documentation](/{{{polymer_version_dir}}}/docs/tools/polymer-cli).
+Polymer CLI requires Node.js, npm, git and Yarn. For full installation instructions,
+see [the Polymer CLI documentation](/{{{polymer_version_dir}}}/docs/tools/polymer-cli).
 
 To install Polymer CLI:
 
@@ -80,38 +79,39 @@ To install Polymer CLI:
 
 To install the element's dependencies and run the demo:
 
-1.  Run `bower install` from the repo directory:
+1.  Run `yarn install` from the repo directory:
 
-        bower install
+        yarn install
 
-    This installs the components and dependencies required to use the Polymer library and other web 
-components. 
+    This installs the components and dependencies required to use the Polymer library and other web components. 
 
-    You will now see an extra folder named `bower_components` in the project directory: 
+    You will now see an extra folder named `node_modules` in the project directory: 
 
     <pre>
     README.md
-    bower.json
-    bower_components
-    demo/
-    icon-toggle-finished/
-    icon-toggle.html
+    demo
+    icon-toggle-finished
+    icon-toggle.js
     index.html
+    node_modules
+    package.json
+    yarn.lock
     </pre>
 
 2.  Run the Polymer development server from the project directory:
 
-        polymer serve --open
+        polymer serve --npm 
+
+    **TODO: What does the `--npm` flag do? Why do we need it?**
+    
+    Visit the first link in the output (the link for `applications`). If you have no other local web servers running, this should be <a href="http://127.0.0.1:8081">http://127.0.0.1:8081</a>.
+    
+    **TODO: Fix path shenanigans so that `polymer serve --open --npm` will work**
 
     You’ll see some text where the icon toggles should appear. It doesn’t look
     very interesting, but it shows that everything is working.
- 
-    (Note that the URL includes `icon-toggle`—the component name listed in this element’s `bower.json` file—rather than the actual directory name. If you’re wondering why `polymer serve` does this, see [HTML imports and dependency management](/2.0/docs/tools/polymer-cli#element-project-layout).)
 
-<img src="/images/2.0/first-element/starting-state.png" alt="Initial state of the demo. The demo 
-shows three icon-toggle elements, two labeled 'statically-configured icon toggles' and one labeled 
-'data-bound icon toggle'. Since the icon toggles are not implemented yet, they appear as 
-placeholder text reading 'Not much here yet'." title="Initial demo">
+<p><img src="/images/3.0/first-element/starting-state.png" width="500px" alt="Initial state of the demo. The demo shows three icon-toggle elements, two labeled 'statically-configured icon toggles' and one labeled 'data-bound icon toggle'. Since the icon toggles are not implemented yet, they appear as placeholder text reading 'Not much here yet'." title="Initial demo"></p>
 
 If everything looks good, move on to [step 2](step-2).
 
