@@ -25,7 +25,7 @@ Polymer provides a default `template` getter that retrieves a template from the 
 `<dom-module>`. You can override this getter to provide a string template or a generated template
 element.
 
-### Specify a template using the <dom-module element {#dommodule}
+### Specify a template using the dom-module element {#dommodule}
 
 To specify an element's DOM template using a `<dom-module>`:
 
