@@ -97,7 +97,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       .sections-tabs a {
-        display: none;
+        display: inline-block;
         margin: 0 8px;
         padding-top: 24px;
         height: 100%;
@@ -108,11 +108,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         border-bottom: 4px solid #f50057;  /* pink-a400 */
       }
 
-      :host([active-docs-version="1.0"]) .sections-tabs a[data-version="1.0"],
-      :host([active-docs-version="2.0"]) .sections-tabs a[data-version="2.0"],
-      :host([active-docs-version="3.0"]) .sections-tabs a[data-version="3.0"],
-      .sections-tabs a:not([data-version]) {
-        display: inline-block;
+      :host([active-docs-version="1.0"]) .sections-tabs a[data-version="2.0"],
+      :host([active-docs-version="1.0"]) .sections-tabs a[data-version="3.0"],
+      :host([active-docs-version="2.0"]) .sections-tabs a[data-version="1.0"],
+      :host([active-docs-version="2.0"]) .sections-tabs a[data-version="3.0"],
+      :host([active-docs-version="3.0"]) .sections-tabs a[data-version="1.0"],
+      :host([active-docs-version="3.0"]) .sections-tabs a[data-version="2.0"] {
+        display: none;
       }
 
       .search-box {
