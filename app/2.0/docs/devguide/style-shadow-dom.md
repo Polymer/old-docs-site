@@ -65,6 +65,8 @@ Shadow DOM permits encapsulation of styling rules for custom elements. You can f
 styling information for your elements, such as fonts, text colors, and classes, without fear of the 
 styles applying outside the scope of your element.
 
+**Important Note.** starting with Polymer Version 2.2.1 the \<custom-style\> Tag together with \<style is="custom-style" include="..."\> cousing an error with 'NodeList'. Don't use hybrid mode with newer Polymer versions. 
+
 Here's an example:
 
 [See it on Plunker](http://plnkr.co/edit/cHSjdQTa0h6fWXAygkje?p=preview)
