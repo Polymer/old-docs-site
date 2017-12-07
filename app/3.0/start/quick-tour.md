@@ -54,7 +54,7 @@ contain a dash (-)**.
   <paper-tab slot="tabs">custom-element.js</paper-tab>
   <div>
 
-```html
+```js
 <!-- include_file 3.0/start/samples/custom-element/custom-element.js -->
 ```
 
@@ -98,7 +98,7 @@ You can use Polymer's DOM templating to create a shadow DOM tree for your elemen
   <paper-tab slot="tabs">dom-element.js</paper-tab>
   <div>
 
-```html
+```js
 <!-- include_file 3.0/start/samples/dom-element/dom-element.js -->
 ```
 
@@ -133,7 +133,7 @@ with a styled `<div>` tag.
   <paper-tab slot="tabs">picture-frame.js</paper-tab>
   <div>
 
-```html
+```js
 <!-- include_file 3.0/start/samples/picture-frame/picture-frame.js -->
 ```
 
@@ -173,7 +173,7 @@ The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced 
   <paper-tab slot="tabs">name-tag.js</paper-tab>
   <div>
 
-```html
+```js
 <!-- include_file 3.0/start/samples/name-tag/name-tag.js -->
 ```
 
@@ -211,7 +211,7 @@ It also shows configuring the owner property from markup in `index.html`.
   <paper-tab slot="tabs">configurable-name-tag.js</paper-tab>
   <div>
 
-```html
+```js
 <!-- include_file 3.0/start/samples/configurable-name-tag/configurable-name-tag.js -->
 ```
 
@@ -246,7 +246,7 @@ to the element's `owner` property, so it's updated as the user types.
   <paper-tab slot="tabs">editable-name-tag.js</paper-tab>
   <div>
 
-```html
+```js
 <!-- include_file 3.0/start/samples/editable-name-tag/editable-name-tag.js -->
 ```
 
@@ -277,7 +277,7 @@ The template repeater (`dom-repeat`) is a specialized template that binds to an 
   <paper-tab slot="tabs">employee-list.js</paper-tab>
   <div>
 
-```html
+```js
 <!-- include_file 3.0/start/samples/employee-list/employee-list.js -->
 ```
 
