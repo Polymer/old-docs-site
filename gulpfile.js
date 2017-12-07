@@ -295,10 +295,15 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     }))
     .pipe(gulp.dest('dist'));
 
+  const jsSamples = gulp.src([
+      'app/3.0/start/samples/**/*.js',
+    ], {base: 'app/'})
+    .pipe(gulp.dest('dist'));
+
   const gae = gulp.src([
-    'app/**/nav.yaml',
-    'app/**/blog.yaml',
-    'app/**/authors.yaml',
+      'app/**/nav.yaml',
+      'app/**/blog.yaml',
+      'app/**/authors.yaml',
       '{templates,lib}/**/*'
      ])
     .pipe(gulp.dest('dist'));
@@ -328,7 +333,7 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     ], {base: 'app'})
     .pipe(gulp.dest('dist'));
 
-  return merge(app, docs, gae, bower, bundles, demo1, demo2, summit);
+  return merge(app, docs, jsSamples, gae, bower, bundles, demo1, demo2, summit);
 });
 
 gulp.task('watch', 'Watch files for changes', function() {
