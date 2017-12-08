@@ -17,8 +17,7 @@ Polymer provides three basic ways to specify a DOM template:
 -   [Specify a template using the `<dom-module>` element](#dommodule). This allows you to specify the
     template entirely in markup, which is most efficient for an element defined in an HTML
     import.
--   [Assign a string template to an HTMLTemplateElement object, and return the 
-    HTMLTemplateElement from a static `template` getter](#templateobject).
+-   [Provide a template by defining a template property on the constructor](#templateobject).
 -   [Inherit and optionally modify a template from an existing base class](#inherited-templates).
 
 Polymer provides a default `template` getter that retrieves a template from the element's
@@ -60,12 +59,13 @@ except for testing. For caveats about defining elements in the main document,
 see [main document definitions](registering-elements#main-document-definitions).
 {.alert .alert-info}
 
-### Return an HTMLTemplateElement {#templateobject}
+### Provide a template by defining a template property on the constructor {#templateobject}
 
-As an alternative to specifying the element's template in markup, you can create a static
-`template` getter that returns an HTMLTemplateElement.
+As an alternative to specifying the element's template in markup, you can define a static `template`
+property. The `template` property must be an `HTMLTemplateElement`.
 
-This getter is called _once_, when the first instance of the element is upgraded.
+Polymer provides an `html` function that can be applied to a template literal to produce an 
+`HTMLTemplateElement`. For example:
 
 ```js
 class MyElement extends Polymer.Element {
@@ -79,8 +79,8 @@ class MyElement extends Polymer.Element {
 customElements.define('my-element', MyElement);
 ```
 
-Alternatively, declare a variable called `html` to hold the `Polymer.html` object, and
-return it from the `template` getter:
+To enable HTML code highlighting in text editors with lit-html code highlighting functionality, you
+can declare a variable called `html` to hold the `Polymer.html` object, and return it from a `template` getter:
 
 ```js
 const html = Polymer.html;
@@ -95,8 +95,6 @@ class MyElement extends Polymer.Element {
 }
 customElements.define('my-element', MyElement);
 ```
-
-The syntax above has the advantage of enabling HTML code highlighting in some text editors. 
 
 When using a static `template` getter, the element doesn't need to provide an `is` getter.
 However, the tag name still needs to  be  passed as the first argument to
