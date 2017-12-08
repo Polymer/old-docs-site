@@ -12,7 +12,7 @@ Custom elements provide a component model for the web. The custom elements speci
 *   A callback invoked whenever one of a specified set of attributes changes on the instance.
 
 Put together, these features let you build an element with its own public API that reacts to state
-changes. Polymer provides a set of features on top of the basic custom element specification. 
+changes. Polymer provides a set of features on top of the basic custom element specification.
 
 This document provides an overview of custom elements as they relate to Polymer. For a more detailed
 overview of custom elements, see: [Custom Elements v1: Reusable Web
@@ -35,7 +35,7 @@ To define a custom element, you create an ES6 class and associate it with the cu
 
 You can use a custom element just like you'd use a standard element.
 
-The element's class defines its behavior and public API. 
+The element's class defines its behavior and public API.
 
 **Custom element names.** By specification, the custom element's name **must start with a lower-case
 ASCII letter and must contain a dash (-)**. There's also a short list of prohibited element names
@@ -138,18 +138,18 @@ provides a `ready` callback, invoked the first time the element is added to the 
 ready() {
   super.ready();
   // do something that requires access to the shadow tree
-  ... 
+  ...
 
 }
-``` 
+```
 
 The `Polymer.Element` class initializes your element's template and data system during the `ready`
 callback, so if you override `ready`, you must call `super.ready()` at some point.
 
 Polymer does several things at `ready` time:
 
--   Creates and attaches the element's shadow DOM tree. 
--   Initializes the data system, propagating intial values to data bindings.
+-   Creates and attaches the element's shadow DOM tree.
+-   Initializes the data system, propagating initial values to data bindings.
 -   Allows observers and computed properties to run (as soon as any of their dependencies are defined).
 
 When the superclass `ready` method returns, the element's template has been instantiated and initial
@@ -187,10 +187,10 @@ class DeferElement extends Polymer.Element {
     });
   }
 }
-``` 
+```
 
-In most cases, you can call `afterNextRender` from either the `constructor` or the `ready` 
-callback with similar results. 
+In most cases, you can call `afterNextRender` from either the `constructor` or the `ready`
+callback with similar results.
 
 ## Element upgrades
 
