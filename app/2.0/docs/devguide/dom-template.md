@@ -35,7 +35,7 @@ To specify an element's DOM template using a `<dom-module>`:
 
 Polymer clones this template's contents into the element's shadow DOM.
 
-Example: { .caption }
+Specify an element's DOM template using a dom-module: { .caption }
 
 ```html
 <dom-module id="x-foo">
@@ -52,7 +52,11 @@ Example: { .caption }
 </dom-module>
 ```
 
-In this example, the DOM template and the JavaScript that defines the element are in the same file. You can also put these portions in separate files, but the DOM template must be parsed before the element is defined.
+[See a working example in Plunker](http://plnkr.co/edit/Oasmtp?p=preview).
+
+In the example above, the DOM template and the JavaScript that defines the element are in the same
+file. You can also put these portions in separate files, but the DOM template must be parsed before
+the element is defined, [as in this Plunker example](http://plnkr.co/edit/4HcxNX?p=preview).
 
 **Note:** Elements should generally be defined outside of the main document,
 except for testing. For caveats about defining elements in the main document,
@@ -61,11 +65,34 @@ see [main document definitions](registering-elements#main-document-definitions).
 
 ### Provide a template by defining a template property on the constructor {#templateobject}
 
-As an alternative to specifying the element's template in markup, you can define a static `template`
-property. The `template` property must be an `HTMLTemplateElement`.
+As an alternative to specifying the element's template in markup, you can define a static 
+`template` property. 
 
-Polymer provides an `html` function that can be applied to a template literal to produce an 
-`HTMLTemplateElement`. For example:
+One way to do this is to specify a string template by creating a static template getter that 
+returns a string. This getter is called _once_, when the first instance of the element is upgraded.
+
+```js
+class MyElement extends Polymer.Element {
+
+  static get template() {
+    return `<style>:host { color: blue; }</style>
+       <h2>String template</h2>
+       <div>I've got a string template!</div>`
+  }
+}
+
+customElements.define('my-element', MyElement);
+```
+
+[See a working example in Plunker](http://plnkr.co/edit/AzkMDJ?p=preview).
+
+**When using a static `template` getter, the element doesn't need to provide an `is` getter.**
+However, the tag name still needs to be passed as the first argument to
+`customElements.define`, as in the example above.
+{.alert .alert-info}
+
+Polymer 2.4+ provides the `Polymer.html` function that can be applied to a template literal to
+produce an `HTMLTemplateElement`. For example:
 
 ```js
 class MyElement extends Polymer.Element {
@@ -79,8 +106,11 @@ class MyElement extends Polymer.Element {
 customElements.define('my-element', MyElement);
 ```
 
-To enable HTML code highlighting in text editors with lit-html code highlighting functionality, you
-can declare a variable called `html` to hold the `Polymer.html` object, and return it from a `template` getter:
+[See a working example in Plunker](http://plnkr.co/edit/fFTGJf?p=preview).
+
+Some text editors support HTML code highlighting in template literals tagged with a function
+called `html`. To enable HTML code highlighting in such text editors, declare a constant called
+`html` to hold the `Polymer.html` function. Use the `html` constant in the template getter:
 
 ```js
 const html = Polymer.html;
@@ -95,10 +125,6 @@ class MyElement extends Polymer.Element {
 }
 customElements.define('my-element', MyElement);
 ```
-
-When using a static `template` getter, the element doesn't need to provide an `is` getter.
-However, the tag name still needs to  be  passed as the first argument to
-`customElements.define`.
 
 ### Inherited templates {#inherited-templates}
 
@@ -118,50 +144,71 @@ functionality provides for a variety of scenarios:
 
 Base class definition { .caption }
 
-```js
-const html = Polymer.html;
+```html
+<dom-module id="base-class">
 
-class BaseClass extends Polymer.Element {
-  static get template() {
-    return html`This content has been inherited from BaseClass.`;
-  }
-}
+  <template>This content has been inherited from BaseClass.</template>
+
+  <script>
+    class BaseClass extends Polymer.Element {
+      static get is() { return  'base-class' }
+    }
+    customElements.define(BaseClass.is, BaseClass);
+  </script>
+
+</dom-module>
 ```
 
 Child class definition { .caption }
-```js
-class ChildClass extends Polymer.Element {
+```html
+<dom-module id="child-class">
 
-}
+  <script>
+    class ChildClass extends BaseClass {
+      static get is() { return  'child-class' }
+    }
+    customElements.define(ChildClass.is, ChildClass);
+  </script>
+
+</dom-module>
 ```
 
 [See a working example in Plunker](http://plnkr.co/edit/vS99al?p=preview).
 
 #### Override a template definition {#overridebase}
 
-Base class definition { .caption }
+To override a base class's template definition inside a `<dom-module>`, without extending it, create a
+`<dom-module>` for your child class, and write a template for it:
 
-```js
-const html = Polymer.html;
+```html
+<dom-module id="base-class">
 
-class BaseClass extends Polymer.Element {
-  static get template() {
-    return html`This content has been inherited from BaseClass.`;
-  }
-}
+  <template>This content has been inherited from BaseClass.</template>
+
+  <script>
+    class BaseClass extends Polymer.Element {
+      static get is() { return  'base-class' }
+    }
+    customElements.define(BaseClass.is, BaseClass);
+  </script>
+
+</dom-module>
 ```
 
-Child class definition { .caption }
-```js
-const html = Polymer.html;
+Override the base class template with a child class dom-module { .caption }
 
-class ChildClass extends BaseClass {
-  static get template() {
-    return html`
-      Base class template has been overridden. Hello from ChildClass!
-      `;
-  }
-}
+```js
+<dom-module id="child-class">
+
+  <template>Base class template has been overridden. Hello from ChildClass!</template>
+
+  <script>
+    class ChildClass extends BaseClass {
+      static get is() { return 'child-class' }
+    }
+    customElements.define(ChildClass.is, ChildClass);
+  </script>
+</dom-module>
 ```
 
 [See a working example in Plunker](http://plnkr.co/edit/VCwhuA?p=preview).
@@ -180,8 +227,8 @@ class BaseClass extends Polymer.Element {
       `;
   }
 }
-```
 
+```
 Child class definition { .caption }
 ```js
 const html = Polymer.html;
