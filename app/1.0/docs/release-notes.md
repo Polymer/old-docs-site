@@ -11,6 +11,48 @@ title: Release notes
   }
 </style>
 
+## [Release 1.11.2](https://github.com/polymer/polymer/tree/v1.11.1) (2017-12-15) {#v-1-11-2}
+
+This release includes the following fix:
+
+-   [#4984](https://github.com/Polymer/polymer/issues/4984). Fixes a regression introduced in 
+    release 1.11.1, where the `:-webview-any` and `:-moz-any` selectors were tranformed 
+    incorrectly when used following a `:host-context` selector. This resulted in the affected 
+    rule and any following rules in the stylesheet being ignored. For example, the following
+    selector would cause the issue:
+
+    `:host-context([dir=rtl]) :-webview-any(.b1, b2)`
+
+## [Release 1.11.1](https://github.com/polymer/polymer/tree/v1.11.1) (2017-12-05) {#v-1-11-1}
+
+This release includes the following fixes:
+
+-   [#4902](https://github.com/Polymer/polymer/pull/4902). Allow arbitrary whitespace between
+    style module names in the `include` attribute. This allows for tabs and line breaks, for example:
+    
+    ```
+    <style include="one-module two-module three-module
+    four-module">
+    ```
+
+-   [#4952](https://github.com/Polymer/polymer/issues/4952). Fix `:dir` selector to handle a few 
+    more complicated use cases:
+
+    - `other-custom-element:dir()`
+    - `:dir()` in a shadowroot should behave like `*:dir()`
+    - A few cases where the `dir` attribute is set inside of a shadowroot.
+
+
+-   [#4961](https://github.com/Polymer/polymer/issues/4961). `touchend` listeners do not need to   
+    be passive to enable more performant scrolling.
+
+    With this change, most of the tradeoffs with enabling `passiveTouchGestures` disappear. 
+    For example, you can prevent a synthetic `click` event from being generated from a 
+    tap by calling `preventDefault` from the `up` listener.
+
+    The only limitation when using `passiveTouchGestures` is that you can't control
+    scrolling from `track`, `down`, and `move` gesture event listeners.
+
 
 ## [Release 1.11.0](https://github.com/polymer/polymer/tree/v1.11.0) (2017-09-19) {#v-1-11-0}
 
@@ -53,7 +95,7 @@ Using passive listeners may improve scrolling performance, at the cost of being 
 
 Instead, elements must use `Polymer.Gestures.setTouchAction(node, 'direction')`.
 
-This setting is false by default and meant as an opt-in.
+The `passiveTouchGestures` setting is false by default and is meant as an opt-in.
  
 ## [Release 1.9.3](https://github.com/polymer/polymer/tree/v1.9.3) (2017-07-20) {#v-1-9-3}
 
