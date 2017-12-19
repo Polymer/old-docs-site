@@ -11,6 +11,59 @@ title: Release notes
   }
 </style>
 
+## [Release 2.3.1](https://github.com/Polymer/polymer/releases/tag/v2.3.1) (2017-12-07) {#v-2-3-1}
+
+This release fixes a single issue introduced in release 2.3.0:
+
+-   [#4975](https://github.com/Polymer/polymer/issues/4975). Fixed a styling bug introduced in 
+    2.3.0 that could cause incorrect ordering of styles included using `<style include>`, or throw 
+    an exception if a `<style>` was not a direct child of the template.
+
+## [Release 2.3.0](https://github.com/Polymer/polymer/releases/tag/v2.3.0) (2017-12-05) {#v-2-3-0}
+
+This release includes one new feature:
+
+-   Property observers can now take a function reference in addition to taking a string name.
+
+    Example {.caption}
+
+    ```
+    class XFoo extends Polymer.Element {
+      static get properties() {
+        return {
+          prop: {
+            type: String,
+            observer: function (newProp, oldProp) {
+              return this.prop2Changed(newProp, oldProp);
+            }
+          }
+        };
+      }
+    }
+    ```
+This release also includes the following fixes:
+
+-   [#3626](https://github.com/Polymer/polymer/issues/3626) `dom-repeat` will now always resort
+    and/or refilter an array when an item changes. (Previously, replacing an array item using `set` acted differently than replacing an array item using `splice`.)
+
+-   [#4892](https://github.com/Polymer/polymer/pull/4892) Do not collapse multiple styles into a
+    single style, which allows for lower memory usage in browsers with native Shadow DOM. This
+    primarily affects style sharing allows browsers to recognize shared styles as similar so
+    that they can perform optimizations.
+
+    Note, currently the ShadyCSS polyfill always collapses multiple styles into a single 
+    element. This means that users of either the `@apply` shim or ShadyCSS scoping shim will still
+    have only a single style element in the element template.
+
+-   [#4961](https://github.com/Polymer/polymer/issues/4961). `touchend` listeners do not need to    
+    be passive to enable more performant scrolling.
+
+    With this change, most of the tradeoffs with enabling `passiveTouchGestures` disappear. 
+    For example, you can prevent a synthetic `click` event from being generated from a 
+    tap by calling `preventDefault` from the `up` listener.
+
+    The only limitation when using `passiveTouchGestures` is that you can't control
+    scrolling from `track`, `down`, and `move` gesture event listeners.
 
 ## [Release 2.2.0](https://github.com/Polymer/polymer/releases/tag/v2.2.0) (2017-10-18) {#v-2-2-0}
 
