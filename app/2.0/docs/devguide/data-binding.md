@@ -406,7 +406,7 @@ Example: { .caption }
         }
       }
       _formatName(first, last) {
-        return `${last}, ${first}`
+        return `${last}, ${first}`;
       }
 
     }
@@ -441,8 +441,8 @@ In addition, a computed binding can include literal arguments.
 For each type of dependent property, the argument passed to the computing function is the same as
 that passed to an observer.
 
-As with observers and computed properties, the computing function **is not called until all
-dependent properties are defined (`!=undefined`)**.
+As with observers and computed properties, the computing function **may be called when one or 
+more dependencies are undefined**.
 
 For an example computed binding using a path with a wildcard, see [Binding to array
 items](#array-binding).
