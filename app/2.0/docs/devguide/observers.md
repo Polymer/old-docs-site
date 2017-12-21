@@ -321,6 +321,24 @@ occurred on the array. Each change record provides the following property:
      -   `object`: A reference to the array in question.
      -   `type`: The string literal 'splice'.
 
+After calling the splice observer, Polymer will also call a length observer.
+To create a length observer, specify a path to an array followed by `.length`
+in your `observers` array.
+
+``` js
+static get observers() {
+  return [
+    'usersAddedOrRemoved(users.length)'
+  ]
+}
+```
+
+Your length observer method should accept a single argument, the new array length.
+
+**Wildcard paths will be invoked for both splice and length.** You can check the path value in the wildcard event
+to avoid responding multiple times to a single mutation.
+See [Observe all changes related to a path](#deep-observation).
+{ .alert .alert-info }
 
 **Change record may be undefined.** The change record may be undefined the first
 time the observer is invoked, so your code should guard against this, as shown
