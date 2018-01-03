@@ -19,7 +19,7 @@ Some application developers will need to deliver JavaScript separately from HTML
 * If your application is written entirely in Polymer and does not use any other tools or frameworks, you can simply use the Polymer CLI to build your application:
 
   ```
-  `polymer build`
+  polymer build
   ```
 
   You can configure your build, or create multiple builds, by writing a [`polymer.json`](/{{{polymer_version_dir}}}/docs/tools/polymer-json) configuration file.
