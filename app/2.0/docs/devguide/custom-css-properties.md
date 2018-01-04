@@ -327,17 +327,20 @@ Example: { .caption }
       :host {
         --my-toolbar-color: red;
       }
+
+      my-toolbar {
+        background-color: var(--my-toolbar-color);
+      }
     </style>
-    <my-toolbar>My awesome app</my-toolbar>
-    <button on-tap="changeTheme">Change theme</button>
+    <my-toolbar>My awesome toolbar</my-toolbar>
+    <button on-click="changeTheme">Change theme</button>
   </template>
   <script>
     class XCustom extends Polymer.Element {
       static get is() {
         return "x-custom";
       }
-      static get changeTheme() {
-        return function() {
+      changeTheme() {
         this.updateStyles({
           '--my-toolbar-color': 'blue',
         });
