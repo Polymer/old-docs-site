@@ -16,17 +16,13 @@ The DOM template is also processed to enable data binding and declarative event 
 
 Polymer provides three basic ways to specify a DOM template:
 
--   [Specify a template using the `<dom-module>` element](#dommodule). This allows you to specify
+-   [Use the `<dom-module>` element](#dommodule). This allows you to specify
     the template entirely in markup, which is most efficient for an element defined in an HTML
     import.
--   [Provide a template by defining a template property on the constructor](#templateobject).
--   [Inherit and optionally modify a template from an existing element](#inherit).
+-   [Define a template property on the constructor](#templateobject).
+-   [Inherit a template from another Polymer element](#inherit).
 
-Polymer provides a default `template` getter that retrieves a template from the element's
-`<dom-module>`. You can override this getter to provide a string template or a generated template
-element.
-
-### Specify a template using the dom-module element {#dommodule}
+### Use the dom-module element {#dommodule}
 
 To specify an element's DOM template using a `<dom-module>`:
 
@@ -65,42 +61,32 @@ except for testing. For caveats about defining elements in the main document,
 see [main document definitions](registering-elements#main-document-definitions).
 {.alert .alert-info}
 
-### Provide a template by defining a template property on the constructor {#templateobject}
+### Define a template property on the constructor {#templateobject}
 
-As an alternative to specifying the element's template in markup, you can define a static 
-`template` property. 
+As an alternative to specifying the element's template in markup, you can define a `template`
+property on the element's constructor. To create a static template getter, override Polymer's
+default `template` getter. This getter is called _once_, when the first instance of the element
+is upgraded.
 
-One way to do this is to specify a string template by creating a static template getter that 
-returns a template literal. 
-
-Template literals are denoted by being enclosed in back-ticks (<code>` `</code>). Polymer 2.4+ uses
-the functionality of embedded expressions in template literals to provide convenient ways to 
-[extend inherited templates](#inherited-templates). [Read more about template literals on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
-
-To create a static template getter, override Polymer's default `template` getter. This getter is
-called _once_, when the first instance of the element is upgraded.
-
-Specify a string template in a static template getter: { .caption }
+The template getter can return either a string or an instance of `HTMLTemplateElement`. Support
+for the string return value is deprecated in Polymer 2.4, and will be removed in 3.0. 
 
 ```js
-class MyElement extends Polymer.Element {
+// Define a template on a new element with a static template getter.
 
-  static get template() {
-    return `<style>:host { color: blue; }</style>
-       <h2>String template</h2>
-       <div>I've got a string template!</div>`
+class NewElement extends Polymer.Element {
+  // Override Polymer's default template getter
+  static get template () {
+    // Polymer 2.x: Return string template or instance of HTMLTemplateElement
+    // Polymer 2.4+: Return HTMLTemplateElement 
   }
 }
-
-customElements.define('my-element', MyElement);
 ```
 
-[See a working example in Plunker](http://plnkr.co/edit/AzkMDJ?p=preview).
+Polymer 2.4+ provides a helper function (`Polymer.html`) to generate an `HTMLTemplateElement`
+instance from a template literal.
 
-**When using a static `template` getter, the element doesn't need to provide an `is` getter.**
-However, the tag name still needs to be passed as the first argument to
-`customElements.define`, as in the example above.
-{.alert .alert-info}
+#### Using the Polymer.html helper function (2.4+) {#helper}
 
 Polymer 2.4+ provides the `Polymer.html` function that can be applied to a template literal to
 produce an `HTMLTemplateElement`. 
@@ -141,11 +127,40 @@ class MyElement extends Polymer.Element {
 customElements.define('my-element', MyElement);
 ```
 
-### Inherited templates {#inherit}
+#### Return a string template (all 2.x versions) {#stringtemplate}
+Template literals are denoted by being enclosed in back-ticks (<code>` `</code>). 
+
+Specify a string template in a static template getter: { .caption }
+
+```js
+class MyElement extends Polymer.Element {
+
+  static get template() {
+    return `<style>:host { color: blue; }</style>
+       <h2>String template</h2>
+       <div>I've got a string template!</div>`
+  }
+}
+
+customElements.define('my-element', MyElement);
+```
+
+[See a working example in Plunker](http://plnkr.co/edit/AzkMDJ?p=preview).
+
+**When using a static `template` getter, the element doesn't need to provide an `is` getter.**
+However, the tag name still needs to be passed as the first argument to
+`customElements.define`, as in the example above.
+{.alert .alert-info}
+
+### Inherit a template from another Polymer element {#inherit}
 
 An element that extends another Polymer element can inherit its template. If the element doesn't
 provide its own DOM template (using either a `<dom-module>` or a static template object), Polymer
 uses the same template as the superclass, if any.
+
+The Polymer.html helper introduced in Polymer 2.4 makes template extension a little simpler, so
+this section shows examples with `Polymer.html` (usable on 2.4 and later) and without (usable on
+all 2.x versions).
 
 * [Polymer 2.x: Inherit a base class template **without modifying it**](#nomods)
 * [Polymer 2.x: **Override** a base class template in a child class](#overridebase)
@@ -306,8 +321,10 @@ template:
 
 #### Polymer 2.4+: Extend a base class template in a child class {#extendbase}
 
-Polymer 2.4+ uses the ES6 functionality of embedded expressions in template literals to provide a
-convenient way to extend element templates. 
+Polymer 2.4+ uses the functionality of embedded expressions in template literals to provide
+convenient ways to [extend inherited templates](#inherited-templates). 
+
+[Read more about template literals on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 
 To extend a base class template with Polymer 2.4+, include the base class template in your child
 class template literal with the expression `${super.template}`. You will also need to tag the
@@ -325,11 +342,12 @@ static get template() {
   child class. 
 * Because the `template` getter is static, `${super.template}` accesses the `template` property
   on the superclass constructor.
-* The `Polymer.html` function checks each expression value. If the value is a string, the string is
-  interpolated directly. If the expression is an `HTMLTemplateElement`, the `innerHTML` of the 
-  template is interpolated. 
+* The `Polymer.html` function checks each expression value. If the expression is an
+  `HTMLTemplateElement`, the `innerHTML` of the template is interpolated. 
+* To protect against XSS vulnerabilities, `Polymer.html` only interpolates `HTMLTemplateElement`
+  values. Non-template values will throw an error.
 
-This makes it very simple to combine existing templates. 
+It's very simple to combine existing templates:
 
 Base class definition: { .caption }
 
