@@ -147,7 +147,7 @@ node populated with a space, instead of an empty node.
 
 For example, the following template:
 
-```
+```html
 <template>
   ...
   <div>[[undefinedProperty]]</div>
@@ -157,14 +157,14 @@ For example, the following template:
 
 Renders as:
 
-```
+```html
 <div> </div>
 ```
 
 If you need the node to be empty (for example, in order to use the css `:empty` selector), 
 work around this limitation by instantiating the property with the empty string (`''`):
 
-```
+```html
 <dom-module id='custom-element'>
   <template>
     ...
@@ -172,7 +172,9 @@ work around this limitation by instantiating the property with the empty string 
     ...
   </template>
 </dom-module>
+```
 
+```js
 static get properties () {
   return {
     ...
@@ -187,7 +189,7 @@ static get properties () {
 
 This renders as:
 
-```
+```html
 <div></div>
 ```
 
