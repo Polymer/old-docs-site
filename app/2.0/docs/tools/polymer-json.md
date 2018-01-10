@@ -199,7 +199,7 @@ for every run:
     Values are `es2015`, `push` and `serviceworker`. For more information, see the 
     [prpl-server-node README](https://github.com/Polymer/prpl-server-node#capabilities).
 
-*   `basePath`: Update the entrypoint's `<base>` tag to support serving this build from a
+*   `basePath`: {#basepath} Update the entrypoint's `<base>` tag to support serving this build from a
     non-root path, such as when performing differential serving based on user agent. Requires
     that a `<base>` tag already exists.
 
