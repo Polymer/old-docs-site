@@ -55,7 +55,8 @@ Listeners on a custom element can be set up using `this.addEventListener()`. Dep
 the event you need to listen for, choose an appropriate point in a [custom element lifecycle callback](custom-elements#element-lifecycle)
 at which to add the listener.
 
-For example:
+For example, the following placement will ensure listeners are added once, before the element stamps its
+template and reacts to initial property values:
 
 ```js
 ready() {
