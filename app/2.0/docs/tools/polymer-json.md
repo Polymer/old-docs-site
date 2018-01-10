@@ -208,6 +208,9 @@ for every run:
 
     Note that `basePath` must be set to `true` if using [prpl-server](https://github.com/Polymer/prpl-server-node).
 
+    You can automatically set `basePath` to `true` for all build configurations in the 
+    `builds` array by setting the top-level [`autoBasePath`](#autobasepath) option to `true`.
+
 As an example, here is the configuration for a bundled, minified application build:
 
 ```json
@@ -300,6 +303,13 @@ Any additional options that you provide will override the given preset. In the e
   "addServiceWorker": false
 }]
 ```
+
+### autoBasePath
+Optional<br>
+Type: `Boolean`
+
+When `autoBasePath` is `true`, the `basePath` option in every build configuration in the
+[`builds`](#builds) array will automatically be set to to `true`.
 
 ### lint
 Optional<br>
