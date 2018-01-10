@@ -84,14 +84,14 @@ class NewElement extends Polymer.Element {
 ```
 
 Polymer 2.4+ provides a helper function (`Polymer.html`) to generate an `HTMLTemplateElement`
-instance from a template literal.
+instance from a JavaScript template literal.
 
 #### Using the Polymer.html helper function (2.4+) {#helper}
 
 Polymer 2.4+ provides the `Polymer.html` function that can be applied to a template literal to
 produce an `HTMLTemplateElement`. 
 
-Use the Polymer.html function to convert a template literal to an HTMLTemplateElement: { .caption }
+Use Polymer.html to convert a JavaScript template literal to an HTMLTemplateElement: { .caption }
 
 ```js
 class MyElement extends Polymer.Element {
@@ -107,9 +107,10 @@ customElements.define('my-element', MyElement);
 
 [See a working example in Plunker](http://plnkr.co/edit/fFTGJf?p=preview).
 
-Some text editors support HTML code highlighting in template literals tagged with a function
-called `html`. To enable HTML code highlighting in such text editors, declare a constant called
-`html` to hold the `Polymer.html` function. Use the `html` constant in the template getter.
+Some text editors support HTML code highlighting in JavaScript template literals tagged with 
+a function called `html`. To enable HTML code highlighting in such text editors, declare a 
+constant called `html` to hold the `Polymer.html` function. Use the `html` constant in the
+template getter.
 
 Declare a constant called html to hold the Polymer.html function: { .caption }
 
@@ -128,7 +129,12 @@ customElements.define('my-element', MyElement);
 ```
 
 #### Return a string template (all 2.x versions) {#stringtemplate}
-Template literals are denoted by being enclosed in back-ticks (<code>` `</code>). 
+
+JavaScript template literals are denoted by being enclosed in back-ticks:
+
+```
+var myTemplate = `<h1>I'm a template!</h1>`;
+```
 
 Specify a string template in a static template getter: { .caption }
 
@@ -321,8 +327,8 @@ template:
 
 #### Polymer 2.4+: Extend a base class template in a child class {#extendbase}
 
-Polymer 2.4+ uses the functionality of embedded expressions in template literals to provide
-convenient ways to [extend inherited templates](#inherited-templates). 
+Polymer 2.4+ uses the functionality of embedded expressions in JavaScript template literals 
+to provide convenient ways to [extend inherited templates](#inherited-templates). 
 
 [Read more about template literals on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 
