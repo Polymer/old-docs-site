@@ -51,13 +51,17 @@ methods to add and remove event listeners imperatively.
 
 ### Listener on the custom element
 
-Listeners on a custom element can be set up in `ready()` using `this.addEventListener()`.
-The listener will be set up the first time the custom element is attached to the DOM.
+Listeners on a custom element can be set up using `this.addEventListener()`. Depending on
+the event you need to listen for, choose an appropriate point in a [custom element lifecycle callback](custom-elements#element-lifecycle)
+at which to add the listener.
+
+For example, the following placement will ensure listeners are added once, before the element stamps its
+template and reacts to initial property values:
 
 ```js
 ready() {
-  super.ready();
   this.addEventListener('click', this._onClick);
+  super.ready();
 }
 
 _onClick(event) {
