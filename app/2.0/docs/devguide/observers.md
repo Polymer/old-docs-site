@@ -116,10 +116,9 @@ class XCustom extends Polymer.Element {
       active: {
         type: Boolean,
         // Observer method
-        observer: 
-          function(newValue, oldValue){
-            this.toggleClass('highlight', newValue);
-          }.bind(this)
+        observer(newValue, oldValue){
+          this.toggleClass('highlight', newValue);
+        }
       }
     }
   }
