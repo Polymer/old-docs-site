@@ -9,6 +9,7 @@ Here's what we'll cover today:
 * What is Polymer 3.0? 
 * What's the status of the Polymer 3.0 project?
 * What's in today's preview release?
+* What's coming next?
 
 ## What is Polymer 3.0?
 
@@ -95,8 +96,18 @@ The 3.0 preview release of the Polymer core library includes two new features:
   customElements.define('my-app-element', MyAppElement);
   ```
 
-These new features will also be released in the next minor release of 2.x. However, there's no need to manually convert your 2.x code to use the `html` helper—the Polymer Modulizer will make that conversion for you.
+In the interest of forward compatibility, these new features have been implemented in the Polymer 2 codebase and will also be included in the next 2.x release. As with any new features, keep in mind that they're subject to change until they land in an official release.
+
+By the way, though you'll be able to use the html helper in your 2.x code if you want, you don't need to manually convert all of your string-based templates–Polymer Modulizer will do that for you when you convert to 3.0.
 
 Other than these changes, APIs haven't changed, and you can follow the instructions in our previous blog post, [Hands-on with the Polymer 3.0 preview](2017-08-23-hands-on-30-preview).
 
 So give the latest Polymer 3.0 preview a try. Send us feedback, report bugs, and let us know what you think!
+
+## What's coming next?
+
+For an idea of what's coming down the pike, keep an eye on the roadmap and element status info we've added to the [`polymer-modulizer` README](https://github.com/Polymer/polymer-modulizer/blob/master/README.md).
+
+As we said above, you can expect regular preview releases for the duration of the Polymer 3.0 project—look for the next one to land the week of January 22.
+
+Based on feedback from early adopters of 3.0, we'll be focusing next on smoothing out some rough edges around package installation and module import specifiers. Watch this space for details!
