@@ -45,7 +45,7 @@ The new versions of Polymer and the elements are available as version `3.0-pre.2
 
 This version includes the latest changes from the Polymer master branch, including some important bug fixes and new features.
 
-The latest version of Modulizer features better conversion, especially around test and demo paths. This is still an early preview for elements; many tests don't run, and many that do have failures. But most elements work well enough for you to try them out.
+The latest version of Modulizer features better conversion, especially around test and demo paths. This is still an early preview for elements. Many more test suites are running and passing than in Preview 1, but there's still a lot of work to do on Modulizer to get even more to pass. Most elements work well enough for you to try them out.
 
 The 3.0 preview release of the Polymer core library includes two new features:
 
