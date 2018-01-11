@@ -139,6 +139,60 @@ annotation or compound binding inside the target element.
 
 Binding to text content is always one-way, host-to-target.
 
+#### Binding undefined properties in otherwise empty nodes
+
+Some browsers will delete empty nodes while an element's template is being cloned. For this 
+reason, data binding an undefined property in an otherwise empty node will result in a 
+node populated with a space, instead of an empty node.
+
+For example, the following template:
+
+```html
+<template>
+  ...
+  <div>[[undefinedProperty]]</div>
+  ...
+</template>
+```
+
+Renders as:
+
+```html
+<div> </div>
+```
+
+If you need the node to be empty (for example, in order to use the css `:empty` selector), 
+work around this limitation by instantiating the property with the empty string (`''`):
+
+```html
+<dom-module id='custom-element'>
+  <template>
+    ...
+    <div>[[emptyProperty]]</div>
+    ...
+  </template>
+</dom-module>
+```
+
+```js
+static get properties () {
+  return {
+    ...
+    emptyProperty: {
+      type: String,
+      value: ''
+    },
+    ...
+  }
+}
+```
+
+This renders as:
+
+```html
+<div></div>
+```
+
 ## Bind to a target attribute {#attribute-binding}
 
 In the vast majority of cases, binding data to other elements should use [property
