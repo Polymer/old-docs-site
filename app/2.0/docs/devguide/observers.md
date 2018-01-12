@@ -63,16 +63,20 @@ Simple observers only fire when the property *itself* changes. They don't fire o
 changes, or array mutation. If you need these changes, use a complex observer with a wildcard path,
 as described in [Observe all changes related to a path](#deep-observation).
 
-You specify an observer method by name. The host element must have a method with that name.
+There are two ways to declare a simple observer in the `properties` object:
 
-The observer method receives the new and old values of the property as arguments.
+* Identify a method on the element class by name
+* Provide a direct reference to a method
+
+The identified or referenced observer method receives the new and old values of the property as arguments. 
+
+The next section shows how to declare a simple property observer by name or by reference.
 
 ### Observe a property  {#change-callbacks}
 
-Define a simple observer by adding an `observer` key to the property's declaration, identifying
-the observer method by name.
-Example: { .caption }
+To observe a property, add an `observer` key to the property's declaration. You can either identify the observer method by name, or provide a direct reference to a method.
 
+Example 1: Identify the observer method by name { .caption }
 
 ```js
 class XCustom extends Polymer.Element {
@@ -100,14 +104,32 @@ The observer method is usually defined on the class itself, although an observer
 defined by a superclass, subclass, or a class mixin, as long as the named method exists on the
 element.
 
+Example 2: Provide a reference to an observer method { .caption }
+
+```js
+class XCustom extends Polymer.Element {
+
+  static get is() {return 'x-custom'; }
+
+  static get properties() {
+    return {
+      active: {
+        type: Boolean,
+        // Observer method
+        observer(newValue, oldValue){
+          this.toggleClass('highlight', newValue);
+        }
+      }
+    }
+  }
+```
+
 **Warning:**
 A single property observer shouldn't rely on any other properties,
 sub-properties, or paths because the observer can be called while these
 dependencies are undefined. See [Always include dependencies
 as observer arguments](#dependencies) for details.
 { .alert .alert-warning }
-
-
 
 ## Complex observers {#complex-observers}
 
