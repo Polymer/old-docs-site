@@ -670,7 +670,7 @@ but not for elements placed in the main document.
 
 To use Polymer bindings **without** defining a new custom element,
 use the `<dom-bind>` element.  This template _immediately and synchronously_ stamps the contents of
-its child templateinto the main document. Data bindings in an auto-binding template use
+its child template into the main document. Data bindings in an auto-binding template use
 the `<dom-bind>` element itself as the binding scope.
 
 ```html
