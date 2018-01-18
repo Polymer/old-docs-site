@@ -2,20 +2,20 @@
 title:  "Polymer 3.0: New Year, New Preview"
 ---
 
-Happy New Year from the Polymer team! Hope everyone had a nice break. The Polymer team members have returned from their various travels and are getting ready to roll out some more web component goodness. Today, we're releasing a second preview of Polymer 3.0.
+Happy New Year from the Polymer team! Hope everyone had a nice break. We've all returned from our various travels and are getting ready to roll out some more web component goodness. 
+
+This week, we released a new preview of Polymer 3.0.
 
 Here's what we'll cover today:
 
 * What is Polymer 3.0? 
 * What's the status of the Polymer 3.0 project?
-* What's in today's preview release?
+* What's in the latest preview release?
 * What's coming next?
 
 ## What is Polymer 3.0?
 
-We announced Polymer 3.0 at Polymer Summit 2017. 
-
-Polymer 3.0 repackages the Polymer 2.0 code with minimal API changes. What does change is the packaging and distribution:
+We announced Polymer 3.0 at Polymer Summit 2017.  Polymer 3.0 repackages the Polymer 2.0 code with minimal API changes. What **does** change is the packaging and distribution:
 
 * JavaScript modules replace HTML imports.
 * npm replaces Bower.
@@ -33,16 +33,16 @@ That's because most of our work has been on tools—improving Modulizer, and enh
 The project enters a new phase today. We're hoping to release 3.0 by the end of Q1, and until then we're aiming to make our progress more transparent. To that end, we're providing:
 
 * Bi-weekly releases of Polymer 3.x and 3.x compatible elements.
-* An element test status page. 
-* A roadmap and burndown list of remaining tasks.
+* An [element test status page](https://github.com/Polymer/polymer-modulizer/blob/master/docs/polymer-3-element-status.md). 
+* A [roadmap and burndown list of remaining tasks](https://github.com/Polymer/project/blob/master/Roadmap.md).
 
 We still won't be taking any pull requests in the 3.x branches, however. Fixes should go into the appropriate master branch and/or to the Modulizer tool itself.
 
-Today's release marks the first of our bi-weekly releases. Read on to find out what's changed since preview 1.
+Read on to find out what's changed since preview 1.
 
-## What's in 3.0 Preview 2?
+## What's in the latest 3.0 Preview?
 
-The new versions of Polymer and the elements are available as version `3.0-pre.2` from npm (the `@next` version tag has also been updated to point to the new preview).
+The new versions of Polymer and the elements are available as version `3.0-pre.4` from npm (the `@next` version tag has also been updated to point to the new preview).
 
 This version includes the latest changes from the Polymer master branch, including some important bug fixes and new features.
 
@@ -75,9 +75,13 @@ The 3.0 preview release of the Polymer core library includes two new features:
   }
   ```
 
+  This is an intentionally simple example; we don't expect many people to use `PropertiesMixin` directly. It's intended to provide support for new base classes.
+
   For more information, see the source for `PropertiesMixin`. Documentation will be coming in a future release. 
 
-  For people interested in using lit-html, an experimental base class using `PropertiesMixin` with lit-html templating is available [somewhere](https://). 
+  If you're intersted in using `lit-html`, `lit-element` provides an experimental base class using `PropertiesMixin` with `lit-html` templating.
+  
+  * [lit-element repo](https://github.com/PolymerLabs/lit-element)
 
 * `html` tag function. Starting with this preview, you need to return an instance of `HTMLTemplateElement` from your element’s static template getter—the option to return a string has been removed. This change makes the template type predictable, which in turn will make it simpler to extend superclass templates.
 
@@ -98,7 +102,7 @@ The 3.0 preview release of the Polymer core library includes two new features:
 
 In the interest of forward compatibility, these new features have been implemented in the Polymer 2 codebase and will also be included in the next 2.x release. As with any new features, keep in mind that they're subject to change until they land in an official release.
 
-By the way, though you'll be able to use the html helper in your 2.x code if you want, you don't need to manually convert all of your string-based templates–Polymer Modulizer will do that for you when you convert to 3.0.
+By the way, though you'll be able to use the `html` helper in your 2.x code if you want, you don't need to manually convert all of your string-based templates–Polymer Modulizer will do that for you when you convert to 3.0.
 
 Other than these changes, APIs haven't changed, and you can follow the instructions in our previous blog post, [Hands-on with the Polymer 3.0 preview](2017-08-23-hands-on-30-preview).
 
@@ -106,8 +110,8 @@ So give the latest Polymer 3.0 preview a try. Send us feedback, report bugs, and
 
 ## What's coming next?
 
-For an idea of what's coming down the pike, keep an eye on the roadmap and element status info we've added to the [`polymer-modulizer` README](https://github.com/Polymer/polymer-modulizer/blob/master/README.md).
+For an idea of what's coming down the pike, keep an eye on the [roadmap](https://github.com/Polymer/project/blob/master/Roadmap.md) and [element status page](https://github.com/Polymer/polymer-modulizer/blob/master/docs/polymer-3-element-status.md). 
 
-As we said above, you can expect regular preview releases for the duration of the Polymer 3.0 project—look for the next one to land the week of January 22.
+As we said above, you can expect regular preview releases for the duration of the Polymer 3.0 project—look for the next one to land next week.
 
 Based on feedback from early adopters of 3.0, we'll be focusing next on smoothing out some rough edges around package installation and module import specifiers. Watch this space for details!
