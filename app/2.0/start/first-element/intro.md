@@ -106,7 +106,7 @@ components.
     You’ll see some text where the icon toggles should appear. It doesn’t look
     very interesting, but it shows that everything is working.
  
-    (Note that the URL includes `icon-toggle`—the component name listed in this element’s `bower.json` file—rather than the actual directory name. If you’re wondering why `polymer serve` does this, see [HTML imports and dependency management](/2.0/docs/tools/polymer-cli#element-project-layout).)
+    (Note that the URL includes `icon-toggle`—the component name listed in this element’s `bower.json` file—rather than the actual directory name. If you’re wondering why `polymer serve` does this, see [HTML imports and dependency management](/2.0/docs/tools/create-element-polymer-cli#dependencies).)
 
 <img src="/images/2.0/first-element/starting-state.png" alt="Initial state of the demo. The demo 
 shows three icon-toggle elements, two labeled 'statically-configured icon toggles' and one labeled 
