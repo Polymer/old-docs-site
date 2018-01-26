@@ -1,10 +1,15 @@
 ---
+- title:  "Polymer 2.4 released"
+  path: /blog/2018-01-25-polymer-2-4
+  published: 2018-01-25
+  author: polymer-team
+  description: "Polymer 2.4: Paving the way for 3.0 and TypeScript support"
+
 - title:  "The future of elements"
   path: /blog/2017-11-27-future-of-elements
   published: 2017-11-27
   author: notwaldorf
   description: "What we're doing with Polymer elements, what we aren't doing, and why."
-
 - title:  "Shadow DOM v0 and HTML imports are changing"
   path: /blog/2017-10-18-upcoming-changes
   published: 2017-10-18
