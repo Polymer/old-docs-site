@@ -1,10 +1,15 @@
 ---
+- title:  "Polymer 3.0: New year, new preview"
+  path: /blog/2018-01-10-polymer-3-new-preview
+  published: 2018-01-10
+  author: polymer-team
+  description: "New Polymer 3.0 preview: Bug fixes and new features"
+
 - title:  "The future of elements"
   path: /blog/2017-11-27-future-of-elements
   published: 2017-11-27
   author: notwaldorf
   description: "What we're doing with Polymer elements, what we aren't doing, and why."
-
 - title:  "Shadow DOM v0 and HTML imports are changing"
   path: /blog/2017-10-18-upcoming-changes
   published: 2017-10-18
