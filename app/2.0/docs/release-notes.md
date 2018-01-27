@@ -86,6 +86,8 @@ rundown of the changes:
     customElements.define('my-app-element', MyAppElement);
     </script>
     ```
+    
+This release also includes bug fixes. For now, please see the [Changelog](https://github.com/Polymer/polymer/commit/cb88252debc7c06c458ca45595fbc3afa57e7a2c) for the details.
 
 ## [Release 2.3.1](https://github.com/Polymer/polymer/releases/tag/v2.3.1) (2017-12-07) {#v-2-3-1}
 
