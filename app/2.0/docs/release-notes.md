@@ -13,7 +13,7 @@ title: Release notes
 
 ## [Release 2.4.0](https://github.com/Polymer/polymer/releases/tag/v2.4.0) (2018-01-26) {#v-2-4-0}
 
-See our [blog post on Polymer 2.4](../blog/2018-01-25-polymer-2-4) for more details. Here's a
+See our [blog post on Polymer 2.4](../../blog/2018-01-25-polymer-2-4) for more details. Here's a
 rundown of the changes:
 
 -   TypeScript support has been added. To use TypeScript, simply add references to the types
