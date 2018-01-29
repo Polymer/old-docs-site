@@ -32,7 +32,7 @@ That's because most of our work has been on tools—improving Modulizer, and enh
 
 The project enters a new phase today. We're hoping to release 3.0 by the end of Q1, and until then we're aiming to make our progress more transparent. To that end, we're providing:
 
-* Bi-weekly releases of Polymer 3.x and 3.x compatible elements.
+* Frequent releases of Polymer 3.x and 3.x compatible elements.
 * An [element test status page](https://github.com/Polymer/polymer-modulizer/blob/master/docs/polymer-3-element-status.md). 
 * A [roadmap and burndown list of remaining tasks](https://github.com/Polymer/project/blob/master/Roadmap.md).
 
