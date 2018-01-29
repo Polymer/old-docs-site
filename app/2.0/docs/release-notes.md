@@ -11,6 +11,84 @@ title: Release notes
   }
 </style>
 
+## [Release 2.4.0](https://github.com/Polymer/polymer/releases/tag/v2.4.0) (2018-01-26) {#v-2-4-0}
+
+See our [blog post on Polymer 2.4](../../blog/2018-01-25-polymer-2-4) for more details. Here's a
+rundown of the changes:
+
+-   TypeScript support has been added. To use TypeScript, simply add references to the types
+    for the library imports that you use from the `types` folder. For example:
+
+    `my-element.html`
+    ```html
+    <link rel="import" href="bower_components/polymer/polymer-element.html>
+    <dom-module id="my-element"><template>...</template></dom-module>
+    <script src="my-element.js">    
+    
+    ```
+
+    `my-element.ts`
+    ```ts
+    /// <reference path="./bower_components/polymer/types/polymer-element.d.ts" />`
+    class MyElement extends Polymer.Element {
+        ...
+    }
+    ```
+
+-   A subset of properties functionality has been broken out into a mixin called `PropertiesMixin`.
+    Use the `PropertiesMixin` to create new, lightweight base classes that have Polymer's
+    functionality for defining declarative properties, creating property accessors, and syncing 
+    properties with attributes.
+
+    Example {.caption}
+
+    ```html
+    <link rel="import" href="bower_components/polymer/lib/mixins/properties-mixin.html">
+    <script>
+    class MyPropertiesElement extends Polymer.PropertiesMixin(HTMLElement) {
+      // Define properties to watch. You may only specify the property’s name and type.
+      static get properties() { 
+        return {
+            name: String
+        }
+      }
+      // Called whenever the declared properties change. 
+      _propertiesChanged(currentProps, changedProps, oldProps) {
+        // Render the changed content.
+      this.textContent = `Hello, ${this.name}`;
+      }
+    }
+    </script>
+    ```
+
+-   Returning a string from a static template getter is now deprecated. Instead, a static template
+    getter should return an instance of `HTMLTemplateElement`. 
+
+    This change is **non-breaking**. Returning a string will still work in this release, but will
+    generate a console warning.
+
+    Polymer 2.4 adds the `Polymer.html` helper function to facilitate returning an
+    `HTMLTemplateElement` from a static template getter. You can use it like this:
+
+    Example {.caption}
+
+    ```html
+    <link rel="import" href="bower_components/polymer/lib/polymer-element.html">
+    <script>
+    class MyAppElement extends Polymer.Element {
+        static get template() {
+        return Polymer.html`<div>I'm a template</div>
+                            <div>[[withBindings]]</div>
+                            <button on-click="clickHandler">Click me!</button>`
+        }
+        ...
+    }
+    customElements.define('my-app-element', MyAppElement);
+    </script>
+    ```
+    
+This release also includes bug fixes. For now, please see the [Changelog](https://github.com/Polymer/polymer/commit/cb88252debc7c06c458ca45595fbc3afa57e7a2c) for the details.
+
 ## [Release 2.3.1](https://github.com/Polymer/polymer/releases/tag/v2.3.1) (2017-12-07) {#v-2-3-1}
 
 This release fixes a single issue introduced in release 2.3.0:
