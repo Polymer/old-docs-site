@@ -111,7 +111,7 @@ class MyElement extends Polymer.Element {
 customElements.define('my-element', MyElement);
 ```
 
-Polymer.html was added in release 2.4. For earlier versions, you can return a plain string:
+`Polymer.html` was added in release 2.4. For earlier versions, you can return a plain string:
 
 ```js
 return `<div>A plain string template</div>`;
@@ -130,7 +130,7 @@ An element that extends another Polymer element can inherit its template. If the
 provide its own DOM template (using either a `<dom-module>` or a static template object), Polymer
 uses the same template as the superclass, if any.
 
-The Polymer.html helper introduced in Polymer 2.4 makes template extension a little simpler, so
+The `Polymer.html` helper introduced in Polymer 2.4 makes template extension a little simpler, so
 this section shows examples with `Polymer.html` (usable on 2.4 and later) and without (usable on
 all 2.x versions).
 
