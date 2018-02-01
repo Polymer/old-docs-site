@@ -24,7 +24,7 @@ Usage:
 
 For more documentation, see [http://polygit.org](http://polygit.org/).
 
-Source: [github.com/PolymerLabs/polygit](https://github.com/PolymerLabs/polygit)
+Source: [github.com/Polymer/polygit](https://github.com/Polymer/polygit)
 
 ## <b>polystyle</b>—web service for creating style modules {#polystyle}
 

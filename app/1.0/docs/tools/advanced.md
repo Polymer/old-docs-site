@@ -16,7 +16,7 @@ tools to create your own workflow.
 
 *Equivalent to Polymer CLI command `polymer serve`.*
 
-[polyserve](https://github.com/PolymerLabs/polyserve) is simple web server for serving `bower_components`, locally. It's useful when developing your own elements.
+[polyserve](https://github.com/Polymer/polyserve) is simple web server for serving `bower_components`, locally. It's useful when developing your own elements.
 
 polyserve serves the component from the current directory as `/components/{element-name}/`, where `element-name` is defined as the name in `bower.json`. All other dependencies are served from `./bower_components/`.
 
@@ -29,7 +29,7 @@ Usage:
     cd my-element/
     polyserve -p 8080
 
-Source: [github.com/PolymerLabs/polyserve](https://github.com/PolymerLabs/polyserve)
+Source: [github.com/Polymer/polyserve](https://github.com/Polymer/polyserve)
 
 ### <b>polylint</b>—lint projects for errors and common mistakes {#polylint}
 
