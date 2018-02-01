@@ -71,25 +71,8 @@ is upgraded.
 The template getter can return either a string or an instance of `HTMLTemplateElement`. Support
 for the string return value is deprecated in Polymer 2.4, and will be removed in 3.0. 
 
-```js
-// Define a template on a new element with a static template getter.
-
-class NewElement extends Polymer.Element {
-  // Override Polymer's default template getter
-  static get template () {
-    // Polymer 2.x: Return string template or instance of HTMLTemplateElement
-    // Polymer 2.4+: Return HTMLTemplateElement 
-  }
-}
-```
-
 Polymer 2.4+ provides a helper function (`Polymer.html`) to generate an `HTMLTemplateElement`
 instance from a JavaScript template literal.
-
-#### Using the Polymer.html helper function (2.4+) {#helper}
-
-Polymer 2.4+ provides the `Polymer.html` function that can be applied to a template literal to
-produce an `HTMLTemplateElement`. 
 
 Use Polymer.html to convert a JavaScript template literal to an HTMLTemplateElement: { .caption }
 
@@ -128,30 +111,13 @@ class MyElement extends Polymer.Element {
 customElements.define('my-element', MyElement);
 ```
 
-#### Return a string template (all 2.x versions) {#stringtemplate}
-
-JavaScript template literals are denoted by being enclosed in back-ticks:
-
-```
-var myTemplate = `<h1>I'm a template!</h1>`;
-```
-
-Specify a string template in a static template getter: { .caption }
+Polymer.html was added in release 2.4. For earlier versions, you can return a plain string:
 
 ```js
-class MyElement extends Polymer.Element {
-
-  static get template() {
-    return `<style>:host { color: blue; }</style>
-       <h2>String template</h2>
-       <div>I've got a string template!</div>`
-  }
-}
-
-customElements.define('my-element', MyElement);
+return `<div>A plain string template</div>`;
 ```
 
-[See a working example in Plunker](http://plnkr.co/edit/AzkMDJ?p=preview).
+Returning a string is deprecated in favor of the html helper in release 2.4. Support for the string template will be removed in 3.0.
 
 **When using a static `template` getter, the element doesn't need to provide an `is` getter.**
 However, the tag name still needs to be passed as the first argument to
