@@ -194,7 +194,7 @@ in Custom element concepts.
  * This mixin lets you travel faster than light speed, almost.
  * @polymer
  * @mixinFunction
- *
+ */
 MyNamespace.WarpSpeedMixin = (superclass) => class extends superclass {
   ...
 }
@@ -208,7 +208,7 @@ add the `@mixinClass` tag immediately before the class declaration. For example:
  * This mixin does something really complicated.
  * @polymer
  * @mixinFunction
- *
+ */
 MyNamespace.ReallyComplicatedMixin = Polymer.dedupingMixin((superclass) =>
 
    // do some other stuff before creating the class...
@@ -235,6 +235,7 @@ An element that applies a mixin should add the `@appliesMixin` tag:
  * @polymer
  * @customElement
  * @appliesMixin MyNamespace.WarpSpeedMixin
+ */
 class MyMixedUpElement extends MyNamespace.WarpSpeedMixin(Polymer.Element) { ... }
 ```
 
