@@ -58,7 +58,7 @@ The HTML elements in your template become children in your custom element's shad
 provides a mechanism for encapsulation, meaning that elements inside the shadow DOM don't match 
 selectors outside the shadow DOM.
 
-Likewise, styling rules in side the shadow DOM can't "leak" out to affect elements outside the 
+Likewise, styling rules inside the shadow DOM can't "leak" out to affect elements outside the 
 shadow DOM.
 
 Shadow DOM permits encapsulation of styling rules for custom elements. You can freely define 
