@@ -190,11 +190,11 @@ For more information on mixins, see [Sharing code with class expression mixins](
 in Custom element concepts.
 
 ```js
-/*
+/**
  * This mixin lets you travel faster than light speed, almost.
  * @polymer
  * @mixinFunction
- *
+ */
 MyNamespace.WarpSpeedMixin = (superclass) => class extends superclass {
   ...
 }
@@ -204,17 +204,17 @@ If your mixin function doesn't immediately return the class, as above, you may n
 add the `@mixinClass` tag immediately before the class declaration. For example:
 
 ```js
-/*
+/**
  * This mixin does something really complicated.
  * @polymer
  * @mixinFunction
- *
+ */
 MyNamespace.ReallyComplicatedMixin = Polymer.dedupingMixin((superclass) =>
 
    // do some other stuff before creating the class...
    ...
 
-  /*
+  /**
    * @polymer
    * @mixinClass
    */
@@ -230,11 +230,12 @@ MyNamespace.ReallyComplicatedMixin = Polymer.dedupingMixin((superclass) =>
 An element that applies a mixin should add the `@appliesMixin` tag:
 
 ```js
-/*
+/**
  * An element with a mixin
  * @polymer
  * @customElement
  * @appliesMixin MyNamespace.WarpSpeedMixin
+ */
 class MyMixedUpElement extends MyNamespace.WarpSpeedMixin(Polymer.Element) { ... }
 ```
 
