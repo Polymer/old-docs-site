@@ -11,6 +11,52 @@ title: Release notes
   }
 </style>
 
+
+## [Release 2.5.0](https://github.com/Polymer/polymer/releases/tag/v2.5.0) (2018-02-02) {#v-2-5-0}
+
+This release adds the following new features:
+
+-   [#5023](https://github.com/Polymer/polymer/pull/5023). Added `Polymer.htmlLiteral` tagged 
+    template literal function to safely include non-`<template>` variables in `Polymer.html` templates.
+
+    ```js
+    // Example
+    const title = Polymer.htmlLiteral`World!`;
+    class LiteralElement extends Polymer.Element {
+      static get template() {
+        return Polymer.html`<span>Hello ${title}</span>`
+      }
+    }
+    ```
+
+    This is now the only way to include literals in `Polymer.html` templates. Any 
+    value interpolated into a `Polymer.html` template must be either an `htmlLiteral` instance
+    or another template instance. This restriction provides _some_ safety against accidentally
+    interpolating strings into a template. However, **`htmlLiteral` doesn't perform any HTML
+    sanitization on its input**. 
+
+    Using `htmlLiteral` allows you to interpolate strings where a template can't be
+    interpolated, like inside of style text. 
+
+-   [#4458](https://github.com/Polymer/polymer/issues/4458). Allow use of templatizer without 
+    an `owner` and `host` property.
+
+This release also includes the following fixes:
+
+-   [#5080](https://github.com/Polymer/polymer/issues/5080). Fix unintended behavior 
+    change in `Polymer.ResolveUrl.resolveUrl()` by again allowing 
+    URLs beginning with `#` and `/` to be treated as absolute URLs.
+
+    For more standard URL handling behavior, please use [`new URL()`](https://url.spec.whatwg.org/).
+
+-   [#5067](https://github.com/Polymer/polymer/issues/5067). Fix observers being called twice.
+
+-   [#3422](https://github.com/Polymer/polymer/issues/3422). Ensure path notifications from 
+    templatized instances don't throw.
+
+-   [#5032](https://github.com/Polymer/polymer/issues/5032). Fix differences between `this.splice()` and `Array.prototype.splice()`.
+
+
 ## [Release 2.4.0](https://github.com/Polymer/polymer/releases/tag/v2.4.0) (2018-01-26) {#v-2-4-0}
 
 See our [blog post on Polymer 2.4](../../blog/2018-01-25-polymer-2-4) for more details. Here's a
