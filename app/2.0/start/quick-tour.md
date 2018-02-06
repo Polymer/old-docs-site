@@ -263,7 +263,7 @@ to the element's `owner` property, so it's updated as the user types.
 </demo-tabs>
 
 Try it out in **Plunker**:
-* Edit the placeholder text to see two-way data binding at work.
+* Edit the input content to see two-way data binding at work.
 
 **Note:** The `<iron-input>` element wraps a native `<input>` element and provides two-way
 data binding and input validation.
