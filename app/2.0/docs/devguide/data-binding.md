@@ -275,7 +275,7 @@ properties may also be affected.
 
 There are various reasons that properties can't be bound:
 
-*   Cross-browser isssues with the ability to place binding braces `{{...}}` in some of these
+*   Cross-browser issues with the ability to place binding braces `{{...}}` in some of these
     attribute values.
 
 *   Attributes that map to differently-named JavaScript properties (such as `class`).
