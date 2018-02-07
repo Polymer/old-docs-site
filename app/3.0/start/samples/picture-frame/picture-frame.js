@@ -1,10 +1,8 @@
-import {Element as PolymerElement} from "https://unpkg.com/@polymer/polymer@3.0.0-pre.1/polymer-element.js"
-
-//export const html = Polymer.html
+import {Element as PolymerElement, html} from "https://unpkg.com/@polymer/polymer@3.0.0-pre.7/polymer-element.js"
 
 class PictureFrame extends PolymerElement {
   static get template() {
-    return `
+    return html`
     <!-- scoped CSS for this element -->
     <style>
       div {

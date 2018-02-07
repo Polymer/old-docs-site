@@ -1,11 +1,11 @@
-import {Element as PolymerElement} from "https://unpkg.com/@polymer/polymer@3.0.0-pre.1/polymer-element.js"
+import {Element as PolymerElement} from 'https://unpkg.com/@polymer/polymer@3.0.0-pre.7/polymer-element.js'
 
 // Define the class for a new element called custom-element
 class CustomElement extends PolymerElement {
   
   constructor() {
     super();
-    this.textContent = "I'm a custom-element.";
+    this.textContent = 'I\'m a custom-element.';
   }
 }
 // Register the new element with the browser

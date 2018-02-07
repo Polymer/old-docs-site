@@ -1,7 +1,5 @@
-import {Element as PolymerElement} from "https://unpkg.com/@polymer/polymer@3.0.0-pre.1/polymer-element.js"
-import "https://unpkg.com/@polymer/iron-input/iron-input.html"
-
-// export const html = Polymer.html
+import {Element as PolymerElement, html} from 'https://unpkg.com/@polymer/polymer@3.0.0-pre.7/polymer-element.js';
+import 'https://unpkg.com/@polymer/iron-input@3.0.0-pre.7/iron-input.js';
 
 class EditableNameTag extends PolymerElement {
   static get properties () {
@@ -13,8 +11,8 @@ class EditableNameTag extends PolymerElement {
     };
   }
   static get template () {
-    return `
-      <!-- bind to the "owner" property -->
+    return html`
+      <!-- bind to the 'owner' property -->
       <p>This is <b>[[owner]]</b>'s name-tag element.</p>
     
       <!-- iron-input exposes a two-way bindable input value -->

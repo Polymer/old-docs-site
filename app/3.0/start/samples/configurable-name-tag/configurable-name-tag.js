@@ -1,6 +1,4 @@
-import {Element as PolymerElement} from "https://unpkg.com/@polymer/polymer@3.0.0-pre.1/polymer-element.js"
-
-//export const html = Polymer.html
+import {Element as PolymerElement, html} from 'https://unpkg.com/@polymer/polymer@3.0.0-pre.7/polymer-element.js'
 
 class ConfigurableNameTag extends PolymerElement {
   static get properties () {
@@ -8,12 +6,12 @@ class ConfigurableNameTag extends PolymerElement {
       // Configure owner property
       owner: {
         type: String,
-          value: "Daniel",
+          value: 'Daniel',
       }
     };
   } 
   static get template () {
-    return `
+    return html`
       <!-- bind to the "owner" property -->
       This is <b>[[owner]]</b>'s name-tag element.
     `;

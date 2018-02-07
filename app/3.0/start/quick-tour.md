@@ -17,7 +17,6 @@ It’s just like using the HTML tags you’re already familiar with:
 <fancy-thing>A fancy thing!</fancy-thing>
 ```
 
-
 Experienced web developers can use Polymer's special features to reduce boilerplate
 and make it even easier to build complex, interactive elements. In this tour, you'll
 learn how to:
@@ -50,7 +49,7 @@ an element name with a class, so you can add properties and methods to your cust
 element. The custom element's name **must start with an ASCII letter and
 contain a dash (-)**.
 
-<demo-tabs selected="0" name="qt-1-register" src="http://plnkr.co/edit/r1bwLm?p=preview">
+<demo-tabs selected="0" name="qt-1-register" src="http://plnkr.co/edit/FYhDkkAuD4TEnsgeZuc7?p=preview">
   <paper-tab slot="tabs">custom-element.js</paper-tab>
   <div>
 
@@ -94,7 +93,7 @@ You can use the `ready` callback for one-time initialization work after the elem
 Many elements include some internal DOM nodes to implement the element's UI and behavior.
 You can use Polymer's DOM templating to create a shadow DOM tree for your element.
 
-<demo-tabs selected="0" name="qt-2-shadow-dom" src="http://plnkr.co/edit/ki3fv4?p=preview">
+<demo-tabs selected="0" name="qt-2-shadow-dom" src="http://plnkr.co/edit/IvBQDkwRlLuG6P1fIMLr?p=preview">
   <paper-tab slot="tabs">dom-element.js</paper-tab>
   <div>
 
@@ -115,7 +114,7 @@ You can use Polymer's DOM templating to create a shadow DOM tree for your elemen
 </demo-tabs>
 
 Try it out in **Plunker**:
-* Try adding some other html elements inside the <template></template> block. For example, add `<h1>A heading!</h1>` or `<a href=”stuff.html”>A link!</a>`
+* Try adding some other html elements inside the <template></template> block. For example, add `<h1>A heading!</h1>` or `<a href="stuff.html">A link!</a>`
 
 Shadow DOM is encapsulated inside the element.
 
@@ -129,7 +128,7 @@ so they render as if they were inserted into the shadow DOM tree.
 This example creates a simple tag that decorates an image by wrapping it
 with a styled `<div>` tag.
 
-<demo-tabs selected="0" name="qt-3-compose" src="http://plnkr.co/edit/xfC6Y5?p=preview">
+<demo-tabs selected="0" name="qt-3-compose" src="http://plnkr.co/edit/RhauVxmC96dSKRgSn04Y?p=preview">
   <paper-tab slot="tabs">picture-frame.js</paper-tab>
   <div>
 
@@ -169,7 +168,7 @@ Data binding is a great way to quickly propagate changes in your element and red
 You can bind properties in your component using the "double-mustache" syntax (`{%raw%}{{}}{%endraw%}`).
 The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced between the brackets.
 
-<demo-tabs selected="0" name="qt-4-data-binding" src="http://plnkr.co/edit/8mZK8S?p=preview">
+<demo-tabs selected="0" name="qt-4-data-binding" src="http://plnkr.co/edit/dobBH1EwNvnymIrs0yMd?p=preview">
   <paper-tab slot="tabs">name-tag.js</paper-tab>
   <div>
 
@@ -192,8 +191,8 @@ The `{%raw%}{{}}{%endraw%}` is replaced by the value of the property referenced 
 Try it out in **Plunker**:
 * Try editing the value of the `owner` property.
 * Try adding another property and binding it in your component. 
-  Hint: Add `this.propertyName = "Property contents";` to the constructor
-  and add {{propertyName}} to the element’s shadow DOM.  
+  Hint: Add `this.propertyName = 'Property contents';` to the constructor
+  and add something like `<p>{{propertyName}}</p>` to the element’s template.  
 
 <p><a href="/3.0/docs/devguide/data-binding" class="blue-button">
 Learn more: data binding</a></p>
@@ -207,7 +206,7 @@ values, configuring properties from markup, observing property changes, and more
 The following example declares the `owner` property from the last example.
 It also shows configuring the owner property from markup in `index.html`.
 
-<demo-tabs selected="0" name="qt-5-declare-property" src="http://plnkr.co/edit/rASvnX?p=preview">
+<demo-tabs selected="0" name="qt-5-declare-property" src="http://plnkr.co/edit/nnEna7Sp3HoT8ndablOp?p=preview">
   <paper-tab slot="tabs">configurable-name-tag.js</paper-tab>
   <div>
 
@@ -239,6 +238,46 @@ In addition to text content, you can bind to an element's _properties_ (using
 `property-name="[[binding]]"`). Polymer properties
 can optionally support two-way binding, using curly braces (`property-name="{{binding}}"`).
 
+This example uses two-way binding: binding the value of a property on a parent element to a property
+on the child element. When the child element updates the property, the changes are bound to the 
+parent element.
+
+<demo-tabs selected="0" name="qt-6-bind-property" src="http://plnkr.co/edit/ixopefPZUV96R6SzEJun?p=preview">
+  <paper-tab slot="tabs">parent-element.js</paper-tab>
+  <div>
+
+```js
+<!-- include_file 3.0/start/samples/parent-element/parent-element.js -->
+```
+
+  </div>
+  <paper-tab slot="tabs">child-element.js</paper-tab>
+  <div>
+
+```js
+<!-- include_file 3.0/start/samples/parent-element/child-element.js -->
+```
+
+  </div>
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 3.0/start/samples/parent-element/index.html -->
+```
+
+  </div>
+  <iframe slot="results" frameborder="0" src="samples/parent-element/index.html" width="100%" height="100"></iframe>
+</demo-tabs>
+
+**Note:** `<child-element>` exposes its property to be used in two-way binding by setting the
+`reflectToAttribute` and `notify` attributes when the property is declared. 
+{: .alert .alert-info }
+
+<p><a href="/3.0/docs/devguide/data-binding#two-way-bindings" class="blue-button">
+Learn more: Two-way binding</a></p>
+
+<!-- 
 This example uses two-way binding: binding the value of a custom input element (`iron-input`)
 to the element's `owner` property, so it's updated as the user types.
 
@@ -247,7 +286,7 @@ to the element's `owner` property, so it's updated as the user types.
   <div>
 
 ```js
-<!-- include_file 3.0/start/samples/editable-name-tag/editable-name-tag.js -->
+<!-- include_file 3.0/start/samples/editable-name-tag/editable-name-tag.js --
 ```
 
   </div>
@@ -255,7 +294,7 @@ to the element's `owner` property, so it's updated as the user types.
   <div>
 
 ```html
-<!-- include_file 3.0/start/samples/editable-name-tag/index.html -->
+<!-- include_file 3.0/start/samples/editable-name-tag/index.html --
 ```
 
   </div>
@@ -269,11 +308,13 @@ Try it out in **Plunker**:
 data binding and input validation.
 {: .alert .alert-info }
 
+-->
+
 ### Using `<dom-repeat>` for template repeating
 
 The template repeater (`dom-repeat`) is a specialized template that binds to an array. It creates one instance of the template's contents for each item in the array.
 
-<demo-tabs selected="0" name="qt-7-dom-repeat" src="http://plnkr.co/edit/1lCS5BVeTpyjqCarQ4ek?p=preview">
+<demo-tabs selected="0" name="qt-7-dom-repeat" src="http://plnkr.co/edit/9qFNzWTiytFEqJjRNxNi?p=preview">
   <paper-tab slot="tabs">employee-list.js</paper-tab>
   <div>
 

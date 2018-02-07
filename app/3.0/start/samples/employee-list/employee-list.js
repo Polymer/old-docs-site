@@ -1,10 +1,8 @@
 //import the Polymer library
-import {Element as PolymerElement} from "https://unpkg.com/@polymer/polymer@3.0.0-pre.1/polymer-element.js"
+import {Element as PolymerElement, html} from 'https://unpkg.com/@polymer/polymer@3.0.0-pre.7/polymer-element.js'
 
 //import the template repeater
-import "https://unpkg.com/@polymer/polymer@3.0.0-pre.1/lib/elements/dom-repeat.js"
-
-//const export html = Polymer.html
+import 'https://unpkg.com/@polymer/polymer@3.0.0-pre.7/lib/elements/dom-repeat.js'
 
 class EmployeeList extends PolymerElement {
   constructor() {
@@ -25,7 +23,7 @@ class EmployeeList extends PolymerElement {
     ]; 
   }
   static get template () {
-    return `
+    return html`
     <div> Employee list: </div>
     <p></p>
     <template is="dom-repeat" items="{{employees}}">
