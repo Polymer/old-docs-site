@@ -113,6 +113,18 @@ handlers:
   static_dir: 2.0/samples/homepage
   secure: always
 
+- url: /2.0/start/samples
+  static_dir: 2.0/start/samples
+  secure: always
+
+- url: /3.0/samples/homepage
+  static_dir: 3.0/samples/homepage
+  secure: always
+
+- url: /3.0/start/samples
+  static_dir: 3.0/start/samples
+  secure: always
+
 - url: .*
   script: server.app
   secure: always
