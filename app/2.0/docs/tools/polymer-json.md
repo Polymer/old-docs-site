@@ -243,7 +243,7 @@ for every run:
           ```json
           "js": {
             "minify": {
-              "excludes": ["/src/baz.js", "**.min.js"]
+              "exclude": ["/src/baz.js", "**.min.js"]
             }
           }
           ```
@@ -258,7 +258,7 @@ for every run:
           ```json
           "js": {
             "compile": {
-              "excludes": ["/src/baz.js", "**/es5/*.js"]
+              "exclude": ["/src/baz.js", "**/es5/*.js"]
             }
           }
           ```
