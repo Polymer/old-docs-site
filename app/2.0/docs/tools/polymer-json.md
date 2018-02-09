@@ -183,17 +183,85 @@ for every run:
 
 *   `html`: An object containing a configuration option for HTML:
     
-    *   `minify`: If `true`, minify all HTML.
+    *   `minify`: You may provide a boolean, or an object containing an `exclude` array. 
+    
+        If `true`, minify all HTML:
+         
+          ```json
+          "html": {
+            "minify": true
+          }
+          ```
+        
+        If an object, minify all HTML except files matching a pattern in the `exclude` array:
+
+          ```json
+          "html": {
+            "minify": {
+              "exclude": ["/src/foo.html", "**/samples/*.html"]
+            }
+          }
+          ```
 
 *   `css`: An object containing a configuration option for CSS:
 
-    *   `minify`: If `true`, minify all CSS.
+    *   `minify`: A Boolean, or an object containing an `exclude` array. 
+    
+        If `true`, minify all CSS:
 
-*   `js`: An object containing configuration options for Javascript:
+          ```json
+          "css": {
+            "minify": true
+          }
+          ```
 
-    *   `minify`: If `true`, minify all JS.
+        If an object, minify all CSS except files matching a pattern in the `exclude` array:
 
-    *   `compile`: If `true`, use babel to compile all ES6 JS down to ES5.
+          ```json
+          "html": {
+            "minify": {
+              "exclude": ["/styles/bar.css", "**/samples/*.css"]
+            }
+          }
+          ``` 
+
+*   `js`: An object containing configuration options for JavaScript:
+
+    *   `minify`: A Boolean, or an object containing an `exclude` array. 
+         
+        If `true`, minify all JS:
+         
+          ```json
+          "js": {
+            "minify": true
+          }
+          ```
+
+        If an object, minify all JS files except those with filenames that match a pattern in the 
+        `exclude` array:
+
+          ```json
+          "js": {
+            "minify": {
+              "exclude": ["/src/baz.js", "**.min.js"]
+            }
+          }
+          ```
+
+    *   `compile`: A Boolean, or an object containing an `exclude` array.
+    
+        If `true`, use babel to compile all ES6 JS down to ES5.
+
+        If an object, use babel to compile all ES6 JS down to ES5, except those with filenames
+        that match a pattern in the `exclude` array:
+
+          ```json
+          "js": {
+            "compile": {
+              "exclude": ["/src/baz.js", "**/es5/*.js"]
+            }
+          }
+          ```
 
 *   `browserCapabilities`: Capabilities required for a browser to consume this build. 
     Values are `es2015`, `push` and `serviceworker`. For more information, see the 

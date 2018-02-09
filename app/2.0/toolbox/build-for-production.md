@@ -40,9 +40,20 @@ The Polymer build tools provide options to minify HTML, JavaScript and CSS by st
 
 **Function**|**CLI flag**|**Entry in polymer.json**
 --- | --- | ---
-Minify inlined and external JavaScript | `--js-minify` | `"js": {"minify": true}` 
+Minify inlined and external JavaScript | `--js-minify` | `"js": {"minify": true}`
 Minify inlined and external CSS | `--css-minify` | `"css": {"minify": true}` 
-Minify HTML | `--html-minify` | `"html": {"minify": true}` 
+Minify HTML | `--html-minify` | `"html": {"minify": true}`
+
+In `polymer.json`, for any `minify` option in your build configuration, you can supply either
+a Boolean or a list of filename patterns to be excluded from minification. In the following 
+example, all JavaScript files will be minified, except `foo.js` and files with names matching the
+pattern `*.min.js`:
+
+```
+"js": { "minify": {
+    "exclude": ["foo.js", "*.min.js"]
+}}
+```
 
 Example: Build a project. Use CLI options to minify JavaScript, CSS and HTML {.caption}
 
@@ -57,6 +68,22 @@ Example: A build object in `polymer.json` that minifies JavaScript, CSS and HTML
   "js": {"minify": true},
   "css": {"minify": true},
   "html": {"minify": true}
+}]
+```
+
+Example: A build object in `polymer.json` that minifies JavaScript, CSS and HTML, except for excluded files {.caption}
+
+```
+"builds": [{
+  "js": { "minify": {
+    "exclude": ["foo.js", "*.min.js"]
+  }},
+  "css": {"minify": {
+    "exclude": ["foo.css", "/samples/*.css"]
+  }},
+  "html": {"minify": {
+    "exclude": ["foo.html", "/samples/*.html"]
+  }}
 }]
 ```
 
@@ -87,6 +114,18 @@ Equivalently, configure a build option in `polymer.json` as follows:
   "js": {"compile": true}
 }]
 ```
+
+In `polymer.json`, instead of a boolean, you may supply an object containing an `exclude` array:
+
+```
+"builds": [{
+  "js": {"compile": {
+    "exclude": ["*.min.js"]
+  }}
+}]
+```
+
+Files matching a pattern in the `exclude` array will be excluded from compilation.
 
 If you’re unsure what the best strategy is for your project, here’s a quick overview:
 
