@@ -4,6 +4,10 @@ title: Behaviors
 
 <!-- toc -->
 
+**Compatibility note:** Legacy elements can share code in the form of behaviors, which can define properties, lifecycle callbacks, event listeners, and other features.
+For more information, see [Behaviors](https://www.polymer-project.org/1.0/docs/devguide/behaviors) in the Polymer 1.x docs
+{ .alert .alert-warning }
+
 Polymer supports extending custom element prototypes with
 shared code modules called _behaviors_.
 
