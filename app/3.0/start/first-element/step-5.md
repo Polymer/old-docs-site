@@ -3,6 +3,8 @@ title: "Step 5: Theming with custom CSS properties"
 subtitle: "Build your first Polymer element"
 ---
 
+<!-- toc -->
+
 You now have a button that's basically functional. But it's stuck using the
 existing text color for both pressed and unpressed states. What if you want to
 get a little flashier?
@@ -23,9 +25,9 @@ Where <code>--<em>my-custom-property</em></code> is a custom property name, alwa
 Edit your element's `<style>` tag and replace the `fill` and `stroke`
 values with custom properties:
 
-icon-toggle.html: Before  { .caption }
+icon-toggle.js: Before  { .caption }
 
-```
+```html
   <style>
     /* local styles go here */
     :host {
@@ -41,9 +43,9 @@ icon-toggle.html: Before  { .caption }
   </style>
 ```
 
-icon-toggle.html: After  { .caption }
+icon-toggle.js: After  { .caption }
 
-```
+```html
   <style>
     /* local styles go here */
     :host {
@@ -62,11 +64,11 @@ icon-toggle.html: After  { .caption }
 Because of the default values, you can still style the `<icon-toggle>` just by
 setting `color`, but now you have other options.
 
-From the `demo` folder, open up `demo-element.html` and set the new properties.
+From the `demo` folder, open up `demo-element.js` and set the new properties.
 
-demo-element.html: Before { .caption }
+demo-element.js: Before { .caption }
 
-```
+```html
     <style>
       :host {
         font-family: sans-serif;
@@ -74,9 +76,9 @@ demo-element.html: Before { .caption }
     </style>
 ```
 
-demo-element.html: After { .caption }
+demo-element.js: After { .caption }
 
-```
+```html
     <style>
       :host {
         font-family: sans-serif;
@@ -90,14 +92,14 @@ demo-element.html: After { .caption }
 Run the demo again to get colorful.
 
 
-<img src="/images/2.0/first-element/toggles-styled.png" alt="Demo showing
+<img src="/images/3.0/first-element/toggles-styled.png" alt="Demo showing
 icon toggles with star and heart icons. Pressed icons are red.">
 
 That's it — your element is finished. You've created an element that has a basic
 UI, API, and custom styling properties.
 
 If you have any trouble getting the element working, check out the
-[finished version](https://github.com/PolymerLabs/polymer-2-first-element/tree/master/icon-toggle-finished).
+[finished version](https://github.com/PolymerLabs/polymer-3-first-element/tree/master/icon-toggle-finished).
 
 If you'd like to learn a little more about custom properties, read on.
 
@@ -109,7 +111,7 @@ aren't built into most browsers yet, you need to use a special `custom-style`
 tag to define custom properties outside of a Polymer element. Try
 adding the following code inside the `<head>` tag of your `index.html` file:
 
-```
+```html
 <custom-style>
   <style>
     /* Define a document-wide default—will not override a :host rule in  */
@@ -148,11 +150,11 @@ it applied.
 The `html` rule-set creates a document-wide default value for `--icon-toggle-outline-color`.
 But this value is overridden by the corresponding rule inside the `demo-element`
 element. To see this default value at work, comment out the corresponding rule in
-`demo-element.html`:
+`demo-element.js`:
 
-demo-element.html { .caption }
+demo-element.js { .caption }
 
-```
+```html
     <style>
       :host {
         font-family: sans-serif;
@@ -168,7 +170,7 @@ be **in the document scope**—for example, in `index.html`, not inside another
 element's shadow DOM. For example, these rules do **not** work inside the
 `custom-style`:
 
-```
+```css
     iron-icon {
       --iron-icon-width: 40px;
       --iron-icon-height: 40px;
@@ -180,19 +182,19 @@ shadow DOM. However, since custom properties inherit down the tree, you can set
 these properties at the document level to set the size for all `iron-icon`
 elements on the page:
 
-```
+```css
     html {
       --iron-icon-width: 40px;
       --iron-icon-height: 40px;
     }
 ```
 
-For more information, see the documentation on [custom CSS properties](https://www.polymer-project.org/2.0/docs/devguide/custom-css-properties).
+For more information, see the documentation on [custom CSS properties](https://www.polymer-project.org/3.0/docs/devguide/custom-css-properties).
 
 Ready to get started on your own element? You can use the Polymer CLI to
-[Create an element project](/2.0/docs/tools/polymer-cli#element).
+[Create an element project](/3.0/docs/tools/polymer-cli#element).
 
-You can also see the [Build an app](/2.0/start/toolbox/set-up)
+You can also see the [Build an app](/3.0/start/toolbox/set-up)
 tutorial to get started on an app using the Polymer App Toolbox.
 
 Or review the previous section:
