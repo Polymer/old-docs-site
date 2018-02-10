@@ -21,7 +21,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <nav>
         <pw-version-selector active-docs-version="{{{polymer_version_dir}}}"
             v1-page-link="{{{versioned_paths[0]}}}"
-            v2-page-link="{{{versioned_paths[1]}}}"></pw-version-selector>
+            v2-page-link="{{{versioned_paths[1]}}}"
+            v3-page-link="{{{versioned_paths[2]}}}"></pw-version-selector>
 
         {% if section_nav %}
           <div class="sidenav">
@@ -55,11 +56,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             {% endif %}
           </header>
 
-          {% if polymer_version_dir != '2.0' %}
+          {% if polymer_version_dir != '3.0' %}
             <p class="version-alert">
               <img src="/images/alerts/warning.svg">
               You're viewing an older version of Polymer.
-              Please see <a href="{{{versioned_paths[1]}}}">Polymer 2.0</a> for the latest.
+              Please see <a href="{{{versioned_paths[2]}}}">Polymer 3.0</a> for the latest.
             </p>
           {% endif %}
         {% endif %}

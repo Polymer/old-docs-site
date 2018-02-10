@@ -109,7 +109,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       :host([active-docs-version="1.0"]) .sections-tabs a[data-version="2.0"],
-      :host([active-docs-version="2.0"]) .sections-tabs a[data-version="1.0"] {
+      :host([active-docs-version="1.0"]) .sections-tabs a[data-version="3.0"],
+      :host([active-docs-version="2.0"]) .sections-tabs a[data-version="1.0"],
+      :host([active-docs-version="2.0"]) .sections-tabs a[data-version="3.0"],
+      :host([active-docs-version="3.0"]) .sections-tabs a[data-version="1.0"],
+      :host([active-docs-version="3.0"]) .sections-tabs a[data-version="2.0"] {
         display: none;
       }
 
@@ -168,6 +172,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <a href="/2.0/start/" name="2.0/start" data-version="2.0">Start</a>
             <a href="/2.0/docs/devguide/feature-overview" name="2.0/docs" data-version="2.0">Polymer</a>
             <a href="/2.0/toolbox/" name="2.0/toolbox" data-version="2.0">App Toolbox</a>
+            
+            <a href="/3.0/start/" name="3.0/start" data-version="3.0">Start</a>
+            <a href="/3.0/docs/devguide/feature-overview" name="3.0/docs" data-version="3.0">Polymer</a>
+            <a href="/3.0/toolbox/" name="3.0/toolbox" data-version="3.0">App Toolbox</a>
 
             <a href="/blog/" name="blog">Blog</a>
             <a href="/community/" name="community">Community</a>
@@ -229,7 +237,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        */
       activeDocsVersion: {
         type: String,
-        value: '2.0',
+        value: '3.0',
         reflectToAttribute: true
       },
 
@@ -256,7 +264,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       // Save which version of docs we're looking at, since we need to
       // maintain this state across the app. Note that not all sections are versioned.
-      if (this._routeData.version === '1.0' || this._routeData.version === '2.0')
+      if (/[123]\.0/.test(this._routeData.version))
         this.activeDocsVersion = this._routeData.version;
     },
 
@@ -288,7 +296,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     _computeSection: function(path) {
       // This attempts to match the prefix of the current path with the name attribute on one of
       // the links in .sections-tabs (e.g. '1.0/start', '2.0/toolbox', 'blog', 'community', etc.).
-      var match = /^\/([12]\.0\/[^\/]+|blog|community)\//.exec(path);
+      var match = /^\/([123]\.0\/[^\/]+|blog|community)\//.exec(path);
       return match ? match[1] : null;
     },
 
@@ -310,7 +318,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // there's actually a change.
         // Also I don't understand, but 'blog' comes with a version of "blog" so...
         var version = this._routeData.version;
-        if (version === '1.0' || version === '2.0') {
+        if (/[123]\.0/.test(version)) {
           this.activeDocsVersion = version;
         }
 

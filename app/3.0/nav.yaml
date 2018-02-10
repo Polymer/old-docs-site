@@ -1,0 +1,230 @@
+---
+- section: Home
+  shortpath: home
+  path: /
+
+- section: Start
+  shortpath: start
+  path: /3.0/start/
+  items:
+  - title: Get started
+    path: /3.0/start/
+  - title: Try Polymer
+    path: /3.0/start/quick-tour
+  - title: Install Polymer 3.x
+    path: /3.0/start/install-3-0
+  - header: Build an element
+  - title: 1. Get set up
+    path: /3.0/start/first-element/intro
+    indent: True
+  - title: 2. Add local DOM
+    path: /3.0/start/first-element/step-2
+    indent: True
+  - title: 3. Data binding & properties
+    path: /3.0/start/first-element/step-3
+    indent: True
+  - title: 4. React to input
+    path: /3.0/start/first-element/step-4
+    indent: True
+  - title: 5. Theming with custom properties
+    path: /3.0/start/first-element/step-5
+    indent: True
+  - endheader: True
+  - header: Build an app
+  - title: 1. Get set up
+    path: /3.0/start/toolbox/set-up
+    indent: True
+  - title: 2. Create a new page
+    path: /3.0/start/toolbox/create-a-page
+    indent: True
+  - title: 3. Add some elements
+    path: /3.0/start/toolbox/add-elements
+    indent: True
+  - title: 4. Deploy
+    path: /3.0/start/toolbox/deploy
+    indent: True
+  - endheader: True
+
+- section: Polymer
+  shortpath: docs
+  path: /3.0/docs/devguide/feature-overview
+  items:
+  - title: Feature overview
+    path: /3.0/docs/devguide/feature-overview
+  - header: About this release
+  - title: What's new in 3.0
+    path: /3.0/docs/about_30
+    indent: True
+  - title: Upgrade guide
+    path: /3.0/docs/upgrade
+    indent: True
+  - title: Hybrid elements
+    path: /3.0/docs/devguide/hybrid-elements
+    indent: True
+  - title: Release notes
+    path: /3.0/docs/release-notes
+    indent: True
+  - endheader: True
+  - header: Custom elements
+  - title: Custom element concepts
+    path: /3.0/docs/devguide/custom-elements
+    indent: True
+  - title: Define an element
+    path: /3.0/docs/devguide/registering-elements
+    indent: True
+  - title: Declare properties
+    path: /3.0/docs/devguide/properties
+    indent: True
+  - endheader: True
+  - header: Shadow DOM & styling
+  - title: Shadow DOM concepts
+    path: /3.0/docs/devguide/shadow-dom
+    indent: True
+  - title: DOM templating
+    path: /3.0/docs/devguide/dom-template
+    indent: True
+  - title: Style shadow DOM
+    path: /3.0/docs/devguide/style-shadow-dom
+    indent: True
+  - title: Custom CSS properties
+    path: /3.0/docs/devguide/custom-css-properties
+    indent: True
+  - endheader: True
+  - header: Events
+  - title: Handle and fire events
+    path: /3.0/docs/devguide/events
+    indent: True
+  - title: Gesture events
+    path: /3.0/docs/devguide/gesture-events
+    indent: True
+  - endheader: True
+  - header: Data system
+  - title: Data system concepts
+    path: /3.0/docs/devguide/data-system
+    indent: True
+  - title: Work with object and array data
+    path: /3.0/docs/devguide/model-data
+    indent: True
+  - title: Observers and computed properties
+    path: /3.0/docs/devguide/observers
+    indent: True
+  - title: Data binding
+    path: /3.0/docs/devguide/data-binding
+    indent: True
+  - title: Helper elements
+    path: /3.0/docs/devguide/templates
+    indent: True
+  - endheader: True
+  - header: Browser support
+  - title: Overview
+    path: /3.0/docs/browsers
+    indent: True
+  - title: Polyfills
+    path: /3.0/docs/polyfills
+    indent: True
+  - title: ES6
+    path: /3.0/docs/es6
+    indent: True
+  - endheader: True
+  - header: Tools
+  - title: Tools overview
+    path: /3.0/docs/tools/overview
+    indent: True
+  - title: Polymer CLI
+    path: /3.0/docs/tools/polymer-cli
+    indent: True
+  - title: CLI commands
+    path: /3.0/docs/tools/polymer-cli-commands
+    indent: True
+  - title: Create an element project
+    path: /3.0/docs/tools/create-element-polymer-cli
+    indent: True
+  - title: Create an application project
+    path: /3.0/docs/tools/create-app-polymer-cli
+    indent: True
+  - title: Document your elements
+    path: /3.0/docs/tools/documentation
+    indent: True
+  - title: Test your elements
+    path: /3.0/docs/tools/tests
+    indent: True
+  - title: Publish your elements
+    path: /3.0/docs/tools/publish
+    indent: True
+  - title: Web services
+    path: /3.0/docs/tools/services
+    indent: True
+  - title: polymer.json specification
+    path: /3.0/docs/tools/polymer-json
+    indent: True
+  - title: Node support
+    path: /3.0/docs/tools/node-support
+    indent: True
+  - endheader: True
+  - header: Resources
+  - title: Glossary
+    path: /3.0/docs/glossary
+    indent: True
+  - endheader: True
+  - header: API Reference
+  - title: API Reference
+    path: /3.0/docs/api/
+    indent: True
+  - title: Global settings
+    path: /3.0/docs/devguide/settings
+    indent: True
+  - endheader: True
+
+- section: App Toolbox
+  shortpath: toolbox
+  path: /3.0/toolbox/
+  items:
+  - title: What's in the box?
+    path: /3.0/toolbox/
+  - header: Using the Toolbox
+  - title: App templates
+    path: /3.0/toolbox/templates
+    indent: True
+  - title: Responsive app layout
+    path: /3.0/toolbox/app-layout
+    indent: True
+  - title: Routing
+    path: /3.0/toolbox/routing
+    indent: True
+  - title: Localization
+    path: /3.0/toolbox/localize
+    indent: True
+  - title: App storage
+    path: /3.0/toolbox/app-storage
+    indent: True
+  - title: Service worker
+    path: /3.0/toolbox/service-worker
+    indent: True
+  - endheader: true
+  - header: Deploy
+  - title: Build for production
+    path: /3.0/toolbox/build-for-production
+    indent: True
+  - title: Serve your app
+    path: /3.0/toolbox/serve
+    indent: True
+  - title: The PRPL pattern
+    path: /3.0/toolbox/prpl
+    indent: True
+  - endheader: true
+  - header: Case study
+  - title: "Shop"
+    path: /3.0/toolbox/case-study
+    indent: True
+  - title: "News"
+    path: /3.0/toolbox/news-case-study
+    indent: True
+  - endheader: true
+
+- section: Blog
+  shortpath: blog
+  path: /blog/
+
+- section: Community
+  shortpath: community
+  path: /community/
