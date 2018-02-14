@@ -4,8 +4,6 @@ title: Install Polymer 3.0
 
 <!-- toc -->
 
-Install the Polymer 3.0 prerequisites, and get started with the Polymer 3.0 library.
-
 ## Install the Polymer 3.0 prerequisites
 
 The Polymer 3.0 library is published to the [npm registry](https://docs.npmjs.com). Polymer
@@ -97,3 +95,8 @@ polymer serve --open --npm
 ```
 
 For more information on the tools and options in the Polymer CLI, see the documentation on [Polymer CLI commands](/{{{polymer_version_dir}}}/docs/tools/polymer-cli-commands).
+
+## Next steps
+
+* [Build your first Polymer app](/{{{polymer_version_dir}}}/start/toolbox/set-up)
+* [Build your first element with the Polymer library](/{{{polymer_version_dir}}}/start/first-element/intro)
