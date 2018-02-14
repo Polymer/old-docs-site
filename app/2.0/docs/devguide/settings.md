@@ -19,7 +19,7 @@ Calling a setter from an entrypoint:
   <meta charset="utf-8">
   <script src="components/webcomponentsjs/webcomponents-loader.js"></script>
   <!-- import just the settings module, or polymer-element.html or polymer.html -->
-  <link rel="import" href="components/polymer/lib/util/settings.html">
+  <link rel="import" href="components/polymer/lib/utils/settings.html">
   <script>
     Polymer.setPassiveTouchGestures(true);
   </script>
