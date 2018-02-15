@@ -13,7 +13,7 @@ See the [documentation on the PRPL pattern](prpl) for more information.
 
 For server and browser combinations that don't support server push, you can generate a bundled build designed to minimize the number of round-trips required to get the application running.
 
-Create a bundled build with the `--bundled` flag:
+Create a bundled build with the `--bundle` flag:
 
     polymer build --bundle
 
