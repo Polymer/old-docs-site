@@ -343,7 +343,7 @@ in the local DOM of `myEl`.
 Always wrap your test in `flush` if your element template contains a [template
 repeater (`dom-repeat`)](/{{{polymer_version_dir}}}/docs/devguide/templates#dom-repeat) or
 [conditional template (`dom-if`)](/{{{polymer_version_dir}}}/docs/devguide/templates#dom-if),
-or if your test involves shadow DOM mutation. The teshady DOM polyfill lazily performs these
+or if your test involves shadow DOM mutation. The shady DOM polyfill lazily performs these
 operations in some cases for performance. `flush` ensures that asynchronous
 changes have taken place. The test function should take one argument, `done`,
 to indicate that it is [asynchronous](#async), and it should call
