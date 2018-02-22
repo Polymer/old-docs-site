@@ -10,41 +10,28 @@ Polymer supports DOM templating and the shadow DOM API. When you provide a DOM t
 
 Here's an example:
 
-[See it on Plunker](http://plnkr.co/edit/TOgaxeSzuQsWFSIpzN7S?p=preview)
+[See it on Plunker](http://plnkr.co/edit/JooAma?p=preview)
 
-`custom-element.html` { .caption }
-```html
-<!-- Import polymer-element -->
-<link rel="import" href="https://polygit.org/polymer+:2.0-preview/webcomponentsjs+:v1/shadydom+webcomponents+:master/shadycss+webcomponents+:master/custom-elements+webcomponents+:master/components/polymer/polymer-element.html">
-
-<!-- Create a template for the custom element -->
-<dom-module id='custom-element'>
-  <template>
+`custom-element.js` { .caption }
+```js
+...
+static get template() {
+  return html`
     <h1>Heading!</h1>
-    <p>We are elements in custom-element's local DOM.</p>
-  </template>
-
-  <!-- Register the element -->
-  <script>
-    class CustomElement extends Polymer.Element {
-      static get is() {
-        return "custom-element";
-      }
-    }
-    customElements.define(CustomElement.is, CustomElement);
-  </script>
-</dom-module>
+    <p>We are elements in <code>custom-element</code>'s local DOM.</p>
+  `;
+}
+...
 ```
 
 `index.html` { .caption }
 ```html
-<!-- Load the polyfills -->
-<script src="https://polygit.org/polymer+:2.0-preview/webcomponentsjs+:v1/shadydom+webcomponents+:master/shadycss+webcomponents+:master/custom-elements+webcomponents+:master/components/webcomponentsjs/webcomponents-loader.js"></script>
-
-<!-- Load the custom element -->
-<link rel="import" href="custom-element.html">
-<!-- Drop the custom element on the page -->
-<custom-element></custom-element>
+<head>
+  <script type="module" src="custom-element.js"></script>
+</head>
+<body>
+  <custom-element></custom-element>
+</body>
 ```
 
 The HTML elements in your template become children in your custom element's shadow DOM. Shadow DOM provides a mechanism for encapsulation, meaning that elements inside the shadow DOM don't match selectors outside the shadow DOM.
@@ -55,12 +42,13 @@ Shadow DOM permits encapsulation of styling rules for custom elements. You can f
 
 Here's an example:
 
-[See it on Plunker](http://plnkr.co/edit/cHSjdQTa0h6fWXAygkje?p=preview)
+[See it on Plunker](http://plnkr.co/edit/NKuNTD?p=preview)
 
-`x-foo.html` { .caption}
-```html
-<dom-module id='x-foo'>
-  <template>
+`custom-element.js` { .caption}
+```js
+...
+static get template() {
+  return html`
     <!-- Encapsulated, element-level stylesheet -->
     <style>
       p {
@@ -70,25 +58,28 @@ Here's an example:
         color: red;
       }
     </style>
-    <p>I'm a shadow DOM child element of x-foo.</p>
+    <p>I'm a shadow DOM child element of <code>custom-element</code>.</p>
     <p class="myclass">So am I.</p>
-  </template>
-  ...
-</dom-module>
+  `;
+}
+...
 ```
 
 `index.html` { .caption }
 ```html
-<link rel="import" href="x-foo.html">
-<!-- Document-level stylesheet -->
-<style>
-  .myclass {
-    color: blue;
-  }
-</style>
-<x-foo></x-foo>
-<!-- The following paragraph uses the document-level stylesheet. -->
-<p class="myclass">I have nothing to do with x-foo. Because of encapsulation, x-foo's styles won't leak to me.</p>
+<head>
+  <script type="module" src="custom-element.js"></script>
+  <!-- Document-level stylesheet -->
+  <style>
+    .myclass {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <custom-element></custom-element>
+  <p class="myclass">I am outside of <code>custom-element</code>. Because of encapsulation, <code>custom-element</code>'s styles won't leak to me.</p>
+</body>
 ```
 
 For a detailed explanation of shadow DOM as it applies to Polymer, see [Shadow DOM concepts](shadow-dom).
@@ -99,47 +90,54 @@ For an exploration of the shadow DOM v1 API, see [Shadow DOM v1: Self-Contained 
 
 When used in an HTML document, your element will still inherit any styling information that applies to its parent element:
 
-[See it on Plunker](http://plnkr.co/edit/7ugStflqbexg2dNqmtDQ?p=preview)
+[See it on Plunker](http://plnkr.co/edit/jziXon?p=preview)
 
-`x-foo.html` { .caption}
-```html
-<dom-module id='x-foo'>
-  <template>
+`custom-element.js` { .caption}
+```js
+...
+static get template() {
+  return html`
     <div>
-      I inherit styles from x-foo's parent in the light DOM.
+      I inherit styles from <code>custom-element</code>'s parent in the light DOM.
       I'm also sans-serif and blue.
     </div>
-  </template>
-</dom-module>
+  `;
+}
+...
 ```
 
-`index.html` { .caption}
+`index.html` { .caption }
 ```html
-<link rel="import" href="x-foo.html">
-<!-- Document-level stylesheet -->
-<style>
-  p {
-    font-family: sans-serif;
-    color: blue;
-  }
-</style>
+<head>
+  <script type="module" src="custom-element.js"></script>
+  <!-- Document-level stylesheet -->
+  <style>
+    p {
+      font-family: sans-serif;
+      color:blue;
+    }
+  </style>
+</head>
+<body>  
+  <!-- This paragraph uses document-level styles: -->
+  <p>I'm sans-serif and blue.</p>
 
-<!-- This paragraph uses document-level styles: -->
-<p>I'm sans-serif and blue.</p>
-
-<!-- And the text within x-foo inherits style from the paragraph element: -->
-<p><x-foo></x-foo></p>
+  <!-- And the text within custom-element inherits style from the paragraph element: -->
+  <p><custom-element></custom-element></p>
+</body>
 ```
 
 Styles declared inside shadow DOM will override styles declared outside of it:
 
-[See it on Plunker](http://plnkr.co/edit/0Fid1Gupd0jk9jggAKuv?p=preview)
+[See it on Plunker](http://plnkr.co/edit/XDCXXG?p=preview)
 
-`x-foo.html` { .caption}
-```html
-<dom-module id='x-foo'>
-  <template>
-    <!-- Encapsulated, element-level stylesheet -->
+`custom-element.js` { .caption}
+```js
+...
+static get template() {
+  return html`
+    <!-- Encapsulated, element-level stylesheet
+          overrides document-level stylesheet -->
     <style>
       p {
         font-family: sans-serif;
@@ -147,22 +145,27 @@ Styles declared inside shadow DOM will override styles declared outside of it:
       }
     </style>
     <p>I'm green.</p>
-  </template>
-</dom-module>
+  `;
+}
+...
 ```
 
-`index.html` { .caption}
+`index.html` { .caption }
 ```html
-<link rel="import" href="x-foo.html">
-<!-- Document-level stylesheet -->
-<style>
-  p {
-    font-family: sans-serif;
-    color: blue;
-  }
-</style>
-<p>I'm blue.</p>
-<p><x-foo></x-foo></p>
+<head>
+  <script type="module" src="custom-element.js"></script>
+  <!-- Document-level stylesheet -->
+  <style>
+    p { 
+      font-family: sans-serif;
+      color:blue;
+    }
+  </style>
+</head>
+<body>  
+  <p>I'm blue.</p>
+  <p><custom-element></custom-element></p>
+</body>
 ```
 
 ### Style the host element
@@ -172,102 +175,108 @@ The element to which shadow DOM is attached is known as the host. To style the h
 
 Inheritable properties of the host element will inherit down the shadow tree, where they apply to the shadow children.
 
-[See it on Plunker](http://plnkr.co/edit/7771DvsQ3iPWnn2gEIf8?p=preview)
+[See it on Plunker](http://plnkr.co/edit/BByXie?p=preview)
 
-`x-foo.html` { .caption}
-```html
-<dom-module id='x-foo'>
-  <template>
+`custom-element.js` { .caption}
+```js
+...
+static get template() {
+  return html`
     <!-- Encapsulated, element-level stylesheet -->
     <style>
       :host {
         font-family: sans-serif;
-        color: green;
+        color:green;
         display: block;
         border: 1px solid;
-      }
+      }	
     </style>
     <p>I'm green.</p>
     <div>I'm green too.</div>
     <span>We're all green...</span>
-  </template>
-</dom-module>
-```
-
-`index.html` { .caption}
-```html
-<link rel="import" href="x-foo.html">
-<x-foo></x-foo>
-```
-
-You can also style the host element from outside - for example, using a type selector:
-
-[See it on Plunker](http://plnkr.co/edit/AHXFX0zeQTbO2rGELTbS?p=preview)
-
-```css
-x-foo {
-	background-color: blue;
+  `;
 }
+...
+```
+
+`index.html` { .caption }
+```html
+<head>
+  <script type="module" src="custom-element.js"></script>
+</head>
+<body>  
+  <p><custom-element></custom-element></p>
+</body>
 ```
 
 #### Use CSS selectors to style the host element
 
 You can use CSS selectors to determine when and how to style the host. In this code sample:
 
-* The selector `:host` matches any `<x-foo>` element
-* The selector `:host(.blue)` matches `<x-foo>` elements of class `blue`
-* The selector `:host(.red)` matches `<x-foo>` elements of class `red`
-* The selector `:host(:hover)` matches `<x-foo>` elements when they are hovered over
+* The selector `:host` matches any `<custom-element>` element
+* The selector `:host(.blue)` matches `<custom-element>` elements of class `blue`
+* The selector `:host(.red)` matches `<custom-element>` elements of class `red`
+* The selector `:host(:hover)` matches `<custom-element>` elements when they are hovered over
 
-[See it on Plunker](http://plnkr.co/edit/FsXnCAz65SR6fZ7YKuy6?p=preview)
+[See it on Plunker](http://plnkr.co/edit/tbPBVG?p=preview)
 
-`x-foo.html` { .caption}
-```html
-<dom-module id="x-foo">
-  <template>
+`custom-element.js` { .caption}
+```js
+...
+static get template() {
+  return html`
     <style>
       :host { font-family: sans-serif; }
       :host(.blue) {color: blue;}
       :host(.red) {color: red;}
       :host(:hover) {color: green;}
     </style>
-    <p>Hi, from x-foo!</p>
-  </template>
-</dom-module>
+    <p>Hi, from custom-element!</p>
+  `;
+}
+...
 ```
 
-`index.html` { .caption}
+`index.html` { .caption }
 ```html
-<link rel="import" href="x-foo.html">
-
-<x-foo class="blue"></x-foo>
-<x-foo class="red"></x-foo>
+<head>
+  <script type="module" src="custom-element.js"></script>
+</head>
+<body>  
+  <custom-element class="blue"></custom-element>
+  <custom-element class="red"></custom-element>
+</body>
 ```
 
 Descendant selectors after `:host` match elements in the shadow tree. In this example, the CSS selector applies to any `p` element in the shadow tree if the host has class "warning":
 
-[See it on Plunker](http://plnkr.co/edit/MRN9blKg6A3w8G0RkyJD?p=preview)
+[See it on Plunker](http://plnkr.co/edit/U7BG6S?p=preview)
 
-`x-foo.html` { .caption}
-```html
-<dom-module id="x-foo">
-  <template>
+`custom-element.js` { .caption}
+```js
+...
+static get template() {
+  return html`
     <style>
       :host(.warning) p {
-        color: red;
+        color:red;
       }
     </style>
     <p>Make this text red if x-foo has class "warning", and black otherwise.</p>
-  </template>
-</dom-module>
+  `;
+}
+...
 ```
 
-`index.html` { .caption}
+`index.html` { .caption }
 ```html
-<link rel="import" href="x-foo.html">
-
-<x-foo class="warning"></x-foo>
-<x-foo></x-foo>
+<head>
+  <script type="module" src="custom-element.js"></script>
+</head>
+<body>  
+  <custom-element class="warning"></custom-element>
+  <custom-element></custom-element>
+</body>
 ```
 
 Styling with the `:host` selector is one of two instances where rules inside a shadow tree can affect an element outside a shadow tree. The second instance uses the `::slotted()` syntax to apply styling rules to distributed children. See [*Composition and slots* in Eric Bidelman's article on shadow DOM](https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom#composition_slot) for more information.
@@ -278,27 +287,27 @@ You can create **slots** in an element's template that are populated at runtime.
 
 The basic syntax for incorporating slotted content looks like this:
 
-[See it on Plunker](http://plnkr.co/edit/bNvOvQqCEmC4DaoeNtwZ?p=preview)
+[See it on Plunker](http://plnkr.co/edit/e6m48f?p=preview)
 
-`x-foo.html` { .caption}
-```html
-<dom-module id="x-foo">
-  <template>
-    <h1>
-      <slot name="title"></slot>
-    </h1>
-  </template>
-  ...
-</dom-module>
+`custom-element.js` { .caption}
+```js
+...
+static get template() {
+  return html`
+    <h1><slot name="title"></slot></h1>
+  `;
+}
+...
 ```
 
-`index.html` { .caption}
+`index.html` { .caption }
 ```html
-<link rel="import" href="x-foo.html">
-
-<x-foo>
-  <span slot="title">I'm a heading!</span>
-</x-foo>
+<head>
+  <script type="module" src="custom-element.js"></script>
+</head>
+<body>  
+  <custom-element><span slot="title">I'm a heading!</span></custom-element>
+</body>
 ```
 
 To style slotted content, use the `::slotted()` syntax.
@@ -307,81 +316,87 @@ To style slotted content, use the `::slotted()` syntax.
 
 `::slotted(*)` selects all slotted content:
 
-[See it on Plunker](http://plnkr.co/edit/pb0D6r15jvvxYVWsZ95U?p=preview)
+[See it on Plunker](http://plnkr.co/edit/jMjMAY?p=preview)
 
-`x-foo.html` { .caption}
-```html
-<dom-module id="x-foo">
-  <template>
+`custom-element.js` { .caption}
+```js
+...
+static get template() {
+  return html`
     <style>
       p ::slotted(*), h1 ::slotted(*) {
         font-family: sans-serif;
         color:green;
       }
     </style>
-    <h1>
-      <div><slot name='heading1'></slot></div>
-    </h1>
-    <p>
-      <slot name='para'></slot>
-    </p>
-  </template>
-	...
-</dom-module>
+    <h1><div><slot name='heading1'></slot></div></h1>
+    <p><slot name='para'></slot></p>
+  `;
+}
+...
 ```
 
-`index.html` { .caption}
+`index.html` { .caption }
 ```html
-<link rel="import" href="x-foo.html">
-<x-foo>
-  <div slot="heading1">Heading 1. I'm green.</div>
-  <div slot="para">Paragraph text. I'm green too.</div>
-</x-foo>
+<head>
+  <script type="module" src="custom-element.js"></script>
+</head>
+<body>  
+  <custom-element>
+      <div slot="heading1">Heading 1. I'm green.</div>
+      <div slot="para">Paragraph text. I'm green too.</div>
+    </custom-element>
+</body>
 ```
-
-[See it on Plunker](http://plnkr.co/edit/Xb4j1r4wEgGuyUM9huFV?p=preview)
 
 You can select by element type:
 
-`x-foo.html` { .caption}
-```html
-<dom-module id="x-foo">
-  <template>
+[See it on Plunker](http://plnkr.co/edit/rt0jDx?p=preview)
+
+`custom-element.js` { .caption}
+```js
+...
+static get template() {
+  return html`
     <style>
       h1 ::slotted(h1) {
         font-family: sans-serif;
-        color: green;
+        color:green;
       }
-      p ::slotted(p) {
+      p ::slotted(p) { 
         font-family: sans-serif;
-        color: blue;
+        color:blue;
       }
-    </style>
+    </style>  
     <h1><slot name='heading1'></slot></h1>
     <p><slot name='para'></slot></p>
-  </template>
-  ...
-</dom-module>
+  `;
+}
+...
 ```
 
-`index.html` { .caption}
+`index.html` { .caption }
 ```html
-<link rel="import" href="x-foo.html">
-
-<x-foo>
-  <h1 slot="heading1">Heading 1. I'm green.</h1>
-  <p slot="para">Paragraph text. I'm blue.</p>
-</x-foo>
+<head>
+  <script type="module" src="custom-element.js"></script>
+</head>
+<body>  
+  <custom-element>
+    <h1 slot="heading1">Heading 1. I'm green.</h1>
+    <p slot="para">Paragraph text. I'm blue.</p>
+  </custom-element>
+</body>
 ```
 
 You can select by class:
 
-[See it on Plunker](http://plnkr.co/edit/Ep8AVOHgiwQjtv8x5kwd?p=preview)
+[See it on Plunker](http://plnkr.co/edit/po4cN3?p=preview)
 
-`x-foo.html` { .caption}
-```html
-<dom-module id="x-foo">
-  <template>
+`custom-element.js` { .caption}
+```js
+...
+static get template() {
+  return html`
     <style>
       p ::slotted(.green) {
         color:green;
@@ -393,31 +408,35 @@ You can select by class:
     <p>
       <slot name='para2'></slot>
     </p>
-  </template>
-  ...
-</dom-module>
+  `;
+}
+...
 ```
 
-`index.html`
+`index.html` { .caption }
 ```html
-<link rel="import" href="x-foo.html">
-
-<x-foo>
-  <div slot="para1" class="green">I'm green!</div>
-  <div slot="para1">I'm not green.</div>
-  <div slot="para2" class="green">I'm green too.</div>
-  <div slot="para2">I'm not green.</div>
-</x-foo>
+<head>
+  <script type="module" src="custom-element.js"></script>
+</head>
+<body>  
+  <custom-element>
+    <div slot="para1" class="green">I'm green!</div>
+    <div slot="para1">I'm not green.</div>
+    <div slot="para2" class="green">I'm green too.</div>
+    <div slot="para2">I'm not green.</div>
+  </custom-element>
+</body>
 ```
 
 And you can select by slot name:
 
-[See it on Plunker](http://plnkr.co/edit/PzypR0973pxg3fquWhco?p=preview)
+[See it on Plunker](http://plnkr.co/edit/hR3I4w?p=preview)
 
-`x-foo.html` { .caption}
-```html
-<dom-module id="x-foo">
-  <template>
+`custom-element.js` { .caption}
+```js
+...
+static get template() {
+  return html`
     <style>
       p ::slotted([slot=para1]) {
         color:green;
@@ -429,19 +448,22 @@ And you can select by slot name:
     <p>
       <slot name='para2'></slot>
     </p>
-  </template>
-  ...
-</dom-module>
+  `;
+}
+...
 ```
 
-`index.html` { .caption}
+`index.html` { .caption }
 ```html
-<link rel="import" href="x-foo.html">
-
-<x-foo>
-  <div slot="para1">I'm green.</div>
-  <div slot="para2">I'm not green.</div>
-</x-foo>
+<head>
+  <script type="module" src="custom-element.js"></script>
+</head>
+<body>  
+  <custom-element>
+    <div slot="para1">I'm green.</div>
+    <div slot="para2">I'm not green.</div>
+  </custom-element>
+</body>
 ```
 
 ## Share styles between elements
