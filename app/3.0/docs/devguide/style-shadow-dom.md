@@ -472,131 +472,128 @@ static get template() {
 
 The preferred way to share styles is with *style modules*. You can package up styles in a style module, and share them between elements.
 
-To create a style module, wrap your style block in `<dom-module>` and `<template>` elements, like this:
+**The following process is a workaround.** While Polymer 3.0 does not use HTMLImports, style modules do. The following process is a workaround for this fact. This process may be updated as required.
+{ .alert }
 
-```html
-<dom-module id="my-style-module">
-  <template>
-    <style>
-      <!-- Styles to share go here! -->
-    </style>
-  </template>
-</dom-module>
+To create a style module:
+
+1. Use JavaScript to create a `<dom-module>` element:
+
+   ```js
+   const styleElement = document.createElement('dom-module');
+   ```
+
+2. Set the `<dom-module>` element's `innerHTML` property to contain a `<template>` element that wraps a `<style>` block:
+
+   ```js
+   styleElement.innerHTML = 
+    `<template>
+      <style>
+        /* Your shared styles go here */
+      </style>
+    </template>`;
+  ```
+
+3. Register your style module as an element: 
+
+   ```js
+   styleElement.register('style-element'); 
+   ```
+
+You'll most likely want to package the style module in its own JavaScript file. The element that uses the styles will need to import that file. For example:
+
+```js
+import './style-element.js';
 ```
 
 When you create the element that will use the styles, include the style module in the opening tag of the style block:
 
-```html
-<dom-module id="new-element">
-  <template>
-    <style include="my-style-module">
-      <!-- Any additional styles go here -->
-    </style>
-    <!-- The rest of your element template goes here -->
-  </template>
-</dom-module>
+```js
+  static template get() {
+    return html`
+      <style include="style-element">
+        <!-- Any additional styles go here -->
+      </style>
+      <!-- The rest of your element template goes here -->
+    `;
+  }
+}
 ```
 
-You'll most likely want to package the style module in its own html file. In that case, the element that uses the styles will need to import that file.
+Here's a complete example:
 
-Here's an example:
+[See it on Plunker](http://plnkr.co/edit/PNsZA1?p=preview)
 
-[See it on Plunker](http://plnkr.co/edit/Cd9XdfAF0RNEw5MGOudE?p=preview)
+index.html { .caption }
 
-`my-colors.html` { .caption}
 ```html
-<!-- Define some custom properties in a style module. -->
-<dom-module id='my-colors'>
-  <template>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script type="module" src="custom-element.js"></script>
+  </head>
+  <body>
+    <p>Style modules</p>
+    <custom-element></custom-element>
+    <p>are useful</p>
+  </body>
+</html>
+```
+
+custom-element.js { .caption }
+
+```js
+import { Element as PolymerElement, html } from "@polymer/polymer/polymer-element";
+import "./style-element.js";
+
+class CustomElement extends PolymerElement {
+  static get template() {
+    return html`
+      <!-- Include the styles defined in style-element.js (a style module): -->
+      
+      <style include="style-element">
+        /* Additional styles can go here */
+        code {
+          font-family: "Lucida Console", Monaco, monospace;
+        }
+        /* So can styles that override the style module */
+        p.overrideme {
+          color: blue;
+        }
+      </style>
+  
+      <div>
+        <p>Some styles for <code>custom-element.js</code> are defined in <code>style-element.js</code>, which is a <b>style module</b>.</p>
+        <p class='overrideme'>Additional styles are defined in <code>custom-element.js</code>.</p> 
+      </div>
+    `;
+  }
+}
+customElements.define('custom-element', CustomElement);
+```
+
+style-element.js { .caption }
+
+```js
+const styleElement = document.createElement('dom-module');
+styleElement.innerHTML = 
+  `<template>
     <style>
-      p.red {
+      div {
+        background-color: var(--my-background-color, aliceblue);
+        border: var(--my-border, 5px dashed);
+        padding: var(--my-padding, 10px);
+        margin: var(--my-margin, 50px);
+        font-family: var(--my-font-family, sans-serif);
+        color: var(--my-color, green);
+        text-align: var(--my-text-align, right);
+      }
+      p.overrideme {
         color: red;
       }
-      p.green {
-        color: green;
-      }
-      p.blue {
-        color: blue;
-      }
     </style>
-  </template>
-</dom-module>
-```
-
-`x-foo.html` { .caption}
-```html
-<!-- Import the styles from the style module my-colors -->
-<link rel="import" href="my-colors.html">
-<dom-module id="x-foo">
-  <template>
-    <!-- Include the imported styles from my-colors -->
-    <style include="my-colors"></style>
-    <p class="red">I wanna be red</p>
-    <p class="green">I wanna be green</p>
-    <p class="blue">I wanna be blue</p>
-  </template>
-  ...
-</dom-module>
-```
-
-`index.html` { .caption}
-```html
-<link rel="import" href="x-foo.html">
-
-<x-foo></x-foo>
-```
-
-
-### Use external stylesheets (deprecated) {#external-stylesheets}
-
-**Deprecated feature.** This experimental feature is now deprecated in favor of
-[style modules](#style-modules). It is still supported, but support will
-be removed in the future.
-{.alert .alert-info}
-
-Polymer includes an experimental feature to support loading external stylesheets
-that will be applied to the local DOM of an element.  This is typically
-convenient for developers who like to separate styles, share common styles
-between elements, or use style pre-processing tools.  The syntax is slightly
-different from how stylesheets are typically loaded, as the feature leverages
-HTML Imports (or the HTML Imports polyfill, where appropriate) to load the
-stylesheet text such that it may be properly shimmed and/or injected as an
-inline style.
-
-To include a remote stylesheet that applies to your Polymer element's local DOM,
-place a special HTML import `<link>` tag with `type="css"` in your 
-`<dom-module>` that refers to the external stylesheet to load.
-
-For example:
-
-[See it on Plunker](http://plnkr.co/edit/7AvgX9jQApbJoWHbdPkI?p=preview)
-
-`style.css` { .caption}
-```css
-.red { color: red; }
-.green { color: green; }
-.blue { color: blue; }
-```
-
-`x-foo.html` { .caption}
-```html
-<!-- Include the styles, and use them in x-foo. -->
-<dom-module id="x-foo">
-  <link rel="import" type="css" href="style.css">
-  <template>
-    <p class="red">I wanna be red</p>
-    <p class="green">I wanna be green</p>
-    <p class="blue">I wanna be blue</p>
-  </template>
-  ...
-</dom-module>
-```
-
-`index.html` { .caption}
-```html
-<link rel="import" href="x-foo.html">
-
-<x-foo></x-foo>
+  </template>`;
+styleElement.register('style-element');
 ```
 
 ## Use `custom-style` in document-level styles {#custom-style}
@@ -607,104 +604,110 @@ Some browsers have not implemented the Shadow DOM v1 specifications. To make sur
 
 `custom-style` enables a set of polyfills that ensure that styles in your apps and elements behave as you would expect from the Shadow DOM v1 specifications, even in browsers that don't implement these specifications.
 
-To ensure that your styles behave according to the Shadow DOM v1 specifications in all browsers, use `custom-style` when you define *document-level* styles. `custom-style` is not included with `Polymer.Element` and must be imported separately.
-`custom-style` is included with the legacy `polymer.html` import.
+To ensure that your styles behave according to the Shadow DOM v1 specifications in all browsers, use `custom-style` when you define *document-level* styles:
+
+index.html { .caption }
+
+```html
+<custom-style>
+  <style>
+    /* Document-level styles go here */
+  </style>
+</custom-style>
+```
+
+`custom-style` is not included in the `@polymer/polymer/polymer-element` package. Import `custom-style` from `@polymer/polymer/lib/elements/custom-style`:
+
+index.html { .caption }
+
+```html
+<head>
+  <script src="./custom-element.js" type="module"> 
+  <script src="../@polymer/polymer/lib/elements/custom-style.js" type="module"> 
+
+  <custom-style>
+    <style>
+      /* Document-level styles go here */
+    </style>
+  </custom-style>
+</head>
+<body>
+  <custom-element></custom-element>
+</body>
+```
 
 *Note: You should only use `custom-style` to define styles for the main document. To define styles for an element's local DOM, just use a `<style>` block.*
 
 ### Examples
 
-In the first code sample, the style for the `p` element “leaks” into Paragraph B in browsers that haven’t implemented the Shadow DOM v1 specs. In the second code sample, the developer has used `custom-style` to wrap the style block, preventing this leak.
+In the following code sample, the document-level style in index.html "leaks" into the shadow DOM of `<custom-element>` in browsers that haven’t implemented the Shadow DOM v1 specs.
 
-[See it on Plunker](http://plnkr.co/edit/0o1zuMHgmt4novf2DS8z?p=preview)
+[See it on Plunker](http://plnkr.co/edit/FJEC5C?p=preview)
 
-`x-foo.html` { .caption}
-```html
-<dom-module id="x-foo">
-  <template>
+`custom-element.js` { .caption}
+```js
+...
+static get template() {
+  return html`
     <p>
-      Paragraph B: I am in the shadow DOM of x-foo.
-      If your browser implements the Shadow DOM v1 specs,
+      Paragraph B: I am in the shadow DOM of <code>custom-element</code>. 
+      If your browser implements the Shadow DOM v1 specs, 
       I am black; otherwise, I'm red.
     </p>
-  </template>
-  ...
-</dom-module>
+  `;
+}
+...
 ```
 
 `index.html` { .caption}
 ```html
-<link rel="import" href="x-foo.html">
-<style>
-  p {
-    color: red;
-  }
-</style>
-<p>Paragraph A: I am in the main document. I am red.</p>
-
-<x-foo></x-foo>
-```
-
-[See it on Plunker](http://plnkr.co/edit/yiD9XWPHaMjHaGGwu4V9?p=preview)
-
-`x-foo.html` { .caption}
-```html
-<dom-module id="x-foo">
-  <template>
-    <p>Paragraph B: I am in the local DOM of x-foo. I am black on all browsers.</p>
-  </template>
-  ...
-</dom-module>
-```
-
-`index.html` { .caption}
-```html
-<!-- import custom-style -->
-<link rel="import" href="/bower_components/polymer/lib/elements/custom-style.html">
-<link rel="import" href="x-foo.html">
-
-<custom-style>
+<head>
+  <script type="module" src="./custom-element.js"></script>
   <style>
     p {
       color: red;
     }
   </style>
-</custom-style>
-<p>Paragraph A: I am in the main DOM. I am red.</p>
-<x-foo></x-foo>
+</head>
+<body>
+  <p>Paragraph A: I am in the main document. I am red.</p>
+  <custom-element></custom-element>
+</body>
 ```
 
-### Syntax and compatibility
+In the following code sample, the developer has used `custom-style` to wrap the document-level style block in index.html, preventing the leak.
 
-The syntax of `custom-style` has changed. In Polymer 2.x, `<custom-style>` is a wrapper element. You can use a hybrid syntax to ensure compatibility between Polymer 1.x and other versions.
+[See it on Plunker](http://plnkr.co/edit/M6RsuM?p=preview)
 
-Polymer 2.x { .caption}
-```html
-<custom-style>
-  <style>
-    p {
-		...
-    }
-  </style>
-</custom-style>
+`custom-element.js` { .caption}
+```js
+...
+static get template() {
+  return html`
+    <p>
+      Paragraph B: I am in the shadow DOM of <code>custom-element</code>. Document-level styles in index.html are wrapped in a <code>custom-style</code> block to prevent them from leaking to me.
+    </p>
+  `;
+}
+...
 ```
 
-Hybrid (compatible with 1.x and 2.x) { .caption}
+`index.html` { .caption}
 ```html
-<custom-style>
-  <style is="custom-style">
-    p {
-		...
-    }
-  </style>
-</custom-style>
-```
+<head>
+  <script type="module" src="./custom-element.js"></script>
+  <script type="module" src="./@polymer/polymer/lib/elements/custom-style.js"></script>
 
-Polymer 1.x { .caption}
-```html
-<style is="custom-style">
-  p {
-	  ...
-  }
-</style>
+  <custom-style>
+    <style>
+      p {
+        color: red;
+      }
+    </style>
+  </custom-style>
+</head>
+<body>
+  <p>Paragraph A: I am in the main document. I am red.</p>
+  <custom-element></custom-element>
+</body>
 ```
