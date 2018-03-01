@@ -75,10 +75,9 @@ Example: { .caption }
 
 
 ```js
-class XCustom extends Polymer.Element {
+import { Element as PolymerElement } from './node_modules/@polymer/polymer/polymer-element.js';
 
-  static get is() {return 'x-custom'; }
-
+class XCustom extends PolymerElement {
   static get properties() {
     return {
       active: {
@@ -88,12 +87,12 @@ class XCustom extends Polymer.Element {
       }
     }
   }
-
   // Observer method defined as a class method
   _activeChanged(newValue, oldValue) {
     this.toggleClass('highlight', newValue);
   }
 }
+customElements.define('x-custom', XCustom);
 ```
 
 The observer method is usually defined on the class itself, although an observer method can also be
@@ -115,14 +114,13 @@ Complex observers are declared in the `observers` array.
 Complex observers can monitor one or more paths. These
 paths are called the observer's *dependencies*.
 
-```
+```js
 static get observers() {
   return [
     // Observer method name, followed by a list of dependencies, in parenthesis
     'userListChanged(users.*, filter)'
   ]
 }
-
 ```
 
 Each dependency represents:
@@ -174,11 +172,10 @@ These observers differ from single-property observers in a few ways:
 
 Example { .caption }
 
-
 ```js
-class XCustom extends Polymer.Element {
+import { Element as PolymerElement } from './node_modules/@polymer/polymer/polymer-element.js';
 
-  static get is() {return 'x-custom'; }
+class XCustom extends PolymerElement {
 
   static get properties() {
     return {
@@ -203,6 +200,8 @@ class XCustom extends Polymer.Element {
     // ... do work using dependent values
   }
 }
+
+customElements.define('x-custom', XCustom);
 ```
 
 In addition to properties, observers can also observe [paths to sub-properties](#observing-path-changes),
@@ -229,49 +228,43 @@ sub-property must be updated in one of the following two ways:
 
 Example: { .caption }
 
-```html
-<dom-module id="x-custom">
-  <template>
-    <!-- Sub-property is updated via property binding. -->
-    <input value="{{user.name::input}}">
-  </template>
-  <script>
-    class XCustom extends Polymer.Element {
+```js
+import { Element as PolymerElement, html } from './node_modules/@polymer/polymer/polymer-element.js';
 
-      static get is() {return 'x-custom'; }
-
-      static get properties() {
-        return {
-          user: {
-            type: Object,
-            value: function() {
-              return {};
-            }
-          }
+class XCustom extends PolymerElement {
+  static get template () {
+    return html`
+      <!-- Sub-property is updated via property binding. -->
+      <input value="{{user.name::input}}">
+    `;
+  }
+  static get properties() {
+    return {
+      user: {
+        type: Object,
+        value: function() {
+          return {};
         }
-      }
-
-      // Observe the name sub-property on the user object
-      static get observers() {
-        return [
-            'userNameChanged(user.name)'
-        ]
-      }
-
-      // For a property or sub-property dependency, the corresponding
-      // argument is the new value of the property or sub-property
-      userNameChanged: function(name) {
-        if (name) {
-          console.log('new name: ' + name);
-        } else {
-          console.log('user name is undefined');
-        }
-
       }
     }
-    customElements.define(XCustom.is, XCustom);
-  </script>
-</dom-module>
+  }
+  // Observe the name sub-property on the user object
+  static get observers() {
+    return [
+        'userNameChanged(user.name)'
+    ]
+  }
+  // For a property or sub-property dependency, the corresponding
+  // argument is the new value of the property or sub-property
+  userNameChanged: function(name) {
+    if (name) {
+      console.log('new name: ' + name);
+    } else {
+      console.log('user name is undefined');
+    }
+  }
+}
+customElements.define('x-custom', XCustom);
 ```
 
 ### Observe array mutations {#array-observation}
@@ -330,10 +323,9 @@ in the example.
 Example {.caption}
 
 ```js
-class XCustom extends Polymer.Element {
+import { Element as PolymerElement } from './node_modules/@polymer/polymer/polymer-element.js';
 
-  static get is() {return 'x-custom'; }
-
+class XCustom extends PolymerElement {
   static get properties() {
     return {
       users: {
@@ -344,15 +336,12 @@ class XCustom extends Polymer.Element {
       }
     }
   }
-
   // Observe changes to the users array
   static get observers() {
     return [
       'usersAddedOrRemoved(users.splices)'
     ]
   }
-
-
   // For an array mutation dependency, the corresponding argument is a change record
   usersAddedOrRemoved(changeRecord) {
     if (changeRecord) {
@@ -368,14 +357,12 @@ class XCustom extends Polymer.Element {
       }, this);
     }
   }
-
   ready() {
     super.ready();
     this.push('users', {name: "Jack Aubrey"});
   }
 }
-
-customElements.define(XCustom.is, XCustom);
+customElements.define('x-custom', XCustom);
 ```
 
 ### Observe all changes related to a path {#deep-observation}
@@ -397,47 +384,38 @@ property described in [Observe array mutations](#array-observation).
 
 Example: { .caption }
 
-```html
-<dom-module id="x-custom">
-  <template>
-    <input value="{{user.name.first::input}}"
-           placeholder="First Name">
-    <input value="{{user.name.last::input}}"
-           placeholder="Last Name">
-  </template>
-  <script>
-    class XCustom extends Polymer.Element {
+```js
+import { Element as PolymerElement, html } from './node_modules/@polymer/polymer/polymer-element.js';
 
-      static get is() { return 'x-custom'; }
-
-      static get properties() {
-        return {
-          user: {
-            type: Object,
-            value: function() {
-              return {'name':{}};
-            }
-          }
+class XCustom extends PolymerElement {
+  static get template() {
+    return html`
+      <input value="{{user.name.first::input}}" placeholder="First Name">
+      <input value="{{user.name.last::input}}" placeholder="Last Name">
+    `;
+  }
+  static get properties() {
+    return {
+      user: {
+        type: Object,
+        value: function() {
+          return {'name':{}};
         }
       }
-
-      static get observers() {
-        return [
-            'userNameChanged(user.name.*)'
-        ]
-      }
-
-      userNameChanged(changeRecord) {
-        console.log('path: ' + changeRecord.path);
-        console.log('value: ' + changeRecord.value);
-      }
     }
-
-    customElements.define(XCustom.is, XCustom);
-  </script>
-</dom-module>
+  }
+  static get observers() {
+    return [
+        'userNameChanged(user.name.*)'
+    ]
+  }
+  userNameChanged(changeRecord) {
+    console.log('path: ' + changeRecord.path);
+    console.log('value: ' + changeRecord.value);
+  }
+}
+customElements.define('x-custom', XCustom);
 ```
-
 
 ### Identify all dependencies {#dependencies}
 
@@ -555,42 +533,32 @@ and the two act almost identically. The only difference is that the
 computed property function returns a value that's exposed as a virtual property.
 { .alert .alert-info }
 
-```
-<dom-module id="x-custom">
+```js
+import { Element as PolymerElement, html } from './node_modules/@polymer/polymer/polymer-element.js';
 
-  <template>
-    My name is <span>{{fullName}}</span>
-  </template>
-
-  <script>
-    class XCustom extends Polymer.Element {
-
-      static get is() { return 'x-custom'; }
-
-      static get properties() {
-        return {
-          first: String,
-
-          last: String,
-
-          fullName: {
-            type: String,
-            // when `first` or `last` changes `computeFullName` is called once
-            // and the value it returns is stored as `fullName`
-            computed: 'computeFullName(first, last)'
-          }
-        }
-      }
-
-      computeFullName(first, last) {
-        return first + ' ' + last;
+class XCustom extends PolymerElement {
+  static get template() {
+    return html`
+      <p>My name is <span>{{fullName}}</span></p>
+    `;
+  }
+  static get properties() {
+    return {
+      first: String,
+      last: String,
+      fullName: {
+        type: String,
+        // when `first` or `last` changes `computeFullName` is called once
+        // and the value it returns is stored as `fullName`
+        computed: 'computeFullName(first, last)'
       }
     }
-
-    customElements.define(XCustom.is, XCustom);
-  </script>
-
-</dom-module>
+  }
+  computeFullName(first, last) {
+    return first + ' ' + last;
+  }
+}
+customElements.define('x-custom', XCustom);
 ```
 
 Arguments to computing functions may be simple properties on the element, as
@@ -611,12 +579,9 @@ the method itself may change during runtime. A dynamic method is considered an e
 the observer, so the observer re-runs if the method itself changes. For example:
 
 ```js
-class NameCard extends Polymer.Element {
+import { Element as PolymerElement } from './node_modules/@polymer/polymer/polymer-element.js';
 
-  static get is() {
-    return 'name-card'
-  }
-
+class NameCard extends PolymerElement {
   static get properties() {
     return {
       // Override default format by assigning a new formatter
@@ -635,12 +600,10 @@ class NameCard extends Polymer.Element {
       }
     }
   }
-
   constructor() {
     super();
     this.formatter = this.defaultFormatter;
   }
-
   defaultFormatter(title, first, last) {
     return `${title} ${first} ${last}`
   }
