@@ -151,33 +151,26 @@ Every Polymer element has the following array mutation methods available:
 
 Example { .caption }
 
-```html
-<link rel="import" href="components/polymer/polymer-element.html">
-<link rel="import" href="components/polymer/src/elements/dom-repeat.html">
+[See it on Plunker](https://plnkr.co/edit/3LTcb2?p=info);
 
-<dom-module id="x-custom">
-  <template>
-    <template is="dom-repeat" items="[[users]]">{{item}}</template>
-  </template>
+```js
+import { Element as PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import '@polymer/polymer@3.0.0-pre.10/lib/elements/dom-repeat.js';
 
-  <script>
-    class XCustom extends Polymer.Element {
-
-      static get is() {return 'custom-element'}
-
-      addUser(user) {
-        this.push('users', user);
-      }
-
-      removeUser(user) {
-        var index = this.users.indexOf(user);
-        this.splice('users', index, 1);
-      }
-
-    }
-    customElements.define(XCustom.is, XCustom);
-  </script>
-</dom-module>
+class XCustom extends PolymerElement {
+  addUser(user) {
+    this.push('users', user);
+  }
+  removeUser(user) {
+    var index = this.users.indexOf(user);
+    this.splice('users', index, 1);
+  }
+  static get template(){
+    return html`
+      <template is="dom-repeat" items="[[users]]">{{item}}</template>
+    `;
+  }
+customElements.define('x-custom', XCustom);
 ```
 
 The `set` method can also be used to manipulate arrays by using an array path. For example, to
