@@ -1,4 +1,9 @@
 ---
+- title:  "Polymer 3.0 preview: Paths and names"
+  path: /blog/2018-02-26-3.0-preview-paths-and-names
+  published: 2018-02-26
+  author: polymer-team
+  description: "We're changing the way we import modules in Polymer 3.x"
 - title:  "Polymer 2.4 released"
   path: /blog/2018-01-25-polymer-2-4
   published: 2018-01-25
