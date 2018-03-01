@@ -151,7 +151,7 @@ Every Polymer element has the following array mutation methods available:
 
 Example { .caption }
 
-[See it on Plunker](https://plnkr.co/edit/3LTcb2?p=info);
+[See it on Plunker](https://plnkr.co/edit/3LTcb2?p=info)
 
 ```js
 import { Element as PolymerElement, html } from '@polymer/polymer/polymer-element.js';
