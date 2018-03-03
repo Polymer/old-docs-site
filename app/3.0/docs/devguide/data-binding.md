@@ -11,12 +11,12 @@ or _target element_). The host element data can be a property or sub-property re
 
 You create data bindings by adding annotations to an element's local DOM template.
 
-```
-<dom-module id="host-element">
-  <template>
+```js
+static get template(){
+  return html`
     <target-element target-property="{{hostProperty}}"></target-element>
-  </template>
-</dom-module>
+  `;
+}
 ```
 
 Updating data bindings is a [property effect](data-system#property-effects).
@@ -113,26 +113,27 @@ syntax. For more information, see [Binding to native element attributes](#native
 To bind to a target element's `textContent`, you can simply include the
 annotation or compound binding inside the target element.
 
+[See it on Plunker](https://plnkr.co/edit/xrjqVn?p=preview)
+
+```js
+import {Element as PolymerElement, html} from '@polymer/polymer@3.0.0-pre.10/polymer-element.js';
+
+class UserView extends PolymerElement {
+  static get properties() {
+    return {
+      name: String
+    };
+  }
+  static get template(){
+    return html`
+      <div>[[name]]</div>
+    `;
+  }
+}
+customElements.define('user-view', UserView);
 ```
-<dom-module id="user-view">
-  <template>
-    <div>[[name]]</div>
-  </template>
 
-  <script>
-    class UserView extends Polymer.Element {
-      static get is() {return 'user-view'}
-      static get properties() {
-        return {
-          name: String
-        }
-      }
-    }
-
-    customElements.define(UserView.is, UserView);
-  </script>
-</dom-module>
-
+```html
 <!-- usage -->
 <user-view name="Samuel"></user-view>
 ```
@@ -175,16 +176,18 @@ element.property = value;
 For example:
 
 
-```html
-<template>
-  <!-- Attribute binding -->
-  <my-element selected$="[[value]]"></my-element>
-  <!-- results in <my-element>.setAttribute('selected', this.value); -->
+```js
+static get template(){
+  return html`
+    <!-- Attribute binding -->
+    <my-element selected$="[[value]]"></my-element>
+    <!-- results in <my-element>.setAttribute('selected', this.value); -->
 
-  <!-- Property binding -->
-  <my-element selected="{{value}}"></my-element>
-  <!-- results in <my-element>.selected = this.value; -->
-</template>
+    <!-- Property binding -->
+    <my-element selected="{{value}}"></my-element>
+    <!-- results in <my-element>.selected = this.value; -->
+  `;
+}
 ```
 
 
