@@ -282,7 +282,7 @@ Example: { .caption }
 
       // For a property or sub-property dependency, the corresponding
       // argument is the new value of the property or sub-property
-      userNameChanged: function(name) {
+      userNameChanged(name) {
         if (name) {
           console.log('new name: ' + name);
         } else {
@@ -519,7 +519,7 @@ static get observers() {
   ]
 }
 
-nameChanged: function(firstName, lastName) {
+nameChanged(firstName, lastName) {
   console.log('new name:', firstName, lastName);
 }
 ```
