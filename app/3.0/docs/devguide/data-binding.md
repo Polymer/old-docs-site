@@ -294,27 +294,57 @@ arrays](data-system#data-flow-objects-arrays).
 
 Binding annotations can also include paths to sub-properties, as shown below:
 
-```
-<dom-module id="main-view">
+[See it on Plunker](https://plnkr.co/edit/sPMgJI?p=preview)
 
-  <template>
-    <user-view first="{{user.first}}" last="{{user.last}}"></user-view>
-  </template>
+main-view.js { .caption }
 
-  <script>
-    class MainView extends Polymer.Element {
-      static get is() {return 'main-view'}
-      static get properties() {
-        return {
-          user: Object
-        }
+```js
+import {Element as PolymerElement, html} from '@polymer/polymer@3.0.0-pre.10/polymer-element.js';
+import './user-view.js';
+
+class MainView extends PolymerElement {
+  static get properties() {
+    return {
+      user: {
+        type: Object,
+        value: function () { return { given: "San", family: "Zhang" }; }
       }
-    }
+    };
+  }
+  static get template(){
+    return html`
+      <user-view given="{{user.given}}" family="{{user.family}}"></user-view>
+    `;
+  }
+}
+customElements.define('main-view', MainView);
+```
 
-    customElements.define(MainView.is, MainView);
-  </script>
+user-view.js { .caption }
 
-</dom-module>
+```js
+import {Element as PolymerElement, html} from '@polymer/polymer@3.0.0-pre.10/polymer-element.js';
+
+class UserView extends PolymerElement {
+  static get properties() {
+    return {
+      given: String,
+      family: String
+    };
+  }
+  static get template(){
+    return html`
+      <div>[[given]] [[family]]</div>
+    `;
+  }
+}
+customElements.define('user-view', UserView);
+```
+
+index.html { .caption }
+
+```html
+<main-view></main-view>
 ```
 
 Subproperty changes are not automatically [observable](data-system#observable-changes).
@@ -323,8 +353,7 @@ If the host element updates the subproperty it needs to use the `set` method, as
 [Set a property or subproperty by path](model-data#set-path). Or the `notifyPath` method, as
 described in [Notify Polymer of a subproperty change](model-data#notify-path).
 
-
-```
+```js
 //  Change a subproperty observably
 this.set('name.last', 'Maturin');
 ```
@@ -342,10 +371,12 @@ arrays](data-system#data-flow-objects-arrays).
 Binding annotations support a single logical not operator (`!`), as the first character inside
 the binding delimiters:
 
-```
-<template>
-  <my-page show-login="[[!isLoggedIn]]"></my-page>
-</template>
+```js
+static get template(){
+  return html`
+    <my-page show-login="[[!isLoggedIn]]"></my-page>
+  `;
+}
 ```
 
 In this example, `showLogin` is `false` if `isLoggedIn` has a truthy value.
@@ -392,32 +423,28 @@ Computed bindings differ from computed properties in the following ways:
 
 Example: { .caption }
 
+[See it in Plunker](https://plnkr.co/edit/OabDPv?p=preview)
+
 ```
-<dom-module id="x-custom">
-
-  <template>
-    My name is <span>[[_formatName(first, last)]]</span>
-  </template>
-
-  <script>
-    class XCustom extends Polymer.Element {
-      static get is() {return 'x-custom'}
-      static get properties() {
-        return {
-          first: String,
-          last: String
-        }
-      }
-      _formatName(first, last) {
-        return `${last}, ${first}`
-      }
-
-    }
-
-    customElements.define(XCustom.is, XCustom);
-  </script>
-
-</dom-module>
+class XCustom extends PolymerElement {
+  static get properties() {
+    return {
+      given: String,
+      family: String
+    };
+  }
+  
+  _formatName(given, family) {
+    return `${family}, ${given}`;
+  }
+  
+  static get template(){
+    return html`
+      My name is <span>[[_formatName(given, family)]]</span>
+    `;
+  }
+}
+customElements.define('x-custom', XCustom);
 ```
 
 In this case, the span's `textContent` property is bound to the return value
@@ -463,36 +490,30 @@ backslash (`\`).
 
 Example:
 
-```html
-<dom-module id="x-custom">
-  <template>
-    <span>{{translate('Hello\, nice to meet you', first, last)}}</span>
-  </template>
-</dom-module>
+```js
+static get template(){
+  return html`
+    <span>{{translate('Hello\, nice to meet you', given, family)}}</span>
+  `;
+}
 ```
 
 Finally, if a computed binding has no dependent properties, it is only evaluated once:
 
-```
-<dom-module id="x-custom">
-  <template>
-    <span>{{doThisOnce()}}</span>
-  </template>
+[See it in Plunker](https://plnkr.co/edit/iWFpsh?p=preview)
 
-  <script>
-    class XCustom extends Polymer.Element {
-
-      static get is() {return 'x-custom'}
-
-      doThisOnce: function() {
-        return Math.random();
-      }
-
-    }
-
-    customElements.define(XCustom.is, XCustom);
-  </script>
-</dom-module>
+```js
+class XCustom extends PolymerElement {
+  static get template() {
+    return html`
+      <span>{{doThisOnce()}}</span>
+    `;
+  }
+  doThisOnce() {
+    return Math.random();
+  }
+}
+customElements.define('x-custom', XCustom);
 ```
 
 ## Compound bindings {#compound-bindings}
@@ -552,50 +573,37 @@ The following example shows how to access a property from an array item using a 
 The computing function needs to be called if the subproperty value changes,
 _or_ if the array itself is mutated, so the binding uses a wildcard path, `myArray.*`.
 
-```
-<dom-module id="x-custom">
-
-  <template>
-    <div>[[arrayItem(myArray.*, 0, 'name')]]</div>
-    <div>[[arrayItem(myArray.*, 1, 'name')]]</div>
-  </template>
-
-  <script>
-
-    class XCustom extends Polymer.Element {
-
-      static get is() {return 'x-custom'}
-
-      static get properties() {
-        return {
-          myArray: {
-            type: Array,
-            value: [{ name: 'Bob' }, { name: 'Doug' }]
-          }
-        }
+```js
+class XCustom extends PolymerElement {
+  static get properties() {
+    return {
+      myArray: {
+        type: Array,
+        value: [{ name: 'Bob' }, { name: 'Wing Sang' }]
       }
-
-      // first argument is the change record for the array change,
-      // change.base is the array specified in the binding
-      arrayItem(change, index, path) {
-        // this.get(path, root) returns a value for a path
-        // relative to a root object.
-        return this.get(path, change.base[index]);
-      },
-
-      ready() {
-        super.ready();
-        // mutate the array
-        this.unshift('myArray', { name: 'Susan' });
-        // change a subproperty
-        this.set('myArray.1.name', 'Rupert');
-      }
-    }
-
-    customElements.define(XCustom.is, XCustom);
-  </script>
-
-</dom-module>
+    };
+  }
+  // first argument is the change record for the array change,
+  // change.base is the array specified in the binding
+  arrayItem(change, index, path) {
+    // this.get(path, root) returns a value for a path
+    // relative to a root object.
+    return this.get(path, change.base[index]);
+  }
+  ready() {
+    super.ready();
+    // mutate the array
+    this.unshift('myArray', { name: 'Fatma' });
+    // change a subproperty
+    this.set('myArray.1.name', 'Rupert');
+  } 
+  static get template() {
+    return html`
+      <div>[[arrayItem(myArray.*, 0, 'name')]]</div>
+      <div>[[arrayItem(myArray.*, 1, 'name')]]</div>
+    `;
+  }
+}
 ```
 
 ## Two-way bindings
