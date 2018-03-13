@@ -13,10 +13,49 @@ data binding use cases:
 -   Conditional template (`dom-if`). Stamps its contents if a given condition is true.
 -   Auto-binding template (`dom-bind`). Allows data binding outside of a Polymer element.
 
-**2.0 tip.** The data binding helper elements are bundled in to the backward-compatible,
-`polymer.html` import. If you aren't using the legacy import, you'll need to import the
-helper elements you're using.
-{.alert .alert-info}
+The data binding helper elements are not included in the main Polymer library, so you need to import them before using them. For example:
+
+```js
+//import dom-repeat helper element
+import '@polymer/polymer/lib/elements/dom-repeat';
+...
+static get template(){
+  return html`
+    ...
+    <dom-repeat ...> ... </dom-repeat>
+    ...
+  `;
+}
+...
+```
+
+```js
+//import dom-if helper element
+import '@polymer/polymer/lib/elements/dom-if';
+...
+static get template(){
+  return html`
+    ...
+    <dom-if ...> ... </dom-if>
+    ...
+  `;
+}
+...
+```
+
+```js
+//import dom-bind helper element
+import '@polymer/polymer/lib/elements/dom-bind';
+...
+static get template(){
+  return html`
+    ...
+    <dom-bind ...> ... </dom-bind>
+    ...
+  `;
+}
+...
+```
 
 ## Template repeater (dom-repeat) {#dom-repeat}
 
@@ -57,53 +96,42 @@ library.
 
 In most cases, you'll use the first (shorthand) form for `dom-repeat`.
 
-The template repeater is included in the legacy (`polymer.html`) import for backwards compatibility.
-If you're not importing `polymer.html`, import `dom-repeat.html` as shown in the code below.
-
 Example: { .caption }
 
-```html
-<link rel="import" href="components/polymer/polymer-element.html">
-<! -- import template repeater -->
-<link rel="import" href="components/polymer/lib/elements/dom-repeat.html">
+[See it in Plunker](https://plnkr.co/edit/4HOkRP?p=preview)
 
-<dom-module id="x-custom">
-  <template>
+```js
+// Import the Polymer library and the html helper function
+import {Element as PolymerElement, html} from '@polymer/polymer@3.0.0-pre.10/polymer-element';
+// Import template repeater
+import '@polymer/polymer@3.0.0-pre.10/lib/elements/dom-repeat';
 
-    <div> Employee list: </div>
-    <template is="dom-repeat" items="{{employees}}">
-        <div># [[index]]</div>
-        <div>First name: <span>[[item.first]]</span></div>
-        <div>Last name: <span>[[item.last]]</span></div>
-    </template>
-
-  </template>
-
-  <script>
-    class XCustom extends Polymer.Element {
-
-      static get is() { return 'x-custom'; }
-
-      static get properties() {
-        return {
-          employees: {
-            type: Array,
-            value() {
-              return [
-                {first: 'Bob', last: 'Smith'},
-                {first: 'Sally', last: 'Johnson'},
-              ];
-            }
-          }
+class XCustom extends PolymerElement {
+  
+  static get properties() {
+    return {
+      employees: {
+        type: Array,
+        value() {
+          return [
+            {given: 'Kamil', family: 'Smith'},
+            {given: 'Sally', family: 'Johnson'},
+          ];
         }
       }
-
-    }
-
-    customElements.define(XCustom.is, XCustom);
-  </script>
-
-</dom-module>
+    };
+  }
+  
+  static get template() {
+    return html`
+      <div> Employee list: </div>
+      <template is="dom-repeat" items="{{employees}}">
+        <div><br/># [[index]]</div><div>Given name: <span>[[item.given]]</span></div><div>Family name: <span>[[item.family]]</span></div>
+      </template>
+    `;
+  }
+}
+customElements.define('x-custom', XCustom);
 ```
 
 Notifications for changes to item sub-properties are forwarded to the template
@@ -140,51 +168,45 @@ the repeater adds a `model` property to each event sent to the listener. The `mo
 object contains the scope data used to generate the template instance, so the item
 data is `model.item`:
 
-```html
-<link rel="import" href="polymer/polymer-element.html">
-<link rel="import" href="polymer/lib/elements/dom-repeat.html">
+Example {.caption}
 
-<dom-module id="x-custom">
+[See it on Plunker](https://plnkr.co/edit/jDEQWA?p=preview)
 
-  <template>
-    <template is="dom-repeat" id="menu" items="{{menuItems}}">
+```js
+import {Element as PolymerElement, html} from '@polymer/polymer@3.0.0-pre.10/polymer-element';
+import '@polymer/polymer@3.0.0-pre.10/lib/elements/dom-repeat';
+
+class XCustom extends PolymerElement {
+  static get properties() {
+    return {
+      menuItems: {
+        type: Array,
+        value() {
+          return [
+            {name: 'Pizza', ordered: 0},
+            {name: 'Pasta', ordered: 0},
+            {name: 'Toast', ordered: 0}
+          ];
+        }
+      }
+    };
+  }
+  order(e) {
+    e.model.set('item.ordered', e.model.item.ordered+1);
+  }
+  static get template() {
+    return html`
+      <template is="dom-repeat" id="menu" items="{{menuItems}}">
         <div>
           <span>{{item.name}}</span>
           <span>{{item.ordered}}</span>
           <button on-click="order">Order</button>
         </div>
-    </template>
-  </template>
-
-  <script>
-    class XCustom extends Polymer.Element {
-
-      static get is() { return 'x-custom'; }
-
-      static get properties() {
-        return {
-          menuItems: {
-            type: Array,
-            value() {
-              return [
-                {name: 'Pizza', ordered: 0},
-                {name: 'Pasta', ordered: 0},
-                {name: 'Toast', ordered: 0}
-              ];
-            }
-          }
-        }
-      }
-
-      order(e) {
-        e.model.set('item.ordered', e.model.item.ordered+1);
-      }
-    }
-
-    customElements.define(XCustom.is, XCustom);
-  </script>
-
-</dom-module>
+      </template>
+    `;
+  }
+}
+customElements.define('x-custom', XCustom);
 ```
 
 The `model` is an instance of `TemplateInstance`, which provides the Polymer
@@ -258,7 +280,7 @@ For example, for a `dom-repeat` with a filter of the following:
 
 ```
 isEngineer(item) {
-    return item.type == 'engineer' || item.manager.type == 'engineer';
+  return item.type == 'engineer' || item.manager.type == 'engineer';
 }
 ```
 
@@ -283,60 +305,60 @@ dynamically change the sort or filter based on another unrelated value. In
 this case, you can use a computed binding to _return_ a dynamic filter or
 sort function when one or more dependent properties changes.
 
-```html
-<dom-module id="x-custom">
+Example { .caption }
 
-  <template>
-    <input value="{{searchString::input}}">
+[See it in Plunker](https://plnkr.co/edit/AWhaZc?p=preview)
 
-    <!-- computeFilter returns a new filter function whenever searchString changes -->
-    <template is="dom-repeat" items="{{employees}}" as="employee"
+```js
+class XCustom extends PolymerElement {
+  static get properties() {
+    return {
+      employees: {
+        type: Array,
+        value() {
+          return [
+            { firstname: "Jack", lastname: "Aubrey" },
+            { firstname: "Anne", lastname: "Elliot" },
+            { firstname: "Stephen", lastname: "Maturin" },
+            { firstname: "Emma", lastname: "Woodhouse" }
+          ];
+        }
+      }
+    };
+  }
+  order(e) {
+    e.model.set('item.ordered', e.model.item.ordered+1);
+  }
+  computeFilter(string) {
+    if (!string) {
+      // set filter to null to disable filtering
+      return null;
+    } else {
+      // return a filter function for the current search string
+      string = string.toLowerCase();
+      return function(employee) {
+        var first = employee.firstname.toLowerCase();
+        var last = employee.lastname.toLowerCase();
+        return (first.indexOf(string) != -1 ||
+            last.indexOf(string) != -1);
+      };
+    }
+  }
+  static get template() {
+    return html`
+      Search string: <input value="{{searchString::input}}"><br/><br/>
+      <!-- 
+        computeFilter returns a new filter function 
+        whenever searchString changes 
+      -->
+      <template is="dom-repeat" items="{{employees}}" as="employee"
         filter="{{computeFilter(searchString)}}">
         <div>{{employee.lastname}}, {{employee.firstname}}</div>
-    </template>
-  </template>
-
-  <script>
-    class XCustom extends Polymer.Element {
-
-      static get is() { return 'x-custom'; }
-
-      static get properties() {
-        return {
-          employees: {
-            type: Array,
-            value() {
-              return [
-                { firstname: "Jack", lastname: "Aubrey" },
-                { firstname: "Anne", lastname: "Elliot" },
-                { firstname: "Stephen", lastname: "Maturin" },
-                { firstname: "Emma", lastname: "Woodhouse" }
-              ]
-            }
-          }
-        }
-      }
-
-      computeFilter(string) {
-        if (!string) {
-          // set filter to null to disable filtering
-          return null;
-        } else {
-          // return a filter function for the current search string
-          string = string.toLowerCase();
-          return function(employee) {
-            var first = employee.firstname.toLowerCase();
-            var last = employee.lastname.toLowerCase();
-            return (first.indexOf(string) != -1 ||
-                last.indexOf(string) != -1);
-          };
-        }
-      }
-    }
-
-    customElements.define(XCustom.is, XCustom);
-  </script>
-</dom-module>
+      </template>
+    `;
+  }
+}
+customElements.define('x-custom', XCustom);
 ```
 
 In this example, whenever the value of the `searchString` property changes,
@@ -346,7 +368,7 @@ In this example, whenever the value of the `searchString` property changes,
 
 Because of the way Polymer tracks arrays internally, the array
 index isn't passed to the filter function. Looking up the array index for an
-item is an O(n) operation. Doing so  in a filter function could have
+item is an O(n) operation. Doing so in a filter function could have
 **significant performance impact**.
 
 If you need to look up the array index and are willing to pay the performance penalty,
@@ -378,20 +400,28 @@ To access properties from nested `dom-repeat` templates, use the `as` attribute 
 assign a different name for the item property. Use the `index-as` attribute to assign a
 different name for the index property.
 
-```html
-<div> Employee list: </div>
-<template is="dom-repeat" items="{{employees}}" as="employee">
-    <div>First name: <span>{{employee.first}}</span></div>
-    <div>Last name: <span>{{employee.last}}</span></div>
+Example { .caption }
 
-    <div>Direct reports:</div>
+[See it in Plunker](https://plnkr.co/edit/IHB4kd?p=preview)
 
-    <template is="dom-repeat" items="{{employee.reports}}" as="report" index-as="report_no">
-      <div><span>{{report_no}}</span>.
-           <span>{{report.first}}</span> <span>{{report.last}}</span>
-      </div>
+```js
+static get template() {
+  return html`
+    <template is="dom-repeat" items="{{employees}}" as="employee">
+      <b>Employee {{index}}</b>
+      <div>First name: <span>{{employee.firstname}}</span></div>
+      <div>Last name: <span>{{employee.lastname}}</span></div>
+      <div>Direct reports:</div>
+      <template is="dom-repeat" items="{{employee.reports}}" as="report" index-as="report_no">
+        <div>
+        <span>{{report_no}}</span>.
+        <span>{{report.firstname}}</span> <span>{{report.lastname}}</span>
+        </div>
+      </template>
+      <br />
     </template>
-</template>
+  `;
+}
 ```
 
 ### Forcing synchronous renders {#synchronous-renders}
@@ -444,7 +474,6 @@ one of the following:
       re-evaluated.
 
       ```js
-      //
       this.notifyPath('items');
       ```
 
@@ -492,67 +521,59 @@ The array selector supports either single or multiple selection.
 When `multi` is false, `selected` is a property representing the last selected
 item.  When `multi` is true, `selected` is an array of selected items.
 
-The array selector is included in the legacy (`polymer.html`) import for backwards compatibility.
-If you're not importing `polymer.html`, import `array-selector.html` as shown in the code below.
+Example: { .caption }
 
-```html
-<link rel="import" href="components/polymer/polymer-element.html">
-<! -- import template repeater -->
-<link rel="import" href="components/polymer/lib/elements/dom-repeat.html">
-<!-- import array selector -->
-<link rel="import" href="components/polymer/lib/elements/array-selector.html">
+[See it in Plunker](https://plnkr.co/edit/7K5nKj?p=preview)
 
-<dom-module id="x-custom">
+```js
+// Import the Polymer library and the html helper function
+import {Element as PolymerElement, html} from '@polymer/polymer@3.0.0-pre.10/polymer-element';
+// Import template repeater
+import '@polymer/polymer@3.0.0-pre.10/lib/elements/dom-repeat';
+// Import array selector
+import '@polymer/polymer@3.0.0-pre.10/lib/elements/array-selector';
 
-  <template>
-
-    <div> Employee list: </div>
-    <template is="dom-repeat" id="employeeList" items="{{employees}}">
-        <div>First name: <span>{{item.first}}</span></div>
-        <div>Last name: <span>{{item.last}}</span></div>
-        <button on-click="toggleSelection">Select</button>
-    </template>
-
-    <array-selector id="selector" items="{{employees}}" selected="{{selected}}" multi toggle></array-selector>
-
-    <div> Selected employees: </div>
-    <template is="dom-repeat" items="{{selected}}">
-        <div>First name: <span>{{item.first}}</span></div>
-        <div>Last name: <span>{{item.last}}</span></div>
-    </template>
-
-  </template>
-
-  <script>
-    class XCustom extends Polymer.Element {
-
-      static get is() { return 'x-custom'; }
-
-      static get properties() {
-        return {
-          employees: {
-            type: Array,
-            value() {
-              return [
-                {first: 'Bob', last: 'Smith'},
-                {first: 'Sally', last: 'Johnson'},
-                // ...
-              ];
-            }
-          }
+class XCustom extends PolymerElement {
+  static get properties() {
+    return {
+      employees: {
+        type: Array,
+        value() {
+          return [
+            {given: 'Kamil', family: 'Smith'},
+            {given: 'Sally', family: 'Johnson'},
+            {given: 'Shauna', family: 'Bell'},
+            {given: 'San', family: 'Zhang'},
+            {given: 'Carlo', family: 'Lopez'}
+          ];
         }
       }
-
-      toggleSelection(e) {
-        var item = this.$.employeeList.itemForElement(e.target);
-        this.$.selector.select(item);
-      }
-    }
-
-    customElements.define(XCustom.is, XCustom);
-  </script>
-
-</dom-module>
+    };
+  }
+  toggleSelection(e) {
+    var item = this.$.employeeList.itemForElement(e.target);
+    this.$.selector.select(item);
+  }
+  static get template() {
+    return html`
+      <div><b>All employees</b></div><br />
+      <template is="dom-repeat" id="employeeList" items="{{employees}}">
+          <div>Given name: <span>{{item.given}}</span></div>
+          <div>Family name: <span>{{item.family}}</span></div>
+          <button on-click="toggleSelection">Select/deselect</button>
+          <br /><br />
+      </template>
+      <array-selector id="selector" items="{{employees}}" selected="{{selected}}" multi toggle></array-selector>
+      <div><b>Selected employees</b></div><br />
+      <template is="dom-repeat" items="{{selected}}">
+          <div>Given name: <span>{{item.given}}</span></div>
+          <div>Family name: <span>{{item.family}}</span></div>
+          <br />
+      </template>
+    `;
+  }
+}
+customElements.define('x-custom', XCustom);
 ```
 
 ## Conditional templates (dom-if) {#dom-if}
@@ -595,52 +616,45 @@ A Polymer-managed template includes a Polymer element's template, a `dom-bind`, 
 
 In most cases, you'll use the first (shorthand) form for `dom-if`.
 
-The conditional template is included in the legacy (`polymer.html`) import for backwards
-compatibility.  If you're not importing `polymer.html`, import `dom-if.html` as shown in
-the code below.
-
 The following is a simple example to show how conditional templates work. Read below for
 guidance on recommended usage of conditional templates.
 
 Example: { .caption }
 
-```
-<link rel="import" href="components/polymer/polymer-element.html">
-<! -- import conditional template -->
-<link rel="import" href="components/polymer/lib/elements/dom-if.html">
+[See it in Plunker](https://plnkr.co/edit/u1VUAq?p=preview)
 
-<dom-module id="x-custom">
+```js
+import {Element as PolymerElement, html} from '@polymer/polymer/polymer-element';
+import '@polymer/polymer/lib/elements/dom-if';
+import './my-user-profile.js';
+import './my-admin-panel.js';
 
-  <template>
-
-    <!-- All users will see this -->
-    <my-user-profile user="{{user}}"></my-user-profile>
-
-
-    <template is="dom-if" if="{{user.isAdmin}}">
-      <!-- Only admins will see this. -->
-      <my-admin-panel user="{{user}}"></my-admin-panel>
-    </template>
-
-  </template>
-
-  <script>
-    class XCustom extends Polymer.Element {
-
-      static get is() { return 'x-custom'; }
-
-      static get properties() {
-        return {
-          user: Object
-        }
+class XCustom extends PolymerElement {
+  static get properties() {
+    return {
+      user: {
+        type: Object,
+        value: function(){ return { id: '123', isAdmin: true }; }
       }
-
-    }
-
-    customElements.define(XCustom.is, XCustom);
-  </script>
-
-</dom-module>
+    };
+  }
+  ready(){
+    super.ready();
+    console.log("x-custom: ", this.user.id, this.user.isAdmin);
+  }
+  static get template() {
+    return html`
+      <!-- All users will see this -->
+      <my-user-profile user="{{user}}"></my-user-profile>
+      
+      <template is="dom-if" if="{{user.isAdmin}}">
+        <!-- Only admins will see this. -->
+        <my-admin-panel user="{{user}}"></my-admin-panel>
+      </template>
+    `;
+  }
+}
+customElements.define('x-custom', XCustom);
 ```
 
 Conditional templates introduce some overhead, so they shouldn't be used for small UI elements
@@ -650,8 +664,7 @@ Instead, use conditional templates to improve loading time or reduce your page's
 For example:
 
 -   Lazy-loading sections of your page. If some elements of your page aren't required on first
-    paint, you can use a `dom-if` to hide them until their definitions have loaded. This use
-    of conditional templates is described in [Case study: the Shop app](/{{{polymer_version_dir}}}/toolbox/case-study#views).
+    paint, you can use a `dom-if` to hide them until their definitions have loaded. 
 
 -   Reducing the memory footprint of a large or complex site. For a single-page application
     with multiple complex views, it may be beneficial to put each view inside a `dom-if`
@@ -670,43 +683,44 @@ but not for elements placed in the main document.
 
 To use Polymer bindings **without** defining a new custom element,
 use the `<dom-bind>` element.  This template _immediately and synchronously_ stamps the contents of
-its child templateinto the main document. Data bindings in an auto-binding template use
+its child template into the main document. Data bindings in an auto-binding template use
 the `<dom-bind>` element itself as the binding scope.
 
+Example { .caption }
+
+[See it on Plunker](https://plnkr.co/edit/QdQS0J?p=preview)
+
 ```html
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <script src="components/webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="polymer/lib/elements/dom-bind.html">
-  <link rel="import" href="polymer/lib/elements/dom-repeat.html">
-
-</head>
-<body>
-  <!-- Wrap elements with auto-binding template to -->
-  <!-- allow use of Polymer bindings in main document -->
-  <dom-bind>
-    <template>
-
-      <!-- Note the data property which gets sets below -->
-      <template is="dom-repeat" items="{{data}}">
-        <div>{{item.name}}: {{item.price}}</div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- import polyfills -->
+    <script src="./@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <!-- import dom helper elements -->
+    <script type="module" src="./@polymer/polymer/lib/elements/dom-bind.js"></script>
+    <script type="module" src="./@polymer/polymer/lib/elements/dom-repeat.js"></script>
+  </head>
+  <body>
+    <!-- Wrap elements with auto-binding template to -->
+    <!-- allow use of Polymer bindings in main document -->
+    <dom-bind>
+      <template>
+        <!-- Note the data property which gets sets below -->
+        <template is="dom-repeat" items="{{data}}">
+          <div>{{item.name}}: {{item.price}}</div>
+        </template>
       </template>
-
-    </template>
-  </dom-bind>
-  <script>
-    var autobind = document.querySelector('dom-bind');
-
-    // set data property on dom-bind
-    autobind.data = [
-      { name: 'book', price: '$5.00'},
-      { name: 'pencil', price: '$1.00'},
-      { name: 'flux capacitor', price: '$8,000,000.00'}
-    ];
-  </script>
-</body>
+    </dom-bind>
+    <script>
+      var autobind = document.querySelector('dom-bind');
+      // set data property on dom-bind
+      autobind.data = [
+        { name: 'book', price: '$5.00'},
+        { name: 'pencil', price: '$1.00'},
+        { name: 'flux capacitor', price: '$8,000,000.00'}
+      ];
+    </script>
+  </body>
 </html>
 ```
 
@@ -714,7 +728,7 @@ All of the features in `dom-bind` are already available _inside_ a Polymer
 element. **Auto-binding templates should only be used _outside_ of a Polymer element.**
 
 _Note: In Polymer 1.0, `dom-bind` rendered asynchronously and fired a `dom-change`
-event to signify readiness. In Polymer 2.0, `dom-bind` renders synchronously. It
+event to signify readiness. In Polymer 2.0 and 3.0, `dom-bind` renders synchronously. It 
 will still fire a `dom-change` event but if your event handler is bound
 after the element declaration you'll miss it._
 
