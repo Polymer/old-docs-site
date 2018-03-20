@@ -2,6 +2,11 @@
 title:  "Hands-on with the Polymer 3.0 preview"
 ---
 
+**Updated instructions available.** If you're using the latest Polymer 3.0 preview 
+(3.0.0-pre.12 or later), see the [new blog post](/blog/2018-03-20-polymer-3-latest-preview).
+The instructions in this post only apply to 3.0.0-pre.11 and earlier.
+{.alert .alert-warning}
+
 Polymer 3.0 preview is available to experiment with, and today's installment will get you started. But note that we use the word "experiment" advisedly. This is a very early preview, and there are definitely rough edges aplenty.
 
 But fortune favors the bold—so let's press on.
