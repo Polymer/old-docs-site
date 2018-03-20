@@ -4,13 +4,35 @@ title:  "Hands-on with the latest Polymer 3.0 preview"
 
 In a previous [blog post](2018-02-26-3.0-preview-paths-and-names), we announced some changes to the way we handle module imports in Polymer 3.0, and described why we made those changes. We're happy to announce that you can try out the new import syntax in the latest Polymer 3.0 preview!
 
-* [Simpler module imports](#packagenames)
 * [Renamed base element export in polymer-element.js](#renamed)
 * [Renamed polymer.js to polymer-legacy.js](#renamedlegacy)
+* [Simpler module imports](#packagenames)
 * [Dynamic imports](#dynamicimports)
 * [Tools](#tools)
 * [What next?](#whatnext)
 * [Sample app and element with the new preview](#samples)
+
+## Renamed base element export in polymer-element.js (breaking change) {#renamed}
+Previously, it was necessary to change the symbol for the main export of `@polymer/polymer/polymer-element.js` from `Element` to some other symbol on import. This export has been renamed to `PolymerElement`. You can now use this symbol without changing it: 
+
+```js
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+
+class MyApp extends PolymerElement {
+  //...
+}
+customElements.define('my-app', MyApp);
+```
+
+## Renamed polymer.js to polymer-legacy.js (breaking change) {#renamedlegacy}
+
+The collection of imports formerly known as `polymer.js` has been renamed to `polymer-legacy.js`. 
+
+`polymer-legacy.js` imports:
+
+  * The legacy element mixin and related behaviors
+  * The DOM template, array selector and custom style helper elements
+  * The `html` helper function
 
 ## Simpler module imports {#packagenames}
 
@@ -204,18 +226,6 @@ customElements.define('my-app', MyApp);
 <!-- polyfills, metadata, etc -->
 <script type="module" src="./my-app.js">
 <my-app></my-app>
-```
-
-## Renamed base element export in polymer-element.js (breaking change) {#renamed}
-Previously, it was necessary to change the symbol for the main export of `@polymer/polymer/polymer-element.js` from `Element` to some other symbol on import. This export has been renamed to `PolymerElement`. You can now use this symbol without changing it: 
-
-```js
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-
-class MyApp extends PolymerElement {
-  //...
-}
-customElements.define('my-app', MyApp);
 ```
 
 ## Dynamic imports {#dynamicimports}
