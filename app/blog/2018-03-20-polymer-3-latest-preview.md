@@ -4,6 +4,7 @@ title:  "Hands-on with the latest Polymer 3.0 preview"
 
 In a previous [blog post](2018-02-26-3.0-preview-paths-and-names), we announced some changes to the way we handle module imports in Polymer 3.0, and described why we made those changes. We're happy to announce that you can try out the new import syntax in the latest Polymer 3.0 preview!
 
+* [Quick start with the latest preview (3.0.0-pre.12)](#quickstart)
 * [Renamed base element export in polymer-element.js](#renamed)
 * [Renamed polymer.js to polymer-legacy.js](#renamedlegacy)
 * [Simpler module imports](#packagenames)
@@ -11,6 +12,96 @@ In a previous [blog post](2018-02-26-3.0-preview-paths-and-names), we announced 
 * [Tools](#tools)
 * [What next?](#whatnext)
 * [Sample app and element with the new preview](#samples)
+
+## Quick start with the latest preview (3.0.0-pre.12)
+
+To get started with the latest Polymer preview:
+
+1.  Update the Polymer CLI tools:
+
+    ```bash
+    npm install -g polymer-cli
+    ```
+
+2.  Update the Polymer library and element dependencies in your project to use version `3.0.0-pre.12`. 
+
+    For example, modify `package.json`:
+
+    Before {.caption}
+
+    ```json
+    {
+      "name": "start-polymer3",
+      "version": "1.0.0",
+      "main": "index.js",
+      "repository": "https://github.com/katejeffreys/start-polymer3.git",
+      "author": "Kate Jeffreys <katejeffreys@google.com>",
+      "license": "MIT",
+      "dependencies": {
+        "@polymer/paper-checkbox": "^3.0.0-pre.11",
+        "@polymer/polymer": "^3.0.0-pre.11"
+      }
+    }
+    ```
+
+    After {.caption}
+
+    ```json
+    {
+      "name": "start-polymer3",
+      "version": "1.0.0",
+      "main": "index.js",
+      "repository": "https://github.com/katejeffreys/start-polymer3.git",
+      "author": "Kate Jeffreys <katejeffreys@google.com>",
+      "license": "MIT",
+      "dependencies": {
+        "@polymer/paper-checkbox": "^3.0.0-pre.12",
+        "@polymer/polymer": "^3.0.0-pre.12"
+      }
+    }
+    ```
+
+3.  Update imports that use `Element` from `polymer-element.js`. The `Element` export from `polymer-element.js` has been renamed to `PolymerElement`:
+
+    Before {.caption}
+
+    ```js
+    import { Element as PolymerElement } from './node_modules/@polymer/polymer/polymer-element.js';
+    import './node_modules/@polymer/paper-checkbox/paper-checkbox.js';
+    ```
+
+    After {.caption}
+
+    ```js
+    /* You can use package names to import the polymer library and elements now - see below!*/
+    import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+    import '@polymer/paper-checkbox/paper-checkbox.js';
+    ```
+
+4.  If you use the `polymer.js` module, update import statements to use its new name, `polymer-legacy.js`:
+
+    Before {.caption}
+
+    ```js
+    import './node_modules/@polymer/polymer/polymer.js';
+    ```
+
+    After {.caption}
+
+    ```js
+    /* You can use package names to import the polymer library and elements now - see below!*/
+    import '@polymer/polymer/polymer-legacy.js'
+    ```
+
+5.  Remove the `node_modules` folder from your project, then reinstall dependencies: 
+
+    ```
+    cd your-root-project-folder
+    rm -r node_modules
+    npm install
+    ```
+
+Read on for more details on using the new preview!
 
 ## Renamed base element export in polymer-element.js (breaking change) {#renamed}
 Previously, it was necessary to change the symbol for the main export of `@polymer/polymer/polymer-element.js` from `Element` to some other symbol on import. This export has been renamed to `PolymerElement`. You can now use this symbol without changing it: 
