@@ -23,7 +23,7 @@ To get started with the latest Polymer preview:
 1.  Update the Polymer CLI tools:
 
     ```bash
-    npm install -g polymer-cli
+    npm install -g polymer-cli@next
     ```
 
 2.  Update the Polymer library and element dependencies in your project to use version `3.0.0-pre.12`. 
