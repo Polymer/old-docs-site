@@ -2,18 +2,21 @@
 title:  "Hands-on with the latest Polymer 3.0 preview"
 ---
 
-In a previous [blog post](2018-02-26-3.0-preview-paths-and-names), we announced some changes to the way we handle module imports in Polymer 3.0, and described why we made those changes. We're happy to announce that you can try out the new import syntax in the latest Polymer 3.0 preview!
+In a previous [blog post](2018-02-26-3.0-preview-paths-and-names), we announced some changes to the way we handle module imports in Polymer 3.0, and described why we made those changes. We're happy to announce that you can try out the new import syntax in the latest Polymer 3.0 preview (`3.0.0-pre.12`).
+
+To jump right in, follow the guide in the [quick start section](#quickstart), or read on for full details.
 
 * [Quick start with the latest preview (3.0.0-pre.12)](#quickstart)
-* [Renamed base element export in polymer-element.js](#renamed)
-* [Renamed polymer.js to polymer-legacy.js](#renamedlegacy)
-* [Simpler module imports](#packagenames)
-* [Dynamic imports](#dynamicimports)
-* [Tools](#tools)
+* [Changes in v3.0.0-pre.12](#pre12changes)
+  * [Renamed base element export in polymer-element.js](#renamed)
+  * [Renamed polymer.js to polymer-legacy.js](#renamedlegacy)
+  * [Simpler module imports](#packagenames)
+* [An update on dynamic imports](#dynamicimports)
+* [Tools updates](#tools)
 * [What next?](#whatnext)
 * [Sample app and element with the new preview](#samples)
 
-## Quick start with the latest preview (3.0.0-pre.12)
+## Quick start with the latest preview (3.0.0-pre.12) {#quickstart}
 
 To get started with the latest Polymer preview:
 
@@ -73,7 +76,7 @@ To get started with the latest Polymer preview:
     After {.caption}
 
     ```js
-    /* You can use package names to import the polymer library and elements now - see below!*/
+    /* You can use package names to import the polymer library and elements now - see below for details!*/
     import { PolymerElement } from '@polymer/polymer/polymer-element.js';
     import '@polymer/paper-checkbox/paper-checkbox.js';
     ```
@@ -89,7 +92,7 @@ To get started with the latest Polymer preview:
     After {.caption}
 
     ```js
-    /* You can use package names to import the polymer library and elements now - see below!*/
+    /* You can use package names to import the polymer library and elements now - see below for details!*/
     import '@polymer/polymer/polymer-legacy.js'
     ```
 
@@ -101,9 +104,11 @@ To get started with the latest Polymer preview:
     npm install
     ```
 
-Read on for more details on using the new preview!
+Read on for full details on the changes in the new preview.
 
-## Renamed base element export in polymer-element.js (breaking change) {#renamed}
+## Changes in 3.0.0-pre.12 {#pre12changes}
+
+### Renamed base element export in polymer-element.js (breaking change) {#renamed}
 Previously, it was necessary to change the symbol for the main export of `@polymer/polymer/polymer-element.js` from `Element` to some other symbol on import. This export has been renamed to `PolymerElement`. You can now use this symbol without changing it: 
 
 ```js
@@ -115,7 +120,7 @@ class MyApp extends PolymerElement {
 customElements.define('my-app', MyApp);
 ```
 
-## Renamed polymer.js to polymer-legacy.js (breaking change) {#renamedlegacy}
+### Renamed polymer.js to polymer-legacy.js (breaking change) {#renamedlegacy}
 
 The collection of imports formerly known as `polymer.js` has been renamed to `polymer-legacy.js`. 
 
@@ -125,7 +130,7 @@ The collection of imports formerly known as `polymer.js` has been renamed to `po
   * The DOM template, array selector and custom style helper elements
   * The `html` helper function
 
-## Simpler module imports {#packagenames}
+### Simpler module imports {#packagenames}
 
 In this release, we add support for importing npm modules using their package names. From now on, we recommend using package names instead of paths to import npm modules in your Polymer apps and elements.
 
@@ -151,7 +156,7 @@ The Polymer CLI tools automatically resolve and rewrite imports that use package
 
 At present, web browsers need the full path to an import to process it. A discussion on supporting imports by package name in browsers is ongoing-for example, see this [proposal for pacakge name maps](https://github.com/domenic/package-name-maps). 
 
-### What you need to do
+#### What you need to do
 
 **If you're converting a Polymer 2.x project to Polymer 3.0:**
 
@@ -181,7 +186,7 @@ We recommend you import npm packages using their package names, like in [the exa
   You can set these options from command line flags, or from `polymer.json`. See
   the section of this post on [Tools](#tools) for detailed instructions. 
 
-### Potential questions and answers
+#### Potential questions and answers
 
 **Can I still use paths to import my dependencies?**
 
@@ -197,7 +202,7 @@ All of the Polymer CLI tools have been updated with this functionality. Set the 
 
 See the [Tools](#tools) section of this post for more detail.
 
-### Use the new import syntax {#examples}
+#### Use the new import syntax {#examples}
 
 To import and use the Polymer library:
 ```js
@@ -242,7 +247,7 @@ The Polymer 3.0 API docs are still in progress-so for the moment, refer to the [
 
 See the [MDN documentation on `import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) for more information. 
 
-#### Old Polymer 3.0 preview syntax
+##### Old Polymer 3.0 preview syntax
 
 ```js
 /* my-app.js
@@ -279,7 +284,7 @@ customElements.define('my-app', MyApp);
 <my-app></my-app>
 ```
 
-#### Current Polymer 3.0 preview syntax
+##### Current Polymer 3.0 preview syntax
 
 ```js
 /* 
@@ -319,7 +324,7 @@ customElements.define('my-app', MyApp);
 <my-app></my-app>
 ```
 
-## Dynamic imports {#dynamicimports}
+## An update on dynamic imports {#dynamicimports}
 The latest versions of Chrome and Safari support  [dynamic imports using the `import()` operator](https://developers.google.com/web/updates/2017/11/dynamic-import) (a polyfill is still to come).
 
 The import operator acts like a function, and returns a `Promise`:
@@ -334,7 +339,7 @@ import('my-view1.js').then((MyView1) => {
 
 Dynamic imports enable lazy-loading of resources, replacing the functionality that we previously used for this in Polymer 2.0 (`Polymer.importHref()`). 
 
-## Tools {#tools}
+## Tools updates {#tools}
 
 We have made changes to the Polymer CLI tools to support imports using package names. 
 
