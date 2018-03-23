@@ -157,7 +157,7 @@ Using package names in your imports makes it easier to install third-party depen
 
 The Polymer CLI tools automatically resolve and rewrite imports that use package names to imports that use paths, producing web-compatible code for the browser.
 
-At present, web browsers need the full path to an import to process it. A discussion on supporting imports by package name in browsers is ongoing-for example, see this [proposal for pacakge name maps](https://github.com/domenic/package-name-maps). 
+At present, web browsers need the full path to an import to process it. A discussion on supporting imports by package name in browsers is ongoing-for example, see this [proposal for package name maps](https://github.com/domenic/package-name-maps). 
 
 #### What you need to do
 
