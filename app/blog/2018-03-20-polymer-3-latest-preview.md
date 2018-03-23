@@ -13,6 +13,9 @@ To jump right in, follow the guide in the [quick start section](#quickstart), or
   * [Simpler module imports](#packagenames)
 * [An update on dynamic imports](#dynamicimports)
 * [Tools updates](#tools)
+  * [Updates to the Polymer CLI](#cliupdates)
+  * [New polymer.json properties](#polymerjson)
+  * [An update on yarn vs npm and element uniqueness](#uniqueness)
 * [What next?](#whatnext)
 * [Sample app and element with the new preview](#samples)
 
@@ -101,7 +104,7 @@ To get started with the latest Polymer preview:
     ```
     cd your-root-project-folder
     rm -r node_modules
-    npm install
+    yarn install --flat
     ```
 
 Read on for full details on the changes in the new preview.
@@ -181,10 +184,7 @@ We recommend you import npm packages using their package names, like in [the exa
 
   Valid import paths that start with `/`, `./`, or `../` won't be transformed by the Polymer CLI tools.
 
-* When using the Polymer CLI tools to work with code that uses the new 
-  Polymer 3.0 preview, set the `--npm` and `--module-resolution=node` options. 
-  You can set these options from command line flags, or from `polymer.json`. See
-  the section of this post on [Tools](#tools) for detailed instructions. 
+* When serving code that uses the new Polymer 3.0 preview, run `polymer serve` with the `--npm` and `--module-resolution=node` options. You can set these options from command line flags, or from `polymer.json`. See the section of this post on [Tools](#tools) for detailed instructions. 
 
 #### Potential questions and answers
 
@@ -198,7 +198,7 @@ Your code will work as normal. The Polymer CLI tools won't try to transform impo
 
 **Which tools have been updated to handle imports that use package names?**
 
-All of the Polymer CLI tools have been updated with this functionality. Set the `--module-resolution=node` and `--npm` options to enable it. 
+All of the Polymer CLI tools have been updated with this functionality (although `polymer build` is still a work in progress). Set the `--module-resolution=node` and `--npm` options to enable the new functionality. 
 
 See the [Tools](#tools) section of this post for more detail.
 
@@ -325,7 +325,8 @@ customElements.define('my-app', MyApp);
 ```
 
 ## An update on dynamic imports {#dynamicimports}
-The latest versions of Chrome and Safari support  [dynamic imports using the `import()` operator](https://developers.google.com/web/updates/2017/11/dynamic-import) (a polyfill is still to come).
+
+The latest versions of Chrome and Safari support [dynamic imports using the `import()` operator](https://developers.google.com/web/updates/2017/11/dynamic-import) (a polyfill is still to come).
 
 The import operator acts like a function, and returns a `Promise`:
 
@@ -341,28 +342,14 @@ Dynamic imports enable lazy-loading of resources, replacing the functionality th
 
 ## Tools updates {#tools}
 
-We have made changes to the Polymer CLI tools to support imports using package names. 
+### Polymer CLI development server {#cliupdates}
 
-You can look at the [Polymer CLI changelog](https://github.com/Polymer/polymer-cli/blob/master/CHANGELOG.md) for full details of the changes, but here's a summary:
-
-All of the Polymer CLI tools now handle package name imports. You need to set the `--module-resolution=node` and `--npm` options to enable it. 
-
-* The Polymer CLI development server (`polymer serve`) resolves package names to paths, and rewrites them on-the-fly. 
-
-* The Polymer CLI build tools (`polymer build`, `polymer-analyzer`, `polymer-bundler`,
-  etc) handle these transformations as well. `polymer build` outputs web-compatible
-  code.
-
-When using the Polymer CLI tools to work with the new Polymer 3.0 preview, set the `--npm` and `--module-resolution=node` options. You can set these options from command line flags, or from `polymer.json`.
+The Polymer CLI development server (`polymer serve`) now resolves package names to paths, and rewrites them on-the-fly. Set the `--npm` and `--module-resolution=node` options to enable this functionality. You can set these options from command line flags, or from `polymer.json`.
 
 To set the options from command line flags, for example: 
 
 ```bash
 polymer serve --npm --module-resolution=node
-```
-
-```bash
-polymer build --npm --module-resolution=node
 ```
 
 To set the options from your `polymer.json` file, add them as top-level properties. For example:
@@ -373,15 +360,10 @@ To set the options from your `polymer.json` file, add them as top-level properti
   "npm": true,
   "moduleResolution": "node",
   //...
-  "builds": [{
-    //...
-  }]
 }
 ```
 
-The Polymer CLI tools will use the options you define in `polymer.json`.
-
-### New polymer.json properties
+### New polymer.json properties {#polymerjson}
 
 To support new functionality, we made a few new `polymer.json` options you should know about. These options are all top-level properties. 
 
@@ -429,12 +411,23 @@ To support new functionality, we made a few new `polymer.json` options you shoul
   "npm": true
   ```
 
+### An update on yarn vs npm and element uniqueness {#uniqueness}
+
+Because custom elements are registered globally, web components (including the Polymer elements) require uniqueness–that is, you can’t have multiple versions of a single web component in a single project. In older previews of Polymer 3.0, we required users to use yarn and its `--flat` option to install packages and maintain uniqueness. 
+
+This didn't work for many Polymer users. Authors of real-world projects with deep dependency graphs ran into version conflicts for some of their non-web-component dependencies. We're still working out the best way to enforce uniqueness; for example, we'd like package managers to perform deduplication, and custom elements to recognize scope. But as of Polymer 3.0.0-pre.12, **a flat installation is no longer required for a Polymer project**. 
+
+However, **custom element uniqueness is still a requirement**, and `yarn install --flat` remains the easiest way to avoid inadvertently importing and registering multiple versions of the same custom element. If your project's dependency graph can be installed this way without any version conflict issues, it's still the best option.
+
+If you can't use `--flat`, it's no longer a problem: you can choose to use yarn without the `--flat` option, or to use npm instead. You will, however, need to ensure that your project doesn't try to import different versions of the same custom element. 
+
 ## What next? {#whatnext}
 
 With this preview, the core library is feature complete, marking another step on the road to a stable Polymer 3.0 release.
 
 Here's what's still in progress:
 
+* The Polymer CLI build tool (`polymer build`).
 * Lots of testing.
 * A complete set of developer and API docs for Polymer 3.0.
 * The finishing touches (and lots more testing) for the Polymer 3.0 elements. See the [elements status page](https://github.com/Polymer/polymer-modulizer/blob/master/docs/polymer-3-element-status.md) for more info.
