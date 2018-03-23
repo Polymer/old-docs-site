@@ -3,7 +3,7 @@ title:  "Hands-on with the Polymer 3.0 preview"
 ---
 
 **Updated instructions available.** If you're using the latest Polymer 3.0 preview 
-(3.0.0-pre.12 or later), see the [new blog post](/blog/2018-03-20-polymer-3-latest-preview).
+(3.0.0-pre.12 or later), see the [new blog post](/blog/2018-03-23-polymer-3-latest-preview).
 The instructions in this post only apply to 3.0.0-pre.11 and earlier.
 {.alert .alert-warning}
 
