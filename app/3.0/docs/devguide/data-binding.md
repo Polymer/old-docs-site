@@ -12,7 +12,7 @@ or _target element_). The host element data can be a property or sub-property re
 You create data bindings by adding annotations to an element's local DOM template.
 
 ```js
-static get template(){
+static get template() {
   return html`
     <target-element target-property="{{hostProperty}}"></target-element>
   `;
@@ -116,7 +116,7 @@ annotation or compound binding inside the target element.
 [See it on Plunker](https://plnkr.co/edit/xrjqVn?p=preview)
 
 ```js
-import {Element as PolymerElement, html} from '@polymer/polymer@3.0.0-pre.10/polymer-element.js';
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 
 class UserView extends PolymerElement {
   static get properties() {
@@ -124,7 +124,7 @@ class UserView extends PolymerElement {
       name: String
     };
   }
-  static get template(){
+  static get template() {
     return html`
       <div>[[name]]</div>
     `;
@@ -177,7 +177,7 @@ For example:
 
 
 ```js
-static get template(){
+static get template() {
   return html`
     <!-- Attribute binding -->
     <my-element selected$="[[value]]"></my-element>
@@ -299,7 +299,7 @@ Binding annotations can also include paths to sub-properties, as shown below:
 main-view.js { .caption }
 
 ```js
-import {Element as PolymerElement, html} from '@polymer/polymer@3.0.0-pre.10/polymer-element.js';
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import './user-view.js';
 
 class MainView extends PolymerElement {
@@ -311,7 +311,7 @@ class MainView extends PolymerElement {
       }
     };
   }
-  static get template(){
+  static get template() {
     return html`
       <user-view given="{{user.given}}" family="{{user.family}}"></user-view>
     `;
@@ -323,7 +323,7 @@ customElements.define('main-view', MainView);
 user-view.js { .caption }
 
 ```js
-import {Element as PolymerElement, html} from '@polymer/polymer@3.0.0-pre.10/polymer-element.js';
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 
 class UserView extends PolymerElement {
   static get properties() {
@@ -332,7 +332,7 @@ class UserView extends PolymerElement {
       family: String
     };
   }
-  static get template(){
+  static get template() {
     return html`
       <div>[[given]] [[family]]</div>
     `;
@@ -372,7 +372,7 @@ Binding annotations support a single logical not operator (`!`), as the first ch
 the binding delimiters:
 
 ```js
-static get template(){
+static get template() {
   return html`
     <my-page show-login="[[!isLoggedIn]]"></my-page>
   `;
@@ -438,7 +438,7 @@ class XCustom extends PolymerElement {
     return `${family}, ${given}`;
   }
   
-  static get template(){
+  static get template() {
     return html`
       My name is <span>[[_formatName(given, family)]]</span>
     `;
@@ -491,7 +491,7 @@ backslash (`\`).
 Example:
 
 ```js
-static get template(){
+static get template() {
   return html`
     <span>{{translate('Hello\, nice to meet you', given, family)}}</span>
   `;
