@@ -594,11 +594,11 @@ class XCustom extends PolymerElement {
     return {
       user: {
         type: Object,
-        value: function(){ return { id: '123', isAdmin: true }; }
+        value: function() { return { id: '123', isAdmin: true }; }
       }
     };
   }
-  ready(){
+  ready() {
     super.ready();
     console.log("x-custom: ", this.user.id, this.user.isAdmin);
   }
