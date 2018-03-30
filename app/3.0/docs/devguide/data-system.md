@@ -893,7 +893,7 @@ provides the [`MutableData`](/{{{polymer_version_dir}}}/docs/api/mixins/Polymer.
 mixin.
 
 ```js
-import { Element as PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import { MutableData } from '@polymer/polymer/lib/mixins/mutable-data.js';
 
 class MyMutableElement extends MutableData(PolymerElement) { ... }
@@ -976,7 +976,7 @@ mixin. This mixin lets the element user select `MutableData` mode by setting the
 property on the element.
 
 ```js
-import { Element as PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import { OptionalMutableData } from '@polymer/polymer/lib/mixins/mutable-data.js';
 
 class MyStructuredDataElement extends OptionalMutableData(PolymerElement) { ... }
