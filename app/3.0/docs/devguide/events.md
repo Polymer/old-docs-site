@@ -19,7 +19,7 @@ binding an event listener.
 
 [See this on Plunker](https://plnkr.co/edit/svSg6o?p=preview)
 
-Example: { .caption }
+Example { .caption }
 
 ```js
 class XCustom extends PolymerElement {
