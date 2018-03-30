@@ -63,11 +63,11 @@ the element and copies the template contents into the shadow tree.
 
 ```js
 // Import the Polymer library and html helper function
-import { Element as PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 // Define the new element as a class
 class MyHeader extends PolymerElement {
   // Provide a DOM template for the element
-  static get template (){
+  static get template () {
     // Tag the returned template literal with the html helper function
     // to convert it into an instance of HTMLTemplateElement
     return html`

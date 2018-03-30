@@ -10,9 +10,8 @@ Polymer supports DOM templating and the shadow DOM API. When you provide a DOM t
 
 Here's an example:
 
-[See it on Plunker](http://plnkr.co/edit/JooAma?p=preview)
+custom-element.js { .caption }
 
-`custom-element.js` { .caption }
 ```js
 ...
 static get template() {
@@ -24,7 +23,8 @@ static get template() {
 ...
 ```
 
-`index.html` { .caption }
+index.html { .caption }
+
 ```html
 <head>
   <script type="module" src="custom-element.js"></script>
@@ -34,6 +34,9 @@ static get template() {
 </body>
 ```
 
+[See it on Plunker](http://plnkr.co/edit/JooAma?p=preview)
+
+
 The HTML elements in your template become children in your custom element's shadow DOM. Shadow DOM provides a mechanism for encapsulation, meaning that elements inside the shadow DOM don't match selectors outside the shadow DOM.
 
 Likewise, styling rules in side the shadow DOM can't "leak" out to affect elements outside the shadow DOM.
@@ -42,9 +45,8 @@ Shadow DOM permits encapsulation of styling rules for custom elements. You can f
 
 Here's an example:
 
-[See it on Plunker](http://plnkr.co/edit/NKuNTD?p=preview)
+custom-element.js { .caption}
 
-`custom-element.js` { .caption}
 ```js
 ...
 static get template() {
@@ -65,7 +67,8 @@ static get template() {
 ...
 ```
 
-`index.html` { .caption }
+index.html { .caption }
+
 ```html
 <head>
   <script type="module" src="custom-element.js"></script>
@@ -82,6 +85,8 @@ static get template() {
 </body>
 ```
 
+[See it on Plunker](http://plnkr.co/edit/NKuNTD?p=preview)
+
 For a detailed explanation of shadow DOM as it applies to Polymer, see [Shadow DOM concepts](shadow-dom).
 
 For an exploration of the shadow DOM v1 API, see [Shadow DOM v1: Self-Contained Web Components](https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom).
@@ -90,9 +95,8 @@ For an exploration of the shadow DOM v1 API, see [Shadow DOM v1: Self-Contained 
 
 When used in an HTML document, your element will still inherit any styling information that applies to its parent element:
 
-[See it on Plunker](http://plnkr.co/edit/jziXon?p=preview)
+custom-element.js { .caption}
 
-`custom-element.js` { .caption}
 ```js
 ...
 static get template() {
@@ -106,7 +110,8 @@ static get template() {
 ...
 ```
 
-`index.html` { .caption }
+index.html { .caption }
+
 ```html
 <head>
   <script type="module" src="custom-element.js"></script>
@@ -127,11 +132,12 @@ static get template() {
 </body>
 ```
 
+[See it on Plunker](http://plnkr.co/edit/jziXon?p=preview)
+
 Styles declared inside shadow DOM will override styles declared outside of it:
 
-[See it on Plunker](http://plnkr.co/edit/XDCXXG?p=preview)
+custom-element.js { .caption}
 
-`custom-element.js` { .caption}
 ```js
 ...
 static get template() {
@@ -150,7 +156,8 @@ static get template() {
 ...
 ```
 
-`index.html` { .caption }
+index.html { .caption }
+
 ```html
 <head>
   <script type="module" src="custom-element.js"></script>
@@ -168,6 +175,8 @@ static get template() {
 </body>
 ```
 
+[See it on Plunker](http://plnkr.co/edit/XDCXXG?p=preview)
+
 ### Style the host element
 
 
@@ -175,9 +184,8 @@ The element to which shadow DOM is attached is known as the host. To style the h
 
 Inheritable properties of the host element will inherit down the shadow tree, where they apply to the shadow children.
 
-[See it on Plunker](http://plnkr.co/edit/BByXie?p=preview)
+custom-element.js { .caption}
 
-`custom-element.js` { .caption}
 ```js
 ...
 static get template() {
@@ -199,7 +207,8 @@ static get template() {
 ...
 ```
 
-`index.html` { .caption }
+index.html { .caption }
+
 ```html
 <head>
   <script type="module" src="custom-element.js"></script>
@@ -208,6 +217,8 @@ static get template() {
   <p><custom-element></custom-element></p>
 </body>
 ```
+
+[See it on Plunker](http://plnkr.co/edit/BByXie?p=preview)
 
 #### Use CSS selectors to style the host element
 
@@ -218,9 +229,8 @@ You can use CSS selectors to determine when and how to style the host. In this c
 * The selector `:host(.red)` matches `<custom-element>` elements of class `red`
 * The selector `:host(:hover)` matches `<custom-element>` elements when they are hovered over
 
-[See it on Plunker](http://plnkr.co/edit/tbPBVG?p=preview)
+custom-element.js { .caption}
 
-`custom-element.js` { .caption}
 ```js
 ...
 static get template() {
@@ -237,7 +247,8 @@ static get template() {
 ...
 ```
 
-`index.html` { .caption }
+index.html { .caption }
+
 ```html
 <head>
   <script type="module" src="custom-element.js"></script>
@@ -248,11 +259,12 @@ static get template() {
 </body>
 ```
 
+[See it on Plunker](http://plnkr.co/edit/tbPBVG?p=preview)
+
 Descendant selectors after `:host` match elements in the shadow tree. In this example, the CSS selector applies to any `p` element in the shadow tree if the host has class "warning":
 
-[See it on Plunker](http://plnkr.co/edit/U7BG6S?p=preview)
+custom-element.js { .caption}
 
-`custom-element.js` { .caption}
 ```js
 ...
 static get template() {
@@ -268,7 +280,8 @@ static get template() {
 ...
 ```
 
-`index.html` { .caption }
+index.html { .caption }
+
 ```html
 <head>
   <script type="module" src="custom-element.js"></script>
@@ -279,6 +292,8 @@ static get template() {
 </body>
 ```
 
+[See it on Plunker](http://plnkr.co/edit/U7BG6S?p=preview)
+
 Styling with the `:host` selector is one of two instances where rules inside a shadow tree can affect an element outside a shadow tree. The second instance uses the `::slotted()` syntax to apply styling rules to distributed children. See [*Composition and slots* in Eric Bidelman's article on shadow DOM](https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom#composition_slot) for more information.
 
 ### Style slotted content (distributed children)
@@ -287,9 +302,8 @@ You can create **slots** in an element's template that are populated at runtime.
 
 The basic syntax for incorporating slotted content looks like this:
 
-[See it on Plunker](http://plnkr.co/edit/e6m48f?p=preview)
+custom-element.js { .caption}
 
-`custom-element.js` { .caption}
 ```js
 ...
 static get template() {
@@ -300,7 +314,8 @@ static get template() {
 ...
 ```
 
-`index.html` { .caption }
+index.html { .caption }
+
 ```html
 <head>
   <script type="module" src="custom-element.js"></script>
@@ -310,15 +325,16 @@ static get template() {
 </body>
 ```
 
+[See it on Plunker](http://plnkr.co/edit/e6m48f?p=preview)
+
 To style slotted content, use the `::slotted()` syntax.
 
 **Note:** To work within the Shady CSS scoping shim limitations, and to ensure consistent cross-browser behavior, add a selector to the left of the `::slotted(.classname)` notation (for example, `p ::slotted(.classname)`.
 
 `::slotted(*)` selects all slotted content:
 
-[See it on Plunker](http://plnkr.co/edit/jMjMAY?p=preview)
+custom-element.js { .caption}
 
-`custom-element.js` { .caption}
 ```js
 ...
 static get template() {
@@ -336,7 +352,8 @@ static get template() {
 ...
 ```
 
-`index.html` { .caption }
+index.html { .caption }
+
 ```html
 <head>
   <script type="module" src="custom-element.js"></script>
@@ -349,11 +366,12 @@ static get template() {
 </body>
 ```
 
+[See it on Plunker](http://plnkr.co/edit/jMjMAY?p=preview)
+
 You can select by element type:
 
-[See it on Plunker](http://plnkr.co/edit/rt0jDx?p=preview)
+custom-element.js { .caption}
 
-`custom-element.js` { .caption}
 ```js
 ...
 static get template() {
@@ -375,7 +393,8 @@ static get template() {
 ...
 ```
 
-`index.html` { .caption }
+index.html { .caption }
+
 ```html
 <head>
   <script type="module" src="custom-element.js"></script>
@@ -388,11 +407,12 @@ static get template() {
 </body>
 ```
 
+[See it on Plunker](http://plnkr.co/edit/rt0jDx?p=preview)
+
 You can select by class:
 
-[See it on Plunker](http://plnkr.co/edit/po4cN3?p=preview)
+custom-element.js { .caption}
 
-`custom-element.js` { .caption}
 ```js
 ...
 static get template() {
@@ -413,7 +433,8 @@ static get template() {
 ...
 ```
 
-`index.html` { .caption }
+index.html { .caption }
+
 ```html
 <head>
   <script type="module" src="custom-element.js"></script>
@@ -428,11 +449,13 @@ static get template() {
 </body>
 ```
 
+[See it on Plunker](http://plnkr.co/edit/po4cN3?p=preview)
+
+
 And you can select by slot name:
 
-[See it on Plunker](http://plnkr.co/edit/hR3I4w?p=preview)
+custom-element.js { .caption}
 
-`custom-element.js` { .caption}
 ```js
 ...
 static get template() {
@@ -453,7 +476,8 @@ static get template() {
 ...
 ```
 
-`index.html` { .caption }
+index.html { .caption }
+
 ```html
 <head>
   <script type="module" src="custom-element.js"></script>
@@ -465,6 +489,8 @@ static get template() {
   </custom-element>
 </body>
 ```
+
+[See it on Plunker](http://plnkr.co/edit/hR3I4w?p=preview)
 
 ## Share styles between elements
 
@@ -522,8 +548,6 @@ When you create the element that will use the styles, include the style module i
 
 Here's a complete example:
 
-[See it on Plunker](http://plnkr.co/edit/PNsZA1?p=preview)
-
 index.html { .caption }
 
 ```html
@@ -543,8 +567,8 @@ index.html { .caption }
 custom-element.js { .caption }
 
 ```js
-import { Element as PolymerElement, html } from "@polymer/polymer/polymer-element";
-import "./style-element.js";
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import './style-element.js';
 
 class CustomElement extends PolymerElement {
   static get template() {
@@ -596,7 +620,9 @@ styleElement.innerHTML =
 styleElement.register('style-element');
 ```
 
-## Use `custom-style` in document-level styles {#custom-style}
+[See it on Plunker](http://plnkr.co/edit/PNsZA1?p=preview)
+
+## Use custom-style in document-level styles {#custom-style}
 
 Browsers that implement the current Shadow DOM v1 specifications will automatically encapsulate styles, scoping them to the elements in which they were defined.
 
@@ -616,7 +642,7 @@ index.html { .caption }
 </custom-style>
 ```
 
-`custom-style` is not included in the `@polymer/polymer/polymer-element` package. Import `custom-style` from `@polymer/polymer/lib/elements/custom-style`:
+`custom-style` is not included in the `@polymer/polymer/polymer-element.js` package. Import `custom-style` from `@polymer/polymer/lib/elements/custom-style.js`:
 
 index.html { .caption }
 
@@ -642,9 +668,8 @@ index.html { .caption }
 
 In the following code sample, the document-level style in index.html "leaks" into the shadow DOM of `<custom-element>` in browsers that haven’t implemented the Shadow DOM v1 specs.
 
-[See it on Plunker](http://plnkr.co/edit/FJEC5C?p=preview)
+custom-element.js { .caption}
 
-`custom-element.js` { .caption}
 ```js
 ...
 static get template() {
@@ -659,7 +684,8 @@ static get template() {
 ...
 ```
 
-`index.html` { .caption}
+index.html { .caption}
+
 ```html
 <head>
   <script type="module" src="./custom-element.js"></script>
@@ -675,11 +701,12 @@ static get template() {
 </body>
 ```
 
+[See it on Plunker](http://plnkr.co/edit/FJEC5C?p=preview)
+
 In the following code sample, the developer has used `custom-style` to wrap the document-level style block in index.html, preventing the leak.
 
-[See it on Plunker](http://plnkr.co/edit/M6RsuM?p=preview)
+custom-element.js { .caption}
 
-`custom-element.js` { .caption}
 ```js
 ...
 static get template() {
@@ -692,7 +719,8 @@ static get template() {
 ...
 ```
 
-`index.html` { .caption}
+index.html { .caption}
+
 ```html
 <head>
   <script type="module" src="./custom-element.js"></script>
@@ -711,3 +739,5 @@ static get template() {
   <custom-element></custom-element>
 </body>
 ```
+
+[See it on Plunker](http://plnkr.co/edit/M6RsuM?p=preview)

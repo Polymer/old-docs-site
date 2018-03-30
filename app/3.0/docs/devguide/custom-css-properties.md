@@ -26,8 +26,6 @@ element {
 
 You can use custom CSS properties outside of the context of custom elements, simply as a way to avoid scattering style data throughout a stylesheet. For example:
 
-[See it on Plunker](http://plnkr.co/edit/AjZm3o?p=preview)
-
 ```html
 <html>
   <head>
@@ -55,6 +53,8 @@ You can use custom CSS properties outside of the context of custom elements, sim
 </html>
 ```
 
+[See it on Plunker](http://plnkr.co/edit/AjZm3o?p=preview)
+
 In the code sample above, the visual theme can be changed by editing the values of the custom properties. This makes it easier to create consistent themes, and your code will be less prone to error.
 
 ## Use the custom CSS properties provided by a Polymer element
@@ -73,8 +73,6 @@ For example, suppose someone has authored two elements, `<flex-container>` and `
 
 In the documentation for `flex-container`, you notice that the author has provided a custom CSS property, `--flex-direction`, to control whether the `flex-items` are laid out in a column or a row. You can assign your own value to `--flex-direction` in your app:
 
-[See it in Plunker](http://plnkr.co/edit/7eZqv8?p=preview)
-
 index.html { .caption}
 
 ```html
@@ -83,7 +81,7 @@ index.html { .caption}
     <script type="module" src="./flex-container.js">
     <script type="module" src="./flex-item.js">
     <!-- import the custom-style polyfill to prevent "leaks" in some browsers -->
-    <script type="module" src="@polymer/polymer/lib/elements/custom-style.js"></script>
+    <script type="module" src="./node_modules/@polymer/polymer/lib/elements/custom-style.js"></script>
     
     <!-- wrap document-level styles to avoid "leaks" in some browsers -->
     <custom-style>
@@ -104,6 +102,8 @@ index.html { .caption}
   </body>
 </html>
 ```
+
+[See it in Plunker](http://plnkr.co/edit/7eZqv8?p=preview)
 
 **Custom CSS properties inherit.** In the code sample above, the value of `--flex-direction` is set in the `html` CSS rule. Since `flex-container` is a child of `html`, `flex-container` inherits this value.
 {.alert}
@@ -128,8 +128,6 @@ For example, suppose you are creating two elements, `<flex-container>` and `<fle
 
 You can use a custom CSS property to control the flex direction of `<flex-container>`: 
 
-[See it in Plunker](http://plnkr.co/edit/7eZqv8?p=preview)
-
 flex-container.js (your code) { .caption }
 
 ```js
@@ -149,6 +147,8 @@ class FlexContainer extends PolymerElement {
 }
 /* ... */
 ```
+
+[See it in Plunker](http://plnkr.co/edit/7eZqv8?p=preview)
 
 Users can then assign their own value to `--flex-direction` like so:
 
@@ -189,8 +189,6 @@ div {
 ## Inheritance and global styles
 
 Custom CSS properties inherit down the DOM hierarchy. In the code sample below, `<custom-element>` will inherit the custom properties defined for `div`, but not the custom properties defined for `span`.
-
-[See it on Plunker](http://plnkr.co/edit/mHpf7L?p=preview)
 
 ```html
 <html>
@@ -233,9 +231,9 @@ Custom CSS properties inherit down the DOM hierarchy. In the code sample below, 
 </html>
 ```
 
-You can use inheritance to define global custom CSS properties. In the code sample below, all nodes inherit the custom CSS properties defined for the top-level `html` element: 
+[See it on Plunker](http://plnkr.co/edit/mHpf7L?p=preview)
 
-[See it on Plunker](http://plnkr.co/edit/7rbXJY?p=preview)
+You can use inheritance to define global custom CSS properties. In the code sample below, all nodes inherit the custom CSS properties defined for the top-level `html` element: 
 
 index.html { .caption}
 
@@ -270,9 +268,9 @@ index.html { .caption}
 ...
 ```
 
-Child elements that inherit global CSS properties can override them. For example, in the code sample above, `<flex-item>` inherited its custom CSS properties and fonts from the document-level styles for `html`. `<flex-item>` can override these properties:
+[See it on Plunker](http://plnkr.co/edit/7rbXJY?p=preview)
 
-[See it on Plunker](http://plnkr.co/edit/vlO7GV?p=preview)
+Child elements that inherit global CSS properties can override them. For example, in the code sample above, `<flex-item>` inherited its custom CSS properties and fonts from the document-level styles for `html`. `<flex-item>` can override these properties:
 
 flex-item.js {.caption}
 
@@ -289,6 +287,8 @@ static get template () {
   `;
 }
 ```
+
+[See it on Plunker](http://plnkr.co/edit/vlO7GV?p=preview)
 
 ## Use custom CSS mixins
 
@@ -313,8 +313,6 @@ Use `@apply` to apply a mixin:
 Suppose we have two custom elements, `<flex-container>` and `<flex-item>`, which can be used together to create row or column layouts.
 
 The author of the two elements uses a CSS mixin to apply theming information to both elements:
-
-[See it on Plunker](http://plnkr.co/edit/glgUKv?p=preview)
 
 flex-container.js {.caption}
 
@@ -356,13 +354,15 @@ static get template() {
 }
 ```
 
+[See it on Plunker](http://plnkr.co/edit/glgUKv?p=preview)
+
 Users of `flex-item` can set values for the properties in the mixin:  
 
 index.html {.caption}
 
 ```html
 <!-- import the custom-style polyfill -->
-<script type="module" src="node_modules/@polymer/polymer/lib/elements/custom-style.js"></script>
+<script type="module" src="./node_modules/@polymer/polymer/lib/elements/custom-style.js"></script>
 
 <!-- wrap document-level styles with the custom-style polyfill to prevent style "leak" in some browsers -->
 <custom-style>
@@ -397,7 +397,7 @@ Note that any element using the `@apply` syntax must import the `@apply` polyfil
 import './node_modules/@webcomponents/shadycss/entrypoints/apply-shim.js';
 ```
 
-[See an example in Plunker](http://plnkr.co/edit/glgUKv?p=preview).
+[See it in Plunker](http://plnkr.co/edit/glgUKv?p=preview)
 
 ### Custom property API for Polymer elements {#style-api}
 
@@ -411,7 +411,7 @@ method on the element. To update _all_ elements on the page, you can also call
 `updateStyles` can take a object with property/value pairs to update the current values of
 custom properties.
 
-Example: { .caption }
+Example { .caption }
 
 ```js
 class XCustom extends PolymerElement {
@@ -477,7 +477,7 @@ styles.
 
 For example, given this markup inside an element:
 
-HTML: { .caption }
+HTML { .caption }
 
 ```html
 <div class="container">
@@ -485,7 +485,7 @@ HTML: { .caption }
 </div>
 ```
 
-CSS: { .caption }
+CSS { .caption }
 
 ```css
 /* applies */
