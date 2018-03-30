@@ -402,7 +402,7 @@ import './node_modules/@webcomponents/shadycss/entrypoints/apply-shim.js';
 ### Custom property API for Polymer elements {#style-api}
 
 Polymer's custom property shim evaluates and applies custom property values once
-at element creation time.  In order to have an element (and its subtree) re-
+at element creation time. In order to have an element (and its subtree) re-
 evaluate custom property values due to dynamic changes such as application of
 CSS classes, call the [`updateStyles`](/3.0/docs/api/elements/Polymer.Element#method-updateStyles)
 method on the element. To update _all_ elements on the page, you can also call
@@ -456,7 +456,7 @@ instance method instead of testing for `ShadyCSS`.
 
 Cross-platform support for custom properties is provided in Polymer by a
 JavaScript library that **approximates** the capabilities of the CSS Variables
-specification  *for the specific use case of theming custom elements*, while
+specification *for the specific use case of theming custom elements*, while
 also extending it to add the capability to mixin property sets to rules as
 described above. For performance reasons, Polymer **does
 not attempt to replicate all aspects of native custom properties.**
@@ -525,8 +525,8 @@ have the desired effect, since the dynamism is related to *application* of a cus
 Unlike normal CSS inheritance which flows from parent to child, custom
 properties in Polymer's shim can only change when inherited by a custom element
 from rules that set properties in scope(s) above it, or in a `:host` rule for
-that scope.  **Within a given element's local DOM scope, a custom property can
-only have a single value.**  Calculating property changes within a scope would be
+that scope. **Within a given element's local DOM scope, a custom property can
+only have a single value.** Calculating property changes within a scope would be
 prohibitively expensive for the shim and is not required to achieve cross-scope
 styling for custom elements, which is the primary goal of the shim.
 
