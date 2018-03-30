@@ -4,174 +4,281 @@ title: DOM templating
 
 <!-- toc -->
 
-Many elements use a subtree of DOM elements to implement their features. DOM templating provides an easy way to create a DOM subtree for your element.
+Many elements use a subtree of DOM elements to implement their features. DOM templating provides 
+an easy way to create a DOM subtree for your element.
 
-By default, adding a DOM template to an element causes Polymer to create a shadow root for the element and clone the template into the shadow tree.
+By default, adding a DOM template to an element causes Polymer to create a shadow root for the 
+element and clone the template into the shadow tree.
 
 The DOM template is also processed to enable data binding and declarative event handlers.
 
 ## Specify a DOM template
 
-Polymer provides three basic ways to specify a DOM template:
+To specify a template, define a `template` property on the constructor. When extending an 
+element, you can inherit or extend the superclass's template.
 
--   `<dom-module>` element. This allows you to specify the template entirely in markup,
-    which is most efficient for an element defined in an HTML import.
--   Provide a string template. This works well for elements defined entirely in JavaScript
-    (for example, in an ES6 module).
--   Retrieve or generate your own template element. This allows you to define how the template is
-    retrieved or constructed, and can be used to modify a superclass template.
+-   [Define a template property on the constructor](#templateobject).
+-   [Inherit a template from another Polymer element](#inherit).
 
-Polymer provides a default `template` getter that retrieves a template from the element's
-`<dom-module>`. You can override this getter to provide a string template or a generated template
-element.
+### Define a template property on the constructor {#templateobject}
 
-### Specify a template using dom-module
+To specify the element's template, define a `template` property on the element's 
+constructor. For example, you can create a static `template` getter. The template
+is retrieved and processed when the first instance of the element
+is upgraded.
 
-To specify an element's DOM template using a `<dom-module>`:
+The template getter must return an instance of `HTMLTemplateElement`. Use the `html` helper function
+to generate an `HTMLTemplateElement` instance from a JavaScript template literal. (You can import the `html` helper from the `polymer-element.js` module.)
 
-1.  Create a `<dom-module>`element with an `id` attribute that matches the element's name.
-2.  Create a `<template>` element inside the `<dom-module>`.
-3.  Give the element a static `is` getter that matches the element's name. Polymer uses this to
-    retrieve the `<dom-module>` for the element.
-
-Polymer clones this template's contents into the element's shadow DOM.
-
-Example: { .caption }
-
-```html
-<dom-module id="x-foo">
-
-  <template>I am x-foo!</template>
-
-  <script>
-    class XFoo extends Polymer.Element {
-      static get is() { return  'x-foo' }
-    }
-    customElements.define(XFoo.is, XFoo);
-  </script>
-
-</dom-module>
-```
-
-In this example, the DOM template and the JavaScript that defines the element are in the same file. You can also put these portions in separate files, but the DOM template must be parsed before the element is defined.
-
-**Note:** Elements should generally be defined outside of the main document,
-except for testing. For caveats about defining elements in the main document,
-see [main document definitions](registering-elements#main-document-definitions).
-{.alert .alert-info}
-
-### Specify a string template
-
-As an alternative to specifying the element's template in markup, you can specify a string template
-by creating a static `template` getter that returns a string.
-
-This getter is called _once_, when the first instance of the element is upgraded.
+Specify a template using the template getter { .caption }
 
 ```js
-class MyElement extends Polymer.Element {
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+
+class MyElement extends PolymerElement {
 
   static get template() {
-    return `<style>:host { color: blue; }</style>
+    return html`<style>:host { color: blue; }</style>
        <h2>String template</h2>
-       <div>I've got a string template!</div>`
+       <div>This is my template!</div>`;
   }
 }
 customElements.define('my-element', MyElement);
 ```
 
-When using a string template, the element doesn't need to provide an `is` getter (however, the tag
-name still needs to  be  passed as the first argument to `customElements.define`).
+[See a working example in Plunker](https://plnkr.co/edit/zFlQU6SzJIXxBpHs9iuU?p=preview).
 
-### Inherited templates {#inherited-templates}
+
+## Inherit a template from another Polymer element {#inherit}
 
 An element that extends another Polymer element can inherit its template. If the element doesn't
-provide its own DOM template (using either a `<dom-module>` or a string template), Polymer uses the
-same template as the superclass, if any.
+provide its own DOM template, Polymer uses the same template as the superclass, if any.
 
-You can also modify a superclass template by defining a `template` getter that returns a modified
-template element. If you're going to modify the superclass template, there are a couple of
-important rules:
+* [Inherit a base class template **without modifying it**](#nomods)
+* [**Override** a base class template in a child class](#overridebase)
+* [**Extend** a base class template in a child class](#extendbase)
+* [Provide **template extension points** in a base class for content from a child class](#insertcontent)
 
--   Don't modify the superclass template in place; make a copy before modifying.
--   If you're doing anything expensive, like copying or modifying an existing template,
-    you should memoize the modified template so you don't have to regenerate it when the
-    getter is called.
+#### Inherit a base class template without modifying it {#nomods}
 
-The following example shows a simple modification based on a parent template:
+To inherit a base class template without modifying it, do not supply a template definition in the
+child class declaration.
+
+Base class definition: { .caption }
 
 ```js
-(function() {
-  let memoizedTemplate;
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 
-  class MyExtension extends MySuperClass {
-    static get template() {
-      if (!memoizedTemplate) {
-        // create a clone of superclass template (`true` = "deep" clone)
-        memoizedTemplate = MySuperClass.template.cloneNode(true);
-        // add a node to the template.
-        let div = document.createElement('div');
-        div.textContent = 'Hello from an extended template.'
-        memoizedTemplate.content.appendChild(div);
-      }
-      return memoizedTemplate;
-    }
+export class BaseClass extends PolymerElement {
+
+  static get template() { return  html`This content has been inherited from BaseClass.`; }
+
+}
+customElements.define('base-class', BaseClass);
+```
+
+Child class definition: { .caption }
+```js
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+import {BaseClass} from './base-class.js'
+
+export class ChildClass extends BaseClass {
+  // ... no template defined, child inherits
+  // parent's template
+}
+customElements.define('child-class', ChildClass);
+```
+
+[See a working example in Plunker](http://plnkr.co/edit/pwTJi0QqoyTfjQhPbF83?p=preview).
+
+#### Override a base class template in a child class {#overridebase}
+
+To override a base class's template definition, supply your own template for your child class.
+
+Base class definition: { .caption }
+
+
+```js
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+
+export class BaseClass extends PolymerElement {
+
+  static get template() { 
+    return  html`This content has been inherited from BaseClass.`; 
   }
 
-})();
+}
+customElements.define('base-class', BaseClass);
 ```
 
-The following example shows how an element could wrap a superclass template with its own
-template.
+Child class definition: { .caption }
+```js
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+import {BaseClass} from './base-class.js'
 
-```html
-<dom-module id="my-ext">
-    <template>
-      <h2>Extended template</h2>
-      <!-- superclass template will go here -->
-      <div id="footer">
-        Extended template footer.
-      </div>
-    </template>
-  <script>
-    (function() {
-      let memoizedTemplate;
+export class ChildClass extends BaseClass {
+    static get template() { 
+      return  html`Base class template has been overridden. Hello from ChildClass!`; 
+    }
 
-      class MyExtension extends MySuperClass {
-
-        static get is() { return 'my-ext'}
-        static get template() {
-          if (!memoizedTemplate) {
-            // Retrieve this element's dom-module template
-            memoizedTemplate = Polymer.DomModule.import(this.is, 'template');
-
-            // Clone the contents of the superclass template
-            let superTemplateContents = document.importNode(MySuperClass.template.content, true);
-
-            // Insert the superclass contents
-            let footer = memoizedTemplate.content.querySelector('#footer');
-            memoizedTemplate.content.insertBefore(superTemplateContents, footer);
-          }
-          return memoizedTemplate;
-        }
-      }
-      customElements.define(MyExtension.is, MyExtension);
-    })();
-  </script>
-</dom-module>
+}
+customElements.define('child-class', ChildClass);
 ```
+
+[See a working example in Plunker](https://plnkr.co/edit/RGVxfbAGbqeLYnyeBO0T?p=preview).
+
+#### Extend a base class template in a child class {#extendbase}
+
+You can use the functionality of embedded expressions in JavaScript template literals 
+to provide convenient ways to extend [inherited templates](#inherited-templates). 
+
+[Read more about template literals on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
+
+To extend a base class template, include the base class template in your child
+class template literal with the expression `${super.template}`. You will also need to tag the
+template literal with the `html` function:
+
+```js
+static get template() {
+  return html`
+      <p>This content is from ChildClass.</p>
+      <p>${super.template}</p>
+      <p>Hello again from ChildClass.</p>`;
+}
+```
+
+* The expression `${super.template}` will be interpolated and included in the template of the 
+  child class. 
+* Because the `template` getter is static, `${super.template}` accesses the `template` property
+  on the superclass constructor.
+* The `html` function checks each expression value. If the expression is an
+  `HTMLTemplateElement`, the `innerHTML` of the template is interpolated. 
+* To protect against XSS vulnerabilities, `html` only interpolates `HTMLTemplateElement`
+  values or template literals tagged with `htmlLiteral`. For information on using `htmlLiteral` to
+  interpolate stings, see [Interpolating string values](#string-values).
+
+It's very simple to combine existing templates:
+
+Base class definition { .caption }
+
+```js
+
+class BaseClass extends PolymerElement {
+  static get template() {
+    return html`
+      <p>This content has been inherited from BaseClass.</p>`
+  }
+}
+
+customElements.define('base-class', BaseClass);
+```
+
+Child class definition { .caption }
+
+```js
+
+class ChildClass extends BaseClass {
+  static get template() {
+    return html`
+      <p>This content is from ChildClass.</p>
+      <p>${super.template}</p>
+      <p>Hello again from ChildClass.</p>
+      `;
+  }
+}
+
+customElements.define('child-class', ChildClass);
+```
+
+[See a working example in Plunker](https://plnkr.co/edit/QZM9FD?p=preview).
+
+#### Provide template extension points {#insertcontent}
+
+Polymer makes it easy to provide template extension points in a base class, which a child
+class can then optionally override. You can provide template extension points by composing your
+base class template literal using expressions, like `${this.partialTemplate}`.
+
+The interpolated expressions act as partial templates ("partials") that the child class can override.
+
+```js
+...
+//create a base class template with extension points:
+static get template() {
+  return html`
+    <div>${this.headerTemplate}</div>
+    <p>Hello this is some content</p>
+    <div>${this.footerTemplate}</div>
+  `;
+}
+//supply the default content for the expressions:
+static get headerTemplate() { return html`...` }
+static get footerTemplate() { return html`...` }
+...
+```
+
+The expressions must return either a template element (`HTMLTemplateElement`) as shown above, or a specially-tagged
+string literal, using `htmlLiteral`:
+
+
+```js
+  static get stylePartial() {
+    return htmlLiteral`color: red`;
+  }
+```
+
+Your child class can override the extension points without changing
+the main template. Here's an example in which the child class overrides the base class content:
+
+Base class definition: { .caption }
+
+```js
+export class BaseClass extends PolymerElement {
+  static get template() {
+    return html`
+      <div>${this.headerTemplate}</div>
+      <p>Hello this is some content</p>
+      <div>${this.footerTemplate}</div>
+    `;
+  }
+  static get headerTemplate() { return html`<h1>BaseClass: Header</h1>` }
+  static get footerTemplate() { return html`<h1>BaseClass: Footer</h1>` }
+}
+```
+
+Child class definition: { .caption }
+```js
+export class ChildClass extends BaseClass {
+    // template definition inherited from BaseClass
+
+    // partial templates overridden by ChildClass
+    static get headerTemplate() { return html`<h2>ChildClass: Header</h2>` }
+    static get footerTemplate() { return html`<h2>ChildClass: Footer</h2>` }
+  }
+```
+
+[See a working example in Plunker](https://plnkr.co/edit/1uEd5Vv2Ob4bGHppzCs9?p=preview).
 
 ### Elements with no shadow DOM
 
-To create an element with no shadow DOM, don't specify a DOM template (either using a `<dom-module>`
-or by overriding the `template` getter), then no shadow root is created for the element.
+To create an element with no shadow DOM, don't specify a `template` getter. Then no shadow root is created for the element.
 
-If the element is extending another element that has a DOM template and you don't want a DOM template,
-define a `template` getter that returns a falsy value.
+If the element extends another element that has a DOM template, it will inherit that DOM template instead. To
+prevent the element from inheriting the superclass template, define a `template` getter that returns a falsy value:
+
+```js
+static get template() {
+  return null;
+}
+```
 
 ### URLs in templates {#urls-in-templates}
 
+**Outdated information.** This section needs to be updated after
+[issue #5163](https://github.com/Polymer/polymer/issues/5163) is resolved.
+{.alert .alert-warning}
+
 A relative URL in a template may need to be relative to an application or to a specific component.
-For example, if a component includes images alongside an HTML import that defines an element, the
+For example, if a component includes images alongside a module that defines an element, the
 image URL needs to be resolved relative to the import. However, an application-specific element may
 need to include links to URLs relative to the main document.
 
@@ -184,7 +291,7 @@ To ensure URLs resolve properly, Polymer provides two properties that can be use
 
 | Property | Description |
 | -------- | ----------- |
-| `importPath` | A static getter on the element class that defaults to the element HTML import document URL and is overridable. It may be useful to override `importPath` when an element's template is not retrieved from a `<dom-module>` or the element is not defined using an HTML import. |
+| `importPath` | A static getter on the element class. **To set URLs relative to the import, you must override the `importPath` getter.** |
 | `rootPath` | An instance property set to the value of `Polymer.rootPath` which is globally settable and defaults to the main document URL. It may be useful to set `Polymer.rootPath` to provide a stable application mount path when using client side routing. |
 
 
@@ -193,17 +300,22 @@ Any URLs outside of a `<style>` element should be bound using `importPath` or
 `rootPath` where appropriate. For example:
 
 ```html
-<img src$="[[importPath]]checked.jpg">
+// This getter must be defined for your element if  you want to use importPath
+static get importPath() {
+  // return the base URL for this import
+  return import.meta.url;
+}
+
+static get template() {
+  return html`
+    <img src$="[[importPath]]checked.jpg">
+  `
+}
 ```
 
 ```html
 <a href$="[[rootPath]]users/profile">View profile</a>
 ```
-
-The `importPath` and `rootPath` properties are also supported in Polymer 1.9+, so they can be used
-by hybrid elements.
-
-
 
 ## Static node map {#node-finding}
 
@@ -222,24 +334,16 @@ call `super.ready()` before accessing `this.$`.
 
 Example: { .caption }
 
-```html
-<dom-module id="x-custom">
-
-  <template>
-    Hello World from <span id="name"></span>!
-  </template>
-
-  <script>
-    class MyElement extends Polymer.Element {
-      static get is() { return  'x-custom' }
-      ready() {
-        super.ready();
-        this.$.name.textContent = this.tagName;
-      }
-    }
-  </script>
-
-</dom-module>
+```js
+class MyElement extends PolymerElement {
+  static get template() {
+    return html`Hello World from <span id="name"></span>!`;
+  }
+  ready() {
+    super.ready();
+    this.$.name.textContent = this.tagName;
+  }
+}
 ```
 
 For locating dynamically-created nodes in your element's shadow DOM,
@@ -251,6 +355,9 @@ use the standard DOM `querySelector`  method.
 
 ## Remove empty text nodes {#strip-whitespace}
 
+**Need update for 3.x.** This needs a new API parallel to `html`...
+See https://github.com/Polymer/polymer/issues/4731
+{.alert .alert-warning}
 
 Add the `strip-whitespace` boolean attribute to a template to remove
 any **empty** text nodes from the template's contents. This can result in a
@@ -272,7 +379,7 @@ With empty text nodes:
     <div>More Text</div>
   </template>
   <script>
-    class HasWhitespace extends Polymer.Element {
+    class HasWhitespace extends PolymerElement {
       static get is() { return  'has-whitespace' }
       ready() {
         super.ready();
@@ -303,7 +410,7 @@ Without empty text nodes:
     <div>More Text</div>
   </template>
   <script>
-    class NoWhitespace extends Polymer.Element {
+    class NoWhitespace extends PolymerElement {
       static get is() { return  'no-whitespace' }
       ready() {
         super.ready();
@@ -323,9 +430,13 @@ Note that the whitespace _inside_ the `<div>` elements isn't affected.
 
 ## Preserve template contents
 
-Polymer performs one-time processing on your DOM template, such as parsing and removing binding
-annotations and caching  and removing nested template contents for better performance. This processing
-removes the template's original contents (the `content` property will be undefined). If you want
+Polymer performs one-time processing on your DOM template. For example:
+
+-   Parsing and removing binding annotations.
+-   Parsing and removing markup for declarative event listeners.
+-   Caching and removing the contents of nested templates for better performance. 
+
+This processing removes the nested template's original contents (the `content` property will be undefined). If you want
 to access the contents of a nested template, you can add the `preserve-content` attribute to the
 template.
 
@@ -335,33 +446,28 @@ template yourself, and you don't want Polymer to touch it.
 
 This is a fairly rare use case.
 
-```html
-<dom-module id="custom-template">
-  <template>
+```js
+class CustomTemplate extends PolymerElement {
+
+  static get tempate() { return html`
     <template id="special-template" preserve-content>
       <div>I am very special.</div>
-    </template>
-  </template>
-  <script>
-    class CustomTemplate extends Polymer.Element {
-
-      static get is() { return  'custom-template' }
-
-      ready() {
-        super.ready();
-        // retrieve the nested template
-        let template = this.shadowRoot.querySelector('#special-template');
-
-        //
-        for (let i=0; i<10; i++) {
-          this.shadowRoot.appendChild(document.importNode(template.content, true));
-        }
-      }
+    </template>`
     }
 
-    customElements.define(CustomTemplate.is, CustomTemplate);
-  </script>
-</dom-module>
+  ready() {
+    super.ready();
+    // retrieve the nested template
+    let template = this.shadowRoot.querySelector('#special-template');
+
+    //
+    for (let i=0; i<10; i++) {
+      this.shadowRoot.appendChild(document.importNode(template.content, true));
+    }
+  }
+}
+
+customElements.define(CustomTemplate.is, CustomTemplate);
 ```
 
 ## Customize DOM initialization
