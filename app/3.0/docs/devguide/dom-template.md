@@ -187,7 +187,7 @@ class ChildClass extends BaseClass {
   }
 }
 
-customElements.define('child-class', ChildClasst);
+customElements.define('child-class', ChildClass);
 ```
 
 [See a working example in Plunker](https://plnkr.co/edit/QZM9FD?p=preview).
