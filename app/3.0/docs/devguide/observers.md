@@ -75,7 +75,7 @@ Example: { .caption }
 
 
 ```js
-import { Element as PolymerElement } from './node_modules/@polymer/polymer/polymer-element.js';
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 
 class XCustom extends PolymerElement {
   static get properties() {
@@ -148,11 +148,11 @@ Note that any of the arguments can be `undefined` when the observer is called.
 
 Complex observers should only depend on their declared dependencies.
 
-Related task:
+Related tasks:
 
-*   Observe multiple properties or paths
-*   Observe array changes
-*   Observe all changes to a path
+*   [Observe multiple properties or paths](#multi-property-observers)
+*   [Observe array changes](#array-observation)
+*   [Observe all changes to a path](#deep-observation)
 
 
 
@@ -173,7 +173,7 @@ These observers differ from single-property observers in a few ways:
 Example { .caption }
 
 ```js
-import { Element as PolymerElement } from './node_modules/@polymer/polymer/polymer-element.js';
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 
 class XCustom extends PolymerElement {
 
@@ -229,7 +229,7 @@ sub-property must be updated in one of the following two ways:
 Example: { .caption }
 
 ```js
-import { Element as PolymerElement, html } from './node_modules/@polymer/polymer/polymer-element.js';
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 
 class XCustom extends PolymerElement {
   static get template () {
@@ -323,7 +323,7 @@ in the example.
 Example {.caption}
 
 ```js
-import { Element as PolymerElement } from './node_modules/@polymer/polymer/polymer-element.js';
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 
 class XCustom extends PolymerElement {
   static get properties() {
@@ -385,7 +385,7 @@ property described in [Observe array mutations](#array-observation).
 Example: { .caption }
 
 ```js
-import { Element as PolymerElement, html } from './node_modules/@polymer/polymer/polymer-element.js';
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 
 class XCustom extends PolymerElement {
   static get template() {
@@ -534,7 +534,7 @@ computed property function returns a value that's exposed as a virtual property.
 { .alert .alert-info }
 
 ```js
-import { Element as PolymerElement, html } from './node_modules/@polymer/polymer/polymer-element.js';
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 
 class XCustom extends PolymerElement {
   static get template() {
@@ -579,7 +579,7 @@ the method itself may change during runtime. A dynamic method is considered an e
 the observer, so the observer re-runs if the method itself changes. For example:
 
 ```js
-import { Element as PolymerElement } from './node_modules/@polymer/polymer/polymer-element.js';
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 
 class NameCard extends PolymerElement {
   static get properties() {
