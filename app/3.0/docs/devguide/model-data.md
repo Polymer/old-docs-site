@@ -154,8 +154,8 @@ Example { .caption }
 [See it on Plunker](https://plnkr.co/edit/3LTcb2?p=info)
 
 ```js
-import { Element as PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import '@polymer/polymer@3.0.0-pre.10/lib/elements/dom-repeat.js';
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import '@polymer/polymer/lib/elements/dom-repeat.js';
 
 class XCustom extends PolymerElement {
   addUser(user) {
