@@ -4,10 +4,13 @@ title: Install Polymer 3.0
 
 <!-- toc -->
 
+This chapter describes how to install the Polymer 3.0 tools and get started with a template Polymer 3.0 project. 
+
 ## Install the Polymer 3.0 prerequisites
 
-The Polymer 3.0 library is published to the [npm registry](https://docs.npmjs.com). Polymer
-projects use Yarn to install packages and manage dependencies. 
+Note: We recommend using npm to install the Polymer CLI globally, and Yarn to add the Polymer library and elements to your project.
+
+Polymer elements need to be unique, so we recommend using Yarn's `--flat` install option if possible to install your project's dependencies. This prevents your project from attempting to install multiple versions of the same element.
 
 To set up a development environment for Polymer 3.0: 
 
@@ -15,6 +18,7 @@ To set up a development environment for Polymer 3.0:
 * [Install npm and Node.js](#node).
 * [Install Yarn](#yarn).
 * [Install the Polymer CLI](#cli).
+* Optionally, [Download and serve a sample Polymer 3.0 app](#app).
 
 ### Install Git {#git}
 
@@ -84,14 +88,15 @@ To confirm that the Polymer CLI has been correctly installed:
 polymer --version
 ```
 
-## Optional: Download and serve a template Polymer app {#app}
+## Optional: Download and serve a sample Polymer 3.0 app {#app}
 
-Optionally, to test your Polymer development environment, try out a template Polymer app we prepared earlier:
+To test your Polymer development environment, you can try out a sample Polymer app we prepared earlier:
 
 ```bash
-git clone https://github.com/katejeffreys/start-polymer3.git
+git clone https://github.com/PolymerLabs/start-polymer3.git
 cd start-polymer3
-polymer serve --open --npm
+yarn install --flat
+polymer serve --open --npm --module-resolution=node
 ```
 
 For more information on the tools and options in the Polymer CLI, see the documentation on [Polymer CLI commands](/{{{polymer_version_dir}}}/docs/tools/polymer-cli-commands).
