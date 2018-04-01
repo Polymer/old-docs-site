@@ -151,27 +151,38 @@ Every Polymer element has the following array mutation methods available:
 
 Example { .caption }
 
-[See it on Plunker](https://plnkr.co/edit/3LTcb2?p=info)
-
 ```js
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import '@polymer/polymer/lib/elements/dom-repeat.js';
 
 class XCustom extends PolymerElement {
-  addUser(user) {
+  static get template() {
+    return html`
+      <template is="dom-repeat" items="[[users]]"><p>{{item}}</p></template>
+      <p><button on-click="addUser">add</button><button on-click="removeUser">remove</button><button on-click="_reset">reset</button></p>
+    `;
+  }
+  constructor() {
+    super();
+    this._reset();
+  }
+  addUser() {
+    var user = "wing sang";
     this.push('users', user);
   }
-  removeUser(user) {
+  removeUser() {
+    var user = "wing sang";
     var index = this.users.indexOf(user);
     this.splice('users', index, 1);
   }
-  static get template(){
-    return html`
-      <template is="dom-repeat" items="[[users]]">{{item}}</template>
-    `;
+  _reset() {
+    this.users=["wing sang", "deshaun", "kelley"];
   }
+}
 customElements.define('x-custom', XCustom);
 ```
+
+[See it on Plunker](https://plnkr.co/edit/3LTcb2?p=info)
 
 The `set` method can also be used to manipulate arrays by using an array path. For example, to
 to replace the array item at index 3:
@@ -252,14 +263,9 @@ linkPaths('selectedUser', 'users.1');
 must use a [data binding](data-binding).
 {.alert .alert-info}
 
-
-
 To remove a path linkage, call `unlinkPaths`, passing in the first path you passed to
 `linkPaths`:
 
 ```js
 unlinkPaths('selectedUser');
 ```
-
-
-
