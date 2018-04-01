@@ -56,9 +56,7 @@ library.
 
 In most cases, you'll use the first (shorthand) form for `dom-repeat`.
 
-Example: { .caption }
-
-[See it in Plunker](https://plnkr.co/edit/4HOkRP?p=preview)
+Example { .caption }
 
 ```js
 // Import the Polymer library and the html helper function
@@ -94,6 +92,8 @@ class XCustom extends PolymerElement {
 customElements.define('x-custom', XCustom);
 ```
 
+[See it in Plunker](https://plnkr.co/edit/4HOkRP?p=preview)
+
 Notifications for changes to item sub-properties are forwarded to the template
 instances, which update using the normal [change notification events](data-system#change-events).
 If the `items` array is bound using two-way binding delimiters, changes to individual items can also
@@ -128,7 +128,7 @@ the repeater adds a `model` property to each event sent to the listener. The `mo
 object contains the scope data used to generate the template instance, so the item
 data is `model.item`:
 
-Example {.caption}
+Example { .caption }
 
 [See it on Plunker](https://plnkr.co/edit/jDEQWA?p=preview)
 
@@ -194,7 +194,7 @@ a property where it doesn't affect the display:
 </template>
 ```
 
-#### Handling events outside the `dom-repeat` template
+#### Handling events outside the dom-repeat template
 
 The `model` property is **not** added for event listeners registered
 imperatively (using `addEventListener`), or listeners added to one of the
@@ -267,8 +267,6 @@ sort function when one or more dependent properties changes.
 
 Example { .caption }
 
-[See it in Plunker](https://plnkr.co/edit/AWhaZc?p=preview)
-
 ```js
 class XCustom extends PolymerElement {
   static get properties() {
@@ -321,7 +319,9 @@ class XCustom extends PolymerElement {
 customElements.define('x-custom', XCustom);
 ```
 
-In this example, whenever the value of the `searchString` property changes,
+[See it in Plunker](https://plnkr.co/edit/AWhaZc?p=preview)
+
+In the example above, whenever the value of the `searchString` property changes,
 `computeFilter` is called to compute a new value for the `filter` property.
 
 #### Filtering on array index {#filtering-on-index}
@@ -362,8 +362,6 @@ different name for the index property.
 
 Example { .caption }
 
-[See it in Plunker](https://plnkr.co/edit/IHB4kd?p=preview)
-
 ```js
 static get template() {
   return html`
@@ -383,6 +381,8 @@ static get template() {
   `;
 }
 ```
+
+[See it in Plunker](https://plnkr.co/edit/IHB4kd?p=preview)
 
 ### Forcing synchronous renders {#synchronous-renders}
 
@@ -481,9 +481,7 @@ The array selector supports either single or multiple selection.
 When `multi` is false, `selected` is a property representing the last selected
 item.  When `multi` is true, `selected` is an array of selected items.
 
-Example: { .caption }
-
-[See it in Plunker](https://plnkr.co/edit/7K5nKj?p=preview)
+Example { .caption }
 
 ```js
 // Import the Polymer library and the html helper function
@@ -536,6 +534,8 @@ class XCustom extends PolymerElement {
 customElements.define('x-custom', XCustom);
 ```
 
+[See it in Plunker](https://plnkr.co/edit/7K5nKj?p=preview)
+
 ## Conditional templates (dom-if) {#dom-if}
 
 Elements can be conditionally stamped based on a boolean property by wrapping
@@ -579,9 +579,7 @@ In most cases, you'll use the first (shorthand) form for `dom-if`.
 The following is a simple example to show how conditional templates work. Read below for
 guidance on recommended usage of conditional templates.
 
-Example: { .caption }
-
-[See it in Plunker](https://plnkr.co/edit/u1VUAq?p=preview)
+Example { .caption }
 
 ```js
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
@@ -616,6 +614,8 @@ class XCustom extends PolymerElement {
 }
 customElements.define('x-custom', XCustom);
 ```
+
+[See it in Plunker](https://plnkr.co/edit/u1VUAq?p=preview)
 
 Conditional templates introduce some overhead, so they shouldn't be used for small UI elements
 that could be easily shown and hidden using CSS.
