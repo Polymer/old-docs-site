@@ -113,8 +113,6 @@ syntax. For more information, see [Binding to native element attributes](#native
 To bind to a target element's `textContent`, you can simply include the
 annotation or compound binding inside the target element.
 
-[See it on Plunker](https://plnkr.co/edit/xrjqVn?p=preview)
-
 ```js
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 
@@ -137,6 +135,8 @@ customElements.define('user-view', UserView);
 <!-- usage -->
 <user-view name="Samuel"></user-view>
 ```
+
+[See it in Plunker](https://plnkr.co/edit/xrjqVn?p=preview)
 
 Binding to text content is always one-way, host-to-target.
 
@@ -294,8 +294,6 @@ arrays](data-system#data-flow-objects-arrays).
 
 Binding annotations can also include paths to sub-properties, as shown below:
 
-[See it on Plunker](https://plnkr.co/edit/sPMgJI?p=preview)
-
 main-view.js { .caption }
 
 ```js
@@ -346,6 +344,8 @@ index.html { .caption }
 ```html
 <main-view></main-view>
 ```
+
+[See it in Plunker](https://plnkr.co/edit/sPMgJI?p=preview)
 
 Subproperty changes are not automatically [observable](data-system#observable-changes).
 
@@ -421,11 +421,9 @@ Computed bindings differ from computed properties in the following ways:
 *   A computed binding can have an *empty* argument list, in which case the computing function is
     only called once.
 
-Example: { .caption }
+Example { .caption }
 
-[See it in Plunker](https://plnkr.co/edit/OabDPv?p=preview)
-
-```
+```js
 class XCustom extends PolymerElement {
   static get properties() {
     return {
@@ -447,7 +445,9 @@ class XCustom extends PolymerElement {
 customElements.define('x-custom', XCustom);
 ```
 
-In this case, the span's `textContent` property is bound to the return value
+[See it in Plunker](https://plnkr.co/edit/OabDPv?p=preview)
+
+In the example above, the span's `textContent` property is bound to the return value
 of `_formatName`, which is recalculated whenever `first` or `last` changes.
 
 **Computed bindings are one-way.** A computed binding is always one-way, host-to-target.
@@ -500,8 +500,6 @@ static get template() {
 
 Finally, if a computed binding has no dependent properties, it is only evaluated once:
 
-[See it in Plunker](https://plnkr.co/edit/iWFpsh?p=preview)
-
 ```js
 class XCustom extends PolymerElement {
   static get template() {
@@ -515,6 +513,8 @@ class XCustom extends PolymerElement {
 }
 customElements.define('x-custom', XCustom);
 ```
+
+[See it in Plunker](https://plnkr.co/edit/iWFpsh?p=preview)
 
 ## Compound bindings {#compound-bindings}
 
@@ -629,9 +629,9 @@ convention, you can specify a custom change event name in the annotation using t
 <code><var>target-prop</var>="{{<var>hostProp</var>::<var>target-change-event</var>}}"</code>
 
 
-Example: { .caption }
+Example { .caption }
 
-```
+```html
 <!-- Listens for `input` event and sets hostValue to <input>.value -->
 <input value="{{hostValue::input}}">
 
@@ -653,20 +653,3 @@ to listen for `property-changed` events.  The following constructions are equiva
 <!-- Listens for `value-changed` event using Polymer convention by default -->
 <my-element value="{{hostValue}}">
 ```
-
-
-## Moved sections
-
-The following sections have moved to [Data system concepts](data-system):
-
-<a id="#change-notification-protocol"></a>
-
--   Change notification protocol. See [Change notification events](#change-events).
-
-<a id="#property-notification"></a>
-
--   Property change notification and two-way binding. See [How data flow is
-    controlled](data-system#data-flow-control).
-
--   Binding to structured data. See [Observable changes](data-system#observable-changes) and
-    [Data paths](data-system#paths).
