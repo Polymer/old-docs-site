@@ -419,7 +419,7 @@ The following configuration flags affect data flow to and from target properties
 *   `readOnly`. A read-only property **prevents downward data flow**. By default, properties are
     read/write, and support downward data flow.
 
-Example property definitions {.caption}
+Example property definitions { .caption }
 
 ```js
 static get properties() {
@@ -523,7 +523,7 @@ arrays](#data-flow-objects-arrays)
 
 The following examples show the various data flow scenarios described above.
 
-Example 1: Two-way binding { .caption }
+Example of two-way binding { .caption }
 
 ```js
   ...
@@ -556,7 +556,7 @@ Example 1: Two-way binding { .caption }
   customElements.define('x-host', XHost);
 ```
 
-Example 2: One-way binding (downward) { .caption }
+Example of one-way binding (downward) { .caption }
 
 Changing the binding to a one-way binding `[[ ]]` produces a one-way binding. This example uses the
 same `x-target` element as example 1.
@@ -577,7 +577,7 @@ same `x-target` element as example 1.
   customElements.define('x-host', XHost);
 ```
 
-Example 3: One-way binding (downward) { .caption }
+Example of one-way binding (downward) { .caption }
 
 Similarly, using the two-way binding delimiters but omitting the `notify: true` on `someProp` yields
 a one-way, downward binding.
@@ -612,7 +612,7 @@ a one-way, downward binding.
   customElements.define('x-host', XHost);
 ```
 
-Example 4: One-way binding (upward, child-to-host) { .caption }
+Example of one-way binding (upward, child-to-host) { .caption }
 
 ```js
   ...
@@ -646,8 +646,7 @@ Example 4: One-way binding (upward, child-to-host) { .caption }
   customElements.define('x-host', XHost);
 ```
 
-Example 5: No data flow / nonsensical state { .caption }
-
+Example of no data flow / nonsensical state { .caption }
 
 ```js
   ...
@@ -995,7 +994,4 @@ The user can then use your element with either standard data flow, or the mutabl
 </my-structured-data-element>
 ```
 
-
 The `dom-repeat` element is an example of an element built with this mixin.
-
-
