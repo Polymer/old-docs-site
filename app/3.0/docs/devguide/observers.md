@@ -71,8 +71,8 @@ The observer method receives the new and old values of the property as arguments
 
 Define a simple observer by adding an `observer` key to the property's declaration, identifying
 the observer method by name.
-Example: { .caption }
 
+Example { .caption }
 
 ```js
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
@@ -226,7 +226,7 @@ sub-property must be updated in one of the following two ways:
 *   Via a [property binding](data-binding#property-binding).
 *   By calling [`set`](model-data#set-path).
 
-Example: { .caption }
+Example { .caption }
 
 ```js
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
@@ -320,7 +320,7 @@ time the observer is invoked, so your code should guard against this, as shown
 in the example.
 { .alert .alert-info }
 
-Example {.caption}
+Example { .caption }
 
 ```js
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
@@ -340,7 +340,7 @@ class XCustom extends PolymerElement {
   static get observers() {
     return [
       'usersAddedOrRemoved(users.splices)'
-    ]
+    ];
   }
   // For an array mutation dependency, the corresponding argument is a change record
   usersAddedOrRemoved(changeRecord) {
@@ -382,7 +382,7 @@ For array mutations, `path` is the path to the array that changed,
 followed by `.splices`. And the `value` field includes the `indexSplices`
 property described in [Observe array mutations](#array-observation).
 
-Example: { .caption }
+Example { .caption }
 
 ```js
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
