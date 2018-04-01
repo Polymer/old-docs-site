@@ -17,8 +17,6 @@ To add event listeners to local DOM children, use
 eliminates the need to give an element an `id` solely for the purpose of
 binding an event listener.
 
-[See this on Plunker](https://plnkr.co/edit/svSg6o?p=preview)
-
 Example { .caption }
 
 ```js
@@ -34,6 +32,8 @@ class XCustom extends PolymerElement {
 }
 customElements.define('x-custom', XCustom);
 ```
+
+[See it in Plunker](https://plnkr.co/edit/svSg6o?p=preview)
 
 Because the event name is specified using an HTML attribute, **the event name is always
 converted to lowercase**. This is because HTML attribute names are case
@@ -85,7 +85,7 @@ collected. Remove the event listener in `disconnectedCallback` to prevent memory
 To fire a custom event from the host element use the standard `CustomEvent` constructor and
 the `dispatchEvent` method.
 
-Example:
+**Example**
 
 x-custom.js { .caption }
 
@@ -141,7 +141,7 @@ The event's `composedPath()` method returns an array of nodes through which the 
 So `event.composedPath()[0]` represents the original target for the event (unless that target is
 hidden in a closed shadow root).
 
-Example:
+**Example**
 
 event-retargeting.js { .caption }
 
