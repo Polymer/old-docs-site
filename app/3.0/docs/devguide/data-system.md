@@ -34,28 +34,25 @@ DOM.
 
 Consider a very simple element:
 
-```html
-<dom-module id="name-card">
-  <template>
-    <div>[[name.first]] [[name.last]]</div>
-  </template>
-  <script>
-    class NameCard extends Polymer.Element {
-      static get is() { return "name-card"; }
-      constructor() {
-        super();
-        this.name = {first: 'Kai', last: 'Li'};
-      }
-    }
-    customElements.define(NameCard.is, NameCard);
-  </script>
-</dom-module>
+```js
+class NameCard extends PolymerElement {
+  constructor() {
+    super();
+    this.name = {first: 'Kai', last: 'Li'};
+  }
+  static get template() {
+    return html `
+      <div>[[name.first]] [[name.last]]</div>
+    `;
+  }
+}
+customElements.define('name-card', NameCard);
 ```
 
 ![A name-card element with a property, name. An arrow labeled 1 connects the name property to
 a JavaScript object. An arrow labeled 2 connects the element to a box labeled local DOM tree
 which contains a single element, div. An arrow labeled 3 connects the JavaScript object to the
-div element.](/images/1.0/data-system/data-binding-overview-new.png)
+div element.](/images/3.0/data-system/data-binding-overview-new.png)
 
 1.  The `<name-card>` element has a `name` property that _refers_ to a JavaScript object.
 2.  The `<name-card>` element _hosts_ a local DOM tree, that contains a single `<div>` element.
@@ -80,7 +77,7 @@ The path "`name`" refers to the element's `name` property (an object).The paths 
 ![The name-card element from the previous figure. An arrow labeled 1 connects the name property
 to a JavaScript object that contains two properties, first: 'Lizzy' and last: 'Bennet'. Two arrows
 labeled 2 connect the paths name and name.first with the object itself and the subproperty,
-first, respectively.](/images/1.0/data-system/paths-overview-new.png)
+first, respectively.](/images/3.0/data-system/paths-overview-new.png)
 
 1.  The `name` property refers to the JavaScript object.
 2.  The path "name" refers to the object itself. The path "name.first" refers to its subproperty,
@@ -265,16 +262,14 @@ only way to link paths on different elements**. For example, consider the `<user
 in the previous section. If `<address-card>` is in the local DOM of the `<user-profile>` element,
 the two paths can be connected with a data binding:
 
-
-```html
-<dom-module id="user-profile">
-  <template>
-    …
+```js
+static get template(){
+  return html`
     <address-card
-        address="{{primaryAddress}}"></address-card>
-  </template>
-  …
-</dom-module>
+        address="{{primaryAddress}}">
+    </address-card>
+  `;
+}
 ```
 
 Now the paths are connected by data binding.
@@ -424,10 +419,10 @@ The following configuration flags affect data flow to and from target properties
 *   `readOnly`. A read-only property **prevents downward data flow**. By default, properties are
     read/write, and support downward data flow.
 
-Example property definitions {.caption}
+Example property definitions { .caption }
 
 ```js
-properties: {
+static get properties() {
   // default prop, read/write, non-notifying.
   basicProp: {
   },
@@ -528,15 +523,11 @@ arrays](#data-flow-objects-arrays)
 
 The following examples show the various data flow scenarios described above.
 
+Example of two-way binding { .caption }
 
-Example 1: Two-way binding { .caption }
-
-```html
-<script>
-  class XTarget extends Polymer.Element {
-
-    static get is() {return 'x-target';}
-
+```js
+  ...
+  class XTarget extends PolymerElement {
     static get properties() {
       return {
         someProp: {
@@ -545,104 +536,87 @@ Example 1: Two-way binding { .caption }
         }
       }
     }
-
   }
-
-  customElements.define(XTarget.is, XTarget);
-</script>
-...
-
-<dom-module id="x-host">
-  <template>
-    <!-- changes to "value" propagate downward to "someProp" on target -->
-    <!-- changes to "someProp" propagate upward to "value" on host  -->
-    <x-target some-prop="{{value}}"></x-target>
-  </template>
-  <script>
-    class XHost extends Polymer.Element {
-
-      static get is() {return 'x-host';}
-
-    }
-
-    customElements.define(XHost.is, XHost);
-  </script>
+  ...
+  customElements.define('x-target', XTarget);
 ```
 
-Example 2: One-way binding (downward) { .caption }
+```js
+  ...
+  class XHost extends PolymerElement {
+    static get template() {
+      return html`
+        <!-- changes to "value" propagate downward to "someProp" on target -->
+        <!-- changes to "someProp" propagate upward to "value" on host  -->
+        <x-target some-prop="{{value}}"></x-target>
+      `;
+    }
+  }
+  ...
+  customElements.define('x-host', XHost);
+```
+
+Example of one-way binding (downward) { .caption }
 
 Changing the binding to a one-way binding `[[ ]]` produces a one-way binding. This example uses the
 same `x-target` element as example 1.
 
-```html
-<dom-module id="x-host">
-  <template>
-    <!-- changes to "value" propagate downward to "someProp" on target -->
-    <!-- changes to "someProp" don't propagate upward because of the one-way binding -->
-    <x-target some-prop="[[value]]"></x-target>
-  </template>
-  <script>
-    class XHost extends Polymer.Element {
 
-      static get is() {return 'x-host';}
-
+```js
+  ...
+  class XHost extends PolymerElement {
+    static get template() {
+      return html`
+        <!-- changes to "value" propagate downward to "someProp" on target -->
+        <!-- changes to "someProp" don't propagate upward because of the one-way binding -->
+        <x-target some-prop="[[value]]"></x-target>
+      `;
     }
-
-    customElements.define(XHost.is, XHost);
-  </script>
+  }
+  ...
+  customElements.define('x-host', XHost);
 ```
 
-Example 3: One-way binding (downward) { .caption }
+Example of one-way binding (downward) { .caption }
 
 Similarly, using the two-way binding delimiters but omitting the `notify: true` on `someProp` yields
 a one-way, downward binding.
 
-```html
-<script>
-  class XTarget extends Polymer.Element {
-
-    static get is() {return 'x-target';}
-
+```js
+  ...
+  class XTarget extends PolymerElement {
     static get properties() {
       return {
         someProp: {
-          type: String // no notify: true
+          type: String //no notify: true
         }
       }
     }
-
   }
-
-  customElements.define(XTarget.is, XTarget);
-</script>
-...
-
-<dom-module id="x-host">
-  <template>
-    <!-- changes to "value" propagate downward to "someProp" on target -->
-    <!-- changes to "someProp" are not notified to host due to notify:falsey -->
-    <x-target some-prop="{{value}}"></x-target>
-  </template>
-  <script>
-    class XHost extends Polymer.Element {
-
-      static get is() {return 'x-host';}
-
-    }
-
-    customElements.define(XHost.is, XHost);
-  </script>
+  ...
+  customElements.define('x-target', XTarget);
 ```
 
-Example 4: One-way binding (upward, child-to-host) { .caption }
+```js
+  ...
+  class XHost extends PolymerElement {
+    static get template() {
+      return html`
+        <!-- changes to "value" propagate downward to "someProp" on target -->
+        <!-- changes to "someProp" are not notified to host due to notify:falsey -->
+        <x-target some-prop="{{value}}"></x-target>
+      `;
+    }
+  }
+  ...
+  customElements.define('x-host', XHost);
+```
 
+Example of one-way binding (upward, child-to-host) { .caption }
 
-```html
-<script>
-  class XTarget extends Polymer.Element {
-
-    static get is() {return 'x-target';}
-
+```js
+  ...
+  class XTarget extends PolymerElement {
     static get properties() {
       return {
         someProp: {
@@ -652,39 +626,31 @@ Example 4: One-way binding (upward, child-to-host) { .caption }
         }
       }
     }
-
   }
-
-  customElements.define(XTarget.is, XTarget);
-</script>
-...
-
-<dom-module id="x-host">
-  <template>
-<!-- changes to "value" are ignored by child because "someProp" is read-only -->
-<!-- changes to "someProp" propagate upward to "value" on host -->
-    <x-target some-prop="{{value}}"></x-target>
-  </template>
-  <script>
-    class XHost extends Polymer.Element {
-
-      static get is() {return 'x-host';}
-
-    }
-
-    customElements.define(XHost.is, XHost);
-  </script>
+  ...
+  customElements.define('x-target', XTarget);
 ```
 
-Example 5: No data flow / nonsensical state { .caption }
+```js
+  ...
+  class XHost extends PolymerElement {
+    static get template() {
+      return html`
+        <!-- changes to "value" are ignored by child because "someProp" is read-only -->
+        <!-- changes to "someProp" propagate upward to "value" on host -->
+        <x-target some-prop="{{value}}"></x-target>
+      `;
+    }
+  }
+  ...
+  customElements.define('x-host', XHost);
+```
 
+Example of no data flow / nonsensical state { .caption }
 
-```html
-<script>
-  class XTarget extends Polymer.Element {
-
-    static get is() {return 'x-target';}
-
+```js
+  ...
+  class XTarget extends PolymerElement {
     static get properties() {
       return {
         someProp: {
@@ -694,30 +660,25 @@ Example 5: No data flow / nonsensical state { .caption }
         }
       }
     }
-
   }
-
-  customElements.define(XTarget.is, XTarget);
-</script>
-...
-
-<dom-module id="x-host">
-  <template>
-    <!-- changes to "value" are ignored by child because "someProp" is read-only -->
-    <!-- changes to "someProp" don't propagate upward because of the one-way binding -->
-    <x-target some-prop="[[value]]"></x-target>
-  </template>
-  <script>
-    class XHost extends Polymer.Element {
-
-      static get is() {return 'x-host';}
-
-    }
-
-    customElements.define(XHost.is, XHost);
-  </script>
+  ...
+  customElements.define('x-target', XTarget);
 ```
 
+```js
+  ...
+  class XHost extends PolymerElement {
+    static get template() {
+      return html`
+        <!-- changes to "value" are ignored by child because "someProp" is read-only -->
+        <!-- changes to "someProp" don't propagate upward because of the one-way binding -->
+        <x-target some-prop="[[value]]"></x-target>
+      `;
+    }
+  }
+  ...
+  customElements.define('x-host', XHost);
+```
 
 ### Upward and downward data flow
 
@@ -926,12 +887,15 @@ the following is true:
 *   You use immutable data.
 *   You always use the Polymer data mutation methods to make granular changes.
 
-However, for apps that don't use immutable data and can't use the Polymer data methods, Polymer 2.0
-provides the [`Polymer.MutableData`](/{{{polymer_version_dir}}}/docs/api/mixins/Polymer.MutableData)
+However, for apps that don't use immutable data and can't use the Polymer data methods, Polymer 3.0
+provides the [`MutableData`](/{{{polymer_version_dir}}}/docs/api/mixins/Polymer.MutableData)
 mixin.
 
 ```js
-class MyMutableElement extends Polymer.MutableData(Polymer.Element) { ... }
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import { MutableData } from '@polymer/polymer/lib/mixins/mutable-data.js';
+
+class MyMutableElement extends MutableData(PolymerElement) { ... }
 ```
 
 The `MutableData` mixin eliminates the dirty check for that element, so the code above would work
@@ -1011,9 +975,11 @@ mixin. This mixin lets the element user select `MutableData` mode by setting the
 property on the element.
 
 ```js
-class MyStructuredDataElement extends Polymer.OptionalMutableData(Polymer.Element) {
-  static get is() { return 'my-structured-data-element' }
-}
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import { OptionalMutableData } from '@polymer/polymer/lib/mixins/mutable-data.js';
+
+class MyStructuredDataElement extends OptionalMutableData(PolymerElement) { ... }
+customElements.define('my-structured-data-element', MyStructuredDataElement);
 ```
 
 The user can then use your element with either standard data flow, or the mutable data mode.
@@ -1028,7 +994,4 @@ The user can then use your element with either standard data flow, or the mutabl
 </my-structured-data-element>
 ```
 
-
 The `dom-repeat` element is an example of an element built with this mixin.
-
-
