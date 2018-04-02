@@ -11,12 +11,12 @@ or _target element_). The host element data can be a property or sub-property re
 
 You create data bindings by adding annotations to an element's local DOM template.
 
-```
-<dom-module id="host-element">
-  <template>
+```js
+static get template() {
+  return html`
     <target-element target-property="{{hostProperty}}"></target-element>
-  </template>
-</dom-module>
+  `;
+}
 ```
 
 Updating data bindings is a [property effect](data-system#property-effects).
@@ -113,29 +113,30 @@ syntax. For more information, see [Binding to native element attributes](#native
 To bind to a target element's `textContent`, you can simply include the
 annotation or compound binding inside the target element.
 
+```js
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+
+class UserView extends PolymerElement {
+  static get properties() {
+    return {
+      name: String
+    };
+  }
+  static get template() {
+    return html`
+      <div>[[name]]</div>
+    `;
+  }
+}
+customElements.define('user-view', UserView);
 ```
-<dom-module id="user-view">
-  <template>
-    <div>[[name]]</div>
-  </template>
 
-  <script>
-    class UserView extends Polymer.Element {
-      static get is() {return 'user-view'}
-      static get properties() {
-        return {
-          name: String
-        }
-      }
-    }
-
-    customElements.define(UserView.is, UserView);
-  </script>
-</dom-module>
-
+```html
 <!-- usage -->
 <user-view name="Samuel"></user-view>
 ```
+
+[See it in Plunker](https://plnkr.co/edit/xrjqVn?p=preview)
 
 Binding to text content is always one-way, host-to-target.
 
@@ -175,16 +176,18 @@ element.property = value;
 For example:
 
 
-```html
-<template>
-  <!-- Attribute binding -->
-  <my-element selected$="[[value]]"></my-element>
-  <!-- results in <my-element>.setAttribute('selected', this.value); -->
+```js
+static get template() {
+  return html`
+    <!-- Attribute binding -->
+    <my-element selected$="[[value]]"></my-element>
+    <!-- results in <my-element>.setAttribute('selected', this.value); -->
 
-  <!-- Property binding -->
-  <my-element selected="{{value}}"></my-element>
-  <!-- results in <my-element>.selected = this.value; -->
-</template>
+    <!-- Property binding -->
+    <my-element selected="{{value}}"></my-element>
+    <!-- results in <my-element>.selected = this.value; -->
+  `;
+}
 ```
 
 
@@ -291,28 +294,58 @@ arrays](data-system#data-flow-objects-arrays).
 
 Binding annotations can also include paths to sub-properties, as shown below:
 
-```
-<dom-module id="main-view">
+main-view.js { .caption }
 
-  <template>
-    <user-view first="{{user.first}}" last="{{user.last}}"></user-view>
-  </template>
+```js
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import './user-view.js';
 
-  <script>
-    class MainView extends Polymer.Element {
-      static get is() {return 'main-view'}
-      static get properties() {
-        return {
-          user: Object
-        }
+class MainView extends PolymerElement {
+  static get properties() {
+    return {
+      user: {
+        type: Object,
+        value: function () { return { given: "San", family: "Zhang" }; }
       }
-    }
-
-    customElements.define(MainView.is, MainView);
-  </script>
-
-</dom-module>
+    };
+  }
+  static get template() {
+    return html`
+      <user-view given="{{user.given}}" family="{{user.family}}"></user-view>
+    `;
+  }
+}
+customElements.define('main-view', MainView);
 ```
+
+user-view.js { .caption }
+
+```js
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+
+class UserView extends PolymerElement {
+  static get properties() {
+    return {
+      given: String,
+      family: String
+    };
+  }
+  static get template() {
+    return html`
+      <div>[[given]] [[family]]</div>
+    `;
+  }
+}
+customElements.define('user-view', UserView);
+```
+
+index.html { .caption }
+
+```html
+<main-view></main-view>
+```
+
+[See it in Plunker](https://plnkr.co/edit/sPMgJI?p=preview)
 
 Subproperty changes are not automatically [observable](data-system#observable-changes).
 
@@ -320,8 +353,7 @@ If the host element updates the subproperty it needs to use the `set` method, as
 [Set a property or subproperty by path](model-data#set-path). Or the `notifyPath` method, as
 described in [Notify Polymer of a subproperty change](model-data#notify-path).
 
-
-```
+```js
 //  Change a subproperty observably
 this.set('name.last', 'Maturin');
 ```
@@ -339,10 +371,12 @@ arrays](data-system#data-flow-objects-arrays).
 Binding annotations support a single logical not operator (`!`), as the first character inside
 the binding delimiters:
 
-```
-<template>
-  <my-page show-login="[[!isLoggedIn]]"></my-page>
-</template>
+```js
+static get template() {
+  return html`
+    <my-page show-login="[[!isLoggedIn]]"></my-page>
+  `;
+}
 ```
 
 In this example, `showLogin` is `false` if `isLoggedIn` has a truthy value.
@@ -387,37 +421,33 @@ Computed bindings differ from computed properties in the following ways:
 *   A computed binding can have an *empty* argument list, in which case the computing function is
     only called once.
 
-Example: { .caption }
+Example { .caption }
 
-```
-<dom-module id="x-custom">
-
-  <template>
-    My name is <span>[[_formatName(first, last)]]</span>
-  </template>
-
-  <script>
-    class XCustom extends Polymer.Element {
-      static get is() {return 'x-custom'}
-      static get properties() {
-        return {
-          first: String,
-          last: String
-        }
-      }
-      _formatName(first, last) {
-        return `${last}, ${first}`
-      }
-
-    }
-
-    customElements.define(XCustom.is, XCustom);
-  </script>
-
-</dom-module>
+```js
+class XCustom extends PolymerElement {
+  static get properties() {
+    return {
+      given: String,
+      family: String
+    };
+  }
+  
+  _formatName(given, family) {
+    return `${family}, ${given}`;
+  }
+  
+  static get template() {
+    return html`
+      My name is <span>[[_formatName(given, family)]]</span>
+    `;
+  }
+}
+customElements.define('x-custom', XCustom);
 ```
 
-In this case, the span's `textContent` property is bound to the return value
+[See it in Plunker](https://plnkr.co/edit/OabDPv?p=preview)
+
+In the example above, the span's `textContent` property is bound to the return value
 of `_formatName`, which is recalculated whenever `first` or `last` changes.
 
 **Computed bindings are one-way.** A computed binding is always one-way, host-to-target.
@@ -460,37 +490,31 @@ backslash (`\`).
 
 Example:
 
-```html
-<dom-module id="x-custom">
-  <template>
-    <span>{{translate('Hello\, nice to meet you', first, last)}}</span>
-  </template>
-</dom-module>
+```js
+static get template() {
+  return html`
+    <span>{{translate('Hello\, nice to meet you', given, family)}}</span>
+  `;
+}
 ```
 
 Finally, if a computed binding has no dependent properties, it is only evaluated once:
 
+```js
+class XCustom extends PolymerElement {
+  static get template() {
+    return html`
+      <span>{{doThisOnce()}}</span>
+    `;
+  }
+  doThisOnce() {
+    return Math.random();
+  }
+}
+customElements.define('x-custom', XCustom);
 ```
-<dom-module id="x-custom">
-  <template>
-    <span>{{doThisOnce()}}</span>
-  </template>
 
-  <script>
-    class XCustom extends Polymer.Element {
-
-      static get is() {return 'x-custom'}
-
-      doThisOnce: function() {
-        return Math.random();
-      }
-
-    }
-
-    customElements.define(XCustom.is, XCustom);
-  </script>
-</dom-module>
-```
+[See it in Plunker](https://plnkr.co/edit/iWFpsh?p=preview)
 
 ## Compound bindings {#compound-bindings}
 
@@ -549,50 +573,37 @@ The following example shows how to access a property from an array item using a 
 The computing function needs to be called if the subproperty value changes,
 _or_ if the array itself is mutated, so the binding uses a wildcard path, `myArray.*`.
 
-```
-<dom-module id="x-custom">
-
-  <template>
-    <div>[[arrayItem(myArray.*, 0, 'name')]]</div>
-    <div>[[arrayItem(myArray.*, 1, 'name')]]</div>
-  </template>
-
-  <script>
-
-    class XCustom extends Polymer.Element {
-
-      static get is() {return 'x-custom'}
-
-      static get properties() {
-        return {
-          myArray: {
-            type: Array,
-            value: [{ name: 'Bob' }, { name: 'Doug' }]
-          }
-        }
+```js
+class XCustom extends PolymerElement {
+  static get properties() {
+    return {
+      myArray: {
+        type: Array,
+        value: [{ name: 'Bob' }, { name: 'Wing Sang' }]
       }
-
-      // first argument is the change record for the array change,
-      // change.base is the array specified in the binding
-      arrayItem(change, index, path) {
-        // this.get(path, root) returns a value for a path
-        // relative to a root object.
-        return this.get(path, change.base[index]);
-      },
-
-      ready() {
-        super.ready();
-        // mutate the array
-        this.unshift('myArray', { name: 'Susan' });
-        // change a subproperty
-        this.set('myArray.1.name', 'Rupert');
-      }
-    }
-
-    customElements.define(XCustom.is, XCustom);
-  </script>
-
-</dom-module>
+    };
+  }
+  // first argument is the change record for the array change,
+  // change.base is the array specified in the binding
+  arrayItem(change, index, path) {
+    // this.get(path, root) returns a value for a path
+    // relative to a root object.
+    return this.get(path, change.base[index]);
+  }
+  ready() {
+    super.ready();
+    // mutate the array
+    this.unshift('myArray', { name: 'Fatma' });
+    // change a subproperty
+    this.set('myArray.1.name', 'Rupert');
+  } 
+  static get template() {
+    return html`
+      <div>[[arrayItem(myArray.*, 0, 'name')]]</div>
+      <div>[[arrayItem(myArray.*, 1, 'name')]]</div>
+    `;
+  }
+}
 ```
 
 ## Two-way bindings
@@ -618,9 +629,9 @@ convention, you can specify a custom change event name in the annotation using t
 <code><var>target-prop</var>="{{<var>hostProp</var>::<var>target-change-event</var>}}"</code>
 
 
-Example: { .caption }
+Example { .caption }
 
-```
+```html
 <!-- Listens for `input` event and sets hostValue to <input>.value -->
 <input value="{{hostValue::input}}">
 
@@ -642,20 +653,3 @@ to listen for `property-changed` events.  The following constructions are equiva
 <!-- Listens for `value-changed` event using Polymer convention by default -->
 <my-element value="{{hostValue}}">
 ```
-
-
-## Moved sections
-
-The following sections have moved to [Data system concepts](data-system):
-
-<a id="#change-notification-protocol"></a>
-
--   Change notification protocol. See [Change notification events](#change-events).
-
-<a id="#property-notification"></a>
-
--   Property change notification and two-way binding. See [How data flow is
-    controlled](data-system#data-flow-control).
-
--   Binding to structured data. See [Observable changes](data-system#observable-changes) and
-    [Data paths](data-system#paths).
