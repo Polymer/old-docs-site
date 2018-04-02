@@ -151,34 +151,38 @@ Every Polymer element has the following array mutation methods available:
 
 Example { .caption }
 
-```html
-<link rel="import" href="components/polymer/polymer-element.html">
-<link rel="import" href="components/polymer/src/elements/dom-repeat.html">
+```js
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import '@polymer/polymer/lib/elements/dom-repeat.js';
 
-<dom-module id="x-custom">
-  <template>
-    <template is="dom-repeat" items="[[users]]">{{item}}</template>
-  </template>
-
-  <script>
-    class XCustom extends Polymer.Element {
-
-      static get is() {return 'custom-element'}
-
-      addUser(user) {
-        this.push('users', user);
-      }
-
-      removeUser(user) {
-        var index = this.users.indexOf(user);
-        this.splice('users', index, 1);
-      }
-
-    }
-    customElements.define(XCustom.is, XCustom);
-  </script>
-</dom-module>
+class XCustom extends PolymerElement {
+  static get template() {
+    return html`
+      <template is="dom-repeat" items="[[users]]"><p>{{item}}</p></template>
+      <p><button on-click="addUser">add</button><button on-click="removeUser">remove</button><button on-click="_reset">reset</button></p>
+    `;
+  }
+  constructor() {
+    super();
+    this._reset();
+  }
+  addUser() {
+    var user = "wing sang";
+    this.push('users', user);
+  }
+  removeUser() {
+    var user = "wing sang";
+    var index = this.users.indexOf(user);
+    this.splice('users', index, 1);
+  }
+  _reset() {
+    this.users=["wing sang", "deshaun", "kelley"];
+  }
+}
+customElements.define('x-custom', XCustom);
 ```
+
+[See it on Plunker](https://plnkr.co/edit/3LTcb2?p=info)
 
 The `set` method can also be used to manipulate arrays by using an array path. For example, to
 to replace the array item at index 3:
@@ -259,14 +263,9 @@ linkPaths('selectedUser', 'users.1');
 must use a [data binding](data-binding).
 {.alert .alert-info}
 
-
-
 To remove a path linkage, call `unlinkPaths`, passing in the first path you passed to
 `linkPaths`:
 
 ```js
 unlinkPaths('selectedUser');
 ```
-
-
-
