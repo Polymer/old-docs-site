@@ -4,7 +4,7 @@ title: Handle and fire events
 
 <!-- toc -->
 
-Elements  use events to communicate state changes up the DOM tree to parent elements.
+Elements use events to communicate state changes up the DOM tree to parent elements.
 Polymer elements can use the standard DOM APIs for creating, dispatching, and listening for events.
 
 Polymer also provides annotated event listeners, which allow you to specify event listeners
@@ -13,30 +13,27 @@ declaratively as part of the  element's DOM template.
 ## Add annotated event listeners {#annotated-listeners}
 
 To add event listeners to local DOM children, use
-<code>on-<var>event</var></code>  annotations in your template. This often
-eliminates the need to give an element an `id` solely for  the purpose of
+<code>on-<var>event</var></code> annotations in your template. This often
+eliminates the need to give an element an `id` solely for the purpose of
 binding an event listener.
 
-Example: { .caption }
+Example { .caption }
 
-```html
-<dom-module id="x-custom">
-  <template>
-    <button on-click="handleClick">Kick Me</button>
-  </template>
-  <script>
-    class XCustom extends Polymer.Element {
-
-      static get is() {return 'x-custom'}
-
-      handleClick() {
-        console.log('Ow!');
-      }
-    }
-    customElements.define(XCustom.is, XCustom);
-  </script>
-</dom-module>
+```js
+class XCustom extends PolymerElement {
+  static get template(){
+    return html`
+      <button on-click="handleClick">Kick Me</button>
+    `;
+  }
+  handleClick() {
+    console.log('Ow!');
+  }
+}
+customElements.define('x-custom', XCustom);
 ```
+
+[See it in Plunker](https://plnkr.co/edit/svSg6o?p=preview)
 
 Because the event name is specified using an HTML attribute, **the event name is always
 converted to lowercase**. This is because HTML attribute names are case
@@ -58,7 +55,7 @@ ready() {
 
 The previous example uses an arrow function to ensure the listener is called with the element as the
 `this` value. You can also use `bind` to create a bound instance of the listener function. This can
-be  useful if you need to remove the listener.
+be useful if you need to remove the listener.
 
 ```js
 constructor() {
@@ -88,35 +85,36 @@ collected. Remove the event listener in `disconnectedCallback` to prevent memory
 To fire a custom event from the host element use the standard `CustomEvent` constructor and
 the `dispatchEvent` method.
 
-Example: { .caption }
+**Example**
+
+x-custom.js { .caption }
+
+```js
+class XCustom extends PolymerElement {
+  static get template(){
+    return html`
+      <button on-click="handleClick">Kick Me</button>
+    `;
+  }
+  handleClick(e) {
+    this.dispatchEvent(new CustomEvent('kick', {detail: {kicked: true}}));
+  }
+}
+customElements.define('x-custom', XCustom);
+```
+
+index.html { .caption }
 
 ```html
-<dom-module id="x-custom">
-  <template>
-    <button on-click="handleClick">Kick Me</button>
-  </template>
-
-  <script>
-    class XCustom extends Polymer.Element {
-
-      static get is() {return 'x-custom'}
-
-      handleClick(e) {
-        this.dispatchEvent(new CustomEvent('kick', {detail: {kicked: true}}));
-      }
-    }
-    customElements.define(XCustom.is, XCustom);
-  </script>
-
-</dom-module>
 <x-custom></x-custom>
 
 <script>
-    document.querySelector('x-custom').addEventListener('kick', function (e) {
-        console.log(e.detail.kicked); // true
-    })
+  document.querySelector('x-custom').addEventListener('kick', function (e) {
+      console.log(e.detail.kicked); // true
+  })
 </script>
 ```
+
 The `CustomEvent` constructor is not supported on IE, but the webcomponents polyfills include a
 small polyfill for it so you can use the same syntax everywhere.
 
@@ -143,38 +141,32 @@ The event's `composedPath()` method returns an array of nodes through which the 
 So `event.composedPath()[0]` represents the original target for the event (unless that target is
 hidden in a closed shadow root).
 
-Example: { .caption }
+**Example**
+
+event-retargeting.js { .caption }
+
+```js
+class EventRetargeting extends PolymerElement {
+  static get template(){
+    return html`
+      <button id="myButton">Click Me</button>
+    `;
+  }
+  ready() {
+    super.ready();
+    this.$.myButton.addEventListener('click', e => {this._handleClick(e)});
+  }
+
+  _handleClick(e) {
+    console.info(e.target.id + ' was clicked.');
+  }
+}
+customElements.define('event-retargeting', EventRetargeting);
+```
+
+index.html { .caption }
 
 ```html
-<!-- event-retargeting.html -->
- ...
-<dom-module id="event-retargeting">
-  <template>
-    <button id="myButton">Click Me</button>
-  </template>
-
-  <script>
-    class EventRetargeting extends Polymer.Element {
-      static get is() {return 'event-retargeting'}
-
-      ready() {
-        super.ready();
-        this.$.myButton.addEventListener('click', e => {this._handleClick(e)});
-      }
-
-      _handleClick(e) {
-        console.info(e.target.id + ' was clicked.');
-      }
-
-    }
-
-    customElements.define(EventRetargeting.is, EventRetargeting);
-  </script>
-</dom-module>
-
-
-<!-- index.html  -->
-  ...
 <event-retargeting></event-retargeting>
 
 <script>
@@ -204,5 +196,3 @@ For more information, see [Event retargeting](shadow-dom#event-retargeting) in S
 
 You can configure an element to fire a non-bubbling DOM event when a specified
 property changes. For more information, see [Change notification events](data-system#change-events).
-
-
