@@ -1,4 +1,6 @@
 ## Polymer documentation site
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhangdocgiatot%2Fdocs.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhangdocgiatot%2Fdocs?ref=badge_shield)
+
 
 https://www.polymer-project.org/
 
@@ -84,3 +86,7 @@ Build and deploy version `YYY-MM-DD` of the site:
 
     gulp
     npm run deploy YYYY-MM-DD
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhangdocgiatot%2Fdocs.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhangdocgiatot%2Fdocs?ref=badge_large)
