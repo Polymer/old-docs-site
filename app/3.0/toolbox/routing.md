@@ -4,6 +4,10 @@ title: Routing with <app-route>
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 For client-side routing, App Toolbox uses the
 [`<app-route>`](https://www.webcomponents.org/element/PolymerElements/app-route) element to provide
 _modular routing_. Modular routing means that instead of having a central repository for all your

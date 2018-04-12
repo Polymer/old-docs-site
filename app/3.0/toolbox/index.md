@@ -3,6 +3,10 @@ subtitle: What's in the box?
 title: Polymer App Toolbox
 ---
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 Polymer App Toolbox is a collection of components, tools and templates for
 building
 [Progressive Web Apps](https://developers.google.com/web/progressive-web-apps)

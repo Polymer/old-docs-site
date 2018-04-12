@@ -4,6 +4,10 @@ title: Responsive app layout
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 Every application needs some layout, and the app layout elements provide the tools to create
 responsive layouts easily.
 

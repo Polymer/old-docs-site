@@ -4,6 +4,10 @@ title: Localization
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 [`Polymer.AppLocalizeBehavior`](https://www.webcomponents.org/element/PolymerElements/app-localize-behavior)
 wraps the [format.js](http://formatjs.io/) library to help you internationalize your application.
 Note that if you're on a browser that does not natively support the

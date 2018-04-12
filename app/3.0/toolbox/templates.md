@@ -4,6 +4,10 @@ title: Application templates
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 You can get started with the Polymer App Toolbox using one of several templates
 that incorporate the elements and patterns discussed here using the Polymer CLI.
 

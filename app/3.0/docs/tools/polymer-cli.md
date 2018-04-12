@@ -4,6 +4,10 @@ title: Polymer CLI
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 Polymer CLI is the official command line tool for Polymer projects and Web Components. It includes 
 a build pipeline, a boilerplate generator for creating elements and apps, a linter, a development
 server, and a test runner.

@@ -4,6 +4,10 @@ title: "Case study: the Shop app"
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 Shop is a full-featured e-commerce Progressive web app demo built using the
 Toolbox. You can try it out here:
 

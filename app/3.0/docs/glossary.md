@@ -4,6 +4,10 @@ title: "Polymer Glossary"
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 ## A
 
 ### Analyzer

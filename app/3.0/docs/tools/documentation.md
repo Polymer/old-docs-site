@@ -4,6 +4,10 @@ title: Document your elements
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 You can provide API docs for Polymer custom elements by writing
 documentation comments in your source files. Using the `iron-component-pages` element,
 you can create a simple documentation page for your elements that displays your comments

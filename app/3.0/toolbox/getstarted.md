@@ -2,6 +2,10 @@
 title: Get started with App Toolbox
 ---
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 Getting up and running with App Toolbox is simple.
 
 1.   Install the [Polymer CLI](/{{{polymer_version_dir}}}/docs/tools/polymer-cli).

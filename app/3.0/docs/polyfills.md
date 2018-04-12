@@ -4,6 +4,10 @@ title: Polyfills
 
 <!--toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 Polymer 2.x has been developed alongside and tested with a new suite of v1-spec compatible polyfills
 for custom elements and shadow DOM. You can test Polymer 2.x by using the latest 1.0 version of
 `webcomponentsjs`, which is included as a bower dependency to Polymer 2.x. (`webcomponentsjs`

@@ -4,6 +4,10 @@ title: What's new in 2.0
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 Polymer 2.0 is designed to support the new custom elements v1 and shadow DOM v1 specifications being
 implemented by most major browser vendors, while providing a smooth migration path for Polymer
  1.x users.

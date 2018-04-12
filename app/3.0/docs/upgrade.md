@@ -4,6 +4,10 @@ title: Polymer 2.0 upgrade guide
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 
 Polymer 2.0 includes a number of breaking changes. However, the Polymer team has worked to provide
 an incremental path for updating Polymer 1.x elements to 2.0.

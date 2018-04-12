@@ -4,6 +4,10 @@ title: PRPL Pattern
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 To optimize delivery, the Toolbox uses the _PRPL pattern_, which
 stands for:
 
