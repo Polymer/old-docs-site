@@ -2,7 +2,7 @@
 title: Polymer 3.0 Tools Update
 ---
 
-The latest pre-release version of the Polymer CLI is available, and it includes enhanced support for ES6 modules. Specifically, Polymer CLI version 1.7.0-pre.4 now supports:
+The latest pre-release version of the Polymer CLI is available, and it includes enhanced support for ES6 modules. Specifically, Polymer CLI version 1.7.0-pre.10 now supports:
 
 
 
@@ -80,17 +80,12 @@ polymer build --npm --module-resolution=node --js-transform-modules-to-amd
 
 This prerelease version of the CLI has the following known issues:
 
+-   [polymer-build#358](https://github.com/Polymer/polymer-build/issues/358). Modules
+    transformed to AMD may fail because of incomplete Babel helper scripts. This occurs
+    if a module uses the `import *` syntax. Other forms of the import statement shouldn't 
+    have this problem.
 
-
-1.  [`polymer-cli#987`](https://github.com/Polymer/polymer-cli/issues/987), 
-    [`polymer-build#358`](https://github.com/Polymer/polymer-build/issues/358).
-    Transpiled code fails because of missing or incomplete Babel helper scripts. 
-    These issues primarily affectIE11 (which requires code to be transpiled to ES5).
-
-    If you're working with Polymer 2.x and you need to generate transpiled builds,
-    you should revert to the last stable version of Polymer CLI.
-
-2.  [`polymer-bundler#653`](https://github.com/Polymer/polymer-bundler/issues/653). 
+-   [`polymer-bundler#653`](https://github.com/Polymer/polymer-bundler/issues/653). 
     Inline module scripts are not processed correctly when bundling. If an inline module script 
     imports another module that's in a bundle, the import specifier isn't rewritten correctly.
 
