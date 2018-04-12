@@ -4,7 +4,7 @@ title: polymer.json specification
 
 <!-- toc -->
 
-Create a `polymer.json` file in your root project folder to configure the behavior of [Polymer CLI](polymer-cli) tools for your Polymer project. See the [Polymer 3.0 Sample App](https://github.com/PolymerLabs/start-polymer3/blob/master/polymer.json) for a working example.
+Create a `polymer.json` file in your top-level project folder to configure the behavior of [Polymer CLI](polymer-cli) tools for your Polymer project. See the [Polymer 3.0 Sample App](https://github.com/PolymerLabs/start-polymer3/blob/master/polymer.json) for a working example.
 
 Example { .caption }
 
@@ -54,20 +54,20 @@ Example { .caption }
 
 This page defines the available configuration options for `polymer.json`, and describes how to set them.
 
-**Quick reference** {#quickreference}
+## Quick reference {#quickreference}
 
-* [`root`](#root): Specify the path to the root project folder
-* [`entrypoint`](#entrypoint): Specify the file that imports the app shell
-* [`shell`](#shell): Specify the app shell
-* [`fragments`](#fragments): Specify your project's dynamic dependencies
-* [`sources`](#sources): Specify your app's source files and folders
-* [`extraDependencies`](#extradependencies): Specify undiscoverable dependencies that won't be bundled
-* [`builds`](#builds): Configure one or more builds for your project
-* [`autoBasePath`](#autobasepath): Set the base path for each build to its name
-* [`lint`](#lint): Configure lint warnings
-* [`npm`](#npm): Specify whether to use the `node_modules` folder as the `componentDir` option
-* [`componentDir`](#componentdir): Specify the folder in which web components are located
-* [`moduleResolution`](#moduleresolution): Use Node.js-style module resolution to convert package names to paths
+* [`root`](#root). Specify the path to the root project folder.
+* [`entrypoint`](#entrypoint). Specify the file that imports the app shell.
+* [`shell`](#shell). Specify the app shell.
+* [`fragments`](#fragments). Specify your project's dynamic dependencies.
+* [`sources`](#sources). Specify your app's source files and folders.
+* [`extraDependencies`](#extradependencies). Specify undiscoverable dependencies that won't be bundled.
+* [`builds`](#builds). Configure one or more builds for your project.
+* [`autoBasePath`](#autobasepath). Set the base path for each build to its name.
+* [`lint`](#lint). Configure lint warnings.
+* [`npm`](#npm). Specify whether to use the `node_modules` folder as the `componentDir` option.
+* [`componentDir`](#componentdir). Specify the folder in which web components are located.
+* [`moduleResolution`](#moduleresolution). Use Node.js-style module resolution to convert package names to paths.
 
 ## root
 
