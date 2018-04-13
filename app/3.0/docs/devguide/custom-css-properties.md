@@ -80,12 +80,12 @@ index.html { .caption}
   <head>
     <script type="module" src="./flex-container.js">
     <script type="module" src="./flex-item.js">
-    <!-- import the custom-style polyfill to prevent "leaks" in some browsers -->
+    <!-- custom-style element invokes the custom properties polyfill -->
     <script type="module" src="./node_modules/@polymer/polymer/lib/elements/custom-style.js"></script>
     
-    <!-- wrap document-level styles to avoid "leaks" in some browsers -->
+    <!-- ensure that custom props are polyfilled on browsers that don't support them -->
     <custom-style>
-      <style is="custom-style">
+      <style>
         html {
           /* Set a value for the custom CSS property --flex-direction */
           --flex-direction: column
@@ -164,7 +164,7 @@ index.html (user's code) { .caption }
 ...
 ```
 
-If you provide documentation for the custom properties your element provides, users won't need to know any implementation details. See [Documenting your elements](/{{{polymer_version_dir}}}/docs/tools/documentation) for more information, or take a look at the [documentation for the Polymer `paper-ui-elements`](https://www.webcomponents.org/collection/PolymerElements/paper-ui-elements) for examples.
+If you provide documentation for the custom properties your element provides, users don't need to know any implementation details. See [Documenting your elements](/{{{polymer_version_dir}}}/docs/tools/documentation) for more information, or take a look at the [documentation for the Polymer `paper-ui-elements`](https://www.webcomponents.org/collection/PolymerElements/paper-ui-elements) for examples.
 
 ### Create default values for your CSS properties 
 
@@ -193,12 +193,12 @@ Custom CSS properties inherit down the DOM hierarchy. In the code sample below, 
 ```html
 <html>
   <head>
-    <!-- import the custom-style polyfill -->
+    <!-- custom-style element invokes the custom properties polyfill -->
     <script type="module" src="node_modules/@polymer/polymer/lib/elements/custom-style.js"></script>
 
-    <!-- wrap document-level styles with the custom-style polyfill to prevent style "leak" in some browsers -->
+    <!-- ensure that custom props are polyfilled on browsers that don't support them -->
     <custom-style>
-      <style is="custom-style">
+      <style>
         div {
           /* flex-container is a child of div and will inherit these */
           --theme-dark-blue: #0d47a1;
@@ -240,7 +240,7 @@ index.html { .caption}
 ```html
 ...
 <custom-style>
-  <style is="custom-style">
+  <style>
     html {
       --theme-dark-blue: #0d47a1;
       --theme-light-blue: #e3f2fd;
@@ -307,7 +307,9 @@ selector {
 Use `@apply` to apply a mixin:
 
 ```css
-@apply --mixin-name;
+selector {
+  @apply --mixin-name;
+}
 ```
 
 Suppose we have two custom elements, `<flex-container>` and `<flex-item>`, which can be used together to create row or column layouts.
@@ -318,7 +320,7 @@ flex-container.js {.caption}
 
 ```js
 // import the @apply shim
-import './node_modules/@webcomponents/shadycss/entrypoints/apply-shim.js';
+import '@webcomponents/shadycss/entrypoints/apply-shim.js';
 
 static get template() {
   return html`
@@ -338,7 +340,7 @@ flex-item.js { .caption}
 
 ```js
 // import the @apply shim
-import './node_modules/@webcomponents/shadycss/entrypoints/apply-shim.js';
+import '@webcomponents/shadycss/entrypoints/apply-shim.js';
 
 static get template() {
   return html`
@@ -361,12 +363,10 @@ Users of `flex-item` can set values for the properties in the mixin:
 index.html {.caption}
 
 ```html
-<!-- import the custom-style polyfill -->
-<script type="module" src="./node_modules/@polymer/polymer/lib/elements/custom-style.js"></script>
+<script type="module" src="@polymer/polymer/lib/elements/custom-style.js"></script>
 
-<!-- wrap document-level styles with the custom-style polyfill to prevent style "leak" in some browsers -->
 <custom-style>
-  <style is="custom-style">
+  <style>
     html {
       /* Set global theme colors */
       --theme-dark-blue: #0d47a1;
@@ -394,7 +394,7 @@ Note that any element using the `@apply` syntax must import the `@apply` polyfil
 
 ```js
 // import CSS mixins polyfill
-import './node_modules/@webcomponents/shadycss/entrypoints/apply-shim.js';
+import '@webcomponents/shadycss/entrypoints/apply-shim.js';
 ```
 
 [See it in Plunker](http://plnkr.co/edit/glgUKv?p=preview)

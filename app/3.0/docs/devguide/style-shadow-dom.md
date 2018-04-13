@@ -379,11 +379,11 @@ static get template() {
     <style>
       h1 ::slotted(h1) {
         font-family: sans-serif;
-        color:green;
+        color: green;
       }
       p ::slotted(p) { 
         font-family: sans-serif;
-        color:blue;
+        color: blue;
       }
     </style>  
     <h1><slot name='heading1'></slot></h1>
@@ -535,7 +535,7 @@ import './style-element.js';
 When you create the element that will use the styles, include the style module in the opening tag of the style block:
 
 ```js
-  static template get() {
+  static get template() {
     return html`
       <style include="style-element">
         <!-- Any additional styles go here -->
@@ -642,7 +642,7 @@ index.html { .caption }
 </custom-style>
 ```
 
-`custom-style` is not included in the `@polymer/polymer/polymer-element.js` package. Import `custom-style` from `@polymer/polymer/lib/elements/custom-style.js`:
+`custom-style` is not included in the `@polymer/polymer/polymer-element.js` module. Import `custom-style` from `@polymer/polymer/lib/elements/custom-style.js`:
 
 index.html { .caption }
 
@@ -662,7 +662,7 @@ index.html { .caption }
 </body>
 ```
 
-*Note: You should only use `custom-style` to define styles for the main document. To define styles for an element's local DOM, just use a `<style>` block.*
+**Don't use custom-style inside an element's template.** You should only use `custom-style` to define styles for the main document. To define styles for an element's shadow DOM, just use a `<style>` block. {.alert .alert-info}
 
 ### Examples
 
