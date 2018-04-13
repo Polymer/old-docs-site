@@ -4,6 +4,10 @@ title: Polymer Tools Node.js Support Policy
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 Polymer tools must support a wide range of developers, using a variety of operating systems, toolchains, and possibly corporate and IT support policies. To help our users plan ahead and understand what environments we support, this document details our guidelines and process for supporting versions of Node.js.
 
 This support policy tries to balance the desire to support as many environments as possible with the cost of that support. The JavaScript and Node.js ecosystems have been moving at a very fast pace recently, delivering considerable speed and productivity benefits. We want to take advantage of these benefits to deliver better tools more quickly, but at the same time recognize it can be difficult or imprudent for users to keep up with this pace of change.

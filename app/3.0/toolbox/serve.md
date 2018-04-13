@@ -4,6 +4,10 @@ title: Serve your app
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 You can serve an App Toolbox app using any server technology you want. The [Polymer CLI](/{{{polymer_version_dir}}}/docs/tools/polymer-cli) build
 process supports fast-loading applications that can take advantage of the latest web technologies.
 

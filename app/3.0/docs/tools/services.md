@@ -4,6 +4,10 @@ title: Web services
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 This document is a list of miscellaneous services that you may find useful
 when creating Polymer elements.
 

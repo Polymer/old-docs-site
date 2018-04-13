@@ -4,6 +4,10 @@ title: Declare Properties
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 You can declare properties on an element to add a default value and enable various features in the
 data system.
 

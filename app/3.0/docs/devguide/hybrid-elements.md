@@ -4,6 +4,10 @@ title: Hybrid elements
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 Hybrid elements are Polymer elements designed to run under both Polymer 1.x and Polymer 2.x. Polymer
 2 provides a backwards-compatible API for hybrid elements.
 

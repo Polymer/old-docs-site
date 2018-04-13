@@ -4,6 +4,10 @@ title: Release notes
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 <style>
 .breaking {
   color: red;

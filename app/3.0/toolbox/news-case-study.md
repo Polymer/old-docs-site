@@ -4,6 +4,10 @@ title: "Case study: the News app"
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 News is a full-featured Progressive Web App (PWA) demo built using the Toolbox. You can try it out
 here:
 

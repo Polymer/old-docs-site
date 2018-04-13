@@ -4,6 +4,10 @@ title: Publish an element
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 ## Introduction
 
 So, you want to publish your first reusable Polymer element?

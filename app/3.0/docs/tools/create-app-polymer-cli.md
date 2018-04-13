@@ -4,6 +4,10 @@ title: Create an application project with the Polymer CLI
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 Polymer CLI supports initializing a project folder with one of several application templates.  
 The `polymer-2-application` template is the most basic starting point for a Polymer-based 
 application. Other templates introduce more complex layout and application patterns.

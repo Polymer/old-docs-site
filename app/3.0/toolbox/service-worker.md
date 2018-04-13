@@ -2,6 +2,10 @@
 title: Offline caching with Service Worker Precache
 ---
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 To provide a better experience in offline and spotty network situations, App
 Toolbox uses a service worker to provide offline caching of critical resources. A
 service worker is a script associated with a specific web site that acts as a

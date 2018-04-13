@@ -4,6 +4,10 @@ title: Custom element concepts
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 Custom elements provide a component model for the web. The custom elements specification provides:
 
 *   A mechanism for associating  a class with a custom element name.

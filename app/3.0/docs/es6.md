@@ -4,6 +4,10 @@ title: ES6 and compilation to ES5
 
 <!--toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 Polymer 2.x uses EcmaScript 2015 (commonly known as ES6). The following browsers support all of the
 ES6 features required by Polymer:
 

@@ -4,6 +4,10 @@ title: Build for production
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 ## Overview
 
 ### Why do we need  a build process?

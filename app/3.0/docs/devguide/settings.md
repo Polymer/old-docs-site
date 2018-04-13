@@ -2,6 +2,10 @@
 title: Global Polymer settings
 ---
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 Document-level global Polymer settings can be set
 by creating a `Polymer` object on window before importing the Polymer
 library:

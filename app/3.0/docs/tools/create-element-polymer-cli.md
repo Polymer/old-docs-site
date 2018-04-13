@@ -4,6 +4,10 @@ title: Create an element project with the Polymer CLI
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 This section shows you how to start an element project.
 
 1.  Create a directory for your element project. For projects with a single element,

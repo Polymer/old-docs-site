@@ -4,6 +4,10 @@ title: Test your elements
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 This guide shows you the basics of using Polymer CLI to run unit tests, and
 how to accomplish various tasks and scenarios using the Web Component Tester
 library (the underlying library that powers Polymer CLI's testing tools).

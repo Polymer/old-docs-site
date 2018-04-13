@@ -4,6 +4,10 @@ title: Polymer CLI Commands
 
 <!-- toc -->
 
+<div>
+{% include 'outdated.html' %}
+</div>
+
 This section explains various useful Polymer CLI commands that you'll want to incorporate into your
 development workflow while you build your element or app project.
 
