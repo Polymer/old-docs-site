@@ -62,16 +62,18 @@ See [Document your elements](documentation) to learn more.
 
 There are two steps to publishing an element on GitHub:
 
--   Push your work to a GitHub repo and tag it with
+1.  [Push your element to a GitHub repo](#pushtogh) and tag it with
     a release number, so people can install it using Yarn.
 
     In this step you create a *master* branch containing the bare-minimum
     of code that needs to be consumed by other apps or elements.
 
--   Push a `gh-pages` branch to your repo. This provides live docs and previews of your element via GitHub pages.
+2.  [Push a `gh-pages` branch to your repo](#pushghpages). This provides
+    live docs and previews of your element via GitHub pages.
 
-    In this step you create a *gh-pages (GitHub pages)* branch containing a landing page for your element.
-    This branch contains **checked-in dependencies**, **demos** and **documentation**.
+    In this step you create a *gh-pages (GitHub pages)* branch containing a
+    landing page for your element. This branch contains 
+    **checked-in dependencies**, **demos** and **documentation**.
 
 ### Pushing your element to GitHub
 
@@ -135,52 +137,104 @@ Once you are happy with the information you have entered into the above form, cl
 
 #### Test install your element
 
-You should now be able to install your component. Change to a new directory for testing and run:
+You should now be able to install your component. Change to a new directory for testing and initialize a new project:
+
+    # Initialize a project to install your component into.
+    yarn init 
+
+Complete the Yarn initialization process. Then install your component:
 
     # Replace <username> with your GitHub username and <test-element>
     # with your repository's name. 
-    yarn install --flat <username>/<test-element>
+    yarn add <username>/<test-element> --flat
 
 ### Publishing a demo and landing page for your element
 
 As was mentioned earlier, the Polymer CLI element project template comes with
-built-in support for creating demos and documentation for your element. This
-section shows you how to host your demo and documentation on GitHub Pages.
+built-in support for creating demos and documentation for your element. 
 
-Walk through the commands below to use the Polymer team's [`deploy-to-gh-pages.sh` 
-script](https://github.com/PolymerLabs/deploy-to-gh-pages.sh/blob/master/deploy-to-gh-pages.sh) to push a 
-landing page for your element to GitHub Pages. 
+Follow the process below to create and upload a demo of your Polymer element on GitHub. The  (https://git)
 
-**Important:** Make sure you run the `deploy-to-gh-pages.sh` script in a temporary directory,
-as described below. The script overwrites the contents of the current directory.
-{ .alert .alert-error }
+1.  Create a `gh-pages` branch from the branch you want to demo.
+    
+    ```
+    git checkout master
+    git checkout -b gh-pages
+    ```
 
-In the commands below, replace <code><var><username></var></code> with your
-GitHub username, and <code><var><test-element></var></code> with your GitHub
-repository name. 
+2.  Install your project dependencies. 
 
-    # git clone the deploy-to-gh-pages.sh repository somewhere 
-    # outside of your element project
-    git clone https://github.com/PolymerLabs/deploy-to-gh-pages.sh
+    ```
+    yarn install --flat
+    ```
 
-    # Create a temporary directory for publishing your element and cd into it
-    mkdir temp && cd temp
+3.  Build your project (`polymer build`). For a sample `polymer.json` that will generate an appropriate build for this purpose, try the one in the [Polymer 3.0 Sample Element](https://github.com/PolymerLabs/start-polymer3-element):
 
-    # Run the script. This will allow you to push a demo-friendly
-    # version of your page and its dependencies to a GitHub pages branch
-    # of your repository (gh-pages). Below, we pass in a GitHub username
-    # and the repo name for our element
-    ../deploy-to-gh-pages.sh/deploy-to-gh-pages.sh <username> <test-element>
+    polymer.json {.caption}
 
-    # Finally, clean-up your temporary directory as you no longer require it
-    cd ..
-    rm -rf temp
+    ```json
+    {
+        "entrypoint": "demo/index.html",
+        "shell": "start-polymer3-element.js",
+        "sources": ["demo/*", "start-polymer3-element.js", "package.json", "polymer.json"],
+        "npm": true,
+        "moduleResolution": "node",
+        "builds":[
+        {
+            "name": "gh-pages",
+            "addPushManifest": false,
+            "addServiceWorker": false,
+            "bundle": false,
+            "html": {
+            "minify": false
+            },
+            "css": {
+            "minify": false
+            },
+            "js": {
+            "minify": false,
+            "compile": false
+            },
+            "basePath": "/components/start-polymer3-element/"
+        }
+        ]
+    }
+    ```
 
-This will create a new `gh-pages` branch (or clone and clear the current one) then
-push a shareable version of your element to it. To see your newly-published docs,
-point a browser at:
+4.  Create a `components` folder and copy your project dependencies to it.
+
+    ```
+    mkdir components
+    cp node_modules/* components/
+    ```
+
+5.  Replace the contents of `components/node_modules/@polymer` folder with the built files in `build/gh-pages/node_modules/@polymer`.
+
+    ```
+    rm -rf components/node_modules/@polymer
+    cp build/gh-pages/node_modules/@polymer components/node_modules/
+    ```
+
+6.  Copy your built source files to the `components` folder.
+
+    ```
+    cp build/gh-pages/test-element.js components/test-element.js
+    ## copy your other source files as needed
+    ```
+
+7.  Commit the files to the `gh-pages` branch.
+
+    ```    
+    git add components
+    git commit -m "Create gh-pages demo"
+    git push origin gh-pages
+    ```
+
+This will push a shareable version of your element to the `gh-pages` branch. To see your newly-published docs, point a browser at:
 
     http://<username>.github.io/<test-element>/
+
+It might take a few minutes for your pages to appear. 
 
 ## Share
 
