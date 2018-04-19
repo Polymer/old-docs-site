@@ -147,11 +147,11 @@ As was mentioned earlier, the Polymer CLI element project template comes with
 built-in support for creating demos and documentation for your element. This
 section shows you how to host your demo and documentation on GitHub Pages.
 
-Walk through the commands below to use the Polymer team's [`gp.sh` 
-script](https://github.com/Polymer/tools/blob/master/bin/gp.sh) to push a 
+Walk through the commands below to use the Polymer team's [`deploy-to-gh-pages.sh` 
+script](https://github.com/PolymerLabs/deploy-to-gh-pages.sh/blob/master/deploy-to-gh-pages.sh) to push a 
 landing page for your element to GitHub Pages. 
 
-**Important:** Make sure you run the `gp.sh` script in a temporary directory,
+**Important:** Make sure you run the `deploy-to-gh-pages.sh` script in a temporary directory,
 as described below. The script overwrites the contents of the current directory.
 { .alert .alert-error }
 
@@ -159,18 +159,18 @@ In the commands below, replace <code><var><username></var></code> with your
 GitHub username, and <code><var><test-element></var></code> with your GitHub
 repository name. 
 
-    # git clone the Polymer tools repository somewhere outside of your 
-    # element project
-    git clone git://github.com/Polymer/tools.git
+    # git clone the deploy-to-gh-pages.sh repository somewhere 
+    # outside of your element project
+    git clone https://github.com/PolymerLabs/deploy-to-gh-pages.sh
 
     # Create a temporary directory for publishing your element and cd into it
     mkdir temp && cd temp
 
-    # Run the gp.sh script. This will allow you to push a demo-friendly
+    # Run the script. This will allow you to push a demo-friendly
     # version of your page and its dependencies to a GitHub pages branch
     # of your repository (gh-pages). Below, we pass in a GitHub username
     # and the repo name for our element
-    ../tools/bin/gp.sh <username> <test-element>
+    ../deploy-to-gh-pages.sh/deploy-to-gh-pages.sh <username> <test-element>
 
     # Finally, clean-up your temporary directory as you no longer require it
     cd ..
