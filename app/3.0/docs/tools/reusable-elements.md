@@ -13,7 +13,6 @@ When you're done, you'll have:
 
 -   A local git repo for your element, based on the official boilerplate.
 -   A published, Yarn-installable version of your element on GitHub.
--   Documentation and a running demo of your element hosted on GitHub pages.
 
 ## Set up
 
@@ -58,24 +57,7 @@ The Polymer CLI element project comes with built-in documentation.
 
 See [Document your elements](documentation) to learn more. 
 
-## Publish
-
-There are two steps to publishing an element on GitHub:
-
-1.  [Push your element to a GitHub repo](#pushtogh) and tag it with
-    a release number, so people can install it using Yarn.
-
-    In this step you create a *master* branch containing the bare-minimum
-    of code that needs to be consumed by other apps or elements.
-
-2.  [Push a `gh-pages` branch to your repo](#pushghpages). This provides
-    live docs and previews of your element via GitHub pages.
-
-    In this step you create a *gh-pages (GitHub pages)* branch containing a
-    landing page for your element. This branch contains 
-    **checked-in dependencies**, **demos** and **documentation**.
-
-### Pushing your element to GitHub
+## Publish your element to GitHub
 
 Once you're happy with your element, you’ll want to push the code to GitHub and tag a new version of it.
 
@@ -147,99 +129,3 @@ Complete the Yarn initialization process. Then install your component:
     # Replace <username> with your GitHub username and <test-element>
     # with your repository's name. 
     yarn add <username>/<test-element> --flat
-
-### Publishing a demo and landing page for your element
-
-As was mentioned earlier, the Polymer CLI element project template comes with
-built-in support for creating demos and documentation for your element. 
-
-Follow the process below to create and upload a demo of your Polymer element on GitHub. The  (https://git)
-
-1.  Create a `gh-pages` branch from the branch you want to demo.
-    
-    ```
-    git checkout master
-    git checkout -b gh-pages
-    ```
-
-2.  Install your project dependencies. 
-
-    ```
-    yarn install --flat
-    ```
-
-3.  Build your project (`polymer build`). For a sample `polymer.json` that will generate an appropriate build for this purpose, try the one in the [Polymer 3.0 Sample Element](https://github.com/PolymerLabs/start-polymer3-element):
-
-    polymer.json {.caption}
-
-    ```json
-    {
-        "entrypoint": "demo/index.html",
-        "shell": "start-polymer3-element.js",
-        "sources": ["demo/*", "start-polymer3-element.js", "package.json", "polymer.json"],
-        "npm": true,
-        "moduleResolution": "node",
-        "builds":[
-        {
-            "name": "gh-pages",
-            "addPushManifest": false,
-            "addServiceWorker": false,
-            "bundle": false,
-            "html": {
-            "minify": false
-            },
-            "css": {
-            "minify": false
-            },
-            "js": {
-            "minify": false,
-            "compile": false
-            },
-            "basePath": "/components/start-polymer3-element/"
-        }
-        ]
-    }
-    ```
-
-4.  Create a `components` folder and copy your project dependencies to it.
-
-    ```
-    mkdir components
-    cp node_modules/* components/
-    ```
-
-5.  Replace the contents of `components/node_modules/@polymer` folder with the built files in `build/gh-pages/node_modules/@polymer`.
-
-    ```
-    rm -rf components/node_modules/@polymer
-    cp build/gh-pages/node_modules/@polymer components/node_modules/
-    ```
-
-6.  Copy your built source files to the `components` folder.
-
-    ```
-    cp build/gh-pages/test-element.js components/test-element.js
-    ## copy your other source files as needed
-    ```
-
-7.  Commit the files to the `gh-pages` branch.
-
-    ```    
-    git add components
-    git commit -m "Create gh-pages demo"
-    git push origin gh-pages
-    ```
-
-This will push a shareable version of your element to the `gh-pages` branch. To see your newly-published docs, point a browser at:
-
-    http://<username>.github.io/<test-element>/
-
-It might take a few minutes for your pages to appear. 
-
-## Share
-
-You can now share the link to your element hosted on GitHub pages with the
-world. The Polymer CLI element project gives you a styled documentation page
-that looks similar to the screenshot below: 
-
-![Preview of the component landing page, displaying the element title in the header with a demo link next to it. The rest of the page contains formatted summary and attribute/method/event information parsed from the documentation in your element](/images/3.0/reusable-elements/documentation-page.png)
