@@ -4,62 +4,45 @@ title: Web services
 
 <!-- toc -->
 
-<div>
-{% include 'outdated.html' %}
-</div>
-
 This document is a list of miscellaneous services that you may find useful
 when creating Polymer elements.
 
-## <b>polygit</b>—CDN web service for serving components {#polygit}
+## <b>unpkg</b>—CDN web service for npm {#unpkg}
 
-[Polygit](http://polygit.org/) is a proxy server for serving components from a CDN. **It is not 
-meant to be used for production apps**, but is very useful when prototyping and sharing jsbins.
+[unpkg](https://unpkg.com/) is a free CDN for npm packages. [It has no guarantees of uptime or support](https://unpkg.com/#/about), but is very useful when prototyping and sharing code samples.
 
-Usage:
+Current use cases:
 
-```
-<head>
-  <base href="https://polygit.org/components/"> <!-- saves typing! -->
-  <script src="webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="paper-button/paper-button.html">
-  <link rel="import" href="iron-selector/iron-selector.html">
-</head>
-```
+* Importing the WebComponents loader:
 
-For more documentation, see [http://polygit.org](http://polygit.org/).
+  index.html {.caption}
 
-Source: [github.com/PolymerLabs/polygit](https://github.com/PolymerLabs/polygit)
-
-## <b>polystyle</b>—web service for creating style modules {#polystyle}
-
-[polystyle](https://poly-style.appspot.com/demo/) is a web service that can wrap an existing 
-stylesheet on a remote server as Polymer [style 
-module](/2.0/docs/devguide/style-shadow-dom#style-modules). This is useful if you have a hosted 
-third-party stylesheet that you want to use in an element or your application.
-
-Usage:
-
-```
-<head>
-  <link rel="import" href="bower_components/polymer/polymer.html">
-  <link rel="import" 
-href="https://poly-style.appspot.com?id=theme-styles&url=https://example.com/styles.css">
-  <style is="custom-style" include="theme-styles">
+  ```html
+  ...
+  <head>
+    <script type="module" src="https://unpkg.com/@webcomponents/webcomponentsjs/webcomponents-loader.js">
     ...
-  </style>
-</head>
-```
+  </head>
+  ...
+  ```
 
-For more information, see 
-[https://poly-style.appspot.com/demo/](https://poly-style.appspot.com/demo/).
+* Importing the Polymer library, utilities, and helper functions from the `@polymer` package:
 
-**Related tools**
+  my-element.js {.caption}
 
-- [gulp-style-modules](https://github.com/MaKleSoft/gulp-style-modules)—3rd party Gulp plugin for 
-wrapping local CSS files into style modules
+  ```js
+  // Import the base PolymerElement class and html helper 
+  import { PolymerElement, html } from 'https://unpkg.com/@polymer/polymer@3.0.0-pre.12/polymer-element.js';
 
-Source: [github.com/PolymerLabs/polystyles](https://github.com/PolymerLabs/polystyles)
+  // Import the FlattenedNodesObserver utility
+  import { FlattenedNodesObserver } from 'https://unpkg.com/@polymer/polymer@3.0.0-pre.12/lib/utils/flattened-nodes-observer.js';
+  
+  // Import the dom-repeat helper element
+  import 'https://unpkg.com/@polymer/polymer@3.0.0-pre.12/lib/elements/dom-repeat.js';
+  ```
+
+**Currently, we don't have a way to import the Polymer elements from unpkg.** The Polymer elements are hosted on npm as well, but imports of a Polymer element (for example, `import 'https://unpkg.com/@polymer/paper-checkbox@3.0.0-pre.12/paper-checkbox.js'`) will try to load incorrect import paths.
+{.alert .alert-warning}
 
 ## <b>polyicon</b>—create an optimized custom icon set {#polyicon}
 
