@@ -133,7 +133,7 @@ customElements.define('x-class', XClass);
 ```
 
 The `mixinBehavior` function also mixes in the Legacy APIs, the same as if you extended
-`Polymer.LegacyElement`. These APIs are required since since hybrid behaviors depend on them.
+`Polymer.LegacyElement`. These APIs are required since hybrid behaviors depend on them.
 
 ## Define an element in the main HTML document {#main-document-definitions}
 
