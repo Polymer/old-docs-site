@@ -2,7 +2,8 @@
   "entrypoint": "app/index.html",
   "shell": "app/elements/pw-shell.html",
   "fragments": [
-    "app/elements/lazy-elements.html"
+    "app/elements/lazy-elements.html",
+    "app/elements/stack-blitz.html"
   ],
   "builds": [{
     "bundle": true,
