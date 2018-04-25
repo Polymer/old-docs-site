@@ -186,7 +186,7 @@ function getIndexPage(analysis, index) {
 <section>
   <div class="name">
     <a href="polymer-element">
-      PolymerElement
+      polymer-element.js
     </a>
   </div>
   <marked-element sanitize markdown="Base class that provides the core API for
@@ -214,12 +214,10 @@ function getSubdir(fn) {
  * @param {FeatureIndex} featureIndex
  */
 function getIndexPageSubsection(subsection, filenamesIn, featureIndex) {
-  const capitalizedSubsection =
-      subsection.charAt(0).toUpperCase() + subsection.slice(1);
   return `
 
 <section anchor-id="${subsection}">
-  <h2>${capitalizedSubsection}</h2>
+  <h2>${subsection}/</h2>
 
   ${filenamesIn.map(fn => getFilenameDescription(fn, featureIndex)).join('\n\n')}
 </section>
