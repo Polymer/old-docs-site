@@ -1,5 +1,16 @@
 /**
- * Run from `npm run generate-api-docs`
+ * Run from `npm run generate-api-docs-3`
+ *
+ * Note that this depends on polymer-analyzer v3, which is in prerelease at
+ * time of writing.
+ * Full instructions to run:
+ *     cd scripts
+ *     mkdir node_modules
+ *     npm install polymer-analyzer@^3.0.0-pre.24
+ *     node generate_api_docs_3.js
+ *
+ * Or to run it on a local checkout of polymer core:
+ *     node generate_api_docs_3.js ../../path/to/your/polymer/
  */
 // @ts-check
 
@@ -27,7 +38,7 @@ async function exec(command) {
 const apiDocsPath = '../app/3.0/docs/api/';
 const rootNamespace = 'Polymer';
 
-// TODO: Check out an actual release SHA to generate docs off of.
+// TODO: Change to master once 3.x is merged into master.
 const releaseCommitish = '3.x';
 
 process.on('unhandledRejection', (reason, p) => {
