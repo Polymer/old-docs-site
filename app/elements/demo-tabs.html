@@ -76,7 +76,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-tabs selected="{{_selected}}" class="flex">
             <slot name="tabs"></slot>
           </paper-tabs>
-          <a href="[[src]]" target="_blank" hidden$="[[_hideEditorButton(_srcDefined,_projectPathDefined)]]">
+          <a href="[[src]]" target="_blank" hidden$="[[_hideEditorButton]]">
             <paper-button id="editButton" on-tap="_launchEditor" raised>
               Edit and Preview
             </paper-button>
@@ -87,7 +87,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <slot></slot>
         </iron-selector>
 
-        <div class="results" hidden$=[[!_srcDefined]]>
+        <div class="results" hidden$=[[_iframeHidden]]>
           <slot name="results"></slot>
         </div>
       </div>
@@ -142,11 +142,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         value: 'static',
       },
 
-      _isPlunkr: {
+      _iframeHidden: {
         type: Boolean,
       },
 
-      _isStackBlitz: {
+      _hideEditorButton: {
         type: Boolean,
       },
     },
@@ -158,22 +158,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _srcProjectPathChanged: function(src, projectPath) {
-      this._srcDefined = !!this.src;
-      this._projectPathDefined = !!this.projectPath;
-
-      if (!this._srcDefined && !this._projectPathDefined) {
-        this._hideEditorButton = true;
-      }
-    },
-
-    _hideEditorButton: function(srcDefined, prjoectPathDefined) {
-      return !srcDefined && !prjoectPathDefined;
+      const isPlunkr = !!this.src;
+      const isStackBlitz = !!this.projectPath;
+      this._iframeHidden = !isPlunkr;
+      this._hideEditorButton = !isPlunkr && !isStackBlitz;
     },
 
     _launchEditor() {
-      if (this._projectPathDefined) {
+      if (!!this.projectPath) {
         this._launchInlineEditor();
-      } else if (this._srcDefined) {
+      } else if (!!this.src) {
         this._launchPlunkr();
       }
     },
