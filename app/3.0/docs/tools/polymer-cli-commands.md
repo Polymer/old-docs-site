@@ -196,7 +196,13 @@ See also:
 
 ## polymer install {#install}
 
-Installs dependencies. Running `polymer install` is equivalent to running `npm install`.
+Installs dependencies.
+
+If the --npm flag is given, running `polymer install` is equivalent to running `npm install`:
+
+```
+polymer install --npm
+```
 
 ## polymer lint {#lint}
 
