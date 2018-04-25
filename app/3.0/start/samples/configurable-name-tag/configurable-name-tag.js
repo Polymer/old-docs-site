@@ -1,4 +1,4 @@
-import {Element as PolymerElement, html} from 'https://unpkg.com/@polymer/polymer@3.0.0-pre.7/polymer-element.js'
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js'
 
 class ConfigurableNameTag extends PolymerElement {
   static get properties () {
@@ -9,7 +9,7 @@ class ConfigurableNameTag extends PolymerElement {
           value: 'Daniel',
       }
     };
-  } 
+  }
   static get template () {
     return html`
       <!-- bind to the "owner" property -->

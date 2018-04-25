@@ -1,0 +1,12 @@
+{
+  "files": [
+    "editable-name-tag.js",
+    "index.html",
+    "index.js"
+  ],
+  "dependencies": {
+    "@polymer/polymer": "next",
+    "@webcomponents/webcomponentsjs": "^1.0.0",
+    "@polymer/iron-input": "next"
+  }
+}

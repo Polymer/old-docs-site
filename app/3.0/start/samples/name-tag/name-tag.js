@@ -1,9 +1,9 @@
-import {Element as PolymerElement, html} from "https://unpkg.com/@polymer/polymer@3.0.0-pre.7/polymer-element.js"
+import {PolymerElement, html} from "@polymer/polymer/polymer-element.js"
 
 class NameTag extends PolymerElement {
   constructor() {
     super();
-    
+
     /* set this element's owner property */
     this.owner = 'Daniel';
   }
@@ -16,9 +16,9 @@ class NameTag extends PolymerElement {
 }
 customElements.define('name-tag', NameTag);
 
-   /* TODO: 
+   /* TODO:
      * - Try editing the value of the `owner` property.
-     * - Try adding another property and binding it in 
+     * - Try adding another property and binding it in
      *   your component. Hint: Add the following property
      *   definition to the constructor:
      *   `this.propertyName = "Property contents";`
