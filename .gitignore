@@ -3,9 +3,11 @@
 # Generated files/folders
 *.pyc
 app/css/*
+app/js/sdk*
 dist
 build
 
 # Dev directories
 /app/bower_components
 /node_modules
+/app/node_modules
