@@ -214,10 +214,12 @@ function getSubdir(fn) {
  * @param {FeatureIndex} featureIndex
  */
 function getIndexPageSubsection(subsection, filenamesIn, featureIndex) {
+  const capitalizedSubsection =
+      subsection.charAt(0).toUpperCase() + subsection.slice(1);
   return `
 
 <section anchor-id="${subsection}">
-  <h2>${subsection}</h2>
+  <h2>${capitalizedSubsection}</h2>
 
   ${filenamesIn.map(fn => getFilenameDescription(fn, featureIndex)).join('\n\n')}
 </section>
