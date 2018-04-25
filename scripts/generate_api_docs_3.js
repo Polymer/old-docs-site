@@ -64,88 +64,6 @@ async function main() {
   fs.writeFileSync('polymer3_analysis.json', json);
   console.log(' done.');
 
-  function generateNamespace(namespace) {
-
-    const overview = {
-      name : namespace.name,
-      description : namespace.description,
-      summary : namespace.summary,
-      namespaces : [],
-      elements : [],
-      classes : [],
-      mixins : [],
-      behaviors : [],
-      functions : namespace.functions, // already summarized
-    };
-
-    if (namespace.elements) {
-      for (const element of namespace.elements) {
-        const summary = {
-          name : element.name,
-          tagname : element.tagname,
-          summary : element.summary,
-        };
-        overview.elements.push(summary);
-        const fileContents = elementPage(element);
-        const filename =
-            path.join(apiDocsPath, getElementUrl(element) + '.html');
-        fs.writeFileSync(filename, fileContents);
-      }
-    }
-
-    if (namespace.classes) {
-      for (const klass of namespace.classes) {
-        if (!klass.name) {
-          continue;
-        }
-        const summary = {
-          name : klass.name,
-          summary : klass.summary,
-        };
-        overview.classes.push(summary);
-        const fileContents = classPage(klass);
-        const filename = path.join(apiDocsPath, getClassUrl(klass) + '.html');
-        fs.writeFileSync(filename, fileContents);
-      }
-    }
-
-    if (namespace.mixins) {
-      for (const mixin of namespace.mixins) {
-        const summary = {
-          name : mixin.name,
-          summary : mixin.summary,
-        };
-        overview.mixins.push(summary);
-
-        const fileContents = mixinPage(mixin);
-        const filename = path.join(apiDocsPath, getMixinUrl(mixin) + '.html');
-        fs.writeFileSync(filename, fileContents);
-      }
-    }
-
-    if (namespace.namespaces) {
-      for (const nestedNamespace of namespace.namespaces) {
-        const summary = {
-          name : nestedNamespace.name,
-          summary : nestedNamespace.summary,
-        };
-        overview.namespaces.push(summary);
-        generateNamespace(nestedNamespace);
-      }
-    }
-
-    if (namespace.name) {
-      const fileContents = namespacePage(overview);
-      let filename;
-      if (namespace.name === 'Polymer') {
-        filename = 'index.html';
-      } else {
-        filename = getNamespaceUrl(namespace) + '.html';
-      }
-      const filepath = path.join(apiDocsPath, filename);
-      fs.writeFileSync(filepath, fileContents);
-    }
-  }
   fs.mkdirSync(path.join(apiDocsPath, 'elements'));
   fs.mkdirSync(path.join(apiDocsPath, 'legacy'));
   fs.mkdirSync(path.join(apiDocsPath, 'mixins'));
@@ -184,9 +102,18 @@ function indexFeaturesByFile(analysis) {
       map.set(filename, result);
     }
     result.allFeatures.push(feature);
-    result.analysis[kind] = result.analysis[kind] || [];
-    result.analysis[kind].push(feature);
+    if (kind === 'behaviors') {
+      result.analysis.metadata = result.analysis.metadata || {};
+      result.analysis.metadata.polymer = result.analysis.metadata.polymer || {};
+      result.analysis.metadata.polymer.behaviors =
+          result.analysis.metadata.polymer.behaviors || [];
+      result.analysis.metadata.polymer.behaviors.push(feature);
+    } else {
+      result.analysis[kind] = result.analysis[kind] || [];
+      result.analysis[kind].push(feature);
+    }
   }
+  (analysis.metadata && analysis.metadata.polymer && analysis.metadata.polymer.behaviors || []).map(f => index(f, 'behaviors'));
   (analysis.elements || []).map(f => index(f, 'elements'));
   (analysis.classes || []).map(f => index(f, 'classes'));
   (analysis.functions || []).map(f => index(f, 'functions'));
@@ -228,17 +155,33 @@ function getIndexPage(analysis, index) {
     padding: 20px 40px;
   }
   .apidocs-main section {
-    padding: 15px 40px;
+    padding: 20px 0px;
+  }
+  .apidocs-main section>* {
+    margin: 0px;
+  }
+  .apidocs-main a {
+    color: currentColor;
+    text-decoration: none;
+  }
+  .apidocs-main a:hover {
+    color: rgb(21, 101, 192);
+  }
+  .apidocs-main .name a {
+    font-weight: bold;
   }
 </style>
 <div class="apidocs-main">
 <section>
-  <div class="name">PolymerElement</div>
-  <div class='description'>
-    Base class that provides the core API for Polymer's meta-programming
-    features including template stamping, data-binding, attribute
-    deserialization, and property change observation.
+  <div class="name">
+    <a href="polymer-element">
+      PolymerElement
+    </a>
   </div>
+  <marked-element sanitize markdown="Base class that provides the core API for
+    Polymer's meta-programming features including template stamping,
+    data-binding, attribute deserialization, and property change observation.">
+  </marked-element>
 </section>
 
 ${[...new Set(['elements', 'mixins', 'utils', 'legacy', ...filenamesBySubdir.keys()])].map((section) => getIndexPageSubsection(section, filenamesBySubdir.get(section), index)).join('\n\n')}
@@ -260,9 +203,6 @@ function getSubdir(fn) {
  * @param {FeatureIndex} featureIndex
  */
 function getIndexPageSubsection(subsection, filenamesIn, featureIndex) {
-  if (filenamesIn === undefined) {
-    console.log(`subsection: ${subsection}`);
-  }
   return `
 
 <section anchor-id="${subsection}">
@@ -406,12 +346,23 @@ function getFilenameDescription(filename, featureIndex) {
 
   return `
     <section>
-      <div class="name">${shortName}</div>
-      <div class='description'>
-        ${description}
+      <div class="name">
+        <a href="${relativeUrlForFilename(filename)}">
+          ${shortName}
+        </a>
       </div>
+      <marked-element sanitize markdown="${escape(description.trim())}">
+      </marked-element>
     </section>
   `
+}
+
+/**
+ * @param {string} moduleFilename
+ */
+function relativeUrlForFilename(moduleFilename) {
+  return moduleFilename
+      .split('/').filter(f => f !== 'lib').join('/').replace(/\.js$/, '');
 }
 
 /**
@@ -419,14 +370,18 @@ function getFilenameDescription(filename, featureIndex) {
  * @param {format.Analysis} moduleAnalysis
  */
 function modulePage(filename, moduleAnalysis) {
+  const shortName = filename.split('/').slice(-1)[0].replace(/\..*$/, '');
   const jsonString = escape(JSON.stringify(moduleAnalysis));
   return `{% set markdown = "true" %}
-{% set title = "${filename}" %}
+{% set title = "${shortName} Module" %}
 {% extends "templates/base-devguide.html" %}
-{% block title %} API Reference for ${filename}{% endblock %}
+{% block title %}${shortName} – API Reference{% endblock %}
 {% block content %}
-<iron-doc-viewer base-href="/3.0/docs/api" descriptor="${
-      jsonString}"></iron-doc-viewer>
+<iron-doc-module
+    base-href="/3.0/docs/api"
+    module-specifier="@polymer/polymer/${filename}"
+    descriptor="${
+      jsonString}"></iron-doc-module>
 {% endblock %}
 `
 }

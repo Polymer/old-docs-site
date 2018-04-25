@@ -9,17 +9,33 @@
     padding: 20px 40px;
   }
   .apidocs-main section {
-    padding: 15px 40px;
+    padding: 20px 0px;
+  }
+  .apidocs-main section>* {
+    margin: 0px;
+  }
+  .apidocs-main a {
+    color: currentColor;
+    text-decoration: none;
+  }
+  .apidocs-main a:hover {
+    color: rgb(21, 101, 192);
+  }
+  .apidocs-main .name a {
+    font-weight: bold;
   }
 </style>
 <div class="apidocs-main">
 <section>
-  <div class="name">PolymerElement</div>
-  <div class='description'>
-    Base class that provides the core API for Polymer's meta-programming
-    features including template stamping, data-binding, attribute
-    deserialization, and property change observation.
+  <div class="name">
+    <a href="polymer-element">
+      PolymerElement
+    </a>
   </div>
+  <marked-element sanitize markdown="Base class that provides the core API for
+    Polymer's meta-programming features including template stamping,
+    data-binding, attribute deserialization, and property change observation.">
+  </marked-element>
 </section>
 
 
@@ -29,63 +45,79 @@
 
   
     <section>
-      <div class="name">array-selector.js</div>
-      <div class='description'>
-        
-      Module providing tools for maintaining a mapping between a master
-      `items` array and a subset of those items that are selected.
-  
+      <div class="name">
+        <a href="elements/array-selector">
+          array-selector.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Module providing tools for maintaining a mapping between a master
+      `items` array and a subset of those items that are selected.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">custom-style.js</div>
-      <div class='description'>
-        Custom element for defining styles in the main document that can
-  take advantage of Polymer's style scoping and custom properties shims.
+      <div class="name">
+        <a href="elements/custom-style">
+          custom-style.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Custom element for defining styles in the main document that can
+  take advantage of Polymer&apos;s style scoping and custom properties shims.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">dom-bind.js</div>
-      <div class='description'>
-        Custom element to allow using Polymer's template features (data
-  binding, declarative event listeners, etc.) in the main document.
+      <div class="name">
+        <a href="elements/dom-bind">
+          dom-bind.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Custom element to allow using Polymer&apos;s template features (data
+  binding, declarative event listeners, etc.) in the main document.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">dom-if.js</div>
-      <div class='description'>
-        Custom element that conditionally stamps and hides or removes
-  template content based on a boolean flag.
+      <div class="name">
+        <a href="elements/dom-if">
+          dom-if.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Custom element that conditionally stamps and hides or removes
+  template content based on a boolean flag.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">dom-module.js</div>
-      <div class='description'>
-        Custom element that provides a registry of relocatable DOM content
-  by `id` that is agnostic to bundling.
+      <div class="name">
+        <a href="elements/dom-module">
+          dom-module.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Custom element that provides a registry of relocatable DOM content
+  by `id` that is agnostic to bundling.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">dom-repeat.js</div>
-      <div class='description'>
-        Custom element for stamping instance of a template bound to
-  items in an array.
+      <div class="name">
+        <a href="elements/dom-repeat">
+          dom-repeat.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Custom element for stamping instance of a template bound to
+  items in an array.">
+      </marked-element>
     </section>
   
 </section>
@@ -98,119 +130,144 @@
 
   
     <section>
-      <div class="name">dir-mixin.js</div>
-      <div class='description'>
-        
-      Mixin that allows elements to use the `:dir` CSS Selector to
-      have text direction specific styling.
-  
+      <div class="name">
+        <a href="mixins/dir-mixin">
+          dir-mixin.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Mixin that allows elements to use the `:dir` CSS Selector to
+      have text direction specific styling.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">disable-upgrade-mixin.js</div>
-      <div class='description'>
-        
-      Mixin that allows the element to boot up in a non-enabled
+      <div class="name">
+        <a href="mixins/disable-upgrade-mixin">
+          disable-upgrade-mixin.js
+        </a>
+      </div>
+      <marked-element sanitize markdown="Mixin that allows the element to boot up in a non-enabled
       state when the `disable-upgrade` attribute is present. This mixin is
       designed to be used with element classes like PolymerElement that perform
-      initial startup work when they are first connected.
-  
-      </div>
+      initial startup work when they are first connected.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">element-mixin.js</div>
-      <div class='description'>
-        
-      Element class mixin that provides the core API for Polymer's
-      meta-programming features. Also provides some telemetry APIs.
-  
+      <div class="name">
+        <a href="mixins/element-mixin">
+          element-mixin.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Element class mixin that provides the core API for Polymer&apos;s
+      meta-programming features. Also provides some telemetry APIs.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">gesture-event-listeners.js</div>
-      <div class='description'>
-        Element class mixin that provides API for adding Polymer's
+      <div class="name">
+        <a href="mixins/gesture-event-listeners">
+          gesture-event-listeners.js
+        </a>
+      </div>
+      <marked-element sanitize markdown="Element class mixin that provides API for adding Polymer&apos;s
   cross-platform
-gesture events to nodes
-      </div>
+gesture events to nodes">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">mutable-data.js</div>
-      <div class='description'>
-        
-      Mixins for skipping strict dirty checking of objects and arrays.
-  
+      <div class="name">
+        <a href="mixins/mutable-data">
+          mutable-data.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Mixins for skipping strict dirty checking of objects and arrays.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">properties-changed.js</div>
-      <div class='description'>
-        Element class mixin for reacting to property changes from
-  generated property accessors.
+      <div class="name">
+        <a href="mixins/properties-changed">
+          properties-changed.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Element class mixin for reacting to property changes from
+  generated property accessors.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">properties-mixin.js</div>
-      <div class='description'>
-        Mixin that provides a minimal starting point for using
-the PropertiesChanged mixin by providing a declarative `properties` object.
+      <div class="name">
+        <a href="mixins/properties-mixin">
+          properties-mixin.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Mixin that provides a minimal starting point for using
+the PropertiesChanged mixin by providing a declarative `properties` object.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">property-accessors.js</div>
-      <div class='description'>
-        Element class mixin for reacting to property changes from
-  generated property accessors.
+      <div class="name">
+        <a href="mixins/property-accessors">
+          property-accessors.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Element class mixin for reacting to property changes from
+  generated property accessors.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">property-effects.js</div>
-      <div class='description'>
-        Element class mixin that provides meta-programming for Polymer's
-template binding and data observation system.
+      <div class="name">
+        <a href="mixins/property-effects">
+          property-effects.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Element class mixin that provides meta-programming for Polymer&apos;s
+template binding and data observation system.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">strict-binding-parser.js</div>
-      <div class='description'>
-        Mixin that parses binding expressions and generates corresponding metadata.
+      <div class="name">
+        <a href="mixins/strict-binding-parser">
+          strict-binding-parser.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Mixin that parses binding expressions and generates corresponding metadata.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">template-stamp.js</div>
-      <div class='description'>
-        Element class mixin that provides basic template parsing and stamping
+      <div class="name">
+        <a href="mixins/template-stamp">
+          template-stamp.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Element class mixin that provides basic template parsing and stamping">
+      </marked-element>
     </section>
   
 </section>
@@ -223,169 +280,190 @@ template binding and data observation system.
 
   
     <section>
-      <div class="name">array-splice.js</div>
-      <div class='description'>
-        Computes an array of splice records indicating the minimum edits
-required to transform the `previous` array into the `current` array.
+      <div class="name">
+        <a href="utils/array-splice">
+          array-splice.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Computes an array of splice records indicating the minimum edits
+required to transform the `previous` array into the `current` array.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">case-map.js</div>
-      <div class='description'>
-        
-      Module that provides utilities for converting between "dash-case"
-      and "camelCase".
-  
+      <div class="name">
+        <a href="utils/case-map">
+          case-map.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Module that provides utilities for converting between &quot;dash-case&quot;
+      and &quot;camelCase&quot;.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">debounce.js</div>
-      <div class='description'>
-        Collapse multiple callbacks into one invocation after a timer.
+      <div class="name">
+        <a href="utils/debounce">
+          debounce.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Collapse multiple callbacks into one invocation after a timer.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">flattened-nodes-observer.js</div>
-      <div class='description'>
-        Class that listens for changes (additions or removals) to
-"flattened nodes" on a given `node`.
+      <div class="name">
+        <a href="utils/flattened-nodes-observer">
+          flattened-nodes-observer.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Class that listens for changes (additions or removals) to
+&quot;flattened nodes&quot; on a given `node`.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">flush.js</div>
-      <div class='description'>
-        
-      Forces several classes of asynchronously queued tasks to synchronously
-      execute.
-  
+      <div class="name">
+        <a href="utils/flush">
+          flush.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Forces several classes of asynchronously queued tasks to synchronously
+      execute.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">gestures.js</div>
-      <div class='description'>
-        
-      Module for adding cross-platform gesture event listeners.
-  
+      <div class="name">
+        <a href="utils/gestures">
+          gestures.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Module for adding cross-platform gesture event listeners.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">html-tag.js</div>
-      <div class='description'>
-        
-      A template literal tag that creates an HTML `<template>` element from
+      <div class="name">
+        <a href="utils/html-tag">
+          html-tag.js
+        </a>
+      </div>
+      <marked-element sanitize markdown="A template literal tag that creates an HTML `&lt;template>` element from
       the contents of the string. This allows you to write a Polymer Template
-      in JavaScript.
-  
-      </div>
+      in JavaScript.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">import-href.js</div>
-      <div class='description'>
-        
-      Module providing a convenience method for importing an HTML document
-      imperatively.
-  
+      <div class="name">
+        <a href="utils/import-href">
+          import-href.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Module providing a convenience method for importing an HTML document
+      imperatively.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">mixin.js</div>
-      <div class='description'>
-        
-      Module providing utility functions for ES6 class expression mixins.
-  
+      <div class="name">
+        <a href="utils/mixin">
+          mixin.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Module providing utility functions for ES6 class expression mixins.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">path.js</div>
-      <div class='description'>
-        
-      Module with utilities for manipulating structured data path strings.
-  
+      <div class="name">
+        <a href="utils/path">
+          path.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Module with utilities for manipulating structured data path strings.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">render-status.js</div>
-      <div class='description'>
-        
-      Module for scheduling flushable pre-render and post-render tasks.
-  
+      <div class="name">
+        <a href="utils/render-status">
+          render-status.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Module for scheduling flushable pre-render and post-render tasks.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">resolve-url.js</div>
-      <div class='description'>
-        
-      Module with utilities for resolving URLs against a provided `baseUri'.
-  
+      <div class="name">
+        <a href="utils/resolve-url">
+          resolve-url.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Module with utilities for resolving URLs against a provided `baseUri&apos;.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">settings.js</div>
-      <div class='description'>
-        
-      Module to read and write a small number of global configuration
-      properties.
-  
+      <div class="name">
+        <a href="utils/settings">
+          settings.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Module to read and write a small number of global configuration
+      properties.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">style-gather.js</div>
-      <div class='description'>
-        
-      Module with utilities for collection CSS text from various sources.
-  
+      <div class="name">
+        <a href="utils/style-gather">
+          style-gather.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Module with utilities for collection CSS text from various sources.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">templatize.js</div>
-      <div class='description'>
-        
-      Module for preparing and stamping templates that
-      utilize Polymer templating features.
-  
+      <div class="name">
+        <a href="utils/templatize">
+          templatize.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Module for preparing and stamping templates that
+      utilize Polymer templating features.">
+      </marked-element>
     </section>
   
 </section>
@@ -398,74 +476,80 @@ required to transform the `previous` array into the `current` array.
 
   
     <section>
-      <div class="name">class.js</div>
-      <div class='description'>
-        
-      Utilities for constructing a Polymer 1.x-compatible class, including
-      mixing in behaviors.
-  
+      <div class="name">
+        <a href="legacy/class">
+          class.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Utilities for constructing a Polymer 1.x-compatible class, including
+      mixing in behaviors.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">legacy-element-mixin.js</div>
-      <div class='description'>
-        
-      Element class mixin that provides Polymer's "legacy" API.
-  
+      <div class="name">
+        <a href="legacy/legacy-element-mixin">
+          legacy-element-mixin.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Element class mixin that provides Polymer&apos;s &quot;legacy&quot; API.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">mutable-data-behavior.js</div>
-      <div class='description'>
-        
-      Behaviors for skipping strict dirty checking of objects and arrays.
-  
+      <div class="name">
+        <a href="legacy/mutable-data-behavior">
+          mutable-data-behavior.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Behaviors for skipping strict dirty checking of objects and arrays.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">polymer-fn.js</div>
-      <div class='description'>
-        
-      Legacy class factory and registration helper for defining Polymer
-      elements.
-  
+      <div class="name">
+        <a href="legacy/polymer-fn">
+          polymer-fn.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Legacy class factory and registration helper for defining Polymer
+      elements.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">polymer.dom.js</div>
-      <div class='description'>
-        
-      Legacy DOM and Event manipulation API wrapper factory used to abstract
-      differences between native Shadow DOM and "Shady DOM" when polyfilling on
+      <div class="name">
+        <a href="legacy/polymer.dom">
+          polymer.dom.js
+        </a>
+      </div>
+      <marked-element sanitize markdown="Legacy DOM and Event manipulation API wrapper factory used to abstract
+      differences between native Shadow DOM and &quot;Shady DOM&quot; when polyfilling on
       older browsers. No longer necessary, but still provided for backwards
-      compatibility.
-  
-      </div>
+      compatibility.">
+      </marked-element>
     </section>
   
 
 
     <section>
-      <div class="name">templatizer-behavior.js</div>
-      <div class='description'>
-        
-      Used for creating data-binding templates. Exposed as a behavior for
-      hybrid-element convenience. For non-hybrid usage, the `Templatize`
-      library in `utils` should be used instead.
-  
+      <div class="name">
+        <a href="legacy/templatizer-behavior">
+          templatizer-behavior.js
+        </a>
       </div>
+      <marked-element sanitize markdown="Used for creating data-binding templates. Exposed as a behavior for
+      hybrid-element convenience. For non-hybrid usage, the `Templatize`
+      library in `utils` should be used instead.">
+      </marked-element>
     </section>
   
 </section>
