@@ -13,77 +13,27 @@ Type `polymer build` to build your Polymer application for production.
 
 You can serve different builds of your app to browsers with different capabilities. The Polymer Starter Kit is configured to create three builds:
 
-* `esm-bundled`: A bundled, minified build with a service worker. ES6 code is served as-is. This build is for browsers that can handle ES6 modules and dynamic imports.
+* A bundled, minified build with a service worker, compiled to ES5 for compatibility with older browsers.
+* A bundled, minified build with a service worker. ES6 code is served as-is. This build is for browsers that can handle ES6 code.
+* An unbundled, minified build with a service worker. ES6 code is served as-is. This build is for browsers that support HTTP/2 push.
 
-* `es6-bundled`: A bundled, minified build with a service worker. ES6 modules are compiled to AMD modules.
+In this step, you'll deploy the bundled, compiled build (`es5-bundled`) for maximum compatibility. Serving the other builds requires a more complex serving setup.
 
-* `es5-bundled`: A bundled, minified build with a service worker. ES6 code is compiled to ES5 for older browsers.
-
-In this step, you'll deploy `es6-bundled`. Builds are configured in the `builds` object in `polymer.json`, a configuration file in the root project folder:
+Builds are configured in the `builds` object in `polymer.json`, a configuration file in the root project folder:
 
 polymer.json { .caption}
-
 ```
 ...
 "builds": [
-{
-  "name": "esm-bundled",
-  "browserCapabilities": [
-    "es2015",
-    "modules"
-  ],
-  "js": {
-    "minify": true
+  {
+    "preset": "es5-bundled"
   },
-  "css": {
-    "minify": true
+  {
+    "preset": "es6-bundled"
   },
-  "html": {
-    "minify": true
-  },
-  "bundle": {
-    "inlineScripts": false
-  },
-  "addServiceWorker": true
-},
-{
-  "name": "es6-bundled",
-  "browserCapabilities": [
-    "es2015"
-  ],
-  "js": {
-    "minify": true,
-    "transformModulesToAmd": true
-  },
-  "css": {
-    "minify": true
-  },
-  "html": {
-    "minify": true
-  },
-  "bundle": {
-    "inlineScripts": false
-  },
-  "addServiceWorker": true
-},
-{
-  "name": "es5-bundled",
-  "js": {
-    "minify": true,
-    "compile": true,
-    "transformModulesToAmd": true
-  },
-  "css": {
-    "minify": true
-  },
-  "html": {
-    "minify": true
-  },
-  "bundle": {
-    "inlineScripts": false
-  },
-  "addServiceWorker": true
-}
+  {
+    "preset": "es6-unbundled"
+  }
 ]
 ...
 ```
@@ -91,11 +41,11 @@ polymer.json { .caption}
 The builds will be output to subfolders under the `build/` folder as follows:
 
     build/
-      esm-bundled/
-      es6-bundled/
       es5-bundled/
+      es6-bundled/
+      es6-unbundled/
 
-To configure a custom build, you can use command line options, or edit `polymer.json`. Run `polymer help build` for the full list of available options and optimizations. Also, see the documentation on the [polymer.json specification](/{{{polymer_version_dir}}}/docs/tools/polymer-json) and [building your Polymer application for production](/{{{polymer_version_dir}}}/toolbox/build-for-production).
+To configure a custom build, you can use command line options, or edit `polymer.json`. Run `polymer help build` for the full list of available options and optimizations. Also, see the documentation on the [polymer.json specification](https://www.polymer-project.org/2.0/docs/tools/polymer-json) and [building your Polymer application for production](https://www.polymer-project.org/2.0/toolbox/build-for-production).
 
 ## Deploy to a server
 
@@ -138,31 +88,31 @@ and create a new project.
     threadsafe: yes
 
     handlers:
-    - url: /node_modules
-      static_dir: build/es6-bundled/node_modules
+    - url: /bower_components
+      static_dir: build/es5-bundled/bower_components
       secure: always
 
     - url: /images
-      static_dir: build/es6-bundled/images
+      static_dir: build/es5-bundled/images
       secure: always
 
     - url: /src
-      static_dir: build/es6-bundled/src
+      static_dir: build/es5-bundled/src
       secure: always
 
     - url: /manifest.json
-      static_files: build/es6-bundled/manifest.json
-      upload: build/es6-bundled/manifest.json
+      static_files: build/es5-bundled/manifest.json
+      upload: build/es5-bundled/manifest.json
       secure: always
 
     - url: /service-worker.js
-      static_files: build/es6-bundled/service-worker.js
-      upload: build/es6-bundled/service-worker.js
+      static_files: build/es5-bundled/service-worker.js
+      upload: build/es5-bundled/service-worker.js
       secure: always
 
     - url: /.*
-      static_files: build/es6-bundled/index.html
-      upload: build/es6-bundled/index.html
+      static_files: build/es5-bundled/index.html
+      upload: build/es5-bundled/index.html
       secure: always
     ```
 
@@ -212,7 +162,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
 
 1.  Firebase asks you for a project to associate with your app. Select the one you created earlier.
 
-1.  Firebase asks you the name of your app's public folder. Enter `build/es6-bundled/`.
+1.  Firebase asks you the name of your app's public folder. Enter `build/es5-bundled/`.
 
 1.  Edit your firebase configuration to add support for URL routing. The final
     `firebase.json` file should look something like this:
@@ -220,7 +170,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
     ```
     {
       "hosting": {
-        "public": "build/es6-bundled/",
+        "public": "build/es5-bundled/",
         "rewrites": [
           {
             "source": "**/!(*.*)",
