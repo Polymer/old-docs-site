@@ -1,4 +1,18 @@
 /**
+ * @license
+ * Copyright (c) 2018 The Polymer Project Authors. All rights reserved.
+ * This code may only be used under the BSD style license found at
+ * http://polymer.github.io/LICENSE.txt
+ * The complete set of authors may be found at
+ * http://polymer.github.io/AUTHORS.txt
+ * The complete set of contributors may be found at
+ * http://polymer.github.io/CONTRIBUTORS.txt
+ * Code distributed by Google as part of the polymer project is also
+ * subject to an additional IP rights grant found at
+ * http://polymer.github.io/PATENTS.txt
+ */
+
+/**
  * Run from `npm run generate-api-docs-3`
  *
  * Note that this depends on polymer-analyzer v3, which is in prerelease at
@@ -23,6 +37,7 @@ const childProcess = require('child_process');
 const escape = require('html-escape');
 const path = require('path');
 const globby = require('globby');
+const util = require('util');
 
 async function exec(command) {
   process.stdout.write(`Running \`${command}\` ...`);
@@ -101,7 +116,11 @@ function indexFeaturesByFile(analysis) {
   const map = new Map();
   /** @param {SimpleFeature} feature */
   function index(feature, kind) {
-    const filename = getFilename(feature) || '???';
+    const filename = getFilename(feature);
+    if (!filename) {
+      throw new Error(
+          `Could not get filename for feature: ${util.inspect(feature)}`);
+    }
     let result = map.get(filename);
     if (result === undefined) {
       result = {
@@ -224,6 +243,8 @@ function getIndexPageSubsection(subsection, filenamesIn, featureIndex) {
 `
 }
 
+// TODO: generate these from source. See tracking bug at
+//     https://github.com/Polymer/tools/issues/241
 const hardcodedDescriptions = new Map([
   ['lib/elements/array-selector.js', `
       Module providing tools for maintaining a mapping between a master
@@ -353,7 +374,12 @@ function getFilenameDescription(filename, featureIndex) {
     const [feature] = features;
     description = feature.summary;
   }
-  description = description || hardcodedDescriptions.get(filename) || `TODO(write me): ${filename}`;
+  description = description || hardcodedDescriptions.get(filename);
+  if (!description) {
+    throw new Error(
+        `Unable to get a summary for ${filename}, may need to add it ` +
+        `to hardcodedDescriptions.`);
+  }
 
   return `
     <section>
@@ -495,7 +521,7 @@ function getFilename(feature) {
 
 if (require.main === module) {
   main().catch((e) => {
-    console.error(e ? e.stack || e.message || e: `Unknown error`);
+    console.error(e ? (e.stack || e.message || e) : `Unknown error`);
     process.exitCode = 1;
   });
 }
