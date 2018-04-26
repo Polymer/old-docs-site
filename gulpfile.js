@@ -251,7 +251,6 @@ gulp.task('jshint', 'Lint JS', function() {
   return gulp.src([
       'gruntfile.js',
       'app/js/**/*.js',
-      '!app/js/**/sdk*',
       'app/elements/**/*.js',
       'app/elements/**/*.html'
     ])
