@@ -7,8 +7,7 @@
     "node": ">=5.0.0"
   },
   "scripts": {
-    "postinstall": "bower install; npm run generate-stackblitz; gulp",
-    "generate-stackblitz": "cp ./node_modules/@stackblitz/sdk/bundles/sdk.umd.js ./app/js/sdk.umd.js; cp ./node_modules/@stackblitz/sdk/bundles/sdk.umd.js.map ./app/js/sdk.umd.js.map;",
+    "postinstall": "bower install; gulp",
     "deploy": "scripts/deploy.sh",
     "test": "(cd dist; python test_runner.py ${CLOUD_SDK-~/google-cloud-sdk} ../tests/)",
     "generate-api-docs": "cd scripts && node generate_api_docs_2.js",
