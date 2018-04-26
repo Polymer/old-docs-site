@@ -3,7 +3,6 @@
 # Generated files/folders
 *.pyc
 app/css/*
-app/js/sdk*
 dist
 build
 
