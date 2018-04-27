@@ -58,9 +58,6 @@
   - title: Upgrade guide
     path: /3.0/docs/upgrade
     indent: True
-  - title: Hybrid elements
-    path: /3.0/docs/devguide/hybrid-elements
-    indent: True
   - title: Release notes
     path: /3.0/docs/release-notes
     indent: True
@@ -75,6 +72,8 @@
   - title: Declare properties
     path: /3.0/docs/devguide/properties
     indent: True
+  - title: Working with legacy elements
+    path: /3.0/docs/devguide/legacy-elements
   - endheader: True
   - header: Shadow DOM & styling
   - title: Shadow DOM concepts
