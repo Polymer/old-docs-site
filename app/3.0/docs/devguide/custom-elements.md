@@ -91,7 +91,7 @@ For performance, Polymer defers creating an element's shadow tree and initializi
    </td>
    <td>Called when the element is added to a document.  Can be called multiple times during the lifetime of an element.
      <p>Uses include adding document-level event listeners. (For listeners local to the element, you can use 
-     <a href="events.html#annotated-listeners">annotated event listeners</a>.)</p>
+     <a href="events#annotated-listeners">annotated event listeners</a>.)</p>
    </td>
   </tr>
   <tr>
@@ -108,7 +108,7 @@ For performance, Polymer defers creating an element's shadow tree and initializi
    </td>
    <td>Called during Polymer-specific element initialization. Called once, the first time the 
        element is attached to the document. For details, see 
-      [Polymer element initialization](#ready-callback).
+      <a href="#ready-callback)">Polymer element initialization</a>.
    </td>
   </tr>
   <tr>
@@ -316,7 +316,7 @@ flattens these objects. So the properties and observers of a subclass are added 
 by the superclass.
 
 A subclass can also inherit a template from its superclass. For details, see
-[Inherited templates](dom-template#inherited-templates).
+[Inherit a template from another Polymer element](dom-template#inherit).
 
 To make it easy to extend your elements, the module that defines the element should export it:
 

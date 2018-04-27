@@ -78,7 +78,7 @@ These callbacks are based on the  custom elements v0 lifecycle that was supporte
         times during the lifetime of an element. The first <code>attached</code> callback
         is guaranteed not to fire until after <code>ready</code>.
       <p>Uses include adding document-level event listeners. (For listeners local to the element, you can use declarative
-        event handling, such as <a href="events.html#annotated-listeners">annotated
+        event handling, such as <a href="events#annotated-listeners">annotated
         event listeners</a>.)</p>
      <p>Equivalent to native <code>connectedCallback</code>.</p>
       </p>
