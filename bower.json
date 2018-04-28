@@ -30,6 +30,7 @@
     "paper-toast": "PolymerElements/paper-toast#2",
     "google-youtube": "GoogleWebComponents/google-youtube#2",
     "google-map": "GoogleWebComponents/google-map#2",
-    "web-animations-js": "web-animations/web-animations-js#^2.2.5"
+    "web-animations-js": "web-animations/web-animations-js#^2.2.5",
+    "iron-pages": "PolymerElements/iron-pages#^2.1.1"
   }
 }

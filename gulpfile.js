@@ -188,14 +188,14 @@ function convertMarkdownToHtml(templateName) {
     data.file = file;
     data.title = data.title || '';
     data.subtitle = data.subtitle || '';
-  
+
     let content = file.content;
     // Inline code snippets before running through markdown for syntax highlighting.
     content = content.replace(/<!--\s*include_file\s*([^\s]*)\s*-->/g,
       (match, src) => fs.readFileSync(`app/${src}`));
     // Markdown -> HTML.
     content = markdownIt.render(content);
-  
+
     // If there is a table of contents, toc-ify it. Otherwise, wrap the
     // original markdown content anyway, so that we can style it.
     if (content.match(/<!--\s*toc\s*-->/gi)) {
@@ -219,11 +219,11 @@ function convertMarkdownToHtml(templateName) {
     } else {
       data.content = '<div class="article-wrapper"><article>' + content + '</article></div>';
     }
-  
+
     const tmpl = fs.readFileSync(templateName);
     const renderTemplate = $.util.template(tmpl);
-  
-    return renderTemplate(data);  
+
+    return renderTemplate(data);
   });
 }
 
@@ -295,8 +295,8 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     }))
     .pipe(gulp.dest('dist'));
 
-  const jsSamples = gulp.src([
-      'app/3.0/start/samples/**/*.js',
+  const samples = gulp.src([
+      'app/3.0/start/samples/**/*',
     ], {base: 'app/'})
     .pipe(gulp.dest('dist'));
 
@@ -333,7 +333,7 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     ], {base: 'app'})
     .pipe(gulp.dest('dist'));
 
-  return merge(app, docs, jsSamples, gae, bower, bundles, demo1, demo2, summit);
+  return merge(app, docs, samples, gae, bower, bundles, demo1, demo2, summit);
 });
 
 gulp.task('watch', 'Watch files for changes', function() {

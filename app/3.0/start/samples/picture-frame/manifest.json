@@ -1,0 +1,11 @@
+{
+  "files": [
+    "picture-frame.js",
+    "index.html",
+    "index.js"
+  ],
+  "dependencies": {
+    "@polymer/polymer": "next",
+    "@webcomponents/webcomponentsjs": "^1.0.0"
+  }
+}

@@ -1,16 +1,16 @@
-import {Element as PolymerElement, html} from 'https://unpkg.com/@polymer/polymer@3.0.0-pre.7/polymer-element.js'
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js'
 
 // Define the class for a new element called custom-element
 class DomElement extends PolymerElement {
-  
+
   static get template () {
     return html`
       <p>I'm a DOM element. This is my shadow DOM!</p>
-      
-      <!-- TODO: Try adding some other html elements inside the 
-           template. For example, add <h1>A heading!</h1> or 
+
+      <!-- TODO: Try adding some other html elements inside the
+           template. For example, add <h1>A heading!</h1> or
            <a href="stuff.html">A link!</a>
-      --> 
+      -->
     `;
   }
 }
