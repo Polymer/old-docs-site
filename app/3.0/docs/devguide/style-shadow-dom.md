@@ -492,6 +492,108 @@ index.html { .caption }
 
 [See it on Plunker](http://plnkr.co/edit/hR3I4w?p=preview)
 
+### Style undefined elements
+
+To avoid FOUC (flash of unstyled content), you might want to style custom elements before they are 
+defined (that is, before the browser has attached their class definition to their markup tag). If 
+you don't, the browser may not apply any styles to the element at first paint. Typically, you'll 
+want to add styling for a few top-level elements so your application's layout displays while the 
+element definitions are being loaded.
+
+There is a specification for a `:defined` pseudo-class selector to target elements that have been 
+defined, but the custom elements polyfill doesn't support this selector.
+
+For a polyfill-friendly workaround, add an `unresolved` attribute to the element in markup. For 
+example:
+
+```html
+<my-element unresolved></my-element>
+```
+
+Then style the unresolved element. For example:
+
+```html
+<style>
+  my-element[unresolved] {
+    height: 45px;
+    text-align: center;
+    ...
+  }
+</style>
+```
+
+Finally, remove the `unresolved` attribute in the element's `ready` callback:
+
+```js
+class MyElement extends PolymerElement(){
+  ...
+  ready(){
+    super.ready();
+    this.removeAttribute('unresolved');
+    ...
+  }
+  ...
+}
+```
+
+### Style directional text with the :dir() selector
+
+The `:dir()` CSS selector allows for styling text specific to its orientation 
+(right-to-left or left-to-right). See the [documentation on MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/:dir) for more information on the `:dir()`
+selector.
+
+The `DirMixin` provides limited support for the `:dir()` selector. Use of `:dir()` requires the
+application to set the `dir` attribute on `<html>`. All elements will use the same direction.
+
+Individual elements can opt-out of the global direction by setting the `dir` attribute
+in HTML or in the `ready` callback, but the text direction of these elements must from then on be handled 
+manually.
+
+Setting `dir` on an ancestor (other than `html`) has no effect.
+
+For elements that extend `PolymerElement`, add `DirMixin` to use
+`:dir()` styling.
+
+Here's an example use of the `:dir()` selector: 
+
+`using-dir-selector.js` { .caption }
+
+```js
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import DirMixin from '@polymer/polymer/lib/mixins/dir-mixin.js';
+
+class UsingDirSelector extends DirMixin(PolymerElement) {
+  static get template() {
+    return html`
+      <style>
+        :host {
+          display: block;
+          color: blue;
+        }
+        :host(:dir(rtl)) {
+          color: green;
+        }
+      </style>
+      ...
+    `;
+  }
+}
+customElements.define('using-dir-selector', UsingDirSelector);
+```
+
+`index.html` { .caption }
+
+```html
+<html lang="en" dir="rtl">
+  <head>
+    <script type="module" src="./using-dir-selector.js"></script>
+  </head>
+  <body>
+    <using-dir-selector></using-dir-selector>
+  </body>
+</html>
+```
+
 ## Share styles between elements
 
 ### Use style modules {#style-modules}
