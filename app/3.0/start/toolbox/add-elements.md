@@ -22,7 +22,7 @@ In this step, you'll add Polymer's `<paper-checkbox>` element to your app, which
 
 Run this command from your project root directory:
 
-    yarn add --flat @polymer/paper-checkbox
+    yarn add --flat @polymer/paper-checkbox@next
 
 ## Add the element to your application
 

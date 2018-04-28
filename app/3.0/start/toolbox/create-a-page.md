@@ -243,7 +243,7 @@ You've defined your new element, created a valid route to handle the case when a
 
 ## Serve your app
 
-Your new page is now ready! Serve your app with `polymer serve --open`.
+Your new page is now ready! If the Polymer CLI development server is still running, you can refresh your browser window to see the changes. Otherwise, serve your app with `polymer serve` and open the URL shown at `applications`.
 
 ![Example new page](/images/3.0/toolbox/new-view.png)
 

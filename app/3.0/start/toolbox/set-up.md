@@ -38,7 +38,7 @@ Once you have the pre-requisites set up, install Polymer CLI:
     Press the down arrow until `polymer-3-starter-kit` is highlighted and press the enter / return
     key to select.
 
-Polymer CLI downloads and installs dependencies, and creates an app from the `polymer-3-start-kit template`.
+Polymer CLI downloads and installs dependencies, and creates an app from the `polymer-3-starter-kit template`.
 
 ## Serve your project
 
@@ -49,7 +49,16 @@ your browser.
 
 To serve your project:
 
-    polymer serve --open
+    polymer serve
+
+The output of the `polymer serve` command tells you where your app is served. In a web browser, open the URL shown at `applications`. For example:
+
+```
+~/my-app > polymer serve
+info: [cli.command.serve]    Files in this directory are available under the following URLs
+      applications: http://127.0.0.1:8081
+      reusable components: http://127.0.0.1:8081/components/polymer-starter-kit/
+```
 
 ## Project structure
 

@@ -13,13 +13,13 @@ Type `polymer build` to build your Polymer application for production.
 
 You can serve different builds of your app to browsers with different capabilities. The Polymer Starter Kit is configured to create three builds:
 
-* `esm-bundled`: A bundled, minified build with a service worker. ES6 code is served as-is. This build is for browsers that can handle ES6 modules and dynamic imports.
+* `esm-bundled`: JavaScript code is served without compilation as ES modules.
 
-* `es6-bundled`: A bundled, minified build with a service worker. ES6 modules are compiled to AMD modules.
+* `es6-bundled`: JavaScript code is compiled to ES2015 and uses AMD modules.
 
-* `es5-bundled`: A bundled, minified build with a service worker. ES6 code is compiled to ES5 for older browsers.
+* `es5-bundled`: JavaScript code is compiled to ES5 and uses AMD modules.
 
-In this step, you'll deploy `es6-bundled`. Builds are configured in the `builds` object in `polymer.json`, a configuration file in the root project folder:
+In this step, you'll deploy `es6-bundled`. Builds are configured in the `builds` object in `polymer.json`, a configuration file in the top-level project folder:
 
 polymer.json { .caption}
 
@@ -27,62 +27,13 @@ polymer.json { .caption}
 ...
 "builds": [
 {
-  "name": "esm-bundled",
-  "browserCapabilities": [
-    "es2015",
-    "modules"
-  ],
-  "js": {
-    "minify": true
-  },
-  "css": {
-    "minify": true
-  },
-  "html": {
-    "minify": true
-  },
-  "bundle": {
-    "inlineScripts": false
-  },
-  "addServiceWorker": true
+  "name": "esm-bundled", ...
 },
 {
-  "name": "es6-bundled",
-  "browserCapabilities": [
-    "es2015"
-  ],
-  "js": {
-    "minify": true,
-    "transformModulesToAmd": true
-  },
-  "css": {
-    "minify": true
-  },
-  "html": {
-    "minify": true
-  },
-  "bundle": {
-    "inlineScripts": false
-  },
-  "addServiceWorker": true
-},
+  "name": "es6-bundled", ...
+}
 {
-  "name": "es5-bundled",
-  "js": {
-    "minify": true,
-    "compile": true,
-    "transformModulesToAmd": true
-  },
-  "css": {
-    "minify": true
-  },
-  "html": {
-    "minify": true
-  },
-  "bundle": {
-    "inlineScripts": false
-  },
-  "addServiceWorker": true
+  "name": "es5-bundled", ...
 }
 ]
 ...
@@ -108,7 +59,7 @@ routes.
 You can follow one of the sections below to deploy this app to either
 [Google AppEngine](https://cloud.google.com/appengine) or [Firebase
 Static Hosting](https://www.firebase.com/docs/hosting/), which are both free and
-secure approaches for deploying a Polymer app.  The approach
+secure approaches for deploying a Polymer app. The approach
 is similar for other hosting providers.
 
 ### Deploy with AppEngine
@@ -164,6 +115,14 @@ and create a new project.
       static_files: build/es6-bundled/index.html
       upload: build/es6-bundled/index.html
       secure: always
+
+    skip_files:
+    - build/es5-bundled/
+    - build/esm-bundled/
+    - images/
+    - node_modules/
+    - src/
+    - test/
     ```
 
 1. Set your project id to the ID given to your app by the App Engine. For example:
