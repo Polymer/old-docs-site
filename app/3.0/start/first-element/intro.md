@@ -23,7 +23,7 @@ In this step, you'll:
 * [Download the starting code](#download)
 * [Install dependencies and run the demo](#run)
 
-To follow this tutorial, you’ll first need to install some command line tools. See the [Polymer CLI install guide](/{{{polymer_version_dir}}}/docs/tools/polymer-cli) for full instructions on setting up Polymer CLI and its prerequisites (Git, npm, Node.js, and Yarn). 
+To follow this tutorial, you’ll first need to install some command line tools. See the [Polymer CLI install guide](/{{{polymer_version_dir}}}/docs/tools/polymer-cli) for full instructions on setting up Polymer CLI and its prerequisites (Git, npm, and Node.js). 
 
 ### Install Polymer CLI {#install}
 
@@ -67,15 +67,15 @@ The main file you’ll work with is `icon-toggle.js` in the top-level project fo
 
 To install the element's dependencies and run the demo:
 
-1.  Run `yarn install` from the repo directory:
+1.  Run `npm install` from the repo directory:
 
     ```
-    yarn install
+    npm install
     ```
     
     This installs the components and dependencies required to use the Polymer library and other web components. 
 
-    You will now see an extra folder named `node_modules` and an extra file named `yarn.lock`:
+    You will now see an extra folder named `node_modules` and an extra file named `package-lock.json`:
 
     <pre>
     README.md
@@ -85,12 +85,12 @@ To install the element's dependencies and run the demo:
     index.html
     node_modules
     package.json
+    package-lock.json
     polymer.json
-    yarn.lock
     </pre>
 
     * `node_modules` is where the project's dependencies are installed.
-    * `yarn.lock` contains some Yarn-related dependency-management info.
+    * `package-lock.json` contains some npm-related dependency-management info.
 
 2.  Run the Polymer development server from the root project directory:
 
