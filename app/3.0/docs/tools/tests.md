@@ -8,8 +8,8 @@ This guide shows you the basics of using Polymer CLI to run unit tests, and
 how to accomplish various tasks and scenarios using the Web Component Tester
 library (the underlying library that powers Polymer CLI's testing tools).
 
-**Update your tools for 3.0.** For testing with 3.0, make sure you have the latest
-version of the Polymer CLI (`npm install --g polymer-cli@latest`).
+**Update your tools for 3.0.** For testing with 3.0, make sure you have the `next`
+version of the Polymer CLI (`npm install --g polymer-cli@next`).
 {.alert .alert-info}
 
 ## Overview
@@ -299,8 +299,7 @@ assertion style.
 
 To run a set of test suites:
 
-1.  Create an HTML file with a script that calls the `loadSuites` method.       `loadSuites` takes as an argument an array of strings, where
-    each string is a relative URL for a test suite:
+1.  Create an HTML file with a script that calls the `loadSuites` method. `loadSuites` takes as an argument an array of strings, where each string is a relative URL for a test suite:
     
     my-test-set.html {.caption}
 
@@ -326,8 +325,7 @@ To run a set of test suites:
     You can configure your tests using query strings in the URLs. 
     See [Test shadow DOM](#shadow-dom) for an example.
 
-2.  Run Web Component Tester, specifying the path to the HTML file as the
-    first argument. For example:
+2.  Run Web Component Tester, specifying the path to the HTML file as the first argument. For example:
 
     ```bash
     wct test/my-test-set.html
