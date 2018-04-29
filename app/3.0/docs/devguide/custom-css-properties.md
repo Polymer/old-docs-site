@@ -4,355 +4,437 @@ title: Use custom properties
 
 <!-- toc -->
 
-The author of a Polymer element can provide custom CSS properties that you can use to style the appearance of the element in your application.
+Custom CSS properties allow you to define a CSS variable and use it in your styles. 
 
-Custom properties allow CSS authors to define cascading CSS variables, which are accepted by all CSS properties.
+## Basic syntax for custom CSS properties 
 
-CSS variables can be used outside the context of custom elements, simply as a way to avoid scattering style data throughout a stylesheet. A CSS author assigns values to a custom property, and then uses the `var()` function to use these values elsewhere in the stylesheet.
+To set the value of a custom CSS property:
 
-This makes editing your CSS much easier and less prone to author error.
-
-For example, the [`<paper-checkbox>` element](https://www.webcomponents.org/element/PolymerElements/paper-checkbox) provides custom properties for styling the colors, spacing and size of the checkbox and its label.
-
-As a developer, you can use these properties to style `<paper-checkbox>` elements in your applications.
-
-When you create your own custom elements, you can use custom properties to build an interface for the users of your element so they can style it.
-
-### Use a custom properties API to style an element
-
-To use the interface of custom properties provided by an element author, look at the element's API documentation.
-
-For a good example, visit the [`<paper-checkbox>` API documentation](https://www.webcomponents.org/element/PolymerElements/paper-checkbox/paper-checkbox)
-
-This code sample inserts a `<paper-checkbox>` element with its default styling:
-
-[See it on Plunker](http://plnkr.co/edit/if8IardvWBwZ2uMZIlgI?p=preview)
-
-```html
-<base href="//polygit2.appspot.com/components/">
-<link rel="import" href="polymer/polymer.html">
-<script src="webcomponentsjs/webcomponents-lite.js"></script>
-<link rel="import" href="paper-checkbox/paper-checkbox.html">
-
-<paper-checkbox>Check me</paper-checkbox>
-```
-
-Notice that:
-
-* The checkbox label defaults to Times New Roman. This is true of any web page with no style info.
-* The checkbox receives default colors from the paper-element theme.
-
-The style properties of the `<paper-checkbox>` element are configurable with the custom CSS properties that the element author has provided for us.
-
-To use a custom property of a custom element, create a style rule using this syntax:
-
-```html
-paper-checkbox {
-  --paper-checkbox-checked-color: red;
+```css
+element {
+  --custom-color: blue;
 }
 ```
 
-[See it on Plunker](http://plnkr.co/edit/u41sHRHAWtYiYyjWnFlP?p=preview)
+To use the custom CSS property to create a style:
 
-The paper elements provide a consistent way to configure styles across elements when using the paper element set, with variables.
+```css
+element {
+  color: var(--custom-color);
+}
+```
 
-We can use variables to configure the custom CSS properties in `<paper-checkbox>`:
+You can use custom CSS properties outside of the context of custom elements, simply as a way to avoid scattering style data throughout a stylesheet. For example:
 
 ```html
-<style is="custom-style">
-  p {
-    color: var(--paper-red-500);
+<html>
+  <head>
+    <style>
+      /* Set the values of some custom CSS properties */
+      html {
+        --theme-dark-blue: #0d47a1;
+        --theme-light-blue: #e3f2fd;
+        --theme-wide-padding: 24px;
+        --theme-font-family: Roboto, Noto, sans-serif;
+      }
+      /* Use the custom CSS properties to create styles */
+      div {
+        background-color: var(--theme-light-blue);
+        color: var(--theme-dark-blue);
+        padding: var(--theme-wide-padding);
+        border:1px solid var(--theme-dark-blue);
+        font-family: var(--theme-font-family);
+      }
+    </style>
+  </head>
+  <body>
+    <div><p>Demonstrating basic use of custom properties</p></div>
+  </body>
+</html>
+```
+
+[See it on Plunker](http://plnkr.co/edit/AjZm3o?p=preview)
+
+In the code sample above, the visual theme can be changed by editing the values of the custom properties. This makes it easier to create consistent themes, and your code will be less prone to error.
+
+## Use the custom CSS properties provided by a Polymer element
+
+The author of a Polymer element can provide custom CSS properties that you can use to style the appearance of the element in your application. This way, you don't need to know how the element's code works.
+
+For example, suppose someone has authored two elements, `<flex-container>` and `<flex-item>`, which can be used together to create layouts in columns or rows, like so:
+
+```html
+<flex-container>
+  <flex-item>flex item 1</flex-item>
+  <flex-item>flex item 2</flex-item>
+  <flex-item>flex item 3</flex-item>
+</flex-container>
+```
+
+In the documentation for `flex-container`, you notice that the author has provided a custom CSS property, `--flex-direction`, to control whether the `flex-items` are laid out in a column or a row. You can assign your own value to `--flex-direction` in your app:
+
+index.html { .caption}
+
+```html
+<html>
+  <head>
+    <script type="module" src="./flex-container.js">
+    <script type="module" src="./flex-item.js">
+    <!-- custom-style element invokes the custom properties polyfill -->
+    <script type="module" src="./node_modules/@polymer/polymer/lib/elements/custom-style.js"></script>
+    
+    <!-- ensure that custom props are polyfilled on browsers that don't support them -->
+    <custom-style>
+      <style>
+        html {
+          /* Set a value for the custom CSS property --flex-direction */
+          --flex-direction: column
+        }
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <flex-container>
+      <flex-item>flex item 1</flex-item>
+      <!-- ... -->
+      <flex-item>flex item n</flex-item>
+    </flex-container>
+  </body>
+</html>
+```
+
+[See it in Plunker](http://plnkr.co/edit/7eZqv8?p=preview)
+
+**Custom CSS properties inherit.** In the code sample above, the value of `--flex-direction` is set in the `html` CSS rule. Since `flex-container` is a child of `html`, `flex-container` inherits this value.
+{.alert}
+
+To find out about the custom CSS properties an element provides, see the element's documentation. 
+
+For examples of Polymer elements that provide extensive styling options with custom CSS properties, see the [API documentation for the `paper-ui-elements`](https://www.webcomponents.org/collection/PolymerElements/paper-ui-elements).
+
+## Provide custom CSS properties to users of your elements
+
+When you create Polymer elements, you can use custom CSS properties in your style rules. Users of your elements can then set values for the custom CSS properties, and control the appearance of your elements without needing to know how your code works.
+
+For example, suppose you are creating two elements, `<flex-container>` and `<flex-item>`, which can be used together to create layouts in columns or rows:
+
+```html
+<flex-container>
+  <flex-item>flex item 1</flex-item>
+  <flex-item>flex item 2</flex-item>
+  <flex-item>flex item 3</flex-item>
+</flex-container>
+```
+
+You can use a custom CSS property to control the flex direction of `<flex-container>`: 
+
+flex-container.js (your code) { .caption }
+
+```js
+/* ... */
+class FlexContainer extends PolymerElement {
+  static get template () {
+    return html`
+      <style>
+        :host {
+          display: flex;
+          flex-direction: var(--flex-direction);
+        }
+      </style>
+      <!-- ... -->
+    `;
   }
-  paper-checkbox {
-    --paper-checkbox-checked-color: var(--paper-red-500);
+}
+/* ... */
+```
+
+[See it in Plunker](http://plnkr.co/edit/7eZqv8?p=preview)
+
+Users can then assign their own value to `--flex-direction` like so:
+
+index.html (user's code) { .caption }
+
+```html
+...
+<style>
+  html {
+    --flex-direction: column
   }
 </style>
+...
 ```
 
-## Create custom properties
+If you provide documentation for the custom properties your element provides, users don't need to know any implementation details. See [Documenting your elements](/{{{polymer_version_dir}}}/docs/tools/documentation) for more information, or take a look at the [documentation for the Polymer `paper-ui-elements`](https://www.webcomponents.org/collection/PolymerElements/paper-ui-elements) for examples.
 
-Rather than exposing the details of an element's internal implementation for
-theming, an element author defines one or more custom CSS
-properties as part of the element's API.
+### Create default values for your CSS properties 
 
-These custom properties can be defined similarly to other standard CSS properties
-and will inherit from the point of definition down the composed DOM tree,
-similar to the effect of `color` and `font-family`.
+You may want to provide default values for the CSS properties you use in your styles.
 
-In the simple example below, the author of `<my-toolbar>` identified the need for
-users of the toolbar to be able to change the color of the toolbar title.  The
-author exposed a custom property called `--my-toolbar-title-color` which is
-assigned to the `color` property of the selector for the title element.  Users
-of the toolbar may define this variable in a CSS rule anywhere up the tree, and
-the value of the property will inherit down to the toolbar where it is used if
-defined, similar to other standard inheriting CSS properties.
-
-Example: { .caption }
-
-```html
-<dom-module id="my-toolbar">
-  <template>
-    <style>
-      :host {
-        padding: 4px;
-        background-color: gray;
-      }
-      .title {
-        color: var(--my-toolbar-title-color);
-      }
-    </style>
-    <span class="title">{{title}}</span>
-  </template>
-  <script>
-    class MyToolbar extends Polymer.Element {
-      static get is() {
-        return "my-toolbar";
-      }
-    }
-    customElements.define(MyToolbar.is, MyToolbar);
-</script>
-</dom-module>
-```
-
-Example usage of `<my-toolbar>`: { .caption }
-
-```html
-<dom-module id="my-element">
-  <template>
-    <style>
-      /* Make all toolbar titles in this host green by default */
-      :host {
-        --my-toolbar-title-color: green;
-      }
-      /* Make only toolbars with the .warning class red */
-      .warning {
-        --my-toolbar-title-color: red;
-      }
-    </style>
-    <my-toolbar title="This one is green."></my-toolbar>
-    <my-toolbar title="This one is green too."></my-toolbar>
-    <my-toolbar class="warning" title="This one is red."></my-toolbar>
-  </template>
-  <script>
-    class MyElement extends Polymer.Element {
-      static get is() {
-        return "my-element";
-      }
-    }
-    customElements.define(MyElement.is, MyElement);
-  </script>
-</dom-module>
-```
-
-The `--my-toolbar-title-color` property only affects the color of the title
-element encapsulated in `<my-toolbar>`'s internal implementation.  In the
-future the `<my-toolbar>` author can rename the `title` class or
-restructure the internal details of `<my-toolbar>` without changing the custom
-property exposed to users.
-
-You can also include a default value in the `var()` function, to use in case the user
-doesn't set the custom property:
+To set a default value for a CSS property, use the following syntax:
 
 ```css
-color: var(--my-toolbar-title-color, blue);
+div {
+  background-color: var(--theme-background, #e3f2fd);
+}
 ```
 
-To include a default value that is a custom property, use this syntax:
+To use a default value that is itself a custom property, use the following syntax:
 
 ```css
-color: var(--my-color, var(--my-default-color))
+div {
+  background-color: var(--theme-background, var(--default-light-blue));
+}
 ```
 
-Thus, custom CSS properties are a powerful way for element authors to
-expose a theming API to their users in a way that naturally fits right alongside
-normal CSS styling.
+## Inheritance and global styles
 
-### Use custom CSS mixins
-
-It may be tedious (or impossible) for an element author to predict every
-CSS property that may be important for theming, let alone expose every
-property individually.
-
-CSS mixins are a proposal to fill this gap in functionality. To use CSS mixins, import the CSS mixins polyfill:
+Custom CSS properties inherit down the DOM hierarchy. In the code sample below, `<custom-element>` will inherit the custom properties defined for `div`, but not the custom properties defined for `span`.
 
 ```html
-<!-- import CSS mixins polyfill -->
-<link rel="import" href="/bower_components/shadycss/apply-shim.html">
+<html>
+  <head>
+    <!-- custom-style element invokes the custom properties polyfill -->
+    <script type="module" src="node_modules/@polymer/polymer/lib/elements/custom-style.js"></script>
+
+    <!-- ensure that custom props are polyfilled on browsers that don't support them -->
+    <custom-style>
+      <style>
+        div {
+          /* flex-container is a child of div and will inherit these */
+          --theme-dark-blue: #0d47a1;
+          --theme-light-blue: #e3f2fd;
+          color: var(--theme-dark-blue);
+          background-color: var(--theme-light-blue);
+        }
+        span {
+          /* flex-container is not a child of span and will not inherit these */
+          --theme-wide-padding: 24px;
+          --theme-font-family: Roboto, Noto, sans-serif;
+          padding: var(--theme-wide-padding);
+          font-family: var(--theme-font-family);
+        }
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div>
+      <flex-container>
+        <flex-item>flex item 1</flex-item>
+        <flex-item>flex item 2</flex-item>
+        <flex-item>flex item 3</flex-item>
+      </flex-container>
+    </div>
+    <span>
+      <p>hello i am in a span</p>
+    </span>
+  </body>
+</html>
 ```
 
-For backward compatibility, the `polymer.html` import includes the CSS mixins polyfill. No extra import is required when defining hybrid elements.
+[See it on Plunker](http://plnkr.co/edit/mHpf7L?p=preview)
 
-Using CSS mixins, an element author can define a set of CSS properties as a single custom property and then allow all properties in the set to be applied to a specific CSS rule
-in an element's shadow DOM. The extension enables this with a mixin capability
-that is analogous to `var`, but which allows an entire set of properties
-to be mixed in.
+You can use inheritance to define global custom CSS properties. In the code sample below, all nodes inherit the custom CSS properties defined for the top-level `html` element: 
+
+index.html { .caption}
+
+```html
+...
+<custom-style>
+  <style>
+    html {
+      --theme-dark-blue: #0d47a1;
+      --theme-light-blue: #e3f2fd;
+      --theme-wide-padding: 24px;
+      --theme-font-family: Roboto, Noto, sans-serif;
+
+      color: var(--theme-dark-blue);
+      background-color: var(--theme-light-blue);
+      padding: var(--theme-wide-padding);
+      font-family: var(--theme-font-family);
+    }
+  </style>
+</custom-style>
+...
+<div>
+  <flex-container>
+    <flex-item>flex item 1</flex-item>
+    <flex-item>flex item 2</flex-item>
+    <flex-item>flex item 3</flex-item>
+  </flex-container>
+</div>
+<span>
+  <p>hello i am in a span</p>
+</span>
+...
+```
+
+[See it on Plunker](http://plnkr.co/edit/7rbXJY?p=preview)
+
+Child elements that inherit global CSS properties can override them. For example, in the code sample above, `<flex-item>` inherited its custom CSS properties and fonts from the document-level styles for `html`. `<flex-item>` can override these properties:
+
+flex-item.js {.caption}
+
+```js
+static get template () {
+  return html`
+    <style>
+      :host {
+        flex-grow: 1;
+        --theme-font-family: Georgia, serif;
+        font-family: var(--theme-font-family);
+      }
+    </style>
+  `;
+}
+```
+
+[See it on Plunker](http://plnkr.co/edit/vlO7GV?p=preview)
+
+## Use custom CSS mixins
+
+Using CSS mixins, you can define a set of CSS properties as a single custom property.
+
+This is similar to defining a custom property with `var()`, but the value of the property is an object that defines one or more rules:
+
+```css
+selector {
+  --mixin-name: {
+    /* rules */
+  };
+}
+```
 
 Use `@apply` to apply a mixin:
 
-<pre><code class="language-css">@apply --<var>mixin-name</var>;</code></pre>
+```css
+selector {
+  @apply --mixin-name;
+}
+```
 
-Defining a mixin is just like defining a custom property, but the
-value is an object that defines one or more rules:
+Suppose we have two custom elements, `<flex-container>` and `<flex-item>`, which can be used together to create row or column layouts.
 
-<pre><code class="language-css"><var>selector</var> {
-  --<var>mixin-name</var>: {
-    /* rules */
-  };
-}</code></pre>
+The author of the two elements uses a CSS mixin to apply theming information to both elements:
 
-Example: { .caption }
+flex-container.js {.caption}
 
-```html
-<dom-module id="my-toolbar">
-  <template>
+```js
+// import the @apply shim
+import '@webcomponents/shadycss/entrypoints/apply-shim.js';
+
+static get template() {
+  return html`
     <style>
       :host {
-        padding: 4px;
-        background-color: gray;
-        /* apply a mixin */
-        @apply --my-toolbar-theme;
-      }
-      .title {
-        @apply --my-toolbar-title-theme;
+        display: flex;
+        flex-direction: --flex-direction;
+        @apply --flex-theme;
       }
     </style>
-    <span class="title">{{title}}</span>
-  </template>
-  ...
-</dom-module>
+    ...
+  `;
+}
 ```
 
-Example usage of `my-toolbar`: { .caption }
+flex-item.js { .caption}
 
-```html
-<dom-module id="my-element">
-  <template>
+```js
+// import the @apply shim
+import '@webcomponents/shadycss/entrypoints/apply-shim.js';
+
+static get template() {
+  return html`
     <style>
-      /* Apply custom theme to toolbars */
       :host {
-        --my-toolbar-theme: {
-          background-color: green;
-          border-radius: 4px;
-          border: 1px solid gray;
-        };
-        --my-toolbar-title-theme: {
-          color: green;
-        };
-      }
-      /* Make only toolbars with the .warning class red and bold */
-      .warning {
-        --my-toolbar-title-theme: {
-          color: red;
-          font-weight: bold;
-        };
+        flex-grow: var(--flex-grow, 1);
+        /* Apply a CSS mixin */
+        @apply --flex-theme;
       }
     </style>
-    <my-toolbar title="This one is green."></my-toolbar>
-    <my-toolbar title="This one is green too."></my-toolbar>
-    <my-toolbar class="warning" title="This one is red."></my-toolbar>
-  </template>
-  <script>
-    class MyElement extends Polymer.Element {
-      static get is() {
-        return "my-element";
-      }
-    }
-    customElements.define(MyElement.is, MyElement);
-  </script>
-</dom-module>
+    ...
+  `;
+}
 ```
 
-## Use CSS inheritance
+[See it on Plunker](http://plnkr.co/edit/glgUKv?p=preview)
 
-If an element doesn't override styling information, that element inherits styles from its parent:
+Users of `flex-item` can set values for the properties in the mixin:  
 
-```html
-<link rel="import" href="components/polymer/lib/elements/custom-style.html">
-<custom-style>
-  <style is="custom-style">
-    p {
-      color: var(--paper-red-900);
-      font-family: Sans-serif;
-    }
-    paper-checkbox {
-      --paper-checkbox-checked-color: var(--paper-red-900);
-    }
-  </style>
-</custom-style>
-<body>
-	<p><paper-checkbox>Check me</paper-checkbox></p>
-</body>
-```
-
-## Create global styles
-
-Create global styles by styling the the html element of your document:
+index.html {.caption}
 
 ```html
-<link rel="import" href="components/polymer/lib/elements/custom-style.html">
+<script type="module" src="@polymer/polymer/lib/elements/custom-style.js"></script>
+
 <custom-style>
-  <style is="custom-style">
+  <style>
     html {
-      font-family: Sans-serif;
-      --my-color: var(--paper-red-900);
-      color: var(--my-color);
-    }
-    paper-checkbox {
-      --paper-checkbox-checked-color: var(--my-color);
+      /* Set global theme colors */
+      --theme-dark-blue: #0d47a1;
+      --theme-light-blue: #e3f2fd;
+      --theme-wide-padding: 24px;
+      --theme-font-family: Roboto, Noto, sans-serif;
+      
+      /* Set flex options */
+      --flex-direction: column;
+      --flex-grow: 0;
+
+      /* Set values for CSS mixin */
+      --flex-theme: {
+        border: 1px solid var(--theme-dark-blue);
+        font-family: var(--theme-font-family);
+        padding: var(--theme-wide-padding);
+        background-color: var(--theme-light-blue);
+      };
     }
   </style>
 </custom-style>
 ```
 
-Note that the font family is inherited, but the text color is not. This is because `<paper-checkbox>` overrides the text color.
+Note that any element using the `@apply` syntax must import the `@apply` polyfill:
+
+```js
+// import CSS mixins polyfill
+import '@webcomponents/shadycss/entrypoints/apply-shim.js';
+```
+
+[See it in Plunker](http://plnkr.co/edit/glgUKv?p=preview)
 
 ### Custom property API for Polymer elements {#style-api}
 
 Polymer's custom property shim evaluates and applies custom property values once
-at element creation time.  In order to have an element (and its subtree) re-
+at element creation time. In order to have an element (and its subtree) re-
 evaluate custom property values due to dynamic changes such as application of
-CSS classes, call the [`updateStyles`](/2.0/docs/api/elements/Polymer.Element#method-updateStyles)
+CSS classes, call the [`updateStyles`](/3.0/docs/api/elements/Polymer.Element#method-updateStyles)
 method on the element. To update _all_ elements on the page, you can also call
 `Polymer.updateStyles`.
 
 `updateStyles` can take a object with property/value pairs to update the current values of
 custom properties.
 
-Example: { .caption }
+Example { .caption }
 
-```html
-<dom-module id="x-custom">
-  <template>
-    <style>
-      :host {
-        --my-toolbar-color: red;
-      }
-    </style>
-    <my-toolbar>My awesome app</my-toolbar>
-    <button on-tap="changeTheme">Change theme</button>
-  </template>
-  <script>
-    class XCustom extends Polymer.Element {
-      static get is() {
-        return "x-custom";
-      }
-      static get changeTheme() {
-        return function() {
-        this.updateStyles({
-          '--my-toolbar-color': 'blue',
-        });
-      }
+```js
+class XCustom extends PolymerElement {
+  static get changeTheme() {
+    return function() {
+      this.updateStyles({
+        '--my-toolbar-color': 'blue',
+      });
     }
-    customElements.define(XCustom.is, XCustom);
-  </script>
-</dom-module>
-```
-
-```html
-this.updateStyles({
-  '--some-custom-style': 'green',
-  '--another-custom-style': 'blue'
-});
+  }
+  static template get (){
+    return html`
+      <style>
+        :host {
+          --my-toolbar-color: red;
+        }
+      </style>
+      <my-toolbar>My awesome app</my-toolbar>
+      <button on-tap="changeTheme">Change theme</button>
+    `;
+  }
+}
+customElements.define('x-custom', XCustom);
 ```
 
 Occasionally an element needs to get the value of a custom property at runtime. This is handled
@@ -367,15 +449,14 @@ if (ShadyCSS) {
 ```
 
 Elements using the legacy API can use the
-[`getComputedStyleValue`](/2.0/docs/api/mixins/Polymer.LegacyElementMixin#method-getComputedStyleValue)
+[`getComputedStyleValue`](/3.0/docs/api/mixins/Polymer.LegacyElementMixin#method-getComputedStyleValue)
 instance method instead of testing for `ShadyCSS`.
-
 
 ### Custom properties shim limitations
 
 Cross-platform support for custom properties is provided in Polymer by a
 JavaScript library that **approximates** the capabilities of the CSS Variables
-specification  *for the specific use case of theming custom elements*, while
+specification *for the specific use case of theming custom elements*, while
 also extending it to add the capability to mixin property sets to rules as
 described above. For performance reasons, Polymer **does
 not attempt to replicate all aspects of native custom properties.**
@@ -396,7 +477,7 @@ styles.
 
 For example, given this markup inside an element:
 
-HTML: { .caption }
+HTML { .caption }
 
 ```html
 <div class="container">
@@ -404,7 +485,7 @@ HTML: { .caption }
 </div>
 ```
 
-CSS: { .caption }
+CSS { .caption }
 
 ```css
 /* applies */
@@ -444,42 +525,37 @@ have the desired effect, since the dynamism is related to *application* of a cus
 Unlike normal CSS inheritance which flows from parent to child, custom
 properties in Polymer's shim can only change when inherited by a custom element
 from rules that set properties in scope(s) above it, or in a `:host` rule for
-that scope.  **Within a given element's local DOM scope, a custom property can
-only have a single value.**  Calculating property changes within a scope would be
+that scope. **Within a given element's local DOM scope, a custom property can
+only have a single value.** Calculating property changes within a scope would be
 prohibitively expensive for the shim and is not required to achieve cross-scope
 styling for custom elements, which is the primary goal of the shim.
 
-```html
-<dom-module id="my-element">
-  <template>
-    <style>
-     :host {
-       --custom-color: red;
-     }
-     .container {
-       /* Setting the custom property here will not change */
-       /* the value of the property for other elements in  */
-       /* this scope.                                      */
-       --custom-color: blue;
-     }
-     .child {
-       /* This will be always be red. */
-       color: var(--custom-color);
-     }
-    </style>
-    <div class="container">
-      <div class="child">I will be red</div>
-    </div>
-  </template>
-  <script>
-    class MyElement extends Polymer.Element {
-      static get is() {
-        return "my-element";
+```js
+class MyElement extends PolymerElement {
+  static template get () {
+    return html`
+      <style>
+      :host {
+        --custom-color: red;
       }
-    }
-    customElements.define(MyElement.is, MyElement);
-  </script>
-</dom-module>
+      .container {
+        /* Setting the custom property here will not change */
+        /* the value of the property for other elements in  */
+        /* this scope.                                      */
+        --custom-color: blue;
+      }
+      .child {
+        /* This will be always be red. */
+        color: var(--custom-color);
+      }
+      </style>
+      <div class="container">
+        <div class="child">I will be red</div>
+      </div>
+      `;
+  }
+  customElements.define('my-element', MyElement);
+}
 ```
 
 #### Styling distributed elements not supported
