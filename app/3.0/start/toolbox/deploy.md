@@ -191,3 +191,11 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
    
    The URL to your live site is listed in the output. You can also open
    the site in your default browser by running `firebase open hosting:site`.
+
+## Next steps
+
+Congratulations-you've successfully built and deployed a Polymer 3.0 application.
+
+Next, if you haven't already done so, try [building your first Polymer element](/{{{polymer_version_dir}}}/start/first-element/intro). 
+
+You can also visit the [Polymer App Toolbox documentation](/{{{polymer_version_dir}}}/toolbox/) to learn about more of its features, tools and templates.
