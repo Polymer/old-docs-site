@@ -4,10 +4,6 @@ title: Custom element concepts
 
 <!-- toc -->
 
-<div>
-{% include 'outdated.html' %}
-</div>
-
 Custom elements provide a component model for the web. The custom elements specification provides:
 
 *   A mechanism for associating  a class with a custom element name.
@@ -16,45 +12,37 @@ Custom elements provide a component model for the web. The custom elements speci
 *   A callback invoked whenever one of a specified set of attributes changes on the instance.
 
 Put together, these features let you build an element with its own public API that reacts to state
-changes.
+changes. Polymer provides a set of features on top of the basic custom element specification. 
 
 This document provides an overview of custom elements as they relate to Polymer. For a more detailed
 overview of custom elements, see: [Custom Elements v1: Reusable Web
-Components](https://developers.google.com/web/fundamentals/getting-started/primers/customelements)
+Components](https://developers.google.com/web/fundamentals/web-components/customelements)
 on Web Fundamentals.
 
-To define a custom element, you create an ES6 class and associate it with the custom element name.
+To define a custom element, you create an ES6 class and associate it with the custom element name. For the full set of Polymer features, extend the `PolymerElement` class:
 
+```js
+import {PolymerElement} from '@polymer/polymer/polymer-element.js';
+
+  export class MyPolymerElement extends PolymerElement {
+    ...
+  }
+
+  customElements.define('my-polymer-element', MyPolymerElement);
 ```
-// Create a class that extends HTMLElement (directly or indirectly)
-class MyElement extends HTMLElement { … };
 
-// Associate the new class with an element name
-window.customElements.define('my-element', MyElement);
-```
+Exporting the custom element class is optional, but recommended.
 
-
-You can use a custom element just like you'd use a standard element:
-
+Import the element into an HTML file using `<script type="module">`.  
+Use the `import` statement (as shown above) to import it from  another ES6 module.
 
 ```html
-<my-element></my-element>
+<script type="module" src="./my-polymer-element.js">
 ```
 
-Or:
+Once you've imported it, you can use a custom element just like you'd use a standard element.
 
-```js
-const myEl = document.createElement('my-element');
-```
-
-Or:
-
-```js
-const myEl = new MyElement();
-```
-
-The element's class defines its behavior and public API. The class must extend `HTMLElement` or one
-of its subclasses (for example, another custom element).
+The element's class defines its behavior and public API. 
 
 **Custom element names.** By specification, the custom element's name **must start with a lower-case
 ASCII letter and must contain a dash (-)**. There's also a short list of prohibited element names
@@ -63,33 +51,25 @@ concepts](https://html.spec.whatwg.org/multipage/scripting.html#custom-elements-
 section in the HTML specification.
 {.alert .alert-info}
 
-Polymer provides a set of features on top of the basic custom element specification. To add these
-features to your element, extend Polymer's base element class, `Polymer.Element`:
-
-```html
-<link rel="import" href="/bower_components/polymer/polymer-element.html">
-
-<script>
-  class MyPolymerElement extends Polymer.Element {
-    ...
-  }
-
-  customElements.define('my-polymer-element', MyPolymerElement);
-</script>
-```
-
 Polymer adds a set of features to the basic custom element:
 
 *   Instance methods to handle common tasks.
 *   Automation for handling properties and attributes, such as setting a property based on the
     corresponding attribute.
-*   Creating shadow DOM trees for element instances based on a supplied `<template>`.
+*   Creating shadow DOM trees for element instances based on a supplied template.
 *   A data system that supports data binding, property change observers, and computed properties.
 
-## Custom element lifecycle {#element-lifecycle}
+The `PolymerElement` class is made up of a set of _class expression mixins_ that add individual features.
+You can also use these mixins individually if you want to use a subset of Polymer's features. See the API
+documentation for a list of individual mixins.
 
-The custom element spec provides a set of callbacks called "custom element reactions" that allow you
-to run user code in response to certain lifecycle changes.
+## Polymer element lifecycle {#element-lifecycle}
+
+Polymer elements follow the standard lifecycle for custom elements. The custom element spec provides a set of
+callbacks called "custom element reactions" that allow you to run user code in response to certain lifecycle 
+changes.
+
+For performance, Polymer defers creating an element's shadow tree and initializing its data system until the first time the element is attached to the DOM. Polymer adds its own `ready` callback for this initialization.
 
 <table>
   <tr>
@@ -102,31 +82,44 @@ to run user code in response to certain lifecycle changes.
    <td>constructor
    </td>
    <td>Called when the element is upgraded (that is, when an  element is created, or when a
-   previously-created element becomes defined).
+   previously-created element becomes defined). The constructor is a logical place to set default values,
+   and to manually set up event listeners for the element itself. 
    </td>
   </tr>
   <tr>
    <td>connectedCallback
    </td>
-   <td>Called when the element is added to a document.
+   <td>Called when the element is added to a document.  Can be called multiple times during the lifetime of an element.
+     <p>Uses include adding document-level event listeners. (For listeners local to the element, you can use 
+     <a href="events#annotated-listeners">annotated event listeners</a>.)</p>
    </td>
   </tr>
   <tr>
    <td>disconnectedCallback
    </td>
-   <td>Called when the element is removed from a document.
+   <td>Called when the element is removed from a document. Can be called
+        multiple times during the lifetime of an element.
+      <p>Uses include removing event listeners added in <code>connectedCallback</code>.
+      </p>
    </td>
   </tr>
-  <!-- <tr>
-  <td>adoptedCallback
+  <tr>
+   <td>ready
    </td>
-   <td>Called when the element is adopted into a new document.
+   <td>Called during Polymer-specific element initialization. Called once, the first time the 
+       element is attached to the document. For details, see 
+      <a href="#ready-callback)">Polymer element initialization</a>.
    </td>
-  </tr> -->
+  </tr>
   <tr>
    <td>attributeChangedCallback
    </td>
-   <td>Called when any of the element's attributes are changed, appended, removed, or replaced,
+   <td>Called when any of the element's attributes are changed, appended, removed, or replaced. 
+      <p>Use to handle attribute changes that <em>don't</em> correspond to
+        declared properties. (For declared properties, Polymer
+        handles attribute changes automatically as described in
+        <a href="properties#attribute-deserialization">attribute deserialization</a>.)
+      </p>
    </td>
   </tr>
 </table>
@@ -161,27 +154,31 @@ The element constructor has a few special limitations:
 
 For a complete list of limitations, see [Requirements for custom element constructors](https://html.spec.whatwg.org/multipage/scripting.html#custom-element-conformance) in the WHATWG HTML Specification.
 
-Whenever possible, defer work until the `connectedCallback` or later instead of performing it in the constructor.
+Whenever possible, defer work until the `connectedCallback` or later instead of performing it in the constructor. See [Defer non-critical work](#defer-work) for some suggestions.
 
-### One-time initialization
+### Polymer element initialization {#ready-callback}
 
 The custom elements specification doesn't provide a one-time initialization callback. Polymer
-provides a `ready` callback, invoked the first time the element is added to the DOM.
+provides a `ready` callback, invoked the first time the element is added to the DOM. (If the element 
+is upgraded when it's already in the document, `ready` runs when the element is upgraded.)
 
 ```js
 ready() {
   super.ready();
-  // When possible, use afterNextRender to defer non-critical
-  // work until after first paint.
-  Polymer.RenderStatus.afterNextRender(this, function() {
-    ...
-  });
+  // do something that requires access to the shadow tree
+  ... 
+
 }
-```
+``` 
 
+The `PolymerElement` class initializes your element's template and data system during the `ready`
+callback, so if you override `ready`, you must call `super.ready()` before accessing the element's shadow tree.
 
-The `Polymer.Element` class initializes your element's template and data system during the `ready`
-callback, so if you override ready, you must call `super.ready()` at some point.
+Polymer does several things at `ready` time:
+
+-   Creates and attaches the element's shadow DOM tree. 
+-   Initializes the data system, propagating intial values to data bindings.
+-   Allows observers and computed properties to run (as soon as any of their dependencies are defined).
 
 When the superclass `ready` method returns, the element's template has been instantiated and initial
 property values have been set. However, light DOM elements may not have been distributed when
@@ -199,6 +196,33 @@ Related topics:
 *   [Observers and computed properties](observers)
 *   [Observe added and removed children](shadow-dom#observe-nodes)
 
+### Defer non-critical work {#defer-work}
+
+When possible, defer work until after first paint. The [`render-status`](/{{{polymer_version_dir}}}/docs/api/namespaces/Polymer.RenderStatus) module provides 
+an `afterNextRender` utility for this purpose. 
+
+```js
+import {PolymerElement} from '@polymer/polymer/polymer-element.js';
+import {afterNextRender} from '@polymer/polymer/lib/utils/render-status.js';
+
+
+class DeferElement extends PolymerElement {
+  ...
+  constructor() {
+    super();
+    // When possible, use afterNextRender to defer non-critical
+    // work until after first paint.
+    afterNextRender(this, function() {
+      this.addEventListener('click', this._handleClick);
+    });
+  }
+}
+``` 
+
+In most cases, you can call `afterNextRender` from either the `constructor` or the `ready` 
+callback with similar results. For anything requiring access to the element's shadow tree, use
+the `ready` callback.
+
 ## Element upgrades
 
 By specification, custom elements can be used before they're defined. Adding a definition for an
@@ -208,12 +232,9 @@ For example, consider the following code:
 
 ```html
 <my-element></my-element>
-<script>
-  class MyElement extends HTMLElement { ... };
 
-  // ...some time much later...
-  customElements.define('my-element', MyElement);
-</script>
+<!-- load the elment definition -->
+<script type="module" src="my-element.js">
 ```
 
 
@@ -225,38 +246,19 @@ by any pending lifecycle callbacks.
 
 Element upgrades allow you to place elements in the DOM while deferring the cost of initializing them. It's a progressive enhancement feature.
 
-Elements have a *custom element state* that takes one of the following values:
+To avoid unstyled content, you can apply styles to undefined elements. See 
+[Style undefined elements](style-shadow-dom#style-undefined-elements) for details.
 
-
-
-*   "uncustomized". The element does not have a valid custom element name. It is either a built-in
-    element (`<p>`, `<input>`) or an unknown element that cannot become a custom element
-    (`<nonsense>`)
-*   "undefined". The element has a valid custom element name (such as "my-element"), but has not
-    been defined.
-*   "custom". The element has a valid custom element name and has been defined and upgraded.
-*   "failed". An attempt to upgrade the element failed (for example, because the class was invalid).
-
-The custom element state isn't exposed as a property, but you can style elements depending on
-whether they're defined or undefined.
-
-Elements in the "custom" and "uncustomized" state are considered "defined". In CSS you can use the
-`:defined` pseudo-class selector to target elements that are defined. You can use this to provide
-placeholder styles for elements before they're upgraded:
-
-```
-my-element:not(:defined) {
-  background-color: blue;
-}
-```
 
 ## Extending other elements {#extending-elements}
 
-In addition to `HTMLElement`, a custom element can extend another custom element:
+In addition to `PolymerElement`, a custom element can extend another custom element:
 
 
 ```
-class ExtendedElement extends MyElement {
+import {MyElment} from './my-element.js';
+
+export class ExtendedElement extends MyElement {
   static get is() { return 'extended-element'; }
 
   static get properties() {
@@ -289,7 +291,29 @@ flattens these objects. So the properties and observers of a subclass are added 
 by the superclass.
 
 A subclass can also inherit a template from its superclass. For details, see
-[Inherited templates](dom-template#inherited-templates).
+[Inherit a template from another Polymer element](dom-template#inherit).
+
+To make it easy to extend your elements, the module that defines the element should export it:
+
+```js
+export class MyElement extends PolymerElement { ... }
+```
+
+Legacy elements—elements defined using the legacy `Polymer()` function—don't require you to 
+define your own class. So if you're extending a legacy element, like one of the Polymer paper elements, the module may not export a class.
+
+If you're extending a legacy Polymer element, or a module that doesn't export the element,
+you can use the `customElements.get` method to retrieve the constructor for any custom element 
+that's been defined.
+
+```js
+// Import a legacy component
+import './legacy-button.js';
+// Retrieve the legacy-button constructor
+const LegacyButton = customElements.get('legacy-button');
+// Extend it!
+export class MyExtendedButton extends LegacyButton { ... }
+```
 
 ## Sharing code with class expression mixins {#mixins}
 
@@ -311,7 +335,7 @@ const fancyCatClass = FancyMixin(catClass);
 Add a mixin to your element like this:
 
 ```js
-class MyElement extends MyMixin(Polymer.Element) {
+class MyElement extends MyMixin(PolymerElement) {
   static get is() { return 'my-element' }
 }
 ```
@@ -320,10 +344,10 @@ If that isn't clear, it may help to see it in two steps:
 
 ```js
 // Create new base class that adds MyMixin's methods to Polymer.Element
-const polymerElementPlusMixin = MyMixin(Polymer.Element);
+const PolymerElementPlusMixin = MyMixin(PolymerElement);
 
 // Extend the new base class
-class MyElement extends polymerElementPlusMixin {
+class MyElement extends PolymerElementPlusMixin {
   static get is() { return 'my-element' }
 }
 ```
@@ -331,10 +355,10 @@ class MyElement extends polymerElementPlusMixin {
 So the inheritance hierarchy is:
 
 ```js
-MyElement <= polymerElementPlusMixin <= Polymer.Element
+MyElement <= PolymerElementPlusMixin <= PolymerElement
 ```
 
-You can apply mixins to any element class, not just `Polymer.Element`:
+You can apply mixins to any element class, not just `PolymerElement`:
 
 ```js
 class MyExtendedElement extends SomeMixin(MyElement) {
@@ -345,7 +369,7 @@ class MyExtendedElement extends SomeMixin(MyElement) {
 You can also apply multiple mixins in sequence:
 
 ```js
-class AnotherElement extends AnotherMixin(MyMixin(Polymer.Element)) { … }
+class AnotherElement extends AnotherMixin(MyMixin(PolymerElement)) { … }
 ```
 
 ### Defining mixins
@@ -357,7 +381,7 @@ MyMixin = function(superClass) {
   return class extends superClass {
     constructor() {
       super();
-      this.addEventListener('keypress', e => this.handlePress(e));
+      this.addEventListener('keypress', (e) => this._handlePress(e));
     }
 
     static get properties() {
@@ -374,7 +398,7 @@ MyMixin = function(superClass) {
 
     _barChanged(bar) { ... }
 
-    handlePress(e) { console.log('key pressed: ' + e.charCode); }
+    _handlePress(e) { console.log('key pressed: ' + e.charCode); }
   }
 }
 ```
@@ -412,11 +436,10 @@ in Document your elements.
 When creating a mixin that you intend to share with other groups or publish, a couple of additional
 steps are recommended:
 
--   Use the [`Polymer.dedupingMixin`](/{{{polymer_version_dir}}}/docs/api/#function-Polymer.dedupingMixin)
+-   Use the [`dedupingMixin`](/{{{polymer_version_dir}}}/docs/api/#function-Polymer.dedupingMixin)
     function to produce a mixin that can only be applied once.
 
--   Create a unique namespace for your mixins, to avoid colliding with other mixins or classes that
-    might have similar names.
+-   Define the mixin in an ES module and export it.
 
 The `dedupingMixin` function is useful because a mixin that's used by other mixins may accidentally
 be applied more than once. For example if `MixinA` includes `MixinB` and `MixinC`, and you create an element
@@ -429,8 +452,27 @@ class MyElement extends MixinB(MixinA(Polymer.Element)) { ... }
 At this point, your element contains two copies of `MixinB` in its  prototype chain. `dedupingMixin`
 takes a mixin function as an argument, and returns a new, deduplicating mixin function:
 
+mixin-b.js {.caption}
+
 ```js
-dedupingMixinB = Polymer.dedupingMixin(mixinB);
+import {dedupingMixin} from '@polymer/polymer/lib/utils/mixin.js';
+
+// define the mixin
+let internalMixinB = (base) =>
+  class extends base {
+    ...
+  }
+
+// deduplicate and export it
+export const MixinB = dedupingMixin(internalMixinB);
+```
+
+Using the mixin {.caption}
+
+```js
+import {mixinB} from './mixin-b.js';
+
+class Foo extends MixinB(PolymerElement) { ... }
 ```
 
 The deduping mixin has two advantages: first, whenever you use the mixin, it memoizes the generated
@@ -441,22 +483,7 @@ the base class's prototype chain. If it has, the mixin simply returns the base c
 above, if you used `dedupingMixinB` instead of  `mixinB` in both places, the mixin would only be
 applied once.
 
-The following example shows one way you might create a namespaced, deduping mixin:
 
-```js
-// Create my namespace, if it doesn't exist
-if (!window.MyNamespace) {
-  window.MyNamespace = {};
-}
-
-MyNamespace.MyMixin = Polymer.dedupingMixin((base) =>
-
-  // the mixin class
-  class extends base {
-    ...
-  }
-);
-```
 
 ## Resources
 
