@@ -4,10 +4,6 @@ title: Polymer CLI
 
 <!-- toc -->
 
-<div>
-{% include 'outdated.html' %}
-</div>
-
 Polymer CLI is the official command line tool for Polymer projects and Web Components. It includes 
 a build pipeline, a boilerplate generator for creating elements and apps, a linter, a development
 server, and a test runner.
@@ -36,18 +32,9 @@ For a suggested way to run the Polymer CLI on Windows 10, see the instructions b
 
     If it isn't, you can find it on the [Git downloads page](https://git-scm.com/downloads).
 
-1.  Install the latest version of Bower.
-
-        npm install -g bower
-
 1.  Install Polymer CLI.
 
         npm install -g polymer-cli
-
-    **Bower deprecation warning:** In the output from this command, you may see an npm warning
-    about Bower being deprecated. You can safely ignore this warning. See [Bower.io](https://bower.io/blog/)
-    for more information.
-    {.alert .alert-info}
 
 You're all set. Run `polymer help` to view a list of commands.
 
@@ -57,12 +44,12 @@ Polymer CLI works with two types of projects:
 
 * Elements projects. In an element project, you expose a single element or group of related 
   elements which you intend to use in other element or app projects, or distribute on a registry 
-  like Bower or NPM. Elements are reusable and organized to be used alongside other elements, so 
+  like NPM. Elements are reusable and organized to be used alongside other elements, so 
   components are referenced outside the project.
   
   See the guide to [creating an element project with the Polymer CLI](create-element-polymer-cli)
   for more information.
-
+        
 * Application projects. In an app project, you build an application, composed of Polymer elements, 
   which you intend to deploy as a website. Applications are self-contained, organized with 
   components inside the application.
@@ -85,14 +72,20 @@ we recommend you review the [Bash on ubuntu on Windows documentation](https://ms
 
 ### Enable Bash on Windows 10 {#enable-bash}
 
-1.  Check your OS build by selecting **Start** > **System** > **OS Build**. 
-    
-    Make sure you have an x64 installation of Windows 10 with OS build > 14393.
+1.  Check your Windows OS build:
+
+        1. Press **Win+R** to open the **Run** dialog.
+
+        2. At **Open**, enter `winver`. 
+        
+        3. Click **OK**. 
+
+Make sure you have an x64 installation of Windows 10 with OS build > 14393. 
     
 1.  Open **Settings** > **Update and Security** > **For developers** and select **Developer Mode**.
 
 1.  From the **Start** Menu, search for **Turn Windows features on or off** and select **Windows 
-Subsystem for Linux (beta)**. 
+Subsystem for Linux**. 
 
 1.  Restart your computer. 
 
@@ -102,11 +95,11 @@ Subsystem for Linux (beta)**.
     
         Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 
-1.  Open a Bash prompt:
+1.  When the previous command is complete, open a Bash prompt:
     
         bash
 
-6.  Follow the prompts to create a new user.
+6.  If you are asked to create a new user, follow the prompts to do so.
 
 Your Bash installation is complete. You can start now start a new Bash prompt by typing `bash` from 
 the Start menu.
