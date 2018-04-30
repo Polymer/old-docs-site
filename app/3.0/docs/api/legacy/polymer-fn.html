@@ -1,0 +1,10 @@
+{% set markdown = "true" %}
+{% set title = "polymer-fn Module" %}
+{% extends "templates/base-devguide.html" %}
+{% block title %}polymer-fn – API Reference{% endblock %}
+{% block content %}
+<iron-doc-module
+    base-href="/3.0/docs/api"
+    module-specifier="@polymer/polymer/lib/legacy/polymer-fn.js"
+    descriptor="{&quot;schema_version&quot;:&quot;1.0&quot;,&quot;functions&quot;:[{&quot;name&quot;:&quot;Polymer&quot;,&quot;description&quot;:&quot;Legacy class factory and registration helper for defining Polymer\nelements.\n\nThis method is equivalent to\n\n    import {Class} from &apos;@polymer/polymer/lib/legacy/class.js&apos;;\n    customElements.define(info.is, Class(info));\n\nSee `Class` for details on valid legacy metadata format for `info`.&quot;,&quot;summary&quot;:&quot;&quot;,&quot;sourceRange&quot;:{&quot;file&quot;:&quot;lib/legacy/polymer-fn.js&quot;,&quot;start&quot;:{&quot;line&quot;:32,&quot;column&quot;:23},&quot;end&quot;:{&quot;line&quot;:43,&quot;column&quot;:1}},&quot;privacy&quot;:&quot;public&quot;,&quot;params&quot;:[{&quot;type&quot;:&quot;!PolymerInit&quot;,&quot;desc&quot;:&quot;Object containing Polymer metadata and functions\n  to become class methods.&quot;,&quot;name&quot;:&quot;info&quot;}],&quot;return&quot;:{&quot;type&quot;:&quot;function (new: HTMLElement)&quot;,&quot;desc&quot;:&quot;Generated class&quot;}}]}"></iron-doc-module>
+{% endblock %}

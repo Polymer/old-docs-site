@@ -1,0 +1,10 @@
+{% set markdown = "true" %}
+{% set title = "mixin Module" %}
+{% extends "templates/base-devguide.html" %}
+{% block title %}mixin – API Reference{% endblock %}
+{% block content %}
+<iron-doc-module
+    base-href="/3.0/docs/api"
+    module-specifier="@polymer/polymer/lib/utils/mixin.js"
+    descriptor="{&quot;schema_version&quot;:&quot;1.0&quot;,&quot;functions&quot;:[{&quot;name&quot;:&quot;dedupingMixin&quot;,&quot;description&quot;:&quot;Wraps an ES6 class expression mixin such that the mixin is only applied\nif it has not already been applied its base argument. Also memoizes mixin\napplications.&quot;,&quot;summary&quot;:&quot;&quot;,&quot;sourceRange&quot;:{&quot;file&quot;:&quot;lib/utils/mixin.js&quot;,&quot;start&quot;:{&quot;line&quot;:35,&quot;column&quot;:29},&quot;end&quot;:{&quot;line&quot;:64,&quot;column&quot;:1}},&quot;privacy&quot;:&quot;public&quot;,&quot;params&quot;:[{&quot;type&quot;:&quot;T&quot;,&quot;desc&quot;:&quot;ES6 class expression mixin to wrap&quot;,&quot;name&quot;:&quot;mixin&quot;}],&quot;return&quot;:{&quot;type&quot;:&quot;T&quot;}}]}"></iron-doc-module>
+{% endblock %}
