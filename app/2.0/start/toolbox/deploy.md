@@ -45,7 +45,7 @@ The builds will be output to subfolders under the `build/` folder as follows:
       es6-bundled/
       es6-unbundled/
 
-To configure a custom build, you can use command line options, or edit `polymer.json`. Run `polymer help build` for the full list of available options and optimizations. Also, see the documentation on the [polymer.json specification](https://www.polymer-project.org/2.0/docs/tools/polymer-json) and [building your Polymer application for production](https://www.polymer-project.org/2.0/toolbox/build-for-production).
+To configure a custom build, you can use command line options, or edit `polymer.json`. Run `polymer help build` for the full list of available options and optimizations. Also, see the documentation on the [polymer.json specification](/{{{polymer_version_dir}}}/docs/tools/polymer-json) and [building your Polymer application for production](/{{{polymer_version_dir}}}/toolbox/build-for-production).
 
 ## Deploy to a server
 
@@ -191,3 +191,8 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
    The URL to your live site is listed in the output. You can also open
    the site in your default browser by running `firebase open hosting:site`.
 
+## Next Steps
+
+Ready for what's next? The App Toolbox comes with a built-in service worker - a script that
+enables serving pages from the browser cache to provide a better experience in offline and 
+spotty network situations. As a next step, try (adding a service worker)[/{{{polymer_version_dir}}}/toolbox/service-worker] to your app.
