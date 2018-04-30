@@ -9,42 +9,34 @@ In this step, you'll deploy your application to the web.
 
 ## Build for deployment
 
+TODO: Fix es?-??? when build presets are finalized.
+
 Type `polymer build` to build your Polymer application for production. 
 
 You can serve different builds of your app to browsers with different capabilities. The Polymer Starter Kit is configured to create three builds:
 
-* `esm-bundled`: JavaScript code is served without compilation as ES modules.
+* `es?-???`: A build with some stuff. 
 
-* `es6-bundled`: JavaScript code is compiled to ES2015 and uses AMD modules.
+* `es?-???`: A build with some stuff. 
 
-* `es5-bundled`: JavaScript code is compiled to ES5 and uses AMD modules.
+* `es?-???`: A build with some stuff. 
 
-In this step, you'll deploy `es6-bundled`. Builds are configured in the `builds` object in `polymer.json`, a configuration file in the top-level project folder:
+In this step, you'll deploy `es?-???`. Builds are configured in the `builds` object in `polymer.json`, a configuration file in the top-level project folder:
 
 polymer.json { .caption}
 
 ```
 ...
-"builds": [
-{
-  "name": "esm-bundled", ...
-},
-{
-  "name": "es6-bundled", ...
-}
-{
-  "name": "es5-bundled", ...
-}
-]
+"builds": [ { "es?-???": } ]
 ...
 ```
 
 The builds will be output to subfolders under the `build/` folder as follows:
 
     build/
-      esm-bundled/
-      es6-bundled/
-      es5-bundled/
+      es?-???/
+      es?-???/
+      es?-???/
 
 To configure a custom build, you can use command line options, or edit `polymer.json`. Run `polymer help build` for the full list of available options and optimizations. Also, see the documentation on the [polymer.json specification](/{{{polymer_version_dir}}}/docs/tools/polymer-json) and [building your Polymer application for production](/{{{polymer_version_dir}}}/toolbox/build-for-production).
 
@@ -90,35 +82,35 @@ and create a new project.
 
     handlers:
     - url: /node_modules
-      static_dir: build/es6-bundled/node_modules
+      static_dir: build/es?-???/node_modules
       secure: always
 
     - url: /images
-      static_dir: build/es6-bundled/images
+      static_dir: build/es?-???/images
       secure: always
 
     - url: /src
-      static_dir: build/es6-bundled/src
+      static_dir: build/es?-???/src
       secure: always
 
     - url: /manifest.json
-      static_files: build/es6-bundled/manifest.json
-      upload: build/es6-bundled/manifest.json
+      static_files: build/es?-???/manifest.json
+      upload: build/es?-???/manifest.json
       secure: always
 
     - url: /service-worker.js
-      static_files: build/es6-bundled/service-worker.js
-      upload: build/es6-bundled/service-worker.js
+      static_files: build/es?-???/service-worker.js
+      upload: build/es?-???/service-worker.js
       secure: always
 
     - url: /.*
-      static_files: build/es6-bundled/index.html
-      upload: build/es6-bundled/index.html
+      static_files: build/es?-???/index.html
+      upload: build/es?-???/index.html
       secure: always
 
     skip_files:
-    - build/es5-bundled/
-    - build/esm-bundled/
+    - build/es?-???/
+    - build/es?-???/
     - images/
     - node_modules/
     - src/
@@ -171,7 +163,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
 
 1.  Firebase asks you for a project to associate with your app. Select the one you created earlier.
 
-1.  Firebase asks you the name of your app's public folder. Enter `build/es6-bundled/`.
+1.  Firebase asks you the name of your app's public folder. Enter `build/es?-???/`.
 
 1.  Edit your firebase configuration to add support for URL routing. The final
     `firebase.json` file should look something like this:
@@ -179,7 +171,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
     ```
     {
       "hosting": {
-        "public": "build/es6-bundled/",
+        "public": "build/es?-???/",
         "rewrites": [
           {
             "source": "**/!(*.*)",
@@ -199,4 +191,3 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
    
    The URL to your live site is listed in the output. You can also open
    the site in your default browser by running `firebase open hosting:site`.
-

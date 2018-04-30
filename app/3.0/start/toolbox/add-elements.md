@@ -17,12 +17,11 @@ to some off-the-shelf components, for example from [webcomponents.org][webcompon
 Once you've identified a component you'd like to install, you'll want to find
 the npm package name for the component.
 
-In this step, you'll add Polymer's `<paper-checkbox>` element to your app, which is listed on
-[webcomponents.org][paper-checkbox].  You can use Yarn to install it.
+In this step, you'll add Polymer's `<paper-checkbox>` element to your app.
 
-Run this command from your project root directory:
+Run the following command from your root project folder:
 
-    yarn add --flat @polymer/paper-checkbox@next
+    npm install @polymer/paper-checkbox@next --save
 
 ## Add the element to your application
 

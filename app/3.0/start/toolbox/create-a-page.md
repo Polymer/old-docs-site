@@ -24,7 +24,7 @@ your new view.
     import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
     /* Load shared styles. All view elements use these styles */
     import './shared-styles.js';
-
+    
     /* Extend the base PolymerElement class */
     class MyNewView extends PolymerElement {
       /* Define a template for the new element */
