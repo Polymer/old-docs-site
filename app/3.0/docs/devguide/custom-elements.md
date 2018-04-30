@@ -22,7 +22,7 @@ on Web Fundamentals.
 To define a custom element, you create an ES6 class and associate it with the custom element name. For the full set of Polymer features, extend the `PolymerElement` class:
 
 ```js
-import {PolymerElement} from '@polymer/polymer/polymer-element.js`;
+import {PolymerElement} from '@polymer/polymer/polymer-element.js';
 
   export class MyPolymerElement extends PolymerElement {
     ...
@@ -246,34 +246,9 @@ by any pending lifecycle callbacks.
 
 Element upgrades allow you to place elements in the DOM while deferring the cost of initializing them. It's a progressive enhancement feature.
 
+To avoid unstyled content, you can apply styles to undefined elements. See 
+[Style undefined elements](style-shadow-dom#style-undefined-elements) for details.
 
-### Styling elements before upgrade
-
-Elements have a *custom element state* that takes one of the following values:
-
-*   "uncustomized". The element does not have a valid custom element name. It is either a built-in
-    element (`<p>`, `<input>`) or an unknown element that cannot become a custom element
-    (`<nonsense>`)
-*   "undefined". The element has a valid custom element name (such as "my-element"), but has not
-    been defined.
-*   "custom". The element has a valid custom element name and has been defined and upgraded.
-*   "failed". An attempt to upgrade the element failed (for example, because the class was invalid).
-
-The custom element state isn't exposed as a property, but you can style elements depending on
-whether they're defined or undefined.
-
-Elements in the "custom" and "uncustomized" state are considered "defined". In CSS you can use the
-`:defined` pseudo-class selector to target elements that are defined. **In native shadow DOM**,
-you can use this to provide placeholder styles for elements before they're upgraded:
-
-```
-my-element:not(:defined) {
-  background-color: blue;
-}
-```
-
-**`:defined` is not supported by the Custom Elements polyfill.** See the [documentation on styling](style-shadow-dom#style-undefined-elements) for a workaround.
-{.alert .alert-warning}
 
 ## Extending other elements {#extending-elements}
 
@@ -324,7 +299,10 @@ To make it easy to extend your elements, the module that defines the element sho
 export class MyElement extends PolymerElement { ... }
 ```
 
-If you're extending a legacy-style Polymer element, or a module that doesn't export the element,
+Legacy elements—elements defined using the legacy `Polymer()` function—don't require you to 
+define your own class. So if you're extending a legacy element, like one of the Polymer paper elements, the module may not export a class.
+
+If you're extending a legacy Polymer element, or a module that doesn't export the element,
 you can use the `customElements.get` method to retrieve the constructor for any custom element 
 that's been defined.
 
