@@ -45,7 +45,8 @@ By default, the development server tries to autodetect support for ES6 and ES6 m
 
 Build now supports bundling and transforming ES6 modules. When working on ES6 modules, build produces either ES6 modules or AMD modules as output. It can also transform dynamic imports into AMD modules.
 
-To create a build with ES6 modules transformed to AMD, set the **<code>transformModulesToAmd</code>**option for that build in the <code>polymer.json</code> file.
+To create a build with ES6 modules transformed to AMD, set the **<code>transformModulesToAmd</code>**
+option for that build in the <code>polymer.json</code> file.
 
 
 ```js
