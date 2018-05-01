@@ -150,9 +150,6 @@
   - title: Publish your elements
     path: /3.0/docs/tools/publish
     indent: True
-  - title: Web services
-    path: /3.0/docs/tools/services
-    indent: True
   - title: polymer.json specification
     path: /3.0/docs/tools/polymer-json
     indent: True
@@ -163,6 +160,9 @@
   - header: Resources
   - title: Glossary
     path: /3.0/docs/glossary
+    indent: True
+  - title: Polymer 3.0 on StackBlitz
+    path: /3.0/docs/stackblitz
     indent: True
   - endheader: True
   - header: API Reference
