@@ -8,16 +8,11 @@ This chapter describes how to install the Polymer 3.0 tools and get started with
 
 ## Install the Polymer 3.0 prerequisites
 
-Note: We recommend using npm to install the Polymer CLI globally, and Yarn to add the Polymer library and elements to your project.
-
-Polymer elements need to be unique, so we recommend using Yarn's `--flat` install option if possible to install your project's dependencies. This prevents your project from attempting to install multiple versions of the same element.
-
 To set up a development environment for Polymer 3.0: 
 
 * [Install Git](#git).
 * [Install npm and Node.js](#node).
-* [Install Yarn](#yarn).
-* [Install the Polymer CLI](#cli).
+* [Install Polymer CLI](#cli).
 * Optionally, [Download and serve a sample Polymer 3.0 app](#app).
 
 ### Install Git {#git}
@@ -53,34 +48,13 @@ To confirm that Node.js is correctly installed:
 node --version
 ```
 
-### Install Yarn {#yarn}
+### Install Polymer CLI {#cli}
 
-For Mac and Linux users, an easy way to install Yarn is to run the Yarn install script:
-
-```bash
-curl -o- -L https://yarnpkg.com/install.sh | bash
-```
-
-[See the Yarn documentation for more information on the install script](https://yarnpkg.com/lang/en/docs/install/#alternatives-tab).
-
-You can also install Yarn from a package manager on such as apt or Homebrew. [See the Yarn documentation for detailed instructions](https://yarnpkg.com/lang/en/docs/install/).
-
-To confirm that Yarn is correctly installed:
+To install Polymer CLI, run the following command:
 
 ```bash
-yarn --version
+npm install -g polymer-cli@next
 ```
-
-### Install the Polymer CLI {#cli}
-
-To install the Polymer CLI, run the following command:
-
-```bash
-npm install -g polymer-cli
-```
-
-Note: If you have a previous version of the Polymer CLI, the command above will update it to the
-latest version.
 
 To confirm that the Polymer CLI has been correctly installed:
 
@@ -95,8 +69,8 @@ To test your Polymer development environment, you can try out a sample Polymer a
 ```bash
 git clone https://github.com/PolymerLabs/start-polymer3.git
 cd start-polymer3
-yarn install --flat
-polymer serve --open --npm --module-resolution=node
+npm install
+polymer serve
 ```
 
 For more information on the tools and options in the Polymer CLI, see the documentation on [Polymer CLI commands](/{{{polymer_version_dir}}}/docs/tools/polymer-cli-commands).
