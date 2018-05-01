@@ -43,7 +43,6 @@ share across your team.
 * [--bundle](#bundles)
 * [--css-minify](#css-minify)
 * [--entrypoint](#entrypoint)
-* [--fragment](#fragment)
 * [--html-minify](#html-minify)
 * [--insert-prefetch-links](#prefetch)
 * [--js-compile](#js-compile)
@@ -94,9 +93,9 @@ This field is purely a hint to servers reading this configuration, and does not 
 
 ### --bundle {#bundles}
 
-By default, fragments are unbundled. This is optimal for HTTP/2-compatible servers and clients.
+By default, JavaScript code is unbundled. This is optimal for HTTP/2-compatible servers and clients.
 
-If the `--bundle` flag is supplied, all fragments are bundled together to reduce the number of file
+If the `--bundle` flag is supplied, JavaScript code is bundled together to reduce the number of file
 requests. This is optimal for sending to clients or serving from servers that are not HTTP/2
 compatible.
 
@@ -110,26 +109,9 @@ A filename. This is the main entrypoint into your application for all routes. Of
 your `index.html` file. This file should import the app shell file specified in the
 [`shell`](#shell) option. It should be minimal since it's loaded and cached for each route.
 
-### --fragment {#fragment}
-
-This flag supports dynamic dependencies. It is an array of any HTML filenames that are not
-statically linked from the app shell (that is, imports loaded on demand by `importHref`).
-
-If a fragment has static dependencies, provided the fragment is defined in this property, the
-Polymer build analyzer will find them. You only need to list the file imported by importHref.
-
-In a Polymer app, the files listed in the fragments flag usually contain one or more element
-definitions that may or may not be required during the user’s interaction with the app, and can
-thus be lazily loaded.
-
 ### --html-minify {#html-minify}
 
 Minify HTMl by removing comments and whitespace.
-
-### --insert-prefetch-links {#prefetch}
-Insert prefetch link elements into your fragments so that all dependencies are prefetched
-immediately. Add dependency prefetching by inserting `<link rel="prefetch">` tags into entrypoint
-and `<link rel="import">` tags into fragments and shell for all dependencies.
 
 ### --js-compile {#js-compile}
 
@@ -194,16 +176,6 @@ See also:
 * [Create an application project with the Polymer CLI](create-app-polymer-cli)
 * [Case study of the Polymer Shop app](/{{{polymer_version_dir}}}/toolbox/case-study)
 
-## polymer install {#install}
-
-Installs dependencies.
-
-If the --npm flag is given, running `polymer install` is equivalent to running `npm install`:
-
-```
-polymer install --npm
-```
-
 ## polymer lint {#lint}
 
 Analyze your project for syntax errors, missing imports, bad databinding expressions and more. `polymer lint` helps with identifying issues across your HTML, JS, and CSS based on an in-depth analysis of web components in source code. It does not reinvent the wheel though, it focuses on issues specific to web components and Polymer, so it is a good adjunct to other tools like [`eslint`](http://eslint.org/) and [`htmlhint`](http://htmlhint.com/).
@@ -251,22 +223,6 @@ If you want to view a live demo of your element or app, run the local web server
 
     polymer serve
 
-To view the demo, point your browser to one of the following URLs.
-
-Element project demo:
-
-<pre><code>http://localhost:8080/components/<var>my-el</var>/demo/</code></pre>
-
-Element project API reference:
-
-<pre><code>localhost:8080/components/<var>my-el</var>/</code></pre>
-
-App project demo:
-
-    http://localhost:8080
-
-### Server options {#server-options}
-
 This section describes command line options available for the Polymer CLI development server (`polymer serve`).
 
 ### --npm
@@ -277,9 +233,11 @@ Sets npm mode. Dependencies are installed from npm, the component directory is s
 polymer serve --npm --module-resolution="node"
 ```
 
+Because the dependencies for Polymer 3.0 projects are defined in `package.json`, the `--npm` flag is usually required. You will probably find it easier to [add this option to your polymer.json configuration](polymer-json).
+
 ### --module-resolution
 
-Specifies how to resolve module specifiers in import and export statements when rewriting them to be web-compatible.
+Specifies how to resolve module specifiers in import and export statements when rewriting them to URLs.
 
 Valid values are `"none"` and `"node"`. Defaults to `"none"`. 
 
@@ -291,6 +249,8 @@ Valid values are `"none"` and `"node"`. Defaults to `"none"`.
 polymer serve --npm --module-resolution="node"
 ```
 
+Because Polymer 3.0 projects like the [Polymer Elements](https://github.com/PolymerElements/) import by module specifiers, rather than paths, `--module-resolution=node` is usually required. You will probably find it easier to [add this option to your polymer.json configuration](polymer-json).
+
 ### --compile
 
 Compiler options. Valid values are `"auto"`, `"always"` and `"never"`. Defaults to `"auto"`.
@@ -299,22 +259,26 @@ Compiler options. Valid values are `"auto"`, `"always"` and `"never"`. Defaults 
 
 ### --component-dir, -c
 
-The component directory to use. When `--npm` is true, defaults to `"node_modules"`. 
+The component directory to use. When `--npm` is true, defaults to `"node_modules"`. Without the `--npm` flag, defaults to `"bower_components"`. 
 
 ### --port, -p
 
-To serve from port 3000:
+By default, the `polymer serve` command runs the Polymer CLI development server on an open port. You can use `--port` or `-p` to specify the port to serve from. For example, to serve from port 3000:
 
 ```
 polymer serve --port 3000
 ```
 
+### --hostname 
+
 If you have configured a custom hostname on your machine, Polymer CLI can serve it with the
-`--hostname` argument (for example, app project demo is available at `http://test:8080`):
+`--hostname` argument. For example, if your hostname is `test`, the following command serves an application project from `http://test:8080`:
 
     polymer serve --hostname test
 
-Open up a page other than the default `index.html` in a specific browser
+### --open, --browser
+
+Open a page other than the default `index.html` in a specific browser
 (Apple Safari, in this case):
 
     polymer serve --open app.html --browser Safari
@@ -342,11 +306,10 @@ in [Test your elements](tests).
 You can see a list of global options by running `polymer help`. Most of them
 are self-explanatory.
 
-The following commands are currently only supported for the `polymer build`
-command, with planned support for other commands in the future.
+The following options are currently only supported for the `polymer build`
+command:
 
 *   `entry`
 *   `shell`
-*   `fragment`
 
 See [`polymer build`](#build) for more information on how to use these options.
