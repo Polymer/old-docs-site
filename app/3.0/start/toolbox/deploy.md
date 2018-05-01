@@ -134,20 +134,25 @@ and create a new project.
     ...
     ```
 
-1.  Re-run `polymer build` to include `app.yaml` in your build, then navigate to your build output folder:
+1.  Re-run `polymer build` to include `app.yaml` in your build.
 
        polymer build
+
+1.  **Navigate to your build output folder**:
+
        cd build/es?-???
 
-1. Set your project id to the ID given to your app by the App Engine. For example:
+    **Make sure you navigate to your build output folder before running the rest of these commands.** You must run the `gcloud` commands from your build output folder (`build/es?-???`). If you run the commands from your root project folder, the deployment will fail. {.alert .alert-warning}
+
+1.  Set your project id to the ID given to your app by the App Engine. For example:
    
        gcloud config set project test-thing-16996
 
-1. Create your app:
+1.  Create your app:
    
        gcloud app create
      
-   You will need to select a region for your app to be deployed in. This can't be changed.
+    You will need to select a region for your app to be deployed in. This can't be changed.
 
 1. Deploy your app:
    
