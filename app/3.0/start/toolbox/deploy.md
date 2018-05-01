@@ -187,25 +187,35 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
 
 1.  `cd` into your project folder.
 
-1.  Inititalize the Firebase application.
+1.  Initialize the Firebase application.
 
         firebase login
         firebase init
 
-1.  Firebase asks you for a project to associate with your app. Select the one you created earlier.
+    1.  When asked which features you want to set up for your project folder, use the arrow keys and space to select "Hosting", then press enter to confirm.
 
-1.  Firebase asks you the name of your app's public folder. Enter `build/es5-bundled/`.
+    1.  When asked for a project to associate with your app, select the one you created earlier.
 
-1.  Edit your firebase configuration to add support for URL routing. The final
-    `firebase.json` file should look something like this:
+    1.  When asked for the path to your app's public folder, enter `build/es5-bundled/`.
+
+    1.  When asked if you want to configure your project as a single-page app, type `y` and press enter.
+
+    1.  When asked if you want to overwrite your `index.html` with theirs, type `n` and press enter.
+
+    The Firebase tools will create a `firebase.json` file for you, which should look something like this:
 	
     ```
     {
       "hosting": {
         "public": "build/es5-bundled/",
+        "ignore": [
+          "firebase.json",
+          "**/.*",
+          "**/node_modules/**"
+        ],
         "rewrites": [
           {
-            "source": "**/!(*.*)",
+            "source": "**",
             "destination": "/index.html"
           }
         ]
@@ -213,15 +223,43 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
     }
     ```	
 
-    This instructs Firebase to serve up `index.html` for any URLs that don't
-    otherwise end in a file extension.
+    The [`rewrites` setting](https://firebase.google.com/docs/hosting/full-config#rewrites) shown above instructs Firebase to serve up `/index.html` for any URL that doesn't match a path to a file in the publicly deployed folder (`build/es5-bundled/`).
 
-1. Deploy your project.
+1.  Remove the rule in the [`ignore` setting](https://firebase.google.com/docs/hosting/full-config#ignore) that ignores folders named `node_modules`:
+
+    Before {.caption}
+
+    ```
+    ...
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    ...
+    ```
+
+    After {.caption}
+
+    ```
+    ...
+    "ignore": [
+      "firebase.json",
+      "**/.*"
+    ],
+    ...
+    ```
+
+    Don't forget to remove the comma after the previous item!
+
+    We need to remove this rule because `polymer build` doesn't change the file layout of your app, except when it bundles files together. This means that some of your app's dependencies will still be in a folder called `node_modules` after being built. Don't worry, `polymer build` only includes files from `node_modules` that it knows your app needs.
+
+1.  Deploy your project.
    
-       firebase deploy
+        firebase deploy
    
-   The URL to your live site is listed in the output. You can also open
-   the site in your default browser by running `firebase open hosting:site`.
+    The URL to your live site is listed in the output. You can also open
+    the site in your default browser by running `firebase open hosting:site`.
 
 ## Next steps
 
