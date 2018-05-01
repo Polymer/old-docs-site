@@ -75,7 +75,7 @@ and create a new project.
     ```
     runtime: python27
     api_version: 1
-    threadsafe: yes
+    threadsafe: true
 
     handlers:
     - url: /node_modules
