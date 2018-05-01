@@ -1,5 +1,5 @@
 ---
-title: "Polymer 3.0 on Stackblitz"
+title: "Polymer 3.0 on StackBlitz"
 ---
 
 <!-- toc -->
@@ -8,7 +8,7 @@ title: "Polymer 3.0 on Stackblitz"
 
 Here's a [template for Polymer 3.0 to help you get started](https://stackblitz.com/edit/start-polymer3?file=start-polymer3.js). 
 
-Please note that at the time of writing, StackBlitz requires an `index.js` and `index.html` file to be present in the root folder for all JavaScript projects. You'll need to import your app shell from `index.js`, like so:
+Please note that at the time of writing, StackBlitz requires an `index.js` and `index.html` file to be present in the root folder for all JavaScript projects. You'll need to import JavaScript modules, such as elements, from `index.js`, like so:
 
 index.js {.caption}
 
@@ -21,7 +21,7 @@ index.html {.caption}
 <!-- Include WebComponents polyfills -->
 <script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
 
-<!-- StackBlitz compiles es6 code to es5. Include custom elements adapter to make code work in ES6-native browsers -->
+<!-- StackBlitz compiles es6 code to es5. Include custom elements adapter to make code work in es6-native browsers -->
 <script src="node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
 
 <my-app></my-app>
