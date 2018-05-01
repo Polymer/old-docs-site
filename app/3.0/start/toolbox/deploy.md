@@ -9,34 +9,38 @@ In this step, you'll deploy your application to the web.
 
 ## Build for deployment
 
-TODO: Fix es?-??? when build presets are finalized.
-
 Type `polymer build` to build your Polymer application for production. 
 
-You can serve different builds of your app to browsers with different capabilities. The Polymer Starter Kit is configured to create three builds:
+You can serve different builds of your app to browsers with different capabilities. In this step, you'll deploy `es5-bundled`. 
 
-* `es?-???`: A build with some stuff. 
+The Polymer Starter Kit is configured to create three builds:
 
-* `es?-???`: A build with some stuff. 
+* `esm-bundled`: This build serves JavaScript code without compilation, as ES modules.
 
-* `es?-???`: A build with some stuff. 
+* `es6-bundled`: This build serves JavaSCript code compiled to ES2015, as AMD modules.
 
-In this step, you'll deploy `es?-???`. Builds are configured in the `builds` object in `polymer.json`, a configuration file in the top-level project folder:
+* `es5-bundled`: This build serves JavaSCript code compiled to ES5, as AMD modules.
+
+Builds are configured in the `builds` object in `polymer.json`, a configuration file in the top-level project folder:
 
 polymer.json { .caption}
 
 ```
 ...
-"builds": [ { "es?-???": } ]
+"builds": [
+    { "name": "esm-bundled", ... },
+    { "name": "es6-bundled", ... },
+    { "name": "es5-bundled", ... }
+  ],
 ...
 ```
 
 The builds will be output to subfolders under the `build/` folder as follows:
 
     build/
-      es?-???/
-      es?-???/
-      es?-???/
+      esm-bundled/
+      es6-bundled/
+      es5-bundled/
 
 To configure a custom build, you can use command line options, or edit `polymer.json`. Run `polymer help build` for the full list of available options and optimizations. Also, see the documentation on the [polymer.json specification](/{{{polymer_version_dir}}}/docs/tools/polymer-json) and [building your Polymer application for production](/{{{polymer_version_dir}}}/toolbox/build-for-production).
 
@@ -136,35 +140,35 @@ and create a new project.
 
 1.  Re-run `polymer build` to include `app.yaml` in your build.
 
-       polymer build
+        polymer build
 
-1.  **Navigate to your build output folder**:
+1.  Navigate to your build output folder:
 
-       cd build/es?-???
-
-    **Make sure you navigate to your build output folder before running the rest of these commands.** You must run the `gcloud` commands from your build output folder (`build/es?-???`). If you run the commands from your root project folder, the deployment will fail. {.alert .alert-warning}
+        cd build/es5-bundled
 
 1.  Set your project id to the ID given to your app by the App Engine. For example:
    
-       gcloud config set project test-thing-16996
+        gcloud config set project test-thing-16996
 
 1.  Create your app:
    
-       gcloud app create
+        gcloud app create
      
     You will need to select a region for your app to be deployed in. This can't be changed.
 
-1. Deploy your app:
-   
-       gcloud app deploy
+1.  Deploy your app:
 
-1. Your app will be available online at its designated URL. For example:
+    **Make sure you running the following command from your build output folder.** If you run it from your root project folder, the deployment will fail. {.alert .alert-warning}
    
-       https://test-thing-16996.appspot.com
+        gcloud app deploy
+
+1.  Your app will be available online at its designated URL. For example:
    
-   Open your app URL in your browser by typing this command:
+        https://test-thing-16996.appspot.com
    
-       gcloud app browse
+    Open your app URL in your browser by typing this command:
+   
+        gcloud app browse
 
 ### Deploy with Firebase
 
@@ -190,7 +194,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
 
 1.  Firebase asks you for a project to associate with your app. Select the one you created earlier.
 
-1.  Firebase asks you the name of your app's public folder. Enter `build/es?-???/`.
+1.  Firebase asks you the name of your app's public folder. Enter `build/es5-bundled/`.
 
 1.  Edit your firebase configuration to add support for URL routing. The final
     `firebase.json` file should look something like this:
@@ -198,7 +202,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
     ```
     {
       "hosting": {
-        "public": "build/es?-???/",
+        "public": "build/es5-bundled/",
         "rewrites": [
           {
             "source": "**/!(*.*)",
