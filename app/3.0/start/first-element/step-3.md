@@ -11,9 +11,9 @@ Polymer allows you to create an API for your element, providing a way to configu
 
 In this step, you'll: 
 
-* [Create a properties getter and declare a simple String property](#create)
-* [Use the simple String property in a data binding](#bind)
-* [Sync a property with its corresponding HTML attribute](#sync)
+* [Create a properties getter and declare a simple String property](#create).
+* [Use the simple String property in a data binding](#bind).
+* [Sync a property with its corresponding HTML attribute](#sync).
 
 ### Create a properties getter and declare a simple String property {#create}
 

@@ -11,8 +11,8 @@ Of course, a button isn't a button if you can't click it. In this step, we'll ma
 
 In this step, you'll:
 
-* [Add an event listener](#listen)
-* [Define the callback for your event listener](#callback)
+* [Add an event listener](#listen).
+* [Define the callback for your event listener](#callback).
 
 ### Add an event listener {#listen}
 

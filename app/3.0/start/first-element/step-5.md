@@ -13,14 +13,14 @@ Shadow DOM helps prevent users from styling your element's internals by accident
 
 ## Step 5: Style an element with custom CSS properties
 
-In this step you'll: 
+In this step, you'll: 
 
 * [Create styles using the values of custom CSS properties](#create).
 * [Set values for the custom properties](#set).
 
-If you want to learn how custom properties can be used to create a document-level theme:
+If you want to learn how custom properties can be used to create a document-level theme, you can also:
 
-* [Extra credit: Set custom properties at the document level](#extra)
+* [Extra credit: Set custom properties at the document level](#extra).
 
 ### Create styles using the values of custom CSS properties {#create}
 
@@ -146,7 +146,7 @@ demo/index.html {.caption}
     html {
       --icon-toggle-outline-color: red;
     }
-    /* Overrides the value specified inside demo/demo-element.js */
+    /* Override the value specified inside demo/demo-element.js */
     demo-element {
       --icon-toggle-pressed-color: blue;
     }

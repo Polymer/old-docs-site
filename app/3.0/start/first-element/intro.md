@@ -19,18 +19,18 @@ You’ll be able to use the toggle button with simple markup like this:
 
 In this step, you'll: 
 
-* [Install Polymer CLI](#install)
-* [Download the starting code](#download)
-* [Install dependencies and run the demo](#run)
+* [Install Polymer CLI](#install).
+* [Download the starting code](#download).
+* [Install dependencies and run the demo](#run).
 
 To follow this tutorial, you’ll first need to install some command line tools. See the [Polymer CLI install guide](/{{{polymer_version_dir}}}/docs/tools/polymer-cli) for full instructions on setting up Polymer CLI and its prerequisites (Git, npm, and Node.js). 
 
 ### Install Polymer CLI {#install}
 
-If you're comfortable that you have all the prerequisites installed, grab the latest version of Polymer CLI with the following command:
+If you're comfortable that you have all the prerequisites installed, update Polymer CLI with the following command:
 
 ```
-npm install -g polymer-cli
+npm install -g polymer-cli@next
 ```
 
 If you don't have the prerequisites, or you're not sure whether you have them, follow the [Polymer CLI install guide](/{{{polymer_version_dir}}}/docs/tools/polymer-cli).
