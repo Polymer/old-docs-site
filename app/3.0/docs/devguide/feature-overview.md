@@ -16,49 +16,49 @@ Similar to standard DOM elements, Polymer elements can be:
 
 A basic Polymer element definition looks like this:
 
-```
-    <dom-module id="x-custom">
-      <!-- Optional shadow DOM template -->
-      <template>
-        <style>
-          /* CSS rules for your element */
-        </style>
+```js
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+
+// Define the element's API using an ES2015 class
+class XCustom extends PolymerElement {
+
+  // Define optional shadow DOM template
+  static get template() { 
+    return html`
+      <style>
+        /* CSS rules for your element */
+      </style>
 
         <!-- shadow DOM for your element -->
 
-        <div>{{greeting}}</div> <!-- data bindings in local DOM -->
-      </template>
+      <div>[[greeting]]</div> <!-- data bindings in shadow DOM -->
+    `;
+  }
 
-      <script>
-        // Define the element's API using an ES2015 class
-        class XCustom extends Polymer.Element {
+  // Declare properties for the element's public API
+  static get properties() {
+    return {
+      greeting: {
+        type: String
+      }
+    }
+  }
 
-          static get is() { return 'x-custom'; }
+  constructor() {
+    super();
+    this.greeting = 'Hello!';
+  }
 
-          // Declare properties for the element's public API
-          static get properties() {
-            return {
-              greeting: {
-                type: String,
-                value: "Hello!"
-              }
-            }
-          }
+  // Add methods to the element's public API
+  greetMe() {
+    console.log(this.greeting);
+  }
 
-          // Add methods to the element's public API
-          greetMe() {
-            console.log(this.greeting);
-          }
+}
 
-        }
-
-        // Register the x-custom element with the browser
-        customElements.define(XCustom.is, XCustom);
-      </script>
-
-    </dom-module>
+// Register the x-custom element with the browser
+customElements.define('x-custom', XCustom);
 ```
-
 
 This guide divides the features into the following groups:
 
@@ -78,8 +78,8 @@ This guide divides the features into the following groups:
     attributes; property observers; and computed properties.
 
 
-If you're upgrading an existing 1.x element to the new APIs, see the
-[Upgrade guide](/2.0/docs/upgrade) for advice.
+If you're upgrading an existing 2.x element to 3.x, see the
+[Upgrade guide](/3.0/docs/upgrade) for advice.
 
 If you're looking for the latest changes in this release, see the
-[Release notes](/2.0/docs/release-notes).
+[Release notes](/3.0/docs/release-notes).
