@@ -8,7 +8,7 @@ title: "Polymer 3.0 on StackBlitz"
 
 Here's a [template for Polymer 3.0 to help you get started](https://stackblitz.com/edit/start-polymer3?file=start-polymer3.js). 
 
-Please note that at the time of writing, StackBlitz requires an `index.js` and `index.html` file to be present in the root folder for all JavaScript projects. You'll need to import JavaScript modules, such as elements, from `index.js`, like so:
+Please note that at the time of writing, StackBlitz requires an `index.js` and `index.html` file to be present in the root folder for all JavaScript projects. You'll need to import JavaScript modules, such as elements, from `index.js`:
 
 index.js {.caption}
 
