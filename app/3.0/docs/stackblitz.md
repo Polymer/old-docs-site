@@ -18,7 +18,10 @@ import `my-app.js`;
 
 index.html {.caption}
 ```
-<!-- StackBlitz compiles es6 code to es5 for compatibility with older browsers. Include the custom elements adapter to make your code work in ES6-native browsers. -->
+<!-- Include WebComponents polyfills -->
+<script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+
+<!-- StackBlitz compiles es6 code to es5. Include custom elements adapter to make code work in ES6-native browsers -->
 <script src="node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
 
 <my-app></my-app>
