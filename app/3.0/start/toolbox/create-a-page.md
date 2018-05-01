@@ -5,7 +5,7 @@ subtitle: "Build an app with App Toolbox"
 
 <!-- toc -->
 
-The `starter-kit` includes placeholder pages you can use to start building out
+The starter kit includes placeholder pages you can use to start building out
 the views of your application. But at some point, you'll probably want to add more.
 
 This step takes you through the process of adding a new page or top-level view to your application.
@@ -15,55 +15,54 @@ This step takes you through the process of adding a new page or top-level view t
 First, create a new custom element that encapsulates the contents of
 your new view.
 
-1.  Create a new file called `src/my-new-view.html` and open it in an editor.
+1.  Create a new file called `src/my-new-view.js` and open it in an editor.
 
 2.  Add some scaffolding for a new custom element definition using Polymer:
 
-    ```html
-    <!-- Load the Polymer.Element base class -->
-    <link rel="import" href="../bower_components/polymer/polymer-element.html">
+    ```js
+    /* Load the PolymerElement base class and html helper function */
+    import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+    /* Load shared styles. All view elements use these styles */
+    import './shared-styles.js';
+    
+    /* Extend the base PolymerElement class */
+    class MyNewView extends PolymerElement {
+      /* Define a template for the new element */
+      static get template() {
+        return html`
+          <style include="shared-styles">
+            :host {
+              display: block;
 
-    <dom-module id="my-new-view">
-      <!-- Defines the element's style and local DOM -->
-      <template>
-        <style>
-          :host {
-            display: block;
+              padding: 10px;
+            }
+          </style>
 
-            padding: 16px;
-          }
-        </style>
-
-        <h1>New view</h1>
-      </template>
-      <script>
-        // Your new element extends the Polymer.Element base class
-        class MyNewView extends Polymer.Element {
-          static get is() { return 'my-new-view'; }
-        }
-        //Now, register your new custom element so the browser can use it
-        customElements.define(MyNewView.is, MyNewView);
-      </script>
-    </dom-module>
+          <div class="card">
+            <div class="circle">1</div>
+            <h1>New View</h1>
+            <p>New view!</p>
+          </div>
+        `;
+      }
+    }
+    /* Register the new element with the browser */
+    window.customElements.define('my-new-view', MyNewView);
     ```
-
-For now your element is very basic, and just has a `<h1>` that says "New view",
-but we can return to it and make it more interesting later.
 
 ## Add the element to your app
 
 Your element is defined, but your app isn't actually using it yet. To use it,
-you need to add it to your app's HTML.
+you need to add it to your app's HTML template.
 
-1.  Open `src/my-app.html` in a text editor.
+1.  Open `src/my-app.js` in a text editor.
 
 1.  Find the set of existing pages inside the `<iron-pages>`:
 
-    ```
+    ```html
     <iron-pages
         selected="[[page]]"
         attr-for-selected="name"
-        fallback-selection="view404"
         role="main">
       <my-view1 name="view1"></my-view1>
       <my-view2 name="view2"></my-view2>
@@ -77,17 +76,16 @@ you need to add it to your app's HTML.
 
 1.  Add your new page inside the iron-pages:
 
-    ```
+    ```html
     <my-new-view name="new-view"></my-new-view>
     ```
 
     Your `<iron-pages>` should now look like this:
 
-    ```
+    ```html
     <iron-pages
         selected="[[page]]"
         attr-for-selected="name"
-        fallback-selection="view404"
         role="main">
       <my-view1 name="view1"></my-view1>
       <my-view2 name="view2"></my-view2>
@@ -97,107 +95,157 @@ you need to add it to your app's HTML.
     </iron-pages>
     ```
 
-    Note: Normally when adding a new custom element for the first time, you'd
-    want to add an HTML import to ensure the component definition has been
-    loaded.  However, this app template is already set up to lazy-load top
-    level views on-demand based on the route, so in this case you don't need
-    to add an import for your new `<my-new-view>` element.
+## Add a valid route for your new view
 
-    The following code that came with the app template will ensure the
-    definition for each page has been loaded when the route changes.  As
-    you can see, the app follows a simple convention (`'my-' + page + '.html'`)
-    when importing the definition for each route. You can adapt this code as you
-    like to handle more complex routing and lazy loading.
+As the user navigates your app, the route data changes. In `src/my-app.js`, the app checks
+the requested route against a list of valid routes. Now, you'll add your new view to the 
+list of valid routes. 
 
-    Existing template code—you do not need to add this { .caption }
+1.  Locate the `_routePageChanged` function:
 
-    ```
-      _pageChanged(page) {
-        // Load page import on demand. Show 404 page if fails
-        var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
-        Polymer.importHref(
-            resolvedPageUrl,
-            null,
-            this._showPage404.bind(this),
-            true);
+    ```js
+    _routePageChanged(page) {
+      if (!page) {
+        /* If no page was found in the route data, page will be an empty string.
+           Default to 'view1' in that case. */
+        this.page = 'view1';
+      } else if (['view1', 'view2', 'view3'].indexOf(page) !== -1) {
+        this.page = page;
+      } else {
+        this.page = 'view404';
       }
+      ...
+    }
+    ```
+
+2.  Modify the `else if` line to include the name of your new view (`new-view`).
+    
+    `_routePageChanged` should now look like this:
+
+    ```js
+    _routePageChanged(page) {
+      if (!page) {
+        /* If no page was found in the route data, page will be an empty string.
+            Default to 'view1' in that case. */
+        this.page = 'view1';
+      } else if (['view1', 'view2', 'view3', 'new-view'].indexOf(page) !== -1) {
+        this.page = page;
+      } else {
+        this.page = 'view404';
+      }
+      ...
+    }
+    ```
+
+## Import your new view dynamically
+
+The starter kit uses [dynamic `import()`](https://developers.google.com/web/updates/2017/11/dynamic-import) to load views on demand. You need to add the file you created earlier (`src/my-new-view.js`) to the set of views that are imported dynamically. 
+    
+1.  In `src/my-app.js`, locate the `_pageChanged` function:
+
+    ```js
+    _pageChanged(page) {
+      // Load page import on demand. Show 404 page if fails
+      // Note: `polymer build` doesn't like string concatenation in
+      // the import statement, so break it up.
+
+      switch(page) {
+        case 'view1':
+          import('./my-view1.js');
+          break;
+        case 'view2':
+          import('./my-view2.js');
+          break;
+        case 'view3':
+          import('./my-view3.js');
+          break;
+        case 'view404':
+          import('./my-view404.js');
+          break;
+      }
+    }
+    ```
+
+2.  Add the following `case` to the `switch` statement to handle your new view:
+
+    ```js
+    case 'new-view':
+      import('./my-new-view.js');
+      break;
+    ```
+
+    Your `_pageChanged` function should now look like this:
+
+    ```js
+    _pageChanged(page) {
+      // Load page import on demand. Show 404 page if fails
+      // Note: `polymer build` doesn't like string concatenation in
+      // the import statement, so break it up.
+
+      switch(page) {
+        case 'view1':
+          import('./my-view1.js');
+          break;
+        case 'view2':
+          import('./my-view2.js');
+          break;
+        case 'view3':
+          import('./my-view3.js');
+          break;
+        case 'new-view':
+          import('./my-new-view.js');
+          break;
+        case 'view404':
+          import('./my-view404.js');
+          break;
+      }
+    }
     ```
 
 ## Create a navigation menu item
 
-You've defined your new element and declared it in your app. Now you
-just need to add a menu item in the left-hand drawer so that users can navigate to the new page.
+You've defined your new element, created a valid route to handle the case when a user navigates to it, and imported its JavaScript file dynamically. Now you need to add a menu item in the left-hand drawer so that users can navigate to the new page.
 
-1.  Keep `src/my-app.html` open in your editor.
+1.  In `src/my-app.js`, find the navigation menu inside the `<app-drawer>` element:
 
-1.  Find the navigation menu inside the `<app-drawer>` element.
-
-    ```
-      <!-- Drawer content -->
-      <app-drawer id="drawer" slot="drawer">
-        <app-toolbar>Menu</app-toolbar>
-        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="view1" href="/view1">View One</a>
-          <a name="view2" href="/view2">View Two</a>
-          <a name="view3" href="/view3">View Three</a>
-        </iron-selector>
-      </app-drawer>
+    ```html
+    <!-- Drawer content -->
+    <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
+      <app-toolbar>Menu</app-toolbar>
+      <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+        <a name="view1" href="[[rootPath]]view1">View One</a>
+        <a name="view2" href="[[rootPath]]view2">View Two</a>
+        <a name="view3" href="[[rootPath]]view3">View Three</a>
+      </iron-selector>
+    </app-drawer>
     ```
 
-    Each navigation menu item consists of an anchor element (`<a>`) styled with CSS.
+1.  Add the following new navigation item to the bottom of the menu:
 
-1.  Add the following new navigation item to the bottom of the menu.
-
-    ```
-    <a name="new-view" href="/new-view">New View</a>
+    ```html
+    <a name="new-view" href="[[rootPath]]new-view">New View</a>
     ```
 
     Your menu should now look like the following:
 
-    ```
-    ...
-      <!-- Drawer content -->
-      <app-drawer id="drawer" slot="drawer">
-        <app-toolbar>Menu</app-toolbar>
-        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="view1" href="/view1">View One</a>
-          <a name="view2" href="/view2">View Two</a>
-          <a name="view3" href="/view3">View Three</a>
-          <a name="new-view" href="/new-view">New View</a>
-        </iron-selector>
-      </app-drawer>
-    ...
+    ```html
+    <!-- Drawer content -->
+    <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
+      <app-toolbar>Menu</app-toolbar>
+      <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+        <a name="view1" href="[[rootPath]]view1">View One</a>
+        <a name="view2" href="[[rootPath]]view2">View Two</a>
+        <a name="view3" href="[[rootPath]]view3">View Three</a>
+        <a name="new-view" href="[[rootPath]]new-view">New View</a>
+      </iron-selector>
+    </app-drawer>
     ```
 
-Your new page is now ready! Serve your app with `polymer serve --open`.
+## Serve your app
 
-![Example new page](/images/2.0/toolbox/new-view.png)
+Your new page is now ready! If the Polymer CLI development server is still running, you can refresh your browser window to see the changes. Otherwise, serve your app with `polymer serve` and open the URL shown at `applications`.
 
-## Register the page for the build
-
-When you deploy your application to the web, you'll use the Polymer CLI
-to prepare your files for deployment.  Polymer CLI will need to know about any
-demand-loaded fragments like the lazy-loaded view you just added.
-
-1.  Open `polymer.json` in a text editor.
-
-1.  Add `src/my-new-view.html` to the list of `fragments`.
-
-    The new list should look like this:
-
-    ```
-    "fragments": [
-      "src/my-view1.html",
-      "src/my-view2.html",
-      "src/my-view3.html",
-      "src/my-new-view.html",
-      "src/my-view404.html"
-    ]
-    ```
-
-Note: You only need to add files you will lazy load or import using the `async`
-attribute to the `fragments` list.  Any files that are imported using synchronous
-`<link rel="import">` tags should *not* be added to `fragments`.
+![Example new page](/images/3.0/toolbox/new-view.png)
 
 ## Next steps
 

@@ -15,25 +15,24 @@ to some off-the-shelf components, for example from [webcomponents.org][webcompon
 ## Install an off-the-shelf component
 
 Once you've identified a component you'd like to install, you'll want to find
-the bower package name for the component.
+the npm package name for the component.
 
-In this step, you'll add Polymer's `<paper-checkbox>` element to your app, which is listed on
-[webcomponents.org][paper-checkbox].  You can use Bower to install it.
+In this step, you'll add Polymer's `<paper-checkbox>` element to your app.
 
-Run this command from your project root directory:
+Run the following command from your root project folder:
 
-    bower install --save PolymerElements/paper-checkbox
+    npm install @polymer/paper-checkbox@next --save
 
 ## Add the element to your application
 
-1.  Open `src/my-new-view.html` in a text editor.
+1.  Open `src/my-new-view.js` in a text editor.
 
-1.  Import `paper-checkbox.html` as a dependency.
+1.  Import `paper-checkbox.js`.
 
-    Add this import beneath the existing import for `polymer-element.html`:
+    Add this import beneath the existing import for `polymer-element.js`:
 
     ```
-    <link rel="import" href="../bower_components/paper-checkbox/paper-checkbox.html">
+    import '@polymer/paper-checkbox/paper-checkbox.js';
     ```
 
 1.  Add the `<paper-checkbox>` element to the template for the element.
@@ -42,34 +41,40 @@ Run this command from your project root directory:
     <paper-checkbox>Ready to deploy!</paper-checkbox>
     ```
 
-    You can add it under the `<h1>` you added in the previous step.  Your new
-    template should look like this:
+    You can add it under the `<h1>` you added in the previous step. Your `template` function
+    should now look like this:
 
-    ```
-    <!-- Defines the element's style and local DOM -->
-    <template>
-      <style>
-        :host {
-          display: block;
+    my-new-view.js {. caption}
 
-          padding: 16px;
-        }
-      </style>
+    ```js
+    static get template() {
+      return html`
+        <style include="shared-styles">
+          :host {
+            display: block;
 
-      <h1>New view</h1>
-      <paper-checkbox>Ready to deploy!</paper-checkbox>
-    </template>
+            padding: 10px;
+          }
+        </style>
+
+        <div class="card">
+          <div class="circle">1</div>
+          <h1>New View</h1>
+          <paper-checkbox>Ready to deploy!</paper-checkbox>
+          <p>New view!</p>
+        </div>
+      `;
+    }
     ```
 
 You should be able to see the `paper-checkbox` working in your new view now:
 
-![Example of page with checkbox](/images/2.0/toolbox/starter-kit-checkbox.png)
+![Example of page with checkbox](/images/3.0/toolbox/starter-kit-checkbox.png)
 
 ## Next steps
 
 Now that you've added a 3rd-party component to your page, learn how to
 [deploy the app to the web](deploy).
 
-[bower]: http://bower.io/
 [webcomponents.org]: https://www.webcomponents.org
 [paper-checkbox]: https://www.webcomponents.org/element/PolymerElements/paper-checkbox
