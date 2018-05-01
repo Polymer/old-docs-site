@@ -14,7 +14,7 @@ Luckily, Node has developed a clear release and long term support plan which we 
 
 We support all "Current" and "Active LTS" releases of Node.js according to the [Node.js Long Term Support Release Schedule](https://github.com/nodejs/LTS#lts-schedule), but **not** "Maintenance" releases.
 
-This means we will support from two to three semver major versions of Node.js, depending on where we are in the Node LTS schedule. Currently we support 6.x, 8.x and 9.x.
+This means we will support from two to three semver major versions of Node.js, depending on where we are in the Node LTS schedule. Currently we support 8.x and 10.x.
 
 ## What package managers and which versions do we support?
 
@@ -32,7 +32,7 @@ We support Windows 10, Linux and macOS (née OS X).
 
 "Support" for an environment means we test in it, and will fix any issues specific to it. We ensure support for environments via continuous integration.
 
-We run tests for our tools libraries on Travis CI, which covers Ubuntu Linux and Node.js v6. We also run the Polymer CLI tests, which cover most of the libraries, on Appveyor, which covers Windows 10.
+We run tests for our tools libraries on Travis CI, which covers Ubuntu Linux and Node.js v8. We also run the Polymer CLI tests, which cover most of the libraries, on Appveyor, which covers Windows 10.
 
 We will be increasing coverage of libraries on Appveyor Windows environments and Travis macOS environments over time.
 
