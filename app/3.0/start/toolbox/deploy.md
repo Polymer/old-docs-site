@@ -49,17 +49,17 @@ which requires that the server serve the `index.html` entry point for all
 routes.
 
 You can follow one of the sections below to deploy this app to either
-[Google AppEngine](https://cloud.google.com/appengine) or [Firebase
+[Google App Engine](https://cloud.google.com/appengine) or [Firebase
 Static Hosting](https://www.firebase.com/docs/hosting/), which are both free and
 secure approaches for deploying a Polymer app. The approach
 is similar for other hosting providers.
 
-### Deploy with AppEngine
+### Deploy with App Engine
 
 1.  Download the [Google App Engine SDK](https://cloud.google.com/appengine/downloads)
 and follow the instructions for your platform to install it. This tutorial uses the Python SDK.
 
-1.  [Sign up for an AppEngine account](https://cloud.google.com/appengine).
+1.  [Sign up for an App Engine account](https://cloud.google.com/appengine).
 
 1.  [Open the project dashboard](https://console.cloud.google.com/iam-admin/projects)
 and create a new project.
@@ -68,12 +68,9 @@ and create a new project.
     * Type a project name.
     * Click the Create button.
     
-    The App Engine gives you a project ID based on the name of your project.
-    Make note of this ID.
+    The App Engine gives you a unique identifier for your project-make note of this ID.
 
-1.  `cd` into the main folder for your app (e.g. `my-app/`).
-
-1. Create an `app.yaml` file with the following contents:
+1.  In the root project folder for your app (e.g. `my-app/`), create a file called `app.yaml` with the following contents:
 
     ```
     runtime: python27
@@ -82,44 +79,69 @@ and create a new project.
 
     handlers:
     - url: /node_modules
-      static_dir: build/es?-???/node_modules
+      static_dir: node_modules
       secure: always
 
     - url: /images
-      static_dir: build/es?-???/images
+      static_dir: images
       secure: always
 
     - url: /src
-      static_dir: build/es?-???/src
+      static_dir: src
       secure: always
 
     - url: /manifest.json
-      static_files: build/es?-???/manifest.json
-      upload: build/es?-???/manifest.json
+      static_files: manifest.json
+      upload: manifest.json
       secure: always
 
     - url: /service-worker.js
-      static_files: build/es?-???/service-worker.js
-      upload: build/es?-???/service-worker.js
+      static_files: service-worker.js
+      upload: service-worker.js
       secure: always
 
     - url: /.*
-      static_files: build/es?-???/index.html
-      upload: build/es?-???/index.html
+      static_files: index.html
+      upload: index.html
       secure: always
 
-    skip_files:
-    - build/es?-???/
-    - build/es?-???/
-    - images/
-    - node_modules/
-    - src/
-    - test/
     ```
+
+1.  In a text editor, open `polymer.json` from your root project folder. Add `"app.yaml"` to the `extraDependencies` array.
+
+    Before {.caption}
+
+    ```
+    ...
+    "extraDependencies": [
+        "manifest.json",
+        "node_modules/@webcomponents/webcomponentsjs/*.js",
+        "!node_modules/@webcomponents/webcomponentsjs/gulpfile.js"
+      ],
+    ...
+    ```
+
+    After {.caption}
+
+    ```
+    ...
+    "extraDependencies": [
+        "manifest.json",
+        "node_modules/@webcomponents/webcomponentsjs/*.js",
+        "!node_modules/@webcomponents/webcomponentsjs/gulpfile.js",
+        "app.yaml"
+      ],
+    ...
+    ```
+
+1.  Re-run `polymer build` to include `app.yaml` in your build, then navigate to your build output folder:
+
+       polymer build
+       cd build/es?-???
 
 1. Set your project id to the ID given to your app by the App Engine. For example:
    
-       gcloud config set project my-app-164409
+       gcloud config set project test-thing-16996
 
 1. Create your app:
    
@@ -133,7 +155,7 @@ and create a new project.
 
 1. Your app will be available online at its designated URL. For example:
    
-       https://my-app-164409.appspot.com/new-view
+       https://test-thing-16996.appspot.com
    
    Open your app URL in your browser by typing this command:
    
@@ -148,7 +170,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
 
 1.  Go to [https://www.firebase.com/account](https://www.firebase.com/account) to create a new app. Make note of the project ID associated with your app.
 
-    ![Welcome to Firebase showing Project ID](/images/2.0/toolbox/welcome-firebase.png)
+    ![Welcome to Firebase showing Project ID](/images/3.0/toolbox/welcome-firebase.png)
 
 1.  Install the Firebase command line tools.
 
