@@ -20,7 +20,7 @@ testing, but this tutorial won't cover those topics.
 To work with Polymer CLI, you will need a Node.js version [supported by the Polymer toolset](/{{{polymer_version_dir}}}/docs/tools/node-support), npm, Git, and Yarn. For full installation instructions, see [the
 Polymer CLI documentation](/{{{polymer_version_dir}}}/docs/tools/polymer-cli).
 
-Once you have the pre-requisites set up, install Polymer CLI:
+Once you have the prerequisites set up, install Polymer CLI:
 
     npm install -g polymer-cli
 
