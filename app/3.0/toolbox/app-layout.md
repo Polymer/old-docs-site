@@ -152,7 +152,7 @@ sticky toolbar scroll off screen. You can designate a sticky toolbar by setting 
 attribute on it. If no toolbar has the `sticky` attribute, the `<app-header>`'s first child is
 sticky.
 
-```
+```html
   <app-header fixed condenses effects="waterfall">
     <app-toolbar>
       <paper-icon-button icon="menu"></paper-icon-button>
@@ -176,7 +176,7 @@ element.
 
 To retain just a tab bar, place the tab bar last, and mark it as sticky.
 
-```
+```html
   <app-header id="header" effects="waterfall" fixed condenses>
     <app-toolbar>
       <paper-icon-button icon="arrow-back"></paper-icon-button>
@@ -200,7 +200,7 @@ One exception is the waterfall effect, which requires a fixed header, but can be
 without the `condenses` attribute. It makes the header appear to lift up above the the content when
 the user starts scrolling, so the content can scroll underneath it.
 
-```
+```html
   <app-header fixed effects="waterfall">
     <app-toolbar>
       <div main-title>App name</div>
@@ -347,7 +347,7 @@ To add a drawer toggle button, place an element with the `drawer-toggle` attribu
 descendants of an `<app-drawer-layout>`. Usually the drawer toggle button is placed inside one of
 the app's toolbars.
 
-In App Layout 2.0, the `drawer-toggle` element is no longer automatically hidden when the drawer is persistent.
+In App Layout 3.0, the `drawer-toggle` element is not automatically hidden when the drawer is persistent.
 To hide `drawer-toggle`, you can style based on when the `narrow` attribute is present on `app-drawer-layout`
 (e.g. `app-drawer-layout:not([narrow]) [drawer-toggle] { display: none; }`)
 {.alert .alert-info}
@@ -378,7 +378,7 @@ with drawer and header.
   </app-drawer-layout>
 ```
 
-Specifying `slot="drawer"` is required with App Layout 2.0.
+Specifying `slot="drawer"` is required with App Layout 3.0.
 {.alert .alert-info}
 
 ## Responsive navigation pattern
@@ -387,8 +387,8 @@ In many cases, you'll want to switch your navigation based on the screen size. O
 uses navigation tabs on desktop, which are replaced by a navigation drawer on mobile, as in the
 [Shop app](https://shop.polymer-project.org/).
 
-![screenshot of a nav menu with 5 tabs, displayed horizontally, labelled "item one" through "item four"](/images/1.0/toolbox/app-layout-responsive-nav-tabs.png)
-![screenshot of the same menu displayed vertically, after being open from a mobile drawer button ](/images/1.0/toolbox/app-layout-responsive-nav-drawer.png)
+![screenshot of a nav menu with 5 tabs, displayed horizontally, labelled "item one" through "item four"](/images/3.0/toolbox/app-layout-responsive-nav-tabs.png)
+![screenshot of the same menu displayed vertically, after being open from a mobile drawer button ](/images/3.0/toolbox/app-layout-responsive-nav-drawer.png)
 
 You can achieve this with some app layout elements, using data binding to switch between the tab and
 drawer navigation.
