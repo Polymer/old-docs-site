@@ -1395,7 +1395,7 @@ rather than being bundled in with `Polymer.Element`. For details, see
 
 In many cases you can use the native platform features (such as `setTimeout` or
 `requestAnimationFrame` instead of the `async` call. Polymer 2.x also provides an optional
-[`Polymer.Async`](/{{{polymer_version_dir}}}/docs/api/namespaces/Polymer.Async) module that provides
+[`Polymer.Async`](/{{{polymer_version_dir}}}/docs/api/utils/async) module that provides
 a set of Async APIs with a common interface. This is particularly useful for microtask timing, which
 is harder to time consistently across browsers.
 
@@ -1546,7 +1546,7 @@ separate, optional imports. These include:
 -   [`<dom-bind>` element](devguide/templates#dom-bind)
 -   [`<dom-if>` element](devguide/templates#dom-if)
 -   [`<dom-repeat>` element](devguide/templates#dom-repeat)
--   [`Polymer.RenderStatus`](/{{{polymer_version_dir}}}/docs/api/namespaces/Polymer.RenderStatus)
+-   [`Polymer.RenderStatus`](/{{{polymer_version_dir}}}/docs/api/utils/render-status)
     module.
 
 Element imports are found in the Polymer folder under `/lib/elements`, mixins under `/lib/mixins`,

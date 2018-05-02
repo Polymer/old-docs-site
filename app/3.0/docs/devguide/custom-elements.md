@@ -198,7 +198,7 @@ Related topics:
 
 ### Defer non-critical work {#defer-work}
 
-When possible, defer work until after first paint. The [`render-status`](/{{{polymer_version_dir}}}/docs/api/namespaces/Polymer.RenderStatus) module provides 
+When possible, defer work until after first paint. The [`render-status`](/{{{polymer_version_dir}}}/docs/api/utils/render-status) module provides 
 an `afterNextRender` utility for this purpose. 
 
 ```js
@@ -436,7 +436,7 @@ in Document your elements.
 When creating a mixin that you intend to share with other groups or publish, a couple of additional
 steps are recommended:
 
--   Use the [`dedupingMixin`](/{{{polymer_version_dir}}}/docs/api/#function-Polymer.dedupingMixin)
+-   Use the [`dedupingMixin`](/{{{polymer_version_dir}}}/docs/api/utils/mixin#function-dedupingMixin)
     function to produce a mixin that can only be applied once.
 
 -   Define the mixin in an ES module and export it.

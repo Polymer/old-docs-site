@@ -162,8 +162,8 @@ this.push('users', { name: 'Maturin'});
 
 In some cases, you can't use the Polymer methods to mutate objects and arrays (for example, if
 you're using a third-party library). In this case, you can use  the
-[`notifyPath`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-notifyPath) and
-[`notifySplices`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-notifySplices)
+[`notifyPath`](/{{{polymer_version_dir}}}/docs/api/polymer-element#PolymerElement-method-notifyPath) and
+[`notifySplices`](/{{{polymer_version_dir}}}/docs/api/polymer-element#PolymerElement-method-notifySplices)
 methods to *notify* the element about changes that have **already taken place.**
 
 
@@ -196,7 +196,7 @@ If you have a data structure with multiple levels of objects and arrays, you may
 deep copy to pick up changes.
 
 If your application requires it, you can eliminate dirty-checking of objects and arrays on a
-per-element basis using the `Polymer.MutableData` mixin. This mixin may trade some performance
+per-element basis using the `MutableData` mixin. This mixin may trade some performance
 for increased ease of use. For details, see [Using the MutableData mixin](#mutable-data).
 
 Related tasks:
@@ -357,7 +357,7 @@ maintains path linkages between an array and a selected item from that array. (`
 also works when selecting multiple items from an array.)
 
 For other use cases, there's an imperative method,
-[`linkPaths`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-linkPaths) to
+[`linkPaths`](/{{{polymer_version_dir}}}/docs/api/polymer-element#PolymerElement-method-linkPaths) to
 associate two paths. When two paths are *linked*, an [observable change](#observable-changes) to one
 path is observable on the other path, as well.
 
@@ -888,7 +888,7 @@ the following is true:
 *   You always use the Polymer data mutation methods to make granular changes.
 
 However, for apps that don't use immutable data and can't use the Polymer data methods, Polymer 3.0
-provides the [`MutableData`](/{{{polymer_version_dir}}}/docs/api/mixins/Polymer.MutableData)
+provides the [`MutableData`](/{{{polymer_version_dir}}}/docs/api/mixins/mutable-data#MutableData)
 mixin.
 
 ```js
@@ -954,7 +954,7 @@ complex reusable elements (like `dom-repeat` or `iron-list`), or for application
 that hold complex state information.
 
 Note that the `MutableData` mixin does not affect the element's shadow DOM children. **Any element
-that doesn't use the `Polymer.MutableData` mixin uses the default dirty-checking policy.**
+that doesn't use the `MutableData` mixin uses the default dirty-checking policy.**
 
 If you're using the `dom-repeat` element, you can enable mutable data mode by setting its
 `mutableData` property:
@@ -970,7 +970,7 @@ If you're using the `dom-repeat` element, you can enable mutable data mode by se
 ### Optional mutable data for reusable elements {#optional-mutable-data}
 
 If you're building a reusable element that takes structured data, you can use the
-[`Polymer.OptionalMutableData`](/{{{polymer_version_dir}}}/docs/api/mixins/Polymer.OptionalMutableData)
+[`OptionalMutableData`](/{{{polymer_version_dir}}}/docs/api/mixins/mutable-data#OptionalMutableData)
 mixin. This mixin lets the element user select `MutableData` mode by setting the `mutableData`
 property on the element.
 
