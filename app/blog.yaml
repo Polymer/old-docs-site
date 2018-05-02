@@ -1,4 +1,14 @@
 ---
+- title:  "Roadmap update, part 2: FAQ"
+  path: /blog/2018-05-02-roadmap-faq
+  published: 2018-05-02
+  author: graynorton
+  description: "Frequently-asked-questions on our roadmap update."
+- title:  "Roadmap update, part 1: 3.0 and beyond"
+  path: /blog/2018-05-02-roadmap-update
+  published: 2018-05-02
+  author: graynorton
+  description: "Updates on the Polymer 3.0 release and what comes next."
 - title:  "Polymer 3.0 tools update"
   path: /blog/2018-04-12-polymer-3-tools-update
   published: 2018-04-12
