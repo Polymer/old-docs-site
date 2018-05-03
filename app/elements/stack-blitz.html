@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<script src="https://unpkg.com/@stackblitz/sdk@1.1.1/bundles/sdk.umd.js"></script>
+<script src="https://unpkg.com/@stackblitz/sdk@1.2.0/bundles/sdk.umd.js"></script>
 
 <dom-module id="stack-blitz">
   <template>
@@ -164,6 +164,9 @@
                       description: this.description,
                       dependencies: json.dependencies,
                       template: this.projectTemplate,
+                      settings: {
+                        action: 'refresh',
+                      },
                     };
 
                     const embedOptions = {
