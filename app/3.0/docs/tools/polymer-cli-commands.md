@@ -4,10 +4,6 @@ title: Polymer CLI Commands
 
 <!-- toc -->
 
-<div>
-{% include 'outdated.html' %}
-</div>
-
 This section explains various useful Polymer CLI commands that you'll want to incorporate into your
 development workflow while you build your element or app project.
 
@@ -41,6 +37,9 @@ the command. For most projects a `polymer.json` configuration file will be easie
 share across your team.
 
 * [--add-service-worker](#service-workers)
+* [--add-push-manifest](#push-manifest)
+* [--base-path](#basepath)
+* [--browser-capabilities](#browsercapabilities)
 * [--bundle](#bundles)
 * [--css-minify](#css-minify)
 * [--entrypoint](#entrypoint)
@@ -48,8 +47,11 @@ share across your team.
 * [--insert-prefetch-links](#prefetch)
 * [--js-compile](#js-compile)
 * [--js-minify](#js-minify)
+* [--js-transform-modules-to-amd](#amd)
+* [--js-transform-import-meta](#meta)
 * [--shell](#shell)
-* [--fragment](#fragment)
+
+
 
 A set of presets have been provided to cover common configurations - see the section below 
 on [build presets](#presets).
@@ -69,11 +71,31 @@ other assumptions about how your service worker should behave. Read the
 ["Considerations"](https://github.com/GoogleChrome/sw-precache#considerations) section of the
 sw-precache README to make sure that this is suitable for your application.
 
+### --add-push-manifest {#push-manifest}
+
+If `true`, generate an [HTTP/2 Push Manifest](https://github.com/GoogleChrome/http2-push-manifest) for your application.
+
+### --base-path {#basepath}
+
+Update the entrypoint's `<base>` tag, to support serving this build from a non-root path, such as when doing differential serving based on user agent. Requires that a `<base>` tag already exists. 
+
+This works well in conjunction with the convention of using relative URLs for static resources and absolute URLs for application routes.
+
+If `true`, use the build `name`. If a `string`, use that value. 
+
+Leading/trailing slashes are optional.
+
+### --browser-capabilities {#browsercapabilities}
+
+A list of capabilities required for a browser to consume this build. Values include `es2015` and `push`. See canonical list at https://github.com/Polymer/prpl-server-node/blob/master/src/capabilities.ts
+
+This field is purely a hint to servers reading this configuration, and does not affect the build process. A server supporting differential serving (e.g. prpl-server) can use this field to help decide which build to serve to a given user agent.
+
 ### --bundle {#bundles}
 
-By default, fragments are unbundled. This is optimal for HTTP/2-compatible servers and clients.
+By default, JavaScript code is unbundled. This is optimal for HTTP/2-compatible servers and clients.
 
-If the `--bundle` flag is supplied, all fragments are bundled together to reduce the number of file
+If the `--bundle` flag is supplied, JavaScript code is bundled together to reduce the number of file
 requests. This is optimal for sending to clients or serving from servers that are not HTTP/2
 compatible.
 
@@ -91,34 +113,33 @@ your `index.html` file. This file should import the app shell file specified in 
 
 Minify HTMl by removing comments and whitespace.
 
-### --insert-prefetch-links {#prefetch}
-Insert prefetch link elements into your fragments so that all dependencies are prefetched
-immediately. Add dependency prefetching by inserting `<link rel="prefetch">` tags into entrypoint
-and `<link rel="import">` tags into fragments and shell for all dependencies.
-
 ### --js-compile {#js-compile}
 
-Use babel to compile all ES6 JS down to ES5 for older browsers.
+Use babel to compile newer JavaScript features to an older target JavaScript version.
+
+Valid JavaScript targets are `"es5"`, `"es2015"`, `"es2016"`, `"es2017"`, and `"es2018"`.
+
+```
+polymer serve --js-compile="es5"
+```
+
+Compiling to es5 will inject `custom-elements-es5-adapter.js` to ensure that ES6-native browsers can render custom elements.
 
 ### --js-minify {#js-minify}
 
 Minify inlined and external JavaScript.
 
+### --js-transform-modules-to-amd {#amd}
+
+Transform ES modules to AMD modules.
+
+### --js-transform-import-meta {#meta}
+
+Rewrite `import.meta` expressions to objects with inline URLs.
+
 ### --shell {#shell}
 
 The app shell file containing common code for the app.
-
-### --fragment {#fragment}
-
-This flag supports dynamic dependencies. It is an array of any HTML filenames that are not
-statically linked from the app shell (that is, imports loaded on demand by `importHref`).
-
-If a fragment has static dependencies, provided the fragment is defined in this property, the
-Polymer build analyzer will find them. You only need to list the file imported by importHref.
-
-In a Polymer app, the files listed in the fragments flag usually contain one or more element
-definitions that may or may not be required during the user’s interaction with the app, and can
-thus be lazily loaded.
 
 ### Build presets {#presets}
 
@@ -126,16 +147,23 @@ thus be lazily loaded.
 polymer build --preset preset-name
 ```
 
-**Build presets** provide an easy way to create common build configurations. When you provide a valid preset for your build, it will use the flags in that preset. We currently support 3 different presets:
+**Build presets** provide an easy way to create common build configurations. When you provide a valid preset for your build, it will use the flags in that preset. We currently provide 5 presets:
 
 - **es5-bundled:**
-  --js-minify --js-compile --css-minify --bundled --add-service-worker --add-push-manifest --insert-prefetch-links
+  --js-minify --js-compile="es5" --js-transform-modules-to-amd --css-minify --html-minify --bundled --add-service-worker
 
 - **es6-bundled:**
-  --js-minify --css-minify --html-minify --bundled --add-service-worker --add-push-manifest --insert-prefetch-links
+  --js-minify --js-compile="es2015" --js-transform-modules-to-amd --css-minify --html-minify --bundled --add-service-worker
+  --browser-capabilities="['es2015']" 
   
 - **es6-unbundled:**
-  --js-minify --css-minify --html-minify --add-service-worker --add-push-manifest --insert-prefetch-links
+  --js-minify --js-compile="es2015" --js-transform-modules-to-amd --css-minify --html-minify --add-service-worker --add-push-manifest --browser-capabilities="['es2015', 'push']" 
+
+- **uncompiled-bundled:** 
+  --js-minify --css-minify --html-minify --bundled --add-service-worker --browser-capabilities="['es2018']" 
+
+- **uncompiled-unbundled:**
+  --js-minify --css-minify --html-minify --add-service-worker --add-push-manifest --browser-capabilities="['es2018', 'push']" 
 
 ### Examples {#examples}
 
@@ -153,7 +181,7 @@ Initializes a Polymer project from one of several templates. Pre-bundled templat
 
 Run `polymer init` to choose a template from a list of all installed templates. Or, if you know the template name before hand, you can provide it as a command argument to select it automatically.
 
-See the [polymer-cli readme](https://github.com/Polymer/polymer-cli#polymer-init-template) for more information on the `polymer init` command. 
+See the [polymer-cli readme](https://github.com/Polymer/tools/blob/master/packages/cli/README.md#polymer-init-template) for more information on the `polymer init` command. 
 
 See also:
 
@@ -163,11 +191,7 @@ See also:
 
 ## polymer install {#install}
 
-Installs Bower dependencies. Running `polymer install` is equivalent to running `bower install`.
-
-The `--variants` flag allows you to install dependency variants. See the documentation on [managing dependencies for hybrid elements](/{{{polymer_version_dir}}}/docs/devguide/hybrid-elements#dependency-variants) for more information.
-
-The `--offline` flag tells the install command not to hit the network to retrieve components. If components are not cached, the install will fail.
+Installs dependencies. Running `polymer install` is equivalent to running `npm install`.
 
 ## polymer lint {#lint}
 
@@ -175,9 +199,9 @@ Analyze your project for syntax errors, missing imports, bad databinding express
 
 Use it like so:
 
-    polymer lint --rules=polymer-2
+    polymer lint --rules=polymer-3
 
-This will lint all of the code in your project with the `polymer-2` ruleset, which is appropriate for projects using Polymer 2.0. If your code is hybrid and should work with either Polymer 1.x or 2.x then `polymer-2-hybrid` is a better choice, as it will warn you about use of features that do not exist in Polymer 2.x.
+This will lint all of the code in your project with the `polymer-3` ruleset, which is appropriate for projects using Polymer 3.0.
 
 You can pass flags to the linter like `--rules` but even better is to put the configuration in `polymer.json` so that all you need to do is run `polymer lint`. Putting your configuration in `polymer.json` also means that other tools, like IDE plugins can use the same lint configuration.
 
@@ -186,13 +210,13 @@ Here's what that looks like:
 ```json
 {
   "lint": {
-      "rules": ["polymer-2"],
+      "rules": ["polymer-3"],
       "ignoreWarnings": []
   }
 }
 ```
 
-- `rules`: An array of lint rules and rule collections to run on your project. For most projects, one of  `polymer-2`, `polymer-2-hybrid`, or `polymer-1` is all that's needed here.
+- `rules`: An array of lint rules and rule collections to run on your project. For most projects,  `polymer-3` is all that's needed here.
 - `ignoreWarnings`: An array of warning codes to ignore.
 
 ### Warning Codes:
@@ -206,7 +230,7 @@ The output of `polymer lint` looks like this:
 index.html(83,12) warning [undefined-elements] - The element iron-collapse is not defined
 ```
 
-This means that on line 83 of `index.html` there's an `<iron-collapse>` tag, but the linter can't find the definition of the `iron-collapse` custom element. This probably means that there's a missing HTML import in `index.html`. To ignore this warning, add `undefined-elements` to the `ignoreWarnings` array in `polymer.json`.
+This means that on line 83 of `index.html` there's an `<iron-collapse>` tag, but the linter can't find the definition of the `iron-collapse` custom element. This probably means that there's a missing import in `index.html`. To ignore this warning, add `undefined-elements` to the `ignoreWarnings` array in `polymer.json`.
 
 ## polymer serve {#serve}
 
@@ -216,34 +240,72 @@ If you want to view a live demo of your element or app, run the local web server
 
     polymer serve
 
-To view the demo, point your browser to one of the following URLs.
+This section describes command line options available for the Polymer CLI development server (`polymer serve`).
 
-Element project demo:
+### --npm
 
-<pre><code>http://localhost:8080/components/<var>my-el</var>/demo/</code></pre>
+Sets npm mode. Dependencies are installed from npm, the component directory is set to `node_modules` and the package name is read from `package.json`.
 
-Element project API reference:
+```
+polymer serve --npm
+```
 
-<pre><code>localhost:8080/components/<var>my-el</var>/</code></pre>
+`--npm` is required when:
 
-App project demo:
+  * You are using npm to install dependencies, and
+  
+  * You are importing peer dependencies by paths that start with `../` instead of by module specifiers.
 
-    http://localhost:8080
+If you are using npm and importing by module specifiers (e.g. `'@polymer/polymer/...'`), you don't need to use this flag.
 
-### Server options {#server-options}
+### --module-resolution
 
-This section shows examples of using various `polymer serve` options.
+Specifies how to resolve module specifiers in import and export statements when rewriting them to URLs.
 
-Serve from port 3000:
+Valid values are `"none"` and `"node"`. Defaults to `"node"`.
 
-    polymer serve --port 3000
+  * `"none"` disables module specifier rewriting. 
+
+  * `"node"` uses Node.js resolution to find modules. 
+
+The `--module-resolution` option does not affect Polymer 1.x or 2.x projects, so unless you need to disable module resolution in a Polymer 3.x project, you can safely ignore it.
+
+To disable module resolution in a Polymer 3.x project:
+
+```
+polymer serve --module-resolution="none"
+```
+
+### --compile
+
+Compiler options. Valid values are `"auto"`, `"always"` and `"never"`. Defaults to `"auto"`.
+
+`"auto"` compiles JavaScript to ES5 for browsers that don't fully support ES6.
+
+### --component-dir, -c
+
+The component directory to use. When `--npm` is true, defaults to `"node_modules"`. Without the `--npm` flag, defaults to `"bower_components"`. 
+
+Polymer 1.x and 2.x element projects might need to set a component directory to resolve peer dependencies accessed by URLs that start with `../`. Polymer 3.x projects should use module specifiers (e.g. `'@polymer/polymer/...'`) to access peer dependencies, so most will not need to set a component directory.
+
+### --port, -p
+
+By default, the `polymer serve` command runs the Polymer CLI development server on an open port. You can use `--port` or `-p` to specify the port to serve from. For example, to serve from port 3000:
+
+```
+polymer serve --port 3000
+```
+
+### --hostname 
 
 If you have configured a custom hostname on your machine, Polymer CLI can serve it with the
-`--hostname` argument (for example, app project demo is available at `http://test:8080`):
+`--hostname` argument. For example, if your hostname is `test`, the following command serves an application project from `http://test:8080`:
 
     polymer serve --hostname test
 
-Open up a page other than the default `index.html` in a specific browser
+### --open, --browser
+
+Open a page other than the default `index.html` in a specific browser
 (Apple Safari, in this case):
 
     polymer serve --open app.html --browser Safari
@@ -271,11 +333,10 @@ in [Test your elements](tests).
 You can see a list of global options by running `polymer help`. Most of them
 are self-explanatory.
 
-The following commands are currently only supported for the `polymer build`
-command, with planned support for other commands in the future.
+The following options are currently only supported for the `polymer build`
+command:
 
 *   `entry`
 *   `shell`
-*   `fragment`
 
 See [`polymer build`](#build) for more information on how to use these options.
