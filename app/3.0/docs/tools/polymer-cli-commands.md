@@ -176,6 +176,10 @@ See also:
 * [Create an application project with the Polymer CLI](create-app-polymer-cli)
 * [Case study of the Polymer Shop app](/{{{polymer_version_dir}}}/toolbox/case-study)
 
+## polymer install {#install}
+
+Installs dependencies. Running `polymer install` is equivalent to running `npm install`.
+
 ## polymer lint {#lint}
 
 Analyze your project for syntax errors, missing imports, bad databinding expressions and more. `polymer lint` helps with identifying issues across your HTML, JS, and CSS based on an in-depth analysis of web components in source code. It does not reinvent the wheel though, it focuses on issues specific to web components and Polymer, so it is a good adjunct to other tools like [`eslint`](http://eslint.org/) and [`htmlhint`](http://htmlhint.com/).
