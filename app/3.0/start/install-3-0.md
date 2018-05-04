@@ -1,87 +1,81 @@
 ---
-title: Install Polymer 2.x
+title: Install Polymer 3.0
 ---
 
 <!-- toc -->
 
-If you're familiar with Polymer and just want to get started with the new release, you're in the right place! If you'd like an introduction to the Polymer project and web components:
+This chapter describes how to install the Polymer 3.0 tools and get started with a template Polymer 3.0 project. 
 
-* [Take a quick tour of Polymer](/{{{polymer_version_dir}}}/start/quick-tour)
-* [Learn how to build your first Polymer app](/{{{polymer_version_dir}}}/start/toolbox/set-up)
-* [Learn how to build your first element with the Polymer library](/{{{polymer_version_dir}}}/start/first-element/intro)
+## Install the Polymer 3.0 prerequisites
 
-Polymer is distributed via the [Bower package manager](https://bower.io/).
+To set up a development environment for Polymer 3.0: 
 
-To create an application template and install Polymer automatically, you can [use the Polymer CLI](#use-cli).
+* [Install Git](#git).
+* [Install npm and Node.js](#node).
+* [Install Polymer CLI](#cli).
+* Optionally, [Download and serve a sample Polymer 3.0 app](#app).
 
-To start a project from scratch, you can [install Polymer with Bower](#use-bower).
+### Install Git {#git}
 
-### Use the Polymer CLI to create an application template and install Polymer {#use-cli}
+[Download and run a Git installer for your operating system](https://git-scm.com/download/). 
 
-The Polymer CLI requires Node.js, npm, Git and Bower. For full installation instructions, see [the Polymer CLI documentation](../docs/tools/polymer-cli).
+[See the Git documentation](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) for detailed instructions on installing Git.
 
-1. Install the Polymer CLI.
+To confirm that Git is correctly installed:
 
-    ```bash
-    npm install -g polymer-cli
-    ```
+```bash
+git --version
+```
 
-3. Create a test folder for Polymer 2.0, and switch to it.
+### Install npm and Node.js {#node}
 
-    ```bash
-    mkdir polymer-20-test
-    cd polymer-20-test
-    ```
+[Download and run a Node.js installer for your operating system](https://nodejs.org/en/download/). This will install npm as well. 
 
-4. Initialize your project.
+For more detailed instructions on installing npm and Node.js, see the [npm and Node.js install documentation](https://docs.npmjs.com/getting-started/installing-node).
 
-    ```bash
-    polymer init
-    ```
+**Install a current or active LTS version of Node.js**. Polymer requires a current or active LTS version of Node.js. See our [Node.js support page](/{{{polymer_version_dir}}}/docs/tools/node-support) for more information.
+{.alert .alert-info}
 
-5. Select `polymer-2-application`.
+To confirm that npm is correctly installed:
 
-6. Serve your project.
+```bash
+npm --version
+```
 
-    ```bash
-    polymer serve
-    ```
+To confirm that Node.js is correctly installed:
 
-### Install Polymer from Bower {#use-bower}
+```bash
+node --version
+```
 
-1. Install Bower.
+### Install Polymer CLI {#cli}
 
-    ```bash
-    npm install -g bower
-    ```
+To install Polymer CLI, run the following command:
 
-2. Install the Polymer CLI
+```bash
+npm install -g polymer-cli@next
+```
 
-    The Polymer CLI requires Node.js and npm as well as Bower. For full installation instructions, see [the Polymer CLI documentation](../docs/tools/polymer-cli).
+To confirm that the Polymer CLI has been correctly installed:
 
-    ```bash
-    npm install -g polymer-cli
-    ```
+```bash
+polymer --version
+```
 
-3. Install the latest Polymer 2.0 release from bower
+## Optional: Download and serve a sample Polymer 3.0 app {#app}
 
-    ```bash
-    bower install Polymer/polymer#^2.0.0
-    ```
+To test your Polymer development environment, you can try out a sample Polymer app we prepared earlier:
 
-4. Create a test `index.html` file, and add the following in the `<head>` tag:
-  - `<script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>` to
-  load the polyfills
-  - `<link rel="import" href="/bower_components/polymer/polymer.html">` to
-  import Polymer
+```bash
+git clone https://github.com/PolymerLabs/start-polymer3.git
+cd start-polymer3
+npm install
+polymer serve
+```
 
-5. Import and use whichever elements you’d like.
+For more information on the tools and options in the Polymer CLI, see the documentation on [Polymer CLI commands](/{{{polymer_version_dir}}}/docs/tools/polymer-cli-commands).
 
-6. Serve your project.
+## Next steps {#next}
 
-    ```bash
-    polymer serve
-    ```
-
-For information on building your project for production, see the documentation on [building Polymer applications for production](../toolbox/build-for-production).
-
+* [Build your first Polymer app](/{{{polymer_version_dir}}}/start/toolbox/set-up)
+* [Build your first element with the Polymer library](/{{{polymer_version_dir}}}/start/first-element/intro)
