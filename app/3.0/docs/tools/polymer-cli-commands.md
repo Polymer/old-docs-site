@@ -115,7 +115,15 @@ Minify HTMl by removing comments and whitespace.
 
 ### --js-compile {#js-compile}
 
-Use babel to compile all ES6 JS down to ES5 for older browsers.
+Use babel to compile newer JavaScript features to an older target JavaScript version.
+
+Valid JavaScript targets are `"es5"`, `"es2015"`, `"es2016"`, `"es2017"`, and `"es2018"`.
+
+```
+polymer serve --js-compile="es5"
+```
+
+Compiling to es5 will inject `custom-elements-es5-adapter.js` to ensure that ES6-native browsers can render custom elements.
 
 ### --js-minify {#js-minify}
 
@@ -234,26 +242,34 @@ This section describes command line options available for the Polymer CLI develo
 Sets npm mode. Dependencies are installed from npm, the component directory is set to `node_modules` and the package name is read from `package.json`.
 
 ```
-polymer serve --npm --module-resolution="node"
+polymer serve --npm
 ```
 
-Because the dependencies for Polymer 3.0 projects are defined in `package.json`, the `--npm` flag is usually required. You will probably find it easier to [add this option to your polymer.json configuration](polymer-json).
+`--npm` is required when:
+
+  * You are using npm to install dependencies, and
+  
+  * You are importing peer dependencies by paths that start with `../` instead of by module specifiers.
+
+If you are using npm and importing by module specifiers (e.g. `'@polymer/polymer/...'`), you don't need to use this flag.
 
 ### --module-resolution
 
 Specifies how to resolve module specifiers in import and export statements when rewriting them to URLs.
 
-Valid values are `"none"` and `"node"`. Defaults to `"none"`. 
+Valid values are `"none"` and `"node"`. Defaults to `"node"`.
 
-* `"none"` disables module specifier rewriting. 
+  * `"none"` disables module specifier rewriting. 
 
-* `"node"` uses Node.js resolution to find modules. 
+  * `"node"` uses Node.js resolution to find modules. 
+
+The `--module-resolution` option does not affect Polymer 1.x or 2.x projects, so unless you need to disable module resolution in a Polymer 3.x project, you can safely ignore it.
+
+To disable module resolution in a Polymer 3.x project:
 
 ```
-polymer serve --npm --module-resolution="node"
+polymer serve --module-resolution="none"
 ```
-
-Because Polymer 3.0 projects like the [Polymer Elements](https://github.com/PolymerElements/) import by module specifiers, rather than paths, `--module-resolution=node` is usually required. You will probably find it easier to [add this option to your polymer.json configuration](polymer-json).
 
 ### --compile
 
@@ -264,6 +280,8 @@ Compiler options. Valid values are `"auto"`, `"always"` and `"never"`. Defaults 
 ### --component-dir, -c
 
 The component directory to use. When `--npm` is true, defaults to `"node_modules"`. Without the `--npm` flag, defaults to `"bower_components"`. 
+
+Polymer 1.x and 2.x element projects might need to set a component directory to resolve peer dependencies accessed by URLs that start with `../`. Polymer 3.x projects should use module specifiers (e.g. `'@polymer/polymer/...'`) to access peer dependencies, so most will not need to set a component directory.
 
 ### --port, -p
 
