@@ -34,7 +34,7 @@ git --version
 For more detailed instructions on installing npm and Node.js, see the [npm and Node.js install documentation](https://docs.npmjs.com/getting-started/installing-node).
 
 **Install a current or active LTS version of Node.js**. Polymer requires a current or active LTS version of Node.js. See our [Node.js support page](/{{{polymer_version_dir}}}/docs/tools/node-support) for more information.
-{ .alert}
+{.alert .alert-info}
 
 To confirm that npm is correctly installed:
 
