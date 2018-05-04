@@ -147,18 +147,23 @@ The app shell file containing common code for the app.
 polymer build --preset preset-name
 ```
 
-**Build presets** provide an easy way to create common build configurations. When you provide a valid preset for your build, it will use the flags in that preset. We currently support 3 different presets:
+**Build presets** provide an easy way to create common build configurations. When you provide a valid preset for your build, it will use the flags in that preset. We currently provide 5 presets:
 
 - **es5-bundled:**
-  --js-minify --js-compile --css-minify --html-minify --bundled --add-service-worker
+  --js-minify --js-compile="es5" --js-transform-modules-to-amd --css-minify --html-minify --bundled --add-service-worker
 
 - **es6-bundled:**
-  --js-minify --css-minify --html-minify --bundled --add-service-worker
+  --js-minify --js-compile="es2015" --js-transform-modules-to-amd --css-minify --html-minify --bundled --add-service-worker
   --browser-capabilities="['es2015']" 
   
 - **es6-unbundled:**
-  --js-minify --css-minify --html-minify --add-service-worker --add-push-manifest  --browser-capabilities="['es2015', 'push']" 
+  --js-minify --js-compile="es2015" --js-transform-modules-to-amd --css-minify --html-minify --add-service-worker --add-push-manifest --browser-capabilities="['es2015', 'push']" 
 
+- **uncompiled-bundled:** 
+  --js-minify --css-minify --html-minify --bundled --add-service-worker --browser-capabilities="['es2018']" 
+
+- **uncompiled-unbundled:**
+  --js-minify --css-minify --html-minify --add-service-worker --add-push-manifest --browser-capabilities="['es2018', 'push']" 
 
 ### Examples {#examples}
 
