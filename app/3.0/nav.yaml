@@ -211,7 +211,7 @@
     path: /3.0/toolbox/prpl
     indent: True
   - endheader: true
-  - header: Case study
+  - header: Case studies
   - title: "Shop"
     path: /3.0/toolbox/case-study
     indent: True
