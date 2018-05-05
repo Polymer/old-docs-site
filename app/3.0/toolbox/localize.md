@@ -36,7 +36,7 @@ import {AppLocalizeBehavior} from '@polymer/app-localize-behavior/app-localize-b
 import {mixinBehaviors} from '@polymer/polymer/lib/legacy/class.js';
 
 // Define your class, inheriting AppLocalizeBehavior functions and properties
-class AppLocalize extends mixinBehaviors([AppLocalizeBehavior], PolymerElement) {
+class MyApp extends mixinBehaviors([AppLocalizeBehavior], PolymerElement) {...}
 ```
   
 ## Add localization to your app
@@ -44,11 +44,11 @@ class AppLocalize extends mixinBehaviors([AppLocalizeBehavior], PolymerElement) 
 The main application is usually responsible for loading the localized messages and setting the
 current language.
 
-app-localize.js {.caption}
+my-app.js {.caption}
 
 ```js
 // Imports go here
-class AppLocalize extends mixinBehaviors([AppLocalizeBehavior], PolymerElement) {
+class MyApp extends mixinBehaviors([AppLocalizeBehavior], PolymerElement) {
   static get properties(){
     return{
       language: {
@@ -70,7 +70,7 @@ class AppLocalize extends mixinBehaviors([AppLocalizeBehavior], PolymerElement) 
     `;
   }
 }
-customElements.define('app-localize', AppLocalize);
+customElements.define('my-app', MyApp);
 ```
 
 index.html {.caption}
@@ -78,20 +78,20 @@ index.html {.caption}
 ```html
 <head>
   <script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-  <script type="module" src="app-localize.js"></script>
+  <script type="module" src="my-app.js"></script>
 </head>
 <body>
-  <app-localize></app-localize>
+  <my-app></my-app>
 </body>
 ```
 
 More typically, the app loads resources from an external file, as shown in the next example:
 
-app-localize.js {.caption}
+my-app.js {.caption}
 
 ```js
 // Imports go here
-class AppLocalize extends mixinBehaviors([AppLocalizeBehavior], PolymerElement) {
+class MyApp extends mixinBehaviors([AppLocalizeBehavior], PolymerElement) {
   static get properties(){
     return{
       language: {
@@ -116,7 +116,7 @@ class AppLocalize extends mixinBehaviors([AppLocalizeBehavior], PolymerElement) 
     this.loadResources(this.resolveUrl('locales.json'));
   },
 }
-customElements.define('app-localize', AppLocalize);
+customElements.define('my-app', MyApp);
 ```
 
 The main app is also responsible for loading the `Intl` polyfill
