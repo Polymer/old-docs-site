@@ -190,6 +190,9 @@
   - title: Routing
     path: /3.0/toolbox/routing
     indent: True
+  - title: Localization	
+    path: /3.0/toolbox/localize	
+    indent: True
   - title: App storage
     path: /3.0/toolbox/app-storage
     indent: True
