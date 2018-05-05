@@ -4,10 +4,6 @@ title: Routing with <app-route>
 
 <!-- toc -->
 
-<div>
-{% include 'outdated.html' %}
-</div>
-
 For client-side routing, App Toolbox uses the
 [`<app-route>`](https://www.webcomponents.org/element/PolymerElements/app-route) element to provide
 _modular routing_. Modular routing means that instead of having a central repository for all your
@@ -20,9 +16,9 @@ to other components.
 
 ## Install app-route
 
-Install the `app-route` package with Bower:
+Install the `app-route` package with npm:
 
-    bower install --save PolymerElements/app-route
+    npm install --save @polymer/app-route@next
 
 ## Add routing
 
@@ -62,7 +58,7 @@ a parameter). If the pattern matches, the route is _active_ and any URL paramete
 
 Based on the route, the app can use `<iron-pages>` to select a view to display:
 
-```
+```html
 <!-- iron-pages selects the view based on the active route -->
 <iron-pages selected="[[routeData.view]]" attr-for-selected="name">
   <my-profile-view name="profile" route="{{subroute}}"></my-profile-view>
@@ -75,7 +71,7 @@ If the current URL is `/profile/tina`, the `<my-profile-view>` element is displa
 route set to `/tina`. This view might embed its own `<app-route>` to process the route: for example,
 to load the user's data:
 
-```
+```html
 <app-route
     route="{{route}}"
     pattern="/:user_id"
@@ -145,7 +141,7 @@ when the route changes. Using observers, it's simple to react to changes to the 
 
 Route observer example {.caption}
 
-```
+```js
 static get observers() {
   return [
     '_routeChanged(route.*)',
