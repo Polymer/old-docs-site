@@ -2,10 +2,6 @@
 title: Offline caching with Service Worker Precache
 ---
 
-<div>
-{% include 'outdated.html' %}
-</div>
-
 To provide a better experience in offline and spotty network situations, App
 Toolbox uses a service worker to provide offline caching of critical resources. A
 service worker is a script associated with a specific web site that acts as a
@@ -64,7 +60,7 @@ The config file is a JavaScript file that exports a set of configuration options
 Service Worker Precache. See [Options parameter](https://github.com/GoogleChrome/sw-precache#options-parameter)
 in the `sw-precache` README for more information.
 
-If you identify resources using the `--entrypoint`, `--shell` and `--fragment`, arguments, those
+If you identify resources using the `--entrypoint` and `--shell` and `--fragment` arguments, those
 files are added in to the `staticFileGlobs` parameter to ensure that they're cached.
 
 If you're writing a single-page app and you want it to work completely offline, you probably want
@@ -82,16 +78,16 @@ module.exports = {
   staticFileGlobs: [
     '/index.html',
     '/manifest.json',
-    '/bower_components/webcomponentsjs/webcomponents-lite.js',
+    '/node_modules/webcomponentsjs/webcomponents-lite.js',
     '/images/*'
   ],
   navigateFallback: '/index.html',
-  navigateFallbackWhitelist: [/^(?!.*\.html$|\/data\/).*/]
+  navigateFallbackWhitelist: [/^(?!.*\.js$|\/data\/).*/]
 }
 ```
 
 Only paths that match the whitelist fall back to `/index.html`. In this case, the whitelist includes
-all files _except_ those that end in `.html` (for HTML imports) and ones with `/data/` in the path
+all files _except_ those that end in `.js` (for JavaScript imports) and ones with `/data/` in the path
 (for dynamically-loaded data).
 
 ## More resources
