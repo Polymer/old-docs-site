@@ -33,7 +33,7 @@ using the generic `addEventListener` method. To listen for a gesture event:
     Polymer automatically does the extra bookkeeping for gesture events when you use annotated
     event listeners.
 
-*   Use the `addListener`/`removeListener` methods from `@polymer/polymer/lib/utils/gestures.js`.
+*   Use the `addListener`/`removeListener` methods from the `gestures` module (`@polymer/polymer/lib/utils/gestures.js`).
 
     ```js
     import {GestureEventListeners} from '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
@@ -125,13 +125,9 @@ customElements.define('drag-me', DragMe);
 
 Example imperative event listener { .caption }
 
-This example uses `Polymer.Gestures.addListener` to add a listener to the host element, which can't be
-done with annotated event listeners. If the listener is attached to the host element or a shadow DOM
-child, you can usually add the event listener once and not worry about removing it.
+This example uses the `addListener` method from the `gestures` module to add a listener to the host element, which can't be done with annotated event listeners. If the listener is attached to the host element or a shadow DOM child, you can usually add the event listener once and not worry about removing it.
 
-If you are adding an event listener to a dynamically-added child, you may need to remove the event
-listener with `Polymer.Gestures.removeListener` when you remove the child, to allow the child element
-to be garbage collected.
+If you are adding an event listener to a dynamically-added child, you may need to remove the event listener with the `removeListener` method from the `gestures` module when you remove the child, to allow the child element to be garbage collected.
 
 ```js
 import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
