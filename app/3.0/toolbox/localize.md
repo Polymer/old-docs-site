@@ -49,25 +49,19 @@ my-app.js {.caption}
 ```js
 // Imports go here
 class MyApp extends mixinBehaviors([AppLocalizeBehavior], PolymerElement) {
-  static get properties(){
-    return{
-      language: {
-        value: 'en'
-      },
-      resources: {
-        value: function() {
-          return {
-            'en': { 'hello': 'My name is {name}.' },
-            'fr': { 'hello': 'Je m\'apelle {name}.' }
-          };
-        }
-      }
-    };
-  }
   static get template(){
     return html`
       <div>{{localize('hello', 'name', 'Batman')}}</div>
     `;
+  }
+  constructor() { 
+    super();
+    // set default language and localization strings
+    this.language = 'en';
+    this.resources = {
+      'en': { 'hello': 'My name is {name}.' },
+      'fr': { 'hello': 'Je m\'apelle {name}.' }
+    };
   }
 }
 customElements.define('my-app', MyApp);
@@ -92,25 +86,19 @@ my-app.js {.caption}
 ```js
 // Imports go here
 class MyApp extends mixinBehaviors([AppLocalizeBehavior], PolymerElement) {
-  static get properties(){
-    return{
-      language: {
-        value: 'en'
-      },
-      resources: {
-        value: function() {
-          return {
-            'en': { 'hello': 'My name is {name}.' },
-            'fr': { 'hello': 'Je m\'apelle {name}.' }
-          };
-        }
-      }
-    };
-  }
   static get template(){
     return html`
       <div>{{localize('hello', 'name', 'Batman')}}</div>
     `;
+  }
+  constructor() { 
+    super();
+    // set default language and localization strings
+    this.language = 'en';
+    this.resources = {
+      'en': { 'hello': 'My name is {name}.' },
+      'fr': { 'hello': 'Je m\'apelle {name}.' }
+    };
   }
   attached: function() {
     this.loadResources(this.resolveUrl('locales.json'));
