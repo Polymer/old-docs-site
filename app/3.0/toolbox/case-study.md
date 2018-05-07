@@ -137,21 +137,19 @@ Shop also uses [`dom-if`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.D
 
 ```html
 <!-- Lazy-create the tabs for larger screen sizes. -->
-<div id="tabContainer" sticky\$="[[_shouldShowTabs]]" hidden\$="[[!_shouldShowTabs]]">
-  <dom-if if="[[_shouldRenderTabs]]">
-    <template>
-      <shop-tabs selected="[[categoryName]]" attr-for-selected="name">
-        <dom-repeat items="[[categories]]" as="category" initial-count="4">
-          <template>
-          <shop-tab name="[[category.name]]">
-            <a href="/list/[[category.name]]">[[category.title]]</a>
-          </shop-tab>
-          </template>
-        </dom-repeat>
-      </shop-tabs>
-    </template>
-  </dom-if>
-</div>
+<dom-if if="[[_shouldRenderTabs]]">
+  <template>
+    <shop-tabs selected="[[categoryName]]" attr-for-selected="name">
+      <dom-repeat items="[[categories]]" as="category" initial-count="4">
+        <template>
+        <shop-tab name="[[category.name]]">
+          <a href="/list/[[category.name]]">[[category.title]]</a>
+        </shop-tab>
+        </template>
+      </dom-repeat>
+    </shop-tabs>
+  </template>
+</dom-if>
 ```
 
 When parsed, the template's content is inert, and not included in the main
