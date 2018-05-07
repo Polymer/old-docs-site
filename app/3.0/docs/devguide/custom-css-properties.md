@@ -472,7 +472,7 @@ Only property definitions which match the element at *creation time* are applied
 Any dynamic changes that update property values are not applied automatically. You
 can force styles to be re-evaluated by calling the
 [`updateStyles`](/{{{polymer_version_dir}}}/docs/api/polymer-element#PolymerElement-method-updateStyles) method on a
-Polymer element, or `Polymer.updateStyles` to update all element
+Polymer element, or the global `updateStyles` function to update all element
 styles.
 
 For example, given this markup inside an element:
@@ -504,6 +504,14 @@ x-foo.b {
 
 After adding class `b` to `x-foo` above, the host element must call `this.updateStyles`
 to apply the new styling. This re-calculates and applies styles down the tree from this point.
+The global `updateStyles` function re-calculates all custom property values on the page:
+
+<!-- TODO: update import when https://github.com/Polymer/polymer/issues/5219 is resolved -->
+
+```js
+import { updateStyles } from '@polymer/polymer/lib/mixins/element-mixin.js';
+updateStyles();
+```
 
 Dynamic effects **are** reflected at the point of a property's application.
 

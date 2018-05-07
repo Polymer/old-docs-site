@@ -6,7 +6,7 @@
   ],
   "dependencies": {
     "@polymer/polymer": "next",
-    "@webcomponents/webcomponentsjs": "^1.0.0",
+    "@webcomponents/webcomponentsjs": "next",
     "@polymer/iron-input": "next"
   }
 }
