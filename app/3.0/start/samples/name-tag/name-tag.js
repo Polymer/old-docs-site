@@ -15,12 +15,11 @@ class NameTag extends PolymerElement {
   }
 }
 customElements.define('name-tag', NameTag);
-
-   /* TODO:
-     * - Try editing the value of the `owner` property.
-     * - Try adding another property and binding it in
-     *   your component. Hint: Add the following property
-     *   definition to the constructor:
-     *   `this.propertyName = "Property contents";`
-     *   and add `{{propertyName}}` to the element’s shadow DOM.
-     */
+/* TODO:
+  * - Try editing the value of the `owner` property.
+  * - Try adding another property and binding it in
+  *   your component. Hint: Add the following property
+  *   definition to the constructor:
+  *   `this.propertyName = "Property contents";`
+  *   and add `{{propertyName}}` to the element’s shadow DOM.
+  */

@@ -18,4 +18,3 @@ class ConfigurableNameTag extends PolymerElement {
   }
 }
 customElements.define('configurable-name-tag', ConfigurableNameTag);
-
