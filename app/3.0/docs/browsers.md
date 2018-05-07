@@ -8,7 +8,7 @@ title: Browser support overview
 {% include 'outdated.html' %}
 </div>
 
-Polymer 2.x works in the _latest two versions_ of all major browsers: Safari 9+, IE 11+, and the
+Polymer 3.x works in the _latest two versions_ of all major browsers: Safari 9+, IE 11+, and the
 evergreen Chrome, Firefox, and Edge.
 
 ## Platform features
@@ -56,16 +56,6 @@ td.polyfill {
   <td class="native">Native</td>
 </tr>
 <tr>
-  <td class="feature-title"><a href="http://www.html5rocks.com/en/tutorials/webcomponents/imports/">HTML Imports</a></td>
-  <td class="native">Native</td>
-  <td class="polyfill">Polyfill</td>
-  <td class="polyfill">Polyfill</td>
-  <td class="native">Native</td>
-  <td class="polyfill">Polyfill</td>
-  <td class="native">Native</td>
-  <td class="polyfill">Polyfill</td>
-</tr>
-<tr>
   <td class="feature-title"><a href="http://www.html5rocks.com/en/tutorials/webcomponents/customelements/">Custom Elements</a></td>
   <td class="native">Native</td>
   <td class="polyfill">Polyfill</td>
@@ -98,17 +88,21 @@ Notes:
 
 See the documentation on [polyfills](polyfills) for more information.
 
-## ES6
+## ES6 & modules
 
-Polymer 2.x uses EcmaScript 2015 (commonly known as ES6). The following browsers support all of the
-ES6 features required by Polymer.
+Polymer 3.x uses EcmaScript 2015 (commonly known as ES6), and uses ES6 modules as a loading mechanism. The following browsers support all of the ES6 features required by Polymer.
 
 -   Chrome or Chromium version 49 or later.
 -   Opera 36 or later.
 -   Safari or Mobile Safari 10 or later.
--   Edge 15.15063 or later.
+-   Edge 16 or later.
 -   Firefox 51 or later.
 
-For other browsers, you should compile your application to ES5.
+The following browsers support ES6 language features but not ES6 modules.
 
-See the documentation on [compiling ES6 to ES5](es6) for more information.
+-   Edge 15.15063 or later.
+
+IE 11 doesn't support ES6 language features or modules.
+
+The Polymer tools support transforming ES6 and ES6 modules into forms that run on all of the supported browsers.
+See the documentation on [ES6 & modules](es6) for details.

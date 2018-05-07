@@ -121,7 +121,7 @@
   - title: Polyfills
     path: /3.0/docs/polyfills
     indent: True
-  - title: ES6
+  - title: ES6 and modules
     path: /3.0/docs/es6
     indent: True
   - endheader: True
