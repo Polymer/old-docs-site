@@ -75,7 +75,7 @@ The PRPL pattern requires an unbundled build. However, if your hosting service d
 
 #### Which browsers will you support?
 
-Polymer 3.0 uses modern JavaScript features and the Web Components standards, both of which are implemented by a growing number of browsers. [See the browser compatibility documentation for more information](browsercompat).
+Polymer 3.0 uses modern JavaScript features and the Web Components standards, both of which are implemented by a growing number of browsers. [See the browser compatibility documentation for more information](/{{{polymer_version_dir}}}/docs/browsers).
 
 The Polymer build tools offer a range of transforms to create builds that run well on the widest possible range of browsers. In the next sections, you'll configure builds based on the transforms required by the browsers you support.
 
@@ -178,13 +178,13 @@ Add the build configurations to polymer.json. If you create multiple configurati
     { /* build config 3 */ }]
 ```
 
-For more information on configuring a build, see the [polymer.json spec](polymer-json).
+For more information on configuring a build, see the [polymer.json spec](/{{{polymer_version_dir}}}/docs/tools/polymer-json).
 
 #### Single build for maximum compatibility {#onebuildforall}
 
 This build has the widest possible browser compatibility, but can't take advantage of modern performance features like HTTP/2 Push. It is suitable if you can't serve different files based on user agent detection, and you need to support older browsers. 
 
-**Load the polyfills from your app entrypoint**. To work in older browsers, your app still needs to [load the polyfills](polyfills), usually from `index.html`.
+**Load the polyfills from your app entrypoint**. To work in older browsers, your app still needs to [load the polyfills](/{{{polymer_version_dir}}}/docs/polyfills), usually from `index.html`.
 
 Build for maximum compatibility {.caption}
 
@@ -223,7 +223,7 @@ Override preset options {.caption}
 
 #### Single build for most modern browsers {#onebuildformodern}
 
-This build lets modern browsers take advantage of ES6 features. With the [webcomponents polyfills](polyfills), it will load on most modern browsers. It will not load in Internet Explorer.
+This build lets modern browsers take advantage of ES6 features. With the [webcomponents polyfills](/{{{polymer_version_dir}}}/docs/polyfills), it will load on most modern browsers. It will not load in Internet Explorer.
 
 Build for compatibility with most modern browsers {.caption}
 
@@ -466,7 +466,7 @@ Compile to ES6 {.caption}
 ...
 ```
 
-See the [polymer.json spec](polymer-json) for more information.
+See the [polymer.json spec](/{{{polymer_version_dir}}}/docs/tools/polymer-json) for more information.
 
 ### Transform ES Modules to AMD Modules {#amd}
 
@@ -515,7 +515,7 @@ Service workers can cache your app's dependencies, speeding up performance and a
 
 To add a service worker to your build:
 
-polymer.json {.caption}
+Add a service worker {.caption}
 
 ```json
 ...
@@ -527,6 +527,20 @@ builds[{
 ...
 ```
 
-### Create a push manifest {#pushmanifest}
+### Add a push manifest {#pushmanifest}
 
-A push manifest lists your project's resourcse for lazy-loading. 
+A push manifest is a list of static resources that your web app might need when it runs. HTTP/2 push-capable servers can read this file to send resources more efficiently. Using a push manifest helps you make a lazy loading pattern work well for your users. 
+
+You don't need a push manifest to use HTTP/2, but it is useful for telling your server what critical resources to push for the requesting page.
+
+Add a push manifest to your build {.caption}
+
+```json
+...
+builds[{
+  ...
+  "addPushManifest": true,
+  ...
+}]
+...
+```
