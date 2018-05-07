@@ -4,10 +4,6 @@ title: Browser support overview
 
 <!-- toc -->
 
-<div>
-{% include 'outdated.html' %}
-</div>
-
 Polymer 3.x works in the _latest two versions_ of all major browsers: Safari 9+, IE 11+, and the
 evergreen Chrome, Firefox, and Edge.
 
