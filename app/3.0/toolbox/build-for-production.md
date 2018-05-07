@@ -100,7 +100,7 @@ The [polymer.json](/{{{polymer_version_dir}}}/docs/tools/polymer-json) config fi
         "entrypoint": "index.html",
         "shell": "src/start-polymer3.js",
         "sources": [
-          "src/start-polymer3.js",
+          "src/**.js",
           "manifest/**",
           "package.json"
         ],
