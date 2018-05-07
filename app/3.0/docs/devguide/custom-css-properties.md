@@ -449,7 +449,7 @@ if (ShadyCSS) {
 ```
 
 Elements using the legacy API can use the
-[`getComputedStyleValue`](/3.0/docs/api/legacy/legacy-element-mixin#LegacyElementMixin#method-getComputedStyleValue)
+[`getComputedStyleValue`](/3.0/docs/api/legacy/legacy-element-mixin#LegacyElementMixin-method-getComputedStyleValue)
 instance method instead of testing for `ShadyCSS`.
 
 ### Custom properties shim limitations
