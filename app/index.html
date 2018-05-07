@@ -271,7 +271,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
     </section>
   
-    <section class="library grey gradient-light">
+    <section class="library light">
       <div class="section-columns">
           <div class="flex">
             <h2 class="underline">About the Polymer Project</h2>
@@ -290,132 +290,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <p>Our products sprinkle a bit of sugar over the standard Web Components APIs and shine a light on best practices for building elements and apps, making it easier for you to get great results.</p>
             </div>
             <a href="https://webcomponents.org" class="blue-button">More about Web Components</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- <section class="page-index-features dark gradient-dark">
-      <div class="section-columns">
-        <div class="feature flex">
-          <img src="/images/page-index/feature-speed.png" alt="illustration of an abstract arrow">
-          <h2 class="underline">Built for speed</h2>
-          <p>Because they let the platform do the heavy lifting, elements built with the Polymer library and apps built with the App Toolbox are blazing fast.</p>
-        </div>
-
-        <div class="feature flex">
-          <img src="/images/page-index/feature-modern.png" alt="illustration of a computer">
-          <h2 class="underline">For today and beyond</h2>
-          <p>Polymer makes the most of the web platform by using the latest APIs. Polyfills provide support on evergreen browsers for APIs that aren't universal yet.</p>
-        </div>
-
-        <div class="feature flex">
-          <img src="/images/page-index/feature-components.png" alt="illustration of bolts">
-          <h2 class="underline">Fully interoperable</h2>
-          <p>Polymer-powered elements are based on standard Web Components APIs, so they work seamlessly with the browser's built-in elements and other Web Components.</p>
-        </div>
-      </div>
-    </section> -->
-
-    <section class="page-index-examples light">
-      <div class="subsection">
-        <h2>Use elements</h2>
-        <div class="section-columns">
-          <div class="example-code flex">
-            <pre><code class="html">
-  <!-- Polyfill Web Components support for older browsers -->
-  <script src="node_modules/webcomponentsjs/webcomponents-loader.js"></script>
-
-  <!-- Import element -->
-  <script type="module" src="node_modules/google-map/google-map.js"></script>
-
-  <!-- Use element -->
-  <google-map latitude="37.790" longitude="-122.390"></google-map>
-          </code></pre>
-          </div>
-          <div class="example-google-map">
-            <iframe frameborder="0" src="/2.0/samples/homepage/google-map/index.html" width="100%"></iframe>
-            <p>Web Components look and work just like standard, built-in HTML elements. Just find an element you’d like to use in your app, import it with a JavaScript Module, and then add the tag to your page.</p>
-            <a href="https://www.webcomponents.org/" target="_blank" class="blue-button vertical full-width">Browse elements</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="subsection">
-        <h2>Create your own elements</h2>
-        <div class="section-columns">
-          <div class="example-code flex">
-            <pre><code class="javascript">
-  import { PolymerElement, html } from @polymer/polymer;
-
-  class ContactCard extends PolymerElement {
-    static get properties() {
-      return {
-        starred: { type: Boolean, value: false }
-      }
-    }
-
-    static get template() {
-      return html`
-        <style>/* ... */</style>
-        <slot></slot>
-        <iron-icon icon="star" hidden$="[[!starred]]"></iron-icon>
-      `;
-    }
-  }
-
-  customElements.define('contact-card', ContactCard);
-          </code></pre>
-            <br>
-            <pre><code class="html">
-  <contact-card starred>
-    <img src="profile.jpg" alt="Eric's photo">
-    <span>Eric Bidelman</span>
-  </contact-card>
-            </code></pre>
-          </div>
-
-          <div class="example-contact-card">
-            <iframe frameborder="0" src="/2.0/samples/homepage/contact-card/index.html" width="100%"></iframe>
-            <p>Web Components make it easy to create your own powerful elements, and the Polymer library provides useful features like templating and data binding to reduce the amount of boilerplate you need to write. Give your element some markup and properties, and then use it on a site.</p>
-            <a href="/3.0/start/first-element/intro" class="blue-button vertical full-width">Build an element</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="subsection">
-        <h2>Build Progressive Web Apps</h2>
-        <div class="section-columns">
-          <div class="example-code flex">
-            <pre><code class="html">
-  <iron-pages role="main" selected="[[page]]" attr-for-selected="name" selected-attribute="visible">
-    <!-- home view -->
-    <shop-home name="home" categories="[[categories]]"></shop-home>
-
-    <!-- list view of items in a category -->
-    <shop-list name="list" route="[[subroute]]" offline="[[offline]]"></shop-list>
-
-    <!-- detail view of one item -->
-    <shop-detail name="detail" route="[[subroute]]" offline="[[offline]]"></shop-detail>
-
-    <!-- cart view -->
-    <shop-cart name="cart" cart="[[cart]]" total="[[total]]"></shop-cart>
-
-    <!-- checkout view -->
-    <shop-checkout
-        name="checkout"
-        cart="[[cart]]"
-        total="[[total]]"
-        route="{{subroute}}"></shop-checkout>
-  </iron-pages>
-            </code></pre>
-          </div>
-
-          <div class="example-pwa">
-            <img src="/images/1.0/nexus-5x-shop.png">
-            <p>Use the Polymer App Toolbox to build super-powered Progressive Web Apps. Try the Shop demo app to experience a Progressive Web App in action.</p>
-            <a href="https://shop.polymer-project.org/" target="_blank" class="blue-button vertical full-width">Try the demo</a>
-            <a href="/3.0/start/toolbox/set-up" class="blue-button vertical full-width">Build an app</a>
-          </div>
         </div>
       </div>
     </section>
