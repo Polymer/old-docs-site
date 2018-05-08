@@ -9,6 +9,7 @@ documentation comments in your source files. Using the `iron-component-pages` el
 you can create a simple documentation page for your elements that displays your comments
 rendered as API documentation.
 
+See [a template example on GitHub]()
 <!-- If you're publishing your element at [WebComponents.org](https://webcomponents.org), your documentation will be automatically generated. WebComponents.org uses the same underlying elements as `iron-component-pages` to render and display documentation. -->
 
 ## Create a documentation page for your project {#create-page}
@@ -80,7 +81,6 @@ You can use Markdown headings to break up long element summaries.
 
   ```
     /**
-     * # This is an h1 heading
      * `<awesome-sauce>` injects a healthy dose of awesome into your page.
      * ## This is an h2 heading
      * In typical use, just slap some `<awesome-sauce>` at the top of your body:
