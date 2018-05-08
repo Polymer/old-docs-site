@@ -9,7 +9,7 @@ documentation comments in your source files. Using the `iron-component-pages` el
 you can create a simple documentation page for your elements that displays your comments
 rendered as API documentation.
 
-See [a template example on GitHub]()
+See [a template example on GitHub](https://github.com/PolymerLabs/awesome-sauce).
 <!-- If you're publishing your element at [WebComponents.org](https://webcomponents.org), your documentation will be automatically generated. WebComponents.org uses the same underlying elements as `iron-component-pages` to render and display documentation. -->
 
 ## Create a documentation page for your project {#create-page}
