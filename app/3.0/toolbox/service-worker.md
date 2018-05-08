@@ -92,7 +92,10 @@ Register a service worker {.caption}
   if ('serviceWorker' in navigator) {
     // Delay registering until page load
     window.addEventListener('load', function() {
-      navigator.serviceWorker.register('service-worker.js');
+      navigator.serviceWorker.register('service-worker.js', {
+        // See rootPath docs https://www.polymer-project.org/3.0/docs/devguide/settings
+        scope: Polymer.rootPath
+      });
     });
   }
   </script>
