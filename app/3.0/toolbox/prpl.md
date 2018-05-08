@@ -4,10 +4,6 @@ title: PRPL Pattern
 
 <!-- toc -->
 
-<div>
-{% include 'outdated.html' %}
-</div>
-
 To optimize delivery, the Toolbox uses the _PRPL pattern_, which
 stands for:
 
@@ -44,14 +40,14 @@ following structure:
 
 The diagram below shows the components of a simple app:
 
-![diagram of an app that has two views, which have both individual and shared dependencies](/images/2.0/toolbox/app-build-components.png)
+![diagram of an app that has two views, which have both individual and shared dependencies](/images/3.0/toolbox/app-build-components.png)
 
 In this diagram, the solid lines represent _static dependencies_, external resources identified
 in the files using `<link>` and `<script>` tags. Dotted lines represent _dynamic_ or _demand-loaded
 dependencies_: files loaded as needed by the shell.
 
 The build process builds a graph of all of these dependencies, and the server uses this information
-to serve the files efficiently. It also builds a set of vulcanized bundles, for browsers that don't
+to serve the files efficiently. It also builds a set of bundles, for browsers that don't
 support HTTP2 push.
 
 ### App entrypoint
@@ -72,32 +68,52 @@ When you generate an App Toolbox project using Polymer CLI, the new project cont
 
 The shell is responsible for routing and usually includes the main navigation UI for the app.
 
-The app should call `importHref` to lazy-load fragments as they're required. For example, when the
+The app should use [dynamic imports](https://developers.google.com/web/updates/2017/11/dynamic-import) to lazy-load fragments as they're required. For example, when the
 user changes to a new route, it imports the fragment(s) associated with that route. This may
 initiate a new request to the server, or simply load the resource from the cache.
 
-importHref example (class-style element) {.caption}
+Dynamic import example {.caption}
 
 ```js
-// get a URL relative to this element
-let resolvedUrl = this.resolveUrl('list-view.html');
+_routePageChanged(page) {
+     // Show the corresponding page according to the route.
+     //
+     // If no page was found in the route data, page will be an empty string.
+     // Show 'view1' in that case. And if the page doesn't exist, show 'view404'.
+    if (!page) {
+      this.page = 'view1';
+    } else if (['view1', 'view2', 'view3'].indexOf(page) !== -1) {
+      this.page = page;
+    } else {
+      this.page = 'view404';
+    }
 
-// import the file
-Polymer.importHref(
-    resolvedUrl,
-    null,  /* callback for successful load -- usually not needed */
-    this._importFailedCallback.bind(this), /* for example, display 404 page */
-    true); /* make import async */
-```
+    // Close a non-persistent drawer when the page & route are changed.
+    if (!this.$.drawer.persistent) {
+      this.$.drawer.close();
+    }
+  }
 
-importHref example (hybrid element) {.caption}
-
-```js
-var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
-this.importHref(resolvedPageUrl,
-    null,
-    this._importFailedCallback,
-    true);
+_pageChanged(page) {
+  // Import the page component on demand.
+  //
+  // Note: `polymer build` doesn't like string concatenation in the import
+  // statement, so break it up.
+  switch (page) {
+    case 'view1':
+      import('./my-view1.js');
+      break;
+    case 'view2':
+      import('./my-view2.js');
+      break;
+    case 'view3':
+      import('./my-view3.js');
+      break;
+    case 'view404':
+      import('./my-view404.js');
+      break;
+  }
+}
 ```
 
 The shell (including its static dependencies) should contain everything needed for first paint.
@@ -112,21 +128,18 @@ If you have multiple builds, your server logic must deliver the appropriate buil
 
 ### Bundled build
 
-For browsers that don't handle HTTP2 Push, the `--bundle` flag outputs a set of bundles:
-one bundle for the shell, and one bundle for each fragment. The diagram below shows how a simple
-app would be bundled:
+For browsers that don't handle HTTP2 Push, the `--bundle` flag outputs a set of bundles: one bundle for the shell, and one bundle for each fragment. The diagram below shows how a simple app would be bundled:
 
-![diagram of the same app as before, where there are 3 bundled dependencies](/images/2.0/toolbox/app-build-bundles.png)
+![diagram of the same app as before, where there are 3 bundled dependencies](/images/3.0/toolbox/app-build-bundles.png)
 
 Any dependency shared by two or more fragments is bundled in with the shell and its static
 dependencies.
 
 Each fragment and its _unshared_ static dependencies are bundled into a single bundle. The server
 should return the appropriate version of the fragment (bundled or unbundled), depending on the browser.
-This means that the shell code can lazy-load `detail-view.html` _without having to know whether
+This means that the shell code can lazy-load a fragment _without having to know whether
 it is bundled or unbundled_. It relies on the server and browser to load the dependencies in the
 most efficient way.
-
 
 ## Background: HTTP/2 and HTTP/2 server push
 
