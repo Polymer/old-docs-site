@@ -147,9 +147,6 @@
   - title: Test your elements
     path: /3.0/docs/tools/tests
     indent: True
-  - title: Publish your elements
-    path: /3.0/docs/tools/publish
-    indent: True
   - title: polymer.json specification
     path: /3.0/docs/tools/polymer-json
     indent: True
