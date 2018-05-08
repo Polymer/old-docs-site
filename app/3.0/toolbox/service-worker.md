@@ -2,83 +2,127 @@
 title: Offline caching with Service Worker Precache
 ---
 
-To provide a better experience in offline and spotty network situations, App
-Toolbox uses a service worker to provide offline caching of critical resources. A
-service worker is a script associated with a specific web site that acts as a
+<!-- toc -->
+
+A service worker is a script associated with a specific web site that acts as a
 client-side proxy for network requests. The service worker can intercept network
 requests, access the browser's cache, and serve requests out of the cache
 instead of accessing the network.
 
-The first time someone opens the site, the browser installs the site's service
-worker, and the service worker ensures that the site's critical resources are
-cached. On subsequent visits, the service worker can load resources directly
+A service worker can improve your app's performance and allow it to work offline. 
+
+The first time someone opens your site, the browser installs the site's service
+worker, and the service worker caches your app's critical resources. On subsequent visits, the service worker can load resources directly
 from the cache. If the user is completely offline, the service worker can still
 load the site, and display cached data or an offline message, as appropriate.
 
-Service worker works well with an _app shell_ strategy, where the app's main UI
-views and logic (the app shell) are cached so that they can be served from the
-cache.
+Service worker works well with an _app shell_ strategy, where the app's main 
+views and logic (the app shell) are cached so that they can be served without accessing the network.
 
-App Toolbox uses the Service Worker Precache (`sw-precache`) module for offline
-support. This module takes a list of files to cache and generates a service
-worker at build time, so you don't need to write your own service worker code.
+Polymer CLI uses the [Service Worker Precache (`sw-precache`)](https://github.com/GoogleChromeLabs/sw-precache) library. All of the Polymer [build presets](/{{{polymer_version_dir}}}/docs/tools/polymer-json#presets), and the default build, include a service worker. 
 
 For background, gotchas and debugging tips on service workers, see [Introduction to Service
-Worker](https://developers.google.com/web/fundamentals/primers/service-worker/) on Web Fundamentals.
+Workers](https://developers.google.com/web/fundamentals/primers/service-worker/) on Web Fundamentals.
 
 ## Prerequisites
 
-To work with service worker, your application **must** be served over HTTPS. However, you can
-test service worker on your local system without a SSL certificate, because `localhost` is
+To work with a service worker, your application **must** be served over HTTPS. However, you can
+test your service worker locally without a SSL certificate, because `localhost` is
 considered a secure origin.
 
-## Add a service worker
+For information on browser support for service worker, see [Is Service Worker Ready](https://jakearchibald.github.io/isserviceworkerready/).
 
-Support for Service Worker Precache is built into the [Polymer CLI](/{{{polymer_version_dir}}}/docs/tools/polymer-cli),
-so a service worker script is automatically generated when you build your app.
+## Add a service worker to your build
 
-However, to use the service worker, you need to add code to register it:
+To add a service worker to your build:
 
-```js
-// Register service worker if supported.
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js');
+1.  [Configure polymer.json](#configpolymerjson).
+2.  [Add code to your entrypoint to register a service worker](#register).
+3.  Run `polymer build`.
+
+A service worker is added to your build.
+
+### Configure polymer.json
+
+To configure polymer.json, set the `"entrypoint"` and `"shell"` properties. The service worker will automatically precache these resources.
+
+Polymer CLI generates a service worker by default. You can switch service worker generation on or off with the `"addServiceWorker"` option in your build configuration.
+
+Example polymer.json configuration {.caption}
+
+```json
+{
+  "entrypoint": "index.html",
+  "shell": "src/my-app.js",
+  "builds": [
+    {
+      "name": "esm-unbundled",
+      "browserCapabilities": [
+        "es2015",
+        "modules"
+      ],
+      "js": {
+        "minify": true
+      },
+      "css": {
+        "minify": true
+      },
+      "html": {
+        "minify": true
+      },
+      "bundle": false,
+      "addServiceWorker": true
+    }
+  ],
+  ...
 }
+``` 
+
+### Register your service worker
+
+To use the service worker, add code to your app's entrypoint to register it:
+
+Register a service worker {.caption}
+
+```html
+<head>
+  ...
+  <script>
+  // Feature detect for service worker capability in the browser
+  if ('serviceWorker' in navigator) {
+    // Delay registering until page load
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('service-worker.js', {
+        // See rootPath docs https://www.polymer-project.org/3.0/docs/devguide/settings
+        scope: Polymer.rootPath
+      });
+    });
+  }
+  </script>
+  ...
+</head>
 ```
 
-Registering a service worker doesn't speed up the first load of your site, so you can delay
-registering it until after your app has loaded.
+Registering a service worker doesn't speed up the first load of your site. You can delay registering it until after your app has loaded.
 
-## Configuring the service worker
+## Customize your service worker
 
-You can specify any Service Worker Precache options by passing an options file
-to the build command:
+To customize your service worker, create a configuration file called  `sw-precache-config.js` in your top-level project folder. 
 
-<code>polymer build --sw-precache-config <var>config-file</var>.json</code>
-
-The config file is a JavaScript file that exports a set of configuration options supported by
-Service Worker Precache. See [Options parameter](https://github.com/GoogleChrome/sw-precache#options-parameter)
+`sw-precache-config.js` exports a set of configuration options supported by Service Worker Precache. See [Options parameter](https://github.com/GoogleChrome/sw-precache#options-parameter)
 in the `sw-precache` README for more information.
 
-If you identify resources using the `--entrypoint` and `--shell` and `--fragment` arguments, those
-files are added in to the `staticFileGlobs` parameter to ensure that they're cached.
-
-If you're writing a single-page app and you want it to work completely offline, you probably want
-to specify a _fallback_ document, to be served when the requested URL is not in the cache. For a
-single—page app, this is typically the same as the entrypoint.  Configure fallback using the
-[navigateFallback](https://github.com/GoogleChrome/sw-precache#navigatefallback-string) and
-[navigateFallbackWhitelist](https://github.com/GoogleChrome/sw-precache#navigatefallbackwhitelist-arrayregexp)
+If you're writing a single-page app and you want it to work completely offline, specify a _fallback_ document to be served when the requested URL is not in the cache. For a single—page app, this is typically the same as the entrypoint. Configure fallback using the [navigateFallback](https://github.com/GoogleChrome/sw-precache#navigatefallback-string) and [navigateFallbackWhitelist](https://github.com/GoogleChrome/sw-precache#navigatefallbackwhitelist-arrayregexp)
 parameters.
 
-The following config file sets up some common options, including falling back to the `/index.html`
-file when offline.
+Example sw-precache-config.js {.caption}
 
 ```js
 module.exports = {
   staticFileGlobs: [
     '/index.html',
     '/manifest.json',
-    '/node_modules/webcomponentsjs/webcomponents-lite.js',
+    '/node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js',
     '/images/*'
   ],
   navigateFallback: '/index.html',
@@ -92,10 +136,10 @@ all files _except_ those that end in `.js` (for JavaScript imports) and ones wit
 
 ## More resources
 
-The library supports a number of other features, including runtime caching of
+The `sw-precache` library supports a number of other features, including runtime caching of
 your app's dynamic content.
 
-For more information on the library, see [Service Worker Precache Getting
+For more information on the library, see [Service Worker Precache: Getting
 Started](https://github.com/GoogleChrome/sw-precache/blob/master/GettingStarted.md).
 
 For background on service workers, see [Introduction to Service
