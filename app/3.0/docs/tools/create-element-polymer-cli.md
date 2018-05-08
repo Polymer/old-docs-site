@@ -57,7 +57,7 @@ Polymer CLI uses [npm](http://npmjs.com) for dependency management.
 Dependencies are stored in the `node_modules` directory. You should never manually alter the
 contents of this directory.
 
-Use the npm command line tool to manage dependencies.
+Use the `npm` command line tool to manage dependencies.
 
 To download a dependency to `node_modules/` (the `--save` flag saves the new 
 dependency to `package.json`):
@@ -68,14 +68,32 @@ To remove the dependency from `node_modules` and `package.json`:
 
     npm uninstall @polymer/iron-ajax
 
-### Import dependencies as module specifiers
+### Import dependencies using module specifiers
 
-Use module specifiers to import dependencies in your source code:
+Import your dependencies using module specifiers:
 
-```js
-// from 'some-element.js'
-import {PolymerElement} from '@polymer/polymer/polymer-element.js';
-import '@polymer/paper-elements/paper-button.js';
-```
+    src/my-el/my-el.js {.caption}
 
-Polymer CLI rewrites module specifiers to paths when you build or serve your app. For more information, see [Build for production](/{{{polymer_version_dir}}}/toolbox/build-for-production).
+    ```js
+    import {PolymerElement} from '@polymer/polymer/polymer-element.js';
+    import '@polymer/paper-button/paper-button.js';
+    import '../child-el/child-el.js';
+    ```
+
+*   When importing a dependency installed using npm, use the package name, followed
+    by the path to the module. 
+
+    In the code above, for example, `@polymer/paper-button` is the name of a package
+    containing the `paper-button` module, and `paper-button.js` is the path to the 
+    module inside the package. Polymer CLI rewrites these specifiers to paths when
+    you build your app.
+
+*   When importing a local dependency (like `child-el.js` above), use either a relative
+    path starting with `./` or `../`, or an absolute path starting with `..`. Polymer CLI
+    doesn't rewrite these specifiers.
+
+*   If you need to include a module from another site, such as a CDN, use a full URL
+    (e.g. `https://unpkg.com/thing@1.0.1/index.js`). Polymer CLI doesn't rewrite these
+    specifiers.
+
+See [Build for production](/{{{polymer_version_dir}}}/toolbox/build-for-production#transforms) for more information on how Polymer CLI resolves imports.

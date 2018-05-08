@@ -52,16 +52,6 @@ The Polymer CLI generates your app and installs its dependencies.
 
 After creating your app, Polymer CLI generates the following files and directories:
 
-README.md
--rw-r--r--    1 katejeffreys  eng    590 May  8 01:05 index.html
--rw-r--r--    1 katejeffreys  eng     96 May  8 01:05 manifest.json
-drwxr-xr-x   60 katejeffreys  eng   1920 May  8 01:05 node_modules
--rw-r--r--    1 katejeffreys  eng  17137 May  8 01:05 package-lock.json
--rw-r--r--    1 katejeffreys  eng    206 May  8 01:05 package.json
--rw-r--r--    1 katejeffreys  eng    104 May  8 01:05 polymer.json
-drwxr-xr-x    3 katejeffreys  eng     96 May  8 01:05 src
-drwxr-xr-x    3 katejeffreys  eng     96 May  8 01:05 test
-
 *   `README.md`. Template README file.
 *   `index.html`. Entrypoint page of the app.
 *   `manifest.json`. App manifest. Provides information about your app to the browser.
@@ -103,13 +93,30 @@ To add another element to the project:
 
 ## Manage dependencies in an application project {#dependencies}
 
-Import your dependencies with module specifiers:
+Import your dependencies using module specifiers:
 
-src/my-app.js {.caption}
+    src/my-app/my-app.js {.caption}
 
-```
-import '@polymer/polymer/polymer-element.js';
-import 'my-el/my-el.js';
-```
+    ```js
+    import {PolymerElement} from '@polymer/polymer/polymer-element.js';
+    import '@polymer/paper-button/paper-button.js';
+    import '../my-el/my-el.js';
+    ```
 
-Polymer CLI rewrites module specifiers to paths when you build your app. See [Build for production](/{{{polymer_version_dir}}}/toolbox/build-for-production) for more information.
+*   When importing a dependency installed using npm, use the package name, followed
+    by the path to the module. 
+
+    In the code above, for example, `@polymer/paper-button` is the name of a package
+    containing the `paper-button` module, and `paper-button.js` is the path to the 
+    module inside the package. Polymer CLI rewrites these specifiers to paths when
+    you build your app.
+
+*   When importing a local dependency (like `my-el.js` above), use either a relative
+    path starting with `./` or `../`, or an absolute path starting with `..`. Polymer CLI
+    doesn't rewrite these specifiers.
+
+*   If you need to include a module from another site, such as a CDN, use a full URL
+    (e.g. `https://unpkg.com/thing@1.0.1/index.js`). Polymer CLI doesn't rewrite these
+    specifiers.
+
+See [Build for production](/{{{polymer_version_dir}}}/toolbox/build-for-production#transforms) for more information on how Polymer CLI resolves imports.
