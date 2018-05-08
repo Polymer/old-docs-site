@@ -4,10 +4,6 @@ title: Create an element project with the Polymer CLI
 
 <!-- toc -->
 
-<div>
-{% include 'outdated.html' %}
-</div>
-
 This section shows you how to start an element project.
 
 1.  Create a directory for your element project. For projects with a single element,
@@ -23,7 +19,7 @@ This section shows you how to start an element project.
 
         polymer init
 
-1.  Select `polymer-2-element`.
+1.  Select `polymer-3-element`.
 
 1.  Enter a name for your element.
 
@@ -41,80 +37,45 @@ project's dependencies.
 
 After the initialization process Polymer CLI generates the following files and directories.
 
-*   `bower.json`. Configuration file for Bower.
-*   `bower_components/`. Project dependencies. See [Manage dependencies](#dependencies).
+*   `README.md`. Template for a README file.
 *   `demo/index.html`. Demo of <code><var>my-el</var></code>`.html`.
 *   `index.html`. Automatically-generated API reference.
-*   <code><var>my-el</var></code>`.html`. Element source code.
+*   <code><var>my-el</var></code>`.js`. Element source code.
+*   `node_modules/`. Project dependencies. See [Manage dependencies](#dependencies).
+*   `package-lock.json`. Automatically generated control file for npm.
+*   `package.json`. Configuration file for npm.
+*   `polymer.json`. Configuration file for Polymer CLI.
 *   `test/`<code><var>my-el</var></code>`_test.html`. Unit tests for
-    the element.
+the element.
 
-## Manage dependencies and HTML imports {#dependencies}
+## Manage dependencies and JavaScript imports {#dependencies}
 
-### Use Bower to manage dependencies
+### Use npm to manage dependencies
 
-Polymer CLI uses [Bower](http://bower.io) for dependency management.
+Polymer CLI uses [npm](http://npmjs.com) for dependency management.
 
-Dependencies are stored in the `bower_components` directory. You should never manually alter the
+Dependencies are stored in the `node_modules` directory. You should never manually alter the
 contents of this directory.
 
-Use the Bower CLI to manage dependencies.
+Use the npm command line tool to manage dependencies.
 
-To download a dependency to `bower_components/` (the `--save` flag saves the new 
-dependency to `bower.json`):
+To download a dependency to `node_modules/` (the `--save` flag saves the new 
+dependency to `package.json`):
 
-    bower install --save PolymerElements/iron-ajax
+    npm install --save @polymer/iron-ajax@next
 
-To remove the dependency from `bower_components` and `bower.json`:
+To remove the dependency from `node_modules` and `package.json`:
 
-    bower uninstall PolymerElements/iron-ajax
+    npm uninstall @polymer/iron-ajax
 
-### Import dependencies as relative URLs
+### Import dependencies as module specifiers
 
-When importing dependencies inside your element, you should always use a relative URL *as if the 
-dependency is a sibling of your project.*
+Use module specifiers to import dependencies in your source code:
 
+```js
+// from 'some-element.js'
+import {PolymerElement} from '@polymer/polymer/polymer-element.js';
+import '@polymer/paper-elements/paper-button.js';
 ```
-<!-- from a top-level 'some-element.html' -->
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../paper-elements/paper-button.html">
-```
 
-#### Why use relative URLs?
-
-Suppose that you ran Polymer CLI to generate an element project. Your element is named `my-el`. 
-You look inside `my-el.html` and see that Polymer has been imported like so:
-
-    <link rel="import" href="../polymer/polymer.html">
-
-This path doesn't make sense. Relative to `my-el.html`, Polymer is actually located at 
-`bower_components/polymer/polymer.html`. Whereas the HTML import above is referencing a location 
-*outside* of your element project. What's going on?
-
-Bower installs dependencies in a flat dependency tree, like so:
-
-    bower_components/
-      polymer/
-        polymer.html
-      my-el/
-        my-el.html
-      other-el/
-        other-el.html
-
-This works well on the application-level. All elements are siblings, so they can all reliably 
-import each other using relative paths like `../polymer/polymer.html`. This is why Polymer CLI 
-uses relative paths when initializing your element project.
-
-However, one problem with this approach is that this structure does not actually match the layout 
-in your element project. Your element project is actually laid out like so:
-
-    bower_components/
-      polymer/
-        polymer.html
-    my-el.html
-
-Polymer CLI handles this by remapping paths. When you run `polymer serve`, all elements in 
-`bower_components` are remapped to appear to be in sibling directories relative to `my-el`. The 
-current element is served from the made-up path of <code>/components/<var>bower name</var></code>, 
-where <code><var>bower name</var></code> is the `name` field from your element project's 
-`bower.json` file.
+Polymer CLI rewrites module specifiers to paths when you build or serve your app. For more information, see [Build for production](/{{{polymer_version_dir}}}/toolbox/build-for-production).
