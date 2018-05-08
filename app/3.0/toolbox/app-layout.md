@@ -4,22 +4,10 @@ title: Responsive app layout
 
 <!-- toc -->
 
-<div>
-{% include 'outdated.html' %}
-</div>
-
 Every application needs some layout, and the app layout elements provide the tools to create
 responsive layouts easily.
 
-If you've worked with the previous generation of Material Design layout elements, like
-`paper-header-panel` and `paper-drawer-panel`, the app layout elements should feel fairly familiar.
-However, these elements are designed to be:
-
-- More flexible and composable -- supporting a wider range of layout patterns.
-- Less opinionated -- these elements don't enforce a particular look and feel
-(although they still support the Material Design effects and UI patterns if that's
-what you're looking for).
-- Extensible -- with a new, pluggable system for scroll effects.
+The app layout elements are designed to be flexible and composable, and to support a wide range of layout patterns. They support Material Design effects and UI patterns, without enforcing any particular look or feel. The app layout elements are also extensible, with a pluggable system for scroll effects.
 
 ## Design your layout
 
@@ -56,7 +44,7 @@ Almost every app has some kind of header or toolbar at the top. The header can s
 content, be fixed at the top of the screen, or have dynamic behavior as the user scrolls. The
 elements you need depend on what you're looking for:
 
--   For a simple header that scrolls with the content, you can use an, `<app-toolbar>` element by
+-   For a simple header that scrolls with the content, you can use an `<app-toolbar>` element by
     itself. The `<app-toolbar>` is a simple horizontal container for controls and labels. If you
     need multiple rows of controls, you just use multiple toolbars.
 
@@ -67,45 +55,45 @@ elements you need depend on what you're looking for:
 ### Simple toolbars
 
 A toolbar by itself serves as a simple header that scrolls with the page content. With a little
-extra CSS, it can be fixed to the top of the page. The following [sample](http://jsbin.com/haroru/edit?html,output) uses a toolbar as a simple scrolling header with a title.
+extra CSS, it can be fixed to the top of the page. The following [sample on StackBlitz](https://stackblitz.com/edit/polymer-3-qsvbtx?file=index.html) uses a toolbar as a simple scrolling header with a title:
 
 `index.html` { .caption }
 
+```html
+<head>
+  <!-- import webcomponents polyfills here -->
+
+  <script 
+    type="module"
+    src="./node_modules/@polymer/app-layout/app-toolbar/app-toolbar.js"></script>
+  <script 
+    type="module"
+    src="./node_modules/@polymer/app-layout/demo/sample-content.js"></script>
+  <custom-style>
+    <style>
+      body {
+        /* No margin on body so toolbar can span the screen */
+        margin: 0;
+      }
+      app-toolbar {
+        /* Toolbar is the main header, so give it some color */
+        background-color: #1E88E5;
+        font-family: 'Roboto', Helvetica, sans-serif;
+        color: white;
+        --app-toolbar-font-size: 24px;
+      }
+    </style>
+  </custom-style>
+</head>
+<body>
+  <app-toolbar>
+    <div main-title>Spork</div>
+  </app-toolbar>
+  <sample-content size="10"></sample-content>
+</body>
 ```
-  <head>
-    <!-- import latest release version of all components from polygit -->
-    <base href="https://polygit.org/components/">
-    <script src="webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="app-layout/app-toolbar/app-toolbar.html">
 
-    <!-- sample-content included for demo purposes only -->
-    <link rel="import" href="app-layout/demo/sample-content.html">
-
-    <custom-style>
-      <style>
-        body {
-          /* No margin on body so toolbar can span the screen */
-          margin: 0;
-        }
-        app-toolbar {
-          /* Toolbar is the main header, so give it some color */
-          background-color: #1E88E5;
-          font-family: 'Roboto', Helvetica, sans-serif;
-          color: white;
-          --app-toolbar-font-size: 24px;
-        }
-      </style>
-    </custom-style>
-  </head>
-  <body>
-    <app-toolbar>
-      <div main-title>Spork</div>
-    </app-toolbar>
-    <sample-content size="10"></sample-content>
-  </body>
-```
-
-![screenshot of a simple app-toolbar](/images/1.0/toolbox/simple-toolbar.png)
+![screenshot of a simple app-toolbar](/images/3.0/toolbox/simple-toolbar.png)
 
 The toolbar is a horizontal flexbox container, so you can use the usual flexbox rules to adjust the
 layout of its children. A child with the attribute `main-title` is
@@ -113,7 +101,7 @@ automatically styled to flex, so it
 takes up all the extra space in the container. If you add buttons or icons on either side of the
 title, they'll automatically be pushed to the sides of the toolbar:
 
-```
+```html
   <app-toolbar>
     <paper-icon-button icon="menu"></paper-icon-button>
     <div main-title>Spork</div>
@@ -121,8 +109,7 @@ title, they'll automatically be pushed to the sides of the toolbar:
   </app-toolbar>
 ```
 
-![screenshot of a simple app-toolbar with a menu and search buttons](/images/1.0/toolbox/toolbar-with-buttons.png)
-
+![screenshot of a simple app-toolbar with a menu and search buttons](/images/3.0/toolbox/toolbar-with-buttons.png)
 
 ### Dynamic headers
 
@@ -150,14 +137,14 @@ When using a condensing header with multiple toolbars, you can choose two basic 
     staggered so they don't overlap. (In the Material Design guidelines, this pattern is called
     flexible space, and it's often combined with one or more scroll effects.)
 
-    ![screenshot of an expanded, tall, app-toolbar with a menu and shop button, and titled My App](/images/1.0/toolbox/collapsing-headers-open.png)
-    ![screenshot of the same toolbar collapsed to a regular, smaller size, with the same title and buttons](/images/1.0/toolbox/collapsing-headers-closed.png)
+    ![screenshot of an expanded, tall, app-toolbar with a menu and shop button, and titled My App](/images/3.0/toolbox/collapsing-headers-open.png)
+    ![screenshot of the same toolbar collapsed to a regular, smaller size, with the same title and buttons](/images/3.0/toolbox/collapsing-headers-closed.png)
 
 -   The top toolbars go offscreen while the bottom toolbar or toolbars stay on screen. (In the
     Material Design patterns, this bottom toolbar is usually a tab bar or search bar.)
 
-    ![screenshot of an expanded, tall app-toolbar with a back and shop buttons, titled Spork. Below it are three tabs, labelled food, drink, life](/images/1.0/toolbox/spork-tabs-tall.png)
-    ![screenshot of the same app-toolbar, but with the title and the buttons gone, and only with the 2 tabs visible](/images/1.0/toolbox/spork-tabs-condensed.png)
+    ![screenshot of an expanded, tall app-toolbar with a back and shop buttons, titled Spork. Below it are three tabs, labelled food, drink, life](/images/3.0/toolbox/spork-tabs-tall.png)
+    ![screenshot of the same app-toolbar, but with the title and the buttons gone, and only with the 2 tabs visible](/images/3.0/toolbox/spork-tabs-condensed.png)
 
 
 One toolbar in the set is identified as `sticky`. When the page scrolls, any toolbars _above_ the
@@ -165,7 +152,7 @@ sticky toolbar scroll off screen. You can designate a sticky toolbar by setting 
 attribute on it. If no toolbar has the `sticky` attribute, the `<app-header>`'s first child is
 sticky.
 
-```
+```html
   <app-header fixed condenses effects="waterfall">
     <app-toolbar>
       <paper-icon-button icon="menu"></paper-icon-button>
@@ -189,7 +176,7 @@ element.
 
 To retain just a tab bar, place the tab bar last, and mark it as sticky.
 
-```
+```html
   <app-header id="header" effects="waterfall" fixed condenses>
     <app-toolbar>
       <paper-icon-button icon="arrow-back"></paper-icon-button>
@@ -213,7 +200,7 @@ One exception is the waterfall effect, which requires a fixed header, but can be
 without the `condenses` attribute. It makes the header appear to lift up above the the content when
 the user starts scrolling, so the content can scroll underneath it.
 
-```
+```html
   <app-header fixed effects="waterfall">
     <app-toolbar>
       <div main-title>App name</div>
@@ -247,7 +234,6 @@ position on each page.
 If you're using something like `<iron-pages>` to switch views, you can use
 [`<app-scroll-position>`](https://www.webcomponents.org/element/PolymerElements/app-layout/app-scroll-position)
 to track scroll position for each of the views. See the API docs for sample usage.
-`<app-scroll-position>` was renamed in release 2.0 (replacing `<app-scrollpos-control>`).
 {.alert .alert-info}
 
 You can use an element scroller by specifying a `scrollTarget` property on `<app-header>`:
@@ -283,7 +269,7 @@ To use it, just place an `<app-header>` and some content inside an `<app-header-
   </app-header-layout>
 ```
 
-Specifying `slot="header"` is required with App Layout 2.0.
+Specifying `slot="header"` is required with App Layout 3.0.
 {.alert .alert-info}
 
 By default the layout uses document scrolling. If you don't want to to scroll the whole page, the
@@ -361,7 +347,7 @@ To add a drawer toggle button, place an element with the `drawer-toggle` attribu
 descendants of an `<app-drawer-layout>`. Usually the drawer toggle button is placed inside one of
 the app's toolbars.
 
-In App Layout 2.0, the `drawer-toggle` element is no longer automatically hidden when the drawer is persistent.
+In App Layout 3.0, the `drawer-toggle` element is not automatically hidden when the drawer is persistent.
 To hide `drawer-toggle`, you can style based on when the `narrow` attribute is present on `app-drawer-layout`
 (e.g. `app-drawer-layout:not([narrow]) [drawer-toggle] { display: none; }`)
 {.alert .alert-info}
@@ -392,7 +378,7 @@ with drawer and header.
   </app-drawer-layout>
 ```
 
-Specifying `slot="drawer"` is required with App Layout 2.0.
+Specifying `slot="drawer"` is required with App Layout 3.0.
 {.alert .alert-info}
 
 ## Responsive navigation pattern
@@ -401,8 +387,8 @@ In many cases, you'll want to switch your navigation based on the screen size. O
 uses navigation tabs on desktop, which are replaced by a navigation drawer on mobile, as in the
 [Shop app](https://shop.polymer-project.org/).
 
-![screenshot of a nav menu with 5 tabs, displayed horizontally, labelled "item one" through "item four"](/images/1.0/toolbox/app-layout-responsive-nav-tabs.png)
-![screenshot of the same menu displayed vertically, after being open from a mobile drawer button ](/images/1.0/toolbox/app-layout-responsive-nav-drawer.png)
+![screenshot of a nav menu with 5 tabs, displayed horizontally, labelled "item one" through "item four"](/images/3.0/toolbox/app-layout-responsive-nav-tabs.png)
+![screenshot of the same menu displayed vertically, after being open from a mobile drawer button ](/images/3.0/toolbox/app-layout-responsive-nav-drawer.png)
 
 You can achieve this with some app layout elements, using data binding to switch between the tab and
 drawer navigation.

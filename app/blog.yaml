@@ -1,4 +1,9 @@
 ---
+- title:  "Polymer 3.0 tools update"
+  path: /blog/2018-04-12-polymer-3-tools-update
+  published: 2018-04-12
+  author: polymer-team
+  description: "The Polymer CLI gets improved module support"
 - title:  "Polymer 3.0: Latest preview"
   path: /blog/2018-03-20-polymer-3-latest-preview
   published: 2018-03-20

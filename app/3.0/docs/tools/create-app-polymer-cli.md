@@ -4,20 +4,15 @@ title: Create an application project with the Polymer CLI
 
 <!-- toc -->
 
-<div>
-{% include 'outdated.html' %}
-</div>
-
 Polymer CLI supports initializing a project folder with one of several application templates.  
-The `polymer-2-application` template is the most basic starting point for a Polymer-based 
+The `polymer-3-application` template is the most basic starting point for a Polymer-based 
 application. Other templates introduce more complex layout and application patterns.
 
-This chapter teaches you more about the `polymer-2-application` template.  
-See [Polymer App Toolbox templates](../../toolbox/templates) for more details on other templates.
+This chapter teaches you more about the `polymer-3-application` template.  
+See [Polymer App Toolbox templates](/{{{polymer_version_dir}}}/toolbox/templates) for more details on other templates.
 
 For a more full-featured progressive web app template, you can use the starter kit template 
-(`polymer-2-starter-kit`). See [the Polymer Starter Kit tutorial](/{{{polymer_version_dir}}}/start/toolbox/set-up)
-for setup instructions.
+(`polymer-3-starter-kit`). See [the Polymer Starter Kit tutorial](/{{{polymer_version_dir}}}/start/toolbox/set-up) for setup instructions.
 
 ## Set up basic app project {#basic-app}
 
@@ -35,7 +30,7 @@ Follow the steps below to get your basic app project set up.
 
         polymer init
 
-1.  Select `polymer-2-application`.
+1.  Select `polymer-3-application`.
 
 1.  Enter a name for your app. Defaults to the name of the current directory.
 
@@ -57,10 +52,14 @@ The Polymer CLI generates your app and installs its dependencies.
 
 After creating your app, Polymer CLI generates the following files and directories:
 
-*   `bower.json`. Configuration file for Bower.
-*   `bower_components/`. Project dependencies. See [Manage dependencies](#dependencies).
+*   `README.md`. Template README file.
 *   `index.html`. Entrypoint page of the app.
-*   `src/`<code><var>my-app</var>/<var>my-app</var></code>`.html`.
+*   `manifest.json`. App manifest. Provides information about your app to the browser.
+*   `node_modules/`. Project dependencies. See [Manage dependencies](#dependencies).
+*   `package-lock.json`. Auto-generated file for npm.
+*   `package.json`. Configuration file for npm.
+*   `polymer.json`. Configuration file for Polymer CLI.
+*   `src/`<code><var>my-app</var>/<var>my-app</var></code>`.js`.
     Source code for main element.
 *   `test/`<code><var>my-app</var>/<var>my-app</var></code>`_test.html`. Tests 
     for main element.
@@ -74,9 +73,9 @@ application-specific elements should be defined in the `src` directory, at the s
 <pre><code>app/
   src/
     <var>my-app</var>/
-      <var>my-app</var>.html
+      <var>my-app</var>.js
     <var>my-el</var>/
-      <var>my-el</var>.html</code></pre>
+      <var>my-el</var>.js</code></pre>
 
 To add another element to the project:
 
@@ -84,19 +83,40 @@ To add another element to the project:
    
     <pre><code>mkdir src/<var>my-el</var></code></pre>
    
-2. Create an HTML import for the new element. You can use the existing app element as a starting point.
+2. Create a JavaScript module for the new element. You can use the existing app element as a starting point.
    
-3. To use the new element, you'll need to import it into your application element (for example, <code><var>my-app</var>.html</code>) with an "import" link:
+3. To use the new element, you'll need to import it into your application element (for example, <code><var>my-app</var>.js</code>) with an "import" statement:
    
-    <pre><code>&lt;link rel="import" href="/src/<var>my-el</var>/<var>my-el</var>.html"&gt;</code></pre>
+    <pre><code>import '<var>my-el</var>/<var>my-el</var>.js';</code></pre>
    
    Don't use `polymer init` to create an element project inside your app project.
 
 ## Manage dependencies in an application project {#dependencies}
 
-Applications should use relative URLs to import other source files and dependencies. But because 
-applications are served independently, they can properly reach into the dependencies directory for 
-dependencies.
+Import your dependencies using module specifiers:
 
-    <!-- from a 'src/some-application.html' file in your application -->
-    <link rel="import" href="../bower_components/polymer/polymer.html">
+    src/my-app/my-app.js {.caption}
+
+    ```js
+    import {PolymerElement} from '@polymer/polymer/polymer-element.js';
+    import '@polymer/paper-button/paper-button.js';
+    import '../my-el/my-el.js';
+    ```
+
+*   When importing a dependency installed using npm, use the package name, followed
+    by the path to the module. 
+
+    In the code above, for example, `@polymer/paper-button` is the name of a package
+    containing the `paper-button` module, and `paper-button.js` is the path to the 
+    module inside the package. Polymer CLI rewrites these specifiers to paths when
+    you build your app.
+
+*   When importing a local dependency (like `my-el.js` above), use either a relative
+    path starting with `./` or `../`, or an absolute path starting with `..`. Polymer CLI
+    doesn't rewrite these specifiers.
+
+*   If you need to include a module from another site, such as a CDN, use a full URL
+    (e.g. `https://unpkg.com/thing@1.0.1/index.js`). Polymer CLI doesn't rewrite these
+    specifiers.
+
+See [Build for production](/{{{polymer_version_dir}}}/toolbox/build-for-production#transforms) for more information on how Polymer CLI resolves imports.

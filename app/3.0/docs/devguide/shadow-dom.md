@@ -4,7 +4,7 @@ title: Shadow DOM concepts
 
 <!-- toc -->
 
-Shadow DOM is a new DOM feature that helps you build components. You can think of shadow DOM as a
+Shadow DOM is a DOM feature that helps you build components. You can think of shadow DOM as a
 **scoped subtree** inside your element.
 
 **Read more on Web Fundamentals**. This document gives an overview of shadow DOM as it relates to
@@ -61,18 +61,29 @@ When you provide a DOM template for an element, Polymer attaches a shadow root f
 the element and copies the template contents into the shadow tree.
 
 
-```html
-<dom-module id="my-header">
-  <template>
-    <style>...</style>
-    <header>
-      <h1>I'm a header</h1>
-      <button>Menu</button>
-    </header>
-  </template>
-</dom-module>
+```js
+// Import the Polymer library and html helper function
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+// Define the new element as a class
+class MyHeader extends PolymerElement {
+  // Provide a DOM template for the element
+  static get template () {
+    // Tag the returned template literal with the html helper function
+    // to convert it into an instance of HTMLTemplateElement
+    return html`
+      <!-- Begin shadow tree -->
+      <style>...</style>
+      <header>
+        <h1>I'm a header</h1>
+        <button>Menu</button>
+      </header>
+      <!-- End shadow tree -->
+    `;
+  }
+}
+// Tell the browser about the new tag
+customElements.define('my-header', MyHeader);
 ```
-
 
 Note that the template includes a `<style>` element. CSS placed in the shadow tree is scoped to the
 shadow tree, and won't leak out to other parts of your DOM.
@@ -114,7 +125,7 @@ The header renders as if the `<slot>` element was replaced by the children:
 ```
 
 
-The element's actual descendant tree is sometime called its light DOM, in contrast to its shadow DOM
+The element's actual descendant tree is sometimes called its light DOM, in contrast to its shadow DOM
 tree.
 
 The process of turning the light DOM and shadow DOM trees into a single tree for rendering is called
@@ -175,7 +186,7 @@ Note that only top-level children can match a slot. Consider the following examp
 ```html
 <example-card>
   <div>
-   <span slot="title">Am I a title?</span>
+    <span slot="title">Am I a title?</span>
   </div>
   <div>
     Some body text.
@@ -321,26 +332,28 @@ For more details, see [Working with slots in JS](https://developers.google.com/w
 The `Polymer.FlattenedNodesObserver` class provides utilities to track an element's _flattened tree_.
 That is, a list of the node's child nodes, with any `<slot>` elements replaced by their distributed
 nodes. `FlattenedNodesObserver` is an optional utility that can be loaded from
-`lib/utils/flattened-nodes-observer.html`.
-
-```html
-<link rel="import" href="/bower_components/polymer/lib/utils/flattened-nodes-observer.html">
-```
-
-`Polymer.FlattenedNodesObserver.getFlattenedNodes(node)` returns a list of flattened nodes for
-the specified node.
-
-Use the `Polymer.FlattenedNodesObserver` class to track when the flattened node list changes.
+`lib/utils/flattened-nodes-observer.js`.
 
 ```js
-this._observer = new Polymer.FlattenedNodesObserver(this.$.slot, (info) => {
+import { FlattenedNodesObserver } from '@polymer/polymer/utils/flattened-nodes-observer.js';
+```
+
+`FlattenedNodesObserver.getFlattenedNodes(node)` returns a list of flattened nodes for
+the specified node.
+
+Use the `FlattenedNodesObserver` class to track when the flattened node list changes.
+
+```js
+import { FlattenedNodesObserver } from '@polymer/polymer/utils/flattened-nodes-observer.js';
+...
+this._observer = new FlattenedNodesObserver(this.$.slot, (info) => {
   this._processNewNodes(info.addedNodes);
   this._processRemovedNodes(info.removedNodes);
 });
 ```
 
 You pass the `FlattenedNodesObserver` a callback to be invoked when nodes are added or
-removed. The callback takes a single Object argument, with `addedNodes` and
+removed. The callback takes a single `Object` argument, with `addedNodes` and
 `removedNodes` arrays.
 
 The method returns a handle that can be used to stop observation:
@@ -391,7 +404,7 @@ If the user clicks on the image element the click event bubbles up the tree:
     original target is inside its shadow root.
 *   A listener on the `<div>` in `<example-card>`'s shadow DOM also receives `<fancy-button>` as the
     target, since they are in the same shadow DOM tree.
-*   A listener on the `<example-card>` receives the <example-card> itself as the target.
+*   A listener on the `<example-card>` receives the `<example-card>` itself as the target.
 
 The event provides a `composedPath` method that returns an array of nodes that the event will pass
 through. In this case, the array would include:

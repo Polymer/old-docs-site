@@ -11,41 +11,38 @@ In this step, you'll deploy your application to the web.
 
 Type `polymer build` to build your Polymer application for production. 
 
-You can serve different builds of your app to browsers with different capabilities. The Polymer Starter Kit is configured to create three builds:
+You can serve different builds of your app to browsers with different capabilities. In this step, you'll deploy `es5-bundled`. 
 
-* A bundled, minified build with a service worker, compiled to ES5 for compatibility with older browsers.
-* A bundled, minified build with a service worker. ES6 code is served as-is. This build is for browsers that can handle ES6 code.
-* An unbundled, minified build with a service worker. ES6 code is served as-is. This build is for browsers that support HTTP/2 push.
+The Polymer Starter Kit is configured to create three builds:
 
-In this step, you'll deploy the bundled, compiled build (`es5-bundled`) for maximum compatibility. Serving the other builds requires a more complex serving setup.
+* `esm-bundled`: This build serves JavaScript code without compilation, as ES modules.
 
-Builds are configured in the `builds` object in `polymer.json`, a configuration file in the root project folder:
+* `es6-bundled`: This build serves JavaSCript code compiled to ES2015, as AMD modules.
+
+* `es5-bundled`: This build serves JavaSCript code compiled to ES5, as AMD modules.
+
+Builds are configured in the `builds` object in `polymer.json`, a configuration file in the top-level project folder:
 
 polymer.json { .caption}
+
 ```
 ...
 "builds": [
-  {
-    "preset": "es5-bundled"
-  },
-  {
-    "preset": "es6-bundled"
-  },
-  {
-    "preset": "es6-unbundled"
-  }
-]
+    { "name": "esm-bundled", ... },
+    { "name": "es6-bundled", ... },
+    { "name": "es5-bundled", ... }
+  ],
 ...
 ```
 
 The builds will be output to subfolders under the `build/` folder as follows:
 
     build/
-      es5-bundled/
+      esm-bundled/
       es6-bundled/
-      es6-unbundled/
+      es5-bundled/
 
-To configure a custom build, you can use command line options, or edit `polymer.json`. Run `polymer help build` for the full list of available options and optimizations. Also, see the documentation on the [polymer.json specification](https://www.polymer-project.org/2.0/docs/tools/polymer-json) and [building your Polymer application for production](https://www.polymer-project.org/2.0/toolbox/build-for-production).
+To configure a custom build, you can use command line options, or edit `polymer.json`. Run `polymer help build` for the full list of available options and optimizations. Also, see the documentation on the [polymer.json specification](/{{{polymer_version_dir}}}/docs/tools/polymer-json) and [building your Polymer application for production](/{{{polymer_version_dir}}}/toolbox/build-for-production).
 
 ## Deploy to a server
 
@@ -56,17 +53,17 @@ which requires that the server serve the `index.html` entry point for all
 routes.
 
 You can follow one of the sections below to deploy this app to either
-[Google AppEngine](https://cloud.google.com/appengine) or [Firebase
+[Google App Engine](https://cloud.google.com/appengine) or [Firebase
 Static Hosting](https://www.firebase.com/docs/hosting/), which are both free and
-secure approaches for deploying a Polymer app.  The approach
+secure approaches for deploying a Polymer app. The approach
 is similar for other hosting providers.
 
-### Deploy with AppEngine
+### Deploy with App Engine
 
 1.  Download the [Google App Engine SDK](https://cloud.google.com/appengine/downloads)
 and follow the instructions for your platform to install it. This tutorial uses the Python SDK.
 
-1.  [Sign up for an AppEngine account](https://cloud.google.com/appengine).
+1.  [Sign up for an App Engine account](https://cloud.google.com/appengine).
 
 1.  [Open the project dashboard](https://console.cloud.google.com/iam-admin/projects)
 and create a new project.
@@ -75,68 +72,103 @@ and create a new project.
     * Type a project name.
     * Click the Create button.
     
-    The App Engine gives you a project ID based on the name of your project.
-    Make note of this ID.
+    The App Engine gives you a unique identifier for your project-make note of this ID.
 
-1.  `cd` into the main folder for your app (e.g. `my-app/`).
-
-1. Create an `app.yaml` file with the following contents:
+1.  In the root project folder for your app (e.g. `my-app/`), create a file called `app.yaml` with the following contents:
 
     ```
     runtime: python27
     api_version: 1
-    threadsafe: yes
+    threadsafe: true
 
     handlers:
-    - url: /bower_components
-      static_dir: build/es5-bundled/bower_components
+    - url: /node_modules
+      static_dir: node_modules
       secure: always
 
     - url: /images
-      static_dir: build/es5-bundled/images
+      static_dir: images
       secure: always
 
     - url: /src
-      static_dir: build/es5-bundled/src
+      static_dir: src
       secure: always
 
     - url: /manifest.json
-      static_files: build/es5-bundled/manifest.json
-      upload: build/es5-bundled/manifest.json
+      static_files: manifest.json
+      upload: manifest.json
       secure: always
 
     - url: /service-worker.js
-      static_files: build/es5-bundled/service-worker.js
-      upload: build/es5-bundled/service-worker.js
+      static_files: service-worker.js
+      upload: service-worker.js
       secure: always
 
     - url: /.*
-      static_files: build/es5-bundled/index.html
-      upload: build/es5-bundled/index.html
+      static_files: index.html
+      upload: index.html
       secure: always
+
     ```
 
-1. Set your project id to the ID given to your app by the App Engine. For example:
-   
-       gcloud config set project my-app-164409
+1.  In a text editor, open `polymer.json` from your root project folder. Add `"app.yaml"` to the `extraDependencies` array.
 
-1. Create your app:
+    Before {.caption}
+
+    ```
+    ...
+    "extraDependencies": [
+        "manifest.json",
+        "node_modules/@webcomponents/webcomponentsjs/*.js",
+        "!node_modules/@webcomponents/webcomponentsjs/gulpfile.js"
+      ],
+    ...
+    ```
+
+    After {.caption}
+
+    ```
+    ...
+    "extraDependencies": [
+        "manifest.json",
+        "node_modules/@webcomponents/webcomponentsjs/*.js",
+        "!node_modules/@webcomponents/webcomponentsjs/gulpfile.js",
+        "app.yaml"
+      ],
+    ...
+    ```
+
+1.  Re-run `polymer build` to include `app.yaml` in your build.
+
+        polymer build
+
+1.  Navigate to your build output folder:
+
+        cd build/es5-bundled
+
+1.  Set your project id to the ID given to your app by the App Engine. For example:
    
-       gcloud app create
+        gcloud config set project test-thing-16996
+
+1.  Create your app:
+   
+        gcloud app create
      
-   You will need to select a region for your app to be deployed in. This can't be changed.
+    You will need to select a region for your app to be deployed in. This can't be changed.
 
-1. Deploy your app:
-   
-       gcloud app deploy
+1.  Deploy your app:
 
-1. Your app will be available online at its designated URL. For example:
+    **Make sure you running the following command from your build output folder.** If you run it from your root project folder, the deployment will fail. {.alert .alert-warning}
    
-       https://my-app-164409.appspot.com/new-view
+        gcloud app deploy
+
+1.  Your app will be available online at its designated URL. For example:
    
-   Open your app URL in your browser by typing this command:
+        https://test-thing-16996.appspot.com
    
-       gcloud app browse
+    Open your app URL in your browser by typing this command:
+   
+        gcloud app browse
 
 ### Deploy with Firebase
 
@@ -147,7 +179,7 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
 
 1.  Go to [https://www.firebase.com/account](https://www.firebase.com/account) to create a new app. Make note of the project ID associated with your app.
 
-    ![Welcome to Firebase showing Project ID](/images/2.0/toolbox/welcome-firebase.png)
+    ![Welcome to Firebase showing Project ID](/images/3.0/toolbox/welcome-firebase.png)
 
 1.  Install the Firebase command line tools.
 
@@ -155,25 +187,35 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
 
 1.  `cd` into your project folder.
 
-1.  Inititalize the Firebase application.
+1.  Initialize the Firebase application.
 
         firebase login
         firebase init
 
-1.  Firebase asks you for a project to associate with your app. Select the one you created earlier.
+    1.  When asked which features you want to set up for your project folder, use the arrow keys and space to select "Hosting", then press enter to confirm.
 
-1.  Firebase asks you the name of your app's public folder. Enter `build/es5-bundled/`.
+    1.  When asked for a project to associate with your app, select the one you created earlier.
 
-1.  Edit your firebase configuration to add support for URL routing. The final
-    `firebase.json` file should look something like this:
+    1.  When asked for the path to your app's public folder, enter `build/es5-bundled/`.
+
+    1.  When asked if you want to configure your project as a single-page app, type `y` and press enter.
+
+    1.  When asked if you want to overwrite your `index.html` with theirs, type `n` and press enter.
+
+    The Firebase tools will create a `firebase.json` file for you, which should look something like this:
 	
     ```
     {
       "hosting": {
         "public": "build/es5-bundled/",
+        "ignore": [
+          "firebase.json",
+          "**/.*",
+          "**/node_modules/**"
+        ],
         "rewrites": [
           {
-            "source": "**/!(*.*)",
+            "source": "**",
             "destination": "/index.html"
           }
         ]
@@ -181,13 +223,48 @@ guide](https://www.firebase.com/docs/hosting/quickstart.html).
     }
     ```	
 
-    This instructs Firebase to serve up `index.html` for any URLs that don't
-    otherwise end in a file extension.
+    The [`rewrites` setting](https://firebase.google.com/docs/hosting/full-config#rewrites) shown above instructs Firebase to serve up `/index.html` for any URL that doesn't match a path to a file in the publicly deployed folder (`build/es5-bundled/`).
 
-1. Deploy your project.
-   
-       firebase deploy
-   
-   The URL to your live site is listed in the output. You can also open
-   the site in your default browser by running `firebase open hosting:site`.
+1.  Remove the rule in the [`ignore` setting](https://firebase.google.com/docs/hosting/full-config#ignore) that ignores folders named `node_modules`:
 
+    Before {.caption}
+
+    ```
+    ...
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    ...
+    ```
+
+    After {.caption}
+
+    ```
+    ...
+    "ignore": [
+      "firebase.json",
+      "**/.*"
+    ],
+    ...
+    ```
+
+    Don't forget to remove the comma after the previous item!
+
+    We need to remove this rule because `polymer build` doesn't change the file layout of your app, except when it bundles files together. This means that some of your app's dependencies will still be in a folder called `node_modules` after being built. Don't worry, `polymer build` only includes files from `node_modules` that it knows your app needs.
+
+1.  Deploy your project.
+   
+        firebase deploy
+   
+    The URL to your live site is listed in the output. You can also open
+    the site in your default browser by running `firebase open hosting:site`.
+
+## Next steps
+
+Congratulations-you've successfully built and deployed a Polymer 3.0 application.
+
+Next, if you haven't already done so, try [building your first Polymer element](/{{{polymer_version_dir}}}/start/first-element/intro). 
+
+You can also visit the [Polymer App Toolbox documentation](/{{{polymer_version_dir}}}/toolbox/) to learn about more of its features, tools and templates.

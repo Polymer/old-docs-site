@@ -4,10 +4,6 @@ title: "Case study: the Shop app"
 
 <!-- toc -->
 
-<div>
-{% include 'outdated.html' %}
-</div>
-
 Shop is a full-featured e-commerce Progressive web app demo built using the
 Toolbox. You can try it out here:
 
@@ -24,13 +20,13 @@ detail view, and shopping cart view:
 
 <div class="image-container layout horizontal">
   <div class="image-wrapper">
-    <img src="/images/1.0/toolbox/shop-browse.png" alt="screenshot of the list view">
+    <img src="/images/3.0/toolbox/shop-browse.png" alt="screenshot of the list view">
   </div>
   <div class="image-wrapper">
-    <img src="/images/1.0/toolbox/shop-detail.png" alt="screenshot of the detail view">
+    <img src="/images/3.0/toolbox/shop-detail.png" alt="screenshot of the detail view">
   </div>
   <div class="image-wrapper">
-    <img src="/images/1.0/toolbox/shop-cart.png" alt="screenshot of the shopping cart view">
+    <img src="/images/3.0/toolbox/shop-cart.png" alt="screenshot of the shopping cart view">
   </div>
 </div>
 
@@ -43,7 +39,7 @@ supply other essential functions, including overall layout and routing. The
 [`<iron-pages>`](https://www.webcomponents.org/element/PolymerElements/iron-pages)
 element controls which view is currently visible.
 
-![the high level architecture of the application, as described above](/images/1.0/toolbox/high-level-arch.png)
+![the high level architecture of the application, as described above](/images/3.0/toolbox/high-level-arch.png)
 
 ## Routing
 
@@ -80,8 +76,9 @@ The [`<iron-pages>`](https://www.webcomponents.org/element/PolymerElements/iron-
 element is bound to the app element's `page` property, which is in turn set
 based on the current route. The view switching code looks like this:
 
-`shop-app.html` { .caption }
-```
+`shop-app.js` { .caption }
+
+```html
 <iron-pages role="main" selected="[[page]]" attr-for-selected="name" selected-attribute="visible" fallback-selection="404">
   <!-- home view -->
   <shop-home name="home" categories="[[categories]]"></shop-home>
@@ -107,38 +104,43 @@ When you change pages, the application loads the definition for the active view.
 When the definition loads, the browser _upgrades_ the element to a fully-
 functional custom element.
 
-```javascript
+`shop-app.js` { .caption }
+
+```js
 _pageChanged(page, oldPage) {
   if (page != null) {
-    // home route is eagerly loaded
-    if (page == 'home') {
-      this._pageLoaded(Boolean(oldPage));
-    // other routes are lazy loaded
-    } else {
-      // When a load failed, it triggered a 404 which means we need to
-      // eagerly load the 404 page definition
-      let cb = this._pageLoaded.bind(this, Boolean(oldPage));
-      Polymer.importHref(
-        this.resolveUrl('shop-' + page + '.html'),
-        cb, cb, true);
+    let cb = this._pageLoaded.bind(this, Boolean(oldPage));
+    switch (page) {
+      case 'list':
+        import('./shop-list.js').then(cb);
+        break;
+      case 'detail':
+        import('./shop-detail.js').then(cb);
+        break;
+      case 'cart':
+        import('./shop-cart.js').then(cb);
+        break;
+      case 'checkout':
+        import('./shop-checkout.js').then(cb);
+        break;
+      default:
+        this._pageLoaded(Boolean(oldPage));
     }
   }
 }
 ```
 
 In the logic above, the home view is built into the app shell, but the other
-views are demand-loaded fragments.
+views are [dynamic imports](https://developers.google.com/web/updates/2017/11/dynamic-import).
 
-Shop also uses [`dom-if`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.DomIf) templates to lazily create views:
+Shop also uses [`dom-if`](/{{{polymer_version_dir}}}/docs/api/elements/dom-if) templates to lazily create views:
 
 ```html
 <!-- Lazy-create the tabs for larger screen sizes. -->
-<div id="tabContainer" sticky$="[[_shouldShowTabs]]" hidden$="[[!_shouldShowTabs]]">
+...
   <dom-if if="[[_shouldRenderTabs]]">
     <template>
-      <shop-tabs
-          selected="[[categoryName]]"
-          attr-for-selected="name">
+      <shop-tabs selected="[[categoryName]]" attr-for-selected="name">
         <dom-repeat items="[[categories]]" as="category" initial-count="4">
           <template>
           <shop-tab name="[[category.name]]">
@@ -149,7 +151,6 @@ Shop also uses [`dom-if`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.D
       </shop-tabs>
     </template>
   </dom-if>
-</div>
 ```
 
 When parsed, the template's content is inert, and not included in the main
@@ -229,10 +230,7 @@ Shop uses the `sw-precache` [library](https://github.com/GoogleChrome/sw-precach
 for offline support. This library takes a list of files to cache and generates
 a service worker at build time, so you don't need to write your own service
 worker code. Just create a list of the essential resources and add the precache
-script to your build process. The [Polymer CLI](https://github.com/polymer/polymer-cli)
-supports [this use-case using sw-precache for generating a service
-worker](https://github.com/polymer/polymer-cli#app-shell-structure) to cache
-the dependencies for your application's "shell".
+script to your build process. Then, [generate a service worker for your app with Polymer CLI](/{{{polymer_version_dir}}}/toolbox/service-worker).
 
 ## Application layout using app-layout
 
@@ -249,10 +247,10 @@ Scrolling up the page at any point reveals the tabs.
 
 <div class="image-container layout horizontal">
   <div class="image-wrapper">
-    <img src="/images/1.0/toolbox/shop-toolbar-expanded.png" alt="screenshot of the expanded toolbar">
+    <img src="/images/3.0/toolbox/shop-toolbar-expanded.png" alt="screenshot of the expanded toolbar">
   </div>
   <div class="image-wrapper">
-    <img src="/images/1.0/toolbox/shop-toolbar-condensed.png" alt="screenshot of the condensed toolbar">
+    <img src="/images/3.0/toolbox/shop-toolbar-condensed.png" alt="screenshot of the condensed toolbar">
   </div>
 </div>
 
@@ -260,10 +258,10 @@ The tabs don't work as well on mobile devices, so Shop uses an `<app-drawer>` el
 
 <div class="image-container layout horizontal">
   <div class="image-wrapper">
-    <img src="/images/1.0/toolbox/shop-home.png" alt="screenshot of the drawer closed on mobile">
+    <img src="/images/3.0/toolbox/shop-home.png" alt="screenshot of the drawer closed on mobile">
   </div>
   <div class="image-wrapper">
-    <img src="/images/1.0/toolbox/shop-drawer.png" alt="screenshot of the drawer open on mobile">
+    <img src="/images/3.0/toolbox/shop-drawer.png" alt="screenshot of the drawer open on mobile">
   </div>
 </div>
 

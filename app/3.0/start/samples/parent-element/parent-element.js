@@ -1,4 +1,4 @@
-import {Element as PolymerElement, html} from 'https://unpkg.com/@polymer/polymer@3.0.0-pre.7/polymer-element.js';
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 import './child-element.js';
 
 class ParentElement extends PolymerElement {

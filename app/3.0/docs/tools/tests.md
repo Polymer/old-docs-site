@@ -4,16 +4,12 @@ title: Test your elements
 
 <!-- toc -->
 
-<div>
-{% include 'outdated.html' %}
-</div>
-
 This guide shows you the basics of using Polymer CLI to run unit tests, and
 how to accomplish various tasks and scenarios using the Web Component Tester
 library (the underlying library that powers Polymer CLI's testing tools).
 
-**Update your tools for 2.0.** For testing with 2.0, make sure you have the latest
-version of the Polymer CLI.
+**Update your tools for 3.0.** For testing with 3.0, make sure you have the `next`
+version of the Polymer CLI (`npm install --g polymer-cli@next`).
 {.alert .alert-info}
 
 ## Overview
@@ -34,16 +30,13 @@ popular third-party tools, including:
 *   [Sinon](http://sinonjs.org/) for spies, stubs, and mocks.
 *   [Selenium](http://www.seleniumhq.org/) for running tests against
     multiple browsers.
-*   [Accessibility Developer
-    Tools](https://github.com/GoogleChrome/accessibility-developer-tools)
-    for accessibility audits.
+*   [Accessibility Developer Tools](https://github.com/GoogleChrome/accessibility-developer-tools) for accessibility audits.
 
 ## Quick start {#quick-start}
 
 For demonstration purposes, this guide shows you how to install Polymer CLI
 and initialize an element project. You'll then use this project to learn how
 to add and run unit tests.
-
 
 1.  Install Polymer CLI. Follow the directions in
     [Install Polymer CLI](polymer-cli#install) to get started.
@@ -65,7 +58,7 @@ to add and run unit tests.
     `polymer test`.
     {.alert .alert-info}
 
-1.  Open up `test/my-el_test.html` to see an example of a basic unit test.
+1.  Open `test/my-el_test.html` to see an example of a basic unit test.
 
 1.  Run the test.
 
@@ -86,12 +79,11 @@ You can also run your tests in the browser. This allows you to use the
 browser's DevTools to inspect or debug your unit tests.
 
 For example, using Polymer CLI and the example element project created
-in [Quick start](#quick-start) above, first you would start your server:
+in [Quick start](#quick-start) above, start your server:
 
     polymer serve
 
-And then, to run the basic `my-el_test.html` unit test in the browser, you
-would open a web browser and go to the following URL:
+Then, to run the basic `my-el_test.html` unit test, open a web browser and go to the following URL:
 
     localhost:8080/components/my-el/test/my-el_test.html
 
@@ -112,11 +104,15 @@ it waits until the test code invokes the `done()` callback. If the `done()`
 callback isn't invoked, the test eventually times out and Mocha reports the test
 as a failure.
 
-my-el.html {.caption}
+my-el.js {.caption}
 
 ```js
-fireEvent() {
-  this.dispatchEvent(new CustomEvent('test-event', {detail: 'tested!'}));
+class MyEl extends PolymerElement {
+  ...
+  fireEvent() {
+    this.dispatchEvent(new CustomEvent('test-event', {detail: 'tested!'}));
+  }
+  ...
 }
 ```
 
@@ -144,6 +140,8 @@ To use a test fixture:
 *   Define a variable in your test script to reference the template.
 *   Instantiate a new instance of the fixture in your `setup()` method.
 
+my-el_test.html {.caption}
+
 ```html
 <test-fixture id="my-el-fixture">
   <template>
@@ -170,7 +168,9 @@ To use a test fixture:
 Stubs enable you to replace default implementations with custom methods. This
 is useful for catching side effects.
 
-```
+my-el_test.html {.caption}
+
+```js
 setup(function() {
   stub('paper-button', {
     click: function() {
@@ -193,6 +193,8 @@ other element that always returns consistent data.
 
 Use `replace()` to create stub elements.
 
+my-el_test.html {.caption}
+
 ```js
 setup(function() {
   replace('paper-button').with('fake-paper-button');
@@ -201,22 +203,24 @@ setup(function() {
 
 For example, using the sample `replace()` above and the element below:
 
-```
-<dom-module id='x-el'>
-  <template>
-    <paper-button id="pb">button</paper-button>
-  </template>
-</dom-module>
+my-el.js {.caption}
+
+```js
+// import statements go here
+
+class MyEl extends PolymerElement {
+  static get template() {
+    return html`<paper-button id="pb">button</paper-button>`;
+  }
+}
+
+customElements.define('my-el', MyEl);
 ```
 
 At test runtime, the content template would be stamped out as:
 
-```
-<dom-module id='x-el'>
-  <template>
-    <fake-paper-button id="pb">button</fake-paper-button>
-  </template>
-</dom-module>
+```html
+<fake-paper-button id="pb">button</fake-paper-button>
 ```
 
 The attributes and content of the element are preserved, but the tag
@@ -237,7 +241,7 @@ Below is an example of a simple XHR unit test suite for
 [`<iron-ajax>`](https://www.webcomponents.org/element/PolymerElements/iron-ajax).
 Check out Sinon's documentation for more in-depth examples.
 
-```
+```html
 <!-- create test fixture template -->
 <test-fixture id="simple-get">
   <template>
@@ -291,64 +295,54 @@ Check out Sinon's documentation for more in-depth examples.
 assertion style.
 { .alert .alert-info }
 
-### Run a set of tests {#test-sets}
+### Run a set of test suites {#test-sets}
 
-To run a set of tests, create an HTML file and call `loadSuites()`. When
-running Web Component Tester, specify the path to the HTML file as the first argument
-(for example, `wct test/my-test-set.html`.
+To run a set of test suites:
 
-```
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <script src=”../bower_components/webcomponentsjs/webcomponents-lite.js”></script>
-    <script src=”../bower_components/web-component-tester/browser.js”></script>
-  </head>
-  <body>
-    <script>
-      WCT.loadSuites([
-        'basic.html',
-        'async.html'
-      ]);
-    </script>
-  </body>
-</html>
-```
+1.  Create an HTML file with a script that calls the `loadSuites` method. `loadSuites` takes as an argument an array of strings, where each string is a relative URL for a test suite:
+    
+    my-test-set.html {.caption}
 
-The argument to `loadSuites()` should be an array of strings. Each string
-should be a relative URL to a test suite. You can configure your tests
-using query strings in the URLs. See [Test shadow DOM](#shadow-dom)
-for an example.
+    ```html
+    <!doctype html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+        <script src="../node_modules/web-component-tester/browser.js"></script>
+      </head>
+      <body>
+        <script>
+          WCT.loadSuites([
+            'basic.html',
+            'async.html'
+          ]);
+        </script>
+      </body>
+    </html>
+    ```
+    
+    You can configure your tests using query strings in the URLs. 
+    See [Test shadow DOM](#shadow-dom) for an example.
 
-### Hybrid elements: test local DOM
+2.  Run Web Component Tester, specifying the path to the HTML file as the first argument. For example:
 
-For hybrid elements, use Polymer's [DOM API](/1.0/docs/devguide/local-dom#dom-api)
-to access and modify local DOM children.
-
-```js
-test('click sets isWaiting to true', function() {
-  myEl.$$('button').click();
-  assert(myEl.isWaiting, true);
-});
-```
-
-**Note:** `myEl.$$('button')` returns the first `button` element encountered
-in the local DOM of `myEl`.
-{ .alert .alert-info }
+    ```bash
+    wct test/my-test-set.html
+    ```
 
 #### Test DOM mutations
 
 Always wrap your test in `flush` if your element template contains a [template
 repeater (`dom-repeat`)](/{{{polymer_version_dir}}}/docs/devguide/templates#dom-repeat) or
 [conditional template (`dom-if`)](/{{{polymer_version_dir}}}/docs/devguide/templates#dom-if),
-or if your test involves shadow DOM mutation. The teshady DOM polyfill lazily performs these
+or if your test involves shadow DOM mutation. The shady DOM polyfill lazily performs these
 operations in some cases for performance. `flush` ensures that asynchronous
 changes have taken place. The test function should take one argument, `done`,
 to indicate that it is [asynchronous](#async), and it should call
 `done()` at the end of `flush`.
 
-```
+```js
 suite('my-list tests', function() {
   var list, listItems;
   setup(function() {
@@ -373,9 +367,9 @@ suite('my-list tests', function() {
 
 #### Test with polyfills {#shady-dom}
 
-To test out how a test suite behaves when the browser runs the polyfill,
-create a [test set](#test-sets) and pass options in your
-a query string when Web Component Tester loads your test suites.
+To run your tests with polyfills, create a [test set](#test-sets). When you call `loadSuites`, add parameters to the URL of your test suite to enable one or more polyfills. For example:
+
+my-test-set.html {.caption}
 
 ```js
 WCT.loadSuites([
@@ -384,8 +378,7 @@ WCT.loadSuites([
 ]);
 ```
 
-This sample runs `basic-test.html` twice, once using native APIs (where the browser supports them),
-and once using using all of the polyfills.
+The sample above runs `basic-test.html` twice, once using native APIs (where the browser supports them), and once using using all of the polyfills.
 
 ### Automated testing in the cloud
 
@@ -400,39 +393,26 @@ devices. For guidance on setting up these tools check out the Polycast below.
 
 ## Set up testing on Safari {#safari}
 
-Safari 10 has built-in support for testing, but it must be manually enabled. Safari 9 may require
-a you to install a browser extension.
+Safari 10 and 11 have built-in support for testing, but it must be manually enabled.
 
-To enable testing on Safari 10:
+To enable testing on Safari 10 and 11:
 
 1.  If you don't see the **Develop** menu in the Safari menu bar, enable it:
 
     1.  Select **Safari > Preferences**, then click the **Advanced** tab.
     2.  Check the **Show Develop menu** checkbox.
 
-2.  Select **Develop > Allow Remote Automation** in the menu bar.
+2.  From the **Develop** menu, select **Allow Remote Automation**.
 
 3.  You may need to authorize `safaridriver` to launch the `webdriverd` service which hosts the
-    local web server. To do this, start `safaridriver` once manually:
+    local web server:
 
-        /usr/bin/safaridriver
+        /usr/bin/safaridriver --enable
 
     Complete the authentication prompt.
 
 More information:
 [WebDriver support in Safari 10](https://webkit.org/blog/6900/webdriver-support-in-safari-10/)
-
-To enable testing on Safari 9:
-
-1.  Download the legacy SafariDriver extension for Selenium [(`SafariDriver.safariextz`)][safaridriver].
-2.  Double-click the extension to install it in Safari.
-3.  Exit Safari.
-
-
-More information:
-
--   [Selenium SafariDriver page][selenium]. Note
-    that the link for the SafariDriver on this page is unhelpful.
 
 ## Learn more
 
@@ -445,7 +425,6 @@ The [Web Component Tester README][wct-readme] has more in-depth information
 about Web Component Tester usage.
 
 [wct-readme]: https://github.com/Polymer/web-component-tester/blob/master/README.md
-[selenium]: https://github.com/SeleniumHQ/selenium/wiki/SafariDriver#getting-started
 [safaridriver]: http://selenium-release.storage.googleapis.com/2.48/SafariDriver.safariextz
 [workaround-example]: https://youtu.be/YBNBr9ECXLo?t=74
 [wct-polycast]: https://youtu.be/YBNBr9ECXLo

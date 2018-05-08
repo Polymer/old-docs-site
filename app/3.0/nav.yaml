@@ -58,9 +58,6 @@
   - title: Upgrade guide
     path: /3.0/docs/upgrade
     indent: True
-  - title: Hybrid elements
-    path: /3.0/docs/devguide/hybrid-elements
-    indent: True
   - title: Release notes
     path: /3.0/docs/release-notes
     indent: True
@@ -75,6 +72,8 @@
   - title: Declare properties
     path: /3.0/docs/devguide/properties
     indent: True
+  - title: Working with legacy elements
+    path: /3.0/docs/devguide/legacy-elements
   - endheader: True
   - header: Shadow DOM & styling
   - title: Shadow DOM concepts
@@ -148,9 +147,6 @@
   - title: Test your elements
     path: /3.0/docs/tools/tests
     indent: True
-  - title: Web services
-    path: /3.0/docs/tools/services
-    indent: True
   - title: polymer.json specification
     path: /3.0/docs/tools/polymer-json
     indent: True
@@ -161,6 +157,9 @@
   - header: Resources
   - title: Glossary
     path: /3.0/docs/glossary
+    indent: True
+  - title: Polymer 3.0 on StackBlitz
+    path: /3.0/docs/stackblitz
     indent: True
   - endheader: True
   - header: API Reference
@@ -209,7 +208,7 @@
     path: /3.0/toolbox/prpl
     indent: True
   - endheader: true
-  - header: Case study
+  - header: Case studies
   - title: "Shop"
     path: /3.0/toolbox/case-study
     indent: True

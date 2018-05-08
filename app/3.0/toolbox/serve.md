@@ -4,10 +4,6 @@ title: Serve your app
 
 <!-- toc -->
 
-<div>
-{% include 'outdated.html' %}
-</div>
-
 You can serve an App Toolbox app using any server technology you want. The [Polymer CLI](/{{{polymer_version_dir}}}/docs/tools/polymer-cli) build
 process supports fast-loading applications that can take advantage of the latest web technologies.
 
@@ -30,6 +26,6 @@ If you have multiple builds, your server logic must deliver the appropriate buil
 You may need to perform dynamic serving if:
 
 * You want to serve a bundled build to some users, and an unbundled build to others.
-* You want to serve ES6 to some users and ES5 to others.
+* You want to serve builds with modern JavaScript features to some users and transpiled builds to others.
 
 See the documentation on [building your app for production](build-for-production) for more information.

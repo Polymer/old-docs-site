@@ -386,7 +386,7 @@ static get template() {
 
 ### Forcing synchronous renders {#synchronous-renders}
 
-Call [`render`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.DomRepeat#method-render)
+Call [`render`](/{{{polymer_version_dir}}}/docs/api/elements/dom-repeat#DomRepeat-method-render)
 to force a `dom-repeat` template to synchronously render any changes to its
 data. Normally changes are batched and rendered asynchronously. Synchronous
 rendering has a performance cost, but can be useful in a few scenarios:
@@ -423,7 +423,7 @@ one of the following:
     For complex data structures, a deep clone may be required.
 
 *   If you don't have an exact set of changes, you can set the
-    [`mutableData`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.DomRepeat#property-mutableData)
+    [`mutableData`](/{{{polymer_version_dir}}}/docs/api/elements/dom-repeat#DomRepeat-property-mutableData)
     property on the `dom-repeat` to disable dirty checking on the array.
 
       ```html
@@ -448,22 +448,22 @@ By default, `dom-repeat` tries to render all of the list items at once. If
 you try to use `dom-repeat` to render a very large list of items, the UI may
 freeze while it's rendering the list. If you encounter this problem, enable
 "chunked" rendering by setting
-[`initialCount`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.DomRepeat#property-initialCount).
+[`initialCount`](/{{{polymer_version_dir}}}/docs/api/elements/dom-repeat#DomRepeat-property-initialCount).
 In chunked mode,
 `dom-repeat` renders `initialCount` items at first, then renders the rest of
 the items incrementally one chunk per animation frame. This lets the UI thread
 handle user input between chunks. You can keep track of how many items have
 been rendered with the
-[`renderedItemCount`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.DomRepeat#property-renderedItemCount)
+[`renderedItemCount`](/{{{polymer_version_dir}}}/docs/api/elements/dom-repeat#DomRepeat-property-renderedItemCount)
 read-only property.
 
 `dom-repeat` adjusts the number of items rendered in each chunk to try and
 maintain a target framerate. You can further tune rendering by setting
-[`targetFramerate`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.DomRepeat#property-targetFramerate).
+[`targetFramerate`](/{{{polymer_version_dir}}}/docs/api/elements/dom-repeat#DomRepeat-property-targetFramerate).
 
 You can also set a debounce time that must pass before a `filter` or `sort`
 function is re-run by setting the
-[`delay`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.DomRepeat#property-delay)
+[`delay`](/{{{polymer_version_dir}}}/docs/api/elements/dom-repeat#DomRepeat-property-delay)
 property.
 
 ## Data bind an array selection (array-selector) {#array-selector}

@@ -41,7 +41,7 @@ There are a few special types of path segments.
 
 ## Get a value by path {#get-value}
 
-Use the [`get`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-get) method to retrieve a value based on
+Use the [`get`](/{{{polymer_version_dir}}}/docs/api/polymer-element#PolymerElement-method-get) method to retrieve a value based on
 its path.
 
 ```
@@ -54,7 +54,7 @@ var item = this.get(['myArray', 11])
 
 ## Set a property or subproperty by path {#set-path}
 
-Use the [`set`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-set) method to
+Use the [`set`](/{{{polymer_version_dir}}}/docs/api/polymer-element#PolymerElement-method-set) method to
 make an [observable change](data-system#observable-changes) to a subproperty.
 
 ```js
@@ -206,7 +206,7 @@ a few choices:
 Whenever possible you should always use Polymer's [array mutation methods](#array-mutation).
 However, this isn't always possible. For example, you may be using a third-party library
 that does not use Polymer's array mutation methods. In these scenarios you can call
-<a href="/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-notifySplices">`notifySplices`</a>
+<a href="/{{{polymer_version_dir}}}/docs/api/polymer-element#PolymerElement-method-notifySplices">`notifySplices`</a>
 after the mutations to ensure that any Polymer elements observing the array
 are properly notified of the changes.
 
@@ -225,7 +225,7 @@ object or array itself hasn't changed. For details, see [Using the MutableData m
 
 ## Batch multiple property changes {#set-property}
 
-Use [`setProperties`](/{{{polymer_version_dir}}}/docs/api/mixins/Polymer.PropertyEffects#method-setProperties)
+Use [`setProperties`](/{{{polymer_version_dir}}}/docs/api/polymer-element#PolymerElement-method-setProperties)
 method to make a batch change to a set of properties. This ensures the property changes
 run as a coherent set.
 
@@ -248,7 +248,7 @@ this.setProperties({
 
 ## Link two paths to the same object {#linkpaths}
 
-Use the [`linkPaths`](/{{{polymer_version_dir}}}/docs/api/elements/Polymer.Element#method-linkPaths)
+Use the [`linkPaths`](/{{{polymer_version_dir}}}/docs/api/polymer-element#PolymerElement-method-linkPaths)
 method to associate two paths. Use `linkPaths` when an element has two paths that refer to the same
 object, as described in [Two paths referencing the same object](data-system#two-paths).
 

@@ -9,3 +9,6 @@ build
 # Dev directories
 /app/bower_components
 /node_modules
+/scripts/node_modules
+/scripts/temp
+/scripts/*_analysis.json

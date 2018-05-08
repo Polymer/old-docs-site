@@ -4,10 +4,6 @@ title: Declare Properties
 
 <!-- toc -->
 
-<div>
-{% include 'outdated.html' %}
-</div>
-
 You can declare properties on an element to add a default value and enable various features in the
 data system.
 
@@ -38,7 +34,7 @@ return  an object containing property declarations.
 Example { .caption }
 
 ```js
-class XCustom extends Polymer.Element {
+class XCustom extends PolymerElement {
 
   static get properties() {
     return {
@@ -135,9 +131,7 @@ for more information.
 <td>Type: <code>string</code><br>
 
 The value is interpreted as a method name to be invoked when the property value
-changes. Note that unlike in 0.5, <strong>property change handlers must be registered
-explicitly.</strong> The <code><var>propertyName</var>Changed</code> method will not be
-invoked automatically. See <a href="observers">Property change callbacks (observers)</a>
+changes. See <a href="observers">Property change callbacks (observers)</a>
 for more information.
 </td>
 </tr>
@@ -189,8 +183,10 @@ gets its default value.
 Example: { .caption }
 
 ```html
-<script>
-  class XCustom extends Polymer.Element {
+<script type="module">
+  import {PolymerElement} from '@polymer/polymer/polymer-element.js';
+
+  class XCustom extends PolymerElement {
 
     static get properties() {
       return {
@@ -228,8 +224,9 @@ case should be used in the attribute name.
 Example: { .caption }
 
 ```html
-<script>
-
+<script type="module">
+  import {PolymerElement} from '@polymer/polymer/polymer-element.js';
+  
   class XCustom extends Polymer.Element {
 
     static get properties() {
@@ -291,20 +288,22 @@ _deserializeValue(value, type) {
 ## Configuring default property values {#configure-values}
 
 Default values for properties may be specified in the `properties` object using
-the `value` field.  The value may either be a primitive value, or a function
+the `value` field, **or** set imperatively in the element's `constructor`. 
+
+The value in the `properties` object may either be a primitive value, or a function
 that returns a value.
 
 If you provide a function, Polymer calls the function once
 _per element instance_.
 
-When initializing a property to an object or array value, use a function to
-ensure that each element gets its own copy of the value, rather than having
-an object or array shared across all instances of the element.
+When initializing a property to an object or array value, either initialize the property
+in the constructor, or use a function to ensure that each element gets its own copy of 
+the value, rather than having an object or array shared across all instances of the element.
 
-Example: { .caption }
+Default in properties object { .caption }
 
 ```js
-class XCustom extends Polymer.Element {
+class XCustom extends PolymerElement {
 
   static get properties() {
     return {
@@ -323,6 +322,25 @@ class XCustom extends Polymer.Element {
 }
 ```
 
+Default in constructor {.caption}
+```js
+constructor() {
+  super();  
+  this.mode = 'auto';
+  this.data = {};
+}
+
+static get properties() {
+  return {
+    mode: String,
+
+    data: {
+      type: Object,
+      notify: true
+    }
+  }
+}
+```
 
 ## Property change notification events (notify) {#notify}
 
@@ -337,7 +355,8 @@ the property name. For example, a change to `this.firstName` fires
 
 These events are used by the two-way data binding system. External
 scripts can also listen for events (such as `first-name-changed`)
-directly using `addEventListener`.
+directly using `addEventListener`. Property change events don't bubble, so
+the event listener must be added directly to the element generating the event. 
 
 For more on property change notifications and the data system, see
 [Data flow](data-system#data-flow).
@@ -349,11 +368,11 @@ explicit to avoid accidental changes from the host by setting the `readOnly`
 flag to `true` in the `properties` property definition.  In order for the
 element to actually change the value of the property, it must use a private
 generated setter of the convention <code>\_set<var>Property</var>(value)</code>
-where <code><var>Property</var></code> is the property name, with the first character converted to uppercase (if alphabetic). For example, the setter for `oneProperty` is `setOneProperty`, and the setter
-for _privateProperty is `set_privateProperty`.
+where <code><var>Property</var></code> is the property name, with the first character converted to uppercase (if alphabetic). For example, the setter for `oneProperty` is `_setOneProperty`, and the setter
+for _privateProperty is `_set_privateProperty`.
 
 ```
-class XCustom extends Polymer.Element {
+class XCustom extends PolymerElement {
 
   static get properties() {
     return {
@@ -387,7 +406,7 @@ Since attributes only take string values, the property value is serialized
 to a string, as described in <a href="#attribute-serialization">Attribute serialization</a>.
 
 ```js
-class XCustom extends Polymer.Element {
+class XCustom extends PolymerElement {
 
   static get properties() {
     return {
