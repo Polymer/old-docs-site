@@ -75,9 +75,31 @@ initiate a new request to the server, or simply load the resource from the cache
 Dynamic import example {.caption}
 
 ```js
+_routePageChanged(page) {
+     // Show the corresponding page according to the route.
+     //
+     // If no page was found in the route data, page will be an empty string.
+     // Show 'view1' in that case. And if the page doesn't exist, show 'view404'.
+    if (!page) {
+      this.page = 'view1';
+    } else if (['view1', 'view2', 'view3'].indexOf(page) !== -1) {
+      this.page = page;
+    } else {
+      this.page = 'view404';
+    }
+
+    // Close a non-persistent drawer when the page & route are changed.
+    if (!this.$.drawer.persistent) {
+      this.$.drawer.close();
+    }
+  }
+
 _pageChanged(page) {
-  // Load page import on demand. Show 404 page if fails
-  switch(page) {
+  // Import the page component on demand.
+  //
+  // Note: `polymer build` doesn't like string concatenation in the import
+  // statement, so break it up.
+  switch (page) {
     case 'view1':
       import('./my-view1.js');
       break;
@@ -106,8 +128,9 @@ If you have multiple builds, your server logic must deliver the appropriate buil
 
 ### Bundled build
 
-For browsers that don't handle HTTP2 Push, the `--bundle` flag outputs a set of bundles:
-one bundle for the shell, and one bundle for each fragment.
+For browsers that don't handle HTTP2 Push, the `--bundle` flag outputs a set of bundles: one bundle for the shell, and one bundle for each fragment. The diagram below shows how a simple app would be bundled:
+
+![diagram of the same app as before, where there are 3 bundled dependencies](/images/3.0/toolbox/app-build-bundles.png)
 
 Any dependency shared by two or more fragments is bundled in with the shell and its static
 dependencies.
