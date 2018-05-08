@@ -4,42 +4,40 @@ title: Document your elements
 
 <!-- toc -->
 
-<div>
-{% include 'outdated.html' %}
-</div>
-
 You can provide API docs for Polymer custom elements by writing
 documentation comments in your source files. Using the `iron-component-pages` element,
 you can create a simple documentation page for your elements that displays your comments
 rendered as API documentation.
 
-If you're publishing your element at [WebComponents.org](https://webcomponents.org), your documentation will be automatically generated. WebComponents.org uses the same underlying elements as `iron-component-pages` to render and display documentation.
+See [a template example on GitHub](https://github.com/PolymerLabs/awesome-sauce).
+<!-- If you're publishing your element at [WebComponents.org](https://webcomponents.org), your documentation will be automatically generated. WebComponents.org uses the same underlying elements as `iron-component-pages` to render and display documentation. -->
 
 ## Create a documentation page for your project {#create-page}
 
 To create a documentation page for your project:
 
-1. [Install the Polymer CLI](polymer-cli). The Polymer CLI gives you a command-line interface to Polymer Analyzer (among other things).
+1. [Install Polymer CLI](polymer-cli). Polymer CLI gives you a command-line interface to Polymer Analyzer (among other things).
 
 2. `cd` to your project directory. This can be a custom element, a full app, or even a plain JavaScript library. Polymer Analyzer will discover all of the interesting items recursively in your project directory.
 
 3. Analyze your project with `polymer analyze > analysis.json`. A JSON descriptor file is produced. By default `iron-component-page` will look for a file called `analysis.json` (you can override this with the `descriptor-url` property).
 
-4. Add `iron-component-page` as a dev dependency of your project with the following command: `bower install iron-component-page --save-dev`.
+4. Add `iron-component-page` as a dev dependency of your project with the following command: `npm install @polymer/iron-component-page@next --save-dev`.
 
 5. Create an HTML file to instantiate an `iron-component-page` element (e.g. `index.html` or `docs.html`). Note that you may need to adjust your import paths depending on your project layout.
-   ```
+
+   ```html
     <!doctype html>
     <html>
-     <head>
-       <meta charset="utf-8">
-       <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-       <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
-       <link rel="import" href="/bower_components/iron-component-page/iron-component-page.html">
-     </head>
-     <body>
-       <iron-component-page></iron-component-page>
-     </body>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+        <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+        <script type="module" src="/node_modules/@polymer/iron-component-page/iron-component-page.js"></script>
+      </head>
+      <body>
+        <iron-component-page></iron-component-page>
+      </body>
     </html>
    ```
 
@@ -83,7 +81,6 @@ You can use Markdown headings to break up long element summaries.
 
   ```
     /**
-     * # This is an h1 heading
      * `<awesome-sauce>` injects a healthy dose of awesome into your page.
      * ## This is an h2 heading
      * In typical use, just slap some `<awesome-sauce>` at the top of your body:
@@ -358,7 +355,7 @@ A few guidelines for consistency:
 * Start method descriptions with an active verb.
 
   * Good. "Starts the animation."
-  * Avoid. "This method to starts the animation."
+  * Avoid. "This method starts the animation."
 
 * It's OK to use a fragment, especially in a short description.
 
@@ -371,5 +368,3 @@ A few guidelines for consistency:
 The [JavaDoc Style Guide](http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html#styleguide)
 is a good resource on general API doc style. Most of the style rules
 described there can be applied here as well.
-
-
