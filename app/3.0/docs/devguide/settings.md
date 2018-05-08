@@ -38,9 +38,7 @@ The `settings` module (`@polymer/polymer/lib/utils/settings.js`) exports setter 
       The callback signature is:
 
 ```js
-Polymer = {
-  sanitizeDOMValue: function(value, name, type, node) { ... }
-}
+  sanitizeDOMValue = function(value, name, type, node) { ... }
 ```
 
 Where:
