@@ -158,9 +158,6 @@
   - title: Glossary
     path: /3.0/docs/glossary
     indent: True
-  - title: Polymer 3.0 on StackBlitz
-    path: /3.0/docs/stackblitz
-    indent: True
   - endheader: True
   - header: API Reference
   - title: API Reference
