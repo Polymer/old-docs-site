@@ -1,10 +1,34 @@
 ---
-title: Settings
+title: Global settings
 ---
 
 <!-- toc -->
 
 The `settings` module (`@polymer/polymer/lib/utils/settings.js`) exports setter functions for a few global configuration properties.
+
+Each setting is exposed as a (read-only) property on the module. You can set a property by calling its associated setter. Settings should generally be set before creating any elements.
+
+For example:
+
+```
+// Import settings module
+import * as settings from '@polymer/polymer/lib/utils/settings.js';
+
+// Update the setting
+settings.setRootPath('/');
+
+// Read the setting
+console.log(settings.rootPath);
+
+// Import elements that use Polymer
+import 'my-app.js';
+```
+
+You can also import individual setters from the module:
+
+```
+import {setRootPath} from '@polymer/polymer/lib/utils/settings.js';
+```
 
 ## Available settings
 
@@ -12,7 +36,7 @@ The `settings` module (`@polymer/polymer/lib/utils/settings.js`) exports setter 
 <thead>
 <tr>
   <td>
-    Setting
+    Property/Setter
   </td>
   <td>
     Description
@@ -22,7 +46,8 @@ The `settings` module (`@polymer/polymer/lib/utils/settings.js`) exports setter 
 <tbody>
   <tr>
     <td>
-      <code>rootPath</code>
+      <code>rootPath</code><br>
+      <code>setRootPath</code>
     </td>
     <td>
       Sets a global <code>rootPath</code> property that can be used in templates to generate URLs that
@@ -31,14 +56,15 @@ The `settings` module (`@polymer/polymer/lib/utils/settings.js`) exports setter 
   </tr>
   <tr>
     <td>
-      <code>sanitizeDOMValue</code>
+      <code>sanitizeDOMValue</code><br>
+      <code>setSanitizeDOMValue</code>
     </td>
     <td>
       A global callback used to sanitize any value before inserting it into the DOM.
       The callback signature is:
 
 ```js
-  sanitizeDOMValue = function(value, name, type, node) { ... }
+function(value, name, type, node) { ... }
 ```
 
 Where:
@@ -47,6 +73,15 @@ Where:
 -   `name` is the name of an attribute or property (for example, `href`).
 -   `type` indicates where the value is being inserted: one of `property`, `attribute`, or `text`.
 -   `node` is the node where the value is being inserted.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code>passiveTouchGestures</code><br>
+      <code>setPassiveTouchGestures</code>
+    </td>
+    <td>
+      Global flag. If `true`, forces all gesture listeners to be passive. See <a href="#setting-passive-touch-gestures">Setting passive touch gestures</a> for more details.
     </td>
   </tr>
 </tbody>
@@ -72,7 +107,7 @@ import {setPassiveTouchGestures} from '@polymer/polymer/lib/utils/settings.js';
 class MyApp extends PolymerElement {
   constructor(){
     super();
-    // Set passive gestures globally for all elements using Polymer Gestures
+    // Set passive gestures globally for all elements using Polymer gestures
     setPassiveTouchGestures(true);
     // Set root path globally
     setRootPath("/endpoint/");
@@ -89,6 +124,7 @@ Set passive touch gestures from the app entrypoint {.caption}
     import {setPassiveTouchGestures} from '@polymer/polymer/lib/utils/settings.js';
     setPassiveTouchGestures(true);
   </script>
+  <script type="module" src="my-app.js"></script>
   ...
 </head>
 ```
