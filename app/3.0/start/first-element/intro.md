@@ -30,7 +30,7 @@ To follow this tutorial, you’ll first need to install some command line tools.
 If you're comfortable that you have all the prerequisites installed, update Polymer CLI with the following command:
 
 ```
-npm install -g polymer-cli@next
+npm install -g polymer-cli
 ```
 
 If you don't have the prerequisites, or you're not sure whether you have them, follow the [Polymer CLI install guide](/{{{polymer_version_dir}}}/docs/tools/polymer-cli).

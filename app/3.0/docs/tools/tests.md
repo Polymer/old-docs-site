@@ -9,7 +9,7 @@ how to accomplish various tasks and scenarios using the Web Component Tester
 library (the underlying library that powers Polymer CLI's testing tools).
 
 **Update your tools for 3.0.** For testing with 3.0, make sure you have the `next`
-version of the Polymer CLI (`npm install --g polymer-cli@next`).
+version of the Polymer CLI (`npm install --g polymer-cli`).
 {.alert .alert-info}
 
 ## Overview
