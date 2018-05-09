@@ -4,111 +4,41 @@ title: Browser support overview
 
 <!-- toc -->
 
-<div>
-{% include 'outdated.html' %}
-</div>
-
-Polymer 2.x works in the _latest two versions_ of all major browsers: Safari 9+, IE 11+, and the
+Polymer 3.x works in the _latest two versions_ of all major browsers: Safari 10+, IE 11+, and the
 evergreen Chrome, Firefox, and Edge.
 
 ## Platform features
 
 The Polymer library is a lightweight sugaring layer on top of the [Web Components
 APIs](http://webcomponents.org/articles/why-web-components/). Some features used by Polymer are not
-(yet) supported natively in all browsers. For
-broad web components support, Polymer uses the [polyfills](https://github.com/webcomponents/webcomponentsjs) from
-[webcomponents.org](http://webcomponents.org). They're lightweight, work well, and provide the
-feature support Polymer requires.
+(yet) supported natively in all browsers. 
 
-With the polyfills, Polymer works in these browsers:
+*   For broad web components support, Polymer uses the [polyfills](https://github.com/webcomponents/webcomponentsjs) 
+    from [webcomponents.org](http://webcomponents.org). They're lightweight, work well, and provide the
+    feature support Polymer requires.
 
-<style>
-td:not(.feature-title),th {
-  text-align: center;
-}
-td.native {
-  background-color: green;
-  color: white;
-}
-td.partial {
-  background-color: #2dd42d;
-  color: white;
-}
-td.polyfill {
-  background-color: darkorange;
-  color: black;
-}
-</style>
+*   Polymer uses ES6 language features. For browsers that don't support them, Polymer apps need to be compiled
+    to ES5. 
 
-<table>
-<thead>
-  <tr><th></th><th>Chrome</th><th>Firefox</th><th>IE&nbsp;11+/<br>Edge</th><th>Opera</th><th>Safari 9+</th><th>Chrome
- <br>(Android)</th><th>Safari<br>(iOS&nbsp;9+)</th></tr>
-</thead>
-<tr>
-  <td class="feature-title"><a href="http://www.html5rocks.com/en/tutorials/webcomponents/template/">Template</a></td>
-  <td class="native">Native</td>
-  <td class="native">Native</td>
-  <td class="partial">Partial</td>
-  <td class="native">Native</td>
-  <td class="native">Native</td>
-  <td class="native">Native</td>
-  <td class="native">Native</td>
-</tr>
-<tr>
-  <td class="feature-title"><a href="http://www.html5rocks.com/en/tutorials/webcomponents/imports/">HTML Imports</a></td>
-  <td class="native">Native</td>
-  <td class="polyfill">Polyfill</td>
-  <td class="polyfill">Polyfill</td>
-  <td class="native">Native</td>
-  <td class="polyfill">Polyfill</td>
-  <td class="native">Native</td>
-  <td class="polyfill">Polyfill</td>
-</tr>
-<tr>
-  <td class="feature-title"><a href="http://www.html5rocks.com/en/tutorials/webcomponents/customelements/">Custom Elements</a></td>
-  <td class="native">Native</td>
-  <td class="polyfill">Polyfill</td>
-  <td class="polyfill">Polyfill</td>
-  <td class="native">Native</td>
-  <td class="partial">Partial</td>
-  <td class="native">Native</td>
-  <td class="partial">Partial</td>
-</tr>
-<tr>
-  <td class="feature-title"><a href="http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/">Shadow DOM</a></td>
-  <td class="native">Native</td>
-  <td class="polyfill">Polyfill</td>
-  <td class="polyfill">Polyfill</td>
-  <td class="native">Native</td>
-  <td class="partial">Partial</td>
-  <td class="native">Native</td>
-  <td class="partial">Partial</td>
-</tr>
-</table>
+*   Polymer uses ES6 modules for packaging. These can be bundled out or transformed to AMD modules for browsers that
+    don't support the required features, which include the `import` statement, the dynamic `import()` operator, and
+    the `import.meta` property.
 
-Notes:
+*   Polymer modules also use Node-style module resolution allowing you to import modules by package name. 
+    These specifiers always need to be transformed to paths before being served to browsers.
 
--   Templates are supported in Edge, but not IE.
--   Safari supports custom elements starting in 10.3.
--   Safari supports shadow DOM starting in 10.2, but as of 10.3 there are still some known issues.
--   Older versions of the Android Browser may run into some issues - please file an
-    [issue](https://github.com/polymer/polymer/issues) if you run into a problem on this browser.
-    Chrome for Android is supported.
+The following support matrix summarizes the polyfills and transforms required for each browser.
 
-See the documentation on [polyfills](polyfills) for more information.
+| Browser & version | Compile? | Polyfills? | Transform modules? | Transform specifiers?|
+|---|---|---|---|---|
+| Chrome 66 | No | No | No | Yes|
+| Safari 11.1+ | No | No| No| Yes|
+| Safari 10+|No|Yes|Yes|Yes|
+| Firefox 60|No|Yes|No|Yes|
+| Firefox 59|No|Yes|Yes|Yes|
+| Edge 17|No|Yes|No|Yes|
+| Edge 16|No|Yes|Yes|Yes|
+| IE 11|Yes|Yes|Yes|Yes|
+| Chrome 41 (Google web crawler)|Yes|Yes|Yes|Yes|
 
-## ES6
-
-Polymer 2.x uses EcmaScript 2015 (commonly known as ES6). The following browsers support all of the
-ES6 features required by Polymer.
-
--   Chrome or Chromium version 49 or later.
--   Opera 36 or later.
--   Safari or Mobile Safari 10 or later.
--   Edge 15.15063 or later.
--   Firefox 51 or later.
-
-For other browsers, you should compile your application to ES5.
-
-See the documentation on [compiling ES6 to ES5](es6) for more information.
+See the documentation on [polyfills](polyfills) and [ES6 & modules](es6) for more information.
