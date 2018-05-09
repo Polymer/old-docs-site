@@ -19,10 +19,6 @@ function recordPlunker(demo) {
   ga('send', 'event', 'plunker', demo);
 }
 
-function recordSearch(term) {
-  ga('send', 'event', 'search', term);
-}
-
 function recordPageview(opt_url) {
   var url = opt_url || location.pathname + location.hash;
   ga('send', 'pageview', url);
@@ -30,7 +26,6 @@ function recordPageview(opt_url) {
 }
 
 exports.recordPageview = recordPageview;
-exports.recordSearch = recordSearch;
 exports.downloadStarter = downloadStarter;
 exports.recordPlunker = recordPlunker;
 

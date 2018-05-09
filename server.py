@@ -131,10 +131,10 @@ def handle_500(req, resp, data, e):
   render(resp, '/500.html', data)
 
 
-# class VersionHandler(http2push.PushHandler):
+class SearchHandler(http2push.PushHandler):
 
-#   def get(self, version):
-#     render(self.response, '/%s/index.html' % version)
+  def get(self):
+    self.redirect(str('https://www.google.com/search?q=site%3Apolymer-project.org+' + self.request.get('q')))
 
 
 class Site(http2push.PushHandler):
@@ -277,7 +277,7 @@ class Site(http2push.PushHandler):
     render(self.response, template_path, data)
 
 routes = [
-  # ('/(\d\.\d)/$', VersionHandler),
+  ('/search/', SearchHandler),
   ('/(.*)', Site),
 ]
 

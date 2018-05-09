@@ -40,9 +40,9 @@ To get started with the latest Polymer preview:
       "name": "start-polymer3",
       "version": "1.0.0",
       "main": "index.js",
-      "repository": "https://github.com/katejeffreys/start-polymer3.git",
-      "author": "Kate Jeffreys <katejeffreys@google.com>",
-      "license": "MIT",
+      "repository": "https://github.com/polymerlabs/start-polymer3.git",
+      "author": "The Polymer Project Authors",
+      "license": "BSD-3-Clause",
       "dependencies": {
         "@polymer/paper-checkbox": "^3.0.0-pre.11",
         "@polymer/polymer": "^3.0.0-pre.11"
@@ -57,9 +57,9 @@ To get started with the latest Polymer preview:
       "name": "start-polymer3",
       "version": "1.0.0",
       "main": "index.js",
-      "repository": "https://github.com/katejeffreys/start-polymer3.git",
-      "author": "Kate Jeffreys <katejeffreys@google.com>",
-      "license": "MIT",
+      "repository": "https://github.com/polymerlabs/start-polymer3.git",
+      "author": "The Polymer Project Authors",
+      "license": "BSD-3-Clause",
       "dependencies": {
         "@polymer/paper-checkbox": "^3.0.0-pre.12",
         "@polymer/polymer": "^3.0.0-pre.12"

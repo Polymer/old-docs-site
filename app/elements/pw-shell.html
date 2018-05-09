@@ -147,7 +147,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <app-location route="{{_route}}" path="{{path}}" query-params="{{_searchParams}}"></app-location>
+    <app-location route="{{_route}}" path="{{path}}"></app-location>
     <app-route route="[[_route]]" pattern="/:version/:section" data="{{_routeData}}"></app-route>
 
     <iron-ajax url="[[path]]" handle-as="document" on-response="_handleResponse" on-error="_handleError" auto></iron-ajax>
@@ -226,11 +226,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         observer: '_collapseTocChanged'
       },
 
-      _searchParams: {
-        type: Object,
-        observer: '_searchParamsChanged'
-      },
-
       /**
        * Which version (1.0 or 2.0) of the docs we are using, so that the
        * main nav and side nav can be kept in sync across page navigations.
@@ -277,20 +272,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _onSearchInputChange: function() {
-      var url = window.location.origin + '/search/?q=' + this.$.searchBox.value;
-      window.history.pushState({}, '', url);
-      this.fire('location-changed', {}, {node: window});
-    },
-
-    _doSearch: function() {
-      var searchResults = this.querySelector('pw-search-results');
-      if (searchResults) {
-        searchResults.searchParams = this._searchParams;
-      }
-    },
-
-    _searchParamsChanged: function() {
-      this._doSearch();
+      window.location = window.location.origin + '/search/?q=' + encodeURIComponent(this.$.searchBox.value);
     },
 
     _computeSection: function(path) {
@@ -342,8 +324,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         shell.appendChild(document.importNode(fragment, true /* deep */));
         Polymer.dom.flush();  // Force upgrades.
 
-        // Analytics. Don't double-report search
-        if (this.path != '/search/' && window.recordPageview) {
+        // Analytics.
+        if (window.recordPageview) {
           window.recordPageview();
         }
       }
@@ -353,13 +335,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this._locationChanged();
       } else {
         this.async(this._resetScrollPosition);
-      }
-
-      // If we have any query parameters, that means we are displaying the
-      // search results page, and we should kick off a search, if we
-      // haven't already
-      if (this.path === '/search/') {
-        this._doSearch();
       }
 
       // If we're not in a small view, render the TOC as open.
