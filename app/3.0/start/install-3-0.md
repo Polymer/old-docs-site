@@ -53,7 +53,7 @@ node --version
 To install Polymer CLI, run the following command:
 
 ```bash
-npm install -g polymer-cli@next
+npm install -g polymer-cli
 ```
 
 To confirm that the Polymer CLI has been correctly installed:
