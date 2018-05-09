@@ -19,7 +19,7 @@ After `polymer build` completes, you'll find production-ready builds in the `bui
 Try building the Polymer 3.0 Starter Kit app:
 
 ```bash
-npm install -g polymer-cli@next
+npm install -g polymer-cli
 mkdir my-app
 cd my-app
 polymer init polymer-3-starter-kit
@@ -326,17 +326,17 @@ The Polymer build tools offer the following build transforms:
 * [Add a service worker](#serviceworker).
 * [Create a push manifest](#pushmanifest).
 
-### Rewrite module specifiers to paths {#rewrite}
+### Rewrite module names to paths {#rewrite}
 
-The Polymer 3.0 library uses **module specifiers**, rather than paths, to load dependencies. For example:
+The Polymer 3.0 library supports Node-style module resolution, using package names, rather than paths, to load dependencies. For example:
 
-Import statement using a module specifier {.caption}
+Import statement using a module name {.caption}
 
 ```js
 import {PolymerElement} from '@polymer/polymer/polymer-element.js';
 ```
 
-At the time of writing, web browsers can only load URLs, not module specifiers. The example above needs to be rewritten so that a web browser can follow the link:
+At the time of writing, web browsers only support paths, not names, as module specifiers. The example above needs to be rewritten so that a web browser can follow the link:
 
 Import statement using a path {.caption}
 
@@ -468,11 +468,11 @@ Compile to ES6 {.caption}
 
 See the [polymer.json spec](/{{{polymer_version_dir}}}/docs/tools/polymer-json) for more information.
 
-### Transform ES Modules to AMD Modules {#amd}
+### Transform ES6 Modules to AMD Modules {#amd}
 
 Polymer 3.0 and the Polymer elements use ES syntax to import and export modules. For example:
 
-ES module syntax {.caption}
+ES6 module syntax {.caption}
 
 ```javascript
 import {OtherThing} from './other-thing.js';
@@ -482,16 +482,8 @@ const MyThing = (...);
 export MyThing;
 ```
 
-The Polymer build tools can transform ES modules into AMD syntax. For example:
-
-AMD module syntax {.caption}
-
-```javascript
-define(['OtherThing'], function (OtherThing) {
-  ...
-  return MyThing;
-});
-```
+The Polymer build tools can transform ES modules into AMD syntax. AMD modules can be 
+loaded on browsers that don't support native ES6 modules. 
 
 To transform ES modules to AMD:
 
