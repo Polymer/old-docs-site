@@ -180,7 +180,8 @@ class Site(http2push.PushHandler):
   def get_versioned_paths(self, shortpath):
     site_nav_1 = self.get_site_nav('1.0')
     site_nav_2 = self.get_site_nav('2.0')
-    versioned_paths = ['','']
+    site_nav_3 = self.get_site_nav('3.0')
+    versioned_paths = ['','','']
     if site_nav_1:
       for section in site_nav_1:
         if section['shortpath'] == shortpath:
@@ -190,6 +191,11 @@ class Site(http2push.PushHandler):
       for section in site_nav_2:
         if section['shortpath'] == shortpath:
           versioned_paths[1] = section['path']
+          break
+    if site_nav_3:
+      for section in site_nav_3:
+        if section['shortpath'] == shortpath:
+          versioned_paths[2] = section['path']
           break
     return versioned_paths
 
@@ -242,7 +248,7 @@ class Site(http2push.PushHandler):
         'site_nav': self.get_site_nav(version),
         'section_nav': self.get_section_nav(version, shortpath),
         'path': '/' + path,
-        # 1.0 and 2.0 API docs are not editable in GH.
+        # API docs are not editable in GH.
         'edit_on_github': path.find('.0/docs/api/') == -1,
         'edit_on_github_path': BASE_EDIT_PATH % edit_on_github_path,
         'versioned_paths': self.get_versioned_paths(shortpath),
@@ -259,7 +265,7 @@ class Site(http2push.PushHandler):
         active_article = self.get_active_article(articles, template_path)
 
       data = {
-        'site_nav': self.get_site_nav('1.0') + self.get_site_nav('2.0'),
+        'site_nav': self.get_site_nav('1.0') + self.get_site_nav('2.0') + self.get_site_nav('3.0'),
         'articles': articles,
         'active_article': active_article
       }

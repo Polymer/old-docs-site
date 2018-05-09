@@ -1,0 +1,11 @@
+{
+  "files": [
+    "dom-element.js",
+    "index.html",
+    "index.js"
+  ],
+  "dependencies": {
+    "@polymer/polymer": "^3.0.0",
+    "@webcomponents/webcomponentsjs": "^2.0.0"
+  }
+}

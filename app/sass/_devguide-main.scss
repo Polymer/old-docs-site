@@ -38,6 +38,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   padding: 20px 40px;
 }
 
+.devguide-main header[data-version="3.0"] {
+  background: #1E88E5;  /* blue-600 */
+}
+
 .devguide-main header[data-version="2.0"] {
   background: #1E88E5;  /* blue-600 */
 }

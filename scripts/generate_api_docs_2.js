@@ -1,8 +1,22 @@
 /**
+ * @license
+ * Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
+ * This code may only be used under the BSD style license found at
+ * http://polymer.github.io/LICENSE.txt
+ * The complete set of authors may be found at
+ * http://polymer.github.io/AUTHORS.txt
+ * The complete set of contributors may be found at
+ * http://polymer.github.io/CONTRIBUTORS.txt
+ * Code distributed by Google as part of the polymer project is also
+ * subject to an additional IP rights grant found at
+ * http://polymer.github.io/PATENTS.txt
+ */
+
+ /**
  * Run from `npm run generate-api-docs`
  */
 
-const {Analyzer, FSUrlLoader, PackageUrlResolver, generateAnalysis} = require('polymer-analyzer');
+const {Analyzer, FsUrlLoader, PackageUrlResolver, generateAnalysis} = require('polymer-analyzer');
 
 const clone = require('clone');
 const fs = require('fs');
@@ -58,19 +72,21 @@ function runAnalyzer() {
   console.log('Done.');
 
   const isInTests = /(\b|\/|\\)(test)(\/|\\)/;
-  const isNotTest = (f) => !isInTests.test(f.sourceRange.file);
+  const isNotTest = (f) =>!f.sourceRange || (!isInTests.test(f.sourceRange.file) && !f.sourceRange.file.endsWith('gulpfile.js'));
 
+  const rootDir = path.resolve('temp');
   const analyzer = new Analyzer({
-    urlLoader: new FSUrlLoader(path.resolve('temp')),
-    urlResolver: new PackageUrlResolver(),
+    urlLoader: new FsUrlLoader(rootDir),
+    urlResolver: new PackageUrlResolver({packageDir: rootDir}),
   });
 
   analyzer.analyzePackage()
     .then((_package) => {
       console.log('Analyzer done');
-      const metadata = generateAnalysis(_package, '', isNotTest);
+      const metadata = generateAnalysis(
+        _package, analyzer.urlResolver, isNotTest);
       const json = JSON.stringify(metadata, null, 2);
-      fs.writeFileSync('analysis.json', json);
+      fs.writeFileSync('polymer2_analysis.json', json);
 
       function generateNamespace(namespace) {
         console.log(`generating namespace ${namespace && namespace.name}`);

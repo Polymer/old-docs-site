@@ -10,8 +10,9 @@
     "postinstall": "bower install; gulp",
     "deploy": "scripts/deploy.sh",
     "test": "(cd dist; python test_runner.py ${CLOUD_SDK-~/google-cloud-sdk} ../tests/)",
-    "generate-api-docs": "cd scripts && node generate_api_docs_2.js",
-    "generate-api-docs-1": "cd scripts && node generate_api_docs_1.js"
+    "generate-api-docs-2": "cd scripts && node generate_api_docs_2.js",
+    "generate-api-docs-1": "cd scripts && node generate_api_docs_1.js",
+    "generate-api-docs-3": "cd scripts && node generate_api_docs_3.js"
   },
   "repository": {
     "type": "git",

@@ -512,6 +512,8 @@ class myElement extends Polymer.Element(){
 }
 ```
 
+[See an example on Plunker](http://plnkr.co/edit/vWS9PIBTTbKHxRnJyT7T?p=preview)
+
 ### Style directional text with the :dir() selector
 
 The `:dir()` CSS selector allows for styling text specific to its orientation 

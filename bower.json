@@ -15,7 +15,7 @@
     "app-route": "PolymerElements/app-route#2",
     "iron-ajax": "PolymerElements/iron-ajax#2",
     "iron-collapse": "PolymerElements/iron-collapse#2",
-    "iron-doc-viewer": "PolymerElements/iron-doc-viewer#^3.1.0",
+    "iron-doc-viewer": "PolymerElements/iron-doc-viewer#^3.3.1",
     "iron-flex-layout": "PolymerElements/iron-flex-layout#2",
     "iron-icons": "PolymerElements/iron-icons#2",
     "iron-iconset-svg": "PolymerElements/iron-iconset-svg#2",
@@ -30,6 +30,7 @@
     "paper-toast": "PolymerElements/paper-toast#2",
     "google-youtube": "GoogleWebComponents/google-youtube#2",
     "google-map": "GoogleWebComponents/google-map#2",
-    "web-animations-js": "web-animations/web-animations-js#^2.2.5"
+    "web-animations-js": "web-animations/web-animations-js#^2.2.5",
+    "iron-pages": "PolymerElements/iron-pages#^2.1.1"
   }
 }

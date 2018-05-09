@@ -219,7 +219,7 @@ This configuration generates a bundled, minified application build with the foll
 * Identity source maps for inline scripts are created
 
 ```json
-"build": [{
+"builds": [{
   "name": "bundled-custom",
   "bundle": {
     "excludes": ["/path/to/stuff/", "/path/to/more/stuff.html"],

@@ -25,6 +25,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-listbox slot="dropdown-content" selected="[[activeDocsVersion]]" attr-for-selected="name" on-iron-select="_listboxVersionChanged">
         <paper-item name="1.0">1.0</paper-item>
         <paper-item name="2.0">2.0</paper-item>
+        <paper-item name="3.0">3.0</paper-item>
       </paper-listbox>
     </paper-dropdown-menu-light>
 
@@ -55,12 +56,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       v2PageLink: {
         type: String
       },
+
+      /**
+       * The starting link for a 3.0 section (for the start/docs/toolbox sections)
+       */
+      v3PageLink: {
+        type: String
+      },
     },
 
     attached: function() {
       if (!this.activeDocsVersion) {
-        // Figure out which version we're displaying, 1.0 or 2.0, and pw-shell
-        // is the source of truth (the URL isn't).
+        // Figure out which version we're displaying (1.0, 2.0, or 3.0).
+        // pw-shell is the source of truth (the URL isn't).
         var pwShell = document.querySelector('pw-shell');
         this.activeDocsVersion = pwShell ? pwShell.activeDocsVersion : '2.0';
       }
@@ -72,7 +80,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if (newSelection === this.activeDocsVersion)
         return;
 
-      var path = newSelection == '2.0' ? this.v2PageLink : this.v1PageLink;
+      var path = newSelection == '3.0' ? this.v3PageLink :
+        newSelection == '2.0' ? this.v2PageLink :
+        this.v1PageLink;
       // Don't bother updating activeDocsVersion, since this element will be destroyed once navigation completes.
       // this.activeDocsVersion = newSelection;
       if (!path) path = '/' + newSelection + '/start/';
