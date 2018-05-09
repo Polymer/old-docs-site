@@ -67,7 +67,7 @@ in the next section.
 
 ### Module specifiers
 
-The browser only accepts on kind of module specifier in an `import` statement: a URL, which must
+The browser accepts only one kind of module specifier in an `import` statement: a URL, which must
 be either fully-qualified, or a path starting with `/`, `./` or `../`. This works fine for importing 
 application-specific elements and modules:
 
@@ -92,7 +92,7 @@ Many third-party build tools, like WebPack and Rollup also support named modules
 
 ### Dynamic imports
 
-Dynamic imports is a language feature that enables lazy-loading of resources, replacing the functionality 
+Dynamic import is a language feature that enables lazy-loading of resources, replacing the functionality 
 that was previously used for this in Polymer 2.x (`Polymer.importHref`). 
 
 The import operator acts like a function, and returns a `Promise`:
@@ -108,7 +108,7 @@ import('my-view1.js').then((MyView1Module) => {
 The latest versions of Chrome and Safari support dynamic imports. For other browsers, the Polymer build tools can transform
 dynamic imports into AMD modules. The Polymer development server can do this transformation on the fly.
 
-More on dyanmic import, see:
+For more on dynamic import, see:
 
 *   [Dynamic import()](https://developers.google.com/web/updates/2017/11/dynamic-import) on developers.google.com.
 

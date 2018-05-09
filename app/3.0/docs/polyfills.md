@@ -5,15 +5,19 @@ title: Polyfills
 <!--toc -->
 
 Polymer 3.x has been developed alongside and tested with a new suite of v1-spec compatible polyfills
-for custom elements and shadow DOM. You can test Polymer 3.x using the latest 2.0 version of
-`webcomponentsjs`, which is included as a dev dependency to Polymer 3.x. (`webcomponentsjs`
- versions prior to 1.0 support the older, v0 specifications for custom elements and shadow DOM.)
+for custom elements and shadow DOM. These versions no longer include the HTML imports polyfill,
+and have been developed to work with ES6 modules. You can test Polymer 3.x using the latest 2.0 version of
+`webcomponentsjs` v2.0.0 or later.
+
+(Polyfill versions v1.x.x  include the HTML imports polyfill, and are compatible
+with Polymer 2.x. Versions prior to v1.0 support the older, v0 specifications for custom elements and 
+shadow DOM.)
 
 There are two main ways to load the polyfills:
 
 *   `webcomponents-bundle.js` includes all of the polyfills necessary to run on any of the supported
     browsers. Because all browsers receive all polyfills, this results in extra bytes being sent
-    to browsers that support one or more feature.
+    to browsers that support one or more feature. This replaces the v1.x `webcomponents-lite.js` bundle.
 
 *   `webcomponents-loader.js` performs client-side feature-detection and loads just the required
     polyfills. This requires an extra round-trip to the server, but saves bandwidth for browsers
@@ -28,7 +32,7 @@ There are a couple of other related polyfill files that you may need:
     on browsers that support native custom elements. This is useful in static serving environments
     where you need to serve a single app version to all browsers. The adapter is discussed in more
     detail in [ES6](es6) and in [Build for production](/{{{polymer_version_dir}}}/toolbox/build-for-production).
-*   `apply-shim.j`. A polyfill for CSS mixins. Unlike the other polyfills, it should be imported
+*   `apply-shim.js`. A polyfill for CSS mixins. Unlike the other polyfills, it should be imported
     by any component that defines or applies CSS mixins. For details, see
     [Use custom CSS mixins](/{{{polymer_version_dir}}}/docs/devguide/custom-css-properties#use-custom-css-mixins).
 
