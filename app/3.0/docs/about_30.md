@@ -8,6 +8,27 @@ Polymer 3.0 is the latest version of the Polymer library for building web compon
 
 Polymer 3.0 represents a simple but important step forward from Polymer 2.x: Polymer 3.0 has moved from HTML Imports to ES6 Modules, and from Bower to npm. These changes represent a move toward the mainstream of JavaScript development, making it easier to use Polymer (and Polymer-based elements) with other popular libraries, frameworks and tools.
 
+Here's a quick sample of defining an element in Polymer 3.0:
+
+<demo-tabs selected="0" name="about-starter" editor-open-file="likeable-element.js" project-path="/3.0/samples/about/starter">
+  <paper-tab slot="tabs">likeable-element.js</paper-tab>
+  <div>
+
+```js
+<!-- include_file 3.0/samples/about/starter/likeable-element.js -->
+```
+
+  </div>
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 3.0/samples/about/starter/index.html -->
+```
+
+  </div>
+</demo-tabs>
+
 **Related products.** For new development, you should also consider [LitElement](https://github.com/Polymer/lit-element/blob/master/README.md), a light, performant, next-generation base class for custom elements. For future application projects, consider starting with the [PWA starter kit](https://github.com/Polymer/pwa-starter-kit/blob/master/README.md), a next-generation Progressive Web App template that uses LitElement and Redux. Both LitElement and PWA starter kit are in preview.
 {.alert .alert-tip}
 
