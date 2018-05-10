@@ -25,7 +25,7 @@ To upgrade a project:
 1.  Install Polymer modulizer.
 
     ```
-    npm install -g polymer-modulizer@next
+    npm install -g polymer-modulizer
     ```
 
 1.  Make sure your bower dependencies are up to date. 
