@@ -117,8 +117,8 @@ handlers:
   static_dir: 2.0/start/samples
   secure: always
 
-- url: /3.0/samples/homepage
-  static_dir: 3.0/samples/homepage
+- url: /3.0/samples/
+  static_dir: 3.0/samples/
   secure: always
 
 - url: /3.0/start/samples
