@@ -18,7 +18,7 @@ Example: { .caption }
 
 ```js
 // Import PolymerElement class
-import {PolymerElement} from '@polymer/polymer/polymer-element.js`;
+import {PolymerElement} from '@polymer/polymer/polymer-element.js';
 
 // define the element's class element
 class MyElement extends PolymerElement {
