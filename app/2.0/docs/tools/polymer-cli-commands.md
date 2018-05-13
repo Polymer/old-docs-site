@@ -125,10 +125,10 @@ polymer build --preset preset-name
 **Build presets** provide an easy way to create common build configurations. When you provide a valid preset for your build, it will use the flags in that preset. We currently support 3 different presets:
 
 - **es5-bundled:**
-  --js-minify --js-compile --css-minify --bundled --add-service-worker --add-push-manifest --insert-prefetch-links
+  --js-minify --js-compile --css-minify --bundle --add-service-worker --add-push-manifest --insert-prefetch-links
 
 - **es6-bundled:**
-  --js-minify --css-minify --html-minify --bundled --add-service-worker --add-push-manifest --insert-prefetch-links
+  --js-minify --css-minify --html-minify --bundle --add-service-worker --add-push-manifest --insert-prefetch-links
   
 - **es6-unbundled:**
   --js-minify --css-minify --html-minify --add-service-worker --add-push-manifest --insert-prefetch-links
