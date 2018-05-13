@@ -32,7 +32,7 @@ class MyElement extends PolymerElement {
 
   ready() {
     super.ready();
-    console.log('my-element is ready!);
+    console.log('my-element is ready!');
   }
 }
 
