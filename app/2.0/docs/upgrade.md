@@ -1526,7 +1526,7 @@ For information on writing your own class expression mixins, see
 In some cases, the features you want to use may be available as hybrid behaviors, but not as
 class mixins.
 
-You can add hybrid behaviors to your class-style element using the `Polymer.mixinBehavior` function:
+You can add hybrid behaviors to your class-style element using the `Polymer.mixinBehaviors` function:
 
 ```js
 class XClass extends Polymer.mixinBehaviors([MyBehavior, MyBehavior2], Polymer.Element) {
@@ -1537,7 +1537,7 @@ class XClass extends Polymer.mixinBehaviors([MyBehavior, MyBehavior2], Polymer.E
 customElements.define(XClass.is, XClass);
 ```
 
-The `mixinBehavior` function also mixes in the Legacy APIs, the same as if you extended
+The `mixinBehaviors` function also mixes in the Legacy APIs, the same as if you extended
 `Polymer.LegacyElement`. These APIs are required since since hybrid behaviors depend on them.
 
 ### Import optional features {#optional-features}
