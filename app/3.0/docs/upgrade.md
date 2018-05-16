@@ -133,7 +133,7 @@ Before upgrading an element, make sure that any changes in your repo are committ
     ```html
     <html>
       <dom-module>
-        <template>foo</dom-module>
+        <template>foo</template>
       </dom-module>
       <script>
         class A extends Polymer.Element { … }
