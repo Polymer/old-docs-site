@@ -60,30 +60,24 @@ Polymer provides a declarative mechanism for adding a shadow tree using a [DOM t
 When you provide a DOM template for an element, Polymer attaches a shadow root for each instance of
 the element and copies the template contents into the shadow tree.
 
+<demo-tabs selected="0" name="shadow-dom-my-header" editor-open-file="my-header.js" project-path="/3.0/samples/devguide/shadow-dom/my-header">
+  <paper-tab slot="tabs">my-header.js</paper-tab>
+  <div>
 
 ```js
-// Import the Polymer library and html helper function
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-// Define the new element as a class
-class MyHeader extends PolymerElement {
-  // Provide a DOM template for the element
-  static get template () {
-    // Tag the returned template literal with the html helper function
-    // to convert it into an instance of HTMLTemplateElement
-    return html`
-      <!-- Begin shadow tree -->
-      <style>...</style>
-      <header>
-        <h1>I'm a header</h1>
-        <button>Menu</button>
-      </header>
-      <!-- End shadow tree -->
-    `;
-  }
-}
-// Tell the browser about the new tag
-customElements.define('my-header', MyHeader);
+<!-- include_file 3.0/samples/devguide/shadow-dom/my-header/my-header.js -->
 ```
+
+  </div>
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 3.0/samples/devguide/shadow-dom/my-header/index.html -->
+```
+
+  </div>
+</demo-tabs>
 
 Note that the template includes a `<style>` element. CSS placed in the shadow tree is scoped to the
 shadow tree, and won't leak out to other parts of your DOM.
@@ -124,6 +118,27 @@ The header renders as if the `<slot>` element was replaced by the children:
 </my-header>
 ```
 
+Here's a complete example:
+
+<demo-tabs selected="0" name="shadow-dom-my-header-with-slots" editor-open-file="my-header.js" project-path="/3.0/samples/devguide/shadow-dom/my-header-with-slots">
+  <paper-tab slot="tabs">my-header.js</paper-tab>
+  <div>
+
+```js
+<!-- include_file 3.0/samples/devguide/shadow-dom/my-header-with-slots/my-header.js -->
+```
+
+  </div>
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 3.0/samples/devguide/shadow-dom/my-header-with-slots/index.html -->
+```
+
+  </div>
+</demo-tabs>
+
 
 The element's actual descendant tree is sometimes called its light DOM, in contrast to its shadow DOM
 tree.
@@ -134,20 +149,26 @@ flattened tree, so they can take part in event bubbling, for example.
 
 You can control where a child should be distributed into the flattened tree using *named slots*.
 
-
-```html
-<h2><slot name="title"></slot></h2>
-<div><slot></slot></div>
-```
-
-
 A named slot only accepts top-level children that have a matching `slot` attribute:
 
+<demo-tabs selected="0" name="shadow-dom-named-slots" editor-open-file="named-slots.js" project-path="/3.0/samples/devguide/shadow-dom/named-slots">
+  <paper-tab slot="tabs">named-slots.js</paper-tab>
+  <div>
 
-```html
-<span slot="title">A heading</span>
+```js
+<!-- include_file 3.0/samples/devguide/shadow-dom/named-slots/named-slots.js -->
 ```
 
+  </div>
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 3.0/samples/devguide/shadow-dom/named-slots/index.html -->
+```
+
+  </div>
+</demo-tabs>
 
 A slot with no `name` attribute acts as the default slot for any children that don't have a `slot`
 attribute. If a child's `slot` attribute doesn't match any named slot element in the shadow tree,
@@ -201,53 +222,81 @@ The `<example-card>` has two top-level children, both `<div>` elements. Both are
 default slot. The `slot` attribute on the span has no effect on the distribution, because the span
 isn't a top-level child.
 
+<demo-tabs selected="0" name="shadow-dom-example-card" editor-open-file="example-card.js" project-path="/3.0/samples/devguide/shadow-dom/example-card">
+  <paper-tab slot="tabs">example-card.js</paper-tab>
+  <div>
+
+```js
+<!-- include_file 3.0/samples/devguide/shadow-dom/example-card/example-card.js -->
+```
+
+  </div>
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 3.0/samples/devguide/shadow-dom/example-card/index.html -->
+```
+
+  </div>
+</demo-tabs>
+
+
 ### Fallback content
 
 A slot can contain *fallback content* that's displayed when no nodes are assigned to the slot. For
 example:
 
-
-```
-<fancy-note>
-  #shadow-root
-    <slot name="icon">
-      <img src="note.png">
-    </slot>
-    <slot></slot>
-</fancy-note>
+```html
+<!-- named slot matches node with attribute slot="icon" -->
+<slot name="icon">
+  <!-- fallback content for this slot -->
+  <iron-icon icon="announcement"></iron-icon>
+</slot>
 ```
 
 
-The user can supply their own icon for the <fancy-note> element like this:
+The user can supply their own icon for the `<fancy-note>` element like this:
 
 ```html
-<!-- shows note with warning icon -->
-
 <fancy-note>
-
-  <img slot="icon" src="warning.png">
-
-  Do not operate heavy equipment while coding.
-
+  <iron-icon slot="icon" icon="warning"></iron-icon>
+  This fancy-note sets its own icon with the "icon" slot
 </fancy-note>
 ```
 
 If the user omits the icon, the fallback content supplies a default icon:
 
 ```html
-<!-- shows note with default icon -->
-
 <fancy-note>
-
-  Please code responsibly.
-
+  This fancy-note uses the default icon, supplied in 
+  fallback content in fancy-note.js  
 </fancy-note>
 ```
+
+<demo-tabs selected="0" name="shadow-dom-fancy-note" editor-open-file="fancy-note.js" project-path="/3.0/samples/devguide/shadow-dom/fancy-note">
+  <paper-tab slot="tabs">fancy-note.js</paper-tab>
+  <div>
+
+```js
+<!-- include_file 3.0/samples/devguide/shadow-dom/fancy-note/fancy-note.js -->
+```
+
+  </div>
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 3.0/samples/devguide/shadow-dom/fancy-note/index.html -->
+```
+
+  </div>
+</demo-tabs>
+
 
 ### Multi-level distribution
 
 A slot element may also be assigned to a slot. For example, consider two levels of shadow trees.
-
 
 ```
 <parent-element>
@@ -313,6 +362,35 @@ their assigned nodes or fallback content. So in the example above, `#child-slot`
 distributed node, the span. You can think of the distributed nodes as the *list of nodes that take
 the place of the slot in the rendered tree*.
 
+<demo-tabs selected="0" name="shadow-dom-multilevel-distribution" editor-open-file="fancy-note.js" project-path="/3.0/samples/devguide/shadow-dom/multilevel-distribution">
+  <paper-tab slot="tabs">parent-element.js</paper-tab>
+  <div>
+
+```js
+<!-- include_file 3.0/samples/devguide/shadow-dom/multilevel-distribution/parent-element.js -->
+```
+
+  </div>
+
+  <paper-tab slot="tabs">child-element.js</paper-tab>
+  <div>
+
+```js
+<!-- include_file 3.0/samples/devguide/shadow-dom/multilevel-distribution/child-element.js -->
+```
+
+  </div>
+
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 3.0/samples/devguide/shadow-dom/multilevel-distribution/index.html -->
+```
+
+  </div>
+</demo-tabs>
+
 ### Slot APIs
 
 Shadow DOM provides a few new APIs for checking distribution:
@@ -329,7 +407,7 @@ For more details, see [Working with slots in JS](https://developers.google.com/w
 
 ### Observe added and removed children {#observe-nodes}
 
-The `Polymer.FlattenedNodesObserver` class provides utilities to track an element's _flattened tree_.
+The `FlattenedNodesObserver` class provides utilities to track an element's _flattened tree_.
 That is, a list of the node's child nodes, with any `<slot>` elements replaced by their distributed
 nodes. `FlattenedNodesObserver` is an optional utility that can be loaded from
 `lib/utils/flattened-nodes-observer.js`.
@@ -376,6 +454,34 @@ A few notes on `FlattenedNodesObserver`:
 
 *   The observer handle also provides a `flush` method, that can be used for unit testing.
 
+<demo-tabs selected="0" name="shadow-dom-observe-flattened" editor-open-file="fancy-note.js" project-path="/3.0/samples/devguide/shadow-dom/observe-flattened">
+  <paper-tab slot="tabs">parent-element.js</paper-tab>
+  <div>
+
+```js
+<!-- include_file 3.0/samples/devguide/shadow-dom/observe-flattened/parent-element.js -->
+```
+
+  </div>
+
+  <paper-tab slot="tabs">content-element.js</paper-tab>
+  <div>
+
+```js
+<!-- include_file 3.0/samples/devguide/shadow-dom/observe-flattened/content-element.js -->
+```
+
+  </div>
+
+  <paper-tab slot="tabs">index.html</paper-tab>
+  <div>
+
+```html
+<!-- include_file 3.0/samples/devguide/shadow-dom/observe-flattened/index.html -->
+```
+
+  </div>
+</demo-tabs>
 
 ## Event retargeting
 
@@ -424,6 +530,8 @@ var event = new CustomEvent('my-event', {bubbles: true, composed: true});
 ```
 
 For more information on events in shadow trees, see [The Shadow DOM event model](https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom#events) in the Web Fundamentals article on shadow DOM.
+
+
 
 ## Shadow DOM styling
 

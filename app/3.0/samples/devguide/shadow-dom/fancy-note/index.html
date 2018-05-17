@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="./node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+    <script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    
+    <!-- StackBlitz requires a file called index.js to be present in all JavaScript
+        projects. StackBlitz automatically runs index.js. In this sample, custom elements are imported from index.js.
+      
+        If you're not using StackBlitz, import the custom element by uncommenting 
+        the following script tag: -->
+
+    <!--  <script type="module" src="./fancy-note.js"></script> -->
+  </head>
+
+  <body>
+    <fancy-note>
+      This fancy-note uses the default icon, supplied in 
+      fallback content in fancy-note.js  
+    </fancy-note>
+
+    <fancy-note>
+      <iron-icon slot="icon" icon="warning"></iron-icon>
+      This fancy-note sets its own icon with the "icon" slot
+    </fancy-note>
+  </body>
+</html>

@@ -1,0 +1,1 @@
+import './fancy-note.js';

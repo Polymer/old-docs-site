@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="./node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+    <script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    
+    <!-- StackBlitz requires a file called index.js to be present in all JavaScript
+        projects. StackBlitz automatically runs index.js. In this sample, custom elements are imported from index.js.
+      
+        If you're not using StackBlitz, import the custom element by uncommenting 
+        the following script tag: -->
+
+    <!--  <script type="module" src="./example-card.js"></script> -->
+
+  </head>
+  <body>
+    <example-card>
+        <!-- The first span is assigned into the `title` slot -->
+        <span slot="title">Card Title</span>
+        
+        <!-- This div has no `slot` attribute. It is assigned to the default slot -->
+        <div>
+          Some text for the body of the card.
+        </div>
+
+        <!-- The final span has a slot name that doesn't appear in the 
+             shadow tree. It doesn't get assigned, & doesn't render -->
+        <span slot="footer">This footer doesn't show up.</span>
+      </example-card>
+
+      <example-card>
+          <!-- Only top-level children will match a slot -->
+          <div>
+            <span slot="title">Am I a title?</span>
+          </div>
+          <div>
+            Some body text.
+          </div>
+        </example-card>
+  </body>
+</html>

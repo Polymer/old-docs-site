@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="./node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+    <script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    
+    <!-- StackBlitz requires a file called index.js to be present in all JavaScript
+        projects. StackBlitz automatically runs index.js. In this sample, custom elements are imported from index.js.
+      
+        If you're not using StackBlitz, import the custom element by uncommenting 
+        the following script tags: -->
+
+    <!--  <script type="module" src="./parent-element.js"></script> -->
+    <!--  <script type="module" src="./content-element.js"></script> -->
+
+  </head>
+  <body>
+    <p>Click <b>Remove a slot</b> to remove the top slot. 
+        Use the console to observe the <code>slotchange</code> event.</p>
+    <parent-element>
+      <content-element id="slot1" slot="slot1" name="Tao" outputMessage=""></content-element>
+      <content-element slot="slot2" name="Jani" outputMessage=""></content-element>
+      <content-element slot="slot3" name="Savannah" outputMessage=""></content-element>
+    </parent-element>
+    <button onclick="slot1.remove();">Remove a slot</button>
+    <button onclick="location.reload();">Reset</button>
+  </body>
+</html>
