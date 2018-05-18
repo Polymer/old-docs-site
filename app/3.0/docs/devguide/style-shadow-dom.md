@@ -620,7 +620,7 @@ To create a style module:
         /* Your shared styles go here */
       </style>
     </template>`;
-  ```
+   ```
 
 3. Register your style module as an element: 
 
