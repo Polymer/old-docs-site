@@ -174,13 +174,13 @@ Key information:
 
 *   For this more complicated property, you supply a configuration object with several additional fields:
 
-    * `value` specifies the property's [default value](//{{{polymer_version_dir}}}/docs/devguide/properties#configure-values).
+    * `value` specifies the property's [default value](/{{{polymer_version_dir}}}/docs/devguide/properties#configure-values).
 
     * `notify` tells Polymer to <em>dispatch property change events</em> when the property's `value` changes. This lets the change be observed by other nodes.
 
-    * The `reflectToAttribute` property tells Polymer to [update the corresponding attribute when the property changes](//{{{polymer_version_dir}}}/docs/devguide/properties#attribute-reflection). This lets you style the element using an attribute selector, like `icon-toggle[pressed]`.
+    * The `reflectToAttribute` property tells Polymer to [update the corresponding attribute when the property changes](/{{{polymer_version_dir}}}/docs/devguide/properties#attribute-reflection). This lets you style the element using an attribute selector, like `icon-toggle[pressed]`.
 
-**Learn more: `notify` and `reflectToAttribute`.** The `notify` and `reflectToAttribute` properties may _sound_ similar: they both make the element's state visible to the outside world. `reflectToAttribute` makes the state visible **in the DOM tree**, so that it's visible to CSS and the `querySelector` methods. `notify` **makes state changes observable outside the element**, either using JavaScript event handlers or Polymer <a href="//{{{polymer_version_dir}}}/docs/devguide/data-binding#two-way-bindings">two-way data binding</a>. { .alert .alert-info }
+**Learn more: `notify` and `reflectToAttribute`.** The `notify` and `reflectToAttribute` properties may _sound_ similar: they both make the element's state visible to the outside world. `reflectToAttribute` makes the state visible **in the DOM tree**, so that it's visible to CSS and the `querySelector` methods. `notify` **makes state changes observable outside the element**, either using JavaScript event handlers or Polymer <a href="/{{{polymer_version_dir}}}/docs/devguide/data-binding#two-way-bindings">two-way data binding</a>. { .alert .alert-info }
 
 Now your element has `pressed` and `toggleIcon` properties working.
 
