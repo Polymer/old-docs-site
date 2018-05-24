@@ -74,7 +74,7 @@ There are a few manual steps that may be required after converting a project usi
 
     Becomes: 
 
-    `import('my-page.js').then(null, this._showPage404.bind(this));`
+    `import('./my-page.js').then(null, this._showPage404.bind(this));`
 
     Note that `resolveUrl` is not required. Imports are always resolved relative to the current module.
 
