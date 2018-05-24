@@ -382,6 +382,8 @@ The sample above runs `basic-test.html` twice, once using native APIs (where the
 
 ### Automated testing in the cloud
 
+#### Using Sauce Labs
+
 It's important to get a good testing setup in place for your project as
 early as possible. Using services like Travis for continuous integration,
 and Sauce Labs for cross-browser testing means you can be confident that
@@ -390,6 +392,41 @@ devices. For guidance on setting up these tools check out the Polycast below.
 
 <google-youtube video-id="afy_EEq_4Go" autoplay="0"
                 rel="0" fluid></google-youtube>
+                
+#### Not using Sauce Labs (running directly in Travis CI)
+_Note: The following is valid for a Linux Trusty build configuration in Travis CI._
+
+You will need to configure Travis to be able to run the tests on the browsers. To do so, add the following to your `travis.yml` configuration:
+
+```yml
+addons:
+  firefox: latest
+  chrome: stable
+```
+
+Necessarily, add a command to run the test on Travis.
+
+Finally you will need to run the browsers in headless mode. To do so, the best way is to add a `wct.conf.json` at the root of your project, with the following content:
+
+```json
+{
+  "plugins": {
+    "local": {
+      "browsers": ["chrome", "firefox"],
+      "browserOptions": {
+        "chrome": [
+          "headless",
+          "disable-gpu",
+          "no-sandbox"
+        ],
+        "firefox": [
+          "-headless"
+        ]
+      }
+    }
+  }
+}
+```
 
 ## Set up testing on Safari {#safari}
 
