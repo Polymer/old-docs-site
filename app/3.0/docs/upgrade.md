@@ -192,10 +192,10 @@ Before upgrading an element, make sure that any changes in your repo are committ
 
 1.  Add `importMeta` static getter, if necessary.
 
-    If you use the `importPath` property in you element's template, you must add a static `importMeta` getter:
+    If you use the `importPath` property in your element's template, you must add a static `importMeta` getter:
 
     ```js
-    class extends PolymerElement {
+    class A extends PolymerElement {
       static get importMeta() { return import.meta; }
     }
     ```
