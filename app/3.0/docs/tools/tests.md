@@ -295,6 +295,57 @@ Check out Sinon's documentation for more in-depth examples.
 assertion style.
 { .alert .alert-info }
 
+### Testing for accessibility
+To test for accessibility, you will need to add the following dependencies:
+
+`npm i -D @webcomponents/webcomponentsjs axe-core web-component-tester pwa-helpers`
+
+or with yarn:
+
+`yarn add -D @webcomponents/webcomponentsjs axe-core web-component-tester pwa-helpers`
+
+Then you need to setup your test file
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A11y test</title>
+
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script src="../node_modules/web-component-tester/browser.js"></script>
+
+    <script type="module" src="path/to/your-module.js"></script>
+</head>
+<body>
+    <test-fixture id="a11y">
+        <template>
+            <your-module></your-module>
+        </template>
+    </test-fixture>
+
+    <script type="module">
+      import 'axe-core/axe.min.js';
+      import {axeReport} from 'pwa-helpers/axe-report.js';
+
+      suite('A11y testing', function() {
+        test('default view', function() {
+          const el = fixture('a11y');
+          return axeReport(el);
+        });
+      });
+    </script>
+</body>
+</html>
+```
+
+Then just add this test file in your test suite (see point below), and then run
+
+`polymer test`
+
+To be noted than this is not a silver bullet. A11y should always be tested with real users, and encompasses more than just the technical aspects. And while a technical implementation might be deemed accessible by automated testing, its usage in the real world my prove not accessible. 
+
 ### Run a set of test suites {#test-sets}
 
 To run a set of test suites:
