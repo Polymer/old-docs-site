@@ -21,7 +21,6 @@ import re
 import json
 
 from google.appengine.api import memcache
-import http2push.http2push as http2push
 
 
 jinja_loader = jinja2.FileSystemLoader(os.path.dirname(__file__))
@@ -131,13 +130,13 @@ def handle_500(req, resp, data, e):
   render(resp, '/500.html', data)
 
 
-class SearchHandler(http2push.PushHandler):
+class SearchHandler(webapp2.RequestHandler):
 
   def get(self):
     self.redirect(str('https://www.google.com/search?q=site%3Apolymer-project.org+' + self.request.get('q')))
 
 
-class Site(http2push.PushHandler):
+class Site(webapp2.RequestHandler):
 
   def redirect_if_needed(self, path):
     redirect_cache = MEMCACHE_PREFIX + REDIRECTS_FILE
@@ -217,7 +216,6 @@ class Site(http2push.PushHandler):
         return article
     return None
 
-  @http2push.push()
   def get(self, path):
     if self.redirect_if_needed(self.request.path):
       return
