@@ -5,7 +5,7 @@ If you've started updating your application to use the recently released 3.0 ver
 of the Polymer Elements, you might have ran into some problems. Here are the
 questions we've seen asked the most:
 
-## Getting duplicate registry when importing <some-element>
+## Getting duplicate registry when importing `<paper-button>` (or any other element)
 ```
 Uncaught DOMException: Failed to execute 'define' on 'CustomElementRegistry': this name has already been used with this registry
 ```
@@ -17,7 +17,7 @@ If that still doesn’t fix your problem, double check that you’re not acciden
 
 ## Failed to resolve module specifier
 ```
-Uncaught TypeError: Failed to resolve module specifier "@polymer/lit-element". Relative references must start with either "/", "./", or "../".
+Uncaught TypeError: Failed to resolve module specifier. Relative references must start with either "/", "./", or "../".
 ```
 
 This error occurs in Chrome when loading module specifiers by name rather than by URL.
@@ -25,8 +25,8 @@ The easiest way to address this during development is to use the `polymer-cli` a
 `polymer serve` to serve your app. For deployment and production, you can run
 `polymer build`, or a Webpack/Rollup solution that converts the named imports to paths.
 
-## The `package.json` does not have a `main` field, breaking bare specifiers
-This is due to multiple main files being listed in our `bower.json`. This is required
+## The `package.json` does not have a `main` field
+This is due to multiple elements existing in the same repo, and multiple main files being listed in our `bower.json`. This is required
 for our `modulizer` tool (that converts the 2.0 elements to 3.0) to crawl the dependency tree and modulize multiple files. Some of our packages simply will not have a `package.json` main
-field until we can determine a canonical solution to what should go in this field for these types of packages. In the meantime, the workaround is to import the element using the `js`
+field until we can determine a canonical solution to what should go in this field for these types of packages. In the meantime, the workaround is to import the element using its `js`
 file extension: `import '@polymer/paper-input/paper-input.js';`
