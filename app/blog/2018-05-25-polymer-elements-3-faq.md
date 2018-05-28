@@ -2,7 +2,7 @@
 title: "Polymer Elements 3.0 FAQ"
 ---
 If you've started updating your application to use the recently released 3.0 version
-of the Polymer Elements, you might have ran into some problems. Here are the
+of the Polymer Elements, you might have run into some problems. Here are the
 questions we've seen asked the most:
 
 ## Getting duplicate registry when importing `<paper-button>` (or any other element)
@@ -26,7 +26,7 @@ The easiest way to address this during development is to use the `polymer-cli` a
 `polymer build`, or a Webpack/Rollup solution that converts the named imports to paths.
 
 ## The `package.json` does not have a `main` field
-This is due to multiple elements existing in the same repo, and multiple main files being listed in our `bower.json`. This is required
-for our `modulizer` tool (that converts the 2.0 elements to 3.0) to crawl the dependency tree and modulize multiple files. Some of our packages simply will not have a `package.json` main
+This is due to multiple elements existing in the same repo, and multiple main files being listed in our `bower.json`. This happens when multiple elements are defined in the same repo. Our `modulizer` tool, which converts the 2.0 elements to 3.0, requires each of these elements to be listed as main files in their `bower.json` file. It uses this information to crawl the dependency tree and convert multiple elements. A `package.json` file doesn't accept multiple files in the main field, which
+means some of our packages simply will not have a `package.json` `main`
 field until we can determine a canonical solution to what should go in this field for these types of packages. In the meantime, the workaround is to import the element using its `js`
 file extension: `import '@polymer/paper-input/paper-input.js';`
