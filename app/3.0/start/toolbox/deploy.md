@@ -17,9 +17,9 @@ The Polymer Starter Kit is configured to create three builds:
 
 * `esm-bundled`: This build serves JavaScript code without compilation, as ES modules.
 
-* `es6-bundled`: This build serves JavaSCript code compiled to ES2015, as AMD modules.
+* `es6-bundled`: This build serves JavaScript code compiled to ES2015, as AMD modules.
 
-* `es5-bundled`: This build serves JavaSCript code compiled to ES5, as AMD modules.
+* `es5-bundled`: This build serves JavaScript code compiled to ES5, as AMD modules.
 
 Builds are configured in the `builds` object in `polymer.json`, a configuration file in the top-level project folder:
 
