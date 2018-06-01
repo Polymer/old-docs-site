@@ -167,7 +167,7 @@ Before upgrading an element, make sure that any changes in your repo are committ
     Becomes:
 
     ```js
-    import {afterNextRender} from '@polymer/polymer/lib/utils/render-status.js;
+    import {afterNextRender} from '@polymer/polymer/lib/utils/render-status.js';
       ...
     afterNextRender(callback);
     ```
