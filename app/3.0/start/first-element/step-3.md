@@ -24,7 +24,7 @@ static get properties() {
   return {
     toggleIcon: {
       type: String
-    },
+    }
   };
 }
 ```
@@ -53,7 +53,7 @@ class IconToggle extends PolymerElement {
     return {
       toggleIcon: {
         type: String
-      },
+      }
     };
   }
   constructor() {
@@ -135,7 +135,7 @@ class IconToggle extends PolymerElement {
     return {
       toggleIcon: {
         type: String
-      },
+      }
     };
   }
   constructor() {
