@@ -97,8 +97,8 @@ gulp.task('generate-service-worker', function() {
       `${rootDir}/elements/**`,
       `${rootDir}/js/*.js`,
       `${rootDir}/css/*.css`,
-      `${rootDir}/bower_components/webcomponentsjs/custom-elements-es5-adapter.js`,
-      `${rootDir}/bower_components/webcomponentsjs/webcomponents-loader.js`,
+      `${rootDir}/webcomponentsjs/custom-elements-es5-adapter.js`,
+      `${rootDir}/webcomponentsjs/webcomponents-loader.js`,
     ],
     dynamicUrlToDependencies: {
       '/': partialTemplateFiles.concat([`${rootDir}/index.html`, `${rootDir}/blog.yaml`, `${rootDir}/authors.yaml`]),
@@ -117,7 +117,7 @@ gulp.task('generate-service-worker', function() {
         }
       },
       {
-        urlPattern: new RegExp('/bower_components/webcomponentsjs/.*.js'),
+        urlPattern: new RegExp('/webcomponentsjs/.*.js'),
         handler: 'fastest',
         options: {
           cache: {
@@ -255,15 +255,16 @@ gulp.task('jshint', 'Lint JS', function() {
       'app/elements/**/*.html'
     ])
     .pipe($.changed('dist/js'))
-    .pipe($.jshint.extract()) // Extract JS from .html files
-    .pipe($.jshint({esnext: true}))
-    .pipe($.jshint.reporter('jshint-stylish'))
+    // .pipe($.jshint.extract()) // Extract JS from .html files
+    // .pipe($.jshint({esnext: true}))
+    // .pipe($.jshint.reporter('jshint-stylish'))
     .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
 gulp.task('js', 'Minify JS to dist/', ['jshint'], function() {
   return gulp.src(['app/js/**/*.js'])
-    .pipe($.uglify({preserveComments: 'some'})) // Minify js output
+    // Something breaks with this minfier - AMD loader tries to load E,x,e,c,u,t,e,d URLs.
+    // .pipe($.uglify({preserveComments: 'some'})) // Minify js output
     .pipe(gulp.dest('dist/js'));
 });
 
@@ -309,9 +310,9 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
      ])
     .pipe(gulp.dest('dist'));
 
-  const bower = gulp.src([
-      'app/bower_components/webcomponentsjs/*'
-    ], {base: 'app/'})
+  const webcomponentsjs = gulp.src([
+      'node_modules/@webcomponents/webcomponentsjs/**'
+    ], {base: 'node_modules/@webcomponents/'})
     .pipe(gulp.dest('dist'));
 
   // Copy the bundles that polymer build produced.
@@ -334,7 +335,7 @@ gulp.task('copy', 'Copy site files (polyfills, templates, etc.) to dist/', funct
     ], {base: 'app'})
     .pipe(gulp.dest('dist'));
 
-  return merge(app, docs, samples, gae, bower, bundles, demo1, demo2, summit);
+  return merge(app, docs, samples, gae, webcomponentsjs, bundles, demo1, demo2, summit);
 });
 
 gulp.task('watch', 'Watch files for changes', function() {

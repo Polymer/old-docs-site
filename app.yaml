@@ -10,8 +10,8 @@ libraries:
 
 handlers:
 
-- url: /bower_components
-  static_dir: bower_components
+- url: /webcomponentsjs
+  static_dir: webcomponentsjs
   secure: always
 
 - url: /css
