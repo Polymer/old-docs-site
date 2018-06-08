@@ -1,15 +1,14 @@
 {
   "entrypoint": "app/index.html",
-  "shell": "app/elements/pw-shell.html",
+  "shell": "app/elements/pw-shell.js",
   "fragments": [
-    "app/elements/lazy-elements.html",
-    "app/elements/stack-blitz.html"
   ],
   "builds": [{
     "bundle": true,
     "js": {
+      "compile": "es5",
       "minify": true,
-      "compile": true
+      "transformModulesToAmd": true
     },
     "css": {
       "minify": true

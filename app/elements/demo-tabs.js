@@ -1,20 +1,23 @@
-<!--
-@license
-Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
-<link rel="import" href="../bower_components/paper-tabs/paper-tab.html">
-<link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
-<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+/*
+ * @license
+ * Copyright (c) 2018 The Polymer Project Authors. All rights reserved.
+ * This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+ * The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+ * The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+ * Code distributed by Google as part of the polymer project is also
+ * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+ */
 
-<dom-module id='demo-tabs'>
-  <template>
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import '@polymer/iron-pages/iron-pages.js';
+import '@polymer/iron-selector/iron-selector.js';
+import '@polymer/paper-button/paper-button.js';
+import '@polymer/paper-tabs/paper-tabs.js';
+import '@polymer/paper-tabs/paper-tab.js';
+
+class DemoTabs extends PolymerElement {
+  static get template() {
+    return html`
     <style include="iron-flex">
       :host {
         display: block;
@@ -102,13 +105,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           project-path="[[projectPath]]">
       </stack-blitz>
     </iron-pages>
-  </template>
+    `;
+  }
 
-  <script>
-  Polymer({
-    is: 'demo-tabs',
-
-    properties: {
+  static get properties() {
+    return {
       /**
        * URL of the Plunker demo
        */
@@ -149,54 +150,53 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _hideEditorButton: {
         type: Boolean,
       },
-    },
+    };
+  }
 
-    observers: ['_srcProjectPathChanged(src, projectPath)'],
+  static get observers() {
+    return ['_srcProjectPathChanged(src, projectPath)'];
+  }
 
-    attached: function() {
-      this._selected = 0;
-    },
+  connectedCallback() {
+    super.connectedCallback();
+    this._selected = 0;
+  }
 
-    _srcProjectPathChanged: function(src, projectPath) {
-      const isPlunkr = !!this.src;
-      const isStackBlitz = !!this.projectPath;
-      this._iframeHidden = !isPlunkr;
-      this._hideEditorButton = !isPlunkr && !isStackBlitz;
-    },
+  _srcProjectPathChanged(src, projectPath) {
+    const isPlunkr = !!this.src;
+    const isStackBlitz = !!this.projectPath;
+    this._iframeHidden = !isPlunkr;
+    this._hideEditorButton = !isPlunkr && !isStackBlitz;
+  }
 
-    _launchEditor() {
-      if (!!this.projectPath) {
-        this._launchInlineEditor();
-      } else if (!!this.src) {
-        this._launchPlunkr();
-      }
-    },
-
-    _launchPlunkr: function() {
-      if (window.recordPlunker) {
-        window.recordPlunker(this.name);
-      }
-    },
-
-    // Call out to a global method defined by app.js
-    _launchInlineEditor: function() {
-      this._displaySelected = 'loading';
-
-      const onError = function() {
-        this.$.editButton.disabled = true;
-        this.$.editButton.innerText = 'Error loading editor';
-        this._displaySelected = 'static';
-      }.bind(this);
-
-      const onLoad = function() {
-        this.$.editor.embed()
-            .then(function(){
-          this._displaySelected = 'editor';
-        }.bind(this)).catch(onError);
-      }.bind(this);
-
-      this.importHref('/elements/stack-blitz.html', onLoad, onError, true);
+  _launchEditor() {
+    if (!!this.projectPath) {
+      this._launchInlineEditor();
+    } else if (!!this.src) {
+      this._launchPlunkr();
     }
-  });
-  </script>
-</dom-module>
+  }
+
+  _launchPlunkr() {
+    if (window.recordPlunker) {
+      window.recordPlunker(this.name);
+    }
+  }
+
+  // Call out to a global method defined by app.js
+  _launchInlineEditor() {
+    this._displaySelected = 'loading';
+
+    import('./stack-blitz.js').then(() => {
+      return this.$.editor.embed().then(() => {
+        this._displaySelected = 'editor';
+      });
+    }).catch(() => {
+      this.$.editButton.disabled = true;
+      this.$.editButton.innerText = 'Error loading editor';
+      this._displaySelected = 'static';
+    });
+  }
+}
+
+customElements.define('demo-tabs', DemoTabs);

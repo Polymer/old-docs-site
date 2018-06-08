@@ -52,7 +52,7 @@
 
 <script>
 function _expandClicked(event) {
-  var navLink = Polymer.dom(event).localTarget.parentNode;
+  var navLink = event.target.parentNode;
   var navCollapse = navLink.nextElementSibling;
 
   document.querySelector('pw-shell').styleLinkPath(navLink, !navCollapse.opened);
