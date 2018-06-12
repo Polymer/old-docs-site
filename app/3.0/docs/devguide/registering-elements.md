@@ -105,19 +105,20 @@ in Custom element concepts.
 
 ## Using legacy behaviors with class-style elements
 
-You can add legacy behaviors to your class-style element using the `mixinBehavior` function:
+You can add legacy behaviors to your class-style element using the `mixinBehaviors` function:
 
 ```js
-import {PolymerElement} from '@polymer/polymer/lib/legacy/class.js';
-import {mixinBehaviors} from '@polymer/polymer/polymer-element.js';
+import {mixinBehaviors} from '@polymer/polymer/lib/legacy/class.js';
+import {PolymerElement} from '@polymer/polymer/polymer-element.js';
+import {MyBehavior} from './my-behavior.js'
+import {MyBehavior2} from './my-behavior-2.js';
 
-class XClass extends Polymer.mixinBehaviors([MyBehavior, MyBehavior2], PolymerElement) {
-
+class XClass extends mixinBehaviors([MyBehavior, MyBehavior2], PolymerElement) {
   ...
 }
 customElements.define('x-class', XClass);
 ```
 
-The `mixinBehavior` function also mixes in the Legacy APIs, the same as if you applied the 
+The `mixinBehaviors` function also mixes in the Legacy APIs, the same as if you applied the
 `LegacyElementMixin`. These APIs are required since since legacy behaviors depend on them.
 
