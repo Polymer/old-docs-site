@@ -187,7 +187,8 @@ class DemoTabs extends PolymerElement {
   _launchInlineEditor() {
     this._displaySelected = 'loading';
 
-    import('./stack-blitz.js').then(() => {
+    // Ignore jshint for dynamic import().
+    import('./stack-blitz.js').then(() => { // jshint ignore:line
       return this.$.editor.embed().then(() => {
         this._displaySelected = 'editor';
       });

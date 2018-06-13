@@ -1,8 +1,6 @@
 {
   "entrypoint": "app/index.html",
   "shell": "app/elements/pw-shell.js",
-  "fragments": [
-  ],
   "builds": [{
     "bundle": true,
     "js": {

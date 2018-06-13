@@ -12,7 +12,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 // const gulp = require('gulp');
 const gulp = require('gulp-help')(require('gulp'));
 const $ = require('gulp-load-plugins')();
-const cssslam = require('css-slam');
 const swPrecache = require('sw-precache');
 const argv = require('yargs').argv;
 const browserSync = require('browser-sync').create();
@@ -40,6 +39,8 @@ const merge = require('merge-stream');
 const path = require('path');
 const runSequence = require('run-sequence');
 const toc = require('toc');
+const composer = require('gulp-uglify/composer');
+const gulpUglifyEs = composer(require('uglify-es'), console);
 
 const AUTOPREFIXER_BROWSERS = ['last 2 versions', 'ios 8', 'Safari 8'];
 
@@ -255,16 +256,15 @@ gulp.task('jshint', 'Lint JS', function() {
       'app/elements/**/*.html'
     ])
     .pipe($.changed('dist/js'))
-    // .pipe($.jshint.extract()) // Extract JS from .html files
-    // .pipe($.jshint({esnext: true}))
-    // .pipe($.jshint.reporter('jshint-stylish'))
+    .pipe($.jshint.extract()) // Extract JS from .html files
+    .pipe($.jshint({esnext: true}))
+    .pipe($.jshint.reporter('jshint-stylish'))
     .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
 gulp.task('js', 'Minify JS to dist/', ['jshint'], function() {
   return gulp.src(['app/js/**/*.js'])
-    // Something breaks with this minfier - AMD loader tries to load E,x,e,c,u,t,e,d URLs.
-    // .pipe($.uglify({preserveComments: 'some'})) // Minify js output
+    .pipe(gulpUglifyEs()) // Minify js output
     .pipe(gulp.dest('dist/js'));
 });
 
