@@ -314,6 +314,7 @@ occurred on the array. Each change record provides the following property:
      -   `object`: A reference to the array in question.
      -   `type`: The string literal 'splice'.
 
+
 **Change record may be undefined.** The change record may be undefined the first
 time the observer is invoked, so your code should guard against this, as shown
 in the example.
