@@ -428,7 +428,7 @@ observer is a change record object with the following properties:
 *   `base`. The object matching the non-wildcard portion of the path.
 
 For array mutations, `path` is the path to the array that changed,
-followed by `.splices`. And the `value` field includes the `indexSplices`
+followed by `.splices`. The `value` field includes the `indexSplices`
 property described in [Observe array mutations](#array-observation).
 
 Example: { .caption }
