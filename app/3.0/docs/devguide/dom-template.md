@@ -449,7 +449,7 @@ This is a fairly rare use case.
 ```js
 class CustomTemplate extends PolymerElement {
 
-  static get tempate() { return html`
+  static get template() { return html`
     <template id="special-template" preserve-content>
       <div>I am very special.</div>
     </template>`
