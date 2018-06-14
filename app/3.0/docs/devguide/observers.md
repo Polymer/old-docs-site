@@ -44,7 +44,7 @@ This allows the element to avoid running observers in the default case.
 
 Like all property effects, observers are synchronous. If the observer is likely to be invoked
 frequently, consider deferring time-consuming work, like inserting or removing DOM. For example, you
-can use the [`Polymer.Async`](/{{{polymer_version_dir}}}/docs/api/namespaces/Polymer.Async) module to defer work.
+can use the [`async`](/{{{polymer_version_dir}}}/docs/api/utils/async) module to defer work.
 
 However, if you handle a data change asynchronously, note that the parameters passed to the observer
 may not match the element's current property values.
