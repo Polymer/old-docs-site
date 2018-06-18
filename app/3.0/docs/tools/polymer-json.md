@@ -45,7 +45,6 @@ Example { .caption }
       "css": {"minify": false},
       "html": {"minify": false},
       "bundle": false,
-      "addServiceWorker": true,
       "addPushManifest": false
     }
   ]
