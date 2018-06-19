@@ -1,0 +1,238 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Organization" lang="en">
+
+<head>
+  <title>Products</title>
+  {% include 'templates/head-meta.html' %}
+</head>
+
+<body>
+  <pw-shell server-rendered>
+    {% include 'templates/site-nav.html' %}
+
+    <style>
+      strong a {
+        font-weight: bold;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      table th {
+        text-align: left;
+        padding: 12px 12px 12px 0px;
+      }
+
+      table td {
+        padding: 12px 12px 12px 0px;
+        border-top: 1px solid #cfd8dc;
+        /* blue-grey-100 */
+        vertical-align: top;
+      }
+    </style>
+    <section class="blue short gradient-light">
+      <div>
+        <h1>About our Products</h1>
+      </div>
+    </section>
+
+    <section class="short">
+
+      <div>
+
+
+        <p>
+          The Polymer Project team builds a variety of libraries and tools for developers. The following major products are under active
+          development::
+        </p>
+        <ul>
+
+          <li>
+            <strong>
+              <a href="https://github.com/Polymer/lit-element">LitElement</a>
+            </strong>. An ultra-light, highly performant custom element base class with a simple but expressive API.</li>
+        </ul>
+        <ul>
+
+          <li>
+            <strong>
+              <a href="https://github.com/Polymer/pwa-starter-kit/wiki">PWA Starter Kit</a>
+            </strong>. A set of starting templates for building full-featured Progressive Web Apps using web components and optionally
+            Redux for state management.</li>
+        </ul>
+        <ul>
+
+          <li>
+            <strong>
+              <a href="https://github.com/material-components/material-components-web-components">Material Web Components</a>
+            </strong>. High-fidelity versions of Google's Material Design spec that work anywhere on the web.</li>
+        </ul>
+        <ul>
+
+          <li>
+            <strong>
+              <a href="https://www.polymer-project.org/3.0/docs/tools/overview">Polymer CLI and related tools</a>
+            </strong>. Development tools that help with scaffolding out projects, serving, testing, and building projects for production.
+          </li>
+        </ul>
+        <ul>
+
+          <li>
+            <strong>
+              <a href="https://github.com/Polymer/lit-html">lit-html library</a>
+            </strong>. A small, lightweight templating library, used by LitElement.</li>
+        </ul>
+
+        <p>
+          The Polymer Project also maintains the following products:
+        </p>
+        <ul>
+
+          <li>
+            <strong>
+              <a href="https://www.polymer-project.org/3.0/docs/devguide/feature-overview">Polymer Classic library 3.x</a>
+            </strong>. Our original web components library (also known as the Polymer library or simply "Polymer"). Version 3.x is
+            updated to use JavaScript modules and npm, for seamless interop with popular frameworks and tools.</li>
+        </ul>
+        <ul>
+
+          <li>
+            <strong>Polymer Classic library
+              <a href="https://www.polymer-project.org/1.0/docs/devguide/feature-overview">1.x</a> and
+              <a href="https://www.polymer-project.org/2.0/docs/devguide/feature-overview">2.x</a>
+            </strong>. Previous versions of the library. Versions 1.x and 2.x use HTML imports (a proposed web standard which is no
+            longer on track to be standardized), and are distributed using Bower. Version 1.x also uses an older set of web
+            components standards. </li>
+        </ul>
+        <ul>
+
+          <li>
+            <strong>Polymer element collections</strong> (paper-, iron- and gold- elements). Two major versions of the elements are
+            currently supported: a version compatible with Polymer classic library 3.x, and a
+            <em>hybrid</em> version that works with version 1.x and 2.x of the library.</li>
+        </ul>
+
+        <p>
+          These projects are in maintenance mode: we're fixing bugs, but we're not doing new feature work on them. For more information
+          on our product lifecycle, see How we support our products.
+        </p>
+        <h2>But what should I use?</h2>
+
+
+        <p>
+          That's a lot of products to think about! How do you know what to use? He's a quick summary of what we recommend for some
+          common use cases.
+        </p>
+
+        <table>
+          <tr>
+            <th>
+              <strong>If you are...</strong>
+            </th>
+            <th>
+              <strong>We recommend...</strong>
+            </th>
+          </tr>
+          <tr>
+            <td>Developing a new element from scratch.
+            </td>
+            <td>
+              <strong>LitElement</strong>. It provides a simple, performant, and lightweight base class.
+            </td>
+          </tr>
+          <tr>
+            <td>Developing a new app from scratch.
+            </td>
+            <td>
+              <strong>PWA Starter Kit</strong>. It provides a number of templates for starting a modern Progressive Web App using
+              web components.
+            </td>
+          </tr>
+          <tr>
+            <td>Updating an app written using Polymer 1.x or 2.x elements.
+            </td>
+            <td>
+              <strong>Polymer 3.x</strong>. Moving to Polymer 3 removes the need for the HTML imports polyfill. It also makes it
+              easier to work with existing ES modules distributed using npm; and to use third-party tools.
+              <br>
+              <br> An app built using Polymer 3 elements can more easily take advantage of new elements distributed as ES modules,
+              including the Material Web Components.
+            </td>
+          </tr>
+          <tr>
+            <td>Maintaining an app written using Polymer 1.x or 2.x elements, with no feature work planned.
+            </td>
+            <td>
+              <strong>Polymer 2.x</strong>. If you don't plan any new feature work on your app, you probably don't need to migrate
+              to Polymer 3.x.
+              <br>
+              <br> If you're still on Polymer 1.x, we recommend upgrading to 2.x to take advantage of the native web components
+              v1 support that's shipping in Chrome and Safari (and in progress on other browsers). Polymer 1.x relies on
+              older web components standards that are only implemented in Chrome.
+            </td>
+          </tr>
+          <tr>
+            <td>Creating your own library or base class.
+            </td>
+            <td>
+              <strong>lit-html</strong>. It provides a small, lightweight, and efficient templating library for the web.
+            </td>
+          </tr>
+          <tr>
+            <td>Looking for material design UI elements to use with a Polymer 3.x or LitElement based app.
+            </td>
+            <td>
+              <strong>Material Web Components</strong>. These elements are more performant than the earlier paper elements, and follow
+              the latest version of the web components spec.
+            </td>
+          </tr>
+          <tr>
+            <td>Looking for a material design UI element that isn't provided by MWC yet.
+            </td>
+            <td>
+              <strong>Paper elements or third-party component</strong>. Almost all of the paper elements are available in 3.x-compatible
+              versions.
+              <p>
+                <em>
+                  === Should we add a paragraph here about the drawbacks of these elements (i.e., pulling in all of Polymer to PWA-starter-kit)?
+                  Would be really great if we could link to a spreadsheet or something that showed people what to expect:
+                  i.e., app-layout elements: use for now, ultimately replace with a new version based on LitElement. platinum-sw;
+                  use Workbox (or whatever it 's called now) directly. Paper-button, use this equivalent in MWC. foo-bar,
+                  use paper version until a MWC version is available. Bar-baz, will not have a MWC replacement, look for
+                  a third-party replacement.===</em>
+            </td>
+          </tr>
+        </table>
+
+
+        <h2>How we support our products (or: Product lifecycle?)</h2>
+
+
+        <p>
+          <em>=== Should we have a section here about product lifecycle? We could also just link to a doc elsewhere.===</em>
+        </p>
+        <h2>Status of our element sets</h2>
+
+
+        <p>
+          ===More words here.===
+        </p>
+      </div>
+    </section>
+
+  </pw-shell>
+  <pw-footer></pw-footer>
+  <script src="/js/app.js"></script>
+</body>
+
+</html>

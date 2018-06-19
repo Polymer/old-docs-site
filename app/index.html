@@ -67,6 +67,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
 
+      .library .blue-button:not(:last-of-type) {
+        margin-right: 20px;
+      }
+
+      @media (max-width: 900px) {
+        .library .blue-button:not(:last-of-type) {
+          margin-right: 0;
+        }
+      }
+
       .page-index-features .feature {
         color: white;
       }
@@ -230,18 +240,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <img src="/images/logos/p-logo.png" alt="Polymer logo">
         </div>
         <div class="content flex">
-          <h1>Polymer 3.0 is here!</h1>
+          <h1>Working for a more awesome web</h1>
           <div class="flex">
             <p>
-              Version 3.0 of the Polymer library brings web components into the mainstream, embracing JavaScript modules and npm.
-            </p>
-            <p>
-              Update your apps and elements for seamless interop with popular frameworks and tools and easy access to the full JavaScript ecosystem. 
+              The Polymer Project works to make the web better for users and developers. We work on libraries, tools and patterns to 
+              help developers build modern Progressive Web Apps.
             </p>
           </div>
           <div class="section-columns">
-              <a href="/3.0/docs/about_30" class="blue-button flex">What's New</a>
-              <a href="/3.0/docs/upgrade" class="blue-button flex">Upgrade Guide</a>
+              <a href="/about" class="blue-button flex">About the Project</a>
+              <a href="/products" class="blue-button flex">About Our Products</a>
           </div>
         </div>
       </div>
@@ -270,8 +278,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
       </div>
     </section>
-  
+
     <section class="library light">
+      <div class="flex">
+        <h1>Polymer Classic Library 3.0</h1>
+        <div class="flex">
+          <p>The Polymer library is our first product and the original web components library. 
+            Version 3.0 of the Polymer library brings web components into the mainstream, embracing JavaScript modules and npm.
+          </p>
+          <p>
+            Update your apps and elements for seamless interop with popular frameworks and tools and easy access to the full JavaScript ecosystem. 
+          </p>
+        </div>
+        <div class="section-columns">
+            <a href="/3.0/docs/about_30" class="blue-button flex">What's New</a>
+            <a href="/3.0/docs/upgrade" class="blue-button flex">Upgrade Guide</a>
+        </div>
+      </div>
+    </section>
+  
+    <section class="library dark">
       <div class="section-columns">
           <div class="flex">
             <h2 class="underline">About the Polymer Project</h2>
