@@ -5,7 +5,7 @@
     "index.js"
   ],
   "dependencies": {
-    "@polymer/polymer": "next",
-    "@webcomponents/webcomponentsjs": "next"
+    "@polymer/polymer": "latest",
+    "@webcomponents/webcomponentsjs": "latest"
   }
 }
