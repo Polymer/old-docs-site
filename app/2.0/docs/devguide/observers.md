@@ -400,6 +400,20 @@ class XCustom extends Polymer.Element {
 customElements.define(XCustom.is, XCustom);
 ```
 
+### Observe the length of an array 
+
+To create an observer on the length of an array, specify a path to an array followed by `.length` in your `observers` array:
+
+``` js
+static get observers() {
+  return [
+    'usersAddedOrRemoved(users.length)'
+  ]
+}
+```
+
+Your length observer method should accept a single argument (the new array length).
+
 ### Observe all changes related to a path {#deep-observation}
 
 To call an observer when any (deep) sub-property of an
@@ -414,7 +428,7 @@ observer is a change record object with the following properties:
 *   `base`. The object matching the non-wildcard portion of the path.
 
 For array mutations, `path` is the path to the array that changed,
-followed by `.splices`. And the `value` field includes the `indexSplices`
+followed by `.splices`. The `value` field includes the `indexSplices`
 property described in [Observe array mutations](#array-observation).
 
 Example: { .caption }
@@ -460,6 +474,8 @@ Example: { .caption }
 </dom-module>
 ```
 
+**Array mutations may also raise a change record for the length of the array.**
+If an array mutation also caused the length of the array to change, a wildcard observer on an array path raises a separate change record for the array length. The `path` field of the length change record is the path to the array that changed, followed by `.length`. The `value` field is the new array length. { .alert .alert-info }
 
 ### Identify all dependencies {#dependencies}
 
