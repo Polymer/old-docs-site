@@ -84,6 +84,34 @@ Where:
       Global flag. If `true`, forces all gesture listeners to be passive. See <a href="#setting-passive-touch-gestures">Setting passive touch gestures</a> for more details.
     </td>
   </tr>
+  <tr>
+    <td>
+      <code>strictTemplatePolicy</code><br>
+      <code>setStrictTemplatePolicy</code>
+    </td>
+    <td>
+      Global flag. If `true`, prevents evaluation of untrusted templates in HTML:
+      <ul>
+        <li>Disables element template lookup from a <code>&lt;dom-module&gt;</code> block.</li>
+        <li>Disables the use of <code>&lt;dom-bind&gt;</code>, <code>&lt;dom-if&gt;</code>`<dom-bind>`, and <code>&lt;dom-repeat&gt;</code>  in a main document.</li>
+      </ul>
+      Set <code>strictTemplatePolicy</code> from your app entrypoint (usually index.html), before loading your app shell or any Polymer elements:
+
+```html
+<script type="module">
+  // Import setStrictTemplatePolicy from Polymer settings module
+  import { setStrictTemplatePolicy } from '/node_modules/@polymer/polymer/lib/utils/settings.js';
+  // enable strictTemplatePolicy
+  setStrictTemplatePolicy(true);
+</script>
+<!-- load element definitions -->
+<script type="module" src="my-app.js"></script>
+```
+  See
+  <a href="/3.0/toolbox/xss">Prevent XSS attacks</a>
+  for more information.
+  </td>
+  </tr>
 </tbody>
 </table>
 

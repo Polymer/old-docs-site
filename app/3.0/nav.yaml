@@ -204,6 +204,9 @@
   - title: The PRPL pattern
     path: /3.0/toolbox/prpl
     indent: True
+  - title: Prevent XSS attacks
+    path: /3.0/toolbox/xss
+    indent: True
   - endheader: true
   - header: Case studies
   - title: "Shop"
