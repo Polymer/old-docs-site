@@ -273,10 +273,6 @@ static get template() {
 
 ### URLs in templates {#urls-in-templates}
 
-**Outdated information.** This section needs to be updated after
-[issue #5163](https://github.com/Polymer/polymer/issues/5163) is resolved.
-{.alert .alert-warning}
-
 A relative URL in a template may need to be relative to an application or to a specific component.
 For example, if a component includes images alongside a module that defines an element, the
 image URL needs to be resolved relative to the import. However, an application-specific element may
@@ -284,26 +280,34 @@ need to include links to URLs relative to the main document.
 
 By default, Polymer **does not modify URLs in templates**, so all relative URLs are treated as
 relative to  the main document URL. This is because when the template content is cloned and added
-to the main document, the browser evaluates the URLs  relative to the document (not to the original
+to the main document, the browser evaluates the URLs relative to the document (not to the original
 location of the template).
 
-To ensure URLs resolve properly, Polymer provides two properties that can be used in data bindings:
+Polymer provides the property `rootPath`-an instance property set to the value of `Polymer.rootPath`
+which is globally settable and defaults to the main document URL. It may be useful to set
+`Polymer.rootPath` to provide a stable application mount path when using client side routing. 
 
-| Property | Description |
-| -------- | ----------- |
-| `importPath` | A static getter on the element class. **To set URLs relative to the import, you must override the `importPath` getter.** |
-| `rootPath` | An instance property set to the value of `Polymer.rootPath` which is globally settable and defaults to the main document URL. It may be useful to set `Polymer.rootPath` to provide a stable application mount path when using client side routing. |
+To get a reference to the path from which an element was imported, add the following getter method
+to your element class:
 
+```
+static get importMeta() { 
+  return import.meta; 
+}
+```
+
+When the element is loaded, the getter above assigns its `importPath` property. You can then use 
+`importPath` in data bindings to resolve relative URLs.
 
 Relative URLs in styles are automatically re-written to be relative to the `importPath` property.
+
 Any URLs outside of a `<style>` element should be bound using `importPath` or
 `rootPath` where appropriate. For example:
 
 ```html
-// This getter must be defined for your element if  you want to use importPath
-static get importPath() {
-  // return the base URL for this import
-  return import.meta.url;
+// This getter must be defined for your element if you want to use importPath
+static get importMeta() { 
+  return import.meta; 
 }
 
 static get template() {
