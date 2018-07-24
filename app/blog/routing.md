@@ -12,7 +12,9 @@ title: "Encapsulated Routing with Elements"
   }
 </style>
 
+
 ## Introduction
+
 
 Polymer is designed with a set of principles in mind: **encapsulation**, **composition**, and **separation of concerns**. When we set out to tackle routing, we knew we wanted to do it in a way that adheres to these principles.
 
@@ -54,14 +56,15 @@ Note also, how little actual routing there is here. Almost all of the work is be
 
 You can see the core of the idea here, but we’ve jumped ahead a bit. I mean, where does the route in `route="{{route}}"` come from? What’s that `pattern` property doing, and how is it related to `data`?
 
-## app-route
+
+## &lt;app-route>
 
 Let’s walk back a bit and consider the routing problem, one piece at a time, beginning with just a `<app-route>`. What does it do, and how does it work?
 
 `<app-route>` simply matches an input path against a specified pattern. Here's a simple demo of a standalone `<app-route>`. Instead of being hooked up to the page URL, it's hooked up to inputs, so you can change the path and pattern by hand.
 
-<iframe src="https://polymer-2-0-routing-demo-1.glitch.me" style="height: 840px;"></iframe>
-<a href="https://glitch.com/edit/#!/polymer-2-0-routing-demo-1" target="_blank">Open demo in new window</a>
+<iframe src="/2.0/samples/routing/demo1" style="height: 840px;"></iframe>
+<a href="/2.0/samples/routing/demo1" target="_blank">Open demo in new window</a>
 
 `<app-route>` deals with hierarchical, slash separated paths. You give it a pattern, and it tells you when the input matches.
 
@@ -69,12 +72,12 @@ If the pattern contains any variables, like `/:tabName` then the `<app-route>` e
 
 We're still iterating on the syntax of `pattern`. The most surprising thing to notice is that `/foo` will match `/foo`, `/foo/`, and `/foo/bar/baz`. The pattern `/foo/` with a trailing slash however will only match `/foo/`.
 
-## app-location
+## &lt;app-location>
 
 `<app-route>` doesn't know about the URL, it just knows about paths. While you’ll have many `<app-route>` elements in your app, there’s only one URL bar. The URL is global. So we’ve got an element whose single responsibility is connecting the URL to your app. We call this element `<app-location>`, and it exposes a `route` property suitable for binding into a `<app-route>`, like so:
 
-<iframe src="https://polymer-2-0-routing-demo-2.glitch.me" style="height: 840px;"></iframe>
-<a href="https://glitch.com/edit/#!/polymer-2-0-routing-demo-2" target="_blank">Open demo in new window</a>
+<iframe src="/2.0/samples/routing/demo2" style="height: 745px;"></iframe>
+<a href="/2.0/samples/routing/demo2" target="_blank">Open demo in new window</a>
 
 Notice however that if you open the demo in its own window and change the path,
 refreshing will give you a 404. That's because the server doesn't know what
@@ -96,8 +99,9 @@ Ok, so that’s how to get a `<app-route>` hooked up to the URL. However, the be
 
 `<app-route>` exposes a property named `tail` that can be passed in as the the `route` of another `<app-route>`. The `tail` represents the rest of the path that comes after the part that `pattern` matches. When the `tail` route changes, those changes propagate up, so the bidirectional data binding is still working its magic.
 
-<iframe src="https://polymer-2-0-routing-demo-3.glitch.me" style="height: 955px;"></iframe>
-<a href="glitch.com/edit/#!/polymer-2-0-routing-demo-3" target="_blank">Open demo in new window</a>
+<iframe src="/2.0/samples/routing/demo3#/" style="height: 955px;"></iframe>
+<a href="/2.0/samples/routing/demo3#/" target="_blank">Open demo in new window</a>
+
 
 ### Why chain routes?
 
