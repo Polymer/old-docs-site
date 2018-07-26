@@ -147,10 +147,9 @@ Notes:
 
 -   Safari includes working implementations of Shadow DOM v1 and Custom Elements v1.
 
+-   Firefox includes experimental implementations of Custom Elements v1 and Shadow DOM v1. These implementations are
+    currently disabled by default but are expected to be enabled by about version 63.
+
 -   Edge has on its backlog to support [Shadow
     DOM v1](https://wpdev.uservoice.com/forums/257854-microsoft-edge-developer/suggestions/6263785-shadow-dom-unprefixed)
     and [Custom Elements v1](https://wpdev.uservoice.com/forums/257854-microsoft-edge-developer/suggestions/6261298-custom-elements).
-
--   Firefox currently supports experimental implementations of the custom elements and shadow DOM APIs       
-    behind flags. Polymer **does not work correctly** with the experimental shadow DOM flag enabled, because 
-    of an incompatibility with the web components polyfills.
