@@ -121,7 +121,7 @@ for more information.
 <td>Type: <code>string</code><br>
 
 The value is interpreted as a method name and argument list. The method is invoked
-to calculate the value whenever any of the argument values changes. Computed
+to calculate the value whenever any of the argument values change. Computed
 properties are always read-only. See <a href="observers#computed-properties">Computed properties</a>
 for more information.
 </td>
