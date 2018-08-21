@@ -1133,7 +1133,7 @@ Before {.caption}
 <template is="dom-bind">
   <ul>
   <template is="dom-repeat" items="{{people}}">
-    <li>{{item.name}}
+    <li>{{item.name}}</li>
   </template>
   </ul>
 </template>
@@ -1157,7 +1157,7 @@ After {.caption}
     <ul>
     <!-- inner template doesn't need to be wrapped -->
     <template is="dom-repeat" items="{{people}}">
-      <li>{{item.name}}
+      <li>{{item.name}}</li>
     </template>
     </ul>
   </template>
