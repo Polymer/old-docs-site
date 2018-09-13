@@ -263,8 +263,20 @@ gulp.task('jshint', 'Lint JS', function() {
 });
 
 gulp.task('js', 'Minify JS to dist/', ['jshint'], function() {
+  const externalJs = require('polymer-cli/node_modules/polymer-build/lib/external-js');
+  const polyfills = [
+    externalJs.getRegeneratorRuntime(),
+    ';\n',
+    externalJs.getBabelHelpersFull(),
+    ';\n',
+    externalJs.getAmdLoader(),
+    ';\n',
+    fs.readFileSync(require.resolve('web-animations-js/web-animations-next-lite.min.js'), 'utf-8'),
+    ';\n',
+  ];
   return gulp.src(['app/js/**/*.js'])
     .pipe(gulpUglifyEs()) // Minify js output
+    .pipe($.header(polyfills.join('')))
     .pipe(gulp.dest('dist/js'));
 });
 
