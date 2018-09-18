@@ -187,9 +187,7 @@ See the [API docs on `sanitizeDOMValue`](/{{{polymer_version_dir}}}/docs/devguid
 
 Developers using any web technology must take extreme care with APIs like [innerHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) and [insertAdjacentHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML) that directly manipulate DOM. If you use these APIs, you must guarantee that any HTML strings you pass to them are free from possibly malicious code. See the [MDN documentation on innerHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) for more info.
 
-Polymer developers , an extra consideration applies to these APIs, in that we must also rule out the evaluation of untrusted custom element templates.
-
-If you need to use `innerHTML` or similar APIs, use a library like [DOMPurify](https://github.com/cure53/DOMPurify) to sanitize the values you pass to them:
+Polymer developers must also rule out the evaluation of untrusted custom element templates. If you need to use `innerHTML` or similar APIs, use a library like [DOMPurify](https://github.com/cure53/DOMPurify) to sanitize the values you pass to them:
 
 ```js
 var el=this.shadowRoot.getElementById('mydiv');
