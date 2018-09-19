@@ -600,7 +600,7 @@ customElements.define('using-dir-selector', UsingDirSelector);
 
 The preferred way to share styles is with *style modules*. You can package up styles in a style module, and share them between elements.
 
-**The following process is a workaround.** While Polymer 3.0 does not use HTMLImports, style modules do. The following process is a workaround for this fact. This process may be updated as required.
+**The following process is a workaround.** While Polymer 3.0 does not use `<dom-module>` elements for templating, style modules do. The following process is a workaround for this fact. This process may be updated as required.
 { .alert }
 
 To create a style module:
