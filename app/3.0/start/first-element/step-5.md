@@ -131,6 +131,35 @@ If you'd like to learn a little more about custom properties, read on.
 
 ### Extra credit: Set custom properties at the document level {#extra}
 
+ Note: undo the following so that it won't override the custom css properties
+ 
+ 
+demo/demo-element.js: Before { .caption }
+
+```html
+<style>
+  :host {
+    font-family: sans-serif;
+    --icon-toggle-color: lightgrey;
+    --icon-toggle-outline-color: black;
+    --icon-toggle-pressed-color: red;
+  }
+</style>
+```
+ 
+ demo/demo-element.js: After { .caption }
+
+```html
+<style>
+  :host {
+    font-family: sans-serif;
+  }
+</style>
+```
+
+ 
+ 
+
 You might want to create a theme for an entire application. One way to do this is to define custom properties at the document level, outside of your Polymer elements. 
 
 Because custom properties aren't built into most browsers yet, if you use them outside a Polymer element, you need to use a special `custom-style` tag. 
