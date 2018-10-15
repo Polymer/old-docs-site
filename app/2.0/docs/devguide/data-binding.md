@@ -697,6 +697,44 @@ to listen for `property-changed` events.  The following constructions are equiva
 <my-element value="{{hostValue}}">
 ```
 
+## Strict binding parser
+
+The default implementation of the binding parser uses a regular expression, due to its better
+performance. However, since it uses a white-list of allowed characters, some characters won't be
+accepted as valid within a binding expression.
+
+There's a strict binding parser implementation, extracted in a separate mixin, which uses a
+state-machine instead of a regular expression. This implementation is able to handle all possible
+cases, although it's slightly less performant.
+
+Example: { .caption }
+
+```
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/lib/mixins/strict-binding-parser.html">
+
+<dom-module id="polymer-strict-binding-parser-example">
+  <template>
+    <span>[[título]]</span>
+  </template>
+
+  <script>
+    class PolymerStrictBindingParserExample extends Polymer.StrictBindingParser(Polymer.Element) {
+      static get is() { return 'polymer-strict-binding-parser-example'; }
+      static get properties() {
+        return {
+          título: {
+            type: String,
+            value: 'Mi título'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(PolymerStrictBindingParserExample.is, PolymerStrictBindingParserExample);
+  </script>
+</dom-module>
+```
 
 ## Moved sections
 
