@@ -715,7 +715,7 @@ Example: { .caption }
 
 <dom-module id="polymer-strict-binding-parser-example">
   <template>
-    <span>[[título]]</span>
+    <span>[[商品名]]</span>
   </template>
 
   <script>
@@ -723,9 +723,9 @@ Example: { .caption }
       static get is() { return 'polymer-strict-binding-parser-example'; }
       static get properties() {
         return {
-          título: {
+          商品名: {
             type: String,
-            value: 'Mi título'
+            value: 'test'
           }
         };
       }
