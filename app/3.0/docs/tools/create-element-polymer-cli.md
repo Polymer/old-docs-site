@@ -74,11 +74,11 @@ Import your dependencies using module specifiers:
 
     src/my-el/my-el.js {.caption}
 
-    ```js
-    import {PolymerElement} from '@polymer/polymer/polymer-element.js';
-    import '@polymer/paper-button/paper-button.js';
-    import '../child-el/child-el.js';
-    ```
+```js
+import {PolymerElement} from '@polymer/polymer/polymer-element.js';
+import '@polymer/paper-button/paper-button.js';
+import '../child-el/child-el.js';
+```
 
 *   When importing a dependency installed using npm, use the package name, followed
     by the path to the module. 
