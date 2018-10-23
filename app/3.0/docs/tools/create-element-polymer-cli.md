@@ -72,7 +72,7 @@ To remove the dependency from `node_modules` and `package.json`:
 
 Import your dependencies using module specifiers:
 
-    src/my-el/my-el.js {.caption}
+src/my-el/my-el.js {.caption}
 
 ```js
 import {PolymerElement} from '@polymer/polymer/polymer-element.js';
