@@ -75,10 +75,10 @@ You can now set the `capture`, `passive` and `once` options when you add an even
 
 ```js
 const listener = {
-    handleEvent(e) {
+  handleEvent(e) {
     console.log('clicked');
-    }
-    capture: true;
+  }
+  capture: true;
 }
 const button = html`<button @click=${listener}>Click Me</button>`;
 ```
