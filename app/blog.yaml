@@ -1,4 +1,14 @@
 ---
+- title:  "Latest releases from the Polymer Project"
+  path: /blog/2018-10-22-latest-releases-update
+  published: 2018-10-22
+  author: polymer-team
+  description: "An update on the latest releases from the Polymer Project."
+- title:  "Web Components v0 deprecations"
+  path: /blog/2018-10-02-webcomponents-v0-deprecations
+  published: 2018-10-02
+  author: polymer-team
+  description: "With new Web Components specs shipping widely, older web components standards are being deprecated and removed from Chrome."
 - title:  "Polymer Elements 3.0 FAQ"
   path: /blog/2018-05-25-polymer-elements-3-faq
   published: 2018-05-25
