@@ -18,7 +18,9 @@ When we announced Polymer 3.0 at Google I/O, we had preview releases of most ele
 
 The 3.0 elements are published on npm, so you can install them using `npm install`: 
 
+```bash
 npm install @polymer/paper-button
+```
 
 The elements are all registered on [webcomponents.org](https://www.webcomponents.org/). The site was recently updated to correctly show documentation and demos from npm.
 
@@ -50,18 +52,18 @@ The following sections discuss the API changes in the current release.
 lit-html now uses an updated, more consistent template syntax for attributes and properties.Bindings now default to attribute binding, and you can use single-character prefixes to attribute names to specify property (`.`), event (`@`), and boolean attribute (`?`) bindings.
 
 
-```
-        <!-- attribute binding --> 
-        <div class=${cssClass}>
+```html
+<!-- attribute binding --> 
+<div class=${cssClass}>
 
 <!-- boolean attribute binding -->
-        <button ?disabled=${submitDisabled}>
+<button ?disabled=${submitDisabled}>
 
 <!-- property binding -->
 <input .value=${searchText}>
 
-        <!-- event listener binding -->
-        <button @click=${clickHandler}>
+<!-- event listener binding -->
+<button @click=${clickHandler}>
 ```
 
 
@@ -71,14 +73,14 @@ lit-html now uses an updated, more consistent template syntax for attributes and
 You can now set the `capture`, `passive` and `once` options when you add an event listener. To add options, specify the handler as an object. The object should contain a `handleEvent` function and any options you want to set for the handler.
 
 
-```
-    const listener = {
-      handleEvent(e) {
-        console.log('clicked');
-      }
-      capture: true;
+```js
+const listener = {
+    handleEvent(e) {
+    console.log('clicked');
     }
-    html`<button @click=${listener}>Click Me</button>`
+    capture: true;
+}
+const button = html`<button @click=${listener}>Click Me</button>`;
 ```
 
 
@@ -90,9 +92,9 @@ You can specify a default event context, so that unbound event handlers are call
 To set the event context, pass a render options object as the third argument to `render`:
 
 
-```
-  // call all event handlers with the current this value
-  render(templateResult, destination, {eventContext: this});
+```js
+// call all event handlers with the current this value
+render(templateResult, destination, {eventContext: this});
 ```
 
 
@@ -118,8 +120,6 @@ Four new directives—<code>[classMap](https://polymer.github.io/lit-html/api/mo
 
 Significant changes include:
 
-
-
 *   Refactored [lifecycle API](https://github.com/Polymer/lit-element/blob/master/README.md#api-documentation) to be more consistent and address real-world needs.
 *   Updated the docs and samples to reflect the lit-html template syntax changes.
 *   Sets the lit-html `eventContext` option so that unbound class methods can be used as event listeners.
@@ -132,39 +132,34 @@ The current release adds the following decorators:
 
 *   `@customElement()`. Decorates a custom element class.
 
-		`@customElement('my-element') \
-		class MyElement extends LitElement { ... }`
-
+    ```
+	@customElement('my-element') 
+	class MyElement extends LitElement { ... }
+    ```
 
 
 *   `@query()`. Decorates a property. Transforms the property into a getter that performs a querySelector on the element's render root.
 
-		`@query('#submit')`
-
-
-```
-           submitButton?: HTMLButtonElement
-
-```
+    ```
+	@query('#submit')
+    submitButton?: HTMLButtonElement
+    ```
 
 
 
 *   `@queryAll()`. Decorates a property. Like @query, transforms the property into a getter that performs a querySelectorAll on the element's render root.
 
-	`	@query('button')`
-
-`           buttons!: NodeList`  \
-
-
-
+    ```
+    @queryAll('button')`
+    buttons!: NodeList
+    ```
 
 *   `@eventOptions()`. Method decorator for setting capture, passive, and once options on event listener methods:
 
-
-```
-		@eventOptions({capture: true})
-		onClick(e) { ... }
-```
+    ```
+    @eventOptions({capture: true})
+    onClick(e) { ... }
+    ```
 
 
 At this point we consider the codebase to be stable and have no further planned breaking changes to the API, pending feedback.
