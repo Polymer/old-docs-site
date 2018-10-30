@@ -186,7 +186,7 @@ Now your element has `pressed` and `toggleIcon` properties working.
 
 Reload the demo, and you should see star and heart icons:
 
-<img width="400px" rc="/images/3.0/first-element/static-toggles.png" alt="Demo showing icon toggles with star and heart icons">
+<img width="400px" src="/images/3.0/first-element/static-toggles.png" alt="Demo showing icon toggles with star and heart icons">
 
 Next, we'll make the icons react to being clicked. On to [step 4](step-4)!
 
