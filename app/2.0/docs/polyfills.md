@@ -80,7 +80,7 @@ The following table lists the JavaScript snippets and query parameters for each 
 JavaScript:
 
 ```js
-window.customElements && window.customElements.forcePolyfill = true;
+if (window.customElements) window.customElements.forcePolyfill = true;
 ```
 
 Query parameter:
