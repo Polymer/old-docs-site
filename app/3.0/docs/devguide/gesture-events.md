@@ -9,6 +9,11 @@ interactions. These events fire consistently on both touch and mouse environment
 so we recommend using these events instead of their mouse- or
 touch-specific event counterparts. This provides better interoperability with both touch and mouse devices.
 
+**In general, use the standard `click` event instead of `tap` in mobile browsers.** The `tap`
+event is included in the gesture event mixin for backwards compatibility, but it's no longer
+required in modern mobile browsers.
+{.alert .alert-info}
+
 ## Using gesture events
 
 Add gesture support by importing and using the `GestureEventListeners` mixin:
