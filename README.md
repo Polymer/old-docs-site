@@ -1,6 +1,9 @@
-## Polymer documentation site
+## Old Polymer documentation site
 
-https://www.polymer-project.org/
+This site has been replaced by the following sites: 
+
+* .  Polymer Project landing page & blog: [https://www.polymer-project.org/](https://www.polymer-project.org/) ([Repo: polymer-project.org](https://github.com/Polymer/polymer-project.org)).
+* .  Polymer Library documentation: [https://polymer-library.polymer-project.org/](https://polymer-library.polymer-project.org/) ([Repo: polymer-library-docs](https://github.com/Polymer/polymer-library-docs)).
 
 ### Install
 
