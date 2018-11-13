@@ -256,7 +256,7 @@ In addition to `PolymerElement`, a custom element can extend another custom elem
 
 
 ```
-import {MyElment} from './my-element.js';
+import {MyElement} from './my-element.js';
 
 export class ExtendedElement extends MyElement {
   static get is() { return 'extended-element'; }
