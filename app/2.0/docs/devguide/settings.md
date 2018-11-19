@@ -125,6 +125,24 @@ Where:
 -   `node` is the node where the value is being inserted.
     </td>
   </tr>
+  <tr>
+  <td>
+      <code>strictTemplatePolicy</code>
+    </td>
+    <td>
+      Prevents evaluation of untrusted template code. 
+      When <code>true</code>:
+      <ul>
+        <li>Polymer only parses and evaluates templates from <code>&lt;dom-module&gt;</code> blocks associated with elements that have been registered in a script.
+        </li>
+        <li>Re-registering a <code>&lt;dom-module&gt;</code> is disabled.</li>
+        <li>Disables the use of <code>&lt;dom-bind&gt;</code>, <code>&lt;dom-if&gt;</code>, and <code>&lt;dom-repeat&gt;</code> in a main document; you can only use these elements inside a trusted Polymer template.</li>
+      </ul>
+      See
+      <a href="/2.0/toolbox/xss">Prevent XSS attacks</a>
+      for more information.
+    </td>
+  </tr>
 </tbody>
 </table>
 
