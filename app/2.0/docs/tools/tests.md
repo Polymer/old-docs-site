@@ -401,10 +401,10 @@ devices. For guidance on setting up these tools check out the Polycast below.
 
 ## Set up testing on Safari {#safari}
 
-Safari 10 has built-in support for testing, but it must be manually enabled. Safari 9 may require
+Safari 10+ has built-in support for testing, but it must be manually enabled. Safari 9 may require
 a you to install a browser extension.
 
-To enable testing on Safari 10:
+To enable testing on Safari 10+:
 
 1.  If you don't see the **Develop** menu in the Safari menu bar, enable it:
 
@@ -416,7 +416,7 @@ To enable testing on Safari 10:
 3.  You may need to authorize `safaridriver` to launch the `webdriverd` service which hosts the
     local web server. To do this, start `safaridriver` once manually:
 
-        /usr/bin/safaridriver
+        /usr/bin/safaridriver --enable
 
     Complete the authentication prompt.
 
